@@ -137,6 +137,10 @@ img,svg{max-width:100%;height:auto;}
 .topnav .links a.account-btn,
 .topnav .links a.account-btn:hover{color:#1b1f19;font-weight:600;}
 
+/* Language toggle (injected by i18n.js) — follows the header state */
+.topnav .links .lang-toggle{border:1.5px solid rgba(242,238,226,.4);color:#F2EEE2;}
+.topnav.nav-authed .links .lang-toggle{border-color:var(--paper-line);color:var(--ink);}
+
 /* Logged-in (member) header — cream bar, dark links */
 .topnav.nav-authed{
   background:rgba(247,244,235,.86);

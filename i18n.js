@@ -738,14 +738,18 @@
     if (!links) return;
 
     const wrap = document.createElement('div');
+    wrap.className = 'lang-toggle-wrap';
     wrap.style.cssText = 'position:relative;display:inline-block;';
 
     const btn = document.createElement('button');
     btn.type = 'button';
+    btn.className = 'lang-toggle';
     btn.textContent = lang === 'it' ? '🌐 Lingua' : '🌐 Language';
     btn.setAttribute('aria-haspopup', 'true');
     btn.setAttribute('aria-expanded', 'false');
-    btn.style.cssText = 'border:1.5px solid var(--paper-line);background:none;color:var(--ink);font-size:12px;font-weight:700;padding:6px 12px;border-radius:999px;cursor:pointer;font-family:\'Inter\',sans-serif;';
+    // Colors live in styles.css (.lang-toggle) so the button can follow
+    // the header's guest (dark) vs member (cream) state.
+    btn.style.cssText = 'background:none;font-size:12px;font-weight:700;padding:6px 12px;border-radius:999px;cursor:pointer;font-family:\'Inter\',sans-serif;';
     wrap.appendChild(btn);
 
     const menu = document.createElement('div');
