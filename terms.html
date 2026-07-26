@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms of use — DoloPaws</title>
+<meta name="description" content="The ground rules for using DoloPaws: what our trail scores are (and aren't), community standards, and your responsibilities on the mountain.">
+<meta name="theme-color" content="#2E4034">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
+  <div class="links">
+    <a href="browse-trails.html">Browse all Trails</a>
+    <a href="browse-trails.html#collections">Collections</a>
+    <a href="safety-guide.html">Safety guide</a>
+    <a href="about.html" data-i18n="nav.about">About</a>
+    <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
+  </div>
+</div>
+
+<div class="guide-hero">
+  <div class="eyebrow">Terms of use</div>
+  <h1 style="font-size:clamp(28px,5vw,38px);margin-top:14px;">The ground rules</h1>
+  <p class="sub" style="margin-top:14px;">Short, honest, and mostly about keeping you and your dog safe. Last updated 24 July 2026.</p>
+</div>
+
+<div class="guide-article">
+
+  <section class="guide-section">
+    <h2>What DoloPaws is</h2>
+    <p>DoloPaws is a free guide to dog-friendly mountain trails. Trail ratings, match percentages and condition notes are <strong>planning aids, not guarantees</strong>. They describe what we knew when we last checked — and mountains change faster than websites.</p>
+  </section>
+
+  <section class="guide-section">
+    <h2>You're the one on the mountain</h2>
+    <ul>
+      <li>Conditions change with weather, season and time of day. A “Low-risk” label is not a promise the trail is safe today.</li>
+      <li>You know your dog; we only know what you've told us. The match score is arithmetic, not a vet. Nothing on DoloPaws is veterinary advice — if your dog shows signs of heat stress, injury or exhaustion, get them to shade, water and a vet.</li>
+      <li>Check local rules before you go: leash requirements, protected areas and seasonal closures are yours to follow.</li>
+      <li>Using DoloPaws doesn't transfer any of that responsibility to us. To the extent the law allows, we're not liable for what happens on the trail.</li>
+    </ul>
+  </section>
+
+  <section class="guide-section">
+    <h2>Your account</h2>
+    <p>Keep your login to yourself, and give us honest profile details — the scores are only as good as what you enter. You can delete your account at any time from the <a href="account.html?next=terms.html" style="color:var(--accent);font-weight:600;">account page</a>, which removes your data as described in our <a href="privacy.html" style="color:var(--accent);font-weight:600;">privacy note</a>.</p>
+  </section>
+
+  <section class="guide-section">
+    <h2>Community content</h2>
+    <p>Reviews, condition reports and photos you publish are visible to everyone. By posting, you confirm the content is yours and give us permission to display it on DoloPaws alongside the trail it describes. Keep it useful and decent:</p>
+    <ul>
+      <li>Report real conditions — a false “all clear” can put someone's dog at risk.</li>
+      <li>No abuse, spam, advertising, or other people's private information.</li>
+      <li>Only photos you took, and nothing that identifies people without their consent.</li>
+    </ul>
+    <p>We may remove content or close accounts that break these rules. If you see something that shouldn't be here, use the report control on the post or write to <a href="mailto:hello@dolopaws.com" style="color:var(--accent);font-weight:600;">hello@dolopaws.com</a>.</p>
+  </section>
+
+  <section class="guide-section">
+    <h2>Our content</h2>
+    <p>Trail write-ups, scores and the DoloPaws name are ours; map data comes from OpenStreetMap contributors under their licence. You're welcome to share links to any page — that's what they're for. Please don't scrape or republish the dataset wholesale.</p>
+  </section>
+
+  <section class="guide-section">
+    <h2>The service itself</h2>
+    <p>DoloPaws is provided as-is, free of charge. We work hard to keep it accurate and online, but we can't promise either, and features may change or disappear as the project evolves. If these terms change materially, we'll note it here with a new date.</p>
+  </section>
+
+</div>
+
+<footer class="site-footer" data-i18n="footer.line">DoloPaws &#124; A personalised trail guide for dogs and their humans.</footer>
+
+<script src="mobile-nav.js"></script>
+<script src="i18n.js"></script>
+<script type="module" src="firebase-init.js"></script>
+<script src="auth-ui.js?v=20260724-3" defer></script>
+</body>
+</html>

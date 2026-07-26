@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy — DoloPaws</title>
+<meta name="description" content="What DoloPaws stores, where it lives, and how to delete it. Plain language, no surprises.">
+<meta name="theme-color" content="#2E4034">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
+  <div class="links">
+    <a href="browse-trails.html">Browse all Trails</a>
+    <a href="browse-trails.html#collections">Collections</a>
+    <a href="safety-guide.html">Safety guide</a>
+    <a href="about.html" data-i18n="nav.about">About</a>
+    <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
+  </div>
+</div>
+
+<div class="guide-hero">
+  <div class="eyebrow">Privacy</div>
+  <h1 style="font-size:clamp(28px,5vw,38px);margin-top:14px;">What we store, and why</h1>
+  <p class="sub" style="margin-top:14px;">Plain language, no surprises. Last updated 24 July 2026.</p>
+</div>
+
+<div class="guide-article">
+
+  <section class="guide-section">
+    <h2>The short version</h2>
+    <p>You can browse every trail without an account, and without us storing anything about you beyond ordinary hosting logs. If you create an account, we store what you give us — your email and your dog's profile — so your trails follow you across devices. We don't run ads, we don't sell data, and community posts are the only thing other people ever see.</p>
+  </section>
+
+  <section class="guide-section">
+    <h2>What we store when you have an account</h2>
+    <ul>
+      <li><strong>Your login</strong> — your email address (or your Google account, if you sign in with Google). Authentication is handled by Google Firebase; we never see or store your password.</li>
+      <li><strong>Your dog's profile</strong> — name, breed, age, weight, fitness and any health notes you add, plus an optional photo. This exists purely to score trails for your dog.</li>
+      <li><strong>Your activity</strong> — saved trails, journal entries, and your latest trail matches.</li>
+      <li><strong>Community posts</strong> — reviews, condition reports and trail photos you choose to publish. These are <em>public</em> and appear with your dog's first name (“Rufus's human”), never your email.</li>
+    </ul>
+    <p>All of this lives in Google Firebase (Firestore), in your account's own record.</p>
+  </section>
+
+  <section class="guide-section">
+    <h2>What stays on your device</h2>
+    <p>We use your browser's local storage for convenience caches: your language choice, a summary of your dog's profile so pages load personalised without a round-trip, your dog's photo, and which “what's new” notes you've seen. It never leaves your browser, and logging out clears the account-related parts.</p>
+  </section>
+
+  <section class="guide-section">
+    <h2>Anonymous counters</h2>
+    <p>When someone starts hike mode on a trail, we count it — trail id and timestamp, nothing else. No account, no location, no device identifiers. It powers the “dogs hiked this week” number.</p>
+  </section>
+
+  <section class="guide-section">
+    <h2>Third parties</h2>
+    <ul>
+      <li><strong>Google Firebase</strong> — authentication and database (see above).</li>
+      <li><strong>GitHub Pages</strong> — hosts the site; like any web host it keeps standard server logs.</li>
+      <li><strong>Google Fonts, OpenStreetMap / OpenMapTiles</strong> — your browser fetches fonts and map tiles from their servers when pages and maps load.</li>
+    </ul>
+    <p>We run no advertising or tracking scripts.</p>
+  </section>
+
+  <section class="guide-section">
+    <h2>Deleting your data</h2>
+    <p>Open your <a href="account.html?next=privacy.html" style="color:var(--accent);font-weight:600;">account page</a> and choose <strong>Cancel account</strong>. That deletes your account record — profile, saved trails, journal — and your login itself. If anything lingers or you can't log in to do it, email <a href="mailto:hello@dolopaws.com" style="color:var(--accent);font-weight:600;">hello@dolopaws.com</a> and we'll remove it by hand.</p>
+  </section>
+
+  <section class="guide-section">
+    <h2>Questions</h2>
+    <p>Anything unclear, or a request this page doesn't cover: <a href="mailto:hello@dolopaws.com" style="color:var(--accent);font-weight:600;">hello@dolopaws.com</a>.</p>
+  </section>
+
+</div>
+
+<footer class="site-footer" data-i18n="footer.line">DoloPaws &#124; A personalised trail guide for dogs and their humans.</footer>
+
+<script src="mobile-nav.js"></script>
+<script src="i18n.js"></script>
+<script type="module" src="firebase-init.js"></script>
+<script src="auth-ui.js?v=20260724-3" defer></script>
+</body>
+</html>
