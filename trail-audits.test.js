@@ -12,24 +12,21 @@ function loadTrails() {
 }
 
 describe('trail presentation audits', () => {
-  test('Albanne has a dated, sourced route audit and a complete profile', () => {
+  test('Albanne has completed its dated, sourced route audit', () => {
     const albanne = loadTrails().find((trail) => trail.id === 'osm-14381570');
-    expect(albanne.reviewedAt).toBe('2026-07-17');
+    expect(albanne.reviewedAt).toBe('2026-07-26');
     expect(albanne.routeAudit).toEqual(expect.objectContaining({
       photo: expect.any(String),
       route: expect.any(String),
       mapPoints: expect.any(String),
       elevation: expect.any(String),
     }));
-    expect(albanne.curated).toBe(false);
-    expect(albanne.graduation.status).toBe('in-progress');
+    expect(albanne.curated).toBe(true);
+    expect(albanne.tier).toBe('route-audited');
+    expect(albanne.graduation.status).toBe('verified');
     expect(albanne.graduation.required).toHaveLength(10);
-    expect(albanne.graduation.completed).toEqual(expect.arrayContaining([
-      'photo', 'route', 'mapPoints', 'elevation', 'heat', 'access'
-    ]));
-    expect(Object.keys(albanne.graduation.blockers)).toEqual(expect.arrayContaining([
-      'water', 'exposure', 'livestock', 'surfaceHazards'
-    ]));
+    expect(albanne.graduation.completed).toHaveLength(10);
+    expect(albanne.graduation.blockers).toEqual({});
     expect(albanne.sourceLinks.length).toBeGreaterThanOrEqual(2);
     expect(albanne.path.length).toBeGreaterThan(100);
     expect(albanne.elevation).toBe(249);
@@ -41,6 +38,35 @@ describe('trail presentation audits', () => {
     const albanne = loadTrails().find((trail) => trail.id === 'osm-14381570');
     expect(albanne.waterSources.length).toBeGreaterThan(0);
     albanne.waterSources.forEach((point) => {
+      expect(Number.isFinite(point.lat)).toBe(true);
+      expect(Number.isFinite(point.lng)).toBe(true);
+      expect(point.osmId).toMatch(/^node\//);
+    });
+  });
+
+  test.each([
+    ['osm-12731853', 4.2, 100, ['access']],
+    ['osm-7548344', 3, 250, ['livestock', 'access']],
+  ])('%s records official figures and precise remaining blockers', (id, distance, elevation, blockers) => {
+    const trail = loadTrails().find((candidate) => candidate.id === id);
+    expect(trail.curated).toBe(false);
+    expect(trail.reviewedAt).toBe('2026-07-26');
+    expect(trail.reviewedBy).toBe('DoloPaws route audit');
+    expect(trail.distance).toBe(distance);
+    expect(trail.elevation).toBe(elevation);
+    expect(trail.elevationProfile[0].km).toBe(0);
+    expect(trail.elevationProfile.at(-1).km).toBe(distance);
+    expect(trail.graduation.status).toBe('in-progress');
+    expect(Object.keys(trail.graduation.blockers)).toEqual(blockers);
+    expect(trail.desc).not.toMatch(/imported from the OpenStreetMap/i);
+    expect(trail.tips).not.toMatch(/^Imported route/i);
+    expect(trail.sourceLinks.length).toBeGreaterThanOrEqual(4);
+  });
+
+  test('Laugen–Elvas water points retain exact source coordinates', () => {
+    const trail = loadTrails().find((candidate) => candidate.id === 'osm-12731853');
+    expect(trail.waterSources).toHaveLength(2);
+    trail.waterSources.forEach((point) => {
       expect(Number.isFinite(point.lat)).toBe(true);
       expect(Number.isFinite(point.lng)).toBe(true);
       expect(point.osmId).toMatch(/^node\//);

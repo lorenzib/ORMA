@@ -115,7 +115,7 @@
     if (graduation) {
       const date = formatReviewDate(trail.reviewedAt || (trail.verified && trail.verified.date));
       return graduation.verified
-        ? `DoloPaws verified · ${date} · ${graduation.completed}/${graduation.total} checks`
+        ? `DoloPaws route-audited · ${date} · ${graduation.completed}/${graduation.total} checks`
         : `Verification in progress · ${date} · ${graduation.completed}/${graduation.total} checks`;
     }
     const progress = reviewProgress(trail);
