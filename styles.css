@@ -116,6 +116,14 @@ img,svg{max-width:100%;height:auto;}
 }
 .topnav .links a:hover,.topnav .links a.active{color:#fff;font-weight:500;}
 .mobile-nav-toggle{display:none;}
+/* Tablet: guest labels + language pill outgrow one row well before the
+   700px hamburger kicks in — tighten and allow a graceful wrap. */
+@media (max-width:1150px) and (min-width:701px){
+  .topnav{flex-wrap:wrap;gap:10px 14px;padding-top:12px;padding-bottom:12px;}
+  .topnav .brand{font-size:19px;}
+  .topnav .links{gap:14px 18px;font-size:13px;flex-wrap:wrap;}
+  .account-btn{padding:8px 14px;}
+}
 .account-btn{
   padding:9px 18px;
   border-radius:var(--radius-pill);

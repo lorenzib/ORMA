@@ -33,6 +33,26 @@
     return 'safety-caution';
   }
 
+  function escapeHtml(value){
+    return String(value == null ? '' : value).replace(/[&<>"']/g, char => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;',
+    }[char]));
+  }
+
+  function trailUrl(id){
+    return `trail.html?id=${encodeURIComponent(String(id == null ? '' : id))}`;
+  }
+
+  function showSaveError(){
+    if(!pageSubline) return;
+    pageSubline.textContent = 'We could not update your saved trails. Please try again.';
+    pageSubline.setAttribute('role', 'alert');
+  }
+
   const loggedOutState = document.getElementById('loggedOutState');
   const loggedInState = document.getElementById('loggedInState');
   const pageSubline = document.getElementById('pageSubline');
@@ -62,7 +82,7 @@
     const valleys = window.DoloPawsRegions ? window.DoloPawsRegions.valleysFor(trails, activeRegion) : [];
 
     areaFilterRow.innerHTML = `
-      <div class="region-tabs">
+          <div class="region-tabs">
         ${['dolomites','savoy'].map(r => `
           <button class="region-tab ${r === activeRegion ? 'active' : ''}" data-region="${r}">
             ${r === 'dolomites' ? 'Dolomites' : 'Savoy'} <span class="count">${regionCounts[r]}</span>
@@ -72,7 +92,7 @@
         <div class="valley-pills">
           <div class="area-pill ${activeValley === 'all' ? 'active' : ''}" data-valley="all">All valleys</div>
           ${valleys.map(([v, n]) => `
-            <div class="area-pill ${v === activeValley ? 'active' : ''}" data-valley="${v}">${v} <span class="pill-count">${n}</span></div>`).join('')}
+            <div class="area-pill ${v === activeValley ? 'active' : ''}" data-valley="${escapeHtml(v)}">${escapeHtml(v)} <span class="pill-count">${Number(n) || 0}</span></div>`).join('')}
         </div>
         <div class="prov-toggle">
           ${[['all','All'],['verified','🐾 Verified'],['imported','🗺️ Imported']].map(([k, label]) => `
@@ -114,6 +134,7 @@
 
     filteredTrailsList.innerHTML = scored.map(t => {
       const isFav = !!currentFavorites[t.id];
+      const url = trailUrl(t.id);
       return `
       <div class="trail-card">
         <div class="photo"></div>
@@ -123,13 +144,13 @@
             ${t.curated !== false ? `<span style="font-size:10px;font-weight:700;color:#fff;background:#2E4034;padding:3px 8px;border-radius:10px;white-space:nowrap;">🐾 VERIFIED</span>` : `<span style="font-size:10px;font-weight:700;color:#00695c;background:#e0f2f1;padding:3px 8px;border-radius:10px;white-space:nowrap;">🗺️ IMPORTED</span>`}
             <div style="display:flex;align-items:center;gap:10px;margin-left:auto;">
               <span style="font-weight:700;font-size:12px;color:var(--success);white-space:nowrap;">${t.score}% match</span>
-              <button class="fav-btn save-btn ${isFav ? 'saved' : ''}" data-id="${t.id}" style="font-size:11.5px;padding:5px 14px;">${isFav ? 'Saved' : 'Save'}</button>
+              <button class="fav-btn save-btn ${isFav ? 'saved' : ''}" data-id="${escapeHtml(t.id)}" style="font-size:11.5px;padding:5px 14px;">${isFav ? 'Saved' : 'Save'}</button>
             </div>
           </div>
-          <a href="trail.html?id=${t.id}" class="name" style="margin-top:6px;display:block;text-decoration:none;color:inherit;">${t.name}</a>
-          <div class="meta">${t.area} · ${t.distance} km · ${t.elevation} m gain · ${t.hours} h</div>
-          <span class="tag">${t.terrainType}</span>
-          <a href="trail.html?id=${t.id}" style="display:inline-block;margin-top:10px;font-size:12.5px;font-weight:700;color:var(--accent);text-decoration:none;">Trail details →</a>
+          <a href="${url}" class="name" style="margin-top:6px;display:block;text-decoration:none;color:inherit;">${escapeHtml(t.name)}</a>
+          <div class="meta">${escapeHtml(t.area)} · ${escapeHtml(t.distance)} km · ${escapeHtml(t.elevation)} m gain · ${escapeHtml(t.hours)} h</div>
+          <span class="tag">${escapeHtml(t.terrainType)}</span>
+          <a href="${url}" style="display:inline-block;margin-top:10px;font-size:12.5px;font-weight:700;color:var(--accent);text-decoration:none;">Trail details →</a>
         </div>
       </div>`;
     }).join('');
@@ -137,9 +158,19 @@
     filteredTrailsList.querySelectorAll('.save-btn').forEach(btn => {
       btn.addEventListener('click', async () => {
         const id = btn.dataset.id;
+        const wasFavorite = !!currentFavorites[id];
         if(currentFavorites[id]) delete currentFavorites[id];
         else currentFavorites[id] = true;
-        if(window.DoloPawsAuth) await window.DoloPawsAuth.setFavorites(currentFavorites);
+        btn.disabled = true;
+        let saved = false;
+        try{
+          saved = !!(window.DoloPawsAuth && await window.DoloPawsAuth.setFavorites({...currentFavorites}));
+        }catch(err){}
+        if(!saved){
+          if(wasFavorite) currentFavorites[id] = true;
+          else delete currentFavorites[id];
+          showSaveError();
+        }
         renderList();
       });
     });
