@@ -165,6 +165,11 @@
     function renderHeader(loggedIn, dogName){
       navEl.classList.toggle('nav-authed', !!loggedIn);
       const key = activeKey();
+      // Other scripts append their own widgets into .links (i18n.js adds
+      // the language toggle on DOMContentLoaded). Rebuilding must not eat
+      // them, so anything that isn't ours is kept and re-appended last.
+      const extras = Array.from(linksEl.children).filter(el =>
+        el !== loginEl && !el.matches('a, #accountBtn, .nav-bellwrap'));
       linksEl.innerHTML = '';
       if(loggedIn){
         linksEl.appendChild(navItem('Trails', 'browse-trails.html', key === 'trails'));
@@ -189,6 +194,7 @@
           linksEl.appendChild(login);
         }
       }
+      extras.forEach(el => linksEl.appendChild(el));
     }
 
     const summary = authSummary();
