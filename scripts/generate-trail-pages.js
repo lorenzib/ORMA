@@ -292,7 +292,7 @@ function trailPage(t, slug, all) {
   const graduation = graduationProgress(t);
   const progress = reviewProgress(t);
   const reviewLabel = graduation
-    ? `${graduation.verified ? 'DoloPaws verified' : 'Verification in progress'} · ${formatReviewDate(t.reviewedAt || (t.verified && t.verified.date))} · ${graduation.completed}/${graduation.total} checks`
+    ? `${graduation.verified ? 'DoloPaws route-audited' : 'Verification in progress'} · ${formatReviewDate(t.reviewedAt || (t.verified && t.verified.date))} · ${graduation.completed}/${graduation.total} checks`
     : progress
     ? `DoloPaws source review · ${formatReviewDate(t.reviewedAt || t.verified.date)} · ${progress.length}/${REVIEW_CATEGORIES.length} checks`
     : t.routeAudit && t.reviewedAt
@@ -378,7 +378,7 @@ function trailPage(t, slug, all) {
 
   const sourceRecord = Array.isArray(t.sourceLinks) && t.sourceLinks.length
     ? `<h2>Review record and sources</h2>
-    <p class="sp-src">${graduation ? graduation.verified ? 'Last verification review' : 'Verification in progress' : t.routeAudit && !progress ? 'Last route audit' : 'Last desk review'}: ${escapeHtml(formatReviewDate(t.reviewedAt || (t.verified && t.verified.date)))} · ${escapeHtml(t.reviewedBy || 'DoloPaws')} · ${graduation ? `${graduation.completed}/${graduation.total} graduation checks complete` : progress ? `${progress.length}/${REVIEW_CATEGORIES.length} safety checks complete` : t.routeAudit ? 'route line, map points, elevation and photo attribution checked' : 'review status unavailable'}</p>
+    <p class="sp-src">${graduation ? graduation.verified ? 'Last route audit' : 'Verification in progress' : t.routeAudit && !progress ? 'Last route audit' : 'Last desk review'}: ${escapeHtml(formatReviewDate(t.reviewedAt || (t.verified && t.verified.date)))} · ${escapeHtml(t.reviewedBy || 'DoloPaws')} · ${graduation ? `${graduation.completed}/${graduation.total} graduation checks complete` : progress ? `${progress.length}/${REVIEW_CATEGORIES.length} safety checks complete` : t.routeAudit ? 'route line, map points, elevation and photo attribution checked' : 'review status unavailable'}</p>
     <ul>${t.sourceLinks.map(source => `<li><a href="${escapeHtml(source.url)}" rel="noopener">${escapeHtml(source.label)}</a>${Array.isArray(source.categories) ? ` <span class="sp-src">· supports ${escapeHtml(source.categories.join(', '))}</span>` : ''}</li>`).join('')}</ul>`
     : '';
 

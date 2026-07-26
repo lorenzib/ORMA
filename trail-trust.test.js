@@ -99,6 +99,21 @@ describe('trail data trust states', () => {
     expect(trust.riskLabel(graduating, 'Moderate terrain')).toBe('Estimated: Moderate terrain');
   });
 
+  test('completed graduation uses the public route-audited wording', () => {
+    const trust = loadTrust();
+    const audited = {
+      curated:true,
+      path:[[46.5,11.6],[46.51,11.61]],
+      reviewedAt:'2026-07-26',
+      graduation:{
+        status:'verified',
+        required:['photo','route'],
+        completed:['photo','route'],
+      },
+    };
+    expect(trust.provenanceLabel(audited)).toBe('DoloPaws route-audited · 26 Jul 2026 · 2/2 checks');
+  });
+
   test('partial source reviews also cap match confidence at 80 percent', () => {
     const score = loadScoring();
     expect(score({
