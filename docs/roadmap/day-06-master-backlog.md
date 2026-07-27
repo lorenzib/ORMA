@@ -171,6 +171,7 @@ All P0 and P1 work
 
 ### DATA-01 — Define the canonical versioned trail schema
 
+- **Status:** Complete (2026-07-27)
 - **Priority:** P0
 - **Size:** M
 - **Depends on:** none
@@ -752,4 +753,3 @@ An issue is done when:
 - analytics contain no prohibited personal or location data;
 - generated outputs do not drift unexpectedly;
 - no new P0 safety or security problem is introduced.
-

@@ -1,0 +1,153 @@
+{
+  "schemaVersion": "1.0.0",
+  "recordVersion": 1,
+  "id": "osm-19330972",
+  "slug": "dorfrundweg-giro-del-paese",
+  "origin": "osm",
+  "lifecycle": "draft",
+  "name": "Dorfrundweg - Giro del Paese",
+  "region": {
+    "id": "cavalese",
+    "name": "Cavalese",
+    "countryCode": "IT"
+  },
+  "geometry": {
+    "type": "LineString",
+    "coordinates": [
+      [11.36906, 46.28099],
+      [11.36882, 46.28079],
+      [11.36872, 46.28059],
+      [11.36878, 46.28012],
+      [11.36867, 46.27979],
+      [11.36596, 46.27944],
+      [11.36522, 46.27953],
+      [11.36492, 46.27965],
+      [11.36478, 46.27982],
+      [11.36484, 46.28015],
+      [11.36526, 46.28056],
+      [11.36501, 46.28123],
+      [11.36563, 46.28211],
+      [11.36609, 46.28122],
+      [11.3667, 46.28119],
+      [11.36759, 46.28165],
+      [11.36795, 46.28169],
+      [11.36824, 46.28154],
+      [11.36831, 46.28123],
+      [11.36904, 46.28111],
+      [11.36906, 46.28099]
+    ]
+  },
+  "center": [11.369062, 46.2809872],
+  "trailhead": {
+    "position": [11.369062, 46.2809872],
+    "label": "Bus stop Abzweigung Guggal - Bivio Guggal, 120 m from the route",
+    "status": "mapped-suggestion"
+  },
+  "metrics": {
+    "distanceKm": 1.1,
+    "ascentM": 122,
+    "descentM": null,
+    "durationMinutes": 30,
+    "minElevationM": 1245,
+    "maxElevationM": 1309,
+    "routeType": "loop",
+    "difficulty": "unknown"
+  },
+  "suitability": {
+    "safetyLevel": "caution",
+    "terrainRank": 2,
+    "shadePercent": null,
+    "heatRisk": "unknown",
+    "exposure": null,
+    "surfaceHazards": [],
+    "dogAccess": {
+      "status": "unknown",
+      "notes": null
+    }
+  },
+  "waypoints": [
+    {
+      "id": "osm-19330972-water-1",
+      "type": "water",
+      "name": "Drinking water mapped near route start",
+      "position": [11.36906, 46.28099],
+      "distanceKm": 0,
+      "status": "mapped",
+      "seasonal": null
+    }
+  ],
+  "content": {
+    "summary": "A short loop near Cavalese imported from the OpenStreetMap hiking network.",
+    "tips": "Imported route: check access, weather, water and dog restrictions locally before relying on it."
+  },
+  "sources": [
+    {
+      "id": "osm-relation-19330972",
+      "label": "OpenStreetMap relation 19330972",
+      "url": "https://www.openstreetmap.org/relation/19330972",
+      "provider": "OpenStreetMap contributors",
+      "kind": "osm",
+      "retrievedAt": "2026-07-17",
+      "observedAt": null,
+      "categories": ["route", "metrics", "water", "content"],
+      "licence": "ODbL-1.0"
+    },
+    {
+      "id": "open-meteo-elevation-19330972",
+      "label": "Computed elevation sample",
+      "url": "https://open-meteo.com/",
+      "provider": "Open-Meteo",
+      "kind": "computed",
+      "retrievedAt": "2026-07-17",
+      "observedAt": null,
+      "categories": ["metrics"],
+      "licence": null
+    }
+  ],
+  "verification": {
+    "tier": "imported",
+    "status": "unreviewed",
+    "reviewedAt": null,
+    "reviewedBy": null,
+    "categories": {
+      "route": "unreviewed",
+      "water": "unreviewed",
+      "heat": "unknown",
+      "exposure": "unknown",
+      "livestock": "unknown",
+      "surfaceHazards": "unreviewed",
+      "access": "unknown"
+    }
+  },
+  "freshness": {
+    "geometryAt": "2026-07-17",
+    "safetyAt": null,
+    "accessAt": null
+  },
+  "provenance": {
+    "externalId": "relation/19330972",
+    "generatedAt": "2026-07-17",
+    "generatorVersion": "promote-osm-trails/legacy"
+  },
+  "unknownFields": [
+    "/metrics/descentM",
+    "/metrics/difficulty",
+    "/suitability/shadePercent",
+    "/suitability/heatRisk",
+    "/suitability/exposure",
+    "/suitability/dogAccess/status",
+    "/suitability/dogAccess/notes",
+    "/waypoints/0/seasonal",
+    "/sources/0/observedAt",
+    "/sources/1/observedAt",
+    "/sources/1/licence",
+    "/verification/reviewedAt",
+    "/verification/reviewedBy",
+    "/verification/categories/heat",
+    "/verification/categories/exposure",
+    "/verification/categories/livestock",
+    "/verification/categories/access",
+    "/freshness/safetyAt",
+    "/freshness/accessAt"
+  ]
+}
