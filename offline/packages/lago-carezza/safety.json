@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "trailId": "lago-carezza",
+  "generatedAt": "2026-07-27T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 1.3,
+    "ascentM": 20,
+    "highestPointM": 1540,
+    "expectedDuration": "30 minutes",
+    "difficulty": "Easy",
+    "shadePercent": 70
+  },
+  "trailhead": {
+    "lat": 46.41032,
+    "lng": 11.57585,
+    "label": "Main parking area at Lago di Carezza"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.41032,
+      "lng": 11.57585,
+      "label": "Trailhead fountain",
+      "reliability": "Seasonal availability not field-verified"
+    }
+  ],
+  "cautions": [
+    "This first package uses route data that still requires a dated field review.",
+    "The lake is fenced and swimming is not permitted.",
+    "Carry water even though a fountain is listed.",
+    "Local leash rules and temporary closures can change."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "DoloPaws repository route geometry",
+      "reviewedAt": null
+    },
+    {
+      "name": "OpenStreetMap contributors",
+      "url": "https://www.openstreetmap.org/copyright"
+    }
+  ]
+}

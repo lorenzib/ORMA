@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Lago di Carezza offline route context</title>
+  <desc id="desc">A field-test orientation diagram showing the stored Lago di Carezza loop, lake, trailhead and north direction. It is not a final terrain basemap.</desc>
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef1e7"/>
+      <stop offset="1" stop-color="#dce6d8"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#20362a" flood-opacity=".25"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="900" fill="url(#ground)"/>
+  <g fill="none" stroke="#bdcbb8" stroke-width="2" opacity=".75">
+    <path d="M38 184 C220 70 386 130 536 84 S870 28 1162 170"/>
+    <path d="M18 268 C218 160 412 205 584 146 S923 105 1180 235"/>
+    <path d="M23 742 C235 630 381 690 594 624 S964 593 1177 700"/>
+    <path d="M65 824 C256 720 433 786 620 716 S950 682 1148 788"/>
+  </g>
+  <g fill="#bfd9df" stroke="#7faeb8" stroke-width="5">
+    <path d="M510 270 C605 205 734 219 809 302 C880 380 842 498 755 571 C675 639 548 629 455 557 C365 488 376 370 510 270Z"/>
+  </g>
+  <g fill="#6f9a70" opacity=".22">
+    <circle cx="216" cy="214" r="126"/>
+    <circle cx="1015" cy="180" r="145"/>
+    <circle cx="185" cy="690" r="156"/>
+    <circle cx="1030" cy="680" r="170"/>
+  </g>
+  <polyline points="754.1,151.0 752.1,171.8 690.9,177.0 545.9,239.4 441.8,304.4 384.6,346.0 337.7,405.8 296.8,434.4 227.4,460.4 131.5,460.4 145.7,551.4 170.2,619.0 205.0,678.8 264.2,728.2 376.4,749.0 425.4,743.8 496.9,702.2 609.2,715.2 676.6,671.0 825.6,639.8 848.1,611.2 841.9,538.4 864.4,486.4 942.0,515.0 995.0,507.2 1027.7,450.0 1068.5,405.8 1066.5,387.6 1017.5,317.4 960.3,255.0 937.9,187.4 913.4,174.4 754.1,151.0" fill="none" stroke="#fff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" filter="url(#shadow)"/>
+  <polyline points="754.1,151.0 752.1,171.8 690.9,177.0 545.9,239.4 441.8,304.4 384.6,346.0 337.7,405.8 296.8,434.4 227.4,460.4 131.5,460.4 145.7,551.4 170.2,619.0 205.0,678.8 264.2,728.2 376.4,749.0 425.4,743.8 496.9,702.2 609.2,715.2 676.6,671.0 825.6,639.8 848.1,611.2 841.9,538.4 864.4,486.4 942.0,515.0 995.0,507.2 1027.7,450.0 1068.5,405.8 1066.5,387.6 1017.5,317.4 960.3,255.0 937.9,187.4 913.4,174.4 754.1,151.0" fill="none" stroke="#b65037" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(754 151)" filter="url(#shadow)">
+    <circle r="21" fill="#2e4034" stroke="#fff" stroke-width="6"/>
+    <path d="M0-11 7 7 0 3-7 7Z" fill="#fff"/>
+  </g>
+  <g transform="translate(1100 95)" font-family="Arial, sans-serif" text-anchor="middle">
+    <path d="M0-44 15 5 0-3-15 5Z" fill="#2e4034"/>
+    <text y="28" font-size="24" font-weight="700" fill="#2e4034">N</text>
+  </g>
+  <g font-family="Arial, sans-serif" fill="#2e4034">
+    <text x="600" y="432" text-anchor="middle" font-size="31" font-weight="700">Lago di Carezza</text>
+    <text x="600" y="469" text-anchor="middle" font-size="20">Karersee</text>
+    <rect x="40" y="792" width="630" height="76" rx="16" fill="#fff" opacity=".92"/>
+    <text x="66" y="824" font-size="18" font-weight="700">BETA FIELD-TEST MAP</text>
+    <text x="66" y="851" font-size="16">Route context only · final licensed terrain basemap pending</text>
+    <text x="1160" y="866" text-anchor="end" font-size="14">Route data © DoloPaws · OSM attribution retained in package</text>
+  </g>
+</svg>

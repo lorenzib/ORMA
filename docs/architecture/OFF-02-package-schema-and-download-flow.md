@@ -1,0 +1,111 @@
+# OFF-02 — Offline package schema and download flow
+
+**Status:** First deployable beta slice implemented for `lago-carezza`; field
+data review and physical-device validation remain open.
+
+## Purpose
+
+This decision turns the OFF-01 architecture into a testable package without
+replacing the production root service worker. It provides a narrow,
+trail-specific offline surface scoped to `/offline/`.
+
+## Package schema
+
+Every manifest uses `schemaVersion: 1` and contains:
+
+- trail ID and display name;
+- immutable package version and generation date;
+- geographic bounds used to plot GPS fixes;
+- review status, attribution, and licence link;
+- total declared package size;
+- a list of required resources with role, URL, byte length, and SHA-256 hash.
+
+Required roles for the first slice are:
+
+- `shell`: standalone offline trail page;
+- `style`: self-hosted offline styles;
+- `app`: self-hosted offline application;
+- `map`: georeferenced map or field-test diagram;
+- `route`: GeoJSON route;
+- `safety`: essential trail and emergency information.
+
+## Download state machine
+
+```text
+unavailable
+  → login required
+  → ready to download
+  → downloading N of M
+  → verifying each resource
+  → committing completed cache
+  → ready offline
+
+any download or verification failure
+  → delete temporary cache
+  → show recoverable error
+  → ready to retry
+
+ready offline
+  → open offline map
+  → remove
+  → unavailable
+```
+
+The package is first written to an `-installing` cache. It is copied to its
+immutable final cache only after every declared resource passes its byte-length
+and SHA-256 checks. Interrupted installations are therefore never presented as
+ready.
+
+## Account rule
+
+The trail page checks the current Firebase authentication state before starting
+a download. Guests are sent through the existing login flow and the pending
+download resumes after authentication.
+
+Authentication is not included in the offline shell. Once installed, the
+package can open and use GPS even if the Firebase session is unavailable or has
+expired.
+
+This is a product gate, not digital-rights management: same-origin browser
+storage is controlled by the device owner.
+
+## Storage and update rule
+
+- Package resources use Cache Storage.
+- A small local metadata record describes the installed version.
+- Cache names are `dolopaws-trail-<trail-id>-<version>`.
+- New verified versions replace older versions for the same trail.
+- Removal deletes only caches for the selected trail.
+- The scoped `/offline/offline-sw.js` worker never deletes root-site caches.
+
+IndexedDB remains the planned metadata store when multiple packages and active
+hike recovery are introduced. Local storage is sufficient for this single
+package feasibility slice because the manifest remains authoritative.
+
+## Lago di Carezza package status
+
+The package contains the canonical route currently stored in `trails-data.js`,
+essential facts, safety cautions, a standalone shell, and a georeferenced route
+context diagram.
+
+It deliberately declares:
+
+```text
+verificationStatus: field-review-required
+```
+
+The diagram is not the final licensed terrain basemap. The UI says so
+explicitly. This package can validate download, integrity, offline restoration,
+GPS projection, deletion, and expired-session behaviour, but it cannot close
+the content-quality or final-basemap gates in OFF-01.
+
+## Completion gates
+
+Before this slice is promoted beyond beta verification:
+
+1. Complete and date the Lago di Carezza route-specific source review.
+2. Replace the field-test diagram with the approved georeferenced map render.
+3. Update the manifest and hashes.
+4. Deploy to a non-production test URL or approved production beta.
+5. Run the OFF-01 iPhone and Android acceptance matrix.
+6. Record storage, download, restart, GPS, and deletion results.

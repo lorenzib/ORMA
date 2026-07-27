@@ -271,6 +271,15 @@ body{background:#EFECE2;}
 .td2-btn-p.recording{background:#9C3A25;}
 .td2-btn-g{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:12px 16px;border-radius:12px;border:1.5px solid #E4E0D3;background:#fff;color:#2E4034;font-weight:700;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;}
 .td2-btn-g:hover{border-color:#3E7A91;}
+.offline-package{width:100%;max-width:390px;padding:12px 14px;border:1px solid rgba(255,255,255,.2);border-radius:12px;background:rgba(20,33,26,.28);box-sizing:border-box;}
+.offline-package[hidden]{display:none;}
+.offline-package-row{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;}
+.offline-package-status{margin:8px 0 0;color:#D9E3DC;font-size:12px;line-height:1.45;text-align:right;}
+.offline-package-status[data-state="error"]{color:#FFD2C8;}
+.offline-package-status[data-state="ready"]{color:#BDEBD9;}
+.offline-package .td2-btn-g{min-height:38px;padding:9px 12px;}
+.offline-package .td2-btn-g[hidden],.offline-package-open[hidden]{display:none!important;}
+.offline-package-open{color:#fff;font-size:12px;font-weight:750;text-underline-offset:3px;}
 .rec-dot{width:9px;height:9px;border-radius:2px;background:#fff;display:inline-block;animation:rec 1.1s infinite;}
 @keyframes rec{0%,100%{opacity:1}50%{opacity:.35}}
 
@@ -580,6 +589,15 @@ body{background:#EFECE2;}
               <a id="tdShareMail" href="#">Email this trail</a>
             </div>
           </div>
+          <section id="offlinePackagePanel" class="offline-package" aria-labelledby="offlinePackageTitle" hidden>
+            <div class="offline-package-row">
+              <strong id="offlinePackageTitle" style="font-size:12px;color:#fff;margin-right:auto;">Offline beta</strong>
+              <a id="offlineOpenBtn" class="offline-package-open" href="offline/trail.html?id=lago-carezza" hidden>Open offline map</a>
+              <button id="offlineRemoveBtn" class="td2-btn-g" type="button" hidden>Remove</button>
+              <button id="offlineDownloadBtn" class="td2-btn-g" type="button">Download test package</button>
+            </div>
+            <p id="offlinePackageStatus" class="offline-package-status" role="status" aria-live="polite">Checking this device…</p>
+          </section>
         </div>
       </div>
 
@@ -755,6 +773,7 @@ body{background:#EFECE2;}
 <script type="module" src="firebase-init.js"></script>
 <script src="icon-system.js?v=20260717" defer></script>
 <script src="auth-ui.js?v=20260724-3" defer></script>
+<script src="offline-packages.js?v=20260727-2" defer></script>
 <script src="breeds-data.js" defer></script>
 <script src="scoring.js?v=20260717-3" defer></script>
 <script src="trail-trust.js?v=20260717-3" defer></script>

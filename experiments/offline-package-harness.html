@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DoloPaws offline package harness</title>
+  <style>
+    body{font-family:system-ui;padding:30px}
+    [hidden]{display:none!important}
+    button,a{margin:8px}
+  </style>
+</head>
+<body>
+  <section id="offlinePackagePanel" aria-labelledby="offlinePackageTitle" hidden>
+    <strong id="offlinePackageTitle">Offline beta</strong>
+    <a id="offlineOpenBtn" href="../offline/trail.html?id=lago-carezza" hidden>Open offline map</a>
+    <button id="offlineRemoveBtn" type="button" hidden>Remove</button>
+    <button id="offlineDownloadBtn" type="button">Download test package</button>
+    <p id="offlinePackageStatus" role="status"></p>
+  </section>
+  <script>
+    window.DoloPawsAuth = {
+      currentUser: { uid: 'local-test-user' },
+      onChange(callback){ callback(this.currentUser); },
+    };
+    window.DoloPawsAuthReady = true;
+    window.DoloPawsTrailAction = {
+      request(){},
+      consume(){ return false; },
+    };
+  </script>
+  <script src="../offline-packages.js?v=20260727-3"></script>
+</body>
+</html>

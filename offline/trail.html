@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#24372d">
+  <title>Offline trail · DoloPaws</title>
+  <link rel="stylesheet" href="offline.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="../index.html" class="brand" aria-label="DoloPaws home">
+      <span aria-hidden="true">🐾</span> DoloPaws
+    </a>
+    <span id="networkState" class="network">Checking connection…</span>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p class="eyebrow">Offline beta package</p>
+      <h1 id="trailName">Loading downloaded trail…</h1>
+      <p id="packageState" class="state" role="status" aria-live="polite">Verifying package resources…</p>
+    </section>
+
+    <section id="mapSection" class="map-card" aria-labelledby="mapTitle" hidden>
+      <div class="map-heading">
+        <div>
+          <p class="eyebrow">Stored map</p>
+          <h2 id="mapTitle">Route context</h2>
+        </div>
+        <button id="locationButton" type="button">Show my position</button>
+      </div>
+      <div id="mapFrame" class="map-frame">
+        <img id="offlineMap" alt="Offline route map for Lago di Carezza">
+        <span id="positionDot" class="position-dot" hidden aria-label="Current GPS position"></span>
+      </div>
+      <p id="locationState" class="location-state">GPS is off. The route and safety information remain available.</p>
+      <p class="map-warning">Beta field-test diagram. Do not treat it as the final terrain basemap or as an emergency-navigation service.</p>
+    </section>
+
+    <section id="factsSection" class="grid" hidden>
+      <article class="card">
+        <p class="eyebrow">Trail facts</p>
+        <dl id="facts"></dl>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Safety and cautions</p>
+        <ul id="cautions"></ul>
+        <p class="emergency"><strong>Emergency:</strong> <span id="emergency"></span></p>
+      </article>
+    </section>
+
+    <section id="sourceSection" class="card" hidden>
+      <p class="eyebrow">Package status</p>
+      <p id="verificationNotice"></p>
+      <p id="packageMeta" class="muted"></p>
+      <p class="muted">Map and route source information is retained in the downloaded package. © OpenStreetMap contributors where applicable.</p>
+    </section>
+
+    <section id="failure" class="failure" hidden>
+      <h2>This trail is not ready offline</h2>
+      <p id="failureMessage">A required package resource is unavailable.</p>
+      <a href="../trail.html?id=lago-carezza">Return to the trail page when online</a>
+    </section>
+  </main>
+
+  <script src="offline-app.js"></script>
+</body>
+</html>
