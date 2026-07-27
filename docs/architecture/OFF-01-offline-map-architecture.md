@@ -250,6 +250,20 @@ OFF-01 can be closed only when:
 Until then, the architecture is a provisional decision with a successful local
 feasibility test—not a completed mobile validation.
 
+## Recorded physical-device results
+
+- **2026-07-27 — iPhone 13 Pro, iOS 26.5, Safari:** Lago di Carezza beta.2
+  passed package update, integrity verification, map usability, airplane-mode
+  opening, offline refresh, browser close/reopen, online and offline GPS, and
+  use without an authenticated session.
+
+Detailed results are recorded in `docs/testing/OFF-01-device-results.md`.
+
+Android physical-device validation is deferred because no Android test device
+is currently available. Development may continue, but OFF-01 remains
+provisionally open and Android must not be described as validated until the
+physical-device checklist passes.
+
 ## Follow-on work
 
 1. **OFF-02:** Define the downloadable package schema, hashes, storage model, and
