@@ -45,31 +45,6 @@
   </div>
 </div>
 
-<div id="authModal" class="modal-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="authTitle">
-  <div class="modal">
-    <button id="authClose" class="modal-close" aria-label="Close">&times;</button>
-    <h2 id="authTitle" data-i18n="nav.login">Log in</h2>
-    <p class="hint" id="authHint" data-i18n="auth.hint">Save trails to your account so they follow you across devices.</p>
-    <div id="authError" class="auth-error" role="alert" aria-live="polite" hidden></div>
-    <form id="authForm">
-      <label class="field-label"><span data-i18n="auth.email">Email</span>
-        <input type="email" id="authEmail" required autocomplete="email">
-      </label>
-      <label class="field-label"><span data-i18n="auth.password">Password</span>
-        <input type="password" id="authPassword" required autocomplete="current-password" minlength="6">
-      </label>
-      <button type="button" id="forgotPasswordBtn" class="forgot-link" data-i18n="auth.forgot">Forgot password?</button>
-      <button type="submit" class="auth-submit" id="authSubmit" data-i18n="nav.login">Log in</button>
-    </form>
-    <div class="auth-divider"><span data-i18n="auth.or">or</span></div>
-    <button id="googleBtn" class="google-btn" data-i18n="auth.google">Continue with Google</button>
-    <p class="auth-toggle">
-      <span id="authToggleText" data-i18n="auth.noAccount">Don't have an account?</span>
-      <button id="authToggleBtn" type="button" data-i18n="auth.signup">Sign up</button>
-    </p>
-  </div>
-</div>
-
 <div class="guide-hero">
   <div class="eyebrow" data-i18n="browse.eyebrow">Dolomites &amp; Savoy</div>
   <h1 id="trailCountHeading" style="font-size:clamp(28px,5vw,38px);margin-top:14px;" data-i18n="browse.h1">All our trails</h1>
@@ -303,7 +278,7 @@
 <script src="osm-trails-savoy-data.js" defer></script>
 <script src="trail-audits.js?v=20260717" defer></script>
 <script src="regions-config.js"></script>
-<script src="auth-ui.js?v=20260717-2" defer></script>
+<script src="auth-ui.js?v=20260724-3" defer></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     const list = document.getElementById('simpleTrailsList');

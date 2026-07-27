@@ -1,6 +1,54 @@
 (function(){
   let mode = 'login'; // 'login' | 'signup'
 
+  // Pages used to carry (or skip) their own copy of the login dialog, so
+  // "Log in" bounced everyone to the homepage. The dialog now lives here:
+  // if the page didn't ship one, inject the redesigned modal so login
+  // opens in place everywhere auth-ui.js runs. The hero photo is loaded
+  // lazily on first open (see openModal) to keep page weight unchanged.
+  if(!document.getElementById('authModal') && document.body){
+    const host = document.createElement('div');
+    host.innerHTML =
+      '<div id="authModal" class="modal-overlay auth-modal-redesign" hidden role="dialog" aria-modal="true" aria-labelledby="authTitle">' +
+        '<div class="modal">' +
+          '<div class="auth-hero">' +
+            '<img data-authsrc="images/lago-di-braies.webp" alt="" class="auth-hero-img">' +
+            '<div class="auth-hero-shade"></div>' +
+            '<button id="authClose" class="modal-close" aria-label="Close">&times;</button>' +
+            '<div class="auth-hero-copy">' +
+              '<span class="auth-hero-brand"><img src="logo.svg" alt="">DoloPaws</span>' +
+              '<h2 id="authTitle" data-i18n="nav.login">Welcome back</h2>' +
+              '<p class="hint" id="authHint" data-i18n="auth.hint">Save trails so they follow you across every device.</p>' +
+            '</div>' +
+          '</div>' +
+          '<div class="auth-body">' +
+            '<div id="authError" class="auth-error" role="alert" aria-live="polite" hidden></div>' +
+            '<button id="googleBtn" class="google-btn">' +
+              '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 7.06l3.66 2.84C6.71 7.3 9.14 5.38 12 5.38z"/></svg>' +
+              '<span data-i18n="auth.google">Continue with Google</span>' +
+            '</button>' +
+            '<div class="auth-divider"><span data-i18n="auth.or">or with email</span></div>' +
+            '<form id="authForm">' +
+              '<label class="field-label"><span data-i18n="auth.email">Email</span>' +
+                '<input type="email" id="authEmail" required autocomplete="email">' +
+              '</label>' +
+              '<label class="field-label"><span data-i18n="auth.password">Password</span>' +
+                '<input type="password" id="authPassword" required autocomplete="current-password" minlength="6">' +
+              '</label>' +
+              '<button type="button" id="forgotPasswordBtn" class="forgot-link" data-i18n="auth.forgot">Forgot password?</button>' +
+              '<button type="submit" class="auth-submit" id="authSubmit" data-i18n="nav.login">Log in</button>' +
+            '</form>' +
+            '<button id="authGuestBtn" type="button" class="auth-guest-link" data-i18n="auth.guest">Keep browsing as a guest &rarr;</button>' +
+            '<p class="auth-toggle">' +
+              '<span id="authToggleText" data-i18n="auth.noAccount">Don\'t have an account?</span>' +
+              '<button id="authToggleBtn" type="button" data-i18n="auth.signup">Sign up</button>' +
+            '</p>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(host.firstElementChild);
+  }
+
   const modal = document.getElementById('authModal');
   const accountBtn = document.getElementById('accountBtn');
   const closeBtn = document.getElementById('authClose');
@@ -35,14 +83,12 @@
       window.location.href = 'account.html';
       return;
     }
-    // Pages like trail.html and safety-guide.html don't carry the modal
-    // markup. Open it on the homepage, then return to the page and query
-    // state the visitor came from after authentication.
-    if(!modal){
-      const currentPage = (window.location.pathname.split('/').pop() || 'index.html')
-        + window.location.search + window.location.hash;
-      window.location.href = 'index.html?login=1&next=' + encodeURIComponent(currentPage);
-      return;
+    if(!modal) return; // defensive: injection above guarantees one normally
+    // Injected dialogs defer the hero photo until someone actually opens
+    // the modal, so pages don't pay for an image they may never show.
+    const heroImg = modal.querySelector('.auth-hero-img');
+    if(heroImg && !heroImg.getAttribute('src') && heroImg.dataset.authsrc){
+      heroImg.src = heroImg.dataset.authsrc;
     }
     errorBox.hidden = true;
     form.reset();
