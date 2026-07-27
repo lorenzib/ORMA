@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#2e4034">
+  <title>DoloPaws offline package experiment</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <p class="eyebrow">OFF-01 isolated experiment</p>
+    <h1>Offline trail package</h1>
+    <p class="lede">
+      This page tests package download and restoration without changing the
+      production service worker. Its background map is synthetic fixture data.
+    </p>
+
+    <section class="status-card" aria-labelledby="package-heading">
+      <div>
+        <h2 id="package-heading">Carezza test fixture</h2>
+        <p id="packageStatus" role="status" aria-live="polite">Checking this device…</p>
+      </div>
+      <span id="stateBadge" class="badge">Checking</span>
+    </section>
+
+    <div class="actions" aria-label="Offline package actions">
+      <button id="downloadBtn" type="button">Download test trail</button>
+      <button id="verifyBtn" type="button" class="secondary">Verify package</button>
+      <button id="removeBtn" type="button" class="secondary danger">Remove package</button>
+    </div>
+
+    <section class="map-card" aria-labelledby="map-heading">
+      <div class="map-head">
+        <div>
+          <h2 id="map-heading">Route preview</h2>
+          <p id="mapHint">Download the fixture to make it available offline.</p>
+        </div>
+        <span id="networkBadge" class="network">Network unknown</span>
+      </div>
+      <svg id="map" viewBox="0 0 1000 700" role="img" aria-label="Synthetic map fixture with trail route">
+        <image id="mapImage" x="0" y="0" width="1000" height="700"></image>
+        <polyline id="routeLine" points="" fill="none" stroke="#9c3a25" stroke-width="12"
+          stroke-linecap="round" stroke-linejoin="round"></polyline>
+        <circle id="positionDot" cx="0" cy="0" r="15" fill="#2563eb" stroke="#fff"
+          stroke-width="7" hidden></circle>
+      </svg>
+      <div class="map-actions">
+        <button id="gpsBtn" type="button" class="secondary">Use device GPS</button>
+        <button id="simulateBtn" type="button" class="secondary">Simulate GPS</button>
+      </div>
+      <p id="gpsStatus" class="small" role="status" aria-live="polite">GPS is not active.</p>
+    </section>
+
+    <section class="facts" aria-labelledby="facts-heading">
+      <h2 id="facts-heading">Downloaded safety facts</h2>
+      <div id="factsList" class="facts-list">
+        <p>No downloaded safety information yet.</p>
+      </div>
+    </section>
+
+    <section class="diagnostics" aria-labelledby="diagnostics-heading">
+      <h2 id="diagnostics-heading">Device storage</h2>
+      <dl>
+        <div><dt>Estimated use</dt><dd id="storageUse">Unknown</dd></div>
+        <div><dt>Estimated quota</dt><dd id="storageQuota">Unknown</dd></div>
+        <div><dt>Persistent storage</dt><dd id="storagePersistent">Unknown</dd></div>
+        <div><dt>Measured package</dt><dd id="packageSize">Not downloaded</dd></div>
+      </dl>
+    </section>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>

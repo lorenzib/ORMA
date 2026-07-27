@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" role="img" aria-label="Synthetic map fixture">
+  <rect width="1000" height="700" fill="#e9ede4"/>
+  <g fill="none" stroke="#c8d1c1" stroke-width="3" opacity=".9">
+    <path d="M-40 110C150 25 270 170 460 80S760 20 1040 120"/>
+    <path d="M-30 180C130 95 310 250 480 145S790 95 1030 210"/>
+    <path d="M-40 275C180 175 330 330 520 240S820 180 1050 305"/>
+    <path d="M-40 390C130 285 355 455 540 350S805 285 1050 420"/>
+    <path d="M-40 520C130 395 340 575 550 470S850 420 1040 545"/>
+    <path d="M-30 640C160 525 360 695 570 585S820 530 1040 665"/>
+  </g>
+  <path d="M0 595C210 525 340 535 510 455S755 295 1000 250" fill="none" stroke="#fff" stroke-width="34"/>
+  <path d="M0 595C210 525 340 535 510 455S755 295 1000 250" fill="none" stroke="#b9b5a9" stroke-width="6" stroke-dasharray="18 13"/>
+  <path d="M600 0C560 150 620 220 565 340S520 555 575 700" fill="none" stroke="#9cc7d8" stroke-width="24" opacity=".8"/>
+  <ellipse cx="545" cy="372" rx="105" ry="70" fill="#82b7cb" stroke="#5a9bad" stroke-width="5"/>
+  <g fill="#2e4034" font-family="system-ui, sans-serif">
+    <text x="470" y="380" font-size="28" font-weight="750">Map fixture</text>
+    <text x="420" y="416" font-size="20">not production cartography</text>
+    <text x="80" y="565" font-size="20">synthetic access road</text>
+  </g>
+  <g transform="translate(55 55)">
+    <rect width="242" height="62" rx="14" fill="#fff" opacity=".9"/>
+    <text x="18" y="27" fill="#1b1f19" font-family="system-ui, sans-serif" font-size="17" font-weight="750">DoloPaws OFF-01</text>
+    <text x="18" y="49" fill="#667068" font-family="system-ui, sans-serif" font-size="14">offline package fixture</text>
+  </g>
+</svg>

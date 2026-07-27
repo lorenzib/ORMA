@@ -1,0 +1,21 @@
+{
+  "trailId": "carezza-fixture",
+  "downloadedAt": "fixture",
+  "items": [
+    {
+      "title": "Fixture route only",
+      "detail": "This route and background exist only to test offline package mechanics.",
+      "level": "warning"
+    },
+    {
+      "title": "Water unknown",
+      "detail": "No production water assessment is included. Unknown does not mean unavailable or safe.",
+      "level": "warning"
+    },
+    {
+      "title": "Offline resources",
+      "detail": "The map image, route geometry, and these facts are required before the package can be ready.",
+      "level": "info"
+    }
+  ]
+}

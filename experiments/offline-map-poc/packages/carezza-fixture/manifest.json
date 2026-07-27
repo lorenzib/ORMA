@@ -1,0 +1,20 @@
+{
+  "id": "carezza-fixture",
+  "version": 1,
+  "title": "Carezza offline package fixture",
+  "description": "Synthetic map context used only to test offline package mechanics.",
+  "bounds": {
+    "west": 11.566,
+    "south": 46.405,
+    "east": 11.583,
+    "north": 46.416
+  },
+  "mapImage": "./packages/carezza-fixture/map-fixture.svg",
+  "route": "./packages/carezza-fixture/route.geojson",
+  "safety": "./packages/carezza-fixture/safety.json",
+  "required": [
+    "./packages/carezza-fixture/map-fixture.svg",
+    "./packages/carezza-fixture/route.geojson",
+    "./packages/carezza-fixture/safety.json"
+  ]
+}
