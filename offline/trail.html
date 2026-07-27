@@ -34,8 +34,14 @@
         <img id="offlineMap" alt="Offline route map for Lago di Carezza">
         <span id="positionDot" class="position-dot" hidden aria-label="Current GPS position"></span>
       </div>
+      <div class="map-legend" aria-label="Map key">
+        <span><i class="key-route"></i>DoloPaws route</span>
+        <span><i class="key-path"></i>Mapped path</span>
+        <span><i class="key-road"></i>Road</span>
+        <span><i class="key-water"></i>Water</span>
+      </div>
       <p id="locationState" class="location-state">GPS is off. The route and safety information remain available.</p>
-      <p class="map-warning">Beta field-test diagram. Do not treat it as the final terrain basemap or as an emergency-navigation service.</p>
+      <p class="map-warning">Beta offline map. Compare it with posted signs and do not treat DoloPaws as an emergency-navigation service.</p>
     </section>
 
     <section id="factsSection" class="grid" hidden>
@@ -54,7 +60,7 @@
       <p class="eyebrow">Package status</p>
       <p id="verificationNotice"></p>
       <p id="packageMeta" class="muted"></p>
-      <p class="muted">Map and route source information is retained in the downloaded package. © OpenStreetMap contributors where applicable.</p>
+      <p class="muted">Map and route source information is retained in the downloaded package. <a id="licenceLink" href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors · ODbL</a></p>
     </section>
 
     <section id="failure" class="failure" hidden>

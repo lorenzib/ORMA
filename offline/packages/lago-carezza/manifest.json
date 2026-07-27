@@ -2,15 +2,19 @@
   "schemaVersion": 1,
   "trailId": "lago-carezza",
   "name": "Lago di Carezza Loop",
-  "version": "2026.07.27-beta.1",
+  "version": "2026.07.27-beta.2",
   "generatedAt": "2026-07-27T00:00:00Z",
   "verificationStatus": "field-review-required",
-  "packageBytes": 19972,
+  "packageBytes": 35504,
   "bounds": {
-    "north": 46.41067,
-    "south": 46.40767,
-    "east": 11.57774,
-    "west": 11.57245
+    "north": 46.4113,
+    "south": 46.407,
+    "east": 11.5784,
+    "west": 11.5718
+  },
+  "image": {
+    "width": 1200,
+    "height": 1140
   },
   "attribution": "Route data © DoloPaws; © OpenStreetMap contributors where applicable",
   "licenceUrl": "https://www.openstreetmap.org/copyright",
@@ -19,29 +23,29 @@
       "role": "shell",
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 2739,
-      "sha256": "5b20de75158a151491e93bcd38b4816f8312bb68b23ea09322518298c9dad3e8"
+      "bytes": 3085,
+      "sha256": "f09c0cf38d0c96dc814d7a0c0da1f9ad7e73f7e6450e0221fd12cc4e08f30938"
     },
     {
       "role": "style",
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 2722,
-      "sha256": "370aff4672f1a8e5849221e5cf5000663cb878556f24d481406278e05408aee9"
+      "bytes": 3320,
+      "sha256": "abe1160f53c264ee92fcc0bb46a5d4cb142f2848f70bf60dff5f5813500c9ad4"
     },
     {
       "role": "app",
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 8060,
-      "sha256": "c1ff9c44b2caa17b86077d79a4bc267fc46421ec0bc1b96db9d6886f3786d6bc"
+      "bytes": 8406,
+      "sha256": "4954fe987f0ec1530c2efba986b0d70df345141148d8acc99260fbf8d49ad951"
     },
     {
       "role": "map",
-      "label": "Lago di Carezza field-test map",
+      "label": "Lago di Carezza OSM offline map",
       "url": "map.svg",
-      "bytes": 3610,
-      "sha256": "8e3e3750e1cf169e32319512c4c9beea90f4c8d6936f0facb582b141630d2cee"
+      "bytes": 17775,
+      "sha256": "c45119df17d0e21c5a07fd3877f9b00059bc813d39800ba5ca05fb2dcf3c2c8e"
     },
     {
       "role": "route",
@@ -54,8 +58,8 @@
       "role": "safety",
       "label": "Lago di Carezza safety information",
       "url": "safety.json",
-      "bytes": 1312,
-      "sha256": "d63e7a33a76a5c98f42bd50cc6def4e5209df9ec6b611eee04be76673536c6e1"
+      "bytes": 1389,
+      "sha256": "70c7eeaf8f954d5c3ac623c1e1108f3cce74287c97593c3f5f06fd889036319b"
     }
   ]
 }

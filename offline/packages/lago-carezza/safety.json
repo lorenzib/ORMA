@@ -42,8 +42,10 @@
       "reviewedAt": null
     },
     {
-      "name": "OpenStreetMap contributors",
-      "url": "https://www.openstreetmap.org/copyright"
+      "name": "OpenStreetMap API 0.6 bounding-box extract",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-07-27",
+      "licence": "ODbL"
     }
   ]
 }

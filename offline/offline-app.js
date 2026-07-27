@@ -14,6 +14,7 @@
     failure: document.getElementById('failure'),
     failureMessage: document.getElementById('failureMessage'),
     offlineMap: document.getElementById('offlineMap'),
+    mapFrame: document.getElementById('mapFrame'),
     locationButton: document.getElementById('locationButton'),
     locationState: document.getElementById('locationState'),
     positionDot: document.getElementById('positionDot'),
@@ -22,6 +23,7 @@
     emergency: document.getElementById('emergency'),
     verificationNotice: document.getElementById('verificationNotice'),
     packageMeta: document.getElementById('packageMeta'),
+    licenceLink: document.getElementById('licenceLink'),
     networkState: document.getElementById('networkState'),
   };
 
@@ -151,6 +153,9 @@
       elements.trailName.textContent = manifest.name;
       elements.packageState.textContent = `Verified ${manifest.resources.length} stored resources · ${formatBytes(manifest.packageBytes)}`;
       elements.offlineMap.src = URL.createObjectURL(await resources.map.blob());
+      if(manifest.image && manifest.image.width && manifest.image.height){
+        elements.mapFrame.style.aspectRatio = `${manifest.image.width} / ${manifest.image.height}`;
+      }
 
       addFact('Route', safety.facts.routeType);
       addFact('Distance', `${safety.facts.distanceKm} km`);
@@ -169,6 +174,7 @@
         ? 'This package is technically verified but its route and safety content still require a dated field review.'
         : 'This package has passed the declared content review.';
       elements.packageMeta.textContent = `Package ${manifest.version} · generated ${manifest.generatedAt.slice(0, 10)} · ${manifest.attribution}`;
+      elements.licenceLink.href = manifest.licenceUrl;
       elements.locationButton.addEventListener('click', () => startLocation(manifest.bounds));
 
       elements.mapSection.hidden = false;

@@ -149,6 +149,14 @@
     return null;
   }
 
+  async function availablePackage(trailId){
+    const config = PACKAGES[trailId];
+    if(!config) return null;
+    const response = await fetch(config.manifestUrl, { cache: 'no-store' });
+    if(!response.ok) return null;
+    return validateManifest(await response.json(), trailId);
+  }
+
   async function removePackage(trailId){
     if(!('caches' in window)) return;
     const names = await caches.keys();
@@ -187,11 +195,19 @@
 
     async function refresh(){
       const manifest = await installedPackage(trailId);
-      const ready = !!manifest;
-      openButton.hidden = !ready;
-      removeButton.hidden = !ready;
-      downloadButton.hidden = ready;
-      if(ready){
+      let available = null;
+      try{ available = await availablePackage(trailId); }catch(error){ /* offline is expected */ }
+      const updateAvailable = !!(manifest && available && manifest.version !== available.version);
+      openButton.hidden = !manifest;
+      removeButton.hidden = !manifest;
+      downloadButton.hidden = !!manifest && !updateAvailable;
+      if(updateAvailable){
+        downloadButton.textContent = signedIn() ? 'Update offline map' : 'Log in to update';
+        setStatus(
+          `Map update ${available.version} is available. Your existing package remains usable offline.`,
+          ''
+        );
+      }else if(manifest){
         setStatus(
           `Ready offline on this device · ${formatBytes(manifest.packageBytes)} · beta verification data`,
           'ready'
@@ -248,6 +264,7 @@
   window.DoloPawsOffline = {
     installPackage,
     installedPackage,
+    availablePackage,
     removePackage,
     validateManifest,
     formatBytes,

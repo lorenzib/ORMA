@@ -85,8 +85,10 @@ package feasibility slice because the manifest remains authoritative.
 ## Lago di Carezza package status
 
 The package contains the canonical route currently stored in `trails-data.js`,
-essential facts, safety cautions, a standalone shell, and a georeferenced route
-context diagram.
+essential facts, safety cautions, a standalone shell, and a georeferenced map
+rendered locally from a small OpenStreetMap API extract. The map includes the
+real lake shoreline, mapped paths, access roads, parking, buildings, water,
+viewpoints, scale, north direction, and visible OSM attribution.
 
 It deliberately declares:
 
@@ -94,18 +96,17 @@ It deliberately declares:
 verificationStatus: field-review-required
 ```
 
-The diagram is not the final licensed terrain basemap. The UI says so
-explicitly. This package can validate download, integrity, offline restoration,
-GPS projection, deletion, and expired-session behaviour, but it cannot close
-the content-quality or final-basemap gates in OFF-01.
+The OSM map render is suitable for offline usability testing and is generated
+without copying public map tiles. The route and safety assertions still require
+a dated field review, so this package cannot yet close the content-quality gate
+in OFF-01.
 
 ## Completion gates
 
 Before this slice is promoted beyond beta verification:
 
 1. Complete and date the Lago di Carezza route-specific source review.
-2. Replace the field-test diagram with the approved georeferenced map render.
-3. Update the manifest and hashes.
-4. Deploy to a non-production test URL or approved production beta.
-5. Run the OFF-01 iPhone and Android acceptance matrix.
-6. Record storage, download, restart, GPS, and deletion results.
+2. Confirm the locally rendered OSM map is legible on the supported phones.
+3. Deploy the updated package.
+4. Run the OFF-01 iPhone and Android acceptance matrix.
+5. Record storage, download, restart, GPS, and deletion results.
