@@ -45,6 +45,11 @@ any download or verification failure
   → show recoverable error
   → ready to retry
 
+browser or device interruption leaves an `-installing` cache
+  → never treat it as ready
+  → report incomplete on the next page load
+  → restart and reverify every required resource
+
 ready offline
   → open offline map
   → remove
@@ -54,7 +59,8 @@ ready offline
 The package is first written to an `-installing` cache. It is copied to its
 immutable final cache only after every declared resource passes its byte-length
 and SHA-256 checks. Interrupted installations are therefore never presented as
-ready.
+ready. An abandoned temporary cache is detected on the next page load and can
+be explicitly restarted from the beginning.
 
 ## Account rule
 

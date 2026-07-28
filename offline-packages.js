@@ -228,6 +228,14 @@
     return record ? record.manifest : null;
   }
 
+  async function incompleteInstallation(trailId){
+    if(!('caches' in window)) return false;
+    const names = await caches.keys();
+    return names.some(name =>
+      name.startsWith(`${CACHE_PREFIX}${trailId}-`) && name.endsWith('-installing')
+    );
+  }
+
   async function availablePackage(trailId){
     const config = PACKAGES[trailId];
     if(!config) return null;
@@ -294,10 +302,12 @@
       return !!(window.DoloPawsAuth && window.DoloPawsAuth.currentUser);
     }
 
-    async function refresh(){
+    async function refresh(options){
+      const failureMessage = options && options.failureMessage;
       const record = await installedPackageRecord(trailId);
       const manifest = record && record.manifest;
       const metadata = record && record.metadata;
+      const incomplete = await incompleteInstallation(trailId);
       let available = null;
       try{ available = await availablePackage(trailId); }catch(error){ /* offline is expected */ }
       const updateAvailable = !!(manifest && available && manifest.version !== available.version);
@@ -309,8 +319,32 @@
         : null;
       openButton.hidden = !manifest;
       removeButton.hidden = !manifest;
-      downloadButton.hidden = !!manifest && !updateAvailable;
-      if(updateAvailable){
+      downloadButton.hidden = !!manifest && !updateAvailable && !incomplete && !failureMessage;
+      if(failureMessage){
+        downloadButton.textContent = signedIn()
+          ? (manifest ? 'Retry update' : 'Retry download')
+          : 'Log in to retry';
+        setStatus(
+          `${failureMessage} ${
+            manifest
+              ? 'Your existing package remains ready offline.'
+              : 'No incomplete package has been marked ready.'
+          }`,
+          'failed'
+        );
+      }else if(incomplete){
+        downloadButton.textContent = signedIn()
+          ? (manifest ? 'Restart update' : 'Restart download')
+          : 'Log in to retry';
+        setStatus(
+          `A previous ${manifest ? 'update' : 'download'} was interrupted. ${
+            manifest
+              ? 'Your existing package remains ready offline.'
+              : 'The partial package is not available offline.'
+          } Restart to verify every required resource.`,
+          'incomplete'
+        );
+      }else if(updateAvailable){
         downloadButton.textContent = signedIn() ? 'Update offline map' : 'Log in to update';
         setStatus(
           `Update ${available.version} available · current package ${
@@ -343,6 +377,8 @@
         return;
       }
       downloadButton.disabled = true;
+      setStatus('Preparing a verified offline download…', 'downloading');
+      let failureMessage = null;
       try{
         const manifest = await installPackage(
           trailId,
@@ -353,10 +389,10 @@
         );
         setStatus(`Verified ${manifest.resources.length} required resources.`, 'ready');
       }catch(error){
-        setStatus(error.message || 'The package could not be downloaded.', 'error');
+        failureMessage = error.message || 'The package could not be downloaded.';
       }finally{
         downloadButton.disabled = false;
-        await refresh();
+        await refresh(failureMessage ? { failureMessage } : null);
       }
     }
 
@@ -384,6 +420,7 @@
     installPackage,
     installedPackage,
     installedPackageRecord,
+    incompleteInstallation,
     listInstalledPackages,
     availablePackage,
     removePackage,

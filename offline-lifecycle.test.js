@@ -15,6 +15,7 @@ describe('OFF-03 offline package ownership metadata', () => {
     });
     document.documentElement.lang = 'en';
     document.body.innerHTML = '';
+    delete window.caches;
     require('./offline-packages.js');
   });
 
@@ -74,5 +75,39 @@ describe('OFF-03 offline package ownership metadata', () => {
     expect(updateBranch).toContain('formatInstalledDate');
     expect(updateBranch).toContain('ownershipLabel(ownership)');
     expect(updateBranch).toContain('remains usable offline');
+  });
+
+  test('detects abandoned installing caches without treating them as ready', async () => {
+    const cacheApi = {
+      keys: jest.fn().mockResolvedValue([
+        'dolopaws-trail-lago-carezza-2026.07.28-installing',
+        'unrelated-cache',
+      ]),
+    };
+    Object.defineProperty(window, 'caches', {
+      configurable: true,
+      value: cacheApi,
+    });
+
+    await expect(
+      window.DoloPawsOffline.incompleteInstallation('lago-carezza')
+    ).resolves.toBe(true);
+    await expect(
+      window.DoloPawsOffline.incompleteInstallation('another-trail')
+    ).resolves.toBe(false);
+  });
+
+  test('publishes distinct retry copy for interrupted and failed downloads', () => {
+    const source = require('fs').readFileSync(
+      require('path').join(__dirname, 'offline-packages.js'),
+      'utf8'
+    );
+
+    expect(source).toContain("'Restart download'");
+    expect(source).toContain("'Retry download'");
+    expect(source).toContain("'incomplete'");
+    expect(source).toContain("'failed'");
+    expect(source).toContain('No incomplete package has been marked ready.');
+    expect(source).toContain('Your existing package remains ready offline.');
   });
 });

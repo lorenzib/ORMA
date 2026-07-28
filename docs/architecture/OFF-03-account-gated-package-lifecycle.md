@@ -1,6 +1,6 @@
 # OFF-03 — Account-gated package storage and lifecycle
 
-**Status:** In progress; owner-aware metadata slice complete
+**Status:** In progress; owner metadata and restartable recovery slices complete
 
 **Implementation date:** 2026-07-28
 
@@ -29,6 +29,25 @@ Existing packages without an owner marker remain usable and are labelled
 `download owner not recorded`. Their next authenticated update writes the new
 metadata instead of silently inventing historical ownership.
 
+## Interrupted-download recovery
+
+The installer writes to a temporary cache whose name ends in `-installing`.
+That cache is never considered a ready offline package:
+
+- a normal fetch, verification, or storage failure removes the temporary cache,
+  reports a failed state, and offers **Retry download** or **Retry update**;
+- a hard browser or device interruption can leave the temporary cache behind;
+  the next page load detects it, reports an incomplete state, and offers
+  **Restart download** or **Restart update**;
+- restarting removes the abandoned temporary cache and verifies every required
+  resource again from the beginning;
+- a failed or interrupted update never replaces the previous verified package;
+- a partial first download is explicitly unavailable offline.
+
+The beta deliberately restarts rather than attempting byte-range resumption.
+The current package is small, and full restart plus SHA-256 verification gives
+a simpler, more reliable integrity boundary.
+
 ## Storage boundary
 
 Package resources remain in versioned Cache Storage. The first beta slice keeps
@@ -43,19 +62,18 @@ the same account remain recognisable on that device without storing identity.
 
 - `offline-lifecycle.test.js` verifies stable same-account markers, different
   account separation, absence of plaintext identity, ownership states, and
-  identity-free labels.
-- The normal application suite passes 150 tests.
+  identity-free labels. It also verifies abandoned-install detection and
+  distinct restart and retry states.
+- The normal application suite passes 153 tests.
 - The static link checker passes all 171 HTML pages.
 
 ## Remaining before OFF-03 is complete
 
 1. Move the package registry and lifecycle metadata to IndexedDB before
    enabling multiple downloadable trails.
-2. Add resumable or explicitly restartable interrupted downloads without ever
-   claiming readiness for a partial cache.
-3. Add a package-management surface that lists every installed trail.
-4. Add storage-quota checks and actionable insufficient-space recovery.
-5. Connect logout and account deletion to the documented retain/remove
+2. Add a package-management surface that lists every installed trail.
+3. Add storage-quota checks and actionable insufficient-space recovery.
+4. Connect logout and account deletion to the documented retain/remove
    decision, including shared-device cleanup.
-6. Repeat physical-device validation on supported iOS Safari and Android
+5. Repeat physical-device validation on supported iOS Safari and Android
    Chrome; Android remains untested because no device is currently available.

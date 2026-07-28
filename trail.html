@@ -276,6 +276,8 @@ body{background:#EFECE2;}
 .offline-package-row{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;}
 .offline-package-status{margin:8px 0 0;color:#D9E3DC;font-size:12px;line-height:1.45;text-align:right;}
 .offline-package-status[data-state="error"]{color:#FFD2C8;}
+.offline-package-status[data-state="failed"]{color:#FFD2C8;}
+.offline-package-status[data-state="incomplete"]{color:#FFE6A6;}
 .offline-package-status[data-state="ready"]{color:#BDEBD9;}
 .offline-package .td2-btn-g{min-height:38px;padding:9px 12px;}
 .offline-package .td2-btn-g[hidden],.offline-package-open[hidden]{display:none!important;}
@@ -773,7 +775,7 @@ body{background:#EFECE2;}
 <script type="module" src="firebase-init.js"></script>
 <script src="icon-system.js?v=20260717" defer></script>
 <script src="auth-ui.js?v=20260724-3" defer></script>
-<script src="offline-packages.js?v=20260728-1" defer></script>
+<script src="offline-packages.js?v=20260728-2" defer></script>
 <script src="breeds-data.js" defer></script>
 <script src="trust/evidence-v1.js?v=20260728-1" defer></script>
 <script src="scoring/recommendation-v1.js?v=20260728-2" defer></script>
