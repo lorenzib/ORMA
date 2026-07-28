@@ -18,18 +18,20 @@ until SEC-02 runs allow-and-deny cases against the Firestore emulator.
 
 ## Authority model
 
-Firebase Authentication establishes identity. Two server-issued custom claims
-establish privileged roles:
+Firebase Authentication establishes identity. AUTH-02 uses the built-in
+verified-email token and a private operator block list for contributor
+eligibility. A custom claim remains only for moderator privileges:
 
-| Claim | Meaning |
+| Authority | Meaning |
 |---|---|
-| `contributor: true` | AUTH-02 has established eligibility to publish community content |
+| `email_verified: true` | The account may submit community content as pending |
+| no `contributionBlocks/{uid}` record | The operator has not blocked community submissions |
 | `moderator: true` | The account may inspect moderation inputs and change moderation states |
 
-Neither claim is stored in a user document. A web client cannot make itself a
-contributor or moderator by writing Firestore data. The administrative process
-that grants and revokes claims is AUTH-02 work and must use trusted server-side
-credentials.
+Neither eligibility nor moderation authority is stored in the client-writable
+user document. A web client cannot verify itself, remove a contribution block,
+or make itself a moderator. Operators manage blocks and manual moderation
+through the Firebase console during the Spark-plan beta.
 
 ## Collection policy
 
@@ -104,7 +106,7 @@ publish Firestore rules.
 
 - **SEC-02:** complete; semantic emulator tests cover unauthenticated, owner,
   other-user, contributor, moderator, malformed, query, and transition cases.
-- **AUTH-02:** complete in repository; trusted contributor-claim eligibility
-  and recovery UX await an approved function-and-rules deployment.
+- **AUTH-02:** complete in repository on Spark; verified-email eligibility,
+  pending moderation, and recovery UX await an approved rules deployment.
 - **MOD-01/02:** pending/visible policy, moderation queue, and audit records.
 - **AUTH-03:** complete cross-collection server deletion and local cleanup.

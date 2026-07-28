@@ -17,27 +17,27 @@ describe('AUTH-02 verified contributor contract', () => {
     expect(entitlements.states.verifiedContributor.capabilities.publishCommunityContribution).toBe(true);
   });
 
-  test('the client verifies identity and receives claims only from a callable function', () => {
+  test('the client sends and checks Firebase email verification without a paid function', () => {
     expect(client).toContain('sendEmailVerification(credential.user)');
-    expect(client).toContain('refreshContributorEligibilityCall');
-    expect(client).toContain('getIdToken(currentUser, true)');
-    expect(client).not.toMatch(/setCustomUserClaims/);
+    expect(client).toContain('currentUser.emailVerified');
+    expect(client).not.toContain('getFunctions');
+    expect(client).not.toContain('httpsCallable');
+    expect(firebase.functions).toBeUndefined();
   });
 
-  test('every public contribution write checks eligibility before Firestore', () => {
-    expect(client.match(/getContributionEligibility\(\{ activate: true \}\)/g)).toHaveLength(3);
+  test('every contribution checks eligibility and starts pending', () => {
+    expect(client.match(/await getContributionEligibility\(\)/g)).toHaveLength(3);
+    expect(client.match(/status: "pending"/g)).toHaveLength(3);
     expect(rules).toContain("request.auth.token.get('email_verified', false) == true");
-    expect(rules).toContain("request.auth.token.get('contributor', false) == true");
-    expect(rules).toContain("request.auth.token.get('suspended', false) != true");
+    expect(rules).toContain('documents/contributionBlocks/$(request.auth.uid)');
+    expect(rules).not.toContain("request.auth.token.get('contributor'");
   });
 
-  test('the trusted function is isolated from static hosting', () => {
-    expect(firebase.functions).toEqual({
-      source: 'functions',
-      runtime: 'nodejs22',
-    });
-    expect(read('functions/index.js')).toContain('setCustomUserClaims');
-    expect(read('functions/index.js')).toContain('getUser(request.auth.uid)');
+  test('manual moderation is explicit in the trail UX', () => {
+    const reports = read('trail-reports.js');
+    expect(reports).toContain('submitted for review');
+    expect(reports).toContain('submitted for moderation');
+    expect(rules.match(/request\.resource\.data\.status == 'pending'/g)).toHaveLength(4);
   });
 
   test('recovery copy names a concrete verification action', () => {

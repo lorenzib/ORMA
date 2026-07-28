@@ -1,24 +1,25 @@
 # AUTH-02 — Verified contributor eligibility
 
-**Status:** Complete in repository; production deployment pending
+**Status:** Complete in repository; Firestore deployment pending
 
 **Decision date:** 2026-07-28
 
 ## Outcome
 
-DoloPaws now separates ordinary account entitlement from community
-contribution eligibility:
+DoloPaws uses a Spark-compatible contribution policy that requires no Cloud
+Functions or paid Firebase plan:
 
 - any authenticated account may initiate and manage an offline trail package;
-- a community contributor must have a verified Firebase email and the
-  server-issued `contributor: true` custom claim;
-- clients cannot grant, store, or edit that claim themselves;
-- `suspended: true` prevents claim issuance and provides a revocation control;
-- moderator claims remain manually administered and independent.
+- community submission requires a Firebase-authenticated account whose email is
+  verified;
+- every new review, rating, trail photo, and hazard report starts as `pending`;
+- pending content is invisible to public application queries;
+- an operator approves or rejects submissions manually in the Firebase console;
+- a private `contributionBlocks/{uid}` document prevents a verified account
+  from submitting again.
 
-This implements eligibility to submit content. It does not make moderation
-decisions. MOD-01 will change new reviews, photos, and applicable reports to a
-pending state before public publication.
+Downloads and community eligibility remain separate. Authentication alone is
+enough to download; verified email is required to contribute.
 
 ## Supported beta identities
 
@@ -26,80 +27,78 @@ pending state before public publication.
 |---|---|
 | Email and password | Eligible after the Firebase verification link is completed |
 | Google | Eligible when Firebase reports the Google email as verified |
-| Any other provider | Ineligible until its verification semantics are reviewed and added explicitly |
+| Any future provider | Ineligible until its verification behavior is reviewed |
 
-New email/password accounts receive a verification email immediately. The
-account settings page reports one of: verified, verification required,
-activation required, temporarily unavailable, or suspended. It offers a resend
-or retry action where recovery is possible.
+New email/password accounts receive a verification email immediately. Account
+settings show whether the address is verified and provide a resend action.
 
-## Trusted claim flow
+## Submission flow
 
-1. The signed-in client reloads the Firebase user.
-2. An unverified account receives recovery guidance and no Firestore write is
-   attempted.
-3. A verified account without a contributor claim calls
-   `refreshContributorEligibility` in `europe-west1`.
-4. The callable function retrieves the authoritative Firebase Auth user record.
-5. It rejects disabled, suspended, unverified, and unsupported-provider
-   accounts.
-6. It merges `contributor: true` into existing trusted claims without replacing
-   moderator or other claims.
-7. The client force-refreshes its ID token before attempting the contribution.
-8. Firestore Rules independently require `email_verified: true`,
-   `contributor: true`, and no `suspended: true` claim.
+1. The client reloads the signed-in Firebase user.
+2. An unverified account receives a concrete email-verification recovery action.
+3. A verified account submits well-formed content with `status: pending`.
+4. Firestore Rules independently require `email_verified: true`.
+5. The rules check that `contributionBlocks/{uid}` does not exist.
+6. Public queries continue to request only `active` flags and `visible` reviews
+   or photos, so they cannot expose pending records.
+7. The user sees confirmation that moderation is required.
 
-If an ineligible account still has a contributor claim when it calls the
-function, the function removes that claim. Requiring `email_verified` in the
-rules also prevents an unverified token from relying on a stale contributor
-claim.
+Rules also reject a client attempt to create content directly as `active` or
+`visible`. Editing previously published content returns it to `pending`, so the
+changed version does not bypass moderation.
 
-## Recovery UX
+## Manual moderation on Spark
 
-- Signed out: log in and return to the intended contribution.
-- Email unverified: open Account → Settings and resend the verification link.
-- Verified but not activated: enable contributions or submit once to activate
-  automatically.
-- Network/function failure: retain the draft in the open form and retry.
-- Suspended: do not retry; contact DoloPaws for review.
+Until MOD-02 provides an operator dashboard, moderation happens in the Firebase
+console:
 
-Downloads never call the contributor function and remain governed by AUTH-01.
+1. Open Firestore and inspect `flags`, `reviews`, or `trailPhotos`.
+2. Filter or locate documents whose `status` is `pending`.
+3. Verify that the trail, author UID, text, rating, image, and timestamp are
+   appropriate.
+4. Approve a flag by changing `pending` to `active`.
+5. Approve a review or photo by changing `pending` to `visible`.
+6. Reject content by changing it to `hidden` or `removed`.
+7. Do not edit the author UID, trail ID, or original creation timestamp.
+
+Firebase console operations use project administrator credentials and do not
+depend on application-client moderator claims.
+
+## Blocking an account
+
+To prevent further submissions without exposing a public block list:
+
+1. Copy the account UID from Firebase Authentication.
+2. In Firestore, create `contributionBlocks/{uid}` using that UID as the
+   document ID.
+3. Add an internal reason and timestamp if useful to the operator.
+4. Disable the account in Firebase Authentication if all account access should
+   stop, not only community submissions.
+
+Application clients cannot read or write `contributionBlocks`. Removing the
+document restores contribution eligibility if the account remains verified and
+enabled.
 
 ## Tests and CI
 
-- `auth-eligibility.test.js` verifies the client, entitlement, rule, and
-  deployment contracts.
-- `functions/contributor-eligibility.spec.cjs` tests verified providers,
-  unverified/disabled/suspended/unsupported denials, and claim preservation.
-- The Firestore Emulator confirms that an unverified token is denied even when
-  it contains `contributor: true`.
-- CI installs function dependencies and runs the backend policy tests
-  separately from browser Jest tests.
-
-Firebase Functions `7.3.0` and Firebase Admin `14.2.0` are pinned. A narrow
-`brace-expansion` override removes the current high-severity transitive
-advisory chain. The remaining current Firebase Admin advisories are moderate
-and originate in storage-related transitive packages not invoked by this
-Auth-only function; `npm audit --audit-level=high --prefix functions` must
-remain clean.
+- `auth-eligibility.test.js` verifies email verification, pending submission,
+  entitlement separation, recovery UX, and absence of a Functions dependency.
+- The Firestore Emulator covers verified success; unverified and blocked
+  denial; pending privacy; author ownership; and moderator state transitions.
+- The normal CI pipeline runs without production credentials or a paid Firebase
+  service.
 
 ## Production rollout
 
-Repository completion does not deploy Firebase resources. Before enabling
-contributions in production:
+Repository completion does not deploy Firestore resources. Before enabling the
+flow in production:
 
-1. confirm the Firebase project is `dolopaws` and that Functions billing and
-   the `europe-west1` region are acceptable;
-2. configure Firebase App Check for the web application, then decide whether
-   to enforce it on the callable function;
-3. deploy `refreshContributorEligibility`;
-4. smoke-test email/password verification and Google activation with test
-   accounts;
-5. compare and deploy Firestore indexes and rules using the SEC-01 safe-rollout
-   procedure;
-6. verify ordinary-account denial, verified-contributor submission, suspended
-   denial, and moderator access;
-7. retain the previous rules source for rollback.
+1. export or record the currently deployed rules and indexes;
+2. compare production document shapes with the repository validators;
+3. deploy indexes and wait for them to finish building;
+4. deploy the reviewed Firestore rules;
+5. verify unverified denial, verified pending submission, public pending denial,
+   manual approval, and blocked-account denial;
+6. retain the previous rules source for rollback.
 
-No production deployment is part of AUTH-02 without explicit operator
-approval.
+No Blaze upgrade or Cloud Function deployment is required.

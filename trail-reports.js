@@ -402,7 +402,7 @@ function initTrailReports(map, trail){
         if (result.ok){
           close(true);
           await load();
-          showActionStatus('Photo added to this trail.');
+          showActionStatus('Photo submitted for review. It will appear after approval.');
           return;
         }
         error.textContent = result.message || 'Could not add this photo — please try again.';
@@ -489,7 +489,7 @@ function initTrailReports(map, trail){
         if (result.ok){
           close(true);
           await load();
-          showActionStatus('Review posted. Thank you for helping the community.');
+          showActionStatus('Review submitted for moderation. It will appear after approval.');
           return;
         }
         error.textContent = result.message || 'Could not post your review — please try again.';
@@ -587,7 +587,7 @@ function initTrailReports(map, trail){
         if (res.ok){
           close(true);
           await load();
-          showActionStatus('Hazard report posted. Thank you for keeping others informed.');
+          showActionStatus('Hazard report submitted for moderation.');
           return;
         }
         err.textContent = res.message || window.t('reports.error');

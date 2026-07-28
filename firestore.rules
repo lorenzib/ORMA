@@ -2,8 +2,9 @@ rules_version = '2';
 
 // SEC-01 — DoloPaws Firestore authorization boundary.
 //
-// Contributor and moderator privileges are Firebase Authentication custom
-// claims. No Firestore document can grant either privilege to its author.
+// Contributor eligibility is a verified Firebase email plus absence from the
+// private operator-managed block list. Moderator privileges remain a trusted
+// Firebase Authentication custom claim.
 service cloud.firestore {
   match /databases/{database}/documents {
     function isSignedIn() {
@@ -17,8 +18,9 @@ service cloud.firestore {
     function isContributor() {
       return isSignedIn()
         && request.auth.token.get('email_verified', false) == true
-        && request.auth.token.get('contributor', false) == true
-        && request.auth.token.get('suspended', false) != true;
+        && !exists(
+          /databases/$(database)/documents/contributionBlocks/$(request.auth.uid)
+        );
     }
 
     function isModerator() {
@@ -151,7 +153,7 @@ service cloud.firestore {
         && (data.km == null || (data.km is number && data.km >= 0 && data.km <= 100))
         && data.text is string && data.text.size() <= 300
         && validDogContext(data.dogContext, true)
-        && data.status in ['active', 'reported', 'hidden', 'removed']
+        && data.status in ['pending', 'active', 'reported', 'hidden', 'removed']
         && data.createdAt is timestamp
         && validModerationMetadata(data);
     }
@@ -194,7 +196,9 @@ service cloud.firestore {
         && isOwner(resource.data.uid)
         && request.resource.data.uid == resource.data.uid
         && request.resource.data.trailId == resource.data.trailId
-        && request.resource.data.status == resource.data.status
+        && (request.resource.data.status == resource.data.status
+          || (request.resource.data.status == 'pending'
+            && resource.data.status in ['active', 'visible']))
         && request.resource.data.createdAt == resource.data.createdAt
         && !request.resource.data.diff(resource.data).affectedKeys()
           .hasAny(['moderatedAt', 'moderatedBy']);
@@ -221,6 +225,12 @@ service cloud.firestore {
       allow list: if false;
     }
 
+    // Operators create and remove block records in the Firebase console.
+    // Application clients cannot inspect or modify this private list.
+    match /contributionBlocks/{uid} {
+      allow read, write: if false;
+    }
+
     // Anonymous, identity-free usage counter. The write contains only a
     // server timestamp; precise location and account identity are prohibited.
     match /hikeEvents/{trailId}/events/{eventId} {
@@ -236,7 +246,7 @@ service cloud.firestore {
       allow get, list: if isModerator() || resource.data.status == 'active';
       allow create: if isContributor()
         && request.resource.data.uid == request.auth.uid
-        && request.resource.data.status == 'active'
+        && request.resource.data.status == 'pending'
         && request.resource.data.createdAt == request.time
         && !request.resource.data.keys().hasAny(['moderatedAt', 'moderatedBy'])
         && validFlag(request.resource.data);
@@ -250,7 +260,7 @@ service cloud.firestore {
       allow create: if isContributor()
         && request.resource.data.uid == request.auth.uid
         && reviewId == request.resource.data.trailId + '_' + request.auth.uid
-        && request.resource.data.status == 'visible'
+        && request.resource.data.status == 'pending'
         && request.resource.data.createdAt == request.time
         && !request.resource.data.keys().hasAny(['moderatedAt', 'moderatedBy'])
         && validReview(request.resource.data);
@@ -264,7 +274,7 @@ service cloud.firestore {
       allow get, list: if isModerator() || resource.data.status == 'visible';
       allow create: if isContributor()
         && request.resource.data.uid == request.auth.uid
-        && request.resource.data.status == 'visible'
+        && request.resource.data.status == 'pending'
         && request.resource.data.createdAt == request.time
         && !request.resource.data.keys().hasAny(['moderatedAt', 'moderatedBy'])
         && validPhoto(request.resource.data);

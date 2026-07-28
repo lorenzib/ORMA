@@ -492,31 +492,25 @@
       contributionBadge.style.color = '#2C5C34';
       return;
     }
-    contributionBadge.textContent = result.state === 'suspended' ? 'Unavailable' : 'Action needed';
+    contributionBadge.textContent = result.state === 'unavailable' ? 'Unavailable' : 'Action needed';
     contributionBadge.style.background = '#F5E4C6';
     contributionBadge.style.color = '#8A5A16';
     if(result.action === 'verify-email'){
       contributionAction.textContent = 'Resend verification email';
       contributionAction.dataset.action = 'verify-email';
       contributionAction.hidden = false;
-    } else if(result.action === 'activate' || result.action === 'retry'){
-      contributionAction.textContent = result.action === 'activate'
-        ? 'Enable contributions' : 'Try again';
-      contributionAction.dataset.action = 'activate';
+    } else if(result.action === 'retry'){
+      contributionAction.textContent = 'Try again';
+      contributionAction.dataset.action = 'retry';
       contributionAction.hidden = false;
     }
   }
 
-  async function refreshContributionEligibility(activate){
+  async function refreshContributionEligibility(){
     if(!window.DoloPawsAuth || !window.DoloPawsAuth.getContributionEligibility) return;
-    contributionStatus.textContent = activate
-      ? 'Confirming your verified account…'
-      : 'Checking whether this account can contribute…';
+    contributionStatus.textContent = 'Checking whether this account can contribute…';
     contributionAction.hidden = true;
-    const result = await window.DoloPawsAuth.getContributionEligibility({
-      activate: !!activate,
-      forceTokenRefresh: !!activate,
-    });
+    const result = await window.DoloPawsAuth.getContributionEligibility();
     paintContributionEligibility(result);
   }
 
@@ -528,7 +522,7 @@
       contributionAction.disabled = false;
       return;
     }
-    await refreshContributionEligibility(true);
+    await refreshContributionEligibility();
   });
   function refreshEmailBtn(){
     const changed = acctEmailInput.value.trim() && acctEmailInput.value.trim() !== savedEmail;
@@ -676,7 +670,7 @@
       $('passwordSection').hidden = isGoogle;
       $('deletePasswordField').hidden = isGoogle;
       $('deleteGoogleNote').hidden = !isGoogle;
-      refreshContributionEligibility(false);
+      refreshContributionEligibility();
 
       const profile = (await window.DoloPawsAuth.getDogProfile()) || {};
       base = profile;

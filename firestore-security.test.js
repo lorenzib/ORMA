@@ -48,10 +48,11 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(userValidator).not.toContain('moderator');
   });
 
-  test('community publication depends on immutable authentication claims', () => {
+  test('community submission requires verified email and respects operator blocks', () => {
     expect(rules).toContain("request.auth.token.get('email_verified', false) == true");
-    expect(rules).toContain("request.auth.token.get('contributor', false) == true");
-    expect(rules).toContain("request.auth.token.get('suspended', false) != true");
+    expect(rules).toContain('documents/contributionBlocks/$(request.auth.uid)');
+    expect(rules).toContain('match /contributionBlocks/{uid}');
+    expect(rules).not.toContain("request.auth.token.get('contributor'");
     expect(rules).toContain("request.auth.token.get('moderator', false) == true");
     expect(rules).toContain('request.resource.data.uid == request.auth.uid');
     expect(rules).toContain('request.resource.data.createdAt == resource.data.createdAt');
@@ -63,11 +64,9 @@ describe('SEC-01 Firestore configuration contract', () => {
   });
 
   test('client contribution states match the create rules', () => {
-    expect(client).toContain('status: "active"');
-    expect(client.match(/status: "visible"/g)).toHaveLength(2);
+    expect(client.match(/status: "pending"/g)).toHaveLength(3);
     expect(client).toContain('status: "open"');
-    expect(rules).toContain("request.resource.data.status == 'active'");
-    expect(rules.match(/request\.resource\.data\.status == 'visible'/g)).toHaveLength(2);
+    expect(rules.match(/request\.resource\.data\.status == 'pending'/g)).toHaveLength(4);
     expect(rules).toContain("request.resource.data.status == 'open'");
   });
 

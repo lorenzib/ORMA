@@ -220,8 +220,9 @@ already installed map and GPS view must remain available during a hike.
    hike, or queued outcomes.
 6. An authenticated but unverified account can download a route but cannot
    publish a review, rating, photo, or hazard report.
-7. A verified contributor can publish only when server rules independently
-   approve the request.
+7. A verified contributor can submit only when server rules independently
+   approve the request; public visibility requires a separate moderation
+   decision.
 8. Account deletion removes private local data and clearly records whether
    public packages were retained.
 9. An invalid or expired pending action is discarded without redirecting

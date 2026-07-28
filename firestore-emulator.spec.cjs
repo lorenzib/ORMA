@@ -29,22 +29,19 @@ let testEnv;
 setLogLevel('error');
 
 const ordinaryDb = uid =>
-  testEnv.authenticatedContext(uid, { email_verified: true }).firestore();
+  testEnv.authenticatedContext(uid, { email_verified: false }).firestore();
 const contributorDb = uid =>
   testEnv.authenticatedContext(uid, {
     email_verified: true,
-    contributor: true,
   }).firestore();
 const unverifiedContributorDb = uid =>
   testEnv.authenticatedContext(uid, {
     email_verified: false,
     contributor: true,
   }).firestore();
-const suspendedContributorDb = uid =>
+const blockedContributorDb = uid =>
   testEnv.authenticatedContext(uid, {
     email_verified: true,
-    contributor: true,
-    suspended: true,
   }).firestore();
 const moderatorDb = uid =>
   testEnv.authenticatedContext(uid, {
@@ -69,7 +66,7 @@ function validFlag(uid, overrides = {}){
     km: 0.7,
     text: 'The mapped fountain was dry.',
     dogContext: null,
-    status: 'active',
+    status: 'pending',
     createdAt: serverTimestamp(),
     ...overrides,
   };
@@ -83,7 +80,7 @@ function validReview(uid, overrides = {}){
     text: 'A useful recent review.',
     dogContext: null,
     hikedOn: null,
-    status: 'visible',
+    status: 'pending',
     createdAt: serverTimestamp(),
     ...overrides,
   };
@@ -96,7 +93,7 @@ function validPhoto(uid, overrides = {}){
     image: 'data:image/jpeg;base64,YQ==',
     caption: 'Trail conditions today.',
     dogContext: null,
-    status: 'visible',
+    status: 'pending',
     createdAt: serverTimestamp(),
     ...overrides,
   };
@@ -200,22 +197,23 @@ describe('anonymous hike counter', () => {
 });
 
 describe('hazard flags', () => {
-  test('only contributors publish and authors cannot change moderation state', async () => {
+  test('only verified, unblocked accounts submit and authors cannot self-publish', async () => {
     const ordinary = ordinaryDb('ordinary-1');
     const author = contributorDb('author-1');
     const other = contributorDb('other-1');
     const unverified = unverifiedContributorDb('unverified-1');
-    const suspended = suspendedContributorDb('suspended-1');
+    const blocked = blockedContributorDb('blocked-1');
     const flagRef = doc(author, 'flags/flag-1');
 
+    await seed([['contributionBlocks/blocked-1', { reason: 'operator block' }]]);
     await assertFails(setDoc(doc(ordinary, 'flags/ordinary-flag'), validFlag('ordinary-1')));
     await assertFails(setDoc(
       doc(unverified, 'flags/unverified-flag'),
       validFlag('unverified-1')
     ));
     await assertFails(setDoc(
-      doc(suspended, 'flags/suspended-flag'),
-      validFlag('suspended-1')
+      doc(blocked, 'flags/blocked-flag'),
+      validFlag('blocked-1')
     ));
     await assertSucceeds(setDoc(flagRef, validFlag('author-1')));
     await assertFails(setDoc(doc(author, 'flags/spoofed-flag'), validFlag('other-1')));
@@ -238,6 +236,10 @@ describe('hazard flags', () => {
     ));
     await seed([
       ['flags/active-flag', {
+        ...validFlag('author-1', { status: 'active' }),
+        createdAt: Timestamp.now(),
+      }],
+      ['flags/pending-flag', {
         ...validFlag('author-1'),
         createdAt: Timestamp.now(),
       }],
@@ -248,6 +250,7 @@ describe('hazard flags', () => {
     ]);
     const guest = testEnv.unauthenticatedContext().firestore();
     await assertSucceeds(getDoc(doc(guest, 'flags/active-flag')));
+    await assertFails(getDoc(doc(guest, 'flags/pending-flag')));
     await assertFails(getDoc(doc(guest, 'flags/hidden-flag')));
     await assertSucceeds(getDocs(query(
       collection(guest, 'flags'),
@@ -275,7 +278,7 @@ describe('hazard flags', () => {
 });
 
 describe('reviews and ratings', () => {
-  test('enforces contributor eligibility, deterministic ownership, and bounded ratings', async () => {
+  test('enforces verified-email eligibility, deterministic ownership, and bounded ratings', async () => {
     const ordinary = ordinaryDb('ordinary-1');
     const author = contributorDb('author-1');
     const other = contributorDb('other-1');
@@ -313,14 +316,36 @@ describe('reviews and ratings', () => {
     await assertFails(updateDoc(ref, { status: 'hidden' }));
   });
 
+  test('returns an edited visible review to pending moderation', async () => {
+    const createdAt = Timestamp.now();
+    await seed([['reviews/lago-carezza_author-1', {
+      ...validReview('author-1', { status: 'visible' }),
+      createdAt,
+    }]]);
+    const author = contributorDb('author-1');
+    await assertSucceeds(setDoc(
+      doc(author, 'reviews/lago-carezza_author-1'),
+      validReview('author-1', {
+        text: 'Edited review awaiting another moderation pass.',
+        createdAt,
+      })
+    ));
+    const guest = testEnv.unauthenticatedContext().firestore();
+    await assertFails(getDoc(doc(guest, 'reviews/lago-carezza_author-1')));
+  });
+
   test('visible queries succeed while hidden records and unfiltered lists fail publicly', async () => {
     await seed([
       ['reviews/lago-carezza_author-1', {
-        ...validReview('author-1'),
+        ...validReview('author-1', { status: 'visible' }),
         createdAt: Timestamp.now(),
       }],
       ['reviews/lago-carezza_author-2', {
         ...validReview('author-2', { status: 'hidden' }),
+        createdAt: Timestamp.now(),
+      }],
+      ['reviews/lago-carezza_author-3', {
+        ...validReview('author-3'),
         createdAt: Timestamp.now(),
       }],
     ]);
@@ -331,12 +356,13 @@ describe('reviews and ratings', () => {
       where('status', '==', 'visible')
     )));
     await assertFails(getDoc(doc(guest, 'reviews/lago-carezza_author-2')));
+    await assertFails(getDoc(doc(guest, 'reviews/lago-carezza_author-3')));
     await assertFails(getDocs(collection(guest, 'reviews')));
   });
 });
 
 describe('trail photos', () => {
-  test('only contributors can publish valid bounded images', async () => {
+  test('only verified accounts can submit valid bounded images', async () => {
     const ordinary = ordinaryDb('ordinary-1');
     const author = contributorDb('author-1');
     await assertFails(setDoc(doc(ordinary, 'trailPhotos/photo-1'), validPhoto('ordinary-1')));
@@ -352,16 +378,23 @@ describe('trail photos', () => {
   });
 
   test('public photo queries require visible status', async () => {
-    await seed([['trailPhotos/photo-1', {
-      ...validPhoto('author-1'),
-      createdAt: Timestamp.now(),
-    }]]);
+    await seed([
+      ['trailPhotos/photo-1', {
+        ...validPhoto('author-1', { status: 'visible' }),
+        createdAt: Timestamp.now(),
+      }],
+      ['trailPhotos/photo-2', {
+        ...validPhoto('author-2'),
+        createdAt: Timestamp.now(),
+      }],
+    ]);
     const guest = testEnv.unauthenticatedContext().firestore();
     await assertSucceeds(getDocs(query(
       collection(guest, 'trailPhotos'),
       where('trailId', '==', 'lago-carezza'),
       where('status', '==', 'visible')
     )));
+    await assertFails(getDoc(doc(guest, 'trailPhotos/photo-2')));
     await assertFails(getDocs(collection(guest, 'trailPhotos')));
   });
 });

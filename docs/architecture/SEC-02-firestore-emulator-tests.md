@@ -23,16 +23,16 @@ fall back to.
 
 ## Test matrix
 
-Fourteen grouped scenarios cover:
+Fifteen grouped scenarios cover:
 
 | Area | Allow cases | Deny cases |
 |---|---|---|
 | Private user document | Owner create, read, update, and delete | Guest, other user, collection listing, role injection, oversized or malformed data |
 | Anonymous hike event | Server timestamp only; public weekly query | Identity, precise location, updates |
-| Hazard flag | Eligible contributor publish/edit/delete; active public read | Ordinary account publish, author spoofing, another author’s edits/deletes, invalid type/text, author moderation |
+| Hazard flag | Verified, unblocked account submits pending content; author edit/delete; active public read | Unverified or blocked account submission, self-publication, author spoofing, another author’s edits/deletes, invalid type/text |
 | Moderator flag action | State and moderation metadata | Rewriting contribution content |
-| Review and rating | Deterministic one-per-user/trail create, author edit/delete, visible query | Ordinary account, wrong document ID, invalid rating, another author, timestamp reset, author moderation, unfiltered public list |
-| Trail photo | Eligible contributor with bounded data image; visible query | Ordinary account, remote URL, oversized caption, unfiltered public list |
+| Review and rating | Verified account creates one pending review per trail; author edit/delete; visible query | Unverified account, wrong document ID, invalid rating, another author, timestamp reset, self-publication, unfiltered public list |
+| Trail photo | Verified account submits a bounded pending data image; visible query | Unverified account, remote URL, oversized caption, self-publication, unfiltered public list |
 | Abuse report | Signed-in reporter create/get; moderator list/resolve | Guest, other user, reporter resolution, invalid target |
 | Unknown collection | None | All reads and writes |
 
@@ -48,8 +48,8 @@ setup. Every asserted application operation runs with rules enabled.
 - Anonymous hike events contain only a server timestamp. They are a
   non-authoritative popularity hint and cannot affect safety, ranking,
   entitlement, or moderation decisions.
-- Security Rules cannot reliably rate-limit repeated writes. Contributor
-  claims, bounded schemas, and moderation states constrain impact, but App
+- Security Rules cannot reliably rate-limit repeated writes. Verified email,
+  operator blocks, bounded schemas, and moderation states constrain impact, but App
   Check or a server-mediated rate limiter is required before community volume
   grows. Repeated flags/photos are therefore moderation inputs, not verified
   facts.
@@ -79,7 +79,8 @@ GitHub Actions:
 SEC-02 validates repository rules but does not deploy them. A production
 deployment still requires:
 
-1. deploy the repository-complete AUTH-02 callable function and recovery UX;
+1. deploy the repository-complete AUTH-02 verified-email and pending-content
+   rules;
 2. a comparison against currently deployed rules and production document
    shapes;
 3. explicit operator approval;

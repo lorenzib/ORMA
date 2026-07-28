@@ -14,11 +14,8 @@ import {
   signOut as fbSignOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup,
   sendPasswordResetEmail, deleteUser, reauthenticateWithCredential,
   EmailAuthProvider, reauthenticateWithPopup, verifyBeforeUpdateEmail,
-  sendEmailVerification, reload, getIdToken, getIdTokenResult
+  sendEmailVerification, reload
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import {
-  getFunctions, httpsCallable
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-functions.js";
 import {
   getFirestore, doc, getDoc, setDoc, deleteDoc,
   collection, addDoc, serverTimestamp, query, where, Timestamp,
@@ -28,11 +25,6 @@ import {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const functions = getFunctions(app, "europe-west1");
-const refreshContributorEligibilityCall = httpsCallable(
-  functions,
-  "refreshContributorEligibility"
-);
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
 
@@ -178,7 +170,7 @@ function contributionResult(state, message, action) {
   };
 }
 
-async function getContributionEligibility(options = {}) {
+async function getContributionEligibility() {
   if (!currentUser) {
     return contributionResult(
       "signed-out",
@@ -197,58 +189,11 @@ async function getContributionEligibility(options = {}) {
       );
     }
 
-    let token = await getIdTokenResult(currentUser, !!options.forceTokenRefresh);
-    if (token.claims.suspended === true) {
-      return contributionResult(
-        "suspended",
-        "Community contributions are unavailable for this account. Contact DoloPaws if you think this is a mistake.",
-        "contact-support"
-      );
-    }
-    if (token.claims.contributor === true) {
-      return contributionResult(
-        "eligible",
-        "Your verified account can contribute."
-      );
-    }
-    if (!options.activate) {
-      return contributionResult(
-        "activation-required",
-        "Your email is verified. Enable community contributions to continue.",
-        "activate"
-      );
-    }
-
-    await refreshContributorEligibilityCall();
-    await getIdToken(currentUser, true);
-    token = await getIdTokenResult(currentUser);
-    if (token.claims.contributor === true) {
-      return contributionResult(
-        "eligible",
-        "Your verified account can contribute."
-      );
-    }
     return contributionResult(
-      "unavailable",
-      "We could not confirm contribution access. Try again from Account → Settings.",
-      "retry"
+      "eligible",
+      "Your verified account can submit community contributions for review."
     );
   } catch (error) {
-    const code = String(error && error.code || "");
-    if (code.includes("failed-precondition")) {
-      return contributionResult(
-        "email-unverified",
-        "Verify your email before contributing. Open Account → Settings to resend the verification link.",
-        "verify-email"
-      );
-    }
-    if (code.includes("permission-denied")) {
-      return contributionResult(
-        "suspended",
-        "Community contributions are unavailable for this account. Contact DoloPaws if you think this is a mistake.",
-        "contact-support"
-      );
-    }
     console.error("Contributor eligibility check failed:", error);
     return contributionResult(
       "unavailable",
@@ -256,6 +201,18 @@ async function getContributionEligibility(options = {}) {
       "retry"
     );
   }
+}
+
+function contributionWriteError(error, fallback) {
+  if (String(error && error.code || "").includes("permission-denied")) {
+    return {
+      ok: false,
+      state: "unavailable",
+      action: "contact-support",
+      message: "This account cannot submit community contributions. Contact DoloPaws if you think this is a mistake.",
+    };
+  }
+  return { ok: false, message: fallback };
 }
 
 async function sendContributionVerificationEmail() {
@@ -381,7 +338,7 @@ async function getWeeklyHikeCount(trailId) {
 // well-formed documents and never break the page on failure.
 // ============================================================
 async function addFlag(trailId, type, km, text) {
-  const eligibility = await getContributionEligibility({ activate: true });
+  const eligibility = await getContributionEligibility();
   if (!eligibility.ok) return eligibility;
   try {
     const dog = await getDogProfile();
@@ -392,13 +349,13 @@ async function addFlag(trailId, type, km, text) {
       km: (typeof km === "number" && isFinite(km)) ? km : null,
       text: String(text || "").slice(0, 300),
       dogContext: dog ? { name: dog.name || null, breed: dog.breed || null } : null,
-      status: "active",
+      status: "pending",
       createdAt: serverTimestamp(),
     });
     return { ok: true };
   } catch (e) {
     console.error("addFlag failed:", e);
-    return { ok: false, message: "Could not save your report — please try again." };
+    return contributionWriteError(e, "Could not save your report — please try again.");
   }
 }
 
@@ -424,7 +381,7 @@ async function deleteFlag(flagId) {
 }
 
 async function setReview(trailId, rating, text, hikedOn) {
-  const eligibility = await getContributionEligibility({ activate: true });
+  const eligibility = await getContributionEligibility();
   if (!eligibility.ok) return eligibility;
   try {
     const dog = await getDogProfile();
@@ -438,14 +395,14 @@ async function setReview(trailId, rating, text, hikedOn) {
       text: String(text || "").slice(0, 1000),
       dogContext: dog ? { name: dog.name || null, breed: dog.breed || null } : null,
       hikedOn: hikedOn || null,
-      status: "visible",
+      status: "pending",
       createdAt: existing.exists() && existing.data().createdAt
         ? existing.data().createdAt : serverTimestamp(),
     });
     return { ok: true };
   } catch (e) {
     console.error("setReview failed:", e);
-    return { ok: false, message: "Could not save your review — please try again." };
+    return contributionWriteError(e, "Could not save your review — please try again.");
   }
 }
 
@@ -470,7 +427,7 @@ async function deleteMyReview(trailId) {
 }
 
 async function addTrailPhoto(trailId, image, caption) {
-  const eligibility = await getContributionEligibility({ activate: true });
+  const eligibility = await getContributionEligibility();
   if (!eligibility.ok) return eligibility;
   const imageData = String(image || '');
   if (!imageData.startsWith('data:image/') || imageData.length > 700000) {
@@ -484,13 +441,13 @@ async function addTrailPhoto(trailId, image, caption) {
       image: imageData,
       caption: String(caption || '').slice(0, 240),
       dogContext: dog ? { name: dog.name || null } : null,
-      status: "visible",
+      status: "pending",
       createdAt: serverTimestamp(),
     });
     return { ok: true };
   } catch (e) {
     console.error("addTrailPhoto failed:", e);
-    return { ok: false, message: "Could not add this photo — please try again." };
+    return contributionWriteError(e, "Could not add this photo — please try again.");
   }
 }
 
