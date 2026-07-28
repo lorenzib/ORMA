@@ -35,6 +35,17 @@ const contributorDb = uid =>
     email_verified: true,
     contributor: true,
   }).firestore();
+const unverifiedContributorDb = uid =>
+  testEnv.authenticatedContext(uid, {
+    email_verified: false,
+    contributor: true,
+  }).firestore();
+const suspendedContributorDb = uid =>
+  testEnv.authenticatedContext(uid, {
+    email_verified: true,
+    contributor: true,
+    suspended: true,
+  }).firestore();
 const moderatorDb = uid =>
   testEnv.authenticatedContext(uid, {
     email_verified: true,
@@ -193,9 +204,19 @@ describe('hazard flags', () => {
     const ordinary = ordinaryDb('ordinary-1');
     const author = contributorDb('author-1');
     const other = contributorDb('other-1');
+    const unverified = unverifiedContributorDb('unverified-1');
+    const suspended = suspendedContributorDb('suspended-1');
     const flagRef = doc(author, 'flags/flag-1');
 
     await assertFails(setDoc(doc(ordinary, 'flags/ordinary-flag'), validFlag('ordinary-1')));
+    await assertFails(setDoc(
+      doc(unverified, 'flags/unverified-flag'),
+      validFlag('unverified-1')
+    ));
+    await assertFails(setDoc(
+      doc(suspended, 'flags/suspended-flag'),
+      validFlag('suspended-1')
+    ));
     await assertSucceeds(setDoc(flagRef, validFlag('author-1')));
     await assertFails(setDoc(doc(author, 'flags/spoofed-flag'), validFlag('other-1')));
     await assertSucceeds(updateDoc(flagRef, { text: 'Updated field observation.' }));

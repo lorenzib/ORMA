@@ -258,6 +258,17 @@
           <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:800;color:var(--ink);">Signed in</div><div style="font-size:12px;color:#6B7A6E;"><span id="acctEmailLabel"></span> · <span id="acctProvider"></span></div></div>
         </div>
 
+        <div id="contributionEligibilityBox" style="background:#FAF8F1;border:1px solid var(--paper-line);border-radius:14px;padding:14px 15px;margin-bottom:22px;" aria-live="polite">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
+            <div>
+              <div class="kick" style="margin-bottom:5px;">Community contributions</div>
+              <p id="contributionEligibilityStatus" class="hint" style="margin:0;">Checking whether this account can contribute…</p>
+            </div>
+            <span id="contributionEligibilityBadge" style="flex:none;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:4px 8px;background:#EDEAE0;color:#6B7A6E;">Checking</span>
+          </div>
+          <button type="button" id="contributionEligibilityAction" class="btn-g" style="margin-top:12px;" hidden></button>
+        </div>
+
         <div class="acct-2col" style="gap:24px;margin-bottom:24px;">
           <div id="emailChangeBox">
             <label class="lbl" for="acctEmailInput">Login email</label>

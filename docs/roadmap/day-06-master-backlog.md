@@ -357,6 +357,7 @@ All P0 and P1 work
 
 ### AUTH-02 — Add verified contributor eligibility
 
+- **Status:** Complete in repository; function and rules deployment pending operator approval (2026-07-28)
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** AUTH-01, SEC-01

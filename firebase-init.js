@@ -13,8 +13,12 @@ import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
   signOut as fbSignOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup,
   sendPasswordResetEmail, deleteUser, reauthenticateWithCredential,
-  EmailAuthProvider, reauthenticateWithPopup, verifyBeforeUpdateEmail
+  EmailAuthProvider, reauthenticateWithPopup, verifyBeforeUpdateEmail,
+  sendEmailVerification, reload, getIdToken, getIdTokenResult
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {
+  getFunctions, httpsCallable
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-functions.js";
 import {
   getFirestore, doc, getDoc, setDoc, deleteDoc,
   collection, addDoc, serverTimestamp, query, where, Timestamp,
@@ -24,6 +28,11 @@ import {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const functions = getFunctions(app, "europe-west1");
+const refreshContributorEligibilityCall = httpsCallable(
+  functions,
+  "refreshContributorEligibility"
+);
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
 
@@ -136,6 +145,7 @@ function friendlyError(code) {
     "auth/invalid-credential": "Incorrect email or password.",
     "auth/popup-closed-by-user": "Google sign-in was closed before finishing.",
     "auth/requires-recent-login": "For security, please confirm your identity again before this action.",
+    "auth/too-many-requests": "Too many attempts. Wait a moment, then try again.",
   };
   return map[code] || "Something went wrong — please try again.";
 }
@@ -159,6 +169,114 @@ async function deleteAccount(password) {
   }
 }
 
+function contributionResult(state, message, action) {
+  return {
+    ok: state === "eligible",
+    state,
+    message,
+    action: action || null,
+  };
+}
+
+async function getContributionEligibility(options = {}) {
+  if (!currentUser) {
+    return contributionResult(
+      "signed-out",
+      "Log in to contribute.",
+      "login"
+    );
+  }
+
+  try {
+    await reload(currentUser);
+    if (!currentUser.emailVerified) {
+      return contributionResult(
+        "email-unverified",
+        "Verify your email before contributing. Open Account → Settings to resend the verification link.",
+        "verify-email"
+      );
+    }
+
+    let token = await getIdTokenResult(currentUser, !!options.forceTokenRefresh);
+    if (token.claims.suspended === true) {
+      return contributionResult(
+        "suspended",
+        "Community contributions are unavailable for this account. Contact DoloPaws if you think this is a mistake.",
+        "contact-support"
+      );
+    }
+    if (token.claims.contributor === true) {
+      return contributionResult(
+        "eligible",
+        "Your verified account can contribute."
+      );
+    }
+    if (!options.activate) {
+      return contributionResult(
+        "activation-required",
+        "Your email is verified. Enable community contributions to continue.",
+        "activate"
+      );
+    }
+
+    await refreshContributorEligibilityCall();
+    await getIdToken(currentUser, true);
+    token = await getIdTokenResult(currentUser);
+    if (token.claims.contributor === true) {
+      return contributionResult(
+        "eligible",
+        "Your verified account can contribute."
+      );
+    }
+    return contributionResult(
+      "unavailable",
+      "We could not confirm contribution access. Try again from Account → Settings.",
+      "retry"
+    );
+  } catch (error) {
+    const code = String(error && error.code || "");
+    if (code.includes("failed-precondition")) {
+      return contributionResult(
+        "email-unverified",
+        "Verify your email before contributing. Open Account → Settings to resend the verification link.",
+        "verify-email"
+      );
+    }
+    if (code.includes("permission-denied")) {
+      return contributionResult(
+        "suspended",
+        "Community contributions are unavailable for this account. Contact DoloPaws if you think this is a mistake.",
+        "contact-support"
+      );
+    }
+    console.error("Contributor eligibility check failed:", error);
+    return contributionResult(
+      "unavailable",
+      "We could not confirm contribution access. Check your connection and try again.",
+      "retry"
+    );
+  }
+}
+
+async function sendContributionVerificationEmail() {
+  if (!currentUser) {
+    return { ok: false, message: "Log in before requesting a verification email." };
+  }
+  try {
+    await reload(currentUser);
+    if (currentUser.emailVerified) {
+      return { ok: true, alreadyVerified: true, message: "Your email is already verified." };
+    }
+    await sendEmailVerification(currentUser);
+    return {
+      ok: true,
+      message: `Verification link sent to ${currentUser.email || "your email"}.`,
+    };
+  } catch (error) {
+    return { ok: false, message: friendlyError(error.code) };
+  }
+}
+
 window.DoloPawsAuth = {
   get currentUser() { return currentUser; },
   onChange(fn) { changeListeners.push(fn); if (currentUser !== null || auth.currentUser !== undefined) fn(currentUser); },
@@ -169,10 +287,18 @@ window.DoloPawsAuth = {
   getLastMatches,
   setLastMatches,
   deleteAccount,
+  getContributionEligibility,
+  sendContributionVerificationEmail,
   async signUp(email, password) {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      return { ok: true };
+      const credential = await createUserWithEmailAndPassword(auth, email, password);
+      try {
+        await sendEmailVerification(credential.user);
+        return { ok: true, verificationSent: true };
+      } catch (verificationError) {
+        console.error("Verification email could not be sent:", verificationError);
+        return { ok: true, verificationSent: false };
+      }
     } catch (e) {
       return { ok: false, message: friendlyError(e.code) };
     }
@@ -255,7 +381,8 @@ async function getWeeklyHikeCount(trailId) {
 // well-formed documents and never break the page on failure.
 // ============================================================
 async function addFlag(trailId, type, km, text) {
-  if (!currentUser) return { ok: false, message: "Log in to post a report." };
+  const eligibility = await getContributionEligibility({ activate: true });
+  if (!eligibility.ok) return eligibility;
   try {
     const dog = await getDogProfile();
     await addDoc(collection(db, "flags"), {
@@ -297,7 +424,8 @@ async function deleteFlag(flagId) {
 }
 
 async function setReview(trailId, rating, text, hikedOn) {
-  if (!currentUser) return { ok: false, message: "Log in to review." };
+  const eligibility = await getContributionEligibility({ activate: true });
+  if (!eligibility.ok) return eligibility;
   try {
     const dog = await getDogProfile();
     const id = `${String(trailId).slice(0, 80)}_${currentUser.uid}`;
@@ -342,7 +470,8 @@ async function deleteMyReview(trailId) {
 }
 
 async function addTrailPhoto(trailId, image, caption) {
-  if (!currentUser) return { ok: false, message: "Log in to add a trail photo." };
+  const eligibility = await getContributionEligibility({ activate: true });
+  if (!eligibility.ok) return eligibility;
   const imageData = String(image || '');
   if (!imageData.startsWith('data:image/') || imageData.length > 700000) {
     return { ok: false, message: "This photo is too large — please try another image." };

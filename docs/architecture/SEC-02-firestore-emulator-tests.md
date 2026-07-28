@@ -79,7 +79,7 @@ GitHub Actions:
 SEC-02 validates repository rules but does not deploy them. A production
 deployment still requires:
 
-1. AUTH-02 contributor-claim issuance and recovery UX;
+1. deploy the repository-complete AUTH-02 callable function and recovery UX;
 2. a comparison against currently deployed rules and production document
    shapes;
 3. explicit operator approval;

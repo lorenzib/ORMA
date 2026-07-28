@@ -16,8 +16,11 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            functions/package-lock.json
 
       - uses: actions/setup-java@v4
         with:
@@ -32,6 +35,9 @@ jobs:
       - name: Install test dependencies
         run: npm ci
 
+      - name: Install function dependencies
+        run: npm ci --prefix functions
+
       - name: Validate production trail catalog
         run: node scripts/validate-production-trails.js
 
@@ -40,6 +46,12 @@ jobs:
 
       - name: Run tests
         run: npm test -- --runInBand
+
+      - name: Test trusted contributor eligibility
+        run: npm test --prefix functions
+
+      - name: Audit function dependencies
+        run: npm audit --audit-level=high --prefix functions
 
       - name: Test Firestore authorization rules
         run: npm run test:firestore-rules

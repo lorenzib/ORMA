@@ -16,7 +16,9 @@ service cloud.firestore {
 
     function isContributor() {
       return isSignedIn()
-        && request.auth.token.get('contributor', false) == true;
+        && request.auth.token.get('email_verified', false) == true
+        && request.auth.token.get('contributor', false) == true
+        && request.auth.token.get('suspended', false) != true;
     }
 
     function isModerator() {

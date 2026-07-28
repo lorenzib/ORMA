@@ -476,7 +476,60 @@
   const acctEmailInput = $('acctEmailInput');
   const acctEmailBtn = $('acctEmailBtn');
   const acctEmailHint = $('acctEmailHint');
+  const contributionStatus = $('contributionEligibilityStatus');
+  const contributionBadge = $('contributionEligibilityBadge');
+  const contributionAction = $('contributionEligibilityAction');
   let savedEmail = '';
+
+  function paintContributionEligibility(result){
+    if(!contributionStatus || !contributionBadge || !contributionAction) return;
+    contributionStatus.textContent = result.message;
+    contributionAction.hidden = true;
+    contributionAction.disabled = false;
+    if(result.state === 'eligible'){
+      contributionBadge.textContent = 'Verified';
+      contributionBadge.style.background = '#DCEBDD';
+      contributionBadge.style.color = '#2C5C34';
+      return;
+    }
+    contributionBadge.textContent = result.state === 'suspended' ? 'Unavailable' : 'Action needed';
+    contributionBadge.style.background = '#F5E4C6';
+    contributionBadge.style.color = '#8A5A16';
+    if(result.action === 'verify-email'){
+      contributionAction.textContent = 'Resend verification email';
+      contributionAction.dataset.action = 'verify-email';
+      contributionAction.hidden = false;
+    } else if(result.action === 'activate' || result.action === 'retry'){
+      contributionAction.textContent = result.action === 'activate'
+        ? 'Enable contributions' : 'Try again';
+      contributionAction.dataset.action = 'activate';
+      contributionAction.hidden = false;
+    }
+  }
+
+  async function refreshContributionEligibility(activate){
+    if(!window.DoloPawsAuth || !window.DoloPawsAuth.getContributionEligibility) return;
+    contributionStatus.textContent = activate
+      ? 'Confirming your verified account…'
+      : 'Checking whether this account can contribute…';
+    contributionAction.hidden = true;
+    const result = await window.DoloPawsAuth.getContributionEligibility({
+      activate: !!activate,
+      forceTokenRefresh: !!activate,
+    });
+    paintContributionEligibility(result);
+  }
+
+  contributionAction.addEventListener('click', async () => {
+    contributionAction.disabled = true;
+    if(contributionAction.dataset.action === 'verify-email'){
+      const result = await window.DoloPawsAuth.sendContributionVerificationEmail();
+      contributionStatus.textContent = result.message;
+      contributionAction.disabled = false;
+      return;
+    }
+    await refreshContributionEligibility(true);
+  });
   function refreshEmailBtn(){
     const changed = acctEmailInput.value.trim() && acctEmailInput.value.trim() !== savedEmail;
     acctEmailBtn.disabled = !changed;
@@ -623,6 +676,7 @@
       $('passwordSection').hidden = isGoogle;
       $('deletePasswordField').hidden = isGoogle;
       $('deleteGoogleNote').hidden = !isGoogle;
+      refreshContributionEligibility(false);
 
       const profile = (await window.DoloPawsAuth.getDogProfile()) || {};
       base = profile;
