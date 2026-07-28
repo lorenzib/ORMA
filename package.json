@@ -12,6 +12,7 @@
     "validate:production-trails": "node scripts/validate-production-trails.js --report data/generated/trail-validation-report.json",
     "validate:scoring-contract": "jest --runInBand scoring-contract.test.js",
     "validate:evidence-contract": "jest --runInBand evidence-contract.test.js",
+    "validate:firestore-contract": "jest --runInBand firestore-security.test.js",
     "check:trail-sources": "node scripts/check-trail-sources.js",
     "build:dolomites-trails": "npm run fetch:dolomites-trails && npm run validate:dolomites-trails"
   },

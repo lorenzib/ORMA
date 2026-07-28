@@ -301,7 +301,9 @@ async function setReview(trailId, rating, text, hikedOn) {
   try {
     const dog = await getDogProfile();
     const id = `${String(trailId).slice(0, 80)}_${currentUser.uid}`;
-    await setDoc(doc(db, "reviews", id), {
+    const reviewRef = doc(db, "reviews", id);
+    const existing = await getDoc(reviewRef);
+    await setDoc(reviewRef, {
       trailId: String(trailId).slice(0, 80),
       uid: currentUser.uid,
       rating: Math.max(1, Math.min(5, Math.round(rating))),
@@ -309,7 +311,8 @@ async function setReview(trailId, rating, text, hikedOn) {
       dogContext: dog ? { name: dog.name || null, breed: dog.breed || null } : null,
       hikedOn: hikedOn || null,
       status: "visible",
-      createdAt: serverTimestamp(),
+      createdAt: existing.exists() && existing.data().createdAt
+        ? existing.data().createdAt : serverTimestamp(),
     });
     return { ok: true };
   } catch (e) {
@@ -382,6 +385,7 @@ async function reportContent(targetType, targetId, reason) {
       targetId: String(targetId).slice(0, 100),
       uid: currentUser.uid,
       reason: String(reason || "").slice(0, 200),
+      status: "open",
       createdAt: serverTimestamp(),
     });
     return true;

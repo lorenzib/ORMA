@@ -1,0 +1,302 @@
+rules_version = '2';
+
+// SEC-01 — DoloPaws Firestore authorization boundary.
+//
+// Contributor and moderator privileges are Firebase Authentication custom
+// claims. No Firestore document can grant either privilege to its author.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function isContributor() {
+      return isSignedIn() && request.auth.token.contributor == true;
+    }
+
+    function isModerator() {
+      return isSignedIn() && request.auth.token.moderator == true;
+    }
+
+    function isShortString(value, maximum) {
+      return value is string && value.size() > 0 && value.size() <= maximum;
+    }
+
+    function isTrailId(value) {
+      return isShortString(value, 80)
+        && value.matches('^[A-Za-z0-9._-]+$');
+    }
+
+    function isOptionalString(data, field, maximum) {
+      return !data.keys().hasAny([field])
+        || data.get(field, null) == null
+        || (data.get(field, null) is string
+          && data.get(field, '').size() <= maximum);
+    }
+
+    function validDogContext(data, allowBreed) {
+      return data == null
+        || (data is map
+          && data.keys().hasOnly(allowBreed ? ['name', 'breed'] : ['name'])
+          && isOptionalString(data, 'name', 40)
+          && (!allowBreed || isOptionalString(data, 'breed', 100)));
+    }
+
+    function validVet(data) {
+      return data is map
+        && data.keys().hasOnly(['name', 'phone', 'chip', 'insurer', 'policy'])
+        && isOptionalString(data, 'name', 100)
+        && isOptionalString(data, 'phone', 40)
+        && isOptionalString(data, 'chip', 80)
+        && isOptionalString(data, 'insurer', 100)
+        && isOptionalString(data, 'policy', 100);
+    }
+
+    function validOwner(data) {
+      return data is map
+        && data.keys().hasOnly(['name', 'phone', 'email', 'emName', 'emPhone'])
+        && isOptionalString(data, 'name', 100)
+        && isOptionalString(data, 'phone', 40)
+        && isOptionalString(data, 'email', 254)
+        && isOptionalString(data, 'emName', 100)
+        && isOptionalString(data, 'emPhone', 40);
+    }
+
+    function validDog(data) {
+      return data == null
+        || (data is map
+          && data.keys().hasOnly([
+            'name', 'breed', 'fitness', 'dob', 'ageBand', 'weight',
+            'weightBand', 'size', 'neuter', 'coat', 'sens', 'photo',
+            'conditions', 'healthNotes', 'vet', 'owner', 'age',
+            'jointIssues', 'heatIssues'
+          ])
+          && isOptionalString(data, 'name', 40)
+          && isOptionalString(data, 'breed', 100)
+          && (!data.keys().hasAny(['fitness'])
+            || data.fitness in ['low', 'moderate', 'high'])
+          && isOptionalString(data, 'dob', 10)
+          && isOptionalString(data, 'ageBand', 10)
+          && (!data.keys().hasAny(['weight'])
+            || (data.weight is number && data.weight >= 2 && data.weight <= 60))
+          && isOptionalString(data, 'weightBand', 10)
+          && isOptionalString(data, 'size', 20)
+          && isOptionalString(data, 'neuter', 20)
+          && isOptionalString(data, 'coat', 20)
+          && (!data.keys().hasAny(['sens'])
+            || (data.sens is list && data.sens.size() <= 10))
+          && (!data.keys().hasAny(['photo'])
+            || data.photo == null
+            || (data.photo is string
+              && data.photo.matches('^data:image/(jpeg|jpg|png|webp);base64,.*$')
+              && data.photo.size() <= 700000))
+          && (!data.keys().hasAny(['conditions'])
+            || (data.conditions is list && data.conditions.size() <= 10))
+          && isOptionalString(data, 'healthNotes', 1000)
+          && (!data.keys().hasAny(['vet']) || validVet(data.vet))
+          && (!data.keys().hasAny(['owner']) || validOwner(data.owner))
+          && (!data.keys().hasAny(['age'])
+            || data.age == null
+            || (data.age is number && data.age >= 0 && data.age <= 30))
+          && (!data.keys().hasAny(['jointIssues'])
+            || data.jointIssues is bool)
+          && (!data.keys().hasAny(['heatIssues'])
+            || data.heatIssues is bool));
+    }
+
+    function validUserDocument(data) {
+      return data.keys().hasOnly([
+          'favorites', 'dog', 'dogs', 'lastMatches', 'createdAt', 'updatedAt'
+        ])
+        && (!data.keys().hasAny(['favorites'])
+          || (data.favorites is map && data.favorites.size() <= 250))
+        && (!data.keys().hasAny(['dog'])
+          || validDog(data.dog))
+        && (!data.keys().hasAny(['dogs'])
+          || (data.dogs is list && data.dogs.size() <= 5))
+        && (!data.keys().hasAny(['lastMatches'])
+          || (data.lastMatches is list && data.lastMatches.size() <= 250))
+        && (!data.keys().hasAny(['createdAt'])
+          || data.createdAt is timestamp)
+        && (!data.keys().hasAny(['updatedAt'])
+          || data.updatedAt is timestamp);
+    }
+
+    function validModerationMetadata(data) {
+      return (!data.keys().hasAny(['moderatedAt'])
+          || data.moderatedAt is timestamp)
+        && (!data.keys().hasAny(['moderatedBy'])
+          || isShortString(data.moderatedBy, 128));
+    }
+
+    function validFlag(data) {
+      return data.keys().hasOnly([
+          'trailId', 'uid', 'type', 'km', 'text', 'dogContext', 'status',
+          'createdAt', 'moderatedAt', 'moderatedBy'
+        ])
+        && isTrailId(data.trailId)
+        && isShortString(data.uid, 128)
+        && data.type in [
+          'guard-dogs-livestock', 'dangerous-terrain', 'not-dog-friendly',
+          'water-dry', 'lift-refused-dog', 'other'
+        ]
+        && (data.km == null || (data.km is number && data.km >= 0 && data.km <= 100))
+        && data.text is string && data.text.size() <= 300
+        && validDogContext(data.dogContext, true)
+        && data.status in ['active', 'reported', 'hidden', 'removed']
+        && data.createdAt is timestamp
+        && validModerationMetadata(data);
+    }
+
+    function validReview(data) {
+      return data.keys().hasOnly([
+          'trailId', 'uid', 'rating', 'text', 'dogContext', 'hikedOn',
+          'status', 'createdAt', 'moderatedAt', 'moderatedBy'
+        ])
+        && isTrailId(data.trailId)
+        && isShortString(data.uid, 128)
+        && data.rating is int && data.rating >= 1 && data.rating <= 5
+        && data.text is string && data.text.size() <= 1000
+        && validDogContext(data.dogContext, true)
+        && (data.hikedOn == null || isShortString(data.hikedOn, 10))
+        && data.status in ['pending', 'visible', 'reported', 'hidden', 'removed']
+        && data.createdAt is timestamp
+        && validModerationMetadata(data);
+    }
+
+    function validPhoto(data) {
+      return data.keys().hasOnly([
+          'trailId', 'uid', 'image', 'caption', 'dogContext', 'status',
+          'createdAt', 'moderatedAt', 'moderatedBy'
+        ])
+        && isTrailId(data.trailId)
+        && isShortString(data.uid, 128)
+        && data.image is string
+        && data.image.matches('^data:image/(jpeg|jpg|png|webp);base64,.*$')
+        && data.image.size() <= 700000
+        && data.caption is string && data.caption.size() <= 240
+        && validDogContext(data.dogContext, false)
+        && data.status in ['pending', 'visible', 'reported', 'hidden', 'removed']
+        && data.createdAt is timestamp
+        && validModerationMetadata(data);
+    }
+
+    function ownerContentUpdate() {
+      return isContributor()
+        && isOwner(resource.data.uid)
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.trailId == resource.data.trailId
+        && request.resource.data.status == resource.data.status
+        && request.resource.data.createdAt == resource.data.createdAt
+        && !request.resource.data.diff(resource.data).affectedKeys()
+          .hasAny(['moderatedAt', 'moderatedBy']);
+    }
+
+    function moderatorStateUpdate() {
+      return isModerator()
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.trailId == resource.data.trailId
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['status', 'moderatedAt', 'moderatedBy']);
+    }
+
+    // One private document per account. Public contribution privileges are
+    // deliberately absent from this schema and cannot be self-assigned here.
+    match /users/{uid} {
+      allow get, delete: if isOwner(uid);
+      allow create, update: if isOwner(uid)
+        && validUserDocument(request.resource.data)
+        && (request.method != 'create'
+          || !request.resource.data.keys().hasAny(['dogs']))
+        && (!request.resource.data.keys().hasAny(['dogs'])
+          || request.resource.data.dogs == resource.data.dogs);
+      allow list: if false;
+    }
+
+    // Anonymous, identity-free usage counter. The write contains only a
+    // server timestamp; precise location and account identity are prohibited.
+    match /hikeEvents/{trailId}/events/{eventId} {
+      allow create: if isTrailId(trailId)
+        && request.resource.data.keys().hasOnly(['startedAt'])
+        && request.resource.data.startedAt == request.time;
+      allow read: if true;
+      allow update: if false;
+      allow delete: if isModerator();
+    }
+
+    match /flags/{flagId} {
+      allow get, list: if isModerator() || resource.data.status == 'active';
+      allow create: if isContributor()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'active'
+        && request.resource.data.createdAt == request.time
+        && !request.resource.data.keys().hasAny(['moderatedAt', 'moderatedBy'])
+        && validFlag(request.resource.data);
+      allow update: if validFlag(request.resource.data)
+        && (ownerContentUpdate() || moderatorStateUpdate());
+      allow delete: if isOwner(resource.data.uid) || isModerator();
+    }
+
+    match /reviews/{reviewId} {
+      allow get, list: if isModerator() || resource.data.status == 'visible';
+      allow create: if isContributor()
+        && request.resource.data.uid == request.auth.uid
+        && reviewId == request.resource.data.trailId + '_' + request.auth.uid
+        && request.resource.data.status == 'visible'
+        && request.resource.data.createdAt == request.time
+        && !request.resource.data.keys().hasAny(['moderatedAt', 'moderatedBy'])
+        && validReview(request.resource.data);
+      allow update: if reviewId == resource.data.trailId + '_' + resource.data.uid
+        && validReview(request.resource.data)
+        && (ownerContentUpdate() || moderatorStateUpdate());
+      allow delete: if isOwner(resource.data.uid) || isModerator();
+    }
+
+    match /trailPhotos/{photoId} {
+      allow get, list: if isModerator() || resource.data.status == 'visible';
+      allow create: if isContributor()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'visible'
+        && request.resource.data.createdAt == request.time
+        && !request.resource.data.keys().hasAny(['moderatedAt', 'moderatedBy'])
+        && validPhoto(request.resource.data);
+      allow update: if validPhoto(request.resource.data)
+        && (ownerContentUpdate() || moderatorStateUpdate());
+      allow delete: if isOwner(resource.data.uid) || isModerator();
+    }
+
+    // Abuse reports are private moderation inputs, never public content.
+    match /reports/{reportId} {
+      allow create: if isSignedIn()
+        && request.resource.data.keys().hasOnly([
+          'targetType', 'targetId', 'uid', 'reason', 'status', 'createdAt'
+        ])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.targetType in ['flag', 'review', 'photo']
+        && isShortString(request.resource.data.targetId, 100)
+        && isShortString(request.resource.data.reason, 200)
+        && request.resource.data.status == 'open'
+        && request.resource.data.createdAt == request.time;
+      allow get: if isModerator() || isOwner(resource.data.uid);
+      allow list: if isModerator();
+      allow update: if isModerator()
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['status', 'resolvedAt', 'resolvedBy'])
+        && request.resource.data.status in [
+          'open', 'reviewed', 'dismissed', 'actioned'
+        ]
+        && request.resource.data.resolvedAt is timestamp
+        && request.resource.data.resolvedBy == request.auth.uid;
+      allow delete: if isModerator();
+    }
+
+    // New collections are private until their authorization contract is added.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

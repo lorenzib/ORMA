@@ -382,6 +382,7 @@ All P0 and P1 work
 
 ### SEC-01 — Version Firestore rules and indexes
 
+- **Status:** Complete in repository; deployment awaits SEC-02 (2026-07-28)
 - **Priority:** P0
 - **Size:** M
 - **Depends on:** AUTH-01
