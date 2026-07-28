@@ -339,6 +339,7 @@ All P0 and P1 work
 
 ### AUTH-01 — Define account, entitlement, and local-data rules
 
+- **Status:** Complete (2026-07-27)
 - **Priority:** P0
 - **Size:** S
 - **Depends on:** none

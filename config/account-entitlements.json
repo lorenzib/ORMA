@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "decisionId": "AUTH-01",
+  "states": {
+    "guest": {
+      "description": "No DoloPaws account is authenticated on this device.",
+      "capabilities": {
+        "browseTrails": true,
+        "useLocalRecommendationDraft": true,
+        "saveOrSyncPrivateData": false,
+        "installOfflinePackage": false,
+        "updateOfflinePackage": false,
+        "openInstalledPackage": true,
+        "useInstalledPackageGps": true,
+        "removeInstalledPackage": true,
+        "exportGpx": false,
+        "draftCommunityContribution": true,
+        "publishCommunityContribution": false,
+        "queueOwnerBoundPrivateOutcome": false,
+        "syncOwnerBoundPrivateOutcome": false
+      }
+    },
+    "authenticated": {
+      "description": "A valid DoloPaws session exists, but contributor eligibility is not established.",
+      "capabilities": {
+        "browseTrails": true,
+        "useLocalRecommendationDraft": true,
+        "saveOrSyncPrivateData": true,
+        "installOfflinePackage": true,
+        "updateOfflinePackage": true,
+        "openInstalledPackage": true,
+        "useInstalledPackageGps": true,
+        "removeInstalledPackage": true,
+        "exportGpx": true,
+        "draftCommunityContribution": true,
+        "publishCommunityContribution": false,
+        "queueOwnerBoundPrivateOutcome": true,
+        "syncOwnerBoundPrivateOutcome": true
+      }
+    },
+    "verifiedContributor": {
+      "description": "A valid session exists and the account satisfies the AUTH-02 publication policy.",
+      "capabilities": {
+        "browseTrails": true,
+        "useLocalRecommendationDraft": true,
+        "saveOrSyncPrivateData": true,
+        "installOfflinePackage": true,
+        "updateOfflinePackage": true,
+        "openInstalledPackage": true,
+        "useInstalledPackageGps": true,
+        "removeInstalledPackage": true,
+        "exportGpx": true,
+        "draftCommunityContribution": true,
+        "publishCommunityContribution": true,
+        "queueOwnerBoundPrivateOutcome": true,
+        "syncOwnerBoundPrivateOutcome": true
+      }
+    },
+    "expiredSession": {
+      "description": "The device previously authenticated this owner, but no valid token can authorize server work.",
+      "capabilities": {
+        "browseTrails": true,
+        "useLocalRecommendationDraft": true,
+        "saveOrSyncPrivateData": false,
+        "installOfflinePackage": false,
+        "updateOfflinePackage": false,
+        "openInstalledPackage": true,
+        "useInstalledPackageGps": true,
+        "removeInstalledPackage": true,
+        "exportGpx": false,
+        "draftCommunityContribution": true,
+        "publishCommunityContribution": false,
+        "queueOwnerBoundPrivateOutcome": true,
+        "syncOwnerBoundPrivateOutcome": false
+      }
+    },
+    "loggedOut": {
+      "description": "A user explicitly ended the session; owner-bound private data is locked until the same owner signs in again or removes it.",
+      "capabilities": {
+        "browseTrails": true,
+        "useLocalRecommendationDraft": true,
+        "saveOrSyncPrivateData": false,
+        "installOfflinePackage": false,
+        "updateOfflinePackage": false,
+        "openInstalledPackage": true,
+        "useInstalledPackageGps": true,
+        "removeInstalledPackage": true,
+        "exportGpx": false,
+        "draftCommunityContribution": true,
+        "publishCommunityContribution": false,
+        "queueOwnerBoundPrivateOutcome": false,
+        "syncOwnerBoundPrivateOutcome": false
+      }
+    },
+    "deletedAccount": {
+      "description": "The server identity no longer exists; only public local trail packages explicitly retained on the device remain available.",
+      "capabilities": {
+        "browseTrails": true,
+        "useLocalRecommendationDraft": true,
+        "saveOrSyncPrivateData": false,
+        "installOfflinePackage": false,
+        "updateOfflinePackage": false,
+        "openInstalledPackage": true,
+        "useInstalledPackageGps": true,
+        "removeInstalledPackage": true,
+        "exportGpx": false,
+        "draftCommunityContribution": true,
+        "publishCommunityContribution": false,
+        "queueOwnerBoundPrivateOutcome": false,
+        "syncOwnerBoundPrivateOutcome": false
+      }
+    }
+  },
+  "offlinePackage": {
+    "containsPersonalData": false,
+    "requiresValidSessionToInstall": true,
+    "requiresValidSessionToUpdate": true,
+    "requiresValidSessionToOpen": false,
+    "requiresValidSessionToUseGps": false,
+    "requiresValidSessionToRemove": false,
+    "ownerMarker": "opaque-device-owner-key",
+    "ownerMarkerContains": [
+      "stable opaque identifier derived for this browser and account"
+    ],
+    "ownerMarkerMustNotContain": [
+      "authentication token",
+      "email address",
+      "display name",
+      "dog profile",
+      "location history"
+    ]
+  },
+  "logout": {
+    "defaultRetainsVerifiedOfflinePackages": true,
+    "clearsAuthenticationState": true,
+    "clearsProfileSummary": true,
+    "locksOwnerBoundPrivateData": true,
+    "mustOfferRemoveLocalDataAction": true,
+    "mustDiscloseRetainedPackages": true
+  },
+  "accountDeletion": {
+    "serverDeletionAndDeviceCleanupAreSeparate": true,
+    "alwaysRemovesAuthenticationState": true,
+    "alwaysRemovesOwnerBoundPrivateDataFromCurrentDevice": true,
+    "mayRetainPublicOfflinePackagesWithExplicitChoice": true,
+    "defaultSharedDeviceChoice": "remove-local-data",
+    "mustNotClaimSuccessBeforeServerDeletionSucceeds": true
+  },
+  "pendingIntent": {
+    "allowedActions": [
+      "save",
+      "download",
+      "review",
+      "photo",
+      "report",
+      "export-gpx"
+    ],
+    "maximumAgeMinutes": 30,
+    "singleUse": true,
+    "returnTargetMustBeSameOriginAllowlistedPath": true,
+    "mustNotContain": [
+      "authentication token",
+      "password",
+      "email address",
+      "free-form contribution body",
+      "precise location history"
+    ]
+  }
+}
