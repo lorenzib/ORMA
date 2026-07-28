@@ -1,0 +1,99 @@
+{
+  "evidenceVersion": "1.0.0",
+  "asOfDate": "2026-07-28",
+  "trails": {
+    "imported": {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[11.5, 46.5], [11.6, 46.6]]
+      },
+      "verification": {
+        "tier": "imported",
+        "categories": {
+          "route": "unreviewed",
+          "water": "unknown",
+          "heat": "unknown",
+          "exposure": "unknown",
+          "livestock": "unknown",
+          "surfaceHazards": "unknown",
+          "access": "unknown"
+        }
+      },
+      "freshness": {
+        "geometryAt": "2026-07-20",
+        "safetyAt": null,
+        "accessAt": null
+      },
+      "sources": [
+        {
+          "provider": "OpenStreetMap contributors",
+          "kind": "osm",
+          "observedAt": null,
+          "categories": ["route"]
+        }
+      ]
+    },
+    "route-audited": {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[11.5, 46.5], [11.6, 46.6]]
+      },
+      "verification": {
+        "tier": "route-audited",
+        "categories": {
+          "route": "verified",
+          "water": "verified",
+          "heat": "verified",
+          "exposure": "verified",
+          "livestock": "verified",
+          "surfaceHazards": "verified",
+          "access": "verified"
+        }
+      },
+      "freshness": {
+        "geometryAt": "2026-06-01",
+        "safetyAt": "2026-04-01",
+        "accessAt": "2026-04-01"
+      },
+      "sources": [
+        {
+          "provider": "DoloPaws source review",
+          "kind": "official",
+          "observedAt": "2026-04-01",
+          "categories": ["water", "heat", "exposure", "livestock", "surfaceHazards", "access"]
+        }
+      ]
+    },
+    "field-verified": {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [[11.5, 46.5], [11.6, 46.6]]
+      },
+      "verification": {
+        "tier": "field-verified",
+        "categories": {
+          "route": "verified",
+          "water": "verified",
+          "heat": "verified",
+          "exposure": "verified",
+          "livestock": "verified",
+          "surfaceHazards": "verified",
+          "access": "verified"
+        }
+      },
+      "freshness": {
+        "geometryAt": "2026-07-10",
+        "safetyAt": "2026-07-10",
+        "accessAt": "2026-07-10"
+      },
+      "sources": [
+        {
+          "provider": "DoloPaws field review",
+          "kind": "field-review",
+          "observedAt": "2026-07-10",
+          "categories": ["route", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"]
+        }
+      ]
+    }
+  }
+}

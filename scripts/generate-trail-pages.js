@@ -19,6 +19,7 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const evidenceContract = require('../trust/evidence-v1.js');
 
 const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'trails');
@@ -147,10 +148,7 @@ function categoryVerified(t, category) {
 }
 
 function formatReviewDate(value) {
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ''));
-  if (!match) return String(value || 'date unavailable');
-  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return `${Number(match[3])} ${months[Number(match[2]) - 1]} ${match[1]}`;
+  return evidenceContract.dateText(value);
 }
 
 // Valley hub guides (add here as new area guides are published)
@@ -302,8 +300,8 @@ function trailPage(t, slug, all) {
   const badge = reviewLabel
     ? `<span class="dp-badge dp-badge--${graduation ? (graduation.verified ? 'verified' : 'imported') : progress ? 'verified' : 'imported'}"><span data-dp-icon="${graduation ? (graduation.verified ? 'verified' : 'imported') : progress ? 'verified' : 'imported'}" data-dp-icon-size="13" aria-hidden="true"></span><span>${escapeHtml(reviewLabel)}</span></span>`
     : verified
-    ? '<span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>DoloPaws route-audited</span></span>'
-    : '<span class="dp-badge dp-badge--imported"><span data-dp-icon="imported" data-dp-icon-size="13" aria-hidden="true"></span><span>Under DoloPaws review</span></span>';
+    ? `<span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>${escapeHtml(evidenceContract.tierLabel(t))}</span></span>`
+    : `<span class="dp-badge dp-badge--imported"><span data-dp-icon="imported" data-dp-icon-size="13" aria-hidden="true"></span><span>${escapeHtml(evidenceContract.tierLabel(t))}</span></span>`;
 
   const ogImage = t.imageIcon ? `${BASE_URL}/${t.imageIcon}` : `${BASE_URL}/icon-512.png`;
 

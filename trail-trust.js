@@ -26,6 +26,12 @@
   const hasRoute = trail => !!trail && Array.isArray(trail.path) && trail.path.length >= 2;
 
   function tierOf(trail) {
+    if (root.DoloPawsEvidenceV1) {
+      const canonicalTier = root.DoloPawsEvidenceV1.tierOf(trail);
+      if (canonicalTier === 'field-verified') return 'dolopaws-walked';
+      if (canonicalTier === 'route-audited') return 'route-audited';
+      return 'under-review';
+    }
     if (!trail) return 'under-review';
     let tier;
     if (TIERS.includes(trail.tier)) tier = trail.tier;
@@ -48,6 +54,19 @@
   // Short tier badge text — the headline label a visitor sees on a card or
   // trail page. The fuller `provenanceLabel` (below) adds progress/date detail.
   function tierLabel(trail) {
+    if (root.DoloPawsEvidenceV1) {
+      const canonicalTier = root.DoloPawsEvidenceV1.tierOf(trail);
+      if (canonicalTier === 'field-verified') {
+        return translate('tier.fieldVerified', null, root.DoloPawsEvidenceV1.tierLabel(canonicalTier));
+      }
+      if (canonicalTier === 'route-audited') {
+        return translate('tier.routeAudited', null, root.DoloPawsEvidenceV1.tierLabel(canonicalTier));
+      }
+      if (canonicalTier === 'mapped') {
+        return translate('tier.mapped', null, root.DoloPawsEvidenceV1.tierLabel(canonicalTier));
+      }
+      return translate('tier.imported', null, root.DoloPawsEvidenceV1.tierLabel(canonicalTier));
+    }
     const tier = tierOf(trail);
     if (tier === 'dolopaws-walked') return translate('tier.walked', null, 'DoloPaws walked');
     if (tier === 'route-audited') return translate('tier.routeAudited', null, 'DoloPaws route-audited');
@@ -87,6 +106,7 @@
   }
 
   function formatReviewDate(value) {
+    if (root.DoloPawsEvidenceV1) return root.DoloPawsEvidenceV1.dateText(value);
     const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ''));
     if (!match) return String(value || 'date unavailable');
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];

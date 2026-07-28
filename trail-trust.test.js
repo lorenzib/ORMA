@@ -179,7 +179,7 @@ describe('trail data trust states', () => {
 
     const importedPage = fs.readFileSync(path.join(__dirname, 'trails/planetenweg-sentiero-dei-pianeti.html'), 'utf8');
     const reviewedPage = fs.readFileSync(path.join(__dirname, 'trails/lago-di-braies-loop.html'), 'utf8');
-    expect(importedPage).toContain('Under DoloPaws review');
+    expect(importedPage).toContain('Imported map data');
     expect(importedPage).toContain('Estimated: Low-risk');
     expect(importedPage).not.toContain('verified map data');
     expect(reviewedPage).toContain('DoloPaws route-audited');

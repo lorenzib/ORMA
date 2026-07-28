@@ -242,6 +242,7 @@ All P0 and P1 work
 
 ### TRUST-01 — Standardize provenance and freshness output
 
+- **Status:** Complete (2026-07-28)
 - **Priority:** P0
 - **Size:** M
 - **Depends on:** DATA-01
