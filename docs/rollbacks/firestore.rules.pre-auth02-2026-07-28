@@ -1,0 +1,71 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Anonymous hike counter (v0): anyone may add a start event with
+    // exactly one server-set timestamp; nothing can ever be edited.
+    match /hikeEvents/{trailId}/events/{eventId} {
+      allow create: if request.resource.data.keys().hasOnly(['startedAt'])
+                    && request.resource.data.startedAt == request.time;
+      allow read: if true;
+      allow update, delete: if false;
+    }
+
+    // Dog-safety flags: logged-in users only; structured type from a fixed
+    // list; users can delete their own, never edit; status always starts
+    // as 'active' (only you change it, from the Firebase console).
+    match /flags/{flagId} {
+      allow read: if true;
+      allow create: if request.auth != null
+        && request.resource.data.keys().hasOnly(
+             ['trailId','uid','type','km','text','dogContext','status','createdAt'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.trailId is string
+        && request.resource.data.trailId.size() <= 80
+        && request.resource.data.type in
+             ['guard-dogs-livestock','dangerous-terrain','not-dog-friendly',
+              'water-dry','lift-refused-dog','other']
+        && request.resource.data.text is string
+        && request.resource.data.text.size() <= 300
+        && request.resource.data.status == 'active'
+        && request.resource.data.createdAt == request.time;
+      allow delete: if request.auth != null && resource.data.uid == request.auth.uid;
+      allow update: if false;
+    }
+
+    // Reviews: doc ID is trailId_uid, so one review per user per trail is
+    // enforced structurally. Users may overwrite or delete their own.
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create, update: if request.auth != null
+        && reviewId == request.resource.data.trailId + '_' + request.auth.uid
+        && request.resource.data.keys().hasOnly(
+             ['trailId','uid','rating','text','dogContext','hikedOn','status','createdAt'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.rating is int
+        && request.resource.data.rating >= 1 && request.resource.data.rating <= 5
+        && request.resource.data.text is string
+        && request.resource.data.text.size() <= 1000
+        && request.resource.data.status == 'visible';
+      allow delete: if request.auth != null && resource.data.uid == request.auth.uid;
+    }
+
+    // Abuse reports: write-only for users (nobody can browse others'
+    // reports); you read them in the Firebase console.
+    match /reports/{reportId} {
+      allow read: if false;
+      allow create: if request.auth != null
+        && request.resource.data.keys().hasOnly(
+             ['targetType','targetId','uid','reason','createdAt'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.reason is string
+        && request.resource.data.reason.size() <= 200;
+      allow update, delete: if false;
+    }
+
+  }
+}
