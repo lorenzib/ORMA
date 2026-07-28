@@ -89,7 +89,12 @@
       const f = pageFile.toLowerCase();
       if(prefix && pagePath.startsWith('trails/')) return 'trails';
       if(prefix && pagePath.startsWith('guides/')) return 'safety';
-      if(f === 'browse-trails.html' || f === 'trail.html' || f === 'saved.html') return 'trails';
+      if(
+        f === 'browse-trails.html' ||
+        f === 'trail.html' ||
+        f === 'saved.html' ||
+        f === 'downloads.html'
+      ) return 'trails';
       if(f === 'journal.html') return 'journal';
       if(f === 'safety-guide.html') return 'safety';
       if(f === 'about.html') return 'about';

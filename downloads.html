@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Downloaded trails | DoloPaws</title>
+<meta name="description" content="Manage DoloPaws trail maps downloaded to this device.">
+<meta name="theme-color" content="#2E4034">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .od-wrap{max-width:900px;margin:0 auto;padding:30px 34px 64px;}
+  .od-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:16px;}
+  .od-heading h1{font-size:clamp(28px,5vw,38px);margin:0;}
+  .od-summary{font-size:13px;font-weight:700;color:var(--ink-soft);}
+  .od-note{margin:18px 0 0;padding:13px 15px;border:1px solid #D7D3C7;border-radius:12px;background:#FAF8F1;color:var(--ink-soft);font-size:12.5px;line-height:1.5;}
+  .od-list{display:grid;gap:14px;margin-top:24px;}
+  .od-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;padding:20px;background:var(--card);border:1px solid var(--paper-line);border-radius:16px;box-shadow:0 10px 28px -24px rgba(23,42,28,.5);}
+  .od-card h2{font-size:20px;margin:4px 0 7px;}
+  .od-kicker{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);}
+  .od-meta{display:flex;gap:7px 14px;flex-wrap:wrap;color:var(--ink-soft);font-size:12px;line-height:1.45;}
+  .od-meta span{white-space:nowrap;}
+  .od-owner{margin:10px 0 0;color:var(--ink-soft);font-size:12px;line-height:1.45;}
+  .od-state{display:inline-flex;align-items:center;gap:6px;margin-top:11px;padding:5px 9px;border-radius:999px;background:#E4F1E7;color:#2C5C34;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;}
+  .od-state[data-state="update"]{background:#F5E4C6;color:#805017;}
+  .od-state[data-state="incomplete"]{background:#F3D9D2;color:#8C3A28;}
+  .od-actions{display:flex;align-items:flex-start;justify-content:flex-end;gap:8px;flex-wrap:wrap;max-width:300px;}
+  .od-actions[hidden]{display:none;}
+  .od-btn{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:9px 14px;border-radius:11px;border:1.5px solid var(--paper-line);background:#fff;color:var(--ink);font:700 12.5px 'Inter',sans-serif;text-decoration:none;cursor:pointer;}
+  .od-btn:hover{border-color:var(--accent);}
+  .od-btn--primary{border-color:var(--accent);background:var(--accent);color:#fff;}
+  .od-btn--danger{border-color:#E4B9A8;color:#9C3A25;}
+  .od-btn:disabled{opacity:.55;cursor:default;}
+  .od-card-status{grid-column:1/-1;margin:0;padding-top:12px;border-top:1px solid #EDE9DD;color:var(--ink-soft);font-size:12px;line-height:1.5;}
+  .od-card-status[data-state="error"]{color:#9C3A25;}
+  .od-remove-confirm{grid-column:1/-1;display:flex;align-items:center;justify-content:flex-end;gap:9px;flex-wrap:wrap;padding-top:12px;border-top:1px solid #EDE9DD;font-size:12.5px;color:var(--ink);}
+  .od-remove-confirm[hidden]{display:none;}
+  .od-loading{margin-top:24px;padding:24px;border:1px solid var(--paper-line);border-radius:16px;background:var(--card);color:var(--ink-soft);font-size:13px;}
+  @media (max-width:680px){
+    .od-wrap{padding:22px 18px 52px;}
+    .od-card{grid-template-columns:1fr;padding:17px;}
+    .od-actions{justify-content:flex-start;max-width:none;}
+    .od-card-status,.od-remove-confirm{grid-column:1;}
+    .od-btn{flex:1;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
+  <div class="links">
+    <a href="browse-trails.html">Browse all Trails</a>
+    <a href="browse-trails.html#collections">Collections</a>
+    <a href="safety-guide.html">Safety guide</a>
+    <a href="about.html" data-i18n="nav.about">About</a>
+    <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
+  </div>
+</div>
+
+<main class="od-wrap">
+  <a href="account.html" style="font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;">&larr; Back to account</a>
+  <div class="od-heading">
+    <div>
+      <div class="od-kicker">This device</div>
+      <h1 class="serif">Downloaded trails</h1>
+    </div>
+    <div id="downloadsSummary" class="od-summary" hidden></div>
+  </div>
+  <p style="margin:9px 0 0;color:var(--ink-soft);font-size:14px;line-height:1.55;">Open, update, or remove offline trail maps stored in this browser.</p>
+
+  <div id="downloadsSignedOut" class="od-note" hidden>
+    You are signed out. Existing maps remain available on this device, but you
+    must <button id="downloadsLoginBtn" type="button" style="border:0;background:none;padding:0;color:var(--accent);font:inherit;font-weight:800;cursor:pointer;text-decoration:underline;">log in</button>
+    before downloading an update.
+  </div>
+
+  <div id="downloadsLoading" class="od-loading" role="status">Checking this device for downloaded trails…</div>
+  <div id="downloadsList" class="od-list" aria-live="polite"></div>
+
+  <div id="downloadsEmpty" class="empty-state" hidden>
+    <div class="empty-state__icon" aria-hidden="true"><span data-dp-icon="routes" data-dp-icon-size="21"></span></div>
+    <p class="empty-state__title">No downloaded trails on this device</p>
+    <p class="empty-state__copy">Open a supported trail while online and choose its offline download option.</p>
+    <div class="empty-state__actions"><a href="browse-trails.html" class="empty-state__action">Browse trails</a></div>
+  </div>
+
+  <div id="downloadsError" class="empty-state" hidden>
+    <div class="empty-state__icon" aria-hidden="true"><span data-dp-icon="warning" data-dp-icon-size="21"></span></div>
+    <p class="empty-state__title">Downloaded trails could not be checked</p>
+    <p class="empty-state__copy">Nothing has been removed. Try checking this device again.</p>
+    <div class="empty-state__actions"><button id="downloadsRetryBtn" type="button" class="empty-state__action">Try again</button></div>
+  </div>
+</main>
+
+<footer class="site-footer" data-i18n="footer.line">DoloPaws &#124; A personalised trail guide for dogs and their humans.</footer>
+
+<script src="mobile-nav.js"></script>
+<script src="i18n.js"></script>
+<script type="module" src="firebase-init.js"></script>
+<script src="icon-system.js?v=20260717" defer></script>
+<script src="auth-ui.js?v=20260724-3" defer></script>
+<script src="offline-packages.js?v=20260728-4" defer></script>
+<script src="offline-downloads.js?v=20260728-1" defer></script>
+</body>
+</html>

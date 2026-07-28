@@ -3,7 +3,10 @@
 
   const PACKAGES = {
     'lago-carezza': {
+      name: 'Lago di Carezza Loop',
       manifestUrl: '/offline/packages/lago-carezza/manifest.json',
+      trailUrl: '/trail.html?id=lago-carezza',
+      offlineUrl: '/offline/trail.html?id=lago-carezza',
     },
   };
   const CACHE_PREFIX = 'dolopaws-trail-';
@@ -323,17 +326,22 @@
   async function listInstalledPackages(user){
     const records = [];
     for(const trailId of Object.keys(PACKAGES)){
+      const config = PACKAGES[trailId];
       const record = await installedPackageRecord(trailId);
       if(!record) continue;
       let available = null;
       try{ available = await availablePackage(trailId); }catch(error){ /* offline is expected */ }
       records.push({
         trailId,
+        name: config.name,
+        trailUrl: config.trailUrl,
+        offlineUrl: config.offlineUrl,
         version: record.manifest.version,
         packageBytes: record.manifest.packageBytes,
         installedAt: record.metadata && record.metadata.installedAt || null,
         verificationStatus: record.manifest.verificationStatus,
         ownership: await ownershipState(record.metadata, user),
+        incomplete: await incompleteInstallation(trailId),
         updateAvailable: !!(
           available && available.version !== record.manifest.version
         ),

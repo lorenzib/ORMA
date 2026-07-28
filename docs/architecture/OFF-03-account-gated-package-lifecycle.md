@@ -1,7 +1,7 @@
 # OFF-03 — Account-gated package storage and lifecycle
 
 **Status:** In progress; owner metadata, restartable recovery, and storage
-preflight slices complete
+preflight and package-management slices complete
 
 **Implementation date:** 2026-07-28
 
@@ -70,6 +70,23 @@ block the download. If Cache Storage later raises a quota error, the temporary
 cache is removed and the same actionable recovery path is shown. A previously
 verified package remains ready throughout a failed update.
 
+## Downloaded-trail management
+
+`downloads.html` is the device-level package-management surface. It lists every
+verified installed package returned by the shared lifecycle registry and shows:
+
+- trail name, package version, size, installation date, verification state,
+  ownership label, and update state;
+- a direct link to the offline map and the normal trail detail;
+- an authenticated update or interrupted-update restart action; and
+- a two-step local removal action.
+
+The page is reachable from the logged-in homepage account menu and the account
+settings screen. It deliberately remains usable after logout: installed maps
+can still be opened or removed, but update installation asks the visitor to log
+in. A failed update reports the problem without replacing the existing verified
+package.
+
 ## Storage boundary
 
 Package resources remain in versioned Cache Storage. The first beta slice keeps
@@ -86,16 +103,16 @@ the same account remain recognisable on that device without storing identity.
   account separation, absence of plaintext identity, ownership states, and
   identity-free labels. It also verifies abandoned-install detection and
   distinct restart and retry states, storage safety calculations, unsupported
-  estimate behavior, insufficient-space blocking, and quota recovery copy.
-- The normal application suite passes 157 tests.
-- The static link checker passes all 171 HTML pages.
+  estimate behavior, insufficient-space blocking, quota recovery copy, package
+  metadata rendering, signed-out controls, and confirmed removal paths.
+- The normal application suite passes 161 tests.
+- The static link checker passes all 172 HTML pages.
 
 ## Remaining before OFF-03 is complete
 
 1. Move the package registry and lifecycle metadata to IndexedDB before
    enabling multiple downloadable trails.
-2. Add a package-management surface that lists every installed trail.
-3. Connect logout and account deletion to the documented retain/remove
+2. Connect logout and account deletion to the documented retain/remove
    decision, including shared-device cleanup.
-4. Repeat physical-device validation on supported iOS Safari and Android
+3. Repeat physical-device validation on supported iOS Safari and Android
    Chrome; Android remains untested because no device is currently available.
