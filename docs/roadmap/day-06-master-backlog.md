@@ -131,6 +131,8 @@ All P0 and P1 work
 
 ### OFF-04 — Package an offline map corridor
 
+- **Status:** First beta corridor implemented and iPhone-validated; Android and
+  route-specific field validation remain open (2026-07-28)
 - **Priority:** P0
 - **Size:** L
 - **Depends on:** OFF-01, OFF-02

@@ -100,6 +100,10 @@
     return `${CACHE_PREFIX}${manifest.trailId}-${manifest.version}`;
   }
 
+  function resourceIsRequired(resource){
+    return !resource || resource.required !== false;
+  }
+
   function validateManifest(manifest, expectedTrailId){
     if(!manifest || manifest.schemaVersion !== 1) throw new Error('Unsupported package format.');
     if(manifest.trailId !== expectedTrailId) throw new Error('Package trail does not match this page.');
@@ -116,6 +120,12 @@
       if(!resource.url || !resource.sha256 || !Number.isFinite(resource.bytes)){
         throw new Error('A required package resource is invalid.');
       }
+    }
+    if(
+      Number.isFinite(manifest.packageBudgetBytes) &&
+      manifest.packageBytes > manifest.packageBudgetBytes
+    ){
+      throw new Error('This offline package exceeds its declared storage budget.');
     }
     return manifest;
   }
@@ -229,8 +239,15 @@
       for(let index = 0; index < manifest.resources.length; index += 1){
         const resource = manifest.resources[index];
         if(onProgress) onProgress(index + 1, manifest.resources.length, resource);
-        const verified = await fetchVerifiedResource(resource, config.manifestUrl);
-        await temporary.put(verified.url, verified.response);
+        try{
+          const verified = await fetchVerifiedResource(resource, config.manifestUrl);
+          await temporary.put(verified.url, verified.response);
+        }catch(error){
+          if(resourceIsRequired(resource)) throw error;
+          if(onProgress){
+            onProgress(index + 1, manifest.resources.length, resource, 'optional-missing');
+          }
+        }
       }
       await temporary.put(
         new URL(config.manifestUrl, window.location.href).href,
@@ -279,9 +296,11 @@
       if(!manifestResponse) continue;
       try{
         const manifest = validateManifest(await manifestResponse.json(), trailId);
-        const complete = (await Promise.all(manifest.resources.map(resource =>
+        const complete = (await Promise.all(manifest.resources
+          .filter(resourceIsRequired)
+          .map(resource =>
           cache.match(resourceUrl(resource, config.manifestUrl))
-        ))).every(Boolean);
+          ))).every(Boolean);
         if(complete){
           return {
             manifest,
@@ -510,6 +529,7 @@
     storageCapacity,
     assertStorageCapacity,
     isQuotaError,
+    resourceIsRequired,
   };
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initPanel);

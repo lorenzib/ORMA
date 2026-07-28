@@ -163,4 +163,26 @@ describe('OFF-03 offline package ownership metadata', () => {
     expect(source).toContain('Your browser ran out of storage');
     expect(source).toContain('free device storage, then retry');
   });
+
+  test('distinguishes mandatory resources from optional map layers', () => {
+    expect(window.DoloPawsOffline.resourceIsRequired({ required: true })).toBe(true);
+    expect(window.DoloPawsOffline.resourceIsRequired({})).toBe(true);
+    expect(window.DoloPawsOffline.resourceIsRequired({ required: false })).toBe(false);
+  });
+
+  test('rejects a package larger than its declared corridor budget', () => {
+    expect(() => window.DoloPawsOffline.validateManifest({
+      schemaVersion: 1,
+      trailId: 'lago-carezza',
+      version: 'too-large',
+      packageBytes: 101,
+      packageBudgetBytes: 100,
+      resources: [{
+        role: 'map',
+        url: 'map.svg',
+        bytes: 101,
+        sha256: 'abc',
+      }],
+    }, 'lago-carezza')).toThrow(/exceeds its declared storage budget/);
+  });
 });

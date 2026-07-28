@@ -105,7 +105,7 @@ the same account remain recognisable on that device without storing identity.
   distinct restart and retry states, storage safety calculations, unsupported
   estimate behavior, insufficient-space blocking, quota recovery copy, package
   metadata rendering, signed-out controls, and confirmed removal paths.
-- The normal application suite passes 161 tests.
+- The normal application suite passes 165 tests.
 - The static link checker passes all 172 HTML pages.
 
 ## Remaining before OFF-03 is complete

@@ -5,6 +5,11 @@ const crypto = require('crypto');
 const root = __dirname;
 const packageDir = path.join(root, 'offline', 'packages', 'lago-carezza');
 const manifest = JSON.parse(fs.readFileSync(path.join(packageDir, 'manifest.json'), 'utf8'));
+const mapSvg = fs.readFileSync(path.join(packageDir, 'map.svg'), 'utf8');
+const osmSource = fs.readFileSync(
+  path.join(root, 'data', 'offline-map-sources', 'lago-carezza.osm'),
+  'utf8'
+);
 const scoring = require('./scoring/recommendation-v1.js');
 
 function localPathFor(resource){
@@ -25,6 +30,7 @@ describe('Lago di Carezza offline package', () => {
   test('all required resources match their declared size and SHA-256 hash', () => {
     const roles = new Set(manifest.resources.map(resource => resource.role));
     expect(roles).toEqual(new Set(['shell', 'style', 'app', 'map', 'route', 'safety']));
+    expect(manifest.resources.every(resource => resource.required === true)).toBe(true);
 
     let totalBytes = 0;
     for(const resource of manifest.resources){
@@ -34,6 +40,37 @@ describe('Lago di Carezza offline package', () => {
       totalBytes += data.byteLength;
     }
     expect(totalBytes).toBe(manifest.packageBytes);
+  });
+
+  test('enforces a deterministic fixed corridor and package-size ceiling', () => {
+    const bounds = osmSource.match(
+      /<bounds minlat="([^"]+)" minlon="([^"]+)" maxlat="([^"]+)" maxlon="([^"]+)"\/>/
+    );
+    expect(bounds).not.toBeNull();
+    expect(manifest.bounds).toEqual({
+      north: Number(bounds[3]),
+      south: Number(bounds[1]),
+      east: Number(bounds[4]),
+      west: Number(bounds[2]),
+    });
+    expect(manifest.mapCorridor).toEqual({
+      strategy: 'fixed-bounds-svg-v1',
+      scaleLevels: [1],
+      width: 1200,
+      height: 1140,
+    });
+    expect(manifest.packageBytes).toBeLessThanOrEqual(manifest.packageBudgetBytes);
+    expect(mapSvg).toContain('viewBox="0 0 1200 1140"');
+  });
+
+  test('keeps route, trailhead context, safety, and attribution in required files', () => {
+    const app = fs.readFileSync(path.join(root, 'offline', 'offline-app.js'), 'utf8');
+    expect(mapSvg).toContain('class="route"');
+    expect(mapSvg).toContain('© OpenStreetMap contributors · ODbL');
+    expect(mapSvg).toMatch(/<g transform="translate\([^"]+\)"><circle r="22"/);
+    expect(manifest.resources.find(resource => resource.role === 'route').required).toBe(true);
+    expect(manifest.resources.find(resource => resource.role === 'safety').required).toBe(true);
+    expect(app).toContain('if(resource.required !== false) throw error');
   });
 
   test('route is a closed LineString inside the package bounds', () => {

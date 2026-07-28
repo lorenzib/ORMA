@@ -2,11 +2,12 @@
   "schemaVersion": 1,
   "trailId": "lago-carezza",
   "name": "Lago di Carezza Loop",
-  "version": "2026.07.28-beta.3",
-  "generatedAt": "2026-07-28T00:00:00Z",
+  "version": "2026.07.28-beta.4",
+  "generatedAt": "2026-07-28T21:45:00Z",
   "scoringVersion": "1.1.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 35560,
+  "packageBytes": 35665,
+  "packageBudgetBytes": 5242880,
   "bounds": {
     "north": 46.4113,
     "south": 46.407,
@@ -17,11 +18,18 @@
     "width": 1200,
     "height": 1140
   },
+  "mapCorridor": {
+    "strategy": "fixed-bounds-svg-v1",
+    "scaleLevels": [1],
+    "width": 1200,
+    "height": 1140
+  },
   "attribution": "Route data © DoloPaws; © OpenStreetMap contributors where applicable",
   "licenceUrl": "https://www.openstreetmap.org/copyright",
   "resources": [
     {
       "role": "shell",
+      "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
       "bytes": 3085,
@@ -29,6 +37,7 @@
     },
     {
       "role": "style",
+      "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
       "bytes": 3320,
@@ -36,13 +45,15 @@
     },
     {
       "role": "app",
+      "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 8462,
-      "sha256": "3b4c028d6f31418a6a5f1bb81a9db4f0956462f4620df82bdc11b5b7d0161331"
+      "bytes": 8567,
+      "sha256": "01e34d3a5cdea4666bbaccc675af00395c345a6cb2fd6d32363a62ac215d58ae"
     },
     {
       "role": "map",
+      "required": true,
       "label": "Lago di Carezza OSM offline map",
       "url": "map.svg",
       "bytes": 17775,
@@ -50,6 +61,7 @@
     },
     {
       "role": "route",
+      "required": true,
       "label": "Lago di Carezza route",
       "url": "route.geojson",
       "bytes": 1529,
@@ -57,6 +69,7 @@
     },
     {
       "role": "safety",
+      "required": true,
       "label": "Lago di Carezza safety information",
       "url": "safety.json",
       "bytes": 1389,

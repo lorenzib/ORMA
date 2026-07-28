@@ -144,8 +144,12 @@
 
       const resources = {};
       for(const resource of manifest.resources){
-        const response = await verifiedResource(resource);
-        resources[resource.role] = response;
+        try{
+          const response = await verifiedResource(resource);
+          resources[resource.role] = response;
+        }catch(error){
+          if(resource.required !== false) throw error;
+        }
       }
       if(!resources.map || !resources.route || !resources.safety) throw new Error('Required map, route, or safety data is missing.');
 
