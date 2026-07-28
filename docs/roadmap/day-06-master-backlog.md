@@ -114,6 +114,7 @@ All P0 and P1 work
 
 ### OFF-03 — Implement account-gated package storage and lifecycle
 
+- **Status:** In progress; owner-aware metadata slice complete (2026-07-28)
 - **Priority:** P0
 - **Size:** L
 - **Depends on:** OFF-02, AUTH-01

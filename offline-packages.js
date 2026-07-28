@@ -7,6 +7,8 @@
     },
   };
   const CACHE_PREFIX = 'dolopaws-trail-';
+  const METADATA_PREFIX = 'dolopaws-offline:';
+  const OWNER_SALT_KEY = 'dolopaws-offline-owner-salt';
 
   function bytesToHex(buffer){
     return Array.from(new Uint8Array(buffer))
@@ -19,6 +21,71 @@
       throw new Error('This browser cannot verify offline packages.');
     }
     return bytesToHex(await window.crypto.subtle.digest('SHA-256', buffer));
+  }
+
+  function deviceOwnerSalt(){
+    let salt = localStorage.getItem(OWNER_SALT_KEY);
+    if(salt) return salt;
+    const bytes = new Uint8Array(16);
+    window.crypto.getRandomValues(bytes);
+    salt = bytesToHex(bytes);
+    localStorage.setItem(OWNER_SALT_KEY, salt);
+    return salt;
+  }
+
+  async function ownerMarkerFor(user){
+    if(!(user && user.uid)) throw new Error('Log in to download this offline map.');
+    if(!(window.crypto && window.crypto.subtle && window.crypto.getRandomValues)){
+      throw new Error('This browser cannot create private offline ownership metadata.');
+    }
+    const input = new TextEncoder().encode(
+      `dolopaws-owner-v1:${deviceOwnerSalt()}:${user.uid}`
+    );
+    return `v1:${await sha256(input)}`;
+  }
+
+  function metadataKey(trailId){
+    return `${METADATA_PREFIX}${trailId}`;
+  }
+
+  function readPackageMetadata(trailId){
+    try{
+      const value = JSON.parse(localStorage.getItem(metadataKey(trailId)) || 'null');
+      return value && typeof value === 'object' ? value : null;
+    }catch(error){
+      return null;
+    }
+  }
+
+  function formatInstalledDate(value){
+    const date = new Date(value);
+    if(!value || Number.isNaN(date.getTime())) return 'date unavailable';
+    try{
+      return new Intl.DateTimeFormat(
+        document.documentElement.lang || 'en-GB',
+        { dateStyle: 'medium' }
+      ).format(date);
+    }catch(error){
+      return date.toISOString().slice(0, 10);
+    }
+  }
+
+  async function ownershipState(metadata, user){
+    if(!(metadata && metadata.ownerMarker)) return 'legacy-owner-unknown';
+    if(!(user && user.uid)) return 'signed-out-owner-retained';
+    return metadata.ownerMarker === await ownerMarkerFor(user)
+      ? 'current-account'
+      : 'another-account';
+  }
+
+  function ownershipLabel(state){
+    const labels = {
+      'current-account': 'downloaded by this account',
+      'another-account': 'downloaded by another account on this device',
+      'signed-out-owner-retained': 'downloaded account retained on this device',
+      'legacy-owner-unknown': 'download owner not recorded',
+    };
+    return labels[state] || labels['legacy-owner-unknown'];
   }
 
   function resourceUrl(resource, manifestUrl){
@@ -74,10 +141,11 @@
       .map(name => caches.delete(name)));
   }
 
-  async function installPackage(trailId, onProgress){
+  async function installPackage(trailId, onProgress, ownerUser){
     if(!('caches' in window)) throw new Error('Offline storage is not supported in this browser.');
     const config = PACKAGES[trailId];
     if(!config) throw new Error('No offline package is available for this trail.');
+    const ownerMarker = await ownerMarkerFor(ownerUser);
 
     if('serviceWorker' in navigator){
       await navigator.serviceWorker.register('/offline/offline-sw.js', { scope: '/offline/' });
@@ -114,12 +182,13 @@
       }
       await caches.delete(temporaryName);
       await removeOlderVersions(trailId, name);
-      localStorage.setItem(`dolopaws-offline:${trailId}`, JSON.stringify({
+      localStorage.setItem(metadataKey(trailId), JSON.stringify({
         cacheName: name,
         version: manifest.version,
         installedAt: new Date().toISOString(),
         packageBytes: manifest.packageBytes,
         verificationStatus: manifest.verificationStatus,
+        ownerMarker,
       }));
       return manifest;
     }catch(error){
@@ -128,7 +197,7 @@
     }
   }
 
-  async function installedPackage(trailId){
+  async function installedPackageRecord(trailId){
     if(!('caches' in window)) return null;
     const config = PACKAGES[trailId];
     if(!config) return null;
@@ -143,10 +212,20 @@
         const complete = (await Promise.all(manifest.resources.map(resource =>
           cache.match(resourceUrl(resource, config.manifestUrl))
         ))).every(Boolean);
-        if(complete) return manifest;
+        if(complete){
+          return {
+            manifest,
+            metadata: readPackageMetadata(trailId),
+          };
+        }
       }catch(error){ /* inspect the next cache */ }
     }
     return null;
+  }
+
+  async function installedPackage(trailId){
+    const record = await installedPackageRecord(trailId);
+    return record ? record.manifest : null;
   }
 
   async function availablePackage(trailId){
@@ -163,7 +242,29 @@
     await Promise.all(names
       .filter(name => name.startsWith(`${CACHE_PREFIX}${trailId}-`))
       .map(name => caches.delete(name)));
-    localStorage.removeItem(`dolopaws-offline:${trailId}`);
+    localStorage.removeItem(metadataKey(trailId));
+  }
+
+  async function listInstalledPackages(user){
+    const records = [];
+    for(const trailId of Object.keys(PACKAGES)){
+      const record = await installedPackageRecord(trailId);
+      if(!record) continue;
+      let available = null;
+      try{ available = await availablePackage(trailId); }catch(error){ /* offline is expected */ }
+      records.push({
+        trailId,
+        version: record.manifest.version,
+        packageBytes: record.manifest.packageBytes,
+        installedAt: record.metadata && record.metadata.installedAt || null,
+        verificationStatus: record.manifest.verificationStatus,
+        ownership: await ownershipState(record.metadata, user),
+        updateAvailable: !!(
+          available && available.version !== record.manifest.version
+        ),
+      });
+    }
+    return records;
   }
 
   function formatBytes(bytes){
@@ -194,7 +295,9 @@
     }
 
     async function refresh(){
-      const manifest = await installedPackage(trailId);
+      const record = await installedPackageRecord(trailId);
+      const manifest = record && record.manifest;
+      const metadata = record && record.metadata;
       let available = null;
       try{ available = await availablePackage(trailId); }catch(error){ /* offline is expected */ }
       const updateAvailable = !!(manifest && available && manifest.version !== available.version);
@@ -208,8 +311,14 @@
           ''
         );
       }else if(manifest){
+        const ownership = await ownershipState(
+          metadata,
+          window.DoloPawsAuth && window.DoloPawsAuth.currentUser
+        );
         setStatus(
-          `Ready offline on this device · ${formatBytes(manifest.packageBytes)} · beta verification data`,
+          `Ready offline · ${formatBytes(manifest.packageBytes)} · downloaded ${
+            formatInstalledDate(metadata && metadata.installedAt)
+          } · ${ownershipLabel(ownership)} · beta verification data`,
           'ready'
         );
       }else if(signedIn()){
@@ -229,9 +338,13 @@
       }
       downloadButton.disabled = true;
       try{
-        const manifest = await installPackage(trailId, (current, total, resource) => {
-          setStatus(`Downloading ${current} of ${total}: ${resource.label || resource.url}`);
-        });
+        const manifest = await installPackage(
+          trailId,
+          (current, total, resource) => {
+            setStatus(`Downloading ${current} of ${total}: ${resource.label || resource.url}`);
+          },
+          window.DoloPawsAuth.currentUser
+        );
         setStatus(`Verified ${manifest.resources.length} required resources.`, 'ready');
       }catch(error){
         setStatus(error.message || 'The package could not be downloaded.', 'error');
@@ -264,8 +377,15 @@
   window.DoloPawsOffline = {
     installPackage,
     installedPackage,
+    installedPackageRecord,
+    listInstalledPackages,
     availablePackage,
     removePackage,
+    ownerMarkerFor,
+    ownershipState,
+    ownershipLabel,
+    readPackageMetadata,
+    formatInstalledDate,
     validateManifest,
     formatBytes,
   };

@@ -80,7 +80,9 @@ storage is controlled by the device owner.
 
 IndexedDB remains the planned metadata store when multiple packages and active
 hike recovery are introduced. Local storage is sufficient for this single
-package feasibility slice because the manifest remains authoritative.
+package feasibility slice because the manifest remains authoritative. OFF-03's
+first lifecycle increment adds a salted, device-scoped owner marker plus
+installation date and freshness metadata without storing account identity.
 
 ## Lago di Carezza package status
 
