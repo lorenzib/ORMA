@@ -59,4 +59,20 @@ describe('OFF-03 offline package ownership metadata', () => {
     expect(window.DoloPawsOffline.formatInstalledDate(null))
       .toBe('date unavailable');
   });
+
+  test('keeps lifecycle details visible when an update is available', () => {
+    const source = require('fs').readFileSync(
+      require('path').join(__dirname, 'offline-packages.js'),
+      'utf8'
+    );
+    const updateBranch = source.slice(
+      source.indexOf('if(updateAvailable)'),
+      source.indexOf('}else if(manifest)')
+    );
+
+    expect(updateBranch).toContain('formatBytes(manifest.packageBytes)');
+    expect(updateBranch).toContain('formatInstalledDate');
+    expect(updateBranch).toContain('ownershipLabel(ownership)');
+    expect(updateBranch).toContain('remains usable offline');
+  });
 });

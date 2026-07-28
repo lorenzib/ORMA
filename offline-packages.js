@@ -301,20 +301,26 @@
       let available = null;
       try{ available = await availablePackage(trailId); }catch(error){ /* offline is expected */ }
       const updateAvailable = !!(manifest && available && manifest.version !== available.version);
+      const ownership = manifest
+        ? await ownershipState(
+          metadata,
+          window.DoloPawsAuth && window.DoloPawsAuth.currentUser
+        )
+        : null;
       openButton.hidden = !manifest;
       removeButton.hidden = !manifest;
       downloadButton.hidden = !!manifest && !updateAvailable;
       if(updateAvailable){
         downloadButton.textContent = signedIn() ? 'Update offline map' : 'Log in to update';
         setStatus(
-          `Map update ${available.version} is available. Your existing package remains usable offline.`,
+          `Update ${available.version} available · current package ${
+            formatBytes(manifest.packageBytes)
+          } · downloaded ${formatInstalledDate(metadata && metadata.installedAt)} · ${
+            ownershipLabel(ownership)
+          }. Your existing package remains usable offline.`,
           ''
         );
       }else if(manifest){
-        const ownership = await ownershipState(
-          metadata,
-          window.DoloPawsAuth && window.DoloPawsAuth.currentUser
-        );
         setStatus(
           `Ready offline · ${formatBytes(manifest.packageBytes)} · downloaded ${
             formatInstalledDate(metadata && metadata.installedAt)
