@@ -88,7 +88,7 @@
 }
 </script>
 </head>
-<body>
+<body data-scoring-version="1.1.0">
 
 <div class="topnav">
   <a class="brand" href="../index.html"><img src="../logo.svg?v=3" alt="DoloPaws logo">DoloPaws</a>
@@ -155,7 +155,7 @@
     <ul><li><a href="https://www.karellis.com/activites-hiver/randonnee-vers-albanne/" rel="noopener">Les Karellis — Randonnée vers Albanne (official route 09)</a> <span class="sp-src">· supports heat</span></li><li><a href="https://www.alltrails.com/trail/france/savoie/les-karellis-albanne" rel="noopener">AllTrails — Les Karellis–Albanne</a> <span class="sp-src">· supports access</span></li><li><a href="https://www.service-public.gouv.fr/particuliers/actualites/A17343" rel="noopener">Service Public France — seasonal forest leash rule</a> <span class="sp-src">· supports access</span></li><li><a href="https://hiking.waymarkedtrails.org/#route?id=14381570" rel="noopener">Waymarked Trails — Albanne, OSM relation 14381570</a></li><li><a href="https://www.openstreetmap.org/relation/14381570" rel="noopener">OpenStreetMap contributors</a></li></ul>
     <div id="dogFit">
     <h2>Is this trail right for <em>your</em> dog?</h2>
-    <p>The trail rating above describes the mountain, and it's the same for every dog. What it can't tell you is how this route pairs with your dog's build, age, and health. <a href="../account.html?next=trail.html%3Fid%3Dosm-14381570">Create your dog's free profile</a> and DoloPaws scores every trail against your dog on six real safety factors: terrain, shade, water access, distance, exposure, and heat risk.</p>
+    <p>The trail rating above describes the mountain, and it's the same for every dog. What it can't tell you is how this route pairs with your dog's build, age, and health. <a href="../account.html?next=trail.html%3Fid%3Dosm-14381570">Create your dog's free profile</a> and DoloPaws evaluates distance, climbing, terrain, exposure, heat, access, and evidence gaps for your dog.</p>
     </div>
     <script>
     (function(){
@@ -169,7 +169,7 @@
         if(p.hasProfile){
           var n = p.name ? esc(p.name) : 'your dog';
           box.innerHTML = '<h2>Is this trail right for <em>' + n + '</em>?</h2>'
-            + '<p>' + n + '’s profile is saved, so this trail is already scored for them. Open the interactive map to see how it matches ' + n + ', weighing terrain, shade, water access, distance, exposure and heat risk against their build, age and health.</p>'
+            + '<p>' + n + '’s profile is saved, so this trail is ready to be scored for them. Open the interactive map to see the versioned recommendation, its cautions, and the evidence behind it.</p>'
             + '<p><a href="../trail.html?id=osm-14381570">See ' + n + '’s match for this trail →</a></p>';
         } else {
           box.innerHTML = '<h2>One step left: save your dog’s profile</h2>'

@@ -70,7 +70,10 @@
 <script src="trail-card-visual.js?v=20260717" defer></script>
 <script src="auth-ui.js?v=20260724-3" defer></script>
 <script src="breeds-data.js" defer></script>
-<script src="scoring.js?v=20260717-3" defer></script>
+<script src="trust/evidence-v1.js?v=20260728-1" defer></script>
+<script src="scoring/recommendation-v1.js?v=20260728-2" defer></script>
+<script src="scoring/recommendation-adapters-v1.js?v=20260728-1" defer></script>
+<script src="scoring.js?v=20260728-4" defer></script>
 <script src="trails-data.js?v=20260717-3" defer></script>
 <script src="osm-trails-data.js" defer></script>
 <script src="osm-trails-savoy-data.js" defer></script>
@@ -78,8 +81,8 @@
 <script src="regions-config.js" defer></script>
 <script>
 // Saved trails screen. Same card language as the browse list; Remove
-// writes straight back to the account's favorites. Small local copies of
-// safetyLabel/whyFits mirror script.js (which only loads on the homepage).
+// writes straight back to the account's favorites. Card explanations come
+// from the same canonical recommendation used on the homepage and detail page.
 document.addEventListener('DOMContentLoaded', function(){
   var listEl = document.getElementById('savedList');
   var emptyEl = document.getElementById('savedEmpty');
@@ -118,15 +121,11 @@ document.addEventListener('DOMContentLoaded', function(){
     }, 4200);
   }
 
-  // Compact mirror of script.js matchReason(): real fields only.
-  function whyFits(tr, ov){
-    var hs = !!(ov && ov.heatSensitive), bits = [];
-    if(tr.shadeCoverage >= 60) bits.push(hs ? 'well shaded, low heat load' : 'shaded route');
-    else if(tr.heatRisk === 'low') bits.push('low heat risk');
-    if(tr.terrainRank === 0) bits.push('easy underfoot');
-    if(Array.isArray(tr.waterSources) && tr.waterSources.length) bits.push('water on trail');
-    if(tr.distance <= 6) bits.push('short day');
-    return bits.slice(0, 3).join(', ') || 'solid all-round choice';
+  function whyFits(recommendation){
+    var reason = recommendation.positiveReasons[0]
+      || recommendation.cautions[0]
+      || recommendation.unknowns[0];
+    return reason ? reason.message : 'Open the trail to review this recommendation.';
   }
 
   function render(favs, profile){
@@ -137,7 +136,13 @@ document.addEventListener('DOMContentLoaded', function(){
     if(name){ titleEl.textContent = 'Saved for ' + name; subEl.textContent = 'The trails you have bookmarked, ranked for ' + name + '.'; }
 
     var saved = trails.filter(function(tr){ return favs[tr.id]; })
-      .map(function(tr){ var o = Object.assign({}, tr); o.score = scoreTrail(tr, ov); return o; })
+      .map(function(tr){
+        var recommendation = recommendTrail(tr, ov);
+        return Object.assign({}, tr, {
+          score: recommendation.score,
+          recommendation: recommendation,
+        });
+      })
       .sort(function(a, b){ return b.score - a.score; });
 
     badge.textContent = saved.length;
@@ -164,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function(){
             provenanceBadge + riskBadge + heatBadge +
           '</div>' +
           '<a href="trail.html?id=' + encodeURIComponent(tr.id) + '&from=saved.html" class="name" style="margin-top:2px;display:block;text-decoration:none;color:inherit;">' + esc(tr.name) + '</a>' +
-          '<div class="tc-reason"><span class="mark">&#10022;</span><span class="txt">' + esc(whyFits(tr, ov)) + '</span></div>' +
+          '<div class="tc-reason"><span class="mark">&#10022;</span><span class="txt">' + esc(whyFits(tr.recommendation)) + '</span></div>' +
           '<div class="tc-stats">' + esc(tr.area || '') + ' · ' + tr.distance + ' km · ' + tr.elevation + ' m' + (tr.hours ? ' · ' + esc(tr.hours) + ' h' : '') + '</div>' +
           '<div class="tc-actions">' +
             '<a href="trail.html?id=' + encodeURIComponent(tr.id) + '&from=saved.html">Trail details &rarr;</a>' +

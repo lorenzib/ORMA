@@ -173,7 +173,7 @@
       elements.verificationNotice.textContent = manifest.verificationStatus === 'field-review-required'
         ? 'This package is technically verified but its route and safety content still require a dated field review.'
         : 'This package has passed the declared content review.';
-      elements.packageMeta.textContent = `Package ${manifest.version} · generated ${manifest.generatedAt.slice(0, 10)} · ${manifest.attribution}`;
+      elements.packageMeta.textContent = `Package ${manifest.version} · scoring ${manifest.scoringVersion || 'not recorded'} · generated ${manifest.generatedAt.slice(0, 10)} · ${manifest.attribution}`;
       elements.licenceLink.href = manifest.licenceUrl;
       elements.locationButton.addEventListener('click', () => startLocation(manifest.bounds));
 

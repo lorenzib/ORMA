@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const root = __dirname;
 const packageDir = path.join(root, 'offline', 'packages', 'lago-carezza');
 const manifest = JSON.parse(fs.readFileSync(path.join(packageDir, 'manifest.json'), 'utf8'));
+const scoring = require('./scoring/recommendation-v1.js');
 
 function localPathFor(resource){
   if(resource.url.startsWith('/')) return path.join(root, resource.url);
@@ -16,6 +17,7 @@ describe('Lago di Carezza offline package', () => {
     expect(manifest.schemaVersion).toBe(1);
     expect(manifest.trailId).toBe('lago-carezza');
     expect(manifest.verificationStatus).toBe('field-review-required');
+    expect(manifest.scoringVersion).toBe(scoring.VERSION);
     expect(manifest.bounds.north).toBeGreaterThan(manifest.bounds.south);
     expect(manifest.bounds.east).toBeGreaterThan(manifest.bounds.west);
   });

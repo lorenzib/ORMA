@@ -19,6 +19,7 @@
 const fs = require('fs');
 const path = require('path');
 const evidenceContract = require('../trust/evidence-v1.js');
+const recommendationContract = require('../scoring/recommendation-v1.js');
 const { loadProductionTrails } = require('./load-production-trails');
 const { buildCanonicalCatalog } = require('./trail-adapter');
 
@@ -441,7 +442,7 @@ ${JSON.stringify(jsonLd, null, 1)}
 ${JSON.stringify(breadcrumbLd, null, 1)}
 </script>
 </head>
-<body>
+<body data-scoring-version="${recommendationContract.VERSION}">
 
 <div class="topnav">
   <a class="brand" href="../index.html"><img src="../logo.svg?v=3" alt="DoloPaws logo">DoloPaws</a>
@@ -483,7 +484,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
     ${insightsHtml}
 ${sourceRecord ? `    ${sourceRecord}\n` : ''}    <div id="dogFit">
     <h2>Is this trail right for <em>your</em> dog?</h2>
-    <p>The trail rating above describes the mountain, and it's the same for every dog. What it can't tell you is how this route pairs with your dog's build, age, and health. <a href="../account.html?next=trail.html%3Fid%3D${encodeURIComponent(t.id)}">Create your dog's free profile</a> and DoloPaws scores every trail against your dog on six real safety factors: terrain, shade, water access, distance, exposure, and heat risk.</p>
+    <p>The trail rating above describes the mountain, and it's the same for every dog. What it can't tell you is how this route pairs with your dog's build, age, and health. <a href="../account.html?next=trail.html%3Fid%3D${encodeURIComponent(t.id)}">Create your dog's free profile</a> and DoloPaws evaluates distance, climbing, terrain, exposure, heat, access, and evidence gaps for your dog.</p>
     </div>
     <script>
     (function(){
@@ -497,7 +498,7 @@ ${sourceRecord ? `    ${sourceRecord}\n` : ''}    <div id="dogFit">
         if(p.hasProfile){
           var n = p.name ? esc(p.name) : 'your dog';
           box.innerHTML = '<h2>Is this trail right for <em>' + n + '</em>?</h2>'
-            + '<p>' + n + '\u2019s profile is saved, so this trail is already scored for them. Open the interactive map to see how it matches ' + n + ', weighing terrain, shade, water access, distance, exposure and heat risk against their build, age and health.</p>'
+            + '<p>' + n + '\u2019s profile is saved, so this trail is ready to be scored for them. Open the interactive map to see the versioned recommendation, its cautions, and the evidence behind it.</p>'
             + '<p><a href="../trail.html?id=${encodeURIComponent(t.id)}">See ' + n + '\u2019s match for this trail \u2192</a></p>';
         } else {
           box.innerHTML = '<h2>One step left: save your dog\u2019s profile</h2>'

@@ -36,7 +36,7 @@ file without a separate dependency check.
 | Trail discovery | Find realistic routes in a chosen area | Implemented across homepage and browse surfaces | Overlapping discovery experiences and scattered filters | Define one canonical discovery journey |
 | Dog-specific filters | Narrow by constraints that matter to the dog | Partly implemented | Water, shade, heat, exposure, restrictions, and verification are inconsistent | Consolidate filters and explain zero-result recovery |
 | Trail comparison | Choose among suitable alternatives | Missing | Users must compare pages from memory | Compare two or three trails on the agreed dog-safety dimensions |
-| Canonical scoring engine | Produce one consistent recommendation | Partly centralized in `scoring.js` | `my-trails.js` and some generated experiences duplicate logic | Route every consumer through one versioned scoring contract |
+| Canonical scoring engine | Produce one consistent recommendation | Complete in SCORE-02 | Active consumers use scoring `1.1.0`; obsolete `my-trails.js` removed | Keep cross-surface regression coverage |
 | Recommendation explanation | Understand why a trail matches | Partly implemented | Reasons, cautions, and unknowns are not one consistent output | Return structured positives, warnings, unknowns, and score version |
 | Trail trust and provenance | Know what evidence supports each claim | Implemented in `trail-trust.js` and audits | Freshness and verification language vary by surface | Standardize tier, source, date, and unknown-category display |
 | Canonical trail schema | Prevent contradictory or malformed trail data | Informal data structures exist | Curated and imported records contain different completeness levels | Define a versioned schema with required and optional fields |
@@ -122,7 +122,7 @@ specific hypothesis, success measure, and operational owner before expansion.
 | `DoloPaws Homepage - Split Hero.html` | Large historical prototype at repository root | Confirm it is not used, then move outside production or delete |
 | `dolopaws-combined-preview.html` | Standalone design prototype overlaps the real homepage | Archive outside the deployed site after dependency check |
 | `my-trails.html` and `saved.html` | Two saved-trail concepts create navigation and maintenance ambiguity | Select `saved.html` as the canonical bookmark manager and migrate any unique behavior |
-| `my-trails.js` scoring | Reimplements recommendation logic | Remove local scoring after all consumers use `scoring.js` |
+| `my-trails.js` scoring | Removed in SCORE-02 | Personalized homepage now owns this journey |
 | `index.html` and `browse-trails.html` discovery flows | Overlapping search and browsing entry points | Give each a distinct purpose or consolidate into one canonical discovery flow |
 | Dynamic `trail.html` and generated `trails/*.html` | Two trail-detail experiences can diverge | Keep generated pages for discovery only if they hand off clearly and share data/trust rendering |
 | Current `sw.js` kill switch | Correctly removes the obsolete cache-first worker but cannot deliver the new promise | Keep until the replacement offline architecture is safely deployed, then replace it deliberately |
@@ -177,4 +177,3 @@ Day 5 is complete because:
 - deferred work has a reason;
 - duplicated and obsolete surfaces have been identified without deleting them;
 - the beta scope can be expressed as one complete user loop.
-

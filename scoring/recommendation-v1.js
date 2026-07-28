@@ -5,7 +5,7 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
-  const VERSION = '1.0.0';
+  const VERSION = '1.1.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
     moderate: { terrain: 1, distanceKm: 10, ascentM: 600 },
@@ -125,6 +125,19 @@
     const unknowns = [];
     const hardStops = [];
     const dog = deriveDog(input.dog, unknowns);
+    const limitOverride = input.effectiveLimits || {};
+    if(Number.isFinite(limitOverride.terrainRank)){
+      dog.terrain = Math.max(0, Math.min(2, limitOverride.terrainRank));
+    }
+    if(Number.isFinite(limitOverride.distanceKm)){
+      dog.distanceKm = Math.max(2, Math.min(18, limitOverride.distanceKm));
+    }
+    if(Number.isFinite(limitOverride.ascentM)){
+      dog.ascentM = Math.max(100, Math.min(1200, limitOverride.ascentM));
+    }
+    if(typeof limitOverride.heatSensitive === 'boolean'){
+      dog.heatSensitive = limitOverride.heatSensitive;
+    }
     const parts = trailParts(input.trail);
     const metrics = parts.metrics;
     const suitability = parts.suitability;

@@ -4,7 +4,7 @@
  * Assigns every trail (curated AND imported, identically) a `region` and
  * `valley` at page load, from the nearest known locality — the same
  * nearest-locality logic the import pipeline uses. trails-data.js is never
- * modified. Load AFTER all trail data files and BEFORE script.js/my-trails.js.
+ * modified. Load AFTER all trail data files and BEFORE script.js.
  */
 (function () {
   'use strict';

@@ -172,30 +172,19 @@ function filterTrailsForReturningView(list){
   return displayList;
 }
 
-// Short, honest "why this fits" line for a trail card — built from the
-// trail's real fields relative to this dog's real tolerances, same data
-// scoreTrail() already used. No invented copy per trail.
+// Short, honest "why this fits" line for a trail card. The canonical
+// recommendation supplies the reasons so every surface explains the same score.
 function matchReason(t, overrides){
-  const heatSensitive = !!(overrides && overrides.heatSensitive);
   const isImported = t.curated === false;
-  const bits = [];
-  if(t.shadeCoverage >= 60) bits.push(heatSensitive ? 'well shaded, low heat load' : 'shaded route');
-  else if(t.heatRisk === 'low') bits.push('low heat risk');
-  else if(heatSensitive && (t.heatRisk === 'high' || t.heatRisk === 'moderate')) bits.push('exposed, go early');
-
-  if(t.exposure) bits.push('some exposure');
-  else if(t.terrainRank === 0) bits.push(isImported ? 'mapped as flat and easy underfoot' : 'flat, easy underfoot');
-
-  if(overrides && typeof overrides.distance === 'number' || overrides && !isNaN(parseFloat(overrides.distance))){
-    const cap = parseFloat(overrides.distance);
-    if(!isNaN(cap) && t.distance <= cap * 0.6) bits.push('comfortably short');
+  try{
+    const recommendation = recommendTrail(t, overrides);
+    const reasons = recommendation.positiveReasons.slice(0, 2);
+    if(reasons.length < 2) reasons.push(...recommendation.cautions.slice(0, 2 - reasons.length));
+    if(reasons.length) return reasons.map(reason => reason.message).join(' ');
+  }catch(error){
+    console.warn('Could not build the canonical match explanation.', error);
   }
-  if(t.waterSources && t.waterSources.length > 0 && !bits.some(b => b.includes('shad'))) bits.push(isImported ? 'mapped water point' : 'water on route');
-
-  if(bits.length === 0) return isImported ? 'Estimated from mapped route data' : 'Matches your dog\'s fitness and terrain tolerance';
-  // Cap at two clauses so the pill stays a pill, not a paragraph.
-  const chosen = bits.slice(0, 2).join(', ');
-  return chosen.charAt(0).toUpperCase() + chosen.slice(1);
+  return isImported ? 'Estimated from mapped route data' : 'Recommendation details are unavailable';
 }
 
 function createMapOverlayControls(map, containerId, allLiftMarkers){
@@ -1444,7 +1433,13 @@ async function renderReturningHomepage(profile){
     ? 'Filtered · on the map'
     : (profile && profile.name ? `Ranked for ${profile.name}` : 'Ranked for your dog');
 
-  const scored = trails.map(t => ({...t, score: scoreTrail(t, overrides)})).sort((a,b) => b.score - a.score);
+  const scored = trails.map(t => {
+    const recommendation = recommendTrail(t, overrides);
+    return {...t, score: recommendation.score, recommendation};
+  }).sort((a,b) => b.score - a.score);
+  if(listEl && window.DoloPawsScoring){
+    listEl.dataset.scoringVersion = window.DoloPawsScoring.VERSION;
+  }
 
   // Genuine new-match detection: compare today's strong matches against
   // what was stored on the account the last time they visited. This is

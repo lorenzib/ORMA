@@ -460,11 +460,15 @@
     const fallbackPaw = svg('paw');
     if (avatar) avatar.innerHTML = fallbackPaw;
     function paintPersonalMatch() {
-      if (typeof scoreTrail !== 'function' || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
+      if (typeof recommendTrail !== 'function' || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if (!profile) return;
         const name = profile.name || 'your dog';
-        const score = scoreTrail(t, typeof effectiveOverrides === 'function' ? effectiveOverrides(profile, null) : profile);
+        const recommendation = recommendTrail(
+          t,
+          typeof effectiveOverrides === 'function' ? effectiveOverrides(profile, null) : profile
+        );
+        const score = recommendation.score;
         // Reference action card: 96px conic ring (#4a7c59 on #e6e0cf track),
         // "MATCH FOR {NAME}" kicker, breed line underneath.
         if (personalScore) {
@@ -472,6 +476,9 @@
           personalScore.innerHTML =
             `<div class="td-ring" style="background:conic-gradient(${ringColor} ${Math.round((score / 100) * 360)}deg,#e6e0cf 0);">` +
             `<div class="td-ring-in">${t.curated === false ? '≈' : ''}${score}%</div></div>`;
+          personalScore.dataset.scoringVersion = recommendation.scoringVersion;
+          personalScore.dataset.recommendationCategory = recommendation.category;
+          personalScore.dataset.recommendationConfidence = recommendation.confidence;
           personalScore.hidden = false;
         }
         const label = $('tdMatchLabel');
@@ -481,7 +488,15 @@
           label.hidden = false;
         }
         if (matchTitle) matchTitle.textContent = `Match for ${name}`;
-        if (matchSummary) matchSummary.textContent = '';
+        if (matchSummary) {
+          const category = {
+            'strong-option': 'Strong option',
+            'possible-with-cautions': 'Possible with cautions',
+            'not-recommended': 'Not recommended',
+          }[recommendation.category] || 'Personal recommendation';
+          matchSummary.textContent = `${category} · ${recommendation.confidence} confidence`;
+          matchSummary.dataset.scoringVersion = recommendation.scoringVersion;
+        }
         if (avatar && profile.photo) avatar.innerHTML = `<img src="${esc(profile.photo)}" alt="${esc(name)}">`;
       }).catch(() => {});
     }

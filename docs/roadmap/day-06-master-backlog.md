@@ -230,6 +230,7 @@ All P0 and P1 work
 
 ### SCORE-02 — Migrate every scoring consumer
 
+- **Status:** Complete (2026-07-28)
 - **Priority:** P0
 - **Size:** M
 - **Depends on:** SCORE-01

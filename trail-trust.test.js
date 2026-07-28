@@ -11,9 +11,18 @@ function loadTrust(){
 }
 
 function loadScoring(){
-  const context = {};
+  const context = { console };
+  context.window = context;
+  context.globalThis = context;
   vm.createContext(context);
-  vm.runInContext(fs.readFileSync(path.join(__dirname, 'scoring.js'), 'utf8'), context);
+  [
+    'trust/evidence-v1.js',
+    'scoring/recommendation-v1.js',
+    'scoring/recommendation-adapters-v1.js',
+    'scoring.js',
+  ].forEach(file => {
+    vm.runInContext(fs.readFileSync(path.join(__dirname, file), 'utf8'), context);
+  });
   return trail => vm.runInContext(`scoreTrail(${JSON.stringify(trail)}, {terrain:'2', distance:'99', heatSensitive:false})`, context);
 }
 

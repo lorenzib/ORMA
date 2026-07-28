@@ -1,8 +1,10 @@
 /**
- * scoring.js — DoloPaws shared scoring core.
- * Used by BOTH the homepage (script.js) and the trail detail page (trail.js).
- * Load AFTER breeds-data.js and BEFORE script.js / trail.js.
- * The rules and numbers are documented in SCORING.md — keep in sync.
+ * scoring.js — browser compatibility facade for canonical recommendation v1.
+ * Load after breeds-data.js, trust/evidence-v1.js, recommendation-v1.js, and
+ * recommendation-adapters-v1.js.
+ *
+ * scoreTrail() remains temporarily available to existing views, but contains
+ * no scoring rules: it returns the score from recommendTrail().
  */
 
 // ============================================================
@@ -12,69 +14,29 @@
 const FITNESS_DEFAULTS = {
   low:      { terrain:'0', distance:'5'  },
   moderate: { terrain:'1', distance:'10' },
-  high:     { terrain:'2', distance:'99' },
+  high:     { terrain:'2', distance:'18' },
 };
 
-function scoreTrail(t, overrides){
-  let score = 100;
-  const terrain = parseInt(overrides.terrain, 10);
-  let maxDistance = parseFloat(overrides.distance);
+const SCORING_VERSION = window.DoloPawsRecommendationV1
+  ? window.DoloPawsRecommendationV1.VERSION : 'unavailable';
 
-  // Energy level: Low caps effective distance at 5 km; High sets it to 99 km (no effective limit).
-  // Medium (or unset) leaves the profile-derived distance unchanged.
-  const energy = overrides.energy;
-  if(energy === 'low') maxDistance = Math.min(maxDistance, 5);
-  else if(energy === 'high') maxDistance = 99;
-  // energy === 'medium' or undefined: no additional change to maxDistance
-
-  const hazardMult = overrides.hazardMult || 1;       // 1.5 for fragile dogs (joints/back/senior)
-  const exposureExtra = overrides.exposureExtra || 0; // extra exposure penalty for fragile dogs
-
-  // Terrain difficulty vs this dog's effective terrain tolerance
-  if(t.terrainRank > terrain) score -= (t.terrainRank - terrain) * 30;
-
-  // Distance vs this dog's effective daily range
-  if(t.distance > maxDistance) score -= Math.min(35, (t.distance - maxDistance) * 5);
-
-  // Exposure — narrow ledges / drop-offs are a caution for every dog, and
-  // a stronger one for seniors, joint/back issues, or impaired vision.
-  if(t.exposure) score -= 30 + exposureExtra;
-
-  // Heat risk — a baseline penalty applies to every dog; heat-sensitive
-  // dogs (breed traits or declared health conditions) take a heavier hit.
-  if(t.heatRisk === 'high') score -= overrides.heatSensitive ? 25 : 12;
-  else if(t.heatRisk === 'moderate') score -= overrides.heatSensitive ? 10 : 4;
-
-  // Shade coverage — low shade compounds heat risk for every dog, not
-  // just dogs flagged as heat-sensitive.
-  if(t.shadeCoverage < 20) score -= 10;
-  else if(t.shadeCoverage < 40) score -= 5;
-
-  // Surface hazards — sharp rock, loose scree, fixed cables, etc.
-  // Fragile dogs feel each hazard harder (bigger multiplier and cap).
-  if(t.surfaceHazards && t.surfaceHazards.length > 0){
-    score -= Math.min(hazardMult > 1 ? 30 : 20, Math.round(t.surfaceHazards.length * 8 * hazardMult));
+function recommendTrail(trail, subject, currentConditions){
+  const adapter = window.DoloPawsRecommendationAdaptersV1;
+  if(!adapter || typeof adapter.recommendLegacyTrail !== 'function'){
+    throw new Error('Canonical scoring adapters are unavailable.');
   }
-
-  // Imported (OSM) trails carry no exposure/heat/shade measurements, so
-  // without this they'd all sit at 100% and make the ranking meaningless.
-  // Estimate conservatively from what the import DOES know, and cap the
-  // score so a route with unknown exposure, shade, heat and livestock cannot
-  // be presented as a high-confidence match alongside reviewed measurements.
-  if(t.curated === false){
-    if(t.exposure === undefined && t.safetyLevel === 'caution') score -= 15;
-    if(t.heatRisk === undefined) score -= overrides.heatSensitive ? 10 : 4;
-    score = Math.min(score, 80);
-  }
-
-  // A category-by-category source review can be useful before it is complete,
-  // but unchecked safety facts must not produce a high-confidence match.
-  if(t.verified && Array.isArray(t.verified.categories) && t.verified.categories.length < 6){
-    score = Math.min(score, 80);
-  }
-
-  return Math.max(5, Math.round(score));
+  return adapter.recommendLegacyTrail(trail, subject || {}, currentConditions);
 }
+
+function scoreTrail(trail, subject, currentConditions){
+  return recommendTrail(trail, subject, currentConditions).score;
+}
+
+window.DoloPawsScoring = Object.freeze({
+  VERSION: SCORING_VERSION,
+  recommendTrail,
+  scoreTrail,
+});
 
 function matchColor(n){
   return n >= 85 ? 'var(--success)' : n >= 60 ? '#8A5A16' : 'var(--ink-soft)';
@@ -180,7 +142,13 @@ function profileInsights(profile){
 }
 
 function effectiveOverrides(profile, adjustOverride){
-  if(adjustOverride) return adjustOverride;
+  if(adjustOverride){
+    const base = effectiveOverrides(profile, null);
+    const adjusted = { ...base, ...adjustOverride, _profile: profile };
+    if(adjusted.energy === 'low') adjusted.distance = String(Math.min(5, Number(adjusted.distance) || 5));
+    if(adjusted.energy === 'high') adjusted.distance = '18';
+    return adjusted;
+  }
   const defaults = FITNESS_DEFAULTS[profile.fitness] || FITNESS_DEFAULTS.moderate;
   const traits = (typeof breedTraits === 'function') ? breedTraits(profile.breed)
     : { heatSensitive: (typeof HEAT_SENSITIVE_BREEDS !== 'undefined') && HEAT_SENSITIVE_BREEDS.includes(profile.breed) };
@@ -224,5 +192,6 @@ function effectiveOverrides(profile, adjustOverride){
     heatSensitive,
     hazardMult: fragile ? 1.5 : 1,
     exposureExtra: (fragile || conds.includes('vision')) ? 10 : 0,
+    _profile: profile,
   };
 }

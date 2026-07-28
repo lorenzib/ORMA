@@ -18,13 +18,13 @@ returns:
 - unknown factors;
 - hard stops;
 - the effective dog limits used;
-- scoring version `1.0.0`.
+- scoring version `1.1.0`.
 
 The implementation is `scoring/recommendation-v1.js`. The reviewed product
 decisions are stored in `scoring/fixtures-v1.json` and protected by
 `scoring-contract.test.js`.
 
-SCORE-02 will migrate every website surface from the legacy percentage-only
+SCORE-02 migrated every website surface from the legacy percentage-only
 function to this contract.
 
 ## What the result means
@@ -247,15 +247,15 @@ an implementation snapshot.
 - Unknown safety data cannot create high confidence or a strong option.
 - Prohibited dog access overrides otherwise favourable inputs.
 
-## Follow-on: SCORE-02
+## SCORE-02 implementation
 
-SCORE-02 must:
+SCORE-02 is complete. The browser adapter normalizes saved and guest profiles,
+legacy trail objects, and bounded session adjustments. Homepage, saved trails,
+trail detail, generated pages, analytics-facing DOM metadata, and offline
+packages now expose the same versioned contract. The obsolete `my-trails`
+implementation was removed after that route became a redirect to the canonical
+saved-trails experience.
 
-1. adapt saved and guest profiles into normalized dog facts;
-2. adapt every legacy and canonical trail source;
-3. migrate homepage, trail detail, saved trails, `my-trails`, generated pages,
-   analytics, and offline packages;
-4. remove duplicate scoring functions;
-5. render the same structured explanation everywhere;
-6. add cross-surface fixtures proving identical inputs produce identical
-   results.
+Version `1.1.0` is a backward-compatible minor release adding optional finite
+`effectiveLimits` for session controls. Existing reviewed fixture decisions are
+unchanged.

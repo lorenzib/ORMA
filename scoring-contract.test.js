@@ -11,7 +11,7 @@ function run(fixture){
 
 describe('SCORE-01 canonical recommendation contract', () => {
   test('the fixture set and calculator use the same immutable version', () => {
-    expect(scoring.VERSION).toBe('1.0.0');
+    expect(scoring.VERSION).toBe('1.1.0');
     expect(fixtures.scoringVersion).toBe(scoring.VERSION);
   });
 
@@ -69,6 +69,21 @@ describe('SCORE-01 canonical recommendation contract', () => {
     const result = run(fixture);
     expect(result.effectiveDogLimits.distanceKm).toBe(18);
     expect(result.effectiveDogLimits.ascentM).toBe(1200);
+  });
+
+  test('session adjustments stay inside the documented finite limits', () => {
+    const fixture = fixtures.cases.find(entry => entry.id === 'fit-adult-challenging-route');
+    const result = scoring.calculateRecommendation({
+      dog: fixture.dog,
+      trail: fixtures.trailFixtures[fixture.trail],
+      currentConditions: fixture.currentConditions,
+      effectiveLimits: { terrainRank: 99, distanceKm: 99, ascentM: 9999 },
+    });
+    expect(result.effectiveDogLimits).toEqual(expect.objectContaining({
+      terrainRank: 2,
+      distanceKm: 18,
+      ascentM: 1200,
+    }));
   });
 
   test('current conditions are independent from baseline trail heat risk', () => {

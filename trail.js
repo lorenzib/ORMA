@@ -935,26 +935,33 @@ function renderTrail(t){
       if(dogCard) dogCard.hidden = true;
     }
     function paintMatch(){
-      if(typeof scoreTrail !== 'function') return;
+      if(typeof recommendTrail !== 'function') return;
       if(!window.DoloPawsAuth || !window.DoloPawsAuth.currentUser){
         paintMatchTeaser();
         return;
       }
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if(!profile){ paintMatchTeaser(); return; }
-        const n = scoreTrail(t, effectiveOverrides(profile, null));
+        const recommendation = recommendTrail(t, effectiveOverrides(profile, null));
+        const n = recommendation.score;
         const actions = document.querySelector('.td-actions');
         if(actions) actions.classList.remove('guest-actions');
         const name = profile.name || window.t('trail.yourDog');
         if(statMatch){
           statMatchVal.innerHTML = (t.curated === false ? '≈' : '') + n + '<span class="pct">%</span>';
           statMatchSub.textContent = 'Match · ' + name;
+          statMatch.dataset.scoringVersion = recommendation.scoringVersion;
+          statMatch.dataset.recommendationCategory = recommendation.category;
+          statMatch.dataset.recommendationConfidence = recommendation.confidence;
           statMatch.hidden = false;
         }
         const el = document.getElementById('trailMatch');
         if(el){
           el.textContent = (t.curated === false ? '≈' : '') + n + '% ' +
             window.t('trail.matchFor', {name});
+          el.dataset.scoringVersion = recommendation.scoringVersion;
+          el.dataset.recommendationCategory = recommendation.category;
+          el.dataset.recommendationConfidence = recommendation.confidence;
           el.hidden = false;
         }
         // Sidebar dog card (per prototype): avatar · name · profile line,
