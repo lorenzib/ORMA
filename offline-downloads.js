@@ -13,39 +13,67 @@
 
   function packageCard(record, signedIn){
     const offline = window.DoloPawsOffline;
-    const state = record.incomplete
-      ? ['incomplete', 'Interrupted update']
-      : record.updateAvailable
-        ? ['update', 'Update available']
-        : ['ready', 'Ready offline'];
-    const updateLabel = record.incomplete ? 'Restart update' : 'Update';
-    const updateButton = (record.updateAvailable || record.incomplete)
+    const states = {
+      ready: ['ready', 'Ready offline'],
+      stale: ['stale', 'Content review stale'],
+      incomplete: ['incomplete', record.usable ? 'Interrupted update' : 'Interrupted download'],
+      'update-available': ['update', 'Update available'],
+      failed: ['failed', 'Verification failed'],
+    };
+    const state = states[record.state] || states.failed;
+    const updateLabel = record.state === 'failed'
+      ? 'Repair download'
+      : record.state === 'incomplete'
+        ? (record.usable ? 'Restart update' : 'Restart download')
+        : 'Update';
+    const updateButton = ['update-available', 'incomplete', 'failed'].includes(record.state)
       ? `<button type="button" class="od-btn od-btn--primary" data-action="update">${
-        signedIn ? updateLabel : 'Log in to update'
+        signedIn
+          ? updateLabel
+          : record.state === 'failed'
+            ? 'Log in to repair'
+            : record.state === 'incomplete'
+              ? 'Log in to restart'
+              : 'Log in to update'
       }</button>`
+      : '';
+    const openButton = record.usable
+      ? `<a class="od-btn od-btn--primary" href="${escapeHtml(record.offlineUrl)}">Open map</a>`
+      : '';
+    const selfTestButton = record.usable
+      ? '<button type="button" class="od-btn" data-action="self-test">Test offline</button>'
+      : '';
+    const removeButton = record.hasLocalData
+      ? '<button type="button" class="od-btn od-btn--danger" data-action="request-remove">Remove</button>'
       : '';
     const verificationLabel = record.verificationStatus === 'field-review-required'
       ? 'Beta field review pending'
       : `Verification ${record.verificationStatus || 'not recorded'}`;
+    const versionLabel = offline.formatPackageVersion(record.version);
+    const sizeLabel = Number.isFinite(record.packageBytes)
+      ? offline.formatBytes(record.packageBytes)
+      : 'Size unavailable';
     return `
       <article class="od-card" data-trail-id="${escapeHtml(record.trailId)}">
         <div>
           <div class="od-kicker">Offline trail map</div>
           <h2 class="serif">${escapeHtml(record.name || record.trailId)}</h2>
           <div class="od-meta">
-            <span>${escapeHtml(offline.formatBytes(record.packageBytes))}</span>
+            <span>${escapeHtml(sizeLabel)}</span>
             <span>Downloaded ${escapeHtml(offline.formatInstalledDate(record.installedAt))}</span>
-            <span>Version ${escapeHtml(record.version)}</span>
+            <span>${escapeHtml(versionLabel)}</span>
             <span>${escapeHtml(verificationLabel)}</span>
           </div>
           <p class="od-owner">${escapeHtml(offline.ownershipLabel(record.ownership))}</p>
           <span class="od-state" data-state="${state[0]}">${state[1]}</span>
+          ${record.stateMessage ? `<p class="od-owner">${escapeHtml(record.stateMessage)}</p>` : ''}
         </div>
         <div class="od-actions">
-          <a class="od-btn od-btn--primary" href="${escapeHtml(record.offlineUrl)}">Open map</a>
+          ${openButton}
           <a class="od-btn" href="${escapeHtml(record.trailUrl)}">Trail details</a>
+          ${selfTestButton}
           ${updateButton}
-          <button type="button" class="od-btn od-btn--danger" data-action="request-remove">Remove</button>
+          ${removeButton}
         </div>
         <p class="od-card-status" role="status" aria-live="polite" hidden></p>
         <div class="od-remove-confirm" hidden>
@@ -106,7 +134,7 @@
       error.hidden = true;
       empty.hidden = true;
       try{
-        records = await window.DoloPawsOffline.listInstalledPackages(currentUser());
+        records = await window.DoloPawsOffline.listPackageStates(currentUser());
         paint();
       }catch(refreshError){
         records = [];
@@ -165,6 +193,38 @@
 
       if(action.dataset.action === 'update'){
         await update(card, trailId, action);
+      }else if(action.dataset.action === 'self-test'){
+        action.disabled = true;
+        cardStatus(card, 'Testing required resources from this device…');
+        const result = await window.DoloPawsOffline.verifyInstalledPackage(
+          trailId,
+          (current, total, resource) => {
+            cardStatus(
+              card,
+              `Testing ${current} of ${total}: ${resource.label || resource.url}`
+            );
+          }
+        );
+        action.disabled = false;
+        if(result.usable){
+          cardStatus(
+            card,
+            `Offline self-test passed: ${result.requiredChecked} required resources ` +
+            `were checksum-verified locally. ${
+              result.state === 'stale'
+                ? 'The map works, but its content review is stale.'
+                : 'You can switch to airplane mode and open the map.'
+            }`,
+            result.state
+          );
+        }else{
+          cardStatus(
+            card,
+            `${result.message || 'The self-test failed.'} This package is not ready offline.`,
+            'error'
+          );
+          await refresh();
+        }
       }else if(action.dataset.action === 'request-remove'){
         actions.hidden = true;
         confirmation.hidden = false;

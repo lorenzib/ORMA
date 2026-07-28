@@ -147,6 +147,8 @@ All P0 and P1 work
 
 ### OFF-05 — Verify packages and expose truthful states
 
+- **Status:** Implemented for the first beta package; beta.5 iPhone self-test,
+  Android validation, and route-specific field review remain open (2026-07-29)
 - **Priority:** P0
 - **Size:** M
 - **Depends on:** OFF-03, OFF-04

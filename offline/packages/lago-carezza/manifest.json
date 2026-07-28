@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lago-carezza",
   "name": "Lago di Carezza Loop",
-  "version": "2026.07.28-beta.4",
-  "generatedAt": "2026-07-28T21:45:00Z",
+  "version": "2026.07.29-beta.5",
+  "generatedAt": "2026-07-29T08:00:00Z",
   "scoringVersion": "1.1.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 35665,
+  "packageBytes": 37729,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "north": 46.4113,
@@ -24,6 +24,69 @@
     "width": 1200,
     "height": 1140
   },
+  "evidence": {
+    "version": "1.0.0",
+    "tier": "mapped",
+    "tierLabel": "Mapped route",
+    "categories": {
+      "route": {
+        "sourceState": "mapped",
+        "sourceLabel": "Mapped data",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "water": {
+        "sourceState": "mapped",
+        "sourceLabel": "Mapped data",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "heat": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "exposure": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "livestock": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "surfaceHazards": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      },
+      "access": {
+        "sourceState": "unknown",
+        "sourceLabel": "Evidence unknown",
+        "freshnessState": "unknown",
+        "freshnessLabel": "Freshness unknown",
+        "observedAt": null,
+        "observedLabel": "date unknown"
+      }
+    }
+  },
   "attribution": "Route data © DoloPaws; © OpenStreetMap contributors where applicable",
   "licenceUrl": "https://www.openstreetmap.org/copyright",
   "resources": [
@@ -32,24 +95,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 3085,
-      "sha256": "f09c0cf38d0c96dc814d7a0c0da1f9ad7e73f7e6450e0221fd12cc4e08f30938"
+      "bytes": 3297,
+      "sha256": "ad4277b2e430c085476e0488b5af44bcc86700d5653f7e7e7090e0f7ca381a31"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 3320,
-      "sha256": "abe1160f53c264ee92fcc0bb46a5d4cb142f2848f70bf60dff5f5813500c9ad4"
+      "bytes": 3586,
+      "sha256": "86e74d2605095eef3cfdefe337fd04bc5a4c1f9102b3054a87414634ec126fc6"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 8567,
-      "sha256": "01e34d3a5cdea4666bbaccc675af00395c345a6cb2fd6d32363a62ac215d58ae"
+      "bytes": 10153,
+      "sha256": "274e3e0e7f953d8bf855faf019f3babc5fb6807a5320d36782ccf310a2b2a7e8"
     },
     {
       "role": "map",

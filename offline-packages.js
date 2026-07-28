@@ -13,6 +13,16 @@
   const METADATA_PREFIX = 'dolopaws-offline:';
   const OWNER_SALT_KEY = 'dolopaws-offline-owner-salt';
   const STORAGE_SAFETY_BYTES = 1024 * 1024;
+  const PACKAGE_STATES = Object.freeze([
+    'not-downloaded',
+    'downloading',
+    'ready',
+    'stale',
+    'incomplete',
+    'update-available',
+    'failed',
+    'removed',
+  ]);
 
   function bytesToHex(buffer){
     return Array.from(new Uint8Array(buffer))
@@ -102,6 +112,18 @@
 
   function resourceIsRequired(resource){
     return !resource || resource.required !== false;
+  }
+
+  function contentFreshnessState(manifest){
+    const categories = manifest && manifest.evidence && manifest.evidence.categories;
+    if(!categories || typeof categories !== 'object') return 'unknown';
+    const states = Object.values(categories).map(category =>
+      category && category.freshnessState || 'unknown'
+    );
+    if(states.includes('stale')) return 'stale';
+    if(!states.length || states.includes('unknown')) return 'unknown';
+    if(states.includes('aging')) return 'aging';
+    return states.every(state => state === 'current') ? 'current' : 'unknown';
   }
 
   function validateManifest(manifest, expectedTrailId){
@@ -207,6 +229,20 @@
     };
   }
 
+  async function verifyCachedResource(cache, resource, manifestUrl){
+    const url = resourceUrl(resource, manifestUrl);
+    const response = await cache.match(url);
+    if(!response) throw new Error(`${resource.label || resource.url} is missing from this device.`);
+    const buffer = await response.arrayBuffer();
+    if(buffer.byteLength !== resource.bytes){
+      throw new Error(`${resource.label || resource.url} has an unexpected stored size.`);
+    }
+    if(await sha256(buffer) !== resource.sha256){
+      throw new Error(`${resource.label || resource.url} failed its stored checksum.`);
+    }
+    return { url, bytes: buffer.byteLength };
+  }
+
   async function removeOlderVersions(trailId, keepName){
     const names = await caches.keys();
     await Promise.all(names
@@ -284,32 +320,102 @@
     }
   }
 
-  async function installedPackageRecord(trailId){
-    if(!('caches' in window)) return null;
+  async function inspectPackage(trailId, onProgress){
+    if(!('caches' in window)){
+      return {
+        state: 'failed',
+        usable: false,
+        hasLocalData: false,
+        message: 'Offline storage is not supported in this browser.',
+      };
+    }
     const config = PACKAGES[trailId];
-    if(!config) return null;
+    if(!config){
+      return { state: 'not-downloaded', usable: false, hasLocalData: false };
+    }
     const names = await caches.keys();
-    const candidates = names.filter(name => name.startsWith(`${CACHE_PREFIX}${trailId}-`) && !name.endsWith('-installing'));
+    const incomplete = names.some(name =>
+      name.startsWith(`${CACHE_PREFIX}${trailId}-`) && name.endsWith('-installing')
+    );
+    const candidates = names.filter(name =>
+      name.startsWith(`${CACHE_PREFIX}${trailId}-`) && !name.endsWith('-installing')
+    );
+    const metadata = readPackageMetadata(trailId);
+    if(metadata && metadata.cacheName && candidates.includes(metadata.cacheName)){
+      candidates.sort((first, second) =>
+        first === metadata.cacheName ? -1 : second === metadata.cacheName ? 1 : 0
+      );
+    }
+    let failureMessage = null;
     for(const name of candidates){
       const cache = await caches.open(name);
       const manifestResponse = await cache.match(new URL(config.manifestUrl, window.location.href).href);
-      if(!manifestResponse) continue;
+      if(!manifestResponse){
+        failureMessage = 'The stored package manifest is missing.';
+        continue;
+      }
       try{
         const manifest = validateManifest(await manifestResponse.json(), trailId);
-        const complete = (await Promise.all(manifest.resources
-          .filter(resourceIsRequired)
-          .map(resource =>
-          cache.match(resourceUrl(resource, config.manifestUrl))
-          ))).every(Boolean);
-        if(complete){
-          return {
-            manifest,
-            metadata: readPackageMetadata(trailId),
-          };
+        const required = manifest.resources.filter(resourceIsRequired);
+        for(let index = 0; index < required.length; index += 1){
+          if(onProgress) onProgress(index + 1, required.length, required[index]);
+          await verifyCachedResource(cache, required[index], config.manifestUrl);
         }
-      }catch(error){ /* inspect the next cache */ }
+        const freshness = contentFreshnessState(manifest);
+        return {
+          state: incomplete ? 'incomplete' : freshness === 'stale' ? 'stale' : 'ready',
+          usable: true,
+          hasLocalData: true,
+          manifest,
+          metadata,
+          cacheName: name,
+          requiredChecked: required.length,
+          contentFreshness: freshness,
+          checkedAt: new Date().toISOString(),
+          message: incomplete
+            ? 'A previous update was interrupted; the existing verified package remains usable.'
+            : null,
+        };
+      }catch(error){
+        failureMessage = error.message || 'A stored package resource failed verification.';
+      }
     }
-    return null;
+    if(candidates.length){
+      return {
+        state: 'failed',
+        usable: false,
+        hasLocalData: true,
+        metadata,
+        message: failureMessage || 'The stored package failed verification.',
+      };
+    }
+    if(incomplete){
+      return {
+        state: 'incomplete',
+        usable: false,
+        hasLocalData: true,
+        metadata,
+        message: 'A previous download was interrupted. No partial package is ready offline.',
+      };
+    }
+    return { state: 'not-downloaded', usable: false, hasLocalData: false, metadata };
+  }
+
+  async function verifyInstalledPackage(trailId, onProgress){
+    return inspectPackage(trailId, onProgress);
+  }
+
+  async function installedPackageRecord(trailId){
+    const inspection = await inspectPackage(trailId);
+    if(!inspection.usable) return null;
+    return {
+      manifest: inspection.manifest,
+      metadata: inspection.metadata,
+      state: inspection.state,
+      checkedAt: inspection.checkedAt,
+      requiredChecked: inspection.requiredChecked,
+      contentFreshness: inspection.contentFreshness,
+    };
   }
 
   async function installedPackage(trailId){
@@ -343,27 +449,43 @@
   }
 
   async function listInstalledPackages(user){
+    return (await listPackageStates(user)).filter(record => record.usable);
+  }
+
+  async function listPackageStates(user){
     const records = [];
     for(const trailId of Object.keys(PACKAGES)){
       const config = PACKAGES[trailId];
-      const record = await installedPackageRecord(trailId);
-      if(!record) continue;
+      const inspection = await inspectPackage(trailId);
+      if(inspection.state === 'not-downloaded') continue;
       let available = null;
       try{ available = await availablePackage(trailId); }catch(error){ /* offline is expected */ }
+      const manifest = inspection.manifest;
+      const updateAvailable = !!(
+        manifest && available && available.version !== manifest.version
+      );
       records.push({
         trailId,
         name: config.name,
         trailUrl: config.trailUrl,
         offlineUrl: config.offlineUrl,
-        version: record.manifest.version,
-        packageBytes: record.manifest.packageBytes,
-        installedAt: record.metadata && record.metadata.installedAt || null,
-        verificationStatus: record.manifest.verificationStatus,
-        ownership: await ownershipState(record.metadata, user),
-        incomplete: await incompleteInstallation(trailId),
-        updateAvailable: !!(
-          available && available.version !== record.manifest.version
-        ),
+        version: manifest && manifest.version || null,
+        packageBytes: manifest && manifest.packageBytes ||
+          inspection.metadata && inspection.metadata.packageBytes || null,
+        installedAt: inspection.metadata && inspection.metadata.installedAt || null,
+        verificationStatus: manifest && manifest.verificationStatus ||
+          inspection.metadata && inspection.metadata.verificationStatus || null,
+        ownership: await ownershipState(inspection.metadata, user),
+        state: ['ready', 'stale'].includes(inspection.state) && updateAvailable
+          ? 'update-available'
+          : inspection.state,
+        stateMessage: inspection.message,
+        usable: inspection.usable,
+        hasLocalData: inspection.hasLocalData,
+        updateAvailable,
+        requiredChecked: inspection.requiredChecked || 0,
+        contentFreshness: inspection.contentFreshness || 'unknown',
+        checkedAt: inspection.checkedAt || null,
       });
     }
     return records;
@@ -375,13 +497,20 @@
     return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   }
 
+  function formatPackageVersion(version){
+    const beta = String(version || '').match(/beta\.(\d+)$/i);
+    if(beta) return `Beta package ${beta[1]}`;
+    return version ? `Package ${version}` : 'Package revision unavailable';
+  }
+
   function initPanel(){
     const panel = document.getElementById('offlinePackagePanel');
     const downloadButton = document.getElementById('offlineDownloadBtn');
     const openButton = document.getElementById('offlineOpenBtn');
+    const testButton = document.getElementById('offlineTestBtn');
     const removeButton = document.getElementById('offlineRemoveBtn');
     const status = document.getElementById('offlinePackageStatus');
-    if(!panel || !downloadButton || !openButton || !removeButton || !status) return;
+    if(!panel || !downloadButton || !openButton || !testButton || !removeButton || !status) return;
 
     const trailId = new URLSearchParams(window.location.search).get('id');
     if(!PACKAGES[trailId]) return;
@@ -398,10 +527,10 @@
 
     async function refresh(options){
       const failureMessage = options && options.failureMessage;
-      const record = await installedPackageRecord(trailId);
-      const manifest = record && record.manifest;
-      const metadata = record && record.metadata;
-      const incomplete = await incompleteInstallation(trailId);
+      const removed = options && options.removed;
+      const inspection = await inspectPackage(trailId);
+      const manifest = inspection.usable ? inspection.manifest : null;
+      const metadata = inspection.metadata;
       let available = null;
       try{ available = await availablePackage(trailId); }catch(error){ /* offline is expected */ }
       const updateAvailable = !!(manifest && available && manifest.version !== available.version);
@@ -411,9 +540,13 @@
           window.DoloPawsAuth && window.DoloPawsAuth.currentUser
         )
         : null;
-      openButton.hidden = !manifest;
-      removeButton.hidden = !manifest;
-      downloadButton.hidden = !!manifest && !updateAvailable && !incomplete && !failureMessage;
+      openButton.hidden = !inspection.usable;
+      testButton.hidden = !inspection.usable;
+      removeButton.hidden = !inspection.hasLocalData;
+      downloadButton.hidden = (
+        inspection.state === 'ready' ||
+        inspection.state === 'stale'
+      ) && !updateAvailable && !failureMessage;
       if(failureMessage){
         downloadButton.textContent = signedIn()
           ? (manifest ? 'Retry update' : 'Retry download')
@@ -426,7 +559,17 @@
           }`,
           'failed'
         );
-      }else if(incomplete){
+      }else if(removed){
+        downloadButton.textContent = signedIn() ? 'Download again' : 'Log in to download';
+        setStatus('Removed from this device. No offline package remains.', 'removed');
+      }else if(inspection.state === 'failed'){
+        downloadButton.textContent = signedIn() ? 'Repair download' : 'Log in to repair';
+        setStatus(
+          `${inspection.message || 'The stored package failed verification.'} ` +
+          'It is not ready offline. Repair or remove it.',
+          'failed'
+        );
+      }else if(inspection.state === 'incomplete'){
         downloadButton.textContent = signedIn()
           ? (manifest ? 'Restart update' : 'Restart download')
           : 'Log in to retry';
@@ -441,25 +584,42 @@
       }else if(updateAvailable){
         downloadButton.textContent = signedIn() ? 'Update offline map' : 'Log in to update';
         setStatus(
-          `Update ${available.version} available · current package ${
+          `Update available · current package ${
             formatBytes(manifest.packageBytes)
           } · downloaded ${formatInstalledDate(metadata && metadata.installedAt)} · ${
             ownershipLabel(ownership)
           }. Your existing package remains usable offline.`,
-          ''
+          'update-available'
+        );
+      }else if(inspection.state === 'stale'){
+        setStatus(
+          `Ready offline, but at least one content review is stale · ${
+            formatBytes(manifest.packageBytes)
+          } · downloaded ${formatInstalledDate(metadata && metadata.installedAt)} · ${
+            ownershipLabel(ownership)
+          }. Check current notices before hiking.`,
+          'stale'
         );
       }else if(manifest){
         setStatus(
           `Ready offline · ${formatBytes(manifest.packageBytes)} · downloaded ${
             formatInstalledDate(metadata && metadata.installedAt)
-          } · ${ownershipLabel(ownership)} · beta verification data`,
+          } · ${ownershipLabel(ownership)} · content freshness ${
+            inspection.contentFreshness
+          } · ${inspection.requiredChecked} required resources checked`,
           'ready'
         );
       }else if(signedIn()){
-        setStatus('Download the beta package, then test it in airplane mode.');
+        setStatus(
+          'Not downloaded on this device. Download it, then run the offline self-test.',
+          'not-downloaded'
+        );
         downloadButton.textContent = 'Download test package';
       }else{
-        setStatus('Log in to download. An installed package will remain available if your session expires.');
+        setStatus(
+          'Not downloaded on this device. Log in to download; a completed package remains available if your session expires.',
+          'not-downloaded'
+        );
         downloadButton.textContent = 'Log in to download';
       }
     }
@@ -481,7 +641,12 @@
           },
           window.DoloPawsAuth.currentUser
         );
-        setStatus(`Verified ${manifest.resources.length} required resources.`, 'ready');
+        setStatus(
+          `Verified ${
+            manifest.resources.filter(resourceIsRequired).length
+          } required resources.`,
+          'ready'
+        );
       }catch(error){
         failureMessage = error.message || 'The package could not be downloaded.';
       }finally{
@@ -491,12 +656,43 @@
     }
 
     downloadButton.addEventListener('click', download);
+    testButton.addEventListener('click', async () => {
+      testButton.disabled = true;
+      setStatus('Testing required resources from this device…', 'checking');
+      const result = await verifyInstalledPackage(
+        trailId,
+        (current, total, resource) => {
+          setStatus(
+            `Testing ${current} of ${total}: ${resource.label || resource.url}`,
+            'checking'
+          );
+        }
+      );
+      testButton.disabled = false;
+      if(result.usable){
+        setStatus(
+          `Offline self-test passed: ${result.requiredChecked} required resources ` +
+          `were checksum-verified from this device. ${
+            result.state === 'stale'
+              ? 'The stored map works, but content review is stale.'
+              : 'You can now switch to airplane mode and open the map.'
+          }`,
+          result.state
+        );
+      }else{
+        setStatus(
+          `${result.message || 'The offline self-test failed.'} ` +
+          'This package is not ready offline.',
+          result.state === 'incomplete' ? 'incomplete' : 'failed'
+        );
+      }
+    });
     removeButton.addEventListener('click', async () => {
       removeButton.disabled = true;
       setStatus('Removing this trail from this device…');
       await removePackage(trailId);
       removeButton.disabled = false;
-      await refresh();
+      await refresh({ removed: true });
     });
 
     function authChanged(){
@@ -514,8 +710,11 @@
     installPackage,
     installedPackage,
     installedPackageRecord,
+    inspectPackage,
+    verifyInstalledPackage,
     incompleteInstallation,
     listInstalledPackages,
+    listPackageStates,
     availablePackage,
     removePackage,
     ownerMarkerFor,
@@ -525,11 +724,15 @@
     formatInstalledDate,
     validateManifest,
     formatBytes,
+    formatPackageVersion,
     requiredStorageBytes,
     storageCapacity,
     assertStorageCapacity,
     isQuotaError,
     resourceIsRequired,
+    contentFreshnessState,
+    verifyCachedResource,
+    PACKAGE_STATES,
   };
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initPanel);

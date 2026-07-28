@@ -1,5 +1,5 @@
 const { TextEncoder } = require('util');
-const { webcrypto } = require('crypto');
+const { webcrypto, createHash } = require('crypto');
 
 describe('OFF-03 offline package ownership metadata', () => {
   beforeEach(() => {
@@ -59,6 +59,8 @@ describe('OFF-03 offline package ownership metadata', () => {
       .not.toBe('date unavailable');
     expect(window.DoloPawsOffline.formatInstalledDate(null))
       .toBe('date unavailable');
+    expect(window.DoloPawsOffline.formatPackageVersion('2026.07.29-beta.5'))
+      .toBe('Beta package 5');
   });
 
   test('keeps lifecycle details visible when an update is available', () => {
@@ -184,5 +186,136 @@ describe('OFF-03 offline package ownership metadata', () => {
         sha256: 'abc',
       }],
     }, 'lago-carezza')).toThrow(/exceeds its declared storage budget/);
+  });
+
+  test('publishes every truthful OFF-05 lifecycle state', () => {
+    expect(window.DoloPawsOffline.PACKAGE_STATES).toEqual([
+      'not-downloaded',
+      'downloading',
+      'ready',
+      'stale',
+      'incomplete',
+      'update-available',
+      'failed',
+      'removed',
+    ]);
+  });
+
+  test('derives stale content without treating unknown dates as current', () => {
+    const freshness = state => ({
+      evidence: {
+        categories: {
+          route: { freshnessState: state },
+          water: { freshnessState: 'current' },
+        },
+      },
+    });
+    expect(window.DoloPawsOffline.contentFreshnessState(freshness('stale'))).toBe('stale');
+    expect(window.DoloPawsOffline.contentFreshnessState({
+      evidence: {
+        categories: {
+          route: { freshnessState: 'stale' },
+          access: { freshnessState: 'unknown' },
+        },
+      },
+    })).toBe('stale');
+    expect(window.DoloPawsOffline.contentFreshnessState(freshness('aging'))).toBe('aging');
+    expect(window.DoloPawsOffline.contentFreshnessState(freshness('unknown'))).toBe('unknown');
+    expect(window.DoloPawsOffline.contentFreshnessState({})).toBe('unknown');
+  });
+
+  function cacheFixture(resourceResponse){
+    const bytes = new TextEncoder().encode('verified map bytes');
+    const manifest = {
+      schemaVersion: 1,
+      trailId: 'lago-carezza',
+      version: 'self-test',
+      packageBytes: bytes.byteLength,
+      evidence: {
+        categories: {
+          route: { freshnessState: 'current' },
+        },
+      },
+      resources: [{
+        role: 'map',
+        required: true,
+        label: 'Stored map',
+        url: 'map.svg',
+        bytes: bytes.byteLength,
+        sha256: createHash('sha256').update(bytes).digest('hex'),
+      }, {
+        role: 'optional',
+        required: false,
+        label: 'Optional overlay',
+        url: 'overlay.json',
+        bytes: 1,
+        sha256: 'optional',
+      }],
+    };
+    const cache = {
+      match: jest.fn(async input => {
+        const url = String(input && input.url || input);
+        if(url.endsWith('/manifest.json')){
+          return { json: jest.fn().mockResolvedValue(manifest) };
+        }
+        if(url.endsWith('/map.svg')) return resourceResponse(bytes);
+        return undefined;
+      }),
+    };
+    Object.defineProperty(window, 'caches', {
+      configurable: true,
+      value: {
+        keys: jest.fn().mockResolvedValue([
+          'dolopaws-trail-lago-carezza-self-test',
+        ]),
+        open: jest.fn().mockResolvedValue(cache),
+      },
+    });
+    return { bytes, cache };
+  }
+
+  test('self-test checksum-verifies required cached resources without optional layers', async () => {
+    const fixture = cacheFixture(bytes => ({
+      arrayBuffer: jest.fn().mockResolvedValue(
+        bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength)
+      ),
+    }));
+    const previousFetch = global.fetch;
+    const fetchMock = jest.fn();
+    Object.defineProperty(global, 'fetch', { configurable: true, value: fetchMock });
+    try{
+      const result = await window.DoloPawsOffline.verifyInstalledPackage('lago-carezza');
+      expect(result).toMatchObject({
+        state: 'ready',
+        usable: true,
+        requiredChecked: 1,
+        contentFreshness: 'current',
+      });
+      expect(fetchMock).not.toHaveBeenCalled();
+      expect(fixture.cache.match).not.toHaveBeenCalledWith(
+        expect.stringContaining('overlay.json')
+      );
+    }finally{
+      Object.defineProperty(global, 'fetch', {
+        configurable: true,
+        value: previousFetch,
+      });
+    }
+  });
+
+  test.each([
+    ['missing', () => undefined, /missing from this device/],
+    ['corrupt', () => ({
+      arrayBuffer: jest.fn().mockResolvedValue(
+        new TextEncoder().encode('wrong bytes').buffer
+      ),
+    }), /unexpected stored size|stored checksum/],
+  ])('self-test rejects a %s required cached resource', async (_case, response, message) => {
+    cacheFixture(response);
+    const result = await window.DoloPawsOffline.verifyInstalledPackage('lago-carezza');
+
+    expect(result.state).toBe('failed');
+    expect(result.usable).toBe(false);
+    expect(result.message).toMatch(message);
   });
 });

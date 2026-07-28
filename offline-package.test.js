@@ -73,6 +73,25 @@ describe('Lago di Carezza offline package', () => {
     expect(app).toContain('if(resource.required !== false) throw error');
   });
 
+  test('stores the complete evidence and freshness snapshot without inventing dates', () => {
+    expect(manifest.evidence.version).toBe('1.0.0');
+    expect(manifest.evidence.tier).toBe('mapped');
+    expect(Object.keys(manifest.evidence.categories).sort()).toEqual([
+      'access',
+      'exposure',
+      'heat',
+      'livestock',
+      'route',
+      'surfaceHazards',
+      'water',
+    ]);
+    for(const category of Object.values(manifest.evidence.categories)){
+      expect(category.freshnessState).toBe('unknown');
+      expect(category.observedAt).toBeNull();
+      expect(category.observedLabel).toBe('date unknown');
+    }
+  });
+
   test('route is a closed LineString inside the package bounds', () => {
     const route = JSON.parse(fs.readFileSync(path.join(packageDir, 'route.geojson'), 'utf8'));
     const coordinates = route.features[0].geometry.coordinates;

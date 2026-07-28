@@ -23,6 +23,8 @@
     emergency: document.getElementById('emergency'),
     verificationNotice: document.getElementById('verificationNotice'),
     packageMeta: document.getElementById('packageMeta'),
+    evidenceNotice: document.getElementById('evidenceNotice'),
+    evidenceList: document.getElementById('evidenceList'),
     licenceLink: document.getElementById('licenceLink'),
     networkState: document.getElementById('networkState'),
   };
@@ -74,6 +76,14 @@
     term.textContent = label;
     detail.textContent = value;
     elements.facts.append(term, detail);
+  }
+
+  function addEvidence(label, value){
+    const term = document.createElement('dt');
+    const detail = document.createElement('dd');
+    term.textContent = label;
+    detail.textContent = value;
+    elements.evidenceList.append(term, detail);
   }
 
   function positionPercent(lat, lng, bounds){
@@ -155,7 +165,8 @@
 
       const safety = await resources.safety.json();
       elements.trailName.textContent = manifest.name;
-      elements.packageState.textContent = `Verified ${manifest.resources.length} stored resources · ${formatBytes(manifest.packageBytes)}`;
+      const requiredCount = manifest.resources.filter(resource => resource.required !== false).length;
+      elements.packageState.textContent = `Checksum-verified ${requiredCount} required stored resources · ${formatBytes(manifest.packageBytes)}`;
       elements.offlineMap.src = URL.createObjectURL(await resources.map.blob());
       if(manifest.image && manifest.image.width && manifest.image.height){
         elements.mapFrame.style.aspectRatio = `${manifest.image.width} / ${manifest.image.height}`;
@@ -178,6 +189,32 @@
         ? 'This package is technically verified but its route and safety content still require a dated field review.'
         : 'This package has passed the declared content review.';
       elements.packageMeta.textContent = `Package ${manifest.version} · scoring ${manifest.scoringVersion || 'not recorded'} · generated ${manifest.generatedAt.slice(0, 10)} · ${manifest.attribution}`;
+      const evidence = manifest.evidence;
+      const categoryLabels = {
+        route: 'Route',
+        water: 'Water',
+        heat: 'Heat and shade',
+        exposure: 'Exposure',
+        livestock: 'Livestock',
+        surfaceHazards: 'Surface hazards',
+        access: 'Dog access',
+      };
+      if(evidence && evidence.categories){
+        elements.evidenceNotice.textContent = `${
+          evidence.tierLabel || evidence.tier || 'Evidence tier unavailable'
+        } · evidence contract ${evidence.version || 'not recorded'}`;
+        Object.entries(evidence.categories).forEach(([category, detail]) => {
+          addEvidence(
+            categoryLabels[category] || category,
+            `${detail.sourceLabel || detail.sourceState || 'Evidence unknown'} · ${
+              detail.freshnessLabel || detail.freshnessState || 'Freshness unknown'
+            } · ${detail.observedLabel || detail.observedAt || 'date unknown'}`
+          );
+        });
+      }else{
+        elements.evidenceNotice.textContent =
+          'This legacy package has no stored category-evidence snapshot.';
+      }
       elements.licenceLink.href = manifest.licenceUrl;
       elements.locationButton.addEventListener('click', () => startLocation(manifest.bounds));
 

@@ -21,7 +21,7 @@ The manifest records a versioned `fixed-bounds-svg-v1` policy:
 - the complete package must remain at or below 5 MB; and
 - the route, map, and safety resources are mandatory.
 
-The current `2026.07.28-beta.4` package is approximately 35 KB.
+The current `2026.07.29-beta.5` package is approximately 37 KB.
 
 ## Acceptance evidence
 

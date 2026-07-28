@@ -278,6 +278,7 @@ body{background:#EFECE2;}
 .offline-package-status[data-state="error"]{color:#FFD2C8;}
 .offline-package-status[data-state="failed"]{color:#FFD2C8;}
 .offline-package-status[data-state="incomplete"]{color:#FFE6A6;}
+.offline-package-status[data-state="stale"],.offline-package-status[data-state="update-available"]{color:#FFE6A6;}
 .offline-package-status[data-state="ready"]{color:#BDEBD9;}
 .offline-package .td2-btn-g{min-height:38px;padding:9px 12px;}
 .offline-package .td2-btn-g[hidden],.offline-package-open[hidden]{display:none!important;}
@@ -595,6 +596,7 @@ body{background:#EFECE2;}
             <div class="offline-package-row">
               <strong id="offlinePackageTitle" style="font-size:12px;color:#fff;margin-right:auto;">Offline beta</strong>
               <a id="offlineOpenBtn" class="offline-package-open" href="offline/trail.html?id=lago-carezza" hidden>Open offline map</a>
+              <button id="offlineTestBtn" class="td2-btn-g" type="button" hidden>Test offline</button>
               <button id="offlineRemoveBtn" class="td2-btn-g" type="button" hidden>Remove</button>
               <button id="offlineDownloadBtn" class="td2-btn-g" type="button">Download test package</button>
             </div>
@@ -775,7 +777,7 @@ body{background:#EFECE2;}
 <script type="module" src="firebase-init.js"></script>
 <script src="icon-system.js?v=20260717" defer></script>
 <script src="auth-ui.js?v=20260724-3" defer></script>
-<script src="offline-packages.js?v=20260728-5" defer></script>
+<script src="offline-packages.js?v=20260729-1" defer></script>
 <script src="breeds-data.js" defer></script>
 <script src="trust/evidence-v1.js?v=20260728-1" defer></script>
 <script src="scoring/recommendation-v1.js?v=20260728-2" defer></script>
