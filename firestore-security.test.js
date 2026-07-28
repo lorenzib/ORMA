@@ -49,8 +49,8 @@ describe('SEC-01 Firestore configuration contract', () => {
   });
 
   test('community publication depends on immutable authentication claims', () => {
-    expect(rules).toContain('request.auth.token.contributor == true');
-    expect(rules).toContain('request.auth.token.moderator == true');
+    expect(rules).toContain("request.auth.token.get('contributor', false) == true");
+    expect(rules).toContain("request.auth.token.get('moderator', false) == true");
     expect(rules).toContain('request.resource.data.uid == request.auth.uid');
     expect(rules).toContain('request.resource.data.createdAt == resource.data.createdAt');
     expect(rules.match(/request\.resource\.data\.createdAt == request\.time/g).length)

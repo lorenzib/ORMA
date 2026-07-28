@@ -396,6 +396,7 @@ All P0 and P1 work
 
 ### SEC-02 — Test Firestore allow and deny cases
 
+- **Status:** Complete (2026-07-28)
 - **Priority:** P0
 - **Size:** M
 - **Depends on:** SEC-01

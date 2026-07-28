@@ -102,8 +102,8 @@ publish Firestore rules.
 
 ## Follow-ons
 
-- **SEC-02:** semantic emulator tests for unauthenticated, owner, other-user,
-  contributor, moderator, malformed, query, and transition cases.
+- **SEC-02:** complete; semantic emulator tests cover unauthenticated, owner,
+  other-user, contributor, moderator, malformed, query, and transition cases.
 - **AUTH-02:** trusted contributor-claim eligibility and recovery UX.
 - **MOD-01/02:** pending/visible policy, moderation queue, and audit records.
 - **AUTH-03:** complete cross-collection server deletion and local cleanup.

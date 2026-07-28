@@ -1,0 +1,398 @@
+/** @jest-environment node */
+
+const fs = require('fs');
+const path = require('path');
+const {
+  initializeTestEnvironment,
+  assertFails,
+  assertSucceeds,
+} = require('@firebase/rules-unit-testing');
+const {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  serverTimestamp,
+  setLogLevel,
+  setDoc,
+  Timestamp,
+  updateDoc,
+  where,
+} = require('firebase/firestore');
+
+const PROJECT_ID = 'demo-dolopaws';
+const rules = fs.readFileSync(path.join(__dirname, 'firestore.rules'), 'utf8');
+let testEnv;
+setLogLevel('error');
+
+const ordinaryDb = uid =>
+  testEnv.authenticatedContext(uid, { email_verified: true }).firestore();
+const contributorDb = uid =>
+  testEnv.authenticatedContext(uid, {
+    email_verified: true,
+    contributor: true,
+  }).firestore();
+const moderatorDb = uid =>
+  testEnv.authenticatedContext(uid, {
+    email_verified: true,
+    moderator: true,
+  }).firestore();
+
+async function seed(entries){
+  await testEnv.withSecurityRulesDisabled(async context => {
+    const db = context.firestore();
+    for(const [documentPath, data] of entries){
+      await setDoc(doc(db, documentPath), data);
+    }
+  });
+}
+
+function validFlag(uid, overrides = {}){
+  return {
+    trailId: 'lago-carezza',
+    uid,
+    type: 'water-dry',
+    km: 0.7,
+    text: 'The mapped fountain was dry.',
+    dogContext: null,
+    status: 'active',
+    createdAt: serverTimestamp(),
+    ...overrides,
+  };
+}
+
+function validReview(uid, overrides = {}){
+  return {
+    trailId: 'lago-carezza',
+    uid,
+    rating: 4,
+    text: 'A useful recent review.',
+    dogContext: null,
+    hikedOn: null,
+    status: 'visible',
+    createdAt: serverTimestamp(),
+    ...overrides,
+  };
+}
+
+function validPhoto(uid, overrides = {}){
+  return {
+    trailId: 'lago-carezza',
+    uid,
+    image: 'data:image/jpeg;base64,YQ==',
+    caption: 'Trail conditions today.',
+    dogContext: null,
+    status: 'visible',
+    createdAt: serverTimestamp(),
+    ...overrides,
+  };
+}
+
+beforeAll(async () => {
+  const [host, rawPort] = (process.env.FIRESTORE_EMULATOR_HOST || '127.0.0.1:8080').split(':');
+  testEnv = await initializeTestEnvironment({
+    projectId: PROJECT_ID,
+    firestore: {
+      rules,
+      host,
+      port: Number(rawPort),
+    },
+  });
+});
+
+beforeEach(async () => {
+  await testEnv.clearFirestore();
+});
+
+afterAll(async () => {
+  if(testEnv) await testEnv.cleanup();
+});
+
+describe('private user documents', () => {
+  test('owner access succeeds while guests, other users, and collection listing fail', async () => {
+    const owner = ordinaryDb('owner-1');
+    const other = ordinaryDb('other-1');
+    const guest = testEnv.unauthenticatedContext().firestore();
+    const userRef = doc(owner, 'users/owner-1');
+
+    await assertSucceeds(setDoc(userRef, {
+      favorites: { 'lago-carezza': true },
+      dog: { name: 'Luna', fitness: 'moderate' },
+      lastMatches: ['lago-carezza'],
+    }));
+    await assertSucceeds(getDoc(userRef));
+    await assertFails(getDoc(doc(other, 'users/owner-1')));
+    await assertFails(getDoc(doc(guest, 'users/owner-1')));
+    await assertFails(getDocs(collection(owner, 'users')));
+    await assertFails(updateDoc(doc(other, 'users/owner-1'), {
+      lastMatches: ['other-trail'],
+    }));
+    await assertFails(deleteDoc(doc(other, 'users/owner-1')));
+    await assertSucceeds(deleteDoc(userRef));
+  });
+
+  test('clients cannot self-assign roles or write malformed profile data', async () => {
+    const owner = ordinaryDb('owner-1');
+    const tooManyFavorites = Object.fromEntries(
+      Array.from({ length: 251 }, (_, index) => [`trail-${index}`, true])
+    );
+
+    await assertFails(setDoc(doc(owner, 'users/owner-1'), {
+      contributor: true,
+    }));
+    await assertFails(setDoc(doc(owner, 'users/owner-1'), {
+      favorites: tooManyFavorites,
+    }));
+    await assertFails(setDoc(doc(owner, 'users/owner-1'), {
+      dog: { name: 'Luna', owner: { email: 'x'.repeat(255) } },
+    }));
+    await assertFails(setDoc(doc(owner, 'users/owner-1'), {
+      dogs: [{ name: 'Legacy role injection', moderator: true }],
+    }));
+  });
+});
+
+describe('anonymous hike counter', () => {
+  test('accepts only a server timestamp and exposes no identity or location fields', async () => {
+    const guest = testEnv.unauthenticatedContext().firestore();
+    const eventRef = doc(guest, 'hikeEvents/lago-carezza/events/event-1');
+
+    await assertSucceeds(setDoc(eventRef, { startedAt: serverTimestamp() }));
+    await assertSucceeds(getDoc(eventRef));
+    await assertFails(setDoc(
+      doc(guest, 'hikeEvents/lago-carezza/events/event-2'),
+      { startedAt: serverTimestamp(), uid: 'spoofed' }
+    ));
+    await assertFails(setDoc(
+      doc(guest, 'hikeEvents/lago-carezza/events/event-3'),
+      { startedAt: serverTimestamp(), latitude: 46.4, longitude: 11.5 }
+    ));
+    await assertFails(updateDoc(eventRef, { startedAt: serverTimestamp() }));
+    await assertSucceeds(deleteDoc(
+      doc(moderatorDb('moderator-1'), 'hikeEvents/lago-carezza/events/event-1')
+    ));
+  });
+
+  test('supports the public weekly count query shape', async () => {
+    await seed([
+      ['hikeEvents/lago-carezza/events/event-1', { startedAt: Timestamp.now() }],
+    ]);
+    const guest = testEnv.unauthenticatedContext().firestore();
+    await assertSucceeds(getDocs(query(
+      collection(guest, 'hikeEvents/lago-carezza/events'),
+      where('startedAt', '>', Timestamp.fromMillis(Date.now() - 604800000))
+    )));
+  });
+});
+
+describe('hazard flags', () => {
+  test('only contributors publish and authors cannot change moderation state', async () => {
+    const ordinary = ordinaryDb('ordinary-1');
+    const author = contributorDb('author-1');
+    const other = contributorDb('other-1');
+    const flagRef = doc(author, 'flags/flag-1');
+
+    await assertFails(setDoc(doc(ordinary, 'flags/ordinary-flag'), validFlag('ordinary-1')));
+    await assertSucceeds(setDoc(flagRef, validFlag('author-1')));
+    await assertFails(setDoc(doc(author, 'flags/spoofed-flag'), validFlag('other-1')));
+    await assertSucceeds(updateDoc(flagRef, { text: 'Updated field observation.' }));
+    await assertFails(updateDoc(flagRef, { status: 'hidden' }));
+    await assertFails(updateDoc(doc(other, 'flags/flag-1'), { text: 'Hijacked.' }));
+    await assertFails(deleteDoc(doc(other, 'flags/flag-1')));
+    await assertSucceeds(deleteDoc(flagRef));
+  });
+
+  test('rejects malformed content and protects non-active states from public reads', async () => {
+    const author = contributorDb('author-1');
+    await assertFails(setDoc(
+      doc(author, 'flags/bad-type'),
+      validFlag('author-1', { type: 'verified-safe' })
+    ));
+    await assertFails(setDoc(
+      doc(author, 'flags/too-long'),
+      validFlag('author-1', { text: 'x'.repeat(301) })
+    ));
+    await seed([
+      ['flags/active-flag', {
+        ...validFlag('author-1'),
+        createdAt: Timestamp.now(),
+      }],
+      ['flags/hidden-flag', {
+        ...validFlag('author-1', { status: 'hidden' }),
+        createdAt: Timestamp.now(),
+      }],
+    ]);
+    const guest = testEnv.unauthenticatedContext().firestore();
+    await assertSucceeds(getDoc(doc(guest, 'flags/active-flag')));
+    await assertFails(getDoc(doc(guest, 'flags/hidden-flag')));
+    await assertSucceeds(getDocs(query(
+      collection(guest, 'flags'),
+      where('trailId', '==', 'lago-carezza'),
+      where('status', '==', 'active')
+    )));
+    await assertFails(getDocs(collection(guest, 'flags')));
+  });
+
+  test('moderators can change only state and moderation metadata', async () => {
+    await seed([['flags/flag-1', {
+      ...validFlag('author-1'),
+      createdAt: Timestamp.now(),
+    }]]);
+    const moderator = moderatorDb('moderator-1');
+    const ref = doc(moderator, 'flags/flag-1');
+    await assertSucceeds(updateDoc(ref, {
+      status: 'hidden',
+      moderatedAt: serverTimestamp(),
+      moderatedBy: 'moderator-1',
+    }));
+    await assertFails(updateDoc(ref, { text: 'Moderator rewrote the report.' }));
+    await assertSucceeds(getDoc(ref));
+  });
+});
+
+describe('reviews and ratings', () => {
+  test('enforces contributor eligibility, deterministic ownership, and bounded ratings', async () => {
+    const ordinary = ordinaryDb('ordinary-1');
+    const author = contributorDb('author-1');
+    const other = contributorDb('other-1');
+    const reviewRef = doc(author, 'reviews/lago-carezza_author-1');
+
+    await assertFails(setDoc(
+      doc(ordinary, 'reviews/lago-carezza_ordinary-1'),
+      validReview('ordinary-1')
+    ));
+    await assertFails(setDoc(
+      doc(author, 'reviews/arbitrary-id'),
+      validReview('author-1')
+    ));
+    await assertFails(setDoc(
+      doc(author, 'reviews/lago-carezza_author-1'),
+      validReview('author-1', { rating: 6 })
+    ));
+    await assertSucceeds(setDoc(reviewRef, validReview('author-1')));
+    await assertFails(updateDoc(
+      doc(other, 'reviews/lago-carezza_author-1'),
+      { text: 'Attempted ownership bypass.' }
+    ));
+    await assertFails(deleteDoc(doc(other, 'reviews/lago-carezza_author-1')));
+    await assertSucceeds(deleteDoc(reviewRef));
+  });
+
+  test('allows an author edit but rejects duplicate writes that reset freshness', async () => {
+    const author = contributorDb('author-1');
+    const ref = doc(author, 'reviews/lago-carezza_author-1');
+    await assertSucceeds(setDoc(ref, validReview('author-1')));
+    await assertSucceeds(updateDoc(ref, { text: 'Edited without resetting time.' }));
+    await assertFails(setDoc(ref, validReview('author-1', {
+      text: 'Attempted freshness reset.',
+    })));
+    await assertFails(updateDoc(ref, { status: 'hidden' }));
+  });
+
+  test('visible queries succeed while hidden records and unfiltered lists fail publicly', async () => {
+    await seed([
+      ['reviews/lago-carezza_author-1', {
+        ...validReview('author-1'),
+        createdAt: Timestamp.now(),
+      }],
+      ['reviews/lago-carezza_author-2', {
+        ...validReview('author-2', { status: 'hidden' }),
+        createdAt: Timestamp.now(),
+      }],
+    ]);
+    const guest = testEnv.unauthenticatedContext().firestore();
+    await assertSucceeds(getDocs(query(
+      collection(guest, 'reviews'),
+      where('trailId', '==', 'lago-carezza'),
+      where('status', '==', 'visible')
+    )));
+    await assertFails(getDoc(doc(guest, 'reviews/lago-carezza_author-2')));
+    await assertFails(getDocs(collection(guest, 'reviews')));
+  });
+});
+
+describe('trail photos', () => {
+  test('only contributors can publish valid bounded images', async () => {
+    const ordinary = ordinaryDb('ordinary-1');
+    const author = contributorDb('author-1');
+    await assertFails(setDoc(doc(ordinary, 'trailPhotos/photo-1'), validPhoto('ordinary-1')));
+    await assertFails(setDoc(
+      doc(author, 'trailPhotos/photo-2'),
+      validPhoto('author-1', { image: 'https://example.com/tracker.jpg' })
+    ));
+    await assertFails(setDoc(
+      doc(author, 'trailPhotos/photo-3'),
+      validPhoto('author-1', { caption: 'x'.repeat(241) })
+    ));
+    await assertSucceeds(setDoc(doc(author, 'trailPhotos/photo-4'), validPhoto('author-1')));
+  });
+
+  test('public photo queries require visible status', async () => {
+    await seed([['trailPhotos/photo-1', {
+      ...validPhoto('author-1'),
+      createdAt: Timestamp.now(),
+    }]]);
+    const guest = testEnv.unauthenticatedContext().firestore();
+    await assertSucceeds(getDocs(query(
+      collection(guest, 'trailPhotos'),
+      where('trailId', '==', 'lago-carezza'),
+      where('status', '==', 'visible')
+    )));
+    await assertFails(getDocs(collection(guest, 'trailPhotos')));
+  });
+});
+
+describe('abuse reports and default denial', () => {
+  test('signed-in users can open reports but only moderators can list and resolve them', async () => {
+    const reporter = ordinaryDb('reporter-1');
+    const other = ordinaryDb('other-1');
+    const guest = testEnv.unauthenticatedContext().firestore();
+    const reportRef = doc(reporter, 'reports/report-1');
+    const report = {
+      targetType: 'review',
+      targetId: 'lago-carezza_author-1',
+      uid: 'reporter-1',
+      reason: 'Potentially inaccurate trail information',
+      status: 'open',
+      createdAt: serverTimestamp(),
+    };
+
+    await assertFails(setDoc(doc(guest, 'reports/guest-report'), report));
+    await assertSucceeds(setDoc(reportRef, report));
+    await assertSucceeds(getDoc(reportRef));
+    await assertFails(getDoc(doc(other, 'reports/report-1')));
+    await assertFails(getDocs(collection(reporter, 'reports')));
+    await assertFails(updateDoc(reportRef, { status: 'dismissed' }));
+
+    const moderator = moderatorDb('moderator-1');
+    await assertSucceeds(getDocs(query(
+      collection(moderator, 'reports'),
+      where('status', '==', 'open'),
+      orderBy('createdAt', 'desc')
+    )));
+    await assertSucceeds(updateDoc(doc(moderator, 'reports/report-1'), {
+      status: 'reviewed',
+      resolvedAt: serverTimestamp(),
+      resolvedBy: 'moderator-1',
+    }));
+  });
+
+  test('malformed reports and unknown collections fail closed', async () => {
+    const reporter = ordinaryDb('reporter-1');
+    await assertFails(setDoc(doc(reporter, 'reports/bad-target'), {
+      targetType: 'user',
+      targetId: 'someone',
+      uid: 'reporter-1',
+      reason: 'Not an allowed target',
+      status: 'open',
+      createdAt: serverTimestamp(),
+    }));
+    await assertFails(setDoc(doc(reporter, 'admin/self-grant'), {
+      moderator: true,
+    }));
+    await assertFails(getDoc(doc(reporter, 'admin/config')));
+  });
+});

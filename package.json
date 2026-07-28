@@ -13,12 +13,18 @@
     "validate:scoring-contract": "jest --runInBand scoring-contract.test.js",
     "validate:evidence-contract": "jest --runInBand evidence-contract.test.js",
     "validate:firestore-contract": "jest --runInBand firestore-security.test.js",
+    "test:firestore-rules": "node scripts/run-firestore-rules-tests.cjs",
     "check:trail-sources": "node scripts/check-trail-sources.js",
     "build:dolomites-trails": "npm run fetch:dolomites-trails && npm run validate:dolomites-trails"
   },
   "devDependencies": {
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0"
+    "@firebase/rules-unit-testing": "5.0.1",
+    "firebase": "12.16.0",
+    "jest": "30.4.2",
+    "jest-environment-jsdom": "30.4.1"
+  },
+  "overrides": {
+    "brace-expansion": "5.0.8"
   },
   "jest": {
     "testEnvironment": "jsdom",

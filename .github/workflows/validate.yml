@@ -19,6 +19,16 @@ jobs:
           node-version: 20
           cache: npm
 
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: actions/cache@v4
+        with:
+          path: .cache/firestore-emulator
+          key: firestore-emulator-v1.21.0
+
       - name: Install test dependencies
         run: npm ci
 
@@ -30,6 +40,9 @@ jobs:
 
       - name: Run tests
         run: npm test -- --runInBand
+
+      - name: Test Firestore authorization rules
+        run: npm run test:firestore-rules
 
       - name: Check static links
         run: npm run test:static

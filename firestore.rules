@@ -15,11 +15,13 @@ service cloud.firestore {
     }
 
     function isContributor() {
-      return isSignedIn() && request.auth.token.contributor == true;
+      return isSignedIn()
+        && request.auth.token.get('contributor', false) == true;
     }
 
     function isModerator() {
-      return isSignedIn() && request.auth.token.moderator == true;
+      return isSignedIn()
+        && request.auth.token.get('moderator', false) == true;
     }
 
     function isShortString(value, maximum) {
