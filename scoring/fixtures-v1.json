@@ -1,0 +1,337 @@
+{
+  "scoringVersion": "1.0.0",
+  "trailFixtures": {
+    "easy-reviewed": {
+      "metrics": {
+        "distanceKm": 4,
+        "ascentM": 100,
+        "descentM": 100
+      },
+      "suitability": {
+        "terrainRank": 0,
+        "shadePercent": 70,
+        "heatRisk": "low",
+        "exposure": false,
+        "surfaceHazards": [],
+        "dogAccess": {
+          "status": "allowed"
+        }
+      },
+      "waypoints": [
+        {
+          "type": "water",
+          "status": "reviewed"
+        }
+      ],
+      "verification": {
+        "tier": "field-verified",
+        "categories": {
+          "route": "verified",
+          "water": "verified",
+          "heat": "verified",
+          "exposure": "verified",
+          "livestock": "verified",
+          "surfaceHazards": "verified",
+          "access": "verified"
+        }
+      }
+    },
+    "challenging-reviewed": {
+      "metrics": {
+        "distanceKm": 12,
+        "ascentM": 800,
+        "descentM": 800
+      },
+      "suitability": {
+        "terrainRank": 2,
+        "shadePercent": 45,
+        "heatRisk": "moderate",
+        "exposure": false,
+        "surfaceHazards": [
+          "Loose scree"
+        ],
+        "dogAccess": {
+          "status": "leash-required"
+        }
+      },
+      "waypoints": [],
+      "verification": {
+        "tier": "route-audited",
+        "categories": {
+          "route": "verified",
+          "water": "verified",
+          "heat": "verified",
+          "exposure": "verified",
+          "livestock": "verified",
+          "surfaceHazards": "verified",
+          "access": "verified"
+        }
+      }
+    },
+    "long-challenging-reviewed": {
+      "metrics": {
+        "distanceKm": 17,
+        "ascentM": 800,
+        "descentM": 800
+      },
+      "suitability": {
+        "terrainRank": 2,
+        "shadePercent": 45,
+        "heatRisk": "moderate",
+        "exposure": false,
+        "surfaceHazards": [
+          "Loose scree"
+        ],
+        "dogAccess": {
+          "status": "leash-required"
+        }
+      },
+      "waypoints": [],
+      "verification": {
+        "tier": "route-audited",
+        "categories": {
+          "route": "verified",
+          "water": "verified",
+          "heat": "verified",
+          "exposure": "verified",
+          "livestock": "verified",
+          "surfaceHazards": "verified",
+          "access": "verified"
+        }
+      }
+    },
+    "unknown-import": {
+      "metrics": {
+        "distanceKm": 4,
+        "ascentM": null,
+        "descentM": null
+      },
+      "suitability": {
+        "terrainRank": null,
+        "shadePercent": null,
+        "heatRisk": "unknown",
+        "exposure": null,
+        "surfaceHazards": [],
+        "dogAccess": {
+          "status": "unknown"
+        }
+      },
+      "waypoints": [],
+      "verification": {
+        "tier": "imported",
+        "categories": {
+          "route": "unreviewed",
+          "water": "unknown",
+          "heat": "unknown",
+          "exposure": "unknown",
+          "livestock": "unknown",
+          "surfaceHazards": "unreviewed",
+          "access": "unknown"
+        }
+      }
+    },
+    "dogs-prohibited": {
+      "metrics": {
+        "distanceKm": 2,
+        "ascentM": 20,
+        "descentM": 20
+      },
+      "suitability": {
+        "terrainRank": 0,
+        "shadePercent": 80,
+        "heatRisk": "low",
+        "exposure": false,
+        "surfaceHazards": [],
+        "dogAccess": {
+          "status": "prohibited"
+        }
+      },
+      "waypoints": [],
+      "verification": {
+        "tier": "field-verified",
+        "categories": {
+          "route": "verified",
+          "water": "verified",
+          "heat": "verified",
+          "exposure": "verified",
+          "livestock": "verified",
+          "surfaceHazards": "verified",
+          "access": "verified"
+        }
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "young-dog-easy-route",
+      "decision": "A puppy receives reduced distance, terrain and ascent limits but may still have a strong short-route option.",
+      "dog": {
+        "ageYears": 0.6,
+        "weightKg": 12,
+        "fitness": "moderate",
+        "conditions": [],
+        "traits": {}
+      },
+      "trail": "easy-reviewed",
+      "currentConditions": {
+        "status": "known",
+        "heatRisk": "low"
+      },
+      "expected": {
+        "score": 100,
+        "category": "strong-option",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "senior-dog-challenging-route",
+      "decision": "Age and joint risk reduce effective limits and make a long rocky route unsuitable.",
+      "dog": {
+        "ageYears": 10,
+        "weightKg": 25,
+        "fitness": "moderate",
+        "conditions": [
+          "joints"
+        ],
+        "traits": {}
+      },
+      "trail": "challenging-reviewed",
+      "currentConditions": {
+        "status": "known",
+        "heatRisk": "low"
+      },
+      "expected": {
+        "score": 5,
+        "category": "not-recommended",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "heat-sensitive-dog-hot-day",
+      "decision": "A normally easy route drops to caution when current heat is high for a heat-sensitive dog.",
+      "dog": {
+        "ageYears": 4,
+        "weightKg": 22,
+        "fitness": "high",
+        "conditions": [
+          "heat"
+        ],
+        "traits": {}
+      },
+      "trail": "easy-reviewed",
+      "currentConditions": {
+        "status": "known",
+        "heatRisk": "high"
+      },
+      "expected": {
+        "score": 75,
+        "category": "possible-with-cautions",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "small-dog-challenging-route",
+      "decision": "A sub-5 kg dog receives a reduced distance range even when fitness is high.",
+      "dog": {
+        "ageYears": 3,
+        "weightKg": 4,
+        "fitness": "high",
+        "conditions": [],
+        "traits": {}
+      },
+      "trail": "long-challenging-reviewed",
+      "currentConditions": {
+        "status": "known",
+        "heatRisk": "low"
+      },
+      "expected": {
+        "score": 75,
+        "category": "possible-with-cautions",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "large-dog-long-descent",
+      "decision": "A 45 kg or heavier dog receives a terrain cap and explicit long-descent joint-load caution.",
+      "dog": {
+        "ageYears": 4,
+        "weightKg": 48,
+        "fitness": "high",
+        "conditions": [],
+        "traits": {}
+      },
+      "trail": "challenging-reviewed",
+      "currentConditions": {
+        "status": "known",
+        "heatRisk": "low"
+      },
+      "expected": {
+        "score": 42,
+        "category": "not-recommended",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "fit-adult-challenging-route",
+      "decision": "Fitness can make a reviewed demanding route viable, but recorded heat and surface cautions remain visible.",
+      "dog": {
+        "ageYears": 4,
+        "weightKg": 25,
+        "fitness": "high",
+        "conditions": [],
+        "traits": {}
+      },
+      "trail": "challenging-reviewed",
+      "currentConditions": {
+        "status": "known",
+        "heatRisk": "low"
+      },
+      "expected": {
+        "score": 88,
+        "category": "strong-option",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "incomplete-profile-unknown-trail",
+      "decision": "Missing dog facts and unreviewed trail safety data cannot produce high confidence or a strong recommendation.",
+      "dog": {
+        "ageYears": null,
+        "weightKg": null,
+        "fitness": "unknown",
+        "conditions": [],
+        "traits": {}
+      },
+      "trail": "unknown-import",
+      "currentConditions": {
+        "status": "not-provided"
+      },
+      "expected": {
+        "score": 80,
+        "category": "possible-with-cautions",
+        "confidence": "low"
+      }
+    },
+    {
+      "id": "dog-access-hard-stop",
+      "decision": "A verified dog prohibition overrides every otherwise favourable factor.",
+      "dog": {
+        "ageYears": 4,
+        "weightKg": 20,
+        "fitness": "moderate",
+        "conditions": [],
+        "traits": {}
+      },
+      "trail": "dogs-prohibited",
+      "currentConditions": {
+        "status": "known",
+        "heatRisk": "low"
+      },
+      "expected": {
+        "score": 5,
+        "category": "not-recommended",
+        "confidence": "high"
+      }
+    }
+  ]
+}

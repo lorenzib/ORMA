@@ -1,0 +1,82 @@
+const scoring = require('./scoring/recommendation-v1.js');
+const fixtures = require('./scoring/fixtures-v1.json');
+
+function run(fixture){
+  return scoring.calculateRecommendation({
+    dog: fixture.dog,
+    trail: fixtures.trailFixtures[fixture.trail],
+    currentConditions: fixture.currentConditions,
+  });
+}
+
+describe('SCORE-01 canonical recommendation contract', () => {
+  test('the fixture set and calculator use the same immutable version', () => {
+    expect(scoring.VERSION).toBe('1.0.0');
+    expect(fixtures.scoringVersion).toBe(scoring.VERSION);
+  });
+
+  test.each(fixtures.cases)('$id matches the reviewed product decision', fixture => {
+    const result = run(fixture);
+    expect({
+      score: result.score,
+      category: result.category,
+      confidence: result.confidence,
+    }).toEqual(fixture.expected);
+  });
+
+  test.each(fixtures.cases)('$id returns the complete explanation shape', fixture => {
+    const result = run(fixture);
+    expect(result.scoringVersion).toBe(scoring.VERSION);
+    expect(Array.isArray(result.positiveReasons)).toBe(true);
+    expect(Array.isArray(result.cautions)).toBe(true);
+    expect(Array.isArray(result.unknowns)).toBe(true);
+    expect(Array.isArray(result.hardStops)).toBe(true);
+    expect(result.effectiveDogLimits).toEqual(expect.objectContaining({
+      terrainRank: expect.any(Number),
+      distanceKm: expect.any(Number),
+      ascentM: expect.any(Number),
+      heatSensitive: expect.any(Boolean),
+    }));
+  });
+
+  test('unknown safety evidence never creates a high-confidence result', () => {
+    const fixture = fixtures.cases.find(entry => entry.id === 'incomplete-profile-unknown-trail');
+    const result = run(fixture);
+    expect(result.confidence).toBe('low');
+    expect(result.category).not.toBe('strong-option');
+    expect(result.unknowns.map(entry => entry.code)).toEqual(
+      expect.arrayContaining([
+        'trail.exposure.unknown',
+        'trail.dog-access.unknown',
+        'evidence.route.unverified',
+        'evidence.access.unverified',
+      ])
+    );
+  });
+
+  test('dog prohibition is a hard stop rather than a normal penalty', () => {
+    const fixture = fixtures.cases.find(entry => entry.id === 'dog-access-hard-stop');
+    const result = run(fixture);
+    expect(result.hardStops).toEqual([
+      expect.objectContaining({ code: 'trail.dog-access.prohibited' }),
+    ]);
+    expect(result.category).toBe('not-recommended');
+    expect(result.score).toBe(5);
+  });
+
+  test('a high fitness profile still has finite planning limits', () => {
+    const fixture = fixtures.cases.find(entry => entry.id === 'fit-adult-challenging-route');
+    const result = run(fixture);
+    expect(result.effectiveDogLimits.distanceKm).toBe(18);
+    expect(result.effectiveDogLimits.ascentM).toBe(1200);
+  });
+
+  test('current conditions are independent from baseline trail heat risk', () => {
+    const cool = fixtures.cases.find(entry => entry.id === 'young-dog-easy-route');
+    const hot = fixtures.cases.find(entry => entry.id === 'heat-sensitive-dog-hot-day');
+    const coolResult = run(cool);
+    const hotResult = run(hot);
+    expect(coolResult.positiveReasons.map(entry => entry.code)).toContain('trail.heat.low');
+    expect(hotResult.cautions.map(entry => entry.code)).toContain('conditions.heat.high');
+  });
+});

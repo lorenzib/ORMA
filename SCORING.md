@@ -1,5 +1,12 @@
 # DoloPaws scoring — internal reference
 
+> **Legacy implementation notice (2026-07-28):** this file describes the
+> percentage-only scorer still used by production pages. The canonical
+> versioned replacement is defined in
+> `docs/architecture/SCORE-01-canonical-recommendation-contract.md` and
+> `scoring/recommendation-v1.js`. SCORE-02 will migrate every consumer before
+> this legacy contract is removed.
+
 How trails are classified and how the personal match % is computed.
 Keep this file in sync with `script.js` (scoreTrail, effectiveOverrides),
 `breeds-data.js` (trait sets) and `account.js` (band tables). Last updated: July 2026.

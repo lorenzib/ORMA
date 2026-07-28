@@ -9,6 +9,7 @@
     "fetch:dolomites-trails": "node scripts/fetch-dolomites-trails.js",
     "validate:dolomites-trails": "node scripts/validate-dolomites-trails.js",
     "validate:trail-schema": "node scripts/validate-trail-schema.js",
+    "validate:scoring-contract": "jest --runInBand scoring-contract.test.js",
     "check:trail-sources": "node scripts/check-trail-sources.js",
     "build:dolomites-trails": "npm run fetch:dolomites-trails && npm run validate:dolomites-trails"
   },

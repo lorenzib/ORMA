@@ -212,6 +212,7 @@ All P0 and P1 work
 
 ### SCORE-01 — Define the scoring contract and fixtures
 
+- **Status:** Complete (2026-07-28)
 - **Priority:** P0
 - **Size:** M
 - **Depends on:** DATA-01
