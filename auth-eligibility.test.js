@@ -28,6 +28,9 @@ describe('AUTH-02 verified contributor contract', () => {
   test('every contribution checks eligibility and starts pending', () => {
     expect(client.match(/await getContributionEligibility\(\)/g)).toHaveLength(3);
     expect(client.match(/status: "pending"/g)).toHaveLength(3);
+    expect(client).toContain('permission-denied"))');
+    expect(client).toContain('existing && existing.exists()');
+    expect(rules).toContain('isOwner(resource.data.uid)');
     expect(rules).toContain("request.auth.token.get('email_verified', false) == true");
     expect(rules).toContain('documents/contributionBlocks/$(request.auth.uid)');
     expect(rules).not.toContain("request.auth.token.get('contributor'");

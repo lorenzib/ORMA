@@ -387,7 +387,18 @@ async function setReview(trailId, rating, text, hikedOn) {
     const dog = await getDogProfile();
     const id = `${String(trailId).slice(0, 80)}_${currentUser.uid}`;
     const reviewRef = doc(db, "reviews", id);
-    const existing = await getDoc(reviewRef);
+    let existing = null;
+    try {
+      existing = await getDoc(reviewRef);
+    } catch (error) {
+      // Firestore cannot authorize an owner read for a document that does not
+      // exist yet because there is no stored uid to compare. Treat that
+      // permission denial as the first-review path; the create rule below
+      // still independently validates identity, eligibility, and document ID.
+      if (!String(error && error.code || "").includes("permission-denied")) {
+        throw error;
+      }
+    }
     await setDoc(reviewRef, {
       trailId: String(trailId).slice(0, 80),
       uid: currentUser.uid,
@@ -396,7 +407,7 @@ async function setReview(trailId, rating, text, hikedOn) {
       dogContext: dog ? { name: dog.name || null, breed: dog.breed || null } : null,
       hikedOn: hikedOn || null,
       status: "pending",
-      createdAt: existing.exists() && existing.data().createdAt
+      createdAt: existing && existing.exists() && existing.data().createdAt
         ? existing.data().createdAt : serverTimestamp(),
     });
     return { ok: true };

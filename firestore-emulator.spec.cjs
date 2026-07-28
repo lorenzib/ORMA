@@ -297,6 +297,12 @@ describe('reviews and ratings', () => {
       validReview('author-1', { rating: 6 })
     ));
     await assertSucceeds(setDoc(reviewRef, validReview('author-1')));
+    await assertSucceeds(getDoc(reviewRef));
+    await assertFails(getDoc(doc(other, 'reviews/lago-carezza_author-1')));
+    await assertFails(getDoc(doc(
+      testEnv.unauthenticatedContext().firestore(),
+      'reviews/lago-carezza_author-1'
+    )));
     await assertFails(updateDoc(
       doc(other, 'reviews/lago-carezza_author-1'),
       { text: 'Attempted ownership bypass.' }

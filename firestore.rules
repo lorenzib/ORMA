@@ -256,7 +256,10 @@ service cloud.firestore {
     }
 
     match /reviews/{reviewId} {
-      allow get, list: if isModerator() || resource.data.status == 'visible';
+      allow get: if isModerator()
+        || isOwner(resource.data.uid)
+        || resource.data.status == 'visible';
+      allow list: if isModerator() || resource.data.status == 'visible';
       allow create: if isContributor()
         && request.resource.data.uid == request.auth.uid
         && reviewId == request.resource.data.trailId + '_' + request.auth.uid
