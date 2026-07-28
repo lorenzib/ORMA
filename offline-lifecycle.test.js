@@ -110,4 +110,57 @@ describe('OFF-03 offline package ownership metadata', () => {
     expect(source).toContain('No incomplete package has been marked ready.');
     expect(source).toContain('Your existing package remains ready offline.');
   });
+
+  test('reserves two package copies and a safety buffer during installation', () => {
+    const packageBytes = 35_560;
+    expect(window.DoloPawsOffline.requiredStorageBytes(packageBytes))
+      .toBe((packageBytes * 2) + (1024 * 1024));
+  });
+
+  test('allows download when the browser cannot report its storage quota', async () => {
+    Object.defineProperty(navigator, 'storage', {
+      configurable: true,
+      value: undefined,
+    });
+
+    await expect(window.DoloPawsOffline.storageCapacity(35_560)).resolves.toMatchObject({
+      supported: false,
+      enough: null,
+    });
+    await expect(window.DoloPawsOffline.assertStorageCapacity(35_560))
+      .resolves.toMatchObject({ supported: false });
+  });
+
+  test('reports available storage and rejects an insufficient estimate', async () => {
+    Object.defineProperty(navigator, 'storage', {
+      configurable: true,
+      value: {
+        estimate: jest.fn().mockResolvedValue({
+          quota: 2_000_000,
+          usage: 1_500_000,
+        }),
+      },
+    });
+
+    await expect(window.DoloPawsOffline.storageCapacity(35_560)).resolves.toMatchObject({
+      supported: true,
+      enough: false,
+      availableBytes: 500_000,
+    });
+    await expect(window.DoloPawsOffline.assertStorageCapacity(35_560))
+      .rejects.toThrow(/Not enough browser storage.+Remove a saved offline map/s);
+  });
+
+  test('recognises runtime quota failures and publishes actionable recovery copy', () => {
+    const source = require('fs').readFileSync(
+      require('path').join(__dirname, 'offline-packages.js'),
+      'utf8'
+    );
+
+    expect(window.DoloPawsOffline.isQuotaError({ name: 'QuotaExceededError' })).toBe(true);
+    expect(window.DoloPawsOffline.isQuotaError({ code: 22 })).toBe(true);
+    expect(window.DoloPawsOffline.isQuotaError(new TypeError('network'))).toBe(false);
+    expect(source).toContain('Your browser ran out of storage');
+    expect(source).toContain('free device storage, then retry');
+  });
 });

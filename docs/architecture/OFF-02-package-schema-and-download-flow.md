@@ -83,6 +83,9 @@ storage is controlled by the device owner.
 - New verified versions replace older versions for the same trail.
 - Removal deletes only caches for the selected trail.
 - The scoped `/offline/offline-sw.js` worker never deletes root-site caches.
+- Where supported, browser storage estimates are checked before installation
+  using two package copies plus a 1 MB safety buffer. Unsupported estimates do
+  not block a download; runtime quota failures remain recoverable.
 
 IndexedDB remains the planned metadata store when multiple packages and active
 hike recovery are introduced. Local storage is sufficient for this single

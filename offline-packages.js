@@ -9,6 +9,7 @@
   const CACHE_PREFIX = 'dolopaws-trail-';
   const METADATA_PREFIX = 'dolopaws-offline:';
   const OWNER_SALT_KEY = 'dolopaws-offline-owner-salt';
+  const STORAGE_SAFETY_BYTES = 1024 * 1024;
 
   function bytesToHex(buffer){
     return Array.from(new Uint8Array(buffer))
@@ -99,7 +100,13 @@
   function validateManifest(manifest, expectedTrailId){
     if(!manifest || manifest.schemaVersion !== 1) throw new Error('Unsupported package format.');
     if(manifest.trailId !== expectedTrailId) throw new Error('Package trail does not match this page.');
-    if(!manifest.version || !Array.isArray(manifest.resources) || !manifest.resources.length){
+    if(
+      !manifest.version ||
+      !Number.isFinite(manifest.packageBytes) ||
+      manifest.packageBytes <= 0 ||
+      !Array.isArray(manifest.resources) ||
+      !manifest.resources.length
+    ){
       throw new Error('Package manifest is incomplete.');
     }
     for(const resource of manifest.resources){
@@ -108,6 +115,59 @@
       }
     }
     return manifest;
+  }
+
+  function requiredStorageBytes(packageBytes){
+    if(!Number.isFinite(packageBytes) || packageBytes <= 0) return STORAGE_SAFETY_BYTES;
+    // Installation briefly holds the staging and committed copies together.
+    return Math.ceil(packageBytes * 2) + STORAGE_SAFETY_BYTES;
+  }
+
+  async function storageCapacity(packageBytes){
+    const requiredBytes = requiredStorageBytes(packageBytes);
+    if(!(navigator.storage && typeof navigator.storage.estimate === 'function')){
+      return { supported: false, enough: null, requiredBytes };
+    }
+    try{
+      const estimate = await navigator.storage.estimate();
+      if(!Number.isFinite(estimate.quota) || !Number.isFinite(estimate.usage)){
+        return { supported: false, enough: null, requiredBytes };
+      }
+      const availableBytes = Math.max(0, estimate.quota - estimate.usage);
+      return {
+        supported: true,
+        enough: availableBytes >= requiredBytes,
+        requiredBytes,
+        availableBytes,
+      };
+    }catch(error){
+      return { supported: false, enough: null, requiredBytes };
+    }
+  }
+
+  async function assertStorageCapacity(packageBytes){
+    const capacity = await storageCapacity(packageBytes);
+    if(capacity.enough !== false) return capacity;
+    const error = new Error(
+      `Not enough browser storage for this offline map. It needs about ${
+        formatBytes(capacity.requiredBytes)
+      } free, but this browser reports ${
+        formatBytes(capacity.availableBytes)
+      }. Remove a saved offline map or free device storage, then retry.`
+    );
+    error.name = 'DoloPawsStorageError';
+    throw error;
+  }
+
+  function isQuotaError(error){
+    return !!(
+      error &&
+      (
+        error.name === 'QuotaExceededError' ||
+        error.code === 22 ||
+        error.code === 1014
+      )
+    );
   }
 
   async function fetchVerifiedResource(resource, manifestUrl){
@@ -156,6 +216,7 @@
     const manifestResponse = await fetch(config.manifestUrl, { cache: 'no-store' });
     if(!manifestResponse.ok) throw new Error('The package manifest could not be downloaded.');
     const manifest = validateManifest(await manifestResponse.clone().json(), trailId);
+    await assertStorageCapacity(manifest.packageBytes);
     const name = cacheName(manifest);
     const temporaryName = `${name}-installing`;
     await caches.delete(temporaryName);
@@ -193,6 +254,12 @@
       return manifest;
     }catch(error){
       await caches.delete(temporaryName);
+      if(isQuotaError(error)){
+        throw new Error(
+          'Your browser ran out of storage while saving this offline map. ' +
+          'Remove a saved offline map or free device storage, then retry.'
+        );
+      }
       throw error;
     }
   }
@@ -431,6 +498,10 @@
     formatInstalledDate,
     validateManifest,
     formatBytes,
+    requiredStorageBytes,
+    storageCapacity,
+    assertStorageCapacity,
+    isQuotaError,
   };
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initPanel);
