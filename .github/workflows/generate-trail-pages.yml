@@ -11,6 +11,11 @@ on:
       - 'osm-trails-data.js'
       - 'osm-trails-savoy-data.js'
       - 'scripts/generate-trail-pages.js'
+      - 'scripts/load-production-trails.js'
+      - 'scripts/trail-adapter.js'
+      - 'scripts/trail-schema.js'
+      - 'scripts/validate-production-trails.js'
+      - 'schemas/trail.schema.json'
 
 permissions:
   contents: write
@@ -24,6 +29,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      - name: Validate all production trail sources
+        run: node scripts/validate-production-trails.js
 
       - name: Generate trail pages and sitemap
         run: node scripts/generate-trail-pages.js

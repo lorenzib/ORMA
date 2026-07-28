@@ -9,6 +9,7 @@
     "fetch:dolomites-trails": "node scripts/fetch-dolomites-trails.js",
     "validate:dolomites-trails": "node scripts/validate-dolomites-trails.js",
     "validate:trail-schema": "node scripts/validate-trail-schema.js",
+    "validate:production-trails": "node scripts/validate-production-trails.js --report data/generated/trail-validation-report.json",
     "validate:scoring-contract": "jest --runInBand scoring-contract.test.js",
     "validate:evidence-contract": "jest --runInBand evidence-contract.test.js",
     "check:trail-sources": "node scripts/check-trail-sources.js",

@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "adapterVersion": "1.0.0",
+  "sources": [
+    "trails-data.js",
+    "osm-trails-data.js",
+    "osm-trails-savoy-data.js",
+    "trail-audits.js",
+    "regions-config.js"
+  ],
+  "totals": {
+    "sourceRecords": 164,
+    "canonicalRecords": 164,
+    "published": 143,
+    "draft": 21,
+    "errors": 0
+  },
+  "byOrigin": {
+    "curated": {
+      "total": 24,
+      "published": 24,
+      "draft": 0
+    },
+    "osm": {
+      "total": 140,
+      "published": 119,
+      "draft": 21
+    }
+  },
+  "excludedFromGeneration": [
+    {
+      "id": "osm-1780768",
+      "slug": "gsieser-talblickweg",
+      "reasons": [
+        "geometry jump 6.59 km before point 581",
+        "distance 77.4 km exceeds the 50 km publication limit"
+      ]
+    },
+    {
+      "id": "osm-3885162",
+      "slug": "seeweg",
+      "reasons": [
+        "geometry jump 3.42 km before point 2"
+      ]
+    },
+    {
+      "id": "osm-6244965",
+      "slug": "steine-erzahlen",
+      "reasons": [
+        "geometry jump 1.34 km before point 2"
+      ]
+    },
+    {
+      "id": "osm-6529356",
+      "slug": "anton-schwingshackl-weg",
+      "reasons": [
+        "geometry jump 2.69 km before point 307"
+      ]
+    },
+    {
+      "id": "osm-7277805",
+      "slug": "waltner-rundweg-12-sentiero-circolare-di-valtina-12",
+      "reasons": [
+        "geometry jump 4.77 km before point 303"
+      ]
+    },
+    {
+      "id": "osm-7446701",
+      "slug": "waltner-rundweg-18",
+      "reasons": [
+        "geometry jump 1.54 km before point 47"
+      ]
+    },
+    {
+      "id": "osm-9493733",
+      "slug": "tru-di-lec",
+      "reasons": [
+        "geometry jump 1.31 km before point 150"
+      ]
+    },
+    {
+      "id": "osm-11764094",
+      "slug": "dorferrunde-natz-raas-schabs-viums",
+      "reasons": [
+        "geometry jump 2.43 km before point 8"
+      ]
+    },
+    {
+      "id": "osm-11795251",
+      "slug": "1-dorferrundweg-vintl",
+      "reasons": [
+        "geometry jump 2.48 km before point 107"
+      ]
+    },
+    {
+      "id": "osm-11891581",
+      "slug": "sentiero-alpago-natura",
+      "reasons": [
+        "distance 71.2 km exceeds the 50 km publication limit"
+      ]
+    },
+    {
+      "id": "osm-12132169",
+      "slug": "toblacher-hohenweg",
+      "reasons": [
+        "geometry jump 6.19 km before point 451"
+      ]
+    },
+    {
+      "id": "osm-12164395",
+      "slug": "dorferrundweg",
+      "reasons": [
+        "geometry jump 2.41 km before point 110"
+      ]
+    },
+    {
+      "id": "osm-12172440",
+      "slug": "natur-und-kulturweg",
+      "reasons": [
+        "geometry jump 1.44 km before point 130"
+      ]
+    },
+    {
+      "id": "osm-12173984",
+      "slug": "gro-e-schlossrunde",
+      "reasons": [
+        "geometry jump 2.29 km before point 83"
+      ]
+    },
+    {
+      "id": "osm-12182895",
+      "slug": "talrundweg",
+      "reasons": [
+        "geometry jump 4.11 km before point 245"
+      ]
+    },
+    {
+      "id": "osm-12182936",
+      "slug": "schorgaurunde",
+      "reasons": [
+        "geometry jump 1.95 km before point 57"
+      ]
+    },
+    {
+      "id": "osm-12302191",
+      "slug": "dorfrundweg-rasen",
+      "reasons": [
+        "geometry jump 1.18 km before point 134"
+      ]
+    },
+    {
+      "id": "osm-12736753",
+      "slug": "albeins-klerant-milland-albes-cleran-millan",
+      "reasons": [
+        "geometry jump 1.56 km before point 2"
+      ]
+    },
+    {
+      "id": "osm-12953352",
+      "slug": "archeo",
+      "reasons": [
+        "geometry jump 1.63 km before point 2"
+      ]
+    },
+    {
+      "id": "osm-13337921",
+      "slug": "au-pied-du-roc-d-enfer",
+      "reasons": [
+        "geometry jump 1.60 km before point 13"
+      ]
+    },
+    {
+      "id": "osm-16395059",
+      "slug": "colombier-par-la-fullie-et-le-col-de-la-cochette",
+      "reasons": [
+        "geometry jump 1.95 km before point 125"
+      ]
+    }
+  ],
+  "errors": []
+}

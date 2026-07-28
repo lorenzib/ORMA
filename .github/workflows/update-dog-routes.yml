@@ -30,6 +30,9 @@ jobs:
       - name: Promote Savoy routes to full trail entries
         run: node scripts/promote-osm-trails.js --region savoy
 
+      - name: Validate all production trail sources
+        run: node scripts/validate-production-trails.js
+
       - name: Commit updated trail data
         run: |
           git config user.name "dolopaws-bot"

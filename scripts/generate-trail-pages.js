@@ -18,8 +18,9 @@
 
 const fs = require('fs');
 const path = require('path');
-const vm = require('vm');
 const evidenceContract = require('../trust/evidence-v1.js');
+const { loadProductionTrails } = require('./load-production-trails');
+const { buildCanonicalCatalog } = require('./trail-adapter');
 
 const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'trails');
@@ -30,32 +31,7 @@ const BASE_URL = 'https://www.dolopaws.com';
 //    the scripts so they share one scope, then hand back `trails`.
 // ---------------------------------------------------------------
 function loadTrails() {
-  const files = [
-    'trails-data.js',
-    'osm-trails-data.js',
-    'osm-trails-savoy-data.js',
-    'trail-audits.js',
-    'regions-config.js',
-  ];
-  const src = files
-    .map((f) => fs.readFileSync(path.join(ROOT, f), 'utf8'))
-    .join('\n;\n');
-
-  let result = null;
-  const sandbox = {
-    window: {},
-    console,
-    __capture: (t) => { result = t; },
-  };
-  vm.runInNewContext(
-    src + '\n;window.DoloPawsRegions.assign(trails); __capture(trails);',
-    sandbox,
-    { filename: 'trail-data-bundle.js' }
-  );
-  if (!Array.isArray(result) || result.length === 0) {
-    throw new Error('Failed to load trails — got ' + result);
-  }
-  return result;
+  return loadProductionTrails(ROOT);
 }
 
 // ---------------------------------------------------------------
@@ -607,8 +583,24 @@ function updateBrowseIndex(entries) {
 // 6. Main
 // ---------------------------------------------------------------
 function main() {
-  const trails = loadTrails();
-  console.log(`Loaded ${trails.length} trails.`);
+  const sourceTrails = loadTrails();
+  const catalog = buildCanonicalCatalog(sourceTrails);
+  if (catalog.errors.length) {
+    throw new Error(
+      `Production trail validation failed:\n${catalog.errors.map(error => `- ${error}`).join('\n')}`
+    );
+  }
+  const publishedIds = new Set(
+    catalog.records
+      .filter(record => record.lifecycle === 'published')
+      .map(record => record.id)
+  );
+  const canonicalSlug = new Map(catalog.records.map(record => [record.id, record.slug]));
+  const trails = sourceTrails.filter(trail => publishedIds.has(trail.id));
+  console.log(
+    `Loaded ${sourceTrails.length} trails; ${trails.length} pass publication validation `
+    + `and ${catalog.excluded.length} remain drafts.`
+  );
 
   if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR, { recursive: true });
 
@@ -632,9 +624,8 @@ function main() {
   // Pass 1: assign slugs so every page can link to its neighbours.
   const entries = [];
   for (const t of trails) {
-    let slug = slugify(t.name) || slugify(t.id);
-    if (seen.has(slug)) slug = `${slug}-${slugify(t.id)}`;
-    if (seen.has(slug)) { console.warn(`Skipping duplicate slug: ${slug}`); continue; }
+    const slug = canonicalSlug.get(t.id);
+    if (seen.has(slug)) throw new Error(`Duplicate validated slug: ${slug}`);
     seen.add(slug);
     entries.push({ t, slug });
   }

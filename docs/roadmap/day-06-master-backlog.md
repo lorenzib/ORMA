@@ -186,6 +186,7 @@ All P0 and P1 work
 
 ### DATA-02 — Enforce unified trail validation
 
+- **Status:** Complete (2026-07-28)
 - **Priority:** P0
 - **Size:** M
 - **Depends on:** DATA-01
