@@ -74,17 +74,13 @@ GitHub Actions:
 4. runs normal Jest tests;
 5. runs the Firestore emulator matrix separately.
 
-## Deployment boundary
+## Production deployment
 
-SEC-02 validates repository rules but does not deploy them. A production
-deployment still requires:
+The deployment boundary was satisfied on 2026-07-28:
 
-1. deploy the repository-complete AUTH-02 verified-email and pending-content
-   rules;
-2. a comparison against currently deployed rules and production document
-   shapes;
-3. explicit operator approval;
-4. post-deployment verification and a recorded rollback source.
-
-Until those conditions are satisfied, ordinary authenticated accounts must not
-be assumed eligible to publish community content.
+1. production rules and document shapes were compared with the repository;
+2. explicit operator approval was recorded before each production change;
+3. the indexes and AUTH-02 rules were deployed separately;
+4. verified submission, pending privacy, manual approval, public visibility,
+   and cleanup passed an end-to-end production test;
+5. the prior rules source and ruleset remain recorded under `docs/rollbacks/`.

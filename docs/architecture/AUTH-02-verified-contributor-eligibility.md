@@ -1,6 +1,6 @@
 # AUTH-02 — Verified contributor eligibility
 
-**Status:** Complete in repository; Firestore deployment pending
+**Status:** Complete and production-verified
 
 **Decision date:** 2026-07-28
 
@@ -88,17 +88,23 @@ enabled.
 - The normal CI pipeline runs without production credentials or a paid Firebase
   service.
 
-## Production rollout
+## Production verification
 
-Repository completion does not deploy Firestore resources. Before enabling the
-flow in production:
+The Spark-compatible flow was deployed and verified on 2026-07-28:
 
-1. export or record the currently deployed rules and indexes;
-2. compare production document shapes with the repository validators;
-3. deploy indexes and wait for them to finish building;
-4. deploy the reviewed Firestore rules;
-5. verify unverified denial, verified pending submission, public pending denial,
-   manual approval, and blocked-account denial;
-6. retain the previous rules source for rollback.
+1. the previous rules source and ruleset were recorded for rollback;
+2. production document shapes were compatible with the repository validators;
+3. all four composite indexes reached `READY`;
+4. the reviewed rules were deployed and matched the repository hash;
+5. a verified account submitted a labelled review with `status: pending`;
+6. an anonymous query was denied access to the pending review;
+7. manual Firebase-console approval changed it to `visible`;
+8. the live trail page rendered the approved review and rating;
+9. the labelled test review was deleted and the public query returned to zero.
+
+The live test exposed a first-review pre-read denial. Commit `e83b54d` corrected
+the client creation fallback and limited pending-review reads to the document
+owner. The 147 application tests, 15 emulator authorization tests, and
+171-page static check passed before the corrective deployment.
 
 No Blaze upgrade or Cloud Function deployment is required.

@@ -1,6 +1,6 @@
 # SEC-01 — Firestore rules and indexes
 
-**Status:** Complete in the repository; not deployed
+**Status:** Complete and production-verified
 
 **Decision date:** 2026-07-28
 
@@ -12,9 +12,9 @@ DoloPaws now stores its Firestore authorization boundary in version control:
 - `firestore.indexes.json`;
 - `firebase.json`.
 
-The configuration targets the existing Firebase project ID `dolopaws`, but no
-production rule or index deployment is part of SEC-01. Deployment is blocked
-until SEC-02 runs allow-and-deny cases against the Firestore emulator.
+The configuration targets Firebase project `dolopaws`. The four composite
+indexes and reviewed rules were deployed on 2026-07-28 after SEC-02's
+allow-and-deny suite passed. The active production rules match the repository.
 
 ## Authority model
 
@@ -106,7 +106,8 @@ publish Firestore rules.
 
 - **SEC-02:** complete; semantic emulator tests cover unauthenticated, owner,
   other-user, contributor, moderator, malformed, query, and transition cases.
-- **AUTH-02:** complete in repository on Spark; verified-email eligibility,
-  pending moderation, and recovery UX await an approved rules deployment.
+- **AUTH-02:** complete and production-verified on Spark; verified-email
+  eligibility, pending privacy, manual approval, public visibility, and cleanup
+  passed an end-to-end test.
 - **MOD-01/02:** pending/visible policy, moderation queue, and audit records.
 - **AUTH-03:** complete cross-collection server deletion and local cleanup.
