@@ -540,6 +540,41 @@ body{background:#EFECE2;}
 .td2-rev-actions{display:flex;align-items:center;gap:12px;}
 .td2-rev-avg{color:#E8A93A;font-size:14px;font-weight:900;}
 .td2 #trailTags{margin-bottom:2px;}
+/* Canonical recommendation: one decision, with evidence gaps kept visible. */
+.recommendation-decision{margin:0 0 22px;padding:22px;border:1px solid #D8D8CD;border-left:5px solid #7A8A7D;border-radius:16px;background:#fff;box-shadow:0 8px 24px rgba(30,45,34,.07);}
+.recommendation-decision--strong{border-left-color:#4A7856;}
+.recommendation-decision--caution{border-left-color:#BA7517;}
+.recommendation-decision--stop{border-left-color:#9C3A25;}
+.recommendation-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;}
+.recommendation-kicker{font:800 10.5px 'Inter',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#6B7A6E;}
+.recommendation-head h2{display:flex;align-items:baseline;gap:10px;margin:6px 0 5px;font-size:clamp(23px,3vw,31px);}
+.recommendation-score{font:900 17px 'Inter',sans-serif;color:#4A7856;}
+.recommendation-decision--caution .recommendation-score{color:#9A6217;}
+.recommendation-decision--stop .recommendation-score{color:#9C3A25;}
+.recommendation-head p{margin:0;color:#6B7A6E;font:600 12px 'Inter',sans-serif;}
+.recommendation-evidence-link{flex:none;color:#3E7A91;font:800 12px 'Inter',sans-serif;text-decoration:none;}
+.recommendation-evidence-link:hover{text-decoration:underline;}
+.recommendation-columns{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;}
+.recommendation-columns section{padding:15px 16px;border-radius:12px;background:#F7F5EE;}
+.recommendation-columns h3{margin:0 0 9px;font:800 12px 'Inter',sans-serif;color:#2E4034;}
+.recommendation-columns ul,.recommendation-unknowns ul{margin:0;padding-left:18px;color:#3E4A40;font:500 12.5px/1.55 'Inter',sans-serif;}
+.recommendation-columns li+li,.recommendation-unknowns li+li{margin-top:5px;}
+.recommendation-empty{margin:0;color:#747A72;font:500 12.5px/1.5 'Inter',sans-serif;}
+.recommendation-unknowns{margin-top:12px;padding:12px 15px;border-radius:12px;background:#EFEEE8;color:#5E635D;}
+.recommendation-unknowns summary{cursor:pointer;font:800 12px 'Inter',sans-serif;}
+.recommendation-unknowns ul{margin-top:10px;}
+.recommendation-more{margin:9px 0 0;font:600 11.5px/1.45 'Inter',sans-serif;}
+.recommendation-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:16px;padding-top:15px;border-top:1px solid #E5E2D8;}
+.recommendation-actions button{min-height:42px;padding:9px 14px;border:1.5px solid #CFCFC4;border-radius:10px;background:#fff;color:#2E4034;font:800 12px 'Inter',sans-serif;cursor:pointer;}
+.recommendation-actions button:first-child{background:#2E4034;border-color:#2E4034;color:#fff;}
+.recommendation-actions button:disabled{cursor:not-allowed;opacity:.5;}
+@media(max-width:650px){
+  .recommendation-decision{padding:17px 15px;}
+  .recommendation-head{display:block;}
+  .recommendation-evidence-link{display:inline-block;margin-top:12px;}
+  .recommendation-columns{grid-template-columns:1fr;}
+  .recommendation-actions button{flex:1 1 135px;}
+}
 </style>
 </head>
 <body>
@@ -611,6 +646,8 @@ body{background:#EFECE2;}
   </div>
 
   <div class="td2-wrap">
+
+    <section id="recommendationDecision" class="recommendation-decision" aria-live="polite" hidden></section>
 
     <!-- hidden legacy slots trail.js still writes into -->
     <div hidden>
@@ -691,7 +728,7 @@ body{background:#EFECE2;}
           <div class="td2-kick" style="margin-bottom:12px;">About this trail</div>
           <p id="matchDescription"></p>
           <div id="trailTags" class="td2-tags-row"></div>
-          <details class="trail-data-details"><summary>Trail data and sources</summary><p id="trailCoords"></p><p id="trailReviewMeta" class="trail-review-meta"></p><div id="trailSourceLinks" class="trail-source-links"></div></details>
+          <details class="trail-data-details" id="trailEvidence"><summary>Trail data and sources</summary><p id="trailCoords"></p><p id="trailReviewMeta" class="trail-review-meta"></p><div id="trailSourceLinks" class="trail-source-links"></div></details>
         </div>
 
         <!-- PARKING & GETTING THERE -->
@@ -778,6 +815,7 @@ body{background:#EFECE2;}
 <script src="icon-system.js?v=20260717" defer></script>
 <script src="auth-ui.js?v=20260729-1" defer></script>
 <script src="offline-packages.js?v=20260729-1" defer></script>
+<script src="comparison-state.js?v=20260729-1" defer></script>
 <script src="breeds-data.js" defer></script>
 <script src="trust/evidence-v1.js?v=20260728-1" defer></script>
 <script src="scoring/recommendation-v1.js?v=20260728-2" defer></script>
@@ -800,5 +838,7 @@ body{background:#EFECE2;}
 <script src="trail-blueprint.js?v=20260729-1" defer></script>
 <script src="trail-detail-ui.js?v=20260722-2" defer></script>
 <script src="trail-mobile.js?v=20260722" defer></script>
+<script src="recommendation-decision.js?v=20260729-1" defer></script>
+<script src="trail-recommendation.js?v=20260729-1" defer></script>
 </body>
 </html>

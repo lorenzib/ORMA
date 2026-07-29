@@ -311,6 +311,7 @@ All P0 and P1 work
 
 ### UX-04 — Build the canonical recommendation decision block
 
+- **Status:** Complete in code (2026-07-29)
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** SCORE-01, TRUST-01
