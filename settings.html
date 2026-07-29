@@ -107,6 +107,11 @@
         <section class="st-card" id="stAccount">
           <h2>Account details</h2>
           <div class="st-field">
+            <label class="st-lbl" for="stName">Name</label>
+            <input class="st-fld" id="stName" autocomplete="name" placeholder="Your name">
+            <p class="st-hint" id="stNameHint" hidden></p>
+          </div>
+          <div class="st-field">
             <label class="st-lbl" for="stEmail">Email</label>
             <div style="display:flex;gap:10px;">
               <input class="st-fld" type="email" id="stEmail" autocomplete="email">
@@ -125,9 +130,12 @@
         <section class="st-card" id="stDogs">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;flex-wrap:wrap;">
             <h2 style="margin-bottom:0;">Your dogs</h2>
-            <a class="st-btn" href="account.html?next=settings.html">+ Add a dog</a>
+            <div style="display:flex;gap:8px;align-items:center;">
+              <button type="button" id="stSwitchDog" style="display:inline-flex;align-items:center;border:none;background:none;font:700 12.5px 'Inter',sans-serif;color:var(--accent);padding:0 4px;cursor:pointer;">Switch dog</button>
+              <a class="st-btn" href="account.html?next=settings.html">+ Add a dog</a>
+            </div>
           </div>
-          <p class="blurb">Every trail is scored for the dog you have selected.</p>
+          <p class="blurb">Every trail is scored for the dog you have selected. Switching dogs re-ranks the whole list.</p>
           <div id="stDogList"></div>
         </section>
 
@@ -358,8 +366,35 @@ document.addEventListener('DOMContentLoaded', function(){
       if(years >= 0) parts.push(years + (years === 1 ? ' year' : ' years'));
     }
     if(p.weight) parts.push(p.weight + ' kg');
+    if(p.fitness) parts.push(p.fitness + ' fitness');
     return parts.join(' · ');
   }
+
+  // "Switch dog" opens the header's shared switcher panel.
+  $('stSwitchDog').addEventListener('click', function(){
+    var pill = document.querySelector('.topnav .nav-user');
+    if(pill){
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      pill.click();
+    }
+  });
+
+  // Name — stored on the profile as ownerName (same field the emergency
+  // card uses), saved when you leave the field.
+  var savedName = '';
+  function saveName(){
+    var next = $('stName').value.trim();
+    if(next === savedName || !window.DoloPawsAuth || !window.DoloPawsAuth.setDogProfile) return;
+    window.DoloPawsAuth.setDogProfile({ ownerName: next }).then(function(ok){
+      var hint = $('stNameHint');
+      hint.hidden = false;
+      hint.style.color = ok ? '#2C5C34' : '#9C3A25';
+      hint.textContent = ok ? 'Saved.' : "Couldn't save just now — try again.";
+      if(ok) savedName = next;
+    });
+  }
+  $('stName').addEventListener('blur', saveName);
+  $('stName').addEventListener('keydown', function(e){ if(e.key === 'Enter') saveName(); });
   function renderDog(p){
     var list = $('stDogList');
     list.innerHTML = '';
@@ -413,7 +448,10 @@ document.addEventListener('DOMContentLoaded', function(){
     providerLine(user);
     renderDog(null);
     if(window.DoloPawsAuth.getDogProfile){
-      window.DoloPawsAuth.getDogProfile().then(function(p){ renderDog(p); }).catch(function(){});
+      window.DoloPawsAuth.getDogProfile().then(function(p){
+        renderDog(p);
+        if(p && p.ownerName){ savedName = p.ownerName; $('stName').value = p.ownerName; }
+      }).catch(function(){});
     }
   }
   if(window.DoloPawsAuth) init();

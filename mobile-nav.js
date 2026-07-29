@@ -118,9 +118,7 @@
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'nav-bell';
-      btn.setAttribute('aria-haspopup', 'true');
-      btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-label', "What's new");
+      btn.setAttribute('aria-label', 'Notifications');
       btn.innerHTML = bellSvg();
       const seen = seenUpdates();
       const unseen = NAV_UPDATES.filter(u => !seen.includes(u.id)).length;
@@ -130,28 +128,8 @@
         badge.textContent = String(unseen);
         btn.appendChild(badge);
       }
-      const menu = document.createElement('div');
-      menu.className = 'nav-bell-menu';
-      menu.hidden = true;
-      menu.innerHTML = '<div class="nav-bell-head">What’s new</div>' +
-        NAV_UPDATES.map(u =>
-          '<a class="nav-bell-item" href="' + prefix + u.href + '">' +
-          '<b>' + u.title + '</b><span>' + u.body + '</span></a>').join('');
       wrap.appendChild(btn);
-      wrap.appendChild(menu);
-
-      function setOpen(open){
-        menu.hidden = !open;
-        btn.setAttribute('aria-expanded', String(open));
-        if(open){
-          try { localStorage.setItem(SEEN_KEY, JSON.stringify(NAV_UPDATES.map(u => u.id))); } catch(e){}
-          const badge = btn.querySelector('.nav-bell-badge');
-          if(badge) badge.remove();
-        }
-      }
-      btn.addEventListener('click', (e) => { e.stopPropagation(); setOpen(menu.hidden); });
-      document.addEventListener('click', (e) => { if(!wrap.contains(e.target)) setOpen(false); });
-      document.addEventListener('keydown', (e) => { if(e.key === 'Escape') setOpen(false); });
+      btn.addEventListener('click', () => { window.location.href = prefix + 'notifications.html'; });
       return wrap;
     }
 

@@ -354,6 +354,8 @@ function initTrailReports(map, trail){
       if (window.DoloPawsTrailAction) window.DoloPawsTrailAction.request('photo');
       return;
     }
+    window.location.href = `photo-upload.html?trail=${encodeURIComponent(trail.id)}&name=${encodeURIComponent(trail.name)}`;
+    return;
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
     overlay.innerHTML = `<div class="modal" style="max-width:420px;">
@@ -419,6 +421,8 @@ function initTrailReports(map, trail){
       if (window.DoloPawsTrailAction) window.DoloPawsTrailAction.request('review');
       return;
     }
+    window.location.href = `reviews.html?trail=${encodeURIComponent(trail.id)}&name=${encodeURIComponent(trail.name)}`;
+    return;
 
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
@@ -508,6 +512,8 @@ function initTrailReports(map, trail){
       if (window.DoloPawsTrailAction) window.DoloPawsTrailAction.request('report');
       return;
     }
+    window.location.href = `trail-report.html?trail=${encodeURIComponent(trail.id)}&name=${encodeURIComponent(trail.name)}`;
+    return;
 
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';

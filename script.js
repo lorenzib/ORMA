@@ -1528,32 +1528,15 @@ function initLoggedInShell(){
     if(addBtn) addBtn.click();
   });
 
-  // What's-new bell — same feed + seen-ids store as the site-wide header.
+  // Notification bell opens the full notification centre from the design.
   const bellBtn = document.getElementById('liBellBtn');
   const bellMenu = document.getElementById('liBellMenu');
   if(bellBtn && bellMenu){
-    const BELL_UPDATES = [
-      { id: 'collections-2026-07', title: 'Trail collections are here',
-        body: 'Shady loops, lakeside walks and gentle strolls — grouped and ready.',
-        href: 'browse-trails.html#collections' },
-      { id: 'savoy-2026-07', title: 'Savoy valleys are live',
-        body: 'Maurienne walks join the Dolomites, every route scored for paws.',
-        href: 'browse-trails.html?region=savoy' },
-    ];
-    const SEEN_KEY = 'dolopaws-nav-seen-updates';
-    const seen = (() => {
-      try { const raw = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]'); return Array.isArray(raw) ? raw : []; }
-      catch(e){ return []; }
-    })();
     const dot = document.getElementById('liBellDot');
-    if(dot) dot.hidden = BELL_UPDATES.every(u => seen.includes(u.id));
-    bellMenu.innerHTML = '<div class="li-menu-kick">What’s new</div>' + BELL_UPDATES.map(u =>
-      `<a class="li-menu-item" href="${u.href}" style="display:block;"><b style="display:block;font-size:13px;">${u.title}</b><span style="display:block;font-size:12px;color:var(--ink-soft);margin-top:2px;line-height:1.45;">${u.body}</span></a>`).join('');
-    bellBtn.addEventListener('click', () => {
-      try { localStorage.setItem(SEEN_KEY, JSON.stringify(BELL_UPDATES.map(u => u.id))); } catch(e){}
-      if(dot) dot.hidden = true;
-    });
-    wireMenu(bellBtn, bellMenu);
+    if(dot) dot.hidden = false;
+    bellMenu.hidden = true;
+    bellBtn.setAttribute('aria-haspopup', 'false');
+    bellBtn.addEventListener('click', () => { window.location.href = 'notifications.html'; });
   }
 
   document.addEventListener('click', liCloseMenus);
@@ -1562,6 +1545,9 @@ function initLoggedInShell(){
   const search = document.getElementById('liSearch');
   let searchTimer = null;
   if(search){
+    search.addEventListener('focus', () => {
+      window.location.href = 'search.html?q=' + encodeURIComponent(search.value || '');
+    });
     search.addEventListener('input', () => {
       clearTimeout(searchTimer);
       searchTimer = setTimeout(() => {

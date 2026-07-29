@@ -140,6 +140,48 @@
 
   <div id="loggedInState" hidden>
 
+  <!-- Full dog-profile editor from the design handoff. The legacy account
+       controls remain mounted below so account.js keeps its storage/auth
+       contract; this surface mirrors those fields and drives the same save. -->
+  <section class="profile-design" id="profileDesign">
+    <a class="profile-back" href="index.html">← Back to Homepage</a>
+    <div class="profile-kicker">Dog profile</div>
+    <h1><span data-profile-name>Your dog</span>'s profile</h1>
+    <p class="profile-intro">Only the structured fields below are scored. Free-text notes are kept for you and never fed into the calculation.</p>
+    <div class="profile-layout">
+      <div>
+        <section class="profile-card">
+          <h2>The basics</h2>
+          <div class="profile-photo-row"><span class="profile-avatar" data-profile-avatar>Y</span><button type="button" class="flow-btn flow-btn--quiet" id="profilePhotoButton">Upload a photo</button></div>
+          <button type="button" class="flow-btn flow-btn--quiet" id="profileAddDog">+ Add another dog</button>
+          <label class="flow-field"><span>Name</span><input id="profileName" autocomplete="off"></label>
+          <label class="flow-field"><span>Breed</span><select id="profileBreed" class="profile-select"><option>Border Collie</option><option>Labrador Retriever</option><option>Bernese Mountain Dog</option><option>Not sure / mixed</option></select><small class="profile-hint">Breed affects the score only through documented physical traits. Never temperament.</small></label>
+          <div class="profile-two">
+            <label class="flow-field"><span>Age band</span><select id="profileAge" class="profile-select"><option>Under 1</option><option>1–2</option><option selected>3–4</option><option>5–6</option><option>7–8</option><option>9–10</option><option>11–12</option><option>13+</option></select></label>
+            <label class="flow-field"><span>Weight band</span><select id="profileWeight" class="profile-select"><option>Under 5 kg</option><option>5–10 kg</option><option>10–15 kg</option><option>15–20 kg</option><option selected>20–30 kg</option><option>30–40 kg</option><option>40–55 kg</option><option>55 kg+</option></select></label>
+          </div>
+        </section>
+        <section class="profile-card">
+          <h2>Fitness</h2><p>This sets the distance cap and terrain tolerance before any health modifiers apply.</p>
+          <div id="profileFitness" class="hazard-options"><button class="hazard-option" data-fitness="low"><b>Low</b><small>Short flat walks, cap 5 km</small></button><button class="hazard-option on" data-fitness="moderate"><b>Moderate</b><small>A couple of hours, some climbing, cap 10 km</small></button><button class="hazard-option" data-fitness="high"><b>High</b><small>All-day routes, happy on rock, no cap</small></button></div>
+        </section>
+        <section class="profile-card">
+          <h2>Health conditions</h2><p>Health conditions always outrank breed assumptions. Tick everything that applies.</p>
+          <div id="profileConditions" class="profile-checks">
+            <label><input type="checkbox" value="Joint or hip issues">Joint or hip issues</label><label><input type="checkbox" value="Back / disc history">Back / disc history</label><label><input type="checkbox" value="Heart condition">Heart condition</label><label><input type="checkbox" value="Overweight">Overweight</label><label><input type="checkbox" value="Recovering from injury">Recovering from injury</label><label><input type="checkbox" value="Impaired vision">Impaired vision</label><label><input type="checkbox" value="Heat sensitivity">Heat sensitivity</label>
+          </div>
+          <label class="flow-field"><span>Notes <small>Optional</small></span><input id="profileNotes" placeholder="Anything a sitter should know?"><small class="profile-hint">Kept for you. Never scored.</small></label>
+          <div class="flow-actions"><button type="button" id="profileSave" class="flow-btn">Save profile</button><a href="index.html" class="flow-btn flow-btn--quiet">Cancel</a></div>
+          <p id="profileSaveStatus" class="profile-hint" role="status" hidden></p>
+        </section>
+      </div>
+      <aside class="profile-sidebar">
+        <section class="profile-card profile-card--compact"><div class="flow-kicker">How this shapes the trails</div><div class="profile-impact"><b>Distance cap <span id="profileDistanceCap">7.5 km</span></b><p id="profileDistanceReason">Moderate fitness (10 km) × joint issues (0.75).</p></div><div class="profile-impact"><b>Terrain tolerance <span id="profileTerrain">gravel and below</span></b><p id="profileTerrainReason">Moderate fitness (1) − joint issues (1) = 0.</p></div><div class="profile-impact"><b>Heat sensitivity <span id="profileHeat">standard</span></b><p id="profileHeatReason">No brachycephalic or thick-coat traits declared.</p></div></section>
+        <section class="profile-card profile-card--warm"><div class="flow-kicker">Heads-up for this breed</div><p>Herding dogs will keep going long after they should. Turn back on time rather than waiting for signs of tiredness.</p><a href="guides/breed-group-caveats.html">Breed-group caveats →</a></section>
+      </aside>
+    </div>
+  </section>
+
   <!-- Phone-only app bar: back · title · save -->
   <div class="ep-mbar">
     <a id="mobileBackLink" class="ep-mback" href="index.html" aria-label="Back">←</a>
@@ -378,5 +420,6 @@
 <script type="module" src="firebase-init.js"></script>
 <script src="breeds-data.js" defer></script>
 <script src="account.js?v=20260729-1" defer></script>
+<script src="profile-design.js?v=20260729-1" defer></script>
 </body>
 </html>
