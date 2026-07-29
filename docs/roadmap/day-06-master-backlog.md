@@ -437,6 +437,8 @@ All P0 and P1 work
 - **Priority:** P0
 - **Size:** M
 - **Depends on:** HIKE-01
+- **Implementation:** complete in code; see
+  `docs/architecture/HIKE-02-offline-restoration.md`.
 - **Outcome:** an unfinished hike resumes from the downloaded package.
 - **Acceptance:**
   - Refresh and browser reopening restore the active hike.

@@ -29,7 +29,15 @@ describe('Lago di Carezza offline package', () => {
 
   test('all required resources match their declared size and SHA-256 hash', () => {
     const roles = new Set(manifest.resources.map(resource => resource.role));
-    expect(roles).toEqual(new Set(['shell', 'style', 'app', 'map', 'route', 'safety']));
+    expect(roles).toEqual(new Set([
+      'shell',
+      'style',
+      'app',
+      'session',
+      'map',
+      'route',
+      'safety',
+    ]));
     expect(manifest.resources.every(resource => resource.required === true)).toBe(true);
 
     let totalBytes = 0;
@@ -70,6 +78,7 @@ describe('Lago di Carezza offline package', () => {
     expect(mapSvg).toMatch(/<g transform="translate\([^"]+\)"><circle r="22"/);
     expect(manifest.resources.find(resource => resource.role === 'route').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'safety').required).toBe(true);
+    expect(manifest.resources.find(resource => resource.role === 'session').required).toBe(true);
     expect(app).toContain('if(resource.required !== false) throw error');
   });
 
@@ -99,6 +108,19 @@ describe('Lago di Carezza offline package', () => {
     expect(shell).not.toContain('evidenceList');
     expect(app).not.toContain('Freshness unknown');
     expect(app).toContain('Vetted by DoloPaws.');
+  });
+
+  test('restores, pauses, and discards an unfinished hike without a network dependency', () => {
+    const shell = fs.readFileSync(path.join(root, 'offline', 'trail.html'), 'utf8');
+    const app = fs.readFileSync(path.join(root, 'offline', 'offline-app.js'), 'utf8');
+    expect(shell).toContain('src="../hike-session.js"');
+    expect(shell.indexOf('hike-session.js')).toBeLessThan(shell.indexOf('offline-app.js'));
+    expect(shell).toContain('id="hikeResumeBtn"');
+    expect(shell).toContain('id="hikePauseBtn"');
+    expect(shell).toContain('id="hikeDiscardBtn"');
+    expect(app).toContain('DoloPawsHikeSession.recoveryState');
+    expect(app).toContain('DoloPawsHikeSession.updateProgress');
+    expect(app).toContain('packageAvailable: true');
   });
 
   test('route is a closed LineString inside the package bounds', () => {

@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lago-carezza",
   "name": "Lago di Carezza Loop",
-  "version": "2026.07.29-beta.6",
+  "version": "2026.07.29-beta.7",
   "generatedAt": "2026-07-29T08:00:00Z",
   "scoringVersion": "1.1.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 35927,
+  "packageBytes": 50603,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "north": 46.4113,
@@ -95,24 +95,32 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 3085,
-      "sha256": "f09c0cf38d0c96dc814d7a0c0da1f9ad7e73f7e6450e0221fd12cc4e08f30938"
+      "bytes": 3623,
+      "sha256": "05ad762e9754baaede492ff80bb68212f4762187b6d5b75d3b669f209ff3281f"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 3320,
-      "sha256": "abe1160f53c264ee92fcc0bb46a5d4cb142f2848f70bf60dff5f5813500c9ad4"
+      "bytes": 3684,
+      "sha256": "107b8b5c6dd0c5ca9384f0195bf23717f25252f64844315fe4a0328111d66a67"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 8829,
-      "sha256": "2265c028b74e34b99705ca3ae48ce35b066a2c9fcae913d6b0a7970a45d379a5"
+      "bytes": 16119,
+      "sha256": "e74875671007fd1eec9bf8547ebf6e2376d408e7622efce4ea3382b901954445"
+    },
+    {
+      "role": "session",
+      "required": true,
+      "label": "Durable hike session",
+      "url": "/hike-session.js",
+      "bytes": 6484,
+      "sha256": "825cf5b9e27acc260f408e224ec2d5c3d84c27373ff2f6c98ac06fc07c01f72d"
     },
     {
       "role": "map",

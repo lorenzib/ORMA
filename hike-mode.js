@@ -54,6 +54,13 @@ function initHikeMode(map, trail){
   startBtn.style.cssText = 'position:absolute;top:10px;left:10px;z-index:6;padding:9px 18px;border-radius:14px;background:var(--ink);color:#fff;border:none;font-size:12.5px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.3);';
   container.appendChild(startBtn);
 
+  const pauseBtn = document.createElement('button');
+  pauseBtn.type = 'button';
+  pauseBtn.textContent = hikeLabel('hike.pause', 'Pause');
+  pauseBtn.hidden = true;
+  pauseBtn.style.cssText = 'position:absolute;top:10px;left:132px;z-index:6;padding:9px 14px;border-radius:14px;background:#fff;color:var(--ink);border:1px solid rgba(46,64,52,.2);font-size:12.5px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2);';
+  container.appendChild(pauseBtn);
+
   const panel = document.createElement('div');
   panel.id = 'mapHikeStatus';
   panel.style.cssText = 'position:absolute;bottom:10px;left:50%;transform:translateX(-50%);z-index:6;max-width:92%;padding:10px 16px;border-radius:12px;background:rgba(46,64,52,.94);color:#fff;font-size:12.5px;font-weight:600;box-shadow:0 2px 10px rgba(0,0,0,.35);display:none;text-align:center;line-height:1.5;';
@@ -117,6 +124,10 @@ function initHikeMode(map, trail){
   function clearDurableSession(){
     if(window.DoloPawsHikeSession) window.DoloPawsHikeSession.clear();
     durableSession = null;
+  }
+
+  function setStartLabel(key, fallback){
+    startBtn.innerHTML = hikeButtonHtml(hikeLabel(key, fallback));
   }
 
   // Pulsing "you are here" dot + live pill, shown only while recording. The
@@ -287,6 +298,7 @@ function initHikeMode(map, trail){
     } else {
       panel.innerHTML = window.t('hike.waiting');
     }
+    if(durableSession) setStartLabel('hike.resume', 'Resume hike');
   }
 
   // ---- Start / stop ---------------------------------------------------------
@@ -306,6 +318,7 @@ function initHikeMode(map, trail){
   }
 
   function startHike(){
+    durableSession = null;
     active = true;
     firstFix = true;
     hikeStartRecorded = false;
@@ -315,8 +328,9 @@ function initHikeMode(map, trail){
     beginDurableSession();
     // A hiker needs a navigation screen, not an article: go fullscreen.
     if (window.DoloPawsMapFS) window.DoloPawsMapFS.enter();
-    startBtn.textContent = hikeLabel('hike.end', 'End hike');
+    setStartLabel('hike.end', 'End hike');
     startBtn.style.background = '#9C3A25';
+    pauseBtn.hidden = false;
     window.dispatchEvent(new CustomEvent('dolopaws-hike-progress', {
       detail: { km: 0, startedAt: hikeStartedAt },
     }));
@@ -338,8 +352,9 @@ function initHikeMode(map, trail){
     if (watchId !== null){ navigator.geolocation.clearWatch(watchId); watchId = null; }
     if (wakeLock){ try { wakeLock.release(); } catch (e) {} wakeLock = null; }
     hideLiveDot();
-    startBtn.innerHTML = hikeButtonHtml(hikeLabel('hike.start', 'Start hike'));
+    setStartLabel('hike.start', 'Start hike');
     startBtn.style.background = 'var(--ink)';
+    pauseBtn.hidden = true;
     if (!keepPanel){
       panel.style.display = 'none';
       container.classList.remove('hike-status-visible');
@@ -347,6 +362,45 @@ function initHikeMode(map, trail){
       container.classList.add('hike-status-visible');
     }
     banner.style.display = 'none';
+  }
+
+  function resumeHike(){
+    if(!durableSession) return;
+    active = true;
+    const progress = durableSession.lastProgress;
+    firstFix = !progress;
+    hikeStartRecorded = !!progress;
+    hikeStartedAt = durableSession.startedAt;
+    lastKnownKm = progress ? progress.km : 0;
+    lastIdx = progress ? progress.pathIndex : 0;
+    offRouteStreak = 0;
+    persistSessionState('active');
+    if(window.DoloPawsMapFS) window.DoloPawsMapFS.enter();
+    setStartLabel('hike.end', 'End hike');
+    startBtn.style.background = '#9C3A25';
+    startBtn.disabled = false;
+    pauseBtn.hidden = false;
+    panel.style.display = 'block';
+    container.classList.add('hike-status-visible');
+    panel.innerHTML = window.t('hike.getting');
+    showLiveDot();
+    acquireWakeLock();
+    window.dispatchEvent(new CustomEvent('dolopaws-hike-progress', {
+      detail: { km: lastKnownKm, startedAt: hikeStartedAt },
+    }));
+    watchId = navigator.geolocation.watchPosition(onFix, onError, {
+      enableHighAccuracy: true,
+      maximumAge: 2000,
+      timeout: 20000,
+    });
+  }
+
+  function pauseHike(){
+    if(!active || !durableSession) return;
+    persistSessionState('paused');
+    stopHike(true);
+    setStartLabel('hike.resume', 'Resume hike');
+    panel.textContent = window.t('hike.paused');
   }
 
   function finishHike(){
@@ -580,11 +634,132 @@ function initHikeMode(map, trail){
     if (firstBtn) firstBtn.focus();
   }
 
-  startBtn.addEventListener('click', () => { active ? finishHike() : startHike(); });
+  function recoveryActions(includeResume, otherTrailId, showDownloads){
+    const actions = document.createElement('span');
+    actions.style.cssText = 'display:flex;justify-content:center;gap:8px;margin-top:8px;flex-wrap:wrap;';
+    if(includeResume){
+      const resume = document.createElement('button');
+      resume.type = 'button';
+      resume.textContent = window.t('hike.resume');
+      resume.addEventListener('click', resumeHike);
+      actions.appendChild(resume);
+    }
+    if(otherTrailId){
+      const open = document.createElement('a');
+      open.href = `trail.html?id=${encodeURIComponent(otherTrailId)}`;
+      open.textContent = window.t('hike.openTrail');
+      open.style.cssText = 'color:#fff;padding:6px 8px;font-weight:800;';
+      actions.appendChild(open);
+    }
+    if(showDownloads){
+      const downloads = document.createElement('a');
+      downloads.href = 'downloads.html';
+      downloads.textContent = window.t('hike.openDownloads');
+      downloads.style.cssText = 'color:#fff;padding:6px 8px;font-weight:800;';
+      actions.appendChild(downloads);
+    }
+    const discard = document.createElement('button');
+    discard.type = 'button';
+    discard.textContent = window.t('hike.discard');
+    discard.style.background = '#9C3A25';
+    discard.addEventListener('click', () => {
+      clearDurableSession();
+      panel.style.display = 'none';
+      container.classList.remove('hike-status-visible');
+      startBtn.disabled = false;
+      setStartLabel('hike.start', 'Start hike');
+    });
+    actions.appendChild(discard);
+    panel.appendChild(actions);
+  }
+
+  async function checkForRecovery(){
+    if(!window.DoloPawsHikeSession || active) return;
+    const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+    let packageAvailable = true;
+    if(!navigator.onLine){
+      packageAvailable = false;
+      if(window.DoloPawsOffline && window.DoloPawsOffline.inspectPackage){
+        try {
+          const inspection = await window.DoloPawsOffline.inspectPackage(trail.id);
+          packageAvailable = !!inspection.usable;
+        } catch (error) {}
+      }
+    }
+    const recovery = window.DoloPawsHikeSession.recoveryState({
+      trailId: trail.id,
+      ownerId: user && user.uid || null,
+      packageAvailable,
+    });
+    if(recovery.status === 'empty' || recovery.status === 'unavailable' ||
+       recovery.status === 'owner-mismatch'){
+      if(recovery.status === 'owner-mismatch'){
+        durableSession = null;
+        panel.style.display = 'none';
+        container.classList.remove('hike-status-visible');
+        startBtn.disabled = false;
+        setStartLabel('hike.start', 'Start hike');
+      }
+      return;
+    }
+
+    panel.style.display = 'block';
+    container.classList.add('hike-status-visible');
+    if(recovery.status === 'ready'){
+      durableSession = recovery.session;
+      if(durableSession.state === 'completion-pending'){
+        startBtn.disabled = true;
+        panel.textContent = window.t('hike.completionPending');
+        recoveryActions(false);
+        return;
+      }
+      const progress = durableSession.lastProgress;
+      panel.innerHTML = `<strong>${window.t('hike.restoreTitle')}</strong><br>${
+        window.t('hike.restoreBody', {
+          time: new Date(durableSession.startedAt).toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+          }),
+          km: progress ? progress.km.toFixed(1) : '0.0',
+        })
+      }`;
+      setStartLabel('hike.resume', 'Resume hike');
+      recoveryActions(true);
+      return;
+    }
+    startBtn.disabled = true;
+    if(recovery.status === 'other-trail'){
+      panel.textContent = window.t('hike.otherTrail');
+      recoveryActions(false, recovery.session && recovery.session.trailId);
+    }else if(recovery.status === 'missing-package'){
+      panel.textContent = window.t('hike.missingPackage');
+      recoveryActions(false, null, true);
+    }else{
+      panel.textContent = recovery.status === 'expired'
+        ? window.t('hike.expired')
+        : window.t('hike.corrupt');
+      recoveryActions(false);
+    }
+  }
+
+  startBtn.addEventListener('click', () => {
+    if(active) finishHike();
+    else if(durableSession) resumeHike();
+    else startHike();
+  });
+  pauseBtn.addEventListener('click', pauseHike);
+
+  if(window.DoloPawsAuth) checkForRecovery();
+  else window.addEventListener('dolopaws-auth-ready', checkForRecovery, { once: true });
+  window.addEventListener('dolopaws-auth-changed', checkForRecovery);
 
   // Deep link from the journal's "Track it live instead →": start recording
   // straight away (the browser still gates this behind its location prompt).
   if (new URLSearchParams(window.location.search).get('hike') === '1'){
-    setTimeout(() => { if (!active) startHike(); }, 400);
+    setTimeout(async () => {
+      await checkForRecovery();
+      const loaded = window.DoloPawsHikeSession && window.DoloPawsHikeSession.load();
+      if(!active && !durableSession && (!loaded || loaded.status === 'empty')) startHike();
+    }, 400);
   }
 }

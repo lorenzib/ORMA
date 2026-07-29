@@ -118,5 +118,30 @@ describe('HIKE-01 durable active-hike session', () => {
     expect(hikeMode).toContain('DoloPawsHikeSession.updateProgress');
     expect(hikeMode).toContain("'completion-pending'");
     expect(hikeMode).toContain('if(saved) clearDurableSession()');
+    expect(hikeMode).toContain('function resumeHike()');
+    expect(hikeMode).toContain('function pauseHike()');
+    expect(hikeMode).toContain("recovery.status === 'missing-package'");
+    expect(hikeMode).toContain('DoloPawsHikeSession.load()');
+  });
+
+  test.each([
+    ['ready', { now: 2_000, trailId: 'lago-carezza', ownerId: 'user-1', packageAvailable: true }],
+    ['expired', { now: 1_000 + (37 * 60 * 60 * 1000), trailId: 'lago-carezza', ownerId: 'user-1', packageAvailable: true }],
+    ['owner-mismatch', { now: 2_000, trailId: 'lago-carezza', ownerId: 'user-2', packageAvailable: true }],
+    ['other-trail', { now: 2_000, trailId: 'another-trail', ownerId: 'user-1', packageAvailable: true }],
+    ['missing-package', { now: 2_000, trailId: 'lago-carezza', ownerId: 'user-1', packageAvailable: false }],
+  ])('resolves %s recovery state without deleting the session', (status, options) => {
+    sessionStore.create({
+      trailId: 'lago-carezza',
+      packageId: 'dolopaws-trail:lago-carezza',
+      ownerId: 'user-1',
+      startedAt: 1_000,
+    });
+
+    expect(sessionStore.recoveryState(options)).toMatchObject({
+      status,
+      session: expect.objectContaining({ trailId: 'lago-carezza' }),
+    });
+    expect(localStorage.getItem(sessionStore.STORAGE_KEY)).not.toBeNull();
   });
 });

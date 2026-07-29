@@ -4,6 +4,8 @@
   const SUPPORTED_TRAIL = 'lago-carezza';
   const MANIFEST_URL = `packages/${SUPPORTED_TRAIL}/manifest.json`;
   let watchId = null;
+  let activeSession = null;
+  let routeCoordinates = [];
 
   const elements = {
     trailName: document.getElementById('trailName'),
@@ -18,6 +20,12 @@
     locationButton: document.getElementById('locationButton'),
     locationState: document.getElementById('locationState'),
     positionDot: document.getElementById('positionDot'),
+    hikeRecovery: document.getElementById('hikeRecovery'),
+    hikeRecoveryTitle: document.getElementById('hikeRecoveryTitle'),
+    hikeRecoveryMessage: document.getElementById('hikeRecoveryMessage'),
+    hikeResumeButton: document.getElementById('hikeResumeBtn'),
+    hikePauseButton: document.getElementById('hikePauseBtn'),
+    hikeDiscardButton: document.getElementById('hikeDiscardBtn'),
     facts: document.getElementById('facts'),
     cautions: document.getElementById('cautions'),
     emergency: document.getElementById('emergency'),
@@ -93,17 +101,63 @@
     };
   }
 
+  function metersBetween(aLat, aLng, bLat, bLng){
+    const metresPerDegree = 111000;
+    const dLat = (bLat - aLat) * metresPerDegree;
+    const dLng = (bLng - aLng) * metresPerDegree *
+      Math.cos(((aLat + bLat) / 2) * Math.PI / 180);
+    return Math.hypot(dLat, dLng);
+  }
+
+  function routeProgress(lat, lng){
+    if(routeCoordinates.length < 2) return null;
+    let bestIndex = 0;
+    let nearestM = Infinity;
+    const cumulative = [0];
+    for(let index = 0; index < routeCoordinates.length; index++){
+      const [routeLng, routeLat] = routeCoordinates[index];
+      const distance = metersBetween(lat, lng, routeLat, routeLng);
+      if(distance < nearestM){
+        nearestM = distance;
+        bestIndex = index;
+      }
+      if(index > 0){
+        const [previousLng, previousLat] = routeCoordinates[index - 1];
+        cumulative.push(cumulative[index - 1] +
+          metersBetween(previousLat, previousLng, routeLat, routeLng));
+      }
+    }
+    return {
+      pathIndex: bestIndex,
+      km: cumulative[bestIndex] / 1000,
+      nearestM,
+    };
+  }
+
+  function keepSessionResult(result){
+    if(result && result.session) activeSession = result.session;
+    return !!(result && result.ok);
+  }
+
+  function stopLocation(message){
+    if(watchId !== null){
+      navigator.geolocation.clearWatch(watchId);
+      watchId = null;
+    }
+    elements.positionDot.hidden = true;
+    elements.locationButton.textContent = 'Show my position';
+    elements.locationButton.disabled = false;
+    if(message) elements.locationState.textContent = message;
+  }
+
   function startLocation(bounds){
     if(!('geolocation' in navigator)){
       elements.locationState.textContent = 'GPS is not supported in this browser.';
       return;
     }
     if(watchId !== null){
-      navigator.geolocation.clearWatch(watchId);
-      watchId = null;
-      elements.positionDot.hidden = true;
-      elements.locationButton.textContent = 'Show my position';
-      elements.locationState.textContent = 'GPS stopped.';
+      if(activeSession && activeSession.state === 'active') pauseRecoveredHike();
+      else stopLocation('GPS stopped.');
       return;
     }
     elements.locationButton.disabled = true;
@@ -118,6 +172,23 @@
         elements.positionDot.style.left = `${point.x}%`;
         elements.positionDot.style.top = `${point.y}%`;
       }
+      if(activeSession && activeSession.state === 'active' &&
+         Number.isFinite(position.coords.accuracy) && position.coords.accuracy <= 200){
+        const progress = routeProgress(position.coords.latitude, position.coords.longitude);
+        if(progress && progress.nearestM <= 2000){
+          keepSessionResult(window.DoloPawsHikeSession.updateProgress(activeSession, {
+            km: Math.max(
+              activeSession.lastProgress && activeSession.lastProgress.km || 0,
+              progress.km
+            ),
+            pathIndex: progress.pathIndex,
+            accuracyM: position.coords.accuracy,
+            recordedAt: Number.isFinite(position.timestamp)
+              ? position.timestamp
+              : Date.now(),
+          }));
+        }
+      }
       elements.locationState.textContent = onMap
         ? `GPS accuracy ±${Math.round(position.coords.accuracy)} m · last fix ${new Date(position.timestamp).toLocaleTimeString()}`
         : `Your GPS position is outside this downloaded map · accuracy ±${Math.round(position.coords.accuracy)} m`;
@@ -125,6 +196,16 @@
       elements.locationButton.disabled = false;
       elements.locationButton.textContent = 'Try GPS again';
       watchId = null;
+      if(activeSession && activeSession.state === 'active'){
+        keepSessionResult(window.DoloPawsHikeSession.setState(
+          activeSession,
+          'paused',
+          Date.now()
+        ));
+        elements.hikeRecoveryTitle.textContent = 'Hike paused';
+        elements.hikeResumeButton.hidden = false;
+        elements.hikePauseButton.hidden = true;
+      }
       elements.locationState.textContent = error.code === 1
         ? 'Location permission was denied. Enable it for DoloPaws in browser settings.'
         : 'A GPS fix is currently unavailable. The stored route remains visible.';
@@ -133,6 +214,112 @@
       maximumAge: 2000,
       timeout: 20000,
     });
+  }
+
+  function recoveryMessage(session){
+    const progress = session.lastProgress;
+    const time = new Date(session.startedAt).toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+    return `Started ${time} · last saved progress ${
+      progress ? `${progress.km.toFixed(1)} km` : 'at the trailhead'
+    }.`;
+  }
+
+  function showRecoveryIssue(title, message){
+    elements.hikeRecovery.hidden = false;
+    elements.hikeRecoveryTitle.textContent = title;
+    elements.hikeRecoveryMessage.textContent = message;
+    elements.hikeResumeButton.hidden = true;
+    elements.hikePauseButton.hidden = true;
+    elements.hikeDiscardButton.hidden = false;
+  }
+
+  function resumeRecoveredHike(bounds){
+    if(!activeSession) return;
+    keepSessionResult(window.DoloPawsHikeSession.setState(
+      activeSession,
+      'active',
+      Date.now()
+    ));
+    elements.hikeRecoveryTitle.textContent = 'Hike resumed';
+    elements.hikeRecoveryMessage.textContent =
+      'GPS tracking is active. Your latest valid progress stays saved on this device.';
+    elements.hikeResumeButton.hidden = true;
+    elements.hikePauseButton.hidden = false;
+    startLocation(bounds);
+  }
+
+  function pauseRecoveredHike(){
+    if(activeSession){
+      keepSessionResult(window.DoloPawsHikeSession.setState(
+        activeSession,
+        'paused',
+        Date.now()
+      ));
+    }
+    stopLocation('Hike paused. Your progress is saved on this device.');
+    elements.hikeRecoveryTitle.textContent = 'Hike paused';
+    elements.hikeRecoveryMessage.textContent = activeSession
+      ? recoveryMessage(activeSession)
+      : 'Your progress is saved on this device.';
+    elements.hikeResumeButton.hidden = false;
+    elements.hikePauseButton.hidden = true;
+  }
+
+  function discardRecoveredHike(){
+    stopLocation('GPS is off. The route and safety information remain available.');
+    window.DoloPawsHikeSession.clear();
+    activeSession = null;
+    elements.hikeRecovery.hidden = true;
+  }
+
+  function configureRecovery(trailId, bounds){
+    if(!window.DoloPawsHikeSession) return;
+    elements.hikeResumeButton.addEventListener('click', () => resumeRecoveredHike(bounds));
+    elements.hikePauseButton.addEventListener('click', pauseRecoveredHike);
+    elements.hikeDiscardButton.addEventListener('click', discardRecoveredHike);
+    const loaded = window.DoloPawsHikeSession.load();
+    const ownerId = loaded.status === 'ready' ? loaded.session.ownerId : null;
+    const recovery = window.DoloPawsHikeSession.recoveryState({
+      trailId,
+      ownerId,
+      packageAvailable: true,
+    });
+    if(recovery.status === 'empty' || recovery.status === 'unavailable' ||
+       recovery.status === 'other-trail' || recovery.status === 'owner-mismatch'){
+      return;
+    }
+    if(recovery.status === 'expired'){
+      showRecoveryIssue(
+        'Old unfinished hike',
+        'This saved hike is more than 36 hours old. Discard it before starting another hike.'
+      );
+      return;
+    }
+    if(recovery.status === 'corrupt' || recovery.status === 'incompatible'){
+      showRecoveryIssue(
+        'Hike cannot be restored',
+        'The saved record is damaged or from an unsupported version. Discard it safely.'
+      );
+      return;
+    }
+    activeSession = recovery.session;
+    elements.hikeRecovery.hidden = false;
+    elements.hikeDiscardButton.hidden = false;
+    if(activeSession.state === 'completion-pending'){
+      elements.hikeRecoveryTitle.textContent = 'Hike finished';
+      elements.hikeRecoveryMessage.textContent =
+        'Reconnect to DoloPaws to finish saving this hike to your journal.';
+      elements.hikeResumeButton.hidden = true;
+      elements.hikePauseButton.hidden = true;
+      return;
+    }
+    elements.hikeRecoveryTitle.textContent = 'Unfinished hike found';
+    elements.hikeRecoveryMessage.textContent = recoveryMessage(activeSession);
+    elements.hikeResumeButton.hidden = false;
+    elements.hikePauseButton.hidden = true;
   }
 
   async function init(){
@@ -164,6 +351,9 @@
       if(!resources.map || !resources.route || !resources.safety) throw new Error('Required map, route, or safety data is missing.');
 
       const safety = await resources.safety.json();
+      const route = await resources.route.json();
+      routeCoordinates = route.features && route.features[0] &&
+        route.features[0].geometry && route.features[0].geometry.coordinates || [];
       elements.trailName.textContent = manifest.name;
       const requiredCount = manifest.resources.filter(resource => resource.required !== false).length;
       elements.packageState.textContent = `Checksum-verified ${requiredCount} required stored resources · ${formatBytes(manifest.packageBytes)}`;
@@ -189,6 +379,7 @@
       elements.packageMeta.textContent = `Package ${manifest.version} · scoring ${manifest.scoringVersion || 'not recorded'} · generated ${manifest.generatedAt.slice(0, 10)} · ${manifest.attribution}`;
       elements.licenceLink.href = manifest.licenceUrl;
       elements.locationButton.addEventListener('click', () => startLocation(manifest.bounds));
+      configureRecovery(trailId, manifest.bounds);
 
       elements.mapSection.hidden = false;
       elements.factsSection.hidden = false;
@@ -198,6 +389,6 @@
     }
   }
 
-  window.DoloPawsOfflineApp = { positionPercent };
+  window.DoloPawsOfflineApp = { positionPercent, routeProgress };
   init();
 })();

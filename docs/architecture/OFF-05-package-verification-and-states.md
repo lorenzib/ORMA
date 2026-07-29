@@ -56,7 +56,7 @@ toggle airplane mode or prove GPS behavior automatically.
 
 ## Evidence snapshot
 
-Package `2026.07.29-beta.6` stores the TRUST-01 evidence contract version,
+Package `2026.07.29-beta.7` stores the TRUST-01 evidence contract version,
 public tier, and source/freshness/date labels for route, water, heat, exposure,
 livestock, surface hazards, and dog access. That detail remains internal
 package metadata for integrity, scoring, and operations. The customer-facing
@@ -74,12 +74,12 @@ revision remains secondary package information.
 - The self-test fixture proves optional layers are ignored and no network fetch
   occurs.
 - Tests cover all eight canonical lifecycle states and stale/unknown freshness.
-- The normal application suite passes 174 tests.
+- The normal application suite passes 188 tests.
 - The static link checker passes all 172 HTML pages.
 
 ## Remaining validation
 
-1. Update the existing iPhone package to beta.6 and run **Test offline**.
+1. Update the existing iPhone package to beta.7 and run **Test offline**.
 2. Repeat airplane-mode open, refresh, browser restart, and GPS checks.
 3. Complete the supported Android Chrome physical-device matrix.
 4. Complete the dated Lago di Carezza field review; until then evidence

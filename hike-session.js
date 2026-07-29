@@ -3,6 +3,7 @@
 
   const STORAGE_KEY = 'dolopaws-active-hike-v1';
   const SCHEMA_VERSION = 1;
+  const MAX_AGE_MS = 36 * 60 * 60 * 1000;
   const STATES = Object.freeze(['active', 'paused', 'completion-pending']);
 
   function finiteNumber(value){
@@ -154,9 +155,36 @@
     }
   }
 
+  function recoveryState(options, storage){
+    const loaded = load(storage);
+    if(loaded.status !== 'ready') return loaded;
+    const session = loaded.session;
+    const now = finiteNumber(options && options.now) ? options.now : Date.now();
+    const maxAgeMs = finiteNumber(options && options.maxAgeMs)
+      ? options.maxAgeMs
+      : MAX_AGE_MS;
+    if(now - session.updatedAt > maxAgeMs){
+      return { status: 'expired', session };
+    }
+    const ownerId = options && typeof options.ownerId === 'string' && options.ownerId
+      ? options.ownerId
+      : null;
+    if(session.ownerId !== ownerId){
+      return { status: 'owner-mismatch', session };
+    }
+    if(options && options.trailId && session.trailId !== options.trailId){
+      return { status: 'other-trail', session };
+    }
+    if(options && options.packageAvailable === false){
+      return { status: 'missing-package', session };
+    }
+    return { status: 'ready', session };
+  }
+
   root.DoloPawsHikeSession = Object.freeze({
     STORAGE_KEY,
     SCHEMA_VERSION,
+    MAX_AGE_MS,
     STATES,
     validationStatus,
     create,
@@ -164,5 +192,6 @@
     updateProgress,
     setState,
     clear,
+    recoveryState,
   });
 })(typeof window !== 'undefined' ? window : globalThis);

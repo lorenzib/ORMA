@@ -1,7 +1,6 @@
 # HIKE-01 — Durable active-hike session
 
-**Status:** implemented in code; physical refresh/reopen validation rolls into
-HIKE-02.
+**Status:** implemented.
 
 ## Outcome
 
@@ -10,7 +9,7 @@ acceptable GPS fix replaces the previous progress snapshot. DoloPaws does not
 store a breadcrumb trail or continuous latitude/longitude history.
 
 The record survives page refresh, browser closure, and loss of connectivity.
-HIKE-02 will add the customer-facing restore, pause, resume, discard, expiry,
+HIKE-02 provides the customer-facing restore, pause, resume, discard, expiry,
 and missing-package flows that consume it.
 
 ## Stored contract
@@ -73,8 +72,6 @@ malformed progress never become an active session.
 - paused and completion-pending states; and
 - script ordering and hike-mode lifecycle integration.
 
-## Next
+## Consumer
 
-HIKE-02 must restore a `ready` session in airplane mode and give the user clear
-resume, pause, and discard controls. It must also handle expiry and a missing
-offline package without silently losing the record.
+See `docs/architecture/HIKE-02-offline-restoration.md`.
