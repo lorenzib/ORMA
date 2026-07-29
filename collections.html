@@ -4,194 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Collections — DoloPaws</title>
-<meta name="description" content="Curated sets of dog-friendly trails — shady loops, lakeside walks, gentle strolls — every one checked against the same six safety factors.">
-<meta name="theme-color" content="#2E4034">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="description" content="Browse curated DoloPaws trail collections.">
+<meta name="robots" content="noindex,follow">
+<meta http-equiv="refresh" content="0;url=browse-trails.html#collections">
+<link rel="canonical" href="https://www.dolopaws.com/browse-trails.html#collections">
 <link rel="stylesheet" href="styles.css?v=20260729-2">
-<style>
-  /* Collections — WebsiteCollectionsScreen.jsx: card grid + collection of
-     the month split panel. Cards reuse the homepage .hp-ccard anatomy. */
-  .cl-head{max-width:1040px;margin:0 auto;padding:40px 24px 10px;}
-  .cl-head h1{font-size:34px;margin:0;}
-  .cl-head p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:12px 0 0;max-width:560px;}
-  .cl-wrap{max-width:1040px;margin:0 auto;padding:24px 24px 60px;}
-  .cl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-  .cl-grid .hp-ccard{width:100%;}
-  .cl-note{font-size:11.5px;color:var(--ink-soft);}
-  .cl-month{margin-top:26px;background:var(--card);border:1px solid var(--paper-line);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;}
-  .cl-month-img{position:relative;min-height:260px;overflow:hidden;background:var(--sage-dim);}
-  .cl-month-img .trail-visual,.cl-month-img img,.cl-month-img svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-  .cl-month-body{padding:24px 26px;}
-  .cl-kick{font:700 10.5px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
-  .cl-month-body h2{font-size:22px;margin:0;}
-  .cl-month-body>p{font-size:13.5px;color:var(--ink-soft);line-height:1.6;margin:10px 0 14px;}
-  .cl-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
-  .cl-chip{display:inline-flex;align-items:center;font:600 12px 'Inter',sans-serif;color:var(--ink);background:var(--sage-dim);border-radius:999px;padding:6px 13px;}
-  .cl-trails{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
-  .cl-trail{display:flex;align-items:baseline;gap:10px;background:var(--bg);border:1px solid var(--paper-line);border-radius:12px;padding:11px 14px;text-decoration:none;color:inherit;}
-  .cl-trail:hover{border-color:var(--accent);}
-  .cl-trail b{font:700 13.5px 'Source Serif 4',serif;flex:1;min-width:0;color:var(--ink);}
-  .cl-trail .dist{font-size:11.5px;color:var(--ink-soft);white-space:nowrap;}
-  .cl-trail .pct{font:700 13px 'Inter',sans-serif;white-space:nowrap;}
-  .cl-cta{display:inline-flex;align-items:center;justify-content:center;padding:10px 18px;border-radius:10px;background:var(--ink);color:#fff;font:700 13px 'Inter',sans-serif;text-decoration:none;}
-  .cl-cta:hover{opacity:.94;color:#fff;}
-  @media(max-width:900px){
-    .cl-head{padding:26px 16px 10px;}
-    .cl-head h1{font-size:27px;}
-    .cl-wrap{padding:20px 16px 44px;}
-    .cl-grid{grid-template-columns:repeat(2,1fr);}
-    .cl-month{display:flex;flex-direction:column;}
-    .cl-month-img{min-height:180px;}
-    .cl-month-body{padding:20px 18px;}
-  }
-  @media(max-width:600px){.cl-grid{grid-template-columns:1fr;}}
-</style>
+<script src="discovery-state.js?v=20260729-1"></script>
+<script>
+  (function(){
+    var state = window.DoloPawsDiscoveryState.normalize(new URLSearchParams(window.location.search));
+    window.location.replace(window.DoloPawsDiscoveryState.browseHref(state, '#collections'));
+  })();
+</script>
 </head>
 <body>
-
-<div class="topnav">
-  <a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
-  <div class="links">
-    <a href="browse-trails.html">Browse all Trails</a>
-    <a href="collections.html" class="active">Collections</a>
-    <a href="safety-guide.html">Safety guide</a>
-    <a href="settings.html" data-i18n="nav.settings">Settings</a>
-    <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
-  </div>
-</div>
-
-<div class="cl-head">
-  <h1>Collections</h1>
-  <p>Sets built for the day you're having, not for the view. Every trail has been checked against the same six safety factors.</p>
-</div>
-
-<div class="cl-wrap">
-  <div class="cl-grid" id="clGrid"></div>
-  <div class="cl-month" id="clMonth" hidden>
-    <div class="cl-month-img" id="clMonthImg"></div>
-    <div class="cl-month-body">
-      <div class="cl-kick">Collection of the month</div>
-      <h2 id="clMonthName"></h2>
-      <p id="clMonthBlurb"></p>
-      <div class="cl-chips" id="clMonthChips"></div>
-      <div class="cl-trails" id="clMonthTrails"></div>
-      <a class="cl-cta" id="clMonthCta" href="#"></a>
-    </div>
-  </div>
-</div>
-
-<footer class="site-footer" data-i18n="footer.line">DoloPaws &#124; A personalised trail guide for dogs and their humans.</footer>
-
-<script src="mobile-nav.js"></script>
-<script src="i18n.js?v=20260729-1"></script>
-<script type="module" src="firebase-init.js"></script>
-<script src="icon-system.js?v=20260717" defer></script>
-<script src="trail-card-visual.js?v=20260717" defer></script>
-<script src="trust/evidence-v1.js?v=20260728-1" defer></script>
-<script src="scoring/recommendation-v1.js?v=20260728-2" defer></script>
-<script src="scoring/recommendation-adapters-v1.js?v=20260728-1" defer></script>
-<script src="scoring.js?v=20260728-4" defer></script>
-<script src="trails-data.js?v=20260717-3" defer></script>
-<script src="osm-trails-data.js" defer></script>
-<script src="osm-trails-savoy-data.js" defer></script>
-<script src="trail-audits.js?v=20260717" defer></script>
-<script src="regions-config.js" defer></script>
-<script src="auth-ui.js?v=20260729-1" defer></script>
-<script>
-window.addEventListener('DOMContentLoaded', function(){
-  if(typeof trails === 'undefined' || typeof scoreTrail !== 'function') return;
-  if(window.DoloPawsRegions) window.DoloPawsRegions.assign(trails);
-  var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); };
-
-  // Guest scoring — the homepage's medium-dog default, same helpers.
-  var GUEST = { name: 'Medium dog', breed: '', fitness: 'moderate', conditions: [], weightBand: '15-20' };
-  function scoreOf(t){
-    try { return scoreTrail(t, effectiveOverrides(GUEST, null)); } catch(e){ return 0; }
-  }
-  function tier(s){
-    if(s >= 85) return { pin:'#4A7856', color:'#2C5C34' };
-    if(s >= 65) return { pin:'#C98A2E', color:'#8A5A16' };
-    return { pin:'#9C3A25', color:'#9C3A25' };
-  }
-  function thumb(t){
-    return window.DoloPawsTrailVisual
-      ? window.DoloPawsTrailVisual.render(t, {})
-      : '';
-  }
-  var hasWater = function(t){ return Array.isArray(t.waterSources) && t.waterSources.length > 0; };
-
-  // Same predicates as browse-trails.html#collections and the homepage
-  // weekly themes — a collection means the same thing everywhere.
-  var COLLECTIONS = [
-    { key:'shady', name:'Shady lake loops', note:'Cool, covered trails with water nearby',
-      chips:['Shade over 30%', 'Water on route'],
-      blurb:'Covered paths where the canopy does the cooling and the water is never far — the trails to reach for when the valley floor is baking.',
-      filter:function(t){ return (t.shadeCoverage || 0) >= 30 && hasWater(t); } },
-    { key:'water', name:'Lakeside & stream walks', note:'Water to drink and cool off along the way',
-      chips:['Water on route'],
-      blurb:'Circuits where the water is close the whole way round — somewhere to drink, somewhere to cool sore paws, and usually a swim at the halfway point.',
-      filter:hasWater },
-    { key:'meadow', name:'Open meadow strolls', note:'Wide, gentle paths with big views',
-      chips:['Gentle ground', 'Open views'],
-      blurb:'Wide, easy ground with the peaks doing the work in the background. Good recall practice, no scrambling.',
-      filter:function(t){ return (t.shadeCoverage || 0) < 30 && (t.terrainRank || 0) <= 1; } },
-    { key:'gentle', name:'Gentle short loops', note:'Easy, low-climb walks under 4 km',
-      chips:['Under 4 km', 'Gentle climb'],
-      blurb:'Short, flat and friendly — for seniors, puppies, and the days when nobody needs a summit.',
-      filter:function(t){ return Number(t.distance) <= 4; } },
-  ];
-
-  var grid = document.getElementById('clGrid');
-  COLLECTIONS.forEach(function(c){
-    var members = trails.filter(c.filter).map(function(t){ return { t:t, score: scoreOf(t) }; })
-      .sort(function(a,b){ return b.score - a.score; });
-    c.members = members;
-    if(!members.length) return;
-    var best = members[0];
-    var ti = tier(best.score);
-    var card = document.createElement('a');
-    card.className = 'hp-ccard';
-    card.href = 'browse-trails.html?collection=' + encodeURIComponent(c.key);
-    card.style.textDecoration = 'none';
-    card.innerHTML =
-      '<span class="hp-ccard-img">' + thumb(best.t) + '<span class="hp-ccard-pct" style="background:' + ti.pin + '">' + best.score + '%</span></span>' +
-      '<span class="hp-ccard-body">' +
-        '<span class="hp-ccard-name">' + esc(c.name) + '</span>' +
-        '<span class="hp-ccard-tags"><span class="cl-note">' + esc(c.note) + ' · ' + members.length + ' trails</span></span>' +
-      '</span>';
-    grid.appendChild(card);
-  });
-
-  // Collection of the month — the lakeside set, with its three best matches.
-  var month = COLLECTIONS[1];
-  if(month.members && month.members.length){
-    document.getElementById('clMonth').hidden = false;
-    // Lead with a real photo when the collection has one.
-    var visualEntry = month.members.find(function(e){ return e.t.imageIcon || e.t.image; }) || month.members[0];
-    document.getElementById('clMonthImg').innerHTML = thumb(visualEntry.t);
-    document.getElementById('clMonthName').textContent = month.name;
-    document.getElementById('clMonthBlurb').textContent = month.blurb;
-    document.getElementById('clMonthChips').innerHTML = month.chips.map(function(ch){
-      return '<span class="cl-chip">' + esc(ch) + '</span>';
-    }).join('');
-    document.getElementById('clMonthTrails').innerHTML = month.members.slice(0, 3).map(function(e){
-      var ti = tier(e.score);
-      return '<a class="cl-trail" href="trail.html?id=' + encodeURIComponent(e.t.id) + '">' +
-        '<b>' + esc(e.t.name) + '</b>' +
-        '<span class="dist">' + esc(e.t.distance) + ' km</span>' +
-        '<span class="pct" style="color:' + ti.color + '">' + e.score + '%</span></a>';
-    }).join('');
-    var cta = document.getElementById('clMonthCta');
-    cta.textContent = 'See all ' + month.members.length + ' trails →';
-    cta.href = 'browse-trails.html?collection=water';
-  }
-});
-</script>
+  <main class="wrap" style="padding-top:64px;text-align:center;">
+    <h1>Collections have moved</h1>
+    <p>Collections now open inside the complete trail finder, so your search and filters stay together.</p>
+    <p><a href="browse-trails.html#collections">Browse trail collections</a></p>
+  </main>
 </body>
 </html>

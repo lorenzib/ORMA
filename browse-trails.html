@@ -53,7 +53,7 @@
   <a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
   <div class="links">
     <a href="browse-trails.html" class="active">Browse all Trails</a>
-    <a href="collections.html">Collections</a>
+    <a href="browse-trails.html#collections">Collections</a>
     <a href="safety-guide.html">Safety guide</a>
     <a href="settings.html" data-i18n="nav.settings">Settings</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
@@ -94,7 +94,9 @@
       </select>
       <select id="browseDistance" aria-label="Filter by distance">
         <option value="all">Any distance</option>
+        <option value="3">Up to 3 km</option>
         <option value="5">Up to 5 km</option>
+        <option value="6">Up to 6 km</option>
         <option value="10">Up to 10 km</option>
         <option value="20">Up to 20 km</option>
       </select>
@@ -268,6 +270,9 @@
 <script src="i18n.js"></script>
 <script src="trust/evidence-v1.js?v=20260728-1"></script>
 <script src="trail-trust.js?v=20260728-4"></script>
+<script src="scoring/recommendation-v1.js?v=20260728-2"></script>
+<script src="scoring/recommendation-adapters-v1.js?v=20260728-1"></script>
+<script src="scoring.js?v=20260728-4"></script>
 <script type="module" src="firebase-init.js"></script>
 <script src="icon-system.js?v=20260717" defer></script>
 <script src="trail-card-visual.js?v=20260717" defer></script>
@@ -277,6 +282,7 @@
 <script src="trail-audits.js?v=20260717" defer></script>
 <script src="regions-config.js"></script>
 <script src="auth-ui.js?v=20260729-1" defer></script>
+<script src="discovery-state.js?v=20260729-1" defer></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     const list = document.getElementById('simpleTrailsList');
@@ -294,6 +300,11 @@
     const clear = document.getElementById('browseClear');
     let regionValue = 'all';
     let waterOnly = false;
+    let difficultyValue = '';
+    let terrainValue = '';
+    let shadeOnly = false;
+    let minMatchValue = '';
+    let dogValue = 'medium';
 
     // Logged-in visitors arrive here from the map shell — give them the way
     // back the design asks for ("← Back home").
@@ -316,7 +327,7 @@
     const PER_PAGE = 15;
     const allowedRegions = ['all', 'dolomites', 'savoy'];
     const allowedRisks = ['all', 'low-risk', 'moderate', 'caution'];
-    const allowedDistances = ['all', '5', '10', '20'];
+    const allowedDistances = ['all', '3', '5', '6', '10', '20'];
     let page = 1;
 
     // Curated collections — same predicates as the homepage "Featured this
@@ -337,27 +348,42 @@
 
     function applyBrowseUrl(){
       const urlParams = new URLSearchParams(window.location.search);
-      search.value = urlParams.get('search') || '';
-      regionValue = allowedRegions.includes(urlParams.get('region')) ? urlParams.get('region') : 'all';
-      risk.value = allowedRisks.includes(urlParams.get('risk')) ? urlParams.get('risk') : 'all';
-      distance.value = allowedDistances.includes(urlParams.get('distance')) ? urlParams.get('distance') : 'all';
-      waterOnly = urlParams.get('water') === '1';
-      collectionKey = COLLECTIONS[urlParams.get('collection')] ? urlParams.get('collection') : 'all';
-      page = Math.max(1, Number.parseInt(urlParams.get('page'), 10) || 1);
+      const canonical = window.DoloPawsDiscoveryState
+        ? window.DoloPawsDiscoveryState.normalize(urlParams)
+        : {};
+      search.value = canonical.search || '';
+      regionValue = allowedRegions.includes(canonical.region) ? canonical.region : 'all';
+      risk.value = allowedRisks.includes(canonical.risk) ? canonical.risk : 'all';
+      distance.value = allowedDistances.includes(canonical.distance) ? canonical.distance : 'all';
+      waterOnly = canonical.water === true;
+      collectionKey = COLLECTIONS[canonical.collection] ? canonical.collection : 'all';
+      difficultyValue = canonical.difficulty || '';
+      terrainValue = canonical.terrain || '';
+      shadeOnly = canonical.shade === true;
+      minMatchValue = canonical.minMatch || '';
+      dogValue = canonical.dog || 'medium';
+      page = canonical.page || 1;
     }
     applyBrowseUrl();
 
     function browseStateTarget(){
-      const state = new URLSearchParams();
-      if(search.value.trim()) state.set('search', search.value.trim());
-      if(regionValue !== 'all') state.set('region', regionValue);
-      if(risk.value !== 'all') state.set('risk', risk.value);
-      if(distance.value !== 'all') state.set('distance', distance.value);
-      if(waterOnly) state.set('water', '1');
-      if(collectionKey !== 'all') state.set('collection', collectionKey);
-      if(page > 1) state.set('page', String(page));
-      const query = state.toString();
-      return 'browse-trails.html' + (query ? '?' + query : '');
+      const state = {
+        search: search.value,
+        region: regionValue === 'all' ? '' : regionValue,
+        risk: risk.value === 'all' ? '' : risk.value,
+        distance: distance.value === 'all' ? '' : distance.value,
+        water: waterOnly,
+        collection: collectionKey === 'all' ? '' : collectionKey,
+        difficulty: difficultyValue,
+        terrain: terrainValue,
+        shade: shadeOnly,
+        minMatch: minMatchValue,
+        dog: dogValue,
+        page,
+      };
+      return window.DoloPawsDiscoveryState
+        ? window.DoloPawsDiscoveryState.browseHref(state)
+        : 'browse-trails.html';
     }
 
     function syncBrowseUrl(mode){
@@ -372,14 +398,43 @@
       const q = search.value.trim().toLocaleLowerCase();
       const maxDistance = distance.value === 'all' ? Infinity : Number(distance.value);
       const coll = COLLECTIONS[collectionKey];
+      const profiles = {
+        medium: { name:'Medium dog', fitness:'moderate', conditions:[], weightBand:'15-20' },
+        rufus: { name:'Rufus', fitness:'moderate', conditions:['heat'], weightBand:'30-40' },
+        bella: { name:'Bella', fitness:'low', conditions:[], weightBand:'5-10' },
+        milo: { name:'Milo', fitness:'high', conditions:[], weightBand:'15-20' },
+      };
+      let dogProfile = profiles[dogValue] || profiles.medium;
+      if(dogValue === 'custom'){
+        try {
+          dogProfile = JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile')) || dogProfile;
+        } catch(e){}
+      }
+      const minMatch = Number(minMatchValue) || 0;
+      const matchScore = t => {
+        try { return scoreTrail(t, effectiveOverrides(dogProfile, null)); }
+        catch(e){ return 0; }
+      };
+      const trailDifficulty = t => {
+        const gain = typeof t.elevation === 'number' ? t.elevation : 0;
+        const rank = typeof t.terrainRank === 'number' ? t.terrainRank : 1;
+        if(gain >= 400 || (rank >= 2 && gain >= 250)) return 'Hard';
+        if(gain >= 180 || Number(t.distance) >= 6 || rank >= 2) return 'Moderate';
+        return 'Easy';
+      };
       return trails.filter(t => {
         const searchable = [t.name, t.area, t.valley, t.region].filter(Boolean).join(' ').toLocaleLowerCase();
+        const rank = typeof t.terrainRank === 'number' ? t.terrainRank : 1;
         return (!q || searchable.includes(q))
           && (regionValue === 'all' || t.region === regionValue)
           && (risk.value === 'all' || t.safetyLevel === risk.value)
           && (!Number.isFinite(Number(t.distance)) || Number(t.distance) <= maxDistance)
           && (!waterOnly || hasWater(t))
-          && (!coll || coll.filter(t));
+          && (!coll || coll.filter(t))
+          && (!difficultyValue || trailDifficulty(t) === difficultyValue)
+          && (!terrainValue || (terrainValue === 'soft' ? rank === 0 : terrainValue === 'mixed' ? rank === 1 : rank >= 2))
+          && (!shadeOnly || Number(t.shadeCoverage || 0) >= 30)
+          && (!minMatch || matchScore(t) >= minMatch);
       });
     }
 
@@ -467,8 +522,9 @@
       syncFiltersChip();
       renderCollections();
       const pool = filteredTrails();
-      const hasFilters = search.value.trim() || regionValue !== 'all' || risk.value !== 'all' || distance.value !== 'all' || waterOnly || collectionKey !== 'all';
-      resultCount.textContent = `${pool.length} trail${pool.length === 1 ? '' : 's'} found`;
+      const hasFilters = search.value.trim() || regionValue !== 'all' || risk.value !== 'all' || distance.value !== 'all' || waterOnly || collectionKey !== 'all' || difficultyValue || terrainValue || shadeOnly || minMatchValue;
+      const dogNames = { medium:'a medium dog', rufus:'Rufus', bella:'Bella', milo:'Milo', custom:'your dog' };
+      resultCount.textContent = `${pool.length} trail${pool.length === 1 ? '' : 's'} found · context: ${dogNames[dogValue] || dogNames.medium}`;
       clear.hidden = !hasFilters || pool.length === 0;
       const totalPages = Math.max(1, Math.ceil(pool.length / PER_PAGE));
       if(page > totalPages) page = totalPages;
@@ -566,6 +622,10 @@
       waterOnly = false;
       if(waterBtn) waterBtn.setAttribute('aria-pressed', 'false');
       collectionKey = 'all';
+      difficultyValue = '';
+      terrainValue = '';
+      shadeOnly = false;
+      minMatchValue = '';
       page = 1;
       renderPage('push');
       search.focus();

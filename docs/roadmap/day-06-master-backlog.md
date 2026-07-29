@@ -267,6 +267,7 @@ All P0 and P1 work
 
 ### UX-01 — Select the canonical discovery journey
 
+- **Status:** Complete in code (2026-07-29)
 - **Priority:** P1
 - **Size:** S
 - **Depends on:** DATA-03

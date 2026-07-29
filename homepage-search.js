@@ -154,7 +154,30 @@
     if (typeof pathThumbnailSvg === 'function') { var s = pathThumbnailSvg(t.path); if (s) return s; }
     return '';
   }
-  function trailHref(t) { return 'trail.html?id=' + encodeURIComponent(t.id); }
+  function canonicalBrowseState() {
+    return {
+      search: state.query,
+      distance: state.dist === 99 ? '' : String(state.dist),
+      water: state.hasWater,
+      dog: state.dog,
+      difficulty: state.diff === 'any' ? '' : state.diff,
+      terrain: state.terrain === 'any' ? '' : state.terrain,
+      shade: state.shade === 'shade',
+      minMatch: state.minMatch ? String(state.minMatch) : '',
+    };
+  }
+
+  function browseHref() {
+    return window.DoloPawsDiscoveryState
+      ? window.DoloPawsDiscoveryState.browseHref(canonicalBrowseState())
+      : 'browse-trails.html';
+  }
+
+  function trailHref(t) {
+    return window.DoloPawsDiscoveryState
+      ? window.DoloPawsDiscoveryState.trailHref(t.id, canonicalBrowseState())
+      : 'trail.html?id=' + encodeURIComponent(t.id);
+  }
   function valleyOf(t) { return t.valley || t.area || ''; }
 
   function filterCount() {
@@ -459,8 +482,7 @@
   }
 
   function runSearch() {
-    state.searched = true; state.focused = false; state.menu = null;
-    syncMenus(); renderFiltersPanel(); renderFiltersButton(); renderSuggest(); renderContent();
+    window.location.href = browseHref();
   }
 
   // ---- static one-time setup ----
