@@ -21,6 +21,13 @@ describe('UX-01 canonical discovery integration', () => {
     expect(browse).toContain('DoloPawsDiscoveryState.normalize(urlParams)');
     expect(browse).toContain('DoloPawsDiscoveryState.browseHref(state)');
     expect(browse).toContain('&from=${encodeURIComponent(browseStateTarget())}');
+    expect(browse).toContain('id="browseTerrain"');
+    expect(browse).toContain('id="browseHeat"');
+    expect(browse).toContain('id="browseExposure"');
+    expect(browse).toContain('id="browseAccess"');
+    expect(browse).toContain('id="browseVerification"');
+    expect(browse).toContain('Reviewed water point');
+    expect(browse).toContain('diagnoseZero(trails, currentFilterState(), filterOptions())');
   });
 
   test('the old Collections route is a redirect, not a second results implementation', () => {

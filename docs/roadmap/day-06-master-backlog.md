@@ -280,6 +280,7 @@ All P0 and P1 work
 
 ### UX-02 — Consolidate dog-specific filters and zero-result recovery
 
+- **Status:** Complete in code (2026-07-29)
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** UX-01, SCORE-01

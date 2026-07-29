@@ -27,7 +27,9 @@
   .browse-tools .browse-search{flex:1 1 240px;max-width:340px;}
   .browse-tools input,.browse-tools select{min-height:44px;padding:10px 12px;border:1.5px solid var(--paper-line);border-radius:10px;background:var(--card);color:var(--ink);font:500 13px 'Inter',sans-serif;}
   .browse-tools input:focus,.browse-tools select:focus{outline:none;border-color:var(--accent);}
-  .browse-filter-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .browse-filter-controls{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;}
+  .browse-field{display:flex;flex-direction:column;gap:5px;min-width:150px;}
+  .browse-field>span{font:700 10.5px 'Inter',sans-serif;letter-spacing:.04em;color:var(--ink-soft);}
   .browse-water{min-height:44px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 13px 'Inter',sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap;}
   .browse-water[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
   .browse-filters-toggle{display:none;min-height:44px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 13px 'Inter',sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap;}
@@ -38,13 +40,18 @@
   @media(max-width:760px){
     .browse-tools .browse-search{flex-basis:100%;max-width:none;}
     .browse-filters-toggle{display:inline-flex;align-items:center;gap:6px;}
-    .browse-filter-controls{display:none;position:absolute;top:calc(100% + 6px);left:0;z-index:30;width:min(300px,100%);flex-direction:column;align-items:stretch;background:#fff;border:1px solid var(--paper-line);border-radius:12px;box-shadow:0 14px 34px -12px rgba(23,42,28,.4);padding:12px;}
+    .browse-filter-controls{display:none;position:absolute;top:calc(100% + 6px);left:0;z-index:30;width:min(320px,100%);max-height:min(70vh,560px);overflow-y:auto;flex-direction:column;align-items:stretch;background:#fff;border:1px solid var(--paper-line);border-radius:12px;box-shadow:0 14px 34px -12px rgba(23,42,28,.4);padding:12px;}
     .browse-tools.filters-open .browse-filter-controls{display:flex;}
   }
   .trail-trust-note{margin:0 0 14px;padding:11px 13px;border-left:3px solid #8a5a16;background:#f6ecdb;border-radius:0 10px 10px 0;color:#5f4a2c;font-size:12.5px;line-height:1.55;}
   .browse-results-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 18px;color:var(--ink-soft);font-size:12.5px;}
   .browse-clear{border:0;background:none;color:var(--accent);font:700 12.5px 'Inter',sans-serif;cursor:pointer;padding:4px 0;}
   .browse-empty{grid-column:1/-1;}
+  .browse-empty__filters{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:12px 0 4px;}
+  .browse-empty__filter{padding:5px 9px;border-radius:999px;background:#F5E4C6;color:#6D4916;font:700 11.5px 'Inter',sans-serif;}
+  .browse-recovery{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:14px;}
+  .browse-recovery button{min-height:40px;border:1.5px solid var(--paper-line);border-radius:10px;background:#fff;color:var(--ink);padding:8px 13px;font:700 12.5px 'Inter',sans-serif;cursor:pointer;}
+  .browse-recovery button.safe{background:#EAF3EC;border-color:#9FC4B0;}
 </style>
 </head>
 <body>
@@ -86,21 +93,57 @@
     <input class="browse-search" id="browseSearch" type="search" placeholder="Search by trail, area, or valley" aria-label="Search trails">
     <button type="button" id="browseFiltersBtn" class="browse-filters-toggle" aria-expanded="false" aria-controls="browseFilterControls">Filters<span id="browseFiltersCount"></span> <span aria-hidden="true">▾</span></button>
     <div class="browse-filter-controls" id="browseFilterControls">
-      <select id="browseRisk" aria-label="Filter by trail rating">
-        <option value="all">All trail ratings</option>
-        <option value="low-risk">Low-risk</option>
-        <option value="moderate">Moderate</option>
-        <option value="caution">Caution</option>
-      </select>
-      <select id="browseDistance" aria-label="Filter by distance">
-        <option value="all">Any distance</option>
-        <option value="3">Up to 3 km</option>
-        <option value="5">Up to 5 km</option>
-        <option value="6">Up to 6 km</option>
-        <option value="10">Up to 10 km</option>
-        <option value="20">Up to 20 km</option>
-      </select>
-      <button type="button" id="browseWater" class="browse-water" aria-pressed="false">Water on route</button>
+      <label class="browse-field"><span>Trail rating</span>
+        <select id="browseRisk" aria-label="Filter by trail rating">
+          <option value="all">Any trail rating</option>
+          <option value="low-risk">Low-risk only</option>
+          <option value="moderate">Moderate only</option>
+          <option value="caution">Caution only</option>
+        </select>
+      </label>
+      <label class="browse-field"><span>Distance</span>
+        <select id="browseDistance" aria-label="Filter by distance">
+          <option value="all">Any known distance</option>
+          <option value="3">Up to 3 km</option>
+          <option value="5">Up to 5 km</option>
+          <option value="6">Up to 6 km</option>
+          <option value="10">Up to 10 km</option>
+          <option value="20">Up to 20 km</option>
+        </select>
+      </label>
+      <label class="browse-field"><span>Terrain tolerance</span>
+        <select id="browseTerrain" aria-label="Filter by terrain tolerance">
+          <option value="">Any terrain</option>
+          <option value="soft">Gentle surfaces only</option>
+          <option value="mixed">Up to mixed terrain</option>
+          <option value="rocky">Rocky terrain is okay</option>
+        </select>
+      </label>
+      <label class="browse-field"><span>Shade &amp; heat</span>
+        <select id="browseHeat" aria-label="Filter by reviewed shade or heat">
+          <option value="">Any shade or heat data</option>
+          <option value="shade-reviewed">Reviewed shade, at least 30%</option>
+        </select>
+      </label>
+      <label class="browse-field"><span>Exposure</span>
+        <select id="browseExposure" aria-label="Filter by reviewed exposure">
+          <option value="">Any exposure data</option>
+          <option value="none-reviewed">No exposure, source-reviewed</option>
+        </select>
+      </label>
+      <label class="browse-field"><span>Dog restrictions</span>
+        <select id="browseAccess" aria-label="Filter by reviewed dog access">
+          <option value="">Any dog-access status</option>
+          <option value="allowed-reviewed">Dogs permitted; reviewed rules</option>
+        </select>
+      </label>
+      <label class="browse-field"><span>DoloPaws review</span>
+        <select id="browseVerification" aria-label="Filter by DoloPaws verification">
+          <option value="">Any review status</option>
+          <option value="route-audited">Route-audited or field-verified</option>
+        </select>
+      </label>
+      <button type="button" id="browseWater" class="browse-water" aria-pressed="false">Reviewed water point</button>
     </div>
   </div>
   <p class="trail-trust-note" data-i18n="browse.trustNote"><strong>How to read safety labels:</strong> route-audited trails have had their data checked by DoloPaws. Trails still under review show automated estimates and do not confirm exposure, shade, livestock or current conditions.</p>
@@ -283,6 +326,7 @@
 <script src="regions-config.js"></script>
 <script src="auth-ui.js?v=20260729-1" defer></script>
 <script src="discovery-state.js?v=20260729-1" defer></script>
+<script src="discovery-filters.js?v=20260729-1" defer></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     const list = document.getElementById('simpleTrailsList');
@@ -292,17 +336,23 @@
     const regionTabs = document.getElementById('browseRegionTabs');
     const risk = document.getElementById('browseRisk');
     const distance = document.getElementById('browseDistance');
+    const terrain = document.getElementById('browseTerrain');
+    const heat = document.getElementById('browseHeat');
+    const exposure = document.getElementById('browseExposure');
+    const access = document.getElementById('browseAccess');
+    const verification = document.getElementById('browseVerification');
     const waterBtn = document.getElementById('browseWater');
     const filtersBtn = document.getElementById('browseFiltersBtn');
     const filtersCount = document.getElementById('browseFiltersCount');
     const toolsWrap = document.getElementById('browseTools');
     const resultCount = document.getElementById('browseResultCount');
     const clear = document.getElementById('browseClear');
+    const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, char => ({
+      '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;',
+    })[char]);
     let regionValue = 'all';
     let waterOnly = false;
     let difficultyValue = '';
-    let terrainValue = '';
-    let shadeOnly = false;
     let minMatchValue = '';
     let dogValue = 'medium';
 
@@ -332,16 +382,33 @@
 
     // Curated collections — same predicates as the homepage "Featured this
     // week" themes, so a collection means the same thing everywhere.
-    const hasWater = t => Array.isArray(t.waterSources) && t.waterSources.length > 0;
+    const filterApi = window.DoloPawsDiscoveryFilters;
+    const canonicalParts = t => filterApi.normalizedTrail(t);
+    const categoryReviewed = (parts, category) => parts.verification
+      && parts.verification.categories
+      && parts.verification.categories[category] === 'verified';
     const COLLECTIONS = {
-      'shady': { title: 'Shady lake loops', blurb: 'Cool, covered trails with water nearby',
-        filter: t => (t.shadeCoverage || 0) >= 30 && hasWater(t) },
-      'water': { title: 'Lakeside & stream walks', blurb: 'Water to drink and cool off along the way',
-        filter: hasWater },
-      'meadow': { title: 'Open meadow strolls', blurb: 'Wide, gentle paths with big views',
-        filter: t => (t.shadeCoverage || 0) < 30 && (t.terrainRank || 0) <= 1 },
+      'shady': { title: 'Reviewed shady routes', blurb: 'Reviewed shade and a reviewed water point',
+        filter: t => filterApi.matches(t, { heat:'shade-reviewed', water:true }) },
+      'water': { title: 'Routes with reviewed water', blurb: 'A source-reviewed water point is listed',
+        filter: t => filterApi.matches(t, { water:true }) },
+      'meadow': { title: 'Reviewed open meadow strolls', blurb: 'Known open ground and gentle or mixed terrain',
+        filter: t => {
+          const parts = canonicalParts(t);
+          return categoryReviewed(parts, 'heat')
+            && Number.isFinite(parts.suitability.shadePercent)
+            && parts.suitability.shadePercent < 30
+            && Number.isFinite(parts.suitability.terrainRank)
+            && parts.suitability.terrainRank <= 1;
+        } },
       'gentle': { title: 'Gentle short loops', blurb: 'Easy, low-climb walks under 4 km',
-        filter: t => Number(t.distance) <= 4 },
+        filter: t => {
+          const parts = canonicalParts(t);
+          return Number.isFinite(parts.metrics.distanceKm)
+            && parts.metrics.distanceKm <= 4
+            && Number.isFinite(parts.suitability.terrainRank)
+            && parts.suitability.terrainRank <= 1;
+        } },
     };
     let collectionKey = 'all';
     const collectionsGrid = document.getElementById('browseCollections');
@@ -358,8 +425,11 @@
       waterOnly = canonical.water === true;
       collectionKey = COLLECTIONS[canonical.collection] ? canonical.collection : 'all';
       difficultyValue = canonical.difficulty || '';
-      terrainValue = canonical.terrain || '';
-      shadeOnly = canonical.shade === true;
+      terrain.value = canonical.terrain || '';
+      heat.value = canonical.heat || (canonical.shade ? 'shade-reviewed' : '');
+      exposure.value = canonical.exposure || '';
+      access.value = canonical.access || '';
+      verification.value = canonical.verification || '';
       minMatchValue = canonical.minMatch || '';
       dogValue = canonical.dog || 'medium';
       page = canonical.page || 1;
@@ -375,8 +445,11 @@
         water: waterOnly,
         collection: collectionKey === 'all' ? '' : collectionKey,
         difficulty: difficultyValue,
-        terrain: terrainValue,
-        shade: shadeOnly,
+        terrain: terrain.value,
+        heat: heat.value,
+        exposure: exposure.value,
+        access: access.value,
+        verification: verification.value,
         minMatch: minMatchValue,
         dog: dogValue,
         page,
@@ -394,10 +467,7 @@
       else window.history.replaceState(null, '', target);
     }
 
-    function filteredTrails(){
-      const q = search.value.trim().toLocaleLowerCase();
-      const maxDistance = distance.value === 'all' ? Infinity : Number(distance.value);
-      const coll = COLLECTIONS[collectionKey];
+    function activeDogProfile(){
       const profiles = {
         medium: { name:'Medium dog', fitness:'moderate', conditions:[], weightBand:'15-20' },
         rufus: { name:'Rufus', fitness:'moderate', conditions:['heat'], weightBand:'30-40' },
@@ -410,32 +480,45 @@
           dogProfile = JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile')) || dogProfile;
         } catch(e){}
       }
-      const minMatch = Number(minMatchValue) || 0;
-      const matchScore = t => {
-        try { return scoreTrail(t, effectiveOverrides(dogProfile, null)); }
-        catch(e){ return 0; }
+      return dogProfile;
+    }
+
+    function matchScore(trail){
+      try { return scoreTrail(trail, effectiveOverrides(activeDogProfile(), null)); }
+      catch(e){ return 0; }
+    }
+
+    function currentFilterState(){
+      return {
+        search: search.value,
+        region: regionValue === 'all' ? '' : regionValue,
+        risk: risk.value === 'all' ? '' : risk.value,
+        distance: distance.value === 'all' ? '' : distance.value,
+        water: waterOnly,
+        collection: collectionKey === 'all' ? '' : collectionKey,
+        difficulty: difficultyValue,
+        terrain: terrain.value,
+        heat: heat.value,
+        exposure: exposure.value,
+        access: access.value,
+        verification: verification.value,
+        minMatch: minMatchValue,
+        dog: dogValue,
+        page,
       };
-      const trailDifficulty = t => {
-        const gain = typeof t.elevation === 'number' ? t.elevation : 0;
-        const rank = typeof t.terrainRank === 'number' ? t.terrainRank : 1;
-        if(gain >= 400 || (rank >= 2 && gain >= 250)) return 'Hard';
-        if(gain >= 180 || Number(t.distance) >= 6 || rank >= 2) return 'Moderate';
-        return 'Easy';
+    }
+
+    function filterOptions(){
+      return {
+        collections: Object.fromEntries(
+          Object.entries(COLLECTIONS).map(([key, collection]) => [key, collection.filter])
+        ),
+        score: matchScore,
       };
-      return trails.filter(t => {
-        const searchable = [t.name, t.area, t.valley, t.region].filter(Boolean).join(' ').toLocaleLowerCase();
-        const rank = typeof t.terrainRank === 'number' ? t.terrainRank : 1;
-        return (!q || searchable.includes(q))
-          && (regionValue === 'all' || t.region === regionValue)
-          && (risk.value === 'all' || t.safetyLevel === risk.value)
-          && (!Number.isFinite(Number(t.distance)) || Number(t.distance) <= maxDistance)
-          && (!waterOnly || hasWater(t))
-          && (!coll || coll.filter(t))
-          && (!difficultyValue || trailDifficulty(t) === difficultyValue)
-          && (!terrainValue || (terrainValue === 'soft' ? rank === 0 : terrainValue === 'mixed' ? rank === 1 : rank >= 2))
-          && (!shadeOnly || Number(t.shadeCoverage || 0) >= 30)
-          && (!minMatch || matchScore(t) >= minMatch);
-      });
+    }
+
+    function filteredTrails(){
+      return filterApi.filter(trails, currentFilterState(), filterOptions());
     }
 
     // Region tabs — the same predicate the old select used, now visible.
@@ -466,7 +549,8 @@
     function syncFiltersChip(){
       if(waterBtn) waterBtn.setAttribute('aria-pressed', String(waterOnly));
       if(!filtersBtn) return;
-      const n = (risk.value !== 'all' ? 1 : 0) + (distance.value !== 'all' ? 1 : 0) + (waterOnly ? 1 : 0);
+      const n = filterApi.active(currentFilterState())
+        .filter(item => !['search','region','collection'].includes(item.key)).length;
       if(filtersCount) filtersCount.textContent = n > 0 ? ' (' + n + ')' : '';
       filtersBtn.classList.toggle('on', n > 0);
     }
@@ -522,7 +606,8 @@
       syncFiltersChip();
       renderCollections();
       const pool = filteredTrails();
-      const hasFilters = search.value.trim() || regionValue !== 'all' || risk.value !== 'all' || distance.value !== 'all' || waterOnly || collectionKey !== 'all' || difficultyValue || terrainValue || shadeOnly || minMatchValue;
+      const activeFilters = filterApi.active(currentFilterState());
+      const hasFilters = activeFilters.length > 0;
       const dogNames = { medium:'a medium dog', rufus:'Rufus', bella:'Bella', milo:'Milo', custom:'your dog' };
       resultCount.textContent = `${pool.length} trail${pool.length === 1 ? '' : 's'} found · context: ${dogNames[dogValue] || dogNames.medium}`;
       clear.hidden = !hasFilters || pool.length === 0;
@@ -534,6 +619,29 @@
       const emptyIcon = window.DoloPawsIcons
         ? window.DoloPawsIcons.renderIconSvg('routes', { mode:'inline', color:'currentColor', size:21 })
         : '';
+      let recovery = null;
+      let emptyHtml = '';
+      if(!pageTrails.length){
+        recovery = filterApi.diagnoseZero(trails, currentFilterState(), filterOptions());
+        const chips = activeFilters.map(item =>
+          `<span class="browse-empty__filter">${esc(item.label)}</span>`
+        ).join('');
+        const safeActions = recovery.broadenings.slice(0, 3).map((item, index) =>
+          `<button type="button" class="safe" data-safe-recovery="${index}">${esc(item.label)} · show ${item.count}</button>`
+        ).join('');
+        const removeActions = recovery.restrictive.slice(0, 3).map((item, index) =>
+          `<button type="button" data-remove-recovery="${index}">Remove ${esc(item.label)} · show ${item.countWithout}</button>`
+        ).join('');
+        emptyHtml = '<div class="browse-empty empty-state">' +
+          '<div class="empty-state__icon" aria-hidden="true">' + emptyIcon + '</div>' +
+          '<p class="empty-state__title">No trails match this combination</p>' +
+          '<p class="empty-state__copy">The highlighted choices are being applied together. Reviewed filters never assume that missing safety data is positive.</p>' +
+          '<div class="browse-empty__filters">' + chips + '</div>' +
+          '<div class="browse-recovery">' + safeActions + removeActions +
+            '<button type="button" data-clear-empty>Reset every filter</button>' +
+          '</div></div>';
+      }
+
       list.innerHTML = pageTrails.length ? pageTrails.map(t => {
         const thumb = window.DoloPawsTrailVisual
           ? window.DoloPawsTrailVisual.render(t, { className:'photo' })
@@ -567,15 +675,29 @@
             ${cta}
           </div>
         </a>`;
-      }).join('') : '<div class="browse-empty empty-state">' +
-        '<div class="empty-state__icon" aria-hidden="true">' + emptyIcon + '</div>' +
-        '<p class="empty-state__title">No trails match this combination</p>' +
-        '<p class="empty-state__copy">Widen the distance or rating, try another region, or clear everything and start again.</p>' +
-        '<div class="empty-state__actions"><button type="button" class="empty-state__action" data-clear-empty>Clear all filters</button></div>' +
-      '</div>';
+      }).join('') : emptyHtml;
 
       const emptyClear = list.querySelector('[data-clear-empty]');
       if(emptyClear) emptyClear.addEventListener('click', () => clear.click());
+      const applyRecoveryState = nextState => {
+        const target = window.DoloPawsDiscoveryState.browseHref({ ...nextState, page:1 });
+        window.history.pushState(null, '', target);
+        applyBrowseUrl();
+        renderPage(null);
+        list.scrollIntoView({ behavior:'smooth', block:'start' });
+      };
+      list.querySelectorAll('[data-safe-recovery]').forEach(button => {
+        button.addEventListener('click', () => {
+          const item = recovery.broadenings[Number(button.dataset.safeRecovery)];
+          if(item) applyRecoveryState(item.state);
+        });
+      });
+      list.querySelectorAll('[data-remove-recovery]').forEach(button => {
+        button.addEventListener('click', () => {
+          const item = recovery.restrictive[Number(button.dataset.removeRecovery)];
+          if(item) applyRecoveryState(item.state);
+        });
+      });
 
       if(totalPages > 1){
         const nav = document.createElement('div');
@@ -603,7 +725,7 @@
       }
     }
 
-    [search, risk, distance].forEach(control => {
+    [search, risk, distance, terrain, heat, exposure, access, verification].forEach(control => {
       control.addEventListener(control === search ? 'input' : 'change', () => {
         page = 1;
         renderPage(control === search ? 'replace' : 'push');
@@ -623,8 +745,11 @@
       if(waterBtn) waterBtn.setAttribute('aria-pressed', 'false');
       collectionKey = 'all';
       difficultyValue = '';
-      terrainValue = '';
-      shadeOnly = false;
+      terrain.value = '';
+      heat.value = '';
+      exposure.value = '';
+      access.value = '';
+      verification.value = '';
       minMatchValue = '';
       page = 1;
       renderPage('push');

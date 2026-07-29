@@ -162,7 +162,7 @@
       dog: state.dog,
       difficulty: state.diff === 'any' ? '' : state.diff,
       terrain: state.terrain === 'any' ? '' : state.terrain,
-      shade: state.shade === 'shade',
+      heat: state.shade === 'shade' ? 'shade-reviewed' : '',
       minMatch: state.minMatch ? String(state.minMatch) : '',
     };
   }
