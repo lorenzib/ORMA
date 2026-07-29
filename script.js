@@ -1307,13 +1307,15 @@ function renderLiControls(){
     [
       { label: 'Saved trails only', icon: '♥', iconBg: '#9C3A25', on: showingSavedOnly,
         toggle: () => { showingSavedOnly = !showingSavedOnly; } },
-      { label: 'Has water on route', icon: '💧', iconBg: '#2C8FA6', on: liFilters.water,
+      // Water row carries no icon (2026-07 design pass).
+      { label: 'Water on route', on: liFilters.water,
         toggle: () => { liFilters.water = !liFilters.water; } },
     ].forEach(tg => {
       const row = document.createElement('div');
       row.className = 'li-frow';
+      const iconHtml = tg.icon ? `<span class="li-frow-icon" style="background:${tg.iconBg};">${tg.icon}</span>` : '';
       row.innerHTML = `
-        <span class="li-frow-label"><span class="li-frow-icon" style="background:${tg.iconBg};">${tg.icon}</span>${tg.label}</span>
+        <span class="li-frow-label">${iconHtml}${tg.label}</span>
         <button type="button" class="li-switch${tg.on ? ' on' : ''}" role="switch" aria-checked="${tg.on}" aria-label="${tg.label}"><span class="knob"></span></button>`;
       row.querySelector('.li-switch').addEventListener('click', () => {
         tg.toggle();

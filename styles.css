@@ -64,11 +64,11 @@ img,svg{max-width:100%;height:auto;}
 }
 
 /* ---------- NAV ---------- */
-/* Sticky header, two states:
-   · logged out (default) — dark alpine-green bar, light links, white
-     "Log in" pill (design: guest homepage hero header);
-   · logged in — `.nav-authed` added by mobile-nav.js flips it to the
-     cream member bar with bell + account pill. */
+/* Sticky header, two states sharing one dark alpine-green bar (2026-07
+   design revamp — the cream member bar is gone):
+   · logged out (default) — light links + white "Log in" pill;
+   · logged in — `.nav-authed` added by mobile-nav.js swaps the pill for
+     the bell + dog pill; links stay the same. */
 .topnav{
   position:sticky;
   top:0;
@@ -145,29 +145,18 @@ img,svg{max-width:100%;height:auto;}
 .topnav .links a.account-btn,
 .topnav .links a.account-btn:hover{color:#1b1f19;font-weight:600;}
 
-/* Language toggle (injected by i18n.js) — follows the header state */
+/* Language toggle (injected by i18n.js) */
 .topnav .links .lang-toggle{border:1.5px solid rgba(242,238,226,.4);color:#F2EEE2;}
-.topnav.nav-authed .links .lang-toggle{border-color:var(--paper-line);color:var(--ink);}
 
-/* Logged-in (member) header — cream bar, dark links */
-.topnav.nav-authed{
-  background:rgba(247,244,235,.86);
-  border-bottom:1px solid rgba(27,31,25,.09);
-}
-.topnav.nav-authed .brand{color:#1b1f19;}
-.topnav.nav-authed .links{color:#4a4d43;}
-.topnav.nav-authed .links a{color:#4a4d43;}
-.topnav.nav-authed .links a:hover,.topnav.nav-authed .links a.active{color:#1b1f19;font-weight:500;}
-
-/* Bell — outlined circle with an unread badge, dropdown "What's new" */
+/* Bell — quiet icon button on the dark bar, dropdown "What's new" */
 .nav-bellwrap{position:relative;display:inline-flex;}
 .nav-bell{
   width:38px;height:38px;border-radius:50%;
-  border:1px solid rgba(27,31,25,.18);
-  background:var(--card,#fff);color:#1b1f19;
+  border:none;
+  background:none;color:#F2EEE2;
   display:grid;place-items:center;cursor:pointer;position:relative;
 }
-.nav-bell:hover{border-color:rgba(27,31,25,.4);}
+.nav-bell:hover{background:rgba(255,255,255,.12);}
 .nav-bell-badge{
   position:absolute;top:-4px;right:-4px;
   min-width:16px;height:16px;padding:0 4px;border-radius:999px;
@@ -191,16 +180,16 @@ img,svg{max-width:100%;height:auto;}
 .nav-bell-item b{display:block;font-size:13px;color:var(--ink,#1b1f19);}
 .nav-bell-item span{display:block;font-size:12px;color:var(--ink-soft,#6b6f62);margin-top:2px;line-height:1.45;}
 
-/* Account pill — dog avatar + "«Dog»'s human" */
+/* Account pill — dog avatar + dog name, translucent on the dark bar */
 .nav-user{
   display:inline-flex;align-items:center;gap:9px;
   padding:5px 15px 5px 6px;border-radius:999px;
-  border:1px solid rgba(27,31,25,.18);background:var(--card,#fff);
-  text-decoration:none;color:var(--ink,#1b1f19);
-  font:600 13.5px 'Inter',sans-serif;
+  border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);
+  text-decoration:none;color:#fff;
+  font:700 13px 'Inter',sans-serif;
 }
-.topnav .links a.nav-user{color:var(--ink,#1b1f19);}
-.nav-user:hover{border-color:rgba(27,31,25,.4);}
+.topnav .links a.nav-user{color:#fff;}
+.nav-user:hover{border-color:rgba(255,255,255,.55);color:#fff;}
 .nav-user-avatar{
   width:28px;height:28px;border-radius:50%;flex:none;
   background:#5B7E96 center/cover no-repeat;
@@ -640,11 +629,6 @@ img,svg{max-width:100%;height:auto;}
   .mobile-nav-open .mobile-nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg);}
   .mobile-nav-open .mobile-nav-toggle span:nth-child(2){opacity:0;}
   .mobile-nav-open .mobile-nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-  .topnav.nav-authed .mobile-nav-toggle{
-    border-color:var(--paper-line);
-    background:var(--card);
-    color:var(--ink);
-  }
   .topnav .links{
     position:absolute;
     top:100%;
@@ -660,15 +644,9 @@ img,svg{max-width:100%;height:auto;}
     box-shadow:0 12px 24px rgba(27,31,25,.18);
     font-size:15px;
   }
-  .topnav.nav-authed .links{
-    background:rgba(247,244,235,.98);
-    border-bottom:1px solid rgba(27,31,25,.12);
-    box-shadow:0 12px 24px rgba(27,31,25,.08);
-  }
   .topnav.mobile-nav-open .links{display:flex;}
   .topnav .links a{min-height:44px;padding:10px 12px;border-radius:10px;}
   .topnav .links a:hover,.topnav .links a.active{background:rgba(255,255,255,.09);}
-  .topnav.nav-authed .links a:hover,.topnav.nav-authed .links a.active{background:var(--sage-dim);}
   .topnav .links .account-btn{width:100%;min-height:44px;margin:4px 0 0;text-align:center;justify-content:center;}
   .topnav .links > div{display:block !important;width:100%;}
   .topnav .links > div > button{width:100%;min-height:44px;text-align:center;}
@@ -1655,6 +1633,12 @@ body.map-fs-open{overflow:hidden;}
 .auth-modal-redesign .auth-submit{border-radius:12px;padding:13px;background:var(--ink);}
 .auth-modal-redesign .field-label input{background:#fff;border-radius:10px;}
 .auth-guest-link{display:block;width:100%;border:none;background:none;margin-top:14px;color:var(--ink-soft);font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;text-decoration:underline;}
+/* Password-reset view: back link + non-enumerating confirmation panel */
+.auth-back-link{display:inline-block;background:none;border:none;padding:0;margin:0 0 14px;font:700 12.5px 'Inter',sans-serif;color:var(--accent);cursor:pointer;}
+.auth-back-link:hover{color:var(--accent-hover);text-decoration:underline;}
+.auth-back-link[hidden]{display:none;}
+.auth-reset-done{background:var(--sage-dim);border-radius:12px;padding:14px 15px;font-size:13px;color:var(--ink);line-height:1.5;}
+.auth-reset-done[hidden]{display:none;}
 @media (max-width:520px){
   .auth-modal-redesign .modal{max-height:calc(100dvh - 24px);padding:0;}
   .auth-modal-redesign .modal-overlay{align-items:flex-end;}
@@ -2016,9 +2000,11 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
 }
 
 /* ---------- list pane ---------- */
+/* Beige pane with white card rows (2026-07 revamp fixed the inversion:
+   the pane used to be white with flat rows). */
 .li-list{
   border-left:1px solid var(--paper-line);
-  background:#fff;
+  background:#EFECE2;
   overflow-y:auto;
   display:flex;
   flex-direction:column;
@@ -2091,18 +2077,20 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
 .li-sort .companion-sort-group{padding:3px;}
 .li-sort .companion-sort-group button{padding:5px 10px;font-size:11.5px;}
 
-/* trail rows */
-.li-rows{padding:8px 12px 20px;}
+/* trail rows — white cards on the beige pane */
+.li-rows{padding:8px 12px 20px;display:flex;flex-direction:column;gap:8px;}
 .li-row{
   display:flex;
   gap:12px;
   align-items:center;
   padding:12px;
   border-radius:14px;
+  background:#fff;
+  border:1px solid var(--paper-line);
   cursor:pointer;
 }
 .li-row:hover{background:#FAF8F1;}
-.li-row.tc-selected{background:#EAF3EC;}
+.li-row.tc-selected{background:#EAF3EC;border-color:#9FC4B0;}
 .li-thumb{
   width:66px;
   height:66px;

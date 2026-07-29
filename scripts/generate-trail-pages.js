@@ -450,8 +450,8 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
     <a href="../browse-trails.html" class="active">Browse all Trails</a>
     <a href="../browse-trails.html#collections">Collections</a>
     <a href="../safety-guide.html">Safety guide</a>
-    <a href="../about.html" data-i18n="nav.about">About</a>
-    <a class="account-btn" href="../index.html?login=1&amp;next=trails/${slug}.html" data-i18n="nav.login">Log in</a>
+    <a href="../account.html" data-i18n="nav.settings">Settings</a>
+    <a class="account-btn" href="../index.html?view=login&amp;next=trails/${slug}.html" data-i18n="nav.login">Log in</a>
   </div>
 </div>
 

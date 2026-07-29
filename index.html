@@ -25,7 +25,7 @@
     <a href="browse-trails.html">Browse all Trails</a>
     <a href="browse-trails.html#collections">Collections</a>
     <a href="safety-guide.html">Safety guide</a>
-    <a href="about.html" data-i18n="nav.about">About</a>
+    <a href="account.html" data-i18n="nav.settings">Settings</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
   </div>
 </div>
@@ -45,6 +45,8 @@
     </div>
 
     <div class="auth-body">
+      <button type="button" id="authBackToLogin" class="auth-back-link" hidden>&larr; Back to log in</button>
+      <div id="authResetDone" class="auth-reset-done" aria-live="polite" hidden></div>
       <div id="authError" class="auth-error" role="alert" aria-live="polite" hidden></div>
 
       <button id="googleBtn" class="google-btn">
@@ -125,7 +127,7 @@
               <div class="hp-fsec" id="hpMatchLabel">Minimum match</div>
               <div class="hp-seg" id="hpMatchSeg"></div>
               <div class="hp-frow">
-                <div class="hp-frow-lab"><span class="hp-frow-ico"><svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M12 2.5S5.5 10 5.5 14.5a6.5 6.5 0 0 0 13 0C18.5 10 12 2.5 12 2.5z"/></svg></span>Water on route</div>
+                <div class="hp-frow-lab">Water on route</div>
                 <button type="button" class="hp-switch" id="hpWaterToggle" role="switch" aria-checked="false" aria-label="Water on route"><span class="hp-knob"></span></button>
               </div>
               <button type="button" class="hp-fapply" id="hpFiltersApply">Show trails</button>
@@ -252,7 +254,7 @@
         <div class="li-dog-row">
           <span class="li-dogavatar" id="companionDogAvatar"><span data-dp-icon="dog" data-dp-icon-size="24" aria-hidden="true"></span></span>
           <div class="li-dog-copy">
-            <h1 class="li-greet" id="returningHeading">“Where are we heading today?”</h1>
+            <h1 class="li-greet" id="returningHeading">Where are we heading today?</h1>
             <div class="li-chips-row">
               <span class="li-dogname" id="companionDogName">Your dog</span>
               <span class="li-pchip" id="companionDogMeta"></span>

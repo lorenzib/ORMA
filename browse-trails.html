@@ -21,9 +21,26 @@
   .simple-card{transition:border-color .15s ease,transform .15s ease,box-shadow .15s ease;}
   .simple-card .photo{height:140px;background:#E7ECE3;}
   .simple-card .name{padding:12px 14px;font-family:'Source Serif 4',serif;font-weight:700;font-size:14.5px;color:var(--ink);}
-  .browse-tools{display:grid;grid-template-columns:minmax(220px,1.6fr) repeat(3,minmax(140px,1fr));gap:10px;margin-bottom:12px;}
-  .browse-tools input,.browse-tools select{width:100%;min-height:44px;padding:10px 12px;border:1.5px solid var(--paper-line);border-radius:10px;background:var(--card);color:var(--ink);font:500 13px 'Inter',sans-serif;}
+  /* Filter row: search pill, then rating/distance/water controls. On phones
+     the controls condense behind a single "Filters" chip (design revamp). */
+  .browse-tools{position:relative;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
+  .browse-tools .browse-search{flex:1 1 240px;max-width:340px;}
+  .browse-tools input,.browse-tools select{min-height:44px;padding:10px 12px;border:1.5px solid var(--paper-line);border-radius:10px;background:var(--card);color:var(--ink);font:500 13px 'Inter',sans-serif;}
   .browse-tools input:focus,.browse-tools select:focus{outline:none;border-color:var(--accent);}
+  .browse-filter-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .browse-water{min-height:44px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 13px 'Inter',sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap;}
+  .browse-water[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
+  .browse-filters-toggle{display:none;min-height:44px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 13px 'Inter',sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap;}
+  .browse-filters-toggle.on{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
+  .browse-back-home{display:inline-flex;margin:0 0 14px;font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;}
+  .browse-back-home:hover{text-decoration:underline;}
+  .browse-back-home[hidden]{display:none;}
+  @media(max-width:760px){
+    .browse-tools .browse-search{flex-basis:100%;max-width:none;}
+    .browse-filters-toggle{display:inline-flex;align-items:center;gap:6px;}
+    .browse-filter-controls{display:none;position:absolute;top:calc(100% + 6px);left:0;z-index:30;width:min(300px,100%);flex-direction:column;align-items:stretch;background:#fff;border:1px solid var(--paper-line);border-radius:12px;box-shadow:0 14px 34px -12px rgba(23,42,28,.4);padding:12px;}
+    .browse-tools.filters-open .browse-filter-controls{display:flex;}
+  }
   .trail-trust-note{margin:0 0 14px;padding:11px 13px;border-left:3px solid #8a5a16;background:#f6ecdb;border-radius:0 10px 10px 0;color:#5f4a2c;font-size:12.5px;line-height:1.55;}
   .browse-results-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 18px;color:var(--ink-soft);font-size:12.5px;}
   .browse-clear{border:0;background:none;color:var(--accent);font:700 12.5px 'Inter',sans-serif;cursor:pointer;padding:4px 0;}
@@ -40,12 +57,13 @@
     <a href="browse-trails.html" class="active">Browse all Trails</a>
     <a href="browse-trails.html#collections">Collections</a>
     <a href="safety-guide.html">Safety guide</a>
-    <a href="about.html" data-i18n="nav.about">About</a>
+    <a href="account.html" data-i18n="nav.settings">Settings</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
   </div>
 </div>
 
 <div class="guide-hero">
+  <a id="browseBackHome" class="browse-back-home" href="index.html" hidden>&larr; Back home</a>
   <div class="eyebrow" data-i18n="browse.eyebrow">Dolomites &amp; Savoy</div>
   <h1 id="trailCountHeading" style="font-size:clamp(28px,5vw,38px);margin-top:14px;" data-i18n="browse.h1">All our trails</h1>
   <p class="sub" style="margin-top:14px;" data-i18n="browse.sub">Explore every trail without an account. Open any trail for safety, terrain, water, access, and route details.</p>
@@ -63,25 +81,27 @@
     <div class="browse-coll-grid" id="browseCollections"></div>
   </section>
 
-  <div class="browse-tools" aria-label="Filter trails">
+  <!-- Region tabs — the area filter, visible instead of buried in a select -->
+  <div class="region-tabs" id="browseRegionTabs" aria-label="Filter by region"></div>
+
+  <div class="browse-tools" id="browseTools" aria-label="Filter trails">
     <input class="browse-search" id="browseSearch" type="search" placeholder="Search by trail, area, or valley" aria-label="Search trails">
-    <select id="browseRegion" aria-label="Filter by region">
-      <option value="all">All regions</option>
-      <option value="dolomites">Dolomites</option>
-      <option value="savoy">Savoy</option>
-    </select>
-    <select id="browseRisk" aria-label="Filter by trail rating">
-      <option value="all">All trail ratings</option>
-      <option value="low-risk">Low-risk</option>
-      <option value="moderate">Moderate</option>
-      <option value="caution">Caution</option>
-    </select>
-    <select id="browseDistance" aria-label="Filter by distance">
-      <option value="all">Any distance</option>
-      <option value="5">Up to 5 km</option>
-      <option value="10">Up to 10 km</option>
-      <option value="20">Up to 20 km</option>
-    </select>
+    <button type="button" id="browseFiltersBtn" class="browse-filters-toggle" aria-expanded="false" aria-controls="browseFilterControls">Filters<span id="browseFiltersCount"></span> <span aria-hidden="true">▾</span></button>
+    <div class="browse-filter-controls" id="browseFilterControls">
+      <select id="browseRisk" aria-label="Filter by trail rating">
+        <option value="all">All trail ratings</option>
+        <option value="low-risk">Low-risk</option>
+        <option value="moderate">Moderate</option>
+        <option value="caution">Caution</option>
+      </select>
+      <select id="browseDistance" aria-label="Filter by distance">
+        <option value="all">Any distance</option>
+        <option value="5">Up to 5 km</option>
+        <option value="10">Up to 10 km</option>
+        <option value="20">Up to 20 km</option>
+      </select>
+      <button type="button" id="browseWater" class="browse-water" aria-pressed="false">Water on route</button>
+    </div>
   </div>
   <p class="trail-trust-note" data-i18n="browse.trustNote"><strong>How to read safety labels:</strong> route-audited trails have had their data checked by DoloPaws. Trails still under review show automated estimates and do not confirm exposure, shade, livestock or current conditions.</p>
   <div class="browse-results-meta">
@@ -265,11 +285,26 @@
     if(!list || typeof trails === 'undefined') return;
     if(window.DoloPawsRegions) window.DoloPawsRegions.assign(trails);
     const search = document.getElementById('browseSearch');
-    const region = document.getElementById('browseRegion');
+    const regionTabs = document.getElementById('browseRegionTabs');
     const risk = document.getElementById('browseRisk');
     const distance = document.getElementById('browseDistance');
+    const waterBtn = document.getElementById('browseWater');
+    const filtersBtn = document.getElementById('browseFiltersBtn');
+    const filtersCount = document.getElementById('browseFiltersCount');
+    const toolsWrap = document.getElementById('browseTools');
     const resultCount = document.getElementById('browseResultCount');
     const clear = document.getElementById('browseClear');
+    let regionValue = 'all';
+    let waterOnly = false;
+
+    // Logged-in visitors arrive here from the map shell — give them the way
+    // back the design asks for ("← Back home").
+    try {
+      if(localStorage.getItem('dolopaws-profile-summary')){
+        const backHome = document.getElementById('browseBackHome');
+        if(backHome) backHome.hidden = false;
+      }
+    } catch(e){}
 
     const SAFETY = {
       'low-risk': [window.t('legend.low'), '#E4EADF', '#2C5C34'],
@@ -305,9 +340,10 @@
     function applyBrowseUrl(){
       const urlParams = new URLSearchParams(window.location.search);
       search.value = urlParams.get('search') || '';
-      region.value = allowedRegions.includes(urlParams.get('region')) ? urlParams.get('region') : 'all';
+      regionValue = allowedRegions.includes(urlParams.get('region')) ? urlParams.get('region') : 'all';
       risk.value = allowedRisks.includes(urlParams.get('risk')) ? urlParams.get('risk') : 'all';
       distance.value = allowedDistances.includes(urlParams.get('distance')) ? urlParams.get('distance') : 'all';
+      waterOnly = urlParams.get('water') === '1';
       collectionKey = COLLECTIONS[urlParams.get('collection')] ? urlParams.get('collection') : 'all';
       page = Math.max(1, Number.parseInt(urlParams.get('page'), 10) || 1);
     }
@@ -316,9 +352,10 @@
     function browseStateTarget(){
       const state = new URLSearchParams();
       if(search.value.trim()) state.set('search', search.value.trim());
-      if(region.value !== 'all') state.set('region', region.value);
+      if(regionValue !== 'all') state.set('region', regionValue);
       if(risk.value !== 'all') state.set('risk', risk.value);
       if(distance.value !== 'all') state.set('distance', distance.value);
+      if(waterOnly) state.set('water', '1');
       if(collectionKey !== 'all') state.set('collection', collectionKey);
       if(page > 1) state.set('page', String(page));
       const query = state.toString();
@@ -340,10 +377,63 @@
       return trails.filter(t => {
         const searchable = [t.name, t.area, t.valley, t.region].filter(Boolean).join(' ').toLocaleLowerCase();
         return (!q || searchable.includes(q))
-          && (region.value === 'all' || t.region === region.value)
+          && (regionValue === 'all' || t.region === regionValue)
           && (risk.value === 'all' || t.safetyLevel === risk.value)
           && (!Number.isFinite(Number(t.distance)) || Number(t.distance) <= maxDistance)
+          && (!waterOnly || hasWater(t))
           && (!coll || coll.filter(t));
+      });
+    }
+
+    // Region tabs — the same predicate the old select used, now visible.
+    const REGION_TABS = [
+      { value: 'all', label: 'All', match: () => true },
+      { value: 'dolomites', label: 'Dolomites', match: t => t.region === 'dolomites' },
+      { value: 'savoy', label: 'Savoy', match: t => t.region === 'savoy' },
+    ];
+    function renderRegionTabs(){
+      if(!regionTabs) return;
+      regionTabs.innerHTML = '';
+      REGION_TABS.forEach(r => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'region-tab' + (regionValue === r.value ? ' active' : '');
+        b.setAttribute('aria-pressed', regionValue === r.value ? 'true' : 'false');
+        b.innerHTML = r.label + '<span class="count">' + trails.filter(r.match).length + '</span>';
+        b.addEventListener('click', () => {
+          regionValue = r.value;
+          page = 1;
+          renderPage('push');
+        });
+        regionTabs.appendChild(b);
+      });
+    }
+
+    // Phone-width: rating / distance / water condense behind one Filters chip.
+    function syncFiltersChip(){
+      if(waterBtn) waterBtn.setAttribute('aria-pressed', String(waterOnly));
+      if(!filtersBtn) return;
+      const n = (risk.value !== 'all' ? 1 : 0) + (distance.value !== 'all' ? 1 : 0) + (waterOnly ? 1 : 0);
+      if(filtersCount) filtersCount.textContent = n > 0 ? ' (' + n + ')' : '';
+      filtersBtn.classList.toggle('on', n > 0);
+    }
+    if(filtersBtn){
+      filtersBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = toolsWrap.classList.toggle('filters-open');
+        filtersBtn.setAttribute('aria-expanded', String(open));
+      });
+      document.addEventListener('click', (e) => {
+        if(!toolsWrap.contains(e.target)){
+          toolsWrap.classList.remove('filters-open');
+          filtersBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+      document.addEventListener('keydown', (e) => {
+        if(e.key === 'Escape'){
+          toolsWrap.classList.remove('filters-open');
+          filtersBtn.setAttribute('aria-expanded', 'false');
+        }
       });
     }
 
@@ -375,9 +465,11 @@
       if(h1) h1.innerHTML = window.t('browse.h1');
       if(sub) sub.innerHTML = window.t('browse.sub');
 
+      renderRegionTabs();
+      syncFiltersChip();
       renderCollections();
       const pool = filteredTrails();
-      const hasFilters = search.value.trim() || region.value !== 'all' || risk.value !== 'all' || distance.value !== 'all' || collectionKey !== 'all';
+      const hasFilters = search.value.trim() || regionValue !== 'all' || risk.value !== 'all' || distance.value !== 'all' || waterOnly || collectionKey !== 'all';
       resultCount.textContent = `${pool.length} trail${pool.length === 1 ? '' : 's'} found`;
       clear.hidden = !hasFilters || pool.length === 0;
       const totalPages = Math.max(1, Math.ceil(pool.length / PER_PAGE));
@@ -457,15 +549,24 @@
       }
     }
 
-    [search, region, risk, distance].forEach(control => {
+    [search, risk, distance].forEach(control => {
       control.addEventListener(control === search ? 'input' : 'change', () => {
         page = 1;
         renderPage(control === search ? 'replace' : 'push');
       });
     });
+    if(waterBtn) waterBtn.addEventListener('click', () => {
+      waterOnly = !waterOnly;
+      waterBtn.setAttribute('aria-pressed', String(waterOnly));
+      page = 1;
+      renderPage('push');
+    });
     clear.addEventListener('click', () => {
       search.value = '';
-      region.value = risk.value = distance.value = 'all';
+      risk.value = distance.value = 'all';
+      regionValue = 'all';
+      waterOnly = false;
+      if(waterBtn) waterBtn.setAttribute('aria-pressed', 'false');
       collectionKey = 'all';
       page = 1;
       renderPage('push');

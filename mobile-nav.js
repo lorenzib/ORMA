@@ -20,10 +20,11 @@
   // Every page ships the logged-out header statically (dark bar with a
   // "Log in" pill). When the cached auth summary written by firebase-init.js
   // says someone is signed in, the link row is rebuilt into the member
-  // header: Trails · Collections · My Journal · Safety · bell · account
-  // pill. The static trail/guide pages carry no Firebase by design, so the
-  // localStorage summary is the only signal there; pages with live auth
-  // re-render on `dolopaws-auth-changed`.
+  // header — same dark bar, same links (Browse all Trails · Collections ·
+  // Safety guide · Settings), with the bell and the dog pill in place of
+  // the login pill (2026-07 design revamp). The static trail/guide pages
+  // carry no Firebase by design, so the localStorage summary is the only
+  // signal there; pages with live auth re-render on `dolopaws-auth-changed`.
   const navEl = document.querySelector('.topnav');
   const linksEl = navEl && navEl.querySelector('.links');
 
@@ -97,6 +98,7 @@
       ) return 'trails';
       if(f === 'journal.html') return 'journal';
       if(f === 'safety-guide.html') return 'safety';
+      if(f === 'account.html') return 'settings';
       if(f === 'about.html') return 'about';
       return '';
     }
@@ -161,7 +163,7 @@
       else avatar.textContent = name ? name.charAt(0).toUpperCase() : '🐾';
       const label = document.createElement('span');
       label.className = 'nav-user-name';
-      label.textContent = name ? name + '’s human' : 'My account';
+      label.textContent = name || 'My account';
       a.appendChild(avatar);
       a.appendChild(label);
       return a;
@@ -176,24 +178,22 @@
       const extras = Array.from(linksEl.children).filter(el =>
         el !== loginEl && !el.matches('a, #accountBtn, .nav-bellwrap'));
       linksEl.innerHTML = '';
+      // Both states share the same link row now; only the right-hand
+      // controls change (login pill vs bell + dog pill).
+      linksEl.appendChild(navItem('Browse all Trails', 'browse-trails.html', key === 'trails'));
+      linksEl.appendChild(navItem('Collections', 'browse-trails.html#collections', false));
+      linksEl.appendChild(navItem('Safety guide', 'safety-guide.html', key === 'safety'));
+      linksEl.appendChild(navItem('Settings', 'account.html', key === 'settings', 'nav.settings'));
       if(loggedIn){
-        linksEl.appendChild(navItem('Trails', 'browse-trails.html', key === 'trails'));
-        linksEl.appendChild(navItem('Collections', 'browse-trails.html#collections', false));
-        linksEl.appendChild(navItem('My Journal', 'journal.html', key === 'journal'));
-        linksEl.appendChild(navItem('Safety', 'safety-guide.html', key === 'safety'));
         linksEl.appendChild(buildBell());
         linksEl.appendChild(buildAccountPill(dogName));
       } else {
-        linksEl.appendChild(navItem('Browse all Trails', 'browse-trails.html', key === 'trails'));
-        linksEl.appendChild(navItem('Collections', 'browse-trails.html#collections', false));
-        linksEl.appendChild(navItem('Safety guide', 'safety-guide.html', key === 'safety'));
-        linksEl.appendChild(navItem('About', 'about.html', key === 'about', 'nav.about'));
         if(loginEl){
           linksEl.appendChild(loginEl);
         } else if(pageFile.toLowerCase() !== 'account.html'){
           const login = document.createElement('a');
           login.className = 'account-btn';
-          login.href = prefix + 'index.html?login=1&next=' + encodeURIComponent(pagePath);
+          login.href = prefix + 'index.html?view=login&next=' + encodeURIComponent(pagePath);
           login.textContent = 'Log in';
           login.setAttribute('data-i18n', 'nav.login');
           linksEl.appendChild(login);
