@@ -1485,7 +1485,8 @@ async function renderReturningHomepage(profile){
     else if(adjustOverride.terrain === '0') bubbleLine = 'Easy underfoot today, my paws say so.';
     else if(adjustOverride.energy === 'high') bubbleLine = "I'm full of beans, let's go big today.";
   }
-  heading.textContent = '\u201C' + bubbleLine + '\u201D';
+  // Plain heading, left-aligned, no speech-cloud quotes (2026-07 revamp).
+  heading.textContent = bubbleLine;
   // The old copy ("Pick a province or valley below... Edit profile") duplicated
   // what the sidebar now already shows (filters + the dog card's edit link),
   // so this line is now just the one thing the sidebar can't say: whether

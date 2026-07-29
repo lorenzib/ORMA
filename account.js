@@ -117,7 +117,7 @@
     let current = tocLinks[0].dataset.sec;
     tocLinks.forEach(a => {
       const el = document.getElementById(a.dataset.sec);
-      if(el && el.getBoundingClientRect().top <= 140) current = a.dataset.sec;
+      if(el && el.getBoundingClientRect().top <= 220) current = a.dataset.sec;
     });
     setActiveSec(current);
   }, { passive:true });

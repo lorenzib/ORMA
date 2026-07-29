@@ -2166,6 +2166,11 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
 .li-match b span{font-size:9px;}
 .li-match-lbl{font:700 7.5px 'Inter',sans-serif;letter-spacing:.03em;color:var(--ink-soft);white-space:nowrap;text-transform:uppercase;}
 .li-match-tier{font-size:9px;font-weight:700;padding:2px 6px;border-radius:var(--radius-pill);white-space:nowrap;}
+/* Phones: the long label costs the details column too much room */
+@media (max-width:640px){
+  .li-match{min-width:52px;padding-left:8px;}
+  .li-match-lbl{display:none;}
+}
 /* save heart — hover + saved states standardized (rust fill when saved) */
 .li-heart{
   width:34px;
@@ -2252,9 +2257,11 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
 .hk-add{aspect-ratio:1/1;border-radius:10px;border:2px dashed var(--paper-line);background:none;cursor:pointer;color:var(--ink-soft);display:grid;place-items:center;font-size:18px;}
 .hk-add:hover{border-color:var(--accent);color:var(--accent);}
 .hk-share{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-top:10px;}
+.hk-share[hidden]{display:none;}
 .hk-share b{font-size:13px;display:block;color:var(--ink);}
 .hk-share small{display:block;font-size:12px;color:var(--ink-soft);line-height:1.5;margin-top:2px;}
 .hk-actions{display:flex;gap:10px;margin-top:20px;}
+.hk-actions[hidden]{display:none;}
 .hk-ghost{padding:12px 18px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:transparent;color:var(--ink-soft);font:600 13px 'Inter',sans-serif;cursor:pointer;}
 .hk-ghost:hover{border-color:var(--ink-soft);color:var(--ink);}
 .hk-save{flex:1;border:none;border-radius:11px;padding:13px;background:var(--ink);color:#fff;font:700 13.5px 'Inter',sans-serif;cursor:pointer;}
