@@ -23,8 +23,6 @@
     emergency: document.getElementById('emergency'),
     verificationNotice: document.getElementById('verificationNotice'),
     packageMeta: document.getElementById('packageMeta'),
-    evidenceNotice: document.getElementById('evidenceNotice'),
-    evidenceList: document.getElementById('evidenceList'),
     licenceLink: document.getElementById('licenceLink'),
     networkState: document.getElementById('networkState'),
   };
@@ -55,6 +53,16 @@
       : `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   }
 
+  function verificationLabel(status){
+    if(status === 'field-review-required'){
+      return 'Beta trail information. Check posted signs and local notices.';
+    }
+    if(['verified', 'vetted', 'dolopaws-vetted', 'field-checked'].includes(status)){
+      return 'Vetted by DoloPaws.';
+    }
+    return 'Trail review status unavailable.';
+  }
+
   function setNetworkState(){
     elements.networkState.textContent = navigator.onLine
       ? 'Browser reports online'
@@ -76,14 +84,6 @@
     term.textContent = label;
     detail.textContent = value;
     elements.facts.append(term, detail);
-  }
-
-  function addEvidence(label, value){
-    const term = document.createElement('dt');
-    const detail = document.createElement('dd');
-    term.textContent = label;
-    detail.textContent = value;
-    elements.evidenceList.append(term, detail);
   }
 
   function positionPercent(lat, lng, bounds){
@@ -185,36 +185,8 @@
         elements.cautions.appendChild(item);
       });
       elements.emergency.textContent = `${safety.emergency.number}. ${safety.emergency.note}`;
-      elements.verificationNotice.textContent = manifest.verificationStatus === 'field-review-required'
-        ? 'This package is technically verified but its route and safety content still require a dated field review.'
-        : 'This package has passed the declared content review.';
+      elements.verificationNotice.textContent = verificationLabel(manifest.verificationStatus);
       elements.packageMeta.textContent = `Package ${manifest.version} · scoring ${manifest.scoringVersion || 'not recorded'} · generated ${manifest.generatedAt.slice(0, 10)} · ${manifest.attribution}`;
-      const evidence = manifest.evidence;
-      const categoryLabels = {
-        route: 'Route',
-        water: 'Water',
-        heat: 'Heat and shade',
-        exposure: 'Exposure',
-        livestock: 'Livestock',
-        surfaceHazards: 'Surface hazards',
-        access: 'Dog access',
-      };
-      if(evidence && evidence.categories){
-        elements.evidenceNotice.textContent = `${
-          evidence.tierLabel || evidence.tier || 'Evidence tier unavailable'
-        } · evidence contract ${evidence.version || 'not recorded'}`;
-        Object.entries(evidence.categories).forEach(([category, detail]) => {
-          addEvidence(
-            categoryLabels[category] || category,
-            `${detail.sourceLabel || detail.sourceState || 'Evidence unknown'} · ${
-              detail.freshnessLabel || detail.freshnessState || 'Freshness unknown'
-            } · ${detail.observedLabel || detail.observedAt || 'date unknown'}`
-          );
-        });
-      }else{
-        elements.evidenceNotice.textContent =
-          'This legacy package has no stored category-evidence snapshot.';
-      }
       elements.licenceLink.href = manifest.licenceUrl;
       elements.locationButton.addEventListener('click', () => startLocation(manifest.bounds));
 

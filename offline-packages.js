@@ -604,9 +604,9 @@
         setStatus(
           `Ready offline · ${formatBytes(manifest.packageBytes)} · downloaded ${
             formatInstalledDate(metadata && metadata.installedAt)
-          } · ${ownershipLabel(ownership)} · content freshness ${
-            inspection.contentFreshness
-          } · ${inspection.requiredChecked} required resources checked`,
+          } · ${ownershipLabel(ownership)} · ${
+            inspection.requiredChecked
+          } required resources checked`,
           'ready'
         );
       }else if(signedIn()){

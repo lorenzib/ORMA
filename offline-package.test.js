@@ -92,6 +92,15 @@ describe('Lago di Carezza offline package', () => {
     }
   });
 
+  test('keeps detailed evidence metadata internal to the package', () => {
+    const shell = fs.readFileSync(path.join(root, 'offline', 'trail.html'), 'utf8');
+    const app = fs.readFileSync(path.join(root, 'offline', 'offline-app.js'), 'utf8');
+    expect(shell).not.toContain('Stored evidence snapshot');
+    expect(shell).not.toContain('evidenceList');
+    expect(app).not.toContain('Freshness unknown');
+    expect(app).toContain('Vetted by DoloPaws.');
+  });
+
   test('route is a closed LineString inside the package bounds', () => {
     const route = JSON.parse(fs.readFileSync(path.join(packageDir, 'route.geojson'), 'utf8'));
     const coordinates = route.features[0].geometry.coordinates;

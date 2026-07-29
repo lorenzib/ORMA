@@ -66,6 +66,26 @@ describe('OFF-03 downloaded-trail management surface', () => {
     expect(document.querySelector('[data-action="request-remove"]')).not.toBeNull();
   });
 
+  test('uses the concise DoloPaws-vetted label without freshness detail', () => {
+    const markup = window.DoloPawsOfflineDownloads.packageCard({
+      trailId: 'vetted-trail',
+      name: 'Vetted trail',
+      trailUrl: '/trail.html?id=vetted-trail',
+      offlineUrl: '/offline/trail.html?id=vetted-trail',
+      version: '1',
+      packageBytes: 100,
+      installedAt: '29 Jul 2026',
+      verificationStatus: 'verified',
+      ownership: 'current-account',
+      state: 'ready',
+      usable: true,
+      hasLocalData: true,
+    }, true);
+
+    expect(markup).toContain('Vetted by DoloPaws');
+    expect(markup).not.toContain('freshness');
+  });
+
   test('keeps a failed local package visible for repair or removal but not opening', () => {
     const markup = window.DoloPawsOfflineDownloads.packageCard({
       trailId: 'lago-carezza',

@@ -35,9 +35,6 @@ li+li{margin-top:8px}
 .emergency{padding-top:12px;border-top:1px solid #ece8de}
 .muted{color:var(--muted);font-size:13px;line-height:1.55}
 .muted a{color:var(--blue);font-weight:750}
-.evidence-block{margin:18px 0;padding:16px 0;border-top:1px solid #ece8de;border-bottom:1px solid #ece8de}
-.evidence-list{grid-template-columns:minmax(110px,.65fr) minmax(0,1.35fr);font-size:12px}
-.evidence-list dd{font-weight:650;line-height:1.45;text-align:right}
 .failure{padding:24px;border:1px solid #e4b9ad;border-radius:18px;background:#fff1ed}
 .failure p{line-height:1.55}
 .failure a{color:var(--red);font-weight:800}

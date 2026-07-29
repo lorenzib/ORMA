@@ -48,7 +48,10 @@
       : '';
     const verificationLabel = record.verificationStatus === 'field-review-required'
       ? 'Beta field review pending'
-      : `Verification ${record.verificationStatus || 'not recorded'}`;
+      : ['verified', 'vetted', 'dolopaws-vetted', 'field-checked']
+        .includes(record.verificationStatus)
+        ? 'Vetted by DoloPaws'
+        : 'Review status unavailable';
     const versionLabel = offline.formatPackageVersion(record.version);
     const sizeLabel = Number.isFinite(record.packageBytes)
       ? offline.formatBytes(record.packageBytes)
