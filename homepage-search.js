@@ -668,6 +668,9 @@
     setupStatic();
     bind();
     renderAll();
+    // Deep link from the onboarding flow's final CTA: open the dog
+    // mini-wizard straight away.
+    if (new URLSearchParams(window.location.search).get('wizard') === '1') openWizard();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

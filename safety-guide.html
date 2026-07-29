@@ -32,13 +32,17 @@
 .sg-topic .cat{font:700 10px 'Inter',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);}
 .sg-topic h3{margin:0;font-size:16px;}
 .sg-topic ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:7px;font-size:13px;color:var(--ink);line-height:1.55;}
-.sg-emergency{background:#FBF1E4;border:1.5px solid #E6C9A0;border-radius:18px;padding:20px 22px;margin-top:30px;}
-.sg-emergency h2{margin:0 0 6px;color:#8A5A16;font-size:20px;}
-.sg-emergency p{margin:0;font-size:13.5px;color:#6E5A3C;line-height:1.55;}
-.sg-112{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
-.sg-112 .chip{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid #E0CBA6;border-radius:12px;padding:11px 18px;text-decoration:none;}
-.sg-112 .n{font:700 24px 'Source Serif 4',serif;color:#B2542E;}
-.sg-112 .t{font-size:12px;color:#6E5A3C;line-height:1.35;}
+/* Emergency banner — flat alert orange (emergency tokens), never amber */
+.sg-emergency{background:var(--emergency-bg);color:var(--emergency-fg);border-radius:16px;padding:22px 26px;margin-top:30px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;}
+.sg-emergency .mark{flex:none;width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.2);display:grid;place-items:center;font:900 26px 'Inter',sans-serif;color:#fff;}
+.sg-emergency h2{margin:0;color:#fff;font-size:19px;line-height:1.3;}
+.sg-emergency .act{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;background:var(--emergency-tint);color:var(--emergency-tint-fg);font:800 10px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:4px 10px;white-space:nowrap;margin-top:6px;}
+.sg-emergency p{margin:5px 0 0;font-size:13px;color:var(--emergency-soft);line-height:1.6;}
+.sg-112{display:flex;gap:10px;flex-wrap:wrap;}
+.sg-112 .chip{display:block;background:#fff;border-radius:12px;padding:12px 18px;text-align:center;text-decoration:none;}
+.sg-112 .n{display:block;font:900 24px 'Inter',sans-serif;color:var(--emergency-bg);}
+.sg-112 .t{display:block;font-size:10px;color:var(--emergency-plate-fg);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;line-height:1.35;}
+@media(max-width:760px){.sg-emergency{grid-template-columns:1fr;align-items:stretch;padding:18px;}.sg-112 .chip{flex:1;}}
 .sg-lib{margin-top:34px;}
 .sg-lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:14px;}
 .sg-lib-card{display:block;background:var(--card);border:1px solid var(--paper-line);border-radius:16px;padding:16px 18px;text-decoration:none;transition:border-color .15s,box-shadow .15s;}
@@ -55,7 +59,7 @@
   <a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
   <div class="links">
     <a href="browse-trails.html">Browse all Trails</a>
-    <a href="browse-trails.html#collections">Collections</a>
+    <a href="collections.html">Collections</a>
     <a href="safety-guide.html" class="active">Safety guide</a>
     <a href="settings.html" data-i18n="nav.settings">Settings</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
@@ -89,13 +93,17 @@
   </div>
   <div class="sg-topics" id="sgTopics"></div>
 
-  <!-- Emergency panel -->
+  <!-- Emergency banner — the one place the alert orange is allowed -->
   <div class="sg-emergency">
-    <h2>In an emergency</h2>
-    <p>Call for mountain rescue early. Know your dog's weight and any medication before you need to say them, and know your nearest lift-assisted exit.</p>
+    <span class="mark" aria-hidden="true">!</span>
+    <div>
+      <h2>In an emergency</h2>
+      <span class="act">Act early</span>
+      <p>Call mountain rescue early rather than late. Know your dog's weight and any medication before you need to say them out loud.</p>
+    </div>
     <div class="sg-112">
-      <a class="chip" href="tel:112"><span class="n">112</span><span class="t">Dolomites<br>Italy &amp; Austria</span></a>
-      <a class="chip" href="tel:112"><span class="n">112</span><span class="t">Savoy<br>France</span></a>
+      <a class="chip" href="tel:112"><span class="n">112</span><span class="t">Rescue, EU-wide</span></a>
+      <a class="chip" href="tel:118"><span class="n">118</span><span class="t">Italy, medical</span></a>
     </div>
   </div>
 
@@ -146,14 +154,14 @@ document.addEventListener('DOMContentLoaded', function(){
       'Favour shaded, lakeside and forested routes when it is warm.']},
     { cat:'Terrain', icon:'dog', bg:'#E4EADF', title:'Paws & terrain', points:[
       'Sun-baked rock and scree can burn pads; test with the back of your hand.',
-      'Sharp limestone and dense scrub nick thin skin, so check legs and flanks at breaks.',
+      'Sharp limestone and dense scrub nick thin skin, so check legs at breaks.',
       'Long, steep descents stress large-breed hips and knees.']},
     { cat:'Water', icon:'water', bg:'#E6EFF4', title:'Water & hydration', points:[
       'Carry more water than you think, plus a collapsible bowl.',
       'Prefer routes with lake or stream access for cooling and drinking.',
       'Avoid still, algae-green water; it can make dogs sick.']},
     { cat:'Hazards', icon:'warning', bg:'#F6ECDB', title:'Wildlife & livestock', points:[
-      'Leash near grazing cattle and sheep; guardian dogs may confront loose dogs.',
+      'Lead near grazing cattle and sheep; guardian dogs may confront loose dogs.',
       'Give marmots, chamois and nesting birds a wide berth.',
       'Keep dogs close through fenced pasture and close every gate.']},
     { cat:'Hazards', icon:'mountain', bg:'#E4EADF', title:'Cliffs & exposure', points:[

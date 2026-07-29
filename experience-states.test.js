@@ -18,7 +18,9 @@ describe('empty states and long-form navigation', () => {
 
     document.body.innerHTML = read('journal.html');
     expect(document.querySelector('#jnEmpty.empty-state')).not.toBeNull();
-    expect(document.getElementById('jnEmptyLogBtn').textContent).toMatch(/first walk/i);
+    // 2026-07 design pass: "+ Log a walk" plus a live-tracking alternative.
+    expect(document.getElementById('jnEmptyLogBtn').textContent).toMatch(/log a walk/i);
+    expect(document.getElementById('jnEmptyLiveBtn').textContent).toMatch(/track live/i);
   });
 
   test('browse and trail community content provide purposeful empty states', () => {

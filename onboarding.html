@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Welcome to DoloPaws</title>
+<meta name="description" content="Every trail scored for your dog — a one-minute tour of how DoloPaws works.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2E4034">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20260729-2">
+<style>
+  /* Onboarding — OnboardingScreen.jsx: full-height ink flow, image with
+     scrim on top, dashes + copy + Back/Next below. */
+  html,body{height:100%;}
+  body{background:var(--ink);}
+  .ob{min-height:100dvh;display:flex;flex-direction:column;}
+  .ob-visual{position:relative;flex:1;min-height:420px;overflow:hidden;}
+  .ob-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;}
+  .ob-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,64,52,.2),rgba(46,64,52,.92));}
+  .ob-brand{position:absolute;top:20px;left:20px;display:inline-flex;align-items:center;gap:9px;font:600 16px 'Source Serif 4',serif;color:#fff;}
+  .ob-brand img{width:26px;height:26px;border-radius:7px;}
+  .ob-skip{position:absolute;top:20px;right:20px;border:none;background:rgba(255,255,255,.14);color:#fff;font:700 12.5px 'Inter',sans-serif;padding:8px 14px;border-radius:999px;cursor:pointer;text-decoration:none;}
+  .ob-skip:hover{background:rgba(255,255,255,.24);color:#fff;}
+  .ob-body{max-width:460px;width:100%;margin:0 auto;padding:36px 24px 44px;text-align:center;box-sizing:border-box;}
+  .ob-dashes{display:flex;gap:6px;justify-content:center;margin-bottom:20px;}
+  .ob-dashes span{width:7px;height:7px;border-radius:999px;background:rgba(255,255,255,.3);transition:width .2s;}
+  .ob-dashes span.on{width:22px;background:var(--accent-light);}
+  .ob-body h1{font-size:26px;color:#fff;margin:0;line-height:1.25;}
+  .ob-body p{font-size:13.5px;color:#D6E1D8;line-height:1.6;margin:12px 0 0;}
+  .ob-actions{display:flex;gap:10px;margin-top:26px;}
+  .ob-back{flex:1;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;border-radius:11px;padding:13px;font:700 13.5px 'Inter',sans-serif;cursor:pointer;}
+  .ob-back[hidden]{display:none;}
+  .ob-next{flex:1;border:none;border-radius:11px;padding:13px;background:var(--accent-light);color:#173039;font:700 13.5px 'Inter',sans-serif;cursor:pointer;}
+  .ob-next:hover{background:#5B94AA;}
+  @media(max-width:700px){
+    .ob-visual{min-height:260px;}
+    .ob-body{padding:28px 24px 34px;}
+    .ob-body h1{font-size:22px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="ob">
+  <div class="ob-visual">
+    <img id="obImage" src="images/lago-di-braies.webp" alt="">
+    <div class="ob-scrim"></div>
+    <span class="ob-brand"><img src="logo.svg" alt="">DoloPaws</span>
+    <a class="ob-skip" href="index.html">Skip</a>
+  </div>
+  <div class="ob-body">
+    <div class="ob-dashes" id="obDashes" aria-hidden="true"></div>
+    <h1 id="obTitle"></h1>
+    <p id="obBody"></p>
+    <div class="ob-actions">
+      <button type="button" class="ob-back" id="obBack" hidden>Back</button>
+      <button type="button" class="ob-next" id="obNext">Next</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Three steps, then straight into the dog wizard on the homepage.
+(function(){
+  var STEPS = [
+    { title: 'Every trail, scored for your dog',
+      body: 'Heat, terrain, water and hazards — checked against your dog’s size, coat and fitness before you ever hit the trailhead.',
+      image: 'images/lago-di-braies.webp' },
+    { title: 'Know before you go',
+      body: 'Live conditions, water sources, and a straight answer on whether today is a good day for this route.',
+      image: 'images/lago-di-carezza.webp' },
+    { title: 'Build your dog’s profile',
+      body: 'One-time setup — breed, size, coat, fitness. Every match score on the site follows from this.',
+      image: 'images/boucle-du-lac-vert.webp' }
+  ];
+  var i = 0;
+  var dashes = document.getElementById('obDashes');
+  function render(){
+    var step = STEPS[i];
+    var last = i === STEPS.length - 1;
+    document.getElementById('obImage').src = step.image;
+    document.getElementById('obTitle').textContent = step.title;
+    document.getElementById('obBody').textContent = step.body;
+    document.getElementById('obBack').hidden = i === 0;
+    document.getElementById('obNext').textContent = last ? 'Create your dog’s profile →' : 'Next';
+    dashes.innerHTML = '';
+    STEPS.forEach(function(_, idx){
+      var d = document.createElement('span');
+      if(idx === i) d.className = 'on';
+      dashes.appendChild(d);
+    });
+  }
+  document.getElementById('obBack').addEventListener('click', function(){ if(i > 0){ i--; render(); } });
+  document.getElementById('obNext').addEventListener('click', function(){
+    if(i === STEPS.length - 1){ window.location.href = 'index.html?wizard=1'; return; }
+    i++;
+    render();
+  });
+  render();
+})();
+</script>
+</body>
+</html>

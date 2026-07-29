@@ -81,7 +81,7 @@
   <a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
   <div class="links">
     <a href="browse-trails.html">Browse all Trails</a>
-    <a href="browse-trails.html#collections">Collections</a>
+    <a href="collections.html">Collections</a>
     <a href="safety-guide.html">Safety guide</a>
     <a href="settings.html" data-i18n="nav.settings">Settings</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
@@ -110,10 +110,13 @@
 
   <div id="jnTimeline" style="display:flex;flex-direction:column;gap:12px;"></div>
   <div id="jnEmpty" class="empty-state" hidden>
-    <div class="empty-state__icon" aria-hidden="true"><span data-dp-icon="dog" data-dp-icon-size="22"></span></div>
-    <p class="empty-state__title">Start your walking story</p>
-    <p class="empty-state__copy">Log a first outing to remember the route, conditions, and how the walk felt for your dog.</p>
-    <div class="empty-state__actions"><button type="button" id="jnEmptyLogBtn" class="empty-state__action">Log your first walk</button></div>
+    <div class="empty-state__icon" aria-hidden="true"><span data-dp-icon="dog" data-dp-icon-size="20"></span></div>
+    <p class="empty-state__title">No walks logged yet</p>
+    <p class="empty-state__copy" id="jnEmptyCopy">Once your dog has been out, log the walk here or track it live from Hike Mode — it'll show up in this list.</p>
+    <div class="empty-state__actions">
+      <button type="button" id="jnEmptyLogBtn" class="empty-state__action">+ Log a walk</button>
+      <button type="button" id="jnEmptyLiveBtn" class="fav-btn">Track live instead</button>
+    </div>
   </div>
   <div id="jnLoggedOut" class="empty-state" hidden>
     <div class="empty-state__icon" aria-hidden="true"><span data-dp-icon="dog" data-dp-icon-size="22"></span></div>
@@ -483,6 +486,12 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('jnEmptyLogBtn').addEventListener('click', function(){
     document.getElementById('jnLogBtn').click();
   });
+  // "Track live instead" needs a trail to follow — open the modal on the
+  // trail picker, whose "Track it live instead →" link starts Hike Mode.
+  document.getElementById('jnEmptyLiveBtn').addEventListener('click', function(){
+    document.getElementById('jnLogBtn').click();
+    trailHelp.textContent = 'Pick a trail first — live tracking follows its route.';
+  });
   document.getElementById('jnLoginBtn').addEventListener('click', function(){
     var accountBtn = document.getElementById('accountBtn');
     if(accountBtn) accountBtn.click();
@@ -651,6 +660,7 @@ document.addEventListener('DOMContentLoaded', function(){
     window.DoloPawsAuth.getDogProfile().then(function(p){
       if(p && p.name){
         document.getElementById('jnTitle').textContent = p.name + "'s walk journal";
+        document.getElementById('jnEmptyCopy').textContent = 'Once ' + p.name + " has been out, log the walk here or track it live from Hike Mode — it'll show up in this list.";
       }
     }).catch(function(){});
   }

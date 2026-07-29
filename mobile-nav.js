@@ -66,7 +66,9 @@
   if(navEl && linksEl){
     const brand = navEl.querySelector('.brand');
     const brandHref = (brand && brand.getAttribute('href')) || 'index.html';
-    const prefix = brandHref.startsWith('../') ? '../' : '';
+    // Root-absolute brand href (the 404 page — served at any URL depth)
+    // makes every rebuilt link root-absolute too.
+    const prefix = brandHref.startsWith('/') ? '/' : (brandHref.startsWith('../') ? '../' : '');
     const parts = window.location.pathname.split('/').filter(Boolean);
     const pageFile = (parts[parts.length - 1] || 'index.html').toLowerCase().endsWith('.html')
       ? (parts[parts.length - 1] || 'index.html') : 'index.html';
@@ -151,22 +153,96 @@
       return wrap;
     }
 
-    function buildAccountPill(name){
-      const a = document.createElement('a');
-      a.className = 'nav-user';
-      a.href = prefix + 'account.html?next=' + encodeURIComponent(pagePath);
+    function dogAvatarEl(name, size){
       const avatar = document.createElement('span');
       avatar.className = 'nav-user-avatar';
       avatar.setAttribute('aria-hidden', 'true');
       const photo = dogPhoto();
       if(photo) avatar.style.backgroundImage = 'url(' + photo + ')';
       else avatar.textContent = name ? name.charAt(0).toUpperCase() : '🐾';
+      if(size){ avatar.style.width = avatar.style.height = size + 'px'; avatar.style.lineHeight = size + 'px'; }
+      return avatar;
+    }
+
+    // Dog pill — the shared switcher pattern (map, journal, safety guide,
+    // collections and the profile page all use this same control): avatar +
+    // name opens a "Switch dog" panel with the dog list and a manage link.
+    // The account today holds one dog; the panel lists it (selected) and the
+    // add/manage routes, and picks up more dogs if the summary ever carries
+    // a `dogs` array.
+    function buildAccountPill(name){
+      const wrap = document.createElement('div');
+      wrap.className = 'nav-userwrap';
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'nav-user';
+      btn.setAttribute('aria-haspopup', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.appendChild(dogAvatarEl(name));
       const label = document.createElement('span');
       label.className = 'nav-user-name';
       label.textContent = name || 'My account';
-      a.appendChild(avatar);
-      a.appendChild(label);
-      return a;
+      btn.appendChild(label);
+      const caret = document.createElement('span');
+      caret.className = 'nav-user-caret';
+      caret.setAttribute('aria-hidden', 'true');
+      caret.textContent = '▾';
+      btn.appendChild(caret);
+
+      const menu = document.createElement('div');
+      menu.className = 'nav-dogmenu';
+      menu.hidden = true;
+      const kick = document.createElement('div');
+      kick.className = 'nav-dogmenu-kick';
+      kick.textContent = 'Switch dog';
+      menu.appendChild(kick);
+
+      const summary = authSummary() || {};
+      const dogs = Array.isArray(summary.dogs) && summary.dogs.length
+        ? summary.dogs
+        : [{ name: name || summary.name || 'Your dog', meta: summary.meta || summary.breed || '' }];
+      const activeName = name || (dogs[0] && dogs[0].name);
+      dogs.forEach(d => {
+        const row = document.createElement('button');
+        row.type = 'button';
+        row.className = 'nav-dogmenu-row' + (d.name === activeName ? ' on' : '');
+        row.appendChild(dogAvatarEl(d.name, 32));
+        const txt = document.createElement('span');
+        txt.style.cssText = 'flex:1;min-width:0;';
+        const nm = document.createElement('b');
+        nm.textContent = d.name;
+        txt.appendChild(nm);
+        if(d.meta){
+          const meta = document.createElement('small');
+          meta.textContent = d.meta;
+          txt.appendChild(meta);
+        }
+        row.appendChild(txt);
+        row.addEventListener('click', () => setOpen(false));
+        menu.appendChild(row);
+      });
+
+      const addLink = document.createElement('a');
+      addLink.className = 'nav-dogmenu-manage';
+      addLink.href = prefix + 'account.html?next=' + encodeURIComponent(pagePath);
+      addLink.textContent = '＋ Add another dog';
+      menu.appendChild(addLink);
+      const manage = document.createElement('a');
+      manage.className = 'nav-dogmenu-manage';
+      manage.href = prefix + 'account.html?next=' + encodeURIComponent(pagePath);
+      manage.textContent = 'Manage dog profiles →';
+      menu.appendChild(manage);
+
+      wrap.appendChild(btn);
+      wrap.appendChild(menu);
+      function setOpen(open){
+        menu.hidden = !open;
+        btn.setAttribute('aria-expanded', String(open));
+      }
+      btn.addEventListener('click', (e) => { e.stopPropagation(); setOpen(menu.hidden); });
+      document.addEventListener('click', (e) => { if(!wrap.contains(e.target)) setOpen(false); });
+      document.addEventListener('keydown', (e) => { if(e.key === 'Escape') setOpen(false); });
+      return wrap;
     }
 
     function renderHeader(loggedIn, dogName){
@@ -176,7 +252,7 @@
       // the language toggle on DOMContentLoaded). Rebuilding must not eat
       // them, so anything that isn't ours is kept and re-appended last.
       const extras = Array.from(linksEl.children).filter(el =>
-        el !== loginEl && !el.matches('a, #accountBtn, .nav-bellwrap'));
+        el !== loginEl && !el.matches('a, #accountBtn, .nav-bellwrap, .nav-userwrap'));
       linksEl.innerHTML = '';
       // Both states share the same link row now; only the right-hand
       // controls change (login pill vs bell + dog pill).
