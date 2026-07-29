@@ -23,6 +23,8 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(controller).toContain('view.reasons');
     expect(controller).toContain('view.cautions');
     expect(controller).toContain('view.unknowns');
+    expect(controller).toContain('<details class="recommendation-unknowns">');
+    expect(controller).not.toContain('<details class="recommendation-unknowns" open>');
     expect(controller).toContain('hero.textContent = view.heroSummary');
     expect(controller).not.toContain('trail.safetyLevel');
   });

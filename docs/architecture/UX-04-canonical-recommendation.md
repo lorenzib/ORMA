@@ -22,6 +22,9 @@ The block exposes:
 `recommendation-decision.js` is a pure presentation adapter. It does not
 calculate or adjust a score.
 
+The unknown count remains visible, while its detailed list is collapsed by
+default to avoid repeating every evidence gap on otherwise simple trail pages.
+
 ## Actions
 
 The decision block keeps three intents separate:

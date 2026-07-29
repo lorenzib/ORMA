@@ -58,7 +58,7 @@
         '<section><h3>Cautions</h3>' +
           list(view.cautions, 'No specific caution is identified; review unknowns before deciding.') + '</section>' +
       '</div>' +
-      '<details class="recommendation-unknowns" open>' +
+      '<details class="recommendation-unknowns">' +
         `<summary>${esc(unknownSummary)}</summary>` +
         list(view.unknowns, 'No unknown item is currently reported.') +
         (view.additionalUnknowns
