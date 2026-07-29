@@ -42,6 +42,12 @@
   function formatNumber(value, suffix){
     return Number.isFinite(value) ? `${Math.round(value * 10) / 10}${suffix}` : null;
   }
+  function formatDuration(value){
+    if(value === null || value === undefined || value === '') return null;
+    const text = String(value).trim();
+    return /\b(?:h|hr|hour|hours|min|minute|minutes)\b/i.test(text)
+      ? text : `${text} h`;
+  }
 
   function build(trail, options){
     options = options || {};
@@ -88,8 +94,8 @@
           ? cell(formatNumber(metrics.distanceKm, ' km')) : unknown('distance'),
         elevation: formatNumber(metrics.ascentM, ' m ascent')
           ? cell(formatNumber(metrics.ascentM, ' m ascent')) : unknown('elevation'),
-        duration: trail.hours
-          ? cell(typeof trail.hours === 'number' ? `${trail.hours} h` : String(trail.hours)) : unknown('duration'),
+        duration: formatDuration(trail.hours)
+          ? cell(formatDuration(trail.hours)) : unknown('duration'),
         terrain: terrainKnown
           ? cell(TERRAIN[suitability.terrainRank] || `Terrain level ${suitability.terrainRank}`,
             categoryVerified(parts, 'surfaceHazards') ? 'known' : 'mapped',

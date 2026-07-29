@@ -42,6 +42,11 @@ describe('comparison presentation model', () => {
     expect(result.cells.match.text).toBe('Strong option · 88%');
     expect(result.cells.water.text).toBe('1 reviewed water point');
     expect(result.cells.restrictions.text).toBe('Dogs allowed on leash');
+    expect(result.cells.duration.text).toBe('1.5 h');
+    expect(model.build({ ...baseTrail, hours:'2–2.5' }, {
+      normalizeTrail:value => value,
+      recommendation,
+    }).cells.duration.text).toBe('2–2.5 h');
   });
 
   test('unreviewed absence remains unknown rather than safe', () => {
