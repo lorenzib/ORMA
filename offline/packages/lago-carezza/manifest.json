@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lago-carezza",
   "name": "Lago di Carezza Loop",
-  "version": "2026.07.29-beta.8",
+  "version": "2026.07.29-beta.9",
   "generatedAt": "2026-07-29T08:00:00Z",
   "scoringVersion": "1.1.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 55865,
+  "packageBytes": 63977,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "north": 46.4113,
@@ -95,8 +95,8 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 3760,
-      "sha256": "734829a0112d187a60274472f3ef65becbf36e5c0ef7d40a87551eef4a9a84c1"
+      "bytes": 3906,
+      "sha256": "06b25986c06ab3d43e94d73cf5553f56a7e2a397030d1cb491ea076ca797e810"
     },
     {
       "role": "style",
@@ -111,8 +111,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 17729,
-      "sha256": "e07f231dbf75f077e59f4fa2fb427f2caf1aadd2db5b0b772b323468c3f32b74"
+      "bytes": 19630,
+      "sha256": "5ed8d881f4e649794df15798a9f8ab4bcac7c8d47579affe3c4b882180f4c50d"
     },
     {
       "role": "gps-policy",
@@ -129,6 +129,14 @@
       "url": "/hike-session.js",
       "bytes": 6484,
       "sha256": "825cf5b9e27acc260f408e224ec2d5c3d84c27373ff2f6c98ac06fc07c01f72d"
+    },
+    {
+      "role": "completion",
+      "required": true,
+      "label": "Durable hike completion",
+      "url": "/hike-completions.js",
+      "bytes": 6065,
+      "sha256": "0abbaafe655171cc19251c14888c94e1f5c99e9c1e5c428bd8a632ee69f1fc00"
     },
     {
       "role": "map",

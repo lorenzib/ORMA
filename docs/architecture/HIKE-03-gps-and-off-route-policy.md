@@ -69,7 +69,7 @@ current good/fair fix whose conservative lower bound is over 2 kilometres.
 
 ## Offline package
 
-Lago di Carezza beta.8 includes `/hike-gps-policy.js` as a mandatory,
+Lago di Carezza beta.9 includes `/hike-gps-policy.js` as a mandatory,
 checksum-protected resource. The downloaded map applies the same thresholds,
 shows the same three GPS facts, and only displays its alert after three
 eligible fixes.
@@ -91,14 +91,14 @@ No network access is used for this assessment.
 - script ordering and online integration.
 
 Offline package tests require the policy resource, visible route-warning
-surface, and shared assessment function. Package tests verify every beta.8
+surface, and shared assessment function. Package tests verify every beta.9
 byte count and SHA-256 hash.
 
 ## Safe physical validation
 
 Do not leave a marked route to test an alert.
 
-On the iPhone 13 Pro, update Carezza to beta.8 and confirm:
+On the iPhone 13 Pro, update Carezza to beta.9 and confirm:
 
 1. A normal GPS fix shows accuracy, route distance, and last-valid-fix time.
 2. The same facts remain visible in airplane mode on the downloaded map.

@@ -28,6 +28,7 @@
     hikeRecoveryMessage: document.getElementById('hikeRecoveryMessage'),
     hikeResumeButton: document.getElementById('hikeResumeBtn'),
     hikePauseButton: document.getElementById('hikePauseBtn'),
+    hikeFinishButton: document.getElementById('hikeFinishBtn'),
     hikeDiscardButton: document.getElementById('hikeDiscardBtn'),
     facts: document.getElementById('facts'),
     cautions: document.getElementById('cautions'),
@@ -269,6 +270,7 @@
     elements.hikeRecoveryMessage.textContent = message;
     elements.hikeResumeButton.hidden = true;
     elements.hikePauseButton.hidden = true;
+    elements.hikeFinishButton.hidden = true;
     elements.hikeDiscardButton.hidden = false;
   }
 
@@ -284,6 +286,7 @@
       'GPS tracking is active. Your latest valid progress stays saved on this device.';
     elements.hikeResumeButton.hidden = true;
     elements.hikePauseButton.hidden = false;
+    elements.hikeFinishButton.hidden = false;
     startLocation(bounds);
   }
 
@@ -302,6 +305,43 @@
       : 'Your progress is saved on this device.';
     elements.hikeResumeButton.hidden = false;
     elements.hikePauseButton.hidden = true;
+    elements.hikeFinishButton.hidden = false;
+  }
+
+  function finishRecoveredHike(){
+    if(!activeSession || !window.DoloPawsHikeCompletions) return;
+    const completedAt = activeSession.state === 'completion-pending'
+      ? activeSession.updatedAt
+      : Date.now();
+    keepSessionResult(window.DoloPawsHikeSession.setState(
+      activeSession,
+      'completion-pending',
+      completedAt
+    ));
+    const result = window.DoloPawsHikeCompletions.save(activeSession, {
+      completedAt,
+      distanceKm: activeSession.lastProgress && activeSession.lastProgress.km || 0,
+    });
+    if(!result.ok){
+      stopLocation('The completed hike could not be saved. Your active hike is still preserved.');
+      elements.hikeRecoveryTitle.textContent = 'Completion not saved';
+      elements.hikeRecoveryMessage.textContent =
+        'Free some device storage and tap Finish hike again.';
+      elements.hikeResumeButton.hidden = true;
+      elements.hikePauseButton.hidden = true;
+      elements.hikeFinishButton.hidden = false;
+      return;
+    }
+    window.DoloPawsHikeSession.clear();
+    activeSession = null;
+    stopLocation('Hike completed and saved on this device.');
+    elements.hikeRecoveryTitle.textContent = 'Hike completed';
+    elements.hikeRecoveryMessage.textContent =
+      'Your completion is stored offline and ready for a later journal or synchronization step.';
+    elements.hikeResumeButton.hidden = true;
+    elements.hikePauseButton.hidden = true;
+    elements.hikeFinishButton.hidden = true;
+    elements.hikeDiscardButton.hidden = true;
   }
 
   function discardRecoveredHike(){
@@ -315,6 +355,7 @@
     if(!window.DoloPawsHikeSession) return;
     elements.hikeResumeButton.addEventListener('click', () => resumeRecoveredHike(bounds));
     elements.hikePauseButton.addEventListener('click', pauseRecoveredHike);
+    elements.hikeFinishButton.addEventListener('click', finishRecoveredHike);
     elements.hikeDiscardButton.addEventListener('click', discardRecoveredHike);
     const loaded = window.DoloPawsHikeSession.load();
     const ownerId = loaded.status === 'ready' ? loaded.session.ownerId : null;
@@ -350,15 +391,17 @@
     if(activeSession.state === 'completion-pending'){
       elements.hikeRecoveryTitle.textContent = 'Hike finished';
       elements.hikeRecoveryMessage.textContent =
-        'Reconnect to DoloPaws to finish saving this hike to your journal.';
+        'Save the completion on this device before opening a later journal step.';
       elements.hikeResumeButton.hidden = true;
       elements.hikePauseButton.hidden = true;
+      elements.hikeFinishButton.hidden = false;
       return;
     }
     elements.hikeRecoveryTitle.textContent = 'Unfinished hike found';
     elements.hikeRecoveryMessage.textContent = recoveryMessage(activeSession);
     elements.hikeResumeButton.hidden = false;
     elements.hikePauseButton.hidden = true;
+    elements.hikeFinishButton.hidden = false;
   }
 
   async function init(){

@@ -467,6 +467,8 @@ All P0 and P1 work
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** HIKE-02
+- **Implementation:** complete in code; see
+  `docs/architecture/HIKE-04-durable-completion.md`.
 - **Outcome:** finishing a hike is durable even if the next page fails.
 - **Acceptance:**
   - Completion time, duration, trail, and status save before navigation.

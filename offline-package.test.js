@@ -33,6 +33,7 @@ describe('Lago di Carezza offline package', () => {
       'shell',
       'style',
       'app',
+      'completion',
       'gps-policy',
       'session',
       'map',
@@ -80,6 +81,7 @@ describe('Lago di Carezza offline package', () => {
     expect(manifest.resources.find(resource => resource.role === 'route').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'safety').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'gps-policy').required).toBe(true);
+    expect(manifest.resources.find(resource => resource.role === 'completion').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'session').required).toBe(true);
     expect(app).toContain('if(resource.required !== false) throw error');
   });
@@ -134,6 +136,21 @@ describe('Lago di Carezza offline package', () => {
     expect(app).toContain('DoloPawsGpsPolicy.assessFix');
     expect(app).toContain("assessment.offRouteState === 'confirmed'");
     expect(app).toContain('last valid fix');
+  });
+
+  test('persists offline completion before clearing the active session', () => {
+    const shell = fs.readFileSync(path.join(root, 'offline', 'trail.html'), 'utf8');
+    const app = fs.readFileSync(path.join(root, 'offline', 'offline-app.js'), 'utf8');
+    const finishStart = app.indexOf('function finishRecoveredHike');
+    const finishEnd = app.indexOf('function discardRecoveredHike', finishStart);
+    const finishFlow = app.slice(finishStart, finishEnd);
+    expect(shell).toContain('src="../hike-completions.js"');
+    expect(shell.indexOf('hike-completions.js')).toBeLessThan(shell.indexOf('offline-app.js'));
+    expect(shell).toContain('id="hikeFinishBtn"');
+    expect(finishFlow).toContain('DoloPawsHikeCompletions.save');
+    expect(finishFlow.indexOf('DoloPawsHikeCompletions.save'))
+      .toBeLessThan(finishFlow.indexOf('DoloPawsHikeSession.clear'));
+    expect(finishFlow).toContain('ready for a later journal or synchronization step');
   });
 
   test('route is a closed LineString inside the package bounds', () => {

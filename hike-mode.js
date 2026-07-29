@@ -85,6 +85,7 @@ function initHikeMode(map, trail){
   let lastKnownKm = 0;      // furthest progress readout, for the completion stats
   let lastValidFixAt = null;
   let durableSession = null;
+  let completionRetry = null;
 
   function keepSessionResult(result){
     if(result && result.session) durableSession = result.session;
@@ -115,7 +116,7 @@ function initHikeMode(map, trail){
 
   function persistSessionState(state){
     if(!durableSession || !window.DoloPawsHikeSession) return;
-    keepSessionResult(window.DoloPawsHikeSession.setState(
+    return keepSessionResult(window.DoloPawsHikeSession.setState(
       durableSession,
       state,
       Date.now()
@@ -447,19 +448,36 @@ function initHikeMode(map, trail){
     panel.textContent = window.t('hike.paused');
   }
 
+  function persistCompletionAndShow(completedAt){
+    if(!durableSession || !window.DoloPawsHikeCompletions) return false;
+    persistSessionState('completion-pending');
+    const result = window.DoloPawsHikeCompletions.save(durableSession, {
+      completedAt,
+      distanceKm: lastKnownKm,
+    });
+    if(!result.ok){
+      stopHike(true);
+      completionRetry = () => persistCompletionAndShow(completedAt);
+      startBtn.disabled = false;
+      setStartLabel('hike.retryFinish', 'Save completed hike');
+      panel.textContent = window.t('hike.completionSaveFailed');
+      return false;
+    }
+    completionRetry = null;
+    clearDurableSession();
+    stopHike(false);
+    showCompletionScreen(result.record);
+    return true;
+  }
+
   function finishHike(){
     const hadGpsFix = !firstFix;
-    const elapsedMinutes = hikeStartedAt
-      ? Math.max(1, Math.round((Date.now() - hikeStartedAt) / 60000))
-      : 1;
-    const elapsedSeconds = hikeStartedAt
-      ? Math.max(1, Math.round((Date.now() - hikeStartedAt) / 1000))
-      : 60;
-    if(hadGpsFix) persistSessionState('completion-pending');
-    else clearDurableSession();
-    stopHike(false);
-    if (!hadGpsFix) return;
-    showCompletionScreen(elapsedSeconds, elapsedMinutes);
+    if(!hadGpsFix){
+      clearDurableSession();
+      stopHike(false);
+      return;
+    }
+    persistCompletionAndShow(Date.now());
   }
 
   // ---- Completion screen: save / discard, photos, share-to-trail flag ------
@@ -489,10 +507,12 @@ function initHikeMode(map, trail){
     return { name, photo };
   }
 
-  function showCompletionScreen(elapsedSeconds, elapsedMinutes){
+  function showCompletionScreen(completion){
+    const elapsedSeconds = completion.durationSeconds;
+    const elapsedMinutes = Math.max(1, Math.round(elapsedSeconds / 60));
     const dog = dogSummary();
     const dogName = dog.name || 'Your dog';
-    const km = lastKnownKm;
+    const km = completion.distanceKm;
     const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : '—';
     const SAFETY_LABEL = { 'low-risk': 'Low-risk', 'moderate': 'Moderate', 'caution': 'Caution' };
     const safetyClass = trail.safetyLevel === 'low-risk' ? 'safety-low'
@@ -631,7 +651,12 @@ function initHikeMode(map, trail){
       q('#hkActions').hidden = false;
     });
     q('#hkDiscardConfirmBtn').addEventListener('click', () => {
-      clearDurableSession();
+      if(window.DoloPawsHikeCompletions){
+        window.DoloPawsHikeCompletions.markFollowUp(
+          completion.completionId,
+          'discarded'
+        );
+      }
       closeOverlay();
     });
 
@@ -641,7 +666,7 @@ function initHikeMode(map, trail){
         // Guests fall back to the journal's pending-walk flow, which asks
         // them to log in first (photos can't follow it).
         const returnToTrail = `trail.html?id=${encodeURIComponent(trail.id)}`;
-        window.location.href = `journal.html?trail=${encodeURIComponent(trail.id)}&duration=${elapsedMinutes}&from=${encodeURIComponent(returnToTrail)}`;
+        window.location.href = `journal.html?trail=${encodeURIComponent(trail.id)}&duration=${elapsedMinutes}&completion=${encodeURIComponent(completion.completionId)}&from=${encodeURIComponent(returnToTrail)}`;
         return;
       }
       const entry = {
@@ -667,7 +692,12 @@ function initHikeMode(map, trail){
         localStorage.setItem(key, JSON.stringify(entries));
         saved = true;
       } catch (e) { /* storage full/blocked — still leave the page gracefully */ }
-      if(saved) clearDurableSession();
+      if(saved && window.DoloPawsHikeCompletions){
+        window.DoloPawsHikeCompletions.markFollowUp(
+          completion.completionId,
+          'journal-saved'
+        );
+      }
       closeOverlay();
       window.location.href = 'journal.html';
     });
@@ -752,7 +782,9 @@ function initHikeMode(map, trail){
     if(recovery.status === 'ready'){
       durableSession = recovery.session;
       if(durableSession.state === 'completion-pending'){
-        startBtn.disabled = true;
+        completionRetry = () => persistCompletionAndShow(durableSession.updatedAt);
+        startBtn.disabled = false;
+        setStartLabel('hike.retryFinish', 'Save completed hike');
         panel.textContent = window.t('hike.completionPending');
         recoveryActions(false);
         return;
@@ -788,6 +820,7 @@ function initHikeMode(map, trail){
 
   startBtn.addEventListener('click', () => {
     if(active) finishHike();
+    else if(completionRetry) completionRetry();
     else if(durableSession) resumeHike();
     else startHike();
   });

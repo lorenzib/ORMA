@@ -117,7 +117,7 @@ describe('HIKE-01 durable active-hike session', () => {
     expect(hikeMode).toContain('DoloPawsHikeSession.create');
     expect(hikeMode).toContain('DoloPawsHikeSession.updateProgress');
     expect(hikeMode).toContain("'completion-pending'");
-    expect(hikeMode).toContain('if(saved) clearDurableSession()');
+    expect(hikeMode).toContain('clearDurableSession();');
     expect(hikeMode).toContain('function resumeHike()');
     expect(hikeMode).toContain('function pauseHike()');
     expect(hikeMode).toContain("recovery.status === 'missing-package'");
