@@ -719,6 +719,14 @@
       // Phone layout swaps the site chrome for the app bar + footer.
       document.body.classList.add('ep-app');
 
+      // settings.html's "Delete account" deep-links here (#cancel) so the
+      // destructive flow stays in one tested place.
+      if(window.location.hash === '#cancel'){
+        pickTab('account');
+        const openCancel = $('openCancelBtn');
+        if(openCancel) setTimeout(() => openCancel.click(), 0);
+      }
+
       // Settings header
       savedEmail = user.email || '';
       $('acctEmailLabel').textContent = user.email || '(no email on file)';

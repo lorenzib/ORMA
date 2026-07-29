@@ -55,10 +55,26 @@
   }
 
   function measure(){
-    var top = returning.querySelector('.li-top');
+    // The toolbar (search + filters + avatar) is the phone top bar; the dark
+    // app header and greeting bar are hidden at this width.
+    var top = returning.querySelector('.li-toolbar');
     var tabs = document.getElementById('mhomeTabs');
     if(top) document.body.style.setProperty('--mhome-top', top.offsetHeight + 'px');
     if(tabs) document.body.style.setProperty('--mhome-tabs', tabs.offsetHeight + 'px');
+  }
+
+  // The account pill lives in the dark header on desktop; on the phone
+  // layout it joins the toolbar so it stays reachable.
+  function placeAccountWrap(mobile){
+    var wrap = document.getElementById('liAccountWrap');
+    if(!wrap) return;
+    if(mobile){
+      var toolbar = document.getElementById('liToolbar');
+      if(toolbar && wrap.parentElement !== toolbar) toolbar.appendChild(wrap);
+    } else {
+      var actions = returning.querySelector('.li-top-actions');
+      if(actions && wrap.parentElement !== actions) actions.appendChild(wrap);
+    }
   }
 
   function availH(){
@@ -116,6 +132,7 @@
     if(active) return;
     active = true;
     ensureUi();
+    placeAccountWrap(true);
     document.body.classList.add('mhome-active');
     window.scrollTo(0, 0);
     // classList.add applies synchronously, so measuring right away is safe;
@@ -132,6 +149,7 @@
   function deactivate(){
     if(!active) return;
     active = false;
+    placeAccountWrap(false);
     document.body.classList.remove('mhome-active');
     document.body.style.removeProperty('--mhome-top');
     document.body.style.removeProperty('--mhome-tabs');

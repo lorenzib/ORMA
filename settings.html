@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Account settings | DoloPaws</title>
+<meta name="description" content="Your DoloPaws account, your dogs and what we send you.">
+<meta name="theme-color" content="#2E4034">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20260729-2">
+<style>
+  /* Account settings — standalone page per AccountSettings.dc.html:
+     sticky section sidebar, white cards, destructive zone last. */
+  .st-wrap{max-width:1020px;margin:0 auto;padding:40px 24px 60px;}
+  .st-back{display:inline-block;margin:0 0 18px;font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;}
+  .st-back:hover{text-decoration:underline;}
+  .st-wrap h1{font-size:34px;margin-top:14px;}
+  .st-intro{font-size:15px;color:var(--ink-soft);line-height:1.6;margin:12px 0 0;max-width:620px;}
+  .st-cols{display:grid;grid-template-columns:220px minmax(0,1fr);gap:22px;align-items:start;margin-top:26px;}
+  .st-side{position:sticky;top:24px;display:flex;flex-direction:column;gap:2px;}
+  .st-side a{display:block;padding:10px 13px;border-radius:var(--radius-md);font:500 13.5px 'Inter',sans-serif;color:var(--ink-soft);text-decoration:none;}
+  .st-side a:hover{color:var(--ink);}
+  .st-side a.on{background:#F0EDE1;color:var(--ink);font-weight:700;}
+  .st-main{display:flex;flex-direction:column;gap:18px;min-width:0;}
+  .st-card{background:var(--card);border:1px solid var(--paper-line);border-radius:16px;padding:26px;scroll-margin-top:24px;}
+  .st-card h2{font-size:20px;margin-bottom:14px;}
+  .st-card .blurb{font-size:13.5px;line-height:1.6;color:var(--ink-soft);margin:0 0 14px;}
+  .st-lbl{display:block;font-size:12.5px;font-weight:800;color:var(--ink);margin-bottom:8px;}
+  .st-fld{width:100%;border:1.5px solid var(--paper-line);border-radius:12px;padding:12px 14px;font:400 14.5px 'Inter',sans-serif;color:var(--ink);box-sizing:border-box;background:#fff;}
+  .st-fld:focus{outline:none;border-color:var(--accent);}
+  .st-hint{font-size:11.5px;color:#8A9689;margin:6px 0 0;}
+  .st-field{margin-bottom:16px;}
+  .st-divider-row{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #EDE9DD;margin-top:16px;padding-top:14px;flex-wrap:wrap;}
+  .st-divider-row span{font-size:13px;color:var(--ink-soft);line-height:1.5;}
+  .st-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 16px;border-radius:10px;border:1.5px solid var(--paper-line);background:#fff;color:var(--ink);font:700 12.5px 'Inter',sans-serif;cursor:pointer;text-decoration:none;}
+  .st-btn:hover{border-color:var(--accent);color:var(--accent);}
+  .st-btn-ghost{border:none;background:none;color:var(--ink-soft);}
+  .st-btn-ghost:hover{color:var(--ink);}
+  .st-dog-row{display:flex;align-items:center;gap:13px;border:1.5px solid var(--paper-line);border-radius:12px;padding:13px 15px;margin-bottom:9px;flex-wrap:wrap;}
+  .st-dog-avatar{width:44px;height:44px;border-radius:50%;flex:none;background:var(--accent) center/cover no-repeat;color:#fff;display:grid;place-items:center;font:800 17px 'Inter',sans-serif;box-shadow:0 0 0 3px #EAF3EC;}
+  .st-dog-copy{flex:1;min-width:140px;}
+  .st-dog-name{font:700 14px 'Source Serif 4',serif;color:var(--ink);}
+  .st-dog-meta{font-size:12px;color:#6B7A6E;margin-top:1px;}
+  .st-selected{display:inline-flex;align-items:center;gap:5px;font:700 11px 'Inter',sans-serif;padding:4px 10px;border-radius:7px;background:var(--sage-dim);color:#2C5C34;}
+  .st-switchrow{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-top:1px solid #F2EFE5;}
+  .st-switchrow:first-of-type{border-top:none;}
+  .st-switchrow .txt{flex:1;min-width:0;}
+  .st-switchrow .txt b{display:block;font-size:13.5px;color:var(--ink);}
+  .st-switchrow .txt small{display:block;font-size:11.5px;color:#8A9689;margin-top:1px;line-height:1.45;}
+  .st-switchrow[aria-disabled="true"] .li-switch{opacity:.55;cursor:default;}
+  .st-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .st-danger{border:1.5px solid #F3D9D2;padding:22px 26px;}
+  .st-danger h2{font-size:17px;color:#9C3A25;margin-bottom:5px;}
+  .st-danger p{font-size:13px;line-height:1.6;color:var(--ink-soft);margin:0 0 14px;max-width:60ch;}
+  .st-danger-btn{background:#F3D9D2;border:none;color:#9C3A25;border-radius:12px;padding:11px 18px;font:800 13px 'Inter',sans-serif;cursor:pointer;}
+  .st-status{font-size:12px;margin:10px 0 0;}
+  @media(max-width:900px){
+    .st-wrap{padding:26px 16px 48px;}
+    .st-cols{grid-template-columns:1fr;}
+    .st-side{position:static;}
+    .st-pair{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
+  <div class="links">
+    <a href="browse-trails.html">Browse all Trails</a>
+    <a href="browse-trails.html#collections">Collections</a>
+    <a href="safety-guide.html">Safety guide</a>
+    <a href="settings.html" class="active" data-i18n="nav.settings">Settings</a>
+  </div>
+</div>
+
+<div class="st-wrap">
+  <a class="st-back" href="index.html">&larr; Back to trails</a>
+
+  <div id="stLoggedOut" hidden style="text-align:center;padding:40px 20px;">
+    <p style="font-size:15px;color:var(--ink-soft);margin-bottom:16px;">Log in to manage your account settings.</p>
+    <a href="index.html?view=login&amp;next=settings.html" class="auth-submit" style="display:inline-block;width:auto;padding:11px 24px;text-decoration:none;">Log in</a>
+  </div>
+
+  <div id="stLoggedIn" hidden>
+    <h1>Account settings</h1>
+    <p class="st-intro">Your account, your dogs and what we send you. Everything that changes how trails are <em>scored</em> lives on the dog profile instead.</p>
+
+    <div class="st-cols">
+      <nav class="st-side" id="stToc" aria-label="Settings sections">
+        <a href="#stAccount" data-sec="stAccount" class="on">Account details</a>
+        <a href="#stDogs" data-sec="stDogs">Dog details</a>
+        <a href="#stNotifs" data-sec="stNotifs">Notifications</a>
+        <a href="#stUnits" data-sec="stUnits">Units &amp; language</a>
+        <a href="#stPrivacy" data-sec="stPrivacy">Privacy &amp; data</a>
+      </nav>
+
+      <div class="st-main">
+
+        <!-- ACCOUNT DETAILS -->
+        <section class="st-card" id="stAccount">
+          <h2>Account details</h2>
+          <div class="st-field">
+            <label class="st-lbl" for="stEmail">Email</label>
+            <div style="display:flex;gap:10px;">
+              <input class="st-fld" type="email" id="stEmail" autocomplete="email">
+              <button type="button" class="st-btn" id="stEmailBtn" disabled>Update</button>
+            </div>
+            <p class="st-hint" id="stEmailHint">Used for the login link and nothing else.</p>
+          </div>
+          <div class="st-divider-row">
+            <span id="stProviderLine">Checking how you sign in…</span>
+            <button type="button" class="st-btn" id="stPasswordBtn">Set a password</button>
+          </div>
+          <p class="st-status" id="stPasswordStatus" hidden></p>
+        </section>
+
+        <!-- YOUR DOGS -->
+        <section class="st-card" id="stDogs">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px;flex-wrap:wrap;">
+            <h2 style="margin-bottom:0;">Your dogs</h2>
+            <a class="st-btn" href="account.html?next=settings.html">+ Add a dog</a>
+          </div>
+          <p class="blurb">Every trail is scored for the dog you have selected.</p>
+          <div id="stDogList"></div>
+        </section>
+
+        <!-- NOTIFICATIONS -->
+        <section class="st-card" id="stNotifs">
+          <h2 style="margin-bottom:6px;">Notifications</h2>
+          <p class="blurb">Safety alerts for trails you have saved cannot be switched off.</p>
+          <div id="stNotifList"></div>
+        </section>
+
+        <!-- UNITS & LANGUAGE -->
+        <section class="st-card" id="stUnits">
+          <h2>Units &amp; language</h2>
+          <div class="st-pair">
+            <div>
+              <label class="st-lbl" for="stDistance">Distance</label>
+              <select class="st-fld" id="stDistance"><option value="km">Kilometres</option><option value="mi">Miles</option></select>
+            </div>
+            <div>
+              <label class="st-lbl" for="stTemp">Temperature</label>
+              <select class="st-fld" id="stTemp"><option value="c">Celsius</option><option value="f">Fahrenheit</option></select>
+            </div>
+            <div>
+              <label class="st-lbl" for="stLang">Language</label>
+              <select class="st-fld" id="stLang"><option value="en">English</option><option value="it">Italiano</option></select>
+            </div>
+            <div>
+              <label class="st-lbl" for="stRegion">Home region</label>
+              <select class="st-fld" id="stRegion"><option value="dolomites">Dolomites, Italy</option><option value="savoy">Savoy, France</option><option value="none">No home region</option></select>
+            </div>
+          </div>
+        </section>
+
+        <!-- PRIVACY & DATA -->
+        <section class="st-card" id="stPrivacy">
+          <h2 style="margin-bottom:6px;">Privacy &amp; data</h2>
+          <p class="blurb">We never sell walking data and never show another owner where you walked.</p>
+          <div id="stPrivacyList"></div>
+          <div class="st-divider-row" style="justify-content:flex-start;gap:10px;">
+            <button type="button" class="st-btn" id="stDownloadBtn">Download my data</button>
+            <button type="button" class="st-btn st-btn-ghost" id="stLogoutBtn">Log out</button>
+          </div>
+          <p class="st-status" id="stDataStatus" hidden></p>
+        </section>
+
+        <!-- DELETE (destructive zone, last) -->
+        <section class="st-card st-danger" id="stDelete">
+          <h2>Delete your account</h2>
+          <p>This removes your dogs, saved trails and walk journal for good. Hazard reports you have filed stay up, without your name, because other owners rely on them.</p>
+          <a class="st-danger-btn" style="display:inline-block;text-decoration:none;" href="account.html?next=settings.html#cancel">Delete account</a>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" data-i18n="footer.line">DoloPaws &#124; A personalised trail guide for dogs and their humans.</footer>
+
+<script src="mobile-nav.js"></script>
+<script src="i18n.js?v=20260729-1"></script>
+<script type="module" src="firebase-init.js"></script>
+<script src="auth-ui.js?v=20260729-1" defer></script>
+<script>
+// Account settings — standalone page (AccountSettings.dc.html template).
+// Notification + privacy switches share account.js's device-level storage
+// keys, so flipping them here or on the profile page stays in sync.
+document.addEventListener('DOMContentLoaded', function(){
+  var $ = function(id){ return document.getElementById(id); };
+
+  // ---------- Section sidebar: scroll-jump + active highlight ----------
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll('#stToc a[data-sec]'));
+  function setActiveSec(id){
+    tocLinks.forEach(function(a){ a.classList.toggle('on', a.dataset.sec === id); });
+  }
+  tocLinks.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var el = $(a.dataset.sec);
+      if(el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+      setActiveSec(a.dataset.sec);
+    });
+  });
+  window.addEventListener('scroll', function(){
+    if($('stLoggedIn').hidden) return;
+    var current = tocLinks[0] && tocLinks[0].dataset.sec;
+    tocLinks.forEach(function(a){
+      var el = $(a.dataset.sec);
+      if(el && el.getBoundingClientRect().top <= 120) current = a.dataset.sec;
+    });
+    setActiveSec(current);
+  }, { passive:true });
+
+  // ---------- Switch rows (shared renderer) ----------
+  function switchRow(list, opts){
+    var row = document.createElement('div');
+    row.className = 'st-switchrow';
+    if(opts.disabled) row.setAttribute('aria-disabled', 'true');
+    row.innerHTML = '<div class="txt"><b></b>' + (opts.sub ? '<small></small>' : '') + '</div>' +
+      '<button type="button" class="li-switch' + (opts.on ? ' on' : '') + '" role="switch" aria-checked="' + !!opts.on + '"' + (opts.disabled ? ' disabled' : '') + '></button>';
+    row.querySelector('b').textContent = opts.label;
+    if(opts.sub) row.querySelector('small').textContent = opts.sub;
+    var sw = row.querySelector('.li-switch');
+    sw.innerHTML = '<span class="knob"></span>';
+    sw.setAttribute('aria-label', opts.label);
+    if(!opts.disabled) sw.addEventListener('click', function(){
+      var on = sw.classList.toggle('on');
+      sw.setAttribute('aria-checked', String(on));
+      opts.onChange(on);
+    });
+    list.appendChild(row);
+  }
+
+  // ---------- Notifications (same store as account.js) ----------
+  var NOTIF_KEY = 'dolopaws-notif-prefs';
+  function loadPrefs(key, defaults){
+    try { return Object.assign(defaults, JSON.parse(localStorage.getItem(key) || '{}')); }
+    catch(e){ return defaults; }
+  }
+  function savePrefs(key, prefs){
+    try { localStorage.setItem(key, JSON.stringify(prefs)); } catch(e){}
+  }
+  var notifPrefs = loadPrefs(NOTIF_KEY, { hazards:true, weather:true, recs:true, community:false, news:false });
+  var notifList = $('stNotifList');
+  switchRow(notifList, { label:'Hazard reports on saved trails', sub:'Always on. This is a safety message.', on:true, disabled:true });
+  switchRow(notifList, { label:'Heat warnings', sub:'When paw comfort drops into caution for a saved trail.', on:notifPrefs.weather,
+    onChange:function(on){ notifPrefs.weather = on; savePrefs(NOTIF_KEY, notifPrefs); } });
+  switchRow(notifList, { label:'New trails in your valleys', sub:'At most one message a week.', on:notifPrefs.recs,
+    onChange:function(on){ notifPrefs.recs = on; savePrefs(NOTIF_KEY, notifPrefs); } });
+  switchRow(notifList, { label:'Replies to your hazard reports', on:notifPrefs.community,
+    onChange:function(on){ notifPrefs.community = on; savePrefs(NOTIF_KEY, notifPrefs); } });
+
+  // ---------- Privacy ----------
+  var PRIVACY_KEY = 'dolopaws-privacy-prefs';
+  var privacyPrefs = loadPrefs(PRIVACY_KEY, { showName:false, shareConditions:true });
+  var privacyList = $('stPrivacyList');
+  switchRow(privacyList, { label:'Show my name on hazard reports', sub:'Off means reports appear as “an owner”.', on:privacyPrefs.showName,
+    onChange:function(on){ privacyPrefs.showName = on; savePrefs(PRIVACY_KEY, privacyPrefs); } });
+  switchRow(privacyList, { label:'Contribute anonymised trail conditions', sub:'Helps other owners see what a route is really like.', on:privacyPrefs.shareConditions,
+    onChange:function(on){ privacyPrefs.shareConditions = on; savePrefs(PRIVACY_KEY, privacyPrefs); } });
+
+  // ---------- Units & language ----------
+  var UNITS_KEY = 'dolopaws-units-prefs';
+  var unitPrefs = loadPrefs(UNITS_KEY, { distance:'km', temp:'c', region:'dolomites' });
+  $('stDistance').value = unitPrefs.distance;
+  $('stTemp').value = unitPrefs.temp;
+  $('stRegion').value = unitPrefs.region;
+  ['stDistance','stTemp','stRegion'].forEach(function(id){
+    $(id).addEventListener('change', function(){
+      unitPrefs = { distance: $('stDistance').value, temp: $('stTemp').value, region: $('stRegion').value };
+      savePrefs(UNITS_KEY, unitPrefs);
+    });
+  });
+  if(window.DoloPawsI18n) $('stLang').value = window.DoloPawsI18n.lang === 'it' ? 'it' : 'en';
+  $('stLang').addEventListener('change', function(){
+    if(window.DoloPawsI18n && $('stLang').value !== window.DoloPawsI18n.lang){
+      window.DoloPawsI18n.setLang($('stLang').value); // saves + reloads
+    }
+  });
+
+  // ---------- Account details / dogs / auth-backed bits ----------
+  var savedEmail = '';
+  function refreshEmailBtn(){
+    var changed = $('stEmail').value.trim() && $('stEmail').value.trim() !== savedEmail;
+    $('stEmailBtn').disabled = !changed;
+  }
+  $('stEmail').addEventListener('input', refreshEmailBtn);
+  $('stEmailBtn').addEventListener('click', function(){
+    if(!window.DoloPawsAuth) return;
+    $('stEmailBtn').textContent = 'Sending…';
+    window.DoloPawsAuth.updateEmail($('stEmail').value.trim()).then(function(result){
+      $('stEmailBtn').textContent = 'Update';
+      $('stEmailHint').style.color = result.ok ? '#2C5C34' : '#9C3A25';
+      $('stEmailHint').textContent = result.ok
+        ? 'Confirmation link sent to the new address — click it to finish the change.'
+        : result.message;
+    });
+  });
+  $('stPasswordBtn').addEventListener('click', function(){
+    var user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+    if(!user || !user.email) return;
+    window.DoloPawsAuth.resetPassword(user.email).then(function(result){
+      var status = $('stPasswordStatus');
+      status.hidden = false;
+      status.style.color = result.ok ? '#2C5C34' : '#9C3A25';
+      status.textContent = result.ok
+        ? 'Link sent to ' + user.email + ' — open it to set your password.'
+        : result.message;
+    });
+  });
+  $('stLogoutBtn').addEventListener('click', function(){
+    if(!window.DoloPawsAuth) return;
+    window.DoloPawsAuth.logOut().then(function(){ window.location.href = 'index.html'; });
+  });
+
+  // "Download my data" — everything this device holds for the account.
+  $('stDownloadBtn').addEventListener('click', function(){
+    var user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+    var bundle = { exportedAt: new Date().toISOString(), email: user ? user.email : null };
+    ['dolopaws-profile-summary', NOTIF_KEY, PRIVACY_KEY, UNITS_KEY].forEach(function(key){
+      try { bundle[key] = JSON.parse(localStorage.getItem(key)); } catch(e){}
+    });
+    if(user){
+      try { bundle['dolopaws-journal'] = JSON.parse(localStorage.getItem('dolopaws-journal-' + user.uid)); } catch(e){}
+    }
+    var finish = function(){
+      var blob = new Blob([JSON.stringify(bundle, null, 2)], { type:'application/json' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'dolopaws-data.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      var status = $('stDataStatus');
+      status.hidden = false;
+      status.style.color = '#2C5C34';
+      status.textContent = 'Saved as dolopaws-data.json.';
+    };
+    if(user && window.DoloPawsAuth.getDogProfile){
+      window.DoloPawsAuth.getDogProfile().then(function(p){ bundle.dogProfile = p || null; finish(); }).catch(finish);
+    } else finish();
+  });
+
+  function dogMeta(p){
+    var parts = [];
+    if(p.breed) parts.push(p.breed);
+    if(p.dob){
+      var years = Math.floor((Date.now() - new Date(p.dob).getTime()) / 31557600000);
+      if(years >= 0) parts.push(years + (years === 1 ? ' year' : ' years'));
+    }
+    if(p.weight) parts.push(p.weight + ' kg');
+    return parts.join(' · ');
+  }
+  function renderDog(p){
+    var list = $('stDogList');
+    list.innerHTML = '';
+    var row = document.createElement('div');
+    row.className = 'st-dog-row';
+    var photo = null;
+    try {
+      var v = localStorage.getItem('dolopaws-dog-photo');
+      if(typeof v === 'string' && v.indexOf('data:image/') === 0) photo = v;
+    } catch(e){}
+    row.innerHTML =
+      '<span class="st-dog-avatar"' + (photo ? ' style="background-image:url(' + photo + ')"' : '') + '>' + (photo ? '' : '<i style="font-style:normal;"></i>') + '</span>' +
+      '<div class="st-dog-copy"><div class="st-dog-name"></div><div class="st-dog-meta"></div></div>' +
+      '<span class="st-selected">Selected</span>' +
+      '<a href="account.html?next=settings.html" style="font:700 12.5px Inter,sans-serif;">Edit profile &rarr;</a>';
+    var name = (p && p.name) ? p.name : 'Your dog';
+    row.querySelector('.st-dog-name').textContent = name;
+    row.querySelector('.st-dog-meta').textContent = p ? (dogMeta(p) || 'Profile details on the dog page') : 'No profile yet — add your dog to start scoring trails.';
+    if(!photo) row.querySelector('.st-dog-avatar i').textContent = name.charAt(0).toUpperCase();
+    list.appendChild(row);
+  }
+
+  function providerLine(user){
+    var pid = user.providerData && user.providerData[0] && user.providerData[0].providerId;
+    var isGoogle = pid === 'google.com';
+    if(isGoogle){
+      // Same policy as the profile page: Google manages the login email,
+      // and there is no password to reset.
+      $('stProviderLine').textContent = 'Signed in with Google · password not set';
+      $('stPasswordBtn').hidden = true;
+      $('stEmail').readOnly = true;
+      $('stEmailBtn').hidden = true;
+      $('stEmailHint').textContent = 'You sign in with Google, so your login email is managed by your Google account.';
+    } else {
+      $('stProviderLine').textContent = 'Signed in with email and password';
+      $('stPasswordBtn').hidden = false;
+      $('stPasswordBtn').textContent = 'Send password reset link';
+      $('stEmail').readOnly = false;
+      $('stEmailBtn').hidden = false;
+    }
+  }
+
+  function init(){
+    var user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+    $('stLoggedOut').hidden = !!user;
+    $('stLoggedIn').hidden = !user;
+    if(!user) return;
+    savedEmail = user.email || '';
+    $('stEmail').value = savedEmail;
+    refreshEmailBtn();
+    providerLine(user);
+    renderDog(null);
+    if(window.DoloPawsAuth.getDogProfile){
+      window.DoloPawsAuth.getDogProfile().then(function(p){ renderDog(p); }).catch(function(){});
+    }
+  }
+  if(window.DoloPawsAuth) init();
+  else window.addEventListener('dolopaws-auth-ready', init, { once:true });
+  window.addEventListener('dolopaws-auth-changed', init);
+});
+</script>
+</body>
+</html>

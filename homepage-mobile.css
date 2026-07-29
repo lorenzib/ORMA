@@ -21,19 +21,17 @@
   body.mhome-active .site-footer,
   body.mhome-active .hp-quote{display:none;}
 
-  /* ---- TOP BAR: search pill + filters + avatar ---- */
-  body.mhome-active .li-top{position:fixed;top:0;left:0;right:0;z-index:70;display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:rgba(247,244,235,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(27,31,25,.08);box-sizing:border-box;}
-  body.mhome-active .li-brand,
-  body.mhome-active .li-top-spacer{display:none;}
-  /* Design order regardless of desktop flex direction: search left, avatar right */
-  body.mhome-active .li-top{flex-direction:row;}
-  body.mhome-active .li-search{order:1;}
-  body.mhome-active .li-top-actions{order:2;}
+  /* ---- TOP BAR: the toolbar (search pill + filters + avatar) ----
+     The dark app header and greeting bar stay desktop-only; on phones the
+     dog identity lives in the map's conditions pill and the account pill is
+     moved into the toolbar by homepage-mobile.js. */
+  body.mhome-active .li-top,
+  body.mhome-active .li-greetbar{display:none;}
+  body.mhome-active .li-toolbar{position:fixed;top:0;left:0;right:0;z-index:70;display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:rgba(247,244,235,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(27,31,25,.08);box-sizing:border-box;}
   body.mhome-active .li-search{flex:1;display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--paper-line);border-radius:999px;padding:9px 14px;min-width:0;color:var(--ink-soft);}
   body.mhome-active .li-search svg{flex:none;}
   body.mhome-active .li-search input{flex:1;min-width:0;border:none;outline:none;background:none;font-family:'Inter',sans-serif;font-size:14px;color:var(--ink);}
   body.mhome-active .li-search input::placeholder{color:#9AA69B;}
-  body.mhome-active .li-top-actions{display:flex;align-items:center;gap:8px;flex:none;}
   body.mhome-active .li-menuwrap{position:static;}
   body.mhome-active .li-filt{display:grid;place-items:center;width:38px;height:38px;padding:0;border-radius:50%;border:1.5px solid var(--paper-line);background:#fff;color:var(--ink);font-size:0;line-height:0;cursor:pointer;}
   body.mhome-active .li-filt svg{width:16px;height:16px;}

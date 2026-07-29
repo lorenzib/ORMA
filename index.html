@@ -13,8 +13,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260729-1">
-<link rel="stylesheet" href="homepage-mobile.css?v=20260729-1">
+<link rel="stylesheet" href="styles.css?v=20260729-2">
+<link rel="stylesheet" href="homepage-mobile.css?v=20260729-2">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css"/>
 </head>
 <body>
@@ -25,7 +25,7 @@
     <a href="browse-trails.html">Browse all Trails</a>
     <a href="browse-trails.html#collections">Collections</a>
     <a href="safety-guide.html">Safety guide</a>
-    <a href="account.html" data-i18n="nav.settings">Settings</a>
+    <a href="settings.html" data-i18n="nav.settings">Settings</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
   </div>
 </div>
@@ -149,55 +149,32 @@
   <div class="hp-content" id="hpContent"></div>
 </div>
 
-<!-- RETURNING-VISITOR HOMEPAGE (shown once logged in) — map-first app shell:
-     header (search · filters · account), full-height MapLibre map on the
-     left, ranked trail list on the right. Ported from the Claude Design
-     prototype "DoloPaws Homepage (Logged in).dc.html"; same fonts/colours
-     as the rest of the site. -->
+<!-- RETURNING-VISITOR HOMEPAGE (shown once logged in) — map-first app shell
+     per the 2026-07 design pass (AppShell.jsx): dark app header (brand ·
+     site links · account pill), white greeting bar (avatar · "Where are we
+     heading today?" · chips), white toolbar (search · filters), then the
+     full-height MapLibre map beside the ranked list. -->
 <div id="returningCustomerHomepage" hidden>
 
-  <!-- ================= HEADER ================= -->
+  <!-- ================= DARK APP HEADER ================= -->
   <header class="li-top">
     <a class="li-brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
-    <div class="li-search">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input id="liSearch" type="search" placeholder="Search a valley, lake or trail…" aria-label="Search trails" autocomplete="off">
-    </div>
+    <nav class="li-nav" aria-label="Site">
+      <a href="browse-trails.html">Browse all Trails</a>
+      <a href="browse-trails.html#collections">Collections</a>
+      <a href="safety-guide.html">Safety guide</a>
+      <a href="settings.html">Settings</a>
+    </nav>
     <div class="li-top-spacer"></div>
     <div class="li-top-actions">
-
-      <div class="li-menuwrap">
-        <button type="button" id="liFiltersBtn" class="li-filt" aria-haspopup="true" aria-expanded="false">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
-          Filters<span id="liFiltersBadge"></span> <span class="li-caret">▾</span>
-        </button>
-        <div class="li-menu li-filters-menu" id="liFiltersMenu" hidden>
-          <div class="li-fhead">
-            <span>Filter trails</span>
-            <button type="button" id="liFiltersReset">Reset all</button>
-          </div>
-          <!-- Region / source / valley — populated by renderAreaFilters() -->
-          <div id="areaFilterRow" class="li-fareas"></div>
-          <div class="li-fsec">Distance</div>
-          <div class="li-seg" id="liDistSeg"></div>
-          <div class="li-fsec">Terrain underfoot</div>
-          <div class="li-seg" id="liTerrainSeg"></div>
-          <div class="li-fsec">Shade</div>
-          <div class="li-seg" id="liShadeSeg"></div>
-          <div class="li-fsec" id="liMatchSecLabel">Minimum match</div>
-          <div class="li-seg" id="liMatchSeg"></div>
-          <div class="li-frows" id="liToggleRows"></div>
-          <button type="button" class="li-apply" id="liFiltersApply">Show trails</button>
-        </div>
-      </div>
-
-      <div class="li-menuwrap">
+      <div class="li-menuwrap" id="liAccountWrap">
         <button type="button" id="liAccountBtn" class="li-account" aria-haspopup="true" aria-expanded="false">
           <span class="li-avatar" id="liAccountAvatar" aria-hidden="true"></span>
           <span class="li-account-name" id="liAccountName">My account</span>
         </button>
         <div class="li-menu li-account-menu" id="liAccountMenu" hidden>
           <a class="li-menu-item" id="liManageLink" href="account.html?next=index.html">Manage profile</a>
+          <a class="li-menu-item" href="settings.html">Account settings</a>
           <button type="button" class="li-menu-item" id="liAddDogBtn">＋ Add another dog</button>
           <button type="button" class="li-menu-item" id="savedTrailsBtn">♥ <span class="txt-label">My saved trails</span> <span class="li-menu-count" id="companionSavedCount">0</span></button>
           <a class="li-menu-item" href="downloads.html">Downloaded trails</a>
@@ -210,9 +187,56 @@
           <button type="button" class="li-menu-item li-logout" id="liLogoutBtn">Log out</button>
         </div>
       </div>
-
     </div>
   </header>
+
+  <!-- ================= GREETING BAR ================= -->
+  <div class="li-greetbar">
+    <div class="li-dog-row">
+      <span class="li-dogavatar" id="companionDogAvatar"><span data-dp-icon="dog" data-dp-icon-size="24" aria-hidden="true"></span></span>
+      <div class="li-dog-copy">
+        <h1 class="li-greet" id="returningHeading">Where are we heading today?</h1>
+        <div class="li-chips-row">
+          <span class="li-dogname" id="companionDogName">Your dog</span>
+          <span class="li-pchip" id="companionDogMeta"></span>
+          <span class="li-chips" id="companionDogChips"></span>
+        </div>
+      </div>
+      <a class="li-edit" href="account.html?next=index.html" data-i18n="home.editProfile">Edit</a>
+    </div>
+  </div>
+
+  <!-- ================= TOOLBAR: SEARCH + FILTERS ================= -->
+  <div class="li-toolbar" id="liToolbar">
+    <div class="li-search">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="liSearch" type="search" placeholder="Search a valley, lake or trail…" aria-label="Search trails" autocomplete="off">
+    </div>
+    <div class="li-menuwrap" id="liFiltersWrap">
+      <button type="button" id="liFiltersBtn" class="li-filt" aria-haspopup="true" aria-expanded="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
+        Filters<span id="liFiltersBadge"></span> <span class="li-caret">▾</span>
+      </button>
+      <div class="li-menu li-filters-menu" id="liFiltersMenu" hidden>
+        <div class="li-fhead">
+          <span>Filter trails</span>
+          <button type="button" id="liFiltersReset">Reset all</button>
+        </div>
+        <!-- Region / source / valley — populated by renderAreaFilters() -->
+        <div id="areaFilterRow" class="li-fareas"></div>
+        <div class="li-fsec">Distance</div>
+        <div class="li-seg" id="liDistSeg"></div>
+        <div class="li-fsec">Terrain underfoot</div>
+        <div class="li-seg" id="liTerrainSeg"></div>
+        <div class="li-fsec">Shade</div>
+        <div class="li-seg" id="liShadeSeg"></div>
+        <div class="li-fsec" id="liMatchSecLabel">Minimum match</div>
+        <div class="li-seg" id="liMatchSeg"></div>
+        <div class="li-frows" id="liToggleRows"></div>
+        <button type="button" class="li-apply" id="liFiltersApply">Show trails</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ================= BODY: MAP + LIST ================= -->
   <div class="li-body">
@@ -257,18 +281,6 @@
     <!-- ================= LIST ================= -->
     <aside class="li-list" aria-label="Ranked trail list">
       <div class="li-list-head">
-        <div class="li-dog-row">
-          <span class="li-dogavatar" id="companionDogAvatar"><span data-dp-icon="dog" data-dp-icon-size="24" aria-hidden="true"></span></span>
-          <div class="li-dog-copy">
-            <h1 class="li-greet" id="returningHeading">Where are we heading today?</h1>
-            <div class="li-chips-row">
-              <span class="li-dogname" id="companionDogName">Your dog</span>
-              <span class="li-pchip" id="companionDogMeta"></span>
-              <span class="li-chips" id="companionDogChips"></span>
-            </div>
-          </div>
-          <a class="li-edit" href="account.html?next=index.html" data-i18n="home.editProfile">Edit</a>
-        </div>
         <p class="li-newsline" id="returningSubline" hidden></p>
         <div class="li-list-title-row">
           <div>
@@ -401,6 +413,6 @@
 <script src="script.js?v=20260729-1" defer></script>
 <script src="dog-wizard.js" defer></script>
 <script src="homepage-search.js?v=20260717" defer></script>
-<script src="homepage-mobile.js?v=20260729-1" defer></script>
+<script src="homepage-mobile.js?v=20260729-2" defer></script>
 </body>
 </html>

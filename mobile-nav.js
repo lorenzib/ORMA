@@ -98,7 +98,7 @@
       ) return 'trails';
       if(f === 'journal.html') return 'journal';
       if(f === 'safety-guide.html') return 'safety';
-      if(f === 'account.html') return 'settings';
+      if(f === 'settings.html') return 'settings';
       if(f === 'about.html') return 'about';
       return '';
     }
@@ -183,7 +183,7 @@
       linksEl.appendChild(navItem('Browse all Trails', 'browse-trails.html', key === 'trails'));
       linksEl.appendChild(navItem('Collections', 'browse-trails.html#collections', false));
       linksEl.appendChild(navItem('Safety guide', 'safety-guide.html', key === 'safety'));
-      linksEl.appendChild(navItem('Settings', 'account.html', key === 'settings', 'nav.settings'));
+      linksEl.appendChild(navItem('Settings', 'settings.html', key === 'settings', 'nav.settings'));
       if(loggedIn){
         linksEl.appendChild(buildBell());
         linksEl.appendChild(buildAccountPill(dogName));

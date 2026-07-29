@@ -22,10 +22,12 @@
   .jn-tabs{display:inline-flex;background:var(--card);border:1px solid var(--paper-line);border-radius:999px;padding:3px;}
   .jn-tabs button{border:none;background:none;padding:7px 16px;border-radius:999px;font:600 12.5px 'Inter',sans-serif;color:var(--ink-soft);cursor:pointer;}
   .jn-tabs button.active{background:var(--ink);color:#fff;}
-  .jn-entry{display:flex;gap:16px;background:var(--card);border:1px solid var(--paper-line);border-radius:16px;padding:16px 18px;}
-  .jn-date{flex:none;width:52px;text-align:center;}
-  .jn-date b{display:block;font:700 22px/1 'Source Serif 4',serif;color:var(--ink);}
-  .jn-date span{font-size:11px;color:var(--ink-soft);font-weight:600;}
+  /* Timeline rows: date gutter outside the card (design WalkJournalScreen) */
+  .jn-entry{display:flex;gap:16px;background:none;border:none;padding:0;}
+  .jn-date{flex:none;width:56px;text-align:right;padding-top:4px;}
+  .jn-date b{display:block;font:700 13px/1.2 'Inter',sans-serif;color:var(--ink);}
+  .jn-date span{display:block;font-size:10.5px;color:var(--ink-soft);font-weight:600;text-transform:uppercase;letter-spacing:.04em;margin-top:2px;}
+  .jn-card{flex:1;min-width:0;background:var(--card);border:1px solid var(--paper-line);border-radius:16px;padding:15px 18px;}
   .jn-entry h3{margin:0;font-size:16px;}
   .jn-entry .meta{font-size:12px;color:var(--ink-soft);margin-top:3px;}
   .jn-entry .note{font-size:13px;color:var(--ink);line-height:1.55;margin:8px 0 0;font-style:italic;}
@@ -81,16 +83,17 @@
     <a href="browse-trails.html">Browse all Trails</a>
     <a href="browse-trails.html#collections">Collections</a>
     <a href="safety-guide.html">Safety guide</a>
-    <a href="account.html" data-i18n="nav.settings">Settings</a>
+    <a href="settings.html" data-i18n="nav.settings">Settings</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
   </div>
 </div>
 
 <div class="wrap" style="max-width:1000px;padding-top:28px;padding-bottom:60px;">
+  <a href="index.html" class="guide-context-return">&larr; Back to Homepage</a>
   <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;">
     <div>
-      <h1 id="jnTitle" style="font-size:clamp(26px,4vw,34px);margin:0;">My Journal</h1>
-      <p id="jnSub" style="margin:6px 0 0;color:var(--ink-soft);font-size:14px;">Every walk you log builds the story of where you and your dog have been.</p>
+      <h1 id="jnTitle" style="font-size:clamp(24px,4vw,27px);margin:0;">My walk journal</h1>
+      <p id="jnSub" style="margin:6px 0 0;color:var(--ink-soft);font-size:13px;">Every walk you've logged, in one place.</p>
     </div>
     <button type="button" id="jnLogBtn" class="auth-submit" style="width:auto;padding:11px 20px;">+ Log a walk</button>
   </div>
@@ -265,8 +268,8 @@ document.addEventListener('DOMContentLoaded', function(){
         ? '<span class="jn-stars" aria-label="' + e.rating + ' out of 5">' + stars(e.rating) + '</span>'
         : '';
       return '<div class="jn-entry">' +
-        '<div class="jn-date"><b>' + d.getDate() + '</b><span>' + d.toLocaleDateString(undefined, { month: 'short' }) + '<br>' + d.toLocaleDateString(undefined, { weekday: 'short' }) + '</span></div>' +
-        '<div style="flex:1;min-width:0;">' +
+        '<div class="jn-date"><b>' + d.getDate() + '</b><span>' + d.toLocaleDateString(undefined, { month: 'short' }) + '</span></div>' +
+        '<div class="jn-card">' +
           '<h3>' + esc(e.trail) + '</h3>' +
           '<div class="meta">' + esc(e.region || '') + (e.region ? ' · ' : '') + esc(fmtStats(e)) + '</div>' +
           (e.note ? '<p class="note">&ldquo;' + esc(e.note) + '&rdquo;</p>' : '') +
@@ -615,8 +618,8 @@ document.addEventListener('DOMContentLoaded', function(){
       uid = null;
       state.entries = [];
       outEl.hidden = false;
-      document.getElementById('jnTitle').textContent = 'My Journal';
-      document.getElementById('jnSub').textContent = 'Every walk you log builds the story of where you and your dog have been.';
+      document.getElementById('jnTitle').textContent = 'My walk journal';
+      document.getElementById('jnSub').textContent = "Every walk you've logged, in one place.";
       document.getElementById('jnLogBtn').style.display = 'none';
       document.getElementById('jnStats').innerHTML = '';
       document.getElementById('jnTimeline').innerHTML = '';
@@ -647,8 +650,7 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('jnStorageNote').hidden = false;
     window.DoloPawsAuth.getDogProfile().then(function(p){
       if(p && p.name){
-        document.getElementById('jnTitle').textContent = p.name + "'s journal";
-        document.getElementById('jnSub').textContent = 'Every walk you log builds the story of where you and ' + p.name + ' have been.';
+        document.getElementById('jnTitle').textContent = p.name + "'s walk journal";
       }
     }).catch(function(){});
   }
