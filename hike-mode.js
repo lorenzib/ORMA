@@ -83,6 +83,7 @@ function initHikeMode(map, trail){
   let hikeStartRecorded = false;
   let hikeStartedAt = null;
   let lastKnownKm = 0;      // furthest progress readout, for the completion stats
+  let lastValidFixAt = null;
   let durableSession = null;
 
   function keepSessionResult(result){
@@ -103,7 +104,7 @@ function initHikeMode(map, trail){
 
   function persistProgress(km, pathIndex, accuracyM, recordedAt){
     if(!durableSession || !window.DoloPawsHikeSession) return;
-    if(!Number.isFinite(accuracyM) || accuracyM < 0 || accuracyM > 200) return;
+    if(!Number.isFinite(accuracyM) || accuracyM < 0 || accuracyM > 100) return;
     keepSessionResult(window.DoloPawsHikeSession.updateProgress(durableSession, {
       km,
       pathIndex,
@@ -215,68 +216,109 @@ function initHikeMode(map, trail){
   // ---- Per-fix update -------------------------------------------------------
   function onFix(pos){
     const { latitude: lat, longitude: lng, accuracy } = pos.coords;
+    const snap = snapToPath(lat, lng);
+    const fixTimestamp = Number.isFinite(pos.timestamp) ? pos.timestamp : Date.now();
+    const assessment = window.DoloPawsGpsPolicy
+      ? window.DoloPawsGpsPolicy.assessFix({
+        timestamp: fixTimestamp,
+        now: Date.now(),
+        accuracyM: accuracy,
+        routeDistanceM: snap.minDist,
+        previousOffRouteStreak: offRouteStreak,
+      })
+      : {
+        usableForProgress: false,
+        reliableForWarning: false,
+        offRouteState: 'none',
+        nextOffRouteStreak: 0,
+        farFromRoute: false,
+        freshness: 'unavailable',
+      };
 
-    if (firstFix){
+    if(firstFix && assessment.usableForProgress){
       firstFix = false;
       recordConfirmedHikeStart();
       map.easeTo({ center: [lng, lat], zoom: Math.max(map.getZoom(), 15), duration: 800 });
     }
 
-    const snap = snapToPath(lat, lng);
-    lastIdx = snap.idx;
+    if(assessment.usableForProgress) lastIdx = snap.idx;
     // Ride the snapped on-path point when near the route; otherwise show the
     // real fix so a lost hiker still sees where they actually are.
-    if (snap.minDist <= 60) moveLiveDot(trail.path[snap.idx][0], trail.path[snap.idx][1]);
+    if(assessment.reliableForWarning && snap.minDist <= 60){
+      moveLiveDot(trail.path[snap.idx][0], trail.path[snap.idx][1]);
+    }
     else moveLiveDot(lat, lng);
     const currentKm = (cum[snap.idx] / totalMeters) * statedKm;
-    lastKnownKm = Math.max(lastKnownKm, Math.min(currentKm, statedKm));
-    if(snap.minDist <= 2000){
+    if(assessment.usableForProgress){
+      lastKnownKm = Math.max(lastKnownKm, Math.min(currentKm, statedKm));
+      lastValidFixAt = fixTimestamp;
       persistProgress(
         lastKnownKm,
         snap.idx,
         accuracy,
-        Number.isFinite(pos.timestamp) ? pos.timestamp : Date.now()
+        fixTimestamp
       );
     }
 
     // Far from the trail entirely (driving there, wrong valley…)
-    if (snap.minDist > 2000){
-      panel.innerHTML = window.t('hike.far', {d: (snap.minDist / 1000).toFixed(1)}) + offlineNote();
+    if(assessment.farFromRoute){
+      panel.innerHTML = window.t('hike.far', {
+        d: (snap.minDist / 1000).toFixed(1),
+      }) + `<br><span style="font-weight:400;opacity:.85;">${
+        window.t('hike.gpsLine', {
+          accuracy: Math.round(accuracy),
+          distance: Math.round(snap.minDist),
+          time: new Date(lastValidFixAt || fixTimestamp).toLocaleTimeString(),
+        })
+      }</span>` + offlineNote();
       banner.style.display = 'none';
-      offRouteStreak = 0;
+      offRouteStreak = assessment.nextOffRouteStreak;
       return;
     }
 
-    // Off-route detection, debounced against normal GPS noise (10–30 m is
-    // routine in forests and gorges; require 3 consecutive far fixes).
-    if (snap.minDist > 60){
-      offRouteStreak++;
-      if (offRouteStreak >= 3) banner.style.display = 'block';
-    } else if (snap.minDist < 40){
-      offRouteStreak = 0;
+    offRouteStreak = assessment.nextOffRouteStreak;
+    if(assessment.offRouteState === 'confirmed'){
+      banner.textContent = window.t('hike.offRouteDistance', {
+        distance: Math.round(snap.minDist),
+      });
+      banner.style.display = 'block';
+    }else{
       banner.style.display = 'none';
     }
 
     // Progress readout
-    const parts = [window.t('hike.kmOf', {a: currentKm.toFixed(1), b: statedKm})];
-    const water = nextAhead(trail.waterSources, currentKm, 'label');
+    const displayKm = assessment.usableForProgress ? currentKm : lastKnownKm;
+    const parts = [window.t('hike.kmOf', {a: displayKm.toFixed(1), b: statedKm})];
+    const water = nextAhead(trail.waterSources, displayKm, 'label');
     if (water) parts.push(window.t('hike.waterIn', {d: water.ahead.toFixed(1)}));
-    const hut = nextAhead(trail.rifugi, currentKm, 'name');
+    const hut = nextAhead(trail.rifugi, displayKm, 'name');
     if (hut) parts.push(window.t('hike.hutIn', {name: hut.label, d: hut.ahead.toFixed(1)}));
-    const decision = nextAhead(trail.decisionPoints, currentKm, 'instruction');
+    const decision = nextAhead(trail.decisionPoints, displayKm, 'instruction');
     if (decision && decision.ahead < 0.5) parts.push(window.t('hike.ahead', {what: decision.label}));
+    const validFixLabel = lastValidFixAt
+      ? new Date(lastValidFixAt).toLocaleTimeString()
+      : '—';
+    const reliabilityNote = assessment.freshness === 'stale'
+      ? window.t('hike.gpsStale')
+      : !assessment.reliableForWarning
+        ? window.t('hike.gpsWeak')
+        : '';
     panel.innerHTML = parts.join(' · ')
-      + (accuracy > 40 ? `<br><span style="font-weight:400;opacity:.8;">${window.t('hike.gps', {m: Math.round(accuracy)})}</span>` : '')
+      + `<br><span style="font-weight:400;opacity:.85;">${window.t('hike.gpsLine', {
+        accuracy: Number.isFinite(accuracy) ? Math.round(accuracy) : '—',
+        distance: Math.round(snap.minDist),
+        time: validFixLabel,
+      })}${reliabilityNote ? `<br>${reliabilityNote}` : ''}</span>`
       + offlineNote();
 
     // Drive the elevation-profile cursor from live position, if the page has one.
     if (typeof window._dolopawsElevHighlight === 'function'){
-      try { window._dolopawsElevHighlight(Math.min(currentKm, statedKm)); } catch (e) {}
+      try { window._dolopawsElevHighlight(Math.min(displayKm, statedKm)); } catch (e) {}
     }
 
     // Let page chrome (the live recording banner) mirror our progress.
     window.dispatchEvent(new CustomEvent('dolopaws-hike-progress', {
-      detail: { km: Math.min(currentKm, statedKm), startedAt: hikeStartedAt },
+      detail: { km: Math.min(displayKm, statedKm), startedAt: hikeStartedAt },
     }));
   }
 
@@ -324,6 +366,7 @@ function initHikeMode(map, trail){
     hikeStartRecorded = false;
     hikeStartedAt = Date.now();
     lastKnownKm = 0;
+    lastValidFixAt = null;
     offRouteStreak = 0;
     beginDurableSession();
     // A hiker needs a navigation screen, not an article: go fullscreen.
@@ -373,6 +416,7 @@ function initHikeMode(map, trail){
     hikeStartedAt = durableSession.startedAt;
     lastKnownKm = progress ? progress.km : 0;
     lastIdx = progress ? progress.pathIndex : 0;
+    lastValidFixAt = progress ? progress.recordedAt : null;
     offRouteStreak = 0;
     persistSessionState('active');
     if(window.DoloPawsMapFS) window.DoloPawsMapFS.enter();

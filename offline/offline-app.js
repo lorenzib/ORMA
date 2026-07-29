@@ -6,6 +6,8 @@
   let watchId = null;
   let activeSession = null;
   let routeCoordinates = [];
+  let offRouteStreak = 0;
+  let lastValidFixAt = null;
 
   const elements = {
     trailName: document.getElementById('trailName'),
@@ -20,6 +22,7 @@
     locationButton: document.getElementById('locationButton'),
     locationState: document.getElementById('locationState'),
     positionDot: document.getElementById('positionDot'),
+    routeWarning: document.getElementById('offlineRouteWarning'),
     hikeRecovery: document.getElementById('hikeRecovery'),
     hikeRecoveryTitle: document.getElementById('hikeRecoveryTitle'),
     hikeRecoveryMessage: document.getElementById('hikeRecoveryMessage'),
@@ -147,6 +150,8 @@
     elements.positionDot.hidden = true;
     elements.locationButton.textContent = 'Show my position';
     elements.locationButton.disabled = false;
+    elements.routeWarning.hidden = true;
+    offRouteStreak = 0;
     if(message) elements.locationState.textContent = message;
   }
 
@@ -172,10 +177,23 @@
         elements.positionDot.style.left = `${point.x}%`;
         elements.positionDot.style.top = `${point.y}%`;
       }
+      const progress = routeProgress(position.coords.latitude, position.coords.longitude);
+      const fixTimestamp = Number.isFinite(position.timestamp)
+        ? position.timestamp
+        : Date.now();
+      const assessment = progress && window.DoloPawsGpsPolicy
+        ? window.DoloPawsGpsPolicy.assessFix({
+          timestamp: fixTimestamp,
+          now: Date.now(),
+          accuracyM: position.coords.accuracy,
+          routeDistanceM: progress.nearestM,
+          previousOffRouteStreak: offRouteStreak,
+        })
+        : null;
+      offRouteStreak = assessment ? assessment.nextOffRouteStreak : 0;
+      if(assessment && assessment.usableForProgress) lastValidFixAt = fixTimestamp;
       if(activeSession && activeSession.state === 'active' &&
-         Number.isFinite(position.coords.accuracy) && position.coords.accuracy <= 200){
-        const progress = routeProgress(position.coords.latitude, position.coords.longitude);
-        if(progress && progress.nearestM <= 2000){
+         assessment && assessment.usableForProgress && progress.nearestM <= 2000){
           keepSessionResult(window.DoloPawsHikeSession.updateProgress(activeSession, {
             km: Math.max(
               activeSession.lastProgress && activeSession.lastProgress.km || 0,
@@ -183,15 +201,33 @@
             ),
             pathIndex: progress.pathIndex,
             accuracyM: position.coords.accuracy,
-            recordedAt: Number.isFinite(position.timestamp)
-              ? position.timestamp
-              : Date.now(),
+            recordedAt: fixTimestamp,
           }));
-        }
       }
-      elements.locationState.textContent = onMap
-        ? `GPS accuracy ±${Math.round(position.coords.accuracy)} m · last fix ${new Date(position.timestamp).toLocaleTimeString()}`
-        : `Your GPS position is outside this downloaded map · accuracy ±${Math.round(position.coords.accuracy)} m`;
+      if(assessment && assessment.offRouteState === 'confirmed'){
+        elements.routeWarning.textContent =
+          `You appear to be off route · about ${Math.round(progress.nearestM)} m away. ` +
+          'Check the marked path and your surroundings.';
+        elements.routeWarning.hidden = false;
+      }else{
+        elements.routeWarning.hidden = true;
+      }
+      const reliability = !assessment
+        ? 'Route distance unavailable.'
+        : assessment.freshness === 'stale'
+          ? 'GPS fix is stale; waiting for a newer position.'
+          : !assessment.reliableForWarning
+            ? 'GPS is weak; off-route warnings are paused.'
+            : '';
+      elements.locationState.textContent = assessment
+        ? `GPS ±${Math.round(position.coords.accuracy)} m · ${
+          Math.round(progress.nearestM)
+        } m from route · last valid fix ${
+          lastValidFixAt ? new Date(lastValidFixAt).toLocaleTimeString() : 'none yet'
+        }${reliability ? ` · ${reliability}` : ''}`
+        : onMap
+          ? 'GPS position found; route distance unavailable.'
+          : 'Your GPS position is outside this downloaded map.';
     }, error => {
       elements.locationButton.disabled = false;
       elements.locationButton.textContent = 'Try GPS again';
@@ -306,6 +342,9 @@
       return;
     }
     activeSession = recovery.session;
+    lastValidFixAt = activeSession.lastProgress
+      ? activeSession.lastProgress.recordedAt
+      : null;
     elements.hikeRecovery.hidden = false;
     elements.hikeDiscardButton.hidden = false;
     if(activeSession.state === 'completion-pending'){

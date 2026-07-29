@@ -33,6 +33,7 @@ describe('Lago di Carezza offline package', () => {
       'shell',
       'style',
       'app',
+      'gps-policy',
       'session',
       'map',
       'route',
@@ -78,6 +79,7 @@ describe('Lago di Carezza offline package', () => {
     expect(mapSvg).toMatch(/<g transform="translate\([^"]+\)"><circle r="22"/);
     expect(manifest.resources.find(resource => resource.role === 'route').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'safety').required).toBe(true);
+    expect(manifest.resources.find(resource => resource.role === 'gps-policy').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'session').required).toBe(true);
     expect(app).toContain('if(resource.required !== false) throw error');
   });
@@ -121,6 +123,17 @@ describe('Lago di Carezza offline package', () => {
     expect(app).toContain('DoloPawsHikeSession.recoveryState');
     expect(app).toContain('DoloPawsHikeSession.updateProgress');
     expect(app).toContain('packageAvailable: true');
+  });
+
+  test('keeps offline GPS and off-route messaging accuracy-aware', () => {
+    const shell = fs.readFileSync(path.join(root, 'offline', 'trail.html'), 'utf8');
+    const app = fs.readFileSync(path.join(root, 'offline', 'offline-app.js'), 'utf8');
+    expect(shell).toContain('src="../hike-gps-policy.js"');
+    expect(shell.indexOf('hike-gps-policy.js')).toBeLessThan(shell.indexOf('offline-app.js'));
+    expect(shell).toContain('id="offlineRouteWarning"');
+    expect(app).toContain('DoloPawsGpsPolicy.assessFix');
+    expect(app).toContain("assessment.offRouteState === 'confirmed'");
+    expect(app).toContain('last valid fix');
   });
 
   test('route is a closed LineString inside the package bounds', () => {

@@ -10,7 +10,7 @@ reopen. The interactive trail map offers explicit resume and discard actions.
 While recording, the hiker can pause without finishing the hike and later
 resume with the original start time and last saved progress.
 
-The Lago di Carezza beta.7 package contains the same versioned session reader
+The Lago di Carezza beta.8 package contains the same versioned session reader
 and exposes resume, pause, and discard controls on the downloaded map. These
 controls and GPS progress writes use only package resources and local storage,
 so they remain available in airplane mode.
@@ -68,13 +68,13 @@ It does not collect or persist a GPS breadcrumb history.
 - Static integration tests confirm the online resume/pause lifecycle.
 - Offline package tests require the session reader and recovery controls in the
   verified resource set.
-- Package tests verify every beta.7 byte count and SHA-256 hash.
+- Package tests verify every beta.8 byte count and SHA-256 hash.
 
 ## Physical validation still required
 
 On the iPhone 13 Pro:
 
-1. Update Lago di Carezza to beta.7.
+1. Update Lago di Carezza to beta.8.
 2. Start a hike and wait for a valid GPS fix.
 3. Pause and resume it.
 4. Close Safari, reopen the trail, and resume the saved hike.

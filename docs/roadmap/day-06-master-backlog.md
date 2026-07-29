@@ -452,6 +452,8 @@ All P0 and P1 work
 - **Priority:** P0
 - **Size:** M
 - **Depends on:** OFF-04
+- **Implementation:** complete in code; see
+  `docs/architecture/HIKE-03-gps-and-off-route-policy.md`.
 - **Outcome:** poor GPS does not create false confidence or false alarms.
 - **Acceptance:**
   - Accuracy bands and stale-fix thresholds are documented and tested.

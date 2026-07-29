@@ -24,6 +24,7 @@ button[disabled]{opacity:.55;cursor:wait}
 .map-legend .key-route{border-color:#b84931}.map-legend .key-path{border-color:#8c7458;border-top-style:dashed}.map-legend .key-road{border-color:#d9b982;border-top-width:5px}.map-legend .key-water{height:10px;width:18px;border:2px solid #70a9ba;border-radius:4px;background:#acd4df}
 .location-state,.map-warning{margin:10px 2px 0;font-size:12px;line-height:1.45;color:var(--muted)}
 .map-warning{color:#86513e}
+.offline-route-warning{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:#fff0eb;color:var(--red);font-size:12px;font-weight:800}
 .hike-recovery{margin:12px 0 2px;padding:14px;border-radius:12px;background:#edf3ee;border:1px solid #cfddd2}
 .hike-recovery p{margin:5px 0 10px;color:var(--muted);font-size:12px;line-height:1.45}
 .hike-recovery-actions{display:flex;gap:8px;flex-wrap:wrap}

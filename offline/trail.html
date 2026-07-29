@@ -41,6 +41,7 @@
         <span><i class="key-water"></i>Water</span>
       </div>
       <p id="locationState" class="location-state">GPS is off. The route and safety information remain available.</p>
+      <p id="offlineRouteWarning" class="offline-route-warning" role="alert" hidden></p>
       <div id="hikeRecovery" class="hike-recovery" hidden>
         <strong id="hikeRecoveryTitle">Unfinished hike found</strong>
         <p id="hikeRecoveryMessage"></p>
@@ -79,6 +80,7 @@
     </section>
   </main>
 
+  <script src="../hike-gps-policy.js"></script>
   <script src="../hike-session.js"></script>
   <script src="offline-app.js"></script>
 </body>
