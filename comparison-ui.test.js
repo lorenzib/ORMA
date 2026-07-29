@@ -41,6 +41,7 @@ describe('Trail comparison journey', () => {
     expect(controller).toContain('stateApi.toggle(selectedIds, button.dataset.removeId)');
     expect(controller).toContain('trail.html?id=${encodeURIComponent(entry.id)}&from=${encodeURIComponent(compareReturn)}');
     expect(trail).toMatch(/browse-trails\|compare\|saved\|journal/);
+    expect(trail).toContain("returnTarget.startsWith('compare.html') ? '← Back to comparison'");
     expect(mobileNav).toContain("f === 'compare.html'");
   });
 });

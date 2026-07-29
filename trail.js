@@ -744,6 +744,7 @@ function renderTrail(t){
     breadcrumb.href = returnTarget;
     breadcrumb.textContent = returnTarget.startsWith('saved.html') ? '← Back to saved trails'
       : returnTarget.startsWith('journal.html') ? '← Back to journal'
+      : returnTarget.startsWith('compare.html') ? '← Back to comparison'
       : '← Back to trail results';
   }
   const logWalkBtn = document.getElementById('logWalkBtn');
