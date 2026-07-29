@@ -57,8 +57,70 @@
   function pickTab(id){
     railBtns.forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === id)));
     ['dog','human','health','account'].forEach(t => { $('tab-' + t).hidden = t !== id; });
+    syncSettingsToc(id === 'account');
   }
   railBtns.forEach(b => b.addEventListener('click', () => pickTab(b.dataset.tab)));
+
+  // ---------- Settings table of contents ----------
+  // Desktop: sticky sub-links in the rail that scroll-jump to a subsection
+  // and highlight the one in view. Phones: a "Jump to" dropdown at the top
+  // of the panel instead (the pill row read badly at that width).
+  const settingsToc = document.getElementById('settingsToc');
+  const tocLinks = settingsToc ? Array.from(settingsToc.querySelectorAll('a[data-sec]')) : [];
+  const acctJump = document.getElementById('acctJump');
+  const acctJumpBtn = document.getElementById('acctJumpBtn');
+  const acctJumpMenu = document.getElementById('acctJumpMenu');
+  const acctJumpLabel = document.getElementById('acctJumpLabel');
+
+  function setActiveSec(id){
+    tocLinks.forEach(a => a.classList.toggle('on', a.dataset.sec === id));
+    if(acctJumpMenu){
+      Array.from(acctJumpMenu.children).forEach(b => b.classList.toggle('on', b.dataset.sec === id));
+    }
+    const link = tocLinks.find(a => a.dataset.sec === id);
+    if(acctJumpLabel && link) acctJumpLabel.textContent = link.textContent;
+  }
+  function jumpToSec(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.scrollIntoView({ behavior:'smooth', block:'start' });
+    setActiveSec(id);
+    setJumpOpen(false);
+  }
+  function setJumpOpen(open){
+    if(!acctJumpMenu) return;
+    acctJumpMenu.hidden = !open;
+    if(acctJumpBtn) acctJumpBtn.setAttribute('aria-expanded', String(open));
+  }
+  function syncSettingsToc(on){
+    if(settingsToc) settingsToc.hidden = !on;
+    if(acctJump) acctJump.hidden = !on;
+    if(!on) setJumpOpen(false);
+  }
+  tocLinks.forEach(a => a.addEventListener('click', e => { e.preventDefault(); jumpToSec(a.dataset.sec); }));
+  if(acctJumpMenu){
+    tocLinks.forEach(a => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.dataset.sec = a.dataset.sec;
+      b.textContent = a.textContent;
+      b.addEventListener('click', () => jumpToSec(a.dataset.sec));
+      acctJumpMenu.appendChild(b);
+    });
+  }
+  if(acctJumpBtn) acctJumpBtn.addEventListener('click', e => { e.stopPropagation(); setJumpOpen(acctJumpMenu.hidden); });
+  document.addEventListener('click', e => { if(acctJump && !acctJump.contains(e.target)) setJumpOpen(false); });
+  // Highlight the section currently in view while the Settings tab is open.
+  window.addEventListener('scroll', () => {
+    const tab = document.getElementById('tab-account');
+    if(!tab || tab.hidden || !tocLinks.length) return;
+    let current = tocLinks[0].dataset.sec;
+    tocLinks.forEach(a => {
+      const el = document.getElementById(a.dataset.sec);
+      if(el && el.getBoundingClientRect().top <= 140) current = a.dataset.sec;
+    });
+    setActiveSec(current);
+  }, { passive:true });
 
   // ---------- Simple two-way field bindings ----------
   const FIELD_BINDINGS = [

@@ -62,6 +62,15 @@
   @media(max-width:390px){.jn-metrics{grid-template-columns:1fr !important;gap:0 !important;}}
   .jn-star-row button{background:none;border:none;font-size:24px;cursor:pointer;color:var(--paper-line);padding:2px;}
   .jn-star-row button.on{color:#C99038;}
+  .jn-hint{margin:6px 0 0;font-size:13px;color:var(--ink-soft);line-height:1.5;}
+  .jn-seg{display:flex;gap:6px;}
+  .jn-seg button{flex:1;padding:9px 0;border-radius:999px;border:1.5px solid var(--paper-line);background:#fff;color:var(--ink);font:600 12.5px 'Inter',sans-serif;cursor:pointer;}
+  .jn-seg button.on{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
+  #jnSave:disabled{background:#C6D0CB;cursor:default;}
+  .jn-live-link{display:block;width:100%;border:none;background:none;margin-top:14px;color:var(--ink-soft);font:600 13px 'Inter',sans-serif;cursor:pointer;text-decoration:underline;}
+  .jn-live-link:hover{color:var(--ink);}
+  .jn-photos{display:inline-flex;align-items:center;gap:4px;font:700 11px 'Inter',sans-serif;color:var(--ink-soft);}
+  .jn-photos svg{display:block;}
 </style>
 </head>
 <body>
@@ -119,6 +128,7 @@
       <h2 id="jnModalTitle" style="margin:0;font-size:20px;">Log a walk</h2>
       <button type="button" id="jnClose" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink-soft);" aria-label="Close">&times;</button>
     </div>
+    <p class="jn-hint">Add a walk you've already done. It joins the journal straight away.</p>
     <label for="jnTrailSearch">Trail</label>
     <div class="jn-trail-picker" id="jnTrailPicker">
       <input type="hidden" id="jnTrail">
@@ -129,17 +139,20 @@
       <div id="jnTrailResults" class="jn-trail-results" role="listbox" aria-label="Trail suggestions" hidden></div>
       <p id="jnTrailHelp" class="jn-trail-help">Choose from recent or saved trails, or search all trails.</p>
     </div>
+    <label for="jnDate">Date</label>
+    <input type="date" id="jnDate">
     <div class="jn-metrics" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
       <div><label for="jnDist">Distance (km)</label><input type="number" id="jnDist" min="0" step="0.1" placeholder="4.0"></div>
       <div><label for="jnDur">Duration (min)</label><input type="number" id="jnDur" min="0" step="5" placeholder="60"></div>
     </div>
-    <label for="jnCond">Conditions</label>
-    <input type="text" id="jnCond" placeholder="Cool morning, some cloud">
+    <label id="jnCondLabel">Conditions</label>
+    <div class="jn-seg" id="jnCondSeg" role="radiogroup" aria-labelledby="jnCondLabel"></div>
     <label>Rating</label>
     <div class="jn-star-row" id="jnStars" role="radiogroup" aria-label="Rating out of 5"></div>
-    <label for="jnNote">Notes</label>
-    <textarea id="jnNote" rows="3" placeholder="How did it go for the dog?"></textarea>
-    <button type="button" id="jnSave" class="auth-submit" style="width:100%;margin-top:18px;">Save walk</button>
+    <label for="jnNote">Notes <span style="font-weight:500;color:var(--ink-soft);">· kept for you, never scored</span></label>
+    <textarea id="jnNote" rows="3" placeholder="Anything worth remembering?"></textarea>
+    <button type="button" id="jnSave" class="auth-submit" style="width:100%;margin-top:18px;" disabled>Save to journal</button>
+    <button type="button" id="jnTrackLive" class="jn-live-link">Walking right now? Track it live instead &rarr;</button>
   </div>
 </div>
 
@@ -149,7 +162,7 @@
 <script src="i18n.js"></script>
 <script type="module" src="firebase-init.js"></script>
 <script src="icon-system.js?v=20260717" defer></script>
-<script src="auth-ui.js?v=20260724-3" defer></script>
+<script src="auth-ui.js?v=20260729-1" defer></script>
 <script src="trails-data.js?v=20260717-3" defer></script>
 <script src="osm-trails-data.js" defer></script>
 <script src="osm-trails-savoy-data.js" defer></script>
@@ -161,7 +174,8 @@
 // TODO: move journal entries to a backend API (Firestore) so they sync
 // across devices; the render layer below is storage-agnostic.
 document.addEventListener('DOMContentLoaded', function(){
-  var state = { filter: 'all', rating: 5, entries: [], favorites: {} };
+  var state = { filter: 'all', rating: 5, cond: 'Comfortable', entries: [], favorites: {} };
+  var COND_OPTIONS = ['Comfortable', 'Warm', 'Hot'];
   var uid = null;
   var journalParams = new URLSearchParams(window.location.search);
   var pendingTrailId = journalParams.get('trail');
@@ -229,6 +243,15 @@ document.addEventListener('DOMContentLoaded', function(){
       '<div class="jn-stat"><b style="font-size:16px;line-height:1.3;padding-top:4px;">' + esc(topValley) + '</b><span>Most walked</span></div>';
   }
 
+  function photoIndicator(e){
+    var count = Number(e.photos) || 0;
+    if(count < 1) return '';
+    var icon = window.DoloPawsIcons
+      ? window.DoloPawsIcons.renderIconSvg('camera', { mode:'inline', color:'currentColor', size:13 })
+      : '';
+    return '<span class="jn-photos">' + icon + count + (e.shareToTrail ? ' · on trail page' : '') + '</span>';
+  }
+
   function renderTimeline(){
     var list = state.filter === 'month' ? state.entries.filter(function(e){ return thisMonth(e.date); }) : state.entries;
     var box = document.getElementById('jnTimeline');
@@ -236,6 +259,11 @@ document.addEventListener('DOMContentLoaded', function(){
     box.innerHTML = list.map(function(e){
       var d = new Date(e.date);
       var link = e.trailId ? '<a class="jn-again" href="trail.html?id=' + encodeURIComponent(e.trailId) + '&from=journal.html">Walk it again &rarr;</a>' : '';
+      // Hike-mode saves carry no star rating — skip the row instead of
+      // rendering "undefined out of 5".
+      var ratingHtml = e.rating
+        ? '<span class="jn-stars" aria-label="' + e.rating + ' out of 5">' + stars(e.rating) + '</span>'
+        : '';
       return '<div class="jn-entry">' +
         '<div class="jn-date"><b>' + d.getDate() + '</b><span>' + d.toLocaleDateString(undefined, { month: 'short' }) + '<br>' + d.toLocaleDateString(undefined, { weekday: 'short' }) + '</span></div>' +
         '<div style="flex:1;min-width:0;">' +
@@ -243,8 +271,9 @@ document.addEventListener('DOMContentLoaded', function(){
           '<div class="meta">' + esc(e.region || '') + (e.region ? ' · ' : '') + esc(fmtStats(e)) + '</div>' +
           (e.note ? '<p class="note">&ldquo;' + esc(e.note) + '&rdquo;</p>' : '') +
           '<div class="row2">' +
-            '<span class="jn-stars" aria-label="' + e.rating + ' out of 5">' + stars(e.rating) + '</span>' +
+            ratingHtml +
             (e.cond ? '<span class="jn-cond">' + esc(e.cond) + '</span>' : '') +
+            photoIndicator(e) +
             link +
           '</div>' +
         '</div>' +
@@ -351,6 +380,7 @@ document.addEventListener('DOMContentLoaded', function(){
       autoTrailDist = '';
       autoTrailDur = '';
     }
+    updateSaveState();
   }
   function resetTrailPicker(){
     trailInput.value = '';
@@ -361,6 +391,7 @@ document.addEventListener('DOMContentLoaded', function(){
     trailHelp.textContent = 'Choose from recent or saved trails, or search all trails.';
     trailChange.hidden = true;
     closeTrailResults();
+    updateSaveState();
   }
   function fillTrailPicker(){
     resetTrailPicker();
@@ -385,6 +416,35 @@ document.addEventListener('DOMContentLoaded', function(){
     var option = event.target.closest('[data-trail-id]');
     if(option) selectTrail(option.dataset.trailId, true);
   });
+  function renderCondSeg(){
+    var row = document.getElementById('jnCondSeg');
+    row.innerHTML = '';
+    COND_OPTIONS.forEach(function(c){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = c;
+      b.className = c === state.cond ? 'on' : '';
+      b.setAttribute('role', 'radio');
+      b.setAttribute('aria-checked', c === state.cond ? 'true' : 'false');
+      b.addEventListener('click', function(){ journalDirty = true; state.cond = c; renderCondSeg(); });
+      row.appendChild(b);
+    });
+  }
+
+  // Save needs a trail choice and a duration (design: everything else is
+  // optional).
+  function updateSaveState(){
+    var dur = document.getElementById('jnDur');
+    document.getElementById('jnSave').disabled = !(trailChoiceMade && String(dur.value).trim() !== '');
+  }
+
+  function todayISO(){ return new Date().toISOString().slice(0, 10); }
+  function resetDateField(){
+    var dateEl = document.getElementById('jnDate');
+    dateEl.max = todayISO();
+    dateEl.value = todayISO();
+  }
+
   function renderStarInput(){
     var row = document.getElementById('jnStars');
     row.innerHTML = '';
@@ -412,6 +472,9 @@ document.addEventListener('DOMContentLoaded', function(){
     journalDirty = false;
     overlay.hidden = false;
     renderStarInput();
+    renderCondSeg();
+    resetDateField();
+    updateSaveState();
     setTimeout(function(){ trailSearch.focus(); }, 0);
   });
   document.getElementById('jnEmptyLogBtn').addEventListener('click', function(){
@@ -421,17 +484,35 @@ document.addEventListener('DOMContentLoaded', function(){
     var accountBtn = document.getElementById('accountBtn');
     if(accountBtn) accountBtn.click();
   });
-  overlay.addEventListener('input', function(event){ if(event.target !== trailSearch) journalDirty = true; });
-  overlay.addEventListener('change', function(){ journalDirty = true; });
+  overlay.addEventListener('input', function(event){
+    if(event.target !== trailSearch) journalDirty = true;
+    updateSaveState();
+  });
+  overlay.addEventListener('change', function(){ journalDirty = true; updateSaveState(); });
+
+  // "Walking right now?" — jump into GPS Hike Mode on the chosen trail.
+  document.getElementById('jnTrackLive').addEventListener('click', function(){
+    var id = trailInput.value;
+    if(id && trailById(id)){
+      journalDirty = false;
+      window.location.href = 'trail.html?id=' + encodeURIComponent(id) + '&hike=1';
+      return;
+    }
+    trailHelp.textContent = 'Pick a trail first — live tracking follows its route.';
+    trailSearch.focus();
+    openTrailResults();
+  });
   window.addEventListener('beforeunload', function(event){
     if(!journalDirty) return;
     event.preventDefault();
     event.returnValue = '';
   });
   function discardJournalDraft(){
-    ['jnDist','jnDur','jnCond','jnNote'].forEach(function(id){ document.getElementById(id).value = ''; });
+    ['jnDist','jnDur','jnNote'].forEach(function(id){ document.getElementById(id).value = ''; });
     resetTrailPicker();
+    resetDateField();
     state.rating = 5;
+    state.cond = 'Comfortable';
     journalDirty = false;
   }
   function closeLog(){
@@ -477,26 +558,37 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     var sel = document.getElementById('jnTrail');
     var tr = (typeof trails !== 'undefined') ? trails.find(function(t){ return t.id === sel.value; }) : null;
+    // The chosen date keeps midday local time so timezone maths can't slide
+    // it into a neighbouring day.
+    var pickedDate = document.getElementById('jnDate').value;
+    var when = pickedDate ? new Date(pickedDate + 'T12:00:00') : new Date();
+    if(isNaN(when.getTime()) || when.getTime() > Date.now()) when = new Date();
     var entry = {
       id: 'w' + Date.now(),
-      date: new Date().toISOString(),
+      date: when.toISOString(),
       trailId: tr ? tr.id : null,
       trail: tr ? tr.name : 'A walk',
       region: tr ? (tr.valley || tr.area || '') : '',
       dist: document.getElementById('jnDist').value,
       dur: document.getElementById('jnDur').value,
-      cond: document.getElementById('jnCond').value.trim(),
+      cond: state.cond,
       rating: state.rating,
-      note: document.getElementById('jnNote').value.trim()
+      note: document.getElementById('jnNote').value.trim(),
+      photos: 0,
+      shareToTrail: false
     };
     state.entries.unshift(entry);
+    // Backdated walks belong in their place on the timeline, not on top.
+    state.entries.sort(function(a, b){ return new Date(b.date) - new Date(a.date); });
     persist();
     overlay.hidden = true;
-    ['jnDist','jnDur','jnCond','jnNote'].forEach(function(id){ document.getElementById(id).value = ''; });
+    ['jnDist','jnDur','jnNote'].forEach(function(id){ document.getElementById(id).value = ''; });
     resetTrailPicker();
+    resetDateField();
     autoTrailDist = '';
     autoTrailDur = '';
     state.rating = 5;
+    state.cond = 'Comfortable';
     journalDirty = false;
     pendingTrailId = null;
     pendingDuration = 0;
@@ -539,6 +631,9 @@ document.addEventListener('DOMContentLoaded', function(){
     state.entries = load();
     fillTrailPicker();
     renderStarInput();
+    renderCondSeg();
+    resetDateField();
+    updateSaveState();
     renderAll();
     window.DoloPawsAuth.getFavorites().then(function(favorites){
       state.favorites = favorites || {};

@@ -69,8 +69,13 @@
   body.mhome-active .maplibregl-ctrl-bottom-left,
   body.mhome-active .maplibregl-ctrl-bottom-right{bottom:calc(26dvh + 6px);}
 
+  /* Selected-pin preview card docks above the tab bar (same card as the
+     list rows — no separate condensed header on mobile) */
+  body.mhome-active .map-callout{position:fixed;left:10px;right:10px;top:auto;bottom:calc(var(--mhome-tabs,64px) + 10px);transform:none;width:auto;z-index:46;}
+
   /* ---- BOTTOM SHEET: the ranked list ---- */
-  body.mhome-active .li-list{position:fixed;left:0;right:0;bottom:var(--mhome-tabs,64px);z-index:45;display:flex;flex-direction:column;height:46dvh;max-width:none;width:auto;background:var(--card);border:none;border-radius:22px 22px 0 0;box-shadow:0 -10px 30px -12px rgba(23,42,28,.3);transition:height .28s cubic-bezier(.22,1,.36,1);overflow:hidden;box-sizing:border-box;}
+  /* Beige sheet, white card rows — matches the desktop pane inversion fix */
+  body.mhome-active .li-list{position:fixed;left:0;right:0;bottom:var(--mhome-tabs,64px);z-index:45;display:flex;flex-direction:column;height:46dvh;max-width:none;width:auto;background:#EFECE2;border:none;border-radius:22px 22px 0 0;box-shadow:0 -10px 30px -12px rgba(23,42,28,.3);transition:height .28s cubic-bezier(.22,1,.36,1);overflow:hidden;box-sizing:border-box;}
   body.mhome-active .li-list.mhome-dragging{transition:none;}
   body.mhome-active .mhome-grab{display:block;flex:none;padding:11px 0 8px;cursor:grab;touch-action:none;}
   .mhome-grab span{display:block;width:38px;height:5px;border-radius:3px;background:var(--paper-line,#DEDDD0);margin:0 auto;}

@@ -1415,6 +1415,23 @@ function initLoggedInShell(){
   });
 }
 
+// Match column shared by list rows and the map preview card. Tier steps
+// mirror the map pins (85 great / 65 good) and the map legend's colours.
+function liMatchTier(score){
+  return score >= 85 ? { color: '#4A7856', label: 'Great match' }
+    : score >= 65 ? { color: '#C98A2E', label: 'Good' }
+    : { color: '#9C3A25', label: 'Check first' };
+}
+function liMatchColHtml(t){
+  const tier = liMatchTier(t.score);
+  const isEst = t.curated === false;
+  return `<div class="li-match" aria-label="${t.score}% match${isEst ? ' (estimated)' : ''}">
+      <b style="color:${tier.color};">${isEst ? '≈' : ''}${t.score}<span>%</span></b>
+      <span class="li-match-lbl">Match for your dog</span>
+      <span class="li-match-tier" style="background:${tier.color}1f;color:${tier.color};">${tier.label}</span>
+    </div>`;
+}
+
 async function renderReturningHomepage(profile){
   const heading = document.getElementById('returningHeading');
   const subline = document.getElementById('returningSubline');
@@ -1565,13 +1582,9 @@ async function renderReturningHomepage(profile){
   listEl.innerHTML = summaryBar + pageList.map(t => {
     const isFav = !!currentFavorites[t.id];
     const isNew = newIds.has(t.id);
-    const isEst = t.curated === false;
     const dim = adjustActive && t.score < 60;
     const thumb = trailCardVisual(t, { className:'li-thumb photo', dataTrailId:t.id, clickable:true });
     const selected = t.id === selectedTrailId;
-    const tier = t.score >= 85 ? ['#DCEBDD', '#2C5C34']
-      : t.score >= 65 ? ['#F5E4C6', '#8A5A16']
-      : ['#F3D9D2', '#9C3A25'];
     const dotColor = SAFETY_DOT[t.safetyLevel] || 'var(--ink-soft)';
     const newBadge = isNew ? productBadge('new', window.t('badge.new')) : '';
     return `
@@ -1583,9 +1596,9 @@ async function renderReturningHomepage(profile){
         <div class="li-row-badges">
           ${newBadge}
           <span class="li-badge"><span class="li-dot" style="background:${dotColor};"></span>${trailSafetyLabel(t)}</span>
-          <span class="li-badge" style="background:${tier[0]};color:${tier[1]};">${isEst ? '≈' : ''}${t.score}%</span>
         </div>
       </div>
+      ${liMatchColHtml(t)}
       <button type="button" class="li-heart save-btn" data-id="${t.id}" aria-pressed="${isFav}" aria-label="${isFav ? 'Remove ' + t.name + ' from saved trails' : 'Save ' + t.name}">${isFav ? '♥' : '♡'}</button>
     </div>`;
   }).join('');
@@ -1753,9 +1766,18 @@ function showTrailMapPopup(t, lngLat){
 function showMapCallout(t){
   const callout = document.getElementById('mapCallout');
   if(!callout) return;
+  const thumb = document.getElementById('mapCalloutThumb');
+  if(thumb) thumb.innerHTML = trailCardVisual(t, { className:'li-thumb photo' });
+  const nameEl = document.getElementById('mapCalloutName');
+  nameEl.textContent = t.name;
+  nameEl.href = 'trail.html?id=' + encodeURIComponent(t.id);
+  const metaEl = document.getElementById('mapCalloutMeta');
+  if(metaEl) metaEl.textContent = `${t.distance} km${Number.isFinite(t.elevation) ? ` · +${t.elevation} m` : ''} · ${t.area}`;
   document.getElementById('mapCalloutDot').style.background = SAFETY_DOT[t.safetyLevel] || 'var(--ink-soft)';
-  document.getElementById('mapCalloutName').textContent = t.name;
-  document.getElementById('mapCalloutPct').textContent = (t.curated === false ? '≈' : '') + t.score + '% match';
+  const safetyEl = document.getElementById('mapCalloutSafety');
+  if(safetyEl) safetyEl.textContent = trailSafetyLabel(t);
+  const matchEl = document.getElementById('mapCalloutMatch');
+  if(matchEl) matchEl.innerHTML = liMatchColHtml(t);
   callout.hidden = false;
 }
 function hideMapCallout(){

@@ -75,6 +75,7 @@ function initHikeMode(map, trail){
   let firstFix = true;
   let hikeStartRecorded = false;
   let hikeStartedAt = null;
+  let lastKnownKm = 0;      // furthest progress readout, for the completion stats
 
   // Pulsing "you are here" dot + live pill, shown only while recording. The
   // dot rides the snapped on-path position so it tracks the route like the
@@ -175,6 +176,7 @@ function initHikeMode(map, trail){
     if (snap.minDist <= 60) moveLiveDot(trail.path[snap.idx][0], trail.path[snap.idx][1]);
     else moveLiveDot(lat, lng);
     const currentKm = (cum[snap.idx] / totalMeters) * statedKm;
+    lastKnownKm = Math.max(lastKnownKm, Math.min(currentKm, statedKm));
 
     // Far from the trail entirely (driving there, wrong valley…)
     if (snap.minDist > 2000){
@@ -298,14 +300,229 @@ function initHikeMode(map, trail){
     const elapsedMinutes = hikeStartedAt
       ? Math.max(1, Math.round((Date.now() - hikeStartedAt) / 60000))
       : 1;
-    stopHike(hadGpsFix);
+    const elapsedSeconds = hikeStartedAt
+      ? Math.max(1, Math.round((Date.now() - hikeStartedAt) / 1000))
+      : 60;
+    stopHike(false);
     if (!hadGpsFix) return;
+    showCompletionScreen(elapsedSeconds, elapsedMinutes);
+  }
 
-    const returnToTrail = `trail.html?id=${encodeURIComponent(trail.id)}`;
-    const journalUrl = `journal.html?trail=${encodeURIComponent(trail.id)}&duration=${elapsedMinutes}&from=${encodeURIComponent(returnToTrail)}`;
-    panel.innerHTML = `${window.t('hike.finished')} <a href="${journalUrl}" style="color:#fff;text-decoration:underline;font-weight:700;">${window.t('hike.logWalk')}</a>`;
-    panel.style.display = 'block';
+  // ---- Completion screen: save / discard, photos, share-to-trail flag ------
+  // Replaces the old "Hike ended — log this walk →" link with the design's
+  // full-screen summary. Saving writes straight into the walk journal store
+  // (same schema journal.html reads), carrying { photos, shareToTrail } —
+  // the flag the trail page checks before surfacing a walk's photos.
+  function esc(s){
+    return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  }
+  function fmtClock(sec){
+    const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+    const mm = String(m).padStart(2, '0'), ss = String(s).padStart(2, '0');
+    return h > 0 ? `${h}:${mm}:${ss}` : `${mm}:${ss}`;
+  }
+  function dogSummary(){
+    let name = '';
+    try {
+      const raw = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null');
+      if (raw && raw.name) name = String(raw.name);
+    } catch (e) {}
+    let photo = null;
+    try {
+      const v = localStorage.getItem('dolopaws-dog-photo');
+      if (typeof v === 'string' && v.startsWith('data:image/')) photo = v;
+    } catch (e) {}
+    return { name, photo };
+  }
+
+  function showCompletionScreen(elapsedSeconds, elapsedMinutes){
+    const dog = dogSummary();
+    const dogName = dog.name || 'Your dog';
+    const km = lastKnownKm;
+    const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : '—';
+    const SAFETY_LABEL = { 'low-risk': 'Low-risk', 'moderate': 'Moderate', 'caution': 'Caution' };
+    const safetyClass = trail.safetyLevel === 'low-risk' ? 'safety-low'
+      : trail.safetyLevel === 'caution' ? 'safety-caution' : 'safety-moderate';
+    // The trail page already computed the personal match — reuse its figure.
+    const scoreEl = document.querySelector('.personal-score b');
+    const matchPct = scoreEl ? parseInt(scoreEl.textContent, 10) : NaN;
+
+    const photos = [];       // { file, url }
+    let cond = 'Comfortable';
+    let shareOn = true;
+
+    const overlay = document.createElement('div');
+    overlay.className = 'hk-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-labelledby', 'hkTitle');
+    overlay.innerHTML = `
+      <div class="hk-card">
+        <div class="hk-avatar"${dog.photo ? ` style="background-image:url(${dog.photo});"` : ''}>${dog.photo ? '' : esc(dogName.charAt(0).toUpperCase() || '🐾')}</div>
+        <h1 class="hk-title" id="hkTitle">${esc(window.t('hike.completedTitle', {name: dogName}))}</h1>
+        <p class="hk-sub">${esc(trail.name)}</p>
+        <div class="hk-stats">
+          <div class="hk-stat"><b>${fmtClock(elapsedSeconds)}</b><span>${esc(window.t('hike.statTime'))}</span></div>
+          <div class="hk-stat"><b>${km.toFixed(1)} km</b><span>${esc(window.t('hike.statDistance'))}</span></div>
+          <div class="hk-stat"><b>${pace}</b><span>${esc(window.t('hike.statPace'))}</span></div>
+        </div>
+        <div class="hk-matchline">
+          <span class="safety-badge ${safetyClass}">${esc(SAFETY_LABEL[trail.safetyLevel] || 'Moderate')}</span>
+          ${Number.isFinite(matchPct) ? `<span class="pct">${esc(window.t('hike.matchFor', {pct: matchPct, name: dogName}))}</span>` : ''}
+        </div>
+        <div class="hk-block">
+          <div class="hk-label">${esc(window.t('hike.feel'))}</div>
+          <div class="hk-seg" id="hkCondSeg" role="radiogroup" aria-label="${esc(window.t('hike.feel'))}"></div>
+        </div>
+        <div class="hk-block">
+          <div class="hk-label">${esc(window.t('hike.photos'))}</div>
+          <div class="hk-photos" id="hkPhotos"></div>
+          <div class="hk-share" id="hkShareRow" hidden>
+            <span><b>${esc(window.t('hike.shareTitle'))}</b><small>${esc(window.t('hike.shareSub'))}</small></span>
+            <button type="button" class="li-switch on" id="hkShareToggle" role="switch" aria-checked="true" aria-label="${esc(window.t('hike.shareTitle'))}"><span class="knob"></span></button>
+          </div>
+        </div>
+        <div id="hkDiscardNote" class="hk-discard-note" hidden>
+          <p>${esc(window.t('hike.discardConfirm'))}</p>
+          <div class="row">
+            <button type="button" class="hk-ghost" id="hkKeepBtn" style="flex:1;">${esc(window.t('hike.keep'))}</button>
+            <button type="button" class="hk-danger" id="hkDiscardConfirmBtn">${esc(window.t('hike.discard'))}</button>
+          </div>
+        </div>
+        <div class="hk-actions" id="hkActions">
+          <button type="button" class="hk-ghost" id="hkDiscardBtn">${esc(window.t('hike.discard'))}</button>
+          <button type="button" class="hk-save" id="hkSaveBtn">${esc(window.t('hike.saveJournal'))}</button>
+        </div>
+        <input type="file" accept="image/*" multiple id="hkPhotoInput" hidden>
+      </div>`;
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+
+    const q = sel => overlay.querySelector(sel);
+
+    function renderCond(){
+      const seg = q('#hkCondSeg');
+      seg.innerHTML = '';
+      ['Comfortable', 'Warm', 'Hot'].forEach(c => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = c;
+        b.className = c === cond ? 'on' : '';
+        b.setAttribute('role', 'radio');
+        b.setAttribute('aria-checked', String(c === cond));
+        b.addEventListener('click', () => { cond = c; renderCond(); });
+        seg.appendChild(b);
+      });
+    }
+
+    function renderPhotos(){
+      const grid = q('#hkPhotos');
+      grid.innerHTML = '';
+      photos.forEach((p, i) => {
+        const cell = document.createElement('div');
+        cell.className = 'hk-photo';
+        cell.style.backgroundImage = `url(${p.url})`;
+        const rm = document.createElement('button');
+        rm.type = 'button';
+        rm.textContent = '×';
+        rm.setAttribute('aria-label', window.t('hike.removePhoto'));
+        rm.addEventListener('click', () => {
+          URL.revokeObjectURL(p.url);
+          photos.splice(i, 1);
+          renderPhotos();
+        });
+        cell.appendChild(rm);
+        grid.appendChild(cell);
+      });
+      if (photos.length < 4){
+        const add = document.createElement('button');
+        add.type = 'button';
+        add.className = 'hk-add';
+        add.textContent = '+';
+        add.setAttribute('aria-label', window.t('hike.addPhoto'));
+        add.addEventListener('click', () => q('#hkPhotoInput').click());
+        grid.appendChild(add);
+      }
+      q('#hkShareRow').hidden = photos.length === 0;
+    }
+
+    q('#hkPhotoInput').addEventListener('change', (e) => {
+      Array.from(e.target.files || []).slice(0, 4 - photos.length).forEach(file => {
+        if (!/^image\//.test(file.type)) return;
+        photos.push({ file, url: URL.createObjectURL(file) });
+      });
+      e.target.value = '';
+      renderPhotos();
+    });
+
+    const shareToggle = q('#hkShareToggle');
+    shareToggle.addEventListener('click', () => {
+      shareOn = !shareOn;
+      shareToggle.classList.toggle('on', shareOn);
+      shareToggle.setAttribute('aria-checked', String(shareOn));
+    });
+
+    function closeOverlay(){
+      photos.forEach(p => URL.revokeObjectURL(p.url));
+      overlay.remove();
+      document.body.style.overflow = '';
+    }
+
+    q('#hkDiscardBtn').addEventListener('click', () => {
+      q('#hkDiscardNote').hidden = false;
+      q('#hkActions').hidden = true;
+    });
+    q('#hkKeepBtn').addEventListener('click', () => {
+      q('#hkDiscardNote').hidden = true;
+      q('#hkActions').hidden = false;
+    });
+    q('#hkDiscardConfirmBtn').addEventListener('click', closeOverlay);
+
+    q('#hkSaveBtn').addEventListener('click', () => {
+      const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+      if (!user){
+        // Guests fall back to the journal's pending-walk flow, which asks
+        // them to log in first (photos can't follow it).
+        const returnToTrail = `trail.html?id=${encodeURIComponent(trail.id)}`;
+        window.location.href = `journal.html?trail=${encodeURIComponent(trail.id)}&duration=${elapsedMinutes}&from=${encodeURIComponent(returnToTrail)}`;
+        return;
+      }
+      const entry = {
+        id: 'w' + Date.now(),
+        date: new Date().toISOString(),
+        trailId: trail.id,
+        trail: trail.name,
+        region: trail.valley || trail.area || '',
+        dist: km > 0.1 ? km.toFixed(1) : '',
+        dur: String(elapsedMinutes),
+        cond,
+        rating: null,
+        note: '',
+        photos: photos.length,
+        shareToTrail: photos.length > 0 && shareOn,
+      };
+      try {
+        const key = `dolopaws-journal-${user.uid}`;
+        const entries = JSON.parse(localStorage.getItem(key) || '[]');
+        entries.unshift(entry);
+        entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+        localStorage.setItem(key, JSON.stringify(entries));
+      } catch (e) { /* storage full/blocked — still leave the page gracefully */ }
+      closeOverlay();
+      window.location.href = 'journal.html';
+    });
+
+    renderCond();
+    renderPhotos();
+    const firstBtn = q('#hkSaveBtn');
+    if (firstBtn) firstBtn.focus();
   }
 
   startBtn.addEventListener('click', () => { active ? finishHike() : startHike(); });
+
+  // Deep link from the journal's "Track it live instead →": start recording
+  // straight away (the browser still gates this behind its location prompt).
+  if (new URLSearchParams(window.location.search).get('hike') === '1'){
+    setTimeout(() => { if (!active) startHike(); }, 400);
+  }
 }

@@ -45,8 +45,6 @@
   .browse-results-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 18px;color:var(--ink-soft);font-size:12.5px;}
   .browse-clear{border:0;background:none;color:var(--accent);font:700 12.5px 'Inter',sans-serif;cursor:pointer;padding:4px 0;}
   .browse-empty{grid-column:1/-1;}
-  @media(max-width:760px){.browse-tools{grid-template-columns:1fr 1fr}.browse-tools .browse-search{grid-column:1/-1}}
-  @media(max-width:460px){.browse-tools{grid-template-columns:1fr}.browse-tools .browse-search{grid-column:auto}}
 </style>
 </head>
 <body>
@@ -278,7 +276,7 @@
 <script src="osm-trails-savoy-data.js" defer></script>
 <script src="trail-audits.js?v=20260717" defer></script>
 <script src="regions-config.js"></script>
-<script src="auth-ui.js?v=20260724-3" defer></script>
+<script src="auth-ui.js?v=20260729-1" defer></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     const list = document.getElementById('simpleTrailsList');
