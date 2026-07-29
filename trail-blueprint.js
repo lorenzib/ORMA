@@ -201,7 +201,7 @@
 
     // Breadcrumb: "← Trails · {region} · {valley}"
     const crumb = $('tdBreadcrumb');
-    if (crumb) {
+    if (crumb && /^browse-trails\.html(?:[?#]|$)/.test(crumb.getAttribute('href') || '')) {
       const regionName = t.region === 'savoy' ? 'Savoy' : 'Dolomites';
       crumb.textContent = '← Trails · ' + regionName + (t.valley ? ' · ' + t.valley : '');
     }

@@ -10,6 +10,7 @@ describe('Trail comparison journey', () => {
   const page = source('compare.html');
   const controller = source('compare-page.js');
   const trail = source('trail.js');
+  const trailBlueprint = source('trail-blueprint.js');
   const mobileNav = source('mobile-nav.js');
 
   test('Browse exposes persistent two-to-three trail selection', () => {
@@ -42,6 +43,7 @@ describe('Trail comparison journey', () => {
     expect(controller).toContain('trail.html?id=${encodeURIComponent(entry.id)}&from=${encodeURIComponent(compareReturn)}');
     expect(trail).toMatch(/browse-trails\|compare\|saved\|journal/);
     expect(trail).toContain("returnTarget.startsWith('compare.html') ? '← Back to comparison'");
+    expect(trailBlueprint).toContain("/^browse-trails\\.html(?:[?#]|$)/");
     expect(mobileNav).toContain("f === 'compare.html'");
   });
 });
