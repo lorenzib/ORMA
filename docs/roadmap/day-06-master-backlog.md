@@ -422,6 +422,8 @@ All P0 and P1 work
 - **Priority:** P0
 - **Size:** M
 - **Depends on:** OFF-05, AUTH-01
+- **Implementation:** complete in code; see
+  `docs/architecture/HIKE-01-durable-active-session.md`.
 - **Outcome:** a refresh or closure does not erase an active hike.
 - **Acceptance:**
   - Trail and package IDs, start time, state, last valid progress, and schema

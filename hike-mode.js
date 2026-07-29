@@ -76,6 +76,48 @@ function initHikeMode(map, trail){
   let hikeStartRecorded = false;
   let hikeStartedAt = null;
   let lastKnownKm = 0;      // furthest progress readout, for the completion stats
+  let durableSession = null;
+
+  function keepSessionResult(result){
+    if(result && result.session) durableSession = result.session;
+    return !!(result && result.ok);
+  }
+
+  function beginDurableSession(){
+    if(!window.DoloPawsHikeSession) return;
+    const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+    keepSessionResult(window.DoloPawsHikeSession.create({
+      trailId: trail.id,
+      packageId: trail.offlinePackageId || trail.packageId || `dolopaws-trail:${trail.id}`,
+      ownerId: user && user.uid || null,
+      startedAt: hikeStartedAt,
+    }));
+  }
+
+  function persistProgress(km, pathIndex, accuracyM, recordedAt){
+    if(!durableSession || !window.DoloPawsHikeSession) return;
+    if(!Number.isFinite(accuracyM) || accuracyM < 0 || accuracyM > 200) return;
+    keepSessionResult(window.DoloPawsHikeSession.updateProgress(durableSession, {
+      km,
+      pathIndex,
+      accuracyM,
+      recordedAt,
+    }));
+  }
+
+  function persistSessionState(state){
+    if(!durableSession || !window.DoloPawsHikeSession) return;
+    keepSessionResult(window.DoloPawsHikeSession.setState(
+      durableSession,
+      state,
+      Date.now()
+    ));
+  }
+
+  function clearDurableSession(){
+    if(window.DoloPawsHikeSession) window.DoloPawsHikeSession.clear();
+    durableSession = null;
+  }
 
   // Pulsing "you are here" dot + live pill, shown only while recording. The
   // dot rides the snapped on-path position so it tracks the route like the
@@ -177,6 +219,14 @@ function initHikeMode(map, trail){
     else moveLiveDot(lat, lng);
     const currentKm = (cum[snap.idx] / totalMeters) * statedKm;
     lastKnownKm = Math.max(lastKnownKm, Math.min(currentKm, statedKm));
+    if(snap.minDist <= 2000){
+      persistProgress(
+        lastKnownKm,
+        snap.idx,
+        accuracy,
+        Number.isFinite(pos.timestamp) ? pos.timestamp : Date.now()
+      );
+    }
 
     // Far from the trail entirely (driving there, wrong valley…)
     if (snap.minDist > 2000){
@@ -220,6 +270,8 @@ function initHikeMode(map, trail){
   }
 
   function onError(err){
+    if(firstFix) clearDurableSession();
+    else persistSessionState('paused');
     if (err.code === 1){ // PERMISSION_DENIED
       panel.innerHTML = window.t('hike.permission');
       stopHike(true);
@@ -258,7 +310,9 @@ function initHikeMode(map, trail){
     firstFix = true;
     hikeStartRecorded = false;
     hikeStartedAt = Date.now();
+    lastKnownKm = 0;
     offRouteStreak = 0;
+    beginDurableSession();
     // A hiker needs a navigation screen, not an article: go fullscreen.
     if (window.DoloPawsMapFS) window.DoloPawsMapFS.enter();
     startBtn.textContent = hikeLabel('hike.end', 'End hike');
@@ -303,6 +357,8 @@ function initHikeMode(map, trail){
     const elapsedSeconds = hikeStartedAt
       ? Math.max(1, Math.round((Date.now() - hikeStartedAt) / 1000))
       : 60;
+    if(hadGpsFix) persistSessionState('completion-pending');
+    else clearDurableSession();
     stopHike(false);
     if (!hadGpsFix) return;
     showCompletionScreen(elapsedSeconds, elapsedMinutes);
@@ -476,7 +532,10 @@ function initHikeMode(map, trail){
       q('#hkDiscardNote').hidden = true;
       q('#hkActions').hidden = false;
     });
-    q('#hkDiscardConfirmBtn').addEventListener('click', closeOverlay);
+    q('#hkDiscardConfirmBtn').addEventListener('click', () => {
+      clearDurableSession();
+      closeOverlay();
+    });
 
     q('#hkSaveBtn').addEventListener('click', () => {
       const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
@@ -501,13 +560,16 @@ function initHikeMode(map, trail){
         photos: photos.length,
         shareToTrail: photos.length > 0 && shareOn,
       };
+      let saved = false;
       try {
         const key = `dolopaws-journal-${user.uid}`;
         const entries = JSON.parse(localStorage.getItem(key) || '[]');
         entries.unshift(entry);
         entries.sort((a, b) => new Date(b.date) - new Date(a.date));
         localStorage.setItem(key, JSON.stringify(entries));
+        saved = true;
       } catch (e) { /* storage full/blocked — still leave the page gracefully */ }
+      if(saved) clearDurableSession();
       closeOverlay();
       window.location.href = 'journal.html';
     });
