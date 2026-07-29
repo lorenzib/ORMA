@@ -30,11 +30,11 @@ describe('UX-01 canonical discovery integration', () => {
     expect(browse).toContain('diagnoseZero(trails, currentFilterState(), filterOptions())');
   });
 
-  test('the old Collections route is a redirect, not a second results implementation', () => {
+  test('Collections is a curated landing page that hands results to Browse', () => {
     const collections = source('collections.html');
 
-    expect(collections).toContain('browse-trails.html#collections');
-    expect(collections).toContain('window.location.replace');
+    expect(collections).toContain('class="collections-grid"');
+    expect(collections).toContain('browse-trails.html?collection=');
     expect(collections).not.toContain('clGrid');
     expect(collections).not.toContain('scoreTrail');
   });

@@ -99,6 +99,7 @@
         f === 'downloads.html'
       ) return 'trails';
       if(f === 'journal.html') return 'journal';
+      if(f === 'collections.html') return 'collections';
       if(f === 'safety-guide.html') return 'safety';
       if(f === 'settings.html') return 'settings';
       if(f === 'about.html') return 'about';
@@ -257,7 +258,7 @@
       // Both states share the same link row now; only the right-hand
       // controls change (login pill vs bell + dog pill).
       linksEl.appendChild(navItem('Browse all Trails', 'browse-trails.html', key === 'trails'));
-      linksEl.appendChild(navItem('Collections', 'browse-trails.html#collections', false));
+      linksEl.appendChild(navItem('Collections', 'collections.html', key === 'collections'));
       linksEl.appendChild(navItem('Safety guide', 'safety-guide.html', key === 'safety'));
       linksEl.appendChild(navItem('Settings', 'settings.html', key === 'settings', 'nav.settings'));
       if(loggedIn){

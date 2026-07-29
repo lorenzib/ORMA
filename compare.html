@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compare trails — DoloPaws</title>
+<meta name="description" content="Compare two or three DoloPaws trails by dog match, route facts, safety evidence, restrictions, and verification.">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#2E4034">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20260729-2">
+<style>
+  .compare-hero{max-width:1180px;margin:0 auto;padding:38px 22px 20px;}
+  .compare-hero h1{font-size:clamp(30px,5vw,44px);margin:10px 0 8px;}
+  .compare-hero p{max-width:700px;color:var(--ink-soft);line-height:1.6;margin:0;}
+  .compare-back{font:700 13px 'Inter',sans-serif;color:var(--accent);text-decoration:none;}
+  .compare-context{display:inline-flex;margin-top:14px;padding:6px 11px;border-radius:999px;background:var(--sage-dim);font:700 12px 'Inter',sans-serif;color:var(--ink);}
+  .compare-wrap{max-width:1180px;margin:0 auto;padding:0 22px 70px;}
+  .compare-notice{padding:16px 18px;border:1px solid var(--paper-line);border-radius:14px;background:#fff;margin:0 0 16px;color:var(--ink-soft);line-height:1.55;}
+  .compare-notice a{font-weight:800;color:var(--accent);}
+  .compare-scroll{overflow-x:auto;border:1px solid var(--paper-line);border-radius:18px;background:#fff;box-shadow:var(--shadow);overscroll-behavior-inline:contain;}
+  .compare-table{display:grid;grid-template-columns:150px repeat(var(--compare-count),minmax(230px,1fr));min-width:calc(150px + var(--compare-count) * 230px);}
+  .compare-label,.compare-cell{padding:15px 16px;border-bottom:1px solid var(--paper-line);border-right:1px solid var(--paper-line);box-sizing:border-box;}
+  .compare-label{position:sticky;left:0;z-index:2;background:#F7F4EA;color:var(--ink-soft);font:800 11px/1.35 'Inter',sans-serif;letter-spacing:.05em;text-transform:uppercase;}
+  .compare-cell:last-child{border-right:0;}
+  .compare-head{padding:18px 16px;background:#FDFCF8;min-height:160px;}
+  .compare-head h2{font-size:20px;line-height:1.2;margin:5px 0 6px;}
+  .compare-area{font-size:12px;color:var(--ink-soft);min-height:18px;}
+  .compare-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px;}
+  .compare-open,.compare-remove{display:inline-flex;align-items:center;justify-content:center;min-height:38px;padding:7px 11px;border-radius:9px;font:800 12px 'Inter',sans-serif;text-decoration:none;cursor:pointer;}
+  .compare-open{background:var(--ink);color:#fff;}
+  .compare-remove{border:1px solid var(--paper-line);background:#fff;color:var(--ink);}
+  .compare-cell{font:600 13px/1.5 'Inter',sans-serif;color:var(--ink);background:#fff;}
+  .compare-cell small{display:block;margin-top:5px;color:var(--ink-soft);font-weight:500;line-height:1.45;}
+  .compare-cell--unknown{background:#F1F0EB;color:#65685F;}
+  .compare-cell--unknown::before{content:'?';display:inline-grid;place-items:center;width:18px;height:18px;margin-right:6px;border-radius:50%;background:#D8D7D0;font-weight:900;}
+  .compare-cell--mapped{background:#EEF3F4;color:#405C64;}
+  .compare-cell--caution{background:#FFF4E4;color:#7A4D11;}
+  .compare-empty{text-align:center;padding:48px 20px;border:1px solid var(--paper-line);border-radius:18px;background:#fff;}
+  .compare-empty h2{font-size:24px;margin:0 0 8px;}
+  .compare-empty p{color:var(--ink-soft);margin:0 0 18px;}
+  .compare-empty a{display:inline-flex;padding:11px 17px;border-radius:10px;background:var(--ink);color:#fff;text-decoration:none;font-weight:800;}
+  @media(max-width:700px){
+    .compare-hero{padding:25px 14px 16px;}
+    .compare-wrap{padding:0 14px 48px;}
+    .compare-scroll{border-radius:14px;}
+    .compare-table{grid-template-columns:112px repeat(var(--compare-count),minmax(205px,1fr));min-width:calc(112px + var(--compare-count) * 205px);}
+    .compare-label,.compare-cell{padding:12px 10px;}
+    .compare-label{font-size:9.5px;}
+    .compare-head h2{font-size:17px;}
+  }
+</style>
+</head>
+<body>
+<div class="topnav">
+  <a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
+  <div class="links">
+    <a href="browse-trails.html" class="active">Browse all Trails</a>
+    <a href="browse-trails.html#collections">Collections</a>
+    <a href="safety-guide.html">Safety guide</a>
+    <a href="settings.html">Settings</a>
+    <a class="account-btn" href="index.html?view=login&amp;next=compare.html">Log in</a>
+  </div>
+</div>
+
+<header class="compare-hero">
+  <a id="compareBack" class="compare-back" href="browse-trails.html">← Back to trail results</a>
+  <div class="eyebrow" style="margin-top:18px;">Trail decision</div>
+  <h1>Compare trails</h1>
+  <p>Put the facts beside each other. Unknown means DoloPaws does not have enough reviewed evidence to call that factor safe.</p>
+  <span id="compareContext" class="compare-context">Unpersonalized comparison</span>
+</header>
+
+<main class="compare-wrap">
+  <div id="compareNotice" class="compare-notice" hidden></div>
+  <div id="compareRoot"></div>
+</main>
+
+<footer class="site-footer">DoloPaws &#124; A personalised trail guide for dogs and their humans.</footer>
+
+<script src="mobile-nav.js"></script>
+<script src="i18n.js?v=20260729-1"></script>
+<script type="module" src="firebase-init.js?v=20260717"></script>
+<script src="breeds-data.js" defer></script>
+<script src="trust/evidence-v1.js?v=20260728-1" defer></script>
+<script src="scoring/recommendation-v1.js?v=20260728-2" defer></script>
+<script src="scoring/recommendation-adapters-v1.js?v=20260728-1" defer></script>
+<script src="scoring.js?v=20260728-4" defer></script>
+<script src="trails-data.js?v=20260717-3" defer></script>
+<script src="osm-trails-data.js" defer></script>
+<script src="osm-trails-savoy-data.js" defer></script>
+<script src="trail-audits.js?v=20260717" defer></script>
+<script src="comparison-state.js?v=20260729-1" defer></script>
+<script src="comparison-model.js?v=20260729-1" defer></script>
+<script src="compare-page.js?v=20260729-1" defer></script>
+</body>
+</html>

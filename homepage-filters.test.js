@@ -156,27 +156,27 @@ describe('returning homepage region + valley filters', () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeRegion = "savoy"; activeValley = "all"; activeProvenance = "all"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
-    expect(document.getElementById('returningCount').textContent).toBe('3 of 3');
+    expect(document.getElementById('returningCount').textContent).toBe('3 scored · 0 saved');
   });
 
   test('result count reflects valley filter', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeRegion = "savoy"; activeValley = "Maurienne"; activeProvenance = "all"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
-    expect(document.getElementById('returningCount').textContent).toBe('1 of 3');
+    expect(document.getElementById('returningCount').textContent).toBe('1 scored · 0 saved');
   });
 
   test('provenance filter shows only verified trails', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeRegion = "savoy"; activeValley = "all"; activeProvenance = "verified"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
-    expect(document.getElementById('returningCount').textContent).toBe('2 of 3');
+    expect(document.getElementById('returningCount').textContent).toBe('2 scored · 0 saved');
   });
 
   test('provenance filter shows only imported trails', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeRegion = "savoy"; activeValley = "all"; activeProvenance = "imported"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
-    expect(document.getElementById('returningCount').textContent).toBe('1 of 3');
+    expect(document.getElementById('returningCount').textContent).toBe('1 scored · 0 saved');
   });
 });

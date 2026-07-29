@@ -878,7 +878,9 @@
 
   function init(){
     applyTranslations();
-    injectToggle();
+    // 2026-07 design pass: no language toggle in the header. Language now
+    // changes from Account settings (settings.html → Units & language);
+    // first-visit language still follows the browser automatically.
     // Localized page titles (trail.html sets its own from the trail name).
     if (lang === 'it'){
       const TITLES = {

@@ -23,7 +23,7 @@
   <a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
   <div class="links">
     <a href="browse-trails.html">Browse all Trails</a>
-    <a href="browse-trails.html#collections">Collections</a>
+    <a href="collections.html">Collections</a>
     <a href="safety-guide.html">Safety guide</a>
     <a href="settings.html" data-i18n="nav.settings">Settings</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
@@ -167,22 +167,38 @@
     </nav>
     <div class="li-top-spacer"></div>
     <div class="li-top-actions">
+      <!-- What's-new bell (design TopNav notifications) -->
+      <div class="li-menuwrap" id="liBellWrap">
+        <button type="button" id="liBellBtn" class="li-bell" aria-haspopup="true" aria-expanded="false" aria-label="What's new">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 10.5a6 6 0 1 1 12 0c0 3 1 4.8 2 6H4c1-1.2 2-3 2-6Z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg>
+          <span class="li-bell-dot" id="liBellDot" hidden></span>
+        </button>
+        <div class="li-menu" id="liBellMenu" hidden>
+          <div class="li-menu-kick">What’s new</div>
+        </div>
+      </div>
+      <!-- Dog pill — the shared switcher pattern (TopNav dog pill): avatar +
+           dog name opens the Switch dog panel. Account utilities sit below a
+           separator; site links live in the nav row. -->
       <div class="li-menuwrap" id="liAccountWrap">
         <button type="button" id="liAccountBtn" class="li-account" aria-haspopup="true" aria-expanded="false">
           <span class="li-avatar" id="liAccountAvatar" aria-hidden="true"></span>
-          <span class="li-account-name" id="liAccountName">My account</span>
+          <span class="li-account-name" id="liAccountName">Your dog</span>
+          <span class="li-caret" aria-hidden="true">▾</span>
         </button>
         <div class="li-menu li-account-menu" id="liAccountMenu" hidden>
-          <a class="li-menu-item" id="liManageLink" href="account.html?next=index.html">Manage profile</a>
-          <a class="li-menu-item" href="settings.html">Account settings</a>
+          <div class="li-menu-kick">Switch dog</div>
+          <div class="nav-dogmenu-row on" id="liDogRow">
+            <span class="li-avatar" id="liDogRowAvatar" aria-hidden="true"></span>
+            <span style="flex:1;min-width:0;"><b id="liDogRowName">Your dog</b><small id="liDogRowMeta"></small></span>
+          </div>
           <button type="button" class="li-menu-item" id="liAddDogBtn">＋ Add another dog</button>
+          <a class="li-menu-item" id="liManageLink" href="account.html?next=index.html">Manage dog profiles →</a>
+          <div class="li-menu-div" role="separator"></div>
           <button type="button" class="li-menu-item" id="savedTrailsBtn">♥ <span class="txt-label">My saved trails</span> <span class="li-menu-count" id="companionSavedCount">0</span></button>
           <a class="li-menu-item" href="downloads.html">Downloaded trails</a>
           <a class="li-menu-item" href="journal.html">My walk journal</a>
-          <div class="li-menu-div" role="separator"></div>
-          <a class="li-menu-item" href="browse-trails.html">Browse all trails</a>
-          <a class="li-menu-item" href="safety-guide.html">Safety guide</a>
-          <a class="li-menu-item" href="about.html">About</a>
+          <a class="li-menu-item" href="settings.html">Account settings</a>
           <div class="li-menu-div" role="separator"></div>
           <button type="button" class="li-menu-item li-logout" id="liLogoutBtn">Log out</button>
         </div>
@@ -193,7 +209,23 @@
   <!-- ================= GREETING BAR ================= -->
   <div class="li-greetbar">
     <div class="li-dog-row">
-      <span class="li-dogavatar" id="companionDogAvatar"><span data-dp-icon="dog" data-dp-icon-size="24" aria-hidden="true"></span></span>
+      <!-- The avatar is the dog switcher (design: greeting avatar + caret
+           opens the Switch dog panel; no separate Edit button) -->
+      <div class="li-menuwrap li-greetswitch" id="liGreetSwitchWrap">
+        <button type="button" class="li-greetswitch-btn" id="liGreetSwitchBtn" aria-haspopup="true" aria-expanded="false" aria-label="Switch dog">
+          <span class="li-dogavatar" id="companionDogAvatar"><span data-dp-icon="dog" data-dp-icon-size="24" aria-hidden="true"></span></span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="li-menu li-greetswitch-menu" id="liGreetSwitchMenu" hidden>
+          <div class="li-menu-kick">Switch dog</div>
+          <div class="nav-dogmenu-row on">
+            <span class="li-avatar" id="liGreetRowAvatar" aria-hidden="true"></span>
+            <span style="flex:1;min-width:0;"><b id="liGreetRowName">Your dog</b><small id="liGreetRowMeta"></small></span>
+          </div>
+          <button type="button" class="li-menu-item" id="liGreetAddDogBtn">＋ Add another dog</button>
+          <a class="li-menu-item" href="account.html?next=index.html">Manage dog profiles →</a>
+        </div>
+      </div>
       <div class="li-dog-copy">
         <h1 class="li-greet" id="returningHeading">Where are we heading today?</h1>
         <div class="li-chips-row">
@@ -202,17 +234,19 @@
           <span class="li-chips" id="companionDogChips"></span>
         </div>
       </div>
-      <a class="li-edit" href="account.html?next=index.html" data-i18n="home.editProfile">Edit</a>
     </div>
   </div>
 
-  <!-- ================= TOOLBAR: SEARCH + FILTERS ================= -->
+  <!-- ================= TOOLBAR: SEARCH + FILTER CHIPS ================= -->
   <div class="li-toolbar" id="liToolbar">
     <div class="li-search">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
       <input id="liSearch" type="search" placeholder="Search a valley, lake or trail…" aria-label="Search trails" autocomplete="off">
     </div>
-    <div class="li-menuwrap" id="liFiltersWrap">
+    <!-- Inline chips (desktop) — Any area · Distance · Terrain · Shade · Water -->
+    <div class="li-chiprow" id="liChips"></div>
+    <!-- Phones keep the condensed Filters panel; desktop shows the chips -->
+    <div class="li-menuwrap li-mobile-only" id="liFiltersWrap">
       <button type="button" id="liFiltersBtn" class="li-filt" aria-haspopup="true" aria-expanded="false">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
         Filters<span id="liFiltersBadge"></span> <span class="li-caret">▾</span>
@@ -264,14 +298,20 @@
         <span><i class="li-heartdot" aria-hidden="true">♥</i>Saved</span>
       </div>
 
-      <!-- Selected-trail preview — same card anatomy as the list rows
-           (thumb · details · match column), not a condensed strip. -->
+      <!-- Selected-trail preview — the design's TrailPreview card, docked at
+           the foot of the map: kicker · name · meta + provenance · trail
+           rating · Open trail → / Save, with the match column mid-right. -->
       <div id="mapCallout" class="map-callout" hidden>
         <span class="map-callout-thumb" id="mapCalloutThumb" aria-hidden="true"></span>
         <div class="map-callout-body">
+          <div class="map-callout-kick" id="mapCalloutKick"></div>
           <a class="li-row-name" id="mapCalloutName" href="#"></a>
           <div class="li-row-meta" id="mapCalloutMeta"></div>
-          <div class="li-row-badges"><span class="li-badge"><span class="li-dot" id="mapCalloutDot"></span><span id="mapCalloutSafety"></span></span></div>
+          <div class="li-rating-row"><span class="li-rating-kick">Trail rating</span><span id="mapCalloutRating"></span></div>
+          <div class="map-callout-actions">
+            <a class="map-callout-open" id="mapCalloutOpen" href="#">Open trail →</a>
+            <button type="button" class="map-callout-save" id="mapCalloutSave">♡ Save</button>
+          </div>
         </div>
         <span id="mapCalloutMatch"></span>
         <span class="close" id="mapCalloutClose" role="button" tabindex="0" aria-label="Clear selection">&times;</span>
@@ -356,7 +396,7 @@
       <div class="hp-footer-h">Explore</div>
       <div class="hp-footer-links">
         <a href="browse-trails.html">Browse all trails</a>
-        <a href="browse-trails.html#collections">Collections</a>
+        <a href="collections.html">Collections</a>
         <a href="browse-trails.html#trail-index">Valleys &amp; regions</a>
         <a href="safety-guide.html">Trail conditions</a>
       </div>

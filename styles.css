@@ -31,6 +31,30 @@
   --radius-lg:20px;
   --radius-md:12px;
   --radius-pill:999px;
+  --radius-panel:16px;
+  --radius-modal:18px;
+  --radius-sm:10px;
+  --radius-xs:8px;
+  --border:1px solid var(--paper-line);
+  --border-strong:1.5px solid var(--paper-line);
+  --shadow-card-hover:0 12px 30px -14px rgba(46,64,52,.4);
+  --shadow-menu:0 14px 34px -12px rgba(23,42,28,.4);
+  --font-serif:'Source Serif 4', serif;
+  --font-sans:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --space-1:4px;
+  --space-2:6px;
+  --space-3:8px;
+  --space-4:10px;
+  --space-5:12px;
+  --space-6:14px;
+  --space-7:16px;
+  --space-8:18px;
+  --space-9:20px;
+  --space-12:26px;
+  --space-14:32px;
+  --space-16:40px;
+  --wrap:1040px;
+  --wrap-gutter:24px;
 }
 
 *{box-sizing:border-box;}
@@ -724,6 +748,48 @@ img,svg{max-width:100%;height:auto;}
 .browse-coll-card span{display:block;font-size:12px;color:var(--ink-soft);margin-top:3px;line-height:1.45;}
 .browse-coll-card em{display:block;font-style:normal;font-size:11.5px;font-weight:700;color:var(--accent);margin-top:8px;}
 
+/* ---------- COLLECTIONS PAGE ---------- */
+.collections-wrap{max-width:var(--wrap);margin:0 auto;padding:40px var(--wrap-gutter) 60px;}
+.collections-intro{max-width:580px;margin-bottom:24px;}
+.collections-intro h1{font-size:34px;}
+.collections-intro p{margin:12px 0 0;color:var(--ink-soft);font-size:14px;line-height:1.6;}
+.collections-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+.collection-card{display:block;min-width:0;overflow:hidden;border:var(--border);border-radius:var(--radius-panel);background:var(--card);text-decoration:none;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;}
+.collection-card:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:var(--shadow-card-hover);}
+.collection-card__image{height:150px;background:#E7ECE3 center/cover no-repeat;}
+.collection-card__body{padding:16px 18px;}
+.collection-card__body h2{font-size:18px;margin:0;}
+.collection-card__body p{margin:5px 0 12px;color:var(--ink-soft);font-size:12.5px;line-height:1.45;}
+.collection-card__meta{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11.5px;color:var(--ink-soft);}
+.collection-card__match{font-weight:800;color:var(--success);}
+.collection-feature{display:grid;grid-template-columns:1fr 1fr;margin-top:26px;overflow:hidden;border:var(--border);border-radius:var(--radius-panel);background:var(--card);}
+.collection-feature__image{min-height:280px;background:url('images/lago-di-braies.webp') center/cover no-repeat;}
+.collection-feature__body{padding:24px 26px;}
+.collection-feature__kick{font:700 10.5px var(--font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.collection-feature__body h2{font-size:22px;}
+.collection-feature__body>p{margin:10px 0 14px;color:var(--ink-soft);font-size:13.5px;line-height:1.6;}
+.collection-chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.collection-chips span{padding:6px 10px;border-radius:var(--radius-pill);background:var(--success-dim);color:var(--success);font-size:11.5px;font-weight:700;}
+.collection-trails{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.collection-trail{display:flex;align-items:baseline;gap:10px;padding:11px 14px;border:var(--border);border-radius:var(--radius-md);background:var(--bg);text-decoration:none;}
+.collection-trail b{flex:1;min-width:0;font:700 13.5px var(--font-serif);}
+.collection-trail span{font-size:11.5px;color:var(--ink-soft);}
+.collection-trail em{font-style:normal;font-size:13px;font-weight:800;color:var(--success);}
+.collection-cta{display:inline-flex;padding:10px 16px;border-radius:var(--radius-sm);background:var(--accent);color:#fff;font-size:12.5px;font-weight:800;text-decoration:none;}
+.collection-cta:hover{background:var(--accent-hover);}
+@media(max-width:900px){
+  .collections-wrap{padding:26px 16px 44px;}
+  .collections-intro h1{font-size:27px;}
+  .collections-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .collection-feature{display:flex;flex-direction:column;}
+  .collection-feature__image{min-height:190px;}
+}
+@media(max-width:600px){
+  .collections-grid{grid-template-columns:1fr;}
+  .collection-card__image{height:170px;}
+  .collection-feature__body{padding:20px 18px;}
+}
+
 /* ---------- AREA FILTER (shared: my-trails.html + homepage) ---------- */
 .area-pill{
   padding:8px 15px;border-radius:999px;border:1.5px solid var(--paper-line);
@@ -1361,9 +1427,16 @@ body.map-fs-open{overflow:hidden;}
    the foot of the map pane, like the design's TrailPreview. */
 .map-callout{position:absolute;left:12px;right:12px;bottom:12px;display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--paper-line);border-radius:14px;padding:12px;box-shadow:0 10px 28px rgba(27,31,25,.22);font-family:'Inter',sans-serif;z-index:9;max-width:560px;margin:0 auto;}
 .map-callout[hidden]{display:none !important;}
-.map-callout-thumb{flex:none;display:block;}
-.map-callout-thumb .li-thumb{width:56px;height:56px;}
-.map-callout-body{flex:1;min-width:0;}
+.map-callout-thumb{flex:none;display:block;align-self:stretch;}
+.map-callout-thumb .li-thumb{width:132px;height:100%;min-height:96px;border-radius:12px;}
+.map-callout-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px;}
+.map-callout-kick{font:700 10px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8A9689;}
+.map-callout-actions{display:flex;gap:8px;align-items:center;margin-top:3px;flex-wrap:wrap;}
+.map-callout-open{display:inline-flex;align-items:center;justify-content:center;padding:9px 16px;border-radius:10px;background:var(--accent);color:#fff;font:700 12.5px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;}
+.map-callout-open:hover{background:var(--accent-hover);color:#fff;}
+.map-callout-save{display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:#fff;color:var(--ink);font:700 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
+.map-callout-save:hover{border-color:#9C3A25;color:#9C3A25;}
+.map-callout-save.saved{background:#9C3A25;border-color:#9C3A25;color:#fff;}
 .map-callout .li-match{align-self:center;}
 .map-callout .close{cursor:pointer;color:var(--ink-soft);font-size:16px;line-height:1;padding-left:2px;align-self:flex-start;}
 
@@ -1793,7 +1866,7 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
 }
 .li-greetbar .li-dog-row{flex:1;min-width:0;}
 
-/* ---------- toolbar (search · filters) ---------- */
+/* ---------- toolbar (search · filter chips) ---------- */
 .li-toolbar{
   display:flex;
   align-items:center;
@@ -1805,6 +1878,39 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
   position:relative;
   z-index:45;
 }
+/* Inline chips — Any area · Distance · Terrain · Shade · Water */
+.li-chiprow{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.li-chipwrap{position:relative;}
+.li-chip{
+  display:inline-flex;align-items:center;gap:7px;
+  border:1.5px solid var(--paper-line);border-radius:var(--radius-pill);
+  background:#fff;padding:8px 14px;
+  font:600 13px 'Inter',sans-serif;color:var(--ink);
+  cursor:pointer;white-space:nowrap;
+}
+.li-chip:hover{border-color:var(--accent);}
+.li-chip.on{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
+.li-chipmenu{left:0;right:auto;min-width:190px;max-height:min(420px,60vh);overflow-y:auto;}
+.li-chip-selected{background:#F0EDE1;font-weight:700;}
+/* Desktop shows chips; phones keep the condensed panel button */
+@media(min-width:701px){.li-mobile-only{display:none;}}
+@media(max-width:700px){.li-chiprow{display:none;}}
+/* The design's app home has no conditions card on the map (desktop);
+   phones keep it as the dog-identity pill. */
+@media(min-width:901px){.li-cond{display:none !important;}}
+/* What's-new bell on the dark header */
+.li-bell{
+  position:relative;width:38px;height:38px;border-radius:50%;
+  border:none;background:none;color:#F2EEE2;
+  display:grid;place-items:center;cursor:pointer;
+}
+.li-bell:hover{background:rgba(255,255,255,.12);}
+.li-bell-dot{position:absolute;top:6px;right:7px;width:8px;height:8px;border-radius:50%;background:#E24B4A;border:1.5px solid var(--ink);}
+.li-bell-dot[hidden]{display:none;}
+/* Greeting avatar = dog switcher */
+.li-greetswitch{flex:none;}
+.li-greetswitch-btn{display:flex;align-items:center;gap:6px;border:none;background:none;cursor:pointer;padding:0;color:var(--ink-soft);}
+.li-greetswitch-menu{left:0;right:auto;top:calc(100% + 8px);width:268px;}
 .li-search{
   flex:1;
   max-width:420px;
@@ -1917,6 +2023,8 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
 .li-menu-count{margin-left:auto;color:#8A9689;font-weight:700;}
 .li-menu-div{height:1px;background:#EDE9DD;margin:5px 0;}
 .li-logout{color:#9C3A25;}
+.li-menu-kick{font:700 9.5px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8A9689;padding:4px 8px 8px;}
+.li-account-menu .nav-dogmenu-row{margin:0 0 6px;}
 
 /* ---------- filters panel ---------- */
 .li-filters-menu{width:320px;padding:15px 16px;max-height:calc(100vh - 90px);overflow-y:auto;}
@@ -2201,6 +2309,9 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
   text-overflow:ellipsis;
 }
 .li-row-badges{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;}
+/* "Trail rating · Low-risk" row (design TrailRow) */
+.li-rating-row{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center;}
+.li-rating-kick{font:700 10px 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
 .li-badge{
   display:inline-flex;
   align-items:center;

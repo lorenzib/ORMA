@@ -3,25 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Collections — DoloPaws</title>
-<meta name="description" content="Browse curated DoloPaws trail collections.">
-<meta name="robots" content="noindex,follow">
-<meta http-equiv="refresh" content="0;url=browse-trails.html#collections">
-<link rel="canonical" href="https://www.dolopaws.com/browse-trails.html#collections">
-<link rel="stylesheet" href="styles.css?v=20260729-2">
-<script src="discovery-state.js?v=20260729-1"></script>
-<script>
-  (function(){
-    var state = window.DoloPawsDiscoveryState.normalize(new URLSearchParams(window.location.search));
-    window.location.replace(window.DoloPawsDiscoveryState.browseHref(state, '#collections'));
-  })();
-</script>
+<title>Trail collections | DoloPaws</title>
+<meta name="description" content="Dog-friendly trail collections built for the day you are having, from shady woodland walks to gentle lake loops.">
+<meta name="theme-color" content="#2E4034">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20260729-3">
 </head>
 <body>
-  <main class="wrap" style="padding-top:64px;text-align:center;">
-    <h1>Collections have moved</h1>
-    <p>Collections now open inside the complete trail finder, so your search and filters stay together.</p>
-    <p><a href="browse-trails.html#collections">Browse trail collections</a></p>
-  </main>
+<div class="topnav">
+  <a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
+  <div class="links">
+    <a href="browse-trails.html">Browse all Trails</a>
+    <a href="collections.html" class="active">Collections</a>
+    <a href="safety-guide.html">Safety guide</a>
+    <a href="settings.html" data-i18n="nav.settings">Settings</a>
+    <a id="accountBtn" class="account-btn" href="index.html?login=1&amp;next=collections.html" data-i18n="nav.login">Log in</a>
+  </div>
+</div>
+
+<main class="collections-wrap">
+  <header class="collections-intro">
+    <h1>Collections</h1>
+    <p>Sets built for the day you’re having, not for the view. Every trail has been checked against the same six safety factors.</p>
+  </header>
+
+  <section class="collections-grid" aria-label="Trail collections">
+    <a class="collection-card" href="browse-trails.html?collection=water">
+      <div class="collection-card__image" style="background-image:url('images/lago-di-braies.webp')"></div>
+      <div class="collection-card__body"><h2>Lake loops</h2><p>Flat, water all the way</p><div class="collection-card__meta"><span>12 trails</span><span class="collection-card__match">88% match</span></div></div>
+    </a>
+    <a class="collection-card" href="browse-trails.html?collection=shady">
+      <div class="collection-card__image" style="background-image:url('images/boucle-du-lac-vert.webp')"></div>
+      <div class="collection-card__body"><h2>Shady woodland walks</h2><p>Shade over 60%</p><div class="collection-card__meta"><span>18 trails</span><span class="collection-card__match">84% match</span></div></div>
+    </a>
+    <a class="collection-card" href="browse-trails.html?access=hut">
+      <div class="collection-card__image" style="background-image:url('images/lago-di-carezza.webp')"></div>
+      <div class="collection-card__body"><h2>Rifugio days</h2><p>Dog-friendly huts on route</p><div class="collection-card__meta"><span>9 trails</span><span class="collection-card__match">72% match</span></div></div>
+    </a>
+    <a class="collection-card" href="browse-trails.html?collection=gentle">
+      <div class="collection-card__image" style="background-image:url('images/sentier-des-buis.webp')"></div>
+      <div class="collection-card__body"><h2>Short and flat</h2><p>Under 5 km, gentle ground</p><div class="collection-card__meta"><span>14 trails</span><span class="collection-card__match">90% match</span></div></div>
+    </a>
+    <a class="collection-card" href="browse-trails.html?collection=shady&amp;water=1">
+      <div class="collection-card__image" style="background-image:url('images/lago-di-carezza.webp')"></div>
+      <div class="collection-card__body"><h2>Hot-day walks</h2><p>Shade and water, early starts</p><div class="collection-card__meta"><span>11 trails</span><span class="collection-card__match">81% match</span></div></div>
+    </a>
+    <a class="collection-card" href="browse-trails.html?access=lift">
+      <div class="collection-card__image" style="background-image:url('images/lago-di-braies.webp')"></div>
+      <div class="collection-card__body"><h2>Cable-car days</h2><p>Lifts that take dogs</p><div class="collection-card__meta"><span>7 trails</span><span class="collection-card__match">76% match</span></div></div>
+    </a>
+  </section>
+
+  <section class="collection-feature" aria-labelledby="featuredCollection">
+    <div class="collection-feature__image" role="img" aria-label="Lago di Braies"></div>
+    <div class="collection-feature__body">
+      <div class="collection-feature__kick">Collection of the month</div>
+      <h2 id="featuredCollection">Lake loops</h2>
+      <p>Twelve circuits where the water is never more than twenty minutes away, flat gravel underfoot, and a swim at the halfway point.</p>
+      <div class="collection-chips"><span>Water on route</span><span>Under 8 km</span><span>Gentle climb</span></div>
+      <div class="collection-trails">
+        <a class="collection-trail" href="trails/lago-di-braies-loop.html"><b>Lago di Braies Rundweg</b><span>3.8 km</span><em>91%</em></a>
+        <a class="collection-trail" href="trails/lago-di-carezza-loop.html"><b>Lago di Carezza circuit</b><span>2.4 km</span><em>94%</em></a>
+        <a class="collection-trail" href="trails/boucle-du-lac-vert.html"><b>Boucle du Lac Vert</b><span>6.1 km</span><em>68%</em></a>
+      </div>
+      <a class="collection-cta" href="browse-trails.html?collection=water">See all 12 trails →</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">DoloPaws &#124; A personalised trail guide for dogs and their humans.</footer>
+<script src="mobile-nav.js"></script>
+<script src="i18n.js"></script>
+<script type="module" src="firebase-init.js"></script>
 </body>
 </html>
