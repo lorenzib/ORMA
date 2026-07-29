@@ -700,7 +700,7 @@ window.DoloPawsTrailAction = {
 
 function safeTrailReturn(value){
   if(!value || /^(?:[a-z]+:|\/\/|\/)/i.test(value)) return '';
-  return /^(?:browse-trails|saved|journal)\.html(?:\?[^#]*)?(?:#.*)?$/i.test(value) ? value : '';
+  return /^(?:browse-trails|compare|saved|journal)\.html(?:\?[^#]*)?(?:#.*)?$/i.test(value) ? value : '';
 }
 
 function init(){

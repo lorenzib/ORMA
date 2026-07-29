@@ -296,6 +296,7 @@ All P0 and P1 work
 
 ### UX-03 — Add side-by-side trail comparison
 
+- **Status:** Complete in code (2026-07-29)
 - **Priority:** P1
 - **Size:** L
 - **Depends on:** SCORE-01, TRUST-01

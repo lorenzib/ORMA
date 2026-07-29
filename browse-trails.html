@@ -21,6 +21,12 @@
   .simple-card{transition:border-color .15s ease,transform .15s ease,box-shadow .15s ease;}
   .simple-card .photo{height:140px;background:#E7ECE3;}
   .simple-card .name{padding:12px 14px;font-family:'Source Serif 4',serif;font-weight:700;font-size:14.5px;color:var(--ink);}
+  .browse-card-actions{display:flex;align-items:center;gap:8px;margin-top:11px;}
+  .browse-card-open,.browse-card-compare{display:inline-flex;align-items:center;justify-content:center;min-height:38px;border-radius:9px;font:800 11.5px 'Inter',sans-serif;}
+  .browse-card-open{flex:1;background:var(--ink);color:#fff;text-decoration:none;padding:8px 10px;}
+  .browse-card-compare{border:1.5px solid var(--paper-line);background:#fff;color:var(--ink);padding:8px 11px;cursor:pointer;}
+  .browse-card-compare[aria-pressed="true"]{background:#EAF3EC;border-color:#7EAD91;color:#24462E;}
+  .browse-card-compare:disabled{cursor:not-allowed;opacity:.48;}
   /* Filter row: search pill, then rating/distance/water controls. On phones
      the controls condense behind a single "Filters" chip (design revamp). */
   .browse-tools{position:relative;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
@@ -52,6 +58,20 @@
   .browse-recovery{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:14px;}
   .browse-recovery button{min-height:40px;border:1.5px solid var(--paper-line);border-radius:10px;background:#fff;color:var(--ink);padding:8px 13px;font:700 12.5px 'Inter',sans-serif;cursor:pointer;}
   .browse-recovery button.safe{background:#EAF3EC;border-color:#9FC4B0;}
+  .compare-tray{position:fixed;left:50%;bottom:18px;z-index:80;width:min(680px,calc(100% - 28px));transform:translateX(-50%);display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 14px 13px 18px;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:#24372D;color:#fff;box-shadow:0 18px 45px rgba(18,30,22,.34);}
+  .compare-tray[hidden]{display:none;}
+  .compare-tray__copy{min-width:0;}
+  .compare-tray__copy strong{display:block;font:800 13px 'Inter',sans-serif;}
+  .compare-tray__names{display:block;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#D5DED8;font:500 11.5px 'Inter',sans-serif;}
+  .compare-tray__actions{display:flex;align-items:center;gap:8px;flex:none;}
+  .compare-tray__clear{border:0;background:transparent;color:#D5DED8;font:700 11.5px 'Inter',sans-serif;cursor:pointer;padding:8px;}
+  .compare-tray__go{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:8px 14px;border-radius:10px;background:#fff;color:#24372D;text-decoration:none;font:800 12px 'Inter',sans-serif;}
+  .compare-tray__go[aria-disabled="true"]{background:#718078;color:#E7ECE9;pointer-events:none;}
+  @media(max-width:560px){
+    .compare-tray{bottom:76px;align-items:flex-end;padding:11px 12px;}
+    .compare-tray__clear{display:none;}
+    .compare-tray__go{padding-inline:11px;}
+  }
 </style>
 </head>
 <body>
@@ -327,6 +347,7 @@
 <script src="auth-ui.js?v=20260729-1" defer></script>
 <script src="discovery-state.js?v=20260729-1" defer></script>
 <script src="discovery-filters.js?v=20260729-1" defer></script>
+<script src="comparison-state.js?v=20260729-1" defer></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     const list = document.getElementById('simpleTrailsList');
@@ -347,6 +368,10 @@
     const toolsWrap = document.getElementById('browseTools');
     const resultCount = document.getElementById('browseResultCount');
     const clear = document.getElementById('browseClear');
+    const compareApi = window.DoloPawsComparisonState;
+    let compareIds = compareApi
+      ? compareApi.load(localStorage, trails.map(trail => trail.id))
+      : [];
     const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, char => ({
       '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;',
     })[char]);
@@ -465,6 +490,41 @@
       if(target === current) return;
       if(mode === 'push') window.history.pushState(null, '', target);
       else window.history.replaceState(null, '', target);
+    }
+
+    function renderCompareTray(){
+      if(!compareApi) return;
+      let tray = document.getElementById('compareTray');
+      if(!tray){
+        tray = document.createElement('aside');
+        tray.id = 'compareTray';
+        tray.className = 'compare-tray';
+        tray.setAttribute('aria-label', 'Selected trails to compare');
+        document.body.appendChild(tray);
+      }
+      tray.hidden = compareIds.length === 0;
+      if(!compareIds.length) return;
+      const selected = compareIds.map(id => trails.find(trail => trail.id === id)).filter(Boolean);
+      const ready = selected.length >= 2;
+      const compareHref = compareApi.compareHref(compareIds, {
+        dog:dogValue,
+        from:browseStateTarget(),
+      });
+      tray.innerHTML =
+        '<div class="compare-tray__copy">' +
+          `<strong>${selected.length} of 3 selected</strong>` +
+          `<span class="compare-tray__names">${esc(selected.map(trail => trail.name).join(' · '))}</span>` +
+        '</div>' +
+        '<div class="compare-tray__actions">' +
+          '<button type="button" class="compare-tray__clear">Clear</button>' +
+          `<a class="compare-tray__go" href="${esc(compareHref)}" aria-disabled="${ready ? 'false' : 'true'}">` +
+            (ready ? 'Compare trails' : 'Choose 1 more') +
+          '</a>' +
+        '</div>';
+      tray.querySelector('.compare-tray__clear').addEventListener('click', () => {
+        compareIds = compareApi.save(localStorage, []);
+        renderPage(null);
+      });
     }
 
     function activeDogProfile(){
@@ -660,10 +720,11 @@
           : `<span class="safety-badge ${t.safetyLevel === 'low-risk' ? 'safety-low' : t.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution'}">${ratingLabel}</span>`;
         const meta = [t.area, t.distance ? `${t.distance} km` : null, t.hours ? `${t.hours} h` : null]
           .filter(Boolean).join(' · ');
-        const openAttr = `href="trail.html?id=${encodeURIComponent(t.id)}&from=${encodeURIComponent(browseStateTarget())}"`;
-        const cta = `<div style="font-size:11.5px;font-weight:700;color:var(--accent);margin-top:8px;">${window.t('card.details')}</div>`;
+        const openHref = `trail.html?id=${encodeURIComponent(t.id)}&from=${encodeURIComponent(browseStateTarget())}`;
+        const isCompared = compareIds.includes(t.id);
+        const compareDisabled = !isCompared && compareIds.length >= compareApi.MAX_TRAILS;
         return `
-        <a ${openAttr} class="simple-card" style="text-decoration:none;display:block;color:inherit;">
+        <article class="simple-card">
           ${thumb}
           <div style="padding:12px 14px;">
             <div class="name" style="padding:0;">${t.name}</div>
@@ -672,13 +733,26 @@
               ${ratingBadge}
               ${provenance}
             </div>
-            ${cta}
+            <div class="browse-card-actions">
+              <a class="browse-card-open" href="${openHref}">${window.t('card.details')} →</a>
+              <button type="button" class="browse-card-compare" data-compare-id="${esc(t.id)}"
+                aria-pressed="${isCompared ? 'true' : 'false'}" ${compareDisabled ? 'disabled' : ''}>
+                ${isCompared ? 'Selected' : 'Compare'}
+              </button>
+            </div>
           </div>
-        </a>`;
+        </article>`;
       }).join('') : emptyHtml;
 
       const emptyClear = list.querySelector('[data-clear-empty]');
       if(emptyClear) emptyClear.addEventListener('click', () => clear.click());
+      list.querySelectorAll('[data-compare-id]').forEach(button => {
+        button.addEventListener('click', () => {
+          compareIds = compareApi.toggle(compareIds, button.dataset.compareId);
+          compareApi.save(localStorage, compareIds);
+          renderPage(null);
+        });
+      });
       const applyRecoveryState = nextState => {
         const target = window.DoloPawsDiscoveryState.browseHref({ ...nextState, page:1 });
         window.history.pushState(null, '', target);
@@ -698,6 +772,7 @@
           if(item) applyRecoveryState(item.state);
         });
       });
+      renderCompareTray();
 
       if(totalPages > 1){
         const nav = document.createElement('div');

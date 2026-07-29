@@ -47,6 +47,7 @@ function setup(url){
     .map(match => match[1]).filter(body => body.includes('function renderPage'))[0];
   const dom = new JSDOM(html, { url, runScripts:'outside-only' });
   const { window } = dom;
+  window.HTMLElement.prototype.scrollIntoView = function(){};
   window.t = (key, params) => {
     if(key === 'page.of') return `${params.a}/${params.b}`;
     return key;
@@ -57,6 +58,7 @@ function setup(url){
     'scoring/recommendation-adapters-v1.js',
     'discovery-state.js',
     'discovery-filters.js',
+    'comparison-state.js',
   ].forEach(file => window.eval(source(file)));
   window.eval(inline);
   window.dispatchEvent(new window.Event('DOMContentLoaded'));
@@ -94,5 +96,21 @@ describe('Browse filter UI', () => {
     expect(window.document.getElementById('browseAccess').value).toBe('allowed-reviewed');
     expect(window.document.getElementById('browseVerification').value).toBe('route-audited');
     expect(window.document.querySelector('.simple-card')).not.toBeNull();
+  });
+
+  test('selecting a trail opens the persistent comparison tray', () => {
+    const window = setup('https://www.dolopaws.com/browse-trails.html?region=dolomites');
+    const compare = window.document.querySelector('[data-compare-id="reviewed-loop"]');
+
+    compare.click();
+
+    const tray = window.document.getElementById('compareTray');
+    expect(window.document.querySelector('[data-compare-id="reviewed-loop"]').getAttribute('aria-pressed'))
+      .toBe('true');
+    expect(tray.hidden).toBe(false);
+    expect(tray.textContent).toContain('1 of 3 selected');
+    expect(tray.querySelector('.compare-tray__go').getAttribute('aria-disabled')).toBe('true');
+    expect(JSON.parse(window.localStorage.getItem('dolopaws-comparison-v1')).ids)
+      .toEqual(['reviewed-loop']);
   });
 });

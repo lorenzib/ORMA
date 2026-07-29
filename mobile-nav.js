@@ -94,6 +94,7 @@
       if(prefix && pagePath.startsWith('guides/')) return 'safety';
       if(
         f === 'browse-trails.html' ||
+        f === 'compare.html' ||
         f === 'trail.html' ||
         f === 'saved.html' ||
         f === 'downloads.html'
