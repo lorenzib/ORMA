@@ -29,6 +29,17 @@ button[disabled]{opacity:.55;cursor:wait}
 .hike-recovery p{margin:5px 0 10px;color:var(--muted);font-size:12px;line-height:1.45}
 .hike-recovery-actions{display:flex;gap:8px;flex-wrap:wrap}
 .hike-recovery-actions .secondary{background:#68766d}.hike-recovery-actions .danger{background:var(--red)}
+.offline-outcome{margin:12px 0 2px;padding:16px;border-radius:12px;background:#f7faf7;border:1px solid #cfddd2}
+.offline-outcome h3{margin:0;font-size:18px}
+.offline-outcome>p:not(.eyebrow){margin:6px 0 14px;color:var(--muted);font-size:12px;line-height:1.45}
+.offline-outcome fieldset{display:grid;gap:8px;margin:0 0 14px;padding:0;border:0}
+.offline-outcome legend,.offline-outcome-select{margin-bottom:8px;font-size:12px;font-weight:800}
+.offline-outcome label{display:flex;align-items:center;gap:8px;font-size:13px}
+.offline-outcome input{accent-color:var(--blue)}
+.offline-outcome-select{display:grid!important;gap:6px}
+.offline-outcome-select span,.offline-outcome legend span{color:var(--muted);font-weight:500}
+.offline-outcome select{width:100%;padding:10px;border:1px solid #cbd6cd;border-radius:9px;background:#fff;color:var(--ink);font:inherit}
+.offline-outcome-status{min-height:18px;margin:8px 0 0!important;font-weight:750}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
 .card{margin-top:16px;padding:20px}
 .grid .card{margin-top:0}

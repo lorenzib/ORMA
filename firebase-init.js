@@ -127,6 +127,37 @@ async function setLastMatches(trailIds) {
   }
 }
 
+async function saveHikeOutcome(record) {
+  if (!currentUser || !record || record.ownerId !== currentUser.uid) return false;
+  const outcomeId = String(record.outcomeId || "").slice(0, 200);
+  if (!outcomeId) return false;
+  try {
+    const ref = doc(db, "users", currentUser.uid, "outcomes", outcomeId);
+    const existing = await getDoc(ref);
+    if (existing.exists()) {
+      const data = existing.data();
+      return data.outcomeId === outcomeId
+        && data.completionId === record.completionId
+        && data.trailId === record.trailId;
+    }
+    await setDoc(ref, {
+      schemaVersion: 1,
+      outcomeId,
+      completionId: String(record.completionId || "").slice(0, 180),
+      trailId: String(record.trailId || "").slice(0, 80),
+      response: record.response,
+      waterAccuracy: record.waterAccuracy || null,
+      hazards: Array.isArray(record.hazards) ? record.hazards.slice(0, 6) : [],
+      recordedHikePresent: record.recordedHikePresent === true,
+      offlinePackageUsed: record.offlinePackageUsed === true,
+      createdAt: serverTimestamp(),
+    });
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 function friendlyError(code) {
   const map = {
     "auth/email-already-in-use": "That email already has an account — try logging in instead.",
@@ -502,6 +533,10 @@ window.DoloPawsCommunity = {
   setReview, getReviews, deleteMyReview,
   addTrailPhoto, getTrailPhotos,
   reportContent,
+};
+
+window.DoloPawsPrivateOutcomes = {
+  saveOutcome: saveHikeOutcome,
 };
 
 window.DoloPawsAuthReady = true;

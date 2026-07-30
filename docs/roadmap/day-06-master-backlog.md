@@ -487,6 +487,8 @@ All P0 and P1 work
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** HIKE-04, METRIC-01
+- **Implementation:** complete in code; see
+  `docs/architecture/OUT-01-structured-post-hike-outcome.md`.
 - **Outcome:** DoloPaws learns whether the recommendation suited the dog.
 - **Acceptance:**
   - The user can answer appropriate, appropriate with unexpected cautions, not

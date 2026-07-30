@@ -191,6 +191,39 @@ service cloud.firestore {
         && validModerationMetadata(data);
     }
 
+    function validPrivateOutcome(data, outcomeId) {
+      return data.keys().hasAll([
+          'schemaVersion', 'outcomeId', 'completionId', 'trailId', 'response',
+          'waterAccuracy', 'hazards', 'recordedHikePresent',
+          'offlinePackageUsed', 'createdAt'
+        ])
+        && data.keys().hasOnly([
+          'schemaVersion', 'outcomeId', 'completionId', 'trailId', 'response',
+          'waterAccuracy', 'hazards', 'recordedHikePresent',
+          'offlinePackageUsed', 'createdAt'
+        ])
+        && data.schemaVersion == 1
+        && isShortString(data.outcomeId, 200)
+        && data.outcomeId == outcomeId
+        && isShortString(data.completionId, 180)
+        && isTrailId(data.trailId)
+        && data.response in [
+          'appropriate', 'appropriate_with_unexpected_cautions',
+          'not_appropriate', 'did_not_complete', 'prefer_not_to_answer'
+        ]
+        && (data.waterAccuracy == null || data.waterAccuracy in [
+          'accurate', 'less_than_listed', 'more_than_listed', 'not_checked'
+        ])
+        && data.hazards is list
+        && data.hazards.size() <= 6
+        && data.hazards.hasOnly([
+          'surface', 'exposure', 'livestock', 'heat', 'access', 'water'
+        ])
+        && data.recordedHikePresent is bool
+        && data.offlinePackageUsed is bool
+        && data.createdAt is timestamp;
+    }
+
     function ownerContentUpdate() {
       return isContributor()
         && isOwner(resource.data.uid)
@@ -223,6 +256,16 @@ service cloud.firestore {
         && (!request.resource.data.keys().hasAny(['dogs'])
           || request.resource.data.dogs == resource.data.dogs);
       allow list: if false;
+    }
+
+    // Structured suitability outcomes are private owner data, not reviews.
+    // A deterministic completion-bound ID makes create retries idempotent.
+    match /users/{uid}/outcomes/{outcomeId} {
+      allow get, list, delete: if isOwner(uid);
+      allow create: if isOwner(uid)
+        && validPrivateOutcome(request.resource.data, outcomeId)
+        && request.resource.data.createdAt == request.time;
+      allow update: if false;
     }
 
     // Operators create and remove block records in the Firebase console.

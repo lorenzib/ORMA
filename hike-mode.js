@@ -532,6 +532,7 @@ function initHikeMode(map, trail){
     const photos = [];       // { file, url }
     let cond = 'Comfortable';
     let shareOn = true;
+    let outcomeResponse = '';
 
     const overlay = document.createElement('div');
     overlay.className = 'hk-overlay';
@@ -551,6 +552,34 @@ function initHikeMode(map, trail){
         <div class="hk-matchline">
           <span class="safety-badge ${safetyClass}">${esc(SAFETY_LABEL[trail.safetyLevel] || 'Moderate')}</span>
           ${Number.isFinite(matchPct) ? `<span class="pct">${esc(window.t('hike.matchFor', {pct: matchPct, name: dogName}))}</span>` : ''}
+        </div>
+        <div class="hk-block hk-outcome-block">
+          <div class="hk-label">Private trail feedback</div>
+          <p class="hk-outcome-intro">Did this trail suit ${esc(dogName)}? This helps assess the recommendation and never becomes a public review.</p>
+          <div class="hk-outcome-options" id="hkOutcomeOptions" role="radiogroup" aria-label="Did this trail suit your dog?"></div>
+          <div class="hk-outcome-followups" id="hkOutcomeFollowups" hidden>
+            <label for="hkWaterAccuracy">Was the listed water information accurate? <span>Optional</span></label>
+            <select id="hkWaterAccuracy">
+              <option value="">Prefer not to answer</option>
+              <option value="accurate">Yes, it was accurate</option>
+              <option value="less_than_listed">Less water than listed</option>
+              <option value="more_than_listed">More water than listed</option>
+              <option value="not_checked">I did not check</option>
+            </select>
+            <fieldset>
+              <legend>Any material hazard we should account for? <span>Optional</span></legend>
+              <div class="hk-hazard-options">
+                <label><input type="checkbox" value="surface"> Surface</label>
+                <label><input type="checkbox" value="exposure"> Exposure</label>
+                <label><input type="checkbox" value="livestock"> Livestock</label>
+                <label><input type="checkbox" value="heat"> Heat</label>
+                <label><input type="checkbox" value="access"> Access</label>
+                <label><input type="checkbox" value="water"> Water</label>
+              </div>
+            </fieldset>
+          </div>
+          <button type="button" class="hk-outcome-save" id="hkOutcomeSave" disabled>Save private feedback</button>
+          <p class="hk-outcome-status" id="hkOutcomeStatus" role="status" aria-live="polite"></p>
         </div>
         <div class="hk-block">
           <div class="hk-label">${esc(window.t('hike.feel'))}</div>
@@ -581,6 +610,97 @@ function initHikeMode(map, trail){
     document.body.style.overflow = 'hidden';
 
     const q = sel => overlay.querySelector(sel);
+
+    function renderOutcome(){
+      const labels = [
+        ['appropriate', 'Yes — appropriate'],
+        ['appropriate_with_unexpected_cautions', 'Yes, with unexpected cautions'],
+        ['not_appropriate', 'No — not appropriate'],
+        ['did_not_complete', 'We turned back'],
+        ['prefer_not_to_answer', 'Prefer not to answer'],
+      ];
+      const choices = q('#hkOutcomeOptions');
+      choices.innerHTML = '';
+      labels.forEach(([value, label]) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = label;
+        button.className = value === outcomeResponse ? 'on' : '';
+        button.setAttribute('role', 'radio');
+        button.setAttribute('aria-checked', String(value === outcomeResponse));
+        button.addEventListener('click', () => {
+          outcomeResponse = value;
+          renderOutcome();
+        });
+        choices.appendChild(button);
+      });
+      q('#hkOutcomeFollowups').hidden =
+        !outcomeResponse || outcomeResponse === 'prefer_not_to_answer';
+      q('#hkOutcomeSave').disabled = !outcomeResponse;
+    }
+
+    q('#hkOutcomeSave').addEventListener('click', async () => {
+      const saveButton = q('#hkOutcomeSave');
+      const status = q('#hkOutcomeStatus');
+      const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+      if(!user){
+        status.textContent = 'Log in before saving this private response.';
+        if(window.DoloPawsAuthUI) window.DoloPawsAuthUI.openLogin();
+        return;
+      }
+      if(!window.DoloPawsPostHikeOutcomes){
+        status.textContent = 'Private feedback is unavailable. Your completed hike is still saved.';
+        return;
+      }
+      saveButton.disabled = true;
+      status.textContent = 'Saving privately on this device…';
+      let offlinePackageUsed = false;
+      if(window.DoloPawsOffline && window.DoloPawsOffline.inspectPackage){
+        try{
+          const inspection = await window.DoloPawsOffline.inspectPackage(trail.id);
+          offlinePackageUsed = !!inspection.usable;
+        }catch(error){}
+      }
+      const hazards = Array.from(
+        overlay.querySelectorAll('.hk-hazard-options input:checked')
+      ).map(input => input.value);
+      const result = window.DoloPawsPostHikeOutcomes.save(completion, {
+        response:outcomeResponse,
+        waterAccuracy:q('#hkWaterAccuracy').value || null,
+        hazards,
+        offlinePackageUsed,
+      }, user.uid);
+      if(!result.ok){
+        status.textContent = 'The response could not be saved. Try again before closing this screen.';
+        saveButton.disabled = false;
+        return;
+      }
+      overlay.querySelectorAll(
+        '#hkOutcomeOptions button,#hkOutcomeFollowups input,#hkOutcomeFollowups select'
+      ).forEach(control => { control.disabled = true; });
+      status.textContent = navigator.onLine
+        ? 'Saved privately · syncing…'
+        : 'Saved privately · pending sync until you reconnect.';
+      if(result.created && window.DoloPawsMetrics){
+        const metricProperties = {
+          trailId:trail.id,
+          offlinePackageUsed,
+          recordedHikePresent:true,
+          conditionsDiffered:outcomeResponse === 'appropriate_with_unexpected_cautions',
+        };
+        if(hazards[0]) metricProperties.primaryMismatchCategory = hazards[0];
+        window.DoloPawsMetrics.record(
+          'post_hike_outcome',
+          outcomeResponse,
+          metricProperties
+        );
+      }
+      const sync = await window.DoloPawsPostHikeOutcomes.syncBrowser();
+      status.textContent = sync.ok && sync.pending === 0
+        ? 'Saved privately · synced to your account.'
+        : 'Saved privately · pending sync until you reconnect.';
+      saveButton.textContent = 'Feedback saved';
+    });
 
     function renderCond(){
       const seg = q('#hkCondSeg');
@@ -712,6 +832,7 @@ function initHikeMode(map, trail){
 
     renderCond();
     renderPhotos();
+    renderOutcome();
     const firstBtn = q('#hkSaveBtn');
     if (firstBtn) firstBtn.focus();
   }

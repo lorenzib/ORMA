@@ -99,6 +99,22 @@ function validPhoto(uid, overrides = {}){
   };
 }
 
+function validOutcome(overrides = {}){
+  return {
+    schemaVersion: 1,
+    outcomeId: 'outcome:completion:session-1',
+    completionId: 'completion:session-1',
+    trailId: 'lago-carezza',
+    response: 'appropriate',
+    waterAccuracy: 'accurate',
+    hazards: ['surface'],
+    recordedHikePresent: true,
+    offlinePackageUsed: true,
+    createdAt: serverTimestamp(),
+    ...overrides,
+  };
+}
+
 beforeAll(async () => {
   const [host, rawPort] = (process.env.FIRESTORE_EMULATOR_HOST || '127.0.0.1:8080').split(':');
   testEnv = await initializeTestEnvironment({
@@ -193,6 +209,58 @@ describe('anonymous hike counter', () => {
       collection(guest, 'hikeEvents/lago-carezza/events'),
       where('startedAt', '>', Timestamp.fromMillis(Date.now() - 604800000))
     )));
+  });
+});
+
+describe('private post-hike outcomes', () => {
+  test('owner can create, read, list, and delete but cannot rewrite an outcome', async () => {
+    const owner = ordinaryDb('owner-1');
+    const other = ordinaryDb('other-1');
+    const guest = testEnv.unauthenticatedContext().firestore();
+    const path = 'users/owner-1/outcomes/outcome:completion:session-1';
+    const ref = doc(owner, path);
+
+    await assertSucceeds(setDoc(ref, validOutcome()));
+    await assertSucceeds(getDoc(ref));
+    await assertSucceeds(getDocs(collection(owner, 'users/owner-1/outcomes')));
+    await assertFails(getDoc(doc(other, path)));
+    await assertFails(getDoc(doc(guest, path)));
+    await assertFails(updateDoc(ref, { response:'not_appropriate' }));
+    await assertFails(deleteDoc(doc(other, path)));
+    await assertSucceeds(deleteDoc(ref));
+  });
+
+  test('rejects spoofed IDs, free text, invalid enums, and extra location data', async () => {
+    const owner = ordinaryDb('owner-1');
+    const collectionPath = 'users/owner-1/outcomes';
+    await assertFails(setDoc(
+      doc(owner, `${collectionPath}/wrong-id`),
+      validOutcome()
+    ));
+    await assertFails(setDoc(
+      doc(owner, `${collectionPath}/outcome:completion:session-2`),
+      validOutcome({
+        outcomeId:'outcome:completion:session-2',
+        completionId:'completion:session-2',
+        note:'Free text must remain outside structured outcomes.',
+      })
+    ));
+    await assertFails(setDoc(
+      doc(owner, `${collectionPath}/outcome:completion:session-3`),
+      validOutcome({
+        outcomeId:'outcome:completion:session-3',
+        completionId:'completion:session-3',
+        response:'five_stars',
+      })
+    ));
+    await assertFails(setDoc(
+      doc(owner, `${collectionPath}/outcome:completion:session-4`),
+      validOutcome({
+        outcomeId:'outcome:completion:session-4',
+        completionId:'completion:session-4',
+        latitude:46.4,
+      })
+    ));
   });
 });
 

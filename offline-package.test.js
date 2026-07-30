@@ -35,6 +35,7 @@ describe('Lago di Carezza offline package', () => {
       'app',
       'completion',
       'gps-policy',
+      'outcome',
       'session',
       'map',
       'route',
@@ -82,6 +83,7 @@ describe('Lago di Carezza offline package', () => {
     expect(manifest.resources.find(resource => resource.role === 'safety').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'gps-policy').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'completion').required).toBe(true);
+    expect(manifest.resources.find(resource => resource.role === 'outcome').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'session').required).toBe(true);
     expect(app).toContain('if(resource.required !== false) throw error');
   });
@@ -112,6 +114,17 @@ describe('Lago di Carezza offline package', () => {
     expect(shell).not.toContain('evidenceList');
     expect(app).not.toContain('Freshness unknown');
     expect(app).toContain('Vetted by DoloPaws.');
+  });
+
+  test('offers private structured feedback after an offline completion', () => {
+    const shell = fs.readFileSync(path.join(root, 'offline', 'trail.html'), 'utf8');
+    const app = fs.readFileSync(path.join(root, 'offline', 'offline-app.js'), 'utf8');
+    expect(shell).toContain('src="../post-hike-outcomes.js"');
+    expect(shell).toContain('It never becomes a public review.');
+    expect(shell).toContain('value="appropriate_with_unexpected_cautions"');
+    expect(shell).toContain('value="did_not_complete"');
+    expect(app).toContain('offlinePackageUsed:true');
+    expect(app).toContain('Saved privately · pending sync until you reconnect.');
   });
 
   test('restores, pauses, and discards an unfinished hike without a network dependency', () => {

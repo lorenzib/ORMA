@@ -52,6 +52,40 @@
           <button id="hikeDiscardBtn" type="button" class="danger">Discard hike</button>
         </div>
       </div>
+      <div id="offlineOutcome" class="offline-outcome" hidden>
+        <p class="eyebrow">Private trail feedback</p>
+        <h3>Did this trail suit your dog?</h3>
+        <p>This structured check-in helps DoloPaws improve trail guidance. It never becomes a public review.</p>
+        <fieldset id="offlineOutcomeResponses">
+          <legend>Choose one response</legend>
+          <label><input type="radio" name="offlineOutcomeResponse" value="appropriate"> Yes, it was appropriate</label>
+          <label><input type="radio" name="offlineOutcomeResponse" value="appropriate_with_unexpected_cautions"> Yes, with unexpected cautions</label>
+          <label><input type="radio" name="offlineOutcomeResponse" value="not_appropriate"> No, it was not appropriate</label>
+          <label><input type="radio" name="offlineOutcomeResponse" value="did_not_complete"> We did not complete it</label>
+          <label><input type="radio" name="offlineOutcomeResponse" value="prefer_not_to_answer"> Prefer not to answer</label>
+        </fieldset>
+        <label class="offline-outcome-select" for="offlineOutcomeWater">
+          Water information <span>(optional)</span>
+          <select id="offlineOutcomeWater">
+            <option value="">Not answered</option>
+            <option value="accurate">Accurate</option>
+            <option value="less_than_listed">Less water than listed</option>
+            <option value="more_than_listed">More water than listed</option>
+            <option value="not_checked">I did not check</option>
+          </select>
+        </label>
+        <fieldset id="offlineOutcomeHazards">
+          <legend>Unexpected cautions <span>(optional)</span></legend>
+          <label><input type="checkbox" value="surface"> Surface</label>
+          <label><input type="checkbox" value="exposure"> Exposure</label>
+          <label><input type="checkbox" value="livestock"> Livestock</label>
+          <label><input type="checkbox" value="heat"> Heat</label>
+          <label><input type="checkbox" value="access"> Access</label>
+          <label><input type="checkbox" value="water"> Water</label>
+        </fieldset>
+        <button id="offlineOutcomeSave" type="button" disabled>Save private feedback</button>
+        <p id="offlineOutcomeStatus" class="offline-outcome-status" role="status" aria-live="polite"></p>
+      </div>
       <p class="map-warning">Beta offline map. Compare it with posted signs and do not treat DoloPaws as an emergency-navigation service.</p>
     </section>
 
@@ -84,6 +118,7 @@
   <script src="../hike-gps-policy.js"></script>
   <script src="../hike-session.js"></script>
   <script src="../hike-completions.js"></script>
+  <script src="../post-hike-outcomes.js"></script>
   <script src="offline-app.js"></script>
 </body>
 </html>

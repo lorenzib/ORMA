@@ -19,6 +19,7 @@ describe('SEC-01 Firestore configuration contract', () => {
   test('every client-side collection has an explicit rule boundary', () => {
     const clientCollections = [
       'users',
+      'outcomes',
       'hikeEvents',
       'flags',
       'reviews',
@@ -88,5 +89,18 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain("request.resource.data.keys().hasOnly(['startedAt'])");
     expect(rules).toContain('request.resource.data.startedAt == request.time');
     expect(rules).toContain('allow update: if false;');
+  });
+
+  test('post-hike outcomes are private, structured, and immutable', () => {
+    expect(rules).toContain('match /users/{uid}/outcomes/{outcomeId}');
+    expect(rules).toContain('validPrivateOutcome(request.resource.data, outcomeId)');
+    expect(rules).toContain('allow get, list, delete: if isOwner(uid);');
+    expect(rules).toContain('allow update: if false;');
+    expect(rules).toContain("data.response in [");
+    expect(rules).toContain("'prefer_not_to_answer'");
+    expect(rules).toContain("data.hazards.hasOnly([");
+    expect(client).toContain('window.DoloPawsPrivateOutcomes');
+    expect(client).toContain('saveOutcome: saveHikeOutcome');
+    expect(client).not.toContain('publicReview');
   });
 });

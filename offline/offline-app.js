@@ -8,6 +8,7 @@
   let routeCoordinates = [];
   let offRouteStreak = 0;
   let lastValidFixAt = null;
+  let completedRecord = null;
 
   const elements = {
     trailName: document.getElementById('trailName'),
@@ -30,6 +31,12 @@
     hikePauseButton: document.getElementById('hikePauseBtn'),
     hikeFinishButton: document.getElementById('hikeFinishBtn'),
     hikeDiscardButton: document.getElementById('hikeDiscardBtn'),
+    offlineOutcome: document.getElementById('offlineOutcome'),
+    offlineOutcomeResponses: document.getElementById('offlineOutcomeResponses'),
+    offlineOutcomeWater: document.getElementById('offlineOutcomeWater'),
+    offlineOutcomeHazards: document.getElementById('offlineOutcomeHazards'),
+    offlineOutcomeSave: document.getElementById('offlineOutcomeSave'),
+    offlineOutcomeStatus: document.getElementById('offlineOutcomeStatus'),
     facts: document.getElementById('facts'),
     cautions: document.getElementById('cautions'),
     emergency: document.getElementById('emergency'),
@@ -308,6 +315,59 @@
     elements.hikeFinishButton.hidden = false;
   }
 
+  function showOfflineOutcome(completion){
+    completedRecord = completion;
+    elements.offlineOutcome.hidden = false;
+    elements.offlineOutcomeStatus.textContent = completion.ownerId
+      ? 'Choose one response. It will be stored privately on this device.'
+      : 'This completion has no account owner, so private feedback cannot be saved.';
+    elements.offlineOutcomeSave.disabled = true;
+  }
+
+  function selectedOutcomeResponse(){
+    const selected = elements.offlineOutcomeResponses.querySelector(
+      'input[name="offlineOutcomeResponse"]:checked'
+    );
+    return selected ? selected.value : null;
+  }
+
+  async function saveOfflineOutcome(){
+    if(!completedRecord || !completedRecord.ownerId ||
+       !window.DoloPawsPostHikeOutcomes) return;
+    const response = selectedOutcomeResponse();
+    if(!response) return;
+    const hazards = Array.from(
+      elements.offlineOutcomeHazards.querySelectorAll('input:checked'),
+      input => input.value
+    );
+    const result = window.DoloPawsPostHikeOutcomes.save(
+      completedRecord,
+      {
+        response,
+        waterAccuracy:elements.offlineOutcomeWater.value || null,
+        hazards,
+        offlinePackageUsed:true,
+      },
+      completedRecord.ownerId
+    );
+    if(!result.ok){
+      elements.offlineOutcomeStatus.textContent =
+        'Feedback could not be stored. Free some device storage and try again.';
+      return;
+    }
+    elements.offlineOutcome.querySelectorAll('input, select, button')
+      .forEach(control => { control.disabled = true; });
+    elements.offlineOutcomeSave.textContent = 'Private feedback saved';
+    elements.offlineOutcomeStatus.textContent =
+      'Saved privately · pending sync until you reconnect.';
+    if(navigator.onLine){
+      const sync = await window.DoloPawsPostHikeOutcomes.syncBrowser();
+      if(sync.ok && sync.pending === 0){
+        elements.offlineOutcomeStatus.textContent = 'Saved privately · synced.';
+      }
+    }
+  }
+
   function finishRecoveredHike(){
     if(!activeSession || !window.DoloPawsHikeCompletions) return;
     const completedAt = activeSession.state === 'completion-pending'
@@ -342,6 +402,7 @@
     elements.hikePauseButton.hidden = true;
     elements.hikeFinishButton.hidden = true;
     elements.hikeDiscardButton.hidden = true;
+    showOfflineOutcome(result.record);
   }
 
   function discardRecoveredHike(){
@@ -357,6 +418,11 @@
     elements.hikePauseButton.addEventListener('click', pauseRecoveredHike);
     elements.hikeFinishButton.addEventListener('click', finishRecoveredHike);
     elements.hikeDiscardButton.addEventListener('click', discardRecoveredHike);
+    elements.offlineOutcomeResponses.addEventListener('change', () => {
+      elements.offlineOutcomeSave.disabled =
+        !completedRecord || !completedRecord.ownerId || !selectedOutcomeResponse();
+    });
+    elements.offlineOutcomeSave.addEventListener('click', saveOfflineOutcome);
     const loaded = window.DoloPawsHikeSession.load();
     const ownerId = loaded.status === 'ready' ? loaded.session.ownerId : null;
     const recovery = window.DoloPawsHikeSession.recoveryState({
