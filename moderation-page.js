@@ -37,17 +37,41 @@
       wrap.appendChild(image);
     }
     if(content.caption) wrap.appendChild(element('p', '', content.caption));
+    if(item.type === 'flag'){
+      wrap.appendChild(element(
+        'p',
+        '',
+        `Hazard evidence: ${content.confirmationSource || 'community'} · ` +
+        `${content.confirmations || 0} confirmed · ${content.disputes || 0} disputed`
+      ));
+      wrap.appendChild(element('p', '', `Expires: ${dateLabel(content.expiresAt)}`));
+    }
     return wrap;
   }
 
-  function action(status, label){
+  function action(status, label, confirmationSource){
     const button = element('button', '', label);
     button.type = 'button';
     button.dataset.status = status;
+    if(confirmationSource) button.dataset.confirmationSource = confirmationSource;
     return button;
   }
 
   function actionsFor(item){
+    if(item.type === 'flag' && item.status === 'pending') return [
+      action('visible', 'Publish unconfirmed', 'community'),
+      action('visible', 'Publish · DoloPaws reviewed', 'dolopaws-reviewed'),
+      action('visible', 'Publish · official source', 'official'),
+      action('hidden', 'Hide'),
+      action('removed', 'Remove'),
+    ];
+    if(item.type === 'flag' && ['visible', 'reported'].includes(item.status)) return [
+      action('visible', 'Keep active · unconfirmed', 'community'),
+      action('visible', 'Keep active · DoloPaws reviewed', 'dolopaws-reviewed'),
+      action('visible', 'Keep active · official source', 'official'),
+      action('hidden', 'Hide'),
+      action('removed', 'Remove'),
+    ];
     if(item.status === 'pending') return [
       action('visible', 'Publish'), action('hidden', 'Hide'), action('removed', 'Remove'),
     ];
@@ -107,7 +131,8 @@
         const result = await window.DoloPawsModeration.decide(
           item,
           button.dataset.status,
-          reason.value.trim()
+          reason.value.trim(),
+          { confirmationSource: button.dataset.confirmationSource || null }
         );
         if(!result.ok){
           state.classList.add('is-error');

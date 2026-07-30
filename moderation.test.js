@@ -19,8 +19,12 @@ describe('MOD-02 minimum moderation queue', () => {
 
   test('queues every state needing a decision or restoration', () => {
     expect(client).toContain(
-      'where("status", "in", ["pending", "reported", "hidden", "removed"])'
+      '? ["pending", "visible", "reported", "hidden", "removed"]'
     );
+    expect(client).toContain(
+      ': ["pending", "reported", "hidden", "removed"]'
+    );
+    expect(client).toContain('!item.content.lifecyclePresent');
     expect(client).toContain('where("status", "==", "open")');
     expect(client).toContain('reportReasons');
     expect(page).toContain("action('visible', 'Publish')");

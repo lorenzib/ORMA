@@ -40,4 +40,38 @@ describe('MOD-01 community content state contract', () => {
     expect(states.canModeratorTransition('pending', 'reported')).toBe(false);
     expect(states.canModeratorTransition('visible', 'pending')).toBe(false);
   });
+
+  test('hazard expiry is type-specific', () => {
+    const start = new Date('2026-07-30T10:00:00Z');
+    expect(states.hazardExpiryDate('water-dry', start).toISOString())
+      .toBe('2026-08-06T10:00:00.000Z');
+    expect(states.hazardExpiryDate('guard-dogs-livestock', start).toISOString())
+      .toBe('2026-08-13T10:00:00.000Z');
+    expect(states.hazardExpiryDate('dangerous-terrain', start).toISOString())
+      .toBe('2026-08-29T10:00:00.000Z');
+    expect(states.hazardExpiryDate('not-dog-friendly', start).toISOString())
+      .toBe('2026-10-28T10:00:00.000Z');
+  });
+
+  test('hazard trust keeps official, DoloPaws, and community evidence distinct', () => {
+    expect(states.hazardTrustState({ confirmationSource:'official' }))
+      .toBe('official-confirmed');
+    expect(states.hazardTrustState({ confirmationSource:'dolopaws-reviewed' }))
+      .toBe('dolopaws-reviewed');
+    expect(states.hazardTrustState({ confirmations:2, disputes:0 }))
+      .toBe('community-confirmed');
+    expect(states.hazardTrustState({ confirmations:1, disputes:2 }))
+      .toBe('community-disputed');
+    expect(states.hazardTrustState({ confirmations:1, disputes:0 }))
+      .toBe('unconfirmed');
+  });
+
+  test('missing or elapsed expiry is never active', () => {
+    const now = new Date('2026-07-30T10:00:00Z');
+    expect(states.hazardIsExpired({}, now)).toBe(true);
+    expect(states.hazardIsExpired({ expiresAt:new Date('2026-07-30T09:59:59Z') }, now))
+      .toBe(true);
+    expect(states.hazardIsExpired({ expiresAt:new Date('2026-07-30T10:00:01Z') }, now))
+      .toBe(false);
+  });
 });

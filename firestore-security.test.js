@@ -102,7 +102,7 @@ describe('SEC-01 Firestore configuration contract', () => {
       fields: index.fields.map(field => field.fieldPath),
     }));
     expect(signatures).toEqual(expect.arrayContaining([
-      { collectionGroup: 'flags', fields: ['trailId', 'status'] },
+      { collectionGroup: 'flags', fields: ['trailId', 'status', 'expiresAt'] },
       { collectionGroup: 'reviews', fields: ['trailId', 'status'] },
       { collectionGroup: 'trailPhotos', fields: ['trailId', 'status'] },
       { collectionGroup: 'reports', fields: ['status', 'createdAt'] },

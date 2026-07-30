@@ -534,6 +534,8 @@ All P0 and P1 work
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** MOD-01
+- **Implementation:** complete in code; see
+  `docs/architecture/MOD-03-hazard-confirmation-and-expiry.md`.
 - **Outcome:** urgent reports appear quickly without becoming permanent facts.
 - **Acceptance:**
   - A new hazard is labelled as an unconfirmed community report.

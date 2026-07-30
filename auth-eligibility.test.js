@@ -26,7 +26,9 @@ describe('AUTH-02 verified contributor contract', () => {
   });
 
   test('every contribution checks eligibility and starts pending', () => {
-    expect(client.match(/await getContributionEligibility\(\)/g)).toHaveLength(3);
+    // Reviews, photos, hazard reports, and hazard confirmation/dispute all
+    // require the same verified-contributor decision.
+    expect(client.match(/await getContributionEligibility\(\)/g)).toHaveLength(4);
     expect(client.match(/status: "pending"/g)).toHaveLength(3);
     expect(client).toContain('permission-denied"))');
     expect(client).toContain('existing && existing.exists()');

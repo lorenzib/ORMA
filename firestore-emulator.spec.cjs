@@ -21,6 +21,7 @@ const {
   Timestamp,
   updateDoc,
   where,
+  writeBatch,
 } = require('firebase/firestore');
 
 const PROJECT_ID = 'demo-dolopaws';
@@ -67,6 +68,10 @@ function validFlag(uid, overrides = {}){
     text: 'The mapped fountain was dry.',
     dogContext: null,
     status: 'pending',
+    confirmationSource: 'community',
+    confirmations: 0,
+    disputes: 0,
+    expiresAt: Timestamp.fromMillis(Date.now() + 6 * 24 * 3600 * 1000),
     createdAt: serverTimestamp(),
     ...overrides,
   };
@@ -334,16 +339,25 @@ describe('hazard flags', () => {
         ...validFlag('author-1', { status: 'hidden' }),
         createdAt: Timestamp.now(),
       }],
+      ['flags/expired-flag', {
+        ...validFlag('author-1', {
+          status: 'visible',
+          expiresAt: Timestamp.fromMillis(Date.now() - 3600 * 1000),
+        }),
+        createdAt: Timestamp.now(),
+      }],
     ]);
     const guest = testEnv.unauthenticatedContext().firestore();
     await assertSucceeds(getDoc(doc(guest, 'flags/visible-flag')));
     await assertSucceeds(getDoc(doc(guest, 'flags/reported-flag')));
     await assertFails(getDoc(doc(guest, 'flags/pending-flag')));
     await assertFails(getDoc(doc(guest, 'flags/hidden-flag')));
+    await assertFails(getDoc(doc(guest, 'flags/expired-flag')));
     await assertSucceeds(getDocs(query(
       collection(guest, 'flags'),
       where('trailId', '==', 'lago-carezza'),
-      where('status', 'in', ['visible', 'reported'])
+      where('status', 'in', ['visible', 'reported']),
+      where('expiresAt', '>', Timestamp.fromMillis(Date.now() + 60 * 1000))
     )));
     await assertFails(getDocs(collection(guest, 'flags')));
   });
@@ -372,6 +386,64 @@ describe('hazard flags', () => {
       moderatedBy: 'somebody-else',
     }));
     await assertSucceeds(getDoc(ref));
+  });
+
+  test('independent eligible users can confirm or dispute exactly once', async () => {
+    await seed([['flags/flag-1', {
+      ...validFlag('author-1', { status: 'visible' }),
+      createdAt: Timestamp.now(),
+    }]]);
+    const responder = contributorDb('responder-1');
+    const flagRef = doc(responder, 'flags/flag-1');
+    const responseRef = doc(responder, 'flags/flag-1/responses/responder-1');
+    const first = writeBatch(responder);
+    first.set(responseRef, {
+      flagId: 'flag-1',
+      uid: 'responder-1',
+      stance: 'confirm',
+      createdAt: serverTimestamp(),
+    });
+    first.update(flagRef, {
+      confirmations: 1,
+      lastCommunityResponseAt: serverTimestamp(),
+    });
+    await assertSucceeds(first.commit());
+
+    const duplicate = writeBatch(responder);
+    duplicate.set(responseRef, {
+      flagId: 'flag-1',
+      uid: 'responder-1',
+      stance: 'confirm',
+      createdAt: serverTimestamp(),
+    });
+    duplicate.update(flagRef, {
+      confirmations: 2,
+      lastCommunityResponseAt: serverTimestamp(),
+    });
+    await assertFails(duplicate.commit());
+
+    const author = contributorDb('author-1');
+    const authorBatch = writeBatch(author);
+    authorBatch.set(doc(author, 'flags/flag-1/responses/author-1'), {
+      flagId: 'flag-1',
+      uid: 'author-1',
+      stance: 'confirm',
+      createdAt: serverTimestamp(),
+    });
+    authorBatch.update(doc(author, 'flags/flag-1'), {
+      confirmations: 2,
+      lastCommunityResponseAt: serverTimestamp(),
+    });
+    await assertFails(authorBatch.commit());
+
+    await assertFails(getDoc(doc(
+      contributorDb('other-1'),
+      'flags/flag-1/responses/responder-1'
+    )));
+    await assertSucceeds(getDoc(doc(
+      moderatorDb('moderator-1'),
+      'flags/flag-1/responses/responder-1'
+    )));
   });
 });
 

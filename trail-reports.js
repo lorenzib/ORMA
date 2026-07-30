@@ -7,9 +7,8 @@
  * slider, short note).
  *
  * Product rule this file enforces: community flags display ALONGSIDE the
- * DoloPaws verified safety score — they never alter it. Flags older than
- * 60 days render collapsed and grey ("from last season — unconfirmed"),
- * so stale warnings can't erode trust in fresh ones.
+ * DoloPaws verified safety score — they never alter it. Type-specific expiry
+ * removes stale flags from the active safety view without deleting history.
  *
  * Usage: initTrailReports(map, trail) inside trail.js's map 'load'
  * handler. Include this file in trail.html BEFORE trail.js.
@@ -24,8 +23,6 @@ const FLAG_TYPES = {
   'lift-refused-dog':     { icon: '🚡', label: 'Lift refused a dog',            severe: false },
   'other':                { icon: '📝', label: 'Other',                          severe: false },
 };
-
-const STALE_FLAG_DAYS = 60;
 
 function trEsc(s){
   return String(s).replace(/[&<>"']/g,
@@ -182,9 +179,22 @@ function initTrailReports(map, trail){
     }).join('');
   }
 
-  function isStale(f){
-    const d = flagDate(f);
-    return d ? (Date.now() - d.getTime()) > STALE_FLAG_DAYS * 24 * 3600 * 1000 : false;
+  function isExpired(f){
+    return !window.DoloPawsCommunityStates ||
+      !window.DoloPawsCommunityStates.hazardIsExpired ||
+      window.DoloPawsCommunityStates.hazardIsExpired(f);
+  }
+
+  function trustLabel(f){
+    const state = window.DoloPawsCommunityStates.hazardTrustState(f);
+    const key = {
+      'official-confirmed':'reports.officialConfirmed',
+      'dolopaws-reviewed':'reports.dolopawsReviewed',
+      'community-confirmed':'reports.communityConfirmed',
+      'community-disputed':'reports.communityDisputed',
+      unconfirmed:'reports.unconfirmed',
+    }[state];
+    return window.t(key);
   }
 
   function dogContextLine(f){
@@ -198,11 +208,10 @@ function initTrailReports(map, trail){
   function render(flags){
     flags = flags.filter(flag =>
       window.DoloPawsCommunityStates &&
-      window.DoloPawsCommunityStates.isPublic(flag.status)
+      window.DoloPawsCommunityStates.isPublic(flag.status) &&
+      !isExpired(flag)
     );
-    // Newest first; stale ones sink to the bottom.
     flags.sort((a, b) => {
-      if (isStale(a) !== isStale(b)) return isStale(a) ? 1 : -1;
       const da = flagDate(a), db = flagDate(b);
       return (db ? db.getTime() : 0) - (da ? da.getTime() : 0);
     });
@@ -218,31 +227,34 @@ function initTrailReports(map, trail){
     } else {
       listEl.innerHTML = flags.map(f => {
         const t = FLAG_TYPES[f.type] || FLAG_TYPES.other;
-        const stale = isStale(f);
         const d = flagDate(f);
         const dateStr = d ? d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : '';
         const kmChip = (typeof f.km === 'number')
           ? `<span style="font-size:11px;font-weight:700;background:rgba(0,0,0,.07);padding:2px 8px;border-radius:10px;margin-left:8px;">km ${f.km}</span>` : '';
-        const staleNote = stale
-          ? `<div style="font-size:11px;color:var(--ink-soft);margin-top:4px;font-style:italic;">${window.t('reports.stale')}</div>` : '';
         const removeLink = (uid && f.uid === uid)
           ? ` · <a href="#" data-remove="${trEsc(f.id)}" style="color:#9C3A25;">${window.t('reports.remove')}</a>` : '';
         const reportLink = (uid && f.uid !== uid)
           ? ` · <a href="#" data-report="${trEsc(f.id)}" style="color:var(--ink-soft);">${window.t('reports.report')}</a>` : '';
+        const responseLinks = (uid && f.uid !== uid)
+          ? `<div style="display:flex;gap:12px;margin-top:7px;">
+              <a href="#" data-hazard-response="confirm" data-flag-id="${trEsc(f.id)}">${window.t('reports.confirm')}</a>
+              <a href="#" data-hazard-response="dispute" data-flag-id="${trEsc(f.id)}">${window.t('reports.dispute')}</a>
+            </div>` : '';
+        const responseCount = `${Number(f.confirmations) || 0} confirmed · ${Number(f.disputes) || 0} disputed`;
         // Design tile: neutral inset card + a coloured flag square whose tone
         // carries severity, replacing the mixed emoji-per-type language.
-        const tile = stale ? { bg: 'var(--sage-dim)', fg: 'var(--ink-soft)' }
-          : t.severe ? { bg: '#F3D9D2', fg: '#9C3A25' }
+        const tile = t.severe ? { bg: '#F3D9D2', fg: '#9C3A25' }
           : { bg: '#F5E4C6', fg: '#8A5A16' };
         const flagSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3v18h2v-7h5l1 2h6V6h-5l-1-2H5z"/></svg>';
         return `
-        <div style="display:flex;gap:12px;align-items:flex-start;background:#FAF8F1;border:1px solid #EDE9DD;border-radius:12px;padding:12px 14px;margin-bottom:10px;${stale ? 'opacity:.75;' : ''}">
+        <div style="display:flex;gap:12px;align-items:flex-start;background:#FAF8F1;border:1px solid #EDE9DD;border-radius:12px;padding:12px 14px;margin-bottom:10px;">
           <span style="flex:none;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:${tile.bg};color:${tile.fg};">${flagSvg}</span>
           <div style="flex:1;min-width:0;">
             <div style="font-weight:800;color:var(--ink);font-size:13px;">${window.t('flag.' + f.type)}${kmChip}</div>
             ${f.text ? `<div style="font-size:12.5px;color:var(--ink-soft);line-height:1.5;margin-top:2px;">${trEsc(f.text)}</div>` : ''}
             <div style="font-size:11.5px;color:#8A9689;margin-top:4px;">${dateStr}${dogContextLine(f)}${removeLink}${reportLink}</div>
-            ${staleNote}
+            <div style="font-size:11.5px;color:var(--ink-soft);margin-top:4px;">${trEsc(trustLabel(f))} · ${responseCount}</div>
+            ${responseLinks}
           </div>
         </div>`;
       }).join('');
@@ -264,12 +276,27 @@ function initTrailReports(map, trail){
         a.replaceWith(Object.assign(document.createElement('span'), { textContent: window.t('reports.reported') }));
       });
     });
+    listEl.querySelectorAll('[data-hazard-response]').forEach(a => {
+      a.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const result = await window.DoloPawsCommunity.respondToHazard(
+          a.dataset.flagId,
+          a.dataset.hazardResponse
+        );
+        if(!result.ok){
+          showActionStatus(result.message || 'Your response could not be saved.');
+          return;
+        }
+        showActionStatus(window.t('reports.responseSaved'));
+        load();
+      });
+    });
 
-    // Map markers for km-tagged, non-stale flags
+    // Map markers for active, km-tagged flags.
     flagMarkers.forEach(m => m.remove());
     flagMarkers = [];
     if (map && Array.isArray(trail.path) && trail.path.length > 1 && typeof pointAtFraction === 'function'){
-      flags.filter(f => typeof f.km === 'number' && !isStale(f)).forEach(f => {
+      flags.filter(f => typeof f.km === 'number').forEach(f => {
         const t = FLAG_TYPES[f.type] || FLAG_TYPES.other;
         const fraction = trail.distance > 0 ? f.km / trail.distance : 0;
         const [lat, lng] = pointAtFraction(trail.path, fraction);

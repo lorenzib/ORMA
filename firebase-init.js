@@ -19,7 +19,7 @@ import {
 import {
   getFirestore, doc, getDoc, setDoc, deleteDoc,
   collection, addDoc, serverTimestamp, query, where, Timestamp,
-  getCountFromServer, getDocs, updateDoc, writeBatch
+  getCountFromServer, getDocs, updateDoc, writeBatch, increment
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 const app = initializeApp(firebaseConfig);
@@ -380,6 +380,10 @@ async function addFlag(trailId, type, km, text) {
   if (!eligibility.ok) return eligibility;
   try {
     const dog = await getDogProfile();
+    const expiry = window.DoloPawsCommunityStates &&
+      window.DoloPawsCommunityStates.hazardExpiryDate
+      ? window.DoloPawsCommunityStates.hazardExpiryDate(type)
+      : new Date(Date.now() + 30 * 24 * 3600 * 1000);
     await addDoc(collection(db, "flags"), {
       trailId: String(trailId).slice(0, 80),
       uid: currentUser.uid,
@@ -388,6 +392,10 @@ async function addFlag(trailId, type, km, text) {
       text: String(text || "").slice(0, 300),
       dogContext: dog ? { name: dog.name || null, breed: dog.breed || null } : null,
       status: "pending",
+      confirmationSource: "community",
+      confirmations: 0,
+      disputes: 0,
+      expiresAt: Timestamp.fromDate(expiry),
       createdAt: serverTimestamp(),
     });
     return { ok: true };
@@ -399,14 +407,49 @@ async function addFlag(trailId, type, km, text) {
 
 async function getActiveFlags(trailId) {
   try {
+    // Keep the query boundary slightly ahead of the Rules request clock so
+    // Firestore can prove every returned document is still unexpired.
+    const activeCutoff = Timestamp.fromMillis(Date.now() + 60 * 1000);
     const q = query(collection(db, "flags"),
       where("trailId", "==", String(trailId).slice(0, 80)),
-      where("status", "in", ["visible", "reported"]));
+      where("status", "in", ["visible", "reported"]),
+      where("expiresAt", ">", activeCutoff));
     const snap = await getDocs(q);
     return snap.docs.map(d => ({ id: d.id, ...d.data() }));
   } catch (e) {
     console.error("getActiveFlags failed:", e);
     return [];
+  }
+}
+
+async function respondToHazard(flagId, stance) {
+  const eligibility = await getContributionEligibility();
+  if (!eligibility.ok) return eligibility;
+  if (!["confirm", "dispute"].includes(stance)) {
+    return { ok: false, message: "Choose confirm or dispute." };
+  }
+  const safeId = String(flagId || "").slice(0, 100);
+  if (!safeId) return { ok: false, message: "This hazard report is unavailable." };
+  try {
+    const batch = writeBatch(db);
+    batch.set(doc(db, "flags", safeId, "responses", currentUser.uid), {
+      flagId: safeId,
+      uid: currentUser.uid,
+      stance,
+      createdAt: serverTimestamp(),
+    });
+    batch.update(doc(db, "flags", safeId), {
+      [stance === "confirm" ? "confirmations" : "disputes"]: increment(1),
+      lastCommunityResponseAt: serverTimestamp(),
+    });
+    await batch.commit();
+    return { ok: true };
+  } catch (e) {
+    console.error("respondToHazard failed:", e);
+    return contributionWriteError(
+      e,
+      "Your response could not be saved. You may already have responded to this report."
+    );
   }
 }
 
@@ -560,6 +603,14 @@ function moderationItem(type, snapshot, reportReasons = [], reportIds = []) {
       hikedOn: data.hikedOn || null,
       image: data.image || null,
       caption: data.caption || null,
+      confirmationSource: data.confirmationSource || null,
+      confirmations: Number(data.confirmations) || 0,
+      disputes: Number(data.disputes) || 0,
+      expiresAt: data.expiresAt || null,
+      lifecyclePresent: data.confirmationSource != null &&
+        data.confirmations != null &&
+        data.disputes != null &&
+        data.expiresAt != null,
     },
     reportReasons,
     reportIds,
@@ -572,11 +623,19 @@ async function getModerationQueue() {
     const types = Object.keys(MODERATION_COLLECTIONS);
     const [contentResults, reportResult] = await Promise.all([
       Promise.all(types.map(async type => {
+        const queueStates = type === "flag"
+          ? ["pending", "visible", "reported", "hidden", "removed"]
+          : ["pending", "reported", "hidden", "removed"];
         const snap = await getDocs(query(
           collection(db, MODERATION_COLLECTIONS[type]),
-          where("status", "in", ["pending", "reported", "hidden", "removed"])
+          where("status", "in", queueStates)
         ));
-        return snap.docs.map(item => moderationItem(type, item));
+        return snap.docs
+          .map(item => moderationItem(type, item))
+          .filter(item => type !== "flag" || item.status !== "visible" ||
+            !item.content.lifecyclePresent ||
+            !item.content.expiresAt ||
+            item.content.expiresAt.toMillis() <= Date.now());
       })),
       getDocs(query(collection(db, "reports"), where("status", "==", "open"))),
     ]);
@@ -621,7 +680,7 @@ async function getModerationQueue() {
   }
 }
 
-async function moderateContent(item, toStatus, reason) {
+async function moderateContent(item, toStatus, reason, options = {}) {
   const moderator = await moderatorIdentity();
   if (!moderator || !item || !MODERATION_COLLECTIONS[item.type]) {
     return { ok: false, error: "moderator-required" };
@@ -638,12 +697,33 @@ async function moderateContent(item, toStatus, reason) {
   }
   try {
     const batch = writeBatch(db);
-    if (item.status !== toStatus) {
-      batch.update(doc(db, MODERATION_COLLECTIONS[item.type], item.id), {
+    const confirmationSource = item.type === "flag" &&
+      ["community", "dolopaws-reviewed", "official"].includes(options.confirmationSource)
+      ? options.confirmationSource : null;
+    const needsLifecycle = item.type === "flag" && !item.content.lifecyclePresent;
+    if (item.status !== toStatus || confirmationSource || needsLifecycle) {
+      const update = {
         status: toStatus,
         moderatedAt: serverTimestamp(),
         moderatedBy: moderator.uid,
-      });
+      };
+      if (item.type === "flag" && (confirmationSource || needsLifecycle)) {
+        const expiry = window.DoloPawsCommunityStates &&
+          window.DoloPawsCommunityStates.hazardExpiryDate
+          ? window.DoloPawsCommunityStates.hazardExpiryDate(item.content.type)
+          : new Date(Date.now() + 30 * 24 * 3600 * 1000);
+        update.confirmationSource = confirmationSource || "community";
+        if (needsLifecycle) {
+          update.confirmations = 0;
+          update.disputes = 0;
+        }
+        if (update.confirmationSource !== "community") {
+          update.confirmedAt = serverTimestamp();
+          update.confirmedBy = moderator.uid;
+        }
+        update.expiresAt = Timestamp.fromDate(expiry);
+      }
+      batch.update(doc(db, MODERATION_COLLECTIONS[item.type], item.id), update);
     }
     const auditRef = doc(collection(db, "moderationAudit"));
     batch.set(auditRef, {
@@ -674,7 +754,7 @@ async function moderateContent(item, toStatus, reason) {
 
 window.DoloPawsCommunity = {
   recordHikeStart, getWeeklyHikeCount,
-  addFlag, getActiveFlags, deleteFlag,
+  addFlag, getActiveFlags, respondToHazard, deleteFlag,
   setReview, getReviews, deleteMyReview,
   addTrailPhoto, getTrailPhotos,
   reportContent,

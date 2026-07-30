@@ -143,10 +143,53 @@ service cloud.firestore {
       return status in ['pending', 'visible', 'reported', 'hidden', 'removed'];
     }
 
+    function hazardMaximumLifetime(type) {
+      return type == 'water-dry' ? duration.value(7, 'd')
+        : type == 'guard-dogs-livestock' ? duration.value(14, 'd')
+        : type == 'not-dog-friendly' ? duration.value(90, 'd')
+        : duration.value(30, 'd');
+    }
+
+    function validHazardLifecycle(data) {
+      return (!data.keys().hasAny(['confirmationSource'])
+          || data.confirmationSource in [
+            'community', 'dolopaws-reviewed', 'official'
+          ])
+        && (!data.keys().hasAny(['confirmations'])
+          || (data.confirmations is int
+            && data.confirmations >= 0 && data.confirmations <= 100000))
+        && (!data.keys().hasAny(['disputes'])
+          || (data.disputes is int
+            && data.disputes >= 0 && data.disputes <= 100000))
+        && (!data.keys().hasAny(['expiresAt'])
+          || data.expiresAt is timestamp)
+        && (!data.keys().hasAny(['lastCommunityResponseAt'])
+          || data.lastCommunityResponseAt is timestamp)
+        && (!data.keys().hasAny(['confirmedAt'])
+          || data.confirmedAt is timestamp)
+        && isOptionalString(data, 'confirmedBy', 128);
+    }
+
+    function validNewHazardLifecycle(data) {
+      return data.keys().hasAll([
+          'confirmationSource', 'confirmations', 'disputes', 'expiresAt'
+        ])
+        && data.confirmationSource == 'community'
+        && data.confirmations == 0
+        && data.disputes == 0
+        && data.expiresAt > request.time
+        && data.expiresAt <= request.time + hazardMaximumLifetime(data.type)
+        && !data.keys().hasAny([
+          'lastCommunityResponseAt', 'confirmedAt', 'confirmedBy'
+        ]);
+    }
+
     function validFlag(data) {
       return data.keys().hasOnly([
           'trailId', 'uid', 'type', 'km', 'text', 'dogContext', 'status',
-          'createdAt', 'moderatedAt', 'moderatedBy'
+          'createdAt', 'moderatedAt', 'moderatedBy', 'confirmationSource',
+          'confirmations', 'disputes', 'expiresAt',
+          'lastCommunityResponseAt', 'confirmedAt', 'confirmedBy'
         ])
         && isTrailId(data.trailId)
         && isShortString(data.uid, 128)
@@ -159,7 +202,8 @@ service cloud.firestore {
         && validDogContext(data.dogContext, true)
         && isCommunityState(data.status)
         && data.createdAt is timestamp
-        && validModerationMetadata(data);
+        && validModerationMetadata(data)
+        && validHazardLifecycle(data);
     }
 
     function validReview(data) {
@@ -281,6 +325,128 @@ service cloud.firestore {
         && request.resource.data.moderatedBy == request.auth.uid;
     }
 
+    function ownerFlagContentUpdate() {
+      return ownerContentUpdate()
+        && !request.resource.data.diff(resource.data).affectedKeys().hasAny([
+          'confirmationSource', 'confirmations', 'disputes', 'expiresAt',
+          'lastCommunityResponseAt', 'confirmedAt', 'confirmedBy'
+        ]);
+    }
+
+    function moderatorFlagUpdate() {
+      return isModerator()
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.trailId == resource.data.trailId
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'status', 'moderatedAt', 'moderatedBy', 'confirmationSource',
+          'confirmations', 'disputes', 'confirmedAt', 'confirmedBy',
+          'expiresAt'
+        ])
+        && (
+          validModeratorTransition(
+            resource.data.status,
+            request.resource.data.status
+          )
+          || (
+            resource.data.status == request.resource.data.status
+            && request.resource.data.diff(resource.data).affectedKeys().hasAny([
+              'confirmationSource', 'confirmations', 'disputes',
+              'confirmedAt', 'confirmedBy', 'expiresAt'
+            ])
+          )
+        )
+        && request.resource.data.moderatedAt == request.time
+        && request.resource.data.moderatedBy == request.auth.uid
+        && (
+          (
+            request.resource.data.get('confirmationSource', 'community')
+              == resource.data.get('confirmationSource', 'community')
+            && request.resource.data.get('confirmedAt', null)
+              == resource.data.get('confirmedAt', null)
+            && request.resource.data.get('confirmedBy', null)
+              == resource.data.get('confirmedBy', null)
+            && request.resource.data.get('expiresAt', null)
+              == resource.data.get('expiresAt', null)
+            && request.resource.data.get('confirmations', 0)
+              == resource.data.get('confirmations', 0)
+            && request.resource.data.get('disputes', 0)
+              == resource.data.get('disputes', 0)
+          )
+          || (
+            request.resource.data.confirmationSource in [
+              'dolopaws-reviewed', 'official'
+            ]
+            && request.resource.data.confirmedAt == request.time
+            && request.resource.data.confirmedBy == request.auth.uid
+            && request.resource.data.get('confirmations', 0)
+              == resource.data.get('confirmations', 0)
+            && request.resource.data.get('disputes', 0)
+              == resource.data.get('disputes', 0)
+            && request.resource.data.expiresAt > request.time
+            && request.resource.data.expiresAt
+              <= request.time + hazardMaximumLifetime(request.resource.data.type)
+          )
+          || (
+            request.resource.data.confirmationSource == 'community'
+            && request.resource.data.confirmations
+              == resource.data.get('confirmations', 0)
+            && request.resource.data.disputes
+              == resource.data.get('disputes', 0)
+            && request.resource.data.get('confirmedAt', null)
+              == resource.data.get('confirmedAt', null)
+            && request.resource.data.get('confirmedBy', null)
+              == resource.data.get('confirmedBy', null)
+            && request.resource.data.expiresAt > request.time
+            && request.resource.data.expiresAt
+              <= request.time + hazardMaximumLifetime(request.resource.data.type)
+          )
+        );
+    }
+
+    function validHazardResponse(data, flagId, uid) {
+      return data.keys().hasAll(['flagId', 'uid', 'stance', 'createdAt'])
+        && data.keys().hasOnly(['flagId', 'uid', 'stance', 'createdAt'])
+        && data.flagId == flagId
+        && data.uid == uid
+        && data.stance in ['confirm', 'dispute']
+        && data.createdAt == request.time;
+    }
+
+    function communityFlagResponseUpdate(flagId) {
+      return isContributor()
+        && resource.data.status in ['visible', 'reported']
+        && resource.data.expiresAt is timestamp
+        && resource.data.expiresAt > request.time
+        && resource.data.uid != request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          'confirmations', 'disputes', 'lastCommunityResponseAt'
+        ])
+        && request.resource.data.lastCommunityResponseAt == request.time
+        && !exists(
+          /databases/$(database)/documents/flags/$(flagId)/responses/$(request.auth.uid)
+        )
+        && existsAfter(
+          /databases/$(database)/documents/flags/$(flagId)/responses/$(request.auth.uid)
+        )
+        && (
+          (
+            getAfter(
+              /databases/$(database)/documents/flags/$(flagId)/responses/$(request.auth.uid)
+            ).data.stance == 'confirm'
+            && request.resource.data.confirmations
+              == resource.data.confirmations + 1
+            && request.resource.data.disputes == resource.data.disputes
+          )
+          || (
+            getAfter(
+              /databases/$(database)/documents/flags/$(flagId)/responses/$(request.auth.uid)
+            ).data.stance == 'dispute'
+            && request.resource.data.disputes == resource.data.disputes + 1
+            && request.resource.data.confirmations == resource.data.confirmations
+          )
+        );
+    }
+
     // One private document per account. Public contribution privileges are
     // deliberately absent from this schema and cannot be self-assigned here.
     match /users/{uid} {
@@ -323,16 +489,43 @@ service cloud.firestore {
 
     match /flags/{flagId} {
       allow get, list: if isModerator()
-        || resource.data.status in ['visible', 'reported'];
+        || (
+          resource.data.status in ['visible', 'reported']
+          && resource.data.expiresAt is timestamp
+          && resource.data.expiresAt > request.time
+        );
       allow create: if isContributor()
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.status == 'pending'
         && request.resource.data.createdAt == request.time
         && !request.resource.data.keys().hasAny(['moderatedAt', 'moderatedBy'])
+        && validNewHazardLifecycle(request.resource.data)
         && validFlag(request.resource.data);
       allow update: if validFlag(request.resource.data)
-        && (ownerContentUpdate() || moderatorStateUpdate());
+        && (
+          ownerFlagContentUpdate()
+          || moderatorFlagUpdate()
+          || communityFlagResponseUpdate(flagId)
+        );
       allow delete: if isOwner(resource.data.uid) || isModerator();
+
+      match /responses/{uid} {
+        allow get: if isModerator() || isOwner(uid);
+        allow list: if isModerator();
+        allow create: if isContributor()
+          && request.auth.uid == uid
+          && validHazardResponse(request.resource.data, flagId, uid)
+          && get(
+            /databases/$(database)/documents/flags/$(flagId)
+          ).data.status in ['visible', 'reported']
+          && get(
+            /databases/$(database)/documents/flags/$(flagId)
+          ).data.expiresAt > request.time
+          && get(
+            /databases/$(database)/documents/flags/$(flagId)
+          ).data.uid != request.auth.uid;
+        allow update, delete: if false;
+      }
     }
 
     match /reviews/{reviewId} {
