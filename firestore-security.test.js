@@ -71,6 +71,30 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain("request.resource.data.status == 'open'");
   });
 
+  test('community publication uses the MOD-01 state contract', () => {
+    const states = fs.readFileSync(path.join(root, 'community-content-states.js'), 'utf8');
+    const trailShell = fs.readFileSync(path.join(root, 'trail.html'), 'utf8');
+    const reports = fs.readFileSync(path.join(root, 'trail-reports.js'), 'utf8');
+    const photoPage = fs.readFileSync(path.join(root, 'photo-upload-page.js'), 'utf8');
+    const hazardPage = fs.readFileSync(path.join(root, 'trail-report-page.js'), 'utf8');
+    expect(states).toContain("'draft', 'pending', 'visible', 'reported', 'hidden', 'removed'");
+    expect(rules).toContain("function isCommunityState(status)");
+    expect(rules).not.toContain("'active'");
+    expect(rules).toContain("resource.data.status in ['visible', 'reported']");
+    expect(rules).toContain("request.resource.data.status == 'pending'");
+    expect(rules).toContain('validModeratorTransition(');
+    expect(client.match(/where\("status", "in", \["visible", "reported"\]\)/g))
+      .toHaveLength(3);
+    expect(trailShell.indexOf('community-content-states.js')).toBeLessThan(
+      trailShell.indexOf('trail-reports.js')
+    );
+    expect(reports).toContain('countsTowardRating(review.status)');
+    expect(photoPage).toContain('DoloPawsCommunity.addTrailPhoto');
+    expect(hazardPage).toContain('DoloPawsCommunity.addFlag');
+    expect(hazardPage).not.toContain('dolopaws-design-reports');
+    expect(hazardPage).not.toContain('within the hour');
+  });
+
   test('current compound queries and the moderation queue have declared indexes', () => {
     const signatures = indexes.indexes.map(index => ({
       collectionGroup: index.collectionGroup,

@@ -139,6 +139,10 @@ service cloud.firestore {
           || isShortString(data.moderatedBy, 128));
     }
 
+    function isCommunityState(status) {
+      return status in ['pending', 'visible', 'reported', 'hidden', 'removed'];
+    }
+
     function validFlag(data) {
       return data.keys().hasOnly([
           'trailId', 'uid', 'type', 'km', 'text', 'dogContext', 'status',
@@ -153,7 +157,7 @@ service cloud.firestore {
         && (data.km == null || (data.km is number && data.km >= 0 && data.km <= 100))
         && data.text is string && data.text.size() <= 300
         && validDogContext(data.dogContext, true)
-        && data.status in ['pending', 'active', 'reported', 'hidden', 'removed']
+        && isCommunityState(data.status)
         && data.createdAt is timestamp
         && validModerationMetadata(data);
     }
@@ -169,7 +173,7 @@ service cloud.firestore {
         && data.text is string && data.text.size() <= 1000
         && validDogContext(data.dogContext, true)
         && (data.hikedOn == null || isShortString(data.hikedOn, 10))
-        && data.status in ['pending', 'visible', 'reported', 'hidden', 'removed']
+        && isCommunityState(data.status)
         && data.createdAt is timestamp
         && validModerationMetadata(data);
     }
@@ -186,7 +190,7 @@ service cloud.firestore {
         && data.image.size() <= 700000
         && data.caption is string && data.caption.size() <= 240
         && validDogContext(data.dogContext, false)
-        && data.status in ['pending', 'visible', 'reported', 'hidden', 'removed']
+        && isCommunityState(data.status)
         && data.createdAt is timestamp
         && validModerationMetadata(data);
     }
@@ -229,12 +233,18 @@ service cloud.firestore {
         && isOwner(resource.data.uid)
         && request.resource.data.uid == resource.data.uid
         && request.resource.data.trailId == resource.data.trailId
-        && (request.resource.data.status == resource.data.status
-          || (request.resource.data.status == 'pending'
-            && resource.data.status in ['active', 'visible']))
+        && request.resource.data.status == 'pending'
         && request.resource.data.createdAt == resource.data.createdAt
         && !request.resource.data.diff(resource.data).affectedKeys()
           .hasAny(['moderatedAt', 'moderatedBy']);
+    }
+
+    function validModeratorTransition(from, to) {
+      return (from == 'pending' && to in ['visible', 'hidden', 'removed'])
+        || (from == 'visible' && to in ['reported', 'hidden', 'removed'])
+        || (from == 'reported' && to in ['visible', 'hidden', 'removed'])
+        || (from == 'hidden' && to in ['visible', 'removed'])
+        || (from == 'removed' && to == 'visible');
     }
 
     function moderatorStateUpdate() {
@@ -242,7 +252,13 @@ service cloud.firestore {
         && request.resource.data.uid == resource.data.uid
         && request.resource.data.trailId == resource.data.trailId
         && request.resource.data.diff(resource.data).affectedKeys()
-          .hasOnly(['status', 'moderatedAt', 'moderatedBy']);
+          .hasOnly(['status', 'moderatedAt', 'moderatedBy'])
+        && validModeratorTransition(
+          resource.data.status,
+          request.resource.data.status
+        )
+        && request.resource.data.moderatedAt == request.time
+        && request.resource.data.moderatedBy == request.auth.uid;
     }
 
     // One private document per account. Public contribution privileges are
@@ -286,7 +302,8 @@ service cloud.firestore {
     }
 
     match /flags/{flagId} {
-      allow get, list: if isModerator() || resource.data.status == 'active';
+      allow get, list: if isModerator()
+        || resource.data.status in ['visible', 'reported'];
       allow create: if isContributor()
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.status == 'pending'
@@ -301,8 +318,9 @@ service cloud.firestore {
     match /reviews/{reviewId} {
       allow get: if isModerator()
         || isOwner(resource.data.uid)
-        || resource.data.status == 'visible';
-      allow list: if isModerator() || resource.data.status == 'visible';
+        || resource.data.status in ['visible', 'reported'];
+      allow list: if isModerator()
+        || resource.data.status in ['visible', 'reported'];
       allow create: if isContributor()
         && request.resource.data.uid == request.auth.uid
         && reviewId == request.resource.data.trailId + '_' + request.auth.uid
@@ -317,7 +335,8 @@ service cloud.firestore {
     }
 
     match /trailPhotos/{photoId} {
-      allow get, list: if isModerator() || resource.data.status == 'visible';
+      allow get, list: if isModerator()
+        || resource.data.status in ['visible', 'reported'];
       allow create: if isContributor()
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.status == 'pending'

@@ -39,7 +39,7 @@ through the Firebase console during the Spark-plan beta.
 |---|---|---|
 | `users/{uid}` | Owner only; collection listing denied | Owner only, validated keys and bounded maps/lists |
 | `hikeEvents/{trailId}/events/{id}` | Public aggregate source; contains only a timestamp | Anonymous create with server timestamp only; no update |
-| `flags/{id}` | Active reports are public; moderators may inspect all | Eligible contributor owns content; moderator owns state |
+| `flags/{id}` | Visible and reported hazards are public; moderators may inspect all | Eligible contributor owns content; moderator owns state |
 | `reviews/{trailId_uid}` | Visible reviews are public; moderators may inspect all | One review per eligible contributor and trail |
 | `trailPhotos/{id}` | Visible photos are public; moderators may inspect all | Eligible contributor owns content; moderator owns state |
 | `reports/{id}` | Reporter may get their report; moderators may list | Any signed-in account may open a bounded abuse report; only moderators resolve it |
@@ -60,7 +60,7 @@ The rules enforce:
 - immutable contribution author and trail identity;
 - author updates that cannot change moderation state or metadata;
 - moderator updates limited to state and moderation metadata;
-- public reads limited to the active or visible state;
+- public reads limited to visible or reported content;
 - server timestamps for new public content and anonymous hike events;
 - hike events containing neither identity nor location.
 
@@ -109,5 +109,6 @@ publish Firestore rules.
 - **AUTH-02:** complete and production-verified on Spark; verified-email
   eligibility, pending privacy, manual approval, public visibility, and cleanup
   passed an end-to-end test.
-- **MOD-01/02:** pending/visible policy, moderation queue, and audit records.
+- **MOD-01:** complete; the shared lifecycle and transition graph are enforced.
+- **MOD-02:** moderation queue and audit records.
 - **AUTH-03:** complete cross-collection server deletion and local cleanup.

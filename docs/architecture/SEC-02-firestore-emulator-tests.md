@@ -29,7 +29,7 @@ Fifteen grouped scenarios cover:
 |---|---|---|
 | Private user document | Owner create, read, update, and delete | Guest, other user, collection listing, role injection, oversized or malformed data |
 | Anonymous hike event | Server timestamp only; public weekly query | Identity, precise location, updates |
-| Hazard flag | Verified, unblocked account submits pending content; author edit/delete; active public read | Unverified or blocked account submission, self-publication, author spoofing, another author’s edits/deletes, invalid type/text |
+| Hazard flag | Verified, unblocked account submits pending content; author edit/delete; visible/reported public read | Unverified or blocked account submission, self-publication, author spoofing, another author’s edits/deletes, invalid type/text |
 | Moderator flag action | State and moderation metadata | Rewriting contribution content |
 | Review and rating | Verified account creates one pending review per trail; author edit/delete; visible query | Unverified account, wrong document ID, invalid rating, another author, timestamp reset, self-publication, unfiltered public list |
 | Trail photo | Verified account submits a bounded pending data image; visible query | Unverified account, remote URL, oversized caption, self-publication, unfiltered public list |

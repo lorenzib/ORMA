@@ -399,11 +399,9 @@ async function addFlag(trailId, type, km, text) {
 
 async function getActiveFlags(trailId) {
   try {
-    // Two equality filters only — Firestore merges single-field indexes,
-    // so no composite index setup is needed. Sorting happens client-side.
     const q = query(collection(db, "flags"),
       where("trailId", "==", String(trailId).slice(0, 80)),
-      where("status", "==", "active"));
+      where("status", "in", ["visible", "reported"]));
     const snap = await getDocs(q);
     return snap.docs.map(d => ({ id: d.id, ...d.data() }));
   } catch (e) {
@@ -459,7 +457,7 @@ async function getReviews(trailId) {
   try {
     const q = query(collection(db, "reviews"),
       where("trailId", "==", String(trailId).slice(0, 80)),
-      where("status", "==", "visible"));
+      where("status", "in", ["visible", "reported"]));
     const snap = await getDocs(q);
     return snap.docs.map(d => ({ id: d.id, ...d.data() }));
   } catch (e) {
@@ -504,7 +502,7 @@ async function getTrailPhotos(trailId) {
   try {
     const q = query(collection(db, "trailPhotos"),
       where("trailId", "==", String(trailId).slice(0, 80)),
-      where("status", "==", "visible"));
+      where("status", "in", ["visible", "reported"]));
     const snap = await getDocs(q);
     return snap.docs.map(d => ({ id: d.id, ...d.data() }));
   } catch (e) {

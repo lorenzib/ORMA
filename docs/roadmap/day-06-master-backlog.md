@@ -504,6 +504,8 @@ All P0 and P1 work
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** AUTH-02, SEC-01
+- **Implementation:** complete in code; see
+  `docs/architecture/MOD-01-community-content-states.md`.
 - **Outcome:** ratings, reviews, hazards, and photos follow explicit publication
   rules.
 - **Acceptance:**

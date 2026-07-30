@@ -39,12 +39,12 @@ settings show whether the address is verified and provide a resend action.
 3. A verified account submits well-formed content with `status: pending`.
 4. Firestore Rules independently require `email_verified: true`.
 5. The rules check that `contributionBlocks/{uid}` does not exist.
-6. Public queries continue to request only `active` flags and `visible` reviews
-   or photos, so they cannot expose pending records.
+6. Public queries request only `visible` or `reported` contributions, so they
+   cannot expose pending records.
 7. The user sees confirmation that moderation is required.
 
-Rules also reject a client attempt to create content directly as `active` or
-`visible`. Editing previously published content returns it to `pending`, so the
+Rules also reject a client attempt to create content directly as `visible`.
+Editing previously published content returns it to `pending`, so the
 changed version does not bypass moderation.
 
 ## Manual moderation on Spark
@@ -56,7 +56,7 @@ console:
 2. Filter or locate documents whose `status` is `pending`.
 3. Verify that the trail, author UID, text, rating, image, and timestamp are
    appropriate.
-4. Approve a flag by changing `pending` to `active`.
+4. Approve a flag by changing `pending` to `visible`.
 5. Approve a review or photo by changing `pending` to `visible`.
 6. Reject content by changing it to `hidden` or `removed`.
 7. Do not edit the author UID, trail ID, or original creation timestamp.

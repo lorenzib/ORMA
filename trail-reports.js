@@ -87,7 +87,11 @@ function initTrailReports(map, trail){
   }
 
   function renderReviews(reviews){
-    const visible = reviews.filter(review => Number(review.rating) >= 1 && Number(review.rating) <= 5)
+    const visible = reviews.filter(review =>
+      window.DoloPawsCommunityStates &&
+      window.DoloPawsCommunityStates.countsTowardRating(review.status) &&
+      Number(review.rating) >= 1 && Number(review.rating) <= 5
+    )
       .sort((a, b) => {
         const aDate = reviewDate(a), bDate = reviewDate(b);
         return (bDate ? bDate.getTime() : 0) - (aDate ? aDate.getTime() : 0);
@@ -143,6 +147,7 @@ function initTrailReports(map, trail){
       const stars = [1, 2, 3, 4, 5].map(n => starSvgIcon(n <= Number(review.rating), 13)).join('');
       return `<article class="community-review">
         <div class="community-review__rating" aria-label="${review.rating} out of 5 stars">${stars}</div>
+        ${review.status === 'reported' ? '<p class="community-review__notice">Reported · under moderation review</p>' : ''}
         ${review.text ? `<p>${trEsc(review.text)}</p>` : ''}
         <footer>${reviewer} <span>·</span> ${dateLabel}</footer>
       </article>`;
@@ -151,7 +156,11 @@ function initTrailReports(map, trail){
 
   function renderPhotos(photos){
     if (!photosListEl) return;
-    const visible = photos.filter(photo => typeof photo.image === 'string' && photo.image.startsWith('data:image/'))
+    const visible = photos.filter(photo =>
+      window.DoloPawsCommunityStates &&
+      window.DoloPawsCommunityStates.isPublic(photo.status) &&
+      typeof photo.image === 'string' && photo.image.startsWith('data:image/')
+    )
       .sort((a, b) => {
         const aDate = reviewDate(a), bDate = reviewDate(b);
         return (bDate ? bDate.getTime() : 0) - (aDate ? aDate.getTime() : 0);
@@ -169,7 +178,7 @@ function initTrailReports(map, trail){
     photosListEl.innerHTML = visible.slice(0, 6).map(photo => {
       const dog = photo.dogContext && photo.dogContext.name;
       const caption = photo.caption ? trEsc(photo.caption) : (dog ? `Shared by ${trEsc(dog)}’s human` : 'Shared by the DoloPaws community');
-      return `<figure class="community-photo"><img src="${trEsc(photo.image)}" alt="${caption}"><figcaption>${caption}</figcaption></figure>`;
+      return `<figure class="community-photo"><img src="${trEsc(photo.image)}" alt="${caption}"><figcaption>${caption}${photo.status === 'reported' ? ' · Reported, under review' : ''}</figcaption></figure>`;
     }).join('');
   }
 
@@ -187,6 +196,10 @@ function initTrailReports(map, trail){
   }
 
   function render(flags){
+    flags = flags.filter(flag =>
+      window.DoloPawsCommunityStates &&
+      window.DoloPawsCommunityStates.isPublic(flag.status)
+    );
     // Newest first; stale ones sink to the bottom.
     flags.sort((a, b) => {
       if (isStale(a) !== isStale(b)) return isStale(a) ? 1 : -1;

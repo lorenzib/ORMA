@@ -292,7 +292,7 @@ describe('hazard flags', () => {
     await assertSucceeds(deleteDoc(flagRef));
   });
 
-  test('rejects malformed content and protects non-active states from public reads', async () => {
+  test('rejects malformed content and exposes only visible or reported hazards', async () => {
     const author = contributorDb('author-1');
     await assertFails(setDoc(
       doc(author, 'flags/bad-type'),
@@ -303,8 +303,12 @@ describe('hazard flags', () => {
       validFlag('author-1', { text: 'x'.repeat(301) })
     ));
     await seed([
-      ['flags/active-flag', {
-        ...validFlag('author-1', { status: 'active' }),
+      ['flags/visible-flag', {
+        ...validFlag('author-1', { status: 'visible' }),
+        createdAt: Timestamp.now(),
+      }],
+      ['flags/reported-flag', {
+        ...validFlag('author-1', { status: 'reported' }),
         createdAt: Timestamp.now(),
       }],
       ['flags/pending-flag', {
@@ -317,13 +321,14 @@ describe('hazard flags', () => {
       }],
     ]);
     const guest = testEnv.unauthenticatedContext().firestore();
-    await assertSucceeds(getDoc(doc(guest, 'flags/active-flag')));
+    await assertSucceeds(getDoc(doc(guest, 'flags/visible-flag')));
+    await assertSucceeds(getDoc(doc(guest, 'flags/reported-flag')));
     await assertFails(getDoc(doc(guest, 'flags/pending-flag')));
     await assertFails(getDoc(doc(guest, 'flags/hidden-flag')));
     await assertSucceeds(getDocs(query(
       collection(guest, 'flags'),
       where('trailId', '==', 'lago-carezza'),
-      where('status', '==', 'active')
+      where('status', 'in', ['visible', 'reported'])
     )));
     await assertFails(getDocs(collection(guest, 'flags')));
   });
@@ -341,6 +346,16 @@ describe('hazard flags', () => {
       moderatedBy: 'moderator-1',
     }));
     await assertFails(updateDoc(ref, { text: 'Moderator rewrote the report.' }));
+    await assertFails(updateDoc(ref, {
+      status: 'reported',
+      moderatedAt: serverTimestamp(),
+      moderatedBy: 'moderator-1',
+    }));
+    await assertFails(updateDoc(ref, {
+      status: 'visible',
+      moderatedAt: serverTimestamp(),
+      moderatedBy: 'somebody-else',
+    }));
     await assertSucceeds(getDoc(ref));
   });
 });
@@ -404,6 +419,14 @@ describe('reviews and ratings', () => {
         createdAt,
       })
     ));
+    await seed([['reviews/lago-carezza_author-2', {
+      ...validReview('author-2', { status: 'visible' }),
+      createdAt,
+    }]]);
+    await assertFails(updateDoc(
+      doc(contributorDb('author-2'), 'reviews/lago-carezza_author-2'),
+      { text: 'Malicious edit kept visible.' }
+    ));
     const guest = testEnv.unauthenticatedContext().firestore();
     await assertFails(getDoc(doc(guest, 'reviews/lago-carezza_author-1')));
   });
@@ -415,11 +438,15 @@ describe('reviews and ratings', () => {
         createdAt: Timestamp.now(),
       }],
       ['reviews/lago-carezza_author-2', {
-        ...validReview('author-2', { status: 'hidden' }),
+        ...validReview('author-2', { status: 'reported' }),
         createdAt: Timestamp.now(),
       }],
       ['reviews/lago-carezza_author-3', {
-        ...validReview('author-3'),
+        ...validReview('author-3', { status: 'hidden' }),
+        createdAt: Timestamp.now(),
+      }],
+      ['reviews/lago-carezza_author-4', {
+        ...validReview('author-4'),
         createdAt: Timestamp.now(),
       }],
     ]);
@@ -427,10 +454,11 @@ describe('reviews and ratings', () => {
     await assertSucceeds(getDocs(query(
       collection(guest, 'reviews'),
       where('trailId', '==', 'lago-carezza'),
-      where('status', '==', 'visible')
+      where('status', 'in', ['visible', 'reported'])
     )));
-    await assertFails(getDoc(doc(guest, 'reviews/lago-carezza_author-2')));
+    await assertSucceeds(getDoc(doc(guest, 'reviews/lago-carezza_author-2')));
     await assertFails(getDoc(doc(guest, 'reviews/lago-carezza_author-3')));
+    await assertFails(getDoc(doc(guest, 'reviews/lago-carezza_author-4')));
     await assertFails(getDocs(collection(guest, 'reviews')));
   });
 });
@@ -458,7 +486,11 @@ describe('trail photos', () => {
         createdAt: Timestamp.now(),
       }],
       ['trailPhotos/photo-2', {
-        ...validPhoto('author-2'),
+        ...validPhoto('author-2', { status: 'reported' }),
+        createdAt: Timestamp.now(),
+      }],
+      ['trailPhotos/photo-3', {
+        ...validPhoto('author-3'),
         createdAt: Timestamp.now(),
       }],
     ]);
@@ -466,9 +498,10 @@ describe('trail photos', () => {
     await assertSucceeds(getDocs(query(
       collection(guest, 'trailPhotos'),
       where('trailId', '==', 'lago-carezza'),
-      where('status', '==', 'visible')
+      where('status', 'in', ['visible', 'reported'])
     )));
-    await assertFails(getDoc(doc(guest, 'trailPhotos/photo-2')));
+    await assertSucceeds(getDoc(doc(guest, 'trailPhotos/photo-2')));
+    await assertFails(getDoc(doc(guest, 'trailPhotos/photo-3')));
     await assertFails(getDocs(collection(guest, 'trailPhotos')));
   });
 });
