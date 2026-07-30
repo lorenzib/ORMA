@@ -325,6 +325,7 @@ All P0 and P1 work
 
 ### UX-05 — Preserve guest context through account creation
 
+- **Status:** Complete in code (2026-07-30)
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** AUTH-01

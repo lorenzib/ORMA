@@ -186,7 +186,7 @@
     'browse.h1': 'All our trails',
     'browse.h1Guest': 'A preview of our trails',
     'browse.subGuest': 'A taste of what DoloPaws covers: {shown} of {total} trails. <a href="account.html" style="color:var(--accent);font-weight:700;">Create your dog\'s profile</a> to unlock every trail, safety scores, and matches picked for your dog.',
-    'browse.sub': 'Explore every trail without an account. Open any trail for safety, terrain, water, access, and route details.',
+    'browse.sub': 'Explore every trail without an account. Open any trail for safety, terrain, water, access and route details.',
     'browse.eyebrow': 'Dolomites &amp; Savoy',
     'browse.trustNote': '<strong>How to read safety labels:</strong> route-audited trails have had their data checked by DoloPaws. Trails still under review show automated estimates and do not confirm exposure, shade, livestock or current conditions.',
     'hike.start': '🐾 Start hike',

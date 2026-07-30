@@ -677,7 +677,7 @@ function buildItinerary(t){
 const params = new URLSearchParams(window.location.search);
 const trailId = params.get('id');
 const trailReturnTarget = params.get('from');
-const pendingTrailAction = params.get('action');
+let pendingTrailAction = params.get('action');
 let trailActionConsumed = false;
 
 window.DoloPawsTrailAction = {
@@ -685,17 +685,42 @@ window.DoloPawsTrailAction = {
     const url = new URL(window.location.href);
     url.searchParams.set('action', action);
     window.history.replaceState(null, '', url.pathname.split('/').pop() + url.search + url.hash);
+    pendingTrailAction = action;
+    trailActionConsumed = false;
+    if(window.DoloPawsGuestContext){
+      window.DoloPawsGuestContext.captureCurrent(action, trailId);
+    }
     if(window.DoloPawsAuthUI) window.DoloPawsAuthUI.openLogin();
   },
   consume(action){
     if(trailActionConsumed || pendingTrailAction !== action) return false;
+    if(window.DoloPawsGuestContext){
+      const context = window.DoloPawsGuestContext.consumeAction(
+        window.localStorage,
+        action,
+        trailId
+      );
+      if(!context){
+        trailActionConsumed = true;
+        pendingTrailAction = null;
+        const staleUrl = new URL(window.location.href);
+        staleUrl.searchParams.delete('action');
+        window.history.replaceState(
+          null,
+          '',
+          staleUrl.pathname.split('/').pop() + staleUrl.search + staleUrl.hash
+        );
+        return false;
+      }
+    }
     trailActionConsumed = true;
+    pendingTrailAction = null;
     const url = new URL(window.location.href);
     url.searchParams.delete('action');
     window.history.replaceState(null, '', url.pathname.split('/').pop() + url.search + url.hash);
     return true;
   },
-  pending: pendingTrailAction,
+  get pending(){ return pendingTrailAction; },
 };
 
 function safeTrailReturn(value){

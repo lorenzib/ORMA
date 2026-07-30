@@ -16,41 +16,55 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-.sg-wrap{max-width:1040px;margin:0 auto;padding:0 24px 60px;}
-.sg-tuned{background:var(--success-dim);border:1px solid #CBDCC6;border-radius:18px;padding:18px 20px;margin-top:24px;}
-.sg-tuned .kick{font:700 10.5px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--success);}
-.sg-tuned-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:12px;}
-.sg-tuned-grid b{display:block;font-size:13px;color:var(--ink);}
-.sg-tuned-grid small{color:var(--ink-soft);font-size:12px;line-height:1.5;display:block;margin-top:2px;}
-.sg-cats{display:flex;gap:8px;flex-wrap:wrap;margin:28px 0 14px;}
-.sg-cats button{border:1px solid var(--paper-line);background:var(--card);border-radius:999px;padding:7px 15px;font:600 12px 'Inter',sans-serif;color:var(--ink-soft);cursor:pointer;}
-.sg-cats button.active{background:var(--ink);border-color:var(--ink);color:#fff;}
-.sg-topics{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.sg-topic{background:var(--card);border:1px solid var(--paper-line);border-radius:18px;padding:18px 20px;}
-.sg-topic .head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.sg-topic .ico{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex:none;}
-.sg-topic .cat{font:700 10px 'Inter',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);}
-.sg-topic h3{margin:0;font-size:16px;}
-.sg-topic ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:7px;font-size:13px;color:var(--ink);line-height:1.55;}
-/* Emergency banner — flat alert orange (emergency tokens), never amber */
-.sg-emergency{background:var(--emergency-bg);color:var(--emergency-fg);border-radius:16px;padding:22px 26px;margin-top:30px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;}
-.sg-emergency .mark{flex:none;width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.2);display:grid;place-items:center;font:900 26px 'Inter',sans-serif;color:#fff;}
-.sg-emergency h2{margin:0;color:#fff;font-size:19px;line-height:1.3;}
-.sg-emergency .act{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;background:var(--emergency-tint);color:var(--emergency-tint-fg);font:800 10px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:4px 10px;white-space:nowrap;margin-top:6px;}
-.sg-emergency p{margin:5px 0 0;font-size:13px;color:var(--emergency-soft);line-height:1.6;}
+.sg-head{max-width:760px;margin:0 auto;padding:50px 24px 10px;}
+.sg-head h1{font-size:38px;margin:14px 0 0;}
+.sg-head p{font-size:15px;color:var(--ink-soft);line-height:1.6;margin:14px 0 0;text-wrap:pretty;}
+.sg-wrap{max-width:1040px;margin:0 auto;padding:24px 24px 60px;}
+.sg-emergency{background:var(--emergency-bg);color:var(--emergency-fg);border-radius:var(--radius-panel);padding:22px 26px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:20px;align-items:center;}
+.sg-emergency .mark{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.2);display:grid;place-items:center;font:900 26px 'Inter',sans-serif;color:#fff;}
+.sg-emergency-head{display:flex;align-items:center;gap:9px;margin-bottom:5px;flex-wrap:wrap;}
+.sg-emergency h2{font-size:21px;color:#fff;margin:0;}
+.sg-emergency .act{display:inline-flex;align-items:center;background:var(--emergency-tint);color:var(--emergency-tint-fg);font:800 10.5px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:4px 10px;}
+.sg-emergency p{margin:0;font-size:13.5px;line-height:1.6;color:var(--emergency-soft);max-width:60ch;}
 .sg-112{display:flex;gap:10px;flex-wrap:wrap;}
-.sg-112 .chip{display:block;background:#fff;border-radius:12px;padding:12px 18px;text-align:center;text-decoration:none;}
-.sg-112 .n{display:block;font:900 24px 'Inter',sans-serif;color:var(--emergency-bg);}
-.sg-112 .t{display:block;font-size:10px;color:var(--emergency-plate-fg);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;line-height:1.35;}
-@media(max-width:760px){.sg-emergency{grid-template-columns:1fr;align-items:stretch;padding:18px;}.sg-112 .chip{flex:1;}}
-.sg-lib{margin-top:34px;}
-.sg-lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:14px;}
-.sg-lib-card{display:block;background:var(--card);border:1px solid var(--paper-line);border-radius:16px;padding:16px 18px;text-decoration:none;transition:border-color .15s,box-shadow .15s;}
-.sg-lib-card:hover{border-color:var(--accent);}
-.sg-lib-card .cat{font:700 10px 'Inter',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);}
-.sg-lib-card b{display:block;font-family:'Source Serif 4',serif;font-size:15.5px;color:var(--ink);margin:6px 0 5px;}
-.sg-lib-card p{margin:0;font-size:12.5px;color:var(--ink-soft);line-height:1.5;}
-@media(max-width:760px){.sg-topics{grid-template-columns:1fr;}}
+.sg-112 .chip{display:block;background:#fff;border-radius:var(--radius-md);padding:12px 18px;text-align:center;text-decoration:none;}
+.sg-112 .n{display:block;font:900 26px 'Inter',sans-serif;color:var(--emergency-bg);}
+.sg-112 .t{display:block;font-size:10.5px;color:var(--emergency-plate-fg);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;line-height:1.3;}
+.sg-topics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px;}
+.sg-topic{background:var(--card);border:var(--border);border-radius:var(--radius-panel);padding:18px 20px;}
+.sg-topic-head{display:flex;align-items:flex-start;gap:11px;margin-bottom:10px;}
+.sg-topic-icon{flex:none;width:34px;height:34px;border-radius:10px;background:var(--sage-dim);display:grid;place-items:center;}
+.sg-topic .cat{display:block;font:700 9.5px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.sg-topic h3{font-size:16px;margin:2px 0 0;}
+.sg-topic ul{margin:0;padding-left:17px;display:flex;flex-direction:column;gap:7px;}
+.sg-topic li{font-size:12.5px;line-height:1.55;color:var(--ink-soft);}
+.sg-library{background:var(--card);border:var(--border);border-radius:var(--radius-panel);padding:24px 26px;margin-top:20px;}
+.sg-library h2{font-size:22px;margin:0;}
+.sg-library-lead{margin:6px 0 16px;font-size:13.5px;color:var(--ink-soft);}
+.sg-lib{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.sg-lib-card{display:block;border:var(--border-strong);border-radius:var(--radius-md);overflow:hidden;text-decoration:none;background:#fff;transition:border-color .2s,box-shadow .2s,transform .2s;}
+.sg-lib-card:hover{border-color:var(--accent-light);transform:translateY(-2px);box-shadow:var(--shadow-card-hover);}
+.sg-lib-card img{display:block;width:100%;height:112px;object-fit:cover;background:var(--sage-dim);}
+.sg-lib-card-copy{display:block;padding:14px 17px 15px;}
+.sg-lib-card b{display:block;font:700 14.5px 'Source Serif 4',serif;color:var(--ink);}
+.sg-lib-card p{margin:5px 0 0;font-size:12.5px;color:var(--ink-soft);line-height:1.5;}
+.sg-lib-card small{display:block;font-size:11.5px;color:var(--muted);margin-top:8px;}
+.sg-disclaimer{margin:22px auto 0;font-size:12px;color:var(--muted);line-height:1.6;max-width:100ch;text-align:center;}
+.hp-footer .hp-footer-grid{max-width:1140px;grid-template-columns:1.2fr repeat(4,1fr);gap:28px;}
+@media(max-width:980px){
+  .sg-topics,.sg-lib{grid-template-columns:repeat(2,1fr);}
+  .hp-footer .hp-footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:660px){
+  .sg-head{padding:32px 18px 8px;}
+  .sg-head h1{font-size:28px;}
+  .sg-wrap{padding:20px 18px 44px;}
+  .sg-emergency{grid-template-columns:1fr;align-items:stretch;padding:18px;}
+  .sg-112 .chip{flex:1;}
+  .sg-topics,.sg-lib{grid-template-columns:1fr;}
+  .sg-library{padding:20px 18px;}
+  .hp-footer .hp-footer-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
@@ -66,71 +80,95 @@
   </div>
 </div>
 
-<div class="guide-hero">
-  <div class="eyebrow" data-i18n="guide.eyebrow">Dog safety guide</div>
-  <h1 style="font-size:clamp(28px,5vw,38px);margin-top:14px;" data-i18n="guide.h1">Hiking with your dog at altitude</h1>
-  <p class="sub" id="guideSubline" style="margin-top:14px;" data-i18n="guide.subline">The things that cause the most trouble on alpine trails are not the elevation. They are paws, heat, pace, and knowing your dog's build.</p>
-</div>
+<header class="sg-head">
+  <h1>Hiking with your dog at altitude</h1>
+  <p>The things that cause trouble on alpine trails are rarely the elevation. They are paws, heat, pace, and knowing when to turn back.</p>
+</header>
 
-<div class="sg-wrap">
-
-  <!-- Profile-aware callout: filled by JS from the real dog profile,
-       stays hidden for guests and profiles that produce no lines. -->
-  <div class="sg-tuned" id="sgTuned" hidden>
-    <span class="kick" id="sgTunedKick">Tuned for your dog</span>
-    <div class="sg-tuned-grid" id="sgTunedGrid"></div>
-    <p style="margin:12px 0 0;font-size:12px;color:var(--ink-soft);">These come from your dog's saved profile and are already baked into every match score. <a href="account.html?next=safety-guide.html" style="color:var(--accent);font-weight:600;">Edit profile &rarr;</a></p>
-  </div>
-
-  <!-- Topic cards with category filter -->
-  <div class="sg-cats" id="sgCats" role="tablist" aria-label="Filter topics">
-    <button type="button" class="active" data-cat="All">All</button>
-    <button type="button" data-cat="Heat">Heat</button>
-    <button type="button" data-cat="Terrain">Terrain</button>
-    <button type="button" data-cat="Water">Water</button>
-    <button type="button" data-cat="Hazards">Hazards</button>
-    <button type="button" data-cat="Access">Access</button>
-  </div>
-  <div class="sg-topics" id="sgTopics"></div>
-
-  <!-- Emergency banner — the one place the alert orange is allowed -->
-  <div class="sg-emergency">
+<main class="sg-wrap">
+  <section class="sg-emergency" aria-labelledby="emergencyHeading">
     <span class="mark" aria-hidden="true">!</span>
     <div>
-      <h2>In an emergency</h2>
-      <span class="act">Act early</span>
-      <p>Call mountain rescue early rather than late. Know your dog's weight and any medication before you need to say them out loud.</p>
+      <div class="sg-emergency-head">
+        <h2 id="emergencyHeading">In an emergency</h2>
+        <span class="act">Act early</span>
+      </div>
+      <p>Call mountain rescue early rather than late. Know your dog's weight and any medication before you need to say them out loud, and know your nearest lift-assisted exit.</p>
     </div>
     <div class="sg-112">
       <a class="chip" href="tel:112"><span class="n">112</span><span class="t">Rescue, EU-wide</span></a>
       <a class="chip" href="tel:118"><span class="n">118</span><span class="t">Italy, medical</span></a>
     </div>
-  </div>
+  </section>
 
-  <!-- Guides library: the full articles -->
-  <div class="sg-lib">
-    <h2 style="margin:0;font-size:22px;">Guides library</h2>
-    <p style="margin:6px 0 0;font-size:13.5px;color:var(--ink-soft);">The full articles behind the cards above.</p>
-    <div class="sg-lib-grid">
-      <a class="sg-lib-card" href="guides/heat-overheating.html"><span class="cat">Heat</span><b>Heat &amp; overheating</b><p>Recognizing heat stress early, the panting signs owners miss, and when to turn back.</p></a>
-      <a class="sg-lib-card" href="guides/paw-protection.html"><span class="cat">Terrain</span><b>Paw protection</b><p>Hot rock, sharp limestone, and scree: keeping pads intact on Dolomites surfaces.</p></a>
-      <a class="sg-lib-card" href="guides/altitude-with-your-dog.html"><span class="cat">Terrain</span><b>Hiking at altitude</b><p>What thinner air and fast-changing mountain weather mean for a dog's day out.</p></a>
-      <a class="sg-lib-card" href="guides/water-for-dogs-on-trail.html"><span class="cat">Water</span><b>Water for dogs on alpine trails</b><p>How much water a dog needs at altitude, the dehydration signs owners miss, and planning routes around real water points.</p></a>
-      <a class="sg-lib-card" href="guides/livestock-guard-dogs.html"><span class="cat">Hazards</span><b>Meeting a livestock guardian dog</b><p>The official protocol for patou and pastore abruzzese encounters, including the leash rule most people get wrong.</p></a>
-      <a class="sg-lib-card" href="guides/breed-group-caveats.html"><span class="cat">Hazards</span><b>Know your dog's build</b><p>Breed-group caveats for the mountains: flat-faced, giant, short-legged, herding, guardian and independent breeds.</p></a>
-      <a class="sg-lib-card" href="guides/dogs-on-cable-cars.html"><span class="cat">Access</span><b>Dogs on cable cars</b><p>The rules for gondolas and cable cars, muzzles, tickets, and which lifts say yes.</p></a>
-      <a class="sg-lib-card" href="guides/dogs-at-rifugi.html"><span class="cat">Access</span><b>Dogs at rifugi: the real rules</b><p>What is normal at Dolomites mountain huts with a dog, and why the only reliable policy is the one you confirmed by phone.</p></a>
-      <a class="sg-lib-card" href="guides/dog-friendly-hikes-val-gardena.html"><span class="cat">Trail guide</span><b>Dog-friendly hikes in Val Gardena</b><p>From the flat old railway line to Seceda's ridge, 8 trails scored for paw safety, shade, water and terrain.</p></a>
-      <a class="sg-lib-card" href="guides/dog-friendly-hikes-lago-di-braies.html"><span class="cat">Trail guide</span><b>Lago di Braies &amp; Tre Cime with a dog</b><p>Which Alta Pusteria trails work for which dogs, from the flat lake loop to ridge routes that do not belong on a dog's itinerary.</p></a>
+  <section class="sg-topics" aria-label="Dog hiking safety topics">
+    <article class="sg-topic">
+      <div class="sg-topic-head"><span class="sg-topic-icon" data-dp-icon="heat" data-dp-icon-size="19" aria-hidden="true"></span><div><span class="cat">Heat</span><h3>Heat &amp; coats</h3></div></div>
+      <ul><li>A dense or double coat traps heat; heat load matters more than air temperature.</li><li>Start before 10am on warm days and turn back if panting stays heavy at rest.</li><li>Favour shaded, lakeside and forested routes when it is warm.</li></ul>
+    </article>
+    <article class="sg-topic">
+      <div class="sg-topic-head"><span class="sg-topic-icon" data-dp-icon="dog" data-dp-icon-size="19" aria-hidden="true"></span><div><span class="cat">Terrain</span><h3>Paws &amp; terrain</h3></div></div>
+      <ul><li>Sun-baked rock and scree can burn pads; test with the back of your hand.</li><li>Sharp limestone and dense scrub nick thin skin, so check legs at breaks.</li><li>Long, steep descents stress large-breed hips and knees.</li></ul>
+    </article>
+    <article class="sg-topic">
+      <div class="sg-topic-head"><span class="sg-topic-icon" data-dp-icon="water" data-dp-icon-size="19" aria-hidden="true"></span><div><span class="cat">Water</span><h3>Water &amp; hydration</h3></div></div>
+      <ul><li>Carry more water than you think, plus a collapsible bowl.</li><li>Prefer routes with lake or stream access for cooling and drinking.</li><li>Avoid still, algae-green water; it can make dogs sick.</li></ul>
+    </article>
+    <article class="sg-topic">
+      <div class="sg-topic-head"><span class="sg-topic-icon" data-dp-icon="warning" data-dp-icon-size="19" aria-hidden="true"></span><div><span class="cat">Hazards</span><h3>Wildlife &amp; livestock</h3></div></div>
+      <ul><li>Lead near grazing cattle and sheep; guardian dogs may confront loose dogs.</li><li>Give marmots, chamois and nesting birds a wide berth.</li><li>Keep dogs close through fenced pasture and close every gate.</li></ul>
+    </article>
+    <article class="sg-topic">
+      <div class="sg-topic-head"><span class="sg-topic-icon" data-dp-icon="mountain" data-dp-icon-size="19" aria-hidden="true"></span><div><span class="cat">Hazards</span><h3>Cliffs &amp; exposure</h3></div></div>
+      <ul><li>Keep dogs leashed on exposed ledges and near low or missing railings.</li><li>Watch for cornices and loose edges early season.</li><li>Recall is not enough near drop-offs; use the lead.</li></ul>
+    </article>
+    <article class="sg-topic">
+      <div class="sg-topic-head"><span class="sg-topic-icon" data-dp-icon="lifts" data-dp-icon-size="19" aria-hidden="true"></span><div><span class="cat">Access</span><h3>Lifts &amp; season</h3></div></div>
+      <ul><li>Many cable cars carry dogs, sometimes muzzled or ticketed; check first.</li><li>Shoulder-season trails can be icy at altitude even when valleys are green.</li><li>Note the last lift down if you are relying on one to exit.</li></ul>
+    </article>
+  </section>
+
+  <section class="sg-library" aria-labelledby="libraryHeading">
+    <h2 id="libraryHeading">Guides library</h2>
+    <p class="sg-library-lead">The full articles behind the cards above.</p>
+    <div class="sg-lib">
+      <a class="sg-lib-card" href="guides/paw-protection.html"><img src="images/lago-di-carezza.webp" alt="" loading="lazy"><span class="sg-lib-card-copy"><b>Paw protection on rock and scree</b><p>When boots help, when they hurt, and how to check pads on trail.</p><small>8 min read</small></span></a>
+      <a class="sg-lib-card" href="guides/heat-overheating.html"><img src="images/sentier-des-buis.webp" alt="" loading="lazy"><span class="sg-lib-card-copy"><b>Reading heat stress early</b><p>The signs that come before panting, and what to do in the first five minutes.</p><small>6 min read</small></span></a>
+      <a class="sg-lib-card" href="guides/livestock-guard-dogs.html"><img src="images/la-galoppaz-par-la-combe-servenne.webp" alt="" loading="lazy"><span class="sg-lib-card-copy"><b>Livestock, guardian dogs and gates</b><p>How to cross grazed pasture without a confrontation.</p><small>7 min read</small></span></a>
+      <a class="sg-lib-card" href="guides/dogs-on-cable-cars.html"><img src="images/le-mont-d-arbois-mont-joux.webp" alt="" loading="lazy"><span class="sg-lib-card-copy"><b>Cable cars and lifts with a dog</b><p>Muzzle rules, tickets and the last lift down.</p><small>5 min read</small></span></a>
+      <a class="sg-lib-card" href="guides/altitude-with-your-dog.html"><img src="images/boucle-du-taillefer.webp" alt="" loading="lazy"><span class="sg-lib-card-copy"><b>Turning back: the honest checklist</b><p>Five questions to ask at the halfway point.</p><small>4 min read</small></span></a>
+      <a class="sg-lib-card" href="guides/altitude-with-your-dog.html"><img src="images/lago-di-braies.webp" alt="" loading="lazy"><span class="sg-lib-card-copy"><b>Shoulder season at altitude</b><p>Ice on north faces while the valley is green.</p><small>6 min read</small></span></a>
+    </div>
+  </section>
+
+  <p class="sg-disclaimer">This guide is general information, not veterinary advice. If your dog shows signs of heat stress, injury or exhaustion on trail, get them to shade and water first, and to a vet if the symptoms do not resolve quickly.</p>
+</main>
+
+<footer class="site-footer hp-footer">
+  <div class="hp-footer-grid">
+    <div>
+      <div class="hp-footer-brand"><img src="logo.svg" alt=""><span>DoloPaws</span></div>
+      <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans. Every walk scored for paw safety.</p>
+    </div>
+    <div>
+      <div class="hp-footer-h">Explore</div>
+      <div class="hp-footer-links"><a href="browse-trails.html">Browse all trails</a><a href="collections.html">Collections</a><a href="safety-guide.html">Safety guide</a></div>
+    </div>
+    <div>
+      <div class="hp-footer-h">For dogs</div>
+      <div class="hp-footer-links"><a href="about.html">How scoring works</a><a href="guides/water-for-dogs-on-trail.html">Heat &amp; hydration</a><a href="guides/paw-protection.html">Paw protection</a></div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Connect</div>
+      <div class="hp-footer-links"><a href="about.html">Instagram</a><a href="about.html">Newsletter</a><a href="contact.html">Support</a></div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Company</div>
+      <div class="hp-footer-links"><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
     </div>
   </div>
-
-  <p style="margin-top:26px;font-size:14px;">Curious how the app tailors advice to your own dog's breed and build? See <a href="guides/breed-group-caveats.html">breed-group caveats</a> and read <a href="about.html">how DoloPaws rates trails for your dog</a>.</p>
-</div>
-
-<div class="wrap">
-  <div class="site-footer" style="padding-top:0;" data-i18n="guide.disclaimer">This guide is general information, not veterinary advice. If your dog shows signs of heat stress, injury, or exhaustion on trail, prioritize getting them to shade, water, and (if symptoms don't resolve quickly) a vet.</div>
-</div>
+  <div class="hp-footer-base"><span>© 2026 DoloPaws · Dolomites &amp; Alps</span></div>
+</footer>
 
 <script src="mobile-nav.js"></script>
 <script src="i18n.js"></script>
@@ -142,79 +180,5 @@
 <script src="scoring/recommendation-v1.js?v=20260728-2" defer></script>
 <script src="scoring/recommendation-adapters-v1.js?v=20260728-1" defer></script>
 <script src="scoring.js?v=20260728-4" defer></script>
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
-
-  // Topic cards. General guidance, same facts the guides expand on.
-  var TOPICS = [
-    { cat:'Heat', icon:'heat', bg:'#F6ECDB', title:'Heat & coats', points:[
-      'A dense or double coat traps heat; heat load matters more than air temperature.',
-      'Start before 10am on warm days and turn back if panting stays heavy at rest.',
-      'Favour shaded, lakeside and forested routes when it is warm.']},
-    { cat:'Terrain', icon:'dog', bg:'#E4EADF', title:'Paws & terrain', points:[
-      'Sun-baked rock and scree can burn pads; test with the back of your hand.',
-      'Sharp limestone and dense scrub nick thin skin, so check legs at breaks.',
-      'Long, steep descents stress large-breed hips and knees.']},
-    { cat:'Water', icon:'water', bg:'#E6EFF4', title:'Water & hydration', points:[
-      'Carry more water than you think, plus a collapsible bowl.',
-      'Prefer routes with lake or stream access for cooling and drinking.',
-      'Avoid still, algae-green water; it can make dogs sick.']},
-    { cat:'Hazards', icon:'warning', bg:'#F6ECDB', title:'Wildlife & livestock', points:[
-      'Lead near grazing cattle and sheep; guardian dogs may confront loose dogs.',
-      'Give marmots, chamois and nesting birds a wide berth.',
-      'Keep dogs close through fenced pasture and close every gate.']},
-    { cat:'Hazards', icon:'mountain', bg:'#E4EADF', title:'Cliffs & exposure', points:[
-      'Keep dogs leashed on exposed ledges and near low or missing railings.',
-      'Watch for cornices and loose edges early season.',
-      'Recall is not enough near drop-offs; use the lead.']},
-    { cat:'Access', icon:'lifts', bg:'#E6EFF4', title:'Lifts & season', points:[
-      'Many cable cars carry dogs, sometimes muzzled or ticketed; check first.',
-      'Shoulder-season trails can be icy at altitude even when valleys are green.',
-      'Note the last lift down if you are relying on one to exit.']}
-  ];
-
-  var activeCat = 'All';
-  function renderTopics(){
-    var list = activeCat === 'All' ? TOPICS : TOPICS.filter(function(t){ return t.cat === activeCat; });
-    document.getElementById('sgTopics').innerHTML = list.map(function(t){
-      var icon = window.DoloPawsIcons ? window.DoloPawsIcons.renderIconSvg(t.icon, { mode:'inline', color:'currentColor', size:20 }) : '';
-      return '<div class="sg-topic">' +
-        '<div class="head"><span class="ico" style="background:' + t.bg + ';" aria-hidden="true">' + icon + '</span>' +
-        '<div><span class="cat">' + esc(t.cat) + '</span><h3>' + esc(t.title) + '</h3></div></div>' +
-        '<ul>' + t.points.map(function(p){ return '<li>' + esc(p) + '</li>'; }).join('') + '</ul>' +
-      '</div>';
-    }).join('');
-  }
-  renderTopics();
-  document.getElementById('sgCats').addEventListener('click', function(e){
-    var btn = e.target.closest('[data-cat]');
-    if(!btn) return;
-    activeCat = btn.dataset.cat;
-    this.querySelectorAll('button').forEach(function(b){ b.classList.toggle('active', b === btn); });
-    renderTopics();
-  });
-
-  // "Tuned for {dog}": the top profileInsights lines, straight from the
-  // saved profile. Guests and empty profiles simply do not see the box.
-  function paintTuned(){
-    if(!window.DoloPawsAuth || !window.DoloPawsAuth.currentUser || typeof profileInsights !== 'function') return;
-    window.DoloPawsAuth.getDogProfile().then(function(p){
-      if(!p) return;
-      var lines = profileInsights(p).slice(0, 3);
-      if(!lines.length) return;
-      var name = p.name || 'your dog';
-      document.getElementById('sgTunedKick').textContent = 'Tuned for ' + name + (p.breed ? ' · ' + p.breed : '');
-      document.getElementById('sgTunedGrid').innerHTML = lines.map(function(l){
-        return '<div><b>' + esc(l.title) + '</b><small>' + esc(l.sub) + '</small></div>';
-      }).join('');
-      document.getElementById('sgTuned').hidden = false;
-    }).catch(function(){});
-  }
-  if(window.DoloPawsAuth) paintTuned();
-  else window.addEventListener('dolopaws-auth-ready', paintTuned, { once: true });
-  window.addEventListener('dolopaws-auth-changed', paintTuned);
-});
-</script>
 </body>
 </html>

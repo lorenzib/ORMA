@@ -17,34 +17,39 @@
             '<button id="authClose" class="modal-close" aria-label="Close">&times;</button>' +
             '<div class="auth-hero-copy">' +
               '<span class="auth-hero-brand"><img src="logo.svg" alt="">DoloPaws</span>' +
-              '<h2 id="authTitle" data-i18n="nav.login">Welcome back</h2>' +
-              '<p class="hint" id="authHint" data-i18n="auth.hint">Save trails so they follow you across every device.</p>' +
+              '<h2 id="authTitle" data-i18n="nav.login">Log in</h2>' +
+              '<p class="hint" id="authHint" data-i18n="auth.hint">Save trails to your account so they follow you across devices.</p>' +
             '</div>' +
           '</div>' +
           '<div class="auth-body">' +
             '<button type="button" id="authBackToLogin" class="auth-back-link" hidden>&larr; Back to log in</button>' +
             '<div id="authResetDone" class="auth-reset-done" aria-live="polite" hidden></div>' +
             '<div id="authError" class="auth-error" role="alert" aria-live="polite" hidden></div>' +
-            '<button id="googleBtn" class="google-btn">' +
-              '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1A11 11 0 0 0 2.18 7.06l3.66 2.84C6.71 7.3 9.14 5.38 12 5.38z"/></svg>' +
-              '<span data-i18n="auth.google">Continue with Google</span>' +
-            '</button>' +
-            '<div class="auth-divider"><span data-i18n="auth.or">or with email</span></div>' +
             '<form id="authForm">' +
+              '<label class="field-label auth-signup-field" id="authNameLabel" hidden><span>Your name</span>' +
+                '<input type="text" id="authName" autocomplete="name" placeholder="Marta Bianchi">' +
+              '</label>' +
               '<label class="field-label"><span data-i18n="auth.email">Email</span>' +
-                '<input type="email" id="authEmail" required autocomplete="email">' +
+                '<input type="email" id="authEmail" required autocomplete="email" placeholder="you@example.com">' +
               '</label>' +
               '<label class="field-label"><span data-i18n="auth.password">Password</span>' +
                 '<input type="password" id="authPassword" required autocomplete="current-password" minlength="6">' +
+                '<small id="authPasswordHint" class="auth-field-hint" hidden>At least 8 characters.</small>' +
+              '</label>' +
+              '<label class="field-label auth-signup-field" id="authConfirmLabel" hidden><span>Confirm password</span>' +
+                '<input type="password" id="authConfirmPassword" autocomplete="new-password">' +
               '</label>' +
               '<button type="button" id="forgotPasswordBtn" class="forgot-link" data-i18n="auth.forgot">Forgot password?</button>' +
+              '<label class="auth-terms" id="authTermsLabel" hidden><input type="checkbox" id="authTerms"> <span>I agree to the <a href="terms.html">terms</a> and <a href="privacy.html">privacy policy</a>.</span></label>' +
               '<button type="submit" class="auth-submit" id="authSubmit" data-i18n="nav.login">Log in</button>' +
             '</form>' +
-            '<button id="authGuestBtn" type="button" class="auth-guest-link" data-i18n="auth.guest">Keep browsing as a guest &rarr;</button>' +
+            '<div class="auth-divider"><span>or</span></div>' +
+            '<button id="googleBtn" class="google-btn"><span data-i18n="auth.google">Continue with Google</span></button>' +
             '<p class="auth-toggle">' +
               '<span id="authToggleText" data-i18n="auth.noAccount">Don\'t have an account?</span>' +
               '<button id="authToggleBtn" type="button" data-i18n="auth.signup">Sign up</button>' +
             '</p>' +
+            '<button id="authGuestBtn" type="button" class="auth-guest-link" data-i18n="auth.guest">Keep browsing as a guest &rarr;</button>' +
           '</div>' +
         '</div>' +
       '</div>';
@@ -57,11 +62,19 @@
   const title = document.getElementById('authTitle');
   const hint = document.getElementById('authHint');
   const form = document.getElementById('authForm');
+  const nameInput = document.getElementById('authName');
+  const nameLabel = document.getElementById('authNameLabel');
   const emailInput = document.getElementById('authEmail');
   const passwordInput = document.getElementById('authPassword');
+  const passwordHint = document.getElementById('authPasswordHint');
+  const confirmInput = document.getElementById('authConfirmPassword');
+  const confirmLabel = document.getElementById('authConfirmLabel');
+  const termsInput = document.getElementById('authTerms');
+  const termsLabel = document.getElementById('authTermsLabel');
   const submitBtn = document.getElementById('authSubmit');
   const errorBox = document.getElementById('authError');
   const googleBtn = document.getElementById('googleBtn');
+  const googleLabel = googleBtn && (googleBtn.querySelector('span') || googleBtn);
   const toggleText = document.getElementById('authToggleText');
   const toggleBtn = document.getElementById('authToggleBtn');
   const forgotBtn = document.getElementById('forgotPasswordBtn');
@@ -100,6 +113,7 @@
     }
     errorBox.hidden = true;
     form.reset();
+    setMode(mode);
     returnFocus = document.activeElement && document.activeElement !== document.body
       ? document.activeElement : accountBtn;
     modal.hidden = false;
@@ -127,6 +141,17 @@
     if(dividerEl) dividerEl.hidden = isReset;
     if(passwordLabel) passwordLabel.hidden = isReset;
     passwordInput.required = !isReset;
+    passwordInput.minLength = mode === 'signup' ? 8 : 6;
+    if(nameLabel) nameLabel.hidden = mode !== 'signup';
+    if(nameInput) nameInput.required = mode === 'signup';
+    if(confirmLabel) confirmLabel.hidden = mode !== 'signup';
+    if(confirmInput){
+      confirmInput.required = mode === 'signup';
+      confirmInput.value = '';
+    }
+    if(passwordHint) passwordHint.hidden = mode !== 'signup';
+    if(termsLabel) termsLabel.hidden = mode !== 'signup';
+    if(termsInput) termsInput.required = mode === 'signup';
     forgotBtn.hidden = isReset || mode === 'signup';
     if(toggleRow) toggleRow.hidden = isReset;
     if(backToLoginBtn) backToLoginBtn.hidden = !isReset;
@@ -140,7 +165,7 @@
       submitBtn.textContent = window.t('nav.login');
       toggleText.textContent = window.t('auth.noAccount');
       toggleBtn.textContent = window.t('auth.signup');
-      if(googleBtn) googleBtn.querySelector('span').textContent = window.t('auth.google');
+      if(googleLabel) googleLabel.textContent = window.t('auth.google');
       passwordInput.autocomplete = 'current-password';
     } else if(mode === 'signup'){
       title.textContent = window.t('auth.createTitle');
@@ -148,7 +173,7 @@
       submitBtn.textContent = window.t('auth.signup');
       toggleText.textContent = window.t('auth.haveAccount');
       toggleBtn.textContent = window.t('nav.login');
-      if(googleBtn) googleBtn.querySelector('span').textContent = window.t('auth.googleSignup');
+      if(googleLabel) googleLabel.textContent = window.t('auth.googleSignup');
       passwordInput.autocomplete = 'new-password';
     } else {
       title.textContent = window.t('auth.resetTitle');
@@ -227,13 +252,23 @@
       sendResetLink();
       return;
     }
-    submitBtn.disabled = true;
-    submitBtn.textContent = mode === 'login' ? 'Logging in…' : 'Signing up…';
     const email = emailInput.value.trim();
     const password = passwordInput.value;
+    if(mode === 'signup' && confirmInput && password !== confirmInput.value){
+      errorBox.textContent = 'Passwords do not match.';
+      errorBox.hidden = false;
+      return;
+    }
+    if(mode === 'signup' && termsInput && !termsInput.checked){
+      errorBox.textContent = 'Agree to the terms and privacy policy to continue.';
+      errorBox.hidden = false;
+      return;
+    }
+    submitBtn.disabled = true;
+    submitBtn.textContent = mode === 'login' ? 'Logging in…' : 'Signing up…';
     const result = mode === 'login'
       ? await window.DoloPawsAuth.signIn(email, password)
-      : await window.DoloPawsAuth.signUp(email, password);
+      : await window.DoloPawsAuth.signUp(email, password, nameInput ? nameInput.value.trim() : '');
     submitBtn.disabled = false;
     setMode(mode);
     if(result.ok){

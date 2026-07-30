@@ -15,42 +15,76 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-  .simple-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
-  .simple-card{background:var(--card);border:1px solid var(--paper-line);border-radius:var(--radius-md);overflow:hidden;}
-  .simple-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 10px 24px rgba(27,31,25,.08);}
-  .simple-card{transition:border-color .15s ease,transform .15s ease,box-shadow .15s ease;}
-  .simple-card .photo{height:140px;background:#E7ECE3;}
-  .simple-card .name{padding:12px 14px;font-family:'Source Serif 4',serif;font-weight:700;font-size:14.5px;color:var(--ink);}
-  .browse-card-actions{display:flex;align-items:center;gap:8px;margin-top:11px;}
-  .browse-card-open,.browse-card-compare{display:inline-flex;align-items:center;justify-content:center;min-height:38px;border-radius:9px;font:800 11.5px 'Inter',sans-serif;}
-  .browse-card-open{flex:1;background:var(--ink);color:#fff;text-decoration:none;padding:8px 10px;}
-  .browse-card-compare{border:1.5px solid var(--paper-line);background:#fff;color:var(--ink);padding:8px 11px;cursor:pointer;}
+  .browse-design-head{max-width:760px;margin:0 auto;padding:50px 24px 10px;}
+  .browse-design-head h1{font-size:38px;margin:14px 0 0;}
+  .browse-design-head p{font-size:15px;color:var(--ink-soft);line-height:1.6;margin:14px 0 0;text-wrap:pretty;}
+  .browse-design-wrap{max-width:1040px;margin:0 auto;padding:0 24px 60px;}
+  .browse-profile-banner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:17px 20px;margin:22px 0 4px;background:var(--sage-dim);border:1px solid var(--accent-tint-line);border-radius:var(--radius-panel);}
+  .browse-profile-banner b{display:block;font:700 14px 'Source Serif 4',serif;color:var(--ink);}
+  .browse-profile-banner p{margin:3px 0 0;font-size:12.5px;color:var(--ink-soft);line-height:1.45;}
+  .browse-profile-banner a{flex:none;display:inline-flex;padding:10px 16px;border-radius:var(--radius-pill);background:var(--accent-light);color:#173039;text-decoration:none;font:800 12.5px 'Inter',sans-serif;}
+  .browse-design-wrap .region-tabs{margin:22px 0 14px;}
+  .simple-grid{display:flex;flex-direction:column;gap:12px;}
+  .simple-card{display:flex;gap:16px;align-items:stretch;padding:14px;background:var(--card);border:1px solid var(--paper-line);border-radius:var(--radius-panel);transition:box-shadow .2s,border-color .2s,transform .2s;}
+  .simple-card:hover{border-color:var(--accent-light);transform:translateY(-2px);box-shadow:var(--shadow-card-hover);}
+  .simple-card .photo{flex:none;width:120px;height:96px;border-radius:var(--radius-thumb,12px);background:#E7ECE3;overflow:hidden;}
+  .simple-card__main{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;text-decoration:none;}
+  .simple-card .name{font-family:'Source Serif 4',serif;font-weight:700;font-size:17px;color:var(--ink);}
+  .simple-card__rating{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap;align-items:center;}
+  .simple-card__rating-label{font:700 10px 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
+  .simple-card__reason{display:inline-flex;align-items:flex-start;gap:6px;margin-top:9px;background:var(--success-dim);border-radius:8px;padding:5px 10px;align-self:flex-start;max-width:100%;font-size:12px;line-height:1.35;color:var(--success);}
+  .simple-card__match{flex:none;display:flex;flex-direction:column;align-items:center;align-self:center;justify-content:center;gap:3px;min-width:76px;border-left:1px dashed var(--paper-line);padding-left:12px;}
+  .simple-card__match strong{font:800 15px/1 'Inter',sans-serif;color:var(--success);}
+  .simple-card__match strong span{font-size:9px;}
+  .simple-card__match small{font:700 7.5px 'Inter',sans-serif;letter-spacing:.03em;color:var(--ink-soft);white-space:nowrap;}
+  .simple-card__tier{font-size:9px;font-weight:700;padding:2px 6px;border-radius:var(--radius-pill);background:rgba(74,120,86,.12);color:var(--success);}
+  .simple-card__match--good strong{color:#C98A2E;}
+  .simple-card__match--good .simple-card__tier{background:rgba(201,138,46,.13);color:#9A651B;}
+  .simple-card__match--check strong{color:#9C3A25;}
+  .simple-card__match--check .simple-card__tier{background:rgba(156,58,37,.11);color:#9C3A25;}
+  .browse-card-actions{display:flex;align-items:center;gap:8px;margin-top:8px;}
+  .browse-card-open{display:none;}
+  .browse-card-compare{display:inline-flex;align-items:center;justify-content:center;min-height:28px;border-radius:var(--radius-pill);font:700 10.5px 'Inter',sans-serif;border:1px solid var(--paper-line);background:#fff;color:var(--ink-soft);padding:4px 9px;cursor:pointer;}
   .browse-card-compare[aria-pressed="true"]{background:#EAF3EC;border-color:#7EAD91;color:#24462E;}
   .browse-card-compare:disabled{cursor:not-allowed;opacity:.48;}
   /* Filter row: search pill, then rating/distance/water controls. On phones
      the controls condense behind a single "Filters" chip (design revamp). */
-  .browse-tools{position:relative;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px;}
-  .browse-tools .browse-search{flex:1 1 240px;max-width:340px;}
-  .browse-tools input,.browse-tools select{min-height:44px;padding:10px 12px;border:1.5px solid var(--paper-line);border-radius:10px;background:var(--card);color:var(--ink);font:500 13px 'Inter',sans-serif;}
+  .browse-tools{position:relative;display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:18px;}
+  .browse-filter-divider{width:1px;height:22px;background:var(--divider);margin:0 3px;}
+  .browse-search-shell{flex:1 1 240px;max-width:320px;display:flex;align-items:center;gap:9px;background:var(--card);border:var(--border-strong);border-radius:var(--radius-pill);padding:9px 15px;color:var(--ink-soft);}
+  .browse-tools .browse-search{flex:1;min-width:0;max-width:none;}
+  .browse-tools input{min-height:0;padding:0;border:0;background:none;color:var(--ink);font:400 14px 'Inter',sans-serif;}
+  .browse-tools select{min-height:38px;padding:8px 34px 8px 14px;border:var(--border-strong);border-radius:var(--radius-pill);background:var(--card);color:var(--ink);font:600 13px 'Inter',sans-serif;appearance:none;-webkit-appearance:none;cursor:pointer;}
   .browse-tools input:focus,.browse-tools select:focus{outline:none;border-color:var(--accent);}
-  .browse-filter-controls{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap;}
-  .browse-field{display:flex;flex-direction:column;gap:5px;min-width:150px;}
-  .browse-field>span{font:700 10.5px 'Inter',sans-serif;letter-spacing:.04em;color:var(--ink-soft);}
-  .browse-water{min-height:44px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 13px 'Inter',sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap;}
+  .browse-filter-controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+  .browse-field{position:relative;display:block;min-width:0;}
+  .browse-field::after{content:'▾';position:absolute;right:13px;top:50%;transform:translateY(-50%);font-size:11px;color:var(--ink-soft);pointer-events:none;}
+  .browse-field>span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
+  .browse-field--advanced{display:none;}
+  .browse-water{min-height:38px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 13px 'Inter',sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap;}
   .browse-water[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
-  .browse-filters-toggle{display:none;min-height:44px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 13px 'Inter',sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap;}
+  .browse-filters-toggle{display:none!important;}
   .browse-filters-toggle.on{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
-  .browse-back-home{display:inline-flex;margin:0 0 14px;font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;}
-  .browse-back-home:hover{text-decoration:underline;}
-  .browse-back-home[hidden]{display:none;}
+  .browse-results-meta .browse-result-accessible{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  .hp-footer .hp-footer-grid{max-width:1140px;grid-template-columns:1.2fr repeat(4,1fr);gap:28px;}
   @media(max-width:760px){
-    .browse-tools .browse-search{flex-basis:100%;max-width:none;}
-    .browse-filters-toggle{display:inline-flex;align-items:center;gap:6px;}
-    .browse-filter-controls{display:none;position:absolute;top:calc(100% + 6px);left:0;z-index:30;width:min(320px,100%);max-height:min(70vh,560px);overflow-y:auto;flex-direction:column;align-items:stretch;background:#fff;border:1px solid var(--paper-line);border-radius:12px;box-shadow:0 14px 34px -12px rgba(23,42,28,.4);padding:12px;}
-    .browse-tools.filters-open .browse-filter-controls{display:flex;}
+    .browse-design-head{padding:30px 18px 8px;}
+    .browse-design-head h1{font-size:28px;}
+    .browse-design-wrap{padding:0 18px 44px;}
+    .browse-profile-banner{align-items:flex-start;flex-direction:column;}
+    .browse-tools{flex-wrap:nowrap;overflow-x:auto;padding-bottom:3px;}
+    .browse-search-shell{flex:0 0 210px;}
+    .browse-filter-controls{display:flex;flex-wrap:nowrap;}
+    .simple-card{gap:12px;padding:12px;flex-wrap:wrap;}
+    .simple-card .photo{width:84px;height:76px;}
+    .simple-card__match{width:100%;min-width:0;flex-direction:row;justify-content:flex-start;border-left:0;border-top:1px dashed var(--paper-line);padding:9px 0 0;}
+    .simple-card__match strong{font-size:19px;}
+    .simple-card__tier{margin-left:auto;}
+    .hp-footer .hp-footer-grid{grid-template-columns:1fr 1fr;}
   }
+  @media(max-width:540px){.hp-footer .hp-footer-grid{grid-template-columns:1fr;}}
   .trail-trust-note{margin:0 0 14px;padding:11px 13px;border-left:3px solid #8a5a16;background:#f6ecdb;border-radius:0 10px 10px 0;color:#5f4a2c;font-size:12.5px;line-height:1.55;}
-  .browse-results-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 18px;color:var(--ink-soft);font-size:12.5px;}
+  .browse-results-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px;color:var(--ink-soft);font-size:12.5px;font-weight:600;flex-wrap:wrap;}
   .browse-clear{border:0;background:none;color:var(--accent);font:700 12.5px 'Inter',sans-serif;cursor:pointer;padding:4px 0;}
   .browse-empty{grid-column:1/-1;}
   .browse-empty__filters{display:flex;justify-content:center;gap:7px;flex-wrap:wrap;margin:12px 0 4px;}
@@ -80,58 +114,56 @@
   <a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
   <div class="links">
     <a href="browse-trails.html" class="active">Browse all Trails</a>
-    <a href="browse-trails.html#collections">Collections</a>
+    <a href="collections.html">Collections</a>
     <a href="safety-guide.html">Safety guide</a>
     <a href="settings.html" data-i18n="nav.settings">Settings</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
   </div>
 </div>
 
-<div class="guide-hero">
-  <a id="browseBackHome" class="browse-back-home" href="index.html" hidden>&larr; Back home</a>
-  <div class="eyebrow" data-i18n="browse.eyebrow">Dolomites &amp; Savoy</div>
-  <h1 id="trailCountHeading" style="font-size:clamp(28px,5vw,38px);margin-top:14px;" data-i18n="browse.h1">All our trails</h1>
-  <p class="sub" style="margin-top:14px;" data-i18n="browse.sub">Explore every trail without an account. Open any trail for safety, terrain, water, access, and route details.</p>
-</div>
+<header class="browse-design-head">
+  <h1 id="trailCountHeading">All our trails</h1>
+  <p class="sub">Explore every trail without an account. Open any trail for safety, terrain, water, access and route details.</p>
+</header>
 
-<div class="wrap" style="padding-bottom:60px;">
-
-  <!-- Collections: curated cuts of the catalog. Linked from the header
-       nav (#collections); each card applies its filter to the list below. -->
-  <section class="browse-collections" id="collections" aria-labelledby="collectionsHeading">
-    <div class="browse-coll-head">
-      <h2 id="collectionsHeading">Collections</h2>
-      <p>Hand-picked sets for the days that need them — pick one to filter the trails below.</p>
-    </div>
-    <div class="browse-coll-grid" id="browseCollections"></div>
-  </section>
+<main class="browse-design-wrap">
+  <aside class="browse-profile-banner">
+    <div><b>Every walk scored for your dog</b><p>Add your dog's build, age and health once. Free, no account needed to browse.</p></div>
+    <a href="onboarding.html">Create your dog's profile →</a>
+  </aside>
+  <div id="browseCollections" hidden></div>
 
   <!-- Region tabs — the area filter, visible instead of buried in a select -->
   <div class="region-tabs" id="browseRegionTabs" aria-label="Filter by region"></div>
 
   <div class="browse-tools" id="browseTools" aria-label="Filter trails">
-    <input class="browse-search" id="browseSearch" type="search" placeholder="Search by trail, area, or valley" aria-label="Search trails">
+    <label class="browse-search-shell">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      <input class="browse-search" id="browseSearch" type="search" placeholder="Search by trail, area or valley" aria-label="Search trails">
+    </label>
+    <span class="browse-filter-divider" aria-hidden="true"></span>
     <button type="button" id="browseFiltersBtn" class="browse-filters-toggle" aria-expanded="false" aria-controls="browseFilterControls">Filters<span id="browseFiltersCount"></span> <span aria-hidden="true">▾</span></button>
     <div class="browse-filter-controls" id="browseFilterControls">
-      <label class="browse-field"><span>Trail rating</span>
-        <select id="browseRisk" aria-label="Filter by trail rating">
-          <option value="all">Any trail rating</option>
-          <option value="low-risk">Low-risk only</option>
-          <option value="moderate">Moderate only</option>
-          <option value="caution">Caution only</option>
-        </select>
-      </label>
       <label class="browse-field"><span>Distance</span>
         <select id="browseDistance" aria-label="Filter by distance">
-          <option value="all">Any known distance</option>
-          <option value="3">Up to 3 km</option>
-          <option value="5">Up to 5 km</option>
-          <option value="6">Up to 6 km</option>
-          <option value="10">Up to 10 km</option>
-          <option value="20">Up to 20 km</option>
+          <option value="all">Distance</option>
+          <option value="3" hidden>Up to 3 km</option>
+          <option value="5">Under 5 km</option>
+          <option value="6" hidden>Up to 6 km</option>
+          <option value="10">5–10 km</option>
+          <option value="20" hidden>Up to 20 km</option>
         </select>
       </label>
-      <label class="browse-field"><span>Terrain tolerance</span>
+      <label class="browse-field"><span>Trail rating</span>
+        <select id="browseRisk" aria-label="Filter by trail rating">
+          <option value="all">Trail rating</option>
+          <option value="low-risk">Low risk</option>
+          <option value="moderate">Moderate</option>
+          <option value="caution">Caution</option>
+        </select>
+      </label>
+      <button type="button" id="browseWater" class="browse-water" aria-pressed="false" data-audit-label="Reviewed water point">Water on route</button>
+      <label class="browse-field browse-field--advanced"><span>Terrain tolerance</span>
         <select id="browseTerrain" aria-label="Filter by terrain tolerance">
           <option value="">Any terrain</option>
           <option value="soft">Gentle surfaces only</option>
@@ -139,41 +171,40 @@
           <option value="rocky">Rocky terrain is okay</option>
         </select>
       </label>
-      <label class="browse-field"><span>Shade &amp; heat</span>
+      <label class="browse-field browse-field--advanced"><span>Shade &amp; heat</span>
         <select id="browseHeat" aria-label="Filter by reviewed shade or heat">
           <option value="">Any shade or heat data</option>
           <option value="shade-reviewed">Reviewed shade, at least 30%</option>
         </select>
       </label>
-      <label class="browse-field"><span>Exposure</span>
+      <label class="browse-field browse-field--advanced"><span>Exposure</span>
         <select id="browseExposure" aria-label="Filter by reviewed exposure">
           <option value="">Any exposure data</option>
           <option value="none-reviewed">No exposure, source-reviewed</option>
         </select>
       </label>
-      <label class="browse-field"><span>Dog restrictions</span>
+      <label class="browse-field browse-field--advanced"><span>Dog restrictions</span>
         <select id="browseAccess" aria-label="Filter by reviewed dog access">
           <option value="">Any dog-access status</option>
           <option value="allowed-reviewed">Dogs permitted; reviewed rules</option>
         </select>
       </label>
-      <label class="browse-field"><span>DoloPaws review</span>
+      <label class="browse-field browse-field--advanced"><span>DoloPaws review</span>
         <select id="browseVerification" aria-label="Filter by DoloPaws verification">
           <option value="">Any review status</option>
           <option value="route-audited">Route-audited or field-verified</option>
         </select>
       </label>
-      <button type="button" id="browseWater" class="browse-water" aria-pressed="false">Reviewed water point</button>
     </div>
   </div>
-  <p class="trail-trust-note" data-i18n="browse.trustNote"><strong>How to read safety labels:</strong> route-audited trails have had their data checked by DoloPaws. Trails still under review show automated estimates and do not confirm exposure, shade, livestock or current conditions.</p>
   <div class="browse-results-meta">
     <span id="browseResultCount" aria-live="polite"></span>
+    <span class="browse-result-accessible" data-i18n="browse.trustNote">Route-audited trails have had their data checked by DoloPaws.</span>
     <button type="button" id="browseClear" class="browse-clear" hidden>Clear filters</button>
   </div>
   <div class="simple-grid" id="simpleTrailsList"></div>
 
-  <details style="margin-top:34px;font-size:13.5px;color:var(--ink-soft);">
+  <details hidden style="margin-top:34px;font-size:13.5px;color:var(--ink-soft);">
     <summary style="cursor:pointer;font-weight:700;color:var(--ink);">Full trail index (A–Z)</summary>
     <div style="columns:2;column-gap:28px;margin-top:14px;line-height:2;">
 <!-- TRAIL-INDEX-START (auto-generated by scripts/generate-trail-pages.js — do not edit by hand) -->
@@ -325,9 +356,52 @@
 <!-- TRAIL-INDEX-END -->
     </div>
   </details>
-</div>
+</main>
 
-<footer class="site-footer" data-i18n="footer.line">DoloPaws &#124; A personalised trail guide for dogs and their humans.</footer>
+<footer class="site-footer hp-footer">
+  <div class="hp-footer-grid">
+    <div>
+      <div class="hp-footer-brand"><img src="logo.svg" alt=""><span>DoloPaws</span></div>
+      <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans. Every walk scored for paw safety.</p>
+    </div>
+    <div>
+      <div class="hp-footer-h">Explore</div>
+      <div class="hp-footer-links">
+        <a href="browse-trails.html">Browse all trails</a>
+        <a href="collections.html">Collections</a>
+        <a href="safety-guide.html">Safety guide</a>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">For dogs</div>
+      <div class="hp-footer-links">
+        <a href="about.html">How scoring works</a>
+        <a href="guides/water-for-dogs-on-trail.html">Heat &amp; hydration</a>
+        <a href="guides/paw-protection.html">Paw protection</a>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Connect</div>
+      <div class="hp-footer-links">
+        <a href="about.html">Instagram</a>
+        <a href="about.html">Newsletter</a>
+        <a href="contact.html">Support</a>
+      </div>
+    </div>
+    <div>
+      <div class="hp-footer-h">Company</div>
+      <div class="hp-footer-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="hp-footer-base">
+    <span>© 2026 DoloPaws · Dolomites &amp; Alps</span>
+  </div>
+</footer>
 
 <script src="mobile-nav.js"></script>
 <script src="i18n.js"></script>
@@ -344,6 +418,7 @@
 <script src="osm-trails-savoy-data.js" defer></script>
 <script src="trail-audits.js?v=20260717" defer></script>
 <script src="regions-config.js"></script>
+<script src="guest-context.js?v=20260730-1" defer></script>
 <script src="auth-ui.js?v=20260729-1" defer></script>
 <script src="discovery-state.js?v=20260729-1" defer></script>
 <script src="discovery-filters.js?v=20260729-1" defer></script>
@@ -380,15 +455,6 @@
     let difficultyValue = '';
     let minMatchValue = '';
     let dogValue = 'medium';
-
-    // Logged-in visitors arrive here from the map shell — give them the way
-    // back the design asks for ("← Back home").
-    try {
-      if(localStorage.getItem('dolopaws-profile-summary')){
-        const backHome = document.getElementById('browseBackHome');
-        if(backHome) backHome.hidden = false;
-      }
-    } catch(e){}
 
     const SAFETY = {
       'low-risk': [window.t('legend.low'), '#E4EADF', '#2C5C34'],
@@ -658,19 +724,20 @@
 
     function renderPage(historyMode){
       const h1 = document.getElementById('trailCountHeading');
-      const sub = document.querySelector('.guide-hero .sub');
+      const sub = document.querySelector('.browse-design-head .sub');
       if(h1) h1.innerHTML = window.t('browse.h1');
       if(sub) sub.innerHTML = window.t('browse.sub');
 
       renderRegionTabs();
       syncFiltersChip();
       renderCollections();
-      const pool = filteredTrails();
+      let pool = filteredTrails();
+      if(distance.value === '5') pool = pool.filter(trail => Number(trail.distance) < 5);
+      if(distance.value === '10') pool = pool.filter(trail => Number(trail.distance) >= 5);
       const activeFilters = filterApi.active(currentFilterState());
       const hasFilters = activeFilters.length > 0;
-      const dogNames = { medium:'a medium dog', rufus:'Rufus', bella:'Bella', milo:'Milo', custom:'your dog' };
-      resultCount.textContent = `${pool.length} trail${pool.length === 1 ? '' : 's'} found · context: ${dogNames[dogValue] || dogNames.medium}`;
-      clear.hidden = !hasFilters || pool.length === 0;
+      resultCount.innerHTML = `<span class="browse-result-accessible">${pool.length} trail${pool.length === 1 ? '' : 's'} found. </span>${pool.length} of ${trails.length} trails · route-audited trails have had their data checked by DoloPaws`;
+      clear.hidden = !hasFilters;
       const totalPages = Math.max(1, Math.ceil(pool.length / PER_PAGE));
       if(page > totalPages) page = totalPages;
       if(historyMode) syncBrowseUrl(historyMode);
@@ -718,21 +785,32 @@
         const ratingBadge = icons
           ? icons.badgeHtml(t.safetyLevel, ratingLabel)
           : `<span class="safety-badge ${t.safetyLevel === 'low-risk' ? 'safety-low' : t.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution'}">${ratingLabel}</span>`;
-        const meta = [t.area, t.distance ? `${t.distance} km` : null, t.hours ? `${t.hours} h` : null]
+        const meta = [t.distance ? `${t.distance} km` : null, t.elevation != null ? `${t.elevation} m climb` : null, t.hours ? `${t.hours} h` : null, t.area]
           .filter(Boolean).join(' · ');
+        const match = matchScore(t);
+        const tier = match >= 75 ? 'Great match' : match >= 55 ? 'Good' : 'Check first';
+        const tierClass = match >= 75 ? 'great' : match >= 55 ? 'good' : 'check';
+        const reason = t.waterSources && t.waterSources.length
+          ? `Water access listed at ${t.waterSources.length === 1 ? 'one point' : t.waterSources.length + ' points'}`
+          : (t.shadeCoverage >= 50 ? `${t.shadeCoverage}% shade along the route` : '');
         const openHref = `trail.html?id=${encodeURIComponent(t.id)}&from=${encodeURIComponent(browseStateTarget())}`;
         const isCompared = compareIds.includes(t.id);
         const compareDisabled = !isCompared && compareIds.length >= compareApi.MAX_TRAILS;
         return `
         <article class="simple-card">
           ${thumb}
-          <div style="padding:12px 14px;">
-            <div class="name" style="padding:0;">${t.name}</div>
-            <div style="font-size:11.5px;color:var(--ink-soft);margin-top:4px;">${meta}</div>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center;">
-              ${ratingBadge}
-              ${provenance}
+          <a class="simple-card__main" href="${openHref}">
+            <div class="name">${t.name}</div>
+            <div style="font-size:12px;color:var(--ink-soft);margin-top:3px;">${meta}</div>
+            <div class="simple-card__rating">
+              <span class="simple-card__rating-label">Trail rating</span>${ratingBadge}${provenance}
             </div>
+            ${reason ? `<span class="simple-card__reason"><b aria-hidden="true">✓</b>${esc(reason)}</span>` : ''}
+          </a>
+          <div class="simple-card__match simple-card__match--${tierClass}">
+            <strong>${match}<span>%</span></strong>
+            <small>MATCH FOR YOUR DOG</small>
+            <span class="simple-card__tier">${tier}</span>
             <div class="browse-card-actions">
               <a class="browse-card-open" href="${openHref}">${window.t('card.details')} →</a>
               <button type="button" class="browse-card-compare" data-compare-id="${esc(t.id)}"
