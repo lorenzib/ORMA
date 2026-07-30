@@ -445,8 +445,8 @@
       }
 
       if (!guides.length) return;
-      box.innerHTML = `<div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--paper-line);">
-        <div style="font-size:11px;font-weight:700;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px;">Read before you go</div>
+      box.innerHTML = `<div>
+        <div class="td2-kick" style="margin-bottom:12px;">Read before you go</div>
         <div style="display:flex;flex-wrap:wrap;gap:8px;">${guides.slice(0,4).map(([icon,label,href]) =>
           `<a href="${fromTrail(href)}" style="display:inline-flex;align-items:center;gap:6px;padding:7px 12px;background:var(--sage-dim);border:1px solid var(--paper-line);border-radius:999px;font-size:12px;font-weight:600;color:var(--ink);text-decoration:none;">${dpIcon(icon)}<span>${esc(label)}</span></a>`).join('')}</div>
       </div>`;

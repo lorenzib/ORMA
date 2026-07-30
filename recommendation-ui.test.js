@@ -23,8 +23,10 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(controller).toContain('view.reasons');
     expect(controller).toContain('view.cautions');
     expect(controller).toContain('view.unknowns');
-    expect(controller).toContain('<details class="recommendation-unknowns">');
-    expect(controller).not.toContain('<details class="recommendation-unknowns" open>');
+    // Unknowns are LISTED only in the evidence/conditions card; the decision
+    // panel carries just the count in its meta line (no duplicate list).
+    expect(controller).not.toContain('<details class="recommendation-unknowns"');
+    expect(controller).toContain('${esc(unknownSummary)}</p>');
     expect(controller).toContain('hero.textContent = view.heroSummary');
     expect(controller).not.toContain('trail.safetyLevel');
   });
@@ -79,7 +81,9 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(block.textContent).toContain('Possible with cautions');
     expect(block.textContent).toContain('Distance is within range.');
     expect(block.textContent).toContain('Shade is limited.');
-    expect(block.textContent).toContain('Access is not reviewed.');
+    // The unknown is counted here but LISTED only in the evidence card.
+    expect(block.textContent).toContain('1 unknown item');
+    expect(block.textContent).not.toContain('Access is not reviewed.');
     expect(document.getElementById('heroVerdict').textContent)
       .toBe('Possible with cautions in an unpersonalized planning view.');
     expect(window.recommendTrail).toHaveBeenCalledTimes(1);

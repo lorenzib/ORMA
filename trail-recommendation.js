@@ -33,11 +33,14 @@
       dogName:profile && profile.name,
     });
     const score = view.score === null ? '' : `<span class="recommendation-score">${view.score}%</span>`;
+    // The unknowns are LISTED once, in the permanent conditions/evidence
+    // card below — this panel only carries the count so the two never
+    // duplicate each other.
     const unknownSummary = view.unknowns.length || view.additionalUnknowns
       ? `${view.unknowns.length + view.additionalUnknowns} unknown item${
         view.unknowns.length + view.additionalUnknowns === 1 ? '' : 's'
       }`
-      : 'No unknown items';
+      : 'no unknown items';
 
     root.className = `recommendation-decision recommendation-decision--${view.tone}`;
     root.dataset.scoringVersion = view.scoringVersion;
@@ -48,7 +51,7 @@
         '<div>' +
           `<div class="recommendation-kicker">${esc(view.contextLabel)}</div>` +
           `<h2>${esc(view.conclusion)} ${score}</h2>` +
-          `<p>${esc(view.confidence)} confidence · canonical scoring ${esc(view.scoringVersion)}</p>` +
+          `<p>${esc(view.confidence)} confidence · canonical scoring ${esc(view.scoringVersion)} · ${esc(unknownSummary)}</p>` +
         '</div>' +
         '<a class="recommendation-evidence-link" href="#trailEvidence">Sources &amp; review status ↓</a>' +
       '</div>' +
@@ -58,15 +61,6 @@
         '<section><h3>Cautions</h3>' +
           list(view.cautions, 'No specific caution is identified; review unknowns before deciding.') + '</section>' +
       '</div>' +
-      '<details class="recommendation-unknowns">' +
-        `<summary>${esc(unknownSummary)}</summary>` +
-        list(view.unknowns, 'No unknown item is currently reported.') +
-        (view.additionalUnknowns
-          ? `<p class="recommendation-more">Plus ${view.additionalUnknowns} more evidence gap${
-            view.additionalUnknowns === 1 ? '' : 's'
-          } in the full scoring record.</p>`
-          : '') +
-      '</details>' +
       '<div class="recommendation-actions" aria-label="Trail actions">' +
         '<button type="button" data-recommendation-save>Save trail</button>' +
         '<button type="button" data-recommendation-compare>Add to comparison</button>' +
