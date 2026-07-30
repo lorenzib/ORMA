@@ -1517,6 +1517,23 @@ function initLoggedInShell(){
   wireMenu(filtersBtn, document.getElementById('liFiltersMenu'));
   wireMenu(document.getElementById('liAccountBtn'), document.getElementById('liAccountMenu'));
 
+  const paneBody = document.querySelector('#returningCustomerHomepage .li-body');
+  const paneButtons = Array.from(document.querySelectorAll('[data-li-pane]'));
+  const setPane = (pane) => {
+    if(!paneBody) return;
+    paneBody.dataset.pane = pane;
+    paneButtons.forEach(btn => {
+      const selected = btn.dataset.liPane === pane;
+      btn.classList.toggle('on', selected);
+      btn.setAttribute('aria-pressed', String(selected));
+    });
+    if(pane === 'map' && trailMapInstance){
+      requestAnimationFrame(() => trailMapInstance.resize());
+    }
+  };
+  paneButtons.forEach(btn => btn.addEventListener('click', () => setPane(btn.dataset.liPane)));
+  setPane((paneBody && paneBody.dataset.pane) || 'list');
+
   // Greeting avatar = the same Switch dog panel, anchored under the avatar.
   const greetBtn = document.getElementById('liGreetSwitchBtn');
   const greetMenu = document.getElementById('liGreetSwitchMenu');

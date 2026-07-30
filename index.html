@@ -164,7 +164,7 @@
     <a class="li-brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
     <nav class="li-nav" aria-label="Site">
       <a href="browse-trails.html">Browse all Trails</a>
-      <a href="browse-trails.html#collections">Collections</a>
+      <a href="collections.html">Collections</a>
       <a href="safety-guide.html">Safety guide</a>
       <a href="settings.html">Settings</a>
     </nav>
@@ -273,10 +273,14 @@
         <button type="button" class="li-apply" id="liFiltersApply">Show trails</button>
       </div>
     </div>
+    <div class="li-pane-toggle" role="group" aria-label="Trail view">
+      <button type="button" class="on" data-li-pane="list" aria-pressed="true">List</button>
+      <button type="button" data-li-pane="map" aria-pressed="false">Map</button>
+    </div>
   </div>
 
   <!-- ================= BODY: MAP + LIST ================= -->
-  <div class="li-body">
+  <div class="li-body" data-pane="list">
 
     <div class="li-map" id="trailMapWrap">
       <div id="trailMap" role="region" aria-label="Trail map. Nearby trails are grouped into clusters; use the trail list beside the map for complete details."></div>

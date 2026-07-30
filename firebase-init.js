@@ -14,7 +14,7 @@ import {
   signOut as fbSignOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup,
   sendPasswordResetEmail, deleteUser, reauthenticateWithCredential,
   EmailAuthProvider, reauthenticateWithPopup, verifyBeforeUpdateEmail,
-  sendEmailVerification, reload
+  sendEmailVerification, reload, updateProfile
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import {
   getFirestore, doc, getDoc, setDoc, deleteDoc,
@@ -246,9 +246,16 @@ window.DoloPawsAuth = {
   deleteAccount,
   getContributionEligibility,
   sendContributionVerificationEmail,
-  async signUp(email, password) {
+  async signUp(email, password, displayName) {
     try {
       const credential = await createUserWithEmailAndPassword(auth, email, password);
+      if (displayName) {
+        try {
+          await updateProfile(credential.user, { displayName });
+        } catch (profileError) {
+          console.error("Account name could not be saved:", profileError);
+        }
+      }
       try {
         await sendEmailVerification(credential.user);
         return { ok: true, verificationSent: true };

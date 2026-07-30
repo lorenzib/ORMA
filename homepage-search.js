@@ -435,7 +435,7 @@
         '</div>' +
         '<div class="hp-coll-head"><div>' +
           '<div class="hp-kick hp-kick-left">Featured this week</div>' +
-          '<h2 class="hp-feat-h2"><span class="hp-feat-icon">' + THEME_ICONS[th.key] + '</span>' + esc(th.title) + '</h2>' +
+          '<h2 class="hp-feat-h2">' + esc(th.title) + '</h2>' +
           '<p class="hp-coll-sub">' + featSub + '</p></div>' +
           '<a href="browse-trails.html" class="hp-coll-all" data-action="seeall">All collections →</a></div>' +
         '<div class="hp-coll-grid">' + feat.map(function (entry) {

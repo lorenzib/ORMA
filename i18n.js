@@ -34,7 +34,7 @@
     'nav.login': 'Log in',
     'nav.account': 'My account',
     'nav.settings': 'Settings',
-    'auth.hint': 'Save trails so they follow you across every device.',
+    'auth.hint': 'Save trails to your account so they follow you across devices.',
     'auth.signupHint': 'One account, every dog you add. Free, and never required just to browse.',
     'auth.email': 'Email',
     'auth.password': 'Password',

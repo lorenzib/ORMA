@@ -28,6 +28,7 @@
   --emergency-tint-fg:#7A2E10;
   --emergency-plate-fg:#9A4409;
   --shadow:0 8px 26px rgba(46,64,52,.08);
+  --shadow-modal:0 20px 50px rgba(43,35,32,.25);
   --radius-lg:20px;
   --radius-md:12px;
   --radius-pill:999px;
@@ -509,6 +510,8 @@ img,svg{max-width:100%;height:auto;}
 
 .forgot-link{
   display:block;
+  width:100%;
+  text-align:right;
   background:none; border:none;
   color:var(--accent);
   font-size:12px;
@@ -1868,7 +1871,6 @@ body.map-fs-open{overflow:hidden;}
 /* --- featured this week --- */
 .hp-kick-left{text-align:left;}
 .hp-feat-h2{font-family:'Source Serif 4',serif;font-weight:700;font-size:20px;margin:0;color:var(--ink);display:inline-flex;align-items:center;gap:9px;}
-.hp-feat-icon{width:34px;height:34px;flex:none;border-radius:9px;background:#E4EFE7;display:grid;place-items:center;}
 
 /* --- outside-click catcher --- */
 .hp-menu-scrim{position:fixed;inset:0;z-index:20;}
@@ -1985,7 +1987,7 @@ body.map-fs-open{overflow:hidden;}
 body[data-homepage-view="returning"] .topnav,
 body[data-homepage-view="returning"] .hp-quote,
 body[data-homepage-view="returning"] .site-footer{display:none;}
-@media (min-width:901px){
+@media (min-width:701px){
   body[data-homepage-view="returning"]{overflow:hidden;}
 }
 
@@ -2031,7 +2033,7 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
 .li-greetbar{
   display:flex;
   align-items:center;
-  padding:14px 24px;
+  padding:18px max(32px, calc((100% - 1200px) / 2 + 32px));
   background:var(--bg);
   border-bottom:1px solid var(--paper-line);
   flex:none;
@@ -2043,7 +2045,7 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
   display:flex;
   align-items:center;
   gap:10px;
-  padding:10px 24px;
+  padding:10px max(32px, calc((100% - 1200px) / 2 + 32px));
   background:var(--bg);
   border-bottom:1px solid var(--paper-line);
   flex:none;
@@ -2069,7 +2071,7 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
 @media(max-width:700px){.li-chiprow{display:none;}}
 /* The design's app home has no conditions card on the map (desktop);
    phones keep it as the dog-identity pill. */
-@media(min-width:901px){.li-cond{display:none !important;}}
+@media(min-width:701px){.li-cond{display:none !important;}}
 /* What's-new bell on the dark header */
 .li-bell{
   position:relative;width:38px;height:38px;border-radius:50%;
@@ -2108,6 +2110,29 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
 }
 .li-search input::placeholder{color:#9AA69B;}
 .li-search input::-webkit-search-cancel-button{-webkit-appearance:none;}
+.li-pane-toggle{
+  display:none;
+  align-items:center;
+  gap:3px;
+  margin-left:auto;
+  padding:3px;
+  border-radius:var(--radius-pill);
+  background:#F0EDE1;
+  flex:none;
+}
+.li-pane-toggle button{
+  border:0;
+  border-radius:var(--radius-pill);
+  padding:8px 18px;
+  background:transparent;
+  color:var(--ink-soft);
+  cursor:pointer;
+  font:700 13px 'Inter',sans-serif;
+}
+.li-pane-toggle button.on{
+  background:var(--ink);
+  color:#fff;
+}
 .li-top-spacer{flex:1;}
 .li-top-actions{display:flex;align-items:center;gap:8px;}
 .li-menuwrap{position:relative;}
@@ -2386,7 +2411,7 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
 }
 .li-dogavatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
 .li-dog-copy{flex:1;min-width:0;}
-.li-greet{font-size:18px;line-height:1.12;margin:0;}
+.li-greet{font-size:20px;line-height:1.12;margin:0;}
 .li-chips-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;align-items:center;}
 .li-dogname{font-size:12px;font-weight:800;color:var(--ink);}
 .li-chips{display:contents;}
@@ -2564,8 +2589,28 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
 /* the docked preview card takes the legend's spot while a pin is selected */
 .li-map:has(.map-callout:not([hidden])) .li-legend{display:none;}
 
+/* ---------- responsive: one-pane tablet app ---------- */
+@media (min-width:701px) and (max-width:1040px){
+  #returningCustomerHomepage{height:100vh;height:100dvh;}
+  .li-greetbar{padding:12px 16px;}
+  .li-greet{font-size:17px;}
+  .li-toolbar{padding:10px 16px;flex-wrap:wrap;gap:9px;}
+  .li-search{order:0;flex:1 0 100%;max-width:none;}
+  .li-chiprow{order:1;flex:none;flex-wrap:nowrap;}
+  .li-chiprow .li-chipwrap:not(:first-child){display:none;}
+  .li-mobile-only{display:block;order:2;}
+  .li-pane-toggle{display:flex;order:3;}
+  .li-body{display:block;min-height:0;}
+  .li-body[data-pane="list"] .li-map,
+  .li-body[data-pane="map"] .li-list{display:none;}
+  .li-map,
+  .li-list{height:100%;min-height:0;}
+  .li-list{border-left:0;overflow-y:auto;}
+  .li-filters-menu{right:auto;left:0;}
+}
+
 /* ---------- responsive: stacked app on small screens ---------- */
-@media (max-width:900px){
+@media (max-width:700px){
   #returningCustomerHomepage{height:auto;min-height:100vh;}
   .li-top{gap:10px;padding:10px 14px;}
   .li-nav{display:none;}
@@ -2575,6 +2620,7 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
   .li-top-spacer{display:none;}
   .li-top-actions{margin-left:auto;}
   .li-account-name{max-width:90px;overflow:hidden;text-overflow:ellipsis;}
+  .li-pane-toggle{display:none;}
   .li-body{grid-template-columns:1fr;}
   .li-map{height:46vh;min-height:300px;}
   .li-map #trailMap{position:absolute;}
