@@ -541,6 +541,7 @@
   const contributionStatus = $('contributionEligibilityStatus');
   const contributionBadge = $('contributionEligibilityBadge');
   const contributionAction = $('contributionEligibilityAction');
+  const moderatorToolsBox = $('moderatorToolsBox');
   let savedEmail = '';
 
   function paintContributionEligibility(result){
@@ -574,6 +575,15 @@
     contributionAction.hidden = true;
     const result = await window.DoloPawsAuth.getContributionEligibility();
     paintContributionEligibility(result);
+  }
+
+  async function refreshModeratorTools(){
+    if(!moderatorToolsBox) return;
+    moderatorToolsBox.hidden = true;
+    if(!window.DoloPawsModeration ||
+       !window.DoloPawsModeration.getModeratorStatus) return;
+    const result = await window.DoloPawsModeration.getModeratorStatus();
+    moderatorToolsBox.hidden = !result.ok;
   }
 
   contributionAction.addEventListener('click', async () => {
@@ -709,6 +719,7 @@
         loggedOutState.hidden = false;
         loggedInState.hidden = true;
         document.body.classList.remove('ep-app');
+        if(moderatorToolsBox) moderatorToolsBox.hidden = true;
         return;
       }
 
@@ -741,6 +752,7 @@
       $('deletePasswordField').hidden = isGoogle;
       $('deleteGoogleNote').hidden = !isGoogle;
       refreshContributionEligibility();
+      refreshModeratorTools();
 
       const profile = (await window.DoloPawsAuth.getDogProfile()) || {};
       base = profile;
