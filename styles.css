@@ -2025,9 +2025,12 @@ body[data-homepage-view="returning"] .site-footer{display:none;}
   flex:none;
 }
 .li-brand img{width:26px;height:26px;border-radius:7px;}
-.li-nav{display:flex;align-items:center;gap:24px;font-family:'Inter',sans-serif;font-size:14px;color:#DCE1D4;}
+/* Links sit on the right with the bell + dog pill, mirroring the site
+   header (brand far left · everything else far right). */
+.li-nav{display:flex;align-items:center;gap:24px;margin-left:auto;font-family:'Inter',sans-serif;font-size:14px;color:#DCE1D4;}
 .li-nav a{color:#DCE1D4;text-decoration:none;white-space:nowrap;}
 .li-nav a:hover{color:#fff;font-weight:500;}
+.li-top .li-top-spacer{display:none;}
 
 /* ---------- greeting bar (avatar · heading · chips) ----------
    Beige bars with white controls — the 2026-07 pass un-inverted these. */
