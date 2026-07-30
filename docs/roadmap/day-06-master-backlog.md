@@ -338,6 +338,7 @@ All P0 and P1 work
 
 ### UX-06 — Add the pre-hike readiness check
 
+- **Status:** Complete in code (2026-07-30)
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** OFF-05, HIKE-03

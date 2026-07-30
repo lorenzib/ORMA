@@ -390,6 +390,14 @@ function initHikeMode(map, trail){
     });
   }
 
+  function requestNewHike(){
+    if(window.DoloPawsReadiness && window.DoloPawsReadiness.open){
+      window.DoloPawsReadiness.open(trail, startHike);
+    }else{
+      startHike();
+    }
+  }
+
   function stopHike(keepPanel){
     active = false;
     if (window.DoloPawsMapFS) window.DoloPawsMapFS.exit();
@@ -822,7 +830,7 @@ function initHikeMode(map, trail){
     if(active) finishHike();
     else if(completionRetry) completionRetry();
     else if(durableSession) resumeHike();
-    else startHike();
+    else requestNewHike();
   });
   pauseBtn.addEventListener('click', pauseHike);
 
@@ -836,7 +844,7 @@ function initHikeMode(map, trail){
     setTimeout(async () => {
       await checkForRecovery();
       const loaded = window.DoloPawsHikeSession && window.DoloPawsHikeSession.load();
-      if(!active && !durableSession && (!loaded || loaded.status === 'empty')) startHike();
+      if(!active && !durableSession && (!loaded || loaded.status === 'empty')) requestNewHike();
     }, 400);
   }
 }

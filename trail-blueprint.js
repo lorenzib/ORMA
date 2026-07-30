@@ -628,7 +628,14 @@
     const lat = typeof sp.lat === 'number' ? sp.lat : t.lat;
     const lng = typeof sp.lng === 'number' ? sp.lng : t.lng;
     const condCard = $('tdConditions'), fcCard = $('sideForecast'), fcDays = $('tdForecastDays');
-    if (typeof lat !== 'number') return;
+    const publishWeather = detail => {
+      window.DoloPawsWeatherSnapshot = detail;
+      window.dispatchEvent(new CustomEvent('dolopaws-weather-ready', { detail }));
+    };
+    if (typeof lat !== 'number') {
+      publishWeather({ status: 'unavailable', capturedAt: Date.now() });
+      return;
+    }
 
     const valleyEl = $('sideFcValley');
     if (valleyEl) valleyEl.textContent = (t.valley || t.area) ? '· ' + (t.valley || t.area) : '';
@@ -647,7 +654,16 @@
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&hourly=temperature_2m&forecast_days=6&timezone=auto`)
       .then(r => r.json())
       .then(d => {
-        if (!d || !d.daily) return;
+        if (!d || !d.daily) {
+          publishWeather({ status: 'unavailable', capturedAt: Date.now() });
+          return;
+        }
+        publishWeather({
+          status: 'ready',
+          capturedAt: Date.now(),
+          temperatureC: d.current && d.current.temperature_2m,
+          trailId: t.id,
+        });
         const hrs = (d.hourly ? d.hourly.time : []).map((iso, i) => ({ h: new Date(iso).getHours(), day: iso.slice(0, 10), temp: d.hourly.temperature_2m[i] }));
         const todayKey = d.daily.time[0];
 
@@ -707,6 +723,6 @@
         }
         if (fcCard) fcCard.hidden = false;
       })
-      .catch(() => {});
+      .catch(() => publishWeather({ status: 'unavailable', capturedAt: Date.now() }));
   })();
 })();
