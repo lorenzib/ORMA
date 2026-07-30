@@ -550,6 +550,7 @@ All P0 and P1 work
 
 ### METRIC-01 — Implement a privacy-safe event API
 
+- **Status:** Complete in code (2026-07-30)
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** AUTH-01
