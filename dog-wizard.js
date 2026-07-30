@@ -809,4 +809,13 @@
 
   // ---- Public API ----
   window.DoloPawsWizard = { open: openWizard };
+
+  // Deep link from the header dog menu on pages that don't load the
+  // wizard: "＋ Add another dog" lands here and opens it straight away.
+  // Waits for full load so the other deferred scripts can't race it.
+  if (new URLSearchParams(window.location.search).get('addDog') === '1') {
+    var autoOpen = function () { setTimeout(openWizard, 0); };
+    if (document.readyState === 'complete') autoOpen();
+    else window.addEventListener('load', autoOpen, { once: true });
+  }
 })();

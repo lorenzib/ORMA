@@ -450,7 +450,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
     <a href="../browse-trails.html" class="active">Browse all Trails</a>
     <a href="../browse-trails.html#collections">Collections</a>
     <a href="../safety-guide.html">Safety guide</a>
-    <a href="../settings.html" data-i18n="nav.settings">Settings</a>
+    <a href="../journal.html">My walk journal</a>
     <a class="account-btn" href="../index.html?view=login&amp;next=trails/${slug}.html" data-i18n="nav.login">Log in</a>
   </div>
 </div>
@@ -519,7 +519,7 @@ ${sourceRecord ? `    ${sourceRecord}\n` : ''}    <div id="dogFit">
 </div>
 
 <script src="../icon-system.js?v=20260717" defer></script>
-<script src="../mobile-nav.js"></script>
+<script src="../mobile-nav.js?v=20260730-4"></script>
 </body>
 </html>
 `;

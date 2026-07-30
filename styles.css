@@ -252,6 +252,20 @@ img,svg{max-width:100%;height:auto;}
 }
 .nav-dogmenu .nav-dogmenu-manage:hover,
 .topnav .links a.nav-dogmenu-manage:hover{background:#F0EDE1;color:var(--accent);}
+.nav-dogmenu-div{height:1px;background:#EDE9DD;margin:8px 0;}
+.nav-dogmenu .nav-dogmenu-item,
+.topnav .links a.nav-dogmenu-item{
+  display:flex;align-items:center;gap:9px;width:100%;box-sizing:border-box;text-align:left;
+  border:none;background:none;cursor:pointer;padding:9px 11px;border-radius:12px;
+  font:500 13.5px 'Inter',sans-serif;color:var(--ink);text-decoration:none;
+}
+.nav-dogmenu .nav-dogmenu-item:hover,
+.topnav .links a.nav-dogmenu-item:hover{background:#F0EDE1;color:var(--ink);font-weight:500;}
+/* Same rust heart as the trail-card save button */
+.nav-dogmenu-heart{color:#9C3A25;font-size:15px;line-height:1;}
+.nav-dogmenu-count{margin-left:auto;color:#8A9689;font-weight:700;}
+.nav-dogmenu .nav-dogmenu-logout{color:#9C3A25;}
+.nav-dogmenu .nav-dogmenu-logout:hover{color:#9C3A25;}
 .nav-user-avatar{
   width:28px;height:28px;border-radius:50%;flex:none;
   background:#5B7E96 center/cover no-repeat;

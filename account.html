@@ -124,7 +124,7 @@
     <a href="browse-trails.html">Browse all Trails</a>
     <a href="collections.html">Collections</a>
     <a href="safety-guide.html">Safety guide</a>
-    <a href="settings.html" data-i18n="nav.settings">Settings</a>
+    <a href="journal.html">My walk journal</a>
   </div>
 </div>
 
@@ -178,6 +178,12 @@
       </div>
       <aside class="profile-sidebar">
         <section class="profile-card profile-card--compact"><div class="flow-kicker">How this shapes the trails</div><div class="profile-impact"><b>Distance cap <span id="profileDistanceCap">7.5 km</span></b><p id="profileDistanceReason">Moderate fitness (10 km) × joint issues (0.75).</p></div><div class="profile-impact"><b>Terrain tolerance <span id="profileTerrain">gravel and below</span></b><p id="profileTerrainReason">Moderate fitness (1) − joint issues (1) = 0.</p></div><div class="profile-impact"><b>Heat sensitivity <span id="profileHeat">standard</span></b><p id="profileHeatReason">No brachycephalic or thick-coat traits declared.</p></div></section>
+        <section id="moderatorToolsBox" hidden class="profile-card profile-card--warm">
+          <div class="flow-kicker">Moderator tools</div>
+          <h2>Community queue</h2>
+          <p>Review pending and reported content, renew hazards, and record decisions.</p>
+          <a href="moderation.html" class="flow-btn" style="text-decoration:none;">Open moderation queue</a>
+        </section>
         <section class="profile-card profile-card--warm"><div class="flow-kicker">Heads-up for this breed</div><p>Herding dogs will keep going long after they should. Turn back on time rather than waiting for signs of tiredness.</p><a href="guides/breed-group-caveats.html">Breed-group caveats →</a></section>
       </aside>
     </div>
@@ -343,14 +349,6 @@
           <button type="button" id="contributionEligibilityAction" class="btn-g" style="margin-top:12px;" hidden></button>
         </div>
 
-        <div id="moderatorToolsBox" hidden style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:#EAF3EC;border:1px solid #C7DDCC;border-radius:14px;padding:14px 15px;margin-bottom:22px;">
-          <div>
-            <div class="kick" style="margin-bottom:5px;color:#2C5C34;">Moderator tools</div>
-            <p class="hint" style="margin:0;color:#496A50;">Review pending and reported community content, renew hazards, and record decisions.</p>
-          </div>
-          <a href="moderation.html" class="btn-g" style="text-decoration:none;background:#fff;">Open moderation queue</a>
-        </div>
-
         <div class="acct-2col" style="gap:24px;margin-bottom:24px;">
           <div id="emailChangeBox">
             <label class="lbl" for="acctEmailInput">Login email</label>
@@ -424,7 +422,7 @@
 
 <footer class="site-footer" data-i18n="footer.line">DoloPaws &#124; A personalised trail guide for dogs and their humans.</footer>
 
-<script src="mobile-nav.js"></script>
+<script src="mobile-nav.js?v=20260730-4"></script>
 <script src="i18n.js"></script>
 <script type="module" src="firebase-init.js"></script>
 <script src="breeds-data.js" defer></script>

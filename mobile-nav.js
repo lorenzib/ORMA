@@ -57,9 +57,20 @@
   }
 
   function dogPhoto(){
+    // The photo cache moved to a per-uid key (account.js); static pages
+    // don't know the uid, so accept any dolopaws-dog-photo* entry. One
+    // account per browser makes this unambiguous in practice.
     try {
-      const v = localStorage.getItem('dolopaws-dog-photo');
-      return (typeof v === 'string' && v.startsWith('data:image/')) ? v : null;
+      const exact = localStorage.getItem('dolopaws-dog-photo');
+      if(typeof exact === 'string' && exact.startsWith('data:image/')) return exact;
+      for(let i = 0; i < localStorage.length; i++){
+        const key = localStorage.key(i);
+        if(key && key.startsWith('dolopaws-dog-photo')){
+          const v = localStorage.getItem(key);
+          if(typeof v === 'string' && v.startsWith('data:image/')) return v;
+        }
+      }
+      return null;
     } catch(e){ return null; }
   }
 
@@ -178,9 +189,11 @@
       menu.appendChild(kick);
 
       const summary = authSummary() || {};
+      const summaryMeta = [summary.breed, summary.fitness ? summary.fitness + ' fitness' : null]
+        .filter(Boolean).join(' · ');
       const dogs = Array.isArray(summary.dogs) && summary.dogs.length
         ? summary.dogs
-        : [{ name: name || summary.name || 'Your dog', meta: summary.meta || summary.breed || '' }];
+        : [{ name: name || summary.name || 'Your dog', meta: summary.meta || summaryMeta }];
       const activeName = name || (dogs[0] && dogs[0].name);
       dogs.forEach(d => {
         const row = document.createElement('button');
@@ -202,16 +215,64 @@
         menu.appendChild(row);
       });
 
+      // "Add another dog" opens the real dog wizard: directly on pages
+      // that load it, via the ?addDog=1 deep link everywhere else.
       const addLink = document.createElement('a');
       addLink.className = 'nav-dogmenu-manage';
-      addLink.href = prefix + 'account.html?next=' + encodeURIComponent(pagePath);
+      addLink.href = prefix + 'index.html?addDog=1';
       addLink.textContent = '＋ Add another dog';
+      addLink.addEventListener('click', (e) => {
+        if(window.DoloPawsWizard && typeof window.DoloPawsWizard.open === 'function'){
+          e.preventDefault();
+          setOpen(false);
+          window.DoloPawsWizard.open();
+        }
+      });
       menu.appendChild(addLink);
       const manage = document.createElement('a');
       manage.className = 'nav-dogmenu-manage';
       manage.href = prefix + 'account.html?next=' + encodeURIComponent(pagePath);
       manage.textContent = 'Manage dog profiles →';
       menu.appendChild(manage);
+
+      function menuDiv(){
+        const div = document.createElement('div');
+        div.className = 'nav-dogmenu-div';
+        div.setAttribute('role', 'separator');
+        return div;
+      }
+      function menuItem(html, href){
+        const a = document.createElement('a');
+        a.className = 'nav-dogmenu-item';
+        a.href = prefix + href;
+        a.innerHTML = html;
+        return a;
+      }
+      menu.appendChild(menuDiv());
+      const savedItem = menuItem(
+        '<span class="nav-dogmenu-heart" aria-hidden="true">♥</span>Saved' +
+        (activeName && activeName !== 'Your dog' ? ' for ' + activeName.replace(/[&<>"]/g, '') : ' trails') +
+        (Number.isFinite(summary.saved) ? '<span class="nav-dogmenu-count">' + summary.saved + '</span>' : ''),
+        'saved.html');
+      menu.appendChild(savedItem);
+      menu.appendChild(menuItem('Downloaded trails', 'downloads.html'));
+      menu.appendChild(menuItem('Account settings', 'settings.html'));
+      menu.appendChild(menuDiv());
+      const logout = document.createElement('button');
+      logout.type = 'button';
+      logout.className = 'nav-dogmenu-item nav-dogmenu-logout';
+      logout.textContent = 'Log out';
+      logout.addEventListener('click', async () => {
+        setOpen(false);
+        if(window.DoloPawsAuth && typeof window.DoloPawsAuth.logOut === 'function'){
+          await window.DoloPawsAuth.logOut();
+          window.location.href = prefix + 'index.html';
+        } else {
+          // Static pages carry no Firebase; settings has a live logout.
+          window.location.href = prefix + 'settings.html';
+        }
+      });
+      menu.appendChild(logout);
 
       wrap.appendChild(btn);
       wrap.appendChild(menu);
@@ -239,7 +300,7 @@
       linksEl.appendChild(navItem('Browse all Trails', 'browse-trails.html', key === 'trails'));
       linksEl.appendChild(navItem('Collections', 'collections.html', key === 'collections'));
       linksEl.appendChild(navItem('Safety guide', 'safety-guide.html', key === 'safety'));
-      linksEl.appendChild(navItem('Settings', 'settings.html', key === 'settings', 'nav.settings'));
+      linksEl.appendChild(navItem('My walk journal', 'journal.html', key === 'journal'));
       if(loggedIn){
         linksEl.appendChild(buildBell());
         linksEl.appendChild(buildAccountPill(dogName));

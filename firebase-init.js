@@ -44,9 +44,16 @@ async function syncProfileSummary(user) {
   try {
     if (!user) { localStorage.removeItem('dolopaws-profile-summary'); return; }
     const dog = await getDogProfile();
+    // Breed/fitness/saved-count feed the header dog menu on the static
+    // pages, which have no Firebase and read only this cache.
+    let saved = null;
+    try { saved = Object.keys((await getFavorites()) || {}).length; } catch (e) {}
     localStorage.setItem('dolopaws-profile-summary', JSON.stringify({
       hasProfile: !!dog,
       name: dog && dog.name ? String(dog.name).slice(0, 40) : null,
+      breed: dog && dog.breed ? String(dog.breed).slice(0, 40) : null,
+      fitness: dog && dog.fitness ? String(dog.fitness).slice(0, 20) : null,
+      saved,
     }));
   } catch (e) { /* cache only — never break auth over it */ }
 }
