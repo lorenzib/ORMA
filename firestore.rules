@@ -228,6 +228,26 @@ service cloud.firestore {
         && data.createdAt is timestamp;
     }
 
+    function validModerationAudit(data) {
+      return data.keys().hasAll([
+          'contentType', 'contentId', 'trailId', 'authorUid', 'fromStatus',
+          'toStatus', 'moderatorUid', 'reason', 'createdAt'
+        ])
+        && data.keys().hasOnly([
+          'contentType', 'contentId', 'trailId', 'authorUid', 'fromStatus',
+          'toStatus', 'moderatorUid', 'reason', 'createdAt'
+        ])
+        && data.contentType in ['flag', 'review', 'photo']
+        && isShortString(data.contentId, 100)
+        && isTrailId(data.trailId)
+        && isShortString(data.authorUid, 128)
+        && isCommunityState(data.fromStatus)
+        && isCommunityState(data.toStatus)
+        && isShortString(data.moderatorUid, 128)
+        && data.reason is string && data.reason.size() <= 300
+        && data.createdAt is timestamp;
+    }
+
     function ownerContentUpdate() {
       return isContributor()
         && isOwner(resource.data.uid)
@@ -346,6 +366,17 @@ service cloud.firestore {
       allow update: if validPhoto(request.resource.data)
         && (ownerContentUpdate() || moderatorStateUpdate());
       allow delete: if isOwner(resource.data.uid) || isModerator();
+    }
+
+    // Immutable operator decisions. Audit records contain contribution IDs
+    // and moderation metadata only, never account profiles or email addresses.
+    match /moderationAudit/{auditId} {
+      allow get, list: if isModerator();
+      allow create: if isModerator()
+        && validModerationAudit(request.resource.data)
+        && request.resource.data.moderatorUid == request.auth.uid
+        && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
     }
 
     // Abuse reports are private moderation inputs, never public content.

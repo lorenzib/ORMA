@@ -519,6 +519,8 @@ All P0 and P1 work
 - **Priority:** P1
 - **Size:** L
 - **Depends on:** MOD-01, SEC-02
+- **Implementation:** complete in code; see
+  `docs/architecture/MOD-02-minimum-moderation-queue.md`.
 - **Outcome:** a responsible operator can review reported and pending content.
 - **Acceptance:**
   - Authorized moderators can inspect type, trail, author ID, timestamps,

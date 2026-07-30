@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Moderation queue | DoloPaws</title>
+  <link rel="stylesheet" href="styles.css?v=20260730-2">
+  <link rel="stylesheet" href="moderation.css?v=20260730-1">
+</head>
+<body class="moderation-shell">
+  <header class="moderation-header">
+    <a href="index.html" class="moderation-brand">🐾 DoloPaws</a>
+    <span>Operator moderation</span>
+  </header>
+  <main class="moderation-main">
+    <p class="eyebrow">Private operator tool</p>
+    <h1>Moderation queue</h1>
+    <p class="moderation-intro">Pending and reported community content. Decisions are recorded in an immutable audit trail.</p>
+    <div id="moderationState" class="moderation-state" role="status" aria-live="polite">Checking moderator access…</div>
+    <section id="moderationQueue" class="moderation-queue" aria-label="Community content requiring moderation"></section>
+  </main>
+  <script type="module" src="firebase-init.js"></script>
+  <script src="moderation-page.js?v=20260730-1"></script>
+</body>
+</html>

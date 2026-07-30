@@ -115,6 +115,21 @@ function validOutcome(overrides = {}){
   };
 }
 
+function validModerationAudit(overrides = {}){
+  return {
+    contentType: 'review',
+    contentId: 'lago-carezza_author-1',
+    trailId: 'lago-carezza',
+    authorUid: 'author-1',
+    fromStatus: 'pending',
+    toStatus: 'visible',
+    moderatorUid: 'moderator-1',
+    reason: 'Meets the community guidelines.',
+    createdAt: serverTimestamp(),
+    ...overrides,
+  };
+}
+
 beforeAll(async () => {
   const [host, rawPort] = (process.env.FIRESTORE_EMULATOR_HOST || '127.0.0.1:8080').split(':');
   testEnv = await initializeTestEnvironment({
@@ -555,5 +570,54 @@ describe('abuse reports and default denial', () => {
       moderator: true,
     }));
     await assertFails(getDoc(doc(reporter, 'admin/config')));
+  });
+});
+
+describe('moderation queue and audit trail', () => {
+  test('only moderators can inspect all queue states', async () => {
+    await seed([
+      ['reviews/lago-carezza_author-1', {
+        ...validReview('author-1'),
+        createdAt: Timestamp.now(),
+      }],
+      ['reviews/lago-carezza_author-2', {
+        ...validReview('author-2', { status: 'removed' }),
+        createdAt: Timestamp.now(),
+      }],
+    ]);
+    const moderator = moderatorDb('moderator-1');
+    const ordinary = contributorDb('author-3');
+    const queueQuery = db => query(
+      collection(db, 'reviews'),
+      where('status', 'in', ['pending', 'reported', 'hidden', 'removed'])
+    );
+    await assertSucceeds(getDocs(queueQuery(moderator)));
+    await assertFails(getDocs(queueQuery(ordinary)));
+  });
+
+  test('moderator audit records are identity-bound and immutable', async () => {
+    const moderator = moderatorDb('moderator-1');
+    const ordinary = contributorDb('author-1');
+    const auditRef = doc(moderator, 'moderationAudit/audit-1');
+    await assertFails(setDoc(
+      doc(ordinary, 'moderationAudit/audit-ordinary'),
+      validModerationAudit({ moderatorUid: 'author-1' })
+    ));
+    await assertFails(setDoc(
+      doc(moderator, 'moderationAudit/audit-spoofed'),
+      validModerationAudit({ moderatorUid: 'somebody-else' })
+    ));
+    await assertFails(setDoc(
+      doc(moderator, 'moderationAudit/audit-private-data'),
+      {
+        ...validModerationAudit(),
+        authorEmail: 'private@example.com',
+      }
+    ));
+    await assertSucceeds(setDoc(auditRef, validModerationAudit()));
+    await assertSucceeds(getDoc(auditRef));
+    await assertFails(getDoc(doc(ordinary, 'moderationAudit/audit-1')));
+    await assertFails(updateDoc(auditRef, { reason: 'Rewritten history.' }));
+    await assertFails(deleteDoc(auditRef));
   });
 });

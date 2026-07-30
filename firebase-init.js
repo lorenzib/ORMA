@@ -14,12 +14,12 @@ import {
   signOut as fbSignOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup,
   sendPasswordResetEmail, deleteUser, reauthenticateWithCredential,
   EmailAuthProvider, reauthenticateWithPopup, verifyBeforeUpdateEmail,
-  sendEmailVerification, reload, updateProfile
+  sendEmailVerification, reload, updateProfile, getIdTokenResult
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import {
   getFirestore, doc, getDoc, setDoc, deleteDoc,
   collection, addDoc, serverTimestamp, query, where, Timestamp,
-  getCountFromServer, getDocs
+  getCountFromServer, getDocs, updateDoc, writeBatch
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 const app = initializeApp(firebaseConfig);
@@ -525,12 +525,165 @@ async function reportContent(targetType, targetId, reason) {
   } catch (e) { return false; }
 }
 
+const MODERATION_COLLECTIONS = {
+  flag: "flags",
+  review: "reviews",
+  photo: "trailPhotos",
+};
+
+async function moderatorIdentity() {
+  if (!currentUser) return null;
+  try {
+    const token = await getIdTokenResult(currentUser, true);
+    return token.claims && token.claims.moderator === true
+      ? { uid: currentUser.uid }
+      : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function moderationItem(type, snapshot, reportReasons = [], reportIds = []) {
+  const data = snapshot.data();
+  return {
+    type,
+    id: snapshot.id,
+    trailId: data.trailId,
+    authorUid: data.uid,
+    status: data.status,
+    createdAt: data.createdAt,
+    content: {
+      type: data.type || null,
+      km: typeof data.km === "number" ? data.km : null,
+      rating: typeof data.rating === "number" ? data.rating : null,
+      text: data.text || null,
+      hikedOn: data.hikedOn || null,
+      image: data.image || null,
+      caption: data.caption || null,
+    },
+    reportReasons,
+    reportIds,
+  };
+}
+
+async function getModerationQueue() {
+  if (!await moderatorIdentity()) return { ok: false, error: "moderator-required", items: [] };
+  try {
+    const types = Object.keys(MODERATION_COLLECTIONS);
+    const [contentResults, reportResult] = await Promise.all([
+      Promise.all(types.map(async type => {
+        const snap = await getDocs(query(
+          collection(db, MODERATION_COLLECTIONS[type]),
+          where("status", "in", ["pending", "reported", "hidden", "removed"])
+        ));
+        return snap.docs.map(item => moderationItem(type, item));
+      })),
+      getDocs(query(collection(db, "reports"), where("status", "==", "open"))),
+    ]);
+    const openReports = reportResult.docs.map(item => ({ id: item.id, ...item.data() }));
+    const byTarget = new Map();
+    openReports.forEach(report => {
+      const key = `${report.targetType}:${report.targetId}`;
+      const group = byTarget.get(key) || { reasons: [], ids: [] };
+      group.reasons.push({
+        text: String(report.reason || "").slice(0, 200),
+        createdAt: report.createdAt || null,
+      });
+      group.ids.push(report.id);
+      byTarget.set(key, group);
+    });
+    const items = contentResults.flat();
+    const existing = new Set(items.map(item => `${item.type}:${item.id}`));
+    for (const [key, reports] of byTarget) {
+      const separator = key.indexOf(":");
+      const type = key.slice(0, separator);
+      const id = key.slice(separator + 1);
+      if (existing.has(key) || !MODERATION_COLLECTIONS[type]) continue;
+      const target = await getDoc(doc(db, MODERATION_COLLECTIONS[type], id));
+      if (target.exists()) items.push(moderationItem(type, target, reports.reasons, reports.ids));
+    }
+    items.forEach(item => {
+      const reports = byTarget.get(`${item.type}:${item.id}`);
+      if (reports) {
+        item.reportReasons = reports.reasons;
+        item.reportIds = reports.ids;
+      }
+    });
+    items.sort((a, b) => {
+      const aMs = a.createdAt && a.createdAt.toMillis ? a.createdAt.toMillis() : 0;
+      const bMs = b.createdAt && b.createdAt.toMillis ? b.createdAt.toMillis() : 0;
+      return bMs - aMs;
+    });
+    return { ok: true, items };
+  } catch (e) {
+    console.error("getModerationQueue failed:", e);
+    return { ok: false, error: "queue-unavailable", items: [] };
+  }
+}
+
+async function moderateContent(item, toStatus, reason) {
+  const moderator = await moderatorIdentity();
+  if (!moderator || !item || !MODERATION_COLLECTIONS[item.type]) {
+    return { ok: false, error: "moderator-required" };
+  }
+  const allowed = {
+    pending: ["visible", "hidden", "removed"],
+    visible: ["visible", "hidden", "removed"],
+    reported: ["visible", "hidden", "removed"],
+    hidden: ["visible", "removed"],
+    removed: ["visible"],
+  };
+  if (!allowed[item.status] || !allowed[item.status].includes(toStatus)) {
+    return { ok: false, error: "invalid-transition" };
+  }
+  try {
+    const batch = writeBatch(db);
+    if (item.status !== toStatus) {
+      batch.update(doc(db, MODERATION_COLLECTIONS[item.type], item.id), {
+        status: toStatus,
+        moderatedAt: serverTimestamp(),
+        moderatedBy: moderator.uid,
+      });
+    }
+    const auditRef = doc(collection(db, "moderationAudit"));
+    batch.set(auditRef, {
+      contentType: item.type,
+      contentId: item.id,
+      trailId: item.trailId,
+      authorUid: item.authorUid,
+      fromStatus: item.status,
+      toStatus,
+      moderatorUid: moderator.uid,
+      reason: String(reason || "").slice(0, 300),
+      createdAt: serverTimestamp(),
+    });
+    for (const reportId of item.reportIds || []) {
+      batch.update(doc(db, "reports", reportId), {
+        status: toStatus === "visible" ? "dismissed" : "actioned",
+        resolvedAt: serverTimestamp(),
+        resolvedBy: moderator.uid,
+      });
+    }
+    await batch.commit();
+    return { ok: true, auditId: auditRef.id };
+  } catch (e) {
+    console.error("moderateContent failed:", e);
+    return { ok: false, error: "decision-failed" };
+  }
+}
+
 window.DoloPawsCommunity = {
   recordHikeStart, getWeeklyHikeCount,
   addFlag, getActiveFlags, deleteFlag,
   setReview, getReviews, deleteMyReview,
   addTrailPhoto, getTrailPhotos,
   reportContent,
+};
+
+window.DoloPawsModeration = {
+  getModeratorStatus: async () => ({ ok: !!await moderatorIdentity() }),
+  getQueue: getModerationQueue,
+  decide: moderateContent,
 };
 
 window.DoloPawsPrivateOutcomes = {

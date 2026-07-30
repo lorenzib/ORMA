@@ -34,6 +34,7 @@ Fifteen grouped scenarios cover:
 | Review and rating | Verified account creates one pending review per trail; author edit/delete; visible query | Unverified account, wrong document ID, invalid rating, another author, timestamp reset, self-publication, unfiltered public list |
 | Trail photo | Verified account submits a bounded pending data image; visible query | Unverified account, remote URL, oversized caption, self-publication, unfiltered public list |
 | Abuse report | Signed-in reporter create/get; moderator list/resolve | Guest, other user, reporter resolution, invalid target |
+| Moderation audit | Moderator queue query and immutable decision record | Ordinary-user queue/audit access, spoofed moderator UID, extra private fields, update/delete |
 | Unknown collection | None | All reads and writes |
 
 The suite seeds hidden and visible documents with rules disabled only for test

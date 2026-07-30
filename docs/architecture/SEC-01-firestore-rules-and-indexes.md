@@ -42,6 +42,7 @@ through the Firebase console during the Spark-plan beta.
 | `flags/{id}` | Visible and reported hazards are public; moderators may inspect all | Eligible contributor owns content; moderator owns state |
 | `reviews/{trailId_uid}` | Visible reviews are public; moderators may inspect all | One review per eligible contributor and trail |
 | `trailPhotos/{id}` | Visible photos are public; moderators may inspect all | Eligible contributor owns content; moderator owns state |
+| `moderationAudit/{id}` | Moderator only | Moderator creates immutable, identity-bound decisions |
 | `reports/{id}` | Reporter may get their report; moderators may list | Any signed-in account may open a bounded abuse report; only moderators resolve it |
 
 All unmatched paths deny reads and writes. New collections therefore start
@@ -110,5 +111,5 @@ publish Firestore rules.
   eligibility, pending privacy, manual approval, public visibility, and cleanup
   passed an end-to-end test.
 - **MOD-01:** complete; the shared lifecycle and transition graph are enforced.
-- **MOD-02:** moderation queue and audit records.
+- **MOD-02:** complete; moderator-only queue and immutable audit records.
 - **AUTH-03:** complete cross-collection server deletion and local cleanup.

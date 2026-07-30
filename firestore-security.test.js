@@ -24,6 +24,7 @@ describe('SEC-01 Firestore configuration contract', () => {
       'flags',
       'reviews',
       'trailPhotos',
+      'moderationAudit',
       'reports',
     ];
     clientCollections.forEach(collection => {
@@ -61,7 +62,7 @@ describe('SEC-01 Firestore configuration contract', () => {
       .toBeGreaterThanOrEqual(4);
     expect(rules).toContain("hasOnly(['status', 'moderatedAt', 'moderatedBy'])");
     expect(rules).not.toContain('request.resource.data.contributor');
-    expect(rules).not.toContain('request.resource.data.moderator');
+    expect(rules).not.toContain('request.resource.data.moderator == true');
   });
 
   test('client contribution states match the create rules', () => {
@@ -126,5 +127,13 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(client).toContain('window.DoloPawsPrivateOutcomes');
     expect(client).toContain('saveOutcome: saveHikeOutcome');
     expect(client).not.toContain('publicReview');
+  });
+
+  test('moderation audits are explicit and immutable', () => {
+    expect(rules).toContain('match /moderationAudit/{auditId}');
+    expect(rules).toContain('validModerationAudit(request.resource.data)');
+    expect(rules).toContain('allow get, list: if isModerator()');
+    expect(rules).toContain('allow update, delete: if false');
+    expect(client).toContain('window.DoloPawsModeration');
   });
 });
