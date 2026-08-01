@@ -1044,13 +1044,6 @@
     ]
   },
   {
-    "id": 13668305,
-    "name": "Sur les pas des Huguenots en France",
-    "reasons": [
-      "not a loop (loops-only mode)"
-    ]
-  },
-  {
     "id": 13668383,
     "name": "Sur les pas des Huguenots",
     "reasons": [
@@ -1738,6 +1731,13 @@
     ]
   },
   {
+    "id": 16101643,
+    "name": "Tour de la Haute vallée de la Clarée",
+    "reasons": [
+      "contains T3+/ferrata/ladder/dog=no way"
+    ]
+  },
+  {
     "id": 16234309,
     "name": "Variante GR Balcon du Léman",
     "reasons": [
@@ -2124,6 +2124,7 @@
     "id": 19360813,
     "name": "Pointe de la Fougère",
     "reasons": [
+      "contains T3+/ferrata/ladder/dog=no way",
       "not a loop (loops-only mode)"
     ]
   },
@@ -2518,7 +2519,20 @@
     "id": 20339747,
     "name": "Chemin de Szombathely, Pontcharra - Saint-Pierre de Paladru",
     "reasons": [
-      "contains T3+/ferrata/ladder/dog=no way",
+      "not a loop (loops-only mode)"
+    ]
+  },
+  {
+    "id": 21131290,
+    "name": "Tour de la Randolière",
+    "reasons": [
+      "not a loop (loops-only mode)"
+    ]
+  },
+  {
+    "id": 21131328,
+    "name": "La Pierre aux Lièvres",
+    "reasons": [
       "not a loop (loops-only mode)"
     ]
   }

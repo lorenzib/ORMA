@@ -446,14 +446,6 @@
     ]
   },
   {
-    "id": 2168823,
-    "name": "Sentiero \"Don Battistin\"",
-    "reasons": [
-      "contains T3+/ferrata/ladder/dog=no way",
-      "not a loop (loops-only mode)"
-    ]
-  },
-  {
     "id": 2168857,
     "name": "Sentiero delle Pozze",
     "reasons": [
@@ -6962,7 +6954,6 @@
     "id": 16946669,
     "name": "TransLagorai - Tappa 2",
     "reasons": [
-      "contains T3+/ferrata/ladder/dog=no way",
       "not a loop (loops-only mode)"
     ]
   },
@@ -7072,7 +7063,6 @@
     "id": 17187700,
     "name": "Alta Via del Porfido - Tappa 2",
     "reasons": [
-      "contains T3+/ferrata/ladder/dog=no way",
       "not a loop (loops-only mode)"
     ]
   },
