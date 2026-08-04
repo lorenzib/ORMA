@@ -62,6 +62,8 @@
 
   /* Map overlay controls: clear of the pill and the bottom sheet */
   body.mhome-active #trailMap .map-btn{bottom:auto;top:64px;left:12px;}
+  /* Map · Satellite · 3D switch sits opposite the Layers chip, same row */
+  body.mhome-active #trailMap .td-layer-switch{top:64px;right:12px;left:auto;bottom:auto;}
   body.mhome-active #trailMap .map-btn--terrain{left:auto;right:12px;top:64px;bottom:auto;}
   body.mhome-active #trailMap .map-panel{bottom:auto;top:106px;left:12px;}
   body.mhome-active .maplibregl-ctrl-bottom-left,

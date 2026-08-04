@@ -193,4 +193,67 @@ describe('trail page map legend', () => {
     expect(createdButtons[0].className).toContain('map-btn--terrain');
     expect(createdButtons[0].style.left).toBeUndefined();
   });
+
+  test('addTerrainToggle joins the grouped layer switch when given its 3D button', () => {
+    const context = loadTrailScript({
+      document: {
+        readyState: 'loading',
+        getElementById: () => null,
+        querySelector: () => null,
+        querySelectorAll: () => [],
+        createElement: () => ({}),
+        addEventListener: () => {},
+      },
+    });
+    const classes = new Set();
+    let clickHandler = null;
+    const attrs = {};
+    const groupBtn = {
+      textContent: 'Elevation map',
+      classList: {
+        add: (c) => classes.add(c),
+        remove: (c) => classes.delete(c),
+        contains: (c) => classes.has(c),
+      },
+      setAttribute: (k, v) => { attrs[k] = v; },
+      addEventListener: (type, fn) => { if(type === 'click') clickHandler = fn; },
+    };
+    const fakeMap = {
+      setTerrain: () => {},
+      getLayer: () => true,
+      removeLayer: () => {},
+      addLayer: () => {},
+      easeTo: () => {},
+    };
+
+    context.addTerrainToggle(fakeMap, 'trailDetailMap', 1.5, 45, groupBtn);
+    expect(typeof clickHandler).toBe('function');
+
+    clickHandler();
+    expect(classes.has('on')).toBe(true);
+    expect(attrs['aria-pressed']).toBe('true');
+    // Label must stay put — the pressed state carries the meaning.
+    expect(groupBtn.textContent).toBe('Elevation map');
+
+    clickHandler();
+    expect(classes.has('on')).toBe(false);
+    expect(attrs['aria-pressed']).toBe('false');
+  });
+
+  test('hike mode keeps live elevation visible and offers explicit relief choices', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+    const hikeMode = fs.readFileSync(path.join(__dirname, 'hike-mode.js'), 'utf8');
+    document.body.innerHTML = html;
+
+    expect(document.getElementById('tdElevationPanel')).not.toBeNull();
+    expect(document.getElementById('tdElevLive')).not.toBeNull();
+    expect(document.querySelector('[data-maplayer="terrain"]').textContent).toBe('Flat map');
+    expect(document.querySelector('[data-map3d]').textContent).toBe('Elevation map');
+    expect(trail).toContain('mapBox.appendChild(elevationPanel)');
+    expect(trail).toContain('route elevation`');
+    expect(trail).toContain("'hillshade-method': 'igor'");
+    expect(trail).toContain("on ? 'Close map' : 'Expand map'");
+    expect(hikeMode).toContain('rejoin.segmentFraction');
+  });
 });

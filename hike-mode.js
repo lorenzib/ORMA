@@ -302,7 +302,11 @@ function initHikeMode(map, trail){
       moveLiveDot(rejoin.target.lat, rejoin.target.lng);
     }
     else moveLiveDot(lat, lng);
-    const currentKm = (cum[snap.idx] / totalMeters) * statedKm;
+    const routeProgressM = rejoin
+      ? cum[rejoin.segmentIndex] +
+        (cum[rejoin.segmentIndex + 1] - cum[rejoin.segmentIndex]) * rejoin.segmentFraction
+      : cum[snap.idx];
+    const currentKm = (routeProgressM / totalMeters) * statedKm;
     if(assessment.usableForProgress){
       lastKnownKm = Math.max(lastKnownKm, Math.min(currentKm, statedKm));
       lastValidFixAt = fixTimestamp;

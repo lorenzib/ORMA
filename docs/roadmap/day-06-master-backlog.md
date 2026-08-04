@@ -510,6 +510,28 @@ All P0 and P1 work
   - Automated geometry tests and controlled physical tests cover re-entry,
     inaccurate GPS, restart, and airplane mode.
 
+### HIKE-06 — Keep live elevation context visible during navigation
+
+- **Status:** Online hike-mode milestone implemented; downloaded elevation-map
+  data and physical validation remain open (2026-08-04)
+- **Priority:** P0
+- **Size:** M
+- **Depends on:** HIKE-02, HIKE-03
+- **Implementation:** fullscreen live elevation profile and Flat map / Elevation
+  map selector complete; see `docs/architecture/HIKE-06-live-elevation-context.md`.
+- **Outcome:** a hiker can see where they are within the climb or descent without
+  leaving the navigation map.
+- **Acceptance:**
+  - Fullscreen hike mode keeps the route elevation profile visible.
+  - The live cursor uses nearest-segment progress rather than sparse vertices.
+  - Current progress and interpolated route elevation are labelled as route
+    data rather than exact GPS altitude.
+  - Flat map remains the legible default and Elevation map adds shaded relief
+    without hiding the route, labels, or safety controls.
+  - Missing elevation data produces an honest unavailable state.
+  - Downloaded packages include the profile before offline hike mode claims
+    elevation support; remote terrain tiles are never implied to work offline.
+
 ### OUT-01 — Collect the structured post-hike outcome
 
 - **Priority:** P1
@@ -776,8 +798,9 @@ The shortest dependency-safe sequence is:
 4. **SCORE-01** and **TRUST-01:** define recommendation and evidence contracts.
 5. **DATA-02**, **SCORE-02**, and **SEC-01/02:** enforce the contracts.
 6. **OFF-02 through OFF-05:** build and verify packages.
-7. **HIKE-01 through HIKE-05:** make the hike durable, accuracy-aware, and able
-   to provide honest off-route recovery guidance.
+7. **HIKE-01 through HIKE-06:** make the hike durable, accuracy-aware, able to
+   provide honest off-route recovery guidance, and keep elevation context
+   visible.
 8. **UX-01 through UX-06:** complete the decision and readiness journey.
 9. **OUT-01**, **METRIC-01/02**, and **MOD-01 through MOD-03:** close the
    feedback and operating loop.

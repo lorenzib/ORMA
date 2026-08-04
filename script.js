@@ -269,15 +269,11 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   mkChip(t('chips.huts'), 'huts');
   const barsChip = mkChip(t('chips.food'), 'barsCafes');
 
-  // Terrain is an option inside the same panel, not another floating map
-  // control. This leaves one clear entry point for optional map features.
-  const terrainChip = document.createElement('button');
-  terrainChip.type = 'button';
-  terrainChip.textContent = '3D terrain';
-  chipStyle(terrainChip, false);
-  terrainChip.addEventListener('click', () => {
-    overlayStates.terrain = !overlayStates.terrain;
-    if(overlayStates.terrain){
+  // Map · Satellite · 3D live together in one visible switch on the map
+  // (same group as the trail page), not buried inside the Layers panel.
+  function set3D(on){
+    overlayStates.terrain = on;
+    if(on){
       map.setTerrain({ source: 'terrain-dem', exaggeration: 1.3 });
       if(!map.getLayer('hillshade-layer')){
         map.addLayer({
@@ -293,9 +289,58 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
       if(map.getLayer('hillshade-layer')) map.removeLayer('hillshade-layer');
       map.easeTo({ pitch: 0, duration: 500 });
     }
-    chipStyle(terrainChip, overlayStates.terrain);
-  });
-  panel.appendChild(terrainChip);
+  }
+  function ensureSatelliteLayer(){
+    if(map.getLayer('satellite-layer')) return true;
+    if(!map.isStyleLoaded()) return false;
+    map.addSource('satellite', {
+      type: 'raster',
+      tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+      tileSize: 256,
+      maxzoom: 19,
+      attribution: 'Imagery © Esri',
+    });
+    const firstSymbol = map.getStyle().layers.find(l => l.type === 'symbol');
+    map.addLayer({
+      id: 'satellite-layer',
+      type: 'raster',
+      source: 'satellite',
+      layout: { visibility: 'none' },
+    }, firstSymbol && firstSymbol.id);
+    return true;
+  }
+  (function buildLayerSwitch(){
+    const host = map.getContainer();
+    if(!host || host.querySelector('.td-layer-switch')) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'td-layer-switch td-layer-switch--home';
+    wrap.setAttribute('role', 'group');
+    wrap.setAttribute('aria-label', 'Map style');
+    wrap.innerHTML =
+      '<button type="button" data-maplayer="map" class="on" aria-pressed="true">Map</button>' +
+      '<button type="button" data-maplayer="satellite" aria-pressed="false">Satellite</button>' +
+      '<button type="button" data-map3d aria-pressed="false">3D</button>';
+    host.appendChild(wrap);
+    wrap.addEventListener('click', (e) => {
+      const threeD = e.target.closest('[data-map3d]');
+      if(threeD){
+        const on = !threeD.classList.contains('on');
+        set3D(on);
+        threeD.classList.toggle('on', on);
+        threeD.setAttribute('aria-pressed', String(on));
+        return;
+      }
+      const base = e.target.closest('[data-maplayer]');
+      if(!base || !ensureSatelliteLayer()) return;
+      const sat = base.getAttribute('data-maplayer') === 'satellite';
+      map.setLayoutProperty('satellite-layer', 'visibility', sat ? 'visible' : 'none');
+      wrap.querySelectorAll('[data-maplayer]').forEach(b => {
+        const on = b === base;
+        b.classList.toggle('on', on);
+        b.setAttribute('aria-pressed', String(on));
+      });
+    });
+  })();
 
   // 🐾 Dog-friendly filter — narrows food & drink to places OSM marks
   // dog=yes/leashed or with outdoor seating; dog=no always excluded.

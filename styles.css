@@ -2605,6 +2605,14 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 
 /* keep the map's Layers chip clear of the legend */
 .li-map .map-btn{bottom:10px;left:10px;}
+
+/* Map style switch — Map · Satellite · 3D grouped in one visible control
+   (bottom-left, same group on the trail map and the app map). */
+.td-layer-switch{position:absolute;bottom:14px;left:14px;z-index:6;display:flex;gap:8px;}
+.td-layer-switch button{padding:7px 13px;border-radius:9px;border:none;font-size:11.5px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;background:rgba(255,255,255,.94);color:var(--ink);box-shadow:0 2px 8px rgba(23,42,28,.12);}
+.td-layer-switch button.on{background:var(--ink);color:#fff;}
+/* App map: stacked directly above the Layers chip, same left edge */
+.li-map .td-layer-switch{bottom:52px;left:10px;}
 /* the docked preview card takes the legend's spot while a pin is selected */
 .li-map:has(.map-callout:not([hidden])) .li-legend{display:none;}
 

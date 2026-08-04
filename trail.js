@@ -139,17 +139,32 @@ function pointAtFraction(path, fraction){
 // build-trail.mjs/build-route.mjs pipeline. The chart code doesn't care
 // which source the numbers came from.
 function setupElevationProfile(map, t){
-  if(!Array.isArray(t.elevationProfile) || t.elevationProfile.length < 2 || !Array.isArray(t.path)) return;
+  const panel = document.getElementById('tdElevationPanel');
+  if(!Array.isArray(t.elevationProfile) || t.elevationProfile.length < 2 || !Array.isArray(t.path)){
+    if(panel) panel.hidden = true;
+    return;
+  }
 
   const wrap = document.getElementById('elevationProfileWrap');
   const svg = document.getElementById('elevProf');
   const readout = document.getElementById('elevReadout');
+  const liveReadout = document.getElementById('tdElevLive');
+  const rangeReadout = document.getElementById('tdElevRange');
   wrap.hidden = false;
 
   const profile = t.elevationProfile; // [{km, elev}, ...]
   const totalKm = t.distance;
   const elevs = profile.map(p => p.elev);
   const eMin = Math.min(...elevs), eMax = Math.max(...elevs);
+  if(rangeReadout) rangeReadout.textContent = `${Math.round(eMin)}–${Math.round(eMax)} m`;
+  const startReadout = document.getElementById('tdElevStart');
+  const highReadout = document.getElementById('tdElevHigh');
+  const climbReadout = document.getElementById('tdElevClimb');
+  const figures = document.getElementById('tdElevFigs');
+  if(startReadout) startReadout.textContent = `${Math.round(profile[0].elev)} m`;
+  if(highReadout) highReadout.textContent = `${Math.round(eMax)} m`;
+  if(climbReadout) climbReadout.textContent = `${Math.round(Number(t.elevation) || 0)} m`;
+  if(figures) figures.hidden = false;
   const VW = 1000, VH = 170, padL = 6, padR = 6, padT = 14, padB = 20;
   const x = km => padL + (km / totalKm) * (VW - padL - padR);
   const y = elev => padT + (1 - (elev - eMin) / ((eMax - eMin) || 1)) * (VH - padT - padB);
@@ -200,6 +215,7 @@ function setupElevationProfile(map, t){
     }
     cursorDot.setAttribute('cx', x(km)); cursorDot.setAttribute('cy', y(elev)); cursorDot.setAttribute('opacity', '1');
     readout.textContent = `${km.toFixed(1)} km · ${Math.round(elev)} m`;
+    if(liveReadout) liveReadout.textContent = `${km.toFixed(1)} km · ~${Math.round(elev)} m route elevation`;
 
     const [lat, lng] = pointAtFraction(t.path, totalKm > 0 ? km / totalKm : 0);
     const src = map.getSource('elev-cursor');
@@ -238,38 +254,55 @@ function makeIconEl(iconKey, bgColor){
   return fallback;
 }
 
-function addTerrainToggle(map, containerId, exaggeration, pitch3D){
-  const container = document.getElementById(containerId);
-  if(!container) return;
-  container.style.position = container.style.position || 'relative';
+function addTerrainToggle(map, containerId, exaggeration, pitch3D, existingBtn){
+  // With `existingBtn` (the "Elevation map" button in the grouped layer
+  // switch) the toggle joins the Flat map · Satellite · Elevation map group instead of floating on the
+  // opposite side of the map.
+  let btn = existingBtn || null;
+  if(!btn){
+    const container = document.getElementById(containerId);
+    if(!container) return;
+    container.style.position = container.style.position || 'relative';
+    btn = document.createElement('button');
+    btn.type = 'button';
+    btn.textContent = window.t('trail.view3d');
+    btn.className = 'map-btn map-btn--terrain';
+    container.appendChild(btn);
+  }
 
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.textContent = window.t('trail.view3d');
-  btn.className = 'map-btn map-btn--terrain';
-  container.appendChild(btn);
-
-  let is3D = false; // clean, flat, label-first map by default
+  let elevationVisible = false; // clean, flat, label-first map by default
   btn.addEventListener('click', () => {
-    if(!is3D){
-      map.setTerrain({ source: 'terrain-dem', exaggeration });
+    if(!elevationVisible){
       if(!map.getLayer('hillshade-layer')){
+        const beforeLayer = map.getLayer('waymarked-hiking-layer')
+          ? 'waymarked-hiking-layer'
+          : (map.getStyle().layers.find(layer => layer.type === 'symbol') || {}).id;
         map.addLayer({
           id: 'hillshade-layer',
           type: 'hillshade',
           source: 'terrain-dem',
-          paint: { 'hillshade-exaggeration': 0.3 },
-        }, 'waymarked-hiking-layer'); // keep hillshade below the trail overlay and labels
+          paint: {
+            'hillshade-method': 'igor',
+            'hillshade-exaggeration': 0.22,
+            'hillshade-shadow-color': '#81907f',
+            'hillshade-highlight-color': '#fffdf6',
+            'hillshade-accent-color': '#60705f',
+          },
+        }, beforeLayer); // keep hillshade below the trail overlay and labels
       }
-      map.easeTo({ pitch: pitch3D || 0, duration: 500 });
-      btn.textContent = window.t('trail.viewFlat');
+      // Keep a top-down navigation perspective. A tilted terrain camera can
+      // hide the route when remote DEM tiles fail; hillshade adds elevation
+      // context without making the basemap or distances harder to read.
+      map.easeTo({ pitch: 0, duration: 300 });
+      if(existingBtn){ btn.classList.add('on'); btn.setAttribute('aria-pressed', 'true'); }
+      else btn.textContent = window.t('trail.viewFlat');
     } else {
-      map.setTerrain(null);
       if(map.getLayer('hillshade-layer')) map.removeLayer('hillshade-layer');
       map.easeTo({ pitch: 0, duration: 500 });
-      btn.textContent = window.t('trail.view3d');
+      if(existingBtn){ btn.classList.remove('on'); btn.setAttribute('aria-pressed', 'false'); }
+      else btn.textContent = window.t('trail.view3d');
     }
-    is3D = !is3D;
+    elevationVisible = !elevationVisible;
   });
 }
 
@@ -1128,13 +1161,20 @@ function renderTrail(t){
     // Fullscreen map — manual ⤢ toggle, and automatic during hike mode.
     const mapBox = document.getElementById('trailMapBox');
     const expandBtn = document.getElementById('mapExpandBtn');
+    const elevationPanel = document.getElementById('tdElevationPanel');
+    const elevationHome = elevationPanel && elevationPanel.parentNode;
     function setMapFS(on){
       if(!mapBox) return;
       mapBox.classList.toggle('map-fs', on);
       document.body.classList.toggle('map-fs-open', on);
+      if(elevationPanel && !elevationPanel.hidden){
+        if(on) mapBox.appendChild(elevationPanel);
+        else if(elevationHome) elevationHome.appendChild(elevationPanel);
+      }
       if(expandBtn) expandBtn.innerHTML = on
         ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> <span>Close map</span>'
         : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span>';
+      if(expandBtn) expandBtn.setAttribute('aria-label', on ? 'Close map' : 'Expand map');
       setTimeout(() => map.resize(), 60);
     }
     window.DoloPawsMapFS = { enter: () => setMapFS(true), exit: () => setMapFS(false) };
@@ -1179,7 +1219,8 @@ function renderTrail(t){
         if (!btn || !ensureSatelliteLayer()) return;
         const sat = btn.getAttribute('data-maplayer') === 'satellite';
         map.setLayoutProperty('satellite-layer', 'visibility', sat ? 'visible' : 'none');
-        layerSwitch.querySelectorAll('button').forEach(b => {
+        // Base buttons only — the 3D toggle keeps its own pressed state.
+        layerSwitch.querySelectorAll('[data-maplayer]').forEach(b => {
           const on = b === btn;
           b.classList.toggle('on', on);
           b.setAttribute('aria-pressed', on ? 'true' : 'false');
@@ -1193,7 +1234,8 @@ function renderTrail(t){
       if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(map);
       addTerrainSource(map);
       increaseLabelDensity(map);
-      addTerrainToggle(map, 'trailDetailMap', 1.5, 45);
+      addTerrainToggle(map, 'trailDetailMap', 1.5, 45,
+        document.querySelector('#tdLayerSwitch [data-map3d]'));
       renderAllLifts(map);
       if (typeof initDetailPois === 'function') initDetailPois(map, t);
 
