@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260730-6">
+<link rel="stylesheet" href="styles.css?v=20260730-7">
 <style>
   /* Header shares the cards' 1040px container so its left edge lines up
      with the list below; the intro stays capped for readability. */
@@ -441,6 +441,7 @@
 <script src="trail-audits.js?v=20260717" defer></script>
 <script src="regions-config.js"></script>
 <script src="metrics.js?v=20260730-1" defer></script>
+<script src="metric-funnel.js?v=20260804-1" defer></script>
 <script src="guest-context.js?v=20260730-1" defer></script>
 <script src="auth-ui.js?v=20260729-1" defer></script>
 <script src="discovery-state.js?v=20260729-1" defer></script>
@@ -769,6 +770,22 @@
       if(distance.value === '10') pool = pool.filter(trail => Number(trail.distance) >= 5);
       const activeFilters = filterApi.active(currentFilterState());
       const hasFilters = activeFilters.length > 0;
+      let profilePresent = false;
+      try{ profilePresent = !!JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); }
+      catch(error){}
+      if(window.DoloPawsMetricFunnel){
+        window.DoloPawsMetricFunnel.recordOnce(
+          'discovery-results',
+          'browse',
+          'discovery_search',
+          pool.length ? 'results_viewed' : 'no_results',
+          {
+            resultCount:pool.length,
+            activeFilterCount:activeFilters.length,
+            profilePresent,
+          }
+        );
+      }
       resultCount.innerHTML = `<span class="browse-result-accessible">${pool.length} trail${pool.length === 1 ? '' : 's'} found. </span>${pool.length} of ${trails.length} trails · route-audited trails have had their data checked by DoloPaws`;
       clear.hidden = !hasFilters;
       const totalPages = Math.max(1, Math.ceil(pool.length / PER_PAGE));
@@ -862,6 +879,16 @@
           compareIds = compareApi.toggle(compareIds, button.dataset.compareId);
           compareApi.save(localStorage, compareIds);
           renderPage(null);
+        });
+      });
+      list.querySelectorAll('.simple-card__main,.browse-card-open').forEach(link => {
+        link.addEventListener('click', () => {
+          const id = new URL(link.href, window.location.href).searchParams.get('id');
+          if(id && window.DoloPawsMetricFunnel){
+            window.DoloPawsMetricFunnel.recordOnce(
+              'trail-selected', id, 'trail_decision', 'selected', { trailId:id }
+            );
+          }
         });
       });
       const applyRecoveryState = nextState => {

@@ -788,6 +788,24 @@ function init(){
 }
 
 function renderTrail(t){
+  if(window.DoloPawsMetricFunnel){
+    const profilePresent = (() => {
+      try{ return !!JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); }
+      catch(error){ return false; }
+    })();
+    const decisionProperties = {
+      trailId:t.id,
+      verificationStatus:t.curated === false ? 'estimated' : 'dolopaws_vetted',
+      warningCount:Array.isArray(t.surfaceHazards) ? t.surfaceHazards.length : 0,
+      profilePresent,
+    };
+    window.DoloPawsMetricFunnel.recordOnce(
+      'trail-opened', t.id, 'trail_decision', 'opened', decisionProperties
+    );
+    window.DoloPawsMetricFunnel.recordOnce(
+      'explanation-viewed', t.id, 'trail_decision', 'explanation_viewed', decisionProperties
+    );
+  }
   buildItinerary(t);
   renderLegendChips(t);
   const hasRoutePath = Array.isArray(t.path) && t.path.length > 1;

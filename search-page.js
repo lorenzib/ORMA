@@ -5,6 +5,7 @@
   const refine = document.getElementById('searchRefine');
   const results = document.getElementById('searchResults');
   let active = 'Everything';
+  let searchResultRecorded = false;
   const initialQuery = new URLSearchParams(location.search).get('q');
   if(initialQuery !== null) input.value = initialQuery;
   const areas = [
@@ -39,6 +40,17 @@
     let matched = trails.filter(t => (t.name + ' ' + t.area).toLowerCase().includes(q));
     if(!matched.length) matched = trails.filter(t => (t.name + ' ' + t.area).toLowerCase().includes(q.split(/\s+/)[0]));
     matched = matched.slice(0,6);
+    if(!searchResultRecorded && window.DoloPawsMetricFunnel){
+      const state = matched.length ? 'results_viewed' : 'no_results';
+      const recorded = window.DoloPawsMetricFunnel.recordOnce(
+        'discovery-results', 'search', 'discovery_search', state, {
+          resultCount:matched.length,
+          activeFilterCount:active === 'Everything' ? 0 : 1,
+          profilePresent:false,
+        }
+      );
+      searchResultRecorded = !!(recorded && recorded.ok);
+    }
     summary.innerHTML = matched.length + ' match' + (matched.length === 1 ? '' : 'es') + ' · ranked for <b>Nala</b>';
     let html = '';
     if(active === 'Everything' || active === 'Trails'){
@@ -64,6 +76,16 @@
     active = button.dataset.refine;
     refine.querySelectorAll('button').forEach(b => b.classList.toggle('on', b === button));
     render();
+  });
+  results.addEventListener('click', function(event){
+    const link = event.target.closest('.search-row');
+    if(!link || !window.DoloPawsMetricFunnel) return;
+    const id = new URL(link.href, window.location.href).searchParams.get('id');
+    if(id){
+      window.DoloPawsMetricFunnel.recordOnce(
+        'trail-selected', id, 'trail_decision', 'selected', { trailId:id }
+      );
+    }
   });
   render();
 })();

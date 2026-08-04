@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260730-6">
+<link rel="stylesheet" href="styles.css?v=20260730-7">
 <style>
   /* Account settings — standalone page per AccountSettings.dc.html:
      sticky section sidebar, white cards, destructive zone last. */
@@ -460,10 +460,26 @@ document.addEventListener('DOMContentLoaded', function(){
     list.innerHTML = '';
     var row = document.createElement('div');
     row.className = 'st-dog-row';
+    // Photo resolution mirrors the header pill: account profile first,
+    // then the per-uid cache, then any legacy device key.
     var photo = null;
+    var isImage = function(v){ return typeof v === 'string' && v.indexOf('data:image/') === 0; };
+    if(p && isImage(p.photo)) photo = p.photo;
     try {
-      var v = localStorage.getItem('dolopaws-dog-photo');
-      if(typeof v === 'string' && v.indexOf('data:image/') === 0) photo = v;
+      var user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+      if(!photo && user) {
+        var perUid = localStorage.getItem('dolopaws-dog-photo-' + user.uid);
+        if(isImage(perUid)) photo = perUid;
+      }
+      if(!photo){
+        for(var i = 0; i < localStorage.length; i++){
+          var key = localStorage.key(i);
+          if(key && key.indexOf('dolopaws-dog-photo') === 0){
+            var v = localStorage.getItem(key);
+            if(isImage(v)){ photo = v; break; }
+          }
+        }
+      }
     } catch(e){}
     row.innerHTML =
       '<span class="st-dog-avatar"' + (photo ? ' style="background-image:url(' + photo + ')"' : '') + '>' + (photo ? '' : '<i style="font-style:normal;"></i>') + '</span>' +

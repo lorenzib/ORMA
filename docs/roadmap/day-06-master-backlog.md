@@ -622,6 +622,7 @@ All P0 and P1 work
 
 ### METRIC-02 — Instrument the core funnel
 
+- **Status:** Complete in code (2026-08-04)
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** METRIC-01, OFF-05, OUT-01

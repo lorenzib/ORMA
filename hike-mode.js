@@ -291,7 +291,7 @@ function initHikeMode(map, trail){
 
     if(firstFix && assessment.usableForProgress){
       firstFix = false;
-      recordConfirmedHikeStart();
+      recordConfirmedHikeStart(accuracy);
       map.easeTo({ center: [lng, lat], zoom: Math.max(map.getZoom(), 15), duration: 800 });
     }
 
@@ -423,9 +423,30 @@ function initHikeMode(map, trail){
   }
 
   // ---- Start / stop ---------------------------------------------------------
-  function recordConfirmedHikeStart(){
+  function recordConfirmedHikeStart(accuracy){
     if (hikeStartRecorded) return;
     hikeStartRecorded = true;
+    if(window.DoloPawsMetricFunnel){
+      const recordMetric = packagePresent => {
+        window.DoloPawsMetricFunnel.recordOnce(
+          'hike-started', trail.id, 'hike_session', 'started', {
+            trailId:trail.id,
+            connectivity:navigator.onLine === false ? 'offline' : 'online',
+            packagePresent,
+            gpsAccuracyBand:Number.isFinite(accuracy)
+              ? (accuracy <= 15 ? 'good' : accuracy <= 40 ? 'fair' : 'poor')
+              : 'unknown',
+          }
+        );
+      };
+      if(window.DoloPawsOffline && window.DoloPawsOffline.inspectPackage){
+        window.DoloPawsOffline.inspectPackage(trail.id)
+          .then(inspection => recordMetric(!!inspection.usable))
+          .catch(() => recordMetric(false));
+      }else{
+        recordMetric(false);
+      }
+    }
     // One anonymous count event per trail per device per day. A confirmed
     // GPS fix is required, so permission errors do not count as hikes.
     try {
@@ -551,6 +572,22 @@ function initHikeMode(map, trail){
       setStartLabel('hike.retryFinish', 'Save completed hike');
       panel.textContent = window.t('hike.completionSaveFailed');
       return false;
+    }
+    if(window.DoloPawsMetricFunnel){
+      const duration = Math.max(0, completedAt - durableSession.startedAt);
+      const completion = statedKm > 0 ? lastKnownKm / statedKm : 0;
+      window.DoloPawsMetricFunnel.recordOnce(
+        'hike-completed', trail.id, 'hike_session', 'completed', {
+          trailId:trail.id,
+          connectivity:navigator.onLine === false ? 'offline' : 'online',
+          durationBand:window.DoloPawsMetricFunnel.durationBand(duration),
+          distanceCompletionBand:completion >= 0.9
+            ? 'ninety_to_one_hundred_percent'
+            : completion >= 0.5
+              ? 'fifty_to_ninety_percent'
+              : 'under_fifty_percent',
+        }
+      );
     }
     completionRetry = null;
     clearDurableSession();
@@ -762,7 +799,7 @@ function initHikeMode(map, trail){
       status.textContent = navigator.onLine
         ? 'Saved privately · syncing…'
         : 'Saved privately · pending sync until you reconnect.';
-      if(result.created && window.DoloPawsMetrics){
+      if(result.created && window.DoloPawsMetricFunnel){
         const metricProperties = {
           trailId:trail.id,
           offlinePackageUsed,
@@ -770,7 +807,9 @@ function initHikeMode(map, trail){
           conditionsDiffered:outcomeResponse === 'appropriate_with_unexpected_cautions',
         };
         if(hazards[0]) metricProperties.primaryMismatchCategory = hazards[0];
-        window.DoloPawsMetrics.record(
+        window.DoloPawsMetricFunnel.recordOnce(
+          'outcome',
+          trail.id,
           'post_hike_outcome',
           outcomeResponse,
           metricProperties

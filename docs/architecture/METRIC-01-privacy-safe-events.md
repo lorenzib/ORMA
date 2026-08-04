@@ -55,8 +55,9 @@ retry, allowing the eventual receiver to enforce idempotency. Successful
 delivery removes the event before the next one is attempted.
 
 METRIC-01 deliberately does not install an advertising or third-party
-analytics SDK and does not invent a production receiver. METRIC-02 will connect
-the core funnel to this API and its approved first-party transport.
+analytics SDK and does not invent a production receiver. METRIC-02 connects
+the core funnel to this API; production delivery still requires an approved
+first-party receiver.
 
 ## Separation from operational state
 

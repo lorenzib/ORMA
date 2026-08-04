@@ -2052,7 +2052,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-greetbar{
   display:flex;
   align-items:center;
-  padding:18px max(32px, calc((100% - 1200px) / 2 + 32px));
+  padding:18px 24px;
   background:var(--bg);
   border-bottom:1px solid var(--paper-line);
   flex:none;
@@ -2064,7 +2064,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   display:flex;
   align-items:center;
   gap:10px;
-  padding:10px max(32px, calc((100% - 1200px) / 2 + 32px));
+  padding:10px 24px;
   background:var(--bg);
   border-bottom:1px solid var(--paper-line);
   flex:none;
@@ -2338,7 +2338,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 /* conditions card — top-left map overlay */
 .li-cond{
   position:absolute;
-  top:16px;
+  top:56px; /* below the top-left Layers chip */
   left:16px;
   z-index:7;
   background:rgba(255,255,255,.96);
@@ -2603,16 +2603,17 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 }
 .li-empty button:hover{border-color:var(--accent);}
 
-/* keep the map's Layers chip clear of the legend */
-.li-map .map-btn{bottom:10px;left:10px;}
+/* Layers chip lives in the map's top-left corner; its panel opens below */
+.li-map .map-btn{top:10px;left:10px;bottom:auto;}
+.li-map .map-panel{top:52px;left:10px;bottom:auto;}
 
 /* Map style switch — Map · Satellite · 3D grouped in one visible control
    (bottom-left, same group on the trail map and the app map). */
 .td-layer-switch{position:absolute;bottom:14px;left:14px;z-index:6;display:flex;gap:8px;}
 .td-layer-switch button{padding:7px 13px;border-radius:9px;border:none;font-size:11.5px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;background:rgba(255,255,255,.94);color:var(--ink);box-shadow:0 2px 8px rgba(23,42,28,.12);}
 .td-layer-switch button.on{background:var(--ink);color:#fff;}
-/* App map: stacked directly above the Layers chip, same left edge */
-.li-map .td-layer-switch{bottom:52px;left:10px;}
+/* App map: the freed bottom-left slot */
+.li-map .td-layer-switch{bottom:10px;left:10px;}
 /* the docked preview card takes the legend's spot while a pin is selected */
 .li-map:has(.map-callout:not([hidden])) .li-legend{display:none;}
 

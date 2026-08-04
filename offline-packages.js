@@ -632,6 +632,12 @@
       }
       downloadButton.disabled = true;
       setStatus('Preparing a verified offline download…', 'downloading');
+      const downloadStartedAt = Date.now();
+      if(window.DoloPawsMetricFunnel){
+        window.DoloPawsMetricFunnel.recordOnce(
+          'package-started', trailId, 'offline_package', 'started', { trailId }
+        );
+      }
       let failureMessage = null;
       try{
         const manifest = await installPackage(
@@ -647,8 +653,36 @@
           } required resources.`,
           'ready'
         );
+        if(window.DoloPawsMetricFunnel){
+          window.DoloPawsMetricFunnel.recordOnce(
+            'package-ready', trailId, 'offline_package', 'ready', {
+              trailId,
+              packageSizeBand:window.DoloPawsMetricFunnel.packageSizeBand
+                ? window.DoloPawsMetricFunnel.packageSizeBand(manifest.packageBytes)
+                : 'unknown',
+              durationBand:window.DoloPawsMetricFunnel.durationBand
+                ? window.DoloPawsMetricFunnel.durationBand(Date.now() - downloadStartedAt)
+                : 'unknown',
+              packageVersion:manifest.version,
+            }
+          );
+        }
       }catch(error){
         failureMessage = error.message || 'The package could not be downloaded.';
+        if(window.DoloPawsMetricFunnel){
+          const category = window.DoloPawsMetricFunnel.failureCategory
+            ? window.DoloPawsMetricFunnel.failureCategory(error)
+            : 'unknown';
+          window.DoloPawsMetricFunnel.recordOnce(
+            `package-failed-${category}`, trailId, 'offline_package', 'failed', {
+              trailId,
+              failureCategory:category,
+              durationBand:window.DoloPawsMetricFunnel.durationBand
+                ? window.DoloPawsMetricFunnel.durationBand(Date.now() - downloadStartedAt)
+                : 'unknown',
+            }
+          );
+        }
       }finally{
         downloadButton.disabled = false;
         await refresh(failureMessage ? { failureMessage } : null);
@@ -670,6 +704,11 @@
       );
       testButton.disabled = false;
       if(result.usable){
+        if(window.DoloPawsMetricFunnel){
+          window.DoloPawsMetricFunnel.recordOnce(
+            'airplane-test', trailId, 'offline_package', 'airplane_test_passed', { trailId }
+          );
+        }
         setStatus(
           `Offline self-test passed: ${result.requiredChecked} required resources ` +
           `were checksum-verified from this device. ${

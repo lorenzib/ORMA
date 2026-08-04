@@ -117,6 +117,7 @@
       version:VERSION,
       consent:'unset',
       consentUpdatedAt:null,
+      consentGeneration:0,
       clientId:null,
       events:[],
     };
@@ -215,6 +216,9 @@
       const value = prune(read(), now);
       value.consent = next;
       value.consentUpdatedAt = coarseHour(now);
+      value.consentGeneration = Number.isInteger(value.consentGeneration)
+        ? value.consentGeneration + 1
+        : 1;
       if(next !== 'granted'){
         value.events = [];
         value.clientId = null;
@@ -303,6 +307,9 @@
       return {
         consent:value.consent,
         consentUpdatedAt:value.consentUpdatedAt,
+        consentGeneration:Number.isInteger(value.consentGeneration)
+          ? value.consentGeneration
+          : 0,
         queueLength:value.events.length,
         hasClientId:!!value.clientId,
       };
