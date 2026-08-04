@@ -488,12 +488,14 @@ service cloud.firestore {
     }
 
     match /flags/{flagId} {
-      allow get, list: if isModerator()
+      allow get: if isModerator()
         || (
           resource.data.status in ['visible', 'reported']
           && resource.data.expiresAt is timestamp
           && resource.data.expiresAt > request.time
         );
+      allow list: if isModerator()
+        || resource.data.status in ['visible', 'reported'];
       allow create: if isContributor()
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.status == 'pending'
