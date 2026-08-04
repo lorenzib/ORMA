@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lago-carezza",
   "name": "Lago di Carezza Loop",
-  "version": "2026.08.04-beta.12",
-  "generatedAt": "2026-08-04T13:18:56Z",
+  "version": "2026.08.04-beta.13",
+  "generatedAt": "2026-08-04T16:21:03Z",
   "scoringVersion": "1.1.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 85704,
+  "packageBytes": 102915,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "north": 46.4113,
@@ -23,6 +23,13 @@
     "scaleLevels": [1],
     "width": 1200,
     "height": 1140
+  },
+  "routingGraph": {
+    "strategy": "osm-walking-graph-v1",
+    "nodeCount": 224,
+    "edgeCount": 223,
+    "trailNodeCount": 95,
+    "maxRejoinRouteM": 1500
   },
   "evidence": {
     "version": "1.0.0",
@@ -95,24 +102,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 6610,
-      "sha256": "0eb62306e5f6ab3c003330645929848d11a922ea9ed29add0b4bb114e683ff91"
+      "bytes": 6715,
+      "sha256": "cfba5ee1a7a5c80ed9c55af6fd984a9d1d533a5bc7c0ea6875b08abfa0470ee1"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 5197,
-      "sha256": "a09a997f7a958a3207359da6720fe642815116e25b1ff91aea257c11ab2b81ff"
+      "bytes": 5232,
+      "sha256": "e206258a42522dcaaefbb4b98884a88a28070e09797a68e115c1afd248d7135f"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 25097,
-      "sha256": "6605ed641cb172df7b2d66d8525f0f583c6d2fe6ecddb352259f7af8be745b0b"
+      "bytes": 25891,
+      "sha256": "37b001bcd1964bba74ad632f3f4a9837a05ab69c8df9b1b76d559d81472e5f0c"
     },
     {
       "role": "gps-policy",
@@ -129,6 +136,14 @@
       "url": "/route-rejoin.js",
       "bytes": 2981,
       "sha256": "da9f712e32f9abc39071092a88c5876d297a831b75a7e0d6392c0dbde7e34c96"
+    },
+    {
+      "role": "footpath-router",
+      "required": true,
+      "label": "Offline mapped footpath router",
+      "url": "/footpath-router.js",
+      "bytes": 5266,
+      "sha256": "87a1d47247a967b28322b7242286cd1300aab762f35ff0a2df7f39a2490f9d12"
     },
     {
       "role": "session",
@@ -169,6 +184,14 @@
       "url": "route.geojson",
       "bytes": 1529,
       "sha256": "fae7714384f3e3f7128f461e25a5f04a605da3c5a6f5d9b8771eea7bf37fbc5d"
+    },
+    {
+      "role": "footpath-network",
+      "required": true,
+      "label": "Lago di Carezza routable footpath corridor",
+      "url": "footpath-network.json",
+      "bytes": 11011,
+      "sha256": "74a9214bf3c05e6b53c5c7e9228c030934b4fb86d758457e96498c58140b9d1e"
     },
     {
       "role": "safety",

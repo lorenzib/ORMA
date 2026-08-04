@@ -88,6 +88,15 @@ function initHikeMode(map, trail){
   let durableSession = null;
   let completionRetry = null;
   const rejoinRoute = trail.path.map(point => ({ lat: point[0], lng: point[1] }));
+  let footpathGraph = null;
+  if(trail.id === 'lago-carezza' && window.DoloPawsFootpathRouter){
+    fetch('offline/packages/lago-carezza/footpath-network.json')
+      .then(response => response.ok ? response.json() : null)
+      .then(graph => {
+        if(graph && window.DoloPawsFootpathRouter.validateGraph(graph)) footpathGraph = graph;
+      })
+      .catch(() => {});
+  }
 
   function keepSessionResult(result){
     if(result && result.session) durableSession = result.session;
@@ -164,8 +173,9 @@ function initHikeMode(map, trail){
     }
   }
 
-  function showRejoinGuidance(lat, lng, guidance){
-    if(!guidance || typeof maplibregl === 'undefined') return;
+  function showRejoinGuidance(guidance){
+    if(!guidance || guidance.routingMode !== 'mapped-footpath' ||
+       !Array.isArray(guidance.path) || typeof maplibregl === 'undefined') return;
     if(!rejoinMarker){
       const target = document.createElement('div');
       target.setAttribute('aria-label', hikeLabel('hike.rejoinTarget', 'Closest point on trail'));
@@ -180,7 +190,7 @@ function initHikeMode(map, trail){
         properties: {},
         geometry: {
           type: 'LineString',
-          coordinates: [[lng, lat], [guidance.target.lng, guidance.target.lat]],
+          coordinates: guidance.path.map(point => [point.lng, point.lat]),
         },
       }],
     };
@@ -194,9 +204,9 @@ function initHikeMode(map, trail){
         type: 'line',
         source: 'dolopaws-rejoin-direction',
         paint: {
-          'line-color': '#f3a712',
-          'line-width': 3,
-          'line-dasharray': [2, 2],
+          'line-color': '#1677ff',
+          'line-width': 5,
+          'line-opacity': 0.92,
         },
       });
     }
@@ -339,17 +349,23 @@ function initHikeMode(map, trail){
     offRouteStreak = assessment.nextOffRouteStreak;
     offRouteSince = assessment.nextOffRouteSince;
     if(assessment.offRouteState === 'confirmed'){
-      const guidance = rejoin;
+      const guidance = footpathGraph && window.DoloPawsFootpathRouter
+        ? window.DoloPawsFootpathRouter.routeToTrail(
+          { lat, lng },
+          footpathGraph,
+          {
+            maxSnapDistanceM:Math.min(60, Math.max(25, Number(accuracy) + 10)),
+            maxRouteDistanceM:1500,
+          }
+        )
+        : null;
       if(guidance){
-        banner.textContent = window.t('hike.rejoinGuidance', {
+        banner.textContent = window.t('hike.rejoinMapped', {
           distance: Math.round(guidance.distanceM),
-          direction: guidance.direction,
         });
-        showRejoinGuidance(lat, lng, guidance);
+        showRejoinGuidance(guidance);
       }else{
-        banner.textContent = window.t('hike.offRouteDistance', {
-          distance: Math.round(routeDistanceM),
-        });
+        banner.textContent = window.t('hike.rejoinUnavailable');
         hideRejoinGuidance();
       }
       banner.style.display = 'block';

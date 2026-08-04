@@ -36,6 +36,8 @@ describe('Lago di Carezza offline package', () => {
       'completion',
       'gps-policy',
       'route-rejoin',
+      'footpath-router',
+      'footpath-network',
       'outcome',
       'session',
       'map',
@@ -71,6 +73,13 @@ describe('Lago di Carezza offline package', () => {
       width: 1200,
       height: 1140,
     });
+    expect(manifest.routingGraph).toEqual({
+      strategy:'osm-walking-graph-v1',
+      nodeCount:224,
+      edgeCount:223,
+      trailNodeCount:95,
+      maxRejoinRouteM:1500,
+    });
     expect(manifest.packageBytes).toBeLessThanOrEqual(manifest.packageBudgetBytes);
     expect(mapSvg).toContain('viewBox="0 0 1200 1140"');
   });
@@ -84,6 +93,8 @@ describe('Lago di Carezza offline package', () => {
     expect(manifest.resources.find(resource => resource.role === 'safety').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'gps-policy').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'route-rejoin').required).toBe(true);
+    expect(manifest.resources.find(resource => resource.role === 'footpath-router').required).toBe(true);
+    expect(manifest.resources.find(resource => resource.role === 'footpath-network').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'completion').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'outcome').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'session').required).toBe(true);
@@ -147,8 +158,10 @@ describe('Lago di Carezza offline package', () => {
     const app = fs.readFileSync(path.join(root, 'offline', 'offline-app.js'), 'utf8');
     expect(shell).toContain('src="../hike-gps-policy.js"');
     expect(shell).toContain('src="../route-rejoin.js"');
+    expect(shell).toContain('src="../footpath-router.js"');
     expect(shell.indexOf('hike-gps-policy.js')).toBeLessThan(shell.indexOf('offline-app.js'));
     expect(shell.indexOf('route-rejoin.js')).toBeLessThan(shell.indexOf('offline-app.js'));
+    expect(shell.indexOf('footpath-router.js')).toBeLessThan(shell.indexOf('offline-app.js'));
     expect(shell).toContain('id="offlineRouteWarning"');
     expect(app).toContain('DoloPawsGpsPolicy.assessFix');
     expect(app).toContain("assessment.offRouteState === 'confirmed'");
@@ -156,7 +169,9 @@ describe('Lago di Carezza offline package', () => {
     expect(app).toContain("? 'On trail'");
     expect(app).toContain("? 'Checking route position'");
     expect(app).toContain('DoloPawsRouteRejoin.guidance');
-    expect(app).toContain('Direction only—use marked paths');
+    expect(app).toContain('DoloPawsFootpathRouter.routeToTrail');
+    expect(app).toContain('follow the blue mapped path');
+    expect(app).not.toContain('do not follow the straight line');
   });
 
   test('persists offline completion before clearing the active session', () => {

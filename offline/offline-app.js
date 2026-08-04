@@ -6,6 +6,7 @@
   let watchId = null;
   let activeSession = null;
   let routeCoordinates = [];
+  let footpathGraph = null;
   let offRouteStreak = 0;
   let offRouteSince = null;
   let lastValidFixAt = null;
@@ -160,19 +161,19 @@
     elements.rejoinTarget.hidden = true;
   }
 
-  function showRejoinGuidance(position, progress, bounds){
+  function showRejoinGuidance(guidance, bounds){
     const target = positionPercent(
-      progress.rejoin.target.lat,
-      progress.rejoin.target.lng,
+      guidance.target.lat,
+      guidance.target.lng,
       bounds
     );
     elements.rejoinTarget.style.left = `${target.x}%`;
     elements.rejoinTarget.style.top = `${target.y}%`;
     elements.rejoinTarget.hidden = false;
-    elements.rejoinDirectionLine.setAttribute('x1', `${position.x}%`);
-    elements.rejoinDirectionLine.setAttribute('y1', `${position.y}%`);
-    elements.rejoinDirectionLine.setAttribute('x2', `${target.x}%`);
-    elements.rejoinDirectionLine.setAttribute('y2', `${target.y}%`);
+    elements.rejoinDirectionLine.setAttribute('points', guidance.path.map(point => {
+      const projected = positionPercent(point.lat, point.lng, bounds);
+      return `${projected.x},${projected.y}`;
+    }).join(' '));
     elements.rejoinDirection.hidden = false;
   }
 
@@ -254,12 +255,25 @@
         elements.routeWarning.hidden = false;
         hideRejoinGuidance();
       }else if(assessment && assessment.offRouteState === 'confirmed'){
-        elements.routeWarning.textContent =
-          `Trail is about ${Math.round(progress.rejoin.distanceM)} m ${progress.rejoin.direction}. ` +
-          'The orange point is the closest trail point. Direction only—use marked paths; ' +
-          'do not follow the straight line.';
+        const guidance = footpathGraph && window.DoloPawsFootpathRouter
+          ? window.DoloPawsFootpathRouter.routeToTrail(
+            {
+              lat:position.coords.latitude,
+              lng:position.coords.longitude,
+            },
+            footpathGraph,
+            {
+              maxSnapDistanceM:Math.min(60, Math.max(25, position.coords.accuracy + 10)),
+              maxRouteDistanceM:1500,
+            }
+          )
+          : null;
+        elements.routeWarning.textContent = guidance
+          ? `Rejoin trail: follow the blue mapped path for about ${Math.round(guidance.distanceM)} m. Check local signs and closures.`
+          : 'No connected mapped footpath was found. Return to the last marked path or follow local signs.';
         elements.routeWarning.hidden = false;
-        showRejoinGuidance(point, progress, bounds);
+        if(guidance) showRejoinGuidance(guidance, bounds);
+        else hideRejoinGuidance();
       }else{
         elements.routeWarning.hidden = true;
         hideRejoinGuidance();
@@ -552,10 +566,18 @@
           if(resource.required !== false) throw error;
         }
       }
-      if(!resources.map || !resources.route || !resources.safety) throw new Error('Required map, route, or safety data is missing.');
+      if(!resources.map || !resources.route || !resources.safety ||
+         !resources['footpath-network']){
+        throw new Error('Required map, route, safety, or footpath routing data is missing.');
+      }
 
       const safety = await resources.safety.json();
       const route = await resources.route.json();
+      footpathGraph = await resources['footpath-network'].json();
+      if(!window.DoloPawsFootpathRouter ||
+         !window.DoloPawsFootpathRouter.validateGraph(footpathGraph)){
+        throw new Error('The stored footpath routing graph is invalid.');
+      }
       routeCoordinates = route.features && route.features[0] &&
         route.features[0].geometry && route.features[0].geometry.coordinates || [];
       elements.trailName.textContent = manifest.name;

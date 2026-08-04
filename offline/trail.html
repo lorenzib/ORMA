@@ -32,8 +32,8 @@
       </div>
       <div id="mapFrame" class="map-frame">
         <img id="offlineMap" alt="Offline route map for Lago di Carezza">
-        <svg id="rejoinDirection" class="rejoin-direction" aria-hidden="true" hidden>
-          <line id="rejoinDirectionLine"></line>
+        <svg id="rejoinDirection" class="rejoin-direction" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" hidden>
+          <polyline id="rejoinDirectionLine"></polyline>
         </svg>
         <span id="rejoinTarget" class="rejoin-target" hidden aria-label="Closest point on trail"></span>
         <span id="positionDot" class="position-dot" hidden aria-label="Current GPS position"></span>
@@ -121,6 +121,7 @@
 
   <script src="../hike-gps-policy.js"></script>
   <script src="../route-rejoin.js"></script>
+  <script src="../footpath-router.js"></script>
   <script src="../hike-session.js"></script>
   <script src="../hike-completions.js"></script>
   <script src="../post-hike-outcomes.js"></script>

@@ -485,13 +485,14 @@ All P0 and P1 work
 
 ### HIKE-05 — Guide an off-route user back to a reachable trail point
 
-- **Status:** Orientation milestone implemented in code; safe-path routing data
-  and physical validation remain open (2026-08-04)
+- **Status:** Carezza mapped-footpath routing pilot implemented in code;
+  physical validation and rollout to other trails remain open (2026-08-04)
 - **Priority:** P0
 - **Size:** L
 - **Depends on:** HIKE-03, OFF-04
-- **Implementation:** nearest-segment target, distance, bearing, and offline map
-  indication complete; see `docs/architecture/HIKE-05-route-rejoin-guidance.md`.
+- **Implementation:** accuracy-aware detection plus an offline OSM footpath
+  graph and local shortest-path routing for Carezza are complete; see
+  `docs/architecture/HIKE-05-route-rejoin-guidance.md`.
 - **Outcome:** a user with a reliable off-route fix can identify how to regain
   the trail without mistaking a geometric straight line for a safe path.
 - **Acceptance:**
