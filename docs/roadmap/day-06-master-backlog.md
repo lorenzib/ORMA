@@ -464,7 +464,8 @@ All P0 and P1 work
 - **Acceptance:**
   - Accuracy bands and stale-fix thresholds are documented and tested.
   - Unreliable fixes do not trigger strong off-route claims.
-  - The interface shows accuracy, route distance, and time of last valid fix.
+  - The interface shows accuracy and time of last valid fix; exact route
+    distance appears only for confirmed or far-from-route guidance.
   - Permission denied, unavailable, and timeout states have recovery actions.
   - A user is never asked to deliberately leave a safe route during testing.
 
@@ -481,6 +482,33 @@ All P0 and P1 work
   - Repeated completion does not create duplicates.
   - The active session is cleared only after the completion record succeeds.
   - Offline completion remains available for later synchronization.
+
+### HIKE-05 — Guide an off-route user back to a reachable trail point
+
+- **Status:** Orientation milestone implemented in code; safe-path routing data
+  and physical validation remain open (2026-08-04)
+- **Priority:** P0
+- **Size:** L
+- **Depends on:** HIKE-03, OFF-04
+- **Implementation:** nearest-segment target, distance, bearing, and offline map
+  indication complete; see `docs/architecture/HIKE-05-route-rejoin-guidance.md`.
+- **Outcome:** a user with a reliable off-route fix can identify how to regain
+  the trail without mistaking a geometric straight line for a safe path.
+- **Acceptance:**
+  - The target is the closest safely reachable trail point, not merely the
+    closest stored vertex.
+  - Weak, stale, or ambiguous fixes never produce confident rejoin guidance.
+  - A warning requires sustained evidence and uses nearest-segment distance so
+    ordinary GPS drift and sparse route points do not create nuisance alerts.
+  - Distance, compass direction, current position, and target remain available
+    from the downloaded package.
+  - Guidance uses a verified routable path where one is packaged; otherwise it
+    is explicitly labelled as orientation only and says to use marked paths.
+  - The interface never routes across water, cliffs, barriers, or private and
+    inaccessible land.
+  - Guidance is suppressed when the user is too far from the packaged corridor.
+  - Automated geometry tests and controlled physical tests cover re-entry,
+    inaccurate GPS, restart, and airplane mode.
 
 ### OUT-01 — Collect the structured post-hike outcome
 
@@ -748,7 +776,8 @@ The shortest dependency-safe sequence is:
 4. **SCORE-01** and **TRUST-01:** define recommendation and evidence contracts.
 5. **DATA-02**, **SCORE-02**, and **SEC-01/02:** enforce the contracts.
 6. **OFF-02 through OFF-05:** build and verify packages.
-7. **HIKE-01 through HIKE-04:** make the hike durable and accuracy-aware.
+7. **HIKE-01 through HIKE-05:** make the hike durable, accuracy-aware, and able
+   to provide honest off-route recovery guidance.
 8. **UX-01 through UX-06:** complete the decision and readiness journey.
 9. **OUT-01**, **METRIC-01/02**, and **MOD-01 through MOD-03:** close the
    feedback and operating loop.

@@ -1,7 +1,7 @@
 (function(root){
   'use strict';
 
-  const VERSION = '1.0.0';
+  const VERSION = '1.1.0';
   const THRESHOLDS = Object.freeze({
     goodAccuracyM: 25,
     warningAccuracyM: 50,
@@ -11,6 +11,8 @@
     offRouteM: 60,
     onRouteM: 40,
     confirmedFixes: 3,
+    offRouteConfirmMs: 20000,
+    uncertaintyPaddingM: 20,
     farFromRouteM: 2000,
   });
 
@@ -47,6 +49,9 @@
     const previousStreak = Number.isInteger(input && input.previousOffRouteStreak)
       ? Math.max(0, input.previousOffRouteStreak)
       : 0;
+    const previousOffRouteSince = finiteNonNegative(input && input.previousOffRouteSince)
+      ? input.previousOffRouteSince
+      : null;
     const ageMs = Number.isFinite(timestamp) ? Math.max(0, now - timestamp) : NaN;
     const accuracy = accuracyBand(accuracyM);
     const freshness = freshnessBand(ageMs);
@@ -56,18 +61,24 @@
       accuracy !== 'unavailable' && accuracy !== 'unusable' &&
       freshness !== 'unavailable' && freshness !== 'stale';
     const lowerBoundM = Number.isFinite(routeDistanceM) && Number.isFinite(accuracyM)
-      ? Math.max(0, routeDistanceM - accuracyM)
+      ? Math.max(0, routeDistanceM - accuracyM - THRESHOLDS.uncertaintyPaddingM)
       : NaN;
     const upperBoundM = Number.isFinite(routeDistanceM) && Number.isFinite(accuracyM)
       ? routeDistanceM + accuracyM
       : NaN;
 
     let nextOffRouteStreak = 0;
+    let nextOffRouteSince = null;
     let offRouteState = 'none';
     if(reliableForWarning && Number.isFinite(lowerBoundM)){
       if(lowerBoundM > THRESHOLDS.offRouteM){
         nextOffRouteStreak = previousStreak + 1;
-        offRouteState = nextOffRouteStreak >= THRESHOLDS.confirmedFixes
+        nextOffRouteSince = previousOffRouteSince === null
+          ? now
+          : Math.min(previousOffRouteSince, now);
+        const sustainedForMs = now - nextOffRouteSince;
+        offRouteState = nextOffRouteStreak >= THRESHOLDS.confirmedFixes &&
+          sustainedForMs >= THRESHOLDS.offRouteConfirmMs
           ? 'confirmed'
           : 'possible';
       }else if(upperBoundM < THRESHOLDS.onRouteM){
@@ -90,6 +101,8 @@
       usableForProgress,
       offRouteState,
       nextOffRouteStreak,
+      nextOffRouteSince,
+      offRouteEvidenceMs: nextOffRouteSince === null ? 0 : now - nextOffRouteSince,
       farFromRoute: reliableForWarning &&
         Number.isFinite(lowerBoundM) &&
         lowerBoundM > THRESHOLDS.farFromRouteM,

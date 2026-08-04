@@ -20,7 +20,7 @@ off-route claims and do not advance durable progress.
 
 ## Versioned thresholds
 
-Policy version: `1.0.0`
+Policy version: `1.1.0`
 
 ### Accuracy
 
@@ -41,13 +41,19 @@ Policy version: `1.0.0`
 
 ## Accuracy-aware route distance
 
-The policy uses the conservative lower bound:
+The policy uses a conservative lower bound with an extra cushion for GPS
+receivers that report overly optimistic accuracy:
 
-`measured route distance − reported GPS accuracy`
+`nearest-segment distance − reported GPS accuracy − 20 metres`
 
 A fix only contributes to the off-route streak when that lower bound is more
-than 60 metres. Three consecutive eligible fixes are required before DoloPaws
-shows a strong off-route warning.
+than 60 metres. At least three consecutive eligible fixes **and** 20 seconds of
+continuous evidence are required before DoloPaws shows a strong off-route
+warning. Any weak, stale, or contradictory fix resets that evidence window.
+
+Distance is measured to the closest position along every route segment, not
+only to stored route vertices. This prevents sparse route geometry from making
+a hiker between two valid points appear off-route.
 
 A confidently on-route fix clears the streak when:
 
@@ -62,14 +68,17 @@ current good/fair fix whose conservative lower bound is over 2 kilometres.
 - Reliable fixes may snap the marker to the route.
 - Unreliable fixes show the raw position instead of implying route certainty.
 - Progress and the elevation cursor use only usable fixes.
-- The panel always reports accuracy, distance from route, and last valid fix.
+- The routine panel reports “On trail”, “Position near trail”, or “Checking
+  route position”, plus accuracy and last-valid-fix time. Exact route distance
+  is reserved for a confirmed warning or the far-from-route state so harmless
+  GPS drift does not read like an alarm.
 - Weak and stale states explicitly say off-route warnings are paused.
 - Permission denied, unavailable, and timeout states keep their existing
   recovery instructions and pause the durable hike if a valid fix existed.
 
 ## Offline package
 
-Lago di Carezza beta.9 includes `/hike-gps-policy.js` as a mandatory,
+Lago di Carezza beta.12 includes `/hike-gps-policy.js` as a mandatory,
 checksum-protected resource. The downloaded map applies the same thresholds,
 shows the same three GPS facts, and only displays its alert after three
 eligible fixes.
@@ -81,7 +90,9 @@ No network access is used for this assessment.
 `hike-gps-policy.test.js` covers:
 
 - all accuracy and freshness bands;
-- three-fix confirmation;
+- three-fix and 20-second confirmation;
+- the extra uncertainty cushion;
+- suppression of rapid false-positive fixes;
 - weak accuracy;
 - stale fixes;
 - uncertainty overlapping the route;
@@ -91,14 +102,14 @@ No network access is used for this assessment.
 - script ordering and online integration.
 
 Offline package tests require the policy resource, visible route-warning
-surface, and shared assessment function. Package tests verify every beta.9
+surface, and shared assessment function. Package tests verify every beta.12
 byte count and SHA-256 hash.
 
 ## Safe physical validation
 
 Do not leave a marked route to test an alert.
 
-On the iPhone 13 Pro, update Carezza to beta.9 and confirm:
+On the iPhone 13 Pro, update Carezza to beta.12 and confirm:
 
 1. A normal GPS fix shows accuracy, route distance, and last-valid-fix time.
 2. The same facts remain visible in airplane mode on the downloaded map.

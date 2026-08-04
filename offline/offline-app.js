@@ -7,6 +7,7 @@
   let activeSession = null;
   let routeCoordinates = [];
   let offRouteStreak = 0;
+  let offRouteSince = null;
   let lastValidFixAt = null;
   let completedRecord = null;
 
@@ -23,6 +24,9 @@
     locationButton: document.getElementById('locationButton'),
     locationState: document.getElementById('locationState'),
     positionDot: document.getElementById('positionDot'),
+    rejoinDirection: document.getElementById('rejoinDirection'),
+    rejoinDirectionLine: document.getElementById('rejoinDirectionLine'),
+    rejoinTarget: document.getElementById('rejoinTarget'),
     routeWarning: document.getElementById('offlineRouteWarning'),
     hikeRecovery: document.getElementById('hikeRecovery'),
     hikeRecoveryTitle: document.getElementById('hikeRecoveryTitle'),
@@ -122,27 +126,54 @@
 
   function routeProgress(lat, lng){
     if(routeCoordinates.length < 2) return null;
-    let bestIndex = 0;
-    let nearestM = Infinity;
+    const route = routeCoordinates.map(([routeLng, routeLat]) => ({
+      lat: routeLat,
+      lng: routeLng,
+    }));
+    const rejoin = window.DoloPawsRouteRejoin &&
+      window.DoloPawsRouteRejoin.guidance({ lat, lng }, route);
+    if(!rejoin) return null;
     const cumulative = [0];
-    for(let index = 0; index < routeCoordinates.length; index++){
+    for(let index = 1; index < routeCoordinates.length; index++){
       const [routeLng, routeLat] = routeCoordinates[index];
-      const distance = metersBetween(lat, lng, routeLat, routeLng);
-      if(distance < nearestM){
-        nearestM = distance;
-        bestIndex = index;
-      }
-      if(index > 0){
-        const [previousLng, previousLat] = routeCoordinates[index - 1];
-        cumulative.push(cumulative[index - 1] +
-          metersBetween(previousLat, previousLng, routeLat, routeLng));
-      }
+      const [previousLng, previousLat] = routeCoordinates[index - 1];
+      cumulative.push(cumulative[index - 1] +
+        metersBetween(previousLat, previousLng, routeLat, routeLng));
     }
+    const segmentStart = routeCoordinates[rejoin.segmentIndex];
+    const segmentEnd = routeCoordinates[rejoin.segmentIndex + 1];
+    const segmentM = metersBetween(
+      segmentStart[1], segmentStart[0], segmentEnd[1], segmentEnd[0]
+    );
     return {
-      pathIndex: bestIndex,
-      km: cumulative[bestIndex] / 1000,
-      nearestM,
+      pathIndex: rejoin.segmentFraction >= 0.5
+        ? rejoin.segmentIndex + 1
+        : rejoin.segmentIndex,
+      km: (cumulative[rejoin.segmentIndex] + segmentM * rejoin.segmentFraction) / 1000,
+      nearestM: rejoin.distanceM,
+      rejoin,
     };
+  }
+
+  function hideRejoinGuidance(){
+    elements.rejoinDirection.hidden = true;
+    elements.rejoinTarget.hidden = true;
+  }
+
+  function showRejoinGuidance(position, progress, bounds){
+    const target = positionPercent(
+      progress.rejoin.target.lat,
+      progress.rejoin.target.lng,
+      bounds
+    );
+    elements.rejoinTarget.style.left = `${target.x}%`;
+    elements.rejoinTarget.style.top = `${target.y}%`;
+    elements.rejoinTarget.hidden = false;
+    elements.rejoinDirectionLine.setAttribute('x1', `${position.x}%`);
+    elements.rejoinDirectionLine.setAttribute('y1', `${position.y}%`);
+    elements.rejoinDirectionLine.setAttribute('x2', `${target.x}%`);
+    elements.rejoinDirectionLine.setAttribute('y2', `${target.y}%`);
+    elements.rejoinDirection.hidden = false;
   }
 
   function keepSessionResult(result){
@@ -159,7 +190,9 @@
     elements.locationButton.textContent = 'Show my position';
     elements.locationButton.disabled = false;
     elements.routeWarning.hidden = true;
+    hideRejoinGuidance();
     offRouteStreak = 0;
+    offRouteSince = null;
     if(message) elements.locationState.textContent = message;
   }
 
@@ -196,9 +229,11 @@
           accuracyM: position.coords.accuracy,
           routeDistanceM: progress.nearestM,
           previousOffRouteStreak: offRouteStreak,
+          previousOffRouteSince: offRouteSince,
         })
         : null;
       offRouteStreak = assessment ? assessment.nextOffRouteStreak : 0;
+      offRouteSince = assessment ? assessment.nextOffRouteSince : null;
       if(assessment && assessment.usableForProgress) lastValidFixAt = fixTimestamp;
       if(activeSession && activeSession.state === 'active' &&
          assessment && assessment.usableForProgress && progress.nearestM <= 2000){
@@ -212,13 +247,22 @@
             recordedAt: fixTimestamp,
           }));
       }
-      if(assessment && assessment.offRouteState === 'confirmed'){
+      if(assessment && assessment.farFromRoute){
         elements.routeWarning.textContent =
-          `You appear to be off route · about ${Math.round(progress.nearestM)} m away. ` +
-          'Check the marked path and your surroundings.';
+          `You are about ${(progress.nearestM / 1000).toFixed(1)} km from this route. ` +
+          'Rejoin guidance is unavailable this far away; use an official navigation source.';
         elements.routeWarning.hidden = false;
+        hideRejoinGuidance();
+      }else if(assessment && assessment.offRouteState === 'confirmed'){
+        elements.routeWarning.textContent =
+          `Trail is about ${Math.round(progress.rejoin.distanceM)} m ${progress.rejoin.direction}. ` +
+          'The orange point is the closest trail point. Direction only—use marked paths; ' +
+          'do not follow the straight line.';
+        elements.routeWarning.hidden = false;
+        showRejoinGuidance(point, progress, bounds);
       }else{
         elements.routeWarning.hidden = true;
+        hideRejoinGuidance();
       }
       const reliability = !assessment
         ? 'Route distance unavailable.'
@@ -227,12 +271,23 @@
           : !assessment.reliableForWarning
             ? 'GPS is weak; off-route warnings are paused.'
             : '';
+      const lastFixText = lastValidFixAt
+        ? new Date(lastValidFixAt).toLocaleTimeString()
+        : 'none yet';
+      const positionSummary = assessment
+        ? assessment.farFromRoute
+          ? `${(progress.nearestM / 1000).toFixed(1)} km from this route`
+          : assessment.offRouteState === 'confirmed'
+            ? `About ${Math.round(progress.nearestM)} m from the trail`
+            : assessment.offRouteState === 'possible'
+              ? 'Checking route position'
+              : assessment.upperBoundM < window.DoloPawsGpsPolicy.THRESHOLDS.onRouteM
+                ? 'On trail'
+                : 'Position near trail'
+        : '';
       elements.locationState.textContent = assessment
-        ? `GPS ±${Math.round(position.coords.accuracy)} m · ${
-          Math.round(progress.nearestM)
-        } m from route · last valid fix ${
-          lastValidFixAt ? new Date(lastValidFixAt).toLocaleTimeString() : 'none yet'
-        }${reliability ? ` · ${reliability}` : ''}`
+        ? `${positionSummary} · GPS ±${Math.round(position.coords.accuracy)} m · ` +
+          `last valid fix ${lastFixText}${reliability ? ` · ${reliability}` : ''}`
         : onMap
           ? 'GPS position found; route distance unavailable.'
           : 'Your GPS position is outside this downloaded map.';
@@ -240,6 +295,7 @@
       elements.locationButton.disabled = false;
       elements.locationButton.textContent = 'Try GPS again';
       watchId = null;
+      hideRejoinGuidance();
       if(activeSession && activeSession.state === 'active'){
         keepSessionResult(window.DoloPawsHikeSession.setState(
           activeSession,

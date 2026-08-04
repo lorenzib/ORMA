@@ -1998,15 +1998,14 @@ body.map-fs-open{overflow:hidden;}
    the left, 430px ranked list on the right.
 ============================================================= */
 
-/* While the logged-in shell is active the page behaves like an app:
-   the shared topnav, closing quote and footer stay out of the way and
-   the document itself doesn't scroll (the list pane scrolls instead). */
+/* While the logged-in shell is active, the shared topnav and closing
+   quote stay out of the way (the shell has its own dark header). The
+   site footer stays IN: the map shell fills the first screen and the
+   footer sits below it — scroll past the shell to reach it. The phone
+   app layout still hides it (homepage-mobile.css) in favour of the
+   bottom tab bar. */
 body[data-homepage-view="returning"] .topnav,
-body[data-homepage-view="returning"] .hp-quote,
-body[data-homepage-view="returning"] .site-footer{display:none;}
-@media (min-width:701px){
-  body[data-homepage-view="returning"]{overflow:hidden;}
-}
+body[data-homepage-view="returning"] .hp-quote{display:none;}
 
 #returningCustomerHomepage[hidden]{display:none !important;}
 #returningCustomerHomepage{

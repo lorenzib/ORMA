@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lago-carezza",
   "name": "Lago di Carezza Loop",
-  "version": "2026.07.30-beta.10",
-  "generatedAt": "2026-07-30T08:00:00Z",
+  "version": "2026.08.04-beta.12",
+  "generatedAt": "2026-08-04T13:18:56Z",
   "scoringVersion": "1.1.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 78670,
+  "packageBytes": 85704,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "north": 46.4113,
@@ -95,32 +95,40 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 6310,
-      "sha256": "ec2580667ce668c1293b644ecf4c3b2f29769f57f550c5efa8d49053d2345491"
+      "bytes": 6610,
+      "sha256": "0eb62306e5f6ab3c003330645929848d11a922ea9ed29add0b4bb114e683ff91"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 4767,
-      "sha256": "a83d6a458250b662c1962a1e594c3ff38b1c8410dceadf3188b542d9e815343d"
+      "bytes": 5197,
+      "sha256": "a09a997f7a958a3207359da6720fe642815116e25b1ff91aea257c11ab2b81ff"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 22390,
-      "sha256": "5e4d53601da202dfdbf572f1af423117eada03ddb0d55351bf195c493cd26920"
+      "bytes": 25097,
+      "sha256": "6605ed641cb172df7b2d66d8525f0f583c6d2fe6ecddb352259f7af8be745b0b"
     },
     {
       "role": "gps-policy",
       "required": true,
       "label": "GPS safety policy",
       "url": "/hike-gps-policy.js",
-      "bytes": 3371,
-      "sha256": "b4b197bdd45ea1e8cfc9cc4986f5eadebf0cea269d8b58a53a5d38071775d347"
+      "bytes": 3987,
+      "sha256": "752e25b27a0843cfb7c3dd38958a220ea86d045564bd6d0e956e788d62f9d23a"
+    },
+    {
+      "role": "route-rejoin",
+      "required": true,
+      "label": "Offline route rejoin guidance",
+      "url": "/route-rejoin.js",
+      "bytes": 2981,
+      "sha256": "da9f712e32f9abc39071092a88c5876d297a831b75a7e0d6392c0dbde7e34c96"
     },
     {
       "role": "session",
