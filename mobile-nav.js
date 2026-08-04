@@ -305,14 +305,60 @@
         linksEl.appendChild(buildBell());
         linksEl.appendChild(buildAccountPill(dogName));
       } else {
+        // Login must open IN PLACE everywhere (desktop and mobile): pages
+        // without auth-ui — the static trail/guide pages, whose markup
+        // ships a plain homepage-login anchor — load the auth stack on
+        // demand instead of navigating away.
+        let authLoading = null;
+        function lazyOpenLogin(control){
+          if(window.DoloPawsAuthUI){ window.DoloPawsAuthUI.openLogin(); return; }
+          if(authLoading) return;
+          if('disabled' in control) control.disabled = true;
+          function loadScript(src){
+            return new Promise((resolve, reject) => {
+              const s = document.createElement('script');
+              s.src = prefix + src;
+              s.onload = resolve;
+              s.onerror = reject;
+              document.body.appendChild(s);
+            });
+          }
+          // i18n first — auth-ui's modal copy calls window.t().
+          const script = loadScript('i18n.js?v=20260729-1')
+            .then(() => loadScript('auth-ui.js?v=20260730-4'));
+          // import() inside a classic script resolves against THIS script's
+          // URL (the site root), not the page — resolve explicitly against
+          // the document so ../ prefixes on trail pages work.
+          const firebaseUrl = new URL((prefix || './') + 'firebase-init.js', document.baseURI).href;
+          authLoading = Promise.all([import(firebaseUrl), script])
+            .then(() => {
+              if('disabled' in control) control.disabled = false;
+              if(window.DoloPawsAuthUI) window.DoloPawsAuthUI.openLogin();
+            })
+            .catch((err) => {
+              // Offline or blocked: fall back to the homepage flow.
+              console.warn('DoloPaws lazy login failed:', err);
+              window.location.href = prefix + 'index.html?view=login&next=' + encodeURIComponent(pagePath);
+            });
+        }
         if(loginEl){
           linksEl.appendChild(loginEl);
+          // Reused static anchors would still bounce — intercept them.
+          if(loginEl.tagName === 'A' && !loginEl.dataset.lazyLogin){
+            loginEl.dataset.lazyLogin = '1';
+            loginEl.addEventListener('click', (e) => {
+              e.preventDefault();
+              lazyOpenLogin(loginEl);
+            });
+          }
         } else if(pageFile.toLowerCase() !== 'account.html'){
-          const login = document.createElement('a');
+          const login = document.createElement('button');
+          login.type = 'button';
+          login.id = 'accountBtn';
           login.className = 'account-btn';
-          login.href = prefix + 'index.html?view=login&next=' + encodeURIComponent(pagePath);
           login.textContent = 'Log in';
           login.setAttribute('data-i18n', 'nav.login');
+          login.addEventListener('click', () => lazyOpenLogin(login));
           linksEl.appendChild(login);
         }
       }

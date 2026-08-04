@@ -79,9 +79,14 @@
     .browse-design-head h1{font-size:28px;}
     .browse-design-wrap{padding:0 18px 44px;}
     .browse-profile-banner{align-items:flex-start;flex-direction:column;}
-    .browse-tools{flex-wrap:nowrap;overflow-x:auto;padding-bottom:3px;}
-    .browse-search-shell{flex:0 0 210px;}
-    .browse-filter-controls{display:flex;flex-wrap:nowrap;}
+    /* Search full-width, and the Distance / Trail rating / Water controls
+       visible right under it — never hidden off-screen. */
+    .browse-tools{flex-wrap:wrap;overflow-x:visible;padding-bottom:0;gap:9px;}
+    .browse-search-shell{flex:1 1 100%;max-width:none;}
+    .browse-filter-divider{display:none;}
+    .browse-filter-controls{flex:1 1 100%;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:9px;padding-bottom:3px;scrollbar-width:none;}
+    .browse-filter-controls::-webkit-scrollbar{display:none;}
+    .browse-filter-controls select,.browse-water{flex:none;}
     .simple-card{gap:12px;padding:12px;flex-wrap:wrap;}
     .simple-card .photo{width:84px;height:76px;}
     .simple-card__match{width:100%;min-width:0;flex-direction:row;justify-content:flex-start;border-left:0;border-top:1px dashed var(--paper-line);padding:9px 0 0;}
@@ -383,9 +388,10 @@
     <div>
       <div class="hp-footer-h">Explore</div>
       <div class="hp-footer-links">
-        <a href="browse-trails.html">Browse all trails</a>
+        <a href="browse-trails.html">Browse all Trails</a>
         <a href="collections.html">Collections</a>
         <a href="safety-guide.html">Safety guide</a>
+        <a href="journal.html">My walk journal</a>
       </div>
     </div>
     <div>
@@ -419,7 +425,7 @@
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260730-4"></script>
+<script src="mobile-nav.js?v=20260730-8"></script>
 <script src="i18n.js"></script>
 <script src="trust/evidence-v1.js?v=20260728-1"></script>
 <script src="trail-trust.js?v=20260728-4"></script>
