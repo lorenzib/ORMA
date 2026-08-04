@@ -83,4 +83,23 @@ describe('HIKE-07 mapped footpath rejoin router', () => {
     expect(result.distanceM).toBeGreaterThan(200);
     expect(result.distanceM).toBeLessThan(300);
   });
+
+  test('Alpe di Siusi package routes a known side footpath back to the stored trail', () => {
+    const fs = require('fs');
+    const graphData = JSON.parse(fs.readFileSync(
+      require('path').join(__dirname, 'offline/packages/alpe-siusi/footpath-network.json'),
+      'utf8'
+    ));
+    const result = router.routeToTrail(
+      { lat:46.5423625, lng:11.6170037 },
+      graphData,
+      { maxSnapDistanceM:10, maxRouteDistanceM:1500 }
+    );
+    expect(router.validateGraph(graphData)).toBe(true);
+    expect(result).not.toBeNull();
+    expect(result.routingMode).toBe('mapped-footpath');
+    expect(result.path.length).toBeGreaterThan(20);
+    expect(result.distanceM).toBeGreaterThan(300);
+    expect(result.distanceM).toBeLessThan(400);
+  });
 });

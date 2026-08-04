@@ -89,8 +89,9 @@ function initHikeMode(map, trail){
   let completionRetry = null;
   const rejoinRoute = trail.path.map(point => ({ lat: point[0], lng: point[1] }));
   let footpathGraph = null;
-  if(trail.id === 'lago-carezza' && window.DoloPawsFootpathRouter){
-    fetch('offline/packages/lago-carezza/footpath-network.json')
+  const routedTrailIds = new Set(['lago-carezza', 'alpe-siusi']);
+  if(routedTrailIds.has(trail.id) && window.DoloPawsFootpathRouter){
+    fetch(`offline/packages/${encodeURIComponent(trail.id)}/footpath-network.json`)
       .then(response => response.ok ? response.json() : null)
       .then(graph => {
         if(graph && window.DoloPawsFootpathRouter.validateGraph(graph)) footpathGraph = graph;

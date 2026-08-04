@@ -8,6 +8,12 @@
       trailUrl: '/trail.html?id=lago-carezza',
       offlineUrl: '/offline/trail.html?id=lago-carezza',
     },
+    'alpe-siusi': {
+      name: 'Alpe di Siusi Meadow Loop',
+      manifestUrl: '/offline/packages/alpe-siusi/manifest.json',
+      trailUrl: '/trail.html?id=alpe-siusi',
+      offlineUrl: '/offline/trail.html?id=alpe-siusi',
+    },
   };
   const CACHE_PREFIX = 'dolopaws-trail-';
   const METADATA_PREFIX = 'dolopaws-offline:';

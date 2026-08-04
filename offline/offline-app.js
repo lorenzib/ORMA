@@ -1,8 +1,11 @@
 (function(){
   'use strict';
 
-  const SUPPORTED_TRAIL = 'lago-carezza';
-  const MANIFEST_URL = `packages/${SUPPORTED_TRAIL}/manifest.json`;
+  const PACKAGE_MANIFESTS = Object.freeze({
+    'lago-carezza': 'packages/lago-carezza/manifest.json',
+    'alpe-siusi': 'packages/alpe-siusi/manifest.json',
+  });
+  let manifestUrl = null;
   let watchId = null;
   let activeSession = null;
   let routeCoordinates = [];
@@ -63,7 +66,7 @@
   }
 
   async function verifiedResource(resource){
-    const response = await fetch(new URL(resource.url, new URL(MANIFEST_URL, window.location.href)));
+    const response = await fetch(new URL(resource.url, new URL(manifestUrl, window.location.href)));
     if(!response.ok) throw new Error(`${resource.label || resource.url} is missing.`);
     const buffer = await response.arrayBuffer();
     if(buffer.byteLength !== resource.bytes) throw new Error(`${resource.label || resource.url} has changed size.`);
@@ -546,13 +549,14 @@
     window.addEventListener('offline', setNetworkState);
 
     const trailId = new URLSearchParams(window.location.search).get('id');
-    if(trailId !== SUPPORTED_TRAIL){
+    manifestUrl = PACKAGE_MANIFESTS[trailId];
+    if(!manifestUrl){
       showFailure('No downloaded beta package is configured for this trail.');
       return;
     }
 
     try{
-      const manifestResponse = await fetch(MANIFEST_URL);
+      const manifestResponse = await fetch(manifestUrl);
       if(!manifestResponse.ok) throw new Error('The package manifest is unavailable.');
       const manifest = await manifestResponse.json();
       if(manifest.trailId !== trailId || manifest.schemaVersion !== 1) throw new Error('The package manifest is invalid.');
@@ -581,6 +585,9 @@
       routeCoordinates = route.features && route.features[0] &&
         route.features[0].geometry && route.features[0].geometry.coordinates || [];
       elements.trailName.textContent = manifest.name;
+      elements.offlineMap.alt = `Offline route map for ${manifest.name}`;
+      const failureLink = document.getElementById('failureTrailLink');
+      if(failureLink) failureLink.href = `../trail.html?id=${encodeURIComponent(trailId)}`;
       const requiredCount = manifest.resources.filter(resource => resource.required !== false).length;
       elements.packageState.textContent = `Checksum-verified ${requiredCount} required stored resources · ${formatBytes(manifest.packageBytes)}`;
       elements.offlineMap.src = URL.createObjectURL(await resources.map.blob());

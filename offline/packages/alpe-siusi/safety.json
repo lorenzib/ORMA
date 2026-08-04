@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "trailId": "alpe-siusi",
+  "generatedAt": "2026-08-04T00:00:00Z",
+  "verificationStatus": "field-review-required",
+  "facts": {
+    "routeType": "Loop",
+    "distanceKm": 7.5,
+    "ascentM": 150,
+    "highestPointM": 1950,
+    "expectedDuration": "2–2.5 hours",
+    "difficulty": "Easy",
+    "shadePercent": 20
+  },
+  "trailhead": {
+    "lat": 46.5402,
+    "lng": 11.6181,
+    "label": "Compatsch main gondola station and trailhead"
+  },
+  "waypoints": [
+    {
+      "type": "water",
+      "lat": 46.5402,
+      "lng": 11.6181,
+      "label": "Compatsch trailhead fountain",
+      "reliability": "Seasonal availability not field-verified"
+    }
+  ],
+  "cautions": [
+    "This beta package still requires a dated field review.",
+    "The high meadow is exposed to sun and fast-changing mountain weather.",
+    "Keep dogs controlled around grazing livestock and follow posted local rules.",
+    "Carry water even though a trailhead fountain is listed."
+  ],
+  "emergency": {
+    "number": "112",
+    "note": "Call the European emergency number when urgent help is required. Connectivity is not guaranteed."
+  },
+  "sources": [
+    {
+      "name": "DoloPaws repository route geometry",
+      "reviewedAt": null
+    },
+    {
+      "name": "OpenStreetMap API 0.6 bounding-box extract",
+      "url": "https://www.openstreetmap.org/copyright",
+      "downloadedAt": "2026-08-04",
+      "licence": "ODbL"
+    }
+  ]
+}

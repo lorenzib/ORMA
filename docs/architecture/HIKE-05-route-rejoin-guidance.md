@@ -1,14 +1,14 @@
 # HIKE-05 — Route rejoin guidance
 
-**Status:** Carezza mapped-footpath pilot implemented in code; physical-device
-validation and rollout to other trail packages remain open.
+**Status:** Carezza and Alpe di Siusi mapped-footpath pilots implemented in
+code; physical-device validation and broader rollout remain open.
 
 ## Product behaviour
 
 After at least three reliable fixes sustained for 20 seconds confirm that a
 hiker is off route, DoloPaws tries to match the current fix to the packaged
 walking network. If that network has a connected route back to the trail, the
-online and offline Carezza maps show:
+online and offline pilot maps show:
 
 - a solid blue route following mapped footpaths;
 - the route distance to the reachable trail node;
@@ -23,10 +23,11 @@ is more than two kilometres from the packaged corridor.
 
 ## Packaged graph
 
-`scripts/build-offline-footpath-network.js` deterministically creates the
-Carezza graph from the retained OpenStreetMap bounding-box extract. The graph
-contains 224 nodes, 223 edges, and 95 nodes lying within 12 metres of the
-stored DoloPaws trail geometry. It adds about 11 KB to package beta.13.
+`scripts/build-offline-footpath-network.js` deterministically creates each
+graph from its retained OpenStreetMap bounding-box extract. Carezza contains
+224 nodes, 223 edges, and 95 trail nodes. Alpe di Siusi contains 1,367 nodes,
+1,372 edges, and 466 trail nodes. Both use the same 12-metre trail-matching
+rule and fail-closed router.
 
 The build excludes ways or barrier nodes tagged with private/no pedestrian
 access, `foot=no`, `dog=no`, and SAC scales above ordinary mountain hiking.
@@ -51,18 +52,18 @@ downloaded application. It:
 5. returns `null` rather than inventing a connection.
 
 No GPS position or route history is persisted by this calculation. The online
-Carezza page fetches the same graph, while the offline package checksum-verifies
-the router and graph before making them available.
+pilot page fetches its own graph, while each offline package checksum-verifies
+the shared router and trail-specific graph before making them available.
 
 ## Verification
 
 Automated tests cover shortest-path selection, path snapping, disconnected and
-malformed graphs, and a real Carezza side-path fixture. Package tests verify
+malformed graphs, and real Carezza and Alpe di Siusi side-path fixtures. Package tests verify
 the new required resources, sizes, hashes, load order, and removal of the
 straight-line instruction.
 
-Before marking HIKE-05 fully complete, run controlled Carezza tests on the
-iPhone and an Android device in normal and airplane modes. Testing must confirm
+Before marking HIKE-05 fully complete, run controlled Carezza and Alpe di
+Siusi tests on the iPhone and an Android device in normal and airplane modes. Testing must confirm
 that the blue path aligns with visible paths and signs, reroutes as fixes move,
 disappears after rejoining, and fails closed near closures, barriers, water,
 and unmapped ground. No tester should deliberately leave a safe marked path.

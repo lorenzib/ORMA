@@ -5,11 +5,13 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.resolve(__dirname, '..');
-const sourcePath = path.join(root, 'data', 'offline-map-sources', 'lago-carezza.osm');
-const routePath = path.join(root, 'offline', 'packages', 'lago-carezza', 'route.geojson');
-const outputPath = path.join(root, 'offline', 'packages', 'lago-carezza', 'map.svg');
+const trailId = process.argv[2] || 'lago-carezza';
+if(!/^[a-z0-9-]+$/.test(trailId)) throw new Error('Trail ID must contain only lowercase letters, numbers, and hyphens.');
+const sourcePath = path.join(root, 'data', 'offline-map-sources', `${trailId}.osm`);
+const routePath = path.join(root, 'offline', 'packages', trailId, 'route.geojson');
+const outputPath = path.join(root, 'offline', 'packages', trailId, 'map.svg');
 const WIDTH = 1200;
-const HEIGHT = 1140;
+const HEIGHT = trailId === 'lago-carezza' ? 1140 : 720;
 
 function decodeXml(value){
   return String(value || '')
@@ -180,18 +182,24 @@ function render(){
   }
 
   const routeCoordinates = route.features[0].geometry.coordinates;
+  const trailName = route.features[0].properties.name;
   const routePoints = routeCoordinates.map(([lng, lat]) => project(bounds, lat, lng));
   const routeSvgPath = pathData(routePoints, false);
   const [startX, startY] = routePoints[0];
-  const [lakeLabelX, lakeLabelY] = project(bounds, 46.40925, 11.57515);
+  const carezzaLabel = trailId === 'lago-carezza'
+    ? (() => {
+      const [x, y] = project(bounds, 46.40925, 11.57515);
+      return `<g class="map-text" transform="translate(${x.toFixed(1)} ${y.toFixed(1)})" text-anchor="middle"><text class="feature-label" y="0">Lago di Carezza</text><text class="small" y="26">Karersee</text></g>`;
+    })()
+    : '';
   const midLatRadians = (bounds.north + bounds.south) / 2 * Math.PI / 180;
   const mapWidthMeters = (bounds.east - bounds.west) * 111320 * Math.cos(midLatRadians);
   const scaleWidth = 100 / mapWidthMeters * WIDTH;
 
   const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WIDTH} ${HEIGHT}" role="img" aria-labelledby="title desc">
-  <title id="title">Lago di Carezza offline trail map</title>
-  <desc id="desc">A locally rendered OpenStreetMap basemap with the Lago di Carezza route, lake, surrounding paths, roads, parking and useful points.</desc>
+  <title id="title">${esc(trailName)} offline trail map</title>
+  <desc id="desc">A locally rendered OpenStreetMap basemap with the ${esc(trailName)} route, surrounding paths, roads and useful points.</desc>
   <defs>
     <filter id="route-shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1d2d25" flood-opacity=".35"/></filter>
   </defs>
@@ -212,13 +220,13 @@ function render(){
   <g id="paths">${paths.join('')}</g>
   <g id="barriers">${barriers.join('')}</g>
   <g id="labels">${labels.join('')}</g>
-  <g class="map-text" transform="translate(${lakeLabelX.toFixed(1)} ${lakeLabelY.toFixed(1)})" text-anchor="middle"><text class="feature-label" y="0">Lago di Carezza</text><text class="small" y="26">Karersee</text></g>
+  ${carezzaLabel}
   <path class="route-casing" d="${routeSvgPath}"/><path class="route" d="${routeSvgPath}"/>
   <g transform="translate(${startX.toFixed(1)} ${startY.toFixed(1)})"><circle r="22" fill="#294239" stroke="#fff" stroke-width="6"/><path d="M0-11 7 7 0 3-7 7Z" fill="#fff"/></g>
   <g class="map-text" transform="translate(1125 82)" text-anchor="middle"><path d="M0-45 16 8 0-2-16 8Z" fill="#294239"/><text class="north" y="34">N</text></g>
-  <g class="map-text" transform="translate(55 1060)"><path d="M0 0H${scaleWidth.toFixed(1)}M0-8V8M${scaleWidth.toFixed(1)}-8V8" fill="none" stroke="#294239" stroke-width="5"/><text class="scale" x="${(scaleWidth / 2).toFixed(1)}" y="27" text-anchor="middle">100 m</text></g>
-  <rect x="670" y="1084" width="510" height="42" rx="10" fill="#294239" opacity=".94"/>
-  <text class="map-text attribution" x="1160" y="1111" text-anchor="end">© OpenStreetMap contributors · ODbL</text>
+  <g class="map-text" transform="translate(55 ${HEIGHT - 80})"><path d="M0 0H${scaleWidth.toFixed(1)}M0-8V8M${scaleWidth.toFixed(1)}-8V8" fill="none" stroke="#294239" stroke-width="5"/><text class="scale" x="${(scaleWidth / 2).toFixed(1)}" y="27" text-anchor="middle">100 m</text></g>
+  <rect x="670" y="${HEIGHT - 56}" width="510" height="42" rx="10" fill="#294239" opacity=".94"/>
+  <text class="map-text attribution" x="1160" y="${HEIGHT - 29}" text-anchor="end">© OpenStreetMap contributors · ODbL</text>
 </svg>
 `;
   fs.writeFileSync(outputPath, svg);

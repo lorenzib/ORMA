@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "trailId": "lago-carezza",
-  "name": "Lago di Carezza Loop",
-  "version": "2026.08.04-beta.14",
-  "generatedAt": "2026-08-04T16:55:27.216Z",
+  "trailId": "alpe-siusi",
+  "name": "Alpe di Siusi Meadow Loop",
+  "version": "2026.08.04-beta.1",
+  "generatedAt": "2026-08-04T16:55:27.265Z",
   "scoringVersion": "1.1.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 103275,
+  "packageBytes": 265092,
   "packageBudgetBytes": 5242880,
   "bounds": {
-    "south": 46.407,
-    "west": 11.5718,
-    "north": 46.4113,
-    "east": 11.5784
+    "south": 46.5305,
+    "west": 11.6165,
+    "north": 46.5429,
+    "east": 11.6466
   },
   "image": {
     "width": 1200,
-    "height": 1140
+    "height": 720
   },
   "mapCorridor": {
     "strategy": "fixed-bounds-svg-v1",
@@ -24,13 +24,13 @@
       1
     ],
     "width": 1200,
-    "height": 1140
+    "height": 720
   },
   "routingGraph": {
     "strategy": "osm-walking-graph-v1",
-    "nodeCount": 224,
-    "edgeCount": 223,
-    "trailNodeCount": 95,
+    "nodeCount": 1367,
+    "edgeCount": 1372,
+    "trailNodeCount": 466,
     "maxRejoinRouteM": 1500
   },
   "evidence": {
@@ -174,34 +174,34 @@
     {
       "role": "map",
       "required": true,
-      "label": "Lago di Carezza Loop OSM offline map",
+      "label": "Alpe di Siusi Meadow Loop OSM offline map",
       "url": "map.svg",
-      "bytes": 17775,
-      "sha256": "c45119df17d0e21c5a07fd3877f9b00059bc813d39800ba5ca05fb2dcf3c2c8e"
+      "bytes": 120349,
+      "sha256": "a9ecf95590953b94902d41428ef0f592aaff7ffa26961fb8461570df70f7f7d3"
     },
     {
       "role": "route",
       "required": true,
-      "label": "Lago di Carezza Loop route",
+      "label": "Alpe di Siusi Meadow Loop route",
       "url": "route.geojson",
-      "bytes": 1529,
-      "sha256": "fae7714384f3e3f7128f461e25a5f04a605da3c5a6f5d9b8771eea7bf37fbc5d"
+      "bytes": 5288,
+      "sha256": "0730f7dafdfa8aa1d00c5a842dd590485fbecf1d7c59b934d898aa23c1423aea"
     },
     {
       "role": "footpath-network",
       "required": true,
-      "label": "Lago di Carezza Loop routable footpath corridor",
+      "label": "Alpe di Siusi Meadow Loop routable footpath corridor",
       "url": "footpath-network.json",
-      "bytes": 11011,
-      "sha256": "74a9214bf3c05e6b53c5c7e9228c030934b4fb86d758457e96498c58140b9d1e"
+      "bytes": 66447,
+      "sha256": "089c75f69c0c36bfd96e794716d559e30ad48d8a2bd8aadfd2015aefbc1f2582"
     },
     {
       "role": "safety",
       "required": true,
-      "label": "Lago di Carezza Loop safety information",
+      "label": "Alpe di Siusi Meadow Loop safety information",
       "url": "safety.json",
-      "bytes": 1389,
-      "sha256": "70c7eeaf8f954d5c3ac623c1e1108f3cce74287c97593c3f5f06fd889036319b"
+      "bytes": 1437,
+      "sha256": "37944ed5f23d960cd9a09f06599acccdfec40c1cca3e46ab87203cf3380a162e"
     }
   ]
 }

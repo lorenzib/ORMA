@@ -5,9 +5,11 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.resolve(__dirname, '..');
-const sourcePath = path.join(root, 'data', 'offline-map-sources', 'lago-carezza.osm');
-const routePath = path.join(root, 'offline', 'packages', 'lago-carezza', 'route.geojson');
-const outputPath = path.join(root, 'offline', 'packages', 'lago-carezza', 'footpath-network.json');
+const trailId = process.argv[2] || 'lago-carezza';
+if(!/^[a-z0-9-]+$/.test(trailId)) throw new Error('Trail ID must contain only lowercase letters, numbers, and hyphens.');
+const sourcePath = path.join(root, 'data', 'offline-map-sources', `${trailId}.osm`);
+const routePath = path.join(root, 'offline', 'packages', trailId, 'route.geojson');
+const outputPath = path.join(root, 'offline', 'packages', trailId, 'footpath-network.json');
 const ALLOWED_HIGHWAYS = new Set([
   'footway', 'path', 'pedestrian', 'track', 'steps',
   'service', 'residential', 'living_street', 'unclassified',
@@ -144,11 +146,11 @@ function build(){
     .map((id, index) => ({ index, node:nodes.get(id) }))
     .filter(item => nearestSegmentDistance(item.node, routeCoordinates) <= 12)
     .map(item => item.index);
-  if(!edges.length || !trailNodes.length) throw new Error('No connected Carezza routing graph was produced.');
+  if(!edges.length || !trailNodes.length) throw new Error(`No connected routing graph was produced for ${trailId}.`);
   const output = {
     schemaVersion:1,
-    trailId:'lago-carezza',
-    source:'OpenStreetMap bbox extract retrieved 2026-07-27',
+    trailId,
+    source:`OpenStreetMap bbox extract stored for ${trailId}`,
     attribution:'© OpenStreetMap contributors · ODbL',
     bounds,
     restrictions:{
