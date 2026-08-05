@@ -69,10 +69,28 @@ service cloud.firestore {
     }
 
     function validDog(data) {
-      // Dog profiles are private owner data and have changed shape during the
-      // beta. Keep the authorization boundary at the user document and accept
-      // legacy nested fields so an owner can migrate or add another dog.
-      return data == null || data is map;
+      // Dog profiles are private owner data. Validation stays deliberately
+      // cheap: this function runs up to six times per user-doc write (five
+      // dogs plus the compatibility mirror) inside Firestore's hard limit of
+      // 1,000 rule expressions per request — the previous per-field checks
+      // exceeded it and every multi-dog save was denied. Keep the map size,
+      // fitness enum, photo size, and nested contact allowlists; the 1 MiB
+      // document cap bounds everything else.
+      return data == null
+        || (data is map
+          && data.size() <= 25
+          && (data.get('name', null) == null
+            || (data.name is string && data.name.size() <= 40))
+          && (data.get('fitness', null) == null
+            || data.fitness in ['low', 'moderate', 'high'])
+          // No regex on the photo: matches() over a ~40 KB data URI costs
+          // hundreds of rule expressions and blew the budget across five
+          // dogs. Type + size bounds here; the client enforces the
+          // data:image/ prefix before upload.
+          && (data.get('photo', null) == null
+            || (data.photo is string && data.photo.size() <= 700000))
+          && (data.get('vet', null) == null || validVet(data.vet))
+          && (data.get('owner', null) == null || validOwner(data.owner)));
     }
 
     function validDogs(data) {
