@@ -16,8 +16,55 @@ describe('OFF-03 offline package ownership metadata', () => {
     document.documentElement.lang = 'en';
     document.body.innerHTML = '';
     delete window.caches;
+    Object.defineProperty(window, 'indexedDB', {
+      configurable: true,
+      value: undefined,
+    });
     require('./offline-packages.js');
   });
+
+  function useFakeIndexedDb(){
+    const records = new Map();
+    const store = {
+      get: jest.fn(key => requestFor(() => records.get(key))),
+      put: jest.fn(value => requestFor(() => {
+        records.set(value.trailId, JSON.parse(JSON.stringify(value)));
+        return value.trailId;
+      })),
+      delete: jest.fn(key => requestFor(() => records.delete(key))),
+    };
+    function requestFor(action){
+      const request = {};
+      queueMicrotask(() => {
+        try{
+          request.result = action();
+          if(request.onsuccess) request.onsuccess();
+        }catch(error){
+          request.error = error;
+          if(request.onerror) request.onerror();
+        }
+      });
+      return request;
+    }
+    const database = {
+      objectStoreNames:{ contains:jest.fn().mockReturnValue(true) },
+      createObjectStore:jest.fn(),
+      transaction:jest.fn(() => ({ objectStore:() => store })),
+      close:jest.fn(),
+    };
+    const indexedDB = {
+      open:jest.fn(() => {
+        const request = { result:database };
+        queueMicrotask(() => request.onsuccess && request.onsuccess());
+        return request;
+      }),
+    };
+    Object.defineProperty(window, 'indexedDB', {
+      configurable:true,
+      value:indexedDB,
+    });
+    return { records, store, database, indexedDB };
+  }
 
   test('creates a stable, device-scoped opaque marker without storing identity', async () => {
     const first = await window.DoloPawsOffline.ownerMarkerFor({ uid: 'firebase-user-1' });
@@ -44,6 +91,43 @@ describe('OFF-03 offline package ownership metadata', () => {
       .resolves.toBe('signed-out-owner-retained');
     await expect(window.DoloPawsOffline.ownershipState({}, user))
       .resolves.toBe('legacy-owner-unknown');
+  });
+
+  test('migrates legacy package metadata into IndexedDB without losing ownership', async () => {
+    const legacy = {
+      cacheName:'dolopaws-trail-lago-carezza-beta',
+      version:'beta',
+      ownerMarker:'v1:opaque',
+    };
+    localStorage.setItem('dolopaws-offline:lago-carezza', JSON.stringify(legacy));
+    const fake = useFakeIndexedDb();
+
+    await expect(window.DoloPawsOffline.readPackageMetadata('lago-carezza'))
+      .resolves.toMatchObject({ ...legacy, trailId:'lago-carezza' });
+    expect(fake.records.get('lago-carezza')).toMatchObject(legacy);
+    expect(localStorage.getItem('dolopaws-offline:lago-carezza')).toBeNull();
+  });
+
+  test('stores and removes multiple package records independently in IndexedDB', async () => {
+    const fake = useFakeIndexedDb();
+    await window.DoloPawsOffline.writePackageMetadata('lago-carezza', { version:'carezza-v1' });
+    await window.DoloPawsOffline.writePackageMetadata('alpe-siusi', { version:'alpe-v1' });
+
+    await expect(window.DoloPawsOffline.readPackageMetadata('lago-carezza'))
+      .resolves.toMatchObject({ trailId:'lago-carezza', version:'carezza-v1' });
+    await expect(window.DoloPawsOffline.readPackageMetadata('alpe-siusi'))
+      .resolves.toMatchObject({ trailId:'alpe-siusi', version:'alpe-v1' });
+
+    await window.DoloPawsOffline.removePackageMetadata('lago-carezza');
+    expect(fake.records.has('lago-carezza')).toBe(false);
+    expect(fake.records.get('alpe-siusi')).toMatchObject({ version:'alpe-v1' });
+  });
+
+  test('falls back to legacy metadata when IndexedDB is unavailable', async () => {
+    await window.DoloPawsOffline.writePackageMetadata('alpe-siusi', { version:'fallback-v1' });
+    expect(localStorage.getItem('dolopaws-offline:alpe-siusi')).toContain('fallback-v1');
+    await expect(window.DoloPawsOffline.readPackageMetadata('alpe-siusi'))
+      .resolves.toMatchObject({ version:'fallback-v1' });
   });
 
   test('keeps ownership labels identity-free and dates human-readable', () => {

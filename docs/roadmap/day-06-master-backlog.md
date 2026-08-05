@@ -114,8 +114,10 @@ All P0 and P1 work
 
 ### OFF-03 — Implement account-gated package storage and lifecycle
 
-- **Status:** In progress; owner metadata, restartable recovery, and storage
-  preflight and package management complete (2026-07-28)
+- **Status:** In progress; IndexedDB multi-package registry and legacy
+  migration, owner metadata, restartable recovery, storage preflight, and
+  package management complete (2026-08-05). Logout/account-deletion cleanup
+  choices and remaining physical-device coverage remain open.
 - **Priority:** P0
 - **Size:** L
 - **Depends on:** OFF-02, AUTH-01
@@ -485,13 +487,14 @@ All P0 and P1 work
 
 ### HIKE-05 — Guide an off-route user back to a reachable trail point
 
-- **Status:** Carezza mapped-footpath routing pilot implemented in code;
-  physical validation and rollout to other trails remain open (2026-08-04)
+- **Status:** Carezza and Alpe di Siusi mapped-footpath routing pilots
+  implemented; physical validation and rollout to other trails remain open
+  (2026-08-04)
 - **Priority:** P0
 - **Size:** L
 - **Depends on:** HIKE-03, OFF-04
 - **Implementation:** accuracy-aware detection plus an offline OSM footpath
-  graph and local shortest-path routing for Carezza are complete; see
+  graphs and local shortest-path routing for Carezza and Alpe di Siusi are complete; see
   `docs/architecture/HIKE-05-route-rejoin-guidance.md`.
 - **Outcome:** a user with a reliable off-route fix can identify how to regain
   the trail without mistaking a geometric straight line for a safe path.

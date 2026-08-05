@@ -18,6 +18,9 @@
   const CACHE_PREFIX = 'dolopaws-trail-';
   const METADATA_PREFIX = 'dolopaws-offline:';
   const OWNER_SALT_KEY = 'dolopaws-offline-owner-salt';
+  const METADATA_DB_NAME = 'dolopaws-offline';
+  const METADATA_DB_VERSION = 1;
+  const METADATA_STORE = 'packages';
   const STORAGE_SAFETY_BYTES = 1024 * 1024;
   const PACKAGE_STATES = Object.freeze([
     'not-downloaded',
@@ -68,13 +71,78 @@
     return `${METADATA_PREFIX}${trailId}`;
   }
 
-  function readPackageMetadata(trailId){
+  function readLegacyPackageMetadata(trailId){
     try{
       const value = JSON.parse(localStorage.getItem(metadataKey(trailId)) || 'null');
       return value && typeof value === 'object' ? value : null;
     }catch(error){
       return null;
     }
+  }
+
+  function openMetadataDatabase(){
+    if(!window.indexedDB) return Promise.reject(new Error('IndexedDB is unavailable.'));
+    return new Promise((resolve, reject) => {
+      const request = window.indexedDB.open(METADATA_DB_NAME, METADATA_DB_VERSION);
+      request.onupgradeneeded = () => {
+        const database = request.result;
+        if(!database.objectStoreNames.contains(METADATA_STORE)){
+          database.createObjectStore(METADATA_STORE, { keyPath:'trailId' });
+        }
+      };
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error || new Error('IndexedDB could not be opened.'));
+      request.onblocked = () => reject(new Error('IndexedDB upgrade is blocked.'));
+    });
+  }
+
+  async function metadataOperation(mode, operation){
+    const database = await openMetadataDatabase();
+    try{
+      return await new Promise((resolve, reject) => {
+        const transaction = database.transaction(METADATA_STORE, mode);
+        const store = transaction.objectStore(METADATA_STORE);
+        const request = operation(store);
+        request.onsuccess = () => resolve(request.result);
+        request.onerror = () => reject(request.error || new Error('Offline metadata operation failed.'));
+        transaction.onabort = () => reject(transaction.error || new Error('Offline metadata transaction was aborted.'));
+      });
+    }finally{
+      database.close();
+    }
+  }
+
+  async function readPackageMetadata(trailId){
+    const legacy = readLegacyPackageMetadata(trailId);
+    try{
+      const stored = await metadataOperation('readonly', store => store.get(trailId));
+      if(stored) return stored;
+      if(!legacy) return null;
+      const migrated = { ...legacy, trailId };
+      await metadataOperation('readwrite', store => store.put(migrated));
+      localStorage.removeItem(metadataKey(trailId));
+      return migrated;
+    }catch(error){
+      return legacy;
+    }
+  }
+
+  async function writePackageMetadata(trailId, metadata){
+    const record = { ...metadata, trailId };
+    try{
+      await metadataOperation('readwrite', store => store.put(record));
+      localStorage.removeItem(metadataKey(trailId));
+    }catch(error){
+      localStorage.setItem(metadataKey(trailId), JSON.stringify(metadata));
+    }
+    return record;
+  }
+
+  async function removePackageMetadata(trailId){
+    try{
+      await metadataOperation('readwrite', store => store.delete(trailId));
+    }catch(error){ /* local cleanup still applies when IndexedDB is unavailable */ }
+    localStorage.removeItem(metadataKey(trailId));
   }
 
   function formatInstalledDate(value){
@@ -305,14 +373,14 @@
       }
       await caches.delete(temporaryName);
       await removeOlderVersions(trailId, name);
-      localStorage.setItem(metadataKey(trailId), JSON.stringify({
+      await writePackageMetadata(trailId, {
         cacheName: name,
         version: manifest.version,
         installedAt: new Date().toISOString(),
         packageBytes: manifest.packageBytes,
         verificationStatus: manifest.verificationStatus,
         ownerMarker,
-      }));
+      });
       return manifest;
     }catch(error){
       await caches.delete(temporaryName);
@@ -346,7 +414,7 @@
     const candidates = names.filter(name =>
       name.startsWith(`${CACHE_PREFIX}${trailId}-`) && !name.endsWith('-installing')
     );
-    const metadata = readPackageMetadata(trailId);
+    const metadata = await readPackageMetadata(trailId);
     if(metadata && metadata.cacheName && candidates.includes(metadata.cacheName)){
       candidates.sort((first, second) =>
         first === metadata.cacheName ? -1 : second === metadata.cacheName ? 1 : 0
@@ -451,7 +519,7 @@
     await Promise.all(names
       .filter(name => name.startsWith(`${CACHE_PREFIX}${trailId}-`))
       .map(name => caches.delete(name)));
-    localStorage.removeItem(metadataKey(trailId));
+    await removePackageMetadata(trailId);
   }
 
   async function listInstalledPackages(user){
@@ -766,6 +834,8 @@
     ownershipState,
     ownershipLabel,
     readPackageMetadata,
+    writePackageMetadata,
+    removePackageMetadata,
     formatInstalledDate,
     validateManifest,
     formatBytes,

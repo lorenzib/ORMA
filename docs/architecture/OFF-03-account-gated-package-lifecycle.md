@@ -1,7 +1,7 @@
 # OFF-03 — Account-gated package storage and lifecycle
 
-**Status:** In progress; owner metadata, restartable recovery, and storage
-preflight and package-management slices complete
+**Status:** In progress; IndexedDB registry, legacy migration, owner metadata,
+restartable recovery, storage preflight, and package management complete
 
 **Implementation date:** 2026-07-28
 
@@ -87,11 +87,25 @@ can still be opened or removed, but update installation asks the visitor to log
 in. A failed update reports the problem without replacing the existing verified
 package.
 
+## IndexedDB package registry
+
+Package lifecycle metadata is stored in the `packages` object store of the
+versioned `dolopaws-offline` IndexedDB database. Each record is keyed by trail
+ID, so Carezza and Alpe di Siusi can be installed, updated, inspected, and
+removed independently.
+
+The first read of an older `dolopaws-offline:<trail-id>` local-storage record
+imports it into IndexedDB and removes the legacy copy only after the IndexedDB
+write succeeds. If IndexedDB is unavailable or temporarily blocked, the app
+continues using the legacy record instead of hiding a verified cached package.
+New writes use IndexedDB and retain the same local-storage fallback for browser
+compatibility. The device owner salt remains local-only and separate from the
+package registry.
+
 ## Storage boundary
 
-Package resources remain in versioned Cache Storage. The first beta slice keeps
-small package metadata in local storage because only one production package is
-available. The manifest remains authoritative for resource integrity.
+Package resources remain in versioned Cache Storage. IndexedDB stores lifecycle
+metadata only; the manifest remains authoritative for resource integrity.
 
 The device owner salt is local-only. Removing a package deletes its package
 metadata and caches but deliberately retains the salt so future packages for
@@ -99,7 +113,8 @@ the same account remain recognisable on that device without storing identity.
 
 ## Verification
 
-- `offline-lifecycle.test.js` verifies stable same-account markers, different
+- `offline-lifecycle.test.js` verifies IndexedDB migration, independent
+  multi-package records, legacy fallback, stable same-account markers, different
   account separation, absence of plaintext identity, ownership states, and
   identity-free labels. It also verifies abandoned-install detection and
   distinct restart and retry states, storage safety calculations, unsupported
@@ -110,9 +125,7 @@ the same account remain recognisable on that device without storing identity.
 
 ## Remaining before OFF-03 is complete
 
-1. Move the package registry and lifecycle metadata to IndexedDB before
-   enabling multiple downloadable trails.
-2. Connect logout and account deletion to the documented retain/remove
+1. Connect logout and account deletion to the documented retain/remove
    decision, including shared-device cleanup.
-3. Repeat physical-device validation on supported iOS Safari and Android
+2. Repeat physical-device validation on supported iOS Safari and Android
    Chrome; Android remains untested because no device is currently available.
