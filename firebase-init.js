@@ -100,10 +100,63 @@ function dogId(dog, index) {
   return `${base}-${index + 1}`;
 }
 
+// Older single-dog profiles predate the strict Firestore schema. In
+// particular, medical notes used to live at vet.medical. Multi-dog writes
+// must not copy unsupported legacy keys into the new `dogs` array because
+// Firestore validates every dog in the document, including existing ones.
+function sanitizedDogProfile(dog, index) {
+  const source = dog && typeof dog === 'object' ? dog : {};
+  const clean = {};
+  const stringFields = {
+    name:40, breed:100, dob:10, ageBand:10, weightBand:10,
+    size:20, neuter:20, coat:20, healthNotes:1000,
+  };
+  Object.entries(stringFields).forEach(([field, maximum]) => {
+    if (source[field] == null) {
+      if (source[field] === null) clean[field] = null;
+      return;
+    }
+    if (typeof source[field] === 'string') clean[field] = source[field].slice(0, maximum);
+  });
+  if (['low', 'moderate', 'high'].includes(source.fitness)) clean.fitness = source.fitness;
+  if (typeof source.weight === 'number' && source.weight >= 2 && source.weight <= 60) clean.weight = source.weight;
+  if (source.age === null || (typeof source.age === 'number' && source.age >= 0 && source.age <= 30)) clean.age = source.age;
+  if (Array.isArray(source.sens)) clean.sens = source.sens.slice(0, 10);
+  if (Array.isArray(source.conditions)) clean.conditions = source.conditions.slice(0, 10);
+  if (source.photo === null || (
+    typeof source.photo === 'string'
+    && /^data:image\/(jpeg|jpg|png|webp);base64,/.test(source.photo)
+    && source.photo.length <= 700000
+  )) clean.photo = source.photo;
+  ['jointIssues', 'heatIssues'].forEach(field => {
+    if (typeof source[field] === 'boolean') clean[field] = source[field];
+  });
+
+  if (source.vet && typeof source.vet === 'object') {
+    clean.vet = {};
+    const limits = { name:100, phone:40, chip:80, insurer:100, policy:100 };
+    Object.entries(limits).forEach(([field, maximum]) => {
+      if (typeof source.vet[field] === 'string') clean.vet[field] = source.vet[field].slice(0, maximum);
+    });
+    if (!clean.healthNotes && typeof source.vet.medical === 'string') {
+      clean.healthNotes = source.vet.medical.slice(0, 1000);
+    }
+  }
+  if (source.owner && typeof source.owner === 'object') {
+    clean.owner = {};
+    const limits = { name:100, phone:40, email:254, emName:100, emPhone:40 };
+    Object.entries(limits).forEach(([field, maximum]) => {
+      if (typeof source.owner[field] === 'string') clean.owner[field] = source.owner[field].slice(0, maximum);
+    });
+  }
+  clean.id = dogId({ ...source, ...clean }, index);
+  return clean;
+}
+
 function normalizedDogState(data) {
   let dogs = Array.isArray(data && data.dogs) ? data.dogs.filter(Boolean) : [];
   if (!dogs.length && data && data.dog) dogs = [data.dog];
-  dogs = dogs.slice(0, 5).map((dog, index) => ({ ...dog, id:dogId(dog, index) }));
+  dogs = dogs.slice(0, 5).map(sanitizedDogProfile);
   const requested = data && data.activeDogId;
   const activeDogId = dogs.some(dog => dog.id === requested)
     ? requested : dogs[0] && dogs[0].id || null;
@@ -129,9 +182,10 @@ async function getDogProfile() {
 
 async function writeDogState(state) {
   if (!currentUser) return false;
-  const active = state.dogs.find(dog => dog.id === state.activeDogId) || state.dogs[0] || null;
+  const dogs = state.dogs.slice(0, 5).map(sanitizedDogProfile);
+  const active = dogs.find(dog => dog.id === state.activeDogId) || dogs[0] || null;
   const payload = {
-    dogs:state.dogs,
+    dogs,
     activeDogId:active ? active.id : null,
     // Compatibility mirror for pages deployed before multi-dog support.
     dog:active,
@@ -139,7 +193,7 @@ async function writeDogState(state) {
   await setDoc(doc(db, "users", currentUser.uid), payload, { merge:true });
   await syncProfileSummary(currentUser);
   window.dispatchEvent(new CustomEvent('dolopaws-dog-profile-saved', {
-    detail:{ profile:active, dogs:state.dogs, activeDogId:payload.activeDogId }
+    detail:{ profile:active, dogs, activeDogId:payload.activeDogId }
   }));
   return true;
 }

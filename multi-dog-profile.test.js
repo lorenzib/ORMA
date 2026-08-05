@@ -15,6 +15,9 @@ describe('multi-dog account experience', () => {
     expect(client).toContain('dogs:state.dogs');
     expect(client).toContain('activeDogId:active ? active.id : null');
     expect(client).toContain('dog:active');
+    expect(client).toContain('function sanitizedDogProfile(dog, index)');
+    expect(client).toContain('source.vet.medical');
+    expect(client).toContain('dogs = dogs.slice(0, 5).map(sanitizedDogProfile)');
   });
 
   test('the account editor switches dogs and adds another in the same screen', () => {
