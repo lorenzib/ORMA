@@ -18,6 +18,9 @@ describe('multi-dog account experience', () => {
     expect(client).toContain('function sanitizedDogProfile(dog, index)');
     expect(client).toContain('source.vet.medical');
     expect(client).toContain('dogs = dogs.slice(0, 5).map(sanitizedDogProfile)');
+    expect(client).toContain('Object.entries(existing.favorites).slice(0, 250)');
+    expect(client).toContain('existing.lastMatches.slice(0, 250)');
+    expect(client).toContain('await setDoc(userRef, payload);');
   });
 
   test('the account editor switches dogs and adds another in the same screen', () => {

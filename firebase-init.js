@@ -184,13 +184,26 @@ async function writeDogState(state) {
   if (!currentUser) return false;
   const dogs = state.dogs.slice(0, 5).map(sanitizedDogProfile);
   const active = dogs.find(dog => dog.id === state.activeDogId) || dogs[0] || null;
+  const userRef = doc(db, "users", currentUser.uid);
+  const existingSnap = await getDoc(userRef);
+  const existing = existingSnap.exists() ? existingSnap.data() : {};
   const payload = {
     dogs,
     activeDogId:active ? active.id : null,
     // Compatibility mirror for pages deployed before multi-dog support.
     dog:active,
   };
-  await setDoc(doc(db, "users", currentUser.uid), payload, { merge:true });
+  // Rebuild the private document from the current allow-list instead of
+  // merging. Firestore validates the complete post-write document, so one
+  // malformed legacy value in an unchanged field would otherwise block the
+  // multi-dog migration forever.
+  if (existing.favorites && typeof existing.favorites === 'object' && !Array.isArray(existing.favorites)) {
+    payload.favorites = Object.fromEntries(Object.entries(existing.favorites).slice(0, 250));
+  }
+  if (Array.isArray(existing.lastMatches)) payload.lastMatches = existing.lastMatches.slice(0, 250);
+  if (existing.createdAt instanceof Timestamp) payload.createdAt = existing.createdAt;
+  if (existing.updatedAt instanceof Timestamp) payload.updatedAt = existing.updatedAt;
+  await setDoc(userRef, payload);
   await syncProfileSummary(currentUser);
   window.dispatchEvent(new CustomEvent('dolopaws-dog-profile-saved', {
     detail:{ profile:active, dogs, activeDogId:payload.activeDogId }
