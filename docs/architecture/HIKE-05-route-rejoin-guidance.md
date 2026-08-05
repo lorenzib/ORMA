@@ -5,9 +5,11 @@ code; physical-device validation and broader rollout remain open.
 
 ## Product behaviour
 
-After at least three reliable fixes sustained for 20 seconds confirm that a
-hiker is off route, DoloPaws tries to match the current fix to the packaged
-walking network. If that network has a connected route back to the trail, the
+A hiker with a usable GPS fix near, but not on, the route sees **Find closest
+trail point** when a packaged walking network is available. The control appears
+before DoloPaws makes a stronger off-route claim, so someone who can already see
+that they need help does not need to wait for an alert. Selecting it matches the
+current fix to the packaged network and, when a connected route exists, the
 online and offline pilot maps show:
 
 - a solid blue route following mapped footpaths;
@@ -20,6 +22,12 @@ matched to a nearby mapped footpath, or that component does not connect to the
 trail, DoloPaws says that no connected mapped path was found and draws no
 route. Guidance remains suppressed for weak or stale fixes and when the user
 is more than two kilometres from the packaged corridor.
+
+Separately, at least three reliable fixes sustained for 20 seconds are still
+required before DoloPaws automatically says that the hiker appears off route.
+That confirmation shows the measured warning and the same rejoin control; it
+does not silently start navigation. Returning close to the route removes the
+control and any active rejoin line.
 
 ## Packaged graph
 
@@ -58,12 +66,14 @@ the shared router and trail-specific graph before making them available.
 ## Verification
 
 Automated tests cover shortest-path selection, path snapping, disconnected and
-malformed graphs, and real Carezza and Alpe di Siusi side-path fixtures. Package tests verify
-the new required resources, sizes, hashes, load order, and removal of the
-straight-line instruction.
+malformed graphs, and real Carezza and Alpe di Siusi side-path fixtures. Package
+tests verify the required resources, explicit rejoin controls, sizes, hashes,
+load order, and removal of the straight-line instruction.
 
 Before marking HIKE-05 fully complete, run controlled Carezza and Alpe di
-Siusi tests on the iPhone and an Android device in normal and airplane modes. Testing must confirm
-that the blue path aligns with visible paths and signs, reroutes as fixes move,
-disappears after rejoining, and fails closed near closures, barriers, water,
-and unmapped ground. No tester should deliberately leave a safe marked path.
+Siusi tests on the iPhone and an Android device in normal and airplane modes.
+Testing must confirm that the button appears only with a usable nearby fix, the
+blue path aligns with visible paths and signs after selection, reroutes as fixes
+move, disappears after rejoining, and fails closed near closures, barriers,
+water, and unmapped ground. No tester should deliberately leave a safe marked
+path.

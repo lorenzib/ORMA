@@ -45,6 +45,7 @@
         <span><i class="key-water"></i>Water</span>
       </div>
       <p id="locationState" class="location-state">GPS is off. The route and safety information remain available.</p>
+      <button id="offlineRejoinBtn" type="button" class="offline-rejoin-button" hidden>Find closest trail point</button>
       <p id="offlineRouteWarning" class="offline-route-warning" role="alert" hidden></p>
       <div id="hikeRecovery" class="hike-recovery" hidden>
         <strong id="hikeRecoveryTitle">Unfinished hike found</strong>
@@ -121,6 +122,7 @@
 
   <script src="../hike-gps-policy.js"></script>
   <script src="../route-rejoin.js"></script>
+  <script src="../hike-distance.js"></script>
   <script src="../footpath-router.js"></script>
   <script src="../hike-session.js"></script>
   <script src="../hike-completions.js"></script>

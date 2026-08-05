@@ -8,6 +8,11 @@ Starting a hike creates one small, versioned record in local storage. Each
 acceptable GPS fix replaces the previous progress snapshot. DoloPaws does not
 store a breadcrumb trail or continuous latitude/longitude history.
 
+The first reliable fix establishes the starting baseline wherever the hiker
+joins the route. Later reliable movement accumulates as **distance walked since
+Start**. It is not presented as distance from the recommended trailhead, and a
+closed loop may be walked in either direction.
+
 The record survives page refresh, browser closure, and loss of connectivity.
 HIKE-02 provides the customer-facing restore, pause, resume, discard, expiry,
 and missing-package flows that consume it.
@@ -24,7 +29,7 @@ Storage key: `dolopaws-active-hike-v1`
 - `startedAt` and `updatedAt`
 - state: `active`, `paused`, or `completion-pending`
 - one `lastProgress` snapshot:
-  - monotonic route kilometres
+  - monotonic kilometres walked since Start
   - snapped path index
   - reported GPS accuracy
   - fix time
@@ -38,6 +43,12 @@ continuous location history.
 - Progress replaces the previous snapshot only for numeric GPS fixes reporting
   accuracy of 200 metres or better and no more than 2 kilometres from the
   route.
+- Small changes inside the GPS accuracy envelope do not add distance. Implausible
+  jumps and long gaps are ignored, and a restored session uses its first new fix
+  only as a fresh baseline so a page reload cannot invent distance.
+- Near the route, distance follows movement along the route geometry. Closed
+  loops use the shortest change across the start/end seam, regardless of walking
+  direction. Away from the route, conservative point-to-point movement is used.
 - A GPS error after a fix changes the record to `paused`. Failure before the
   first fix removes the empty attempt.
 - Ending after a fix changes the record to `completion-pending`.
@@ -71,6 +82,10 @@ malformed progress never become an active session.
 - blocked storage reads and writes;
 - paused and completion-pending states; and
 - script ordering and hike-mode lifecycle integration.
+
+`hike-distance.test.js` separately covers arbitrary starting points, both loop
+directions, start/end seam crossing, GPS drift and jump rejection, and session
+resume without a fabricated restart jump.
 
 ## Consumer
 

@@ -8,8 +8,8 @@ const path = require('path');
 const root = path.resolve(__dirname, '..');
 const trailId = process.argv[2];
 const configs = {
-  'lago-carezza': { name:'Lago di Carezza Loop', height:1140, version:'2026.08.04-beta.14' },
-  'alpe-siusi': { name:'Alpe di Siusi Meadow Loop', height:720, version:'2026.08.04-beta.1' },
+  'lago-carezza': { name:'Lago di Carezza Loop', height:1140, version:'2026.08.05-beta.15' },
+  'alpe-siusi': { name:'Alpe di Siusi Meadow Loop', height:720, version:'2026.08.05-beta.2' },
 };
 const config = configs[trailId];
 if(!config) throw new Error(`Unsupported offline package: ${trailId || '(missing)'}`);
@@ -22,6 +22,7 @@ const roles = [
   ['app', 'Offline trail application', '/offline/offline-app.js'],
   ['gps-policy', 'GPS safety policy', '/hike-gps-policy.js'],
   ['route-rejoin', 'Offline route rejoin guidance', '/route-rejoin.js'],
+  ['hike-distance', 'Direction-neutral walked distance', '/hike-distance.js'],
   ['footpath-router', 'Offline mapped footpath router', '/footpath-router.js'],
   ['session', 'Durable hike session', '/hike-session.js'],
   ['completion', 'Durable hike completion', '/hike-completions.js'],

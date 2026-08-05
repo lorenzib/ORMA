@@ -436,6 +436,8 @@ All P0 and P1 work
 - **Acceptance:**
   - Trail and package IDs, start time, state, last valid progress, and schema
     version are persisted locally.
+  - Distance starts at zero at the first reliable fix and measures movement
+    since Start, without assuming the recommended trailhead or loop direction.
   - Continuous GPS history is not required or stored by default.
   - Writes are resilient to storage exceptions.
   - Corrupt or incompatible sessions fail safely.
@@ -493,8 +495,9 @@ All P0 and P1 work
 - **Priority:** P0
 - **Size:** L
 - **Depends on:** HIKE-03, OFF-04
-- **Implementation:** accuracy-aware detection plus an offline OSM footpath
-  graphs and local shortest-path routing for Carezza and Alpe di Siusi are complete; see
+- **Implementation:** accuracy-aware detection plus offline OSM footpath graphs,
+  an explicit Find closest trail point control, and local shortest-path routing
+  for Carezza and Alpe di Siusi are complete; see
   `docs/architecture/HIKE-05-route-rejoin-guidance.md`.
 - **Outcome:** a user with a reliable off-route fix can identify how to regain
   the trail without mistaking a geometric straight line for a safe path.
@@ -504,6 +507,8 @@ All P0 and P1 work
   - Weak, stale, or ambiguous fixes never produce confident rejoin guidance.
   - A warning requires sustained evidence and uses nearest-segment distance so
     ordinary GPS drift and sparse route points do not create nuisance alerts.
+  - A hiker with a usable nearby fix can request the closest reachable trail
+    point before the sustained off-route warning appears.
   - Distance, compass direction, current position, and target remain available
     from the downloaded package.
   - Guidance uses a verified routable path where one is packaged; otherwise it

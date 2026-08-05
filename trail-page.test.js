@@ -255,5 +255,10 @@ describe('trail page map legend', () => {
     expect(trail).toContain("'hillshade-method': 'igor'");
     expect(trail).toContain("on ? 'Close map' : 'Expand map'");
     expect(hikeMode).toContain('rejoin.segmentFraction');
+    expect(html.indexOf('hike-distance.js')).toBeLessThan(html.indexOf('hike-mode.js'));
+    expect(hikeMode).toContain("window.t('hike.walked'");
+    expect(hikeMode).not.toContain("window.t('hike.kmOf'");
+    expect(hikeMode).toContain("rejoinBtn.id = 'mapHikeRejoinBtn'");
+    expect(trail).toContain('if(!routeIsLoop)');
   });
 });

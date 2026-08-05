@@ -37,9 +37,13 @@ function initHikeMode(map, trail){
       trail.path[i][0], trail.path[i][1]));
   }
   const totalMeters = cum[cum.length - 1] || 1;
-  // Display distances against the trail's stated length so the readout
-  // matches the rest of the page (GPS path length can differ slightly).
+  // Route-position consumers such as the elevation profile use the trail's
+  // stated length. Distance walked is accumulated separately from GPS fixes.
   const statedKm = trail.distance || totalMeters / 1000;
+  const isLoop = metersBetween(
+    trail.path[0][0], trail.path[0][1],
+    trail.path[trail.path.length - 1][0], trail.path[trail.path.length - 1][1]
+  ) <= 75;
 
   // ---- UI elements ---------------------------------------------------------
   const startBtn = document.createElement('button');
@@ -72,19 +76,32 @@ function initHikeMode(map, trail){
   banner.style.cssText = 'position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:7;width:max-content;max-width:min(92%,520px);padding:9px 16px;border-radius:12px;background:#9C3A25;color:#fff;font-size:12.5px;font-weight:700;line-height:1.4;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.35);display:none;';
   container.appendChild(banner);
 
+  const rejoinBtn = document.createElement('button');
+  rejoinBtn.type = 'button';
+  rejoinBtn.id = 'mapHikeRejoinBtn';
+  rejoinBtn.textContent = hikeLabel('hike.rejoinAction', 'Find closest trail point');
+  rejoinBtn.hidden = true;
+  rejoinBtn.style.cssText = 'position:absolute;bottom:100px;left:50%;transform:translateX(-50%);z-index:8;padding:10px 16px;border-radius:14px;background:#1677ff;color:#fff;border:2px solid #fff;font-size:12.5px;font-weight:800;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.35);white-space:nowrap;';
+  container.appendChild(rejoinBtn);
+
   // ---- State ---------------------------------------------------------------
   let active = false;
   let watchId = null;
   let lastTileError = 0;   // last failed tile/style fetch — signals the map may grey out
   let wakeLock = null;
-  let lastIdx = 0;          // last snapped path index — used for monotonic bias
+  let lastIdx = 0;          // last snapped path index — used for continuity
   let offRouteStreak = 0;   // consecutive fixes far from the route
   let offRouteSince = null; // first fix in the current sustained off-route run
   let firstFix = true;
   let hikeStartRecorded = false;
   let hikeStartedAt = null;
-  let lastKnownKm = 0;      // furthest progress readout, for the completion stats
+  let lastKnownKm = 0;      // actual distance walked since Start, for stats
   let lastValidFixAt = null;
+  let distanceTracker = window.DoloPawsHikeDistance
+    ? window.DoloPawsHikeDistance.create(0)
+    : null;
+  let latestFix = null;
+  let manualRejoinActive = false;
   let durableSession = null;
   let completionRetry = null;
   const rejoinRoute = trail.path.map(point => ({ lat: point[0], lng: point[1] }));
@@ -174,6 +191,38 @@ function initHikeMode(map, trail){
     }
   }
 
+  function mappedRejoinGuidance(fix){
+    return fix && footpathGraph && window.DoloPawsFootpathRouter
+      ? window.DoloPawsFootpathRouter.routeToTrail(
+        { lat:fix.lat, lng:fix.lng },
+        footpathGraph,
+        {
+          maxSnapDistanceM:Math.min(60, Math.max(25, Number(fix.accuracy) + 10)),
+          maxRouteDistanceM:1500,
+        }
+      )
+      : null;
+  }
+
+  function renderManualRejoin(){
+    const guidance = mappedRejoinGuidance(latestFix);
+    if(guidance){
+      banner.textContent = window.t('hike.rejoinMapped', {
+        distance:Math.round(guidance.distanceM),
+      });
+      showRejoinGuidance(guidance);
+    }else{
+      banner.textContent = window.t('hike.rejoinUnavailable');
+      hideRejoinGuidance();
+    }
+    banner.style.display = 'block';
+  }
+
+  rejoinBtn.addEventListener('click', () => {
+    manualRejoinActive = true;
+    renderManualRejoin();
+  });
+
   function showRejoinGuidance(guidance){
     if(!guidance || guidance.routingMode !== 'mapped-footpath' ||
        !Array.isArray(guidance.path) || typeof maplibregl === 'undefined') return;
@@ -240,7 +289,7 @@ function initHikeMode(map, trail){
   });
 
   // ---- Snap a GPS fix to the nearest point on the route --------------------
-  // Monotonic bias: when several path points are similarly close (common on
+  // Continuity bias: when several path points are similarly close (common on
   // out-and-back or tightly-folded loops), prefer the one nearest to where
   // we last were — stops the readout jumping between overlapping segments.
   function snapToPath(lat, lng){
@@ -282,6 +331,7 @@ function initHikeMode(map, trail){
       window.DoloPawsRouteRejoin.guidance({ lat, lng }, rejoinRoute);
     const routeDistanceM = rejoin ? rejoin.distanceM : snap.minDist;
     const fixTimestamp = Number.isFinite(pos.timestamp) ? pos.timestamp : Date.now();
+    latestFix = { lat, lng, accuracy };
     const assessment = window.DoloPawsGpsPolicy
       ? window.DoloPawsGpsPolicy.assessFix({
         timestamp: fixTimestamp,
@@ -317,9 +367,24 @@ function initHikeMode(map, trail){
       ? cum[rejoin.segmentIndex] +
         (cum[rejoin.segmentIndex + 1] - cum[rejoin.segmentIndex]) * rejoin.segmentFraction
       : cum[snap.idx];
-    const currentKm = (routeProgressM / totalMeters) * statedKm;
+    const currentRouteKm = (routeProgressM / totalMeters) * statedKm;
     if(assessment.usableForProgress){
-      lastKnownKm = Math.max(lastKnownKm, Math.min(currentKm, statedKm));
+      if(window.DoloPawsHikeDistance){
+        distanceTracker = window.DoloPawsHikeDistance.update(
+          distanceTracker || window.DoloPawsHikeDistance.create(lastKnownKm),
+          {
+            lat,
+            lng,
+            timestamp:fixTimestamp,
+            accuracyM:accuracy,
+            routePositionM:routeProgressM,
+            nearRoute:routeDistanceM <= 60,
+            usable:true,
+          },
+          { totalRouteM:totalMeters, loop:isLoop }
+        );
+        lastKnownKm = distanceTracker.distanceM / 1000;
+      }
       lastValidFixAt = fixTimestamp;
       persistProgress(
         lastKnownKm,
@@ -341,6 +406,8 @@ function initHikeMode(map, trail){
         })
       }</span>` + offlineNote();
       banner.style.display = 'none';
+      rejoinBtn.hidden = true;
+      manualRejoinActive = false;
       hideRejoinGuidance();
       offRouteStreak = assessment.nextOffRouteStreak;
       offRouteSince = assessment.nextOffRouteSince;
@@ -349,26 +416,16 @@ function initHikeMode(map, trail){
 
     offRouteStreak = assessment.nextOffRouteStreak;
     offRouteSince = assessment.nextOffRouteSince;
-    if(assessment.offRouteState === 'confirmed'){
-      const guidance = footpathGraph && window.DoloPawsFootpathRouter
-        ? window.DoloPawsFootpathRouter.routeToTrail(
-          { lat, lng },
-          footpathGraph,
-          {
-            maxSnapDistanceM:Math.min(60, Math.max(25, Number(accuracy) + 10)),
-            maxRouteDistanceM:1500,
-          }
-        )
-        : null;
-      if(guidance){
-        banner.textContent = window.t('hike.rejoinMapped', {
-          distance: Math.round(guidance.distanceM),
-        });
-        showRejoinGuidance(guidance);
-      }else{
-        banner.textContent = window.t('hike.rejoinUnavailable');
-        hideRejoinGuidance();
-      }
+    const rejoinAvailable = assessment.usableForProgress && !!footpathGraph &&
+      routeDistanceM > Math.max(15, Number(accuracy) * 0.5) && routeDistanceM <= 1500;
+    rejoinBtn.hidden = !rejoinAvailable;
+    if(!rejoinAvailable) manualRejoinActive = false;
+    if(manualRejoinActive){
+      renderManualRejoin();
+    }else if(assessment.offRouteState === 'confirmed'){
+      banner.textContent = window.t('hike.offRouteDistance', {
+        distance:Math.round(routeDistanceM),
+      });
       banner.style.display = 'block';
     }else{
       banner.style.display = 'none';
@@ -376,13 +433,13 @@ function initHikeMode(map, trail){
     }
 
     // Progress readout
-    const displayKm = assessment.usableForProgress ? currentKm : lastKnownKm;
-    const parts = [window.t('hike.kmOf', {a: displayKm.toFixed(1), b: statedKm})];
-    const water = nextAhead(trail.waterSources, displayKm, 'label');
+    const displayKm = lastKnownKm;
+    const parts = [window.t('hike.walked', {distance:displayKm.toFixed(1)})];
+    const water = isLoop ? null : nextAhead(trail.waterSources, currentRouteKm, 'label');
     if (water) parts.push(window.t('hike.waterIn', {d: water.ahead.toFixed(1)}));
-    const hut = nextAhead(trail.rifugi, displayKm, 'name');
+    const hut = isLoop ? null : nextAhead(trail.rifugi, currentRouteKm, 'name');
     if (hut) parts.push(window.t('hike.hutIn', {name: hut.label, d: hut.ahead.toFixed(1)}));
-    const decision = nextAhead(trail.decisionPoints, displayKm, 'instruction');
+    const decision = isLoop ? null : nextAhead(trail.decisionPoints, currentRouteKm, 'instruction');
     if (decision && decision.ahead < 0.5) parts.push(window.t('hike.ahead', {what: decision.label}));
     const validFixLabel = lastValidFixAt
       ? new Date(lastValidFixAt).toLocaleTimeString()
@@ -409,12 +466,12 @@ function initHikeMode(map, trail){
 
     // Drive the elevation-profile cursor from live position, if the page has one.
     if (typeof window._dolopawsElevHighlight === 'function'){
-      try { window._dolopawsElevHighlight(Math.min(displayKm, statedKm)); } catch (e) {}
+      try { window._dolopawsElevHighlight(Math.min(currentRouteKm, statedKm)); } catch (e) {}
     }
 
     // Let page chrome (the live recording banner) mirror our progress.
     window.dispatchEvent(new CustomEvent('dolopaws-hike-progress', {
-      detail: { km: Math.min(displayKm, statedKm), startedAt: hikeStartedAt },
+      detail: { km: displayKm, startedAt: hikeStartedAt },
     }));
   }
 
@@ -483,6 +540,11 @@ function initHikeMode(map, trail){
     hikeStartRecorded = false;
     hikeStartedAt = Date.now();
     lastKnownKm = 0;
+    distanceTracker = window.DoloPawsHikeDistance
+      ? window.DoloPawsHikeDistance.create(0)
+      : null;
+    latestFix = null;
+    manualRejoinActive = false;
     lastValidFixAt = null;
     offRouteStreak = 0;
     offRouteSince = null;
@@ -531,6 +593,8 @@ function initHikeMode(map, trail){
       container.classList.add('hike-status-visible');
     }
     banner.style.display = 'none';
+    rejoinBtn.hidden = true;
+    manualRejoinActive = false;
     hideRejoinGuidance();
   }
 
@@ -542,6 +606,11 @@ function initHikeMode(map, trail){
     hikeStartRecorded = !!progress;
     hikeStartedAt = durableSession.startedAt;
     lastKnownKm = progress ? progress.km : 0;
+    distanceTracker = window.DoloPawsHikeDistance
+      ? window.DoloPawsHikeDistance.create(lastKnownKm)
+      : null;
+    latestFix = null;
+    manualRejoinActive = false;
     lastIdx = progress ? progress.pathIndex : 0;
     lastValidFixAt = progress ? progress.recordedAt : null;
     offRouteStreak = 0;

@@ -10,6 +10,12 @@
   let activeSession = null;
   let routeCoordinates = [];
   let footpathGraph = null;
+  let routeTotalM = 0;
+  let routeIsLoop = false;
+  let distanceTracker = null;
+  let latestFix = null;
+  let manualRejoinActive = false;
+  let activeBounds = null;
   let offRouteStreak = 0;
   let offRouteSince = null;
   let lastValidFixAt = null;
@@ -27,6 +33,7 @@
     mapFrame: document.getElementById('mapFrame'),
     locationButton: document.getElementById('locationButton'),
     locationState: document.getElementById('locationState'),
+    rejoinButton: document.getElementById('offlineRejoinBtn'),
     positionDot: document.getElementById('positionDot'),
     rejoinDirection: document.getElementById('rejoinDirection'),
     rejoinDirectionLine: document.getElementById('rejoinDirectionLine'),
@@ -164,6 +171,29 @@
     elements.rejoinTarget.hidden = true;
   }
 
+  function mappedRejoinGuidance(){
+    return latestFix && footpathGraph && window.DoloPawsFootpathRouter
+      ? window.DoloPawsFootpathRouter.routeToTrail(
+        { lat:latestFix.lat, lng:latestFix.lng },
+        footpathGraph,
+        {
+          maxSnapDistanceM:Math.min(60, Math.max(25, latestFix.accuracy + 10)),
+          maxRouteDistanceM:1500,
+        }
+      )
+      : null;
+  }
+
+  function renderManualRejoin(){
+    const guidance = mappedRejoinGuidance();
+    elements.routeWarning.textContent = guidance
+      ? `Rejoin trail: follow the blue mapped path for about ${Math.round(guidance.distanceM)} m. Check local signs and closures.`
+      : 'No connected mapped footpath was found. Return to the last marked path or follow local signs.';
+    elements.routeWarning.hidden = false;
+    if(guidance && activeBounds) showRejoinGuidance(guidance, activeBounds);
+    else hideRejoinGuidance();
+  }
+
   function showRejoinGuidance(guidance, bounds){
     const target = positionPercent(
       guidance.target.lat,
@@ -194,6 +224,9 @@
     elements.locationButton.textContent = 'Show my position';
     elements.locationButton.disabled = false;
     elements.routeWarning.hidden = true;
+    elements.rejoinButton.hidden = true;
+    manualRejoinActive = false;
+    latestFix = null;
     hideRejoinGuidance();
     offRouteStreak = 0;
     offRouteSince = null;
@@ -211,6 +244,7 @@
       return;
     }
     elements.locationButton.disabled = true;
+    activeBounds = bounds;
     elements.locationState.textContent = 'Waiting for a GPS fix…';
     watchId = navigator.geolocation.watchPosition(position => {
       elements.locationButton.disabled = false;
@@ -226,6 +260,11 @@
       const fixTimestamp = Number.isFinite(position.timestamp)
         ? position.timestamp
         : Date.now();
+      latestFix = {
+        lat:position.coords.latitude,
+        lng:position.coords.longitude,
+        accuracy:position.coords.accuracy,
+      };
       const assessment = progress && window.DoloPawsGpsPolicy
         ? window.DoloPawsGpsPolicy.assessFix({
           timestamp: fixTimestamp,
@@ -241,11 +280,25 @@
       if(assessment && assessment.usableForProgress) lastValidFixAt = fixTimestamp;
       if(activeSession && activeSession.state === 'active' &&
          assessment && assessment.usableForProgress && progress.nearestM <= 2000){
+          if(window.DoloPawsHikeDistance){
+            distanceTracker = window.DoloPawsHikeDistance.update(
+              distanceTracker || window.DoloPawsHikeDistance.create(
+                activeSession.lastProgress && activeSession.lastProgress.km || 0
+              ),
+              {
+                lat:position.coords.latitude,
+                lng:position.coords.longitude,
+                timestamp:fixTimestamp,
+                accuracyM:position.coords.accuracy,
+                routePositionM:progress.km * 1000,
+                nearRoute:progress.nearestM <= 60,
+                usable:true,
+              },
+              { totalRouteM:routeTotalM, loop:routeIsLoop }
+            );
+          }
           keepSessionResult(window.DoloPawsHikeSession.updateProgress(activeSession, {
-            km: Math.max(
-              activeSession.lastProgress && activeSession.lastProgress.km || 0,
-              progress.km
-            ),
+            km:distanceTracker ? distanceTracker.distanceM / 1000 : 0,
             pathIndex: progress.pathIndex,
             accuracyM: position.coords.accuracy,
             recordedAt: fixTimestamp,
@@ -256,30 +309,26 @@
           `You are about ${(progress.nearestM / 1000).toFixed(1)} km from this route. ` +
           'Rejoin guidance is unavailable this far away; use an official navigation source.';
         elements.routeWarning.hidden = false;
+        elements.rejoinButton.hidden = true;
+        manualRejoinActive = false;
         hideRejoinGuidance();
-      }else if(assessment && assessment.offRouteState === 'confirmed'){
-        const guidance = footpathGraph && window.DoloPawsFootpathRouter
-          ? window.DoloPawsFootpathRouter.routeToTrail(
-            {
-              lat:position.coords.latitude,
-              lng:position.coords.longitude,
-            },
-            footpathGraph,
-            {
-              maxSnapDistanceM:Math.min(60, Math.max(25, position.coords.accuracy + 10)),
-              maxRouteDistanceM:1500,
-            }
-          )
-          : null;
-        elements.routeWarning.textContent = guidance
-          ? `Rejoin trail: follow the blue mapped path for about ${Math.round(guidance.distanceM)} m. Check local signs and closures.`
-          : 'No connected mapped footpath was found. Return to the last marked path or follow local signs.';
-        elements.routeWarning.hidden = false;
-        if(guidance) showRejoinGuidance(guidance, bounds);
-        else hideRejoinGuidance();
       }else{
-        elements.routeWarning.hidden = true;
-        hideRejoinGuidance();
+        const rejoinAvailable = assessment && assessment.usableForProgress &&
+          !!footpathGraph && progress.nearestM > Math.max(15, position.coords.accuracy * 0.5) &&
+          progress.nearestM <= 1500;
+        elements.rejoinButton.hidden = !rejoinAvailable;
+        if(!rejoinAvailable) manualRejoinActive = false;
+        if(manualRejoinActive){
+          renderManualRejoin();
+        }else if(assessment && assessment.offRouteState === 'confirmed'){
+          elements.routeWarning.textContent =
+            `You appear to be off route · about ${Math.round(progress.nearestM)} m away.`;
+          elements.routeWarning.hidden = false;
+          hideRejoinGuidance();
+        }else{
+          elements.routeWarning.hidden = true;
+          hideRejoinGuidance();
+        }
       }
       const reliability = !assessment
         ? 'Route distance unavailable.'
@@ -303,7 +352,7 @@
                 : 'Position near trail'
         : '';
       elements.locationState.textContent = assessment
-        ? `${positionSummary} · GPS ±${Math.round(position.coords.accuracy)} m · ` +
+        ? `${activeSession && activeSession.lastProgress ? `Walked ${activeSession.lastProgress.km.toFixed(1)} km · ` : ''}${positionSummary} · GPS ±${Math.round(position.coords.accuracy)} m · ` +
           `last valid fix ${lastFixText}${reliability ? ` · ${reliability}` : ''}`
         : onMap
           ? 'GPS position found; route distance unavailable.'
@@ -313,6 +362,8 @@
       elements.locationButton.textContent = 'Try GPS again';
       watchId = null;
       hideRejoinGuidance();
+      elements.rejoinButton.hidden = true;
+      manualRejoinActive = false;
       if(activeSession && activeSession.state === 'active'){
         keepSessionResult(window.DoloPawsHikeSession.setState(
           activeSession,
@@ -584,6 +635,16 @@
       }
       routeCoordinates = route.features && route.features[0] &&
         route.features[0].geometry && route.features[0].geometry.coordinates || [];
+      routeTotalM = routeCoordinates.slice(1).reduce((total, coordinate, index) =>
+        total + metersBetween(
+          routeCoordinates[index][1], routeCoordinates[index][0],
+          coordinate[1], coordinate[0]
+        ), 0);
+      routeIsLoop = routeCoordinates.length > 2 && metersBetween(
+        routeCoordinates[0][1], routeCoordinates[0][0],
+        routeCoordinates[routeCoordinates.length - 1][1],
+        routeCoordinates[routeCoordinates.length - 1][0]
+      ) <= 75;
       elements.trailName.textContent = manifest.name;
       elements.offlineMap.alt = `Offline route map for ${manifest.name}`;
       const failureLink = document.getElementById('failureTrailLink');
@@ -612,6 +673,10 @@
       elements.packageMeta.textContent = `Package ${manifest.version} · scoring ${manifest.scoringVersion || 'not recorded'} · generated ${manifest.generatedAt.slice(0, 10)} · ${manifest.attribution}`;
       elements.licenceLink.href = manifest.licenceUrl;
       elements.locationButton.addEventListener('click', () => startLocation(manifest.bounds));
+      elements.rejoinButton.addEventListener('click', () => {
+        manualRejoinActive = true;
+        renderManualRejoin();
+      });
       configureRecovery(trailId, manifest.bounds);
 
       elements.mapSection.hidden = false;

@@ -36,6 +36,7 @@ describe('Lago di Carezza offline package', () => {
       'completion',
       'gps-policy',
       'route-rejoin',
+      'hike-distance',
       'footpath-router',
       'footpath-network',
       'outcome',
@@ -93,6 +94,7 @@ describe('Lago di Carezza offline package', () => {
     expect(manifest.resources.find(resource => resource.role === 'safety').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'gps-policy').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'route-rejoin').required).toBe(true);
+    expect(manifest.resources.find(resource => resource.role === 'hike-distance').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'footpath-router').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'footpath-network').required).toBe(true);
     expect(manifest.resources.find(resource => resource.role === 'completion').required).toBe(true);
@@ -158,6 +160,7 @@ describe('Lago di Carezza offline package', () => {
     const app = fs.readFileSync(path.join(root, 'offline', 'offline-app.js'), 'utf8');
     expect(shell).toContain('src="../hike-gps-policy.js"');
     expect(shell).toContain('src="../route-rejoin.js"');
+    expect(shell).toContain('src="../hike-distance.js"');
     expect(shell).toContain('src="../footpath-router.js"');
     expect(shell.indexOf('hike-gps-policy.js')).toBeLessThan(shell.indexOf('offline-app.js'));
     expect(shell.indexOf('route-rejoin.js')).toBeLessThan(shell.indexOf('offline-app.js'));
@@ -165,6 +168,8 @@ describe('Lago di Carezza offline package', () => {
     expect(shell).toContain('id="offlineRouteWarning"');
     expect(app).toContain('DoloPawsGpsPolicy.assessFix');
     expect(app).toContain("assessment.offRouteState === 'confirmed'");
+    expect(app).toContain('DoloPawsHikeDistance.update');
+    expect(shell).toContain('id="offlineRejoinBtn"');
     expect(app).toContain('last valid fix');
     expect(app).toContain("? 'On trail'");
     expect(app).toContain("? 'Checking route position'");

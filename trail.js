@@ -1507,33 +1507,32 @@ function renderTrail(t){
           paint: { 'line-color': safetyColor(t.safetyLevel), 'line-width': 4 },
         });
 
-        // Direction-of-travel arrows, Komoot-style — repeated along the
-        // route line, automatically oriented by the order points appear in
-        // the path array. That order was deliberately built to match the
-        // walking direction described in the turn-by-turn directions above
-        // (e.g. Auronzo → Lavaredo → Locatelli → back to Auronzo), so the
-        // arrows and the written instructions always agree with each other
-        // without needing any separate direction flag.
-        map.addLayer({
-          id: 'single-trail-direction-arrows',
-          type: 'symbol',
-          source: 'single-trail-path',
-          layout: {
-            'symbol-placement': 'line',
-            'symbol-spacing': 70,
-            'text-field': '➤',
-            'text-size': 18,
-            'text-rotation-alignment': 'map',
-            'text-keep-upright': false,
-            'text-allow-overlap': true,
-            'text-ignore-placement': true,
-          },
-          paint: {
-            'text-color': '#ffffff',
-            'text-halo-color': safetyColor(t.safetyLevel),
-            'text-halo-width': 2,
-          },
-        });
+        // Closed loops are intentionally direction-neutral: hikers can join
+        // anywhere and walk clockwise or anticlockwise. Keep arrows only for
+        // routes whose start and end are genuinely different.
+        const routeIsLoop = distMeters(t.path[0], t.path[t.path.length - 1]) <= 75;
+        if(!routeIsLoop){
+          map.addLayer({
+            id: 'single-trail-direction-arrows',
+            type: 'symbol',
+            source: 'single-trail-path',
+            layout: {
+              'symbol-placement': 'line',
+              'symbol-spacing': 70,
+              'text-field': '➤',
+              'text-size': 18,
+              'text-rotation-alignment': 'map',
+              'text-keep-upright': false,
+              'text-allow-overlap': true,
+              'text-ignore-placement': true,
+            },
+            paint: {
+              'text-color': '#ffffff',
+              'text-halo-color': safetyColor(t.safetyLevel),
+              'text-halo-width': 2,
+            },
+          });
+        }
         const bounds = new maplibregl.LngLatBounds();
         t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
         map.fitBounds(bounds, { padding: 60, maxZoom: 17 });

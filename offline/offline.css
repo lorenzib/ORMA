@@ -27,6 +27,7 @@ button[disabled]{opacity:.55;cursor:wait}
 .location-state,.map-warning{margin:10px 2px 0;font-size:12px;line-height:1.45;color:var(--muted)}
 .map-warning{color:#86513e}
 .offline-route-warning{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:#fff0eb;color:var(--red);font-size:12px;font-weight:800}
+.offline-rejoin-button{margin:10px 2px 0;background:#1677ff}
 .hike-recovery{margin:12px 0 2px;padding:14px;border-radius:12px;background:#edf3ee;border:1px solid #cfddd2}
 .hike-recovery p{margin:5px 0 10px;color:var(--muted);font-size:12px;line-height:1.45}
 .hike-recovery-actions{display:flex;gap:8px;flex-wrap:wrap}

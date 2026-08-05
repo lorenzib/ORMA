@@ -18,7 +18,7 @@ describe('Alpe di Siusi offline package', () => {
     expect(manifest.trailId).toBe('alpe-siusi');
     expect(manifest.name).toBe('Alpe di Siusi Meadow Loop');
     expect(manifest.verificationStatus).toBe('field-review-required');
-    expect(manifest.resources).toHaveLength(13);
+    expect(manifest.resources).toHaveLength(14);
     expect(manifest.packageBytes).toBeLessThanOrEqual(manifest.packageBudgetBytes);
     expect(manifest.bounds).toEqual(graph.bounds);
     expect(manifest.image).toEqual({ width:1200, height:720 });

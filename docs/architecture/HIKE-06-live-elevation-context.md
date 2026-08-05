@@ -10,10 +10,13 @@ into the map as a persistent bottom panel. The map remains full-height behind
 the panel, while the hike status and map controls are repositioned above it.
 
 The live GPS update already drives the profile cursor. It now uses the nearest
-point along the route segment, rather than the nearest stored route vertex, and
-the visible readout reports:
+point along the route segment, rather than the nearest stored route vertex. The
+two distance concepts are deliberately kept separate:
 
-- progress in kilometres; and
+- the hike status reports distance actually walked since Start, independent of
+  the recommended trailhead or direction; and
+- the profile cursor reports position along the route geometry so it can show
+  the corresponding elevation; plus
 - interpolated **route elevation**, prefixed with `~` to avoid presenting sparse
   route samples as exact GPS altitude.
 
