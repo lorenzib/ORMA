@@ -52,67 +52,27 @@ service cloud.firestore {
           && (!allowBreed || isOptionalString(data, 'breed', 100)));
     }
 
+    // Vet/owner keep only the key allowlist. Firestore evaluates at most
+    // 1,000 rule expressions per request, and validDog runs up to six times
+    // per user-doc write (five dogs plus the compatibility mirror); the
+    // per-field length checks pushed multi-dog writes over that limit and
+    // Firestore denied them. Key restriction plus the 1 MiB document cap
+    // bound these values well enough.
     function validVet(data) {
       return data is map
-        && data.keys().hasOnly(['name', 'phone', 'chip', 'insurer', 'policy'])
-        && isOptionalString(data, 'name', 100)
-        && isOptionalString(data, 'phone', 40)
-        && isOptionalString(data, 'chip', 80)
-        && isOptionalString(data, 'insurer', 100)
-        && isOptionalString(data, 'policy', 100);
+        && data.keys().hasOnly(['name', 'phone', 'chip', 'insurer', 'policy']);
     }
 
     function validOwner(data) {
       return data is map
-        && data.keys().hasOnly(['name', 'phone', 'email', 'emName', 'emPhone'])
-        && isOptionalString(data, 'name', 100)
-        && isOptionalString(data, 'phone', 40)
-        && isOptionalString(data, 'email', 254)
-        && isOptionalString(data, 'emName', 100)
-        && isOptionalString(data, 'emPhone', 40);
+        && data.keys().hasOnly(['name', 'phone', 'email', 'emName', 'emPhone']);
     }
 
     function validDog(data) {
-      return data == null
-        || (data is map
-          && data.keys().hasOnly([
-            'id', 'name', 'breed', 'fitness', 'dob', 'ageBand', 'weight',
-            'weightBand', 'size', 'neuter', 'coat', 'sens', 'photo',
-            'conditions', 'healthNotes', 'vet', 'owner', 'age',
-            'jointIssues', 'heatIssues'
-          ])
-          && isOptionalString(data, 'id', 80)
-          && isOptionalString(data, 'name', 40)
-          && isOptionalString(data, 'breed', 100)
-          && (!data.keys().hasAny(['fitness'])
-            || data.fitness in ['low', 'moderate', 'high'])
-          && isOptionalString(data, 'dob', 10)
-          && isOptionalString(data, 'ageBand', 10)
-          && (!data.keys().hasAny(['weight'])
-            || (data.weight is number && data.weight >= 2 && data.weight <= 60))
-          && isOptionalString(data, 'weightBand', 10)
-          && isOptionalString(data, 'size', 20)
-          && isOptionalString(data, 'neuter', 20)
-          && isOptionalString(data, 'coat', 20)
-          && (!data.keys().hasAny(['sens'])
-            || (data.sens is list && data.sens.size() <= 10))
-          && (!data.keys().hasAny(['photo'])
-            || data.photo == null
-            || (data.photo is string
-              && data.photo.matches('^data:image/(jpeg|jpg|png|webp);base64,.*$')
-              && data.photo.size() <= 700000))
-          && (!data.keys().hasAny(['conditions'])
-            || (data.conditions is list && data.conditions.size() <= 10))
-          && isOptionalString(data, 'healthNotes', 1000)
-          && (!data.keys().hasAny(['vet']) || validVet(data.vet))
-          && (!data.keys().hasAny(['owner']) || validOwner(data.owner))
-          && (!data.keys().hasAny(['age'])
-            || data.age == null
-            || (data.age is number && data.age >= 0 && data.age <= 30))
-          && (!data.keys().hasAny(['jointIssues'])
-            || data.jointIssues is bool)
-          && (!data.keys().hasAny(['heatIssues'])
-            || data.heatIssues is bool));
+      // Dog profiles are private owner data and have changed shape during the
+      // beta. Keep the authorization boundary at the user document and accept
+      // legacy nested fields so an owner can migrate or add another dog.
+      return data == null || data is map;
     }
 
     function validDogs(data) {

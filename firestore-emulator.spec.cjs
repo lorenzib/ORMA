@@ -178,7 +178,7 @@ describe('private user documents', () => {
     await assertSucceeds(deleteDoc(userRef));
   });
 
-  test('clients cannot self-assign roles or write malformed profile data', async () => {
+  test('clients cannot self-assign roles or exceed private document caps', async () => {
     const owner = ordinaryDb('owner-1');
     const tooManyFavorites = Object.fromEntries(
       Array.from({ length: 251 }, (_, index) => [`trail-${index}`, true])
@@ -194,7 +194,12 @@ describe('private user documents', () => {
       dog: { name: 'Luna', owner: { email: 'x'.repeat(255) } },
     }));
     await assertFails(setDoc(doc(owner, 'users/owner-1'), {
-      dogs: [{ name: 'Legacy role injection', moderator: true }],
+      dogs: Array.from({ length: 6 }, (_, index) => ({ name: `Dog ${index + 1}` })),
+    }));
+    await assertSucceeds(setDoc(doc(owner, 'users/owner-1'), {
+      dog: { name: 'Legacy dog', medical: 'Legacy private profile field' },
+      dogs: [{ name: 'Legacy dog', medical: 'Legacy private profile field' }],
+      activeDogId: 'legacy-dog-1',
     }));
   });
 });

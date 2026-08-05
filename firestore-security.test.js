@@ -47,6 +47,7 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain('function validDogs(data)');
     expect(rules).toContain("'favorites', 'dog', 'dogs', 'activeDogId'");
     expect(rules).toContain('data.size() <= 5');
+    expect(rules).toContain('return data == null || data is map;');
     expect(rules).not.toContain('request.resource.data.dogs == resource.data.dogs');
     expect(userValidator).not.toContain('contributor');
     expect(userValidator).not.toContain('moderator');
