@@ -14,9 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260805-2">
+<link rel="stylesheet" href="styles.css?v=20260805-3">
 <style>
-.sg-wrap{max-width:1200px;margin:0;padding:24px 24px 60px;}
 .sg-emergency{background:var(--emergency-bg);color:var(--emergency-fg);border-radius:var(--radius-panel);padding:22px 26px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:20px;align-items:center;}
 .sg-emergency .mark{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.2);display:grid;place-items:center;font:900 26px 'Inter',sans-serif;color:#fff;}
 .sg-emergency-head{display:flex;align-items:center;gap:9px;margin-bottom:5px;flex-wrap:wrap;}
@@ -53,7 +52,6 @@
   .hp-footer .hp-footer-grid{grid-template-columns:1fr 1fr;}
 }
 @media(max-width:660px){
-  .sg-wrap{padding:20px 18px 44px;}
   .sg-emergency{grid-template-columns:1fr;align-items:stretch;padding:18px;}
   .sg-112 .chip{flex:1;}
   .sg-topics,.sg-lib{grid-template-columns:1fr;}
@@ -80,7 +78,7 @@
   <p class="section-page-subtitle">The things that cause trouble on alpine trails are rarely the elevation. They are paws, heat, pace, and knowing when to turn back.</p>
 </header>
 
-<main class="sg-wrap">
+<main class="sg-wrap section-page-wrap">
   <section class="sg-emergency" aria-labelledby="emergencyHeading">
     <span class="mark" aria-hidden="true">!</span>
     <div>
