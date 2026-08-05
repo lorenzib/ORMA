@@ -20,6 +20,11 @@ function initDetailPois(map, trail){
   if (!trail || typeof trail.lat !== 'number' || typeof trail.lng !== 'number') return;
   const icons = window.DoloPawsIcons;
   const iconMinZoom = icons ? icons.ICON_MIN_ZOOM : 12;
+  const trailRegion = trail.region || (window.DoloPawsRegionalData
+    && window.DoloPawsRegionalData.regionForTrail(trail.id)) || 'dolomites';
+  const regionalPoiUrl = kind => window.DoloPawsRegionalData
+    ? window.DoloPawsRegionalData.poiUrl(trailRegion, kind)
+    : (kind === 'water' ? './water-sources-all-regions.geojson' : './huts-bars-all-regions.geojson');
 
   // Bounding box of the route (or trailhead) plus ~2 km padding.
   let minLat = trail.lat, maxLat = trail.lat, minLng = trail.lng, maxLng = trail.lng;
@@ -165,7 +170,7 @@ function initDetailPois(map, trail){
   }
 
   // Huts + food & drink (same file the homepage uses; browser-cached)
-  fetch('./huts-bars-all-regions.geojson')
+  fetch(regionalPoiUrl('huts-bars'))
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (!data) return;
@@ -185,7 +190,7 @@ function initDetailPois(map, trail){
     .catch(() => { /* nearby POIs are a bonus — never break the page */ });
 
   // Drinking water
-  fetch('./water-sources-all-regions.geojson')
+  fetch(regionalPoiUrl('water'))
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (!data) return;

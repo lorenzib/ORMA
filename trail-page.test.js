@@ -64,14 +64,18 @@ function loadTrailScript(overrides = {}){
 }
 
 describe('trail page map legend', () => {
-  test('docked map key starts collapsed so it does not cover the route', () => {
+  test('map key lives outside the map as a collapsed disclosure', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     document.body.innerHTML = html;
-    const legendDock = document.querySelector('.map-key--dock');
+    const legendKey = document.querySelector('.map-key--bar');
 
-    expect(legendDock).not.toBeNull();
-    expect(legendDock.hasAttribute('open')).toBe(false);
+    expect(legendKey).not.toBeNull();
+    expect(legendKey.hasAttribute('open')).toBe(false);
+    // In flow below the map, never overlaying the route.
+    expect(legendKey.closest('#trailMapBox')).toBeNull();
     expect(document.getElementById('legendChips')).not.toBeNull();
+    // The what-this-trail-is-about chip is gone from the map corner.
+    expect(document.getElementById('tdMapChip')).toBeNull();
   });
 
   test('contains a dedicated Nearby trails section and no bottom decision banner', () => {

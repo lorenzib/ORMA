@@ -61,14 +61,17 @@ h1,h2,h3{font-family:'Source Serif 4',serif;}
 /* Map hero */
 .trail-map-box{position:relative;height:396px;border-radius:20px;overflow:hidden;border:1px solid rgba(27,31,25,.1);margin-top:24px;background:linear-gradient(160deg,#d9e4cf 0%,#c7d6bb 45%,#e7ead9 100%);}
 #trailDetailMap{width:100%;height:100%;}
-.td-map-chip{position:absolute;left:16px;top:16px;z-index:6;max-width:calc(100% - 86px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px;font-weight:600;background:rgba(251,250,244,.94);padding:7px 13px;border-radius:9px;color:#2f5138;box-shadow:0 2px 8px rgba(0,0,0,.12);font-family:'Inter',sans-serif;}
 /* Keep custom controls in a dedicated bottom-right stack. MapLibre owns
    top-right; attribution owns the very bottom-right; the map key owns
    bottom-left. Fixed vertical slots prevent the custom buttons colliding. */
 .map-expand-btn{position:absolute;right:16px;bottom:52px;z-index:7;min-height:36px;font:600 12px 'Inter',sans-serif;background:var(--card);border:1px solid var(--paper-line);padding:7px 13px;border-radius:9px;box-shadow:0 2px 6px rgba(0,0,0,.15);cursor:pointer;color:var(--ink);}
 .trail-map-box .map-btn--terrain{right:16px;bottom:96px;z-index:7;}
-.map-key--dock{position:absolute;left:16px;bottom:16px;z-index:6;background:rgba(251,250,244,.94);border-radius:9px;padding:6px 10px;font-size:11px;box-shadow:0 2px 6px rgba(0,0,0,.12);max-width:calc(100% - 150px);}
-.map-key--dock summary{cursor:pointer;font-weight:600;color:#2f5138;}
+/* Map key sits under the map, in flow — a collapsible chip, never
+   covering the route. */
+.map-key--bar{margin:10px 2px 0;font-size:11.5px;}
+.map-key--bar>summary{display:inline-flex;align-items:center;gap:6px;background:var(--card,#fff);border:1px solid var(--paper-line,#E3DFD2);border-radius:999px;padding:7px 14px;font:700 12px 'Inter',sans-serif;color:#2f5138;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.map-key--bar[open]>summary{background:#EAF3EC;border-color:#9FC4B0;}
+.map-key--bar #mapLegend{padding:9px 4px 2px;}
 .route-data-notice{position:absolute;top:12px;left:12px;z-index:7;max-width:min(300px,calc(100% - 86px));margin:0;padding:10px 12px;border-radius:10px;background:rgba(251,250,244,.96);border:1px solid var(--paper-line);box-shadow:0 2px 8px rgba(0,0,0,.14);font:600 11.5px/1.45 'Inter',sans-serif;color:var(--ink);}
 .legend-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
 
@@ -227,12 +230,9 @@ h1,h2,h3{font-family:'Source Serif 4',serif;}
   .trail-map-box .map-btn--terrain{right:16px;bottom:98px;max-width:120px;padding:0 11px;}
   .trail-map-box.hike-status-visible .map-expand-btn{bottom:104px;}
   .trail-map-box.hike-status-visible .map-btn--terrain{bottom:150px;}
-  .trail-map-box.hike-status-visible .map-key--dock{bottom:104px;}
   #mapHikeStatus{bottom:max(10px,env(safe-area-inset-bottom)) !important;}
   #mapHikeRejoinBtn{bottom:100px!important;max-width:calc(100% - 32px);white-space:normal!important;}
   #mapHikeOffRoute{top:58px !important;max-width:calc(100% - 24px);white-space:normal !important;text-align:center;}
-  .map-key--dock{max-width:calc(100% - 78px);}
-  .map-key--dock[open]{right:70px;max-width:none;}
 }
 
 /* ============================================================
@@ -490,18 +490,16 @@ body{background:#EFECE2;}
    Bottom-left: map key, with the data notice docked above it. */
 .td2 .map-expand-btn{top:12px;right:56px;bottom:auto;height:36px;min-height:36px;}
 .td2 .trail-map-box.hike-status-visible .map-expand-btn{top:12px;bottom:auto;}
-.td2 .td-map-chip{top:16px;left:16px;}
-.td2 .td-map-toggle{top:58px;left:16px;}
-.td2 #routesToggle{top:100px;left:16px;}
-.td2 #nearbyToggle{top:142px;left:16px;}
-.td2 .td-live-pill{top:184px;left:16px;}
+.td2 .td-map-toggle{top:16px;left:16px;}
+.td2 #routesToggle{top:58px;left:16px;}
+.td2 #nearbyToggle{top:100px;left:16px;}
+.td2 .td-live-pill{top:142px;left:16px;}
 .td2 .route-data-notice{top:auto;bottom:60px;left:16px;}
 /* The hero button drives hike mode; the map's own start button appears
    only in fullscreen, where the hero is out of sight and an End control
-   is still needed. The km chip yields its slot to it there. */
+   is still needed. */
 .td2 #mapStartHikeBtn{display:none;}
 .td2 .trail-map-box.map-fs #mapStartHikeBtn{display:block;}
-.td2 .trail-map-box.map-fs .td-map-chip{display:none;}
 .td2 .trail-map-box.map-fs #trailDetailMap{height:100%!important;min-height:0;}
 .td2 .trail-map-box.map-fs .td2-elev{position:absolute;left:12px;right:12px;bottom:max(10px,env(safe-area-inset-bottom));z-index:8;padding:10px 14px;border:1px solid rgba(46,64,52,.16);border-radius:14px;background:rgba(255,255,255,.94);box-shadow:0 4px 18px rgba(23,42,28,.2);backdrop-filter:blur(8px);}
 .td2 .trail-map-box.map-fs .td2-elev-head{margin-bottom:2px;}
@@ -509,11 +507,8 @@ body{background:#EFECE2;}
 .td2 .trail-map-box.map-fs .td2-elev-figs{display:none!important;}
 .td2 .trail-map-box.map-fs #mapHikeStatus{bottom:132px!important;}
 .td2 .trail-map-box.map-fs #mapHikeRejoinBtn{bottom:218px!important;}
-.td2 .trail-map-box .map-key--dock{left:auto;right:16px;bottom:16px;}
 .td2 .trail-map-box.map-fs .td-layer-switch{left:max(12px,env(safe-area-inset-left));bottom:max(12px,env(safe-area-inset-bottom));}
-.td2 .trail-map-box.map-fs .map-key--dock{left:auto;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));}
-.td2 .trail-map-box.map-fs:has(.td2-elev:not([hidden])) .td-layer-switch,
-.td2 .trail-map-box.map-fs:has(.td2-elev:not([hidden])) .map-key--dock{bottom:132px;}
+.td2 .trail-map-box.map-fs:has(.td2-elev:not([hidden])) .td-layer-switch{bottom:132px;}
 .td2 .trail-map-box.map-fs .maplibregl-ctrl-top-right{top:env(safe-area-inset-top);right:env(safe-area-inset-right);}
 .td2 .trail-map-box.map-fs .map-expand-btn{top:max(12px,env(safe-area-inset-top));right:calc(56px + env(safe-area-inset-right));}
 
@@ -709,7 +704,6 @@ body{background:#EFECE2;}
       <div id="trailMapBox" class="trail-map-box">
         <div id="trailDetailMap"></div>
         <p id="routeDataNotice" class="route-data-notice" hidden></p>
-        <span class="td-map-chip" id="tdMapChip" hidden></span>
         <button id="poiToggle" type="button" class="td-map-toggle" aria-pressed="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/></svg> <span>Points of interest</span></button>
         <button id="routesToggle" type="button" class="td-map-toggle" aria-pressed="false"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 20c3-6 5-6 8-3s5 3 6-3"/><circle cx="5" cy="20" r="1.6" fill="currentColor" stroke="none"/><circle cx="19" cy="14" r="1.6" fill="currentColor" stroke="none"/></svg> <span>Marked routes</span></button>
         <button id="nearbyToggle" type="button" class="td-map-toggle" aria-pressed="false" hidden><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg> <span>Nearby trails</span></button>
@@ -721,13 +715,13 @@ body{background:#EFECE2;}
           <button type="button" data-maplayer="satellite" aria-pressed="false">Satellite</button>
           <button type="button" data-map3d aria-pressed="false">Elevation map</button>
         </div>
-        <details class="map-key map-key--dock"><summary data-i18n="trail.mapKey">Map key</summary>
-          <div id="mapLegend">
-            <span id="routeSwatch" style="display:none;"></span><span id="routeSwatchLabel" style="display:none;"></span>
-            <div id="legendChips" class="legend-chips"></div>
-          </div>
-        </details>
       </div>
+      <details class="map-key map-key--bar"><summary data-i18n="trail.mapKey">Map key</summary>
+        <div id="mapLegend">
+          <span id="routeSwatch" style="display:none;"></span><span id="routeSwatchLabel" style="display:none;"></span>
+          <div id="legendChips" class="legend-chips"></div>
+        </div>
+      </details>
       <div class="td2-elev" id="tdElevationPanel">
         <div class="td2-elev-head"><span class="td2-kick" id="tdElevH">Elevation</span><span class="td2-elev-status"><span class="td2-elev-live" id="tdElevLive">Awaiting position</span><span class="r" id="tdElevRange"></span></span></div>
         <svg id="elevProf" viewBox="0 0 1000 170" preserveAspectRatio="none"></svg>
@@ -895,9 +889,8 @@ body{background:#EFECE2;}
 <script src="scoring/recommendation-adapters-v1.js?v=20260728-1" defer></script>
 <script src="scoring.js?v=20260728-4" defer></script>
 <script src="trail-trust.js?v=20260728-4" defer></script>
-<script src="trails-data.js?v=20260717-3" defer></script>
-<script src="osm-trails-data.js" defer></script>
-<script src="osm-trails-savoy-data.js" defer></script>
+<script src="regions-runtime-manifest.js?v=20260805-2"></script>
+<script src="regional-trails-loader.js?v=20260805-2" data-default-region="trail"></script>
 <script src="trail-audits.js?v=20260717" defer></script>
 <script src="regions-config.js"></script>
 <script src="basemap-poi-click.js" defer></script>
@@ -913,11 +906,11 @@ body{background:#EFECE2;}
 <script src="hike-completions.js?v=20260729-1" defer></script>
 <script src="post-hike-outcomes.js?v=20260730-1" defer></script>
 <script src="hike-mode.js?v=20260804-1" defer></script>
-<script src="detail-pois.js?v=20260718" defer></script>
+<script src="detail-pois.js?v=20260805-1" defer></script>
 <script src="community-content-states.js?v=20260730-1" defer></script>
 <script src="trail-reports.js?v=20260730-1" defer></script>
-<script src="trail.js?v=20260805-1" defer></script>
-<script src="trail-blueprint.js?v=20260805-1" defer></script>
+<script src="trail.js?v=20260805-2" defer></script>
+<script src="trail-blueprint.js?v=20260805-2" defer></script>
 <script src="trail-detail-ui.js?v=20260722-2" defer></script>
 <script src="trail-mobile.js?v=20260722" defer></script>
 <script src="recommendation-decision.js?v=20260729-1" defer></script>

@@ -9,11 +9,15 @@
  * e.g. <script src="dog-routes-layer.js"></script>
  */
 
-function initializeDogRoutes(map) {
+function initializeDogRoutes(map, region) {
   // Guard against double-adding the source (same pitfall as water-sources).
   if (map.getSource('dog-routes')) return;
 
-  fetch('./dog-friendly-routes.geojson')
+  const activeRegion = region || 'dolomites';
+  const routesAsset = window.DoloPawsRegionalData
+    ? window.DoloPawsRegionalData.poiUrl(activeRegion, 'dog-routes')
+    : (activeRegion === 'savoy' ? './dog-friendly-routes-savoy.geojson' : './dog-friendly-routes.geojson');
+  fetch(routesAsset)
     .then(response => {
       if (!response.ok) throw new Error(`HTTP ${response.status}: Failed to load dog routes GeoJSON`);
       return response.json();

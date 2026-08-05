@@ -255,14 +255,6 @@
       riskLine.hidden = false;
     }
 
-    // Map overlay chip: "{km} km · loop/one way · {valley}"
-    const mapChip = $('tdMapChip');
-    if (mapChip) {
-      const loop = Array.isArray(t.path) && t.path.length > 1 && distMeters(t.path[0], t.path[t.path.length - 1]) < 200;
-      mapChip.textContent = `${t.distance} km · ${loop ? 'loop' : 'one way'}${t.valley ? ' · ' + t.valley : ''}`;
-      mapChip.hidden = false;
-    }
-
     // Elevation figures under the real chart; hide the block honestly
     // when the trail has no profile data.
     const prof = Array.isArray(t.elevationProfile) ? t.elevationProfile.map(p => Number(p.elev) || 0) : [];

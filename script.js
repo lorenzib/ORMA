@@ -123,7 +123,12 @@ let activeArea = 'all';
 const TRAILS_PER_PAGE = 15;
 let currentPage = 1;
 let lastFilterKey = '';            // legacy, kept for safety
-let activeRegion = 'dolomites';
+let activeRegion = (() => {
+  try {
+    const requested = new URLSearchParams(window.location.search).get('region');
+    return requested === 'savoy' ? 'savoy' : 'dolomites';
+  } catch(e) { return 'dolomites'; }
+})();
 let activeValley = 'all';
 let activeProvenance = 'all';      // 'all' | 'verified' | 'imported'
 let sortKey = 'match';             // 'match' | 'distance' | 'effort' — Companion sort control
@@ -792,7 +797,7 @@ function initTrailMap(){
     initializeWaterSources(trailMapInstance);
 
     // Initialize dog-friendly OSM routes from generated GeoJSON
-    if (typeof initializeDogRoutes === 'function') initializeDogRoutes(trailMapInstance);
+    if (typeof initializeDogRoutes === 'function') initializeDogRoutes(trailMapInstance, activeRegion);
 
     // Initialize mountain huts & bars from combined GeoJSON (Trentino, Veneto, Savoy)
     initializeHutsBars(trailMapInstance);
@@ -1069,7 +1074,11 @@ function renderAreaFilters(profile){
   if(window.DoloPawsRegions) window.DoloPawsRegions.assign(trails);
 
   const regionCounts = { dolomites: 0, savoy: 0 };
-  trails.forEach(t => { if(regionCounts[t.region] !== undefined) regionCounts[t.region]++; });
+  ['dolomites', 'savoy'].forEach(region => {
+    regionCounts[region] = window.DoloPawsRegionalData
+      ? window.DoloPawsRegionalData.trailCount(region)
+      : trails.filter(trail => trail.region === region).length;
+  });
 
   const valleys = window.DoloPawsRegions
     ? window.DoloPawsRegions.valleysFor(trails, activeRegion)
@@ -1105,11 +1114,21 @@ function renderAreaFilters(profile){
   `;
 
   row.querySelectorAll('.region-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      activeRegion = tab.dataset.region;
-      activeValley = 'all';
-      renderReturningHomepage(profile);
-      setCompanionPanelOpen(false);
+    tab.addEventListener('click', async () => {
+      const nextRegion = tab.dataset.region;
+      tab.disabled = true;
+      try {
+        if(window.DoloPawsRegionalData) await window.DoloPawsRegionalData.loadRegion(nextRegion);
+        activeRegion = nextRegion;
+        if(trailMapInstance) await updateRegionalMapData(trailMapInstance, nextRegion);
+        activeValley = 'all';
+        renderReturningHomepage(profile);
+        setCompanionPanelOpen(false);
+      } catch(e) {
+        showHomeActionStatus('That region could not be loaded. Check your connection and try again.');
+      } finally {
+        tab.disabled = false;
+      }
     });
   });
   row.querySelectorAll('[data-valley]').forEach(pill => {
@@ -1482,7 +1501,12 @@ function renderLiChips(){
   const areaOptions = [
     { label: 'Any area', pick(){ activeValley = 'all'; } },
     ...valleys.map(([v, n]) => ({ label: `${v} (${n})`, value: v, pick(){ activeValley = v; } })),
-    { label: otherLabel + ' →', pick(){ activeRegion = otherRegion; activeValley = 'all'; } },
+    { label: otherLabel + ' →', async pick(){
+      if(window.DoloPawsRegionalData) await window.DoloPawsRegionalData.loadRegion(otherRegion);
+      activeRegion = otherRegion;
+      if(trailMapInstance) await updateRegionalMapData(trailMapInstance, otherRegion);
+      activeValley = 'all';
+    } },
   ];
 
   const DIST_OPTS = [['any','Any'], ['u5','Under 5 km'], ['5to10','5–10 km'], ['10p','10 km+']];
@@ -1545,10 +1569,17 @@ function renderLiChips(){
         item.type = 'button';
         item.className = 'li-menu-item' + (o.selected ? ' li-chip-selected' : '');
         item.textContent = o.label;
-        item.addEventListener('click', () => {
-          o.pick();
-          liOpenChipKey = null;
-          renderReturningHomepage(currentProfileForAdjust);
+        item.addEventListener('click', async () => {
+          item.disabled = true;
+          try {
+            await o.pick();
+            liOpenChipKey = null;
+            renderReturningHomepage(currentProfileForAdjust);
+          } catch(e) {
+            showHomeActionStatus('That region could not be loaded. Check your connection and try again.');
+          } finally {
+            item.disabled = false;
+          }
         });
         menu.appendChild(item);
       });
@@ -2333,8 +2364,10 @@ function initializeWaterSources(map) {
   // Re-adding the same IDs throws and interrupts map-load setup.
   const hasSource = !!map.getSource('water-sources');
   if(!hasSource){
-    // Fetch the combined GeoJSON data from all regions (Trentino, Veneto, Savoy)
-    fetch('./water-sources-all-regions.geojson')
+    const waterAsset = window.DoloPawsRegionalData
+      ? window.DoloPawsRegionalData.poiUrl(activeRegion, 'water')
+      : './water-sources-all-regions.geojson';
+    fetch(waterAsset)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}: Failed to load GeoJSON`);
@@ -2342,7 +2375,7 @@ function initializeWaterSources(map) {
         return response.json();
       })
       .then(geojsonData => {
-        console.log(`✅ Loaded ${geojsonData.features?.length || 0} water sources from Trentino, Veneto, and Savoy`);
+        console.log(`✅ Loaded ${geojsonData.features?.length || 0} water sources for ${activeRegion}`);
         
         // Convert any Polygon features (OSM "way" fountains) to Point centroids,
         // since circle layers and clustering only render Point geometries.
@@ -2594,7 +2627,10 @@ function filterWaterSources(map, type) {
 function initializeHutsBars(map) {
   if(map.getSource('mountain-huts') || map.getSource('bars-cafes')) return;
 
-  fetch('./huts-bars-all-regions.geojson')
+  const hutsBarsAsset = window.DoloPawsRegionalData
+    ? window.DoloPawsRegionalData.poiUrl(activeRegion, 'huts-bars')
+    : './huts-bars-all-regions.geojson';
+  fetch(hutsBarsAsset)
     .then(response => {
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: Failed to load huts/bars GeoJSON`);
@@ -2623,7 +2659,7 @@ function initializeHutsBars(map) {
       const huts = features.filter(f => isHut(f.properties));
       const bars = features.filter(f => !isHut(f.properties));
 
-      console.log(`✅ Loaded ${huts.length} mountain huts and ${bars.length} bars/cafés (Trentino, Veneto, Savoy)`);
+      console.log(`✅ Loaded ${huts.length} mountain huts and ${bars.length} bars/cafés for ${activeRegion}`);
 
       // Register with basemap-poi-click.js so clicks on the base map's own
       // icons can be enriched with these richer OSM tags (Tier 2).
@@ -2652,6 +2688,53 @@ function initializeHutsBars(map) {
     .catch(error => {
       console.error('❌ Error loading huts/bars GeoJSON:', error.message);
     });
+}
+
+async function updateRegionalMapData(map, region) {
+  if(!map || !window.DoloPawsRegionalData) return;
+  const regional = window.DoloPawsRegionalData;
+  const urls = [
+    regional.poiUrl(region, 'water'),
+    regional.poiUrl(region, 'huts-bars'),
+    regional.poiUrl(region, 'dog-routes'),
+  ];
+  if(urls.some(url => !url)) return;
+  const responses = await Promise.all(urls.map(url => fetch(url)));
+  if(responses.some(response => !response.ok)) throw new Error('Regional map data unavailable');
+  const [waterData, hutsBarsData, dogRoutesData] = await Promise.all(responses.map(response => response.json()));
+
+  const pointFeatures = (waterData.features || []).map(feature => {
+    const geometry = feature.geometry;
+    if(!geometry || geometry.type === 'Point') return feature;
+    const ring = geometry.type === 'Polygon'
+      ? (geometry.coordinates[0] || [])
+      : geometry.type === 'MultiPolygon'
+        ? ((geometry.coordinates[0] || [])[0] || [])
+        : [];
+    if(!ring.length) return null;
+    const lng = ring.reduce((sum, point) => sum + point[0], 0) / ring.length;
+    const lat = ring.reduce((sum, point) => sum + point[1], 0) / ring.length;
+    return { ...feature, geometry: { type: 'Point', coordinates: [lng, lat] } };
+  }).filter(Boolean);
+  const waterSource = map.getSource('water-sources');
+  if(waterSource) waterSource.setData({ type: 'FeatureCollection', features: pointFeatures });
+
+  const amenities = (hutsBarsData.features || []).filter(feature => feature.geometry && feature.geometry.type === 'Point');
+  const isHut = properties => properties && (
+    properties.tourism === 'alpine_hut' || properties.tourism === 'wilderness_hut' || properties.amenity === 'shelter'
+  );
+  const huts = amenities.filter(feature => isHut(feature.properties));
+  const bars = amenities.filter(feature => !isHut(feature.properties));
+  const hutsSource = map.getSource('mountain-huts');
+  const barsSource = map.getSource('bars-cafes');
+  if(hutsSource) hutsSource.setData({ type: 'FeatureCollection', features: huts });
+  if(barsSource) barsSource.setData({ type: 'FeatureCollection', features: bars });
+  window._dolopawsHuts = huts;
+  window._dolopawsBars = bars;
+  if(typeof registerPoiFeatures === 'function') registerPoiFeatures(amenities);
+
+  const routesSource = map.getSource('dog-routes');
+  if(routesSource) routesSource.setData(dogRoutesData);
 }
 
 // Shared helper: adds the full POI layer set for one clustered source.

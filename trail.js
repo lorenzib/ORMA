@@ -1284,8 +1284,8 @@ function renderTrail(t){
           poiVisible = !poiVisible;
           poiToggleBtn.classList.toggle('on', poiVisible);
           poiToggleBtn.setAttribute('aria-pressed', poiVisible ? 'true' : 'false');
-          const legendDock = document.querySelector('.map-key--dock');
-          if (legendDock) legendDock.style.display = poiVisible ? '' : 'none';
+          const legendKey = document.querySelector('.map-key--bar');
+          if (legendKey) legendKey.style.display = poiVisible ? '' : 'none';
           applyPoiVisibility();
         });
       }

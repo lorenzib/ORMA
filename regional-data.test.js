@@ -1,0 +1,64 @@
+const fs = require('fs');
+const path = require('path');
+const vm = require('vm');
+
+const root = __dirname;
+const read = file => fs.readFileSync(path.join(root, file), 'utf8');
+const json = file => JSON.parse(read(file));
+
+function loadRegionalTrailFile(file) {
+  const context = { window: {} };
+  vm.createContext(context);
+  vm.runInContext(read(file), context, { filename: file });
+  return JSON.parse(JSON.stringify(context.window.trails));
+}
+
+describe('DATA-03 regional runtime boundaries', () => {
+  const manifest = json('data/regions-manifest.json');
+
+  test('manifest maps every published trail to exactly one regional payload', () => {
+    const dolomites = loadRegionalTrailFile('data/regions/dolomites-trails.js');
+    const savoy = loadRegionalTrailFile('data/regions/savoy-trails.js');
+    const ids = [...dolomites, ...savoy].map(trail => trail.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    expect(dolomites).toHaveLength(manifest.regions.dolomites.trailCount);
+    expect(savoy).toHaveLength(manifest.regions.savoy.trailCount);
+    expect(Object.keys(manifest.trailRegion)).toHaveLength(ids.length);
+    expect(dolomites.every(trail => trail.region === 'dolomites')).toBe(true);
+    expect(savoy.every(trail => trail.region === 'savoy')).toBe(true);
+  });
+
+  test('each region owns separate trail, water, amenity and dog-route assets', () => {
+    for (const region of ['dolomites', 'savoy']) {
+      const entry = manifest.regions[region];
+      expect(entry.trails).toContain(`${region}-trails.js`);
+      expect(entry.water).toContain(`${region}-water.geojson`);
+      expect(entry.hutsBars).toContain(`${region}-huts-bars.geojson`);
+      expect(entry.dogRoutes).toMatch(/dog-friendly-routes/);
+      [entry.trails, entry.water, entry.hutsBars, entry.dogRoutes].forEach(file => {
+        expect(fs.existsSync(path.join(root, file))).toBe(true);
+      });
+    }
+  });
+
+  test('homepage and detail page load one region while catalog surfaces may request all', () => {
+    expect(read('index.html')).toContain('data-default-region="dolomites"');
+    expect(read('trail.html')).toContain('data-default-region="trail"');
+    expect(read('browse-trails.html')).toContain('data-default-region="all"');
+    expect(read('index.html')).not.toContain('osm-trails-savoy-data.js');
+    expect(read('trail.html')).not.toContain('osm-trails-savoy-data.js');
+  });
+
+  test('runtime POI consumers request the selected regional asset', () => {
+    expect(read('script.js')).toContain("DoloPawsRegionalData.poiUrl(activeRegion, 'water')");
+    expect(read('script.js')).toContain("DoloPawsRegionalData.poiUrl(activeRegion, 'huts-bars')");
+    expect(read('detail-pois.js')).toContain("regionalPoiUrl('water')");
+    expect(read('detail-pois.js')).toContain("regionalPoiUrl('huts-bars')");
+    expect(read('dog-routes-layer.js')).toContain("poiUrl(activeRegion, 'dog-routes')");
+  });
+
+  test('static generation still reads the complete canonical source catalog', () => {
+    const generator = read('scripts/generate-trail-pages.js');
+    expect(generator).toContain("'trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js'");
+  });
+});
