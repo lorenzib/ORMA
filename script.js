@@ -1543,6 +1543,31 @@ function renderLiConditionsCard(profile, displayList){
 }
 
 // One-time event wiring for the shell chrome (menus, search, logout…).
+// Bell badge from the derived feed (saved-trail advisories, audits, profile
+// events) minus what this browser has already opened. Runs at shell init and
+// again once favorites have loaded, since advisories depend on them.
+function refreshLiBellBadge(){
+  const dot = document.getElementById('liBellDot');
+  let bellUnread = 0;
+  try {
+    if(window.DoloPawsNotifFeed && typeof trails !== 'undefined'){
+      let ev = null;
+      try { ev = JSON.parse(localStorage.getItem('dolopaws-notif-profile-event') || 'null'); } catch(e){}
+      let seenList = [];
+      try {
+        const raw = JSON.parse(localStorage.getItem('dolopaws-notif-seen') || '[]');
+        if(Array.isArray(raw)) seenList = raw;
+      } catch(e){}
+      const feed = window.DoloPawsNotifFeed.build({
+        trails, favorites: currentFavorites || {}, profileEvent: ev, now: Date.now()
+      });
+      bellUnread = window.DoloPawsNotifFeed.unreadIds(feed, seenList).length;
+      localStorage.setItem('dolopaws-notif-unread', String(bellUnread));
+    }
+  } catch(e){}
+  if(dot) dot.hidden = bellUnread === 0;
+}
+
 function initLoggedInShell(){
   if(liShellWired) return;
   const filtersBtn = document.getElementById('liFiltersBtn');
@@ -1594,8 +1619,7 @@ function initLoggedInShell(){
   const bellBtn = document.getElementById('liBellBtn');
   const bellMenu = document.getElementById('liBellMenu');
   if(bellBtn && bellMenu){
-    const dot = document.getElementById('liBellDot');
-    if(dot) dot.hidden = false;
+    refreshLiBellBadge();
     bellMenu.hidden = true;
     bellBtn.setAttribute('aria-haspopup', 'false');
     bellBtn.addEventListener('click', () => { window.location.href = 'notifications.html'; });
@@ -1634,7 +1658,7 @@ function initLoggedInShell(){
   if(logoutBtn) logoutBtn.addEventListener('click', async () => {
     liCloseMenus();
     if(liDevView){ window.location.href = 'index.html'; return; }
-    if(window.DoloPawsAuth) await window.DoloPawsAuth.logOut();
+    window.location.href = 'account.html?logout=1';
   });
 }
 
@@ -1674,6 +1698,7 @@ async function renderReturningHomepage(profile){
   renderAreaFilters(profile);
   renderDogProfileCard(profile);
   renderLiHeader(profile);
+  refreshLiBellBadge();
   renderLiControls();
 
   const name = (profile && profile.name) ? profile.name : 'there';

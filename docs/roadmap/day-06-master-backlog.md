@@ -114,10 +114,10 @@ All P0 and P1 work
 
 ### OFF-03 — Implement account-gated package storage and lifecycle
 
-- **Status:** In progress; IndexedDB multi-package registry and legacy
-  migration, owner metadata, restartable recovery, storage preflight, and
-  package management complete (2026-08-05). Logout/account-deletion cleanup
-  choices and remaining physical-device coverage remain open.
+- **Status:** Complete in code (2026-08-05): IndexedDB multi-package registry,
+  legacy migration, owner metadata, restartable recovery, storage preflight,
+  package management, and explicit logout/account-deletion cleanup choices.
+  Physical-device coverage remains open.
 - **Priority:** P0
 - **Size:** L
 - **Depends on:** OFF-02, AUTH-01

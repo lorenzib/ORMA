@@ -145,6 +145,18 @@
     localStorage.removeItem(metadataKey(trailId));
   }
 
+  async function deleteMetadataDatabase(){
+    if(!window.indexedDB) return false;
+    return new Promise(resolve => {
+      let request;
+      try{ request = window.indexedDB.deleteDatabase(METADATA_DB_NAME); }
+      catch(error){ resolve(false); return; }
+      request.onsuccess = () => resolve(true);
+      request.onerror = () => resolve(false);
+      request.onblocked = () => resolve(false);
+    });
+  }
+
   function formatInstalledDate(value){
     const date = new Date(value);
     if(!value || Number.isNaN(date.getTime())) return 'date unavailable';
@@ -522,6 +534,29 @@
     await removePackageMetadata(trailId);
   }
 
+  async function removeAllPackages(){
+    if('caches' in window){
+      const names = await caches.keys();
+      await Promise.all(names
+        .filter(name => name.startsWith(CACHE_PREFIX))
+        .map(name => caches.delete(name)));
+    }
+    for(const trailId of Object.keys(PACKAGES)){
+      await removePackageMetadata(trailId);
+    }
+    await deleteMetadataDatabase();
+    try{
+      const keys = [];
+      for(let index = 0; index < localStorage.length; index += 1){
+        const key = localStorage.key(index);
+        if(key && key.startsWith(METADATA_PREFIX)) keys.push(key);
+      }
+      keys.forEach(key => localStorage.removeItem(key));
+      localStorage.removeItem(OWNER_SALT_KEY);
+    }catch(error){ /* cache deletion remains the authoritative cleanup */ }
+    return true;
+  }
+
   async function listInstalledPackages(user){
     return (await listPackageStates(user)).filter(record => record.usable);
   }
@@ -830,6 +865,7 @@
     listPackageStates,
     availablePackage,
     removePackage,
+    removeAllPackages,
     ownerMarkerFor,
     ownershipState,
     ownershipLabel,

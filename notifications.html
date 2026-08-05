@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Notifications | DoloPaws</title>
-<link rel="icon" href="favicon-32.png"><link rel="stylesheet" href="styles.css?v=20260730-7">
+<link rel="icon" href="favicon-32.png"><link rel="stylesheet" href="styles.css?v=20260730-8">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -11,17 +11,17 @@
 <div class="topnav"><a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a><div class="links"><a href="browse-trails.html">Browse all Trails</a><a href="collections.html">Collections</a><a href="safety-guide.html">Safety guide</a><a href="settings.html">Settings</a></div></div>
 <main class="flow-wrap">
   <header class="flow-titlebar notifications-head"><h1>Notifications</h1><div class="notifications-tools"><button id="markRead" class="notifications-read">Mark all as read</button><a class="notifications-close" href="index.html" aria-label="Close notifications">×</a></div></header>
-  <p class="flow-kicker">Today</p>
-  <section class="notification-group">
-    <article class="notification-row notification-row--alert"><span class="notification-icon"><span data-dp-icon="warning" data-dp-icon-size="17"></span></span><div class="notification-copy"><b>Hazard reported: Val Fiscalina Weg</b><span class="notification-time">2h ago</span><p>Loose scree above the second bridge, reported this morning. Route still open.</p></div><span class="notification-dot"></span></article>
-    <article class="notification-row notification-row--alert"><span class="notification-icon"><span data-dp-icon="heat" data-dp-icon-size="17"></span></span><div class="notification-copy"><b>Heat warning for saved trails</b><span class="notification-time">6h ago</span><p>Alpe di Siusi meadow loop crosses into caution today. Consider an early start.</p></div><span class="notification-dot"></span></article>
-    <article class="notification-row"><span class="notification-icon"><span data-dp-icon="new" data-dp-icon-size="17"></span></span><div class="notification-copy"><b>New trail in Val Pusteria</b><span class="notification-time">9h ago</span><p>Prato Piazza Rundweg just went live: 4.2 km, low-risk, water at the trailhead.</p></div></article>
-  </section>
-  <p class="flow-kicker">Earlier this week</p>
-  <section class="notification-group">
-    <article class="notification-row"><span class="notification-icon"><span data-dp-icon="verified" data-dp-icon-size="17"></span></span><div class="notification-copy"><b>Lago di Braies Rundweg is now route-audited</b><span class="notification-time">Mon</span><p>Walked and measured by DoloPaws. Its rating and facts have been confirmed.</p></div></article>
-    <article class="notification-row"><span class="notification-icon"><span data-dp-icon="dog" data-dp-icon-size="17"></span></span><div class="notification-copy"><b>Nala’s profile updated</b><span class="notification-time">Sun</span><p>6 scores changed after you added a health condition.</p></div></article>
-  </section>
+  <p class="flow-kicker" id="notifTodayKicker" hidden>Today</p>
+  <section class="notification-group" id="notifToday" hidden></section>
+  <p class="flow-kicker" id="notifEarlierKicker" hidden>Earlier</p>
+  <section class="notification-group" id="notifEarlier" hidden></section>
+  <div class="notifications-empty" id="notifEmpty" hidden>
+    <h2>You’re all caught up</h2>
+    <p>Heat and trail advisories for your saved trails, route audits and profile updates land here.</p>
+  </div>
 </main>
-<script src="mobile-nav.js?v=20260730-8"></script><script src="icon-system.js"></script><script src="notifications.js"></script>
+<script type="module" src="firebase-init.js"></script>
+<script src="trails-data.js?v=20260717-3"></script>
+<script src="mobile-nav.js?v=20260730-9"></script><script src="icon-system.js"></script>
+<script src="notifications-feed.js?v=20260805-1"></script><script src="notifications.js?v=20260805-1"></script>
 </body></html>

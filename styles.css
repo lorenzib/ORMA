@@ -845,9 +845,13 @@ img,svg{max-width:100%;height:auto;}
 .notifications-read{border:0;background:none;color:var(--accent);font:700 13px var(--font-sans);cursor:pointer;padding:4px;}
 .notifications-close{width:34px;height:34px;border-radius:50%;border:var(--border-strong);background:var(--card);display:grid;place-items:center;text-decoration:none;font-size:17px;color:var(--ink-soft);}
 .notification-group{overflow:hidden;border:var(--border);border-radius:var(--radius-panel);background:var(--card);margin-bottom:26px;}
-.notification-row{display:flex;gap:13px;align-items:flex-start;padding:15px 17px;border-bottom:1px solid #EDE9DD;}
+.notification-row{display:flex;gap:13px;align-items:flex-start;padding:15px 17px;border-bottom:1px solid #EDE9DD;color:inherit;text-decoration:none;}
 .notification-row:last-child{border-bottom:0;}
-.notification-row--alert{background:var(--sage-dim);}
+a.notification-row{cursor:pointer;transition:background .12s ease;}
+a.notification-row:hover{background:#F3F0E4;}
+/* Unread carries the tint; --alert only recolors the icon chip. */
+.notification-row--unread{background:var(--sage-dim);}
+a.notification-row--unread:hover{background:#E2E7DA;}
 .notification-icon{flex:none;width:36px;height:36px;border-radius:10px;background:var(--sage-dim);display:grid;place-items:center;color:#2C5C34;font-weight:800;}
 .notification-row--alert .notification-icon{background:var(--risk-mod-bg,#F5E4C6);color:#9C3A25;}
 .notification-copy{flex:1;min-width:0;}
@@ -855,6 +859,9 @@ img,svg{max-width:100%;height:auto;}
 .notification-time{display:block;font-size:11.5px;color:#8A9689;margin-top:2px;}
 .notification-copy p{margin:6px 0 0;font-size:13px;color:var(--ink-soft);line-height:1.5;}
 .notification-dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:6px;}
+.notifications-empty{border:var(--border);border-radius:var(--radius-panel);background:var(--card);padding:38px 24px;text-align:center;}
+.notifications-empty h2{font-size:19px;margin:0 0 8px;}
+.notifications-empty p{margin:0 auto;max-width:44ch;font-size:13.5px;color:var(--ink-soft);line-height:1.6;}
 
 /* full search */
 .search-composer{display:flex;align-items:center;gap:10px;margin-bottom:16px;}

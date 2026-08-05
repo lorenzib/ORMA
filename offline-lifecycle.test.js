@@ -130,6 +130,46 @@ describe('OFF-03 offline package ownership metadata', () => {
       .resolves.toMatchObject({ version:'fallback-v1' });
   });
 
+  test('removes every DoloPaws package cache and registry without touching other caches', async () => {
+    const deletedCaches = [];
+    Object.defineProperty(window, 'caches', {
+      configurable:true,
+      value:{
+        keys:jest.fn().mockResolvedValue([
+          'dolopaws-trail-lago-carezza-v1',
+          'dolopaws-trail-alpe-siusi-v1',
+          'another-app-cache',
+        ]),
+        delete:jest.fn(async name => { deletedCaches.push(name); return true; }),
+      },
+    });
+    const deleteRequest = {};
+    Object.defineProperty(window, 'indexedDB', {
+      configurable:true,
+      value:{
+        deleteDatabase:jest.fn(() => {
+          queueMicrotask(() => deleteRequest.onsuccess && deleteRequest.onsuccess());
+          return deleteRequest;
+        }),
+      },
+    });
+    localStorage.setItem('dolopaws-offline:lago-carezza', '{}');
+    localStorage.setItem('dolopaws-offline:alpe-siusi', '{}');
+    localStorage.setItem('dolopaws-offline-owner-salt', 'salt');
+    localStorage.setItem('another-site-key', 'keep');
+
+    await window.DoloPawsOffline.removeAllPackages();
+
+    expect(deletedCaches).toEqual([
+      'dolopaws-trail-lago-carezza-v1',
+      'dolopaws-trail-alpe-siusi-v1',
+    ]);
+    expect(localStorage.getItem('dolopaws-offline:lago-carezza')).toBeNull();
+    expect(localStorage.getItem('dolopaws-offline:alpe-siusi')).toBeNull();
+    expect(localStorage.getItem('dolopaws-offline-owner-salt')).toBeNull();
+    expect(localStorage.getItem('another-site-key')).toBe('keep');
+  });
+
   test('keeps ownership labels identity-free and dates human-readable', () => {
     const labels = [
       'current-account',

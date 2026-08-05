@@ -75,8 +75,8 @@
   .toggle-track .knob{position:absolute;top:2px;left:2px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:left .18s;}
   .toggle-track.on{background:var(--accent);}
   .toggle-track.on .knob{left:20px;}
-  #cancelOverlay{display:flex;}
-  #cancelOverlay[hidden]{display:none;}
+  #cancelOverlay,#logoutOverlay{display:flex;}
+  #cancelOverlay[hidden],#logoutOverlay[hidden]{display:none;}
   #moderatorToolsBox[hidden]{display:none !important;}
   @media (max-width:820px){
     .acct-wrap{padding:22px 18px 50px;}
@@ -113,6 +113,8 @@
     .ep-mfooter{display:flex;gap:10px;align-items:center;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:14px 16px calc(14px + env(safe-area-inset-bottom));background:rgba(247,244,235,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(27,31,25,.08);}
     #cancelOverlay{align-items:flex-end !important;padding:0 !important;}
     #cancelOverlay>.acct-card{max-width:none !important;border-radius:22px 22px 0 0;padding:24px 20px calc(24px + env(safe-area-inset-bottom)) !important;}
+    #logoutOverlay{align-items:flex-end !important;padding:0 !important;}
+    #logoutOverlay>.acct-card{max-width:none !important;border-radius:22px 22px 0 0;padding:24px 20px calc(24px + env(safe-area-inset-bottom)) !important;}
   }
 </style>
 </head>
@@ -384,7 +386,7 @@
         </div>
 
         <div id="cancelSection" class="acct-anchor" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid #EDE9DD;padding-top:20px;">
-          <div style="max-width:60%;min-width:220px;"><div style="font-size:13px;font-weight:800;color:#9C3A25;margin-bottom:3px;">Cancel account</div><p class="hint" style="margin:0;">Permanently deletes your account, all dog profiles, saved trails and journals. Can't be undone.</p></div>
+          <div style="max-width:60%;min-width:220px;"><div style="font-size:13px;font-weight:800;color:#9C3A25;margin-bottom:3px;">Cancel account</div><p class="hint" style="margin:0;">Permanently deletes your sign-in and main DoloPaws profile. Downloaded public maps are handled separately.</p></div>
           <div style="display:flex;gap:10px;"><button type="button" id="logOutBtn" class="btn-g">Log out</button><button type="button" id="openCancelBtn" style="padding:12px 20px;border-radius:12px;border:none;background:#9C3A25;color:#fff;font-weight:800;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Cancel account</button></div>
         </div>
       </section>
@@ -402,12 +404,26 @@
   </div>
 </div>
 
+<!-- LOGOUT LOCAL-DATA CHOICE -->
+<div id="logoutOverlay" hidden style="position:fixed;inset:0;z-index:81;background:rgba(23,31,25,.5);align-items:center;justify-content:center;padding:24px;">
+  <div class="acct-card" role="dialog" aria-modal="true" aria-labelledby="logoutTitle" style="max-width:460px;width:100%;padding:26px 24px;">
+    <div class="serif" id="logoutTitle" style="font-size:21px;margin-bottom:8px;">Log out on this device?</div>
+    <p id="logoutDataMessage" style="font-size:13px;color:#6B7A6E;line-height:1.55;margin:0 0 18px;">Choose whether this browser should keep your downloaded trails and private hike records for your next login.</p>
+    <div style="display:grid;gap:10px;">
+      <button type="button" id="keepLocalLogoutBtn" class="btn-p" style="width:100%;">Log out and keep downloads</button>
+      <button type="button" id="removeLocalLogoutBtn" style="width:100%;padding:12px 20px;border-radius:12px;border:1px solid #9C3A25;background:#fff;color:#9C3A25;font-weight:800;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Remove all local data and log out</button>
+      <button type="button" id="closeLogoutBtn" class="btn-g" style="width:100%;">Cancel</button>
+    </div>
+    <p id="logoutStatus" class="hint" hidden style="margin:12px 0 0;color:#9C3A25;"></p>
+  </div>
+</div>
+
 <!-- CANCEL-ACCOUNT CONFIRMATION -->
 <div id="cancelOverlay" hidden style="position:fixed;inset:0;z-index:80;background:rgba(23,31,25,.5);align-items:center;justify-content:center;padding:24px;">
   <div class="acct-card" role="dialog" aria-modal="true" aria-labelledby="cancelTitle" style="max-width:420px;width:100%;padding:26px 24px;">
     <div style="width:44px;height:44px;border-radius:12px;background:#F3D9D2;display:grid;place-items:center;margin-bottom:14px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9C3A25" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg></div>
     <div class="serif" id="cancelTitle" style="font-size:21px;margin-bottom:6px;">Cancel your account?</div>
-    <p style="font-size:13px;color:#6B7A6E;line-height:1.5;margin:0 0 16px;">This permanently deletes your account, all dog profiles, saved trails and journals. This <b style="color:#9C3A25;">can't be undone</b>.</p>
+    <p style="font-size:13px;color:#6B7A6E;line-height:1.5;margin:0 0 16px;">This permanently deletes your sign-in and main DoloPaws profile. Moderation records that must be retained for safety or legal reasons are separate. This <b style="color:#9C3A25;">can't be undone</b>.</p>
     <div id="deletePasswordField" hidden style="margin-bottom:14px;">
       <label class="lbl" for="deletePassword">Confirm your password</label>
       <input class="fld" type="password" id="deletePassword" autocomplete="current-password">
@@ -415,6 +431,11 @@
     <p id="deleteGoogleNote" class="hint" hidden style="margin:0 0 14px;">You'll be asked to confirm with Google.</p>
     <label class="lbl" for="confirmDeleteText">Type <b>DELETE</b> to confirm</label>
     <input class="fld" id="confirmDeleteText" placeholder="DELETE" autocomplete="off" style="margin-bottom:16px;">
+    <fieldset style="border:1px solid #DED9CB;border-radius:12px;padding:12px 14px;margin:0 0 16px;">
+      <legend class="lbl" style="padding:0 5px;">Data on this device</legend>
+      <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45;margin-bottom:9px;"><input type="radio" name="deleteLocalData" value="remove" checked style="margin-top:3px;"> <span><b>Remove all DoloPaws local data</b><br><span class="hint">Recommended on shared devices. Removes downloads, unfinished hikes, pending outcomes and cached profile data.</span></span></label>
+      <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45;"><input type="radio" name="deleteLocalData" value="retain" style="margin-top:3px;"> <span><b>Keep downloaded public maps</b><br><span class="hint">Private local records are removed. Maps remain usable, but cannot be updated until another account logs in.</span></span></label>
+    </fieldset>
     <p id="deleteStatus" class="hint" hidden style="margin:0 0 12px;color:#9C3A25;"></p>
     <div style="display:flex;gap:10px;justify-content:flex-end;"><button type="button" id="closeCancelBtn" class="btn-g">Keep my account</button><button type="button" id="confirmDeleteBtn" disabled style="padding:12px 20px;border-radius:12px;border:none;background:#D9B7AD;color:#fff;font-weight:800;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Delete my account</button></div>
   </div>
@@ -466,8 +487,10 @@
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260730-8"></script>
+<script src="mobile-nav.js?v=20260730-9"></script>
 <script src="i18n.js"></script>
+<script src="offline-packages.js"></script>
+<script src="local-data.js"></script>
 <script type="module" src="firebase-init.js"></script>
 <script src="breeds-data.js" defer></script>
 <script src="account.js?v=20260729-1" defer></script>

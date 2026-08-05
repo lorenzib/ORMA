@@ -633,11 +633,56 @@
   });
 
   // ---------- Settings: log out ----------
-  $('logOutBtn').addEventListener('click', async () => {
+  const logoutOverlay = $('logoutOverlay');
+  const logoutDataMessage = $('logoutDataMessage');
+  const logoutStatus = $('logoutStatus');
+  const keepLocalLogoutBtn = $('keepLocalLogoutBtn');
+  const removeLocalLogoutBtn = $('removeLocalLogoutBtn');
+
+  function setLogoutOpen(open){
+    if(!logoutOverlay) return;
+    logoutOverlay.hidden = !open;
+    if(open){
+      const active = window.DoloPawsLocalData && window.DoloPawsLocalData.activeHike();
+      logoutDataMessage.textContent = active
+        ? `An unfinished ${active.trailId || 'trail'} hike is stored on this device. Keeping local data locks it to this account; removing local data permanently discards it and all downloaded maps.`
+        : 'Keeping local data preserves downloaded maps and locks private hike records to this account. Removing local data clears all DoloPaws downloads and private browser records.';
+      logoutStatus.hidden = true;
+      keepLocalLogoutBtn.focus();
+    }
+  }
+
+  async function finishLogout(removePackages){
     if(!window.DoloPawsAuth) return;
-    await window.DoloPawsAuth.logOut();
-    window.location.href = 'index.html';
+    keepLocalLogoutBtn.disabled = true;
+    removeLocalLogoutBtn.disabled = true;
+    logoutStatus.hidden = false;
+    logoutStatus.textContent = removePackages
+      ? 'Removing DoloPaws data from this device…'
+      : 'Logging out and retaining downloads…';
+    try{
+      if(removePackages && window.DoloPawsLocalData){
+        await window.DoloPawsLocalData.cleanup({ removePackages:true });
+      }
+      await window.DoloPawsAuth.logOut();
+      window.location.href = 'index.html';
+    }catch(error){
+      logoutStatus.textContent = 'Logout could not be completed. Please try again.';
+      keepLocalLogoutBtn.disabled = false;
+      removeLocalLogoutBtn.disabled = false;
+    }
+  }
+
+  $('logOutBtn').addEventListener('click', () => setLogoutOpen(true));
+  $('closeLogoutBtn').addEventListener('click', () => setLogoutOpen(false));
+  keepLocalLogoutBtn.addEventListener('click', () => finishLogout(false));
+  removeLocalLogoutBtn.addEventListener('click', () => finishLogout(true));
+  logoutOverlay.addEventListener('click', event => {
+    if(event.target === logoutOverlay) setLogoutOpen(false);
   });
+  if(new URLSearchParams(window.location.search).get('logout') === '1'){
+    setLogoutOpen(true);
+  }
 
   // ---------- Cancel-account modal ----------
   const cancelOverlay = $('cancelOverlay');
@@ -650,6 +695,8 @@
     confirmDeleteText.value = '';
     deletePassword.value = '';
     deleteStatus.hidden = true;
+    const removeLocalChoice = document.querySelector('input[name="deleteLocalData"][value="remove"]');
+    if(removeLocalChoice) removeLocalChoice.checked = true;
     refreshDeleteBtn();
     cancelOverlay.hidden = false;
     confirmDeleteText.focus();
@@ -663,7 +710,11 @@
   $('openCancelBtn').addEventListener('click', openCancelModal);
   $('closeCancelBtn').addEventListener('click', closeCancelModal);
   cancelOverlay.addEventListener('click', e => { if(e.target === cancelOverlay) closeCancelModal(); });
-  document.addEventListener('keydown', e => { if(e.key === 'Escape' && !cancelOverlay.hidden) closeCancelModal(); });
+  document.addEventListener('keydown', e => {
+    if(e.key !== 'Escape') return;
+    if(!cancelOverlay.hidden) closeCancelModal();
+    if(logoutOverlay && !logoutOverlay.hidden) setLogoutOpen(false);
+  });
   confirmDeleteText.addEventListener('input', refreshDeleteBtn);
 
   confirmDeleteBtn.addEventListener('click', async () => {
@@ -674,12 +725,12 @@
     confirmDeleteBtn.textContent = 'Delete my account';
     refreshDeleteBtn();
     if(result.ok){
-      const key = photoCacheKey();
-      try {
-        if(key) localStorage.removeItem(key);
-        localStorage.removeItem(LEGACY_PHOTO_KEY);
-        localStorage.removeItem(NOTIF_KEY);
-      } catch(e){}
+      const choice = document.querySelector('input[name="deleteLocalData"]:checked');
+      if(window.DoloPawsLocalData){
+        await window.DoloPawsLocalData.cleanup({
+          removePackages:!choice || choice.value === 'remove',
+        });
+      }
       window.location.href = 'index.html';
     } else {
       deleteStatus.hidden = false;

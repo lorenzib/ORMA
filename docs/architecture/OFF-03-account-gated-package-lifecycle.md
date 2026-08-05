@@ -1,7 +1,7 @@
 # OFF-03 — Account-gated package storage and lifecycle
 
-**Status:** In progress; IndexedDB registry, legacy migration, owner metadata,
-restartable recovery, storage preflight, and package management complete
+**Status:** Complete in code; iOS and Android physical-device validation remains
+open
 
 **Implementation date:** 2026-07-28
 
@@ -111,6 +111,27 @@ The device owner salt is local-only. Removing a package deletes its package
 metadata and caches but deliberately retains the salt so future packages for
 the same account remain recognisable on that device without storing identity.
 
+## Logout and account deletion
+
+Logout from the homepage or account screen now opens the same explicit device
+choice. **Log out and keep downloads** retains verified public packages and
+owner-bound hike records for the same account; those records remain unavailable
+to a different or signed-out account. **Remove all local data and log out**
+removes all DoloPaws package caches, the IndexedDB registry, owner salt,
+unfinished hikes, pending completions and outcomes, cached profile data, and
+DoloPaws session records. Unrelated origin keys and caches are never cleared.
+
+When an unfinished hike exists, the dialog names it before either action. The
+user therefore knows that shared-device cleanup permanently discards that local
+recovery state.
+
+Account deletion keeps server deletion and device cleanup distinct. Device
+cleanup defaults to removing all DoloPaws data, while the user may retain only
+the downloaded public maps. Private local records are removed in either case.
+Retained maps remain readable but cannot be updated until another account logs
+in. The account copy no longer claims that deleting the main Firebase document
+automatically deletes every subcollection.
+
 ## Verification
 
 - `offline-lifecycle.test.js` verifies IndexedDB migration, independent
@@ -120,12 +141,12 @@ the same account remain recognisable on that device without storing identity.
   distinct restart and retry states, storage safety calculations, unsupported
   estimate behavior, insufficient-space blocking, quota recovery copy, package
   metadata rendering, signed-out controls, and confirmed removal paths.
-- The normal application suite passes 172 tests.
-- The static link checker passes all 172 HTML pages.
+- `local-data.test.js` verifies private-record cleanup, retained package
+  ownership, complete package removal, active-hike summaries, and isolation
+  from unrelated browser data.
+- The complete application suite and static-page link check pass.
 
 ## Remaining before OFF-03 is complete
 
-1. Connect logout and account deletion to the documented retain/remove
-   decision, including shared-device cleanup.
-2. Repeat physical-device validation on supported iOS Safari and Android
+1. Repeat physical-device validation on supported iOS Safari and Android
    Chrome; Android remains untested because no device is currently available.

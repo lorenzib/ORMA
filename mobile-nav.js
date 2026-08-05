@@ -131,8 +131,17 @@
       btn.className = 'nav-bell';
       btn.setAttribute('aria-label', 'Notifications');
       btn.innerHTML = bellSvg();
-      const seen = seenUpdates();
-      const unseen = NAV_UPDATES.filter(u => !seen.includes(u.id)).length;
+      // Prefer the real feed count cached by notifications.js; the static
+      // what's-new list is only the fallback before a first feed build.
+      let unseen = null;
+      try {
+        const cached = localStorage.getItem('dolopaws-notif-unread');
+        if(cached !== null && !isNaN(parseInt(cached, 10))) unseen = parseInt(cached, 10);
+      } catch(e){}
+      if(unseen === null){
+        const seen = seenUpdates();
+        unseen = NAV_UPDATES.filter(u => !seen.includes(u.id)).length;
+      }
       if(unseen > 0){
         const badge = document.createElement('span');
         badge.className = 'nav-bell-badge';
@@ -378,6 +387,11 @@
       const p = e.detail && e.detail.profile;
       if(p && p.name && window.DoloPawsAuth && window.DoloPawsAuth.currentUser){
         renderHeader(true, String(p.name));
+        // Feed the notification centre: profile edits become an item there.
+        try {
+          localStorage.setItem('dolopaws-notif-profile-event',
+            JSON.stringify({ ts: Date.now(), name: String(p.name).slice(0, 40) }));
+        } catch(err){}
       }
     });
   }
