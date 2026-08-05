@@ -44,8 +44,35 @@
     return {
       name: '', ageBand: '',
       breed: '', breedOther: '', weightBand: '', fitness: '',
-      conditions: [], healthNotes: '',
+      conditions: [], healthNotes: '', photo: null,
     };
+  }
+
+  function isDogPhoto(value) {
+    return typeof value === 'string' && value.startsWith('data:image/');
+  }
+
+  function downscaleDogPhoto(file) {
+    return new Promise(function (resolve, reject) {
+      var image = new Image();
+      var url = URL.createObjectURL(file);
+      image.onload = function () {
+        try {
+          var scale = Math.min(1, 300 / Math.max(image.width, image.height));
+          var canvas = document.createElement('canvas');
+          canvas.width = Math.max(1, Math.round(image.width * scale));
+          canvas.height = Math.max(1, Math.round(image.height * scale));
+          canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+          URL.revokeObjectURL(url);
+          resolve(canvas.toDataURL('image/jpeg', 0.85));
+        } catch (error) {
+          URL.revokeObjectURL(url);
+          reject(error);
+        }
+      };
+      image.onerror = function () { URL.revokeObjectURL(url); reject(new Error('decode failed')); };
+      image.src = url;
+    });
   }
 
   var AGE_BANDS = [
@@ -340,6 +367,21 @@
         '<span class="dw-field-error" id="dwAgeErr" role="alert" hidden>' +
           'Please select an age range.' +
         '</span>' +
+      '</div>' +
+      '<div class="dw-field-group">' +
+        '<span class="dw-label">Photo <span class="dw-optional">(optional)</span></span>' +
+        '<div class="dw-photo-picker">' +
+          '<div class="dw-photo-preview" id="dwPhotoPreview" aria-hidden="true"></div>' +
+          '<div class="dw-photo-actions">' +
+            '<button type="button" class="dw-btn-ghost" id="dwPhotoBtn">' +
+              (isDogPhoto(data.photo) ? 'Change photo' : 'Add photo') +
+            '</button>' +
+            '<button type="button" class="dw-photo-remove" id="dwPhotoRemove"' +
+              (isDogPhoto(data.photo) ? '' : ' hidden') + '>Remove</button>' +
+            '<span class="dw-photo-help" id="dwPhotoHelp">JPG, PNG or WebP · maximum 8 MB</span>' +
+          '</div>' +
+        '</div>' +
+        '<input type="file" id="dwPhotoInput" accept="image/jpeg,image/png,image/webp" hidden>' +
       '</div>';
 
     var nameInput = document.getElementById('dwName');
@@ -353,6 +395,55 @@
       data.ageBand = ageSelect.value;
       isDirty      = true;
       document.getElementById('dwAgeErr').hidden = true;
+    });
+
+    var photoInput = document.getElementById('dwPhotoInput');
+    var photoButton = document.getElementById('dwPhotoBtn');
+    var photoRemove = document.getElementById('dwPhotoRemove');
+    var photoPreview = document.getElementById('dwPhotoPreview');
+    var photoHelp = document.getElementById('dwPhotoHelp');
+    function paintPhoto() {
+      if (isDogPhoto(data.photo)) {
+        photoPreview.style.backgroundImage = 'url("' + data.photo + '")';
+        photoPreview.classList.add('has-photo');
+        photoButton.textContent = 'Change photo';
+        photoRemove.hidden = false;
+      } else {
+        photoPreview.style.backgroundImage = '';
+        photoPreview.classList.remove('has-photo');
+        photoButton.textContent = 'Add photo';
+        photoRemove.hidden = true;
+      }
+    }
+    paintPhoto();
+    photoButton.addEventListener('click', function () { photoInput.click(); });
+    photoRemove.addEventListener('click', function () {
+      data.photo = null;
+      isDirty = true;
+      photoHelp.textContent = 'Photo removed';
+      paintPhoto();
+    });
+    photoInput.addEventListener('change', function () {
+      var file = photoInput.files && photoInput.files[0];
+      if (!file) return;
+      if (!file.type.startsWith('image/') || file.size > 8 * 1024 * 1024) {
+        photoHelp.textContent = 'Choose a JPG, PNG or WebP smaller than 8 MB.';
+        photoInput.value = '';
+        return;
+      }
+      photoButton.disabled = true;
+      photoHelp.textContent = 'Preparing photo…';
+      downscaleDogPhoto(file).then(function (photo) {
+        data.photo = photo;
+        isDirty = true;
+        photoButton.disabled = false;
+        photoHelp.textContent = 'Photo ready to save with this dog.';
+        paintPhoto();
+      }).catch(function () {
+        photoButton.disabled = false;
+        photoHelp.textContent = 'That image could not be read. Please choose another.';
+      });
+      photoInput.value = '';
     });
     setTimeout(function () { nameInput.focus(); }, 50);
   }
@@ -628,6 +719,7 @@
       weightBand: data.weightBand || null,
       conditions: conditions,
       healthNotes: data.healthNotes.trim(),
+      photo:      isDogPhoto(data.photo) ? data.photo : null,
       // Legacy mirrors so any cached older script keeps working.
       jointIssues: conditions.indexOf('joints') !== -1,
       heatIssues:  conditions.indexOf('heat') !== -1,
@@ -790,6 +882,7 @@
         fitness:     existingDog.fitness    || '',
         conditions:  Array.isArray(existingDog.conditions) ? existingDog.conditions.slice() : [],
         healthNotes: existingDog.healthNotes || '',
+        photo:       isDogPhoto(existingDog.photo) ? existingDog.photo : null,
       });
       stepIndex = 0;
       isDirty   = false;

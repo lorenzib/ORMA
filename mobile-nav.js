@@ -28,25 +28,6 @@
   const navEl = document.querySelector('.topnav');
   const linksEl = navEl && navEl.querySelector('.links');
 
-  // What's-new feed behind the bell. Ids are stable; a visitor's seen ids
-  // live in localStorage so the badge only counts genuinely new entries.
-  const NAV_UPDATES = [
-    { id: 'collections-2026-07', title: 'Trail collections are here',
-      body: 'Shady loops, lakeside walks and gentle strolls — grouped and ready.',
-      href: 'browse-trails.html#collections' },
-    { id: 'savoy-2026-07', title: 'Savoy valleys are live',
-      body: 'Maurienne walks join the Dolomites, every route scored for paws.',
-      href: 'browse-trails.html?region=savoy' },
-  ];
-  const SEEN_KEY = 'dolopaws-nav-seen-updates';
-
-  function seenUpdates(){
-    try {
-      const raw = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]');
-      return Array.isArray(raw) ? raw : [];
-    } catch(e){ return []; }
-  }
-
   function authSummary(){
     try {
       const raw = localStorage.getItem('dolopaws-profile-summary');
@@ -57,10 +38,17 @@
   }
 
   function dogPhoto(){
-    // The photo cache moved to a per-uid key (account.js); static pages
-    // don't know the uid, so accept any dolopaws-dog-photo* entry. One
-    // account per browser makes this unambiguous in practice.
+    // Modern summaries carry every dog's photo and active ID. Never fall
+    // through to another dog's cache when the active dog has no photo.
     try {
+      const summary = authSummary();
+      if(summary && Array.isArray(summary.dogs)){
+        const active = summary.dogs.find(dog => dog.id === summary.activeDogId)
+          || summary.dogs[0] || null;
+        const photo = active && active.photo;
+        return typeof photo === 'string' && photo.startsWith('data:image/') ? photo : null;
+      }
+      // Legacy single-dog summaries did not carry an ID or embedded photo.
       const exact = localStorage.getItem('dolopaws-dog-photo');
       if(typeof exact === 'string' && exact.startsWith('data:image/')) return exact;
       for(let i = 0; i < localStorage.length; i++){
@@ -131,17 +119,14 @@
       btn.className = 'nav-bell';
       btn.setAttribute('aria-label', 'Notifications');
       btn.innerHTML = bellSvg();
-      // Prefer the real feed count cached by notifications.js; the static
-      // what's-new list is only the fallback before a first feed build.
-      let unseen = null;
+      // Badge from the derived-feed count cached by notifications.js and the
+      // logged-in homepage. No cache yet (first visit since the feed
+      // shipped) means no badge — never a made-up number.
+      let unseen = 0;
       try {
-        const cached = localStorage.getItem('dolopaws-notif-unread');
-        if(cached !== null && !isNaN(parseInt(cached, 10))) unseen = parseInt(cached, 10);
+        const cached = parseInt(localStorage.getItem('dolopaws-notif-unread'), 10);
+        if(!isNaN(cached)) unseen = cached;
       } catch(e){}
-      if(unseen === null){
-        const seen = seenUpdates();
-        unseen = NAV_UPDATES.filter(u => !seen.includes(u.id)).length;
-      }
       if(unseen > 0){
         const badge = document.createElement('span');
         badge.className = 'nav-bell-badge';

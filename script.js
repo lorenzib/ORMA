@@ -2287,32 +2287,14 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
     const dogBubbleImg = document.getElementById('dogBubbleImg');
     if(dogBubble){
       try {
-        // Account photo wins (synced across devices); per-uid cache as
-        // fallback; the old device-only key last, for pre-sync visitors.
-        // Only values that are actually images are accepted — and if the
-        // browser still can't decode one, fall back to the paw and purge
-        // the bad copy so it never comes back.
-        const isImage = v => typeof v === 'string' && v.startsWith('data:image/');
-        const candidates = [
-          (profile && profile.photo),
-          localStorage.getItem('dolopaws-dog-photo-' + user.uid),
-          localStorage.getItem('dolopaws-dog-photo'),
-        ];
-        const photo = candidates.find(isImage);
-        candidates.forEach((v, i) => {
-          if(v && !isImage(v) && i > 0){
-            try { localStorage.removeItem(i === 1 ? 'dolopaws-dog-photo-' + user.uid : 'dolopaws-dog-photo'); } catch(e){}
-          }
-        });
+        // Resolve only the active dog's synced photo or dog-ID cache. A dog
+        // without a photo must keep the paw fallback, never another dog's image.
+        const photo = liDogPhoto(profile);
         if(photo && dogBubbleImg){
           const fallback = dogBubble.querySelector('.dog-bubble-fallback');
           dogBubbleImg.onerror = () => {
             dogBubbleImg.hidden = true;
             if(fallback) fallback.style.display = '';
-            try {
-              localStorage.removeItem('dolopaws-dog-photo-' + user.uid);
-              localStorage.removeItem('dolopaws-dog-photo');
-            } catch(e){}
           };
           dogBubbleImg.src = photo;
           dogBubbleImg.hidden = false;

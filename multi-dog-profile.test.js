@@ -38,6 +38,8 @@ describe('multi-dog account experience', () => {
     const wizard = source('dog-wizard.js');
     expect(wizard).toContain('DoloPawsAuth.getDogProfiles()');
     expect(wizard).toContain('DoloPawsAuth.addDogProfile(profile)');
+    expect(wizard).toContain('id="dwPhotoInput"');
+    expect(wizard).toContain('photo:      isDogPhoto(data.photo) ? data.photo : null');
   });
 
   test('moderator access is outside the dog profile and in the account menu', () => {
@@ -57,5 +59,13 @@ describe('multi-dog account experience', () => {
     expect(homepage).toContain('id="liGreetDogList"');
     expect(controller).toContain('function renderLiDogLists(profile)');
     expect(controller).toContain('DoloPawsAuth.selectDogProfile(dog.id)');
+  });
+
+  test('photos remain isolated to the active dog', () => {
+    const nav = source('mobile-nav.js');
+    const homepage = source('script.js');
+    expect(nav).toContain('summary.dogs.find(dog => dog.id === summary.activeDogId)');
+    expect(nav).toContain("return typeof photo === 'string' && photo.startsWith('data:image/') ? photo : null");
+    expect(homepage).toContain('const photo = liDogPhoto(profile);');
   });
 });
