@@ -642,7 +642,14 @@
       // Logged in: persist immediately, exactly like the account page.
       nextBtn.disabled = true;
       nextBtn.textContent = 'Saving…';
-      window.DoloPawsAuth.setDogProfile(profile).then(function (ok) {
+      var save = typeof window.DoloPawsAuth.addDogProfile === 'function'
+        ? window.DoloPawsAuth.getDogProfiles().then(function(state){
+            return state && state.dogs.length
+              ? window.DoloPawsAuth.addDogProfile(profile)
+              : window.DoloPawsAuth.setDogProfile(profile);
+          })
+        : window.DoloPawsAuth.setDogProfile(profile);
+      save.then(function (ok) {
         nextBtn.disabled = false;
         if (!ok) {
           nextBtn.textContent = 'Save dog';

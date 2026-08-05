@@ -76,11 +76,12 @@ service cloud.firestore {
       return data == null
         || (data is map
           && data.keys().hasOnly([
-            'name', 'breed', 'fitness', 'dob', 'ageBand', 'weight',
+            'id', 'name', 'breed', 'fitness', 'dob', 'ageBand', 'weight',
             'weightBand', 'size', 'neuter', 'coat', 'sens', 'photo',
             'conditions', 'healthNotes', 'vet', 'owner', 'age',
             'jointIssues', 'heatIssues'
           ])
+          && isOptionalString(data, 'id', 80)
           && isOptionalString(data, 'name', 40)
           && isOptionalString(data, 'breed', 100)
           && (!data.keys().hasAny(['fitness'])
@@ -114,16 +115,27 @@ service cloud.firestore {
             || data.heatIssues is bool));
     }
 
+    function validDogs(data) {
+      return data is list
+        && data.size() <= 5
+        && (data.size() < 1 || validDog(data[0]))
+        && (data.size() < 2 || validDog(data[1]))
+        && (data.size() < 3 || validDog(data[2]))
+        && (data.size() < 4 || validDog(data[3]))
+        && (data.size() < 5 || validDog(data[4]));
+    }
+
     function validUserDocument(data) {
       return data.keys().hasOnly([
-          'favorites', 'dog', 'dogs', 'lastMatches', 'createdAt', 'updatedAt'
+          'favorites', 'dog', 'dogs', 'activeDogId', 'lastMatches', 'createdAt', 'updatedAt'
         ])
         && (!data.keys().hasAny(['favorites'])
           || (data.favorites is map && data.favorites.size() <= 250))
         && (!data.keys().hasAny(['dog'])
           || validDog(data.dog))
         && (!data.keys().hasAny(['dogs'])
-          || (data.dogs is list && data.dogs.size() <= 5))
+          || validDogs(data.dogs))
+        && isOptionalString(data, 'activeDogId', 80)
         && (!data.keys().hasAny(['lastMatches'])
           || (data.lastMatches is list && data.lastMatches.size() <= 250))
         && (!data.keys().hasAny(['createdAt'])
@@ -452,11 +464,7 @@ service cloud.firestore {
     match /users/{uid} {
       allow get, delete: if isOwner(uid);
       allow create, update: if isOwner(uid)
-        && validUserDocument(request.resource.data)
-        && (request.method != 'create'
-          || !request.resource.data.keys().hasAny(['dogs']))
-        && (!request.resource.data.keys().hasAny(['dogs'])
-          || request.resource.data.dogs == resource.data.dogs);
+        && validUserDocument(request.resource.data);
       allow list: if false;
     }
 

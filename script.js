@@ -1321,8 +1321,11 @@ function liDogPhoto(profile){
   const uid = window.DoloPawsAuth && window.DoloPawsAuth.currentUser && window.DoloPawsAuth.currentUser.uid;
   const candidates = [profile && profile.photo];
   try {
-    if(uid) candidates.push(localStorage.getItem('dolopaws-dog-photo-' + uid));
-    candidates.push(localStorage.getItem('dolopaws-dog-photo'));
+    if(uid && profile && profile.id) candidates.push(localStorage.getItem('dolopaws-dog-photo-' + uid + '-' + profile.id));
+    if(!profile || !profile.id){
+      if(uid) candidates.push(localStorage.getItem('dolopaws-dog-photo-' + uid));
+      candidates.push(localStorage.getItem('dolopaws-dog-photo'));
+    }
   } catch(e){}
   return candidates.find(isImage) || null;
 }
@@ -1340,6 +1343,46 @@ function liFillAvatar(el, profile){
   }
 }
 
+function renderLiDogLists(profile){
+  let summary = null;
+  try { summary = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); } catch(e){}
+  const dogs = summary && Array.isArray(summary.dogs) && summary.dogs.length
+    ? summary.dogs : profile ? [profile] : [];
+  const activeId = summary && summary.activeDogId || (profile && profile.id);
+  ['liDogList','liGreetDogList'].forEach(id => {
+    const list = document.getElementById(id);
+    if(!list) return;
+    list.innerHTML = '';
+    dogs.forEach(dog => {
+      const row = document.createElement('button');
+      row.type = 'button';
+      row.className = 'nav-dogmenu-row' + (dog.id === activeId ? ' on' : '');
+      row.setAttribute('aria-pressed', String(dog.id === activeId));
+      const avatar = document.createElement('span');
+      avatar.className = 'li-avatar';
+      liFillAvatar(avatar, dog);
+      const copy = document.createElement('span');
+      copy.style.cssText = 'flex:1;min-width:0;';
+      const name = document.createElement('b');
+      name.textContent = dog.name || 'Your dog';
+      const meta = document.createElement('small');
+      meta.textContent = [dog.breed, dog.fitness ? dog.fitness + ' fitness' : null].filter(Boolean).join(' · ');
+      copy.append(name, meta);
+      row.append(avatar, copy);
+      row.addEventListener('click', async () => {
+        if(dog.id === activeId || !window.DoloPawsAuth || !window.DoloPawsAuth.selectDogProfile) return;
+        row.disabled = true;
+        const ok = await window.DoloPawsAuth.selectDogProfile(dog.id);
+        if(ok) window.location.reload();
+        else row.disabled = false;
+      });
+      list.appendChild(row);
+    });
+  });
+  const moderator = document.getElementById('liModeratorLink');
+  if(moderator) moderator.hidden = !(summary && summary.moderator === true);
+}
+
 // Dog pill + switcher panel labels. Called on every render so a wizard
 // save or photo upload is reflected immediately.
 function renderLiHeader(profile){
@@ -1347,16 +1390,7 @@ function renderLiHeader(profile){
   // The pill carries the dog itself (design TopNav dog pill), not the human.
   if(nameEl) nameEl.textContent = (profile && profile.name) ? profile.name : 'Your dog';
   liFillAvatar(document.getElementById('liAccountAvatar'), profile);
-  liFillAvatar(document.getElementById('liDogRowAvatar'), profile);
-  const rowName = document.getElementById('liDogRowName');
-  if(rowName) rowName.textContent = (profile && profile.name) ? profile.name : 'Your dog';
-  const rowMeta = document.getElementById('liDogRowMeta');
-  if(rowMeta){
-    const bits = [];
-    if(profile && profile.breed) bits.push(profile.breed);
-    if(profile && profile.fitness) bits.push(profile.fitness + ' fitness');
-    rowMeta.textContent = bits.join(' · ') || (profile ? '' : 'No profile yet');
-  }
+  renderLiDogLists(profile);
   const manage = document.getElementById('liManageLink');
   if(manage) manage.textContent = (profile && profile.name)
     ? 'Manage dog profiles →'

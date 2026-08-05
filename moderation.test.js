@@ -9,7 +9,8 @@ describe('MOD-02 minimum moderation queue', () => {
   const page = read('moderation-page.js');
   const shell = read('moderation.html');
   const account = read('account.html');
-  const accountController = read('account.js');
+  const navigation = read('mobile-nav.js');
+  const homepage = read('index.html');
 
   test('requires the trusted moderator claim on client and server', () => {
     expect(client).toContain('getIdTokenResult(currentUser, true)');
@@ -19,11 +20,11 @@ describe('MOD-02 minimum moderation queue', () => {
     expect(shell).toContain('noindex,nofollow');
   });
 
-  test('authorized operators can discover the private tool from their account', () => {
-    expect(account).toContain('id="moderatorToolsBox" hidden');
-    expect(account).toContain('href="moderation.html"');
-    expect(accountController).toContain('DoloPawsModeration.getModeratorStatus');
-    expect(accountController).toContain('moderatorToolsBox.hidden = !result.ok');
+  test('authorized operators discover the private tool outside dog profiles', () => {
+    expect(account).not.toContain('moderatorToolsBox');
+    expect(navigation).toContain("menuItem('Moderator workspace', 'moderation.html')");
+    expect(navigation).toContain('summary.moderator === true');
+    expect(homepage).toContain('id="liModeratorLink" href="moderation.html" hidden');
   });
 
   test('queues every state needing a decision or restoration', () => {

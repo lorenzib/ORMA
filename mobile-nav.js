@@ -153,11 +153,11 @@
       return wrap;
     }
 
-    function dogAvatarEl(name, size){
+    function dogAvatarEl(name, size, suppliedPhoto){
       const avatar = document.createElement('span');
       avatar.className = 'nav-user-avatar';
       avatar.setAttribute('aria-hidden', 'true');
-      const photo = dogPhoto();
+      const photo = suppliedPhoto || dogPhoto();
       if(photo) avatar.style.backgroundImage = 'url(' + photo + ')';
       else avatar.textContent = name ? name.charAt(0).toUpperCase() : '🐾';
       if(size){ avatar.style.width = avatar.style.height = size + 'px'; avatar.style.lineHeight = size + 'px'; }
@@ -167,9 +167,8 @@
     // Dog pill — the shared switcher pattern (map, journal, safety guide,
     // collections and the profile page all use this same control): avatar +
     // name opens a "Switch dog" panel with the dog list and a manage link.
-    // The account today holds one dog; the panel lists it (selected) and the
-    // add/manage routes, and picks up more dogs if the summary ever carries
-    // a `dogs` array.
+    // The cached account summary carries every dog plus the active id, so the
+    // same switcher works on Firebase-backed and static pages.
     function buildAccountPill(name){
       const wrap = document.createElement('div');
       wrap.className = 'nav-userwrap';
@@ -178,7 +177,10 @@
       btn.className = 'nav-user';
       btn.setAttribute('aria-haspopup', 'true');
       btn.setAttribute('aria-expanded', 'false');
-      btn.appendChild(dogAvatarEl(name));
+      const initialSummary = authSummary() || {};
+      const initialDog = Array.isArray(initialSummary.dogs)
+        ? initialSummary.dogs.find(dog => dog.id === initialSummary.activeDogId) : null;
+      btn.appendChild(dogAvatarEl(name, null, initialDog && initialDog.photo));
       const label = document.createElement('span');
       label.className = 'nav-user-name';
       label.textContent = name || 'My account';
@@ -203,32 +205,51 @@
       const dogs = Array.isArray(summary.dogs) && summary.dogs.length
         ? summary.dogs
         : [{ name: name || summary.name || 'Your dog', meta: summary.meta || summaryMeta }];
-      const activeName = name || (dogs[0] && dogs[0].name);
+      const activeId = summary.activeDogId || (dogs[0] && dogs[0].id);
+      const activeName = (dogs.find(dog => dog.id === activeId) || {}).name || name || (dogs[0] && dogs[0].name);
       dogs.forEach(d => {
         const row = document.createElement('button');
         row.type = 'button';
-        row.className = 'nav-dogmenu-row' + (d.name === activeName ? ' on' : '');
-        row.appendChild(dogAvatarEl(d.name, 32));
+        row.className = 'nav-dogmenu-row' + (d.id === activeId ? ' on' : '');
+        row.setAttribute('aria-pressed', String(d.id === activeId));
+        row.appendChild(dogAvatarEl(d.name, 32, d.photo));
         const txt = document.createElement('span');
         txt.style.cssText = 'flex:1;min-width:0;';
         const nm = document.createElement('b');
         nm.textContent = d.name;
         txt.appendChild(nm);
-        if(d.meta){
+        const dogMeta = d.meta || [d.breed, d.fitness ? d.fitness + ' fitness' : null].filter(Boolean).join(' · ');
+        if(dogMeta){
           const meta = document.createElement('small');
-          meta.textContent = d.meta;
+          meta.textContent = dogMeta;
           txt.appendChild(meta);
         }
         row.appendChild(txt);
-        row.addEventListener('click', () => setOpen(false));
+        row.addEventListener('click', async () => {
+          if(d.id === activeId){ setOpen(false); return; }
+          row.disabled = true;
+          if(window.DoloPawsAuth && typeof window.DoloPawsAuth.selectDogProfile === 'function'){
+            const ok = await window.DoloPawsAuth.selectDogProfile(d.id);
+            if(ok) window.location.reload();
+            else row.disabled = false;
+            return;
+          }
+          // Static pages have no Firebase client. Keep the local choice so
+          // their dog-specific copy switches immediately on reload.
+          try {
+            const next = { ...summary, activeDogId:d.id, name:d.name, breed:d.breed, fitness:d.fitness };
+            localStorage.setItem('dolopaws-profile-summary', JSON.stringify(next));
+          } catch(e){}
+          window.location.reload();
+        });
         menu.appendChild(row);
       });
 
-      // "Add another dog" opens the real dog wizard: directly on pages
-      // that load it, via the ?addDog=1 deep link everywhere else.
+      // "Add another dog" stays in the account profile experience. The
+      // homepage may use its in-place wizard, which now appends as well.
       const addLink = document.createElement('a');
       addLink.className = 'nav-dogmenu-manage';
-      addLink.href = prefix + 'index.html?addDog=1';
+      addLink.href = prefix + 'account.html?mode=add&next=' + encodeURIComponent(pagePath);
       addLink.textContent = '＋ Add another dog';
       addLink.addEventListener('click', (e) => {
         if(window.DoloPawsWizard && typeof window.DoloPawsWizard.open === 'function'){
@@ -266,6 +287,9 @@
       menu.appendChild(savedItem);
       menu.appendChild(menuItem('Downloaded trails', 'downloads.html'));
       menu.appendChild(menuItem('Account settings', 'settings.html'));
+      if(summary.moderator === true){
+        menu.appendChild(menuItem('Moderator workspace', 'moderation.html'));
+      }
       menu.appendChild(menuDiv());
       const logout = document.createElement('button');
       logout.type = 'button';

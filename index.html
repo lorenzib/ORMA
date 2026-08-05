@@ -191,16 +191,14 @@
         </button>
         <div class="li-menu li-account-menu" id="liAccountMenu" hidden>
           <div class="li-menu-kick">Switch dog</div>
-          <div class="nav-dogmenu-row on" id="liDogRow">
-            <span class="li-avatar" id="liDogRowAvatar" aria-hidden="true"></span>
-            <span style="flex:1;min-width:0;"><b id="liDogRowName">Your dog</b><small id="liDogRowMeta"></small></span>
-          </div>
+          <div id="liDogList"></div>
           <button type="button" class="li-menu-item" id="liAddDogBtn">＋ Add another dog</button>
           <a class="li-menu-item" id="liManageLink" href="account.html?next=index.html">Manage dog profiles →</a>
           <div class="li-menu-div" role="separator"></div>
           <button type="button" class="li-menu-item" id="savedTrailsBtn">♥ <span class="txt-label">My saved trails</span> <span class="li-menu-count" id="companionSavedCount">0</span></button>
           <a class="li-menu-item" href="downloads.html">Downloaded trails</a>
           <a class="li-menu-item" href="settings.html">Account settings</a>
+          <a class="li-menu-item" id="liModeratorLink" href="moderation.html" hidden>Moderator workspace</a>
           <div class="li-menu-div" role="separator"></div>
           <button type="button" class="li-menu-item li-logout" id="liLogoutBtn">Log out</button>
         </div>
@@ -220,10 +218,7 @@
         </button>
         <div class="li-menu li-greetswitch-menu" id="liGreetSwitchMenu" hidden>
           <div class="li-menu-kick">Switch dog</div>
-          <div class="nav-dogmenu-row on">
-            <span class="li-avatar" id="liGreetRowAvatar" aria-hidden="true"></span>
-            <span style="flex:1;min-width:0;"><b id="liGreetRowName">Your dog</b><small id="liGreetRowMeta"></small></span>
-          </div>
+          <div id="liGreetDogList"></div>
           <button type="button" class="li-menu-item" id="liGreetAddDogBtn">＋ Add another dog</button>
           <a class="li-menu-item" href="account.html?next=index.html">Manage dog profiles →</a>
         </div>

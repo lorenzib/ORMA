@@ -37,22 +37,34 @@ onAuthStateChanged(auth, (user) => {
   syncProfileSummary(user);
 });
 
-// Tiny cached flag so the static trail pages (trails/*.html carry no
-// Firebase by design) can adapt their "Is this trail right for your dog?"
-// section. Stores at most the dog's first name; cleared on logout.
+// Cached multi-dog summary so static pages can paint the selected dog and
+// offer the same switcher even when they do not load Firebase themselves.
+// Cleared on logout.
 async function syncProfileSummary(user) {
   try {
     if (!user) { localStorage.removeItem('dolopaws-profile-summary'); return; }
-    const dog = await getDogProfile();
+    const dogState = await getDogProfiles();
+    const dog = dogState.dogs.find(item => item.id === dogState.activeDogId) || dogState.dogs[0] || null;
     // Breed/fitness/saved-count feed the header dog menu on the static
     // pages, which have no Firebase and read only this cache.
     let saved = null;
     try { saved = Object.keys((await getFavorites()) || {}).length; } catch (e) {}
+    let moderator = false;
+    try { moderator = (await getIdTokenResult(user)).claims.moderator === true; } catch (e) {}
     localStorage.setItem('dolopaws-profile-summary', JSON.stringify({
       hasProfile: !!dog,
+      activeDogId: dog && dog.id || null,
       name: dog && dog.name ? String(dog.name).slice(0, 40) : null,
       breed: dog && dog.breed ? String(dog.breed).slice(0, 40) : null,
       fitness: dog && dog.fitness ? String(dog.fitness).slice(0, 20) : null,
+      dogs: dogState.dogs.map(item => ({
+        id:item.id,
+        name:item.name ? String(item.name).slice(0, 40) : 'Your dog',
+        breed:item.breed ? String(item.breed).slice(0, 40) : null,
+        fitness:item.fitness ? String(item.fitness).slice(0, 20) : null,
+        photo:typeof item.photo === 'string' && item.photo.startsWith('data:image/') ? item.photo : null,
+      })),
+      moderator,
       saved,
     }));
   } catch (e) { /* cache only — never break auth over it */ }
@@ -80,34 +92,117 @@ async function setFavorites(favoritesObj) {
   }
 }
 
-async function getDogProfile() {
+function dogId(dog, index) {
+  if (dog && typeof dog.id === 'string' && /^[A-Za-z0-9._-]{1,80}$/.test(dog.id)) return dog.id;
+  const base = String(dog && dog.name || 'dog').toLowerCase()
+    .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'dog';
+  return `${base}-${index + 1}`;
+}
+
+function normalizedDogState(data) {
+  let dogs = Array.isArray(data && data.dogs) ? data.dogs.filter(Boolean) : [];
+  if (!dogs.length && data && data.dog) dogs = [data.dog];
+  dogs = dogs.slice(0, 5).map((dog, index) => ({ ...dog, id:dogId(dog, index) }));
+  const requested = data && data.activeDogId;
+  const activeDogId = dogs.some(dog => dog.id === requested)
+    ? requested : dogs[0] && dogs[0].id || null;
+  return { dogs, activeDogId };
+}
+
+async function getDogProfiles() {
   if (!currentUser) return null;
   try {
     const snap = await getDoc(doc(db, "users", currentUser.uid));
-    if (!snap.exists()) return null;
-    const data = snap.data();
-    // Any dog object counts — a user may save a photo before their first
-    // full profile save, and that photo must still load on other devices.
-    if (data.dog && (data.dog.name || data.dog.photo || data.dog.breed)) return data.dog;
-    if (Array.isArray(data.dogs) && data.dogs.length > 0) {
-      const migrated = data.dogs[0];
-      await setDoc(doc(db, "users", currentUser.uid), { dog: migrated }, { merge: true });
-      return migrated;
-    }
-    return null;
+    return normalizedDogState(snap.exists() ? snap.data() : {});
   } catch (e) {
-    console.error("Failed to load dog profile:", e);
-    return null;
+    console.error("Failed to load dog profiles:", e);
+    return { dogs:[], activeDogId:null };
   }
+}
+
+async function getDogProfile() {
+  const state = await getDogProfiles();
+  if (!state) return null;
+  return state.dogs.find(dog => dog.id === state.activeDogId) || state.dogs[0] || null;
+}
+
+async function writeDogState(state) {
+  if (!currentUser) return false;
+  const active = state.dogs.find(dog => dog.id === state.activeDogId) || state.dogs[0] || null;
+  const payload = {
+    dogs:state.dogs,
+    activeDogId:active ? active.id : null,
+    // Compatibility mirror for pages deployed before multi-dog support.
+    dog:active,
+  };
+  await setDoc(doc(db, "users", currentUser.uid), payload, { merge:true });
+  await syncProfileSummary(currentUser);
+  window.dispatchEvent(new CustomEvent('dolopaws-dog-profile-saved', {
+    detail:{ profile:active, dogs:state.dogs, activeDogId:payload.activeDogId }
+  }));
+  return true;
 }
 
 async function setDogProfile(dogObj) {
   if (!currentUser) return false;
   try {
-    await setDoc(doc(db, "users", currentUser.uid), { dog: dogObj }, { merge: true });
-    return true;
+    const state = await getDogProfiles();
+    if (!dogObj) {
+      const dogs = state.dogs.filter(dog => dog.id !== state.activeDogId);
+      return await writeDogState({ dogs, activeDogId:dogs[0] && dogs[0].id || null });
+    }
+    const index = state.dogs.findIndex(dog => dog.id === state.activeDogId);
+    if (index < 0) return await addDogProfile(dogObj);
+    const dogs = state.dogs.slice();
+    dogs[index] = { ...dogs[index], ...dogObj, id:dogs[index].id };
+    return await writeDogState({ dogs, activeDogId:dogs[index].id });
   } catch (e) {
     console.error("Failed to save dog profile:", e);
+    return false;
+  }
+}
+
+async function addDogProfile(dogObj) {
+  if (!currentUser) return false;
+  try {
+    const state = await getDogProfiles();
+    if (state.dogs.length >= 5) return false;
+    const occupied = new Set(state.dogs.map(dog => dog.id));
+    let id = dogId(dogObj, state.dogs.length);
+    let suffix = 2;
+    while (occupied.has(id)) id = `${dogId(dogObj, state.dogs.length).slice(0, 70)}-${suffix++}`;
+    const dog = { ...dogObj, id };
+    return await writeDogState({ dogs:state.dogs.concat(dog), activeDogId:id });
+  } catch (e) {
+    console.error("Failed to add dog profile:", e);
+    return false;
+  }
+}
+
+async function selectDogProfile(id) {
+  if (!currentUser) return false;
+  try {
+    const state = await getDogProfiles();
+    if (!state.dogs.some(dog => dog.id === id)) return false;
+    return await writeDogState({ dogs:state.dogs, activeDogId:id });
+  } catch (e) {
+    console.error("Failed to switch dog profile:", e);
+    return false;
+  }
+}
+
+async function removeDogProfile(id) {
+  if (!currentUser) return false;
+  try {
+    const state = await getDogProfiles();
+    const dogs = state.dogs.filter(dog => dog.id !== id);
+    if (dogs.length === state.dogs.length) return false;
+    const activeDogId = state.activeDogId === id
+      ? dogs[0] && dogs[0].id || null : state.activeDogId;
+    return await writeDogState({ dogs, activeDogId });
+  } catch (e) {
+    console.error("Failed to remove dog profile:", e);
     return false;
   }
 }
@@ -279,6 +374,10 @@ window.DoloPawsAuth = {
   setFavorites,
   getDogProfile,
   setDogProfile,
+  getDogProfiles,
+  addDogProfile,
+  selectDogProfile,
+  removeDogProfile,
   getLastMatches,
   setLastMatches,
   deleteAccount,

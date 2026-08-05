@@ -17,6 +17,9 @@
 
   // ---------- Return target ----------
   const requestedNext = new URLSearchParams(window.location.search).get('next');
+  const accountParams = new URLSearchParams(window.location.search);
+  const addMode = accountParams.get('mode') === 'add';
+  const requestedDogId = accountParams.get('dog');
   function safeReturnTarget(value){
     if(!value || /^(?:[a-z]+:|\/\/|\/)/i.test(value)) return '';
     return /^[a-z0-9][a-z0-9._/-]*\.html(?:\?[^#]*)?(?:#.*)?$/i.test(value) ? value : '';
@@ -45,12 +48,62 @@
   // screen doesn't edit (fitness, legacy ageBand, …). `state` is what the
   // form shows.
   let base = {};
+  let dogProfiles = [];
+  let activeDogId = null;
+  let designValues = null;
   const state = {
     name:'', breed:'', dob:'', weight:20, size:'Large',
     neuter:'Unknown', coat:'Short', sens:[], photo:null,
     vetName:'', vetPhone:'', chip:'', insurer:'', policy:'', medical:'',
     ownerName:'', ownerPhone:'', ownerEmail:'', emName:'', emPhone:'',
   };
+
+  function accountHref(params){
+    const next = new URLSearchParams();
+    Object.entries(params || {}).forEach(([key, value]) => { if(value) next.set(key, value); });
+    if(returnTarget) next.set('next', returnTarget);
+    const query = next.toString();
+    return 'account.html' + (query ? '?' + query : '');
+  }
+
+  function renderDogSwitcher(){
+    const list = $('profileDogList');
+    if(!list) return;
+    list.innerHTML = '';
+    dogProfiles.forEach(dog => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'profile-dogchoice' + (!addMode && dog.id === activeDogId ? ' on' : '');
+      button.setAttribute('aria-pressed', String(!addMode && dog.id === activeDogId));
+      const avatar = document.createElement('span');
+      avatar.className = 'profile-dogchoice__avatar';
+      if(typeof dog.photo === 'string' && dog.photo.startsWith('data:image/')) avatar.style.backgroundImage = `url(${dog.photo})`;
+      else avatar.textContent = (dog.name || 'D').charAt(0).toUpperCase();
+      const name = document.createElement('span');
+      name.textContent = dog.name || 'Your dog';
+      button.append(avatar, name);
+      button.addEventListener('click', async () => {
+        if(!window.DoloPawsAuth || dog.id === activeDogId && !addMode) return;
+        button.disabled = true;
+        const ok = await window.DoloPawsAuth.selectDogProfile(dog.id);
+        if(ok) window.location.assign(accountHref({ dog:dog.id }));
+        else button.disabled = false;
+      });
+      list.appendChild(button);
+    });
+    if(addMode){
+      const adding = document.createElement('span');
+      adding.className = 'profile-dogchoice on';
+      adding.textContent = 'New dog';
+      list.appendChild(adding);
+    }
+    const add = $('profileAddDog');
+    if(add){
+      add.disabled = addMode || dogProfiles.length >= 5;
+      add.textContent = dogProfiles.length >= 5 ? 'Maximum 5 dogs' : addMode ? 'Adding a new dog' : '+ Add another dog';
+      add.onclick = () => window.location.assign(accountHref({ mode:'add' }));
+    }
+  }
 
   // ---------- Tabs ----------
   const railBtns = Array.from(document.querySelectorAll('.railbtn'));
@@ -306,7 +359,7 @@
 
   function photoCacheKey(){
     const u = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
-    return u ? 'dolopaws-dog-photo-' + u.uid : null;
+    return u ? 'dolopaws-dog-photo-' + u.uid + '-' + (activeDogId || 'new') : null;
   }
   function photoStatus(text, ok){
     dogPhotoStatus.hidden = false;
@@ -355,7 +408,7 @@
       renderDerived();
       const key = photoCacheKey();
       try { if(key) localStorage.setItem(key, dataUrl); } catch (err) { /* cache only */ }
-      if(window.DoloPawsAuth && window.DoloPawsAuth.currentUser){
+      if(!addMode && window.DoloPawsAuth && window.DoloPawsAuth.currentUser){
         window.DoloPawsAuth.setDogProfile({ photo: dataUrl }).then((ok) => {
           photoStatus(ok
             ? tKey('account.photo.synced', 'Photo saved to your account — it will show on any device you log in from.')
@@ -388,19 +441,21 @@
     // Scoring reads `conditions`; the design's sensitivities cover heat and
     // joints, so mirror those two in and keep any other declared conditions
     // (back, cardiac, …) a user saved before this redesign.
-    const kept = (Array.isArray(base.conditions) ? base.conditions : [])
-      .filter(c => c !== 'heat' && c !== 'joints');
-    const conditions = kept
-      .concat(state.sens.includes('heat') ? ['heat'] : [])
-      .concat(state.sens.includes('joints') ? ['joints'] : []);
+    const sourceConditions = designValues && Array.isArray(designValues.conditions)
+      ? designValues.conditions : (Array.isArray(base.conditions) ? base.conditions : []);
+    const kept = sourceConditions.filter(c => c !== 'heat' && c !== 'joints');
+    const conditions = designValues
+      ? sourceConditions
+      : kept.concat(state.sens.includes('heat') ? ['heat'] : [])
+        .concat(state.sens.includes('joints') ? ['joints'] : []);
     return Object.assign({}, base, {
       name: state.name.trim(),
       breed: state.breed.trim(),
-      fitness: base.fitness || 'moderate',
+      fitness: designValues && designValues.fitness || base.fitness || 'moderate',
       dob: state.dob || null,
-      ageBand: state.dob ? null : (base.ageBand || null),
+      ageBand: state.dob ? null : (designValues && designValues.ageBand || base.ageBand || null),
       weight: state.weight,
-      weightBand: weightBandFromKg(state.weight),
+      weightBand: designValues && designValues.weightBand || weightBandFromKg(state.weight),
       size: state.size,
       neuter: state.neuter,
       coat: state.coat,
@@ -417,18 +472,27 @@
     });
   }
 
+  window.addEventListener('dolopaws-profile-design-values', event => {
+    designValues = event.detail || null;
+  });
+
   document.querySelectorAll('.saveBtn').forEach(btn => {
     btn.addEventListener('click', async () => {
       if(!window.DoloPawsAuth || btn.disabled) return;
       const label = btn.textContent; // "Save changes", or "Save" on the phone app bar
       btn.textContent = 'Saving…';
-      const ok = await window.DoloPawsAuth.setDogProfile(buildProfile());
+      const ok = addMode
+        ? await window.DoloPawsAuth.addDogProfile(buildProfile())
+        : await window.DoloPawsAuth.setDogProfile(buildProfile());
       btn.textContent = label;
       saveStatus.hidden = false;
       saveStatus.style.color = ok ? '#2C5C34' : '#9C3A25';
       if(ok && returnTarget){
         saveStatus.textContent = 'Saved. Returning you to where you were…';
         window.setTimeout(() => window.location.assign(returnTarget), 500);
+      } else if(ok && addMode){
+        saveStatus.textContent = 'Dog added. Opening the new profile…';
+        window.setTimeout(() => window.location.assign(accountHref({})), 400);
       } else if(ok){
         saveStatus.innerHTML = 'Saved. <a href="index.html" style="font-weight:700;">View your personalised trails →</a>';
         base = buildProfile();
@@ -446,7 +510,7 @@
     const nm = state.name.trim() || 'this dog';
     if(!window.confirm('Remove ' + nm + "? This permanently deletes the profile and all its data — photo, health, vet and emergency details.")) return;
     if(!window.DoloPawsAuth) return;
-    const ok = await window.DoloPawsAuth.setDogProfile(null);
+    const ok = await window.DoloPawsAuth.removeDogProfile(base.id || activeDogId);
     const key = photoCacheKey();
     try {
       if(key) localStorage.removeItem(key);
@@ -541,7 +605,6 @@
   const contributionStatus = $('contributionEligibilityStatus');
   const contributionBadge = $('contributionEligibilityBadge');
   const contributionAction = $('contributionEligibilityAction');
-  const moderatorToolsBox = $('moderatorToolsBox');
   let savedEmail = '';
 
   function paintContributionEligibility(result){
@@ -575,15 +638,6 @@
     contributionAction.hidden = true;
     const result = await window.DoloPawsAuth.getContributionEligibility();
     paintContributionEligibility(result);
-  }
-
-  async function refreshModeratorTools(){
-    if(!moderatorToolsBox) return;
-    moderatorToolsBox.hidden = true;
-    if(!window.DoloPawsModeration ||
-       !window.DoloPawsModeration.getModeratorStatus) return;
-    const result = await window.DoloPawsModeration.getModeratorStatus();
-    moderatorToolsBox.hidden = !result.ok;
   }
 
   contributionAction.addEventListener('click', async () => {
@@ -770,7 +824,6 @@
         loggedOutState.hidden = false;
         loggedInState.hidden = true;
         document.body.classList.remove('ep-app');
-        if(moderatorToolsBox) moderatorToolsBox.hidden = true;
         return;
       }
 
@@ -803,21 +856,41 @@
       $('deletePasswordField').hidden = isGoogle;
       $('deleteGoogleNote').hidden = !isGoogle;
       refreshContributionEligibility();
-      refreshModeratorTools();
-
-      const profile = (await window.DoloPawsAuth.getDogProfile()) || {};
+      const profilesState = await window.DoloPawsAuth.getDogProfiles();
+      dogProfiles = profilesState.dogs;
+      activeDogId = profilesState.activeDogId;
+      if(requestedDogId && dogProfiles.some(dog => dog.id === requestedDogId) && requestedDogId !== activeDogId){
+        const switched = await window.DoloPawsAuth.selectDogProfile(requestedDogId);
+        if(switched) activeDogId = requestedDogId;
+      }
+      const activeProfile = dogProfiles.find(dog => dog.id === activeDogId) || {};
+      // Add mode uses the same editor, with a blank dog and the current
+      // owner's contact details carried across for convenience.
+      const profile = addMode ? { owner:activeProfile.owner || {} } : activeProfile;
       base = profile;
+      renderDogSwitcher();
+      if(addMode){
+        const title = document.querySelector('#profileDesign > h1');
+        if(title) title.textContent = 'Add another dog';
+        const kicker = document.querySelector('#profileDesign > .profile-kicker');
+        if(kicker) kicker.textContent = 'New dog profile';
+        const remove = $('removeDogBtn');
+        if(remove) remove.hidden = true;
+      }
 
       // Photo: the account copy wins; migrate a pre-sync device-only photo up.
-      const pKey = 'dolopaws-dog-photo-' + user.uid;
+      const pKey = 'dolopaws-dog-photo-' + user.uid + '-' + (activeDogId || 'new');
       const isImage = v => typeof v === 'string' && v.startsWith('data:image/');
-      if(isImage(profile.photo)){
+      if(!addMode && isImage(profile.photo)){
         state.photo = profile.photo;
         try { localStorage.setItem(pKey, profile.photo); } catch(e){}
       } else {
         let local = null;
-        try { local = localStorage.getItem(pKey) || localStorage.getItem(LEGACY_PHOTO_KEY); } catch(e){}
-        if(local && isImage(local)){
+        try {
+          local = localStorage.getItem(pKey)
+            || (dogProfiles.length <= 1 ? localStorage.getItem(LEGACY_PHOTO_KEY) : null);
+        } catch(e){}
+        if(!addMode && local && isImage(local)){
           state.photo = local;
           window.DoloPawsAuth.setDogProfile({ photo: local }).then((ok) => {
             if(ok){ try { localStorage.setItem(pKey, local); localStorage.removeItem(LEGACY_PHOTO_KEY); } catch(e){} }
@@ -865,6 +938,7 @@
       renderBreedList();
       breedInput.value = state.breed;
       renderDerived();
+      window.dispatchEvent(new CustomEvent('dolopaws-account-profile-loaded', { detail:{ profile } }));
     });
   });
 

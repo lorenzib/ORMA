@@ -3,6 +3,11 @@
   if(!root)return;
   const name=document.getElementById('profileName'),breed=document.getElementById('profileBreed'),age=document.getElementById('profileAge'),weight=document.getElementById('profileWeight'),notes=document.getElementById('profileNotes');
   let fitness='moderate';
+  const CONDITION_CODES={
+    'Joint or hip issues':'joints','Back / disc history':'back','Heart condition':'cardiac',
+    'Overweight':'overweight','Recovering from injury':'injury','Impaired vision':'vision',
+    'Heat sensitivity':'heat'
+  };
   function mirror(){
     const legacyName=document.getElementById('dogName'),legacyBreed=document.getElementById('dogBreed'),legacyNotes=document.getElementById('medicalNotes');
     const current=(legacyName&&legacyName.value)||'Your dog';
@@ -11,6 +16,19 @@
     if(legacyNotes)notes.value=legacyNotes.value||'';
   }
   const observer=new MutationObserver(mirror);observer.observe(document.getElementById('loggedInState'),{attributes:true,subtree:true});
+  window.addEventListener('dolopaws-account-profile-loaded',event=>{
+    const p=event.detail&&event.detail.profile||{};
+    mirror();
+    if(p.breed&&!Array.from(breed.options).some(o=>o.value===p.breed))breed.add(new Option(p.breed,p.breed));
+    if(p.breed)breed.value=p.breed;
+    if(p.ageBand)age.value=p.ageBand;
+    if(p.weightBand)weight.value=p.weightBand;
+    fitness=p.fitness||'moderate';
+    document.querySelectorAll('[data-fitness]').forEach(x=>x.classList.toggle('on',x.dataset.fitness===fitness));
+    const conditions=Array.isArray(p.conditions)?p.conditions:[];
+    root.querySelectorAll('#profileConditions input').forEach(input=>{input.checked=conditions.includes(CONDITION_CODES[input.value]);});
+    updateImpact();
+  });
   setTimeout(mirror,300);
   document.getElementById('profileFitness').addEventListener('click',e=>{const b=e.target.closest('[data-fitness]');if(!b)return;fitness=b.dataset.fitness;document.querySelectorAll('[data-fitness]').forEach(x=>x.classList.toggle('on',x===b));updateImpact();});
   document.getElementById('profileConditions').addEventListener('change',updateImpact);
@@ -25,12 +43,13 @@
     document.getElementById('profileHeatReason').textContent=heat?'Heat sensitivity is declared and always outranks breed assumptions.':'No heat-sensitivity condition declared.';
   }
   document.getElementById('profilePhotoButton').addEventListener('click',()=>document.getElementById('dogPhotoInput').click());
-  document.getElementById('profileAddDog').addEventListener('click',()=>{const btn=document.getElementById('liAddDogBtn');if(btn)btn.click();else location.href='onboarding.html';});
   document.getElementById('profileSave').addEventListener('click',()=>{
     const legacyName=document.getElementById('dogName'),legacyBreed=document.getElementById('dogBreed'),legacyNotes=document.getElementById('medicalNotes');
     if(legacyName){legacyName.value=name.value;legacyName.dispatchEvent(new Event('input',{bubbles:true}));}
     if(legacyBreed){legacyBreed.value=breed.value;legacyBreed.dispatchEvent(new Event('input',{bubbles:true}));}
     if(legacyNotes){legacyNotes.value=notes.value;legacyNotes.dispatchEvent(new Event('input',{bubbles:true}));}
+    const conditions=Array.from(root.querySelectorAll('#profileConditions input:checked')).map(input=>CONDITION_CODES[input.value]).filter(Boolean);
+    window.dispatchEvent(new CustomEvent('dolopaws-profile-design-values',{detail:{ageBand:age.value,weightBand:weight.value,fitness,conditions}}));
     const save=Array.from(document.querySelectorAll('.saveBtn')).find(b=>!b.disabled);if(save)save.click();
     const status=document.getElementById('profileSaveStatus');status.textContent='Profile saved.';status.hidden=false;setTimeout(()=>status.hidden=true,2500);mirror();
   });
