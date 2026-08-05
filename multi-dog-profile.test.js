@@ -62,8 +62,11 @@ describe('multi-dog account experience', () => {
   });
 
   test('photos remain isolated to the active dog', () => {
+    const account = source('account.js');
     const nav = source('mobile-nav.js');
     const homepage = source('script.js');
+    expect(account).toContain("const dogKey = addMode ? 'new' : (activeDogId || 'new')");
+    expect(account).toContain("(addMode ? 'new' : (activeDogId || 'new'))");
     expect(nav).toContain('summary.dogs.find(dog => dog.id === summary.activeDogId)');
     expect(nav).toContain("return typeof photo === 'string' && photo.startsWith('data:image/') ? photo : null");
     expect(homepage).toContain('const photo = liDogPhoto(profile);');

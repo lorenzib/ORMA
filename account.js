@@ -359,7 +359,8 @@
 
   function photoCacheKey(){
     const u = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
-    return u ? 'dolopaws-dog-photo-' + u.uid + '-' + (activeDogId || 'new') : null;
+    const dogKey = addMode ? 'new' : (activeDogId || 'new');
+    return u ? 'dolopaws-dog-photo-' + u.uid + '-' + dogKey : null;
   }
   function photoStatus(text, ok){
     dogPhotoStatus.hidden = false;
@@ -879,7 +880,8 @@
       }
 
       // Photo: the account copy wins; migrate a pre-sync device-only photo up.
-      const pKey = 'dolopaws-dog-photo-' + user.uid + '-' + (activeDogId || 'new');
+      const pKey = 'dolopaws-dog-photo-' + user.uid + '-'
+        + (addMode ? 'new' : (activeDogId || 'new'));
       const isImage = v => typeof v === 'string' && v.startsWith('data:image/');
       if(!addMode && isImage(profile.photo)){
         state.photo = profile.photo;
