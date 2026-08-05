@@ -1,0 +1,52 @@
+name: Deploy Firestore rules
+
+# GitHub Pages publishes the static site on every push, but Firestore
+# security rules live in Firebase and need their own deploy. Without this,
+# the committed rules and the enforced rules drift apart (which is exactly
+# what broke multi-dog support in Aug 2026).
+on:
+  push:
+    branches: [main]
+    paths:
+      - firestore.rules
+      - firestore.indexes.json
+      - firebase.json
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-firestore-rules
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Check deploy credentials
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          if [ -z "$FIREBASE_SERVICE_ACCOUNT" ]; then
+            echo "::error::Missing FIREBASE_SERVICE_ACCOUNT repository secret."
+            echo "Create a service account with the 'Firebase Rules Admin' and 'Cloud Datastore Index Admin' roles"
+            echo "in the dolopaws project, download its JSON key, and add it as the FIREBASE_SERVICE_ACCOUNT secret."
+            exit 1
+          fi
+
+      - name: Deploy rules and indexes
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "$RUNNER_TEMP/firebase-sa.json"
+          export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/firebase-sa.json"
+          npx firebase-tools deploy --only firestore --project dolopaws --non-interactive
+          rm -f "$RUNNER_TEMP/firebase-sa.json"
