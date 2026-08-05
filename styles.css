@@ -76,6 +76,38 @@ h1,h2,h3,.serif{
 a{color:inherit;}
 img,svg{max-width:100%;height:auto;}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;}
+.section-page-head{
+  width:100%;
+  margin:0;
+  padding:44px 32px 12px;
+}
+.section-page-head h1{
+  margin:0;
+  font-size:38px;
+  line-height:1.08;
+}
+.section-page-subtitle{
+  margin:12px 0 0;
+  color:var(--ink-soft);
+  font-size:15px;
+  line-height:1.5;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.section-page-head--actions{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:20px;
+}
+.section-page-head__copy{min-width:0;}
+@media(max-width:760px){
+  .section-page-head{padding:30px 18px 10px;}
+  .section-page-head h1{font-size:28px;}
+  .section-page-subtitle{font-size:14px;}
+  .section-page-head--actions{align-items:flex-start;flex-direction:column;gap:14px;}
+}
 :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
   outline:3px solid var(--accent) !important;
   outline-offset:3px;
@@ -767,10 +799,7 @@ img,svg{max-width:100%;height:auto;}
 .browse-coll-card em{display:block;font-style:normal;font-size:11.5px;font-weight:700;color:var(--accent);margin-top:8px;}
 
 /* ---------- COLLECTIONS PAGE ---------- */
-.collections-wrap{max-width:var(--wrap);margin:0 auto;padding:40px var(--wrap-gutter) 60px;}
-.collections-intro{max-width:580px;margin-bottom:24px;}
-.collections-intro h1{font-size:34px;}
-.collections-intro p{margin:12px 0 0;color:var(--ink-soft);font-size:14px;line-height:1.6;}
+.collections-wrap{max-width:var(--wrap);margin:0 auto;padding:12px var(--wrap-gutter) 60px;}
 .collections-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
 .collection-card{display:block;min-width:0;overflow:hidden;border:var(--border);border-radius:var(--radius-panel);background:var(--card);text-decoration:none;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;}
 .collection-card:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:var(--shadow-card-hover);}
@@ -779,7 +808,7 @@ img,svg{max-width:100%;height:auto;}
 .collection-card__body h2{font-size:18px;margin:0;}
 .collection-card__body p{margin:5px 0 12px;color:var(--ink-soft);font-size:12.5px;line-height:1.45;}
 .collection-card__meta{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11.5px;color:var(--ink-soft);}
-.collection-card__match{font-weight:800;color:var(--success);}
+.collection-card__open{font-weight:800;color:var(--accent);}
 .collection-feature{display:grid;grid-template-columns:1fr 1fr;margin-top:26px;overflow:hidden;border:var(--border);border-radius:var(--radius-panel);background:var(--card);}
 .collection-feature__image{min-height:280px;background:url('images/lago-di-braies.webp') center/cover no-repeat;}
 .collection-feature__body{padding:24px 26px;}
@@ -795,17 +824,56 @@ img,svg{max-width:100%;height:auto;}
 .collection-trail em{font-style:normal;font-size:13px;font-weight:800;color:var(--success);}
 .collection-cta{display:inline-flex;padding:10px 16px;border-radius:var(--radius-sm);background:var(--accent);color:#fff;font-size:12.5px;font-weight:800;text-decoration:none;}
 .collection-cta:hover{background:var(--accent-hover);}
+.collection-detail{min-height:65vh;background:var(--bg);}
+.collection-detail-hero{min-height:430px;background-image:linear-gradient(90deg,rgba(23,39,29,.88) 0%,rgba(23,39,29,.58) 52%,rgba(23,39,29,.15) 100%),var(--collection-cover);background-position:center;background-size:cover;display:flex;align-items:flex-end;}
+.collection-detail-hero__overlay{width:min(var(--wrap),100%);margin:0 auto;padding:70px var(--wrap-gutter) 54px;color:#fff;}
+.collection-detail-back{display:inline-block;margin-bottom:62px;color:#fff;text-decoration:none;font-size:13px;font-weight:700;}
+.collection-detail-kick{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#DCE9E1;}
+.collection-detail-hero h1{margin:9px 0 8px;color:#fff;font-size:52px;}
+.collection-detail-hero p{margin:0;max-width:690px;font-size:18px;line-height:1.5;color:#F3F4EF;}
+.collection-detail-content{max-width:var(--wrap);margin:0 auto;padding:38px var(--wrap-gutter) 70px;}
+.collection-detail-intro{display:flex;align-items:flex-start;justify-content:space-between;gap:36px;margin-bottom:34px;}
+.collection-detail-intro>p{max-width:710px;margin:0;color:var(--ink-soft);font-size:15px;line-height:1.7;}
+.collection-detail-intro .collection-chips{justify-content:flex-end;max-width:390px;margin:0;}
+.collection-detail-heading{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:16px;}
+.collection-detail-heading h2{font-size:25px;}
+.collection-detail-heading span{color:var(--ink-soft);font-size:12px;font-weight:700;}
+.collection-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;}
+.collection-detail-card{min-width:0;overflow:hidden;border:var(--border);border-radius:var(--radius-panel);background:var(--card);transition:transform .18s ease,box-shadow .18s ease;}
+.collection-detail-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-card-hover);}
+.collection-detail-card__image{display:block;height:190px;text-decoration:none;}
+.collection-detail-card__visual{width:100%;height:100%;}
+.collection-detail-card__body{padding:16px 17px 17px;}
+.collection-detail-card__area{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--accent);font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+.collection-detail-card h2{margin:6px 0 7px;font-size:18px;line-height:1.25;}
+.collection-detail-card h2 a{color:var(--ink);text-decoration:none;}
+.collection-detail-card__body>p{margin:0;color:var(--ink-soft);font-size:12px;}
+.collection-detail-card__footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:15px;padding-top:12px;border-top:1px solid var(--divider);font-size:11.5px;font-weight:700;}
+.collection-detail-card__footer span{color:var(--success);}
+.collection-detail-card__footer a{color:var(--accent);text-decoration:none;}
+.collection-not-found{max-width:680px;margin:0 auto;padding:100px 24px;text-align:center;}
+.collection-not-found p{margin:12px 0 22px;color:var(--ink-soft);}
 @media(max-width:900px){
-  .collections-wrap{padding:26px 16px 44px;}
-  .collections-intro h1{font-size:27px;}
+  .collections-wrap{padding:12px 16px 44px;}
   .collections-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
   .collection-feature{display:flex;flex-direction:column;}
   .collection-feature__image{min-height:190px;}
+  .collection-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .collection-detail-intro{display:block;}
+  .collection-detail-intro .collection-chips{justify-content:flex-start;max-width:none;margin-top:18px;}
 }
 @media(max-width:600px){
   .collections-grid{grid-template-columns:1fr;}
   .collection-card__image{height:170px;}
   .collection-feature__body{padding:20px 18px;}
+  .collection-detail-hero{min-height:390px;}
+  .collection-detail-hero__overlay{padding:54px 18px 38px;}
+  .collection-detail-back{margin-bottom:50px;}
+  .collection-detail-hero h1{font-size:38px;}
+  .collection-detail-hero p{font-size:15px;}
+  .collection-detail-content{padding:30px 18px 52px;}
+  .collection-detail-grid{grid-template-columns:1fr;}
+  .collection-detail-card__image{height:210px;}
 }
 
 /* ---------- FULL DESIGN FLOWS ---------- */
@@ -1623,9 +1691,13 @@ body.map-fs-open{overflow:hidden;}
 .map-callout-actions{display:flex;gap:8px;align-items:center;margin-top:3px;flex-wrap:wrap;}
 .map-callout-open{display:inline-flex;align-items:center;justify-content:center;padding:9px 16px;border-radius:10px;background:var(--accent);color:#fff;font:700 12.5px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;}
 .map-callout-open:hover{background:var(--accent-hover);color:#fff;}
-.map-callout-save{display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:#fff;color:var(--ink);font:700 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
+.map-callout-save,.map-callout-directions{display:inline-flex;align-items:center;gap:6px;padding:8px 15px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:#fff;color:var(--ink);font:700 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
 .map-callout-save:hover{border-color:#9C3A25;color:#9C3A25;}
+.map-callout-directions:hover{border-color:var(--accent);color:var(--accent);}
+.map-callout-directions:disabled{cursor:wait;opacity:.65;}
 .map-callout-save.saved{background:#9C3A25;border-color:#9C3A25;color:#fff;}
+.map-directions-status{display:block;min-height:0;color:var(--ink-soft);font-size:11px;line-height:1.35;}
+.map-directions-status:empty{display:none;}
 .map-callout .li-match{align-self:center;}
 .map-callout .close{cursor:pointer;color:var(--ink-soft);font-size:16px;line-height:1;padding-left:2px;align-self:flex-start;}
 
@@ -1904,7 +1976,10 @@ body.map-fs-open{overflow:hidden;}
    — the browse-trails footer, used on every page. */
 .hp-footer-grid{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:28px;}
 .hp-footer-brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:12px;}
-.hp-footer-brand img{width:32px;height:32px;border-radius:9px;}
+/* The logo's badge background disappears on the footer's matching dark
+   green, leaving ~6px of invisible inset — pull the icon left so the
+   visible art lines up with the blurb text below. */
+.hp-footer-brand img{width:32px;height:32px;border-radius:9px;margin-left:-6px;}
 .hp-footer-brand span{font-family:'Source Serif 4',serif;font-weight:600;font-size:19px;color:#F7F4EA;}
 .hp-footer-blurb{font-size:13px;line-height:1.6;color:#AEBCAF;max-width:280px;margin:0;}
 .hp-footer-h{font-family:'Inter',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8DA290;margin-bottom:12px;}
@@ -2613,6 +2688,15 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 /* Layers chip lives in the map's top-left corner; its panel opens below */
 .li-map .map-btn{top:10px;left:10px;bottom:auto;}
 .li-map .map-panel{top:52px;left:10px;bottom:auto;}
+.li-map .li-map-expand{top:10px;right:56px;bottom:auto;width:auto;height:36px;min-height:36px;}
+.li-map.map-fs{position:fixed;inset:0;z-index:300;width:100vw;height:100vh;height:100dvh;display:block!important;border-radius:0;}
+.li-map.map-fs #trailMap{position:absolute;inset:0;}
+.li-map.map-fs .map-btn,.li-map.map-fs .map-panel{left:max(10px,env(safe-area-inset-left));}
+.li-map.map-fs .li-map-expand{top:max(10px,env(safe-area-inset-top));right:calc(56px + env(safe-area-inset-right));}
+.li-map.map-fs .maplibregl-ctrl-top-right{top:env(safe-area-inset-top);right:env(safe-area-inset-right);}
+.li-map.map-fs .td-layer-switch{left:max(10px,env(safe-area-inset-left));bottom:max(10px,env(safe-area-inset-bottom));}
+.li-map.map-fs .maplibregl-ctrl-bottom-right{right:env(safe-area-inset-right);bottom:env(safe-area-inset-bottom);}
+.li-map.map-fs .li-legend{bottom:max(10px,env(safe-area-inset-bottom));}
 
 /* Map style switch — Map · Satellite · 3D grouped in one visible control
    (bottom-left, same group on the trail map and the app map). */

@@ -28,6 +28,43 @@
     const out = (typeof window.t === 'function') ? window.t(key, vars) : null;
     return (out && out !== key) ? out : fallback;
   };
+  const accessTarget = (() => {
+    const start = t.startPoint || {};
+    const lat = typeof start.lat === 'number' ? start.lat : t.lat;
+    const lng = typeof start.lng === 'number' ? start.lng : t.lng;
+    return Number.isFinite(lat) && Number.isFinite(lng) ? { lat, lng } : null;
+  })();
+  const wireTrailheadDirections = (element, statusElement) => {
+    if(!element || !accessTarget) return;
+    element.removeAttribute('target');
+    element.removeAttribute('rel');
+    element.href = '#';
+    element.addEventListener('click', async event => {
+      event.preventDefault();
+      const access = window.DoloPawsTrailAccess;
+      if(!access){
+        if(statusElement) statusElement.textContent = 'Directions are unavailable right now.';
+        return;
+      }
+      element.setAttribute('aria-disabled', 'true');
+      if(statusElement) statusElement.textContent = 'Checking your distance from the trailhead…';
+      try{
+        const plan = await access.planFromCurrent(navigator, accessTarget, navigator.userAgent, 100);
+        if(!plan.allowed){
+          if(statusElement) statusElement.textContent =
+            `Directions are available when you are within 100 km of the trail (${Math.round(plan.distanceKm)} km away).`;
+          return;
+        }
+        if(statusElement) statusElement.textContent = `${Math.round(plan.distanceKm)} km away · opening directions…`;
+        window.open(plan.url, '_blank', 'noopener');
+      }catch(error){
+        if(statusElement) statusElement.textContent =
+          'Allow location access to check that you are within 100 km of this trail.';
+      }finally{
+        element.removeAttribute('aria-disabled');
+      }
+    });
+  };
 
   /* ---- Tier seal in the hero ------------------------------------- */
   (function seal() {
@@ -300,8 +337,6 @@
     const sp = t.startPoint || {};
     const lat = typeof sp.lat === 'number' ? sp.lat : t.lat;
     const lng = typeof sp.lng === 'number' ? sp.lng : t.lng;
-    const isApple = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
-    const directionsUrl = isApple ? `https://maps.apple.com/?daddr=${lat},${lng}` : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
     const startBtn = $('startNavigationBtn');
     if (startBtn) {
       startBtn.addEventListener('click', (event) => {
@@ -312,11 +347,7 @@
       });
     }
     const directionsBtn = $('getDirectionsBtn');
-    if (directionsBtn && typeof lat === 'number') {
-      directionsBtn.href = directionsUrl;
-      directionsBtn.target = '_blank';
-      directionsBtn.rel = 'noopener';
-    }
+    wireTrailheadDirections(directionsBtn, $('getDirectionsStatus'));
 
     // Share popover (reference): Copy link with inline "✓ Link copied",
     // Message a walking buddy (sms:), Email this trail (mailto:).
@@ -617,7 +648,7 @@
     cards.push({ ic: pin, t: 'Getting there', s: esc(t.valley || t.area || 'The trailhead') + ' — open the pin in your maps app for turn-by-turn driving directions.' });
     cards.push({ ic: clock, t: 'Best arrival', s: 'Arrive early — easier parking, more shade, a calmer trail, and cooler ground for paws.' });
     grid.innerHTML = cards.map(c => `<div class="td2-park"><span class="ic">${c.ic}</span><div><div class="t">${esc(c.t)}</div><div class="s">${c.s}</div></div></div>`).join('');
-    if (maps) maps.href = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
+    wireTrailheadDirections(maps, $('td2MapsStatus'));
     card.hidden = false;
   })();
 

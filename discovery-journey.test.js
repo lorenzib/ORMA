@@ -30,11 +30,19 @@ describe('UX-01 canonical discovery integration', () => {
     expect(browse).toContain('diagnoseZero(trails, currentFilterState(), filterOptions())');
   });
 
-  test('Collections is a curated landing page that hands results to Browse', () => {
+  test('Collections opens dedicated editorial pages instead of Browse filters', () => {
     const collections = source('collections.html');
+    const detail = source('collection.html');
+    const homepage = source('homepage-search.js');
+    const search = source('search-page.js');
 
     expect(collections).toContain('class="collections-grid"');
-    expect(collections).toContain('browse-trails.html?collection=');
+    expect(collections).toContain('collections-page.js');
+    expect(collections).not.toContain('browse-trails.html?collection=');
+    expect(detail).toContain('id="collectionDetail"');
+    expect(detail).toContain('collection-detail.js');
+    expect(homepage).toContain('href="collections.html" class="hp-coll-all"');
+    expect(search).toContain('href="collection.html?id=');
     expect(collections).not.toContain('clGrid');
     expect(collections).not.toContain('scoreTrail');
   });

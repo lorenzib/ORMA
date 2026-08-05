@@ -1193,10 +1193,14 @@ function renderTrail(t){
         ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> <span>Close map</span>'
         : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span>';
       if(expandBtn) expandBtn.setAttribute('aria-label', on ? 'Close map' : 'Expand map');
+      if(expandBtn) expandBtn.setAttribute('aria-expanded', String(on));
       setTimeout(() => map.resize(), 60);
     }
     window.DoloPawsMapFS = { enter: () => setMapFS(true), exit: () => setMapFS(false) };
     if(expandBtn) expandBtn.addEventListener('click', () => setMapFS(!mapBox.classList.contains('map-fs')));
+    document.addEventListener('keydown', event => {
+      if(event.key === 'Escape' && mapBox && mapBox.classList.contains('map-fs')) setMapFS(false);
+    });
     // Live blue-dot location control — tap to see yourself on the map,
     // with heading arrow and follow-me tracking (Google Maps-style).
     map.addControl(new maplibregl.GeolocateControl({

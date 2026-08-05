@@ -437,7 +437,7 @@
           '<div class="hp-kick hp-kick-left">Featured this week</div>' +
           '<h2 class="hp-feat-h2">' + esc(th.title) + '</h2>' +
           '<p class="hp-coll-sub">' + featSub + '</p></div>' +
-          '<a href="browse-trails.html" class="hp-coll-all" data-action="seeall">All collections →</a></div>' +
+          '<a href="collections.html" class="hp-coll-all" data-action="seeall">All collections →</a></div>' +
         '<div class="hp-coll-grid">' + feat.map(function (entry) {
           return ccardHtml(entry, esc(entry.t.distance) + ' km · ' + esc(valleyOf(entry.t)));
         }).join('') + '</div>';

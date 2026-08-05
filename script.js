@@ -600,6 +600,34 @@ function initTrailMap(){
     fitBoundsOptions: { maxZoom: 15.5 },
   }), 'top-right');
 
+  // App-style fullscreen keeps every control anchored to its original
+  // corner and works on iOS, where the browser Fullscreen API is limited.
+  const mapWrap = document.getElementById('trailMapWrap');
+  const expandButton = document.getElementById('homeMapExpandBtn');
+  const setMapFullscreen = on => {
+    if(!mapWrap) return;
+    mapWrap.classList.toggle('map-fs', on);
+    document.body.classList.toggle('map-fs-open', on);
+    if(expandButton){
+      expandButton.setAttribute('aria-expanded', String(on));
+      expandButton.setAttribute('aria-label', on ? 'Close map' : 'Expand map');
+      expandButton.innerHTML = on
+        ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg> <span>Close map</span>'
+        : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span>';
+    }
+    setTimeout(() => trailMapInstance.resize(), 60);
+  };
+  if(expandButton){
+    expandButton.addEventListener('click', () => setMapFullscreen(!mapWrap.classList.contains('map-fs')));
+  }
+  document.addEventListener('keydown', event => {
+    if(event.key === 'Escape' && mapWrap && mapWrap.classList.contains('map-fs')) setMapFullscreen(false);
+  });
+  window.DoloPawsBrowseMapFS = {
+    enter:() => setMapFullscreen(true),
+    exit:() => setMapFullscreen(false),
+  };
+
   trailMapInstance.on('load', async () => {
     addTerrainSource(trailMapInstance);
     increaseLabelDensity(trailMapInstance);
@@ -2009,6 +2037,36 @@ function showTrailMapPopup(t, lngLat){
     .addTo(trailMapInstance);
 }
 
+async function openTrailheadDirections(t, statusElement, trigger){
+  const access = window.DoloPawsTrailAccess;
+  const point = t && (t.startPoint || {});
+  const target = t && {
+    lat:Number.isFinite(point.lat) ? point.lat : Number(t.lat),
+    lng:Number.isFinite(point.lng) ? point.lng : Number(t.lng),
+  };
+  if(!access || !Number.isFinite(target.lat) || !Number.isFinite(target.lng)){
+    if(statusElement) statusElement.textContent = 'Directions are unavailable for this trailhead.';
+    return;
+  }
+  if(trigger) trigger.disabled = true;
+  if(statusElement) statusElement.textContent = 'Checking your distance from the trailhead…';
+  try{
+    const plan = await access.planFromCurrent(navigator, target, navigator.userAgent, 100);
+    if(!plan.allowed){
+      if(statusElement) statusElement.textContent =
+        `Directions are available when you are within 100 km of the trail (${Math.round(plan.distanceKm)} km away).`;
+      return;
+    }
+    if(statusElement) statusElement.textContent = `${Math.round(plan.distanceKm)} km away · opening directions…`;
+    window.open(plan.url, '_blank', 'noopener');
+  }catch(error){
+    if(statusElement) statusElement.textContent =
+      'Allow location access to check that you are within 100 km of this trail.';
+  }finally{
+    if(trigger) trigger.disabled = false;
+  }
+}
+
 function showMapCallout(t){
   const callout = document.getElementById('mapCallout');
   if(!callout) return;
@@ -2025,6 +2083,13 @@ function showMapCallout(t){
   if(ratingEl) ratingEl.innerHTML = `<span class="safety-badge ${safetyClass(t.safetyLevel)}">${trailSafetyLabel(t)}</span>`;
   const openEl = document.getElementById('mapCalloutOpen');
   if(openEl) openEl.href = 'trail.html?id=' + encodeURIComponent(t.id);
+  const directionsEl = document.getElementById('mapCalloutDirections');
+  const directionsStatus = document.getElementById('mapCalloutDirectionsStatus');
+  if(directionsStatus) directionsStatus.textContent = '';
+  if(directionsEl){
+    directionsEl.disabled = false;
+    directionsEl.onclick = () => openTrailheadDirections(t, directionsStatus, directionsEl);
+  }
   const saveEl = document.getElementById('mapCalloutSave');
   if(saveEl){
     const paint = () => {
