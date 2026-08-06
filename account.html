@@ -166,7 +166,7 @@
           <h2>The basics</h2>
           <div class="profile-photo-row"><span class="profile-avatar" data-profile-avatar>Y</span><button type="button" class="flow-btn flow-btn--quiet" id="profilePhotoButton">Upload a photo</button></div>
           <label class="flow-field"><span>Name</span><input id="profileName" autocomplete="off"></label>
-          <label class="flow-field"><span>Breed</span><select id="profileBreed" class="profile-select"><option>Border Collie</option><option>Labrador Retriever</option><option>Bernese Mountain Dog</option><option>Not sure / mixed</option></select><small class="profile-hint">Breed affects the score only through documented physical traits. Never temperament.</small></label>
+          <label class="flow-field"><span>Breed</span><select id="profileBreed" class="profile-select"><option value="">Loading breeds…</option></select><input id="profileBreedOther" class="profile-select" placeholder="Tell us the breed" hidden style="margin-top:8px;"><small class="profile-hint">Breed affects the score only through documented physical traits. Never temperament.</small></label>
           <div class="profile-two">
             <label class="flow-field"><span>Age band</span><select id="profileAge" class="profile-select"><option value="u1">Under 1</option><option value="1-2">1–2</option><option value="3-4" selected>3–4</option><option value="5-6">5–6</option><option value="7-8">7–8</option><option value="9-10">9–10</option><option value="11-12">11–12</option><option value="13plus">13+</option></select></label>
             <label class="flow-field"><span>Weight band</span><select id="profileWeight" class="profile-select"><option value="u5">Under 5 kg</option><option value="5-10">5–10 kg</option><option value="10-15">10–15 kg</option><option value="15-20">15–20 kg</option><option value="20-30" selected>20–30 kg</option><option value="30-40">30–40 kg</option><option value="40-55">40–55 kg</option><option value="55plus">55 kg+</option></select></label>
@@ -500,6 +500,6 @@
 <script type="module" src="firebase-init.js?v=20260806-1"></script>
 <script src="breeds-data.js" defer></script>
 <script src="account.js?v=20260806-2" defer></script>
-<script src="profile-design.js?v=20260806-2" defer></script>
+<script src="profile-design.js?v=20260806-3" defer></script>
 </body>
 </html>

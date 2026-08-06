@@ -1,26 +1,46 @@
 (function(){
   const root=document.getElementById('profileDesign');
   if(!root)return;
-  const name=document.getElementById('profileName'),breed=document.getElementById('profileBreed'),age=document.getElementById('profileAge'),weight=document.getElementById('profileWeight'),notes=document.getElementById('profileNotes');
+  const name=document.getElementById('profileName'),breed=document.getElementById('profileBreed'),breedOther=document.getElementById('profileBreedOther'),age=document.getElementById('profileAge'),weight=document.getElementById('profileWeight'),notes=document.getElementById('profileNotes');
+  const OTHER_BREED='__other__';
   let fitness='moderate';
   const CONDITION_CODES={
     'Joint or hip issues':'joints','Back / disc history':'back','Heart condition':'cardiac',
     'Overweight':'overweight','Recovering from injury':'injury','Impaired vision':'vision',
     'Heat sensitivity':'heat'
   };
+  function canonicalBreeds(){return typeof DOG_BREEDS!=='undefined'?DOG_BREEDS:[];}
+  function setBreedValue(value){
+    const selected=String(value||'');
+    const known=canonicalBreeds().includes(selected);
+    breed.value=known?selected:(selected?OTHER_BREED:'');
+    breedOther.value=known?'':selected;
+    breedOther.hidden=breed.value!==OTHER_BREED;
+  }
+  function populateBreedOptions(selected){
+    breed.replaceChildren();
+    breed.add(new Option('Select a breed…',''));
+    canonicalBreeds().forEach(value=>breed.add(new Option(value,value)));
+    breed.add(new Option('Other (not listed)',OTHER_BREED));
+    setBreedValue(selected);
+  }
+  populateBreedOptions('');
+  breed.addEventListener('change',()=>{
+    breedOther.hidden=breed.value!==OTHER_BREED;
+    if(!breedOther.hidden)breedOther.focus();
+  });
   function mirror(){
     const legacyName=document.getElementById('dogName'),legacyBreed=document.getElementById('dogBreed'),legacyNotes=document.getElementById('medicalNotes');
     const current=(legacyName&&legacyName.value)||'Your dog';
     name.value=current;root.querySelectorAll('[data-profile-name]').forEach(el=>el.textContent=current);root.querySelectorAll('[data-profile-avatar]').forEach(el=>el.textContent=current.charAt(0).toUpperCase());
-    if(legacyBreed&&legacyBreed.value){const found=Array.from(breed.options).find(o=>o.textContent.toLowerCase()===legacyBreed.value.toLowerCase());if(found)breed.value=found.value;}
+    if(legacyBreed&&legacyBreed.value)setBreedValue(legacyBreed.value);
     if(legacyNotes)notes.value=legacyNotes.value||'';
   }
   const observer=new MutationObserver(mirror);observer.observe(document.getElementById('loggedInState'),{attributes:true,subtree:true});
   window.addEventListener('dolopaws-account-profile-loaded',event=>{
     const p=event.detail&&event.detail.profile||{};
     mirror();
-    if(p.breed&&!Array.from(breed.options).some(o=>o.value===p.breed))breed.add(new Option(p.breed,p.breed));
-    if(p.breed)breed.value=p.breed;
+    setBreedValue(p.breed||'');
     if(p.ageBand)age.value=p.ageBand;
     if(p.weightBand)weight.value=p.weightBand;
     fitness=p.fitness||'moderate';
@@ -55,7 +75,7 @@
   document.getElementById('profileSave').addEventListener('click',()=>{
     const legacyName=document.getElementById('dogName'),legacyBreed=document.getElementById('dogBreed'),legacyNotes=document.getElementById('medicalNotes');
     if(legacyName){legacyName.value=name.value;legacyName.dispatchEvent(new Event('input',{bubbles:true}));}
-    if(legacyBreed){legacyBreed.value=breed.value;legacyBreed.dispatchEvent(new Event('input',{bubbles:true}));}
+    if(legacyBreed){legacyBreed.value=breed.value===OTHER_BREED?breedOther.value.trim():breed.value;legacyBreed.dispatchEvent(new Event('input',{bubbles:true}));}
     if(legacyNotes){legacyNotes.value=notes.value;legacyNotes.dispatchEvent(new Event('input',{bubbles:true}));}
     const conditions=Array.from(root.querySelectorAll('#profileConditions input:checked')).map(input=>CONDITION_CODES[input.value]).filter(Boolean);
     window.dispatchEvent(new CustomEvent('dolopaws-profile-design-values',{detail:{ageBand:age.value,weightBand:weight.value,fitness,conditions}}));

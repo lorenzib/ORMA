@@ -47,6 +47,18 @@ describe('multi-dog account experience', () => {
     expect(wizard).toContain('photo:      isDogPhoto(data.photo) ? data.photo : null');
   });
 
+  test('both add-dog views use the same comprehensive breed catalogue', () => {
+    const wizard = source('dog-wizard.js');
+    const manager = source('profile-design.js');
+    const page = source('account.html');
+    expect(wizard).toContain("typeof DOG_BREEDS !== 'undefined'");
+    expect(manager).toContain("typeof DOG_BREEDS!=='undefined'?DOG_BREEDS:[]");
+    expect(wizard).toContain('Other (not listed)');
+    expect(manager).toContain("new Option('Other (not listed)',OTHER_BREED)");
+    expect(page).toContain('id="profileBreedOther"');
+    expect(page).not.toContain('<option>Border Collie</option><option>Labrador Retriever</option>');
+  });
+
   test('moderator access is outside the dog profile and in the account menu', () => {
     const account = source('account.html');
     const nav = source('mobile-nav.js');
