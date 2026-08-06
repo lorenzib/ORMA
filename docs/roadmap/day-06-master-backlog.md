@@ -209,6 +209,8 @@ All P0 and P1 work
 
 ### DATA-03 — Define regional loading boundaries
 
+- **Status:** Complete in code (2026-08-05); see
+  `docs/architecture/DATA-03-regional-loading-boundaries.md`.
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** DATA-01

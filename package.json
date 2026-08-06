@@ -15,6 +15,7 @@
     "validate:firestore-contract": "jest --runInBand firestore-security.test.js",
     "test:firestore-rules": "node scripts/run-firestore-rules-tests.cjs",
     "check:trail-sources": "node scripts/check-trail-sources.js",
+    "build:regional-data": "node scripts/build-regional-runtime-data.js",
     "build:dolomites-trails": "npm run fetch:dolomites-trails && npm run validate:dolomites-trails"
   },
   "devDependencies": {

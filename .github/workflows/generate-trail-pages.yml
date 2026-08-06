@@ -36,11 +36,14 @@ jobs:
       - name: Generate trail pages and sitemap
         run: node scripts/generate-trail-pages.js
 
+      - name: Build regional runtime payloads
+        run: npm run build:regional-data
+
       - name: Commit generated pages
         run: |
           git config user.name "dolopaws-bot"
           git config user.email "actions@github.com"
-          git add trails/ sitemap.xml browse-trails.html
+          git add trails/ sitemap.xml browse-trails.html data/regions/ data/regions-manifest.json regions-runtime-manifest.js
           git diff --cached --quiet || git commit -m "Regenerate static trail pages and sitemap"
           git pull --rebase origin main
           git push

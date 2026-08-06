@@ -13,10 +13,19 @@ function loadRegionalTrailFile(file) {
   return JSON.parse(JSON.stringify(context.window.trails));
 }
 
+function loadCanonicalTrails() {
+  const context = { window: {}, console };
+  vm.createContext(context);
+  ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'regions-config.js']
+    .forEach(file => vm.runInContext(read(file), context, { filename: file }));
+  return JSON.parse(vm.runInContext('window.DoloPawsRegions.assign(trails); JSON.stringify(trails)', context));
+}
+
 describe('DATA-03 regional runtime boundaries', () => {
   const manifest = json('data/regions-manifest.json');
 
   test('manifest maps every published trail to exactly one regional payload', () => {
+    const canonical = loadCanonicalTrails();
     const dolomites = loadRegionalTrailFile('data/regions/dolomites-trails.js');
     const savoy = loadRegionalTrailFile('data/regions/savoy-trails.js');
     const ids = [...dolomites, ...savoy].map(trail => trail.id);
@@ -24,6 +33,7 @@ describe('DATA-03 regional runtime boundaries', () => {
     expect(dolomites).toHaveLength(manifest.regions.dolomites.trailCount);
     expect(savoy).toHaveLength(manifest.regions.savoy.trailCount);
     expect(Object.keys(manifest.trailRegion)).toHaveLength(ids.length);
+    expect(new Set(ids)).toEqual(new Set(canonical.map(trail => trail.id)));
     expect(dolomites.every(trail => trail.region === 'dolomites')).toBe(true);
     expect(savoy.every(trail => trail.region === 'savoy')).toBe(true);
   });

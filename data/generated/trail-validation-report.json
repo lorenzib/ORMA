@@ -11,8 +11,8 @@
   "totals": {
     "sourceRecords": 164,
     "canonicalRecords": 164,
-    "published": 143,
-    "draft": 21,
+    "published": 142,
+    "draft": 22,
     "errors": 0
   },
   "byOrigin": {
@@ -23,8 +23,8 @@
     },
     "osm": {
       "total": 140,
-      "published": 119,
-      "draft": 21
+      "published": 118,
+      "draft": 22
     }
   },
   "excludedFromGeneration": [
@@ -170,10 +170,17 @@
       ]
     },
     {
-      "id": "osm-16395059",
-      "slug": "colombier-par-la-fullie-et-le-col-de-la-cochette",
+      "id": "osm-16180587",
+      "slug": "balade-du-plateau-d-assy-au-lac-vert",
       "reasons": [
-        "geometry jump 1.95 km before point 125"
+        "geometry jump 1.08 km before point 141"
+      ]
+    },
+    {
+      "id": "osm-21021130",
+      "slug": "parcours-n-11-lacs-du-chardonnet",
+      "reasons": [
+        "geometry jump 1.44 km before point 95"
       ]
     }
   ],

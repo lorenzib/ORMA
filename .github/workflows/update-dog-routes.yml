@@ -33,11 +33,14 @@ jobs:
       - name: Validate all production trail sources
         run: node scripts/validate-production-trails.js
 
+      - name: Build regional runtime payloads
+        run: npm run build:regional-data
+
       - name: Commit updated trail data
         run: |
           git config user.name "dolopaws-bot"
           git config user.email "actions@github.com"
-          git add dog-friendly-routes.geojson dog-friendly-routes-savoy.geojson osm-trails-data.js osm-trails-savoy-data.js data/access-points.geojson data/access-points-savoy.geojson data/dog-route-review.json data/dog-route-review-savoy.json data/dog-route-overrides.json
+          git add dog-friendly-routes.geojson dog-friendly-routes-savoy.geojson osm-trails-data.js osm-trails-savoy-data.js data/access-points.geojson data/access-points-savoy.geojson data/dog-route-review.json data/dog-route-review-savoy.json data/dog-route-overrides.json data/regions/ data/regions-manifest.json regions-runtime-manifest.js
           git diff --cached --quiet || git commit -m "Update dog-friendly routes and promoted trails from OSM"
           git pull --rebase origin main
           git push

@@ -21,11 +21,14 @@ jobs:
       - name: Fetch huts, bars, cafés and restaurants from OSM
         run: node scripts/fetch-huts-bars.js
 
+      - name: Build regional runtime payloads
+        run: npm run build:regional-data
+
       - name: Commit updated POIs
         run: |
           git config user.name "dolopaws-bot"
           git config user.email "actions@github.com"
-          git add huts-bars-all-regions.geojson
+          git add huts-bars-all-regions.geojson data/regions/ data/regions-manifest.json regions-runtime-manifest.js
           git diff --cached --quiet || git commit -m "Monthly POI refresh (food, drink, huts)"
           git pull --rebase origin main
           git push
