@@ -182,7 +182,7 @@
             <label><input type="checkbox" value="Joint or hip issues">Joint or hip issues</label><label><input type="checkbox" value="Back / disc history">Back / disc history</label><label><input type="checkbox" value="Heart condition">Heart condition</label><label><input type="checkbox" value="Overweight">Overweight</label><label><input type="checkbox" value="Recovering from injury">Recovering from injury</label><label><input type="checkbox" value="Impaired vision">Impaired vision</label><label><input type="checkbox" value="Heat sensitivity">Heat sensitivity</label>
           </div>
           <label class="flow-field"><span>Notes <small>Optional</small></span><input id="profileNotes" placeholder="Anything a sitter should know?"><small class="profile-hint">Kept for you. Never scored.</small></label>
-          <div class="flow-actions"><button type="button" id="profileSave" class="flow-btn">Save profile</button><a href="index.html" class="flow-btn flow-btn--quiet">Cancel</a></div>
+          <div class="flow-actions"><button type="button" id="profileSave" class="flow-btn">Save profile</button><a href="index.html" class="flow-btn flow-btn--quiet">Cancel</a><button type="button" id="profileRemoveDog" class="flow-btn flow-btn--quiet" hidden style="border-color:#E4B9A8;color:#9C3A25;">Remove dog</button></div>
           <p id="profileSaveStatus" class="profile-hint" role="status" hidden></p>
         </section>
       </div>
@@ -260,7 +260,7 @@
         <div id="sensGrid" class="acct-2col" style="gap:10px;margin-bottom:24px;"></div>
 
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;border-top:1px solid #EDE9DD;padding-top:20px;">
-          <div style="max-width:52%;min-width:220px;">
+          <div id="removeDogBlock" style="max-width:52%;min-width:220px;">
             <button type="button" id="removeDogBtn" class="btn-g" style="border-color:#E4B9A8;color:#9C3A25;">Remove <span class="removeDogName">this dog</span></button>
             <p class="hint" style="margin:8px 2px 0;">Permanently deletes <span class="removeDogName">this dog</span>'s profile and all its data — photo, health, vet and emergency details. You can add a dog again later.</p>
           </div>
@@ -498,9 +498,9 @@
 <script src="i18n.js"></script>
 <script src="offline-packages.js"></script>
 <script src="local-data.js?v=20260806-1"></script>
-<script type="module" src="firebase-init.js?v=20260806-1"></script>
+<script type="module" src="firebase-init.js?v=20260806-2"></script>
 <script src="breeds-data.js" defer></script>
-<script src="account.js?v=20260806-2" defer></script>
-<script src="profile-design.js?v=20260806-4" defer></script>
+<script src="account.js?v=20260806-3" defer></script>
+<script src="profile-design.js?v=20260806-5" defer></script>
 </body>
 </html>

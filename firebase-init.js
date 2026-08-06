@@ -263,6 +263,7 @@ async function removeDogProfile(id) {
   if (!currentUser) return false;
   try {
     const state = await getDogProfiles();
+    if (state.dogs.length <= 1) return false;
     const dogs = state.dogs.filter(dog => dog.id !== id);
     if (dogs.length === state.dogs.length) return false;
     const activeDogId = state.activeDogId === id

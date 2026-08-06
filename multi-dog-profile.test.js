@@ -32,6 +32,11 @@ describe('multi-dog account experience', () => {
     expect(controller).toContain('DoloPawsAuth.addDogProfile(buildProfile())');
     expect(controller).toContain('DoloPawsAuth.selectDogProfile(dog.id)');
     expect(controller).toContain('DoloPawsAuth.removeDogProfile');
+    expect(page).toContain('id="profileRemoveDog"');
+    expect(controller).toContain('const canRemoveDog = !addMode && dogProfiles.length > 1;');
+    expect(controller).toContain('window.location.assign(accountHref({}))');
+    expect(source('profile-design.js')).toContain("document.getElementById('removeDogBtn')");
+    expect(source('firebase-init.js')).toContain('if (state.dogs.length <= 1) return false;');
     expect(controller).toContain('const disabled = missingDog;');
     expect(controller).not.toContain('missingDog || missingOwner');
     expect(controller).toContain("detail:{ ok, addMode }");

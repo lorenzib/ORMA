@@ -103,6 +103,11 @@
       add.textContent = dogProfiles.length >= 5 ? 'Maximum 5 dogs' : addMode ? 'Adding a new dog' : '+ Add another dog';
       add.onclick = () => window.location.assign(accountHref({ mode:'add' }));
     }
+    const canRemoveDog = !addMode && dogProfiles.length > 1;
+    const removeBlock = $('removeDogBlock');
+    const profileRemove = $('profileRemoveDog');
+    if(removeBlock) removeBlock.hidden = !canRemoveDog;
+    if(profileRemove) profileRemove.hidden = !canRemoveDog;
   }
 
   // ---------- Tabs ----------
@@ -522,7 +527,7 @@
       localStorage.removeItem(LEGACY_PHOTO_KEY);
     } catch(e){}
     if(ok){
-      window.location.assign(backHref);
+      window.location.assign(accountHref({}));
     } else {
       saveStatus.hidden = false;
       saveStatus.style.color = '#9C3A25';
@@ -883,8 +888,8 @@
         if(title) title.textContent = 'Add another dog';
         const kicker = document.querySelector('#profileDesign > .profile-kicker');
         if(kicker) kicker.textContent = 'New dog profile';
-        const remove = $('removeDogBtn');
-        if(remove) remove.hidden = true;
+        const removeBlock = $('removeDogBlock');
+        if(removeBlock) removeBlock.hidden = true;
       }
 
       // Photo: the account copy wins; migrate a pre-sync device-only photo up.

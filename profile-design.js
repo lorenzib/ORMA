@@ -74,6 +74,10 @@
     document.getElementById('profileHeatReason').textContent=heat?'Heat sensitivity is declared and always outranks breed assumptions.':'No heat-sensitivity condition declared.';
   }
   document.getElementById('profilePhotoButton').addEventListener('click',()=>document.getElementById('dogPhotoInput').click());
+  document.getElementById('profileRemoveDog').addEventListener('click',()=>{
+    const remove=document.getElementById('removeDogBtn');
+    if(remove&&!remove.disabled)remove.click();
+  });
   const profileSaveStatus=document.getElementById('profileSaveStatus');
   window.addEventListener('dolopaws-account-save-result',event=>{
     const ok=!!(event.detail&&event.detail.ok);
