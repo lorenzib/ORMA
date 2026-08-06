@@ -8,6 +8,9 @@
     'dolopaws-profile-summary',
     'dolopaws-dog-photo',
     'dolopaws-notif-prefs',
+    'dolopaws-notif-seen',
+    'dolopaws-notif-unread',
+    'dolopaws-notifications-read',
     'dolopaws-pending-dog-profile',
     'dolopaws-dog-draft',
     'dolopaws-pending-context-v1',
@@ -21,6 +24,7 @@
     'dolopaws-design-reports',
     'dolopaws-funnel-v1:',
     'dolopaws-parkstart-',
+    'dolopaws-journal-',
   ]);
 
   function storageKeys(storage){
@@ -68,7 +72,10 @@
 
   async function cleanup(options){
     const removePackages = !!(options && options.removePackages);
-    const removedLocal = clearMatching(root.localStorage, isPrivateKey);
+    const removedLocal = clearMatching(
+      root.localStorage,
+      removePackages ? key => key.startsWith('dolopaws-') : isPrivateKey
+    );
     const removedSession = clearMatching(
       root.sessionStorage,
       key => key.startsWith('dolopaws-')

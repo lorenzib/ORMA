@@ -425,7 +425,11 @@
   <div class="acct-card" role="dialog" aria-modal="true" aria-labelledby="cancelTitle" style="max-width:420px;width:100%;padding:26px 24px;">
     <div style="width:44px;height:44px;border-radius:12px;background:#F3D9D2;display:grid;place-items:center;margin-bottom:14px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9C3A25" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg></div>
     <div class="serif" id="cancelTitle" style="font-size:21px;margin-bottom:6px;">Cancel your account?</div>
-    <p style="font-size:13px;color:#6B7A6E;line-height:1.5;margin:0 0 16px;">This permanently deletes your sign-in and main DoloPaws profile. Moderation records that must be retained for safety or legal reasons are separate. This <b style="color:#9C3A25;">can't be undone</b>.</p>
+    <p style="font-size:13px;color:#6B7A6E;line-height:1.5;margin:0 0 10px;">This <b style="color:#9C3A25;">can't be undone</b>. Server deletion and cleanup of this browser are separate.</p>
+    <div style="font-size:12.5px;color:#536257;line-height:1.5;background:#F7F5EE;border-radius:12px;padding:12px 14px;margin-bottom:14px;">
+      <b>Deleted from the server:</b> your sign-in, dog profiles, saved trails, match history, and private post-hike outcomes.<br>
+      <b>May be retained:</b> community reviews, trail photos, hazard reports, abuse reports, and moderation audit records needed for community safety or legal obligations. They are no longer connected to an active sign-in.
+    </div>
     <div id="deletePasswordField" hidden style="margin-bottom:14px;">
       <label class="lbl" for="deletePassword">Confirm your password</label>
       <input class="fld" type="password" id="deletePassword" autocomplete="current-password">
@@ -435,8 +439,8 @@
     <input class="fld" id="confirmDeleteText" placeholder="DELETE" autocomplete="off" style="margin-bottom:16px;">
     <fieldset style="border:1px solid #DED9CB;border-radius:12px;padding:12px 14px;margin:0 0 16px;">
       <legend class="lbl" style="padding:0 5px;">Data on this device</legend>
-      <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45;margin-bottom:9px;"><input type="radio" name="deleteLocalData" value="remove" checked style="margin-top:3px;"> <span><b>Remove all DoloPaws local data</b><br><span class="hint">Recommended on shared devices. Removes downloads, unfinished hikes, pending outcomes and cached profile data.</span></span></label>
-      <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45;"><input type="radio" name="deleteLocalData" value="retain" style="margin-top:3px;"> <span><b>Keep downloaded public maps</b><br><span class="hint">Private local records are removed. Maps remain usable, but cannot be updated until another account logs in.</span></span></label>
+      <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45;margin-bottom:9px;"><input type="radio" name="deleteLocalData" value="remove" checked style="margin-top:3px;"> <span><b>Remove all DoloPaws local data</b><br><span class="hint">Recommended on shared devices. Removes downloaded maps, journal entries, unfinished and completed hike records, pending outcomes and reports, analytics queues, photos, and cached profile data.</span></span></label>
+      <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45;"><input type="radio" name="deleteLocalData" value="retain" style="margin-top:3px;"> <span><b>Keep downloaded public maps</b><br><span class="hint">Journal entries and every other private local record are removed. Public maps remain usable, but cannot be updated until another account logs in.</span></span></label>
     </fieldset>
     <p id="deleteStatus" class="hint" hidden style="margin:0 0 12px;color:#9C3A25;"></p>
     <div style="display:flex;gap:10px;justify-content:flex-end;"><button type="button" id="closeCancelBtn" class="btn-g">Keep my account</button><button type="button" id="confirmDeleteBtn" disabled style="padding:12px 20px;border-radius:12px;border:none;background:#D9B7AD;color:#fff;font-weight:800;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Delete my account</button></div>
@@ -492,10 +496,10 @@
 <script src="mobile-nav.js?v=20260805-2"></script>
 <script src="i18n.js"></script>
 <script src="offline-packages.js"></script>
-<script src="local-data.js"></script>
-<script type="module" src="firebase-init.js?v=20260805-3"></script>
+<script src="local-data.js?v=20260806-1"></script>
+<script type="module" src="firebase-init.js?v=20260806-1"></script>
 <script src="breeds-data.js" defer></script>
-<script src="account.js?v=20260805-2" defer></script>
+<script src="account.js?v=20260806-1" defer></script>
 <script src="profile-design.js?v=20260805-1" defer></script>
 </body>
 </html>

@@ -345,6 +345,9 @@ function friendlyError(code) {
 async function deleteAccount(password) {
   if (!currentUser) return { ok: false, message: "Not logged in." };
   const providerId = currentUser.providerData[0] && currentUser.providerData[0].providerId;
+  const uid = currentUser.uid;
+  let removedOutcomes = 0;
+  let removedProfile = false;
   try {
     if (providerId === "google.com") {
       await reauthenticateWithPopup(currentUser, googleProvider);
@@ -353,12 +356,50 @@ async function deleteAccount(password) {
       const credential = EmailAuthProvider.credential(currentUser.email, password);
       await reauthenticateWithCredential(currentUser, credential);
     }
-    await deleteDoc(doc(db, "users", currentUser.uid));
-    await deleteUser(currentUser);
-    return { ok: true };
   } catch (e) {
-    return { ok: false, message: friendlyError(e.code) };
+    return { ok: false, stage: "reauthentication", message: friendlyError(e.code) };
   }
+
+  try {
+    const outcomes = await getDocs(collection(db, "users", uid, "outcomes"));
+    for (const outcome of outcomes.docs) {
+      await deleteDoc(outcome.ref);
+      removedOutcomes += 1;
+    }
+    await deleteDoc(doc(db, "users", uid));
+    removedProfile = true;
+  } catch (e) {
+    return {
+      ok: false,
+      stage: "private-data",
+      partial: removedOutcomes > 0,
+      server: { removedOutcomes, removedProfile },
+      message: removedOutcomes > 0
+        ? "Some private hike outcomes were removed, but server cleanup did not finish. Your sign-in has not been deleted. Please try again."
+        : "Your private server data could not be removed, so your sign-in was not deleted. Please try again.",
+    };
+  }
+
+  try {
+    await deleteUser(currentUser);
+  } catch (e) {
+    return {
+      ok: false,
+      stage: "authentication",
+      partial: true,
+      server: { removedOutcomes, removedProfile },
+      message: "Your private profile was removed, but the sign-in could not be deleted. Sign in again and retry account deletion, or contact support.",
+    };
+  }
+  return {
+    ok: true,
+    server: {
+      authenticationDeleted: true,
+      profileDeleted: true,
+      privateOutcomesDeleted: removedOutcomes,
+      retainedForSafetyAndModeration: ["community contributions", "reports", "moderation records"],
+    },
+  };
 }
 
 function contributionResult(state, message, action) {

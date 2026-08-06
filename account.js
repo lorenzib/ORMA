@@ -781,12 +781,16 @@
     refreshDeleteBtn();
     if(result.ok){
       const choice = document.querySelector('input[name="deleteLocalData"]:checked');
-      if(window.DoloPawsLocalData){
-        await window.DoloPawsLocalData.cleanup({
-          removePackages:!choice || choice.value === 'remove',
-        });
+      const removePackages = !choice || choice.value === 'remove';
+      let deviceState = removePackages ? 'removed' : 'maps-retained';
+      try{
+        if(window.DoloPawsLocalData){
+          await window.DoloPawsLocalData.cleanup({ removePackages });
+        }
+      }catch(error){
+        deviceState = 'cleanup-incomplete';
       }
-      window.location.href = 'index.html';
+      window.location.href = 'index.html?accountDeleted=1&device=' + encodeURIComponent(deviceState);
     } else {
       deleteStatus.hidden = false;
       deleteStatus.textContent = result.message;

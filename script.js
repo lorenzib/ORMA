@@ -114,6 +114,23 @@ function showHomeActionStatus(message){
   }, 4200);
 }
 
+(function showAccountDeletionReceipt(){
+  try{
+    const url = new URL(window.location.href);
+    if(url.searchParams.get('accountDeleted') !== '1') return;
+    const device = url.searchParams.get('device');
+    const message = device === 'removed'
+      ? 'Account deleted. Private server data and DoloPaws data on this device were removed. Community and moderation records may be retained for safety or legal obligations.'
+      : device === 'maps-retained'
+        ? 'Account deleted. Private server data was removed. Downloaded public maps remain on this device; community and moderation records may also be retained.'
+        : 'Account deleted, but device cleanup did not finish. Clear DoloPaws site data in your browser settings before sharing this device.';
+    showHomeActionStatus(message);
+    url.searchParams.delete('accountDeleted');
+    url.searchParams.delete('device');
+    window.history.replaceState({}, '', url.pathname + (url.search ? url.search : '') + url.hash);
+  }catch(error){ /* deletion already completed; receipt failure must not break home */ }
+})();
+
 let guestMapInstance = null;
 let showingSavedOnly = false;
 let activeArea = 'all';

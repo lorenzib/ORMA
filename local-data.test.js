@@ -25,6 +25,7 @@ describe('OFF-03 local device cleanup', () => {
   test('clears private records while retaining downloaded-package ownership', async () => {
     localStorage.setItem('dolopaws-active-hike-v1', '{}');
     localStorage.setItem('dolopaws-dog-photo-user-1', 'private');
+    localStorage.setItem('dolopaws-journal-user-1', 'private journal');
     localStorage.setItem('dolopaws-offline:lago-carezza', 'package');
     localStorage.setItem('dolopaws-offline-owner-salt', 'salt');
     localStorage.setItem('dolopaws-lang', 'it');
@@ -36,6 +37,7 @@ describe('OFF-03 local device cleanup', () => {
     expect(result.removePackages).toBe(false);
     expect(localStorage.getItem('dolopaws-active-hike-v1')).toBeNull();
     expect(localStorage.getItem('dolopaws-dog-photo-user-1')).toBeNull();
+    expect(localStorage.getItem('dolopaws-journal-user-1')).toBeNull();
     expect(sessionStorage.getItem('dolopaws-pending-auth-action')).toBeNull();
     expect(localStorage.getItem('dolopaws-offline:lago-carezza')).toBe('package');
     expect(localStorage.getItem('dolopaws-offline-owner-salt')).toBe('salt');
@@ -47,6 +49,8 @@ describe('OFF-03 local device cleanup', () => {
     const removeAllPackages = jest.fn().mockResolvedValue(true);
     window.DoloPawsOffline = { removeAllPackages };
     localStorage.setItem('dolopaws-profile-summary', 'private');
+    localStorage.setItem('dolopaws-privacy-prefs', 'preferences');
+    localStorage.setItem('dolopaws-units-prefs', 'preferences');
     localStorage.setItem('unrelated-site-key', 'keep');
 
     const result = await window.DoloPawsLocalData.cleanup({ removePackages:true });
@@ -54,6 +58,8 @@ describe('OFF-03 local device cleanup', () => {
     expect(result.removePackages).toBe(true);
     expect(removeAllPackages).toHaveBeenCalledTimes(1);
     expect(localStorage.getItem('dolopaws-profile-summary')).toBeNull();
+    expect(localStorage.getItem('dolopaws-privacy-prefs')).toBeNull();
+    expect(localStorage.getItem('dolopaws-units-prefs')).toBeNull();
     expect(localStorage.getItem('unrelated-site-key')).toBe('keep');
   });
 
@@ -70,7 +76,8 @@ describe('OFF-03 local device cleanup', () => {
     expect(html).toContain('name="deleteLocalData" value="retain"');
     expect(html.indexOf('offline-packages.js')).toBeLessThan(html.indexOf('local-data.js'));
     expect(account).toContain('cleanup({ removePackages:true })');
-    expect(account).toContain("removePackages:!choice || choice.value === 'remove'");
+    expect(account).toContain("const removePackages = !choice || choice.value === 'remove'");
+    expect(account).toContain("deviceState = 'cleanup-incomplete'");
     expect(homepage).toContain("account.html?logout=1");
   });
 });

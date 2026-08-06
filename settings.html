@@ -387,8 +387,7 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   });
   $('stLogoutBtn').addEventListener('click', function(){
-    if(!window.DoloPawsAuth) return;
-    window.DoloPawsAuth.logOut().then(function(){ window.location.href = 'index.html'; });
+    window.location.href = 'account.html?logout=1';
   });
 
   // "Download my data" — everything this device holds for the account.

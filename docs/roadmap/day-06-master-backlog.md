@@ -386,6 +386,8 @@ All P0 and P1 work
 
 ### AUTH-03 — Separate server deletion from device cleanup
 
+- **Status:** Complete in code (2026-08-06); see
+  [`AUTH-03-server-deletion-and-device-cleanup.md`](../architecture/AUTH-03-server-deletion-and-device-cleanup.md)
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** AUTH-01, OFF-03, HIKE-01
