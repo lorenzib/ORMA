@@ -101,19 +101,66 @@ function initHikeMode(map, trail){
     ? window.DoloPawsHikeDistance.create(0)
     : null;
   let latestFix = null;
+  let latestAssessment = null;
+  let latestRouteDistanceM = null;
   let manualRejoinActive = false;
   let durableSession = null;
   let completionRetry = null;
   const rejoinRoute = trail.path.map(point => ({ lat: point[0], lng: point[1] }));
   let footpathGraph = null;
   const routedTrailIds = new Set(['lago-carezza', 'alpe-siusi']);
-  if(routedTrailIds.has(trail.id) && window.DoloPawsFootpathRouter){
+  const rejoinSupported = routedTrailIds.has(trail.id) && !!window.DoloPawsFootpathRouter;
+  let footpathGraphState = rejoinSupported ? 'loading' : 'unsupported';
+
+  function updateRejoinControl(){
+    if(!active || !rejoinSupported){
+      rejoinBtn.hidden = true;
+      return;
+    }
+    rejoinBtn.hidden = false;
+    rejoinBtn.disabled = true;
+    rejoinBtn.style.opacity = '.78';
+    if(!latestFix){
+      rejoinBtn.textContent = hikeLabel('hike.rejoinWaitingGps', 'Route me to trail · waiting for GPS');
+      return;
+    }
+    if(!latestAssessment || !latestAssessment.usableForProgress){
+      rejoinBtn.textContent = hikeLabel('hike.rejoinWeakGps', 'Route me to trail · improve GPS signal');
+      return;
+    }
+    if(latestRouteDistanceM > 1500){
+      rejoinBtn.textContent = hikeLabel('hike.rejoinTooFar', 'Rejoin available within 1.5 km');
+      return;
+    }
+    if(footpathGraphState === 'loading'){
+      rejoinBtn.textContent = hikeLabel('hike.rejoinLoading', 'Loading rejoin route…');
+      return;
+    }
+    if(!footpathGraph){
+      rejoinBtn.textContent = hikeLabel('hike.rejoinNoMap', 'No mapped rejoin path available');
+      return;
+    }
+    rejoinBtn.disabled = false;
+    rejoinBtn.style.opacity = '1';
+    rejoinBtn.textContent = hikeLabel('hike.rejoinAction', 'Route me to the trail');
+  }
+
+  if(rejoinSupported){
     fetch(`offline/packages/${encodeURIComponent(trail.id)}/footpath-network.json`)
       .then(response => response.ok ? response.json() : null)
       .then(graph => {
-        if(graph && window.DoloPawsFootpathRouter.validateGraph(graph)) footpathGraph = graph;
+        if(graph && window.DoloPawsFootpathRouter.validateGraph(graph)){
+          footpathGraph = graph;
+          footpathGraphState = 'ready';
+        }else{
+          footpathGraphState = 'unavailable';
+        }
+        updateRejoinControl();
       })
-      .catch(() => {});
+      .catch(() => {
+        footpathGraphState = 'unavailable';
+        updateRejoinControl();
+      });
   }
 
   function keepSessionResult(result){
@@ -349,6 +396,9 @@ function initHikeMode(map, trail){
         farFromRoute: false,
         freshness: 'unavailable',
       };
+    latestAssessment = assessment;
+    latestRouteDistanceM = routeDistanceM;
+    updateRejoinControl();
 
     if(firstFix && assessment.usableForProgress){
       firstFix = false;
@@ -406,7 +456,6 @@ function initHikeMode(map, trail){
         })
       }</span>` + offlineNote();
       banner.style.display = 'none';
-      rejoinBtn.hidden = true;
       manualRejoinActive = false;
       hideRejoinGuidance();
       offRouteStreak = assessment.nextOffRouteStreak;
@@ -416,9 +465,7 @@ function initHikeMode(map, trail){
 
     offRouteStreak = assessment.nextOffRouteStreak;
     offRouteSince = assessment.nextOffRouteSince;
-    const rejoinAvailable = assessment.usableForProgress && !!footpathGraph &&
-      routeDistanceM > Math.max(15, Number(accuracy) * 0.5) && routeDistanceM <= 1500;
-    rejoinBtn.hidden = !rejoinAvailable;
+    const rejoinAvailable = !rejoinBtn.disabled;
     if(!rejoinAvailable) manualRejoinActive = false;
     if(manualRejoinActive){
       renderManualRejoin();
@@ -544,11 +591,14 @@ function initHikeMode(map, trail){
       ? window.DoloPawsHikeDistance.create(0)
       : null;
     latestFix = null;
+    latestAssessment = null;
+    latestRouteDistanceM = null;
     manualRejoinActive = false;
     lastValidFixAt = null;
     offRouteStreak = 0;
     offRouteSince = null;
     beginDurableSession();
+    updateRejoinControl();
     // A hiker needs a navigation screen, not an article: go fullscreen.
     if (window.DoloPawsMapFS) window.DoloPawsMapFS.enter();
     setStartLabel('hike.end', 'End hike');
@@ -610,12 +660,15 @@ function initHikeMode(map, trail){
       ? window.DoloPawsHikeDistance.create(lastKnownKm)
       : null;
     latestFix = null;
+    latestAssessment = null;
+    latestRouteDistanceM = null;
     manualRejoinActive = false;
     lastIdx = progress ? progress.pathIndex : 0;
     lastValidFixAt = progress ? progress.recordedAt : null;
     offRouteStreak = 0;
     offRouteSince = null;
     persistSessionState('active');
+    updateRejoinControl();
     if(window.DoloPawsMapFS) window.DoloPawsMapFS.enter();
     setStartLabel('hike.end', 'End hike');
     startBtn.style.background = '#9C3A25';

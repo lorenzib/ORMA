@@ -263,6 +263,10 @@ describe('trail page map legend', () => {
     expect(hikeMode).toContain("window.t('hike.walked'");
     expect(hikeMode).not.toContain("window.t('hike.kmOf'");
     expect(hikeMode).toContain("rejoinBtn.id = 'mapHikeRejoinBtn'");
+    expect(hikeMode).toContain("rejoinBtn.textContent = hikeLabel('hike.rejoinAction', 'Route me to the trail')");
+    expect(hikeMode).toContain("rejoinBtn.textContent = hikeLabel('hike.rejoinWaitingGps'");
+    expect(hikeMode).toContain('rejoinBtn.hidden = false');
+    expect(hikeMode).not.toContain('routeDistanceM > Math.max(15');
     expect(trail).toContain('if(!routeIsLoop)');
   });
 });
