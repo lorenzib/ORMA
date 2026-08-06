@@ -43,6 +43,15 @@
     document.getElementById('profileHeatReason').textContent=heat?'Heat sensitivity is declared and always outranks breed assumptions.':'No heat-sensitivity condition declared.';
   }
   document.getElementById('profilePhotoButton').addEventListener('click',()=>document.getElementById('dogPhotoInput').click());
+  const profileSaveStatus=document.getElementById('profileSaveStatus');
+  window.addEventListener('dolopaws-account-save-result',event=>{
+    const ok=!!(event.detail&&event.detail.ok);
+    profileSaveStatus.textContent=ok
+      ? (event.detail.addMode?'Dog added successfully.':'Profile saved.')
+      : 'Something went wrong — please try again.';
+    profileSaveStatus.style.color=ok?'#2C5C34':'#9C3A25';
+    profileSaveStatus.hidden=false;
+  });
   document.getElementById('profileSave').addEventListener('click',()=>{
     const legacyName=document.getElementById('dogName'),legacyBreed=document.getElementById('dogBreed'),legacyNotes=document.getElementById('medicalNotes');
     if(legacyName){legacyName.value=name.value;legacyName.dispatchEvent(new Event('input',{bubbles:true}));}
@@ -50,8 +59,14 @@
     if(legacyNotes){legacyNotes.value=notes.value;legacyNotes.dispatchEvent(new Event('input',{bubbles:true}));}
     const conditions=Array.from(root.querySelectorAll('#profileConditions input:checked')).map(input=>CONDITION_CODES[input.value]).filter(Boolean);
     window.dispatchEvent(new CustomEvent('dolopaws-profile-design-values',{detail:{ageBand:age.value,weightBand:weight.value,fitness,conditions}}));
-    const save=Array.from(document.querySelectorAll('.saveBtn')).find(b=>!b.disabled);if(save)save.click();
-    const status=document.getElementById('profileSaveStatus');status.textContent='Profile saved.';status.hidden=false;setTimeout(()=>status.hidden=true,2500);mirror();
+    const save=Array.from(document.querySelectorAll('.saveBtn')).find(b=>!b.disabled);
+    if(save){
+      profileSaveStatus.textContent='Saving…';
+      profileSaveStatus.style.color='';
+      profileSaveStatus.hidden=false;
+      save.click();
+    }
+    mirror();
   });
   updateImpact();
 })();

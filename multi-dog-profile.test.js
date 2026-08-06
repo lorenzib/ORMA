@@ -32,6 +32,11 @@ describe('multi-dog account experience', () => {
     expect(controller).toContain('DoloPawsAuth.addDogProfile(buildProfile())');
     expect(controller).toContain('DoloPawsAuth.selectDogProfile(dog.id)');
     expect(controller).toContain('DoloPawsAuth.removeDogProfile');
+    expect(controller).toContain('const disabled = missingDog;');
+    expect(controller).not.toContain('missingDog || missingOwner');
+    expect(controller).toContain("detail:{ ok, addMode }");
+    expect(source('profile-design.js')).toContain("'dolopaws-account-save-result'");
+    expect(source('profile-design.js')).not.toContain("status.textContent='Profile saved.'");
   });
 
   test('the wizard appends instead of overwriting an existing dog', () => {

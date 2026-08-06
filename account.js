@@ -332,18 +332,19 @@
     $('cardOwner').textContent = joinBits([state.ownerName.trim(), state.ownerPhone.trim(), state.ownerEmail.trim()], '—');
     $('cardEmergency').textContent = joinBits([state.emName.trim(), state.emPhone.trim()], 'Not set');
 
-    // Required-field styling + save gating (name + owner name/email, as on
-    // the setup wizard).
-    $('ownerName').style.borderColor = state.ownerName.trim() ? '' : '#E4B9A8';
-    $('ownerEmail').style.borderColor = state.ownerEmail.trim() ? '' : '#E4B9A8';
+    // A dog profile can be saved with dog information alone, matching the
+    // homepage wizard. Human and emergency-contact details are optional and
+    // must never silently block the visible profile editor.
+    $('ownerName').style.borderColor = '';
+    $('ownerEmail').style.borderColor = '';
     const missingDog = nm.length === 0;
-    const missingOwner = !state.ownerName.trim() || !state.ownerEmail.trim();
-    const disabled = missingDog || missingOwner;
+    const disabled = missingDog;
     document.querySelectorAll('.saveBtn').forEach(b => { b.disabled = disabled; });
+    const profileSave = $('profileSave');
+    if(profileSave) profileSave.disabled = disabled;
     document.querySelectorAll('.saveHint').forEach(h => {
       h.hidden = !disabled;
-      h.textContent = missingDog ? "Add your dog's name first."
-        : "Add your name and email in the Human tab first.";
+      h.textContent = "Add your dog's name first.";
     });
   }
 
@@ -488,6 +489,9 @@
       btn.textContent = label;
       saveStatus.hidden = false;
       saveStatus.style.color = ok ? '#2C5C34' : '#9C3A25';
+      window.dispatchEvent(new CustomEvent('dolopaws-account-save-result', {
+        detail:{ ok, addMode }
+      }));
       if(ok && returnTarget){
         saveStatus.textContent = 'Saved. Returning you to where you were…';
         window.setTimeout(() => window.location.assign(returnTarget), 500);
