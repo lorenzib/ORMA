@@ -190,8 +190,15 @@ describe('private user documents', () => {
     await assertFails(setDoc(doc(owner, 'users/owner-1'), {
       favorites: tooManyFavorites,
     }));
+    // Per-field length checks were traded for Firestore's 1,000-expression
+    // rule budget (multi-dog writes ran validDog up to six times). The
+    // surviving contract: contact maps accept only known keys, and enum
+    // fields accept only known values.
     await assertFails(setDoc(doc(owner, 'users/owner-1'), {
-      dog: { name: 'Luna', owner: { email: 'x'.repeat(255) } },
+      dog: { name: 'Luna', owner: { nickname: 'unknown-key' } },
+    }));
+    await assertFails(setDoc(doc(owner, 'users/owner-1'), {
+      dog: { name: 'Luna', fitness: 'extreme' },
     }));
     await assertFails(setDoc(doc(owner, 'users/owner-1'), {
       dogs: Array.from({ length: 6 }, (_, index) => ({ name: `Dog ${index + 1}` })),
