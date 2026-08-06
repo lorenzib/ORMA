@@ -29,13 +29,24 @@
     breedOther.hidden=breed.value!==OTHER_BREED;
     if(!breedOther.hidden)breedOther.focus();
   });
+  function paintName(value){
+    const display=value||'Your dog';
+    root.querySelectorAll('[data-profile-name]').forEach(el=>el.textContent=display);
+    root.querySelectorAll('[data-profile-avatar]').forEach(el=>el.textContent=display.charAt(0).toUpperCase());
+  }
   function mirror(){
     const legacyName=document.getElementById('dogName'),legacyBreed=document.getElementById('dogBreed'),legacyNotes=document.getElementById('medicalNotes');
-    const current=(legacyName&&legacyName.value)||'Your dog';
-    name.value=current;root.querySelectorAll('[data-profile-name]').forEach(el=>el.textContent=current);root.querySelectorAll('[data-profile-avatar]').forEach(el=>el.textContent=current.charAt(0).toUpperCase());
+    const current=(legacyName&&legacyName.value)||'';
+    if(document.activeElement!==name)name.value=current;
+    paintName(current);
     if(legacyBreed&&legacyBreed.value)setBreedValue(legacyBreed.value);
     if(legacyNotes)notes.value=legacyNotes.value||'';
   }
+  name.addEventListener('input',()=>{
+    const legacyName=document.getElementById('dogName');
+    if(legacyName){legacyName.value=name.value;legacyName.dispatchEvent(new Event('input',{bubbles:true}));}
+    paintName(name.value.trim());
+  });
   const observer=new MutationObserver(mirror);observer.observe(document.getElementById('loggedInState'),{attributes:true,subtree:true});
   window.addEventListener('dolopaws-account-profile-loaded',event=>{
     const p=event.detail&&event.detail.profile||{};

@@ -37,6 +37,9 @@ describe('multi-dog account experience', () => {
     expect(controller).toContain("detail:{ ok, addMode }");
     expect(source('profile-design.js')).toContain("'dolopaws-account-save-result'");
     expect(source('profile-design.js')).not.toContain("status.textContent='Profile saved.'");
+    expect(source('profile-design.js')).toContain("name.addEventListener('input'");
+    expect(source('profile-design.js')).toContain("legacyName.dispatchEvent(new Event('input',{bubbles:true}))");
+    expect(page).toContain('placeholder="Your dog\'s name"');
   });
 
   test('the wizard appends instead of overwriting an existing dog', () => {
