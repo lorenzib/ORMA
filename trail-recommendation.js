@@ -33,14 +33,21 @@
       dogName:profile && profile.name,
     });
     const score = view.score === null ? '' : `<span class="recommendation-score">${view.score}%</span>`;
-    // The unknowns are LISTED once, in the permanent conditions/evidence
-    // card below — this panel only carries the count so the two never
-    // duplicate each other.
-    const unknownSummary = view.unknowns.length || view.additionalUnknowns
-      ? `${view.unknowns.length + view.additionalUnknowns} unknown item${
-        view.unknowns.length + view.additionalUnknowns === 1 ? '' : 's'
-      }`
-      : 'no unknown items';
+    // Confidence rides next to the score as a calm data-completeness chip;
+    // the audit trail (scoring version, trail-data gaps) lives in the
+    // evidence disclosure, not on the card face.
+    const chip = view.confidenceLabel
+      ? `<span class="recommendation-confidence recommendation-confidence--${esc(view.confidence)}">${esc(view.confidenceLabel)}</span>`
+      : '';
+    // Dog-side gaps are the one thing the reader can fix right now — the
+    // card face turns them into a profile CTA instead of a caveat.
+    const gapCta = !view.dogName
+      ? '<p class="recommendation-gaps"><a href="onboarding.html">Add your dog to sharpen this score →</a></p>'
+      : view.dogGapFields.length
+        ? `<p class="recommendation-gaps"><a href="account.html">Add ${esc(view.dogName)}’s ${
+            esc(friendlyList(view.dogGapFields))
+          } to sharpen this score →</a></p>`
+        : '';
 
     root.className = `recommendation-decision recommendation-decision--${view.tone}`;
     root.dataset.scoringVersion = view.scoringVersion;
@@ -50,8 +57,8 @@
       '<div class="recommendation-head">' +
         '<div>' +
           `<div class="recommendation-kicker">${esc(view.contextLabel)}</div>` +
-          `<h2>${esc(view.conclusion)} ${score}</h2>` +
-          `<p>${esc(view.confidence)} confidence · canonical scoring ${esc(view.scoringVersion)} · ${esc(unknownSummary)}</p>` +
+          `<h2>${esc(view.conclusion)} ${score} ${chip}</h2>` +
+          gapCta +
         '</div>' +
         '<a class="recommendation-evidence-link" href="#trailEvidence">Sources &amp; review status ↓</a>' +
       '</div>' +
@@ -68,9 +75,33 @@
       '</div>';
     root.hidden = false;
 
+    renderEvidenceMeta(view);
     const hero = document.getElementById('heroVerdict');
     if(hero) hero.textContent = view.heroSummary;
     wireActions(root, trail);
+  }
+
+  function friendlyList(items){
+    if(items.length <= 1) return items.join('');
+    return `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`;
+  }
+
+  // The audit line — scoring version and how much trail data is still
+  // unverified — belongs with the sources, where its reader looks for it.
+  function renderEvidenceMeta(view){
+    const evidence = document.getElementById('trailEvidence');
+    if(!evidence) return;
+    let meta = document.getElementById('recommendationEvidenceMeta');
+    if(!meta){
+      meta = document.createElement('p');
+      meta.id = 'recommendationEvidenceMeta';
+      meta.className = 'trail-evidence-scoring';
+      evidence.appendChild(meta);
+    }
+    const gaps = view.trailUnknownCount > 0
+      ? `${view.trailUnknownCount} trail fact${view.trailUnknownCount === 1 ? '' : 's'} not yet verified`
+      : 'all trail facts recorded';
+    meta.textContent = `Canonical scoring ${view.scoringVersion} · ${gaps}.`;
   }
 
   function wireActions(root, trail){

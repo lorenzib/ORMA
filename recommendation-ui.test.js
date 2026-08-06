@@ -22,11 +22,16 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(controller).toContain('view.conclusion');
     expect(controller).toContain('view.reasons');
     expect(controller).toContain('view.cautions');
-    expect(controller).toContain('view.unknowns');
-    // Unknowns are LISTED only in the evidence/conditions card; the decision
-    // panel carries just the count in its meta line (no duplicate list).
+    expect(controller).toContain('view.trailUnknownCount');
+    expect(controller).toContain('view.dogGapFields');
+    // Unknowns are LISTED only in the evidence/conditions card; the card
+    // face carries a data-completeness chip and an actionable dog-gap CTA,
+    // while the audit line (version + trail gaps) lives in the evidence
+    // disclosure.
     expect(controller).not.toContain('<details class="recommendation-unknowns"');
-    expect(controller).toContain('${esc(unknownSummary)}</p>');
+    expect(controller).toContain('view.confidenceLabel');
+    expect(controller).toContain('recommendation-gaps');
+    expect(controller).toContain('recommendationEvidenceMeta');
     expect(controller).toContain('hero.textContent = view.heroSummary');
     expect(controller).not.toContain('trail.safetyLevel');
   });
@@ -81,8 +86,16 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(block.textContent).toContain('Possible with cautions');
     expect(block.textContent).toContain('Distance is within range.');
     expect(block.textContent).toContain('Shade is limited.');
-    // The unknown is counted here but LISTED only in the evidence card.
-    expect(block.textContent).toContain('1 unknown item');
+    // Calm data-completeness chip instead of "low confidence" jargon.
+    expect(block.textContent).toContain('Based on partial data');
+    expect(block.textContent).not.toContain('low confidence');
+    expect(block.textContent).not.toContain('canonical scoring');
+    // Unpersonalized view: the fixable gap is the missing dog itself.
+    expect(block.textContent).toContain('Add your dog to sharpen this score');
+    // The audit line moved into the evidence disclosure.
+    const evidenceMeta = document.getElementById('recommendationEvidenceMeta');
+    expect(evidenceMeta.textContent).toContain('Canonical scoring 1.1.0');
+    expect(evidenceMeta.textContent).toContain('1 trail fact not yet verified');
     expect(block.textContent).not.toContain('Access is not reviewed.');
     expect(document.getElementById('heroVerdict').textContent)
       .toBe('Possible with cautions in an unpersonalized planning view.');
