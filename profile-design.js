@@ -15,7 +15,12 @@
     const known=canonicalBreeds().includes(selected);
     breed.value=known?selected:(selected?OTHER_BREED:'');
     breedOther.value=known?'':selected;
-    breedOther.hidden=breed.value!==OTHER_BREED;
+    // Write the hidden ATTRIBUTE only when it actually changes: mirror()
+    // runs from a MutationObserver watching attributes in this subtree, so
+    // an unconditional assignment re-triggers the observer forever and
+    // freezes the whole page.
+    const hideOther=breed.value!==OTHER_BREED;
+    if(breedOther.hidden!==hideOther)breedOther.hidden=hideOther;
   }
   function populateBreedOptions(selected){
     breed.replaceChildren();
