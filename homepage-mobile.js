@@ -36,35 +36,18 @@
       list.insertBefore(grab, list.firstChild);
       wireDrag(grab);
     }
-    if(!document.getElementById('mhomeTabs')){
-      var nav = document.createElement('nav');
-      nav.className = 'mhome-tabs';
-      nav.id = 'mhomeTabs';
-      nav.setAttribute('aria-label', 'Primary');
-      nav.innerHTML =
-        '<a href="index.html" class="on" aria-current="page">' +
-          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg>' +
-          '<span>Map</span></a>' +
-        '<a href="saved.html">' +
-          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>' +
-          '<span>Saved</span></a>' +
-        '<a href="journal.html">' +
-          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>' +
-          '<span>Journal</span></a>' +
-        '<a href="account.html?next=index.html">' +
-          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>' +
-          '<span>Profile</span></a>';
-      returning.appendChild(nav);
-    }
+    // No app tab bar: DoloPaws stays a mobile website. Saved / Journal /
+    // Profile are reached through the account menu in the toolbar, same
+    // navigation model as every other page.
   }
 
   function measure(){
     // The toolbar (search + filters + avatar) is the phone top bar; the dark
-    // app header and greeting bar are hidden at this width.
+    // app header and greeting bar are hidden at this width. The map and the
+    // sheet run to the true bottom edge of the viewport.
     var top = returning.querySelector('.li-toolbar');
-    var tabs = document.getElementById('mhomeTabs');
     if(top) document.body.style.setProperty('--mhome-top', top.offsetHeight + 'px');
-    if(tabs) document.body.style.setProperty('--mhome-tabs', tabs.offsetHeight + 'px');
+    document.body.style.setProperty('--mhome-tabs', '0px');
   }
 
   // The account pill lives in the dark header on desktop; on the phone
@@ -83,8 +66,7 @@
 
   function availH(){
     var top = parseFloat(getComputedStyle(document.body).getPropertyValue('--mhome-top')) || 62;
-    var tabs = parseFloat(getComputedStyle(document.body).getPropertyValue('--mhome-tabs')) || 64;
-    return Math.max(120, window.innerHeight - top - tabs);
+    return Math.max(120, window.innerHeight - top);
   }
 
   // Height of the always-visible sliver when the sheet is fully hidden:
@@ -100,7 +82,9 @@
     var list = listEl();
     if(!list || !active) return;
     var h = Math.round(Math.max(handleH(), availH() * pct));
-    list.style.height = h + 'px';
+    // The sheet sits on the real bottom edge now, so the home-indicator
+    // inset rides on top of the snap height.
+    list.style.height = 'calc(' + h + 'px + env(safe-area-inset-bottom))';
     list.classList.toggle('mhome-sheet-hidden', pct === 0);
     // Anything that rides above the sheet (map attribution) follows it.
     document.body.style.setProperty('--mhome-sheet', h + 'px');

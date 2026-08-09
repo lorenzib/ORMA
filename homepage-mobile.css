@@ -12,7 +12,6 @@
    bottom sheet, bottom tab bar.
    ============================================================ */
 
-.mhome-tabs{display:none;}
 .mhome-grab{display:none;}
 
 @media (max-width:700px){
@@ -47,7 +46,7 @@
 
   /* ---- MAP: full screen between top bar and tab bar ---- */
   body.mhome-active .li-body{display:block;}
-  body.mhome-active .li-map{position:fixed;left:0;right:0;top:var(--mhome-top,62px);bottom:var(--mhome-tabs,64px);z-index:1;margin:0;border:none;border-radius:0;height:auto;}
+  body.mhome-active .li-map{position:fixed;left:0;right:0;top:var(--mhome-top,62px);bottom:0;z-index:1;margin:0;border:none;border-radius:0;height:auto;}
   body.mhome-active #trailMap{position:absolute;inset:0;width:100%;height:100% !important;border-radius:0 !important;border:none !important;}
   body.mhome-active .li-legend{display:none;}
 
@@ -96,15 +95,15 @@
   /* Attribution rides just above the sheet, wherever it is — including
      fully hidden (homepage-mobile.js keeps --mhome-sheet current). */
   body.mhome-active .maplibregl-ctrl-bottom-left,
-  body.mhome-active .maplibregl-ctrl-bottom-right{bottom:calc(var(--mhome-sheet, 26dvh) + 6px);transition:bottom .28s cubic-bezier(.22,1,.36,1);}
+  body.mhome-active .maplibregl-ctrl-bottom-right{bottom:calc(var(--mhome-sheet, 26dvh) + env(safe-area-inset-bottom) + 6px);transition:bottom .28s cubic-bezier(.22,1,.36,1);}
 
   /* Selected-pin preview card docks above the tab bar (same card as the
      list rows — no separate condensed header on mobile) */
-  body.mhome-active .map-callout{position:fixed;left:10px;right:10px;top:auto;bottom:calc(var(--mhome-tabs,64px) + 10px);transform:none;width:auto;z-index:46;}
+  body.mhome-active .map-callout{position:fixed;left:10px;right:10px;top:auto;bottom:calc(var(--mhome-sheet,26dvh) + env(safe-area-inset-bottom) + 10px);transform:none;width:auto;z-index:46;}
 
   /* ---- BOTTOM SHEET: the ranked list ---- */
   /* Beige sheet, white card rows — matches the desktop pane inversion fix */
-  body.mhome-active .li-list{position:fixed;left:0;right:0;bottom:var(--mhome-tabs,64px);z-index:45;display:flex;flex-direction:column;height:46dvh;max-width:none;width:auto;background:#EFECE2;border:none;border-radius:22px 22px 0 0;box-shadow:0 -10px 30px -12px rgba(23,42,28,.3);transition:height .28s cubic-bezier(.22,1,.36,1);overflow:hidden;box-sizing:border-box;}
+  body.mhome-active .li-list{position:fixed;left:0;right:0;bottom:0;padding-bottom:env(safe-area-inset-bottom);z-index:45;display:flex;flex-direction:column;height:46dvh;max-width:none;width:auto;background:#EFECE2;border:none;border-radius:22px 22px 0 0;box-shadow:0 -10px 30px -12px rgba(23,42,28,.3);transition:height .28s cubic-bezier(.22,1,.36,1);overflow:hidden;box-sizing:border-box;}
   body.mhome-active .li-list.mhome-dragging{transition:none;}
   body.mhome-active .mhome-grab{display:block;flex:none;padding:11px 0 8px;cursor:grab;touch-action:none;}
   .mhome-grab span{display:block;width:38px;height:5px;border-radius:3px;background:var(--paper-line,#DEDDD0);margin:0 auto;}
@@ -138,7 +137,4 @@
   body.mhome-active .li-rows .tc-ring-inner{width:36px;height:36px;font-size:11px;}
 
   /* ---- BOTTOM TAB NAV (injected by homepage-mobile.js) ---- */
-  body.mhome-active .mhome-tabs{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:stretch;background:rgba(247,244,235,.97);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid rgba(27,31,25,.08);padding:8px 6px calc(8px + env(safe-area-inset-bottom));box-sizing:border-box;}
-  .mhome-tabs a{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8A9689;text-decoration:none;font:600 10.5px 'Inter',sans-serif;padding:4px 0;}
-  .mhome-tabs a.on{color:var(--ink);font-weight:800;}
 }

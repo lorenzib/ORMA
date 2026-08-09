@@ -356,6 +356,14 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
       if(!base || !ensureSatelliteLayer()) return;
       const sat = base.getAttribute('data-maplayer') === 'satellite';
       map.setLayoutProperty('satellite-layer', 'visibility', sat ? 'visible' : 'none');
+      // The vector style's building fills sit above the raster and would
+      // paint every roof grey on top of the photo imagery — hide them
+      // while satellite is on.
+      map.getStyle().layers.forEach(layer => {
+        if(layer['source-layer'] === 'building' || /building/i.test(layer.id)){
+          try { map.setLayoutProperty(layer.id, 'visibility', sat ? 'none' : 'visible'); } catch(err){}
+        }
+      });
       wrap.querySelectorAll('[data-maplayer]').forEach(b => {
         const on = b === base;
         b.classList.toggle('on', on);
