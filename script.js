@@ -1961,13 +1961,13 @@ async function renderReturningHomepage(profile){
         <div class="li-row-meta" title="${matchReason(t, overrides)}">${liRowMeta(t)}</div>
         ${newBadge || importedBadge ? `<div class="li-row-badges">${newBadge}${importedBadge}</div>` : ''}
         <div class="li-rating-row"><span class="li-rating-kick">Trail rating</span><span class="safety-badge ${safetyClass(t.safetyLevel)}">${trailSafetyLabel(t)}</span></div>
-        <div class="li-row-actions">
-          <button type="button" class="li-row-act locate-btn" data-id="${t.id}">See on map</button>
-          ${trailheadDirectionsHref(t) ? `<a class="li-row-act" href="${trailheadDirectionsHref(t)}" target="_blank" rel="noopener">Get directions ↗</a>` : ''}
-        </div>
       </div>
       ${liMatchColHtml(t)}
       <button type="button" class="li-heart save-btn" data-id="${t.id}" aria-pressed="${isFav}" aria-label="${isFav ? 'Remove ' + t.name + ' from saved trails' : 'Save ' + t.name}">${isFav ? '♥' : '♡'}</button>
+      <div class="li-row-bar">
+        <button type="button" class="locate-btn" data-id="${t.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>See on map</button>
+        ${trailheadDirectionsHref(t) ? `<a href="${trailheadDirectionsHref(t)}" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>Get directions</a>` : ''}
+      </div>
     </div>`;
   }).join('');
 
