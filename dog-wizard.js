@@ -450,26 +450,24 @@
 
   function renderBreedStep() {
     var breeds = (typeof DOG_BREEDS !== 'undefined') ? DOG_BREEDS : [];
-    var opts = '<option value="">Select a breed\u2026</option>' +
-      breeds.map(function (b) {
-        return '<option value="' + esc(b) + '"' + (data.breed === b ? ' selected' : '') + '>' + esc(b) + '</option>';
-      }).join('') +
-      '<option value="' + OTHER_VALUE + '"' + (data.breed === OTHER_VALUE ? ' selected' : '') + '>Other (not listed)</option>';
+    // Type-ahead combobox: typing filters the alphabetical catalogue via
+    // the native datalist; free text stays valid (replaces "Other").
+    var startValue = data.breed === OTHER_VALUE ? data.breedOther : data.breed;
 
     bodyEl.innerHTML =
       '<div class="dw-field-group">' +
         '<label class="dw-label" for="dwBreed">' +
           'Breed <span class="dw-required" aria-label="required">*</span>' +
         '</label>' +
-        '<select class="dw-select" id="dwBreed" aria-required="true" aria-describedby="dwBreedErr">' +
-          opts +
-        '</select>' +
-        '<input type="text" class="dw-input" id="dwBreedOther"' +
-               ' placeholder="Tell us the breed" value="' + esc(data.breedOther) + '"' +
-               ' style="margin-top:8px;' + (data.breed === OTHER_VALUE ? '' : 'display:none;') + '"' +
-               ' aria-label="Other breed name">' +
+        '<input type="text" class="dw-input" id="dwBreed" list="dwBreedList"' +
+               ' autocomplete="off" placeholder="Start typing a breed\u2026"' +
+               ' value="' + esc(startValue) + '"' +
+               ' aria-required="true" aria-describedby="dwBreedErr">' +
+        '<datalist id="dwBreedList">' +
+          breeds.map(function (b) { return '<option value="' + esc(b) + '">'; }).join('') +
+        '</datalist>' +
         '<span class="dw-field-error" id="dwBreedErr" role="alert" hidden>' +
-          'Please select a breed.' +
+          'Please tell us the breed \u2014 pick a suggestion or type your own.' +
         '</span>' +
       '</div>' +
       '<div class="dw-field-group">' +
@@ -497,18 +495,12 @@
         '</span>' +
       '</div>';
 
-    var breedSelect = document.getElementById('dwBreed');
-    var breedOther  = document.getElementById('dwBreedOther');
-
-    breedSelect.addEventListener('change', function () {
-      data.breed = breedSelect.value;
-      isDirty    = true;
-      breedOther.style.display = breedSelect.value === OTHER_VALUE ? '' : 'none';
-      document.getElementById('dwBreedErr').hidden = true;
-    });
-    breedOther.addEventListener('input', function () {
-      data.breedOther = breedOther.value;
-      isDirty = true;
+    var breedInput = document.getElementById('dwBreed');
+    breedInput.addEventListener('input', function () {
+      data.breed      = breedInput.value;
+      data.breedOther = '';
+      isDirty         = true;
+      if(breedInput.value.trim()) document.getElementById('dwBreedErr').hidden = true;
     });
     var weightSelect = document.getElementById('dwWeightBand');
     weightSelect.addEventListener('change', function () {
@@ -516,7 +508,7 @@
       isDirty = true;
     });
     wireOptionGroup(bodyEl);
-    setTimeout(function () { breedSelect.focus(); }, 50);
+    setTimeout(function () { breedInput.focus(); }, 50);
   }
 
   function renderHealthStep() {
@@ -646,7 +638,7 @@
       return nameOk && ageOk;
     }
     if (step.id === 'breed') {
-      var breedOk   = !!(data.breed && (data.breed !== OTHER_VALUE || data.breedOther.trim()));
+      var breedOk   = !!(data.breed === OTHER_VALUE ? data.breedOther.trim() : String(data.breed || '').trim());
       var fitnessOk = !!data.fitness;
       if (!breedOk)   document.getElementById('dwBreedErr').hidden   = false;
       if (!fitnessOk) document.getElementById('dwFitnessErr').hidden = false;
@@ -712,7 +704,7 @@
     var conditions = data.conditions.slice();
     return {
       name:       data.name.trim(),
-      breed:      data.breed === OTHER_VALUE ? data.breedOther.trim() : data.breed,
+      breed:      data.breed === OTHER_VALUE ? data.breedOther.trim() : String(data.breed || '').trim(),
       fitness:    data.fitness,
       dob:        null,
       ageBand:    data.ageBand || null,
@@ -872,11 +864,11 @@
     isEditing  = !!(existingDog && existingDog.name);
 
     if (isEditing) {
-      var known = (typeof DOG_BREEDS !== 'undefined') && DOG_BREEDS.includes(existingDog.breed);
+      // The combobox accepts any breed string directly — no Other branch.
       data = Object.assign(makeEmptyData(), {
         name:        existingDog.name       || '',
-        breed:       known ? existingDog.breed : (existingDog.breed ? OTHER_VALUE : ''),
-        breedOther:  known ? '' : (existingDog.breed || ''),
+        breed:       existingDog.breed      || '',
+        breedOther:  '',
         ageBand:     existingDog.ageBand    || '',
         weightBand:  existingDog.weightBand || '',
         fitness:     existingDog.fitness    || '',

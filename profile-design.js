@@ -1,8 +1,7 @@
 (function(){
   const root=document.getElementById('profileDesign');
   if(!root)return;
-  const name=document.getElementById('profileName'),breed=document.getElementById('profileBreed'),breedOther=document.getElementById('profileBreedOther'),age=document.getElementById('profileAge'),weight=document.getElementById('profileWeight'),notes=document.getElementById('profileNotes');
-  const OTHER_BREED='__other__';
+  const name=document.getElementById('profileName'),breed=document.getElementById('profileBreed'),age=document.getElementById('profileAge'),weight=document.getElementById('profileWeight'),notes=document.getElementById('profileNotes');
   let fitness='moderate';
   const CONDITION_CODES={
     'Joint or hip issues':'joints','Back / disc history':'back','Heart condition':'cardiac',
@@ -10,30 +9,24 @@
     'Heat sensitivity':'heat'
   };
   function canonicalBreeds(){return typeof DOG_BREEDS!=='undefined'?DOG_BREEDS:[];}
+  // Type-ahead combobox: a text input backed by a datalist, so typing
+  // filters the (alphabetical) catalogue natively. Free text stays valid —
+  // it replaces the old separate "Other (not listed)" field.
   function setBreedValue(value){
-    const selected=String(value||'');
-    const known=canonicalBreeds().includes(selected);
-    breed.value=known?selected:(selected?OTHER_BREED:'');
-    breedOther.value=known?'':selected;
-    // Write the hidden ATTRIBUTE only when it actually changes: mirror()
-    // runs from a MutationObserver watching attributes in this subtree, so
-    // an unconditional assignment re-triggers the observer forever and
-    // freezes the whole page.
-    const hideOther=breed.value!==OTHER_BREED;
-    if(breedOther.hidden!==hideOther)breedOther.hidden=hideOther;
+    // Skip while the user is typing: mirror() runs from a MutationObserver
+    // and must never clobber (or fight) live input.
+    if(document.activeElement!==breed)breed.value=String(value||'');
   }
-  function populateBreedOptions(selected){
-    breed.replaceChildren();
-    breed.add(new Option('Select a breed…',''));
-    canonicalBreeds().forEach(value=>breed.add(new Option(value,value)));
-    breed.add(new Option('Other (not listed)',OTHER_BREED));
-    setBreedValue(selected);
-  }
-  populateBreedOptions('');
-  breed.addEventListener('change',()=>{
-    breedOther.hidden=breed.value!==OTHER_BREED;
-    if(!breedOther.hidden)breedOther.focus();
-  });
+  (function populateBreedOptions(){
+    const list=document.getElementById('profileBreedList');
+    if(!list)return;
+    list.replaceChildren();
+    canonicalBreeds().forEach(value=>{
+      const option=document.createElement('option');
+      option.value=value;
+      list.appendChild(option);
+    });
+  })();
   function paintName(value){
     const display=value||'Your dog';
     root.querySelectorAll('[data-profile-name]').forEach(el=>el.textContent=display);
@@ -95,7 +88,7 @@
   document.getElementById('profileSave').addEventListener('click',()=>{
     const legacyName=document.getElementById('dogName'),legacyBreed=document.getElementById('dogBreed'),legacyNotes=document.getElementById('medicalNotes');
     if(legacyName){legacyName.value=name.value;legacyName.dispatchEvent(new Event('input',{bubbles:true}));}
-    if(legacyBreed){legacyBreed.value=breed.value===OTHER_BREED?breedOther.value.trim():breed.value;legacyBreed.dispatchEvent(new Event('input',{bubbles:true}));}
+    if(legacyBreed){legacyBreed.value=breed.value.trim();legacyBreed.dispatchEvent(new Event('input',{bubbles:true}));}
     if(legacyNotes){legacyNotes.value=notes.value;legacyNotes.dispatchEvent(new Event('input',{bubbles:true}));}
     const conditions=Array.from(root.querySelectorAll('#profileConditions input:checked')).map(input=>CONDITION_CODES[input.value]).filter(Boolean);
     window.dispatchEvent(new CustomEvent('dolopaws-profile-design-values',{detail:{ageBand:age.value,weightBand:weight.value,fitness,conditions}}));

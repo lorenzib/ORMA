@@ -229,7 +229,11 @@ const FCI_BREED_GROUPS = [
 ];
 
 // Flat list — kept for backwards compatibility with older scripts.
-const DOG_BREEDS = FCI_BREED_GROUPS.reduce((acc, g) => acc.concat(g.breeds), []);
+// One flat, ALPHABETICAL list for every breed picker. The FCI groups above
+// stay in registry order for maintenance against fci.be; pickers must not
+// expose that grouping, which reads as random once concatenated.
+const DOG_BREEDS = FCI_BREED_GROUPS.reduce((acc, g) => acc.concat(g.breeds), [])
+  .sort((a, b) => a.localeCompare(b, 'en'));
 
 // ============================================================
 // TRAIT SETS — physical characteristics with a real, documented

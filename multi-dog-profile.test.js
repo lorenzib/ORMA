@@ -59,11 +59,17 @@ describe('multi-dog account experience', () => {
     const wizard = source('dog-wizard.js');
     const manager = source('profile-design.js');
     const page = source('account.html');
+    const breeds = source('breeds-data.js');
     expect(wizard).toContain("typeof DOG_BREEDS !== 'undefined'");
     expect(manager).toContain("typeof DOG_BREEDS!=='undefined'?DOG_BREEDS:[]");
-    expect(wizard).toContain('Other (not listed)');
-    expect(manager).toContain("new Option('Other (not listed)',OTHER_BREED)");
-    expect(page).toContain('id="profileBreedOther"');
+    // One alphabetical catalogue behind type-ahead comboboxes (datalist);
+    // free text replaces the old "Other (not listed)" branch on both views.
+    expect(breeds).toContain('.sort((a, b) => a.localeCompare(b');
+    expect(wizard).toContain('list="dwBreedList"');
+    expect(wizard).toContain('<datalist id="dwBreedList">');
+    expect(page).toContain('list="profileBreedList"');
+    expect(page).toContain('<datalist id="profileBreedList">');
+    expect(page).not.toContain('id="profileBreedOther"');
     expect(page).not.toContain('<option>Border Collie</option><option>Labrador Retriever</option>');
   });
 
