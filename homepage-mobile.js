@@ -15,9 +15,11 @@
 
   var mq = window.matchMedia('(max-width:700px)');
   // Sheet snap points as fractions of the space between top bar and tab bar
-  // (design prototype: 0.26 / 0.46 / 0.84).
-  var SNAPS = [0.26, 0.46, 0.84];
-  var sheetPct = SNAPS[1];
+  // (design prototype: 0.26 / 0.46 / 0.84). 0 is the fully-hidden state:
+  // only the grab handle stays visible so the map gets the whole screen.
+  var SNAPS = [0, 0.26, 0.46, 0.84];
+  var sheetPct = SNAPS[2];
+  var lastOpenPct = SNAPS[2];
   var active = false;
 
   function listEl(){ return returning.querySelector('.li-list'); }
@@ -27,7 +29,9 @@
     if(list && !list.querySelector('.mhome-grab')){
       var grab = document.createElement('div');
       grab.className = 'mhome-grab';
-      grab.setAttribute('aria-hidden', 'true');
+      grab.setAttribute('role', 'button');
+      grab.setAttribute('tabindex', '0');
+      grab.setAttribute('aria-label', 'Hide or show the trail list');
       grab.innerHTML = '<span></span>';
       list.insertBefore(grab, list.firstChild);
       wireDrag(grab);
@@ -83,10 +87,27 @@
     return Math.max(120, window.innerHeight - top - tabs);
   }
 
+  // Height of the always-visible sliver when the sheet is fully hidden:
+  // the grab handle plus a little padding, never the sheet header.
+  function handleH(){
+    var grab = returning.querySelector('.mhome-grab');
+    return (grab ? grab.offsetHeight : 18) + 12;
+  }
+
   function setSheet(pct){
     sheetPct = pct;
+    if(pct > 0) lastOpenPct = pct;
     var list = listEl();
-    if(list && active) list.style.height = Math.round(availH() * pct) + 'px';
+    if(!list || !active) return;
+    var h = Math.round(Math.max(handleH(), availH() * pct));
+    list.style.height = h + 'px';
+    list.classList.toggle('mhome-sheet-hidden', pct === 0);
+    // Anything that rides above the sheet (map attribution) follows it.
+    document.body.style.setProperty('--mhome-sheet', h + 'px');
+  }
+
+  function toggleSheet(){
+    setSheet(sheetPct === 0 ? lastOpenPct : 0);
   }
 
   function wireDrag(grab){
@@ -99,10 +120,12 @@
       var startH = list.getBoundingClientRect().height;
       var A = availH();
       var lastH = startH;
+      var moved = false;
       list.classList.add('mhome-dragging');
       try{ grab.setPointerCapture(e.pointerId); }catch(_){ }
       function move(ev){
-        lastH = Math.max(A * 0.14, Math.min(A * 0.9, startH + (startY - ev.clientY)));
+        if(Math.abs(ev.clientY - startY) > 6) moved = true;
+        lastH = Math.max(handleH(), Math.min(A * 0.9, startH + (startY - ev.clientY)));
         list.style.height = lastH + 'px';
       }
       function up(){
@@ -110,6 +133,8 @@
         window.removeEventListener('pointerup', up);
         window.removeEventListener('pointercancel', up);
         list.classList.remove('mhome-dragging');
+        // A tap (no real drag) toggles hidden <-> last open height.
+        if(!moved){ toggleSheet(); return; }
         // Snap from the tracked height, not a DOM measurement — if the whole
         // gesture lands in one frame the re-enabled transition would report
         // the pre-drag height and snap the sheet straight back.
@@ -125,6 +150,9 @@
       window.addEventListener('pointermove', move);
       window.addEventListener('pointerup', up);
       window.addEventListener('pointercancel', up);
+    });
+    grab.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleSheet(); }
     });
   }
 

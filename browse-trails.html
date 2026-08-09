@@ -77,7 +77,9 @@
     .browse-filter-divider{display:none;}
     .browse-filter-controls{flex:1 1 100%;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:9px;padding-bottom:3px;scrollbar-width:none;}
     .browse-filter-controls::-webkit-scrollbar{display:none;}
-    .browse-filter-controls select,.browse-water{flex:none;}
+    /* The wrappers are the flex items — without flex:none they shrink in
+       the nowrap scroll row and the selects inside pile onto each other. */
+    .browse-filter-controls .browse-field,.browse-filter-controls select,.browse-water{flex:none;}
     .simple-card{gap:12px;padding:12px;flex-wrap:wrap;}
     .simple-card .photo{width:84px;height:76px;}
     .simple-card__match{width:100%;min-width:0;flex-direction:row;justify-content:flex-start;border-left:0;border-top:1px dashed var(--paper-line);padding:9px 0 0;}
