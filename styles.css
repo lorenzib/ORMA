@@ -2620,6 +2620,11 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-row-badges{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;}
 /* "Trail rating · Low-risk" row (design TrailRow) */
 .li-rating-row{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center;}
+/* Card quick actions: focus the homepage map, or hand off to the
+   platform's maps app for driving directions. */
+.li-row-actions{display:flex;gap:14px;margin-top:7px;}
+.li-row-act{border:0;background:none;padding:0;font:700 11.5px 'Inter',sans-serif;color:var(--accent);cursor:pointer;text-decoration:none;}
+.li-row-act:hover{text-decoration:underline;}
 .li-rating-kick{font:700 10px 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
 .li-badge{
   display:inline-flex;

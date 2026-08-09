@@ -1241,6 +1241,14 @@ function renderTrail(t){
         if (!btn || !ensureSatelliteLayer()) return;
         const sat = btn.getAttribute('data-maplayer') === 'satellite';
         map.setLayoutProperty('satellite-layer', 'visibility', sat ? 'visible' : 'none');
+        // The vector style's building fills sit above the raster and would
+        // paint every roof grey over the photo imagery — hide them on
+        // satellite.
+        map.getStyle().layers.forEach(layer => {
+          if(layer['source-layer'] === 'building' || /building/i.test(layer.id)){
+            try { map.setLayoutProperty(layer.id, 'visibility', sat ? 'none' : 'visible'); } catch(err){}
+          }
+        });
         // Base buttons only — the 3D toggle keeps its own pressed state.
         layerSwitch.querySelectorAll('[data-maplayer]').forEach(b => {
           const on = b === btn;

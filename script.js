@@ -1961,6 +1961,10 @@ async function renderReturningHomepage(profile){
         <div class="li-row-meta" title="${matchReason(t, overrides)}">${liRowMeta(t)}</div>
         ${newBadge || importedBadge ? `<div class="li-row-badges">${newBadge}${importedBadge}</div>` : ''}
         <div class="li-rating-row"><span class="li-rating-kick">Trail rating</span><span class="safety-badge ${safetyClass(t.safetyLevel)}">${trailSafetyLabel(t)}</span></div>
+        <div class="li-row-actions">
+          <button type="button" class="li-row-act locate-btn" data-id="${t.id}">See on map</button>
+          ${trailheadDirectionsHref(t) ? `<a class="li-row-act" href="${trailheadDirectionsHref(t)}" target="_blank" rel="noopener">Get directions ↗</a>` : ''}
+        </div>
       </div>
       ${liMatchColHtml(t)}
       <button type="button" class="li-heart save-btn" data-id="${t.id}" aria-pressed="${isFav}" aria-label="${isFav ? 'Remove ' + t.name + ' from saved trails' : 'Save ' + t.name}">${isFav ? '♥' : '♡'}</button>
@@ -2051,11 +2055,26 @@ async function renderReturningHomepage(profile){
   }
 }
 
+// Destination-only handoff to the platform's maps app: Apple Maps on
+// Apple devices, Google Maps everywhere else (same convention as the
+// trail page's Get directions).
+function trailheadDirectionsHref(t){
+  const sp = t.startPoint && Number.isFinite(t.startPoint.lat) && Number.isFinite(t.startPoint.lng)
+    ? t.startPoint
+    : (Number.isFinite(t.lat) && Number.isFinite(t.lng) ? { lat:t.lat, lng:t.lng } : null);
+  if(!sp) return null;
+  return /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent)
+    ? `https://maps.apple.com/?daddr=${sp.lat},${sp.lng}`
+    : `https://www.google.com/maps/dir/?api=1&destination=${sp.lat},${sp.lng}&travelmode=driving`;
+}
+
 function focusMapOnTrail(trailId, list){
   if(!trailMapInstance) return;
   const t = list.find(x => x.id === trailId);
   if(!t) return;
   selectTrail(t);
+  // On the phone layout the sheet covers the map — let it duck down.
+  window.dispatchEvent(new CustomEvent('dolopaws-map-focus'));
   document.getElementById('trailMap').scrollIntoView({ behavior: 'smooth', block: 'center' });
   if(Array.isArray(t.path) && t.path.length > 1){
     const bounds = new maplibregl.LngLatBounds();

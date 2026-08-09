@@ -94,6 +94,12 @@
     setSheet(sheetPct === 0 ? lastOpenPct : 0);
   }
 
+  // "See on map" on a trail card: drop the sheet to its low snap so the
+  // focused route is actually visible.
+  window.addEventListener('dolopaws-map-focus', function(){
+    if(active && sheetPct > SNAPS[1]) setSheet(SNAPS[1]);
+  });
+
   function wireDrag(grab){
     grab.addEventListener('pointerdown', function(e){
       if(!active) return;
