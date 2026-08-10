@@ -55,6 +55,22 @@ airplane-mode, storage, restart, and installed-PWA checks.
 The missing Android result does not block continued implementation. It remains
 a required gate before the public beta support claim includes Android.
 
+## Pending elevation-profile retest
+
+The current packages (`lago-carezza` beta.16 and `alpe-siusi` beta.3) add a
+checksum-verified stored route profile. Before closing OFF-01, repeat the
+iPhone airplane-mode test on both routes and confirm that:
+
+- the profile is visible immediately after the package opens;
+- it still renders after Safari is closed and reopened offline;
+- a reliable GPS fix moves the profile cursor to the nearest route position;
+- the readout is labelled as approximate route elevation; and
+- the flat offline basemap remains available even though no DEM is packaged.
+
+These checks are not marked as passed until they have been performed on the
+physical device. Android profile and cursor coverage remains part of the
+deferred Android matrix above.
+
 ## Remaining content gate
 
 - Complete and date the Lago di Carezza route-specific field review.

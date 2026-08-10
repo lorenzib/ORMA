@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "lago-carezza",
   "name": "Lago di Carezza Loop",
-  "version": "2026.08.05-beta.15",
-  "generatedAt": "2026-08-05T12:10:41.222Z",
+  "version": "2026.08.10-beta.16",
+  "generatedAt": "2026-08-10T20:24:16.261Z",
   "scoringVersion": "1.1.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 109013,
+  "packageBytes": 117034,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.407,
@@ -32,6 +32,14 @@
     "edgeCount": 223,
     "trailNodeCount": 95,
     "maxRejoinRouteM": 1500
+  },
+  "elevationProfile": {
+    "strategy": "route-profile-v1",
+    "pointCount": 3,
+    "distanceKm": 1.3,
+    "ascentM": 20,
+    "source": "DoloPaws route profile",
+    "demPackaged": false
   },
   "evidence": {
     "version": "1.0.0",
@@ -104,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 6896,
-      "sha256": "eacc9405858a292d13fe44444ebad328db1743e18911d9f41425820c56a138c6"
+      "bytes": 8229,
+      "sha256": "b617e933d807a4cb1bda6df616eda60282d7f6d1aaa6f5cc8ca882a50206c503"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 5293,
-      "sha256": "41b292645297a0933cc7a565fcad7e12f248d8655d20fc9e5f223f5bd5369879"
+      "bytes": 6398,
+      "sha256": "9fd68423998f5d90fe5c7de99e77b5c474572ffa4a8a5c1e66350f6c790a4328"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 28919,
-      "sha256": "327ed0f335ffcb386ceabbe64c2dfeea100c3f739cc9ccafcd911062a0c7066c"
+      "bytes": 31681,
+      "sha256": "16e64c9254304e870fdc5e4a18903d557345b53f173a64f085068ae61b5d4bd9"
     },
     {
       "role": "gps-policy",
@@ -154,6 +162,14 @@
       "url": "/footpath-router.js",
       "bytes": 5266,
       "sha256": "87a1d47247a967b28322b7242286cd1300aab762f35ff0a2df7f39a2490f9d12"
+    },
+    {
+      "role": "elevation-engine",
+      "required": true,
+      "label": "Offline route elevation engine",
+      "url": "/offline-elevation.js",
+      "bytes": 2575,
+      "sha256": "6200f5e716264112ff69d82cade64f1c9df0b96674e76d9b83ae388360de77ec"
     },
     {
       "role": "session",
@@ -202,6 +218,14 @@
       "url": "footpath-network.json",
       "bytes": 11011,
       "sha256": "74a9214bf3c05e6b53c5c7e9228c030934b4fb86d758457e96498c58140b9d1e"
+    },
+    {
+      "role": "elevation-profile",
+      "required": true,
+      "label": "Lago di Carezza Loop stored route elevation profile",
+      "url": "elevation-profile.json",
+      "bytes": 246,
+      "sha256": "f7e28af3b4a55ce0d011347aee2d7721c05430fe605fa35d1ecd8b9673c22076"
     },
     {
       "role": "safety",

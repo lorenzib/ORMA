@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "trailId": "alpe-siusi",
+  "distanceKm": 7.5,
+  "ascentM": 150,
+  "source": "DoloPaws route profile",
+  "points": [
+    { "km": 0, "elev": 1850 },
+    { "km": 2, "elev": 1800 },
+    { "km": 4, "elev": 1900 },
+    { "km": 6, "elev": 1950 },
+    { "km": 7.5, "elev": 1850 }
+  ]
+}

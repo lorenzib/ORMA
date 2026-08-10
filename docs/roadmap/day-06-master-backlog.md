@@ -525,8 +525,9 @@ All P0 and P1 work
 
 ### HIKE-06 — Keep live elevation context visible during navigation
 
-- **Status:** Online hike-mode milestone implemented; downloaded elevation-map
-  data and physical validation remain open (2026-08-04)
+- **Status:** Online hike mode and stored offline profiles for Carezza and Alpe
+  di Siusi implemented; offline DEM decision and physical validation remain
+  open (2026-08-10)
 - **Priority:** P0
 - **Size:** M
 - **Depends on:** HIKE-02, HIKE-03

@@ -73,7 +73,7 @@ route, package version, package size, network state, and evidence link.
 | GPS-05 | Reliable fixes remain off-route | Distance appears only after sustained evidence | Offer **Find closest trail point** | P0 |
 | GPS-06 | Rejoin is requested on a packaged mapped footpath | Guidance follows the packaged accessible path, not a straight line | Cancel guidance or return to hike view | P0 |
 | GPS-07 | No safe mapped rejoin path is available | No confident route is drawn; orientation-only wording is explicit | Follow marked paths or seek local help | P0 |
-| ELEV-01 | Offline package lacks elevation-map data | Flat map and route remain usable; unavailable elevation is stated | Continue in flat-map mode | P1 |
+| ELEV-01 | Offline package has a stored profile but no DEM | Profile and live route-position cursor work; basemap remains honestly flat | Continue in flat-map mode | P1 |
 
 ## C. Completion, synchronization, and account cleanup
 
@@ -109,4 +109,3 @@ QA-02 is fully closed only when:
 - oldest-device smoke coverage passes;
 - every accepted P1 exception has an owner and safe fallback; and
 - failures and evidence are linked from `docs/testing/OFF-01-device-results.md`.
-

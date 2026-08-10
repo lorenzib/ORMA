@@ -18,10 +18,14 @@ describe('Alpe di Siusi offline package', () => {
     expect(manifest.trailId).toBe('alpe-siusi');
     expect(manifest.name).toBe('Alpe di Siusi Meadow Loop');
     expect(manifest.verificationStatus).toBe('field-review-required');
-    expect(manifest.resources).toHaveLength(14);
+    expect(manifest.resources).toHaveLength(16);
     expect(manifest.packageBytes).toBeLessThanOrEqual(manifest.packageBudgetBytes);
     expect(manifest.bounds).toEqual(graph.bounds);
     expect(manifest.image).toEqual({ width:1200, height:720 });
+    expect(manifest.elevationProfile).toMatchObject({
+      strategy:'route-profile-v1', pointCount:5, distanceKm:7.5, ascentM:150,
+      demPackaged:false,
+    });
   });
 
   test('verifies every required byte before offline use', () => {

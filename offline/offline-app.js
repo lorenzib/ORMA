@@ -12,6 +12,7 @@
   let footpathGraph = null;
   let routeTotalM = 0;
   let routeIsLoop = false;
+  let elevationProfile = null;
   let distanceTracker = null;
   let latestFix = null;
   let manualRejoinActive = false;
@@ -59,6 +60,14 @@
     packageMeta: document.getElementById('packageMeta'),
     licenceLink: document.getElementById('licenceLink'),
     networkState: document.getElementById('networkState'),
+    elevation: document.getElementById('offlineElevation'),
+    elevationArea: document.getElementById('offlineElevationArea'),
+    elevationLine: document.getElementById('offlineElevationLine'),
+    elevationCursor: document.getElementById('offlineElevationCursor'),
+    elevationLive: document.getElementById('offlineElevationLive'),
+    elevationStart: document.getElementById('offlineElevationStart'),
+    elevationHigh: document.getElementById('offlineElevationHigh'),
+    elevationClimb: document.getElementById('offlineElevationClimb'),
   };
 
   function bytesToHex(buffer){
@@ -166,6 +175,45 @@
     };
   }
 
+  function elevationAtKm(profile, km){
+    return window.DoloPawsOfflineElevation
+      ? window.DoloPawsOfflineElevation.elevationAtKm(profile, km)
+      : null;
+  }
+
+  function validElevationProfile(profile, trailId){
+    return !!(window.DoloPawsOfflineElevation &&
+      window.DoloPawsOfflineElevation.validProfile(profile, trailId));
+  }
+
+  function renderElevationProfile(profile){
+    const points = profile.points;
+    const geometry = window.DoloPawsOfflineElevation.chartGeometry(profile, 600, 150);
+    elements.elevationLine.setAttribute('d', geometry.line);
+    elements.elevationArea.setAttribute('d', geometry.area);
+    elements.elevationStart.textContent = `${Math.round(points[0].elev)} m`;
+    elements.elevationHigh.textContent = `${Math.round(geometry.high)} m`;
+    elements.elevationClimb.textContent = `${Math.round(profile.ascentM)} m`;
+    elements.elevation.hidden = false;
+  }
+
+  function updateElevationCursor(progress){
+    if(!elevationProfile || !progress){
+      elements.elevationCursor.hidden = true;
+      if(elevationProfile) elements.elevationLive.textContent = 'Waiting for reliable GPS';
+      return;
+    }
+    const km = Math.max(0, Math.min(progress.km, elevationProfile.distanceKm));
+    const x = window.DoloPawsOfflineElevation.chartGeometry(
+      elevationProfile, 600, 150
+    ).xForKm(km);
+    const elevation = elevationAtKm(elevationProfile, km);
+    elements.elevationCursor.setAttribute('x1', x.toFixed(1));
+    elements.elevationCursor.setAttribute('x2', x.toFixed(1));
+    elements.elevationCursor.hidden = false;
+    elements.elevationLive.textContent = `${km.toFixed(1)} km · ~${Math.round(elevation)} m route elevation`;
+  }
+
   function hideRejoinGuidance(){
     elements.rejoinDirection.hidden = true;
     elements.rejoinTarget.hidden = true;
@@ -230,6 +278,7 @@
     hideRejoinGuidance();
     offRouteStreak = 0;
     offRouteSince = null;
+    updateElevationCursor(null);
     if(message) elements.locationState.textContent = message;
   }
 
@@ -275,6 +324,8 @@
           previousOffRouteSince: offRouteSince,
         })
         : null;
+      updateElevationCursor(assessment && assessment.usableForProgress &&
+        !assessment.farFromRoute ? progress : null);
       offRouteStreak = assessment ? assessment.nextOffRouteStreak : 0;
       offRouteSince = assessment ? assessment.nextOffRouteSince : null;
       if(assessment && assessment.usableForProgress) lastValidFixAt = fixTimestamp;
@@ -622,12 +673,16 @@
         }
       }
       if(!resources.map || !resources.route || !resources.safety ||
-         !resources['footpath-network']){
-        throw new Error('Required map, route, safety, or footpath routing data is missing.');
+         !resources['footpath-network'] || !resources['elevation-profile']){
+        throw new Error('Required map, route, safety, elevation, or footpath routing data is missing.');
       }
 
       const safety = await resources.safety.json();
       const route = await resources.route.json();
+      elevationProfile = await resources['elevation-profile'].json();
+      if(!validElevationProfile(elevationProfile, trailId)){
+        throw new Error('The stored elevation profile is invalid.');
+      }
       footpathGraph = await resources['footpath-network'].json();
       if(!window.DoloPawsFootpathRouter ||
          !window.DoloPawsFootpathRouter.validateGraph(footpathGraph)){
@@ -655,6 +710,7 @@
       if(manifest.image && manifest.image.width && manifest.image.height){
         elements.mapFrame.style.aspectRatio = `${manifest.image.width} / ${manifest.image.height}`;
       }
+      renderElevationProfile(elevationProfile);
 
       addFact('Route', safety.facts.routeType);
       addFact('Distance', `${safety.facts.distanceKm} km`);
@@ -687,6 +743,6 @@
     }
   }
 
-  window.DoloPawsOfflineApp = { positionPercent, routeProgress };
+  window.DoloPawsOfflineApp = { positionPercent, routeProgress, elevationAtKm, validElevationProfile };
   init();
 })();

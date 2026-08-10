@@ -23,6 +23,10 @@ describe('Lago di Carezza offline package', () => {
     expect(manifest.trailId).toBe('lago-carezza');
     expect(manifest.verificationStatus).toBe('field-review-required');
     expect(manifest.scoringVersion).toBe(scoring.VERSION);
+    expect(manifest.elevationProfile).toMatchObject({
+      strategy:'route-profile-v1', pointCount:3, distanceKm:1.3, ascentM:20,
+      demPackaged:false,
+    });
     expect(manifest.bounds.north).toBeGreaterThan(manifest.bounds.south);
     expect(manifest.bounds.east).toBeGreaterThan(manifest.bounds.west);
   });
@@ -38,7 +42,9 @@ describe('Lago di Carezza offline package', () => {
       'route-rejoin',
       'hike-distance',
       'footpath-router',
+      'elevation-engine',
       'footpath-network',
+      'elevation-profile',
       'outcome',
       'session',
       'map',

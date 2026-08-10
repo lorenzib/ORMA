@@ -8,14 +8,19 @@ const path = require('path');
 const root = path.resolve(__dirname, '..');
 const trailId = process.argv[2];
 const configs = {
-  'lago-carezza': { name:'Lago di Carezza Loop', height:1140, version:'2026.08.05-beta.15' },
-  'alpe-siusi': { name:'Alpe di Siusi Meadow Loop', height:720, version:'2026.08.05-beta.2' },
+  'lago-carezza': { name:'Lago di Carezza Loop', height:1140, version:'2026.08.10-beta.16' },
+  'alpe-siusi': { name:'Alpe di Siusi Meadow Loop', height:720, version:'2026.08.10-beta.3' },
 };
 const config = configs[trailId];
 if(!config) throw new Error(`Unsupported offline package: ${trailId || '(missing)'}`);
 
 const packageDir = path.join(root, 'offline', 'packages', trailId);
 const graph = JSON.parse(fs.readFileSync(path.join(packageDir, 'footpath-network.json'), 'utf8'));
+const elevationProfile = JSON.parse(fs.readFileSync(path.join(packageDir, 'elevation-profile.json'), 'utf8'));
+if(elevationProfile.schemaVersion !== 1 || elevationProfile.trailId !== trailId ||
+   !Array.isArray(elevationProfile.points) || elevationProfile.points.length < 2){
+  throw new Error(`Invalid elevation profile for ${trailId}`);
+}
 const roles = [
   ['shell', 'Offline trail page', '/offline/trail.html'],
   ['style', 'Offline trail styles', '/offline/offline.css'],
@@ -24,12 +29,14 @@ const roles = [
   ['route-rejoin', 'Offline route rejoin guidance', '/route-rejoin.js'],
   ['hike-distance', 'Direction-neutral walked distance', '/hike-distance.js'],
   ['footpath-router', 'Offline mapped footpath router', '/footpath-router.js'],
+  ['elevation-engine', 'Offline route elevation engine', '/offline-elevation.js'],
   ['session', 'Durable hike session', '/hike-session.js'],
   ['completion', 'Durable hike completion', '/hike-completions.js'],
   ['outcome', 'Private post-hike outcome', '/post-hike-outcomes.js'],
   ['map', `${config.name} OSM offline map`, 'map.svg'],
   ['route', `${config.name} route`, 'route.geojson'],
   ['footpath-network', `${config.name} routable footpath corridor`, 'footpath-network.json'],
+  ['elevation-profile', `${config.name} stored route elevation profile`, 'elevation-profile.json'],
   ['safety', `${config.name} safety information`, 'safety.json'],
 ];
 
@@ -75,6 +82,14 @@ const manifest = {
     edgeCount:graph.edges.length,
     trailNodeCount:graph.trailNodes.length,
     maxRejoinRouteM:1500,
+  },
+  elevationProfile:{
+    strategy:'route-profile-v1',
+    pointCount:elevationProfile.points.length,
+    distanceKm:elevationProfile.distanceKm,
+    ascentM:elevationProfile.ascentM,
+    source:elevationProfile.source,
+    demPackaged:false,
   },
   evidence:{
     version:'1.0.0', tier:'mapped', tierLabel:'Mapped route',

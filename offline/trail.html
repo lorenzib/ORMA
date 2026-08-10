@@ -44,6 +44,26 @@
         <span><i class="key-road"></i>Road</span>
         <span><i class="key-water"></i>Water</span>
       </div>
+      <section id="offlineElevation" class="offline-elevation" aria-labelledby="offlineElevationTitle" hidden>
+        <div class="offline-elevation-heading">
+          <div>
+            <p class="eyebrow">Stored route profile</p>
+            <h3 id="offlineElevationTitle">Elevation</h3>
+          </div>
+          <strong id="offlineElevationLive">Waiting for GPS</strong>
+        </div>
+        <svg id="offlineElevationChart" viewBox="0 0 600 150" role="img" aria-label="Stored route elevation profile">
+          <path id="offlineElevationArea" class="offline-elevation-area"></path>
+          <path id="offlineElevationLine" class="offline-elevation-line"></path>
+          <line id="offlineElevationCursor" class="offline-elevation-cursor" x1="0" y1="8" x2="0" y2="142" hidden></line>
+        </svg>
+        <div class="offline-elevation-facts">
+          <span>Start <strong id="offlineElevationStart">—</strong></span>
+          <span>High point <strong id="offlineElevationHigh">—</strong></span>
+          <span>Climb <strong id="offlineElevationClimb">—</strong></span>
+        </div>
+        <p>Route elevation is stored offline. The cursor shows the nearest position along the route, not exact GPS altitude. The offline basemap remains flat.</p>
+      </section>
       <p id="locationState" class="location-state">GPS is off. The route and safety information remain available.</p>
       <button id="offlineRejoinBtn" type="button" class="offline-rejoin-button" hidden>Find closest trail point</button>
       <p id="offlineRouteWarning" class="offline-route-warning" role="alert" hidden></p>
@@ -124,6 +144,7 @@
   <script src="../route-rejoin.js"></script>
   <script src="../hike-distance.js"></script>
   <script src="../footpath-router.js"></script>
+  <script src="../offline-elevation.js"></script>
   <script src="../hike-session.js"></script>
   <script src="../hike-completions.js"></script>
   <script src="../post-hike-outcomes.js"></script>

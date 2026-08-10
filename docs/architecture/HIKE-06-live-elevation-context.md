@@ -1,7 +1,8 @@
 # HIKE-06 — Live elevation context
 
-**Status:** online hike-mode milestone implemented; offline elevation-map data
-and physical-device validation remain open.
+**Status:** online hike mode and stored offline route profiles implemented for
+Carezza and Alpe di Siusi; an offline DEM decision and physical-device
+validation remain open.
 
 ## Outcome
 
@@ -40,15 +41,21 @@ follows the official MapLibre hillshade layer contract.
 
 ## Offline boundary
 
-The Carezza offline package does not yet include an elevation profile or DEM
-corridor. The standalone offline screen therefore must not claim this feature
-yet. Closing the offline milestone requires:
+Carezza beta.16 and Alpe di Siusi beta.3 now contain a mandatory, checksum-
+verified `route-profile-v1` resource. The standalone offline screen renders
+the stored profile and drives its cursor from nearest-segment route progress.
+The readout remains explicitly approximate route elevation rather than GPS
+altitude.
 
-1. adding a versioned elevation profile to the package contract;
-2. driving its cursor from offline nearest-segment progress;
-3. deciding whether a licensed, size-bounded offline DEM is viable;
-4. showing Flat map only when no DEM is packaged; and
-5. repeating iPhone and Android airplane-mode tests.
+No offline DEM is currently packaged. The screen therefore keeps the stored
+basemap flat and says so instead of exposing an elevation-map control that
+would fail in airplane mode. Closing the remaining offline milestone requires:
+
+1. deciding whether a licensed, size-bounded offline DEM materially improves
+   the beta journey;
+2. retaining Flat map as the safe fallback when no DEM is packaged; and
+3. repeating iPhone and Android airplane-mode tests for profile rendering and
+   live cursor behavior.
 
 ## Verification
 
