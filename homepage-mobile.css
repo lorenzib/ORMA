@@ -16,9 +16,13 @@
 
 @media (max-width:700px){
   body.mhome-active{overflow:hidden;height:100dvh;}
-  body.mhome-active .topnav,
   body.mhome-active .site-footer,
   body.mhome-active .hp-quote{display:none;}
+  /* The site's standard header stays — the phone homepage is a website
+     page like any other. It pins above the search toolbar. display:flex
+     also overrides the returning-view rule that swaps the topnav for the
+     desktop-only dark app header. */
+  body.mhome-active .topnav{display:flex;position:fixed;top:0;left:0;right:0;z-index:72;}
 
   /* ---- TOP BAR: the toolbar (search pill + filters + avatar) ----
      The dark app header and greeting bar stay desktop-only; on phones the
@@ -26,7 +30,7 @@
      moved into the toolbar by homepage-mobile.js. */
   body.mhome-active .li-top,
   body.mhome-active .li-greetbar{display:none;}
-  body.mhome-active .li-toolbar{position:fixed;top:0;left:0;right:0;z-index:70;display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:rgba(247,244,235,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(27,31,25,.08);box-sizing:border-box;}
+  body.mhome-active .li-toolbar{position:fixed;top:var(--mhome-nav,56px);left:0;right:0;z-index:70;display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:rgba(247,244,235,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(27,31,25,.08);box-sizing:border-box;}
   body.mhome-active .li-search{flex:1;display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--paper-line);border-radius:999px;padding:9px 14px;min-width:0;color:var(--ink-soft);}
   body.mhome-active .li-search svg{flex:none;}
   body.mhome-active .li-search input{flex:1;min-width:0;border:none;outline:none;background:none;font-family:'Inter',sans-serif;font-size:14px;color:var(--ink);}
@@ -62,6 +66,8 @@
   body.mhome-active .li-cond-title{font:700 13px 'Source Serif 4',serif;line-height:1.1;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   body.mhome-active .li-cond-sub{font-size:10.5px;color:var(--ink-soft);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   body.mhome-active .li-cond-tiles{display:none;}
+  body.mhome-active .li-cond-t-desk{display:none;}
+  body.mhome-active .li-cond-t-mobile{display:inline;}
 
   /* Map overlay controls: clear of the pill and the bottom sheet */
   /* Map controls hug the edges — a LEFT stack (conditions pill, Layers,

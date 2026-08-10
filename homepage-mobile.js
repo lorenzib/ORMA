@@ -42,11 +42,14 @@
   }
 
   function measure(){
-    // The toolbar (search + filters + avatar) is the phone top bar; the dark
-    // app header and greeting bar are hidden at this width. The map and the
-    // sheet run to the true bottom edge of the viewport.
+    // Standard site header on top, then the search toolbar; the map and the
+    // sheet run from below both to the true bottom edge of the viewport.
+    // The dark app header and greeting bar stay desktop-only.
+    var nav = document.querySelector('.topnav');
+    var navH = nav ? nav.offsetHeight : 0;
     var top = returning.querySelector('.li-toolbar');
-    if(top) document.body.style.setProperty('--mhome-top', top.offsetHeight + 'px');
+    document.body.style.setProperty('--mhome-nav', navH + 'px');
+    if(top) document.body.style.setProperty('--mhome-top', (navH + top.offsetHeight) + 'px');
     document.body.style.setProperty('--mhome-tabs', '0px');
   }
 

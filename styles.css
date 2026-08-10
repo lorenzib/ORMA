@@ -2619,6 +2619,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 }
 .li-row-badges{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;}
 /* "Trail rating · Low-risk" row (design TrailRow) */
+.li-cond-t-mobile{display:none;}
 .li-rating-row{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center;}
 /* Card quick actions: a quiet bar across the card bottom — focus the
    homepage map, or hand off to the platform's maps app. */
