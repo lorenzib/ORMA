@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dolopaws.com/schemas/alpine-plant.schema.json",
+  "title": "DoloPaws alpine plant collection",
+  "type": "object",
+  "required": ["meta", "plants"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "region", "version", "lastReviewed", "editorialStatus"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {"type": "string"},
+        "region": {"type": "string"},
+        "version": {"type": "string"},
+        "lastReviewed": {"type": "string", "format": "date"},
+        "editorialStatus": {"enum": ["draft", "veterinary_reviewed", "published"]}
+      }
+    },
+    "plants": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/plant"}
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "nonEmptyStrings": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "plant": {
+      "type": "object",
+      "required": ["id", "commonName", "aliases", "scientificName", "family", "safety", "severity", "proximitySafe", "ingestionRisk", "summary", "season", "floweringMonths", "habitats", "elevation", "identification", "lookalikes", "dogSafety", "symptoms", "actionIfIngested", "interestingFact", "image", "evidence", "confidence", "reviewStatus", "lastReviewed"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+        "commonName": {"type": "string", "minLength": 1},
+        "aliases": {"type": "array", "items": {"type": "string"}},
+        "scientificName": {"type": "string", "minLength": 1},
+        "family": {"type": "string", "minLength": 1},
+        "safety": {"enum": ["safe", "caution", "dangerous"]},
+        "severity": {"enum": ["low", "moderate", "high", "critical"]},
+        "proximitySafe": {"type": "boolean"},
+        "ingestionRisk": {"type": "string", "minLength": 1},
+        "summary": {"type": "string", "minLength": 1},
+        "season": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"enum": ["spring", "summer", "autumn", "winter"]}},
+        "floweringMonths": {"type": "array", "items": {"type": "integer", "minimum": 1, "maximum": 12}, "uniqueItems": true},
+        "habitats": {"$ref": "#/$defs/nonEmptyStrings"},
+        "elevation": {"type": "string"},
+        "identification": {"$ref": "#/$defs/nonEmptyStrings"},
+        "lookalikes": {"type": "array", "items": {"type": "string"}},
+        "dogSafety": {"type": "string", "minLength": 1},
+        "symptoms": {"type": "array", "items": {"type": "string"}},
+        "actionIfIngested": {"$ref": "#/$defs/nonEmptyStrings"},
+        "interestingFact": {"type": "string", "minLength": 1},
+        "image": {
+          "type": "object", "required": ["src", "alt", "credit"], "additionalProperties": false,
+          "properties": {"src": {"type": ["string", "null"]}, "alt": {"type": "string"}, "credit": {"type": ["string", "null"]}}
+        },
+        "evidence": {
+          "type": "array", "minItems": 1,
+          "items": {"type": "object", "required": ["label", "url"], "additionalProperties": false, "properties": {"label": {"type": "string"}, "url": {"type": "string", "format": "uri"}}}
+        },
+        "confidence": {"enum": ["high", "medium", "limited"]},
+        "reviewStatus": {"enum": ["veterinary_review_required", "approved"]},
+        "lastReviewed": {"type": "string", "format": "date"}
+      }
+    }
+  }
+}

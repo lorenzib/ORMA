@@ -35,4 +35,14 @@ describe('shared navigation hardening', () => {
     await new Promise(resolve => setTimeout(resolve, 0));
     expect(link.rel.split(/\s+/)).toContain('noopener');
   });
+
+  test('adds the Alpine plants guide beside the existing dog guides', () => {
+    const footer = document.createElement('div');
+    footer.className = 'hp-footer-links';
+    footer.innerHTML = '<a href="guides/breed-group-caveats.html">Breed group caveats</a>';
+    document.body.appendChild(footer);
+    window.eval(mobileNav);
+    const link = footer.querySelector('a[href="guides/alpine-plants-for-dogs.html"]');
+    expect(link && link.textContent).toBe('Alpine plants guide');
+  });
 });

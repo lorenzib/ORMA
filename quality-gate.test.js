@@ -6,6 +6,7 @@ const generated = require('./scripts/check-generated-artifacts.js');
 describe('QA-01 complete quality gate', () => {
   test('covers data, tests, security, static assets, and generated drift', () => {
     const commands = gate.steps.flatMap(([, args]) => args).join(' ');
+    expect(commands).toContain('validate:alpine-plants');
     expect(commands).toContain('validate:trail-schema');
     expect(commands).toContain('validate:production-trails:check');
     expect(commands).toContain('audit:trail-trust');

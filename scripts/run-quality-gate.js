@@ -4,6 +4,7 @@
 const { spawnSync } = require('child_process');
 
 const steps = [
+  ['Alpine plants editorial data', ['run', 'validate:alpine-plants']],
   ['Canonical trail examples', ['run', 'validate:trail-schema']],
   ['Production trail catalog', ['run', 'validate:production-trails:check']],
   ['Trail evidence contract', ['run', 'audit:trail-trust']],

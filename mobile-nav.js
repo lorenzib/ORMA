@@ -27,6 +27,20 @@
 
   installSkipLink();
 
+  function installAlpinePlantsFooterLink(){
+    document.querySelectorAll('.hp-footer-links').forEach(group => {
+      const breedLink = Array.from(group.querySelectorAll('a[href]'))
+        .find(link => /guides\/breed-group-caveats\.html$|breed-group-caveats\.html$/.test(link.getAttribute('href') || ''));
+      if(!breedLink || group.querySelector('a[href$="alpine-plants-for-dogs.html"]')) return;
+      const link = document.createElement('a');
+      link.href = (breedLink.getAttribute('href') || '').replace('breed-group-caveats.html', 'alpine-plants-for-dogs.html');
+      link.textContent = 'Alpine plants guide';
+      group.appendChild(link);
+    });
+  }
+
+  installAlpinePlantsFooterLink();
+
   function secureBlankLinks(root){
     const links = [];
     if(root && root.matches && root.matches('a[target="_blank"]')) links.push(root);
