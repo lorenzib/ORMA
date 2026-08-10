@@ -98,10 +98,11 @@
       meta.className = 'trail-evidence-scoring';
       evidence.appendChild(meta);
     }
-    const gaps = view.trailUnknownCount > 0
-      ? `${view.trailUnknownCount} trail fact${view.trailUnknownCount === 1 ? '' : 's'} not yet verified`
-      : 'all trail facts recorded';
-    meta.textContent = `Canonical scoring ${view.scoringVersion} · ${gaps}.`;
+    // The scoring version stays machine-readable on the card's dataset;
+    // spelling it out here read as jargon.
+    meta.textContent = view.trailUnknownCount > 0
+      ? `${view.trailUnknownCount} trail fact${view.trailUnknownCount === 1 ? '' : 's'} not yet verified.`
+      : 'All trail facts recorded.';
   }
 
   function wireActions(root, trail){

@@ -92,9 +92,10 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(block.textContent).not.toContain('canonical scoring');
     // Unpersonalized view: the fixable gap is the missing dog itself.
     expect(block.textContent).toContain('Add your dog to sharpen this score');
-    // The audit line moved into the evidence disclosure.
+    // The audit line moved into the evidence footnote; the scoring version
+    // stays out of the copy (machine-readable on the dataset only).
     const evidenceMeta = document.getElementById('recommendationEvidenceMeta');
-    expect(evidenceMeta.textContent).toContain('Canonical scoring 1.1.0');
+    expect(evidenceMeta.textContent).not.toContain('Canonical scoring');
     expect(evidenceMeta.textContent).toContain('1 trail fact not yet verified');
     expect(block.textContent).not.toContain('Access is not reviewed.');
     expect(document.getElementById('heroVerdict').textContent)
