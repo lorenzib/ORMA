@@ -66,4 +66,14 @@ describe('walk recorder authentication restoration', () => {
     expect(firebase).toContain('uid: user.uid');
     expect(firebase).toContain('if (authResolved) fn(currentUser)');
   });
+
+  test('recorder map includes live position, accuracy, and homepage map controls', () => {
+    expect(source).toContain("map.addSource('walk-position'");
+    expect(source).toContain("id: 'walk-position-accuracy'");
+    expect(source).toContain("id: 'walk-position-dot'");
+    expect(source).toContain('Marked hiking routes');
+    expect(source).toContain('Satellite');
+    expect(source).toContain('data-wr-3d');
+    expect(source).toContain('Centre map on my position');
+  });
 });

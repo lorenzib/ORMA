@@ -20,6 +20,13 @@
   .wr-map{flex:1;position:relative;border-radius:22px 22px 0 0;overflow:hidden;background:#26352B;}
   #wrMap{position:absolute;inset:0;}
   .wr-gps{position:absolute;top:12px;left:12px;z-index:5;background:rgba(20,28,22,.82);border-radius:999px;padding:6px 12px;font:600 11.5px 'Inter',sans-serif;color:#CBD6C8;}
+  #wrMap .wr-layers-btn{top:50px;left:12px;bottom:auto;}
+  #wrMap .wr-map-panel{top:90px;left:12px;bottom:auto;}
+  #wrMap .wr-map-panel[hidden]{display:none;}
+  #wrMap .wr-map-panel:not([hidden]){display:flex;}
+  #wrMap .wr-style-switch{left:12px;bottom:12px;gap:5px;}
+  #wrMap .wr-style-switch button{padding:8px 11px;}
+  .wr-locate{position:absolute;top:12px;right:12px;z-index:7;width:38px;height:38px;border:1px solid var(--paper-line);border-radius:10px;background:rgba(255,255,255,.96);color:var(--ink);box-shadow:0 2px 8px rgba(23,42,28,.16);font:800 22px/1 'Inter',sans-serif;cursor:pointer;}
   .wr-controls{display:flex;gap:10px;padding:14px 16px calc(16px + env(safe-area-inset-bottom));background:var(--ink);}
   .wr-btn{flex:1;min-height:52px;border:none;border-radius:14px;font:800 15px 'Inter',sans-serif;cursor:pointer;}
   .wr-btn--start{background:#4A7856;color:#fff;}
@@ -34,6 +41,10 @@
   .wr-gate-card h1{font-size:24px;margin:0 0 10px;color:#fff;}
   .wr-gate-card p{font-size:14px;line-height:1.6;color:#B9C4B6;margin:0 0 18px;}
   .wr-gate-card a,.wr-gate-card button{display:inline-block;background:#4A7856;color:#fff;border:none;border-radius:12px;padding:13px 24px;font:800 14px 'Inter',sans-serif;text-decoration:none;cursor:pointer;}
+  @media(max-width:430px){
+    .wr-gps{max-width:calc(100% - 76px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    #wrMap .wr-style-switch button{padding:8px 9px;font-size:11px;}
+  }
 </style>
 </head>
 <body>
@@ -70,5 +81,5 @@
 <script type="module" src="firebase-init.js?v=20260810-2"></script>
 <script src="walk-recorder.js?v=20260807-1"></script>
 <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
-<script src="walk-page.js?v=20260810-1"></script>
+<script src="walk-page.js?v=20260810-2"></script>
 </body></html>

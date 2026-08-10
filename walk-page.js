@@ -14,6 +14,7 @@
   var map = null;
   var mapReady = false;
   var lastCenter = null;
+  var latestFix = null;
   var bootedUid = null;
 
   var els = {
@@ -53,13 +54,13 @@
   }
 
   // ---- Map trace -----------------------------------------------------
-  function initMap(center){
+  function initMap(center, fallback){
     if(map || typeof maplibregl === 'undefined') return;
     map = new maplibregl.Map({
       container: 'wrMap',
       style: 'https://tiles.openfreemap.org/styles/liberty',
       center: [center.lng, center.lat],
-      zoom: 15.5,
+      zoom: fallback ? 9 : 15.5,
       attributionControl: { compact: true },
     });
     map.on('load', function(){
@@ -86,7 +87,16 @@
       map.addLayer({ id: 'walk-line', type: 'line', source: 'walk',
         paint: { 'line-color': '#C4652F', 'line-width': 4 },
         layout: { 'line-cap': 'round', 'line-join': 'round' } });
+      map.addSource('walk-position', { type: 'geojson', data: positionGeo(latestFix) });
+      map.addLayer({ id: 'walk-position-accuracy', type: 'fill', source: 'walk-position',
+        filter: ['==', ['geometry-type'], 'Polygon'],
+        paint: { 'fill-color': '#3E7A91', 'fill-opacity': 0.16 } }, 'walk-line');
+      map.addLayer({ id: 'walk-position-dot', type: 'circle', source: 'walk-position',
+        filter: ['==', ['geometry-type'], 'Point'],
+        paint: { 'circle-radius': 9, 'circle-color': '#3E7A91', 'circle-stroke-color': '#fff', 'circle-stroke-width': 3 } });
       mapReady = true;
+      installMapControls();
+      updatePositionSource();
     });
   }
 
@@ -97,8 +107,128 @@
     } };
   }
 
+  function positionGeo(fix){
+    if(!fix) return { type:'FeatureCollection', features:[] };
+    var accuracy = Math.max(5, Math.min(Number(fix.accuracy) || 5, 500));
+    var latStep = accuracy / 111320;
+    var lngStep = accuracy / (111320 * Math.max(0.2, Math.cos(fix.lat * Math.PI / 180)));
+    var ring = [];
+    for(var i = 0; i <= 48; i++){
+      var angle = (i / 48) * Math.PI * 2;
+      ring.push([fix.lng + Math.cos(angle) * lngStep, fix.lat + Math.sin(angle) * latStep]);
+    }
+    return { type:'FeatureCollection', features:[
+      { type:'Feature', properties:{ accuracy:accuracy }, geometry:{ type:'Polygon', coordinates:[ring] } },
+      { type:'Feature', properties:{ accuracy:accuracy }, geometry:{ type:'Point', coordinates:[fix.lng, fix.lat] } },
+    ] };
+  }
+
+  function updatePositionSource(){
+    if(!mapReady) return;
+    var source = map.getSource('walk-position');
+    if(source) source.setData(positionGeo(latestFix));
+  }
+
+  function installMapControls(){
+    var host = map && map.getContainer();
+    if(!host || host.querySelector('.wr-style-switch')) return;
+
+    var layersButton = document.createElement('button');
+    layersButton.type = 'button';
+    layersButton.className = 'map-btn wr-layers-btn';
+    layersButton.textContent = 'Layers';
+    layersButton.setAttribute('aria-expanded', 'false');
+    host.appendChild(layersButton);
+
+    var panel = document.createElement('div');
+    panel.className = 'map-panel wr-map-panel';
+    panel.hidden = true;
+    host.appendChild(panel);
+
+    function layerChip(label, layerIds, initiallyOn){
+      var on = initiallyOn;
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'map-chip' + (on ? ' on' : '');
+      chip.textContent = label;
+      chip.setAttribute('aria-pressed', String(on));
+      chip.addEventListener('click', function(){
+        on = !on;
+        layerIds.forEach(function(id){ if(map.getLayer(id)) map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none'); });
+        chip.classList.toggle('on', on);
+        chip.setAttribute('aria-pressed', String(on));
+      });
+      panel.appendChild(chip);
+    }
+    layerChip('Marked hiking routes', ['waymarked-hiking-layer'], true);
+    layerChip('Relief shading', ['base-hillshade'], true);
+
+    layersButton.addEventListener('click', function(){
+      panel.hidden = !panel.hidden;
+      layersButton.textContent = panel.hidden ? 'Layers' : 'Close layers';
+      layersButton.setAttribute('aria-expanded', String(!panel.hidden));
+    });
+
+    function ensureSatellite(){
+      if(map.getLayer('satellite-layer')) return true;
+      if(!map.isStyleLoaded()) return false;
+      map.addSource('satellite', {
+        type:'raster',
+        tiles:['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+        tileSize:256,
+        maxzoom:19,
+        attribution:'Imagery © Esri',
+      });
+      map.addLayer({ id:'satellite-layer', type:'raster', source:'satellite', layout:{ visibility:'none' } },
+        map.getLayer('waymarked-hiking-layer') ? 'waymarked-hiking-layer' : undefined);
+      return true;
+    }
+
+    var styleSwitch = document.createElement('div');
+    styleSwitch.className = 'td-layer-switch wr-style-switch';
+    styleSwitch.setAttribute('role', 'group');
+    styleSwitch.setAttribute('aria-label', 'Map style');
+    styleSwitch.innerHTML = '<button type="button" class="on" data-wr-base="map" aria-pressed="true">Map</button>' +
+      '<button type="button" data-wr-base="satellite" aria-pressed="false">Satellite</button>' +
+      '<button type="button" data-wr-3d aria-pressed="false">3D</button>';
+    host.appendChild(styleSwitch);
+    styleSwitch.addEventListener('click', function(event){
+      var terrainButton = event.target.closest('[data-wr-3d]');
+      if(terrainButton){
+        var terrainOn = !terrainButton.classList.contains('on');
+        map.setTerrain(terrainOn ? { source:'terrain-dem', exaggeration:1.3 } : null);
+        map.easeTo({ pitch:terrainOn ? 38 : 0, duration:500 });
+        terrainButton.classList.toggle('on', terrainOn);
+        terrainButton.setAttribute('aria-pressed', String(terrainOn));
+        return;
+      }
+      var baseButton = event.target.closest('[data-wr-base]');
+      if(!baseButton || !ensureSatellite()) return;
+      var satelliteOn = baseButton.getAttribute('data-wr-base') === 'satellite';
+      map.setLayoutProperty('satellite-layer', 'visibility', satelliteOn ? 'visible' : 'none');
+      styleSwitch.querySelectorAll('[data-wr-base]').forEach(function(button){
+        var selected = button === baseButton;
+        button.classList.toggle('on', selected);
+        button.setAttribute('aria-pressed', String(selected));
+      });
+    });
+
+    var locateButton = document.createElement('button');
+    locateButton.type = 'button';
+    locateButton.className = 'wr-locate';
+    locateButton.setAttribute('aria-label', 'Centre map on my position');
+    locateButton.textContent = '◎';
+    locateButton.addEventListener('click', function(){
+      if(latestFix && map) map.easeTo({ center:[latestFix.lng, latestFix.lat], zoom:Math.max(map.getZoom(), 15), duration:500 });
+      else requestCurrentPosition();
+    });
+    host.appendChild(locateButton);
+  }
+
   function traceUpdate(fix){
-    if(!map){ initMap(fix); return; }
+    latestFix = fix;
+    if(!map){ initMap(fix, false); return; }
+    updatePositionSource();
     if(mapReady){
       var src = map.getSource('walk');
       if(src) src.setData(routeGeo());
@@ -110,6 +240,23 @@
   }
 
   // ---- Geolocation ---------------------------------------------------
+  function requestCurrentPosition(){
+    if(!navigator.geolocation){
+      els.gps.textContent = 'Location is not available in this browser';
+      initMap({ lat:46.54, lng:11.80 }, true);
+      return;
+    }
+    els.gps.textContent = 'Finding your position…';
+    navigator.geolocation.getCurrentPosition(function(pos){
+      var fix = { lat:pos.coords.latitude, lng:pos.coords.longitude, accuracy:pos.coords.accuracy, timestamp:pos.timestamp };
+      els.gps.textContent = 'GPS ±' + Math.round(pos.coords.accuracy) + ' m';
+      traceUpdate(fix);
+    }, function(){
+      els.gps.textContent = 'Location unavailable — tap ◎ after allowing access';
+      initMap({ lat:46.54, lng:11.80 }, true);
+    }, { enableHighAccuracy:true, maximumAge:5000, timeout:12000 });
+  }
+
   function startWatch(){
     if(watchId != null || !navigator.geolocation) return;
     watchId = navigator.geolocation.watchPosition(function(pos){
@@ -235,13 +382,8 @@
     if(bootedUid === memberUid) return true;
     bootedUid = memberUid;
     tryRestoreDraft();
-    // Prime the map on the current position even before Start.
-    if(navigator.geolocation) navigator.geolocation.getCurrentPosition(function(pos){
-      els.gps.textContent = 'GPS ±' + Math.round(pos.coords.accuracy) + ' m';
-      initMap({ lat: pos.coords.latitude, lng: pos.coords.longitude });
-    }, function(){
-      els.gps.textContent = 'Location unavailable — check permissions';
-    }, { enableHighAccuracy: true, timeout: 12000 });
+    // Prime the map and the live-position dot even before Start.
+    requestCurrentPosition();
     return true;
   }
 
