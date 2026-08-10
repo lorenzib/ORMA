@@ -27,14 +27,72 @@
     return d.getDate() + ' ' + (MONTHS[d.getMonth()] || '');
   }
 
+  var HAZARD_LABEL = {
+    'guard-dogs-livestock': 'Guardian dogs or livestock reported',
+    'dangerous-terrain': 'Dangerous terrain reported',
+    'not-dog-friendly': 'Reported as not dog-friendly',
+    'water-dry': 'Water source reported dry',
+    'lift-refused-dog': 'A lift refused a dog',
+    'other': 'Hazard reported',
+  };
+
+  function toMillis(value){
+    if(value == null) return null;
+    if(typeof value === 'number') return value;
+    if(typeof value.toMillis === 'function') return value.toMillis();
+    return null;
+  }
+
   // → [{id, icon, alert, group:'today'|'earlier', timeLabel, title, body, href}]
   function build(opts){
     opts = opts || {};
     var trails = Array.isArray(opts.trails) ? opts.trails : [];
     var favorites = opts.favorites || {};
     var profileEvent = opts.profileEvent || null;
+    var hazardFlags = Array.isArray(opts.hazardFlags) ? opts.hazardFlags : [];
+    var siteNotices = Array.isArray(opts.siteNotices) ? opts.siteNotices : [];
     var now = opts.now || 0;
     var items = [];
+    var nameOf = function(trailId){
+      var t = trails.find(function(x){ return x && x.id === trailId; });
+      return t ? t.name : trailId;
+    };
+
+    // Live community hazard reports on this account's saved trails — the
+    // one feed section that genuinely arrives between visits.
+    hazardFlags.forEach(function(flag){
+      if(!flag || !flag.id) return;
+      var created = toMillis(flag.confirmedAt) || toMillis(flag.createdAt);
+      var fresh = created != null && (now - created) < 864e5;
+      items.push({
+        id: 'flag-' + flag.id,
+        icon: 'warning', alert: true,
+        group: fresh ? 'today' : 'earlier',
+        timeLabel: created != null ? relTime(created, now) : 'Reported',
+        title: (HAZARD_LABEL[flag.type] || HAZARD_LABEL.other) + ': ' + nameOf(flag.trailId),
+        body: (flag.text ? String(flag.text).slice(0, 160) + ' ' : '')
+          + (flag.confirmationSource === 'community' && flag.confirmations > 0
+            ? 'Confirmed by ' + flag.confirmations + ' walker' + (flag.confirmations === 1 ? '' : 's') + '.'
+            : 'Community report — conditions can change.'),
+        href: 'trail.html?id=' + flag.trailId,
+      });
+    });
+
+    // Operator broadcast notices (new trails, safety advisories, news).
+    siteNotices.forEach(function(notice){
+      if(!notice || !notice.id) return;
+      var created = toMillis(notice.createdAt);
+      items.push({
+        id: 'notice-' + notice.id,
+        icon: notice.type === 'safety' ? 'warning' : 'new',
+        alert: notice.type === 'safety',
+        group: created != null && (now - created) < 864e5 ? 'today' : 'earlier',
+        timeLabel: created != null ? relTime(created, now) : 'New',
+        title: String(notice.title || ''),
+        body: String(notice.body || ''),
+        href: notice.href ? String(notice.href) : 'browse-trails.html',
+      });
+    });
 
     if(profileEvent && profileEvent.ts){
       items.push({

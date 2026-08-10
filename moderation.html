@@ -18,9 +18,27 @@
     <h1>Moderation queue</h1>
     <p class="moderation-intro">Pending and reported community content. Decisions are recorded in an immutable audit trail.</p>
     <div id="moderationState" class="moderation-state" role="status" aria-live="polite">Checking moderator access…</div>
+
+    <section id="noticeComposer" class="moderation-queue" aria-label="Post a site notice" hidden>
+      <h2 style="font-size:18px;margin:26px 0 4px;">Post a site notice</h2>
+      <p class="moderation-intro" style="margin-top:0;">Appears in every visitor's notification centre. Notices are immutable — delete and repost to correct one.</p>
+      <form id="noticeForm" style="display:grid;gap:10px;max-width:520px;">
+        <input id="noticeTitle" maxlength="80" required placeholder="Title — e.g. Three new Val Pusteria trails are live">
+        <textarea id="noticeBody" maxlength="280" required rows="3" placeholder="One or two sentences. Plain facts, no urgency theatre."></textarea>
+        <input id="noticeHref" maxlength="200" placeholder="Link within the site (optional) — e.g. browse-trails.html?region=savoy">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <select id="noticeType"><option value="news">News</option><option value="trail">New trail</option><option value="safety">Safety advisory</option></select>
+          <select id="noticeExpiry"><option value="">Never expires</option><option value="7">Expires in 7 days</option><option value="30">Expires in 30 days</option><option value="90">Expires in 90 days</option></select>
+          <button type="submit" id="noticeSubmit">Post notice</button>
+        </div>
+        <p id="noticeStatus" role="status" aria-live="polite" style="margin:0;font-size:13px;"></p>
+      </form>
+      <div id="noticeList" style="margin-top:14px;"></div>
+    </section>
+
     <section id="moderationQueue" class="moderation-queue" aria-label="Community content requiring moderation"></section>
   </main>
   <script type="module" src="firebase-init.js"></script>
-  <script src="moderation-page.js?v=20260730-1"></script>
+  <script src="moderation-page.js?v=20260807-1"></script>
 </body>
 </html>

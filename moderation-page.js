@@ -175,11 +175,67 @@
     state.textContent = result.items.length
       ? `${result.items.length} contribution${result.items.length === 1 ? '' : 's'} in the queue.`
       : 'The moderation queue is clear.';
+    showNoticeComposer();
     loading = false;
     if(reloadRequested){
       reloadRequested = false;
       loadQueue();
     }
+  }
+
+  // ---- Site notices: broadcast items for every visitor's notification
+  // centre. The composer appears only once the queue has proven moderator
+  // access (rules enforce the claim regardless).
+  let composerWired = false;
+  function showNoticeComposer(){
+    const composer = document.getElementById('noticeComposer');
+    if(!composer) return;
+    composer.hidden = false;
+    if(composerWired) { renderNoticeList(); return; }
+    composerWired = true;
+    const form = document.getElementById('noticeForm');
+    const status = document.getElementById('noticeStatus');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submit = document.getElementById('noticeSubmit');
+      submit.disabled = true;
+      status.textContent = 'Posting…';
+      const result = await window.DoloPawsAuth.addSiteNotice({
+        title: document.getElementById('noticeTitle').value.trim(),
+        body: document.getElementById('noticeBody').value.trim(),
+        href: document.getElementById('noticeHref').value.trim() || null,
+        type: document.getElementById('noticeType').value,
+        expiresDays: parseFloat(document.getElementById('noticeExpiry').value) || undefined,
+      });
+      submit.disabled = false;
+      status.textContent = result.ok ? 'Notice posted.' : (result.message || 'Posting failed.');
+      if(result.ok){ form.reset(); renderNoticeList(); }
+    });
+    renderNoticeList();
+  }
+
+  async function renderNoticeList(){
+    const list = document.getElementById('noticeList');
+    if(!list || typeof window.DoloPawsAuth.getSiteNotices !== 'function') return;
+    const notices = await window.DoloPawsAuth.getSiteNotices();
+    list.replaceChildren();
+    notices.forEach(notice => {
+      const row = element('div', 'moderation-content');
+      row.appendChild(element('p', '', `${notice.title} — ${notice.body}`));
+      const meta = element('p', '', `${notice.type} · ${dateLabel(notice.createdAt)}`);
+      meta.style.color = '#8A9689';
+      row.appendChild(meta);
+      const del = element('button', '', 'Delete notice');
+      del.type = 'button';
+      del.addEventListener('click', async () => {
+        del.disabled = true;
+        const ok = await window.DoloPawsAuth.deleteSiteNotice(notice.id);
+        if(ok) renderNoticeList();
+        else del.disabled = false;
+      });
+      row.appendChild(del);
+      list.appendChild(row);
+    });
   }
 
   function boot(){

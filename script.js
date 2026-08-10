@@ -1684,6 +1684,38 @@ function refreshLiBellBadge(){
     }
   } catch(e){}
   if(dot) dot.hidden = bellUnread === 0;
+  refreshLiBellBadgeLive();
+}
+
+// Second pass with the Firestore content (hazard flags on saved trails,
+// operator notices) once per page view — the sync pass above painted the
+// derived-only count immediately.
+let liBellLiveFetched = false;
+function refreshLiBellBadgeLive(){
+  const auth = window.DoloPawsAuth;
+  if(liBellLiveFetched || !auth || !auth.currentUser || !window.DoloPawsNotifFeed) return;
+  if(typeof auth.getActiveFlagsForTrails !== 'function') return;
+  liBellLiveFetched = true;
+  Promise.all([
+    auth.getActiveFlagsForTrails(Object.keys(currentFavorites || {})).catch(() => []),
+    auth.getSiteNotices().catch(() => []),
+  ]).then(([hazardFlags, siteNotices]) => {
+    let ev = null, seenList = [];
+    try { ev = JSON.parse(localStorage.getItem('dolopaws-notif-profile-event') || 'null'); } catch(e){}
+    try {
+      const raw = JSON.parse(localStorage.getItem('dolopaws-notif-seen') || '[]');
+      if(Array.isArray(raw)) seenList = raw;
+    } catch(e){}
+    const feed = window.DoloPawsNotifFeed.build({
+      trails: typeof trails !== 'undefined' ? trails : [],
+      favorites: currentFavorites || {},
+      profileEvent: ev, hazardFlags, siteNotices, now: Date.now()
+    });
+    const unread = window.DoloPawsNotifFeed.unreadIds(feed, seenList).length;
+    try { localStorage.setItem('dolopaws-notif-unread', String(unread)); } catch(e){}
+    const dot = document.getElementById('liBellDot');
+    if(dot) dot.hidden = unread === 0;
+  });
 }
 
 function initLoggedInShell(){

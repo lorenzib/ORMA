@@ -50,17 +50,20 @@
     document.body.style.setProperty('--mhome-tabs', '0px');
   }
 
-  // The account pill lives in the dark header on desktop; on the phone
-  // layout it joins the toolbar so it stays reachable.
+  // The bell and the account pill live in the dark header on desktop; on
+  // the phone layout they join the toolbar so notifications and the
+  // account menu stay reachable (the dark header is hidden there).
   function placeAccountWrap(mobile){
+    var bell = document.getElementById('liBellWrap');
     var wrap = document.getElementById('liAccountWrap');
-    if(!wrap) return;
     if(mobile){
       var toolbar = document.getElementById('liToolbar');
-      if(toolbar && wrap.parentElement !== toolbar) toolbar.appendChild(wrap);
+      if(toolbar && bell && bell.parentElement !== toolbar) toolbar.appendChild(bell);
+      if(toolbar && wrap && wrap.parentElement !== toolbar) toolbar.appendChild(wrap);
     } else {
       var actions = returning.querySelector('.li-top-actions');
-      if(actions && wrap.parentElement !== actions) actions.appendChild(wrap);
+      if(actions && bell && bell.parentElement !== actions) actions.appendChild(bell);
+      if(actions && wrap && wrap.parentElement !== actions) actions.appendChild(wrap);
     }
   }
 

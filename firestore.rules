@@ -462,6 +462,30 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Site notices power the notification centre's broadcast items (new
+    // trails, safety advisories, product news). Operators write them from
+    // the moderation workspace; everyone may read. Immutable once posted —
+    // corrections are a delete plus a new notice.
+    match /siteNotices/{noticeId} {
+      allow read: if true;
+      allow create: if isModerator()
+        && request.resource.data.keys().hasOnly([
+          'title', 'body', 'href', 'type', 'createdAt', 'expiresAt'
+        ])
+        && isShortString(request.resource.data.title, 80)
+        && isShortString(request.resource.data.body, 280)
+        && (request.resource.data.get('href', null) == null
+          || (request.resource.data.href is string
+            && request.resource.data.href.size() <= 200
+            && !request.resource.data.href.matches('^[a-zA-Z]+:.*$')))
+        && request.resource.data.type in ['news', 'trail', 'safety']
+        && request.resource.data.createdAt == request.time
+        && (request.resource.data.get('expiresAt', null) == null
+          || request.resource.data.expiresAt is timestamp);
+      allow update: if false;
+      allow delete: if isModerator();
+    }
+
     // Anonymous, identity-free usage counter. The write contains only a
     // server timestamp; precise location and account identity are prohibited.
     match /hikeEvents/{trailId}/events/{eventId} {

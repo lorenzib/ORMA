@@ -83,17 +83,32 @@
 
   function init(){
     booted = true;
-    var pending = (window.DoloPawsAuth && window.DoloPawsAuth.currentUser)
-      ? window.DoloPawsAuth.getFavorites().catch(function(){ return {}; })
+    var auth = window.DoloPawsAuth;
+    var pending = (auth && auth.currentUser)
+      ? auth.getFavorites().catch(function(){ return {}; })
       : Promise.resolve({});
     pending.then(function(favorites){
-      currentFeed = window.DoloPawsNotifFeed.build({
-        trails: typeof trails !== 'undefined' ? trails : [],
-        favorites: favorites || {},
-        profileEvent: profileEvent(),
-        now: Date.now()
+      favorites = favorites || {};
+      // Live Firestore content: hazard flags on saved trails (members) and
+      // operator notices (everyone). Both degrade to empty on any failure —
+      // the derived feed still renders.
+      var flagsP = (auth && auth.currentUser && typeof auth.getActiveFlagsForTrails === 'function')
+        ? auth.getActiveFlagsForTrails(Object.keys(favorites)).catch(function(){ return []; })
+        : Promise.resolve([]);
+      var noticesP = (auth && typeof auth.getSiteNotices === 'function')
+        ? auth.getSiteNotices().catch(function(){ return []; })
+        : Promise.resolve([]);
+      Promise.all([flagsP, noticesP]).then(function(live){
+        currentFeed = window.DoloPawsNotifFeed.build({
+          trails: typeof trails !== 'undefined' ? trails : [],
+          favorites: favorites,
+          profileEvent: profileEvent(),
+          hazardFlags: live[0],
+          siteNotices: live[1],
+          now: Date.now()
+        });
+        render(currentFeed);
       });
-      render(currentFeed);
     });
   }
 

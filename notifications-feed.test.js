@@ -47,6 +47,51 @@ describe('derived notifications feed', () => {
     expect(p.timeLabel).toBe('2h ago');
   });
 
+  test('live hazard flags on saved trails become alert items with trail names', () => {
+    const items = feed.build({
+      trails, favorites: {},
+      hazardFlags: [
+        { id: 'f1', trailId: 'ridge', type: 'water-dry', text: 'Fountain dry at km 2.',
+          createdAt: NOW - 2 * 3600 * 1000, confirmationSource: 'community', confirmations: 3 },
+        { id: 'f2', trailId: 'meadow', type: 'guard-dogs-livestock',
+          createdAt: NOW - 3 * 864e5, confirmations: 0 },
+      ],
+      now: NOW,
+    });
+    const dry = items.find(i => i.id === 'flag-f1');
+    expect(dry.title).toBe('Water source reported dry: Ridge Trail');
+    expect(dry.alert).toBe(true);
+    expect(dry.group).toBe('today');
+    expect(dry.timeLabel).toBe('2h ago');
+    expect(dry.body).toContain('Fountain dry at km 2.');
+    expect(dry.body).toContain('Confirmed by 3 walkers');
+    expect(dry.href).toBe('trail.html?id=ridge');
+    const herd = items.find(i => i.id === 'flag-f2');
+    expect(herd.group).toBe('earlier');
+    expect(herd.body).toContain('Community report');
+  });
+
+  test('site notices appear for everyone, safety ones as alerts', () => {
+    const items = feed.build({
+      trails: [], favorites: {},
+      siteNotices: [
+        { id: 'n1', type: 'trail', title: 'Val Pusteria trails are live',
+          body: 'Three new scored loops.', href: 'browse-trails.html', createdAt: NOW - 3600 * 1000 },
+        { id: 'n2', type: 'safety', title: 'Heatwave weekend',
+          body: 'Walk early.', createdAt: NOW - 2 * 864e5 },
+      ],
+      now: NOW,
+    });
+    const trail = items.find(i => i.id === 'notice-n1');
+    expect(trail.alert).toBe(false);
+    expect(trail.group).toBe('today');
+    expect(trail.href).toBe('browse-trails.html');
+    const safety = items.find(i => i.id === 'notice-n2');
+    expect(safety.alert).toBe(true);
+    expect(safety.icon).toBe('warning');
+    expect(safety.group).toBe('earlier');
+  });
+
   test('unreadIds subtracts the seen list so read items stay read', () => {
     const items = feed.build({ trails, favorites: { ridge: true }, now: NOW });
     const all = feed.unreadIds(items, []);

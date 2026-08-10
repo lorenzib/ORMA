@@ -19,7 +19,8 @@ import {
 import {
   getFirestore, doc, getDoc, setDoc, deleteDoc,
   collection, addDoc, serverTimestamp, query, where, Timestamp,
-  getCountFromServer, getDocs, updateDoc, writeBatch, increment
+  getCountFromServer, getDocs, updateDoc, writeBatch, increment,
+  orderBy, limit
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 const app = initializeApp(firebaseConfig);
@@ -637,6 +638,61 @@ async function getActiveFlags(trailId) {
   }
 }
 
+// Active hazard flags across the user's saved trails, for the notification
+// centre. One indexed query per trail (Firestore allows a single `in`
+// clause per query, and trailId+status already need one each), capped so a
+// large saved list cannot fan out into unbounded reads.
+async function getActiveFlagsForTrails(trailIds) {
+  const ids = (Array.isArray(trailIds) ? trailIds : []).slice(0, 25);
+  const results = await Promise.all(ids.map(id =>
+    getActiveFlags(id).then(flags => flags.map(f => ({ ...f, trailId: id })))
+  ));
+  return results.flat();
+}
+
+// Broadcast notices are public content; no signed-in user required.
+async function getSiteNotices() {
+  try {
+    const q = query(collection(db, "siteNotices"),
+      orderBy("createdAt", "desc"), limit(10));
+    const snap = await getDocs(q);
+    const now = Date.now();
+    return snap.docs
+      .map(d => ({ id: d.id, ...d.data() }))
+      .filter(n => !n.expiresAt || (n.expiresAt.toMillis && n.expiresAt.toMillis() > now));
+  } catch (e) {
+    console.error("getSiteNotices failed:", e);
+    return [];
+  }
+}
+
+async function addSiteNotice(notice) {
+  if (!currentUser) return { ok: false, message: "Sign in first." };
+  try {
+    const payload = {
+      title: String(notice.title || "").slice(0, 80),
+      body: String(notice.body || "").slice(0, 280),
+      href: notice.href ? String(notice.href).slice(0, 200) : null,
+      type: ["news", "trail", "safety"].includes(notice.type) ? notice.type : "news",
+      createdAt: serverTimestamp(),
+      expiresAt: Number.isFinite(notice.expiresDays)
+        ? Timestamp.fromMillis(Date.now() + notice.expiresDays * 864e5)
+        : null,
+    };
+    const ref = await addDoc(collection(db, "siteNotices"), payload);
+    return { ok: true, id: ref.id };
+  } catch (e) {
+    console.error("addSiteNotice failed:", e);
+    return { ok: false, message: "Could not post the notice." };
+  }
+}
+
+async function deleteSiteNotice(noticeId) {
+  if (!currentUser) return false;
+  try { await deleteDoc(doc(db, "siteNotices", String(noticeId))); return true; }
+  catch (e) { console.error("deleteSiteNotice failed:", e); return false; }
+}
+
 async function respondToHazard(flagId, stance) {
   const eligibility = await getContributionEligibility();
   if (!eligibility.ok) return eligibility;
@@ -970,6 +1026,7 @@ async function moderateContent(item, toStatus, reason, options = {}) {
 window.DoloPawsCommunity = {
   recordHikeStart, getWeeklyHikeCount,
   addFlag, getActiveFlags, respondToHazard, deleteFlag,
+  getActiveFlagsForTrails, getSiteNotices, addSiteNotice, deleteSiteNotice,
   setReview, getReviews, deleteMyReview,
   addTrailPhoto, getTrailPhotos,
   reportContent,

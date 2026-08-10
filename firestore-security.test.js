@@ -54,6 +54,18 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(userValidator).not.toContain('moderator');
   });
 
+  test('site notices are operator-written broadcast content', () => {
+    expect(rules).toContain('match /siteNotices/{noticeId}');
+    const block = rules.slice(rules.indexOf('match /siteNotices'));
+    expect(block).toContain('allow read: if true;');
+    expect(block).toContain('allow create: if isModerator()');
+    expect(block).toContain('allow update: if false;');
+    expect(block).toContain('allow delete: if isModerator();');
+    // Links stay inside the site — absolute schemes (https:, javascript:)
+    // are rejected so a notice can never smuggle an external redirect.
+    expect(block).toContain("!request.resource.data.href.matches('^[a-zA-Z]+:.*$')");
+  });
+
   test('community submission requires verified email and respects operator blocks', () => {
     expect(rules).toContain("request.auth.token.get('email_verified', false) == true");
     expect(rules).toContain('documents/contributionBlocks/$(request.auth.uid)');
