@@ -346,6 +346,26 @@
       return wrap;
     }
 
+    // On phones the bell must be seen without opening anything: it moves
+    // out of the collapsed menu and sits in the header bar, left of the
+    // hamburger. Desktop keeps it inline in the links row.
+    const bellMq = typeof window.matchMedia === 'function'
+      ? window.matchMedia('(max-width:700px)')
+      : { matches: false };
+    function placeBell(){
+      const wrap = navEl.querySelector('.nav-bellwrap');
+      if(!wrap) return;
+      const toggle = navEl.querySelector('.mobile-nav-toggle');
+      if(bellMq.matches && toggle){
+        if(wrap.parentElement !== navEl || wrap.nextElementSibling !== toggle){
+          navEl.insertBefore(wrap, toggle);
+        }
+      } else if(wrap.parentElement !== linksEl){
+        linksEl.appendChild(wrap);
+      }
+    }
+    if(bellMq.addEventListener) bellMq.addEventListener('change', placeBell);
+
     function renderHeader(loggedIn, dogName){
       navEl.classList.toggle('nav-authed', !!loggedIn);
       const key = activeKey();
@@ -364,6 +384,10 @@
       if(loggedIn){
         linksEl.appendChild(buildBell());
         linksEl.appendChild(buildAccountPill(dogName));
+        // The hamburger toggle is built later in this same script run;
+        // the deferred second call catches it.
+        placeBell();
+        setTimeout(placeBell, 0);
       } else {
         // Login must open IN PLACE everywhere (desktop and mobile): pages
         // without auth-ui — the static trail/guide pages, whose markup

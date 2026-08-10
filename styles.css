@@ -779,12 +779,16 @@ img,svg{max-width:100%;height:auto;}
      The sheet itself scrolls — the dog switcher plus its menu items can
      outgrow a phone screen. */
   .topnav .links{max-height:calc(100dvh - 72px);overflow-y:auto;}
-  .topnav .links .nav-bellwrap{display:flex !important;width:100%;}
-  .topnav .links .nav-bellwrap > button.nav-bell{
-    width:100%;min-height:44px;border-radius:12px;padding:10px 12px;
-    display:flex;align-items:center;justify-content:flex-start;gap:8px;
+  /* The bell sits in the header bar itself, left of the hamburger —
+     notifications are visible first thing, no menu required. Sized to
+     match the toggle. */
+  .topnav > .nav-bellwrap{display:flex;margin-right:10px;}
+  .topnav > .nav-bellwrap > button.nav-bell{
+    width:44px;height:44px;border-radius:12px;border:1px solid rgba(242,238,226,.35);
+    background:transparent;color:#F2EEE2;display:flex;align-items:center;justify-content:center;
   }
-  .nav-bell-badge{position:static;margin-left:6px;}
+  .topnav > .nav-bellwrap .nav-bell-badge{position:absolute;top:4px;right:4px;}
+  .topnav > .nav-bellwrap .nav-bell-menu{position:absolute;top:calc(100% + 8px);right:0;width:min(320px,86vw);}
   .nav-bell-menu{position:static;width:100%;margin-top:6px;box-shadow:none;}
   .topnav .links .nav-user{min-height:48px;justify-content:flex-start;text-align:left;}
   .nav-dogmenu{position:static;width:100%;margin-top:6px;box-shadow:none;}

@@ -177,6 +177,7 @@
 
   // ---- Controls ------------------------------------------------------
   els.start.addEventListener('click', function(){
+    if(!uid){ els.gate.hidden = false; return; }
     if(recorder.status === 'idle') recorder.start(Date.now());
     else recorder.resume(Date.now());
     startWatch();
@@ -220,7 +221,24 @@
   // ---- Boot: needs an account so the walk lands in the right journal --
   function boot(){
     var user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
-    if(!user){ els.gate.hidden = false; return; }
+    if(!user){
+      // Firebase restores a session asynchronously. While the cached member
+      // summary still exists, hold the gate — showing "sign in" to someone
+      // who IS signed in was exactly the bug. A definitive logged-out state
+      // clears the summary, and the gate then shows.
+      var cached = null;
+      try { cached = localStorage.getItem('dolopaws-profile-summary'); } catch(e){}
+      els.gate.hidden = !!cached;
+      // A definitive logged-out state clears that cache a beat later —
+      // re-check so a stale cache can't hide the gate forever.
+      if(cached) setTimeout(function(){
+        var user2 = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+        var still = null;
+        try { still = localStorage.getItem('dolopaws-profile-summary'); } catch(e){}
+        if(!user2 && !still) els.gate.hidden = false;
+      }, 2000);
+      return;
+    }
     els.gate.hidden = true;
     uid = user.uid;
     try {
@@ -237,8 +255,18 @@
     }, { enableHighAccuracy: true, timeout: 12000 });
   }
 
-  if(window.DoloPawsAuthReady) boot();
-  else window.addEventListener('dolopaws-auth-ready', boot, { once: true });
+  // onChange is firebase-init's own registry — it fires for every auth
+  // state including session restore. The DOM 'dolopaws-auth-changed' event
+  // only exists on pages that load auth-ui.js, which this page does not.
+  function watchAuth(){
+    if(window.DoloPawsAuth && typeof window.DoloPawsAuth.onChange === 'function'){
+      window.DoloPawsAuth.onChange(function(){ boot(); });
+    } else {
+      boot();
+    }
+  }
+  if(window.DoloPawsAuthReady) watchAuth();
+  else window.addEventListener('dolopaws-auth-ready', watchAuth, { once: true });
   window.addEventListener('dolopaws-auth-changed', boot);
   setButtons();
 })();
