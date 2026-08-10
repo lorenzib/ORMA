@@ -30,7 +30,8 @@
      moved into the toolbar by homepage-mobile.js. */
   body.mhome-active .li-top,
   body.mhome-active .li-greetbar{display:none;}
-  body.mhome-active .li-toolbar{position:fixed;top:var(--mhome-nav,56px);left:0;right:0;z-index:70;display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:rgba(247,244,235,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(27,31,25,.08);box-sizing:border-box;}
+  body.mhome-active .li-toolbar{position:fixed;top:var(--mhome-nav,56px);left:0;right:0;z-index:70;display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 14px 10px;background:rgba(247,244,235,.96);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(27,31,25,.08);box-sizing:border-box;}
+  body.mhome-active .li-toolbar-greet{display:block;flex-basis:100%;font:700 20px/1.2 'Source Serif 4',serif;color:var(--ink);margin:2px 2px 0;}
   body.mhome-active .li-search{flex:1;display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--paper-line);border-radius:999px;padding:9px 14px;min-width:0;color:var(--ink-soft);}
   body.mhome-active .li-search svg{flex:none;}
   body.mhome-active .li-search input{flex:1;min-width:0;border:none;outline:none;background:none;font-family:'Inter',sans-serif;font-size:14px;color:var(--ink);}
@@ -92,7 +93,7 @@
 
   /* Record button floats above the sheet, Strava-style, riding the
      sheet's height like the attribution does. */
-  body.mhome-active .li-record{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--mhome-sheet,26dvh) + env(safe-area-inset-bottom) + 14px);z-index:47;padding:12px 22px;font-size:14px;box-shadow:0 10px 26px -8px rgba(23,42,28,.5);transition:bottom .28s cubic-bezier(.22,1,.36,1);}
+  body.mhome-active .li-record{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--mhome-sheet,26dvh) + env(safe-area-inset-bottom) + 84px);z-index:47;padding:12px 22px;font-size:14px;box-shadow:0 10px 26px -8px rgba(23,42,28,.5);transition:bottom .28s cubic-bezier(.22,1,.36,1);}
 
   /* ---- HIDDEN SHEET: dragging (or tapping) the handle down collapses
      "Ranked for your dog" to just the grab pill, giving the map the whole

@@ -15,6 +15,8 @@
   var mapReady = false;
   var lastCenter = null;
   var latestFix = null;
+  var overlayRegion = 'dolomites';
+  var overlayPromises = {};
   var bootedUid = null;
 
   var els = {
@@ -129,6 +131,118 @@
     if(source) source.setData(positionGeo(latestFix));
   }
 
+  function regionForFix(fix){
+    // DoloPaws currently covers Savoy (west of 9°E) and the Dolomites.
+    return fix && fix.lng < 9 ? 'savoy' : 'dolomites';
+  }
+
+  function regionAsset(key){
+    var manifest = window.DoloPawsRegionManifest;
+    var region = manifest && manifest.regions && manifest.regions[overlayRegion];
+    return region && region[key];
+  }
+
+  function pointFeature(feature){
+    var geometry = feature && feature.geometry;
+    if(!geometry || geometry.type === 'Point') return feature;
+    var ring = geometry.type === 'Polygon' ? (geometry.coordinates[0] || [])
+      : geometry.type === 'MultiPolygon' ? ((geometry.coordinates[0] || [])[0] || []) : [];
+    if(!ring.length) return null;
+    var lng = ring.reduce(function(sum, point){ return sum + point[0]; }, 0) / ring.length;
+    var lat = ring.reduce(function(sum, point){ return sum + point[1]; }, 0) / ring.length;
+    return { type:'Feature', properties:feature.properties || {}, geometry:{ type:'Point', coordinates:[lng, lat] } };
+  }
+
+  function addPointOverlay(sourceId, prefix, features, color){
+    if(map.getSource(sourceId)) return;
+    map.addSource(sourceId, { type:'geojson', data:{ type:'FeatureCollection', features:features }, cluster:true, clusterRadius:50 });
+    var before = map.getLayer('walk-line') ? 'walk-line' : undefined;
+    map.addLayer({ id:prefix + '-points', type:'circle', source:sourceId,
+      filter:['!', ['has', 'point_count']], layout:{ visibility:'none' },
+      paint:{ 'circle-radius':6, 'circle-color':color, 'circle-opacity':0.9, 'circle-stroke-width':2, 'circle-stroke-color':'#fff' } }, before);
+    map.addLayer({ id:prefix + '-clusters', type:'circle', source:sourceId,
+      filter:['has', 'point_count'], layout:{ visibility:'none' },
+      paint:{ 'circle-radius':['step', ['get', 'point_count'], 17, 5, 21, 15, 25], 'circle-color':color,
+        'circle-opacity':0.82, 'circle-stroke-width':2, 'circle-stroke-color':'#fff' } }, before);
+    map.addLayer({ id:prefix + '-cluster-count', type:'symbol', source:sourceId,
+      filter:['has', 'point_count'], layout:{ visibility:'none', 'text-field':['get', 'point_count_abbreviated'], 'text-size':11 },
+      paint:{ 'text-color':'#fff' } }, before);
+    map.on('click', prefix + '-points', function(event){
+      var feature = event.features && event.features[0];
+      if(!feature) return;
+      var properties = feature.properties || {};
+      var label = properties.name || properties.label || properties.amenity || properties.tourism || 'Map point';
+      new maplibregl.Popup({ offset:12 }).setLngLat(feature.geometry.coordinates).setText(String(label)).addTo(map);
+    });
+  }
+
+  function ensureWater(){
+    if(map.getSource('walk-water')) return Promise.resolve(['walk-water-points','walk-water-clusters','walk-water-cluster-count']);
+    if(!overlayPromises.water){
+      overlayPromises.water = fetch(regionAsset('water')).then(function(response){
+        if(!response.ok) throw new Error('Water layer unavailable');
+        return response.json();
+      }).then(function(data){
+        var points = (data.features || []).map(pointFeature).filter(Boolean);
+        addPointOverlay('walk-water', 'walk-water', points, '#4E90A8');
+        return ['walk-water-points','walk-water-clusters','walk-water-cluster-count'];
+      });
+    }
+    return overlayPromises.water;
+  }
+
+  function ensureAmenities(){
+    if(map.getSource('walk-huts') && map.getSource('walk-food')) return Promise.resolve(true);
+    if(!overlayPromises.amenities){
+      overlayPromises.amenities = fetch(regionAsset('hutsBars')).then(function(response){
+        if(!response.ok) throw new Error('Amenity layers unavailable');
+        return response.json();
+      }).then(function(data){
+        var points = (data.features || []).map(pointFeature).filter(Boolean);
+        function isHut(feature){
+          var p = feature.properties || {};
+          return p.tourism === 'alpine_hut' || p.tourism === 'wilderness_hut' || p.amenity === 'shelter';
+        }
+        addPointOverlay('walk-huts', 'walk-huts', points.filter(isHut), '#8A5A16');
+        addPointOverlay('walk-food', 'walk-food', points.filter(function(feature){ return !isHut(feature); }), '#C4652F');
+        return true;
+      });
+    }
+    return overlayPromises.amenities;
+  }
+
+  function ensureLifts(){
+    if(map.getSource('walk-lifts')) return Promise.resolve(['walk-lifts-line','walk-lifts-labels']);
+    if(!overlayPromises.lifts){
+      overlayPromises.lifts = new Promise(function(resolve, reject){
+        function build(){
+          if(typeof gondolas === 'undefined') { reject(new Error('Lift layer unavailable')); return; }
+          var lifts = gondolas.filter(function(lift){
+            var savoy = lift.country === 'FR' || (lift.from && lift.from.lng < 9);
+            return overlayRegion === 'savoy' ? savoy : !savoy;
+          });
+          var features = lifts.map(function(lift){ return { type:'Feature', properties:{ name:lift.name, status:lift.status },
+            geometry:{ type:'LineString', coordinates:[[lift.from.lng,lift.from.lat],[lift.to.lng,lift.to.lat]] } }; });
+          map.addSource('walk-lifts', { type:'geojson', data:{ type:'FeatureCollection', features:features } });
+          var before = map.getLayer('walk-line') ? 'walk-line' : undefined;
+          map.addLayer({ id:'walk-lifts-line', type:'line', source:'walk-lifts', layout:{ visibility:'none' },
+            paint:{ 'line-color':'#4E90A8', 'line-width':2, 'line-dasharray':['match',['get','status'],'summer',['literal',[1,0]],['literal',[2,1]]] } }, before);
+          map.addLayer({ id:'walk-lifts-labels', type:'symbol', source:'walk-lifts', layout:{ visibility:'none',
+            'symbol-placement':'line', 'text-field':['get','name'], 'text-size':10 },
+            paint:{ 'text-color':'#2E4034', 'text-halo-color':'#fff', 'text-halo-width':1.5 } }, before);
+          resolve(['walk-lifts-line','walk-lifts-labels']);
+        }
+        if(typeof gondolas !== 'undefined'){ build(); return; }
+        var script = document.createElement('script');
+        script.src = 'trails-data.js?v=20260810';
+        script.onload = build;
+        script.onerror = function(){ reject(new Error('Lift layer unavailable')); };
+        document.head.appendChild(script);
+      });
+    }
+    return overlayPromises.lifts;
+  }
+
   function installMapControls(){
     var host = map && map.getContainer();
     if(!host || host.querySelector('.wr-style-switch')) return;
@@ -161,6 +275,46 @@
       panel.appendChild(chip);
     }
     layerChip('Marked hiking routes', ['waymarked-hiking-layer'], true);
+
+    function lazyLayerChip(label, loader){
+      var on = false;
+      var ids = [];
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'map-chip';
+      chip.textContent = label;
+      chip.setAttribute('aria-pressed', 'false');
+      chip.addEventListener('click', function(){
+        if(on){
+          on = false;
+          ids.forEach(function(id){ if(map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'none'); });
+          chip.classList.remove('on');
+          chip.setAttribute('aria-pressed', 'false');
+          return;
+        }
+        chip.disabled = true;
+        chip.textContent = 'Loading ' + label.toLowerCase() + '…';
+        loader().then(function(layerIds){
+          ids = layerIds;
+          on = true;
+          ids.forEach(function(id){ if(map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'visible'); });
+          chip.classList.add('on');
+          chip.setAttribute('aria-pressed', 'true');
+          chip.textContent = label;
+        }).catch(function(){
+          chip.textContent = label + ' unavailable';
+        }).finally(function(){ chip.disabled = false; });
+      });
+      panel.appendChild(chip);
+    }
+    lazyLayerChip('Lifts', ensureLifts);
+    lazyLayerChip('Water', ensureWater);
+    lazyLayerChip('Huts', function(){ return ensureAmenities().then(function(){
+      return ['walk-huts-points','walk-huts-clusters','walk-huts-cluster-count'];
+    }); });
+    lazyLayerChip('Food', function(){ return ensureAmenities().then(function(){
+      return ['walk-food-points','walk-food-clusters','walk-food-cluster-count'];
+    }); });
     layerChip('Relief shading', ['base-hillshade'], true);
 
     layersButton.addEventListener('click', function(){
@@ -227,6 +381,7 @@
 
   function traceUpdate(fix){
     latestFix = fix;
+    overlayRegion = regionForFix(fix);
     if(!map){ initMap(fix, false); return; }
     updatePositionSource();
     if(mapReady){

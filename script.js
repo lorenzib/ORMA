@@ -1712,12 +1712,14 @@ function renderLiConditionsCard(profile, displayList){
 
   const overrides = effectiveOverrides(profile, null);
   const name = profile.name || 'Your dog';
-  // Desktop card: "{dog}'s conditions". The phone pill shows the greeting
-  // instead — "Eddie's conditions" read oddly as the map's only title.
-  // Both spans render; CSS picks one per layout, so re-renders stay safe.
+  // Desktop card: "{dog}'s conditions". The phone pill shows just the
+  // dog's name — the greeting lives above the search bar there, and
+  // "Eddie's conditions" read oddly as a map title. Both spans render;
+  // CSS picks one per layout, so re-renders stay safe.
   const condTitle = document.getElementById('liCondTitle');
-  condTitle.innerHTML = '<span class="li-cond-t-desk"></span><span class="li-cond-t-mobile" data-i18n="hero.h1">Where are we heading today?</span>';
+  condTitle.innerHTML = '<span class="li-cond-t-desk"></span><span class="li-cond-t-mobile"></span>';
   condTitle.querySelector('.li-cond-t-desk').textContent = `${name}'s conditions`;
+  condTitle.querySelector('.li-cond-t-mobile').textContent = name;
   document.getElementById('liCondSub').textContent =
     (activeRegion === 'savoy' ? t('region.savoy') : t('region.theDolomites')) + ' · today';
   liFillAvatar(document.getElementById('liCondAvatar'), profile);

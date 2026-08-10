@@ -2651,6 +2651,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 html.early-member #newCustomerHomepage{display:none;}
 html.early-member #returningCustomerHomepage[hidden]{display:block;}
 .li-cond-t-mobile{display:none;}
+.li-toolbar-greet{display:none;}
 /* Record-anywhere walk button (toolbar chip on desktop; the phone layer
    restyles it as a floating pill above the trail sheet). */
 .li-record{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:#C4652F;color:#fff;font:800 13px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;}

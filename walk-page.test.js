@@ -72,6 +72,10 @@ describe('walk recorder authentication restoration', () => {
     expect(source).toContain("id: 'walk-position-accuracy'");
     expect(source).toContain("id: 'walk-position-dot'");
     expect(source).toContain('Marked hiking routes');
+    expect(source).toContain("lazyLayerChip('Lifts'");
+    expect(source).toContain("lazyLayerChip('Water'");
+    expect(source).toContain("lazyLayerChip('Huts'");
+    expect(source).toContain("lazyLayerChip('Food'");
     expect(source).toContain('Satellite');
     expect(source).toContain('data-wr-3d');
     expect(source).toContain('Centre map on my position');

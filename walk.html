@@ -21,7 +21,7 @@
   #wrMap{position:absolute;inset:0;}
   .wr-gps{position:absolute;top:12px;left:12px;z-index:5;background:rgba(20,28,22,.82);border-radius:999px;padding:6px 12px;font:600 11.5px 'Inter',sans-serif;color:#CBD6C8;}
   #wrMap .wr-layers-btn{top:50px;left:12px;bottom:auto;}
-  #wrMap .wr-map-panel{top:90px;left:12px;bottom:auto;}
+  #wrMap .wr-map-panel{top:90px;left:12px;bottom:auto;max-height:calc(100% - 150px);overflow:auto;}
   #wrMap .wr-map-panel[hidden]{display:none;}
   #wrMap .wr-map-panel:not([hidden]){display:flex;}
   #wrMap .wr-style-switch{left:12px;bottom:12px;gap:5px;}
@@ -80,6 +80,7 @@
 
 <script type="module" src="firebase-init.js?v=20260810-2"></script>
 <script src="walk-recorder.js?v=20260807-1"></script>
+<script src="regions-runtime-manifest.js?v=20260810"></script>
 <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
-<script src="walk-page.js?v=20260810-2"></script>
+<script src="walk-page.js?v=20260810-3"></script>
 </body></html>

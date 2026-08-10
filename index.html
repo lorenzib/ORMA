@@ -19,7 +19,7 @@
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
 <link rel="stylesheet" href="styles.css?v=20260810-2">
-<link rel="stylesheet" href="homepage-mobile.css?v=20260807-8">
+<link rel="stylesheet" href="homepage-mobile.css?v=20260810-2">
 </head>
 <body>
 
@@ -248,6 +248,9 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 
   <!-- ================= TOOLBAR: SEARCH + FILTER CHIPS ================= -->
   <div class="li-toolbar" id="liToolbar">
+    <!-- Phone-only greeting row: sits above search + filters, outside the
+         map. Desktop keeps the greeting in the greeting bar. -->
+    <div class="li-toolbar-greet" data-i18n="hero.h1">Where are we heading today?</div>
     <div class="li-search">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
       <input id="liSearch" type="search" placeholder="Search a valley, lake or trail…" aria-label="Search trails" autocomplete="off">
@@ -476,7 +479,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="basemap-poi-click.js" defer></script>
 <script src="dog-routes-layer.js?v=20260805-1" defer></script>
 <script src="trail-access-directions.js?v=20260805-1" defer></script>
-<script src="script.js?v=20260807-7" defer></script>
+<script src="script.js?v=20260810-1" defer></script>
 <script src="dog-wizard.js?v=20260807-1" defer></script>
 <script src="homepage-search.js?v=20260729-1" defer></script>
 <script src="homepage-mobile.js?v=20260807-7" defer></script>
