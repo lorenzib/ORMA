@@ -665,6 +665,7 @@ Implementation evidence: `docs/architecture/PRIV-01-retention-and-deletion.md`.
 
 ### PERF-01 — Establish mobile performance budgets
 
+- **Status:** Complete in code (2026-08-10)
 - **Priority:** P1
 - **Size:** S
 - **Depends on:** DATA-03
@@ -674,6 +675,8 @@ Implementation evidence: `docs/architecture/PRIV-01-retention-and-deletion.md`.
     baselines on a throttled mobile profile.
   - Budgets cover transferred bytes, LCP, INP, CLS, and JavaScript execution.
   - Results and test conditions are reproducible.
+
+Implementation evidence: `docs/architecture/PERF-01-mobile-performance-budgets.md`.
 
 ### PERF-02 — Optimize oversized images and regional data
 

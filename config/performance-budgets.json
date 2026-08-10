@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "profile": "DoloPaws mobile lab v1",
+  "conditions": {
+    "viewport": "390x844 @3x",
+    "network": "1.6 Mbps down, 750 Kbps up, 150 ms latency",
+    "cpuSlowdown": 4,
+    "runs": 3,
+    "aggregation": "median"
+  },
+  "budgets": {
+    "homepage": {
+      "transferredKb": 2325,
+      "lcpMs": 6300,
+      "inpMs": 200,
+      "cls": 0.9,
+      "jsExecutionMs": 300
+    },
+    "discovery": {
+      "transferredKb": 1625,
+      "lcpMs": 3500,
+      "inpMs": 200,
+      "cls": 0.66,
+      "jsExecutionMs": 300
+    },
+    "trail-detail": {
+      "transferredKb": 2200,
+      "lcpMs": 12300,
+      "inpMs": 200,
+      "cls": 1.03,
+      "jsExecutionMs": 400
+    },
+    "download-flow": {
+      "transferredKb": 2200,
+      "lcpMs": 12200,
+      "inpMs": 200,
+      "cls": 1.03,
+      "jsExecutionMs": 400
+    },
+    "active-hike": {
+      "transferredKb": 2225,
+      "lcpMs": 12300,
+      "inpMs": 200,
+      "cls": 1.03,
+      "jsExecutionMs": 500
+    }
+  }
+}

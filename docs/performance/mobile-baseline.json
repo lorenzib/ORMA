@@ -1,0 +1,186 @@
+{
+  "measuredAt": "2026-08-10T09:52:26.127Z",
+  "chrome": "Chrome/139.0.7258.66",
+  "profile": "DoloPaws mobile lab v1",
+  "conditions": {
+    "viewport": "390x844 @3x",
+    "network": "1.6 Mbps down, 750 Kbps up, 150 ms latency",
+    "cpuSlowdown": 4,
+    "runs": 3,
+    "aggregation": "median"
+  },
+  "results": {
+    "homepage": {
+      "transferredKb": 2010.4,
+      "lcpMs": 5220,
+      "inpMs": 112,
+      "cls": 0.715,
+      "jsExecutionMs": 243,
+      "requests": 45
+    },
+    "discovery": {
+      "transferredKb": 1396.5,
+      "lcpMs": 2916,
+      "inpMs": 104,
+      "cls": 0.527,
+      "jsExecutionMs": 180,
+      "requests": 37
+    },
+    "trail-detail": {
+      "transferredKb": 1907,
+      "lcpMs": 10196,
+      "inpMs": 88,
+      "cls": 0.824,
+      "jsExecutionMs": 311,
+      "requests": 78
+    },
+    "download-flow": {
+      "transferredKb": 1905.8,
+      "lcpMs": 10160,
+      "inpMs": 88,
+      "cls": 0.824,
+      "jsExecutionMs": 282,
+      "requests": 78
+    },
+    "active-hike": {
+      "transferredKb": 1916.8,
+      "lcpMs": 10244,
+      "inpMs": 88,
+      "cls": 0.824,
+      "jsExecutionMs": 373,
+      "requests": 78
+    }
+  },
+  "raw": {
+    "homepage": [
+      {
+        "transferredBytes": 2061393,
+        "requests": 46,
+        "lcpMs": 5196,
+        "inpMs": 120,
+        "cls": 0.7151028906194656,
+        "jsExecutionMs": 260.469
+      },
+      {
+        "transferredBytes": 2058693,
+        "requests": 45,
+        "lcpMs": 5232,
+        "inpMs": 104,
+        "cls": 0.7151028906194656,
+        "jsExecutionMs": 214.119
+      },
+      {
+        "transferredBytes": 2058692,
+        "requests": 45,
+        "lcpMs": 5220,
+        "inpMs": 112,
+        "cls": 0.7151028906194656,
+        "jsExecutionMs": 242.679
+      }
+    ],
+    "discovery": [
+      {
+        "transferredBytes": 1430054,
+        "requests": 37,
+        "lcpMs": 2948,
+        "inpMs": 104,
+        "cls": 0.5241759374577951,
+        "jsExecutionMs": 171.77
+      },
+      {
+        "transferredBytes": 1430054,
+        "requests": 37,
+        "lcpMs": 2916,
+        "inpMs": 104,
+        "cls": 0.5273050078953846,
+        "jsExecutionMs": 244.174
+      },
+      {
+        "transferredBytes": 1430054,
+        "requests": 37,
+        "lcpMs": 2916,
+        "inpMs": 88,
+        "cls": 0.5273050078953846,
+        "jsExecutionMs": 180.321
+      }
+    ],
+    "trail-detail": [
+      {
+        "transferredBytes": 1952965,
+        "requests": 78,
+        "lcpMs": 10236,
+        "inpMs": 104,
+        "cls": 0.8492063286748792,
+        "jsExecutionMs": 341.93600000000004
+      },
+      {
+        "transferredBytes": 1952772,
+        "requests": 78,
+        "lcpMs": 10196,
+        "inpMs": 80,
+        "cls": 0.8237534525040834,
+        "jsExecutionMs": 310.918
+      },
+      {
+        "transferredBytes": 1951631,
+        "requests": 77,
+        "lcpMs": 10140,
+        "inpMs": 88,
+        "cls": 0.8237534525040834,
+        "jsExecutionMs": 291.104
+      }
+    ],
+    "download-flow": [
+      {
+        "transferredBytes": 1951618,
+        "requests": 78,
+        "lcpMs": 10160,
+        "inpMs": 104,
+        "cls": 0.8237534525040834,
+        "jsExecutionMs": 279.37
+      },
+      {
+        "transferredBytes": 1951576,
+        "requests": 78,
+        "lcpMs": 10156,
+        "inpMs": 80,
+        "cls": 0.8237534525040834,
+        "jsExecutionMs": 281.92
+      },
+      {
+        "transferredBytes": 1951528,
+        "requests": 78,
+        "lcpMs": 10192,
+        "inpMs": 88,
+        "cls": 0.8237534525040834,
+        "jsExecutionMs": 286.296
+      }
+    ],
+    "active-hike": [
+      {
+        "transferredBytes": 1962931,
+        "requests": 81,
+        "lcpMs": 10136,
+        "inpMs": 80,
+        "cls": 0.8237534525040834,
+        "jsExecutionMs": 289.662
+      },
+      {
+        "transferredBytes": 1962779,
+        "requests": 78,
+        "lcpMs": 10244,
+        "inpMs": 88,
+        "cls": 0.8237534525040834,
+        "jsExecutionMs": 373.201
+      },
+      {
+        "transferredBytes": 1962769,
+        "requests": 78,
+        "lcpMs": 10248,
+        "inpMs": 104,
+        "cls": 0.8237534525040834,
+        "jsExecutionMs": 388.25300000000004
+      }
+    ]
+  }
+}
