@@ -4,6 +4,8 @@ Status: complete
 
 Decision date: 2026-07-27
 
+Scope amendment: 2026-08-10
+
 ## Purpose
 
 This charter closes the first planning cycle and fixes the target for the first
@@ -52,6 +54,19 @@ If repeated access to Val Gardena and Alpe di Siusi proves operationally
 impossible, the region may be replaced before recruitment by another compact
 Dolomites area that can be personally and repeatedly validated. This is a
 charter change, not an informal addition of a second region.
+
+### Controlled offline-route scope amendment
+
+The first offline-navigation beta is now frozen to exactly two packaged
+routes: **Alpe di Siusi Meadow Loop** and **Lago di Carezza Loop**. Alpe di
+Siusi remains the in-region reference route. Carezza is the established
+architecture and airplane-mode reference route and is an explicit controlled
+test exception to the original regional boundary.
+
+This amendment does not authorize wider Dolomites or Savoy expansion. No
+other trail may advertise an offline package during the first beta until the
+two-route device and field matrix passes. Online planning and account features
+may continue to cover the wider published catalogue.
 
 ## Supported beta platforms
 
@@ -425,4 +440,3 @@ At each weekly review:
 4. Did any experimental work displace core work?
 5. Is a safe fallback available for every blocked capability?
 6. Does the charter still describe the product being built?
-

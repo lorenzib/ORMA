@@ -728,6 +728,9 @@ Implementation evidence: `docs/architecture/QA-01-complete-ci-quality-gate.md`.
 
 ### QA-02 — Create the offline failure test matrix
 
+- **Status:** Complete as an executable test contract (2026-08-10); physical
+  execution remains part of QA-04. See
+  `docs/architecture/QA-02-offline-failure-test-matrix.md`.
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** OFF-05, HIKE-03
