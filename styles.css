@@ -782,7 +782,7 @@ img,svg{max-width:100%;height:auto;}
   /* The bell sits in the header bar itself, left of the hamburger —
      notifications are visible first thing, no menu required. Sized to
      match the toggle. */
-  .topnav > .nav-bellwrap{display:flex;margin-right:10px;}
+  .topnav > .nav-bellwrap{display:flex;margin-left:auto;margin-right:10px;}
   .topnav > .nav-bellwrap > button.nav-bell{
     width:44px;height:44px;border-radius:12px;border:1px solid rgba(242,238,226,.35);
     background:transparent;color:#F2EEE2;display:flex;align-items:center;justify-content:center;

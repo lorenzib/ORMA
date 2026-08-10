@@ -352,8 +352,9 @@
     const bellMq = typeof window.matchMedia === 'function'
       ? window.matchMedia('(max-width:700px)')
       : { matches: false };
-    function placeBell(){
-      const wrap = navEl.querySelector('.nav-bellwrap');
+    let activeBell = null;
+    function placeBell(wrap){
+      wrap = wrap || activeBell;
       if(!wrap) return;
       const toggle = navEl.querySelector('.mobile-nav-toggle');
       if(bellMq.matches && toggle){
@@ -364,11 +365,16 @@
         linksEl.appendChild(wrap);
       }
     }
-    if(bellMq.addEventListener) bellMq.addEventListener('change', placeBell);
+    if(bellMq.addEventListener) bellMq.addEventListener('change', () => placeBell());
 
     function renderHeader(loggedIn, dogName){
       navEl.classList.toggle('nav-authed', !!loggedIn);
       const key = activeKey();
+      // A mobile bell lives directly under .topnav, outside .links. Remove
+      // that previous render before rebuilding so an auth refresh cannot
+      // leave one bell outside and create a second one inside the menu.
+      navEl.querySelectorAll(':scope > .nav-bellwrap').forEach(element => element.remove());
+      activeBell = null;
       // Other scripts append their own widgets into .links (i18n.js adds
       // the language toggle on DOMContentLoaded). Rebuilding must not eat
       // them, so anything that isn't ours is kept and re-appended last.
@@ -382,12 +388,13 @@
       linksEl.appendChild(navItem('Safety guide', 'safety-guide.html', key === 'safety'));
       linksEl.appendChild(navItem('My walk journal', 'journal.html', key === 'journal'));
       if(loggedIn){
-        linksEl.appendChild(buildBell());
+        activeBell = buildBell();
+        linksEl.appendChild(activeBell);
         linksEl.appendChild(buildAccountPill(dogName));
         // The hamburger toggle is built later in this same script run;
         // the deferred second call catches it.
-        placeBell();
-        setTimeout(placeBell, 0);
+        placeBell(activeBell);
+        setTimeout(() => placeBell(activeBell), 0);
       } else {
         // Login must open IN PLACE everywhere (desktop and mobile): pages
         // without auth-ui — the static trail/guide pages, whose markup

@@ -30,12 +30,17 @@ const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
 
 let currentUser = null;
+let authResolved = false;
 const changeListeners = [];
 
 onAuthStateChanged(auth, (user) => {
   currentUser = user;
-  changeListeners.forEach(fn => fn(user));
+  authResolved = true;
+  // Remove a cached member immediately on a definitive logout before any
+  // listeners decide whether to show protected UI. Signed-in refreshes can
+  // continue asynchronously without blocking the restored session.
   syncProfileSummary(user);
+  changeListeners.forEach(fn => fn(user));
 });
 
 // Cached multi-dog summary so static pages can paint the selected dog and
@@ -53,6 +58,7 @@ async function syncProfileSummary(user) {
     let moderator = false;
     try { moderator = (await getIdTokenResult(user)).claims.moderator === true; } catch (e) {}
     localStorage.setItem('dolopaws-profile-summary', JSON.stringify({
+      uid: user.uid,
       hasProfile: !!dog,
       activeDogId: dog && dog.id || null,
       name: dog && dog.name ? String(dog.name).slice(0, 40) : null,
@@ -479,7 +485,8 @@ async function sendContributionVerificationEmail() {
 
 window.DoloPawsAuth = {
   get currentUser() { return currentUser; },
-  onChange(fn) { changeListeners.push(fn); if (currentUser !== null || auth.currentUser !== undefined) fn(currentUser); },
+  get authResolved() { return authResolved; },
+  onChange(fn) { changeListeners.push(fn); if (authResolved) fn(currentUser); },
   getFavorites,
   setFavorites,
   getDogProfile,

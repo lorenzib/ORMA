@@ -14,6 +14,7 @@
   var map = null;
   var mapReady = false;
   var lastCenter = null;
+  var bootedUid = null;
 
   var els = {
     time: document.getElementById('wrTime'),
@@ -219,32 +220,20 @@
   });
 
   // ---- Boot: needs an account so the walk lands in the right journal --
-  function boot(){
-    var user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
-    if(!user){
-      // Firebase restores a session asynchronously. While the cached member
-      // summary still exists, hold the gate — showing "sign in" to someone
-      // who IS signed in was exactly the bug. A definitive logged-out state
-      // clears the summary, and the gate then shows.
-      var cached = null;
-      try { cached = localStorage.getItem('dolopaws-profile-summary'); } catch(e){}
-      els.gate.hidden = !!cached;
-      // A definitive logged-out state clears that cache a beat later —
-      // re-check so a stale cache can't hide the gate forever.
-      if(cached) setTimeout(function(){
-        var user2 = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
-        var still = null;
-        try { still = localStorage.getItem('dolopaws-profile-summary'); } catch(e){}
-        if(!user2 && !still) els.gate.hidden = false;
-      }, 2000);
-      return;
-    }
-    els.gate.hidden = true;
-    uid = user.uid;
+  function cachedMember(){
     try {
       var summary = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null');
-      if(summary && summary.name) els.dog.textContent = 'Walking with ' + summary.name;
-    } catch(e){}
+      return summary && typeof summary === 'object' ? summary : null;
+    } catch(e){ return null; }
+  }
+
+  function enterMember(memberUid, summary){
+    if(!memberUid) return false;
+    els.gate.hidden = true;
+    uid = memberUid;
+    if(summary && summary.name) els.dog.textContent = 'Walking with ' + summary.name;
+    if(bootedUid === memberUid) return true;
+    bootedUid = memberUid;
     tryRestoreDraft();
     // Prime the map on the current position even before Start.
     if(navigator.geolocation) navigator.geolocation.getCurrentPosition(function(pos){
@@ -253,12 +242,32 @@
     }, function(){
       els.gps.textContent = 'Location unavailable — check permissions';
     }, { enableHighAccuracy: true, timeout: 12000 });
+    return true;
+  }
+
+  function boot(){
+    var authApi = window.DoloPawsAuth;
+    var user = authApi && authApi.currentUser;
+    var summary = cachedMember();
+    if(user){ enterMember(user.uid, summary); return; }
+    // The walk journal is local-first. A cached UID from a previously
+    // confirmed session lets recording open immediately (and offline), while
+    // Firebase restores in the background. Logout removes this summary.
+    if(summary && summary.uid && !(authApi && authApi.authResolved)){
+      enterMember(summary.uid, summary);
+      return;
+    }
+    uid = null;
+    bootedUid = null;
+    els.gate.hidden = false;
   }
 
   // onChange is firebase-init's own registry — it fires for every auth
   // state including session restore. The DOM 'dolopaws-auth-changed' event
   // only exists on pages that load auth-ui.js, which this page does not.
   function watchAuth(){
+    var summary = cachedMember();
+    if(summary && summary.uid) enterMember(summary.uid, summary);
     if(window.DoloPawsAuth && typeof window.DoloPawsAuth.onChange === 'function'){
       window.DoloPawsAuth.onChange(function(){ boot(); });
     } else {
