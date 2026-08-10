@@ -845,7 +845,23 @@ function renderTrail(t){
     const heroPhoto = document.getElementById('tdHeroPhoto');
     const heroVeil = document.getElementById('tdHeroVeil');
     if(heroPhoto && heroVeil){
-      heroPhoto.src = t.imageIcon;
+      const responsiveWidths = {
+        'images/lago-di-braies.webp':[480,900],
+        'images/lago-di-carezza.webp':[480,900],
+        'images/boucle-du-marais-des-chassettes.webp':[480,960,1280],
+        'images/circuit-beatrice-de-savoie.webp':[480,960,1280],
+        'images/itineraire-decouverte-de-la-nature.webp':[480,960,1280],
+      }[t.imageIcon];
+      if(responsiveWidths){
+        const stem = t.imageIcon.replace(/\.webp$/, '');
+        heroPhoto.src = `${stem}.jpg`;
+        heroPhoto.srcset = responsiveWidths.map((width, index) =>
+          `${width === 900 ? t.imageIcon : `${stem}-${width}.webp`} ${width}w`
+        ).join(', ');
+        heroPhoto.sizes = '(max-width: 700px) 100vw, 1200px';
+      } else {
+        heroPhoto.src = t.imageIcon;
+      }
       heroPhoto.hidden = false;
       heroVeil.hidden = false;
     }
@@ -1164,7 +1180,9 @@ function renderTrail(t){
     document.getElementById('directionsWrap').hidden = false;
   }
 
-  // Map
+  // The detail map is expensive and sits below the trail summary. Load its
+  // engine only as the map approaches the viewport (or a control is focused).
+  const initDetailMap = () => {
   if(typeof maplibregl !== 'undefined' && typeof t.lat === 'number' && typeof t.lng === 'number'){
     const map = new maplibregl.Map({
       container: 'trailDetailMap',
@@ -1267,7 +1285,11 @@ function renderTrail(t){
       addTerrainToggle(map, 'trailDetailMap', 1.5, 45,
         document.querySelector('#tdLayerSwitch [data-map3d]'));
       renderAllLifts(map);
-      if (typeof initDetailPois === 'function') initDetailPois(map, t);
+      const loadSecondaryPois = () => {
+        if (typeof initDetailPois === 'function') initDetailPois(map, t);
+      };
+      if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.onIdle(loadSecondaryPois, 4500);
+      else setTimeout(loadSecondaryPois, 900);
 
       // ---- "Points of interest" toggle -----------------------------------
       // Nearby amenities are shown by default (see detail-pois.js), but the
@@ -1617,6 +1639,26 @@ function renderTrail(t){
       // Community dog-safety flags — list, map markers, report modal.
       if (typeof initTrailReports === 'function') initTrailReports(map, t);
     });
+  }
+  };
+  const detailMapTarget = document.getElementById('trailMapBox') || document.getElementById('trailDetailMap');
+  if(window.DoloPawsMapRuntime){
+    const detailMapSchedule = window.DoloPawsMapRuntime.whenVisible(detailMapTarget, initDetailMap, {
+      rootMargin:'360px 0px',
+      triggers:[document.getElementById('mapExpandBtn')],
+    });
+    const expand = document.getElementById('mapExpandBtn');
+    if(expand){
+      expand.addEventListener('click', async event => {
+        if(window._dolopawsTrailMap || !detailMapSchedule || !detailMapSchedule.start) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        await detailMapSchedule.start();
+        if(window._dolopawsTrailMap) expand.click();
+      }, { capture:true });
+    }
+  } else {
+    initDetailMap();
   }
 
   // Save button — reflects and updates real account state, same pattern as the trail cards.

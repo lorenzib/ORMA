@@ -161,6 +161,29 @@ function routeSvg(t) {
   </svg>`;
 }
 
+const RESPONSIVE_PHOTOS = {
+  'images/lago-di-braies.webp': { widths:[480, 900], fallback:'images/lago-di-braies.jpg' },
+  'images/lago-di-carezza.webp': { widths:[480, 900], fallback:'images/lago-di-carezza.jpg' },
+  'images/boucle-du-marais-des-chassettes.webp': { widths:[480, 960, 1280], fallback:'images/boucle-du-marais-des-chassettes.jpg' },
+  'images/circuit-beatrice-de-savoie.webp': { widths:[480, 960, 1280], fallback:'images/circuit-beatrice-de-savoie.jpg' },
+  'images/itineraire-decouverte-de-la-nature.webp': { widths:[480, 960, 1280], fallback:'images/itineraire-decouverte-de-la-nature.jpg' },
+};
+
+function photoHtml(t) {
+  if(!t.imageIcon) return '';
+  const responsive = RESPONSIVE_PHOTOS[t.imageIcon];
+  if(!responsive) return `<img class="sp-img" src="../${escapeHtml(t.imageIcon)}" alt="${escapeHtml(t.name)}" loading="lazy" decoding="async">`;
+  const stem = t.imageIcon.replace(/\.webp$/, '');
+  const srcset = responsive.widths.map((width, index) => {
+    const source = width === 900 ? t.imageIcon : `${stem}-${width}.webp`;
+    return `../${source} ${width}w`;
+  }).join(', ');
+  return `<picture>
+    <source type="image/webp" srcset="${srcset}" sizes="(max-width: 760px) 100vw, 1100px">
+    <img class="sp-img" src="../${responsive.fallback}" alt="${escapeHtml(t.name)}" loading="lazy" decoding="async">
+  </picture>`;
+}
+
 // Inline SVG of the elevation profile.
 function elevSvg(t) {
   const ep = t.elevationProfile;
@@ -463,7 +486,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
     ${badge}
     ${t.paid ? '<span class="dp-badge dp-badge--neutral"><span>Paid access</span></span>' : ''}
   </div>
-  ${t.imageIcon ? `<img class="sp-img" src="../${escapeHtml(t.imageIcon)}" alt="${escapeHtml(t.name)}">` : routeHtml}
+  ${t.imageIcon ? photoHtml(t) : routeHtml}
   ${t.imageIcon && t.imageCredit ? `<p class="sp-src" style="margin:-8px 0 14px;">${t.imageCredit.bare ? '' : 'Photo: '}${t.imageCredit.url ? `<a href="${escapeHtml(t.imageCredit.url)}" rel="noopener nofollow">${escapeHtml(t.imageCredit.text)}</a>` : escapeHtml(t.imageCredit.text)}</p>` : ''}
   ${!t.imageIcon && t.imagePlaceholder ? `<p class="sp-src" style="display:flex;align-items:center;gap:8px;margin:-6px 0 14px;"><img src="../logo.svg" alt="" width="22" height="22" style="flex:none;"> We're working on adding photos of this trail.</p>` : ''}
   <p>${escapeHtml(t.desc || '')}</p>

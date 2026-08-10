@@ -680,6 +680,8 @@ Implementation evidence: `docs/architecture/PERF-01-mobile-performance-budgets.m
 
 ### PERF-02 — Optimize oversized images and regional data
 
+Status: complete
+
 - **Priority:** P1
 - **Size:** L
 - **Depends on:** PERF-01, DATA-03
@@ -689,6 +691,8 @@ Implementation evidence: `docs/architecture/PERF-01-mobile-performance-budgets.m
   - Trail and POI data load by required region.
   - Maps and secondary POIs lazy-load.
   - Performance budgets pass on supported mobile devices.
+
+Implementation evidence: `docs/architecture/PERF-02-asset-and-regional-optimization.md`.
 
 ### A11Y-01 — Make the core journey keyboard and screen-reader complete
 

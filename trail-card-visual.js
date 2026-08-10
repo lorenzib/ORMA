@@ -59,6 +59,29 @@
     return '<svg viewBox="0 0 24 24" width="30" height="30" fill="none" aria-hidden="true"><path d="m4 18 5.2-8 2.2 3.1L14.6 7 20 18z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
   }
 
+  var responsivePhotos = {
+    'images/lago-di-braies.webp': [480, 900],
+    'images/lago-di-carezza.webp': [480, 900],
+    'images/boucle-du-marais-des-chassettes.webp': [480, 960, 1280],
+    'images/circuit-beatrice-de-savoie.webp': [480, 960, 1280],
+    'images/itineraire-decouverte-de-la-nature.webp': [480, 960, 1280],
+  };
+
+  function photoAttributes(source){
+    var widths = responsivePhotos[source];
+    if(!widths) return '';
+    var stem = source.replace(/\.webp$/, '');
+    var entries = widths.map(function(width, index){
+      var url = width === 900 ? source : stem + '-' + width + '.webp';
+      return escapeHtml(url) + ' ' + width + 'w';
+    });
+    return ' srcset="' + entries.join(', ') + '" sizes="(max-width: 640px) 42vw, 240px" decoding="async"';
+  }
+
+  function photoFallback(source){
+    return responsivePhotos[source] ? source.replace(/\.webp$/, '.jpg') : source;
+  }
+
   function render(trail, options){
     options = options || {};
     trail = trail || {};
@@ -72,7 +95,7 @@
 
     if(typeof trail.imageIcon === 'string' && trail.imageIcon.trim()){
       classes.push('trail-visual--photo');
-      return '<div class="' + classes.join(' ') + '"' + attrs + '><img src="' + escapeHtml(trail.imageIcon) + '" alt="' + escapeHtml(name) + '" loading="lazy"></div>';
+      return '<div class="' + classes.join(' ') + '"' + attrs + '><img src="' + escapeHtml(photoFallback(trail.imageIcon)) + '"' + photoAttributes(trail.imageIcon) + ' alt="' + escapeHtml(name) + '" loading="lazy"></div>';
     }
     if(usablePath(trail.path)){
       classes.push('trail-visual--route');

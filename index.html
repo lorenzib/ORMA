@@ -15,7 +15,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20260807-5">
 <link rel="stylesheet" href="homepage-mobile.css?v=20260807-6">
-<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css"/>
 </head>
 <body>
 
@@ -34,7 +33,10 @@
 <div id="authModal" class="modal-overlay auth-modal-redesign" hidden role="dialog" aria-modal="true" aria-labelledby="authTitle">
   <div class="modal">
     <div class="auth-hero">
-      <img src="images/lago-di-braies.webp" alt="" class="auth-hero-img">
+      <picture>
+        <source type="image/webp" srcset="images/lago-di-braies-480.webp 480w, images/lago-di-braies.webp 900w" sizes="(max-width: 640px) 100vw, 560px">
+        <img src="images/lago-di-braies.jpg" alt="" class="auth-hero-img" loading="lazy" decoding="async" width="900" height="1200">
+      </picture>
       <div class="auth-hero-shade"></div>
       <button id="authClose" class="modal-close" aria-label="Close">&times;</button>
       <div class="auth-hero-copy">
@@ -93,7 +95,10 @@
 
   <!-- SEARCH HERO -->
   <div class="hp-hero">
-    <img src="images/lago-di-braies.webp" alt="" class="hp-hero-img">
+    <picture>
+      <source type="image/webp" srcset="images/lago-di-braies-480.webp 480w, images/lago-di-braies.webp 900w" sizes="100vw">
+      <img src="images/lago-di-braies.jpg" alt="" class="hp-hero-img" fetchpriority="high" decoding="async" width="900" height="1200">
+    </picture>
     <div class="hp-hero-shade"></div>
     <div class="hp-hero-inner">
       <h1 data-i18n="hero.h1">Where are we heading today?</h1>
@@ -458,7 +463,7 @@
 <script src="guest-context.js?v=20260730-1" defer></script>
 <script src="auth-ui.js?v=20260729-1" defer></script>
 <script src="discovery-state.js?v=20260729-1" defer></script>
-<script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
+<script src="map-runtime.js?v=20260810-1" defer></script>
 <script src="basemap-poi-click.js" defer></script>
 <script src="dog-routes-layer.js?v=20260805-1" defer></script>
 <script src="trail-access-directions.js?v=20260805-1" defer></script>

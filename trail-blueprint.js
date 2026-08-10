@@ -190,9 +190,16 @@
     for (const o of sameRegion) { if (picks.length >= 4) break; picks.push(o); }
     if (!picks.length) return;
     // Reference gallery card: photo, floating match % chip, serif name, meta.
+    const cardPhoto = source => ({
+      'images/lago-di-braies.webp':'images/lago-di-braies-480.webp',
+      'images/lago-di-carezza.webp':'images/lago-di-carezza-480.webp',
+      'images/boucle-du-marais-des-chassettes.webp':'images/boucle-du-marais-des-chassettes-480.webp',
+      'images/circuit-beatrice-de-savoie.webp':'images/circuit-beatrice-de-savoie-480.webp',
+      'images/itineraire-decouverte-de-la-nature.webp':'images/itineraire-decouverte-de-la-nature-480.webp',
+    }[source] || source);
     grid.innerHTML = picks.map(o => `
       <a class="near-card" href="trail.html?id=${encodeURIComponent(o.id)}" data-near-id="${esc(o.id)}">
-        <div class="ph"${o.imageIcon ? ` style="background-image:url('${esc(o.imageIcon)}');"` : ''}><span class="pct near-pct" hidden></span></div>
+        <div class="ph"${o.imageIcon ? ` style="background-image:url('${esc(cardPhoto(o.imageIcon))}');"` : ''}><span class="pct near-pct" hidden></span></div>
         <div class="bd">
           <div class="nm">${esc(o.name)}</div>
           <div class="mt">${esc(o.valley || o.area || '')} · ${o.distance} km · ${esc(trust ? trust.riskLabel(o, safetyLabel(o.safetyLevel)) : safetyLabel(o.safetyLevel))}</div>
@@ -234,7 +241,18 @@
   (function decisionFlow() {
     // Hero photo behind the title (reference: dimmed photo + cream veil).
     const heroPhoto = $('tdHeroPhoto');
-    if (heroPhoto && t.imageIcon) heroPhoto.style.backgroundImage = `url("${String(t.imageIcon).replace(/["')]/g, '')}")`;
+    if (heroPhoto && t.imageIcon && heroPhoto.tagName !== 'IMG') {
+      const stem = String(t.imageIcon).replace(/\.webp$/, '');
+      const wideSources = [
+        'images/boucle-du-marais-des-chassettes.webp',
+        'images/circuit-beatrice-de-savoie.webp',
+        'images/itineraire-decouverte-de-la-nature.webp',
+      ];
+      const background = wideSources.includes(t.imageIcon)
+        ? `${stem}-${window.matchMedia('(max-width: 700px)').matches ? '960' : '1280'}.webp`
+        : t.imageIcon;
+      heroPhoto.style.backgroundImage = `url("${background.replace(/["')]/g, '')}")`;
+    }
 
     // Breadcrumb: "← Trails · {region} · {valley}"
     const crumb = $('tdBreadcrumb');

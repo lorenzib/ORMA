@@ -54,6 +54,8 @@ const scenarios = [
     path: '/trail.html?id=lago-carezza',
     action: async page => {
       await page.waitForSelector('#mapExpandBtn', { visible: true });
+      await page.$eval('#mapExpandBtn', button => button.scrollIntoView({ block:'center' }));
+      await page.waitForFunction(() => !!window._dolopawsTrailMap, { timeout: 60000 });
       await page.click('#mapExpandBtn');
     },
   },

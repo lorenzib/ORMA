@@ -149,8 +149,16 @@
 
   function hasWater(t) { return Array.isArray(t.waterSources) && t.waterSources.length > 0; }
 
+  var responsiveThumbs = {
+    'images/lago-di-braies.webp':'images/lago-di-braies-480.webp',
+    'images/lago-di-carezza.webp':'images/lago-di-carezza-480.webp',
+    'images/boucle-du-marais-des-chassettes.webp':'images/boucle-du-marais-des-chassettes-480.webp',
+    'images/circuit-beatrice-de-savoie.webp':'images/circuit-beatrice-de-savoie-480.webp',
+    'images/itineraire-decouverte-de-la-nature.webp':'images/itineraire-decouverte-de-la-nature-480.webp',
+  };
+
   function thumb(t) {
-    if (t.imageIcon) return '<img src="' + esc(t.imageIcon) + '" alt="" loading="lazy">';
+    if (t.imageIcon) return '<img src="' + esc(responsiveThumbs[t.imageIcon] || t.imageIcon) + '" alt="" loading="lazy" decoding="async">';
     if (typeof pathThumbnailSvg === 'function') { var s = pathThumbnailSvg(t.path); if (s) return s; }
     return '';
   }

@@ -600,6 +600,18 @@ function initGuestMap(){
   });
 }
 
+let guestMapSchedule = null;
+function scheduleGuestMap(){
+  if(guestMapInstance || guestMapSchedule) return;
+  const target = document.getElementById('guestPreviewMap');
+  if(!target) return;
+  if(window.DoloPawsMapRuntime){
+    guestMapSchedule = window.DoloPawsMapRuntime.whenVisible(target, initGuestMap, { rootMargin:'360px 0px' });
+  } else {
+    initGuestMap();
+  }
+}
+
 
 let trailMapInstance = null;
 let currentMapTrails = [];
@@ -818,14 +830,15 @@ function initTrailMap(){
     // Create overlay toggle controls
     createMapOverlayControls(trailMapInstance, 'trailMap', allLiftMarkers);
     
-    // Initialize water sources from combined GeoJSON (Trentino, Veneto, Savoy)
-    initializeWaterSources(trailMapInstance);
-
-    // Initialize dog-friendly OSM routes from generated GeoJSON
-    if (typeof initializeDogRoutes === 'function') initializeDogRoutes(trailMapInstance, activeRegion);
-
-    // Initialize mountain huts & bars from combined GeoJSON (Trentino, Veneto, Savoy)
-    initializeHutsBars(trailMapInstance);
+    // Keep the trail catalogue interactive first. Regional water, dog-route,
+    // hut and bar datasets are secondary and join after the map becomes idle.
+    const loadSecondaryMapData = () => {
+      initializeWaterSources(trailMapInstance);
+      if (typeof initializeDogRoutes === 'function') initializeDogRoutes(trailMapInstance, activeRegion);
+      initializeHutsBars(trailMapInstance);
+    };
+    if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.onIdle(loadSecondaryMapData, 5000);
+    else setTimeout(loadSecondaryMapData, 900);
     
     if (typeof makeBasemapPoisClickable === 'function') makeBasemapPoisClickable(trailMapInstance);
 
@@ -833,6 +846,31 @@ function initTrailMap(){
     if(pendingPathList) updatePathLayer(pendingPathList);
     if(pendingMarkerList) updateMapMarkers(pendingMarkerList);
   });
+}
+
+let trailMapSchedule = null;
+function scheduleTrailMap(){
+  if(trailMapInstance || trailMapSchedule) return;
+  const target = document.getElementById('trailMap');
+  if(!target) return;
+  if(window.DoloPawsMapRuntime){
+    trailMapSchedule = window.DoloPawsMapRuntime.whenVisible(target, initTrailMap, {
+      rootMargin:'360px 0px',
+      triggers:[document.getElementById('homeMapExpandBtn')],
+    });
+    const expand = document.getElementById('homeMapExpandBtn');
+    if(expand){
+      expand.addEventListener('click', async event => {
+        if(trailMapInstance || !trailMapSchedule || !trailMapSchedule.start) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        await trailMapSchedule.start();
+        if(trailMapInstance) expand.click();
+      }, { capture:true });
+    }
+  } else {
+    initTrailMap();
+  }
 }
 
 function pathThumbnailSvg(path){
@@ -2395,7 +2433,7 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
     returningHome.hidden = false;
     document.body.dataset.homepageView = 'returning';
     adjustOverride = null;
-    initTrailMap();
+    scheduleTrailMap();
     // The map pane may have been hidden (or sized differently) when the map
     // was created — make sure MapLibre measures the now-visible container.
     if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
@@ -2457,7 +2495,7 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
     document.body.dataset.homepageView = 'new';
     const dogBubble = document.getElementById('dogPhotoBubble');
     if(dogBubble) dogBubble.hidden = true;
-    initGuestMap();
+    scheduleGuestMap();
   }
 });
 /**
