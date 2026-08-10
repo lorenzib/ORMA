@@ -45,6 +45,9 @@
   body.mhome-active .li-bell-dot[hidden]{display:none;}
   body.mhome-active .li-account{display:grid;place-items:center;padding:0;border:none;background:none;cursor:pointer;}
   body.mhome-active .li-account-name{display:none;}
+  /* The caret would stack under the avatar (grid rows) and stretch the
+     button past its 38px neighbours — the avatar itself signals the menu. */
+  body.mhome-active .li-account .li-caret{display:none;}
   body.mhome-active .li-avatar{width:38px;height:38px;border-radius:50%;background:var(--accent);background-size:cover;background-position:center;color:#fff;display:grid;place-items:center;font:800 14px 'Inter',sans-serif;overflow:hidden;}
   body.mhome-active .li-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 

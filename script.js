@@ -2002,8 +2002,8 @@ async function renderReturningHomepage(profile){
       ${liMatchColHtml(t)}
       <button type="button" class="li-heart save-btn" data-id="${t.id}" aria-pressed="${isFav}" aria-label="${isFav ? 'Remove ' + t.name + ' from saved trails' : 'Save ' + t.name}">${isFav ? '♥' : '♡'}</button>
       <div class="li-row-bar">
-        <button type="button" class="locate-btn" data-id="${t.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>See on map</button>
-        ${trailheadDirectionsHref(t) ? `<a href="${trailheadDirectionsHref(t)}" target="_blank" rel="noopener"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>Get directions</a>` : ''}
+        <button type="button" class="li-bar-act locate-btn" data-id="${t.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>See on map</button>
+        ${directionsBarHtml(t)}
       </div>
     </div>`;
   }).join('');
@@ -2046,6 +2046,26 @@ async function renderReturningHomepage(profile){
   listEl.querySelectorAll('.locate-btn').forEach(btn => {
     btn.addEventListener('click', () => focusMapOnTrail(btn.dataset.id, displayList));
   });
+
+  // Apple-device chooser: Get directions opens a two-app menu.
+  listEl.querySelectorAll('.li-dir-toggle').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const menu = btn.parentElement.querySelector('.li-dir-menu');
+      const open = menu.hidden;
+      listEl.querySelectorAll('.li-dir-menu').forEach(m => { m.hidden = true; });
+      listEl.querySelectorAll('.li-dir-toggle').forEach(b => b.setAttribute('aria-expanded', 'false'));
+      menu.hidden = !open;
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+  if(!listEl.dataset.dirMenuDismiss){
+    listEl.dataset.dirMenuDismiss = '1';
+    document.addEventListener('click', () => {
+      listEl.querySelectorAll('.li-dir-menu').forEach(m => { m.hidden = true; });
+      listEl.querySelectorAll('.li-dir-toggle').forEach(b => b.setAttribute('aria-expanded', 'false'));
+    });
+  }
 
   // Top-matches ↔ full-catalog toggle
   if(collapsed){
@@ -2092,17 +2112,32 @@ async function renderReturningHomepage(profile){
   }
 }
 
-// Destination-only handoff to the platform's maps app: Apple Maps on
-// Apple devices, Google Maps everywhere else (same convention as the
-// trail page's Get directions).
-function trailheadDirectionsHref(t){
-  const sp = t.startPoint && Number.isFinite(t.startPoint.lat) && Number.isFinite(t.startPoint.lng)
+// Destination-only handoff to a maps app. Apple devices get a two-option
+// chooser (Apple Maps or Google Maps — many iPhone users prefer Google);
+// everywhere else links straight to Google Maps, the only one of the two
+// that exists there.
+function trailheadCoords(t){
+  return t.startPoint && Number.isFinite(t.startPoint.lat) && Number.isFinite(t.startPoint.lng)
     ? t.startPoint
     : (Number.isFinite(t.lat) && Number.isFinite(t.lng) ? { lat:t.lat, lng:t.lng } : null);
-  if(!sp) return null;
-  return /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent)
-    ? `https://maps.apple.com/?daddr=${sp.lat},${sp.lng}`
-    : `https://www.google.com/maps/dir/?api=1&destination=${sp.lat},${sp.lng}&travelmode=driving`;
+}
+
+function directionsBarHtml(t){
+  const sp = trailheadCoords(t);
+  if(!sp) return '';
+  const icon = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>';
+  const google = `https://www.google.com/maps/dir/?api=1&destination=${sp.lat},${sp.lng}&travelmode=driving`;
+  if(!/iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent)){
+    return `<a class="li-bar-act" href="${google}" target="_blank" rel="noopener">${icon}Get directions</a>`;
+  }
+  const apple = `https://maps.apple.com/?daddr=${sp.lat},${sp.lng}`;
+  return `<div class="li-dir-wrap">
+    <button type="button" class="li-bar-act li-dir-toggle" aria-haspopup="true" aria-expanded="false">${icon}Get directions</button>
+    <div class="li-dir-menu" hidden>
+      <a href="${apple}" target="_blank" rel="noopener">Apple Maps</a>
+      <a href="${google}" target="_blank" rel="noopener">Google Maps</a>
+    </div>
+  </div>`;
 }
 
 function focusMapOnTrail(trailId, list){
