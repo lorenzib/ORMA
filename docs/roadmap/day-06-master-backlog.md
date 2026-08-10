@@ -648,6 +648,7 @@ All P0 and P1 work
 
 ### PRIV-01 — Define retention and deletion
 
+- **Status:** Complete in code and policy (2026-08-10)
 - **Priority:** P1
 - **Size:** S
 - **Depends on:** AUTH-03, METRIC-01
@@ -657,6 +658,8 @@ All P0 and P1 work
     moderation records, and analytics each have a retention rule.
   - User-visible explanations match implementation.
   - Deletion and legally necessary moderation retention are distinguished.
+
+Implementation evidence: `docs/architecture/PRIV-01-retention-and-deletion.md`.
 
 ## Epic H — Performance, accessibility, and release gates
 
