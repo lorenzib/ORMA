@@ -712,6 +712,7 @@ Implementation evidence: `docs/architecture/A11Y-01-core-journey-accessibility.m
 
 ### QA-01 — Add the complete CI quality gate
 
+- **Status:** Complete in code (2026-08-10)
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** DATA-02, SEC-02
@@ -722,6 +723,8 @@ Implementation evidence: `docs/architecture/A11Y-01-core-journey-accessibility.m
   - CI fails on any required check.
   - Generated artifacts are checked for unintended drift.
   - No production credential is required.
+
+Implementation evidence: `docs/architecture/QA-01-complete-ci-quality-gate.md`.
 
 ### QA-02 — Create the offline failure test matrix
 

@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  validate:
+  quality-gate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,17 +32,5 @@ jobs:
       - name: Install test dependencies
         run: npm ci
 
-      - name: Validate production trail catalog
-        run: node scripts/validate-production-trails.js
-
-      - name: Validate canonical trail examples
-        run: npm run validate:trail-schema
-
-      - name: Run tests
-        run: npm test -- --runInBand
-
-      - name: Test Firestore authorization rules
-        run: npm run test:firestore-rules
-
-      - name: Check static links
-        run: npm run test:static
+      - name: Run the complete local-equivalent quality gate
+        run: npm run quality:gate

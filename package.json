@@ -10,6 +10,7 @@
     "validate:dolomites-trails": "node scripts/validate-dolomites-trails.js",
     "validate:trail-schema": "node scripts/validate-trail-schema.js",
     "validate:production-trails": "node scripts/validate-production-trails.js --report data/generated/trail-validation-report.json",
+    "validate:production-trails:check": "node scripts/validate-production-trails.js",
     "validate:scoring-contract": "jest --runInBand scoring-contract.test.js",
     "validate:evidence-contract": "jest --runInBand evidence-contract.test.js",
     "validate:firestore-contract": "jest --runInBand firestore-security.test.js",
@@ -18,6 +19,9 @@
     "perf:mobile:baseline": "node scripts/run-mobile-performance.mjs --write-baseline",
     "check:trail-sources": "node scripts/check-trail-sources.js",
     "build:regional-data": "node scripts/build-regional-runtime-data.js",
+    "generate:artifacts": "npm run validate:production-trails && node scripts/generate-trail-pages.js && npm run build:regional-data",
+    "check:generated": "node scripts/check-generated-artifacts.js",
+    "quality:gate": "node scripts/run-quality-gate.js",
     "build:dolomites-trails": "npm run fetch:dolomites-trails && npm run validate:dolomites-trails"
   },
   "devDependencies": {
