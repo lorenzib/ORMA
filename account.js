@@ -113,11 +113,28 @@
   // ---------- Tabs ----------
   const railBtns = Array.from(document.querySelectorAll('.railbtn'));
   function pickTab(id){
-    railBtns.forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === id)));
+    railBtns.forEach(b => {
+      const selected = b.dataset.tab === id;
+      b.setAttribute('aria-selected', String(selected));
+      b.tabIndex = selected ? 0 : -1;
+    });
     ['dog','human','health','account'].forEach(t => { $('tab-' + t).hidden = t !== id; });
     syncSettingsToc(id === 'account');
   }
-  railBtns.forEach(b => b.addEventListener('click', () => pickTab(b.dataset.tab)));
+  railBtns.forEach((b, index) => {
+    b.addEventListener('click', () => pickTab(b.dataset.tab));
+    b.addEventListener('keydown', event => {
+      if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'].includes(event.key)) return;
+      event.preventDefault();
+      let next = index;
+      if(event.key === 'Home') next = 0;
+      else if(event.key === 'End') next = railBtns.length - 1;
+      else if(event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index - 1 + railBtns.length) % railBtns.length;
+      else next = (index + 1) % railBtns.length;
+      pickTab(railBtns[next].dataset.tab);
+      railBtns[next].focus();
+    });
+  });
 
   // ---------- Settings table of contents ----------
   // Desktop: sticky sub-links in the rail that scroll-jump to a subsection

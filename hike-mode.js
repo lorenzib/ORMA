@@ -67,14 +67,36 @@ function initHikeMode(map, trail){
 
   const panel = document.createElement('div');
   panel.id = 'mapHikeStatus';
+  panel.setAttribute('role', 'group');
+  panel.setAttribute('aria-label', 'Live hike details');
   panel.style.cssText = 'position:absolute;bottom:10px;left:50%;transform:translateX(-50%);z-index:6;max-width:92%;padding:10px 16px;border-radius:12px;background:rgba(46,64,52,.94);color:#fff;font-size:12.5px;font-weight:600;box-shadow:0 2px 10px rgba(0,0,0,.35);display:none;text-align:center;line-height:1.5;';
   container.appendChild(panel);
 
+  const statusAnnouncer = document.createElement('div');
+  statusAnnouncer.className = 'sr-only';
+  statusAnnouncer.setAttribute('role', 'status');
+  statusAnnouncer.setAttribute('aria-live', 'polite');
+  statusAnnouncer.setAttribute('aria-atomic', 'true');
+  container.appendChild(statusAnnouncer);
+
+  function announceStatus(message){
+    statusAnnouncer.textContent = String(message || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
   const banner = document.createElement('div');
   banner.id = 'mapHikeOffRoute';
+  banner.setAttribute('role', 'group');
+  banner.setAttribute('aria-label', 'Off-route warning');
   banner.textContent = window.t ? window.t('hike.offRoute') : '⚠️ Off route';
   banner.style.cssText = 'position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:7;width:max-content;max-width:min(92%,520px);padding:9px 16px;border-radius:12px;background:#9C3A25;color:#fff;font-size:12.5px;font-weight:700;line-height:1.4;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.35);display:none;';
   container.appendChild(banner);
+
+  const urgentAnnouncer = document.createElement('div');
+  urgentAnnouncer.className = 'sr-only';
+  urgentAnnouncer.setAttribute('role', 'alert');
+  urgentAnnouncer.setAttribute('aria-live', 'assertive');
+  urgentAnnouncer.setAttribute('aria-atomic', 'true');
+  container.appendChild(urgentAnnouncer);
 
   const rejoinBtn = document.createElement('button');
   rejoinBtn.type = 'button';
@@ -92,6 +114,7 @@ function initHikeMode(map, trail){
   let lastIdx = 0;          // last snapped path index — used for continuity
   let offRouteStreak = 0;   // consecutive fixes far from the route
   let offRouteSince = null; // first fix in the current sustained off-route run
+  let announcedOffRoute = false;
   let firstFix = true;
   let hikeStartRecorded = false;
   let hikeStartedAt = null;
@@ -456,6 +479,7 @@ function initHikeMode(map, trail){
         })
       }</span>` + offlineNote();
       banner.style.display = 'none';
+      announcedOffRoute = false;
       manualRejoinActive = false;
       hideRejoinGuidance();
       offRouteStreak = assessment.nextOffRouteStreak;
@@ -474,8 +498,13 @@ function initHikeMode(map, trail){
         distance:Math.round(routeDistanceM),
       });
       banner.style.display = 'block';
+      if(!announcedOffRoute){
+        urgentAnnouncer.textContent = banner.textContent;
+        announcedOffRoute = true;
+      }
     }else{
       banner.style.display = 'none';
+      announcedOffRoute = false;
       hideRejoinGuidance();
     }
 
@@ -540,6 +569,7 @@ function initHikeMode(map, trail){
     } else {
       panel.innerHTML = window.t('hike.waiting');
     }
+    announceStatus(panel.textContent);
     if(durableSession) setStartLabel('hike.resume', 'Resume hike');
   }
 
@@ -610,6 +640,7 @@ function initHikeMode(map, trail){
     panel.style.display = 'block';
     container.classList.add('hike-status-visible');
     panel.innerHTML = window.t('hike.getting');
+    announceStatus(panel.textContent);
     showLiveDot();
     acquireWakeLock();
     watchId = navigator.geolocation.watchPosition(onFix, onError, {
@@ -677,6 +708,7 @@ function initHikeMode(map, trail){
     panel.style.display = 'block';
     container.classList.add('hike-status-visible');
     panel.innerHTML = window.t('hike.getting');
+    announceStatus(panel.textContent);
     showLiveDot();
     acquireWakeLock();
     window.dispatchEvent(new CustomEvent('dolopaws-hike-progress', {
@@ -695,6 +727,7 @@ function initHikeMode(map, trail){
     stopHike(true);
     setStartLabel('hike.resume', 'Resume hike');
     panel.textContent = window.t('hike.paused');
+    announceStatus(panel.textContent);
   }
 
   function persistCompletionAndShow(completedAt){
@@ -710,6 +743,7 @@ function initHikeMode(map, trail){
       startBtn.disabled = false;
       setStartLabel('hike.retryFinish', 'Save completed hike');
       panel.textContent = window.t('hike.completionSaveFailed');
+      announceStatus(panel.textContent);
       return false;
     }
     if(window.DoloPawsMetricFunnel){
@@ -867,6 +901,7 @@ function initHikeMode(map, trail){
     document.body.style.overflow = 'hidden';
 
     const q = sel => overlay.querySelector(sel);
+    let releaseCompletionFocus = null;
 
     function renderOutcome(){
       const labels = [
@@ -883,14 +918,24 @@ function initHikeMode(map, trail){
         button.type = 'button';
         button.textContent = label;
         button.className = value === outcomeResponse ? 'on' : '';
+        button.dataset.radioValue = value;
         button.setAttribute('role', 'radio');
         button.setAttribute('aria-checked', String(value === outcomeResponse));
         button.addEventListener('click', () => {
           outcomeResponse = value;
           renderOutcome();
+          const selected = choices.querySelector('[data-radio-value="' + value + '"]');
+          if(selected) selected.focus();
         });
         choices.appendChild(button);
       });
+      if(window.DoloPawsA11y){
+        window.DoloPawsA11y.wireRadioGroup(choices, target => {
+          outcomeResponse = target.dataset.radioValue;
+          renderOutcome();
+          return choices.querySelector('[data-radio-value="' + outcomeResponse + '"]');
+        });
+      }
       q('#hkOutcomeFollowups').hidden =
         !outcomeResponse || outcomeResponse === 'prefer_not_to_answer';
       q('#hkOutcomeSave').disabled = !outcomeResponse;
@@ -969,11 +1014,24 @@ function initHikeMode(map, trail){
         b.type = 'button';
         b.textContent = c;
         b.className = c === cond ? 'on' : '';
+        b.dataset.radioValue = c;
         b.setAttribute('role', 'radio');
         b.setAttribute('aria-checked', String(c === cond));
-        b.addEventListener('click', () => { cond = c; renderCond(); });
+        b.addEventListener('click', () => {
+          cond = c;
+          renderCond();
+          const selected = seg.querySelector('[data-radio-value="' + c + '"]');
+          if(selected) selected.focus();
+        });
         seg.appendChild(b);
       });
+      if(window.DoloPawsA11y){
+        window.DoloPawsA11y.wireRadioGroup(seg, target => {
+          cond = target.dataset.radioValue;
+          renderCond();
+          return seg.querySelector('[data-radio-value="' + cond + '"]');
+        });
+      }
     }
 
     function renderPhotos(){
@@ -1027,15 +1085,18 @@ function initHikeMode(map, trail){
       photos.forEach(p => URL.revokeObjectURL(p.url));
       overlay.remove();
       document.body.style.overflow = '';
+      if(releaseCompletionFocus){ releaseCompletionFocus(); releaseCompletionFocus = null; }
     }
 
     q('#hkDiscardBtn').addEventListener('click', () => {
       q('#hkDiscardNote').hidden = false;
       q('#hkActions').hidden = true;
+      q('#hkKeepBtn').focus();
     });
     q('#hkKeepBtn').addEventListener('click', () => {
       q('#hkDiscardNote').hidden = true;
       q('#hkActions').hidden = false;
+      q('#hkDiscardBtn').focus();
     });
     q('#hkDiscardConfirmBtn').addEventListener('click', () => {
       if(window.DoloPawsHikeCompletions){
@@ -1092,8 +1153,15 @@ function initHikeMode(map, trail){
     renderCond();
     renderPhotos();
     renderOutcome();
-    const firstBtn = q('#hkSaveBtn');
-    if (firstBtn) firstBtn.focus();
+    if(window.DoloPawsA11y){
+      releaseCompletionFocus = window.DoloPawsA11y.openDialog(overlay, {
+        initialFocus:'#hkOutcomeOptions [role="radio"]',
+        closeOnEscape:false,
+      });
+    }else{
+      const firstBtn = q('#hkOutcomeOptions [role="radio"]') || q('#hkSaveBtn');
+      if(firstBtn) firstBtn.focus();
+    }
   }
 
   function recoveryActions(includeResume, otherTrailId, showDownloads){
@@ -1174,6 +1242,7 @@ function initHikeMode(map, trail){
         startBtn.disabled = false;
         setStartLabel('hike.retryFinish', 'Save completed hike');
         panel.textContent = window.t('hike.completionPending');
+        announceStatus(panel.textContent);
         recoveryActions(false);
         return;
       }
@@ -1187,6 +1256,7 @@ function initHikeMode(map, trail){
           km: progress ? progress.km.toFixed(1) : '0.0',
         })
       }`;
+      announceStatus(panel.textContent);
       setStartLabel('hike.resume', 'Resume hike');
       recoveryActions(true);
       return;
@@ -1194,14 +1264,17 @@ function initHikeMode(map, trail){
     startBtn.disabled = true;
     if(recovery.status === 'other-trail'){
       panel.textContent = window.t('hike.otherTrail');
+      announceStatus(panel.textContent);
       recoveryActions(false, recovery.session && recovery.session.trailId);
     }else if(recovery.status === 'missing-package'){
       panel.textContent = window.t('hike.missingPackage');
+      announceStatus(panel.textContent);
       recoveryActions(false, null, true);
     }else{
       panel.textContent = recovery.status === 'expired'
         ? window.t('hike.expired')
         : window.t('hike.corrupt');
+      announceStatus(panel.textContent);
       recoveryActions(false);
     }
   }

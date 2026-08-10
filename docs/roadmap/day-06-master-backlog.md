@@ -696,6 +696,7 @@ Implementation evidence: `docs/architecture/PERF-02-asset-and-regional-optimizat
 
 ### A11Y-01 — Make the core journey keyboard and screen-reader complete
 
+- **Status:** Complete in code; manual VoiceOver acceptance pending (2026-08-10)
 - **Priority:** P1
 - **Size:** L
 - **Depends on:** UX-04, UX-06, HIKE-04
@@ -706,6 +707,8 @@ Implementation evidence: `docs/architecture/PERF-02-asset-and-regional-optimizat
   - Dialog focus, accessible names, errors, status announcements, contrast, and
     reduced motion are verified.
   - Automated checks are supplemented by manual screen-reader testing.
+
+Implementation evidence: `docs/architecture/A11Y-01-core-journey-accessibility.md`.
 
 ### QA-01 — Add the complete CI quality gate
 

@@ -204,10 +204,10 @@
 
     <!-- RAIL -->
     <div class="acct-card acct-rail" role="tablist" aria-label="Account sections" style="padding:10px;position:sticky;top:88px;">
-      <button class="railbtn" role="tab" data-tab="dog" aria-selected="true"><span class="railico">🐕</span> Dog</button>
-      <button class="railbtn" role="tab" data-tab="human" aria-selected="false"><span class="railico">👤</span> Human</button>
-      <button class="railbtn" role="tab" data-tab="health" aria-selected="false"><span class="railico">🩺</span> Vet</button>
-      <button class="railbtn" role="tab" data-tab="account" aria-selected="false"><span class="railico">⚙️</span> Settings</button>
+      <button id="accountTabDog" class="railbtn" role="tab" data-tab="dog" aria-selected="true" aria-controls="tab-dog" tabindex="0"><span class="railico" aria-hidden="true">🐕</span> Dog</button>
+      <button id="accountTabHuman" class="railbtn" role="tab" data-tab="human" aria-selected="false" aria-controls="tab-human" tabindex="-1"><span class="railico" aria-hidden="true">👤</span> Human</button>
+      <button id="accountTabHealth" class="railbtn" role="tab" data-tab="health" aria-selected="false" aria-controls="tab-health" tabindex="-1"><span class="railico" aria-hidden="true">🩺</span> Vet</button>
+      <button id="accountTabAccount" class="railbtn" role="tab" data-tab="account" aria-selected="false" aria-controls="tab-account" tabindex="-1"><span class="railico" aria-hidden="true">⚙️</span> Settings</button>
       <!-- Settings sub-sections — shown while the Settings tab is active -->
       <nav id="settingsToc" class="settings-toc" aria-label="Settings sections" hidden>
         <a href="#secDetails" data-sec="secDetails" class="on">Account details</a>
@@ -222,7 +222,7 @@
     <div class="acct-card" style="padding:28px 30px;">
 
       <!-- DOG DETAILS -->
-      <section id="tab-dog" role="tabpanel">
+      <section id="tab-dog" role="tabpanel" aria-labelledby="accountTabDog">
         <div style="display:flex;align-items:center;gap:18px;margin-bottom:26px;">
           <input type="file" id="dogPhotoInput" accept="image/*" style="display:none;">
           <div style="position:relative;flex:none;">
@@ -272,7 +272,7 @@
       </section>
 
       <!-- HUMAN -->
-      <section id="tab-human" role="tabpanel" hidden>
+      <section id="tab-human" role="tabpanel" aria-labelledby="accountTabHuman" hidden>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;"><span class="kick">Dog's human</span><span style="font-size:10px;font-weight:700;color:#9C3A25;background:#F3D9D2;border-radius:6px;padding:2px 7px;">Required</span></div>
         <p class="hint" style="margin:0 0 18px;">Who to reach if <span class="removeDogName">your dog</span> is found or needs help on the trail.</p>
         <div class="acct-2col" style="margin-bottom:18px;">
@@ -292,7 +292,7 @@
       </section>
 
       <!-- VET -->
-      <section id="tab-health" role="tabpanel" hidden>
+      <section id="tab-health" role="tabpanel" aria-labelledby="accountTabHealth" hidden>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;"><span class="kick">Health &amp; vet</span><span style="font-size:10px;font-weight:700;color:#8A9689;background:#EDEAE0;border-radius:6px;padding:2px 7px;">Optional</span></div>
         <p class="hint" style="margin:0 0 18px;">Used for the emergency card and safety alerts. Only you can see this.</p>
         <div class="acct-2col" style="margin-bottom:18px;">
@@ -330,7 +330,7 @@
       </section>
 
       <!-- SETTINGS -->
-      <section id="tab-account" role="tabpanel" hidden>
+      <section id="tab-account" role="tabpanel" aria-labelledby="accountTabAccount" hidden>
         <!-- Phone-width jump control (the desktop TOC lives in the rail) -->
         <div class="acct-jump" id="acctJump" hidden>
           <button type="button" id="acctJumpBtn" aria-expanded="false" aria-controls="acctJumpMenu">Jump to: <span id="acctJumpLabel">Account details</span> <span aria-hidden="true">▾</span></button>
@@ -500,6 +500,7 @@
 <script src="local-data.js?v=20260806-1"></script>
 <script type="module" src="firebase-init.js?v=20260807-1"></script>
 <script src="breeds-data.js?v=20260807-1" defer></script>
+<script src="accessibility-runtime.js?v=20260810-1" defer></script>
 <script src="account.js?v=20260806-3" defer></script>
 <script src="profile-design.js?v=20260807-2" defer></script>
 </body>

@@ -116,6 +116,18 @@ img,svg{max-width:100%;height:auto;}
   outline:3px solid var(--accent) !important;
   outline-offset:3px;
 }
+.dp-skip-link{
+  position:fixed;top:8px;left:8px;z-index:10000;
+  transform:translateY(-160%);padding:10px 14px;border-radius:9px;
+  background:#fff;color:#1f3327;font:800 14px 'Inter',sans-serif;
+  box-shadow:0 4px 18px rgba(0,0,0,.28);transition:transform .15s ease;
+}
+.dp-skip-link:focus{transform:translateY(0);}
+.sr-only{
+  position:absolute!important;width:1px!important;height:1px!important;
+  padding:0!important;margin:-1px!important;overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;
+}
 
 /* ---------- ICONS ---------- */
 .icon{
@@ -1403,6 +1415,15 @@ body.map-fs-open{overflow:hidden;}
 .skeleton--light{background:linear-gradient(90deg,rgba(255,255,255,.18) 25%,rgba(255,255,255,.32) 50%,rgba(255,255,255,.18) 75%);background-size:200% 100%;}
 @keyframes dp-shimmer{to{background-position:-200% 0;}}
 @media (prefers-reduced-motion: reduce){ .skeleton{animation:none;} }
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto!important;}
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+    transition-delay:0ms!important;
+  }
+}
 
 
 /* ---- Trail page blueprint (answer strip, docked map key, tips card,

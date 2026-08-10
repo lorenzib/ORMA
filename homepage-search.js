@@ -41,7 +41,7 @@
   var state = {
     query: '', dog: 'medium',
     dist: 99, diff: 'any', terrain: 'any', shade: 'any', minMatch: 0, hasWater: false,
-    searched: false, focused: false, menu: null, custom: null,
+    searched: false, focused: false, menu: null, custom: null, activeSuggest: -1,
     wizOpen: false, wizStep: 0,
     wiz: { name: '', size: 'medium', energy: 'medium', terrainTol: 'gravel', heat: false },
   };
@@ -82,6 +82,7 @@
     matchLabel: document.getElementById('hpMatchLabel'),
     waterToggle: document.getElementById('hpWaterToggle'),
     suggest: document.getElementById('hpSuggest'),
+    searchStatus: document.getElementById('hpSearchStatus'),
     searchBtn: document.getElementById('hpSearchBtn'),
     popular: document.getElementById('hpPopular'),
     guestTitle: document.getElementById('hpGuestTitle'),
@@ -320,6 +321,7 @@
   function renderSuggest() {
     var open = showingSuggest();
     el.suggest.hidden = !open;
+    el.search.setAttribute('aria-expanded', open ? 'true' : 'false');
     var scrim = document.getElementById('hpSuggestScrim');
     if (open && !scrim) {
       scrim = document.createElement('div');
@@ -330,7 +332,11 @@
     } else if (!open && scrim) {
       scrim.remove();
     }
-    if (!open) return;
+    if (!open) {
+      state.activeSuggest = -1;
+      el.search.removeAttribute('aria-activedescendant');
+      return;
+    }
 
     var m = dogMeta();
     var list = rankedList();
@@ -341,15 +347,17 @@
         '<div class="hp-sug-empty"><div class="hp-sug-empty-h">No trails match “' + esc(state.query.trim()) + '”</div>' +
         '<p>Try a different valley, or loosen a filter.</p>' +
         '<button type="button" data-action="reset">Reset filters</button></div>';
+      el.search.removeAttribute('aria-activedescendant');
+      if(el.searchStatus) el.searchStatus.textContent = 'No trail suggestions found.';
       return;
     }
     el.suggest.innerHTML =
       '<div class="hp-sug-head"><span class="hp-sug-kick">' +
         '<span class="hp-sug-chip" style="background:' + m.chipBg + ';color:' + m.chipColor + '">' + esc(m.badge) + '</span>' +
         'Top matches for ' + esc(m.name) + '</span><span class="hp-sug-count">' + countTxt + '</span></div>' +
-      list.slice(0, 5).map(function (entry) {
+      list.slice(0, 5).map(function (entry, index) {
         var t = entry.t, s = entry.score, ti = tier(s), df = difficulty(t);
-        return '<button type="button" class="hp-sug-item" data-href="' + esc(trailHref(t)) + '">' +
+        return '<button type="button" class="hp-sug-item" id="hpSuggestion' + index + '" role="option" aria-selected="' + (state.activeSuggest === index ? 'true' : 'false') + '" data-href="' + esc(trailHref(t)) + '">' +
           '<span class="hp-sug-thumb">' + thumb(t) + '</span>' +
           '<span class="hp-sug-main"><span class="hp-sug-name">' + esc(t.name) + '</span>' +
           '<span class="hp-sug-meta"><span class="hp-badge-dot" style="background:' + df.dot + '"></span>' + df.label +
@@ -360,6 +368,11 @@
       '<button type="button" class="hp-sug-more" data-action="search">' +
         '<span>See all ' + countTxt + ' for “' + esc(state.query.trim()) + '” →</span>' +
         '<span class="hp-sug-key">↵ Enter</span></button>';
+    var options = el.suggest.querySelectorAll('[role="option"]');
+    if(state.activeSuggest >= options.length) state.activeSuggest = options.length - 1;
+    if(state.activeSuggest >= 0) el.search.setAttribute('aria-activedescendant', 'hpSuggestion' + state.activeSuggest);
+    else el.search.removeAttribute('aria-activedescendant');
+    if(el.searchStatus) el.searchStatus.textContent = countTxt + ' found. Use the up and down arrow keys to review the top matches.';
   }
 
   // ---- main content: results OR browse sections ----
@@ -506,11 +519,12 @@
   var ENERGY_OPTS = [{ label: 'Low', v: 'low' }, { label: 'Medium', v: 'medium' }, { label: 'High', v: 'high' }];
   var TERRAINTOL_OPTS = [{ label: 'Soft ground only', v: 'soft' }, { label: 'Some gravel is fine', v: 'gravel' }, { label: 'Anything, including rock', v: 'any' }];
   var HEAT_OPTS = [{ label: 'Yes, gets hot easily', v: true }, { label: 'No, handles heat fine', v: false }];
+  var releaseWizardFocus = null;
 
   function optBtns(opts, cur, field, col) {
     return '<div class="hp-wiz-opts' + (col ? ' col' : '') + '">' + opts.map(function (o) {
       var sel = String(cur) === String(o.v) ? ' sel' : '';
-      return '<button type="button" class="hp-wiz-opt' + sel + '" data-wfield="' + field + '" data-wval="' + o.v + '">' + esc(o.label) + '</button>';
+      return '<button type="button" class="hp-wiz-opt' + sel + '" aria-pressed="' + (sel ? 'true' : 'false') + '" data-wfield="' + field + '" data-wval="' + o.v + '">' + esc(o.label) + '</button>';
     }).join('') + '</div>';
   }
 
@@ -544,8 +558,31 @@
   }
   function summaryRow(k, v) { return '<div class="hp-wiz-summary-row"><span>' + k + '</span><b>' + esc(v) + '</b></div>'; }
 
-  function openWizard() { state.wizOpen = true; state.wizStep = 0; el.wizard.hidden = false; document.body.classList.add('auth-modal-open'); renderWizard(); }
-  function closeWizard() { state.wizOpen = false; el.wizard.hidden = true; document.body.classList.remove('auth-modal-open'); }
+  function focusWizardStep() {
+    requestAnimationFrame(function(){
+      var target = el.wizBody.querySelector('#hpWizName,.hp-wiz-opt.sel,.hp-wiz-opt');
+      if(target) target.focus();
+    });
+  }
+  function openWizard() {
+    state.wizOpen = true;
+    state.wizStep = 0;
+    el.wizard.hidden = false;
+    document.body.classList.add('auth-modal-open');
+    renderWizard();
+    if(window.DoloPawsA11y){
+      releaseWizardFocus = window.DoloPawsA11y.openDialog(el.wizard, {
+        initialFocus:function(){ return el.wizBody.querySelector('#hpWizName,.hp-wiz-opt'); },
+        onEscape:closeWizard,
+      });
+    } else focusWizardStep();
+  }
+  function closeWizard() {
+    state.wizOpen = false;
+    el.wizard.hidden = true;
+    document.body.classList.remove('auth-modal-open');
+    if(releaseWizardFocus){ releaseWizardFocus(); releaseWizardFocus = null; }
+  }
 
   // Build the SAME profile shape dog-wizard.js:buildProfile() produces, so a
   // later login persists it with zero translation.
@@ -590,11 +627,28 @@
   // ---- events ----
   function bind() {
     el.search.addEventListener('input', function (e) {
-      state.query = e.target.value; state.searched = false; state.focused = true;
+      state.query = e.target.value; state.searched = false; state.focused = true; state.activeSuggest = -1;
       renderSuggest(); renderContent();
     });
     el.search.addEventListener('focus', function () { state.focused = true; renderSuggest(); });
-    el.search.addEventListener('keydown', function (e) { if (e.key === 'Enter') runSearch(); });
+    el.search.addEventListener('keydown', function (e) {
+      var options = Array.from(el.suggest.querySelectorAll('[role="option"]'));
+      if((e.key === 'ArrowDown' || e.key === 'ArrowUp') && !el.suggest.hidden && options.length){
+        e.preventDefault();
+        if(state.activeSuggest < 0){
+          state.activeSuggest = e.key === 'ArrowDown' ? 0 : options.length - 1;
+        }else{
+          var delta = e.key === 'ArrowDown' ? 1 : -1;
+          state.activeSuggest = (state.activeSuggest + delta + options.length) % options.length;
+        }
+        renderSuggest();
+      } else if(e.key === 'Enter'){
+        e.preventDefault();
+        var active = state.activeSuggest >= 0 && options[state.activeSuggest];
+        if(active) window.location.href = active.getAttribute('data-href');
+        else runSearch();
+      }
+    });
     el.searchBtn.addEventListener('click', runSearch);
 
     el.dogPill.addEventListener('click', function () { state.menu = state.menu === 'dog' ? null : 'dog'; state.focused = false; syncMenus(); renderSuggest(); });
@@ -675,14 +729,16 @@
     // Mini-wizard
     el.wizClose.addEventListener('click', closeWizard);
     el.wizard.addEventListener('click', function (e) { if (e.target === el.wizard) closeWizard(); });
-    el.wizBack.addEventListener('click', function () { if (state.wizStep === 0) closeWizard(); else { state.wizStep--; renderWizard(); } });
-    el.wizNext.addEventListener('click', function () { if (state.wizStep < 2) { state.wizStep++; renderWizard(); } else finishWizard(); });
+    el.wizBack.addEventListener('click', function () { if (state.wizStep === 0) closeWizard(); else { state.wizStep--; renderWizard(); focusWizardStep(); } });
+    el.wizNext.addEventListener('click', function () { if (state.wizStep < 2) { state.wizStep++; renderWizard(); focusWizardStep(); } else finishWizard(); });
     el.wizBody.addEventListener('click', function (e) {
       var b = e.target.closest('[data-wfield]'); if (!b) return;
       var field = b.getAttribute('data-wfield'), val = b.getAttribute('data-wval');
       if (field === 'heat') state.wiz.heat = (val === 'true');
       else state.wiz[field] = val;
       renderWizard();
+      var selected = el.wizBody.querySelector('[data-wfield="' + field + '"][data-wval="' + val + '"]');
+      if(selected) selected.focus();
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {

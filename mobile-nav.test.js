@@ -17,6 +17,16 @@ describe('shared navigation hardening', () => {
     expect(toggle.getAttribute('aria-label')).toBe('Open menu');
   });
 
+  test('adds a skip link that focuses the main content', () => {
+    const main = document.createElement('main');
+    main.id = 'testMain';
+    document.body.appendChild(main);
+    const skip = document.querySelector('.dp-skip-link');
+    skip.dispatchEvent(new MouseEvent('click', { bubbles:true, cancelable:true }));
+    expect(skip.getAttribute('href')).toBe('#testMain');
+    expect(document.activeElement).toBe(main);
+  });
+
   test('protects dynamically inserted new-tab links', async () => {
     const link = document.createElement('a');
     link.target = '_blank';

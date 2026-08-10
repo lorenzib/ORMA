@@ -63,14 +63,15 @@
     window.history.replaceState(null, '', currentHref());
   }
 
-  function cellHtml(cell){
-    return `<div class="compare-cell compare-cell--${esc(cell.kind)}">` +
+  function cellHtml(cell, label, trailName){
+    const accessible = `${trailName}, ${label}: ${cell.text}${cell.detail ? `. ${cell.detail}` : ''}`;
+    return `<div class="compare-cell compare-cell--${esc(cell.kind)}" role="group" aria-label="${esc(accessible)}">` +
       `<span>${esc(cell.text)}</span>` +
       (cell.detail ? `<small>${esc(cell.detail)}</small>` : '') +
       '</div>';
   }
 
-  function render(){
+  function render(focusComparison){
     const root = document.getElementById('compareRoot');
     const back = document.getElementById('compareBack');
     const notice = document.getElementById('compareNotice');
@@ -118,17 +119,24 @@
     ).join('');
     ROWS.forEach(([key, label]) => {
       html += `<div class="compare-label">${esc(label)}</div>`;
-      html += entries.map(entry => cellHtml(entry.cells[key])).join('');
+      html += entries.map(entry => cellHtml(entry.cells[key], label, entry.name)).join('');
     });
     root.innerHTML = html + '</div></div>';
     root.querySelectorAll('[data-remove-id]').forEach(button => {
       button.addEventListener('click', () => {
+        const removed = entries.find(entry => entry.id === button.dataset.removeId);
         selectedIds = stateApi.toggle(selectedIds, button.dataset.removeId);
         stateApi.save(localStorage, selectedIds);
         syncUrl();
-        render();
+        render(true);
+        const status = document.getElementById('compareStatus');
+        if(status) status.textContent = `${removed ? removed.name : 'Trail'} removed. ${selectedIds.length} ${selectedIds.length === 1 ? 'trail remains' : 'trails remain'}.`;
       });
     });
+    if(focusComparison){
+      const next = root.querySelector('[data-remove-id]') || root.querySelector('.compare-scroll') || back;
+      if(next) requestAnimationFrame(() => next.focus());
+    }
   }
 
   async function useAccountProfile(){

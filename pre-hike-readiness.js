@@ -201,6 +201,7 @@
     let state = null;
     let continuation = null;
     let currentTrail = null;
+    let releaseDialogFocus = null;
     const selfTestsByTrail = new Map();
 
     function ensureModal(){
@@ -241,7 +242,7 @@
         `<article class="pre-hike-item pre-hike-item--${entry.level}">` +
           `<span class="pre-hike-icon" aria-hidden="true">${icon(entry.level)}</span>` +
           '<div class="pre-hike-item-copy">' +
-            `<strong>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.detail)}</p>` +
+            `<strong><span class="sr-only">${escapeHtml(entry.level)}: </span>${escapeHtml(entry.title)}</strong><p>${escapeHtml(entry.detail)}</p>` +
           '</div>' +
           (entry.action
             ? `<button type="button" data-readiness-action="${entry.action}">${
@@ -255,6 +256,7 @@
         '</article>'
       ).join('');
       const summary = modal.querySelector('#preHikeSummary');
+      summary.setAttribute('aria-busy', result.counts.checking ? 'true' : 'false');
       summary.textContent = result.canStart
         ? `${result.counts.ready} ready · ${result.counts.advisory} ${
           result.counts.advisory === 1 ? 'advisory' : 'advisories'
@@ -358,6 +360,7 @@
       if(!modal) return;
       modal.hidden = true;
       win.document.documentElement.classList.remove('pre-hike-open');
+      if(releaseDialogFocus){ releaseDialogFocus(); releaseDialogFocus = null; }
     }
 
     function handleAction(event){
@@ -405,6 +408,15 @@
       ensureModal().hidden = false;
       win.document.documentElement.classList.add('pre-hike-open');
       render();
+      if(win.DoloPawsA11y){
+        releaseDialogFocus = win.DoloPawsA11y.openDialog(
+          modal.querySelector('.pre-hike-sheet'),
+          { initialFocus:'.pre-hike-close', onEscape:close }
+        );
+      }else{
+        const closeButton = modal.querySelector('.pre-hike-close');
+        if(closeButton) closeButton.focus();
+      }
       inspectPackage();
       permissionState();
     }

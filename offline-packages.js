@@ -628,6 +628,9 @@
     function setStatus(message, state){
       status.textContent = message;
       status.dataset.state = state || '';
+      const busy = ['downloading', 'checking', 'removing'].includes(state);
+      status.setAttribute('aria-busy', String(busy));
+      panel.setAttribute('aria-busy', String(busy));
     }
 
     function signedIn(){
@@ -752,7 +755,7 @@
         const manifest = await installPackage(
           trailId,
           (current, total, resource) => {
-            setStatus(`Downloading ${current} of ${total}: ${resource.label || resource.url}`);
+            setStatus(`Downloading ${current} of ${total}: ${resource.label || resource.url}`, 'downloading');
           },
           window.DoloPawsAuth.currentUser
         );
@@ -837,7 +840,7 @@
     });
     removeButton.addEventListener('click', async () => {
       removeButton.disabled = true;
-      setStatus('Removing this trail from this device…');
+      setStatus('Removing this trail from this device…', 'removing');
       await removePackage(trailId);
       removeButton.disabled = false;
       await refresh({ removed: true });

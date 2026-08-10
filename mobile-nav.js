@@ -1,4 +1,32 @@
 (function(){
+  function installSkipLink(){
+    if(!document.body || document.querySelector('.dp-skip-link')) return;
+    const link = document.createElement('a');
+    link.className = 'dp-skip-link';
+    link.href = '#mainContent';
+    link.textContent = 'Skip to main content';
+    const resolveTarget = () => {
+      const candidates = Array.from(document.querySelectorAll('main, [data-main-content], #newCustomerHomepage, #returningCustomerHomepage'));
+      const target = candidates.find(element => !element.hidden) || candidates[0];
+      if(!target) return null;
+      if(!target.id) target.id = 'mainContent';
+      link.href = '#' + target.id;
+      return target;
+    };
+    link.addEventListener('focus', resolveTarget);
+    link.addEventListener('click', event => {
+      const target = resolveTarget();
+      if(!target) return;
+      event.preventDefault();
+      if(!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      target.focus();
+      history.replaceState(null, '', link.href);
+    });
+    document.body.insertBefore(link, document.body.firstChild);
+  }
+
+  installSkipLink();
+
   function secureBlankLinks(root){
     const links = [];
     if(root && root.matches && root.matches('a[target="_blank"]')) links.push(root);
