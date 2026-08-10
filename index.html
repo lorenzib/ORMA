@@ -13,8 +13,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260807-5">
-<link rel="stylesheet" href="homepage-mobile.css?v=20260807-6">
+<script>/* Pre-auth boot: the cached member summary picks the right homepage
+   before first paint, so members never flash the guest page while
+   Firebase resolves. The homepage controller clears the class once real
+   auth answers. */
+try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
+<link rel="stylesheet" href="styles.css?v=20260807-7">
+<link rel="stylesheet" href="homepage-mobile.css?v=20260807-7">
 </head>
 <body>
 
@@ -469,9 +474,9 @@
 <script src="basemap-poi-click.js" defer></script>
 <script src="dog-routes-layer.js?v=20260805-1" defer></script>
 <script src="trail-access-directions.js?v=20260805-1" defer></script>
-<script src="script.js?v=20260807-5" defer></script>
+<script src="script.js?v=20260807-6" defer></script>
 <script src="dog-wizard.js?v=20260807-1" defer></script>
 <script src="homepage-search.js?v=20260729-1" defer></script>
-<script src="homepage-mobile.js?v=20260807-5" defer></script>
+<script src="homepage-mobile.js?v=20260807-6" defer></script>
 </body>
 </html>

@@ -91,9 +91,8 @@ img,svg{max-width:100%;height:auto;}
   color:var(--ink-soft);
   font-size:15px;
   line-height:1.5;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  max-width:72ch;
+  text-wrap:pretty;
 }
 .section-page-head--actions{
   display:flex;
@@ -776,11 +775,14 @@ img,svg{max-width:100%;height:auto;}
   .topnav .links .account-btn{width:100%;min-height:44px;margin:4px 0 0;text-align:center;justify-content:center;}
   .topnav .links > div{display:block !important;width:100%;}
   .topnav .links > div > button{width:100%;min-height:44px;text-align:center;}
-  /* Member controls keep their compact shape inside the mobile sheet */
+  /* Member controls keep their compact shape inside the mobile sheet.
+     The sheet itself scrolls — the dog switcher plus its menu items can
+     outgrow a phone screen. */
+  .topnav .links{max-height:calc(100dvh - 72px);overflow-y:auto;}
   .topnav .links .nav-bellwrap{display:flex !important;width:100%;}
   .topnav .links .nav-bellwrap > button.nav-bell{
-    width:100%;min-height:44px;border-radius:12px;
-    display:flex;align-items:center;justify-content:center;gap:8px;
+    width:100%;min-height:44px;border-radius:12px;padding:10px 12px;
+    display:flex;align-items:center;justify-content:flex-start;gap:8px;
   }
   .nav-bell-badge{position:static;margin-left:6px;}
   .nav-bell-menu{position:static;width:100%;margin-top:6px;box-shadow:none;}
@@ -2640,6 +2642,10 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 }
 .li-row-badges{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;}
 /* "Trail rating · Low-risk" row (design TrailRow) */
+/* Pre-auth boot (see the inline script in index.html's head): members
+   see their shell immediately instead of a guest-homepage flash. */
+html.early-member #newCustomerHomepage{display:none;}
+html.early-member #returningCustomerHomepage[hidden]{display:block;}
 .li-cond-t-mobile{display:none;}
 .li-rating-row{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center;}
 /* Card quick actions: a quiet bar across the card bottom — focus the

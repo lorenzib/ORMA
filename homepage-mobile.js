@@ -53,21 +53,15 @@
     document.body.style.setProperty('--mhome-tabs', '0px');
   }
 
-  // The bell and the account pill live in the dark header on desktop; on
-  // the phone layout they join the toolbar so notifications and the
-  // account menu stay reachable (the dark header is hidden there).
-  function placeAccountWrap(mobile){
+  // The bell and the account pill stay in the dark app header (desktop
+  // only). On phones the standard topnav is visible and already carries
+  // both in its menu — duplicating them in the search toolbar was noise.
+  function placeAccountWrap(){
+    var actions = returning.querySelector('.li-top-actions');
     var bell = document.getElementById('liBellWrap');
     var wrap = document.getElementById('liAccountWrap');
-    if(mobile){
-      var toolbar = document.getElementById('liToolbar');
-      if(toolbar && bell && bell.parentElement !== toolbar) toolbar.appendChild(bell);
-      if(toolbar && wrap && wrap.parentElement !== toolbar) toolbar.appendChild(wrap);
-    } else {
-      var actions = returning.querySelector('.li-top-actions');
-      if(actions && bell && bell.parentElement !== actions) actions.appendChild(bell);
-      if(actions && wrap && wrap.parentElement !== actions) actions.appendChild(wrap);
-    }
+    if(actions && bell && bell.parentElement !== actions) actions.appendChild(bell);
+    if(actions && wrap && wrap.parentElement !== actions) actions.appendChild(wrap);
   }
 
   function availH(){

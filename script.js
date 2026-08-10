@@ -2431,6 +2431,7 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
   if((user && window.DoloPawsAuth) || devReturning){
     newHome.hidden = true;
     returningHome.hidden = false;
+    document.documentElement.classList.remove('early-member');
     document.body.dataset.homepageView = 'returning';
     adjustOverride = null;
     scheduleTrailMap();
@@ -2492,6 +2493,8 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
     if(liDevView) return; // keep the ?view=returning preview when real auth resolves logged-out
     newHome.hidden = false;
     returningHome.hidden = true;
+    // Stale member cache (signed out elsewhere): reveal the guest page.
+    document.documentElement.classList.remove('early-member');
     document.body.dataset.homepageView = 'new';
     const dogBubble = document.getElementById('dogPhotoBubble');
     if(dogBubble) dogBubble.hidden = true;
