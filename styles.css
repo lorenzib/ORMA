@@ -2647,6 +2647,11 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 html.early-member #newCustomerHomepage{display:none;}
 html.early-member #returningCustomerHomepage[hidden]{display:block;}
 .li-cond-t-mobile{display:none;}
+/* Record-anywhere walk button (toolbar chip on desktop; the phone layer
+   restyles it as a floating pill above the trail sheet). */
+.li-record{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:#C4652F;color:#fff;font:800 13px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;}
+.li-record:hover{background:#A9541F;}
+.li-record-dot{width:8px;height:8px;border-radius:50%;background:#fff;}
 .li-rating-row{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center;}
 /* Card quick actions: a quiet bar across the card bottom — focus the
    homepage map, or hand off to the platform's maps app. */

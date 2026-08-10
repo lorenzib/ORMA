@@ -224,7 +224,9 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   // UI: one compact "Layers" button that expands into a chip panel —
   // replaces the old stack of full-width buttons that covered a third of
   // the map on mobile.
-  const overlayStates = { routes: false, lifts: false, fountains: false, huts: false, barsCafes: false, terrain: false };
+  // Marked routes default ON — the waymarked network is how walkable
+  // ground stays visible; the Layers panel un-ticks it for a clean map.
+  const overlayStates = { routes: true, lifts: false, fountains: false, huts: false, barsCafes: false, terrain: false };
   let dogFilterOn = false;
 
   const layersBtn = document.createElement('button');
@@ -544,6 +546,21 @@ function initGuestMap(){
 
   guestMapInstance.on('load', async () => {
     addTerrainSource(guestMapInstance);
+    // Guests get the same walkable-network view: marked routes + relief.
+    const guestFirstLabel = guestMapInstance.getStyle().layers.find(l => l.type === 'symbol');
+    guestMapInstance.addSource('waymarked-hiking', {
+      type: 'raster',
+      tiles: ['https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png'],
+      tileSize: 256,
+      attribution: '© Sarah Hoffmann (CC-BY-SA) — waymarkedtrails.org',
+    });
+    guestMapInstance.addLayer({
+      id: 'waymarked-hiking-layer',
+      type: 'raster',
+      source: 'waymarked-hiking',
+      paint: { 'raster-opacity': 0.4 },
+    }, guestFirstLabel ? guestFirstLabel.id : undefined);
+    addBaseHillshade(guestMapInstance, 'waymarked-hiking-layer');
     increaseLabelDensity(guestMapInstance);
     preventTransitPoiDuplication(guestMapInstance);
     addTerrainToggle(guestMapInstance, 'guestPreviewMap', 1.3, 0);
@@ -690,9 +707,10 @@ function initTrailMap(){
       id: 'waymarked-hiking-layer',
       type: 'raster',
       source: 'waymarked-hiking',
-      layout: { visibility: 'none' },
+      layout: { visibility: 'visible' },
       paint: { 'raster-opacity': 0.4 },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
+    addBaseHillshade(trailMapInstance, 'waymarked-hiking-layer');
     
     trailMapInstance.addSource('trail-paths', {
       type: 'geojson',
@@ -990,6 +1008,22 @@ function addTerrainSource(map){
     encoding: 'terrarium',
     maxzoom: 15,
   });
+}
+
+// Always-on subtle relief, AllTrails-style: terrain reads at a glance even
+// in flat mode. The 3D toggle's own stronger hillshade layers on top of it.
+function addBaseHillshade(map, beforeId){
+  if(map.getLayer('base-hillshade') || !map.getSource('terrain-dem')) return;
+  map.addLayer({
+    id: 'base-hillshade',
+    type: 'hillshade',
+    source: 'terrain-dem',
+    paint: {
+      'hillshade-exaggeration': 0.25,
+      'hillshade-shadow-color': '#5A5548',
+      'hillshade-method': 'igor',
+    },
+  }, beforeId && map.getLayer(beforeId) ? beforeId : undefined);
 }
 
 // Compact dot marker for trails — replaces MapLibre's default teardrop

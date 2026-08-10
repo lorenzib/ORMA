@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Record a walk | DoloPaws</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon-32.png"><link rel="stylesheet" href="styles.css?v=20260807-8">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css"/>
+<style>
+  body{background:var(--ink);}
+  .wr-shell{position:fixed;inset:0;display:flex;flex-direction:column;color:#F2EEE2;}
+  .wr-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;}
+  .wr-back{color:#B9C4B6;text-decoration:none;font:600 13px 'Inter',sans-serif;}
+  .wr-dog{font:700 13px 'Inter',sans-serif;color:#DCE1D4;}
+  .wr-stats{display:flex;justify-content:center;gap:34px;padding:6px 16px 14px;text-align:center;}
+  .wr-stat b{display:block;font:800 34px/1 'Inter',sans-serif;color:#fff;font-variant-numeric:tabular-nums;}
+  .wr-stat span{display:block;margin-top:4px;font:700 10.5px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#9FB3A0;}
+  .wr-map{flex:1;position:relative;border-radius:22px 22px 0 0;overflow:hidden;background:#26352B;}
+  #wrMap{position:absolute;inset:0;}
+  .wr-gps{position:absolute;top:12px;left:12px;z-index:5;background:rgba(20,28,22,.82);border-radius:999px;padding:6px 12px;font:600 11.5px 'Inter',sans-serif;color:#CBD6C8;}
+  .wr-controls{display:flex;gap:10px;padding:14px 16px calc(16px + env(safe-area-inset-bottom));background:var(--ink);}
+  .wr-btn{flex:1;min-height:52px;border:none;border-radius:14px;font:800 15px 'Inter',sans-serif;cursor:pointer;}
+  .wr-btn--start{background:#4A7856;color:#fff;}
+  .wr-btn--pause{background:#F2EEE2;color:var(--ink);}
+  .wr-btn--finish{background:#C4652F;color:#fff;}
+  .wr-btn--ghost{flex:0 0 auto;padding:0 18px;background:transparent;border:1.5px solid rgba(242,238,226,.35);color:#CBD6C8;}
+  .wr-btn[hidden]{display:none;}
+  .wr-note{padding:0 16px 8px;font:500 12px 'Inter',sans-serif;color:#8FA391;text-align:center;}
+  .wr-gate{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:24px;background:var(--ink);}
+  .wr-gate[hidden]{display:none;}
+  .wr-gate-card{max-width:340px;text-align:center;color:#F2EEE2;}
+  .wr-gate-card h1{font-size:24px;margin:0 0 10px;color:#fff;}
+  .wr-gate-card p{font-size:14px;line-height:1.6;color:#B9C4B6;margin:0 0 18px;}
+  .wr-gate-card a,.wr-gate-card button{display:inline-block;background:#4A7856;color:#fff;border:none;border-radius:12px;padding:13px 24px;font:800 14px 'Inter',sans-serif;text-decoration:none;cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="wr-shell">
+  <div class="wr-top">
+    <a class="wr-back" href="index.html" id="wrBack">&larr; Back</a>
+    <span class="wr-dog" id="wrDog">Recording</span>
+  </div>
+  <div class="wr-stats">
+    <div class="wr-stat"><b id="wrTime">0:00</b><span>Time</span></div>
+    <div class="wr-stat"><b id="wrDist">0.00</b><span>km</span></div>
+  </div>
+  <div class="wr-map">
+    <div id="wrMap"></div>
+    <span class="wr-gps" id="wrGps">Waiting for GPS…</span>
+  </div>
+  <p class="wr-note" id="wrNote">Keep the screen on while recording — background tracking needs the page open.</p>
+  <div class="wr-controls">
+    <button type="button" class="wr-btn wr-btn--ghost" id="wrDiscard" hidden>Discard</button>
+    <button type="button" class="wr-btn wr-btn--start" id="wrStart">Start walk</button>
+    <button type="button" class="wr-btn wr-btn--pause" id="wrPause" hidden>Pause</button>
+    <button type="button" class="wr-btn wr-btn--finish" id="wrFinish" hidden>Finish &amp; save</button>
+  </div>
+</div>
+
+<div class="wr-gate" id="wrGate" hidden>
+  <div class="wr-gate-card">
+    <h1>Record a walk</h1>
+    <p>Walks are saved to your journal, so recording needs your account. Sign in and press start — any walk, anywhere, not just catalogued trails.</p>
+    <a href="index.html">Sign in on the homepage &rarr;</a>
+  </div>
+</div>
+
+<script type="module" src="firebase-init.js?v=20260807-1"></script>
+<script src="walk-recorder.js?v=20260807-1"></script>
+<script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
+<script src="walk-page.js?v=20260807-2"></script>
+</body></html>

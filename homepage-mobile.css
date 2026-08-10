@@ -90,6 +90,10 @@
   body.mhome-active .li-map.map-fs #trailMap .map-panel{top:calc(148px + env(safe-area-inset-top));}
   body.mhome-active .li-map.map-fs #trailMap .maplibregl-ctrl-top-right{top:calc(52px + env(safe-area-inset-top));}
 
+  /* Record button floats above the sheet, Strava-style, riding the
+     sheet's height like the attribution does. */
+  body.mhome-active .li-record{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(var(--mhome-sheet,26dvh) + env(safe-area-inset-bottom) + 14px);z-index:47;padding:12px 22px;font-size:14px;box-shadow:0 10px 26px -8px rgba(23,42,28,.5);transition:bottom .28s cubic-bezier(.22,1,.36,1);}
+
   /* ---- HIDDEN SHEET: dragging (or tapping) the handle down collapses
      "Ranked for your dog" to just the grab pill, giving the map the whole
      screen. ---- */

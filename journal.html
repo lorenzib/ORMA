@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260807-7">
+<link rel="stylesheet" href="styles.css?v=20260807-8">
 <style>
   .jn-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px;}
   .jn-stat{background:var(--card);border:1px solid var(--paper-line);border-radius:16px;padding:14px 16px;}
@@ -531,11 +531,9 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('jnEmptyLogBtn').addEventListener('click', function(){
     document.getElementById('jnLogBtn').click();
   });
-  // "Track live instead" needs a trail to follow — open the modal on the
-  // trail picker, whose "Track it live instead →" link starts Hike Mode.
+  // "Track live instead" records anywhere — no trail needed.
   document.getElementById('jnEmptyLiveBtn').addEventListener('click', function(){
-    document.getElementById('jnLogBtn').click();
-    trailHelp.textContent = 'Pick a trail first — live tracking follows its route.';
+    window.location.href = 'walk.html';
   });
   document.getElementById('jnLoginBtn').addEventListener('click', function(){
     var accountBtn = document.getElementById('accountBtn');
@@ -550,14 +548,12 @@ document.addEventListener('DOMContentLoaded', function(){
   // "Walking right now?" — jump into GPS Hike Mode on the chosen trail.
   document.getElementById('jnTrackLive').addEventListener('click', function(){
     var id = trailInput.value;
-    if(id && trailById(id)){
-      journalDirty = false;
-      window.location.href = 'trail.html?id=' + encodeURIComponent(id) + '&hike=1';
-      return;
-    }
-    trailHelp.textContent = 'Pick a trail first — live tracking follows its route.';
-    trailSearch.focus();
-    openTrailResults();
+    journalDirty = false;
+    // A chosen catalogued trail still gets guided Hike Mode; otherwise the
+    // free recorder tracks the walk wherever it goes.
+    window.location.href = (id && trailById(id))
+      ? 'trail.html?id=' + encodeURIComponent(id) + '&hike=1'
+      : 'walk.html';
   });
   window.addEventListener('beforeunload', function(event){
     if(!journalDirty) return;
@@ -700,6 +696,10 @@ document.addEventListener('DOMContentLoaded', function(){
       openedPendingTrail = true;
       overlay.hidden = false;
       setTimeout(function(){ trailSearch.focus(); }, 0);
+    }
+    if(journalParams.get('recorded') === '1'){
+      showStatus('Walk saved to your journal.');
+      if(window.history && window.history.replaceState) window.history.replaceState({}, '', 'journal.html');
     }
     document.getElementById('jnStorageNote').hidden = false;
     window.DoloPawsAuth.getDogProfile().then(function(p){

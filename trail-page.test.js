@@ -78,6 +78,22 @@ describe('trail page map legend', () => {
     expect(document.getElementById('tdMapChip')).toBeNull();
   });
 
+  test('marked routes and relief are on by default, opt-out via the toggle', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+    const home = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    document.body.innerHTML = html;
+    const toggle = document.getElementById('routesToggle');
+    expect(toggle.getAttribute('aria-pressed')).toBe('true');
+    expect(toggle.className).toContain('on');
+    // The waymarked overlay starts visible on both interactive maps, and
+    // both carry the always-on base hillshade.
+    expect(trail).toContain("layout: { visibility: 'visible' }");
+    expect(home).toContain('routes: true');
+    expect(trail).toContain("id: 'base-hillshade'");
+    expect(home).toContain("id: 'base-hillshade'");
+  });
+
   test('contains a dedicated Nearby trails section and no bottom decision banner', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     document.body.innerHTML = html;

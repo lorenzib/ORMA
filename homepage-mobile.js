@@ -146,11 +146,26 @@
     });
   }
 
+  // The Record pill is position:fixed on phones; inside the toolbar the
+  // backdrop-filter would make the toolbar its containing block and pin it
+  // off-screen, so the phone layer parks it on <body>.
+  function placeRecordBtn(mobile){
+    var rec = document.getElementById('liRecordBtn');
+    if(!rec) return;
+    if(mobile){
+      if(rec.parentElement !== document.body) document.body.appendChild(rec);
+    } else {
+      var toolbar = document.getElementById('liToolbar');
+      if(toolbar && rec.parentElement !== toolbar) toolbar.appendChild(rec);
+    }
+  }
+
   function activate(){
     if(active) return;
     active = true;
     ensureUi();
     placeAccountWrap(true);
+    placeRecordBtn(true);
     document.body.classList.add('mhome-active');
     window.scrollTo(0, 0);
     // classList.add applies synchronously, so measuring right away is safe;
@@ -168,6 +183,7 @@
     if(!active) return;
     active = false;
     placeAccountWrap(false);
+    placeRecordBtn(false);
     document.body.classList.remove('mhome-active');
     document.body.style.removeProperty('--mhome-top');
     document.body.style.removeProperty('--mhome-tabs');

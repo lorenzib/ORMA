@@ -339,6 +339,22 @@ function addTerrainSource(map){
   });
 }
 
+// Always-on subtle relief, AllTrails-style: terrain reads at a glance even
+// in flat mode. The 3D toggle's own stronger hillshade layers on top.
+function addBaseHillshade(map, beforeId){
+  if(map.getLayer('base-hillshade') || !map.getSource('terrain-dem')) return;
+  map.addLayer({
+    id: 'base-hillshade',
+    type: 'hillshade',
+    source: 'terrain-dem',
+    paint: {
+      'hillshade-exaggeration': 0.25,
+      'hillshade-shadow-color': '#5A5548',
+      'hillshade-method': 'igor',
+    },
+  }, beforeId && map.getLayer(beforeId) ? beforeId : undefined);
+}
+
 // Lifts on the trail detail map — ALL of them, same data as the homepage
 // (the global `gondolas` array from trails-data.js). Lines and stations are
 // GeoJSON layers rather than DOM markers, so rendering all ~700 lifts and
@@ -1348,15 +1364,17 @@ function renderTrail(t){
         id: 'waymarked-hiking-layer',
         type: 'raster',
         source: 'waymarked-hiking',
-        // Hidden by default: as a 40%-opacity raster over the whole viewport
-        // it washes out and softens the vector basemap. The route itself is
-        // already drawn natively below, so the official waymark network is
-        // opt-in via the "Marked routes" toggle.
-        layout: { visibility: 'none' },
+        // VISIBLE by default: the waymark network is how walkable ground
+        // around the route stays discoverable. "Marked routes" un-ticks it
+        // for anyone who wants the clean basemap.
+        layout: { visibility: 'visible' },
         paint: { 'raster-opacity': 0.4 },
       }, firstLabelLayer ? firstLabelLayer.id : undefined);
+      if (typeof addBaseHillshade === 'function') addBaseHillshade(map, 'waymarked-hiking-layer');
       const routesToggleBtn = document.getElementById('routesToggle');
       if (routesToggleBtn){
+        routesToggleBtn.classList.add('on');
+        routesToggleBtn.setAttribute('aria-pressed', 'true');
         routesToggleBtn.addEventListener('click', () => {
           const showing = routesToggleBtn.classList.toggle('on');
           routesToggleBtn.setAttribute('aria-pressed', showing ? 'true' : 'false');
