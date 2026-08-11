@@ -22,6 +22,7 @@ describe('beta readiness ledger', () => {
       'OFFLINE-ANDROID-CURRENT',
       'ROUTE-FIELD-REVIEW',
       'HIKE-RESTORE-GPS',
+      'GPX-AUTHENTICATED-EXPORT',
       'ACCESSIBILITY-VOICEOVER',
       'QA-INTERNAL-USABILITY',
     ]));
