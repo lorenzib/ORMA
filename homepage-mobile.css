@@ -73,14 +73,14 @@
   /* Map controls hug the edges — a LEFT stack (conditions pill, Layers,
      style switch) and a RIGHT stack (Expand, zoom/locate). Nothing floats
      mid-map and the stacks can never collide. */
-  body.mhome-active #trailMap .map-btn{bottom:auto;top:64px;left:12px;}
+  body.mhome-active #trailMap .map-btn{bottom:auto;top:12px;left:12px;}
   body.mhome-active .li-map .li-map-expand{top:10px;right:12px;}
   body.mhome-active #trailMap .maplibregl-ctrl-top-right{top:52px;}
   body.mhome-active #trailMap .maplibregl-ctrl-attrib{font-size:9px;line-height:1.3;padding:2px 6px;}
   /* Map · Satellite · 3D switch sits opposite the Layers chip, same row */
-  body.mhome-active #trailMap .td-layer-switch{top:106px;left:12px;right:auto;bottom:auto;}
-  body.mhome-active #trailMap .map-btn--terrain{left:12px;right:auto;top:106px;bottom:auto;}
-  body.mhome-active #trailMap .map-panel{bottom:auto;top:148px;left:12px;}
+  body.mhome-active #trailMap .td-layer-switch{top:54px;left:12px;right:auto;bottom:auto;}
+  body.mhome-active #trailMap .map-btn--terrain{left:12px;right:auto;top:54px;bottom:auto;}
+  body.mhome-active #trailMap .map-panel{bottom:auto;top:96px;left:12px;}
 
   /* ---- EXPANDED MAP: truly full screen. The base mhome rule pins the
      map between the search bar and the tab bar, which also overrode the
@@ -90,10 +90,10 @@
   body.mhome-active .li-map.map-fs{top:0;bottom:0;z-index:80;}
   body.mhome-active .li-map.map-fs .li-map-expand{top:calc(10px + env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));}
   body.mhome-active .li-map.map-fs .li-cond{top:calc(12px + env(safe-area-inset-top));}
-  body.mhome-active .li-map.map-fs #trailMap .map-btn{top:calc(64px + env(safe-area-inset-top));}
+  body.mhome-active .li-map.map-fs #trailMap .map-btn{top:calc(12px + env(safe-area-inset-top));}
   body.mhome-active .li-map.map-fs #trailMap .td-layer-switch,
-  body.mhome-active .li-map.map-fs #trailMap .map-btn--terrain{top:calc(106px + env(safe-area-inset-top));}
-  body.mhome-active .li-map.map-fs #trailMap .map-panel{top:calc(148px + env(safe-area-inset-top));}
+  body.mhome-active .li-map.map-fs #trailMap .map-btn--terrain{top:calc(54px + env(safe-area-inset-top));}
+  body.mhome-active .li-map.map-fs #trailMap .map-panel{top:calc(96px + env(safe-area-inset-top));}
   body.mhome-active .li-map.map-fs #trailMap .maplibregl-ctrl-top-right{top:calc(52px + env(safe-area-inset-top));}
 
   /* Record button hugs the bottom of the visible map, centered — just

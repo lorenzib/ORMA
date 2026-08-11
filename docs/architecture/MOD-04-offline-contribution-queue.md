@@ -1,7 +1,7 @@
 # MOD-04 — Offline community contribution queue
 
-**Status:** Implemented in code; corrective Firestore rules deployment and
-authenticated offline browser acceptance remain pending (2026-08-11)
+**Status:** Implemented in code and corrective Firestore rules deployed;
+authenticated offline browser acceptance remains pending (2026-08-11)
 
 ## Outcome
 
@@ -50,5 +50,10 @@ contribution or owner identifier.
 
 Automated coverage checks payload validation, owner isolation, retry stability,
 idempotent enqueue, removal only after acceptance, storage caps, page loading
-order, and author-only Firestore reads. Production acceptance still requires a
-verified account test after the rules are deployed.
+order, and author-only Firestore reads. On 2026-08-11, Firebase compiled and
+released `firestore.rules` to the production `dolopaws` project with:
+
+`npx --yes firebase-tools deploy --only firestore:rules --project dolopaws`
+
+Production acceptance still requires a verified-account offline submission and
+reconnection test.
