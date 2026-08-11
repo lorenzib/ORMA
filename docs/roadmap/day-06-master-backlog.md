@@ -808,9 +808,13 @@ own crawlable canonical URL and provides a prominent, exact-ID handoff to the
 interactive trail guide. The generated-artifact and SEO contract checks cover
 all published pages. See `docs/architecture/SEO-01-generated-trail-handoff.md`.
 
+`JOURNAL-01` is complete for beta: completed and manually logged walks remain
+private, account-namespaced records in the current browser. The same contract
+covers export and private-data cleanup, and the UI states plainly that records
+do not sync. See `docs/architecture/JOURNAL-01-private-local-journal.md`.
+
 | ID | Item | Size | Dependency |
 | --- | --- | --- | --- |
-| JOURNAL-01 | Define synchronization and privacy for walk-journal records | M | AUTH-03, HIKE-04 |
 | POI-01 | Lazy-load nonessential rifugi, bars, lifts, and transit layers | M | DATA-03, PERF-01 |
 | I18N-01 | Guarantee Italian parity for every core beta state | M | Stable core-flow copy |
 | GUIDE-01 | Link relevant guides from cautions without interrupting decisions | S | UX-04 |

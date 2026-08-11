@@ -248,10 +248,9 @@
 <script src="regions-config.js" defer></script>
 <script src="walk-card.js?v=20260810-1"></script>
 <script>
-// My Journal. Entries are per-account, stored locally in this browser
-// (same pattern as the locally-stored dog photo).
-// TODO: move journal entries to a backend API (Firestore) so they sync
-// across devices; the render layer below is storage-agnostic.
+// My Journal. Entries are private, per-account records stored only in this
+// browser. JOURNAL-01 deliberately avoids silently uploading walk history;
+// see docs/architecture/JOURNAL-01-private-local-journal.md.
 document.addEventListener('DOMContentLoaded', function(){
   var state = { filter: 'all', rating: 5, cond: 'Comfortable', entries: [], favorites: {} };
   var COND_OPTIONS = ['Comfortable', 'Warm', 'Hot'];
