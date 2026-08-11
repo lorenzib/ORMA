@@ -59,6 +59,7 @@ describe('UX-04 canonical recommendation journey', () => {
       '<button id="detailSaveBtn">Save</button>' +
       '<section id="offlinePackagePanel" hidden></section>' +
       '<button id="offlineDownloadBtn">Download</button>' +
+      '<aside id="trailGuideLinks" hidden></aside>' +
       '<details id="trailEvidence"></details>' +
       '<section id="recommendationDecision" hidden></section>';
     window.history.replaceState(null, '', '/trail.html?id=demo-loop');
@@ -70,7 +71,7 @@ describe('UX-04 canonical recommendation journey', () => {
       scoringVersion:'1.1.0',
       evidenceTier:'mapped',
       positiveReasons:[{ message:'Distance is within range.' }],
-      cautions:[{ message:'Shade is limited.' }],
+      cautions:[{ code:'trail.shade.low', message:'Shade is limited.' }],
       hardStops:[],
       unknowns:[{ message:'Access is not reviewed.' }],
     }));
@@ -78,6 +79,7 @@ describe('UX-04 canonical recommendation journey', () => {
     window.DoloPawsOffline = null;
     window.eval(source('comparison-state.js'));
     window.eval(source('recommendation-decision.js'));
+    window.eval(source('recommendation-guides.js'));
     window.eval(controller);
 
     const block = document.getElementById('recommendationDecision');
@@ -86,6 +88,9 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(block.textContent).toContain('Possible with cautions');
     expect(block.textContent).toContain('Distance is within range.');
     expect(block.textContent).toContain('Shade is limited.');
+    const guideLinks = document.getElementById('trailGuideLinks');
+    expect(guideLinks.hidden).toBe(false);
+    expect(guideLinks.textContent).toContain('Recognising overheating early');
     // Calm data-completeness chip instead of "low confidence" jargon.
     expect(block.textContent).toContain('Based on partial data');
     expect(block.textContent).not.toContain('low confidence');

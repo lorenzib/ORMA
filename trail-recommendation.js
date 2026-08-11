@@ -12,6 +12,21 @@
     return `<ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`;
   }
 
+  function renderGuideLinks(recommendation){
+    const root = document.getElementById('trailGuideLinks');
+    const api = window.DoloPawsRecommendationGuides;
+    if(!root || !api){ return; }
+    const guides = api.select(recommendation, 2);
+    root.hidden = guides.length === 0;
+    root.innerHTML = guides.length ?
+      '<div class="td2-kick">Read before you go</div>' +
+      '<p class="trail-guide-intro">Selected from this trail’s cautions.</p>' +
+      '<ul>' + guides.map(guide =>
+        `<li><a href="${esc(guide.href)}">${esc(guide.label)} →</a>` +
+          `<span>${esc(guide.summary)}</span></li>`
+      ).join('') + '</ul>' : '';
+  }
+
   function currentTrail(){
     const id = new URLSearchParams(window.location.search).get('id');
     return typeof trails !== 'undefined' ? trails.find(trail => trail.id === id) : null;
@@ -75,6 +90,7 @@
       '</div>';
     root.hidden = false;
 
+    renderGuideLinks(recommendation);
     renderEvidenceMeta(view);
     const hero = document.getElementById('heroVerdict');
     if(hero) hero.textContent = view.heroSummary;

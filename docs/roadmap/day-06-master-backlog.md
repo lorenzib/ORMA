@@ -813,11 +813,15 @@ private, account-namespaced records in the current browser. The same contract
 covers export and private-data cleanup, and the UI states plainly that records
 do not sync. See `docs/architecture/JOURNAL-01-private-local-journal.md`.
 
+`GUIDE-01` is complete: the trail sidebar shows at most two practical guides
+selected from the canonical recommendation's actual caution codes. The guide
+links remain outside the decision card and disappear when no caution has a
+relevant guide. See `docs/architecture/GUIDE-01-contextual-caution-guides.md`.
+
 | ID | Item | Size | Dependency |
 | --- | --- | --- | --- |
 | POI-01 | Lazy-load nonessential rifugi, bars, lifts, and transit layers | M | DATA-03, PERF-01 |
 | I18N-01 | Guarantee Italian parity for every core beta state | M | Stable core-flow copy |
-| GUIDE-01 | Link relevant guides from cautions without interrupting decisions | S | UX-04 |
 | TOOL-01 | Move maintained fetch utilities under `scripts/` and document outputs | S | DATA-02 |
 | CLEAN-01 | Remove machine artifacts and archive unused prototypes | S | UX-01 dependency audit |
 

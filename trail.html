@@ -521,6 +521,12 @@ body{background:#EFECE2;}
 .td2 .empty-state__action:hover{background:#fff;border-color:#3E7A91;color:#2E4034;}
 /* "Read before you go" belongs in a card like the rest of the column. */
 .td2 #trailGuideLinks{background:#fff;border:1px solid #E4E0D3;border-radius:16px;padding:22px 24px;margin-top:0;}
+.td2 #trailGuideLinks .trail-guide-intro{margin:7px 0 12px;color:#6B7A6E;font-size:12px;line-height:1.45;}
+.td2 #trailGuideLinks ul{list-style:none;margin:0;padding:0;display:grid;gap:12px;}
+.td2 #trailGuideLinks li+li{padding-top:12px;border-top:1px solid #EDE9DD;}
+.td2 #trailGuideLinks a{display:block;color:#2E4034;font:700 13px/1.35 'Inter',sans-serif;text-decoration:none;}
+.td2 #trailGuideLinks a:hover{text-decoration:underline;}
+.td2 #trailGuideLinks li span{display:block;margin-top:3px;color:#6B7A6E;font-size:11.5px;line-height:1.45;}
 /* Hazard-card header stays on one line: kick + pill left, Flag right. */
 .td2 .td2-hazard-head{flex-wrap:nowrap;}
 .td2 .td2-hazard-head .lhs{flex-wrap:wrap;min-width:0;}
@@ -941,6 +947,7 @@ body{background:#EFECE2;}
 <script src="trail-detail-ui.js?v=20260722-2" defer></script>
 <script src="trail-mobile.js?v=20260722" defer></script>
 <script src="recommendation-decision.js?v=20260806-1" defer></script>
+<script src="recommendation-guides.js?v=20260811-1" defer></script>
 <script src="trail-recommendation.js?v=20260807-1" defer></script>
 </body>
 </html>
