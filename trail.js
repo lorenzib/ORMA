@@ -361,6 +361,7 @@ function addBaseHillshade(map, beforeId){
 // ~1,400 stations costs nothing.
 function renderAllLifts(map){
   if (typeof gondolas === 'undefined' || !Array.isArray(gondolas) || !gondolas.length) return;
+  if (map.getSource('detail-gondolas')) return;
 
   const lineFeatures = [], stationFeatures = [];
   gondolas.forEach(g => {
@@ -1300,8 +1301,8 @@ function renderTrail(t){
       increaseLabelDensity(map);
       addTerrainToggle(map, 'trailDetailMap', 1.5, 45,
         document.querySelector('#tdLayerSwitch [data-map3d]'));
-      renderAllLifts(map);
       const loadSecondaryPois = () => {
+        renderAllLifts(map);
         if (typeof initDetailPois === 'function') initDetailPois(map, t);
       };
       if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.onIdle(loadSecondaryPois, 4500);

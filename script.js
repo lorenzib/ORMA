@@ -252,7 +252,7 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
 
   const LAYER_SETS = {
     routes:   ['waymarked-hiking-layer'],
-    lifts:    ['trailmap-gondolas-labels'],
+    lifts:    ['trailmap-gondolas-line', 'trailmap-gondolas-labels'],
     fountains:['water-sources-layer-lowzoom', 'water-sources-layer', 'water-sources-cluster', 'water-sources-cluster-count'],
     huts:     ['mountain-huts-layer-lowzoom', 'mountain-huts-layer', 'mountain-huts-cluster', 'mountain-huts-cluster-count'],
     barsCafes:['bars-cafes-layer-lowzoom', 'bars-cafes-layer', 'bars-cafes-cluster', 'bars-cafes-cluster-count'],
@@ -424,6 +424,7 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
     legend.innerHTML = html;
   }
   renderMapLegend();
+  return Object.freeze({ sync:applyVisibility });
 }
 
 function renderGondolas(map, sourceId){
@@ -439,7 +440,7 @@ function renderGondolas(map, sourceId){
     id: sourceId + '-line',
     type: 'line',
     source: sourceId,
-    layout: { 'line-join': 'round', 'line-cap': 'round', visibility: 'visible' },
+    layout: { 'line-join': 'round', 'line-cap': 'round', visibility: 'none' },
     paint: {
       'line-color': [
         'match', ['get', 'status'],
@@ -696,7 +697,10 @@ function initTrailMap(){
     preventTransitPoiDuplication(trailMapInstance);
     if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(trailMapInstance);
     
-    const allLiftMarkers = renderGondolas(trailMapInstance, 'trailmap-gondolas');
+    // Secondary lift markers are filled after the route catalogue is usable.
+    // The shared array lets an already-rendered layer control manage markers
+    // that join later without rebuilding the controls.
+    const allLiftMarkers = [];
     
     // Waymarked Trails hiking overlay — shows route numbers, waymarking, and trail network detail
     const firstLabelLayer = trailMapInstance.getStyle().layers.find(l => l.type === 'symbol');
@@ -849,11 +853,14 @@ function initTrailMap(){
     });
 
     // Create overlay toggle controls
-    createMapOverlayControls(trailMapInstance, 'trailMap', allLiftMarkers);
+    const overlayControls = createMapOverlayControls(trailMapInstance, 'trailMap', allLiftMarkers);
     
     // Keep the trail catalogue interactive first. Regional water, dog-route,
     // hut and bar datasets are secondary and join after the map becomes idle.
     const loadSecondaryMapData = () => {
+      const liftMarkers = renderGondolas(trailMapInstance, 'trailmap-gondolas') || [];
+      liftMarkers.forEach(marker => allLiftMarkers.push(marker));
+      if(overlayControls) overlayControls.sync('lifts');
       initializeWaterSources(trailMapInstance);
       if (typeof initializeDogRoutes === 'function') initializeDogRoutes(trailMapInstance, activeRegion);
       initializeHutsBars(trailMapInstance);

@@ -818,9 +818,13 @@ selected from the canonical recommendation's actual caution codes. The guide
 links remain outside the decision card and disappear when no caution has a
 relevant guide. See `docs/architecture/GUIDE-01-contextual-caution-guides.md`.
 
+`POI-01` is complete: route geometry and core controls become usable before
+regional water, hut, food, dog-route, and lift overlays are loaded. Late lift
+data adopts the current toggle state, while transit enrichment remains
+request-driven. See `docs/architecture/POI-01-lazy-map-overlays.md`.
+
 | ID | Item | Size | Dependency |
 | --- | --- | --- | --- |
-| POI-01 | Lazy-load nonessential rifugi, bars, lifts, and transit layers | M | DATA-03, PERF-01 |
 | I18N-01 | Guarantee Italian parity for every core beta state | M | Stable core-flow copy |
 | TOOL-01 | Move maintained fetch utilities under `scripts/` and document outputs | S | DATA-02 |
 | CLEAN-01 | Remove machine artifacts and archive unused prototypes | S | UX-01 dependency audit |

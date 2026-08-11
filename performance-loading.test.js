@@ -23,8 +23,14 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(homepage).toContain('function scheduleGuestMap()');
     expect(homepage).toContain('function scheduleTrailMap()');
     expect(homepage).toContain('onIdle(loadSecondaryMapData, 5000)');
+    expect(homepage.indexOf("renderGondolas(trailMapInstance, 'trailmap-gondolas')"))
+      .toBeGreaterThan(homepage.indexOf('const loadSecondaryMapData = () =>'));
+    expect(homepage).toContain("overlayControls.sync('lifts')");
+    expect(homepage).toContain("lifts:    ['trailmap-gondolas-line', 'trailmap-gondolas-labels']");
     expect(detail).toContain('whenVisible(detailMapTarget, initDetailMap');
     expect(detail).toContain('onIdle(loadSecondaryPois, 4500)');
+    expect(detail.indexOf('renderAllLifts(map);'))
+      .toBeGreaterThan(detail.indexOf('const loadSecondaryPois = () =>'));
   });
 
   test('trail loaders keep default and requested regions explicit', () => {
