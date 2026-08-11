@@ -23,6 +23,8 @@ moderation until Firestore accepts them.
 - only the current owner's records are selected for synchronization;
 - reviews, hazards, and photos use the same field and size limits as their
   server APIs;
+- dedicated photo and hazard pages resize phone images to a maximum 900-pixel
+  edge and bounded JPEG before upload or queuing;
 - the queue is capped at 20 records and approximately 3.8 million serialized
   characters so a photo cannot expand storage without limit;
 - a record is removed only after Firestore reports acceptance; and

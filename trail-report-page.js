@@ -9,7 +9,7 @@
   document.getElementById('severity').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;severity=b.textContent;document.querySelectorAll('#severity button').forEach(x=>x.classList.toggle('on',x===b));});
   locationField.addEventListener('input',sync);
   document.getElementById('addReportPhoto').addEventListener('click',()=>photoInput.click());
-  photoInput.addEventListener('change',()=>{Array.from(photoInput.files).slice(0,4-photos.length).forEach(file=>{const r=new FileReader();r.onload=()=>{photos.push(r.result);renderPhotos();};r.readAsDataURL(file);});photoInput.value='';});
+  photoInput.addEventListener('change',async()=>{const files=Array.from(photoInput.files).slice(0,4-photos.length);photoInput.value='';status.hidden=true;for(const file of files){try{photos.push(await window.DoloPawsTrailPhotoPrep.prepare(file));renderPhotos();}catch(error){status.textContent=error.message||'This photo could not be prepared.';status.hidden=false;}}});
   function renderPhotos(){photosEl.innerHTML=photos.map((p,i)=>'<div class="photo-tile" style="background-image:url('+JSON.stringify(p)+')"><button class="photo-remove" data-remove="'+i+'" aria-label="Remove photo">×</button></div>').join('')+(photos.length<4?'<button id="addReportPhotoAgain" class="photo-add-tile" aria-label="Add another photo">+</button>':'');const again=document.getElementById('addReportPhotoAgain');if(again)again.addEventListener('click',()=>photoInput.click());}
   photosEl.addEventListener('click',e=>{const b=e.target.closest('[data-remove]');if(!b)return;photos.splice(Number(b.dataset.remove),1);renderPhotos();});
   submit.addEventListener('click',async()=>{

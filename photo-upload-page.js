@@ -9,7 +9,7 @@
   function choose(capture){ if(capture) input.setAttribute('capture','environment'); else input.removeAttribute('capture'); input.click(); }
   document.getElementById('takePhoto').addEventListener('click',()=>choose(true));
   document.getElementById('choosePhoto').addEventListener('click',()=>choose(false));
-  input.addEventListener('change',()=>{Array.from(input.files).slice(0,4-photos.length).forEach(file=>{const reader=new FileReader();reader.onload=()=>{photos.push(reader.result);render();};reader.readAsDataURL(file);});input.value='';});
+  input.addEventListener('change',async()=>{const files=Array.from(input.files).slice(0,4-photos.length);input.value='';status.hidden=true;for(const file of files){try{photos.push(await window.DoloPawsTrailPhotoPrep.prepare(file));render();}catch(error){status.textContent=error.message||'This photo could not be prepared.';status.hidden=false;}}});
   grid.addEventListener('click',e=>{const b=e.target.closest('[data-remove]');if(!b)return;photos.splice(Number(b.dataset.remove),1);render();});
   submit.addEventListener('click',async()=>{
     status.hidden=true;submit.disabled=true;submit.textContent='Submitting…';
