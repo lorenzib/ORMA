@@ -69,6 +69,10 @@ describe('DATA-03 regional runtime boundaries', () => {
 
   test('static generation still reads the complete canonical source catalog', () => {
     const generator = read('scripts/generate-trail-pages.js');
-    expect(generator).toContain("'trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js'");
+    const loader = read('scripts/load-production-trails.js');
+    expect(generator).toContain("require('./load-production-trails')");
+    expect(generator).toContain('loadProductionTrails(ROOT)');
+    ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js']
+      .forEach(file => expect(loader).toContain(`'${file}'`));
   });
 });

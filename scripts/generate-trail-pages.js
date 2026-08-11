@@ -595,12 +595,15 @@ ${sourceRecord ? `    ${sourceRecord}\n` : ''}    <div id="dogFit">
 // 4. Sitemap
 // ---------------------------------------------------------------
 function sitemap(urls) {
-  // Date pages by when the trail data actually changed, not by build time.
-  let latest = 0;
-  for (const f of ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'trail-audits.js']) {
-    try { latest = Math.max(latest, fs.statSync(path.join(ROOT, f)).mtimeMs); } catch {}
+  // Filesystem mtimes change when CI copies the repository, so they cannot
+  // produce a reproducible sitemap. Trail-data releases carry one explicit,
+  // reviewed date instead.
+  const releaseFile = path.join(ROOT, 'data', 'trail-data-release.json');
+  const release = JSON.parse(fs.readFileSync(releaseFile, 'utf8'));
+  if(release.schemaVersion !== 1 || !/^\d{4}-\d{2}-\d{2}$/.test(release.lastModified || '')){
+    throw new Error('data/trail-data-release.json must contain a valid lastModified date');
   }
-  const lastmod = new Date(latest || Date.now()).toISOString().slice(0, 10);
+  const lastmod = release.lastModified;
   const items = urls
     .map(
       (u) => `  <url><loc>${u}</loc><lastmod>${lastmod}</lastmod></url>`
