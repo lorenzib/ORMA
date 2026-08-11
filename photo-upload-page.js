@@ -17,15 +17,19 @@
       status.textContent='Account services are still loading. Please try again.';status.hidden=false;render();return;
     }
     const caption=document.getElementById('photoCaption').value.trim();
+    let queued=0;
     for(const photo of photos){
       const result=await window.DoloPawsCommunity.addTrailPhoto(trail,photo,caption);
       if(!result.ok){
         status.textContent=result.message||'This photo could not be submitted.';status.hidden=false;render();return;
       }
+      if(result.queued)queued++;
     }
     document.getElementById('uploadMain').hidden=true;
     document.getElementById('uploadSuccess').hidden=false;
-    document.getElementById('uploadSuccessCopy').textContent='Your '+photos.length+' photo'+(photos.length===1?'':'s')+' of '+name+' '+(photos.length===1?'is':'are')+' pending moderation and will appear only after approval.';
+    document.getElementById('uploadSuccessCopy').textContent=queued
+      ? 'Your '+queued+' photo'+(queued===1?' is':'s are')+' saved on this device and waiting to sync when you reconnect.'
+      : 'Your '+photos.length+' photo'+(photos.length===1?'':'s')+' of '+name+' '+(photos.length===1?'is':'are')+' pending moderation and will appear only after approval.';
   });
   render();
 })();

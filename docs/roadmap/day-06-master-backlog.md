@@ -615,6 +615,8 @@ All P0 and P1 work
 
 ### MOD-04 — Queue offline contributions
 
+- **Status:** Implemented in code; Firestore rules deployment and authenticated
+  offline browser acceptance pending (2026-08-11)
 - **Priority:** P2
 - **Size:** M
 - **Depends on:** MOD-01, OFF-03

@@ -26,6 +26,7 @@ describe('OFF-03 local device cleanup', () => {
     localStorage.setItem('dolopaws-active-hike-v1', '{}');
     localStorage.setItem('dolopaws-dog-photo-user-1', 'private');
     localStorage.setItem('dolopaws-journal-user-1', 'private journal');
+    localStorage.setItem('dolopaws-offline-contributions-v1', 'private queue');
     localStorage.setItem('dolopaws-offline:lago-carezza', 'package');
     localStorage.setItem('dolopaws-offline-owner-salt', 'salt');
     localStorage.setItem('dolopaws-lang', 'it');
@@ -38,6 +39,7 @@ describe('OFF-03 local device cleanup', () => {
     expect(localStorage.getItem('dolopaws-active-hike-v1')).toBeNull();
     expect(localStorage.getItem('dolopaws-dog-photo-user-1')).toBeNull();
     expect(localStorage.getItem('dolopaws-journal-user-1')).toBeNull();
+    expect(localStorage.getItem('dolopaws-offline-contributions-v1')).toBeNull();
     expect(sessionStorage.getItem('dolopaws-pending-auth-action')).toBeNull();
     expect(localStorage.getItem('dolopaws-offline:lago-carezza')).toBe('package');
     expect(localStorage.getItem('dolopaws-offline-owner-salt')).toBe('salt');

@@ -499,6 +499,7 @@ service cloud.firestore {
 
     match /flags/{flagId} {
       allow get: if isModerator()
+        || isOwner(resource.data.uid)
         || (
           resource.data.status in ['visible', 'reported']
           && resource.data.expiresAt is timestamp
@@ -560,7 +561,10 @@ service cloud.firestore {
     }
 
     match /trailPhotos/{photoId} {
-      allow get, list: if isModerator()
+      allow get: if isModerator()
+        || isOwner(resource.data.uid)
+        || resource.data.status in ['visible', 'reported'];
+      allow list: if isModerator()
         || resource.data.status in ['visible', 'reported'];
       allow create: if isContributor()
         && request.resource.data.uid == request.auth.uid

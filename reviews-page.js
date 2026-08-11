@@ -153,6 +153,11 @@
       return;
     }
     closeComposer();
+    if(result.queued){
+      status.textContent = result.message || 'Review saved on this device — waiting to sync when you reconnect.';
+      status.hidden = false;
+      return;
+    }
     await load();
     status.textContent = 'Review submitted for moderation. It will appear here only after approval.';
     status.hidden = false;

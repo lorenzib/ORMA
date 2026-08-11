@@ -22,6 +22,8 @@ describe('PRIV-01 retention and deletion contract', () => {
   test('public copy distinguishes private deletion from safety retention', () => {
     const page = read('privacy.html');
     expect(page).toContain('Community content and safety or moderation records are handled separately');
+    expect(page).toContain('community contributions waiting to sync');
+    expect(page).toContain('Queued contributions stay private on this device');
     expect(page).toContain('not automatically erased with the private account');
     expect(page).not.toContain('profile, saved trails, journal');
   });

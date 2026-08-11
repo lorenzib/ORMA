@@ -464,6 +464,34 @@ function contributionWriteError(error, fallback) {
   return { ok: false, message: fallback };
 }
 
+function contributionClientId(type) {
+  const random = globalThis.crypto && typeof globalThis.crypto.randomUUID === "function"
+    ? globalThis.crypto.randomUUID().replace(/-/g, "").slice(0, 20)
+    : Math.random().toString(36).slice(2, 14);
+  return `${type}-${Date.now().toString(36)}-${random}`.slice(0, 80);
+}
+
+function queueOfflineContribution(type, payload, options) {
+  if (options && options.skipOfflineQueue) return null;
+  const queue = window.DoloPawsOfflineContributions;
+  if (!(queue && currentUser && currentUser.emailVerified)) return null;
+  const result = queue.enqueue(type, payload, currentUser.uid, {
+    id: options && options.queueId,
+  });
+  return result.ok ? {
+    ok: true,
+    queued: true,
+    queueId: result.record.id,
+    message: "Saved on this device — waiting to sync when you reconnect.",
+  } : {
+    ok: false,
+    state: "queue-unavailable",
+    message: result.error === "queue-full"
+      ? "Your offline contribution queue is full. Reconnect before adding more."
+      : "This contribution could not be saved on this device.",
+  };
+}
+
 async function sendContributionVerificationEmail() {
   if (!currentUser) {
     return { ok: false, message: "Log in before requesting a verification email." };
@@ -598,16 +626,33 @@ async function getWeeklyHikeCount(trailId) {
 // Security is enforced by Firestore rules; these functions just write
 // well-formed documents and never break the page on failure.
 // ============================================================
-async function addFlag(trailId, type, km, text) {
+async function addFlag(trailId, type, km, text, options) {
+  const queuePayload = { trailId, type, km, text };
+  const clientId = options && options.queueId || contributionClientId("hazard");
   const eligibility = await getContributionEligibility();
-  if (!eligibility.ok) return eligibility;
+  if (!eligibility.ok) {
+    if (eligibility.state === "unavailable") {
+      const queued = queueOfflineContribution("hazard", queuePayload, options);
+      if (queued) return queued;
+    }
+    return eligibility;
+  }
   try {
     const dog = await getDogProfile();
     const expiry = window.DoloPawsCommunityStates &&
       window.DoloPawsCommunityStates.hazardExpiryDate
       ? window.DoloPawsCommunityStates.hazardExpiryDate(type)
       : new Date(Date.now() + 30 * 24 * 3600 * 1000);
-    await addDoc(collection(db, "flags"), {
+    const flagRef = doc(db, "flags", `${currentUser.uid}_${clientId}`.slice(0, 180));
+    try {
+      const existing = await getDoc(flagRef);
+      if (existing.exists()) return { ok: true, duplicate: true };
+    } catch (error) {
+      // A missing document cannot satisfy the owner-read rule. Creation below
+      // remains independently constrained by the full contributor schema.
+      if (!String(error && error.code || "").includes("permission-denied")) throw error;
+    }
+    await setDoc(flagRef, {
       trailId: String(trailId).slice(0, 80),
       uid: currentUser.uid,
       type,
@@ -624,6 +669,13 @@ async function addFlag(trailId, type, km, text) {
     return { ok: true };
   } catch (e) {
     console.error("addFlag failed:", e);
+    if (!String(e && e.code || "").includes("permission-denied")) {
+      const queued = queueOfflineContribution("hazard", queuePayload, {
+        ...options,
+        queueId: options && options.queueId || clientId,
+      });
+      if (queued) return queued;
+    }
     return contributionWriteError(e, "Could not save your report — please try again.");
   }
 }
@@ -737,9 +789,16 @@ async function deleteFlag(flagId) {
   catch (e) { return false; }
 }
 
-async function setReview(trailId, rating, text, hikedOn) {
+async function setReview(trailId, rating, text, hikedOn, options) {
+  const queuePayload = { trailId, rating, text, hikedOn };
   const eligibility = await getContributionEligibility();
-  if (!eligibility.ok) return eligibility;
+  if (!eligibility.ok) {
+    if (eligibility.state === "unavailable") {
+      const queued = queueOfflineContribution("review", queuePayload, options);
+      if (queued) return queued;
+    }
+    return eligibility;
+  }
   try {
     const dog = await getDogProfile();
     const id = `${String(trailId).slice(0, 80)}_${currentUser.uid}`;
@@ -770,6 +829,10 @@ async function setReview(trailId, rating, text, hikedOn) {
     return { ok: true };
   } catch (e) {
     console.error("setReview failed:", e);
+    if (!String(e && e.code || "").includes("permission-denied")) {
+      const queued = queueOfflineContribution("review", queuePayload, options);
+      if (queued) return queued;
+    }
     return contributionWriteError(e, "Could not save your review — please try again.");
   }
 }
@@ -794,16 +857,31 @@ async function deleteMyReview(trailId) {
   } catch (e) { return false; }
 }
 
-async function addTrailPhoto(trailId, image, caption) {
+async function addTrailPhoto(trailId, image, caption, options) {
+  const queuePayload = { trailId, image, caption };
+  const clientId = options && options.queueId || contributionClientId("photo");
   const eligibility = await getContributionEligibility();
-  if (!eligibility.ok) return eligibility;
+  if (!eligibility.ok) {
+    if (eligibility.state === "unavailable") {
+      const queued = queueOfflineContribution("photo", queuePayload, options);
+      if (queued) return queued;
+    }
+    return eligibility;
+  }
   const imageData = String(image || '');
   if (!imageData.startsWith('data:image/') || imageData.length > 700000) {
     return { ok: false, message: "This photo is too large — please try another image." };
   }
   try {
     const dog = await getDogProfile();
-    await addDoc(collection(db, "trailPhotos"), {
+    const photoRef = doc(db, "trailPhotos", `${currentUser.uid}_${clientId}`.slice(0, 180));
+    try {
+      const existing = await getDoc(photoRef);
+      if (existing.exists()) return { ok: true, duplicate: true };
+    } catch (error) {
+      if (!String(error && error.code || "").includes("permission-denied")) throw error;
+    }
+    await setDoc(photoRef, {
       trailId: String(trailId).slice(0, 80),
       uid: currentUser.uid,
       image: imageData,
@@ -815,6 +893,13 @@ async function addTrailPhoto(trailId, image, caption) {
     return { ok: true };
   } catch (e) {
     console.error("addTrailPhoto failed:", e);
+    if (!String(e && e.code || "").includes("permission-denied")) {
+      const queued = queueOfflineContribution("photo", queuePayload, {
+        ...options,
+        queueId: options && options.queueId || clientId,
+      });
+      if (queued) return queued;
+    }
     return contributionWriteError(e, "Could not add this photo — please try again.");
   }
 }

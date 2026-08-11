@@ -23,6 +23,7 @@
     if(!result.ok){
       status.textContent=result.message||'This report could not be submitted.';status.hidden=false;sync();return;
     }
+    let queued=result.queued?1:0;
     for(const photo of photos){
       const photoResult=await window.DoloPawsCommunity.addTrailPhoto(trail,photo,'Photo attached to a pending hazard report');
       if(!photoResult.ok){
@@ -30,10 +31,13 @@
         status.hidden=false;
         return;
       }
+      if(photoResult.queued)queued++;
     }
     document.getElementById('reportMain').hidden=true;
     document.getElementById('reportSuccess').hidden=false;
-    document.getElementById('reportSuccessCopy').textContent='Your report for '+name+' is pending moderation. It will appear publicly only after approval.';
+    document.getElementById('reportSuccessCopy').textContent=queued
+      ? 'Your report is saved on this device and waiting to sync when you reconnect.'
+      : 'Your report for '+name+' is pending moderation. It will appear publicly only after approval.';
   });
   sync();
 })();

@@ -317,6 +317,8 @@ describe('hazard flags', () => {
     ));
     await assertSucceeds(setDoc(flagRef, validFlag('author-1')));
     await assertFails(setDoc(doc(author, 'flags/spoofed-flag'), validFlag('other-1')));
+    await assertSucceeds(getDoc(flagRef));
+    await assertFails(getDoc(doc(other, 'flags/flag-1')));
     await assertSucceeds(updateDoc(flagRef, { text: 'Updated field observation.' }));
     await assertFails(updateDoc(flagRef, { status: 'hidden' }));
     await assertFails(updateDoc(doc(other, 'flags/flag-1'), { text: 'Hijacked.' }));
@@ -566,6 +568,7 @@ describe('trail photos', () => {
   test('only verified accounts can submit valid bounded images', async () => {
     const ordinary = ordinaryDb('ordinary-1');
     const author = contributorDb('author-1');
+    const other = contributorDb('other-1');
     await assertFails(setDoc(doc(ordinary, 'trailPhotos/photo-1'), validPhoto('ordinary-1')));
     await assertFails(setDoc(
       doc(author, 'trailPhotos/photo-2'),
@@ -575,7 +578,10 @@ describe('trail photos', () => {
       doc(author, 'trailPhotos/photo-3'),
       validPhoto('author-1', { caption: 'x'.repeat(241) })
     ));
-    await assertSucceeds(setDoc(doc(author, 'trailPhotos/photo-4'), validPhoto('author-1')));
+    const photoRef = doc(author, 'trailPhotos/photo-4');
+    await assertSucceeds(setDoc(photoRef, validPhoto('author-1')));
+    await assertSucceeds(getDoc(photoRef));
+    await assertFails(getDoc(doc(other, 'trailPhotos/photo-4')));
   });
 
   test('public photo queries require visible status', async () => {

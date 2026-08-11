@@ -20,7 +20,7 @@ retention rule, and deletion path. The public explanation is in
 | Active hike | Crash and offline recovery; local storage only | Recoverable for 36 hours after the last update; stale data remains inert until replaced or local cleanup | Hike completion/replacement or local cleanup |
 | Completed hikes and journal | Local walk history; local storage only | Until the user removes it or clears DoloPaws local data | Journal controls, browser storage controls, or local cleanup |
 | Private post-hike outcomes | Product suitability learning; local pending queue and private `users/{uid}/outcomes` | Pending locally until sync/cleanup; server copy while account exists | Account cancellation deletes every outcome before the user document and auth identity |
-| Reviews, trail photos and hazard reports | Community guidance and trail safety; Firestore contribution collections | While pending, published, or needed for contribution/safety history | Owner or moderator removal; account cancellation does not cascade-delete |
+| Reviews, trail photos and hazard reports | Community guidance and trail safety; owner-bound local queue before sync, then Firestore contribution collections | Locally until accepted or local cleanup; server-side while pending, published, or needed for contribution/safety history | Local cleanup removes unsynced items; owner or moderator removal handles accepted content; account cancellation does not cascade-delete accepted content |
 | Abuse reports | Investigating community abuse; private `reports` collection | Up to 24 months after resolution; longer only for an active safety dispute or legal hold | Moderator/operator retention review |
 | Moderation audit | Accountability for operator decisions; private immutable `moderationAudit` collection | Up to 24 months after the last action; longer only for an active dispute or legal hold | Privileged operator retention review; clients cannot alter audit history |
 | Optional product analytics | Funnel diagnostics; consented local queue | Maximum 200 queued events; records older than 30 days are pruned on analytics activity | Consent withdrawal or local cleanup immediately removes the queue and client id |
@@ -56,7 +56,7 @@ the browser or Firebase performs automatic deletion.
 - `metrics.js` caps the analytics queue at 200 and prunes events after 30 days;
   withdrawing consent removes the queue and random identifier.
 - `local-data.js` separates private local cleanup from optional public package
-  removal.
+  removal and clears the owner-bound unsynced contribution queue.
 - `account-deletion.js` deletes private outcomes, then the account document,
   then the Firebase Authentication identity.
 - Firestore rules restrict private outcomes to their owner, community removal

@@ -5,6 +5,7 @@
     'dolopaws-active-hike-v1',
     'dolopaws-hike-completions-v1',
     'dolopaws-post-hike-outcomes-v1',
+    'dolopaws-offline-contributions-v1',
     'dolopaws-profile-summary',
     'dolopaws-dog-photo',
     'dolopaws-notif-prefs',
