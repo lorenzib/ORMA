@@ -3,20 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Trails for your dog — DoloPaws</title>
+<title>Saved trails | DoloPaws</title>
 <meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="0;url=index.html">
-<link rel="canonical" href="https://www.dolopaws.com/">
+<meta http-equiv="refresh" content="0;url=saved.html">
+<link rel="canonical" href="https://www.dolopaws.com/saved.html">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <main class="guide-article" style="text-align:center;padding-top:64px;">
   <img src="logo.svg" alt="" width="48" height="48">
-  <h1 style="margin-top:16px;">Your personalised trails have moved</h1>
-  <p style="color:var(--ink-soft);">Your dog’s ranked trails now appear on the DoloPaws homepage.</p>
-  <a href="index.html" class="auth-submit" style="display:inline-block;width:auto;padding:11px 24px;text-decoration:none;">Go to your trails</a>
+  <h1 style="margin-top:16px;">Your saved trails have moved</h1>
+  <p style="color:var(--ink-soft);">Your trail shortlist now lives on the Saved trails page.</p>
+  <a href="saved.html" class="auth-submit" style="display:inline-block;width:auto;padding:11px 24px;text-decoration:none;">Go to saved trails</a>
 </main>
-<script>window.location.replace('index.html');</script>
+<script>
+  // Keep old bookmarks useful without creating a second saved-trails product.
+  // Only the current query and hash are carried across; the destination is fixed.
+  window.location.replace('saved.html' + window.location.search + window.location.hash);
+</script>
 </body>
 </html>

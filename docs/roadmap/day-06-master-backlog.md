@@ -799,9 +799,12 @@ Implementation evidence: `docs/architecture/QA-01-complete-ci-quality-gate.md`.
 a dependency of the single-dog core journey. See
 `docs/architecture/PROFILE-01-multi-dog-profiles.md`.
 
+`SAVE-01` is complete: all maintained entry points use `saved.html`, while the
+retired `my-trails.html` URL now provides a noindex compatibility handoff for
+old bookmarks. See `docs/architecture/SAVE-01-canonical-saved-trails.md`.
+
 | ID | Item | Size | Dependency |
 | --- | --- | --- | --- |
-| SAVE-01 | Consolidate `my-trails` into the canonical `saved.html` experience | M | SCORE-02, UX-01 |
 | JOURNAL-01 | Define synchronization and privacy for walk-journal records | M | AUTH-03, HIKE-04 |
 | POI-01 | Lazy-load nonessential rifugi, bars, lifts, and transit layers | M | DATA-03, PERF-01 |
 | I18N-01 | Guarantee Italian parity for every core beta state | M | Stable core-flow copy |

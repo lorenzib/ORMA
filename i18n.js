@@ -933,6 +933,7 @@
         'browse-trails.html': 'Tutti i sentieri | DoloPaws',
         'safety-guide.html': 'Guida sicurezza cani | DoloPaws',
         'account.html': 'Il mio account | DoloPaws',
+        'saved.html': 'Sentieri salvati | DoloPaws',
         'my-trails.html': 'I miei sentieri | DoloPaws',
         'about.html': 'Chi siamo | DoloPaws',
       };

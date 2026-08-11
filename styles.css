@@ -1067,7 +1067,7 @@ body.ep-app .acct-wrap>#backLink,body.ep-app .acct-wrap>#accountH1,body.ep-app #
 }
 @media(max-width:560px){.profile-two{grid-template-columns:1fr;}}
 
-/* ---------- AREA FILTER (shared: my-trails.html + homepage) ---------- */
+/* ---------- AREA FILTER (homepage) ---------- */
 .area-pill{
   padding:8px 15px;border-radius:999px;border:1.5px solid var(--paper-line);
   background:var(--card);font-size:12.5px;font-weight:600;color:var(--ink-soft);cursor:pointer;
