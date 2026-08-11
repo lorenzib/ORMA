@@ -58,3 +58,19 @@ not presented as meeting a Core Web Vitals target.
 
 The original PERF-01 baseline remains the comparison point rather than being
 rewritten after optimization.
+
+## Regression verification — 2026-08-11
+
+The full three-run, cold-cache mobile profile was repeated after the homepage
+navigation changes. Every scenario remained inside its checked-in ceiling:
+
+| Scenario | Transfer | LCP | INP | CLS | JS execution |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Homepage | 1844.3 KB | 4384 ms | 88 ms | 0.715 | 93 ms |
+| Discovery | 1622.0 KB | 2920 ms | 88 ms | 0.501 | 158 ms |
+| Trail detail | 2153.6 KB | 8580 ms | 80 ms | 0.838 | 287 ms |
+| Download flow | 1631.0 KB | 8564 ms | 72 ms | 0.813 | 73 ms |
+| Active hike | 1861.9 KB | 8576 ms | 72 ms | 0.813 | 78 ms |
+
+This is a regression pass, not a claim that the remaining absolute LCP or CLS
+technical debt has been eliminated.
