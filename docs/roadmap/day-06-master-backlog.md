@@ -803,12 +803,16 @@ a dependency of the single-dog core journey. See
 retired `my-trails.html` URL now provides a noindex compatibility handoff for
 old bookmarks. See `docs/architecture/SAVE-01-canonical-saved-trails.md`.
 
+`SEO-01` is complete: every published search-discovery trail page retains its
+own crawlable canonical URL and provides a prominent, exact-ID handoff to the
+interactive trail guide. The generated-artifact and SEO contract checks cover
+all published pages. See `docs/architecture/SEO-01-generated-trail-handoff.md`.
+
 | ID | Item | Size | Dependency |
 | --- | --- | --- | --- |
 | JOURNAL-01 | Define synchronization and privacy for walk-journal records | M | AUTH-03, HIKE-04 |
 | POI-01 | Lazy-load nonessential rifugi, bars, lifts, and transit layers | M | DATA-03, PERF-01 |
 | I18N-01 | Guarantee Italian parity for every core beta state | M | Stable core-flow copy |
-| SEO-01 | Make generated trail pages hand off to the canonical interactive page | M | TRUST-01, UX-04 |
 | GUIDE-01 | Link relevant guides from cautions without interrupting decisions | S | UX-04 |
 | TOOL-01 | Move maintained fetch utilities under `scripts/` and document outputs | S | DATA-02 |
 | CLEAN-01 | Remove machine artifacts and archive unused prototypes | S | UX-01 dependency audit |

@@ -73,6 +73,13 @@
   .jn-live-link:hover{color:var(--ink);}
   .jn-photos{display:inline-flex;align-items:center;gap:4px;font:700 11px 'Inter',sans-serif;color:var(--ink-soft);}
   .jn-photos svg{display:block;}
+  .jn-photo{display:block;width:100%;max-height:190px;object-fit:cover;border-radius:12px;margin:0 0 11px;}
+  .jn-act{border:0;background:none;padding:0;font:700 12px 'Inter',sans-serif;color:var(--accent);cursor:pointer;}
+  .jn-act:hover{text-decoration:underline;}
+  .jn-edit-photo-row{display:flex;align-items:center;gap:10px;}
+  .jn-edit-photo-prev{width:74px;height:58px;object-fit:cover;border-radius:10px;border:1px solid var(--paper-line);}
+  .jn-edit-photo-prev[hidden]{display:none;}
+  .jn-edit-photo-btn{border:1.5px solid var(--paper-line);background:#fff;border-radius:10px;padding:9px 13px;font:700 12.5px 'Inter',sans-serif;color:var(--ink);cursor:pointer;}
 </style>
 </head>
 <body>
@@ -163,6 +170,26 @@
   </div>
 </div>
 
+<!-- EDIT WALK — rename, notes, photo. Sharing renders the walk card. -->
+<div class="jn-overlay" id="jnEditOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="jnEditTitle">
+  <div class="jn-modal">
+    <h2 id="jnEditTitle" style="margin:0 0 4px;font-size:20px;">Edit walk</h2>
+    <label for="jnEditName">Walk name</label>
+    <input type="text" id="jnEditName" maxlength="60" placeholder="Morning loop with Eddie">
+    <label for="jnEditNote">Notes</label>
+    <textarea id="jnEditNote" rows="3" maxlength="500" placeholder="How was it? Water, paws, mood…"></textarea>
+    <label>Photo</label>
+    <div class="jn-edit-photo-row">
+      <img class="jn-edit-photo-prev" id="jnEditPhotoPrev" alt="" hidden>
+      <button type="button" class="jn-edit-photo-btn" id="jnEditPhotoBtn">Add photo</button>
+      <button type="button" class="jn-edit-photo-btn" id="jnEditPhotoRemove" hidden>Remove</button>
+      <input type="file" id="jnEditPhotoInput" accept="image/*" hidden>
+    </div>
+    <button type="button" id="jnEditSave" class="auth-submit" style="width:100%;margin-top:18px;">Save changes</button>
+    <button type="button" id="jnEditCancel" class="jn-live-link">Cancel</button>
+  </div>
+</div>
+
 <footer class="site-footer hp-footer">
   <div class="hp-footer-grid">
     <div>
@@ -219,6 +246,7 @@
 <script src="regional-trails-loader.js?v=20260805-2" data-default-region="all"></script>
 <script src="trail-audits.js?v=20260717" defer></script>
 <script src="regions-config.js" defer></script>
+<script src="walk-card.js?v=20260810-1"></script>
 <script>
 // My Journal. Entries are per-account, stored locally in this browser
 // (same pattern as the locally-stored dog photo).
@@ -318,6 +346,7 @@ document.addEventListener('DOMContentLoaded', function(){
       return '<div class="jn-entry">' +
         '<div class="jn-date"><b>' + d.getDate() + '</b><span>' + d.toLocaleDateString(undefined, { month: 'short' }) + '</span></div>' +
         '<div class="jn-card">' +
+          (e.photo ? '<img class="jn-photo" src="' + e.photo + '" alt="Walk photo" loading="lazy">' : '') +
           '<h3>' + esc(e.trail) + '</h3>' +
           '<div class="meta">' + esc(e.region || '') + (e.region ? ' · ' : '') + esc(fmtStats(e)) + '</div>' +
           (e.note ? '<p class="note">&ldquo;' + esc(e.note) + '&rdquo;</p>' : '') +
@@ -325,6 +354,8 @@ document.addEventListener('DOMContentLoaded', function(){
             ratingHtml +
             (e.cond ? '<span class="jn-cond">' + esc(e.cond) + '</span>' : '') +
             photoIndicator(e) +
+            '<button type="button" class="jn-act" data-jn-edit="' + esc(e.id) + '">Edit</button>' +
+            '<button type="button" class="jn-act" data-jn-share="' + esc(e.id) + '">Share</button>' +
             link +
           '</div>' +
         '</div>' +
@@ -333,6 +364,113 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function renderAll(){ renderStats(); renderTimeline(); }
+
+  // ---- Edit & share ---------------------------------------------------
+  var dogDisplayName = '';
+  var editingId = null;
+  var editPhoto = null; // data URI or null; undefined = untouched
+
+  function entryById(id){ return state.entries.find(function(e){ return e.id === id; }); }
+
+  function openEdit(entry){
+    editingId = entry.id;
+    editPhoto = entry.photo || null;
+    document.getElementById('jnEditName').value = entry.trail || '';
+    document.getElementById('jnEditNote').value = entry.note || '';
+    syncEditPhoto();
+    document.getElementById('jnEditOverlay').hidden = false;
+    setTimeout(function(){ document.getElementById('jnEditName').focus(); }, 0);
+  }
+
+  function syncEditPhoto(){
+    var prev = document.getElementById('jnEditPhotoPrev');
+    var remove = document.getElementById('jnEditPhotoRemove');
+    var add = document.getElementById('jnEditPhotoBtn');
+    prev.hidden = !editPhoto;
+    remove.hidden = !editPhoto;
+    if(editPhoto) prev.src = editPhoto;
+    add.textContent = editPhoto ? 'Replace photo' : 'Add photo';
+  }
+
+  // Downscale before storing: journals live in localStorage, so photos are
+  // capped at ~1000px JPEG. A full-size original would blow the quota fast.
+  function downscalePhoto(file, done){
+    var url = URL.createObjectURL(file);
+    var img = new Image();
+    img.onload = function(){
+      var max = 1000;
+      var s = Math.min(1, max / Math.max(img.width, img.height));
+      var canvas = document.createElement('canvas');
+      canvas.width = Math.round(img.width * s);
+      canvas.height = Math.round(img.height * s);
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      done(canvas.toDataURL('image/jpeg', 0.72));
+    };
+    img.onerror = function(){ URL.revokeObjectURL(url); done(null); };
+    img.src = url;
+  }
+
+  document.getElementById('jnEditPhotoBtn').addEventListener('click', function(){
+    document.getElementById('jnEditPhotoInput').click();
+  });
+  document.getElementById('jnEditPhotoInput').addEventListener('change', function(){
+    var file = this.files && this.files[0];
+    this.value = '';
+    if(!file) return;
+    downscalePhoto(file, function(dataUri){
+      if(!dataUri){ showStatus('That image could not be read.'); return; }
+      editPhoto = dataUri;
+      syncEditPhoto();
+    });
+  });
+  document.getElementById('jnEditPhotoRemove').addEventListener('click', function(){
+    editPhoto = null;
+    syncEditPhoto();
+  });
+  document.getElementById('jnEditCancel').addEventListener('click', function(){
+    document.getElementById('jnEditOverlay').hidden = true;
+    editingId = null;
+  });
+  document.getElementById('jnEditSave').addEventListener('click', function(){
+    var entry = entryById(editingId);
+    if(!entry) return;
+    var name = document.getElementById('jnEditName').value.trim();
+    if(name) entry.trail = name.slice(0, 60);
+    entry.note = document.getElementById('jnEditNote').value.trim().slice(0, 500);
+    entry.photo = editPhoto || undefined;
+    if(!entry.photo) delete entry.photo;
+    entry.photos = entry.photo ? 1 : 0;
+    try { persist(); } catch(err){
+      showStatus('Could not save — the photo may be too large for local storage.');
+      return;
+    }
+    document.getElementById('jnEditOverlay').hidden = true;
+    editingId = null;
+    renderAll();
+    showStatus('Walk updated.');
+  });
+
+  document.getElementById('jnTimeline').addEventListener('click', function(event){
+    var editBtn = event.target.closest('[data-jn-edit]');
+    if(editBtn){
+      var entry = entryById(editBtn.getAttribute('data-jn-edit'));
+      if(entry) openEdit(entry);
+      return;
+    }
+    var shareBtn = event.target.closest('[data-jn-share]');
+    if(shareBtn && window.DoloPawsWalkCard){
+      var target = entryById(shareBtn.getAttribute('data-jn-share'));
+      if(!target) return;
+      shareBtn.disabled = true;
+      window.DoloPawsWalkCard.shareWalkCard(target, { dogName: dogDisplayName })
+        .then(function(method){
+          showStatus(method === 'shared' ? 'Walk shared.' : 'Walk card downloaded.');
+        })
+        .catch(function(){ showStatus('Sharing did not complete.'); })
+        .then(function(){ shareBtn.disabled = false; });
+    }
+  });
 
   // --- Modal ---
   var overlay = document.getElementById('jnOverlay');
@@ -704,6 +842,7 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('jnStorageNote').hidden = false;
     window.DoloPawsAuth.getDogProfile().then(function(p){
       if(p && p.name){
+        dogDisplayName = p.name;
         document.getElementById('jnTitle').textContent = p.name + "'s walk journal";
         document.getElementById('jnEmptyCopy').textContent = 'Once ' + p.name + " has been out, log the walk here or track it live from Hike Mode — it'll show up in this list.";
       }
