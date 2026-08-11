@@ -18,6 +18,7 @@
     "test:firestore-rules": "node scripts/run-firestore-rules-tests.cjs",
     "perf:mobile": "node scripts/run-mobile-performance.mjs --check",
     "perf:mobile:baseline": "node scripts/run-mobile-performance.mjs --write-baseline",
+    "check:beta-readiness": "node scripts/check-beta-readiness.js",
     "check:trail-sources": "node scripts/check-trail-sources.js",
     "build:regional-data": "node scripts/build-regional-runtime-data.js",
     "generate:artifacts": "npm run validate:production-trails && node scripts/generate-trail-pages.js && npm run build:regional-data",

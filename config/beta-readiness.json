@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-08-10",
+  "decision": "not-ready",
+  "gates": [
+    {
+      "id": "DATA-SCORE-TRUST",
+      "priority": "P0",
+      "status": "passed",
+      "owner": "DoloPaws",
+      "evidence": "docs/roadmap/day-06-master-backlog.md",
+      "summary": "Canonical trail validation, recommendation scoring, and provenance contracts pass."
+    },
+    {
+      "id": "AUTH-SEC-MOD",
+      "priority": "P0",
+      "status": "passed",
+      "owner": "DoloPaws",
+      "evidence": "docs/architecture/SEC-02-firestore-emulator-tests.md",
+      "summary": "Authentication, Firestore authorization, and the moderation boundary are implemented and verified."
+    },
+    {
+      "id": "OFFLINE-IOS-CURRENT",
+      "priority": "P0",
+      "status": "pending",
+      "owner": "Product owner",
+      "evidence": "docs/testing/OFF-01-device-results.md",
+      "summary": "Repeat the physical iPhone airplane-mode journey against the current Carezza beta.16 and Alpe di Siusi beta.3 packages.",
+      "safeFallback": "Do not open the public beta until both current packages pass."
+    },
+    {
+      "id": "OFFLINE-ANDROID-CURRENT",
+      "priority": "P0",
+      "status": "pending",
+      "owner": "Product owner",
+      "evidence": "docs/testing/OFF-01-device-results.md",
+      "summary": "Complete the supported Android Chrome and installed-PWA airplane-mode matrix on a physical device.",
+      "safeFallback": "Do not claim Android beta support until the physical matrix passes."
+    },
+    {
+      "id": "ROUTE-FIELD-REVIEW",
+      "priority": "P0",
+      "status": "pending",
+      "owner": "Product owner",
+      "evidence": "docs/testing/OFF-01-device-results.md",
+      "summary": "Complete and date the route-specific field review for every beta route.",
+      "safeFallback": "Keep the affected route outside the controlled beta."
+    },
+    {
+      "id": "HIKE-RESTORE-GPS",
+      "priority": "P0",
+      "status": "pending",
+      "owner": "Product owner",
+      "evidence": "docs/architecture/QA-02-offline-failure-test-matrix.md",
+      "summary": "Exercise restoration, accuracy-aware GPS, rejoin guidance, completion, and elevation cursor on physical beta devices.",
+      "safeFallback": "Do not make the offline hike-mode claim until the controlled matrix passes."
+    },
+    {
+      "id": "PRIVACY-RETENTION",
+      "priority": "P1",
+      "status": "passed",
+      "owner": "DoloPaws",
+      "evidence": "docs/architecture/PRIV-01-retention-and-deletion.md",
+      "summary": "Retention, account deletion, device cleanup, community-content retention, and analytics boundaries are documented and implemented."
+    },
+    {
+      "id": "PERFORMANCE-LAB",
+      "priority": "P1",
+      "status": "passed",
+      "owner": "DoloPaws",
+      "evidence": "docs/architecture/PERF-02-asset-and-regional-optimization.md",
+      "summary": "Responsive assets, regional loading, lazy loading, and reproducible mobile performance budgets pass in the lab."
+    },
+    {
+      "id": "ACCESSIBILITY-VOICEOVER",
+      "priority": "P1",
+      "status": "pending",
+      "owner": "Product owner",
+      "evidence": "docs/architecture/A11Y-01-core-journey-accessibility.md",
+      "summary": "Complete the manual VoiceOver journey on the supported iPhone target.",
+      "safeFallback": "Do not declare accessibility acceptance from automated checks alone."
+    },
+    {
+      "id": "QA-INTERNAL-USABILITY",
+      "priority": "P1",
+      "status": "pending",
+      "owner": "Product owner",
+      "evidence": "docs/testing/QA-03-internal-usability-protocol.md",
+      "summary": "Run the uncoached internal journey with an unfamiliar participant and record observed evidence.",
+      "safeFallback": "Keep recruitment closed until the session passes or a documented P1 exception is accepted."
+    },
+    {
+      "id": "QA-CI-GATE",
+      "priority": "P1",
+      "status": "passed",
+      "owner": "DoloPaws",
+      "evidence": "docs/architecture/QA-01-complete-ci-quality-gate.md",
+      "summary": "Unit, static, generated-artifact, security-rule, and performance contracts are enforced."
+    }
+  ]
+}

@@ -650,6 +650,9 @@ function initTrailMap(){
     center: [12.05, 46.55],
     zoom: 9,
     scrollZoom: true,
+    // Collapsed ⓘ attribution (tap to expand) — the full-width credit line
+    // collided with the phone layout's bottom-centre Record pill.
+    attributionControl: { compact: true },
   });
   trailMapInstance.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
   trailMapInstance.addControl(new maplibregl.GeolocateControl({
@@ -1506,6 +1509,8 @@ function renderLiHeader(profile){
   // The pill carries the dog itself (design TopNav dog pill), not the human.
   if(nameEl) nameEl.textContent = (profile && profile.name) ? profile.name : 'Your dog';
   liFillAvatar(document.getElementById('liAccountAvatar'), profile);
+  // Phone greeting row carries the dog's face next to the greeting.
+  liFillAvatar(document.getElementById('liGreetAvatar'), profile);
   renderLiDogLists(profile);
   const manage = document.getElementById('liManageLink');
   if(manage) manage.textContent = (profile && profile.name)

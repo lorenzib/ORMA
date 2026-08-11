@@ -744,6 +744,8 @@ Implementation evidence: `docs/architecture/QA-01-complete-ci-quality-gate.md`.
 
 ### QA-03 — Run an end-to-end internal usability test
 
+- **Status:** Executable session protocol ready; observed uncoached session
+  remains pending (2026-08-10)
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** UX-06, OUT-01, A11Y-01
@@ -771,6 +773,8 @@ Implementation evidence: `docs/architecture/QA-01-complete-ci-quality-gate.md`.
 
 ### QA-05 — Make the beta readiness decision
 
+- **Status:** Machine-checkable preflight implemented; decision remains
+  `not-ready` until physical and observed-human evidence gates pass (2026-08-10)
 - **Priority:** P0
 - **Size:** S
 - **Depends on:** all P0 and P1 items required by the core journey
