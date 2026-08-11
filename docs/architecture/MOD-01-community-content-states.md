@@ -49,6 +49,13 @@ trail modal. They show success only after Firestore accepts a pending record.
 The previous design-only local hazard record and the unsupported “visible
 within the hour” promise were removed.
 
+The dedicated review page also reads only public Firestore reviews and writes
+through `DoloPawsCommunity.setReview`. It never inserts a submitted review into
+the public list locally: successful submissions are labelled pending
+moderation, and the page refreshes only the approved public query. The former
+placeholder reviews and `dolopaws-design-reviews-*` local-storage path were
+removed on 2026-08-11.
+
 Optional hazard photos become separately pending trail-photo records. A
 partial failure is reported truthfully: the accepted hazard remains submitted
 while the user is told that an attachment failed.

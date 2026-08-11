@@ -567,6 +567,8 @@ All P0 and P1 work
 
 ### MOD-01 — Implement community content states
 
+- **Status:** Complete in code, including the corrected production review
+  submission path (2026-08-11)
 - **Priority:** P1
 - **Size:** M
 - **Depends on:** AUTH-02, SEC-01
