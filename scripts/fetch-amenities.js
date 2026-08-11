@@ -1,10 +1,12 @@
+#!/usr/bin/env node
+'use strict';
+
 /**
- * Fetch drinking fountains and resting stops (benches) from OpenStreetMap
- * for the Trentino Alto Adige region using Overpass API
- * 
- * Usage:
- * 1. Node.js: node fetch-amenities.js
- * 2. Browser: Include and call fetchDolomitesAmenities()
+ * Diagnostic fetch for drinking fountains and benches in Trentino-Alto Adige.
+ *
+ * Usage: npm run fetch:amenities
+ * Output: summary on stdout only. This tool does not update production map
+ * assets; the governed production POI commands are documented in TOOL-01.
  */
 
 // Trentino Alto Adige bounding box (south, west, north, east)
@@ -148,32 +150,13 @@ function osmToGeojson(osmData) {
   };
 }
 
-// ============================================================
-// USAGE EXAMPLES
-// ============================================================
-
-// Browser usage:
-// 1. Add this to your HTML:
-//    <script src="fetch-amenities.js"></script>
-//
-// 2. Call in your code:
-//    fetchAllAmenities().then(data => {
-//      console.log(`Found ${data.totalFountains} fountains`);
-//      console.log(`Found ${data.totalBenches} benches`);
-//      // Use data.fountains and data.benches in your map
-//    });
-
-// Node.js usage:
-// 1. Install osmtogeojson: npm install osmtogeojson
-// 2. Replace osmToGeojson() above with: const osmToGeoJSON = require('osmtogeojson');
-// 3. Run: node fetch-amenities.js
-
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     fetchDrinkingFountains,
     fetchRestingStops,
     fetchAllAmenities,
     queryOverpass,
+    osmToGeojson,
   };
 }
 

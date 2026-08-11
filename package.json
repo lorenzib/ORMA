@@ -6,6 +6,7 @@
     "test": "jest",
     "test:static": "node scripts/check-static-assets.js",
     "audit:trail-trust": "node scripts/audit-trail-trust.js",
+    "fetch:amenities": "node scripts/fetch-amenities.js",
     "fetch:dolomites-trails": "node scripts/fetch-dolomites-trails.js",
     "validate:dolomites-trails": "node scripts/validate-dolomites-trails.js",
     "validate:trail-schema": "node scripts/validate-trail-schema.js",

@@ -823,10 +823,15 @@ regional water, hut, food, dog-route, and lift overlays are loaded. Late lift
 data adopts the current toggle state, while transit enrichment remains
 request-driven. See `docs/architecture/POI-01-lazy-map-overlays.md`.
 
+`TOOL-01` is complete: maintained network and ingestion utilities live under
+`scripts/`, their outputs and downstream validation are documented, and the
+legacy amenities diagnostic has a named npm entry point instead of looking
+like browser code at the repository root. See
+`docs/architecture/TOOL-01-fetch-utilities.md`.
+
 | ID | Item | Size | Dependency |
 | --- | --- | --- | --- |
 | I18N-01 | Guarantee Italian parity for every core beta state | M | Stable core-flow copy |
-| TOOL-01 | Move maintained fetch utilities under `scripts/` and document outputs | S | DATA-02 |
 | CLEAN-01 | Remove machine artifacts and archive unused prototypes | S | UX-01 dependency audit |
 
 ## P3 experiments
