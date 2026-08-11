@@ -165,6 +165,8 @@ All P0 and P1 work
 
 ### OFF-06 — Export a standards-compatible GPX file
 
+- **Status:** Complete in code; authenticated browser smoke test pending
+  (2026-08-11)
 - **Priority:** P1
 - **Size:** S
 - **Depends on:** DATA-01, AUTH-01

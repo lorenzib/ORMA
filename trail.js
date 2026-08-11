@@ -1745,6 +1745,62 @@ function renderTrail(t){
   }
   window.addEventListener('dolopaws-auth-changed', e => handleSaveAuth(e.detail.user));
   if(window.DoloPawsAuth) handleSaveAuth(window.DoloPawsAuth.currentUser);
+
+  // GPX export is intentionally account-gated. The file contains the ordered
+  // route and trailhead, but not the richer safety context shown on DoloPaws.
+  const exportGpxBtn = document.getElementById('exportGpxBtn');
+  if(exportGpxBtn){
+    let exportStatusTimer = null;
+    function showExportStatus(message){
+      let status = document.getElementById('exportGpxStatus');
+      if(!status){
+        status = document.createElement('div');
+        status.id = 'exportGpxStatus';
+        status.className = 'dw-toast';
+        status.setAttribute('role', 'status');
+        status.setAttribute('aria-live', 'polite');
+        document.body.appendChild(status);
+      }
+      if(exportStatusTimer) clearTimeout(exportStatusTimer);
+      status.textContent = message;
+      status.hidden = false;
+      status.className = 'dw-toast dw-toast--in';
+      exportStatusTimer = setTimeout(() => {
+        status.hidden = true;
+        status.className = 'dw-toast';
+      }, 5200);
+    }
+    function runGpxExport(){
+      if(!window.DoloPawsGpxExport){
+        showExportStatus('GPX export could not load. Please refresh and try again.');
+        return false;
+      }
+      try {
+        window.DoloPawsGpxExport.download(t);
+        showExportStatus('GPX downloaded. It contains the route only — check DoloPaws for safety context.');
+        return true;
+      } catch(error){
+        showExportStatus(error && error.message
+          ? error.message : 'This trail could not be exported.');
+        return false;
+      }
+    }
+    function handleExportAuth(user){
+      exportGpxBtn.onclick = () => {
+        if(!(user && window.DoloPawsAuth)){
+          if(window.DoloPawsTrailAction) window.DoloPawsTrailAction.request('export-gpx');
+          return;
+        }
+        runGpxExport();
+      };
+      if(user && window.DoloPawsTrailAction
+        && window.DoloPawsTrailAction.consume('export-gpx')){
+        runGpxExport();
+      }
+    }
+    window.addEventListener('dolopaws-auth-changed', event => handleExportAuth(event.detail.user));
+    handleExportAuth(window.DoloPawsAuth && window.DoloPawsAuth.currentUser);
+  }
 }
 
 if(document.readyState === 'loading'){
