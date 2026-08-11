@@ -10,6 +10,7 @@
     'dolopaws-dog-photo',
     'dolopaws-notif-prefs',
     'dolopaws-notif-seen',
+    'dolopaws-notif-glanced',
     'dolopaws-notif-unread',
     'dolopaws-notifications-read',
     'dolopaws-pending-dog-profile',

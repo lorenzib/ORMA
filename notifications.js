@@ -2,21 +2,33 @@
   'use strict';
 
   // Renders the derived feed (notifications-feed.js) with per-item read
-  // state. Rows are real links; a click marks that item read before the
-  // browser navigates. The unread count is cached so the header bells can
-  // badge without loading the trail dataset.
+  // state, Facebook-style: opening this page clears the bell badge (every
+  // item becomes "glanced"), while rows stay tinted until actually clicked
+  // ("read"). Read state also syncs through the account (Firestore
+  // notifSeen) so another device doesn't re-announce old items.
   var SEEN_KEY = 'dolopaws-notif-seen';
+  var GLANCED_KEY = 'dolopaws-notif-glanced';
   var UNREAD_KEY = 'dolopaws-notif-unread';
   var EVENT_KEY = 'dolopaws-notif-profile-event';
 
-  function seenIds(){
+  function idList(key){
     try {
-      var raw = JSON.parse(localStorage.getItem(SEEN_KEY) || '[]');
+      var raw = JSON.parse(localStorage.getItem(key) || '[]');
       return Array.isArray(raw) ? raw : [];
     } catch(e){ return []; }
   }
+  function seenIds(){ return idList(SEEN_KEY); }
   function saveSeen(list){ try { localStorage.setItem(SEEN_KEY, JSON.stringify(list)); } catch(e){} }
+  function saveGlanced(list){ try { localStorage.setItem(GLANCED_KEY, JSON.stringify(list)); } catch(e){} }
   function setUnreadCache(n){ try { localStorage.setItem(UNREAD_KEY, String(n)); } catch(e){} }
+  // Reading state is account data: push the merged read list to Firestore
+  // whenever it changes so other devices pick it up. Fire-and-forget.
+  function pushSeen(list){
+    var auth = window.DoloPawsAuth;
+    if(auth && auth.currentUser && typeof auth.setNotifSeen === 'function'){
+      auth.setNotifSeen(list).catch(function(){});
+    }
+  }
   function profileEvent(){
     try { return JSON.parse(localStorage.getItem(EVENT_KEY) || 'null'); } catch(e){ return null; }
   }
@@ -56,8 +68,14 @@
 
     if(window.DoloPawsIcons) window.DoloPawsIcons.hydrate(document);
 
+    // Opening the centre "glances" everything currently in it — the bell
+    // badge drops to zero even though unclicked rows keep their tint.
+    var glanced = idList(GLANCED_KEY);
+    feed.forEach(function(item){ if(glanced.indexOf(item.id) === -1) glanced.push(item.id); });
+    saveGlanced(glanced);
+    setUnreadCache(window.DoloPawsNotifFeed.badgeCount(feed, glanced));
+
     var unread = window.DoloPawsNotifFeed.unreadIds(feed, seen);
-    setUnreadCache(unread.length);
 
     var markBtn = document.getElementById('markRead');
     if(markBtn){
@@ -69,8 +87,7 @@
       row.addEventListener('click', function(){
         var id = row.getAttribute('data-notif-id');
         var list = seenIds();
-        if(list.indexOf(id) === -1){ list.push(id); saveSeen(list); }
-        setUnreadCache(window.DoloPawsNotifFeed.unreadIds(feed, list).length);
+        if(list.indexOf(id) === -1){ list.push(id); saveSeen(list); pushSeen(list); }
       });
     });
 
@@ -84,10 +101,24 @@
   function init(){
     booted = true;
     var auth = window.DoloPawsAuth;
+    // Members: merge the account's synced read list into this browser's
+    // before building, so items read elsewhere don't come back as unread.
+    var seenSyncP = (auth && auth.currentUser && typeof auth.getNotifSeen === 'function')
+      ? auth.getNotifSeen().catch(function(){ return []; })
+      : Promise.resolve([]);
     var pending = (auth && auth.currentUser)
       ? auth.getFavorites().catch(function(){ return {}; })
       : Promise.resolve({});
-    pending.then(function(favorites){
+    seenSyncP.then(function(remoteSeen){
+      if(Array.isArray(remoteSeen) && remoteSeen.length){
+        var list = seenIds(), grew = false;
+        remoteSeen.forEach(function(id){
+          if(list.indexOf(id) === -1){ list.push(id); grew = true; }
+        });
+        if(grew) saveSeen(list);
+      }
+      return pending;
+    }).then(function(favorites){
       favorites = favorites || {};
       // Live Firestore content: hazard flags on saved trails (members) and
       // operator notices (everyone). Both degrade to empty on any failure —
@@ -118,6 +149,7 @@
       var list = seenIds();
       currentFeed.forEach(function(item){ if(list.indexOf(item.id) === -1) list.push(item.id); });
       saveSeen(list);
+      pushSeen(list);
       render(currentFeed);
     });
   }

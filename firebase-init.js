@@ -282,6 +282,28 @@ async function removeDogProfile(id) {
   }
 }
 
+// Notification read-state, synced through the account so a notification
+// read on the phone stays read on the laptop (Facebook semantics).
+async function getNotifSeen() {
+  if (!currentUser) return [];
+  try {
+    const snap = await getDoc(doc(db, "users", currentUser.uid));
+    const seen = snap.exists() ? snap.data().notifSeen : null;
+    return Array.isArray(seen) ? seen : [];
+  } catch (e) { return []; }
+}
+
+async function setNotifSeen(ids) {
+  if (!currentUser) return false;
+  try {
+    await setDoc(doc(db, "users", currentUser.uid), {
+      notifSeen: (Array.isArray(ids) ? ids : []).slice(-300).map(String),
+      notifSeenAt: serverTimestamp(),
+    }, { merge: true });
+    return true;
+  } catch (e) { return false; }
+}
+
 async function getLastMatches() {
   if (!currentUser) return null;
   try {
@@ -1119,6 +1141,7 @@ window.DoloPawsCommunity = {
   recordHikeStart, getWeeklyHikeCount,
   addFlag, getActiveFlags, respondToHazard, deleteFlag,
   getActiveFlagsForTrails, getSiteNotices, addSiteNotice, deleteSiteNotice,
+  getNotifSeen, setNotifSeen,
   setReview, getReviews, deleteMyReview,
   addTrailPhoto, getTrailPhotos,
   reportContent,

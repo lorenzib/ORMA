@@ -54,6 +54,12 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(userValidator).not.toContain('moderator');
   });
 
+  test('user documents may carry the synced notification read list, bounded', () => {
+    expect(rules).toContain("'notifSeen', 'notifSeenAt'");
+    expect(rules).toContain('data.notifSeen is list && data.notifSeen.size() <= 300');
+    expect(rules).toContain('data.notifSeenAt is timestamp');
+  });
+
   test('site notices are operator-written broadcast content', () => {
     expect(rules).toContain('match /siteNotices/{noticeId}');
     const block = rules.slice(rules.indexOf('match /siteNotices'));

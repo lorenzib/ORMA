@@ -92,6 +92,27 @@ describe('derived notifications feed', () => {
     expect(safety.group).toBe('earlier');
   });
 
+  test('audit items age out of the feed after 30 days', () => {
+    // NOW ≈ 2 Feb 2026: a mid-January audit is fresh, a mid-December one
+    // is over 30 days old and must no longer appear as "news".
+    const aged = [
+      { id: 'fresh', name: 'Fresh Trail', verified: { date: '2026-01-10', sources: [] } },
+      { id: 'stale', name: 'Stale Trail', verified: { date: '2025-12-15', sources: [] } },
+    ];
+    const ids = feed.build({ trails: aged, favorites: {}, now: NOW }).map(i => i.id);
+    expect(ids).toContain('audit-fresh');
+    expect(ids).not.toContain('audit-stale');
+  });
+
+  test('badgeCount counts against the glanced set — opening the centre zeroes the bell', () => {
+    const items = feed.build({ trails, favorites: { ridge: true }, now: NOW });
+    expect(feed.badgeCount(items, [])).toBe(items.length);
+    // Glancing (opening the centre) records every current id: badge → 0
+    // even though no row has been clicked/read yet.
+    expect(feed.badgeCount(items, items.map(i => i.id))).toBe(0);
+    expect(feed.badgeCount(items, ['heat-ridge'])).toBe(items.length - 1);
+  });
+
   test('unreadIds subtracts the seen list so read items stay read', () => {
     const items = feed.build({ trails, favorites: { ridge: true }, now: NOW });
     const all = feed.unreadIds(items, []);

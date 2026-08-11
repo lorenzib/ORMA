@@ -105,8 +105,13 @@ service cloud.firestore {
 
     function validUserDocument(data) {
       return data.keys().hasOnly([
-          'favorites', 'dog', 'dogs', 'activeDogId', 'lastMatches', 'createdAt', 'updatedAt'
+          'favorites', 'dog', 'dogs', 'activeDogId', 'lastMatches', 'createdAt', 'updatedAt',
+          'notifSeen', 'notifSeenAt'
         ])
+        && (!data.keys().hasAny(['notifSeen'])
+          || (data.notifSeen is list && data.notifSeen.size() <= 300))
+        && (!data.keys().hasAny(['notifSeenAt'])
+          || data.notifSeenAt is timestamp)
         && (!data.keys().hasAny(['favorites'])
           || (data.favorites is map && data.favorites.size() <= 250))
         && (!data.keys().hasAny(['dog'])

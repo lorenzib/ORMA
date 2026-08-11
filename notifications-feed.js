@@ -132,12 +132,19 @@
       });
     });
 
+    // Facebook-style aging: news-type items leave the feed after 30 days
+    // instead of sitting there forever as "the same notifications".
+    var NEWS_MAX_AGE_MS = 30 * 864e5;
     trails
       .map(function(t){
         var date = (t && t.verified && t.verified.date) || (t && t.reviewedAt) || null;
         return date ? { t: t, date: date } : null;
       })
       .filter(Boolean)
+      .filter(function(entry){
+        var ts = Date.parse(entry.date + 'T12:00:00');
+        return !Number.isFinite(ts) || !now || (now - ts) <= NEWS_MAX_AGE_MS;
+      })
       .sort(function(a, b){ return b.date.localeCompare(a.date); })
       .slice(0, AUDIT_LIMIT)
       .forEach(function(entry){
@@ -162,7 +169,14 @@
     return feed.map(function(i){ return i.id; }).filter(function(id){ return seen.indexOf(id) === -1; });
   }
 
-  var api = { build: build, unreadIds: unreadIds, shortDate: shortDate, relTime: relTime };
+  // Facebook split: the BADGE counts what the bell has not yet announced
+  // (cleared by opening the centre); the row tint tracks what was actually
+  // clicked. Both are id lists; this counts against the announced set.
+  function badgeCount(feed, glancedIds){
+    return unreadIds(feed, glancedIds).length;
+  }
+
+  var api = { build: build, unreadIds: unreadIds, badgeCount: badgeCount, shortDate: shortDate, relTime: relTime };
   global.DoloPawsNotifFeed = api;
   if(typeof module !== 'undefined' && module.exports){ module.exports = api; }
 })(typeof window !== 'undefined' ? window : globalThis);

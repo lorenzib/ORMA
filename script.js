@@ -1753,8 +1753,17 @@ function renderLiConditionsCard(profile, displayList){
 
 // One-time event wiring for the shell chrome (menus, search, logout…).
 // Bell badge from the derived feed (saved-trail advisories, audits, profile
-// events) minus what this browser has already opened. Runs at shell init and
+// events) minus what the bell has already announced — Facebook-style, the
+// badge counts against the "glanced" set that opening the notification
+// centre fills, not against per-row read state. Runs at shell init and
 // again once favorites have loaded, since advisories depend on them.
+function liGlancedList(){
+  try {
+    const raw = JSON.parse(localStorage.getItem('dolopaws-notif-glanced') || '[]');
+    if(Array.isArray(raw)) return raw;
+  } catch(e){}
+  return [];
+}
 function refreshLiBellBadge(){
   const dot = document.getElementById('liBellDot');
   let bellUnread = 0;
@@ -1762,15 +1771,10 @@ function refreshLiBellBadge(){
     if(window.DoloPawsNotifFeed && typeof trails !== 'undefined'){
       let ev = null;
       try { ev = JSON.parse(localStorage.getItem('dolopaws-notif-profile-event') || 'null'); } catch(e){}
-      let seenList = [];
-      try {
-        const raw = JSON.parse(localStorage.getItem('dolopaws-notif-seen') || '[]');
-        if(Array.isArray(raw)) seenList = raw;
-      } catch(e){}
       const feed = window.DoloPawsNotifFeed.build({
         trails, favorites: currentFavorites || {}, profileEvent: ev, now: Date.now()
       });
-      bellUnread = window.DoloPawsNotifFeed.unreadIds(feed, seenList).length;
+      bellUnread = window.DoloPawsNotifFeed.badgeCount(feed, liGlancedList());
       localStorage.setItem('dolopaws-notif-unread', String(bellUnread));
     }
   } catch(e){}
@@ -1791,18 +1795,14 @@ function refreshLiBellBadgeLive(){
     auth.getActiveFlagsForTrails(Object.keys(currentFavorites || {})).catch(() => []),
     auth.getSiteNotices().catch(() => []),
   ]).then(([hazardFlags, siteNotices]) => {
-    let ev = null, seenList = [];
+    let ev = null;
     try { ev = JSON.parse(localStorage.getItem('dolopaws-notif-profile-event') || 'null'); } catch(e){}
-    try {
-      const raw = JSON.parse(localStorage.getItem('dolopaws-notif-seen') || '[]');
-      if(Array.isArray(raw)) seenList = raw;
-    } catch(e){}
     const feed = window.DoloPawsNotifFeed.build({
       trails: typeof trails !== 'undefined' ? trails : [],
       favorites: currentFavorites || {},
       profileEvent: ev, hazardFlags, siteNotices, now: Date.now()
     });
-    const unread = window.DoloPawsNotifFeed.unreadIds(feed, seenList).length;
+    const unread = window.DoloPawsNotifFeed.badgeCount(feed, liGlancedList());
     try { localStorage.setItem('dolopaws-notif-unread', String(unread)); } catch(e){}
     const dot = document.getElementById('liBellDot');
     if(dot) dot.hidden = unread === 0;
