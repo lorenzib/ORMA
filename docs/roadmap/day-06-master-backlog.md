@@ -11,7 +11,7 @@ every existing feature.
 The beta is complete only when an account holder can:
 
 ```text
-create one dog profile
+create or select a dog profile
 → find and compare trails in one supported region
 → understand one recommendation
 → save and download one trail
@@ -788,6 +788,11 @@ Implementation evidence: `docs/architecture/QA-01-complete-ci-quality-gate.md`.
 
 ## P2 supporting backlog
 
+`PROFILE-01` optional multiple-dog profiles are complete in code following the
+2026-08-11 scope amendment. They remain supporting account functionality, not
+a dependency of the single-dog core journey. See
+`docs/architecture/PROFILE-01-multi-dog-profiles.md`.
+
 | ID | Item | Size | Dependency |
 | --- | --- | --- | --- |
 | SAVE-01 | Consolidate `my-trails` into the canonical `saved.html` experience | M | SCORE-02, UX-01 |
@@ -818,7 +823,6 @@ Implementation evidence: `docs/architecture/QA-01-complete-ci-quality-gate.md`.
 - social feeds;
 - badges, leaderboards, or contribution gamification;
 - subscriptions or paid tiers;
-- multiple dog profiles;
 - geographic expansion beyond the selected initial region;
 - voice turn-by-turn navigation;
 - continuous background GPS recording;

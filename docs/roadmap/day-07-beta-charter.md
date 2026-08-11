@@ -6,6 +6,8 @@ Decision date: 2026-07-27
 
 Scope amendment: 2026-08-10
 
+Account-profile amendment: 2026-08-11
+
 ## Purpose
 
 This charter closes the first planning cycle and fixes the target for the first
@@ -67,6 +69,18 @@ This amendment does not authorize wider Dolomites or Savoy expansion. No
 other trail may advertise an offline package during the first beta until the
 two-route device and field matrix passes. Online planning and account features
 may continue to cover the wider published catalogue.
+
+### Optional multiple-dog profile amendment
+
+An account may keep up to five dog profiles and select one active dog. This is
+now an in-scope supporting account capability because the product owner chose
+to retain it and its storage, switching, removal, breed catalogue, and photo
+isolation contracts are implemented and tested.
+
+The core beta journey still requires only one dog. Multiple profiles do not
+expand offline-route, scoring, community, or geographic scope, and they may
+not delay the physical navigation and usability gates. See
+`docs/architecture/PROFILE-01-multi-dog-profiles.md`.
 
 ## Supported beta platforms
 
@@ -335,7 +349,6 @@ The first beta does not include:
 - social feeds;
 - badges, leaderboards, or gamification;
 - subscriptions or paid tiers;
-- multiple dog profiles;
 - new geographic regions;
 - voice turn-by-turn guidance;
 - continuous background GPS recording;

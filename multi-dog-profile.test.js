@@ -102,4 +102,15 @@ describe('multi-dog account experience', () => {
     expect(nav).toContain("return typeof photo === 'string' && photo.startsWith('data:image/') ? photo : null");
     expect(homepage).toContain('const photo = liDogPhoto(profile);');
   });
+
+  test('the beta charter matches the implemented optional multi-dog scope', () => {
+    const charter = source('docs/roadmap/day-07-beta-charter.md');
+    const architecture = source('docs/architecture/PROFILE-01-multi-dog-profiles.md');
+    const excluded = charter.slice(charter.indexOf('## Explicitly excluded'));
+    expect(charter).toContain('### Optional multiple-dog profile amendment');
+    expect(excluded).not.toContain('- multiple dog profiles;');
+    expect(architecture).toContain('up to five dog profiles');
+    expect(architecture).toContain('activeDogId');
+    expect(architecture).toContain('photo isolation');
+  });
 });

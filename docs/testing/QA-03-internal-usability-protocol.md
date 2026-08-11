@@ -39,6 +39,13 @@ participant's own words.
 | Finish | “Finish the walk and record whether it suited your dog.” | Completion saves before optional outcome; an offline outcome is visibly queued. |
 | Manage | “Find the downloaded route and remove it from this device.” | Participant understands package removal versus logout or account deletion. |
 
+If the account contains two dogs, add one supporting check after the core
+journey: ask the participant to switch dogs, add a second photo, and return to
+the first dog. Pass when both dogs and their separate photos remain intact and
+the active dog's name is consistent across homepage, discovery, and trail
+detail. A failure is a shipped-feature defect but does not redefine the core
+single-dog journey.
+
 ## Required comprehension questions
 
 Ask only after the participant finishes the relevant task:
