@@ -829,10 +829,14 @@ legacy amenities diagnostic has a named npm entry point instead of looking
 like browser code at the repository root. See
 `docs/architecture/TOOL-01-fetch-utilities.md`.
 
+`CLEAN-01` is complete: the tracked macOS artifact and two deployment-excluded,
+superseded homepage previews are removed. Active offline experiments remain
+isolated under the deployment-excluded `experiments/` boundary. See
+`docs/architecture/CLEAN-01-production-tree-cleanup.md`.
+
 | ID | Item | Size | Dependency |
 | --- | --- | --- | --- |
 | I18N-01 | Guarantee Italian parity for every core beta state | M | Stable core-flow copy |
-| CLEAN-01 | Remove machine artifacts and archive unused prototypes | S | UX-01 dependency audit |
 
 ## P3 experiments
 

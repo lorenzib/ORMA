@@ -47,11 +47,11 @@ describe('UX-01 canonical discovery integration', () => {
     expect(collections).not.toContain('scoreTrail');
   });
 
-  test('development previews are excluded from the production build', () => {
+  test('active experiments remain excluded and retired previews are absent', () => {
     const config = source('_config.yml');
 
-    expect(config).toContain('DoloPaws Homepage - Split Hero.html');
-    expect(config).toContain('dolopaws-combined-preview.html');
     expect(config).toMatch(/- experiments\s*$/m);
+    expect(fs.existsSync(path.join(__dirname, 'DoloPaws Homepage - Split Hero.html'))).toBe(false);
+    expect(fs.existsSync(path.join(__dirname, 'dolopaws-combined-preview.html'))).toBe(false);
   });
 });

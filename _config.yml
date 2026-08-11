@@ -1,6 +1,4 @@
 include:
   - CNAME
 exclude:
-  - DoloPaws Homepage - Split Hero.html
-  - dolopaws-combined-preview.html
   - experiments
