@@ -46,3 +46,7 @@ Record device/browser, screen reader, any unlabeled control, any unexpected focu
 move, and any message that is too frequent. The current supported manual target is
 Safari + VoiceOver on the owner's iPhone 13 Pro; a second browser/screen-reader
 combination remains part of QA-03 rather than being claimed here.
+
+Record the production result in
+`docs/testing/A11Y-01-voiceover-acceptance.md`. Automated checks or an informal
+spot-check alone do not close the `ACCESSIBILITY-VOICEOVER` readiness gate.

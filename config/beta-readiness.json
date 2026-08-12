@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-08-11",
+  "asOf": "2026-08-12",
   "decision": "not-ready",
   "gates": [
     {
@@ -85,7 +85,7 @@
       "priority": "P1",
       "status": "pending",
       "owner": "Product owner",
-      "evidence": "docs/architecture/A11Y-01-core-journey-accessibility.md",
+      "evidence": "docs/testing/A11Y-01-voiceover-acceptance.md",
       "summary": "Complete the manual VoiceOver journey on the supported iPhone target.",
       "safeFallback": "Do not declare accessibility acceptance from automated checks alone."
     },

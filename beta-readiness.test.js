@@ -54,4 +54,14 @@ describe('beta readiness ledger', () => {
     expect(protocol).toContain('SHA-256');
     expect(protocol).toContain('Ordered closed route rendered near Carezza');
   });
+
+  test('VoiceOver acceptance points to the supported production journey record', () => {
+    const gate = readiness.gates.find(item => item.id === 'ACCESSIBILITY-VOICEOVER');
+    expect(gate.status).toBe('pending');
+    expect(gate.evidence).toBe('docs/testing/A11Y-01-voiceover-acceptance.md');
+    const protocol = fs.readFileSync(path.join(root, gate.evidence), 'utf8');
+    expect(protocol).toContain('iPhone 13 Pro');
+    expect(protocol).toContain('Hike status understandable without speech flooding');
+    expect(protocol).toContain('Reduce Motion journey');
+  });
 });
