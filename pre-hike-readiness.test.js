@@ -87,6 +87,36 @@ describe('UX-06 pre-hike readiness model', () => {
     );
   });
 
+  test('translates every assessed state at render time and interpolates values', () => {
+    const translated = {
+      'readiness.package.verified.title':'Mappa offline verificata',
+      'readiness.package.verified.files':'Verificati {count} file necessari.',
+      'readiness.gps.usable.title':'Posizione GPS utilizzabile',
+      'readiness.gps.usable.detail':'Precisione circa ±{accuracy} m.',
+    };
+    const t = (key, vars) => {
+      let value = translated[key] || key;
+      for(const name of Object.keys(vars || {})){
+        value = value.split(`{${name}}`).join(vars[name]);
+      }
+      return value;
+    };
+    const result = readiness.assess(readyInput(), NOW, t);
+
+    expect(result.items.find(entry => entry.id === 'package')).toEqual(
+      expect.objectContaining({
+        title:'Mappa offline verificata',
+        detail:'Verificati 9 file necessari.',
+      })
+    );
+    expect(result.items.find(entry => entry.id === 'gps')).toEqual(
+      expect.objectContaining({
+        title:'Posizione GPS utilizzabile',
+        detail:'Precisione circa ±18 m.',
+      })
+    );
+  });
+
   test('uses a real trailhead coordinate rather than invented fallback data', () => {
     expect(readiness.trailheadFor({
       startPoint:{ lat:46.41, lng:11.57, label:'Carezza car park' },
@@ -113,5 +143,6 @@ describe('UX-06 pre-hike readiness model', () => {
     const source = fs.readFileSync(path.join(__dirname, 'pre-hike-readiness.js'), 'utf8');
     expect(source).toContain('not an emergency-navigation service');
     expect(source).toContain('do not replace waymarks');
+    expect(source).toContain("assess(state, undefined, win.t)");
   });
 });
