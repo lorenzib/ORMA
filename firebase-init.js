@@ -568,7 +568,7 @@ window.DoloPawsAuth = {
         return { ok: true, verificationSent: false };
       }
     } catch (e) {
-      return { ok: false, message: friendlyError(e.code) };
+      return { ok: false, code: e.code || "auth/unknown", message: friendlyError(e.code) };
     }
   },
   async signIn(email, password) {
@@ -576,7 +576,7 @@ window.DoloPawsAuth = {
       await signInWithEmailAndPassword(auth, email, password);
       return { ok: true };
     } catch (e) {
-      return { ok: false, message: friendlyError(e.code) };
+      return { ok: false, code: e.code || "auth/unknown", message: friendlyError(e.code) };
     }
   },
   async signInGoogle() {
@@ -584,7 +584,7 @@ window.DoloPawsAuth = {
       await signInWithPopup(auth, googleProvider);
       return { ok: true };
     } catch (e) {
-      return { ok: false, message: friendlyError(e.code) };
+      return { ok: false, code: e.code || "auth/unknown", message: friendlyError(e.code) };
     }
   },
   async logOut() {
@@ -595,7 +595,7 @@ window.DoloPawsAuth = {
       await sendPasswordResetEmail(auth, email);
       return { ok: true };
     } catch (e) {
-      return { ok: false, message: friendlyError(e.code) };
+      return { ok: false, code: e.code || "auth/unknown", message: friendlyError(e.code) };
     }
   },
   // Sends a confirmation link to the NEW address; the login email only

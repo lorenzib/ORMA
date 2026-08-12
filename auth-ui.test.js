@@ -68,4 +68,13 @@ describe('authentication modal accessibility', () => {
     close.dispatchEvent(new KeyboardEvent('keydown', { key:'Tab', shiftKey:true, bubbles:true, cancelable:true }));
     expect(document.activeElement).toBe(toggle);
   });
+
+  test('validation, progress and Firebase failures use translation keys', () => {
+    expect(authScript).toContain("window.t('auth.error.passwordMismatch')");
+    expect(authScript).toContain("window.t('auth.error.termsRequired')");
+    expect(authScript).toContain("window.t('auth.loggingIn')");
+    expect(authScript).toContain("window.t('auth.signingUp')");
+    expect(authScript).toContain("'auth.error.' + code");
+    expect(authScript).toContain("window.t('auth.error.generic')");
+  });
 });

@@ -88,6 +88,16 @@
   let returnFocus = null;
   const focusableSelector = 'button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
 
+  function resultMessage(result){
+    const code = result && result.code ? String(result.code).replace(/^auth\//, '').replace(/-/g, '_') : '';
+    if(code){
+      const key = 'auth.error.' + code;
+      const translated = window.t(key);
+      if(translated !== key) return translated;
+    }
+    return result && result.message ? result.message : window.t('auth.error.generic');
+  }
+
   function safeReturnTarget(value){
     if(!value || /^(?:[a-z]+:|\/\/|\/)/i.test(value)) return '';
     return /^[a-z0-9][a-z0-9._/-]*\.html(?:\?[^#]*)?(?:#.*)?$/i.test(value) ? value : '';
@@ -231,7 +241,7 @@
     submitBtn.disabled = true;
     const result = await window.DoloPawsAuth.resetPassword(email);
     submitBtn.disabled = false;
-    if(result.ok || /no account found/i.test(result.message || '')){
+    if(result.ok || result.code === 'auth/user-not-found' || /no account found/i.test(result.message || '')){
       // Deliberately non-enumerating: an unknown address gets the same
       // answer as a known one, so the form can't be used to probe accounts.
       if(resetDoneBox){
@@ -240,7 +250,7 @@
         form.hidden = true;
       }
     } else {
-      errorBox.textContent = result.message;
+      errorBox.textContent = resultMessage(result);
       errorBox.hidden = false;
     }
   }
@@ -255,17 +265,17 @@
     const email = emailInput.value.trim();
     const password = passwordInput.value;
     if(mode === 'signup' && confirmInput && password !== confirmInput.value){
-      errorBox.textContent = 'Passwords do not match.';
+      errorBox.textContent = window.t('auth.error.passwordMismatch');
       errorBox.hidden = false;
       return;
     }
     if(mode === 'signup' && termsInput && !termsInput.checked){
-      errorBox.textContent = 'Agree to the terms and privacy policy to continue.';
+      errorBox.textContent = window.t('auth.error.termsRequired');
       errorBox.hidden = false;
       return;
     }
     submitBtn.disabled = true;
-    submitBtn.textContent = mode === 'login' ? 'Logging in…' : 'Signing up…';
+    submitBtn.textContent = mode === 'login' ? window.t('auth.loggingIn') : window.t('auth.signingUp');
     const result = mode === 'login'
       ? await window.DoloPawsAuth.signIn(email, password)
       : await window.DoloPawsAuth.signUp(email, password, nameInput ? nameInput.value.trim() : '');
@@ -274,7 +284,7 @@
     if(result.ok){
       finishAuth();
     } else {
-      errorBox.textContent = result.message;
+      errorBox.textContent = resultMessage(result);
       errorBox.hidden = false;
     }
   });
@@ -285,7 +295,7 @@
     if(result.ok){
       finishAuth();
     } else {
-      errorBox.textContent = result.message;
+      errorBox.textContent = resultMessage(result);
       errorBox.hidden = false;
     }
   });

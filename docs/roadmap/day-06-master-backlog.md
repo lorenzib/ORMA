@@ -840,9 +840,9 @@ isolated under the deployment-excluded `experiments/` boundary. See
 
 `I18N-01` is in progress. Dictionary/reference parity is enforced in CI, and
 the complete UX-06 pre-hike readiness, OFF-03/OFF-05 download lifecycle,
-UX-04 canonical recommendation, SAVE-01 saved-trails, and JOURNAL-01 walk
-journal journeys are bilingual as of 2026-08-12. Account-error and mobile
-navigation runtime states remain to migrate. See
+UX-04 canonical recommendation, SAVE-01 saved-trails, JOURNAL-01 walk journal,
+and AUTH-02 shared account-access journeys are bilingual as of 2026-08-12.
+Account-management and mobile-navigation runtime states remain to migrate. See
 `docs/architecture/I18N-01-parity-audit.md`.
 
 ## P3 experiments

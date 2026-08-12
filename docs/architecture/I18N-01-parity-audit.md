@@ -29,6 +29,11 @@ Status: in progress (2026-08-12)
   logging, editing, photos, sharing, validation and storage errors are
   bilingual. Stored condition codes remain stable and only their display is
   translated.
+- **Shared account access (AUTH-02):** sign-in and sign-up progress, local
+  validation, password-reset failures, Google popup failures, invalid
+  credentials, throttling and offline recovery are bilingual on every page
+  that opens the shared authentication dialog. Firebase error codes remain
+  machine-readable until presentation instead of leaking English backend copy.
 
 ## Machine-checkable boundary
 
@@ -39,13 +44,13 @@ Status: in progress (2026-08-12)
 - an HTML `data-i18n` attribute references an unknown key; or
 - a literal JavaScript `t('…')` call references an unknown key.
 
-The current dictionaries contain 770 matching English and Italian keys.
+The current dictionaries contain 786 matching English and Italian keys.
 
 ## Remaining migration
 
 Dictionary parity is necessary but not sufficient. Several core screens still
-create English state text directly in controllers, including account-error and
-mobile-nav states. Those strings must move behind
+create English state text directly in controllers, including account-management
+and mobile-nav states. Those strings must move behind
 stable keys before I18N-01 can be marked complete.
 
 This work remains in the supporting backlog. It should be migrated by journey
