@@ -1,6 +1,6 @@
 # I18N-01 — Italian parity audit
 
-Status: in progress (2026-08-12)
+Status: complete (2026-08-12)
 
 ## Completed journey slices
 
