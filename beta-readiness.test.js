@@ -44,4 +44,14 @@ describe('beta readiness ledger', () => {
       `${gate.id} needs a safe fallback while pending`
     );
   });
+
+  test('GPX acceptance points to the production export/import record', () => {
+    const gate = readiness.gates.find(item => item.id === 'GPX-AUTHENTICATED-EXPORT');
+    expect(gate.status).toBe('pending');
+    expect(gate.evidence).toBe('docs/testing/OFF-06-gpx-acceptance.md');
+    const protocol = fs.readFileSync(path.join(root, gate.evidence), 'utf8');
+    expect(protocol).toContain('Guest was gated without a download');
+    expect(protocol).toContain('SHA-256');
+    expect(protocol).toContain('Ordered closed route rendered near Carezza');
+  });
 });

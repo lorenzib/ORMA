@@ -1,6 +1,7 @@
 # OFF-06 — Standards-compatible GPX export
 
-**Status:** Complete in code (2026-08-11)
+**Status:** Complete in code; production export/import acceptance pending
+(2026-08-12)
 
 ## Outcome
 
@@ -39,3 +40,7 @@ state this limitation.
 browser XML parser, checks the GPX namespace, waypoint, ordered track points,
 XML escaping, invalid-geometry rejection, filename sanitization, and the
 account-intent UI wiring.
+
+The production browser and independent-navigation-app boundary must be recorded
+with `docs/testing/OFF-06-gpx-acceptance.md`. Button visibility or a successful
+unit test alone does not close the `GPX-AUTHENTICATED-EXPORT` readiness gate.

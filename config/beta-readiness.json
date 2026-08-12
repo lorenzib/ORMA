@@ -76,7 +76,7 @@
       "priority": "P1",
       "status": "pending",
       "owner": "Product owner",
-      "evidence": "docs/architecture/OFF-06-standards-compatible-gpx.md",
+      "evidence": "docs/testing/OFF-06-gpx-acceptance.md",
       "summary": "Complete one authenticated browser export and open the resulting Carezza GPX in an independent navigation app.",
       "safeFallback": "Do not advertise GPX portability as beta-ready; the verified DoloPaws offline package remains the supported fallback."
     },
