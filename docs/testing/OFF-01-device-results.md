@@ -73,4 +73,5 @@ deferred Android matrix above.
 
 ## Remaining content gate
 
-- Complete and date the Lago di Carezza route-specific field review.
+- Complete and date both route-specific reviews in
+  `docs/testing/ROUTE-field-review-record.md`.

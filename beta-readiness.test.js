@@ -100,4 +100,22 @@ describe('beta readiness ledger', () => {
       'uncoached internal usability',
     ].forEach(boundary => expect(preflight).toContain(boundary));
   });
+
+  test('field-review record covers every downloadable beta package revision', () => {
+    const gate = readiness.gates.find(item => item.id === 'ROUTE-FIELD-REVIEW');
+    expect(gate.status).toBe('pending');
+    expect(gate.evidence).toBe('docs/testing/ROUTE-field-review-record.md');
+    const record = fs.readFileSync(path.join(root, gate.evidence), 'utf8');
+    [
+      'offline/packages/lago-carezza/manifest.json',
+      'offline/packages/alpe-siusi/manifest.json',
+    ].forEach(file => {
+      const manifest = JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+      expect(manifest.verificationStatus).toBe('field-review-required');
+      expect(record).toContain(`\`${manifest.trailId}\``);
+      expect(record).toContain(`\`${manifest.version}\``);
+    });
+    expect(record).toContain('Access/closure source and checked time');
+    expect(record).toContain('Loop and direction representation accurate');
+  });
 });
