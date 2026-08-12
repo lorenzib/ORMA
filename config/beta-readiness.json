@@ -33,7 +33,7 @@
       "priority": "P0",
       "status": "pending",
       "owner": "Product owner",
-      "evidence": "docs/testing/OFF-01-device-results.md",
+      "evidence": "docs/testing/QA-04-android-offline-matrix.md",
       "summary": "Complete the supported Android Chrome and installed-PWA airplane-mode matrix on a physical device.",
       "safeFallback": "Do not claim Android beta support until the physical matrix passes."
     },

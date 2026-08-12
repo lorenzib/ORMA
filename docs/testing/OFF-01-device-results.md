@@ -55,6 +55,10 @@ airplane-mode, storage, restart, and installed-PWA checks.
 The missing Android result does not block continued implementation. It remains
 a required gate before the public beta support claim includes Android.
 
+Use `docs/testing/QA-04-android-offline-matrix.md` for the current borrowed-device
+session. It names the shipped packages, separates Chrome from the installed
+experience, and includes test-data cleanup for a phone that is not the owner's.
+
 ## Pending elevation-profile retest
 
 The current packages (`lago-carezza` beta.16 and `alpe-siusi` beta.3) add a

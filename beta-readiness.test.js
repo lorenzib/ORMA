@@ -137,4 +137,22 @@ describe('beta readiness ledger', () => {
     expect(protocol).toContain('Rejoin control and mapped-path behavior');
     expect(protocol).toContain('Live route-elevation cursor');
   });
+
+  test('Android gate has a physical borrowed-device matrix for both packages', () => {
+    const gate = readiness.gates.find(item => item.id === 'OFFLINE-ANDROID-CURRENT');
+    expect(gate.status).toBe('pending');
+    expect(gate.evidence).toBe('docs/testing/QA-04-android-offline-matrix.md');
+    const protocol = fs.readFileSync(path.join(root, gate.evidence), 'utf8');
+    [
+      'offline/packages/lago-carezza/manifest.json',
+      'offline/packages/alpe-siusi/manifest.json',
+    ].forEach(file => {
+      const manifest = JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+      expect(protocol).toContain(`\`${manifest.version}\``);
+    });
+    expect(protocol).toContain('Chrome browser tab');
+    expect(protocol).toContain('Installed DoloPaws experience');
+    expect(protocol).toContain('Test data removed from borrowed phone');
+    expect(protocol).toMatch(/cannot pass this\s+gate/);
+  });
 });
