@@ -567,7 +567,9 @@ function initGuestMap(){
     preventTransitPoiDuplication(guestMapInstance);
     addTerrainToggle(guestMapInstance, 'guestPreviewMap', 1.3, 0);
     if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(guestMapInstance);
-    renderGondolas(guestMapInstance, 'guest-gondolas');
+    // No gondolas here: lifts are opt-in through the Layers panel, and the
+    // guest preview map has no Layers control — rendering them hidden with
+    // no way to reveal them would be pure dead weight.
     if (typeof makeBasemapPoisClickable === 'function') makeBasemapPoisClickable(guestMapInstance);
     // Real route lines for any trail that has one — same data the logged-in map uses.
     const pathFeatures = trails
