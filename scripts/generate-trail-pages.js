@@ -585,7 +585,7 @@ ${sourceRecord ? `    ${sourceRecord}\n` : ''}    <div id="dogFit">
 </footer>
 
 <script src="../icon-system.js?v=20260717" defer></script>
-<script src="../mobile-nav.js?v=20260807-1"></script>
+<script src="../mobile-nav.js?v=20260812-1"></script>
 </body>
 </html>
 `;
