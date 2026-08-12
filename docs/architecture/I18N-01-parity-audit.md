@@ -54,14 +54,15 @@ Status: in progress (2026-08-12)
 - an HTML `data-i18n` attribute references an unknown key; or
 - a literal JavaScript `t('…')` call references an unknown key.
 
-The current dictionaries contain 837 matching English and Italian keys.
+The current dictionaries contain 901 matching English and Italian keys.
 
 ## Remaining migration
 
 Dictionary parity is necessary but not sufficient. Account deletion’s uncommon
-partial server-cleanup outcomes and several non-critical descriptive labels in
-the account editor still use English fallback copy. Those states must move
-behind stable result codes/keys before I18N-01 can be marked complete.
+partial server-cleanup outcomes, its completion receipt, and the dog editor’s
+dynamic controls now use stable result codes/keys. Several non-critical static
+descriptive labels in the account editor still need migration before I18N-01
+can be marked complete.
 
 This work remains in the supporting backlog. It should be migrated by journey
 and verified in both languages after concurrent navigation/notification UI work

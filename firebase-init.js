@@ -373,7 +373,7 @@ function friendlyError(code) {
 }
 
 async function deleteAccount(password) {
-  if (!currentUser) return { ok: false, message: "Not logged in." };
+  if (!currentUser) return { ok: false, messageKey: "account.delete.notLoggedIn", message: "Not logged in." };
   const providerId = currentUser.providerData[0] && currentUser.providerData[0].providerId;
   const uid = currentUser.uid;
   let removedOutcomes = 0;
@@ -382,12 +382,12 @@ async function deleteAccount(password) {
     if (providerId === "google.com") {
       await reauthenticateWithPopup(currentUser, googleProvider);
     } else {
-      if (!password) return { ok: false, message: "Enter your password to confirm." };
+      if (!password) return { ok: false, messageKey: "account.delete.passwordRequired", message: "Enter your password to confirm." };
       const credential = EmailAuthProvider.credential(currentUser.email, password);
       await reauthenticateWithCredential(currentUser, credential);
     }
   } catch (e) {
-    return { ok: false, stage: "reauthentication", message: friendlyError(e.code) };
+    return { ok: false, stage: "reauthentication", code: e.code || "auth/unknown", message: friendlyError(e.code) };
   }
 
   try {
@@ -404,6 +404,9 @@ async function deleteAccount(password) {
       stage: "private-data",
       partial: removedOutcomes > 0,
       server: { removedOutcomes, removedProfile },
+      messageKey: removedOutcomes > 0
+        ? "account.delete.partialPrivateData"
+        : "account.delete.privateDataError",
       message: removedOutcomes > 0
         ? "Some private hike outcomes were removed, but server cleanup did not finish. Your sign-in has not been deleted. Please try again."
         : "Your private server data could not be removed, so your sign-in was not deleted. Please try again.",
@@ -418,6 +421,7 @@ async function deleteAccount(password) {
       stage: "authentication",
       partial: true,
       server: { removedOutcomes, removedProfile },
+      messageKey: "account.delete.authenticationError",
       message: "Your private profile was removed, but the sign-in could not be deleted. Sign in again and retry account deletion, or contact support.",
     };
   }

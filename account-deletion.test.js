@@ -15,6 +15,9 @@ describe('AUTH-03 account deletion and device cleanup', () => {
     expect(firebase).toContain('retainedForSafetyAndModeration');
     expect(firebase).toContain('stage: "private-data"');
     expect(firebase).toContain('stage: "authentication"');
+    expect(firebase).toContain('messageKey: "account.delete.authenticationError"');
+    expect(firebase).toContain('"account.delete.partialPrivateData"');
+    expect(firebase).toContain('code: e.code || "auth/unknown"');
   });
 
   test('the destructive confirmation names server deletions, retained records, and device choices', () => {
@@ -40,5 +43,7 @@ describe('AUTH-03 account deletion and device cleanup', () => {
     expect(homepage).toContain("device === 'removed'");
     expect(homepage).toContain("device === 'maps-retained'");
     expect(homepage).toContain('device cleanup did not finish');
+    expect(homepage).toContain("'account.delete.receipt.removed'");
+    expect(homepage).toContain("'account.delete.receipt.cleanupIncomplete'");
   });
 });

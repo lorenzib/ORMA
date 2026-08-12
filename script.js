@@ -119,11 +119,12 @@ function showHomeActionStatus(message){
     const url = new URL(window.location.href);
     if(url.searchParams.get('accountDeleted') !== '1') return;
     const device = url.searchParams.get('device');
+    const translate = (key, fallback) => window.t ? window.t(key) : fallback;
     const message = device === 'removed'
-      ? 'Account deleted. Private server data and DoloPaws data on this device were removed. Community and moderation records may be retained for safety or legal obligations.'
+      ? translate('account.delete.receipt.removed', 'Account deleted. Private server data and DoloPaws data on this device were removed. Community and moderation records may be retained for safety or legal obligations.')
       : device === 'maps-retained'
-        ? 'Account deleted. Private server data was removed. Downloaded public maps remain on this device; community and moderation records may also be retained.'
-        : 'Account deleted, but device cleanup did not finish. Clear DoloPaws site data in your browser settings before sharing this device.';
+        ? translate('account.delete.receipt.mapsRetained', 'Account deleted. Private server data was removed. Downloaded public maps remain on this device; community and moderation records may also be retained.')
+        : translate('account.delete.receipt.cleanupIncomplete', 'Account deleted, but device cleanup did not finish. Clear DoloPaws site data in your browser settings before sharing this device.');
     showHomeActionStatus(message);
     url.searchParams.delete('accountDeleted');
     url.searchParams.delete('device');

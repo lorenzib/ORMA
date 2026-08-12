@@ -27,7 +27,9 @@
   const returnTarget = safeReturnTarget(requestedNext);
   const backHref = returnTarget || 'index.html';
   $('backLink').href = backHref;
-  $('backLink').textContent = returnTarget ? '← Back' : '← Back to trails';
+  $('backLink').textContent = returnTarget
+    ? tKey('account.back', '← Back')
+    : tKey('account.backTrails', '← Back to trails');
   const mobileBackLink = $('mobileBackLink');
   if(mobileBackLink) mobileBackLink.href = backHref;
 
@@ -91,7 +93,7 @@
       if(typeof dog.photo === 'string' && dog.photo.startsWith('data:image/')) avatar.style.backgroundImage = `url(${dog.photo})`;
       else avatar.textContent = (dog.name || 'D').charAt(0).toUpperCase();
       const name = document.createElement('span');
-      name.textContent = dog.name || 'Your dog';
+      name.textContent = dog.name || tKey('account.yourDog', 'Your dog');
       button.append(avatar, name);
       button.addEventListener('click', async () => {
         if(!window.DoloPawsAuth || dog.id === activeDogId && !addMode) return;
@@ -105,13 +107,17 @@
     if(addMode){
       const adding = document.createElement('span');
       adding.className = 'profile-dogchoice on';
-      adding.textContent = 'New dog';
+      adding.textContent = tKey('account.newDog', 'New dog');
       list.appendChild(adding);
     }
     const add = $('profileAddDog');
     if(add){
       add.disabled = addMode || dogProfiles.length >= 5;
-      add.textContent = dogProfiles.length >= 5 ? 'Maximum 5 dogs' : addMode ? 'Adding a new dog' : '+ Add another dog';
+      add.textContent = dogProfiles.length >= 5
+        ? tKey('account.maximumDogs', 'Maximum 5 dogs')
+        : addMode
+          ? tKey('account.addingDog', 'Adding a new dog')
+          : tKey('account.addDog', '+ Add another dog');
       add.onclick = () => window.location.assign(accountHref({ mode:'add' }));
     }
     const canRemoveDog = !addMode && dogProfiles.length > 1;
@@ -223,47 +229,54 @@
 
   // ---------- Option groups ----------
   const SIZES = [
-    ['Small','Under 10 kg'], ['Medium','10–25 kg'],
-    ['Large','25–40 kg'], ['Extra large','Over 40 kg'],
+    ['Small','account.size.small','account.size.under10','Under 10 kg'],
+    ['Medium','account.size.medium','account.size.10to25','10–25 kg'],
+    ['Large','account.size.large','account.size.25to40','25–40 kg'],
+    ['Extra large','account.size.extraLarge','account.size.over40','Over 40 kg'],
   ];
-  const NEUTER = ['Neutered','Not neutered','Unknown'];
-  const COATS = ['Short','Medium','Long','Double','Curly','Hairless'];
+  const NEUTER = [
+    ['Neutered','account.neuter.yes'], ['Not neutered','account.neuter.no'], ['Unknown','account.unknown'],
+  ];
+  const COATS = [
+    ['Short','account.coat.short'], ['Medium','account.coat.medium'], ['Long','account.coat.long'],
+    ['Double','account.coat.double'], ['Curly','account.coat.curly'], ['Hairless','account.coat.hairless'],
+  ];
   const SENS = [
-    { id:'heat', icon:'☀️', label:'Heat-sensitive', sub:'Struggles in warm weather' },
-    { id:'paws', icon:'🐾', label:'Sensitive paws', sub:'Avoid rocky or hot ground' },
-    { id:'reactive', icon:'🦴', label:'Reactive to dogs', sub:'Prefers quieter trails' },
-    { id:'joints', icon:'🦳', label:'Senior / joints', sub:'Gentler climbs and distance' },
-    { id:'water', icon:'💧', label:'Loves water', sub:'Prioritize lakes & streams' },
+    { id:'heat', icon:'☀️', labelKey:'account.sensitivity.heat', label:'Heat-sensitive', subKey:'account.sensitivity.heatSub', sub:'Struggles in warm weather' },
+    { id:'paws', icon:'🐾', labelKey:'account.sensitivity.paws', label:'Sensitive paws', subKey:'account.sensitivity.pawsSub', sub:'Avoid rocky or hot ground' },
+    { id:'reactive', icon:'🦴', labelKey:'account.sensitivity.reactive', label:'Reactive to dogs', subKey:'account.sensitivity.reactiveSub', sub:'Prefers quieter trails' },
+    { id:'joints', icon:'🦳', labelKey:'account.sensitivity.joints', label:'Senior / joints', subKey:'account.sensitivity.jointsSub', sub:'Gentler climbs and distance' },
+    { id:'water', icon:'💧', labelKey:'account.sensitivity.water', label:'Loves water', subKey:'account.sensitivity.waterSub', sub:'Prioritize lakes & streams' },
   ];
 
   function renderOptions(){
     $('sizeGrid').innerHTML = '';
-    SIZES.forEach(([label, sub]) => {
+    SIZES.forEach(([value, labelKey, subKey, sub]) => {
       const b = document.createElement('button');
       b.type = 'button';
-      b.className = 'optbtn' + (state.size === label ? ' on' : '');
+      b.className = 'optbtn' + (state.size === value ? ' on' : '');
       b.innerHTML = '<div class="t"></div><div class="s"></div>';
-      b.querySelector('.t').textContent = label;
-      b.querySelector('.s').textContent = sub;
-      b.addEventListener('click', () => { state.size = label; renderOptions(); });
+      b.querySelector('.t').textContent = tKey(labelKey, value);
+      b.querySelector('.s').textContent = tKey(subKey, sub);
+      b.addEventListener('click', () => { state.size = value; renderOptions(); });
       $('sizeGrid').appendChild(b);
     });
     $('neuterRow').innerHTML = '';
-    NEUTER.forEach(label => {
+    NEUTER.forEach(([value, labelKey]) => {
       const b = document.createElement('button');
       b.type = 'button';
-      b.className = 'segbtn' + (state.neuter === label ? ' on' : '');
-      b.textContent = label;
-      b.addEventListener('click', () => { state.neuter = label; renderOptions(); });
+      b.className = 'segbtn' + (state.neuter === value ? ' on' : '');
+      b.textContent = tKey(labelKey, value);
+      b.addEventListener('click', () => { state.neuter = value; renderOptions(); });
       $('neuterRow').appendChild(b);
     });
     $('coatRow').innerHTML = '';
-    COATS.forEach(label => {
+    COATS.forEach(([value, labelKey]) => {
       const b = document.createElement('button');
       b.type = 'button';
-      b.className = 'chipbtn' + (state.coat === label ? ' on' : '');
-      b.textContent = label;
-      b.addEventListener('click', () => { state.coat = label; renderOptions(); });
+      b.className = 'chipbtn' + (state.coat === value ? ' on' : '');
+      b.textContent = tKey(labelKey, value);
+      b.addEventListener('click', () => { state.coat = value; renderOptions(); });
       $('coatRow').appendChild(b);
     });
     $('sensGrid').innerHTML = '';
@@ -275,8 +288,8 @@
       b.setAttribute('aria-pressed', String(on));
       b.innerHTML = '<span class="ico"></span><div style="flex:1;"><div style="font-size:13px;font-weight:800;color:var(--ink);" class="t"></div><div style="font-size:11px;color:#8A9689;margin-top:1px;" class="s"></div></div><span class="chk"></span>';
       b.querySelector('.ico').textContent = o.icon;
-      b.querySelector('.t').textContent = o.label;
-      b.querySelector('.s').textContent = o.sub;
+      b.querySelector('.t').textContent = tKey(o.labelKey, o.label);
+      b.querySelector('.s').textContent = tKey(o.subKey, o.sub);
       b.querySelector('.chk').textContent = on ? '✓' : '';
       b.addEventListener('click', () => {
         state.sens = on ? state.sens.filter(x => x !== o.id) : state.sens.concat(o.id);
@@ -295,7 +308,7 @@
   function allBreeds(){ return (typeof DOG_BREEDS !== 'undefined') ? DOG_BREEDS : []; }
   function renderBreedList(){
     const ALL = allBreeds();
-    $('breedHint').textContent = 'Search ' + ALL.length + ' breeds — or type your own';
+    $('breedHint').textContent = tKey('account.breedHint', 'Search {count} breeds — or type your own', { count:ALL.length });
     const q = state.breed.trim().toLowerCase();
     const exact = ALL.some(b => b.toLowerCase() === q);
     let matches = [];
@@ -339,14 +352,15 @@
 
   function renderDerived(){
     const nm = state.name.trim();
-    const displayName = nm || 'Your dog';
+    const displayName = nm || tKey('account.yourDog', 'Your dog');
     $('dogDisplayName').textContent = displayName;
-    document.querySelectorAll('.removeDogName').forEach(el => { el.textContent = nm || 'this dog'; });
+    document.querySelectorAll('.removeDogName').forEach(el => { el.textContent = nm || tKey('account.thisDog', 'this dog'); });
 
     const m = ageMonthsFrom(state.dob);
-    $('ageHint').textContent = m == null ? 'Add a birthday to estimate age'
-      : m < 12 ? m + ' month' + (m === 1 ? '' : 's') + ' old'
-      : Math.floor(m / 12) + ' year' + (Math.floor(m / 12) === 1 ? '' : 's') + ' old';
+    const years = m == null ? null : Math.floor(m / 12);
+    $('ageHint').textContent = m == null ? tKey('account.age.addBirthday', 'Add a birthday to estimate age')
+      : m < 12 ? tKey(m === 1 ? 'account.age.oneMonth' : 'account.age.months', m === 1 ? '1 month old' : '{count} months old', { count:m })
+      : tKey(years === 1 ? 'account.age.oneYear' : 'account.age.years', years === 1 ? '1 year old' : '{count} years old', { count:years });
     $('weightLabel').textContent = state.weight + ' kg';
 
     // Photo circle + card avatar: photo wins, else the name's initial.
@@ -359,11 +373,11 @@
     // Emergency card preview
     $('cardName').textContent = displayName;
     $('cardBreed').textContent = state.breed.trim() || '—';
-    $('cardChip').textContent = state.chip.trim() || 'Not recorded';
-    $('cardMedical').textContent = state.medical.trim() || 'None noted';
-    $('cardVet').textContent = joinBits([state.vetName.trim(), state.vetPhone.trim()], 'Not recorded');
+    $('cardChip').textContent = state.chip.trim() || tKey('account.notRecorded', 'Not recorded');
+    $('cardMedical').textContent = state.medical.trim() || tKey('account.noneNoted', 'None noted');
+    $('cardVet').textContent = joinBits([state.vetName.trim(), state.vetPhone.trim()], tKey('account.notRecorded', 'Not recorded'));
     $('cardOwner').textContent = joinBits([state.ownerName.trim(), state.ownerPhone.trim(), state.ownerEmail.trim()], '—');
-    $('cardEmergency').textContent = joinBits([state.emName.trim(), state.emPhone.trim()], 'Not set');
+    $('cardEmergency').textContent = joinBits([state.emName.trim(), state.emPhone.trim()], tKey('account.notSet', 'Not set'));
 
     // A dog profile can be saved with dog information alone, matching the
     // homepage wizard. Human and emergency-contact details are optional and
@@ -565,22 +579,22 @@
 
   // ---------- Share card ----------
   $('shareCardBtn').addEventListener('click', async () => {
-    const nm = state.name.trim() || 'This dog';
-    const text = nm + ' — DoloPaws emergency card'
-      + '\nBreed: ' + (state.breed.trim() || '—')
-      + '\nMicrochip: ' + (state.chip.trim() || '—')
-      + '\nMedical: ' + (state.medical.trim() || 'None')
-      + '\nOwner: ' + [state.ownerName.trim() || '—', state.ownerPhone.trim(), state.ownerEmail.trim()].filter(Boolean).join(' ')
-      + '\nEmergency: ' + [state.emName.trim() || '—', state.emPhone.trim()].filter(Boolean).join(' ')
-      + '\nVet: ' + [state.vetName.trim() || '—', state.vetPhone.trim()].filter(Boolean).join(' ');
+    const nm = state.name.trim() || tKey('account.thisDogTitle', 'This dog');
+    const text = tKey('account.card.title', '{name} — DoloPaws emergency card', { name:nm })
+      + '\n' + tKey('account.card.breed', 'Breed: {value}', { value:state.breed.trim() || '—' })
+      + '\n' + tKey('account.card.microchip', 'Microchip: {value}', { value:state.chip.trim() || '—' })
+      + '\n' + tKey('account.card.medical', 'Medical: {value}', { value:state.medical.trim() || tKey('account.none', 'None') })
+      + '\n' + tKey('account.card.owner', 'Owner: {value}', { value:[state.ownerName.trim() || '—', state.ownerPhone.trim(), state.ownerEmail.trim()].filter(Boolean).join(' ') })
+      + '\n' + tKey('account.card.emergency', 'Emergency: {value}', { value:[state.emName.trim() || '—', state.emPhone.trim()].filter(Boolean).join(' ') })
+      + '\n' + tKey('account.card.vet', 'Vet: {value}', { value:[state.vetName.trim() || '—', state.vetPhone.trim()].filter(Boolean).join(' ') });
     const status = $('shareStatus');
     try {
       if(navigator.share){
-        await navigator.share({ title: nm + ' — emergency card', text: text });
+        await navigator.share({ title: tKey('account.card.shareTitle', '{name} — emergency card', { name:nm }), text: text });
       } else if(navigator.clipboard){
         await navigator.clipboard.writeText(text);
         status.hidden = false;
-        status.textContent = 'Copied to clipboard.';
+        status.textContent = tKey('account.card.copied', 'Copied to clipboard.');
         window.setTimeout(() => { status.hidden = true; }, 2500);
       }
     } catch(e){ /* user dismissed the share sheet */ }
@@ -831,7 +845,7 @@
       window.location.href = 'index.html?accountDeleted=1&device=' + encodeURIComponent(deviceState);
     } else {
       deleteStatus.hidden = false;
-      deleteStatus.textContent = result.message;
+      deleteStatus.textContent = serviceMessage(result);
     }
   });
 
@@ -839,8 +853,8 @@
   function providerLabel(user){
     const pid = user.providerData[0] && user.providerData[0].providerId;
     if(pid === 'google.com') return 'Google';
-    if(pid === 'password') return 'Email & password';
-    return 'Unknown';
+    if(pid === 'password') return tKey('account.provider.password', 'Email & password');
+    return tKey('account.unknown', 'Unknown');
   }
 
   function kgFromProfile(p){
@@ -887,7 +901,7 @@
 
       // Settings header
       savedEmail = user.email || '';
-      $('acctEmailLabel').textContent = user.email || '(no email on file)';
+      $('acctEmailLabel').textContent = user.email || tKey('account.noEmail', '(no email on file)');
       $('acctProvider').textContent = providerLabel(user);
       $('acctAvatar').textContent = ((user.displayName || user.email || '?').charAt(0)).toUpperCase();
       acctEmailInput.value = savedEmail;

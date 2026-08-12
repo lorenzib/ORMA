@@ -16,7 +16,11 @@ describe('account-management translation boundary', () => {
       'account.logout.error',
       'account.delete.deleting',
       'account.signedOut',
+      'account.yourDog',
+      'account.breedHint',
+      'account.card.copied',
     ].forEach(key => expect(account).toContain(`tKey('${key}'`));
+    expect(account).toContain("labelKey:'account.sensitivity.heat'");
     expect(account).toContain('serviceMessage(result)');
   });
 
@@ -27,5 +31,9 @@ describe('account-management translation boundary', () => {
       'account.email.sent',
       'account.password.sent',
     ].forEach(key => expect(account).toContain(`tKey('${key}'`));
+  });
+
+  test('account deletion displays stable service messages instead of raw English results', () => {
+    expect(account).toContain('deleteStatus.textContent = serviceMessage(result)');
   });
 });
