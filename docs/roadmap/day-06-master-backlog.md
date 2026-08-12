@@ -838,15 +838,16 @@ isolated under the deployment-excluded `experiments/` boundary. See
 | --- | --- | --- | --- |
 | I18N-01 | Guarantee Italian parity for every core beta state | M | Stable core-flow copy |
 
-`I18N-01` is in progress. Dictionary/reference parity is enforced in CI, and
+`I18N-01` is complete. Dictionary/reference parity is enforced in CI, and
 the complete UX-06 pre-hike readiness, OFF-03/OFF-05 download lifecycle,
 UX-04 canonical recommendation, SAVE-01 saved-trails, JOURNAL-01 walk journal,
 and AUTH-02 shared account-access journeys are bilingual as of 2026-08-12.
 Shared mobile navigation is also bilingual. Account-management runtime states
 cover the core save, verification, credential, device-data, and deletion
-lifecycle, including partial server-cleanup recovery. Dynamic dog-profile
-controls and emergency-card output are bilingual. Remaining non-critical static
-account labels still need migration before I18N-01 closes. See
+lifecycle, including partial server-cleanup recovery. The full dog/human/vet
+profile editor, live impact explanations, emergency-card output, notification
+preferences, security settings, logout choices, and deletion disclosure are
+bilingual. Canonical stored scoring values remain unchanged. See
 `docs/architecture/I18N-01-parity-audit.md`.
 
 ## P3 experiments

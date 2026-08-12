@@ -3,6 +3,7 @@ const path = require('path');
 
 const account = fs.readFileSync(path.join(__dirname, 'account.js'), 'utf8');
 const profileDesign = fs.readFileSync(path.join(__dirname, 'profile-design.js'), 'utf8');
+const accountHtml = fs.readFileSync(path.join(__dirname, 'account.html'), 'utf8');
 
 describe('account-management translation boundary', () => {
   test('core profile and destructive lifecycle states use stable keys', () => {
@@ -48,5 +49,17 @@ describe('account-management translation boundary', () => {
       'account.dogAddedSuccess',
       'account.profileSaved',
     ].forEach(key => expect(profileDesign).toContain(`t('${key}'`));
+  });
+
+  test('static profile, security, and deletion surfaces declare translation keys', () => {
+    [
+      'account.profile.basics',
+      'account.profile.healthHelp',
+      'account.human.title',
+      'account.vet.title',
+      'account.settings.details',
+      'account.delete.retentionSummary',
+      'account.footer.blurb',
+    ].forEach(key => expect(accountHtml).toContain(`data-i18n="${key}"`));
   });
 });

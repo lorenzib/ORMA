@@ -354,7 +354,13 @@
     const nm = state.name.trim();
     const displayName = nm || tKey('account.yourDog', 'Your dog');
     $('dogDisplayName').textContent = displayName;
-    document.querySelectorAll('.removeDogName').forEach(el => { el.textContent = nm || tKey('account.thisDog', 'this dog'); });
+    const dogReference = nm || tKey('account.thisDog', 'this dog');
+    const removeDogBtn = $('removeDogBtn');
+    const removeDogHelp = $('removeDogHelp');
+    const humanHelp = $('humanHelp');
+    if(removeDogBtn) removeDogBtn.textContent = tKey('account.removeDogNamed', 'Remove {name}', { name:dogReference });
+    if(removeDogHelp) removeDogHelp.textContent = tKey('account.removeDogHelp', 'Permanently deletes {name}’s profile and all its data — photo, health, vet and emergency details. You can add a dog again later.', { name:dogReference });
+    if(humanHelp) humanHelp.textContent = tKey('account.humanHelp', 'Who to reach if {name} is found or needs help on the trail.', { name:dogReference });
 
     const m = ageMonthsFrom(state.dob);
     const years = m == null ? null : Math.floor(m / 12);

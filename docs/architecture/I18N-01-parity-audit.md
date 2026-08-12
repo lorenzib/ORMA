@@ -54,16 +54,17 @@ Status: in progress (2026-08-12)
 - an HTML `data-i18n` attribute references an unknown key; or
 - a literal JavaScript `t('…')` call references an unknown key.
 
-The current dictionaries contain 901 matching English and Italian keys.
+The current dictionaries contain 1,065 matching English and Italian keys.
 
 ## Remaining migration
 
-Dictionary parity is necessary but not sufficient. Account deletion’s uncommon
-partial server-cleanup outcomes, its completion receipt, and the dog editor’s
-dynamic controls now use stable result codes/keys. Several non-critical static
-descriptive labels in the account editor still need migration before I18N-01
-can be marked complete.
+I18N-01 is complete for the core beta boundary. Account deletion’s uncommon
+partial server-cleanup outcomes and completion receipt, the full dog/human/vet
+profile editor, live scoring-impact explanations, notification preferences,
+credential and offline-map settings, logout choices, and destructive deletion
+disclosure all use stable result codes or translation keys. Canonical scoring
+and health-condition values remain language-neutral storage identifiers and are
+translated only at presentation time.
 
-This work remains in the supporting backlog. It should be migrated by journey
-and verified in both languages after concurrent navigation/notification UI work
-has settled; the audit prevents new key/reference drift in the meantime.
+New core-flow copy must continue to use the machine-checked dictionary boundary;
+translation parity remains a release-gate invariant rather than a one-time audit.
