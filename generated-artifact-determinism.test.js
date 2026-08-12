@@ -41,6 +41,8 @@ describe('generated artifact dates', () => {
     const trailShell = fs.readFileSync(path.join(root, 'trail.html'), 'utf8');
     const generatorToken = generator.match(/mobile-nav\.js\?v=([^"]+)/);
     const trailShellToken = trailShell.match(/mobile-nav\.js\?v=([^"]+)/);
-    expect(generatorToken && generatorToken[1]).toBe(trailShellToken && trailShellToken[1]);
+    expect(generatorToken).not.toBeNull();
+    expect(trailShellToken).not.toBeNull();
+    expect(generatorToken[1]).toBe(trailShellToken[1]);
   });
 });
