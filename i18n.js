@@ -34,6 +34,20 @@
     'nav.login': 'Log in',
     'nav.account': 'My account',
     'nav.settings': 'Settings',
+    'mobile.skip': 'Skip to main content',
+    'mobile.alpinePlants': 'Alpine plants guide',
+    'mobile.notifications': 'Notifications',
+    'mobile.switchDog': 'Switch dog',
+    'mobile.addDog': '＋ Add another dog',
+    'mobile.manageDogs': 'Manage dog profiles →',
+    'mobile.savedTrails': 'Saved trails',
+    'mobile.savedFor': 'Saved for {name}',
+    'mobile.downloads': 'Downloaded trails',
+    'mobile.settings': 'Account settings',
+    'mobile.moderator': 'Moderator workspace',
+    'mobile.logout': 'Log out',
+    'mobile.openMenu': 'Open menu',
+    'mobile.closeMenu': 'Close menu',
     'auth.hint': 'Save trails to your account so they follow you across devices.',
     'auth.signupHint': 'One account, every dog you add. Free, and never required just to browse.',
     'auth.email': 'Email',
@@ -823,6 +837,20 @@
     'nav.login': 'Accedi',
     'nav.account': 'Il mio account',
     'nav.settings': 'Impostazioni',
+    'mobile.skip': 'Vai al contenuto principale',
+    'mobile.alpinePlants': 'Guida alle piante alpine',
+    'mobile.notifications': 'Notifiche',
+    'mobile.switchDog': 'Cambia cane',
+    'mobile.addDog': '＋ Aggiungi un altro cane',
+    'mobile.manageDogs': 'Gestisci i profili dei cani →',
+    'mobile.savedTrails': 'Sentieri salvati',
+    'mobile.savedFor': 'Salvati per {name}',
+    'mobile.downloads': 'Sentieri scaricati',
+    'mobile.settings': 'Impostazioni account',
+    'mobile.moderator': 'Area moderazione',
+    'mobile.logout': 'Esci',
+    'mobile.openMenu': 'Apri menu',
+    'mobile.closeMenu': 'Chiudi menu',
     'auth.hint': 'Salva i sentieri e ritrovali su tutti i tuoi dispositivi.',
     'auth.signupHint': 'Un solo account per tutti i tuoi cani. Gratis, e mai necessario solo per esplorare.',
     'auth.email': 'Email',
@@ -1726,6 +1754,7 @@
 
   function init(){
     applyTranslations();
+    window.dispatchEvent(new CustomEvent('dolopaws-i18n-ready', { detail:{ lang } }));
     // 2026-07 design pass: no language toggle in the header. Language now
     // changes from Account settings (settings.html → Units & language);
     // first-visit language still follows the browser automatically.

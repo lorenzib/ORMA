@@ -79,7 +79,7 @@ describe('multi-dog account experience', () => {
     const homepage = source('index.html');
     expect(account).not.toContain('id="moderatorToolsBox"');
     expect(account).not.toContain('Open moderation queue');
-    expect(nav).toContain("menuItem('Moderator workspace', 'moderation.html')");
+    expect(nav).toContain("'moderation.html', 'mobile.moderator'");
     expect(homepage).toContain('id="liModeratorLink"');
   });
 

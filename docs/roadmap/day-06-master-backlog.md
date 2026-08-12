@@ -842,7 +842,8 @@ isolated under the deployment-excluded `experiments/` boundary. See
 the complete UX-06 pre-hike readiness, OFF-03/OFF-05 download lifecycle,
 UX-04 canonical recommendation, SAVE-01 saved-trails, JOURNAL-01 walk journal,
 and AUTH-02 shared account-access journeys are bilingual as of 2026-08-12.
-Account-management and mobile-navigation runtime states remain to migrate. See
+Shared mobile navigation is also bilingual. Account-management runtime states
+remain to migrate. See
 `docs/architecture/I18N-01-parity-audit.md`.
 
 ## P3 experiments

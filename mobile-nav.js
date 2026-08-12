@@ -5,6 +5,7 @@
     link.className = 'dp-skip-link';
     link.href = '#mainContent';
     link.textContent = 'Skip to main content';
+    link.setAttribute('data-i18n', 'mobile.skip');
     const resolveTarget = () => {
       const candidates = Array.from(document.querySelectorAll('main, [data-main-content], #newCustomerHomepage, #returningCustomerHomepage'));
       const target = candidates.find(element => !element.hidden) || candidates[0];
@@ -35,6 +36,7 @@
       const link = document.createElement('a');
       link.href = (breedLink.getAttribute('href') || '').replace('breed-group-caveats.html', 'alpine-plants-for-dogs.html');
       link.textContent = 'Alpine plants guide';
+      link.setAttribute('data-i18n', 'mobile.alpinePlants');
       group.appendChild(link);
     });
   }
@@ -69,6 +71,13 @@
   // signal there; pages with live auth re-render on `dolopaws-auth-changed`.
   const navEl = document.querySelector('.topnav');
   const linksEl = navEl && navEl.querySelector('.links');
+
+  function copy(key, fallback, vars){
+    let value = typeof window.t === 'function' ? window.t(key, vars) : fallback;
+    if(value === key) value = fallback;
+    Object.keys(vars || {}).forEach(name => { value = String(value).split('{' + name + '}').join(vars[name]); });
+    return value;
+  }
 
   function authSummary(){
     try {
@@ -159,7 +168,8 @@
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'nav-bell';
-      btn.setAttribute('aria-label', 'Notifications');
+      btn.setAttribute('aria-label', copy('mobile.notifications', 'Notifications'));
+      btn.setAttribute('data-i18n-aria-label', 'mobile.notifications');
       btn.innerHTML = bellSvg();
       // Badge from the derived-feed count cached by notifications.js and the
       // logged-in homepage. No cache yet (first visit since the feed
@@ -210,7 +220,8 @@
       btn.appendChild(dogAvatarEl(name, null, initialDog && initialDog.photo));
       const label = document.createElement('span');
       label.className = 'nav-user-name';
-      label.textContent = name || 'My account';
+      label.textContent = name || copy('nav.account', 'My account');
+      if(!name) label.setAttribute('data-i18n', 'nav.account');
       btn.appendChild(label);
       const caret = document.createElement('span');
       caret.className = 'nav-user-caret';
@@ -223,7 +234,8 @@
       menu.hidden = true;
       const kick = document.createElement('div');
       kick.className = 'nav-dogmenu-kick';
-      kick.textContent = 'Switch dog';
+      kick.textContent = copy('mobile.switchDog', 'Switch dog');
+      kick.setAttribute('data-i18n', 'mobile.switchDog');
       menu.appendChild(kick);
 
       const summary = authSummary() || {};
@@ -277,7 +289,8 @@
       const addLink = document.createElement('a');
       addLink.className = 'nav-dogmenu-manage';
       addLink.href = prefix + 'account.html?mode=add&next=' + encodeURIComponent(pagePath);
-      addLink.textContent = '＋ Add another dog';
+      addLink.textContent = copy('mobile.addDog', '＋ Add another dog');
+      addLink.setAttribute('data-i18n', 'mobile.addDog');
       addLink.addEventListener('click', (e) => {
         if(window.DoloPawsWizard && typeof window.DoloPawsWizard.open === 'function'){
           e.preventDefault();
@@ -289,7 +302,8 @@
       const manage = document.createElement('a');
       manage.className = 'nav-dogmenu-manage';
       manage.href = prefix + 'account.html?next=' + encodeURIComponent(pagePath);
-      manage.textContent = 'Manage dog profiles →';
+      manage.textContent = copy('mobile.manageDogs', 'Manage dog profiles →');
+      manage.setAttribute('data-i18n', 'mobile.manageDogs');
       menu.appendChild(manage);
 
       function menuDiv(){
@@ -298,30 +312,34 @@
         div.setAttribute('role', 'separator');
         return div;
       }
-      function menuItem(html, href){
+      function menuItem(html, href, i18nKey){
         const a = document.createElement('a');
         a.className = 'nav-dogmenu-item';
         a.href = prefix + href;
         a.innerHTML = html;
+        if(i18nKey) a.setAttribute('data-i18n', i18nKey);
         return a;
       }
       menu.appendChild(menuDiv());
+      const savedLabel = activeName && activeName !== 'Your dog'
+        ? copy('mobile.savedFor', 'Saved for {name}', { name:activeName.replace(/[&<>"]/g, '') })
+        : copy('mobile.savedTrails', 'Saved trails');
       const savedItem = menuItem(
-        '<span class="nav-dogmenu-heart" aria-hidden="true">♥</span>Saved' +
-        (activeName && activeName !== 'Your dog' ? ' for ' + activeName.replace(/[&<>"]/g, '') : ' trails') +
+        '<span class="nav-dogmenu-heart" aria-hidden="true">♥</span>' + savedLabel +
         (Number.isFinite(summary.saved) ? '<span class="nav-dogmenu-count">' + summary.saved + '</span>' : ''),
         'saved.html');
       menu.appendChild(savedItem);
-      menu.appendChild(menuItem('Downloaded trails', 'downloads.html'));
-      menu.appendChild(menuItem('Account settings', 'settings.html'));
+      menu.appendChild(menuItem(copy('mobile.downloads', 'Downloaded trails'), 'downloads.html', 'mobile.downloads'));
+      menu.appendChild(menuItem(copy('mobile.settings', 'Account settings'), 'settings.html', 'mobile.settings'));
       if(summary.moderator === true){
-        menu.appendChild(menuItem('Moderator workspace', 'moderation.html'));
+        menu.appendChild(menuItem(copy('mobile.moderator', 'Moderator workspace'), 'moderation.html', 'mobile.moderator'));
       }
       menu.appendChild(menuDiv());
       const logout = document.createElement('button');
       logout.type = 'button';
       logout.className = 'nav-dogmenu-item nav-dogmenu-logout';
-      logout.textContent = 'Log out';
+      logout.textContent = copy('mobile.logout', 'Log out');
+      logout.setAttribute('data-i18n', 'mobile.logout');
       logout.addEventListener('click', async () => {
         setOpen(false);
         if(window.DoloPawsAuth && typeof window.DoloPawsAuth.logOut === 'function'){
@@ -383,10 +401,10 @@
       linksEl.innerHTML = '';
       // Both states share the same link row now; only the right-hand
       // controls change (login pill vs bell + dog pill).
-      linksEl.appendChild(navItem('Browse all Trails', 'browse-trails.html', key === 'trails'));
-      linksEl.appendChild(navItem('Collections', 'collections.html', key === 'collections'));
-      linksEl.appendChild(navItem('Safety guide', 'safety-guide.html', key === 'safety'));
-      linksEl.appendChild(navItem('My walk journal', 'journal.html', key === 'journal'));
+      linksEl.appendChild(navItem('Browse all Trails', 'browse-trails.html', key === 'trails', 'saved.nav.browse'));
+      linksEl.appendChild(navItem('Collections', 'collections.html', key === 'collections', 'saved.nav.collections'));
+      linksEl.appendChild(navItem('Safety guide', 'safety-guide.html', key === 'safety', 'saved.nav.safety'));
+      linksEl.appendChild(navItem('My walk journal', 'journal.html', key === 'journal', 'saved.nav.journal'));
       if(loggedIn){
         activeBell = buildBell();
         linksEl.appendChild(activeBell);
@@ -415,8 +433,8 @@
             });
           }
           // i18n first — auth-ui's modal copy calls window.t().
-          const script = loadScript('i18n.js?v=20260729-1')
-            .then(() => loadScript('auth-ui.js?v=20260730-4'));
+          const script = loadScript('i18n.js?v=20260812-5')
+            .then(() => loadScript('auth-ui.js?v=20260812-1'));
           // import() inside a classic script resolves against THIS script's
           // URL (the site root), not the page — resolve explicitly against
           // the document so ../ prefixes on trail pages work.
@@ -476,6 +494,10 @@
         } catch(err){}
       }
     });
+    window.addEventListener('dolopaws-i18n-ready', () => {
+      const current = authSummary();
+      renderHeader(!!current, current && current.name ? String(current.name) : '');
+    }, { once:true });
   }
 
   // ================= MOBILE MENU TOGGLE =================
@@ -491,13 +513,16 @@
   toggle.setAttribute('aria-controls', links.id);
   toggle.setAttribute('aria-expanded', 'false');
   toggle.setAttribute('aria-label', 'Open menu');
+  toggle.setAttribute('data-i18n-aria-label', 'mobile.openMenu');
   toggle.innerHTML = '<span></span><span></span><span></span>';
   nav.insertBefore(toggle, links);
 
   function setOpen(open){
     nav.classList.toggle('mobile-nav-open', open);
     toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    const key = open ? 'mobile.closeMenu' : 'mobile.openMenu';
+    toggle.setAttribute('data-i18n-aria-label', key);
+    toggle.setAttribute('aria-label', copy(key, open ? 'Close menu' : 'Open menu'));
   }
 
   toggle.addEventListener('click', function(e){

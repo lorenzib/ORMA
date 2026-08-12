@@ -16,6 +16,7 @@ describe('shared navigation hardening', () => {
     expect(toggle.getAttribute('aria-controls')).toBe('primaryNavigation');
     expect(toggle.getAttribute('aria-expanded')).toBe('false');
     expect(toggle.getAttribute('aria-label')).toBe('Open menu');
+    expect(toggle.getAttribute('data-i18n-aria-label')).toBe('mobile.openMenu');
   });
 
   test('adds a skip link that focuses the main content', () => {
@@ -45,6 +46,7 @@ describe('shared navigation hardening', () => {
     window.eval(mobileNav);
     const link = footer.querySelector('a[href="guides/alpine-plants-for-dogs.html"]');
     expect(link && link.textContent).toBe('Alpine plants guide');
+    expect(link.getAttribute('data-i18n')).toBe('mobile.alpinePlants');
   });
 
   test('keeps one notification bell outside the menu after auth refresh', async () => {
@@ -69,5 +71,6 @@ describe('shared navigation hardening', () => {
     expect(nav.querySelectorAll('.nav-bellwrap')).toHaveLength(1);
     expect(nav.querySelector('.links .nav-bellwrap')).toBeNull();
     expect(bell.nextElementSibling).toBe(nav.querySelector('.mobile-nav-toggle'));
+    expect(bell.querySelector('button').getAttribute('data-i18n-aria-label')).toBe('mobile.notifications');
   });
 });

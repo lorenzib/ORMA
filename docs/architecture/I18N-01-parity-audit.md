@@ -34,6 +34,11 @@ Status: in progress (2026-08-12)
   credentials, throttling and offline recovery are bilingual on every page
   that opens the shared authentication dialog. Firebase error codes remain
   machine-readable until presentation instead of leaking English backend copy.
+- **Shared navigation:** skip link, primary destinations, notification bell,
+  mobile menu state, account and dog switcher actions, saved/downloaded links,
+  moderator access, logout and the injected alpine-plants guide link are
+  bilingual. The navigation re-renders when i18n becomes ready so later auth
+  refreshes cannot revert Italian labels to English.
 
 ## Machine-checkable boundary
 
@@ -44,13 +49,13 @@ Status: in progress (2026-08-12)
 - an HTML `data-i18n` attribute references an unknown key; or
 - a literal JavaScript `t('…')` call references an unknown key.
 
-The current dictionaries contain 786 matching English and Italian keys.
+The current dictionaries contain 800 matching English and Italian keys.
 
 ## Remaining migration
 
 Dictionary parity is necessary but not sufficient. Several core screens still
-create English state text directly in controllers, including account-management
-and mobile-nav states. Those strings must move behind
+create English state text directly in the account-management controller. Those
+strings must move behind
 stable keys before I18N-01 can be marked complete.
 
 This work remains in the supporting backlog. It should be migrated by journey

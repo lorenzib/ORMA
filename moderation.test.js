@@ -22,7 +22,7 @@ describe('MOD-02 minimum moderation queue', () => {
 
   test('authorized operators discover the private tool outside dog profiles', () => {
     expect(account).not.toContain('moderatorToolsBox');
-    expect(navigation).toContain("menuItem('Moderator workspace', 'moderation.html')");
+    expect(navigation).toContain("'moderation.html', 'mobile.moderator'");
     expect(navigation).toContain('summary.moderator === true');
     expect(homepage).toContain('id="liModeratorLink" href="moderation.html" hidden');
   });
