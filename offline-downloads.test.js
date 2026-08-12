@@ -66,6 +66,49 @@ describe('OFF-03 downloaded-trail management surface', () => {
     expect(document.querySelector('[data-action="request-remove"]')).not.toBeNull();
   });
 
+  test('renders lifecycle actions through the active language dictionary', () => {
+    const translations = {
+      'downloads.state.updateAvailable':'Aggiornamento disponibile',
+      'downloads.action.loginUpdate':'Accedi per aggiornare',
+      'downloads.action.openMap':'Apri mappa',
+      'downloads.action.remove':'Rimuovi',
+      'downloads.action.details':'Dettagli sentiero',
+      'downloads.card.kicker':'Mappa offline del sentiero',
+      'downloads.downloaded':'Scaricata il {date}',
+      'downloads.version.package':'Pacchetto {version}',
+      'downloads.owner.signed-out-owner-retained':'Account conservato su questo dispositivo',
+    };
+    const t = (key, vars) => {
+      let value = translations[key] || key;
+      for(const name of Object.keys(vars || {})){
+        value = value.split(`{${name}}`).join(vars[name]);
+      }
+      return value;
+    };
+    const markup = window.DoloPawsOfflineDownloads.packageCard({
+      trailId:'lago-carezza',
+      name:'Lago di Carezza Loop',
+      trailUrl:'/trail.html?id=lago-carezza',
+      offlineUrl:'/offline/trail.html?id=lago-carezza',
+      version:'old',
+      packageBytes:100,
+      installedAt:'28 Jul 2026',
+      verificationStatus:'unknown',
+      ownership:'signed-out-owner-retained',
+      state:'update-available',
+      usable:true,
+      hasLocalData:true,
+    }, false, t);
+
+    document.body.innerHTML = markup;
+    expect(document.querySelector('.od-kicker').textContent).toBe('Mappa offline del sentiero');
+    expect(document.querySelector('.od-state').textContent).toBe('Aggiornamento disponibile');
+    expect(document.querySelector('[data-action="update"]').textContent).toBe('Accedi per aggiornare');
+    expect(document.querySelector('a[href^="/offline/trail.html"]').textContent).toBe('Apri mappa');
+    expect(document.querySelector('.od-meta').textContent).toContain('Pacchetto old');
+    expect(document.querySelector('.od-owner').textContent).toBe('Account conservato su questo dispositivo');
+  });
+
   test('uses the concise DoloPaws-vetted label without freshness detail', () => {
     const markup = window.DoloPawsOfflineDownloads.packageCard({
       trailId: 'vetted-trail',

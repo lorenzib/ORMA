@@ -67,37 +67,37 @@
 </div>
 
 <main class="od-wrap">
-  <a href="account.html" style="font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;">&larr; Back to account</a>
+  <a href="account.html" data-i18n="downloads.back" style="font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;">&larr; Back to account</a>
   <div class="od-heading">
     <div>
-      <div class="od-kicker">This device</div>
-      <h1 class="serif">Downloaded trails</h1>
+      <div class="od-kicker" data-i18n="downloads.device">This device</div>
+      <h1 class="serif" data-i18n="downloads.title">Downloaded trails</h1>
     </div>
     <div id="downloadsSummary" class="od-summary" hidden></div>
   </div>
-  <p style="margin:9px 0 0;color:var(--ink-soft);font-size:14px;line-height:1.55;">Open, update, or remove offline trail maps stored in this browser.</p>
+  <p data-i18n="downloads.subtitle" style="margin:9px 0 0;color:var(--ink-soft);font-size:14px;line-height:1.55;">Open, update, or remove offline trail maps stored in this browser.</p>
 
   <div id="downloadsSignedOut" class="od-note" hidden>
-    You are signed out. Existing maps remain available on this device, but you
-    must <button id="downloadsLoginBtn" type="button" style="border:0;background:none;padding:0;color:var(--accent);font:inherit;font-weight:800;cursor:pointer;text-decoration:underline;">log in</button>
-    before downloading an update.
+    <span data-i18n="downloads.signedOut.before">You are signed out. Existing maps remain available on this device, but you must</span>
+    <button id="downloadsLoginBtn" type="button" data-i18n="downloads.signedOut.login" style="border:0;background:none;padding:0;color:var(--accent);font:inherit;font-weight:800;cursor:pointer;text-decoration:underline;">log in</button>
+    <span data-i18n="downloads.signedOut.after">before downloading an update.</span>
   </div>
 
-  <div id="downloadsLoading" class="od-loading" role="status">Checking this device for downloaded trails…</div>
+  <div id="downloadsLoading" class="od-loading" role="status" data-i18n="downloads.loading">Checking this device for downloaded trails…</div>
   <div id="downloadsList" class="od-list" aria-live="polite"></div>
 
   <div id="downloadsEmpty" class="empty-state" hidden>
     <div class="empty-state__icon" aria-hidden="true"><span data-dp-icon="routes" data-dp-icon-size="21"></span></div>
-    <p class="empty-state__title">No downloaded trails on this device</p>
-    <p class="empty-state__copy">Open a supported trail while online and choose its offline download option.</p>
-    <div class="empty-state__actions"><a href="browse-trails.html" class="empty-state__action">Browse trails</a></div>
+    <p class="empty-state__title" data-i18n="downloads.empty.title">No downloaded trails on this device</p>
+    <p class="empty-state__copy" data-i18n="downloads.empty.copy">Open a supported trail while online and choose its offline download option.</p>
+    <div class="empty-state__actions"><a href="browse-trails.html" class="empty-state__action" data-i18n="downloads.empty.action">Browse trails</a></div>
   </div>
 
   <div id="downloadsError" class="empty-state" hidden>
     <div class="empty-state__icon" aria-hidden="true"><span data-dp-icon="warning" data-dp-icon-size="21"></span></div>
-    <p class="empty-state__title">Downloaded trails could not be checked</p>
-    <p class="empty-state__copy">Nothing has been removed. Try checking this device again.</p>
-    <div class="empty-state__actions"><button id="downloadsRetryBtn" type="button" class="empty-state__action">Try again</button></div>
+    <p class="empty-state__title" data-i18n="downloads.error.title">Downloaded trails could not be checked</p>
+    <p class="empty-state__copy" data-i18n="downloads.error.copy">Nothing has been removed. Try checking this device again.</p>
+    <div class="empty-state__actions"><button id="downloadsRetryBtn" type="button" class="empty-state__action" data-i18n="downloads.error.action">Try again</button></div>
   </div>
 </main>
 
@@ -149,13 +149,13 @@
 </footer>
 
 <script src="mobile-nav.js?v=20260807-1"></script>
-<script src="i18n.js"></script>
+<script src="i18n.js?v=20260812-1"></script>
 <script type="module" src="firebase-init.js"></script>
 <script src="icon-system.js?v=20260717" defer></script>
 <script src="auth-ui.js?v=20260729-1" defer></script>
 <script src="metrics.js?v=20260730-1" defer></script>
 <script src="metric-funnel.js?v=20260804-1" defer></script>
 <script src="offline-packages.js?v=20260729-1" defer></script>
-<script src="offline-downloads.js?v=20260729-1" defer></script>
+<script src="offline-downloads.js?v=20260812-1" defer></script>
 </body>
 </html>

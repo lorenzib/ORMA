@@ -9,6 +9,9 @@ Status: in progress (2026-08-12)
   boundary, summaries, and every modal action now render through the active
   English/Italian dictionary. English fallbacks remain available if the
   dictionary cannot be loaded.
+- **Downloaded-trail management (OFF-03):** empty/error/signed-out states,
+  lifecycle labels, ownership metadata surroundings, update and checksum
+  progress, repair, self-test, and confirmed removal actions are bilingual.
 
 ## Machine-checkable boundary
 
@@ -19,13 +22,13 @@ Status: in progress (2026-08-12)
 - an HTML `data-i18n` attribute references an unknown key; or
 - a literal JavaScript `t('…')` call references an unknown key.
 
-The current dictionaries contain 453 matching English and Italian keys.
+The current dictionaries contain 516 matching English and Italian keys.
 
 ## Remaining migration
 
 Dictionary parity is necessary but not sufficient. Several core screens still
 create English state text directly in controllers, including recommendation,
-recommendation, offline-download, saved-trail, journal, account-error and
+the trail-detail download panel, saved-trail, journal, account-error and
 mobile-nav states. Those strings must move behind stable keys before I18N-01
 can be marked complete.
 
