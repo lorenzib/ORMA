@@ -1754,14 +1754,20 @@ function renderLiConditionsCard(profile, displayList){
 
 // One-time event wiring for the shell chrome (menus, search, logout…).
 // Bell badge from the derived feed (saved-trail advisories, audits, profile
-// events) minus what the bell has already announced — Facebook-style, the
-// badge counts against the "glanced" set that opening the notification
-// centre fills, not against per-row read state. Runs at shell init and
-// again once favorites have loaded, since advisories depend on them.
-function liGlancedList(){
+// events) minus the durable read list. The notification centre resolves all
+// items it displays, so a refresh cannot recreate their badge. Runs at shell
+// init and again once favorites have loaded, since advisories depend on them.
+function liReadList(){
   try {
-    const raw = JSON.parse(localStorage.getItem('dolopaws-notif-glanced') || '[]');
-    if(Array.isArray(raw)) return raw;
+    const read = JSON.parse(localStorage.getItem('dolopaws-notif-seen') || '[]');
+    const list = Array.isArray(read) ? read : [];
+    // One-time migration for people who opened the old centre: a glance meant
+    // the bell was resolved, so preserve that intent in the unified state.
+    const legacy = JSON.parse(localStorage.getItem('dolopaws-notif-glanced') || '[]');
+    if(Array.isArray(legacy)) legacy.forEach(id => { if(!list.includes(id)) list.push(id); });
+    localStorage.setItem('dolopaws-notif-seen', JSON.stringify(list));
+    localStorage.removeItem('dolopaws-notif-glanced');
+    return list;
   } catch(e){}
   return [];
 }
@@ -1775,7 +1781,7 @@ function refreshLiBellBadge(){
       const feed = window.DoloPawsNotifFeed.build({
         trails, favorites: currentFavorites || {}, profileEvent: ev, now: Date.now()
       });
-      bellUnread = window.DoloPawsNotifFeed.badgeCount(feed, liGlancedList());
+      bellUnread = window.DoloPawsNotifFeed.badgeCount(feed, liReadList());
       localStorage.setItem('dolopaws-notif-unread', String(bellUnread));
     }
   } catch(e){}
@@ -1795,7 +1801,11 @@ function refreshLiBellBadgeLive(){
   Promise.all([
     auth.getActiveFlagsForTrails(Object.keys(currentFavorites || {})).catch(() => []),
     auth.getSiteNotices().catch(() => []),
-  ]).then(([hazardFlags, siteNotices]) => {
+    typeof auth.getNotifSeen === 'function' ? auth.getNotifSeen().catch(() => []) : Promise.resolve([]),
+  ]).then(([hazardFlags, siteNotices, remoteRead]) => {
+    const read = liReadList();
+    if(Array.isArray(remoteRead)) remoteRead.forEach(id => { if(!read.includes(id)) read.push(id); });
+    try { localStorage.setItem('dolopaws-notif-seen', JSON.stringify(read)); } catch(e){}
     let ev = null;
     try { ev = JSON.parse(localStorage.getItem('dolopaws-notif-profile-event') || 'null'); } catch(e){}
     const feed = window.DoloPawsNotifFeed.build({
@@ -1803,7 +1813,7 @@ function refreshLiBellBadgeLive(){
       favorites: currentFavorites || {},
       profileEvent: ev, hazardFlags, siteNotices, now: Date.now()
     });
-    const unread = window.DoloPawsNotifFeed.badgeCount(feed, liGlancedList());
+    const unread = window.DoloPawsNotifFeed.badgeCount(feed, read);
     try { localStorage.setItem('dolopaws-notif-unread', String(unread)); } catch(e){}
     const dot = document.getElementById('liBellDot');
     if(dot) dot.hidden = unread === 0;

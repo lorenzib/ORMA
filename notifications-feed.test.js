@@ -104,11 +104,11 @@ describe('derived notifications feed', () => {
     expect(ids).not.toContain('audit-stale');
   });
 
-  test('badgeCount counts against the glanced set — opening the centre zeroes the bell', () => {
+  test('badgeCount uses the durable read set so resolved items stay off the bell', () => {
     const items = feed.build({ trails, favorites: { ridge: true }, now: NOW });
     expect(feed.badgeCount(items, [])).toBe(items.length);
-    // Glancing (opening the centre) records every current id: badge → 0
-    // even though no row has been clicked/read yet.
+    // Opening the centre records every current id as read: badge → 0 while
+    // every item remains available in the feed history.
     expect(feed.badgeCount(items, items.map(i => i.id))).toBe(0);
     expect(feed.badgeCount(items, ['heat-ridge'])).toBe(items.length - 1);
   });

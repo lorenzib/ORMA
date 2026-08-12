@@ -1,13 +1,13 @@
 (function(){
   'use strict';
 
-  // Renders the derived feed (notifications-feed.js) with per-item read
-  // state, Facebook-style: opening this page clears the bell badge (every
-  // item becomes "glanced"), while rows stay tinted until actually clicked
-  // ("read"). Read state also syncs through the account (Firestore
-  // notifSeen) so another device doesn't re-announce old items.
+  // Renders the derived feed (notifications-feed.js). Opening this page marks
+  // every currently displayed item read: the items remain in the history but
+  // no longer count on the bell, including after refresh. Read state also
+  // syncs through the account (Firestore notifSeen) so another device does not
+  // re-announce old items.
   var SEEN_KEY = 'dolopaws-notif-seen';
-  var GLANCED_KEY = 'dolopaws-notif-glanced';
+  var LEGACY_GLANCED_KEY = 'dolopaws-notif-glanced';
   var UNREAD_KEY = 'dolopaws-notif-unread';
   var EVENT_KEY = 'dolopaws-notif-profile-event';
 
@@ -19,7 +19,6 @@
   }
   function seenIds(){ return idList(SEEN_KEY); }
   function saveSeen(list){ try { localStorage.setItem(SEEN_KEY, JSON.stringify(list)); } catch(e){} }
-  function saveGlanced(list){ try { localStorage.setItem(GLANCED_KEY, JSON.stringify(list)); } catch(e){} }
   function setUnreadCache(n){ try { localStorage.setItem(UNREAD_KEY, String(n)); } catch(e){} }
   // Reading state is account data: push the merged read list to Firestore
   // whenever it changes so other devices pick it up. Fire-and-forget.
@@ -48,7 +47,21 @@
   }
 
   function render(feed){
+    // Preserve the meaning of the retired "glanced" list for existing users,
+    // then resolve all items visible in this visit. Stable ids keep the feed
+    // as history without allowing a refresh to recreate the badge.
     var seen = seenIds();
+    var changed = false;
+    idList(LEGACY_GLANCED_KEY).forEach(function(id){
+      if(seen.indexOf(id) === -1){ seen.push(id); changed = true; }
+    });
+    feed.forEach(function(item){
+      if(seen.indexOf(item.id) === -1){ seen.push(item.id); changed = true; }
+    });
+    if(changed){ saveSeen(seen); pushSeen(seen); }
+    try { localStorage.removeItem(LEGACY_GLANCED_KEY); } catch(e){}
+    setUnreadCache(0);
+
     var groups = { today: [], earlier: [] };
     feed.forEach(function(item){ (groups[item.group] || groups.earlier).push(item); });
 
@@ -67,13 +80,6 @@
     if(empty) empty.hidden = feed.length > 0;
 
     if(window.DoloPawsIcons) window.DoloPawsIcons.hydrate(document);
-
-    // Opening the centre "glances" everything currently in it — the bell
-    // badge drops to zero even though unclicked rows keep their tint.
-    var glanced = idList(GLANCED_KEY);
-    feed.forEach(function(item){ if(glanced.indexOf(item.id) === -1) glanced.push(item.id); });
-    saveGlanced(glanced);
-    setUnreadCache(window.DoloPawsNotifFeed.badgeCount(feed, glanced));
 
     var unread = window.DoloPawsNotifFeed.unreadIds(feed, seen);
 

@@ -169,11 +169,11 @@
     return feed.map(function(i){ return i.id; }).filter(function(id){ return seen.indexOf(id) === -1; });
   }
 
-  // Facebook split: the BADGE counts what the bell has not yet announced
-  // (cleared by opening the centre); the row tint tracks what was actually
-  // clicked. Both are id lists; this counts against the announced set.
-  function badgeCount(feed, glancedIds){
-    return unreadIds(feed, glancedIds).length;
+  // The badge and row state share one durable read list. Opening the
+  // notification centre resolves every item currently displayed; items stay
+  // in the history, and only a genuinely new stable id raises the badge again.
+  function badgeCount(feed, readIds){
+    return unreadIds(feed, readIds).length;
   }
 
   var api = { build: build, unreadIds: unreadIds, badgeCount: badgeCount, shortDate: shortDate, relTime: relTime };
