@@ -17,6 +17,9 @@ Status: in progress (2026-08-12)
   distance/ascent/terrain values), evidence summary, guide links, profile-gap
   prompts, and save/compare/download actions are bilingual. Scoring output is
   unchanged; translation happens only in presentation.
+- **Trail-detail offline panel (OFF-03/OFF-05):** download, update, interrupted,
+  repair, stale, verified, self-test, removal and account-required states are
+  bilingual, including local package ownership/date/size context.
 
 ## Machine-checkable boundary
 
@@ -27,14 +30,14 @@ Status: in progress (2026-08-12)
 - an HTML `data-i18n` attribute references an unknown key; or
 - a literal JavaScript `t('…')` call references an unknown key.
 
-The current dictionaries contain 608 matching English and Italian keys.
+The current dictionaries contain 660 matching English and Italian keys.
 
 ## Remaining migration
 
 Dictionary parity is necessary but not sufficient. Several core screens still
-create English state text directly in controllers, including the trail-detail
-download panel, saved-trail, journal, account-error and mobile-nav states. Those
-strings must move behind stable keys before I18N-01 can be marked complete.
+create English state text directly in controllers, including saved-trail,
+journal, account-error and mobile-nav states. Those strings must move behind
+stable keys before I18N-01 can be marked complete.
 
 This work remains in the supporting backlog. It should be migrated by journey
 and verified in both languages after concurrent navigation/notification UI work

@@ -222,4 +222,17 @@ describe('Lago di Carezza offline package', () => {
     expect(controller).toContain('window.DoloPawsAuth.currentUser');
     expect(controller).toContain("request('download')");
   });
+
+  test('the trail-detail package panel localizes lifecycle and recovery states', () => {
+    const trailPage = fs.readFileSync(path.join(root, 'trail.html'), 'utf8');
+    const controller = fs.readFileSync(path.join(root, 'offline-packages.js'), 'utf8');
+
+    expect(trailPage).toContain('data-i18n="offlinePanel.title"');
+    expect(trailPage).toContain('data-i18n="offlinePanel.action.download"');
+    expect(controller).toContain("tr('offlinePanel.updateAvailable'");
+    expect(controller).toContain("tr('offlinePanel.stale'");
+    expect(controller).toContain("tr('offlinePanel.ready'");
+    expect(controller).toContain("tr('offlinePanel.test.passed'");
+    expect(controller).toContain("tr('offlinePanel.remove.removing'");
+  });
 });

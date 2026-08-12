@@ -670,13 +670,13 @@ body{background:#EFECE2;}
           <span id="getDirectionsStatus" class="trail-directions-status" role="status" aria-live="polite"></span>
           <section id="offlinePackagePanel" class="offline-package" aria-labelledby="offlinePackageTitle" hidden>
             <div class="offline-package-row">
-              <strong id="offlinePackageTitle" style="font-size:12px;color:#fff;margin-right:auto;">Offline beta</strong>
-              <a id="offlineOpenBtn" class="offline-package-open" href="offline/trail.html?id=lago-carezza" hidden>Open offline map</a>
-              <button id="offlineTestBtn" class="td2-btn-g" type="button" hidden>Test offline</button>
-              <button id="offlineRemoveBtn" class="td2-btn-g" type="button" hidden>Remove</button>
-              <button id="offlineDownloadBtn" class="td2-btn-g" type="button">Download test package</button>
+              <strong id="offlinePackageTitle" data-i18n="offlinePanel.title" style="font-size:12px;color:#fff;margin-right:auto;">Offline map</strong>
+              <a id="offlineOpenBtn" class="offline-package-open" data-i18n="offlinePanel.action.open" href="offline/trail.html?id=lago-carezza" hidden>Open offline map</a>
+              <button id="offlineTestBtn" class="td2-btn-g" data-i18n="downloads.action.test" type="button" hidden>Test offline</button>
+              <button id="offlineRemoveBtn" class="td2-btn-g" data-i18n="downloads.action.remove" type="button" hidden>Remove</button>
+              <button id="offlineDownloadBtn" class="td2-btn-g" data-i18n="offlinePanel.action.download" type="button">Download offline map</button>
             </div>
-            <p id="offlinePackageStatus" class="offline-package-status" role="status" aria-live="polite">Checking this device…</p>
+            <p id="offlinePackageStatus" class="offline-package-status" data-i18n="offlinePanel.checking" role="status" aria-live="polite">Checking this device…</p>
           </section>
         </div>
       </div>
@@ -915,7 +915,7 @@ body{background:#EFECE2;}
 <script src="guest-context.js?v=20260730-1" defer></script>
 <script src="auth-ui.js?v=20260729-1" defer></script>
 <script src="gpx-export.js?v=20260811-1" defer></script>
-<script src="offline-packages.js?v=20260729-1" defer></script>
+<script src="offline-packages.js?v=20260812-1" defer></script>
 <script src="comparison-state.js?v=20260729-1" defer></script>
 <script src="breeds-data.js?v=20260807-1" defer></script>
 <script src="trust/evidence-v1.js?v=20260728-1" defer></script>

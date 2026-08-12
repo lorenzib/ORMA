@@ -33,6 +33,22 @@
     'removed',
   ]);
 
+  function tr(key, fallback, vars){
+    if(typeof window.t === 'function'){
+      const value = window.t(key, vars);
+      if(value && value !== key) return value;
+    }
+    let output = fallback;
+    for(const name of Object.keys(vars || {})){
+      output = output.split(`{${name}}`).join(vars[name]);
+    }
+    return output;
+  }
+
+  function localizedOwnershipLabel(state){
+    return tr(`downloads.owner.${state}`, ownershipLabel(state));
+  }
+
   function bytesToHex(buffer){
     return Array.from(new Uint8Array(buffer))
       .map(value => value.toString(16).padStart(2, '0'))
@@ -41,7 +57,7 @@
 
   async function sha256(buffer){
     if(!(window.crypto && window.crypto.subtle)){
-      throw new Error('This browser cannot verify offline packages.');
+      throw new Error(tr('offlinePanel.error.crypto', 'This browser cannot verify offline packages.'));
     }
     return bytesToHex(await window.crypto.subtle.digest('SHA-256', buffer));
   }
@@ -57,9 +73,9 @@
   }
 
   async function ownerMarkerFor(user){
-    if(!(user && user.uid)) throw new Error('Log in to download this offline map.');
+    if(!(user && user.uid)) throw new Error(tr('offlinePanel.error.login', 'Log in to download this offline map.'));
     if(!(window.crypto && window.crypto.subtle && window.crypto.getRandomValues)){
-      throw new Error('This browser cannot create private offline ownership metadata.');
+      throw new Error(tr('offlinePanel.error.ownerMetadata', 'This browser cannot create private offline ownership metadata.'));
     }
     const input = new TextEncoder().encode(
       `dolopaws-owner-v1:${deviceOwnerSalt()}:${user.uid}`
@@ -213,8 +229,8 @@
   }
 
   function validateManifest(manifest, expectedTrailId){
-    if(!manifest || manifest.schemaVersion !== 1) throw new Error('Unsupported package format.');
-    if(manifest.trailId !== expectedTrailId) throw new Error('Package trail does not match this page.');
+    if(!manifest || manifest.schemaVersion !== 1) throw new Error(tr('offlinePanel.error.format', 'Unsupported package format.'));
+    if(manifest.trailId !== expectedTrailId) throw new Error(tr('offlinePanel.error.wrongTrail', 'Package trail does not match this page.'));
     if(
       !manifest.version ||
       !Number.isFinite(manifest.packageBytes) ||
@@ -222,18 +238,18 @@
       !Array.isArray(manifest.resources) ||
       !manifest.resources.length
     ){
-      throw new Error('Package manifest is incomplete.');
+      throw new Error(tr('offlinePanel.error.manifestIncomplete', 'Package manifest is incomplete.'));
     }
     for(const resource of manifest.resources){
       if(!resource.url || !resource.sha256 || !Number.isFinite(resource.bytes)){
-        throw new Error('A required package resource is invalid.');
+        throw new Error(tr('offlinePanel.error.resourceInvalid', 'A required package resource is invalid.'));
       }
     }
     if(
       Number.isFinite(manifest.packageBudgetBytes) &&
       manifest.packageBytes > manifest.packageBudgetBytes
     ){
-      throw new Error('This offline package exceeds its declared storage budget.');
+      throw new Error(tr('offlinePanel.error.budget', 'This offline package exceeds its declared storage budget.'));
     }
     return manifest;
   }
@@ -270,11 +286,10 @@
     const capacity = await storageCapacity(packageBytes);
     if(capacity.enough !== false) return capacity;
     const error = new Error(
-      `Not enough browser storage for this offline map. It needs about ${
-        formatBytes(capacity.requiredBytes)
-      } free, but this browser reports ${
-        formatBytes(capacity.availableBytes)
-      }. Remove a saved offline map or free device storage, then retry.`
+      tr('offlinePanel.error.storage', 'Not enough browser storage for this offline map. It needs about {required} free, but this browser reports {available}. Remove a saved offline map or free device storage, then retry.', {
+        required:formatBytes(capacity.requiredBytes),
+        available:formatBytes(capacity.availableBytes),
+      })
     );
     error.name = 'DoloPawsStorageError';
     throw error;
@@ -294,13 +309,13 @@
   async function fetchVerifiedResource(resource, manifestUrl){
     const url = resourceUrl(resource, manifestUrl);
     const response = await fetch(url, { cache: 'no-store' });
-    if(!response.ok) throw new Error(`Could not download ${resource.label || resource.url}.`);
+    if(!response.ok) throw new Error(tr('offlinePanel.error.resourceDownload', 'Could not download {resource}.', { resource:resource.label || resource.url }));
     const buffer = await response.arrayBuffer();
     if(buffer.byteLength !== resource.bytes){
-      throw new Error(`${resource.label || resource.url} has an unexpected size.`);
+      throw new Error(tr('offlinePanel.error.resourceSize', '{resource} has an unexpected size.', { resource:resource.label || resource.url }));
     }
     if(await sha256(buffer) !== resource.sha256){
-      throw new Error(`${resource.label || resource.url} failed verification.`);
+      throw new Error(tr('offlinePanel.error.resourceVerification', '{resource} failed verification.', { resource:resource.label || resource.url }));
     }
     return {
       url,
@@ -318,13 +333,13 @@
   async function verifyCachedResource(cache, resource, manifestUrl){
     const url = resourceUrl(resource, manifestUrl);
     const response = await cache.match(url);
-    if(!response) throw new Error(`${resource.label || resource.url} is missing from this device.`);
+    if(!response) throw new Error(tr('offlinePanel.error.resourceMissing', '{resource} is missing from this device.', { resource:resource.label || resource.url }));
     const buffer = await response.arrayBuffer();
     if(buffer.byteLength !== resource.bytes){
-      throw new Error(`${resource.label || resource.url} has an unexpected stored size.`);
+      throw new Error(tr('offlinePanel.error.storedSize', '{resource} has an unexpected stored size.', { resource:resource.label || resource.url }));
     }
     if(await sha256(buffer) !== resource.sha256){
-      throw new Error(`${resource.label || resource.url} failed its stored checksum.`);
+      throw new Error(tr('offlinePanel.error.checksum', '{resource} failed its stored checksum.', { resource:resource.label || resource.url }));
     }
     return { url, bytes: buffer.byteLength };
   }
@@ -337,19 +352,19 @@
   }
 
   async function installPackage(trailId, onProgress, ownerUser){
-    if(!('caches' in window)) throw new Error('Offline storage is not supported in this browser.');
+    if(!('caches' in window)) throw new Error(tr('offlinePanel.error.storageUnsupported', 'Offline storage is not supported in this browser.'));
     const config = PACKAGES[trailId];
-    if(!config) throw new Error('No offline package is available for this trail.');
+    if(!config) throw new Error(tr('offlinePanel.error.unavailable', 'No offline package is available for this trail.'));
     const ownerMarker = await ownerMarkerFor(ownerUser);
 
     if('serviceWorker' in navigator){
       await navigator.serviceWorker.register('/offline/offline-sw.js', { scope: '/offline/' });
     }else{
-      throw new Error('Offline reopening is not supported in this browser.');
+      throw new Error(tr('offlinePanel.error.reopenUnsupported', 'Offline reopening is not supported in this browser.'));
     }
 
     const manifestResponse = await fetch(config.manifestUrl, { cache: 'no-store' });
-    if(!manifestResponse.ok) throw new Error('The package manifest could not be downloaded.');
+    if(!manifestResponse.ok) throw new Error(tr('offlinePanel.error.manifestDownload', 'The package manifest could not be downloaded.'));
     const manifest = validateManifest(await manifestResponse.clone().json(), trailId);
     await assertStorageCapacity(manifest.packageBytes);
     const name = cacheName(manifest);
@@ -397,10 +412,7 @@
     }catch(error){
       await caches.delete(temporaryName);
       if(isQuotaError(error)){
-        throw new Error(
-          'Your browser ran out of storage while saving this offline map. ' +
-          'Remove a saved offline map or free device storage, then retry.'
-        );
+        throw new Error(tr('offlinePanel.error.storageRuntime', 'Your browser ran out of storage while saving this offline map. Remove a saved offline map or free device storage, then retry.'));
       }
       throw error;
     }
@@ -661,78 +673,91 @@
       ) && !updateAvailable && !failureMessage;
       if(failureMessage){
         downloadButton.textContent = signedIn()
-          ? (manifest ? 'Retry update' : 'Retry download')
-          : 'Log in to retry';
+          ? (manifest
+            ? tr('offlinePanel.action.retryUpdate', 'Retry update')
+            : tr('offlinePanel.action.retryDownload', 'Retry download'))
+          : tr('offlinePanel.action.loginRetry', 'Log in to retry');
         setStatus(
           `${failureMessage} ${
             manifest
-              ? 'Your existing package remains ready offline.'
-              : 'No incomplete package has been marked ready.'
+              ? tr('offlinePanel.failure.preserved', 'Your existing package remains ready offline.')
+              : tr('offlinePanel.failure.notReady', 'No incomplete package has been marked ready.')
           }`,
           'failed'
         );
       }else if(removed){
-        downloadButton.textContent = signedIn() ? 'Download again' : 'Log in to download';
-        setStatus('Removed from this device. No offline package remains.', 'removed');
+        downloadButton.textContent = signedIn()
+          ? tr('offlinePanel.action.downloadAgain', 'Download again')
+          : tr('offlinePanel.action.loginDownload', 'Log in to download');
+        setStatus(tr('offlinePanel.removed', 'Removed from this device. No offline package remains.'), 'removed');
       }else if(inspection.state === 'failed'){
-        downloadButton.textContent = signedIn() ? 'Repair download' : 'Log in to repair';
+        downloadButton.textContent = signedIn()
+          ? tr('downloads.action.repair', 'Repair download')
+          : tr('downloads.action.loginRepair', 'Log in to repair');
         setStatus(
-          `${inspection.message || 'The stored package failed verification.'} ` +
-          'It is not ready offline. Repair or remove it.',
+          `${inspection.message || tr('offlinePanel.failed.verification', 'The stored package failed verification.')} ` +
+          tr('offlinePanel.failed.recovery', 'It is not ready offline. Repair or remove it.'),
           'failed'
         );
       }else if(inspection.state === 'incomplete'){
         downloadButton.textContent = signedIn()
-          ? (manifest ? 'Restart update' : 'Restart download')
-          : 'Log in to retry';
+          ? (manifest
+            ? tr('downloads.action.restartUpdate', 'Restart update')
+            : tr('downloads.action.restartDownload', 'Restart download'))
+          : tr('offlinePanel.action.loginRetry', 'Log in to retry');
         setStatus(
-          `A previous ${manifest ? 'update' : 'download'} was interrupted. ${
+          `${manifest
+            ? tr('offlinePanel.interrupted.update', 'A previous update was interrupted.')
+            : tr('offlinePanel.interrupted.download', 'A previous download was interrupted.')} ${
             manifest
-              ? 'Your existing package remains ready offline.'
-              : 'The partial package is not available offline.'
-          } Restart to verify every required resource.`,
+              ? tr('offlinePanel.failure.preserved', 'Your existing package remains ready offline.')
+              : tr('offlinePanel.interrupted.partial', 'The partial package is not available offline.')
+          } ${tr('offlinePanel.interrupted.restart', 'Restart to verify every required resource.')}`,
           'incomplete'
         );
       }else if(updateAvailable){
-        downloadButton.textContent = signedIn() ? 'Update offline map' : 'Log in to update';
+        downloadButton.textContent = signedIn()
+          ? tr('offlinePanel.action.update', 'Update offline map')
+          : tr('downloads.action.loginUpdate', 'Log in to update');
         setStatus(
-          `Update available · current package ${
-            formatBytes(manifest.packageBytes)
-          } · downloaded ${formatInstalledDate(metadata && metadata.installedAt)} · ${
-            ownershipLabel(ownership)
-          }. Your existing package remains usable offline.`,
+          tr('offlinePanel.updateAvailable', 'Update available · current package {size} · downloaded {date} · {owner}. Your existing package remains usable offline.', {
+            size:formatBytes(manifest.packageBytes),
+            date:formatInstalledDate(metadata && metadata.installedAt),
+            owner:localizedOwnershipLabel(ownership),
+          }),
           'update-available'
         );
       }else if(inspection.state === 'stale'){
         setStatus(
-          `Ready offline, but at least one content review is stale · ${
-            formatBytes(manifest.packageBytes)
-          } · downloaded ${formatInstalledDate(metadata && metadata.installedAt)} · ${
-            ownershipLabel(ownership)
-          }. Check current notices before hiking.`,
+          tr('offlinePanel.stale', 'Ready offline, but at least one content review is stale · {size} · downloaded {date} · {owner}. Check current notices before hiking.', {
+            size:formatBytes(manifest.packageBytes),
+            date:formatInstalledDate(metadata && metadata.installedAt),
+            owner:localizedOwnershipLabel(ownership),
+          }),
           'stale'
         );
       }else if(manifest){
         setStatus(
-          `Ready offline · ${formatBytes(manifest.packageBytes)} · downloaded ${
-            formatInstalledDate(metadata && metadata.installedAt)
-          } · ${ownershipLabel(ownership)} · ${
-            inspection.requiredChecked
-          } required resources checked`,
+          tr('offlinePanel.ready', 'Ready offline · {size} · downloaded {date} · {owner} · {count} required resources checked', {
+            size:formatBytes(manifest.packageBytes),
+            date:formatInstalledDate(metadata && metadata.installedAt),
+            owner:localizedOwnershipLabel(ownership),
+            count:inspection.requiredChecked,
+          }),
           'ready'
         );
       }else if(signedIn()){
         setStatus(
-          'Not downloaded on this device. Download it, then run the offline self-test.',
+          tr('offlinePanel.notDownloaded.signedIn', 'Not downloaded on this device. Download it, then run the offline self-test.'),
           'not-downloaded'
         );
-        downloadButton.textContent = 'Download test package';
+        downloadButton.textContent = tr('offlinePanel.action.download', 'Download offline map');
       }else{
         setStatus(
-          'Not downloaded on this device. Log in to download; a completed package remains available if your session expires.',
+          tr('offlinePanel.notDownloaded.signedOut', 'Not downloaded on this device. Log in to download; a completed package remains available if your session expires.'),
           'not-downloaded'
         );
-        downloadButton.textContent = 'Log in to download';
+        downloadButton.textContent = tr('offlinePanel.action.loginDownload', 'Log in to download');
       }
     }
 
@@ -743,7 +768,7 @@
         return;
       }
       downloadButton.disabled = true;
-      setStatus('Preparing a verified offline download…', 'downloading');
+      setStatus(tr('offlinePanel.download.preparing', 'Preparing a verified offline download…'), 'downloading');
       const downloadStartedAt = Date.now();
       if(window.DoloPawsMetricFunnel){
         window.DoloPawsMetricFunnel.recordOnce(
@@ -755,14 +780,16 @@
         const manifest = await installPackage(
           trailId,
           (current, total, resource) => {
-            setStatus(`Downloading ${current} of ${total}: ${resource.label || resource.url}`, 'downloading');
+            setStatus(tr('downloads.update.progress', 'Downloading {current} of {total}: {resource}', {
+              current, total, resource:resource.label || resource.url,
+            }), 'downloading');
           },
           window.DoloPawsAuth.currentUser
         );
         setStatus(
-          `Verified ${
-            manifest.resources.filter(resourceIsRequired).length
-          } required resources.`,
+          tr('offlinePanel.download.verified', 'Verified {count} required resources.', {
+            count:manifest.resources.filter(resourceIsRequired).length,
+          }),
           'ready'
         );
         if(window.DoloPawsMetricFunnel){
@@ -780,7 +807,7 @@
           );
         }
       }catch(error){
-        failureMessage = error.message || 'The package could not be downloaded.';
+        failureMessage = error.message || tr('offlinePanel.download.failed', 'The package could not be downloaded.');
         if(window.DoloPawsMetricFunnel){
           const category = window.DoloPawsMetricFunnel.failureCategory
             ? window.DoloPawsMetricFunnel.failureCategory(error)
@@ -804,12 +831,14 @@
     downloadButton.addEventListener('click', download);
     testButton.addEventListener('click', async () => {
       testButton.disabled = true;
-      setStatus('Testing required resources from this device…', 'checking');
+      setStatus(tr('downloads.test.preparing', 'Testing required resources from this device…'), 'checking');
       const result = await verifyInstalledPackage(
         trailId,
         (current, total, resource) => {
           setStatus(
-            `Testing ${current} of ${total}: ${resource.label || resource.url}`,
+            tr('downloads.test.progress', 'Testing {current} of {total}: {resource}', {
+              current, total, resource:resource.label || resource.url,
+            }),
             'checking'
           );
         }
@@ -822,25 +851,24 @@
           );
         }
         setStatus(
-          `Offline self-test passed: ${result.requiredChecked} required resources ` +
-          `were checksum-verified from this device. ${
+          tr('offlinePanel.test.passed', 'Offline self-test passed: {count} required resources were checksum-verified from this device.', { count:result.requiredChecked }) + ` ${
             result.state === 'stale'
-              ? 'The stored map works, but content review is stale.'
-              : 'You can now switch to airplane mode and open the map.'
+              ? tr('offlinePanel.test.stale', 'The stored map works, but content review is stale.')
+              : tr('offlinePanel.test.airplane', 'You can now switch to airplane mode and open the map.')
           }`,
           result.state
         );
       }else{
         setStatus(
-          `${result.message || 'The offline self-test failed.'} ` +
-          'This package is not ready offline.',
+          `${result.message || tr('offlinePanel.test.failed', 'The offline self-test failed.')} ` +
+          tr('downloads.test.notReady', 'This package is not ready offline.'),
           result.state === 'incomplete' ? 'incomplete' : 'failed'
         );
       }
     });
     removeButton.addEventListener('click', async () => {
       removeButton.disabled = true;
-      setStatus('Removing this trail from this device…', 'removing');
+      setStatus(tr('offlinePanel.remove.removing', 'Removing this trail from this device…'), 'removing');
       await removePackage(trailId);
       removeButton.disabled = false;
       await refresh({ removed: true });

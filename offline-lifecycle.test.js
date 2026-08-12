@@ -199,7 +199,7 @@ describe('OFF-03 offline package ownership metadata', () => {
 
     expect(updateBranch).toContain('formatBytes(manifest.packageBytes)');
     expect(updateBranch).toContain('formatInstalledDate');
-    expect(updateBranch).toContain('ownershipLabel(ownership)');
+    expect(updateBranch).toContain('localizedOwnershipLabel(ownership)');
     expect(updateBranch).toContain('remains usable offline');
   });
 
@@ -229,8 +229,8 @@ describe('OFF-03 offline package ownership metadata', () => {
       'utf8'
     );
 
-    expect(source).toContain("'Restart download'");
-    expect(source).toContain("'Retry download'");
+    expect(source).toContain("tr('downloads.action.restartDownload', 'Restart download')");
+    expect(source).toContain("tr('offlinePanel.action.retryDownload', 'Retry download')");
     expect(source).toContain("'incomplete'");
     expect(source).toContain("'failed'");
     expect(source).toContain('No incomplete package has been marked ready.');
