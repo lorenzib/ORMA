@@ -22,6 +22,7 @@ describe('account-management translation boundary', () => {
       'account.card.copied',
     ].forEach(key => expect(account).toContain(`tKey('${key}'`));
     expect(account).toContain("labelKey:'account.sensitivity.heat'");
+    expect(account).toContain("'account.notification.hazards'");
     expect(account).toContain('serviceMessage(result)');
   });
 

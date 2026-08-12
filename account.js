@@ -603,15 +603,15 @@
   // ---------- Settings: notifications (device-level preferences) ----------
   const NOTIF_KEY = 'dolopaws-notif-prefs';
   const NOTIF_OPTIONS = [
-    ['hazards', 'Hazard alerts', 'New hazards flagged on trails you follow', true],
-    ['weather', 'Heat & weather warnings', 'When conditions turn risky for your dog', true],
-    ['recs', 'Trail recommendations', 'Fresh walks matched to your dog', true],
-    ['community', 'Community replies', 'Replies to your reviews and reports', false],
-    ['news', 'Product news', 'Occasional updates and tips by email', false],
+    ['hazards', 'account.notification.hazards', 'Hazard alerts', 'account.notification.hazardsSub', 'New hazards flagged on trails you follow', true],
+    ['weather', 'account.notification.weather', 'Heat & weather warnings', 'account.notification.weatherSub', 'When conditions turn risky for your dog', true],
+    ['recs', 'account.notification.recommendations', 'Trail recommendations', 'account.notification.recommendationsSub', 'Fresh walks matched to your dog', true],
+    ['community', 'account.notification.community', 'Community replies', 'account.notification.communitySub', 'Replies to your reviews and reports', false],
+    ['news', 'account.notification.news', 'Product news', 'account.notification.newsSub', 'Occasional updates and tips by email', false],
   ];
   function loadNotifPrefs(){
     const defaults = {};
-    NOTIF_OPTIONS.forEach(([id,,,on]) => { defaults[id] = on; });
+    NOTIF_OPTIONS.forEach(([id,,,,,on]) => { defaults[id] = on; });
     try {
       const saved = JSON.parse(localStorage.getItem(NOTIF_KEY) || '{}');
       return Object.assign(defaults, saved);
@@ -621,7 +621,7 @@
   function renderNotifs(){
     const list = $('notifList');
     list.innerHTML = '';
-    NOTIF_OPTIONS.forEach(([id, label, sub]) => {
+    NOTIF_OPTIONS.forEach(([id, labelKey, label, subKey, sub]) => {
       const on = !!notifPrefs[id];
       const row = document.createElement('button');
       row.type = 'button';
@@ -629,8 +629,8 @@
       row.setAttribute('aria-checked', String(on));
       row.style.cssText = 'display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:11px 0;border:none;border-bottom:1px solid #F2EFE5;background:none;cursor:pointer;font-family:\'Inter\',sans-serif;';
       row.innerHTML = '<div style="flex:1;"><div style="font-size:13.5px;font-weight:700;color:var(--ink);" class="t"></div><div style="font-size:11.5px;color:#8A9689;margin-top:1px;" class="s"></div></div><span class="toggle-track' + (on ? ' on' : '') + '"><span class="knob"></span></span>';
-      row.querySelector('.t').textContent = label;
-      row.querySelector('.s').textContent = sub;
+      row.querySelector('.t').textContent = tKey(labelKey, label);
+      row.querySelector('.s').textContent = tKey(subKey, sub);
       row.addEventListener('click', () => {
         notifPrefs[id] = !on;
         try { localStorage.setItem(NOTIF_KEY, JSON.stringify(notifPrefs)); } catch(e){}
