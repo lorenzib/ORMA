@@ -410,7 +410,7 @@
 <div id="logoutOverlay" hidden style="position:fixed;inset:0;z-index:81;background:rgba(23,31,25,.5);align-items:center;justify-content:center;padding:24px;">
   <div class="acct-card" role="dialog" aria-modal="true" aria-labelledby="logoutTitle" style="max-width:460px;width:100%;padding:26px 24px;">
     <div class="serif" id="logoutTitle" style="font-size:21px;margin-bottom:8px;" data-i18n="account.logout.title">Log out on this device?</div>
-    <p id="logoutDataMessage" style="font-size:13px;color:#6B7A6E;line-height:1.55;margin:0 0 18px;">Choose whether this browser should keep your downloaded trails and private hike records for your next login.</p>
+    <p id="logoutDataMessage" style="font-size:13px;color:#6B7A6E;line-height:1.55;margin:0 0 18px;" data-i18n="account.logout.intro">Choose whether this browser should keep your downloaded trails and private hike records for your next login.</p>
     <div style="display:grid;gap:10px;">
       <button type="button" id="keepLocalLogoutBtn" class="btn-p" style="width:100%;" data-i18n="account.logout.keep">Log out and keep downloads</button>
       <button type="button" id="removeLocalLogoutBtn" style="width:100%;padding:12px 20px;border-radius:12px;border:1px solid #9C3A25;background:#fff;color:#9C3A25;font-weight:800;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;" data-i18n="account.logout.remove">Remove all local data and log out</button>
@@ -424,26 +424,26 @@
 <div id="cancelOverlay" hidden style="position:fixed;inset:0;z-index:80;background:rgba(23,31,25,.5);align-items:center;justify-content:center;padding:24px;">
   <div class="acct-card" role="dialog" aria-modal="true" aria-labelledby="cancelTitle" style="max-width:420px;width:100%;padding:26px 24px;">
     <div style="width:44px;height:44px;border-radius:12px;background:#F3D9D2;display:grid;place-items:center;margin-bottom:14px;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9C3A25" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg></div>
-    <div class="serif" id="cancelTitle" style="font-size:21px;margin-bottom:6px;">Cancel your account?</div>
-    <p style="font-size:13px;color:#6B7A6E;line-height:1.5;margin:0 0 10px;">This <b style="color:#9C3A25;">can't be undone</b>. Server deletion and cleanup of this browser are separate.</p>
-    <div style="font-size:12.5px;color:#536257;line-height:1.5;background:#F7F5EE;border-radius:12px;padding:12px 14px;margin-bottom:14px;">
+    <div class="serif" id="cancelTitle" style="font-size:21px;margin-bottom:6px;" data-i18n="account.delete.title">Cancel your account?</div>
+    <p style="font-size:13px;color:#6B7A6E;line-height:1.5;margin:0 0 10px;" data-i18n="account.delete.warning">This <b style="color:#9C3A25;">can't be undone</b>. Server deletion and cleanup of this browser are separate.</p>
+    <div style="font-size:12.5px;color:#536257;line-height:1.5;background:#F7F5EE;border-radius:12px;padding:12px 14px;margin-bottom:14px;" data-i18n="account.delete.retentionSummary">
       <b>Deleted from the server:</b> your sign-in, dog profiles, saved trails, match history, and private post-hike outcomes.<br>
       <b>May be retained:</b> community reviews, trail photos, hazard reports, abuse reports, and moderation audit records needed for community safety or legal obligations. They are no longer connected to an active sign-in. <a href="privacy.html#retention" style="color:#356F85;font-weight:700;">See retention details</a>.
     </div>
     <div id="deletePasswordField" hidden style="margin-bottom:14px;">
-      <label class="lbl" for="deletePassword">Confirm your password</label>
+      <label class="lbl" for="deletePassword" data-i18n="account.delete.confirmPassword">Confirm your password</label>
       <input class="fld" type="password" id="deletePassword" autocomplete="current-password">
     </div>
-    <p id="deleteGoogleNote" class="hint" hidden style="margin:0 0 14px;">You'll be asked to confirm with Google.</p>
-    <label class="lbl" for="confirmDeleteText">Type <b>DELETE</b> to confirm</label>
+    <p id="deleteGoogleNote" class="hint" hidden style="margin:0 0 14px;" data-i18n="account.delete.googleConfirm">You'll be asked to confirm with Google.</p>
+    <label class="lbl" for="confirmDeleteText" data-i18n="account.delete.typeConfirm">Type <b>DELETE</b> to confirm</label>
     <input class="fld" id="confirmDeleteText" placeholder="DELETE" autocomplete="off" style="margin-bottom:16px;">
     <fieldset style="border:1px solid #DED9CB;border-radius:12px;padding:12px 14px;margin:0 0 16px;">
-      <legend class="lbl" style="padding:0 5px;">Data on this device</legend>
-      <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45;margin-bottom:9px;"><input type="radio" name="deleteLocalData" value="remove" checked style="margin-top:3px;"> <span><b>Remove all DoloPaws local data</b><br><span class="hint">Recommended on shared devices. Removes downloaded maps, journal entries, unfinished and completed hike records, pending outcomes and reports, analytics queues, photos, and cached profile data.</span></span></label>
-      <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45;"><input type="radio" name="deleteLocalData" value="retain" style="margin-top:3px;"> <span><b>Keep downloaded public maps</b><br><span class="hint">Journal entries and every other private local record are removed. Public maps remain usable, but cannot be updated until another account logs in.</span></span></label>
+      <legend class="lbl" style="padding:0 5px;" data-i18n="account.delete.deviceData">Data on this device</legend>
+      <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45;margin-bottom:9px;"><input type="radio" name="deleteLocalData" value="remove" checked style="margin-top:3px;"> <span data-i18n="account.delete.removeLocal"><b>Remove all DoloPaws local data</b><br><span class="hint">Recommended on shared devices. Removes downloaded maps, journal entries, unfinished and completed hike records, pending outcomes and reports, analytics queues, photos, and cached profile data.</span></span></label>
+      <label style="display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45;"><input type="radio" name="deleteLocalData" value="retain" style="margin-top:3px;"> <span data-i18n="account.delete.keepMaps"><b>Keep downloaded public maps</b><br><span class="hint">Journal entries and every other private local record are removed. Public maps remain usable, but cannot be updated until another account logs in.</span></span></label>
     </fieldset>
     <p id="deleteStatus" class="hint" hidden style="margin:0 0 12px;color:#9C3A25;"></p>
-    <div style="display:flex;gap:10px;justify-content:flex-end;"><button type="button" id="closeCancelBtn" class="btn-g">Keep my account</button><button type="button" id="confirmDeleteBtn" disabled style="padding:12px 20px;border-radius:12px;border:none;background:#D9B7AD;color:#fff;font-weight:800;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Delete my account</button></div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;"><button type="button" id="closeCancelBtn" class="btn-g" data-i18n="account.delete.keepAccount">Keep my account</button><button type="button" id="confirmDeleteBtn" disabled style="padding:12px 20px;border-radius:12px;border:none;background:#D9B7AD;color:#fff;font-weight:800;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;" data-i18n="account.delete.action">Delete my account</button></div>
   </div>
 </div>
 
