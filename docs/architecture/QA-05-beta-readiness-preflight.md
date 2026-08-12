@@ -30,6 +30,7 @@ ledger records its owner, rationale, evidence, and safe fallback.
 - physical Android Chrome and installed-PWA matrix;
 - dated route-specific field review for each beta route;
 - physical restoration, GPS, rejoin, completion, and elevation-cursor matrix;
+- one authenticated Carezza GPX export opened in an independent navigation app;
 - manual VoiceOver acceptance; and
 - one uncoached internal usability session using the QA-03 protocol.
 

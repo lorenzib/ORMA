@@ -64,4 +64,40 @@ describe('beta readiness ledger', () => {
     expect(protocol).toContain('Hike status understandable without speech flooding');
     expect(protocol).toContain('Reduce Motion journey');
   });
+
+  test('current iPhone retest names the package revisions shipped by both manifests', () => {
+    const gate = readiness.gates.find(item => item.id === 'OFFLINE-IOS-CURRENT');
+    const packageVersions = [
+      'offline/packages/lago-carezza/manifest.json',
+      'offline/packages/alpe-siusi/manifest.json',
+    ].map(file => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8')).version);
+
+    packageVersions.forEach(version => {
+      const betaLabel = version.match(/beta\.\d+$/)?.[0];
+      expect(betaLabel).toBeTruthy();
+      expect(gate.summary).toContain(betaLabel);
+    });
+
+    const deviceRecord = fs.readFileSync(path.join(root, gate.evidence), 'utf8');
+    packageVersions.forEach(version => {
+      const betaLabel = version.match(/beta\.\d+$/)[0];
+      expect(deviceRecord).toContain(betaLabel);
+    });
+  });
+
+  test('preflight summary lists every pending evidence boundary', () => {
+    const preflight = fs.readFileSync(
+      path.join(root, 'docs/architecture/QA-05-beta-readiness-preflight.md'),
+      'utf8'
+    );
+    [
+      'iPhone airplane-mode',
+      'physical Android',
+      'route-specific field review',
+      'physical restoration',
+      'GPX export',
+      'VoiceOver acceptance',
+      'uncoached internal usability',
+    ].forEach(boundary => expect(preflight).toContain(boundary));
+  });
 });
