@@ -23,6 +23,21 @@ describe('empty states and long-form navigation', () => {
     expect(document.getElementById('jnEmptyLiveBtn').textContent).toMatch(/track live/i);
   });
 
+  test('journal lifecycle and editing controls are translation-backed', () => {
+    const html = read('journal.html');
+    [
+      'journal.title',
+      'journal.empty.title',
+      'journal.signedOut.title',
+      'journal.modal.title',
+      'journal.editTitle',
+      'journal.storage',
+    ].forEach(key => expect(html).toContain(`data-i18n="${key}"`));
+    expect(html).toContain("window.t('journal.saved')");
+    expect(html).toContain("window.t('journal.shareError')");
+    expect(html).toContain("translate('journal.titleFor'");
+  });
+
   test('browse and trail community content provide purposeful empty states', () => {
     const browse = read('browse-trails.html');
     const trail = read('trail.html');

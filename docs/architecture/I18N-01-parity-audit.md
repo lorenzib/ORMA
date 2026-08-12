@@ -24,6 +24,11 @@ Status: in progress (2026-08-12)
   catalogue-reference states are bilingual, together with personalized
   headings, recommendation reasons, card badges, accessible route/photo
   labels, trail actions, removal progress and outcome notices.
+- **Walk journal (JOURNAL-01):** signed-out and empty states, personalized
+  headings, summary metrics, filters, timeline actions, trail picker, manual
+  logging, editing, photos, sharing, validation and storage errors are
+  bilingual. Stored condition codes remain stable and only their display is
+  translated.
 
 ## Machine-checkable boundary
 
@@ -34,13 +39,13 @@ Status: in progress (2026-08-12)
 - an HTML `data-i18n` attribute references an unknown key; or
 - a literal JavaScript `t('…')` call references an unknown key.
 
-The current dictionaries contain 693 matching English and Italian keys.
+The current dictionaries contain 770 matching English and Italian keys.
 
 ## Remaining migration
 
 Dictionary parity is necessary but not sufficient. Several core screens still
-create English state text directly in controllers, including journal,
-account-error and mobile-nav states. Those strings must move behind
+create English state text directly in controllers, including account-error and
+mobile-nav states. Those strings must move behind
 stable keys before I18N-01 can be marked complete.
 
 This work remains in the supporting backlog. It should be migrated by journey

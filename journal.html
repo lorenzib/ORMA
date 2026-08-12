@@ -87,106 +87,106 @@
 <div class="topnav">
   <a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
   <div class="links">
-    <a href="browse-trails.html">Browse all Trails</a>
-    <a href="collections.html">Collections</a>
-    <a href="safety-guide.html">Safety guide</a>
-    <a href="journal.html">My walk journal</a>
+    <a href="browse-trails.html" data-i18n="saved.nav.browse">Browse all Trails</a>
+    <a href="collections.html" data-i18n="saved.nav.collections">Collections</a>
+    <a href="safety-guide.html" data-i18n="saved.nav.safety">Safety guide</a>
+    <a href="journal.html" data-i18n="saved.nav.journal">My walk journal</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
   </div>
 </div>
 
 <header class="section-page-head section-page-head--actions">
   <div class="section-page-head__copy">
-    <h1 id="jnTitle">My walk journal</h1>
-    <p id="jnSub" class="section-page-subtitle">Every walk you've logged, in one place.</p>
+    <h1 id="jnTitle" data-i18n="journal.title">My walk journal</h1>
+    <p id="jnSub" class="section-page-subtitle" data-i18n="journal.subtitle">Every walk you've logged, in one place.</p>
   </div>
-  <button type="button" id="jnLogBtn" class="auth-submit" style="width:auto;padding:11px 20px;">+ Log a walk</button>
+  <button type="button" id="jnLogBtn" class="auth-submit" style="width:auto;padding:11px 20px;" data-i18n="journal.log">+ Log a walk</button>
 </header>
 
 <div class="wrap section-page-wrap">
-  <a href="index.html" class="guide-context-return">&larr; Back to Homepage</a>
+  <a href="index.html" class="guide-context-return" data-i18n="journal.back">&larr; Back to Homepage</a>
 
   <div class="jn-stats" id="jnStats"></div>
 
   <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:26px 0 14px;">
-    <h2 style="font-size:19px;margin:0;">Walks</h2>
+    <h2 style="font-size:19px;margin:0;" data-i18n="journal.walks">Walks</h2>
     <div class="jn-tabs" id="jnTabs">
-      <button type="button" data-f="all" class="active">All time</button>
-      <button type="button" data-f="month">This month</button>
+      <button type="button" data-f="all" class="active" data-i18n="journal.allTime">All time</button>
+      <button type="button" data-f="month" data-i18n="journal.thisMonth">This month</button>
     </div>
   </div>
 
   <div id="jnTimeline" style="display:flex;flex-direction:column;gap:12px;"></div>
   <div id="jnEmpty" class="empty-state" hidden>
     <div class="empty-state__icon" aria-hidden="true"><span data-dp-icon="dog" data-dp-icon-size="20"></span></div>
-    <p class="empty-state__title">No walks logged yet</p>
-    <p class="empty-state__copy" id="jnEmptyCopy">Once your dog has been out, log the walk here or track it live from Hike Mode — it'll show up in this list.</p>
+    <p class="empty-state__title" data-i18n="journal.empty.title">No walks logged yet</p>
+    <p class="empty-state__copy" id="jnEmptyCopy" data-i18n="journal.empty.copy">Once your dog has been out, log the walk here or track it live from Hike Mode — it'll show up in this list.</p>
     <div class="empty-state__actions">
-      <button type="button" id="jnEmptyLogBtn" class="empty-state__action">+ Log a walk</button>
-      <button type="button" id="jnEmptyLiveBtn" class="fav-btn">Track live instead</button>
+      <button type="button" id="jnEmptyLogBtn" class="empty-state__action" data-i18n="journal.log">+ Log a walk</button>
+      <button type="button" id="jnEmptyLiveBtn" class="fav-btn" data-i18n="journal.trackLive">Track live instead</button>
     </div>
   </div>
   <div id="jnLoggedOut" class="empty-state" hidden>
     <div class="empty-state__icon" aria-hidden="true"><span data-dp-icon="dog" data-dp-icon-size="22"></span></div>
-    <p class="empty-state__title">Keep your walks together</p>
-    <p class="empty-state__copy">Log in to build a private journal of the trails you and your dog have walked.</p>
-    <div class="empty-state__actions"><button type="button" id="jnLoginBtn" class="empty-state__action">Log in</button></div>
+    <p class="empty-state__title" data-i18n="journal.signedOut.title">Keep your walks together</p>
+    <p class="empty-state__copy" data-i18n="journal.signedOut.copy">Log in to build a private journal of the trails you and your dog have walked.</p>
+    <div class="empty-state__actions"><button type="button" id="jnLoginBtn" class="empty-state__action" data-i18n="journal.signedOut.action">Log in</button></div>
   </div>
-  <p id="jnStorageNote" style="margin-top:18px;font-size:11.5px;color:var(--ink-soft);" hidden>Journal entries are stored in this browser for your account.</p>
+  <p id="jnStorageNote" style="margin-top:18px;font-size:11.5px;color:var(--ink-soft);" hidden data-i18n="journal.storage">Journal entries are stored in this browser for your account.</p>
 </div>
 
 <!-- Log a walk modal -->
 <div class="jn-overlay" id="jnOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="jnModalTitle">
   <div class="jn-modal">
     <div style="display:flex;justify-content:space-between;align-items:center;">
-      <h2 id="jnModalTitle" style="margin:0;font-size:20px;">Log a walk</h2>
-      <button type="button" id="jnClose" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink-soft);" aria-label="Close">&times;</button>
+      <h2 id="jnModalTitle" style="margin:0;font-size:20px;" data-i18n="journal.modal.title">Log a walk</h2>
+      <button type="button" id="jnClose" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink-soft);" aria-label="Close" data-i18n-aria-label="journal.close">&times;</button>
     </div>
-    <p class="jn-hint">Add a walk you've already done. It joins the journal straight away.</p>
-    <label for="jnTrailSearch">Trail</label>
+    <p class="jn-hint" data-i18n="journal.modal.hint">Add a walk you've already done. It joins the journal straight away.</p>
+    <label for="jnTrailSearch" data-i18n="journal.trail">Trail</label>
     <div class="jn-trail-picker" id="jnTrailPicker">
       <input type="hidden" id="jnTrail">
       <div class="jn-trail-search-wrap">
-        <input type="search" id="jnTrailSearch" class="jn-trail-search" placeholder="Search by trail or valley" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="jnTrailResults" aria-describedby="jnTrailHelp" aria-required="true">
-        <button type="button" id="jnTrailChange" class="jn-trail-change" hidden>Change</button>
+        <input type="search" id="jnTrailSearch" class="jn-trail-search" placeholder="Search by trail or valley" data-i18n-ph="journal.picker.placeholder" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="jnTrailResults" aria-describedby="jnTrailHelp" aria-required="true">
+        <button type="button" id="jnTrailChange" class="jn-trail-change" hidden data-i18n="journal.change">Change</button>
       </div>
-      <div id="jnTrailResults" class="jn-trail-results" role="listbox" aria-label="Trail suggestions" hidden></div>
-      <p id="jnTrailHelp" class="jn-trail-help">Choose from recent or saved trails, or search all trails.</p>
+      <div id="jnTrailResults" class="jn-trail-results" role="listbox" aria-label="Trail suggestions" data-i18n-aria-label="journal.picker.suggestions" hidden></div>
+      <p id="jnTrailHelp" class="jn-trail-help" data-i18n="journal.picker.help">Choose from recent or saved trails, or search all trails.</p>
     </div>
-    <label for="jnDate">Date</label>
+    <label for="jnDate" data-i18n="journal.date">Date</label>
     <input type="date" id="jnDate">
     <div class="jn-metrics" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-      <div><label for="jnDist">Distance (km)</label><input type="number" id="jnDist" min="0" step="0.1" placeholder="4.0"></div>
-      <div><label for="jnDur">Duration (min)</label><input type="number" id="jnDur" min="0" step="5" placeholder="60"></div>
+      <div><label for="jnDist" data-i18n="journal.distance">Distance (km)</label><input type="number" id="jnDist" min="0" step="0.1" placeholder="4.0"></div>
+      <div><label for="jnDur" data-i18n="journal.duration">Duration (min)</label><input type="number" id="jnDur" min="0" step="5" placeholder="60"></div>
     </div>
-    <label id="jnCondLabel">Conditions</label>
+    <label id="jnCondLabel" data-i18n="journal.conditions">Conditions</label>
     <div class="jn-seg" id="jnCondSeg" role="radiogroup" aria-labelledby="jnCondLabel"></div>
-    <label>Rating</label>
-    <div class="jn-star-row" id="jnStars" role="radiogroup" aria-label="Rating out of 5"></div>
-    <label for="jnNote">Notes <span style="font-weight:500;color:var(--ink-soft);">· kept for you, never scored</span></label>
-    <textarea id="jnNote" rows="3" placeholder="Anything worth remembering?"></textarea>
-    <button type="button" id="jnSave" class="auth-submit" style="width:100%;margin-top:18px;" disabled>Save to journal</button>
-    <button type="button" id="jnTrackLive" class="jn-live-link">Walking right now? Track it live instead &rarr;</button>
+    <label data-i18n="journal.rating">Rating</label>
+    <div class="jn-star-row" id="jnStars" role="radiogroup" aria-label="Rating out of 5" data-i18n-aria-label="journal.ratingAria"></div>
+    <label for="jnNote"><span data-i18n="journal.notes">Notes</span> <span style="font-weight:500;color:var(--ink-soft);" data-i18n="journal.notesPrivate">· kept for you, never scored</span></label>
+    <textarea id="jnNote" rows="3" placeholder="Anything worth remembering?" data-i18n-ph="journal.notesPlaceholder"></textarea>
+    <button type="button" id="jnSave" class="auth-submit" style="width:100%;margin-top:18px;" disabled data-i18n="journal.save">Save to journal</button>
+    <button type="button" id="jnTrackLive" class="jn-live-link" data-i18n="journal.trackNow">Walking right now? Track it live instead &rarr;</button>
   </div>
 </div>
 
 <!-- EDIT WALK — rename, notes, photo. Sharing renders the walk card. -->
 <div class="jn-overlay" id="jnEditOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="jnEditTitle">
   <div class="jn-modal">
-    <h2 id="jnEditTitle" style="margin:0 0 4px;font-size:20px;">Edit walk</h2>
-    <label for="jnEditName">Walk name</label>
-    <input type="text" id="jnEditName" maxlength="60" placeholder="Morning loop with Eddie">
-    <label for="jnEditNote">Notes</label>
-    <textarea id="jnEditNote" rows="3" maxlength="500" placeholder="How was it? Water, paws, mood…"></textarea>
-    <label>Photo</label>
+    <h2 id="jnEditTitle" style="margin:0 0 4px;font-size:20px;" data-i18n="journal.editTitle">Edit walk</h2>
+    <label for="jnEditName" data-i18n="journal.walkName">Walk name</label>
+    <input type="text" id="jnEditName" maxlength="60" placeholder="Morning loop with Eddie" data-i18n-ph="journal.walkNamePlaceholder">
+    <label for="jnEditNote" data-i18n="journal.notes">Notes</label>
+    <textarea id="jnEditNote" rows="3" maxlength="500" placeholder="How was it? Water, paws, mood…" data-i18n-ph="journal.editNotesPlaceholder"></textarea>
+    <label data-i18n="journal.photo">Photo</label>
     <div class="jn-edit-photo-row">
       <img class="jn-edit-photo-prev" id="jnEditPhotoPrev" alt="" hidden>
-      <button type="button" class="jn-edit-photo-btn" id="jnEditPhotoBtn">Add photo</button>
-      <button type="button" class="jn-edit-photo-btn" id="jnEditPhotoRemove" hidden>Remove</button>
+      <button type="button" class="jn-edit-photo-btn" id="jnEditPhotoBtn" data-i18n="journal.photo.add">Add photo</button>
+      <button type="button" class="jn-edit-photo-btn" id="jnEditPhotoRemove" hidden data-i18n="journal.photo.remove">Remove</button>
       <input type="file" id="jnEditPhotoInput" accept="image/*" hidden>
     </div>
-    <button type="button" id="jnEditSave" class="auth-submit" style="width:100%;margin-top:18px;">Save changes</button>
-    <button type="button" id="jnEditCancel" class="jn-live-link">Cancel</button>
+    <button type="button" id="jnEditSave" class="auth-submit" style="width:100%;margin-top:18px;" data-i18n="journal.saveChanges">Save changes</button>
+    <button type="button" id="jnEditCancel" class="jn-live-link" data-i18n="journal.cancel">Cancel</button>
   </div>
 </div>
 
@@ -238,7 +238,7 @@
 </footer>
 
 <script src="mobile-nav.js?v=20260807-1"></script>
-<script src="i18n.js"></script>
+<script src="i18n.js?v=20260812-4"></script>
 <script type="module" src="firebase-init.js?v=20260811-2"></script>
 <script src="icon-system.js?v=20260717" defer></script>
 <script src="auth-ui.js?v=20260729-1" defer></script>
@@ -266,9 +266,21 @@ document.addEventListener('DOMContentLoaded', function(){
   var journalDirty = false;
 
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function translate(key, fallback, vars){
+    if(typeof window.t === 'function'){
+      var translated = window.t(key, vars);
+      if(translated && translated !== key) return translated;
+    }
+    var output = fallback;
+    Object.keys(vars || {}).forEach(function(name){ output = output.split('{' + name + '}').join(vars[name]); });
+    return output;
+  }
   function key(){ return 'dolopaws-journal-' + uid; }
   function load(){ try { return JSON.parse(localStorage.getItem(key())) || []; } catch(e){ return []; } }
-  function persist(){ try { localStorage.setItem(key(), JSON.stringify(state.entries)); } catch(e){} }
+  function persist(){
+    try { localStorage.setItem(key(), JSON.stringify(state.entries)); return true; }
+    catch(e){ return false; }
+  }
   function showStatus(message){
     var status = document.getElementById('jnActionStatus');
     if(!status){
@@ -290,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function fmtStats(e){
-    return [e.dist ? e.dist + ' km' : null, e.dur ? fmtDur(e.dur) : null].filter(Boolean).join(' · ') || 'Walk logged';
+    return [e.dist ? e.dist + ' km' : null, e.dur ? fmtDur(e.dur) : null].filter(Boolean).join(' · ') || window.t('journal.walkLogged');
   }
   function fmtDur(min){
     min = Number(min);
@@ -300,6 +312,10 @@ document.addEventListener('DOMContentLoaded', function(){
     var out = '';
     for(var i = 1; i <= 5; i++) out += i <= n ? '★' : '☆';
     return out;
+  }
+  function conditionLabel(value){
+    var code = String(value || '').toLowerCase();
+    return ['comfortable','warm','hot'].includes(code) ? window.t('journal.condition.' + code) : value;
   }
   function thisMonth(iso){
     var now = new Date();
@@ -315,10 +331,10 @@ document.addEventListener('DOMContentLoaded', function(){
     all.forEach(function(e){ if(e.region) byValley[e.region] = (byValley[e.region] || 0) + 1; });
     var topValley = Object.keys(byValley).sort(function(a, b){ return byValley[b] - byValley[a]; })[0] || '–';
     el.innerHTML =
-      '<div class="jn-stat"><b>' + all.length + '</b><span>Walks logged</span></div>' +
-      '<div class="jn-stat"><b>' + (Math.round(totalKm * 10) / 10) + ' km</b><span>Total distance</span></div>' +
-      '<div class="jn-stat"><b>' + month + '</b><span>This month</span></div>' +
-      '<div class="jn-stat"><b style="font-size:16px;line-height:1.3;padding-top:4px;">' + esc(topValley) + '</b><span>Most walked</span></div>';
+      '<div class="jn-stat"><b>' + all.length + '</b><span>' + esc(window.t('journal.stats.walks')) + '</span></div>' +
+      '<div class="jn-stat"><b>' + (Math.round(totalKm * 10) / 10) + ' km</b><span>' + esc(window.t('journal.stats.distance')) + '</span></div>' +
+      '<div class="jn-stat"><b>' + month + '</b><span>' + esc(window.t('journal.thisMonth')) + '</span></div>' +
+      '<div class="jn-stat"><b style="font-size:16px;line-height:1.3;padding-top:4px;">' + esc(topValley) + '</b><span>' + esc(window.t('journal.stats.mostWalked')) + '</span></div>';
   }
 
   function photoIndicator(e){
@@ -327,7 +343,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var icon = window.DoloPawsIcons
       ? window.DoloPawsIcons.renderIconSvg('camera', { mode:'inline', color:'currentColor', size:13 })
       : '';
-    return '<span class="jn-photos">' + icon + count + (e.shareToTrail ? ' · on trail page' : '') + '</span>';
+    return '<span class="jn-photos">' + icon + count + (e.shareToTrail ? ' · ' + esc(window.t('journal.onTrailPage')) : '') + '</span>';
   }
 
   function renderTimeline(){
@@ -336,25 +352,25 @@ document.addEventListener('DOMContentLoaded', function(){
     document.getElementById('jnEmpty').hidden = list.length > 0;
     box.innerHTML = list.map(function(e){
       var d = new Date(e.date);
-      var link = e.trailId ? '<a class="jn-again" href="trail.html?id=' + encodeURIComponent(e.trailId) + '&from=journal.html">Walk it again &rarr;</a>' : '';
+      var link = e.trailId ? '<a class="jn-again" href="trail.html?id=' + encodeURIComponent(e.trailId) + '&from=journal.html">' + esc(window.t('journal.walkAgain')) + '</a>' : '';
       // Hike-mode saves carry no star rating — skip the row instead of
       // rendering "undefined out of 5".
       var ratingHtml = e.rating
-        ? '<span class="jn-stars" aria-label="' + e.rating + ' out of 5">' + stars(e.rating) + '</span>'
+        ? '<span class="jn-stars" aria-label="' + esc(translate('journal.ratingValue', '{rating} out of 5', { rating:e.rating })) + '">' + stars(e.rating) + '</span>'
         : '';
       return '<div class="jn-entry">' +
-        '<div class="jn-date"><b>' + d.getDate() + '</b><span>' + d.toLocaleDateString(undefined, { month: 'short' }) + '</span></div>' +
+        '<div class="jn-date"><b>' + d.getDate() + '</b><span>' + d.toLocaleDateString(document.documentElement.lang || undefined, { month: 'short' }) + '</span></div>' +
         '<div class="jn-card">' +
-          (e.photo ? '<img class="jn-photo" src="' + e.photo + '" alt="Walk photo" loading="lazy">' : '') +
+          (e.photo ? '<img class="jn-photo" src="' + e.photo + '" alt="' + esc(window.t('journal.walkPhoto')) + '" loading="lazy">' : '') +
           '<h3>' + esc(e.trail) + '</h3>' +
           '<div class="meta">' + esc(e.region || '') + (e.region ? ' · ' : '') + esc(fmtStats(e)) + '</div>' +
           (e.note ? '<p class="note">&ldquo;' + esc(e.note) + '&rdquo;</p>' : '') +
           '<div class="row2">' +
             ratingHtml +
-            (e.cond ? '<span class="jn-cond">' + esc(e.cond) + '</span>' : '') +
+            (e.cond ? '<span class="jn-cond">' + esc(conditionLabel(e.cond)) + '</span>' : '') +
             photoIndicator(e) +
-            '<button type="button" class="jn-act" data-jn-edit="' + esc(e.id) + '">Edit</button>' +
-            '<button type="button" class="jn-act" data-jn-share="' + esc(e.id) + '">Share</button>' +
+            '<button type="button" class="jn-act" data-jn-edit="' + esc(e.id) + '">' + esc(window.t('journal.edit')) + '</button>' +
+            '<button type="button" class="jn-act" data-jn-share="' + esc(e.id) + '">' + esc(window.t('journal.share')) + '</button>' +
             link +
           '</div>' +
         '</div>' +
@@ -388,7 +404,7 @@ document.addEventListener('DOMContentLoaded', function(){
     prev.hidden = !editPhoto;
     remove.hidden = !editPhoto;
     if(editPhoto) prev.src = editPhoto;
-    add.textContent = editPhoto ? 'Replace photo' : 'Add photo';
+    add.textContent = editPhoto ? window.t('journal.photo.replace') : window.t('journal.photo.add');
   }
 
   // Downscale before storing: journals live in localStorage, so photos are
@@ -418,7 +434,7 @@ document.addEventListener('DOMContentLoaded', function(){
     this.value = '';
     if(!file) return;
     downscalePhoto(file, function(dataUri){
-      if(!dataUri){ showStatus('That image could not be read.'); return; }
+      if(!dataUri){ showStatus(window.t('journal.photo.readError')); return; }
       editPhoto = dataUri;
       syncEditPhoto();
     });
@@ -434,20 +450,23 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('jnEditSave').addEventListener('click', function(){
     var entry = entryById(editingId);
     if(!entry) return;
+    var previousEntry = Object.assign({}, entry);
     var name = document.getElementById('jnEditName').value.trim();
     if(name) entry.trail = name.slice(0, 60);
     entry.note = document.getElementById('jnEditNote').value.trim().slice(0, 500);
     entry.photo = editPhoto || undefined;
     if(!entry.photo) delete entry.photo;
     entry.photos = entry.photo ? 1 : 0;
-    try { persist(); } catch(err){
-      showStatus('Could not save — the photo may be too large for local storage.');
+    if(!persist()){
+      Object.keys(entry).forEach(function(key){ delete entry[key]; });
+      Object.assign(entry, previousEntry);
+      showStatus(window.t('journal.photo.storageError'));
       return;
     }
     document.getElementById('jnEditOverlay').hidden = true;
     editingId = null;
     renderAll();
-    showStatus('Walk updated.');
+    showStatus(window.t('journal.updated'));
   });
 
   document.getElementById('jnTimeline').addEventListener('click', function(event){
@@ -464,9 +483,9 @@ document.addEventListener('DOMContentLoaded', function(){
       shareBtn.disabled = true;
       window.DoloPawsWalkCard.shareWalkCard(target, { dogName: dogDisplayName })
         .then(function(method){
-          showStatus(method === 'shared' ? 'Walk shared.' : 'Walk card downloaded.');
+          showStatus(method === 'shared' ? window.t('journal.shared') : window.t('journal.downloaded'));
         })
-        .catch(function(){ showStatus('Sharing did not complete.'); })
+        .catch(function(){ showStatus(window.t('journal.shareError')); })
         .then(function(){ shareBtn.disabled = false; });
     }
   });
@@ -513,20 +532,20 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   function renderTrailResults(query){
     query = String(query || '').trim().toLowerCase();
-    var html = '<button type="button" class="jn-trail-option" role="option" data-trail-id="" aria-selected="' + (trailChoiceMade && !trailInput.value ? 'true' : 'false') + '">Somewhere else<small>Log a walk that is not in the trail guide</small></button>';
+    var html = '<button type="button" class="jn-trail-option" role="option" data-trail-id="" aria-selected="' + (trailChoiceMade && !trailInput.value ? 'true' : 'false') + '">' + esc(window.t('journal.picker.elsewhere')) + '<small>' + esc(window.t('journal.picker.elsewhereHelp')) + '</small></button>';
     if(query){
       var matches = allTrails().filter(function(t){
         return [t.name, t.valley, t.area].filter(Boolean).join(' ').toLowerCase().indexOf(query) !== -1;
       }).sort(function(a, b){ return a.name.localeCompare(b.name); }).slice(0, 12);
-      html += matches.length ? groupMarkup('Search results', matches) : '<p class="jn-trail-empty">No matching trail. Choose “Somewhere else” to log it anyway.</p>';
+      html += matches.length ? groupMarkup(window.t('journal.picker.results'), matches) : '<p class="jn-trail-empty">' + esc(window.t('journal.picker.noResults')) + '</p>';
     } else {
       var recent = recentTrails();
       var recentIds = {};
       recent.forEach(function(t){ recentIds[t.id] = true; });
       var saved = savedTrails().filter(function(t){ return !recentIds[t.id]; });
-      html += groupMarkup('Recent trails', recent);
-      html += groupMarkup('Saved trails', saved);
-      if(!recent.length && !saved.length) html += groupMarkup('Suggested trails', allTrails().slice().sort(function(a, b){ return a.name.localeCompare(b.name); }).slice(0, 6));
+      html += groupMarkup(window.t('journal.picker.recent'), recent);
+      html += groupMarkup(window.t('journal.picker.saved'), saved);
+      if(!recent.length && !saved.length) html += groupMarkup(window.t('journal.picker.suggested'), allTrails().slice().sort(function(a, b){ return a.name.localeCompare(b.name); }).slice(0, 6));
     }
     trailResults.innerHTML = html;
   }
@@ -548,10 +567,10 @@ document.addEventListener('DOMContentLoaded', function(){
     var canUpdateDur = !dur.value || dur.value === autoTrailDur;
     trailInput.value = selectedTrail ? selectedTrail.id : '';
     trailChoiceMade = true;
-    trailSearch.value = selectedTrail ? selectedTrail.name : 'Somewhere else';
+    trailSearch.value = selectedTrail ? selectedTrail.name : window.t('journal.picker.elsewhere');
     trailSearch.readOnly = true;
     trailSearch.removeAttribute('aria-invalid');
-    trailHelp.textContent = 'Choose from recent or saved trails, or search all trails.';
+    trailHelp.textContent = window.t('journal.picker.help');
     trailChange.hidden = false;
     closeTrailResults();
     if(markDirty) journalDirty = true;
@@ -576,7 +595,7 @@ document.addEventListener('DOMContentLoaded', function(){
     trailSearch.value = '';
     trailSearch.readOnly = false;
     trailSearch.removeAttribute('aria-invalid');
-    trailHelp.textContent = 'Choose from recent or saved trails, or search all trails.';
+    trailHelp.textContent = window.t('journal.picker.help');
     trailChange.hidden = true;
     closeTrailResults();
     updateSaveState();
@@ -610,7 +629,7 @@ document.addEventListener('DOMContentLoaded', function(){
     COND_OPTIONS.forEach(function(c){
       var b = document.createElement('button');
       b.type = 'button';
-      b.textContent = c;
+      b.textContent = window.t('journal.condition.' + c.toLowerCase());
       b.className = c === state.cond ? 'on' : '';
       b.setAttribute('role', 'radio');
       b.setAttribute('aria-checked', c === state.cond ? 'true' : 'false');
@@ -644,7 +663,7 @@ document.addEventListener('DOMContentLoaded', function(){
         b.className = n <= state.rating ? 'on' : '';
         b.setAttribute('role', 'radio');
         b.setAttribute('aria-checked', n === state.rating ? 'true' : 'false');
-        b.setAttribute('aria-label', n + ' star' + (n > 1 ? 's' : ''));
+        b.setAttribute('aria-label', translate(n > 1 ? 'journal.stars.many' : 'journal.stars.one', n > 1 ? '{count} stars' : '1 star', { count:n }));
         b.addEventListener('click', function(){ journalDirty = true; state.rating = n; renderStarInput(); });
         row.appendChild(b);
       })(i);
@@ -741,7 +760,7 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('jnSave').addEventListener('click', function(){
     if(!trailChoiceMade){
       trailSearch.setAttribute('aria-invalid', 'true');
-      trailHelp.textContent = 'Choose a trail or “Somewhere else” before saving.';
+      trailHelp.textContent = window.t('journal.picker.required');
       trailSearch.focus();
       openTrailResults();
       return;
@@ -757,7 +776,7 @@ document.addEventListener('DOMContentLoaded', function(){
       id: 'w' + Date.now(),
       date: when.toISOString(),
       trailId: tr ? tr.id : null,
-      trail: tr ? tr.name : 'A walk',
+      trail: tr ? tr.name : window.t('journal.defaultName'),
       region: tr ? (tr.valley || tr.area || '') : '',
       dist: document.getElementById('jnDist').value,
       dur: document.getElementById('jnDur').value,
@@ -767,10 +786,15 @@ document.addEventListener('DOMContentLoaded', function(){
       photos: 0,
       shareToTrail: false
     };
+    var previousEntries = state.entries.slice();
     state.entries.unshift(entry);
     // Backdated walks belong in their place on the timeline, not on top.
     state.entries.sort(function(a, b){ return new Date(b.date) - new Date(a.date); });
-    persist();
+    if(!persist()){
+      state.entries = previousEntries;
+      showStatus(window.t('journal.saveError'));
+      return;
+    }
     overlay.hidden = true;
     ['jnDist','jnDur','jnNote'].forEach(function(id){ document.getElementById(id).value = ''; });
     resetTrailPicker();
@@ -787,7 +811,7 @@ document.addEventListener('DOMContentLoaded', function(){
       window.history.replaceState({}, '', 'journal.html');
     }
     renderAll();
-    showStatus('Walk saved to your journal.');
+    showStatus(window.t('journal.saved'));
     document.getElementById('jnLogBtn').focus();
   });
 
@@ -805,8 +829,8 @@ document.addEventListener('DOMContentLoaded', function(){
       uid = null;
       state.entries = [];
       outEl.hidden = false;
-      document.getElementById('jnTitle').textContent = 'My walk journal';
-      document.getElementById('jnSub').textContent = "Every walk you've logged, in one place.";
+      document.getElementById('jnTitle').textContent = window.t('journal.title');
+      document.getElementById('jnSub').textContent = window.t('journal.subtitle');
       document.getElementById('jnLogBtn').style.display = 'none';
       document.getElementById('jnStats').innerHTML = '';
       document.getElementById('jnTimeline').innerHTML = '';
@@ -835,15 +859,15 @@ document.addEventListener('DOMContentLoaded', function(){
       setTimeout(function(){ trailSearch.focus(); }, 0);
     }
     if(journalParams.get('recorded') === '1'){
-      showStatus('Walk saved to your journal.');
+      showStatus(window.t('journal.saved'));
       if(window.history && window.history.replaceState) window.history.replaceState({}, '', 'journal.html');
     }
     document.getElementById('jnStorageNote').hidden = false;
     window.DoloPawsAuth.getDogProfile().then(function(p){
       if(p && p.name){
         dogDisplayName = p.name;
-        document.getElementById('jnTitle').textContent = p.name + "'s walk journal";
-        document.getElementById('jnEmptyCopy').textContent = 'Once ' + p.name + " has been out, log the walk here or track it live from Hike Mode — it'll show up in this list.";
+        document.getElementById('jnTitle').textContent = translate('journal.titleFor', '{name}’s walk journal', { name:p.name });
+        document.getElementById('jnEmptyCopy').textContent = translate('journal.empty.copyFor', 'Once {name} has been out, log the walk here or track it live from Hike Mode — it’ll show up in this list.', { name:p.name });
       }
     }).catch(function(){});
   }

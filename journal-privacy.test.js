@@ -33,6 +33,14 @@ describe('JOURNAL-01 private local journal contract', () => {
     expect(privacy).toContain('Completed hikes and journal entries:');
   });
 
+  test('journal storage failures do not report a successful save', () => {
+    expect(journal).toContain('catch(e){ return false; }');
+    expect(journal).toContain('if(!persist())');
+    expect(journal).toContain("showStatus(window.t('journal.saveError'))");
+    expect(journal).toContain('state.entries = previousEntries');
+    expect(journal).toContain('Object.assign(entry, previousEntry)');
+  });
+
   test('the Firebase client and rules expose no journal collection', () => {
     expect(firebaseClient).not.toMatch(/collection\(db,\s*["'](?:journal|walkJournal|walks)["']/);
     expect(rules).not.toMatch(/match \/(?:journal|walkJournal|walks)\//);
