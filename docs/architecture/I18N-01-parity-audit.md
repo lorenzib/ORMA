@@ -20,6 +20,10 @@ Status: in progress (2026-08-12)
 - **Trail-detail offline panel (OFF-03/OFF-05):** download, update, interrupted,
   repair, stale, verified, self-test, removal and account-required states are
   bilingual, including local package ownership/date/size context.
+- **Saved trails (SAVE-01):** loading, signed-out, empty, load-error and stale
+  catalogue-reference states are bilingual, together with personalized
+  headings, recommendation reasons, card badges, accessible route/photo
+  labels, trail actions, removal progress and outcome notices.
 
 ## Machine-checkable boundary
 
@@ -30,13 +34,13 @@ Status: in progress (2026-08-12)
 - an HTML `data-i18n` attribute references an unknown key; or
 - a literal JavaScript `t('…')` call references an unknown key.
 
-The current dictionaries contain 660 matching English and Italian keys.
+The current dictionaries contain 693 matching English and Italian keys.
 
 ## Remaining migration
 
 Dictionary parity is necessary but not sufficient. Several core screens still
-create English state text directly in controllers, including saved-trail,
-journal, account-error and mobile-nav states. Those strings must move behind
+create English state text directly in controllers, including journal,
+account-error and mobile-nav states. Those strings must move behind
 stable keys before I18N-01 can be marked complete.
 
 This work remains in the supporting backlog. It should be migrated by journey

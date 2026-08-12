@@ -3,6 +3,7 @@ const path = require('path');
 
 const root = __dirname;
 const legacyHtml = fs.readFileSync(path.join(root, 'my-trails.html'), 'utf8');
+const savedHtml = fs.readFileSync(path.join(root, 'saved.html'), 'utf8');
 
 describe('SAVE-01 canonical saved-trails route', () => {
   test('legacy bookmarks hand off to the canonical saved page', () => {
@@ -21,5 +22,20 @@ describe('SAVE-01 canonical saved-trails route', () => {
       .filter(name => fs.readFileSync(path.join(root, name), 'utf8').includes('href="my-trails.html'));
 
     expect(references).toEqual([]);
+  });
+
+  test('canonical page localizes every saved-list lifecycle state', () => {
+    [
+      'saved.title',
+      'saved.subtitle',
+      'saved.loading',
+      'saved.empty.title',
+      'saved.signedOut.title',
+      'saved.error.title',
+    ].forEach(key => expect(savedHtml).toContain(`data-i18n="${key}"`));
+    expect(savedHtml).toContain("window.t('saved.card.remove')");
+    expect(savedHtml).toContain("window.t('saved.card.removing')");
+    expect(savedHtml).toContain("translate('saved.unavailable.many'");
+    expect(savedHtml).toContain('DoloPawsRecommendationDecision.translatedMessage');
   });
 });

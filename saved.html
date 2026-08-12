@@ -20,44 +20,47 @@
 <div class="topnav">
   <a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>
   <div class="links">
-    <a href="browse-trails.html" class="active">Browse all Trails</a>
-    <a href="browse-trails.html#collections">Collections</a>
-    <a href="safety-guide.html">Safety guide</a>
-    <a href="journal.html">My walk journal</a>
+    <a href="browse-trails.html" class="active" data-i18n="saved.nav.browse">Browse all Trails</a>
+    <a href="collections.html" data-i18n="saved.nav.collections">Collections</a>
+    <a href="safety-guide.html" data-i18n="saved.nav.safety">Safety guide</a>
+    <a href="journal.html" data-i18n="saved.nav.journal">My walk journal</a>
     <button id="accountBtn" class="account-btn" data-i18n="nav.login">Log in</button>
   </div>
 </div>
 
 <div class="wrap" style="max-width:1000px;padding-top:28px;padding-bottom:60px;">
-  <a href="browse-trails.html" style="font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;">&larr; Back to trails</a>
+  <a href="browse-trails.html" data-i18n="saved.back" style="font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;">&larr; Back to trails</a>
 
   <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:16px;">
-    <h1 id="savedTitle" style="font-size:clamp(26px,4vw,34px);margin:0;">Saved trails</h1>
+    <h1 id="savedTitle" data-i18n="saved.title" style="font-size:clamp(26px,4vw,34px);margin:0;">Saved trails</h1>
     <span id="savedCountBadge" style="background:var(--sage-dim);color:var(--ink);font:700 13px 'Inter',sans-serif;border-radius:999px;padding:4px 12px;" hidden>0</span>
   </div>
-  <p id="savedSub" style="margin:8px 0 0;color:var(--ink-soft);font-size:14px;">The trails you have bookmarked, ranked for your dog.</p>
+  <p id="savedSub" data-i18n="saved.subtitle" style="margin:8px 0 0;color:var(--ink-soft);font-size:14px;">The trails you have bookmarked, ranked for your dog.</p>
+
+  <div id="savedLoading" role="status" data-i18n="saved.loading" style="margin-top:24px;padding:20px;border:1px solid var(--paper-line);border-radius:14px;background:var(--card);color:var(--ink-soft);font-size:13px;">Loading your saved trails…</div>
+  <div id="savedUnavailable" role="status" style="margin-top:18px;padding:12px 14px;border:1px solid #E7D6B6;border-radius:12px;background:#FFF9ED;color:var(--ink-soft);font-size:12.5px;line-height:1.5;" hidden></div>
 
   <div id="savedList" style="display:flex;flex-direction:column;gap:13px;margin-top:24px;"></div>
 
   <div id="savedEmpty" class="empty-state" hidden>
     <div class="empty-state__icon" aria-hidden="true"><span data-dp-icon="routes" data-dp-icon-size="21"></span></div>
-    <p class="empty-state__title">Build your trail shortlist</p>
-    <p class="empty-state__copy">Save promising trails while you browse. They will appear here, ranked for your dog.</p>
-    <div class="empty-state__actions"><a href="browse-trails.html" class="empty-state__action">Find a trail to save</a></div>
+    <p class="empty-state__title" data-i18n="saved.empty.title">Build your trail shortlist</p>
+    <p class="empty-state__copy" data-i18n="saved.empty.copy">Save promising trails while you browse. They will appear here, ranked for your dog.</p>
+    <div class="empty-state__actions"><a href="browse-trails.html" class="empty-state__action" data-i18n="saved.empty.action">Find a trail to save</a></div>
   </div>
 
   <div id="savedLoggedOut" class="empty-state" hidden>
     <div class="empty-state__icon" aria-hidden="true"><span data-dp-icon="routes" data-dp-icon-size="21"></span></div>
-    <p class="empty-state__title">Your shortlist travels with you</p>
-    <p class="empty-state__copy">Log in to view saved trails and keep them available across devices.</p>
-    <div class="empty-state__actions"><button type="button" id="savedLoginBtn" class="empty-state__action">Log in</button></div>
+    <p class="empty-state__title" data-i18n="saved.signedOut.title">Your shortlist travels with you</p>
+    <p class="empty-state__copy" data-i18n="saved.signedOut.copy">Log in to view saved trails and keep them available across devices.</p>
+    <div class="empty-state__actions"><button type="button" id="savedLoginBtn" class="empty-state__action" data-i18n="saved.signedOut.action">Log in</button></div>
   </div>
 
   <div id="savedLoadError" class="empty-state" hidden>
     <div class="empty-state__icon" aria-hidden="true"><span data-dp-icon="warning" data-dp-icon-size="21"></span></div>
-    <p class="empty-state__title">Saved trails did not load</p>
-    <p class="empty-state__copy">Your shortlist is still safe. Check your connection and try again.</p>
-    <div class="empty-state__actions"><button type="button" id="savedRetryBtn" class="empty-state__action">Try again</button></div>
+    <p class="empty-state__title" data-i18n="saved.error.title">Saved trails did not load</p>
+    <p class="empty-state__copy" data-i18n="saved.error.copy">Your shortlist is still safe. Check your connection and try again.</p>
+    <div class="empty-state__actions"><button type="button" id="savedRetryBtn" class="empty-state__action" data-i18n="saved.error.action">Try again</button></div>
   </div>
 </div>
 
@@ -109,15 +112,16 @@
 </footer>
 
 <script src="mobile-nav.js?v=20260807-1"></script>
-<script src="i18n.js"></script>
+<script src="i18n.js?v=20260812-3"></script>
 <script type="module" src="firebase-init.js"></script>
 <script src="icon-system.js?v=20260717" defer></script>
-<script src="trail-card-visual.js?v=20260717" defer></script>
+<script src="trail-card-visual.js?v=20260812-1" defer></script>
 <script src="auth-ui.js?v=20260729-1" defer></script>
 <script src="breeds-data.js?v=20260807-1" defer></script>
 <script src="trust/evidence-v1.js?v=20260728-1" defer></script>
 <script src="scoring/recommendation-v1.js?v=20260728-2" defer></script>
 <script src="scoring/recommendation-adapters-v1.js?v=20260728-1" defer></script>
+<script src="recommendation-decision.js?v=20260812-1" defer></script>
 <script src="scoring.js?v=20260728-4" defer></script>
 <script src="regions-runtime-manifest.js?v=20260805-2"></script>
 <script src="regional-trails-loader.js?v=20260805-2" data-default-region="all"></script>
@@ -132,6 +136,8 @@ document.addEventListener('DOMContentLoaded', function(){
   var emptyEl = document.getElementById('savedEmpty');
   var outEl = document.getElementById('savedLoggedOut');
   var errorEl = document.getElementById('savedLoadError');
+  var loadingEl = document.getElementById('savedLoading');
+  var unavailableEl = document.getElementById('savedUnavailable');
   var badge = document.getElementById('savedCountBadge');
   var titleEl = document.getElementById('savedTitle');
   var subEl = document.getElementById('savedSub');
@@ -144,6 +150,18 @@ document.addEventListener('DOMContentLoaded', function(){
   });
 
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  function translate(key, fallback, vars){
+    if(typeof window.t === 'function'){
+      var translated = window.t(key, vars);
+      if(translated && translated !== key) return translated;
+    }
+    var output = fallback;
+    Object.keys(vars || {}).forEach(function(name){
+      output = output.split('{' + name + '}').join(vars[name]);
+    });
+    return output;
+  }
 
   function showStatus(message){
     var status = document.getElementById('savedActionStatus');
@@ -169,7 +187,10 @@ document.addEventListener('DOMContentLoaded', function(){
     var reason = recommendation.positiveReasons[0]
       || recommendation.cautions[0]
       || recommendation.unknowns[0];
-    return reason ? reason.message : 'Open the trail to review this recommendation.';
+    if(reason && window.DoloPawsRecommendationDecision){
+      return window.DoloPawsRecommendationDecision.translatedMessage(reason, window.t);
+    }
+    return reason ? reason.message : translate('saved.card.review', 'Open the trail to review this recommendation.');
   }
 
   function render(favs, profile){
@@ -177,7 +198,13 @@ document.addEventListener('DOMContentLoaded', function(){
       ? effectiveOverrides(profile, null)
       : { terrain:'1', distance:'10', heatSensitive:false };
     var name = (profile && profile.name) ? profile.name : null;
-    if(name){ titleEl.textContent = 'Saved for ' + name; subEl.textContent = 'The trails you have bookmarked, ranked for ' + name + '.'; }
+    if(name){
+      titleEl.textContent = translate('saved.titleFor', 'Saved for {name}', { name:name });
+      subEl.textContent = translate('saved.subtitleFor', 'The trails you have bookmarked, ranked for {name}.', { name:name });
+    } else {
+      titleEl.textContent = translate('saved.title', 'Saved trails');
+      subEl.textContent = translate('saved.subtitle', 'The trails you have bookmarked, ranked for your dog.');
+    }
 
     var saved = trails.filter(function(tr){ return favs[tr.id]; })
       .map(function(tr){
@@ -192,20 +219,37 @@ document.addEventListener('DOMContentLoaded', function(){
     badge.textContent = saved.length;
     badge.hidden = false;
     emptyEl.hidden = saved.length > 0;
+    var missingCount = Object.keys(favs || {}).filter(function(id){
+      return favs[id] && !trails.some(function(trail){ return trail.id === id; });
+    }).length;
+    unavailableEl.hidden = missingCount === 0;
+    unavailableEl.textContent = missingCount === 1
+      ? translate('saved.unavailable.one', '1 saved trail is temporarily unavailable. It remains in your shortlist.')
+      : translate('saved.unavailable.many', '{count} saved trails are temporarily unavailable. They remain in your shortlist.', { count:missingCount });
 
     listEl.innerHTML = saved.map(function(tr){
       var s = SAFETY[tr.safetyLevel] || ['', 'var(--ink-soft)'];
+      var safetyLabel = tr.safetyLevel === 'low-risk' ? window.t('legend.low')
+        : tr.safetyLevel === 'moderate' ? window.t('legend.moderate')
+        : tr.safetyLevel === 'caution' ? window.t('legend.caution') : s[0];
       var isEst = tr.curated === false;
-      var heat = tr.heatRisk === 'high' ? ['High', '#FBEAE6', '#9C3A25']
-        : tr.heatRisk === 'moderate' ? ['Med', '#F5E4C6', '#8A5A16'] : ['Low', '#DCEBDD', '#2C5C34'];
+      var heat = tr.heatRisk === 'high' ? [window.t('saved.heat.high'), '#FBEAE6', '#9C3A25']
+        : tr.heatRisk === 'moderate' ? [window.t('saved.heat.moderate'), '#F5E4C6', '#8A5A16'] : [window.t('saved.heat.low'), '#DCEBDD', '#2C5C34'];
       var icons = window.DoloPawsIcons;
-      var provenanceBadge = icons ? icons.badgeHtml(isEst ? 'imported' : 'verified', isEst ? 'IMPORTED' : 'VERIFIED')
-        : (isEst ? '<span class="badge-pill badge-imported">IMPORTED</span>' : '<span class="badge-pill badge-verified">VERIFIED</span>');
-      var riskBadge = icons ? icons.badgeHtml(tr.safetyLevel, s[0]) : '<span class="safety-badge ' + (tr.safetyLevel === 'low-risk' ? 'safety-low' : tr.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution') + '">' + esc(s[0]) + '</span>';
-      var heatBadge = icons ? icons.badgeHtml('heat-' + (tr.heatRisk || 'low'), 'Heat ' + heat[0]) : '<span class="tc-heat-pill" style="background:' + heat[1] + ';color:' + heat[2] + ';">Heat ' + heat[0] + '</span>';
+      var provenanceLabel = isEst ? window.t('badge.imported') : window.t('badge.verified');
+      var heatLabel = translate('saved.heat.label', 'Heat {level}', { level:heat[0] });
+      var provenanceBadge = icons ? icons.badgeHtml(isEst ? 'imported' : 'verified', provenanceLabel)
+        : '<span class="badge-pill ' + (isEst ? 'badge-imported' : 'badge-verified') + '">' + esc(provenanceLabel) + '</span>';
+      var riskBadge = icons ? icons.badgeHtml(tr.safetyLevel, safetyLabel) : '<span class="safety-badge ' + (tr.safetyLevel === 'low-risk' ? 'safety-low' : tr.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution') + '">' + esc(safetyLabel) + '</span>';
+      var heatBadge = icons ? icons.badgeHtml('heat-' + (tr.heatRisk || 'low'), heatLabel) : '<span class="tc-heat-pill" style="background:' + heat[1] + ';color:' + heat[2] + ';">' + esc(heatLabel) + '</span>';
       var thumb = window.DoloPawsTrailVisual
-        ? window.DoloPawsTrailVisual.render(tr, { className:'photo tc-thumb' })
-        : '<div class="trail-visual trail-visual--placeholder photo tc-thumb" role="img" aria-label="' + esc(tr.name) + ': photo coming soon"><span class="trail-visual-placeholder-label">Photo coming soon</span></div>';
+        ? window.DoloPawsTrailVisual.render(tr, {
+          className:'photo tc-thumb',
+          routeLabel:translate('saved.visual.route', '{name}: route preview', { name:tr.name }),
+          placeholderAria:translate('saved.visual.photoAria', '{name}: photo coming soon', { name:tr.name }),
+          placeholderLabel:window.t('saved.visual.photo'),
+        })
+        : '<div class="trail-visual trail-visual--placeholder photo tc-thumb" role="img" aria-label="' + esc(translate('saved.visual.photoAria', '{name}: photo coming soon', { name:tr.name })) + '"><span class="trail-visual-placeholder-label">' + esc(window.t('saved.visual.photo')) + '</span></div>';
       return '<div class="trail-card" data-id="' + esc(tr.id) + '">' +
         thumb +
         '<div class="body">' +
@@ -216,15 +260,15 @@ document.addEventListener('DOMContentLoaded', function(){
           '<div class="tc-reason"><span class="mark">&#10022;</span><span class="txt">' + esc(whyFits(tr.recommendation)) + '</span></div>' +
           '<div class="tc-stats">' + esc(tr.area || '') + ' · ' + tr.distance + ' km · ' + tr.elevation + ' m' + (tr.hours ? ' · ' + esc(tr.hours) + ' h' : '') + '</div>' +
           '<div class="tc-actions">' +
-            '<a href="trail.html?id=' + encodeURIComponent(tr.id) + '&from=saved.html">Trail details &rarr;</a>' +
-            '<button type="button" class="save save-btn saved" data-remove="' + esc(tr.id) + '">Remove</button>' +
+            '<a href="trail.html?id=' + encodeURIComponent(tr.id) + '&from=saved.html">' + esc(window.t('card.details')) + '</a>' +
+            '<button type="button" class="save save-btn saved" data-remove="' + esc(tr.id) + '">' + esc(window.t('saved.card.remove')) + '</button>' +
           '</div>' +
         '</div>' +
         '<div class="companion-match-col">' +
           '<div class="tc-ring" style="background:conic-gradient(' + s[1] + ' ' + Math.round((tr.score / 100) * 360) + 'deg,var(--paper-line) 0);">' +
             '<div class="tc-ring-inner">' + (isEst ? '&asymp;' : '') + tr.score + '%</div>' +
           '</div>' +
-          '<span class="tc-ring-label">' + (name ? 'FOR ' + esc(name.toUpperCase()) : 'MATCH') + '</span>' +
+          '<span class="tc-ring-label">' + (name ? esc(translate('saved.card.forDog', 'FOR {name}', { name:name.toUpperCase() })) : esc(window.t('saved.card.match'))) + '</span>' +
         '</div>' +
       '</div>';
     }).join('');
@@ -234,14 +278,14 @@ document.addEventListener('DOMContentLoaded', function(){
         var nextFavs = Object.assign({}, favs);
         delete nextFavs[btn.dataset.remove];
         btn.disabled = true;
-        btn.textContent = 'Removing…';
+        btn.textContent = window.t('saved.card.removing');
         window.DoloPawsAuth.setFavorites(nextFavs).then(function(saved){
           if(!saved) throw new Error('save failed');
           render(nextFavs, profile);
           showStatus(window.t('save.removed'));
         }).catch(function(){
           btn.disabled = false;
-          btn.textContent = 'Remove';
+          btn.textContent = window.t('saved.card.remove');
           showStatus(window.t('save.error'));
         });
       });
@@ -250,22 +294,27 @@ document.addEventListener('DOMContentLoaded', function(){
 
   function init(){
     errorEl.hidden = true;
+    unavailableEl.hidden = true;
     if(!window.DoloPawsAuth || !window.DoloPawsAuth.currentUser){
+      loadingEl.hidden = true;
       outEl.hidden = false;
-      titleEl.textContent = 'Saved trails';
-      subEl.textContent = 'The trails you have bookmarked, ranked for your dog.';
+      titleEl.textContent = translate('saved.title', 'Saved trails');
+      subEl.textContent = translate('saved.subtitle', 'The trails you have bookmarked, ranked for your dog.');
       listEl.innerHTML = '';
       emptyEl.hidden = true;
       badge.hidden = true;
       return;
     }
     outEl.hidden = true;
+    loadingEl.hidden = false;
     Promise.all([window.DoloPawsAuth.getFavorites(), window.DoloPawsAuth.getDogProfile()])
       .then(function(res){
         if(window.DoloPawsRegions && typeof trails !== 'undefined') window.DoloPawsRegions.assign(trails);
+        loadingEl.hidden = true;
         render(res[0] || {}, res[1]);
       })
       .catch(function(){
+        loadingEl.hidden = true;
         listEl.innerHTML = '';
         emptyEl.hidden = true;
         badge.hidden = true;

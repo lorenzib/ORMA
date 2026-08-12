@@ -20,4 +20,18 @@ describe('DoloPaws trail card visual', () => {
     expect(html).toContain('Photo coming soon');
     expect(html).not.toContain('repeating-linear-gradient');
   });
+
+  test('accepts localized route and placeholder labels', () => {
+    const route = visual.render({ name:'Anello' , path:[[46,11],[46.1,11.2]] }, {
+      routeLabel:'{name}: anteprima del percorso',
+    });
+    const placeholder = visual.render({ name:'Sentiero' }, {
+      placeholderAria:'{name}: foto in arrivo',
+      placeholderLabel:'Foto in arrivo',
+    });
+
+    expect(route).toContain('Anello: anteprima del percorso');
+    expect(placeholder).toContain('Sentiero: foto in arrivo');
+    expect(placeholder).toContain('Foto in arrivo');
+  });
 });

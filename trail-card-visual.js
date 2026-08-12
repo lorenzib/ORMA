@@ -99,10 +99,13 @@
     }
     if(usablePath(trail.path)){
       classes.push('trail-visual--route');
-      return '<div class="' + classes.join(' ') + '" role="img" aria-label="' + escapeHtml(name + ': route preview') + '"' + attrs + '>' + routeSvg(trail.path) + '</div>';
+      var routeLabel = String(options.routeLabel || (name + ': route preview')).split('{name}').join(name);
+      return '<div class="' + classes.join(' ') + '" role="img" aria-label="' + escapeHtml(routeLabel) + '"' + attrs + '>' + routeSvg(trail.path) + '</div>';
     }
     classes.push('trail-visual--placeholder');
-    return '<div class="' + classes.join(' ') + '" role="img" aria-label="' + escapeHtml(name + ': photo coming soon') + '"' + attrs + '><span class="trail-visual-placeholder-icon" aria-hidden="true">' + fallbackIcon() + '</span><span class="trail-visual-placeholder-label">Photo coming soon</span></div>';
+    var placeholder = String(options.placeholderLabel || 'Photo coming soon');
+    var placeholderAria = String(options.placeholderAria || (name + ': photo coming soon')).split('{name}').join(name);
+    return '<div class="' + classes.join(' ') + '" role="img" aria-label="' + escapeHtml(placeholderAria) + '"' + attrs + '><span class="trail-visual-placeholder-icon" aria-hidden="true">' + fallbackIcon() + '</span><span class="trail-visual-placeholder-label">' + escapeHtml(placeholder) + '</span></div>';
   }
 
   var api = { render:render, routeSvg:routeSvg, usablePath:usablePath };
