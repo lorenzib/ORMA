@@ -37,10 +37,21 @@
     accountLoginLink.href = 'index.html?login=1&next=' + encodeURIComponent(accountReturn);
   }
 
-  function tKey(key, fallback){
+  function tKey(key, fallback, vars){
     if(!window.t) return fallback;
-    const s = window.t(key);
-    return s === key ? fallback : s;
+    const s = window.t(key, vars);
+    if(s !== key) return s;
+    let output = fallback;
+    Object.keys(vars || {}).forEach(name => { output = output.split('{' + name + '}').join(vars[name]); });
+    return output;
+  }
+  function serviceMessage(result){
+    if(result && result.messageKey) return tKey(result.messageKey, result.message, result.messageVars);
+    if(result && result.code){
+      const key = 'auth.error.' + String(result.code).replace(/^auth\//, '').replace(/-/g, '_');
+      return tKey(key, result.message || tKey('auth.error.generic', 'Something went wrong — please try again.'));
+    }
+    return result && result.message ? result.message : tKey('auth.error.generic', 'Something went wrong — please try again.');
   }
 
   // ---------- Profile state ----------
@@ -366,7 +377,7 @@
     if(profileSave) profileSave.disabled = disabled;
     document.querySelectorAll('.saveHint').forEach(h => {
       h.hidden = !disabled;
-      h.textContent = "Add your dog's name first.";
+      h.textContent = tKey('account.validation.name', "Add your dog's name first.");
     });
   }
 
@@ -504,7 +515,7 @@
     btn.addEventListener('click', async () => {
       if(!window.DoloPawsAuth || btn.disabled) return;
       const label = btn.textContent; // "Save changes", or "Save" on the phone app bar
-      btn.textContent = 'Saving…';
+      btn.textContent = tKey('account.saving', 'Saving…');
       const ok = addMode
         ? await window.DoloPawsAuth.addDogProfile(buildProfile())
         : await window.DoloPawsAuth.setDogProfile(buildProfile());
@@ -515,16 +526,16 @@
         detail:{ ok, addMode }
       }));
       if(ok && returnTarget){
-        saveStatus.textContent = 'Saved. Returning you to where you were…';
+        saveStatus.textContent = tKey('account.savedReturning', 'Saved. Returning you to where you were…');
         window.setTimeout(() => window.location.assign(returnTarget), 500);
       } else if(ok && addMode){
-        saveStatus.textContent = 'Dog added. Opening the new profile…';
+        saveStatus.textContent = tKey('account.dogAdded', 'Dog added. Opening the new profile…');
         window.setTimeout(() => window.location.assign(accountHref({})), 400);
       } else if(ok){
-        saveStatus.innerHTML = 'Saved. <a href="index.html" style="font-weight:700;">View your personalised trails →</a>';
+        saveStatus.innerHTML = tKey('account.saved', 'Saved.') + ' <a href="index.html" style="font-weight:700;">' + tKey('account.viewTrails', 'View your personalised trails →') + '</a>';
         base = buildProfile();
       } else {
-        saveStatus.textContent = 'Something went wrong — please try again.';
+        saveStatus.textContent = tKey('account.saveError', 'Something went wrong — please try again.');
       }
     });
   });
@@ -535,7 +546,7 @@
 
   $('removeDogBtn').addEventListener('click', async () => {
     const nm = state.name.trim() || 'this dog';
-    if(!window.confirm('Remove ' + nm + "? This permanently deletes the profile and all its data — photo, health, vet and emergency details.")) return;
+    if(!window.confirm(tKey('account.removeConfirm', 'Remove {name}? This permanently deletes the profile and all its data — photo, health, vet and emergency details.', { name:nm }))) return;
     if(!window.DoloPawsAuth) return;
     const ok = await window.DoloPawsAuth.removeDogProfile(base.id || activeDogId);
     const key = photoCacheKey();
@@ -548,7 +559,7 @@
     } else {
       saveStatus.hidden = false;
       saveStatus.style.color = '#9C3A25';
-      saveStatus.textContent = 'Something went wrong — please try again.';
+      saveStatus.textContent = tKey('account.saveError', 'Something went wrong — please try again.');
     }
   });
 
@@ -636,24 +647,25 @@
 
   function paintContributionEligibility(result){
     if(!contributionStatus || !contributionBadge || !contributionAction) return;
-    contributionStatus.textContent = result.message;
+    contributionStatus.textContent = serviceMessage(result);
     contributionAction.hidden = true;
     contributionAction.disabled = false;
     if(result.state === 'eligible'){
-      contributionBadge.textContent = 'Verified';
+      contributionBadge.textContent = tKey('account.contribution.verified', 'Verified');
       contributionBadge.style.background = '#DCEBDD';
       contributionBadge.style.color = '#2C5C34';
       return;
     }
-    contributionBadge.textContent = result.state === 'unavailable' ? 'Unavailable' : 'Action needed';
+    contributionBadge.textContent = result.state === 'unavailable'
+      ? tKey('account.contribution.unavailable', 'Unavailable') : tKey('account.contribution.actionNeeded', 'Action needed');
     contributionBadge.style.background = '#F5E4C6';
     contributionBadge.style.color = '#8A5A16';
     if(result.action === 'verify-email'){
-      contributionAction.textContent = 'Resend verification email';
+      contributionAction.textContent = tKey('account.contribution.resend', 'Resend verification email');
       contributionAction.dataset.action = 'verify-email';
       contributionAction.hidden = false;
     } else if(result.action === 'retry'){
-      contributionAction.textContent = 'Try again';
+      contributionAction.textContent = tKey('account.tryAgain', 'Try again');
       contributionAction.dataset.action = 'retry';
       contributionAction.hidden = false;
     }
@@ -661,7 +673,7 @@
 
   async function refreshContributionEligibility(){
     if(!window.DoloPawsAuth || !window.DoloPawsAuth.getContributionEligibility) return;
-    contributionStatus.textContent = 'Checking whether this account can contribute…';
+    contributionStatus.textContent = tKey('account.contribution.checking', 'Checking whether this account can contribute…');
     contributionAction.hidden = true;
     const result = await window.DoloPawsAuth.getContributionEligibility();
     paintContributionEligibility(result);
@@ -671,7 +683,7 @@
     contributionAction.disabled = true;
     if(contributionAction.dataset.action === 'verify-email'){
       const result = await window.DoloPawsAuth.sendContributionVerificationEmail();
-      contributionStatus.textContent = result.message;
+      contributionStatus.textContent = serviceMessage(result);
       contributionAction.disabled = false;
       return;
     }
@@ -686,13 +698,13 @@
   acctEmailBtn.addEventListener('click', async () => {
     const next = acctEmailInput.value.trim();
     if(!next || next === savedEmail || !window.DoloPawsAuth || !window.DoloPawsAuth.updateEmail) return;
-    acctEmailBtn.textContent = 'Sending…';
+    acctEmailBtn.textContent = tKey('account.sending', 'Sending…');
     const result = await window.DoloPawsAuth.updateEmail(next);
-    acctEmailBtn.textContent = 'Update';
+    acctEmailBtn.textContent = tKey('account.update', 'Update');
     acctEmailHint.style.color = result.ok ? '#2C5C34' : '#9C3A25';
     acctEmailHint.textContent = result.ok
-      ? 'Confirmation link sent to ' + next + ' — the change applies once you click it.'
-      : result.message;
+      ? tKey('account.email.sent', 'Confirmation link sent to {email} — the change applies once you click it.', { email:next })
+      : serviceMessage(result);
   });
 
   // ---------- Settings: password reset ----------
@@ -702,15 +714,15 @@
     const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
     if(!user || !user.email) return;
     sendResetBtn.disabled = true;
-    sendResetBtn.textContent = 'Sending…';
+    sendResetBtn.textContent = tKey('account.sending', 'Sending…');
     const result = await window.DoloPawsAuth.resetPassword(user.email);
     sendResetBtn.disabled = false;
-    sendResetBtn.textContent = 'Send password reset link';
+    sendResetBtn.textContent = tKey('account.password.sendReset', 'Send password reset link');
     resetStatus.hidden = false;
     resetStatus.style.color = result.ok ? '#2C5C34' : '#9C3A25';
     resetStatus.textContent = result.ok
-      ? 'Reset link sent to ' + user.email + ' — check your inbox.'
-      : result.message;
+      ? tKey('account.password.sent', 'Reset link sent to {email} — check your inbox.', { email:user.email })
+      : serviceMessage(result);
   });
 
   // ---------- Settings: log out ----------
@@ -726,8 +738,8 @@
     if(open){
       const active = window.DoloPawsLocalData && window.DoloPawsLocalData.activeHike();
       logoutDataMessage.textContent = active
-        ? `An unfinished ${active.trailId || 'trail'} hike is stored on this device. Keeping local data locks it to this account; removing local data permanently discards it and all downloaded maps.`
-        : 'Keeping local data preserves downloaded maps and locks private hike records to this account. Removing local data clears all DoloPaws downloads and private browser records.';
+        ? tKey('account.logout.activeData', 'An unfinished {trail} hike is stored on this device. Keeping local data locks it to this account; removing local data permanently discards it and all downloaded maps.', { trail:active.trailId || tKey('account.logout.trail', 'trail') })
+        : tKey('account.logout.data', 'Keeping local data preserves downloaded maps and locks private hike records to this account. Removing local data clears all DoloPaws downloads and private browser records.');
       logoutStatus.hidden = true;
       keepLocalLogoutBtn.focus();
     }
@@ -739,8 +751,8 @@
     removeLocalLogoutBtn.disabled = true;
     logoutStatus.hidden = false;
     logoutStatus.textContent = removePackages
-      ? 'Removing DoloPaws data from this device…'
-      : 'Logging out and retaining downloads…';
+      ? tKey('account.logout.removing', 'Removing DoloPaws data from this device…')
+      : tKey('account.logout.retaining', 'Logging out and retaining downloads…');
     try{
       if(removePackages && window.DoloPawsLocalData){
         await window.DoloPawsLocalData.cleanup({ removePackages:true });
@@ -748,7 +760,7 @@
       await window.DoloPawsAuth.logOut();
       window.location.href = 'index.html';
     }catch(error){
-      logoutStatus.textContent = 'Logout could not be completed. Please try again.';
+      logoutStatus.textContent = tKey('account.logout.error', 'Logout could not be completed. Please try again.');
       keepLocalLogoutBtn.disabled = false;
       removeLocalLogoutBtn.disabled = false;
     }
@@ -801,9 +813,9 @@
   confirmDeleteBtn.addEventListener('click', async () => {
     if(confirmDeleteBtn.disabled || !window.DoloPawsAuth) return;
     confirmDeleteBtn.disabled = true;
-    confirmDeleteBtn.textContent = 'Deleting…';
+    confirmDeleteBtn.textContent = tKey('account.delete.deleting', 'Deleting…');
     const result = await window.DoloPawsAuth.deleteAccount(deletePassword.value);
-    confirmDeleteBtn.textContent = 'Delete my account';
+    confirmDeleteBtn.textContent = tKey('account.delete.action', 'Delete my account');
     refreshDeleteBtn();
     if(result.ok){
       const choice = document.querySelector('input[name="deleteLocalData"]:checked');
@@ -850,7 +862,7 @@
   waitForAuth(() => {
     window.DoloPawsAuth.onChange(async (user) => {
       if(!user){
-        subline.textContent = "You're not logged in.";
+        subline.textContent = tKey('account.signedOut', "You're not logged in.");
         subline.removeAttribute('aria-busy');
         loggedOutState.hidden = false;
         loggedInState.hidden = true;
@@ -902,9 +914,9 @@
       renderDogSwitcher();
       if(addMode){
         const title = document.querySelector('#profileDesign > h1');
-        if(title) title.textContent = 'Add another dog';
+        if(title) title.textContent = tKey('account.addDog', 'Add another dog');
         const kicker = document.querySelector('#profileDesign > .profile-kicker');
-        if(kicker) kicker.textContent = 'New dog profile';
+        if(kicker) kicker.textContent = tKey('account.newDogProfile', 'New dog profile');
         const removeBlock = $('removeDogBlock');
         if(removeBlock) removeBlock.hidden = true;
       }

@@ -39,6 +39,11 @@ Status: in progress (2026-08-12)
   moderator access, logout and the injected alpine-plants guide link are
   bilingual. The navigation re-renders when i18n becomes ready so later auth
   refreshes cannot revert Italian labels to English.
+- **Account management:** dog-profile validation, save/add/remove lifecycle,
+  photo outcomes, contribution eligibility and email verification, login-email
+  confirmation, password reset, logout/device-data choices and deletion
+  progress are bilingual. Service results now retain stable message keys or
+  Firebase codes through presentation.
 
 ## Machine-checkable boundary
 
@@ -49,14 +54,14 @@ Status: in progress (2026-08-12)
 - an HTML `data-i18n` attribute references an unknown key; or
 - a literal JavaScript `t('…')` call references an unknown key.
 
-The current dictionaries contain 800 matching English and Italian keys.
+The current dictionaries contain 837 matching English and Italian keys.
 
 ## Remaining migration
 
-Dictionary parity is necessary but not sufficient. Several core screens still
-create English state text directly in the account-management controller. Those
-strings must move behind
-stable keys before I18N-01 can be marked complete.
+Dictionary parity is necessary but not sufficient. Account deletion’s uncommon
+partial server-cleanup outcomes and several non-critical descriptive labels in
+the account editor still use English fallback copy. Those states must move
+behind stable result codes/keys before I18N-01 can be marked complete.
 
 This work remains in the supporting backlog. It should be migrated by journey
 and verified in both languages after concurrent navigation/notification UI work

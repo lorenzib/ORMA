@@ -432,12 +432,13 @@ async function deleteAccount(password) {
   };
 }
 
-function contributionResult(state, message, action) {
+function contributionResult(state, message, action, messageKey) {
   return {
     ok: state === "eligible",
     state,
     message,
     action: action || null,
+    messageKey: messageKey || null,
   };
 }
 
@@ -446,7 +447,8 @@ async function getContributionEligibility() {
     return contributionResult(
       "signed-out",
       "Log in to contribute.",
-      "login"
+      "login",
+      "account.contribution.signedOut"
     );
   }
 
@@ -456,20 +458,24 @@ async function getContributionEligibility() {
       return contributionResult(
         "email-unverified",
         "Verify your email before contributing. Open Account → Settings to resend the verification link.",
-        "verify-email"
+        "verify-email",
+        "account.contribution.verifyEmail"
       );
     }
 
     return contributionResult(
       "eligible",
-      "Your verified account can submit community contributions for review."
+      "Your verified account can submit community contributions for review.",
+      null,
+      "account.contribution.eligible"
     );
   } catch (error) {
     console.error("Contributor eligibility check failed:", error);
     return contributionResult(
       "unavailable",
       "We could not confirm contribution access. Check your connection and try again.",
-      "retry"
+      "retry",
+      "account.contribution.error"
     );
   }
 }
@@ -516,20 +522,22 @@ function queueOfflineContribution(type, payload, options) {
 
 async function sendContributionVerificationEmail() {
   if (!currentUser) {
-    return { ok: false, message: "Log in before requesting a verification email." };
+    return { ok: false, messageKey:"account.contribution.loginToVerify", message: "Log in before requesting a verification email." };
   }
   try {
     await reload(currentUser);
     if (currentUser.emailVerified) {
-      return { ok: true, alreadyVerified: true, message: "Your email is already verified." };
+      return { ok: true, alreadyVerified: true, messageKey:"account.contribution.alreadyVerified", message: "Your email is already verified." };
     }
     await sendEmailVerification(currentUser);
     return {
       ok: true,
+      messageKey:"account.contribution.verificationSent",
+      messageVars:{ email:currentUser.email || "your email" },
       message: `Verification link sent to ${currentUser.email || "your email"}.`,
     };
   } catch (error) {
-    return { ok: false, message: friendlyError(error.code) };
+    return { ok: false, code:error.code || "auth/unknown", message: friendlyError(error.code) };
   }
 }
 

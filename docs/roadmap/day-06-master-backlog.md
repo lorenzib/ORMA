@@ -843,7 +843,9 @@ the complete UX-06 pre-hike readiness, OFF-03/OFF-05 download lifecycle,
 UX-04 canonical recommendation, SAVE-01 saved-trails, JOURNAL-01 walk journal,
 and AUTH-02 shared account-access journeys are bilingual as of 2026-08-12.
 Shared mobile navigation is also bilingual. Account-management runtime states
-remain to migrate. See
+cover the core save, verification, credential, device-data, and deletion
+lifecycle. Partial server-cleanup recovery and remaining non-critical account
+labels still need migration before I18N-01 closes. See
 `docs/architecture/I18N-01-parity-audit.md`.
 
 ## P3 experiments
