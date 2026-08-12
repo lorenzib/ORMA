@@ -118,4 +118,23 @@ describe('beta readiness ledger', () => {
     expect(record).toContain('Access/closure source and checked time');
     expect(record).toContain('Loop and direction representation accurate');
   });
+
+  test('iPhone offline and hike gates share a current two-package session record', () => {
+    const offlineGate = readiness.gates.find(item => item.id === 'OFFLINE-IOS-CURRENT');
+    const hikeGate = readiness.gates.find(item => item.id === 'HIKE-RESTORE-GPS');
+    expect(offlineGate.evidence).toBe('docs/testing/QA-04-iphone-offline-hike-session.md');
+    expect(hikeGate.evidence).toBe(offlineGate.evidence);
+    const protocol = fs.readFileSync(path.join(root, offlineGate.evidence), 'utf8');
+    [
+      'offline/packages/lago-carezza/manifest.json',
+      'offline/packages/alpe-siusi/manifest.json',
+    ].forEach(file => {
+      const manifest = JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+      expect(protocol).toContain(`\`${manifest.version}\``);
+    });
+    expect(protocol).toContain('Airplane open, refresh, close/reopen');
+    expect(protocol).toContain('One hike restored with preserved progress');
+    expect(protocol).toContain('Rejoin control and mapped-path behavior');
+    expect(protocol).toContain('Live route-elevation cursor');
+  });
 });

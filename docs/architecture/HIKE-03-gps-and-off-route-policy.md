@@ -109,13 +109,9 @@ byte count and SHA-256 hash.
 
 Do not leave a marked route to test an alert.
 
-On the iPhone 13 Pro, update Carezza to beta.12 and confirm:
-
-1. A normal GPS fix shows accuracy, route distance, and last-valid-fix time.
-2. The same facts remain visible in airplane mode on the downloaded map.
-3. Covering the phone briefly or moving into naturally poor reception changes
-   the message to weak/stale without showing a confident off-route alert.
-4. Permission denial and retry guidance still work.
-
-Use automated coordinate simulation for off-route confirmation. Repeat the
-physical-device matrix on supported Android Chrome when available.
+Run the current two-route iPhone session in
+`docs/testing/QA-04-iphone-offline-hike-session.md`. It checks the shared policy
+against the package revisions actually shipped and forbids deliberately leaving
+a safe route. Use automated coordinate simulation for stronger off-route
+confirmation. Repeat the physical-device matrix on supported Android Chrome
+when available.

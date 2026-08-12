@@ -72,14 +72,8 @@ It does not collect or persist a GPS breadcrumb history.
 
 ## Physical validation still required
 
-On the iPhone 13 Pro:
-
-1. Update Lago di Carezza to beta.9.
-2. Start a hike and wait for a valid GPS fix.
-3. Pause and resume it.
-4. Close Safari, reopen the trail, and resume the saved hike.
-5. Switch to airplane mode, open the downloaded map, and repeat
-   resume/pause.
-6. Discard the test hike and confirm the recovery panel disappears.
-
-Repeat the same matrix on supported Android Chrome when a device is available.
+Run the current two-route iPhone session in
+`docs/testing/QA-04-iphone-offline-hike-session.md`. It verifies restoration
+against the package revisions actually shipped rather than the historical
+beta.9 implementation build. Repeat the same lifecycle on supported Android
+Chrome when a device is available.

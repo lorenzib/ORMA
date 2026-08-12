@@ -24,7 +24,7 @@
       "priority": "P0",
       "status": "pending",
       "owner": "Product owner",
-      "evidence": "docs/testing/OFF-01-device-results.md",
+      "evidence": "docs/testing/QA-04-iphone-offline-hike-session.md",
       "summary": "Repeat the physical iPhone airplane-mode journey against the current Carezza beta.16 and Alpe di Siusi beta.3 packages.",
       "safeFallback": "Do not open the public beta until both current packages pass."
     },
@@ -51,7 +51,7 @@
       "priority": "P0",
       "status": "pending",
       "owner": "Product owner",
-      "evidence": "docs/architecture/QA-02-offline-failure-test-matrix.md",
+      "evidence": "docs/testing/QA-04-iphone-offline-hike-session.md",
       "summary": "Exercise restoration, accuracy-aware GPS, rejoin guidance, completion, and elevation cursor on physical beta devices.",
       "safeFallback": "Do not make the offline hike-mode claim until the controlled matrix passes."
     },

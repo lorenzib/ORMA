@@ -71,6 +71,11 @@ These checks are not marked as passed until they have been performed on the
 physical device. Android profile and cursor coverage remains part of the
 deferred Android matrix above.
 
+Record the complete current-package iPhone result in
+`docs/testing/QA-04-iphone-offline-hike-session.md`; it combines these checks
+with restoration, GPS accuracy, rejoin, and completion without treating an
+older package result as current evidence.
+
 ## Remaining content gate
 
 - Complete and date both route-specific reviews in
