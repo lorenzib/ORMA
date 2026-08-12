@@ -32,4 +32,17 @@ describe('generated artifact dates', () => {
     expect(sitemapSection).not.toContain('statSync');
     expect(sitemapSection).not.toContain('Date.now');
   });
+
+  test('generated trail pages reuse the live mobile-nav cache-busting token', () => {
+    const generator = fs.readFileSync(
+      path.join(root, 'scripts', 'generate-trail-pages.js'),
+      'utf8'
+    );
+    const trailShell = fs.readFileSync(path.join(root, 'trail.html'), 'utf8');
+    const generatorToken = generator.match(/mobile-nav\.js\?v=([^"]+)/);
+    const trailShellToken = trailShell.match(/mobile-nav\.js\?v=([^"]+)/);
+    expect(generatorToken).not.toBeNull();
+    expect(trailShellToken).not.toBeNull();
+    expect(generatorToken[1]).toBe(trailShellToken[1]);
+  });
 });
