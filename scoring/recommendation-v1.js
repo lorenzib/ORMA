@@ -19,8 +19,8 @@
     'route', 'exposure', 'surfaceHazards', 'access',
   ]);
 
-  function item(code, message){
-    return { code, message };
+  function item(code, message, vars, messageKey){
+    return { code, message, vars:vars || null, messageKey:messageKey || code };
   }
 
   function unique(items){
@@ -153,7 +153,8 @@
       const penalty = (terrain - dog.terrain) * 30;
       score -= penalty;
       cautions.push(item('trail.terrain.above-tolerance',
-        `Terrain is above this dog's effective tolerance (${terrain} versus ${dog.terrain}).`));
+        `Terrain is above this dog's effective tolerance (${terrain} versus ${dog.terrain}).`,
+        { terrain, tolerance:dog.terrain }));
     }else{
       positives.push(item('trail.terrain.within-tolerance',
         'Terrain is within this dog’s effective tolerance.'));
@@ -165,10 +166,11 @@
     }else if(distance > dog.distanceKm){
       score -= Math.min(35, Math.round((distance - dog.distanceKm) * 5));
       cautions.push(item('trail.distance.above-range',
-        `The ${distance} km route exceeds this dog's effective ${dog.distanceKm} km range.`));
+        `The ${distance} km route exceeds this dog's effective ${dog.distanceKm} km range.`,
+        { distance, range:dog.distanceKm }));
     }else{
       positives.push(item('trail.distance.within-range',
-        `The ${distance} km route is within this dog’s effective range.`));
+        `The ${distance} km route is within this dog’s effective range.`, { distance }));
     }
 
     const ascent = numberOrNull(metrics.ascentM);
@@ -177,10 +179,11 @@
     }else if(ascent > dog.ascentM){
       score -= Math.min(20, Math.ceil((ascent - dog.ascentM) / 100) * 4);
       cautions.push(item('trail.ascent.above-range',
-        `The ${ascent} m climb exceeds this dog's effective ${dog.ascentM} m climbing range.`));
+        `The ${ascent} m climb exceeds this dog's effective ${dog.ascentM} m climbing range.`,
+        { ascent, range:dog.ascentM }));
     }else{
       positives.push(item('trail.ascent.within-range',
-        `The ${ascent} m climb is within this dog’s effective range.`));
+        `The ${ascent} m climb is within this dog’s effective range.`, { ascent }));
     }
 
     const descent = numberOrNull(metrics.descentM);
@@ -206,12 +209,14 @@
       score -= dog.heatSensitive ? 25 : 12;
       cautions.push(item('trail.heat.high', dog.heatSensitive
         ? 'The route has high heat risk and this dog is heat-sensitive.'
-        : 'The route has high baseline heat risk.'));
+        : 'The route has high baseline heat risk.', null,
+      dog.heatSensitive ? 'trail.heat.high.sensitive' : 'trail.heat.high'));
     }else if(suitability.heatRisk === 'moderate'){
       score -= dog.heatSensitive ? 10 : 4;
       cautions.push(item('trail.heat.moderate', dog.heatSensitive
         ? 'Moderate route heat risk matters more for this heat-sensitive dog.'
-        : 'The route has moderate baseline heat risk.'));
+        : 'The route has moderate baseline heat risk.', null,
+      dog.heatSensitive ? 'trail.heat.moderate.sensitive' : 'trail.heat.moderate'));
     }else if(suitability.heatRisk === 'low'){
       positives.push(item('trail.heat.low', 'The route’s baseline heat risk is low.'));
     }else{
@@ -239,7 +244,9 @@
       const multiplier = dog.fragile ? 1.5 : 1;
       score -= Math.min(dog.fragile ? 30 : 20, Math.round(hazards.length * 8 * multiplier));
       cautions.push(item('trail.surface-hazards.present',
-        `${hazards.length} material surface hazard${hazards.length === 1 ? ' is' : 's are'} recorded.`));
+        `${hazards.length} material surface hazard${hazards.length === 1 ? ' is' : 's are'} recorded.`,
+        { count:hazards.length },
+        hazards.length === 1 ? 'trail.surface-hazards.present.one' : 'trail.surface-hazards.present.many'));
     }else if(categories.surfaceHazards === 'verified'){
       positives.push(item('trail.surface-hazards.none-known',
         'No material surface hazard is recorded in the reviewed evidence.'));
@@ -276,7 +283,8 @@
         score -= dog.heatSensitive ? 25 : 10;
         cautions.push(item('conditions.heat.high', dog.heatSensitive
           ? 'Current heat conditions are high-risk for this heat-sensitive dog.'
-          : 'Current heat conditions add material risk.'));
+          : 'Current heat conditions add material risk.', null,
+        dog.heatSensitive ? 'conditions.heat.high.sensitive' : 'conditions.heat.high'));
       }else if(conditions.heatRisk === 'moderate'){
         score -= dog.heatSensitive ? 10 : 4;
         cautions.push(item('conditions.heat.moderate',

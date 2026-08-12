@@ -36,6 +36,36 @@ describe('canonical recommendation decision presentation', () => {
     expect(result.heroSummary).toContain('unpersonalized');
   });
 
+  test('translates conclusions and coded reasons without changing the score', () => {
+    const translations = {
+      'recommendation.category.possible-with-cautions':'Possibile con precauzioni',
+      'recommendation.context.dog':'Raccomandazione per {name}',
+      'recommendation.hero.dog':'{conclusion} per {name}.',
+      'recommendation.confidence.medium':'Dati parzialmente verificati',
+      'recommendation.reason.trail.distance.within-range':'Il percorso di {distance} km è adatto.',
+    };
+    const t = (key, vars) => {
+      let value = translations[key] || key;
+      for(const name of Object.keys(vars || {})) value = value.split(`{${name}}`).join(vars[name]);
+      return value;
+    };
+    const result = decision.present({
+      ...recommendation,
+      positiveReasons:[{
+        code:'trail.distance.within-range',
+        message:'The 7.5 km route is within this dog’s effective range.',
+        vars:{ distance:7.5 },
+      }],
+    }, { dogName:'Eddie', translate:t });
+
+    expect(result.score).toBe(72);
+    expect(result.conclusion).toBe('Possibile con precauzioni');
+    expect(result.contextLabel).toBe('Raccomandazione per Eddie');
+    expect(result.heroSummary).toBe('Possibile con precauzioni per Eddie.');
+    expect(result.reasons).toEqual(['Il percorso di 7.5 km è adatto.']);
+    expect(result.confidenceLabel).toBe('Dati parzialmente verificati');
+  });
+
   test('hard stops appear before ordinary cautions', () => {
     const result = decision.present({
       ...recommendation,

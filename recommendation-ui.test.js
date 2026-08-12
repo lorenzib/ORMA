@@ -38,7 +38,7 @@ describe('UX-04 canonical recommendation journey', () => {
 
   test('evidence and the three distinct actions are reachable', () => {
     expect(html).toContain('id="trailEvidence"');
-    expect(controller).toContain('Sources &amp; review status ↓');
+    expect(controller).toContain("tr('recommendation.evidence', 'Sources & review status ↓')");
     expect(controller).toContain('data-recommendation-save');
     expect(controller).toContain('data-recommendation-compare');
     expect(controller).toContain('data-recommendation-download');

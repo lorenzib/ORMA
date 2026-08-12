@@ -94,4 +94,14 @@ describe('SCORE-01 canonical recommendation contract', () => {
     expect(coolResult.positiveReasons.map(entry => entry.code)).toContain('trail.heat.low');
     expect(hotResult.cautions.map(entry => entry.code)).toContain('conditions.heat.high');
   });
+
+  test('dynamic explanations expose translation metadata without changing canonical messages', () => {
+    const fixture = fixtures.cases.find(entry => entry.id === 'young-dog-easy-route');
+    const result = run(fixture);
+    const distance = result.positiveReasons.find(entry => entry.code === 'trail.distance.within-range');
+
+    expect(distance.message).toMatch(/km route/);
+    expect(distance.messageKey).toBe('trail.distance.within-range');
+    expect(distance.vars).toEqual(expect.objectContaining({ distance:expect.any(Number) }));
+  });
 });

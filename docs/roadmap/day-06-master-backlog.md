@@ -839,10 +839,10 @@ isolated under the deployment-excluded `experiments/` boundary. See
 | I18N-01 | Guarantee Italian parity for every core beta state | M | Stable core-flow copy |
 
 `I18N-01` is in progress. Dictionary/reference parity is enforced in CI, and
-the complete UX-06 pre-hike readiness and OFF-03 downloaded-trail management
-journeys are bilingual as of 2026-08-12. Recommendation, the trail-detail
-download panel, saved/journal, account-error and mobile navigation runtime
-states remain to migrate. See
+the complete UX-06 pre-hike readiness, OFF-03 downloaded-trail management, and
+UX-04 canonical recommendation journeys are bilingual as of 2026-08-12. The
+trail-detail download panel, saved/journal, account-error and mobile navigation
+runtime states remain to migrate. See
 `docs/architecture/I18N-01-parity-audit.md`.
 
 ## P3 experiments

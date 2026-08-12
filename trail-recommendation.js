@@ -7,6 +7,18 @@
     })[char]);
   }
 
+  function tr(key, fallback, vars){
+    if(typeof window.t === 'function'){
+      const value = window.t(key, vars);
+      if(value && value !== key) return value;
+    }
+    let output = fallback;
+    for(const name of Object.keys(vars || {})){
+      output = output.split(`{${name}}`).join(vars[name]);
+    }
+    return output;
+  }
+
   function list(items, emptyText){
     if(!items.length) return `<p class="recommendation-empty">${esc(emptyText)}</p>`;
     return `<ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`;
@@ -19,11 +31,11 @@
     const guides = api.select(recommendation, 2);
     root.hidden = guides.length === 0;
     root.innerHTML = guides.length ?
-      '<div class="td2-kick">Read before you go</div>' +
-      '<p class="trail-guide-intro">Selected from this trail’s cautions.</p>' +
+      `<div class="td2-kick">${esc(tr('recommendation.guides.title', 'Read before you go'))}</div>` +
+      `<p class="trail-guide-intro">${esc(tr('recommendation.guides.intro', 'Selected from this trail’s cautions.'))}</p>` +
       '<ul>' + guides.map(guide =>
-        `<li><a href="${esc(guide.href)}">${esc(guide.label)} →</a>` +
-          `<span>${esc(guide.summary)}</span></li>`
+        `<li><a href="${esc(guide.href)}">${esc(tr(`recommendation.guide.${guide.id}.label`, guide.label))} →</a>` +
+          `<span>${esc(tr(`recommendation.guide.${guide.id}.summary`, guide.summary))}</span></li>`
       ).join('') + '</ul>' : '';
   }
 
@@ -46,6 +58,7 @@
     const recommendation = recommendTrail(trail, subjectFor(profile));
     const view = api.present(recommendation, {
       dogName:profile && profile.name,
+      translate:window.t,
     });
     const score = view.score === null ? '' : `<span class="recommendation-score">${view.score}%</span>`;
     // Confidence rides next to the score as a calm data-completeness chip;
@@ -57,11 +70,12 @@
     // Dog-side gaps are the one thing the reader can fix right now — the
     // card face turns them into a profile CTA instead of a caveat.
     const gapCta = !view.dogName
-      ? '<p class="recommendation-gaps"><a href="onboarding.html">Add your dog to sharpen this score →</a></p>'
+      ? `<p class="recommendation-gaps"><a href="onboarding.html">${esc(tr('recommendation.gap.addDog', 'Add your dog to sharpen this score →'))}</a></p>`
       : view.dogGapFields.length
-        ? `<p class="recommendation-gaps"><a href="account.html">Add ${esc(view.dogName)}’s ${
-            esc(friendlyList(view.dogGapFields))
-          } to sharpen this score →</a></p>`
+        ? `<p class="recommendation-gaps"><a href="account.html">${esc(tr('recommendation.gap.fields', 'Add {name}’s {fields} to sharpen this score →', {
+            name:view.dogName,
+            fields:friendlyList(view.dogGapFields),
+          }))}</a></p>`
         : '';
 
     root.className = `recommendation-decision recommendation-decision--${view.tone}`;
@@ -75,18 +89,18 @@
           `<h2>${esc(view.conclusion)} ${score} ${chip}</h2>` +
           gapCta +
         '</div>' +
-        '<a class="recommendation-evidence-link" href="#trailEvidence">Sources &amp; review status ↓</a>' +
+        `<a class="recommendation-evidence-link" href="#trailEvidence">${esc(tr('recommendation.evidence', 'Sources & review status ↓'))}</a>` +
       '</div>' +
       '<div class="recommendation-columns">' +
-        '<section><h3>Why it may fit</h3>' +
-          list(view.reasons, 'No positive reason is established yet.') + '</section>' +
-        '<section><h3>Cautions</h3>' +
-          list(view.cautions, 'No specific caution is identified; review unknowns before deciding.') + '</section>' +
+        `<section><h3>${esc(tr('recommendation.reasons.title', 'Why it may fit'))}</h3>` +
+          list(view.reasons, tr('recommendation.reasons.empty', 'No positive reason is established yet.')) + '</section>' +
+        `<section><h3>${esc(tr('recommendation.cautions.title', 'Cautions'))}</h3>` +
+          list(view.cautions, tr('recommendation.cautions.empty', 'No specific caution is identified; review unknowns before deciding.')) + '</section>' +
       '</div>' +
       '<div class="recommendation-actions" aria-label="Trail actions">' +
-        '<button type="button" data-recommendation-save>Save trail</button>' +
-        '<button type="button" data-recommendation-compare>Add to comparison</button>' +
-        '<button type="button" data-recommendation-download disabled>Offline map unavailable</button>' +
+        `<button type="button" data-recommendation-save>${esc(tr('recommendation.action.save', 'Save trail'))}</button>` +
+        `<button type="button" data-recommendation-compare>${esc(tr('recommendation.action.compare', 'Add to comparison'))}</button>` +
+        `<button type="button" data-recommendation-download disabled>${esc(tr('recommendation.action.offlineUnavailable', 'Offline map unavailable'))}</button>` +
       '</div>';
     root.hidden = false;
 
@@ -98,8 +112,15 @@
   }
 
   function friendlyList(items){
-    if(items.length <= 1) return items.join('');
-    return `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`;
+    const labels = items.map(item => tr(
+      `recommendation.profileField.${item}`,
+      item
+    ));
+    if(labels.length <= 1) return labels.join('');
+    return tr('recommendation.list.and', '{first} and {last}', {
+      first:labels.slice(0, -1).join(', '),
+      last:labels[labels.length - 1],
+    });
   }
 
   // The audit line — scoring version and how much trail data is still
@@ -117,8 +138,14 @@
     // The scoring version stays machine-readable on the card's dataset;
     // spelling it out here read as jargon.
     meta.textContent = view.trailUnknownCount > 0
-      ? `${view.trailUnknownCount} trail fact${view.trailUnknownCount === 1 ? '' : 's'} not yet verified.`
-      : 'All trail facts recorded.';
+      ? tr(
+        view.trailUnknownCount === 1 ? 'recommendation.evidence.gaps.one' : 'recommendation.evidence.gaps.many',
+        view.trailUnknownCount === 1
+          ? '{count} trail fact not yet verified.'
+          : '{count} trail facts not yet verified.',
+        { count:view.trailUnknownCount }
+      )
+      : tr('recommendation.evidence.complete', 'All trail facts recorded.');
   }
 
   function wireActions(root, trail){
@@ -132,7 +159,8 @@
     const originalSave = document.getElementById('detailSaveBtn');
     const syncSave = () => {
       save.textContent = originalSave && originalSave.classList.contains('saved')
-        ? 'Saved' : 'Save trail';
+        ? tr('recommendation.action.saved', 'Saved')
+        : tr('recommendation.action.save', 'Save trail');
       save.setAttribute('aria-pressed', String(!!(
         originalSave && originalSave.classList.contains('saved')
       )));
@@ -154,7 +182,9 @@
       const available = trails.map(item => item.id);
       const selected = comparison.load(localStorage, available);
       const alreadySelected = selected.includes(trail.id);
-      compare.textContent = alreadySelected ? 'Open comparison' : 'Add to comparison';
+      compare.textContent = alreadySelected
+        ? tr('recommendation.action.openComparison', 'Open comparison')
+        : tr('recommendation.action.compare', 'Add to comparison');
       compare.addEventListener('click', () => {
         let ids = comparison.load(localStorage, available);
         if(!ids.includes(trail.id)) ids = comparison.toggle(ids, trail.id);
@@ -173,7 +203,7 @@
     const enableDownload = () => {
       if(!offlinePanel || offlinePanel.hidden) return;
       download.disabled = false;
-      download.textContent = 'Download offline map';
+      download.textContent = tr('recommendation.action.download', 'Download offline map');
     };
     if(window.DoloPawsOffline && originalDownload){
       if(offlinePanel){
