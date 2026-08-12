@@ -34,7 +34,8 @@
   })();
   function paintName(value){
     const display=value||t('account.yourDog','Your dog');
-    root.querySelectorAll('[data-profile-name]').forEach(el=>el.textContent=display);
+    const title=document.getElementById('profileTitle');
+    if(title)title.textContent=t('account.profile.title','{name}’s profile',{name:display});
     root.querySelectorAll('[data-profile-avatar]').forEach(el=>el.textContent=display.charAt(0).toUpperCase());
   }
   function mirror(){

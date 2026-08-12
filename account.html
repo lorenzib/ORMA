@@ -152,37 +152,37 @@
        controls remain mounted below so account.js keeps its storage/auth
        contract; this surface mirrors those fields and drives the same save. -->
   <section class="profile-design" id="profileDesign">
-    <a class="profile-back" href="index.html">← Back to Homepage</a>
-    <div class="profile-kicker">Dog profile</div>
-    <h1><span data-profile-name>Your dog</span>'s profile</h1>
-    <p class="profile-intro">Only the structured fields below are scored. Free-text notes are kept for you and never fed into the calculation.</p>
+    <a class="profile-back" href="index.html" data-i18n="account.profile.backHome">← Back to Homepage</a>
+    <div class="profile-kicker" data-i18n="account.profile.kicker">Dog profile</div>
+    <h1 id="profileTitle">Your dog's profile</h1>
+    <p class="profile-intro" data-i18n="account.profile.intro">Only the structured fields below are scored. Free-text notes are kept for you and never fed into the calculation.</p>
     <div class="profile-dogbar">
-      <div id="profileDogList" class="profile-doglist" aria-label="Choose a dog"></div>
+      <div id="profileDogList" class="profile-doglist" aria-label="Choose a dog" data-i18n-aria-label="account.profile.chooseDog"></div>
       <button type="button" class="flow-btn flow-btn--quiet profile-adddog" id="profileAddDog">+ Add another dog</button>
     </div>
     <div class="profile-layout">
       <div>
         <section class="profile-card">
-          <h2>The basics</h2>
-          <div class="profile-photo-row"><span class="profile-avatar" data-profile-avatar>Y</span><button type="button" class="flow-btn flow-btn--quiet" id="profilePhotoButton">Upload a photo</button></div>
-          <label class="flow-field"><span>Name</span><input id="profileName" placeholder="Your dog's name" autocomplete="off"></label>
-          <label class="flow-field"><span>Breed</span><input id="profileBreed" class="profile-select" list="profileBreedList" autocomplete="off" placeholder="Start typing a breed…"><datalist id="profileBreedList"></datalist><small class="profile-hint">Pick a suggestion or type any breed. Breed affects the score only through documented physical traits. Never temperament.</small></label>
+          <h2 data-i18n="account.profile.basics">The basics</h2>
+          <div class="profile-photo-row"><span class="profile-avatar" data-profile-avatar>Y</span><button type="button" class="flow-btn flow-btn--quiet" id="profilePhotoButton" data-i18n="account.photo.upload">Upload a photo</button></div>
+          <label class="flow-field"><span data-i18n="account.profile.name">Name</span><input id="profileName" placeholder="Your dog's name" data-i18n-ph="account.profile.namePlaceholder" autocomplete="off"></label>
+          <label class="flow-field"><span data-i18n="account.profile.breed">Breed</span><input id="profileBreed" class="profile-select" list="profileBreedList" autocomplete="off" placeholder="Start typing a breed…" data-i18n-ph="account.profile.breedPlaceholder"><datalist id="profileBreedList"></datalist><small class="profile-hint" data-i18n="account.profile.breedHelp">Pick a suggestion or type any breed. Breed affects the score only through documented physical traits. Never temperament.</small></label>
           <div class="profile-two">
-            <label class="flow-field"><span>Age band</span><select id="profileAge" class="profile-select"><option value="u1">Under 1</option><option value="1-2">1–2</option><option value="3-4" selected>3–4</option><option value="5-6">5–6</option><option value="7-8">7–8</option><option value="9-10">9–10</option><option value="11-12">11–12</option><option value="13plus">13+</option></select></label>
-            <label class="flow-field"><span>Weight band</span><select id="profileWeight" class="profile-select"><option value="u5">Under 5 kg</option><option value="5-10">5–10 kg</option><option value="10-15">10–15 kg</option><option value="15-20">15–20 kg</option><option value="20-30" selected>20–30 kg</option><option value="30-40">30–40 kg</option><option value="40-55">40–55 kg</option><option value="55plus">55 kg+</option></select></label>
+            <label class="flow-field"><span data-i18n="account.profile.ageBand">Age band</span><select id="profileAge" class="profile-select"><option value="u1" data-i18n="account.profile.underOne">Under 1</option><option value="1-2">1–2</option><option value="3-4" selected>3–4</option><option value="5-6">5–6</option><option value="7-8">7–8</option><option value="9-10">9–10</option><option value="11-12">11–12</option><option value="13plus">13+</option></select></label>
+            <label class="flow-field"><span data-i18n="account.profile.weightBand">Weight band</span><select id="profileWeight" class="profile-select"><option value="u5" data-i18n="account.profile.under5kg">Under 5 kg</option><option value="5-10">5–10 kg</option><option value="10-15">10–15 kg</option><option value="15-20">15–20 kg</option><option value="20-30" selected>20–30 kg</option><option value="30-40">30–40 kg</option><option value="40-55">40–55 kg</option><option value="55plus">55 kg+</option></select></label>
           </div>
         </section>
         <section class="profile-card">
-          <h2>Fitness</h2><p>This sets the distance cap and terrain tolerance before any health modifiers apply.</p>
-          <div id="profileFitness" class="hazard-options"><button class="hazard-option" data-fitness="low"><b>Low</b><small>Short flat walks, cap 5 km</small></button><button class="hazard-option on" data-fitness="moderate"><b>Moderate</b><small>A couple of hours, some climbing, cap 10 km</small></button><button class="hazard-option" data-fitness="high"><b>High</b><small>All-day routes, happy on rock, no cap</small></button></div>
+          <h2 data-i18n="account.profile.fitness">Fitness</h2><p data-i18n="account.profile.fitnessHelp">This sets the distance cap and terrain tolerance before any health modifiers apply.</p>
+          <div id="profileFitness" class="hazard-options"><button class="hazard-option" data-fitness="low"><b data-i18n="account.fitness.low">Low</b><small data-i18n="account.profile.fitnessLow">Short flat walks, cap 5 km</small></button><button class="hazard-option on" data-fitness="moderate"><b data-i18n="account.fitness.moderate">Moderate</b><small data-i18n="account.profile.fitnessModerate">A couple of hours, some climbing, cap 10 km</small></button><button class="hazard-option" data-fitness="high"><b data-i18n="account.fitness.high">High</b><small data-i18n="account.profile.fitnessHigh">All-day routes, happy on rock, no cap</small></button></div>
         </section>
         <section class="profile-card">
-          <h2>Health conditions</h2><p>Health conditions always outrank breed assumptions. Tick everything that applies.</p>
+          <h2 data-i18n="account.profile.health">Health conditions</h2><p data-i18n="account.profile.healthHelp">Health conditions always outrank breed assumptions. Tick everything that applies.</p>
           <div id="profileConditions" class="profile-checks">
-            <label><input type="checkbox" value="Joint or hip issues">Joint or hip issues</label><label><input type="checkbox" value="Back / disc history">Back / disc history</label><label><input type="checkbox" value="Heart condition">Heart condition</label><label><input type="checkbox" value="Overweight">Overweight</label><label><input type="checkbox" value="Recovering from injury">Recovering from injury</label><label><input type="checkbox" value="Impaired vision">Impaired vision</label><label><input type="checkbox" value="Heat sensitivity">Heat sensitivity</label>
+            <label><input type="checkbox" value="Joint or hip issues"><span data-i18n="account.condition.joints">Joint or hip issues</span></label><label><input type="checkbox" value="Back / disc history"><span data-i18n="account.condition.back">Back / disc history</span></label><label><input type="checkbox" value="Heart condition"><span data-i18n="account.condition.heart">Heart condition</span></label><label><input type="checkbox" value="Overweight"><span data-i18n="account.condition.overweight">Overweight</span></label><label><input type="checkbox" value="Recovering from injury"><span data-i18n="account.condition.injury">Recovering from injury</span></label><label><input type="checkbox" value="Impaired vision"><span data-i18n="account.condition.vision">Impaired vision</span></label><label><input type="checkbox" value="Heat sensitivity"><span data-i18n="account.condition.heat">Heat sensitivity</span></label>
           </div>
-          <label class="flow-field"><span>Notes <small>Optional</small></span><input id="profileNotes" placeholder="Anything a sitter should know?"><small class="profile-hint">Kept for you. Never scored.</small></label>
-          <div class="flow-actions"><button type="button" id="profileSave" class="flow-btn">Save profile</button><a href="index.html" class="flow-btn flow-btn--quiet">Cancel</a><button type="button" id="profileRemoveDog" class="flow-btn flow-btn--quiet" hidden style="border-color:#E4B9A8;color:#9C3A25;">Remove dog</button></div>
+          <label class="flow-field"><span><span data-i18n="account.profile.notes">Notes</span> <small data-i18n="account.optional">Optional</small></span><input id="profileNotes" placeholder="Anything a sitter should know?" data-i18n-ph="account.profile.notesPlaceholder"><small class="profile-hint" data-i18n="account.profile.notesHelp">Kept for you. Never scored.</small></label>
+          <div class="flow-actions"><button type="button" id="profileSave" class="flow-btn" data-i18n="account.profile.save">Save profile</button><a href="index.html" class="flow-btn flow-btn--quiet" data-i18n="account.cancel">Cancel</a><button type="button" id="profileRemoveDog" class="flow-btn flow-btn--quiet" hidden style="border-color:#E4B9A8;color:#9C3A25;" data-i18n="account.profile.removeDog">Remove dog</button></div>
           <p id="profileSaveStatus" class="profile-hint" role="status" hidden></p>
         </section>
       </div>
