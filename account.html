@@ -210,11 +210,11 @@
       <button id="accountTabAccount" class="railbtn" role="tab" data-tab="account" aria-selected="false" aria-controls="tab-account" tabindex="-1"><span class="railico" aria-hidden="true">⚙️</span> Settings</button>
       <!-- Settings sub-sections — shown while the Settings tab is active -->
       <nav id="settingsToc" class="settings-toc" aria-label="Settings sections" hidden>
-        <a href="#secDetails" data-sec="secDetails" class="on">Account details</a>
-        <a href="#passwordSection" data-sec="passwordSection">Password</a>
-        <a href="#offlineSection" data-sec="offlineSection">Offline maps</a>
-        <a href="#notifSection" data-sec="notifSection">Notifications</a>
-        <a href="#cancelSection" data-sec="cancelSection">Cancel account</a>
+        <a href="#secDetails" data-sec="secDetails" class="on" data-i18n="account.settings.details">Account details</a>
+        <a href="#passwordSection" data-sec="passwordSection" data-i18n="account.settings.password">Password</a>
+        <a href="#offlineSection" data-sec="offlineSection" data-i18n="account.settings.offline">Offline maps</a>
+        <a href="#notifSection" data-sec="notifSection" data-i18n="account.settings.notifications">Notifications</a>
+        <a href="#cancelSection" data-sec="cancelSection" data-i18n="account.settings.cancelAccount">Cancel account</a>
       </nav>
     </div>
 
@@ -333,19 +333,19 @@
       <section id="tab-account" role="tabpanel" aria-labelledby="accountTabAccount" hidden>
         <!-- Phone-width jump control (the desktop TOC lives in the rail) -->
         <div class="acct-jump" id="acctJump" hidden>
-          <button type="button" id="acctJumpBtn" aria-expanded="false" aria-controls="acctJumpMenu">Jump to: <span id="acctJumpLabel">Account details</span> <span aria-hidden="true">▾</span></button>
+          <button type="button" id="acctJumpBtn" aria-expanded="false" aria-controls="acctJumpMenu"><span data-i18n="account.settings.jumpTo">Jump to:</span> <span id="acctJumpLabel" data-i18n="account.settings.details">Account details</span> <span aria-hidden="true">▾</span></button>
           <div class="acct-jump-menu" id="acctJumpMenu" hidden></div>
         </div>
-        <div class="kick acct-anchor" id="secDetails" style="margin-bottom:14px;">Account</div>
+        <div class="kick acct-anchor" id="secDetails" style="margin-bottom:14px;" data-i18n="account.settings.account">Account</div>
         <div style="display:flex;align-items:center;gap:12px;background:#FAF8F1;border:1px solid var(--paper-line);border-radius:14px;padding:14px 15px;margin-bottom:22px;">
           <span id="acctAvatar" style="flex:none;width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px;"></span>
-          <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:800;color:var(--ink);">Signed in</div><div style="font-size:12px;color:#6B7A6E;"><span id="acctEmailLabel"></span> · <span id="acctProvider"></span></div></div>
+          <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:800;color:var(--ink);" data-i18n="account.settings.signedIn">Signed in</div><div style="font-size:12px;color:#6B7A6E;"><span id="acctEmailLabel"></span> · <span id="acctProvider"></span></div></div>
         </div>
 
         <div id="contributionEligibilityBox" style="background:#FAF8F1;border:1px solid var(--paper-line);border-radius:14px;padding:14px 15px;margin-bottom:22px;" aria-live="polite">
           <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
             <div>
-              <div class="kick" style="margin-bottom:5px;">Community contributions</div>
+              <div class="kick" style="margin-bottom:5px;" data-i18n="account.settings.contributions">Community contributions</div>
               <p id="contributionEligibilityStatus" class="hint" style="margin:0;">Checking whether this account can contribute…</p>
             </div>
             <span id="contributionEligibilityBadge" style="flex:none;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:4px 8px;background:#EDEAE0;color:#6B7A6E;">Checking</span>
@@ -355,41 +355,41 @@
 
         <div class="acct-2col" style="gap:24px;margin-bottom:24px;">
           <div id="emailChangeBox">
-            <label class="lbl" for="acctEmailInput">Login email</label>
+            <label class="lbl" for="acctEmailInput" data-i18n="account.settings.loginEmail">Login email</label>
             <div style="display:flex;gap:10px;"><input class="fld" type="email" id="acctEmailInput" placeholder="you@…"><button type="button" id="acctEmailBtn" disabled style="flex:none;padding:0 18px;border-radius:12px;border:none;background:#C6D0CB;color:#fff;font-weight:800;font-size:13.5px;cursor:pointer;font-family:'Inter',sans-serif;">Update</button></div>
-            <p class="hint" id="acctEmailHint" style="margin:8px 0 0;">We'll email a confirmation link to verify the new address.</p>
+            <p class="hint" id="acctEmailHint" style="margin:8px 0 0;" data-i18n="account.settings.emailHint">We'll email a confirmation link to verify the new address.</p>
           </div>
           <div id="googleEmailNote" hidden>
-            <label class="lbl">Login email</label>
-            <p class="hint" style="margin:0;">You sign in with Google, so your login email is managed by your Google account.</p>
+            <label class="lbl" data-i18n="account.settings.loginEmail">Login email</label>
+            <p class="hint" style="margin:0;" data-i18n="account.settings.googleEmail">You sign in with Google, so your login email is managed by your Google account.</p>
           </div>
           <div>
-            <label class="lbl" for="langSelect">Language</label>
+            <label class="lbl" for="langSelect" data-i18n="account.settings.language">Language</label>
             <div style="position:relative;"><select class="fld" id="langSelect" style="appearance:none;-webkit-appearance:none;padding-right:38px;cursor:pointer;"><option value="en">English</option><option value="it">Italiano</option></select><span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;color:#6B7A6E;font-size:12px;">▾</span></div>
           </div>
         </div>
 
         <div id="passwordSection" class="acct-anchor" style="border-top:1px solid #EDE9DD;padding-top:20px;margin-bottom:24px;">
-          <div class="kick" style="margin-bottom:8px;">Password</div>
-          <p class="hint" style="margin:0 0 12px;">Send a password reset link to your email, then click it to set a new password.</p>
-          <button type="button" id="sendResetBtn" class="btn-g">Send password reset link</button>
+          <div class="kick" style="margin-bottom:8px;" data-i18n="account.settings.password">Password</div>
+          <p class="hint" style="margin:0 0 12px;" data-i18n="account.settings.passwordHint">Send a password reset link to your email, then click it to set a new password.</p>
+          <button type="button" id="sendResetBtn" class="btn-g" data-i18n="account.password.sendReset">Send password reset link</button>
           <p id="resetStatus" class="hint" hidden></p>
         </div>
 
         <div id="offlineSection" class="acct-anchor" style="border-top:1px solid #EDE9DD;padding-top:20px;margin-bottom:24px;">
-          <div class="kick" style="margin-bottom:8px;">Offline maps</div>
-          <p class="hint" style="margin:0 0 12px;">View, update, or remove trail packages stored on this device.</p>
-          <a href="downloads.html" class="btn-g" style="text-decoration:none;">Manage downloaded trails</a>
+          <div class="kick" style="margin-bottom:8px;" data-i18n="account.settings.offline">Offline maps</div>
+          <p class="hint" style="margin:0 0 12px;" data-i18n="account.settings.offlineHint">View, update, or remove trail packages stored on this device.</p>
+          <a href="downloads.html" class="btn-g" style="text-decoration:none;" data-i18n="account.settings.manageDownloads">Manage downloaded trails</a>
         </div>
 
         <div id="notifSection" class="acct-anchor" style="border-top:1px solid #EDE9DD;padding-top:20px;margin-bottom:24px;">
-          <div class="kick" style="margin-bottom:8px;">Notifications</div>
+          <div class="kick" style="margin-bottom:8px;" data-i18n="account.settings.notifications">Notifications</div>
           <div id="notifList"></div>
         </div>
 
         <div id="cancelSection" class="acct-anchor" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid #EDE9DD;padding-top:20px;">
-          <div style="max-width:60%;min-width:220px;"><div style="font-size:13px;font-weight:800;color:#9C3A25;margin-bottom:3px;">Cancel account</div><p class="hint" style="margin:0;">Permanently deletes your sign-in and main DoloPaws profile. Downloaded public maps are handled separately.</p></div>
-          <div style="display:flex;gap:10px;"><button type="button" id="logOutBtn" class="btn-g">Log out</button><button type="button" id="openCancelBtn" style="padding:12px 20px;border-radius:12px;border:none;background:#9C3A25;color:#fff;font-weight:800;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Cancel account</button></div>
+          <div style="max-width:60%;min-width:220px;"><div style="font-size:13px;font-weight:800;color:#9C3A25;margin-bottom:3px;" data-i18n="account.settings.cancelAccount">Cancel account</div><p class="hint" style="margin:0;" data-i18n="account.settings.cancelHint">Permanently deletes your sign-in and main DoloPaws profile. Downloaded public maps are handled separately.</p></div>
+          <div style="display:flex;gap:10px;"><button type="button" id="logOutBtn" class="btn-g" data-i18n="account.settings.logout">Log out</button><button type="button" id="openCancelBtn" style="padding:12px 20px;border-radius:12px;border:none;background:#9C3A25;color:#fff;font-weight:800;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;" data-i18n="account.settings.cancelAccount">Cancel account</button></div>
         </div>
       </section>
 
@@ -409,12 +409,12 @@
 <!-- LOGOUT LOCAL-DATA CHOICE -->
 <div id="logoutOverlay" hidden style="position:fixed;inset:0;z-index:81;background:rgba(23,31,25,.5);align-items:center;justify-content:center;padding:24px;">
   <div class="acct-card" role="dialog" aria-modal="true" aria-labelledby="logoutTitle" style="max-width:460px;width:100%;padding:26px 24px;">
-    <div class="serif" id="logoutTitle" style="font-size:21px;margin-bottom:8px;">Log out on this device?</div>
+    <div class="serif" id="logoutTitle" style="font-size:21px;margin-bottom:8px;" data-i18n="account.logout.title">Log out on this device?</div>
     <p id="logoutDataMessage" style="font-size:13px;color:#6B7A6E;line-height:1.55;margin:0 0 18px;">Choose whether this browser should keep your downloaded trails and private hike records for your next login.</p>
     <div style="display:grid;gap:10px;">
-      <button type="button" id="keepLocalLogoutBtn" class="btn-p" style="width:100%;">Log out and keep downloads</button>
-      <button type="button" id="removeLocalLogoutBtn" style="width:100%;padding:12px 20px;border-radius:12px;border:1px solid #9C3A25;background:#fff;color:#9C3A25;font-weight:800;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;">Remove all local data and log out</button>
-      <button type="button" id="closeLogoutBtn" class="btn-g" style="width:100%;">Cancel</button>
+      <button type="button" id="keepLocalLogoutBtn" class="btn-p" style="width:100%;" data-i18n="account.logout.keep">Log out and keep downloads</button>
+      <button type="button" id="removeLocalLogoutBtn" style="width:100%;padding:12px 20px;border-radius:12px;border:1px solid #9C3A25;background:#fff;color:#9C3A25;font-weight:800;font-size:14px;cursor:pointer;font-family:'Inter',sans-serif;" data-i18n="account.logout.remove">Remove all local data and log out</button>
+      <button type="button" id="closeLogoutBtn" class="btn-g" style="width:100%;" data-i18n="account.cancel">Cancel</button>
     </div>
     <p id="logoutStatus" class="hint" hidden style="margin:12px 0 0;color:#9C3A25;"></p>
   </div>
