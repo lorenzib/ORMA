@@ -1,6 +1,11 @@
 (function(){
   const root=document.getElementById('profileDesign');
   if(!root)return;
+  const t=(key,fallback,vars)=>{
+    if(!window.t)return fallback;
+    const value=window.t(key,vars);
+    return value===key?fallback:value;
+  };
   const name=document.getElementById('profileName'),breed=document.getElementById('profileBreed'),age=document.getElementById('profileAge'),weight=document.getElementById('profileWeight'),notes=document.getElementById('profileNotes');
   let fitness='moderate';
   const CONDITION_CODES={
@@ -28,7 +33,7 @@
     });
   })();
   function paintName(value){
-    const display=value||'Your dog';
+    const display=value||t('account.yourDog','Your dog');
     root.querySelectorAll('[data-profile-name]').forEach(el=>el.textContent=display);
     root.querySelectorAll('[data-profile-avatar]').forEach(el=>el.textContent=display.charAt(0).toUpperCase());
   }
@@ -64,12 +69,21 @@
   function updateImpact(){
     const joint=!!root.querySelector('input[value="Joint or hip issues"]:checked'),heat=!!root.querySelector('input[value="Heat sensitivity"]:checked');
     const base=fitness==='low'?5:fitness==='moderate'?10:null;
-    document.getElementById('profileDistanceCap').textContent=base==null?'no cap':((joint?base*.75:base)+' km');
-    document.getElementById('profileDistanceReason').textContent=(fitness.charAt(0).toUpperCase()+fitness.slice(1))+' fitness'+(base?' ('+base+' km)':'')+(joint?' × joint issues (0.75).':'.');
-    document.getElementById('profileTerrain').textContent=fitness==='high'&&!joint?'rocky and below':fitness==='low'||joint?'gravel and below':'mixed and below';
-    document.getElementById('profileTerrainReason').textContent=joint?'Health conditions lower the terrain tolerance by one level.':'No health modifier lowers the selected fitness tolerance.';
-    document.getElementById('profileHeat').textContent=heat?'extra cautious':'standard';
-    document.getElementById('profileHeatReason').textContent=heat?'Heat sensitivity is declared and always outranks breed assumptions.':'No heat-sensitivity condition declared.';
+    document.getElementById('profileDistanceCap').textContent=base==null?t('account.impact.noCap','no cap'):((joint?base*.75:base)+' km');
+    const fitnessLabel=t('account.fitness.'+fitness,fitness.charAt(0).toUpperCase()+fitness.slice(1));
+    document.getElementById('profileDistanceReason').textContent=joint
+      ? t('account.impact.distanceJoint','{fitness} fitness{distance} × joint issues (0.75).',{fitness:fitnessLabel,distance:base?' ('+base+' km)':''})
+      : t('account.impact.distance','{fitness} fitness{distance}.',{fitness:fitnessLabel,distance:base?' ('+base+' km)':''});
+    document.getElementById('profileTerrain').textContent=fitness==='high'&&!joint
+      ? t('account.impact.terrainRocky','rocky and below')
+      : fitness==='low'||joint?t('account.impact.terrainGravel','gravel and below'):t('account.impact.terrainMixed','mixed and below');
+    document.getElementById('profileTerrainReason').textContent=joint
+      ? t('account.impact.terrainHealth','Health conditions lower the terrain tolerance by one level.')
+      : t('account.impact.terrainStandard','No health modifier lowers the selected fitness tolerance.');
+    document.getElementById('profileHeat').textContent=heat?t('account.impact.extraCautious','extra cautious'):t('account.impact.standard','standard');
+    document.getElementById('profileHeatReason').textContent=heat
+      ? t('account.impact.heatDeclared','Heat sensitivity is declared and always outranks breed assumptions.')
+      : t('account.impact.heatStandard','No heat-sensitivity condition declared.');
   }
   document.getElementById('profilePhotoButton').addEventListener('click',()=>document.getElementById('dogPhotoInput').click());
   document.getElementById('profileRemoveDog').addEventListener('click',()=>{
@@ -80,8 +94,8 @@
   window.addEventListener('dolopaws-account-save-result',event=>{
     const ok=!!(event.detail&&event.detail.ok);
     profileSaveStatus.textContent=ok
-      ? (event.detail.addMode?'Dog added successfully.':'Profile saved.')
-      : 'Something went wrong — please try again.';
+      ? (event.detail.addMode?t('account.dogAddedSuccess','Dog added successfully.'):t('account.profileSaved','Profile saved.'))
+      : t('account.saveError','Something went wrong — please try again.');
     profileSaveStatus.style.color=ok?'#2C5C34':'#9C3A25';
     profileSaveStatus.hidden=false;
   });
@@ -94,7 +108,7 @@
     window.dispatchEvent(new CustomEvent('dolopaws-profile-design-values',{detail:{ageBand:age.value,weightBand:weight.value,fitness,conditions}}));
     const save=Array.from(document.querySelectorAll('.saveBtn')).find(b=>!b.disabled);
     if(save){
-      profileSaveStatus.textContent='Saving…';
+      profileSaveStatus.textContent=t('account.saving','Saving…');
       profileSaveStatus.style.color='';
       profileSaveStatus.hidden=false;
       save.click();
