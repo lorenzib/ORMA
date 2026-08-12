@@ -9,7 +9,6 @@
   var SEEN_KEY = 'dolopaws-notif-seen';
   var LEGACY_GLANCED_KEY = 'dolopaws-notif-glanced';
   var UNREAD_KEY = 'dolopaws-notif-unread';
-  var EVENT_KEY = 'dolopaws-notif-profile-event';
 
   function idList(key){
     try {
@@ -19,17 +18,20 @@
   }
   function seenIds(){ return idList(SEEN_KEY); }
   function saveSeen(list){ try { localStorage.setItem(SEEN_KEY, JSON.stringify(list)); } catch(e){} }
-  function setUnreadCache(n){ try { localStorage.setItem(UNREAD_KEY, String(n)); } catch(e){} }
+  function setUnreadCache(n){
+    try { localStorage.setItem(UNREAD_KEY, String(n)); } catch(e){}
+    window.dispatchEvent(new CustomEvent('dolopaws-notifications-changed', {
+      detail:{ unread:Number(n) || 0 }
+    }));
+  }
   // Reading state is account data: push the merged read list to Firestore
   // whenever it changes so other devices pick it up. Fire-and-forget.
   function pushSeen(list){
     var auth = window.DoloPawsAuth;
-    if(auth && auth.currentUser && typeof auth.setNotifSeen === 'function'){
-      auth.setNotifSeen(list).catch(function(){});
+    var community = window.DoloPawsCommunity;
+    if(auth && auth.currentUser && community && typeof community.setNotifSeen === 'function'){
+      community.setNotifSeen(list).catch(function(){});
     }
-  }
-  function profileEvent(){
-    try { return JSON.parse(localStorage.getItem(EVENT_KEY) || 'null'); } catch(e){ return null; }
   }
   function esc(s){
     return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -58,7 +60,16 @@
     feed.forEach(function(item){
       if(seen.indexOf(item.id) === -1){ seen.push(item.id); changed = true; }
     });
-    if(changed){ saveSeen(seen); pushSeen(seen); }
+    var migrated = window.DoloPawsNotifFeed.migrateReadIds(feed, seen);
+    if(JSON.stringify(migrated) !== JSON.stringify(seen)){
+      seen = migrated;
+      changed = true;
+    }
+    if(changed) saveSeen(seen);
+    // Reassert the complete list whenever the centre opens. This repairs an
+    // earlier failed Firestore write even when local storage already says the
+    // item is read.
+    pushSeen(seen);
     try { localStorage.removeItem(LEGACY_GLANCED_KEY); } catch(e){}
     setUnreadCache(0);
 
@@ -107,10 +118,11 @@
   function init(){
     booted = true;
     var auth = window.DoloPawsAuth;
+    var community = window.DoloPawsCommunity;
     // Members: merge the account's synced read list into this browser's
     // before building, so items read elsewhere don't come back as unread.
-    var seenSyncP = (auth && auth.currentUser && typeof auth.getNotifSeen === 'function')
-      ? auth.getNotifSeen().catch(function(){ return []; })
+    var seenSyncP = (auth && auth.currentUser && community && typeof community.getNotifSeen === 'function')
+      ? community.getNotifSeen().catch(function(){ return []; })
       : Promise.resolve([]);
     var pending = (auth && auth.currentUser)
       ? auth.getFavorites().catch(function(){ return {}; })
@@ -129,17 +141,16 @@
       // Live Firestore content: hazard flags on saved trails (members) and
       // operator notices (everyone). Both degrade to empty on any failure —
       // the derived feed still renders.
-      var flagsP = (auth && auth.currentUser && typeof auth.getActiveFlagsForTrails === 'function')
-        ? auth.getActiveFlagsForTrails(Object.keys(favorites)).catch(function(){ return []; })
+      var flagsP = (auth && auth.currentUser && community && typeof community.getActiveFlagsForTrails === 'function')
+        ? community.getActiveFlagsForTrails(Object.keys(favorites)).catch(function(){ return []; })
         : Promise.resolve([]);
-      var noticesP = (auth && typeof auth.getSiteNotices === 'function')
-        ? auth.getSiteNotices().catch(function(){ return []; })
+      var noticesP = (community && typeof community.getSiteNotices === 'function')
+        ? community.getSiteNotices().catch(function(){ return []; })
         : Promise.resolve([]);
       Promise.all([flagsP, noticesP]).then(function(live){
         currentFeed = window.DoloPawsNotifFeed.build({
           trails: typeof trails !== 'undefined' ? trails : [],
           favorites: favorites,
-          profileEvent: profileEvent(),
           hazardFlags: live[0],
           siteNotices: live[1],
           now: Date.now()
@@ -163,6 +174,7 @@
   // The pre-feed implementation stored one global read flag; drop it so it
   // can never mask the per-item state.
   try { localStorage.removeItem('dolopaws-notifications-read'); } catch(e){}
+  try { localStorage.removeItem('dolopaws-notif-profile-event'); } catch(e){}
 
   if(window.DoloPawsAuth) init();
   else window.addEventListener('dolopaws-auth-ready', init, { once: true });

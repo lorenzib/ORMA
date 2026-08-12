@@ -72,5 +72,13 @@ describe('shared navigation hardening', () => {
     expect(nav.querySelector('.links .nav-bellwrap')).toBeNull();
     expect(bell.nextElementSibling).toBe(nav.querySelector('.mobile-nav-toggle'));
     expect(bell.querySelector('button').getAttribute('data-i18n-aria-label')).toBe('mobile.notifications');
+    isolated.dispatchEvent(new isolated.CustomEvent('dolopaws-notifications-changed', {
+      detail:{ unread:3 }
+    }));
+    expect(bell.querySelector('.nav-bell-badge').textContent).toBe('3');
+    isolated.dispatchEvent(new isolated.CustomEvent('dolopaws-notifications-changed', {
+      detail:{ unread:0 }
+    }));
+    expect(bell.querySelector('.nav-bell-badge')).toBeNull();
   });
 });

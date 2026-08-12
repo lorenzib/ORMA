@@ -11,40 +11,31 @@ describe('derived notifications feed', () => {
       surfaceHazards: [], reviewedAt: '2026-07-10' },
   ];
 
-  test('saved trails with heat or surface hazards produce today advisories', () => {
+  test('static heat and surface facts stay out of the event notification feed', () => {
     const items = feed.build({ trails, favorites: { ridge: true }, now: NOW });
     const ids = items.map(i => i.id);
-    expect(ids).toContain('heat-ridge');
-    expect(ids).toContain('hazard-ridge');
-    // Not saved → no advisory, even though meadow is high heat risk.
+    expect(ids).not.toContain('heat-ridge');
+    expect(ids).not.toContain('hazard-ridge');
     expect(ids).not.toContain('heat-meadow');
-    const heat = items.find(i => i.id === 'heat-ridge');
-    expect(heat.group).toBe('today');
-    expect(heat.alert).toBe(true);
-    expect(heat.href).toBe('trail.html?id=ridge');
-    expect(heat.body).toContain('10% shade');
   });
 
   test('audited trails appear for everyone with their audit date', () => {
     const items = feed.build({ trails, favorites: {}, now: NOW });
-    const audit = items.find(i => i.id === 'audit-ridge');
+    const audit = items.find(i => i.id === 'audit-ridge-2026-07-17');
     expect(audit).toBeDefined();
     expect(audit.group).toBe('earlier');
     expect(audit.timeLabel).toBe('17 Jul');
     expect(audit.body).toContain('Seceda Cableways');
     // reviewedAt-only trails still qualify.
-    expect(items.some(i => i.id === 'audit-meadow')).toBe(true);
+    expect(items.some(i => i.id === 'audit-meadow-2026-07-10')).toBe(true);
   });
 
-  test('a recorded profile edit becomes a today item with relative time', () => {
+  test('a profile save confirmation does not become a bell notification', () => {
     const items = feed.build({
       trails: [], favorites: {},
       profileEvent: { ts: NOW - 2 * 3600 * 1000, name: 'Eddie' }, now: NOW,
     });
-    const p = items.find(i => i.id.startsWith('profile-'));
-    expect(p.title).toBe('Eddie’s profile updated');
-    expect(p.group).toBe('today');
-    expect(p.timeLabel).toBe('2h ago');
+    expect(items).toEqual([]);
   });
 
   test('live hazard flags on saved trails become alert items with trail names', () => {
@@ -100,8 +91,8 @@ describe('derived notifications feed', () => {
       { id: 'stale', name: 'Stale Trail', verified: { date: '2025-12-15', sources: [] } },
     ];
     const ids = feed.build({ trails: aged, favorites: {}, now: NOW }).map(i => i.id);
-    expect(ids).toContain('audit-fresh');
-    expect(ids).not.toContain('audit-stale');
+    expect(ids).toContain('audit-fresh-2026-01-10');
+    expect(ids).not.toContain('audit-stale-2025-12-15');
   });
 
   test('badgeCount uses the durable read set so resolved items stay off the bell', () => {
@@ -110,7 +101,7 @@ describe('derived notifications feed', () => {
     // Opening the centre records every current id as read: badge → 0 while
     // every item remains available in the feed history.
     expect(feed.badgeCount(items, items.map(i => i.id))).toBe(0);
-    expect(feed.badgeCount(items, ['heat-ridge'])).toBe(items.length - 1);
+    expect(feed.badgeCount(items, [items[0].id])).toBe(items.length - 1);
   });
 
   test('unreadIds subtracts the seen list so read items stay read', () => {
@@ -118,6 +109,17 @@ describe('derived notifications feed', () => {
     const all = feed.unreadIds(items, []);
     expect(all.length).toBe(items.length);
     expect(feed.unreadIds(items, all)).toEqual([]);
-    expect(feed.unreadIds(items, ['heat-ridge'])).not.toContain('heat-ridge');
+    expect(feed.unreadIds(items, [items[0].id])).not.toContain(items[0].id);
+  });
+
+  test('migrates a legacy audit read once without masking a later review', () => {
+    const current = feed.build({ trails:[trails[1]], now:NOW });
+    expect(feed.migrateReadIds(current, ['audit-ridge']))
+      .toEqual(['audit-ridge-2026-07-17']);
+    const later = feed.build({
+      trails:[{ ...trails[1], verified:{ ...trails[1].verified, date:'2026-07-25' } }],
+      now:NOW,
+    });
+    expect(feed.badgeCount(later, ['audit-ridge-2026-07-17'])).toBe(1);
   });
 });

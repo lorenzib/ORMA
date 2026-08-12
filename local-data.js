@@ -12,6 +12,7 @@
     'dolopaws-notif-seen',
     'dolopaws-notif-glanced',
     'dolopaws-notif-unread',
+    'dolopaws-notif-profile-event',
     'dolopaws-notifications-read',
     'dolopaws-pending-dog-profile',
     'dolopaws-dog-draft',

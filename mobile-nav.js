@@ -179,12 +179,23 @@
         const cached = parseInt(localStorage.getItem('dolopaws-notif-unread'), 10);
         if(!isNaN(cached)) unseen = cached;
       } catch(e){}
-      if(unseen > 0){
-        const badge = document.createElement('span');
-        badge.className = 'nav-bell-badge';
-        badge.textContent = String(unseen);
-        btn.appendChild(badge);
+      function renderBadge(count){
+        let badge = btn.querySelector('.nav-bell-badge');
+        if(count > 0){
+          if(!badge){
+            badge = document.createElement('span');
+            badge.className = 'nav-bell-badge';
+            btn.appendChild(badge);
+          }
+          badge.textContent = String(count);
+        } else if(badge){
+          badge.remove();
+        }
       }
+      renderBadge(unseen);
+      window.addEventListener('dolopaws-notifications-changed', event => {
+        renderBadge(Number(event.detail && event.detail.unread) || 0);
+      });
       wrap.appendChild(btn);
       btn.addEventListener('click', () => { window.location.href = prefix + 'notifications.html'; });
       return wrap;
@@ -487,11 +498,6 @@
       const p = e.detail && e.detail.profile;
       if(p && p.name && window.DoloPawsAuth && window.DoloPawsAuth.currentUser){
         renderHeader(true, String(p.name));
-        // Feed the notification centre: profile edits become an item there.
-        try {
-          localStorage.setItem('dolopaws-notif-profile-event',
-            JSON.stringify({ ts: Date.now(), name: String(p.name).slice(0, 40) }));
-        } catch(err){}
       }
     });
     window.addEventListener('dolopaws-i18n-ready', () => {

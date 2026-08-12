@@ -2,9 +2,9 @@
   'use strict';
 
   // Notifications are derived, not stored: the feed is rebuilt on every
-  // visit from the trail dataset plus the visitor's own state (saved
-  // trails, profile edits). Ids are stable per underlying fact, so the
-  // per-browser seen-list keeps an item read once it has been opened.
+  // visit from genuine update events (active flags, operator notices and
+  // dated route audits). Stable, revision-aware ids keep an item read while
+  // allowing a materially new update to notify again.
 
   var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var AUDIT_LIMIT = 4;
@@ -48,7 +48,6 @@
     opts = opts || {};
     var trails = Array.isArray(opts.trails) ? opts.trails : [];
     var favorites = opts.favorites || {};
-    var profileEvent = opts.profileEvent || null;
     var hazardFlags = Array.isArray(opts.hazardFlags) ? opts.hazardFlags : [];
     var siteNotices = Array.isArray(opts.siteNotices) ? opts.siteNotices : [];
     var now = opts.now || 0;
@@ -94,43 +93,8 @@
       });
     });
 
-    if(profileEvent && profileEvent.ts){
-      items.push({
-        id: 'profile-' + profileEvent.ts,
-        icon: 'dog', alert: false,
-        group: (now - profileEvent.ts) < 864e5 ? 'today' : 'earlier',
-        timeLabel: relTime(profileEvent.ts, now),
-        title: (profileEvent.name || 'Your dog') + '’s profile updated',
-        body: 'Trail scores now reflect the new details.',
-        href: 'settings.html'
-      });
-    }
-
-    var saved = trails.filter(function(t){ return t && favorites[t.id]; });
-
-    saved.forEach(function(t){
-      if(t.heatRisk !== 'high') return;
-      var shade = typeof t.shadeCoverage === 'number' ? t.shadeCoverage + '% shade' : 'little shade';
-      items.push({
-        id: 'heat-' + t.id,
-        icon: 'heat', alert: true, group: 'today', timeLabel: 'Today',
-        title: 'Heat advisory: ' + t.name,
-        body: 'Only ' + shade + ' on this saved route — plan an early start and pack water.',
-        href: 'trail.html?id=' + t.id
-      });
-    });
-
-    saved.forEach(function(t){
-      var hazards = Array.isArray(t.surfaceHazards) ? t.surfaceHazards.filter(Boolean) : [];
-      if(!hazards.length) return;
-      items.push({
-        id: 'hazard-' + t.id,
-        icon: 'warning', alert: true, group: 'today', timeLabel: 'Today',
-        title: 'Trail advisory: ' + t.name,
-        body: hazards.join(' · ') + '. Route open — take it steady with your dog.',
-        href: 'trail.html?id=' + t.id
-      });
-    });
+    // Profile saves and static trail facts are confirmations/context, not new
+    // events. They stay in their source screens and never raise the bell.
 
     // Facebook-style aging: news-type items leave the feed after 30 days
     // instead of sitting there forever as "the same notifications".
@@ -153,7 +117,7 @@
           ? 'Checked against ' + t.verified.sources.join(', ') + '.'
           : 'Desk-reviewed by DoloPaws.';
         items.push({
-          id: 'audit-' + t.id,
+          id: 'audit-' + t.id + '-' + entry.date,
           icon: 'verified', alert: false, group: 'earlier', timeLabel: shortDate(entry.date),
           title: t.name + ' is route-audited',
           body: sources + ' Its rating and facts are confirmed.',
@@ -169,6 +133,19 @@
     return feed.map(function(i){ return i.id; }).filter(function(id){ return seen.indexOf(id) === -1; });
   }
 
+  function migrateReadIds(feed, seenIds){
+    var read = Array.isArray(seenIds) ? seenIds.slice() : [];
+    feed.forEach(function(item){
+      if(!item || !/^audit-.+-\d{4}-\d{2}-\d{2}$/.test(item.id)) return;
+      var legacyId = item.id.slice(0, -11);
+      var legacyIndex = read.indexOf(legacyId);
+      if(legacyIndex === -1) return;
+      if(read.indexOf(item.id) === -1) read.push(item.id);
+      read.splice(legacyIndex, 1);
+    });
+    return read;
+  }
+
   // The badge and row state share one durable read list. Opening the
   // notification centre resolves every item currently displayed; items stay
   // in the history, and only a genuinely new stable id raises the badge again.
@@ -176,7 +153,14 @@
     return unreadIds(feed, readIds).length;
   }
 
-  var api = { build: build, unreadIds: unreadIds, badgeCount: badgeCount, shortDate: shortDate, relTime: relTime };
+  var api = {
+    build: build,
+    unreadIds: unreadIds,
+    badgeCount: badgeCount,
+    migrateReadIds: migrateReadIds,
+    shortDate: shortDate,
+    relTime: relTime
+  };
   global.DoloPawsNotifFeed = api;
   if(typeof module !== 'undefined' && module.exports){ module.exports = api; }
 })(typeof window !== 'undefined' ? window : globalThis);

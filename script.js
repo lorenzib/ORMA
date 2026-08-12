@@ -1776,13 +1776,16 @@ function refreshLiBellBadge(){
   let bellUnread = 0;
   try {
     if(window.DoloPawsNotifFeed && typeof trails !== 'undefined'){
-      let ev = null;
-      try { ev = JSON.parse(localStorage.getItem('dolopaws-notif-profile-event') || 'null'); } catch(e){}
       const feed = window.DoloPawsNotifFeed.build({
-        trails, favorites: currentFavorites || {}, profileEvent: ev, now: Date.now()
+        trails, favorites: currentFavorites || {}, now: Date.now()
       });
-      bellUnread = window.DoloPawsNotifFeed.badgeCount(feed, liReadList());
+      const read = window.DoloPawsNotifFeed.migrateReadIds(feed, liReadList());
+      localStorage.setItem('dolopaws-notif-seen', JSON.stringify(read));
+      bellUnread = window.DoloPawsNotifFeed.badgeCount(feed, read);
       localStorage.setItem('dolopaws-notif-unread', String(bellUnread));
+      window.dispatchEvent(new CustomEvent('dolopaws-notifications-changed', {
+        detail:{ unread:bellUnread }
+      }));
     }
   } catch(e){}
   if(dot) dot.hidden = bellUnread === 0;
@@ -1792,33 +1795,47 @@ function refreshLiBellBadge(){
 // Second pass with the Firestore content (hazard flags on saved trails,
 // operator notices) once per page view — the sync pass above painted the
 // derived-only count immediately.
-let liBellLiveFetched = false;
+let liBellLiveFetchKey = null;
+let liBellLiveRequest = 0;
 function refreshLiBellBadgeLive(){
   const auth = window.DoloPawsAuth;
-  if(liBellLiveFetched || !auth || !auth.currentUser || !window.DoloPawsNotifFeed) return;
-  if(typeof auth.getActiveFlagsForTrails !== 'function') return;
-  liBellLiveFetched = true;
+  const community = window.DoloPawsCommunity;
+  if(!auth || !auth.currentUser || !community || !window.DoloPawsNotifFeed) return;
+  if(typeof community.getActiveFlagsForTrails !== 'function') return;
+  const favoriteIds = Object.keys(currentFavorites || {}).sort();
+  const fetchKey = favoriteIds.join('|');
+  if(fetchKey === liBellLiveFetchKey) return;
+  liBellLiveFetchKey = fetchKey;
+  const requestId = ++liBellLiveRequest;
   Promise.all([
-    auth.getActiveFlagsForTrails(Object.keys(currentFavorites || {})).catch(() => []),
-    auth.getSiteNotices().catch(() => []),
-    typeof auth.getNotifSeen === 'function' ? auth.getNotifSeen().catch(() => []) : Promise.resolve([]),
+    community.getActiveFlagsForTrails(favoriteIds).catch(() => []),
+    community.getSiteNotices().catch(() => []),
+    typeof community.getNotifSeen === 'function' ? community.getNotifSeen().catch(() => []) : Promise.resolve([]),
   ]).then(([hazardFlags, siteNotices, remoteRead]) => {
+    if(requestId !== liBellLiveRequest) return;
     const read = liReadList();
     if(Array.isArray(remoteRead)) remoteRead.forEach(id => { if(!read.includes(id)) read.push(id); });
     try { localStorage.setItem('dolopaws-notif-seen', JSON.stringify(read)); } catch(e){}
-    let ev = null;
-    try { ev = JSON.parse(localStorage.getItem('dolopaws-notif-profile-event') || 'null'); } catch(e){}
     const feed = window.DoloPawsNotifFeed.build({
       trails: typeof trails !== 'undefined' ? trails : [],
       favorites: currentFavorites || {},
-      profileEvent: ev, hazardFlags, siteNotices, now: Date.now()
+      hazardFlags, siteNotices, now: Date.now()
     });
-    const unread = window.DoloPawsNotifFeed.badgeCount(feed, read);
+    const migratedRead = window.DoloPawsNotifFeed.migrateReadIds(feed, read);
+    try { localStorage.setItem('dolopaws-notif-seen', JSON.stringify(migratedRead)); } catch(e){}
+    const unread = window.DoloPawsNotifFeed.badgeCount(feed, migratedRead);
     try { localStorage.setItem('dolopaws-notif-unread', String(unread)); } catch(e){}
     const dot = document.getElementById('liBellDot');
     if(dot) dot.hidden = unread === 0;
+    window.dispatchEvent(new CustomEvent('dolopaws-notifications-changed', { detail:{ unread } }));
   });
 }
+
+window.addEventListener('dolopaws-notifications-changed', (event) => {
+  const unread = Number(event.detail && event.detail.unread) || 0;
+  const dot = document.getElementById('liBellDot');
+  if(dot) dot.hidden = unread === 0;
+});
 
 function initLoggedInShell(){
   if(liShellWired) return;

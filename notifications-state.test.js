@@ -29,9 +29,11 @@ describe('notification centre durable read behaviour', () => {
     const setNotifSeen = jest.fn().mockResolvedValue(true);
     isolated.DoloPawsAuth = {
       currentUser: { uid:'member-1' },
+      getFavorites: jest.fn().mockResolvedValue({}),
+    };
+    isolated.DoloPawsCommunity = {
       getNotifSeen: jest.fn().mockResolvedValue([]),
       setNotifSeen,
-      getFavorites: jest.fn().mockResolvedValue({}),
       getActiveFlagsForTrails: jest.fn().mockResolvedValue([]),
       getSiteNotices: jest.fn().mockResolvedValue([{
         id:'welcome', type:'trail', title:'A new trail', body:'Open the trail.',
@@ -72,8 +74,8 @@ describe('notification centre durable read behaviour', () => {
     isolated.document.body.innerHTML = pageMarkup();
     isolated.DoloPawsNotifFeed = feed;
     isolated.trails = [];
-    isolated.DoloPawsAuth = {
-      currentUser:null,
+    isolated.DoloPawsAuth = { currentUser:null };
+    isolated.DoloPawsCommunity = {
       getSiteNotices:jest.fn().mockResolvedValue([{
         id:'old', title:'Previously viewed', body:'Still in history.', createdAt:Date.now(),
       }]),
