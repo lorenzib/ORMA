@@ -21,6 +21,13 @@ function loadTrails() {
   return JSON.parse(vm.runInContext('window.DoloPawsRegions.assign(trails); JSON.stringify(trails)', context));
 }
 
+function loadGondolas() {
+  const context = { window: {}, console };
+  vm.createContext(context);
+  vm.runInContext(fs.readFileSync(path.join(root, 'trails-data.js'), 'utf8'), context, { filename: 'trails-data.js' });
+  return JSON.parse(vm.runInContext('JSON.stringify(gondolas)', context));
+}
+
 function featurePoint(feature) {
   const geometry = feature && feature.geometry;
   if (!geometry) return null;
@@ -53,9 +60,14 @@ function writeJson(file, value) {
 }
 
 const trails = loadTrails();
+const gondolas = loadGondolas();
 const byRegion = {
   dolomites: trails.filter(trail => trail.region === 'dolomites'),
   savoy: trails.filter(trail => trail.region === 'savoy'),
+};
+const gondolasByRegion = {
+  dolomites: gondolas.filter(lift => lift.from && lift.from.lng >= 9),
+  savoy: gondolas.filter(lift => lift.from && lift.from.lng < 9),
 };
 
 for (const [region, regionTrails] of Object.entries(byRegion)) {
@@ -63,7 +75,11 @@ for (const [region, regionTrails] of Object.entries(byRegion)) {
     `(function(){var incoming=${JSON.stringify(regionTrails)};` +
     `var current=Array.isArray(window.trails)?window.trails:[];` +
     `var ids=new Set(current.map(function(trail){return trail.id;}));` +
-    `window.trails=current.concat(incoming.filter(function(trail){return !ids.has(trail.id);}));})();\n`;
+    `window.trails=current.concat(incoming.filter(function(trail){return !ids.has(trail.id);}));` +
+    `var incomingLifts=${JSON.stringify(gondolasByRegion[region])};` +
+    `var currentLifts=Array.isArray(window.gondolas)?window.gondolas:[];` +
+    `var liftIds=new Set(currentLifts.map(function(lift){return lift.name+'|'+lift.from.lat+'|'+lift.from.lng;}));` +
+    `window.gondolas=currentLifts.concat(incomingLifts.filter(function(lift){return !liftIds.has(lift.name+'|'+lift.from.lat+'|'+lift.from.lng);}));})();\n`;
   fs.writeFileSync(path.join(outDir, `${region}-trails.js`), source);
 }
 

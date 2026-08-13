@@ -13,6 +13,13 @@ function loadRegionalTrailFile(file) {
   return JSON.parse(JSON.stringify(context.window.trails));
 }
 
+function loadRegionalLiftFile(file) {
+  const context = { window: {} };
+  vm.createContext(context);
+  vm.runInContext(read(file), context, { filename: file });
+  return JSON.parse(JSON.stringify(context.window.gondolas));
+}
+
 function loadCanonicalTrails() {
   const context = { window: {}, console };
   vm.createContext(context);
@@ -49,6 +56,19 @@ describe('DATA-03 regional runtime boundaries', () => {
         expect(fs.existsSync(path.join(root, file))).toBe(true);
       });
     }
+  });
+
+  test('regional trail payloads include the lift lines and station endpoints used by maps', () => {
+    const dolomites = loadRegionalLiftFile('data/regions/dolomites-trails.js');
+    const savoy = loadRegionalLiftFile('data/regions/savoy-trails.js');
+    expect(dolomites.length).toBeGreaterThan(0);
+    expect(savoy.length).toBeGreaterThan(0);
+    expect(dolomites.every(lift => lift.from.lng >= 9 && lift.to.lng >= 9)).toBe(true);
+    expect(savoy.every(lift => lift.from.lng < 9 && lift.to.lng < 9)).toBe(true);
+    [...dolomites, ...savoy].forEach(lift => {
+      expect(lift.from).toEqual(expect.objectContaining({ lat:expect.any(Number), lng:expect.any(Number) }));
+      expect(lift.to).toEqual(expect.objectContaining({ lat:expect.any(Number), lng:expect.any(Number) }));
+    });
   });
 
   test('homepage and detail page load one region while catalog surfaces may request all', () => {
