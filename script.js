@@ -428,8 +428,9 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   return Object.freeze({ sync:applyVisibility });
 }
 
-function renderGondolas(map, sourceId){
+function renderGondolas(map, sourceId, options){
   if(typeof gondolas === 'undefined' || !gondolas.length) return null;
+  const visible = !!(options && options.visible);
   const features = gondolas.map(g => ({
     type: 'Feature',
     properties: { name: g.name, note: g.note, status: g.status },
@@ -441,7 +442,7 @@ function renderGondolas(map, sourceId){
     id: sourceId + '-line',
     type: 'line',
     source: sourceId,
-    layout: { 'line-join': 'round', 'line-cap': 'round', visibility: 'none' },
+    layout: { 'line-join': 'round', 'line-cap': 'round', visibility: visible ? 'visible' : 'none' },
     paint: {
       'line-color': [
         'match', ['get', 'status'],
@@ -460,7 +461,7 @@ function renderGondolas(map, sourceId){
     type: 'symbol',
     source: sourceId,
     layout: {
-      visibility: 'none',
+      visibility: visible ? 'visible' : 'none',
       'symbol-placement': 'line',
       'symbol-spacing': 250,
       'text-field': ['get', 'name'],
@@ -494,7 +495,7 @@ function renderGondolas(map, sourceId){
       const el = window.DoloPawsIcons
         ? window.DoloPawsIcons.createMarkerElement('lifts', { color: '#4E90A8' })
         : Object.assign(document.createElement('div'), { className: 'dp-marker', textContent: '🚡' });
-      el.style.visibility = 'hidden';
+      el.style.visibility = visible ? 'visible' : 'hidden';
       const marker = new maplibregl.Marker({ element: el })
         .setLngLat([station.lng, station.lat])
         .setPopup(new maplibregl.Popup({ offset: 14 }).setHTML(`<b>${g.name}</b><br>${station.label}<br>${g.note}`))
@@ -567,9 +568,9 @@ function initGuestMap(){
     preventTransitPoiDuplication(guestMapInstance);
     addTerrainToggle(guestMapInstance, 'guestPreviewMap', 1.3, 0);
     if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(guestMapInstance);
-    // No gondolas here: lifts are opt-in through the Layers panel, and the
-    // guest preview map has no Layers control — rendering them hidden with
-    // no way to reveal them would be pure dead weight.
+    // The public preview has no Layers panel, so lifts and their upper/lower
+    // stations need to be visible as soon as the map loads.
+    renderGondolas(guestMapInstance, 'guest-gondolas', { visible: true });
     if (typeof makeBasemapPoisClickable === 'function') makeBasemapPoisClickable(guestMapInstance);
     // Real route lines for any trail that has one — same data the logged-in map uses.
     const pathFeatures = trails

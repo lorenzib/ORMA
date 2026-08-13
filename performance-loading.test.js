@@ -22,6 +22,7 @@ describe('PERF-02 asset and regional loading contract', () => {
     const detail = read('trail.js');
     expect(homepage).toContain('function scheduleGuestMap()');
     expect(homepage).toContain('function scheduleTrailMap()');
+    expect(homepage).toContain("renderGondolas(guestMapInstance, 'guest-gondolas', { visible: true })");
     expect(homepage).toContain('onIdle(loadSecondaryMapData, 5000)');
     expect(homepage.indexOf("renderGondolas(trailMapInstance, 'trailmap-gondolas')"))
       .toBeGreaterThan(homepage.indexOf('const loadSecondaryMapData = () =>'));
