@@ -53,7 +53,7 @@ describe('DATA-03 regional runtime boundaries', () => {
       expect(entry.hutsBars).toContain(`${region}-huts-bars.geojson`);
       expect(entry.dogRoutes).toMatch(/dog-friendly-routes/);
       [entry.trails, entry.water, entry.hutsBars, entry.dogRoutes].forEach(file => {
-        expect(fs.existsSync(path.join(root, file))).toBe(true);
+        expect(fs.existsSync(path.join(root, file.split('?')[0]))).toBe(true);
       });
     }
   });
