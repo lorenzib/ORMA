@@ -227,7 +227,7 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   // the map on mobile.
   // Marked routes default ON — the waymarked network is how walkable
   // ground stays visible; the Layers panel un-ticks it for a clean map.
-  const overlayStates = { routes: true, lifts: false, fountains: false, huts: false, barsCafes: false, terrain: false };
+  const overlayStates = { routes: true, lifts: true, fountains: false, huts: false, barsCafes: false, terrain: false };
   let dogFilterOn = false;
 
   const layersBtn = document.createElement('button');
