@@ -133,15 +133,15 @@
   function provenanceLabel(trail) {
     const graduation = graduationProgress(trail);
     if (graduation) {
-      const date = formatReviewDate(trail.reviewedAt || (trail.verified && trail.verified.date));
       return graduation.verified
-        ? `DoloPaws route-audited · ${date} · ${graduation.completed}/${graduation.total} checks`
-        : `Verification in progress · ${date} · ${graduation.completed}/${graduation.total} checks`;
+        ? 'DoloPaws route-audited'
+        : 'Verification in progress';
     }
     const progress = reviewProgress(trail);
     if (progress) {
-      const date = formatReviewDate(trail.reviewedAt || trail.verified.date);
-      return `DoloPaws source review · ${date} · ${progress.checked}/${progress.total} checks`;
+      return progress.checked === progress.total
+        ? 'DoloPaws source-reviewed'
+        : 'Partly verified data';
     }
     if (trail && trail.routeAudit && trail.reviewedAt) {
       return `DoloPaws route audit · ${formatReviewDate(trail.reviewedAt)}`;
@@ -249,7 +249,7 @@
   function assessmentNote(trail) {
     const progress = reviewProgress(trail);
     if (progress) {
-      return `<strong style="color: var(--ink);">Source review in progress:</strong> ${progress.checked} of ${progress.total} safety categories have route-specific support. Unchecked categories stay visibly unverified.`;
+      return '<strong style="color: var(--ink);">Partly verified data:</strong> some safety details have route-specific support; others remain unverified.';
     }
     return imported(trail)
       ? '<strong style="color: var(--ink);">Automated estimate from mapped route data:</strong> distance, elevation and mapped surface influence the match. Exposure, shade, livestock and current conditions remain unverified.'

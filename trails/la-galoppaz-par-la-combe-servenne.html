@@ -31,6 +31,8 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-source-details{font-size:.9rem;color:var(--ink-soft,#666);}
+  .sp-source-details summary{cursor:pointer;font-weight:700;color:var(--forest,#2E4034);}
   .sp-cta{display:inline-block;margin:26px 0;padding:12px 22px;background:#2E4034;color:#fff;border-radius:10px;font-weight:600;text-decoration:none;}
   .sp-img{max-width:100%;width:480px;max-height:300px;object-fit:cover;border-radius:12px;margin:6px 0 14px;display:block;}
   .sp-route{max-width:100%;width:640px;display:block;margin:6px 0 14px;}
@@ -137,9 +139,15 @@
     <h2>Good to know</h2>
     <p>This route is an automated interpretation of OpenStreetMap data and has not been field reviewed by DoloPaws. Exposure, shade, livestock, seasonal access and current conditions remain unknown. Verify locally before setting out.</p>
     
+    <h2>Trail data</h2>
+    <p>Route mapped from OpenStreetMap and Waymarked Trails. This trail has not yet been reviewed by DoloPaws. Check local access rules and current conditions before setting out.</p>
+    <details class="sp-source-details"><summary>View data sources</summary>
+
+      <p class="sp-src">Map data: <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a> and Waymarked Trails<br>Weather: Open-Meteo</p>
+    </details>
     <div id="dogFit">
     <h2>Is this trail right for <em>your</em> dog?</h2>
-    <p>The trail rating above describes the mountain, and it's the same for every dog. What it can't tell you is how this route pairs with your dog's build, age, and health. <a href="../account.html?next=trail.html%3Fid%3Dosm-16365005">Create your dog's free profile</a> and DoloPaws evaluates distance, climbing, terrain, exposure, heat, access, and evidence gaps for your dog.</p>
+    <p>The trail rating above describes the mountain, and it's the same for every dog. What it can't tell you is how this route pairs with your dog's build, age, and health. <a href="../account.html?next=trail.html%3Fid%3Dosm-16365005">Create your dog's free profile</a> for a personalised match.</p>
     </div>
     <script>
     (function(){
@@ -153,7 +161,7 @@
         if(p.hasProfile){
           var n = p.name ? esc(p.name) : 'your dog';
           box.innerHTML = '<h2>Is this trail right for <em>' + n + '</em>?</h2>'
-            + '<p>' + n + '’s profile is saved, so this trail is ready to be scored for them. Open the interactive map to see the versioned recommendation, its cautions, and the evidence behind it.</p>'
+            + '<p>' + n + '’s profile is saved. Open the interactive trail guide to see their personalised match and any cautions.</p>'
             + '<p><a href="../trail.html?id=osm-16365005">See ' + n + '’s match for this trail →</a></p>';
         } else {
           box.innerHTML = '<h2>One step left: save your dog’s profile</h2>'
@@ -183,7 +191,6 @@
         <span class="sp-near-meta"><span class="dp-badge dp-badge--low-risk"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>Low-risk</span></span> 7.2 km</span>
       </a>
     </div>
-    <p class="sp-src" style="margin-top:20px;">Route data © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a> (ODbL). The safety rating is an automated estimate, not a field assessment.</p>
   </div>
 </div>
 

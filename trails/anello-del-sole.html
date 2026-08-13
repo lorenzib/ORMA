@@ -31,6 +31,8 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-source-details{font-size:.9rem;color:var(--ink-soft,#666);}
+  .sp-source-details summary{cursor:pointer;font-weight:700;color:var(--forest,#2E4034);}
   .sp-cta{display:inline-block;margin:26px 0;padding:12px 22px;background:#2E4034;color:#fff;border-radius:10px;font-weight:600;text-decoration:none;}
   .sp-img{max-width:100%;width:480px;max-height:300px;object-fit:cover;border-radius:12px;margin:6px 0 14px;display:block;}
   .sp-route{max-width:100%;width:640px;display:block;margin:6px 0 14px;}
@@ -106,7 +108,7 @@
   <h1>Anello del Sole</h1>
   <div class="sp-badges">
     <span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Estimated: Caution</span></span>
-    <span class="dp-badge dp-badge--imported"><span data-dp-icon="imported" data-dp-icon-size="13" aria-hidden="true"></span><span>Verification in progress · 26 Jul 2026 · 8/10 checks</span></span>
+    <span class="dp-badge dp-badge--imported"><span data-dp-icon="imported" data-dp-icon-size="13" aria-hidden="true"></span><span>Verification in progress</span></span>
     
   </div>
   <svg class="sp-route" viewBox="0 0 640 280" role="img" aria-label="Route shape of Anello del Sole" xmlns="http://www.w3.org/2000/svg">
@@ -150,12 +152,15 @@
     <h2>Good to know</h2>
     <p>This route is an automated interpretation of OpenStreetMap data and has not been field reviewed by DoloPaws. Exposure, shade, livestock, seasonal access and current conditions remain unknown. Verify locally before setting out.</p>
     
-    <h2>Review record and sources</h2>
-    <p class="sp-src">Verification in progress: 26 Jul 2026 · DoloPaws route audit · 8/10 graduation checks complete</p>
-    <ul><li><a href="https://www.lozzodicadore.eu/sito/node/183" rel="noopener">Lozzo di Cadore — Anello del Sole</a></li><li><a href="https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-descrizione.pdf" rel="noopener">CAI Lozzo di Cadore — Anelli e Vie route descriptions</a></li><li><a href="https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-carta-25000.pdf" rel="noopener">Lozzo di Cadore — route map</a></li><li><a href="https://hiking.waymarkedtrails.org/#route?id=7548344" rel="noopener">Waymarked Trails — OSM relation 7548344</a></li><li><a href="https://www.openstreetmap.org/relation/7548344" rel="noopener">OpenStreetMap contributors</a></li></ul>
+    <h2>Trail data</h2>
+    <p>DoloPaws verification is in progress. Check current conditions before setting out.</p>
+    <details class="sp-source-details"><summary>View data sources</summary>
+<ul><li><a href="https://www.lozzodicadore.eu/sito/node/183" rel="noopener">Lozzo di Cadore — Anello del Sole</a></li><li><a href="https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-descrizione.pdf" rel="noopener">CAI Lozzo di Cadore — Anelli e Vie route descriptions</a></li><li><a href="https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-carta-25000.pdf" rel="noopener">Lozzo di Cadore — route map</a></li><li><a href="https://hiking.waymarkedtrails.org/#route?id=7548344" rel="noopener">Waymarked Trails — OSM relation 7548344</a></li><li><a href="https://www.openstreetmap.org/relation/7548344" rel="noopener">OpenStreetMap contributors</a></li></ul>
+      <p class="sp-src">Map data: <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a> and Waymarked Trails<br>Weather: Open-Meteo</p>
+    </details>
     <div id="dogFit">
     <h2>Is this trail right for <em>your</em> dog?</h2>
-    <p>The trail rating above describes the mountain, and it's the same for every dog. What it can't tell you is how this route pairs with your dog's build, age, and health. <a href="../account.html?next=trail.html%3Fid%3Dosm-7548344">Create your dog's free profile</a> and DoloPaws evaluates distance, climbing, terrain, exposure, heat, access, and evidence gaps for your dog.</p>
+    <p>The trail rating above describes the mountain, and it's the same for every dog. What it can't tell you is how this route pairs with your dog's build, age, and health. <a href="../account.html?next=trail.html%3Fid%3Dosm-7548344">Create your dog's free profile</a> for a personalised match.</p>
     </div>
     <script>
     (function(){
@@ -169,7 +174,7 @@
         if(p.hasProfile){
           var n = p.name ? esc(p.name) : 'your dog';
           box.innerHTML = '<h2>Is this trail right for <em>' + n + '</em>?</h2>'
-            + '<p>' + n + '’s profile is saved, so this trail is ready to be scored for them. Open the interactive map to see the versioned recommendation, its cautions, and the evidence behind it.</p>'
+            + '<p>' + n + '’s profile is saved. Open the interactive trail guide to see their personalised match and any cautions.</p>'
             + '<p><a href="../trail.html?id=osm-7548344">See ' + n + '’s match for this trail →</a></p>';
         } else {
           box.innerHTML = '<h2>One step left: save your dog’s profile</h2>'
@@ -200,7 +205,6 @@
       </a>
     </div>
     <p>Planning a few days here? Read our area guide: <a href="../guides/dog-friendly-hikes-lago-di-braies.html">Lago di Braies &amp; Tre Cime with a dog</a>.</p>
-    <p class="sp-src" style="margin-top:20px;">Verification is in progress. 8 of 10 graduation checks have evidence; the safety rating remains estimated.</p>
   </div>
 </div>
 

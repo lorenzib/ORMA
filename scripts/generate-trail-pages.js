@@ -290,9 +290,9 @@ function trailPage(t, slug, all) {
   const graduation = graduationProgress(t);
   const progress = reviewProgress(t);
   const reviewLabel = graduation
-    ? `${graduation.verified ? 'DoloPaws route-audited' : 'Verification in progress'} · ${formatReviewDate(t.reviewedAt || (t.verified && t.verified.date))} · ${graduation.completed}/${graduation.total} checks`
+    ? graduation.verified ? 'DoloPaws route-audited' : 'Verification in progress'
     : progress
-    ? `DoloPaws source review · ${formatReviewDate(t.reviewedAt || t.verified.date)} · ${progress.length}/${REVIEW_CATEGORIES.length} checks`
+    ? progress.length === REVIEW_CATEGORIES.length ? 'DoloPaws source-reviewed' : 'Partly verified data'
     : t.routeAudit && t.reviewedAt
       ? `DoloPaws route audit · ${formatReviewDate(t.reviewedAt)}`
       : null;
@@ -374,19 +374,28 @@ function trailPage(t, slug, all) {
           .join('\n    ')}`
       : '';
 
-  const sourceRecord = Array.isArray(t.sourceLinks) && t.sourceLinks.length
-    ? `<h2>Review record and sources</h2>
-    <p class="sp-src">${graduation ? graduation.verified ? 'Last route audit' : 'Verification in progress' : t.routeAudit && !progress ? 'Last route audit' : 'Last desk review'}: ${escapeHtml(formatReviewDate(t.reviewedAt || (t.verified && t.verified.date)))} · ${escapeHtml(t.reviewedBy || 'DoloPaws')} · ${graduation ? `${graduation.completed}/${graduation.total} graduation checks complete` : progress ? `${progress.length}/${REVIEW_CATEGORIES.length} safety checks complete` : t.routeAudit ? 'route line, map points, elevation and photo attribution checked' : 'review status unavailable'}</p>
-    <ul>${t.sourceLinks.map(source => `<li><a href="${escapeHtml(source.url)}" rel="noopener">${escapeHtml(source.label)}</a>${Array.isArray(source.categories) ? ` <span class="sp-src">· supports ${escapeHtml(source.categories.join(', '))}</span>` : ''}</li>`).join('')}</ul>`
-    : '';
-
-  const osmCredit = graduation
-    ? `<p class="sp-src" style="margin-top:20px;">${graduation.verified ? 'This trail passed all route-presentation and dog-safety graduation checks.' : `Verification is in progress. ${graduation.completed} of ${graduation.total} graduation checks have evidence; the safety rating remains estimated.`}</p>`
+  const reviewSummary = graduation
+    ? graduation.verified
+      ? 'This trail has been reviewed by DoloPaws. Check current conditions before setting out.'
+      : 'DoloPaws verification is in progress. Check current conditions before setting out.'
     : progress
-    ? `<p class="sp-src" style="margin-top:20px;">DoloPaws source review is in progress. ${progress.length} of ${REVIEW_CATEGORIES.length} safety categories have route-specific support; unchecked categories remain unverified.</p>`
-    : !verified
-    ? `<p class="sp-src" style="margin-top:20px;">Route data © <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a> (ODbL). The safety rating is an automated estimate, not a field assessment.</p>`
-    : '<p class="sp-src" style="margin-top:20px;">Manually curated by DoloPaws. A dated source record is not yet available; confirm current conditions locally.</p>';
+      ? progress.length === REVIEW_CATEGORIES.length
+        ? 'Trail details have been source-checked by DoloPaws. Check current conditions before setting out.'
+        : 'Some trail details have been checked by DoloPaws. Check current conditions before setting out.'
+      : t.routeAudit && t.reviewedAt
+        ? 'Route details have been reviewed by DoloPaws. Check current conditions before setting out.'
+        : !verified
+          ? 'Route mapped from OpenStreetMap and Waymarked Trails. This trail has not yet been reviewed by DoloPaws. Check local access rules and current conditions before setting out.'
+          : 'Trail information prepared by DoloPaws. Check current conditions before setting out.';
+  const sourceLinks = Array.isArray(t.sourceLinks) && t.sourceLinks.length
+    ? `<ul>${t.sourceLinks.map(source => `<li><a href="${escapeHtml(source.url)}" rel="noopener">${escapeHtml(source.label)}</a></li>`).join('')}</ul>`
+    : '';
+  const sourceRecord = `<h2>Trail data</h2>
+    <p>${escapeHtml(reviewSummary)}</p>
+    <details class="sp-source-details"><summary>View data sources</summary>
+${sourceLinks}
+      <p class="sp-src">Map data: <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a> and Waymarked Trails<br>Weather: Open-Meteo</p>
+    </details>`;
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -447,6 +456,8 @@ function trailPage(t, slug, all) {
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-source-details{font-size:.9rem;color:var(--ink-soft,#666);}
+  .sp-source-details summary{cursor:pointer;font-weight:700;color:var(--forest,#2E4034);}
   .sp-cta{display:inline-block;margin:26px 0;padding:12px 22px;background:#2E4034;color:#fff;border-radius:10px;font-weight:600;text-decoration:none;}
   .sp-img{max-width:100%;width:480px;max-height:300px;object-fit:cover;border-radius:12px;margin:6px 0 14px;display:block;}
   .sp-route{max-width:100%;width:640px;display:block;margin:6px 0 14px;}
@@ -505,9 +516,10 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
     ${rifugiHtml}
     ${tipsHtml}
     ${insightsHtml}
-${sourceRecord ? `    ${sourceRecord}\n` : ''}    <div id="dogFit">
+    ${sourceRecord}
+    <div id="dogFit">
     <h2>Is this trail right for <em>your</em> dog?</h2>
-    <p>The trail rating above describes the mountain, and it's the same for every dog. What it can't tell you is how this route pairs with your dog's build, age, and health. <a href="../account.html?next=trail.html%3Fid%3D${encodeURIComponent(t.id)}">Create your dog's free profile</a> and DoloPaws evaluates distance, climbing, terrain, exposure, heat, access, and evidence gaps for your dog.</p>
+    <p>The trail rating above describes the mountain, and it's the same for every dog. What it can't tell you is how this route pairs with your dog's build, age, and health. <a href="../account.html?next=trail.html%3Fid%3D${encodeURIComponent(t.id)}">Create your dog's free profile</a> for a personalised match.</p>
     </div>
     <script>
     (function(){
@@ -521,7 +533,7 @@ ${sourceRecord ? `    ${sourceRecord}\n` : ''}    <div id="dogFit">
         if(p.hasProfile){
           var n = p.name ? esc(p.name) : 'your dog';
           box.innerHTML = '<h2>Is this trail right for <em>' + n + '</em>?</h2>'
-            + '<p>' + n + '\u2019s profile is saved, so this trail is ready to be scored for them. Open the interactive map to see the versioned recommendation, its cautions, and the evidence behind it.</p>'
+            + '<p>' + n + '\u2019s profile is saved. Open the interactive trail guide to see their personalised match and any cautions.</p>'
             + '<p><a href="../trail.html?id=${encodeURIComponent(t.id)}">See ' + n + '\u2019s match for this trail \u2192</a></p>';
         } else {
           box.innerHTML = '<h2>One step left: save your dog\u2019s profile</h2>'
@@ -533,7 +545,6 @@ ${sourceRecord ? `    ${sourceRecord}\n` : ''}    <div id="dogFit">
     </script>
     <p class="sp-src">Before you go: <a href="../safety-guide.html">the dog safety guide</a> · <a href="../guides/water-for-dogs-on-trail.html">water for dogs on trail</a> · <a href="../guides/dogs-on-cable-cars.html">dogs on cable cars</a> · <a href="../guides/livestock-guard-dogs.html">meeting a guardian dog</a></p>
     ${nearbyHtml}
-    ${osmCredit}
   </div>
 </div>
 

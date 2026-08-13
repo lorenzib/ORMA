@@ -88,29 +88,29 @@
     const progress = trust && trust.reviewProgress ? trust.reviewProgress(t) : null;
     if (graduation) {
       const date = trust.formatReviewDate(t.reviewedAt || (t.verified && t.verified.date));
-      meta.textContent = `${graduation.verified ? 'Last verification review' : 'Verification in progress'}: ${date} · ${graduation.completed}/${graduation.total} graduation checks complete`;
+      meta.textContent = graduation.verified
+        ? `Reviewed by DoloPaws on ${date}. Check current conditions before setting out.`
+        : 'DoloPaws verification is in progress. Check current conditions before setting out.';
     } else if (progress) {
-      const date = trust.formatReviewDate(t.reviewedAt || (t.verified && t.verified.date));
-      meta.textContent = `Last desk review: ${date} · ${t.reviewedBy || 'DoloPaws'} · ${progress.checked}/${progress.total} safety checks complete`;
+      meta.textContent = progress.checked === progress.total
+        ? 'Trail details have been source-checked by DoloPaws. Check current conditions before setting out.'
+        : 'Some trail details have been checked by DoloPaws. Check current conditions before setting out.';
     } else if (t.routeAudit && t.reviewedAt) {
       const date = trust ? trust.formatReviewDate(t.reviewedAt) : t.reviewedAt;
-      meta.textContent = `Last route audit: ${date} · route line, map points, elevation and photo attribution checked`;
+      meta.textContent = `Route details reviewed by DoloPaws on ${date}. Check current conditions before setting out.`;
     } else {
       meta.textContent = t.curated === false
-        ? 'No route-specific DoloPaws source review is recorded yet.'
-        : 'A dated route-specific source review is not yet available.';
+        ? 'Route mapped from OpenStreetMap and Waymarked Trails. This trail has not yet been reviewed by DoloPaws. Check local access rules and current conditions before setting out.'
+        : 'Trail information prepared by DoloPaws. Check current conditions before setting out.';
     }
     const sources = Array.isArray(t.sourceLinks) ? t.sourceLinks : [];
     if (!sources.length) {
-      links.innerHTML = '<p class="trail-sources">General data: Waymarked Trails · OpenStreetMap · Open-Meteo</p>';
+      links.innerHTML = '<p class="trail-sources">Route map: OpenStreetMap and Waymarked Trails<br>Weather: Open-Meteo</p>';
       return;
     }
-    links.innerHTML = '<p class="trail-source-heading">Route-specific sources</p><ul>' + sources.map(source => {
-      const support = Array.isArray(source.categories) && source.categories.length
-        ? ` <small>Supports: ${source.categories.map(category => category.replace(/([A-Z])/g, ' $1').toLowerCase()).join(', ')}</small>`
-        : '';
-      return `<li><a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.label)}</a>${support}</li>`;
-    }).join('') + '</ul>';
+    links.innerHTML = '<p class="trail-source-heading">Sources used for this trail</p><ul>' + sources.map(source =>
+      `<li><a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.label)}</a></li>`
+    ).join('') + '</ul><p class="trail-sources">Route map: OpenStreetMap and Waymarked Trails<br>Weather: Open-Meteo</p>';
   })();
 
   /* ---- Answer strip ---------------------------------------------- */

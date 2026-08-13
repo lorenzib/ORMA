@@ -63,7 +63,7 @@ describe('trail data trust states', () => {
       reviewedAt:'2026-07-17', verified:{ categories:['exposure','surfaceHazards'], date:'2026-07-17' },
       waterSources:[{ km:2, label:'Stream' }], shadeCoverage:40, heatRisk:'moderate',
     };
-    expect(trust.provenanceLabel(partial)).toBe('DoloPaws source review · 17 Jul 2026 · 2/6 checks');
+    expect(trust.provenanceLabel(partial)).toBe('Partly verified data');
     expect(trust.riskLabel(partial, 'Caution')).toBe('Estimated: Caution');
     expect(trust.reviewProgress(partial).checked).toBe(2);
     expect(trust.waterAssessment(partial).title).toBe('Water availability unverified');
@@ -103,7 +103,7 @@ describe('trail data trust states', () => {
         blockers:{water:'unknown',exposure:'unknown',livestock:'unknown',surfaceHazards:'unknown'},
       },
     };
-    expect(trust.provenanceLabel(graduating)).toBe('Verification in progress · 17 Jul 2026 · 6/10 checks');
+    expect(trust.provenanceLabel(graduating)).toBe('Verification in progress');
     expect(trust.graduationProgress(graduating).verified).toBe(false);
     expect(trust.riskLabel(graduating, 'Moderate terrain')).toBe('Estimated: Moderate terrain');
   });
@@ -120,7 +120,7 @@ describe('trail data trust states', () => {
         completed:['photo','route'],
       },
     };
-    expect(trust.provenanceLabel(audited)).toBe('DoloPaws route-audited · 26 Jul 2026 · 2/2 checks');
+    expect(trust.provenanceLabel(audited)).toBe('DoloPaws route-audited');
   });
 
   test('partial source reviews also cap match confidence at 80 percent', () => {
@@ -194,6 +194,7 @@ describe('trail data trust states', () => {
     expect(importedPage).toContain('Estimated:');
     expect(importedPage).not.toContain('verified map data');
     expect(reviewedPage).toContain('DoloPaws route-audited');
-    expect(reviewedPage).toContain('A dated source record is not yet available');
+    expect(reviewedPage).toContain('Trail information prepared by DoloPaws');
+    expect(reviewedPage).toContain('View data sources');
   });
 });

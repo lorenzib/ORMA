@@ -22,23 +22,21 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(controller).toContain('view.conclusion');
     expect(controller).toContain('view.reasons');
     expect(controller).toContain('view.cautions');
-    expect(controller).toContain('view.trailUnknownCount');
     expect(controller).toContain('view.dogGapFields');
     // Unknowns are LISTED only in the evidence/conditions card; the card
     // face carries a data-completeness chip and an actionable dog-gap CTA,
-    // while the audit line (version + trail gaps) lives in the evidence
-    // disclosure.
+    // while source detail lives in the evidence disclosure.
     expect(controller).not.toContain('<details class="recommendation-unknowns"');
     expect(controller).toContain('view.confidenceLabel');
     expect(controller).toContain('recommendation-gaps');
-    expect(controller).toContain('recommendationEvidenceMeta');
+    expect(controller).not.toContain('recommendationEvidenceMeta');
     expect(controller).toContain('hero.textContent = view.heroSummary');
     expect(controller).not.toContain('trail.safetyLevel');
   });
 
   test('evidence and the three distinct actions are reachable', () => {
     expect(html).toContain('id="trailEvidence"');
-    expect(controller).toContain("tr('recommendation.evidence', 'Sources & review status ↓')");
+    expect(controller).toContain("tr('recommendation.evidence', 'About this trail data ↓')");
     expect(controller).toContain('data-recommendation-save');
     expect(controller).toContain('data-recommendation-compare');
     expect(controller).toContain('data-recommendation-download');
@@ -48,7 +46,7 @@ describe('UX-04 canonical recommendation journey', () => {
   test('generated pages defer personalized conclusions to the interactive contract', () => {
     expect(generator).toContain('data-scoring-version="${recommendationContract.VERSION}"');
     expect(generator).toContain(
-      'Open the interactive map to see the versioned recommendation, its cautions, and the evidence behind it.'
+      'Open the interactive trail guide to see their personalised match and any cautions.'
     );
     expect(generator).not.toContain('recommendationContract.calculateRecommendation');
   });
@@ -97,11 +95,9 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(block.textContent).not.toContain('canonical scoring');
     // Unpersonalized view: the fixable gap is the missing dog itself.
     expect(block.textContent).toContain('Add your dog to sharpen this score');
-    // The audit line moved into the evidence footnote; the scoring version
-    // stays out of the copy (machine-readable on the dataset only).
-    const evidenceMeta = document.getElementById('recommendationEvidenceMeta');
-    expect(evidenceMeta.textContent).not.toContain('Canonical scoring');
-    expect(evidenceMeta.textContent).toContain('1 trail fact not yet verified');
+    // Internal unknown-count and scoring language stay out of customer copy.
+    expect(document.body.textContent).not.toContain('trail fact not yet verified');
+    expect(document.body.textContent).not.toContain('Canonical scoring');
     expect(block.textContent).not.toContain('Access is not reviewed.');
     expect(document.getElementById('heroVerdict').textContent)
       .toBe('Possible with cautions in an unpersonalized planning view.');

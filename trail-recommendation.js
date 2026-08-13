@@ -89,7 +89,7 @@
           `<h2>${esc(view.conclusion)} ${score} ${chip}</h2>` +
           gapCta +
         '</div>' +
-        `<a class="recommendation-evidence-link" href="#trailEvidence">${esc(tr('recommendation.evidence', 'Sources & review status ↓'))}</a>` +
+        `<a class="recommendation-evidence-link" href="#trailEvidence">${esc(tr('recommendation.evidence', 'About this trail data ↓'))}</a>` +
       '</div>' +
       '<div class="recommendation-columns">' +
         `<section><h3>${esc(tr('recommendation.reasons.title', 'Why it may fit'))}</h3>` +
@@ -105,7 +105,6 @@
     root.hidden = false;
 
     renderGuideLinks(recommendation);
-    renderEvidenceMeta(view);
     const hero = document.getElementById('heroVerdict');
     if(hero) hero.textContent = view.heroSummary;
     wireActions(root, trail);
@@ -121,31 +120,6 @@
       first:labels.slice(0, -1).join(', '),
       last:labels[labels.length - 1],
     });
-  }
-
-  // The audit line — scoring version and how much trail data is still
-  // unverified — belongs with the sources, where its reader looks for it.
-  function renderEvidenceMeta(view){
-    const evidence = document.getElementById('trailEvidence');
-    if(!evidence) return;
-    let meta = document.getElementById('recommendationEvidenceMeta');
-    if(!meta){
-      meta = document.createElement('p');
-      meta.id = 'recommendationEvidenceMeta';
-      meta.className = 'trail-evidence-scoring';
-      evidence.appendChild(meta);
-    }
-    // The scoring version stays machine-readable on the card's dataset;
-    // spelling it out here read as jargon.
-    meta.textContent = view.trailUnknownCount > 0
-      ? tr(
-        view.trailUnknownCount === 1 ? 'recommendation.evidence.gaps.one' : 'recommendation.evidence.gaps.many',
-        view.trailUnknownCount === 1
-          ? '{count} trail fact not yet verified.'
-          : '{count} trail facts not yet verified.',
-        { count:view.trailUnknownCount }
-      )
-      : tr('recommendation.evidence.complete', 'All trail facts recorded.');
   }
 
   function wireActions(root, trail){
