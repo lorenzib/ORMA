@@ -371,9 +371,10 @@ function publicLiftNote(note){
     .trim());
 }
 
-function renderAllLifts(map){
+function renderAllLifts(map, options){
   if (typeof gondolas === 'undefined' || !Array.isArray(gondolas) || !gondolas.length) return;
   if (map.getSource('detail-gondolas')) return;
+  const visibility = options && options.visible ? 'visible' : 'none';
 
   const lineFeatures = [], stationFeatures = [];
   gondolas.forEach(g => {
@@ -397,7 +398,7 @@ function renderAllLifts(map){
     id: 'detail-gondolas-line',
     type: 'line',
     source: 'detail-gondolas',
-    layout: { 'line-join': 'round', 'line-cap': 'round' },
+    layout: { 'line-join': 'round', 'line-cap': 'round', visibility },
     paint: {
       'line-color': ['match', ['get', 'status'], 'summer', '#4E90A8', 'no-summer', '#9C3A25', '#5A5548'],
       'line-width': 1.5,
@@ -414,6 +415,7 @@ function renderAllLifts(map){
       layout: {
         'icon-image': window.DoloPawsIcons.getMapImageName('lifts'),
         'icon-size': 1,
+        visibility,
       },
     });
   } else {
@@ -421,6 +423,7 @@ function renderAllLifts(map){
       id: 'detail-gondola-stations-layer',
       type: 'circle',
       source: 'detail-gondola-stations',
+      layout: { visibility },
       paint: { 'circle-radius': 5, 'circle-color': '#4E90A8', 'circle-stroke-width': 1.5, 'circle-stroke-color': '#fff' },
     });
   }
@@ -1308,6 +1311,7 @@ function renderTrail(t){
 
     map.on('load', async () => {
       let poiVisible = true;           // "Points of interest" toggle state
+      let liftsVisible = false;        // Lifts are optional planning context
       const amenityMarkers = [];       // curated rifugi/water Markers (toggled with POIs)
       if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(map);
       addTerrainSource(map);
@@ -1315,7 +1319,7 @@ function renderTrail(t){
       addTerrainToggle(map, 'trailDetailMap', 1.5, 45,
         document.querySelector('#tdLayerSwitch [data-map3d]'));
       const loadSecondaryPois = () => {
-        renderAllLifts(map);
+        renderAllLifts(map, { visible: liftsVisible });
         if (typeof initDetailPois === 'function') initDetailPois(map, t);
       };
       if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.onIdle(loadSecondaryPois, 4500);
@@ -1355,6 +1359,26 @@ function renderTrail(t){
       map.on('sourcedata', (e) => {
         if (e.sourceId && POI_SOURCES.includes(e.sourceId) && e.isSourceLoaded) applyPoiVisibility();
       });
+
+      // ---- Lifts toggle -------------------------------------------------
+      // Lift lines and stations start hidden, then remain available as an
+      // explicit planning layer. The state also applies if the deferred lift
+      // data finishes loading after the customer has pressed the control.
+      function applyLiftVisibility(){
+        const visibility = liftsVisible ? 'visible' : 'none';
+        ['detail-gondolas-line', 'detail-gondola-stations-layer'].forEach(id => {
+          if(map.getLayer(id)) map.setLayoutProperty(id, 'visibility', visibility);
+        });
+      }
+      const liftsToggleBtn = document.getElementById('liftsToggle');
+      if(liftsToggleBtn){
+        liftsToggleBtn.addEventListener('click', () => {
+          liftsVisible = !liftsVisible;
+          liftsToggleBtn.classList.toggle('on', liftsVisible);
+          liftsToggleBtn.setAttribute('aria-pressed', liftsVisible ? 'true' : 'false');
+          applyLiftVisibility();
+        });
+      }
 
 
       // Waymarked Trails' own public hiking overlay — same underlying OSM

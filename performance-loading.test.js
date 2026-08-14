@@ -22,8 +22,8 @@ describe('PERF-02 asset and regional loading contract', () => {
     const detail = read('trail.js');
     expect(homepage).toContain('function scheduleGuestMap()');
     expect(homepage).toContain('function scheduleTrailMap()');
-    expect(homepage).toContain("renderGondolas(guestMapInstance, 'guest-gondolas', { visible: true })");
-    expect(homepage).toContain('const overlayStates = { routes: true, lifts: true');
+    expect(homepage).toContain("renderGondolas(guestMapInstance, 'guest-gondolas', { visible: false })");
+    expect(homepage).toContain('const overlayStates = { routes: true, lifts: false');
     expect(homepage).toContain('onIdle(loadSecondaryMapData, 5000)');
     expect(homepage.indexOf("renderGondolas(trailMapInstance, 'trailmap-gondolas')"))
       .toBeGreaterThan(homepage.indexOf('const loadSecondaryMapData = () =>'));
@@ -35,7 +35,8 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(detail).toContain('function publicLiftNote(note)');
     expect(detail).not.toContain("p.label ? '<br>' + p.label");
     expect(detail).toContain('onIdle(loadSecondaryPois, 4500)');
-    expect(detail.indexOf('renderAllLifts(map);'))
+    expect(detail).toContain("const liftsToggleBtn = document.getElementById('liftsToggle')");
+    expect(detail.indexOf('renderAllLifts(map, { visible: liftsVisible });'))
       .toBeGreaterThan(detail.indexOf('const loadSecondaryPois = () =>'));
   });
 

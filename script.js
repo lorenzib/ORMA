@@ -227,7 +227,7 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   // the map on mobile.
   // Marked routes default ON — the waymarked network is how walkable
   // ground stays visible; the Layers panel un-ticks it for a clean map.
-  const overlayStates = { routes: true, lifts: true, fountains: false, huts: false, barsCafes: false, terrain: false };
+  const overlayStates = { routes: true, lifts: false, fountains: false, huts: false, barsCafes: false, terrain: false };
   let dogFilterOn = false;
 
   const layersBtn = document.createElement('button');
@@ -583,9 +583,25 @@ function initGuestMap(){
     preventTransitPoiDuplication(guestMapInstance);
     addTerrainToggle(guestMapInstance, 'guestPreviewMap', 1.3, 0);
     if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(guestMapInstance);
-    // The public preview has no Layers panel, so lifts and their upper/lower
-    // stations need to be visible as soon as the map loads.
-    renderGondolas(guestMapInstance, 'guest-gondolas', { visible: true });
+    // Lifts are useful planning context, but they should not dominate the
+    // first map view. Keep them opt-in on the public preview too.
+    const guestLiftMarkers = renderGondolas(guestMapInstance, 'guest-gondolas', { visible: false });
+    const guestLiftToggle = document.createElement('button');
+    guestLiftToggle.type = 'button';
+    guestLiftToggle.className = 'map-btn guest-lifts-toggle';
+    guestLiftToggle.textContent = t('chips.lifts');
+    guestLiftToggle.setAttribute('aria-pressed', 'false');
+    guestLiftToggle.style.left = '10px';
+    guestLiftToggle.addEventListener('click', () => {
+      const showing = guestLiftToggle.getAttribute('aria-pressed') !== 'true';
+      guestLiftToggle.setAttribute('aria-pressed', showing ? 'true' : 'false');
+      guestLiftToggle.classList.toggle('on', showing);
+      ['guest-gondolas-line', 'guest-gondolas-labels'].forEach(id => {
+        if(guestMapInstance.getLayer(id)) guestMapInstance.setLayoutProperty(id, 'visibility', showing ? 'visible' : 'none');
+      });
+      guestLiftMarkers.forEach(el => { el.style.visibility = showing ? 'visible' : 'hidden'; });
+    });
+    if(guestMapEl) guestMapEl.appendChild(guestLiftToggle);
     if (typeof makeBasemapPoisClickable === 'function') makeBasemapPoisClickable(guestMapInstance);
     // Real route lines for any trail that has one — same data the logged-in map uses.
     const pathFeatures = trails
