@@ -29,7 +29,11 @@ describe('PERF-02 asset and regional loading contract', () => {
       .toBeGreaterThan(homepage.indexOf('const loadSecondaryMapData = () =>'));
     expect(homepage).toContain("overlayControls.sync('lifts')");
     expect(homepage).toContain("lifts:    ['trailmap-gondolas-line', 'trailmap-gondolas-labels']");
+    expect(homepage).toContain('function publicLiftNote(note)');
+    expect(homepage).not.toContain('<br>${station.label}');
     expect(detail).toContain('whenVisible(detailMapTarget, initDetailMap');
+    expect(detail).toContain('function publicLiftNote(note)');
+    expect(detail).not.toContain("p.label ? '<br>' + p.label");
     expect(detail).toContain('onIdle(loadSecondaryPois, 4500)');
     expect(detail.indexOf('renderAllLifts(map);'))
       .toBeGreaterThan(detail.indexOf('const loadSecondaryPois = () =>'));

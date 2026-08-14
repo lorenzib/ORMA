@@ -359,6 +359,18 @@ function addBaseHillshade(map, beforeId){
 // (the global `gondolas` array from trails-data.js). Lines and stations are
 // GeoJSON layers rather than DOM markers, so rendering all ~700 lifts and
 // ~1,400 stations costs nothing.
+function escapeLiftPopupText(value){
+  return String(value == null ? '' : value).replace(/[&<>"']/g,
+    char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[char]);
+}
+
+function publicLiftNote(note){
+  return escapeLiftPopupText(String(note || '')
+    .replace(/Operating season not recorded\s*[—-]\s*check directly with the operator before planning around it\.\s*/gi, '')
+    .replace(/Station order \(from\/to\) reflects raw OSM way direction, NOT independently verified against elevation\s*-\s*treat the endpoint labels as unconfirmed for this batch\.\s*/gi, '')
+    .trim());
+}
+
 function renderAllLifts(map){
   if (typeof gondolas === 'undefined' || !Array.isArray(gondolas) || !gondolas.length) return;
   if (map.getSource('detail-gondolas')) return;
@@ -374,7 +386,7 @@ function renderAllLifts(map){
     [g.from, g.to].forEach(st => {
       stationFeatures.push({
         type: 'Feature',
-        properties: { name: g.name, label: st.label || '', note: g.note || '' },
+        properties: { name: g.name, note: g.note || '' },
         geometry: { type: 'Point', coordinates: [st.lng, st.lat] },
       });
     });
@@ -418,9 +430,10 @@ function renderAllLifts(map){
     map.on('mouseleave', id, () => { map.getCanvas().style.cursor = ''; });
     map.on('click', id, (e) => {
       const p = e.features[0].properties;
+      const note = publicLiftNote(p.note);
       new maplibregl.Popup({ offset: 10 })
         .setLngLat(e.lngLat)
-        .setHTML(`<b>🚡 ${p.name}</b>${p.label ? '<br>' + p.label : ''}${p.note ? '<br>' + p.note : ''}`)
+        .setHTML(`<b>🚡 ${escapeLiftPopupText(p.name)}</b>${note ? '<br>' + note : ''}`)
         .addTo(map);
     });
   });

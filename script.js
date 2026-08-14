@@ -428,6 +428,18 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   return Object.freeze({ sync:applyVisibility });
 }
 
+function escapeLiftPopupText(value){
+  return String(value == null ? '' : value).replace(/[&<>"']/g,
+    char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[char]);
+}
+
+function publicLiftNote(note){
+  return escapeLiftPopupText(String(note || '')
+    .replace(/Operating season not recorded\s*[—-]\s*check directly with the operator before planning around it\.\s*/gi, '')
+    .replace(/Station order \(from\/to\) reflects raw OSM way direction, NOT independently verified against elevation\s*-\s*treat the endpoint labels as unconfirmed for this batch\.\s*/gi, '')
+    .trim());
+}
+
 function renderGondolas(map, sourceId, options){
   if(typeof gondolas === 'undefined' || !gondolas.length) return null;
   const visible = !!(options && options.visible);
@@ -483,14 +495,16 @@ function renderGondolas(map, sourceId, options){
 
   map.on('click', sourceId + '-line', (e) => {
     const p = e.features[0].properties;
+    const note = publicLiftNote(p.note);
     new maplibregl.Popup({ offset: 10 }).setLngLat(e.lngLat)
-      .setHTML(`<b>${p.name}</b><br>${p.note}`).addTo(map);
+      .setHTML(`<b>${escapeLiftPopupText(p.name)}</b>${note ? '<br>' + note : ''}`).addTo(map);
   });
   map.on('mouseenter', sourceId + '-line', () => map.getCanvas().style.cursor = 'pointer');
   map.on('mouseleave', sourceId + '-line', () => map.getCanvas().style.cursor = '');
 
   const allLiftMarkers = [];
   gondolas.forEach(g => {
+    const popupNote = publicLiftNote(g.note);
     [g.from, g.to].forEach(station => {
       const el = window.DoloPawsIcons
         ? window.DoloPawsIcons.createMarkerElement('lifts', { color: '#4E90A8' })
@@ -498,7 +512,8 @@ function renderGondolas(map, sourceId, options){
       el.style.visibility = visible ? 'visible' : 'hidden';
       const marker = new maplibregl.Marker({ element: el })
         .setLngLat([station.lng, station.lat])
-        .setPopup(new maplibregl.Popup({ offset: 14 }).setHTML(`<b>${g.name}</b><br>${station.label}<br>${g.note}`))
+        .setPopup(new maplibregl.Popup({ offset: 14 }).setHTML(
+          `<b>${escapeLiftPopupText(g.name)}</b>${popupNote ? '<br>' + popupNote : ''}`))
         .addTo(map);
       allLiftMarkers.push(el);
     });
