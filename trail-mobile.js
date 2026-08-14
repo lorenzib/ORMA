@@ -34,12 +34,12 @@
 
   function dogAvatarHtml(){
     var s = profileSummary();
-    var name = (s && s.name) ? String(s.name) : '';
-    var photo = null;
-    try {
-      var v = localStorage.getItem('dolopaws-dog-photo');
-      if(typeof v === 'string' && v.indexOf('data:image/') === 0) photo = v;
-    } catch(e){}
+    var active = s && Array.isArray(s.dogs)
+      ? (s.dogs.find(function(dog){ return dog.id === s.activeDogId; }) || s.dogs[0])
+      : null;
+    var name = active && active.name ? String(active.name) : (s && s.name ? String(s.name) : '');
+    var photo = active && typeof active.photo === 'string' && active.photo.indexOf('data:image/') === 0
+      ? active.photo : null;
     if(photo) return '<span class="av" style="background-image:url(' + photo + ')" aria-hidden="true"></span>';
     return '<span class="av" aria-hidden="true">' + (name ? name.charAt(0).toUpperCase() : '🐾') + '</span>';
   }

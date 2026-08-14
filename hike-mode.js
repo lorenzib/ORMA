@@ -793,15 +793,15 @@ function initHikeMode(map, trail){
     return h > 0 ? `${h}:${mm}:${ss}` : `${mm}:${ss}`;
   }
   function dogSummary(){
-    let name = '';
+    let name = '', photo = null;
     try {
       const raw = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null');
-      if (raw && raw.name) name = String(raw.name);
-    } catch (e) {}
-    let photo = null;
-    try {
-      const v = localStorage.getItem('dolopaws-dog-photo');
-      if (typeof v === 'string' && v.startsWith('data:image/')) photo = v;
+      const active = raw && Array.isArray(raw.dogs)
+        ? raw.dogs.find(dog => dog.id === raw.activeDogId) || raw.dogs[0]
+        : null;
+      if (active && active.name) name = String(active.name);
+      else if (raw && raw.name) name = String(raw.name);
+      if (active && typeof active.photo === 'string' && active.photo.startsWith('data:image/')) photo = active.photo;
     } catch (e) {}
     return { name, photo };
   }

@@ -20,7 +20,7 @@ import {
   getFirestore, doc, getDoc, setDoc, deleteDoc,
   collection, addDoc, serverTimestamp, query, where, Timestamp,
   getCountFromServer, getDocs, updateDoc, writeBatch, increment,
-  orderBy, limit
+  orderBy, limit, runTransaction
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 const app = initializeApp(firebaseConfig);
@@ -32,6 +32,7 @@ googleProvider.setCustomParameters({ prompt: 'select_account' });
 let currentUser = null;
 let authResolved = false;
 const changeListeners = [];
+let profileSummarySyncVersion = 0;
 
 onAuthStateChanged(auth, (user) => {
   currentUser = user;
@@ -47,6 +48,7 @@ onAuthStateChanged(auth, (user) => {
 // offer the same switcher even when they do not load Firebase themselves.
 // Cleared on logout.
 async function syncProfileSummary(user) {
+  const syncVersion = ++profileSummarySyncVersion;
   try {
     if (!user) { localStorage.removeItem('dolopaws-profile-summary'); return; }
     const dogState = await getDogProfiles();
@@ -57,6 +59,9 @@ async function syncProfileSummary(user) {
     try { saved = Object.keys((await getFavorites()) || {}).length; } catch (e) {}
     let moderator = false;
     try { moderator = (await getIdTokenResult(user)).claims.moderator === true; } catch (e) {}
+    // A slower request started before a profile/photo save must never replace
+    // the newer cache when it eventually finishes.
+    if (syncVersion !== profileSummarySyncVersion || !currentUser || currentUser.uid !== user.uid) return;
     localStorage.setItem('dolopaws-profile-summary', JSON.stringify({
       uid: user.uid,
       hasProfile: !!dog,
@@ -116,7 +121,7 @@ function sanitizedDogProfile(dog, index) {
   const clean = {};
   const stringFields = {
     name:40, breed:100, dob:10, ageBand:10, weightBand:10,
-    size:20, neuter:20, coat:20, healthNotes:1000,
+    size:20, neuter:20, coat:20, healthNotes:1000, photoId:80,
   };
   Object.entries(stringFields).forEach(([field, maximum]) => {
     if (source[field] == null) {
@@ -160,10 +165,46 @@ function sanitizedDogProfile(dog, index) {
   return clean;
 }
 
+// Older builds could copy one unlabelled photo into several dog profiles.
+// New uploads carry a unique photoId, so the same image is allowed only when
+// it was deliberately uploaded for each dog. For legacy duplicates, retain
+// the first stable owner and clear the accidental copies.
+function reconcileLegacyDogPhotos(dogs) {
+  const groups = new Map();
+  dogs.forEach((dog, index) => {
+    if (!dog.photo) return;
+    const group = groups.get(dog.photo) || [];
+    group.push({ dog, index });
+    groups.set(dog.photo, group);
+  });
+  groups.forEach(group => {
+    if (group.length < 2) return;
+    const marked = group.filter(item => item.dog.photoId);
+    const keptPhotoIds = new Set();
+    group.forEach((item, groupIndex) => {
+      const marker = item.dog.photoId;
+      const keep = marked.length
+        ? !!marker && !keptPhotoIds.has(marker)
+        : groupIndex === 0;
+      if (keep && marker) keptPhotoIds.add(marker);
+      if (!keep) {
+        item.dog.photo = null;
+        delete item.dog.photoId;
+      }
+    });
+  });
+  return dogs;
+}
+
+function newDogPhotoId(id) {
+  const random = Math.random().toString(36).slice(2, 10);
+  return `photo-${String(id || 'dog').slice(0, 40)}-${Date.now().toString(36)}-${random}`.slice(0, 80);
+}
+
 function normalizedDogState(data) {
   let dogs = Array.isArray(data && data.dogs) ? data.dogs.filter(Boolean) : [];
   if (!dogs.length && data && data.dog) dogs = [data.dog];
-  dogs = dogs.slice(0, 5).map(sanitizedDogProfile);
+  dogs = reconcileLegacyDogPhotos(dogs.slice(0, 5).map(sanitizedDogProfile));
   const requested = data && data.activeDogId;
   const activeDogId = dogs.some(dog => dog.id === requested)
     ? requested : dogs[0] && dogs[0].id || null;
@@ -187,50 +228,83 @@ async function getDogProfile() {
   return state.dogs.find(dog => dog.id === state.activeDogId) || state.dogs[0] || null;
 }
 
-async function writeDogState(state) {
-  if (!currentUser) return false;
+function dogStatePayload(state, existing) {
+  existing = existing && typeof existing === 'object' ? existing : {};
   const dogs = state.dogs.slice(0, 5).map(sanitizedDogProfile);
   const active = dogs.find(dog => dog.id === state.activeDogId) || dogs[0] || null;
-  const userRef = doc(db, "users", currentUser.uid);
-  const existingSnap = await getDoc(userRef);
-  const existing = existingSnap.exists() ? existingSnap.data() : {};
-  const payload = {
-    dogs,
-    activeDogId:active ? active.id : null,
-    // Compatibility mirror for pages deployed before multi-dog support.
-    dog:active,
-  };
-  // Rebuild the private document from the current allow-list instead of
-  // merging. Firestore validates the complete post-write document, so one
-  // malformed legacy value in an unchanged field would otherwise block the
-  // multi-dog migration forever.
+  const payload = { dogs, activeDogId:active ? active.id : null, dog:active };
   if (existing.favorites && typeof existing.favorites === 'object' && !Array.isArray(existing.favorites)) {
     payload.favorites = Object.fromEntries(Object.entries(existing.favorites).slice(0, 250));
   }
   if (Array.isArray(existing.lastMatches)) payload.lastMatches = existing.lastMatches.slice(0, 250);
+  if (Array.isArray(existing.notifSeen)) payload.notifSeen = existing.notifSeen.slice(-300);
+  if (existing.notifSeenAt instanceof Timestamp) payload.notifSeenAt = existing.notifSeenAt;
   if (existing.createdAt instanceof Timestamp) payload.createdAt = existing.createdAt;
   if (existing.updatedAt instanceof Timestamp) payload.updatedAt = existing.updatedAt;
-  await setDoc(userRef, payload);
+  return { payload, dogs, active };
+}
+
+// Every dog mutation is transactional. Photo uploads, profile switches and
+// edits can therefore finish in any order without one stale full-document
+// write erasing another dog's newer photo.
+async function mutateDogState(mutator) {
+  if (!currentUser) return false;
+  const userRef = doc(db, "users", currentUser.uid);
+  let committed = null;
+  await runTransaction(db, async transaction => {
+    const snapshot = await transaction.get(userRef);
+    const existing = snapshot.exists() ? snapshot.data() : {};
+    const current = normalizedDogState(existing);
+    const next = mutator(current);
+    if (!next) return;
+    committed = dogStatePayload(next, existing);
+    transaction.set(userRef, committed.payload);
+  });
+  if (!committed) return false;
   await syncProfileSummary(currentUser);
   window.dispatchEvent(new CustomEvent('dolopaws-dog-profile-saved', {
-    detail:{ profile:active, dogs, activeDogId:payload.activeDogId }
+    detail:{ profile:committed.active, dogs:committed.dogs, activeDogId:committed.payload.activeDogId }
   }));
   return true;
 }
 
-async function setDogProfile(dogObj) {
+async function setDogProfile(dogObj, targetDogId) {
   if (!currentUser) return false;
   try {
-    const state = await getDogProfiles();
     if (!dogObj) {
-      const dogs = state.dogs.filter(dog => dog.id !== state.activeDogId);
-      return await writeDogState({ dogs, activeDogId:dogs[0] && dogs[0].id || null });
+      return await mutateDogState(state => {
+        const dogs = state.dogs.filter(dog => dog.id !== state.activeDogId);
+        return { dogs, activeDogId:dogs[0] && dogs[0].id || null };
+      });
     }
-    const index = state.dogs.findIndex(dog => dog.id === state.activeDogId);
-    if (index < 0) return await addDogProfile(dogObj);
-    const dogs = state.dogs.slice();
-    dogs[index] = { ...dogs[index], ...dogObj, id:dogs[index].id };
-    return await writeDogState({ dogs, activeDogId:dogs[index].id });
+    return await mutateDogState(state => {
+      const requestedId = typeof targetDogId === 'string' ? targetDogId : state.activeDogId;
+      const index = state.dogs.findIndex(dog => dog.id === requestedId);
+      if (index < 0) {
+        if (typeof targetDogId === 'string') return null;
+        if (state.dogs.length >= 5) return null;
+        const occupied = new Set(state.dogs.map(dog => dog.id));
+        let id = dogId(dogObj, state.dogs.length), suffix = 2;
+        while (occupied.has(id)) id = `${dogId(dogObj, state.dogs.length).slice(0, 70)}-${suffix++}`;
+        const dog = { ...dogObj, id };
+        if (typeof dog.photo === 'string' && dog.photo.startsWith('data:image/')) dog.photoId = newDogPhotoId(id);
+        return { dogs:state.dogs.concat(dog), activeDogId:id };
+      }
+      const dogs = state.dogs.slice();
+      const existingDog = dogs[index];
+      const nextDog = { ...existingDog, ...dogObj, id:existingDog.id };
+      if (Object.prototype.hasOwnProperty.call(dogObj, 'photo')) {
+        if (typeof dogObj.photo === 'string' && dogObj.photo.startsWith('data:image/')) {
+          if (dogObj.photo !== existingDog.photo || !existingDog.photoId) {
+            nextDog.photoId = newDogPhotoId(existingDog.id);
+          }
+        } else {
+          delete nextDog.photoId;
+        }
+      }
+      dogs[index] = nextDog;
+      return { dogs, activeDogId:dogs[index].id };
+    });
   } catch (e) {
     console.error("Failed to save dog profile:", e);
     return false;
@@ -240,14 +314,15 @@ async function setDogProfile(dogObj) {
 async function addDogProfile(dogObj) {
   if (!currentUser) return false;
   try {
-    const state = await getDogProfiles();
-    if (state.dogs.length >= 5) return false;
-    const occupied = new Set(state.dogs.map(dog => dog.id));
-    let id = dogId(dogObj, state.dogs.length);
-    let suffix = 2;
-    while (occupied.has(id)) id = `${dogId(dogObj, state.dogs.length).slice(0, 70)}-${suffix++}`;
-    const dog = { ...dogObj, id };
-    return await writeDogState({ dogs:state.dogs.concat(dog), activeDogId:id });
+    return await mutateDogState(state => {
+      if (state.dogs.length >= 5) return null;
+      const occupied = new Set(state.dogs.map(dog => dog.id));
+      let id = dogId(dogObj, state.dogs.length), suffix = 2;
+      while (occupied.has(id)) id = `${dogId(dogObj, state.dogs.length).slice(0, 70)}-${suffix++}`;
+      const dog = { ...dogObj, id };
+      if (typeof dog.photo === 'string' && dog.photo.startsWith('data:image/') && !dog.photoId) dog.photoId = newDogPhotoId(id);
+      return { dogs:state.dogs.concat(dog), activeDogId:id };
+    });
   } catch (e) {
     console.error("Failed to add dog profile:", e);
     return false;
@@ -257,9 +332,8 @@ async function addDogProfile(dogObj) {
 async function selectDogProfile(id) {
   if (!currentUser) return false;
   try {
-    const state = await getDogProfiles();
-    if (!state.dogs.some(dog => dog.id === id)) return false;
-    return await writeDogState({ dogs:state.dogs, activeDogId:id });
+    return await mutateDogState(state => state.dogs.some(dog => dog.id === id)
+      ? { dogs:state.dogs, activeDogId:id } : null);
   } catch (e) {
     console.error("Failed to switch dog profile:", e);
     return false;
@@ -269,13 +343,14 @@ async function selectDogProfile(id) {
 async function removeDogProfile(id) {
   if (!currentUser) return false;
   try {
-    const state = await getDogProfiles();
-    if (state.dogs.length <= 1) return false;
-    const dogs = state.dogs.filter(dog => dog.id !== id);
-    if (dogs.length === state.dogs.length) return false;
-    const activeDogId = state.activeDogId === id
-      ? dogs[0] && dogs[0].id || null : state.activeDogId;
-    return await writeDogState({ dogs, activeDogId });
+    return await mutateDogState(state => {
+      if (state.dogs.length <= 1) return null;
+      const dogs = state.dogs.filter(dog => dog.id !== id);
+      if (dogs.length === state.dogs.length) return null;
+      const activeDogId = state.activeDogId === id
+        ? dogs[0] && dogs[0].id || null : state.activeDogId;
+      return { dogs, activeDogId };
+    });
   } catch (e) {
     console.error("Failed to remove dog profile:", e);
     return false;

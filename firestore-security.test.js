@@ -50,6 +50,11 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain('data.size() <= 25');
     expect(rules).toContain("data.fitness in ['low', 'moderate', 'high']");
     expect(rules).not.toContain('request.resource.data.dogs == resource.data.dogs');
+    expect(client).toContain('async function setDogProfile(dogObj, targetDogId)');
+    expect(client).toContain('function reconcileLegacyDogPhotos(dogs)');
+    expect(client).toContain('profileSummarySyncVersion');
+    expect(client).toContain('nextDog.photoId = newDogPhotoId(existingDog.id)');
+    expect(client).toContain('runTransaction');
     expect(userValidator).not.toContain('contributor');
     expect(userValidator).not.toContain('moderator');
   });

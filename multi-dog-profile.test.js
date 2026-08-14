@@ -17,10 +17,11 @@ describe('multi-dog account experience', () => {
     expect(client).toContain('dog:active');
     expect(client).toContain('function sanitizedDogProfile(dog, index)');
     expect(client).toContain('source.vet.medical');
-    expect(client).toContain('dogs = dogs.slice(0, 5).map(sanitizedDogProfile)');
+    expect(client).toContain('reconcileLegacyDogPhotos(dogs.slice(0, 5).map(sanitizedDogProfile))');
     expect(client).toContain('Object.entries(existing.favorites).slice(0, 250)');
     expect(client).toContain('existing.lastMatches.slice(0, 250)');
-    expect(client).toContain('await setDoc(userRef, payload);');
+    expect(client).toContain('await runTransaction(db, async transaction =>');
+    expect(client).toContain('transaction.set(userRef, committed.payload);');
   });
 
   test('the account editor switches dogs and adds another in the same screen', () => {
@@ -36,7 +37,7 @@ describe('multi-dog account experience', () => {
     expect(controller).toContain('const canRemoveDog = !addMode && dogProfiles.length > 1;');
     expect(controller).toContain('window.location.assign(accountHref({}))');
     expect(source('profile-design.js')).toContain("document.getElementById('removeDogBtn')");
-    expect(source('firebase-init.js')).toContain('if (state.dogs.length <= 1) return false;');
+    expect(source('firebase-init.js')).toContain('if (state.dogs.length <= 1) return null;');
     expect(controller).toContain('const disabled = missingDog;');
     expect(controller).not.toContain('missingDog || missingOwner');
     expect(controller).toContain("detail:{ ok, addMode }");
@@ -96,8 +97,10 @@ describe('multi-dog account experience', () => {
     const account = source('account.js');
     const nav = source('mobile-nav.js');
     const homepage = source('script.js');
-    expect(account).toContain("const dogKey = addMode ? 'new' : (activeDogId || 'new')");
+    expect(account).toContain("const dogKey = addMode ? 'new' : (base.id || activeDogId || 'new')");
     expect(account).toContain("(addMode ? 'new' : (activeDogId || 'new'))");
+    expect(account).toContain("setDogProfile({ photo: dataUrl }, base.id || activeDogId)");
+    expect(source('firebase-init.js')).toContain('newDogPhotoId(existingDog.id)');
     expect(nav).toContain('summary.dogs.find(dog => dog.id === summary.activeDogId)');
     expect(nav).toContain("return typeof photo === 'string' && photo.startsWith('data:image/') ? photo : null");
     expect(homepage).toContain('const photo = liDogPhoto(profile);');

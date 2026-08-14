@@ -413,7 +413,7 @@
 
   function photoCacheKey(){
     const u = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
-    const dogKey = addMode ? 'new' : (activeDogId || 'new');
+    const dogKey = addMode ? 'new' : (base.id || activeDogId || 'new');
     return u ? 'dolopaws-dog-photo-' + u.uid + '-' + dogKey : null;
   }
   function photoStatus(text, ok){
@@ -464,7 +464,7 @@
       const key = photoCacheKey();
       try { if(key) localStorage.setItem(key, dataUrl); } catch (err) { /* cache only */ }
       if(!addMode && window.DoloPawsAuth && window.DoloPawsAuth.currentUser){
-        window.DoloPawsAuth.setDogProfile({ photo: dataUrl }).then((ok) => {
+        window.DoloPawsAuth.setDogProfile({ photo: dataUrl }, base.id || activeDogId).then((ok) => {
           photoStatus(ok
             ? tKey('account.photo.synced', 'Photo saved to your account — it will show on any device you log in from.')
             : tKey('account.photo.localOnly', "Photo saved on this device — couldn't reach your account just now."), ok);
@@ -538,7 +538,7 @@
       btn.textContent = tKey('account.saving', 'Saving…');
       const ok = addMode
         ? await window.DoloPawsAuth.addDogProfile(buildProfile())
-        : await window.DoloPawsAuth.setDogProfile(buildProfile());
+        : await window.DoloPawsAuth.setDogProfile(buildProfile(), base.id || activeDogId);
       btn.textContent = label;
       saveStatus.hidden = false;
       saveStatus.style.color = ok ? '#2C5C34' : '#9C3A25';
@@ -956,7 +956,7 @@
         } catch(e){}
         if(!addMode && local && isImage(local)){
           state.photo = local;
-          window.DoloPawsAuth.setDogProfile({ photo: local }).then((ok) => {
+          window.DoloPawsAuth.setDogProfile({ photo: local }, profile.id || activeDogId).then((ok) => {
             if(ok){ try { localStorage.setItem(pKey, local); localStorage.removeItem(LEGACY_PHOTO_KEY); } catch(e){} }
           });
         } else {
