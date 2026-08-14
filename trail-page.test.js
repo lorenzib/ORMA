@@ -139,6 +139,16 @@ describe('trail page map legend', () => {
     expect(trail).not.toContain('api.open-meteo.com');
   });
 
+  test('the description card has the same section-label treatment as other trail cards', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    document.body.innerHTML = html;
+
+    const about = document.querySelector('.td2-about');
+    expect(about).not.toBeNull();
+    expect(about.querySelector('.td2-kick').textContent.trim()).toBe('About this trail');
+    expect(about.querySelector('#matchDescription')).not.toBeNull();
+  });
+
   test('renderLegendChips populates trail legend entries', () => {
     const legendChips = { innerHTML: '' };
     const context = loadTrailScript({

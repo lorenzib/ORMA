@@ -1,4 +1,6 @@
 const guides = require('./recommendation-guides.js');
+const fs = require('fs');
+const path = require('path');
 
 describe('GUIDE-01 contextual caution guides', () => {
   test('selects, deduplicates, and caps guides from stable caution codes', () => {
@@ -29,5 +31,18 @@ describe('GUIDE-01 contextual caution guides', () => {
     ['trail.exposure.present', 'exposure'],
   ])('%s selects %s', (code, expected) => {
     expect(guides.select({ cautions:[{ code }] })[0].id).toBe(expected);
+  });
+});
+
+describe('breed-group guide navigation', () => {
+  test('uses a left contents rail and matching semantic content sections', () => {
+    document.body.innerHTML = fs.readFileSync(path.join(__dirname, 'guides/breed-group-caveats.html'), 'utf8');
+    const links = [...document.querySelectorAll('.gp-toc a')];
+    const sections = [...document.querySelectorAll('.gp-section[id]')];
+
+    expect(links).toHaveLength(7);
+    expect(sections).toHaveLength(7);
+    expect(links.map(link => link.getAttribute('href'))).toEqual(sections.map(section => `#${section.id}`));
+    expect(document.querySelector('.gp-mobile-toc')).not.toBeNull();
   });
 });
