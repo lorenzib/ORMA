@@ -308,20 +308,6 @@ body{background:#EFECE2;}
 .td2-live .r .lbl{font-size:10px;color:#9FC7B0;text-transform:uppercase;letter-spacing:.05em;}
 .td2-live[hidden]{display:none;}
 
-/* Dog match card (sidebar, per prototype) */
-.td2-dogcard{padding:18px 20px;}
-.td2-dog-row{display:flex;align-items:center;gap:12px;}
-.td2-dog-avatar{width:46px;height:46px;border-radius:50%;background:var(--accent,#3E7A91);color:#fff;display:grid;place-items:center;font-weight:800;font-size:17px;flex:none;}
-.td2-dog-name{font-family:'Source Serif 4',serif;font-weight:700;font-size:16px;color:var(--ink);}
-.td2-dog-sub{font-size:11.5px;color:#6B7A6E;}
-.td2-dog-verdict{margin-top:14px;display:flex;align-items:center;gap:10px;background:#EAF3EC;border-radius:10px;padding:11px 13px;}
-.td2-dog-verdict .num{font-size:22px;color:#2C5C34;}
-.td2-dog-verdict .txt{font-size:12px;color:#2C5C34;font-weight:600;line-height:1.35;}
-.td2-dog-verdict.tier-good{background:#F5E4C6;}
-.td2-dog-verdict.tier-good .num,.td2-dog-verdict.tier-good .txt{color:#8A5A16;}
-.td2-dog-verdict.tier-caution{background:#F3D9D2;}
-.td2-dog-verdict.tier-caution .num,.td2-dog-verdict.tier-caution .txt{color:#9C3A25;}
-
 /* Terrain / Satellite layer switch (map, bottom-left per prototype) */
 .td-layer-switch{position:absolute;bottom:14px;left:14px;z-index:6;display:flex;gap:8px;}
 .td-layer-switch button{padding:7px 13px;border-radius:9px;border:none;font-size:11.5px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;background:rgba(255,255,255,.94);color:var(--ink);box-shadow:0 2px 8px rgba(23,42,28,.12);}
@@ -776,6 +762,9 @@ body{background:#EFECE2;}
           <div id="trailTags" class="td2-tags-row"></div>
         </div>
 
+        <!-- BEFORE-YOU-GO SAFETY GUIDES -->
+        <div id="trailGuideLinks" class="trail-guide-links" hidden></div>
+
         <!-- PARKING & GETTING THERE -->
         <div class="td2-card td2-section td2-parking" id="td2ParkingCard" hidden>
           <div class="td2-kick" style="margin-bottom:14px;">Parking &amp; getting there</div>
@@ -800,15 +789,13 @@ body{background:#EFECE2;}
 
       <!-- ============ SIDEBAR ============ -->
       <aside class="td2-side" aria-label="Trail sidebar">
-        <!-- Dog match card (per prototype: avatar · name · breed line, match verdict) -->
-        <div class="td2-card td2-section td2-dogcard" id="td2DogCard" hidden>
-          <div class="td2-dog-row">
-            <span class="td2-dog-avatar" id="td2DogAvatar">🐾</span>
-            <div><div class="td2-dog-name" id="td2DogName"></div><div class="td2-dog-sub" id="td2DogSub"></div></div>
-          </div>
-          <div class="td2-dog-verdict" id="td2DogVerdict">
-            <span class="num" id="td2DogPct"></span><span class="txt" id="td2DogVerdictTxt"></span>
-          </div>
+        <!-- Today's conditions -->
+        <div class="td2-card td2-section td2-cond" id="tdConditions" hidden>
+          <div class="td2-kick" style="margin-bottom:14px;">Today's conditions <span id="sideFcValley" style="text-transform:none;letter-spacing:0;color:#8A9689;font-weight:600;"></span></div>
+          <div class="td2-cond-row"><span>Temperature</span><b class="num" id="tdCondTemp">—</b></div>
+          <div class="td2-cond-row"><span>Paw comfort</span><span class="td2-badge" id="tdCondPaw">—</span></div>
+          <div class="td2-cond-row td2-cond-last"><span>Water sources</span><b id="tdCondWater">—</b></div>
+          <p class="td2-cond-window" id="sideCondWindow"></p>
         </div>
 
         <!-- Trail hazards (sidebar, per prototype) -->
@@ -818,18 +805,6 @@ body{background:#EFECE2;}
             <button id="addReportBtn" type="button" class="add-report-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3v18h2v-7h5l1 2h6V6h-5l-1-2H5z"/></svg> Flag</button>
           </div>
           <div id="trailFlagsList"><div class="empty-state empty-state--compact"><p class="empty-state__title">No recent hazard reports</p><p class="empty-state__copy">The community has not reported a current issue here. Conditions can still change.</p></div></div>
-        </div>
-
-        <!-- before-you-go safety guides (sidebar, under the hazards card) -->
-        <div id="trailGuideLinks" class="trail-guide-links" hidden></div>
-
-        <!-- Today's conditions -->
-        <div class="td2-card td2-section td2-cond" id="tdConditions" hidden>
-          <div class="td2-kick" style="margin-bottom:14px;">Today's conditions <span id="sideFcValley" style="text-transform:none;letter-spacing:0;color:#8A9689;font-weight:600;"></span></div>
-          <div class="td2-cond-row"><span>Temperature</span><b class="num" id="tdCondTemp">—</b></div>
-          <div class="td2-cond-row"><span>Paw comfort</span><span class="td2-badge" id="tdCondPaw">—</span></div>
-          <div class="td2-cond-row td2-cond-last"><span>Water sources</span><b id="tdCondWater">—</b></div>
-          <p class="td2-cond-window" id="sideCondWindow"></p>
         </div>
 
         <!-- 6-day forecast -->

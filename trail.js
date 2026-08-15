@@ -1031,11 +1031,9 @@ function renderTrail(t){
         statMatchSub.innerHTML = `<a href="index.html?profile=1">${window.t('trail.matchCellTeaser')}</a>`;
         statMatch.hidden = false;
       }
-      // Legacy slot — other scripts (dog card) read this text.
+      // Legacy slot retained for the main personalised match summary.
       const el = document.getElementById('trailMatch');
       if(el){ el.innerHTML = `<a href="index.html?profile=1">${window.t('trail.matchTeaser')}</a>`; el.hidden = false; }
-      const dogCard = document.getElementById('td2DogCard');
-      if(dogCard) dogCard.hidden = true;
     }
     function paintMatch(){
       if(typeof recommendTrail !== 'function') return;
@@ -1066,26 +1064,6 @@ function renderTrail(t){
           el.dataset.recommendationCategory = recommendation.category;
           el.dataset.recommendationConfidence = recommendation.confidence;
           el.hidden = false;
-        }
-        // Sidebar dog card (per prototype): avatar · name · profile line,
-        // match % with a tiered verdict of today's walk.
-        const dogCard = document.getElementById('td2DogCard');
-        if(dogCard){
-          const sizeLabel = { '5-10': 'small', '15-20': 'medium', '30-40': 'large' }[profile.weightBand] || '';
-          const heat = (Array.isArray(profile.conditions) && profile.conditions.includes('heat')) || profile.heatIssues;
-          const sub = [profile.breed, sizeLabel, heat ? 'heat-sensitive' : ''].filter(Boolean).join(' · ');
-          document.getElementById('td2DogAvatar').textContent = (name.charAt(0) || '🐾').toUpperCase();
-          document.getElementById('td2DogName').textContent = name;
-          document.getElementById('td2DogSub').textContent = sub;
-          document.getElementById('td2DogPct').textContent = (t.curated === false ? '≈' : '') + n + '%';
-          const verdict = document.getElementById('td2DogVerdict');
-          verdict.classList.remove('tier-good', 'tier-caution');
-          let verdictTxt;
-          if(n >= 85){ verdictTxt = window.t('trail.dogCardGreat', {name}); }
-          else if(n >= 65){ verdict.classList.add('tier-good'); verdictTxt = window.t('trail.dogCardGood', {name}); }
-          else { verdict.classList.add('tier-caution'); verdictTxt = window.t('trail.dogCardCheck', {name}); }
-          document.getElementById('td2DogVerdictTxt').textContent = verdictTxt;
-          dogCard.hidden = false;
         }
       });
     }

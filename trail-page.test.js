@@ -149,6 +149,20 @@ describe('trail page map legend', () => {
     expect(about.querySelector('#matchDescription')).not.toBeNull();
   });
 
+  test('conditions lead the sidebar and safety reading follows the trail description', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    document.body.innerHTML = html;
+
+    const mainColumn = document.querySelector('.td2-col');
+    const about = mainColumn.querySelector('.td2-about');
+    const guides = mainColumn.querySelector('#trailGuideLinks');
+    expect(about.nextElementSibling).toBe(guides);
+
+    const sidebar = document.querySelector('.td2-side');
+    expect(sidebar.firstElementChild.id).toBe('tdConditions');
+    expect(document.getElementById('td2DogCard')).toBeNull();
+  });
+
   test('renderLegendChips populates trail legend entries', () => {
     const legendChips = { innerHTML: '' };
     const context = loadTrailScript({
