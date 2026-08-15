@@ -23,17 +23,17 @@
     prohibited:'Dogs prohibited',
   };
   const TIERS = {
-    imported:'Imported map data',
-    mapped:'Mapped by DoloPaws',
-    'route-audited':'DoloPaws route-audited',
-    'field-verified':'DoloPaws field-verified',
+    imported:'Trail overview',
+    mapped:'Trail overview',
+    'route-audited':'Reviewed by DoloPaws',
+    'field-verified':'Walked by DoloPaws',
   };
 
   function cell(text, kind, detail){
     return { text, kind:kind || 'known', detail:detail || null };
   }
   function unknown(label){
-    return cell(`Unknown — ${label} not reviewed`, 'unknown');
+    return cell(`Not listed — ${label}`, 'unknown');
   }
   function categoryVerified(parts, category){
     return parts.verification && parts.verification.categories

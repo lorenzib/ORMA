@@ -75,9 +75,7 @@ function safetyLabel(level) {
 }
 
 function displaySafetyLabel(t) {
-  const label = safetyLabel(t.safetyLevel);
-  const partial = t.verified && Array.isArray(t.verified.categories) && t.verified.categories.length < REVIEW_CATEGORIES.length;
-  return t.curated === false || partial ? `Estimated: ${label}` : label;
+  return safetyLabel(t.safetyLevel);
 }
 
 function displayWaterLabel(t, label) {
@@ -94,7 +92,7 @@ function displayStartLabel(t, label) {
     .replace(/^Route start per OpenStreetMap\s*[—-]\s*/i, '')
     .replace(/\s*\(OSM-verified access point\)/gi, '')
     .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
-  return `Mapped start suggestion — ${cleaned}. Access suitability is not field reviewed.`;
+  return `Mapped start suggestion — ${cleaned}. Check current access before travelling.`;
 }
 
 const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France' };
@@ -248,7 +246,7 @@ function atAGlance(t) {
 
   if (!bits.length) return '';
   const text = bits.join('; ') + '.';
-  return `<h2>At a glance (from the map data)</h2>
+  return `<h2>At a glance</h2>
     <p>${text.charAt(0).toUpperCase() + text.slice(1)}</p>`;
 }
 
@@ -289,25 +287,20 @@ function trailPage(t, slug, all) {
   const verified = t.curated !== false; // curated file entries have no `curated` flag
   const graduation = graduationProgress(t);
   const progress = reviewProgress(t);
-  const reviewLabel = graduation
-    ? graduation.verified ? 'DoloPaws route-audited' : 'Verification in progress'
+  const fullyReviewed = graduation
+    ? graduation.verified
     : progress
-    ? progress.length === REVIEW_CATEGORIES.length ? 'DoloPaws source-reviewed' : 'Partly verified data'
-    : t.routeAudit && t.reviewedAt
-      ? `DoloPaws route audit · ${formatReviewDate(t.reviewedAt)}`
-      : null;
-
-  const badge = reviewLabel
-    ? `<span class="dp-badge dp-badge--${graduation ? (graduation.verified ? 'verified' : 'imported') : progress ? 'verified' : 'imported'}"><span data-dp-icon="${graduation ? (graduation.verified ? 'verified' : 'imported') : progress ? 'verified' : 'imported'}" data-dp-icon-size="13" aria-hidden="true"></span><span>${escapeHtml(reviewLabel)}</span></span>`
-    : verified
-    ? `<span class="dp-badge dp-badge--verified"><span data-dp-icon="verified" data-dp-icon-size="13" aria-hidden="true"></span><span>${escapeHtml(evidenceContract.tierLabel(t))}</span></span>`
-    : `<span class="dp-badge dp-badge--imported"><span data-dp-icon="imported" data-dp-icon-size="13" aria-hidden="true"></span><span>${escapeHtml(evidenceContract.tierLabel(t))}</span></span>`;
+      ? progress.length === REVIEW_CATEGORIES.length
+      : verified;
+  const reviewLabel = fullyReviewed ? 'Reviewed by DoloPaws' : 'Trail overview';
+  const reviewStyle = fullyReviewed ? 'verified' : 'imported';
+  const badge = `<span class="dp-badge dp-badge--${reviewStyle}"><span data-dp-icon="${reviewStyle}" data-dp-icon-size="13" aria-hidden="true"></span><span>${reviewLabel}</span></span>`;
 
   const ogImage = t.imageIcon ? `${BASE_URL}/${t.imageIcon}` : `${BASE_URL}/icon-512.png`;
 
   // Guard against upstream "NaN%" surface strings (promote-osm-trails.js bug)
   const terrain = !categoryVerified(t, 'surfaceHazards')
-    ? 'Terrain detail not yet source checked'
+    ? (t.terrainType || 'Variable mountain terrain')
     : /NaN/.test(String(t.terrainType || ''))
     ? 'Surface data not yet mapped'
     : t.terrainType;
@@ -330,13 +323,13 @@ function trailPage(t, slug, all) {
     .join('\n      ');
 
   const waterHtml = !categoryVerified(t, 'water')
-    ? `<h2>Water availability unverified</h2><p>The listed water locations have not yet been checked for current flow, potability or seasonal availability. Carry a full supply.</p>`
+    ? `<h2>Bring your own water</h2><p>Do not rely on potential water locations being available or drinkable. Carry enough for the full walk.</p>`
     :
     Array.isArray(t.waterSources) && t.waterSources.length
-      ? `<h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M12 3c3 3.6 4.8 6.3 4.8 8.8a4.8 4.8 0 11-9.6 0C7.2 9.3 9 6.6 12 3z" fill="#378ADD"></path></svg> ${verified ? 'Water on trail' : 'Mapped water points'}</h2>
+      ? `<h2><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;vertical-align:-2.5px;margin-right:2px;"><path d="M12 3c3 3.6 4.8 6.3 4.8 8.8a4.8 4.8 0 11-9.6 0C7.2 9.3 9 6.6 12 3z" fill="#378ADD"></path></svg> ${verified ? 'Water on trail' : 'Potential water points'}</h2>
     <ul>${t.waterSources
           .map((w) => `<li>km ${escapeHtml(w.km)} · ${escapeHtml(displayWaterLabel(t, w.label))}</li>`)
-          .join('')}</ul>${verified ? '' : '<p class="sp-src">Mapped locations only — current flow, potability and seasonal availability are not verified. Carry a full supply.</p>'}`
+          .join('')}</ul>${verified ? '' : '<p class="sp-src">Availability can change. Carry a full supply.</p>'}`
       : '';
 
   const rifugiHtml =
@@ -349,7 +342,7 @@ function trailPage(t, slug, all) {
 
   const tipsHtml = t.tips || !verified
     ? `<h2>Good to know</h2>
-    <p>${verified ? escapeHtml(t.tips) : 'This route is an automated interpretation of OpenStreetMap data and has not been field reviewed by DoloPaws. Exposure, shade, livestock, seasonal access and current conditions remain unknown. Verify locally before setting out.'}</p>`
+    <p>${verified ? escapeHtml(t.tips) : 'Use the live forecast, check local access information and be ready for changing mountain conditions.'}</p>`
     : '';
 
   const startHtml =
@@ -377,22 +370,22 @@ function trailPage(t, slug, all) {
   const reviewSummary = graduation
     ? graduation.verified
       ? 'This trail has been reviewed by DoloPaws. Check current conditions before setting out.'
-      : 'DoloPaws verification is in progress. Check current conditions before setting out.'
+      : 'Based on mapped route data and available DoloPaws sources. Check current conditions before setting out.'
     : progress
       ? progress.length === REVIEW_CATEGORIES.length
         ? 'Trail details have been source-checked by DoloPaws. Check current conditions before setting out.'
-        : 'Some trail details have been checked by DoloPaws. Check current conditions before setting out.'
+        : 'Based on mapped route data and available DoloPaws sources. Check current conditions before setting out.'
       : t.routeAudit && t.reviewedAt
         ? 'Route details have been reviewed by DoloPaws. Check current conditions before setting out.'
         : !verified
-          ? 'Route mapped from OpenStreetMap and Waymarked Trails. This trail has not yet been reviewed by DoloPaws. Check local access rules and current conditions before setting out.'
+          ? 'Based on mapped route data and available DoloPaws sources. Check local access rules and current conditions before setting out.'
           : 'Trail information prepared by DoloPaws. Check current conditions before setting out.';
   const sourceLinks = Array.isArray(t.sourceLinks) && t.sourceLinks.length
     ? `<ul>${t.sourceLinks.map(source => `<li><a href="${escapeHtml(source.url)}" rel="noopener">${escapeHtml(source.label)}</a></li>`).join('')}</ul>`
     : '';
-  const sourceRecord = `<h2>Trail data</h2>
-    <p>${escapeHtml(reviewSummary)}</p>
-    <details class="sp-source-details"><summary>View data sources</summary>
+  const sourceRecord = `<h2>Sources &amp; data</h2>
+    <details class="sp-source-details"><summary>View source details</summary>
+      <p>${escapeHtml(reviewSummary)}</p>
 ${sourceLinks}
       <p class="sp-src">Map data: <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a> and Waymarked Trails<br>Weather: Open-Meteo</p>
     </details>`;
@@ -596,7 +589,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
 </footer>
 
 <script src="../icon-system.js?v=20260717" defer></script>
-<script src="../mobile-nav.js?v=20260812-1"></script>
+<script src="../mobile-nav.js?v=20260815-2"></script>
 </body>
 </html>
 `;

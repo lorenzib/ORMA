@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260810-1">
+<link rel="stylesheet" href="styles.css?v=20260815-2">
 <style>
   /* Guest bar — the homepage component reused verbatim; CTA is a link here */
   a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
@@ -173,7 +173,7 @@
           <option value="caution">Caution</option>
         </select>
       </label>
-      <button type="button" id="browseWater" class="browse-water" aria-pressed="false" data-audit-label="Reviewed water point">Water on route</button>
+      <button type="button" id="browseWater" class="browse-water" aria-pressed="false" data-audit-label="Water point listed">Water on route</button>
       <label class="browse-field browse-field--advanced"><span>Terrain tolerance</span>
         <select id="browseTerrain" aria-label="Filter by terrain tolerance">
           <option value="">Any terrain</option>
@@ -185,25 +185,25 @@
       <label class="browse-field browse-field--advanced"><span>Shade &amp; heat</span>
         <select id="browseHeat" aria-label="Filter by reviewed shade or heat">
           <option value="">Any shade or heat data</option>
-          <option value="shade-reviewed">Reviewed shade, at least 30%</option>
+          <option value="shade-reviewed">At least 30% shade</option>
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span>Exposure</span>
         <select id="browseExposure" aria-label="Filter by reviewed exposure">
           <option value="">Any exposure data</option>
-          <option value="none-reviewed">No exposure, source-reviewed</option>
+          <option value="none-reviewed">No reported exposure</option>
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span>Dog restrictions</span>
         <select id="browseAccess" aria-label="Filter by reviewed dog access">
           <option value="">Any dog-access status</option>
-          <option value="allowed-reviewed">Dogs permitted; reviewed rules</option>
+          <option value="allowed-reviewed">Dogs permitted</option>
         </select>
       </label>
-      <label class="browse-field browse-field--advanced"><span>DoloPaws review</span>
+      <label class="browse-field browse-field--advanced"><span>Trail information</span>
         <select id="browseVerification" aria-label="Filter by DoloPaws verification">
-          <option value="">Any review status</option>
-          <option value="route-audited">Route-audited or field-verified</option>
+          <option value="">All trails</option>
+          <option value="route-audited">Reviewed by DoloPaws</option>
         </select>
       </label>
     </div>
@@ -214,7 +214,7 @@
   </aside>
   <div class="browse-results-meta">
     <span id="browseResultCount" aria-live="polite"></span>
-    <span class="browse-result-accessible" data-i18n="browse.trustNote">Route-audited trails have had their data checked by DoloPaws.</span>
+    <span class="browse-result-accessible" data-i18n="browse.trustNote">Trail information combines mapped route data and available DoloPaws sources.</span>
     <button type="button" id="browseClear" class="browse-clear" hidden>Clear filters</button>
   </div>
   <div class="simple-grid" id="simpleTrailsList"></div>
@@ -419,27 +419,27 @@
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260812-1"></script>
-<script src="i18n.js"></script>
-<script src="trust/evidence-v1.js?v=20260728-1"></script>
-<script src="trail-trust.js?v=20260728-4"></script>
-<script src="scoring/recommendation-v1.js?v=20260728-2"></script>
-<script src="scoring/recommendation-adapters-v1.js?v=20260728-1"></script>
-<script src="scoring.js?v=20260728-4"></script>
-<script type="module" src="firebase-init.js?v=20260814-1"></script>
-<script src="icon-system.js?v=20260717" defer></script>
-<script src="trail-card-visual.js?v=20260717" defer></script>
-<script src="regions-runtime-manifest.js?v=20260813-1"></script>
-<script src="regional-trails-loader.js?v=20260805-2" data-default-region="all"></script>
-<script src="trail-audits.js?v=20260717" defer></script>
+<script src="mobile-nav.js?v=20260815-2"></script>
+<script src="i18n.js?v=20260815-2"></script>
+<script src="trust/evidence-v1.js?v=20260815-2"></script>
+<script src="trail-trust.js?v=20260815-2"></script>
+<script src="scoring/recommendation-v1.js?v=20260815-2"></script>
+<script src="scoring/recommendation-adapters-v1.js?v=20260815-2"></script>
+<script src="scoring.js?v=20260815-2"></script>
+<script type="module" src="firebase-init.js?v=20260815-2"></script>
+<script src="icon-system.js?v=20260815-2" defer></script>
+<script src="trail-card-visual.js?v=20260815-2" defer></script>
+<script src="regions-runtime-manifest.js?v=20260815-2"></script>
+<script src="regional-trails-loader.js?v=20260815-2" data-default-region="all"></script>
+<script src="trail-audits.js?v=20260815-2" defer></script>
 <script src="regions-config.js"></script>
-<script src="metrics.js?v=20260730-1" defer></script>
-<script src="metric-funnel.js?v=20260804-1" defer></script>
-<script src="guest-context.js?v=20260730-1" defer></script>
-<script src="auth-ui.js?v=20260812-1" defer></script>
-<script src="discovery-state.js?v=20260729-1" defer></script>
-<script src="discovery-filters.js?v=20260729-1" defer></script>
-<script src="comparison-state.js?v=20260729-1" defer></script>
+<script src="metrics.js?v=20260815-2" defer></script>
+<script src="metric-funnel.js?v=20260815-2" defer></script>
+<script src="guest-context.js?v=20260815-2" defer></script>
+<script src="auth-ui.js?v=20260815-2" defer></script>
+<script src="discovery-state.js?v=20260815-2" defer></script>
+<script src="discovery-filters.js?v=20260815-2" defer></script>
+<script src="comparison-state.js?v=20260815-2" defer></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     // Guest bar mirrors the homepage: members never see it.
@@ -506,11 +506,11 @@
       && parts.verification.categories
       && parts.verification.categories[category] === 'verified';
     const COLLECTIONS = {
-      'shady': { title: 'Reviewed shady routes', blurb: 'Reviewed shade and a reviewed water point',
+      'shady': { title: 'Shady routes', blurb: 'Shade and a water point are listed',
         filter: t => filterApi.matches(t, { heat:'shade-reviewed', water:true }) },
-      'water': { title: 'Routes with reviewed water', blurb: 'A source-reviewed water point is listed',
+      'water': { title: 'Routes with water', blurb: 'A water point is listed',
         filter: t => filterApi.matches(t, { water:true }) },
-      'meadow': { title: 'Reviewed open meadow strolls', blurb: 'Known open ground and gentle or mixed terrain',
+      'meadow': { title: 'Open meadow strolls', blurb: 'Open ground and gentle or mixed terrain',
         filter: t => {
           const parts = canonicalParts(t);
           return categoryReviewed(parts, 'heat')
@@ -779,7 +779,7 @@
           }
         );
       }
-      resultCount.innerHTML = `<span class="browse-result-accessible">${pool.length} trail${pool.length === 1 ? '' : 's'} found. </span>${pool.length} of ${trails.length} trails · route-audited trails have had their data checked by DoloPaws`;
+      resultCount.innerHTML = `<span class="browse-result-accessible">${pool.length} trail${pool.length === 1 ? '' : 's'} found. </span>${pool.length} of ${trails.length} trails`;
       clear.hidden = !hasFilters;
       const totalPages = Math.max(1, Math.ceil(pool.length / PER_PAGE));
       if(page > totalPages) page = totalPages;

@@ -61,7 +61,7 @@ describe('comparison presentation model', () => {
 
     ['exposure','shade','heat','water','hazards','restrictions'].forEach(key => {
       expect(result.cells[key].kind).toBe('unknown');
-      expect(result.cells[key].text).toMatch(/^Unknown/);
+      expect(result.cells[key].text).toMatch(/^Not listed/);
     });
     expect(result.cells.verification.kind).toBe('mapped');
   });

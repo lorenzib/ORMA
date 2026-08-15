@@ -28,8 +28,8 @@
   // Calm framing: confidence describes data completeness, not danger.
   // "low" must not read as a warning — missing data never lowers the score.
   const CONFIDENCE_LABEL = Object.freeze({
-    high: 'Well-verified data',
-    medium: 'Partly verified data',
+    high: 'Based on detailed trail data',
+    medium: 'Based on available trail data',
     low: 'Based on partial data',
   });
 

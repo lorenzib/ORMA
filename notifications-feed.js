@@ -119,8 +119,8 @@
         items.push({
           id: 'audit-' + t.id + '-' + entry.date,
           icon: 'verified', alert: false, group: 'earlier', timeLabel: shortDate(entry.date),
-          title: t.name + ' is route-audited',
-          body: sources + ' Its rating and facts are confirmed.',
+          title: t.name + ' has updated trail information',
+          body: sources + ' Its trail details have been updated.',
           href: 'trail.html?id=' + t.id
         });
       });

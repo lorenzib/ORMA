@@ -9,7 +9,7 @@ describe('PERF-02 asset and regional loading contract', () => {
     const detail = read('trail.html');
     [homepage, detail].forEach(html => {
       expect(html).not.toContain('unpkg.com/maplibre-gl@5.24.0');
-      expect(html).toContain('map-runtime.js?v=20260810-1');
+      expect(html).toContain('map-runtime.js?v=20260815-2');
     });
     const runtime = read('map-runtime.js');
     expect(runtime).toContain('IntersectionObserver');

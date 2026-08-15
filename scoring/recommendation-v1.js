@@ -305,8 +305,16 @@
       if(categories[category] === 'verified'){
         verifiedCount += 1;
       }else{
-        unknowns.push(item(`evidence.${category}.unverified`,
-          `${category} evidence is ${categories[category] || 'unknown'}, not verified.`));
+        const planningGuidance = {
+          route: 'Route details are based on available map data.',
+          water: 'Plan to carry enough water for the full walk.',
+          heat: 'Check the live forecast and plan for limited shade.',
+          exposure: 'Check recent local guidance for narrow or exposed sections.',
+          livestock: 'Keep a leash ready near grazing land.',
+          surfaceHazards: 'Expect variable mountain footing.',
+          access: 'Check current local access rules before travelling.',
+        };
+        unknowns.push(item(`evidence.${category}.unverified`, planningGuidance[category]));
         if(CRITICAL_CATEGORIES.has(category)) criticalUnknown = true;
       }
     }

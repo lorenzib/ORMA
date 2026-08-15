@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-03T20:48:47.671Z",
+  "generatedAt": "2026-08-15T08:21:45.049Z",
   "regions": {
     "dolomites": {
       "trailCount": 110,
-      "trails": "data/regions/dolomites-trails.js?v=576b66cde57a",
+      "trails": "data/regions/dolomites-trails.js?v=e82d47222d44",
       "water": "data/regions/dolomites-water.geojson",
       "hutsBars": "data/regions/dolomites-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",
@@ -12,7 +12,7 @@
     },
     "savoy": {
       "trailCount": 54,
-      "trails": "data/regions/savoy-trails.js?v=fbd1ce3667b2",
+      "trails": "data/regions/savoy-trails.js?v=ec05874f5328",
       "water": "data/regions/savoy-water.geojson",
       "hutsBars": "data/regions/savoy-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes-savoy.geojson",

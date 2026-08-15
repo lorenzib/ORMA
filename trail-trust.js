@@ -54,23 +54,10 @@
   // Short tier badge text — the headline label a visitor sees on a card or
   // trail page. The fuller `provenanceLabel` (below) adds progress/date detail.
   function tierLabel(trail) {
-    if (root.DoloPawsEvidenceV1) {
-      const canonicalTier = root.DoloPawsEvidenceV1.tierOf(trail);
-      if (canonicalTier === 'field-verified') {
-        return translate('tier.fieldVerified', null, root.DoloPawsEvidenceV1.tierLabel(canonicalTier));
-      }
-      if (canonicalTier === 'route-audited') {
-        return translate('tier.routeAudited', null, root.DoloPawsEvidenceV1.tierLabel(canonicalTier));
-      }
-      if (canonicalTier === 'mapped') {
-        return translate('tier.mapped', null, root.DoloPawsEvidenceV1.tierLabel(canonicalTier));
-      }
-      return translate('tier.imported', null, root.DoloPawsEvidenceV1.tierLabel(canonicalTier));
-    }
     const tier = tierOf(trail);
-    if (tier === 'dolopaws-walked') return translate('tier.walked', null, 'DoloPaws walked');
-    if (tier === 'route-audited') return translate('tier.routeAudited', null, 'DoloPaws route-audited');
-    return translate('tier.underReview', null, 'Under DoloPaws review');
+    if (tier === 'dolopaws-walked') return 'Walked by DoloPaws';
+    if (tier === 'route-audited') return 'Reviewed by DoloPaws';
+    return 'Trail overview';
   }
 
   // Badge visual style per tier, reusing the existing pill styles: under-review
@@ -123,36 +110,15 @@
   }
 
   function riskLabel(trail, baseLabel) {
-    const graduation = graduationProgress(trail);
-    if (graduation && graduation.verified) return baseLabel;
-    const progress = reviewProgress(trail);
-    if (!imported(trail) && (!progress || progress.checked === progress.total)) return baseLabel;
-    return translate('trust.estimatedRisk', { rating: baseLabel }, `Estimated: ${baseLabel}`);
+    return baseLabel;
   }
 
   function provenanceLabel(trail) {
-    const graduation = graduationProgress(trail);
-    if (graduation) {
-      return graduation.verified
-        ? 'DoloPaws route-audited'
-        : 'Verification in progress';
-    }
-    const progress = reviewProgress(trail);
-    if (progress) {
-      return progress.checked === progress.total
-        ? 'DoloPaws source-reviewed'
-        : 'Partly verified data';
-    }
-    if (trail && trail.routeAudit && trail.reviewedAt) {
-      return `DoloPaws route audit · ${formatReviewDate(trail.reviewedAt)}`;
-    }
-    // Base case: no progress/graduation/route-audit detail to add — the tier
-    // label is the whole provenance line.
     return tierLabel(trail);
   }
 
   function waterPointLabel(trail, label) {
-    if (!categoryVerified(trail, 'water')) return `${String(label || 'Potential water location')} — current availability unverified`;
+    if (!categoryVerified(trail, 'water')) return `${String(label || 'Potential water location')} — availability can change`;
     if (!imported(trail)) return label;
     return String(label || 'Water point')
       .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
@@ -160,25 +126,25 @@
   }
 
   function startPointLabel(trail, label) {
-    if (!categoryVerified(trail, 'access')) return `Suggested start — ${String(label || 'route start').replace(/^Start here\s*[—-]\s*/i, '')}. Access suitability is not yet source reviewed.`;
+    if (!categoryVerified(trail, 'access')) return `Suggested start — ${String(label || 'route start').replace(/^Start here\s*[—-]\s*/i, '')}. Check current access before travelling.`;
     if (!imported(trail)) return label;
     const cleaned = String(label || 'Route start')
       .replace(/^Start here\s*[—-]\s*/i, '')
       .replace(/^Route start per OpenStreetMap\s*[—-]\s*/i, '')
       .replace(/\s*\(OSM-verified access point\)/gi, '')
       .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
-    return `Mapped start suggestion — ${cleaned}. Access suitability is not field reviewed.`;
+    return `Mapped start suggestion — ${cleaned}. Check current access before travelling.`;
   }
 
   function waterAssessment(trail) {
     const mapped = Array.isArray(trail.waterSources) && trail.waterSources.length > 0;
     if (!categoryVerified(trail, 'water')) {
-      return { ok: false, title: 'Water availability unverified', detail: 'Potential water locations are listed, but flow, potability and seasonal availability have not yet been checked against a current source. Carry a full supply.' };
+      return { ok: false, title: 'Bring your own water', detail: 'Do not rely on potential water locations being available or drinkable. Carry enough for the full walk.' };
     }
     if (imported(trail)) {
       return mapped
-        ? { ok: false, title: 'Mapped water point', detail: 'A water point appears in OpenStreetMap, but current flow and seasonal availability are not verified. Carry a full supply.' }
-        : { ok: false, title: 'Water unknown', detail: 'No water point is mapped. That does not confirm water is unavailable; carry a full supply and verify locally.' };
+        ? { ok: false, title: 'Bring backup water', detail: 'A potential water point appears on the map, but availability can change. Carry enough for the full walk.' }
+        : { ok: false, title: 'Bring your own water', detail: 'No water point appears on the route map. Carry enough for the full walk.' };
     }
     return mapped
       ? { ok: true, title: 'Water', detail: 'A reviewed water point is listed on this route. Seasonal availability can change, so bring a backup supply.' }
@@ -188,13 +154,13 @@
   function heatAssessment(trail) {
     const shade = typeof trail.shadeCoverage === 'number' ? trail.shadeCoverage : null;
     if (!categoryVerified(trail, 'heat')) {
-      return { ok: false, title: 'Heat & shade unverified', detail: 'The stored shade and heat estimate has not yet been checked against a route-specific source. Use the live forecast and plan as if shade may be limited.' };
+      return { ok: false, title: 'Plan for limited shade', detail: 'Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.' };
     }
     if (imported(trail) && shade === null && !trail.heatRisk && trail.shadeDescription) {
       return { ok: false, title: 'Mixed shade', detail: `${trail.shadeDescription} Use the live forecast and plan exposed sections for a cool window.` };
     }
     if (imported(trail) && shade === null && !trail.heatRisk) {
-      return { ok: false, title: 'Heat & shade unknown', detail: 'Shade and heat exposure have not been field reviewed. Check the forecast and plan as if shade may be limited.' };
+      return { ok: false, title: 'Plan for limited shade', detail: 'Use the live forecast, choose a cool walking window and plan as if exposed sections may have little shade.' };
     }
     if (shade === null && !trail.heatRisk) return null;
     const shadeText = shade === null ? '' : `${shade}% shade`;
@@ -209,51 +175,30 @@
   }
 
   function exposureAssessment(trail) {
-    if (!categoryVerified(trail, 'exposure')) {
-      return { ok: false, title: 'Exposure unverified', detail: 'Narrow sections and drop-offs have not yet been checked against a route-specific source. Verify recent local guidance before committing.' };
-    }
     if (trail.exposure === true) {
-      return { ok: false, title: 'Exposure', detail: 'Narrow ledges or unprotected drop-offs occur on parts of the route. Keep the dog leashed and on the inside.' };
-    }
-    if (imported(trail) && trail.exposure === undefined) {
-      return { ok: false, title: 'Exposure unknown', detail: 'Drop-offs and narrow sections have not been field reviewed. Check recent local reports before committing.' };
+      return { ok: false, title: 'Exposed sections', detail: 'Narrow ledges or unprotected drop-offs occur on parts of the route. Keep the dog leashed and on the inside.' };
     }
     return null;
   }
 
   function livestockAssessment(trail, combinedText) {
-    if (!categoryVerified(trail, 'livestock')) {
-      return { ok: false, title: 'Livestock unverified', detail: 'Grazing animals and guardian-dog presence have not yet been checked against a route-specific source. Keep a leash ready and verify locally.' };
-    }
     const noted = /livestock|patou|guardian|cattle|herd|pasture|alpage|graz/.test(combinedText || '');
     if (noted) {
       return { ok: false, title: 'Livestock & leash', detail: 'Grazing animals, possibly with guardian dogs, are reported on or near this route. Leash through pastures and give herds a wide berth.' };
     }
-    if (imported(trail)) {
-      return { ok: false, title: 'Livestock unknown', detail: 'Livestock and guardian-dog presence has not been field reviewed. Keep a leash ready and verify locally.' };
-    }
-    return { ok: true, title: 'Leash', detail: 'No livestock is noted in the curated trail information. The review date is unavailable and local leash rules still apply.' };
+    return null;
   }
 
   function surfaceAssessment(trail) {
-    if (!categoryVerified(trail, 'surfaceHazards')) {
-      return { ok: false, title: 'Surface detail unverified', detail: 'The stored terrain description has not yet been checked against a route-specific source. Expect variable mountain footing and verify recent conditions.' };
-    }
     if (Number(trail.terrainRank) === 0 && !(trail.surfaceHazards || []).length) return null;
     const hazards = Array.isArray(trail.surfaceHazards) && trail.surfaceHazards.length
       ? ` Reported hazards: ${trail.surfaceHazards.join('; ')}.`
       : '';
-    return { ok: false, title: 'Surface hazards', detail: `${trail.terrainType || 'Variable mountain terrain'}.${hazards} Check pads at breaks and consider booties for tender paws.` };
+    return { ok: false, title: 'Surface & footing', detail: `${trail.terrainType || 'Variable mountain terrain'}.${hazards} Check pads at breaks and consider booties for tender paws.` };
   }
 
   function assessmentNote(trail) {
-    const progress = reviewProgress(trail);
-    if (progress) {
-      return '<strong style="color: var(--ink);">Partly verified data:</strong> some safety details have route-specific support; others remain unverified.';
-    }
-    return imported(trail)
-      ? '<strong style="color: var(--ink);">Automated estimate from mapped route data:</strong> distance, elevation and mapped surface influence the match. Exposure, shade, livestock and current conditions remain unverified.'
-      : '<strong style="color: var(--ink);">Our assessment of this curated trail:</strong> terrain, listed water, elevation and shade are weighed against your dog\'s profile. The review date is unavailable and current conditions can still change.';
+    return '<strong style="color: var(--ink);">Trail planning information:</strong> based on mapped route data and available DoloPaws sources. Conditions can change, so check locally before setting out.';
   }
 
   root.DoloPawsTrailTrust = Object.freeze({

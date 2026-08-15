@@ -71,7 +71,7 @@
     const el = $('verifiedSeal');
     if (!el) return;
     const style = trust && trust.tierBadgeStyle ? trust.tierBadgeStyle(t) : (t.curated === false ? 'imported' : 'verified');
-    const label = trust ? trust.provenanceLabel(t) : (t.curated === false ? tt('badge.importedS', null, 'Under DoloPaws review') : tt('trail.verifiedShort', null, 'DoloPaws route-audited'));
+    const label = trust ? trust.provenanceLabel(t) : (t.curated === false ? 'Trail overview' : 'Reviewed by DoloPaws');
     // Render the same pill the browse-trail cards use, not a bespoke inline seal.
     el.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
       ? window.DoloPawsIcons.badgeHtml(style, label)
@@ -90,17 +90,17 @@
       const date = trust.formatReviewDate(t.reviewedAt || (t.verified && t.verified.date));
       meta.textContent = graduation.verified
         ? `Reviewed by DoloPaws on ${date}. Check current conditions before setting out.`
-        : 'DoloPaws verification is in progress. Check current conditions before setting out.';
+        : 'Based on mapped route data and available DoloPaws sources. Check current conditions before setting out.';
     } else if (progress) {
       meta.textContent = progress.checked === progress.total
         ? 'Trail details have been source-checked by DoloPaws. Check current conditions before setting out.'
-        : 'Some trail details have been checked by DoloPaws. Check current conditions before setting out.';
+        : 'Based on mapped route data and available DoloPaws sources. Check current conditions before setting out.';
     } else if (t.routeAudit && t.reviewedAt) {
       const date = trust ? trust.formatReviewDate(t.reviewedAt) : t.reviewedAt;
       meta.textContent = `Route details reviewed by DoloPaws on ${date}. Check current conditions before setting out.`;
     } else {
       meta.textContent = t.curated === false
-        ? 'Route mapped from OpenStreetMap and Waymarked Trails. This trail has not yet been reviewed by DoloPaws. Check local access rules and current conditions before setting out.'
+        ? 'Based on mapped route data and available DoloPaws sources. Check local access rules and current conditions before setting out.'
         : 'Trail information prepared by DoloPaws. Check current conditions before setting out.';
     }
     const sources = Array.isArray(t.sourceLinks) ? t.sourceLinks : [];
@@ -320,7 +320,7 @@
     const isLoop = Array.isArray(t.path) && t.path.length > 1 && distMeters(t.path[0], t.path[t.path.length-1]) < 200;
     const climb = Number(t.elevation) || 0;
     const signalData = [
-      ['paw', easyTerrain ? (t.curated === false ? 'Mapped paw surface' : 'Gentle paw surface') : 'Mixed paw surface', easyTerrain ? (t.curated === false ? 'Mapped as flat or packed; not field reviewed' : 'Flat or packed underfoot') : (t.terrainType || 'Check pads at breaks')],
+      ['paw', easyTerrain ? 'Gentle paw surface' : 'Mixed paw surface', easyTerrain ? 'Flat or packed underfoot based on route information' : (t.terrainType || 'Check pads at breaks')],
       ['route', 'Route effort', `${t.distance} km${climb ? ` · +${climb} m` : ''}`],
       ['loop', isLoop ? 'Loop route' : 'One-way route', isLoop ? 'Returns to the starting point' : 'Plan the return journey']
     ];

@@ -155,11 +155,11 @@
         mixed:'Up to mixed terrain',
         rocky:'Rocky terrain is okay',
       }[state.terrain],
-      water: 'Reviewed water point',
-      heat: state.heat === 'low-reviewed' ? 'Reviewed low heat risk' : 'Reviewed shade',
-      exposure: 'No reviewed exposure',
-      access: state.access === 'allowed-reviewed' ? 'Dogs permitted; reviewed rules' : 'Dogs allowed, leash is okay',
-      verification: state.verification === 'field-verified' ? 'DoloPaws field-verified' : 'DoloPaws route-audited',
+      water: 'Water point listed',
+      heat: state.heat === 'low-reviewed' ? 'Lower heat exposure' : 'Shade listed',
+      exposure: 'No reported exposure',
+      access: state.access === 'allowed-reviewed' ? 'Dogs permitted' : 'Dogs allowed, leash is okay',
+      verification: state.verification === 'field-verified' ? 'Walked by DoloPaws' : 'Reviewed by DoloPaws',
       collection: `${state.collection} collection`,
       minMatch: `${state.minMatch}%+ dog match`,
     };
@@ -205,7 +205,7 @@
     if(state && state.verification === 'field-verified'){
       candidates.push({
         key:'verification',
-        label:'Include route-audited trails',
+        label:'Include DoloPaws-reviewed trails',
         state:{ ...state, verification:'route-audited', page:1 },
       });
     }

@@ -30,22 +30,23 @@ describe('trail data trust states', () => {
   const imported = { curated:false, safetyLevel:'low-risk', waterSources:[] };
   const reviewed = { path:[[46.5,11.6],[46.51,11.61]], safetyLevel:'low-risk', waterSources:[{ km:1, label:'Fountain' }], heatRisk:'low', shadeCoverage:60, exposure:false };
 
-  test('imported risk labels are explicitly estimates', () => {
+  test('public rating labels stay simple while evidence remains internal', () => {
     const trust = loadTrust();
-    expect(trust.riskLabel(imported, 'Low-risk terrain')).toBe('Estimated: Low-risk terrain');
-    expect(trust.provenanceLabel(imported)).toMatch(/under dolopaws review/i);
-    expect(trust.provenanceLabel(reviewed)).toMatch(/route-audited/i);
+    expect(trust.riskLabel(imported, 'Low-risk terrain')).toBe('Low-risk terrain');
+    expect(trust.provenanceLabel(imported)).toBe('Trail overview');
+    expect(trust.provenanceLabel(reviewed)).toBe('Reviewed by DoloPaws');
   });
 
-  test('missing imported observations render as unknown, not safe', () => {
+  test('missing observations become actionable guidance, not audit language', () => {
     const trust = loadTrust();
-    expect(trust.waterAssessment(imported).title).toBe('Water unknown');
-    expect(trust.heatAssessment(imported).title).toBe('Heat & shade unknown');
-    expect(trust.exposureAssessment(imported).title).toBe('Exposure unknown');
-    expect(trust.livestockAssessment(imported, '').title).toBe('Livestock unknown');
-    expect(trust.assessmentNote(imported)).toMatch(/remain unverified/i);
+    expect(trust.waterAssessment(imported).title).toBe('Bring your own water');
+    expect(trust.heatAssessment(imported).title).toBe('Plan for limited shade');
+    expect(trust.exposureAssessment(imported)).toBeNull();
+    expect(trust.livestockAssessment(imported, '')).toBeNull();
+    expect(trust.assessmentNote(imported)).toMatch(/trail planning information/i);
+    expect(trust.assessmentNote(imported)).not.toMatch(/unverified|checks|estimated/i);
     expect(trust.waterPointLabel(imported, 'Drinking water (OSM-verified location)')).toBe('Water point mapped in OpenStreetMap');
-    expect(trust.startPointLabel(imported, 'Start here — Bus stop (OSM-verified access point)')).toMatch(/Mapped start suggestion.*not field reviewed/i);
+    expect(trust.startPointLabel(imported, 'Start here — Bus stop (OSM-verified access point)')).toMatch(/Mapped start suggestion.*check current access/i);
   });
 
   test('reviewed observations retain qualified positive states', () => {
@@ -53,24 +54,24 @@ describe('trail data trust states', () => {
     expect(trust.waterAssessment(reviewed).ok).toBe(true);
     expect(trust.heatAssessment(reviewed).ok).toBe(true);
     expect(trust.exposureAssessment(reviewed)).toBeNull();
-    expect(trust.livestockAssessment(reviewed, '').detail).toMatch(/curated trail information/i);
+    expect(trust.livestockAssessment(reviewed, '')).toBeNull();
   });
 
-  test('partial source reviews expose progress and keep unchecked categories unverified', () => {
+  test('partial source reviews do not expose progress metrics to customers', () => {
     const trust = loadTrust();
     const partial = {
       safetyLevel:'caution', terrainRank:2, terrainType:'Rocky path', exposure:true,
       reviewedAt:'2026-07-17', verified:{ categories:['exposure','surfaceHazards'], date:'2026-07-17' },
       waterSources:[{ km:2, label:'Stream' }], shadeCoverage:40, heatRisk:'moderate',
     };
-    expect(trust.provenanceLabel(partial)).toBe('Partly verified data');
-    expect(trust.riskLabel(partial, 'Caution')).toBe('Estimated: Caution');
+    expect(trust.provenanceLabel(partial)).toBe('Trail overview');
+    expect(trust.riskLabel(partial, 'Caution')).toBe('Caution');
     expect(trust.reviewProgress(partial).checked).toBe(2);
-    expect(trust.waterAssessment(partial).title).toBe('Water availability unverified');
-    expect(trust.heatAssessment(partial).title).toBe('Heat & shade unverified');
-    expect(trust.exposureAssessment(partial).title).toBe('Exposure');
-    expect(trust.surfaceAssessment(partial).title).toBe('Surface hazards');
-    expect(trust.livestockAssessment(partial, '').title).toBe('Livestock unverified');
+    expect(trust.waterAssessment(partial).title).toBe('Bring your own water');
+    expect(trust.heatAssessment(partial).title).toBe('Plan for limited shade');
+    expect(trust.exposureAssessment(partial).title).toBe('Exposed sections');
+    expect(trust.surfaceAssessment(partial).title).toBe('Surface & footing');
+    expect(trust.livestockAssessment(partial, '')).toBeNull();
   });
 
   test('unknown imported fields cap match confidence at 80 percent', () => {
@@ -87,11 +88,11 @@ describe('trail data trust states', () => {
   test('route audits show a date without pretending safety checks are complete', () => {
     const trust = loadTrust();
     const audited = { curated:false, reviewedAt:'2026-07-17', routeAudit:{ route:'checked' } };
-    expect(trust.provenanceLabel(audited)).toBe('DoloPaws route audit · 17 Jul 2026');
+    expect(trust.provenanceLabel(audited)).toBe('Trail overview');
     expect(trust.reviewProgress(audited)).toBeNull();
   });
 
-  test('graduation progress keeps ratings estimated until every check passes', () => {
+  test('graduation progress remains available without appearing in public labels', () => {
     const trust = loadTrust();
     const graduating = {
       curated:false,
@@ -103,9 +104,9 @@ describe('trail data trust states', () => {
         blockers:{water:'unknown',exposure:'unknown',livestock:'unknown',surfaceHazards:'unknown'},
       },
     };
-    expect(trust.provenanceLabel(graduating)).toBe('Verification in progress');
+    expect(trust.provenanceLabel(graduating)).toBe('Trail overview');
     expect(trust.graduationProgress(graduating).verified).toBe(false);
-    expect(trust.riskLabel(graduating, 'Moderate terrain')).toBe('Estimated: Moderate terrain');
+    expect(trust.riskLabel(graduating, 'Moderate terrain')).toBe('Moderate terrain');
   });
 
   test('completed graduation uses the public route-audited wording', () => {
@@ -120,7 +121,7 @@ describe('trail data trust states', () => {
         completed:['photo','route'],
       },
     };
-    expect(trust.provenanceLabel(audited)).toBe('DoloPaws route-audited');
+    expect(trust.provenanceLabel(audited)).toBe('Reviewed by DoloPaws');
   });
 
   test('partial source reviews also cap match confidence at 80 percent', () => {
@@ -188,13 +189,12 @@ describe('trail data trust states', () => {
 
     const importedPage = fs.readFileSync(path.join(__dirname, 'trails/planetenweg-sentiero-dei-pianeti.html'), 'utf8');
     const reviewedPage = fs.readFileSync(path.join(__dirname, 'trails/lago-di-braies-loop.html'), 'utf8');
-    expect(importedPage).toContain('Imported map data');
-    // The tier itself follows live scoring data; the trust contract is the
-    // "Estimated:" prefix on imported pages, not a specific tier.
-    expect(importedPage).toContain('Estimated:');
+    expect(importedPage).toContain('Trail overview');
+    expect(importedPage).not.toContain('Estimated:');
+    expect(importedPage).not.toMatch(/Partly verified|Verification in progress|\d+\/\d+ checks/i);
     expect(importedPage).not.toContain('verified map data');
-    expect(reviewedPage).toContain('DoloPaws route-audited');
+    expect(reviewedPage).toContain('Reviewed by DoloPaws');
     expect(reviewedPage).toContain('Trail information prepared by DoloPaws');
-    expect(reviewedPage).toContain('View data sources');
+    expect(reviewedPage).toContain('View source details');
   });
 });

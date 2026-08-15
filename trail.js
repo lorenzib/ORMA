@@ -45,7 +45,7 @@ function renderTrailDetailContent(t){
 
   const waterHtml = water.length > 0
     ? `<ul style="margin:0 0 8px;padding-left:18px;">${water.map(w => `<li>Km ${w.km} — ${trustedWaterLabel(t, w.label)}</li>`).join('')}</ul>` +
-      (t.curated === false ? '<p style="margin:0 0 14px;font-size:12px;color:var(--ink-soft);">Mapped location only — current flow, potability and seasonal availability are not verified.</p>' : '')
+      (t.curated === false ? '<p style="margin:0 0 14px;font-size:12px;color:var(--ink-soft);">Availability can change. Carry a backup supply.</p>' : '')
     : `<p style="margin:0 0 14px;">${window.t('trail.noWater')}</p>`;
 
   return `
@@ -951,31 +951,8 @@ function renderTrail(t){
     const provenanceIcon = window.DoloPawsIcons
       ? window.DoloPawsIcons.renderIconSvg(provStyle, { mode:'inline', color:'currentColor', size:16 })
       : '';
-    const graduation = trust && trust.graduationProgress ? trust.graduationProgress(t) : null;
-    const reviewProgress = trust && trust.reviewProgress ? trust.reviewProgress(t) : null;
-    if (graduation) {
-      box.style.cssText = graduation.verified
-        ? 'margin:10px 0 14px;padding:10px 14px;border-left:4px solid #2E4034;background:#eef3ef;border-radius:6px;font-size:13px;line-height:1.5;'
-        : 'margin:10px 0 14px;padding:10px 14px;border-left:4px solid #b7791f;background:#fff8e6;border-radius:6px;font-size:13px;line-height:1.5;';
-      const remaining = Object.keys(graduation.blockers || {});
-      box.innerHTML = provenanceIcon + '<strong>' + itinEsc(trust.provenanceLabel(t)) + '.</strong> '
-        + (graduation.verified
-          ? 'Route presentation and all dog-safety categories passed the graduation standard.'
-          : `${graduation.total - graduation.completed} checks still need evidence${remaining.length ? `: ${remaining.join(', ')}` : ''}. The safety rating remains estimated.`);
-    } else if (reviewProgress) {
-      box.style.cssText = 'margin:10px 0 14px;padding:10px 14px;border-left:4px solid #b7791f;background:#fff8e6;border-radius:6px;font-size:13px;line-height:1.5;';
-      box.innerHTML = provenanceIcon + '<strong>' + itinEsc(trust.provenanceLabel(t)) + '.</strong> Unchecked safety categories remain explicitly unverified below.';
-    } else if (t.routeAudit && t.reviewedAt) {
-      box.style.cssText = 'margin:10px 0 14px;padding:10px 14px;border-left:4px solid #00897b;background:#e0f2f1;border-radius:6px;font-size:13px;line-height:1.5;';
-      box.innerHTML = provenanceIcon + '<strong>' + itinEsc(trust.provenanceLabel(t)) + '.</strong> Route presentation has been checked; dog-safety conditions are still not field verified.';
-    } else if (t.curated === false) {
-      box.style.cssText = 'margin:10px 0 14px;padding:10px 14px;border-left:4px solid #00897b;background:#e0f2f1;border-radius:6px;font-size:13px;line-height:1.5;';
-      box.innerHTML = provenanceIcon + window.t('trail.importedBox')
-        + (t.waymarkedtrails ? ` <a href="${t.waymarkedtrails}" target="_blank" rel="noopener">${window.t('trail.viewSource')}</a>` : '');
-    } else {
-      box.style.cssText = 'margin:10px 0 14px;padding:10px 14px;border-left:4px solid #2E4034;background:#eef3ef;border-radius:6px;font-size:13px;line-height:1.5;';
-      box.innerHTML = provenanceIcon + window.t('trail.verifiedBox');
-    }
+    box.style.cssText = 'margin:10px 0 14px;padding:10px 14px;border-left:4px solid #2E4034;background:#eef3ef;border-radius:6px;font-size:13px;line-height:1.5;';
+    box.innerHTML = provenanceIcon + '<strong>Trail planning information.</strong> Based on mapped route data and available DoloPaws sources. Conditions can change, so check locally before setting out.';
     descEl.parentNode.insertBefore(box, descEl);
 
     // Trail hazards — surfaceHazards used to feed only the match scoring;
