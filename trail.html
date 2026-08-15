@@ -465,9 +465,10 @@ body{background:#EFECE2;}
 .parking-directions-status:empty{display:none;}
 
 /* Stat-strip match cell (design: "94% · Match · Rufus") */
-.td2-stat .f.match b .pct{font-size:16px;}
-.td2-stat .f.match span a{color:#9FC7D6;text-decoration:none;font-weight:700;}
-.td2-stat .f.match span a:hover{color:#fff;}
+.td2-stat .f.match .td2-match-link{display:block;color:inherit;text-decoration:none;border-radius:6px;}
+.td2-stat .f.match .td2-match-link:hover b,.td2-stat .f.match .td2-match-link:hover #statMatchSub{color:#CDE5EE;}
+.td2-stat .f.match .td2-match-link:focus-visible{outline:2px solid #9FC7D6;outline-offset:5px;}
+.td2-stat .f.match b .pct{display:inline;margin-top:0;font-size:16px;}
 
 /* ---- Map controls: fixed, collision-free slots ----
    Top-right belongs to MapLibre's zoom/locate stack; Expand sits left of it.
@@ -599,6 +600,74 @@ body{background:#EFECE2;}
   .recommendation-evidence-link{display:inline-block;margin-top:12px;}
   .recommendation-columns{grid-template-columns:1fr;}
   .recommendation-actions button{flex:1 1 135px;}
+}
+
+/* ============================================================
+   DECISION-FIRST DETAIL HIERARCHY
+   Permanent planning information stays white, contextual reading is blue,
+   and amber/red is reserved for information that needs attention.
+   ============================================================ */
+.td2 #trailGuideLinks{background:#EAF2F5;border-color:#C8DCE5;padding:18px 22px;}
+.td2 #trailGuideLinks a{background:rgba(255,255,255,.78)!important;border-color:#C8DCE5!important;}
+.td2 #trailGuideLinks a:hover{background:#fff!important;}
+
+.td2-safety-card .td-safety-intro{margin:0 0 12px;color:#6B7A6E;font-size:12.5px;line-height:1.5;}
+.td2 .td2-safety-card .dog-safety-rows{gap:0;}
+.td2 .td2-safety-card .safety-row{background:none;border:0;border-radius:0;padding:12px 0;}
+.td2 .td2-safety-card .safety-row+.safety-row{border-top:1px solid #EDE9DD;}
+.td2 .td2-safety-card .safety-row .pill{background:#F5E4C6;color:#8A5A16;}
+.safety-clear{margin:0;padding:12px 14px;border-radius:10px;background:#F4F7F2;color:#526257;font-size:12.5px;line-height:1.5;}
+.safety-more{margin-top:4px;border-top:1px solid #EDE9DD;}
+.safety-more summary{cursor:pointer;padding:12px 0 4px;color:#3E7A91;font:750 12.5px 'Inter',sans-serif;}
+.safety-more[open] summary{margin-bottom:2px;}
+
+.td2 #td2Hazards:not(.has-active){padding-top:18px;padding-bottom:18px;}
+.td2 #td2Hazards:not(.has-active) .empty-state{padding:0;margin:0;text-align:left;}
+.td2 #td2Hazards:not(.has-active) .empty-state__copy{display:none;}
+.td2-community-card.is-empty{padding-top:18px;padding-bottom:18px;}
+.td2-community-card.is-empty .td2-rev-head{margin-bottom:8px;}
+.td2-community-card.is-empty .empty-state{padding:0;margin:0;text-align:left;}
+.td2-community-card.is-empty .empty-state__copy,
+.td2-community-card.is-empty .empty-state__actions{display:none;}
+.td2-community-card.is-empty .trail-photos-list,
+.td2-community-card.is-empty .trail-reviews-list{margin-bottom:0;}
+
+.td2-fc6>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;list-style:none;}
+.td2-fc6>summary::-webkit-details-marker{display:none;}
+.td2-summary-action{color:#3E7A91;font-size:11.5px;font-weight:750;}
+.td2-fc6[open] .td2-summary-action{font-size:0;}
+.td2-fc6[open] .td2-summary-action::after{content:'Hide forecast';font-size:11.5px;}
+.td2-fc6-body{margin-top:12px;padding-top:4px;border-top:1px solid #EDE9DD;}
+
+/* Desktop: planning story on the left; live information stays together in
+   the compact sticky sidebar. */
+.td2-col>.td2-about{order:1;}
+.td2-col>#trailGuideLinks{order:2;}
+.td2-col>.td2-safety-card{order:3;}
+.td2-col>.td2-parking{order:4;}
+.td2-col>#td2PhotosCard{order:5;}
+.td2-col>#td2ReviewsCard{order:6;}
+
+/* Tablet/mobile: one scan path after the map. Live conditions and current
+   alerts come first, followed by permanent planning information. */
+@media(max-width:900px){
+  .td2-grid{display:flex;flex-direction:column;align-items:stretch;gap:16px;}
+  .td2-grid>.td2-col,.td2-grid>.td2-side{display:contents;}
+  .td2 #tdConditions{order:1;}
+  .td2 #td2Hazards{order:2;}
+  .td2 #td2AboutCard{order:3;}
+  .td2 #trailGuideLinks{order:4;}
+  .td2 #td2SafetyCard{order:5;}
+  .td2 #td2ParkingCard{order:6;}
+  .td2 #sideForecast{order:7;}
+  .td2 #td2PhotosCard{order:8;}
+  .td2 #td2ReviewsCard{order:9;}
+}
+@media(max-width:560px){
+  .td2-section,.td2 #trailGuideLinks{padding:18px 16px;}
+  .td2-rev-head{align-items:flex-start;gap:12px;}
+  .td2-rev-actions{flex-wrap:wrap;justify-content:flex-end;}
+  .td2 #td2Hazards:not(.has-active),.td2-community-card.is-empty{padding:16px;}
 }
 </style>
 </head>
@@ -746,17 +815,10 @@ body{background:#EFECE2;}
     <div class="td2-grid">
       <div class="td2-col">
 
-        <!-- DOG-SAFETY BREAKDOWN -->
-        <div class="td2-card td2-section">
-          <div class="td2-kick" style="margin-bottom:14px;">Dog-safety breakdown<span id="td2SafetyDog"></span></div>
-          <p class="td-safety-intro"><b>Permanent trail conditions</b><span>These describe the route itself. Check the live walking forecast separately before you leave.</span></p>
-          <div id="dogSafetyRows" class="dog-safety-rows"></div>
-        </div>
-
         <!-- ABOUT / THE ROUTE — slim: the human-readable description stays
              up here where it helps choose a trail; the technical data
              footnote lives at the very end of the page. -->
-        <div class="td2-card td2-section td2-about">
+        <div class="td2-card td2-section td2-about" id="td2AboutCard">
           <div class="td2-kick" style="margin-bottom:14px;">About this trail</div>
           <p id="matchDescription" style="margin-top:0;"></p>
           <div id="trailTags" class="td2-tags-row"></div>
@@ -764,6 +826,13 @@ body{background:#EFECE2;}
 
         <!-- BEFORE-YOU-GO SAFETY GUIDES -->
         <div id="trailGuideLinks" class="trail-guide-links" hidden></div>
+
+        <!-- ONLY THE ROUTE CAUTIONS THAT MATTER FOR A DOG -->
+        <div class="td2-card td2-section td2-safety-card" id="td2SafetyCard">
+          <div class="td2-kick" style="margin-bottom:10px;">Important for your dog<span id="td2SafetyDog"></span></div>
+          <p class="td-safety-intro">Only relevant route cautions are highlighted here. Check today’s conditions separately before setting out.</p>
+          <div id="dogSafetyRows" class="dog-safety-rows"></div>
+        </div>
 
         <!-- PARKING & GETTING THERE -->
         <div class="td2-card td2-section td2-parking" id="td2ParkingCard" hidden>
@@ -774,13 +843,13 @@ body{background:#EFECE2;}
         </div>
 
         <!-- PHOTOS -->
-        <div class="td2-card td2-section">
+        <div class="td2-card td2-section td2-community-card" id="td2PhotosCard">
           <div class="td2-rev-head"><span class="td2-kick">Photos<span id="td2PhotoCount"></span></span><button id="addPhotoBtn" type="button" class="add-photo-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Add a photo</button></div>
           <div id="trailPhotosList" class="trail-photos-list"><div class="empty-state empty-state--compact"><p class="empty-state__title">No trail photos yet</p><p class="empty-state__copy">Add a recent, useful view so others can recognise the route and conditions.</p></div></div>
         </div>
 
         <!-- REVIEWS -->
-        <div class="td2-card td2-section">
+        <div class="td2-card td2-section td2-community-card" id="td2ReviewsCard">
           <div class="td2-rev-head"><span class="td2-kick">Reviews<span id="td2ReviewCount"></span></span><span class="td2-rev-actions"><span class="td2-rev-avg" id="td2ReviewAvg" hidden></span><button id="addReviewBtn" type="button" class="add-review-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></svg> Write a review</button></span></div>
           <div id="trailReviewsList" class="trail-reviews-list"><div class="empty-state empty-state--compact"><p class="empty-state__title">No reviews yet</p><p class="empty-state__copy">Share how the route felt for your dog and what another owner should know.</p></div></div>
         </div>
@@ -808,11 +877,13 @@ body{background:#EFECE2;}
         </div>
 
         <!-- 6-day forecast -->
-        <div class="td2-card td2-section td2-fc6" id="sideForecast" hidden>
-          <div class="td2-kick" style="margin-bottom:8px;">6-day forecast</div>
-          <div id="tdForecastDays"></div>
-          <p class="td2-fc6-note" id="tdForecastNote" hidden></p>
-        </div>
+        <details class="td2-card td2-section td2-fc6" id="sideForecast" hidden>
+          <summary><span class="td2-kick">6-day forecast</span><span class="td2-summary-action">Show forecast</span></summary>
+          <div class="td2-fc6-body">
+            <div id="tdForecastDays"></div>
+            <p class="td2-fc6-note" id="tdForecastNote" hidden></p>
+          </div>
+        </details>
       </aside>
     </div>
 

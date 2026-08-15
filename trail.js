@@ -1014,10 +1014,11 @@ function renderTrail(t){
     // below fills it with the real score, or an honest create-profile
     // invitation for guests.
     factsEl.innerHTML =
-      '<span class="f match" id="statMatch" hidden><b id="statMatchVal"></b><span id="statMatchSub"></span></span>'
+      '<span class="f match" id="statMatch" hidden><a class="td2-match-link" id="statMatchLink" href="about.html#how-scoring-works"><b id="statMatchVal"></b><span id="statMatchSub"></span></a></span>'
       + facts.map(([val, label]) =>
         `<span class="f"><b>${val}</b><span>${label}</span></span>`).join('');
     const statMatch = document.getElementById('statMatch');
+    const statMatchLink = document.getElementById('statMatchLink');
     const statMatchVal = document.getElementById('statMatchVal');
     const statMatchSub = document.getElementById('statMatchSub');
 
@@ -1028,7 +1029,9 @@ function renderTrail(t){
       if(actions) actions.classList.add('guest-actions');
       if(statMatch){
         statMatchVal.textContent = '?';
-        statMatchSub.innerHTML = `<a href="index.html?profile=1">${window.t('trail.matchCellTeaser')}</a>`;
+        statMatchSub.textContent = window.t('trail.matchCellTeaser');
+        statMatchLink.href = 'index.html?profile=1';
+        statMatchLink.setAttribute('aria-label', window.t('trail.matchCellTeaser'));
         statMatch.hidden = false;
       }
       // Legacy slot retained for the main personalised match summary.
@@ -1051,6 +1054,8 @@ function renderTrail(t){
         if(statMatch){
           statMatchVal.innerHTML = (t.curated === false ? '≈' : '') + n + '<span class="pct">%</span>';
           statMatchSub.textContent = 'Match · ' + name;
+          statMatchLink.href = 'about.html#how-scoring-works';
+          statMatchLink.setAttribute('aria-label', `Learn how DoloPaws calculates the ${n}% trail match for ${name}`);
           statMatch.dataset.scoringVersion = recommendation.scoringVersion;
           statMatch.dataset.recommendationCategory = recommendation.category;
           statMatch.dataset.recommendationConfidence = recommendation.confidence;

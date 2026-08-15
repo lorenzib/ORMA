@@ -8,7 +8,7 @@
  *   1. Hero "Start the hike" button proxies hike-mode.js's map button, and a
  *      live recording banner mirrors the hike state.
  *   2. "Active now" pill on the hazards card follows #trailFlagsList content.
- *   3. Sidebar dog card is filled from the real match teaser / saved profile.
+ *   3. Relevant section headings are personalised with the active dog's name.
  */
 (function () {
   'use strict';
@@ -107,9 +107,14 @@
     setCount('td2HazardCount', n);
   }
   function syncCounts() {
-    setCount('td2PhotoCount', itemCount(photos));
+    const pc = itemCount(photos);
+    setCount('td2PhotoCount', pc);
     const rc = itemCount(reviews);
     setCount('td2ReviewCount', rc);
+    const photoCard = document.getElementById('td2PhotosCard');
+    const reviewCard = document.getElementById('td2ReviewsCard');
+    if (photoCard) photoCard.classList.toggle('is-empty', pc === 0);
+    if (reviewCard) reviewCard.classList.toggle('is-empty', rc === 0);
     // Average rating from the rendered review ratings (aria-label "X out of 5").
     const avgEl = document.getElementById('td2ReviewAvg');
     if (avgEl && reviews) {

@@ -131,10 +131,12 @@ describe('trail page map legend', () => {
     expect(document.querySelectorAll('#sideForecast')).toHaveLength(1);
     expect(document.getElementById('sideConditions')).toBeNull();
     expect(document.getElementById('matchAdvice')).toBeNull();
-    expect(document.querySelector('.td-safety-intro').textContent).toMatch(/Permanent trail conditions/i);
+    expect(document.querySelector('.td-safety-intro').textContent).toMatch(/Only relevant route cautions/i);
 
     expect(blueprint).toContain("['route', 'Route effort'");
     expect(blueprint).toContain('trust.heatAssessment(t)');
+    expect(blueprint).toContain('if (!item || item.ok) return;');
+    expect(blueprint).toContain('const visible = rows.slice(0, 3)');
     expect((blueprint.match(/api\.open-meteo\.com/g) || [])).toHaveLength(1);
     expect(trail).not.toContain('api.open-meteo.com');
   });
@@ -156,11 +158,36 @@ describe('trail page map legend', () => {
     const mainColumn = document.querySelector('.td2-col');
     const about = mainColumn.querySelector('.td2-about');
     const guides = mainColumn.querySelector('#trailGuideLinks');
+    const safety = mainColumn.querySelector('#td2SafetyCard');
     expect(about.nextElementSibling).toBe(guides);
+    expect(guides.nextElementSibling).toBe(safety);
 
     const sidebar = document.querySelector('.td2-side');
     expect(sidebar.firstElementChild.id).toBe('tdConditions');
+    expect(document.getElementById('sideForecast').tagName).toBe('DETAILS');
     expect(document.getElementById('td2DogCard')).toBeNull();
+  });
+
+  test('mobile detail cards follow a live-first single-column sequence', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+
+    expect(html).toContain('.td2-grid>.td2-col,.td2-grid>.td2-side{display:contents;}');
+    expect(html).toContain('.td2 #tdConditions{order:1;}');
+    expect(html).toContain('.td2 #td2Hazards{order:2;}');
+    expect(html).toContain('.td2 #td2AboutCard{order:3;}');
+    expect(html).toContain('.td2 #td2SafetyCard{order:5;}');
+    expect(html).toContain('.td2 #sideForecast{order:7;}');
+  });
+
+  test('the personalised match links to the scoring explanation', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+    const about = fs.readFileSync(path.join(__dirname, 'about.html'), 'utf8');
+
+    expect(trail).toContain('id="statMatchLink" href="about.html#how-scoring-works"');
+    expect(trail).toContain("statMatchLink.href = 'about.html#how-scoring-works'");
+    expect(html).toContain('.td2-match-link:focus-visible');
+    expect(about).toContain('id="how-scoring-works"');
   });
 
   test('renderLegendChips populates trail legend entries', () => {

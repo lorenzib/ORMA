@@ -488,7 +488,7 @@
       if (!guides.length) return;
       box.innerHTML = `<div>
         <div class="td2-kick" style="margin-bottom:12px;">Read before you go</div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;">${guides.slice(0,4).map(([icon,label,href]) =>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">${guides.slice(0,3).map(([icon,label,href]) =>
           `<a href="${fromTrail(href)}" style="display:inline-flex;align-items:center;gap:6px;padding:7px 12px;background:var(--sage-dim);border:1px solid var(--paper-line);border-radius:999px;font-size:12px;font-weight:600;color:var(--ink);text-decoration:none;">${dpIcon(icon)}<span>${esc(label)}</span></a>`).join('')}</div>
       </div>`;
       box.hidden = false;
@@ -611,31 +611,39 @@
     const shade = typeof t.shadeCoverage === 'number' ? t.shadeCoverage : null;
     const maxAlt = Math.max(0, ...(t.elevationProfile || []).map(p => Number(p.elev) || 0));
     const rows = [];
-    const good = (title, sub) => rows.push({ ok: true, title, sub });
-    const caution = (title, sub) => rows.push({ ok: false, title, sub });
+    const caution = (title, sub) => rows.push({ title, sub });
     const addAssessment = item => {
-      if (!item) return;
-      (item.ok ? good : caution)(item.title, item.detail);
+      if (!item || item.ok) return;
+      caution(item.title, item.detail);
     };
 
-    addAssessment(trust ? trust.waterAssessment(t) : (hasWater
-      ? { ok: true, title: 'Water', detail: 'A water source is mapped on this route. Bring a bowl.' }
-      : { ok: false, title: 'Water', detail: 'No water source is mapped. Carry enough for the dog.' }));
-    addAssessment(trust ? trust.heatAssessment(t) : null);
-    addAssessment(trust ? trust.surfaceAssessment(t) : (Number(t.terrainRank) !== 0
-      ? { ok: false, title: 'Surface hazards', detail: (t.terrainType || 'Gravel and mixed rock') + '. Check pads at breaks; consider booties for tender paws.' }
-      : null));
     addAssessment(trust ? trust.exposureAssessment(t) : (t.exposure
       ? { ok: false, title: 'Exposure', detail: 'Narrow ledges or unprotected drop-offs occur on parts of the route.' }
       : null));
     addAssessment(trust ? trust.livestockAssessment(t, text) : null);
+    addAssessment(trust ? trust.surfaceAssessment(t) : (Number(t.terrainRank) !== 0
+      ? { ok: false, title: 'Surface hazards', detail: (t.terrainType || 'Gravel and mixed rock') + '. Check pads at breaks; consider booties for tender paws.' }
+      : null));
+    addAssessment(trust ? trust.heatAssessment(t) : null);
+    addAssessment(trust ? trust.waterAssessment(t) : (hasWater
+      ? { ok: true, title: 'Water', detail: 'A water source is mapped on this route. Bring a bowl.' }
+      : { ok: false, title: 'Water', detail: 'No water source is mapped. Carry enough for the dog.' }));
     if (maxAlt >= 1800) caution('Season & altitude', `Tops out around ${maxAlt} m. Snow lingers into early summer and weather turns quickly.`);
 
-    box.innerHTML = rows.map(r => `
-      <div class="safety-row ${r.ok ? 'is-good' : 'is-caution'}">
-        <span class="pill">${r.ok ? 'Good' : 'Caution'}</span>
+    if (!rows.length) {
+      box.innerHTML = '<p class="safety-clear">No additional route cautions are highlighted. Continue to check live weather and local signs.</p>';
+      return;
+    }
+    const rowMarkup = r => `
+      <div class="safety-row is-caution">
+        <span class="pill">Caution</span>
         <span><b>${esc(r.title)}</b><small>${esc(r.sub)}</small></span>
-      </div>`).join('');
+      </div>`;
+    const visible = rows.slice(0, 3).map(rowMarkup).join('');
+    const remaining = rows.slice(3);
+    box.innerHTML = visible + (remaining.length
+      ? `<details class="safety-more"><summary>${remaining.length} more consideration${remaining.length === 1 ? '' : 's'}</summary>${remaining.map(rowMarkup).join('')}</details>`
+      : '');
   })();
 
   /* ---- Parking & getting there — built from the trail's real start
