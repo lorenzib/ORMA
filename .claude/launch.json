@@ -12,6 +12,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "4174", "--directory", "/Users/benedettalorenzi/Downloads/_acct_settings_zip"],
       "port": 4174
+    },
+    {
+      "name": "scratchpad",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4175", "--directory", "/private/tmp/claude-502/-Users-benedettalorenzi-Documents-GitHub-dolopaws/18419f30-c40a-458c-9e14-9307cdae4995/scratchpad"],
+      "port": 4175
     }
   ]
 }
