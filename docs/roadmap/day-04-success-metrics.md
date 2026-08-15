@@ -7,7 +7,7 @@ later task.
 
 ## North-star metric
 
-> Appropriate offline hikes completed with DoloPaws.
+> Appropriate offline hikes completed with ORMA.
 
 A hike counts toward the numerator only when:
 

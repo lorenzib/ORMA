@@ -180,3 +180,30 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('returningCount').textContent).toBe('1 scored · 0 saved');
   });
 });
+
+describe('map-first returning homepage layout contract', () => {
+  const html = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
+  const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+  const mobileCss = fs.readFileSync(path.join(__dirname, 'homepage-mobile.css'), 'utf8');
+  const mobileJs = fs.readFileSync(path.join(__dirname, 'homepage-mobile.js'), 'utf8');
+
+  test('integrates the greeting and one filters control into the compact toolbar', () => {
+    expect(html).toContain('class="li-toolbar-greet"');
+    expect(html).toContain('id="liToolbarDogContext"');
+    expect(html).toContain('id="liFiltersWrap"');
+    expect(html).not.toContain('id="liFiltersWrap" class="li-menuwrap li-mobile-only"');
+    expect(css).toMatch(/\.li-greetbar\{\s*display:none;/);
+    expect(css).toMatch(/\.li-chiprow\{display:none;/);
+  });
+
+  test('keeps Record walk as a map action and defaults mobile results to the low snap', () => {
+    const mapStart = html.indexOf('<div class="li-map" id="trailMapWrap">');
+    const record = html.indexOf('id="liRecordBtn"');
+    const mapEnd = html.indexOf('<aside class="li-list"', mapStart);
+    expect(record).toBeGreaterThan(mapStart);
+    expect(record).toBeLessThan(mapEnd);
+    expect(mobileJs).toContain('var sheetPct = SNAPS[1];');
+    expect(mobileJs).toContain('var lastOpenPct = SNAPS[1];');
+    expect(mobileCss).toContain('height:26dvh');
+  });
+});

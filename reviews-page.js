@@ -57,7 +57,7 @@
     list.innerHTML = reviews.map(review => {
       const dogName = review.dogContext && review.dogContext.name;
       const dogBreed = review.dogContext && review.dogContext.breed;
-      const name = dogName ? `${dogName}’s human` : 'A DoloPaws member';
+      const name = dogName ? `${dogName}’s human` : 'A ORMA member';
       const meta = dogBreed || 'Verified community member';
       return `<article class="review-card">
         <div class="review-card-head"><span class="review-avatar">${esc(name.charAt(0))}</span><span class="review-person"><b>${esc(name)}</b><small>${esc(meta)}</small></span><span class="review-date">${stars(review.rating)}<br>${esc(dateLabel(review.createdAt))}</span></div>

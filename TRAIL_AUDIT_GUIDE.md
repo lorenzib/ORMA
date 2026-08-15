@@ -1,4 +1,4 @@
-# DoloPaws trail audit guide
+# ORMA trail audit guide
 
 ## Assignment
 
@@ -90,7 +90,7 @@ For each trail, verify all five areas below.
 - Identify whether the trail uses a genuine photograph, a generated image, a
   route diagram, or a placeholder.
 - If a photograph is already used, trace it back to its source and confirm that
-  DoloPaws has a defensible right to use it.
+  ORMA has a defensible right to use it.
 - Preserve the photographer's exact credited name and link to the original
   source or licence where available.
 - Store the credit in the existing `imageCredit` structure.
@@ -156,7 +156,7 @@ For each trail, verify all five areas below.
 ### 5. Review record
 
 - Add `reviewedAt` using `YYYY-MM-DD`.
-- Set `reviewedBy: "DoloPaws route audit"`.
+- Set `reviewedBy: "ORMA route audit"`.
 - Add a `routeAudit` object covering:
   - `photo`
   - `route`
@@ -164,7 +164,7 @@ For each trail, verify all five areas below.
   - `elevation`
 - Add route-specific `sourceLinks`, using primary and authoritative sources
   wherever possible.
-- The visitor-facing record should say “DoloPaws route audit” and show the
+- The visitor-facing record should say “ORMA route audit” and show the
   date.
 - Keep route-audit status separate from the six dog-safety checks in
   `verified.categories`. Do not add a safety category unless a route-specific
@@ -186,7 +186,7 @@ generated OSM trails. Add one object keyed by trail ID:
   hours: '3.5',
   imagePlaceholder: true,
   reviewedAt: '2026-07-17',
-  reviewedBy: 'DoloPaws route audit',
+  reviewedBy: 'ORMA route audit',
   routeAudit: {
     photo: 'No licensed trail photo is currently used; no credit is due.',
     route: 'Full route geometry present and checked against the official map.',

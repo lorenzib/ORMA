@@ -6,7 +6,7 @@
 
 ## Outcome
 
-DoloPaws uses a Spark-compatible contribution policy that requires no Cloud
+ORMA uses a Spark-compatible contribution policy that requires no Cloud
 Functions or paid Firebase plan:
 
 - any authenticated account may initiate and manage an offline trail package;

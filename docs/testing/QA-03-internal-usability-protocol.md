@@ -55,7 +55,7 @@ Ask only after the participant finishes the relevant task:
 3. What does **Ready offline** tell you?
 4. What would you do if GPS accuracy became poor?
 5. Does the elevation cursor show exact GPS altitude?
-6. Would you treat DoloPaws as emergency navigation? Why not?
+6. Would you treat ORMA as emergency navigation? Why not?
 
 ## Recording template
 

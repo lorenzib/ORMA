@@ -286,9 +286,9 @@ function sourcesFor(legacy, origin){
 
   if(!result.length){
     push({
-      label: 'DoloPaws legacy production record',
+      label: 'ORMA legacy production record',
       url: null,
-      provider: 'DoloPaws',
+      provider: 'ORMA',
       kind: 'legacy',
       retrievedAt: null,
       observedAt: null,
@@ -397,7 +397,7 @@ function adaptLegacyTrail(legacy, options = {}){
   const verifiedCategories = reviewCategoriesFor(legacy, suitability);
   const tier = evidence.tierOf(legacy);
   const reviewedAt = isoDate(legacy.reviewedAt || (legacy.verified && legacy.verified.date));
-  const reviewedBy = reviewedAt ? String(legacy.reviewedBy || 'DoloPaws') : null;
+  const reviewedBy = reviewedAt ? String(legacy.reviewedBy || 'ORMA') : null;
   const allVerified = REVIEW_CATEGORIES.every(category => verifiedCategories[category] === 'verified');
   const anyVerified = REVIEW_CATEGORIES.some(category => verifiedCategories[category] === 'verified');
   const sources = sourcesFor(legacy, origin);

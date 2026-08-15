@@ -1,6 +1,6 @@
 rules_version = '2';
 
-// SEC-01 — DoloPaws Firestore authorization boundary.
+// SEC-01 — ORMA Firestore authorization boundary.
 //
 // Contributor eligibility is a verified Firebase email plus absence from the
 // private operator-managed block list. Moderator privileges remain a trusted

@@ -5,7 +5,7 @@
 ## Outcome
 
 Starting a hike creates one small, versioned record in local storage. Each
-acceptable GPS fix replaces the previous progress snapshot. DoloPaws does not
+acceptable GPS fix replaces the previous progress snapshot. ORMA does not
 store a breadcrumb trail or continuous latitude/longitude history.
 
 The first reliable fix establishes the starting baseline wherever the hiker

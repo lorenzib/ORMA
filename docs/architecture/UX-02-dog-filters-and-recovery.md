@@ -12,7 +12,7 @@ Browse is the canonical filter surface. Its filters cover:
 - reviewed shade of at least 30%;
 - reviewed absence of exposure;
 - reviewed dog permission, including routes where a leash is required;
-- DoloPaws route-audited or field-verified status;
+- ORMA route-audited or field-verified status;
 - the existing trail rating, region, collection, search, and dog-match context.
 
 Labels deliberately say "reviewed" where a positive result depends on safety

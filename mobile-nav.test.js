@@ -6,7 +6,7 @@ const mobileNav = fs.readFileSync(path.join(__dirname, 'mobile-nav.js'), 'utf8')
 describe('shared navigation hardening', () => {
   beforeEach(() => {
     localStorage.clear();
-    document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">DoloPaws</a><div class="links"><a href="browse-trails.html">Trails</a></div></nav>';
+    document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a><div class="links"><a href="browse-trails.html">Trails</a></div></nav>';
     window.eval(mobileNav);
   });
 
@@ -55,7 +55,7 @@ describe('shared navigation hardening', () => {
     const frame = document.createElement('iframe');
     document.body.appendChild(frame);
     const isolated = frame.contentWindow;
-    isolated.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">DoloPaws</a><div class="links"></div></nav>';
+    isolated.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a><div class="links"></div></nav>';
     isolated.localStorage.setItem('dolopaws-profile-summary', JSON.stringify({ name:'Eddie', dogs:[] }));
     isolated.matchMedia = jest.fn().mockReturnValue({
       matches:true,

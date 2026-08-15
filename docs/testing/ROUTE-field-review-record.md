@@ -12,10 +12,10 @@ route is currently walkable.
 ## Safety boundary
 
 - Review only in suitable weather and daylight on a familiar, low-risk route.
-- Do not leave a marked path or cross a closure to test DoloPaws.
+- Do not leave a marked path or cross a closure to test ORMA.
 - Stop for a closure, unsafe surface, livestock conflict, weather deterioration,
   incorrect route, or any uncertainty that makes continuing inappropriate.
-- DoloPaws is not emergency navigation. Carry the normal local map and safety
+- ORMA is not emergency navigation. Carry the normal local map and safety
   equipment for the route.
 - Do not publish exact private locations or identifiable bystander information.
 

@@ -7,7 +7,7 @@
       "id": "DATA-SCORE-TRUST",
       "priority": "P0",
       "status": "passed",
-      "owner": "DoloPaws",
+      "owner": "ORMA",
       "evidence": "docs/roadmap/day-06-master-backlog.md",
       "summary": "Canonical trail validation, recommendation scoring, and provenance contracts pass."
     },
@@ -15,7 +15,7 @@
       "id": "AUTH-SEC-MOD",
       "priority": "P0",
       "status": "passed",
-      "owner": "DoloPaws",
+      "owner": "ORMA",
       "evidence": "docs/architecture/SEC-02-firestore-emulator-tests.md",
       "summary": "Authentication, Firestore authorization, and the moderation boundary are implemented and verified."
     },
@@ -59,7 +59,7 @@
       "id": "PRIVACY-RETENTION",
       "priority": "P1",
       "status": "passed",
-      "owner": "DoloPaws",
+      "owner": "ORMA",
       "evidence": "docs/architecture/PRIV-01-retention-and-deletion.md",
       "summary": "Retention, account deletion, device cleanup, community-content retention, and analytics boundaries are documented and implemented."
     },
@@ -67,7 +67,7 @@
       "id": "PERFORMANCE-LAB",
       "priority": "P1",
       "status": "passed",
-      "owner": "DoloPaws",
+      "owner": "ORMA",
       "evidence": "docs/architecture/PERF-02-asset-and-regional-optimization.md",
       "summary": "Responsive assets, regional loading, lazy loading, and reproducible mobile performance budgets pass in the lab."
     },
@@ -78,7 +78,7 @@
       "owner": "Product owner",
       "evidence": "docs/testing/OFF-06-gpx-acceptance.md",
       "summary": "Complete one authenticated browser export and open the resulting Carezza GPX in an independent navigation app.",
-      "safeFallback": "Do not advertise GPX portability as beta-ready; the verified DoloPaws offline package remains the supported fallback."
+      "safeFallback": "Do not advertise GPX portability as beta-ready; the verified ORMA offline package remains the supported fallback."
     },
     {
       "id": "ACCESSIBILITY-VOICEOVER",
@@ -102,7 +102,7 @@
       "id": "QA-CI-GATE",
       "priority": "P1",
       "status": "passed",
-      "owner": "DoloPaws",
+      "owner": "ORMA",
       "evidence": "docs/architecture/QA-01-complete-ci-quality-gate.md",
       "summary": "Unit, static, generated-artifact, security-rule, and performance contracts are enforced."
     }

@@ -6,7 +6,7 @@
 
 ## Outcome
 
-DoloPaws uses an account to acquire or change account-bound services, not to
+ORMA uses an account to acquire or change account-bound services, not to
 unlock safety data that is already on the device.
 
 - Browsing and trying the dog recommendation flow remain available to guests.
@@ -28,7 +28,7 @@ invariants.
 
 | State | Meaning |
 |---|---|
-| Guest | No DoloPaws account is authenticated on this device. |
+| Guest | No ORMA account is authenticated on this device. |
 | Authenticated | A valid session exists, but contribution eligibility is not established. |
 | Verified contributor | A valid session exists and AUTH-02's publication requirements are satisfied. |
 | Expired session | This device previously authenticated the owner, but cannot currently authorize server work. |
@@ -57,7 +57,7 @@ state. It cannot install, update, export, sync, or publish.
 | Sync a queued private hike outcome | No | Yes | Yes | No | No | No |
 
 “Draft” means text may exist temporarily in the form while a user authenticates.
-It does not mean DoloPaws accepts, stores, or displays the contribution
+It does not mean ORMA accepts, stores, or displays the contribution
 publicly. Free-form contribution content must not be placed in a URL.
 
 Package removal is deliberately exempt from the account requirement for
@@ -120,7 +120,7 @@ Ordinary logout:
 5. says explicitly that downloaded trails remain on the device.
 
 Logout must also offer **Log out and remove local data** for shared devices.
-That action removes DoloPaws-owned packages, owner-bound local records, active
+That action removes ORMA-owned packages, owner-bound local records, active
 hikes, pending uploads, and profile summaries for the current browser. It must
 not delete unrelated browser caches.
 
@@ -142,7 +142,7 @@ The required sequence is:
 4. Always remove authentication state and owner-bound private data from the
    current device.
 5. Ask whether to retain the public offline trail packages on this device or
-   remove all DoloPaws local data. On a shared device, removal is the recommended
+   remove all ORMA local data. On a shared device, removal is the recommended
    default.
 6. Confirm separately what was deleted from the server and what remains on the
    device.
@@ -156,7 +156,7 @@ deletes every server collection and local record.
 
 ## Authentication detours and pending intent
 
-When a guest selects a protected action, DoloPaws preserves only enough intent
+When a guest selects a protected action, ORMA preserves only enough intent
 to resume it:
 
 - an allowlisted action: `save`, `download`, `review`, `photo`, `report`, or

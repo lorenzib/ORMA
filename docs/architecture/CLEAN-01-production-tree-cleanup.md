@@ -5,7 +5,7 @@ Status: complete (2026-08-11)
 ## Removed artifacts
 
 - `.DS_Store`: tracked macOS Finder metadata with no product value.
-- `DoloPaws Homepage - Split Hero.html`: a 938 KB bundled historical homepage
+- `ORMA Homepage - Split Hero.html`: a 938 KB bundled historical homepage
   prototype superseded by `index.html` and the canonical discovery journey.
 - `dolopaws-combined-preview.html`: a standalone new/returning-user mockup whose
   behaviour is now implemented by the canonical homepage and account state.

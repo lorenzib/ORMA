@@ -2,7 +2,7 @@
  * homepage-search.js — controller for the redesigned logged-out homepage
  * (search-first hero + live suggestions + consolidated filters + dog
  * mini-wizard), ported from the Claude Design prototype
- * "DoloPaws Homepage - final.dc.html" and wired to REAL data + scoring:
+ * "ORMA Homepage - final.dc.html" and wired to REAL data + scoring:
  *   - `trails` (trails-data.js + osm-*.js)
  *   - `scoreTrail` / `effectiveOverrides` (scoring.js)
  *   - `pathThumbnailSvg`, `trailSafetyLabel`, `safetyClass` (script.js)
@@ -450,7 +450,7 @@
       }).join('');
       el.content.innerHTML =
         '<div class="hp-how">' +
-          '<div class="hp-how-head"><div class="hp-kick">How DoloPaws works</div>' +
+          '<div class="hp-how-head"><div class="hp-kick">How ORMA works</div>' +
           '<h2 class="hp-how-h2">A safer walk in three steps</h2></div>' +
           '<div class="hp-how-grid">' + how + '</div>' +
         '</div>' +

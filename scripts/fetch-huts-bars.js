@@ -1,6 +1,6 @@
 /**
  * scripts/fetch-huts-bars.js
- * Fetches ALL food, drink and hut POIs for both DoloPaws regions
+ * Fetches ALL food, drink and hut POIs for both ORMA regions
  * (Dolomites + Savoy) from the Overpass API and writes
  * huts-bars-all-regions.geojson at the repo root.
  *
@@ -48,7 +48,7 @@ async function overpass(query, attempt = 0){
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'User-Agent': 'DoloPaws/1.0 (https://www.dolopaws.com; POI refresh pipeline)',
+      'User-Agent': 'ORMA/1.0 (https://www.dolopaws.com; POI refresh pipeline)',
     },
     body: 'data=' + encodeURIComponent(query),
   });

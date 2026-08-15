@@ -1,5 +1,5 @@
 /**
- * regions-config.js — DoloPaws region & valley taxonomy.
+ * regions-config.js — ORMA region & valley taxonomy.
  *
  * Assigns every trail (curated AND imported, identically) a `region` and
  * `valley` at page load, from the nearest known locality — the same

@@ -457,7 +457,7 @@
             })
             .catch((err) => {
               // Offline or blocked: fall back to the homepage flow.
-              console.warn('DoloPaws lazy login failed:', err);
+              console.warn('ORMA lazy login failed:', err);
               window.location.href = prefix + 'index.html?view=login&next=' + encodeURIComponent(pagePath);
             });
         }

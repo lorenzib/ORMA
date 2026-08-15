@@ -130,7 +130,7 @@ describe('OFF-03 offline package ownership metadata', () => {
       .resolves.toMatchObject({ version:'fallback-v1' });
   });
 
-  test('removes every DoloPaws package cache and registry without touching other caches', async () => {
+  test('removes every ORMA package cache and registry without touching other caches', async () => {
     const deletedCaches = [];
     Object.defineProperty(window, 'caches', {
       configurable:true,

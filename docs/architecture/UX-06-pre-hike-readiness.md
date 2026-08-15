@@ -51,7 +51,7 @@ device's radio mode.
 
 ## Safety boundary
 
-The readiness sheet always states that DoloPaws is a planning companion, not
+The readiness sheet always states that ORMA is a planning companion, not
 an emergency-navigation service. It says that offline maps and GPS do not
 replace waymarks, judgment, equipment, or emergency preparation, and links to
 the emergency section of the safety guide.

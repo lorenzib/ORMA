@@ -26,7 +26,7 @@ off-route warning.
 1. Sign in, update both packages, and confirm each says **Ready offline**.
 2. Run the offline self-test for each package while still online.
 3. Confirm sufficient battery and normal location permission. Carry the usual
-   independent map and safety equipment; DoloPaws is not emergency navigation.
+   independent map and safety equipment; ORMA is not emergency navigation.
 4. Record each displayed package version and size below. Stop if either version
    differs from this protocol—the evidence would apply to another build.
 

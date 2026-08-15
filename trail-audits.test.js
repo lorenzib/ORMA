@@ -51,7 +51,7 @@ describe('trail presentation audits', () => {
     const trail = loadTrails().find((candidate) => candidate.id === id);
     expect(trail.curated).toBe(false);
     expect(trail.reviewedAt).toBe('2026-07-26');
-    expect(trail.reviewedBy).toBe('DoloPaws route audit');
+    expect(trail.reviewedBy).toBe('ORMA route audit');
     expect(trail.distance).toBe(distance);
     expect(trail.elevation).toBe(elevation);
     expect(trail.elevationProfile[0].km).toBe(0);

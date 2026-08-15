@@ -4,7 +4,7 @@
 
 ## Outcome
 
-For the first DoloPaws beta, each downloadable trail should contain a small,
+For the first ORMA beta, each downloadable trail should contain a small,
 bounded offline package:
 
 - a georeferenced raster map covering the trail corridor;
@@ -44,7 +44,7 @@ breach tile-provider policies.
 **Decision: rejected.**
 
 It is technically easy to intercept requests with a service worker, but bulk
-prefetching is prohibited by the OpenStreetMap standard tile policy. DoloPaws
+prefetching is prohibited by the OpenStreetMap standard tile policy. ORMA
 also does not currently have explicit permission to bulk-download the other
 public endpoints used by the site. Availability, retention, attribution, and
 package completeness would remain outside our control.
@@ -68,7 +68,7 @@ A map image generated for one trail corridor is easy to verify as complete,
 render without WebGL, version, remove, and keep within a predictable size. The
 route and the hiker's position remain independent vector overlays, so they stay
 clear at different screen sizes. The source image must be generated from data
-DoloPaws is permitted to use offline—not captured from a public tile endpoint.
+ORMA is permitted to use offline—not captured from a public tile endpoint.
 
 ### D. Route line without a basemap
 
@@ -93,7 +93,7 @@ For every downloadable trail:
    and resource hashes in a manifest.
 
 The recommended source pipeline is a self-hosted Protomaps/OSM extract. Public
-OpenStreetMap or OpenFreeMap endpoints must not be bulk-cached unless DoloPaws
+OpenStreetMap or OpenFreeMap endpoints must not be bulk-cached unless ORMA
 obtains explicit permission for that use.
 
 ### 2. Offline package
@@ -117,7 +117,7 @@ final schema, integrity algorithm, and download-state machine.
 - Use Cache Storage for immutable shell assets and trail-package resources.
 - Use IndexedDB for package metadata, verification state, and the active-hike
   session.
-- Use versioned DoloPaws-owned cache names; never delete unrelated origin
+- Use versioned ORMA-owned cache names; never delete unrelated origin
   storage.
 - Ask for persistent storage when supported, but treat the answer as a hint
   rather than a guarantee.
@@ -210,17 +210,17 @@ option.
 Run the full checklist on:
 
 - a current iPhone in Safari;
-- the same iPhone with DoloPaws installed to the Home Screen;
+- the same iPhone with ORMA installed to the Home Screen;
 - the oldest iPhone/iOS version selected for beta support;
 - a current Android phone in Chrome;
-- the same Android phone with DoloPaws installed;
+- the same Android phone with ORMA installed;
 - the oldest Android/Chrome combination selected for beta support.
 
 For each device:
 
 1. Sign in and download a representative real trail over Wi-Fi.
 2. Confirm size, progress, completion, and visible attribution.
-3. Close every DoloPaws tab, enable airplane mode, reopen, and load the trail.
+3. Close every ORMA tab, enable airplane mode, reopen, and load the trail.
 4. Refresh while still in airplane mode.
 5. Restart the phone and repeat the offline open.
 6. Start hike mode, grant GPS, and confirm position, accuracy, and

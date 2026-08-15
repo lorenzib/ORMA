@@ -151,7 +151,7 @@ describe('beta readiness ledger', () => {
       expect(protocol).toContain(`\`${manifest.version}\``);
     });
     expect(protocol).toContain('Chrome browser tab');
-    expect(protocol).toContain('Installed DoloPaws experience');
+    expect(protocol).toContain('Installed ORMA experience');
     expect(protocol).toContain('Test data removed from borrowed phone');
     expect(protocol).toMatch(/cannot pass this\s+gate/);
   });

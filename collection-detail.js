@@ -11,13 +11,13 @@
   const id = new URLSearchParams(window.location.search).get('id');
   const collection = api.get(id);
   if(!collection){
-    document.title = 'Collection not found | DoloPaws';
+    document.title = 'Collection not found | ORMA';
     shell.innerHTML = '<section class="collection-not-found"><h1>Collection not found</h1><p>This collection may have moved or is not available yet.</p><a class="collection-cta" href="collections.html">View all collections</a></section>';
     return;
   }
 
   const selected = api.trailsFor(collection, trails);
-  document.title = `${collection.title} | DoloPaws collections`;
+  document.title = `${collection.title} | ORMA collections`;
   const description = document.querySelector('meta[name="description"]');
   if(description) description.content = collection.description;
 
@@ -45,7 +45,7 @@
   shell.innerHTML = `<section class="collection-detail-hero" style="--collection-cover:url('${esc(collection.coverImage)}')">
       <div class="collection-detail-hero__overlay">
         <a class="collection-detail-back" href="collections.html">← All collections</a>
-        <div class="collection-detail-kick">DoloPaws collection · ${selected.length} ${selected.length === 1 ? 'trail' : 'trails'}</div>
+        <div class="collection-detail-kick">ORMA collection · ${selected.length} ${selected.length === 1 ? 'trail' : 'trails'}</div>
         <h1>${esc(collection.title)}</h1>
         <p>${esc(collection.subtitle)}</p>
       </div>

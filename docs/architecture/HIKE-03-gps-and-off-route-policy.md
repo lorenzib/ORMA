@@ -5,7 +5,7 @@ open.
 
 ## Outcome
 
-DoloPaws no longer treats every GPS coordinate as equally trustworthy. One
+ORMA no longer treats every GPS coordinate as equally trustworthy. One
 versioned policy controls progress, map messaging, and off-route warnings on
 both the interactive trail map and the downloaded offline map.
 
@@ -48,7 +48,7 @@ receivers that report overly optimistic accuracy:
 
 A fix only contributes to the off-route streak when that lower bound is more
 than 60 metres. At least three consecutive eligible fixes **and** 20 seconds of
-continuous evidence are required before DoloPaws shows a strong off-route
+continuous evidence are required before ORMA shows a strong off-route
 warning. Any weak, stale, or contradictory fix resets that evidence window.
 
 Distance is measured to the closest position along every route segment, not

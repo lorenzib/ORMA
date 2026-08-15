@@ -2,7 +2,7 @@
 
 ## Decision
 
-DoloPaws asks for a short, private check-in only after a hike completion has
+ORMA asks for a short, private check-in only after a hike completion has
 been stored. This check-in is product evidence about whether the recommendation
 suited the dog; it is not a public rating or review.
 

@@ -799,7 +799,7 @@ function init(){
   const trail = (typeof trails !== 'undefined') ? trails.find(x => x.id === trailId) : null;
 
   if(!trail){
-    document.title = window.t('trail.notFound') + ' | DoloPaws';
+    document.title = window.t('trail.notFound') + ' | ORMA';
     const wrap = document.querySelector('.td-wrap');
     if(wrap){
       wrap.innerHTML = `
@@ -869,8 +869,8 @@ function renderTrail(t){
     const experienceGrid = elevationCard.closest('.trail-experience-grid');
     if(experienceGrid) experienceGrid.classList.toggle('trail-experience-grid--itinerary-only', !hasElevationProfile);
   }
-  document.title = `${t.name} | DoloPaws`;
-  document.getElementById('pageTitle').textContent = `${t.name} | DoloPaws`;
+  document.title = `${t.name} | ORMA`;
+  document.getElementById('pageTitle').textContent = `${t.name} | ORMA`;
   document.getElementById('trailName').textContent = t.name;
   // Photo-backed hero (per prototype): trail photo under a dark gradient.
   // Trails without an image keep the flat dark hero.
@@ -952,7 +952,7 @@ function renderTrail(t){
       ? window.DoloPawsIcons.renderIconSvg(provStyle, { mode:'inline', color:'currentColor', size:16 })
       : '';
     box.style.cssText = 'margin:10px 0 14px;padding:10px 14px;border-left:4px solid #2E4034;background:#eef3ef;border-radius:6px;font-size:13px;line-height:1.5;';
-    box.innerHTML = provenanceIcon + '<strong>Trail planning information.</strong> Based on mapped route data and available DoloPaws sources. Conditions can change, so check locally before setting out.';
+    box.innerHTML = provenanceIcon + '<strong>Trail planning information.</strong> Based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.';
     descEl.parentNode.insertBefore(box, descEl);
 
     // Trail hazards — surfaceHazards used to feed only the match scoring;
@@ -1055,7 +1055,7 @@ function renderTrail(t){
           statMatchVal.innerHTML = (t.curated === false ? '≈' : '') + n + '<span class="pct">%</span>';
           statMatchSub.textContent = 'Match · ' + name;
           statMatchLink.href = 'about.html#how-scoring-works';
-          statMatchLink.setAttribute('aria-label', `Learn how DoloPaws calculates the ${n}% trail match for ${name}`);
+          statMatchLink.setAttribute('aria-label', `Learn how ORMA calculates the ${n}% trail match for ${name}`);
           statMatch.dataset.scoringVersion = recommendation.scoringVersion;
           statMatch.dataset.recommendationCategory = recommendation.category;
           statMatch.dataset.recommendationConfidence = recommendation.confidence;
@@ -1745,7 +1745,7 @@ function renderTrail(t){
   if(window.DoloPawsAuth) handleSaveAuth(window.DoloPawsAuth.currentUser);
 
   // GPX export is intentionally account-gated. The file contains the ordered
-  // route and trailhead, but not the richer safety context shown on DoloPaws.
+  // route and trailhead, but not the richer safety context shown on ORMA.
   const exportGpxBtn = document.getElementById('exportGpxBtn');
   if(exportGpxBtn){
     let exportStatusTimer = null;
@@ -1775,7 +1775,7 @@ function renderTrail(t){
       }
       try {
         window.DoloPawsGpxExport.download(t);
-        showExportStatus('GPX downloaded. It contains the route only — check DoloPaws for safety context.');
+        showExportStatus('GPX downloaded. It contains the route only — check ORMA for safety context.');
         return true;
       } catch(error){
         showExportStatus(error && error.message

@@ -12,7 +12,7 @@ Alpe di Siusi trails.
 
 This provides:
 
-- a strong fit with the DoloPaws identity;
+- a strong fit with the ORMA identity;
 - varied low- and moderate-risk routes in a compact area;
 - opportunities to test water, livestock, lift, and seasonal information;
 - repeated access for internal validation;
@@ -116,14 +116,14 @@ Potential channels:
 - rifugi near easy routes;
 - local tourism communities;
 - regional Facebook, Reddit, and hiking communities;
-- personal contacts who own dogs but have not seen DoloPaws.
+- personal contacts who own dogs but have not seen ORMA.
 
 ## Participant safety rules
 
 Participants must:
 
 - choose a familiar, low-risk trail;
-- avoid using DoloPaws as their sole emergency preparation;
+- avoid using ORMA as their sole emergency preparation;
 - download and verify the route before leaving;
 - carry sufficient battery and water;
 - follow closures and local instructions;

@@ -1,5 +1,5 @@
 /* Mobile app layout for the logged-in homepage (≤700px) — ported from the
-   Claude Design prototype "DoloPaws Homepage (Logged in) - Mobile.dc.html".
+   Claude Design prototype "ORMA Homepage (Logged in) - Mobile.dc.html".
 
    Purely additive on top of the desktop li-* shell: injects the bottom tab
    bar and the sheet grab handle, measures the top bar / tab bar heights into
@@ -18,8 +18,8 @@
   // (design prototype: 0.26 / 0.46 / 0.84). 0 is the fully-hidden state:
   // only the grab handle stays visible so the map gets the whole screen.
   var SNAPS = [0, 0.26, 0.46, 0.84];
-  var sheetPct = SNAPS[2];
-  var lastOpenPct = SNAPS[2];
+  var sheetPct = SNAPS[1];
+  var lastOpenPct = SNAPS[1];
   var active = false;
 
   function listEl(){ return returning.querySelector('.li-list'); }
@@ -36,7 +36,7 @@
       list.insertBefore(grab, list.firstChild);
       wireDrag(grab);
     }
-    // No app tab bar: DoloPaws stays a mobile website. Saved / Journal /
+    // No app tab bar: ORMA stays a mobile website. Saved / Journal /
     // Profile are reached through the account menu in the toolbar, same
     // navigation model as every other page.
   }
@@ -146,17 +146,16 @@
     });
   }
 
-  // The Record pill is position:fixed on phones; inside the toolbar the
-  // backdrop-filter would make the toolbar its containing block and pin it
-  // off-screen, so the phone layer parks it on <body>.
+  // The Record pill is position:fixed on phones. On wider screens it belongs
+  // to the map as the primary map action, not among the search filters.
   function placeRecordBtn(mobile){
     var rec = document.getElementById('liRecordBtn');
     if(!rec) return;
     if(mobile){
       if(rec.parentElement !== document.body) document.body.appendChild(rec);
     } else {
-      var toolbar = document.getElementById('liToolbar');
-      if(toolbar && rec.parentElement !== toolbar) toolbar.appendChild(rec);
+      var map = document.getElementById('trailMapWrap');
+      if(map && rec.parentElement !== map) map.appendChild(rec);
     }
   }
 

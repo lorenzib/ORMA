@@ -6,7 +6,7 @@
 
 ## Outcome
 
-DoloPaws now stores its Firestore authorization boundary in version control:
+ORMA now stores its Firestore authorization boundary in version control:
 
 - `firestore.rules`;
 - `firestore.indexes.json`;

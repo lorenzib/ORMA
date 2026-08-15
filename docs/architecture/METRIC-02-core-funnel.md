@@ -41,5 +41,5 @@ generation, and raw failure messages are converted only to allowlisted
 categories.
 
 This work instruments and locally queues the funnel. Sending the queue outside
-the browser remains disabled until DoloPaws provisions and approves a
+the browser remains disabled until ORMA provisions and approves a
 first-party metrics receiver.

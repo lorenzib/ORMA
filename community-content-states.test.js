@@ -53,7 +53,7 @@ describe('MOD-01 community content state contract', () => {
       .toBe('2026-10-28T10:00:00.000Z');
   });
 
-  test('hazard trust keeps official, DoloPaws, and community evidence distinct', () => {
+  test('hazard trust keeps official, ORMA, and community evidence distinct', () => {
     expect(states.hazardTrustState({ confirmationSource:'official' }))
       .toBe('official-confirmed');
     expect(states.hazardTrustState({ confirmationSource:'dolopaws-reviewed' }))

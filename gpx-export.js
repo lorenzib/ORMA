@@ -5,7 +5,7 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
-  const DISCLAIMER = 'Route geometry only. Check DoloPaws for current safety, access, water and dog-suitability context before setting out.';
+  const DISCLAIMER = 'Route geometry only. Check ORMA for current safety, access, water and dog-suitability context before setting out.';
 
   function escapeXml(value){
     return String(value == null ? '' : value)
@@ -52,7 +52,7 @@
     if(!trail || typeof trail !== 'object') throw new TypeError('A trail is required.');
     const geometry = Array.isArray(trail.path) ? trail.path.map(coordinate).filter(Boolean) : [];
     if(geometry.length < 2) throw new Error('This trail does not have enough valid route geometry to export.');
-    const name = String(trail.name || 'DoloPaws trail');
+    const name = String(trail.name || 'ORMA trail');
     const start = trailhead(trail, geometry);
     const generatedAt = options && options.generatedAt
       ? new Date(options.generatedAt) : new Date();
@@ -62,7 +62,7 @@
     ).join('\n');
 
     return `<?xml version="1.0" encoding="UTF-8"?>
-<gpx version="1.1" creator="DoloPaws" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<gpx version="1.1" creator="ORMA" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
   <metadata>
     <name>${escapeXml(name)}</name>
     <desc>${escapeXml(DISCLAIMER)}</desc>

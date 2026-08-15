@@ -29,7 +29,7 @@ const geojson = {
       distanceKm:trail.distance,
       ascentM:trail.elevation,
       durationHours:Number(duration) || null,
-      source:'DoloPaws repository route geometry',
+      source:'ORMA repository route geometry',
       verificationStatus:'field-review-required',
     },
     geometry:{

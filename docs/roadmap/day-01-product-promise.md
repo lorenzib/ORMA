@@ -31,7 +31,7 @@ not know:
 
 ## Product promise
 
-> DoloPaws helps you choose a trail that suits your dog, carry the route
+> ORMA helps you choose a trail that suits your dog, carry the route
 > offline, and understand where you are while hiking.
 
 Supporting message:
@@ -43,9 +43,9 @@ Short user-facing message:
 
 > Find walks that fit your dog, not just your destination.
 
-## What DoloPaws promises
+## What ORMA promises
 
-DoloPaws will:
+ORMA will:
 
 - evaluate trails from a dog-specific perspective;
 - explain why a trail appears suitable or unsuitable;
@@ -55,9 +55,9 @@ DoloPaws will:
 - show the user's position relative to the downloaded route;
 - provide actionable warnings without presenting uncertainty as safety.
 
-## What DoloPaws does not promise
+## What ORMA does not promise
 
-DoloPaws does not promise that:
+ORMA does not promise that:
 
 - a trail is completely safe;
 - conditions have not changed since the latest report;
@@ -66,7 +66,7 @@ DoloPaws does not promise that:
 - imported routes have been personally inspected;
 - water, weather, lifts, access rules, or GPS accuracy will remain unchanged;
 - a high match score removes the owner's responsibility to observe their dog;
-- DoloPaws is an emergency-rescue or certified turn-by-turn navigation service.
+- ORMA is an emergency-rescue or certified turn-by-turn navigation service.
 
 ## Product principles
 
@@ -84,7 +84,7 @@ DoloPaws does not promise that:
 ## North-star outcome
 
 > The percentage of users who choose an appropriate trail, successfully prepare
-> it for offline use, complete the hike with DoloPaws, and confirm that the
+> it for offline use, complete the hike with ORMA, and confirm that the
 > trail suited their dog.
 
 A practical beta proxy is:
@@ -97,7 +97,7 @@ completed hikes with a suitability response
 
 ## Core product identity
 
-DoloPaws is both:
+ORMA is both:
 
 1. a dog-specific trail decision tool; and
 2. an offline trail companion.

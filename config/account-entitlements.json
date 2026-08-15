@@ -3,7 +3,7 @@
   "decisionId": "AUTH-01",
   "states": {
     "guest": {
-      "description": "No DoloPaws account is authenticated on this device.",
+      "description": "No ORMA account is authenticated on this device.",
       "capabilities": {
         "browseTrails": true,
         "useLocalRecommendationDraft": true,
@@ -21,7 +21,7 @@
       }
     },
     "authenticated": {
-      "description": "A valid DoloPaws session exists, but contributor eligibility is not established.",
+      "description": "A valid ORMA session exists, but contributor eligibility is not established.",
       "capabilities": {
         "browseTrails": true,
         "useLocalRecommendationDraft": true,

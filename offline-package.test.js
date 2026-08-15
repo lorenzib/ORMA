@@ -134,7 +134,7 @@ describe('Lago di Carezza offline package', () => {
     expect(shell).not.toContain('Stored evidence snapshot');
     expect(shell).not.toContain('evidenceList');
     expect(app).not.toContain('Freshness unknown');
-    expect(app).toContain('Vetted by DoloPaws.');
+    expect(app).toContain('Vetted by ORMA.');
   });
 
   test('offers private structured feedback after an offline completion', () => {

@@ -26,7 +26,7 @@ self.addEventListener('fetch', event => {
       try{
         return await fetch(event.request);
       }catch(error){
-        return new Response('This DoloPaws trail has not been downloaded on this device.', {
+        return new Response('This ORMA trail has not been downloaded on this device.', {
           status: 503,
           headers: { 'Content-Type': 'text/plain; charset=utf-8' },
         });

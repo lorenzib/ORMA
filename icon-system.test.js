@@ -1,6 +1,6 @@
 const icons = require('./icon-system.js');
 
-describe('DoloPaws icon system', () => {
+describe('ORMA icon system', () => {
   test('provides icon-based chip labels without emoji fallbacks', () => {
     const html = icons.chipHtml('adjust', "Adjust for today's conditions");
     expect(html).toContain('svg');
@@ -22,7 +22,7 @@ describe('DoloPaws icon system', () => {
   });
 
   test('renders product statuses through one badge component', () => {
-    const verified = icons.badgeHtml('verified', 'Verified by DoloPaws');
+    const verified = icons.badgeHtml('verified', 'Verified by ORMA');
     const caution = icons.badgeHtml('caution', 'Caution');
     expect(verified).toContain('dp-badge dp-badge--verified');
     expect(verified).toContain('<svg');

@@ -34,7 +34,7 @@ describe('trail data trust states', () => {
     const trust = loadTrust();
     expect(trust.riskLabel(imported, 'Low-risk terrain')).toBe('Low-risk terrain');
     expect(trust.provenanceLabel(imported)).toBe('Trail overview');
-    expect(trust.provenanceLabel(reviewed)).toBe('Reviewed by DoloPaws');
+    expect(trust.provenanceLabel(reviewed)).toBe('Reviewed by ORMA');
   });
 
   test('missing observations become actionable guidance, not audit language', () => {
@@ -121,7 +121,7 @@ describe('trail data trust states', () => {
         completed:['photo','route'],
       },
     };
-    expect(trust.provenanceLabel(audited)).toBe('Reviewed by DoloPaws');
+    expect(trust.provenanceLabel(audited)).toBe('Reviewed by ORMA');
   });
 
   test('partial source reviews also cap match confidence at 80 percent', () => {
@@ -193,8 +193,8 @@ describe('trail data trust states', () => {
     expect(importedPage).not.toContain('Estimated:');
     expect(importedPage).not.toMatch(/Partly verified|Verification in progress|\d+\/\d+ checks/i);
     expect(importedPage).not.toContain('verified map data');
-    expect(reviewedPage).toContain('Reviewed by DoloPaws');
-    expect(reviewedPage).toContain('Trail information prepared by DoloPaws');
+    expect(reviewedPage).toContain('Reviewed by ORMA');
+    expect(reviewedPage).toContain('Trail information prepared by ORMA');
     expect(reviewedPage).toContain('View source details');
   });
 });

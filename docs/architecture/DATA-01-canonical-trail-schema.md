@@ -94,7 +94,7 @@ from silently turning missing evidence into a favourable claim.
 `unreviewed` is distinct from `unknown`:
 
 - `unknown`: the underlying value or rule is not known;
-- `unreviewed`: a value exists but DoloPaws has not reviewed the evidence;
+- `unreviewed`: a value exists but ORMA has not reviewed the evidence;
 - `verified`: the evidence category passed the declared review process.
 
 ## Geometry

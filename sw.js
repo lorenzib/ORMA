@@ -7,7 +7,7 @@
 // installed the old one keep running it until it is replaced.
 //
 // Browsers re-check this file on navigation, so shipping this version makes
-// every affected browser: delete all DoloPaws caches, unregister the worker,
+// every affected browser: delete all ORMA caches, unregister the worker,
 // and reload the open pages straight from the network. After that, normal
 // HTTP caching (GitHub Pages, max-age=600) is the only cache layer.
 //

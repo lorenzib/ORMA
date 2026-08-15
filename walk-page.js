@@ -66,7 +66,7 @@
       attributionControl: { compact: true },
     });
     map.on('load', function(){
-      // Same walkable-network detail as every other DoloPaws map: marked
+      // Same walkable-network detail as every other ORMA map: marked
       // hiking routes plus subtle relief, under the recording trace.
       var firstLabel = map.getStyle().layers.find(function(l){ return l.type === 'symbol'; });
       map.addSource('waymarked-hiking', {
@@ -132,7 +132,7 @@
   }
 
   function regionForFix(fix){
-    // DoloPaws currently covers Savoy (west of 9°E) and the Dolomites.
+    // ORMA currently covers Savoy (west of 9°E) and the Dolomites.
     return fix && fix.lng < 9 ? 'savoy' : 'dolomites';
   }
 

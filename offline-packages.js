@@ -324,7 +324,7 @@
         headers: {
           'Content-Type': response.headers.get('Content-Type') || 'application/octet-stream',
           'Content-Length': String(buffer.byteLength),
-          'X-DoloPaws-Verified': 'sha256',
+          'X-ORMA-Verified': 'sha256',
         },
       }),
     };

@@ -4,7 +4,7 @@
 /**
  * promote-osm-trails.js
  *
- * Promotes every route in dog-friendly-routes.geojson to a full DoloPaws trail
+ * Promotes every route in dog-friendly-routes.geojson to a full ORMA trail
  * entry, computing everything that can be honestly derived from verified data:
  *
  *   - path            converted to the site's [lat, lng] convention
@@ -145,7 +145,7 @@ async function fetchElevations(samples) {
     let ok = false;
     for (let attempt = 1; attempt <= 3 && !ok; attempt += 1) {
       try {
-        const res = await fetch(url, { headers: { 'user-agent': 'DoloPaws-trail-builder/1.0 (+https://dolopaws.com)' } });
+        const res = await fetch(url, { headers: { 'user-agent': 'ORMA-trail-builder/1.0 (+https://dolopaws.com)' } });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         elevations.push(...data.elevation);
@@ -533,7 +533,7 @@ async function main() {
       rifugi,
       startPoint: { lat: pts[0][0], lng: pts[0][1], label: startLabel },
       desc: `${isLoop ? 'A' : 'An'} ${totalKm} km ${isLoop ? 'loop' : 'route'} near ${nearestLocality(pts[0][0], pts[0][1])}, imported from the OpenStreetMap hiking network${p.ref ? ` (trail ${p.ref})` : ''}. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.${directionNote ? ' ' + directionNote : ''}`,
-      tips: 'Imported route — elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by DoloPaws; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.',
+      tips: 'Imported route — elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.',
       ...(segments > 1 ? { osmGeometryGaps: segments - 1 } : {})
     };
     if (p.leash) entry.leash = p.leash;

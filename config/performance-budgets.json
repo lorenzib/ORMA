@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "profile": "DoloPaws mobile lab v1",
+  "profile": "ORMA mobile lab v1",
   "conditions": {
     "viewport": "390x844 @3x",
     "network": "1.6 Mbps down, 750 Kbps up, 150 ms latency",

@@ -29,7 +29,7 @@ describe('JOURNAL-01 private local journal contract', () => {
 
   test('the product tells users that journal records stay in this browser', () => {
     expect(journal).toContain('Journal entries are stored in this browser for your account.');
-    expect(privacy).toContain('DoloPaws does not sync the journal to the server.');
+    expect(privacy).toContain('ORMA does not sync the journal to the server.');
     expect(privacy).toContain('Completed hikes and journal entries:');
   });
 

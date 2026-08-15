@@ -71,7 +71,7 @@
     const el = $('verifiedSeal');
     if (!el) return;
     const style = trust && trust.tierBadgeStyle ? trust.tierBadgeStyle(t) : (t.curated === false ? 'imported' : 'verified');
-    const label = trust ? trust.provenanceLabel(t) : (t.curated === false ? 'Trail overview' : 'Reviewed by DoloPaws');
+    const label = trust ? trust.provenanceLabel(t) : (t.curated === false ? 'Trail overview' : 'Reviewed by ORMA');
     // Render the same pill the browse-trail cards use, not a bespoke inline seal.
     el.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
       ? window.DoloPawsIcons.badgeHtml(style, label)
@@ -89,19 +89,19 @@
     if (graduation) {
       const date = trust.formatReviewDate(t.reviewedAt || (t.verified && t.verified.date));
       meta.textContent = graduation.verified
-        ? `Reviewed by DoloPaws on ${date}. Check current conditions before setting out.`
-        : 'Based on mapped route data and available DoloPaws sources. Check current conditions before setting out.';
+        ? `Reviewed by ORMA on ${date}. Check current conditions before setting out.`
+        : 'Based on mapped route data and available ORMA sources. Check current conditions before setting out.';
     } else if (progress) {
       meta.textContent = progress.checked === progress.total
-        ? 'Trail details have been source-checked by DoloPaws. Check current conditions before setting out.'
-        : 'Based on mapped route data and available DoloPaws sources. Check current conditions before setting out.';
+        ? 'Trail details have been source-checked by ORMA. Check current conditions before setting out.'
+        : 'Based on mapped route data and available ORMA sources. Check current conditions before setting out.';
     } else if (t.routeAudit && t.reviewedAt) {
       const date = trust ? trust.formatReviewDate(t.reviewedAt) : t.reviewedAt;
-      meta.textContent = `Route details reviewed by DoloPaws on ${date}. Check current conditions before setting out.`;
+      meta.textContent = `Route details reviewed by ORMA on ${date}. Check current conditions before setting out.`;
     } else {
       meta.textContent = t.curated === false
-        ? 'Based on mapped route data and available DoloPaws sources. Check local access rules and current conditions before setting out.'
-        : 'Trail information prepared by DoloPaws. Check current conditions before setting out.';
+        ? 'Based on mapped route data and available ORMA sources. Check local access rules and current conditions before setting out.'
+        : 'Trail information prepared by ORMA. Check current conditions before setting out.';
     }
     const sources = Array.isArray(t.sourceLinks) ? t.sourceLinks : [];
     if (!sources.length) {
@@ -373,7 +373,7 @@
         const shareUrl = url.href;
         return {
           url: shareUrl,
-          text: t.name + ' on DoloPaws: ' + shareUrl
+          text: t.name + ' on ORMA: ' + shareUrl
         };
       };
       const closeShare = () => {
@@ -383,7 +383,7 @@
       const updateShareLinks = () => {
         const details = shareDetails();
         if (smsLink) smsLink.href = 'sms:?body=' + encodeURIComponent(details.text);
-        if (mailLink) mailLink.href = 'mailto:?subject=' + encodeURIComponent(t.name + ' | DoloPaws') + '&body=' + encodeURIComponent(details.text);
+        if (mailLink) mailLink.href = 'mailto:?subject=' + encodeURIComponent(t.name + ' | ORMA') + '&body=' + encodeURIComponent(details.text);
       };
       shareBtn.addEventListener('click', () => {
         sharePop.hidden = !sharePop.hidden;

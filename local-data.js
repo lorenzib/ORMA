@@ -54,7 +54,7 @@
       try{
         storage.removeItem(key);
         removed += 1;
-      }catch(error){ /* continue clearing other DoloPaws records */ }
+      }catch(error){ /* continue clearing other ORMA records */ }
     });
     return removed;
   }

@@ -7,24 +7,24 @@ code; physical-device validation and broader rollout remain open.
 
 A hiker with a usable GPS fix near, but not on, the route sees **Find closest
 trail point** when a packaged walking network is available. The control appears
-before DoloPaws makes a stronger off-route claim, so someone who can already see
+before ORMA makes a stronger off-route claim, so someone who can already see
 that they need help does not need to wait for an alert. Selecting it matches the
 current fix to the packaged network and, when a connected route exists, the
 online and offline pilot maps show:
 
 - a solid blue route following mapped footpaths;
 - the route distance to the reachable trail node;
-- an orange rejoin target on the DoloPaws trail; and
+- an orange rejoin target on the ORMA trail; and
 - a reminder to check local signs and closures.
 
 The previous dashed geometric line has been removed. If the GPS fix cannot be
 matched to a nearby mapped footpath, or that component does not connect to the
-trail, DoloPaws says that no connected mapped path was found and draws no
+trail, ORMA says that no connected mapped path was found and draws no
 route. Guidance remains suppressed for weak or stale fixes and when the user
 is more than two kilometres from the packaged corridor.
 
 Separately, at least three reliable fixes sustained for 20 seconds are still
-required before DoloPaws automatically says that the hiker appears off route.
+required before ORMA automatically says that the hiker appears off route.
 That confirmation shows the measured warning and the same rejoin control; it
 does not silently start navigation. Returning close to the route removes the
 control and any active rejoin line.

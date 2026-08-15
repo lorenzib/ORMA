@@ -3,7 +3,7 @@
   "trailId": "lago-carezza",
   "distanceKm": 1.3,
   "ascentM": 20,
-  "source": "DoloPaws route profile",
+  "source": "ORMA route profile",
   "points": [
     { "km": 0, "elev": 1534 },
     { "km": 0.65, "elev": 1540 },

@@ -4,7 +4,7 @@
 
 ## Decision
 
-DoloPaws keeps the canonical 164-trail source catalog unchanged for validation,
+ORMA keeps the canonical 164-trail source catalog unchanged for validation,
 auditing, and static page generation. A deterministic build step derives two
 runtime packages from it:
 

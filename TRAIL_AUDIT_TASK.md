@@ -1,7 +1,7 @@
 # Autonomous trail-audit task
 
 A self-contained brief for an agent that runs **independently, on a schedule,
-without a human checking each run**, and moves DoloPaws trails through the
+without a human checking each run**, and moves ORMA trails through the
 review tiers. Hand this whole file to the task runner as its prompt — it does
 not depend on any prior conversation.
 
@@ -86,7 +86,7 @@ in before editing.
 6. **Decide the tier:** all gates pass **and** enriched → `route-audited`;
    otherwise stays `under-review` with precise blockers listed; hard
    disqualifier → removed.
-7. **Record** `reviewedAt` (today), `reviewedBy: 'DoloPaws route audit'`,
+7. **Record** `reviewedAt` (today), `reviewedBy: 'ORMA route audit'`,
    `sourceLinks` (per-category), completed checks, and blockers.
 8. **Commit and hand off** with the report below (open a PR if `gh` is
    available and authenticated; otherwise commit locally and write the report

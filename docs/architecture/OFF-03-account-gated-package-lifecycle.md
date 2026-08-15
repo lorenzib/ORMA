@@ -117,16 +117,16 @@ Logout from the homepage or account screen now opens the same explicit device
 choice. **Log out and keep downloads** retains verified public packages and
 owner-bound hike records for the same account; those records remain unavailable
 to a different or signed-out account. **Remove all local data and log out**
-removes all DoloPaws package caches, the IndexedDB registry, owner salt,
+removes all ORMA package caches, the IndexedDB registry, owner salt,
 unfinished hikes, pending completions and outcomes, cached profile data, and
-DoloPaws session records. Unrelated origin keys and caches are never cleared.
+ORMA session records. Unrelated origin keys and caches are never cleared.
 
 When an unfinished hike exists, the dialog names it before either action. The
 user therefore knows that shared-device cleanup permanently discards that local
 recovery state.
 
 Account deletion keeps server deletion and device cleanup distinct. Device
-cleanup defaults to removing all DoloPaws data, while the user may retain only
+cleanup defaults to removing all ORMA data, while the user may retain only
 the downloaded public maps. Private local records are removed in either case.
 Retained maps remain readable but cannot be updated until another account logs
 in. The account copy no longer claims that deleting the main Firebase document

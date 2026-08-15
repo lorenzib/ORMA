@@ -5,7 +5,7 @@ Status: complete
 ## Goal
 
 This backlog converts the Day 5 inventory into dependency-ordered work for the
-first DoloPaws beta. It is a planning artifact, not a commitment to implement
+first ORMA beta. It is a planning artifact, not a commitment to implement
 every existing feature.
 
 The beta is complete only when an account holder can:
@@ -267,7 +267,7 @@ All P0 and P1 work
   - "Verified" is reserved for the agreed evidence-backed process.
   - Generated and interactive trail pages use the same labels.
   - Missing dates are visible as unknown.
-  - Community reports never silently alter the DoloPaws assessment.
+  - Community reports never silently alter the ORMA assessment.
 
 ## Epic C — Discovery and trail decisions
 
@@ -355,7 +355,7 @@ All P0 and P1 work
     and emergency-information states are shown.
   - Blocking and advisory items are distinct.
   - Users can run the airplane-mode self-test.
-  - DoloPaws never implies that beta navigation replaces emergency preparation.
+  - ORMA never implies that beta navigation replaces emergency preparation.
 
 ## Epic D — Accounts, security, and local ownership
 
@@ -555,7 +555,7 @@ All P0 and P1 work
 - **Depends on:** HIKE-04, METRIC-01
 - **Implementation:** complete in code; see
   `docs/architecture/OUT-01-structured-post-hike-outcome.md`.
-- **Outcome:** DoloPaws learns whether the recommendation suited the dog.
+- **Outcome:** ORMA learns whether the recommendation suited the dog.
 - **Acceptance:**
   - The user can answer appropriate, appropriate with unexpected cautions, not
     appropriate, did not complete, or prefer not to answer.
@@ -609,7 +609,7 @@ All P0 and P1 work
   - A new hazard is labelled as an unconfirmed community report.
   - Independent eligible users can confirm or dispute it.
   - Expiry depends on hazard type.
-  - DoloPaws-reviewed and official confirmation are distinct.
+  - ORMA-reviewed and official confirmation are distinct.
   - Expired reports leave the active safety view without being silently erased
     from moderation history.
 

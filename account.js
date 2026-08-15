@@ -586,7 +586,7 @@
   // ---------- Share card ----------
   $('shareCardBtn').addEventListener('click', async () => {
     const nm = state.name.trim() || tKey('account.thisDogTitle', 'This dog');
-    const text = tKey('account.card.title', '{name} — DoloPaws emergency card', { name:nm })
+    const text = tKey('account.card.title', '{name} — ORMA emergency card', { name:nm })
       + '\n' + tKey('account.card.breed', 'Breed: {value}', { value:state.breed.trim() || '—' })
       + '\n' + tKey('account.card.microchip', 'Microchip: {value}', { value:state.chip.trim() || '—' })
       + '\n' + tKey('account.card.medical', 'Medical: {value}', { value:state.medical.trim() || tKey('account.none', 'None') })
@@ -759,7 +759,7 @@
       const active = window.DoloPawsLocalData && window.DoloPawsLocalData.activeHike();
       logoutDataMessage.textContent = active
         ? tKey('account.logout.activeData', 'An unfinished {trail} hike is stored on this device. Keeping local data locks it to this account; removing local data permanently discards it and all downloaded maps.', { trail:active.trailId || tKey('account.logout.trail', 'trail') })
-        : tKey('account.logout.data', 'Keeping local data preserves downloaded maps and locks private hike records to this account. Removing local data clears all DoloPaws downloads and private browser records.');
+        : tKey('account.logout.data', 'Keeping local data preserves downloaded maps and locks private hike records to this account. Removing local data clears all ORMA downloads and private browser records.');
       logoutStatus.hidden = true;
       keepLocalLogoutBtn.focus();
     }
@@ -771,7 +771,7 @@
     removeLocalLogoutBtn.disabled = true;
     logoutStatus.hidden = false;
     logoutStatus.textContent = removePackages
-      ? tKey('account.logout.removing', 'Removing DoloPaws data from this device…')
+      ? tKey('account.logout.removing', 'Removing ORMA data from this device…')
       : tKey('account.logout.retaining', 'Logging out and retaining downloads…');
     try{
       if(removePackages && window.DoloPawsLocalData){

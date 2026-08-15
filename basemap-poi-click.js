@@ -1,13 +1,13 @@
 /**
  * basemap-poi-click.js
  * Makes the base map's own POI icons (drawn by the OpenFreeMap "liberty"
- * style) clickable, Google Maps-style. DoloPaws' own layers already have
+ * style) clickable, Google Maps-style. ORMA' own layers already have
  * click handlers — this handler detects those and stays out of their way.
  *
  * Popup tiers:
  *   1. Generic: name + human-readable type (from the vector tile's
  *      class/subclass properties), plus elevation for peaks.
- *   2. Enriched from local data: if the same place exists in DoloPaws' own
+ *   2. Enriched from local data: if the same place exists in ORMA' own
  *      POI data (huts-bars-all-regions.geojson, registered via
  *      registerPoiFeatures), the popup shows opening hours, phone, website,
  *      dogs-welcome instantly.
@@ -23,7 +23,7 @@
  * Include this file in index.html and trail.html BEFORE script.js / trail.js.
  */
 
-// Every DoloPaws layer that already has its own click handler.
+// Every ORMA layer that already has its own click handler.
 // Layers that don't exist on a given map are filtered out at click time.
 const DOLOPAWS_INTERACTIVE_LAYERS = [
   'water-sources-layer', 'water-sources-cluster',
@@ -96,7 +96,7 @@ function buildDetailLines(tags){
 
 function makeBasemapPoisClickable(map){
   map.on('click', (e) => {
-    // 1) If the click landed on a DoloPaws layer, its own handler owns it —
+    // 1) If the click landed on a ORMA layer, its own handler owns it —
     //    without this bail-out, users would get two stacked popups.
     const ownLayers = DOLOPAWS_INTERACTIVE_LAYERS.filter(id => map.getLayer(id));
     if (ownLayers.length &&
@@ -133,7 +133,7 @@ function makeBasemapPoisClickable(map){
     const popup = new maplibregl.Popup({ offset: 10, closeOnClick: true, maxWidth: '260px' })
       .setLngLat(e.lngLat).addTo(map);
 
-    // Tier 2: instant enrichment from DoloPaws' own loaded POI data.
+    // Tier 2: instant enrichment from ORMA' own loaded POI data.
     const localMatch = findOwnPoiMatch(name, lng, lat);
     if (localMatch) {
       popup.setHTML(baseHtml + buildDetailLines(localMatch) + footer);
@@ -167,7 +167,7 @@ function makeBasemapPoisClickable(map){
         [[e.point.x - 4, e.point.y - 4], [e.point.x + 4, e.point.y + 4]]);
       const overPoi = hits.some(f => f.layer && f.layer.type === 'symbol' &&
         POI_SOURCE_LAYERS.includes(f.sourceLayer) && f.properties.name);
-      // Only touch the cursor when a DoloPaws layer hasn't already set it.
+      // Only touch the cursor when a ORMA layer hasn't already set it.
       if (overPoi) {
         map.getCanvas().style.cursor = 'pointer';
       } else if (map.getCanvas().style.cursor === 'pointer' &&
@@ -219,10 +219,10 @@ function fetchOsmDetails(name, lng, lat){
     .catch(() => { if (timer) clearTimeout(timer); return null; });
 }
 
-// ---- Tier 2 support: index of DoloPaws' own POI data ----------------------
+// ---- Tier 2 support: index of ORMA' own POI data ----------------------
 // initializeHutsBars() (and optionally initializeWaterSources()) registers
 // its loaded features here so base-map clicks can be enriched with the
-// richer OSM tags DoloPaws already ships (hours, phone, website, dog=yes).
+// richer OSM tags ORMA already ships (hours, phone, website, dog=yes).
 window._dolopawsPoiFeatures = window._dolopawsPoiFeatures || [];
 
 function registerPoiFeatures(features){

@@ -5,7 +5,7 @@
 
 ## Outcome
 
-A signed-in DoloPaws user can export the current trail as a GPX 1.1 file from
+A signed-in ORMA user can export the current trail as a GPX 1.1 file from
 the trail-detail hero. A guest who selects **Export GPX** enters the existing
 bounded login handoff and returns to the same trail; export starts only after
 authentication succeeds.
@@ -16,7 +16,7 @@ authentication succeeds.
 another provider. The document contains:
 
 - GPX 1.1 namespace and schema declaration;
-- DoloPaws as creator;
+- ORMA as creator;
 - trail name and export timestamp;
 - one trailhead waypoint, using the curated start point when available and the
   first route coordinate as an explicit fallback;
@@ -29,7 +29,7 @@ valid path points remain.
 
 ## Safety boundary
 
-GPX is a portability fallback, not an offline DoloPaws package. It does not
+GPX is a portability fallback, not an offline ORMA package. It does not
 carry current access, hazard reports, weather, water confidence, dog profile
 matching, or other safety context. Both metadata and the post-download message
 state this limitation.

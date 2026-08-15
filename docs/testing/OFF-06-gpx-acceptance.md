@@ -14,7 +14,7 @@ the browser download and third-party import boundary that unit tests cannot.
 - Trail: `https://www.dolopaws.com/trail.html?id=lago-carezza`
 - Account: signed-in, non-moderator test account
 - Browser: record name and version
-- Independent reader: record application and version; it must not be DoloPaws
+- Independent reader: record application and version; it must not be ORMA
 - Expected filename: `lago-di-carezza-loop.gpx`
 
 Do not record account credentials, precise current location, or unrelated
@@ -23,7 +23,7 @@ browsing data in the evidence.
 ## Procedure
 
 1. Open the Carezza trail in a signed-out private window and select
-   **Export GPX**. Confirm that DoloPaws requests login and does not download a
+   **Export GPX**. Confirm that ORMA requests login and does not download a
    file for the guest.
 2. Complete login with the test account. Confirm that the browser returns to
    Carezza and starts exactly one GPX download.
@@ -33,9 +33,9 @@ browsing data in the evidence.
 5. Confirm that the application reports **Lago di Carezza Loop**, shows one
    trailhead waypoint, and renders a closed route around Lago di Carezza rather
    than a straight line, empty track, or route in another region.
-6. Confirm that the imported route does not claim to contain DoloPaws hazard,
+6. Confirm that the imported route does not claim to contain ORMA hazard,
    weather, water-confidence, or dog-matching context.
-7. Return to DoloPaws and confirm that the page remains usable and the signed-in
+7. Return to ORMA and confirm that the page remains usable and the signed-in
    account has not been logged out.
 
 ## Evidence record
@@ -56,7 +56,7 @@ browsing data in the evidence.
 | Trailhead waypoint readable | Pass / Fail |
 | Ordered closed route rendered near Carezza | Pass / Fail |
 | Route-only safety boundary understood | Pass / Fail |
-| DoloPaws session remained usable | Pass / Fail |
+| ORMA session remained usable | Pass / Fail |
 | Notes / defect IDs |  |
 
 ## Pass and stop rules

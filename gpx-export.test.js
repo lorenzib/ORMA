@@ -42,7 +42,7 @@ describe('standards-compatible GPX export', () => {
     const html = require('fs').readFileSync(require('path').join(__dirname, 'trail.html'), 'utf8');
     const script = require('fs').readFileSync(require('path').join(__dirname, 'trail.js'), 'utf8');
     expect(html).toContain('id="exportGpxBtn"');
-    expect(html).toContain('src="gpx-export.js?v=20260815-2"');
+    expect(html).toContain('src="gpx-export.js?v=20260815-3"');
     expect(script).toContain("DoloPawsTrailAction.request('export-gpx')");
     expect(script).toContain("DoloPawsTrailAction.consume('export-gpx')");
   });

@@ -1,5 +1,5 @@
 /* ============================================================
-   DoloPaws — global stylesheet
+   ORMA — global stylesheet
    Palette: "Alpenglow" — warm cream + terracotta-red accent,
    named for the enrosadira glow the Dolomites are famous for.
 ============================================================= */
@@ -1649,7 +1649,7 @@ body.map-fs-open{overflow:hidden;}
 .companion-edit-link:hover{color:var(--accent-hover);}
 
 /* Conditions / readiness card — honest substitute for live weather:
-   DoloPaws has no weather feed, so this reflects the dog's actual
+   ORMA has no weather feed, so this reflects the dog's actual
    heat-sensitivity profile and links to the real adjust-for-today tool
    rather than inventing a temperature. */
 .companion-conditions{background:#F6ECDB;border:1px solid #E6D3B4;}
@@ -2120,7 +2120,7 @@ body.map-fs-open{overflow:hidden;}
 
 /* ============================================================
    LOGGED-IN HOMEPAGE — map-first app shell
-   Ported from the "DoloPaws Homepage (Logged in)" design prototype:
+   Ported from the "ORMA Homepage (Logged in)" design prototype:
    header (search · filters · account pill), full-height map pane on
    the left, 430px ranked list on the right.
 ============================================================= */
@@ -2174,10 +2174,10 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-nav a:hover{color:#fff;font-weight:500;}
 .li-top .li-top-spacer{display:none;}
 
-/* ---------- greeting bar (avatar · heading · chips) ----------
-   Beige bars with white controls — the 2026-07 pass un-inverted these. */
+/* Legacy greeting data host. The visible context now lives in the compact
+   toolbar, avoiding a second full-width row above the map. */
 .li-greetbar{
-  display:flex;
+  display:none;
   align-items:center;
   padding:18px 24px;
   background:var(--bg);
@@ -2191,15 +2191,27 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   display:flex;
   align-items:center;
   gap:10px;
-  padding:10px 24px;
+  padding:9px 24px;
   background:var(--bg);
   border-bottom:1px solid var(--paper-line);
   flex:none;
   position:relative;
   z-index:45;
 }
+.li-toolbar-greet{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-width:220px;
+  flex:none;
+  color:var(--ink);
+}
+.li-toolbar-greet .li-greet-avatar{width:32px;height:32px;}
+.li-toolbar-greet-copy{display:flex;flex-direction:column;min-width:0;}
+.li-toolbar-greet-copy strong{font:700 16px/1.15 'Source Serif 4',serif;white-space:nowrap;}
+.li-toolbar-greet-copy small{margin-top:2px;font:600 10.5px/1.2 'Inter',sans-serif;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:205px;}
 /* Inline chips — Any area · Distance · Terrain · Shade · Water */
-.li-chiprow{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.li-chiprow{display:none;}
 .li-chipwrap{position:relative;}
 .li-chip{
   display:inline-flex;align-items:center;gap:7px;
@@ -2212,9 +2224,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-chip.on{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
 .li-chipmenu{left:0;right:auto;min-width:190px;max-height:min(420px,60vh);overflow-y:auto;}
 .li-chip-selected{background:#F0EDE1;font-weight:700;}
-/* Desktop shows chips; phones keep the condensed panel button */
-@media(min-width:701px){.li-mobile-only{display:none;}}
-@media(max-width:700px){.li-chiprow{display:none;}}
+/* Discovery uses one consolidated filters panel at every viewport size. */
 /* The design's app home has no conditions card on the map (desktop);
    phones keep it as the dog-identity pill. */
 @media(min-width:701px){.li-cond{display:none !important;}}
@@ -2233,7 +2243,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-greetswitch-menu{left:0;right:auto;top:calc(100% + 8px);width:268px;}
 .li-search{
   flex:1;
-  max-width:420px;
+  max-width:none;
   display:flex;
   align-items:center;
   gap:9px;
@@ -2658,10 +2668,9 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 html.early-member #newCustomerHomepage{display:none;}
 html.early-member #returningCustomerHomepage[hidden]{display:block;}
 .li-cond-t-mobile{display:none;}
-.li-toolbar-greet{display:none;}
-/* Record-anywhere walk button (toolbar chip on desktop; the phone layer
-   restyles it as a floating pill above the trail sheet). */
-.li-record{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:#C4652F;color:#fff;font:800 13px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;}
+/* Record-anywhere walk button floats over the map; the phone layer keeps it
+   just above the results drawer. */
+.li-record{position:absolute;right:16px;bottom:16px;z-index:8;display:inline-flex;align-items:center;gap:8px;padding:11px 17px;border-radius:999px;background:#C4652F;color:#fff;font:800 13px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;box-shadow:0 8px 22px -10px rgba(23,42,28,.55);}
 .li-record:hover{background:#A9541F;}
 .li-record-dot{width:8px;height:8px;border-radius:50%;background:#fff;}
 .li-rating-row{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center;}
@@ -2782,13 +2791,11 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 /* ---------- responsive: one-pane tablet app ---------- */
 @media (min-width:701px) and (max-width:1040px){
   #returningCustomerHomepage{height:100vh;height:100dvh;}
-  .li-greetbar{padding:12px 16px;}
-  .li-greet{font-size:17px;}
-  .li-toolbar{padding:10px 16px;flex-wrap:wrap;gap:9px;}
-  .li-search{order:0;flex:1 0 100%;max-width:none;}
-  .li-chiprow{order:1;flex:none;flex-wrap:nowrap;}
-  .li-chiprow .li-chipwrap:not(:first-child){display:none;}
-  .li-mobile-only{display:block;order:2;}
+  .li-toolbar{padding:9px 16px;gap:9px;}
+  .li-toolbar-greet{min-width:190px;}
+  .li-toolbar-greet-copy strong{font-size:15px;}
+  .li-toolbar-greet-copy small{max-width:165px;}
+  .li-search{order:0;flex:1;max-width:none;}
   .li-pane-toggle{display:flex;order:3;}
   .li-body{display:block;min-height:0;}
   .li-body[data-pane="list"] .li-map,
@@ -2884,7 +2891,7 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 
 /* ============================================================
    DOG WIZARD — mobile app chrome (≤700px)
-   Ported from "DoloPaws Dog Profile Setup": full-screen sheet,
+   Ported from "ORMA Dog Profile Setup": full-screen sheet,
    thin progress bar + "Step X of Y" under the title, card-style
    option rows, sticky blurred footer. All four production steps
    and their data stay exactly as they are — this is presentation

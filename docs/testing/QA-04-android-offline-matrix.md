@@ -5,7 +5,7 @@
 ## Purpose
 
 Give a trusted tester a self-contained Android procedure without sharing an
-owner account or requiring knowledge of the DoloPaws implementation. A desktop
+owner account or requiring knowledge of the ORMA implementation. A desktop
 emulator or remote browser preview may find layout defects, but cannot pass this
 gate because storage, installation, restart, permissions, GPS, and airplane-mode
 behaviour must be observed on a physical phone.
@@ -18,7 +18,7 @@ owner data.
 | Target | Browser / display mode | Routes |
 |---|---|---|
 | Current Android phone | Current Chrome browser tab | Carezza and Alpe di Siusi |
-| Same phone | Installed DoloPaws experience | Carezza and Alpe di Siusi |
+| Same phone | Installed ORMA experience | Carezza and Alpe di Siusi |
 | Older/lower-powered supported phone | Current supported Chrome browser tab | One-route smoke test, then both if a defect appears |
 
 - Carezza package: `2026.08.10-beta.16`

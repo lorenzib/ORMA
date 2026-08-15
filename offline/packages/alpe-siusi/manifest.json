@@ -6,7 +6,7 @@
   "generatedAt": "2026-08-15T09:02:48.993Z",
   "scoringVersion": "1.1.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 278909,
+  "packageBytes": 278865,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.5305,
@@ -38,7 +38,7 @@
     "pointCount": 5,
     "distanceKm": 7.5,
     "ascentM": 150,
-    "source": "DoloPaws route profile",
+    "source": "ORMA route profile",
     "demPackaged": false
   },
   "evidence": {
@@ -104,7 +104,7 @@
       }
     }
   },
-  "attribution": "Route data © DoloPaws; © OpenStreetMap contributors where applicable",
+  "attribution": "Route data © ORMA; © OpenStreetMap contributors where applicable",
   "licenceUrl": "https://www.openstreetmap.org/copyright",
   "resources": [
     {
@@ -112,8 +112,8 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 8229,
-      "sha256": "b617e933d807a4cb1bda6df616eda60282d7f6d1aaa6f5cc8ca882a50206c503"
+      "bytes": 8205,
+      "sha256": "964bb436fc65f914b923422effef8ce79f3fab0f05091deda1feb1d2f49e2343"
     },
     {
       "role": "style",
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 31681,
-      "sha256": "16e64c9254304e870fdc5e4a18903d557345b53f173a64f085068ae61b5d4bd9"
+      "bytes": 31673,
+      "sha256": "6f81679d4f72fe492539dd2b82468f5142eed186a7b0af7d1ca319ef631371dc"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Alpe di Siusi Meadow Loop route",
       "url": "route.geojson",
-      "bytes": 5288,
-      "sha256": "0730f7dafdfa8aa1d00c5a842dd590485fbecf1d7c59b934d898aa23c1423aea"
+      "bytes": 5284,
+      "sha256": "86fbac547181cb607253c681df1903afb90a11134a22ba00196bfa06d6c18252"
     },
     {
       "role": "footpath-network",
@@ -224,16 +224,16 @@
       "required": true,
       "label": "Alpe di Siusi Meadow Loop stored route elevation profile",
       "url": "elevation-profile.json",
-      "bytes": 304,
-      "sha256": "fcf79409fb128bb4f68e99f9476b59d0284bd9b75354ac3f90cdbf425aae87fd"
+      "bytes": 300,
+      "sha256": "37351efbac18d58a81830db95ced909abeffdf976553e94e4ab22854bfbbf6af"
     },
     {
       "role": "safety",
       "required": true,
       "label": "Alpe di Siusi Meadow Loop safety information",
       "url": "safety.json",
-      "bytes": 1437,
-      "sha256": "37944ed5f23d960cd9a09f06599acccdfec40c1cca3e46ab87203cf3380a162e"
+      "bytes": 1433,
+      "sha256": "b78a68fe686e6d63923acb7ee45a828e3a73e7208efb5bba7913474e30cc23bd"
     }
   ]
 }

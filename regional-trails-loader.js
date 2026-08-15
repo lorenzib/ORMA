@@ -12,7 +12,7 @@
 
   function loadRegion(region) {
     var source = assetUrl(region, 'trails');
-    if (!source) return Promise.reject(new Error('Unknown DoloPaws region: ' + region));
+    if (!source) return Promise.reject(new Error('Unknown ORMA region: ' + region));
     if (loaded.has(region)) return Promise.resolve(window.trails || []);
     return new Promise(function (resolve, reject) {
       var script = document.createElement('script');

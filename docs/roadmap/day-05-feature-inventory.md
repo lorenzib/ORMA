@@ -5,7 +5,7 @@ Status: complete
 ## Purpose
 
 This inventory decides which existing and planned capabilities belong in the
-first DoloPaws beta. Classification is based on the agreed product promise:
+first ORMA beta. Classification is based on the agreed product promise:
 
 > Help an account holder choose a trail that suits their dog, prepare it for
 > offline use, understand where they are during the hike, and report whether
@@ -119,7 +119,7 @@ specific hypothesis, success measure, and operational owner before expansion.
 
 | Candidate | Problem | Decision |
 | --- | --- | --- |
-| `DoloPaws Homepage - Split Hero.html` | Large historical prototype at repository root | Confirm it is not used, then move outside production or delete |
+| `ORMA Homepage - Split Hero.html` | Large historical prototype at repository root | Confirm it is not used, then move outside production or delete |
 | `dolopaws-combined-preview.html` | Standalone design prototype overlaps the real homepage | Archive outside the deployed site after dependency check |
 | `my-trails.html` and `saved.html` | Two saved-trail concepts create navigation and maintenance ambiguity | Select `saved.html` as the canonical bookmark manager and migrate any unique behavior |
 | `my-trails.js` scoring | Removed in SCORE-02 | Personalized homepage now owns this journey |

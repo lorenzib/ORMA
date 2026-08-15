@@ -121,10 +121,10 @@ function showHomeActionStatus(message){
     const device = url.searchParams.get('device');
     const translate = (key, fallback) => window.t ? window.t(key) : fallback;
     const message = device === 'removed'
-      ? translate('account.delete.receipt.removed', 'Account deleted. Private server data and DoloPaws data on this device were removed. Community and moderation records may be retained for safety or legal obligations.')
+      ? translate('account.delete.receipt.removed', 'Account deleted. Private server data and ORMA data on this device were removed. Community and moderation records may be retained for safety or legal obligations.')
       : device === 'maps-retained'
         ? translate('account.delete.receipt.mapsRetained', 'Account deleted. Private server data was removed. Downloaded public maps remain on this device; community and moderation records may also be retained.')
-        : translate('account.delete.receipt.cleanupIncomplete', 'Account deleted, but device cleanup did not finish. Clear DoloPaws site data in your browser settings before sharing this device.');
+        : translate('account.delete.receipt.cleanupIncomplete', 'Account deleted, but device cleanup did not finish. Clear ORMA site data in your browser settings before sharing this device.');
     showHomeActionStatus(message);
     url.searchParams.delete('accountDeleted');
     url.searchParams.delete('device');
@@ -1342,7 +1342,7 @@ function renderDogProfileCard(profile){
   liFillAvatar(document.getElementById('liGreetRowAvatar'), profile);
 }
 
-// Companion sidebar — conditions / readiness card. DoloPaws has no live
+// Companion sidebar — conditions / readiness card. ORMA has no live
 // weather feed, so rather than inventing a temperature this reflects the
 // dog's REAL heat-sensitivity (breed traits + declared health conditions,
 // the same flag effectiveOverrides() already uses to penalise the score)
@@ -1550,6 +1550,12 @@ function renderLiHeader(profile){
   const nameEl = document.getElementById('liAccountName');
   // The pill carries the dog itself (design TopNav dog pill), not the human.
   if(nameEl) nameEl.textContent = (profile && profile.name) ? profile.name : 'Your dog';
+  const toolbarContext = document.getElementById('liToolbarDogContext');
+  if(toolbarContext){
+    const dogName = (profile && profile.name) ? profile.name : 'Your dog';
+    const fitness = profile && profile.fitness ? `${profile.fitness} fitness` : '';
+    toolbarContext.textContent = [dogName, fitness].filter(Boolean).join(' · ');
+  }
   liFillAvatar(document.getElementById('liAccountAvatar'), profile);
   // Phone greeting row carries the dog's face next to the greeting.
   liFillAvatar(document.getElementById('liGreetAvatar'), profile);
@@ -2612,7 +2618,7 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
   }
 });
 /**
- * Water Sources Integration for DoloPaws
+ * Water Sources Integration for ORMA
  * Adds 12,921 drinking water sources from Overpass API (OpenStreetMap)
  * 
  * Add this code to your script.js or trail.js
@@ -2886,7 +2892,7 @@ function filterWaterSources(map, type) {
 
 /**
  * ============================================================
- * Huts & Bars Integration for DoloPaws
+ * Huts & Bars Integration for ORMA
  * Adds mountain huts, bars, cafés and pubs from OpenStreetMap
  * (Trentino, Veneto, Savoy) — same pattern as water sources.
  * ============================================================
@@ -3116,7 +3122,7 @@ function addPoiLayerSet(map, sourceId, prefix, circleColor, clusterColor, iconGr
     else if (props.dog === 'no') content += `<br>🚫 No dogs`;
     if (props.outdoor_seating && props.outdoor_seating !== 'no') content += `<br>🪑 Outdoor seating`;
     // No dog tag yet? Let users add one — it lands in OSM and flows back
-    // to DoloPaws on the next monthly POI refresh.
+    // to ORMA on the next monthly POI refresh.
     if (!props.dog && props['@id']) {
       const idParts = String(props['@id']).split('/');
       if (idParts.length === 2) {

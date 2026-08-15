@@ -1,4 +1,4 @@
-# DoloPaws trail verification — internal reference
+# ORMA trail verification — internal reference
 
 How a trail moves through the review tiers, and what "checked" means per
 hazard. Companion to `SCORING.md` (how the trail is scored) and
@@ -9,14 +9,14 @@ that file — this doc is the process, that file's comments are the audit trail.
 ## Trail tiers
 
 All three tiers are shown to visitors — the word "imported" is never a public
-label. The tier tells the visitor how far a trail has been through DoloPaws'
+label. The tier tells the visitor how far a trail has been through ORMA'
 review, from "we haven't vetted this yet" to "a human has walked it."
 
 | Tier | Meaning |
 |---|---|
-| **Under review** | Shown, but the DoloPaws route-audit has not yet run. Freshly imported OSM data: usable, but its rating is estimated and its facts are unvetted. The honest default for anything the mechanism hasn't reached. |
-| **DoloPaws route-audited** | Cleared the desk mechanism *and* been enriched into a real listing: data integrity verified, no hard disqualifiers, shade sourced, and genuine trail-specific content written (real description, dog notes, terrain/shade/water detail, key waypoints) in place of import boilerplate. The gate checks are largely mechanizable, but enrichment is authored content, so this tier moves at human-writing speed. **Not** a claim that a human walked it. |
-| **DoloPaws walked** | A human has walked the trail. The strong tier — field-verified, not just a data check. |
+| **Under review** | Shown, but the ORMA route-audit has not yet run. Freshly imported OSM data: usable, but its rating is estimated and its facts are unvetted. The honest default for anything the mechanism hasn't reached. |
+| **ORMA route-audited** | Cleared the desk mechanism *and* been enriched into a real listing: data integrity verified, no hard disqualifiers, shade sourced, and genuine trail-specific content written (real description, dog notes, terrain/shade/water detail, key waypoints) in place of import boilerplate. The gate checks are largely mechanizable, but enrichment is authored content, so this tier moves at human-writing speed. **Not** a claim that a human walked it. |
+| **ORMA walked** | A human has walked the trail. The strong tier — field-verified, not just a data check. |
 
 The tier is a field on the trail (e.g. `tier: 'under-review' |
 'route-audited' | 'dolopaws-walked'`), not the old `curated` boolean — a

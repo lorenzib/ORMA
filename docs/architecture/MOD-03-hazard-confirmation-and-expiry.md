@@ -8,11 +8,11 @@ separate:
 
 - moderation decides whether content is publicly visible;
 - eligible community members can independently confirm or dispute it;
-- DoloPaws review and official-source confirmation remain distinct;
+- ORMA review and official-source confirmation remain distinct;
 - type-specific expiry removes stale reports from the active safety view; and
 - the original report, private responses, and moderation audit remain stored.
 
-Hazards continue to sit alongside the canonical DoloPaws trail assessment.
+Hazards continue to sit alongside the canonical ORMA trail assessment.
 They do not change the recommendation score.
 
 ## Lifecycle contract
@@ -33,7 +33,7 @@ request clock can prove the result set is unexpired; a report may therefore
 leave the active list up to one minute before its stored expiry.
 
 Legacy or expired visible hazards enter the moderator queue. An operator may
-renew them as unconfirmed, mark them as DoloPaws-reviewed, mark an official
+renew them as unconfirmed, mark them as ORMA-reviewed, mark an official
 source, hide them, or remove them. This supplies lifecycle metadata to legacy
 records without granting public access first.
 
@@ -75,10 +75,10 @@ The derived display states are:
   confirmations than disputes;
 - **Disputed by the community:** at least two disputes and disputes are not
   outnumbered by confirmations;
-- **Reviewed by DoloPaws:** explicitly selected by a moderator; and
+- **Reviewed by ORMA:** explicitly selected by a moderator; and
 - **Confirmed by an official source:** explicitly selected by a moderator.
 
-Official and DoloPaws labels take precedence over aggregate community wording,
+Official and ORMA labels take precedence over aggregate community wording,
 but the community counts remain visible.
 
 ## Authorization
@@ -104,7 +104,7 @@ Automated coverage includes:
 
 - type-specific expiry dates;
 - expired and missing expiry behavior;
-- distinct community, DoloPaws, and official labels;
+- distinct community, ORMA, and official labels;
 - active-query and Rules expiry constraints;
 - atomic response/counter writes;
 - duplicate and self-response denial;

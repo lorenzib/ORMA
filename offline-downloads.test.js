@@ -109,7 +109,7 @@ describe('OFF-03 downloaded-trail management surface', () => {
     expect(document.querySelector('.od-owner').textContent).toBe('Account conservato su questo dispositivo');
   });
 
-  test('uses the concise DoloPaws-vetted label without freshness detail', () => {
+  test('uses the concise ORMA-vetted label without freshness detail', () => {
     const markup = window.DoloPawsOfflineDownloads.packageCard({
       trailId: 'vetted-trail',
       name: 'Vetted trail',
@@ -125,7 +125,7 @@ describe('OFF-03 downloaded-trail management surface', () => {
       hasLocalData: true,
     }, true);
 
-    expect(markup).toContain('Vetted by DoloPaws');
+    expect(markup).toContain('Vetted by ORMA');
     expect(markup).not.toContain('freshness');
   });
 

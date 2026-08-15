@@ -5,7 +5,7 @@ open.
 
 ## Outcome
 
-Ending a hike now creates a small, durable completion record before DoloPaws
+Ending a hike now creates a small, durable completion record before ORMA
 opens a journal or other optional follow-up. The active session is removed only
 after that record is successfully stored.
 

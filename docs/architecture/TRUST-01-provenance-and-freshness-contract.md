@@ -6,7 +6,7 @@
 
 ## Outcome
 
-DoloPaws now has one versioned contract for answering two different questions
+ORMA now has one versioned contract for answering two different questions
 about every trail-safety category:
 
 1. **Source state:** what kind of evidence supports this statement?
@@ -24,10 +24,10 @@ same public tier-label contract.
 
 | Stored tier | Public label | Meaning |
 |---|---|---|
-| `imported` | Imported map data | An automated import exists; it has not passed the DoloPaws route review. |
+| `imported` | Imported map data | An automated import exists; it has not passed the ORMA route review. |
 | `mapped` | Mapped route | A usable route geometry exists, but dog-safety categories are not fully reviewed. |
-| `route-audited` | DoloPaws route-audited | Route and declared category evidence passed the documented desk/source review. |
-| `field-verified` | DoloPaws field-verified | The route and all required safety categories passed the field process with field evidence. |
+| `route-audited` | ORMA route-audited | Route and declared category evidence passed the documented desk/source review. |
+| `field-verified` | ORMA field-verified | The route and all required safety categories passed the field process with field evidence. |
 
 Having coordinates does not make a route audited. A recorded hike does not by
 itself make the route field-verified. A route without at least two positions
@@ -42,8 +42,8 @@ Every canonical category returns exactly one source state:
 | `unknown` | Evidence unknown | No usable category evidence is recorded. |
 | `mapped` | Mapped data | The value comes from map data and has not passed category review. |
 | `source-listed` | Source listed, not reviewed | A source is attached, but the category has not passed review. |
-| `source-reviewed` | DoloPaws source-reviewed | The category passed the declared source-review process. |
-| `field-checked` | DoloPaws field-checked | The trail is field-verified and a field-review source supports this category. |
+| `source-reviewed` | ORMA source-reviewed | The category passed the declared source-review process. |
+| `field-checked` | ORMA field-checked | The trail is field-verified and a field-review source supports this category. |
 
 The seven canonical categories are:
 
@@ -82,7 +82,7 @@ label.
 
 ## Initial category review windows
 
-These windows determine when DoloPaws should ask for renewed evidence. They do
+These windows determine when ORMA should ask for renewed evidence. They do
 not guarantee that a fact remains unchanged throughout the window.
 
 | Category | Maximum age |
@@ -123,7 +123,7 @@ outputs and tests deterministic.
 Community reports are a separate channel:
 
 ```text
-DoloPaws assessment
+ORMA assessment
 ├── tier
 └── seven category source/freshness records
 
@@ -134,7 +134,7 @@ Community observations
 Adding, confirming, disputing, expiring, or removing a community report does
 not mutate:
 
-- the DoloPaws evidence tier;
+- the ORMA evidence tier;
 - category source state;
 - category freshness;
 - canonical safety assessment;
@@ -142,7 +142,7 @@ not mutate:
 
 The community observation may appear alongside the assessment with a label
 such as **Community report · unconfirmed**. A moderator or reviewer must use
-the documented evidence workflow to change the DoloPaws assessment.
+the documented evidence workflow to change the ORMA assessment.
 
 ## Use of “verified”
 
@@ -197,7 +197,7 @@ received a newer review.
 - Missing and future dates resolve to unknown.
 - “Verified” is reserved for an explicitly scoped process.
 - Interactive and generated consumers reference the shared tier labels.
-- Community observations remain mechanically separate from DoloPaws evidence.
+- Community observations remain mechanically separate from ORMA evidence.
 
 ## Follow-on work
 

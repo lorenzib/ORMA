@@ -9,7 +9,7 @@
         "distanceKm": 7.5,
         "ascentM": 150,
         "durationHours": 2,
-        "source": "DoloPaws repository route geometry",
+        "source": "ORMA repository route geometry",
         "verificationStatus": "field-review-required"
       },
       "geometry": {

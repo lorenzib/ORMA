@@ -51,7 +51,7 @@ describe('UX-01 canonical discovery integration', () => {
     const config = source('_config.yml');
 
     expect(config).toMatch(/- experiments\s*$/m);
-    expect(fs.existsSync(path.join(__dirname, 'DoloPaws Homepage - Split Hero.html'))).toBe(false);
+    expect(fs.existsSync(path.join(__dirname, 'ORMA Homepage - Split Hero.html'))).toBe(false);
     expect(fs.existsSync(path.join(__dirname, 'dolopaws-combined-preview.html'))).toBe(false);
   });
 });

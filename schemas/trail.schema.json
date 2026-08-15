@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://www.dolopaws.com/schemas/trail.schema.json",
-  "title": "DoloPaws canonical trail record",
+  "title": "ORMA canonical trail record",
   "description": "Version 1 contract shared by curated and imported trails. Geographic coordinates always use GeoJSON [longitude, latitude] order.",
   "type": "object",
   "additionalProperties": false,

@@ -7,7 +7,7 @@
  * slider, short note).
  *
  * Product rule this file enforces: community flags display ALONGSIDE the
- * DoloPaws verified safety score — they never alter it. Type-specific expiry
+ * ORMA verified safety score — they never alter it. Type-specific expiry
  * removes stale flags from the active safety view without deleting history.
  *
  * Usage: initTrailReports(map, trail) inside trail.js's map 'load'
@@ -140,7 +140,7 @@ function initTrailReports(map, trail){
       const date = reviewDate(review);
       const dateLabel = date ? date.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : 'Recently';
       const dogName = review.dogContext && review.dogContext.name;
-      const reviewer = dogName ? `${trEsc(dogName)}’s human` : 'A DoloPaws member';
+      const reviewer = dogName ? `${trEsc(dogName)}’s human` : 'A ORMA member';
       const stars = [1, 2, 3, 4, 5].map(n => starSvgIcon(n <= Number(review.rating), 13)).join('');
       return `<article class="community-review">
         <div class="community-review__rating" aria-label="${review.rating} out of 5 stars">${stars}</div>
@@ -174,7 +174,7 @@ function initTrailReports(map, trail){
     }
     photosListEl.innerHTML = visible.slice(0, 6).map(photo => {
       const dog = photo.dogContext && photo.dogContext.name;
-      const caption = photo.caption ? trEsc(photo.caption) : (dog ? `Shared by ${trEsc(dog)}’s human` : 'Shared by the DoloPaws community');
+      const caption = photo.caption ? trEsc(photo.caption) : (dog ? `Shared by ${trEsc(dog)}’s human` : 'Shared by the ORMA community');
       return `<figure class="community-photo"><img src="${trEsc(photo.image)}" alt="${caption}"><figcaption>${caption}${photo.status === 'reported' ? ' · Reported, under review' : ''}</figcaption></figure>`;
     }).join('');
   }

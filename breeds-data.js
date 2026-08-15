@@ -1,5 +1,5 @@
 /**
- * breeds-data.js — DoloPaws breed catalogue + physical trait sets.
+ * breeds-data.js — ORMA breed catalogue + physical trait sets.
  *
  * The breed list mirrors the FCI Breeds Nomenclature (fci.be/en/nomenclature),
  * groups 1–10, including breeds recognised on a provisional basis, checked

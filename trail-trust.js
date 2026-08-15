@@ -1,7 +1,7 @@
 /**
  * Shared trust language for trail facts.
  *
- * Curated trails have been reviewed by DoloPaws against independent
+ * Curated trails have been reviewed by ORMA against independent
  * sources. Imported trails are automated interpretations of OpenStreetMap
  * data: mapped facts may be useful, but absence from the map is not evidence
  * that a hazard is absent.
@@ -41,7 +41,7 @@
       if (graduation && graduation.verified) tier = 'route-audited';
       else tier = trail.curated === false ? 'under-review' : 'route-audited';
     }
-    // Invariant: the published DoloPaws tiers claim the *route* was audited or
+    // Invariant: the published ORMA tiers claim the *route* was audited or
     // walked, so they require a mapped route. A trail with no `path` (a
     // viewpoint or place listing) has no route to audit — cap it at
     // under-review no matter what its flags say.
@@ -55,13 +55,13 @@
   // trail page. The fuller `provenanceLabel` (below) adds progress/date detail.
   function tierLabel(trail) {
     const tier = tierOf(trail);
-    if (tier === 'dolopaws-walked') return 'Walked by DoloPaws';
-    if (tier === 'route-audited') return 'Reviewed by DoloPaws';
+    if (tier === 'dolopaws-walked') return 'Walked by ORMA';
+    if (tier === 'route-audited') return 'Reviewed by ORMA';
     return 'Trail overview';
   }
 
   // Badge visual style per tier, reusing the existing pill styles: under-review
-  // keeps the muted "imported" look, the two DoloPaws tiers use the "verified" look.
+  // keeps the muted "imported" look, the two ORMA tiers use the "verified" look.
   function tierBadgeStyle(trail) {
     return tierOf(trail) === 'under-review' ? 'imported' : 'verified';
   }
@@ -198,7 +198,7 @@
   }
 
   function assessmentNote(trail) {
-    return '<strong style="color: var(--ink);">Trail planning information:</strong> based on mapped route data and available DoloPaws sources. Conditions can change, so check locally before setting out.';
+    return '<strong style="color: var(--ink);">Trail planning information:</strong> based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.';
   }
 
   root.DoloPawsTrailTrust = Object.freeze({

@@ -1,6 +1,6 @@
 /* ============================================================
    TRAIL DETAIL — mobile app layout (≤700px, signed in)
-   Ported from "DoloPaws Trail Detail (Logged in) - Mobile".
+   Ported from "ORMA Trail Detail (Logged in) - Mobile".
    Chrome (top bar, progress, sticky actions, tab nav) is injected
    by trail-mobile.js; everything here is scoped to body.mtrail-active
    so guests and desktop keep the standard responsive page.

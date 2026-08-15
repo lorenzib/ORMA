@@ -1,5 +1,5 @@
 /* Mobile app layout for the logged-in trail detail (≤700px) — ported from
-   the Claude Design prototype "DoloPaws Trail Detail (Logged in) - Mobile".
+   the Claude Design prototype "ORMA Trail Detail (Logged in) - Mobile".
 
    Same pattern as homepage-mobile.js: purely additive chrome on top of the
    desktop .td2 layout. Injects a compact top bar (back · brand · dog
@@ -51,7 +51,7 @@
       top.id = 'mtrailTop';
       top.innerHTML =
         '<a class="back" href="browse-trails.html">← <span>Trails</span></a>' +
-        '<a class="brand" href="index.html"><img src="logo.svg" alt="">DoloPaws</a>' +
+        '<a class="brand" href="index.html"><img src="logo.svg" alt="">ORMA</a>' +
         '<a class="avlink" href="account.html" aria-label="Your account">' + dogAvatarHtml() + '</a>' +
         '<div class="mtrail-progress" aria-hidden="true"><span id="mtrailProgress"></span></div>';
       document.body.insertBefore(top, document.body.firstChild);

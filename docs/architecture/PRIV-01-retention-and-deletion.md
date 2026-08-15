@@ -6,7 +6,7 @@
 
 ## Purpose
 
-Every DoloPaws data category has an explicit purpose, storage location,
+Every ORMA data category has an explicit purpose, storage location,
 retention rule, and deletion path. The public explanation is in
 `privacy.html#retention`; the account-deletion dialog links to it.
 
@@ -18,7 +18,7 @@ retention rule, and deletion path. The public explanation is in
 | Dog profiles, photos, saved trails and match history | Personalisation; private `users/{uid}` document, with device caches | While the account exists | Account cancellation deletes the document; device cleanup removes caches |
 | Offline trail packages | Offline public route access; Cache Storage and local package metadata | Until the user removes them, the browser evicts them, or complete local cleanup is chosen | Per-package removal, all-download removal, or account/logout cleanup choice |
 | Active hike | Crash and offline recovery; local storage only | Recoverable for 36 hours after the last update; stale data remains inert until replaced or local cleanup | Hike completion/replacement or local cleanup |
-| Completed hikes and journal | Local walk history; local storage only | Until the user removes it or clears DoloPaws local data | Journal controls, browser storage controls, or local cleanup |
+| Completed hikes and journal | Local walk history; local storage only | Until the user removes it or clears ORMA local data | Journal controls, browser storage controls, or local cleanup |
 | Private post-hike outcomes | Product suitability learning; local pending queue and private `users/{uid}/outcomes` | Pending locally until sync/cleanup; server copy while account exists | Account cancellation deletes every outcome before the user document and auth identity |
 | Reviews, trail photos and hazard reports | Community guidance and trail safety; owner-bound local queue before sync, then Firestore contribution collections | Locally until accepted or local cleanup; server-side while pending, published, or needed for contribution/safety history | Local cleanup removes unsynced items; owner or moderator removal handles accepted content; account cancellation does not cascade-delete accepted content |
 | Abuse reports | Investigating community abuse; private `reports` collection | Up to 24 months after resolution; longer only for an active safety dispute or legal hold | Moderator/operator retention review |

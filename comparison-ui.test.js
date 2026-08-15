@@ -27,7 +27,7 @@ describe('Trail comparison journey', () => {
       'Surface hazards', 'Dog restrictions', 'Verification',
     ].forEach(label => expect(controller).toContain(label));
     expect(page).toContain('.compare-cell--unknown');
-    expect(page).toContain('Unknown means DoloPaws does not have enough reviewed evidence');
+    expect(page).toContain('Unknown means ORMA does not have enough reviewed evidence');
   });
 
   test('mobile comparison scrolls with sticky labels', () => {

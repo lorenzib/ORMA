@@ -7,7 +7,7 @@
 ## User contract
 
 Account deletion and browser cleanup are separate operations. Before confirming
-deletion, DoloPaws names both scopes and asks whether public offline maps should
+deletion, ORMA names both scopes and asks whether public offline maps should
 remain on the current device.
 
 Server deletion removes, in order:
@@ -32,7 +32,7 @@ Both logout and account deletion provide an explicit shared-device choice:
 
 - **Keep downloaded public maps** removes private local records but preserves
   verified public offline packages and their local lifecycle metadata.
-- **Remove all DoloPaws local data** removes every `dolopaws-` local and session
+- **Remove all ORMA local data** removes every `dolopaws-` local and session
   storage entry, all offline package caches and metadata, journals, active and
   completed hike records, pending outcomes and reports, analytics queues,
   photos, cached profile data, preferences, and device ownership metadata.
@@ -43,7 +43,7 @@ entry now routes through the same choice screen as every other logout entry.
 ## Completion receipt
 
 After successful server deletion, the homepage reports one of three device
-states: all DoloPaws data removed, public maps retained, or device cleanup
+states: all ORMA data removed, public maps retained, or device cleanup
 incomplete. The receipt parameters are removed from the URL after display.
 
 ## Verification
@@ -51,7 +51,7 @@ incomplete. The receipt parameters are removed from the URL after display.
 - `account-deletion.test.js` checks deletion ordering, partial-failure stages,
   disclosure copy, logout routing, and completion receipts.
 - `local-data.test.js` checks private-record removal, map retention, full
-  DoloPaws cleanup, and isolation from unrelated browser data.
+  ORMA cleanup, and isolation from unrelated browser data.
 - `firestore-security.test.js` verifies that owners can list and delete their
   private outcome records while updates remain forbidden.
 

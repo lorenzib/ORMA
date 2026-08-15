@@ -1,6 +1,6 @@
 {
-  "name": "DoloPaws",
-  "short_name": "DoloPaws",
+  "name": "ORMA",
+  "short_name": "ORMA",
   "description": "Find the right Dolomites trail for you and your dog.",
   "start_url": "./index.html",
   "scope": "./",

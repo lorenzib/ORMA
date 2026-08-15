@@ -42,7 +42,7 @@ review are complete.
 
 - Current Android phone using Chrome — **deferred: no test device currently
   available**
-- The same Android phone with DoloPaws installed — **deferred: no test device
+- The same Android phone with ORMA installed — **deferred: no test device
   currently available**
 - Oldest iPhone/iOS combination selected for beta support
 - Oldest or lower-powered Android/Chrome combination selected for beta support

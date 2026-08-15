@@ -101,7 +101,7 @@
       return 'Beta trail information. Check posted signs and local notices.';
     }
     if(['verified', 'vetted', 'dolopaws-vetted', 'field-checked'].includes(status)){
-      return 'Vetted by DoloPaws.';
+      return 'Vetted by ORMA.';
     }
     return 'Trail review status unavailable.';
   }
@@ -426,7 +426,7 @@
         elements.hikePauseButton.hidden = true;
       }
       elements.locationState.textContent = error.code === 1
-        ? 'Location permission was denied. Enable it for DoloPaws in browser settings.'
+        ? 'Location permission was denied. Enable it for ORMA in browser settings.'
         : 'A GPS fix is currently unavailable. The stored route remains visible.';
     }, {
       enableHighAccuracy: true,

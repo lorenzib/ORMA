@@ -78,7 +78,7 @@
         .catch(error => {
           target.dataset.mapState = 'error';
           target.setAttribute('aria-label', 'Map unavailable. Trail details remain available below.');
-          console.error('DoloPaws map failed to initialise:', error);
+          console.error('ORMA map failed to initialise:', error);
           return null;
         });
       return startPromise;

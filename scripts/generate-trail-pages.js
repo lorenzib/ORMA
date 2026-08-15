@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * generate-trail-pages.js — DoloPaws static trail page generator.
+ * generate-trail-pages.js — ORMA static trail page generator.
  *
  * Reads the three trail datasets plus trail-audits.js, assigns regions via
  * regions-config.js, and emits:
@@ -277,7 +277,7 @@ function nearbySection(t, slug, all) {
 // 3. Page template
 // ---------------------------------------------------------------
 function trailPage(t, slug, all) {
-  const title = `${t.name} — dog-friendly trail — DoloPaws`;
+  const title = `${t.name} — dog-friendly trail — ORMA`;
   const desc = truncate(
     t.desc || `${t.name}: a ${t.distance} km dog-friendly trail near ${t.area}.`,
     155
@@ -292,7 +292,7 @@ function trailPage(t, slug, all) {
     : progress
       ? progress.length === REVIEW_CATEGORIES.length
       : verified;
-  const reviewLabel = fullyReviewed ? 'Reviewed by DoloPaws' : 'Trail overview';
+  const reviewLabel = fullyReviewed ? 'Reviewed by ORMA' : 'Trail overview';
   const reviewStyle = fullyReviewed ? 'verified' : 'imported';
   const badge = `<span class="dp-badge dp-badge--${reviewStyle}"><span data-dp-icon="${reviewStyle}" data-dp-icon-size="13" aria-hidden="true"></span><span>${reviewLabel}</span></span>`;
 
@@ -369,17 +369,17 @@ function trailPage(t, slug, all) {
 
   const reviewSummary = graduation
     ? graduation.verified
-      ? 'This trail has been reviewed by DoloPaws. Check current conditions before setting out.'
-      : 'Based on mapped route data and available DoloPaws sources. Check current conditions before setting out.'
+      ? 'This trail has been reviewed by ORMA. Check current conditions before setting out.'
+      : 'Based on mapped route data and available ORMA sources. Check current conditions before setting out.'
     : progress
       ? progress.length === REVIEW_CATEGORIES.length
-        ? 'Trail details have been source-checked by DoloPaws. Check current conditions before setting out.'
-        : 'Based on mapped route data and available DoloPaws sources. Check current conditions before setting out.'
+        ? 'Trail details have been source-checked by ORMA. Check current conditions before setting out.'
+        : 'Based on mapped route data and available ORMA sources. Check current conditions before setting out.'
       : t.routeAudit && t.reviewedAt
-        ? 'Route details have been reviewed by DoloPaws. Check current conditions before setting out.'
+        ? 'Route details have been reviewed by ORMA. Check current conditions before setting out.'
         : !verified
-          ? 'Based on mapped route data and available DoloPaws sources. Check local access rules and current conditions before setting out.'
-          : 'Trail information prepared by DoloPaws. Check current conditions before setting out.';
+          ? 'Based on mapped route data and available ORMA sources. Check local access rules and current conditions before setting out.'
+          : 'Trail information prepared by ORMA. Check current conditions before setting out.';
   const sourceLinks = Array.isArray(t.sourceLinks) && t.sourceLinks.length
     ? `<ul>${t.sourceLinks.map(source => `<li><a href="${escapeHtml(source.url)}" rel="noopener">${escapeHtml(source.label)}</a></li>`).join('')}</ul>`
     : '';
@@ -472,7 +472,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
 <body data-scoring-version="${recommendationContract.VERSION}">
 
 <div class="topnav">
-  <a class="brand" href="../index.html"><img src="../logo.svg?v=3" alt="DoloPaws logo">DoloPaws</a>
+  <a class="brand" href="../index.html"><img src="../logo.svg?v=3" alt="ORMA logo">ORMA</a>
   <div class="links">
     <a href="../browse-trails.html" class="active">Browse all Trails</a>
     <a href="../browse-trails.html#collections">Collections</a>
@@ -544,7 +544,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
 <footer class="site-footer hp-footer">
   <div class="hp-footer-grid">
     <div>
-      <div class="hp-footer-brand"><img src="../logo.svg" alt=""><span>DoloPaws</span></div>
+      <div class="hp-footer-brand"><img src="../logo.svg" alt=""><span>ORMA</span></div>
       <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans. Every walk scored for paw safety.</p>
     </div>
     <div>
@@ -584,12 +584,12 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
     </div>
   </div>
   <div class="hp-footer-base">
-    <span>© 2026 DoloPaws · Dolomites &amp; Alps</span>
+    <span>© 2026 ORMA · Rooted in the Italian Dolomites</span>
   </div>
 </footer>
 
 <script src="../icon-system.js?v=20260717" defer></script>
-<script src="../mobile-nav.js?v=20260815-2"></script>
+<script src="../mobile-nav.js?v=20260815-3"></script>
 </body>
 </html>
 `;

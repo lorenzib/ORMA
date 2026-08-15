@@ -565,7 +565,7 @@ function contributionWriteError(error, fallback) {
       ok: false,
       state: "unavailable",
       action: "contact-support",
-      message: "This account cannot submit community contributions. Contact DoloPaws if you think this is a mistake.",
+      message: "This account cannot submit community contributions. Contact ORMA if you think this is a mistake.",
     };
   }
   return { ok: false, message: fallback };

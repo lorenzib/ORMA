@@ -16,15 +16,15 @@
   const TIER_LABELS = Object.freeze({
     imported: 'Imported map data',
     mapped: 'Mapped route',
-    'route-audited': 'DoloPaws route-audited',
-    'field-verified': 'DoloPaws field-verified',
+    'route-audited': 'ORMA route-audited',
+    'field-verified': 'ORMA field-verified',
   });
   const SOURCE_LABELS = Object.freeze({
     unknown: 'Evidence unknown',
     mapped: 'Mapped data',
     'source-listed': 'Source listed, not reviewed',
-    'source-reviewed': 'DoloPaws source-reviewed',
-    'field-checked': 'DoloPaws field-checked',
+    'source-reviewed': 'ORMA source-reviewed',
+    'field-checked': 'ORMA field-checked',
   });
   const FRESHNESS_LABELS = Object.freeze({
     current: 'Current for its review window',

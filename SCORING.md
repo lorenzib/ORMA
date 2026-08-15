@@ -1,4 +1,4 @@
-# DoloPaws recommendations — implementation reference
+# ORMA recommendations — implementation reference
 
 The live website uses one versioned recommendation engine:
 

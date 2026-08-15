@@ -45,7 +45,7 @@
     var bits = [];
     bits.push((dogName ? dogName + '’s walk' : 'Our walk') + ' — ' + (entry.dist || '?') + ' km in ' + fmtDuration(entry.dur));
     if(entry.trail && entry.trail !== 'Recorded walk') bits.push(entry.trail);
-    return bits.join(' · ') + '. Tracked with DoloPaws 🐾 dolopaws.com';
+    return bits.join(' · ') + '. Tracked with ORMA 🐾 dolopaws.com';
   }
 
   function roundRect(ctx, x, y, w, h, r){
@@ -108,7 +108,7 @@
     // Brand
     ctx.fillStyle = INK;
     ctx.font = '700 44px "Source Serif 4", serif';
-    ctx.fillText('DoloPaws', 70, 106);
+    ctx.fillText('ORMA', 70, 106);
     ctx.font = '600 30px Inter, sans-serif';
     ctx.fillStyle = SOFT;
     ctx.textAlign = 'right';

@@ -159,7 +159,7 @@
       heat: state.heat === 'low-reviewed' ? 'Lower heat exposure' : 'Shade listed',
       exposure: 'No reported exposure',
       access: state.access === 'allowed-reviewed' ? 'Dogs permitted' : 'Dogs allowed, leash is okay',
-      verification: state.verification === 'field-verified' ? 'Walked by DoloPaws' : 'Reviewed by DoloPaws',
+      verification: state.verification === 'field-verified' ? 'Walked by ORMA' : 'Reviewed by ORMA',
       collection: `${state.collection} collection`,
       minMatch: `${state.minMatch}%+ dog match`,
     };
@@ -205,7 +205,7 @@
     if(state && state.verification === 'field-verified'){
       candidates.push({
         key:'verification',
-        label:'Include DoloPaws-reviewed trails',
+        label:'Include ORMA-reviewed trails',
         state:{ ...state, verification:'route-audited', page:1 },
       });
     }

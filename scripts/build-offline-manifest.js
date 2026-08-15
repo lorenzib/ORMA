@@ -98,7 +98,7 @@ const manifest = {
       livestock:{ ...unknown }, surfaceHazards:{ ...unknown }, access:{ ...unknown },
     },
   },
-  attribution:'Route data © DoloPaws; © OpenStreetMap contributors where applicable',
+  attribution:'Route data © ORMA; © OpenStreetMap contributors where applicable',
   licenceUrl:'https://www.openstreetmap.org/copyright',
   resources,
 };

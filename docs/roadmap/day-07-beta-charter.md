@@ -11,18 +11,18 @@ Account-profile amendment: 2026-08-11
 ## Purpose
 
 This charter closes the first planning cycle and fixes the target for the first
-DoloPaws beta. It prevents new ideas, visual work, and existing experimental
+ORMA beta. It prevents new ideas, visual work, and existing experimental
 features from displacing the shortest complete safe journey.
 
 The charter may change only through the change-control rule below.
 
 ## Product promise
 
-> DoloPaws helps an account holder choose a trail that suits their dog, prepare
+> ORMA helps an account holder choose a trail that suits their dog, prepare
 > it for offline use, understand where they are while hiking, and report
 > whether the trail was appropriate afterward.
 
-DoloPaws is:
+ORMA is:
 
 1. a dog-specific trail decision tool; and
 2. an offline trail companion.
@@ -174,7 +174,7 @@ Product language follows these rules:
 - unknown is not safe;
 - mapped is not field-verified;
 - a recorded hike is not a verified review;
-- community reports do not silently alter the DoloPaws assessment;
+- community reports do not silently alter the ORMA assessment;
 - "Verified" is reserved for the agreed evidence-backed process.
 
 ## Offline package commitment

@@ -57,7 +57,7 @@
       },
       "sources": [
         {
-          "provider": "DoloPaws source review",
+          "provider": "ORMA source review",
           "kind": "official",
           "observedAt": "2026-04-01",
           "categories": ["water", "heat", "exposure", "livestock", "surfaceHazards", "access"]
@@ -88,7 +88,7 @@
       },
       "sources": [
         {
-          "provider": "DoloPaws field review",
+          "provider": "ORMA field review",
           "kind": "field-review",
           "observedAt": "2026-07-10",
           "categories": ["route", "water", "heat", "exposure", "livestock", "surfaceHazards", "access"]

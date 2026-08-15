@@ -1,6 +1,6 @@
 const visual = require('./trail-card-visual.js');
 
-describe('DoloPaws trail card visual', () => {
+describe('ORMA trail card visual', () => {
   test('uses a real photo when one exists', () => {
     const html = visual.render({ name:'A trail', imageIcon:'images/trail.webp' });
     expect(html).toContain('trail-visual--photo');

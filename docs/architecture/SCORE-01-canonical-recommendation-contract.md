@@ -6,7 +6,7 @@
 
 ## Outcome
 
-DoloPaws now has one versioned recommendation calculation that accepts
+ORMA now has one versioned recommendation calculation that accepts
 separate dog facts, trail facts, current conditions, and evidence states. It
 returns:
 
@@ -32,7 +32,7 @@ function to this contract.
 The trail's evidence classification and the dog-specific recommendation remain
 different concepts.
 
-- Trail evidence describes what DoloPaws knows and how it knows it.
+- Trail evidence describes what ORMA knows and how it knows it.
 - Recommendation describes the fit between one normalized dog profile, one
   trail record, and an optional conditions snapshot.
 - Community reports never change the canonical result silently.

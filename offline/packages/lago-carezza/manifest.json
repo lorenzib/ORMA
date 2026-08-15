@@ -6,7 +6,7 @@
   "generatedAt": "2026-08-15T09:02:48.947Z",
   "scoringVersion": "1.1.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 117034,
+  "packageBytes": 116990,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.407,
@@ -38,7 +38,7 @@
     "pointCount": 3,
     "distanceKm": 1.3,
     "ascentM": 20,
-    "source": "DoloPaws route profile",
+    "source": "ORMA route profile",
     "demPackaged": false
   },
   "evidence": {
@@ -104,7 +104,7 @@
       }
     }
   },
-  "attribution": "Route data © DoloPaws; © OpenStreetMap contributors where applicable",
+  "attribution": "Route data © ORMA; © OpenStreetMap contributors where applicable",
   "licenceUrl": "https://www.openstreetmap.org/copyright",
   "resources": [
     {
@@ -112,8 +112,8 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 8229,
-      "sha256": "b617e933d807a4cb1bda6df616eda60282d7f6d1aaa6f5cc8ca882a50206c503"
+      "bytes": 8205,
+      "sha256": "964bb436fc65f914b923422effef8ce79f3fab0f05091deda1feb1d2f49e2343"
     },
     {
       "role": "style",
@@ -128,8 +128,8 @@
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 31681,
-      "sha256": "16e64c9254304e870fdc5e4a18903d557345b53f173a64f085068ae61b5d4bd9"
+      "bytes": 31673,
+      "sha256": "6f81679d4f72fe492539dd2b82468f5142eed186a7b0af7d1ca319ef631371dc"
     },
     {
       "role": "gps-policy",
@@ -208,8 +208,8 @@
       "required": true,
       "label": "Lago di Carezza Loop route",
       "url": "route.geojson",
-      "bytes": 1529,
-      "sha256": "fae7714384f3e3f7128f461e25a5f04a605da3c5a6f5d9b8771eea7bf37fbc5d"
+      "bytes": 1525,
+      "sha256": "e0a8c665b1db15ddb011a3db8c43870074f0c94fdbba98b23bffee5876408edf"
     },
     {
       "role": "footpath-network",
@@ -224,16 +224,16 @@
       "required": true,
       "label": "Lago di Carezza Loop stored route elevation profile",
       "url": "elevation-profile.json",
-      "bytes": 246,
-      "sha256": "f7e28af3b4a55ce0d011347aee2d7721c05430fe605fa35d1ecd8b9673c22076"
+      "bytes": 242,
+      "sha256": "32d84d01264dbd0baf6bd50f238a9a33c7520468d2787c029f5358a8ecf134f2"
     },
     {
       "role": "safety",
       "required": true,
       "label": "Lago di Carezza Loop safety information",
       "url": "safety.json",
-      "bytes": 1389,
-      "sha256": "70c7eeaf8f954d5c3ac623c1e1108f3cce74287c97593c3f5f06fd889036319b"
+      "bytes": 1385,
+      "sha256": "b0434fa5057c43e1e34852a7832618523d4f7588a597fc7f26d362c6a2cc1694"
     }
   ]
 }

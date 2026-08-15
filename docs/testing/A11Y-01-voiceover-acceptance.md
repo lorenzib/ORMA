@@ -4,7 +4,7 @@
 
 ## Purpose
 
-Confirm that a person using Safari with VoiceOver can complete the DoloPaws beta
+Confirm that a person using Safari with VoiceOver can complete the ORMA beta
 journey without an unlabeled control, trapped focus, missing status, or repeated
 GPS announcement. Automated contracts cover structure and keyboard behaviour;
 this record covers the human screen-reader experience they cannot reproduce.

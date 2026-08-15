@@ -9,7 +9,7 @@ to Firestore. A journal key includes the authenticated Firebase UID, preventing
 one account from displaying another account's entries on the same device.
 
 This is intentional for beta. Completed walks may reveal dates, locations,
-routes, notes, dog-health context, photos, duration, and distance. DoloPaws will
+routes, notes, dog-health context, photos, duration, and distance. ORMA will
 not introduce server retention for that sensitive history until cross-device
 sync has a separate consent, retention, deletion, conflict, and security design.
 

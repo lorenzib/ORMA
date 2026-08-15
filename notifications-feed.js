@@ -115,7 +115,7 @@
         var t = entry.t;
         var sources = t.verified && Array.isArray(t.verified.sources) && t.verified.sources.length
           ? 'Checked against ' + t.verified.sources.join(', ') + '.'
-          : 'Desk-reviewed by DoloPaws.';
+          : 'Desk-reviewed by ORMA.';
         items.push({
           id: 'audit-' + t.id + '-' + entry.date,
           icon: 'verified', alert: false, group: 'earlier', timeLabel: shortDate(entry.date),

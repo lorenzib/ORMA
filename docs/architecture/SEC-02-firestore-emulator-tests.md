@@ -6,7 +6,7 @@
 
 ## Outcome
 
-DoloPaws now executes its Firestore Security Rules against the real Firestore
+ORMA now executes its Firestore Security Rules against the real Firestore
 Emulator in local development and continuous integration.
 
 The suite uses:

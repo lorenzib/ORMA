@@ -12,8 +12,8 @@ describe('TRUST-01 evidence and freshness contract', () => {
 
   test.each([
     ['imported', 'Imported map data'],
-    ['route-audited', 'DoloPaws route-audited'],
-    ['field-verified', 'DoloPaws field-verified'],
+    ['route-audited', 'ORMA route-audited'],
+    ['field-verified', 'ORMA field-verified'],
   ])('%s receives the canonical public label', (fixture, label) => {
     expect(evidence.assessTrail(fixtures.trails[fixture], {
       asOfDate: fixtures.asOfDate,
@@ -64,7 +64,7 @@ describe('TRUST-01 evidence and freshness contract', () => {
     expect(desk.categories.water.sourceState).toBe('source-reviewed');
   });
 
-  test('community observations remain separate from the DoloPaws assessment', () => {
+  test('community observations remain separate from the ORMA assessment', () => {
     const withoutCommunity = evidence.assessTrail(fixtures.trails['route-audited'], {
       asOfDate: fixtures.asOfDate,
     });

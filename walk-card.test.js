@@ -26,9 +26,9 @@ describe('shareable walk card helpers', () => {
     const named = card.shareText(
       { dist: '4.2', dur: '65', trail: 'Alpe di Siusi Meadow Loop' }, 'Eddie');
     expect(named).toBe(
-      'Eddie’s walk — 4.2 km in 1h 05 · Alpe di Siusi Meadow Loop. Tracked with DoloPaws 🐾 dolopaws.com');
+      'Eddie’s walk — 4.2 km in 1h 05 · Alpe di Siusi Meadow Loop. Tracked with ORMA 🐾 dolopaws.com');
     const anonymous = card.shareText({ dist: '1.0', dur: '30', trail: 'Recorded walk' }, '');
-    expect(anonymous).toBe('Our walk — 1.0 km in 30 min. Tracked with DoloPaws 🐾 dolopaws.com');
+    expect(anonymous).toBe('Our walk — 1.0 km in 30 min. Tracked with ORMA 🐾 dolopaws.com');
   });
 
   test('fmtDuration switches from minutes to hours at 60', () => {

@@ -95,9 +95,9 @@
   "sources": [
     {
       "id": "legacy-dolopaws-lago-carezza",
-      "label": "DoloPaws legacy curated record",
+      "label": "ORMA legacy curated record",
       "url": null,
-      "provider": "DoloPaws",
+      "provider": "ORMA",
       "kind": "legacy",
       "retrievedAt": null,
       "observedAt": null,

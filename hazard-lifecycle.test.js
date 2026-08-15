@@ -37,7 +37,7 @@ describe('MOD-03 hazard confirmation and expiry', () => {
     expect(rules).toContain('allow update, delete: if false');
   });
 
-  test('public labels distinguish community, DoloPaws, and official evidence', () => {
+  test('public labels distinguish community, ORMA, and official evidence', () => {
     expect(reports).toContain("'reports.communityConfirmed'");
     expect(reports).toContain("'reports.communityDisputed'");
     expect(reports).toContain("'reports.dolopawsReviewed'");

@@ -60,14 +60,14 @@
   function actionsFor(item){
     if(item.type === 'flag' && item.status === 'pending') return [
       action('visible', 'Publish unconfirmed', 'community'),
-      action('visible', 'Publish · DoloPaws reviewed', 'dolopaws-reviewed'),
+      action('visible', 'Publish · ORMA reviewed', 'dolopaws-reviewed'),
       action('visible', 'Publish · official source', 'official'),
       action('hidden', 'Hide'),
       action('removed', 'Remove'),
     ];
     if(item.type === 'flag' && ['visible', 'reported'].includes(item.status)) return [
       action('visible', 'Keep active · unconfirmed', 'community'),
-      action('visible', 'Keep active · DoloPaws reviewed', 'dolopaws-reviewed'),
+      action('visible', 'Keep active · ORMA reviewed', 'dolopaws-reviewed'),
       action('visible', 'Keep active · official source', 'official'),
       action('hidden', 'Hide'),
       action('removed', 'Remove'),

@@ -36,7 +36,7 @@ const OVERPASS_URLS = process.env.OVERPASS_URL
     ];
 
 // Overpass etiquette: identify the app so requests aren't treated as anonymous bots.
-const USER_AGENT = 'DoloPaws-trail-fetcher/1.0 (+https://dolopaws.com)';
+const USER_AGENT = 'ORMA-trail-fetcher/1.0 (+https://dolopaws.com)';
 
 // Same named-area + admin-level approach for every region. NOTE the admin
 // levels differ by country: Italian regions are admin_level=4, French

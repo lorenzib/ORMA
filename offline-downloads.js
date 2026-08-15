@@ -67,7 +67,7 @@
       ? tr('downloads.review.pending', 'Beta field review pending')
       : ['verified', 'vetted', 'dolopaws-vetted', 'field-checked']
         .includes(record.verificationStatus)
-        ? tr('downloads.review.vetted', 'Vetted by DoloPaws')
+        ? tr('downloads.review.vetted', 'Vetted by ORMA')
         : tr('downloads.review.unavailable', 'Review status unavailable');
     const betaVersion = String(record.version || '').match(/beta\.(\d+)$/i);
     const versionLabel = typeof translateFn === 'function'

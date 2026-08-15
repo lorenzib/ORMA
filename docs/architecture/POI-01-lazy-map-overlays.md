@@ -25,7 +25,7 @@ and a small `sync` method apply the current Lift toggle state as soon as late
 lift data is registered. Both lift lines and labels belong to the Lift layer;
 the prior mismatch—hidden labels with visible lines—is removed.
 
-The basemap's own transit features require no DoloPaws dataset download.
+The basemap's own transit features require no ORMA dataset download.
 Optional Overpass enrichment is already initiated only after a user clicks a
 map feature, so it remains request-driven rather than part of initial loading.
 

@@ -111,7 +111,7 @@ A GPX export should also be available to account holders.
 
 ## Pre-hike readiness
 
-Before starting, DoloPaws should confirm:
+Before starting, ORMA should confirm:
 
 - the trail is ready offline;
 - GPS permission is granted;
@@ -196,8 +196,8 @@ Content states:
 draft → pending → visible → reported → hidden → removed
 ```
 
-"Verified" is reserved for evidence-backed DoloPaws or official checks.
-A GPS-recorded contribution may say "Hike recorded with DoloPaws," but it is
+"Verified" is reserved for evidence-backed ORMA or official checks.
+A GPS-recorded contribution may say "Hike recorded with ORMA," but it is
 not a verified review.
 
 ## Accepted product rules

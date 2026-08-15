@@ -253,7 +253,7 @@
           `<h2 id="preHikeTitle">${escapeHtml(tr('readiness.title', 'Pre-hike readiness'))}</h2>` +
           '<p class="pre-hike-summary" id="preHikeSummary" role="status" aria-live="polite"></p>' +
           '<div class="pre-hike-list" id="preHikeList"></div>' +
-          `<p class="pre-hike-boundary"><strong>${escapeHtml(tr('readiness.boundary.title', 'DoloPaws is a planning companion, not an emergency-navigation service.'))}</strong> ${escapeHtml(tr('readiness.boundary.detail', 'Offline maps and GPS do not replace waymarks, judgment, adequate equipment, or emergency preparation.'))}</p>` +
+          `<p class="pre-hike-boundary"><strong>${escapeHtml(tr('readiness.boundary.title', 'ORMA is a planning companion, not an emergency-navigation service.'))}</strong> ${escapeHtml(tr('readiness.boundary.detail', 'Offline maps and GPS do not replace waymarks, judgment, adequate equipment, or emergency preparation.'))}</p>` +
           '<div class="pre-hike-footer">' +
             `<button type="button" class="pre-hike-secondary" data-readiness-action="close">${escapeHtml(tr('readiness.notYet', 'Not yet'))}</button>` +
             `<button type="button" class="pre-hike-primary" data-readiness-action="continue">${escapeHtml(tr('readiness.start', 'Start hike'))}</button>` +

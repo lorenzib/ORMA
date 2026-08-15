@@ -4,7 +4,7 @@ Status: implemented
 
 ## Outcome
 
-DoloPaws now delays the map engine until a map approaches the viewport or a
+ORMA now delays the map engine until a map approaches the viewport or a
 map control is engaged. The route and core trail content remain available
 without MapLibre, while regional amenities join after the map's primary work
 has completed.

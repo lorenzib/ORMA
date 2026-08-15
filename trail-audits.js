@@ -40,7 +40,7 @@
       curated: true,
       tier: 'route-audited',
       reviewedAt: '2026-07-26',
-      reviewedBy: 'DoloPaws route audit',
+      reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'No licensed trail photo is currently used; no credit is due.',
         route: 'Full route geometry present and matched to Les Karellis route 09.',
@@ -174,7 +174,7 @@
       ],
       imagePlaceholder: true,
       reviewedAt: '2026-07-26',
-      reviewedBy: 'DoloPaws route audit',
+      reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'No reusable trail photograph is used; the official board image is retained only as a source, not copied.',
         route: 'Closed OSM relation checked against the official Laugen–Elvas overview board; the official board lists a 4.2 km circuit.',
@@ -277,7 +277,7 @@
       ],
       imagePlaceholder: true,
       reviewedAt: '2026-07-26',
-      reviewedBy: 'DoloPaws route audit',
+      reviewedBy: 'ORMA route audit',
       routeAudit: {
         photo: 'No reusable trail photograph is used; source-page images are not copied.',
         route: 'Closed OSM relation checked against CAI Lozzo route 5 and its published map; the official description lists a 3 km loop.',

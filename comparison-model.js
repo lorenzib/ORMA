@@ -25,8 +25,8 @@
   const TIERS = {
     imported:'Trail overview',
     mapped:'Trail overview',
-    'route-audited':'Reviewed by DoloPaws',
-    'field-verified':'Walked by DoloPaws',
+    'route-audited':'Reviewed by ORMA',
+    'field-verified':'Walked by ORMA',
   };
 
   function cell(text, kind, detail){

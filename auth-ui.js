@@ -16,7 +16,7 @@
             '<div class="auth-hero-shade"></div>' +
             '<button id="authClose" class="modal-close" aria-label="Close">&times;</button>' +
             '<div class="auth-hero-copy">' +
-              '<span class="auth-hero-brand"><img src="logo.svg" alt="">DoloPaws</span>' +
+              '<span class="auth-hero-brand"><img src="logo.svg" alt="">ORMA</span>' +
               '<h2 id="authTitle" data-i18n="nav.login">Log in</h2>' +
               '<p class="hint" id="authHint" data-i18n="auth.hint">Save trails to your account so they follow you across devices.</p>' +
             '</div>' +

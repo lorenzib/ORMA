@@ -61,7 +61,7 @@ public tier, and source/freshness/date labels for route, water, heat, exposure,
 livestock, surface hazards, and dog access. That detail remains internal
 package metadata for integrity, scoring, and operations. The customer-facing
 offline screen does not expand it category by category or show an unknown
-freshness label. Vetted trails use the concise `Vetted by DoloPaws` label;
+freshness label. Vetted trails use the concise `Vetted by ORMA` label;
 not-yet-vetted packages retain a short beta/local-notices warning.
 
 The primary update message is simply **Update available**. The technical beta
