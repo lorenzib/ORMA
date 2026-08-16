@@ -34,7 +34,7 @@
   body.mhome-active .li-toolbar-greet{grid-column:1/3;grid-row:1;display:flex;align-items:center;gap:7px;min-width:0;margin:0;}
   body.mhome-active .li-greet-avatar{flex:none;width:25px;height:25px;border-radius:50%;background:var(--accent);background-size:cover;background-position:center;color:#fff;display:grid;place-items:center;font:800 10px 'Inter',sans-serif;overflow:hidden;}
   body.mhome-active .li-toolbar-greet-copy{display:flex;min-width:0;flex-direction:row;align-items:baseline;gap:6px;}
-  body.mhome-active .li-toolbar-greet-copy strong{font:700 15px/1.15 'Bricolage Grotesque',sans-serif;white-space:nowrap;}
+  body.mhome-active .li-toolbar-greet-copy strong{font:700 17px/1.15 'Bricolage Grotesque',sans-serif;white-space:nowrap;}
   body.mhome-active .li-toolbar-greet-copy small{margin:0;font:600 10px/1.2 'Inter',sans-serif;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   body.mhome-active .li-toolbar-breed{text-underline-offset:1px;}
   body.mhome-active .li-search{grid-column:2;grid-row:2;display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--paper-line);border-radius:999px;padding:8px 13px;min-width:0;color:var(--ink-soft);}
@@ -58,7 +58,6 @@
   body.mhome-active .li-body{display:block;}
   body.mhome-active .li-map{position:fixed;left:0;right:0;top:var(--mhome-top,62px);bottom:0;z-index:1;margin:0;border:none;border-radius:0;height:auto;}
   body.mhome-active #trailMap{position:absolute;inset:0;width:100%;height:100% !important;border-radius:0 !important;border:none !important;}
-  body.mhome-active .li-legend{display:block;top:12px;left:90px;bottom:auto;transition:none;}
 
   /* The dog identity moved into the toolbar greeting row — the map stays
      clean of the conditions pill on phones. */
@@ -97,7 +96,6 @@
   body.mhome-active .li-map.map-fs .li-map-expand{top:calc(10px + env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));}
   body.mhome-active .li-map.map-fs .li-cond{top:calc(12px + env(safe-area-inset-top));}
   body.mhome-active .li-map.map-fs #trailMap .map-btn{top:calc(12px + env(safe-area-inset-top));}
-  body.mhome-active .li-map.map-fs .li-legend{top:calc(12px + env(safe-area-inset-top));left:calc(90px + env(safe-area-inset-left));}
   body.mhome-active .li-map.map-fs #trailMap .td-layer-switch,
   body.mhome-active .li-map.map-fs #trailMap .map-btn--terrain{top:calc(54px + env(safe-area-inset-top));}
   body.mhome-active .li-map.map-fs #trailMap .map-panel{top:calc(96px + env(safe-area-inset-top));}

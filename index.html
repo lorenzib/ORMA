@@ -18,8 +18,8 @@
    Firebase resolves. The homepage controller clears the class once real
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
-<link rel="stylesheet" href="styles.css?v=20260816-4">
-<link rel="stylesheet" href="homepage-mobile.css?v=20260816-2">
+<link rel="stylesheet" href="styles.css?v=20260816-5">
+<link rel="stylesheet" href="homepage-mobile.css?v=20260816-3">
 </head>
 <body>
 
@@ -295,10 +295,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       </div>
     </div>
     <a id="liRecordBtn" class="li-record" href="walk.html"><span class="li-record-dot" aria-hidden="true"></span><span class="li-record-label">Record walk</span></a>
-    <div class="li-pane-toggle" role="group" aria-label="Trail view">
-      <button type="button" class="on" data-li-pane="map" aria-pressed="true">Map</button>
-      <button type="button" data-li-pane="list" aria-pressed="false">List</button>
-    </div>
   </div>
 
   <!-- ================= BODY: MAP + LIST ================= -->
@@ -319,20 +315,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         </div>
         <div class="li-cond-tiles" id="liCondTiles"></div>
       </div>
-
-      <!-- Match-tier legend: compact until the visitor asks for the key. -->
-      <details class="li-legend">
-        <summary>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5 9 4l6 2.5L20 4v13.5L15 20l-6-2.5L4 20Z"/><path d="M9 4v13.5M15 6.5V20"/></svg>
-          Map key <span class="li-legend-caret" aria-hidden="true">▴</span>
-        </summary>
-        <div class="li-legend-items">
-          <span><i class="li-dot" style="background:#4A7856;"></i>Great match</span>
-          <span><i class="li-dot" style="background:#C98A2E;"></i>Good</span>
-          <span><i class="li-dot" style="background:#9C3A25;"></i>Check first</span>
-          <span><i class="li-heartdot" aria-hidden="true">♥</i>Saved</span>
-        </div>
-      </details>
 
       <!-- Selected-trail preview — the design's TrailPreview card, docked at
            the foot of the map: kicker · name · meta + provenance · trail
@@ -496,7 +478,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="basemap-poi-click.js" defer></script>
 <script src="dog-routes-layer.js?v=20260815-3" defer></script>
 <script src="trail-access-directions.js?v=20260815-3" defer></script>
-<script src="script.js?v=20260816-2" defer></script>
+<script src="script.js?v=20260816-3" defer></script>
 <script src="dog-wizard.js?v=20260815-3" defer></script>
 <script src="homepage-search.js?v=20260815-3" defer></script>
 <script src="homepage-mobile.js?v=20260816-1" defer></script>

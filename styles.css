@@ -2223,10 +2223,10 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 /* ---------- toolbar (search · filter chips) ---------- */
 .li-toolbar{
   display:grid;
-  grid-template-columns:minmax(320px,560px) auto auto auto minmax(20px,1fr) auto;
+  grid-template-columns:minmax(320px,560px) auto auto auto minmax(20px,1fr);
   grid-template-areas:
-    "greet greet greet greet greet greet"
-    "search region filters record spacer pane";
+    "greet greet greet greet greet"
+    "search region filters record spacer";
   align-items:center;
   gap:10px 14px;
   padding:14px 24px 12px;
@@ -2247,7 +2247,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 }
 .li-toolbar-greet .li-greet-avatar{width:40px;height:40px;}
 .li-toolbar-greet-copy{display:flex;flex-direction:column;min-width:0;}
-.li-toolbar-greet-copy strong{font:700 17px/1.15 'Bricolage Grotesque',sans-serif;white-space:nowrap;}
+.li-toolbar-greet-copy strong{font:700 21px/1.12 'Bricolage Grotesque',sans-serif;white-space:nowrap;}
 .li-toolbar-greet-copy small{margin-top:2px;font:600 10.5px/1.2 'Inter',sans-serif;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:none;}
 .li-toolbar-breed{color:inherit;text-decoration:underline;text-decoration-color:#AAB5AA;text-underline-offset:2px;}
 .li-toolbar-breed:hover{color:var(--accent);text-decoration-color:currentColor;}
@@ -2342,30 +2342,6 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-search-option-copy small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 10.5px 'Inter',sans-serif;color:var(--ink-soft);}
 .li-search-option-match{flex:none;font:800 12px 'Inter',sans-serif;}
 .li-search-empty{padding:15px 12px;color:var(--ink-soft);font:600 12px 'Inter',sans-serif;}
-.li-pane-toggle{
-  grid-area:pane;
-  display:flex;
-  align-items:center;
-  gap:3px;
-  margin-left:0;
-  padding:3px;
-  border-radius:var(--radius-pill);
-  background:#F0EDE1;
-  flex:none;
-}
-.li-pane-toggle button{
-  border:0;
-  border-radius:var(--radius-pill);
-  padding:8px 18px;
-  background:transparent;
-  color:var(--ink-soft);
-  cursor:pointer;
-  font:700 13px 'Inter',sans-serif;
-}
-.li-pane-toggle button.on{
-  background:var(--ink);
-  color:#fff;
-}
 .li-top-spacer{flex:1;}
 .li-top-actions{display:flex;align-items:center;gap:8px;}
 .li-menuwrap{position:relative;}
@@ -2572,50 +2548,6 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-cond-tile{flex:1;background:#FAF8F1;border-radius:9px;padding:8px 10px;text-align:center;min-width:64px;}
 .li-cond-tile b{display:block;font:900 14px 'Inter',sans-serif;color:var(--ink);}
 .li-cond-tile small{font-size:9.5px;color:#8A9689;font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
-
-/* Match key — a single quiet map control until it is opened. */
-.li-legend{
-  position:absolute;
-  top:10px;
-  left:88px;
-  z-index:6;
-  color:var(--ink);
-  font-size:11px;
-  font-weight:600;
-  white-space:nowrap;
-}
-.li-legend summary{
-  list-style:none;display:flex;align-items:center;gap:7px;cursor:pointer;
-  min-height:36px;box-sizing:border-box;padding:7px 12px;
-  border:1px solid rgba(219,216,202,.9);border-radius:10px;
-  background:rgba(255,255,255,.95);box-shadow:0 2px 8px rgba(23,42,28,.14);
-  font:700 11.5px 'Inter',sans-serif;
-}
-.li-legend summary::-webkit-details-marker{display:none;}
-.li-legend summary:hover{background:#fff;border-color:#B9C8BC;}
-.li-legend-caret{font-size:9px;transition:transform .16s ease;}
-.li-legend:not([open]) .li-legend-caret{transform:rotate(180deg);}
-.li-legend-items{
-  position:absolute;left:0;top:calc(100% + 7px);
-  display:flex;align-items:center;gap:12px;padding:9px 13px;
-  border:1px solid rgba(219,216,202,.9);border-radius:11px;
-  background:rgba(255,255,255,.97);box-shadow:0 8px 24px -12px rgba(23,42,28,.45);
-}
-.li-legend-items span{display:inline-flex;align-items:center;gap:5px;}
-.li-dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
-.li-heartdot{
-  width:14px;
-  height:14px;
-  border-radius:50%;
-  background:#fff;
-  border:1.5px solid #9C3A25;
-  display:grid;
-  place-items:center;
-  font-size:8px;
-  font-style:normal;
-  color:#9C3A25;
-  line-height:1;
-}
 
 /* ---------- list pane ---------- */
 /* Beige pane with white card rows (2026-07 revamp fixed the inversion:
@@ -2861,7 +2793,6 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 .li-map.map-fs .maplibregl-ctrl-top-right{top:env(safe-area-inset-top);right:env(safe-area-inset-right);}
 .li-map.map-fs .td-layer-switch{left:max(10px,env(safe-area-inset-left));bottom:max(10px,env(safe-area-inset-bottom));}
 .li-map.map-fs .maplibregl-ctrl-bottom-right{right:env(safe-area-inset-right);bottom:env(safe-area-inset-bottom);}
-.li-map.map-fs .li-legend{top:max(10px,env(safe-area-inset-top));left:calc(88px + env(safe-area-inset-left));}
 
 /* Map style switch — Map · Satellite · 3D grouped in one visible control
    (bottom-left, same group on the trail map and the app map). */
@@ -2870,26 +2801,14 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 .td-layer-switch button.on{background:var(--ink);color:#fff;}
 /* App map: the freed bottom-left slot */
 .li-map .td-layer-switch{bottom:10px;left:10px;}
-/* the docked preview card takes the legend's spot while a pin is selected */
-.li-map:has(.map-callout:not([hidden])) .li-legend{display:none;}
-
-/* On wide screens Map keeps the useful ranked rail beside the map; List
-   gives the cards the full canvas. The segmented control never lies idle. */
-@media (min-width:1041px){
-  .li-body[data-pane="list"]{grid-template-columns:1fr;}
-  .li-body[data-pane="list"] .li-map{display:none;}
-  .li-body[data-pane="list"] .li-list{grid-column:1;border-left:0;}
-}
-
 /* ---------- responsive: one-pane tablet app ---------- */
 @media (min-width:701px) and (max-width:1040px){
   #returningCustomerHomepage{height:100vh;height:100dvh;}
   .li-toolbar{display:flex;flex-wrap:wrap;padding:9px 16px;gap:9px;}
   .li-toolbar-greet{min-width:190px;}
-  .li-toolbar-greet-copy strong{font-size:15px;}
+  .li-toolbar-greet-copy strong{font-size:18px;}
   .li-toolbar-greet-copy small{max-width:165px;}
   .li-search{order:0;flex:1;max-width:390px;}
-  .li-pane-toggle{display:flex;order:3;}
   .li-body{display:block;min-height:0;}
   .li-body[data-pane="list"] .li-map,
   .li-body[data-pane="map"] .li-list{display:none;}
@@ -2914,7 +2833,6 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
   .li-top-spacer{display:none;}
   .li-top-actions{margin-left:auto;}
   .li-account-name{max-width:90px;overflow:hidden;text-overflow:ellipsis;}
-  .li-pane-toggle{display:none;}
   .li-body{grid-template-columns:1fr;}
   .li-map{height:46vh;min-height:300px;}
   .li-map #trailMap{position:absolute;}

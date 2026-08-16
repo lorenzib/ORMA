@@ -218,7 +218,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(routeLayer).toContain("'step', ['coalesce', ['get', 'score'], 0]");
     expect(routeLayer).not.toContain("['get', 'safetyLevel']");
     expect(script).toContain("breedLink.href = 'guides/breed-group-caveats.html'");
-    expect(script).toContain('trails scored`');
+    expect(script).not.toContain('trails scored`');
   });
 
   test('keeps Record walk in the discovery toolbar and defaults mobile results to the low snap', () => {
@@ -227,8 +227,9 @@ describe('map-first returning homepage layout contract', () => {
     const toolbarEnd = html.indexOf('<!-- ================= BODY:', toolbarStart);
     expect(record).toBeGreaterThan(toolbarStart);
     expect(record).toBeLessThan(toolbarEnd);
-    expect(html).toContain('<details class="li-legend">');
-    expect(html).toContain('Map key');
+    expect(html).not.toContain('class="li-pane-toggle"');
+    expect(html).not.toContain('<details class="li-legend">');
+    expect(html).not.toContain('Map key');
     expect(mobileJs).toContain('var sheetPct = SNAPS[1];');
     expect(mobileJs).toContain('var lastOpenPct = SNAPS[1];');
     expect(mobileCss).toContain('height:26dvh');

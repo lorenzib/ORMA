@@ -1569,7 +1569,7 @@ function renderLiHeader(profile){
     : 'Minimum match';
 }
 
-function renderLiToolbarContext(profile, scoredCount){
+function renderLiToolbarContext(profile){
   const toolbarContext = document.getElementById('liToolbarDogContext');
   if(!toolbarContext) return;
   const dogName = (profile && profile.name) ? profile.name : 'Your dog';
@@ -1588,9 +1588,6 @@ function renderLiToolbarContext(profile, scoredCount){
     } else {
       toolbarContext.appendChild(document.createTextNode(breed));
     }
-  }
-  if(Number.isFinite(scoredCount)){
-    toolbarContext.appendChild(document.createTextNode(` · ${scoredCount} trails scored`));
   }
 }
 
@@ -2127,8 +2124,6 @@ async function renderReturningHomepage(profile){
     const recommendation = recommendTrail(t, overrides);
     return {...t, score: recommendation.score, recommendation};
   }).sort((a,b) => b.score - a.score);
-  const regionScoredCount = scored.filter(t => t.region === activeRegion).length;
-  renderLiToolbarContext(profile, regionScoredCount);
   if(listEl && window.DoloPawsScoring){
     listEl.dataset.scoringVersion = window.DoloPawsScoring.VERSION;
   }
