@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ORMA — Dog Trails &amp; Terrain Guide</title>
+<title>ORMA | Dog Trails &amp; Terrain Guide</title>
 <meta name="description" content="ORMA ranks every Dolomites route by paw safety, shade, water access, and terrain risk — matched to your dog.">
 <meta name="theme-color" content="#2E4034">
 <link rel="manifest" href="manifest.json">
@@ -12,19 +12,19 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script>/* Pre-auth boot: the cached member summary picks the right homepage
    before first paint, so members never flash the guest page while
    Firebase resolves. The homepage controller clears the class once real
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
-<link rel="stylesheet" href="styles.css?v=20260815-3">
+<link rel="stylesheet" href="styles.css?v=20260816-2">
 <link rel="stylesheet" href="homepage-mobile.css?v=20260815-3">
 </head>
 <body>
 
 <div class="topnav">
-  <a class="brand" href="index.html"><img src="logo.svg?v=5" alt="">ORMA</a>
+  <a class="brand" href="index.html" aria-label="ORMA | Dog Trails &amp; Terrain Guide"><img src="logo.svg?v=5" alt="">ORMA</a>
   <div class="links">
     <a href="browse-trails.html">Browse all Trails</a>
     <a href="collections.html">Collections</a>
@@ -170,7 +170,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 
   <!-- ================= DARK APP HEADER ================= -->
   <header class="li-top">
-    <a class="li-brand" href="index.html"><img src="logo.svg?v=5" alt="">ORMA</a>
+    <a class="li-brand" href="index.html" aria-label="ORMA | Dog Trails &amp; Terrain Guide"><img src="logo.svg?v=5" alt="">ORMA</a>
     <nav class="li-nav" aria-label="Site">
       <a href="browse-trails.html">Browse all Trails</a>
       <a href="collections.html">Collections</a>
@@ -254,9 +254,17 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <small id="liToolbarDogContext">Your dog</small>
       </span>
     </div>
+    <div class="li-menuwrap li-region-wrap" id="liRegionWrap">
+      <button type="button" id="liRegionBtn" class="li-region-btn" aria-haspopup="true" aria-expanded="false">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5 9 4l6 2.5L20 4v13.5L15 20l-6-2.5L4 20Z"/><path d="M9 4v13.5M15 6.5V20"/></svg>
+        <span id="liRegionLabel">Dolomites</span><span class="li-caret">▾</span>
+      </button>
+      <div class="li-menu li-region-menu" id="liRegionMenu" hidden></div>
+    </div>
     <div class="li-search">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input id="liSearch" type="search" placeholder="Search a valley, lake or trail…" aria-label="Search trails" autocomplete="off">
+      <input id="liSearch" type="search" placeholder="Find a trail on this map…" aria-label="Find a trail on this map" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="liSearchSuggest" autocomplete="off">
+      <div class="li-search-suggest" id="liSearchSuggest" role="listbox" aria-label="Recommended routes" hidden></div>
     </div>
     <!-- Kept as a rendering target for the controller; the consolidated
          Filters panel is the visible control at every viewport size. -->
@@ -271,7 +279,8 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <span>Filter trails</span>
           <button type="button" id="liFiltersReset">Reset all</button>
         </div>
-        <!-- Region / source / valley — populated by renderAreaFilters() -->
+        <!-- Source and valley refinements — the primary region switch sits
+             separately in the toolbar so it never gets buried in Filters. -->
         <div id="areaFilterRow" class="li-fareas"></div>
         <div class="li-fsec">Distance</div>
         <div class="li-seg" id="liDistSeg"></div>
@@ -370,7 +379,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 
 
 <div class="wrap hp-quote" style="padding:56px 20px 40px;text-align:center;">
-  <blockquote style="margin:0 auto;max-width:640px;font-family:'Source Serif 4',serif;font-weight:700;font-size:21px;line-height:1.5;color:var(--ink);" data-i18n="quote.text">“A walk is never just a walk when it's shared with a dog — it becomes an act of companionship, curiosity, and joy”</blockquote>
+  <blockquote style="margin:0 auto;max-width:640px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:21px;line-height:1.5;color:var(--ink);" data-i18n="quote.text">“A walk is never just a walk when it's shared with a dog — it becomes an act of companionship, curiosity, and joy”</blockquote>
   <div style="margin-top:12px;font-size:13px;font-weight:700;color:var(--accent);">— ORMA</div>
 </div>
 
@@ -481,7 +490,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="basemap-poi-click.js" defer></script>
 <script src="dog-routes-layer.js?v=20260815-3" defer></script>
 <script src="trail-access-directions.js?v=20260815-3" defer></script>
-<script src="script.js?v=20260815-3" defer></script>
+<script src="script.js?v=20260816-1" defer></script>
 <script src="dog-wizard.js?v=20260815-3" defer></script>
 <script src="homepage-search.js?v=20260815-3" defer></script>
 <script src="homepage-mobile.js?v=20260815-3" defer></script>

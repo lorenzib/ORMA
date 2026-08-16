@@ -107,7 +107,7 @@
 
     // Brand
     ctx.fillStyle = INK;
-    ctx.font = '700 44px "Source Serif 4", serif';
+    ctx.font = '700 44px "Bricolage Grotesque", sans-serif';
     ctx.fillText('ORMA', 70, 106);
     ctx.font = '600 30px Inter, sans-serif';
     ctx.fillStyle = SOFT;
@@ -118,7 +118,7 @@
     // Title (two lines max)
     var title = entry.trail || 'A walk';
     ctx.fillStyle = INK;
-    ctx.font = '700 68px "Source Serif 4", serif';
+    ctx.font = '700 68px "Bricolage Grotesque", sans-serif';
     var words = title.split(' '), line = '', lines = [];
     words.forEach(function(word){
       var probe = line ? line + ' ' + word : word;

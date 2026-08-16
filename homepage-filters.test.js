@@ -45,6 +45,9 @@ function tForTests(key, params = {}){
 function loadHomepageContext(testTrails){
   document.body.innerHTML = `
     <div id="areaFilterRow"></div>
+    <button id="liRegionBtn"></button>
+    <span id="liRegionLabel"></span>
+    <div id="liRegionMenu"></div>
     <h1 id="returningHeading"></h1>
     <p id="returningSubline"></p>
     <span id="returningCount"></span>
@@ -129,13 +132,15 @@ describe('returning homepage region + valley filters', () => {
     expect(row.innerHTML).not.toContain('province-pills');
   });
 
-  test('switching region tab resets valley and re-renders valley chips', () => {
+  test('switching the separate region control resets the valley', async () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "savoy"; activeValley = "Maurienne"; renderAreaFilters(null);', context);
+    vm.runInContext('activeRegion = "savoy"; activeValley = "Maurienne"; renderLiRegionControl(null);', context);
 
-    const dolomitesTab = document.querySelector('[data-region="dolomites"]');
+    const dolomitesTab = Array.from(document.querySelectorAll('.li-region-option'))
+      .find(button => button.textContent.includes('Dolomites'));
     expect(dolomitesTab).not.toBeNull();
     dolomitesTab.click();
+    await Promise.resolve();
 
     expect(vm.runInContext('activeRegion', context)).toBe('dolomites');
     expect(vm.runInContext('activeValley', context)).toBe('all');
@@ -191,9 +196,18 @@ describe('map-first returning homepage layout contract', () => {
     expect(html).toContain('class="li-toolbar-greet"');
     expect(html).toContain('id="liToolbarDogContext"');
     expect(html).toContain('id="liFiltersWrap"');
+    expect(html).toContain('id="liRegionWrap"');
+    expect(html).toContain('id="liSearchSuggest"');
     expect(html).not.toContain('id="liFiltersWrap" class="li-menuwrap li-mobile-only"');
     expect(css).toMatch(/\.li-greetbar\{\s*display:none;/);
     expect(css).toMatch(/\.li-chiprow\{display:none;/);
+  });
+
+  test('keeps returning-home search on the map instead of navigating away', () => {
+    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    expect(script).toContain('renderLiSearchSuggestions(currentProfileForAdjust)');
+    expect(script).toContain('focusMapOnTrail(trail.id, matches)');
+    expect(script).not.toContain("search.addEventListener('focus', () => {\n      window.location.href = 'search.html");
   });
 
   test('keeps Record walk as a map action and defaults mobile results to the low snap', () => {

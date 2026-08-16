@@ -1497,7 +1497,7 @@ function renderTrail(t){
           new maplibregl.Popup({ offset: 12, maxWidth: '260px' })
             .setLngLat(e.lngLat)
             .setHTML(
-              `<div style="font:700 14px 'Source Serif 4',serif;color:#2E4034;">${escName(p.name)}</div>` +
+              `<div style="font:700 14px 'Bricolage Grotesque',sans-serif;color:#2E4034;">${escName(p.name)}</div>` +
               `<div style="font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;margin-top:3px;">${escName(String(p.distance))} km trail${p.awayKm != null ? ` · ${escName(String(p.awayKm))} km away` : ''}</div>` +
               `<a href="trail.html?id=${encodeURIComponent(p.id)}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">Open this trail →</a>`
             )

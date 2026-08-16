@@ -5,7 +5,7 @@
 .pre-hike-sheet{position:absolute;top:0;right:0;width:min(560px,100%);height:100%;overflow:auto;padding:34px 30px 28px;background:#f7f5ee;color:#2e4034;box-shadow:-24px 0 70px rgba(18,31,23,.28)}
 .pre-hike-close{position:absolute;top:18px;right:20px;width:38px;height:38px;border:1px solid #d8d8cd;border-radius:50%;background:#fff;color:#2e4034;font-size:25px;line-height:1;cursor:pointer}
 .pre-hike-kicker{margin:0 0 8px;color:#768179;font:800 11px Inter,sans-serif;letter-spacing:.13em;text-transform:uppercase}
-.pre-hike-sheet h2{margin:0;font:700 clamp(28px,5vw,38px) "Source Serif 4",serif}
+.pre-hike-sheet h2{margin:0;font:700 clamp(28px,5vw,38px) "Bricolage Grotesque", sans-serif}
 .pre-hike-summary{margin:10px 0 20px;color:#657169;font:600 13px/1.5 Inter,sans-serif}
 .pre-hike-list{display:grid;gap:9px}
 .pre-hike-item{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:11px;align-items:center;padding:13px 14px;border:1px solid #dddcd2;border-radius:13px;background:#fff}

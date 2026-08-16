@@ -1215,27 +1215,12 @@ function renderAreaFilters(profile){
   if(!row || typeof trails === 'undefined') return;
   if(window.DoloPawsRegions) window.DoloPawsRegions.assign(trails);
 
-  const regionCounts = { dolomites: 0, savoy: 0 };
-  ['dolomites', 'savoy'].forEach(region => {
-    regionCounts[region] = window.DoloPawsRegionalData
-      ? window.DoloPawsRegionalData.trailCount(region)
-      : trails.filter(trail => trail.region === region).length;
-  });
-
   const valleys = window.DoloPawsRegions
     ? window.DoloPawsRegions.valleysFor(trails, activeRegion)
     : [];
   if(activeValley !== 'all' && !valleys.some(([v]) => v === activeValley)) activeValley = 'all';
 
   row.innerHTML = `
-    <div class="companion-filter-label">Region</div>
-    <div class="region-tabs" style="width:100%;">
-      ${['dolomites','savoy'].map(r => `
-        <button class="region-tab ${r === activeRegion ? 'active' : ''}" data-region="${r}" style="flex:1;">
-          ${r === 'dolomites' ? t('region.dolomites') : t('region.savoy')} <span class="count">${regionCounts[r]}</span>
-        </button>`).join('')}
-    </div>
-
     <div class="companion-filter-label">Source</div>
     <div class="prov-toggle" style="width:100%;">
       ${(() => {
@@ -1255,24 +1240,6 @@ function renderAreaFilters(profile){
     </div>
   `;
 
-  row.querySelectorAll('.region-tab').forEach(tab => {
-    tab.addEventListener('click', async () => {
-      const nextRegion = tab.dataset.region;
-      tab.disabled = true;
-      try {
-        if(window.DoloPawsRegionalData) await window.DoloPawsRegionalData.loadRegion(nextRegion);
-        activeRegion = nextRegion;
-        if(trailMapInstance) await updateRegionalMapData(trailMapInstance, nextRegion);
-        activeValley = 'all';
-        renderReturningHomepage(profile);
-        setCompanionPanelOpen(false);
-      } catch(e) {
-        showHomeActionStatus('That region could not be loaded. Check your connection and try again.');
-      } finally {
-        tab.disabled = false;
-      }
-    });
-  });
   row.querySelectorAll('[data-valley]').forEach(pill => {
     pill.addEventListener('click', () => {
       activeValley = pill.dataset.valley;
@@ -1286,6 +1253,46 @@ function renderAreaFilters(profile){
       renderReturningHomepage(profile);
       setCompanionPanelOpen(false);
     });
+  });
+}
+
+// The region is a first-order map choice, not an advanced refinement. Keep it
+// visible beside search and leave the Filters panel for the more detailed
+// source, valley, distance, terrain, shade, match and water controls.
+function renderLiRegionControl(profile){
+  const label = document.getElementById('liRegionLabel');
+  const menu = document.getElementById('liRegionMenu');
+  if(!label || !menu || typeof trails === 'undefined') return;
+  label.textContent = activeRegion === 'savoy' ? 'Savoy' : 'Dolomites';
+  menu.innerHTML = '<div class="li-menu-kick">Region</div>';
+  [['dolomites', 'Dolomites'], ['savoy', 'Savoy / French Alps']].forEach(([region, name]) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'li-menu-item li-region-option' + (region === activeRegion ? ' on' : '');
+    button.setAttribute('aria-pressed', String(region === activeRegion));
+    const count = window.DoloPawsRegionalData
+      ? window.DoloPawsRegionalData.trailCount(region)
+      : trails.filter(trail => trail.region === region).length;
+    button.innerHTML = `<span>${name}</span><small>${count} trails</small>`;
+    button.addEventListener('click', async () => {
+      if(region === activeRegion){ liCloseMenus(); return; }
+      button.disabled = true;
+      try {
+        if(window.DoloPawsRegionalData) await window.DoloPawsRegionalData.loadRegion(region);
+        activeRegion = region;
+        activeValley = 'all';
+        selectedTrailId = null;
+        hideMapCallout();
+        if(trailMapInstance) await updateRegionalMapData(trailMapInstance, region);
+        liCloseMenus();
+        renderReturningHomepage(profile);
+      } catch(e) {
+        showHomeActionStatus('That region could not be loaded. Check your connection and try again.');
+      } finally {
+        button.disabled = false;
+      }
+    });
+    menu.appendChild(button);
   });
 }
 
@@ -1465,11 +1472,11 @@ function liResetAllFilters(){
 }
 
 function liCloseMenus(){
-  ['liFiltersMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
+  ['liFiltersMenu', 'liRegionMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
     const menu = document.getElementById(id);
     if(menu) menu.hidden = true;
   });
-  ['liFiltersBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
+  ['liFiltersBtn', 'liRegionBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
     const btn = document.getElementById(id);
     if(btn) btn.setAttribute('aria-expanded', 'false');
   });
@@ -1553,8 +1560,8 @@ function renderLiHeader(profile){
   const toolbarContext = document.getElementById('liToolbarDogContext');
   if(toolbarContext){
     const dogName = (profile && profile.name) ? profile.name : 'Your dog';
-    const fitness = profile && profile.fitness ? `${profile.fitness} fitness` : '';
-    toolbarContext.textContent = [dogName, fitness].filter(Boolean).join(' · ');
+    const breed = profile && profile.breed ? profile.breed : '';
+    toolbarContext.textContent = [dogName, breed].filter(Boolean).join(' · ');
   }
   liFillAvatar(document.getElementById('liAccountAvatar'), profile);
   // Phone greeting row carries the dog's face next to the greeting.
@@ -1894,6 +1901,7 @@ function initLoggedInShell(){
     menu.addEventListener('click', e => e.stopPropagation());
   };
   wireMenu(filtersBtn, document.getElementById('liFiltersMenu'));
+  wireMenu(document.getElementById('liRegionBtn'), document.getElementById('liRegionMenu'));
   wireMenu(document.getElementById('liAccountBtn'), document.getElementById('liAccountMenu'));
 
   const paneBody = document.querySelector('#returningCustomerHomepage .li-body');
@@ -1935,20 +1943,36 @@ function initLoggedInShell(){
   }
 
   document.addEventListener('click', liCloseMenus);
+  document.addEventListener('click', (event) => {
+    if(!event.target.closest('.li-search')) hideLiSearchSuggestions();
+  });
   document.addEventListener('keydown', (e) => { if(e.key === 'Escape') liCloseMenus(); });
 
   const search = document.getElementById('liSearch');
-  let searchTimer = null;
+  const suggestions = document.getElementById('liSearchSuggest');
   if(search){
-    search.addEventListener('focus', () => {
-      window.location.href = 'search.html?q=' + encodeURIComponent(search.value || '');
-    });
     search.addEventListener('input', () => {
-      clearTimeout(searchTimer);
-      searchTimer = setTimeout(() => {
-        liQuery = search.value;
-        renderReturningHomepage(currentProfileForAdjust);
-      }, 160);
+      renderLiSearchSuggestions(currentProfileForAdjust);
+    });
+    search.addEventListener('focus', () => renderLiSearchSuggestions(currentProfileForAdjust));
+    search.addEventListener('keydown', (event) => {
+      if(!suggestions || suggestions.hidden) return;
+      const options = Array.from(suggestions.querySelectorAll('[role="option"]'));
+      if(!options.length) return;
+      let active = options.findIndex(option => option.classList.contains('active'));
+      if(event.key === 'ArrowDown' || event.key === 'ArrowUp'){
+        event.preventDefault();
+        active = event.key === 'ArrowDown'
+          ? (active + 1) % options.length
+          : (active <= 0 ? options.length - 1 : active - 1);
+        options.forEach((option, index) => option.classList.toggle('active', index === active));
+        options[active].scrollIntoView({ block:'nearest' });
+      } else if(event.key === 'Enter'){
+        event.preventDefault();
+        (options[active >= 0 ? active : 0]).click();
+      } else if(event.key === 'Escape'){
+        hideLiSearchSuggestions();
+      }
     });
   }
 
@@ -1969,6 +1993,69 @@ function initLoggedInShell(){
     if(liDevView){ window.location.href = 'index.html'; return; }
     window.location.href = 'account.html?logout=1';
   });
+}
+
+function hideLiSearchSuggestions(){
+  const search = document.getElementById('liSearch');
+  const suggestions = document.getElementById('liSearchSuggest');
+  if(suggestions){ suggestions.hidden = true; suggestions.innerHTML = ''; }
+  if(search) search.setAttribute('aria-expanded', 'false');
+}
+
+function liEscapeHtml(value){
+  return String(value == null ? '' : value).replace(/[&<>"']/g, character => ({
+    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
+  }[character]));
+}
+
+function renderLiSearchSuggestions(profile){
+  const search = document.getElementById('liSearch');
+  const suggestions = document.getElementById('liSearchSuggest');
+  if(!search || !suggestions || typeof trails === 'undefined') return;
+  const query = search.value.trim().toLowerCase();
+  if(!query){ hideLiSearchSuggestions(); return; }
+  const overrides = profile ? effectiveOverrides(profile, adjustOverride) : { terrain:'1', distance:'10', heatSensitive:false };
+  const matches = trails
+    .filter(trail => trail.region === activeRegion)
+    .filter(trail => [trail.name, trail.area, trail.valley].some(value => String(value || '').toLowerCase().includes(query)))
+    .map(trail => ({ ...trail, score:recommendTrail(trail, overrides).score }))
+    .sort((a, b) => b.score - a.score || a.distance - b.distance)
+    .slice(0, 6);
+
+  suggestions.innerHTML = '';
+  if(!matches.length){
+    suggestions.innerHTML = '<div class="li-search-empty">No routes found in this region.</div>';
+  } else {
+    matches.forEach((trail, index) => {
+      const option = document.createElement('button');
+      option.type = 'button';
+      option.className = 'li-search-option' + (index === 0 ? ' active' : '');
+      option.setAttribute('role', 'option');
+      option.setAttribute('aria-selected', String(index === 0));
+      const tier = liMatchTier(trail.score);
+      option.innerHTML = `<span class="li-search-option-copy"><strong>${liEscapeHtml(trail.name)}</strong><small>${liEscapeHtml([trail.valley, `${trail.distance} km`].filter(Boolean).join(' · '))}</small></span><span class="li-search-option-match" style="color:${tier.color}">${trail.curated === false ? '≈' : ''}${trail.score}%</span>`;
+      option.addEventListener('click', () => {
+        search.value = trail.name;
+        hideLiSearchSuggestions();
+        liRevealMapPane();
+        focusMapOnTrail(trail.id, matches);
+      });
+      suggestions.appendChild(option);
+    });
+  }
+  suggestions.hidden = false;
+  search.setAttribute('aria-expanded', 'true');
+}
+
+function liRevealMapPane(){
+  const body = document.querySelector('#returningCustomerHomepage .li-body');
+  if(body) body.dataset.pane = 'map';
+  document.querySelectorAll('[data-li-pane]').forEach(button => {
+    const selected = button.dataset.liPane === 'map';
+    button.classList.toggle('on', selected);
+    button.setAttribute('aria-pressed', String(selected));
+  });
+  if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
 }
 
 // Match column shared by list rows and the map preview card. Tier steps
@@ -2005,6 +2092,7 @@ async function renderReturningHomepage(profile){
   if(!heading || typeof trails === 'undefined') return;
 
   renderAreaFilters(profile);
+  renderLiRegionControl(profile);
   renderDogProfileCard(profile);
   renderLiHeader(profile);
   refreshLiBellBadge();
@@ -2362,7 +2450,7 @@ function showTrailMapPopup(t, lngLat){
   trailMapPopup = new maplibregl.Popup({ offset: 12, maxWidth: '260px', className: 'trail-map-popup' })
     .setLngLat(lngLat)
     .setHTML(
-      `<div style="font:700 14px 'Source Serif 4',serif;color:#2E4034;">${esc(t.name)}</div>` +
+      `<div style="font:700 14px 'Bricolage Grotesque',sans-serif;color:#2E4034;">${esc(t.name)}</div>` +
       `<div style="display:flex;align-items:center;gap:6px;margin-top:4px;font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;">` +
         `<span style="width:8px;height:8px;border-radius:50%;background:${dot};flex:none;"></span>` +
         `${esc(`${t.distance} km`)}${score ? ` · ${esc(score)}` : ''}` +
