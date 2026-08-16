@@ -210,12 +210,25 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).not.toContain("search.addEventListener('focus', () => {\n      window.location.href = 'search.html");
   });
 
-  test('keeps Record walk as a map action and defaults mobile results to the low snap', () => {
-    const mapStart = html.indexOf('<div class="li-map" id="trailMapWrap">');
+  test('uses match score for both route and marker colours and links breed caveats', () => {
+    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    const routeLayerStart = script.indexOf("id: 'trail-paths-line'");
+    const routeLayerEnd = script.indexOf("id: 'trail-paths-hit'", routeLayerStart);
+    const routeLayer = script.slice(routeLayerStart, routeLayerEnd);
+    expect(routeLayer).toContain("'step', ['coalesce', ['get', 'score'], 0]");
+    expect(routeLayer).not.toContain("['get', 'safetyLevel']");
+    expect(script).toContain("breedLink.href = 'guides/breed-group-caveats.html'");
+    expect(script).toContain('trails scored`');
+  });
+
+  test('keeps Record walk in the discovery toolbar and defaults mobile results to the low snap', () => {
+    const toolbarStart = html.indexOf('<div class="li-toolbar" id="liToolbar">');
     const record = html.indexOf('id="liRecordBtn"');
-    const mapEnd = html.indexOf('<aside class="li-list"', mapStart);
-    expect(record).toBeGreaterThan(mapStart);
-    expect(record).toBeLessThan(mapEnd);
+    const toolbarEnd = html.indexOf('<!-- ================= BODY:', toolbarStart);
+    expect(record).toBeGreaterThan(toolbarStart);
+    expect(record).toBeLessThan(toolbarEnd);
+    expect(html).toContain('<details class="li-legend">');
+    expect(html).toContain('Map key');
     expect(mobileJs).toContain('var sheetPct = SNAPS[1];');
     expect(mobileJs).toContain('var lastOpenPct = SNAPS[1];');
     expect(mobileCss).toContain('height:26dvh');

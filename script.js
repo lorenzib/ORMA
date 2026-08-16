@@ -766,11 +766,8 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': [
-          'match', ['get', 'safetyLevel'],
-          'low-risk', '#2C5C34',
-          'moderate', '#8A5A16',
-          'caution', '#9C3A25',
-          '#2E4034', // fallback if safetyLevel is missing
+          'step', ['coalesce', ['get', 'score'], 0],
+          '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
         ],
         'line-width': 3,
       },
@@ -846,7 +843,7 @@ function initTrailMap(){
         'circle-color': 'rgba(0,0,0,0)',
         'circle-radius': 12,
         'circle-stroke-width': 4,
-        'circle-stroke-color': '#4A7C59',
+        'circle-stroke-color': '#fff',
       },
     });
 
@@ -1557,12 +1554,7 @@ function renderLiHeader(profile){
   const nameEl = document.getElementById('liAccountName');
   // The pill carries the dog itself (design TopNav dog pill), not the human.
   if(nameEl) nameEl.textContent = (profile && profile.name) ? profile.name : 'Your dog';
-  const toolbarContext = document.getElementById('liToolbarDogContext');
-  if(toolbarContext){
-    const dogName = (profile && profile.name) ? profile.name : 'Your dog';
-    const breed = profile && profile.breed ? profile.breed : '';
-    toolbarContext.textContent = [dogName, breed].filter(Boolean).join(' · ');
-  }
+  renderLiToolbarContext(profile);
   liFillAvatar(document.getElementById('liAccountAvatar'), profile);
   // Phone greeting row carries the dog's face next to the greeting.
   liFillAvatar(document.getElementById('liGreetAvatar'), profile);
@@ -1575,6 +1567,31 @@ function renderLiHeader(profile){
   if(matchLabel) matchLabel.textContent = (profile && profile.name)
     ? `Minimum match for ${profile.name}`
     : 'Minimum match';
+}
+
+function renderLiToolbarContext(profile, scoredCount){
+  const toolbarContext = document.getElementById('liToolbarDogContext');
+  if(!toolbarContext) return;
+  const dogName = (profile && profile.name) ? profile.name : 'Your dog';
+  const breed = profile && profile.breed ? profile.breed : '';
+  const hasBreedName = breed && !NON_BREED_LABELS.has(breed);
+  toolbarContext.replaceChildren(document.createTextNode(dogName));
+  if(breed){
+    toolbarContext.appendChild(document.createTextNode(' · '));
+    if(hasBreedName){
+      const breedLink = document.createElement('a');
+      breedLink.className = 'li-toolbar-breed';
+      breedLink.href = 'guides/breed-group-caveats.html';
+      breedLink.textContent = breed;
+      breedLink.title = `Read hiking caveats for ${breed}`;
+      toolbarContext.appendChild(breedLink);
+    } else {
+      toolbarContext.appendChild(document.createTextNode(breed));
+    }
+  }
+  if(Number.isFinite(scoredCount)){
+    toolbarContext.appendChild(document.createTextNode(` · ${scoredCount} trails scored`));
+  }
 }
 
 // Filter panel — segmented options + toggle rows. Rebuilt on every render
@@ -2110,6 +2127,8 @@ async function renderReturningHomepage(profile){
     const recommendation = recommendTrail(t, overrides);
     return {...t, score: recommendation.score, recommendation};
   }).sort((a,b) => b.score - a.score);
+  const regionScoredCount = scored.filter(t => t.region === activeRegion).length;
+  renderLiToolbarContext(profile, regionScoredCount);
   if(listEl && window.DoloPawsScoring){
     listEl.dataset.scoringVersion = window.DoloPawsScoring.VERSION;
   }
@@ -2227,7 +2246,6 @@ async function renderReturningHomepage(profile){
     const dim = adjustActive && t.score < 60;
     const thumb = trailCardVisual(t, { className:'li-thumb photo', dataTrailId:t.id, clickable:true });
     const selected = t.id === selectedTrailId;
-    const dotColor = SAFETY_DOT[t.safetyLevel] || 'var(--ink-soft)';
     const newBadge = isNew ? productBadge('new', window.t('badge.new')) : '';
     const importedBadge = t.curated === false
       ? (window.DoloPawsIcons ? window.DoloPawsIcons.badgeHtml('imported', window.t('badge.importedS')) : `<span class="badge-pill badge-imported">${window.t('badge.importedS')}</span>`)
@@ -2442,7 +2460,7 @@ let trailMapPopup = null;
 function showTrailMapPopup(t, lngLat){
   if(!trailMapInstance || typeof maplibregl === 'undefined') return;
   const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
-  const dot = SAFETY_DOT[t.safetyLevel] || '#2E4034';
+  const dot = liMatchTier(Number(t.score) || 0).color;
   const score = typeof t.score === 'number'
     ? `${t.curated === false ? '≈' : ''}${t.score}% match`
     : '';

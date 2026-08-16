@@ -146,25 +146,11 @@
     });
   }
 
-  // The Record pill is position:fixed on phones. On wider screens it belongs
-  // to the map as the primary map action, not among the search filters.
-  function placeRecordBtn(mobile){
-    var rec = document.getElementById('liRecordBtn');
-    if(!rec) return;
-    if(mobile){
-      if(rec.parentElement !== document.body) document.body.appendChild(rec);
-    } else {
-      var map = document.getElementById('trailMapWrap');
-      if(map && rec.parentElement !== map) map.appendChild(rec);
-    }
-  }
-
   function activate(){
     if(active) return;
     active = true;
     ensureUi();
     placeAccountWrap(true);
-    placeRecordBtn(true);
     document.body.classList.add('mhome-active');
     window.scrollTo(0, 0);
     // classList.add applies synchronously, so measuring right away is safe;
@@ -182,7 +168,6 @@
     if(!active) return;
     active = false;
     placeAccountWrap(false);
-    placeRecordBtn(false);
     document.body.classList.remove('mhome-active');
     document.body.style.removeProperty('--mhome-top');
     document.body.style.removeProperty('--mhome-tabs');

@@ -2046,7 +2046,7 @@ body.map-fs-open{overflow:hidden;}
 .hp-footer{background:var(--ink);color:#D4DED3;padding:44px 40px 30px;text-align:left;font-size:13.5px;}
 /* Canonical 5-block footer (brand · Explore · For dogs · Connect · Company)
    — the browse-trails footer, used on every page. */
-.hp-footer-grid{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:28px;}
+.hp-footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:28px;}
 .hp-footer-brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:12px;}
 /* The logo's badge background disappears on the footer's matching dark
    green, leaving ~6px of invisible inset — pull the icon left so the
@@ -2222,10 +2222,14 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 
 /* ---------- toolbar (search · filter chips) ---------- */
 .li-toolbar{
-  display:flex;
+  display:grid;
+  grid-template-columns:minmax(320px,560px) auto auto auto minmax(20px,1fr) auto;
+  grid-template-areas:
+    "greet greet greet greet greet greet"
+    "search region filters record spacer pane";
   align-items:center;
-  gap:10px;
-  padding:9px 24px;
+  gap:10px 14px;
+  padding:14px 24px 12px;
   background:var(--bg);
   border-bottom:1px solid var(--paper-line);
   flex:none;
@@ -2233,26 +2237,31 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   z-index:45;
 }
 .li-toolbar-greet{
+  grid-area:greet;
   display:flex;
   align-items:center;
   gap:9px;
-  min-width:220px;
+  min-width:0;
   flex:none;
   color:var(--ink);
 }
-.li-toolbar-greet .li-greet-avatar{width:32px;height:32px;}
+.li-toolbar-greet .li-greet-avatar{width:40px;height:40px;}
 .li-toolbar-greet-copy{display:flex;flex-direction:column;min-width:0;}
-.li-toolbar-greet-copy strong{font:700 16px/1.15 'Bricolage Grotesque',sans-serif;white-space:nowrap;}
-.li-toolbar-greet-copy small{margin-top:2px;font:600 10.5px/1.2 'Inter',sans-serif;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:205px;}
-.li-region-wrap{flex:none;}
+.li-toolbar-greet-copy strong{font:700 17px/1.15 'Bricolage Grotesque',sans-serif;white-space:nowrap;}
+.li-toolbar-greet-copy small{margin-top:2px;font:600 10.5px/1.2 'Inter',sans-serif;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:none;}
+.li-toolbar-breed{color:inherit;text-decoration:underline;text-decoration-color:#AAB5AA;text-underline-offset:2px;}
+.li-toolbar-breed:hover{color:var(--accent);text-decoration-color:currentColor;}
+.li-region-wrap{grid-area:region;flex:none;}
 .li-region-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:7px;
   min-height:39px;padding:8px 13px;border:1.5px solid var(--paper-line);
   border-radius:var(--radius-pill);background:#fff;color:var(--ink);
   font:700 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;
 }
+.li-control-kicker{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);}
 .li-region-btn:hover,.li-region-btn[aria-expanded="true"]{border-color:var(--accent);background:#F7FAF8;}
 .li-region-menu{left:0;right:auto;width:230px;padding:10px;}
+#liFiltersWrap{grid-area:filters;}
 .li-region-option{justify-content:space-between;gap:14px;}
 .li-region-option small{font:600 10.5px 'Inter',sans-serif;color:var(--ink-soft);}
 .li-region-option.on{background:#EAF3EC;color:var(--ink);font-weight:700;}
@@ -2288,8 +2297,9 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-greetswitch-btn{display:flex;align-items:center;gap:6px;border:none;background:none;cursor:pointer;padding:0;color:var(--ink-soft);}
 .li-greetswitch-menu{left:0;right:auto;top:calc(100% + 8px);width:268px;}
 .li-search{
-  flex:0 1 430px;
-  max-width:430px;
+  grid-area:search;
+  width:100%;
+  max-width:none;
   min-width:250px;
   position:relative;
   display:flex;
@@ -2333,10 +2343,11 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-search-option-match{flex:none;font:800 12px 'Inter',sans-serif;}
 .li-search-empty{padding:15px 12px;color:var(--ink-soft);font:600 12px 'Inter',sans-serif;}
 .li-pane-toggle{
-  display:none;
+  grid-area:pane;
+  display:flex;
   align-items:center;
   gap:3px;
-  margin-left:auto;
+  margin-left:0;
   padding:3px;
   border-radius:var(--radius-pill);
   background:#F0EDE1;
@@ -2562,26 +2573,35 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-cond-tile b{display:block;font:900 14px 'Inter',sans-serif;color:var(--ink);}
 .li-cond-tile small{font-size:9.5px;color:#8A9689;font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
 
-/* match-tier legend — bottom-centre so it never collides with the
-   Layers button (bottom-left) or attribution (bottom-right) */
+/* Match key — a single quiet map control until it is opened. */
 .li-legend{
   position:absolute;
-  bottom:10px;
-  left:50%;
-  transform:translateX(-50%);
+  top:10px;
+  left:88px;
   z-index:6;
-  display:flex;
-  gap:12px;
-  background:rgba(255,255,255,.95);
-  border-radius:10px;
-  padding:7px 14px;
-  box-shadow:0 2px 8px rgba(23,42,28,.14);
+  color:var(--ink);
   font-size:11px;
   font-weight:600;
-  color:var(--ink);
   white-space:nowrap;
 }
-.li-legend span{display:inline-flex;align-items:center;gap:5px;}
+.li-legend summary{
+  list-style:none;display:flex;align-items:center;gap:7px;cursor:pointer;
+  min-height:36px;box-sizing:border-box;padding:7px 12px;
+  border:1px solid rgba(219,216,202,.9);border-radius:10px;
+  background:rgba(255,255,255,.95);box-shadow:0 2px 8px rgba(23,42,28,.14);
+  font:700 11.5px 'Inter',sans-serif;
+}
+.li-legend summary::-webkit-details-marker{display:none;}
+.li-legend summary:hover{background:#fff;border-color:#B9C8BC;}
+.li-legend-caret{font-size:9px;transition:transform .16s ease;}
+.li-legend:not([open]) .li-legend-caret{transform:rotate(180deg);}
+.li-legend-items{
+  position:absolute;left:0;top:calc(100% + 7px);
+  display:flex;align-items:center;gap:12px;padding:9px 13px;
+  border:1px solid rgba(219,216,202,.9);border-radius:11px;
+  background:rgba(255,255,255,.97);box-shadow:0 8px 24px -12px rgba(23,42,28,.45);
+}
+.li-legend-items span{display:inline-flex;align-items:center;gap:5px;}
 .li-dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
 .li-heartdot{
   width:14px;
@@ -2734,9 +2754,8 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 html.early-member #newCustomerHomepage{display:none;}
 html.early-member #returningCustomerHomepage[hidden]{display:block;}
 .li-cond-t-mobile{display:none;}
-/* Record-anywhere walk button floats over the map; the phone layer keeps it
-   just above the results drawer. */
-.li-record{position:absolute;right:16px;bottom:16px;z-index:8;display:inline-flex;align-items:center;gap:8px;padding:11px 17px;border-radius:999px;background:#C4652F;color:#fff;font:800 13px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;box-shadow:0 8px 22px -10px rgba(23,42,28,.55);}
+/* Recording is a discovery action, not a map annotation. */
+.li-record{grid-area:record;flex:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:39px;box-sizing:border-box;padding:9px 15px;border-radius:999px;background:#C4652F;color:#fff;font:800 12.5px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;box-shadow:0 6px 16px -10px rgba(23,42,28,.55);}
 .li-record:hover{background:#A9541F;}
 .li-record-dot{width:8px;height:8px;border-radius:50%;background:#fff;}
 .li-rating-row{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center;}
@@ -2842,7 +2861,7 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 .li-map.map-fs .maplibregl-ctrl-top-right{top:env(safe-area-inset-top);right:env(safe-area-inset-right);}
 .li-map.map-fs .td-layer-switch{left:max(10px,env(safe-area-inset-left));bottom:max(10px,env(safe-area-inset-bottom));}
 .li-map.map-fs .maplibregl-ctrl-bottom-right{right:env(safe-area-inset-right);bottom:env(safe-area-inset-bottom);}
-.li-map.map-fs .li-legend{bottom:max(10px,env(safe-area-inset-bottom));}
+.li-map.map-fs .li-legend{top:max(10px,env(safe-area-inset-top));left:calc(88px + env(safe-area-inset-left));}
 
 /* Map style switch — Map · Satellite · 3D grouped in one visible control
    (bottom-left, same group on the trail map and the app map). */
@@ -2854,10 +2873,18 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 /* the docked preview card takes the legend's spot while a pin is selected */
 .li-map:has(.map-callout:not([hidden])) .li-legend{display:none;}
 
+/* On wide screens Map keeps the useful ranked rail beside the map; List
+   gives the cards the full canvas. The segmented control never lies idle. */
+@media (min-width:1041px){
+  .li-body[data-pane="list"]{grid-template-columns:1fr;}
+  .li-body[data-pane="list"] .li-map{display:none;}
+  .li-body[data-pane="list"] .li-list{grid-column:1;border-left:0;}
+}
+
 /* ---------- responsive: one-pane tablet app ---------- */
 @media (min-width:701px) and (max-width:1040px){
   #returningCustomerHomepage{height:100vh;height:100dvh;}
-  .li-toolbar{padding:9px 16px;gap:9px;}
+  .li-toolbar{display:flex;flex-wrap:wrap;padding:9px 16px;gap:9px;}
   .li-toolbar-greet{min-width:190px;}
   .li-toolbar-greet-copy strong{font-size:15px;}
   .li-toolbar-greet-copy small{max-width:165px;}
@@ -2878,11 +2905,12 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
   .li-top{gap:10px;padding:10px 14px;}
   .li-nav{display:none;}
   .li-greetbar{padding:12px 14px;}
-  .li-toolbar{padding:10px 14px;flex-wrap:wrap;}
+  .li-toolbar{display:flex;padding:10px 14px;flex-wrap:wrap;}
   .li-toolbar-greet{width:100%;min-width:0;}
   .li-region-wrap{order:1;}
   .li-search{order:2;flex:1;max-width:none;min-width:170px;}
   #liFiltersWrap{order:3;}
+  .li-record{order:4;}
   .li-top-spacer{display:none;}
   .li-top-actions{margin-left:auto;}
   .li-account-name{max-width:90px;overflow:hidden;text-overflow:ellipsis;}
