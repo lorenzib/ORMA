@@ -78,9 +78,17 @@
   ];
 
   const REGIONS = {
-    dolomites: { label: 'Dolomites' },
-    savoy: { label: 'Savoy' }
+    dolomites: { label: 'Dolomites', country: 'Italy', countryCode: 'IT' },
+    savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' }
   };
+
+  function countryForRegion(region) {
+    return REGIONS[region] ? REGIONS[region].countryCode : null;
+  }
+
+  function regionForCountry(countryCode) {
+    return Object.keys(REGIONS).find(region => REGIONS[region].countryCode === countryCode) || null;
+  }
 
   const VALLEY_PROVINCE = new Map();
   for (const [, , , valley, , province] of LOCALITIES) {
@@ -148,5 +156,12 @@
     return [...counts.entries()].sort((a, b) => b[1] - a[1]);
   }
 
-  window.DoloPawsRegions = { REGIONS, assign, valleysFor, provincesFor };
+  window.DoloPawsRegions = {
+    REGIONS,
+    assign,
+    valleysFor,
+    provincesFor,
+    countryForRegion,
+    regionForCountry
+  };
 })();

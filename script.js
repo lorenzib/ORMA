@@ -1207,6 +1207,23 @@ document.addEventListener('keydown', (e) => {
 window.addEventListener('resize', () => setCompanionPanelOpen(false));
 setCompanionPanelOpen(false);
 
+async function activateReturningRegion(region, profile){
+  if(region === activeRegion) return true;
+  try {
+    if(window.DoloPawsRegionalData) await window.DoloPawsRegionalData.loadRegion(region);
+    activeRegion = region;
+    activeValley = 'all';
+    selectedTrailId = null;
+    hideMapCallout();
+    if(trailMapInstance) await updateRegionalMapData(trailMapInstance, region);
+    renderReturningHomepage(profile);
+    return true;
+  } catch(e) {
+    showHomeActionStatus('That area could not be loaded. Check your connection and try again.');
+    return false;
+  }
+}
+
 function renderAreaFilters(profile){
   const row = document.getElementById('areaFilterRow');
   if(!row || typeof trails === 'undefined') return;
@@ -1217,7 +1234,27 @@ function renderAreaFilters(profile){
     : [];
   if(activeValley !== 'all' && !valleys.some(([v]) => v === activeValley)) activeValley = 'all';
 
+  const regionConfig = window.DoloPawsRegions && window.DoloPawsRegions.REGIONS
+    ? window.DoloPawsRegions.REGIONS
+    : {
+        dolomites: { country: 'Italy', countryCode: 'IT' },
+        savoy: { country: 'France', countryCode: 'FR' }
+      };
+  const activeCountry = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
+    ? window.DoloPawsRegions.countryForRegion(activeRegion)
+    : (activeRegion === 'savoy' ? 'FR' : 'IT');
+
   row.innerHTML = `
+    <div class="companion-filter-label">Country</div>
+    <div class="prov-toggle companion-country-toggle" role="group" aria-label="Country" style="width:100%;">
+      ${Object.entries(regionConfig).map(([region, config]) => {
+        const count = window.DoloPawsRegionalData
+          ? window.DoloPawsRegionalData.trailCount(region)
+          : trails.filter(trail => trail.region === region).length;
+        return `<button type="button" class="country-opt ${config.countryCode === activeCountry ? 'active' : ''}" data-country="${config.countryCode}" data-region="${region}" aria-pressed="${config.countryCode === activeCountry}" style="flex:1;text-align:center;">${config.country} <span class="count">${count}</span></button>`;
+      }).join('')}
+    </div>
+
     <div class="companion-filter-label">Source</div>
     <div class="prov-toggle" style="width:100%;">
       ${(() => {
@@ -1244,11 +1281,23 @@ function renderAreaFilters(profile){
       setCompanionPanelOpen(false);
     });
   });
-  row.querySelectorAll('.prov-opt').forEach(opt => {
+  row.querySelectorAll('[data-prov]').forEach(opt => {
     opt.addEventListener('click', () => {
       activeProvenance = opt.dataset.prov;
       renderReturningHomepage(profile);
       setCompanionPanelOpen(false);
+    });
+  });
+  row.querySelectorAll('[data-country]').forEach(option => {
+    option.addEventListener('click', async () => {
+      if(option.dataset.region === activeRegion){
+        setCompanionPanelOpen(false);
+        return;
+      }
+      option.disabled = true;
+      const changed = await activateReturningRegion(option.dataset.region, profile);
+      option.disabled = false;
+      if(changed) setCompanionPanelOpen(false);
     });
   });
 }
@@ -1274,20 +1323,9 @@ function renderLiRegionControl(profile){
     button.addEventListener('click', async () => {
       if(region === activeRegion){ liCloseMenus(); return; }
       button.disabled = true;
-      try {
-        if(window.DoloPawsRegionalData) await window.DoloPawsRegionalData.loadRegion(region);
-        activeRegion = region;
-        activeValley = 'all';
-        selectedTrailId = null;
-        hideMapCallout();
-        if(trailMapInstance) await updateRegionalMapData(trailMapInstance, region);
-        liCloseMenus();
-        renderReturningHomepage(profile);
-      } catch(e) {
-        showHomeActionStatus('That region could not be loaded. Check your connection and try again.');
-      } finally {
-        button.disabled = false;
-      }
+      const changed = await activateReturningRegion(region, profile);
+      button.disabled = false;
+      if(changed) liCloseMenus();
     });
     menu.appendChild(button);
   });
@@ -1514,7 +1552,7 @@ function renderLiDogLists(profile){
   const dogs = summary && Array.isArray(summary.dogs) && summary.dogs.length
     ? summary.dogs : profile ? [profile] : [];
   const activeId = summary && summary.activeDogId || (profile && profile.id);
-  ['liDogList','liGreetDogList'].forEach(id => {
+  ['liDogList','liGreetDogList','liDogCtxList'].forEach(id => {
     const list = document.getElementById(id);
     if(!list) return;
     list.innerHTML = '';
@@ -1558,6 +1596,7 @@ function renderLiHeader(profile){
   liFillAvatar(document.getElementById('liAccountAvatar'), profile);
   // Phone greeting row carries the dog's face next to the greeting.
   liFillAvatar(document.getElementById('liGreetAvatar'), profile);
+  liFillAvatar(document.getElementById('liDogCtxAvatar'), profile);
   renderLiDogLists(profile);
   const manage = document.getElementById('liManageLink');
   if(manage) manage.textContent = (profile && profile.name)
@@ -1570,10 +1609,13 @@ function renderLiHeader(profile){
 }
 
 function renderLiToolbarContext(profile){
-  const toolbarContext = document.getElementById('liToolbarDogContext');
-  if(!toolbarContext) return;
   const dogName = (profile && profile.name) ? profile.name : 'Your dog';
   const breed = profile && profile.breed ? profile.breed : '';
+  // Desktop "Adapted for" dropdown: plain text, mockup-style.
+  const ctxName = document.getElementById('liDogCtxName');
+  if(ctxName) ctxName.textContent = breed ? `${dogName} (${breed})` : dogName;
+  const toolbarContext = document.getElementById('liToolbarDogContext');
+  if(!toolbarContext) return;
   const hasBreedName = breed && !NON_BREED_LABELS.has(breed);
   toolbarContext.replaceChildren(document.createTextNode(dogName));
   if(breed){
@@ -1944,6 +1986,28 @@ function initLoggedInShell(){
     const addBtn = document.getElementById('liAddDogBtn');
     liCloseMenus();
     if(addBtn) addBtn.click();
+  });
+
+  // Desktop "Adapted for" dropdown — same Switch dog panel, toolbar-anchored.
+  const dogCtxBtn = document.getElementById('liDogCtxBtn');
+  const dogCtxMenu = document.getElementById('liDogCtxMenu');
+  if(dogCtxBtn && dogCtxMenu) wireMenu(dogCtxBtn, dogCtxMenu);
+  const dogCtxAdd = document.getElementById('liDogCtxAddBtn');
+  if(dogCtxAdd) dogCtxAdd.addEventListener('click', () => {
+    const addBtn = document.getElementById('liAddDogBtn');
+    liCloseMenus();
+    if(addBtn) addBtn.click();
+  });
+
+  // Collapse map: the list takes the whole workspace; the map re-measures
+  // itself when it comes back.
+  const collapseBtn = document.getElementById('liCollapseMapBtn');
+  const liBody = document.querySelector('#returningCustomerHomepage .li-body');
+  if(collapseBtn && liBody) collapseBtn.addEventListener('click', () => {
+    const collapsed = liBody.classList.toggle('map-collapsed');
+    collapseBtn.setAttribute('aria-pressed', String(collapsed));
+    collapseBtn.textContent = collapsed ? '▣ Show map' : '◨ Collapse map';
+    if(!collapsed && trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
   });
 
   // Notification bell opens the full notification centre from the design.

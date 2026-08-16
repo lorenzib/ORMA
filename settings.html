@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260816-2">
+<link rel="stylesheet" href="styles.css?v=20260816-3">
 <style>
   /* Account settings — standalone page per AccountSettings.dc.html:
      sticky section sidebar, white cards, destructive zone last. */
@@ -45,6 +45,7 @@
   .st-btn-ghost{background:transparent;color:var(--ink);}
   .st-btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
   .st-dog-row{display:flex;align-items:center;gap:13px;border:1.5px solid var(--paper-line);border-radius:12px;padding:13px 15px;margin-bottom:9px;flex-wrap:wrap;}
+  .st-dog-row.is-selected{border-color:#A8C9B0;background:#F6FAF6;}
   .st-dog-avatar{width:44px;height:44px;border-radius:50%;flex:none;background:var(--accent) center/cover no-repeat;color:#fff;display:grid;place-items:center;font:800 17px 'Inter',sans-serif;box-shadow:0 0 0 3px #EAF3EC;}
   .st-dog-copy{flex:1;min-width:140px;}
   .st-dog-row a{color:var(--accent);text-decoration:none;}
@@ -52,6 +53,8 @@
   .st-dog-name{font:700 14px 'Bricolage Grotesque',sans-serif;color:var(--ink);}
   .st-dog-meta{font-size:12px;color:#6B7A6E;margin-top:1px;}
   .st-selected{display:inline-flex;align-items:center;gap:5px;font:700 11px 'Inter',sans-serif;padding:4px 10px;border-radius:7px;background:var(--sage-dim);color:#2C5C34;}
+  .st-dog-select{min-width:92px;}
+  .st-dog-list--attention{outline:3px solid rgba(72,132,158,.22);outline-offset:5px;border-radius:12px;}
   .st-switchrow{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-top:1px solid #F2EFE5;}
   .st-switchrow:first-of-type{border-top:none;}
   .st-switchrow .txt{flex:1;min-width:0;}
@@ -136,11 +139,12 @@
             <h2 style="margin-bottom:0;">Your dogs</h2>
             <div style="display:flex;gap:8px;align-items:center;">
               <button type="button" id="stSwitchDog" style="display:inline-flex;align-items:center;border:none;background:none;font:700 12.5px 'Inter',sans-serif;color:var(--accent);padding:0 4px;cursor:pointer;">Switch dog</button>
-              <a class="st-btn" href="account.html?next=settings.html">+ Add a dog</a>
+              <a class="st-btn" href="account.html?mode=add&amp;next=settings.html">+ Add a dog</a>
             </div>
           </div>
           <p class="blurb">Every trail is scored for the dog you have selected. Switching dogs re-ranks the whole list.</p>
           <div id="stDogList"></div>
+          <p class="st-status" id="stDogStatus" role="status" aria-live="polite" hidden></p>
         </section>
 
         <!-- NOTIFICATIONS -->
@@ -244,11 +248,11 @@
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260815-3"></script>
-<script src="i18n.js?v=20260815-3"></script>
+<script src="mobile-nav.js?v=20260815-4"></script>
+<script src="i18n.js?v=20260815-4"></script>
 <script type="module" src="firebase-init.js"></script>
-<script src="auth-ui.js?v=20260815-3" defer></script>
-<script src="metrics.js?v=20260815-3" defer></script>
+<script src="auth-ui.js?v=20260815-4" defer></script>
+<script src="metrics.js?v=20260815-4" defer></script>
 <script>
 // Account settings — standalone page (AccountSettings.dc.html template).
 // Notification + privacy switches share account.js's device-level storage
@@ -430,12 +434,16 @@ document.addEventListener('DOMContentLoaded', function(){
     return parts.join(' · ');
   }
 
-  // "Switch dog" opens the header's shared switcher panel.
+  // All dogs are visible here. The top action moves focus to the first
+  // available switch control instead of depending on a header-only menu.
   $('stSwitchDog').addEventListener('click', function(){
-    var pill = document.querySelector('.topnav .nav-user');
-    if(pill){
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      pill.click();
+    var list = $('stDogList');
+    var firstSwitch = list && list.querySelector('.st-dog-select');
+    if(firstSwitch){
+      list.scrollIntoView({ behavior:'smooth', block:'center' });
+      firstSwitch.focus({ preventScroll:true });
+      list.classList.add('st-dog-list--attention');
+      window.setTimeout(function(){ list.classList.remove('st-dog-list--attention'); }, 900);
     }
   });
 
@@ -455,42 +463,96 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   $('stName').addEventListener('blur', saveName);
   $('stName').addEventListener('keydown', function(e){ if(e.key === 'Enter') saveName(); });
-  function renderDog(p){
-    var list = $('stDogList');
-    list.innerHTML = '';
-    var row = document.createElement('div');
-    row.className = 'st-dog-row';
-    // Photo resolution mirrors the header pill: account profile first,
-    // then the per-uid cache, then any legacy device key.
+  var dogProfilesState = { dogs:[], activeDogId:null };
+
+  function dogPhoto(p, dogCount){
     var photo = null;
     var isImage = function(v){ return typeof v === 'string' && v.indexOf('data:image/') === 0; };
     if(p && isImage(p.photo)) photo = p.photo;
     try {
       var user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
-      if(!photo && user) {
-        var perUid = localStorage.getItem('dolopaws-dog-photo-' + user.uid);
-        if(isImage(perUid)) photo = perUid;
+      if(!photo && user && p && p.id){
+        var perDog = localStorage.getItem('dolopaws-dog-photo-' + user.uid + '-' + p.id);
+        if(isImage(perDog)) photo = perDog;
       }
-      if(!photo){
-        for(var i = 0; i < localStorage.length; i++){
-          var key = localStorage.key(i);
-          if(key && key.indexOf('dolopaws-dog-photo') === 0){
-            var v = localStorage.getItem(key);
-            if(isImage(v)){ photo = v; break; }
-          }
-        }
+      // The old account-level cache is safe only while an account has one dog.
+      if(!photo && user && dogCount <= 1){
+        var legacy = localStorage.getItem('dolopaws-dog-photo-' + user.uid);
+        if(isImage(legacy)) photo = legacy;
       }
     } catch(e){}
-    row.innerHTML =
-      '<span class="st-dog-avatar"' + (photo ? ' style="background-image:url(' + photo + ')"' : '') + '>' + (photo ? '' : '<i style="font-style:normal;"></i>') + '</span>' +
-      '<div class="st-dog-copy"><div class="st-dog-name"></div><div class="st-dog-meta"></div></div>' +
-      '<span class="st-selected">Selected</span>' +
-      '<a href="account.html?next=settings.html" style="font:700 12.5px Inter,sans-serif;">Edit profile &rarr;</a>';
-    var name = (p && p.name) ? p.name : 'Your dog';
-    row.querySelector('.st-dog-name').textContent = name;
-    row.querySelector('.st-dog-meta').textContent = p ? (dogMeta(p) || 'Profile details on the dog page') : 'No profile yet — add your dog to start scoring trails.';
-    if(!photo) row.querySelector('.st-dog-avatar i').textContent = name.charAt(0).toUpperCase();
-    list.appendChild(row);
+    return photo;
+  }
+
+  function renderDogs(nextState){
+    var list = $('stDogList');
+    list.innerHTML = '';
+    dogProfilesState = nextState && Array.isArray(nextState.dogs)
+      ? { dogs:nextState.dogs, activeDogId:nextState.activeDogId }
+      : { dogs:[], activeDogId:null };
+    var dogs = dogProfilesState.dogs;
+    $('stSwitchDog').hidden = dogs.length < 2;
+
+    if(!dogs.length){
+      var empty = document.createElement('p');
+      empty.className = 'blurb';
+      empty.textContent = 'No dog profile yet — add your dog to start scoring trails.';
+      list.appendChild(empty);
+      return;
+    }
+
+    dogs.forEach(function(p){
+      var selected = p.id === dogProfilesState.activeDogId;
+      var photo = dogPhoto(p, dogs.length);
+      var row = document.createElement('div');
+      row.className = 'st-dog-row' + (selected ? ' is-selected' : '');
+      row.dataset.dogId = p.id;
+      if(selected) row.setAttribute('aria-current', 'true');
+      row.innerHTML =
+        '<span class="st-dog-avatar"' + (photo ? ' style="background-image:url(' + photo + ')"' : '') + '>' + (photo ? '' : '<i style="font-style:normal;"></i>') + '</span>' +
+        '<div class="st-dog-copy"><div class="st-dog-name"></div><div class="st-dog-meta"></div></div>' +
+        (selected
+          ? '<span class="st-selected">Selected</span>'
+          : '<button type="button" class="st-btn st-dog-select">Use this dog</button>') +
+        '<a class="st-dog-edit" style="font:700 12.5px Inter,sans-serif;">Edit profile &rarr;</a>';
+      var name = p.name || 'Your dog';
+      row.querySelector('.st-dog-name').textContent = name;
+      row.querySelector('.st-dog-meta').textContent = dogMeta(p) || 'Profile details on the dog page';
+      if(!photo) row.querySelector('.st-dog-avatar i').textContent = name.charAt(0).toUpperCase();
+      row.querySelector('.st-dog-edit').href = 'account.html?dog=' + encodeURIComponent(p.id) + '&next=settings.html';
+      var choose = row.querySelector('.st-dog-select');
+      if(choose){
+        choose.setAttribute('aria-label', 'Use ' + name + ' for trail scoring');
+        choose.addEventListener('click', function(){
+          if(!window.DoloPawsAuth || !window.DoloPawsAuth.selectDogProfile) return;
+          choose.disabled = true;
+          choose.textContent = 'Switching…';
+          var status = $('stDogStatus');
+          status.hidden = false;
+          status.style.color = 'var(--ink-soft)';
+          status.textContent = 'Switching to ' + name + '…';
+          window.DoloPawsAuth.selectDogProfile(p.id).then(function(ok){
+            if(ok){
+              dogProfilesState.activeDogId = p.id;
+              renderDogs(dogProfilesState);
+              status.style.color = '#2C5C34';
+              status.textContent = name + ' is now selected. Trail matches will use this profile.';
+            } else {
+              choose.disabled = false;
+              choose.textContent = 'Use this dog';
+              status.style.color = '#9C3A25';
+              status.textContent = "Couldn't switch dogs just now — try again.";
+            }
+          }).catch(function(){
+            choose.disabled = false;
+            choose.textContent = 'Use this dog';
+            status.style.color = '#9C3A25';
+            status.textContent = "Couldn't switch dogs just now — try again.";
+          });
+        });
+      }
+      list.appendChild(row);
+    });
   }
 
   function providerLine(user){
@@ -522,17 +584,23 @@ document.addEventListener('DOMContentLoaded', function(){
     $('stEmail').value = savedEmail;
     refreshEmailBtn();
     providerLine(user);
-    renderDog(null);
-    if(window.DoloPawsAuth.getDogProfile){
-      window.DoloPawsAuth.getDogProfile().then(function(p){
-        renderDog(p);
-        if(p && p.ownerName){ savedName = p.ownerName; $('stName').value = p.ownerName; }
+    renderDogs(null);
+    if(window.DoloPawsAuth.getDogProfiles){
+      window.DoloPawsAuth.getDogProfiles().then(function(state){
+        renderDogs(state);
+        var active = state && state.dogs
+          ? state.dogs.find(function(p){ return p.id === state.activeDogId; })
+          : null;
+        if(active && active.ownerName){ savedName = active.ownerName; $('stName').value = active.ownerName; }
       }).catch(function(){});
     }
   }
   if(window.DoloPawsAuth) init();
   else window.addEventListener('dolopaws-auth-ready', init, { once:true });
   window.addEventListener('dolopaws-auth-changed', init);
+  window.addEventListener('dolopaws-dog-profile-saved', function(event){
+    if(event.detail && Array.isArray(event.detail.dogs)) renderDogs(event.detail);
+  });
 });
 </script>
 </body>

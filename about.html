@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About ORMA: the trail guide that asks about your dog first</title>
-<meta name="description" content="Who we are, how ORMA rates trails for dogs, and what verified vs imported means.">
+<title>The Story of ORMA — Dog Trails &amp; Terrain Guide</title>
+<meta name="description" content="Born in the Italian Dolomites. Orma means footprint — the story, the name, and the mission behind the dog-specific topographic guide.">
 <meta name="theme-color" content="#2E4034">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -13,9 +13,52 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=20260816-3">
+<style>
+  /* About-page-only: the brand mark lives in the page itself — full-bleed in
+     the hero, and as a quiet stamp behind the article. */
+  .about-hero{position:relative;overflow:hidden;background:#22312A;color:#F2EDDF;padding:72px 24px 80px;}
+  .about-hero .about-hero-logo{position:absolute;right:clamp(-90px,-4vw,-30px);top:50%;transform:translateY(-50%) rotate(-5deg);width:min(44vw,420px);opacity:.92;pointer-events:none;}
+  .about-hero-inner{position:relative;z-index:1;max-width:880px;margin:0 auto;}
+  .about-hero .eyebrow{color:#C9D6C4;}
+  .about-dict{font-size:15px;line-height:1.6;color:#D8D2BE;margin:18px 0 0;max-width:34em;}
+  .about-dict b{color:#F2EDDF;}
+  .about-hero h1{font-size:clamp(30px,5vw,44px);margin:14px 0 0;color:#F2EDDF;}
+  .about-watermark{position:fixed;right:-70px;bottom:-80px;width:430px;opacity:.10;z-index:0;pointer-events:none;}
+  .guide-article{position:relative;z-index:1;}
+  .orma-acronym{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:18px 0 8px;}
+  .orma-acronym .cell{background:var(--card,#fff);border:1px solid var(--paper-line,#E5DECF);border-radius:12px;padding:16px 14px;}
+  .orma-acronym .cell b{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:28px;line-height:1;color:#22312A;}
+  .orma-acronym .cell span{display:block;margin-top:6px;font-size:13px;line-height:1.45;color:var(--ink-soft,#6b6350);}
+  @media (max-width:700px){
+    .about-hero{padding:56px 20px 64px;}
+    .about-hero .about-hero-logo{width:62vw;right:-18vw;opacity:.28;}
+    .about-watermark{width:300px;right:-60px;bottom:-60px;}
+  }
+  /* ≥900px: the "On this page" block becomes a sticky left rail, like the
+     account page's section rail. Below 900px the site-wide top-block style
+     from styles.css applies untouched. */
+  @media (min-width:900px){
+    .about-page .guide-article{max-width:1060px;}
+    .about-page .guide-article [data-lang-block]:not([hidden]){
+      display:grid;grid-template-columns:240px minmax(0,1fr);column-gap:34px;row-gap:0;align-items:start;
+    }
+    .about-page [data-lang-block] > *{grid-column:2;min-width:0;}
+    .about-page [data-lang-block] > .guide-page-nav{
+      grid-column:1;grid-row:1 / span 60;position:sticky;top:92px;
+      margin:0;padding:14px 4px 14px 14px;background:transparent;border:none;border-radius:0;
+    }
+    .about-page .guide-page-nav__links{display:block;}
+    .about-page .guide-page-nav a{
+      display:block;padding:8px 12px;margin:0 0 2px -12px;border-left:2px solid var(--paper-line,#E5DECF);
+      border-radius:0 8px 8px 0;font-size:13px;line-height:1.35;
+    }
+    .about-page .guide-page-nav a:hover{background:var(--card,#fff);text-decoration:none;}
+    .about-page .guide-page-nav a.on{border-left-color:#22312A;background:var(--card,#fff);font-weight:700;color:#22312A;}
+  }
+</style>
 </head>
-<body>
+<body class="about-page">
 
 <div class="topnav">
   <a class="brand" href="index.html"><img src="logo.svg?v=5" alt="">ORMA</a>
@@ -28,14 +71,45 @@
   </div>
 </div>
 
-<div class="guide-hero">
-  <div class="eyebrow" data-i18n="about.eyebrow">About ORMA</div>
-  <div style="display:flex;align-items:center;gap:14px;margin-top:14px;"><svg width="44" height="44" viewBox="0 0 24 24" aria-hidden="true" style="flex:none;"><circle cx="12" cy="12" r="8.6" fill="#fff" stroke="var(--ink)" stroke-width="1.5"/><polygon points="12,6.6 13.8,12 12,17.4 10.2,12" fill="var(--accent)"/><circle cx="12" cy="12" r="1" fill="var(--ink)"/><ellipse cx="12" cy="2.6" rx="1" ry="1.3" fill="var(--accent-light)"/><ellipse cx="21.4" cy="12" rx="1.3" ry="1" fill="var(--accent-light)"/><ellipse cx="12" cy="21.4" rx="1" ry="1.3" fill="var(--accent-light)"/><ellipse cx="2.6" cy="12" rx="1.3" ry="1" fill="var(--accent-light)"/></svg><h1 style="font-size:clamp(28px,5vw,38px);margin:0;" data-i18n="about.h1">A trail guide that asks about your dog first</h1></div>
-  <p class="sub" style="margin-top:14px;" data-i18n="about.sub">Who we are, how we rate trails, and why you can trust what you see.</p>
+<div class="about-hero">
+  <img class="about-hero-logo" src="logo.svg?v=5" alt="" aria-hidden="true">
+  <div class="about-hero-inner">
+    <div class="eyebrow" data-i18n="about.eyebrow">About us</div>
+    <h1 data-i18n="about.h1">The Story of ORMA</h1>
+    <p class="about-dict" data-i18n="about.sub"><b>orma</b> · noun [Italian] /ˈor.ma/ — a footprint, a track, a trace left behind.</p>
+  </div>
 </div>
+
+<img class="about-watermark" src="logo.svg?v=5" alt="" aria-hidden="true">
 
 <div class="guide-article" id="how-scoring-works">
   <div data-lang-block="en">
+
+    <section class="guide-section">
+      <h2>Born in the Dolomites</h2>
+      <p>ORMA was conceived in the shadow of the rugged, breathtaking peaks of the Italian Dolomites. When you are navigating steep alpine trails and rocky ascents with a dog, a standard map simply isn't enough — you need to know the reality of the ground beneath their paws. ORMA was born from that exact necessity: to bridge the gap between human navigation and canine safety in the mountains we love.</p>
+      <p>Today that necessity has become a guide covering more than 150 scored trails across the Dolomites — and our paws recently crossed into the French Alps, bringing Savoy's lake loops and balcony trails into the same system.</p>
+    </section>
+
+    <section class="guide-section">
+      <h2>The meaning behind the name</h2>
+      <p>In Italian, <em>orma</em> translates to "footprint" or "track". It is a tribute to the physical marks our dogs leave on the trails we conquer together — and the lasting tracks they leave on our lives.</p>
+      <p>The name also works twice as hard, as the acronym for our core engine:</p>
+      <div class="orma-acronym">
+        <div class="cell"><b>O</b><span>Optimized</span></div>
+        <div class="cell"><b>R</b><span>Route</span></div>
+        <div class="cell"><b>M</b><span>Mapping for</span></div>
+        <div class="cell"><b>A</b><span>All dogs — and their humans</span></div>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <h2>Our aim</h2>
+      <p>Our mission is to eliminate the guesswork from outdoor adventures. We believe dogs aren't just pets tagging along on a walk — they are our trusted athletic partners.</p>
+      <p>By combining adventure-grade GPS tracking with crowdsourced terrain conditions — scoring paw-pad surface safety, shade density and water availability — we are building the most advanced dog-specific topographic guide in the world. ORMA is designed to track your shared milestones, protect your dog against harsh elements, and ensure that every footprint left on the mountain is a safe one.</p>
+    </section>
+
+    <blockquote style="margin:0 0 26px;padding:22px 26px;background:var(--card);border:1px solid var(--paper-line);border-left:4px solid var(--accent-light);font-family:'Bricolage Grotesque',sans-serif;font-size:16.5px;line-height:1.65;color:var(--ink);">“A walk is never just a walk when it's shared with a dog; it becomes an act of companionship, curiosity, and joy”<span style="display:block;margin-top:8px;font-family:'Inter',sans-serif;font-size:12px;color:var(--ink-soft);">– ORMA</span></blockquote>
 
     <section class="guide-section">
       <h2>Our principles: how ORMA rates trails for your dog</h2>
@@ -51,27 +125,43 @@
       </ul>
       <p style="font-size:13px;color:var(--ink-soft);">Not all dogs of a breed are the same, and no score can see today's weather, your dog's mood, or the ice that didn't melt. When in doubt, choose the gentler trail.</p>
       <p>Your homepage also shows a set of heads-up notes for your own dog, drawn from the same declared facts plus your breed's documented working history: a Beagle's nose overrides recall, a Retriever heads for water it shouldn't. These notes never touch the match score above; they exist purely so you know your dog before you're on the trail, not just once you're on it. See the full <a href="guides/breed-group-caveats.html">breed-group caveats</a> for more.</p>
-
     </section>
 
     <section class="guide-section">
       <h2>Verified and imported trails: what the badges mean</h2>
-      <p><span class="badge-pill badge-verified">VERIFIED BY DOLOPAWS</span>&nbsp; A verified trail has been walked, measured and reviewed by us, with a dog. Its safety rating, water points, rifugi and tips come from our own notes, and we update them as conditions change.</p>
+      <p><span class="badge-pill badge-verified">VERIFIED BY ORMA</span>&nbsp; A verified trail has been walked, measured and reviewed by us, with a dog. Its safety rating, water points, rifugi and tips come from our own notes, and we update them as conditions change.</p>
       <p><span class="badge-pill badge-imported">IMPORTED</span>&nbsp; An imported trail comes from OpenStreetMap, the collaborative map of the world. The route, distance and elevation are computed from real map data, but nobody from ORMA has walked it yet, so we label it honestly instead of pretending. As we verify imported trails, they graduate.</p>
       <p>Reports from the community (livestock guard dogs, dry fountains, a lift that refused a dog) appear alongside our ratings and never silently change them. What we verified stays visible; what hikers report stays attributed to hikers.</p>
     </section>
 
-    <section class="guide-section">
-      <h2>Our story</h2>
-      <p>ORMA started on the trails of the Dolomites, with a simple frustration: every hiking guide asked about our fitness, and none asked about the dog. Whether a route is a good idea depends on paws, shade, water, terrain and the animal walking it, so we built the guide that starts there.</p>
-      <p>Today ORMA covers more than 150 trails across the Dolomites, every one scored on six real safety factors and matched to your dog's build, age and health. And our paws recently crossed into the French Alps, ooh là là, bringing Savoy's lake loops and balcony trails into the same system.</p>
-      <p>It is built by people who hike here, with dogs, and it gets better every season.</p>
-    </section>
-
-    <blockquote style="margin:0 0 18px;padding:22px 26px;background:var(--card);border:1px solid var(--paper-line);border-left:4px solid var(--accent-light);font-family:'Bricolage Grotesque',sans-serif;font-size:16.5px;line-height:1.65;color:var(--ink);">“A walk is never just a walk when it's shared with a dog; it becomes an act of companionship, curiosity, and joy”<span style="display:block;margin-top:8px;font-family:'Inter',sans-serif;font-size:12px;color:var(--ink-soft);">– ORMA</span></blockquote>
-
   </div>
   <div data-lang-block="it" hidden>
+
+    <section class="guide-section">
+      <h2>Nata tra le Dolomiti</h2>
+      <p>ORMA è stata concepita all'ombra delle vette aspre e mozzafiato delle Dolomiti italiane. Quando affronti sentieri alpini ripidi e salite rocciose con un cane, una mappa normale non basta: devi conoscere la realtà del terreno sotto le sue zampe. ORMA nasce esattamente da questa necessità: colmare il divario tra la navigazione umana e la sicurezza del cane nelle montagne che amiamo.</p>
+      <p>Oggi quella necessità è diventata una guida che copre più di 150 sentieri valutati nelle Dolomiti — e da poco le nostre zampe hanno varcato le Alpi francesi, portando gli anelli sui laghi e i sentieri a balcone della Savoia nello stesso sistema.</p>
+    </section>
+
+    <section class="guide-section">
+      <h2>Il significato del nome</h2>
+      <p>In italiano, <em>orma</em> significa "impronta" o "traccia". È un omaggio ai segni concreti che i nostri cani lasciano sui sentieri che conquistiamo insieme — e alle tracce durature che lasciano nelle nostre vite.</p>
+      <p>Il nome lavora anche doppio, come acronimo del nostro motore (in inglese):</p>
+      <div class="orma-acronym">
+        <div class="cell"><b>O</b><span>Optimized</span></div>
+        <div class="cell"><b>R</b><span>Route</span></div>
+        <div class="cell"><b>M</b><span>Mapping for</span></div>
+        <div class="cell"><b>A</b><span>All dogs — e i loro umani</span></div>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <h2>Il nostro obiettivo</h2>
+      <p>La nostra missione è eliminare le incognite dall'avventura all'aria aperta. Crediamo che i cani non siano semplici animali al seguito di una passeggiata: sono i nostri compagni di squadra più fidati.</p>
+      <p>Unendo il tracciamento GPS alle condizioni del terreno segnalate dalla community — valutando la sicurezza del fondo per i polpastrelli, la densità dell'ombra e la disponibilità d'acqua — stiamo costruendo la guida topografica specifica per cani più avanzata al mondo. ORMA è pensata per registrare i vostri traguardi condivisi, proteggere il tuo cane dagli elementi e garantire che ogni orma lasciata in montagna sia un'orma sicura.</p>
+    </section>
+
+    <blockquote style="margin:0 0 26px;padding:22px 26px;background:var(--card);border:1px solid var(--paper-line);border-left:4px solid var(--accent-light);font-family:'Bricolage Grotesque',sans-serif;font-size:16.5px;line-height:1.65;color:var(--ink);">“Una passeggiata non è mai solo una passeggiata quando la condividi con un cane; diventa un atto di compagnia, curiosità e gioia”<span style="display:block;margin-top:8px;font-family:'Inter',sans-serif;font-size:12px;color:var(--ink-soft);">– ORMA</span></blockquote>
 
     <section class="guide-section">
       <h2>I nostri principi: come ORMA valuta i sentieri per il tuo cane</h2>
@@ -87,24 +177,14 @@
       </ul>
       <p style="font-size:13px;color:var(--ink-soft);">Non tutti i cani di una razza sono uguali, e nessun punteggio può vedere il meteo di oggi, l'umore del tuo cane o il ghiaccio che non si è sciolto. Nel dubbio, scegli il sentiero più dolce.</p>
       <p>La tua homepage mostra anche una serie di avvisi pensati per il tuo cane, tratti dagli stessi dati dichiarati e dalla storia lavorativa documentata della razza: il naso di un Beagle prevale sul richiamo, un Retriever si dirige verso l'acqua anche quando non dovrebbe. Questi avvisi non influenzano mai il punteggio di compatibilità sopra; servono solo a farti conoscere il tuo cane prima di essere sul sentiero, non solo una volta che ci sei. Vedi tutte le <a href="guides/breed-group-caveats.html">avvertenze per gruppi di razze</a> (in inglese).</p>
-
     </section>
 
     <section class="guide-section">
       <h2>Sentieri verificati e importati: cosa significano i badge</h2>
-      <p><span class="badge-pill badge-verified">VERIFICATO DA DOLOPAWS</span>&nbsp; Un sentiero verificato è stato percorso, misurato e recensito da noi, con un cane. La classificazione di sicurezza, i punti d'acqua, i rifugi e i consigli vengono dai nostri appunti, e li aggiorniamo quando le condizioni cambiano.</p>
+      <p><span class="badge-pill badge-verified">VERIFICATO DA ORMA</span>&nbsp; Un sentiero verificato è stato percorso, misurato e recensito da noi, con un cane. La classificazione di sicurezza, i punti d'acqua, i rifugi e i consigli vengono dai nostri appunti, e li aggiorniamo quando le condizioni cambiano.</p>
       <p><span class="badge-pill badge-imported">IMPORTATO</span>&nbsp; Un sentiero importato proviene da OpenStreetMap, la mappa collaborativa del mondo. Percorso, distanza e dislivello sono calcolati da dati cartografici reali, ma nessuno di ORMA lo ha ancora percorso, quindi lo dichiariamo onestamente invece di fingere. Man mano che verifichiamo i sentieri importati, vengono promossi.</p>
       <p>Le segnalazioni della community (cani da guardiania, fontane a secco, un impianto che ha rifiutato un cane) compaiono accanto alle nostre valutazioni e non le cambiano mai in silenzio. Ciò che abbiamo verificato resta visibile; ciò che segnalano gli escursionisti resta attribuito agli escursionisti.</p>
     </section>
-
-    <section class="guide-section">
-      <h2>La nostra storia</h2>
-      <p>ORMA è nato sui sentieri delle Dolomiti, da una frustrazione semplice: ogni guida escursionistica chiedeva della nostra forma fisica, e nessuna chiedeva del cane. Se un percorso è una buona idea dipende da polpastrelli, ombra, acqua, terreno e dall'animale che lo cammina, così abbiamo costruito la guida che parte da lì.</p>
-      <p>Oggi ORMA copre più di 150 sentieri nelle Dolomiti, ognuno valutato su sei fattori di sicurezza reali e abbinato a corporatura, età e salute del tuo cane. E le nostre zampe hanno da poco varcato le Alpi francesi, ooh là là, portando gli anelli sui laghi e i sentieri a balcone della Savoia nello stesso sistema.</p>
-      <p>È costruito da persone che camminano qui, con i cani, e migliora ogni stagione.</p>
-    </section>
-
-    <blockquote style="margin:0 0 18px;padding:22px 26px;background:var(--card);border:1px solid var(--paper-line);border-left:4px solid var(--accent-light);font-family:'Bricolage Grotesque',sans-serif;font-size:16.5px;line-height:1.65;color:var(--ink);">“Una passeggiata non è mai solo una passeggiata quando la condividi con un cane; diventa un atto di compagnia, curiosità e gioia”<span style="display:block;margin-top:8px;font-family:'Inter',sans-serif;font-size:12px;color:var(--ink-soft);">– ORMA</span></blockquote>
 
   </div>
 </div>
@@ -156,10 +236,56 @@
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260815-3"></script>
+<script src="mobile-nav.js?v=20260815-4"></script>
 <script src="i18n.js"></script>
 <script type="module" src="firebase-init.js"></script>
-<script src="auth-ui.js?v=20260815-3" defer></script>
-<script src="guide-navigation.js?v=20260815-3"></script>
+<script src="auth-ui.js?v=20260815-4" defer></script>
+<script src="guide-navigation.js?v=20260815-4"></script>
+<script>
+// Scroll spy for the left rail: highlight the section currently in view.
+// guide-navigation.js rebuilds the nav when the language toggles, so the
+// spy rebinds whenever a fresh .guide-page-nav appears.
+(function(){
+  'use strict';
+  var spyObserver = null;
+  function bindSpy(){
+    var nav = document.querySelector('.guide-page-nav[data-generated]');
+    if(!nav) return;
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+    var headings = links
+      .map(function(a){ return document.getElementById((a.getAttribute('href') || '').slice(1)); })
+      .filter(Boolean);
+    if(!headings.length) return;
+    var current = null;
+    function setOn(id){
+      if(id === current) return;
+      current = id;
+      links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href') === '#' + id); });
+    }
+    // No rAF gating: in a hidden tab rAF never fires and would wedge the
+    // spy. Five rect reads per scroll event is cheap enough to run direct.
+    function update(){
+      var line = window.innerHeight / 3;
+      var active = headings[0];
+      headings.forEach(function(h){
+        if(h.getBoundingClientRect().top <= line) active = h;
+      });
+      setOn(active.id);
+    }
+    if(spyObserver) window.removeEventListener('scroll', spyObserver);
+    spyObserver = update;
+    window.addEventListener('scroll', spyObserver, { passive: true });
+    update();
+  }
+  bindSpy();
+  new MutationObserver(function(muts){
+    if(muts.some(function(m){
+      return Array.prototype.some.call(m.addedNodes, function(n){
+        return n.nodeType === 1 && n.classList && n.classList.contains('guide-page-nav');
+      });
+    })) bindSpy();
+  }).observe(document.querySelector('.guide-article') || document.body, { childList: true, subtree: true });
+})();
+</script>
 </body>
 </html>

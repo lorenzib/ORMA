@@ -104,4 +104,34 @@ describe('SCORE-01 canonical recommendation contract', () => {
     expect(distance.messageKey).toBe('trail.distance.within-range');
     expect(distance.vars).toEqual(expect.objectContaining({ distance:expect.any(Number) }));
   });
+
+  test('route cautions name the recorded hazards instead of showing only a count', () => {
+    const result = scoring.calculateRecommendation({
+      dog:{ fitness:'moderate', ageYears:4, weightKg:14 },
+      trail:{
+        metrics:{ distanceKm:5, ascentM:200, descentM:200 },
+        suitability:{
+          terrainRank:1,
+          exposure:false,
+          heatRisk:'low',
+          shadePercent:60,
+          surfaceHazards:['Loose rock', 'Paved road crossing'],
+          dogAccess:{ status:'allowed' },
+        },
+        verification:{
+          categories:{
+            route:'verified', water:'verified', heat:'verified', exposure:'verified',
+            livestock:'verified', surfaceHazards:'verified', access:'verified',
+          },
+        },
+      },
+    });
+    const caution = result.cautions.find(entry => entry.code === 'trail.surface-hazards.present');
+
+    expect(caution.message).toBe('Recorded route cautions: Loose rock; Paved road crossing.');
+    expect(caution.vars).toEqual(expect.objectContaining({
+      count:2,
+      hazards:'Loose rock; Paved road crossing',
+    }));
+  });
 });

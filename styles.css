@@ -156,31 +156,31 @@ img,svg{max-width:100%;height:auto;}
   align-items:center;
   justify-content:space-between;
   /* Brand hugs the left edge, links the right — no centered clamp. */
-  padding:15px 32px;
+  padding:20px 32px;
   background:rgba(38,53,42,.94);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
   border-bottom:1px solid rgba(242,238,226,.09);
 }
 .topnav .brand{
-  font:600 21px 'Bricolage Grotesque',sans-serif;
+  font:600 27px 'Bricolage Grotesque',sans-serif;
   color:#F2EEE2;
   text-decoration:none;
   display:inline-flex;
   align-items:center;
-  gap:11px;
+  gap:14px;
 }
 .topnav .brand::after{
   content:'| Dog Trails & Terrain Guide';
-  font:600 11.5px/1.2 'Inter',sans-serif;
+  font:600 14px/1.2 'Inter',sans-serif;
   letter-spacing:.015em;
   color:#DCE1D4;
   white-space:nowrap;
 }
 .topnav .brand .brand-mark{
-  width:30px;
-  height:30px;
-  border-radius:8px;
+  width:40px;
+  height:40px;
+  border-radius:10px;
   background:#2f5138;
   color:#e8f0e9;
   font-size:15px;
@@ -188,9 +188,9 @@ img,svg{max-width:100%;height:auto;}
   place-items:center;
 }
 .topnav .brand img{
-  width:30px;
-  height:30px;
-  border-radius:8px;
+  width:40px;
+  height:40px;
+  border-radius:10px;
   display:block;
 }
 .topnav .links{display:flex;gap:30px;align-items:center;font-family:'Inter',sans-serif;font-size:14.5px;font-weight:400;color:#DCE1D4;}
@@ -207,7 +207,8 @@ img,svg{max-width:100%;height:auto;}
    700px hamburger kicks in — tighten and allow a graceful wrap. */
 @media (max-width:1150px) and (min-width:701px){
   .topnav{flex-wrap:wrap;gap:10px 14px;padding-top:12px;padding-bottom:12px;}
-  .topnav .brand{font-size:19px;}
+  .topnav .brand{font-size:23px;}
+  .topnav .brand::after{font-size:12.5px;}
   .topnav .links{gap:14px 18px;font-size:13px;flex-wrap:wrap;}
   .account-btn{padding:8px 14px;}
 }
@@ -740,8 +741,8 @@ img,svg{max-width:100%;height:auto;}
 /* ---------- RESPONSIVE ---------- */
 @media (max-width:700px){
   .topnav{padding:12px 20px;}
-  .topnav .brand{font-size:20px;gap:10px;}
-  .topnav .brand img{width:34px;height:34px;}
+  .topnav .brand{font-size:22px;gap:10px;}
+  .topnav .brand img{width:38px;height:38px;}
   .topnav .brand::after,.li-brand::after{display:none;}
   .mobile-nav-toggle{
     width:44px;
@@ -1096,6 +1097,10 @@ body.ep-app .acct-wrap>#backLink,body.ep-app .acct-wrap>#accountH1,body.ep-app #
 .prov-toggle{display:flex;border:1.5px solid var(--paper-line);border-radius:999px;overflow:hidden;background:var(--card);flex-shrink:0;}
 .prov-opt{padding:7px 14px;font-size:11.5px;font-weight:700;color:var(--ink-soft);cursor:pointer;white-space:nowrap;}
 .prov-opt.active{background:var(--sage-dim);color:var(--ink);}
+.country-opt{padding:8px 14px;border:0;background:transparent;font:700 12px 'Inter',sans-serif;color:var(--ink-soft);cursor:pointer;white-space:nowrap;}
+.country-opt.active{background:var(--ink);color:#fff;}
+.country-opt:focus-visible{outline:3px solid var(--sky);outline-offset:-3px;}
+.country-opt:disabled{cursor:wait;opacity:.65;}
 .region-section-header{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;color:var(--ink);margin:26px 0 4px;}
 .region-section-sub{font-size:12px;color:var(--ink-soft);margin-bottom:14px;}
 
@@ -1680,7 +1685,7 @@ body.map-fs-open{overflow:hidden;}
 .companion-map-key summary::-webkit-details-marker{display:none;}
 .companion-map-legend{position:absolute;left:0;bottom:42px;width:max-content;max-width:min(330px,calc(100vw - 40px));display:flex;gap:9px;align-items:flex-start;flex-direction:column;background:rgba(255,255,255,.97);border:1px solid var(--paper-line);border-radius:12px;padding:10px 12px;font-size:11px;color:var(--ink);box-shadow:0 4px 14px rgba(0,0,0,.16);}
 .companion-map-legend > span{white-space:nowrap;}
-.prov-opt .count{font-weight:600;opacity:.65;font-size:11px;margin-left:3px;}
+.prov-opt .count,.country-opt .count{font-weight:600;opacity:.65;font-size:11px;margin-left:3px;}
 
 /* Filters card */
 .companion-filter-label{font:700 10.5px/1.2 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:16px 0 9px;}
@@ -2185,18 +2190,18 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-brand{
   font-family:'Bricolage Grotesque',sans-serif;
   font-weight:600;
-  font-size:19px;
+  font-size:24px;
   color:#F2EEE2;
   display:inline-flex;
   align-items:center;
-  gap:9px;
+  gap:12px;
   text-decoration:none;
   flex:none;
 }
-.li-brand img{width:26px;height:26px;border-radius:7px;}
+.li-brand img{width:36px;height:36px;border-radius:9px;}
 .li-brand::after{
   content:'| Dog Trails & Terrain Guide';
-  font:600 11px/1.2 'Inter',sans-serif;
+  font:600 13px/1.2 'Inter',sans-serif;
   letter-spacing:.015em;
   color:#DCE1D4;
   white-space:nowrap;
@@ -2220,16 +2225,17 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 }
 .li-greetbar .li-dog-row{flex:1;min-width:0;}
 
-/* ---------- toolbar (search · filter chips) ---------- */
+/* ---------- toolbar (dog context · search · region · filters) ----------
+   Desktop: one 50px-ish contextual filter row (app-mockup structure).
+   The greeting block is a phone-only element; desktop context lives in
+   the "Adapted for" dropdown. */
 .li-toolbar{
   display:grid;
-  grid-template-columns:minmax(320px,560px) auto auto auto minmax(20px,1fr);
-  grid-template-areas:
-    "greet greet greet greet greet"
-    "search region filters record spacer";
+  grid-template-columns:auto minmax(240px,1fr) auto auto;
+  grid-template-areas:"dogctx search region filters";
   align-items:center;
-  gap:10px 14px;
-  padding:14px 24px 12px;
+  gap:10px 12px;
+  padding:9px 24px;
   background:var(--bg);
   border-bottom:1px solid var(--paper-line);
   flex:none;
@@ -2237,14 +2243,26 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   z-index:45;
 }
 .li-toolbar-greet{
-  grid-area:greet;
-  display:flex;
+  grid-area:dogctx;
+  display:none;
   align-items:center;
   gap:9px;
   min-width:0;
   flex:none;
   color:var(--ink);
 }
+.li-dogctx-wrap{grid-area:dogctx;flex:none;}
+.li-dogctx-btn{
+  display:flex;align-items:center;gap:9px;max-width:300px;
+  background:#fff;border:1.5px solid var(--paper-line);border-radius:12px;
+  padding:5px 12px 5px 6px;cursor:pointer;color:var(--ink);text-align:left;
+}
+.li-dogctx-btn:hover{border-color:var(--accent-light);}
+.li-dogctx-avatar{width:30px;height:30px;flex:none;}
+.li-dogctx-copy{display:flex;flex-direction:column;min-width:0;}
+.li-dogctx-copy .li-control-kicker{font-size:9px;}
+.li-dogctx-name{font:700 13px/1.25 'Inter',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px;}
+.li-dogctx-menu{left:0;right:auto;min-width:270px;}
 .li-toolbar-greet .li-greet-avatar{width:40px;height:40px;}
 .li-toolbar-greet-copy{display:flex;flex-direction:column;min-width:0;}
 .li-toolbar-greet-copy strong{font:700 21px/1.12 'Bricolage Grotesque',sans-serif;white-space:nowrap;}
@@ -2522,6 +2540,21 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   grid-template-columns:1fr 430px;
   min-height:0;
 }
+/* Collapse-map state (mockup D): the list takes the full workspace and
+   the cards flow into a tile grid. Desktop split view only. */
+@media (min-width:1041px){
+  .li-body.map-collapsed{grid-template-columns:1fr;}
+  .li-body.map-collapsed .li-map{display:none;}
+  .li-body.map-collapsed .li-rows{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;align-items:start;}
+}
+.li-list-head-side{display:flex;align-items:center;gap:12px;}
+.li-collapse-map{
+  display:none;align-items:center;gap:6px;background:none;border:1.5px solid var(--paper-line);
+  border-radius:10px;padding:6px 11px;font:700 12px 'Inter',sans-serif;color:var(--ink-soft);cursor:pointer;
+}
+.li-collapse-map:hover{color:var(--ink);border-color:var(--accent-light);}
+@media (min-width:1041px){.li-collapse-map{display:inline-flex;}}
+
 .li-map{position:relative;overflow:hidden;background:var(--sage-dim);}
 .li-map #trailMap{position:absolute;inset:0;width:100%;height:100%;}
 
@@ -2686,10 +2719,30 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 html.early-member #newCustomerHomepage{display:none;}
 html.early-member #returningCustomerHomepage[hidden]{display:block;}
 .li-cond-t-mobile{display:none;}
-/* Recording is a discovery action, not a map annotation. */
-.li-record{grid-area:record;flex:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:39px;box-sizing:border-box;padding:9px 15px;border-radius:999px;background:#C4652F;color:#fff;font:800 12.5px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;box-shadow:0 6px 16px -10px rgba(23,42,28,.55);}
+/* Phone record chip — desktop uses the map FAB below instead. */
+.li-record{display:none;flex:none;align-items:center;justify-content:center;gap:8px;min-height:39px;box-sizing:border-box;padding:9px 15px;border-radius:999px;background:#C4652F;color:#fff;font:800 12.5px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;box-shadow:0 6px 16px -10px rgba(23,42,28,.55);}
 .li-record:hover{background:#A9541F;}
 .li-record-dot{width:8px;height:8px;border-radius:50%;background:#fff;}
+
+/* Desktop record FAB — bottom-centre of the map canvas (mockup C). */
+.li-record-fab{
+  position:absolute;left:50%;bottom:20px;transform:translateX(-50%);
+  z-index:8;display:flex;align-items:center;gap:10px;
+  padding:12px 22px;border-radius:999px;background:#D56B30;color:#fff;
+  text-decoration:none;white-space:nowrap;
+  box-shadow:0 14px 34px -12px rgba(160,70,20,.65);
+  transition:filter .15s ease, transform .15s ease;
+}
+.li-record-fab:hover{filter:brightness(1.06);}
+.li-record-fab:active{transform:translateX(-50%) scale(.98);}
+.li-record-fab-dot{position:relative;width:10px;height:10px;flex:none;}
+.li-record-fab-dot::before{content:"";position:absolute;inset:0;border-radius:50%;background:rgba(255,255,255,.7);animation:li-fab-ping 1.6s cubic-bezier(0,0,.2,1) infinite;}
+.li-record-fab-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:#fff;}
+@keyframes li-fab-ping{0%{transform:scale(1);opacity:.8;}80%,100%{transform:scale(2.2);opacity:0;}}
+.li-record-fab-label{font:800 13.5px/1 'Inter',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
+.li-record-fab-div{width:1px;height:15px;background:rgba(255,255,255,.4);}
+.li-record-fab-sub{font:600 12.5px/1 'Inter',sans-serif;color:rgba(255,255,255,.92);}
+@media (max-width:700px){.li-record-fab{display:none;}}
 .li-rating-row{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center;}
 /* Card quick actions: a quiet bar across the card bottom — focus the
    homepage map, or hand off to the platform's maps app. */
@@ -2805,9 +2858,6 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 @media (min-width:701px) and (max-width:1040px){
   #returningCustomerHomepage{height:100vh;height:100dvh;}
   .li-toolbar{display:flex;flex-wrap:wrap;padding:9px 16px;gap:9px;}
-  .li-toolbar-greet{min-width:190px;}
-  .li-toolbar-greet-copy strong{font-size:18px;}
-  .li-toolbar-greet-copy small{max-width:165px;}
   .li-search{order:0;flex:1;max-width:390px;}
   .li-body{display:block;min-height:0;}
   .li-body[data-pane="list"] .li-map,
@@ -2825,11 +2875,12 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
   .li-nav{display:none;}
   .li-greetbar{padding:12px 14px;}
   .li-toolbar{display:flex;padding:10px 14px;flex-wrap:wrap;}
-  .li-toolbar-greet{width:100%;min-width:0;}
+  .li-dogctx-wrap{display:none;}
+  .li-toolbar-greet{display:flex;width:100%;min-width:0;}
   .li-region-wrap{order:1;}
   .li-search{order:2;flex:1;max-width:none;min-width:170px;}
   #liFiltersWrap{order:3;}
-  .li-record{order:4;}
+  .li-record{display:inline-flex;order:4;}
   .li-top-spacer{display:none;}
   .li-top-actions{margin-left:auto;}
   .li-account-name{max-width:90px;overflow:hidden;text-overflow:ellipsis;}

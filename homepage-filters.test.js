@@ -132,6 +132,31 @@ describe('returning homepage region + valley filters', () => {
     expect(row.innerHTML).not.toContain('province-pills');
   });
 
+  test('renders country choices from regional metadata', () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('activeRegion = "dolomites"; renderAreaFilters(null);', context);
+
+    const italy = document.querySelector('[data-country="IT"]');
+    const france = document.querySelector('[data-country="FR"]');
+    expect(italy).not.toBeNull();
+    expect(france).not.toBeNull();
+    expect(italy.textContent).toContain('Italy');
+    expect(france.textContent).toContain('France');
+    expect(italy.getAttribute('aria-pressed')).toBe('true');
+  });
+
+  test('country choice loads its region and resets an incompatible valley', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('activeRegion = "dolomites"; activeValley = "Val Gardena"; renderAreaFilters(null);', context);
+
+    document.querySelector('[data-country="FR"]').click();
+    await Promise.resolve();
+    await Promise.resolve();
+
+    expect(vm.runInContext('activeRegion', context)).toBe('savoy');
+    expect(vm.runInContext('activeValley', context)).toBe('all');
+  });
+
   test('switching the separate region control resets the valley', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeRegion = "savoy"; activeValley = "Maurienne"; renderLiRegionControl(null);', context);

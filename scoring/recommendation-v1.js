@@ -243,9 +243,13 @@
     }else if(hazards.length){
       const multiplier = dog.fragile ? 1.5 : 1;
       score -= Math.min(dog.fragile ? 30 : 20, Math.round(hazards.length * 8 * multiplier));
+      const hazardSummary = hazards
+        .map(hazard => String(hazard).trim().replace(/[.;]+$/, ''))
+        .filter(Boolean)
+        .join('; ');
       cautions.push(item('trail.surface-hazards.present',
-        `${hazards.length} material surface hazard${hazards.length === 1 ? ' is' : 's are'} recorded.`,
-        { count:hazards.length },
+        `Recorded route cautions: ${hazardSummary}.`,
+        { count:hazards.length, hazards:hazardSummary },
         hazards.length === 1 ? 'trail.surface-hazards.present.one' : 'trail.surface-hazards.present.many'));
     }else if(categories.surfaceHazards === 'verified'){
       positives.push(item('trail.surface-hazards.none-known',

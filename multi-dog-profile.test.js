@@ -93,6 +93,54 @@ describe('multi-dog account experience', () => {
     expect(controller).toContain('DoloPawsAuth.selectDogProfile(dog.id)');
   });
 
+  test('account settings lists and switches every dog without relying on a header menu', () => {
+    const settings = source('settings.html');
+    expect(settings).toContain('DoloPawsAuth.getDogProfiles()');
+    expect(settings).toContain('DoloPawsAuth.selectDogProfile(p.id)');
+    expect(settings).toContain('class="st-btn st-dog-select"');
+    expect(settings).toContain("'account.html?dog=' + encodeURIComponent(p.id)");
+    expect(settings).toContain('account.html?mode=add&amp;next=settings.html');
+    expect(settings).not.toContain("document.querySelector('.topnav .nav-user')");
+  });
+
+  test('account settings changes the selected dog in place', async () => {
+    const settings = source('settings.html');
+    document.open();
+    document.write(settings);
+    document.close();
+    const controller = [...settings.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)]
+      .map(match => match[1])
+      .find(script => script.includes('Account settings — standalone page'));
+    const dogs = [
+      { id:'eddie', name:'Eddie', breed:'Podenco Andaluz', fitness:'high' },
+      { id:'pippo', name:'Pippo', breed:'Briard', fitness:'moderate' },
+    ];
+    let selectedId = 'eddie';
+    window.DoloPawsAuth = {
+      currentUser:{ uid:'owner-1', email:'owner@example.com', providerData:[{ providerId:'password' }] },
+      getDogProfiles:jest.fn(async () => ({ dogs, activeDogId:selectedId })),
+      selectDogProfile:jest.fn(async id => { selectedId = id; return true; }),
+      setDogProfile:jest.fn(async () => true),
+      updateEmail:jest.fn(),
+      resetPassword:jest.fn(),
+    };
+    window.DoloPawsMetrics = { consent:() => 'denied', setConsent:jest.fn() };
+    window.eval(controller);
+    document.dispatchEvent(new Event('DOMContentLoaded'));
+    await Promise.resolve();
+    await Promise.resolve();
+
+    expect(document.querySelectorAll('.st-dog-row')).toHaveLength(2);
+    expect(document.querySelector('.st-dog-row.is-selected .st-dog-name').textContent).toBe('Eddie');
+    document.querySelector('.st-dog-select').click();
+    await Promise.resolve();
+    await Promise.resolve();
+
+    expect(window.DoloPawsAuth.selectDogProfile).toHaveBeenCalledWith('pippo');
+    expect(document.querySelector('.st-dog-row.is-selected .st-dog-name').textContent).toBe('Pippo');
+    expect(document.getElementById('stDogStatus').textContent).toContain('Pippo is now selected');
+  });
+
   test('photos remain isolated to the active dog', () => {
     const account = source('account.js');
     const nav = source('mobile-nav.js');
