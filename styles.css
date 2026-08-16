@@ -2225,14 +2225,14 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 }
 .li-greetbar .li-dog-row{flex:1;min-width:0;}
 
-/* ---------- toolbar (dog context · search · region · filters) ----------
+/* ---------- toolbar (dog context · search · country · region · saved · filters) ----------
    Desktop: one 50px-ish contextual filter row (app-mockup structure).
    The greeting block is a phone-only element; desktop context lives in
    the "Adapted for" dropdown. */
 .li-toolbar{
   display:grid;
-  grid-template-columns:auto minmax(240px,1fr) auto auto;
-  grid-template-areas:"dogctx search region filters";
+  grid-template-columns:auto minmax(260px,1fr) auto auto auto auto;
+  grid-template-areas:"dogctx search country region saved filters";
   align-items:center;
   gap:10px 12px;
   padding:9px 24px;
@@ -2270,6 +2270,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-toolbar-breed{color:inherit;text-decoration:underline;text-decoration-color:#AAB5AA;text-underline-offset:2px;}
 .li-toolbar-breed:hover{color:var(--accent);text-decoration-color:currentColor;}
 .li-region-wrap{grid-area:region;flex:none;}
+.li-country-wrap{grid-area:country;flex:none;}
 .li-region-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:7px;
   min-height:39px;padding:8px 13px;border:1.5px solid var(--paper-line);
@@ -2279,10 +2280,21 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-control-kicker{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);}
 .li-region-btn:hover,.li-region-btn[aria-expanded="true"]{border-color:var(--accent);background:#F7FAF8;}
 .li-region-menu{left:0;right:auto;width:230px;padding:10px;}
+.li-country-menu{left:0;right:auto;width:190px;padding:10px;}
 #liFiltersWrap{grid-area:filters;}
 .li-region-option{justify-content:space-between;gap:14px;}
 .li-region-option small{font:600 10.5px 'Inter',sans-serif;color:var(--ink-soft);}
 .li-region-option.on{background:#EAF3EC;color:var(--ink);font-weight:700;}
+.li-saved-only{
+  grid-area:saved;display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  min-height:39px;padding:8px 13px;border:1.5px solid var(--paper-line);
+  border-radius:var(--radius-pill);background:#fff;color:var(--ink);
+  font:700 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;
+}
+.li-saved-only:hover{border-color:#9C3A25;}
+.li-saved-only[aria-pressed="true"]{border-color:#9C3A25;background:#F8EAE5;color:#8F3827;}
+.li-saved-count{display:grid;place-items:center;min-width:19px;height:19px;padding:0 5px;border-radius:999px;background:#EEF1E9;color:var(--ink-soft);font-size:10px;}
+.li-saved-only[aria-pressed="true"] .li-saved-count{background:#9C3A25;color:#fff;}
 /* Inline chips — Any area · Distance · Terrain · Shade · Water */
 .li-chiprow{display:none;}
 .li-chipwrap{position:relative;}
@@ -2859,6 +2871,10 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
   #returningCustomerHomepage{height:100vh;height:100dvh;}
   .li-toolbar{display:flex;flex-wrap:wrap;padding:9px 16px;gap:9px;}
   .li-search{order:0;flex:1;max-width:390px;}
+  .li-country-wrap{order:1;}
+  .li-region-wrap{order:2;}
+  .li-saved-only{order:3;}
+  #liFiltersWrap{order:4;}
   .li-body{display:block;min-height:0;}
   .li-body[data-pane="list"] .li-map,
   .li-body[data-pane="map"] .li-list{display:none;}
@@ -2877,10 +2893,12 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
   .li-toolbar{display:flex;padding:10px 14px;flex-wrap:wrap;}
   .li-dogctx-wrap{display:none;}
   .li-toolbar-greet{display:flex;width:100%;min-width:0;}
-  .li-region-wrap{order:1;}
-  .li-search{order:2;flex:1;max-width:none;min-width:170px;}
-  #liFiltersWrap{order:3;}
-  .li-record{display:inline-flex;order:4;}
+  .li-search{order:1;flex:1 1 100%;max-width:none;min-width:170px;}
+  .li-country-wrap{order:2;}
+  .li-region-wrap{order:3;}
+  .li-saved-only{order:4;}
+  #liFiltersWrap{order:5;}
+  .li-record{display:inline-flex;order:6;}
   .li-top-spacer{display:none;}
   .li-top-actions{margin-left:auto;}
   .li-account-name{max-width:90px;overflow:hidden;text-overflow:ellipsis;}

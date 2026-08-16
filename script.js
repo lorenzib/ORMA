@@ -1234,27 +1234,7 @@ function renderAreaFilters(profile){
     : [];
   if(activeValley !== 'all' && !valleys.some(([v]) => v === activeValley)) activeValley = 'all';
 
-  const regionConfig = window.DoloPawsRegions && window.DoloPawsRegions.REGIONS
-    ? window.DoloPawsRegions.REGIONS
-    : {
-        dolomites: { country: 'Italy', countryCode: 'IT' },
-        savoy: { country: 'France', countryCode: 'FR' }
-      };
-  const activeCountry = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
-    ? window.DoloPawsRegions.countryForRegion(activeRegion)
-    : (activeRegion === 'savoy' ? 'FR' : 'IT');
-
   row.innerHTML = `
-    <div class="companion-filter-label">Country</div>
-    <div class="prov-toggle companion-country-toggle" role="group" aria-label="Country" style="width:100%;">
-      ${Object.entries(regionConfig).map(([region, config]) => {
-        const count = window.DoloPawsRegionalData
-          ? window.DoloPawsRegionalData.trailCount(region)
-          : trails.filter(trail => trail.region === region).length;
-        return `<button type="button" class="country-opt ${config.countryCode === activeCountry ? 'active' : ''}" data-country="${config.countryCode}" data-region="${region}" aria-pressed="${config.countryCode === activeCountry}" style="flex:1;text-align:center;">${config.country} <span class="count">${count}</span></button>`;
-      }).join('')}
-    </div>
-
     <div class="companion-filter-label">Source</div>
     <div class="prov-toggle" style="width:100%;">
       ${(() => {
@@ -1288,18 +1268,59 @@ function renderAreaFilters(profile){
       setCompanionPanelOpen(false);
     });
   });
-  row.querySelectorAll('[data-country]').forEach(option => {
-    option.addEventListener('click', async () => {
-      if(option.dataset.region === activeRegion){
-        setCompanionPanelOpen(false);
-        return;
-      }
-      option.disabled = true;
-      const changed = await activateReturningRegion(option.dataset.region, profile);
-      option.disabled = false;
-      if(changed) setCompanionPanelOpen(false);
+}
+
+// Country is intentionally separate from Region: people often know the
+// country before they know the local mountain area. Selecting one loads its
+// current region now, while the model remains ready for more regions later.
+function renderLiCountryControl(profile){
+  const label = document.getElementById('liCountryLabel');
+  const menu = document.getElementById('liCountryMenu');
+  if(!label || !menu || typeof trails === 'undefined') return;
+  const configs = window.DoloPawsRegions && window.DoloPawsRegions.REGIONS
+    ? window.DoloPawsRegions.REGIONS
+    : {
+        dolomites: { country: 'Italy', countryCode: 'IT' },
+        savoy: { country: 'France', countryCode: 'FR' }
+      };
+  const activeCountry = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
+    ? window.DoloPawsRegions.countryForRegion(activeRegion)
+    : (activeRegion === 'savoy' ? 'FR' : 'IT');
+  const entries = Object.entries(configs);
+  const activeConfig = entries.find(([, config]) => config.countryCode === activeCountry);
+  label.textContent = activeConfig ? activeConfig[1].country : 'Country';
+  menu.innerHTML = '<div class="li-menu-kick">Country</div>';
+  entries.forEach(([region, config]) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'li-menu-item li-region-option' + (config.countryCode === activeCountry ? ' on' : '');
+    button.dataset.country = config.countryCode;
+    button.dataset.region = region;
+    button.setAttribute('aria-pressed', String(config.countryCode === activeCountry));
+    const count = window.DoloPawsRegionalData
+      ? window.DoloPawsRegionalData.trailCount(region)
+      : trails.filter(trail => trail.region === region).length;
+    button.innerHTML = `<span>${config.country}</span><small>${count} trails</small>`;
+    button.addEventListener('click', async () => {
+      if(region === activeRegion){ liCloseMenus(); return; }
+      button.disabled = true;
+      const changed = await activateReturningRegion(region, profile);
+      button.disabled = false;
+      if(changed) liCloseMenus();
     });
+    menu.appendChild(button);
   });
+}
+
+function renderLiSavedControl(){
+  const button = document.getElementById('liSavedOnlyBtn');
+  if(!button) return;
+  const count = Object.keys(currentFavorites || {}).length;
+  button.setAttribute('aria-pressed', String(showingSavedOnly));
+  button.classList.toggle('on', showingSavedOnly);
+  button.setAttribute('aria-label', showingSavedOnly ? 'Show all trails' : `Show saved trails only (${count})`);
+  const countEl = document.getElementById('liSavedOnlyCount');
+  if(countEl) countEl.textContent = String(count);
 }
 
 // The region is a first-order map choice, not an advanced refinement. Keep it
@@ -1497,7 +1518,7 @@ function liActiveFilterCount(){
 
 function liResetAllFilters(){
   liQuery = '';
-  liFilters = { dist: 99, terrain: 'any', shade: 'any', minMatch: 0, water: false };
+  liFilters = { dist: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false };
   showingSavedOnly = false;
   activeValley = 'all';
   activeProvenance = 'all';
@@ -1507,11 +1528,11 @@ function liResetAllFilters(){
 }
 
 function liCloseMenus(){
-  ['liFiltersMenu', 'liRegionMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
+  ['liFiltersMenu', 'liCountryMenu', 'liRegionMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
     const menu = document.getElementById(id);
     if(menu) menu.hidden = true;
   });
-  ['liFiltersBtn', 'liRegionBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
+  ['liFiltersBtn', 'liCountryBtn', 'liRegionBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
     const btn = document.getElementById(id);
     if(btn) btn.setAttribute('aria-expanded', 'false');
   });
@@ -1667,9 +1688,8 @@ function renderLiControls(){
   if(rows){
     rows.innerHTML = '';
     [
-      { label: 'Saved trails only', icon: '♥', iconBg: '#9C3A25', on: showingSavedOnly,
-        toggle: () => { showingSavedOnly = !showingSavedOnly; } },
-      // Water row carries no icon (2026-07 design pass).
+      // Saved trails now has its own first-class toolbar control.
+      // Water remains part of the detailed Filters panel.
       { label: 'Water on route', on: liFilters.water,
         toggle: () => { liFilters.water = !liFilters.water; } },
     ].forEach(tg => {
@@ -1957,8 +1977,15 @@ function initLoggedInShell(){
     menu.addEventListener('click', e => e.stopPropagation());
   };
   wireMenu(filtersBtn, document.getElementById('liFiltersMenu'));
+  wireMenu(document.getElementById('liCountryBtn'), document.getElementById('liCountryMenu'));
   wireMenu(document.getElementById('liRegionBtn'), document.getElementById('liRegionMenu'));
   wireMenu(document.getElementById('liAccountBtn'), document.getElementById('liAccountMenu'));
+
+  const savedOnlyBtn = document.getElementById('liSavedOnlyBtn');
+  if(savedOnlyBtn) savedOnlyBtn.addEventListener('click', () => {
+    showingSavedOnly = !showingSavedOnly;
+    renderReturningHomepage(currentProfileForAdjust);
+  });
 
   const paneBody = document.querySelector('#returningCustomerHomepage .li-body');
   const paneButtons = Array.from(document.querySelectorAll('[data-li-pane]'));
@@ -2170,7 +2197,9 @@ async function renderReturningHomepage(profile){
   if(!heading || typeof trails === 'undefined') return;
 
   renderAreaFilters(profile);
+  renderLiCountryControl(profile);
   renderLiRegionControl(profile);
+  renderLiSavedControl();
   renderDogProfileCard(profile);
   renderLiHeader(profile);
   refreshLiBellBadge();

@@ -48,6 +48,10 @@ function loadHomepageContext(testTrails){
     <button id="liRegionBtn"></button>
     <span id="liRegionLabel"></span>
     <div id="liRegionMenu"></div>
+    <button id="liCountryBtn"></button>
+    <span id="liCountryLabel"></span>
+    <div id="liCountryMenu"></div>
+    <button id="liSavedOnlyBtn"><span id="liSavedOnlyCount"></span></button>
     <h1 id="returningHeading"></h1>
     <p id="returningSubline"></p>
     <span id="returningCount"></span>
@@ -134,7 +138,7 @@ describe('returning homepage region + valley filters', () => {
 
   test('renders country choices from regional metadata', () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "dolomites"; renderAreaFilters(null);', context);
+    vm.runInContext('activeRegion = "dolomites"; renderLiCountryControl(null);', context);
 
     const italy = document.querySelector('[data-country="IT"]');
     const france = document.querySelector('[data-country="FR"]');
@@ -147,7 +151,7 @@ describe('returning homepage region + valley filters', () => {
 
   test('country choice loads its region and resets an incompatible valley', async () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "dolomites"; activeValley = "Val Gardena"; renderAreaFilters(null);', context);
+    vm.runInContext('activeRegion = "dolomites"; activeValley = "Val Gardena"; renderLiCountryControl(null);', context);
 
     document.querySelector('[data-country="FR"]').click();
     await Promise.resolve();
@@ -155,6 +159,15 @@ describe('returning homepage region + valley filters', () => {
 
     expect(vm.runInContext('activeRegion', context)).toBe('savoy');
     expect(vm.runInContext('activeValley', context)).toBe('all');
+  });
+
+  test('saved-only toolbar control reflects and filters saved trails', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('currentFavorites = { vag: true }; showingSavedOnly = true; activeRegion = "dolomites"; renderLiSavedControl();', context);
+    expect(document.getElementById('liSavedOnlyBtn').getAttribute('aria-pressed')).toBe('true');
+    expect(document.getElementById('liSavedOnlyCount').textContent).toBe('1');
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    expect(document.getElementById('returningCount').textContent).toBe('1 scored · 1 saved');
   });
 
   test('switching the separate region control resets the valley', async () => {
@@ -221,6 +234,8 @@ describe('map-first returning homepage layout contract', () => {
     expect(html).toContain('class="li-toolbar-greet"');
     expect(html).toContain('id="liToolbarDogContext"');
     expect(html).toContain('id="liFiltersWrap"');
+    expect(html).toContain('id="liCountryWrap"');
+    expect(html).toContain('id="liSavedOnlyBtn"');
     expect(html).toContain('id="liRegionWrap"');
     expect(html).toContain('id="liSearchSuggest"');
     expect(html).not.toContain('id="liFiltersWrap" class="li-menuwrap li-mobile-only"');

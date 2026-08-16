@@ -18,8 +18,8 @@
    Firebase resolves. The homepage controller clears the class once real
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
-<link rel="stylesheet" href="styles.css?v=20260816-7">
-<link rel="stylesheet" href="homepage-mobile.css?v=20260816-3">
+<link rel="stylesheet" href="styles.css?v=20260816-8">
+<link rel="stylesheet" href="homepage-mobile.css?v=20260816-4">
 </head>
 <body>
 
@@ -284,6 +284,16 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <input id="liSearch" type="search" placeholder="Find a trail on this map…" aria-label="Find a trail on this map" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="liSearchSuggest" autocomplete="off">
       <div class="li-search-suggest" id="liSearchSuggest" role="listbox" aria-label="Recommended routes" hidden></div>
     </div>
+    <div class="li-menuwrap li-country-wrap" id="liCountryWrap">
+      <button type="button" id="liCountryBtn" class="li-region-btn li-country-btn" aria-haspopup="true" aria-expanded="false">
+        <span class="li-control-kicker">Country</span>
+        <span id="liCountryLabel">Italy</span><span class="li-caret">▾</span>
+      </button>
+      <div class="li-menu li-country-menu" id="liCountryMenu" hidden></div>
+    </div>
+    <button type="button" id="liSavedOnlyBtn" class="li-saved-only" aria-pressed="false">
+      <span aria-hidden="true">♥</span><span>Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span>
+    </button>
     <!-- Kept as a rendering target for the controller; the consolidated
          Filters panel is the visible control at every viewport size. -->
     <div class="li-chiprow" id="liChips"></div>
@@ -507,7 +517,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="basemap-poi-click.js" defer></script>
 <script src="dog-routes-layer.js?v=20260815-4" defer></script>
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
-<script src="script.js?v=20260816-4" defer></script>
+<script src="script.js?v=20260816-5" defer></script>
 <script src="dog-wizard.js?v=20260815-4" defer></script>
 <script src="homepage-search.js?v=20260815-4" defer></script>
 <script src="homepage-mobile.js?v=20260816-1" defer></script>
