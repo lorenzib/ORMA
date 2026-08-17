@@ -13,18 +13,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260816-3">
+<link rel="stylesheet" href="styles.css?v=20260817-3">
 <style>
   /* About-page-only: the brand mark lives in the page itself — full-bleed in
      the hero, and as a quiet stamp behind the article. */
   .about-hero{position:relative;overflow:hidden;background:#22312A;color:#F2EDDF;padding:72px 24px 80px;}
-  .about-hero .about-hero-logo{position:absolute;right:clamp(-90px,-4vw,-30px);top:50%;transform:translateY(-50%) rotate(-5deg);width:min(44vw,420px);opacity:.92;pointer-events:none;}
   .about-hero-inner{position:relative;z-index:1;max-width:880px;margin:0 auto;}
   .about-hero .eyebrow{color:#C9D6C4;}
   .about-dict{font-size:15px;line-height:1.6;color:#D8D2BE;margin:18px 0 0;max-width:34em;}
   .about-dict b{color:#F2EDDF;}
   .about-hero h1{font-size:clamp(30px,5vw,44px);margin:14px 0 0;color:#F2EDDF;}
-  .about-watermark{position:fixed;right:-70px;bottom:-80px;width:430px;opacity:.10;z-index:0;pointer-events:none;}
   .guide-article{position:relative;z-index:1;}
   .orma-acronym{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:18px 0 8px;}
   .orma-acronym .cell{background:var(--card,#fff);border:1px solid var(--paper-line,#E5DECF);border-radius:12px;padding:16px 14px;}
@@ -38,8 +36,6 @@
   .sc-philosophy{margin:16px 0 6px;padding:16px 20px;background:var(--card,#fff);border:1px solid var(--paper-line,#E5DECF);border-left:4px solid #22312A;border-radius:0 10px 10px 0;font-size:14px;line-height:1.6;}
   @media (max-width:700px){
     .about-hero{padding:56px 20px 64px;}
-    .about-hero .about-hero-logo{width:62vw;right:-18vw;opacity:.28;}
-    .about-watermark{width:300px;right:-60px;bottom:-60px;}
   }
   /* ≥900px: the "On this page" block becomes a sticky left rail, like the
      account page's section rail. Below 900px the site-wide top-block style
@@ -67,7 +63,7 @@
 <body class="about-page">
 
 <div class="topnav">
-  <a class="brand" href="index.html"><img src="logo.svg?v=5" alt="">ORMA</a>
+  <a class="brand" href="index.html"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">About us</span>
   <div class="links">
     <a href="browse-trails.html">Browse all Trails</a>
     <a href="collections.html">Collections</a>
@@ -78,7 +74,6 @@
 </div>
 
 <div class="about-hero">
-  <img class="about-hero-logo" src="logo.svg?v=5" alt="" aria-hidden="true">
   <div class="about-hero-inner">
     <div class="eyebrow" data-i18n="about.eyebrow">About us</div>
     <h1 data-i18n="about.h1">The Story of ORMA</h1>
@@ -86,27 +81,21 @@
   </div>
 </div>
 
-<img class="about-watermark" src="logo.svg?v=5" alt="" aria-hidden="true">
 
 <div class="guide-article" id="how-scoring-works">
   <div data-lang-block="en">
 
     <section class="guide-section">
-      <h2>Born in the Dolomites</h2>
-      <p>ORMA was conceived in the shadow of the rugged, breathtaking peaks of the Italian Dolomites. When you are navigating steep alpine trails and rocky ascents with a dog, a standard map simply isn't enough — you need to know the reality of the ground beneath their paws. ORMA was born from that exact necessity: to bridge the gap between human navigation and canine safety in the mountains we love.</p>
-      <p>Today that necessity has become a guide covering more than 150 scored trails across the Dolomites — and our paws recently crossed into the French Alps, bringing Savoy's lake loops and balcony trails into the same system.</p>
-    </section>
-
-    <section class="guide-section">
-      <h2>The meaning behind the name</h2>
-      <p>In Italian, <em>orma</em> translates to "footprint" or "track". It is a tribute to the physical marks our dogs leave on the trails we conquer together — and the lasting tracks they leave on our lives.</p>
-      <p>The name also works twice as hard, as the acronym for our core engine:</p>
+      <h2>About us</h2>
+      <p>ORMA was conceived in the shadow of the rugged, breathtaking peaks of the Italian Dolomites — a heritage the logo wears openly: the ridge rising inside the paw is the Tre Cime, drawn as the peaks of the print itself. When you are navigating steep alpine trails and rocky ascents with a dog, a standard map simply isn't enough — you need to know the reality of the ground beneath their paws. ORMA was born from that exact necessity: to bridge the gap between human navigation and canine safety in the mountains we love.</p>
+      <p>In Italian, <em>orma</em> translates to "footprint" or "track". It is a tribute to the physical marks our dogs leave on the trails we conquer together — and the lasting tracks they leave on our lives. The name also works twice as hard, as the acronym for our core engine:</p>
       <div class="orma-acronym">
         <div class="cell"><b>O</b><span>Optimized</span></div>
         <div class="cell"><b>R</b><span>Route</span></div>
         <div class="cell"><b>M</b><span>Mapping for</span></div>
         <div class="cell"><b>A</b><span>All dogs — and their humans</span></div>
       </div>
+      <p>Today that necessity has become a guide covering more than 150 scored trails across the Dolomites — and our paws recently crossed into the French Alps, bringing Savoy's lake loops and balcony trails into the same system.</p>
     </section>
 
     <section class="guide-section">
@@ -175,21 +164,16 @@
   <div data-lang-block="it" hidden>
 
     <section class="guide-section">
-      <h2>Nata tra le Dolomiti</h2>
-      <p>ORMA è stata concepita all'ombra delle vette aspre e mozzafiato delle Dolomiti italiane. Quando affronti sentieri alpini ripidi e salite rocciose con un cane, una mappa normale non basta: devi conoscere la realtà del terreno sotto le sue zampe. ORMA nasce esattamente da questa necessità: colmare il divario tra la navigazione umana e la sicurezza del cane nelle montagne che amiamo.</p>
-      <p>Oggi quella necessità è diventata una guida che copre più di 150 sentieri valutati nelle Dolomiti — e da poco le nostre zampe hanno varcato le Alpi francesi, portando gli anelli sui laghi e i sentieri a balcone della Savoia nello stesso sistema.</p>
-    </section>
-
-    <section class="guide-section">
-      <h2>Il significato del nome</h2>
-      <p>In italiano, <em>orma</em> significa "impronta" o "traccia". È un omaggio ai segni concreti che i nostri cani lasciano sui sentieri che conquistiamo insieme — e alle tracce durature che lasciano nelle nostre vite.</p>
-      <p>Il nome lavora anche doppio, come acronimo del nostro motore (in inglese):</p>
+      <h2>Chi siamo</h2>
+      <p>ORMA è stata concepita all'ombra delle vette aspre e mozzafiato delle Dolomiti italiane — un'eredità che il logo porta con sé: la cresta che si alza dentro la zampa sono le Tre Cime, disegnate come le vette dell'impronta stessa. Quando affronti sentieri alpini ripidi e salite rocciose con un cane, una mappa normale non basta: devi conoscere la realtà del terreno sotto le sue zampe. ORMA nasce esattamente da questa necessità: colmare il divario tra la navigazione umana e la sicurezza del cane nelle montagne che amiamo.</p>
+      <p>In italiano, <em>orma</em> significa "impronta" o "traccia". È un omaggio ai segni concreti che i nostri cani lasciano sui sentieri che conquistiamo insieme — e alle tracce durature che lasciano nelle nostre vite. Il nome lavora anche doppio, come acronimo del nostro motore (in inglese):</p>
       <div class="orma-acronym">
         <div class="cell"><b>O</b><span>Optimized</span></div>
         <div class="cell"><b>R</b><span>Route</span></div>
         <div class="cell"><b>M</b><span>Mapping for</span></div>
         <div class="cell"><b>A</b><span>All dogs — e i loro umani</span></div>
       </div>
+      <p>Oggi quella necessità è diventata una guida che copre più di 150 sentieri valutati nelle Dolomiti — e da poco le nostre zampe hanno varcato le Alpi francesi, portando gli anelli sui laghi e i sentieri a balcone della Savoia nello stesso sistema.</p>
     </section>
 
     <section class="guide-section">

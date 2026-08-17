@@ -483,7 +483,14 @@ async function main() {
           : t.highway === 'bus_stop' ? 'bus stop' : 'parking';
         return {
           type: 'Feature',
-          properties: { kind, name: t.name || null },
+          properties: {
+            kind,
+            name: t.name || null,
+            osmId: `${el.type}/${el.id}`,
+            access: t.access || null,
+            fee: t.fee || null,
+            parking: t.parking || null
+          },
           geometry: { type: 'Point', coordinates: [lon, lat] }
         };
       })

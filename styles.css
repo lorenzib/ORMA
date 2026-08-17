@@ -202,6 +202,18 @@ img,svg{max-width:100%;height:auto;}
   gap:6px;
 }
 .topnav .links a:hover,.topnav .links a.active{color:#fff;font-weight:500;}
+/* Current page named in the header as plain text — a quiet divider + label
+   next to the brand, never a button. Inherits the bar's text colour so it
+   works on both the dark guest bar and the cream member bar. */
+.topnav .topnav-page{
+  margin-left:14px;margin-right:auto;padding-left:14px;border-left:1px solid currentColor;
+  font:600 13px 'Inter',sans-serif;color:#F2EEE2;opacity:.72;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:230px;
+  align-self:center;
+}
+@media (max-width:700px){.topnav .topnav-page{font-size:12px;max-width:110px;}}
+/* On inner pages the page name replaces the brand tagline — never both. */
+.topnav:has(.topnav-page) .brand::after{content:none;}
 .mobile-nav-toggle{display:none;}
 /* Tablet: guest labels + language pill outgrow one row well before the
    700px hamburger kicks in — tighten and allow a graceful wrap. */
@@ -624,11 +636,12 @@ img,svg{max-width:100%;height:auto;}
 
 /* ---------- ACCOUNT / GUIDE PAGES ---------- */
 .guide-hero{max-width:760px;margin:0 auto;padding:50px 24px 10px;}
+/* Page kicker: plain uppercase text, not a pill — the page identity also
+   sits in the header (.topnav-page), so this stays a quiet label. */
 .guide-hero .eyebrow{
   display:inline-flex;gap:8px;align-items:center;
-  background:var(--sage-dim);border:1px solid #d3dbcf;color:var(--ink-soft);
-  font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
-  padding:5px 12px;border-radius:var(--radius-pill);
+  color:var(--ink-soft);
+  font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
 }
 .guide-hero .sub{font-size:15px;color:var(--ink-soft);line-height:1.6;}
 .guide-article{max-width:760px;margin:30px auto 0;padding:0 24px 60px;}
@@ -2049,7 +2062,19 @@ body.map-fs-open{overflow:hidden;}
 .hp-menu-scrim[hidden]{display:none;}
 
 /* --- homepage footer (design port) --- */
-.hp-footer{background:var(--ink);color:#D4DED3;padding:44px 40px 30px;text-align:left;font-size:13.5px;}
+.hp-footer{background:var(--ink);color:#D4DED3;padding:44px 40px 30px;text-align:left;font-size:13.5px;position:relative;overflow:hidden;}
+/* The brand mark ghosted tone-on-tone inside the footer band: the logo's
+   dark tile melts into the footer green, so only the paw and its contour
+   rings surface as a shade. Clipped by the footer — it never bleeds onto
+   the page above. */
+.hp-footer::after{
+  content:"";position:absolute;right:-40px;bottom:-90px;width:460px;height:460px;
+  background:url('logo.svg?v=5') center/contain no-repeat;
+  opacity:.16;filter:grayscale(55%);
+  pointer-events:none;
+}
+.hp-footer-grid,.hp-footer-base{position:relative;z-index:1;}
+@media (max-width:700px){.hp-footer::after{width:300px;height:300px;right:-50px;bottom:-60px;}}
 /* Canonical 5-block footer (brand · Explore · For dogs · Connect · Company)
    — the browse-trails footer, used on every page. */
 .hp-footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:28px;}
@@ -2227,16 +2252,16 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-greetbar .li-dog-row{flex:1;min-width:0;}
 
 /* ---------- toolbar (dog context · search · country · region · saved · filters) ----------
-   Desktop: one 50px-ish contextual filter row (app-mockup structure).
+   Desktop: one compact, consistently sized contextual control row.
    The greeting block is a phone-only element; desktop context lives in
-   the "Adapted for" dropdown. */
+   the static "Tailored to" label. */
 .li-toolbar{
   display:grid;
   grid-template-columns:auto minmax(260px,1fr) auto auto auto auto;
   grid-template-areas:"dogctx search country region saved filters";
   align-items:center;
-  gap:10px 12px;
-  padding:9px 24px;
+  gap:8px 10px;
+  padding:7px 20px;
   background:var(--bg);
   border-bottom:1px solid var(--paper-line);
   flex:none;
@@ -2254,15 +2279,16 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 }
 .li-dogctx-wrap{grid-area:dogctx;flex:none;}
 .li-dogctx-static{
-  display:flex;align-items:center;gap:9px;max-width:300px;
-  background:#fff;border:1.5px solid var(--paper-line);border-radius:12px;
-  padding:5px 12px 5px 6px;color:var(--ink);text-align:left;
+  display:flex;align-items:center;gap:8px;max-width:310px;min-height:42px;box-sizing:border-box;
+  background:#fff;border:1.5px solid var(--paper-line);border-radius:var(--radius-pill);
+  padding:5px 13px 5px 5px;color:var(--ink);text-align:left;
 }
 .li-dogctx-avatar{width:30px;height:30px;flex:none;}
 .li-dogctx-copy{display:flex;flex-direction:column;min-width:0;}
-.li-dogctx-copy .li-control-kicker{font-size:9px;}
-.li-dogctx-name{display:flex;align-items:baseline;min-width:0;font:700 13px/1.25 'Inter',sans-serif;white-space:nowrap;overflow:hidden;max-width:230px;}
-.li-dogctx-name>a{overflow:hidden;text-overflow:ellipsis;color:var(--ink);text-decoration:underline;text-decoration-color:#AAB5AA;text-underline-offset:2px;}
+.li-dogctx-copy .li-control-kicker{font-size:8.5px;line-height:1;}
+.li-dogctx-name{display:flex;align-items:baseline;min-width:0;font:700 13.5px/1.2 'Inter',sans-serif;white-space:nowrap;overflow:hidden;max-width:238px;}
+#liDogCtxBreedSep{padding:0 4px;color:var(--ink-soft);}
+.li-dogctx-name>a{overflow:hidden;text-overflow:ellipsis;color:var(--ink);font-size:12.5px;text-decoration:underline;text-decoration-color:#AAB5AA;text-underline-offset:2px;}
 .li-dogctx-name>a:hover{color:var(--accent);text-decoration-color:currentColor;}
 .li-toolbar-greet .li-greet-avatar{width:40px;height:40px;}
 .li-toolbar-greet-copy{display:flex;flex-direction:column;min-width:0;}
@@ -2274,7 +2300,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-country-wrap{grid-area:country;flex:none;}
 .li-region-btn{
   display:inline-flex;align-items:center;justify-content:center;gap:7px;
-  min-height:39px;padding:8px 13px;border:1.5px solid var(--paper-line);
+  height:42px;box-sizing:border-box;padding:0 13px;border:1.5px solid var(--paper-line);
   border-radius:var(--radius-pill);background:#fff;color:var(--ink);
   font:700 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;
 }
@@ -2288,7 +2314,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-region-option.on{background:#EAF3EC;color:var(--ink);font-weight:700;}
 .li-saved-only{
   grid-area:saved;display:inline-flex;align-items:center;justify-content:center;gap:7px;
-  min-height:39px;padding:8px 13px;border:1.5px solid var(--paper-line);
+  height:42px;box-sizing:border-box;padding:0 13px;border:1.5px solid var(--paper-line);
   border-radius:var(--radius-pill);background:#fff;color:var(--ink);
   font:700 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;
 }
@@ -2339,7 +2365,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   background:#fff;
   border:1.5px solid var(--paper-line);
   border-radius:var(--radius-pill);
-  padding:9px 15px;
+  height:42px;box-sizing:border-box;padding:0 14px;
   color:var(--ink-soft);
 }
 .li-search:focus-within{border-color:var(--accent);}
@@ -2382,8 +2408,8 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   gap:7px;
   border:1.5px solid var(--paper-line);
   border-radius:var(--radius-pill);
-  padding:8px 14px;
-  font-size:13px;
+  height:42px;box-sizing:border-box;padding:0 14px;
+  font-size:12.5px;
   font-weight:600;
   color:var(--ink);
   background:#fff;
@@ -2607,7 +2633,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   min-height:0;
 }
 .li-list-head{
-  padding:16px 22px 12px;
+  padding:10px 20px 10px;
   position:sticky;
   top:0;
   background:var(--bg);
@@ -2659,16 +2685,16 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 }
 .li-edit:hover{border-color:var(--accent);}
 .li-newsline{font-size:12px;color:var(--success);font-weight:600;margin:10px 0 0;}
-.li-list-title-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:14px;}
+.li-list-title-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:0;}
 .li-kick{
   font:700 10.5px 'Inter',sans-serif;
   letter-spacing:.14em;
   text-transform:uppercase;
   color:#8A9689;
 }
-.li-list-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;margin-top:4px;color:var(--ink);}
+.li-list-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px;margin-top:2px;color:var(--ink);}
 .li-list-sub{font-size:11.5px;color:#8A9689;font-weight:600;text-align:right;max-width:150px;}
-.li-sort{display:flex;align-items:center;gap:8px;margin-top:10px;}
+.li-sort{display:flex;align-items:center;gap:8px;margin-top:8px;}
 .li-sort-label{font-size:11px;font-weight:600;color:var(--ink-soft);}
 .li-sort .companion-sort-group{padding:3px;}
 .li-sort .companion-sort-group button{padding:5px 10px;font-size:11.5px;}

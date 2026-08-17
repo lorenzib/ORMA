@@ -56,8 +56,8 @@ describe('empty states and long-form navigation', () => {
     window.eval(read('guide-navigation.js'));
     const nav = document.querySelector('.guide-page-nav[data-generated]');
     expect(nav).not.toBeNull();
-    expect(nav.querySelectorAll('a')).toHaveLength(5);
-    expect(document.querySelectorAll('[data-lang-block="en"] .guide-anchor')).toHaveLength(5);
+    expect(nav.querySelectorAll('a')).toHaveLength(4);
+    expect(document.querySelectorAll('[data-lang-block="en"] .guide-anchor')).toHaveLength(4);
   });
 
   test('long guide articles receive navigation while short ones stay focused', () => {
