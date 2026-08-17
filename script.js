@@ -2026,16 +2026,20 @@ function initLoggedInShell(){
     if(addBtn) addBtn.click();
   });
 
-  // Collapse map: the list takes the whole workspace; the map re-measures
-  // itself when it comes back.
-  const collapseBtn = document.getElementById('liCollapseMapBtn');
+  // Keep discovery map-first: collapse the ranked-results panel and let the
+  // map take the whole workspace. A map-edge button restores the panel.
+  const collapseBtn = document.getElementById('liCollapseTrailsBtn');
+  const showTrailsBtn = document.getElementById('liShowTrailsBtn');
   const liBody = document.querySelector('#returningCustomerHomepage .li-body');
-  if(collapseBtn && liBody) collapseBtn.addEventListener('click', () => {
-    const collapsed = liBody.classList.toggle('map-collapsed');
-    collapseBtn.setAttribute('aria-pressed', String(collapsed));
-    collapseBtn.textContent = collapsed ? '▣ Show map' : '◨ Collapse map';
-    if(!collapsed && trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
-  });
+  const setTrailsCollapsed = (collapsed) => {
+    if(!liBody) return;
+    liBody.classList.toggle('list-collapsed', collapsed);
+    if(collapseBtn) collapseBtn.setAttribute('aria-expanded', String(!collapsed));
+    if(showTrailsBtn) showTrailsBtn.hidden = !collapsed;
+    if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
+  };
+  if(collapseBtn) collapseBtn.addEventListener('click', () => setTrailsCollapsed(true));
+  if(showTrailsBtn) showTrailsBtn.addEventListener('click', () => setTrailsCollapsed(false));
 
   // Notification bell opens the full notification centre from the design.
   const bellBtn = document.getElementById('liBellBtn');

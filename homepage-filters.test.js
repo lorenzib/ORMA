@@ -237,6 +237,9 @@ describe('map-first returning homepage layout contract', () => {
     expect(html).toContain('id="liCountryWrap"');
     expect(html).toContain('id="liSavedOnlyBtn"');
     expect(html).toContain('id="liRegionWrap"');
+    expect(html).toContain('id="liCollapseTrailsBtn"');
+    expect(html).toContain('id="liShowTrailsBtn"');
+    expect(html).not.toContain('id="liCollapseMapBtn"');
     expect(html).toContain('id="liSearchSuggest"');
     expect(html).not.toContain('id="liFiltersWrap" class="li-menuwrap li-mobile-only"');
     expect(css).toMatch(/\.li-greetbar\{\s*display:none;/);
