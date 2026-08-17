@@ -41,7 +41,7 @@ describe('canonical discovery state', () => {
 
   test('trail links carry the exact canonical browse return target', () => {
     const state = { search: 'Braies', region: 'dolomites', dog: 'bella', water: true };
-    const trail = new URL(discovery.trailHref('lago-braies', state), 'https://www.dolopaws.com/');
+    const trail = new URL(discovery.trailHref('lago-braies', state), 'https://www.app-orma.com/');
 
     expect(trail.searchParams.get('id')).toBe('lago-braies');
     expect(trail.searchParams.get('from')).toBe(discovery.browseHref(state));

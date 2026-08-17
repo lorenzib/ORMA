@@ -34,7 +34,7 @@ describe('comparison selection state', () => {
       dog:'rufus',
       from:'browse-trails.html?region=dolomites&water=1',
     });
-    const url = new URL(href, 'https://www.dolopaws.com/');
+    const url = new URL(href, 'https://www.app-orma.com/');
     expect(url.searchParams.get('ids')).toBe('lago-carezza,lago-braies');
     expect(url.searchParams.get('dog')).toBe('rufus');
     expect(url.searchParams.get('from')).toBe('browse-trails.html?region=dolomites&water=1');

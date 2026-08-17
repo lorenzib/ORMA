@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://dolopaws.com/schemas/alpine-plant.schema.json",
+  "$id": "https://www.app-orma.com/schemas/alpine-plant.schema.json",
   "title": "ORMA alpine plant collection",
   "type": "object",
   "required": ["meta", "plants"],

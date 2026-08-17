@@ -3,4 +3,4 @@ Allow: /
 Disallow: /account.html
 Disallow: /my-trails.html
 
-Sitemap: https://www.dolopaws.com/sitemap.xml
+Sitemap: https://www.app-orma.com/sitemap.xml

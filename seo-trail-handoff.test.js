@@ -15,7 +15,7 @@ describe('SEO-01 generated trail handoff', () => {
 
   test.each(pages)('%s preserves discovery and hands off to one interactive trail', filename => {
     const html = fs.readFileSync(path.join(trailDirectory, filename), 'utf8');
-    const canonical = `https://www.dolopaws.com/trails/${filename}`;
+    const canonical = `https://www.app-orma.com/trails/${filename}`;
     const primary = html.match(/<a class="sp-cta" href="\.\.\/trail\.html\?id=([^"]+)">Open the full trail guide →<\/a>/g) || [];
     const primaryIndex = html.indexOf('<a class="sp-cta"');
     const articleIndex = html.indexOf('<div class="sp-body">');

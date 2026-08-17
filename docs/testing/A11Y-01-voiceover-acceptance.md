@@ -14,7 +14,7 @@ this record covers the human screen-reader experience they cannot reproduce.
 - Device: iPhone 13 Pro
 - Browser: Safari
 - Screen reader: VoiceOver
-- Site: `https://www.dolopaws.com/`
+- Site: `https://www.app-orma.com/`
 - Trail: Lago di Carezza Loop
 
 Record the installed iOS version and test time. Do not record credentials or a

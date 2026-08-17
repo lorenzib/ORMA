@@ -11,7 +11,7 @@ the browser download and third-party import boundary that unit tests cannot.
 
 ## Supported test case
 
-- Trail: `https://www.dolopaws.com/trail.html?id=lago-carezza`
+- Trail: `https://www.app-orma.com/trail.html?id=lago-carezza`
 - Account: signed-in, non-moderator test account
 - Browser: record name and version
 - Independent reader: record application and version; it must not be ORMA

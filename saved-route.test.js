@@ -9,7 +9,7 @@ describe('SAVE-01 canonical saved-trails route', () => {
   test('legacy bookmarks hand off to the canonical saved page', () => {
     expect(legacyHtml).toContain('<meta name="robots" content="noindex">');
     expect(legacyHtml).toContain('<meta http-equiv="refresh" content="0;url=saved.html">');
-    expect(legacyHtml).toContain('<link rel="canonical" href="https://www.dolopaws.com/saved.html">');
+    expect(legacyHtml).toContain('<link rel="canonical" href="https://www.app-orma.com/saved.html">');
     expect(legacyHtml).toContain('<a href="saved.html"');
     expect(legacyHtml).toContain("window.location.replace('saved.html' + window.location.search + window.location.hash)");
     expect(legacyHtml).not.toContain("window.location.replace('index.html')");

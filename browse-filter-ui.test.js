@@ -67,7 +67,7 @@ function setup(url){
 
 describe('Browse filter UI', () => {
   test('explains a zero result and safely widens distance', () => {
-    const window = setup('https://www.dolopaws.com/browse-trails.html?distance=3&terrain=soft');
+    const window = setup('https://www.app-orma.com/browse-trails.html?distance=3&terrain=soft');
 
     expect(window.document.querySelector('.empty-state__title').textContent)
       .toBe('No trails match this combination');
@@ -87,7 +87,7 @@ describe('Browse filter UI', () => {
 
   test('reviewed dog-safety controls restore from canonical URL state', () => {
     const window = setup(
-      'https://www.dolopaws.com/browse-trails.html?water=1&heat=shade-reviewed&exposure=none-reviewed&access=allowed-reviewed&verification=route-audited'
+      'https://www.app-orma.com/browse-trails.html?water=1&heat=shade-reviewed&exposure=none-reviewed&access=allowed-reviewed&verification=route-audited'
     );
 
     expect(window.document.getElementById('browseWater').getAttribute('aria-pressed')).toBe('true');
@@ -99,7 +99,7 @@ describe('Browse filter UI', () => {
   });
 
   test('selecting a trail opens the persistent comparison tray', () => {
-    const window = setup('https://www.dolopaws.com/browse-trails.html?region=dolomites');
+    const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites');
     const compare = window.document.querySelector('[data-compare-id="reviewed-loop"]');
 
     compare.click();

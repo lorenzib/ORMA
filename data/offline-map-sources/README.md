@@ -18,7 +18,7 @@ Retrieval command:
 
 ```sh
 curl --fail --location \
-  --user-agent 'ORMA-offline-map-builder/1.0 (https://www.dolopaws.com)' \
+  --user-agent 'ORMA-offline-map-builder/1.0 (https://www.app-orma.com)' \
   --output data/offline-map-sources/lago-carezza.osm \
   'https://api.openstreetmap.org/api/0.6/map?bbox=11.5718,46.4070,11.5784,46.4113'
 ```

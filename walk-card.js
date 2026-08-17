@@ -45,7 +45,7 @@
     var bits = [];
     bits.push((dogName ? dogName + '’s walk' : 'Our walk') + ' — ' + (entry.dist || '?') + ' km in ' + fmtDuration(entry.dur));
     if(entry.trail && entry.trail !== 'Recorded walk') bits.push(entry.trail);
-    return bits.join(' · ') + '. Tracked with ORMA 🐾 dolopaws.com';
+    return bits.join(' · ') + '. Tracked with ORMA 🐾 app-orma.com';
   }
 
   function roundRect(ctx, x, y, w, h, r){
@@ -174,7 +174,7 @@
     ctx.beginPath(); ctx.moveTo(70, H - 110); ctx.lineTo(W - 70, H - 110); ctx.stroke();
     ctx.fillStyle = SOFT;
     ctx.font = '600 28px Inter, sans-serif';
-    ctx.fillText('Every walk scored for paw safety · dolopaws.com', 70, H - 52);
+    ctx.fillText('Every walk scored for paw safety · app-orma.com', 70, H - 52);
 
     return canvas;
   }

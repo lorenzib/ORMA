@@ -140,7 +140,7 @@
         'gps',
         'blocker',
         tr('readiness.gps.blocked.title', 'Location permission is blocked'),
-        tr('readiness.gps.blocked.detail', 'Enable location for dolopaws.com in browser settings, then check again.'),
+        tr('readiness.gps.blocked.detail', 'Enable location for app-orma.com in browser settings, then check again.'),
         'check-gps'
       ));
     }else if(gps.checking){

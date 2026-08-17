@@ -145,7 +145,7 @@ async function fetchElevations(samples) {
     let ok = false;
     for (let attempt = 1; attempt <= 3 && !ok; attempt += 1) {
       try {
-        const res = await fetch(url, { headers: { 'user-agent': 'ORMA-trail-builder/1.0 (+https://dolopaws.com)' } });
+        const res = await fetch(url, { headers: { 'user-agent': 'ORMA-trail-builder/1.0 (+https://www.app-orma.com)' } });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
         elevations.push(...data.elevation);

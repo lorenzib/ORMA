@@ -48,7 +48,7 @@ async function overpass(query, attempt = 0){
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'User-Agent': 'ORMA/1.0 (https://www.dolopaws.com; POI refresh pipeline)',
+      'User-Agent': 'ORMA/1.0 (https://www.app-orma.com; POI refresh pipeline)',
     },
     body: 'data=' + encodeURIComponent(query),
   });

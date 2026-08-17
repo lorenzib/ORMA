@@ -25,7 +25,7 @@ const { buildCanonicalCatalog } = require('./trail-adapter');
 
 const ROOT = path.join(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'trails');
-const BASE_URL = 'https://www.dolopaws.com';
+const BASE_URL = 'https://www.app-orma.com';
 
 // ---------------------------------------------------------------
 // 1. Load trail data exactly the way the browser does: concatenate
