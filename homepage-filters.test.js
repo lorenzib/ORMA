@@ -52,6 +52,10 @@ function loadHomepageContext(testTrails){
     <span id="liCountryLabel"></span>
     <div id="liCountryMenu"></div>
     <button id="liSavedOnlyBtn"><span id="liSavedOnlyCount"></span></button>
+    <span id="liDogCtxName"></span>
+    <span id="liDogCtxBreedSep" hidden></span>
+    <a id="liDogCtxBreed" href="guides/breed-group-caveats.html" hidden></a>
+    <span id="liToolbarDogContext"></span>
     <h1 id="returningHeading"></h1>
     <p id="returningSubline"></p>
     <span id="returningCount"></span>
@@ -170,6 +174,16 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('returningCount').textContent).toBe('1 scored · 1 saved');
   });
 
+  test('renders a static tailored-to dog name with a linked breed', () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('renderLiToolbarContext({ name: "Eddie", breed: "Podenco Andaluz" });', context);
+    expect(document.getElementById('liDogCtxName').textContent).toBe('Eddie');
+    expect(document.getElementById('liDogCtxBreed').textContent).toBe('Podenco Andaluz');
+    expect(document.getElementById('liDogCtxBreed').hidden).toBe(false);
+    expect(document.getElementById('liDogCtxBreed').getAttribute('href')).toBe('guides/breed-group-caveats.html');
+    expect(document.getElementById('liToolbarDogContext').textContent).toContain('Eddie · Podenco Andaluz');
+  });
+
   test('switching the separate region control resets the valley', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeRegion = "savoy"; activeValley = "Maurienne"; renderLiRegionControl(null);', context);
@@ -240,6 +254,10 @@ describe('map-first returning homepage layout contract', () => {
     expect(html).toContain('id="liCollapseTrailsBtn"');
     expect(html).toContain('id="liShowTrailsBtn"');
     expect(html).not.toContain('id="liCollapseMapBtn"');
+    expect(html).toContain('Tailored to');
+    expect(html).toContain('id="liDogCtxBreed"');
+    expect(html).not.toContain('id="liDogCtxBtn"');
+    expect(html).not.toContain('Live GPS &amp; safety');
     expect(html).toContain('id="liSearchSuggest"');
     expect(html).not.toContain('id="liFiltersWrap" class="li-menuwrap li-mobile-only"');
     expect(css).toMatch(/\.li-greetbar\{\s*display:none;/);

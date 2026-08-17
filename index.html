@@ -18,7 +18,7 @@
    Firebase resolves. The homepage controller clears the class once real
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
-<link rel="stylesheet" href="styles.css?v=20260817-1">
+<link rel="stylesheet" href="styles.css?v=20260817-2">
 <link rel="stylesheet" href="homepage-mobile.css?v=20260816-4">
 </head>
 <body>
@@ -247,22 +247,15 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 
   <!-- ================= TOOLBAR: CONTEXT + SEARCH + FILTERS ================= -->
   <div class="li-toolbar" id="liToolbar">
-    <!-- Desktop dog-context dropdown (mockup: "Adapted for: …"). On phones
-         the greeting block below carries the context instead. -->
-    <div class="li-menuwrap li-dogctx-wrap" id="liDogCtxWrap">
-      <button type="button" id="liDogCtxBtn" class="li-dogctx-btn" aria-haspopup="true" aria-expanded="false">
+    <!-- Static trail-personalisation context. Dog switching remains in the
+         main navigation's dog control instead of being duplicated here. -->
+    <div class="li-dogctx-wrap" id="liDogCtxWrap">
+      <div class="li-dogctx-static">
         <span class="li-avatar li-dogctx-avatar" id="liDogCtxAvatar" aria-hidden="true">🐾</span>
         <span class="li-dogctx-copy">
-          <span class="li-control-kicker">Adapted for</span>
-          <span class="li-dogctx-name" id="liDogCtxName">Your dog</span>
+          <span class="li-control-kicker">Tailored to</span>
+          <span class="li-dogctx-name"><span id="liDogCtxName">Your dog</span><span id="liDogCtxBreedSep" hidden> — </span><a id="liDogCtxBreed" href="guides/breed-group-caveats.html" hidden></a></span>
         </span>
-        <span class="li-caret" aria-hidden="true">▾</span>
-      </button>
-      <div class="li-menu li-dogctx-menu" id="liDogCtxMenu" hidden>
-        <div class="li-menu-kick">Switch dog</div>
-        <div id="liDogCtxList"></div>
-        <button type="button" class="li-menu-item" id="liDogCtxAddBtn">＋ Add another dog</button>
-        <a class="li-menu-item" href="account.html?next=index.html">Manage dog profiles →</a>
       </div>
     </div>
     <div class="li-toolbar-greet">
@@ -335,8 +328,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <a id="liRecordFab" class="li-record-fab" href="walk.html">
         <span class="li-record-fab-dot" aria-hidden="true"></span>
         <span class="li-record-fab-label">Record walk</span>
-        <span class="li-record-fab-div" aria-hidden="true"></span>
-        <span class="li-record-fab-sub">Live GPS &amp; safety</span>
       </a>
       <button id="homeMapExpandBtn" type="button" class="map-expand-btn li-map-expand" aria-label="Expand map" aria-expanded="false"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span></button>
       <button id="liShowTrailsBtn" type="button" class="li-show-trails" hidden aria-label="Show ranked trails panel">
@@ -522,7 +513,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="basemap-poi-click.js" defer></script>
 <script src="dog-routes-layer.js?v=20260815-4" defer></script>
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
-<script src="script.js?v=20260817-1" defer></script>
+<script src="script.js?v=20260817-2" defer></script>
 <script src="dog-wizard.js?v=20260815-4" defer></script>
 <script src="homepage-search.js?v=20260815-4" defer></script>
 <script src="homepage-mobile.js?v=20260816-1" defer></script>

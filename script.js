@@ -1573,7 +1573,7 @@ function renderLiDogLists(profile){
   const dogs = summary && Array.isArray(summary.dogs) && summary.dogs.length
     ? summary.dogs : profile ? [profile] : [];
   const activeId = summary && summary.activeDogId || (profile && profile.id);
-  ['liDogList','liGreetDogList','liDogCtxList'].forEach(id => {
+  ['liDogList','liGreetDogList'].forEach(id => {
     const list = document.getElementById(id);
     if(!list) return;
     list.innerHTML = '';
@@ -1632,12 +1632,20 @@ function renderLiHeader(profile){
 function renderLiToolbarContext(profile){
   const dogName = (profile && profile.name) ? profile.name : 'Your dog';
   const breed = profile && profile.breed ? profile.breed : '';
-  // Desktop "Adapted for" dropdown: plain text, mockup-style.
+  // Desktop trail context is static; dog switching lives in the main nav.
   const ctxName = document.getElementById('liDogCtxName');
-  if(ctxName) ctxName.textContent = breed ? `${dogName} (${breed})` : dogName;
+  if(ctxName) ctxName.textContent = dogName;
+  const ctxBreed = document.getElementById('liDogCtxBreed');
+  const ctxBreedSep = document.getElementById('liDogCtxBreedSep');
+  const hasBreedName = breed && !NON_BREED_LABELS.has(breed);
+  if(ctxBreed){
+    ctxBreed.textContent = breed;
+    ctxBreed.hidden = !hasBreedName;
+    ctxBreed.title = hasBreedName ? `Read hiking caveats for ${breed}` : '';
+  }
+  if(ctxBreedSep) ctxBreedSep.hidden = !hasBreedName;
   const toolbarContext = document.getElementById('liToolbarDogContext');
   if(!toolbarContext) return;
-  const hasBreedName = breed && !NON_BREED_LABELS.has(breed);
   toolbarContext.replaceChildren(document.createTextNode(dogName));
   if(breed){
     toolbarContext.appendChild(document.createTextNode(' · '));
@@ -2010,17 +2018,6 @@ function initLoggedInShell(){
   if(greetBtn && greetMenu) wireMenu(greetBtn, greetMenu);
   const greetAdd = document.getElementById('liGreetAddDogBtn');
   if(greetAdd) greetAdd.addEventListener('click', () => {
-    const addBtn = document.getElementById('liAddDogBtn');
-    liCloseMenus();
-    if(addBtn) addBtn.click();
-  });
-
-  // Desktop "Adapted for" dropdown — same Switch dog panel, toolbar-anchored.
-  const dogCtxBtn = document.getElementById('liDogCtxBtn');
-  const dogCtxMenu = document.getElementById('liDogCtxMenu');
-  if(dogCtxBtn && dogCtxMenu) wireMenu(dogCtxBtn, dogCtxMenu);
-  const dogCtxAdd = document.getElementById('liDogCtxAddBtn');
-  if(dogCtxAdd) dogCtxAdd.addEventListener('click', () => {
     const addBtn = document.getElementById('liAddDogBtn');
     liCloseMenus();
     if(addBtn) addBtn.click();
