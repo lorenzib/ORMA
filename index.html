@@ -18,7 +18,7 @@
    Firebase resolves. The homepage controller clears the class once real
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
-<link rel="stylesheet" href="styles.css?v=20260817-3">
+<link rel="stylesheet" href="styles.css?v=20260817-4">
 <link rel="stylesheet" href="homepage-mobile.css?v=20260816-4">
 </head>
 <body>
@@ -357,7 +357,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <div class="li-row-meta" id="mapCalloutMeta"></div>
           <div class="map-callout-info-row">
             <div class="li-rating-row"><span class="li-rating-kick">Trail rating</span><span id="mapCalloutRating"></span></div>
-            <span id="mapCalloutMatch"></span>
           </div>
           <div class="map-callout-actions">
             <a class="map-callout-open" id="mapCalloutOpen" href="#">Open trail →</a>
@@ -366,6 +365,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           </div>
           <span class="map-directions-status" id="mapCalloutDirectionsStatus" role="status" aria-live="polite"></span>
         </div>
+        <span id="mapCalloutMatch"></span>
         <span class="close" id="mapCalloutClose" role="button" tabindex="0" aria-label="Clear selection">&times;</span>
       </div>
     </div>
