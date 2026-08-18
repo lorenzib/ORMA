@@ -2080,9 +2080,13 @@ body.map-fs-open{overflow:hidden;}
    rings surface as a shade. Clipped by the footer — it never bleeds onto
    the page above. */
 .hp-footer::after{
-  content:"";position:absolute;right:-30px;bottom:-80px;width:440px;height:460px;
-  background:url('logo-paw.svg?v=1') center/contain no-repeat;
-  opacity:.13;
+  content:"";position:absolute;right:-70px;bottom:-130px;width:540px;height:560px;
+  background:url('logo.svg?v=5') center/contain no-repeat;
+  opacity:.16;filter:grayscale(55%);
+  /* Soft radial mask: the artwork's paw survives, the tile's corners
+     fade out before they can ghost through the band. */
+  -webkit-mask-image:radial-gradient(ellipse 60% 60% at 50% 46%, #000 52%, transparent 76%);
+  mask-image:radial-gradient(ellipse 60% 60% at 50% 46%, #000 52%, transparent 76%);
   pointer-events:none;
 }
 .hp-footer-grid,.hp-footer-base{position:relative;z-index:1;}
