@@ -1,0 +1,1832 @@
+{
+  "generatedAt": "2026-08-18T21:57:04.640Z",
+  "radiusM": 400,
+  "regions": {
+    "dolomites": {
+      "trails": 110,
+      "trailsCovered": 110,
+      "uniqueAmenities": 2423,
+      "byKind": {
+        "refreshment": 633,
+        "water": 502,
+        "toilets": 84,
+        "information": 35,
+        "sight": 720,
+        "viewpoint": 116,
+        "hut": 26,
+        "picnic": 267,
+        "shelter": 40
+      },
+      "trailsWithZero": [
+        "osm-9675994",
+        "osm-11795103"
+      ],
+      "perTrail": {
+        "alpe-siusi": {
+          "name": "Alpe di Siusi Meadow Loop",
+          "total": 24,
+          "byKind": {
+            "sight": 2,
+            "information": 2,
+            "water": 3,
+            "refreshment": 13,
+            "toilets": 4
+          }
+        },
+        "seceda": {
+          "name": "Seceda Ridge Trail",
+          "total": 38,
+          "byKind": {
+            "viewpoint": 6,
+            "sight": 10,
+            "refreshment": 12,
+            "toilets": 2,
+            "water": 6,
+            "hut": 2
+          }
+        },
+        "santa-maddalena": {
+          "name": "Rundweg St. Magdalena",
+          "total": 18,
+          "byKind": {
+            "sight": 6,
+            "picnic": 2,
+            "viewpoint": 1,
+            "water": 4,
+            "toilets": 3,
+            "refreshment": 2
+          }
+        },
+        "tre-cime": {
+          "name": "Tre Cime di Lavaredo Loop",
+          "total": 34,
+          "byKind": {
+            "water": 6,
+            "sight": 12,
+            "viewpoint": 5,
+            "toilets": 5,
+            "hut": 5,
+            "picnic": 1
+          }
+        },
+        "cadini": {
+          "name": "Cadini di Misurina Viewpoint",
+          "total": 7,
+          "byKind": {
+            "viewpoint": 4,
+            "hut": 1,
+            "toilets": 2
+          }
+        },
+        "prato-piazza": {
+          "name": "Prato Piazza (Plätzwiese)",
+          "total": 10,
+          "byKind": {
+            "refreshment": 2,
+            "sight": 4,
+            "hut": 1,
+            "viewpoint": 1,
+            "picnic": 1,
+            "water": 1
+          }
+        },
+        "nuvolau": {
+          "name": "Passo Giau to Rifugio Nuvolau",
+          "total": 11,
+          "byKind": {
+            "picnic": 4,
+            "hut": 1,
+            "sight": 2,
+            "viewpoint": 3,
+            "refreshment": 1
+          }
+        },
+        "sassolungo": {
+          "name": "Sassolungo–Sassopiatto Loop",
+          "total": 44,
+          "byKind": {
+            "sight": 15,
+            "water": 4,
+            "picnic": 3,
+            "refreshment": 14,
+            "hut": 6,
+            "toilets": 1,
+            "viewpoint": 1
+          }
+        },
+        "lago-braies": {
+          "name": "Lago di Braies Loop",
+          "total": 20,
+          "byKind": {
+            "picnic": 9,
+            "refreshment": 3,
+            "toilets": 4,
+            "sight": 2,
+            "information": 1,
+            "viewpoint": 1
+          }
+        },
+        "lago-carezza": {
+          "name": "Lago di Carezza Loop",
+          "total": 14,
+          "byKind": {
+            "viewpoint": 6,
+            "refreshment": 2,
+            "sight": 1,
+            "water": 1,
+            "toilets": 1,
+            "picnic": 3
+          }
+        },
+        "lago-sorapis": {
+          "name": "Lago di Sorapis Trail",
+          "total": 6,
+          "byKind": {
+            "viewpoint": 1,
+            "water": 2,
+            "hut": 1,
+            "sight": 1,
+            "refreshment": 1
+          }
+        },
+        "valley-view": {
+          "name": "Val di Funes Panorama Trail",
+          "total": 11,
+          "byKind": {
+            "viewpoint": 1,
+            "sight": 6,
+            "water": 3,
+            "refreshment": 1
+          }
+        },
+        "piancavallo": {
+          "name": "Piancavallo Malghe Loop",
+          "total": 9,
+          "byKind": {
+            "hut": 2,
+            "sight": 5,
+            "viewpoint": 1,
+            "water": 1
+          }
+        },
+        "geotrail-bulla": {
+          "name": "Geotrail Bula / Pufels / Bulla",
+          "total": 9,
+          "byKind": {
+            "water": 4,
+            "sight": 4,
+            "refreshment": 1
+          }
+        },
+        "giro-del-bulacia": {
+          "name": "Giro del Bulacia",
+          "total": 22,
+          "byKind": {
+            "sight": 8,
+            "viewpoint": 5,
+            "water": 1,
+            "picnic": 2,
+            "refreshment": 5,
+            "hut": 1
+          }
+        },
+        "sentiero-hans-e-paula-steger": {
+          "name": "Sentiero Hans e Paula Steger",
+          "total": 31,
+          "byKind": {
+            "viewpoint": 1,
+            "sight": 2,
+            "toilets": 4,
+            "information": 2,
+            "water": 3,
+            "refreshment": 18,
+            "shelter": 1
+          }
+        },
+        "sentiero-del-trenino": {
+          "name": "Sentiero del Trenino",
+          "total": 304,
+          "byKind": {
+            "water": 62,
+            "viewpoint": 3,
+            "sight": 108,
+            "refreshment": 114,
+            "toilets": 5,
+            "picnic": 3,
+            "shelter": 5,
+            "information": 4
+          }
+        },
+        "giro-del-sasso-lungo": {
+          "name": "Giro del Sasso Lungo",
+          "total": 41,
+          "byKind": {
+            "sight": 14,
+            "water": 4,
+            "picnic": 3,
+            "refreshment": 12,
+            "hut": 6,
+            "toilets": 1,
+            "viewpoint": 1
+          }
+        },
+        "osm-123162": {
+          "name": "Planetenweg - Sentiero dei pianeti",
+          "total": 5,
+          "byKind": {
+            "refreshment": 1,
+            "viewpoint": 3,
+            "sight": 1
+          }
+        },
+        "osm-1116675": {
+          "name": "Familienrundweg",
+          "total": 7,
+          "byKind": {
+            "picnic": 2,
+            "refreshment": 2,
+            "shelter": 1,
+            "viewpoint": 2
+          }
+        },
+        "osm-1116680": {
+          "name": "Sextener Rundweg",
+          "total": 57,
+          "byKind": {
+            "picnic": 14,
+            "viewpoint": 1,
+            "sight": 12,
+            "toilets": 2,
+            "refreshment": 18,
+            "water": 7,
+            "information": 3
+          }
+        },
+        "osm-1780768": {
+          "name": "Gsieser Talblickweg",
+          "total": 37,
+          "byKind": {
+            "sight": 4,
+            "picnic": 9,
+            "water": 6,
+            "refreshment": 12,
+            "toilets": 2,
+            "information": 1,
+            "shelter": 2,
+            "viewpoint": 1
+          }
+        },
+        "osm-2179746": {
+          "name": "Ruine Castelfeder - Rovine Castelfeder",
+          "total": 11,
+          "byKind": {
+            "water": 4,
+            "sight": 2,
+            "viewpoint": 2,
+            "refreshment": 3
+          }
+        },
+        "osm-3202880": {
+          "name": "Rundweg Montiggler Seen",
+          "total": 20,
+          "byKind": {
+            "viewpoint": 4,
+            "picnic": 3,
+            "refreshment": 5,
+            "toilets": 3,
+            "sight": 3,
+            "water": 1,
+            "shelter": 1
+          }
+        },
+        "osm-3885162": {
+          "name": "Seeweg",
+          "total": 13,
+          "byKind": {
+            "picnic": 6,
+            "refreshment": 3,
+            "sight": 2,
+            "information": 1,
+            "toilets": 1
+          }
+        },
+        "osm-5512443": {
+          "name": "Wallburgweg",
+          "total": 29,
+          "byKind": {
+            "shelter": 2,
+            "picnic": 5,
+            "sight": 12,
+            "viewpoint": 3,
+            "refreshment": 6,
+            "toilets": 1
+          }
+        },
+        "osm-6244965": {
+          "name": "Steine erzählen",
+          "total": 28,
+          "byKind": {
+            "water": 5,
+            "picnic": 6,
+            "sight": 11,
+            "information": 1,
+            "refreshment": 5
+          }
+        },
+        "osm-6404258": {
+          "name": "Rundweg Salla",
+          "total": 39,
+          "byKind": {
+            "water": 11,
+            "picnic": 17,
+            "sight": 2,
+            "shelter": 2,
+            "toilets": 2,
+            "refreshment": 5
+          }
+        },
+        "osm-6404633": {
+          "name": "Anello dei Pradi",
+          "total": 3,
+          "byKind": {
+            "water": 2,
+            "information": 1
+          }
+        },
+        "osm-6404634": {
+          "name": "Anello del Bosco",
+          "total": 3,
+          "byKind": {
+            "water": 2,
+            "information": 1
+          }
+        },
+        "osm-6410700": {
+          "name": "Dolomitenblickrunde",
+          "total": 16,
+          "byKind": {
+            "water": 7,
+            "sight": 2,
+            "refreshment": 6,
+            "information": 1
+          }
+        },
+        "osm-6529356": {
+          "name": "Anton Schwingshackl Weg",
+          "total": 13,
+          "byKind": {
+            "water": 5,
+            "picnic": 2,
+            "sight": 5,
+            "refreshment": 1
+          }
+        },
+        "osm-6823031": {
+          "name": "Naturlehrpfad",
+          "total": 107,
+          "byKind": {
+            "sight": 20,
+            "picnic": 14,
+            "toilets": 5,
+            "water": 25,
+            "refreshment": 40,
+            "shelter": 2,
+            "information": 1
+          }
+        },
+        "osm-7045225": {
+          "name": "Giro del Fausior",
+          "total": 20,
+          "byKind": {
+            "picnic": 12,
+            "sight": 2,
+            "water": 3,
+            "refreshment": 3
+          }
+        },
+        "osm-7086961": {
+          "name": "Giro del Zimon",
+          "total": 1,
+          "byKind": {
+            "shelter": 1
+          }
+        },
+        "osm-7277805": {
+          "name": "Waltner Rundweg - 12 - Sentiero circolare di Valtina - 12",
+          "total": 47,
+          "byKind": {
+            "refreshment": 19,
+            "water": 10,
+            "picnic": 4,
+            "sight": 10,
+            "information": 1,
+            "toilets": 1,
+            "shelter": 2
+          }
+        },
+        "osm-7388748": {
+          "name": "Anello dei Colli",
+          "total": 41,
+          "byKind": {
+            "sight": 32,
+            "viewpoint": 3,
+            "water": 2,
+            "picnic": 4
+          }
+        },
+        "osm-7446701": {
+          "name": "Waltner Rundweg 18",
+          "total": 10,
+          "byKind": {
+            "water": 4,
+            "refreshment": 3,
+            "picnic": 2,
+            "sight": 1
+          }
+        },
+        "osm-7546708": {
+          "name": "Anello di Soracrode",
+          "total": 22,
+          "byKind": {
+            "viewpoint": 3,
+            "water": 12,
+            "picnic": 2,
+            "sight": 4,
+            "shelter": 1
+          }
+        },
+        "osm-7547653": {
+          "name": "Anello dei Forti",
+          "total": 20,
+          "byKind": {
+            "sight": 17,
+            "picnic": 2,
+            "viewpoint": 1
+          }
+        },
+        "osm-7547983": {
+          "name": "Anello di Valzalina",
+          "total": 1,
+          "byKind": {
+            "water": 1
+          }
+        },
+        "osm-7548201": {
+          "name": "Anello di Ciampeviei",
+          "total": 1,
+          "byKind": {
+            "water": 1
+          }
+        },
+        "osm-7548344": {
+          "name": "Anello del Sole",
+          "total": 16,
+          "byKind": {
+            "viewpoint": 1,
+            "picnic": 1,
+            "sight": 3,
+            "shelter": 1,
+            "water": 9,
+            "refreshment": 1
+          }
+        },
+        "osm-7548489": {
+          "name": "Anello dei Faggi",
+          "total": 7,
+          "byKind": {
+            "water": 4,
+            "viewpoint": 2,
+            "picnic": 1
+          }
+        },
+        "osm-7549783": {
+          "name": "Anello del Troi de le Ciaure",
+          "total": 6,
+          "byKind": {
+            "water": 4,
+            "sight": 1,
+            "viewpoint": 1
+          }
+        },
+        "osm-8510456": {
+          "name": "Dorfrundweg St. Sigmund",
+          "total": 5,
+          "byKind": {
+            "sight": 1,
+            "water": 1,
+            "refreshment": 2,
+            "picnic": 1
+          }
+        },
+        "osm-9487078": {
+          "name": "Oswald-von-Wolkenstein-Weg",
+          "total": 15,
+          "byKind": {
+            "sight": 6,
+            "picnic": 3,
+            "refreshment": 3,
+            "shelter": 1,
+            "toilets": 1,
+            "water": 1
+          }
+        },
+        "osm-9492594": {
+          "name": "Vogelweider Rundweg",
+          "total": 50,
+          "byKind": {
+            "sight": 25,
+            "water": 9,
+            "picnic": 2,
+            "refreshment": 10,
+            "information": 2,
+            "toilets": 1,
+            "viewpoint": 1
+          }
+        },
+        "osm-9493733": {
+          "name": "Tru di Lëc",
+          "total": 15,
+          "byKind": {
+            "refreshment": 8,
+            "water": 3,
+            "picnic": 1,
+            "information": 1,
+            "toilets": 2
+          }
+        },
+        "osm-9511973": {
+          "name": "Roda de Armentara",
+          "total": 17,
+          "byKind": {
+            "refreshment": 9,
+            "water": 3,
+            "toilets": 1,
+            "sight": 3,
+            "information": 1
+          }
+        },
+        "osm-9511999": {
+          "name": "Tru dles Viles",
+          "total": 36,
+          "byKind": {
+            "sight": 12,
+            "refreshment": 14,
+            "water": 5,
+            "information": 2,
+            "shelter": 1,
+            "toilets": 2
+          }
+        },
+        "osm-9651462": {
+          "name": "Sagenweg - Sentiero delle leggende",
+          "total": 22,
+          "byKind": {
+            "sight": 6,
+            "information": 1,
+            "refreshment": 4,
+            "water": 6,
+            "shelter": 1,
+            "picnic": 2,
+            "toilets": 1,
+            "viewpoint": 1
+          }
+        },
+        "osm-9675994": {
+          "name": "St. Agatha Rundweg",
+          "total": 0,
+          "byKind": {}
+        },
+        "osm-11764094": {
+          "name": "Dörferrunde (Natz => Raas => Schabs => Viums)",
+          "total": 42,
+          "byKind": {
+            "sight": 17,
+            "toilets": 3,
+            "water": 10,
+            "shelter": 1,
+            "refreshment": 3,
+            "picnic": 8
+          }
+        },
+        "osm-11774783": {
+          "name": "1 - Rafeil-Rundweg",
+          "total": 31,
+          "byKind": {
+            "water": 2,
+            "toilets": 1,
+            "sight": 20,
+            "picnic": 3,
+            "shelter": 1,
+            "refreshment": 3,
+            "information": 1
+          }
+        },
+        "osm-11775760": {
+          "name": "Carl-Toldt-Weg",
+          "total": 41,
+          "byKind": {
+            "picnic": 10,
+            "sight": 18,
+            "refreshment": 5,
+            "water": 6,
+            "toilets": 2
+          }
+        },
+        "osm-11780502": {
+          "name": "Naturerlebnispfad Zans",
+          "total": 11,
+          "byKind": {
+            "picnic": 4,
+            "refreshment": 2,
+            "water": 3,
+            "sight": 1,
+            "toilets": 1
+          }
+        },
+        "osm-11790553": {
+          "name": "Steger-Bühel-Runde",
+          "total": 16,
+          "byKind": {
+            "picnic": 5,
+            "sight": 7,
+            "water": 2,
+            "refreshment": 2
+          }
+        },
+        "osm-11792795": {
+          "name": "Rundweg Ölberg",
+          "total": 37,
+          "byKind": {
+            "sight": 23,
+            "picnic": 5,
+            "refreshment": 6,
+            "water": 2,
+            "toilets": 1
+          }
+        },
+        "osm-11795103": {
+          "name": "Kranterrunde",
+          "total": 0,
+          "byKind": {}
+        },
+        "osm-11795251": {
+          "name": "1 - Dörferrundweg (Vintl)",
+          "total": 40,
+          "byKind": {
+            "water": 16,
+            "sight": 8,
+            "refreshment": 10,
+            "viewpoint": 2,
+            "shelter": 4
+          }
+        },
+        "osm-11814834": {
+          "name": "Geotrail Bula - Pufels - Bulla",
+          "total": 9,
+          "byKind": {
+            "water": 4,
+            "sight": 4,
+            "refreshment": 1
+          }
+        },
+        "osm-11814895": {
+          "name": "Kofelrunde",
+          "total": 35,
+          "byKind": {
+            "sight": 6,
+            "water": 8,
+            "refreshment": 18,
+            "information": 1,
+            "toilets": 1,
+            "shelter": 1
+          }
+        },
+        "osm-11815025": {
+          "name": "Rundweg Kasserol",
+          "total": 26,
+          "byKind": {
+            "refreshment": 5,
+            "water": 4,
+            "sight": 13,
+            "information": 2,
+            "picnic": 1,
+            "toilets": 1
+          }
+        },
+        "osm-11816373": {
+          "name": "Bunkerweg",
+          "total": 5,
+          "byKind": {
+            "water": 3,
+            "sight": 2
+          }
+        },
+        "osm-11828233": {
+          "name": "Valser Rundweg",
+          "total": 12,
+          "byKind": {
+            "information": 1,
+            "water": 3,
+            "refreshment": 4,
+            "toilets": 3,
+            "shelter": 1
+          }
+        },
+        "osm-11832013": {
+          "name": "Seerundweg",
+          "total": 17,
+          "byKind": {
+            "sight": 13,
+            "water": 2,
+            "toilets": 1,
+            "refreshment": 1
+          }
+        },
+        "osm-11839597": {
+          "name": "Fenn Promenade",
+          "total": 16,
+          "byKind": {
+            "viewpoint": 5,
+            "refreshment": 5,
+            "picnic": 2,
+            "information": 1,
+            "water": 1,
+            "sight": 1,
+            "toilets": 1
+          }
+        },
+        "osm-11855879": {
+          "name": "Roda de Cherz",
+          "total": 2,
+          "byKind": {
+            "hut": 1,
+            "viewpoint": 1
+          }
+        },
+        "osm-11860429": {
+          "name": "Roda dles Viles",
+          "total": 29,
+          "byKind": {
+            "water": 2,
+            "sight": 19,
+            "viewpoint": 2,
+            "toilets": 1,
+            "refreshment": 4,
+            "information": 1
+          }
+        },
+        "osm-11891581": {
+          "name": "Sentiero Alpago Natura",
+          "total": 134,
+          "byKind": {
+            "water": 33,
+            "sight": 19,
+            "picnic": 47,
+            "refreshment": 20,
+            "shelter": 3,
+            "hut": 3,
+            "information": 2,
+            "viewpoint": 5,
+            "toilets": 2
+          }
+        },
+        "osm-12018939": {
+          "name": "Steinegger Höhenweg",
+          "total": 5,
+          "byKind": {
+            "refreshment": 2,
+            "water": 1,
+            "viewpoint": 1,
+            "sight": 1
+          }
+        },
+        "osm-12027153": {
+          "name": "GEOWeg - Sentiero GEOlogico",
+          "total": 24,
+          "byKind": {
+            "water": 3,
+            "sight": 12,
+            "viewpoint": 8,
+            "refreshment": 1
+          }
+        },
+        "osm-12039246": {
+          "name": "Rundweg Rotwand",
+          "total": 5,
+          "byKind": {
+            "water": 3,
+            "picnic": 2
+          }
+        },
+        "osm-12044077": {
+          "name": "Rundweg Schmieden",
+          "total": 6,
+          "byKind": {
+            "refreshment": 2,
+            "water": 3,
+            "shelter": 1
+          }
+        },
+        "osm-12047303": {
+          "name": "Lang-Erl-Weg",
+          "total": 53,
+          "byKind": {
+            "sight": 18,
+            "viewpoint": 1,
+            "refreshment": 7,
+            "information": 1,
+            "picnic": 3,
+            "toilets": 2,
+            "water": 17,
+            "shelter": 4
+          }
+        },
+        "osm-12079333": {
+          "name": "Giro dei Masi",
+          "total": 39,
+          "byKind": {
+            "sight": 7,
+            "refreshment": 17,
+            "water": 10,
+            "information": 1,
+            "picnic": 3,
+            "toilets": 1
+          }
+        },
+        "osm-12132169": {
+          "name": "Toblacher Höhenweg",
+          "total": 18,
+          "byKind": {
+            "water": 6,
+            "refreshment": 7,
+            "sight": 2,
+            "hut": 1,
+            "picnic": 1,
+            "viewpoint": 1
+          }
+        },
+        "osm-12142337": {
+          "name": "Rundweg Peitlerkofel",
+          "total": 30,
+          "byKind": {
+            "water": 8,
+            "sight": 12,
+            "picnic": 3,
+            "viewpoint": 1,
+            "refreshment": 6
+          }
+        },
+        "osm-12150790": {
+          "name": "Giro dei Capitelli - Kapellenrunde",
+          "total": 37,
+          "byKind": {
+            "sight": 18,
+            "picnic": 2,
+            "viewpoint": 2,
+            "water": 10,
+            "refreshment": 5
+          }
+        },
+        "osm-12164395": {
+          "name": "Dörferrundweg",
+          "total": 33,
+          "byKind": {
+            "water": 16,
+            "refreshment": 6,
+            "sight": 7,
+            "shelter": 4
+          }
+        },
+        "osm-12165590": {
+          "name": "Schwalbenwandrunde",
+          "total": 30,
+          "byKind": {
+            "viewpoint": 1,
+            "water": 10,
+            "refreshment": 9,
+            "sight": 6,
+            "shelter": 4
+          }
+        },
+        "osm-12172440": {
+          "name": "Natur- und Kulturweg",
+          "total": 18,
+          "byKind": {
+            "viewpoint": 2,
+            "sight": 5,
+            "refreshment": 7,
+            "water": 2,
+            "toilets": 2
+          }
+        },
+        "osm-12173965": {
+          "name": "Kleine Schlossrunde",
+          "total": 15,
+          "byKind": {
+            "water": 6,
+            "sight": 3,
+            "refreshment": 4,
+            "information": 1,
+            "shelter": 1
+          }
+        },
+        "osm-12173984": {
+          "name": "Große Schlossrunde",
+          "total": 17,
+          "byKind": {
+            "picnic": 1,
+            "water": 6,
+            "sight": 3,
+            "refreshment": 5,
+            "information": 1,
+            "shelter": 1
+          }
+        },
+        "osm-12174210": {
+          "name": "Rundweg Reischach",
+          "total": 32,
+          "byKind": {
+            "refreshment": 7,
+            "picnic": 5,
+            "water": 7,
+            "sight": 12,
+            "toilets": 1
+          }
+        },
+        "osm-12182516": {
+          "name": "Timpfler Rundweg",
+          "total": 12,
+          "byKind": {
+            "sight": 5,
+            "refreshment": 5,
+            "water": 2
+          }
+        },
+        "osm-12182895": {
+          "name": "Talrundweg",
+          "total": 35,
+          "byKind": {
+            "water": 6,
+            "sight": 10,
+            "refreshment": 18,
+            "toilets": 1
+          }
+        },
+        "osm-12182936": {
+          "name": "Schörgaurunde",
+          "total": 17,
+          "byKind": {
+            "refreshment": 12,
+            "toilets": 1,
+            "water": 2,
+            "sight": 2
+          }
+        },
+        "osm-12189165": {
+          "name": "Rundweg Schwarzegg - Sentiero circolare Dosso Nero",
+          "total": 1,
+          "byKind": {
+            "refreshment": 1
+          }
+        },
+        "osm-12190538": {
+          "name": "Flaaser Rundweg",
+          "total": 5,
+          "byKind": {
+            "sight": 2,
+            "refreshment": 2,
+            "water": 1
+          }
+        },
+        "osm-12190657": {
+          "name": "Rundweg Langfenn",
+          "total": 2,
+          "byKind": {
+            "viewpoint": 1,
+            "refreshment": 1
+          }
+        },
+        "osm-12302191": {
+          "name": "Dorfrundweg Rasen",
+          "total": 37,
+          "byKind": {
+            "picnic": 6,
+            "water": 13,
+            "viewpoint": 2,
+            "refreshment": 10,
+            "information": 1,
+            "toilets": 1,
+            "sight": 4
+          }
+        },
+        "osm-12363235": {
+          "name": "Panoramaweg",
+          "total": 19,
+          "byKind": {
+            "viewpoint": 5,
+            "water": 7,
+            "picnic": 1,
+            "refreshment": 3,
+            "sight": 3
+          }
+        },
+        "osm-12371666": {
+          "name": "Kastelaz Promenade",
+          "total": 39,
+          "byKind": {
+            "refreshment": 13,
+            "picnic": 3,
+            "water": 15,
+            "viewpoint": 1,
+            "sight": 5,
+            "toilets": 1,
+            "information": 1
+          }
+        },
+        "osm-12371689": {
+          "name": "Kirchensteig",
+          "total": 40,
+          "byKind": {
+            "water": 15,
+            "refreshment": 15,
+            "sight": 5,
+            "viewpoint": 1,
+            "toilets": 1,
+            "information": 1,
+            "picnic": 2
+          }
+        },
+        "osm-12731853": {
+          "name": "Rundweg Laugen Elvas",
+          "total": 29,
+          "byKind": {
+            "sight": 17,
+            "water": 3,
+            "picnic": 3,
+            "viewpoint": 3,
+            "refreshment": 3
+          }
+        },
+        "osm-12736753": {
+          "name": "Albeins-Klerant-Milland - Albes-Cleran-Millan",
+          "total": 28,
+          "byKind": {
+            "water": 7,
+            "refreshment": 6,
+            "sight": 12,
+            "picnic": 3
+          }
+        },
+        "osm-12953352": {
+          "name": "archeo",
+          "total": 132,
+          "byKind": {
+            "sight": 32,
+            "water": 25,
+            "refreshment": 64,
+            "viewpoint": 4,
+            "toilets": 5,
+            "picnic": 2
+          }
+        },
+        "osm-13491868": {
+          "name": "Birmehlweg - Sentiero Birmehl",
+          "total": 16,
+          "byKind": {
+            "sight": 7,
+            "picnic": 2,
+            "viewpoint": 1,
+            "refreshment": 5,
+            "water": 1
+          }
+        },
+        "osm-13528390": {
+          "name": "Sentiero del Sabadalt",
+          "total": 7,
+          "byKind": {
+            "water": 3,
+            "sight": 3,
+            "picnic": 1
+          }
+        },
+        "osm-14058492": {
+          "name": "Herrnsteig",
+          "total": 45,
+          "byKind": {
+            "sight": 21,
+            "water": 10,
+            "refreshment": 6,
+            "viewpoint": 2,
+            "toilets": 1,
+            "information": 1,
+            "picnic": 4
+          }
+        },
+        "osm-14058632": {
+          "name": "Nössingbühel",
+          "total": 41,
+          "byKind": {
+            "sight": 20,
+            "viewpoint": 2,
+            "toilets": 1,
+            "refreshment": 5,
+            "water": 9,
+            "information": 1,
+            "picnic": 3
+          }
+        },
+        "osm-15662134": {
+          "name": "Sagenweg Laurein",
+          "total": 6,
+          "byKind": {
+            "sight": 1,
+            "water": 2,
+            "refreshment": 2,
+            "toilets": 1
+          }
+        },
+        "osm-15791408": {
+          "name": "Giro di Bedolpian",
+          "total": 14,
+          "byKind": {
+            "sight": 3,
+            "picnic": 7,
+            "water": 1,
+            "viewpoint": 2,
+            "refreshment": 1
+          }
+        },
+        "osm-19330972": {
+          "name": "Dorfrundweg - Giro del Paese",
+          "total": 14,
+          "byKind": {
+            "water": 8,
+            "sight": 3,
+            "information": 1,
+            "refreshment": 2
+          }
+        },
+        "osm-19697977": {
+          "name": "Panoramaweg",
+          "total": 7,
+          "byKind": {
+            "sight": 2,
+            "hut": 2,
+            "refreshment": 2,
+            "toilets": 1
+          }
+        },
+        "osm-19703479": {
+          "name": "Rundweg Beimsteinkogel",
+          "total": 10,
+          "byKind": {
+            "viewpoint": 1,
+            "water": 2,
+            "picnic": 1,
+            "refreshment": 6
+          }
+        },
+        "osm-19974724": {
+          "name": "Mittlerer Rundweg am Karer See",
+          "total": 17,
+          "byKind": {
+            "viewpoint": 6,
+            "toilets": 1,
+            "refreshment": 5,
+            "water": 1,
+            "picnic": 3,
+            "sight": 1
+          }
+        },
+        "osm-19974725": {
+          "name": "Langer Rundweg am Karer See",
+          "total": 18,
+          "byKind": {
+            "toilets": 1,
+            "refreshment": 5,
+            "viewpoint": 6,
+            "water": 2,
+            "picnic": 3,
+            "sight": 1
+          }
+        }
+      }
+    },
+    "savoy": {
+      "trails": 54,
+      "trailsCovered": 54,
+      "uniqueAmenities": 1047,
+      "byKind": {
+        "refreshment": 254,
+        "water": 182,
+        "toilets": 59,
+        "sight": 249,
+        "viewpoint": 49,
+        "information": 12,
+        "picnic": 206,
+        "shelter": 33,
+        "hut": 3
+      },
+      "trailsWithZero": [],
+      "perTrail": {
+        "osm-3982382": {
+          "name": "Circuit Béatrice de Savoie",
+          "total": 28,
+          "byKind": {
+            "viewpoint": 2,
+            "sight": 12,
+            "toilets": 2,
+            "picnic": 2,
+            "refreshment": 5,
+            "information": 1,
+            "water": 4
+          }
+        },
+        "osm-6250300": {
+          "name": "Boucle du Lac Vert",
+          "total": 28,
+          "byKind": {
+            "viewpoint": 4,
+            "water": 4,
+            "picnic": 11,
+            "refreshment": 3,
+            "toilets": 2,
+            "sight": 3,
+            "information": 1
+          }
+        },
+        "osm-9933643": {
+          "name": "Le Lac Vert",
+          "total": 65,
+          "byKind": {
+            "viewpoint": 1,
+            "refreshment": 43,
+            "picnic": 9,
+            "shelter": 1,
+            "toilets": 7,
+            "sight": 3,
+            "information": 1
+          }
+        },
+        "osm-10116283": {
+          "name": "Itinéraire de découverte historique",
+          "total": 9,
+          "byKind": {
+            "sight": 7,
+            "refreshment": 1,
+            "viewpoint": 1
+          }
+        },
+        "osm-10116380": {
+          "name": "Itinéraire découverte de la nature",
+          "total": 10,
+          "byKind": {
+            "sight": 7,
+            "viewpoint": 1,
+            "refreshment": 2
+          }
+        },
+        "osm-20347406": {
+          "name": "Sentier des Patriotes",
+          "total": 18,
+          "byKind": {
+            "sight": 9,
+            "water": 3,
+            "viewpoint": 1,
+            "picnic": 2,
+            "refreshment": 3
+          }
+        },
+        "osm-11517208": {
+          "name": "La Croix des Salles",
+          "total": 16,
+          "byKind": {
+            "viewpoint": 2,
+            "water": 2,
+            "picnic": 4,
+            "refreshment": 6,
+            "toilets": 2
+          }
+        },
+        "osm-14987412": {
+          "name": "Sentier du Four",
+          "total": 16,
+          "byKind": {
+            "sight": 5,
+            "shelter": 3,
+            "water": 3,
+            "picnic": 4,
+            "refreshment": 1
+          }
+        },
+        "osm-18055492": {
+          "name": "Le Mont d'Arbois - Mont Joux",
+          "total": 25,
+          "byKind": {
+            "water": 1,
+            "picnic": 11,
+            "sight": 2,
+            "refreshment": 7,
+            "toilets": 2,
+            "viewpoint": 2
+          }
+        },
+        "osm-14864704": {
+          "name": "Boucle du Taillefer",
+          "total": 49,
+          "byKind": {
+            "viewpoint": 9,
+            "sight": 24,
+            "water": 3,
+            "information": 1,
+            "toilets": 3,
+            "refreshment": 5,
+            "picnic": 3,
+            "shelter": 1
+          }
+        },
+        "osm-14095296": {
+          "name": "Les Marais d'Albens",
+          "total": 12,
+          "byKind": {
+            "picnic": 2,
+            "sight": 3,
+            "shelter": 3,
+            "refreshment": 3,
+            "viewpoint": 1
+          }
+        },
+        "osm-16322228": {
+          "name": "Boucle du Marais des Chassettes",
+          "total": 17,
+          "byKind": {
+            "refreshment": 10,
+            "sight": 5,
+            "toilets": 1,
+            "shelter": 1
+          }
+        },
+        "osm-16363583": {
+          "name": "Le Marais de Pré Lombard",
+          "total": 13,
+          "byKind": {
+            "picnic": 4,
+            "sight": 1,
+            "shelter": 2,
+            "refreshment": 5,
+            "water": 1
+          }
+        },
+        "osm-16395076": {
+          "name": "Boucle du Lac de la Thuile",
+          "total": 18,
+          "byKind": {
+            "viewpoint": 5,
+            "sight": 2,
+            "water": 1,
+            "refreshment": 1,
+            "picnic": 8,
+            "toilets": 1
+          }
+        },
+        "osm-19153189": {
+          "name": "Le Belvédère (Saint-Pierre-d'Albigny)",
+          "total": 13,
+          "byKind": {
+            "water": 5,
+            "sight": 2,
+            "viewpoint": 1,
+            "refreshment": 4,
+            "toilets": 1
+          }
+        },
+        "osm-15591346": {
+          "name": "Sentier des Buis",
+          "total": 20,
+          "byKind": {
+            "sight": 4,
+            "viewpoint": 7,
+            "picnic": 3,
+            "shelter": 2,
+            "refreshment": 3,
+            "water": 1
+          }
+        },
+        "osm-16365005": {
+          "name": "La Galoppaz par la Combe Servenne",
+          "total": 10,
+          "byKind": {
+            "water": 6,
+            "sight": 3,
+            "viewpoint": 1
+          }
+        },
+        "osm-5479112": {
+          "name": "Chemin des Diligences",
+          "total": 68,
+          "byKind": {
+            "water": 18,
+            "sight": 28,
+            "refreshment": 9,
+            "shelter": 3,
+            "toilets": 4,
+            "information": 1,
+            "picnic": 5
+          }
+        },
+        "osm-9937537": {
+          "name": "Le Mont Jovet",
+          "total": 9,
+          "byKind": {
+            "viewpoint": 1,
+            "picnic": 3,
+            "toilets": 2,
+            "refreshment": 3
+          }
+        },
+        "osm-10539302": {
+          "name": "Sentier éco-sylve de Poingt-Ravier",
+          "total": 95,
+          "byKind": {
+            "water": 12,
+            "picnic": 14,
+            "toilets": 10,
+            "sight": 24,
+            "refreshment": 34,
+            "information": 1
+          }
+        },
+        "osm-12118490": {
+          "name": "B05 - Le Balcon des Plagnes",
+          "total": 11,
+          "byKind": {
+            "refreshment": 1,
+            "sight": 5,
+            "water": 5
+          }
+        },
+        "osm-12121346": {
+          "name": "B08 - Le tour des hameaux de Montandré, Champessuit et Grenis",
+          "total": 15,
+          "byKind": {
+            "water": 7,
+            "sight": 7,
+            "picnic": 1
+          }
+        },
+        "osm-12121548": {
+          "name": "B02 - Le tour de l'Armélaz",
+          "total": 31,
+          "byKind": {
+            "sight": 11,
+            "water": 10,
+            "picnic": 7,
+            "hut": 1,
+            "shelter": 1,
+            "refreshment": 1
+          }
+        },
+        "osm-12121798": {
+          "name": "EN02 - Le terroir de Serpolière",
+          "total": 8,
+          "byKind": {
+            "refreshment": 1,
+            "sight": 4,
+            "water": 1,
+            "picnic": 1,
+            "shelter": 1
+          }
+        },
+        "osm-12127424": {
+          "name": "EN04 - Au fil de l'Arvan",
+          "total": 9,
+          "byKind": {
+            "picnic": 7,
+            "toilets": 1,
+            "water": 1
+          }
+        },
+        "osm-12211260": {
+          "name": "Plateau des Moises",
+          "total": 10,
+          "byKind": {
+            "sight": 1,
+            "picnic": 5,
+            "water": 2,
+            "viewpoint": 2
+          }
+        },
+        "osm-12745924": {
+          "name": "Circuit des escaliers",
+          "total": 37,
+          "byKind": {
+            "sight": 15,
+            "picnic": 2,
+            "refreshment": 9,
+            "water": 4,
+            "information": 2,
+            "toilets": 2,
+            "viewpoint": 3
+          }
+        },
+        "osm-13337921": {
+          "name": "Au pied du Roc d'Enfer",
+          "total": 8,
+          "byKind": {
+            "water": 1,
+            "refreshment": 1,
+            "hut": 1,
+            "toilets": 1,
+            "sight": 2,
+            "picnic": 2
+          }
+        },
+        "osm-13338113": {
+          "name": "Lac de Darbon",
+          "total": 5,
+          "byKind": {
+            "water": 2,
+            "hut": 1,
+            "sight": 1,
+            "refreshment": 1
+          }
+        },
+        "osm-14375158": {
+          "name": "Crêt de la Parenche",
+          "total": 36,
+          "byKind": {
+            "viewpoint": 1,
+            "toilets": 3,
+            "refreshment": 1,
+            "picnic": 19,
+            "sight": 5,
+            "water": 6,
+            "information": 1
+          }
+        },
+        "osm-14376573": {
+          "name": "Crêt de Talière",
+          "total": 2,
+          "byKind": {
+            "viewpoint": 1,
+            "water": 1
+          }
+        },
+        "osm-14377007": {
+          "name": "Route du Lac",
+          "total": 31,
+          "byKind": {
+            "picnic": 19,
+            "water": 5,
+            "sight": 2,
+            "toilets": 3,
+            "refreshment": 1,
+            "information": 1
+          }
+        },
+        "osm-14378946": {
+          "name": "Lac de Pramol",
+          "total": 33,
+          "byKind": {
+            "picnic": 19,
+            "water": 5,
+            "toilets": 3,
+            "refreshment": 1,
+            "sight": 4,
+            "information": 1
+          }
+        },
+        "osm-14379010": {
+          "name": "Croix de Pralognan",
+          "total": 36,
+          "byKind": {
+            "viewpoint": 1,
+            "sight": 5,
+            "toilets": 3,
+            "refreshment": 1,
+            "picnic": 19,
+            "water": 6,
+            "information": 1
+          }
+        },
+        "osm-14379937": {
+          "name": "Albannette petite boucle",
+          "total": 14,
+          "byKind": {
+            "sight": 8,
+            "water": 3,
+            "refreshment": 2,
+            "toilets": 1
+          }
+        },
+        "osm-14381570": {
+          "name": "Albanne",
+          "total": 42,
+          "byKind": {
+            "sight": 7,
+            "water": 7,
+            "toilets": 4,
+            "refreshment": 3,
+            "picnic": 19,
+            "information": 1,
+            "viewpoint": 1
+          }
+        },
+        "osm-14381584": {
+          "name": "Beaumollard",
+          "total": 35,
+          "byKind": {
+            "water": 6,
+            "toilets": 3,
+            "refreshment": 1,
+            "picnic": 19,
+            "information": 1,
+            "sight": 4,
+            "viewpoint": 1
+          }
+        },
+        "osm-14381788": {
+          "name": "Marmottes",
+          "total": 1,
+          "byKind": {
+            "viewpoint": 1
+          }
+        },
+        "osm-14381930": {
+          "name": "La Plagne",
+          "total": 40,
+          "byKind": {
+            "toilets": 4,
+            "refreshment": 3,
+            "water": 6,
+            "picnic": 19,
+            "information": 1,
+            "sight": 7
+          }
+        },
+        "osm-15321049": {
+          "name": "Sentier des Écureuils",
+          "total": 48,
+          "byKind": {
+            "picnic": 13,
+            "water": 15,
+            "sight": 12,
+            "information": 1,
+            "toilets": 2,
+            "refreshment": 2,
+            "shelter": 3
+          }
+        },
+        "osm-15321786": {
+          "name": "Circuit de la Comtesse Cécile",
+          "total": 25,
+          "byKind": {
+            "water": 8,
+            "picnic": 11,
+            "sight": 5,
+            "shelter": 1
+          }
+        },
+        "osm-15535697": {
+          "name": "La Maïtaz",
+          "total": 27,
+          "byKind": {
+            "water": 3,
+            "toilets": 2,
+            "refreshment": 21,
+            "viewpoint": 1
+          }
+        },
+        "osm-16180587": {
+          "name": "Balade du Plateau d'Assy au Lac Vert",
+          "total": 42,
+          "byKind": {
+            "picnic": 12,
+            "shelter": 1,
+            "toilets": 3,
+            "refreshment": 6,
+            "sight": 10,
+            "water": 5,
+            "viewpoint": 4,
+            "information": 1
+          }
+        },
+        "osm-16218739": {
+          "name": "Circuit du Ragairon",
+          "total": 33,
+          "byKind": {
+            "water": 10,
+            "sight": 6,
+            "picnic": 6,
+            "refreshment": 8,
+            "toilets": 2,
+            "shelter": 1
+          }
+        },
+        "osm-16490407": {
+          "name": "Circuit des Sallanches",
+          "total": 7,
+          "byKind": {
+            "water": 6,
+            "viewpoint": 1
+          }
+        },
+        "osm-19064561": {
+          "name": "Ombres sur l'Alpage",
+          "total": 14,
+          "byKind": {
+            "sight": 6,
+            "picnic": 1,
+            "refreshment": 2,
+            "water": 2,
+            "shelter": 3
+          }
+        },
+        "osm-19095412": {
+          "name": "Chalets de Salvadon",
+          "total": 16,
+          "byKind": {
+            "shelter": 1,
+            "sight": 8,
+            "water": 7
+          }
+        },
+        "osm-19095413": {
+          "name": "Alpage de Commune",
+          "total": 9,
+          "byKind": {
+            "sight": 7,
+            "water": 2
+          }
+        },
+        "osm-19531872": {
+          "name": "Circuit des Demoiselles Coiffées",
+          "total": 8,
+          "byKind": {
+            "viewpoint": 1,
+            "sight": 2,
+            "water": 2,
+            "picnic": 2,
+            "toilets": 1
+          }
+        },
+        "osm-19541366": {
+          "name": "Lac Blanc",
+          "total": 31,
+          "byKind": {
+            "picnic": 3,
+            "refreshment": 25,
+            "toilets": 2,
+            "information": 1
+          }
+        },
+        "osm-19661726": {
+          "name": "Sentier pédestre des Graniteurs",
+          "total": 10,
+          "byKind": {
+            "picnic": 7,
+            "water": 1,
+            "refreshment": 1,
+            "viewpoint": 1
+          }
+        },
+        "osm-19760372": {
+          "name": "Boucle du Moulin de Cornet",
+          "total": 21,
+          "byKind": {
+            "water": 15,
+            "shelter": 2,
+            "picnic": 1,
+            "sight": 1,
+            "refreshment": 1,
+            "toilets": 1
+          }
+        },
+        "osm-19855818": {
+          "name": "Boucle des cascades",
+          "total": 13,
+          "byKind": {
+            "sight": 4,
+            "refreshment": 3,
+            "picnic": 4,
+            "viewpoint": 1,
+            "toilets": 1
+          }
+        },
+        "osm-21021130": {
+          "name": "PARCOURS N°11 | LACS DU CHARDONNET",
+          "total": 70,
+          "byKind": {
+            "sight": 5,
+            "picnic": 28,
+            "water": 5,
+            "toilets": 3,
+            "refreshment": 25,
+            "information": 1,
+            "shelter": 3
+          }
+        }
+      }
+    }
+  }
+}
