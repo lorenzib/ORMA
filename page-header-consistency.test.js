@@ -18,12 +18,13 @@ describe('primary section page headers', () => {
     expect(header.querySelector('.section-page-subtitle')).not.toBeNull();
   });
 
-  test('the shared subtitle wraps instead of truncating', () => {
+  test('the shared subtitle stays on one desktop line and wraps on phones', () => {
     const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
-    // Subtitles must stay readable on narrow screens: wrap at a measured
-    // width, never clip with nowrap + ellipsis.
-    expect(css).toMatch(/\.section-page-subtitle\s*\{[^}]*max-width:72ch;/s);
-    expect(css).not.toMatch(/\.section-page-subtitle\s*\{[^}]*white-space:nowrap;/s);
+    // Desktop section introductions share the available content row. Phones
+    // restore normal wrapping so the complete sentence remains readable.
+    expect(css).toMatch(/\.section-page-subtitle\s*\{[^}]*white-space:nowrap;[^}]*text-wrap:nowrap;/s);
+    expect(css).toMatch(/@media\(max-width:760px\)/);
+    expect(css).toMatch(/\.section-page-subtitle\s*\{[^}]*white-space:normal;[^}]*text-wrap:pretty;/s);
     expect(css).not.toMatch(/\.section-page-subtitle\s*\{[^}]*text-overflow:ellipsis;/s);
     expect(css).toMatch(/\.section-page-head h1\s*\{[^}]*font-size:38px;/s);
   });

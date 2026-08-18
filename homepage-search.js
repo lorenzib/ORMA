@@ -455,8 +455,12 @@
           '<div class="hp-how-head"><div class="hp-kick">How ORMA works</div>' +
           '<h2 class="hp-how-h2">A safer walk in three steps</h2></div>' +
           '<div class="hp-how-grid">' + how + '</div>' +
-          '<div class="hp-mission"><p>Our mission is to eliminate the guesswork from outdoor adventures. Dogs are not just pets tagging along on a walk; they are our trusted athletic partners.</p>' +
-          '<p>By combining adventure-grade GPS tracking with community-sourced terrain conditions, scoring paw-pad surface safety, shade density and water availability, we are building the most advanced dog-specific topographic guide in the world: made to track your shared milestones, protect your dog against harsh elements, and ensure that every footprint left on the mountain is a safe one.</p></div>' +
+          '<section class="hp-mission" aria-labelledby="hpMissionTitle">' +
+            '<span class="hp-mission-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18.5c2.2-3.8 4.6-5.7 7.2-5.7 2.4 0 3.9 1.5 6.8-3.3"/><circle cx="5" cy="18.5" r="2"/><circle cx="19" cy="9.5" r="2"/><path d="m9.5 7.5 2.5-3 2.5 3"/></svg></span>' +
+            '<div><div class="hp-mission-kick">Our mission</div>' +
+            '<h3 id="hpMissionTitle">Better-prepared walks, happier dogs.</h3>' +
+            '<p>ORMA brings terrain, shade, water and route guidance together with your dog’s needs, helping you choose each walk with confidence and enjoy more of the trail together.</p></div>' +
+          '</section>' +
         '</div>' +
         '<div class="hp-coll-head"><div>' +
           '<div class="hp-kick hp-kick-left">Featured this week</div>' +
