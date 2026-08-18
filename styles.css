@@ -566,6 +566,9 @@ img,svg{max-width:100%;height:auto;}
   display:block;
   text-align:center;
 }
+.apple-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:8px;padding:11px 14px;border-radius:12px;border:1.5px solid #1b1f19;background:#1b1f19;color:#fff;font:700 13.5px 'Inter',sans-serif;cursor:pointer;}
+.apple-btn:hover{background:#000;}
+.apple-btn[hidden]{display:none;}
 .auth-submit{background:var(--ink);color:#fff;margin-top:4px;}
 .auth-submit:hover{opacity:.94;}
 .google-btn{background:var(--card);border:1.5px solid var(--paper-line);color:var(--ink);}
@@ -2100,7 +2103,7 @@ body.map-fs-open{overflow:hidden;}
 /* The logo's badge background disappears on the footer's matching dark
    green, leaving ~6px of invisible inset — pull the icon left so the
    visible art lines up with the blurb text below. */
-.hp-footer-brand img{width:30px;height:30px;border-radius:0;margin-left:0;object-fit:contain;}
+.hp-footer-brand img{width:32px;height:32px;border-radius:9px;margin-left:-6px;}
 .hp-footer-brand span{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:19px;color:#F7F4EA;}
 .hp-footer-blurb{font-size:13px;line-height:1.6;color:#AEBCAF;max-width:280px;margin:0;}
 .hp-footer-h{font-family:'Inter',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8DA290;margin-bottom:12px;}

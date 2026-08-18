@@ -11,7 +11,7 @@ const firebaseConfig = {
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import {
   getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  signOut as fbSignOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup,
+  signOut as fbSignOut, onAuthStateChanged, GoogleAuthProvider, OAuthProvider, signInWithPopup,
   sendPasswordResetEmail, deleteUser, reauthenticateWithCredential,
   EmailAuthProvider, reauthenticateWithPopup, verifyBeforeUpdateEmail,
   sendEmailVerification, reload, updateProfile, getIdTokenResult
@@ -28,6 +28,12 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
+// Apple sign-in is wired but stays hidden until the provider is configured
+// in Firebase with the Apple Developer Services ID — flip this to true then.
+const APPLE_SIGNIN_READY = false;
+const appleProvider = new OAuthProvider('apple.com');
+appleProvider.addScope('email');
+appleProvider.addScope('name');
 
 let currentUser = null;
 let authResolved = false;
@@ -669,6 +675,15 @@ window.DoloPawsAuth = {
   async signInGoogle() {
     try {
       await signInWithPopup(auth, googleProvider);
+      return { ok: true };
+    } catch (e) {
+      return { ok: false, code: e.code || "auth/unknown", message: friendlyError(e.code) };
+    }
+  },
+  appleSignInReady: APPLE_SIGNIN_READY,
+  async signInApple() {
+    try {
+      await signInWithPopup(auth, appleProvider);
       return { ok: true };
     } catch (e) {
       return { ok: false, code: e.code || "auth/unknown", message: friendlyError(e.code) };

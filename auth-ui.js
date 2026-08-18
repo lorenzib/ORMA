@@ -45,6 +45,7 @@
             '</form>' +
             '<div class="auth-divider"><span>or</span></div>' +
             '<button id="googleBtn" class="google-btn"><span data-i18n="auth.google">Continue with Google</span></button>' +
+            '<button id="appleBtn" class="apple-btn" hidden><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 12.9c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-2-.9-3.2-.9-1.7 0-3.2 1-4 2.5-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.4 0 1.9.8 3.2.8 1.3 0 2.1-1.2 2.9-2.4.9-1.4 1.3-2.7 1.3-2.8-.1 0-2.4-1-2.4-3.9zM14.2 5.3c.6-.8 1.1-1.9 1-3-1 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1.1.1 2.2-.5 2.8-1.3z"/></svg><span data-i18n="auth.apple">Continue with Apple</span></button>' +
             '<p class="auth-toggle">' +
               '<span id="authToggleText" data-i18n="auth.noAccount">Don\'t have an account?</span>' +
               '<button id="authToggleBtn" type="button" data-i18n="auth.signup">Sign up</button>' +
@@ -292,6 +293,25 @@
   googleBtn.addEventListener('click', async () => {
     if(!window.DoloPawsAuth) return;
     const result = await window.DoloPawsAuth.signInGoogle();
+    if(result.ok){
+      finishAuth();
+    } else {
+      errorBox.textContent = resultMessage(result);
+      errorBox.hidden = false;
+    }
+  });
+
+  // Apple sign-in: same flow as Google; the button only appears once the
+  // provider is configured (DoloPawsAuth.appleSignInReady).
+  const appleBtn = document.getElementById('appleBtn');
+  function syncAppleBtn(){
+    if(appleBtn && window.DoloPawsAuth && window.DoloPawsAuth.appleSignInReady) appleBtn.hidden = false;
+  }
+  syncAppleBtn();
+  window.addEventListener('dolopaws-auth-ready', syncAppleBtn, { once: true });
+  if(appleBtn) appleBtn.addEventListener('click', async () => {
+    if(!window.DoloPawsAuth) return;
+    const result = await window.DoloPawsAuth.signInApple();
     if(result.ok){
       finishAuth();
     } else {

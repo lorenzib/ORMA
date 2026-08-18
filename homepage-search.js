@@ -48,7 +48,7 @@
 
   // Segment options for the consolidated filter panel.
   var DIST_SEG = [{ label: 'Any', v: 99 }, { label: '≤3 km', v: 3 }, { label: '≤6 km', v: 6 }, { label: '≤10 km', v: 10 }];
-  var DIFF_SEG = [{ label: 'Any', v: 'any' }, { label: 'Easy', v: 'Easy' }, { label: 'Moderate', v: 'Moderate' }, { label: 'Hard', v: 'Hard' }];
+  var DIFF_SEG = [{ label: 'Any', v: 'any' }, { label: 'Low-risk', v: 'low-risk' }, { label: 'Moderate', v: 'moderate' }, { label: 'Caution', v: 'caution' }];
   var TERRAIN_SEG = [{ label: 'Any', v: 'any' }, { label: 'Soft', v: 'soft' }, { label: 'Mixed', v: 'mixed' }, { label: 'Rocky', v: 'rocky' }];
   var SHADE_SEG = [{ label: 'Any', v: 'any' }, { label: 'Prefer shaded', v: 'shade' }];
   var MATCH_SEG = [{ label: 'Any', v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 }];
@@ -123,14 +123,16 @@
     return { bg: '#F3D9D2', color: '#9C3A25', label: 'Check first', pin: '#9C3A25' };
   }
 
+  // The one taxonomy the whole product uses: the trail rating.
   function difficulty(t) {
-    var gain = typeof t.elevation === 'number' ? t.elevation : 0;
-    var rank = typeof t.terrainRank === 'number' ? t.terrainRank : 1;
-    var d;
-    if (gain >= 400 || (rank >= 2 && gain >= 250)) d = 'Hard';
-    else if (gain >= 180 || t.distance >= 6 || rank >= 2) d = 'Moderate';
-    else d = 'Easy';
-    return { label: d, dot: { Easy: '#4A7856', Moderate: '#C98A2E', Hard: '#9C3A25' }[d] };
+    var level = t && ['low-risk', 'moderate', 'caution'].indexOf(t.safetyLevel) !== -1
+      ? t.safetyLevel : 'moderate';
+    var map = {
+      'low-risk': { label: 'Low-risk', dot: '#2C5C34' },
+      'moderate': { label: 'Moderate', dot: '#8A5A16' },
+      'caution': { label: 'Caution', dot: '#9C3A25' },
+    };
+    return { value: level, label: map[level].label, dot: map[level].dot };
   }
 
   var TONE = { low: 'background:#DCEBDD;color:#2C5C34', mod: 'background:#F5E4C6;color:#8A5A16', caution: 'background:#F3D9D2;color:#9C3A25' };
@@ -169,7 +171,7 @@
       distance: state.dist === 99 ? '' : String(state.dist),
       water: state.hasWater,
       dog: state.dog,
-      difficulty: state.diff === 'any' ? '' : state.diff,
+      risk: state.diff === 'any' ? '' : state.diff,
       terrain: state.terrain === 'any' ? '' : state.terrain,
       heat: state.shade === 'shade' ? 'shade-reviewed' : '',
       minMatch: state.minMatch ? String(state.minMatch) : '',
@@ -209,7 +211,7 @@
         if (state.terrain === 'mixed' && rank !== 1) return false;
         if (state.terrain === 'rocky' && rank < 2) return false;
       }
-      if (state.diff !== 'any' && difficulty(t).label !== state.diff) return false;
+      if (state.diff !== 'any' && difficulty(t).value !== state.diff) return false;
       if (state.hasWater && !hasWater(t)) return false;
       return true;
     }).map(function (t) {

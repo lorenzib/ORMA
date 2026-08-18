@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260818-6">
+<link rel="stylesheet" href="styles.css?v=20260818-7">
 <style>
   /* Guest bar — the homepage component reused verbatim; CTA is a link here */
   a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
@@ -23,6 +23,16 @@
   .browse-compare-note b{font-family:'Bricolage Grotesque',sans-serif;font-size:13.5px;}
   .browse-compare-note em{font-style:normal;font-weight:700;}
   .browse-design-wrap .region-tabs{margin:22px 0 14px;}
+  /* Keep the browse-page introduction and discovery controls compact and
+     aligned to the same content grid. */
+  .browse-design-head{max-width:var(--wrap);margin:0 auto;padding:38px var(--wrap-gutter) 8px;}
+  .browse-design-head .section-page-subtitle{max-width:none;white-space:nowrap;text-wrap:nowrap;}
+  .browse-design-wrap{padding-top:6px;}
+  .browse-primary-controls{display:grid;grid-template-columns:max-content minmax(0,1fr);align-items:center;gap:14px;margin:10px 0 18px;}
+  .browse-primary-controls .region-tabs{margin:0;flex-wrap:nowrap;}
+  .browse-primary-controls .browse-tools{min-width:0;margin:0;flex-wrap:nowrap;}
+  .browse-primary-controls .browse-search-shell{max-width:none;min-width:190px;}
+  .browse-primary-controls .browse-filter-divider{display:none;}
   .simple-grid{display:flex;flex-direction:column;gap:12px;}
   .simple-card{display:flex;gap:16px;align-items:stretch;padding:14px;background:var(--card);border:1px solid var(--paper-line);border-radius:var(--radius-panel);transition:box-shadow .2s,border-color .2s,transform .2s;}
   .simple-card:hover{border-color:var(--accent-light);transform:translateY(-2px);box-shadow:var(--shadow-card-hover);}
@@ -72,6 +82,11 @@
   .browse-results-meta .browse-result-accessible{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
   .hp-footer .hp-footer-grid{max-width:1200px;grid-template-columns:1.2fr repeat(4,1fr);gap:28px;}
   @media(max-width:760px){
+    .browse-design-head{padding:28px 16px 8px;}
+    .browse-design-head .section-page-subtitle{white-space:normal;text-wrap:pretty;}
+    .browse-primary-controls{grid-template-columns:1fr;gap:10px;margin-top:8px;}
+    .browse-primary-controls .region-tabs{max-width:100%;overflow-x:auto;scrollbar-width:none;}
+    .browse-primary-controls .region-tabs::-webkit-scrollbar{display:none;}
     .browse-profile-banner{align-items:flex-start;flex-direction:column;}
     /* Search full-width, and the Distance / Trail rating / Water controls
        visible right under it — never hidden off-screen. */
@@ -147,10 +162,11 @@
 <main class="browse-design-wrap section-page-wrap">
   <div id="browseCollections" hidden></div>
 
-  <!-- Region tabs — the area filter, visible instead of buried in a select -->
-  <div class="region-tabs" id="browseRegionTabs" aria-label="Filter by region"></div>
+  <div class="browse-primary-controls">
+    <!-- Region tabs — the area filter, visible instead of buried in a select -->
+    <div class="region-tabs" id="browseRegionTabs" aria-label="Filter by region"></div>
 
-  <div class="browse-tools" id="browseTools" aria-label="Filter trails">
+    <div class="browse-tools" id="browseTools" aria-label="Filter trails">
     <label class="browse-search-shell">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
       <input class="browse-search" id="browseSearch" type="search" placeholder="Search by trail, area or valley" aria-label="Search trails">
@@ -181,7 +197,7 @@
         <button type="button" class="li-apply" id="browseFiltersApply">Show trails</button>
       </div>
     </div>
-    <div class="browse-filter-controls" id="browseFilterControls" hidden>
+      <div class="browse-filter-controls" id="browseFilterControls" hidden>
       <label class="browse-field"><span>Distance</span>
         <select id="browseDistance" aria-label="Filter by distance">
           <option value="all">Distance</option>
@@ -238,6 +254,7 @@
           <option value="route-audited">Reviewed by ORMA</option>
         </select>
       </label>
+      </div>
     </div>
   </div>
   <!-- What Compare does — feeds the tray at the bottom + compare.html -->
@@ -407,7 +424,7 @@
 <footer class="site-footer hp-footer">
   <div class="hp-footer-grid">
     <div>
-      <div class="hp-footer-brand"><img src="logo-paw.svg?v=2" alt=""><span>ORMA</span></div>
+      <div class="hp-footer-brand"><img src="logo.svg?v=5" alt=""><span>ORMA</span></div>
       <p class="hp-footer-blurb">The personalised trail guide for dogs and their humans, so every footprint left on the mountain is a safe one.</p>
     </div>
     <div>
@@ -468,7 +485,7 @@
 <script src="scoring/recommendation-v1.js?v=20260815-4"></script>
 <script src="scoring/recommendation-adapters-v1.js?v=20260815-4"></script>
 <script src="scoring.js?v=20260815-4"></script>
-<script type="module" src="firebase-init.js?v=20260815-4"></script>
+<script type="module" src="firebase-init.js?v=20260818-8"></script>
 <script src="icon-system.js?v=20260815-4" defer></script>
 <script src="trail-card-visual.js?v=20260815-4" defer></script>
 <script src="regions-runtime-manifest.js?v=20260815-4"></script>
@@ -478,7 +495,7 @@
 <script src="metrics.js?v=20260815-4" defer></script>
 <script src="metric-funnel.js?v=20260815-4" defer></script>
 <script src="guest-context.js?v=20260815-4" defer></script>
-<script src="auth-ui.js?v=20260815-4" defer></script>
+<script src="auth-ui.js?v=20260818-8" defer></script>
 <script src="discovery-state.js?v=20260818-6" defer></script>
 <script src="discovery-filters.js?v=20260818-6" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>
