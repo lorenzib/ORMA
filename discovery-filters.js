@@ -78,7 +78,12 @@
     if(state.risk && state.risk !== 'all' && suitability.safetyLevel !== state.risk) return false;
 
     if(state.distance && state.distance !== 'all'){
-      if(!Number.isFinite(metrics.distanceKm) || metrics.distanceKm > Number(state.distance)) return false;
+      const d = metrics.distanceKm;
+      if(!Number.isFinite(d)) return false;
+      if(state.distance === 'u5'){ if(d >= 5) return false; }
+      else if(state.distance === '5to10'){ if(d < 5 || d > 10) return false; }
+      else if(state.distance === '10p'){ if(d < 10) return false; }
+      else if(d > Number(state.distance)) return false;
     }
 
     if(state.difficulty){
@@ -106,7 +111,11 @@
       if(!hasWater || !verified(parts, 'water')) return false;
     }
 
-    if(state.heat === 'shade-reviewed'){
+    if(state.heat === 'shade-40' || state.heat === 'shade-60'){
+      // Mirrors the homepage shade filter: raw coverage, no review gate.
+      const minShade = state.heat === 'shade-60' ? 60 : 40;
+      if(!Number.isFinite(suitability.shadePercent) || suitability.shadePercent < minShade) return false;
+    }else if(state.heat === 'shade-reviewed'){
       if(!verified(parts, 'heat') || !Number.isFinite(suitability.shadePercent)
         || suitability.shadePercent < 30) return false;
     }else if(state.heat === 'low-reviewed'){
@@ -148,7 +157,10 @@
       search: `Search “${state.search}”`,
       region: state.region === 'dolomites' ? 'Dolomites region' : 'Savoy region',
       risk: `${state.risk} rating`,
-      distance: `Up to ${state.distance} km`,
+      distance: state.distance === 'u5' ? 'Under 5 km'
+        : state.distance === '5to10' ? '5–10 km'
+        : state.distance === '10p' ? '10 km+'
+        : `Up to ${state.distance} km`,
       difficulty: `${state.difficulty} route`,
       terrain: {
         soft:'Gentle surfaces only',
@@ -156,7 +168,10 @@
         rocky:'Rocky terrain is okay',
       }[state.terrain],
       water: 'Water point listed',
-      heat: state.heat === 'low-reviewed' ? 'Lower heat exposure' : 'Shade listed',
+      heat: state.heat === 'low-reviewed' ? 'Lower heat exposure'
+        : state.heat === 'shade-40' ? 'Over 40% shade'
+        : state.heat === 'shade-60' ? 'Over 60% shade'
+        : 'Shade listed',
       exposure: 'No reported exposure',
       access: state.access === 'allowed-reviewed' ? 'Dogs permitted' : 'Dogs allowed, leash is okay',
       verification: state.verification === 'field-verified' ? 'Walked by ORMA' : 'Reviewed by ORMA',

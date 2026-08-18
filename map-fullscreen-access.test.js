@@ -33,9 +33,8 @@ describe('map browsing controls', () => {
     expect(blueprint).toContain('planFromCurrent(navigator, accessTarget, navigator.userAgent, 100)');
   });
 
-  test('the compare explainer uses the glacier-blue palette', () => {
-    const browse = source('browse-trails.html');
-    expect(browse).toContain('background:#E1EFF4');
-    expect(browse).toContain('color:#294D5A');
+  test('the compare explainer sits in a plain white card', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'browse-trails.html'), 'utf8');
+    expect(html).toContain('.browse-compare-note{margin:0 0 12px;padding:12px 15px;background:#fff;border:1px solid var(--paper-line);');
   });
 });

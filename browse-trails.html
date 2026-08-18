@@ -19,7 +19,7 @@
   a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
   .hp-guestbar[hidden]{display:none;}
   /* Compare explainer — sits with the results, same sage info treatment */
-  .browse-compare-note{margin:0 0 12px;padding:12px 15px;background:#E1EFF4;border:1px solid rgba(62,122,145,.28);border-radius:12px;font-size:12.5px;line-height:1.55;color:#294D5A;}
+  .browse-compare-note{margin:0 0 12px;padding:12px 15px;background:#fff;border:1px solid var(--paper-line);border-radius:12px;font-size:12.5px;line-height:1.55;color:var(--ink-soft);}
   .browse-compare-note b{font-family:'Bricolage Grotesque',sans-serif;font-size:13.5px;}
   .browse-compare-note em{font-style:normal;font-weight:700;}
   .browse-design-wrap .region-tabs{margin:22px 0 14px;}
@@ -32,6 +32,7 @@
   .simple-card__rating{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap;align-items:center;}
   .simple-card__rating-label{font:700 10px 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
   .simple-card__reason{display:inline-flex;align-items:flex-start;gap:6px;margin-top:9px;background:var(--success-dim);border-radius:8px;padding:5px 10px;align-self:flex-start;max-width:100%;font-size:12px;line-height:1.35;color:var(--success);}
+  .simple-card__reason--water{background:#E3EEF3;color:#3E7A91;}
   .simple-card__match{flex:none;display:flex;flex-direction:column;align-items:center;align-self:center;justify-content:center;gap:3px;min-width:76px;border-left:1px dashed var(--paper-line);padding-left:12px;}
   .simple-card__match strong{font:800 19px/1 'Inter',sans-serif;color:var(--success);}
   .simple-card__match strong span{font-size:11px;}
@@ -177,10 +178,6 @@
         <div class="li-seg" id="brMatchSeg"></div>
         <div class="li-fsec">Water on route</div>
         <div class="li-seg" id="brWaterSeg"></div>
-        <div class="li-fsec">Reviewed data</div>
-        <div class="li-seg" id="brExposureSeg"></div>
-        <div class="li-seg" id="brAccessSeg" style="margin-top:6px;"></div>
-        <div class="li-seg" id="brVerificationSeg" style="margin-top:6px;"></div>
         <button type="button" class="li-apply" id="browseFiltersApply">Show trails</button>
       </div>
     </div>
@@ -193,6 +190,9 @@
           <option value="6" hidden>Up to 6 km</option>
           <option value="10">5–10 km</option>
           <option value="20" hidden>Up to 20 km</option>
+          <option value="u5" hidden>Under 5 km</option>
+          <option value="5to10" hidden>5–10 km</option>
+          <option value="10p" hidden>10 km+</option>
         </select>
       </label>
       <label class="browse-field"><span>Trail rating</span>
@@ -216,6 +216,8 @@
         <select id="browseHeat" aria-label="Filter by reviewed shade or heat">
           <option value="">Any shade or heat data</option>
           <option value="shade-reviewed">At least 30% shade</option>
+          <option value="shade-40" hidden>Over 40% shade</option>
+          <option value="shade-60" hidden>Over 60% shade</option>
         </select>
       </label>
       <label class="browse-field browse-field--advanced"><span>Exposure</span>
@@ -477,8 +479,8 @@
 <script src="metric-funnel.js?v=20260815-4" defer></script>
 <script src="guest-context.js?v=20260815-4" defer></script>
 <script src="auth-ui.js?v=20260815-4" defer></script>
-<script src="discovery-state.js?v=20260815-4" defer></script>
-<script src="discovery-filters.js?v=20260815-4" defer></script>
+<script src="discovery-state.js?v=20260818-6" defer></script>
+<script src="discovery-filters.js?v=20260818-6" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
@@ -535,7 +537,7 @@
     const PER_PAGE = 15;
     const allowedRegions = ['all', 'dolomites', 'savoy'];
     const allowedRisks = ['all', 'low-risk', 'moderate', 'caution'];
-    const allowedDistances = ['all', '3', '5', '6', '10', '20'];
+    const allowedDistances = ['all', '3', '5', '6', '10', '20', 'u5', '5to10', '10p'];
     let page = 1;
 
     // Curated collections — same predicates as the homepage "Featured this
@@ -766,16 +768,16 @@
     function buildFilterPanel(){
       if(!filtersMenu) return;
       brSeg('brDistSeg', [
-        { label:'Any', v:'all' }, { label:'Under 5 km', v:'5' }, { label:'5–10 km', v:'10' }, { label:'Up to 20 km', v:'20' },
+        { label:'Any', v:'all' }, { label:'Under 5 km', v:'u5' }, { label:'5–10 km', v:'5to10' }, { label:'10 km+', v:'10p' },
       ], distance.value, v => { distance.value = v; });
       brSeg('brRiskSeg', [
         { label:'Any', v:'all' }, { label:'Low risk', v:'low-risk' }, { label:'Moderate', v:'moderate' }, { label:'Caution', v:'caution' },
       ], risk.value, v => { risk.value = v; });
       brSeg('brTerrainSeg', [
-        { label:'Any', v:'' }, { label:'Gentle', v:'soft' }, { label:'Mixed', v:'mixed' }, { label:'Rocky ok', v:'rocky' },
+        { label:'Any', v:'' }, { label:'Paved', v:'soft' }, { label:'Gravel', v:'mixed' }, { label:'Rocky', v:'rocky' },
       ], terrain.value, v => { terrain.value = v; });
       brSeg('brShadeSeg', [
-        { label:'Any', v:'' }, { label:'30%+ shade', v:'shade-reviewed' },
+        { label:'Any', v:'' }, { label:'Over 40%', v:'shade-40' }, { label:'Over 60%', v:'shade-60' },
       ], heat.value, v => { heat.value = v; });
       brSeg('brMatchSeg', [
         { label:'Any', v:'' }, { label:'60%+', v:'60' }, { label:'75%+', v:'75' }, { label:'85%+', v:'85' },
@@ -783,15 +785,6 @@
       brSeg('brWaterSeg', [
         { label:'Any', v:'no' }, { label:'Water on route', v:'yes' },
       ], waterOnly ? 'yes' : 'no', v => { waterOnly = v === 'yes'; });
-      brSeg('brExposureSeg', [
-        { label:'Any exposure data', v:'' }, { label:'No reported exposure', v:'none-reviewed' },
-      ], exposure.value, v => { exposure.value = v; });
-      brSeg('brAccessSeg', [
-        { label:'Any dog access', v:'' }, { label:'Dogs permitted', v:'allowed-reviewed' },
-      ], access.value, v => { access.value = v; });
-      brSeg('brVerificationSeg', [
-        { label:'All trails', v:'' }, { label:'Reviewed by ORMA', v:'route-audited' },
-      ], verification.value, v => { verification.value = v; });
     }
     const filtersReset = document.getElementById('browseFiltersReset');
     if(filtersReset) filtersReset.addEventListener('click', () => {
@@ -932,7 +925,8 @@
         const match = matchScore(t);
         const tier = match >= 75 ? 'Great match' : match >= 55 ? 'Good' : 'Check first';
         const tierClass = match >= 75 ? 'great' : match >= 55 ? 'good' : 'check';
-        const reason = t.waterSources && t.waterSources.length
+        const reasonIsWater = !!(t.waterSources && t.waterSources.length);
+        const reason = reasonIsWater
           ? `Water access listed at ${t.waterSources.length === 1 ? 'one point' : t.waterSources.length + ' points'}`
           : (t.shadeCoverage >= 50 ? `${t.shadeCoverage}% shade along the route` : '');
         const openHref = `trail.html?id=${encodeURIComponent(t.id)}&from=${encodeURIComponent(browseStateTarget())}`;
@@ -947,7 +941,7 @@
             <div class="simple-card__rating">
               <span class="simple-card__rating-label">Trail rating</span>${ratingBadge}${provenance}
             </div>
-            ${reason ? `<span class="simple-card__reason"><b aria-hidden="true">✓</b>${esc(reason)}</span>` : ''}
+            ${reason ? `<span class="simple-card__reason${reasonIsWater ? ' simple-card__reason--water' : ''}"><b aria-hidden="true">✓</b>${esc(reason)}</span>` : ''}
           </a>
           <div class="simple-card__match simple-card__match--${tierClass}">
             <strong>${match}<span>%</span></strong>
