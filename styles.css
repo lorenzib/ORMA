@@ -2945,12 +2945,15 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 /* Layers chip lives in the map's top-left corner; its panel opens below */
 .li-map .map-btn{top:10px;left:10px;bottom:auto;}
 .li-map .map-panel{top:52px;left:10px;bottom:auto;}
-.li-map .li-map-expand{top:10px;right:56px;bottom:auto;width:auto;height:36px;min-height:36px;}
+.li-map .li-map-expand{top:10px;right:10px;bottom:auto;width:auto;height:36px;min-height:36px;}
+/* Expand owns the first slot in the right-hand stack; MapLibre's zoom and
+   locate controls begin underneath it, so the two groups cannot overlap. */
+.li-map .maplibregl-ctrl-top-right{top:46px;}
 .li-map.map-fs{position:fixed;inset:0;z-index:300;width:100vw;height:100vh;height:100dvh;display:block!important;border-radius:0;}
 .li-map.map-fs #trailMap{position:absolute;inset:0;}
 .li-map.map-fs .map-btn,.li-map.map-fs .map-panel{left:max(10px,env(safe-area-inset-left));}
-.li-map.map-fs .li-map-expand{top:max(10px,env(safe-area-inset-top));right:calc(56px + env(safe-area-inset-right));}
-.li-map.map-fs .maplibregl-ctrl-top-right{top:env(safe-area-inset-top);right:env(safe-area-inset-right);}
+.li-map.map-fs .li-map-expand{top:max(10px,env(safe-area-inset-top));right:max(10px,env(safe-area-inset-right));}
+.li-map.map-fs .maplibregl-ctrl-top-right{top:calc(max(10px,env(safe-area-inset-top)) + 36px);right:env(safe-area-inset-right);}
 .li-map.map-fs .td-layer-switch{left:max(10px,env(safe-area-inset-left));bottom:max(10px,env(safe-area-inset-bottom));}
 .li-map.map-fs .maplibregl-ctrl-bottom-right{right:env(safe-area-inset-right);bottom:env(safe-area-inset-bottom);}
 

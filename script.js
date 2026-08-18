@@ -673,6 +673,16 @@ let trailMapLoaded = false;
 let pendingPathList = null;
 let pendingMarkerList = null;
 
+function collapseMapAttribution(container){
+  if(!container) return;
+  const attribution = container.querySelector('.maplibregl-ctrl-attrib');
+  if(!attribution) return;
+  attribution.classList.add('maplibregl-compact');
+  attribution.classList.remove('maplibregl-compact-show');
+  const toggle = attribution.querySelector('.maplibregl-ctrl-attrib-button');
+  if(toggle) toggle.setAttribute('aria-expanded', 'false');
+}
+
 function initTrailMap(){
   if(trailMapInstance || typeof maplibregl === 'undefined') return;
   const el = document.getElementById('trailMap');
@@ -697,6 +707,9 @@ function initTrailMap(){
     showUserHeading: true,
     fitBoundsOptions: { maxZoom: 15.5 },
   }), 'top-right');
+  // MapLibre can briefly render the full credit strip while its style loads.
+  // Start behind the compact ⓘ control; visitors can still open it on demand.
+  collapseMapAttribution(el);
 
   // App-style fullscreen keeps every control anchored to its original
   // corner and works on iOS, where the browser Fullscreen API is limited.
@@ -727,6 +740,7 @@ function initTrailMap(){
   };
 
   trailMapInstance.on('load', async () => {
+    collapseMapAttribution(el);
     addTerrainSource(trailMapInstance);
     increaseLabelDensity(trailMapInstance);
     preventTransitPoiDuplication(trailMapInstance);

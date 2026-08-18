@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260818-10">
+<link rel="stylesheet" href="styles.css?v=20260818-12">
 <link rel="stylesheet" href="trail-mobile.css?v=20260815-4">
 <link rel="stylesheet" href="pre-hike-readiness.css?v=20260815-4">
 <style>
@@ -471,11 +471,12 @@ body{background:#EFECE2;}
 .td2-stat .f.match b .pct{display:inline;margin-top:0;font-size:16px;}
 
 /* ---- Map controls: fixed, collision-free slots ----
-   Top-right belongs to MapLibre's zoom/locate stack; Expand sits left of it.
+   Expand owns the first top-right slot; MapLibre's zoom/locate stack sits below.
    Top-left is a vertical stack: km chip → POI toggle → live pill.
    Bottom-left: map key, with the data notice docked above it. */
-.td2 .map-expand-btn{top:12px;right:56px;bottom:auto;height:36px;min-height:36px;}
+.td2 .map-expand-btn{top:12px;right:12px;bottom:auto;height:36px;min-height:36px;}
 .td2 .trail-map-box.hike-status-visible .map-expand-btn{top:12px;bottom:auto;}
+.td2 .trail-map-box .maplibregl-ctrl-top-right{top:48px;}
 .td2 .td-map-toggle{top:16px;left:16px;}
 .td2 #routesToggle{top:58px;left:16px;}
 .td2 #liftsToggle{top:100px;left:16px;}
@@ -496,8 +497,8 @@ body{background:#EFECE2;}
 .td2 .trail-map-box.map-fs #mapHikeRejoinBtn{bottom:218px!important;}
 .td2 .trail-map-box.map-fs .td-layer-switch{left:max(12px,env(safe-area-inset-left));bottom:max(12px,env(safe-area-inset-bottom));}
 .td2 .trail-map-box.map-fs:has(.td2-elev:not([hidden])) .td-layer-switch{bottom:132px;}
-.td2 .trail-map-box.map-fs .maplibregl-ctrl-top-right{top:env(safe-area-inset-top);right:env(safe-area-inset-right);}
-.td2 .trail-map-box.map-fs .map-expand-btn{top:max(12px,env(safe-area-inset-top));right:calc(56px + env(safe-area-inset-right));}
+.td2 .trail-map-box.map-fs .maplibregl-ctrl-top-right{top:calc(max(12px,env(safe-area-inset-top)) + 36px);right:env(safe-area-inset-right);}
+.td2 .trail-map-box.map-fs .map-expand-btn{top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));}
 
 /* ---- Consistency pass: one visual language across the page ---- */
 /* Review stars: the same gold everywhere (hero, average, review rows). */
@@ -1005,7 +1006,7 @@ body{background:#EFECE2;}
 <script src="hike-mode.js?v=20260815-4" defer></script>
 <script src="detail-pois.js?v=20260815-4" defer></script>
 <script src="trail-reports.js?v=20260815-4" defer></script>
-<script src="trail.js?v=20260818-1" defer></script>
+<script src="trail.js?v=20260818-2" defer></script>
 <script src="trail-blueprint.js?v=20260815-4" defer></script>
 <script src="trail-detail-ui.js?v=20260815-4" defer></script>
 <script src="trail-mobile.js?v=20260815-4" defer></script>

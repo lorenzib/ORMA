@@ -19,6 +19,20 @@ describe('map browsing controls', () => {
     expect(detail).toContain("mapBox.classList.toggle('map-fs', on)");
     expect(css).toContain('.li-map.map-fs{position:fixed;inset:0;');
     expect(css).toContain('.trail-map-box.map-fs{position:fixed;inset:0;');
+    expect(css).toContain('.li-map .li-map-expand{top:10px;right:10px;');
+    expect(css).toContain('.li-map .maplibregl-ctrl-top-right{top:46px;}');
+    expect(trail).toContain('.td2 .map-expand-btn{top:12px;right:12px;');
+    expect(trail).toContain('.td2 .trail-map-box .maplibregl-ctrl-top-right{top:48px;}');
+  });
+
+  test('map attribution starts collapsed behind its info button', () => {
+    const app = source('script.js');
+    const detail = source('trail.js');
+
+    expect(app).toContain('attributionControl: { compact: true }');
+    expect(app).toContain("attribution.classList.remove('maplibregl-compact-show')");
+    expect(detail).toContain('attributionControl: { compact: true }');
+    expect(detail).toContain("attribution.classList.remove('maplibregl-compact-show')");
   });
 
   test('directions are location-gated on the map preview and detail page', () => {

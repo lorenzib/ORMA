@@ -1183,6 +1183,7 @@ function renderTrail(t){
       center: [t.lng, t.lat],
       zoom: 14,
       pitch: 0, // clean, flat, label-first by default — 3D is opt-in via the toggle
+      attributionControl: { compact: true },
     });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
     window._dolopawsTrailMap = map; // debug/test handle
@@ -1270,6 +1271,13 @@ function renderTrail(t){
     }
 
     map.on('load', async () => {
+      const attribution = document.querySelector('#trailDetailMap .maplibregl-ctrl-attrib');
+      if(attribution){
+        attribution.classList.add('maplibregl-compact');
+        attribution.classList.remove('maplibregl-compact-show');
+        const toggle = attribution.querySelector('.maplibregl-ctrl-attrib-button');
+        if(toggle) toggle.setAttribute('aria-expanded', 'false');
+      }
       let poiVisible = true;           // "Points of interest" toggle state
       let liftsVisible = false;        // Lifts are optional planning context
       const amenityMarkers = [];       // curated rifugi/water Markers (toggled with POIs)
