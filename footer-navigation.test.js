@@ -50,10 +50,10 @@ describe('footer navigation', () => {
 
   test('every public page uses the same ordered footer navigation', () => {
     const expected = [
+      ['how-scoring-works.html', 'How scoring works'],
       ['browse-trails.html', 'Browse all Trails'],
       ['collections.html', 'Collections'],
       ['compare.html', 'Compare trails'],
-      ['how-scoring-works.html', 'How scoring works'],
       ['guides/water-for-dogs-on-trail.html', 'Heat &amp; hydration'],
       ['guides/paw-protection.html', 'Paw protection'],
       ['guides/breed-group-caveats.html', 'Breed group caveats'],
@@ -66,7 +66,6 @@ describe('footer navigation', () => {
       ['about.html', 'Newsletter'],
       ['contact.html', 'Support'],
       ['about.html', 'About us'],
-      ['how-scoring-works.html', 'How scoring works'],
       ['contact.html', 'Contact'],
       ['privacy.html', 'Privacy'],
       ['terms.html', 'Terms'],
