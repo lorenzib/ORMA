@@ -1,0 +1,50 @@
+{
+  "contractVersion":"1.0.0",
+  "generatedAt":"2026-08-18T14:47:14.907Z",
+  "agentId":"redTeam",
+  "gate":"serious-objection-review",
+  "publicMutationAllowed":false,
+  "reviews":[
+    {
+      "candidateId":"osm-relation-1484751",
+      "recommendation":"clear-for-final-human-verification",
+      "seriousObjections":[],
+      "challengesPerformed":[
+        "Rechecked the exact classic 101/105 route variant against its approved 2,077-point GPX and rejected the unrelated OSM relation as provenance.",
+        "Rechecked that the official hard rating remains visible and is not softened by the dog-friendly label.",
+        "Tested water wording against the named Malga LangAlm fountain; the dossier preserves seasonal flow and potability uncertainty.",
+        "Tested the inferred high-alpine shade wording; the dossier claims no percentage and instructs users not to rely on tree shade.",
+        "Checked that the selected hero is licensed/location context only and is not used as evidence of present conditions."
+      ],
+      "requiredAcknowledgements":[
+        {"id":"tre-hard-rating","label":"Keep the official hard rating prominent; ORMA Verified does not mean suitable for every dog."},
+        {"id":"tre-water-caveat","label":"Keep the LangAlm fountain marked seasonal and not guaranteed potable."},
+        {"id":"tre-live-checks","label":"Recheck road, parking, weather and trail conditions before each season and before departure."}
+      ]
+    },
+    {
+      "candidateId":"osm-relation-6678431",
+      "recommendation":"clear-for-final-human-verification",
+      "seriousObjections":[],
+      "challengesPerformed":[
+        "Rechecked that the approved experience is the chairlift-assisted 204-point route, not the deleted OSM relation or a fully walked loop.",
+        "Rechecked the 2026 5 Torri chairlift season and weather dependency against the operator's current summer page.",
+        "Rechecked dog lift access, lead and muzzle conditions against current official Cortina guidance; no contrary 5 Torri rule was found.",
+        "Rejected the separate Fedare chairlift dog-price sheet as a different lift and therefore not applicable evidence.",
+        "Checked that wider-area sheep evidence remains explicitly variable for the exact circuit and does not claim guardian dogs."
+      ],
+      "requiredAcknowledgements":[
+        {"id":"cinque-assisted","label":"Keep the route labelled chairlift-assisted and predominantly downhill everywhere."},
+        {"id":"cinque-dog-lift","label":"Keep leash and muzzle requirements prominent and link to live lift operations."},
+        {"id":"cinque-operational","label":"Recheck lift dates, weather operation and dog carriage conditions each season."}
+      ]
+    },
+    {
+      "candidateId":"osm-way-25736154",
+      "recommendation":"remain-blocked-source-exhausted",
+      "seriousObjections":[{"id":"braies-livestock-unresolved","claimId":"livestock","severity":"serious","reason":"No route-specific authority reply or in-season field evidence establishes whether livestock or guardian dogs occur on the exact Seeweg circuit."}],
+      "challengesPerformed":["Checked the export for an attached authority reply or field report; none was supplied.","Rejected wider-park pasture evidence as insufficiently specific to the 1,492–1,531 m lakeshore circuit.","Preserved the protected-area lead rule but did not treat it as livestock evidence."],
+      "requiredResolution":"Attach a complete written response from the provincial nature-park authority or an in-season field report. No response cannot be treated as absence."
+    }
+  ]
+}

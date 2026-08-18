@@ -1,0 +1,147 @@
+{
+  "contractVersion": "1.0.0",
+  "campaignGeneratedAt": "2026-08-17T15:22:29.174Z",
+  "executedAt": "2026-08-17T21:18:15.540Z",
+  "publicMutationAllowed": false,
+  "summary": {
+    "attempted": 5,
+    "needsHuman": 5,
+    "failed": 0
+  },
+  "jobs": [
+    {
+      "contractVersion": "1.0.0",
+      "id": "catalogue-cartographer-001",
+      "agentId": "cartographer",
+      "action": "verify-current-relation",
+      "candidateId": "osm-16322228",
+      "claimIds": [
+        "route-identity",
+        "route-geometry"
+      ],
+      "status": "needs-human",
+      "inputRefs": [
+        "production-trails/osm-16322228"
+      ],
+      "outputRefs": [
+        "backoffice-data/cartographer/osm-16322228.json"
+      ],
+      "requestedBy": "catalogue-verification-campaign-v1",
+      "createdAt": "2026-08-17T15:22:29.174Z",
+      "startedAt": "2026-08-17T21:18:15.546Z",
+      "completedAt": "2026-08-17T21:18:16.160Z",
+      "humanGate": "geometry-approval",
+      "outcome": "ready-for-human-review",
+      "blockers": []
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "catalogue-cartographer-002",
+      "agentId": "cartographer",
+      "action": "verify-current-relation",
+      "candidateId": "osm-19153189",
+      "claimIds": [
+        "route-identity",
+        "route-geometry"
+      ],
+      "status": "needs-human",
+      "inputRefs": [
+        "production-trails/osm-19153189"
+      ],
+      "outputRefs": [
+        "backoffice-data/cartographer/osm-19153189.json"
+      ],
+      "requestedBy": "catalogue-verification-campaign-v1",
+      "createdAt": "2026-08-17T15:22:29.174Z",
+      "startedAt": "2026-08-17T21:18:16.160Z",
+      "completedAt": "2026-08-17T21:18:16.283Z",
+      "humanGate": "geometry-approval",
+      "outcome": "ready-for-human-review",
+      "blockers": []
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "catalogue-cartographer-003",
+      "agentId": "cartographer",
+      "action": "verify-current-relation",
+      "candidateId": "osm-16363583",
+      "claimIds": [
+        "route-identity",
+        "route-geometry"
+      ],
+      "status": "needs-human",
+      "inputRefs": [
+        "production-trails/osm-16363583"
+      ],
+      "outputRefs": [
+        "backoffice-data/cartographer/osm-16363583.json"
+      ],
+      "requestedBy": "catalogue-verification-campaign-v1",
+      "createdAt": "2026-08-17T15:22:29.174Z",
+      "startedAt": "2026-08-17T21:18:16.283Z",
+      "completedAt": "2026-08-17T21:18:16.461Z",
+      "humanGate": "geometry-approval",
+      "outcome": "ready-for-human-review",
+      "blockers": []
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "catalogue-cartographer-004",
+      "agentId": "cartographer",
+      "action": "verify-current-relation",
+      "candidateId": "osm-20347406",
+      "claimIds": [
+        "route-identity",
+        "route-geometry"
+      ],
+      "status": "needs-human",
+      "inputRefs": [
+        "production-trails/osm-20347406"
+      ],
+      "outputRefs": [
+        "backoffice-data/cartographer/osm-20347406.json"
+      ],
+      "requestedBy": "catalogue-verification-campaign-v1",
+      "createdAt": "2026-08-17T15:22:29.174Z",
+      "startedAt": "2026-08-17T21:18:16.461Z",
+      "completedAt": "2026-08-17T21:18:16.627Z",
+      "humanGate": "geometry-approval",
+      "outcome": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "catalogue-cartographer-005",
+      "agentId": "cartographer",
+      "action": "verify-current-relation",
+      "candidateId": "osm-16395076",
+      "claimIds": [
+        "route-identity",
+        "route-geometry"
+      ],
+      "status": "needs-human",
+      "inputRefs": [
+        "production-trails/osm-16395076"
+      ],
+      "outputRefs": [
+        "backoffice-data/cartographer/osm-16395076.json"
+      ],
+      "requestedBy": "catalogue-verification-campaign-v1",
+      "createdAt": "2026-08-17T15:22:29.174Z",
+      "startedAt": "2026-08-17T21:18:16.627Z",
+      "completedAt": "2026-08-17T21:18:16.770Z",
+      "humanGate": "geometry-approval",
+      "outcome": "ready-for-human-review",
+      "blockers": []
+    }
+  ],
+  "outputs": [
+    "backoffice-data/cartographer/osm-16322228.json",
+    "backoffice-data/cartographer/osm-19153189.json",
+    "backoffice-data/cartographer/osm-16363583.json",
+    "backoffice-data/cartographer/osm-20347406.json",
+    "backoffice-data/cartographer/osm-16395076.json"
+  ]
+}

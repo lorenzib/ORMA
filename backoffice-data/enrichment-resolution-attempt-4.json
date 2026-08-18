@@ -1,0 +1,19 @@
+{
+  "contractVersion":"1.0.0",
+  "sourceDecisionExport":"orma-review-decisions-2026-08-18 (15).json",
+  "generatedAt":"2026-08-18T14:24:28.715Z",
+  "resolutionAttempt":4,
+  "maximumAutomatedAttempts":5,
+  "strategy":"File-level hero-asset provenance and a direct provincial-authority contact packet for the final route-specific livestock gap",
+  "publicMutationAllowed":false,
+  "summary":{"supportedClaims":36,"newlySupportedClaims":3,"unresolvedOrConflictedClaims":1,"fullyOrmaVerified":0,"needsHumanReview":true},
+  "newlySupported":[
+    {"candidateId":"osm-relation-1484751","claimId":"photo","result":"A geolocated Tre Cime route hero has complete creator, CC BY-SA 4.0, credit, licence-link, change-notice and alt-text fields. Operational shots remain a non-blocking enrichment checklist.","humanGate":"asset-and-licensing-approval"},
+    {"candidateId":"osm-relation-6678431","claimId":"photo","result":"A geolocated Cinque Torri landmark hero has complete creator, CC BY-SA 4.0, credit, licence-link, change-notice and alt-text fields. Operational shots remain a non-blocking enrichment checklist.","humanGate":"asset-and-licensing-approval"},
+    {"candidateId":"osm-way-25736154","claimId":"photo","result":"A recent geolocated southern-shore hero has complete creator, CC BY-SA 4.0, credit, licence-link, change-notice and alt-text fields. Operational shots remain a non-blocking enrichment checklist.","humanGate":"asset-and-licensing-approval"}
+  ],
+  "unresolvedByCandidate":[
+    {"candidateId":"osm-way-25736154","claimIds":["livestock"],"nextAttempt":{"attempt":5,"strategy":"Evaluate a complete written park-authority response or an in-season field report; absence of a response cannot clear the claim"}}
+  ],
+  "guardrails":["No image was downloaded, attached to a public record or published.","Hero images establish visual identity only and cannot prove present trail conditions.","The Braies authority message is prepared but has not been sent.","All three photo resolutions remain proposals until the human asset-and-licensing gate accepts their exact provenance and use constraints."]
+}

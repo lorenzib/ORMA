@@ -35,15 +35,18 @@ describe('map browsing controls', () => {
     expect(detail).toContain("attribution.classList.remove('maplibregl-compact-show')");
   });
 
-  test('directions are location-gated on the map preview and detail page', () => {
+  test('map-card directions hand straight off to a maps app; the detail page stays location-gated', () => {
     const home = source('index.html');
     const trail = source('trail.html');
     const app = source('script.js');
     const blueprint = source('trail-blueprint.js');
 
     expect(home).toContain('id="mapCalloutDirections"');
+    expect(home).toContain('id="mapCalloutDirMenu"');
+    expect(home).not.toContain('mapCalloutDirectionsStatus');
+    expect(app).toContain("appleA.href = `https://maps.apple.com/?daddr=");
+    expect(app).not.toContain('planFromCurrent(navigator, target, navigator.userAgent, 100)');
     expect(trail).toContain('id="getDirectionsStatus"');
-    expect(app).toContain('planFromCurrent(navigator, target, navigator.userAgent, 100)');
     expect(blueprint).toContain('planFromCurrent(navigator, accessTarget, navigator.userAgent, 100)');
   });
 

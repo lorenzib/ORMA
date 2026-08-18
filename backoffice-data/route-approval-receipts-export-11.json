@@ -1,0 +1,11 @@
+{
+  "contractVersion": "1.0.0",
+  "sourceDecisionExport": "orma-review-decisions-2026-08-18 (11).json",
+  "recordedAt": "2026-08-18T13:28:00Z",
+  "publicMutationAllowed": false,
+  "approvals": [
+    {"candidateId":"osm-relation-1484751","proposalId":"tre-cime-classic-101-105","gate":"geometry-approval","coordinateCount":2077,"geometrySha256":"70dbb5578aad6d7419482e9f1e7fe27f847f77f46b7722a44c21742be103c38d","exactProposalMatch":true,"reviewedAt":"2026-08-18T13:20:38.181Z","scope":"Classic route geometry only; enrichment and safety gates remain pending."},
+    {"candidateId":"osm-relation-6678431","proposalId":"cinque-torri-three-refuges-assisted","gate":"geometry-approval","coordinateCount":204,"geometrySha256":"7131fb630d239582e8ab7b1be22e914cc9c3a1caaa1959921d71569dd93ff47a","exactProposalMatch":true,"reviewedAt":"2026-08-18T13:21:04.998Z","scope":"Chairlift-assisted route geometry only; parking correction, enrichment and safety gates remain pending."},
+    {"candidateId":"osm-way-25736154","proposalId":"lago-braies-seeweg-circuit","gate":"geometry-approval","coordinateCount":171,"geometrySha256":"bceb2c22065c61f669de7f1c86b983158dbdeb87542ec3283459f5c910987762","exactProposalMatch":true,"reviewedAt":"2026-08-18T13:20:50.031Z","scope":"Seeweg route geometry only; enrichment and safety gates remain pending."}
+  ]
+}

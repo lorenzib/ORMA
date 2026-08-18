@@ -1,0 +1,13 @@
+{
+  "contractVersion":"1.0.0",
+  "sourceDecisionExport":"orma-review-decisions-2026-08-18 (13).json",
+  "recordedAt":"2026-08-18T14:25:00Z",
+  "gate":"safety-input-review",
+  "publicMutationAllowed":false,
+  "summary":{"dossiersReviewed":3,"supportedClaimsConfirmed":25,"unresolvedClaimsCarriedForward":12,"exactClaimSetMatch":true},
+  "decisions":[
+    {"candidateId":"osm-relation-1484751","action":"confirm-supported-claims","supportedClaimCount":9,"unresolvedClaimIds":["exposure-surface","heat-shade","livestock","photo"],"reviewedAt":"2026-08-18T14:02:12.701Z"},
+    {"candidateId":"osm-relation-6678431","action":"confirm-supported-claims","supportedClaimCount":8,"unresolvedClaimIds":["livestock","photo","shade","walking-elevation"],"reviewedAt":"2026-08-18T14:03:29.149Z"},
+    {"candidateId":"osm-way-25736154","action":"confirm-supported-claims","supportedClaimCount":8,"unresolvedClaimIds":["livestock","photo","shade","water"],"reviewedAt":"2026-08-18T14:02:50.448Z"}
+  ]
+}

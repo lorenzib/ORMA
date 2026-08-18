@@ -1,0 +1,31 @@
+{
+  "contractVersion":"1.0.0",
+  "sourceDecisionExport":"orma-review-decisions-2026-08-18 (17).json",
+  "recordedAt":"2026-08-18T15:06:33.866Z",
+  "gate":"serious-objection-review",
+  "publicMutationAllowed":false,
+  "summary":{"ormaVerifiedApproved":2,"verificationBlocked":1,"exactAcknowledgementMatch":true,"publicationAuthorized":false},
+  "approvals":[
+    {
+      "candidateId":"osm-relation-1484751",
+      "action":"approve-orma-verified",
+      "acknowledgementIds":["tre-hard-rating","tre-live-checks","tre-water-caveat"],
+      "reviewedAt":"2026-08-18T15:04:59.634Z",
+      "reviewedBy":"local-editor",
+      "exactAcknowledgementMatch":true,
+      "publicationAuthorized":false
+    },
+    {
+      "candidateId":"osm-relation-6678431",
+      "action":"approve-orma-verified",
+      "acknowledgementIds":["cinque-assisted","cinque-dog-lift","cinque-operational"],
+      "reviewedAt":"2026-08-18T15:06:17.733Z",
+      "reviewedBy":"local-editor",
+      "exactAcknowledgementMatch":true,
+      "publicationAuthorized":false
+    }
+  ],
+  "blocked":[
+    {"candidateId":"osm-way-25736154","reason":"livestock claim remains source-exhausted; authority response or in-season field report required","verificationDecisionPresent":false}
+  ]
+}

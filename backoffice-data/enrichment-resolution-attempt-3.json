@@ -1,0 +1,29 @@
+{
+  "contractVersion":"1.0.0",
+  "sourceDecisionExport":"orma-review-decisions-2026-08-18 (14).json",
+  "generatedAt":"2026-08-18T14:17:27Z",
+  "resolutionAttempt":3,
+  "maximumAutomatedAttempts":5,
+  "strategy":"Authoritative qualitative route semantics, official habitat context, route-specific seasonal evidence and conservative carry-water policy",
+  "publicMutationAllowed":false,
+  "summary":{"supportedClaims":33,"newlySupportedClaims":6,"unresolvedOrConflictedClaims":4,"fullyOrmaVerified":0,"needsHumanReview":true},
+  "newlySupported":[
+    {"candidateId":"osm-relation-1484751","claimId":"heat-shade","result":"The approved circuit stays at 2,283–2,454 m; official park habitat guidance places Alpine meadows above the timber line. ORMA therefore uses the conservative non-quantified instruction that dependable tree shade should not be expected.","evidenceType":"source-backed-inference","humanGate":"safety-input-review"},
+    {"candidateId":"osm-relation-1484751","claimId":"exposure-surface","result":"The official full-circuit description identifies a wide outward path and a narrower but unchallenging return, while the technical sheet supplies gravel, stone, drainage-channel, width and exposure detail for the outbound segment. No whole-route dog rating is inferred.","evidenceType":"authoritative-qualitative","humanGate":"safety-input-review"},
+    {"candidateId":"osm-relation-1484751","claimId":"livestock","result":"A current official destination guide describes flowered pasture and audible cowbells beside the Lavaredo segment. Seasonal presence remains variable and guardian dogs are not established.","evidenceType":"route-specific-seasonal","humanGate":"safety-input-review"},
+    {"candidateId":"osm-relation-6678431","claimId":"shade","result":"The operator's turn-by-turn itinerary directly supports an exposed upper panoramic/refuge zone followed by a forest return. No shade percentage is assigned.","evidenceType":"authoritative-qualitative","humanGate":"safety-input-review"},
+    {"candidateId":"osm-way-25736154","claimId":"shade","result":"The current circuit narrative directly identifies tree/forest portions and open southern beaches/lakeshore. No shade percentage is assigned.","evidenceType":"authoritative-qualitative","humanGate":"safety-input-review"},
+    {"candidateId":"osm-way-25736154","claimId":"water","result":"No official source reviewed identifies a potable route fountain. The publishable safety instruction is to carry all dog water and never treat the protected lake as a verified source.","evidenceType":"conservative-operational-policy","humanGate":"safety-input-review"}
+  ],
+  "unresolvedByCandidate":[
+    {"candidateId":"osm-relation-1484751","claimIds":["photo"],"nextAttempt":{"attempt":4,"strategy":"File-by-file licence approval packet plus operational field-shot substitution plan"}},
+    {"candidateId":"osm-relation-6678431","claimIds":["photo"],"nextAttempt":{"attempt":4,"strategy":"File-by-file licence approval packet plus lift, trench and forest-return field-shot substitution plan"}},
+    {"candidateId":"osm-way-25736154","claimIds":["livestock","photo"],"nextAttempt":{"attempt":4,"strategy":"Direct park/municipality contact packet for lakeshore grazing plus file-by-file licence approval and hazard-shot plan"}}
+  ],
+  "guardrails":[
+    "Qualitative shade statements are deliberately not converted into canopy percentages.",
+    "Absence of a verified fountain is not presented as proof that no water service exists; it triggers a carry-all-water instruction.",
+    "Seasonal livestock evidence never implies a guaranteed encounter or guardian-dog presence.",
+    "All six resolutions remain proposals until the human safety-input gate confirms their exact wording."
+  ]
+}

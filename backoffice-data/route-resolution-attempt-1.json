@@ -1,0 +1,47 @@
+{
+  "contractVersion": "1.0.0",
+  "sourceDecisionExport": "orma-review-decisions-2026-08-18 (9).json",
+  "generatedAt": "2026-08-18T12:41:53Z",
+  "resolutionAttempt": 1,
+  "maximumAutomatedAttempts": 5,
+  "publicMutationAllowed": false,
+  "summary": {
+    "routeResearchRequested": 3,
+    "readyForHumanGeometryReview": 2,
+    "requiresFurtherAutomatedResearch": 1,
+    "sourceExhausted": 1,
+    "fullyOrmaVerified": 0
+  },
+  "results": [
+    {
+      "candidateId": "osm-relation-1484751",
+      "state": "ready-for-human-route-choice",
+      "requestedByHuman": true,
+      "humanNote": "review existing resources and trails online to mirror them here, this should be a loop and the loop should go behind tre cime, i think there are a couple, one much longer and one closer to the tre cime loop",
+      "proposalIds": ["tre-cime-classic-101-105", "tre-cime-monte-paterno-101-104-105"],
+      "excludedVariant": {
+        "name": "Monte Paterno tunnels/ferrata",
+        "reason": "Official source marks the 17.55 km itinerary not dog-friendly and requiring ferrata equipment."
+      }
+    },
+    {
+      "candidateId": "osm-relation-6678431",
+      "state": "route-variant-geometry-unresolved",
+      "requestedByHuman": true,
+      "nextAttemptRequired": true,
+      "finding": "Authoritative evidence separates the trail 425 walking approach from the chairlift plus trail 439 approach, but no authoritative complete loop geometry was found."
+    },
+    {
+      "candidateId": "osm-way-25736154",
+      "state": "ready-for-human-geometry-review",
+      "requestedByHuman": true,
+      "proposalIds": ["lago-braies-seeweg-circuit"]
+    },
+    {
+      "candidateId": "osm-relation-1372055",
+      "state": "source-exhausted-direct-confirmation-required",
+      "requestedByHuman": false,
+      "automatedAttemptScheduled": false
+    }
+  ]
+}

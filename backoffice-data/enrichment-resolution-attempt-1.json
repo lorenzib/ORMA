@@ -1,0 +1,15 @@
+{
+  "contractVersion":"1.0.0",
+  "sourceDecisionExport":"orma-review-decisions-2026-08-18 (12).json",
+  "generatedAt":"2026-08-18T14:15:00Z",
+  "resolutionAttempt":1,
+  "maximumAutomatedAttempts":5,
+  "strategy":"Official operator, destination, provincial-regulation and approved-GPX evidence synthesis",
+  "publicMutationAllowed":false,
+  "summary":{"candidates":3,"supportedClaims":25,"unresolvedOrConflictedClaims":12,"fullyOrmaVerified":0,"nextHumanGate":"safety-input-review"},
+  "results":[
+    {"candidateId":"osm-relation-1484751","supportedClaimIds":["route-identity","route-geometry","route-metrics","trailhead","parking-existence","parking-pin","road-access","dog-access","water"],"unresolvedClaimIds":["heat-shade","exposure-surface","livestock","photo"],"nextAttempt":{"attempt":2,"strategy":"Approved-route land-cover intersection, segment surface-tag audit, current grazing-source search and asset provenance scan"}},
+    {"candidateId":"osm-relation-6678431","supportedClaimIds":["route-identity","route-geometry","parking-pin","dog-access","season","surface-exposure","water","pois"],"unresolvedClaimIds":["walking-elevation","shade","livestock","photo"],"nextAttempt":{"attempt":2,"strategy":"Chairlift/walking GPX segmentation, land-cover intersection, current grazing-source search and asset provenance scan"}},
+    {"candidateId":"osm-way-25736154","supportedClaimIds":["route-identity","route-geometry","route-metrics","parking","seasonal-access","dog-access","surface-exposure","pois"],"unresolvedClaimIds":["shade","water","livestock","photo"],"nextAttempt":{"attempt":2,"strategy":"Approved-route land-cover intersection, fountain/service verification, current grazing-source search and asset provenance scan"}}
+  ]
+}

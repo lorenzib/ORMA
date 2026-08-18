@@ -1,0 +1,28 @@
+{
+  "contractVersion": "1.0.0",
+  "candidateId": "osm-relation-6678431",
+  "generatedAt": "2026-08-18T13:10:00Z",
+  "resolutionAttempt": 3,
+  "maximumAutomatedAttempts": 5,
+  "strategy": "Current official lift-operator operations and destination pet-transport rules",
+  "publicMutationAllowed": false,
+  "state": "assisted-route-ready-for-human-geometry-review",
+  "proposalId": "cinque-torri-three-refuges-assisted",
+  "resolvedClaims": [
+    {
+      "claim": "Dogs may use the 5 Torri lift",
+      "state": "supported",
+      "conditions": ["leash", "muzzle"],
+      "source": "https://cortina.dolomiti.org/en/winter/cortina-experience/cortina-pet-friendly/"
+    },
+    {
+      "claim": "5 Torri chairlift operates in summer 2026",
+      "state": "supported-seasonal-weather-dependent",
+      "publishedSeason": "2026-06-06 to 2026-10-11",
+      "source": "https://5torri.it/EN/p38-Lift-facilities-Summer"
+    }
+  ],
+  "remainingUnresolvedClaims": ["Correct Bai de Dones parking through the human gate", "Source a separate complete fully walked circuit"],
+  "nextAutomatedAttempt": 4,
+  "fullyOrmaVerified": false
+}

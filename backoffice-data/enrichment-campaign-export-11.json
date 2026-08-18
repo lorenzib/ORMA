@@ -1,0 +1,14 @@
+{
+  "contractVersion":"1.0.0",
+  "sourceDecisionExport":"orma-review-decisions-2026-08-18 (11).json",
+  "createdAt":"2026-08-18T13:28:00Z",
+  "publicMutationAllowed":false,
+  "status":"queued",
+  "candidates":[
+    {"candidateId":"osm-relation-1484751","proposalId":"tre-cime-classic-101-105","parkingGate":"approved","jobs":["terrain-poi","regulatory-ranger","evidence-librarian","visual-director"]},
+    {"candidateId":"osm-relation-6678431","proposalId":"cinque-torri-three-refuges-assisted","parkingGate":"correction-required","jobs":["terrain-poi","regulatory-ranger","evidence-librarian","visual-director"],"promotionBlocker":"Corrected Bai de Dones parking still requires human approval."},
+    {"candidateId":"osm-way-25736154","proposalId":"lago-braies-seeweg-circuit","parkingGate":"approved-four-option-set","jobs":["terrain-poi","regulatory-ranger","evidence-librarian","visual-director"]}
+  ],
+  "requiredOutputs":["elevation-profile-and-metrics","surface-and-exposure-assessment","shade-and-heat-assessment","water-and-poi-evidence","dog-access-and-seasonal-rules","livestock-and-wildlife-risk","asset-gap-and-shot-list","source-provenance-audit"],
+  "nextHumanGate":"safety-input-review"
+}

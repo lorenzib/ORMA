@@ -1,0 +1,13 @@
+{
+  "contractVersion":"1.0.0",
+  "generatedAt":"2026-08-18T14:25:00Z",
+  "agentId":"visualDirector",
+  "publicMutationAllowed":false,
+  "selectionState":"candidates-only-human-licensing-gate-required",
+  "candidates":[
+    {"candidateId":"osm-relation-1484751","url":"https://commons.wikimedia.org/wiki/File:Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg","coverage":"route-to-Rifugio-Locatelli","licence":"verify-current-file-page-before-use","limitations":["not parking","not narrow return","not water point","not dog context"]},
+    {"candidateId":"osm-relation-6678431","url":"https://commons.wikimedia.org/wiki/File:Cinque_Torri_01.jpg","coverage":"Cinque-Torri-landmark","licence":"CC BY-SA 4.0","limitations":["not parking","not lift boarding","not trenches","not forest return"]},
+    {"candidateId":"osm-way-25736154","url":"https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_5.jpg","coverage":"geolocated-southern-shore","licence":"CC BY-SA 4.0","limitations":["not roots or steps","not rock-wall hazard","not parking","not dog context"]}
+  ],
+  "humanGate":"asset-and-licensing-approval"
+}

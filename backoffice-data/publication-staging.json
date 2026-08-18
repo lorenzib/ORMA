@@ -1,0 +1,636 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-18T19:29:13.564Z",
+  "mode": "staging-only",
+  "stage": "website-publication-preview",
+  "sourceEditorialQueue": "backoffice-data/verified-trail-editorial-queue.json",
+  "sourceExecution": "backoffice-data/verified-trail-editorial-execution.json",
+  "sourceReviewQueue": "backoffice-data/content-review-queue.json",
+  "publicMutationAllowed": false,
+  "publicationAuthorized": false,
+  "items": [
+    {
+      "candidateId": "osm-relation-1484751",
+      "targetTrailId": "tre-cime",
+      "operation": "update-existing",
+      "state": "ready-for-publication-preview",
+      "missingApprovals": [],
+      "sourceApprovals": {
+        "copy": {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-relation-1484751-copy",
+          "agentId": "copywriter",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T18:41:25.208Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false,
+          "submissionId": "content-review-2026-08-18T18-42-39-581Z"
+        },
+        "visual": {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-relation-1484751-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T18:41:24.192Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false,
+          "submissionId": "content-review-2026-08-18T18-42-39-581Z"
+        }
+      },
+      "proposedWebsiteFields": {
+        "name": "Tre Cime di Lavaredo classic circuit",
+        "desc": "A demanding 9.528 km circuit from Rifugio Auronzo around the Tre Cime, following trails 101 and 105. The official itinerary gives 468 m of ascent, about 3 hours 30 minutes and a high point of 2,454 m. This is a hard, open high-alpine walk rather than a casual sightseeing loop.\n\nDogs are accepted on the route but must stay on lead throughout. Seasonal livestock may be present beside the Lavaredo pasture segment, so keep your dog close and pass animals conservatively. The route has very little dependable shade and includes a narrower section, although no ferrata equipment is required.",
+        "tips": "Start and finish at Rifugio Auronzo. The seasonal toll road and parking are weather-dependent and normally require advance booking; roadside parking is prohibited. Carry sufficient water. A fountain is identified at Malga LangAlm, but its seasonal availability and potability are not guaranteed.",
+        "routeRef": "backoffice-data/route-proposals/tre-cime-classic.geojson",
+        "heroImage": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
+        "imageCreator": "Simone A. Bertinotti",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageCredit": "Tre Cime di Lavaredo, Sentiero per il Rifugio Locatelli — Simone A. Bertinotti — CC BY-SA 4.0 — via Wikimedia Commons",
+        "imageAlt": "Gravel trail towards Rifugio Locatelli beneath the Tre Cime di Lavaredo peaks.",
+        "ormaVerified": true,
+        "area": "Alta Pusteria – Tre Cime",
+        "distance": 9.528,
+        "elevation": 468,
+        "hours": "3.5",
+        "paid": true,
+        "terrainType": "High-alpine dirt and rocky mountain paths, including one narrower section",
+        "terrainRank": 2,
+        "shadeCoverage": null,
+        "heatRisk": "high",
+        "safetyLevel": "caution",
+        "exposure": false,
+        "waterSources": [],
+        "startPoint": {
+          "lat": 46.612849,
+          "lng": 12.292858,
+          "label": "Parcheggio Rifugio Auronzo (P1) — approved parking pin"
+        },
+        "reviewedAt": "2026-08-18",
+        "reviewedBy": "ORMA verified-trail workflow",
+        "verified": {
+          "categories": [
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
+          ],
+          "sources": [
+            "Locked ORMA evidence dossier"
+          ],
+          "date": "2026-08-18"
+        },
+        "graduation": {
+          "status": "verified",
+          "required": [
+            "photo",
+            "route",
+            "mapPoints",
+            "elevation",
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
+          ],
+          "completed": [
+            "photo",
+            "route",
+            "mapPoints",
+            "elevation",
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
+          ]
+        },
+        "verifiedAt": "2026-08-18T15:04:59.634Z"
+      },
+      "lockedEvidence": {
+        "dossierRef": "backoffice/dossiers/tre-cime.json",
+        "facts": [
+          {
+            "id": "route-identity",
+            "label": "Classic circuit identity",
+            "value": "A loop from Rifugio Auronzo using trails 101 and 105, returning to Rifugio Auronzo.",
+            "sourceIds": [
+              "trecime-trek-route"
+            ]
+          },
+          {
+            "id": "route-geometry",
+            "label": "Approved geometry represents the official circuit",
+            "value": "Use the exact 2,077-point official classic GPX approved in export (12).",
+            "sourceIds": [
+              "trecime-trek-route",
+              "tre-cime-approved-gpx"
+            ]
+          },
+          {
+            "id": "route-metrics",
+            "label": "Official headline metrics",
+            "value": "9.528 km, 468 m ascent, 3 hours 30 minutes, maximum altitude 2,454 m.",
+            "sourceIds": [
+              "trecime-trek-route"
+            ]
+          },
+          {
+            "id": "trailhead",
+            "label": "Operational trailhead",
+            "value": "Rifugio Auronzo, approximately 2,330 m, is the start and finish.",
+            "sourceIds": [
+              "trecime-trek-route",
+              "auronzo-access"
+            ]
+          },
+          {
+            "id": "parking-existence",
+            "label": "Municipal parking at Rifugio Auronzo",
+            "value": "Paid municipal parking serves the Rifugio Auronzo trailhead.",
+            "sourceIds": [
+              "auronzo-access",
+              "auronzo-parking-regulation",
+              "trecime-trek-route"
+            ]
+          },
+          {
+            "id": "parking-pin",
+            "label": "Exact where-to-park GPS pin",
+            "value": "Use Parcheggio Rifugio Auronzo (P1), 46.612849, 12.292858, OSM way 1109742730.",
+            "sourceIds": [
+              "auronzo-access",
+              "auronzo-parking-regulation",
+              "tre-cime-parking-decision"
+            ]
+          },
+          {
+            "id": "road-access",
+            "label": "Seasonal road and booking conditions",
+            "value": "A roughly 6 km paid road from the Misurina area reaches Rifugio Auronzo; operation is seasonal and weather-dependent, parking access is booked, and roadside parking is prohibited.",
+            "sourceIds": [
+              "auronzo-access",
+              "auronzo-parking-regulation"
+            ]
+          },
+          {
+            "id": "dog-access",
+            "label": "Dogs and leash conduct",
+            "value": "Dogs are accepted on the route; keep them on lead throughout and carry a muzzle for emergencies.",
+            "sourceIds": [
+              "trecime-trek-route",
+              "south-tyrol-park-rules",
+              "three-peaks-visitor-guide"
+            ]
+          },
+          {
+            "id": "water",
+            "label": "Reliable dog water",
+            "value": "A fountain is identified at Malga LangAlm; treat availability and potability as seasonal/unconfirmed.",
+            "sourceIds": [
+              "trecime-trek-route"
+            ]
+          },
+          {
+            "id": "heat-shade",
+            "label": "Shade and heat exposure",
+            "value": "Do not rely on tree shade on this high-alpine circuit; carry sun protection and plan the timing conservatively. No shade percentage is claimed.",
+            "sourceIds": [
+              "trecime-trek-route",
+              "tre-cime-park-habitats",
+              "visit-dolomites-accessibility"
+            ]
+          },
+          {
+            "id": "exposure-surface",
+            "label": "Technical exposure and surface hazards",
+            "value": "No ferrata equipment is required; one section is narrower but described as unchallenging.",
+            "sourceIds": [
+              "trecime-trek-route",
+              "visit-dolomites-accessibility"
+            ]
+          },
+          {
+            "id": "livestock",
+            "label": "Livestock and guardian dogs",
+            "value": "Seasonal livestock may be present beside the Lavaredo pasture segment; keep dogs close and on lead. An encounter is not guaranteed and guardian-dog presence is not established.",
+            "sourceIds": [
+              "auronzo-2025-destination-guide",
+              "three-peaks-visitor-guide"
+            ]
+          },
+          {
+            "id": "photo",
+            "label": "Publishable trail photograph",
+            "value": "Use the geolocated Simone A. Bertinotti Tre Cime route photograph as the initial hero under CC BY-SA 4.0, with full credit, licence link and change notice; retain the operational field-shot checklist for later enrichment.",
+            "sourceIds": [
+              "commons-tre-cime-trail"
+            ]
+          }
+        ],
+        "verificationConditions": [
+          "official hard rating remains prominent",
+          "LangAlm fountain remains seasonal and not guaranteed potable",
+          "road, parking, weather and trail conditions require recurring checks"
+        ]
+      },
+      "humanGate": "website-preview-and-publication-approval",
+      "publicationAuthorized": false,
+      "publicMutationAllowed": false
+    },
+    {
+      "candidateId": "osm-relation-6678431",
+      "targetTrailId": "cinque-torri-assisted",
+      "operation": "create-new",
+      "state": "ready-for-publication-preview",
+      "missingApprovals": [],
+      "sourceApprovals": {
+        "copy": {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-relation-6678431-copy",
+          "agentId": "copywriter",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T18:41:28.174Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false,
+          "submissionId": "content-review-2026-08-18T18-42-39-581Z"
+        },
+        "visual": {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-relation-6678431-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T18:41:27.491Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false,
+          "submissionId": "content-review-2026-08-18T18-42-39-581Z"
+        }
+      },
+      "proposedWebsiteFields": {
+        "name": "Cinque Torri three-refuges assisted circuit",
+        "desc": "This chairlift-assisted circuit begins at Bai de Dones, rises on the 5 Torri lift and returns on foot through the Cinque Torri open-air museum, refuge area and forest. The approved track contains 1.37 km of lift transport followed by approximately 3.95 km of predominantly downhill walking, with about two hours allowed for the itinerary.\n\nDogs of any size may use the 5 Torri lift free of charge, but both leash and muzzle are required. The upper museum and refuge area is open alpine terrain, while the lower return enters forest. Seasonal sheep grazing is documented in the wider area, so keep dogs close even though an encounter on the exact circuit is variable.",
+        "tips": "This itinerary depends on the 5 Torri chairlift operating. The published 2026 season is 6 June to 11 October, subject to weather and snow. Use the approved Bai de Dones parking pin. Carry water: the three refuges are possible service stops, but no freely accessible potable dog-water point has been verified.",
+        "routeRef": "backoffice-data/route-proposals/cinque-torri-three-refuges-assisted.geojson",
+        "heroImage": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cinque_Torri_01.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cinque_Torri_01.jpg",
+        "imageCreator": "Clemens Stockner",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageCredit": "Cinque Torri 01 — Clemens Stockner — CC BY-SA 4.0 — via Wikimedia Commons",
+        "imageAlt": "The Cinque Torri rock towers viewed from the west in the Ampezzo Dolomites.",
+        "ormaVerified": true,
+        "area": "Cortina / Cinque Torri",
+        "distance": 3.95,
+        "elevation": 10,
+        "hours": "2",
+        "paid": true,
+        "terrainType": "Museum and trench paths, cart track and forest hiking path",
+        "terrainRank": 1,
+        "shadeCoverage": null,
+        "heatRisk": "moderate",
+        "safetyLevel": "moderate",
+        "exposure": false,
+        "waterSources": [],
+        "startPoint": {
+          "lat": 46.518917,
+          "lng": 12.037604,
+          "label": "Bai de Dones — approved parking pin"
+        },
+        "reviewedAt": "2026-08-18",
+        "reviewedBy": "ORMA verified-trail workflow",
+        "verified": {
+          "categories": [
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
+          ],
+          "sources": [
+            "Locked ORMA evidence dossier"
+          ],
+          "date": "2026-08-18"
+        },
+        "graduation": {
+          "status": "verified",
+          "required": [
+            "photo",
+            "route",
+            "mapPoints",
+            "elevation",
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
+          ],
+          "completed": [
+            "photo",
+            "route",
+            "mapPoints",
+            "elevation",
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
+          ]
+        },
+        "verifiedAt": "2026-08-18T15:06:17.733Z"
+      },
+      "lockedEvidence": {
+        "dossierRef": "backoffice/dossiers/cinque-torri.json",
+        "facts": [
+          {
+            "id": "route-identity",
+            "label": "Assisted route identity",
+            "value": "A Bai de Dones loop using the 5 Torri chairlift, Scoiattoli refuge, the open-air museum, Rifugio Cinque Torri and a forest return.",
+            "sourceIds": [
+              "five-torri-itinerary",
+              "rifugio-five-torri"
+            ]
+          },
+          {
+            "id": "route-geometry",
+            "label": "Approved route geometry",
+            "value": "Use the exact 204-point official GPX approved in export (12).",
+            "sourceIds": [
+              "five-torri-gpx",
+              "five-torri-itinerary"
+            ]
+          },
+          {
+            "id": "walking-elevation",
+            "label": "Walked ascent and chairlift separation",
+            "value": "Treat GPX points 0–22 as 1.37 km of chairlift transport (+295 m raw gain) and points 22–203 as a 3.95 km walk (+10 m/-347 m raw elevation change).",
+            "sourceIds": [
+              "five-torri-itinerary",
+              "five-torri-gpx",
+              "rifugio-five-torri"
+            ]
+          },
+          {
+            "id": "parking-pin",
+            "label": "Exact Bai de Dones parking",
+            "value": "Use OSM way 900787870 at 46.518917, 12.037604.",
+            "sourceIds": [
+              "five-torri-itinerary",
+              "cinque-parking"
+            ]
+          },
+          {
+            "id": "dog-access",
+            "label": "Dogs on the assisted itinerary",
+            "value": "Dogs of any size may use the 5 Torri lift free of charge; leash and muzzle are required.",
+            "sourceIds": [
+              "cortina-dogs",
+              "five-torri-lifts"
+            ]
+          },
+          {
+            "id": "season",
+            "label": "Seasonal lift dependency",
+            "value": "The assisted circuit is available only when the 5 Torri chairlift operates; the published 2026 season is 6 June–11 October and remains weather/snow dependent.",
+            "sourceIds": [
+              "five-torri-lifts",
+              "five-torri-itinerary"
+            ]
+          },
+          {
+            "id": "surface-exposure",
+            "label": "Qualitative walking surface",
+            "value": "The route mixes museum/trench paths, a cart track and a hiking path through forest; trekking boots are recommended.",
+            "sourceIds": [
+              "five-torri-itinerary"
+            ]
+          },
+          {
+            "id": "shade",
+            "label": "Shade and heat exposure",
+            "value": "The lower return passes through forest, while the upper museum and refuge area is open alpine terrain; do not rely on continuous shade and do not publish a percentage.",
+            "sourceIds": [
+              "five-torri-itinerary"
+            ]
+          },
+          {
+            "id": "water",
+            "label": "Reliable dog water",
+            "value": "Carry water; three refuges offer potential service stops but no freely accessible potable dog-water point is established.",
+            "sourceIds": [
+              "five-torri-itinerary"
+            ]
+          },
+          {
+            "id": "pois",
+            "label": "Route POIs",
+            "value": "Scoiattoli refuge, the First World War open-air museum and trenches, Rifugio Cinque Torri, Lake Bai de Dones and Baita Bai de Dones are route-linked POIs.",
+            "sourceIds": [
+              "five-torri-itinerary"
+            ]
+          },
+          {
+            "id": "livestock",
+            "label": "Seasonal livestock caution",
+            "value": "Seasonal sheep grazing is documented in the wider Falzarego/Cinque Torri area; keep dogs close and on lead, while treating an encounter on this exact circuit as variable.",
+            "sourceIds": [
+              "regole-grazing",
+              "cortina-dogs"
+            ]
+          },
+          {
+            "id": "photo",
+            "label": "Publishable hero asset",
+            "value": "Use Clemens Stockner's geolocated Cinque Torri photograph as the initial hero under CC BY-SA 4.0, with full credit, licence link and change notice; retain operational field shots for later enrichment.",
+            "sourceIds": [
+              "commons-cinque"
+            ]
+          }
+        ],
+        "verificationConditions": [
+          "route remains labelled chairlift-assisted and predominantly downhill",
+          "leash and muzzle requirements remain prominent",
+          "lift dates, weather operation and dog carriage conditions require recurring checks"
+        ]
+      },
+      "humanGate": "website-preview-and-publication-approval",
+      "publicationAuthorized": false,
+      "publicMutationAllowed": false
+    },
+    {
+      "candidateId": "osm-way-25736154",
+      "targetTrailId": "lago-braies",
+      "operation": "update-existing",
+      "state": "waiting-content-approvals",
+      "missingApprovals": [
+        "editorial-approval"
+      ],
+      "sourceApprovals": {
+        "copy": {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-way-25736154-copy",
+          "agentId": "copywriter",
+          "action": "request-revision",
+          "note": "Carry all the water your dog needs as the protected lake is a drinking source. -> edit it",
+          "reviewedAt": "2026-08-18T18:42:33.491Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false,
+          "submissionId": "content-review-2026-08-18T18-42-39-581Z"
+        },
+        "visual": {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-way-25736154-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T18:41:30.858Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false,
+          "submissionId": "content-review-2026-08-18T18-42-39-581Z"
+        }
+      },
+      "proposedWebsiteFields": null,
+      "lockedEvidence": {
+        "dossierRef": "backoffice/dossiers/lago-braies.json",
+        "facts": [
+          {
+            "id": "route-identity",
+            "label": "Seeweg circuit identity",
+            "value": "A complete walking circuit around Lago di Braies, starting and ending at the lake tavern/hotel area.",
+            "sourceIds": [
+              "pustertal-braies"
+            ]
+          },
+          {
+            "id": "route-geometry",
+            "label": "Approved route geometry",
+            "value": "Use the exact 171-point approved GPX.",
+            "sourceIds": [
+              "braies-gpx",
+              "pustertal-braies"
+            ]
+          },
+          {
+            "id": "route-metrics",
+            "label": "Headline effort metrics",
+            "value": "3.6 km, 39 m ascent/descent, approximately 1 hour, 1,492–1,531 m elevation.",
+            "sourceIds": [
+              "pustertal-braies"
+            ]
+          },
+          {
+            "id": "parking",
+            "label": "Official parking choices",
+            "value": "Retain the human-approved official P1, P2, P3 and P4 set.",
+            "sourceIds": [
+              "prags-current",
+              "braies-parking-approval"
+            ]
+          },
+          {
+            "id": "seasonal-access",
+            "label": "2026 valley access controls",
+            "value": "From 1 July–15 September 2026, 09:00–16:00, enter by public transport, walking, cycling or with a parking reservation/transit permit; shuttle booking is required.",
+            "sourceIds": [
+              "pustertal-braies",
+              "prags-current"
+            ]
+          },
+          {
+            "id": "dog-access",
+            "label": "Dogs and transport",
+            "value": "The route is dog-friendly; keep dogs on lead in the nature park and carry/use a muzzle on public transport.",
+            "sourceIds": [
+              "pustertal-braies",
+              "nature-park-rules",
+              "prags-current"
+            ]
+          },
+          {
+            "id": "surface-exposure",
+            "label": "Mixed lakeshore surface and narrow sections",
+            "value": "The circuit includes broad forest/lakeshore paths plus narrower rooted sections, uphill steps and a section beside a vertical rock wall.",
+            "sourceIds": [
+              "pustertal-braies",
+              "prags-current"
+            ]
+          },
+          {
+            "id": "shade",
+            "label": "Shade and heat exposure",
+            "value": "The circuit mixes tree/forest sections with open lakeshore and southern beaches; do not rely on continuous shade and do not publish a percentage.",
+            "sourceIds": [
+              "pustertal-braies"
+            ]
+          },
+          {
+            "id": "water",
+            "label": "Reliable dog water",
+            "value": "Carry all water your dog will need. No potable route source is verified, and Lago di Braies must not be presented as a drinking source.",
+            "sourceIds": [
+              "prags-current",
+              "pustertal-braies"
+            ]
+          },
+          {
+            "id": "pois",
+            "label": "Route POIs and facilities",
+            "value": "Boat house, picnic/rest areas, benches, southern beaches, toilets and the lake tavern/hotel area are route-linked facilities and POIs.",
+            "sourceIds": [
+              "pustertal-braies",
+              "prags-current"
+            ]
+          },
+          {
+            "id": "livestock",
+            "label": "Livestock and wildlife interaction",
+            "value": "No livestock is expected around the exact Seeweg lakeshore circuit. Keep dogs on lead because protected-area wildlife rules still apply.",
+            "sourceIds": [
+              "nature-park-rules",
+              "braies-livestock-human-attestation"
+            ]
+          },
+          {
+            "id": "photo",
+            "label": "Publishable hero asset",
+            "value": "Use kallerna's recent geolocated southern-shore photograph as the initial hero under CC BY-SA 4.0, with full credit, licence link and change notice; retain operational field shots for later enrichment.",
+            "sourceIds": [
+              "commons-braies-south"
+            ]
+          }
+        ],
+        "verificationConditions": [
+          "no livestock is expected on the exact circuit based on direct local knowledge",
+          "protected-area lead and wildlife-disturbance rules remain mandatory",
+          "reopen the claim if future signage, reports or field evidence conflicts"
+        ]
+      },
+      "humanGate": "website-preview-and-publication-approval",
+      "publicationAuthorized": false,
+      "publicMutationAllowed": false
+    }
+  ],
+  "summary": {
+    "trails": 3,
+    "readyForPreview": 2,
+    "waitingForApprovals": 1,
+    "publicMutations": 0
+  }
+}

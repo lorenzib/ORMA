@@ -1,0 +1,34 @@
+{
+  "submissionId": "content-review-2026-08-18T19-31-38-110Z",
+  "packetGeneratedAt": "2026-08-18T18:44:00.000Z",
+  "submittedAt": "2026-08-18T19:31:38.110Z",
+  "completedAt": "2026-08-18T19:31:57.398Z",
+  "status": "revision-completed",
+  "decisions": [
+    {
+      "jobId": "guide-paw-protection-compact-copy-2026-08-18",
+      "agentId": "copywriter",
+      "action": "request-revision",
+      "note": "remove references to the Dolomites",
+      "reviewedBy": "local-editor",
+      "publicMutationAllowed": false
+    },
+    {
+      "jobId": "guide-paw-protection-compact-image-2026-08-18",
+      "agentId": "visualDirector",
+      "action": "request-revision",
+      "note": "remove references to the Dolomites",
+      "reviewedBy": "local-editor",
+      "publicMutationAllowed": false
+    }
+  ],
+  "outcomes": [
+    {
+      "status": "revised-for-review",
+      "sourceRefs": [
+        "guides/paw-protection.html"
+      ]
+    }
+  ],
+  "publicMutationAllowed": false
+}

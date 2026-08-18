@@ -1,0 +1,132 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-18T10:30:00+02:00",
+  "sourceDecisionExport": "orma-review-decisions-2026-08-18 (1).json",
+  "publicMutationAllowed": false,
+  "resolutionAttempt": 1,
+  "maximumAutomatedAttempts": 5,
+  "summary": {
+    "decisionsProcessed": 4,
+    "parkingClaimsSupported": 3,
+    "trailUpdateRequired": 1,
+    "fullyApproved": 0
+  },
+  "resolutions": [
+    {
+      "candidateId": "osm-relation-1484751",
+      "trailName": "Tre Cime di Lavaredo - Giro",
+      "state": "supported-needs-pin-validation",
+      "agent": "logistics",
+      "recommendedParking": "The official high-altitude car park beside Rifugio Auronzo, reached by the approximately 6 km toll road from near Lago d'Antorno.",
+      "accessFacts": [
+        "For summer 2026, car access is permitted only with an online reservation.",
+        "The 2026 car tariff is €40; the booking is also the transit authorization checked at the tollgate.",
+        "The road and car park are seasonal and weather-dependent.",
+        "The trail's stored OSM relation remains invalid and must be replaced independently of the parking decision."
+      ],
+      "sources": [
+        {
+          "label": "Official Auronzo parking information and 2026 prices",
+          "url": "https://auronzo.info/en/parking-tre-cime-di-lavaredo/",
+          "authority": "official-tourism-municipality",
+          "accessedAt": "2026-08-18"
+        },
+        {
+          "label": "Municipality of Auronzo trail description",
+          "url": "https://www.comune.auronzo.bl.it/it/page/tre-cime-di-lavaredo",
+          "authority": "municipality",
+          "accessedAt": "2026-08-18"
+        }
+      ],
+      "remainingHumanChecks": [
+        "Validate the exact entrance and preferred parking pin against the current official map or an on-site observation.",
+        "Confirm the booking slot terms for the visitor's intended date.",
+        "Do not approve route geometry until the incorrect stored OSM relation has been replaced."
+      ]
+    },
+    {
+      "candidateId": "osm-way-25736154",
+      "trailName": "Lago di Braies Rundweg",
+      "state": "supported-multiple-options-needs-pin-validation",
+      "agent": "logistics",
+      "recommendedParking": "Present multiple official parking choices rather than one universal pin. P4 is described as approximately 100 m from the lake and P3 as approximately 300 m away.",
+      "accessFacts": [
+        "From 1 July to 15 September 2026, between 09:00 and 16:00, motor access requires an online reservation or valid transit permit.",
+        "Arriving before 09:00 does not guarantee a free or available space.",
+        "The official site lists a €44 combined car ticket during the regulated period and links separately to P3 and P4 booking.",
+        "Bus lines 439 and 442 also require online booking during the regulated period."
+      ],
+      "sources": [
+        {
+          "label": "Official Braies Valley 2026 access and parking rules",
+          "url": "https://www.prags.bz/it",
+          "authority": "official-destination-management",
+          "accessedAt": "2026-08-18"
+        }
+      ],
+      "remainingHumanChecks": [
+        "Capture and verify separate pins for P3 and P4; do not collapse them into one parking recommendation.",
+        "Check availability and price for the visitor's date because inventory is dynamic.",
+        "Decide whether ORMA should recommend public transport first during the regulated period."
+      ]
+    },
+    {
+      "candidateId": "osm-relation-6678431",
+      "trailName": "Cinque Torri Rundweg",
+      "state": "supported-multiple-options-needs-pin-validation",
+      "agent": "logistics",
+      "recommendedParking": "Use Bai de Dones chairlift parking as the principal straightforward trailhead; show Cianzopè as a distinct walking/shuttle alternative rather than implying that cars can always drive to Rifugio 5 Torri.",
+      "accessFacts": [
+        "The official refuge directions identify parking at Bai de Dones and trail 425 to Cinque Torri.",
+        "The road to Rifugio 5 Torri is closed in summer from 6 June through 20 September 2026.",
+        "An August-only shuttle departs near the Cianzopè barrier from 09:00 to 17:30 without reservation; the currently published price is €12 per person each way.",
+        "Walking from Bai de Dones is stated as approximately 1 hour 30 minutes with about 400 m ascent."
+      ],
+      "sources": [
+        {
+          "label": "Official Rifugio 5 Torri access directions and 2026 road closure",
+          "url": "https://rifugio5torri.it/en/5-torri.html",
+          "authority": "trailhead-refuge-operator",
+          "accessedAt": "2026-08-18"
+        }
+      ],
+      "remainingHumanChecks": [
+        "Verify exact Bai de Dones and Cianzopè parking pins against current mapping.",
+        "Confirm whether the chosen ORMA loop geometry starts at Bai de Dones or higher at Cinque Torri; parking guidance changes the advertised distance and ascent.",
+        "Recheck seasonal road and shuttle notices immediately before publication."
+      ]
+    },
+    {
+      "candidateId": "osm-relation-1372055",
+      "trailName": "Monte Pelmo Giro",
+      "state": "requires-update-trail-access-blocked",
+      "agent": "groundskeeper",
+      "recommendedParking": "Do not resolve parking in isolation. The traditional loop starts and finishes at Passo Staulanza, but the current access notice supersedes routine trailhead guidance.",
+      "accessFacts": [
+        "Official local tourism material identifies Passo Staulanza as the traditional start and finish for the Giro del Pelmo.",
+        "The current Rifugio Città di Fiume notice says paths 467 and 472 are interrupted following a landslide on Monte Pelmo's north side.",
+        "Path 467 access is prohibited to vehicles and pedestrians under a municipal ordinance.",
+        "The refuge remains accessible from Val Fiorentina via the path starting at Rifugio Aquileia, but that does not establish that the stored Giro del Pelmo loop is safely usable."
+      ],
+      "sources": [
+        {
+          "label": "Current Rifugio Città di Fiume access interruption notice",
+          "url": "https://rifugiocittadifiume.it/aggiornamento-accessi-al-rifugio/",
+          "authority": "trail-refuge-operator-citing-municipal-order",
+          "accessedAt": "2026-08-18"
+        },
+        {
+          "label": "Val Fiorentina official local hiking information",
+          "url": "https://www.valfiorentina.it/en/val-fiorentina-summer",
+          "authority": "official-local-tourism",
+          "accessedAt": "2026-08-18"
+        }
+      ],
+      "remainingHumanChecks": [
+        "Obtain and archive the underlying municipal ordinance and determine its effective dates.",
+        "Confirm whether any officially approved detour restores a complete Giro del Pelmo loop.",
+        "Keep the trail out of ORMA Verified and mark it Requires Update until the route-access conflict is resolved."
+      ]
+    }
+  ]
+}

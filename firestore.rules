@@ -618,6 +618,62 @@ service cloud.firestore {
       allow delete: if isModerator();
     }
 
+    // Private ORMA agent backoffice. Browser clients may inspect state and
+    // append immutable human decisions only when carrying the moderator
+    // custom claim. Artifacts and jobs are mutated exclusively by the Admin
+    // SDK worker, which is outside client-rule evaluation.
+    match /backofficeArtifacts/{artifactId} {
+      allow get, list: if isModerator();
+      allow create, update, delete: if false;
+    }
+
+    match /backofficeJobs/{jobId} {
+      allow get, list: if isModerator();
+      allow create, update, delete: if false;
+    }
+
+    match /backofficeReviews/{reviewId} {
+      allow get, list: if isModerator();
+      allow create: if isModerator()
+        && request.resource.data.keys().hasOnly([
+          'contractVersion', 'type', 'gate', 'status', 'decisions',
+          'submittedAt', 'submittedBy', 'publicMutationAllowed'
+        ])
+        && request.resource.data.contractVersion == '1.0.0'
+        && request.resource.data.type == 'verified-trail-content-review'
+        && request.resource.data.gate == 'content-review'
+        && request.resource.data.status == 'queued'
+        && request.resource.data.decisions is list
+        && request.resource.data.decisions.size() > 0
+        && request.resource.data.decisions.size() <= 50
+        && request.resource.data.submittedAt == request.time
+        && request.resource.data.submittedBy == request.auth.uid
+        && request.resource.data.publicMutationAllowed == false;
+      allow update, delete: if false;
+    }
+
+    match /backofficePublicationReviews/{reviewId} {
+      allow get, list: if isModerator();
+      allow create: if isModerator()
+        && request.resource.data.keys().hasOnly([
+          'contractVersion', 'type', 'status', 'candidateId', 'action',
+          'note', 'submittedAt', 'submittedBy', 'publicMutationAllowed'
+        ])
+        && request.resource.data.contractVersion == '1.0.0'
+        && request.resource.data.type == 'verified-trail-publication-review'
+        && request.resource.data.status == 'queued'
+        && isTrailId(request.resource.data.candidateId)
+        && request.resource.data.action in [
+          'approve-for-pr-creation', 'request-changes', 'hold'
+        ]
+        && request.resource.data.note is string
+        && request.resource.data.note.size() <= 1500
+        && request.resource.data.submittedAt == request.time
+        && request.resource.data.submittedBy == request.auth.uid
+        && request.resource.data.publicMutationAllowed == false;
+      allow update, delete: if false;
+    }
+
     // New collections are private until their authorization contract is added.
     match /{document=**} {
       allow read, write: if false;

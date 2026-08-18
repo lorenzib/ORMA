@@ -1,0 +1,17 @@
+{
+  "contractVersion": "1.0.0",
+  "recordedAt": "2026-08-18T15:11:54Z",
+  "candidateId": "osm-way-25736154",
+  "claimId": "livestock",
+  "evidenceType": "human-editor-local-knowledge-attestation",
+  "attestedBy": "local-editor",
+  "scope": "Exact complete Seeweg lakeshore circuit around Lago di Braies represented by the approved 171-point geometry",
+  "attestation": "The human editor confirms from direct local knowledge that there is no livestock around this circuit.",
+  "resolvedValue": "No livestock is expected on the exact lakeshore circuit. Continue to keep dogs on lead because the route is inside a protected nature park and wildlife disturbance rules still apply.",
+  "limitations": [
+    "No separate observation date or written park-authority reply is attached.",
+    "Grazing practices can change; reopen the claim if new signage, reports or field evidence contradicts this attestation."
+  ],
+  "revalidation": "Review annually before the principal hiking season and whenever a material report is received.",
+  "publicMutationAllowed": false
+}

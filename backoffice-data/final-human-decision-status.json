@@ -1,0 +1,14 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-18T17:23:40+02:00",
+  "sourceDecisionExport": "orma-review-decisions-2026-08-18 (20).json + explicit accompanying human instruction",
+  "automatedResolutionAttemptsComplete": 5,
+  "enrichmentResolutionAttemptsComplete": 5,
+  "publicMutationAllowed": false,
+  "status": [
+    { "candidateId": "osm-relation-1484751", "trailName": "Tre Cime di Lavaredo - Giro", "parkingDecision": "approved", "trailVerification": "orma-verified-internal-not-published", "verifiedAt": "2026-08-18T15:04:59.634Z" },
+    { "candidateId": "osm-relation-6678431", "trailName": "Cinque Torri Rundweg", "parkingDecision": "approved-corrected-way-900787870", "trailVerification": "orma-verified-internal-not-published", "verifiedAt": "2026-08-18T15:06:17.733Z" },
+    { "candidateId": "osm-way-25736154", "trailName": "Lago di Braies Rundweg", "parkingDecision": "approved-four-option-set", "approvedParkingCount": 4, "trailVerification": "orma-verified-internal-not-published", "verifiedAt": "2026-08-18T15:23:40.415Z", "verificationBasis": "human-editor-direct-local-knowledge-attestation-and-explicit-unblock-instruction" },
+    { "candidateId": "osm-relation-1372055", "trailName": "Monte Pelmo Giro", "parkingDecision": "unresolved", "trailVerification": "requires-update-direct-confirmation" }
+  ]
+}

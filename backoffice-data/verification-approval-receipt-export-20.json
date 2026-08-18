@@ -1,0 +1,19 @@
+{
+  "contractVersion": "1.0.0",
+  "sourceDecisionExport": "orma-review-decisions-2026-08-18 (20).json",
+  "sourceExportedAt": "2026-08-18T15:23:40.415Z",
+  "recordedAt": "2026-08-18T15:23:40.415Z",
+  "candidateId": "osm-way-25736154",
+  "action": "approve-orma-verified",
+  "decisionSource": "explicit-human-instruction-accompanying-export",
+  "instruction": "Unblock the verification.",
+  "supersedes": "backoffice-data/verification-review-receipt-export-19.json",
+  "evidenceRef": "backoffice-data/braies-livestock-human-attestation-2026-08-18.json",
+  "conditions": [
+    "Retain the protected-area lead rule even though livestock is not expected.",
+    "Do not imply that wildlife is absent.",
+    "Reopen the livestock claim if future local evidence or signage conflicts with the attestation."
+  ],
+  "publicationAuthorized": false,
+  "publicMutationAllowed": false
+}

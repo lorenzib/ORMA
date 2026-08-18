@@ -1,0 +1,13 @@
+{
+  "contractVersion":"1.0.0",
+  "generatedAt":"2026-08-18T14:15:00Z",
+  "agentId":"visualDirector",
+  "publicMutationAllowed":false,
+  "licensingRule":"A source-page image is evidence only unless ORMA has recorded creator, licence, permitted use and any required consent.",
+  "trails":[
+    {"candidateId":"osm-relation-1484751","requiredShots":["Rifugio Auronzo P1 sign and trail connection","wide trail 101 surface","Forcella Lavaredo open exposure","narrower return section near Forcella Col di Mezzo","Malga LangAlm fountain and availability notice","dog-on-lead context without identifiable bystanders"]},
+    {"candidateId":"osm-relation-6678431","requiredShots":["Bai de Dones parking way 900787870 entrance","chairlift dog boarding setup with leash and muzzle","Scoiattoli arrival and open alpine terrain","museum trench path surface","Rifugio Cinque Torri junction","forest return surface and shade","Lake Bai de Dones without implying drinking access"]},
+    {"candidateId":"osm-way-25736154","requiredShots":["parking-choice signage","broad western forest path","narrow rooted section","uphill steps beside rock wall","southern beach and toilet context","open versus shaded lakeshore","dog-on-lead nature-park context"]}
+  ],
+  "humanGate":"asset-and-licensing-approval"
+}

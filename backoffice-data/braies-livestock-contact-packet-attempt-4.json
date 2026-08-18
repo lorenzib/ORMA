@@ -1,0 +1,14 @@
+{
+  "contractVersion":"1.0.0",
+  "generatedAt":"2026-08-18T14:24:28.715Z",
+  "candidateId":"osm-way-25736154",
+  "claimId":"livestock",
+  "status":"prepared-not-sent",
+  "publicMutationAllowed":false,
+  "authority":{"name":"Fanes-Sennes-Prags / Fanes-Senes-Braies Nature Park Visitor Center","email":"info.fsp@provinz.bz.it","phone":"+39 0474 506120","sourceUrl":"https://parchi-naturali.provincia.bz.it/en/fanes-sennes-prags-fanes-senes-braies-nature-park","authority":"Autonomous Province of Bolzano nature-park authority","sourceUpdated":"2026-03-30"},
+  "subject":"Route-specific livestock information — Lago di Braies Seeweg circuit",
+  "messageDraft":"Hello, ORMA is reviewing the complete Seeweg walking circuit around Lago di Braies for dog hikers. Could you please confirm whether cattle, sheep, goats, horses or livestock guardian dogs are normally present on or immediately beside this exact lakeshore circuit, and if so during which months and on which section? We would also appreciate any current official dog-handling instruction specific to livestock encounters on this circuit. We will treat no reply as unresolved, not as evidence that livestock is absent. Thank you.",
+  "requiredReplyFields":["species or explicit no-known-route-presence","usual months","exact side or segment of circuit","guardian-dog presence","current dog-handling rule","responding authority and date"],
+  "humanActionRequired":"Approve and send the message outside ORMA, then attach the complete written reply to attempt 5. No message has been sent automatically.",
+  "fallback":"If no authoritative reply is obtained, perform and document an in-season field check; otherwise keep the claim unresolved and the trail outside ORMA Verified."
+}

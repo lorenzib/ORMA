@@ -1,0 +1,62 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-18T12:58:00Z",
+  "resolutionAttempt": 5,
+  "resolutionLabel": "Post-route cross-check",
+  "publicMutationAllowed": false,
+  "resolutions": [
+    {
+      "candidateId": "osm-relation-1484751",
+      "trailName": "Tre Cime di Lavaredo - Giro",
+      "state": "parking-approved-route-geometry-approved",
+      "agent": "Logistics and Cartographer",
+      "recommendedParking": "Approved: Parcheggio Rifugio Auronzo (P1), 46.612849, 12.292858.",
+      "parkingOptions": [{ "label": "Parcheggio Rifugio Auronzo (P1)", "lat": 46.612849, "lng": 12.292858, "osmId": "way/1109742730", "confidence": "human-approved-strong-consensus", "role": "primary" }],
+      "accessFacts": ["Parking remains approved.", "Classic route geometry is approved; enrichment gates remain pending."],
+      "sources": [{ "label": "Official Auronzo parking information", "url": "https://auronzo.info/en/parking-tre-cime-di-lavaredo/", "authority": "official-tourism-municipality", "accessedAt": "2026-08-18" }],
+      "remainingHumanChecks": ["No further parking or geometry choice review.", "Complete the remaining ORMA enrichment and safety gates."]
+    },
+    {
+      "candidateId": "osm-relation-6678431",
+      "trailName": "Cinque Torri Rundweg",
+      "state": "parking-and-assisted-route-geometry-approved",
+      "agent": "Cartographer and Logistics",
+      "recommendedParking": "Approved: Bai de Dones – Seggiovia 5 Torri parking, OSM way 900787870, 46.518917, 12.037604.",
+      "parkingOptions": [{ "label": "Bai de Dones – Seggiovia 5 Torri parking", "lat": 46.51891714390244, "lng": 12.037603729268294, "osmId": "way/900787870", "confidence": "official-gpx-and-current-osm-consensus", "role": "primary" }],
+      "accessFacts": ["The previous approved coordinate is about 1.38 km away in the upper Cinque Torri area and is invalidated.", "The replacement is tagged access=yes, fee=no, surface=gravel and operator=Seggiovia 5 Torri.", "The official three-refuges GPX starts 51 m from the mapped parking centroid.", "Dogs may use the 5 Torri lift regardless of size, with leash and muzzle.", "The human editor approved the exact 204-point chairlift-assisted route geometry in export (11).", "The human editor approved corrected parking way 900787870 in export (12)."],
+      "sources": [
+        { "label": "5 Torri — Circular hike of the three Refuges", "url": "https://5torri.it/EN/e1-Circular-hike-of-the-three-Refuges", "authority": "local-route-and-lift-operator", "accessedAt": "2026-08-18" },
+        { "label": "OpenStreetMap way 900787870", "url": "https://www.openstreetmap.org/way/900787870", "authority": "current-community-geospatial-source", "accessedAt": "2026-08-18" },
+        { "label": "Cortina pet-friendly lift rules", "url": "https://cortina.dolomiti.org/en/winter/cortina-experience/cortina-pet-friendly/", "authority": "official-destination-guidance", "accessedAt": "2026-08-18" }
+      ],
+      "remainingHumanChecks": ["No further parking or geometry choice review.", "Complete the remaining ORMA enrichment and safety gates."]
+    },
+    {
+      "candidateId": "osm-way-25736154",
+      "trailName": "Lago di Braies Rundweg",
+      "state": "parking-and-route-geometry-approved",
+      "agent": "Logistics and Cartographer",
+      "recommendedParking": "Approved official set: P1, P2, P3 and P4.",
+      "parkingOptions": [
+        { "label": "P1 – valley interchange", "lat": 46.71775154655407, "lng": 12.136412965844414, "confidence": "human-approved-official-map", "role": "alternative" },
+        { "label": "P2 – Lago di Braies", "lat": 46.70545154654681, "lng": 12.085703220388524, "confidence": "human-approved-official-map", "role": "alternative" },
+        { "label": "P3 – Eggerhof Lago di Braies", "lat": 46.70174154654464, "lng": 12.084103297132742, "confidence": "human-approved-official-map", "role": "alternative" },
+        { "label": "P4 – Parking Lago di Braies", "lat": 46.699981546543626, "lng": 12.08351333353437, "confidence": "human-approved-official-map", "role": "alternative" }
+      ],
+      "accessFacts": ["All four official parking choices remain approved.", "Seeweg circuit geometry is approved; enrichment gates remain pending."],
+      "sources": [{ "label": "Official Braies parking map", "url": "https://maps.prags.bz/v2/it/gdi_summer/2d/-1/category/11.84227385946507/46.69051881589175/12.052579728373729/22815/-1/", "authority": "official-municipal-destination-map", "accessedAt": "2026-08-18" }],
+      "remainingHumanChecks": ["No further parking or geometry choice review.", "Complete the remaining ORMA enrichment and safety gates."]
+    },
+    {
+      "candidateId": "osm-relation-1372055",
+      "trailName": "Monte Pelmo Giro",
+      "state": "source-exhausted-direct-confirmation-required",
+      "agent": "Regulatory Ranger",
+      "recommendedParking": "No parking or full-loop approval.",
+      "parkingOptions": [],
+      "accessFacts": ["Five automated attempts were exhausted.", "Direct confirmation or a field check remains mandatory."],
+      "sources": [{ "label": "Prepared direct-contact packet", "url": "backoffice-data/monte-pelmo-contact-packet.json", "authority": "orma-backoffice", "accessedAt": "2026-08-18" }],
+      "remainingHumanChecks": ["Decide whether to send the contact packet.", "Keep the trail outside ORMA Verified."]
+    }
+  ]
+}

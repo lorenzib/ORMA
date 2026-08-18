@@ -2581,36 +2581,6 @@ function showTrailMapPopup(t, lngLat){
     .addTo(trailMapInstance);
 }
 
-async function openTrailheadDirections(t, statusElement, trigger){
-  const access = window.DoloPawsTrailAccess;
-  const point = t && (t.startPoint || {});
-  const target = t && {
-    lat:Number.isFinite(point.lat) ? point.lat : Number(t.lat),
-    lng:Number.isFinite(point.lng) ? point.lng : Number(t.lng),
-  };
-  if(!access || !Number.isFinite(target.lat) || !Number.isFinite(target.lng)){
-    if(statusElement) statusElement.textContent = 'Directions are unavailable for this trailhead.';
-    return;
-  }
-  if(trigger) trigger.disabled = true;
-  if(statusElement) statusElement.textContent = 'Checking your distance from the trailhead…';
-  try{
-    const plan = await access.planFromCurrent(navigator, target, navigator.userAgent, 100);
-    if(!plan.allowed){
-      if(statusElement) statusElement.textContent =
-        `Directions are available when you are within 100 km of the trail (${Math.round(plan.distanceKm)} km away).`;
-      return;
-    }
-    if(statusElement) statusElement.textContent = `${Math.round(plan.distanceKm)} km away · opening directions…`;
-    window.open(plan.url, '_blank', 'noopener');
-  }catch(error){
-    if(statusElement) statusElement.textContent =
-      'Allow location access to check that you are within 100 km of this trail.';
-  }finally{
-    if(trigger) trigger.disabled = false;
-  }
-}
-
 function showMapCallout(t){
   const callout = document.getElementById('mapCallout');
   if(!callout) return;
@@ -2627,12 +2597,43 @@ function showMapCallout(t){
   if(ratingEl) ratingEl.innerHTML = `<span class="safety-badge ${safetyClass(t.safetyLevel)}">${trailSafetyLabel(t)}</span>`;
   const openEl = document.getElementById('mapCalloutOpen');
   if(openEl) openEl.href = 'trail.html?id=' + encodeURIComponent(t.id);
+  // Directions is a destination-only handoff, same as the list rows: straight
+  // to Google Maps, with a two-app chooser on Apple devices.
   const directionsEl = document.getElementById('mapCalloutDirections');
-  const directionsStatus = document.getElementById('mapCalloutDirectionsStatus');
-  if(directionsStatus) directionsStatus.textContent = '';
+  const dirMenu = document.getElementById('mapCalloutDirMenu');
   if(directionsEl){
-    directionsEl.disabled = false;
-    directionsEl.onclick = () => openTrailheadDirections(t, directionsStatus, directionsEl);
+    const sp = trailheadCoords(t);
+    const google = sp ? `https://www.google.com/maps/dir/?api=1&destination=${sp.lat},${sp.lng}&travelmode=driving` : '';
+    const isApple = /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
+    directionsEl.disabled = !sp;
+    directionsEl.setAttribute('aria-expanded', 'false');
+    if(dirMenu){
+      dirMenu.hidden = true;
+      const appleA = document.getElementById('mapCalloutDirApple');
+      const googleA = document.getElementById('mapCalloutDirGoogle');
+      if(appleA && sp) appleA.href = `https://maps.apple.com/?daddr=${sp.lat},${sp.lng}`;
+      if(googleA && sp) googleA.href = google;
+    }
+    directionsEl.onclick = (e) => {
+      if(!sp) return;
+      if(!isApple || !dirMenu){
+        window.open(google, '_blank', 'noopener');
+        return;
+      }
+      e.stopPropagation();
+      const open = dirMenu.hidden;
+      dirMenu.hidden = !open;
+      directionsEl.setAttribute('aria-expanded', String(open));
+    };
+    if(!document.body.dataset.calloutDirDismiss){
+      document.body.dataset.calloutDirDismiss = '1';
+      document.addEventListener('click', () => {
+        const menu = document.getElementById('mapCalloutDirMenu');
+        const btn = document.getElementById('mapCalloutDirections');
+        if(menu) menu.hidden = true;
+        if(btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
   }
   const saveEl = document.getElementById('mapCalloutSave');
   if(saveEl){

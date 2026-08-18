@@ -1,0 +1,570 @@
+{
+  "workflowVersion": "1.0.0",
+  "generatedAt": "2026-08-17T12:11:48.553Z",
+  "input": {
+    "source": "OpenStreetMap via Overpass API",
+    "totalTrails": 30
+  },
+  "summary": {
+    "assessed": 30,
+    "eligible": 4,
+    "queued": 4,
+    "rejected": 26
+  },
+  "candidates": [
+    {
+      "contractVersion": "1.0.0",
+      "id": "osm-relation-1484751",
+      "name": "Tre Cime di Lavaredo - Giro",
+      "state": "geometry_validated",
+      "source": {
+        "provider": "openstreetmap",
+        "externalId": "relation/1484751",
+        "url": "https://www.openstreetmap.org/relation/1484751",
+        "retrievedAt": "2025-07-01T00:00:00.000Z",
+        "licence": "ODbL-1.0",
+        "sourceTags": {
+          "route": "hiking",
+          "network": "lwn"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.295,
+            46.62
+          ],
+          [
+            12.298,
+            46.625
+          ],
+          [
+            12.306,
+            46.63
+          ],
+          [
+            12.316,
+            46.626
+          ],
+          [
+            12.32,
+            46.618
+          ],
+          [
+            12.313,
+            46.613
+          ],
+          [
+            12.302,
+            46.614
+          ],
+          [
+            12.295,
+            46.62
+          ]
+        ]
+      },
+      "center": [
+        12.304,
+        46.621
+      ],
+      "geometryAssessment": {
+        "version": "geometry-v1",
+        "status": "passed",
+        "isClosed": true,
+        "closureDistanceM": 0,
+        "distanceKm": 5.73,
+        "maxSegmentM": 941,
+        "pointCount": 8,
+        "issues": []
+      },
+      "blockers": [],
+      "evidenceRequired": [
+        "route",
+        "parking",
+        "elevation",
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access",
+        "photo"
+      ],
+      "createdAt": "2026-08-17T12:11:48.552Z",
+      "updatedAt": "2026-08-17T12:11:48.552Z",
+      "history": [
+        {
+          "from": "discovered",
+          "to": "geometry_validated",
+          "at": "2026-08-17T12:11:48.552Z",
+          "actor": "discovery-workflow-v1",
+          "reason": "deterministic geometry checks passed"
+        }
+      ]
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "osm-way-25736154",
+      "name": "Lago di Braies Rundweg",
+      "state": "geometry_validated",
+      "source": {
+        "provider": "openstreetmap",
+        "externalId": "way/25736154",
+        "url": "https://www.openstreetmap.org/way/25736154",
+        "retrievedAt": "2025-07-01T00:00:00.000Z",
+        "licence": "ODbL-1.0",
+        "sourceTags": {
+          "highway": "path",
+          "surface": "gravel"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.081,
+            46.692
+          ],
+          [
+            12.08,
+            46.696
+          ],
+          [
+            12.083,
+            46.7
+          ],
+          [
+            12.089,
+            46.699
+          ],
+          [
+            12.091,
+            46.695
+          ],
+          [
+            12.087,
+            46.692
+          ],
+          [
+            12.081,
+            46.692
+          ]
+        ]
+      },
+      "center": [
+        12.084,
+        46.694
+      ],
+      "geometryAssessment": {
+        "version": "geometry-v1",
+        "status": "passed",
+        "isClosed": true,
+        "closureDistanceM": 0,
+        "distanceKm": 2.8,
+        "maxSegmentM": 500,
+        "pointCount": 7,
+        "issues": []
+      },
+      "blockers": [],
+      "evidenceRequired": [
+        "route",
+        "parking",
+        "elevation",
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access",
+        "photo"
+      ],
+      "createdAt": "2026-08-17T12:11:48.552Z",
+      "updatedAt": "2026-08-17T12:11:48.552Z",
+      "history": [
+        {
+          "from": "discovered",
+          "to": "geometry_validated",
+          "at": "2026-08-17T12:11:48.552Z",
+          "actor": "discovery-workflow-v1",
+          "reason": "deterministic geometry checks passed"
+        }
+      ]
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "osm-relation-6678431",
+      "name": "Cinque Torri Rundweg",
+      "state": "geometry_validated",
+      "source": {
+        "provider": "openstreetmap",
+        "externalId": "relation/6678431",
+        "url": "https://www.openstreetmap.org/relation/6678431",
+        "retrievedAt": "2025-07-01T00:00:00.000Z",
+        "licence": "ODbL-1.0",
+        "sourceTags": {
+          "route": "hiking",
+          "network": "lwn"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.03,
+            46.514
+          ],
+          [
+            12.034,
+            46.52
+          ],
+          [
+            12.041,
+            46.524
+          ],
+          [
+            12.047,
+            46.52
+          ],
+          [
+            12.045,
+            46.514
+          ],
+          [
+            12.038,
+            46.511
+          ],
+          [
+            12.03,
+            46.514
+          ]
+        ]
+      },
+      "center": [
+        12.038,
+        46.518
+      ],
+      "geometryAssessment": {
+        "version": "geometry-v1",
+        "status": "passed",
+        "isClosed": true,
+        "closureDistanceM": 0,
+        "distanceKm": 4.08,
+        "maxSegmentM": 734,
+        "pointCount": 7,
+        "issues": []
+      },
+      "blockers": [],
+      "evidenceRequired": [
+        "route",
+        "parking",
+        "elevation",
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access",
+        "photo"
+      ],
+      "createdAt": "2026-08-17T12:11:48.552Z",
+      "updatedAt": "2026-08-17T12:11:48.552Z",
+      "history": [
+        {
+          "from": "discovered",
+          "to": "geometry_validated",
+          "at": "2026-08-17T12:11:48.552Z",
+          "actor": "discovery-workflow-v1",
+          "reason": "deterministic geometry checks passed"
+        }
+      ]
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "osm-relation-1372055",
+      "name": "Monte Pelmo Giro",
+      "state": "geometry_validated",
+      "source": {
+        "provider": "openstreetmap",
+        "externalId": "relation/1372055",
+        "url": "https://www.openstreetmap.org/relation/1372055",
+        "retrievedAt": "2025-07-01T00:00:00.000Z",
+        "licence": "ODbL-1.0",
+        "sourceTags": {
+          "route": "hiking",
+          "network": "lwn"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            12.104,
+            46.44
+          ],
+          [
+            12.113,
+            46.434
+          ],
+          [
+            12.125,
+            46.43
+          ],
+          [
+            12.138,
+            46.425
+          ],
+          [
+            12.143,
+            46.419
+          ],
+          [
+            12.136,
+            46.413
+          ],
+          [
+            12.121,
+            46.412
+          ],
+          [
+            12.108,
+            46.417
+          ],
+          [
+            12.104,
+            46.426
+          ],
+          [
+            12.104,
+            46.44
+          ]
+        ]
+      },
+      "center": [
+        12.122,
+        46.428
+      ],
+      "geometryAssessment": {
+        "version": "geometry-v1",
+        "status": "passed",
+        "isClosed": true,
+        "closureDistanceM": 0,
+        "distanceKm": 9.65,
+        "maxSegmentM": 1557,
+        "pointCount": 10,
+        "issues": []
+      },
+      "blockers": [],
+      "evidenceRequired": [
+        "route",
+        "parking",
+        "elevation",
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access",
+        "photo"
+      ],
+      "createdAt": "2026-08-17T12:11:48.552Z",
+      "updatedAt": "2026-08-17T12:11:48.552Z",
+      "history": [
+        {
+          "from": "discovered",
+          "to": "geometry_validated",
+          "at": "2026-08-17T12:11:48.552Z",
+          "actor": "discovery-workflow-v1",
+          "reason": "deterministic geometry checks passed"
+        }
+      ]
+    }
+  ],
+  "rejections": [
+    {
+      "id": "osm-relation-130384",
+      "name": "Alta Via delle Dolomiti n. 1",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-130385",
+      "name": "Alta Via delle Dolomiti n. 2",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-248701",
+      "name": "Sentiero Frassati n. 3",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-3120801",
+      "name": "Alpe di Siusi / Seiser Alm Weg",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-195849",
+      "name": "Catinaccio / Rosengarten Höhenweg",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-1892847",
+      "name": "Sciliar / Schlern Weg",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-9328441",
+      "name": "Sentiero delle Dolomiti Friulane",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-7213400",
+      "name": "Marmolada Sentiero",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-way-30182947",
+      "name": "Sentiero Attrezzato Vandelli",
+      "blockers": [
+        "blocked-difficulty:alpine_hiking",
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-4811223",
+      "name": "Seceda Weg",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-6102937",
+      "name": "Pale di San Martino - Sentiero CAI",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-2184563",
+      "name": "Dolomiti di Brenta - Via Bocchette",
+      "blockers": [
+        "blocked-difficulty:alpine_hiking",
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-3910024",
+      "name": "Val Fiscalina / Fischleintal Weg",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-1203947",
+      "name": "Cadini di Misurina",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-way-128736451",
+      "name": "Sentiero degli Alpini",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-8392021",
+      "name": "Monte Cristallo Weg",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-2931048",
+      "name": "Croda da Lago",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-4572193",
+      "name": "Tofane - Sentiero Astaldi",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-1023847",
+      "name": "Lagazuoi Weg",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-way-54128901",
+      "name": "Val Gardena / Grödnertal Panoramaweg",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-7840193",
+      "name": "Sentiero CAI Lombardia - Adamello",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-6301827",
+      "name": "Dolomiti Friulane - Sentiero CAI 341",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-5283017",
+      "name": "Sentiero del Silenzio",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-way-198302847",
+      "name": "CAI 230",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-3019471",
+      "name": "Via Alpina - Segmento Rosso",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    },
+    {
+      "id": "osm-relation-11203745",
+      "name": "Sentiero Naturalistico Val Pusteria",
+      "blockers": [
+        "not-closed-loop"
+      ]
+    }
+  ]
+}

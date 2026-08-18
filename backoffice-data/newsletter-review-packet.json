@@ -1,0 +1,19 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-18T00:00:00.000Z",
+  "mode": "draft-only",
+  "publicMutationAllowed": false,
+  "workstream": "newsletter",
+  "subject": {
+    "type": "newsletter",
+    "id": "awaiting-first-run",
+    "sourceRef": "backoffice-data/newsletter-draft.html",
+    "updatedAt": "2026-08-18T00:00:00.000Z",
+    "original": ""
+  },
+  "outputs": [],
+  "summary": {
+    "readyForReview": 0,
+    "blocked": 0
+  }
+}

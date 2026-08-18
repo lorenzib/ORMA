@@ -1,0 +1,13 @@
+{
+  "contractVersion":"1.0.0",
+  "sourceDecisionExport":"orma-review-decisions-2026-08-18 (16).json",
+  "recordedAt":"2026-08-18T14:47:14.907Z",
+  "gate":"safety-input-review",
+  "publicMutationAllowed":false,
+  "summary":{"dossiersReviewed":3,"supportedClaimsConfirmed":36,"unresolvedClaimsCarriedForward":1,"exactClaimSetMatch":true,"newAttempt4ClaimsConfirmed":3},
+  "decisions":[
+    {"candidateId":"osm-relation-1484751","action":"confirm-supported-claims","supportedClaimCount":13,"unresolvedClaimIds":[],"reviewedAt":"2026-08-18T14:46:28.907Z"},
+    {"candidateId":"osm-relation-6678431","action":"confirm-supported-claims","supportedClaimCount":12,"unresolvedClaimIds":[],"reviewedAt":"2026-08-18T14:47:01.957Z"},
+    {"candidateId":"osm-way-25736154","action":"confirm-supported-claims","supportedClaimCount":11,"unresolvedClaimIds":["livestock"],"reviewedAt":"2026-08-18T14:46:47.890Z"}
+  ]
+}

@@ -1,0 +1,239 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-18T16:03:23.986Z",
+  "mode": "draft-only",
+  "stage": "verified-trail-editorial-review",
+  "executionOrigin": "codex-assisted-locked-fact-preview",
+  "sourceQueue": "backoffice-data/verified-trail-editorial-queue.json",
+  "publicMutationAllowed": false,
+  "publicationAuthorized": false,
+  "outputs": [
+    {
+      "jobId": "verified-osm-relation-1484751-copy",
+      "agentId": "copywriter",
+      "status": "ready-for-review",
+      "responseId": null,
+      "model": "codex-assisted-locked-fact-draft",
+      "error": null,
+      "candidateId": "osm-relation-1484751",
+      "result": {
+        "title": "Tre Cime di Lavaredo classic circuit",
+        "summary": "First editorial draft compiled strictly from the supported dossier claims. Safety and operational caveats remain explicit.",
+        "changes": [
+          {
+            "section": "About the trail",
+            "before": "No verified editorial draft.",
+            "after": "A demanding 9.528 km circuit from Rifugio Auronzo around the Tre Cime, following trails 101 and 105. The official itinerary gives 468 m of ascent, about 3 hours 30 minutes and a high point of 2,454 m. This is a hard, open high-alpine walk rather than a casual sightseeing loop.",
+            "reason": "Turns the approved identity and metrics into concise visitor-facing copy."
+          },
+          {
+            "section": "Why it suits dogs",
+            "before": "No verified editorial draft.",
+            "after": "Dogs are accepted on the route but must stay on lead throughout. Seasonal livestock may be present beside the Lavaredo pasture segment, so keep your dog close and pass animals conservatively. The route has very little dependable shade and includes a narrower section, although no ferrata equipment is required.",
+            "reason": "Preserves the approved dog-access, livestock, exposure, shade and water guidance."
+          },
+          {
+            "section": "Important practical notes",
+            "before": "No verified editorial draft.",
+            "after": "Start and finish at Rifugio Auronzo. The seasonal toll road and parking are weather-dependent and normally require advance booking; roadside parking is prohibited. Carry sufficient water. A fountain is identified at Malga LangAlm, but its seasonal availability and potability are not guaranteed.",
+            "reason": "Keeps parking, seasonal access and operational limitations prominent."
+          }
+        ],
+        "sources": [
+          {
+            "label": "Locked ORMA evidence dossier",
+            "url": "backoffice/dossiers/tre-cime.json",
+            "checkedAt": "2026-08-18",
+            "supports": "Every factual statement in the proposed trail copy"
+          }
+        ],
+        "openQuestions": []
+      }
+    },
+    {
+      "jobId": "verified-osm-relation-1484751-visual",
+      "agentId": "visualDirector",
+      "status": "ready-for-review",
+      "responseId": null,
+      "model": "codex-assisted-licensed-asset-packet",
+      "error": null,
+      "candidateId": "osm-relation-1484751",
+      "result": {
+        "searchSummary": "One geolocated hero candidate has complete creator, licence, credit and direct-preview metadata. It is suitable for location context only and not as evidence of current trail conditions.",
+        "candidates": [
+          {
+            "title": "Tre Cime di Lavaredo classic circuit hero candidate",
+            "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
+            "assetUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
+            "creator": "Simone A. Bertinotti",
+            "license": "CC BY-SA 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+            "credit": "Tre Cime di Lavaredo, Sentiero per il Rifugio Locatelli — Simone A. Bertinotti — CC BY-SA 4.0 — via Wikimedia Commons",
+            "matchEvidence": "Geolocated to the verified trail area. Do not infer: current surface, crowding, water availability or dog conditions",
+            "altText": "Gravel trail towards Rifugio Locatelli beneath the Tre Cime di Lavaredo peaks.",
+            "status": "ready"
+          }
+        ],
+        "coverageGaps": [
+          "Operational field photographs remain desirable for parking, surfaces, dog context and facilities."
+        ]
+      }
+    },
+    {
+      "jobId": "verified-osm-relation-6678431-copy",
+      "agentId": "copywriter",
+      "status": "ready-for-review",
+      "responseId": null,
+      "model": "codex-assisted-locked-fact-draft",
+      "error": null,
+      "candidateId": "osm-relation-6678431",
+      "result": {
+        "title": "Cinque Torri three-refuges assisted circuit",
+        "summary": "First editorial draft compiled strictly from the supported dossier claims. Safety and operational caveats remain explicit.",
+        "changes": [
+          {
+            "section": "About the trail",
+            "before": "No verified editorial draft.",
+            "after": "This chairlift-assisted circuit begins at Bai de Dones, rises on the 5 Torri lift and returns on foot through the Cinque Torri open-air museum, refuge area and forest. The approved track contains 1.37 km of lift transport followed by approximately 3.95 km of predominantly downhill walking, with about two hours allowed for the itinerary.",
+            "reason": "Turns the approved identity and metrics into concise visitor-facing copy."
+          },
+          {
+            "section": "Why it suits dogs",
+            "before": "No verified editorial draft.",
+            "after": "Dogs of any size may use the 5 Torri lift free of charge, but both leash and muzzle are required. The upper museum and refuge area is open alpine terrain, while the lower return enters forest. Seasonal sheep grazing is documented in the wider area, so keep dogs close even though an encounter on the exact circuit is variable.",
+            "reason": "Preserves the approved dog-access, livestock, exposure, shade and water guidance."
+          },
+          {
+            "section": "Important practical notes",
+            "before": "No verified editorial draft.",
+            "after": "This itinerary depends on the 5 Torri chairlift operating. The published 2026 season is 6 June to 11 October, subject to weather and snow. Use the approved Bai de Dones parking pin. Carry water: the three refuges are possible service stops, but no freely accessible potable dog-water point has been verified.",
+            "reason": "Keeps parking, seasonal access and operational limitations prominent."
+          }
+        ],
+        "sources": [
+          {
+            "label": "Locked ORMA evidence dossier",
+            "url": "backoffice/dossiers/cinque-torri.json",
+            "checkedAt": "2026-08-18",
+            "supports": "Every factual statement in the proposed trail copy"
+          }
+        ],
+        "openQuestions": []
+      }
+    },
+    {
+      "jobId": "verified-osm-relation-6678431-visual",
+      "agentId": "visualDirector",
+      "status": "ready-for-review",
+      "responseId": null,
+      "model": "codex-assisted-licensed-asset-packet",
+      "error": null,
+      "candidateId": "osm-relation-6678431",
+      "result": {
+        "searchSummary": "One geolocated hero candidate has complete creator, licence, credit and direct-preview metadata. It is suitable for location context only and not as evidence of current trail conditions.",
+        "candidates": [
+          {
+            "title": "Cinque Torri three-refuges assisted circuit hero candidate",
+            "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Cinque_Torri_01.jpg",
+            "assetUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cinque_Torri_01.jpg",
+            "creator": "Clemens Stockner",
+            "license": "CC BY-SA 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+            "credit": "Cinque Torri 01 — Clemens Stockner — CC BY-SA 4.0 — via Wikimedia Commons",
+            "matchEvidence": "Geolocated to the verified trail area. Do not infer: lift operation, trail surface, shade, livestock or dog conditions",
+            "altText": "The Cinque Torri rock towers viewed from the west in the Ampezzo Dolomites.",
+            "status": "ready"
+          }
+        ],
+        "coverageGaps": [
+          "Operational field photographs remain desirable for parking, surfaces, dog context and facilities."
+        ]
+      }
+    },
+    {
+      "jobId": "verified-osm-way-25736154-copy",
+      "agentId": "copywriter",
+      "status": "ready-for-review",
+      "responseId": null,
+      "model": "codex-assisted-locked-fact-revision",
+      "error": null,
+      "candidateId": "osm-way-25736154",
+      "revision": {
+        "revisionJobId": "trail-revision-verified-osm-way-25736154-copy-2026-08-18T18-42-39-581Z",
+        "attempt": 1,
+        "instruction": "Carry all the water your dog needs as the protected lake is a drinking source. -> edit it",
+        "status": "ready-for-review",
+        "completedAt": "2026-08-18T18:43:47.000Z",
+        "resolution": "Edited the awkward water sentence. The phrase suggesting that the lake is a drinking source was not adopted because it conflicts with the locked ORMA dossier, which says that no potable source is verified and the protected lake must not be presented as one."
+      },
+      "result": {
+        "title": "Lago di Braies Seeweg circuit",
+        "summary": "Revision attempt 1 addresses the editor's water-language note while preserving the locked potable-water evidence.",
+        "changes": [
+          {
+            "section": "About the trail",
+            "before": "No verified editorial draft.",
+            "after": "A complete 3.6 km circuit around Lago di Braies, starting and finishing near the lake hotel and tavern area. Allow about one hour and 39 m of ascent and descent. The path alternates between broad forest and lakeshore sections, narrower rooted ground, uphill steps and a section beside a vertical rock wall.",
+            "reason": "Turns the approved identity and metrics into concise visitor-facing copy."
+          },
+          {
+            "section": "Why it suits dogs",
+            "before": "The route is dog-friendly, but dogs must remain on lead inside the nature park. No livestock is expected around this exact lakeshore circuit based on the editor’s direct local knowledge; the lead rule still applies because wildlife disturbance remains relevant. Carry all the water your dog needs and do not present the protected lake as a drinking source.",
+            "after": "The route is dog-friendly, but dogs must remain on lead inside the nature park. No livestock is expected around this exact lakeshore circuit based on the editor’s direct local knowledge; the lead rule still applies because wildlife disturbance remains relevant. Bring enough water for your dog: no potable source has been verified on the circuit, and the protected lake should not be treated as one.",
+            "reason": "Responds to the requested edit while preserving the locked finding that the lake is not a verified drinking source."
+          },
+          {
+            "section": "Important practical notes",
+            "before": "No verified editorial draft.",
+            "after": "Use the approved official P1, P2, P3 and P4 parking set. From 1 July to 15 September 2026, between 09:00 and 16:00, valley access is controlled and requires public transport, walking, cycling, or the relevant parking reservation or transit permit. Carry and use a muzzle on public transport.",
+            "reason": "Keeps parking, seasonal access and operational limitations prominent."
+          }
+        ],
+        "sources": [
+          {
+            "label": "Locked ORMA evidence dossier",
+            "url": "backoffice/dossiers/lago-braies.json",
+            "checkedAt": "2026-08-18",
+            "supports": "Every factual statement in the proposed trail copy"
+          }
+        ],
+        "openQuestions": []
+      }
+    },
+    {
+      "jobId": "verified-osm-way-25736154-visual",
+      "agentId": "visualDirector",
+      "status": "ready-for-review",
+      "responseId": null,
+      "model": "codex-assisted-licensed-asset-packet",
+      "error": null,
+      "candidateId": "osm-way-25736154",
+      "result": {
+        "searchSummary": "One geolocated hero candidate has complete creator, licence, credit and direct-preview metadata. It is suitable for location context only and not as evidence of current trail conditions.",
+        "candidates": [
+          {
+            "title": "Lago di Braies Seeweg circuit hero candidate",
+            "sourcePageUrl": "https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_5.jpg",
+            "assetUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lago_di_Braies_South_Tyrol_5.jpg",
+            "creator": "kallerna",
+            "license": "CC BY-SA 4.0",
+            "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+            "credit": "Lago di Braies South Tyrol 5 — kallerna — CC BY-SA 4.0 — via Wikimedia Commons",
+            "matchEvidence": "Geolocated to the verified trail area. Do not infer: water potability, swimming access, trail accessibility or dog conditions",
+            "altText": "Southern shore of Lago di Braies with the lake and surrounding Dolomite peaks.",
+            "status": "ready"
+          }
+        ],
+        "coverageGaps": [
+          "Operational field photographs remain desirable for parking, surfaces, dog context and facilities."
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "trails": 3,
+    "readyForReview": 6,
+    "blocked": 0,
+    "publicationReady": 0
+  }
+}

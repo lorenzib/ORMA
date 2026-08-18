@@ -1,0 +1,20 @@
+{
+  "contractVersion": "1.0.0",
+  "updatedAt": "2026-08-18T19:31:57.398Z",
+  "items": [
+    {
+      "contentId": "guide-paw-protection",
+      "type": "guide",
+      "sourceRef": "guides/paw-protection.html",
+      "status": "in-review",
+      "contentFingerprint": "0ca58d10ce9d3fd72b0c1563ff8854d075eae4caec0a99d61f048e117fe02f13",
+      "sourcesFingerprint": "e042ad6552edaa927c35402a37704739f08ca5c37efa25a726bb6f9ecebd81e4",
+      "lastDecision": "in-review",
+      "lastReviewedAt": "2026-08-18T19:31:57.398Z",
+      "lastPublishedAt": "2026-08-18T17:34:53.000Z",
+      "nextEligibleAt": "2026-08-25T19:31:57.398Z",
+      "activePacketFingerprint": "8f8d9a9371da4e0db52b45a80d17e295e12ea1aa0d626f2db8adf18a8405baa1",
+      "revisionNote": null
+    }
+  ]
+}

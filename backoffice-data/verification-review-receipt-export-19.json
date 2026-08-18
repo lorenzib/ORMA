@@ -1,0 +1,26 @@
+{
+  "contractVersion": "1.0.0",
+  "sourceDecisionExport": "orma-review-decisions-2026-08-18 (19).json",
+  "sourceExportedAt": "2026-08-18T15:20:00.565Z",
+  "processedAt": "2026-08-18T15:20:00.565Z",
+  "action": "apply-latest-explicit-human-verification-decision",
+  "decision": {
+    "candidateId": "osm-way-25736154",
+    "action": "keep-verification-blocked",
+    "reviewedAt": "2026-08-18T15:19:57.182Z",
+    "reviewedBy": "local-editor",
+    "note": "",
+    "supersedes": "backoffice-data/braies-verification-approval-2026-08-18.json"
+  },
+  "evidenceTreatment": {
+    "livestockAttestationState": "retained-as-supported",
+    "livestockAttestationRef": "backoffice-data/braies-livestock-human-attestation-2026-08-18.json",
+    "reason": "Keeping the final verification gate blocked does not invalidate the separately recorded livestock evidence."
+  },
+  "result": {
+    "trailVerification": "human-review-blocked",
+    "resumeCondition": "Record a later explicit approve-orma-verified decision at the final verification gate.",
+    "publicationAuthorized": false,
+    "publicMutationAllowed": false
+  }
+}

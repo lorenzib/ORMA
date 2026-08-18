@@ -1,0 +1,18 @@
+{
+  "contractVersion":"1.0.0",
+  "sourceDecisionExport":"orma-review-decisions-2026-08-18 (16).json",
+  "generatedAt":"2026-08-18T14:47:14.907Z",
+  "resolutionAttempt":5,
+  "maximumAutomatedAttempts":5,
+  "strategy":"Final provenance and adversarial serious-objection review; direct-evidence requirement for the remaining Braies livestock gap",
+  "publicMutationAllowed":false,
+  "summary":{"supportedClaims":36,"unresolvedOrConflictedClaims":1,"readyForFinalHumanVerification":2,"fullyOrmaVerified":0,"sourceExhausted":1},
+  "results":[
+    {"candidateId":"osm-relation-1484751","state":"ready-for-serious-objection-human-gate","redTeamRecommendation":"clear-for-final-human-verification","seriousObjectionCount":0},
+    {"candidateId":"osm-relation-6678431","state":"ready-for-serious-objection-human-gate","redTeamRecommendation":"clear-for-final-human-verification","seriousObjectionCount":0},
+    {"candidateId":"osm-way-25736154","state":"source-exhausted-contact-or-field-required","redTeamRecommendation":"remain-blocked-source-exhausted","seriousObjectionCount":1,"unresolvedClaimIds":["livestock"]}
+  ],
+  "attemptBudgetRule":"No sixth automated search is permitted without new external evidence. Braies resumes only when an authority reply or field report is attached.",
+  "nextHumanGate":"serious-objection-review",
+  "publicationState":"No trail is published or automatically marked ORMA Verified."
+}

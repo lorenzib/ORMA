@@ -1,0 +1,3987 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-17T15:22:29.174Z",
+  "mode": "draft-only",
+  "publicMutationAllowed": false,
+  "jobLimit": 5,
+  "summary": {
+    "total": 164,
+    "curated": 25,
+    "imported": 139,
+    "modernGraduationVerified": 1,
+    "identityCheckQueued": 154,
+    "sourceIdentityRequired": 9,
+    "previouslyQueued": 0,
+    "remainingQueueable": 158,
+    "jobsCreated": 5
+  },
+  "selectedTrailIds": [
+    "osm-16322228",
+    "osm-19153189",
+    "osm-16363583",
+    "osm-20347406",
+    "osm-16395076"
+  ],
+  "jobs": [
+    {
+      "contractVersion": "1.0.0",
+      "id": "catalogue-cartographer-001",
+      "agentId": "cartographer",
+      "action": "verify-current-relation",
+      "candidateId": "osm-16322228",
+      "claimIds": [
+        "route-identity",
+        "route-geometry"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-16322228"
+      ],
+      "outputRefs": [],
+      "requestedBy": "catalogue-verification-campaign-v1",
+      "createdAt": "2026-08-17T15:22:29.174Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": "geometry-approval"
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "catalogue-cartographer-002",
+      "agentId": "cartographer",
+      "action": "verify-current-relation",
+      "candidateId": "osm-19153189",
+      "claimIds": [
+        "route-identity",
+        "route-geometry"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-19153189"
+      ],
+      "outputRefs": [],
+      "requestedBy": "catalogue-verification-campaign-v1",
+      "createdAt": "2026-08-17T15:22:29.174Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": "geometry-approval"
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "catalogue-cartographer-003",
+      "agentId": "cartographer",
+      "action": "verify-current-relation",
+      "candidateId": "osm-16363583",
+      "claimIds": [
+        "route-identity",
+        "route-geometry"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-16363583"
+      ],
+      "outputRefs": [],
+      "requestedBy": "catalogue-verification-campaign-v1",
+      "createdAt": "2026-08-17T15:22:29.174Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": "geometry-approval"
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "catalogue-cartographer-004",
+      "agentId": "cartographer",
+      "action": "verify-current-relation",
+      "candidateId": "osm-20347406",
+      "claimIds": [
+        "route-identity",
+        "route-geometry"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-20347406"
+      ],
+      "outputRefs": [],
+      "requestedBy": "catalogue-verification-campaign-v1",
+      "createdAt": "2026-08-17T15:22:29.174Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": "geometry-approval"
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "catalogue-cartographer-005",
+      "agentId": "cartographer",
+      "action": "verify-current-relation",
+      "candidateId": "osm-16395076",
+      "claimIds": [
+        "route-identity",
+        "route-geometry"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-16395076"
+      ],
+      "outputRefs": [],
+      "requestedBy": "catalogue-verification-campaign-v1",
+      "createdAt": "2026-08-17T15:22:29.174Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": "geometry-approval"
+    }
+  ],
+  "items": [
+    {
+      "trailId": "osm-16322228",
+      "name": "Boucle du Marais des Chassettes",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/16322228",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 320,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 51,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-19153189",
+      "name": "Le Belvédère (Saint-Pierre-d'Albigny)",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/19153189",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 320,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 70,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-16363583",
+      "name": "Le Marais de Pré Lombard",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/16363583",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 320,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 75,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-20347406",
+      "name": "Sentier des Patriotes",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/20347406",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 320,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 149,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-16395076",
+      "name": "Boucle du Lac de la Thuile",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/16395076",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 318,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 30,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-6250300",
+      "name": "Boucle du Lac Vert",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/6250300",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 318,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 85,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14864704",
+      "name": "Boucle du Taillefer",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/14864704",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 318,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 147,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-3982382",
+      "name": "Circuit Béatrice de Savoie",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/3982382",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 318,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 74,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-10116283",
+      "name": "Itinéraire de découverte historique",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/10116283",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 318,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 27,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-10116380",
+      "name": "Itinéraire découverte de la nature",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/10116380",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 318,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 57,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11517208",
+      "name": "La Croix des Salles",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11517208",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 318,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 119,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-9933643",
+      "name": "Le Lac Vert",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/9933643",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 318,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 105,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-18055492",
+      "name": "Le Mont d'Arbois - Mont Joux",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/18055492",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 318,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 150,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14095296",
+      "name": "Les Marais d'Albens",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/14095296",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 318,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 72,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-15591346",
+      "name": "Sentier des Buis",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/15591346",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 318,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 175,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "tre-cime",
+      "name": "Tre Cime di Lavaredo Loop",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": null,
+      "campaignState": "source-identity-required",
+      "priorityScore": 311,
+      "baselineBlockers": [
+        "route-source-identity-unresolved"
+      ],
+      "existing": {
+        "reviewedAt": "2026-07-17",
+        "sourceCount": 3,
+        "pathPointCount": 143,
+        "reviewedCategories": [
+          "surfaceHazards",
+          "access"
+        ]
+      }
+    },
+    {
+      "trailId": "giro-del-bulacia",
+      "name": "Giro del Bulacia",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": null,
+      "campaignState": "source-identity-required",
+      "priorityScore": 306,
+      "baselineBlockers": [
+        "route-source-identity-unresolved",
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 88,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "giro-del-sasso-lungo",
+      "name": "Giro del Sasso Lungo",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": null,
+      "campaignState": "source-identity-required",
+      "priorityScore": 306,
+      "baselineBlockers": [
+        "route-source-identity-unresolved",
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 267,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "sentiero-hans-e-paula-steger",
+      "name": "Sentiero Hans e Paula Steger",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": null,
+      "campaignState": "source-identity-required",
+      "priorityScore": 306,
+      "baselineBlockers": [
+        "route-source-identity-unresolved",
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 120,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "sentiero-del-trenino",
+      "name": "Sentiero del Trenino",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": null,
+      "campaignState": "source-identity-required",
+      "priorityScore": 305,
+      "baselineBlockers": [
+        "route-source-identity-unresolved",
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 127,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "alpe-siusi",
+      "name": "Alpe di Siusi Meadow Loop",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": null,
+      "campaignState": "source-identity-required",
+      "priorityScore": 304,
+      "baselineBlockers": [
+        "route-source-identity-unresolved",
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 71,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "geotrail-bulla",
+      "name": "Geotrail Bula / Pufels / Bulla",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": null,
+      "campaignState": "source-identity-required",
+      "priorityScore": 304,
+      "baselineBlockers": [
+        "route-source-identity-unresolved",
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 151,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "lago-braies",
+      "name": "Lago di Braies Loop",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": null,
+      "campaignState": "source-identity-required",
+      "priorityScore": 304,
+      "baselineBlockers": [
+        "route-source-identity-unresolved",
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 72,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "lago-carezza",
+      "name": "Lago di Carezza Loop",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": null,
+      "campaignState": "source-identity-required",
+      "priorityScore": 304,
+      "baselineBlockers": [
+        "route-source-identity-unresolved",
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 33,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-7548344",
+      "name": "Anello del Sole",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/7548344",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 225,
+      "baselineBlockers": [],
+      "existing": {
+        "reviewedAt": "2026-07-26",
+        "sourceCount": 5,
+        "pathPointCount": 61,
+        "reviewedCategories": [
+          "water",
+          "heat",
+          "exposure",
+          "surfaceHazards"
+        ]
+      }
+    },
+    {
+      "trailId": "cadini",
+      "name": "Cadini di Misurina Viewpoint",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/1067616",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 225,
+      "baselineBlockers": [],
+      "existing": {
+        "reviewedAt": "2026-07-17",
+        "sourceCount": 3,
+        "pathPointCount": 20,
+        "reviewedCategories": [
+          "exposure",
+          "surfaceHazards",
+          "access"
+        ]
+      }
+    },
+    {
+      "trailId": "lago-sorapis",
+      "name": "Lago di Sorapis Trail",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/3985745",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 225,
+      "baselineBlockers": [],
+      "existing": {
+        "reviewedAt": "2026-07-17",
+        "sourceCount": 2,
+        "pathPointCount": 58,
+        "reviewedCategories": [
+          "exposure",
+          "surfaceHazards"
+        ]
+      }
+    },
+    {
+      "trailId": "osm-12731853",
+      "name": "Rundweg Laugen Elvas",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12731853",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 225,
+      "baselineBlockers": [],
+      "existing": {
+        "reviewedAt": "2026-07-26",
+        "sourceCount": 5,
+        "pathPointCount": 77,
+        "reviewedCategories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards"
+        ]
+      }
+    },
+    {
+      "trailId": "sassolungo",
+      "name": "Sassolungo–Sassopiatto Loop",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/5412043",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 225,
+      "baselineBlockers": [],
+      "existing": {
+        "reviewedAt": "2026-07-17",
+        "sourceCount": 2,
+        "pathPointCount": 180,
+        "reviewedCategories": [
+          "livestock",
+          "access"
+        ]
+      }
+    },
+    {
+      "trailId": "seceda",
+      "name": "Seceda Ridge Trail",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/6528494",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 225,
+      "baselineBlockers": [],
+      "existing": {
+        "reviewedAt": "2026-07-17",
+        "sourceCount": 3,
+        "pathPointCount": 123,
+        "reviewedCategories": [
+          "livestock",
+          "access"
+        ]
+      }
+    },
+    {
+      "trailId": "osm-11795251",
+      "name": "1 - Dörferrundweg (Vintl)",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11795251",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 117,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11774783",
+      "name": "1 - Rafeil-Rundweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11774783",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 49,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14379937",
+      "name": "Albannette petite boucle",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/14379937",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 80,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12736753",
+      "name": "Albeins-Klerant-Milland - Albes-Cleran-Millan",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12736753",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 56,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-19095413",
+      "name": "Alpage de Commune",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/19095413",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 107,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-7388748",
+      "name": "Anello dei Colli",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/7388748",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 106,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-7548489",
+      "name": "Anello dei Faggi",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/7548489",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 135,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-7547653",
+      "name": "Anello dei Forti",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/7547653",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 62,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-6404633",
+      "name": "Anello dei Pradi",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/6404633",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 70,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-6404634",
+      "name": "Anello del Bosco",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/6404634",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 18,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-7549783",
+      "name": "Anello del Troi de le Ciaure",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/7549783",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 83,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-7548201",
+      "name": "Anello di Ciampeviei",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/7548201",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 182,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-7546708",
+      "name": "Anello di Soracrode",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/7546708",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 87,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-7547983",
+      "name": "Anello di Valzalina",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/7547983",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 87,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-6529356",
+      "name": "Anton Schwingshackl Weg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/6529356",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 309,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12953352",
+      "name": "archeo",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12953352",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 13,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-13337921",
+      "name": "Au pied du Roc d'Enfer",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/13337921",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 18,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12121548",
+      "name": "B02 - Le tour de l'Armélaz",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12121548",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 189,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12118490",
+      "name": "B05 - Le Balcon des Plagnes",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12118490",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 96,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12121346",
+      "name": "B08 - Le tour des hameaux de Montandré, Champessuit et Grenis",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12121346",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 117,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-16180587",
+      "name": "Balade du Plateau d'Assy au Lac Vert",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/16180587",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 143,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14381584",
+      "name": "Beaumollard",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/14381584",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 106,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-13491868",
+      "name": "Birmehlweg - Sentiero Birmehl",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/13491868",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 18,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-19855818",
+      "name": "Boucle des cascades",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/19855818",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 224,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-19760372",
+      "name": "Boucle du Moulin de Cornet",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/19760372",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 104,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11816373",
+      "name": "Bunkerweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11816373",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 70,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11775760",
+      "name": "Carl-Toldt-Weg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11775760",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 70,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-19095412",
+      "name": "Chalets de Salvadon",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/19095412",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 132,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-5479112",
+      "name": "Chemin des Diligences",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/5479112",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 180,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-15321786",
+      "name": "Circuit de la Comtesse Cécile",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/15321786",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 104,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-19531872",
+      "name": "Circuit des Demoiselles Coiffées",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/19531872",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 75,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12745924",
+      "name": "Circuit des escaliers",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12745924",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 109,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-16490407",
+      "name": "Circuit des Sallanches",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/16490407",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 187,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-16218739",
+      "name": "Circuit du Ragairon",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/16218739",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 224,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14375158",
+      "name": "Crêt de la Parenche",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/14375158",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 150,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14376573",
+      "name": "Crêt de Talière",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/14376573",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 87,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14379010",
+      "name": "Croix de Pralognan",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/14379010",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 136,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-6410700",
+      "name": "Dolomitenblickrunde",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/6410700",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 108,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11764094",
+      "name": "Dörferrunde (Natz => Raas => Schabs => Viums)",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11764094",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 13,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12164395",
+      "name": "Dörferrundweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12164395",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 120,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-19330972",
+      "name": "Dorfrundweg - Giro del Paese",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/19330972",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 21,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12302191",
+      "name": "Dorfrundweg Rasen",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12302191",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 140,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-8510456",
+      "name": "Dorfrundweg St. Sigmund",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/8510456",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 54,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12121798",
+      "name": "EN02 - Le terroir de Serpolière",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12121798",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 22,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12127424",
+      "name": "EN04 - Au fil de l'Arvan",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12127424",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 58,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-1116675",
+      "name": "Familienrundweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/1116675",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 50,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11839597",
+      "name": "Fenn Promenade",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11839597",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 48,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12190538",
+      "name": "Flaaser Rundweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12190538",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 72,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11814834",
+      "name": "Geotrail Bula - Pufels - Bulla",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11814834",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 155,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12027153",
+      "name": "GEOWeg - Sentiero GEOlogico",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12027153",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 146,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12150790",
+      "name": "Giro dei Capitelli - Kapellenrunde",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12150790",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 57,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12079333",
+      "name": "Giro dei Masi",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12079333",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 111,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-7045225",
+      "name": "Giro del Fausior",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/7045225",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 153,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-7086961",
+      "name": "Giro del Zimon",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/7086961",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 74,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-15791408",
+      "name": "Giro di Bedolpian",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/15791408",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 49,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12173984",
+      "name": "Große Schlossrunde",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12173984",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 87,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-1780768",
+      "name": "Gsieser Talblickweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/1780768",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 592,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14058492",
+      "name": "Herrnsteig",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/14058492",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 35,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12371666",
+      "name": "Kastelaz Promenade",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12371666",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 30,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12371689",
+      "name": "Kirchensteig",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12371689",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 35,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12173965",
+      "name": "Kleine Schlossrunde",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12173965",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 41,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11814895",
+      "name": "Kofelrunde",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11814895",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 17,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11795103",
+      "name": "Kranterrunde",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11795103",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 82,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-15535697",
+      "name": "La Maïtaz",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/15535697",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 93,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14381930",
+      "name": "La Plagne",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/14381930",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 153,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-19541366",
+      "name": "Lac Blanc",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/19541366",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 161,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-13338113",
+      "name": "Lac de Darbon",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/13338113",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 136,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14378946",
+      "name": "Lac de Pramol",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/14378946",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 102,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12047303",
+      "name": "Lang-Erl-Weg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12047303",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 52,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-19974725",
+      "name": "Langer Rundweg am Karer See",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/19974725",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 82,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-9937537",
+      "name": "Le Mont Jovet",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/9937537",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 206,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14381788",
+      "name": "Marmottes",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/14381788",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 40,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-19974724",
+      "name": "Mittlerer Rundweg am Karer See",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/19974724",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 59,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12172440",
+      "name": "Natur- und Kulturweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12172440",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 137,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11780502",
+      "name": "Naturerlebnispfad Zans",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11780502",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 72,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-6823031",
+      "name": "Naturlehrpfad",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/6823031",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 91,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14058632",
+      "name": "Nössingbühel",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/14058632",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 51,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-19064561",
+      "name": "Ombres sur l'Alpage",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/19064561",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 78,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-9487078",
+      "name": "Oswald-von-Wolkenstein-Weg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/9487078",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 74,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12363235",
+      "name": "Panoramaweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12363235",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 67,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-19697977",
+      "name": "Panoramaweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/19697977",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 152,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-21021130",
+      "name": "PARCOURS N°11 | LACS DU CHARDONNET",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/21021130",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 137,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-123162",
+      "name": "Planetenweg - Sentiero dei pianeti",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/123162",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 166,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12211260",
+      "name": "Plateau des Moises",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12211260",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 55,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-9511973",
+      "name": "Roda de Armentara",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/9511973",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 254,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11855879",
+      "name": "Roda de Cherz",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11855879",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 45,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11860429",
+      "name": "Roda dles Viles",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11860429",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 81,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14377007",
+      "name": "Route du Lac",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/14377007",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 62,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-2179746",
+      "name": "Ruine Castelfeder - Rovine Castelfeder",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/2179746",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 59,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-19703479",
+      "name": "Rundweg Beimsteinkogel",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/19703479",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 66,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11815025",
+      "name": "Rundweg Kasserol",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11815025",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 68,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12190657",
+      "name": "Rundweg Langfenn",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12190657",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 59,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-3202880",
+      "name": "Rundweg Montiggler Seen",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/3202880",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 77,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11792795",
+      "name": "Rundweg Ölberg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11792795",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 19,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12142337",
+      "name": "Rundweg Peitlerkofel",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12142337",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 200,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12174210",
+      "name": "Rundweg Reischach",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12174210",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 16,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12039246",
+      "name": "Rundweg Rotwand",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12039246",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 16,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-6404258",
+      "name": "Rundweg Salla",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/6404258",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 152,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12044077",
+      "name": "Rundweg Schmieden",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12044077",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 26,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12189165",
+      "name": "Rundweg Schwarzegg - Sentiero circolare Dosso Nero",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12189165",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 187,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-9651462",
+      "name": "Sagenweg - Sentiero delle leggende",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/9651462",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 14,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-15662134",
+      "name": "Sagenweg Laurein",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/15662134",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 86,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12182936",
+      "name": "Schörgaurunde",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12182936",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 66,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12165590",
+      "name": "Schwalbenwandrunde",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12165590",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 115,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11832013",
+      "name": "Seerundweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11832013",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 33,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-3885162",
+      "name": "Seeweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/3885162",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 70,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-15321049",
+      "name": "Sentier des Écureuils",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/15321049",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 91,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-10539302",
+      "name": "Sentier éco-sylve de Poingt-Ravier",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/10539302",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 95,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-19661726",
+      "name": "Sentier pédestre des Graniteurs",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/19661726",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 25,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11891581",
+      "name": "Sentiero Alpago Natura",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11891581",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 1057,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-13528390",
+      "name": "Sentiero del Sabadalt",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/13528390",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 86,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-1116680",
+      "name": "Sextener Rundweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/1116680",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 194,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-9675994",
+      "name": "St. Agatha Rundweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/9675994",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 36,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11790553",
+      "name": "Steger-Bühel-Runde",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11790553",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 40,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-6244965",
+      "name": "Steine erzählen",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/6244965",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 17,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12018939",
+      "name": "Steinegger Höhenweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12018939",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 206,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12182895",
+      "name": "Talrundweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12182895",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 262,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12182516",
+      "name": "Timpfler Rundweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12182516",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 18,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-12132169",
+      "name": "Toblacher Höhenweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/12132169",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 455,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-9493733",
+      "name": "Tru di Lëc",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/9493733",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 153,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-9511999",
+      "name": "Tru dles Viles",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/9511999",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 135,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-11828233",
+      "name": "Valser Rundweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11828233",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 89,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-9492594",
+      "name": "Vogelweider Rundweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/9492594",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 132,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-5512443",
+      "name": "Wallburgweg",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/5512443",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 74,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-7277805",
+      "name": "Waltner Rundweg - 12 - Sentiero circolare di Valtina - 12",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/7277805",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 324,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-7446701",
+      "name": "Waltner Rundweg 18",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/7446701",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 221,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "exposure-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 60,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-16365005",
+      "name": "La Galoppaz par la Combe Servenne",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/16365005",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 220,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 116,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14987412",
+      "name": "Sentier du Four",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/14987412",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 220,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "shadeCoverage-unknown",
+        "heatRisk-unknown",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 105,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "nuvolau",
+      "name": "Passo Giau to Rifugio Nuvolau",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/3197403",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 218,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 45,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "piancavallo",
+      "name": "Piancavallo Malghe Loop",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/3508653",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 218,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 71,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "prato-piazza",
+      "name": "Prato Piazza (Plätzwiese)",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/1155859",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 218,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 17,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "santa-maddalena",
+      "name": "Rundweg St. Magdalena",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11817704",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 218,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 25,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "valley-view",
+      "name": "Val di Funes Panorama Trail",
+      "origin": "imported",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": false,
+      "externalRelationId": "relation/11817269",
+      "campaignState": "identity-check-queued",
+      "priorityScore": 218,
+      "baselineBlockers": [
+        "review-date-missing",
+        "claim-sources-missing",
+        "category-review-incomplete"
+      ],
+      "existing": {
+        "reviewedAt": null,
+        "sourceCount": 0,
+        "pathPointCount": 37,
+        "reviewedCategories": []
+      }
+    },
+    {
+      "trailId": "osm-14381570",
+      "name": "Albanne",
+      "origin": "curated",
+      "publicRecordPresent": true,
+      "modernGraduationVerified": true,
+      "externalRelationId": "relation/14381570",
+      "campaignState": "verified-monitoring",
+      "priorityScore": 75,
+      "baselineBlockers": [],
+      "existing": {
+        "reviewedAt": "2026-07-26",
+        "sourceCount": 5,
+        "pathPointCount": 145,
+        "reviewedCategories": [
+          "water",
+          "heat",
+          "exposure",
+          "livestock",
+          "surfaceHazards",
+          "access"
+        ]
+      }
+    }
+  ]
+}

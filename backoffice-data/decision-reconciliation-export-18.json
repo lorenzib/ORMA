@@ -1,0 +1,44 @@
+{
+  "contractVersion": "1.0.0",
+  "sourceDecisionExport": "orma-review-decisions-2026-08-18 (18).json",
+  "sourceExportedAt": "2026-08-18T15:17:25.731Z",
+  "reconciledAt": "2026-08-18T15:17:25.731Z",
+  "status": "reconciled-no-new-decisions",
+  "summary": {
+    "newDecisionsApplied": 0,
+    "existingParkingDecisionsConfirmed": 4,
+    "existingRouteDecisionsConfirmed": 4,
+    "existingVerificationApprovalsConfirmed": 2,
+    "supersededEnrichmentSelectionsIgnored": 1,
+    "internalOrmaVerifiedTotal": 3,
+    "publicationAuthorized": false
+  },
+  "reconciliations": [
+    {
+      "candidateId": "osm-way-25736154",
+      "field": "enrichmentReview.livestock",
+      "exportedSelection": "unresolved",
+      "exportedSelectionReviewedAt": "2026-08-18T15:05:48.917Z",
+      "supersededBy": "backoffice-data/braies-livestock-human-attestation-2026-08-18.json",
+      "supersedingDecisionAt": "2026-08-18T15:11:54Z",
+      "effectiveState": "supported",
+      "reason": "The export was generated later but contains the earlier browser-local selection. The subsequent explicit human attestation resolves the claim and is not revoked by this export."
+    },
+    {
+      "candidateId": "osm-way-25736154",
+      "field": "verificationReview",
+      "exportedSelection": "no-decision-present",
+      "supersededBy": "backoffice-data/braies-verification-approval-2026-08-18.json",
+      "supersedingDecisionAt": "2026-08-18T15:11:54Z",
+      "effectiveState": "orma-verified-internal-not-published",
+      "reason": "Absence of a browser-local decision is not a rejection and cannot revoke the later direct human approval."
+    }
+  ],
+  "blockedCandidates": [
+    {
+      "candidateId": "osm-relation-1372055",
+      "reason": "route and access evidence source-exhausted"
+    }
+  ],
+  "publicMutationAllowed": false
+}

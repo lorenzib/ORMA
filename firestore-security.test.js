@@ -26,12 +26,28 @@ describe('SEC-01 Firestore configuration contract', () => {
       'trailPhotos',
       'moderationAudit',
       'reports',
+      'backofficeArtifacts',
+      'backofficeJobs',
+      'backofficeReviews',
+      'backofficePublicationReviews',
     ];
     clientCollections.forEach(collection => {
       expect(rules).toContain(`/` + collection + '/{');
     });
     expect(rules).toContain('match /{document=**}');
     expect(rules).toMatch(/match \/\{document=\*\*\}[\s\S]*allow read, write: if false;/);
+  });
+
+  test('agent backoffice is moderator-readable and worker-owned', () => {
+    const artifactBlock = rules.slice(rules.indexOf('match /backofficeArtifacts'), rules.indexOf('match /backofficeJobs'));
+    const jobBlock = rules.slice(rules.indexOf('match /backofficeJobs'), rules.indexOf('match /backofficeReviews'));
+    expect(artifactBlock).toContain('allow get, list: if isModerator();');
+    expect(artifactBlock).toContain('allow create, update, delete: if false;');
+    expect(jobBlock).toContain('allow get, list: if isModerator();');
+    expect(jobBlock).toContain('allow create, update, delete: if false;');
+    expect(rules).toContain("request.resource.data.type == 'verified-trail-content-review'");
+    expect(rules).toContain("request.resource.data.submittedBy == request.auth.uid");
+    expect(client).toContain('window.ORMABackoffice');
   });
 
   test('private account documents are owner-only and cannot carry role grants', () => {

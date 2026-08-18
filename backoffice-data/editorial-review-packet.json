@@ -1,0 +1,114 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-18T19:31:57.398Z",
+  "mode": "draft-only",
+  "publicMutationAllowed": false,
+  "workstream": "website-editorial",
+  "selectionReason": "revision-requested",
+  "subject": {
+    "type": "guide",
+    "id": "paw-protection",
+    "sourceRef": "guides/paw-protection.html",
+    "updatedAt": "2026-08-18T19:31:57.398Z",
+    "original": "Published paw-protection guide with a request to make the approved changes smaller."
+  },
+  "outputs": [
+    {
+      "jobId": "guide-paw-protection-copy-revision-2026-08-18T19-31-57-398Z",
+      "agentId": "copywriter",
+      "status": "ready-for-review",
+      "responseId": null,
+      "model": "codex",
+      "error": null,
+      "result": {
+        "title": "Remove references to the Dolomites",
+        "summary": "Removes every reference to the Dolomites from the page while preserving the existing paw-protection guidance.",
+        "changes": [
+          {
+            "section": "Meta description",
+            "before": "<meta name=\"description\" content=\"Sharp limestone and scree wear pads faster than forest trails. How to check, protect and build up your dog's paws in the Dolomites.\">",
+            "after": "<meta name=\"description\" content=\"Sharp limestone and scree wear pads faster than forest trails. How to check, protect and build up your dog's paws on rocky terrain.\">",
+            "reason": "Removes the geographic reference from the search description."
+          },
+          {
+            "section": "Open Graph description",
+            "before": "<meta property=\"og:description\" content=\"Sharp limestone and scree wear pads faster than forest trails. How to check, protect and build up your dog's paws in the Dolomites.\">",
+            "after": "<meta property=\"og:description\" content=\"Sharp limestone and scree wear pads faster than forest trails. How to check, protect and build up your dog's paws on rocky terrain.\">",
+            "reason": "Removes the geographic reference from the social sharing description."
+          },
+          {
+            "section": "Hero introduction",
+            "before": "<p class=\"sub section-page-subtitle\">The rock underfoot in the Dolomites is sharper than most trails your dog knows. Pads that cope fine at home can wear through in a single day.</p>",
+            "after": "<p class=\"sub section-page-subtitle\">Rock on rugged trails can be sharper than the surfaces your dog knows. Pads that cope fine at home can wear through in a single day.</p>",
+            "reason": "Removes the geographic reference while retaining the warning about sharp terrain."
+          },
+          {
+            "section": "Opening paragraph",
+            "before": "<p>Limestone in the Dolomites is often sharp-edged rather than smooth and worn, and scree fields concentrate a lot of small, unstable, abrasive rock underfoot. Pads that are fine on forest trails at home can wear down faster than you'd expect over a full day on this kind of surface.</p>",
+            "after": "<p>Limestone can be sharp-edged rather than smooth and worn, and scree fields concentrate a lot of small, unstable, abrasive rock underfoot. Pads that are fine on forest trails at home can wear down faster than you'd expect over a full day on this kind of surface.</p>",
+            "reason": "Removes the geographic reference without changing the terrain guidance."
+          },
+          {
+            "section": "Footer",
+            "before": "<span>© 2026 ORMA · Rooted in the Italian Dolomites</span>",
+            "after": "<span>© 2026 ORMA · Rooted in the mountains</span>",
+            "reason": "Removes the final geographic reference from the page."
+          }
+        ],
+        "sources": [
+          {
+            "label": "American Veterinary Medical Association · pet first aid",
+            "url": "https://www.avma.org/resources-tools/pet-owners/emergency-care/first-aid-tips-pet-owners",
+            "checkedAt": "2026-08-18",
+            "supports": "Inspecting an affected paw and seeking veterinary care when an injury is suspected."
+          }
+        ],
+        "openQuestions": []
+      },
+      "revision": {
+        "requestedAt": "2026-08-18T19:31:57.398Z",
+        "instruction": "remove references to the Dolomites"
+      }
+    },
+    {
+      "jobId": "guide-paw-protection-compact-image-2026-08-18-revision-2026-08-18T19-31-57-398Z",
+      "agentId": "visualDirector",
+      "status": "ready-for-review",
+      "responseId": "codex-image-revision-2026-08-18",
+      "model": "local-image-optimisation",
+      "error": null,
+      "result": {
+        "searchSummary": "The approved hero image was resized and compressed from 2.1 MB to about 180 KB without changing the composition.",
+        "candidates": [
+          {
+            "title": "Compact paw-check hero image",
+            "sourcePageUrl": "images/editorial/paw-check-generated-small-v1.jpg",
+            "assetUrl": "images/editorial/paw-check-generated-small-v1.jpg",
+            "creator": "Generated for ORMA with OpenAI image generation",
+            "license": "Original generated candidate; no third-party stock licence",
+            "licenseUrl": null,
+            "credit": "ORMA",
+            "matchEvidence": "Same approved image at a web-appropriate file size: approximately 92% smaller.",
+            "altText": "A hiker gently holds a dog's paw to inspect its pads while resting on pale alpine rock.",
+            "status": "ready",
+            "placement": {
+              "sourceRef": "guides/paw-protection.html",
+              "before": "background-image:url('../images/editorial/paw-check-generated-v1.png')",
+              "after": "background-image:url('../images/editorial/paw-check-generated-small-v1.jpg')"
+            }
+          }
+        ],
+        "coverageGaps": []
+      },
+      "revision": {
+        "requestedAt": "2026-08-18T19:31:57.398Z",
+        "instruction": "remove references to the Dolomites",
+        "resolution": "Existing picture recommendation retained for editorial revision."
+      }
+    }
+  ],
+  "summary": {
+    "readyForReview": 2,
+    "blocked": 0
+  }
+}

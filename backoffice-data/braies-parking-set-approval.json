@@ -1,0 +1,17 @@
+{
+  "contractVersion": "1.0.0",
+  "candidateId": "osm-way-25736154",
+  "trailName": "Lago di Braies Rundweg",
+  "action": "approve-parking-set",
+  "reviewedAt": "2026-08-18T12:13:36.926Z",
+  "reviewedBy": "local-editor",
+  "sourceDecisionExport": "orma-review-decisions-2026-08-18 (8).json",
+  "publicMutationAllowed": false,
+  "parkings": [
+    { "rank": 1, "name": "P1 – valley interchange", "position": [12.136412965844414, 46.71775154655407], "evidenceState": "official-detail-map-center" },
+    { "rank": 2, "name": "P2 – Lago di Braies", "position": [12.085703220388524, 46.70545154654681], "evidenceState": "official-detail-map-center" },
+    { "rank": 3, "name": "P3 – Eggerhof Lago di Braies", "position": [12.084103297132742, 46.70174154654464], "evidenceState": "official-detail-map-center" },
+    { "rank": 4, "name": "P4 – Parking Lago di Braies", "position": [12.08351333353437, 46.699981546543626], "evidenceState": "official-detail-map-center" }
+  ],
+  "scope": "Parking choices only. This does not constitute ORMA Verified trail status."
+}

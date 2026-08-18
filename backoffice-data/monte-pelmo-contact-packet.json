@@ -1,0 +1,22 @@
+{
+  "contractVersion": "1.0.0",
+  "createdAt": "2026-08-18T15:45:00+02:00",
+  "candidateId": "osm-relation-1372055",
+  "purpose": "Obtain written authoritative confirmation of the current status of the complete Giro del Monte Pelmo and any approved detour.",
+  "notSent": true,
+  "contacts": [
+    { "organization": "Comune di Borca di Cadore", "email": "comune@comune.borcadicadore.bl.it", "pec": "borca.bl@cert.ip-veneto.net", "phone": "+39 0435 482328", "source": "https://www.comune.borcadicadore.bl.it/it/unita_organizzative/giunta-comunale" },
+    { "organization": "CAI San Vito di Cadore", "email": "segreteria@caisanvitodicadore.it", "phone": "+39 380 6590612", "source": "https://www.caisanvitodicadore.it/" },
+    { "organization": "Rifugio Città di Fiume", "email": null, "phone": "+39 320 0377432", "source": "https://rifugiocittadifiume.it/aggiornamento-accessi-al-rifugio/" }
+  ],
+  "questions": [
+    "Alla data odierna, l'intero Giro del Monte Pelmo con partenza e arrivo a Passo Staulanza è ufficialmente percorribile?",
+    "Quali tratti dei sentieri CAI 467, 472 e 480 sono chiusi, sconsigliati o interessati da ordinanze?",
+    "Esiste una deviazione ufficialmente approvata che consenta di completare l'anello?",
+    "L'accesso dal Rifugio Aquileia consente soltanto di raggiungere il Rifugio Città di Fiume oppure fa parte di una deviazione completa autorizzata?",
+    "Potete indicare numero, data, validità e link dell'ordinanza o dell'avviso più recente?",
+    "Qual è il parcheggio ufficialmente consigliato per l'itinerario eventualmente aperto?"
+  ],
+  "draftSubject": "Richiesta stato aggiornato sentieri – Giro del Monte Pelmo",
+  "draftBody": "Buongiorno, stiamo verificando l'itinerario Giro del Monte Pelmo per ORMA, una guida escursionistica dedicata anche alla sicurezza dei cani in montagna. Le fonti pubbliche consultate riportano informazioni non sufficienti o potenzialmente contrastanti sui sentieri 467, 472 e 480 e sull'accesso alternativo dal Rifugio Aquileia. Chiediamo gentilmente conferma scritta dei punti elencati in questo dossier, incluso l'eventuale provvedimento vigente e qualsiasi deviazione ufficialmente approvata. Fino a chiarimento manterremo l'itinerario non verificato e non ne consiglieremo la percorrenza. Grazie."
+}

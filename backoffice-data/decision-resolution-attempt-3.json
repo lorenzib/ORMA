@@ -1,0 +1,129 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-18T14:45:00+02:00",
+  "sourceDecisionExport": "orma-review-decisions-2026-08-18 (3).json",
+  "supersedes": "backoffice-data/decision-resolution-attempt-2.json",
+  "publicMutationAllowed": false,
+  "resolutionAttempt": 3,
+  "maximumAutomatedAttempts": 5,
+  "summary": {
+    "decisionsProcessed": 4,
+    "parkingApprovalsAccepted": 1,
+    "parkingApprovalsRejectedAsConflicted": 1,
+    "multipleParkingOptionsPartiallyResolved": 1,
+    "trailAccessBlocked": 1,
+    "fullyOrmaVerified": 0
+  },
+  "resolutions": [
+    {
+      "candidateId": "osm-relation-1484751",
+      "trailName": "Tre Cime di Lavaredo - Giro",
+      "state": "parking-approved-route-blocked",
+      "agent": "logistics",
+      "recommendedParking": "Human-approved parking: Parcheggio Rifugio Auronzo (P1), 46.612849, 12.292858.",
+      "parkingOptions": [
+        { "label": "Parcheggio Rifugio Auronzo (P1)", "lat": 46.612849, "lng": 12.292858, "osmId": "way/1109742730", "confidence": "human-approved-strong-consensus", "role": "primary" }
+      ],
+      "accessFacts": [
+        "The editor approved this parking pin in the 18 August 2026 review export.",
+        "Online reservation remains mandatory for car access and the published 2026 car tariff is €40.",
+        "This decision approves parking only; it does not clear the incorrect stored route relation."
+      ],
+      "sources": [
+        { "label": "Official Auronzo parking and booking information", "url": "https://auronzo.info/en/parking-tre-cime-di-lavaredo/", "authority": "official-tourism-municipality", "accessedAt": "2026-08-18" },
+        { "label": "Approved OSM parking area", "url": "https://www.openstreetmap.org/way/1109742730", "authority": "current-open-map-record", "accessedAt": "2026-08-18" }
+      ],
+      "remainingHumanChecks": [
+        "No further parking review is required unless the official access arrangement changes.",
+        "Keep the trail blocked until Cartographer replaces and validates its route source."
+      ]
+    },
+    {
+      "candidateId": "osm-relation-6678431",
+      "trailName": "Cinque Torri Rundweg",
+      "state": "parking-ready-correction-required",
+      "agent": "logistics",
+      "recommendedParking": "Re-review required: the saved approval selected an unnamed older map suggestion 1.38 km from the authoritative Bai de Dones trailhead. Approve Bai de Dones instead.",
+      "conflictedDecision": {
+        "savedName": "Unnamed mapped parking area",
+        "lat": 46.518816,
+        "lng": 12.0374077,
+        "confidence": 0.52,
+        "distanceFromAuthoritativeTrailheadM": 1379,
+        "accepted": false,
+        "reason": "The selected point does not match the named start and finish published by the verified Cortina route source."
+      },
+      "parkingOptions": [
+        { "label": "Bai de Dones parking – 5 Torri chairlift", "lat": 46.508152, "lng": 12.046613, "osmId": null, "confidence": "authoritative-route-source", "role": "primary" }
+      ],
+      "accessFacts": [
+        "Cortina Marketing's verified route record publishes Bai de Dones as the start and finish at 46.508152, 12.046613.",
+        "The earlier unnamed suggestion is retained as audit evidence but is not an approved ORMA parking point.",
+        "Route metrics still depend on whether ORMA describes the chairlift-assisted or fully walked variant."
+      ],
+      "sources": [
+        { "label": "Cortina Marketing verified 5 Torri route and coordinates", "url": "https://www.outdooractive.com/en/route/hiking-trail/cortina-d-ampezzo/5-torri-route-between-history-and-trenches/50597598/", "authority": "official-dmo-verified-partner", "accessedAt": "2026-08-18" },
+        { "label": "Rifugio 5 Torri 2026 access notice", "url": "https://rifugio5torri.it/en/5-torri.html", "authority": "trailhead-refuge-operator", "accessedAt": "2026-08-18" }
+      ],
+      "remainingHumanChecks": [
+        "Select and approve the newly displayed Bai de Dones option, not the unnamed old suggestion.",
+        "Choose the chairlift-assisted or fully walked route model before approving distance and ascent."
+      ]
+    },
+    {
+      "candidateId": "osm-way-25736154",
+      "trailName": "Lago di Braies Rundweg",
+      "state": "official-options-confirmed-two-pins-pending",
+      "agent": "logistics",
+      "recommendedParking": "Keep all four official options visible. P3 and P4 now have official interactive-map centers; P1 and P2 remain named official options without sufficiently extracted pin coordinates.",
+      "parkingOptions": [
+        { "label": "P1 – valley interchange", "lat": null, "lng": null, "officialMapId": "121409434", "confidence": "official-identity-pin-unresolved", "role": "remote-bus-interchange", "distanceNote": "Official map states 5.5 km from Lago di Braies and offers a bus connection with a P1 reservation." },
+        { "label": "P2 – Lago di Braies", "lat": null, "lng": null, "officialMapId": "121409524", "confidence": "official-identity-pin-unresolved", "role": "walking-alternative", "distanceNote": "Official map states approximately 800 m from the lake." },
+        { "label": "P3 – Eggerhof Lago di Braies", "lat": 46.70174154654464, "lng": 12.084103297132742, "officialMapId": "121409525", "confidence": "official-interactive-map-center", "role": "near-lake-alternative", "distanceNote": "Official map states approximately 400 m from the lake." },
+        { "label": "P4 – Parking Lago di Braies", "lat": 46.699981546543626, "lng": 12.08351333353437, "officialMapId": "121409526", "confidence": "official-interactive-map-center", "role": "closest-primary", "distanceNote": "Official operator and map state approximately 100 m from the lake." }
+      ],
+      "accessFacts": [
+        "The official Braies interactive map lists P1, P2, P3 and P4 as four separate parking records.",
+        "P1 is a remote interchange rather than a near-lake parking equivalent; P2, P3 and P4 have progressively shorter walks.",
+        "P3 and P4 coordinates are map centers extracted from their official detail views and still require visual pin confirmation before approval.",
+        "Prices remain operator- and product-specific and must not be presented as one universal amount."
+      ],
+      "sources": [
+        { "label": "Official Braies interactive parking map", "url": "https://maps.prags.bz/v2/it/gdi_summer/2d/-1/category/11.84227385946507/46.69051881589175/12.052579728373729/22815/-1/", "authority": "official-destination-interactive-map", "accessedAt": "2026-08-18" },
+        { "label": "Official Braies Valley 2026 access rules", "url": "https://www.prags.bz/it", "authority": "official-destination-management", "accessedAt": "2026-08-18" },
+        { "label": "Official P4 operator FAQ", "url": "https://www.pragsparking.com/en/more-informations/faq-p56.html", "authority": "parking-operator", "accessedAt": "2026-08-18" }
+      ],
+      "remainingHumanChecks": [
+        "Visually confirm the P3 and P4 markers on the official map before accepting those pins.",
+        "Attempt 4 should resolve P1 and P2 coordinates or record them as deliberately non-navigable alternatives.",
+        "Keep each operator's booking link, availability and price separate."
+      ]
+    },
+    {
+      "candidateId": "osm-relation-1372055",
+      "trailName": "Monte Pelmo Giro",
+      "state": "requires-update-no-approved-full-loop-detour",
+      "agent": "groundskeeper",
+      "recommendedParking": "Rifugio Aquileia remains a valid alternative refuge-access anchor, but no source found in attempt 3 establishes it as an approved replacement start for the complete Giro del Pelmo.",
+      "parkingOptions": [
+        { "label": "Rifugio Aquileia alternative access anchor", "lat": 46.43629, "lng": 12.10065, "osmId": null, "confidence": "operator-published-coordinate", "role": "alternative-access-not-loop-parking" }
+      ],
+      "accessFacts": [
+        "The editor correctly noted that Rifugio Città di Fiume remains accessible from Rifugio Aquileia.",
+        "That accessibility statement does not validate the complete Giro del Pelmo loop.",
+        "CAI San Vito's current status warns against the west-scree 472 line because of rockfall exposure.",
+        "No authoritative, currently approved full-loop detour was found."
+      ],
+      "sources": [
+        { "label": "Rifugio Città di Fiume access interruption notice", "url": "https://rifugiocittadifiume.it/aggiornamento-accessi-al-rifugio/", "authority": "refuge-operator-citing-municipal-order", "accessedAt": "2026-08-18" },
+        { "label": "CAI San Vito current trail status", "url": "https://www.caisanvitodicadore.it/", "authority": "local-cai-section", "accessedAt": "2026-08-18" },
+        { "label": "Rifugio Aquileia official location", "url": "https://www.rifugioaquileia.it/", "authority": "refuge-operator", "accessedAt": "2026-08-18" }
+      ],
+      "remainingHumanChecks": [
+        "Keep the full loop blocked from ORMA Verified.",
+        "Attempt 4 requires direct confirmation from the municipality, CAI trail maintainer or refuge about the full loop and any approved detour.",
+        "Do not convert alternative refuge access into a full-loop parking recommendation."
+      ]
+    }
+  ]
+}

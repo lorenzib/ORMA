@@ -1,0 +1,17 @@
+{
+  "contractVersion":"1.0.0",
+  "sourceDecisionExport":"orma-review-decisions-2026-08-18 (12).json",
+  "recordedAt":"2026-08-18T13:50:00Z",
+  "publicMutationAllowed":false,
+  "approval":{
+    "candidateId":"osm-relation-6678431",
+    "gate":"parking-approval",
+    "action":"approve-parking",
+    "name":"Bai de Dones – Seggiovia 5 Torri parking",
+    "osmId":"way/900787870",
+    "position":[12.037603729268294,46.51891714390244],
+    "reviewedAt":"2026-08-18T13:46:07.033Z",
+    "exactReviewedCandidateMatch":true,
+    "supersedesInvalidatedPosition":[12.046613,46.508152]
+  }
+}

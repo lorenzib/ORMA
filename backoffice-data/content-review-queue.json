@@ -1,0 +1,277 @@
+{
+  "contractVersion": "1.0.0",
+  "submissions": [
+    {
+      "submissionId": "content-review-2026-08-18T15-24-01-009Z",
+      "submittedAt": "2026-08-18T15:24:01.009Z",
+      "status": "pending",
+      "decisions": [
+        {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "guide-paw-protection-edit",
+          "agentId": "copywriter",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T14:59:48.150Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "guide-paw-protection-pictures",
+          "agentId": "visualDirector",
+          "action": "reject",
+          "note": "",
+          "reviewedAt": "2026-08-18T15:22:19.214Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        }
+      ],
+      "publicMutationAllowed": false
+    },
+    {
+      "submissionId": "content-review-2026-08-18T17-10-48-352Z",
+      "submittedAt": "2026-08-18T17:10:48.352Z",
+      "status": "processed",
+      "decisions": [
+        {
+          "jobId": "guide-paw-protection-edit-2026-08-18",
+          "agentId": "copywriter",
+          "action": "reject",
+          "note": "endpoint smoke test only",
+          "reviewedAt": "2026-08-18T18:00:00.000Z",
+          "reviewedBy": "system-test",
+          "publicMutationAllowed": false
+        }
+      ],
+      "outcomes": [
+        {
+          "jobId": "guide-paw-protection-edit-2026-08-18",
+          "action": "reject",
+          "status": "rejected"
+        }
+      ],
+      "publicMutationAllowed": false
+    },
+    {
+      "submissionId": "content-review-2026-08-18T17-36-16-256Z",
+      "submittedAt": "2026-08-18T17:36:16.256Z",
+      "status": "processed",
+      "decisions": [
+        {
+          "jobId": "guide-paw-protection-edit-2026-08-18",
+          "agentId": "copywriter",
+          "action": "request-revision",
+          "note": "Published in commit c9b2959. GitHub Pages deployment triggered. -> make this super small",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "jobId": "guide-paw-protection-picture-2026-08-18",
+          "agentId": "visualDirector",
+          "action": "request-revision",
+          "note": "Published in commit c9b2959. GitHub Pages deployment triggered. -> make this super small",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        }
+      ],
+      "outcomes": [
+        {
+          "jobId": "guide-paw-protection-edit-2026-08-18",
+          "action": "request-revision",
+          "status": "revision-queued"
+        },
+        {
+          "jobId": "guide-paw-protection-picture-2026-08-18",
+          "action": "request-revision",
+          "status": "revision-queued"
+        }
+      ],
+      "publicMutationAllowed": false
+    },
+    {
+      "submissionId": "content-review-2026-08-18T18-42-39-581Z",
+      "submittedAt": "2026-08-18T18:42:39.581Z",
+      "status": "processed",
+      "decisions": [
+        {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-relation-1484751-copy",
+          "agentId": "copywriter",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T18:41:25.208Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-relation-1484751-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T18:41:24.192Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-relation-6678431-copy",
+          "agentId": "copywriter",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T18:41:28.174Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-relation-6678431-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T18:41:27.491Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-way-25736154-copy",
+          "agentId": "copywriter",
+          "action": "request-revision",
+          "note": "Carry all the water your dog needs as the protected lake is a drinking source. -> edit it",
+          "reviewedAt": "2026-08-18T18:42:33.491Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-way-25736154-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T18:41:30.858Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        }
+      ],
+      "outcomes": [
+        {
+          "jobId": "verified-osm-relation-1484751-copy",
+          "action": "approve",
+          "status": "editorial-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-relation-1484751-visual",
+          "action": "approve",
+          "status": "asset-and-licensing-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-relation-6678431-copy",
+          "action": "approve",
+          "status": "editorial-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-relation-6678431-visual",
+          "action": "approve",
+          "status": "asset-and-licensing-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-way-25736154-copy",
+          "action": "request-revision",
+          "status": "revision-queued"
+        },
+        {
+          "jobId": "verified-osm-way-25736154-visual",
+          "action": "approve",
+          "status": "asset-and-licensing-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        }
+      ],
+      "publicMutationAllowed": false
+    },
+    {
+      "submissionId": "content-review-2026-08-18T19-23-07-849Z",
+      "submittedAt": "2026-08-18T19:23:07.849Z",
+      "status": "processed",
+      "decisions": [
+        {
+          "jobId": "guide-paw-protection-compact-copy-2026-08-18",
+          "agentId": "copywriter",
+          "action": "request-revision",
+          "note": "remove references to the Dolomites",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "jobId": "guide-paw-protection-compact-image-2026-08-18",
+          "agentId": "visualDirector",
+          "action": "request-revision",
+          "note": "remove references to the Dolomites",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        }
+      ],
+      "outcomes": [
+        {
+          "jobId": "guide-paw-protection-compact-copy-2026-08-18",
+          "action": "request-revision",
+          "status": "revision-queued"
+        },
+        {
+          "jobId": "guide-paw-protection-compact-image-2026-08-18",
+          "action": "request-revision",
+          "status": "revision-queued"
+        }
+      ],
+      "publicMutationAllowed": false
+    },
+    {
+      "submissionId": "content-review-2026-08-18T19-31-38-110Z",
+      "packetGeneratedAt": "2026-08-18T18:44:00.000Z",
+      "submittedAt": "2026-08-18T19:31:38.110Z",
+      "completedAt": "2026-08-18T19:31:57.398Z",
+      "status": "revision-completed",
+      "decisions": [
+        {
+          "jobId": "guide-paw-protection-compact-copy-2026-08-18",
+          "agentId": "copywriter",
+          "action": "request-revision",
+          "note": "remove references to the Dolomites",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "jobId": "guide-paw-protection-compact-image-2026-08-18",
+          "agentId": "visualDirector",
+          "action": "request-revision",
+          "note": "remove references to the Dolomites",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        }
+      ],
+      "outcomes": [
+        {
+          "status": "revised-for-review",
+          "sourceRefs": [
+            "guides/paw-protection.html"
+          ]
+        }
+      ],
+      "publicMutationAllowed": false
+    }
+  ],
+  "updatedAt": "2026-08-18T19:31:57.398Z"
+}

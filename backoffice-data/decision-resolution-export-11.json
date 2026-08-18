@@ -1,0 +1,13 @@
+{
+  "contractVersion":"1.0.0",
+  "sourceDecisionExport":"orma-review-decisions-2026-08-18 (11).json",
+  "resolvedAt":"2026-08-18T13:28:00Z",
+  "publicMutationAllowed":false,
+  "summary":{"geometryApprovalsAccepted":3,"parkingApprovalsAccepted":2,"parkingSetApprovalsAccepted":1,"staleParkingApprovalsRejected":1,"fullyOrmaVerified":0},
+  "results":[
+    {"candidateId":"osm-relation-1484751","state":"parking-and-geometry-approved-enrichment-pending"},
+    {"candidateId":"osm-relation-6678431","state":"geometry-approved-parking-correction-required","acceptedRouteProposalId":"cinque-torri-three-refuges-assisted","rejectedParking":{"position":[12.046613,46.508152],"reason":"This is the invalidated upper Cinque Torri coordinate carried over from an earlier local decision."},"requiredParking":{"osmId":"way/900787870","position":[12.037603729268294,46.51891714390244],"state":"awaiting-human-approval"}},
+    {"candidateId":"osm-way-25736154","state":"parking-set-and-geometry-approved-enrichment-pending"},
+    {"candidateId":"osm-relation-1372055","state":"source-exhausted-direct-confirmation-required"}
+  ]
+}

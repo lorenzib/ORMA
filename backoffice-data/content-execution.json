@@ -1,0 +1,85 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-18T17:45:00.000Z",
+  "mode": "draft-only",
+  "publicMutationAllowed": false,
+  "subject": {
+    "type": "guide",
+    "id": "paw-protection",
+    "sourceRef": "guides/paw-protection.html",
+    "updatedAt": "2026-08-18T17:45:00.000Z",
+    "original": "Current ORMA paw-protection guide reviewed from the repository."
+  },
+  "outputs": [
+    {
+      "jobId": "guide-paw-protection-edit-2026-08-18",
+      "agentId": "copywriter",
+      "status": "ready-for-review",
+      "responseId": "codex-editorial-review-2026-08-18",
+      "model": "codex",
+      "error": null,
+      "result": {
+        "title": "Make the paw-check advice easier to act on",
+        "summary": "Two small edits turn general advice into a clearer trail routine while preserving the guide's existing scope and cautious tone.",
+        "changes": [
+          {
+            "section": "Rest-stop checks",
+            "before": "<li>Check pads at rest stops. Look for redness, cuts, or unusual sensitivity before continuing.</li>",
+            "after": "<li>Check every paw at rest stops, including between the toes. Pause before continuing if you notice redness, a cut, debris, or unusual sensitivity.</li>",
+            "reason": "Makes the existing check more specific without adding a diagnosis or treatment claim."
+          },
+          {
+            "section": "Boot preparation",
+            "before": "<li>Consider trail booties for any route tagged with scree or sharp-rock hazards, especially on longer distances.</li>",
+            "after": "<li>Consider trail booties for routes tagged with scree or sharp-rock hazards, especially over longer distances. Test the fit on a short walk before relying on them for a full day.</li>",
+            "reason": "Adds a practical preparation step and avoids implying that unfamiliar equipment should first be used on a long mountain route."
+          }
+        ],
+        "sources": [
+          {
+            "label": "American Veterinary Medical Association · pet first aid",
+            "url": "https://www.avma.org/resources-tools/pet-owners/emergency-care/first-aid-tips-pet-owners",
+            "checkedAt": "2026-08-18",
+            "supports": "Inspecting an affected paw and seeking veterinary care when an injury is suspected."
+          }
+        ],
+        "openQuestions": []
+      }
+    },
+    {
+      "jobId": "guide-paw-protection-picture-2026-08-18",
+      "agentId": "visualDirector",
+      "status": "ready-for-review",
+      "responseId": "codex-visual-review-2026-08-18",
+      "model": "codex-image-generation",
+      "error": null,
+      "result": {
+        "searchSummary": "One original hero candidate was created for ORMA so the review includes an actual preview and no unknown third-party photographer or stock licence.",
+        "candidates": [
+          {
+            "title": "Dog paw check on pale alpine rock",
+            "sourcePageUrl": "images/editorial/paw-check-generated-v1.png",
+            "assetUrl": "images/editorial/paw-check-generated-v1.png",
+            "creator": "Generated for ORMA with OpenAI image generation",
+            "license": "Original generated candidate; no third-party stock licence",
+            "licenseUrl": null,
+            "credit": "ORMA",
+            "matchEvidence": "Shows the exact action recommended by the guide: calmly checking a dog's paw during a rest on rocky alpine terrain.",
+            "altText": "A hiker gently holds a dog's paw to inspect its pads while resting on pale alpine rock.",
+            "status": "ready",
+            "placement": {
+              "sourceRef": "guides/paw-protection.html",
+              "before": "<div class=\"gp-hero-photo\"><div class=\"gp-hero-photo__inner\"></div></div>",
+              "after": "<div class=\"gp-hero-photo\"><div class=\"gp-hero-photo__inner\" style=\"background-image:url('../images/editorial/paw-check-generated-v1.png')\" role=\"img\" aria-label=\"A hiker gently holds a dog's paw to inspect its pads while resting on pale alpine rock.\"></div></div>"
+            }
+          }
+        ],
+        "coverageGaps": []
+      }
+    }
+  ],
+  "summary": {
+    "readyForReview": 2,
+    "blocked": 0
+  }
+}

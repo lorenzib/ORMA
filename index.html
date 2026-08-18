@@ -18,7 +18,7 @@
    Firebase resolves. The homepage controller clears the class once real
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
-<link rel="stylesheet" href="styles.css?v=20260818-16">
+<link rel="stylesheet" href="styles.css?v=20260818-17">
 <link rel="stylesheet" href="homepage-mobile.css?v=20260816-4">
 </head>
 <body>
@@ -358,10 +358,15 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           </div>
           <div class="map-callout-actions">
             <a class="map-callout-open" id="mapCalloutOpen" href="#">Open trail →</a>
-            <button type="button" class="map-callout-directions" id="mapCalloutDirections">Directions</button>
+            <div class="li-dir-wrap">
+              <button type="button" class="map-callout-directions" id="mapCalloutDirections" aria-haspopup="true" aria-expanded="false">Directions</button>
+              <div class="li-dir-menu" id="mapCalloutDirMenu" hidden>
+                <a id="mapCalloutDirApple" target="_blank" rel="noopener">Apple Maps</a>
+                <a id="mapCalloutDirGoogle" target="_blank" rel="noopener">Google Maps</a>
+              </div>
+            </div>
             <button type="button" class="map-callout-save" id="mapCalloutSave">♡ Save</button>
           </div>
-          <span class="map-directions-status" id="mapCalloutDirectionsStatus" role="status" aria-live="polite"></span>
         </div>
         <span id="mapCalloutMatch"></span>
         <span class="close" id="mapCalloutClose" role="button" tabindex="0" aria-label="Clear selection">&times;</span>
@@ -518,7 +523,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="basemap-poi-click.js" defer></script>
 <script src="dog-routes-layer.js?v=20260815-4" defer></script>
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
-<script src="script.js?v=20260818-12" defer></script>
+<script src="script.js?v=20260818-13" defer></script>
 <script src="dog-wizard.js?v=20260815-4" defer></script>
 <script src="homepage-search.js?v=20260818-8" defer></script>
 <script src="homepage-mobile.js?v=20260816-1" defer></script>

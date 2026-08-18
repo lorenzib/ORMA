@@ -1,0 +1,40 @@
+{
+  "contractVersion":"1.0.0",
+  "generatedAt":"2026-08-18T15:23:40.415Z",
+  "sourceDecisionExport":"orma-review-decisions-2026-08-18 (20).json + explicit accompanying human instruction",
+  "status":"internal-verification-registry",
+  "publicMutationAllowed":false,
+  "publicationAuthorized":false,
+  "verified":[
+    {
+      "candidateId":"osm-relation-1484751",
+      "trailName":"Tre Cime di Lavaredo classic circuit",
+      "verifiedAt":"2026-08-18T15:04:59.634Z",
+      "verifiedBy":"local-editor",
+      "routeGeometrySha256":"70dbb5578aad6d7419482e9f1e7fe27f847f77f46b7722a44c21742be103c38d",
+      "conditions":["official hard rating remains prominent","LangAlm fountain remains seasonal and not guaranteed potable","road, parking, weather and trail conditions require recurring checks"],
+      "nextStage":"editorial-and-publication-review"
+    },
+    {
+      "candidateId":"osm-relation-6678431",
+      "trailName":"Cinque Torri three-refuges assisted circuit",
+      "verifiedAt":"2026-08-18T15:06:17.733Z",
+      "verifiedBy":"local-editor",
+      "routeGeometrySha256":"7131fb630d239582e8ab7b1be22e914cc9c3a1caaa1959921d71569dd93ff47a",
+      "conditions":["route remains labelled chairlift-assisted and predominantly downhill","leash and muzzle requirements remain prominent","lift dates, weather operation and dog carriage conditions require recurring checks"],
+      "nextStage":"editorial-and-publication-review"
+    },
+    {
+      "candidateId":"osm-way-25736154",
+      "trailName":"Lago di Braies Seeweg circuit",
+      "verifiedAt":"2026-08-18T15:23:40.415Z",
+      "verifiedBy":"local-editor",
+      "routeGeometrySha256":"bceb2c22065c61f669de7f1c86b983158dbdeb87542ec3283459f5c910987762",
+      "conditions":["no livestock is expected on the exact circuit based on direct local knowledge","protected-area lead and wildlife-disturbance rules remain mandatory","reopen the claim if future signage, reports or field evidence conflicts"],
+      "nextStage":"editorial-and-publication-review"
+    }
+  ],
+  "blocked":[
+    {"candidateId":"osm-relation-1372055","trailName":"Monte Pelmo Giro","reason":"route and access evidence source-exhausted","resumeCondition":"direct authority confirmation or field check"}
+  ]
+}

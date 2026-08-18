@@ -1,0 +1,308 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-18T12:41:53Z",
+  "mode": "draft-only",
+  "publicMutationAllowed": false,
+  "humanGate": "geometry-approval",
+  "items": [
+    {
+      "candidateId": "osm-relation-1484751",
+      "priority": 1,
+      "reviewState": "ready-for-human-route-choice",
+      "agent": "Cartographer",
+      "title": "Choose the intended Tre Cime loop",
+      "routeIdentity": "Two distinct official dog-friendly circuits start and finish at Rifugio Auronzo. They must remain separate ORMA route variants.",
+      "approvalAllowed": true,
+      "selectionMode": "one-or-more",
+      "proposal": null,
+      "proposals": [
+        {
+          "id": "tre-cime-classic-101-105",
+          "label": "Classic Tre Cime circuit — trails 101/105",
+          "summary": "The closer circuit around the Tre Cime, passing Rifugio Lavaredo, Forcella Lavaredo, Rifugio Locatelli and Forcella Col di Mezzo.",
+          "recommended": true,
+          "eligibility": "ready-for-human-review",
+          "geometryRef": "backoffice-data/route-proposals/tre-cime-classic.geojson",
+          "sourceRefs": ["tre-cime-official-itinerary", "tre-cime-official-gpx"],
+          "metrics": { "computedDistanceKm": 9.51, "officialDistanceKm": 9.528, "officialAscentM": 468, "pointCount": 2077, "closureDistanceM": 43 },
+          "warnings": ["Officially rated hard.", "Route approval does not yet clear exposure, surface, livestock, water or photo gates."]
+        },
+        {
+          "id": "tre-cime-monte-paterno-101-104-105",
+          "label": "Extended Tre Cime and Monte Paterno circuit — trails 101/104/105",
+          "summary": "The longer non-ferrata circuit continues around Monte Paterno via Rifugio Pian di Cengia before returning through Rifugio Locatelli and Forcella Col di Mezzo.",
+          "recommended": false,
+          "eligibility": "ready-for-human-review",
+          "geometryRef": "backoffice-data/route-proposals/tre-cime-monte-paterno.geojson",
+          "sourceRefs": ["tre-cime-monte-paterno-itinerary", "tre-cime-monte-paterno-official-gpx"],
+          "metrics": { "computedDistanceKm": 14.2, "officialDistanceKm": null, "officialAscentM": null, "pointCount": 2992, "closureDistanceM": 43 },
+          "warnings": ["The official listing leaves distance and ascent blank; 14.2 km is computed from its GPX.", "Longer and more demanding than the classic circuit; downstream dog-safety enrichment remains mandatory."]
+        }
+      ],
+      "metrics": {
+        "storedDistanceKm": 5.73,
+        "reconstructedDistanceKm": 41.21,
+        "officialDistanceKm": 9.528,
+        "officialAscentM": 468,
+        "distanceAssessment": "The official classic GPX measures 9.51 km, within 0.2% of the published 9.528 km."
+      },
+      "findings": [
+        "The stored candidate line is only an eight-point approximation and measures 5.73 km.",
+        "The linked OSM relation is a Canadian woodland multipolygon, not a Dolomites hiking route.",
+        "The official classic GPX contains 2,077 points, closes within 43 m and measures 9.51 km.",
+        "A second official GPX defines a distinct 14.2 km non-ferrata circuit around Monte Paterno.",
+        "The official 17.55 km Monte Paterno tunnels/ferrata itinerary is excluded because it is explicitly not dog-friendly."
+      ],
+      "blockers": [],
+      "humanChecks": [
+        "Choose the classic 9.51 km loop or the extended 14.2 km Monte Paterno loop.",
+        "Inspect the selected official line on the map before approval.",
+        "Approve route geometry separately from parking, access rules and dog suitability."
+      ],
+      "evidence": [
+        {
+          "id": "tre-cime-official-itinerary",
+          "label": "Tre Cime Trek — official circuit itinerary",
+          "url": "https://www.trecimetrek.it/en/percorso-singolo-en/?route=tre_cim_di",
+          "authority": "official-destination-route-portal",
+          "conclusion": "Supports the classic route identity and official headline metrics."
+        },
+        {
+          "id": "tre-cime-official-gpx",
+          "label": "Tre Cime Trek — official classic-circuit GPX",
+          "url": "https://www.trecimetrek.it/wp-content/uploads/geodata/gpx/tre_cim_di.gpx",
+          "authority": "official-destination-route-portal",
+          "conclusion": "Provides the 2,077-point proposal measuring 9.51 km."
+        },
+        {
+          "id": "tre-cime-monte-paterno-itinerary",
+          "label": "Tre Cime Trek — extended Monte Paterno circuit",
+          "url": "https://www.trecimetrek.it/percorso-singolo/?route=gir_del_tre",
+          "authority": "official-destination-route-portal",
+          "conclusion": "Supports a separate trails 101/104/105 dog-friendly, non-ferrata variant."
+        },
+        {
+          "id": "tre-cime-monte-paterno-official-gpx",
+          "label": "Tre Cime Trek — official extended-circuit GPX",
+          "url": "https://www.trecimetrek.it/wp-content/uploads/geodata/gpx/gir_del_tre.gpx",
+          "authority": "official-destination-route-portal",
+          "conclusion": "Provides the 2,992-point proposal measuring 14.2 km."
+        },
+        {
+          "label": "Incorrect stored OSM relation 1484751",
+          "url": "https://www.openstreetmap.org/relation/1484751",
+          "authority": "community-geospatial-source",
+          "conclusion": "Must be rejected as the route source; its current tags identify a woodland multipolygon."
+        }
+      ],
+      "nextAgentAction": {
+        "action": "await-human-route-choice",
+        "attempt": 2,
+        "completedAttempts": 1,
+        "maximumAttempts": 5,
+        "instructions": "Research attempt 1 produced two official GPX proposals. Wait for the editor to choose or request a materially different refinement."
+      }
+    },
+    {
+      "candidateId": "osm-relation-6678431",
+      "priority": 2,
+      "reviewState": "parking-and-assisted-route-approved-enrichment-pending",
+      "agent": "Cartographer",
+      "title": "Assisted route and corrected Bai de Dones parking approved",
+      "routeIdentity": "Attempt 2 found a source-traceable chairlift-assisted three-refuges circuit. Its official GPX also proves the previously approved parking coordinate is in the upper Cinque Torri area, not at Bai de Dones.",
+      "approvalAllowed": true,
+      "proposal": null,
+      "proposals": [
+        {
+          "id": "cinque-torri-three-refuges-assisted",
+          "label": "Three-refuges chairlift-assisted circuit",
+          "summary": "Starts at Bai de Dones, uses the 5 Torri chairlift to Rifugio Scoiattoli, crosses the open-air museum, passes Rifugio Cinque Torri and returns through the forest to Bai de Dones.",
+          "recommended": true,
+          "eligibility": "ready-for-human-review",
+          "geometryRef": "backoffice-data/route-proposals/cinque-torri-three-refuges-assisted.geojson",
+          "sourceRefs": ["five-torri-three-refuges-itinerary", "five-torri-three-refuges-gpx", "osm-cai-425"],
+          "metrics": { "computedDistanceKm": 5.32, "officialDistanceKm": null, "officialAscentM": null, "officialStatedHeightDifferenceM": 67, "pointCount": 204, "closureDistanceM": 17 },
+          "warnings": ["This is explicitly a chairlift-assisted route, not an entirely walked loop.", "Dogs are accepted on the 5 Torri lift but must be leashed and muzzled.", "Corrected Bai de Dones parking way 900787870 is approved; enrichment and safety gates remain pending."]
+        }
+      ],
+      "metrics": {
+        "storedDistanceKm": 4.08,
+        "reconstructedDistanceKm": 5.32,
+        "officialDistanceKm": null,
+        "officialAscentM": null,
+        "distanceAssessment": "The official 204-point GPX is closed within 17 m and computes to 5.32 km. The page describes a chairlift-assisted itinerary, so transport and walking metrics must remain distinct."
+      },
+      "findings": [
+        "The earlier Bai de Dones parking approval is invalidated; the corrected parking candidate must pass its own human gate and does not identify which walking itinerary ORMA is offering.",
+        "Chairlift use materially changes distance, ascent, operating-season dependency and dog logistics.",
+        "An authoritative refuge source confirms the fully walked approach uses trail 425 and approximately 400 m ascent.",
+        "The same source confirms the assisted approach begins with the Bai de Dones chairlift and then descends on trail 439.",
+        "Attempt 2 found the official three-refuges GPX and a matching 5.32 km closed line.",
+        "The current OSM relation 11588900 identifies the CAI-surveyed trail 425 from Bai de Dones; relation 3170143 identifies trail 439.",
+        "The stored relation 6678431 was deleted in 2019 and was a footway-area multipolygon, never a hiking route.",
+        "The approved 46.508152, 12.046613 coordinate is about 1.38 km from the real Bai de Dones parking. Current OSM way 900787870 is a free gravel surface car park operated by Seggiovia 5 Torri at approximately 46.518917, 12.037604."
+      ],
+      "blockers": [
+        "The corrected OSM way 900787870 parking is approved; retain the superseded coordinate only in audit history.",
+        "Do not treat the chairlift segment in the GPX as walked distance or ascent.",
+        "A complete fully walked Cinque Torri circuit is not part of the approved assisted route and would require a separate proposal."
+      ],
+      "humanChecks": [
+        "No further parking or geometry choice review is required.",
+        "Review the enrichment and safety evidence before ORMA Verification."
+      ],
+      "evidence": [
+        {
+          "id": "rifugio-cinque-torri-access",
+          "label": "Rifugio Cinque Torri — access routes",
+          "url": "https://rifugio5torri.it/en/5-torri.html",
+          "authority": "authoritative-local-refuge-operator",
+          "conclusion": "Separates the trail 425 walking approach from the chairlift plus trail 439 approach."
+        },
+        {
+          "id": "five-torri-three-refuges-itinerary",
+          "label": "5 Torri — Circular hike of the three Refuges",
+          "url": "https://5torri.it/EN/e1-Circular-hike-of-the-three-Refuges",
+          "authority": "local-lift-and-destination-route-portal",
+          "conclusion": "Defines the Bai de Dones chairlift-assisted circuit and return through Rifugio Cinque Torri."
+        },
+        {
+          "id": "five-torri-three-refuges-gpx",
+          "label": "5 Torri — official three-refuges GPX",
+          "url": "https://5torri.it/GPX/Il-giro-dei-3-rifugi.gpx",
+          "authority": "local-lift-and-destination-route-portal",
+          "conclusion": "Provides the closed 204-point route proposal and exposes the true Bai de Dones route area."
+        },
+        {
+          "id": "osm-cai-425",
+          "label": "OSM/CAI trail 425 relation 11588900",
+          "url": "https://www.openstreetmap.org/relation/11588900",
+          "authority": "community-geospatial-source-with-cai-survey-tags",
+          "conclusion": "Identifies the current Bai de Dones to Rifugio Scoiattoli hiking relation."
+        },
+        {
+          "id": "cortina-pet-friendly-lifts",
+          "label": "Cortina — pet-friendly lift rules",
+          "url": "https://cortina.dolomiti.org/en/winter/cortina-experience/cortina-pet-friendly/",
+          "authority": "official-destination-guidance",
+          "conclusion": "Confirms dogs of any size may use the 5 Torri lifts free of charge and must be leashed and muzzled."
+        },
+        {
+          "id": "five-torri-summer-2026",
+          "label": "5 Torri — summer 2026 lift operations",
+          "url": "https://5torri.it/EN/p38-Lift-facilities-Summer",
+          "authority": "lift-operator",
+          "conclusion": "Confirms the 5 Torri chairlift's 2026 operating season and hours, subject to weather and snow."
+        }
+      ],
+      "nextAgentAction": {
+        "action": "await-human-enrichment-review",
+        "attempt": 4,
+        "completedAttempts": 3,
+        "maximumAttempts": 5,
+        "instructions": "The assisted geometry and corrected parking are approved. Begin detailed terrain, access, safety, provenance and media enrichment; keep publication blocked until the enrichment review."
+      }
+    },
+    {
+      "candidateId": "osm-way-25736154",
+      "priority": 3,
+      "reviewState": "ready-for-human-review",
+      "agent": "Cartographer",
+      "title": "Review the complete Lago di Braies circuit",
+      "routeIdentity": "A continuous walking circuit around Lago di Braies, separate from the four approved parking choices.",
+      "approvalAllowed": true,
+      "proposal": null,
+      "proposals": [
+        {
+          "id": "lago-braies-seeweg-circuit",
+          "label": "Lago di Braies Seeweg circuit",
+          "summary": "The current regional route follows the full lake circuit from and back to the Lago di Braies tavern.",
+          "recommended": true,
+          "eligibility": "ready-for-human-review",
+          "geometryRef": "backoffice-data/route-proposals/lago-braies-circuit.geojson",
+          "sourceRefs": ["pustertal-braies-itinerary", "pustertal-braies-gpx"],
+          "metrics": { "computedDistanceKm": 3.49, "officialDistanceKm": 3.6, "officialAscentM": 39, "pointCount": 171, "closureDistanceM": 0 },
+          "warnings": ["The eastern shore includes narrower, rooted and uphill sections beside a rock wall.", "Route approval does not clear seasonal access, surface or dog-safety gates."
+          ]
+        }
+      ],
+      "metrics": {
+        "storedDistanceKm": 2.8,
+        "reconstructedDistanceKm": 3.49,
+        "officialDistanceKm": 3.6,
+        "officialAscentM": 39,
+        "distanceAssessment": "The 171-point reference GPX measures 3.49 km, within 3.1% of the published 3.6 km."
+      },
+      "findings": [
+        "All four official parking options are approved.",
+        "A current regional itinerary identifies the Seeweg loop, publishes 3.6 km and 39 m ascent, and supplies a 171-point GPX.",
+        "The GPX is closed exactly and computes to 3.49 km."
+      ],
+      "blockers": [],
+      "humanChecks": [
+        "Check that the line follows the public walking route for its entire length.",
+        "Keep parking approval separate from route approval."
+      ],
+      "evidence": [
+        {
+          "id": "pustertal-braies-itinerary",
+          "label": "Val Pusteria — Hike around Lake Braies",
+          "url": "https://www.pustertal.org/en/leisure-activities/mountains-and-hiking/hiking-in-alta-pusteria-three-peaks/lake-braies-circular-hike/",
+          "authority": "regional-destination-route-portal",
+          "conclusion": "Publishes the Seeweg identity, 3.6 km distance, 39 m ascent and current segment description."
+        },
+        {
+          "id": "pustertal-braies-gpx",
+          "label": "Val Pusteria — downloadable Lago di Braies GPX",
+          "url": "https://www.pustertal.org/external/gpx/?id=1803&lang_id=12",
+          "authority": "regional-destination-route-portal",
+          "conclusion": "Provides the closed 171-point proposal measuring 3.49 km."
+        }
+      ],
+      "nextAgentAction": {
+        "action": "await-human-geometry-review",
+        "attempt": 2,
+        "completedAttempts": 1,
+        "maximumAttempts": 5,
+        "instructions": "Research attempt 1 produced a source-matched closed proposal. Wait for approval or a materially different refinement request."
+      }
+    },
+    {
+      "candidateId": "osm-relation-1372055",
+      "priority": 4,
+      "reviewState": "source-exhausted-direct-confirmation",
+      "agent": "Cartographer and Regulatory Ranger",
+      "title": "Hold Monte Pelmo pending direct confirmation",
+      "routeIdentity": "Full Monte Pelmo circuit; currently not cleared for ORMA inclusion.",
+      "approvalAllowed": false,
+      "proposal": null,
+      "metrics": {
+        "storedDistanceKm": 9.65,
+        "reconstructedDistanceKm": null,
+        "officialDistanceKm": null,
+        "officialAscentM": null,
+        "distanceAssessment": "Automated evidence is insufficient to clear the full loop."
+      },
+      "findings": [
+        "Five materially distinct automated attempts did not resolve the route-access conflict.",
+        "A contact packet is prepared but has not been sent."
+      ],
+      "blockers": [
+        "Obtain direct confirmation from the relevant authority or complete a field check.",
+        "Do not schedule a sixth automated attempt without new external evidence."
+      ],
+      "humanChecks": [
+        "Decide whether to send the prepared contact packet.",
+        "Keep the trail marked Requires Update and outside ORMA Verified."
+      ],
+      "evidence": [],
+      "nextAgentAction": {
+        "action": "await-direct-confirmation-or-field-check",
+        "attempt": 5,
+        "completedAttempts": 5,
+        "maximumAttempts": 5,
+        "instructions": "Automated retry budget exhausted; preserve the unresolved state."
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "contractVersion": "1.0.0",
+  "updatedAt": "2026-08-17T15:22:29.174Z",
+  "queuedTrailIds": [
+    "osm-16322228",
+    "osm-19153189",
+    "osm-16363583",
+    "osm-20347406",
+    "osm-16395076"
+  ],
+  "batches": [
+    {
+      "queuedAt": "2026-08-17T15:22:29.174Z",
+      "trailIds": [
+        "osm-16322228",
+        "osm-19153189",
+        "osm-16363583",
+        "osm-20347406",
+        "osm-16395076"
+      ],
+      "jobIds": [
+        "catalogue-cartographer-001",
+        "catalogue-cartographer-002",
+        "catalogue-cartographer-003",
+        "catalogue-cartographer-004",
+        "catalogue-cartographer-005"
+      ]
+    }
+  ]
+}

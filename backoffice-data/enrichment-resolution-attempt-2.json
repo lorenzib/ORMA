@@ -1,0 +1,26 @@
+{
+  "contractVersion":"1.0.0",
+  "sourceDecisionExport":"orma-review-decisions-2026-08-18 (13).json",
+  "generatedAt":"2026-08-18T14:25:00Z",
+  "resolutionAttempt":2,
+  "maximumAutomatedAttempts":5,
+  "strategy":"GPX transport segmentation, regional technical sheets, official land-manager grazing evidence and file-level reusable-media provenance",
+  "publicMutationAllowed":false,
+  "summary":{"supportedClaims":27,"newlySupportedClaims":2,"unresolvedOrConflictedClaims":10,"fullyOrmaVerified":0,"needsHumanReview":true},
+  "newlySupported":[
+    {"candidateId":"osm-relation-6678431","claimId":"walking-elevation","result":"1.37 km chairlift transport (+295 m raw) separated from 3.95 km walking (+10 m/-347 m raw).","humanGate":"safety-input-review"},
+    {"candidateId":"osm-relation-6678431","claimId":"livestock","result":"Official land-manager evidence documents seasonal sheep grazing in the wider Falzarego/Cinque Torri area; exact-circuit encounters remain variable and guardian dogs are not established.","humanGate":"safety-input-review"}
+  ],
+  "strengthenedButUnresolved":[
+    {"candidateId":"osm-relation-1484751","claimId":"exposure-surface","result":"Technical evidence now covers the Auronzo–Forcella segment, but not the full Locatelli–LangAlm return."},
+    {"candidateId":"osm-relation-1484751","claimId":"photo","result":"A geolocated licensed route candidate exists; operational coverage remains incomplete."},
+    {"candidateId":"osm-relation-6678431","claimId":"photo","result":"A licensed landmark candidate exists; lift, trenches and forest return remain uncovered."},
+    {"candidateId":"osm-way-25736154","claimId":"photo","result":"A current geolocated southern-shore candidate exists; hazard, parking and dog-context coverage remains incomplete."}
+  ],
+  "unresolvedByCandidate":[
+    {"candidateId":"osm-relation-1484751","claimIds":["heat-shade","exposure-surface","livestock","photo"],"nextAttempt":{"attempt":3,"strategy":"Alternative static land-cover dataset, return-segment authority search, seasonal grazing evidence and route-specific licensed asset scan"}},
+    {"candidateId":"osm-relation-6678431","claimIds":["shade","photo"],"nextAttempt":{"attempt":3,"strategy":"Alternative static land-cover dataset and route-component media scan"}},
+    {"candidateId":"osm-way-25736154","claimIds":["shade","water","livestock","photo"],"nextAttempt":{"attempt":3,"strategy":"Alternative static land-cover dataset, explicit operator water verification, low-elevation lakeshore grazing evidence and hazard-specific media scan"}}
+  ],
+  "dataAccessNotes":["Two bounded live OSM land-cover requests did not complete; no shade inference was made from the failed requests.","A failed endpoint request is recorded as an attempt-2 limitation, not as evidence of absent tree cover."]
+}

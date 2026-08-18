@@ -1,0 +1,60 @@
+{
+  "contractVersion":"1.0.0",
+  "generatedAt":"2026-08-18T14:24:28.715Z",
+  "agentId":"visualDirector",
+  "selectionState":"proposed-minimum-hero-assets-awaiting-human-approval",
+  "publicMutationAllowed":false,
+  "assetPolicy":{"verificationRequirement":"One accurately located, publishable hero image with complete provenance is sufficient for the initial trail record.","nonBlockingFollowUp":"Operational field shots remain on the Visual Director checklist and may enrich the record later; they cannot be used as condition evidence until reviewed.","derivativeRule":"If ORMA crops, colour-corrects or otherwise adapts an asset, identify the change and release that adapted image under CC BY-SA 4.0."},
+  "assets":[
+    {
+      "candidateId":"osm-relation-1484751",
+      "role":"initial-hero",
+      "filePage":"https://commons.wikimedia.org/wiki/File:Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
+      "directAssetUrl":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
+      "creator":"Simone A. Bertinotti",
+      "capturedAt":"2013-08-04",
+      "coordinates":[12.312,46.626],
+      "licence":"CC BY-SA 4.0",
+      "licenceUrl":"https://creativecommons.org/licenses/by-sa/4.0/",
+      "requiredCredit":"Tre Cime di Lavaredo, Sentiero per il Rifugio Locatelli — Simone A. Bertinotti — CC BY-SA 4.0 — via Wikimedia Commons",
+      "proposedAlt":"Gravel trail towards Rifugio Locatelli beneath the Tre Cime di Lavaredo peaks.",
+      "permittedUse":"trail hero and location context",
+      "prohibitedInference":"current surface, crowding, water availability or dog conditions",
+      "humanGate":"asset-and-licensing-approval"
+    },
+    {
+      "candidateId":"osm-relation-6678431",
+      "role":"initial-hero",
+      "filePage":"https://commons.wikimedia.org/wiki/File:Cinque_Torri_01.jpg",
+      "directAssetUrl":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Cinque_Torri_01.jpg",
+      "creator":"Clemens Stockner",
+      "capturedAt":"2017-08-30",
+      "coordinates":[12.046979,46.508851],
+      "licence":"CC BY-SA 4.0",
+      "licenceUrl":"https://creativecommons.org/licenses/by-sa/4.0/",
+      "requiredCredit":"Cinque Torri 01 — Clemens Stockner — CC BY-SA 4.0 — via Wikimedia Commons",
+      "proposedAlt":"The Cinque Torri rock towers viewed from the west in the Ampezzo Dolomites.",
+      "permittedUse":"trail hero and landmark context",
+      "prohibitedInference":"lift operation, trail surface, shade, livestock or dog conditions",
+      "humanGate":"asset-and-licensing-approval"
+    },
+    {
+      "candidateId":"osm-way-25736154",
+      "role":"initial-hero",
+      "filePage":"https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_5.jpg",
+      "directAssetUrl":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Lago_di_Braies_South_Tyrol_5.jpg",
+      "creator":"kallerna",
+      "capturedAt":"2025-10-02",
+      "coordinates":[12.087428,46.699886],
+      "licence":"CC BY-SA 4.0",
+      "licenceUrl":"https://creativecommons.org/licenses/by-sa/4.0/",
+      "requiredCredit":"Lago di Braies South Tyrol 5 — kallerna — CC BY-SA 4.0 — via Wikimedia Commons",
+      "proposedAlt":"Southern shore of Lago di Braies with the lake and surrounding Dolomite peaks.",
+      "permittedUse":"trail hero and southern-shore location context",
+      "prohibitedInference":"water potability, swimming access, trail accessibility or dog conditions",
+      "humanGate":"asset-and-licensing-approval"
+    }
+  ],
+  "humanChecks":["Open each file page and visually confirm the selected image.","Confirm ORMA can comply with attribution, licence-link, change-notice and share-alike obligations.","Keep the operational field-shot checklist active after hero approval."],
+  "downloadOrPublicationPerformed":false
+}

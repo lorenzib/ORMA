@@ -1073,6 +1073,65 @@ async function moderatorIdentity() {
   }
 }
 
+async function getBackofficeArtifact(artifactId) {
+  if (!await moderatorIdentity()) return { ok:false, error:'moderator-required', data:null };
+  try {
+    const snapshot = await getDoc(doc(db, 'backofficeArtifacts', artifactId));
+    return snapshot.exists()
+      ? { ok:true, data:snapshot.data().data, updatedAt:snapshot.data().updatedAt || null }
+      : { ok:false, error:'artifact-not-found', data:null };
+  } catch (error) {
+    console.error('getBackofficeArtifact failed:', error);
+    return { ok:false, error:'artifact-read-failed', data:null };
+  }
+}
+
+async function getBackofficeRevisionJobs() {
+  if (!await moderatorIdentity()) return { ok:false, error:'moderator-required', jobs:[] };
+  try {
+    const snapshot = await getDocs(query(collection(db, 'backofficeJobs'), orderBy('createdAt', 'desc'), limit(100)));
+    return { ok:true, jobs:snapshot.docs.map(item => ({ id:item.id, ...item.data() })) };
+  } catch (error) {
+    console.error('getBackofficeRevisionJobs failed:', error);
+    return { ok:false, error:'job-read-failed', jobs:[] };
+  }
+}
+
+async function submitBackofficeTrailReview(payload) {
+  const moderator = await moderatorIdentity();
+  if (!moderator) return { ok:false, error:'moderator-required' };
+  if (!payload || payload.gate !== 'content-review' || !Array.isArray(payload.decisions) || !payload.decisions.length) {
+    return { ok:false, error:'decisions-required' };
+  }
+  try {
+    const review = await addDoc(collection(db, 'backofficeReviews'), {
+      contractVersion:'1.0.0', type:'verified-trail-content-review', gate:'content-review', status:'queued',
+      decisions:payload.decisions, submittedAt:serverTimestamp(), submittedBy:moderator.uid, publicMutationAllowed:false,
+    });
+    return { ok:true, reviewId:review.id, status:'queued' };
+  } catch (error) {
+    console.error('submitBackofficeTrailReview failed:', error);
+    return { ok:false, error:'review-submit-failed' };
+  }
+}
+
+async function submitBackofficePublicationReview(input) {
+  const moderator = await moderatorIdentity();
+  if (!moderator) return { ok:false, error:'moderator-required' };
+  try {
+    const review = await addDoc(collection(db, 'backofficePublicationReviews'), {
+      contractVersion:'1.0.0', type:'verified-trail-publication-review', status:'queued',
+      candidateId:String(input.candidateId || ''), action:String(input.action || ''),
+      note:String(input.note || '').trim().slice(0,1500), submittedAt:serverTimestamp(),
+      submittedBy:moderator.uid, publicMutationAllowed:false,
+    });
+    return { ok:true, reviewId:review.id, status:'queued' };
+  } catch (error) {
+    console.error('submitBackofficePublicationReview failed:', error);
+    return { ok:false, error:'publication-review-submit-failed' };
+  }
+}
+
 function moderationItem(type, snapshot, reportReasons = [], reportIds = []) {
   const data = snapshot.data();
   return {
@@ -1253,6 +1312,13 @@ window.DoloPawsModeration = {
   getModeratorStatus: async () => ({ ok: !!await moderatorIdentity() }),
   getQueue: getModerationQueue,
   decide: moderateContent,
+};
+
+window.ORMABackoffice = {
+  getArtifact:getBackofficeArtifact,
+  getRevisionJobs:getBackofficeRevisionJobs,
+  submitTrailReview:submitBackofficeTrailReview,
+  submitPublicationReview:submitBackofficePublicationReview,
 };
 
 window.DoloPawsPrivateOutcomes = {

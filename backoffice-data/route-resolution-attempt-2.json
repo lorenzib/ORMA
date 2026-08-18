@@ -1,0 +1,54 @@
+{
+  "contractVersion": "1.0.0",
+  "sourceDecisionExport": "orma-review-decisions-2026-08-18 (10).json",
+  "generatedAt": "2026-08-18T12:58:00Z",
+  "resolutionAttempt": 2,
+  "maximumAutomatedAttempts": 5,
+  "strategy": "Current bounded OSM network reconstruction plus route-operator GPX cross-check",
+  "publicMutationAllowed": false,
+  "summary": {
+    "geometryApprovalsAccepted": 2,
+    "cinqueTorriProposalFound": 1,
+    "parkingApprovalsInvalidatedByNewEvidence": 1,
+    "fullyOrmaVerified": 0
+  },
+  "results": [
+    {
+      "candidateId": "osm-relation-1484751",
+      "state": "geometry-approved-enrichment-pending",
+      "proposalId": "tre-cime-classic-101-105"
+    },
+    {
+      "candidateId": "osm-way-25736154",
+      "state": "geometry-approved-enrichment-pending",
+      "proposalId": "lago-braies-seeweg-circuit"
+    },
+    {
+      "candidateId": "osm-relation-6678431",
+      "state": "parking-correction-and-dog-lift-check-required",
+      "proposalId": "cinque-torri-three-refuges-assisted",
+      "storedRelationAudit": {
+        "relationId": "relation/6678431",
+        "deletedAt": "2019-02-17T06:33:28Z",
+        "lastVisibleTags": { "area": "yes", "highway": "footway", "type": "multipolygon" },
+        "validHikingRoute": false
+      },
+      "parkingContradiction": {
+        "invalidatedCoordinate": [12.046613, 46.508152],
+        "reason": "Coordinate is in the upper Cinque Torri/Scoiattoli area, not at the Bai de Dones valley parking.",
+        "replacementCandidate": {
+          "osmId": "way/900787870",
+          "position": [12.037603729268294, 46.51891714390244],
+          "distanceFromOfficialGpxStartM": 51,
+          "tags": { "access": "yes", "amenity": "parking", "fee": "no", "operator": "Seggiovia 5 Torri", "parking": "surface", "surface": "gravel" }
+        }
+      },
+      "nextAttempt": 3
+    },
+    {
+      "candidateId": "osm-relation-1372055",
+      "state": "source-exhausted-direct-confirmation-required",
+      "automatedAttemptScheduled": false
+    }
+  ]
+}

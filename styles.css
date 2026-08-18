@@ -1792,13 +1792,17 @@ body.map-fs-open{overflow:hidden;}
 .dp-marker-dot.tc-pin-selected{width:20px;height:20px;box-shadow:0 0 0 4px rgba(74,124,89,.28),0 1px 4px rgba(0,0,0,.35);z-index:7;}
 /* Selected-trail preview card — mirrors the list-row anatomy and docks at
    the foot of the map pane, like the design's TrailPreview. */
-.map-callout{position:absolute;left:12px;right:12px;bottom:12px;display:grid;grid-template-columns:142px minmax(240px,1fr) 118px 18px;align-items:stretch;gap:12px;background:var(--card);border:1px solid var(--paper-line);border-radius:16px;padding:14px;box-shadow:0 10px 28px rgba(27,31,25,.22);font-family:'Inter',sans-serif;z-index:9;max-width:820px;margin:0 auto;}
+.map-callout{position:absolute;left:12px;right:12px;bottom:12px;display:grid;grid-template-columns:142px minmax(240px,1fr) 118px 18px;align-items:stretch;gap:12px;background:var(--card);border:1px solid var(--paper-line);border-radius:16px;padding:12px;box-shadow:0 10px 28px rgba(27,31,25,.22);font-family:'Inter',sans-serif;z-index:9;max-width:820px;margin:0 auto;}
 .map-callout[hidden]{display:none !important;}
-.map-callout-thumb{flex:none;display:block;align-self:stretch;}
-.map-callout-thumb .li-thumb{width:142px;height:100%;min-height:116px;border-radius:12px;}
-.map-callout-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px;}
+/* The photo is absolutely positioned so its intrinsic (often portrait)
+   height can never stretch the card — the text column sets the height. */
+.map-callout-thumb{flex:none;display:block;align-self:stretch;position:relative;min-height:108px;}
+.map-callout-thumb .li-thumb{position:absolute;inset:0;width:100%;height:100%;min-height:0;border-radius:12px;}
+.map-callout-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;}
 .map-callout-kick{font:700 10px 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8A9689;}
-.map-callout-actions{display:grid;grid-template-columns:repeat(3,minmax(84px,118px));gap:7px;align-items:stretch;justify-content:start;margin-top:auto;padding-top:6px;max-width:380px;}
+.map-callout-actions{display:grid;grid-template-columns:repeat(3,minmax(84px,118px));gap:7px;align-items:stretch;justify-content:start;margin-top:auto;padding-top:8px;max-width:380px;}
+.map-callout-actions .li-dir-wrap{display:flex;}
+.map-callout-actions .map-callout-directions{width:100%;}
 .map-callout-open{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:34px;padding:6px 11px;border-radius:9px;background:var(--accent);color:#fff;font:700 12px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;}
 .map-callout-open:hover{background:var(--accent-hover);color:#fff;}
 .map-callout-save,.map-callout-directions{display:inline-flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:34px;gap:5px;padding:6px 11px;border-radius:9px;border:1.5px solid var(--paper-line);background:#fff;color:var(--ink);font:700 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
@@ -1806,8 +1810,6 @@ body.map-fs-open{overflow:hidden;}
 .map-callout-directions:hover{border-color:var(--accent);color:var(--accent);}
 .map-callout-directions:disabled{cursor:wait;opacity:.65;}
 .map-callout-save.saved{background:#9C3A25;border-color:#9C3A25;color:#fff;}
-.map-directions-status{display:block;min-height:0;color:var(--ink-soft);font-size:11px;line-height:1.35;}
-.map-directions-status:empty{display:none;}
 .map-callout-info-row{display:flex;align-items:center;justify-content:flex-start;gap:16px;flex-wrap:wrap;margin-top:2px;}
 .map-callout-info-row .li-rating-row{margin-top:0;}
 .map-callout #mapCalloutMatch{display:flex;align-self:stretch;min-width:0;}
@@ -1815,7 +1817,7 @@ body.map-fs-open{overflow:hidden;}
   align-self:stretch;width:118px;box-sizing:border-box;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
   text-align:center;background:transparent;border:0;border-left:1px dashed var(--paper-line);border-radius:0;
-  padding:12px 8px;
+  padding:8px;
 }
 .map-callout .li-match b{font-size:21px;line-height:1;}
 .map-callout .li-match b span{font-size:12px;}
@@ -1825,8 +1827,7 @@ body.map-fs-open{overflow:hidden;}
 
 @media(max-width:700px){
   .map-callout{grid-template-columns:86px minmax(0,1fr) 22px;gap:9px;max-height:calc(100% - 24px);overflow-y:auto;padding:10px;}
-  .map-callout-thumb{grid-row:1 / span 2;}
-  .map-callout-thumb .li-thumb{width:86px;min-height:110px;}
+  .map-callout-thumb{grid-row:1 / span 2;min-height:100px;}
   .map-callout-body{grid-column:2;}
   .map-callout .close{grid-column:3;grid-row:1;}
   .map-callout #mapCalloutMatch{grid-column:2 / span 2;grid-row:2;}
