@@ -51,13 +51,20 @@ describe('empty states and long-form navigation', () => {
     expect(trail).toContain('No reviews yet');
   });
 
-  test('about page receives generated section navigation', () => {
+  test('about page stays nav-free; the scoring page carries the split-out sections', () => {
     document.documentElement.innerHTML = read('about.html');
     window.eval(read('guide-navigation.js'));
-    const nav = document.querySelector('.guide-page-nav[data-generated]');
-    expect(nav).not.toBeNull();
-    expect(nav.querySelectorAll('a')).toHaveLength(4);
-    expect(document.querySelectorAll('[data-lang-block="en"] .guide-anchor')).toHaveLength(4);
+    // A single-section letter is below the nav threshold.
+    expect(document.querySelector('.guide-page-nav[data-generated]')).toBeNull();
+    expect(document.body.innerHTML).toContain('About us');
+
+    document.documentElement.innerHTML = read('how-scoring-works.html');
+    window.eval(read('guide-navigation.js'));
+    const en = document.querySelector('[data-lang-block="en"]');
+    const h2s = [...en.querySelectorAll('h2')].map(h => h.textContent);
+    expect(h2s).toHaveLength(2);
+    expect(h2s[0]).toContain('Our principles');
+    expect(h2s[1]).toContain('Verified and imported');
   });
 
   test('long guide articles receive navigation while short ones stay focused', () => {

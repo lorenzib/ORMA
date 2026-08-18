@@ -182,12 +182,12 @@ describe('trail page map legend', () => {
   test('the personalised match links to the scoring explanation', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
-    const about = fs.readFileSync(path.join(__dirname, 'about.html'), 'utf8');
+    const scoring = fs.readFileSync(path.join(__dirname, 'how-scoring-works.html'), 'utf8');
 
-    expect(trail).toContain('id="statMatchLink" href="about.html#how-scoring-works"');
-    expect(trail).toContain("statMatchLink.href = 'about.html#how-scoring-works'");
+    expect(trail).toContain('id="statMatchLink" href="how-scoring-works.html"');
+    expect(trail).toContain("statMatchLink.href = 'how-scoring-works.html'");
     expect(html).toContain('.td2-match-link:focus-visible');
-    expect(about).toContain('id="how-scoring-works"');
+    expect(scoring).toContain('id="how-scoring-works"');
   });
 
   test('renderLegendChips populates trail legend entries', () => {

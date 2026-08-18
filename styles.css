@@ -2053,6 +2053,12 @@ body.map-fs-open{overflow:hidden;}
 .hp-how-head{text-align:center;margin-bottom:22px;}
 .hp-how-h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:26px;margin:0;color:var(--ink);}
 .hp-how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+/* The mission band: the belief behind the mechanics, stated once, on the
+   brand's deep pine. */
+.hp-mission{margin:30px 0 6px;padding:28px 32px;background:#22312A;border-radius:18px;color:#EDE7D5;font-size:15px;line-height:1.7;}
+.hp-mission p{margin:0;}
+.hp-mission p:first-child{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;line-height:1.55;margin-bottom:12px;color:#F5F0E2;}
+@media(max-width:700px){.hp-mission{padding:22px 20px;font-size:14px;}}
 .hp-howcard{background:#fff;border:1px solid var(--paper-line);border-radius:16px;padding:22px 22px 20px;}
 .hp-howcard-head{display:flex;align-items:center;gap:12px;margin-bottom:11px;}
 .hp-howcard-ico{width:44px;height:44px;flex:none;border-radius:12px;background:var(--sage-dim);display:grid;place-items:center;}
