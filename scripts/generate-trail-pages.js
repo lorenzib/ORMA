@@ -684,6 +684,7 @@ function main() {
     `${BASE_URL}/browse-trails.html`,
     `${BASE_URL}/safety-guide.html`,
     `${BASE_URL}/about.html`,
+    `${BASE_URL}/how-scoring-works.html`,
     `${BASE_URL}/contact.html`,
     `${BASE_URL}/privacy.html`,
     `${BASE_URL}/terms.html`,
