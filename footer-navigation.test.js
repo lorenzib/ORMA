@@ -82,6 +82,7 @@ describe('footer navigation', () => {
     const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
     expect(css).toContain('grid-template-columns:minmax(230px,1.35fr) repeat(5,minmax(0,max-content))');
     expect(css).toContain('.hp-footer-grid>div:last-child{justify-self:end;}');
+    expect(css).toContain('max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)))');
 
     publicFooterPages().forEach(file => {
       const html = fs.readFileSync(file, 'utf8');
@@ -90,7 +91,7 @@ describe('footer navigation', () => {
 
     publicFooterPages().forEach(file => {
       const html = fs.readFileSync(file, 'utf8');
-      expect(html).toMatch(/href="(?:\.\.\/|\/)?styles\.css\?v=20260818-14"/);
+      expect(html).toMatch(/href="(?:\.\.\/|\/)?styles\.css\?v=20260818-15"/);
     });
   });
 });

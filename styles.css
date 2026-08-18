@@ -2120,7 +2120,7 @@ body.map-fs-open{overflow:hidden;}
 .hp-menu-scrim[hidden]{display:none;}
 
 /* --- homepage footer (design port) --- */
-.hp-footer{background:var(--ink);color:#D4DED3;padding:34px clamp(22px,3vw,48px) 22px;text-align:left;font-size:14px;position:relative;overflow:hidden;}
+.hp-footer{background:var(--ink);color:#D4DED3;padding:34px var(--wrap-gutter) 22px;text-align:left;font-size:14px;position:relative;overflow:hidden;}
 /* The brand mark ghosted tone-on-tone inside the footer band: the logo's
    dark tile melts into the footer green, so only the paw and its contour
    rings surface as a shade. Clipped by the footer — it never bleeds onto
@@ -2138,7 +2138,7 @@ body.map-fs-open{overflow:hidden;}
 .hp-footer-grid,.hp-footer-base{position:relative;z-index:1;}
 @media (max-width:700px){.hp-footer::after{width:300px;height:300px;right:-50px;bottom:-60px;}}
 /* Six desktop columns: brand plus all five navigation groups on one line. */
-.hp-footer-grid{width:100%;max-width:1680px;margin:0 auto;display:grid;grid-template-columns:minmax(230px,1.35fr) repeat(5,minmax(0,max-content));justify-content:space-between;column-gap:clamp(16px,1.8vw,34px);row-gap:20px;align-items:start;}
+.hp-footer-grid{width:100%;max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));margin:0 auto;display:grid;grid-template-columns:minmax(230px,1.35fr) repeat(5,minmax(0,max-content));justify-content:space-between;column-gap:clamp(14px,1.4vw,24px);row-gap:20px;align-items:start;}
 .hp-footer-grid>div:last-child{justify-self:end;}
 .hp-footer-brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:10px;}
 /* The logo's badge background disappears on the footer's matching dark
@@ -2151,7 +2151,7 @@ body.map-fs-open{overflow:hidden;}
 .hp-footer-links{display:flex;flex-direction:column;gap:7px;}
 .hp-footer-links a{font-size:15px;color:#D4DED3;text-decoration:none;white-space:nowrap;}
 .hp-footer-links a:hover,.hp-footer-social a:hover{color:#F7F4EA;}
-.hp-footer-base{max-width:1680px;margin:22px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.hp-footer-base{max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));margin:22px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
 .hp-footer-base span{font-size:13px;color:#8DA290;}
 .hp-footer-social{display:flex;gap:18px;}
 .hp-footer-social a{font-size:12px;color:#8DA290;text-decoration:none;}
@@ -2161,6 +2161,7 @@ body.map-fs-open{overflow:hidden;}
   .hp-footer-grid>div:last-child{justify-self:start;}
 }
 @media (max-width:700px){
+  .hp-footer{padding-inline:18px;}
   .hp-footer-grid{grid-template-columns:1fr 1fr;}
 }
 @media (max-width:520px){
