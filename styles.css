@@ -117,14 +117,15 @@ img,svg{max-width:100%;height:auto;}
 .apg-hero.section-page-head h1,
 .about-hero-inner.section-page-head h1,
 .scoring-hero-inner.section-page-head h1{
-  margin:0;font-size:38px;line-height:1.08;
+  margin:0!important;font-size:38px!important;line-height:1.08;
 }
 .guide-hero .section-page-subtitle,
 .compare-hero .section-page-subtitle,
 .apg-hero .section-page-subtitle,
 .about-hero .section-page-subtitle,
 .scoring-hero .section-page-subtitle{
-  max-width:900px;white-space:normal;text-wrap:pretty;
+  max-width:900px;margin:12px 0 0!important;font-size:15px!important;line-height:1.5!important;
+  white-space:normal;text-wrap:pretty;
 }
 /* The matching content column under a section-page-head: every section
    page shares this one wrap so gutters and rhythm stay identical. */
@@ -144,7 +145,7 @@ img,svg{max-width:100%;height:auto;}
   .compare-hero.section-page-head h1,
   .apg-hero.section-page-head h1,
   .about-hero-inner.section-page-head h1,
-  .scoring-hero-inner.section-page-head h1{font-size:28px;}
+  .scoring-hero-inner.section-page-head h1{font-size:28px!important;}
 }
 :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
   outline:3px solid var(--accent) !important;
