@@ -63,8 +63,8 @@ describe('empty states and long-form navigation', () => {
     const en = document.querySelector('[data-lang-block="en"]');
     const h2s = [...en.querySelectorAll('h2')].map(h => h.textContent);
     expect(h2s).toHaveLength(2);
-    expect(h2s[0]).toContain('Our principles');
-    expect(h2s[1]).toContain('Verified and imported');
+    expect(h2s[0]).toContain('The two scores');
+    expect(h2s[1]).toContain('Verified or imported');
   });
 
   test('long guide articles receive navigation while short ones stay focused', () => {
