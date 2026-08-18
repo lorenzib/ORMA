@@ -553,7 +553,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
         <a href="../browse-trails.html">Browse all Trails</a>
         <a href="../collections.html">Collections</a>
         <a href="../compare.html">Compare trails</a>
-        <a href="../safety-guide.html">Safety guide</a>
+        <a href="../how-scoring-works.html">How scoring works</a>
       </div>
     </div>
     <div>
