@@ -77,4 +77,15 @@ describe('footer navigation', () => {
       expect(links).toEqual(expected);
     });
   });
+
+  test('every public footer loads the current compact six-column stylesheet', () => {
+    const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+    expect(css).toContain('grid-template-columns:minmax(220px,1.3fr) repeat(5,minmax(0,max-content))');
+    expect(css).toContain('.hp-footer{background:var(--ink);color:#D4DED3;padding:32px');
+
+    publicFooterPages().forEach(file => {
+      const html = fs.readFileSync(file, 'utf8');
+      expect(html).toMatch(/href="(?:\.\.\/|\/)?styles\.css\?v=20260818-13"/);
+    });
+  });
 });
