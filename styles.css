@@ -2091,7 +2091,7 @@ body.map-fs-open{overflow:hidden;}
    — the browse-trails footer, used on every page. */
 /* Brand block left, four link columns spread with equal gaps and the last
    flush against the right edge of the divider line below. */
-.hp-footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(230px,300px) repeat(4,max-content);justify-content:space-between;column-gap:34px;row-gap:28px;}
+.hp-footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(220px,280px) repeat(5,max-content);justify-content:space-between;column-gap:28px;row-gap:28px;}
 .hp-footer-brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:12px;}
 /* The logo's badge background disappears on the footer's matching dark
    green, leaving ~6px of invisible inset — pull the icon left so the

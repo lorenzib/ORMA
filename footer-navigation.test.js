@@ -8,14 +8,14 @@ function htmlFiles(directory){
 }
 
 describe('footer navigation', () => {
-  test('every For dogs footer links to the breed-group caveats guide', () => {
+  test('every dog-care footer links to the breed-group caveats guide', () => {
     const pages = [
       ...htmlFiles(__dirname),
       ...htmlFiles(path.join(__dirname, 'guides')),
       ...htmlFiles(path.join(__dirname, 'trails')),
     ].filter(file => {
       const html = fs.readFileSync(file, 'utf8');
-      return html.includes('<div class="hp-footer-h">For dogs</div>');
+      return html.includes('<div class="hp-footer-h">Caring for your dog</div>');
     });
     expect(pages.length).toBeGreaterThan(0);
     pages.forEach(file => {
