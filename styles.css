@@ -2080,9 +2080,9 @@ body.map-fs-open{overflow:hidden;}
    rings surface as a shade. Clipped by the footer — it never bleeds onto
    the page above. */
 .hp-footer::after{
-  content:"";position:absolute;right:-40px;bottom:-90px;width:460px;height:460px;
-  background:url('logo.svg?v=5') center/contain no-repeat;
-  opacity:.16;filter:grayscale(55%);
+  content:"";position:absolute;right:-30px;bottom:-80px;width:440px;height:460px;
+  background:url('logo-paw.svg?v=1') center/contain no-repeat;
+  opacity:.13;
   pointer-events:none;
 }
 .hp-footer-grid,.hp-footer-base{position:relative;z-index:1;}

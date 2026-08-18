@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260818-3">
+<link rel="stylesheet" href="styles.css?v=20260818-4">
 <style>
   .scoring-hero{background:#22312A;color:#F2EDDF;padding:64px 24px 70px;}
   .scoring-hero-inner{max-width:880px;margin:0 auto;}
@@ -41,10 +41,18 @@
   .sc-penlist{background:var(--card,#fff);border:1px solid var(--paper-line,#E5DECF);border-radius:14px;padding:6px 18px;margin:12px 0 0;}
   .sc-penrow{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px dashed var(--paper-line,#E5DECF);}
   .sc-penrow:last-child{border-bottom:none;}
+  .sc-penrow{position:relative;}
+  .sc-penrow[data-tip]:hover::after{
+    content:attr(data-tip);position:absolute;left:0;bottom:calc(100% + 7px);z-index:20;
+    background:#22312A;color:#F2EDDF;font:500 11.5px/1.5 'Inter',sans-serif;
+    padding:8px 12px;border-radius:9px;width:max-content;max-width:280px;
+    box-shadow:0 10px 24px rgba(23,42,28,.32);pointer-events:none;
+  }
   .sc-chip{flex:none;width:100px;text-align:center;font:800 12px 'Inter',sans-serif;padding:5px 0;border-radius:8px;}
   .sc-penrow b{font-size:13px;font-weight:600;color:var(--ink,#22312A);}
   @media(min-width:760px){
     .sc-penlist{display:grid;grid-template-columns:1fr 1fr;column-gap:44px;padding:6px 22px;}
+    .sc-penlist .sc-penrow:nth-last-child(-n+2){border-bottom:none;}
   }
   /* One vertical rhythm for the whole section */
   .guide-section h3{margin:30px 0 6px;}
@@ -132,16 +140,16 @@
       <h3>Step 2 · How hard is the trail?</h3>
       <p>Every pairing starts at <b>100</b>.</p>
       <div class="sc-penlist">
-        <div class="sc-penrow"><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">−30 /rank</span><b>Terrain above limit</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">to −35</span><b>Too far</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">to −20</span><b>Too much climb</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">to −20</span><b>Long descents</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">−30 to −40</span><b>Exposed sections</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">−4 to −25</span><b>Heat risk</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">−5 / −10</span><b>Little shade</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">to −30</span><b>Surface hazards</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#fff;background:#9C3A25;">Hard stop</span><b>Dogs prohibited</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#8A5A16;background:#8A5A161f;">Cap 84</span><b>Seasonal access</b></div>
+        <div class="sc-penrow" data-tip="Each terrain rank above your dog's tolerance costs 30 points." title="Each terrain rank above your dog's tolerance costs 30 points."><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">−30 /rank</span><b>Terrain above limit</b></div>
+        <div class="sc-penrow" data-tip="5 points per kilometre beyond your dog's range, up to 35." title="5 points per kilometre beyond your dog's range, up to 35."><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">to −35</span><b>Too far</b></div>
+        <div class="sc-penrow" data-tip="4 points per extra 100 m of climb, up to 20." title="4 points per extra 100 m of climb, up to 20."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">to −20</span><b>Too much climb</b></div>
+        <div class="sc-penrow" data-tip="Sustained descents over 400 m load the joints of fragile or giant dogs." title="Sustained descents over 400 m load the joints of fragile or giant dogs."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">to −20</span><b>Long descents</b></div>
+        <div class="sc-penrow" data-tip="Drop-offs or exposed ledges; the penalty grows for fragile or vision-impaired dogs." title="Drop-offs or exposed ledges; the penalty grows for fragile or vision-impaired dogs."><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">−30 to −40</span><b>Exposed sections</b></div>
+        <div class="sc-penrow" data-tip="The route's baseline heat risk; heat-sensitive dogs lose the most." title="The route's baseline heat risk; heat-sensitive dogs lose the most."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">−4 to −25</span><b>Heat risk</b></div>
+        <div class="sc-penrow" data-tip="Under 40% shade costs 5 points, under 20% costs 10." title="Under 40% shade costs 5 points, under 20% costs 10."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">−5 / −10</span><b>Little shade</b></div>
+        <div class="sc-penrow" data-tip="8 points per recorded hazard, capped; fragile dogs lose more." title="8 points per recorded hazard, capped; fragile dogs lose more."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">to −30</span><b>Surface hazards</b></div>
+        <div class="sc-penrow" data-tip="Dogs are not allowed on this route, so it is never recommended." title="Dogs are not allowed on this route, so it is never recommended."><span class="sc-chip" style="color:#fff;background:#9C3A25;">Hard stop</span><b>Dogs prohibited</b></div>
+        <div class="sc-penrow" data-tip="Dog access has seasonal rules; the score stays capped at 84 until you check the rule for your date." title="Dog access has seasonal rules; the score stays capped at 84 until you check the rule for your date."><span class="sc-chip" style="color:#8A5A16;background:#8A5A161f;">Cap 84</span><b>Seasonal access</b></div>
       </div>
 
       <h3>Step 3 · How sure are we?</h3>
@@ -168,9 +176,17 @@
 
     <section class="guide-section">
       <h2>Verified or imported?</h2>
-      <p><span class="badge-pill badge-verified">VERIFIED BY ORMA</span>&nbsp; A verified trail has been walked, measured and reviewed by us, with a dog. Its safety rating, water points, rifugi and tips come from our own notes, and we update them as conditions change.</p>
-      <p><span class="badge-pill badge-imported">IMPORTED</span>&nbsp; An imported trail comes from OpenStreetMap, the collaborative map of the world. The route, distance and elevation are computed from real map data, but nobody from ORMA has walked it yet, so we label it honestly instead of pretending. As we verify imported trails, they graduate.</p>
-      <p>Reports from the community (livestock guard dogs, dry fountains, a lift that refused a dog) appear alongside our ratings and never silently change them. What we verified stays visible; what hikers report stays attributed to hikers.</p>
+      <div class="sc-cards">
+        <div class="sc-card">
+          <h4><span class="badge-pill badge-verified">VERIFIED BY ORMA</span></h4>
+          <p>Walked, measured and reviewed by us, with a dog. The safety rating, water points, rifugi and tips come from our own notes, updated as conditions change.</p>
+        </div>
+        <div class="sc-card">
+          <h4><span class="badge-pill badge-imported">IMPORTED</span></h4>
+          <p>From OpenStreetMap, the collaborative map of the world. Route, distance and elevation come from real map data, but nobody from ORMA has walked it yet, so we label it honestly. As we verify imported trails, they graduate.</p>
+        </div>
+      </div>
+      <p class="sc-note" style="margin-top:24px;">Community reports (livestock guard dogs, dry fountains, a lift that refused a dog) appear alongside our ratings and never silently change them. What we verified stays visible; what hikers report stays attributed to hikers.</p>
     </section>
   </div>
   <div data-lang-block="it" hidden>
@@ -225,16 +241,16 @@
       <h3>Passo 2 · Quanto è impegnativo il sentiero?</h3>
       <p>Ogni abbinamento parte da <b>100</b>.</p>
       <div class="sc-penlist">
-        <div class="sc-penrow"><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">−30 /grado</span><b>Terreno oltre il limite</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">fino a −35</span><b>Troppo lungo</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">fino a −20</span><b>Troppo dislivello</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">fino a −20</span><b>Discese lunghe</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">−30 a −40</span><b>Tratti esposti</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">−4 a −25</span><b>Rischio caldo</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">−5 / −10</span><b>Poca ombra</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">fino a −30</span><b>Pericoli del fondo</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#fff;background:#9C3A25;">Stop</span><b>Cani vietati</b></div>
-        <div class="sc-penrow"><span class="sc-chip" style="color:#8A5A16;background:#8A5A161f;">Tetto 84</span><b>Accesso stagionale</b></div>
+        <div class="sc-penrow" data-tip="Ogni grado di terreno oltre la tolleranza del tuo cane costa 30 punti." title="Ogni grado di terreno oltre la tolleranza del tuo cane costa 30 punti."><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">−30 /grado</span><b>Terreno oltre il limite</b></div>
+        <div class="sc-penrow" data-tip="5 punti per ogni chilometro oltre il raggio del tuo cane, fino a 35." title="5 punti per ogni chilometro oltre il raggio del tuo cane, fino a 35."><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">fino a −35</span><b>Troppo lungo</b></div>
+        <div class="sc-penrow" data-tip="4 punti ogni 100 m di salita in più, fino a 20." title="4 punti ogni 100 m di salita in più, fino a 20."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">fino a −20</span><b>Troppo dislivello</b></div>
+        <div class="sc-penrow" data-tip="Discese prolungate oltre 400 m caricano le articolazioni dei cani fragili o giganti." title="Discese prolungate oltre 400 m caricano le articolazioni dei cani fragili o giganti."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">fino a −20</span><b>Discese lunghe</b></div>
+        <div class="sc-penrow" data-tip="Strapiombi o cenge esposte; la penalità cresce per cani fragili o ipovedenti." title="Strapiombi o cenge esposte; la penalità cresce per cani fragili o ipovedenti."><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">−30 a −40</span><b>Tratti esposti</b></div>
+        <div class="sc-penrow" data-tip="Il rischio caldo di base del percorso; i cani sensibili al caldo perdono di più." title="Il rischio caldo di base del percorso; i cani sensibili al caldo perdono di più."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">−4 a −25</span><b>Rischio caldo</b></div>
+        <div class="sc-penrow" data-tip="Sotto il 40% di ombra costa 5 punti, sotto il 20% ne costa 10." title="Sotto il 40% di ombra costa 5 punti, sotto il 20% ne costa 10."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">−5 / −10</span><b>Poca ombra</b></div>
+        <div class="sc-penrow" data-tip="8 punti per ogni pericolo registrato, con un massimo; i cani fragili perdono di più." title="8 punti per ogni pericolo registrato, con un massimo; i cani fragili perdono di più."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">fino a −30</span><b>Pericoli del fondo</b></div>
+        <div class="sc-penrow" data-tip="I cani non sono ammessi su questo percorso, quindi non viene mai consigliato." title="I cani non sono ammessi su questo percorso, quindi non viene mai consigliato."><span class="sc-chip" style="color:#fff;background:#9C3A25;">Stop</span><b>Cani vietati</b></div>
+        <div class="sc-penrow" data-tip="L'accesso ai cani ha regole stagionali; il punteggio resta limitato a 84 finché non verifichi la regola per la tua data." title="L'accesso ai cani ha regole stagionali; il punteggio resta limitato a 84 finché non verifichi la regola per la tua data."><span class="sc-chip" style="color:#8A5A16;background:#8A5A161f;">Tetto 84</span><b>Accesso stagionale</b></div>
       </div>
 
       <h3>Passo 3 · Quanto ne siamo certi?</h3>
@@ -261,9 +277,17 @@
 
     <section class="guide-section">
       <h2>Verificato o importato?</h2>
-      <p><span class="badge-pill badge-verified">VERIFICATO DA ORMA</span>&nbsp; Un sentiero verificato è stato percorso, misurato e recensito da noi, con un cane. La classificazione di sicurezza, i punti d'acqua, i rifugi e i consigli vengono dai nostri appunti, e li aggiorniamo quando le condizioni cambiano.</p>
-      <p><span class="badge-pill badge-imported">IMPORTATO</span>&nbsp; Un sentiero importato proviene da OpenStreetMap, la mappa collaborativa del mondo. Percorso, distanza e dislivello sono calcolati da dati cartografici reali, ma nessuno di ORMA lo ha ancora percorso, quindi lo dichiariamo onestamente invece di fingere. Man mano che verifichiamo i sentieri importati, vengono promossi.</p>
-      <p>Le segnalazioni della community (cani da guardiania, fontane a secco, un impianto che ha rifiutato un cane) compaiono accanto alle nostre valutazioni e non le cambiano mai in silenzio. Ciò che abbiamo verificato resta visibile; ciò che segnalano gli escursionisti resta attribuito agli escursionisti.</p>
+      <div class="sc-cards">
+        <div class="sc-card">
+          <h4><span class="badge-pill badge-verified">VERIFICATO DA ORMA</span></h4>
+          <p>Percorso, misurato e recensito da noi, con un cane. La classificazione di sicurezza, i punti d'acqua, i rifugi e i consigli vengono dai nostri appunti, aggiornati quando le condizioni cambiano.</p>
+        </div>
+        <div class="sc-card">
+          <h4><span class="badge-pill badge-imported">IMPORTATO</span></h4>
+          <p>Da OpenStreetMap, la mappa collaborativa del mondo. Percorso, distanza e dislivello vengono da dati cartografici reali, ma nessuno di ORMA lo ha ancora percorso, quindi lo dichiariamo onestamente. Man mano che verifichiamo i sentieri importati, vengono promossi.</p>
+        </div>
+      </div>
+      <p class="sc-note" style="margin-top:24px;">Le segnalazioni della community (cani da guardiania, fontane a secco, un impianto che ha rifiutato un cane) compaiono accanto alle nostre valutazioni e non le cambiano mai in silenzio. Ciò che abbiamo verificato resta visibile; ciò che segnalano gli escursionisti resta attribuito agli escursionisti.</p>
     </section>
   </div>
 </div>

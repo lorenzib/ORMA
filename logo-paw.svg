@@ -1,0 +1,54 @@
+<svg viewBox="60 20 400 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+  <!-- Paw-only ghost of the brand mark for tone-on-tone watermarks: the
+       topographic pad and toes with no tile behind them. -->
+  <defs>
+    <path id="pawpad" d="
+      M170,438
+      C158,414 152,382 160,354
+      L172,326
+      L184,300 L191,316 L200,290 L206,308
+      L214,322
+      L240,252 L248,266 L258,236 L266,258 L272,248
+      L282,286
+      L300,262 L310,278 L318,262
+      L332,300 L344,330
+      C356,352 360,390 352,414
+      C340,452 320,466 276,468
+      C226,470 190,462 170,438 Z"/>
+    <path id="pawpad-smooth" d="
+      M175,430
+      C160,400 158,368 170,340
+      C182,312 210,280 245,262
+      C270,250 292,258 305,278
+      C318,296 330,318 340,342
+      C352,368 352,398 344,418
+      C332,448 314,460 276,462
+      C230,464 190,456 175,430 Z"/>
+  </defs>
+
+  <g fill="#F2EDDF">
+    <ellipse cx="152" cy="225" rx="40" ry="54" transform="rotate(-20 152 225)"/>
+    <ellipse cx="225" cy="152" rx="42" ry="56" transform="rotate(-7 225 152)"/>
+    <ellipse cx="307" cy="152" rx="42" ry="56" transform="rotate(7 307 152)"/>
+    <ellipse cx="378" cy="225" rx="40" ry="54" transform="rotate(20 378 225)"/>
+  </g>
+  <g fill="none" stroke="#2A362C" stroke-width="2.5">
+    <ellipse cx="150" cy="227" rx="26" ry="37" transform="rotate(-20 152 225)"/>
+    <ellipse cx="223" cy="154" rx="28" ry="39" transform="rotate(-7 225 152)"/>
+    <ellipse cx="309" cy="154" rx="28" ry="39" transform="rotate(7 307 152)"/>
+    <ellipse cx="380" cy="227" rx="26" ry="37" transform="rotate(20 378 225)"/>
+  </g>
+
+  <use href="#pawpad" fill="#F2EDDF"/>
+  <g fill="none" stroke="#2A362C" stroke-width="2" vector-effect="non-scaling-stroke">
+    <use href="#pawpad" transform="translate(27,36) scale(.91)"/>
+    <use href="#pawpad-smooth" transform="translate(44.7,60.3) scale(.85)"/>
+    <use href="#pawpad-smooth" transform="translate(83.4,112.6) scale(.72)"/>
+    <use href="#pawpad-smooth" transform="translate(119.2,160.8) scale(.60)"/>
+    <use href="#pawpad-smooth" transform="translate(152,205) scale(.49)"/>
+    <use href="#pawpad-smooth" transform="translate(181.8,245.2) scale(.39)"/>
+    <use href="#pawpad-smooth" transform="translate(208.6,281.4) scale(.30)"/>
+    <use href="#pawpad-smooth" transform="translate(232.4,313.6) scale(.22)"/>
+    <use href="#pawpad-smooth" transform="translate(253.3,341.7) scale(.15)"/>
+  </g>
+</svg>
