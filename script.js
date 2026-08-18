@@ -2023,20 +2023,23 @@ function initLoggedInShell(){
     if(addBtn) addBtn.click();
   });
 
-  // Keep discovery map-first: collapse the ranked-results panel and let the
-  // map take the whole workspace. A map-edge button restores the panel.
+  // Keep discovery map-first: the same top-right control collapses and
+  // restores the ranked-results panel, so it never moves between states.
   const collapseBtn = document.getElementById('liCollapseTrailsBtn');
-  const showTrailsBtn = document.getElementById('liShowTrailsBtn');
   const liBody = document.querySelector('#returningCustomerHomepage .li-body');
   const setTrailsCollapsed = (collapsed) => {
     if(!liBody) return;
     liBody.classList.toggle('list-collapsed', collapsed);
-    if(collapseBtn) collapseBtn.setAttribute('aria-expanded', String(!collapsed));
-    if(showTrailsBtn) showTrailsBtn.hidden = !collapsed;
+    if(collapseBtn){
+      collapseBtn.setAttribute('aria-expanded', String(!collapsed));
+      collapseBtn.setAttribute('aria-label', collapsed ? 'Expand ranked trails panel' : 'Collapse ranked trails panel');
+      collapseBtn.textContent = collapsed ? '☰ Expand trails' : '▤ Collapse trails';
+    }
     if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
   };
-  if(collapseBtn) collapseBtn.addEventListener('click', () => setTrailsCollapsed(true));
-  if(showTrailsBtn) showTrailsBtn.addEventListener('click', () => setTrailsCollapsed(false));
+  if(collapseBtn) collapseBtn.addEventListener('click', () => {
+    setTrailsCollapsed(!liBody.classList.contains('list-collapsed'));
+  });
 
   // Notification bell opens the full notification centre from the design.
   const bellBtn = document.getElementById('liBellBtn');
@@ -2193,7 +2196,6 @@ function liMatchColHtml(t){
 async function renderReturningHomepage(profile){
   const heading = document.getElementById('returningHeading');
   const subline = document.getElementById('returningSubline');
-  const countEl = document.getElementById('returningCount');
   const toolbarSummary = document.getElementById('liToolbarSummary');
   const listEl = document.getElementById('returningTrailList');
   if(!heading || typeof trails === 'undefined') return;
@@ -2273,9 +2275,7 @@ async function renderReturningHomepage(profile){
   const applyBtn = document.getElementById('liFiltersApply');
   if(applyBtn) applyBtn.textContent = `Show ${displayList.length} ${displayList.length === 1 ? 'trail' : 'trails'}`;
 
-  // "6 scored · 1 saved" — the design's count line.
   const savedCount = Object.keys(currentFavorites || {}).length;
-  countEl.textContent = `${displayList.length} scored · ${savedCount} saved`;
   if(toolbarSummary) toolbarSummary.textContent = `${displayList.length} trails · ${savedCount} saved`;
 
   updateMapMarkers(displayList);
@@ -2289,8 +2289,6 @@ async function renderReturningHomepage(profile){
   const pageList = collapsed
     ? displayList.slice(0, TOP_MATCHES)
     : displayList.slice((currentPage - 1) * TRAILS_PER_PAGE, currentPage * TRAILS_PER_PAGE);
-  // The count line stays "n scored · m saved" in every state (design).
-
   if(savedTrailsBtn){
     const savedLabel = savedTrailsBtn.querySelector('.txt-label');
     if(savedLabel) savedLabel.textContent = showingSavedOnly

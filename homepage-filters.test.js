@@ -58,7 +58,6 @@ function loadHomepageContext(testTrails){
     <span id="liToolbarDogContext"></span>
     <h1 id="returningHeading"></h1>
     <p id="returningSubline"></p>
-    <span id="returningCount"></span>
     <div id="returningTrailList"></div>
     <button id="savedTrailsBtn"></button>
     <button id="adjustToggle"></button>
@@ -171,7 +170,7 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('liSavedOnlyBtn').getAttribute('aria-pressed')).toBe('true');
     expect(document.getElementById('liSavedOnlyCount').textContent).toBe('1');
     await vm.runInContext('renderReturningHomepage(null);', context);
-    expect(document.getElementById('returningCount').textContent).toBe('1 scored · 1 saved');
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
   });
 
   test('renders a static tailored-to dog name with a linked breed', () => {
@@ -209,32 +208,32 @@ describe('returning homepage region + valley filters', () => {
     expect(vm.runInContext('activeValley', context)).toBe('Maurienne');
   });
 
-  test('result count reflects region filter', async () => {
+  test('result list reflects region filter', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeRegion = "savoy"; activeValley = "all"; activeProvenance = "all"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
-    expect(document.getElementById('returningCount').textContent).toBe('3 scored · 0 saved');
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
   });
 
-  test('result count reflects valley filter', async () => {
+  test('result list reflects valley filter', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeRegion = "savoy"; activeValley = "Maurienne"; activeProvenance = "all"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
-    expect(document.getElementById('returningCount').textContent).toBe('1 scored · 0 saved');
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
   });
 
   test('provenance filter shows only verified trails', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeRegion = "savoy"; activeValley = "all"; activeProvenance = "verified"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
-    expect(document.getElementById('returningCount').textContent).toBe('2 scored · 0 saved');
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
   });
 
   test('provenance filter shows only imported trails', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeRegion = "savoy"; activeValley = "all"; activeProvenance = "imported"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
-    expect(document.getElementById('returningCount').textContent).toBe('1 scored · 0 saved');
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
   });
 });
 
@@ -252,7 +251,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(html).toContain('id="liSavedOnlyBtn"');
     expect(html).toContain('id="liRegionWrap"');
     expect(html).toContain('id="liCollapseTrailsBtn"');
-    expect(html).toContain('id="liShowTrailsBtn"');
+    expect(html).not.toContain('id="liShowTrailsBtn"');
     expect(html).not.toContain('id="liCollapseMapBtn"');
     expect(html).toContain('Tailored to');
     expect(html).toContain('id="liDogCtxBreed"');

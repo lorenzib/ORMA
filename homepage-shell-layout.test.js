@@ -17,4 +17,16 @@ describe('logged-in discovery workspace layout', () => {
     expect(desktopShellRule).not.toBeNull();
     expect(desktopShellRule[1]).not.toContain('height:100dvh');
   });
+
+  test('keeps one trails toggle anchored while the results pane collapses', () => {
+    expect(html.match(/id="liCollapseTrailsBtn"/g)).toHaveLength(1);
+    expect(html).not.toContain('id="liShowTrailsBtn"');
+    expect(css).toMatch(/\.li-trails-toggle\s*\{[^}]*position:absolute;top:12px;right:20px;/s);
+  });
+
+  test('uses a dashed divider instead of a match box and keeps route facts legible', () => {
+    expect(css).toMatch(/\.map-callout \.li-match\s*\{[^}]*background:transparent;[^}]*border-left:1px dashed var\(--paper-line\);/s);
+    expect(css).toMatch(/\.li-row-meta\s*\{[^}]*color:var\(--ink\);[^}]*font-weight:500;/s);
+    expect(html).not.toContain('id="returningCount"');
+  });
 });
