@@ -1,6 +1,6 @@
 const firebaseConfig = {
   apiKey: "AIzaSyDnEJKnoDltKwpl4QdhA-qLH3a4ugLd68M",
-  authDomain: "auth.app-orma.com",
+  authDomain: "dolopaws.firebaseapp.com",
   projectId: "dolopaws",
   storageBucket: "dolopaws.firebasestorage.app",
   messagingSenderId: "331415525455",
