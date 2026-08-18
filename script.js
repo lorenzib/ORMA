@@ -2194,6 +2194,7 @@ async function renderReturningHomepage(profile){
   const heading = document.getElementById('returningHeading');
   const subline = document.getElementById('returningSubline');
   const countEl = document.getElementById('returningCount');
+  const toolbarSummary = document.getElementById('liToolbarSummary');
   const listEl = document.getElementById('returningTrailList');
   if(!heading || typeof trails === 'undefined') return;
 
@@ -2275,6 +2276,7 @@ async function renderReturningHomepage(profile){
   // "6 scored · 1 saved" — the design's count line.
   const savedCount = Object.keys(currentFavorites || {}).length;
   countEl.textContent = `${displayList.length} scored · ${savedCount} saved`;
+  if(toolbarSummary) toolbarSummary.textContent = `${displayList.length} trails · ${savedCount} saved`;
 
   updateMapMarkers(displayList);
 

@@ -103,6 +103,29 @@ img,svg{max-width:100%;height:auto;}
   gap:20px;
 }
 .section-page-head__copy{min-width:0;}
+/* Editorial pages use the same outer grid as the four primary section
+   pages, even when their body copy keeps a narrower reading measure. */
+.guide-hero.section-page-head,
+.compare-hero.section-page-head,
+.apg-hero.section-page-head,
+.about-hero-inner.section-page-head,
+.scoring-hero-inner.section-page-head{
+  width:100%;max-width:var(--wrap);margin:0 auto;padding:38px var(--wrap-gutter) 8px;
+}
+.guide-hero.section-page-head h1,
+.compare-hero.section-page-head h1,
+.apg-hero.section-page-head h1,
+.about-hero-inner.section-page-head h1,
+.scoring-hero-inner.section-page-head h1{
+  margin:0;font-size:38px;line-height:1.08;
+}
+.guide-hero .section-page-subtitle,
+.compare-hero .section-page-subtitle,
+.apg-hero .section-page-subtitle,
+.about-hero .section-page-subtitle,
+.scoring-hero .section-page-subtitle{
+  max-width:900px;white-space:normal;text-wrap:pretty;
+}
 /* The matching content column under a section-page-head: every section
    page shares this one wrap so gutters and rhythm stay identical. */
 .section-page-wrap{max-width:var(--wrap);margin:0 auto;padding:8px var(--wrap-gutter) 60px;}
@@ -112,6 +135,16 @@ img,svg{max-width:100%;height:auto;}
   .section-page-subtitle{font-size:14px;white-space:normal;text-wrap:pretty;}
   .section-page-head--actions{align-items:flex-start;flex-direction:column;gap:14px;}
   .section-page-wrap{padding:10px 16px 44px;}
+  .guide-hero.section-page-head,
+  .compare-hero.section-page-head,
+  .apg-hero.section-page-head,
+  .about-hero-inner.section-page-head,
+  .scoring-hero-inner.section-page-head{padding:30px 18px 10px;}
+  .guide-hero.section-page-head h1,
+  .compare-hero.section-page-head h1,
+  .apg-hero.section-page-head h1,
+  .about-hero-inner.section-page-head h1,
+  .scoring-hero-inner.section-page-head h1{font-size:28px;}
 }
 :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
   outline:3px solid var(--accent) !important;
@@ -2224,8 +2257,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 
 #returningCustomerHomepage[hidden]{display:none !important;}
 #returningCustomerHomepage{
-  height:100vh;
-  height:100dvh;
+  min-height:0;
   display:flex;
   flex-direction:column;
   background:#EFECE2;
@@ -2287,11 +2319,13 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
    the static "Tailored to" label. */
 .li-toolbar{
   display:grid;
-  grid-template-columns:auto minmax(260px,1fr) auto auto auto auto;
-  grid-template-areas:"dogctx search country region saved filters";
+  grid-template-columns:minmax(300px,1fr) auto auto auto auto;
+  grid-template-areas:
+    "greet greet greet greet greet"
+    "search country region saved filters";
   align-items:center;
-  gap:8px 10px;
-  padding:7px 20px;
+  gap:14px 10px;
+  padding:16px 24px 18px;
   background:var(--bg);
   border-bottom:1px solid var(--paper-line);
   flex:none;
@@ -2299,15 +2333,15 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   z-index:45;
 }
 .li-toolbar-greet{
-  grid-area:dogctx;
-  display:none;
+  grid-area:greet;
+  display:flex;
   align-items:center;
   gap:9px;
   min-width:0;
   flex:none;
   color:var(--ink);
 }
-.li-dogctx-wrap{grid-area:dogctx;flex:none;}
+.li-dogctx-wrap{display:none;grid-area:dogctx;flex:none;}
 .li-dogctx-static{
   display:flex;align-items:center;gap:8px;max-width:310px;min-height:42px;box-sizing:border-box;
   background:#fff;border:1.5px solid var(--paper-line);border-radius:var(--radius-pill);
@@ -2324,6 +2358,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-toolbar-greet-copy{display:flex;flex-direction:column;min-width:0;}
 .li-toolbar-greet-copy strong{font:700 21px/1.12 'Bricolage Grotesque',sans-serif;white-space:nowrap;}
 .li-toolbar-greet-copy small{margin-top:2px;font:600 10.5px/1.2 'Inter',sans-serif;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:none;}
+.li-toolbar-summary{margin-left:auto;color:#849086;font:600 11.5px/1.2 'Inter',sans-serif;white-space:nowrap;}
 .li-toolbar-breed{color:inherit;text-decoration:underline;text-decoration-color:#AAB5AA;text-underline-offset:2px;}
 .li-toolbar-breed:hover{color:var(--accent);text-decoration-color:currentColor;}
 .li-region-wrap{grid-area:region;flex:none;}
@@ -2604,10 +2639,11 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 
 /* ---------- body grid ---------- */
 .li-body{
-  flex:1;
+  flex:none;
   display:grid;
-  grid-template-columns:1fr 430px;
-  min-height:0;
+  grid-template-columns:minmax(0,1.65fr) minmax(380px,.9fr);
+  height:500px;
+  min-height:420px;
 }
 /* Collapse-results state: discovery stays map-first and the map expands to
    the full workspace. A small map-edge control restores ranked trails. */
@@ -2928,6 +2964,7 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 @media (min-width:701px) and (max-width:1040px){
   #returningCustomerHomepage{height:100vh;height:100dvh;}
   .li-toolbar{display:flex;flex-wrap:wrap;padding:9px 16px;gap:9px;}
+  .li-toolbar-greet{display:flex;flex:1 1 100%;order:-1;}
   .li-search{order:0;flex:1;max-width:390px;}
   .li-country-wrap{order:1;}
   .li-region-wrap{order:2;}
@@ -2951,6 +2988,7 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
   .li-toolbar{display:flex;padding:10px 14px;flex-wrap:wrap;}
   .li-dogctx-wrap{display:none;}
   .li-toolbar-greet{display:flex;width:100%;min-width:0;}
+  .li-toolbar-summary{display:none;}
   .li-search{order:1;flex:1 1 100%;max-width:none;min-width:170px;}
   .li-country-wrap{order:2;}
   .li-region-wrap{order:3;}
