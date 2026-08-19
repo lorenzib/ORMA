@@ -7,45 +7,107 @@
   <title>Backoffice workflows | ORMA</title>
   <link rel="icon" href="favicon-32.png" sizes="32x32">
   <link rel="stylesheet" href="styles.css?v=20260818-10">
-  <link rel="stylesheet" href="backoffice-review.css?v=20260819-2">
+  <link rel="stylesheet" href="backoffice-review.css?v=20260819-4">
 </head>
 <body class="bo-shell">
   <header class="bo-header">
     <a href="index.html" class="bo-brand">🐾 ORMA</a>
     <span>Workflow dashboard</span>
   </header>
-  <main class="bo-main">
-    <div class="bo-title-row">
+  <main class="bo-main bo-executive">
+    <div class="bo-exec-title">
       <div>
-        <p class="eyebrow">Private local prototype</p>
-        <h1>ORMA backoffice</h1>
-        <p class="bo-intro">All automated workstreams and human review gates. Choose a workflow below; each card states exactly what approval does.</p>
+        <p class="eyebrow">Private backoffice · executive view</p>
+        <h1>Product operations</h1>
+        <p class="bo-intro">See what the team and agents are working on, where work is blocked, and which decisions need you.</p>
       </div>
+      <p id="dashboardUpdated" class="bo-dashboard-updated">Refreshing progress…</p>
     </div>
-    <section class="bo-workflows" aria-labelledby="workflowOverviewTitle">
-      <div class="bo-workflows-head">
-        <div><p class="eyebrow">Workflow map</p><h2 id="workflowOverviewTitle">What is running</h2></div>
-        <p>Trail evidence and website editorial publishing are deliberately separate.</p>
+
+    <section class="bo-exec-kpis" aria-label="Product operations summary">
+      <article><strong id="needsReviewCount">—</strong><span>Needs your review</span><small>Across approval desks</small></article>
+      <article><strong id="agentWorkCount">—</strong><span>Agent work queued</span><small>Research and preparation</small></article>
+      <article><strong id="readyToPublishCount">—</strong><span>Ready for publication review</span><small>Trail packages staged</small></article>
+      <article><strong id="publishedCount">—</strong><span>Recently published</span><small>Approved editorial updates</small></article>
+    </section>
+
+    <section class="bo-exec-decisions" aria-labelledby="decisionsTitle">
+      <div class="bo-exec-section-head">
+        <div><p class="eyebrow">CEO action</p><h2 id="decisionsTitle">Your decisions</h2></div>
+        <p>Only items that require a human approval appear here.</p>
       </div>
-      <div class="bo-workflow-groups">
-        <section class="bo-workflow-group" aria-labelledby="trailWorkflowTitle">
-          <div class="bo-workflow-group-head"><div><span class="bo-workflow-family">Trail production</span><h3 id="trailWorkflowTitle">Verify before writing</h3></div><span class="bo-workflow-status is-active">Active</span></div>
-          <ol class="bo-workflow-list">
-            <li><div class="bo-workflow-number">1</div><div><h4>Catalogue Verification Campaign</h4><p>Finds catalogue trails that need modern verification and queues specialist research automatically.</p><small>Background agent workflow · No human review happens here · Cannot publish</small></div><span class="bo-workflow-automated">Automated</span></li>
-            <li><div class="bo-workflow-number">2</div><div><h4>Trail Verification Desk</h4><p>Reviews sources, route geometry, parking, policy, hazards and unresolved evidence.</p><small>Human evidence gate · Approval advances the dossier internally</small></div><a href="trail-dossier-desk.html">Open desk ↗</a></li>
-            <li><div class="bo-workflow-number">3</div><div><h4>Verified Trail Content Desk</h4><p>Reviews copy and media created only from locked, internally verified trail dossiers.</p><small>Human content and publication-mapping gates · Remains staged</small></div><a href="trail-content-desk.html">Open desk ↗</a></li>
-          </ol>
-        </section>
-        <section class="bo-workflow-group" aria-labelledby="editorialWorkflowTitle">
-          <div class="bo-workflow-group-head"><div><span class="bo-workflow-family">Editorial publishing</span><h3 id="editorialWorkflowTitle">Maintain and distribute</h3></div><span class="bo-workflow-status is-active">Active</span></div>
-          <ol class="bo-workflow-list">
-            <li><div class="bo-workflow-number">1</div><div><h4>Editing Flow · Website Editorial Review</h4><p>Suggests copy-only updates for guides, articles, collections and library pages, including source-backed freshness reviews.</p><small>Wednesday 12:00 · Up to 3 reviews · Approval commits, pushes and deploys</small></div><a href="content-desk.html">Review copy ↗</a></li>
-            <li><div class="bo-workflow-number">2</div><div><h4>Newsletter Flow · Newsletter Editor</h4><p>Packages newly published trails together with newly published or materially updated editorial work.</p><small>Every other Thursday 09:00 · Inputs: live trails + approved editing flow · Never sends automatically</small></div><a href="content-desk.html">Review newsletter ↗</a></li>
-            <li class="is-planned"><div class="bo-workflow-number">3</div><div><h4>Social Media Curation</h4><p>Will turn approved ORMA content into channel-ready concepts after social launch.</p><small>Planned · Not running · No accounts connected</small></div><span class="bo-workflow-planned">Not active</span></li>
-          </ol>
-        </section>
+      <div id="executiveDecisionQueue" class="bo-decision-queue"><p class="bo-dashboard-loading">Checking review desks…</p></div>
+    </section>
+
+    <section class="bo-exec-streams" aria-labelledby="streamsTitle">
+      <div class="bo-exec-section-head">
+        <div><p class="eyebrow">Operating streams</p><h2 id="streamsTitle">Three distinct workstreams</h2></div>
+        <p>Catalogue maintenance, catalogue growth and website editorial quality are tracked separately.</p>
+      </div>
+      <div class="bo-stream-grid">
+        <article class="bo-stream-card">
+          <div class="bo-stream-head"><span class="bo-stream-type">Catalogue · existing</span><span class="bo-life-status is-running">Active</span></div>
+          <h3>Existing Catalogue Verification</h3>
+          <p>Re-check trails already published on ORMA: route identity, access, safety evidence and provenance.</p>
+          <strong id="existingCatalogueProgress">Loading current batch…</strong>
+          <a href="trail-dossier-desk.html">Open verification desk ↗</a>
+        </article>
+        <article class="bo-stream-card is-inactive">
+          <div class="bo-stream-head"><span class="bo-stream-type">Catalogue · new</span><span class="bo-life-status">Not active</span></div>
+          <h3>New Trail Scouting</h3>
+          <p>Find genuinely new trail candidates, screen hard disqualifiers, then send eligible candidates into verification.</p>
+          <strong id="newScoutingProgress">No scouting run is scheduled yet.</strong>
+          <span class="bo-stream-note">This is separate from re-verifying the existing catalogue.</span>
+        </article>
+        <article class="bo-stream-card">
+          <div class="bo-stream-head"><span class="bo-stream-type">Website · editorial</span><span class="bo-life-status is-running">Active</span></div>
+          <h3>Editorial Refinement</h3>
+          <p>Keep safety guides, collections, articles and library pages accurate, current and useful.</p>
+          <strong id="editorialRefinementProgress">Loading editorial queue…</strong>
+          <a href="content-desk.html">Open editorial review ↗</a>
+        </article>
       </div>
     </section>
+
+    <section class="bo-exec-lifecycle" aria-labelledby="lifecycleTitle">
+      <div class="bo-exec-section-head">
+        <div><p class="eyebrow">Product lifecycle</p><h2 id="lifecycleTitle">From discovery to audience</h2></div>
+        <p>Every public output passes through a named stage and a visible human gate.</p>
+      </div>
+      <ol class="bo-lifecycle">
+        <li class="bo-life-stage">
+          <span class="bo-life-number">1</span>
+          <div class="bo-life-title"><span>Input</span><h3>Catalogue candidates</h3></div>
+          <div class="bo-life-copy"><p>Existing trails enter from the re-verification campaign. Net-new trails enter from scouting. The two queues remain distinct.</p><small id="discoverProgress">Loading catalogue progress…</small></div>
+          <span class="bo-life-status is-running">2 streams</span>
+        </li>
+        <li class="bo-life-stage">
+          <span class="bo-life-number">2</span>
+          <div class="bo-life-title"><span>Verify</span><h3>Trail evidence</h3></div>
+          <div class="bo-life-copy"><p>Both catalogue streams use the same evidence standard for geometry, access, parking, terrain, water, heat, livestock and provenance.</p><small id="verifyProgress">Loading verification progress…</small></div>
+          <div class="bo-life-action"><span id="verifyStatus" class="bo-life-status is-running">In progress</span><a href="trail-dossier-desk.html">Trail Verification Desk ↗</a></div>
+        </li>
+        <li class="bo-life-stage">
+          <span class="bo-life-number">3</span>
+          <div class="bo-life-title"><span>Refine</span><h3>Content preparation</h3></div>
+          <div class="bo-life-copy"><p>Verified trails receive staged copy and media. Editorial Refinement separately maintains safety guides, collections, articles and library pages.</p><small id="produceProgress">Loading content progress…</small></div>
+          <div class="bo-life-action"><a href="trail-content-desk.html">Trail content ↗</a><a href="content-desk.html">Editorial refinement ↗</a></div>
+        </li>
+        <li class="bo-life-stage">
+          <span class="bo-life-number">4</span>
+          <div class="bo-life-title"><span>Publish</span><h3>Human release gate</h3></div>
+          <div class="bo-life-copy"><p>Approved editorial copy is committed and deployed. Trail packages remain staged until their publication mapping is approved.</p><small id="publishProgress">Loading publication progress…</small></div>
+          <div class="bo-life-action"><span id="publishStatus" class="bo-life-status">Waiting</span><a href="content-desk.html">Review website copy ↗</a><a href="trail-content-desk.html">Review trail release ↗</a></div>
+        </li>
+        <li class="bo-life-stage">
+          <span class="bo-life-number">5</span>
+          <div class="bo-life-title"><span>Distribute</span><h3>Newsletter and social</h3></div>
+          <div class="bo-life-copy"><p>The newsletter can pick up both newly published trails and material updates from Editorial Refinement. Social curation remains parked until launch.</p><small id="distributeProgress">Loading distribution progress…</small></div>
+          <div class="bo-life-action"><span id="distributeStatus" class="bo-life-status is-scheduled">Scheduled</span><a id="newsletterReviewLink" href="content-desk.html" hidden>Review newsletter ↗</a></div>
+        </li>
+      </ol>
+    </section>
   </main>
+  <script src="backoffice-dashboard.js?v=20260819-4"></script>
 </body>
 </html>
