@@ -55,9 +55,8 @@
   // trail page. The fuller `provenanceLabel` (below) adds progress/date detail.
   function tierLabel(trail) {
     const tier = tierOf(trail);
-    if (tier === 'dolopaws-walked') return 'Walked by ORMA';
-    if (tier === 'route-audited') return 'Reviewed by ORMA';
-    return 'Trail overview';
+    if (tier === 'dolopaws-walked' || tier === 'route-audited') return 'Verified by ORMA';
+    return 'Imported trail';
   }
 
   // Badge visual style per tier, reusing the existing pill styles: under-review

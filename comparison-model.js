@@ -23,10 +23,10 @@
     prohibited:'Dogs prohibited',
   };
   const TIERS = {
-    imported:'Trail overview',
-    mapped:'Trail overview',
-    'route-audited':'Reviewed by ORMA',
-    'field-verified':'Walked by ORMA',
+    imported:'Imported trail',
+    mapped:'Imported trail',
+    'route-audited':'Verified by ORMA',
+    'field-verified':'Verified by ORMA',
   };
 
   function cell(text, kind, detail){

@@ -174,7 +174,7 @@
         : 'Shade listed',
       exposure: 'No reported exposure',
       access: state.access === 'allowed-reviewed' ? 'Dogs permitted' : 'Dogs allowed, leash is okay',
-      verification: state.verification === 'field-verified' ? 'Walked by ORMA' : 'Reviewed by ORMA',
+      verification: 'Verified by ORMA',
       collection: `${state.collection} collection`,
       minMatch: `${state.minMatch}%+ dog match`,
     };

@@ -77,7 +77,7 @@
     const el = $('verifiedSeal');
     if (!el) return;
     const style = trust && trust.tierBadgeStyle ? trust.tierBadgeStyle(t) : (t.curated === false ? 'imported' : 'verified');
-    const label = trust ? trust.provenanceLabel(t) : (t.curated === false ? 'Trail overview' : 'Reviewed by ORMA');
+    const label = trust ? trust.provenanceLabel(t) : (t.curated === false ? 'Imported trail' : 'Verified by ORMA');
     // Render the same pill the browse-trail cards use, not a bespoke inline seal.
     el.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
       ? window.DoloPawsIcons.badgeHtml(style, label)
@@ -95,7 +95,7 @@
     if (graduation) {
       const date = trust.formatReviewDate(t.reviewedAt || (t.verified && t.verified.date));
       meta.textContent = graduation.verified
-        ? `Reviewed by ORMA on ${date}. Check current conditions before setting out.`
+        ? `Verified by ORMA on ${date}. Check current conditions before setting out.`
         : 'Based on mapped route data and available ORMA sources. Check current conditions before setting out.';
     } else if (progress) {
       meta.textContent = progress.checked === progress.total

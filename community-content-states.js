@@ -70,7 +70,7 @@
   function hazardTrustLabel(flag){
     const labels = {
       'official-confirmed':'Confirmed by an official source',
-      'dolopaws-reviewed':'Reviewed by ORMA',
+      'dolopaws-reviewed':'Verified by ORMA',
       'community-confirmed':'Confirmed by the community',
       'community-disputed':'Disputed by the community',
       unconfirmed:'Unconfirmed community report',
