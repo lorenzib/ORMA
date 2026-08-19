@@ -234,6 +234,41 @@ service cloud.firestore {
         && validModerationMetadata(data);
     }
 
+    function validPlaceDogReport(data) {
+      return data.keys().hasOnly([
+          'placeId', 'placeName', 'placeType', 'coordinates', 'uid',
+          'policy', 'evidence', 'note', 'status', 'createdAt',
+          'moderatedAt', 'moderatedBy'
+        ])
+        && isShortString(data.placeId, 120)
+        && isShortString(data.placeName, 120)
+        && isShortString(data.placeType, 40)
+        && data.coordinates is map
+        && data.coordinates.keys().hasOnly(['lng', 'lat'])
+        && data.coordinates.lng is number
+        && data.coordinates.lng >= -180 && data.coordinates.lng <= 180
+        && data.coordinates.lat is number
+        && data.coordinates.lat >= -90 && data.coordinates.lat <= 90
+        && isShortString(data.uid, 128)
+        && data.policy in ['welcome', 'leashed', 'not-allowed']
+        && data.evidence in ['visited', 'staff-confirmed', 'posted-sign']
+        && data.note is string && data.note.size() <= 300
+        && isCommunityState(data.status)
+        && data.createdAt is timestamp
+        && validModerationMetadata(data);
+    }
+
+    function moderatorPlaceDogReportUpdate() {
+      return isModerator()
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.placeId == resource.data.placeId
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['status', 'moderatedAt', 'moderatedBy'])
+        && validModeratorTransition(resource.data.status, request.resource.data.status)
+        && request.resource.data.moderatedAt == request.time
+        && request.resource.data.moderatedBy == request.auth.uid;
+    }
+
     function validPrivateOutcome(data, outcomeId) {
       return data.keys().hasAll([
           'schemaVersion', 'outcomeId', 'completionId', 'trailId', 'response',
@@ -269,16 +304,17 @@ service cloud.firestore {
 
     function validModerationAudit(data) {
       return data.keys().hasAll([
-          'contentType', 'contentId', 'trailId', 'authorUid', 'fromStatus',
+          'contentType', 'contentId', 'targetId', 'authorUid', 'fromStatus',
           'toStatus', 'moderatorUid', 'reason', 'createdAt'
         ])
         && data.keys().hasOnly([
-          'contentType', 'contentId', 'trailId', 'authorUid', 'fromStatus',
+          'contentType', 'contentId', 'targetId', 'trailId', 'authorUid', 'fromStatus',
           'toStatus', 'moderatorUid', 'reason', 'createdAt'
         ])
-        && data.contentType in ['flag', 'review', 'photo']
+        && data.contentType in ['flag', 'review', 'photo', 'placeDog']
         && isShortString(data.contentId, 100)
-        && isTrailId(data.trailId)
+        && isShortString(data.targetId, 120)
+        && (!data.keys().hasAny(['trailId']) || isTrailId(data.trailId))
         && isShortString(data.authorUid, 128)
         && isCommunityState(data.fromStatus)
         && isCommunityState(data.toStatus)
@@ -579,6 +615,25 @@ service cloud.firestore {
         && validPhoto(request.resource.data);
       allow update: if validPhoto(request.resource.data)
         && (ownerContentUpdate() || moderatorStateUpdate());
+      allow delete: if isOwner(resource.data.uid) || isModerator();
+    }
+
+    // First-hand place observations remain pending until an ORMA moderator
+    // reviews them. Only visible/reported records may power public badges.
+    match /placeDogReports/{reportId} {
+      allow get: if isModerator()
+        || isOwner(resource.data.uid)
+        || resource.data.status in ['visible', 'reported'];
+      allow list: if isModerator()
+        || resource.data.status in ['visible', 'reported'];
+      allow create: if isContributor()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && request.resource.data.createdAt == request.time
+        && !request.resource.data.keys().hasAny(['moderatedAt', 'moderatedBy'])
+        && validPlaceDogReport(request.resource.data);
+      allow update: if validPlaceDogReport(request.resource.data)
+        && moderatorPlaceDogReportUpdate();
       allow delete: if isOwner(resource.data.uid) || isModerator();
     }
 

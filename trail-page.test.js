@@ -63,19 +63,16 @@ function loadTrailScript(overrides = {}){
   return context;
 }
 
-describe('trail page map legend', () => {
-  test('map key lives outside the map as a collapsed disclosure', () => {
+describe('trail page map controls', () => {
+  test('uses the main-map Layers pattern and removes the redundant map key', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     document.body.innerHTML = html;
-    const legendKey = document.querySelector('.map-key--bar');
-
-    expect(legendKey).not.toBeNull();
-    expect(legendKey.hasAttribute('open')).toBe(false);
-    // In flow below the map, never overlaying the route.
-    expect(legendKey.closest('#trailMapBox')).toBeNull();
-    expect(document.getElementById('legendChips')).not.toBeNull();
-    // The what-this-trail-is-about chip is gone from the map corner.
-    expect(document.getElementById('tdMapChip')).toBeNull();
+    expect(document.querySelector('.map-key--bar')).toBeNull();
+    expect(document.getElementById('detailLayersBtn')).not.toBeNull();
+    expect(document.getElementById('detailLayersPanel')).not.toBeNull();
+    expect(document.getElementById('fountainsToggle')).not.toBeNull();
+    expect(document.getElementById('hutsToggle')).not.toBeNull();
+    expect(document.getElementById('foodToggle')).not.toBeNull();
   });
 
   test('marked routes and relief are on by default, opt-out via the toggle', () => {
@@ -190,47 +187,6 @@ describe('trail page map legend', () => {
     expect(scoring).toContain('id="how-scoring-works"');
   });
 
-  test('renderLegendChips populates trail legend entries', () => {
-    const legendChips = { innerHTML: '' };
-    const context = loadTrailScript({
-      document: {
-        readyState: 'loading',
-        getElementById: (id) => (id === 'legendChips' ? legendChips : null),
-        querySelector: () => null,
-        querySelectorAll: () => [],
-        createElement: () => ({
-          style: {},
-          className: '',
-          textContent: '',
-          innerHTML: '',
-          hidden: false,
-          appendChild: () => {},
-          addEventListener: () => {},
-          setAttribute: () => {},
-        }),
-        addEventListener: () => {},
-      },
-    });
-
-    context.renderLegendChips({
-      path: [[46.6, 12.1], [46.61, 12.11]],
-      safetyLevel: 'moderate',
-      decisionPoints: [{ km: 2.1, instruction: 'Keep left onto 104' }],
-      rifugi: [],
-      waterSources: [],
-      lat: 46.6,
-      lng: 12.1,
-    });
-
-    expect(legendChips.innerHTML).toContain('Start');
-    expect(legendChips.innerHTML).toContain('Route · Moderate');
-    expect(legendChips.innerHTML).toContain('Direction of travel');
-    expect(legendChips.innerHTML).toContain('Trail switch');
-    expect(legendChips.innerHTML).toContain('Mountain hut');
-    expect(legendChips.innerHTML).toContain('Food stop');
-    expect(legendChips.innerHTML).toContain('Water source');
-  });
-
   test('addTerrainToggle creates a terrain button anchored with the terrain-specific class', () => {
     const createdButtons = [];
     const mapContainer = {
@@ -280,7 +236,7 @@ describe('trail page map legend', () => {
     let clickHandler = null;
     const attrs = {};
     const groupBtn = {
-      textContent: 'Elevation map',
+      textContent: '3D',
       classList: {
         add: (c) => classes.add(c),
         remove: (c) => classes.delete(c),
@@ -289,12 +245,14 @@ describe('trail page map legend', () => {
       setAttribute: (k, v) => { attrs[k] = v; },
       addEventListener: (type, fn) => { if(type === 'click') clickHandler = fn; },
     };
+    const terrainCalls = [];
+    const cameraCalls = [];
     const fakeMap = {
-      setTerrain: () => {},
+      setTerrain: value => terrainCalls.push(value),
       getLayer: () => true,
       removeLayer: () => {},
       addLayer: () => {},
-      easeTo: () => {},
+      easeTo: value => cameraCalls.push(value),
     };
 
     context.addTerrainToggle(fakeMap, 'trailDetailMap', 1.5, 45, groupBtn);
@@ -304,11 +262,15 @@ describe('trail page map legend', () => {
     expect(classes.has('on')).toBe(true);
     expect(attrs['aria-pressed']).toBe('true');
     // Label must stay put — the pressed state carries the meaning.
-    expect(groupBtn.textContent).toBe('Elevation map');
+    expect(groupBtn.textContent).toBe('3D');
+    expect(terrainCalls[0]).toEqual({ source: 'terrain-dem-3d', exaggeration: 1.5 });
+    expect(cameraCalls[0].pitch).toBe(45);
+    expect(cameraCalls[0].zoom).toBe(12.25);
 
     clickHandler();
     expect(classes.has('on')).toBe(false);
     expect(attrs['aria-pressed']).toBe('false');
+    expect(terrainCalls[1]).toBeNull();
   });
 
   test('hike mode keeps live elevation visible and offers explicit relief choices', () => {
@@ -319,8 +281,9 @@ describe('trail page map legend', () => {
 
     expect(document.getElementById('tdElevationPanel')).not.toBeNull();
     expect(document.getElementById('tdElevLive')).not.toBeNull();
-    expect(document.querySelector('[data-maplayer="terrain"]').textContent).toBe('Flat map');
-    expect(document.querySelector('[data-map3d]').textContent).toBe('Elevation map');
+    expect(document.querySelector('[data-maplayer="map"]').textContent).toBe('Map');
+    expect(document.querySelector('[data-maplayer="satellite"]').textContent).toBe('Satellite');
+    expect(document.querySelector('[data-map3d]').textContent).toBe('3D');
     expect(trail).toContain('mapBox.appendChild(elevationPanel)');
     expect(trail).toContain('route elevation`');
     expect(trail).toContain("'hillshade-method': 'igor'");
