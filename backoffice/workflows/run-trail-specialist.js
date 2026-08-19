@@ -5,6 +5,7 @@ const {runCartographer}=require('./run-cartographer');
 const {candidateFromProductionTrail,referenceFromProductionTrail}=require('./run-catalogue-batch');
 
 const CATEGORIES=['route','geometry','elevation','parking','water','heat','exposure','livestock','surfaceHazards','access','photo','provenance'];
+const JUDGMENT_AGENTS=new Set(['evidenceLibrarian','redTeam','auditor']);
 const SPECIALIST_SCHEMA={type:'object',additionalProperties:false,properties:{
   summary:{type:'string'},
   claims:{type:'array',items:{type:'object',additionalProperties:false,properties:{
@@ -29,6 +30,14 @@ const PROMPTS={
   auditor:'You are ORMA Auditor. Resolve only the human-requested dossier issue using current authoritative sources. Preserve supported facts, expose conflicts and keep unresolved claims unresolved. You cannot approve the dossier.',
 };
 
+function modelForAgent(agentId,env=process.env){
+  const sharedOverride=env.ORMA_CONTENT_MODEL;
+  if(JUDGMENT_AGENTS.has(agentId)){
+    return env.ORMA_CONTENT_AUDIT_MODEL||sharedOverride||'gpt-5.6-terra';
+  }
+  return env.ORMA_CONTENT_ROUTINE_MODEL||sharedOverride||'gpt-5.6-luna';
+}
+
 function validateSpecialistResult(result){
   for(const claim of result.claims||[]){
     if(claim.finding==='supported-proposal'&&!claim.sources.length)throw new Error(`Supported proposal ${claim.id} requires a source`);
@@ -43,11 +52,12 @@ async function runTrailSpecialist({job,trail,context},options={}){
   }
   const prompt=PROMPTS[job.agentId]; if(!prompt)throw new Error(`No live specialist handler for ${job.agentId}`);
   const runAgent=options.runAgent||createStructuredResponse;
+  const clientOptions={...(options.clientOptions||{}),model:options.clientOptions?.model||modelForAgent(job.agentId,options.env)};
   const response=await runAgent({schemaName:`orma_${job.agentId}_trail_findings`,schema:SPECIALIST_SCHEMA,webSearch:true,
-    messages:[{role:'developer',content:prompt},{role:'user',content:JSON.stringify({job,trail,context})}]},options.clientOptions||{});
+    messages:[{role:'developer',content:prompt},{role:'user',content:JSON.stringify({job,trail,context})}]},clientOptions);
   validateSpecialistResult(response.data);
   return {responseId:response.responseId,model:response.model,result:{contractVersion:'1.0.0',candidateId:job.candidateId,
     agentId:job.agentId,action:job.action,generatedAt:options.at||new Date().toISOString(),...response.data,publicMutationAllowed:false}};
 }
 
-module.exports={CATEGORIES,SPECIALIST_SCHEMA,PROMPTS,validateSpecialistResult,runTrailSpecialist};
+module.exports={CATEGORIES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};

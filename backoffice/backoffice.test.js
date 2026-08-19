@@ -95,7 +95,9 @@ const { validateTrailOrchestration } = require('./contracts/trail-orchestration-
 const { seedOrchestrationFromCatalogue, buildDossierReviewQueue } = require('./workflows/build-live-orchestration');
 const { applyDossierReview } = require('./workflows/apply-dossier-review');
 const { dossierBlockingReasons } = require('./workflows/advance-trail-orchestration');
-const { runTrailSpecialist } = require('./workflows/run-trail-specialist');
+const { modelForAgent,runTrailSpecialist } = require('./workflows/run-trail-specialist');
+const { processTrailSpecialistJobs } = require('./workflows/run-live-backoffice-worker');
+const { positiveInteger } = require('./cli/live-worker');
 const { startLiveTrailCampaign } = require('./workflows/start-live-trail-campaign');
 const { trailOnlyReviewQueue } = require('./cli/seed-live-state');
 const { compileVerifiedDossier, verificationRecord } = require('./workflows/compile-verified-dossier');
@@ -1277,8 +1279,9 @@ describe('ORMA backoffice MVP', () => {
   test('a web-search specialist returns proposed evidence without public mutation authority', async () => {
     const response=await runTrailSpecialist({
       job:{agentId:'logistics',candidateId:'trail-a',action:'verify-parking-and-access'},trail:{id:'trail-a'},context:[],
-    },{at:'2026-08-18T20:00:00.000Z',runAgent:async input=>{
+    },{at:'2026-08-18T20:00:00.000Z',env:{},runAgent:async (input,clientOptions)=>{
       expect(input.webSearch).toBe(true);
+      expect(clientOptions.model).toBe('gpt-5.6-luna');
       return {responseId:'resp-a',model:'test-model',data:{
         summary:'Parking remains unresolved.',
         claims:[{id:'parking',category:'parking',proposedValue:'Unknown',finding:'unresolved',confidence:0,
@@ -1287,6 +1290,45 @@ describe('ORMA backoffice MVP', () => {
       }};
     }});
     expect(response.result).toEqual(expect.objectContaining({agentId:'logistics',publicMutationAllowed:false,recommendation:'needs-resolution'}));
+  });
+
+  test('trail specialists route routine research to Luna and judgment passes to Terra', () => {
+    expect(modelForAgent('logistics',{})).toBe('gpt-5.6-luna');
+    expect(modelForAgent('regulatoryRanger',{})).toBe('gpt-5.6-luna');
+    expect(modelForAgent('terrainPoi',{})).toBe('gpt-5.6-luna');
+    expect(modelForAgent('evidenceLibrarian',{})).toBe('gpt-5.6-terra');
+    expect(modelForAgent('redTeam',{})).toBe('gpt-5.6-terra');
+    expect(modelForAgent('auditor',{})).toBe('gpt-5.6-terra');
+    expect(modelForAgent('logistics',{ORMA_CONTENT_MODEL:'test-shared'})).toBe('test-shared');
+    expect(modelForAgent('redTeam',{ORMA_CONTENT_AUDIT_MODEL:'test-audit',ORMA_CONTENT_MODEL:'test-shared'})).toBe('test-audit');
+  });
+
+  test('a controlled live worker run processes only the selected trail candidate', async () => {
+    const pending=[
+      {id:'job-a',jobType:'trail-verification-specialist',agentId:'logistics',candidateId:'trail-a',action:'verify-parking-and-access'},
+      {id:'job-b',jobType:'trail-verification-specialist',agentId:'logistics',candidateId:'trail-b',action:'verify-parking-and-access'},
+    ];
+    const completed=[];
+    const store={
+      listJobs:async()=>pending,
+      claimJob:async id=>pending.find(job=>job.id===id),
+      getArtifact:async()=>null,
+      setArtifact:async()=>{},
+      completeSystemJob:async id=>completed.push(id),
+      failJob:async()=>{},
+    };
+    const result=await processTrailSpecialistJobs(store,{
+      specialistCandidateId:'trail-b',specialistLimit:5,productionTrails:[{id:'trail-b'}],env:{},
+      runAgent:async()=>({responseId:'resp-b',model:'gpt-5.6-luna',data:{summary:'Checked.',claims:[],openQuestions:[],recommendation:'advance'}}),
+    });
+    expect(result).toEqual([expect.objectContaining({jobId:'job-b',status:'completed'})]);
+    expect(completed).toEqual(['job-b']);
+  });
+
+  test('the live worker accepts only positive specialist limits', () => {
+    expect(positiveInteger('1',5)).toBe(1);
+    expect(positiveInteger('0',5)).toBe(5);
+    expect(positiveInteger('not-a-number',5)).toBe(5);
   });
 
   test('the live daily campaign excludes trails already in orchestration', async () => {

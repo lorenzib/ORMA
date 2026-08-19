@@ -85,7 +85,8 @@ async function processRevisionJobs(store, options = {}){
 
 async function processTrailSpecialistJobs(store,options={}){
   const workerId=options.workerId||`orma-worker-${randomUUID()}`;
-  const queued=(await store.listJobs(['queued'])).filter(job=>job.jobType==='trail-verification-specialist');const outcomes=[];
+  let queued=(await store.listJobs(['queued'])).filter(job=>job.jobType==='trail-verification-specialist');const outcomes=[];
+  if(options.specialistCandidateId) queued=queued.filter(job=>job.candidateId===options.specialistCandidateId);
   const trails=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
   const trailById=new Map(trails.map(trail=>[trail.id,trail]));
   for(const pending of queued.slice(0,options.specialistLimit||5)){
