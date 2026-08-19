@@ -21,6 +21,12 @@
   const $ = (id) => document.getElementById(id);
   const trust = window.DoloPawsTrailTrust;
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const cardCopy = (s) => String(s == null ? '' : s)
+    .trim()
+    .replace(/\s*(?:—|--)+\s*/g, '. ')
+    .replace(/\.\s*\./g, '.')
+    .replace(/\s{2,}/g, ' ')
+    .replace(/(^|[.!?]\s+)([a-z])/g, (match, lead, letter) => lead + letter.toUpperCase());
   const dpIcon = (key, size = 14) => window.DoloPawsIcons
     ? window.DoloPawsIcons.renderIconSvg(key, { mode:'inline', color:'currentColor', size })
     : '';
@@ -497,7 +503,7 @@
     // Trail description inside the white box
     const descEl = $('matchDescription');
     if (descEl && t.desc) {
-      descEl.textContent = String(t.desc).trim();
+      descEl.textContent = cardCopy(t.desc);
     }
     
     // In-page tabs: Overview / Dog safety / Reviews & photos.
@@ -604,21 +610,18 @@
     const sp = t.startPoint || {};
     const lat = typeof sp.lat === 'number' ? sp.lat : t.lat;
     const lng = typeof sp.lng === 'number' ? sp.lng : t.lng;
-    const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     const pin = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2E4034" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>';
-    const clock = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2E4034" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>';
     if (typeof lat !== 'number' || typeof lng !== 'number') {
       grid.innerHTML = `<div class="td2-park"><span class="ic">${pin}</span><div><div class="t">Getting there</div><div class="s">Trailhead directions are not yet available for this route.</div></div></div>`;
       if (maps) maps.hidden = true;
       card.hidden = false;
       return;
     }
-    const cards = [];
-    cards.push({ ic: pin, t: 'Getting there', s: esc(t.valley || t.area || 'The trailhead') + ' — open the pin in your maps app for turn-by-turn driving directions.' });
-    cards.push(sp.label
-      ? { ic: 'P', t: t.paid ? 'Trailhead car park (paid)' : 'Trailhead parking', s: esc(sp.label) }
-      : { ic: 'P', t: t.paid ? 'Paid access' : 'Trailhead parking', s: t.paid ? 'This route has paid access near the trailhead.' : 'Park at or near the marked trailhead.' });
-    cards.push({ ic: clock, t: 'Best arrival', s: 'Arrive early — easier parking, more shade, a calmer trail, and cooler ground for paws.' });
+    const cards = [{
+      ic:pin,
+      t:'Trailhead',
+      s:esc(cardCopy(sp.label || t.valley || t.area || 'Marked trailhead')),
+    }];
     grid.innerHTML = cards.map(c => `<div class="td2-park"><span class="ic">${c.ic}</span><div><div class="t">${esc(c.t)}</div><div class="s">${c.s}</div></div></div>`).join('');
     if (maps) maps.hidden = false;
     wireTrailheadDirections(maps, $('td2MapsStatus'));
@@ -721,7 +724,7 @@
           }).join('');
           const noteEl = $('tdForecastNote');
           if (noteEl && heatDay) {
-            noteEl.innerHTML = `<b style="color:#8A5A16">${heatDay}</b> is warm — walk early and carry extra water.`;
+            noteEl.innerHTML = `<b style="color:#8A5A16">${heatDay}</b> is warm. Walk early and carry extra water.`;
             noteEl.hidden = false;
           }
         }

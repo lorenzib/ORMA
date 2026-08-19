@@ -232,7 +232,8 @@ describe('Lago di Carezza offline package', () => {
     expect(controller).toContain("tr('offlinePanel.updateAvailable'");
     expect(controller).toContain("tr('offlinePanel.stale'");
     expect(controller).toContain("tr('offlinePanel.ready'");
-    expect(controller).toContain("tr('offlinePanel.test.passed'");
+    expect(controller).not.toContain("tr('offlinePanel.test.passed'");
+    expect(controller).not.toContain("getElementById('offlineTestBtn')");
     expect(controller).toContain("tr('offlinePanel.remove.removing'");
   });
 });
