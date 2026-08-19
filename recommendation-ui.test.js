@@ -87,13 +87,13 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(block.textContent).toContain('Distance is within range.');
     expect(block.textContent).toContain('Shade is limited.');
     const guideLinks = document.getElementById('trailGuideLinks');
-    expect(guideLinks.hidden).toBe(false);
+    expect(guideLinks.hidden).toBe(true);
     expect(guideLinks.parentElement.id).toBe('td2SafetyCard');
-    expect(guideLinks.textContent).toContain('From our safety guides:');
-    expect(guideLinks.textContent).not.toContain('Read before you go');
-    expect(guideLinks.textContent).not.toContain('Read more:');
-    expect(guideLinks.textContent).toContain('Livestock and guardian dogs');
-    expect(guideLinks.textContent).not.toContain('Recognising overheating early');
+    expect(guideLinks.textContent).toBe('');
+    const contextualGuide = document.querySelector('[data-guide-id="livestock"] .safety-row-guide');
+    expect(contextualGuide).not.toBeNull();
+    expect(contextualGuide.textContent).toContain('Livestock and guardian dogs');
+    expect(contextualGuide.getAttribute('href')).toBe('guides/livestock-guard-dogs.html');
     // Calm data-completeness chip instead of "low confidence" jargon.
     expect(block.textContent).toContain('Based on partial data');
     expect(block.textContent).not.toContain('low confidence');

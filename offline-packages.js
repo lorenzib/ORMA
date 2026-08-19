@@ -746,13 +746,13 @@
         );
       }else if(signedIn()){
         setStatus(
-          tr('offlinePanel.notDownloaded.signedIn', 'Not downloaded on this device.'),
+          tr('offlinePanel.notDownloaded.signedIn', 'Offline map not downloaded.'),
           'not-downloaded'
         );
         downloadButton.textContent = tr('offlinePanel.action.download', 'Download offline map');
       }else{
         setStatus(
-          tr('offlinePanel.notDownloaded.signedOut', 'Not downloaded on this device. Log in to download; a completed package remains available if your session expires.'),
+          tr('offlinePanel.notDownloaded.signedOut', 'Offline map not downloaded.'),
           'not-downloaded'
         );
         downloadButton.textContent = tr('offlinePanel.action.loginDownload', 'Log in to download');
