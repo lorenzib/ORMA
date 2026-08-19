@@ -719,8 +719,9 @@ body{background:#EFECE2;}
 .td2-hero .offline-package .td2-btn-g{min-height:40px;}
 
 .td2-wrap{width:calc(100% - (2 * var(--wrap-gutter)));max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));padding-left:0;padding-right:0;}
-.td2-workspace,.td2-lower-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(340px,.85fr);gap:20px;align-items:start;}
+.td2-workspace{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(340px,.85fr);gap:20px;align-items:start;}
 .td2-workspace{margin-top:22px;}
+.td2-content-column,.td2-sidebar-column{display:flex;flex-direction:column;gap:20px;min-width:0;}
 .td2-map-stack{display:flex;flex-direction:column;gap:18px;min-width:0;}
 .td2-map-stack>.td2-elev[hidden]{display:none!important;}
 .td2-mapcard{margin:0;overflow:hidden;}
@@ -745,7 +746,6 @@ body{background:#EFECE2;}
 .td2-map-stack #elevProf{height:128px;}
 .td2-map-stack .td2-elev-figs{justify-content:space-between;gap:10px;}
 
-.td2-lower-grid{margin-top:20px;}
 .td2-story .td2-about,.td2-story #td2PhotosCard,.td2-story #td2ReviewsCard{order:initial;}
 .td2-logistics{position:static;}
 .td2-about-getting{margin-top:20px;padding-top:20px;border-top:1px solid #E4E0D3;}
@@ -765,13 +765,14 @@ body{background:#EFECE2;}
   .td2-hero-copy{display:block;}
   .td2-hero-weather{margin-top:20px;}
   .td2-hero-actions{margin-top:14px;}
-  .td2-workspace,.td2-lower-grid{grid-template-columns:1fr;}
+  .td2-workspace{grid-template-columns:1fr;}
+  .td2-content-column,.td2-sidebar-column{display:contents;}
   .td2-workspace .td2-map-stack{order:1;}
   .td2-workspace .td2-plan-stack{order:2;}
+  .td2-workspace .td2-story{order:3;}
+  .td2-workspace .td2-logistics{order:4;}
   .td2-plan-stack{position:static;display:flex;height:auto;max-height:none;overflow:visible;}
   .td2-fit-shell{height:auto;overflow:visible;}
-  .td2-lower-grid .td2-story{order:1;}
-  .td2-lower-grid .td2-logistics{order:2;}
   .td2-logistics{position:static;display:flex;max-height:none;overflow:visible;}
   .td2-mapcard .trail-map-box{height:58vh;min-height:440px;}
 }
@@ -943,6 +944,7 @@ body{background:#EFECE2;}
 
     <!-- ============ MAP + DOG FIT / ELEVATION WORKSPACE ============ -->
     <div class="td2-workspace">
+    <div class="td2-content-column">
     <div class="td2-map-stack">
     <div class="td2-card td2-mapcard">
       <div id="trailMapBox" class="trail-map-box">
@@ -982,21 +984,7 @@ body{background:#EFECE2;}
     </div>
     </div>
 
-    <aside class="td2-plan-stack" aria-label="Trail fit">
-      <div class="td2-card td2-fit-shell">
-        <section id="recommendationDecision" class="recommendation-decision" aria-live="polite" hidden></section>
-        <div class="td2-section td2-safety-card" id="td2SafetyCard">
-          <div class="td2-kick">Important for your dog<span id="td2SafetyDog"></span></div>
-          <div id="dogSafetyRows" class="dog-safety-rows"></div>
-          <div id="trailGuideLinks" class="trail-guide-links" hidden></div>
-        </div>
-      </div>
-
-    </aside>
-    </div>
-
     <!-- ============ BELOW-MAP CONTENT ============ -->
-    <div class="td2-lower-grid">
       <div class="td2-story">
 
         <!-- ABOUT / THE ROUTE — slim: the human-readable description stays
@@ -1031,6 +1019,20 @@ body{background:#EFECE2;}
 
       </div>
 
+    </div>
+
+    <div class="td2-sidebar-column">
+      <aside class="td2-plan-stack" aria-label="Trail fit">
+        <div class="td2-card td2-fit-shell">
+          <section id="recommendationDecision" class="recommendation-decision" aria-live="polite" hidden></section>
+          <div class="td2-section td2-safety-card" id="td2SafetyCard">
+            <div class="td2-kick">Important for your dog<span id="td2SafetyDog"></span></div>
+            <div id="dogSafetyRows" class="dog-safety-rows"></div>
+            <div id="trailGuideLinks" class="trail-guide-links" hidden></div>
+          </div>
+        </div>
+      </aside>
+
       <!-- Hazards retain their own compact right-hand column. -->
       <aside class="td2-logistics" aria-label="Trail hazards">
         <!-- Trail hazards (sidebar, per prototype) -->
@@ -1043,6 +1045,7 @@ body{background:#EFECE2;}
         </div>
 
       </aside>
+    </div>
     </div>
 
     <!-- ============ SIMILAR GALLERY ============ -->

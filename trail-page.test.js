@@ -172,13 +172,17 @@ describe('trail page map controls', () => {
     expect(heroWeather.querySelector('#sideForecast').tagName).toBe('DETAILS');
 
     const workspace = document.querySelector('.td2-workspace');
-    const mapStack = workspace.querySelector('.td2-map-stack');
-    expect(workspace.firstElementChild).toBe(mapStack);
+    const contentColumn = workspace.querySelector('.td2-content-column');
+    const sidebarColumn = workspace.querySelector('.td2-sidebar-column');
+    const mapStack = contentColumn.querySelector('.td2-map-stack');
+    expect(workspace.firstElementChild).toBe(contentColumn);
+    expect(workspace.lastElementChild).toBe(sidebarColumn);
+    expect(contentColumn.firstElementChild).toBe(mapStack);
     expect(mapStack.firstElementChild.classList.contains('td2-mapcard')).toBe(true);
     expect(mapStack.children[1].id).toBe('mobileWeatherSlot');
     expect(mapStack.lastElementChild.id).toBe('tdElevationPanel');
     expect(html).toContain('.td2-map-stack>.td2-elev[hidden]{display:none!important;}');
-    const plan = workspace.querySelector('.td2-plan-stack');
+    const plan = sidebarColumn.querySelector('.td2-plan-stack');
     const fit = plan.querySelector('.td2-fit-shell');
     const safety = fit.querySelector('#td2SafetyCard');
     const guides = safety.querySelector('#trailGuideLinks');
@@ -195,20 +199,27 @@ describe('trail page map controls', () => {
     document.body.innerHTML = html;
 
     const story = document.querySelector('.td2-story');
+    const contentColumn = document.querySelector('.td2-content-column');
+    const sidebarColumn = document.querySelector('.td2-sidebar-column');
     expect(Array.from(story.children).map(node => node.id)).toEqual([
       'td2AboutCard', 'td2PhotosCard', 'td2ReviewsCard'
     ]);
+    expect(story.parentElement).toBe(contentColumn);
+    expect(story.previousElementSibling.classList.contains('td2-map-stack')).toBe(true);
     const logistics = document.querySelector('.td2-logistics');
     expect(Array.from(logistics.children).map(node => node.id)).toEqual([
       'td2Hazards'
     ]);
+    expect(logistics.parentElement).toBe(sidebarColumn);
+    expect(logistics.previousElementSibling.classList.contains('td2-plan-stack')).toBe(true);
     const gettingThere = document.getElementById('td2ParkingCard');
     expect(gettingThere.hidden).toBe(false);
     expect(gettingThere.querySelector('.td2-kick').textContent.trim()).toBe('Getting there');
     expect(gettingThere.parentElement.id).toBe('td2AboutCard');
     expect(gettingThere.classList.contains('td2-card')).toBe(false);
     expect(document.getElementById('addReportBtn').textContent).toContain('Report a hazard');
-    expect(html).toContain('.td2-workspace,.td2-lower-grid{grid-template-columns:1fr;}');
+    expect(html).toContain('.td2-content-column,.td2-sidebar-column{display:contents;}');
+    expect(html).not.toContain('class="td2-lower-grid"');
     expect(html).not.toContain('id="offlineTestBtn"');
   });
 
