@@ -124,6 +124,7 @@ function validModerationAudit(overrides = {}){
   return {
     contentType: 'review',
     contentId: 'lago-carezza_author-1',
+    targetId: 'lago-carezza',
     trailId: 'lago-carezza',
     authorUid: 'author-1',
     fromStatus: 'pending',
