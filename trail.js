@@ -1101,21 +1101,6 @@ function renderTrail(t){
     window.addEventListener('dolopaws-auth-changed', paintMatch);
   })();
 
-  // Tag badges — derived only from data that already exists on the trail,
-  // never invented just to fill space.
-  const tags = [];
-  if(Array.isArray(t.path) && t.path.length > 1){
-    const first = t.path[0], last = t.path[t.path.length-1];
-    if(Math.hypot(first[0]-last[0], first[1]-last[1]) * 111000 < 30) tags.push(window.t('trail.tag.loop'));
-  }
-  if(t.rifugi && t.rifugi.length > 0) tags.push(window.t('trail.tag.rest'));
-  if(t.terrainRank === 0) tags.push(window.t('trail.tag.family'));
-  if(/geolog/i.test(t.desc || '')) tags.push(window.t('trail.tag.geo'));
-  if(!t.paid) tags.push(window.t('trail.tag.free'));
-  document.getElementById('trailTags').innerHTML = tags.map(tag =>
-    `<span style="font-size:12px;font-weight:600;padding:5px 12px;border-radius:12px;background:var(--sage-dim);color:var(--ink);">${tag}</span>`
-  ).join('');
-
   document.getElementById('trailDetailContent').innerHTML = renderTrailDetailContent(t);
 
   // "Good to know" — curated insights (history, geology, best practice)

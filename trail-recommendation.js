@@ -31,11 +31,11 @@
     const guides = api.select(recommendation, 2);
     root.hidden = guides.length === 0;
     root.innerHTML = guides.length ?
-      `<div class="td2-kick">${esc(tr('recommendation.guides.title', 'Read before you go'))}</div>` +
+      `<div class="td2-kick">${esc(tr('recommendation.guides.embeddedTitle', 'Safety guides'))}</div>` +
       `<p class="trail-guide-intro">${esc(tr('recommendation.guides.intro', 'Selected from this trail’s cautions.'))}</p>` +
       '<ul>' + guides.map(guide =>
-        `<li><a href="${esc(guide.href)}">${esc(tr(`recommendation.guide.${guide.id}.label`, guide.label))} →</a>` +
-          `<span>${esc(tr(`recommendation.guide.${guide.id}.summary`, guide.summary))}</span></li>`
+        `<li><a href="${esc(guide.href)}">${esc(tr(`recommendation.guide.${guide.id}.label`, guide.label))} →` +
+          `<span>${esc(tr(`recommendation.guide.${guide.id}.summary`, guide.summary))}</span></a></li>`
       ).join('') + '</ul>' : '';
   }
 
