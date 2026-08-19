@@ -120,6 +120,14 @@ describe('shared map icon layers', () => {
               { geometry: { type: 'Point', coordinates: [12.015, 46.015] }, properties: { amenity: 'drinking_water' } },
             ],
           }),
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          json: async () => ({
+            features: [
+              { geometry: { type: 'Point', coordinates: [12.012, 46.012] }, properties: { '@id': 'node/1', kind: 'viewpoint', tourism: 'viewpoint' } },
+            ],
+          }),
         }),
       maplibregl: {
         Popup: function Popup(){
@@ -135,6 +143,8 @@ describe('shared map icon layers', () => {
     map.getSource = jest.fn(() => null);
 
     context.initDetailPois(map, { lat: 46.01, lng: 12.01, path: [[46.01, 12.01], [46.02, 12.02]] });
+    await flushPromises();
+    await flushPromises();
     await flushPromises();
     await flushPromises();
 
@@ -161,6 +171,14 @@ describe('shared map icon layers', () => {
         minzoom: icons.ICON_MIN_ZOOM,
         layout: expect.objectContaining({
           'icon-image': icons.getPoiMapIconExpression('water'),
+        }),
+      }),
+      expect.objectContaining({
+        id: 'detail-places-layer',
+        type: 'symbol',
+        minzoom: icons.ICON_MIN_ZOOM,
+        layout: expect.objectContaining({
+          'icon-image': icons.getPoiMapIconExpression('places'),
         }),
       }),
     ]));

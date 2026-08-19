@@ -589,6 +589,9 @@ function itinIcon(kind){
   if(kind === 'hut') return `<svg ${S}><path d="M4 11l8-7 8 7" fill="none" stroke="#8A5A16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" fill="#D6A038" stroke="#8A5A16" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 19v-5h4v5" fill="#8A5A16"/></svg>`;
   if(kind === 'water') return `<svg ${S}><path d="M12 3c3 3.6 4.8 6.3 4.8 8.8a4.8 4.8 0 11-9.6 0C7.2 9.3 9 6.6 12 3z" fill="#378ADD"/></svg>`;
   if(kind === 'switch') return `<svg ${S}><path d="M12 20v-8M12 12L6.5 6M12 12l5.5-6" fill="none" stroke="#7F77DD" stroke-width="2.2" stroke-linecap="round"/><circle cx="6.5" cy="6" r="1.7" fill="#7F77DD"/><circle cx="17.5" cy="6" r="1.7" fill="#AFA9EC"/></svg>`;
+  if(kind === 'view') return `<svg ${S}><path d="M5 8h3l1.2-2h5.6L16 8h3v10H5z" fill="none" stroke="#28736B" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13" r="3" fill="none" stroke="#28736B" stroke-width="2"/></svg>`;
+  if(kind === 'picnic') return `<svg ${S}><path d="M4 9.5h16M8 9.5 5.5 18M16 9.5l2.5 8.5M6.6 14.5h10.8" fill="none" stroke="#4E7256" stroke-width="2" stroke-linecap="round"/></svg>`;
+  if(kind === 'sight') return `<svg ${S}><path d="M8 20V4.5" stroke="#5A5548" stroke-width="2" stroke-linecap="round"/><path d="M8 5.5h8.5l-2.1 3 2.1 3H8z" fill="#5A5548"/></svg>`;
   return `<svg ${S}><ellipse cx="12" cy="15.5" rx="4" ry="3.4" fill="#1D9E75"/><ellipse cx="7" cy="10.8" rx="1.5" ry="2" fill="#5DCAA5"/><ellipse cx="10.5" cy="8.6" rx="1.5" ry="2" fill="#5DCAA5"/><ellipse cx="14" cy="8.6" rx="1.5" ry="2" fill="#5DCAA5"/><ellipse cx="17.5" cy="10.8" rx="1.5" ry="2" fill="#5DCAA5"/></svg>`;
 }
 
@@ -646,6 +649,8 @@ function renderLegendChips(t){
   chip(itinIcon('hut'), window.t('legend.hut'));
   chip(itinIcon('food'), window.t('legend.food'));
   chip(itinIcon('water'), window.t('legend.water'));
+  chip(itinIcon('view'), window.t('legend.view'));
+  chip(itinIcon('picnic'), window.t('legend.picnic'));
   box.innerHTML = chips.join('');
 }
 
@@ -737,6 +742,38 @@ function buildItinerary(t){
       added++;
     });
     if(added) itinRender();
+  };
+
+  // Viewpoints, picnic spots and named sights from the trail-corridor
+  // amenity sweep — a couple of each, placed at their km on the route.
+  window.onDetailPlacesReady = (features) => {
+    const plainT = (key, fb) => {
+      if(!window.t) return fb;
+      const v = window.t(key);
+      return v === key ? fb : v;
+    };
+    const CAP = { viewpoint: 2, picnic: 2, sight: 2 };
+    const added = { viewpoint: 0, picnic: 0, sight: 0 };
+    let any = 0;
+    (features || []).forEach(f => {
+      const p = f.properties || {};
+      const kind = p.kind;
+      if(!(kind in CAP) || added[kind] >= CAP[kind]) return;
+      if(kind === 'sight' && !p.name) return;   // unnamed crosses are noise
+      const [lng, lat] = f.geometry.coordinates;
+      const hit = kmOnPath(lat, lng);
+      if(!hit || hit.km <= 0.05) return;
+      const label = p.name
+        || (kind === 'viewpoint' ? plainT('poi.viewpoint', 'Viewpoint') : plainT('poi.picnic', 'Picnic spot'));
+      const nameKey = label.toLowerCase();
+      if([...seen].some(h => h.includes(nameKey))) return;
+      const icon = kind === 'viewpoint' ? 'view' : (kind === 'picnic' ? 'picnic' : 'sight');
+      itinAdd(icon, hit.km, `${itinKmLabel(Math.round(hit.km*10)/10)} — ${itinEsc(label)}`);
+      seen.add(nameKey);
+      added[kind]++;
+      any++;
+    });
+    if(any) itinRender();
   };
 }
 
@@ -1299,7 +1336,7 @@ function renderTrail(t){
       // LAYERS (detail-pois.js) plus a few curated Marker elements (rifugi /
       // water, collected in `amenityMarkers` below); the legend and both are
       // toggled together so the map's amenity language stays consistent.
-      const POI_SOURCES = ['detail-huts', 'detail-bars', 'detail-water'];
+      const POI_SOURCES = ['detail-huts', 'detail-bars', 'detail-water', 'detail-places'];
       const POI_SUFFIXES = ['-layer', '-layer-lowzoom', '-cluster', '-cluster-count'];
       function applyPoiVisibility(){
         const v = poiVisible ? 'visible' : 'none';

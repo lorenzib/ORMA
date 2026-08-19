@@ -43,6 +43,9 @@
     'food-icecream': { icon: 'food', color: '#D6A038' },
     'food-biergarten': { icon: 'food', color: '#9C3A25' },
     toilets: { icon: 'toilets', color: '#5B7A99' },
+    viewpoint: { icon: 'camera', color: '#28736B' },
+    picnic: { icon: 'picnic', color: '#4E7256' },
+    sight: { icon: 'sight', color: '#5A5548' },
     unknown: { icon: 'unknown', color: '#5A5548' },
   };
 
@@ -155,6 +158,16 @@
       <path d="M4 17c3.5-5.5 8-8.5 14-9"></path>
       <path d="m15.5 5.5 2.8 2.4-2.4 2.8"></path>
       <path d="M4 20h12"></path>
+    `,
+    picnic: `
+      <path d="M4 9.5h16"></path>
+      <path d="M8 9.5 5.5 18"></path>
+      <path d="m16 9.5 2.5 8.5"></path>
+      <path d="M6.6 14.5h10.8"></path>
+    `,
+    sight: `
+      <path d="M8 20V4.5"></path>
+      <path d="M8 5.5h8.5l-2.1 3 2.1 3H8"></path>
     `,
     unknown: `
       <circle cx="12" cy="12" r="7"></circle>
@@ -334,6 +347,16 @@
         '#5A5548',
       ];
     }
+    if(group === 'places'){
+      // Trail-amenity features carry a first-class `kind` property.
+      return [
+        'case',
+        ['==', ['get', 'kind'], 'viewpoint'], '#28736B',
+        ['==', ['get', 'kind'], 'picnic'], '#4E7256',
+        ['==', ['get', 'kind'], 'toilets'], '#5B7A99',
+        '#5A5548',
+      ];
+    }
     return '#5A5548';
   }
 
@@ -341,6 +364,7 @@
     if(group === 'water') return '#4E90A8';
     if(group === 'huts') return '#8A5A16';
     if(group === 'food') return '#9C3A25';
+    if(group === 'places') return '#28736B';
     return '#5A5548';
   }
 
@@ -376,6 +400,16 @@
         ['==', ['get', 'amenity'], 'fast_food'], getMapImageName('food-fast'),
         ['==', ['get', 'amenity'], 'ice_cream'], getMapImageName('food-icecream'),
         ['==', ['get', 'amenity'], 'biergarten'], getMapImageName('food-biergarten'),
+        getMapImageName('unknown'),
+      ];
+    }
+    if(group === 'places'){
+      return [
+        'case',
+        ['==', ['get', 'kind'], 'viewpoint'], getMapImageName('viewpoint'),
+        ['==', ['get', 'kind'], 'picnic'], getMapImageName('picnic'),
+        ['==', ['get', 'kind'], 'toilets'], getMapImageName('toilets'),
+        ['==', ['get', 'kind'], 'sight'], getMapImageName('sight'),
         getMapImageName('unknown'),
       ];
     }

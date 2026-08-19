@@ -233,9 +233,11 @@ async function main() {
         const distM = Math.round(distToPathM(el.lat, el.lon, t.path));
         if (distM > RADIUS_M) continue;
         if (!features.has(el.ref)) {
+          // Tags are spread flat so map style expressions and the shared
+          // popup code can read them like the other POI GeoJSONs.
           features.set(el.ref, {
             type: 'Feature',
-            properties: { '@id': el.ref, kind: el.kind, name: el.tags.name || null, tags: el.tags },
+            properties: { ...el.tags, '@id': el.ref, kind: el.kind, name: el.tags.name || null },
             geometry: { type: 'Point', coordinates: [el.lon, el.lat] },
           });
         }

@@ -69,8 +69,15 @@ function initDetailPois(map, trail){
     else if (props.amenity === 'drinking_water' || props.amenity === 'water_point') { typeLabel = tt('legend.water', 'Drinking water'); iconKey = 'water'; }
     else if (props.natural === 'spring') { typeLabel = tt('poi.spring', 'Spring'); iconKey = 'water'; }
     else if (props.amenity === 'fountain') { typeLabel = tt('poi.fountain', 'Fountain'); iconKey = 'water'; }
-    else if (props.amenity === 'toilets') { typeLabel = tt('poi.toilets', 'Public toilets'); }
+    else if (props.amenity === 'toilets') { typeLabel = tt('poi.toilets', 'Public toilets'); iconKey = 'toilets'; }
     else if (props.man_made === 'water_tap') { typeLabel = tt('poi.tap', 'Water tap'); iconKey = 'water'; }
+    else if (props.tourism === 'viewpoint') { typeLabel = tt('poi.viewpoint', 'Viewpoint'); iconKey = 'camera'; }
+    else if (props.tourism === 'picnic_site' || props.leisure === 'picnic_table' || props.amenity === 'bbq') { typeLabel = tt('poi.picnic', 'Picnic spot'); iconKey = 'picnic'; }
+    else if (props.tourism === 'museum') { typeLabel = tt('poi.museum', 'Museum'); iconKey = 'sight'; }
+    else if (props.tourism === 'artwork') { typeLabel = tt('poi.artwork', 'Artwork'); iconKey = 'sight'; }
+    else if (props.tourism === 'attraction') { typeLabel = tt('poi.attraction', 'Attraction'); iconKey = 'sight'; }
+    else if (props.tourism === 'information') { typeLabel = tt('poi.info', 'Visitor information'); }
+    else if (props.historic) { typeLabel = tt('poi.historic', 'Historic site'); iconKey = 'sight'; }
     const typeIcon = (iconKey && icons && icons.renderIconSvg)
       ? `<span style="display:inline-block;vertical-align:-2px;margin-right:3px;">${icons.renderIconSvg(iconKey, { mode: 'inline', color: 'currentColor', size: 13 })}</span>`
       : '';
@@ -169,13 +176,22 @@ function initDetailPois(map, trail){
     });
   }
 
+  // Features already drawn by the huts/bars/water layers, so the corridor
+  // amenities file (which overlaps them) only contributes NEW places.
+  const drawnIds = new Set();
+  const noteDrawn = features => features.forEach(f => {
+    const id = f.properties && f.properties['@id'];
+    if (id) drawnIds.add(id);
+  });
+
   // Huts + food & drink (same file the homepage uses; browser-cached)
-  fetch(regionalPoiUrl('huts-bars'))
+  const hutsBarsLoad = fetch(regionalPoiUrl('huts-bars'))
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (!data) return;
       const near = (data.features || []).filter(inBox);
       if (!near.length) return;
+      noteDrawn(near);
       const isHut = p => p && (p.tourism === 'alpine_hut' || p.tourism === 'wilderness_hut' || p.amenity === 'shelter');
       const huts = near.filter(f => isHut(f.properties));
       const bars = near.filter(f => !isHut(f.properties));
@@ -190,15 +206,38 @@ function initDetailPois(map, trail){
     .catch(() => { /* nearby POIs are a bonus — never break the page */ });
 
   // Drinking water
-  fetch(regionalPoiUrl('water'))
+  const waterLoad = fetch(regionalPoiUrl('water'))
     .then(r => r.ok ? r.json() : null)
     .then(data => {
       if (!data) return;
       const near = (data.features || []).filter(inBox);
+      noteDrawn(near);
       if (typeof window.onDetailWaterReady === 'function'){
         try { window.onDetailWaterReady(near); } catch (e) {}
       }
       addPoiLayerSet('detail-water', near, 'water');
+    })
+    .catch(() => {});
+
+  // Viewpoints, picnic spots, sights and toilets from the trail-corridor
+  // amenity sweep (data/trail-amenities/). Waits for the two layers above so
+  // anything they already drew is skipped rather than doubled.
+  const PLACE_KINDS = ['viewpoint', 'picnic', 'sight', 'toilets', 'information'];
+  Promise.allSettled([hutsBarsLoad, waterLoad])
+    .then(() => fetch('data/trail-amenities/' + trailRegion + '-amenities.geojson'))
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      if (!data) return;
+      const near = (data.features || []).filter(f =>
+        inBox(f) &&
+        PLACE_KINDS.includes(f.properties && f.properties.kind) &&
+        !drawnIds.has(f.properties['@id']));
+      if (!near.length) return;
+      addPoiLayerSet('detail-places', near, 'places');
+      if (typeof registerPoiFeatures === 'function') registerPoiFeatures(near);
+      if (typeof window.onDetailPlacesReady === 'function'){
+        try { window.onDetailPlacesReady(near); } catch (e) {}
+      }
     })
     .catch(() => {});
 }
