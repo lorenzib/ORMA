@@ -24,6 +24,7 @@ describe('SEC-01 Firestore configuration contract', () => {
       'flags',
       'reviews',
       'trailPhotos',
+      'placeDogReports',
       'moderationAudit',
       'reports',
       'backofficeArtifacts',
@@ -113,9 +114,9 @@ describe('SEC-01 Firestore configuration contract', () => {
   });
 
   test('client contribution states match the create rules', () => {
-    expect(client.match(/status: "pending"/g)).toHaveLength(3);
+    expect(client.match(/status: "pending"/g)).toHaveLength(4);
     expect(client).toContain('status: "open"');
-    expect(rules.match(/request\.resource\.data\.status == 'pending'/g)).toHaveLength(4);
+    expect(rules.match(/request\.resource\.data\.status == 'pending'/g)).toHaveLength(5);
     expect(rules).toContain("request.resource.data.status == 'open'");
   });
 
@@ -132,7 +133,7 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain("request.resource.data.status == 'pending'");
     expect(rules).toContain('validModeratorTransition(');
     expect(client.match(/where\("status", "in", \["visible", "reported"\]\)/g))
-      .toHaveLength(3);
+      .toHaveLength(4);
     expect(trailShell.indexOf('community-content-states.js')).toBeLessThan(
       trailShell.indexOf('trail-reports.js')
     );

@@ -81,19 +81,19 @@ function initDetailPois(map, trail){
     const typeIcon = (iconKey && icons && icons.renderIconSvg)
       ? `<span style="display:inline-block;vertical-align:-2px;margin-right:3px;">${icons.renderIconSvg(iconKey, { mode: 'inline', color: 'currentColor', size: 13 })}</span>`
       : '';
-    let html = `<b>${typeIcon}${esc(typeLabel)}</b>`;
-    if (props.name) html += `<br><b>${esc(props.name)}</b>`;
-    if (props.ele) html += `<br>${esc(props.ele)} m elevation`;
-    if (props.opening_hours) html += `<br>Hours: ${esc(props.opening_hours)}`;
+    let html = `<div class="dp-poi-popup"><span class="dp-poi-type">${typeIcon}${esc(typeLabel)}</span>`;
+    if (props.name) html += `<strong class="dp-poi-name">${esc(props.name)}</strong>`;
+    if (props.ele) html += `<span>${esc(props.ele)} m elevation</span>`;
+    if (props.opening_hours) html += `<span>Hours: ${esc(props.opening_hours)}</span>`;
     const phone = props.phone || props['contact:phone'];
-    if (phone) html += `<br>Phone: ${esc(phone)}`;
+    if (phone) html += `<span>Phone: ${esc(phone)}</span>`;
     const site = props.website || props['contact:website'];
-    if (site && /^https?:\/\//.test(site)) html += `<br><a href="${esc(site)}" target="_blank" rel="noopener">Website</a>`;
-    if (props.dog === 'yes') html += `<br><b>Dogs welcome</b>`;
-    else if (props.dog === 'leashed') html += `<br><b>Dogs on leash</b>`;
-    else if (props.dog === 'no') html += `<br><b>No dogs</b>`;
-    if (props.outdoor_seating && props.outdoor_seating !== 'no') html += `<br>Outdoor seating`;
-    return html;
+    if (site && /^https?:\/\//.test(site)) html += `<a href="${esc(site)}" target="_blank" rel="noopener">Website</a>`;
+    if (props.dog === 'yes') html += `<span class="dp-poi-dog">Dogs welcome</span>`;
+    else if (props.dog === 'leashed') html += `<span class="dp-poi-dog">Dogs on leash</span>`;
+    else if (props.dog === 'no') html += `<span class="dp-poi-dog">No dogs</span>`;
+    if (props.outdoor_seating && props.outdoor_seating !== 'no') html += `<span>Outdoor seating</span>`;
+    return html + '</div>';
   }
 
   function addPoiLayerSet(sourceId, features, group){
@@ -112,6 +112,7 @@ function initDetailPois(map, trail){
       source: sourceId,
       filter: ['!', ['has', 'point_count']],
       maxzoom: iconMinZoom,
+      layout: { visibility: 'none' },
       paint: {
         'circle-radius': 5.5,
         'circle-color': circleColor,
@@ -127,6 +128,7 @@ function initDetailPois(map, trail){
       filter: ['!', ['has', 'point_count']],
       minzoom: iconMinZoom,
       layout: {
+        visibility: 'none',
         'icon-image': icons ? icons.getPoiMapIconExpression(group) : '',
         'icon-size': 1,
       },
@@ -136,6 +138,7 @@ function initDetailPois(map, trail){
       type: 'circle',
       source: sourceId,
       filter: ['has', 'point_count'],
+      layout: { visibility: 'none' },
       paint: {
         'circle-radius': ['step', ['get', 'point_count'], 20, 5, 25, 10, 30],
         'circle-color': clusterColor,
@@ -150,6 +153,7 @@ function initDetailPois(map, trail){
       source: sourceId,
       filter: ['has', 'point_count'],
       layout: {
+        visibility: 'none',
         'text-field': ['get', 'point_count'],
         'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
         'text-size': 12,
@@ -162,7 +166,7 @@ function initDetailPois(map, trail){
     });
     [sourceId + '-layer', sourceId + '-layer-lowzoom'].forEach((layerId) => map.on('click', layerId, (e) => {
       const f = e.features[0];
-      new maplibregl.Popup({ offset: 10, maxWidth: '260px' })
+      new maplibregl.Popup({ offset: 10, maxWidth: '220px' })
         .setLngLat(f.geometry.coordinates)
         .setHTML(poiPopupHtml(f.properties))
         .addTo(map);

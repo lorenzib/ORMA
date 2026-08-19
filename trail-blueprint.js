@@ -443,57 +443,6 @@
       }
     }
 
-    // Contextual safety guides — shown ONLY when the trail data warrants it
-    (function relevantGuides() {
-      const box = $('trailGuideLinks');
-      if (!box) return;
-      const trailReturn = encodeURIComponent('trail.html?id=' + t.id + '&tab=safety');
-      const fromTrail = href => {
-        const hashAt = href.indexOf('#');
-        const page = hashAt >= 0 ? href.slice(0, hashAt) : href;
-        const hash = hashAt >= 0 ? href.slice(hashAt) : '';
-        return page + '?from=' + trailReturn + hash;
-      };
-      const text = `${t.tips || ''} ${t.desc || ''} ${(t.startPoint && t.startPoint.label) || ''} ${(t.surfaceHazards || []).join(' ')}`.toLowerCase();
-      const maxAlt = Math.max(...(t.elevationProfile || []).map(p => Number(p.elev) || 0));
-      const shade = typeof t.shadeCoverage === 'number' ? t.shadeCoverage : null;
-      const hasWaterSrc = Array.isArray(t.waterSources) && t.waterSources.length > 0;
-      const guides = [];
-
-      // Livestock — alpage/pasture/herd/cattle/patou/guardian
-      if (/livestock|patou|guardian|cattle|herd|pasture|alpage|graz/.test(text)) {
-        guides.push(['warning', 'Meeting livestock and guardian dogs', 'guides/livestock-guard-dogs.html']);
-      }
-      // Cable car — gondola/lift/cable/cableway nearby or in text
-      if (/gondola|cable car|cableway|lift station|chairlift|funicular/.test(text)) {
-        guides.push(['lifts', 'Dogs on cable cars', 'guides/dogs-on-cable-cars.html']);
-      }
-      // Heat / exposure — exposed route OR high heat risk OR little shade
-      if (t.exposure === true || t.heatRisk === 'high' || (shade !== null && shade < 25)) {
-        guides.push(['heat', 'Heat and exposure with your dog', 'guides/heat-overheating.html']);
-      }
-      // Altitude — high trailhead/summit
-      if (maxAlt >= 1800) {
-        guides.push(['mountain', 'Hiking at altitude', 'guides/altitude-with-your-dog.html']);
-      }
-      // Water — none mapped, or long route
-      if (!hasWaterSrc || Number(t.distance) >= 8) {
-        guides.push(['water', 'Water for dogs on trail', 'guides/water-for-dogs-on-trail.html']);
-      }
-      // Rifugi — route passes huts
-      if (Array.isArray(t.rifugi) && t.rifugi.length) {
-        guides.push(['hut', 'Dogs at rifugi', 'guides/dogs-at-rifugi.html']);
-      }
-
-      if (!guides.length) return;
-      box.innerHTML = `<div>
-        <div class="td2-kick" style="margin-bottom:12px;">Read before you go</div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;">${guides.slice(0,3).map(([icon,label,href]) =>
-          `<a href="${fromTrail(href)}" style="display:inline-flex;align-items:center;gap:6px;padding:7px 12px;background:var(--sage-dim);border:1px solid var(--paper-line);border-radius:999px;font-size:12px;font-weight:600;color:var(--ink);text-decoration:none;">${dpIcon(icon)}<span>${esc(label)}</span></a>`).join('')}</div>
-      </div>`;
-      box.hidden = false;
-    })();
-
     const avatar = $('matchDogAvatar');
     const matchTitle = $('personalMatchTitle');
     const matchSummary = $('matchSummary');
