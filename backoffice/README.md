@@ -142,6 +142,10 @@ Routine trail research (Logistics, Regulatory Ranger and Terrain & POI) uses
 `ORMA_CONTENT_MODEL` remains a shared override for local testing. Manual worker
 runs may also supply a candidate ID and specialist-call limit so a funded API
 project can be validated on one trail without draining the entire queue.
+Transient API token-per-minute limits are retried inside the model client using
+the server-provided delay. They do not consume one of the five evidence
+resolution attempts; exhausted transport retries remain visible as system
+failures and are returned to the durable queue.
 
 Scheduled worker events are inert until the repository variable
 `ORMA_WORKER_AUTOMATION_ENABLED` is `true`; the daily intake campaign uses the

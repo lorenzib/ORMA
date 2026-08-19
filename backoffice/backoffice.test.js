@@ -82,7 +82,7 @@ const { validateContentFlow } = require('./contracts/content-flow-v1');
 const { EDITABLE_FIELDS, PROTECTED_FIELDS, planContentFlow } = require('./workflows/plan-content-flow');
 const { validateContentOperations } = require('./contracts/content-operations-v1');
 const { planContentOperations } = require('./workflows/plan-content-operations');
-const { outputText } = require('./services/openai-responses-client');
+const { outputText,createStructuredResponse } = require('./services/openai-responses-client');
 const { visibleText, runGuideContent } = require('./workflows/run-guide-content');
 const { validateContentExecution } = require('./contracts/content-result-v1');
 const contentReviewDecisions = require('./content-review-decisions');
@@ -1000,6 +1000,31 @@ describe('ORMA backoffice MVP', () => {
   test('content runner utilities extract response text and visible guide copy', () => {
     expect(outputText({ output: [{ content: [{ type: 'output_text', text: '{"ok":true}' }] }] })).toBe('{"ok":true}');
     expect(visibleText('<style>x{}</style><h1>Paws &amp; rock</h1><script>bad()</script>')).toBe('Paws & rock');
+  });
+
+  test('OpenAI transport rate limits wait and retry without consuming a workflow resolution attempt', async () => {
+    const waits=[];let calls=0;
+    const response=await createStructuredResponse({messages:[],webSearch:true,schemaName:'test_schema',schema:{type:'object'}},{
+      apiKey:'test-key',model:'gpt-5.6-luna',maxRateLimitRetries:1,sleep:async milliseconds=>waits.push(milliseconds),
+      fetchImpl:async()=>{
+        calls+=1;
+        if(calls===1)return {ok:false,status:429,headers:{get:()=>null},json:async()=>({error:{message:'Rate limit reached. Please try again in 6.167s.'}})};
+        return {ok:true,status:200,headers:{get:()=>null},json:async()=>({id:'resp-ok',model:'gpt-5.6-luna',output:[{content:[{type:'output_text',text:'{"ok":true}'}]}]})};
+      },
+    });
+    expect(response.data).toEqual({ok:true});
+    expect(calls).toBe(2);
+    expect(waits).toEqual([6417]);
+  });
+
+  test('OpenAI quota errors are not retried as transient rate limits', async () => {
+    let calls=0;
+    await expect(createStructuredResponse({messages:[],webSearch:false,schemaName:'test_schema',schema:{type:'object'}},{
+      apiKey:'test-key',maxRateLimitRetries:2,sleep:async()=>{},fetchImpl:async()=>{
+        calls+=1;return {ok:false,status:429,headers:{get:()=>null},json:async()=>({error:{message:'You exceeded your current quota.'}})};
+      },
+    })).rejects.toThrow('current quota');
+    expect(calls).toBe(1);
   });
 
   test('requested editorial revisions immediately produce a replacement review packet', async () => {
