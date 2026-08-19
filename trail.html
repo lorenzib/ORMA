@@ -677,14 +677,14 @@ body{background:#EFECE2;}
 .td2-hero-photo{z-index:-2;}
 .td2-hero-veil{z-index:-1;background:linear-gradient(90deg,rgba(24,39,29,.94) 0%,rgba(24,39,29,.78) 48%,rgba(24,39,29,.56) 100%);}
 .td2-hero-in{padding:26px 34px 30px;}
-.td2-hero-copy{margin-top:30px;max-width:100%;}
-.td2-hero #trailName{max-width:900px;font-size:clamp(36px,5vw,58px);line-height:.98;letter-spacing:-.035em;}
-.td2-hero .td2-tags{margin-bottom:13px;}
+.td2-hero-copy{display:grid;grid-template-columns:minmax(0,1fr) minmax(310px,360px);grid-template-areas:"tags weather" "title weather" "facts weather" "actions weather";column-gap:36px;row-gap:14px;align-items:start;margin-top:30px;max-width:100%;}
+.td2-hero #trailName{grid-area:title;max-width:760px;margin:0;font-size:clamp(36px,4.4vw,54px);line-height:1;letter-spacing:-.035em;}
+.td2-hero .td2-tags{grid-area:tags;margin:0;}
 .td2-hero #heroVerdict[hidden]{display:none;}
 
 /* Dense facts immediately under the title. The dog fit has a dedicated card
    beside the map, so the old match cell does not compete in the header. */
-.td2-hero .td2-stat{display:flex;align-items:center;flex-wrap:wrap;gap:0;margin:15px 0 0;border:0;}
+.td2-hero .td2-stat{grid-area:facts;display:flex;align-items:center;flex-wrap:wrap;gap:0;margin:0;border:0;}
 .td2-hero .td2-stat .f{display:inline-flex;align-items:baseline;gap:5px;flex:0 0 auto;padding:0 14px;color:#EAF1E8;}
 .td2-hero .td2-stat .f:first-child{padding-left:0;}
 .td2-hero .td2-stat .f+.f{border-left:1px solid rgba(255,255,255,.28);}
@@ -693,16 +693,16 @@ body{background:#EFECE2;}
 .td2-hero .td2-stat #statMatch{display:none!important;}
 
 /* Weather sits in the image header and expands in place. */
-.td2-hero-weather{display:flex;align-items:flex-start;gap:10px;margin-top:20px;max-width:900px;}
+.td2-hero-weather{grid-area:weather;display:flex;flex-direction:column;align-items:stretch;gap:10px;margin:0;max-width:none;}
 .td2-hero-weather .td2-cond,.td2-hero-weather .td2-fc6{box-sizing:border-box;border:1px solid rgba(255,255,255,.22);border-radius:13px;background:rgba(20,34,25,.66);color:#fff;backdrop-filter:blur(10px);}
-.td2-hero-weather .td2-cond{flex:1;padding:13px 15px;}
-.td2-hero-weather .td2-fc6{width:210px;padding:13px 15px;}
+.td2-hero-weather .td2-cond{width:100%;padding:16px 17px;}
+.td2-hero-weather .td2-fc6{width:100%;padding:13px 15px;}
 .td2-hero-weather .td2-kick{color:#DCE6DE;}
 .td2-hero-weather #sideFcValley{margin-left:5px;color:#B9C9BD;text-transform:none;letter-spacing:0;font-weight:600;}
-.td2-cond-facts{display:flex;align-items:center;gap:0;margin-top:10px;}
-.td2-hero-weather .td2-cond-row{display:flex;align-items:center;gap:7px;margin:0;padding:0 13px;color:#EAF1E8;font-size:11.5px;}
-.td2-hero-weather .td2-cond-row:first-child{padding-left:0;}
-.td2-hero-weather .td2-cond-row+.td2-cond-row{border-left:1px solid rgba(255,255,255,.22);}
+.td2-cond-facts{display:grid;grid-template-columns:1fr 1fr;gap:0 18px;margin-top:10px;}
+.td2-hero-weather .td2-cond-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0;padding:8px 0;color:#EAF1E8;font-size:11.5px;border-top:1px solid rgba(255,255,255,.14);}
+.td2-hero-weather .td2-cond-row:first-child,.td2-hero-weather .td2-cond-row:nth-child(2){border-top:0;}
+.td2-hero-weather .td2-cond-last{grid-column:1/-1;}
 .td2-hero-weather .td2-cond-row b{color:#fff;}
 .td2-hero-weather .td2-cond-window{margin:9px 0 0;padding:9px 0 0;border-color:rgba(255,255,255,.16);color:#C7D4CA;}
 .td2-hero-weather .td2-cond-window strong{color:#fff;}
@@ -712,7 +712,7 @@ body{background:#EFECE2;}
 
 /* One action shelf. Links are presented as real controls, and the offline
    package joins the same shelf when a package is available. */
-.td2-hero-actions{align-items:flex-start;gap:8px;margin-top:18px;padding:0;max-width:100%;}
+.td2-hero-actions{grid-area:actions;align-items:flex-start;gap:8px;margin-top:4px;padding:0;max-width:100%;}
 .td2-actrow{position:relative;display:flex;flex-wrap:wrap;justify-content:flex-start;gap:8px;}
 .td2-hero .td2-btn-g,.td2-hero .td2-btn-p,.td2-hero .td2-textlink{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;box-sizing:border-box;padding:9px 13px;border:1px solid rgba(255,255,255,.3);border-radius:10px;background:rgba(20,34,25,.52);color:#fff;font:700 12px 'Inter',sans-serif;text-decoration:none;backdrop-filter:blur(8px);}
 .td2-hero .td2-btn-p{background:#3E7A91;border-color:#3E7A91;}
@@ -729,6 +729,7 @@ body{background:#EFECE2;}
 .td2-workspace,.td2-lower-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(340px,.85fr);gap:20px;align-items:start;}
 .td2-workspace{margin-top:22px;}
 .td2-map-stack{display:flex;flex-direction:column;gap:18px;min-width:0;}
+.td2-map-stack>.td2-elev[hidden]{display:none!important;}
 .td2-mapcard{margin:0;overflow:hidden;}
 .td2-mapcard .trail-map-box{height:clamp(560px,66vh,700px);}
 .td2-plan-stack,.td2-story,.td2-logistics{display:flex;flex-direction:column;gap:18px;min-width:0;}
@@ -762,6 +763,9 @@ body{background:#EFECE2;}
 .td2-story>.td2-card,.td2-logistics>.td2-card,.td2-map-stack>.td2-card{scroll-margin-top:88px;}
 
 @media(max-width:980px){
+  .td2-hero-copy{display:block;}
+  .td2-hero-weather{margin-top:20px;}
+  .td2-hero-actions{margin-top:14px;}
   .td2-workspace,.td2-lower-grid{grid-template-columns:1fr;}
   .td2-workspace .td2-map-stack{order:1;}
   .td2-workspace .td2-plan-stack{order:2;}
@@ -781,8 +785,9 @@ body{background:#EFECE2;}
   .td2-hero .td2-stat .f:nth-of-type(2){padding-left:0;border-left:0;}
   .td2-hero-weather{display:block;}
   .td2-hero-weather .td2-fc6{width:100%;margin-top:8px;}
-  .td2-cond-facts{flex-wrap:wrap;row-gap:9px;}
-  .td2-hero-weather .td2-cond-row{flex:1 1 auto;}
+  .td2-cond-facts{grid-template-columns:1fr;}
+  .td2-hero-weather .td2-cond-row:nth-child(2){border-top:1px solid rgba(255,255,255,.14);}
+  .td2-hero-weather .td2-cond-last{grid-column:auto;}
   .td2-hero-actions{margin-top:14px;}
   .td2-actrow{width:100%;}
   .td2-hero .td2-btn-g,.td2-hero .td2-btn-p,.td2-hero .td2-textlink{flex:1 1 auto;}
@@ -1133,7 +1138,7 @@ body{background:#EFECE2;}
 <script src="hike-mode.js?v=20260815-4" defer></script>
 <script src="detail-pois.js?v=20260819-2" defer></script>
 <script src="trail-reports.js?v=20260815-4" defer></script>
-<script src="trail.js?v=20260819-3" defer></script>
+<script src="trail.js?v=20260819-4" defer></script>
 <script src="trail-blueprint.js?v=20260819-6" defer></script>
 <script src="trail-detail-ui.js?v=20260815-4" defer></script>
 <script src="trail-mobile.js?v=20260815-4" defer></script>

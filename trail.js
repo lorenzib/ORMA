@@ -886,7 +886,7 @@ function renderTrail(t){
     logWalkBtn.href = `journal.html?trail=${encodeURIComponent(t.id)}&from=${journalReturn}`;
   }
   // Do not reserve an empty elevation panel for routes without profile data.
-  const elevationCard = document.getElementById('elevCard');
+  const elevationCard = document.getElementById('tdElevationPanel');
   const hasElevationProfile = Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1;
   if(elevationCard){
     elevationCard.hidden = !hasElevationProfile;

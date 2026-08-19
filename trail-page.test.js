@@ -156,7 +156,7 @@ describe('trail page map controls', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20260819-4');
-    expect(html).toContain('trail.js?v=20260819-3');
+    expect(html).toContain('trail.js?v=20260819-4');
     expect(html).toContain('trail-blueprint.js?v=20260819-6');
     expect(html).toContain('trail-recommendation.js?v=20260819-4');
     expect(html).toContain('offline-packages.js?v=20260819-5');
@@ -175,6 +175,7 @@ describe('trail page map controls', () => {
     expect(workspace.firstElementChild).toBe(mapStack);
     expect(mapStack.firstElementChild.classList.contains('td2-mapcard')).toBe(true);
     expect(mapStack.lastElementChild.id).toBe('tdElevationPanel');
+    expect(html).toContain('.td2-map-stack>.td2-elev[hidden]{display:none!important;}');
     const plan = workspace.querySelector('.td2-plan-stack');
     const fit = plan.querySelector('.td2-fit-shell');
     const safety = fit.querySelector('#td2SafetyCard');
@@ -228,6 +229,17 @@ describe('trail page map controls', () => {
     ]));
     expect(copy.querySelector('#offlineDownloadBtn')).not.toBeNull();
     expect(document.getElementById('tdHeroPhoto')).not.toBeNull();
+    expect(html).toContain('grid-template-areas:"tags weather" "title weather" "facts weather" "actions weather"');
+    expect(html).toContain('.td2-hero-weather{grid-area:weather;');
+  });
+
+  test('routes without elevation data remove the current elevation card completely', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+
+    expect(trail).toContain("const elevationCard = document.getElementById('tdElevationPanel')");
+    expect(trail).not.toContain("document.getElementById('elevCard')");
+    expect(html).toContain('.td2-map-stack>.td2-elev[hidden]{display:none!important;}');
   });
 
   test('the personalised match links to the scoring explanation', () => {
