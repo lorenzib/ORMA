@@ -55,4 +55,17 @@ describe('CEO dashboard workflow model',()=>{
     });
     expect(model.activity[0]).toEqual(expect.objectContaining({candidateId:'lago-braies',title:'Lago di Braies'}));
   });
+
+  test('a publication failure is durable, visible and does not reopen the approval gate',()=>{
+    const model=buildDashboardModel({
+      orchestration:{trails:[{candidateId:'trail-a',trailName:'Trail A',blockers:[]}]},dossiers:{items:[]},execution:{outputs:[]},jobs:[],history:[],
+      publication:{items:[{candidateId:'trail-a',targetTrailId:'trail-a',state:'ready-for-publication-preview',missingApprovals:[]}]},
+      publicationRequests:{requests:[{id:'release-a',candidateId:'trail-a',targetTrailId:'trail-a',status:'publication-failed',failureStage:'website-validation',failureMessage:'Generated-site tests failed.',workflowRunUrl:'https://github.com/orma/actions/runs/1',failedAt:'2026-08-19T20:31:00Z'}]},
+    });
+    expect(model.releaseItems).toHaveLength(0);
+    expect(model.automationFailures).toEqual([expect.objectContaining({candidateId:'trail-a',failureStage:'website-validation'})]);
+    expect(model.summary).toEqual({needsYou:0,agentWork:0,blockers:1,prsReady:0});
+    expect(model.activity[0]).toEqual(expect.objectContaining({status:'publication-failed',message:expect.stringContaining('approval is retained')}));
+    expect(model.pipeline[3].status).toContain('blocked with a saved failure receipt');
+  });
 });

@@ -5,7 +5,7 @@
 })(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
   const ACTIVE_JOB_STATES=new Set(['queued','running','in-progress','processing']);
-  const PUBLICATION_OWNED_STATES=new Set(['queued','processed','approved-for-pr-creation','pull-request-opened','hold','request-changes']);
+  const PUBLICATION_OWNED_STATES=new Set(['queued','processed','approved-for-pr-creation','publication-failed','pull-request-opened','hold','request-changes']);
 
   function dateMs(value){
     if(!value)return 0;
@@ -33,6 +33,7 @@
     if(status==='queued')return 'Saved in Firestore. ORMA automation will collect this within five minutes; you may close the page.';
     if(status==='superseded')return 'Replaced safely by your later decision.';
     if(status==='blocked')return 'ORMA automation could not complete this handoff; it needs attention.';
+    if(status==='publication-failed')return `Publication stopped at ${(item.failureStage||'automation').replace(/-/g,' ')}. Your approval is retained and the failure receipt is linked.`;
     if(status==='pull-request-opened')return 'The tested website diff is ready for your final GitHub review.';
     if(status==='approved-for-pr-creation')return 'Approval consumed. ORMA automation is preparing the website pull request.';
     if(item.stream==='dossier'&&item.action==='request-revision')return 'Revision handed to the selected trail specialist.';
@@ -79,6 +80,7 @@
       return !latest||!PUBLICATION_OWNED_STATES.has(latest.status||'queued');
     });
     const publicationInFlight=[...latestPublication.values()].filter(({record})=>['queued','processed','approved-for-pr-creation'].includes(record.status)).length;
+    const automationFailures=[...latestPublication.values()].map(({record})=>record).filter(record=>record.status==='publication-failed');
     const handoffsInFlight=queuedDossierReviews.length+queuedContentReviews.length+publicationInFlight;
     const prItems=(publicationRequests.requests||[]).filter(request=>request.status==='pull-request-opened'&&request.pullRequestUrl);
 
@@ -110,6 +112,7 @@
     const blockedCandidates=new Set();
     for(const item of dossierItems)if(item.approvalAllowed===false)blockedCandidates.add(item.candidateId||item.reviewId);
     for(const job of jobs)if(job.status==='blocked')blockedCandidates.add(job.candidateId||job.id);
+    for(const request of automationFailures)blockedCandidates.add(request.candidateId||request.id);
     for(const trail of orchestration.trails||[])if((trail.blockers||[]).length||/blocked|source-exhausted/.test(`${trail.state||''} ${trail.stage||''}`))blockedCandidates.add(trail.candidateId||trail.trailId);
 
     const activityById=new Map();
@@ -118,20 +121,19 @@
       activityById.set(`${item.stream}:${item.id}`,{...item,candidateId,title:names.get(candidateId)||item.trailName||candidateId||'Trail workflow',at:dateMs(item.processedAt||item.submittedAt)});
     }
     for(const request of publicationRequests.requests||[]){
-      if(request.status!=='pull-request-opened')continue;
-      activityById.set(`publication:${request.id}`,{...request,stream:'publication',title:names.get(request.candidateId)||request.targetTrailId||'Trail release',at:dateMs(request.acknowledgedAt||request.reviewedAt)});
+      activityById.set(`publication:${request.id}`,{...request,stream:'publication',title:names.get(request.candidateId)||request.targetTrailId||'Trail release',at:dateMs(request.acknowledgedAt||request.failedAt||request.reviewedAt)});
     }
     const activity=[...activityById.values()].sort((a,b)=>b.at-a.at).slice(0,8).map(item=>({...item,message:activityMessage(item)}));
     return {
-      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,publicationInFlight,handoffsInFlight,
+      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,publicationInFlight,handoffsInFlight,automationFailures,
       blockerCount:blockedCandidates.size,trackedTrails:orchestration.summary?.trails||(orchestration.trails||[]).length,
       summary:{needsYou:decisions.length,agentWork:activeJobs.length,blockers:blockedCandidates.size,prsReady:prItems.length},
       pipeline:[
         {number:1,title:'Evidence',owner:dossierItems.length?'You':queuedDossierReviews.length?'System':activeJobs.length?'Agents':'System',status:dossierItems.length?`${plural(dossierItems.length,'decision')} waiting`:queuedDossierReviews.length?`${plural(queuedDossierReviews.length,'decision')} being handed off`:activeJobs.length?`${plural(activeJobs.length,'job')} in progress`:'No decision waiting'},
         {number:2,title:'Agent resolution',owner:'Agents',status:activeJobs.length?`${plural(activeJobs.length,'job')} running or queued`:'No agent work queued'},
         {number:3,title:'Trail content',owner:contentItems.length?'You':queuedContentReviews.length?'System':'System',status:contentItems.length?`${plural(contentItems.length,'trail')} needs review`:queuedContentReviews.length?`${plural(queuedContentReviews.length,'decision')} being handed off`:'No content decision waiting'},
-        {number:4,title:'Release mapping',owner:releaseItems.length?'You':publicationInFlight?'System':'System',status:releaseItems.length?`${plural(releaseItems.length,'trail')} needs approval`:publicationInFlight?`${plural(publicationInFlight,'approval')} being processed`:'No release approval waiting'},
-        {number:5,title:'Final PR',owner:prItems.length?'You':'System',status:prItems.length?`${plural(prItems.length,'PR')} ready`:'No final PR waiting'},
+        {number:4,title:'Release mapping',owner:releaseItems.length?'You':automationFailures.length?'System':publicationInFlight?'System':'System',status:releaseItems.length?`${plural(releaseItems.length,'trail')} needs approval`:automationFailures.length?`${plural(automationFailures.length,'release')} blocked with a saved failure receipt`:publicationInFlight?`${plural(publicationInFlight,'approval')} being processed`:'No release approval waiting'},
+        {number:5,title:'Final PR',owner:prItems.length?'You':'System',status:prItems.length?`${plural(prItems.length,'PR')} ready`:automationFailures.length?'PR creation is blocked until automation recovers':'No final PR waiting'},
       ],
     };
   }

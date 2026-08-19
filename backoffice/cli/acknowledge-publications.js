@@ -4,6 +4,7 @@
 const fs = require('fs/promises');
 const path = require('path');
 const { FirestoreBackofficeStore } = require('../services/firestore-backoffice-store');
+const { publicationRequestIsRetryable } = require('../workflows/publication-failure-receipts');
 
 async function main(){
   const root = path.resolve(__dirname, '../..');
@@ -15,9 +16,9 @@ async function main(){
   const pullRequestUrl = process.env.ORMA_PUBLICATION_PR_URL || null;
   let acknowledged = 0;
   const requests = (artifact.requests || []).map(request => {
-    if(request.status !== 'approved-for-pr-creation' || !approvalIds.has(request.id)) return request;
+    if(!publicationRequestIsRetryable(request) || !approvalIds.has(request.id)) return request;
     acknowledged += 1;
-    return { ...request, status:'pull-request-opened', pullRequestUrl, acknowledgedAt:new Date().toISOString() };
+    return { ...request, status:'pull-request-opened', retryable:false, pullRequestUrl, acknowledgedAt:new Date().toISOString() };
   });
   if(acknowledged){
     await store.setArtifact('publication-requests', { ...artifact, updatedAt:new Date().toISOString(), requests });

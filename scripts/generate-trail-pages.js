@@ -167,10 +167,25 @@ const RESPONSIVE_PHOTOS = {
   'images/itineraire-decouverte-de-la-nature.webp': { widths:[480, 960, 1280], fallback:'images/itineraire-decouverte-de-la-nature.jpg' },
 };
 
+function remoteAsset(value) {
+  return /^https?:\/\//i.test(String(value || '').trim());
+}
+
+function trailPageAssetUrl(value) {
+  const asset = String(value || '').trim();
+  return remoteAsset(asset) ? asset : `../${asset.replace(/^\/+/, '')}`;
+}
+
+function publicAssetUrl(value) {
+  const asset = String(value || '').trim();
+  return remoteAsset(asset) ? asset : `${BASE_URL}/${asset.replace(/^\/+/, '')}`;
+}
+
 function photoHtml(t) {
   if(!t.imageIcon) return '';
   const responsive = RESPONSIVE_PHOTOS[t.imageIcon];
-  if(!responsive) return `<img class="sp-img" src="../${escapeHtml(t.imageIcon)}" alt="${escapeHtml(t.name)}" loading="lazy" decoding="async">`;
+  const alt = t.imageAlt || t.name;
+  if(!responsive) return `<img class="sp-img" src="${escapeHtml(trailPageAssetUrl(t.imageIcon))}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">`;
   const stem = t.imageIcon.replace(/\.webp$/, '');
   const srcset = responsive.widths.map((width, index) => {
     const source = width === 900 ? t.imageIcon : `${stem}-${width}.webp`;
@@ -178,7 +193,7 @@ function photoHtml(t) {
   }).join(', ');
   return `<picture>
     <source type="image/webp" srcset="${srcset}" sizes="(max-width: 760px) 100vw, 1100px">
-    <img class="sp-img" src="../${responsive.fallback}" alt="${escapeHtml(t.name)}" loading="lazy" decoding="async">
+    <img class="sp-img" src="../${responsive.fallback}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">
   </picture>`;
 }
 
@@ -296,7 +311,7 @@ function trailPage(t, slug, all) {
   const reviewStyle = fullyReviewed ? 'verified' : 'imported';
   const badge = `<span class="dp-badge dp-badge--${reviewStyle}"><span data-dp-icon="${reviewStyle}" data-dp-icon-size="13" aria-hidden="true"></span><span>${reviewLabel}</span></span>`;
 
-  const ogImage = t.imageIcon ? `${BASE_URL}/${t.imageIcon}` : `${BASE_URL}/icon-512.png`;
+  const ogImage = t.imageIcon ? publicAssetUrl(t.imageIcon) : `${BASE_URL}/icon-512.png`;
 
   // Guard against upstream "NaN%" surface strings (promote-osm-trails.js bug)
   const terrain = !categoryVerified(t, 'surfaceHazards')
@@ -748,4 +763,6 @@ function main() {
   console.log(`Wrote ${written} trail pages and sitemap.xml (${urls.length} URLs).`);
 }
 
-main();
+if(require.main === module) main();
+
+module.exports = { photoHtml, publicAssetUrl, trailPageAssetUrl, trailPage };
