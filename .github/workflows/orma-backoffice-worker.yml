@@ -1,7 +1,16 @@
 name: ORMA backoffice worker
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      candidate_id:
+        description: Optional trail candidate ID for a controlled run
+        required: false
+        default: ''
+      specialist_limit:
+        description: Maximum specialist calls in this run
+        required: false
+        default: '5'
   schedule:
     - cron: '*/5 * * * *'
 
@@ -15,13 +24,17 @@ permissions:
 
 jobs:
   process-agent-queue:
+    if: github.event_name == 'workflow_dispatch' || vars.ORMA_WORKER_AUTOMATION_ENABLED == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
       FIREBASE_PROJECT_ID: dolopaws
       FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       OPENAI_API_KEY: ${{ secrets.OPEN_API_KEY }}
-      ORMA_CONTENT_MODEL: gpt-5.6-terra
+      ORMA_CONTENT_ROUTINE_MODEL: gpt-5.6-luna
+      ORMA_CONTENT_AUDIT_MODEL: gpt-5.6-terra
+      ORMA_SPECIALIST_CANDIDATE_ID: ${{ github.event.inputs.candidate_id || '' }}
+      ORMA_SPECIALIST_LIMIT: ${{ github.event.inputs.specialist_limit || '5' }}
     steps:
       - uses: actions/checkout@v4
 

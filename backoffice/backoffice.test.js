@@ -82,7 +82,7 @@ const { validateContentFlow } = require('./contracts/content-flow-v1');
 const { EDITABLE_FIELDS, PROTECTED_FIELDS, planContentFlow } = require('./workflows/plan-content-flow');
 const { validateContentOperations } = require('./contracts/content-operations-v1');
 const { planContentOperations } = require('./workflows/plan-content-operations');
-const { outputText } = require('./services/openai-responses-client');
+const { outputText,createStructuredResponse } = require('./services/openai-responses-client');
 const { visibleText, runGuideContent } = require('./workflows/run-guide-content');
 const { validateContentExecution } = require('./contracts/content-result-v1');
 const contentReviewDecisions = require('./content-review-decisions');
@@ -95,7 +95,9 @@ const { validateTrailOrchestration } = require('./contracts/trail-orchestration-
 const { seedOrchestrationFromCatalogue, buildDossierReviewQueue } = require('./workflows/build-live-orchestration');
 const { applyDossierReview } = require('./workflows/apply-dossier-review');
 const { dossierBlockingReasons } = require('./workflows/advance-trail-orchestration');
-const { runTrailSpecialist } = require('./workflows/run-trail-specialist');
+const { modelForAgent,runTrailSpecialist } = require('./workflows/run-trail-specialist');
+const { processTrailSpecialistJobs } = require('./workflows/run-live-backoffice-worker');
+const { positiveInteger } = require('./cli/live-worker');
 const { startLiveTrailCampaign } = require('./workflows/start-live-trail-campaign');
 const { trailOnlyReviewQueue } = require('./cli/seed-live-state');
 const { compileVerifiedDossier, verificationRecord } = require('./workflows/compile-verified-dossier');
@@ -1000,6 +1002,31 @@ describe('ORMA backoffice MVP', () => {
     expect(visibleText('<style>x{}</style><h1>Paws &amp; rock</h1><script>bad()</script>')).toBe('Paws & rock');
   });
 
+  test('OpenAI transport rate limits wait and retry without consuming a workflow resolution attempt', async () => {
+    const waits=[];let calls=0;
+    const response=await createStructuredResponse({messages:[],webSearch:true,schemaName:'test_schema',schema:{type:'object'}},{
+      apiKey:'test-key',model:'gpt-5.6-luna',maxRateLimitRetries:1,sleep:async milliseconds=>waits.push(milliseconds),
+      fetchImpl:async()=>{
+        calls+=1;
+        if(calls===1)return {ok:false,status:429,headers:{get:()=>null},json:async()=>({error:{message:'Rate limit reached. Please try again in 6.167s.'}})};
+        return {ok:true,status:200,headers:{get:()=>null},json:async()=>({id:'resp-ok',model:'gpt-5.6-luna',output:[{content:[{type:'output_text',text:'{"ok":true}'}]}]})};
+      },
+    });
+    expect(response.data).toEqual({ok:true});
+    expect(calls).toBe(2);
+    expect(waits).toEqual([6417]);
+  });
+
+  test('OpenAI quota errors are not retried as transient rate limits', async () => {
+    let calls=0;
+    await expect(createStructuredResponse({messages:[],webSearch:false,schemaName:'test_schema',schema:{type:'object'}},{
+      apiKey:'test-key',maxRateLimitRetries:2,sleep:async()=>{},fetchImpl:async()=>{
+        calls+=1;return {ok:false,status:429,headers:{get:()=>null},json:async()=>({error:{message:'You exceeded your current quota.'}})};
+      },
+    })).rejects.toThrow('current quota');
+    expect(calls).toBe(1);
+  });
+
   test('requested editorial revisions immediately produce a replacement review packet', async () => {
     const fs = require('fs'); const os = require('os'); const path = require('path');
     const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'orma-revision-'));
@@ -1277,8 +1304,9 @@ describe('ORMA backoffice MVP', () => {
   test('a web-search specialist returns proposed evidence without public mutation authority', async () => {
     const response=await runTrailSpecialist({
       job:{agentId:'logistics',candidateId:'trail-a',action:'verify-parking-and-access'},trail:{id:'trail-a'},context:[],
-    },{at:'2026-08-18T20:00:00.000Z',runAgent:async input=>{
+    },{at:'2026-08-18T20:00:00.000Z',env:{},runAgent:async (input,clientOptions)=>{
       expect(input.webSearch).toBe(true);
+      expect(clientOptions.model).toBe('gpt-5.6-luna');
       return {responseId:'resp-a',model:'test-model',data:{
         summary:'Parking remains unresolved.',
         claims:[{id:'parking',category:'parking',proposedValue:'Unknown',finding:'unresolved',confidence:0,
@@ -1287,6 +1315,45 @@ describe('ORMA backoffice MVP', () => {
       }};
     }});
     expect(response.result).toEqual(expect.objectContaining({agentId:'logistics',publicMutationAllowed:false,recommendation:'needs-resolution'}));
+  });
+
+  test('trail specialists route routine research to Luna and judgment passes to Terra', () => {
+    expect(modelForAgent('logistics',{})).toBe('gpt-5.6-luna');
+    expect(modelForAgent('regulatoryRanger',{})).toBe('gpt-5.6-luna');
+    expect(modelForAgent('terrainPoi',{})).toBe('gpt-5.6-luna');
+    expect(modelForAgent('evidenceLibrarian',{})).toBe('gpt-5.6-terra');
+    expect(modelForAgent('redTeam',{})).toBe('gpt-5.6-terra');
+    expect(modelForAgent('auditor',{})).toBe('gpt-5.6-terra');
+    expect(modelForAgent('logistics',{ORMA_CONTENT_MODEL:'test-shared'})).toBe('test-shared');
+    expect(modelForAgent('redTeam',{ORMA_CONTENT_AUDIT_MODEL:'test-audit',ORMA_CONTENT_MODEL:'test-shared'})).toBe('test-audit');
+  });
+
+  test('a controlled live worker run processes only the selected trail candidate', async () => {
+    const pending=[
+      {id:'job-a',jobType:'trail-verification-specialist',agentId:'logistics',candidateId:'trail-a',action:'verify-parking-and-access'},
+      {id:'job-b',jobType:'trail-verification-specialist',agentId:'logistics',candidateId:'trail-b',action:'verify-parking-and-access'},
+    ];
+    const completed=[];
+    const store={
+      listJobs:async()=>pending,
+      claimJob:async id=>pending.find(job=>job.id===id),
+      getArtifact:async()=>null,
+      setArtifact:async()=>{},
+      completeSystemJob:async id=>completed.push(id),
+      failJob:async()=>{},
+    };
+    const result=await processTrailSpecialistJobs(store,{
+      specialistCandidateId:'trail-b',specialistLimit:5,productionTrails:[{id:'trail-b'}],env:{},
+      runAgent:async()=>({responseId:'resp-b',model:'gpt-5.6-luna',data:{summary:'Checked.',claims:[],openQuestions:[],recommendation:'advance'}}),
+    });
+    expect(result).toEqual([expect.objectContaining({jobId:'job-b',status:'completed'})]);
+    expect(completed).toEqual(['job-b']);
+  });
+
+  test('the live worker accepts only positive specialist limits', () => {
+    expect(positiveInteger('1',5)).toBe(1);
+    expect(positiveInteger('0',5)).toBe(5);
+    expect(positiveInteger('not-a-number',5)).toBe(5);
   });
 
   test('the live daily campaign excludes trails already in orchestration', async () => {

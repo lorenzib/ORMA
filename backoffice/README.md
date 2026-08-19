@@ -135,6 +135,23 @@ validates the structured result against the locked dossier, and records either
 automatically returned to the queue after a worker interruption. No worker
 result is approval.
 
+Routine trail research (Logistics, Regulatory Ranger and Terrain & POI) uses
+`ORMA_CONTENT_ROUTINE_MODEL`, which defaults to `gpt-5.6-luna`. Judgment passes
+(Evidence Librarian, Red Team and human-requested Auditor revisions) use
+`ORMA_CONTENT_AUDIT_MODEL`, which defaults to `gpt-5.6-terra`. The legacy
+`ORMA_CONTENT_MODEL` remains a shared override for local testing. Manual worker
+runs may also supply a candidate ID and specialist-call limit so a funded API
+project can be validated on one trail without draining the entire queue.
+Transient API token-per-minute limits are retried inside the model client using
+the server-provided delay. They do not consume one of the five evidence
+resolution attempts; exhausted transport retries remain visible as system
+failures and are returned to the durable queue.
+
+Scheduled worker events are inert until the repository variable
+`ORMA_WORKER_AUTOMATION_ENABLED` is `true`; the daily intake campaign uses the
+separate `ORMA_CAMPAIGN_AUTOMATION_ENABLED` variable. Manual workflow runs are
+always allowed, preserving a controlled activation path.
+
 The same workflow then consumes explicit publication approvals. It writes a
 small `data/verified-trail-overrides.json` change, regenerates and validates the
 website, opens a GitHub pull request, and records that PR URL back in Firestore.
