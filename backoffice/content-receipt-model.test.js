@@ -9,7 +9,7 @@ describe('trail content submission receipts',()=>{
   test('a queued submission locks the unchanged proposal and tells the moderator not to click again',()=>{
     const receipt=model.latestReceipt(output,[{id:'review-1',status:'queued',submittedAt:'2026-08-19T18:00:00Z',decisions:[{jobId:output.jobId,action:'approve'}]}],[]);
     expect(receipt).toEqual(expect.objectContaining({decision:expect.objectContaining({action:'approve'})}));
-    expect(model.receiptText(output,receipt,waiting,[],()=> '19:00')).toContain('do not click again');
+    expect(model.receiptText(output,receipt,waiting,[],()=> '19:00')).toContain('Do not click again');
   });
 
   test('a completed revision unlocks only the newer proposal for another review',()=>{

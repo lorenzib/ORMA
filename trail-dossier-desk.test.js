@@ -41,7 +41,7 @@ describe('Trail Verification Desk revision controls',()=>{
       reviewId:'review-route-1',candidateId:'osm-route-1',action:'request-revision',targetAgent:'cartographer',
       note:'Rebuild the route from the official relation and explain the closure gap.',
     });
-    expect(window.document.querySelector('.bo-decision').textContent).toContain('Revision queued for Cartographer');
+    expect(window.document.querySelector('.bo-decision').textContent).toContain('Revision saved for Cartographer');
     expect(window.document.querySelector('.bo-decision').textContent).toContain('firestore-review-123');
     expect(JSON.parse(window.localStorage.getItem('orma-dossier-review-receipts-v1'))['review-route-1'].submissionId).toBe('firestore-review-123');
     dom.window.close();

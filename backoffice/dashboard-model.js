@@ -30,14 +30,14 @@
   }
   function activityMessage(item){
     const status=item.status||'queued';
-    if(status==='queued')return 'Saved. The worker will collect this within five minutes.';
+    if(status==='queued')return 'Saved in Firestore. ORMA automation will collect this within five minutes; you may close the page.';
     if(status==='superseded')return 'Replaced safely by your later decision.';
-    if(status==='blocked')return 'The worker could not complete this handoff; it needs attention.';
+    if(status==='blocked')return 'ORMA automation could not complete this handoff; it needs attention.';
     if(status==='pull-request-opened')return 'The tested website diff is ready for your final GitHub review.';
-    if(status==='approved-for-pr-creation')return 'Approval consumed. The worker is preparing the website pull request.';
+    if(status==='approved-for-pr-creation')return 'Approval consumed. ORMA automation is preparing the website pull request.';
     if(item.stream==='dossier'&&item.action==='request-revision')return 'Revision handed to the selected trail specialist.';
     if(item.stream==='content')return 'Content decision consumed; the trail advances when both outputs are approved.';
-    if(item.stream==='publication')return 'Publication decision consumed by the worker.';
+    if(item.stream==='publication')return 'Publication decision consumed by ORMA automation.';
     return 'Decision processed and retained in the audit trail.';
   }
   function candidateFromActivity(item,names){
@@ -98,12 +98,12 @@
     for(const item of releaseItems)decisions.push({
       id:`release-${item.candidateId}`,kind:'release',stage:'4 · Release mapping',title:names.get(item.candidateId)||item.targetTrailId,
       description:'Copy, image and locked evidence are approved. Review the exact fields that will enter the website.',
-      next:'After approval: the worker validates the generated site and opens a GitHub pull request. Its link will appear here.',
+      next:'After approval: ORMA automation validates the generated site and opens a GitHub pull request. Its link will appear here.',
       href:`trail-content-desk.html#publication-${item.candidateId}`,actionLabel:'Review release',
     });
     for(const request of prItems)decisions.push({
       id:`pr-${request.id}`,kind:'pull-request',stage:'5 · Final website diff',title:names.get(request.candidateId)||request.targetTrailId,
-      description:'The worker generated and tested the website change. This pull request is the final public-mutation gate.',
+      description:'ORMA automation generated and tested the website change. This pull request is the final public-mutation gate.',
       next:'After you merge: the normal website deployment publishes the approved trail change.',href:request.pullRequestUrl,actionLabel:'Review GitHub PR',external:true,
     });
 

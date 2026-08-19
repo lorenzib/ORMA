@@ -23,22 +23,43 @@ describe('separate Firebase backoffice Hosting package',()=>{
 
   test('hosted dossier desk requests the current revision-control asset',()=>{
     const html=fs.readFileSync(path.join(output,'trail-dossier-desk.html'),'utf8');
-    expect(html).toContain('trail-dossier-desk.js?v=20260819-2');
+    expect(html).toContain('trail-dossier-desk.js?v=20260819-3');
   });
 
   test('hosted trail content desk requests the durable publication receipt asset',()=>{
     const html=fs.readFileSync(path.join(output,'trail-content-desk.html'),'utf8');
-    expect(html).toContain('backoffice/content-receipt-model.js?v=20260819-1');
-    expect(html).toContain('trail-content-desk.js?v=20260819-3');
+    expect(html).toContain('backoffice/content-receipt-model.js?v=20260819-2');
+    expect(html).toContain('trail-content-desk.js?v=20260819-4');
   });
 
   test('hosted dashboard exposes only protected trail desk links',()=>{
     const html=fs.readFileSync(path.join(output,'backoffice-review.html'),'utf8');
     expect(html).toContain('One linear trail workflow');
     expect(html).toContain('What happened after your clicks');
-    expect(html).toContain('backoffice/dashboard-model.js?v=20260819-1');
+    expect(html).toContain('What ORMA automation does');
+    expect(html).toContain('backoffice/dashboard-model.js?v=20260819-2');
     expect(html).toContain('href="trail-dossier-desk.html"');
     expect(html).not.toMatch(/href="(?:content|new-trail-scouting|hazard-review|image-coverage|newsletter|social|product-ideas)-desk\.html"/);
+  });
+
+  test.each([
+    ['backoffice-review.html','Home'],
+    ['trail-dossier-desk.html','Trail evidence'],
+    ['trail-content-desk.html','Content &amp; release'],
+  ])('%s has persistent navigation and a clear current location',(page,current)=>{
+    const html=fs.readFileSync(path.join(output,page),'utf8');
+    expect(html).toContain('aria-label="Backoffice navigation"');
+    expect(html).toContain('href="backoffice-review.html"');
+    expect(html).toContain('href="trail-dossier-desk.html"');
+    expect(html).toContain('href="trail-content-desk.html"');
+    expect(html).toContain(`aria-current="page">${current}</a>`);
+  });
+
+  test('moderator-facing trail pages explain automation without vague worker language',()=>{
+    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
+    const text=files.map(file=>fs.readFileSync(path.join(output,file),'utf8')).join('\n');
+    expect(text).toContain('ORMA automation');
+    expect(text).not.toMatch(/waiting for the worker|the worker will|worker processed|independent worker/i);
   });
 
   test('hosted sign-in accepts only the dedicated moderator credentials',()=>{
