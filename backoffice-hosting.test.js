@@ -21,6 +21,11 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).not.toContain('src="firebase-init.js');
   });
 
+  test('hosted dossier desk requests the current revision-control asset',()=>{
+    const html=fs.readFileSync(path.join(output,'trail-dossier-desk.html'),'utf8');
+    expect(html).toContain('trail-dossier-desk.js?v=20260819-2');
+  });
+
   test('hosted dashboard exposes only protected trail desk links',()=>{
     const html=fs.readFileSync(path.join(output,'backoffice-review.html'),'utf8');
     expect(html).toContain('Existing Trails is live here now');
