@@ -28,15 +28,19 @@
     const root = document.getElementById('trailGuideLinks');
     const api = window.DoloPawsRecommendationGuides;
     if(!root || !api){ return; }
-    const guides = api.select(recommendation, 2);
+    const safetyRows = document.getElementById('dogSafetyRows');
+    const flaggedGuideIds = safetyRows
+      ? Array.from(safetyRows.querySelectorAll('[data-guide-id]'), node => node.dataset.guideId)
+      : [];
+    const guides = safetyRows && typeof api.selectIds === 'function'
+      ? api.selectIds(flaggedGuideIds, 3)
+      : api.select(recommendation, 3);
     root.hidden = guides.length === 0;
     root.innerHTML = guides.length ?
-      `<div class="td2-kick">${esc(tr('recommendation.guides.embeddedTitle', 'Safety guides'))}</div>` +
-      `<p class="trail-guide-intro">${esc(tr('recommendation.guides.intro', 'Selected from this trail’s cautions.'))}</p>` +
-      '<ul>' + guides.map(guide =>
-        `<li><a href="${esc(guide.href)}"><strong>${esc(tr('recommendation.guides.readMore', 'Read more'))}:</strong> ${esc(tr(`recommendation.guide.${guide.id}.label`, guide.label))} →` +
-          `<span>${esc(tr(`recommendation.guide.${guide.id}.summary`, guide.summary))}</span></a></li>`
-      ).join('') + '</ul>' : '';
+      `<p class="trail-guide-intro"><strong>${esc(tr('recommendation.guides.intro', 'From our safety guides:'))}</strong> ` +
+      guides.map(guide =>
+        `<a href="${esc(guide.href)}">${esc(tr(`recommendation.guide.${guide.id}.label`, guide.label))} →</a>`
+      ).join('<span class="trail-guide-separator" aria-hidden="true">·</span>') + '</p>' : '';
   }
 
   function currentTrail(){
@@ -89,7 +93,6 @@
           `<h2>${esc(view.conclusion)} ${score} ${chip}</h2>` +
           gapCta +
         '</div>' +
-        `<a class="recommendation-evidence-link" href="#trailEvidence">${esc(tr('recommendation.evidence', 'About this trail data ↓'))}</a>` +
       '</div>' +
       '<div class="recommendation-columns">' +
         `<section><h3>${esc(tr('recommendation.reasons.title', 'Why it may fit'))}</h3>` +
@@ -123,12 +126,6 @@
   }
 
   function wireActions(root, trail){
-    const evidenceLink = root.querySelector('.recommendation-evidence-link');
-    const evidence = document.getElementById('trailEvidence');
-    if(evidenceLink && evidence){
-      evidenceLink.addEventListener('click', () => { evidence.open = true; });
-    }
-
     const save = root.querySelector('[data-recommendation-save]');
     const originalSave = document.getElementById('detailSaveBtn');
     const syncSave = () => {
