@@ -1,0 +1,34 @@
+name: ORMA daily hazard watch
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '15 7 * * *'
+      timezone: Europe/Rome
+
+permissions:
+  contents: write
+
+concurrency:
+  group: orma-hazard-watch
+  cancel-in-progress: false
+
+jobs:
+  check-warnings:
+    if: github.event_name == 'workflow_dispatch' || vars.ORMA_HAZARD_AUTOMATION_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check authoritative warning feeds
+        run: npm run backoffice:hazard-watch
+      - name: Publish warning state and review queue
+        run: |
+          git config user.name "orma-hazard-bot"
+          git config user.email "actions@github.com"
+          git add data/dynamic-hazards.json backoffice-data/hazard-review-queue.json backoffice-data/hazard-watch-status.json
+          git diff --cached --quiet || git commit -m "Update ORMA dynamic hazard layer"
+          git pull --rebase origin main
+          git push origin HEAD:main

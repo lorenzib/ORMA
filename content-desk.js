@@ -1,14 +1,13 @@
 (function(){
   'use strict';
   const PACKET_URLS=[
-    'backoffice-data/editorial-review-packet.json',
     'backoffice-data/editorial-review-packet-1.json',
     'backoffice-data/editorial-review-packet-2.json',
     'backoffice-data/editorial-review-packet-3.json',
-    'backoffice-data/newsletter-review-packet.json',
   ];
   const REVIEW_RESULT_URL='backoffice-data/content-review-last-result.json';
   const REVIEW_QUEUE_URL='backoffice-data/content-review-queue.json';
+  const EDITORIAL_LEDGER_URL='backoffice-data/editorial-ledger.json';
   const state=document.getElementById('editorialState');
   const packet=document.getElementById('editorialPacket');
   const title=document.getElementById('packetTitle');
@@ -51,18 +50,21 @@
     const grid=element('div','bo-picture-grid'); output.result.candidates.forEach(candidate=>{const item=element('article',`bo-picture-candidate is-${candidate.status}`);if(candidate.assetUrl){const image=element('img');image.src=candidate.assetUrl;image.alt=candidate.altText;item.append(image);}item.append(element('strong','',candidate.title),element('p','',candidate.matchEvidence),element('small','',`${candidate.creator} · ${candidate.license}`));grid.append(item);}); card.append(grid); pictureReview.append(card);
   }
   async function load(){
-    const [packetResponses,receiptResponse,queueResponse]=await Promise.all([Promise.all(PACKET_URLS.map(url=>fetch(url,{cache:'no-store'}))),fetch(REVIEW_RESULT_URL,{cache:'no-store'}),fetch(REVIEW_QUEUE_URL,{cache:'no-store'})]);
+    const [packetResponses,receiptResponse,queueResponse,ledgerResponse]=await Promise.all([Promise.all(PACKET_URLS.map(url=>fetch(url,{cache:'no-store'}))),fetch(REVIEW_RESULT_URL,{cache:'no-store'}),fetch(REVIEW_QUEUE_URL,{cache:'no-store'}),fetch(EDITORIAL_LEDGER_URL,{cache:'no-store'})]);
     const packets=[]; for(const response of packetResponses){if(response.ok) packets.push(await response.json());}
     const receipt=receiptResponse.ok?await receiptResponse.json():null;
     const queue=queueResponse.ok?await queueResponse.json():{submissions:[]};
+    const ledger=ledgerResponse.ok?await ledgerResponse.json():{items:[]};
     const completed=[...(queue.submissions||[]),receipt].filter(item=>item&&['published','processed'].includes(item.status));
     const resolvedJobs=new Set(completed.flatMap(item=>(item.decisions||[]).map(decision=>decision.jobId)));
-    const waiting=packets.filter(candidate=>candidate?.summary?.readyForReview>0&&candidate.outputs.some(output=>output.status==='ready-for-review'&&!resolvedJobs.has(output.jobId)))
+    const publishedItems=new Map((ledger.items||[]).filter(item=>item.status==='published').map(item=>[item.contentId,item]));
+    const resolvedByLedger=candidate=>{const item=publishedItems.get(`${candidate?.subject?.type}-${candidate?.subject?.id}`);return item&&new Date(item.lastPublishedAt||0)>=new Date(candidate.generatedAt||0);};
+    const waiting=packets.filter(candidate=>candidate?.summary?.readyForReview>0&&!resolvedByLedger(candidate)&&candidate.outputs.some(output=>output.status==='ready-for-review'&&!resolvedJobs.has(output.jobId)))
       .sort((a,b)=>new Date(a.generatedAt)-new Date(b.generatedAt));
     execution=waiting[0]||null;
     if(!execution){state.textContent=receipt?.status==='published'&&receipt.publication?.commit?`Published in commit ${receipt.publication.commit.slice(0,7)}. GitHub Pages deployment triggered.`:'Nothing is waiting for review. The next eligible workstream will appear here automatically.';return;}
     const ready=execution.outputs.filter(output=>output.status==='ready-for-review'); if(!ready.length) throw new Error('The latest editorial run produced no reviewable recommendation.');
-    title.textContent=`${execution.subject.type} · ${execution.subject.id}`; summary.textContent=`Review 1 of ${waiting.length} waiting · ${execution.workstream==='newsletter'?'Newsletter':'Website copy'}.`;
+    title.textContent=`${execution.subject.type} · ${execution.subject.id}`; summary.textContent=`Review 1 of ${waiting.length} waiting · Editorial copy only.`;
     const sourceResponse=await fetch(execution.subject.sourceRef,{cache:'no-store'});if(!sourceResponse.ok)throw new Error('The current source page could not be loaded.');sourceHtml=await sourceResponse.text();currentPreview.src=execution.subject.sourceRef;refreshProposedPreview();
     renderCopy(ready.find(output=>output.agentId==='copywriter')); renderPicture(ready.find(output=>output.agentId==='visualDirector'));
     packet.hidden=false; state.textContent=`${waiting.length} copy review${waiting.length===1?' is':'s are'} waiting. Nothing changes until you approve.`;

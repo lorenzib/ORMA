@@ -3,16 +3,25 @@
 
   const URLS={
     orchestration:'backoffice-data/trail-orchestration.json',
-    catalogueCampaign:'backoffice-data/catalogue-campaign.json',
+    campaign:'backoffice-data/catalogue-campaign.json',
     dossiers:'backoffice-data/dossier-review-queue.json',
-    specialistJobs:'backoffice-data/trail-specialist-job-queue.json',
+    jobs:'backoffice-data/trail-specialist-job-queue.json',
     trailExecution:'backoffice-data/verified-trail-editorial-execution.json',
     publication:'backoffice-data/publication-staging.json',
     ledger:'backoffice-data/editorial-ledger.json',
     reviewQueue:'backoffice-data/content-review-queue.json',
     lastReview:'backoffice-data/content-review-last-result.json',
     newsletter:'backoffice-data/newsletter-review-packet.json',
-    websitePackets:[
+    newsletterReview:'backoffice-data/newsletter-review.json',
+    ideas:'backoffice-data/product-ideas.json',
+    ideasReview:'backoffice-data/product-ideas-review.json',
+    images:'backoffice-data/image-coverage.json',
+    imageReview:'backoffice-data/image-coverage-review.json',
+    hazards:'data/dynamic-hazards.json',
+    hazardStatus:'backoffice-data/hazard-watch-status.json',
+    scouting:'backoffice-data/new-trail-scouting.json',
+    scoutingReview:'backoffice-data/new-trail-scouting-review.json',
+    packets:[
       'backoffice-data/editorial-review-packet.json',
       'backoffice-data/editorial-review-packet-1.json',
       'backoffice-data/editorial-review-packet-2.json',
@@ -20,86 +29,70 @@
     ],
   };
 
-  async function loadJson(url,fallback){
+  async function json(url,fallback){
     try{const response=await fetch(url,{cache:'no-store'});return response.ok?await response.json():fallback;}
     catch(error){return fallback;}
   }
+  const set=(id,value)=>{const node=document.getElementById(id);if(node)node.textContent=value;};
+  const plural=(count,singular,pluralForm=`${singular}s`)=>`${count} ${count===1?singular:pluralForm}`;
+  const ready=(packet,resolved)=>((packet?.outputs)||[]).filter(output=>output.status==='ready-for-review'&&!resolved.has(output.jobId));
 
-  function setText(id,value){const node=document.getElementById(id);if(node)node.textContent=value;}
-  function plural(count,singular,pluralForm=`${singular}s`){return `${count} ${count===1?singular:pluralForm}`;}
-  function reviewableOutputs(packet,resolvedJobs){
-    return (packet?.outputs||[]).filter(output=>output.status==='ready-for-review'&&!resolvedJobs.has(output.jobId));
-  }
-  function setStatus(id,label,state){
-    const node=document.getElementById(id);if(!node)return;
-    node.textContent=label;node.className=`bo-life-status${state?` is-${state}`:''}`;
-  }
-  function decision(count,title,description,href,label,priority=false){
-    const article=document.createElement('article');article.className=`bo-exec-decision${priority?' is-priority':''}`;
+  function decision(count,title,copy,href,label,priority=false){
+    const card=document.createElement('article');card.className=`bo-exec-decision${priority?' is-priority':''}`;
     const number=document.createElement('span');number.className='bo-decision-count';number.textContent=String(count);
-    const copy=document.createElement('div');const heading=document.createElement('h3');heading.textContent=title;
-    const paragraph=document.createElement('p');paragraph.textContent=description;copy.append(heading,paragraph);
-    const link=document.createElement('a');link.href=href;link.textContent=label;
-    article.append(number,copy,link);return article;
+    const body=document.createElement('div');const heading=document.createElement('h3');heading.textContent=title;
+    const paragraph=document.createElement('p');paragraph.textContent=copy;body.append(heading,paragraph);
+    const link=document.createElement('a');link.href=href;link.textContent=label;card.append(number,body,link);return card;
   }
 
-  async function loadDashboard(){
-    const [orchestration,catalogueCampaign,dossiers,specialistJobs,trailExecution,publication,ledger,reviewQueue,lastReview,newsletter,...websitePackets]=await Promise.all([
-      loadJson(URLS.orchestration,{trails:[]}),loadJson(URLS.catalogueCampaign,{summary:{},selectedTrailIds:[]}),loadJson(URLS.dossiers,{items:[]}),loadJson(URLS.specialistJobs,{jobs:[]}),
-      loadJson(URLS.trailExecution,{outputs:[]}),loadJson(URLS.publication,{items:[]}),loadJson(URLS.ledger,{items:[]}),
-      loadJson(URLS.reviewQueue,{submissions:[]}),loadJson(URLS.lastReview,null),loadJson(URLS.newsletter,null),
-      ...URLS.websitePackets.map(url=>loadJson(url,null)),
-    ]);
+  async function load(){
+    const keys=['orchestration','campaign','dossiers','jobs','trailExecution','publication','ledger','reviewQueue','lastReview','newsletter','newsletterReview','ideas','ideasReview','images','imageReview','hazards','hazardStatus','scouting','scoutingReview'];
+    const values=await Promise.all([...keys.map(key=>json(URLS[key],{})),...URLS.packets.map(url=>json(url,null))]);
+    const data=Object.fromEntries(keys.map((key,index)=>[key,values[index]]));const packets=values.slice(keys.length).filter(Boolean);
+    const completed=[...(data.reviewQueue.submissions||[]),data.lastReview].filter(item=>item&&['published','processed'].includes(item.status));
+    const resolved=new Set(completed.flatMap(item=>(item.decisions||[]).map(item=>item.jobId)));
+    const publishedById=new Map((data.ledger.items||[]).filter(item=>item.status==='published').map(item=>[item.contentId,item]));
+    const websiteWaiting=packets.filter(packet=>{const item=publishedById.get(`${packet.subject?.type}-${packet.subject?.id}`);return !(item&&new Date(item.lastPublishedAt||0)>=new Date(packet.generatedAt||0))&&ready(packet,resolved).length;});
+    const trailReady=ready(data.trailExecution,resolved);const trailContentWaiting=new Set(trailReady.map(output=>output.candidateId||output.subjectId||output.jobId)).size;
+    const publicationReady=(data.publication.items||[]).filter(item=>item.state==='ready-for-publication-preview').length;
+    const dossierWaiting=(data.dossiers.items||[]).filter(item=>item.state!=='processed'&&item.approvalAllowed!==false).length;
+    const productDone=new Set((data.ideasReview.decisions||[]).map(item=>item.ideaId));const ideaWaiting=(data.ideas.ideas||[]).filter(item=>!productDone.has(item.id)).length;
+    const imageDone=new Set((data.imageReview.decisions||[]).map(item=>item.slug));const imageWaiting=(data.images.gaps||[]).filter(item=>!imageDone.has(item.slug)).length;
+    const scoutingDone=new Set((data.scoutingReview.decisions||[]).map(item=>item.candidateId));const scoutingWaiting=(data.scouting.candidates||[]).filter(item=>!scoutingDone.has(item.id)).length;
+    const hazardRemoval=(data.hazards.hazards||[]).filter(item=>item.state==='resolution-review').length;const activeHazards=(data.hazards.hazards||[]).filter(item=>item.state==='active').length;
+    const newsletterDecided=(data.newsletterReview.decisions||[]).some(item=>item.generatedAt===data.newsletter.generatedAt);const newsletterReady=ready(data.newsletter,resolved).length>0&&!newsletterDecided;
+    const specialistJobs=data.jobs.jobs||[];const researchJobs=[...(data.ideasReview.jobs||[]),...(data.imageReview.jobs||[])];
+    const runningJobs=[...specialistJobs,...researchJobs].filter(item=>['queued','running','in-progress','processing'].includes(item.status)).length;
+    const blockedJobs=specialistJobs.filter(item=>item.status==='blocked').length+(data.orchestration.trails||[]).filter(trail=>(trail.blockers||[]).length||/blocked|source-exhausted/.test(`${trail.state} ${trail.stage}`)).length;
+    const sourceFailures=data.hazardStatus.summary?.sourceFailures||0;const cutoff=Date.now()-7*86400000;
+    const published=(data.ledger.items||[]).filter(item=>item.status==='published'&&new Date(item.lastPublishedAt||0).getTime()>=cutoff).length;
+    const reviewCount=websiteWaiting.length+trailContentWaiting+publicationReady+dossierWaiting+ideaWaiting+imageWaiting+hazardRemoval+scoutingWaiting+(newsletterReady?1:0);
 
-    const completed=[...(reviewQueue.submissions||[]),lastReview].filter(item=>item&&['published','processed'].includes(item.status));
-    const resolvedJobs=new Set(completed.flatMap(item=>(item.decisions||[]).map(item=>item.jobId)));
-    const publishedItems=new Map((ledger.items||[]).filter(item=>item.status==='published').map(item=>[item.contentId,item]));
-    const resolvedByLedger=packet=>{const item=publishedItems.get(`${packet?.subject?.type}-${packet?.subject?.id}`);return item&&new Date(item.lastPublishedAt||0)>=new Date(packet.generatedAt||0);};
-    const websiteWaiting=websitePackets.filter(packet=>!resolvedByLedger(packet)&&reviewableOutputs(packet,resolvedJobs).length>0);
-    const newsletterReady=reviewableOutputs(newsletter,resolvedJobs).length>0;
-    const trailReadyJobs=reviewableOutputs(trailExecution,resolvedJobs);
-    const trailContentWaiting=new Set(trailReadyJobs.map(output=>output.candidateId||output.subjectId||output.jobId.split('-copy')[0].split('-visual')[0])).size;
-    const dossierWaiting=(dossiers.items||[]).filter(item=>item.state!=='processed'&&item.approvalAllowed!==false).length;
-    const agentWork=(specialistJobs.jobs||[]).filter(job=>['queued','running','in-progress','processing'].includes(job.status)).length;
-    const blockedJobs=(specialistJobs.jobs||[]).filter(job=>job.status==='blocked').length;
-    const blockedTrails=(orchestration.trails||[]).filter(trail=>(trail.blockers||[]).length||/blocked|source-exhausted/.test(`${trail.state} ${trail.stage}`)).length;
-    const publicationReady=(publication.items||[]).filter(item=>item.state==='ready-for-publication-preview').length;
-    const sevenDaysAgo=Date.now()-7*24*60*60*1000;
-    const recentlyPublished=(ledger.items||[]).filter(item=>item.status==='published'&&new Date(item.lastPublishedAt||0).getTime()>=sevenDaysAgo).length;
-    const totalReview=websiteWaiting.length+(newsletterReady?1:0)+trailContentWaiting+dossierWaiting+publicationReady;
-
-    setText('needsReviewCount',totalReview);
-    setText('agentWorkCount',agentWork);
-    setText('readyToPublishCount',publicationReady);
-    setText('publishedCount',recentlyPublished);
-    setText('dashboardUpdated',`Live data · refreshed ${new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`);
-
+    set('needsReviewCount',reviewCount);set('agentWorkCount',runningJobs);set('publicWarningCount',activeHazards+hazardRemoval);set('publishedCount',published);
+    set('dashboardUpdated',`Live data · refreshed ${new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`);
     const queue=document.getElementById('executiveDecisionQueue');queue.replaceChildren();
-    if(websiteWaiting.length)queue.append(decision(websiteWaiting.length,'Website copy ready','Compare current and proposed copy, edit if needed, then approve to commit and deploy.','content-desk.html','Review and publish ↗',true));
-    if(publicationReady)queue.append(decision(publicationReady,'Trail releases ready','Review the final website field mapping for internally verified trail packages.','trail-content-desk.html','Review trail release ↗',true));
-    if(dossierWaiting)queue.append(decision(dossierWaiting,'Trail evidence dossiers ready','Resolve the human evidence gates before these trails can advance to content.','trail-dossier-desk.html','Review evidence ↗'));
-    if(trailContentWaiting)queue.append(decision(trailContentWaiting,'Verified trail content ready','Review staged copy and media created from locked trail evidence.','trail-content-desk.html','Review trail content ↗'));
-    if(newsletterReady)queue.append(decision(1,'Newsletter draft ready','Review the issue assembled from newly published trails and editorial updates.','content-desk.html','Review newsletter ↗'));
-    if(!queue.children.length){const empty=document.createElement('p');empty.className='bo-decision-empty';empty.textContent='Nothing needs your approval right now. Automated work continues in the lifecycle below.';queue.append(empty);}
+    if(hazardRemoval)queue.append(decision(hazardRemoval,'Hazard removal checks','A source warning expired. Confirm whether its public notice can be removed.','hazard-review-desk.html','Review warnings ↗',true));
+    if(dossierWaiting)queue.append(decision(dossierWaiting,'Existing Trail evidence','Resolve the human evidence gates before trails advance.','trail-dossier-desk.html','Review evidence ↗',true));
+    if(publicationReady)queue.append(decision(publicationReady,'Trail releases ready','Review the final website mapping for internally verified trail packages.','trail-content-desk.html','Review trail release ↗',true));
+    if(trailContentWaiting)queue.append(decision(trailContentWaiting,'Verified trail content','Review staged copy and media created from locked trail evidence.','trail-content-desk.html','Review trail content ↗'));
+    if(scoutingWaiting)queue.append(decision(scoutingWaiting,'New Trail candidates','Choose which nearby loops deserve full verification.','new-trail-scouting-desk.html','Review candidates ↗'));
+    if(websiteWaiting.length)queue.append(decision(websiteWaiting.length,'Editorial copy','Compare current and proposed copy, edit if needed, then approve and publish.','content-desk.html','Review copy ↗',true));
+    if(imageWaiting)queue.append(decision(imageWaiting,'Editorial image gaps','Route each gap to owned photography, licensed sourcing, approved AI or park it.','image-coverage-desk.html','Review images ↗'));
+    if(newsletterReady)queue.append(decision(1,'Newsletter issue','Review one assembled issue built only from approved inputs.','newsletter-desk.html','Review issue ↗'));
+    if(ideaWaiting)queue.append(decision(ideaWaiting,'Analyst opportunities','Choose which sourced signals deserve deeper work.','product-ideas-desk.html','Review analysis ↗'));
+    if(!queue.children.length){const empty=document.createElement('p');empty.className='bo-decision-empty';empty.textContent='Nothing needs your approval right now. The teams continue their scheduled work.';queue.append(empty);}
 
-    const existingBatch=(catalogueCampaign.selectedTrailIds||[]).length;
-    const existingRemaining=catalogueCampaign.summary?.remainingQueueable||0;
-    setText('existingCatalogueProgress',`${plural(existingBatch,'trail')} in the current batch · ${plural(existingRemaining,'trail')} still queueable.`);
-    setText('newScoutingProgress','Not activated · no net-new candidates have been queued.');
-    setText('editorialRefinementProgress',`${plural(websiteWaiting.length,'review')} waiting · safety guides, collections, articles and library.`);
-    setText('discoverProgress',`${plural(existingBatch,'existing trail')} in verification now · new trail scouting is not yet active.`);
-    setText('verifyProgress',`${plural(agentWork,'specialist task')} queued or running · ${plural(dossierWaiting,'dossier')} waiting · ${plural(blockedJobs+blockedTrails,'blocker')}.`);
-    setStatus('verifyStatus',dossierWaiting?'Review needed':blockedJobs+blockedTrails?'Blocked':'In progress',dossierWaiting?'review':blockedJobs+blockedTrails?'blocked':'running');
-    setText('produceProgress',`${plural(trailContentWaiting,'trail content packet')} waiting · ${plural(websiteWaiting.length,'editorial refinement review')} waiting.`);
-    setText('publishProgress',`${plural(publicationReady,'trail package')} at publication preview · ${plural(recentlyPublished,'editorial update')} published in the last 7 days.`);
-    setStatus('publishStatus',publicationReady||websiteWaiting.length?'Review needed':'Up to date',publicationReady||websiteWaiting.length?'review':'running');
-    setText('distributeProgress',newsletterReady?'1 newsletter draft is ready for review. Social media remains inactive.':'Newsletter runs every other Thursday at 09:00. Social media remains inactive.');
-    setStatus('distributeStatus',newsletterReady?'Review needed':'Scheduled',newsletterReady?'review':'scheduled');
-    document.getElementById('newsletterReviewLink').hidden=!newsletterReady;
+    const batch=(data.campaign.selectedTrailIds||[]).length;const remaining=data.campaign.summary?.remainingQueueable||0;
+    set('existingCatalogueProgress',`${plural(batch,'trail')} in the current batch · ${plural(remaining,'trail')} queueable · ${plural(blockedJobs,'blocker')} · ${plural(activeHazards,'active area warning')}.`);
+    set('newScoutingProgress',`${plural(scoutingWaiting,'candidate')} awaiting selection · ${(data.scoutingReview.intake||[]).length} sent to verification.`);
+    set('editorialRefinementProgress',`${plural(websiteWaiting.length,'copy review')}, ${plural(imageWaiting,'image decision')}, ${plural(trailContentWaiting,'verified trail packet')} and ${plural(publicationReady,'release preview')} waiting.`);
+    set('newsletterProgress',newsletterReady?'One complete issue is ready for review.':'No issue waiting · next run remains fortnightly.');
+    set('analystProgress',`${plural(ideaWaiting,'opportunity','opportunities')} awaiting direction · ${(data.ideasReview.jobs||[]).length} deeper investigations recorded.`);
+    set('discoverProgress',`${plural(scoutingWaiting,'candidate')} awaiting selection; ${(data.scoutingReview.intake||[]).length} already entered verification.`);
+    set('verifyProgress',`${plural(runningJobs,'agent task')} queued or running · ${plural(dossierWaiting,'dossier')} waiting · ${plural(blockedJobs,'blocker')} · ${plural(sourceFailures,'hazard-source failure')}.`);
+    set('produceProgress',`${plural(websiteWaiting.length,'copy packet')}, ${plural(imageWaiting,'image gap')} and ${plural(publicationReady,'trail release')} awaiting Editorial review.`);
+    set('newsletterLifecycleProgress',newsletterReady?'One issue is ready for CEO review.':'Waiting for the next fortnightly assembly.');
   }
 
-  loadDashboard().catch(error=>{
-    setText('dashboardUpdated','Progress data could not be refreshed');
-    const queue=document.getElementById('executiveDecisionQueue');queue.textContent=`Could not load the executive dashboard: ${error.message}`;
-  });
+  load().catch(error=>{set('dashboardUpdated','Progress could not be refreshed');document.getElementById('executiveDecisionQueue').textContent=error.message;});
 })();

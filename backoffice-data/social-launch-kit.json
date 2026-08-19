@@ -1,0 +1,111 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-19T00:00:00.000Z",
+  "mode": "launch-ready-draft-only",
+  "publicMutationAllowed": false,
+  "strategy": {
+    "primaryChannel": "instagram",
+    "crossPostChannel": "facebook",
+    "reservedChannel": "tiktok",
+    "language": "English-first, with Italian place names and concise Italian context where useful",
+    "audience": "Dog owners planning walks in the Dolomites and the French Alps",
+    "promise": "Dog-friendly trails assessed for terrain, shade, water access and exposure — matched to the dog, not just the distance.",
+    "cadence": "Three posts per week for a four-week pilot"
+  },
+  "profiles": [
+    {
+      "channel": "Instagram",
+      "priority": "launch",
+      "preferredHandle": "app.orma",
+      "fallbackHandles": ["apporma", "orma.trails", "walkwithorma"],
+      "displayName": "ORMA",
+      "bio": "The personalised trail guide for dogs and their humans, so every footprint left on the mountain is a safe one. Rooted in the Italian Dolomites.",
+      "link": "https://www.app-orma.com/",
+      "status": "business-account-active-profile-incomplete"
+    },
+    {
+      "channel": "Facebook",
+      "priority": "cross-post",
+      "preferredHandle": "apporma",
+      "fallbackHandles": ["orma.trails", "walkwithorma"],
+      "displayName": "ORMA · Dog-friendly trails",
+      "bio": "Dog-first Alpine trail guidance, assessing terrain, shade, water access and exposure for dogs and their humans.",
+      "link": "https://www.app-orma.com/",
+      "status": "page-and-handle-not-confirmed"
+    },
+    {
+      "channel": "TikTok",
+      "priority": "reserve-only",
+      "preferredHandle": "apporma",
+      "fallbackHandles": ["orma.trails", "walkwithorma"],
+      "displayName": "ORMA · Dog-friendly trails",
+      "bio": "Read the trail through your dog's paws. Dog-first routes in the Alps.",
+      "link": "https://www.app-orma.com/",
+      "status": "reserve-handle-do-not-publish"
+    }
+  ],
+  "voice": {
+    "traits": ["calm", "observant", "practical", "warm", "evidence-aware"],
+    "do": [
+      "Teach one useful thing per post.",
+      "Describe what a dog may experience on the ground.",
+      "Use cautious language for safety, health, access and weather claims.",
+      "Invite people to adapt the walk to the dog and turn back when needed."
+    ],
+    "avoid": [
+      "Calling a trail safe for every dog.",
+      "Treating a weather warning as proof of a trail closure.",
+      "Inventing facts beyond approved ORMA material.",
+      "Generic engagement bait, alarmist hooks or excessive hashtags."
+    ]
+  },
+  "approvedAssets": [
+    {
+      "id": "orma-wordy-post-background-4x5",
+      "path": "images/social/orma-shaded-background-4x5.png",
+      "editableSource": "images/social/orma-shaded-background-4x5.svg",
+      "dimensions": "1080x1350",
+      "use": "Default background for text-led Instagram feed posts and carousel slides",
+      "status": "approved"
+    },
+    {
+      "id": "orma-wordy-post-background-square",
+      "path": "images/social/orma-shaded-background-square.png",
+      "editableSource": "images/social/orma-shaded-background-square.svg",
+      "dimensions": "1080x1080",
+      "use": "Square text-led posts and compatible cross-post placements",
+      "status": "approved"
+    }
+  ],
+  "launchChecklist": [
+    { "id": "handles", "label": "Confirm and reserve the same handle on all three channels", "owner": "CEO", "status": "todo" },
+    { "id": "accounts", "label": "Create Instagram professional account and Facebook Page; reserve TikTok", "owner": "CEO", "status": "todo" },
+    { "id": "security", "label": "Enable two-factor authentication and store recovery codes securely", "owner": "CEO", "status": "todo" },
+    { "id": "profile", "label": "Apply approved profile name, bio, logo and website link", "owner": "CEO", "status": "todo" },
+    { "id": "tracking", "label": "Add channel-specific UTM links and verify website analytics", "owner": "CEO", "status": "todo" },
+    { "id": "newsletter", "label": "Approve or revise the current newsletter before factual reuse", "owner": "CEO", "status": "blocked" },
+    { "id": "assets", "label": "Approve rights and crops for every launch asset", "owner": "CEO", "status": "todo" },
+    { "id": "credentials", "label": "Connect publishing credentials only after the manual pilot", "owner": "CEO", "status": "deferred" }
+  ],
+  "pilotCalendar": [
+    { "week": 1, "slot": "Tuesday", "format": "carousel", "topic": "What makes a trail genuinely dog-friendly?", "lane": "education", "source": "ORMA scoring and product pages", "status": "draft-needed" },
+    { "week": 1, "slot": "Thursday", "format": "founder story", "topic": "Why ORMA means footprint", "lane": "brand", "source": "about.html", "status": "draft-needed" },
+    { "week": 1, "slot": "Saturday", "format": "reel", "topic": "Read a trail through your dog's paws", "lane": "product", "source": "ORMA trail detail experience", "status": "draft-needed" },
+    { "week": 2, "slot": "Tuesday", "format": "carousel", "topic": "Protecting paws on limestone and scree", "lane": "education", "source": "Approved paw-protection guide", "status": "blocked-on-approved-source" },
+    { "week": 2, "slot": "Thursday", "format": "photo", "topic": "A dog-first look at one ORMA trail", "lane": "trail", "source": "Approved ORMA trail dossier", "status": "draft-needed" },
+    { "week": 2, "slot": "Saturday", "format": "reel", "topic": "Distance is only the beginning", "lane": "product", "source": "ORMA scoring explanation", "status": "draft-needed" },
+    { "week": 3, "slot": "Tuesday", "format": "carousel", "topic": "Unknown Alpine plants: caution without guesswork", "lane": "education", "source": "Approved Alpine plants guide", "status": "blocked-on-approved-source" },
+    { "week": 3, "slot": "Thursday", "format": "photo", "topic": "Shade, water and exposure on the same route", "lane": "trail", "source": "Approved ORMA trail dossier", "status": "draft-needed" },
+    { "week": 3, "slot": "Saturday", "format": "reel", "topic": "Match the walk to the dog", "lane": "product", "source": "ORMA dog-profile experience", "status": "draft-needed" },
+    { "week": 4, "slot": "Tuesday", "format": "carousel", "topic": "ORMA Verified does not mean suitable for every dog", "lane": "trust", "source": "ORMA verification policy", "status": "draft-needed" },
+    { "week": 4, "slot": "Thursday", "format": "photo", "topic": "The permission to turn back", "lane": "brand", "source": "ORMA editorial voice", "status": "draft-needed" },
+    { "week": 4, "slot": "Saturday", "format": "reel", "topic": "Plan one Alpine walk with ORMA", "lane": "product", "source": "ORMA planning experience", "status": "draft-needed" }
+  ],
+  "approval": {
+    "requiredGate": "CEO social approval",
+    "assetRightsRequired": true,
+    "sourceApprovalRequired": true,
+    "automaticPublishing": false,
+    "launchStatus": "blocked-until-accounts-and-first-posts-are-approved"
+  }
+}

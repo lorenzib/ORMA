@@ -1,0 +1,87 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-19T10:02:46.000Z",
+  "mode": "draft-only",
+  "publicMutationAllowed": false,
+  "workstream": "website-editorial",
+  "selectionReason": "safety-critical",
+  "subject": {
+    "type": "page",
+    "id": "safety-guide",
+    "sourceRef": "safety-guide.html",
+    "updatedAt": "2026-08-18T21:27:47.000Z",
+    "safetyCritical": true,
+    "original": "Current published safety reference page and editorial-library index."
+  },
+  "outputs": [
+    {
+      "jobId": "page-safety-guide-copy-2026-08-19T10-02-46-000Z",
+      "agentId": "copywriter",
+      "status": "ready-for-review",
+      "responseId": null,
+      "model": "codex",
+      "error": null,
+      "result": {
+        "title": "Correct the main safety-page heat and water advice",
+        "summary": "Replaces clock-based heat advice and untreated-water recommendations with concise, source-backed actions and a clearer emergency threshold.",
+        "changes": [
+          {
+            "section": "Heat and coats summary",
+            "before": "<ul><li>A dense or double coat traps heat; heat load matters more than air temperature.</li><li>Start before 10am on warm days and turn back if panting stays heavy at rest.</li><li>Favour shaded, lakeside and forested routes when it is warm.</li></ul>",
+            "after": "<ul><li>Any dog can overheat; flat-faced, overweight and older dogs, and dogs with thick coats or heart or breathing conditions, need extra caution.</li><li>Reduce pace and distance in warm or humid conditions, choose shade and avoid strenuous exposed sections during the hottest part of the day.</li><li>Heavy panting, drooling, weakness or confusion mean stop, start cooling with cool water and seek veterinary help.</li></ul>",
+            "reason": "Replaces a fixed 10am rule with condition-based prevention and adds practical warning signs and first actions from current veterinary guidance."
+          },
+          {
+            "section": "Water and hydration summary",
+            "before": "<ul><li>Carry more water than you think, plus a collapsible bowl.</li><li>Prefer routes with lake or stream access for cooling and drinking.</li><li>Avoid still, algae-green water; it can make dogs sick.</li></ul>",
+            "after": "<ul><li>Carry enough clean water for your dog, plus a margin for heat, delays and a longer return.</li><li>Do not rely on untreated lakes, streams or troughs for drinking water.</li><li>Keep dogs away from water that is discoloured, scummy, foamy or smells bad; harmful blooms can be toxic.</li></ul>",
+            "reason": "Removes the recommendation to use lakes or streams for drinking and adds the observable harmful-bloom warnings used by public-health authorities."
+          },
+          {
+            "section": "Heat guide library card",
+            "before": "<p>The signs that come before panting, and what to do in the first five minutes.</p>",
+            "after": "<p>How to spot overheating early, start cooling and know when it is an emergency.</p>",
+            "reason": "The existing teaser inaccurately suggests that reliable warning signs precede panting; the replacement matches the reviewed guide."
+          },
+          {
+            "section": "Safety disclaimer and review line",
+            "before": "<p class=\"sg-disclaimer\">This guide is general information, not veterinary advice. If your dog shows signs of heat stress, injury or exhaustion on trail, get them to shade and water first, and to a vet if the symptoms do not resolve quickly.</p>",
+            "after": "<p class=\"sg-disclaimer\">Last reviewed: 19 August 2026. This guide is general information, not veterinary advice. Start cooling a dog with heat-stress signs and contact a veterinarian promptly; difficulty breathing, vomiting, weakness, confusion, unsteady movement, seizures or collapse need urgent veterinary care.</p>",
+            "reason": "Records the substantive source-backed review and removes a wait-for-resolution threshold that could delay emergency veterinary care."
+          }
+        ],
+        "sources": [
+          {
+            "label": "Cornell University College of Veterinary Medicine: Summer heat safety tips for dogs",
+            "url": "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/summer-heat-safety-tips-dogs",
+            "checkedAt": "2026-08-19",
+            "supports": "Supports heat-risk groups, early and emergency signs, cooling with cool water and airflow, and immediate veterinary care for heatstroke signs."
+          },
+          {
+            "label": "Merck Veterinary Manual: What to Do in a Dog or Cat Emergency",
+            "url": "https://www.merckvetmanual.com/special-pet-topics/emergencies/what-to-do-in-a-dog-or-cat-emergency",
+            "checkedAt": "2026-08-19",
+            "supports": "Identifies heatstroke as an emergency and supports cooling the head and body while taking the dog to a veterinarian."
+          },
+          {
+            "label": "CDC: Preventing Pet and Livestock Illnesses Caused by Harmful Algal Blooms",
+            "url": "https://www.cdc.gov/harmful-algal-blooms/prevention/preventing-pet-and-livestock-illnesses.html",
+            "checkedAt": "2026-08-19",
+            "supports": "Supports avoiding suspicious water and identifies discolouration, scum, foam and bad smells as reasons to keep pets away."
+          },
+          {
+            "label": "CDC: Keep pets safe near lakes and rivers",
+            "url": "https://www.cdc.gov/harmful-algal-blooms/media/pdfs/8.5x11_Keep-pets-safe-near-lakes-and-rivers.pdf",
+            "checkedAt": "2026-08-19",
+            "supports": "Advises bringing drinking water for pets and not allowing them to drink lake, river or stream water."
+          }
+        ],
+        "openQuestions": []
+      }
+    }
+  ],
+  "summary": {
+    "readyForReview": 1,
+    "blocked": 0
+  }
+}

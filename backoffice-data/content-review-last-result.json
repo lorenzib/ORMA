@@ -1,23 +1,15 @@
 {
-  "submissionId": "content-review-2026-08-18T19-31-38-110Z",
-  "packetGeneratedAt": "2026-08-18T18:44:00.000Z",
-  "submittedAt": "2026-08-18T19:31:38.110Z",
-  "completedAt": "2026-08-18T19:31:57.398Z",
+  "submissionId": "content-review-2026-08-19T11-56-26-576Z",
+  "packetGeneratedAt": "2026-08-19T10:02:46.000Z",
+  "submittedAt": "2026-08-19T11:56:26.576Z",
+  "completedAt": "2026-08-19T11:58:20.054Z",
   "status": "revision-completed",
   "decisions": [
     {
-      "jobId": "guide-paw-protection-compact-copy-2026-08-18",
+      "jobId": "guide-water-for-dogs-on-trail-copy-2026-08-19T10-02-46-000Z",
       "agentId": "copywriter",
       "action": "request-revision",
-      "note": "remove references to the Dolomites",
-      "reviewedBy": "local-editor",
-      "publicMutationAllowed": false
-    },
-    {
-      "jobId": "guide-paw-protection-compact-image-2026-08-18",
-      "agentId": "visualDirector",
-      "action": "request-revision",
-      "note": "remove references to the Dolomites",
+      "note": "make this way more health related - also make sure that we can insert citation on this page as well\nmake the claim that veterinary advice is always more important than what we say here (write it in a better way)\ninclude the space for images",
       "reviewedBy": "local-editor",
       "publicMutationAllowed": false
     }
@@ -26,7 +18,7 @@
     {
       "status": "revised-for-review",
       "sourceRefs": [
-        "guides/paw-protection.html"
+        "guides/water-for-dogs-on-trail.html"
       ]
     }
   ],

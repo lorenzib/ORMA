@@ -1,0 +1,18 @@
+{
+  "type":"object","additionalProperties":false,
+  "properties":{
+    "executiveSummary":{"type":"string"},
+    "ideas":{"type":"array","minItems":3,"maxItems":8,"items":{
+      "type":"object","additionalProperties":false,
+      "properties":{
+        "id":{"type":"string"},"category":{"type":"string","enum":["competitor-signal","feature","ui","editorial-gap"]},
+        "title":{"type":"string"},"signal":{"type":"string"},"ormaOpportunity":{"type":"string"},"whyNow":{"type":"string"},
+        "impact":{"type":"string","enum":["high","medium","low"]},"confidence":{"type":"string","enum":["high","medium","low"]},
+        "suggestedInvestigation":{"type":"array","items":{"type":"string"}},
+        "sources":{"type":"array","minItems":1,"items":{"type":"object","additionalProperties":false,"properties":{"label":{"type":"string"},"url":{"type":"string"},"checkedAt":{"type":"string"},"supports":{"type":"string"}},"required":["label","url","checkedAt","supports"]}}
+      },
+      "required":["id","category","title","signal","ormaOpportunity","whyNow","impact","confidence","suggestedInvestigation","sources"]
+    }}
+  },
+  "required":["executiveSummary","ideas"]
+}

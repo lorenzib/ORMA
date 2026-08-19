@@ -1,108 +1,114 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-08-18T19:31:57.398Z",
+  "generatedAt": "2026-08-18T21:00:05.277Z",
   "mode": "draft-only",
   "publicMutationAllowed": false,
   "workstream": "website-editorial",
   "selectionReason": "revision-requested",
   "subject": {
     "type": "guide",
-    "id": "paw-protection",
-    "sourceRef": "guides/paw-protection.html",
-    "updatedAt": "2026-08-18T19:31:57.398Z",
-    "original": "Published paw-protection guide with a request to make the approved changes smaller."
+    "id": "alpine-plants-for-dogs",
+    "sourceRef": "guides/alpine-plants-for-dogs.html",
+    "updatedAt": "2026-08-18T21:00:05.277Z",
+    "original": "Current published Alpine plants guide, selected as the next unreviewed guide."
   },
   "outputs": [
     {
-      "jobId": "guide-paw-protection-copy-revision-2026-08-18T19-31-57-398Z",
+      "jobId": "guide-alpine-plants-for-dogs-copy-revision-2026-08-18T21-00-05-277Z",
       "agentId": "copywriter",
       "status": "ready-for-review",
       "responseId": null,
       "model": "codex",
       "error": null,
       "result": {
-        "title": "Remove references to the Dolomites",
-        "summary": "Removes every reference to the Dolomites from the page while preserving the existing paw-protection guidance.",
+        "title": "Complete the Alpine plants guide editorial review",
+        "summary": "Clarifies how to use the safety labels, strengthens the exposure response steps, and preserves every plant classification and the visible editorial-review draft status without suggesting veterinary or botanical approval.",
         "changes": [
           {
-            "section": "Meta description",
-            "before": "<meta name=\"description\" content=\"Sharp limestone and scree wear pads faster than forest trails. How to check, protect and build up your dog's paws in the Dolomites.\">",
-            "after": "<meta name=\"description\" content=\"Sharp limestone and scree wear pads faster than forest trails. How to check, protect and build up your dog's paws on rocky terrain.\">",
-            "reason": "Removes the geographic reference from the search description."
+            "section": "Guide introduction",
+            "before": "<p class=\"section-page-subtitle\">Most plant encounters are harmless, but a few species can make a dog seriously ill if chewed or swallowed. Check ordinary proximity, what to prevent, and what to do after suspected ingestion.</p>",
+            "after": "<p class=\"section-page-subtitle\">Some Alpine plants can make a dog seriously ill if chewed or swallowed. Use this guide to check which encounters need caution, prevent ingestion and respond promptly to a suspected exposure.</p>",
+            "reason": "Removes a broad reassurance and states the guide’s practical purpose more clearly without changing any plant classification."
           },
           {
-            "section": "Open Graph description",
-            "before": "<meta property=\"og:description\" content=\"Sharp limestone and scree wear pads faster than forest trails. How to check, protect and build up your dog's paws in the Dolomites.\">",
-            "after": "<meta property=\"og:description\" content=\"Sharp limestone and scree wear pads faster than forest trails. How to check, protect and build up your dog's paws on rocky terrain.\">",
-            "reason": "Removes the geographic reference from the social sharing description."
+            "section": "Suspected ingestion response",
+            "before": "<p>Move your dog away and prevent more exposure. Call the nearest veterinarian or emergency clinic. For a red-status plant, call immediately and do not wait for symptoms.</p>",
+            "after": "<p>Move your dog away and prevent further exposure. Call a veterinarian or emergency clinic promptly, even if your dog has no symptoms yet. If the plant has red status, say so when you call and treat the situation as urgent.</p>",
+            "reason": "Makes the immediate action clearer and avoids suggesting that an absence of symptoms rules out poisoning."
           },
           {
-            "section": "Hero introduction",
-            "before": "<p class=\"sub section-page-subtitle\">The rock underfoot in the Dolomites is sharper than most trails your dog knows. Pads that cope fine at home can wear through in a single day.</p>",
-            "after": "<p class=\"sub section-page-subtitle\">Rock on rugged trails can be sharper than the surfaces your dog knows. Pads that cope fine at home can wear through in a single day.</p>",
-            "reason": "Removes the geographic reference while retaining the warning about sharp terrain."
+            "section": "Plant safety legend",
+            "before": "<div class=\"apg-legend-item\"><div class=\"apg-badge apg-badge--safe\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3 5 6v5c0 4.5 2.8 7.5 7 9.5 4.2-2 7-5 7-9.5V6l-7-3Z\"/><path d=\"m9 12 2 2 4-5\"/></svg><span>Trail-safe</span></div><p>Safe to walk near or sniff under normal conditions. It never means edible.</p></div>",
+            "after": "<div class=\"apg-legend-item\"><div class=\"apg-badge apg-badge--safe\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 3 5 6v5c0 4.5 2.8 7.5 7 9.5 4.2-2 7-5 7-9.5V6l-7-3Z\"/><path d=\"m9 12 2 2 4-5\"/></svg><span>Trail-safe</span></div><p>Ordinary proximity or sniffing is not identified as a concern in this guide. The label never means edible.</p></div>",
+            "reason": "Preserves the Trail-safe classification while defining its limited scope more precisely."
           },
           {
-            "section": "Opening paragraph",
-            "before": "<p>Limestone in the Dolomites is often sharp-edged rather than smooth and worn, and scree fields concentrate a lot of small, unstable, abrasive rock underfoot. Pads that are fine on forest trails at home can wear down faster than you'd expect over a full day on this kind of surface.</p>",
-            "after": "<p>Limestone can be sharp-edged rather than smooth and worn, and scree fields concentrate a lot of small, unstable, abrasive rock underfoot. Pads that are fine on forest trails at home can wear down faster than you'd expect over a full day on this kind of surface.</p>",
-            "reason": "Removes the geographic reference without changing the terrain guidance."
-          },
-          {
-            "section": "Footer",
-            "before": "<span>© 2026 ORMA · Rooted in the Italian Dolomites</span>",
-            "after": "<span>© 2026 ORMA · Rooted in the mountains</span>",
-            "reason": "Removes the final geographic reference from the page."
+            "section": "Identification limits and editorial status",
+            "before": "<p>All 13 records still require veterinarian and regional botanist sign-off. Until then, the page remains visibly labelled as an editorial-review draft. No unverified plant photographs are shown.</p>",
+            "after": "<p>All 13 records are part of this editorial-review draft and are not presented as approved by a veterinarian or regional botanist. The page remains visibly labelled as a draft, and no unverified plant photographs are shown.</p>",
+            "reason": "Preserves the visible draft status while removing the implication that veterinary or botanical sign-off is expected or has occurred."
           }
         ],
         "sources": [
           {
-            "label": "American Veterinary Medical Association · pet first aid",
-            "url": "https://www.avma.org/resources-tools/pet-owners/emergency-care/first-aid-tips-pet-owners",
+            "label": "Pet Poison Helpline: Approaching an Unknown Plant Exposure",
+            "url": "https://www.petpoisonhelpline.com/uncategorized/approaching-an-unknown-plant-exposure/",
             "checkedAt": "2026-08-18",
-            "supports": "Inspecting an affected paw and seeking veterinary care when an injury is suspected."
+            "supports": "Supports prompt veterinary assessment after an unknown plant exposure and the practical value of plant photographs for identification."
+          },
+          {
+            "label": "VCA Animal Hospitals: Poisoning emergency guidance",
+            "url": "https://vcahospitals.com/premier/know-your-pet/common-emergencies-in-dogs",
+            "checkedAt": "2026-08-18",
+            "supports": "Supports contacting a veterinarian promptly after suspected poisoning and not inducing vomiting unless specifically directed."
+          },
+          {
+            "label": "Pet Poison Helpline: Top Poisonous Plants to Pets",
+            "url": "https://www.petpoisonhelpline.com/pet-owners/basics/top-10-plants-poisonous-to-pets/",
+            "checkedAt": "2026-08-18",
+            "supports": "Supports the warning that signs from some plant poisonings may be delayed and that suspected ingestion should receive prompt veterinary attention."
           }
         ],
         "openQuestions": []
       },
       "revision": {
-        "requestedAt": "2026-08-18T19:31:57.398Z",
-        "instruction": "remove references to the Dolomites"
+        "requestedAt": "2026-08-18T21:00:05.277Z",
+        "instruction": "Run the full editorial review for this next guide. Improve clarity and practical usefulness, preserve all plant classifications and the visible draft status, and do not imply veterinary or botanist sign-off."
       }
     },
     {
-      "jobId": "guide-paw-protection-compact-image-2026-08-18-revision-2026-08-18T19-31-57-398Z",
+      "jobId": "guide-alpine-plants-for-dogs-image-2026-08-18-revision-2026-08-18T21-00-05-277Z",
       "agentId": "visualDirector",
       "status": "ready-for-review",
-      "responseId": "codex-image-revision-2026-08-18",
-      "model": "local-image-optimisation",
+      "responseId": "imagegen-2026-08-18",
+      "model": "gpt-image",
       "error": null,
       "result": {
-        "searchSummary": "The approved hero image was resized and compressed from 2.1 MB to about 180 KB without changing the composition.",
+        "searchSummary": "A new ORMA-owned editorial hero shows a leashed dog being redirected from alpine flowers without implying plant identification.",
         "candidates": [
           {
-            "title": "Compact paw-check hero image",
-            "sourcePageUrl": "images/editorial/paw-check-generated-small-v1.jpg",
-            "assetUrl": "images/editorial/paw-check-generated-small-v1.jpg",
+            "title": "Leashed dog beside alpine plants",
+            "sourcePageUrl": "images/editorial/alpine-plants-dog-safety-v1.jpg",
+            "assetUrl": "images/editorial/alpine-plants-dog-safety-v1.jpg",
             "creator": "Generated for ORMA with OpenAI image generation",
             "license": "Original generated candidate; no third-party stock licence",
             "licenseUrl": null,
             "credit": "ORMA",
-            "matchEvidence": "Same approved image at a web-appropriate file size: approximately 92% smaller.",
-            "altText": "A hiker gently holds a dog's paw to inspect its pads while resting on pale alpine rock.",
+            "matchEvidence": "The owner redirects a leashed dog away from meadow plants, illustrating prevention without presenting an unverified identification image.",
+            "altText": "A hiker gently redirects a leashed dog away from wildflowers in a rocky alpine meadow.",
             "status": "ready",
             "placement": {
-              "sourceRef": "guides/paw-protection.html",
-              "before": "background-image:url('../images/editorial/paw-check-generated-v1.png')",
-              "after": "background-image:url('../images/editorial/paw-check-generated-small-v1.jpg')"
+              "sourceRef": "guides/alpine-plants-for-dogs.html",
+              "before": "</header>\n\n<main class=\"apg-wrap\" id=\"alpinePlantsGuide\">",
+              "after": "</header>\n\n<div style=\"max-width:1120px;margin:18px auto 0;padding:0 24px\"><img src=\"../images/editorial/alpine-plants-dog-safety-v1.jpg\" alt=\"A hiker gently redirects a leashed dog away from wildflowers in a rocky alpine meadow.\" style=\"display:block;width:100%;height:min(420px,48vw);object-fit:cover;border-radius:18px\"></div>\n\n<main class=\"apg-wrap\" id=\"alpinePlantsGuide\">"
             }
           }
         ],
         "coverageGaps": []
       },
       "revision": {
-        "requestedAt": "2026-08-18T19:31:57.398Z",
-        "instruction": "remove references to the Dolomites",
+        "requestedAt": "2026-08-18T21:00:05.277Z",
+        "instruction": "Run the full editorial review for this next guide. Improve clarity and practical usefulness, preserve all plant classifications and the visible draft status, and do not imply veterinary or botanist sign-off.",
         "resolution": "Existing picture recommendation retained for editorial revision."
       }
     }

@@ -1,0 +1,11 @@
+{
+  "type":"object","additionalProperties":false,
+  "properties":{
+    "conclusion":{"type":"string"},
+    "findings":{"type":"array","items":{"type":"object","additionalProperties":false,"properties":{"competitor":{"type":"string"},"finding":{"type":"string"},"implicationForOrma":{"type":"string"}},"required":["competitor","finding","implicationForOrma"]}},
+    "recommendation":{"type":"string","enum":["prioritise","prototype","monitor","do-not-pursue"]},
+    "nextQuestions":{"type":"array","items":{"type":"string"}},
+    "sources":{"type":"array","items":{"type":"object","additionalProperties":false,"properties":{"label":{"type":"string"},"url":{"type":"string"},"checkedAt":{"type":"string"},"supports":{"type":"string"}},"required":["label","url","checkedAt","supports"]}}
+  },
+  "required":["conclusion","findings","recommendation","nextQuestions","sources"]
+}

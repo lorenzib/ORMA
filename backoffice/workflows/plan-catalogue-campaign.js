@@ -66,7 +66,7 @@ function campaignItem(trail){
     trailId: trail.id,
     name: trail.name,
     origin: trail.curated === false ? 'imported' : 'curated',
-    publicRecordPresent: true,
+    publicRecordPresent: trail.publicRecordPresent !== false,
     modernGraduationVerified: verified,
     externalRelationId: externalId,
     campaignState: verified

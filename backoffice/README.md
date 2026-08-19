@@ -1,9 +1,15 @@
 # ORMA Backoffice MVP
 
+> **Current operating contract:**
+> [`OPERATING_STANDARD.md`](./OPERATING_STANDARD.md) defines the six-team model,
+> CEO review gates, cadences, and publishing behaviour that all new backoffice
+> work must preserve. Where older MVP notes below conflict with that standard,
+> the operating standard takes precedence.
+
 This directory contains ORMA's private, evidence-first trail production
 pipeline. It is deliberately separate from the public trail catalogue.
 
-## Current scope
+## Historical implementation notes
 
 The first workflow reads an existing OpenStreetMap snapshot, runs deterministic
 geometry and hard-disqualifier checks, and writes a bounded local review queue.
@@ -160,7 +166,7 @@ is idempotent: one human publication approval can produce only one override.
 
 One-time repository secrets:
 
-- `OPENAI_API_KEY`: server-side OpenAI project key.
+- `OPEN_API_KEY`: server-side OpenAI project key used by GitHub Actions.
 - `FIREBASE_SERVICE_ACCOUNT`: the complete Firebase service-account JSON.
 
 Seed the existing verified-trail state once from an authorized operator shell:
@@ -182,7 +188,10 @@ the JSON/server adapter for development and contract testing.
 4. In GitHub Actions settings, allow workflows to create pull requests.
 5. Run `npm run backoffice:seed:live` once from an authorized operator shell.
 6. Start **ORMA backoffice worker** once with **Run workflow** and confirm it is
-   green; the five-minute schedule takes over afterward.
+   green.
+7. Set `ORMA_WORKER_AUTOMATION_ENABLED=true` only after the controlled run has
+   reached the expected human gate. Enable the separate campaign variable only
+   when automatic catalogue admission is also approved.
 
 The moderator reviews verification work at `/trail-dossier-desk.html`, then
 reviews copy and pictures at `/trail-content-desk.html` only after a dossier is
@@ -192,11 +201,34 @@ another pass. **Approve for PR creation** is a second, separate human gate.
 The resulting GitHub pull request is the final website diff and must still be
 reviewed and merged.
 
-The live trail-verification vertical now includes Cartographer, Logistics,
+The live trail-verification vertical includes Cartographer, Logistics,
 Regulatory Ranger, Terrain & POI, Evidence Librarian and Red Team execution,
-plus the verified-trail Copywriter and Visual Director revision loop. Scout,
-Groundskeeper and market discovery remain separate expansion tracks and should
-not yet be described as autonomous.
+plus the verified-trail Copywriter and Visual Director revision loop. New Trail
+scouting, dynamic hazard monitoring, image coverage, Newsletter and Analyst
+packets are separate team workflows with their own desks and human gates. Their
+code being present does not mean their schedules are active.
+
+## Six-team operating commands
+
+Run the broader review preparation locally with:
+
+```sh
+npm run backoffice:strategy-cycle
+npm run backoffice:hazard-watch
+npm run backoffice:review
+```
+
+The strategy cycle preserves unresolved work, keeps exactly three Editorial
+copy packets active, refreshes image coverage and New Trail candidates, and
+creates Newsletter and Analyst packets only when due. It prepares decisions;
+it does not publish. The CEO dashboard links to the dedicated desks for each
+queue, while Social remains launch-gated.
+
+The hosted hazard workflow is inert unless it is started manually or the
+repository variable `ORMA_HAZARD_AUTOMATION_ENABLED` is set to `true`. New
+Trail intake is also inert until manually dispatched or
+`ORMA_NEW_TRAIL_AUTOMATION_ENABLED` is enabled. A selected candidate enters the
+Existing Trails verification fleet; selection never publishes a trail.
 
 ### Automatic verification cycle
 

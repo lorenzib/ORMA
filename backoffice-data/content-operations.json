@@ -1,7 +1,7 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-08-18T14:01:07.254Z",
-  "cycleDate": "2026-08-18",
+  "generatedAt": "2026-08-19T13:17:40.358Z",
+  "cycleDate": "2026-08-19",
   "mode": "draft-only",
   "publicMutationAllowed": false,
   "editorialPolicy": {
@@ -24,23 +24,23 @@
         "picture shortlist",
         "source and freshness notes"
       ],
-      "cycleDate": "2026-08-18",
-      "nextRunOn": "2026-08-25"
+      "cycleDate": "2026-08-19",
+      "nextRunOn": "2026-08-26"
     },
     {
       "id": "collections",
       "label": "Collections",
-      "cadence": "weekly",
-      "status": "active",
-      "goal": "Create or refresh one intent-led trail collection using existing verified catalogue facts.",
+      "cadence": "on-demand",
+      "status": "parked",
+      "goal": "Maintain collections when catalogue composition changes; do not include them in the weekly freshness rotation.",
       "outputs": [
         "collection concept",
         "title and description draft",
         "trail inclusion rationale",
         "cover picture shortlist"
       ],
-      "cycleDate": "2026-08-18",
-      "nextRunOn": "2026-08-25"
+      "cycleDate": "2026-08-19",
+      "nextRunOn": null
     },
     {
       "id": "newsletter",
@@ -55,30 +55,30 @@
         "picture shortlist",
         "link plan"
       ],
-      "cycleDate": "2026-08-18",
-      "nextRunOn": "2026-09-01"
+      "cycleDate": "2026-08-19",
+      "nextRunOn": "2026-09-02"
     },
     {
       "id": "library-enrichment",
       "label": "Library enrichment",
       "cadence": "weekly",
       "status": "active",
-      "goal": "Audit the guide library for stale or missing material and propose evidence-backed updates.",
+      "goal": "Audit guides and articles for stale or missing material, propose evidence-backed updates and record a last-reviewed date.",
       "outputs": [
         "freshness audit",
         "update priorities",
         "edited drafts",
         "replacement picture candidates"
       ],
-      "cycleDate": "2026-08-18",
-      "nextRunOn": "2026-08-25"
+      "cycleDate": "2026-08-19",
+      "nextRunOn": "2026-08-26"
     },
     {
       "id": "social",
       "label": "Social media",
       "cadence": "weekly-after-launch",
       "status": "parked",
-      "goal": "Turn approved ORMA content into a channel-ready editorial queue after social launch.",
+      "goal": "Turn an approved newsletter into Instagram, Facebook and TikTok drafts, plus one ORMA feature-education post after social launch.",
       "outputs": [
         "post concepts",
         "captions",
@@ -86,14 +86,14 @@
         "alt text",
         "source links"
       ],
-      "cycleDate": "2026-08-18",
+      "cycleDate": "2026-08-19",
       "nextRunOn": null
     }
   ],
   "jobs": [
     {
       "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-18-guides-edit",
+      "id": "content-ops-2026-08-19-guides-edit",
       "agentId": "copywriter",
       "action": "edit-guides",
       "candidateId": null,
@@ -104,14 +104,14 @@
       ],
       "outputRefs": [],
       "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-18T14:01:07.254Z",
+      "createdAt": "2026-08-19T13:17:40.358Z",
       "startedAt": null,
       "completedAt": null,
       "humanGate": "editorial-approval"
     },
     {
       "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-18-guides-pictures",
+      "id": "content-ops-2026-08-19-guides-pictures",
       "agentId": "visualDirector",
       "action": "gather-pictures-guides",
       "candidateId": null,
@@ -122,50 +122,14 @@
       ],
       "outputRefs": [],
       "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-18T14:01:07.254Z",
+      "createdAt": "2026-08-19T13:17:40.358Z",
       "startedAt": null,
       "completedAt": null,
       "humanGate": "asset-and-licensing-approval"
     },
     {
       "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-18-collections-edit",
-      "agentId": "copywriter",
-      "action": "edit-collections",
-      "candidateId": null,
-      "claimIds": [],
-      "status": "queued",
-      "inputRefs": [
-        "content-operations/workstreams/collections"
-      ],
-      "outputRefs": [],
-      "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-18T14:01:07.254Z",
-      "startedAt": null,
-      "completedAt": null,
-      "humanGate": "editorial-approval"
-    },
-    {
-      "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-18-collections-pictures",
-      "agentId": "visualDirector",
-      "action": "gather-pictures-collections",
-      "candidateId": null,
-      "claimIds": [],
-      "status": "queued",
-      "inputRefs": [
-        "content-operations/workstreams/collections"
-      ],
-      "outputRefs": [],
-      "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-18T14:01:07.254Z",
-      "startedAt": null,
-      "completedAt": null,
-      "humanGate": "asset-and-licensing-approval"
-    },
-    {
-      "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-18-newsletter-edit",
+      "id": "content-ops-2026-08-19-newsletter-edit",
       "agentId": "copywriter",
       "action": "edit-newsletter",
       "candidateId": null,
@@ -176,14 +140,14 @@
       ],
       "outputRefs": [],
       "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-18T14:01:07.254Z",
+      "createdAt": "2026-08-19T13:17:40.358Z",
       "startedAt": null,
       "completedAt": null,
       "humanGate": "editorial-approval"
     },
     {
       "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-18-newsletter-pictures",
+      "id": "content-ops-2026-08-19-newsletter-pictures",
       "agentId": "visualDirector",
       "action": "gather-pictures-newsletter",
       "candidateId": null,
@@ -194,14 +158,14 @@
       ],
       "outputRefs": [],
       "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-18T14:01:07.254Z",
+      "createdAt": "2026-08-19T13:17:40.358Z",
       "startedAt": null,
       "completedAt": null,
       "humanGate": "asset-and-licensing-approval"
     },
     {
       "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-18-library-enrichment-edit",
+      "id": "content-ops-2026-08-19-library-enrichment-edit",
       "agentId": "copywriter",
       "action": "edit-library-enrichment",
       "candidateId": null,
@@ -212,14 +176,14 @@
       ],
       "outputRefs": [],
       "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-18T14:01:07.254Z",
+      "createdAt": "2026-08-19T13:17:40.358Z",
       "startedAt": null,
       "completedAt": null,
       "humanGate": "editorial-approval"
     },
     {
       "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-18-library-enrichment-pictures",
+      "id": "content-ops-2026-08-19-library-enrichment-pictures",
       "agentId": "visualDirector",
       "action": "gather-pictures-library-enrichment",
       "candidateId": null,
@@ -230,15 +194,15 @@
       ],
       "outputRefs": [],
       "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-18T14:01:07.254Z",
+      "createdAt": "2026-08-19T13:17:40.358Z",
       "startedAt": null,
       "completedAt": null,
       "humanGate": "asset-and-licensing-approval"
     }
   ],
   "summary": {
-    "activeWorkstreams": 4,
-    "parkedWorkstreams": 1,
-    "jobs": 8
+    "activeWorkstreams": 3,
+    "parkedWorkstreams": 2,
+    "jobs": 6
   }
 }
