@@ -225,10 +225,12 @@ it does not publish. The CEO dashboard links to the dedicated desks for each
 queue, while Social remains launch-gated.
 
 The hosted hazard workflow is inert unless it is started manually or the
-repository variable `ORMA_HAZARD_AUTOMATION_ENABLED` is set to `true`. New
-Trail intake is also inert until manually dispatched or
-`ORMA_NEW_TRAIL_AUTOMATION_ENABLED` is enabled. A selected candidate enters the
-Existing Trails verification fleet; selection never publishes a trail.
+repository variable `ORMA_HAZARD_AUTOMATION_ENABLED` is set to `true`. A run
+opens or updates a dedicated hazard pull request; merging that reviewed PR is
+the public warning gate. New Trail intake is also inert until manually
+dispatched or `ORMA_NEW_TRAIL_AUTOMATION_ENABLED` is enabled. A selected
+candidate enters the Existing Trails verification fleet; selection never
+publishes a trail.
 
 ### Automatic verification cycle
 
