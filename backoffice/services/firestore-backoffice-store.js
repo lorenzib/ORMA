@@ -11,6 +11,20 @@ const COLLECTIONS = Object.freeze({
   dossierReviews: 'backofficeDossierReviews',
 });
 const configuredDatabases = new WeakSet();
+const ARTIFACT_DATA_ENCODING = 'json-v1';
+
+function encodeArtifactData(data){
+  const encoded = JSON.stringify(data);
+  if(encoded === undefined) throw new TypeError('Backoffice artifact data must be JSON-serializable');
+  return { data:encoded, dataEncoding:ARTIFACT_DATA_ENCODING };
+}
+
+function decodeArtifactData(document){
+  if(!document) return null;
+  return document.dataEncoding === ARTIFACT_DATA_ENCODING
+    ? JSON.parse(document.data)
+    : document.data;
+}
 
 function adminApp(options = {}){
   if(getApps().length) return getApps()[0];
@@ -33,13 +47,13 @@ class FirestoreBackofficeStore {
 
   async getArtifact(id){
     const snapshot = await this.db.collection(COLLECTIONS.artifacts).doc(id).get();
-    return snapshot.exists ? snapshot.data().data : null;
+    return snapshot.exists ? decodeArtifactData(snapshot.data()) : null;
   }
 
   async setArtifact(id, data, metadata = {}){
     await this.db.collection(COLLECTIONS.artifacts).doc(id).set({
-      contractVersion: '1.0.0', artifactId: id, data,
-      updatedAt: FieldValue.serverTimestamp(), ...metadata,
+      contractVersion: '1.0.0', artifactId: id, ...metadata,
+      ...encodeArtifactData(data), updatedAt: FieldValue.serverTimestamp(),
     }, { merge: true });
   }
 
@@ -47,7 +61,8 @@ class FirestoreBackofficeStore {
     const ref=this.db.collection(COLLECTIONS.artifacts).doc(id);
     return this.db.runTransaction(async transaction=>{
       const snapshot=await transaction.get(ref);if(snapshot.exists)return false;
-      transaction.set(ref,{contractVersion:'1.0.0',artifactId:id,data,updatedAt:FieldValue.serverTimestamp(),...metadata});return true;
+      transaction.set(ref,{contractVersion:'1.0.0',artifactId:id,...metadata,
+        ...encodeArtifactData(data),updatedAt:FieldValue.serverTimestamp()});return true;
     });
   }
 
@@ -172,4 +187,7 @@ class FirestoreBackofficeStore {
   }
 }
 
-module.exports = { COLLECTIONS, adminApp, backofficeDb, FirestoreBackofficeStore };
+module.exports = {
+  COLLECTIONS, ARTIFACT_DATA_ENCODING, encodeArtifactData, decodeArtifactData,
+  adminApp, backofficeDb, FirestoreBackofficeStore,
+};

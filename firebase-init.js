@@ -1077,9 +1077,12 @@ async function getBackofficeArtifact(artifactId) {
   if (!await moderatorIdentity()) return { ok:false, error:'moderator-required', data:null };
   try {
     const snapshot = await getDoc(doc(db, 'backofficeArtifacts', artifactId));
-    return snapshot.exists()
-      ? { ok:true, data:snapshot.data().data, updatedAt:snapshot.data().updatedAt || null }
-      : { ok:false, error:'artifact-not-found', data:null };
+    if(!snapshot.exists()) return { ok:false, error:'artifact-not-found', data:null };
+    const artifact = snapshot.data();
+    const data = artifact.dataEncoding === 'json-v1'
+      ? JSON.parse(artifact.data)
+      : artifact.data;
+    return { ok:true, data, updatedAt:artifact.updatedAt || null };
   } catch (error) {
     console.error('getBackofficeArtifact failed:', error);
     return { ok:false, error:'artifact-read-failed', data:null };
