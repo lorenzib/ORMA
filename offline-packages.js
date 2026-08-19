@@ -628,10 +628,9 @@
     const panel = document.getElementById('offlinePackagePanel');
     const downloadButton = document.getElementById('offlineDownloadBtn');
     const openButton = document.getElementById('offlineOpenBtn');
-    const testButton = document.getElementById('offlineTestBtn');
     const removeButton = document.getElementById('offlineRemoveBtn');
     const status = document.getElementById('offlinePackageStatus');
-    if(!panel || !downloadButton || !openButton || !testButton || !removeButton || !status) return;
+    if(!panel || !downloadButton || !openButton || !removeButton || !status) return;
 
     const trailId = new URLSearchParams(window.location.search).get('id');
     if(!PACKAGES[trailId]) return;
@@ -665,7 +664,6 @@
         )
         : null;
       openButton.hidden = !inspection.usable;
-      testButton.hidden = !inspection.usable;
       removeButton.hidden = !inspection.hasLocalData;
       downloadButton.hidden = (
         inspection.state === 'ready' ||
@@ -748,7 +746,7 @@
         );
       }else if(signedIn()){
         setStatus(
-          tr('offlinePanel.notDownloaded.signedIn', 'Not downloaded on this device. Download it, then run the offline self-test.'),
+          tr('offlinePanel.notDownloaded.signedIn', 'Not downloaded on this device.'),
           'not-downloaded'
         );
         downloadButton.textContent = tr('offlinePanel.action.download', 'Download offline map');
@@ -829,43 +827,6 @@
     }
 
     downloadButton.addEventListener('click', download);
-    testButton.addEventListener('click', async () => {
-      testButton.disabled = true;
-      setStatus(tr('downloads.test.preparing', 'Testing required resources from this device…'), 'checking');
-      const result = await verifyInstalledPackage(
-        trailId,
-        (current, total, resource) => {
-          setStatus(
-            tr('downloads.test.progress', 'Testing {current} of {total}: {resource}', {
-              current, total, resource:resource.label || resource.url,
-            }),
-            'checking'
-          );
-        }
-      );
-      testButton.disabled = false;
-      if(result.usable){
-        if(window.DoloPawsMetricFunnel){
-          window.DoloPawsMetricFunnel.recordOnce(
-            'airplane-test', trailId, 'offline_package', 'airplane_test_passed', { trailId }
-          );
-        }
-        setStatus(
-          tr('offlinePanel.test.passed', 'Offline self-test passed: {count} required resources were checksum-verified from this device.', { count:result.requiredChecked }) + ` ${
-            result.state === 'stale'
-              ? tr('offlinePanel.test.stale', 'The stored map works, but content review is stale.')
-              : tr('offlinePanel.test.airplane', 'You can now switch to airplane mode and open the map.')
-          }`,
-          result.state
-        );
-      }else{
-        setStatus(
-          `${result.message || tr('offlinePanel.test.failed', 'The offline self-test failed.')} ` +
-          tr('downloads.test.notReady', 'This package is not ready offline.'),
-          result.state === 'incomplete' ? 'incomplete' : 'failed'
-        );
-      }
-    });
     removeButton.addEventListener('click', async () => {
       removeButton.disabled = true;
       setStatus(tr('offlinePanel.remove.removing', 'Removing this trail from this device…'), 'removing');

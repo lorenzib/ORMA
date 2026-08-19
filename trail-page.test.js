@@ -155,13 +155,14 @@ describe('trail page map controls', () => {
   test('map-rendering scripts rotate their cache keys with the detail markup', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
 
-    expect(html).toContain('i18n.js?v=20260819-3');
+    expect(html).toContain('i18n.js?v=20260819-4');
     expect(html).toContain('trail.js?v=20260819-3');
-    expect(html).toContain('trail-blueprint.js?v=20260819-4');
+    expect(html).toContain('trail-blueprint.js?v=20260819-6');
     expect(html).toContain('trail-recommendation.js?v=20260819-4');
+    expect(html).toContain('offline-packages.js?v=20260819-5');
   });
 
-  test('the map workspace keeps dog fit and elevation together while weather stays in the hero', () => {
+  test('the map workspace places elevation below the map while dog fit stays alongside it', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     document.body.innerHTML = html;
 
@@ -170,14 +171,16 @@ describe('trail page map controls', () => {
     expect(heroWeather.querySelector('#sideForecast').tagName).toBe('DETAILS');
 
     const workspace = document.querySelector('.td2-workspace');
-    expect(workspace.firstElementChild.classList.contains('td2-mapcard')).toBe(true);
+    const mapStack = workspace.querySelector('.td2-map-stack');
+    expect(workspace.firstElementChild).toBe(mapStack);
+    expect(mapStack.firstElementChild.classList.contains('td2-mapcard')).toBe(true);
+    expect(mapStack.lastElementChild.id).toBe('tdElevationPanel');
     const plan = workspace.querySelector('.td2-plan-stack');
     const fit = plan.querySelector('.td2-fit-shell');
     const safety = fit.querySelector('#td2SafetyCard');
     const guides = safety.querySelector('#trailGuideLinks');
     expect(fit.querySelector('#recommendationDecision')).not.toBeNull();
     expect(guides).not.toBeNull();
-    expect(plan.lastElementChild.id).toBe('tdElevationPanel');
     expect(document.getElementById('td2DogCard')).toBeNull();
   });
 
@@ -187,16 +190,25 @@ describe('trail page map controls', () => {
 
     const story = document.querySelector('.td2-story');
     expect(Array.from(story.children).map(node => node.id)).toEqual([
-      'td2AboutCard', 'td2PhotosCard', 'td2ReviewsCard'
+      'td2AboutCard', 'td2ParkingCard', 'td2PhotosCard', 'td2ReviewsCard'
     ]);
     const logistics = document.querySelector('.td2-logistics');
     expect(Array.from(logistics.children).map(node => node.id)).toEqual([
-      'td2Hazards', 'td2ParkingCard'
+      'td2Hazards'
     ]);
     const gettingThere = document.getElementById('td2ParkingCard');
     expect(gettingThere.hidden).toBe(false);
     expect(gettingThere.querySelector('.td2-kick').textContent.trim()).toBe('Getting there');
     expect(html).toContain('.td2-workspace,.td2-lower-grid{grid-template-columns:1fr;}');
+    expect(html).not.toContain('id="offlineTestBtn"');
+  });
+
+  test('card copy normalises long dash separators', () => {
+    const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
+
+    expect(blueprint).toContain(".replace(/\\s*(?:—|--)+\\s*/g, '. ')");
+    expect(blueprint).toContain('descEl.textContent = cardCopy(t.desc)');
+    expect(blueprint).not.toContain('is warm — walk early');
   });
 
   test('the hero groups compact facts, weather, and every primary trail action', () => {
