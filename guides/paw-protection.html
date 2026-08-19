@@ -20,13 +20,74 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css?v=20260818-17">
 <style>
-  .gp-body{max-width:760px;margin:0 auto;padding:10px 20px 60px;}
-  .gp-body h2{margin-top:34px;}
-  .gp-src{font-size:.85rem;color:var(--ink-soft,#666);}
-  .gp-callout{background:rgba(0,0,0,.035);border-left:4px solid var(--accent-light,#C8D6C0);border-radius:8px;padding:14px 18px;margin:18px 0;}
-  .gp-cta{display:inline-block;margin:10px 0 6px;padding:12px 22px;background:#2E4034;color:#fff;border-radius:10px;font-weight:600;text-decoration:none;}
-  .gp-hero-photo{max-width:900px;margin:18px auto 0;padding:0 20px;}
-  .gp-hero-photo__inner{height:280px;border-radius:16px;background:#e8e4d8 center/cover no-repeat;}
+  .paw-guide{padding-bottom:54px;}
+  .paw-guide h1,.paw-guide h2,.paw-guide h3{font-family:"Bricolage Grotesque",sans-serif;}
+  .paw-hero.guide-hero{display:grid;grid-template-columns:minmax(0,.86fr) minmax(430px,1.14fr);gap:42px;align-items:center;padding-top:34px;padding-bottom:24px;}
+  .paw-hero-copy{max-width:570px;}
+  .paw-hero h1{max-width:570px;margin:12px 0 13px;font-size:clamp(38px,4.3vw,62px);line-height:.98;letter-spacing:-.035em;text-wrap:balance;}
+  .paw-hero .section-page-subtitle{max-width:570px;margin:0;font-size:clamp(16px,1.35vw,20px);line-height:1.55;white-space:normal;text-wrap:pretty;}
+  .paw-hero-photo{margin:0;}
+  .paw-hero-photo__inner{min-height:320px;border-radius:22px;background:#e8e4d8 center 48%/cover no-repeat;box-shadow:0 14px 36px rgba(46,64,52,.11);}
+
+  .paw-surface{margin-top:14px;padding:30px max(var(--wrap-gutter,32px),calc((100vw - var(--wrap,1200px))/2 + var(--wrap-gutter,32px))) 32px;background:#dcecef;}
+  .paw-surface-head{display:grid;grid-template-columns:minmax(240px,.7fr) minmax(0,1.3fr);gap:44px;align-items:end;max-width:var(--wrap,1200px);margin:0 auto 20px;}
+  .paw-surface h2{margin:0;font-size:clamp(31px,3vw,43px);line-height:1;letter-spacing:-.025em;}
+  .paw-surface-head p{max-width:690px;margin:0;color:#4f686e;font-size:1rem;line-height:1.58;}
+  .paw-terrain-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:var(--wrap,1200px);margin:0 auto;}
+  .paw-terrain-strip figure{margin:0;}
+  .paw-terrain-strip img{display:block;width:100%;height:190px;border-radius:14px;object-fit:cover;}
+  .paw-terrain-strip figcaption{padding-top:10px;}
+  .paw-terrain-strip strong{display:block;font-size:1rem;}
+  .paw-terrain-strip span{display:block;margin-top:4px;color:#536970;font-size:.88rem;line-height:1.45;}
+
+  .paw-content{max-width:var(--wrap,1200px);margin:0 auto;padding:34px var(--wrap-gutter,32px) 0;}
+  .paw-conditioning{display:grid;grid-template-columns:minmax(260px,.82fr) minmax(0,1.18fr);gap:50px;align-items:start;}
+  .paw-conditioning h2{max-width:480px;margin:10px 0 13px;font-size:clamp(30px,3.1vw,44px);line-height:1.03;letter-spacing:-.025em;text-wrap:balance;}
+  .paw-conditioning-copy{max-width:510px;margin:0;color:#647469;line-height:1.62;}
+  .paw-principle{display:inline-block;margin:18px 0 0;padding-bottom:4px;border-bottom:3px solid #2f8292;color:#2e4034;font-weight:700;white-space:nowrap;}
+  .paw-training-line{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid #cfd5cd;}
+  .paw-training-step{padding:18px 18px 4px 0;}
+  .paw-training-step+.paw-training-step{padding-left:20px;border-left:1px solid #cfd5cd;}
+  .paw-training-step strong{display:block;margin-bottom:7px;color:#2f8292;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;}
+  .paw-training-step span{display:block;color:#5e6d63;font-size:.93rem;line-height:1.52;}
+
+  .paw-vet{display:grid;grid-template-columns:minmax(230px,.7fr) minmax(0,1.3fr);gap:38px;align-items:start;margin-top:30px;padding:20px 0;border-top:4px solid #c86835;border-bottom:1px solid #d9c5b7;scroll-margin-top:90px;}
+  .paw-vet h2{margin:0;font-size:clamp(25px,2.4vw,34px);line-height:1.08;}
+  .paw-vet p{margin:0;color:#6c5a4e;line-height:1.58;}
+  .paw-vet strong{color:#8b3d1c;}
+
+  .paw-guide-footer{display:flex;align-items:center;justify-content:space-between;gap:32px;margin-top:24px;}
+  .paw-related{margin:0;color:#65766b;line-height:1.65;}
+  .paw-related a{font-weight:700;}
+  .paw-cta{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:12px;background:#2e4034;color:#fff;font-weight:700;text-decoration:none;white-space:nowrap;}
+  .paw-cta:hover,.paw-cta:focus-visible{background:#223129;outline:3px solid rgba(44,119,133,.25);outline-offset:2px;}
+  .paw-src{max-width:900px;margin:18px 0 0;color:#7b897f;font-size:.8rem;line-height:1.5;}
+  .paw-src a{color:inherit;font-weight:700;}
+
+  @media(max-width:980px){
+    .paw-hero.guide-hero{grid-template-columns:1fr;gap:24px;}
+    .paw-hero-copy{max-width:760px;}
+    .paw-hero-photo__inner{min-height:300px;}
+    .paw-surface-head,.paw-conditioning,.paw-vet{grid-template-columns:1fr;gap:18px;}
+    .paw-principle{white-space:normal;}
+  }
+  @media(max-width:720px){
+    .paw-guide{padding-bottom:42px;}
+    .paw-hero.guide-hero{padding:24px 18px 20px;}
+    .paw-hero h1{font-size:clamp(36px,12vw,48px);}
+    .paw-hero-photo__inner{min-height:230px;border-radius:18px;}
+    .paw-surface{margin-top:8px;padding:24px 18px 26px;}
+    .paw-surface-head{margin-bottom:16px;}
+    .paw-terrain-strip{grid-template-columns:1fr;gap:18px;}
+    .paw-terrain-strip img{height:175px;}
+    .paw-content{padding:28px 18px 0;}
+    .paw-training-line{grid-template-columns:1fr;}
+    .paw-training-step{padding:15px 0;}
+    .paw-training-step+.paw-training-step{padding-left:0;border-top:1px solid #cfd5cd;border-left:0;}
+    .paw-vet{margin-top:24px;padding:17px 0;}
+    .paw-guide-footer{align-items:stretch;flex-direction:column;gap:18px;}
+    .paw-cta{width:100%;}
+  }
 </style>
 </head>
 <body>
@@ -42,31 +103,78 @@
   </div>
 </div>
 
-<div class="guide-hero section-page-head">
-  <div class="eyebrow">Guides · Paws & terrain</div>
-  <h1 style="font-size:clamp(28px,5vw,38px);margin-top:14px;">Protecting paw pads on rocky terrain</h1>
-  <p class="sub section-page-subtitle">Rock on rugged trails can be sharper than the surfaces your dog knows. Pads that cope fine at home can wear through in a single day.</p>
-</div>
+<main class="paw-guide">
+  <section class="guide-hero section-page-head paw-hero">
+    <div class="paw-hero-copy">
+      <div class="eyebrow">Guide · Paws &amp; terrain</div>
+      <h1>Rock changes the walk.</h1>
+      <p class="sub section-page-subtitle">Pads that cope at home can wear through in a day. The safest plan begins with the surface underfoot, then follows a simple routine: prepare, check and respond.</p>
+    </div>
+    <figure class="paw-hero-photo">
+      <div class="paw-hero-photo__inner" style="background-image:url('../images/editorial/paw-check-generated-small-v1.jpg')" role="img" aria-label="A hiker gently holds a dog's paw to inspect its pads while resting on pale alpine rock."></div>
+    </figure>
+  </section>
 
-<div class="gp-hero-photo"><div class="gp-hero-photo__inner" style="background-image:url('../images/editorial/paw-check-generated-small-v1.jpg')" role="img" aria-label="A hiker gently holds a dog's paw to inspect its pads while resting on pale alpine rock."></div></div>
+  <section class="paw-surface" aria-labelledby="read-surface-title">
+    <div class="paw-surface-head">
+      <h2 id="read-surface-title">Read the surface.</h2>
+      <p>Texture matters more than temperature alone. Look at what your dog will repeat for hours, not only the hardest-looking section.</p>
+    </div>
+    <div class="paw-terrain-strip">
+      <figure>
+        <img src="../images/editorial/paw-terrain-limestone-real-v1.jpg" alt="Close view of a pale limestone trail with rough, angular edges">
+        <figcaption><strong>Sharp limestone</strong><span>Edges and repeated hard contact can wear pads quickly.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../images/editorial/paw-terrain-scree-real-v1.jpg" alt="Loose angular stones covering a steep alpine scree trail">
+        <figcaption><strong>Loose scree</strong><span>Unstable, abrasive stone increases slipping and friction.</span></figcaption>
+      </figure>
+      <figure>
+        <img src="../images/editorial/paw-terrain-compact-real-v1.jpg" alt="Natural compact earth trail mixed with rounded stones">
+        <figcaption><strong>Compact trail</strong><span>More even footing, but regular checks still matter.</span></figcaption>
+      </figure>
+    </div>
+  </section>
 
-<div class="gp-body">
-  <p>Limestone can be sharp-edged rather than smooth and worn, and scree fields concentrate a lot of small, unstable, abrasive rock underfoot. Pads that are fine on forest trails at home can wear down faster than you'd expect over a full day on this kind of surface.</p>
-  <h2>What to do</h2>
-  <ul>
-    <li>Check every paw at rest stops, including between the toes. Stop for redness, cuts, debris or sensitivity.</li>
-    <li>Test trail booties on a short walk before using them on long scree or sharp-rock routes.</li>
-    <li>Build up to rocky terrain gradually over a trip rather than starting with the hardest route.</li>
-    <li>Cold or wet rock in early morning can be just as abrasive as hot rock later. It's the texture, not just the temperature, that matters.</li>
-    <li>If a pad is cut or torn, stop walking and rinse it with clean water. Remove only loose, easily reached debris. Do not dig into the pad or pull out a deeply embedded object.</li>
-    <li>For bleeding, press a clean cloth or gauze firmly against the wound without repeatedly lifting it to check. Once controlled, cover the paw with a clean, non-stick dressing for transport and keep the wrap loose enough not to restrict circulation.</li>
-    <li>Contact a veterinarian about any open pad wound. Seek emergency veterinary care for severe bleeding, bleeding that has not stopped after 10 to 15 minutes of steady pressure, a deep or gaping wound, exposed tissue, a deeply embedded object, or if your dog cannot stand or walk. Keep the dog still and call the clinic while arranging transport.</li>
-  </ul>
-  <div class="gp-callout"><strong>Read the surface tag before you go.</strong> Every ORMA trail carries a terrain rank and a surface-hazard list. A route flagged for scree or sharp rock is exactly where booties and pad checks earn their place.</div>
-  <p style="margin-top:24px;">Related: <a href="water-for-dogs-on-trail.html">water for dogs on trail</a> · <a href="../safety-guide.html">the dog safety guide</a></p>
-  <p><a class="gp-cta" href="../browse-trails.html">Browse trails scored for your dog →</a></p>
-  <p class="gp-src" style="margin-top:30px;">Last reviewed: July 2026. When this page and the mountain disagree, believe the mountain.</p>
-</div>
+  <div class="paw-content">
+    <section class="paw-conditioning" aria-labelledby="prepare-title">
+      <div>
+        <div class="eyebrow">Before the big day</div>
+        <h2 id="prepare-title">Train for the trail, not just the distance.</h2>
+        <p class="paw-conditioning-copy">Routine walks do not automatically prepare a dog for hours of climbing and rough ground. Increase the demands gradually, then check how your dog moves later that day and the next morning.</p>
+        <p class="paw-principle">Change one variable at a time: duration, elevation or surface.</p>
+      </div>
+      <div class="paw-training-line" aria-label="Suggested progression from routine walks to a longer trail">
+        <div class="paw-training-step">
+          <strong>Build</strong>
+          <span>Start from a comfortable routine walk. Add time first, then gentle climb or rougher ground.</span>
+        </div>
+        <div class="paw-training-step">
+          <strong>Rehearse</strong>
+          <span>Try a shorter route with similar terrain, equipment, rest stops and water planning.</span>
+        </div>
+        <div class="paw-training-step">
+          <strong>Recover</strong>
+          <span>Check gait, energy and paws later and the next morning. Scale back if movement is not normal.</span>
+        </div>
+      </div>
+    </section>
+
+    <aside class="paw-vet" id="call-vet" aria-labelledby="call-vet-title">
+      <h2 id="call-vet-title">Know when the trail ends</h2>
+      <div>
+        <p>If a pad is cut, stop walking, rinse with clean water and remove only loose, easily reached debris. Apply steady pressure with clean gauze or cloth, then use a loose non-stick dressing for transport.</p>
+        <p><strong>Get urgent veterinary help</strong> for severe bleeding, bleeding that continues after 10 to 15 minutes of steady pressure, a deep or gaping wound, exposed tissue, a deeply embedded object, or if your dog cannot stand or walk.</p>
+      </div>
+    </aside>
+
+    <div class="paw-guide-footer">
+      <p class="paw-related">Keep reading: <a href="water-for-dogs-on-trail.html">water for dogs on trail</a> · <a href="../safety-guide.html">dog safety guide</a></p>
+      <a class="paw-cta" href="../browse-trails.html">Browse trails for your dog →</a>
+    </div>
+    <p class="paw-src">Last reviewed: 19 August 2026. Veterinary first-aid references: <a href="https://vcahospitals.com/know-your-pet/first-aid-for-bleeding-in-dogs" rel="noopener">VCA Animal Hospitals</a> and <a href="https://www.merckvetmanual.com/special-pet-topics/emergencies/what-to-do-in-a-dog-or-cat-emergency" rel="noopener">Merck Veterinary Manual</a>. When this page and the mountain disagree, believe the mountain.</p>
+  </div>
+</main>
 
 <footer class="site-footer hp-footer">
   <div class="hp-footer-grid">
