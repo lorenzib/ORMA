@@ -1,12 +1,14 @@
 (function(root){
   'use strict';
 
-  const ALLOWED_DESTINATIONS=new Set([
+  const HOSTED=/\.web\.app$/i.test(root.location.hostname)||root.location.hostname==='backoffice.app-orma.com';
+  const ALL_DESTINATIONS=new Set([
     'backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html',
     'content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html',
     'image-coverage-desk.html','newsletter-desk.html','social-desk.html',
     'product-ideas-desk.html',
   ]);
+  const ALLOWED_DESTINATIONS=HOSTED?new Set(['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html']):ALL_DESTINATIONS;
   const params=new URLSearchParams(root.location.search);
   const requested=params.get('next');
   const destination=ALLOWED_DESTINATIONS.has(requested)?requested:'backoffice-review.html';
@@ -21,7 +23,7 @@
   function show(text,type='error'){
     message.textContent=text;message.hidden=false;message.dataset.type=type;
   }
-  function busy(value){submit.disabled=value;google.disabled=value;}
+  function busy(value){submit.disabled=value;if(google)google.disabled=value;}
 
   async function moderatorStatus(){
     const status=await root.DoloPawsModeration.getModeratorStatus();
@@ -55,7 +57,7 @@
     event.preventDefault();
     signIn(()=>root.DoloPawsAuth.signIn(email.value.trim(),password.value));
   });
-  google.addEventListener('click',()=>signIn(()=>root.DoloPawsAuth.signInGoogle()));
+  if(google)google.addEventListener('click',()=>signIn(()=>root.DoloPawsAuth.signInGoogle()));
   switchAccount.addEventListener('click',async()=>{
     await root.DoloPawsAuth.logOut();switchAccount.hidden=true;message.hidden=true;email.focus();
   });

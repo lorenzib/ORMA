@@ -11,7 +11,7 @@
   <script>document.documentElement.classList.add('bo-auth-pending')</script>
 </head>
 <body class="bo-shell">
-  <header class="bo-header"><a href="backoffice-review.html" class="bo-brand">🐾 ORMA</a><span>Trail verification</span></header>
+  <header class="bo-header"><a href="backoffice-review.html" class="bo-brand">🐾 ORMA</a><span>Trail verification</span><button class="bo-sign-out" type="button" data-backoffice-sign-out>Sign out</button></header>
   <main class="bo-main bo-dossier-desk">
     <div class="bo-title-row">
       <div>
@@ -24,7 +24,7 @@
     <nav class="bo-sections" aria-label="Backoffice pages">
       <a href="backoffice-review.html">All workflows ↗</a>
       <a href="trail-content-desk.html">Verified trail content ↗</a>
-      <a href="content-desk.html">Guide content edit ↗</a>
+      <span class="bo-hosted-separation">Guide editing remains in the separate Editorial flow.</span>
     </nav>
     <div id="dossierState" class="bo-state" role="status" aria-live="polite">Loading trail verification dossiers…</div>
     <section class="bo-content-desk" aria-labelledby="workflowTitle">
@@ -41,6 +41,7 @@
   </main>
   <script type="module" src="firebase-init.js"></script>
   <script src="backoffice-auth-guard.js?v=20260819-1"></script>
+  <script src="backoffice-session.js?v=20260819-1"></script>
   <script src="trail-dossier-desk.js?v=20260818-1"></script>
 </body>
 </html>

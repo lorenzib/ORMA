@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" class="bo-auth-pending">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Private backoffice access | ORMA</title>
+  <link rel="icon" href="favicon-32.png" sizes="32x32">
+  <link rel="stylesheet" href="styles.css?v=20260818-10">
+  <link rel="stylesheet" href="backoffice-review.css?v=20260819-9">
+</head>
+<body class="bo-shell bo-login-shell">
+  <main class="bo-login-main">
+    <section class="bo-login-card" aria-labelledby="backofficeLoginTitle">
+      <div class="bo-login-mark" aria-hidden="true">ORMA</div>
+      <p class="eyebrow">Restricted operator access</p>
+      <h1 id="backofficeLoginTitle">Backoffice sign in</h1>
+      <p class="bo-login-intro">Use the dedicated moderator email and password. This private entry is separate from the customer-facing ORMA experience.</p>
+      <div id="backofficeLoginMessage" class="bo-login-message" role="alert" aria-live="polite" hidden></div>
+      <form id="backofficeLoginForm" class="bo-login-form">
+        <label for="backofficeEmail"><span>Email</span><input id="backofficeEmail" name="email" type="email" autocomplete="username" required></label>
+        <label for="backofficePassword"><span>Password</span><input id="backofficePassword" name="password" type="password" autocomplete="current-password" required></label>
+        <button id="backofficeLoginSubmit" class="bo-login-primary" type="submit">Sign in securely</button>
+      </form>
+      <button id="backofficeSwitchAccount" class="bo-login-switch" type="button" hidden>Use a different account</button>
+      <p class="bo-login-footnote">Access is granted only after Firebase confirms the moderator claim. No backoffice link appears in public ORMA navigation.</p>
+    </section>
+  </main>
+  <script type="module" src="backoffice-firebase.js"></script>
+  <script src="backoffice-login.js?v=20260819-2"></script>
+</body>
+</html>

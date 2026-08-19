@@ -1,0 +1,67 @@
+name: Deploy private ORMA backoffice
+
+on:
+  pull_request:
+    paths:
+      - backoffice-*.html
+      - backoffice-*.js
+      - backoffice-review.css
+      - trail-dossier-desk.html
+      - trail-dossier-desk.js
+      - trail-content-desk.html
+      - trail-content-desk.js
+      - backoffice/content-review-decisions.js
+      - scripts/build-backoffice-hosting.js
+      - firebase.json
+      - .firebaserc
+      - .github/workflows/deploy-backoffice-hosting.yml
+  push:
+    branches: [main]
+    paths:
+      - backoffice-*.html
+      - backoffice-*.js
+      - backoffice-review.css
+      - trail-dossier-desk.html
+      - trail-dossier-desk.js
+      - trail-content-desk.html
+      - trail-content-desk.js
+      - backoffice/content-review-decisions.js
+      - scripts/build-backoffice-hosting.js
+      - firebase.json
+      - .firebaserc
+      - .github/workflows/deploy-backoffice-hosting.yml
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-private-orma-backoffice
+  cancel-in-progress: false
+
+jobs:
+  validate-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/build-backoffice-hosting.js
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: validate-package
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      - run: node scripts/build-backoffice-hosting.js
+      - name: Deploy only the separate backoffice site
+        run: npx --yes firebase-tools@15.26.0 deploy --only hosting:backoffice --project dolopaws --non-interactive
