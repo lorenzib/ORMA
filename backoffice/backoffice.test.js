@@ -63,6 +63,7 @@ const { buildPublicationStaging } = require('./workflows/build-publication-stagi
 const { buildVerifiedTrailRevisionJobs } = require('./workflows/queue-verified-trail-revisions');
 const { runVerifiedTrailRevision } = require('./workflows/run-verified-trail-revision');
 const { materializeApprovedPublications } = require('./workflows/materialize-approved-publications');
+const { ingestPublicationReviews } = require('./workflows/run-live-backoffice-worker');
 const resolutionPolicy = require('./contracts/resolution-policy-v1');
 const fleet = require('./agents/registry-v1');
 const { createAgentJob, validateAgentJob } = require('./contracts/agent-job-v1');
@@ -1258,6 +1259,27 @@ describe('ORMA backoffice MVP', () => {
     });
     expect(second.materialized).toBe(0);
     expect(second.overrides).toEqual(first.overrides);
+  });
+
+  test('the live worker supersedes repeat clicks and keeps only the latest publication decision per trail', async () => {
+    const reviews=[
+      {id:'approval-old',candidateId:'osm-relation-1484751',action:'approve-for-pr-creation',submittedAt:'2026-08-19T17:55:00.000Z'},
+      {id:'approval-latest',candidateId:'osm-relation-1484751',action:'approve-for-pr-creation',submittedAt:'2026-08-19T17:56:00.000Z'},
+    ];
+    const marks=[];let requests=null;
+    const store={
+      listPublicationReviews:async()=>reviews,
+      getArtifact:async id=>id==='publication-staging'?{items:[{candidateId:'osm-relation-1484751',targetTrailId:'tre-cime',state:'ready-for-publication-preview'}]}:requests,
+      setArtifact:async(id,value)=>{if(id==='publication-requests')requests=value;},
+      markPublicationReview:async(id,status,fields)=>marks.push({id,status,...fields}),
+    };
+    const outcomes=await ingestPublicationReviews(store);
+    expect(requests.requests).toEqual([expect.objectContaining({id:'approval-latest',status:'approved-for-pr-creation'})]);
+    expect(marks).toEqual(expect.arrayContaining([
+      expect.objectContaining({id:'approval-old',status:'superseded',supersededBy:'approval-latest'}),
+      expect.objectContaining({id:'approval-latest',status:'processed'}),
+    ]));
+    expect(outcomes).toHaveLength(2);
   });
 
   test('mock guide review uses the production result contract', () => {

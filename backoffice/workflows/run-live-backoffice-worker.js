@@ -107,7 +107,20 @@ async function processTrailSpecialistJobs(store,options={}){
 
 async function ingestPublicationReviews(store){
   const reviews = await store.listPublicationReviews('queued'); const outcomes = [];
+  const effectiveByCandidate = new Map();
   for(const review of reviews){
+    const current=effectiveByCandidate.get(review.candidateId);
+    const reviewKey=`${iso(review.submittedAt)}:${review.id}`;
+    const currentKey=current?`${iso(current.submittedAt)}:${current.id}`:'';
+    if(!current||reviewKey>currentKey)effectiveByCandidate.set(review.candidateId,review);
+  }
+  for(const review of reviews){
+    const effective=effectiveByCandidate.get(review.candidateId);
+    if(effective?.id===review.id)continue;
+    await store.markPublicationReview(review.id,'superseded',{supersededBy:effective.id});
+    outcomes.push({reviewId:review.id,status:'superseded',supersededBy:effective.id});
+  }
+  for(const review of effectiveByCandidate.values()){
     try{
       const staging = await store.getArtifact('publication-staging');
       const item = staging?.items?.find(candidate => candidate.candidateId === review.candidateId);
@@ -116,10 +129,12 @@ async function ingestPublicationReviews(store){
         throw new Error('Both content approvals are required before PR creation');
       }
       const artifact = await store.getArtifact('publication-requests') || { contractVersion:'1.0.0', requests:[] };
-      const request = { id:review.id, candidateId:review.candidateId, targetTrailId:item.targetTrailId,
+      const existing=(artifact.requests||[]).find(request=>request.id===review.id);
+      const request = existing||{ id:review.id, candidateId:review.candidateId, targetTrailId:item.targetTrailId,
         action:review.action, note:review.note || '', status:review.action === 'approve-for-pr-creation' ? 'approved-for-pr-creation' : review.action,
         reviewedAt:iso(review.submittedAt), publicMutationAllowed:false };
-      await store.setArtifact('publication-requests', { ...artifact, updatedAt:new Date().toISOString(), requests:[...(artifact.requests || []), request] });
+      const requests=existing?(artifact.requests||[]):[...(artifact.requests || []), request];
+      await store.setArtifact('publication-requests', { ...artifact, updatedAt:new Date().toISOString(), requests });
       await store.markPublicationReview(review.id, 'processed', { outcome:request });
       outcomes.push({ reviewId:review.id, status:'processed', action:review.action });
     }catch(error){
