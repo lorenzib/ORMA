@@ -3,3 +3,6 @@ firestore-debug.log
 firebase-debug.log
 ui-debug.log
 .cache/
+*service-account*.json
+firebase-adminsdk*.json
+.firebase/

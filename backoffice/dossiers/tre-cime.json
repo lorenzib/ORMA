@@ -1,0 +1,291 @@
+{
+  "contractVersion": "1.0.0",
+  "candidateId": "osm-relation-1484751",
+  "title": "Tre Cime di Lavaredo classic circuit — enrichment dossier",
+  "reviewState": "accepted",
+  "researchedAt": "2026-08-18",
+  "researchMethod": "ORMA desk research using current official and authoritative sources. No field visit is claimed.",
+  "referenceMetrics": {
+    "distanceKm": 9.528,
+    "ascentM": 468,
+    "durationMinutes": 210,
+    "maxElevationM": 2454,
+    "sourceId": "trecime-trek-route"
+  },
+  "editorialSummary": "ORMA Verified was approved by the human editor after exact route, parking, enrichment, asset and Red Team gates. The official hard rating and operational caveats remain mandatory. Verification does not authorize publication.",
+  "promotionGate": {
+    "canApproveParking": true,
+    "canApproveRoute": true,
+    "canPublish": false,
+    "blockers": []
+  },
+  "ormaVerification": {"status":"verified","verifiedAt":"2026-08-18T15:04:59.634Z","verifiedBy":"local-editor","sourceDecisionExport":"orma-review-decisions-2026-08-18 (17).json","publicationAuthorized":false,"publicMutationAllowed":false},
+  "verificationReview": {
+    "state": "accepted",
+    "gate": "serious-objection-review",
+    "reportUrl": "backoffice-data/red-team-review-attempt-5.json",
+    "recommendation": "clear-for-final-human-verification",
+    "seriousObjections": [],
+    "requiredAcknowledgements": [
+      {"id":"tre-hard-rating","label":"Keep the official hard rating prominent; ORMA Verified does not mean suitable for every dog."},
+      {"id":"tre-water-caveat","label":"Keep the LangAlm fountain marked seasonal and not guaranteed potable."},
+      {"id":"tre-live-checks","label":"Recheck road, parking, weather and trail conditions before each season and before departure."}
+    ],
+    "publicMutationAllowed": false
+  },
+  "sources": [
+    {
+      "id": "tre-cime-approved-gpx",
+      "label": "Human-approved official classic-circuit GPX",
+      "url": "https://www.trecimetrek.it/wp-content/uploads/geodata/gpx/tre_cim_di.gpx",
+      "authority": "official-route-portal-and-human-geometry-gate",
+      "retrievedAt": "2026-08-18",
+      "freshness": "approved-2026-08-18",
+      "supports": ["routeGeometry", "routeMetrics", "elevationProfile"]
+    },
+    {
+      "id": "trecime-trek-route",
+      "label": "Tre Cime Trek — official circuit itinerary",
+      "url": "https://www.trecimetrek.it/en/percorso-singolo-en/?route=tre_cim_di",
+      "authority": "official-destination-route-portal",
+      "retrievedAt": "2026-08-17",
+      "freshness": "current",
+      "supports": ["routeIdentity", "routeMetrics", "trailhead", "dogAccess", "waterPresence", "technicalClass"]
+    },
+    {
+      "id": "auronzo-access",
+      "label": "Auronzo Tourism — reaching Tre Cime",
+      "url": "https://auronzo.info/tre-cime-di-lavaredo-come-arrivare/",
+      "authority": "municipal-tourism-office",
+      "retrievedAt": "2026-08-17",
+      "freshness": "current-2026-season",
+      "supports": ["trailhead", "parkingExistence", "roadAccess", "publicTransport"]
+    },
+    {
+      "id": "auronzo-parking-regulation",
+      "label": "Municipal Tre Cime parking regulation",
+      "url": "https://auronzo.info/en/parking-tre-cime-di-lavaredo/regulation/",
+      "authority": "municipal-regulation",
+      "retrievedAt": "2026-08-17",
+      "freshness": "current-page-regulation",
+      "supports": ["parkingOwnership", "parkingRules", "booking", "roadsideParkingBan"]
+    },
+    {
+      "id": "south-tyrol-park-rules",
+      "label": "Province of Bolzano — nature-park conduct rules",
+      "url": "https://naturparks.provinz.bz.it/it/regole-di-comportamento",
+      "authority": "provincial-park-authority",
+      "retrievedAt": "2026-08-17",
+      "freshness": "current",
+      "supports": ["dogAccess", "wildlifeConduct"]
+    },
+    {
+      "id": "three-peaks-visitor-guide",
+      "label": "3 Cime/3 Zinnen visitor guide — responsible mountain conduct",
+      "url": "https://www.tre-cime.info/media/24bbbae6-15da-4f5d-a423-357169efceff/infobooklet-it-web.pdf",
+      "authority": "regional-destination-guide",
+      "retrievedAt": "2026-08-17",
+      "freshness": "publication-date-not-visible",
+      "supports": ["dogAccess", "parkingConduct", "livestockConduct"]
+    },
+    {
+      "id": "tre-cime-parking-decision",
+      "label": "Human-approved Rifugio Auronzo parking object",
+      "url": "https://www.openstreetmap.org/way/1109742730",
+      "authority": "human-reviewed-community-geospatial-source",
+      "retrievedAt": "2026-08-18",
+      "freshness": "reviewed-2026-08-18",
+      "supports": ["parkingPin", "parkingIdentity"]
+    },
+    {
+      "id": "osm-relation-snapshot",
+      "label": "OpenStreetMap relation 1484751 — stored ORMA snapshot",
+      "url": "https://www.openstreetmap.org/relation/1484751",
+      "authority": "community-geospatial-source",
+      "retrievedAt": "2025-07-01",
+      "freshness": "stale-for-operational-use",
+      "supports": ["candidateGeometry", "routeIdentity"]
+    },
+    {
+      "id": "visit-dolomites-accessibility",
+      "label": "Visit Dolomites — Tre Cime accessible-segment technical sheet",
+      "url": "https://visitdolomites.com/wp-content/uploads/2021/02/5C_Tre_Cime_Lavaredo_agg_2019_EN.pdf",
+      "authority": "regional-destination-technical-guide",
+      "retrievedAt": "2026-08-18",
+      "freshness": "published-technical-sheet",
+      "supports": ["surface", "width", "obstacles", "exposure"]
+    },
+    {
+      "id": "tre-cime-park-habitats",
+      "label": "Province of Bolzano — Tre Cime Nature Park habitats",
+      "url": "https://parchi-naturali.provincia.bz.it/en/drei-zinnen-tre-cime-nature-park-habitats",
+      "authority": "provincial-nature-park-authority",
+      "retrievedAt": "2026-08-18",
+      "freshness": "current-2026",
+      "supports": ["timberLine", "alpineMeadows", "rockAndDebrisHabitat"]
+    },
+    {
+      "id": "auronzo-2025-destination-guide",
+      "label": "Auronzo Misurina — 2025 destination guide",
+      "url": "https://auronzomisurina.it/dev/wp-content/uploads/2025/06/Consorzio_carnet_25_EN_low.pdf",
+      "authority": "official-destination-guide",
+      "retrievedAt": "2026-08-18",
+      "freshness": "2025-guide-currently-published",
+      "supports": ["routeSegment", "seasonalPasture", "livestockPresence"]
+    },
+    {
+      "id": "commons-tre-cime-trail",
+      "label": "Wikimedia Commons — trail to Rifugio Locatelli",
+      "url": "https://commons.wikimedia.org/wiki/File:Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
+      "authority": "file-level-licensing-and-location-record",
+      "retrievedAt": "2026-08-18",
+      "freshness": "licence-checked-2026-08-18",
+      "supports": ["licensedMediaCandidate", "routeLocation"]
+    }
+  ],
+  "claims": [
+    {
+      "id": "route-identity",
+      "category": "route",
+      "label": "Classic circuit identity",
+      "proposedValue": "A loop from Rifugio Auronzo using trails 101 and 105, returning to Rifugio Auronzo.",
+      "state": "supported",
+      "confidence": 0.98,
+      "sourceIds": ["trecime-trek-route"],
+      "evidenceSummary": "The official itinerary explicitly identifies the same start and finish and names trails 101 and 105.",
+      "humanChecks": ["Confirm the intended ORMA record is this classic circuit rather than a shorter viewpoint walk or a longer approach route."]
+    },
+    {
+      "id": "route-geometry",
+      "category": "route",
+      "label": "Approved geometry represents the official circuit",
+      "proposedValue": "Use the exact 2,077-point official classic GPX approved in export (12).",
+      "state": "supported",
+      "confidence": 0.99,
+      "sourceIds": ["trecime-trek-route", "tre-cime-approved-gpx"],
+      "evidenceSummary": "The approved GPX measures 9.51 km, closes within 43 m and matches the official 9.528 km headline distance within 0.2%.",
+      "humanChecks": ["Do not substitute the rejected stored OSM relation or the separate Monte Paterno variant."]
+    },
+    {
+      "id": "route-metrics",
+      "category": "elevation",
+      "label": "Official headline metrics",
+      "proposedValue": "9.528 km, 468 m ascent, 3 hours 30 minutes, maximum altitude 2,454 m.",
+      "state": "supported",
+      "confidence": 0.97,
+      "sourceIds": ["trecime-trek-route"],
+      "evidenceSummary": "All four figures are published together by the official route portal.",
+      "humanChecks": ["Use the official ascent for the headline value.", "Generate an elevation profile only after full geometry is resolved."]
+    },
+    {
+      "id": "trailhead",
+      "category": "parking",
+      "label": "Operational trailhead",
+      "proposedValue": "Rifugio Auronzo, approximately 2,330 m, is the start and finish.",
+      "state": "supported",
+      "confidence": 0.98,
+      "sourceIds": ["trecime-trek-route", "auronzo-access"],
+      "evidenceSummary": "The route portal and Auronzo access guide independently identify Rifugio Auronzo as the circuit starting point.",
+      "humanChecks": ["Keep the trailhead claim separate from the exact parking pin."]
+    },
+    {
+      "id": "parking-existence",
+      "category": "parking",
+      "label": "Municipal parking at Rifugio Auronzo",
+      "proposedValue": "Paid municipal parking serves the Rifugio Auronzo trailhead.",
+      "state": "supported",
+      "confidence": 0.98,
+      "sourceIds": ["auronzo-access", "auronzo-parking-regulation", "trecime-trek-route"],
+      "evidenceSummary": "Municipal rules establish paid parking on municipality-owned areas, while two route/access sources place parking at the Auronzo trailhead.",
+      "humanChecks": ["Do not convert this existence claim into a GPS pin without geospatial object verification."]
+    },
+    {
+      "id": "parking-pin",
+      "category": "parking",
+      "label": "Exact where-to-park GPS pin",
+      "proposedValue": "Use Parcheggio Rifugio Auronzo (P1), 46.612849, 12.292858, OSM way 1109742730.",
+      "state": "supported",
+      "confidence": 0.95,
+      "sourceIds": ["auronzo-access", "auronzo-parking-regulation", "tre-cime-parking-decision"],
+      "evidenceSummary": "The human editor approved the mapped parking object after five evidence-resolution passes. This closes the parking choice only and does not validate the trail geometry.",
+      "humanChecks": ["No further parking choice review is required.", "Verify the parking-to-trail pedestrian connection when the replacement route geometry is available."]
+    },
+    {
+      "id": "road-access",
+      "category": "access",
+      "label": "Seasonal road and booking conditions",
+      "proposedValue": "A roughly 6 km paid road from the Misurina area reaches Rifugio Auronzo; operation is seasonal and weather-dependent, parking access is booked, and roadside parking is prohibited.",
+      "state": "supported",
+      "confidence": 0.97,
+      "sourceIds": ["auronzo-access", "auronzo-parking-regulation"],
+      "evidenceSummary": "The current access guide and municipal regulation agree on regulated road access, paid parking and operational restrictions.",
+      "humanChecks": ["Link users to the live booking page rather than hard-coding availability.", "Recheck dates and tariffs each season."]
+    },
+    {
+      "id": "dog-access",
+      "category": "access",
+      "label": "Dogs and leash conduct",
+      "proposedValue": "Dogs are accepted on the route; keep them on lead throughout and carry a muzzle for emergencies.",
+      "state": "supported",
+      "confidence": 0.9,
+      "sourceIds": ["trecime-trek-route", "south-tyrol-park-rules", "three-peaks-visitor-guide"],
+      "evidenceSummary": "The official route marks the circuit dog-friendly. Provincial park guidance requires close supervision and no free roaming, while the regional visitor guide instructs visitors to keep dogs on lead and carry a muzzle.",
+      "humanChecks": ["Phrase the leash instruction as ORMA's conservative conduct requirement unless a route-wide legal mandate is confirmed.", "Confirm bus and shuttle dog-transport requirements separately."]
+    },
+    {
+      "id": "water",
+      "category": "water",
+      "label": "Reliable dog water",
+      "proposedValue": "A fountain is identified at Malga LangAlm; treat availability and potability as seasonal/unconfirmed.",
+      "state": "supported",
+      "confidence": 0.78,
+      "sourceIds": ["trecime-trek-route"],
+      "evidenceSummary": "The official route page marks water present and its downloadable route sheet names a fountain at Malga LangAlm. Neither source establishes current flow or potability.",
+      "humanChecks": ["Display this as a seasonal service point, not guaranteed dog drinking water.", "Recheck current flow and hut opening before publication."]
+    },
+    {
+      "id": "heat-shade",
+      "category": "heat",
+      "label": "Shade and heat exposure",
+      "proposedValue": "Do not rely on tree shade on this high-alpine circuit; carry sun protection and plan the timing conservatively. No shade percentage is claimed.",
+      "state": "supported",
+      "confidence": 0.86,
+      "sourceIds": ["trecime-trek-route", "tre-cime-park-habitats", "visit-dolomites-accessibility"],
+      "evidenceSummary": "The approved route remains between 2,283 and 2,454 m. Provincial habitat guidance describes Alpine meadows above the timber line, while the technical sheet specifically requires sunscreen. This supports a conservative no-dependable-tree-shade instruction, not a canopy percentage.",
+      "humanChecks": ["Separate low shade from temperature risk at altitude.", "Account for route time and seasonal snow cover."]
+    },
+    {
+      "id": "exposure-surface",
+      "category": "exposure",
+      "label": "Technical exposure and surface hazards",
+      "proposedValue": "No ferrata equipment is required; one section is narrower but described as unchallenging.",
+      "state": "supported",
+      "confidence": 0.88,
+      "sourceIds": ["trecime-trek-route", "visit-dolomites-accessibility"],
+      "evidenceSummary": "The official full-circuit itinerary describes the outward path as wide and straightforward and the return as narrower but unchallenging, with no ferrata required. The technical guide adds compact fine/coarse gravel, local stones, drainage channels, at least 2.5 m width and no exposed stretches for the Auronzo–Forcella segment. This supports the bounded description only; no whole-route dog hazard score is inferred.",
+      "humanChecks": ["Do not extrapolate the accessible outbound segment to the full circuit.", "Inspect loose rock, crowding and narrower return sections separately."]
+    },
+    {
+      "id": "livestock",
+      "category": "livestock",
+      "label": "Livestock and guardian dogs",
+      "proposedValue": "Seasonal livestock may be present beside the Lavaredo pasture segment; keep dogs close and on lead. An encounter is not guaranteed and guardian-dog presence is not established.",
+      "state": "supported",
+      "confidence": 0.82,
+      "sourceIds": ["auronzo-2025-destination-guide", "three-peaks-visitor-guide"],
+      "evidenceSummary": "The official destination guide describes flowered pasture and audible cowbells beside the Lavaredo route segment. The regional guide supplies conservative conduct around grazing animals, but neither source establishes guardian dogs.",
+      "humanChecks": ["Do not convert general regional advice into a claim that livestock is present on this circuit."]
+    },
+    {
+      "id": "photo",
+      "category": "photo",
+      "label": "Publishable trail photograph",
+      "proposedValue": "Use the geolocated Simone A. Bertinotti Tre Cime route photograph as the initial hero under CC BY-SA 4.0, with full credit, licence link and change notice; retain the operational field-shot checklist for later enrichment.",
+      "state": "supported",
+      "confidence": 0.94,
+      "sourceIds": ["commons-tre-cime-trail"],
+      "evidenceSummary": "The file page records creator Simone A. Bertinotti, capture date 4 August 2013, coordinates 46.626000/12.312000 and CC BY-SA 4.0. The minimum launch-asset rule requires one fully provenanced hero; missing operational shots remain a Visual Director checklist, not evidence gaps.",
+      "humanChecks": ["Approve the exact credit and share-alike compliance plan before downloading or publishing.", "Do not use scenic imagery as proof of current conditions.", "Keep parking, fountain, narrow-return and dog-context shots on the enrichment checklist."]
+    }
+  ]
+}

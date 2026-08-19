@@ -674,6 +674,30 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    match /backofficeDossierReviews/{reviewId} {
+      allow get, list: if isModerator();
+      allow create: if isModerator()
+        && request.resource.data.keys().hasOnly([
+          'contractVersion', 'type', 'status', 'reviewId', 'candidateId',
+          'action', 'targetAgent', 'note', 'submittedAt', 'submittedBy',
+          'publicMutationAllowed'
+        ])
+        && request.resource.data.contractVersion == '1.0.0'
+        && request.resource.data.type == 'trail-dossier-review'
+        && request.resource.data.status == 'queued'
+        && isShortString(request.resource.data.reviewId, 180)
+        && isTrailId(request.resource.data.candidateId)
+        && request.resource.data.action in ['approve', 'request-revision', 'reject']
+        && request.resource.data.targetAgent is string
+        && request.resource.data.targetAgent.size() <= 80
+        && request.resource.data.note is string
+        && request.resource.data.note.size() <= 1500
+        && request.resource.data.submittedAt == request.time
+        && request.resource.data.submittedBy == request.auth.uid
+        && request.resource.data.publicMutationAllowed == false;
+      allow update, delete: if false;
+    }
+
     // New collections are private until their authorization contract is added.
     match /{document=**} {
       allow read, write: if false;

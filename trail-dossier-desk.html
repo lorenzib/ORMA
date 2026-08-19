@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Trail Verification Desk | ORMA</title>
+  <link rel="icon" href="favicon-32.png" sizes="32x32">
+  <link rel="stylesheet" href="styles.css?v=20260818-10">
+  <link rel="stylesheet" href="backoffice-review.css?v=20260818-8">
+</head>
+<body class="bo-shell">
+  <header class="bo-header"><a href="index.html" class="bo-brand">🐾 ORMA</a><span>Trail verification</span></header>
+  <main class="bo-main bo-dossier-desk">
+    <div class="bo-title-row">
+      <div>
+        <p class="eyebrow">Private backoffice · evidence before content</p>
+        <h1>Trail Verification Desk</h1>
+        <p class="bo-intro">Inspect every source, route calculation, conflict and unresolved claim. Approval advances the dossier to the next agents; it never changes the public website.</p>
+      </div>
+      <button id="refreshDossiers" class="bo-select-all" type="button">Refresh status</button>
+    </div>
+    <nav class="bo-sections" aria-label="Backoffice pages">
+      <a href="backoffice-review.html">All workflows ↗</a>
+      <a href="trail-content-desk.html">Verified trail content ↗</a>
+      <a href="content-desk.html">Guide content edit ↗</a>
+    </nav>
+    <div id="dossierState" class="bo-state" role="status" aria-live="polite">Loading trail verification dossiers…</div>
+    <section class="bo-content-desk" aria-labelledby="workflowTitle">
+      <div class="bo-content-head">
+        <div><p class="eyebrow">Live orchestration</p><h2 id="workflowTitle">Fleet status</h2><p>Queued and active work updates automatically. Human gates remain open until you decide.</p></div>
+      </div>
+      <div id="fleetSummary" class="bo-campaign-metrics"></div>
+      <ol id="agentActivity" class="bo-revision-jobs"></ol>
+    </section>
+    <section aria-labelledby="queueTitle">
+      <div class="bo-content-head"><div><p class="eyebrow">Human review required</p><h2 id="queueTitle">Evidence dossiers</h2><p>Blocked dossiers can only be revised or rejected. A complete dossier must pass provenance and red-team checks before approval becomes available.</p></div></div>
+      <div id="dossierQueue" class="bo-queue"></div>
+    </section>
+  </main>
+  <script type="module" src="firebase-init.js"></script>
+  <script src="trail-dossier-desk.js?v=20260818-1"></script>
+</body>
+</html>

@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const { applyVerifiedTrailOverrides } = require('./verified-trail-overrides');
 
 const DEFAULT_FILES = [
   'trails-data.js',
@@ -30,7 +31,9 @@ function loadProductionTrails(root, files = DEFAULT_FILES){
   if(!Array.isArray(trails) || !trails.length){
     throw new Error('Production trail sources did not produce a non-empty trail array.');
   }
-  return trails;
+  const overridePath = path.join(root, 'data', 'verified-trail-overrides.json');
+  const overrides = fs.existsSync(overridePath) ? JSON.parse(fs.readFileSync(overridePath, 'utf8')) : { trails:[] };
+  return applyVerifiedTrailOverrides(trails, overrides);
 }
 
 module.exports = {

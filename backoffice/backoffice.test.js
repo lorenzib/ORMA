@@ -1,0 +1,1323 @@
+'use strict';
+
+const workflow = require('./contracts/workflow-v1');
+const { validateCandidate } = require('./contracts/candidate-v1');
+const { validateEvidence } = require('./contracts/evidence-v1');
+const { assessGeometry, distanceMeters } = require('./services/geometry-validator');
+const { rankParking } = require('./services/parking-ranker');
+const { buildCandidate, discoverTrails } = require('./workflows/discover-trails');
+const { addLogistics } = require('./workflows/add-logistics');
+const reviewDecisions = require('./review-decisions');
+const routeReviewDecisions = require('./route-review-decisions');
+const routeReview = require('../backoffice-data/route-review.json');
+const { validateDossier } = require('./contracts/dossier-v1');
+const treCimeDossier = require('./dossiers/tre-cime.json');
+const cinqueTorriDossier = require('./dossiers/cinque-torri.json');
+const lagoBraiesDossier = require('./dossiers/lago-braies.json');
+const enrichmentReviewDecisions = require('./enrichment-review-decisions');
+const decisionResolution = require('../backoffice-data/decision-resolution.json');
+const decisionResolutionAttempt2 = require('../backoffice-data/decision-resolution-attempt-2.json');
+const decisionResolutionAttempt3 = require('../backoffice-data/decision-resolution-attempt-3.json');
+const decisionResolutionAttempt4 = require('../backoffice-data/decision-resolution-attempt-4.json');
+const decisionResolutionAttempt5 = require('../backoffice-data/decision-resolution-attempt-5.json');
+const montePelmoContactPacket = require('../backoffice-data/monte-pelmo-contact-packet.json');
+const finalHumanDecisionStatus = require('../backoffice-data/final-human-decision-status.json');
+const braiesParkingApproval = require('../backoffice-data/braies-parking-set-approval.json');
+const routeResolutionAttempt1 = require('../backoffice-data/route-resolution-attempt-1.json');
+const routeResolutionAttempt2 = require('../backoffice-data/route-resolution-attempt-2.json');
+const routeResolutionAttempt3 = require('../backoffice-data/route-resolution-attempt-3.json');
+const routeApprovalReceipts = require('../backoffice-data/route-approval-receipts-2026-08-18.json');
+const postRouteParkingAudit = require('../backoffice-data/decision-resolution-post-route-audit.json');
+const export11RouteReceipts = require('../backoffice-data/route-approval-receipts-export-11.json');
+const export11Resolution = require('../backoffice-data/decision-resolution-export-11.json');
+const export11Enrichment = require('../backoffice-data/enrichment-campaign-export-11.json');
+const export12ParkingReceipt = require('../backoffice-data/parking-approval-receipt-export-12.json');
+const export12Resolution = require('../backoffice-data/decision-resolution-export-12.json');
+const enrichmentAttempt1 = require('../backoffice-data/enrichment-resolution-attempt-1.json');
+const mediaGapChecklist = require('../backoffice-data/media-gap-checklist-enrichment-1.json');
+const enrichmentReviewReceipt13 = require('../backoffice-data/enrichment-review-receipt-export-13.json');
+const enrichmentAttempt2 = require('../backoffice-data/enrichment-resolution-attempt-2.json');
+const mediaCandidatesAttempt2 = require('../backoffice-data/media-candidates-attempt-2.json');
+const enrichmentReviewReceipt14 = require('../backoffice-data/enrichment-review-receipt-export-14.json');
+const enrichmentAttempt3 = require('../backoffice-data/enrichment-resolution-attempt-3.json');
+const enrichmentReviewReceipt15 = require('../backoffice-data/enrichment-review-receipt-export-15.json');
+const enrichmentAttempt4 = require('../backoffice-data/enrichment-resolution-attempt-4.json');
+const mediaLicensingAttempt4 = require('../backoffice-data/media-licensing-packet-attempt-4.json');
+const braiesLivestockContactAttempt4 = require('../backoffice-data/braies-livestock-contact-packet-attempt-4.json');
+const enrichmentReviewReceipt16 = require('../backoffice-data/enrichment-review-receipt-export-16.json');
+const enrichmentAttempt5 = require('../backoffice-data/enrichment-resolution-attempt-5.json');
+const redTeamAttempt5 = require('../backoffice-data/red-team-review-attempt-5.json');
+const verificationReviewDecisions = require('./verification-review-decisions');
+const verificationReceipt17 = require('../backoffice-data/verification-approval-receipt-export-17.json');
+const verifiedRegistry = require('../backoffice-data/orma-verified-registry.json');
+const braiesLivestockHumanAttestation = require('../backoffice-data/braies-livestock-human-attestation-2026-08-18.json');
+const braiesVerificationApproval = require('../backoffice-data/braies-verification-approval-2026-08-18.json');
+const decisionReconciliation18 = require('../backoffice-data/decision-reconciliation-export-18.json');
+const verificationReceipt19 = require('../backoffice-data/verification-review-receipt-export-19.json');
+const verificationReceipt20 = require('../backoffice-data/verification-approval-receipt-export-20.json');
+const verifiedTrailEditorialQueue = require('../backoffice-data/verified-trail-editorial-queue.json');
+const { planVerifiedTrailEditorial } = require('./workflows/plan-verified-trail-editorial');
+const verifiedTrailEditorialExecution = require('../backoffice-data/verified-trail-editorial-execution.json');
+const { compileVerifiedEditorialPreview } = require('./workflows/compile-verified-editorial-preview');
+const { buildPublicationStaging } = require('./workflows/build-publication-staging');
+const { buildVerifiedTrailRevisionJobs } = require('./workflows/queue-verified-trail-revisions');
+const { runVerifiedTrailRevision } = require('./workflows/run-verified-trail-revision');
+const { materializeApprovedPublications } = require('./workflows/materialize-approved-publications');
+const resolutionPolicy = require('./contracts/resolution-policy-v1');
+const fleet = require('./agents/registry-v1');
+const { createAgentJob, validateAgentJob } = require('./contracts/agent-job-v1');
+const fleetRouter = require('./workflows/fleet-router-v1');
+const { buildRelationQuery } = require('./services/osm-relation-client');
+const { reconstructRelation } = require('./services/relation-geometry');
+const { compareMetrics, runCartographer } = require('./workflows/run-cartographer');
+const { parseGpx, proposalFeature } = require('./services/gpx-route');
+const { splitAssistedRoute } = require('./services/assisted-route-segmenter');
+const { validateCartographerResult } = require('./contracts/cartographer-result-v1');
+const { validateCampaign } = require('./contracts/catalogue-campaign-v1');
+const {
+  hasFullGraduation, relationExternalId, planCatalogueCampaign,
+} = require('./workflows/plan-catalogue-campaign');
+const { candidateFromProductionTrail, runCatalogueBatch } = require('./workflows/run-catalogue-batch');
+const { validateContentFlow } = require('./contracts/content-flow-v1');
+const { EDITABLE_FIELDS, PROTECTED_FIELDS, planContentFlow } = require('./workflows/plan-content-flow');
+const { validateContentOperations } = require('./contracts/content-operations-v1');
+const { planContentOperations } = require('./workflows/plan-content-operations');
+const { outputText } = require('./services/openai-responses-client');
+const { visibleText, runGuideContent } = require('./workflows/run-guide-content');
+const { validateContentExecution } = require('./contracts/content-result-v1');
+const contentReviewDecisions = require('./content-review-decisions');
+const { safeSourcePath, applyExactChanges, applyReviewChanges, recordVerifiedTrailReview } = require('./workflows/apply-content-review');
+const { publishablePaths, groupedPatches } = require('./workflows/publish-content-review');
+const { contentFingerprint, fingerprint, selectEditorialWork, recordEditorialOutcome } = require('./workflows/editorial-ledger');
+const { validateEditorialLedger } = require('./contracts/editorial-ledger-v1');
+const { validateRevisionResult, runEditorialRevision } = require('./workflows/run-editorial-revision');
+const { validateTrailOrchestration } = require('./contracts/trail-orchestration-v1');
+const { seedOrchestrationFromCatalogue, buildDossierReviewQueue } = require('./workflows/build-live-orchestration');
+const { applyDossierReview } = require('./workflows/apply-dossier-review');
+const { dossierBlockingReasons } = require('./workflows/advance-trail-orchestration');
+const { runTrailSpecialist } = require('./workflows/run-trail-specialist');
+const { startLiveTrailCampaign } = require('./workflows/start-live-trail-campaign');
+const { trailOnlyReviewQueue } = require('./cli/seed-live-state');
+const { compileVerifiedDossier, verificationRecord } = require('./workflows/compile-verified-dossier');
+const mockContentExecution = require('./fixtures/content-execution.mock.json');
+
+const loop = [
+  [11.58, 46.51], [11.59, 46.52], [11.60, 46.51], [11.58, 46.51],
+];
+
+function trail(overrides = {}){
+  return {
+    id: 'relation/123', osmType: 'relation', osmId: 123,
+    name: 'Test loop', ref: null, difficulty: 'hiking',
+    center: [11.59, 46.515], geometry: loop,
+    sourceTags: { route: 'hiking' }, ...overrides,
+  };
+}
+
+describe('ORMA backoffice MVP', () => {
+  test('workflow allows only explicit transitions', () => {
+    expect(workflow.canTransition('discovered', 'geometry_validated')).toBe(true);
+    expect(workflow.canTransition('discovered', 'published')).toBe(false);
+    expect(() => workflow.transition({ state: 'discovered' }, 'published')).toThrow('Invalid workflow transition');
+  });
+
+  test('geometry assessment recognises a plausible closed loop', () => {
+    const result = assessGeometry(loop);
+    expect(result.status).toBe('passed');
+    expect(result.isClosed).toBe(true);
+    expect(result.distanceKm).toBeGreaterThan(3);
+    expect(distanceMeters(loop[0], loop[1])).toBeGreaterThan(1000);
+  });
+
+  test('open geometry stays out of the queue', () => {
+    const candidate = buildCandidate(trail({ geometry: loop.slice(0, -1) }), { at: '2026-08-17T10:00:00.000Z' });
+    expect(candidate.state).toBe('rejected');
+    expect(candidate.blockers).toContain('not-closed-loop');
+  });
+
+  test('hard alpine difficulty stays out even when geometry closes', () => {
+    const candidate = buildCandidate(trail({ difficulty: 'alpine_hiking' }), { at: '2026-08-17T10:00:00.000Z' });
+    expect(candidate.state).toBe('rejected');
+    expect(candidate.blockers).toContain('blocked-difficulty:alpine_hiking');
+  });
+
+  test('discovery is bounded and returns contract-valid candidates', () => {
+    const result = discoverTrails({
+      source: 'fixture', generatedAt: '2026-08-16T00:00:00.000Z',
+      trails: [trail(), trail({ id: 'way/456', name: 'Second loop' }), trail({ id: 'way/789', geometry: loop.slice(0, -1) })],
+    }, { limit: 1, at: '2026-08-17T10:00:00.000Z' });
+    expect(result.summary).toEqual({ assessed: 3, eligible: 2, queued: 1, rejected: 1 });
+    expect(result.candidates).toHaveLength(1);
+    expect(validateCandidate(result.candidates[0])).toEqual([]);
+    expect(result.candidates[0].state).toBe('geometry_validated');
+  });
+
+  test('evidence contract requires a traceable source and producer', () => {
+    expect(validateEvidence({
+      contractVersion: '1.0.0',
+      category: 'access',
+      status: 'proposed',
+      claim: 'Dogs are allowed on leash.',
+      confidence: 0.9,
+      source: { url: 'https://example.test/rules' },
+      producedBy: { component: 'auditor-v1' },
+    })).toEqual([]);
+    expect(validateEvidence({ contractVersion: '1.0.0' })).toEqual(expect.arrayContaining([
+      'category is invalid', 'status is invalid', 'source.url is required',
+    ]));
+  });
+
+  test('logistics ranks nearby named parking without approving it', () => {
+    const accessPoints = {
+      generatedAt: '2026-08-01T00:00:00.000Z',
+      features: [
+        { type: 'Feature', properties: { kind: 'parking', name: null }, geometry: { type: 'Point', coordinates: [11.5805, 46.5105] } },
+        { type: 'Feature', properties: { kind: 'parking', name: 'Main car park', osmId: 'way/99' }, geometry: { type: 'Point', coordinates: [11.5806, 46.5106] } },
+        { type: 'Feature', properties: { kind: 'parking', name: 'Too far' }, geometry: { type: 'Point', coordinates: [12.5, 47.5] } },
+      ],
+    };
+    const ranked = rankParking(loop, accessPoints, { radiusM: 500 });
+    expect(ranked).toHaveLength(2);
+    expect(ranked[0]).toEqual(expect.objectContaining({
+      name: 'Main car park', osmId: 'way/99', status: 'mapped-suggestion', rank: 1,
+    }));
+    const candidate = buildCandidate(trail(), { at: '2026-08-17T10:00:00.000Z' });
+    const enriched = addLogistics(candidate, accessPoints, { at: '2026-08-17T11:00:00.000Z' });
+    expect(enriched.state).toBe('evidence_pending');
+    expect(enriched.logistics.selectedParking).toBeNull();
+    expect(enriched.logistics.requiresHumanReview).toBe(true);
+  });
+
+  test('review decisions are explicit, replaceable and exportable', () => {
+    const parking = { position: [11.58, 46.51], name: 'Main car park' };
+    const approved = reviewDecisions.applyDecision({}, {
+      candidateId: 'osm-relation-123', action: 'approve-parking', parking,
+      reviewedAt: '2026-08-17T12:00:00.000Z', reviewedBy: 'editor-1',
+    });
+    expect(approved['osm-relation-123']).toEqual(expect.objectContaining({ action: 'approve-parking', parking }));
+    const unresolved = reviewDecisions.applyDecision(approved, {
+      candidateId: 'osm-relation-123', action: 'parking-unresolved',
+      reviewedAt: '2026-08-17T13:00:00.000Z',
+    });
+    expect(unresolved['osm-relation-123'].parking).toBeNull();
+    const exported = reviewDecisions.exportRecord({ workflowVersion: '1.0.0' }, unresolved, '2026-08-17T14:00:00.000Z');
+    expect(exported.decisions).toHaveLength(1);
+    expect(() => reviewDecisions.applyDecision({}, { candidateId: 'x', action: 'approve-parking' })).toThrow('mapped parking');
+  });
+
+  test('route decisions remain separate, human-gated and exportable', () => {
+    const requested = routeReviewDecisions.applyDecision({}, {
+      candidateId: 'osm-relation-1484751', action: 'request-route-research',
+      reviewedAt: '2026-08-18T15:00:00.000Z', note: 'Replace the incorrect relation.',
+    });
+    expect(requested['osm-relation-1484751']).toEqual(expect.objectContaining({
+      gate: 'geometry-approval', action: 'request-route-research', route: null,
+    }));
+    expect(() => routeReviewDecisions.applyDecision({}, {
+      candidateId: 'x', action: 'approve-route',
+    })).toThrow('LineString');
+    const exported = routeReviewDecisions.exportRecord(routeReview, requested, '2026-08-18T15:01:00.000Z');
+    expect(exported.gate).toBe('geometry-approval');
+    expect(exported.decisions).toHaveLength(1);
+    const geometry = { type: 'LineString', coordinates: loop };
+    const variants = routeReviewDecisions.applyDecision({}, {
+      candidateId: 'tre-cime', action: 'approve-route-variants',
+      routes: [
+        { proposalId: 'classic', geometry, sourceRefs: ['official-classic'] },
+        { proposalId: 'extended', geometry, sourceRefs: ['official-extended'] },
+      ],
+    });
+    expect(variants['tre-cime'].routes).toHaveLength(2);
+    expect(variants['tre-cime'].route).toBeNull();
+  });
+
+  test('route review separates Tre Cime variants and never enables unsupported approval', () => {
+    expect(routeReview.mode).toBe('draft-only');
+    expect(routeReview.publicMutationAllowed).toBe(false);
+    expect(routeReview.items).toHaveLength(4);
+    expect(routeReview.items[0]).toEqual(expect.objectContaining({
+      candidateId: 'osm-relation-1484751', priority: 1,
+      reviewState: 'ready-for-human-route-choice', approvalAllowed: true,
+    }));
+    expect(routeReview.items[0].proposals.map(proposal => proposal.id)).toEqual([
+      'tre-cime-classic-101-105', 'tre-cime-monte-paterno-101-104-105',
+    ]);
+    const cinqueTorri = routeReview.items.find(item => item.candidateId === 'osm-relation-6678431');
+    expect(cinqueTorri.approvalAllowed).toBe(true);
+    expect(cinqueTorri.proposals).toEqual([
+      expect.objectContaining({
+        id: 'cinque-torri-three-refuges-assisted',
+        eligibility: 'ready-for-human-review',
+      }),
+    ]);
+    expect(routeReview.items.find(item => item.candidateId === 'osm-relation-1372055').nextAgentAction)
+      .toEqual(expect.objectContaining({ attempt: 5, maximumAttempts: 5 }));
+  });
+
+  test('worked Tre Cime dossier is contract-valid, internally verified and still unpublished', () => {
+    expect(validateDossier(treCimeDossier)).toEqual([]);
+    expect(treCimeDossier.reviewState).toBe('accepted');
+    expect(treCimeDossier.promotionGate.canPublish).toBe(false);
+    expect(treCimeDossier.ormaVerification).toEqual(expect.objectContaining({
+      status: 'verified', publicationAuthorized: false, publicMutationAllowed: false,
+    }));
+    expect(treCimeDossier.promotionGate.canApproveParking).toBe(true);
+    expect(treCimeDossier.promotionGate.canApproveRoute).toBe(true);
+    expect(treCimeDossier.claims.find(claim => claim.id === 'route-geometry').state).toBe('supported');
+    expect(treCimeDossier.claims.find(claim => claim.id === 'parking-pin').state).toBe('supported');
+  });
+
+  test('resolution policy permits five distinct automated attempts', () => {
+    expect(resolutionPolicy.MAX_AUTOMATED_ATTEMPTS).toBe(5);
+    const attempts = Array.from({ length: 4 }, (_, index) => ({ strategy: `strategy-${index + 1}` }));
+    expect(resolutionPolicy.assertNextStrategy(attempts, 'strategy-5')).toEqual({
+      attemptNumber: 5, strategy: 'strategy-5', delayHours: 72,
+    });
+    const exhausted = [...attempts, { strategy: 'strategy-5' }];
+    expect(resolutionPolicy.resolutionStatus(exhausted, 'unresolved')).toBe('source-exhausted');
+    expect(() => resolutionPolicy.assertNextStrategy(exhausted, 'strategy-6')).toThrow('limit reached (5)');
+    expect(() => resolutionPolicy.assertNextStrategy(attempts, 'strategy-1')).toThrow('materially different');
+  });
+
+  test('new specialist agents are registered with human gates and no approval authority', () => {
+    expect(fleet.validateRegistry()).toEqual([]);
+    ['cartographer', 'regulatoryRanger', 'evidenceLibrarian', 'redTeam'].forEach(agentId => {
+      const agent = fleet.getAgent(agentId);
+      expect(agent).toBeTruthy();
+      expect(agent.humanGates.length).toBeGreaterThan(0);
+      expect(agent.mayApprove).toEqual([]);
+    });
+  });
+
+  test('agent jobs require a registered fleet member and traceable references', () => {
+    const job = createAgentJob({
+      id: 'job-1', agentId: 'cartographer', action: 'resolve-full-geometry',
+      candidateId: 'osm-relation-1484751', claimIds: ['route-geometry'],
+      inputRefs: ['dossiers/osm-relation-1484751'], humanGate: 'geometry-approval',
+    }, { at: '2026-08-17T15:00:00.000Z' });
+    expect(validateAgentJob(job)).toEqual([]);
+    expect(job.status).toBe('queued');
+    expect(() => createAgentJob({ id: 'bad', agentId: 'unknown', action: 'x' })).toThrow('not registered');
+  });
+
+  test('fleet router sends only remaining blockers onward and requires red-team review at the end', () => {
+    const handoffs = fleetRouter.auditHandoffs(treCimeDossier);
+    expect(handoffs).toEqual([]);
+    expect(handoffs.find(handoff => handoff.agentId === 'cartographer')).toBeUndefined();
+    expect(handoffs.find(handoff => handoff.agentId === 'terrainPoi')).toBeUndefined();
+    expect(handoffs.find(handoff => handoff.agentId === 'logistics')).toBeUndefined();
+    const green = { claims: treCimeDossier.claims.map(claim => ({ ...claim, state: 'supported' })) };
+    expect(fleetRouter.preEditorialSequence(green)).toEqual(expect.objectContaining({
+      humanGate: 'serious-objection-review',
+      next: expect.arrayContaining([expect.objectContaining({ agentId: 'redTeam' })]),
+    }));
+  });
+
+  test('Cartographer query and reconstruction retain current relation provenance', () => {
+    expect(buildRelationQuery('relation/123')).toContain('relation(123)');
+    const payload = {
+      elements: [
+        {
+          type: 'relation', id: 123, version: 7, timestamp: '2026-08-16T09:00:00Z',
+          tags: { type: 'route', route: 'hiking' },
+          members: [
+            { type: 'way', ref: 10, role: '' },
+            { type: 'way', ref: 11, role: '' },
+            { type: 'way', ref: 12, role: '' },
+          ],
+        },
+        { type: 'way', id: 10, geometry: [{ lon: 11.58, lat: 46.51 }, { lon: 11.59, lat: 46.52 }] },
+        { type: 'way', id: 11, geometry: [{ lon: 11.60, lat: 46.51 }, { lon: 11.59, lat: 46.52 }] },
+        { type: 'way', id: 12, geometry: [{ lon: 11.60, lat: 46.51 }, { lon: 11.58, lat: 46.51 }] },
+      ],
+    };
+    const reconstructed = reconstructRelation(payload, 'relation/123');
+    expect(reconstructed.relation).toEqual(expect.objectContaining({ version: 7, memberWayCount: 3 }));
+    expect(reconstructed.components).toHaveLength(1);
+    expect(reconstructed.geometry.coordinates[0]).toEqual(reconstructed.geometry.coordinates.at(-1));
+    expect(reconstructed.assessment.status).toBe('passed');
+  });
+
+  test('official GPX becomes a closed, draft-only route proposal', () => {
+    const xml = '<?xml version="1.0"?><gpx><trk><trkseg>'
+      + '<trkpt lat="46.51" lon="11.58"><ele>100</ele></trkpt>'
+      + '<trkpt lat="46.52" lon="11.59"><ele>120</ele></trkpt>'
+      + '<trkpt lat="46.51" lon="11.60"><ele>110</ele></trkpt>'
+      + '<trkpt lat="46.51" lon="11.58"><ele>100</ele></trkpt>'
+      + '</trkseg></trk></gpx>';
+    const parsed = parseGpx(xml);
+    expect(parsed.assessment.isClosed).toBe(true);
+    expect(parsed.elevation.rawAscentM).toBe(20);
+    const feature = proposalFeature(xml, { proposalId: 'official-loop' });
+    expect(feature.geometry.type).toBe('LineString');
+    expect(feature.properties).toEqual(expect.objectContaining({
+      proposalId: 'official-loop', humanGate: 'geometry-approval', publicMutationAllowed: false,
+    }));
+  });
+
+  test('Cartographer produces a blocked human-review artifact when official metrics conflict', async () => {
+    const candidate = buildCandidate(trail(), { at: '2026-08-17T10:00:00.000Z' });
+    candidate.source.externalId = 'relation/123';
+    const payload = {
+      elements: [
+        { type: 'relation', id: 123, version: 2, timestamp: '2026-08-17T08:00:00Z', tags: {}, members: [
+          { type: 'way', ref: 10 }, { type: 'way', ref: 11 }, { type: 'way', ref: 12 },
+        ] },
+        { type: 'way', id: 10, geometry: [{ lon: 11.58, lat: 46.51 }, { lon: 11.59, lat: 46.52 }] },
+        { type: 'way', id: 11, geometry: [{ lon: 11.59, lat: 46.52 }, { lon: 11.60, lat: 46.51 }] },
+        { type: 'way', id: 12, geometry: [{ lon: 11.60, lat: 46.51 }, { lon: 11.58, lat: 46.51 }] },
+      ],
+    };
+    const result = await runCartographer(candidate, { referenceMetrics: { distanceKm: 20, ascentM: 400 } }, {
+      at: '2026-08-17T16:00:00.000Z',
+      fetchRelation: async () => ({ endpoint: 'fixture', payload }),
+    });
+    expect(validateCartographerResult(result)).toEqual([]);
+    expect(result.reviewState).toBe('blocked');
+    expect(result.blockers).toContain('official-distance-conflict');
+    expect(result.humanGate.required).toBe(true);
+    expect(compareMetrics({ distanceKm: 3 }, { assessment: { distanceKm: 10 } }, { distanceKm: 10 }).withinOfficialDistanceTolerance).toBe(true);
+  });
+
+  test('catalogue campaign recognises only complete modern graduation as ORMA verified', () => {
+    const complete = {
+      status: 'verified',
+      completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat',
+        'exposure', 'livestock', 'surfaceHazards', 'access'],
+    };
+    expect(hasFullGraduation({ graduation: complete })).toBe(true);
+    expect(hasFullGraduation({ graduation: { ...complete, completed: complete.completed.slice(1) } })).toBe(false);
+    expect(hasFullGraduation({ graduation: { ...complete, status: 'in-progress' } })).toBe(false);
+  });
+
+  test('catalogue campaign creates a bounded, draft-only Cartographer queue', () => {
+    const trails = [
+      { id: 'curated-one', name: 'Curated One', curated: true, path: loop },
+      { id: 'osm-123', name: 'Imported One', curated: false, path: loop },
+      { id: 'osm-456', name: 'Imported Two', curated: false, path: loop },
+    ];
+    const campaign = planCatalogueCampaign(trails, {
+      at: '2026-08-17T17:00:00.000Z', jobLimit: 2,
+    });
+    expect(validateCampaign(campaign)).toEqual([]);
+    expect(campaign.mode).toBe('draft-only');
+    expect(campaign.publicMutationAllowed).toBe(false);
+    expect(campaign.jobs).toHaveLength(2);
+    expect(campaign.jobs.every(job => job.humanGate === 'geometry-approval')).toBe(true);
+    expect(campaign.items.find(item => item.trailId === 'curated-one').campaignState).toBe('source-identity-required');
+    expect(relationExternalId(trails[1])).toBe('relation/123');
+  });
+
+  test('catalogue campaign advances past trails recorded by earlier batches', () => {
+    const trails = [
+      { id: 'osm-123', name: 'First', curated: false, path: loop },
+      { id: 'osm-456', name: 'Second', curated: false, path: loop },
+    ];
+    const campaign = planCatalogueCampaign(trails, {
+      at: '2026-08-17T17:30:00.000Z', jobLimit: 1, excludedTrailIds: ['osm-123'],
+    });
+    expect(campaign.selectedTrailIds).toEqual(['osm-456']);
+    expect(campaign.summary.previouslyQueued).toBe(1);
+    expect(campaign.summary.remainingQueueable).toBe(0);
+  });
+
+  test('campaign runner converts production coordinates into a gated Cartographer artifact', async () => {
+    const productionTrail = {
+      id: 'osm-123', name: 'First', curated: false, osmRelation: 123,
+      path: loop.map(([lng, lat]) => [lat, lng]), distance: 3, elevation: 200,
+    };
+    const campaign = planCatalogueCampaign([productionTrail], {
+      at: '2026-08-17T18:00:00.000Z', jobLimit: 1,
+    });
+    const candidate = candidateFromProductionTrail(productionTrail);
+    expect(candidate.source.externalId).toBe('relation/123');
+    expect(candidate.geometryAssessment.distanceKm).toBe(3);
+    const execution = await runCatalogueBatch(campaign, [productionTrail], {
+      at: '2026-08-17T18:01:00.000Z',
+      runCartographer: async input => ({
+        candidateId: input.id, reviewState: 'ready-for-human-review', blockers: [],
+      }),
+    });
+    expect(execution.publicMutationAllowed).toBe(false);
+    expect(execution.summary).toEqual({ attempted: 1, needsHuman: 1, failed: 0 });
+    expect(execution.jobs[0]).toEqual(expect.objectContaining({
+      status: 'needs-human', humanGate: 'geometry-approval',
+    }));
+    expect(execution.outputs[0].outputRef).toBe('backoffice-data/cartographer/osm-123.json');
+  });
+
+  test('exported parking decisions remain evidence-backed and human-gated after resolution', () => {
+    expect(decisionResolution.publicMutationAllowed).toBe(false);
+    expect(decisionResolution.resolutionAttempt).toBe(1);
+    expect(decisionResolution.resolutions).toHaveLength(4);
+    decisionResolution.resolutions.forEach(resolution => {
+      expect(resolution.sources.length).toBeGreaterThan(0);
+      expect(resolution.remainingHumanChecks.length).toBeGreaterThan(0);
+    });
+    expect(decisionResolution.resolutions.find(item => item.candidateId === 'osm-relation-1372055').state)
+      .toBe('requires-update-trail-access-blocked');
+  });
+
+  test('resolution attempt 2 records pins with confidence and never promotes a trail', () => {
+    expect(decisionResolutionAttempt2.resolutionAttempt).toBe(2);
+    expect(decisionResolutionAttempt2.publicMutationAllowed).toBe(false);
+    expect(decisionResolutionAttempt2.summary.fullyOrmaVerified).toBe(0);
+    const treCime = decisionResolutionAttempt2.resolutions.find(item => item.candidateId === 'osm-relation-1484751');
+    expect(treCime.parkingOptions[0]).toEqual(expect.objectContaining({
+      lat: 46.612849, lng: 12.292858, osmId: 'way/1109742730',
+    }));
+    const braies = decisionResolutionAttempt2.resolutions.find(item => item.candidateId === 'osm-way-25736154');
+    expect(braies.parkingOptions.find(item => item.label.startsWith('P3'))).toEqual(expect.objectContaining({
+      lat: null, confidence: 'identity-confirmed-coordinate-conflicted',
+    }));
+  });
+
+  test('resolution attempt 3 rejects the conflicted Cinque Torri approval and records four Braies options', () => {
+    expect(decisionResolutionAttempt3.resolutionAttempt).toBe(3);
+    expect(decisionResolutionAttempt3.publicMutationAllowed).toBe(false);
+    const cinque = decisionResolutionAttempt3.resolutions.find(item => item.candidateId === 'osm-relation-6678431');
+    expect(cinque.conflictedDecision).toEqual(expect.objectContaining({ accepted: false, distanceFromAuthoritativeTrailheadM: 1379 }));
+    const braies = decisionResolutionAttempt3.resolutions.find(item => item.candidateId === 'osm-way-25736154');
+    expect(braies.parkingOptions.map(option => option.label)).toEqual(expect.arrayContaining([
+      expect.stringMatching(/^P1/), expect.stringMatching(/^P2/), expect.stringMatching(/^P3/), expect.stringMatching(/^P4/),
+    ]));
+    expect(decisionResolutionAttempt3.summary.fullyOrmaVerified).toBe(0);
+  });
+
+  test('review decisions support an explicitly selected parking set', () => {
+    const next = reviewDecisions.applyDecision({}, {
+      candidateId: 'braies', action: 'approve-parking-set',
+      parkings: [{ name: 'P3', position: [12.08, 46.70] }, { name: 'P4', position: [12.083, 46.699] }],
+      reviewedAt: '2026-08-18T13:00:00.000Z',
+    });
+    expect(next.braies.action).toBe('approve-parking-set');
+    expect(next.braies.parkings).toHaveLength(2);
+    expect(next.braies.parking).toBeNull();
+  });
+
+  test('resolution attempt 4 exposes four coordinate-backed Braies options and keeps Monte Pelmo blocked', () => {
+    expect(decisionResolutionAttempt4.resolutionAttempt).toBe(4);
+    const braies = decisionResolutionAttempt4.resolutions.find(item => item.candidateId === 'osm-way-25736154');
+    expect(braies.parkingOptions).toHaveLength(4);
+    expect(braies.parkingOptions.every(option => Number.isFinite(option.lat) && Number.isFinite(option.lng))).toBe(true);
+    const pelmo = decisionResolutionAttempt4.resolutions.find(item => item.candidateId === 'osm-relation-1372055');
+    expect(pelmo.state).toBe('direct-confirmation-required-full-loop-blocked');
+    expect(decisionResolutionAttempt4.summary.fullyOrmaVerified).toBe(0);
+  });
+
+  test('resolution attempt 5 exhausts retries without forcing unresolved claims green', () => {
+    expect(decisionResolutionAttempt5.resolutionAttempt).toBe(5);
+    expect(decisionResolutionAttempt5.automatedRetryBudgetExhausted).toBe(true);
+    expect(decisionResolutionAttempt5.summary.fullyOrmaVerified).toBe(0);
+    const pelmo = decisionResolutionAttempt5.resolutions.find(item => item.candidateId === 'osm-relation-1372055');
+    expect(pelmo.state).toBe('source-exhausted-direct-confirmation-required');
+    expect(montePelmoContactPacket.notSent).toBe(true);
+    expect(montePelmoContactPacket.questions.length).toBeGreaterThanOrEqual(5);
+  });
+
+  test('post-attempt human status records the explicit four-option Braies approval', () => {
+    expect(finalHumanDecisionStatus.automatedResolutionAttemptsComplete).toBe(5);
+    const braies = finalHumanDecisionStatus.status.find(item => item.candidateId === 'osm-way-25736154');
+    expect(braies.parkingDecision).toBe('approved-four-option-set');
+    expect(braies.approvedParkingCount).toBe(4);
+    expect(finalHumanDecisionStatus.publicMutationAllowed).toBe(false);
+    expect(braiesParkingApproval.action).toBe('approve-parking-set');
+    expect(braiesParkingApproval.parkings).toHaveLength(4);
+    expect(braiesParkingApproval.publicMutationAllowed).toBe(false);
+  });
+
+  test('route resolution attempt 1 creates two reviewable proposals without promoting a trail', () => {
+    expect(routeResolutionAttempt1.sourceDecisionExport).toBe('orma-review-decisions-2026-08-18 (9).json');
+    expect(routeResolutionAttempt1.publicMutationAllowed).toBe(false);
+    expect(routeResolutionAttempt1.summary.fullyOrmaVerified).toBe(0);
+    const treCime = routeResolutionAttempt1.results.find(item => item.candidateId === 'osm-relation-1484751');
+    expect(treCime.proposalIds).toEqual([
+      'tre-cime-classic-101-105', 'tre-cime-monte-paterno-101-104-105',
+    ]);
+    expect(treCime.excludedVariant.reason).toMatch(/not dog-friendly/);
+    const cinque = routeResolutionAttempt1.results.find(item => item.candidateId === 'osm-relation-6678431');
+    expect(cinque.nextAttemptRequired).toBe(true);
+  });
+
+  test('route attempt 2 accepts exact geometry and reopens contradicted Cinque Torri parking', () => {
+    expect(routeApprovalReceipts.sourceDecisionExport).toBe('orma-review-decisions-2026-08-18 (10).json');
+    expect(routeApprovalReceipts.approvals).toHaveLength(2);
+    expect(routeApprovalReceipts.approvals.every(approval => approval.exactProposalMatch)).toBe(true);
+    expect(routeResolutionAttempt2.publicMutationAllowed).toBe(false);
+    expect(routeResolutionAttempt2.summary.fullyOrmaVerified).toBe(0);
+    const cinque = routeResolutionAttempt2.results.find(item => item.candidateId === 'osm-relation-6678431');
+    expect(cinque.storedRelationAudit.validHikingRoute).toBe(false);
+    expect(cinque.parkingContradiction.replacementCandidate).toEqual(expect.objectContaining({
+      osmId: 'way/900787870', position: [12.037603729268294, 46.51891714390244],
+    }));
+    const correction = postRouteParkingAudit.resolutions.find(item => item.candidateId === 'osm-relation-6678431');
+    expect(correction.state).toBe('parking-and-assisted-route-geometry-approved');
+    expect(correction.parkingOptions[0].osmId).toBe('way/900787870');
+  });
+
+  test('route attempt 3 resolves dog lift rules but keeps Cinque Torri human-gated', () => {
+    expect(routeResolutionAttempt3.resolutionAttempt).toBe(3);
+    expect(routeResolutionAttempt3.publicMutationAllowed).toBe(false);
+    expect(routeResolutionAttempt3.state).toBe('assisted-route-ready-for-human-geometry-review');
+    expect(routeResolutionAttempt3.resolvedClaims[0]).toEqual(expect.objectContaining({
+      state: 'supported', conditions: ['leash', 'muzzle'],
+    }));
+    expect(routeResolutionAttempt3.nextAutomatedAttempt).toBe(4);
+    expect(routeResolutionAttempt3.fullyOrmaVerified).toBe(false);
+  });
+
+  test('export 11 accepts exact route geometries but rejects the stale Cinque Torri parking', () => {
+    expect(export11RouteReceipts.sourceDecisionExport).toBe('orma-review-decisions-2026-08-18 (11).json');
+    expect(export11RouteReceipts.approvals).toHaveLength(3);
+    expect(export11RouteReceipts.approvals.every(approval => approval.exactProposalMatch)).toBe(true);
+    const cinqueRoute = export11RouteReceipts.approvals.find(approval => approval.candidateId === 'osm-relation-6678431');
+    expect(cinqueRoute).toEqual(expect.objectContaining({
+      proposalId: 'cinque-torri-three-refuges-assisted',
+      coordinateCount: 204,
+      geometrySha256: '7131fb630d239582e8ab7b1be22e914cc9c3a1caaa1959921d71569dd93ff47a',
+    }));
+    expect(export11Resolution.summary.staleParkingApprovalsRejected).toBe(1);
+    const cinqueResolution = export11Resolution.results.find(result => result.candidateId === 'osm-relation-6678431');
+    expect(cinqueResolution.requiredParking).toEqual(expect.objectContaining({
+      osmId: 'way/900787870', state: 'awaiting-human-approval',
+    }));
+    expect(export11Resolution.summary.fullyOrmaVerified).toBe(0);
+  });
+
+  test('approved route geometries queue enrichment without permitting publication', () => {
+    expect(export11Enrichment.status).toBe('queued');
+    expect(export11Enrichment.publicMutationAllowed).toBe(false);
+    expect(export11Enrichment.candidates).toHaveLength(3);
+    expect(export11Enrichment.requiredOutputs).toContain('surface-and-exposure-assessment');
+    expect(export11Enrichment.nextHumanGate).toBe('safety-input-review');
+  });
+
+  test('export 12 closes corrected Cinque Torri parking without revoking prior approvals', () => {
+    expect(export12ParkingReceipt.sourceDecisionExport).toBe('orma-review-decisions-2026-08-18 (12).json');
+    expect(export12ParkingReceipt.approval).toEqual(expect.objectContaining({
+      candidateId: 'osm-relation-6678431',
+      osmId: 'way/900787870',
+      position: [12.037603729268294, 46.51891714390244],
+      exactReviewedCandidateMatch: true,
+    }));
+    expect(export12Resolution.summary.fullyOrmaVerified).toBe(0);
+    const braies = export12Resolution.results.find(result => result.candidateId === 'osm-way-25736154');
+    expect(braies).toEqual(expect.objectContaining({
+      state: 'parking-set-and-geometry-approved-enrichment-queued',
+      carriedForwardFrom: 'orma-review-decisions-2026-08-18 (9).json',
+    }));
+  });
+
+  test('current enrichment dossiers are contract-valid and preserve the final human gate', () => {
+    [treCimeDossier, cinqueTorriDossier, lagoBraiesDossier].forEach(dossier => {
+      expect(validateDossier(dossier)).toEqual([]);
+      expect(dossier.promotionGate.canApproveParking).toBe(true);
+      expect(dossier.promotionGate.canApproveRoute).toBe(true);
+      expect(dossier.promotionGate.canPublish).toBe(false);
+    });
+    expect(treCimeDossier.reviewState).toBe('accepted');
+    expect(cinqueTorriDossier.reviewState).toBe('accepted');
+    expect(lagoBraiesDossier.reviewState).toBe('accepted');
+    expect(treCimeDossier.claims.every(claim => claim.state === 'supported')).toBe(true);
+    expect(cinqueTorriDossier.claims.every(claim => claim.state === 'supported')).toBe(true);
+    expect(lagoBraiesDossier.claims.every(claim => claim.state === 'supported')).toBe(true);
+    expect(cinqueTorriDossier.claims.find(claim => claim.id === 'walking-elevation').state).toBe('supported');
+    expect(lagoBraiesDossier.claims.find(claim => claim.id === 'surface-exposure').state).toBe('supported');
+  });
+
+  test('enrichment review records exact claims and never permits public mutation', () => {
+    const requested = enrichmentReviewDecisions.applyDecision({}, {
+      candidateId: 'osm-way-25736154',
+      action: 'request-enrichment-resolution',
+      supportedClaimIds: ['route-geometry', 'route-identity'],
+      unresolvedClaimIds: ['shade', 'water', 'shade'],
+      reviewedAt: '2026-08-18T14:00:00.000Z',
+    });
+    expect(requested['osm-way-25736154']).toEqual(expect.objectContaining({
+      gate: 'safety-input-review',
+      supportedClaimIds: ['route-geometry', 'route-identity'],
+      unresolvedClaimIds: ['shade', 'water'],
+      publicMutationAllowed: false,
+    }));
+    const exported = enrichmentReviewDecisions.exportRecord(requested, '2026-08-18T14:01:00.000Z');
+    expect(exported.gate).toBe('safety-input-review');
+    expect(exported.publicMutationAllowed).toBe(false);
+    expect(() => enrichmentReviewDecisions.applyDecision({}, {
+      candidateId: 'x', action: 'confirm-supported-claims', supportedClaimIds: [],
+    })).toThrow('reviewed supported claim');
+  });
+
+  test('enrichment attempt 1 routes every blocker to a distinct second-pass strategy', () => {
+    expect(enrichmentAttempt1.resolutionAttempt).toBe(1);
+    expect(enrichmentAttempt1.maximumAutomatedAttempts).toBe(5);
+    expect(enrichmentAttempt1.summary).toEqual(expect.objectContaining({
+      supportedClaims: 25, unresolvedOrConflictedClaims: 12, fullyOrmaVerified: 0,
+    }));
+    expect(enrichmentAttempt1.results.every(result => (
+      result.unresolvedClaimIds.length > 0
+      && result.nextAttempt.attempt === 2
+      && result.nextAttempt.strategy.length > 20
+    ))).toBe(true);
+    expect(mediaGapChecklist.trails).toHaveLength(3);
+    expect(mediaGapChecklist.trails.every(trail => trail.requiredShots.length >= 6)).toBe(true);
+    expect(mediaGapChecklist.humanGate).toBe('asset-and-licensing-approval');
+  });
+
+  test('assisted route segmentation excludes the Cinque Torri lift from walking effort', () => {
+    const xml = require('fs').readFileSync('backoffice-data/cinque-torri-three-refuges-official.gpx', 'utf8');
+    const segmented = splitAssistedRoute(xml, 22);
+    expect(segmented.transport).toEqual(expect.objectContaining({
+      distanceKm: 1.37, rawAscentM: 295, startIndex: 0, endIndex: 22,
+    }));
+    expect(segmented.walking).toEqual(expect.objectContaining({
+      distanceKm: 3.95, rawAscentM: 10, rawDescentM: 347, startIndex: 22,
+    }));
+    expect(segmented.publicMutationAllowed).toBe(false);
+  });
+
+  test('export 13 confirms exact claim sets and attempt 2 creates only human-gated resolutions', () => {
+    expect(enrichmentReviewReceipt13.summary).toEqual(expect.objectContaining({
+      dossiersReviewed: 3, supportedClaimsConfirmed: 25,
+      unresolvedClaimsCarriedForward: 12, exactClaimSetMatch: true,
+    }));
+    expect(enrichmentAttempt2.resolutionAttempt).toBe(2);
+    expect(enrichmentAttempt2.summary).toEqual(expect.objectContaining({
+      supportedClaims: 27, newlySupportedClaims: 2,
+      unresolvedOrConflictedClaims: 10, fullyOrmaVerified: 0,
+    }));
+    expect(enrichmentAttempt2.newlySupported.every(item => item.humanGate === 'safety-input-review')).toBe(true);
+    expect(enrichmentAttempt2.publicMutationAllowed).toBe(false);
+    expect(mediaCandidatesAttempt2.selectionState).toBe('candidates-only-human-licensing-gate-required');
+    expect(mediaCandidatesAttempt2.candidates).toHaveLength(3);
+  });
+
+  test('export 14 confirms attempt 2 and attempt 3 narrows claims without manufacturing precision', () => {
+    expect(enrichmentReviewReceipt14.summary).toEqual(expect.objectContaining({
+      dossiersReviewed: 3, supportedClaimsConfirmed: 27,
+      unresolvedClaimsCarriedForward: 10, exactClaimSetMatch: true,
+      newAttempt2ClaimsConfirmed: 2,
+    }));
+    expect(enrichmentAttempt3.resolutionAttempt).toBe(3);
+    expect(enrichmentAttempt3.summary).toEqual(expect.objectContaining({
+      supportedClaims: 33, newlySupportedClaims: 6,
+      unresolvedOrConflictedClaims: 4, fullyOrmaVerified: 0,
+    }));
+    expect(enrichmentAttempt3.newlySupported.every(item => item.humanGate === 'safety-input-review')).toBe(true);
+    expect(enrichmentAttempt3.guardrails.join(' ')).toMatch(/not converted into canopy percentages/i);
+    expect(enrichmentAttempt3.publicMutationAllowed).toBe(false);
+    expect(treCimeDossier.claims.find(claim => claim.id === 'heat-shade').proposedValue).toMatch(/No shade percentage/i);
+    expect(cinqueTorriDossier.claims.find(claim => claim.id === 'shade').state).toBe('supported');
+    expect(lagoBraiesDossier.claims.find(claim => claim.id === 'water').proposedValue).toMatch(/Carry all water/i);
+    expect(enrichmentAttempt3.unresolvedByCandidate
+      .reduce((count, candidate) => count + candidate.claimIds.length, 0)).toBe(4);
+  });
+
+  test('export 15 confirms attempt 3 and attempt 4 creates auditable hero proposals without publishing', () => {
+    expect(enrichmentReviewReceipt15.summary).toEqual(expect.objectContaining({
+      supportedClaimsConfirmed: 33, unresolvedClaimsCarriedForward: 4,
+      exactClaimSetMatch: true, newAttempt3ClaimsConfirmed: 6,
+    }));
+    expect(enrichmentAttempt4.resolutionAttempt).toBe(4);
+    expect(enrichmentAttempt4.summary).toEqual(expect.objectContaining({
+      supportedClaims: 36, newlySupportedClaims: 3,
+      unresolvedOrConflictedClaims: 1, fullyOrmaVerified: 0,
+    }));
+    expect(mediaLicensingAttempt4.assets).toHaveLength(3);
+    expect(mediaLicensingAttempt4.assets.every(asset => (
+      asset.licence === 'CC BY-SA 4.0'
+      && asset.requiredCredit
+      && asset.licenceUrl
+      && asset.humanGate === 'asset-and-licensing-approval'
+    ))).toBe(true);
+    expect(mediaLicensingAttempt4.downloadOrPublicationPerformed).toBe(false);
+    expect(braiesLivestockContactAttempt4.status).toBe('prepared-not-sent');
+    expect(braiesLivestockContactAttempt4.messageDraft).toMatch(/no reply as unresolved/i);
+    expect(enrichmentAttempt4.publicMutationAllowed).toBe(false);
+  });
+
+  test('export 16 confirms all proposed assets and attempt 5 never fabricates the Braies livestock result', () => {
+    expect(enrichmentReviewReceipt16.summary).toEqual(expect.objectContaining({
+      supportedClaimsConfirmed: 36, unresolvedClaimsCarriedForward: 1,
+      exactClaimSetMatch: true, newAttempt4ClaimsConfirmed: 3,
+    }));
+    expect(enrichmentAttempt5.resolutionAttempt).toBe(5);
+    expect(enrichmentAttempt5.summary).toEqual(expect.objectContaining({
+      readyForFinalHumanVerification: 2, fullyOrmaVerified: 0, sourceExhausted: 1,
+    }));
+    expect(enrichmentAttempt5.attemptBudgetRule).toMatch(/No sixth automated search/i);
+    const braiesRedTeam = redTeamAttempt5.reviews.find(review => review.candidateId === 'osm-way-25736154');
+    expect(braiesRedTeam.recommendation).toBe('remain-blocked-source-exhausted');
+    expect(braiesRedTeam.seriousObjections).toEqual([
+      expect.objectContaining({ claimId: 'livestock', severity: 'serious' }),
+    ]);
+    expect(enrichmentAttempt5.publicMutationAllowed).toBe(false);
+  });
+
+  test('the editor livestock attestation resolves the Braies evidence after attempt 5 without authorizing publication', () => {
+    expect(braiesLivestockHumanAttestation).toEqual(expect.objectContaining({
+      candidateId: 'osm-way-25736154',
+      claimId: 'livestock',
+      evidenceType: 'human-editor-local-knowledge-attestation',
+      publicMutationAllowed: false,
+    }));
+    expect(braiesVerificationApproval).toEqual(expect.objectContaining({
+      candidateId: 'osm-way-25736154',
+      action: 'approve-orma-verified',
+      gate: 'human-local-knowledge-objection-resolution',
+      publicationAuthorized: false,
+      publicMutationAllowed: false,
+    }));
+    expect(lagoBraiesDossier.claims.find(claim => claim.id === 'livestock')).toEqual(
+      expect.objectContaining({ state: 'supported', confidence: 0.95 }),
+    );
+  });
+
+  test('export 18 preserves the later Braies attestation instead of reviving stale browser-local state', () => {
+    expect(decisionReconciliation18).toEqual(expect.objectContaining({
+      sourceDecisionExport: 'orma-review-decisions-2026-08-18 (18).json',
+      status: 'reconciled-no-new-decisions',
+      publicMutationAllowed: false,
+    }));
+    expect(decisionReconciliation18.summary).toEqual(expect.objectContaining({
+      newDecisionsApplied: 0,
+      supersededEnrichmentSelectionsIgnored: 1,
+      internalOrmaVerifiedTotal: 3,
+      publicationAuthorized: false,
+    }));
+    expect(decisionReconciliation18.reconciliations).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        candidateId: 'osm-way-25736154',
+        field: 'enrichmentReview.livestock',
+        effectiveState: 'supported',
+      }),
+      expect.objectContaining({
+        candidateId: 'osm-way-25736154',
+        field: 'verificationReview',
+        effectiveState: 'orma-verified-internal-not-published',
+      }),
+    ]));
+  });
+
+  test('export 19 applies the later explicit Braies verification hold without discarding its livestock evidence', () => {
+    expect(verificationReceipt19.decision).toEqual(expect.objectContaining({
+      candidateId: 'osm-way-25736154',
+      action: 'keep-verification-blocked',
+      reviewedAt: '2026-08-18T15:19:57.182Z',
+    }));
+    expect(verificationReceipt19.evidenceTreatment.livestockAttestationState).toBe('retained-as-supported');
+    expect(verificationReceipt19.result).toEqual(expect.objectContaining({
+      trailVerification: 'human-review-blocked',
+      publicationAuthorized: false,
+      publicMutationAllowed: false,
+    }));
+    expect(lagoBraiesDossier.claims.find(claim => claim.id === 'livestock').state).toBe('supported');
+  });
+
+  test('the explicit instruction accompanying export 20 unblocks and verifies Braies without publishing it', () => {
+    expect(verificationReceipt20).toEqual(expect.objectContaining({
+      sourceDecisionExport: 'orma-review-decisions-2026-08-18 (20).json',
+      candidateId: 'osm-way-25736154',
+      action: 'approve-orma-verified',
+      decisionSource: 'explicit-human-instruction-accompanying-export',
+      publicationAuthorized: false,
+      publicMutationAllowed: false,
+    }));
+    expect(lagoBraiesDossier.reviewState).toBe('accepted');
+    expect(lagoBraiesDossier.ormaVerification.status).toBe('verified');
+    expect(lagoBraiesDossier.verificationReview.recommendation).toBe('clear-for-orma-verified');
+  });
+
+  test('final verification requires every Red Team acknowledgement and remains local-only', () => {
+    expect(() => verificationReviewDecisions.applyDecision({}, {
+      candidateId: 'osm-relation-1484751', action: 'approve-orma-verified',
+      reviewReady: true, acknowledgementIds: ['one'], requiredAcknowledgementIds: ['one', 'two'],
+    })).toThrow('Every Red Team acknowledgement');
+    const decisions = verificationReviewDecisions.applyDecision({}, {
+      candidateId: 'osm-relation-1484751', action: 'approve-orma-verified', reviewReady: true,
+      acknowledgementIds: ['tre-hard-rating', 'tre-water-caveat', 'tre-live-checks'],
+      requiredAcknowledgementIds: ['tre-hard-rating', 'tre-water-caveat', 'tre-live-checks'],
+      reviewedAt: '2026-08-18T15:00:00.000Z',
+    });
+    expect(decisions['osm-relation-1484751']).toEqual(expect.objectContaining({
+      gate: 'serious-objection-review', action: 'approve-orma-verified', publicMutationAllowed: false,
+    }));
+    expect(verificationReviewDecisions.exportRecord(decisions).publicMutationAllowed).toBe(false);
+  });
+
+  test('the latest registry applies the export 20 override and keeps three trails internally ORMA Verified', () => {
+    expect(verificationReceipt17.summary).toEqual({
+      ormaVerifiedApproved: 2, verificationBlocked: 1,
+      exactAcknowledgementMatch: true, publicationAuthorized: false,
+    });
+    expect(verificationReceipt17.approvals.every(approval => (
+      approval.exactAcknowledgementMatch && approval.publicationAuthorized === false
+    ))).toBe(true);
+    expect(verifiedRegistry.verified).toHaveLength(3);
+    expect(verifiedRegistry.blocked.map(item => item.candidateId)).toEqual([
+      'osm-relation-1372055',
+    ]);
+    expect(verifiedRegistry.publicMutationAllowed).toBe(false);
+    expect(verifiedRegistry.publicationAuthorized).toBe(false);
+  });
+
+  test('verified trails hand off to Copywriter and Visual Director with facts and publication locked', () => {
+    const queue = planVerifiedTrailEditorial(
+      verifiedRegistry,
+      [treCimeDossier, cinqueTorriDossier, lagoBraiesDossier],
+      mediaLicensingAttempt4,
+      { at: '2026-08-18T15:30:00.000Z' },
+    );
+    expect(queue).toEqual(expect.objectContaining({
+      mode: 'draft-only', stage: 'verified-trail-editorial-readiness',
+      publicMutationAllowed: false, publicationAuthorized: false,
+    }));
+    expect(queue.summary).toEqual({
+      verifiedTrails: 3, copywriterJobs: 3, visualDirectorJobs: 3,
+      humanGatesPending: 6, publicationGatesLocked: 3,
+    });
+    expect(queue.jobs).toHaveLength(6);
+    expect(new Set(queue.jobs.map(job => job.agentId))).toEqual(new Set(['copywriter', 'visualDirector']));
+    expect(queue.items.every(item => (
+      item.lockedFacts.length > 0
+      && item.lockedFacts.every(fact => fact.value && fact.sourceIds.length)
+      && item.humanGates.find(gate => gate.id === 'publication-approval').status === 'locked'
+    ))).toBe(true);
+    expect(verifiedTrailEditorialQueue.summary.verifiedTrails).toBe(3);
+    expect(verifiedTrailEditorialQueue.publicationAuthorized).toBe(false);
+  });
+
+  test('the Codex-assisted verified-trail preview produces six reviewable outputs without publishing', () => {
+    const execution = compileVerifiedEditorialPreview(verifiedTrailEditorialQueue, { at: '2026-08-18T15:40:00.000Z' });
+    expect(validateContentExecution(execution)).toEqual([]);
+    expect(execution).toEqual(expect.objectContaining({
+      mode: 'draft-only', stage: 'verified-trail-editorial-review',
+      executionOrigin: 'codex-assisted-locked-fact-preview',
+      publicMutationAllowed: false, publicationAuthorized: false,
+    }));
+    expect(execution.summary).toEqual({ trails: 3, readyForReview: 6, blocked: 0, publicationReady: 0 });
+    expect(execution.outputs.filter(output => output.agentId === 'copywriter')).toHaveLength(3);
+    expect(execution.outputs.filter(output => output.agentId === 'visualDirector')).toHaveLength(3);
+    expect(execution.outputs.filter(output => output.agentId === 'copywriter').every(output => output.result.changes.length === 3)).toBe(true);
+    expect(execution.outputs.filter(output => output.agentId === 'visualDirector').every(output => output.result.candidates[0].status === 'ready')).toBe(true);
+    expect(verifiedTrailEditorialExecution.summary.readyForReview).toBe(6);
+    expect(verifiedTrailEditorialExecution.publicationAuthorized).toBe(false);
+  });
+
+  test('Publication Mapper waits for both approvals then creates staging previews without public mutation', () => {
+    const decisions = verifiedTrailEditorialExecution.outputs.map(output => ({
+      jobId: output.jobId, agentId: output.agentId, action: 'approve', reviewedAt: '2026-08-18T18:30:00.000Z',
+    }));
+    const staging = buildPublicationStaging(
+      verifiedTrailEditorialQueue,
+      verifiedTrailEditorialExecution,
+      { submissions: [{ submissionId: 'review-all', decisions }] },
+      { at: '2026-08-18T18:31:00.000Z' },
+    );
+    expect(staging).toEqual(expect.objectContaining({
+      mode: 'staging-only', stage: 'website-publication-preview',
+      publicMutationAllowed: false, publicationAuthorized: false,
+    }));
+    expect(staging.summary).toEqual({ trails: 3, readyForPreview: 3, waitingForApprovals: 0, publicMutations: 0 });
+    expect(staging.items.every(item => (
+      item.state === 'ready-for-publication-preview'
+      && item.proposedWebsiteFields.name
+      && item.proposedWebsiteFields.desc
+      && item.proposedWebsiteFields.tips
+      && item.proposedWebsiteFields.routeRef
+      && item.proposedWebsiteFields.imageCredit
+      && item.humanGate === 'website-preview-and-publication-approval'
+      && item.publicationAuthorized === false
+    ))).toBe(true);
+  });
+
+  test('content flow creates only editing and picture-gathering jobs', () => {
+    const flow = planContentFlow([
+      { id: 'trail-one', name: 'Trail One', area: 'Dolomites', desc: 'Draft.', tips: 'Bring water.', distance: 5 },
+    ], { at: '2026-08-18T18:00:00.000Z' });
+    expect(validateContentFlow(flow)).toEqual([]);
+    expect(flow.mode).toBe('draft-only');
+    expect(flow.publicMutationAllowed).toBe(false);
+    expect(flow.jobs.map(job => [job.agentId, job.action])).toEqual([
+      ['copywriter', 'edit-copy'], ['visualDirector', 'gather-pictures'],
+    ]);
+    expect(flow.jobs.every(job => job.humanGate)).toBe(true);
+    expect(EDITABLE_FIELDS).toEqual(['name', 'desc', 'tips']);
+    expect(PROTECTED_FIELDS).toEqual(expect.arrayContaining(['path', 'distance', 'safetyLevel', 'waterSources']));
+    expect(flow.items[0].distance).toBeUndefined();
+  });
+
+  test('content flow rejects unknown explicitly requested trails', () => {
+    expect(() => planContentFlow([{ id: 'known' }], { trailIds: ['missing'] }))
+      .toThrow('Unknown trail id(s): missing');
+  });
+
+  test('content operations plans weekly and fortnightly work while parking social', () => {
+    const plan = planContentOperations({
+      asOf: '2026-08-18', at: '2026-08-18T18:00:00.000Z',
+    });
+    expect(validateContentOperations(plan)).toEqual([]);
+    expect(plan.publicMutationAllowed).toBe(false);
+    expect(plan.summary).toEqual({ activeWorkstreams: 4, parkedWorkstreams: 1, jobs: 8 });
+    expect(plan.workstreams.find(stream => stream.id === 'newsletter')).toEqual(expect.objectContaining({
+      cadence: 'every-14-days', nextRunOn: '2026-09-01', status: 'active',
+    }));
+    expect(plan.workstreams.find(stream => stream.id === 'library-enrichment').nextRunOn).toBe('2026-08-25');
+    expect(plan.workstreams.find(stream => stream.id === 'social')).toEqual(expect.objectContaining({
+      status: 'parked', nextRunOn: null,
+    }));
+    expect(new Set(plan.jobs.map(job => job.agentId))).toEqual(new Set(['copywriter', 'visualDirector']));
+  });
+
+  test('social jobs are created only when the channel is enabled', () => {
+    const plan = planContentOperations({ asOf: '2026-08-18', socialEnabled: true });
+    expect(plan.summary).toEqual({ activeWorkstreams: 5, parkedWorkstreams: 0, jobs: 10 });
+    expect(plan.jobs.filter(job => job.action.includes('social'))).toHaveLength(2);
+  });
+
+  test('guide content runner isolates agents and produces a review artifact', async () => {
+    const calls = [];
+    const execution = await runGuideContent(require('path').resolve(__dirname, '..'), {
+      guideId: 'paw-protection', at: '2026-08-18T19:00:00.000Z',
+      runAgent: async input => {
+        calls.push(input.schemaName);
+        if(input.schemaName === 'orma_guide_pictures') return { responseId: 'resp-pictures', model: 'fixture', data: {
+          searchSummary: 'One candidate checked.', candidates: [], coverageGaps: ['Trail-specific image needed'],
+        } };
+        return { responseId: 'resp-edit', model: 'fixture', data: {
+          title: 'Paw protection', summary: 'Small clarity edit.', changes: [], sources: [], openQuestions: [],
+        } };
+      },
+    });
+    expect(validateContentExecution(execution)).toEqual([]);
+    expect(execution.summary).toEqual({ readyForReview: 2, blocked: 0 });
+    expect(calls.sort()).toEqual(['orma_guide_edit', 'orma_guide_pictures']);
+    expect(execution.publicMutationAllowed).toBe(false);
+    expect(execution.subject.original.length).toBeGreaterThan(100);
+  });
+
+  test('content runner utilities extract response text and visible guide copy', () => {
+    expect(outputText({ output: [{ content: [{ type: 'output_text', text: '{"ok":true}' }] }] })).toBe('{"ok":true}');
+    expect(visibleText('<style>x{}</style><h1>Paws &amp; rock</h1><script>bad()</script>')).toBe('Paws & rock');
+  });
+
+  test('requested editorial revisions immediately produce a replacement review packet', async () => {
+    const fs = require('fs'); const os = require('os'); const path = require('path');
+    const temporaryRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'orma-revision-'));
+    fs.mkdirSync(path.join(temporaryRoot, 'guides'));
+    fs.writeFileSync(path.join(temporaryRoot, 'guides', 'paws.html'), '<main><li>Current copy</li></main>');
+    const execution = {
+      contractVersion:'1.0.0',generatedAt:'2026-08-18T19:00:00.000Z',mode:'draft-only',publicMutationAllowed:false,
+      workstream:'website-editorial',subject:{type:'guide',id:'paws',sourceRef:'guides/paws.html',updatedAt:'2026-08-18T19:00:00.000Z'},
+      outputs:[
+        {jobId:'copy-old',agentId:'copywriter',status:'ready-for-review',responseId:null,model:'fixture',error:null,result:{title:'Old',summary:'Old',changes:[{section:'Paws',before:'<li>Published copy</li>',after:'<li>Current copy</li>',reason:'First pass'}],sources:[],openQuestions:[]}},
+        {jobId:'visual-old',agentId:'visualDirector',status:'ready-for-review',responseId:null,model:'fixture',error:null,result:{searchSummary:'Keep it',candidates:[],coverageGaps:[]}},
+      ],summary:{readyForReview:2,blocked:0},
+    };
+    try{
+      const revised = await runEditorialRevision(temporaryRoot, execution, 'Make it warmer.', {
+        at:'2026-08-18T19:01:00.000Z',runAgent:async prompt => {
+          expect(prompt).toContain('Make it warmer.');
+          return {responseId:'revision-response',model:'fixture',data:{title:'Revised',summary:'Warmer',changes:[{section:'Paws',before:'<li>Current copy</li>',after:'<li>Check paws gently.</li>',reason:'Warmer wording'}],sources:[],openQuestions:[]}};
+        },
+      });
+      expect(revised.generatedAt).toBe('2026-08-18T19:01:00.000Z');
+      expect(revised.outputs[0].result.changes[0].beforeAlternatives).toEqual(['<li>Published copy</li>']);
+      expect(revised.outputs[1].result.searchSummary).toBe('Keep it');
+      expect(new Set(revised.outputs.map(output => output.jobId)).size).toBe(2);
+    }finally{
+      fs.rmSync(temporaryRoot, {recursive:true,force:true});
+    }
+  });
+
+  test('editorial revision output must target one exact current page block', () => {
+    expect(() => validateRevisionResult({changes:[{section:'Paws',before:'<li>Same</li>',after:'<li>New</li>'}]}, '<li>Same</li><li>Same</li>'))
+      .toThrow('not unique');
+  });
+
+  test('content decisions remain human-gated and exportable', () => {
+    const decisions = contentReviewDecisions.applyDecision({}, {
+      jobId: 'guide-paw-edit', agentId: 'copywriter', action: 'request-revision', note: 'Shorten the opening.',
+      reviewedAt: '2026-08-18T20:00:00.000Z',
+    });
+    expect(decisions['guide-paw-edit']).toEqual(expect.objectContaining({ gate: 'editorial-approval', publicMutationAllowed: false }));
+    expect(contentReviewDecisions.exportRecord(decisions).decisions).toHaveLength(1);
+  });
+
+  test('approved editorial changes apply only to one exact source passage', () => {
+    expect(applyExactChanges('Before text. Keep this.', [{ section: 'intro', before: 'Before text.', after: 'After text.' }]))
+      .toBe('After text. Keep this.');
+    expect(() => applyExactChanges('Repeat. Repeat.', [{ before: 'Repeat.', after: 'Changed.' }])).toThrow('ambiguous');
+    expect(() => applyExactChanges('Different.', [{ before: 'Missing.', after: 'Changed.' }])).toThrow('not found');
+  });
+
+  test('review application can safely resume after an approved change was already applied', () => {
+    const change={section:'intro',before:'Before text.',after:'After text.'};
+    expect(applyReviewChanges('Before text. Keep this.',[change])).toBe('After text. Keep this.');
+    expect(applyReviewChanges('After text. Keep this.',[change])).toBe('After text. Keep this.');
+    expect(applyReviewChanges('Proposed text. Keep this.',[{...change,after:'Human edited text.',beforeAlternatives:['Proposed text.']}]))
+      .toBe('Human edited text. Keep this.');
+    expect(()=>applyReviewChanges('Different text.',[change])).toThrow('not found');
+  });
+
+  test('editorial source paths cannot escape the project', () => {
+    expect(safeSourcePath('/tmp/orma', 'guides/paws.html')).toBe('/tmp/orma/guides/paws.html');
+    expect(() => safeSourcePath('/tmp/orma', '../outside.html')).toThrow('outside the project');
+  });
+
+  test('publication stages only paths recorded by applied review outcomes', () => {
+    expect(publishablePaths('/tmp/orma', { outcomes: [
+      { status: 'applied-locally', sourceRefs: ['guides/paws.html', 'images/paw.png'] },
+      { status: 'revision-queued', sourceRefs: ['guides/ignored.html'] },
+      { status: 'applied-locally', sourceRefs: ['guides/paws.html'] },
+    ] })).toEqual(['guides/paws.html', 'images/paw.png']);
+    expect(() => publishablePaths('/tmp/orma', { outcomes: [{ status: 'applied-locally', sourceRefs: ['../outside'] }] })).toThrow('outside the project');
+  });
+
+  test('publication merges multiple approved patches for the same source file', () => {
+    const grouped=groupedPatches({outcomes:[
+      {status:'applied-locally',patches:[{sourceRef:'guides/paws.html',changes:[{before:'one',after:'1'}]}]},
+      {status:'applied-locally',patches:[{sourceRef:'guides/paws.html',changes:[{before:'two',after:'2'}]}]},
+    ]});
+    expect(grouped.get('guides/paws.html')).toEqual([{before:'one',after:'1'},{before:'two',after:'2'}]);
+  });
+
+  test('publication patches tolerate an image placement already present in HEAD', () => {
+    const changes=[
+      {section:'Copy',before:'Old guidance',after:'New guidance'},
+      {section:'Picture placement',before:'old-image.png',after:'approved-image.jpg'},
+    ];
+    expect(applyReviewChanges('Old guidance approved-image.jpg',changes)).toBe('New guidance approved-image.jpg');
+  });
+
+  test('editorial fingerprints ignore scripts, styles and cache-only markup changes', () => {
+    expect(contentFingerprint('<style>.x{}</style><p>Useful copy</p><script src="a.js?v=1"></script>'))
+      .toBe(contentFingerprint('<style>.y{}</style><p>Useful copy</p><script src="a.js?v=2"></script>'));
+  });
+
+  test('editorial selection prioritises revisions and skips unchanged cooldown work', () => {
+    const unchanged=fingerprint('unchanged');
+    const candidates=[
+      {contentId:'guide-revision',contentFingerprint:unchanged,packetFingerprint:'packet-a'},
+      {contentId:'guide-cooldown',contentFingerprint:unchanged,packetFingerprint:'packet-b'},
+      {contentId:'guide-new',contentFingerprint:fingerprint('new'),packetFingerprint:'packet-c'},
+    ];
+    const ledger={items:[
+      {contentId:'guide-revision',status:'revision-requested',contentFingerprint:unchanged,nextEligibleAt:'2026-08-18T00:00:00.000Z'},
+      {contentId:'guide-cooldown',status:'published',contentFingerprint:unchanged,nextEligibleAt:'2026-09-29T00:00:00.000Z'},
+    ]};
+    expect(selectEditorialWork(candidates,ledger,{asOf:'2026-08-25T09:00:00.000Z',limit:2}).map(item=>item.contentId))
+      .toEqual(['guide-revision','guide-new']);
+  });
+
+  test('editorial selection covers unreviewed guides before repeating stale guides', () => {
+    const candidates=[
+      {contentId:'guide-stale',contentFingerprint:'same',packetFingerprint:'stale-packet'},
+      {contentId:'guide-unreviewed',contentFingerprint:'new',packetFingerprint:'new-packet'},
+    ];
+    const ledger={items:[{contentId:'guide-stale',status:'published',contentFingerprint:'same',nextEligibleAt:'2026-08-01T00:00:00.000Z'}]};
+    expect(selectEditorialWork(candidates,ledger,{asOf:'2026-08-18T00:00:00.000Z',limit:1})[0].contentId).toBe('guide-unreviewed');
+  });
+
+  test('recorded approvals establish cooldown while revisions remain immediately eligible', () => {
+    const published=recordEditorialOutcome({contractVersion:'1.0.0',items:[]},{at:'2026-08-18T09:00:00.000Z',contentId:'guide-paws',type:'guide',sourceRef:'guides/paws.html',action:'approve',contentFingerprint:'abc'});
+    expect(published.items[0]).toEqual(expect.objectContaining({status:'published',nextEligibleAt:'2026-09-29T09:00:00.000Z'}));
+    const revision=recordEditorialOutcome(published,{at:'2026-08-20T09:00:00.000Z',contentId:'guide-paws',type:'guide',sourceRef:'guides/paws.html',action:'request-revision',contentFingerprint:'abc'});
+    expect(revision.items[0]).toEqual(expect.objectContaining({status:'revision-requested',nextEligibleAt:'2026-08-20T09:00:00.000Z'}));
+    expect(validateEditorialLedger(revision)).toEqual([]);
+  });
+
+  test('verified-trail editorial decisions are recorded without mutating public files', () => {
+    const outcomes = recordVerifiedTrailReview(verifiedTrailEditorialExecution, [
+      { jobId: 'verified-osm-relation-1484751-copy', action: 'approve' },
+      { jobId: 'verified-osm-relation-1484751-visual', action: 'approve' },
+      { jobId: 'verified-osm-relation-6678431-copy', action: 'request-revision' },
+    ]);
+    expect(outcomes).toEqual([
+      expect.objectContaining({ status: 'editorial-approved' }),
+      expect.objectContaining({ status: 'asset-and-licensing-approved' }),
+      expect.objectContaining({ status: 'revision-queued' }),
+    ]);
+    expect(outcomes.filter(outcome => outcome.status.includes('approved')).every(outcome => outcome.message.includes('No public file was changed'))).toBe(true);
+  });
+
+  test('verified-trail revisions target the server-known trail agent and reject guide jobs', () => {
+    const jobs = buildVerifiedTrailRevisionJobs(verifiedTrailEditorialExecution, [{
+      jobId: 'verified-osm-relation-1484751-copy', agentId: 'visualDirector',
+      action: 'request-revision', note: 'Shorten the opening.',
+    }], '2026-08-18T18:00:00.000Z');
+    expect(jobs).toEqual([expect.objectContaining({
+      candidateId: 'osm-relation-1484751', agentId: 'copywriter',
+      instruction: 'Shorten the opening.', humanGate: 'editorial-approval',
+      publicMutationAllowed: false,
+    })]);
+    expect(() => buildVerifiedTrailRevisionJobs(verifiedTrailEditorialExecution, [{
+      jobId: 'guide-paw-protection-edit-2026-08-18', action: 'request-revision', note: 'Change it.',
+    }], '2026-08-18T18:00:00.000Z')).toThrow('Verified-trail revision output was not found');
+    const second = buildVerifiedTrailRevisionJobs(verifiedTrailEditorialExecution, [{
+      jobId: 'verified-osm-relation-1484751-copy', action: 'request-revision', note: 'Try again.',
+    }], '2026-08-18T18:05:00.000Z', jobs);
+    expect(second[0].attempt).toBe(2);
+  });
+
+  test('live Copywriter revisions preserve the locked dossier and return an auditable replacement', async () => {
+    const job = buildVerifiedTrailRevisionJobs(verifiedTrailEditorialExecution, [{
+      jobId:'verified-osm-way-25736154-copy', action:'request-revision', note:'Make the water sentence clearer.',
+    }], '2026-08-18T19:00:00.000Z')[0];
+    const current = verifiedTrailEditorialExecution.outputs.find(output => output.jobId === job.jobId);
+    const revised = JSON.parse(JSON.stringify(current.result));
+    revised.changes.find(change => change.section === 'Why it suits dogs').after = 'Bring enough water for your dog; no potable route source is verified.';
+    const result = await runVerifiedTrailRevision({ job, execution:verifiedTrailEditorialExecution, editorialQueue:verifiedTrailEditorialQueue }, {
+      at:'2026-08-18T19:01:00.000Z', runAgent:async () => ({ responseId:'resp-test', model:'test-model', data:{
+        result:revised, factIdsUsed:['water'], instructionResolution:'Clarified the sentence without changing the water finding.', rejectedInstructionClaims:[],
+      } }),
+    });
+    expect(result.output).toEqual(expect.objectContaining({ status:'ready-for-review', responseId:'resp-test' }));
+    expect(result.output.revision).toEqual(expect.objectContaining({ attempt:1, factIdsUsed:['water'] }));
+    expect(result.job.status).toBe('ready-for-review');
+  });
+
+  test('one human publication approval materializes one idempotent verified-trail override', () => {
+    const request = { id:'publication-approval-1', candidateId:'osm-relation-1484751', status:'approved-for-pr-creation' };
+    const item = {
+      candidateId:'osm-relation-1484751', targetTrailId:'tre-cime', state:'ready-for-publication-preview',
+      proposedWebsiteFields:{ name:'Tre Cime', desc:'Verified copy.', tips:'Carry water.', ormaVerified:true },
+    };
+    const route = { geometry:{ coordinates:[[12.29,46.61],[12.30,46.62],[12.29,46.61]] } };
+    const first = materializeApprovedPublications({
+      requests:{requests:[request]}, staging:{items:[item]},
+      routesByCandidate:{'osm-relation-1484751':route},
+      overrides:{schemaVersion:1,updatedAt:null,trails:[]}, at:'2026-08-18T20:00:00.000Z',
+    });
+    expect(first.materialized).toBe(1);
+    expect(first.overrides.trails[0]).toEqual(expect.objectContaining({
+      id:'tre-cime', approvalId:'publication-approval-1',
+      fields:expect.objectContaining({ ormaVerified:true, path:[[46.61,12.29],[46.62,12.30],[46.61,12.29]] }),
+    }));
+    const second = materializeApprovedPublications({
+      requests:{requests:[request]}, staging:{items:[item]},
+      routesByCandidate:{'osm-relation-1484751':route}, overrides:first.overrides, at:'2026-08-18T20:05:00.000Z',
+    });
+    expect(second.materialized).toBe(0);
+    expect(second.overrides).toEqual(first.overrides);
+  });
+
+  test('mock guide review uses the production result contract', () => {
+    expect(validateContentExecution(mockContentExecution)).toEqual([]);
+    expect(mockContentExecution.subject.id).toBe('paw-protection');
+    expect(mockContentExecution.outputs.map(output => output.agentId)).toEqual(['copywriter', 'visualDirector']);
+    expect(mockContentExecution.outputs[1].result.candidates.map(candidate => candidate.status)).toEqual(['ready', 'blocked']);
+    expect(mockContentExecution.publicMutationAllowed).toBe(false);
+  });
+
+  test('picture candidates cannot be review-ready without an actual preview', () => {
+    const invalid = JSON.parse(JSON.stringify(mockContentExecution));
+    invalid.outputs[1].result.candidates[0].assetUrl = null;
+    expect(validateContentExecution(invalid)).toContain(
+      'outputs[1].result.candidates[0] ready pictures require assetUrl preview'
+    );
+  });
+
+  test('trail orchestration exposes a blocked geometry gate instead of allowing approval', () => {
+    const at='2026-08-18T20:00:00.000Z';
+    const campaign={generatedAt:at,items:[{trailId:'trail-a',name:'Trail A',origin:'curated',priorityScore:10,baselineBlockers:[]}]};
+    const execution={jobs:[{id:'cartographer-a',candidateId:'trail-a',completedAt:at,outputRefs:['backoffice-data/cartographer/trail-a.json']}]};
+    const outputs={'trail-a':{agentId:'cartographer',reviewState:'blocked',blockers:['not-closed-loop']}};
+    const orchestration=seedOrchestrationFromCatalogue(campaign,execution,outputs,{at});
+    const reviewQueue=buildDossierReviewQueue(orchestration,outputs,{at});
+    expect(validateTrailOrchestration(orchestration)).toEqual([]);
+    expect(reviewQueue.items[0]).toEqual(expect.objectContaining({approvalAllowed:false,blockingReasons:['not-closed-loop']}));
+    expect(()=>applyDossierReview(orchestration,reviewQueue,{reviewId:reviewQueue.items[0].reviewId,action:'approve'},{at})).toThrow('cannot be approved');
+  });
+
+  test('geometry approval queues the three independent evidence specialists', () => {
+    const at='2026-08-18T20:00:00.000Z';
+    const orchestration={contractVersion:'1.0.0',generatedAt:at,publicMutationAllowed:false,summary:{},trails:[{
+      trailId:'trail-a',candidateId:'trail-a',trailName:'Trail A',state:'geometry-human-gate',stage:'route-identity-and-geometry',
+      attempts:{cartographer:1},resolutionAttempts:{},jobIds:['cartographer-a'],currentJobId:'cartographer-a',latestOutputRef:'firestore:cartographer-a',
+      gate:{id:'geometry-approval',status:'awaiting-human'},blockers:[],publicMutationAllowed:false,
+    }]};
+    const reviewQueue={items:[{reviewId:'review-a',candidateId:'trail-a',gateType:'geometry-approval',state:'awaiting-human',approvalAllowed:true}]};
+    const result=applyDossierReview(orchestration,reviewQueue,{reviewId:'review-a',action:'approve'},{at});
+    expect(result.orchestration.trails[0].state).toBe('evidence-research');
+    expect(result.jobs.map(job=>job.agentId)).toEqual(['logistics','regulatoryRanger','terrainPoi']);
+    expect(result.jobs.every(job=>job.publicMutationAllowed===false)).toBe(true);
+  });
+
+  test('five resolution attempts are allowed and the sixth blocks the trail', () => {
+    const base={contractVersion:'1.0.0',publicMutationAllowed:false,summary:{},trails:[{
+      trailId:'trail-a',candidateId:'trail-a',trailName:'Trail A',state:'geometry-human-gate',attempts:{cartographer:5},resolutionAttempts:{cartographer:4},
+      jobIds:[],gate:{id:'geometry-approval',status:'awaiting-human'},blockers:[],publicMutationAllowed:false,
+    }]};
+    const queue={items:[{reviewId:'review-a',candidateId:'trail-a',gateType:'geometry-approval',state:'awaiting-human',approvalAllowed:false}]};
+    const fifth=applyDossierReview(base,queue,{reviewId:'review-a',action:'request-revision',targetAgent:'cartographer',note:'Resolve the final gap.'},{at:'2026-08-18T20:00:00.000Z'});
+    expect(fifth.jobs[0].resolutionAttempt).toBe(5);
+    const againQueue={items:[{reviewId:'review-b',candidateId:'trail-a',gateType:'geometry-approval',state:'awaiting-human',approvalAllowed:false}]};
+    const sixth=applyDossierReview(fifth.orchestration,againQueue,{reviewId:'review-b',action:'request-revision',targetAgent:'cartographer',note:'Try once more.'},{at:'2026-08-18T20:01:00.000Z'});
+    expect(sixth.orchestration.trails[0].state).toBe('blocked');
+    expect(sixth.jobs).toHaveLength(0);
+  });
+
+  test('the final gate locks approval when any specialist finding is unresolved', () => {
+    expect(dossierBlockingReasons([{agentId:'redTeam',result:{recommendation:'needs-resolution',claims:[{id:'parking',finding:'unresolved',blockers:['No authority source']}]} }]))
+      .toEqual(['redTeam: recommendation is needs-resolution','redTeam/parking: unresolved','redTeam/parking: No authority source']);
+  });
+
+  test('final human approval compiles a durable ORMA Verified editorial handoff', () => {
+    const at='2026-08-18T20:00:00.000Z';const review={reviewId:'dossier-a',candidateId:'trail-a',gateType:'dossier-approval',state:'awaiting-human',approvalAllowed:true,specialistOutputs:[
+      {agentId:'cartographer',jobId:'cart-a',result:{source:{provider:'OSM',url:'https://example.test/route',endpoint:'https://example.test/raw',externalId:'relation/1',relationVersion:2,licence:'ODbL-1.0'},relation:{tags:{name:'Trail A'}},geometry:{type:'LineString',coordinates:[[1,1],[1,1]]},assessment:{pointCount:2,distanceKm:1}}},
+      {agentId:'logistics',jobId:'log-a',result:{claims:[{id:'parking',category:'parking',proposedValue:'Use P1.',finding:'supported-proposal',confidence:.9,rationale:'Official source.',sources:[{label:'Authority',url:'https://example.test/parking',authority:'Municipality',accessedAt:at}],blockers:[]}] }},
+    ]};
+    const trail={candidateId:'trail-a',trailId:'trail-a',trailName:'Trail A',sourceTrail:{externalRelationId:'relation/1'}};
+    const dossier=compileVerifiedDossier(review,trail,{at,verifiedBy:'editor-a'});const record=verificationRecord(dossier);
+    expect(validateDossier(dossier)).toEqual([]);
+    expect(dossier).toEqual(expect.objectContaining({reviewState:'accepted',publicMutationAllowed:false,publicationAuthorized:false}));
+    expect(record).toEqual(expect.objectContaining({verifiedBy:'editor-a',nextStage:'editorial-and-publication-review'}));
+  });
+
+  test('a web-search specialist returns proposed evidence without public mutation authority', async () => {
+    const response=await runTrailSpecialist({
+      job:{agentId:'logistics',candidateId:'trail-a',action:'verify-parking-and-access'},trail:{id:'trail-a'},context:[],
+    },{at:'2026-08-18T20:00:00.000Z',runAgent:async input=>{
+      expect(input.webSearch).toBe(true);
+      return {responseId:'resp-a',model:'test-model',data:{
+        summary:'Parking remains unresolved.',
+        claims:[{id:'parking',category:'parking',proposedValue:'Unknown',finding:'unresolved',confidence:0,
+          rationale:'No authoritative source located.',sources:[],blockers:['parking-pin-unverified']}],
+        openQuestions:['Contact the municipality.'],recommendation:'needs-resolution',
+      }};
+    }});
+    expect(response.result).toEqual(expect.objectContaining({agentId:'logistics',publicMutationAllowed:false,recommendation:'needs-resolution'}));
+  });
+
+  test('the live daily campaign excludes trails already in orchestration', async () => {
+    const artifacts={"trail-orchestration":{contractVersion:'1.0.0',publicMutationAllowed:false,trails:[{trailId:'trail-a',candidateId:'trail-a',trailName:'A',state:'ready-for-editorial',attempts:{},resolutionAttempts:{},jobIds:[],publicMutationAllowed:false}]}};const queued=[];
+    const store={getArtifact:async id=>artifacts[id],setArtifact:async(id,value)=>{artifacts[id]=value;},putJob:async job=>queued.push(job)};
+    const trails=[{id:'trail-a',name:'A',curated:true,osmRelation:1,path:[[1,1],[1,1]]},{id:'trail-b',name:'B',curated:true,osmRelation:2,path:[[1,1],[1,1]]}];
+    const result=await startLiveTrailCampaign(store,trails,{at:'2026-08-18T20:00:00.000Z',limit:1});
+    expect(result.campaign.selectedTrailIds).toEqual(['trail-b']);
+    expect(queued[0]).toEqual(expect.objectContaining({candidateId:'trail-b',jobType:'trail-verification-specialist',status:'queued'}));
+    expect(validateTrailOrchestration(artifacts['trail-orchestration'])).toEqual([]);
+  });
+
+  test('live seeding excludes guide reviews from the trail fleet', () => {
+    const queue=trailOnlyReviewQueue({contractVersion:'1.0.0',submissions:[
+      {submissionId:'mixed',decisions:[
+        {jobId:'guide-paw-protection-edit',action:'approve'},
+        {jobId:'verified-osm-way-1-copy',action:'approve'},
+      ]},
+      {submissionId:'guide-only',decisions:[{jobId:'guide-alpine-plants-copy',action:'approve'}]},
+    ]});
+    expect(queue.submissions).toEqual([expect.objectContaining({
+      submissionId:'mixed',decisions:[expect.objectContaining({jobId:'verified-osm-way-1-copy'})],
+    })]);
+  });
+
+  test('the live campaign does not exceed five in-flight trails', async () => {
+    const active=Array.from({length:5},(_,index)=>({trailId:`trail-${index}`,candidateId:`trail-${index}`,trailName:`Trail ${index}`,
+      state:'geometry-human-gate',attempts:{cartographer:1},resolutionAttempts:{},jobIds:[],publicMutationAllowed:false}));
+    const artifacts={'trail-orchestration':{contractVersion:'1.0.0',publicMutationAllowed:false,trails:active}};const queued=[];
+    const store={getArtifact:async id=>artifacts[id],setArtifact:async(id,value)=>{artifacts[id]=value;},putJob:async job=>queued.push(job)};
+    const result=await startLiveTrailCampaign(store,[{id:'new-trail',name:'New',curated:true,osmRelation:99,path:[[1,1],[1,1]]}],{at:'2026-08-18T20:00:00.000Z',limit:5,capacity:5});
+    expect(result.jobIds).toEqual([]);expect(queued).toEqual([]);expect(artifacts['trail-orchestration'].trails).toHaveLength(5);
+  });
+});

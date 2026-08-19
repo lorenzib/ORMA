@@ -1,0 +1,57 @@
+name: Activate ORMA backoffice
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_worker:
+        description: Run the first agent batch after seeding
+        required: true
+        default: true
+        type: boolean
+
+concurrency:
+  group: orma-backoffice-activation
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-and-seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      FIREBASE_PROJECT_ID: dolopaws
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      OPENAI_API_KEY: ${{ secrets.OPEN_API_KEY }}
+      ORMA_CONTENT_MODEL: gpt-5.6-terra
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Check activation secrets
+        run: |
+          test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
+          if [ "${{ inputs.run_worker }}" = "true" ]; then
+            test -n "$OPENAI_API_KEY" || { echo "Missing OPENAI_API_KEY"; exit 1; }
+          fi
+
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+
+      - run: npm ci
+
+      - name: Deploy private Firestore contracts
+        run: npx --yes firebase-tools@15.26.0 deploy --only firestore:rules,firestore:indexes --project dolopaws --non-interactive
+
+      - name: Seed current local review state
+        run: npm run backoffice:seed:live
+
+      - name: Process the first agent batch
+        if: inputs.run_worker
+        run: npm run backoffice:worker:live

@@ -1,0 +1,230 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-19T07:34:29.567Z",
+  "campaignGeneratedAt": "2026-08-17T15:22:29.174Z",
+  "publicMutationAllowed": false,
+  "trails": [
+    {
+      "trailId": "osm-16322228",
+      "candidateId": "osm-16322228",
+      "trailName": "Boucle du Marais des Chassettes",
+      "state": "evidence-research",
+      "stage": "parallel-evidence-research",
+      "priorityScore": 320,
+      "sourceTrail": {
+        "origin": "curated",
+        "externalRelationId": "relation/16322228",
+        "baselineBlockers": [
+          "review-date-missing",
+          "claim-sources-missing",
+          "shadeCoverage-unknown",
+          "heatRisk-unknown",
+          "category-review-incomplete"
+        ]
+      },
+      "attempts": {
+        "cartographer": 1,
+        "logistics": 1,
+        "regulatoryRanger": 1,
+        "terrainPoi": 1
+      },
+      "resolutionAttempts": {},
+      "jobIds": [
+        "catalogue-cartographer-001",
+        "trail-verification-osm-16322228-logistics-1-2026-08-19T07-33-35-415Z",
+        "trail-verification-osm-16322228-regulatoryRanger-1-2026-08-19T07-33-35-415Z",
+        "trail-verification-osm-16322228-terrainPoi-1-2026-08-19T07-33-35-415Z"
+      ],
+      "currentJobId": "catalogue-cartographer-001",
+      "gate": {
+        "id": "geometry-approval",
+        "status": "approved",
+        "openedAt": "2026-08-17T21:18:16.160Z",
+        "reviewedAt": "2026-08-19T07:33:35.415Z"
+      },
+      "latestOutputRef": "backoffice-data/cartographer/osm-16322228.json",
+      "blockers": [],
+      "publicMutationAllowed": false,
+      "updatedAt": "2026-08-19T07:33:35.415Z"
+    },
+    {
+      "trailId": "osm-19153189",
+      "candidateId": "osm-19153189",
+      "trailName": "Le Belvédère (Saint-Pierre-d'Albigny)",
+      "state": "evidence-research",
+      "stage": "parallel-evidence-research",
+      "priorityScore": 320,
+      "sourceTrail": {
+        "origin": "curated",
+        "externalRelationId": "relation/19153189",
+        "baselineBlockers": [
+          "review-date-missing",
+          "claim-sources-missing",
+          "shadeCoverage-unknown",
+          "heatRisk-unknown",
+          "category-review-incomplete"
+        ]
+      },
+      "attempts": {
+        "cartographer": 1,
+        "logistics": 1,
+        "regulatoryRanger": 1,
+        "terrainPoi": 1
+      },
+      "resolutionAttempts": {},
+      "jobIds": [
+        "catalogue-cartographer-002",
+        "trail-verification-osm-19153189-logistics-1-2026-08-19T07-33-32-117Z",
+        "trail-verification-osm-19153189-regulatoryRanger-1-2026-08-19T07-33-32-117Z",
+        "trail-verification-osm-19153189-terrainPoi-1-2026-08-19T07-33-32-117Z"
+      ],
+      "currentJobId": "catalogue-cartographer-002",
+      "gate": {
+        "id": "geometry-approval",
+        "status": "approved",
+        "openedAt": "2026-08-17T21:18:16.283Z",
+        "reviewedAt": "2026-08-19T07:33:32.117Z"
+      },
+      "latestOutputRef": "backoffice-data/cartographer/osm-19153189.json",
+      "blockers": [],
+      "publicMutationAllowed": false,
+      "updatedAt": "2026-08-19T07:33:32.117Z"
+    },
+    {
+      "trailId": "osm-16363583",
+      "candidateId": "osm-16363583",
+      "trailName": "Le Marais de Pré Lombard",
+      "state": "evidence-research",
+      "stage": "parallel-evidence-research",
+      "priorityScore": 320,
+      "sourceTrail": {
+        "origin": "curated",
+        "externalRelationId": "relation/16363583",
+        "baselineBlockers": [
+          "review-date-missing",
+          "claim-sources-missing",
+          "shadeCoverage-unknown",
+          "heatRisk-unknown",
+          "category-review-incomplete"
+        ]
+      },
+      "attempts": {
+        "cartographer": 1,
+        "logistics": 1,
+        "regulatoryRanger": 1,
+        "terrainPoi": 1
+      },
+      "resolutionAttempts": {},
+      "jobIds": [
+        "catalogue-cartographer-003",
+        "trail-verification-osm-16363583-logistics-1-2026-08-19T07-33-24-469Z",
+        "trail-verification-osm-16363583-regulatoryRanger-1-2026-08-19T07-33-24-469Z",
+        "trail-verification-osm-16363583-terrainPoi-1-2026-08-19T07-33-24-469Z"
+      ],
+      "currentJobId": "catalogue-cartographer-003",
+      "gate": {
+        "id": "geometry-approval",
+        "status": "approved",
+        "openedAt": "2026-08-17T21:18:16.461Z",
+        "reviewedAt": "2026-08-19T07:33:24.469Z"
+      },
+      "latestOutputRef": "backoffice-data/cartographer/osm-16363583.json",
+      "blockers": [],
+      "publicMutationAllowed": false,
+      "updatedAt": "2026-08-19T07:33:24.469Z"
+    },
+    {
+      "trailId": "osm-20347406",
+      "candidateId": "osm-20347406",
+      "trailName": "Sentier des Patriotes",
+      "state": "geometry-audit",
+      "stage": "cartographer-revision",
+      "priorityScore": 320,
+      "sourceTrail": {
+        "origin": "curated",
+        "externalRelationId": "relation/20347406",
+        "baselineBlockers": [
+          "review-date-missing",
+          "claim-sources-missing",
+          "shadeCoverage-unknown",
+          "heatRisk-unknown",
+          "category-review-incomplete"
+        ]
+      },
+      "attempts": {
+        "cartographer": 2
+      },
+      "resolutionAttempts": {
+        "cartographer": 1
+      },
+      "jobIds": [
+        "catalogue-cartographer-004",
+        "trail-verification-osm-20347406-cartographer-2-2026-08-19T07-34-29-567Z"
+      ],
+      "currentJobId": "catalogue-cartographer-004",
+      "gate": {
+        "id": "geometry-approval",
+        "status": "revision-requested",
+        "openedAt": "2026-08-17T21:18:16.627Z",
+        "reviewedAt": "2026-08-19T07:34:29.567Z"
+      },
+      "latestOutputRef": "backoffice-data/cartographer/osm-20347406.json",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "publicMutationAllowed": false,
+      "updatedAt": "2026-08-19T07:34:29.567Z",
+      "pendingRevisionJobId": "trail-verification-osm-20347406-cartographer-2-2026-08-19T07-34-29-567Z"
+    },
+    {
+      "trailId": "osm-16395076",
+      "candidateId": "osm-16395076",
+      "trailName": "Boucle du Lac de la Thuile",
+      "state": "evidence-research",
+      "stage": "parallel-evidence-research",
+      "priorityScore": 318,
+      "sourceTrail": {
+        "origin": "curated",
+        "externalRelationId": "relation/16395076",
+        "baselineBlockers": [
+          "review-date-missing",
+          "claim-sources-missing",
+          "category-review-incomplete"
+        ]
+      },
+      "attempts": {
+        "cartographer": 1,
+        "logistics": 1,
+        "regulatoryRanger": 1,
+        "terrainPoi": 1
+      },
+      "resolutionAttempts": {},
+      "jobIds": [
+        "catalogue-cartographer-005",
+        "trail-verification-osm-16395076-logistics-1-2026-08-19T07-33-29-216Z",
+        "trail-verification-osm-16395076-regulatoryRanger-1-2026-08-19T07-33-29-216Z",
+        "trail-verification-osm-16395076-terrainPoi-1-2026-08-19T07-33-29-216Z"
+      ],
+      "currentJobId": "catalogue-cartographer-005",
+      "gate": {
+        "id": "geometry-approval",
+        "status": "approved",
+        "openedAt": "2026-08-17T21:18:16.770Z",
+        "reviewedAt": "2026-08-19T07:33:29.216Z"
+      },
+      "latestOutputRef": "backoffice-data/cartographer/osm-16395076.json",
+      "blockers": [],
+      "publicMutationAllowed": false,
+      "updatedAt": "2026-08-19T07:33:29.216Z"
+    }
+  ],
+  "summary": {
+    "trails": 5,
+    "states": {
+      "evidence-research": 4,
+      "geometry-audit": 1
+    },
+    "awaitingHuman": 0,
+    "running": 5
+  }
+}

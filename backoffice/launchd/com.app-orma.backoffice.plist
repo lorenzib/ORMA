@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.app-orma.backoffice</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/local/bin/node</string>
+    <string>/Users/benedettalorenzi/Documents/GitHub/dolopaws/scripts/serve-backoffice.js</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/benedettalorenzi/Documents/GitHub/dolopaws</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>HOME</key>
+    <string>/Users/benedettalorenzi</string>
+    <key>PATH</key>
+    <string>/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <key>ORMA_BACKOFFICE_PORT</key>
+    <string>4182</string>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>ThrottleInterval</key>
+  <integer>5</integer>
+  <key>ProcessType</key>
+  <string>Background</string>
+
+  <key>StandardOutPath</key>
+  <string>/Users/benedettalorenzi/Library/Logs/ORMA/backoffice.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/benedettalorenzi/Library/Logs/ORMA/backoffice-error.log</string>
+</dict>
+</plist>

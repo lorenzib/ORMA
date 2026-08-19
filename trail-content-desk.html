@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Verified trail content | ORMA</title>
+  <link rel="icon" href="favicon-32.png" sizes="32x32">
+  <link rel="stylesheet" href="styles.css?v=20260818-10">
+  <link rel="stylesheet" href="backoffice-review.css?v=20260818-7">
+</head>
+<body class="bo-shell">
+  <header class="bo-header"><a href="index.html" class="bo-brand">🐾 ORMA</a><span>Verified trail content</span></header>
+  <main class="bo-main">
+    <div class="bo-title-row">
+      <div>
+        <p class="eyebrow">Private backoffice · trails only</p>
+        <h1>Verified Trail Content Desk</h1>
+        <p class="bo-intro">Review Copywriter and Visual Director proposals created from locked ORMA trail dossiers. Decisions remain staged and never publish directly.</p>
+      </div>
+      <button id="submitTrailReview" type="button" disabled>Submit trail review</button>
+    </div>
+    <nav class="bo-sections" aria-label="Backoffice pages">
+      <a href="backoffice-review.html">All workflows ↗</a>
+      <a href="trail-dossier-desk.html">Trail verification ↗</a>
+      <a href="content-desk.html">Guide content edit ↗</a>
+    </nav>
+    <div id="trailContentState" class="bo-state" role="status" aria-live="polite">Loading verified trail recommendations…</div>
+    <section id="revisionActivity" class="bo-content-desk" hidden aria-labelledby="revisionActivityTitle">
+      <div class="bo-content-head">
+        <div><p class="eyebrow">Agent activity</p><h2 id="revisionActivityTitle">Revision queue</h2><p>Persistent history of every trail revision request and its current processing state.</p></div>
+        <button id="refreshRevisions" type="button">Refresh status</button>
+      </div>
+      <ol id="revisionJobs" class="bo-revision-jobs"></ol>
+    </section>
+    <section class="bo-content-desk" aria-labelledby="trailPacketsTitle">
+      <div class="bo-content-head">
+        <div><p class="eyebrow">Human gate 1</p><h2 id="trailPacketsTitle">Trail recommendation packets</h2><p>Approve each proposal, reject it, or send the responsible agent a precise revision note.</p></div>
+      </div>
+      <div id="trailPackets" class="bo-trail-packets"></div>
+    </section>
+    <section id="publicationGate" class="bo-content-desk" aria-labelledby="publicationMapperTitle">
+      <div class="bo-content-head">
+        <div><p class="eyebrow">Human gate 2</p><h2 id="publicationMapperTitle">Publication Mapper preview</h2><p>Available only after both trail outputs are approved. Approval here records permission to prepare a PR; it does not change or publish the website.</p></div>
+      </div>
+      <div id="publicationSummary" class="bo-campaign-metrics"></div>
+      <div id="publicationMapper" class="bo-publication-grid"></div>
+    </section>
+  </main>
+  <script type="module" src="firebase-init.js"></script>
+  <script src="backoffice/content-review-decisions.js?v=20260818-2"></script>
+  <script src="trail-content-desk.js?v=20260818-6"></script>
+</body>
+</html>

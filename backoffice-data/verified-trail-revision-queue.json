@@ -9,13 +9,15 @@
       "candidateId": "osm-way-25736154",
       "agentId": "copywriter",
       "instruction": "Carry all the water your dog needs as the protected lake is a drinking source. -> edit it",
-      "status": "ready-for-review",
+      "status": "approved",
       "attempt": 1,
       "createdAt": "2026-08-18T18:42:39.581Z",
       "completedAt": "2026-08-18T18:43:47.000Z",
       "resolution": "Edited the awkward water sentence without adopting wording that conflicts with the locked potable-water evidence.",
       "humanGate": "editorial-approval",
-      "publicMutationAllowed": false
+      "publicMutationAllowed": false,
+      "reviewAction": "approve",
+      "reviewedAt": "2026-08-18T19:55:13.762Z"
     }
   ]
 }

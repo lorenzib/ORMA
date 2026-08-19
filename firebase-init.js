@@ -1132,6 +1132,21 @@ async function submitBackofficePublicationReview(input) {
   }
 }
 
+async function submitBackofficeDossierReview(input) {
+  const moderator=await moderatorIdentity();
+  if(!moderator)return {ok:false,error:'moderator-required'};
+  try{
+    const review=await addDoc(collection(db,'backofficeDossierReviews'),{
+      contractVersion:'1.0.0',type:'trail-dossier-review',status:'queued',
+      reviewId:String(input.reviewId||''),candidateId:String(input.candidateId||''),
+      action:String(input.action||''),targetAgent:String(input.targetAgent||''),
+      note:String(input.note||'').trim().slice(0,1500),submittedAt:serverTimestamp(),
+      submittedBy:moderator.uid,publicMutationAllowed:false,
+    });
+    return {ok:true,reviewId:review.id,status:'queued'};
+  }catch(error){console.error('submitBackofficeDossierReview failed:',error);return {ok:false,error:'dossier-review-submit-failed'};}
+}
+
 function moderationItem(type, snapshot, reportReasons = [], reportIds = []) {
   const data = snapshot.data();
   return {
@@ -1319,6 +1334,7 @@ window.ORMABackoffice = {
   getRevisionJobs:getBackofficeRevisionJobs,
   submitTrailReview:submitBackofficeTrailReview,
   submitPublicationReview:submitBackofficePublicationReview,
+  submitDossierReview:submitBackofficeDossierReview,
 };
 
 window.DoloPawsPrivateOutcomes = {

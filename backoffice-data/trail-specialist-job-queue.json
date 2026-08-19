@@ -1,0 +1,357 @@
+{
+  "contractVersion": "1.0.0",
+  "jobs": [
+    {
+      "contractVersion": "1.0.0",
+      "id": "trail-verification-osm-16363583-logistics-1-2026-08-19T07-33-24-469Z",
+      "agentId": "logistics",
+      "action": "verify-parking-and-access",
+      "candidateId": "osm-16363583",
+      "claimIds": [
+        "parking",
+        "road-access",
+        "pedestrian-connection"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-16363583",
+        "backoffice-data/cartographer/osm-16363583.json"
+      ],
+      "outputRefs": [],
+      "requestedBy": "trail-orchestrator-v1",
+      "createdAt": "2026-08-19T07:33:24.469Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": null,
+      "jobType": "trail-verification-specialist",
+      "attempt": 1,
+      "publicMutationAllowed": false
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "trail-verification-osm-16363583-regulatoryRanger-1-2026-08-19T07-33-24-469Z",
+      "agentId": "regulatoryRanger",
+      "action": "verify-dog-and-seasonal-rules",
+      "candidateId": "osm-16363583",
+      "claimIds": [
+        "dog-access",
+        "leash-rules",
+        "seasonal-restrictions"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-16363583",
+        "backoffice-data/cartographer/osm-16363583.json"
+      ],
+      "outputRefs": [],
+      "requestedBy": "trail-orchestrator-v1",
+      "createdAt": "2026-08-19T07:33:24.469Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": null,
+      "jobType": "trail-verification-specialist",
+      "attempt": 1,
+      "publicMutationAllowed": false
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "trail-verification-osm-16363583-terrainPoi-1-2026-08-19T07-33-24-469Z",
+      "agentId": "terrainPoi",
+      "action": "verify-terrain-water-heat-and-livestock",
+      "candidateId": "osm-16363583",
+      "claimIds": [
+        "elevation",
+        "shade",
+        "surface",
+        "water",
+        "exposure",
+        "livestock"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-16363583",
+        "backoffice-data/cartographer/osm-16363583.json"
+      ],
+      "outputRefs": [],
+      "requestedBy": "trail-orchestrator-v1",
+      "createdAt": "2026-08-19T07:33:24.469Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": null,
+      "jobType": "trail-verification-specialist",
+      "attempt": 1,
+      "publicMutationAllowed": false
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "trail-verification-osm-16395076-logistics-1-2026-08-19T07-33-29-216Z",
+      "agentId": "logistics",
+      "action": "verify-parking-and-access",
+      "candidateId": "osm-16395076",
+      "claimIds": [
+        "parking",
+        "road-access",
+        "pedestrian-connection"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-16395076",
+        "backoffice-data/cartographer/osm-16395076.json"
+      ],
+      "outputRefs": [],
+      "requestedBy": "trail-orchestrator-v1",
+      "createdAt": "2026-08-19T07:33:29.216Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": null,
+      "jobType": "trail-verification-specialist",
+      "attempt": 1,
+      "publicMutationAllowed": false
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "trail-verification-osm-16395076-regulatoryRanger-1-2026-08-19T07-33-29-216Z",
+      "agentId": "regulatoryRanger",
+      "action": "verify-dog-and-seasonal-rules",
+      "candidateId": "osm-16395076",
+      "claimIds": [
+        "dog-access",
+        "leash-rules",
+        "seasonal-restrictions"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-16395076",
+        "backoffice-data/cartographer/osm-16395076.json"
+      ],
+      "outputRefs": [],
+      "requestedBy": "trail-orchestrator-v1",
+      "createdAt": "2026-08-19T07:33:29.216Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": null,
+      "jobType": "trail-verification-specialist",
+      "attempt": 1,
+      "publicMutationAllowed": false
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "trail-verification-osm-16395076-terrainPoi-1-2026-08-19T07-33-29-216Z",
+      "agentId": "terrainPoi",
+      "action": "verify-terrain-water-heat-and-livestock",
+      "candidateId": "osm-16395076",
+      "claimIds": [
+        "elevation",
+        "shade",
+        "surface",
+        "water",
+        "exposure",
+        "livestock"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-16395076",
+        "backoffice-data/cartographer/osm-16395076.json"
+      ],
+      "outputRefs": [],
+      "requestedBy": "trail-orchestrator-v1",
+      "createdAt": "2026-08-19T07:33:29.216Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": null,
+      "jobType": "trail-verification-specialist",
+      "attempt": 1,
+      "publicMutationAllowed": false
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "trail-verification-osm-19153189-logistics-1-2026-08-19T07-33-32-117Z",
+      "agentId": "logistics",
+      "action": "verify-parking-and-access",
+      "candidateId": "osm-19153189",
+      "claimIds": [
+        "parking",
+        "road-access",
+        "pedestrian-connection"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-19153189",
+        "backoffice-data/cartographer/osm-19153189.json"
+      ],
+      "outputRefs": [],
+      "requestedBy": "trail-orchestrator-v1",
+      "createdAt": "2026-08-19T07:33:32.117Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": null,
+      "jobType": "trail-verification-specialist",
+      "attempt": 1,
+      "publicMutationAllowed": false
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "trail-verification-osm-19153189-regulatoryRanger-1-2026-08-19T07-33-32-117Z",
+      "agentId": "regulatoryRanger",
+      "action": "verify-dog-and-seasonal-rules",
+      "candidateId": "osm-19153189",
+      "claimIds": [
+        "dog-access",
+        "leash-rules",
+        "seasonal-restrictions"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-19153189",
+        "backoffice-data/cartographer/osm-19153189.json"
+      ],
+      "outputRefs": [],
+      "requestedBy": "trail-orchestrator-v1",
+      "createdAt": "2026-08-19T07:33:32.117Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": null,
+      "jobType": "trail-verification-specialist",
+      "attempt": 1,
+      "publicMutationAllowed": false
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "trail-verification-osm-19153189-terrainPoi-1-2026-08-19T07-33-32-117Z",
+      "agentId": "terrainPoi",
+      "action": "verify-terrain-water-heat-and-livestock",
+      "candidateId": "osm-19153189",
+      "claimIds": [
+        "elevation",
+        "shade",
+        "surface",
+        "water",
+        "exposure",
+        "livestock"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-19153189",
+        "backoffice-data/cartographer/osm-19153189.json"
+      ],
+      "outputRefs": [],
+      "requestedBy": "trail-orchestrator-v1",
+      "createdAt": "2026-08-19T07:33:32.117Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": null,
+      "jobType": "trail-verification-specialist",
+      "attempt": 1,
+      "publicMutationAllowed": false
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "trail-verification-osm-16322228-logistics-1-2026-08-19T07-33-35-415Z",
+      "agentId": "logistics",
+      "action": "verify-parking-and-access",
+      "candidateId": "osm-16322228",
+      "claimIds": [
+        "parking",
+        "road-access",
+        "pedestrian-connection"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-16322228",
+        "backoffice-data/cartographer/osm-16322228.json"
+      ],
+      "outputRefs": [],
+      "requestedBy": "trail-orchestrator-v1",
+      "createdAt": "2026-08-19T07:33:35.415Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": null,
+      "jobType": "trail-verification-specialist",
+      "attempt": 1,
+      "publicMutationAllowed": false
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "trail-verification-osm-16322228-regulatoryRanger-1-2026-08-19T07-33-35-415Z",
+      "agentId": "regulatoryRanger",
+      "action": "verify-dog-and-seasonal-rules",
+      "candidateId": "osm-16322228",
+      "claimIds": [
+        "dog-access",
+        "leash-rules",
+        "seasonal-restrictions"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-16322228",
+        "backoffice-data/cartographer/osm-16322228.json"
+      ],
+      "outputRefs": [],
+      "requestedBy": "trail-orchestrator-v1",
+      "createdAt": "2026-08-19T07:33:35.415Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": null,
+      "jobType": "trail-verification-specialist",
+      "attempt": 1,
+      "publicMutationAllowed": false
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "trail-verification-osm-16322228-terrainPoi-1-2026-08-19T07-33-35-415Z",
+      "agentId": "terrainPoi",
+      "action": "verify-terrain-water-heat-and-livestock",
+      "candidateId": "osm-16322228",
+      "claimIds": [
+        "elevation",
+        "shade",
+        "surface",
+        "water",
+        "exposure",
+        "livestock"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-16322228",
+        "backoffice-data/cartographer/osm-16322228.json"
+      ],
+      "outputRefs": [],
+      "requestedBy": "trail-orchestrator-v1",
+      "createdAt": "2026-08-19T07:33:35.415Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": null,
+      "jobType": "trail-verification-specialist",
+      "attempt": 1,
+      "publicMutationAllowed": false
+    },
+    {
+      "contractVersion": "1.0.0",
+      "id": "trail-verification-osm-20347406-cartographer-2-2026-08-19T07-34-29-567Z",
+      "agentId": "cartographer",
+      "action": "revise-route-audit",
+      "candidateId": "osm-20347406",
+      "claimIds": [
+        "route-identity",
+        "route-geometry"
+      ],
+      "status": "queued",
+      "inputRefs": [
+        "production-trails/osm-20347406",
+        "backoffice-data/cartographer/osm-20347406.json"
+      ],
+      "outputRefs": [],
+      "requestedBy": "trail-orchestrator-v1",
+      "createdAt": "2026-08-19T07:34:29.567Z",
+      "startedAt": null,
+      "completedAt": null,
+      "humanGate": null,
+      "jobType": "trail-verification-specialist",
+      "attempt": 2,
+      "publicMutationAllowed": false,
+      "instruction": "it is ok even if it is not a loop",
+      "resolutionAttempt": 1
+    }
+  ],
+  "updatedAt": "2026-08-19T07:34:29.567Z"
+}
