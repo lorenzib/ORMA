@@ -61,6 +61,14 @@ async function getRevisionJobs(){
   }catch(error){console.error('getRevisionJobs failed:',error);return {ok:false,error:'job-read-failed',jobs:[]};}
 }
 
+async function getPublicationReviews(){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',reviews:[]};
+  try{
+    const snapshot=await getDocs(query(collection(db,'backofficePublicationReviews'),orderBy('submittedAt','desc'),limit(100)));
+    return {ok:true,reviews:snapshot.docs.map(item=>({id:item.id,...item.data()}))};
+  }catch(error){console.error('getPublicationReviews failed:',error);return {ok:false,error:'publication-review-read-failed',reviews:[]};}
+}
+
 async function submitTrailReview(payload){
   const moderator=await moderatorIdentity();
   if(!moderator)return {ok:false,error:'moderator-required'};
@@ -115,7 +123,7 @@ window.DoloPawsAuth={
   async logOut(){await signOut(auth);currentUser=null;},
 };
 window.DoloPawsModeration={getModeratorStatus:async()=>({ok:!!await moderatorIdentity()})};
-window.ORMABackoffice={getArtifact,getRevisionJobs,submitTrailReview,submitPublicationReview,submitDossierReview};
+window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,submitTrailReview,submitPublicationReview,submitDossierReview};
 
 onAuthStateChanged(auth,user=>{
   currentUser=user;

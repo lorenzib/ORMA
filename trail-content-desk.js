@@ -1,6 +1,6 @@
 (function(){
   'use strict';
-  const URLS={queue:'backoffice-data/verified-trail-editorial-queue.json',execution:'backoffice-data/verified-trail-editorial-execution.json',staging:'backoffice-data/publication-staging.json',revisions:'backoffice-data/verified-trail-revision-queue.json'};
+  const URLS={queue:'backoffice-data/verified-trail-editorial-queue.json',execution:'backoffice-data/verified-trail-editorial-execution.json',staging:'backoffice-data/publication-staging.json',revisions:'backoffice-data/verified-trail-revision-queue.json',publicationReviews:'backoffice-data/publication-review-queue.json'};
   const STORAGE_KEY='orma-verified-trail-content-decisions-v1';
   const LOCAL_MODE=['localhost','127.0.0.1'].includes(location.hostname);
   const state=document.getElementById('trailContentState');
@@ -11,7 +11,7 @@
   const revisionActivity=document.getElementById('revisionActivity');
   const revisionJobs=document.getElementById('revisionJobs');
   const refreshRevisions=document.getElementById('refreshRevisions');
-  let decisions=loadDecisions(); let execution; let queue; let staging; let revisions;
+  let decisions=loadDecisions(); let execution; let queue; let staging; let revisions; let publicationRequests={requests:[]}; let publicationReviews=[];
 
   function element(tag,className,text){const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;}
   function loadDecisions(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');}catch(error){return {};}}
@@ -26,6 +26,17 @@
   }
   async function loadArtifact(id,url){if(LOCAL_MODE)return getJson(url);const api=await waitForRemoteBackoffice();const result=await api.getArtifact(id);if(!result.ok)throw new Error(`Could not load ${id}: ${result.error}`);return result.data;}
   async function loadRevisionJobs(){if(LOCAL_MODE)return getJson(URLS.revisions);const api=await waitForRemoteBackoffice();const result=await api.getRevisionJobs();if(!result.ok)throw new Error(`Could not load revision jobs: ${result.error}`);return {contractVersion:'1.0.0',jobs:result.jobs};}
+  async function loadPublicationRequests(){
+    if(LOCAL_MODE)return {requests:[]};
+    const api=await waitForRemoteBackoffice();const result=await api.getArtifact('publication-requests');
+    if(!result.ok&&result.error!=='artifact-not-found')throw new Error(`Could not load publication requests: ${result.error}`);
+    return result.ok?result.data:{requests:[]};
+  }
+  async function loadPublicationReviews(){
+    if(LOCAL_MODE){const queue=await getJson(URLS.publicationReviews);return (queue.decisions||[]).map((review,index)=>({id:`local-${index}`,...review,submittedAt:review.reviewedAt}));}
+    const api=await waitForRemoteBackoffice();const result=await api.getPublicationReviews();
+    if(!result.ok)throw new Error(`Could not load publication reviews: ${result.error}`);return result.reviews||[];
+  }
   async function responseBody(response){
     const text=await response.text();
     try{return text?JSON.parse(text):{};}
@@ -94,16 +105,37 @@
     submit.disabled=!Object.keys(decisions).length;renderRevisionActivity();
   }
   function fieldsList(fields){const list=element('dl','bo-publication-fields');Object.entries(fields||{}).forEach(([key,value])=>{list.append(element('dt','',key),element('dd','',typeof value==='object'?JSON.stringify(value,null,2):String(value)));});return list;}
+  function publicationRecordFor(item){
+    const candidates=[
+      ...(publicationReviews||[]).filter(review=>review.candidateId===item.candidateId).map(review=>({kind:'review',record:review,at:dateValue(review.submittedAt)?.getTime()||0})),
+      ...(publicationRequests?.requests||[]).filter(request=>request.candidateId===item.candidateId).map(request=>({kind:'request',record:request,at:dateValue(request.acknowledgedAt||request.reviewedAt)?.getTime()||0})),
+    ];
+    return candidates.sort((a,b)=>b.at-a.at||String(b.record.id||'').localeCompare(String(a.record.id||'')))[0]||null;
+  }
+  function publicationReceipt(record){
+    const wrap=element('div','bo-publication-receipt');const status=record.record.status||'queued';
+    if(record.kind==='request'&&status==='pull-request-opened'){
+      wrap.append(element('strong','','Publication PR ready for final review'),element('p','','The worker processed this approval, validated the generated site and opened the final website diff.'));
+      if(record.record.pullRequestUrl)wrap.append(link('Open publication pull request',record.record.pullRequestUrl));
+      return wrap;
+    }
+    const labels={queued:'Decision queued for the worker',processed:'Decision processed',superseded:'Earlier duplicate safely superseded','approved-for-pr-creation':'Approval processed — preparing the PR','request-changes':'Changes requested',hold:'Publication held',blocked:'Decision blocked'};
+    wrap.append(element('strong','',labels[status]||status.replace(/-/g,' ')));
+    const when=dateValue(record.record.acknowledgedAt||record.record.reviewedAt||record.record.submittedAt);
+    wrap.append(element('p','',`${record.record.action?`${record.record.action.replace(/-/g,' ')} · `:''}${when&&!Number.isNaN(when.getTime())?when.toLocaleString():'Recorded in the live queue'}.`));
+    return wrap;
+  }
+  function mappingDetails(fields){const details=element('details','bo-publication-mapping');const count=Object.keys(fields||{}).length;details.append(element('summary','',`Inspect complete website mapping (${count} fields)`),fieldsList(fields));return details;}
   function renderStaging(next){
     staging=next;publicationSummary.replaceChildren();[['Trails',staging.summary.trails],['Ready for preview',staging.summary.readyForPreview],['Waiting for approvals',staging.summary.waitingForApprovals],['Public mutations',staging.summary.publicMutations]].forEach(([label,value])=>publicationSummary.append(element('span','',`${label}: ${value}`)));
     publicationMapper.replaceChildren();staging.items.forEach(item=>{const source=queue.items.find(candidate=>candidate.candidateId===item.candidateId);const card=element('article',`bo-publication-card is-${item.state}`);card.append(element('h3','',source?.trailName||item.targetTrailId),element('p','bo-content-status',item.state.replace(/-/g,' ')));
       if(item.state!=='ready-for-publication-preview'){card.append(element('p','bo-empty',`Still required: ${item.missingApprovals.join(', ')}. Review both proposals above and submit those decisions first.`));}
-      else{card.append(element('p','',`${item.operation.replace(/-/g,' ')} · website trail ${item.targetTrailId}`),fieldsList(item.proposedWebsiteFields));const note=element('textarea');note.placeholder='Optional publication note…';const actions=element('div','bo-actions');const decisionState=element('p','bo-decision','No publication decision recorded yet.');[['approve-for-pr-creation','Approve for PR creation'],['request-changes','Request changes'],['hold','Hold']].forEach(([action,label])=>{const button=element('button','',label);button.type='button';button.addEventListener('click',()=>submitPublication(item,action,note.value,card,decisionState));actions.append(button);});card.append(note,actions,decisionState);}
+      else{const current=publicationRecordFor(item);card.append(element('p','',`${item.operation.replace(/-/g,' ')} · website trail ${item.targetTrailId}`));if(current)card.append(publicationReceipt(current));const note=element('textarea');note.placeholder='Optional publication note…';const actions=element('div','bo-actions');const locked=current&&['queued','processed','approved-for-pr-creation','pull-request-opened'].includes(current.record.status);const decisionState=element('p','bo-decision',current?'The recorded decision remains visible here after every refresh.':'No publication decision recorded yet.');[['approve-for-pr-creation','Approve for PR creation'],['request-changes','Request changes'],['hold','Hold']].forEach(([action,label])=>{const button=element('button','',label);button.type='button';button.disabled=Boolean(locked);button.addEventListener('click',()=>submitPublication(item,action,note.value,card,decisionState));actions.append(button);});note.disabled=Boolean(locked);card.append(note,actions,decisionState,mappingDetails(item.proposedWebsiteFields));}
       publicationMapper.append(card);});
   }
   async function submitPublication(item,action,note,card,decisionState){
     const buttons=card.querySelectorAll('button');buttons.forEach(button=>button.disabled=true);state.textContent='Recording publication decision…';
-    try{let body;if(LOCAL_MODE){const response=await fetch('/api/publication-reviews/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({candidateId:item.candidateId,action,note})});body=await responseBody(response);if(!response.ok)throw new Error(body.error||`Server returned ${response.status}`);}else{body=await (await waitForRemoteBackoffice()).submitPublicationReview({candidateId:item.candidateId,action,note});if(!body.ok)throw new Error(body.error);}decisionState.textContent=`${action.replace(/-/g,' ')} recorded at ${new Date().toLocaleTimeString()}.`;state.textContent=LOCAL_MODE?`${body.message} Trail: ${item.targetTrailId}.`:`Publication decision queued for the independent worker. Trail: ${item.targetTrailId}. No website file was changed.`;}
+    try{let body;if(LOCAL_MODE){const response=await fetch('/api/publication-reviews/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({candidateId:item.candidateId,action,note})});body=await responseBody(response);if(!response.ok)throw new Error(body.error||`Server returned ${response.status}`);}else{body=await (await waitForRemoteBackoffice()).submitPublicationReview({candidateId:item.candidateId,action,note});if(!body.ok)throw new Error(body.error);}publicationReviews=[{id:body.reviewId||`local-${Date.now()}`,candidateId:item.candidateId,action,note,status:'queued',submittedAt:new Date().toISOString()},...(publicationReviews||[])];renderStaging(staging);state.classList.remove('is-error');state.textContent=LOCAL_MODE?`${body.message} Trail: ${item.targetTrailId}.`:`Approval receipt saved. The worker will collect trail ${item.targetTrailId} within five minutes and this card will show the resulting PR.`;}
     catch(error){state.classList.add('is-error');state.textContent=`Could not record publication decision: ${error.message}`;buttons.forEach(button=>button.disabled=false);}
   }
   submit.addEventListener('click',async()=>{
@@ -113,10 +145,10 @@
   });
   async function refreshRevisionState(){
     refreshRevisions.disabled=true;
-    try{[execution,staging,revisions]=await Promise.all([loadArtifact('verified-trail-editorial-execution',URLS.execution),loadArtifact('publication-staging',URLS.staging),loadRevisionJobs()]);renderPackets();renderStaging(staging);state.classList.remove('is-error');state.textContent=revisionStateText();}
+    try{[execution,staging,revisions,publicationRequests,publicationReviews]=await Promise.all([loadArtifact('verified-trail-editorial-execution',URLS.execution),loadArtifact('publication-staging',URLS.staging),loadRevisionJobs(),loadPublicationRequests(),loadPublicationReviews()]);renderPackets();renderStaging(staging);state.classList.remove('is-error');state.textContent=revisionStateText();}
     catch(error){state.classList.add('is-error');state.textContent=`Could not refresh revision status: ${error.message}`;}
     finally{refreshRevisions.disabled=false;}
   }
   refreshRevisions.addEventListener('click',refreshRevisionState);
-  Promise.all([loadArtifact('verified-trail-editorial-queue',URLS.queue),loadArtifact('verified-trail-editorial-execution',URLS.execution),loadArtifact('publication-staging',URLS.staging),loadRevisionJobs()]).then(values=>{[queue,execution,staging,revisions]=values;renderPackets();renderStaging(staging);state.textContent=revisionStateText();window.setInterval(refreshRevisionState,10000);}).catch(error=>{state.classList.add('is-error');state.textContent=error.message;});
+  Promise.all([loadArtifact('verified-trail-editorial-queue',URLS.queue),loadArtifact('verified-trail-editorial-execution',URLS.execution),loadArtifact('publication-staging',URLS.staging),loadRevisionJobs(),loadPublicationRequests(),loadPublicationReviews()]).then(values=>{[queue,execution,staging,revisions,publicationRequests,publicationReviews]=values;renderPackets();renderStaging(staging);state.textContent=revisionStateText();window.setInterval(refreshRevisionState,10000);}).catch(error=>{state.classList.add('is-error');state.textContent=error.message;});
 })();
