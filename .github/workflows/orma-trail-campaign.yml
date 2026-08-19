@@ -1,0 +1,44 @@
+name: ORMA trail verification campaign
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: New trails to admit into verification
+        required: false
+        default: '5'
+  schedule:
+    - cron: '15 6 * * *'
+
+concurrency:
+  group: orma-trail-verification-campaign
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  admit-next-trails:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      FIREBASE_PROJECT_ID: dolopaws
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      OPENAI_API_KEY: ${{ secrets.OPEN_API_KEY }}
+      ORMA_CONTENT_MODEL: gpt-5.6-terra
+      CAMPAIGN_LIMIT: ${{ github.event.inputs.limit || '5' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Check worker secrets
+        run: |
+          test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
+          test -n "$OPENAI_API_KEY" || { echo "Missing OPENAI_API_KEY"; exit 1; }
+      - run: npm ci
+      - name: Admit the next trail batch
+        run: npm run backoffice:campaign:live -- --limit "$CAMPAIGN_LIMIT"
+      - name: Start the first agent pass
+        run: npm run backoffice:worker:live

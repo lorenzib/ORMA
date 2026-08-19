@@ -1,0 +1,31 @@
+{
+  "contractVersion": "1.0.0", "generatedAt": "2026-08-18T12:00:00.000Z",
+  "mode": "draft-only", "publicMutationAllowed": false,
+  "subject": { "type": "guide", "id": "paw-protection", "sourceRef": "guides/paw-protection.html", "updatedAt": "2026-08-18T00:00:00.000Z", "original": "Paw protection on rock and scree. Check your dog's paws during the walk and consider boots on rough terrain." },
+  "outputs": [
+    {
+      "jobId": "guide-paw-protection-edit", "agentId": "copywriter", "status": "ready-for-review", "responseId": "mock-copywriter", "model": "mock", "error": null,
+      "result": {
+        "title": "Editorial proposal: Paw protection on rock and scree", "summary": "The proposal makes two targeted changes: a clearer paw-check routine and observable turn-back cues. It does not change the guide structure or imply that every dog needs boots.",
+        "changes": [
+          { "section": "Opening guidance", "before": "Check your dog's paws during the walk and consider boots on rough terrain.", "after": "Check your dog’s pads before the walk, again at the first rest, and after sustained rock or scree. Boots can help some dogs on abrasive ground, but poor fit may cause rubbing. Test them on a short walk before relying on them in the mountains.", "reason": "Adds an actionable inspection rhythm and preserves the caveat that boots are not automatically beneficial." },
+          { "section": "Turn-back cue", "before": "Turn back if your dog is uncomfortable.", "after": "Stop and inspect the paw if your dog begins licking a foot, shortening a stride, hesitating on familiar ground, or repeatedly shifting weight. Turn back if the change persists.", "reason": "Replaces a vague instruction with observable behaviour without diagnosing an injury." }
+        ],
+        "sources": [{ "label": "American Veterinary Medical Association, pet care", "url": "https://www.avma.org/resources-tools/pet-owners/petcare", "checkedAt": "2026-08-18", "supports": "General preventive care and escalation to veterinary care when injury is suspected." }],
+        "openQuestions": ["Should ORMA require veterinary review before publishing specific injury signs?"]
+      }
+    },
+    {
+      "jobId": "guide-paw-protection-pictures", "agentId": "visualDirector", "status": "ready-for-review", "responseId": "mock-visual-director", "model": "mock", "error": null,
+      "result": {
+        "searchSummary": "Picture brief: find a useful, credible image that shows paw checks or paw protection on rocky terrain. One layout reference is ready to inspect; one photographic lead remains blocked until its source and reuse rights can be verified.",
+        "candidates": [
+          { "title": "Mock layout preview: dog paw on rocky ground", "sourcePageUrl": "backoffice/fixtures/paw-protection-preview.svg", "assetUrl": "backoffice/fixtures/paw-protection-preview.svg", "creator": "ORMA mock fixture", "license": "Internal mock only", "licenseUrl": null, "credit": "ORMA mock fixture", "matchEvidence": "A visible layout preview for the review workflow. It is not a proposed production photograph.", "altText": "Illustrated dog paw above angular stones, labelled mock preview.", "status": "ready" },
+          { "title": "Close-up of a dog paw on scree", "sourcePageUrl": "https://example.com/unverified-paw-photo", "assetUrl": null, "creator": null, "license": null, "licenseUrl": null, "credit": null, "matchEvidence": "Relevant subject, but creator, reuse licence and location are not established.", "altText": "Close-up of a dog’s paw resting on loose mountain stones.", "status": "blocked" }
+        ],
+        "coverageGaps": ["A route-authentic paw-inspection photograph.", "A licensed close-up demonstrating correctly fitted dog boots."]
+      }
+    }
+  ],
+  "summary": { "readyForReview": 2, "blocked": 0 }
+}

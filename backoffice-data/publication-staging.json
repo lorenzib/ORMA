@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-08-18T19:29:13.564Z",
+  "generatedAt": "2026-08-18T19:55:13.778Z",
   "mode": "staging-only",
   "stage": "website-publication-preview",
   "sourceEditorialQueue": "backoffice-data/verified-trail-editorial-queue.json",
@@ -23,10 +23,10 @@
           "agentId": "copywriter",
           "action": "approve",
           "note": "",
-          "reviewedAt": "2026-08-18T18:41:25.208Z",
+          "reviewedAt": "2026-08-18T19:54:40.127Z",
           "reviewedBy": "local-editor",
           "publicMutationAllowed": false,
-          "submissionId": "content-review-2026-08-18T18-42-39-581Z"
+          "submissionId": "content-review-2026-08-18T19-55-13-762Z"
         },
         "visual": {
           "contractVersion": "1.0.0",
@@ -35,10 +35,10 @@
           "agentId": "visualDirector",
           "action": "approve",
           "note": "",
-          "reviewedAt": "2026-08-18T18:41:24.192Z",
+          "reviewedAt": "2026-08-18T19:54:41.409Z",
           "reviewedBy": "local-editor",
           "publicMutationAllowed": false,
-          "submissionId": "content-review-2026-08-18T18-42-39-581Z"
+          "submissionId": "content-review-2026-08-18T19-55-13-762Z"
         }
       },
       "proposedWebsiteFields": {
@@ -261,10 +261,10 @@
           "agentId": "copywriter",
           "action": "approve",
           "note": "",
-          "reviewedAt": "2026-08-18T18:41:28.174Z",
+          "reviewedAt": "2026-08-18T19:55:11.393Z",
           "reviewedBy": "local-editor",
           "publicMutationAllowed": false,
-          "submissionId": "content-review-2026-08-18T18-42-39-581Z"
+          "submissionId": "content-review-2026-08-18T19-55-13-762Z"
         },
         "visual": {
           "contractVersion": "1.0.0",
@@ -273,10 +273,10 @@
           "agentId": "visualDirector",
           "action": "approve",
           "note": "",
-          "reviewedAt": "2026-08-18T18:41:27.491Z",
+          "reviewedAt": "2026-08-18T19:54:48.727Z",
           "reviewedBy": "local-editor",
           "publicMutationAllowed": false,
-          "submissionId": "content-review-2026-08-18T18-42-39-581Z"
+          "submissionId": "content-review-2026-08-18T19-55-13-762Z"
         }
       },
       "proposedWebsiteFields": {
@@ -476,22 +476,20 @@
       "candidateId": "osm-way-25736154",
       "targetTrailId": "lago-braies",
       "operation": "update-existing",
-      "state": "waiting-content-approvals",
-      "missingApprovals": [
-        "editorial-approval"
-      ],
+      "state": "ready-for-publication-preview",
+      "missingApprovals": [],
       "sourceApprovals": {
         "copy": {
           "contractVersion": "1.0.0",
           "gate": "editorial-approval",
           "jobId": "verified-osm-way-25736154-copy",
           "agentId": "copywriter",
-          "action": "request-revision",
-          "note": "Carry all the water your dog needs as the protected lake is a drinking source. -> edit it",
-          "reviewedAt": "2026-08-18T18:42:33.491Z",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T19:55:03.660Z",
           "reviewedBy": "local-editor",
           "publicMutationAllowed": false,
-          "submissionId": "content-review-2026-08-18T18-42-39-581Z"
+          "submissionId": "content-review-2026-08-18T19-55-13-762Z"
         },
         "visual": {
           "contractVersion": "1.0.0",
@@ -500,13 +498,87 @@
           "agentId": "visualDirector",
           "action": "approve",
           "note": "",
-          "reviewedAt": "2026-08-18T18:41:30.858Z",
+          "reviewedAt": "2026-08-18T19:54:51.293Z",
           "reviewedBy": "local-editor",
           "publicMutationAllowed": false,
-          "submissionId": "content-review-2026-08-18T18-42-39-581Z"
+          "submissionId": "content-review-2026-08-18T19-55-13-762Z"
         }
       },
-      "proposedWebsiteFields": null,
+      "proposedWebsiteFields": {
+        "name": "Lago di Braies Seeweg circuit",
+        "desc": "A complete 3.6 km circuit around Lago di Braies, starting and finishing near the lake hotel and tavern area. Allow about one hour and 39 m of ascent and descent. The path alternates between broad forest and lakeshore sections, narrower rooted ground, uphill steps and a section beside a vertical rock wall.\n\nThe route is dog-friendly, but dogs must remain on lead inside the nature park. No livestock is expected around this exact lakeshore circuit based on the editor’s direct local knowledge; the lead rule still applies because wildlife disturbance remains relevant. Bring enough water for your dog: no potable source has been verified on the circuit, and the protected lake should not be treated as one.",
+        "tips": "Use the approved official P1, P2, P3 and P4 parking set. From 1 July to 15 September 2026, between 09:00 and 16:00, valley access is controlled and requires public transport, walking, cycling, or the relevant parking reservation or transit permit. Carry and use a muzzle on public transport.",
+        "routeRef": "backoffice-data/route-proposals/lago-braies-circuit.geojson",
+        "heroImage": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lago_di_Braies_South_Tyrol_5.jpg",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_5.jpg",
+        "imageCreator": "kallerna",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageCredit": "Lago di Braies South Tyrol 5 — kallerna — CC BY-SA 4.0 — via Wikimedia Commons",
+        "imageAlt": "Southern shore of Lago di Braies with the lake and surrounding Dolomite peaks.",
+        "ormaVerified": true,
+        "area": "Prags Valley",
+        "distance": 3.6,
+        "elevation": 39,
+        "hours": "1",
+        "paid": true,
+        "terrainType": "Forest and lakeshore paths with roots, steps and a narrow rock-wall section",
+        "terrainRank": 1,
+        "shadeCoverage": null,
+        "heatRisk": "moderate",
+        "safetyLevel": "moderate",
+        "exposure": false,
+        "waterSources": [],
+        "startPoint": {
+          "lat": 46.699015,
+          "lng": 12.085296,
+          "label": "Lago di Braies access — use the approved official P1–P4 parking set"
+        },
+        "reviewedAt": "2026-08-18",
+        "reviewedBy": "ORMA verified-trail workflow",
+        "verified": {
+          "categories": [
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
+          ],
+          "sources": [
+            "Locked ORMA evidence dossier"
+          ],
+          "date": "2026-08-18"
+        },
+        "graduation": {
+          "status": "verified",
+          "required": [
+            "photo",
+            "route",
+            "mapPoints",
+            "elevation",
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
+          ],
+          "completed": [
+            "photo",
+            "route",
+            "mapPoints",
+            "elevation",
+            "water",
+            "heat",
+            "exposure",
+            "livestock",
+            "surfaceHazards",
+            "access"
+          ]
+        },
+        "verifiedAt": "2026-08-18T15:23:40.415Z"
+      },
       "lockedEvidence": {
         "dossierRef": "backoffice/dossiers/lago-braies.json",
         "facts": [
@@ -629,8 +701,8 @@
   ],
   "summary": {
     "trails": 3,
-    "readyForPreview": 2,
-    "waitingForApprovals": 1,
+    "readyForPreview": 3,
+    "waitingForApprovals": 0,
     "publicMutations": 0
   }
 }

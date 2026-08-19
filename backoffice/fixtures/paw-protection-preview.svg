@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+  <title id="title">Mock preview of a dog paw on a rocky trail</title><desc id="desc">Editorial placeholder showing a dog paw above angular stones.</desc>
+  <rect width="800" height="450" fill="#e7eee8"/><path d="M0 334 118 278l94 42 113-92 98 74 129-111 99 80 149-43v222H0Z" fill="#8d978f"/>
+  <g fill="#355f4c"><ellipse cx="391" cy="210" rx="88" ry="72"/><circle cx="305" cy="132" r="34"/><circle cx="365" cy="104" r="36"/><circle cx="430" cy="105" r="36"/><circle cx="489" cy="138" r="34"/></g>
+  <rect x="24" y="24" width="184" height="38" rx="19" fill="#fff" opacity=".9"/><text x="116" y="49" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#355f4c">MOCK PREVIEW</text>
+</svg>

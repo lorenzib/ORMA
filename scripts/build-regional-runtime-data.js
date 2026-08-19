@@ -5,12 +5,14 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 const crypto = require('crypto');
+const { applyVerifiedTrailOverrides } = require('./verified-trail-overrides');
 
 const root = path.resolve(__dirname, '..');
 const outDir = path.join(root, 'data', 'regions');
 const sourceFiles = [
   'trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js',
   'regions-config.js', 'water-sources-all-regions.geojson', 'huts-bars-all-regions.geojson',
+  'data/verified-trail-overrides.json',
 ];
 fs.mkdirSync(outDir, { recursive: true });
 
@@ -19,7 +21,9 @@ function loadTrails() {
   vm.createContext(context);
   ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'regions-config.js']
     .forEach(file => vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context, { filename: file }));
-  return JSON.parse(vm.runInContext('window.DoloPawsRegions.assign(trails); JSON.stringify(trails)', context));
+  const trails = JSON.parse(vm.runInContext('window.DoloPawsRegions.assign(trails); JSON.stringify(trails)', context));
+  const overrides = JSON.parse(fs.readFileSync(path.join(root, 'data', 'verified-trail-overrides.json'), 'utf8'));
+  return applyVerifiedTrailOverrides(trails, overrides);
 }
 
 function loadGondolas() {

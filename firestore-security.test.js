@@ -30,6 +30,7 @@ describe('SEC-01 Firestore configuration contract', () => {
       'backofficeJobs',
       'backofficeReviews',
       'backofficePublicationReviews',
+      'backofficeDossierReviews',
     ];
     clientCollections.forEach(collection => {
       expect(rules).toContain(`/` + collection + '/{');
@@ -46,8 +47,11 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(jobBlock).toContain('allow get, list: if isModerator();');
     expect(jobBlock).toContain('allow create, update, delete: if false;');
     expect(rules).toContain("request.resource.data.type == 'verified-trail-content-review'");
+    expect(rules).toContain("request.resource.data.type == 'trail-dossier-review'");
+    expect(rules).toContain("request.resource.data.action in ['approve', 'request-revision', 'reject']");
     expect(rules).toContain("request.resource.data.submittedBy == request.auth.uid");
     expect(client).toContain('window.ORMABackoffice');
+    expect(client).toContain('submitDossierReview:submitBackofficeDossierReview');
   });
 
   test('private account documents are owner-only and cannot carry role grants', () => {

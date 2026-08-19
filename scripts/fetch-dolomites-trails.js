@@ -119,7 +119,7 @@ function getCenter(element) {
 }
 
 function pickSourceTags(tags) {
-  const keys = ['route', 'network', 'operator', 'osmc:symbol', 'sac_scale', 'highway', 'surface'];
+  const keys = ['route', 'network', 'operator', 'osmc:symbol', 'sac_scale', 'highway', 'surface', 'dog', 'access'];
   const selected = {};
   keys.forEach((key) => {
     if (tags[key]) selected[key] = tags[key];
