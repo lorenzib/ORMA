@@ -228,8 +228,6 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   // Marked routes default ON — the waymarked network is how walkable
   // ground stays visible; the Layers panel un-ticks it for a clean map.
   const overlayStates = { routes: true, lifts: false, fountains: false, huts: false, barsCafes: false, terrain: false };
-  let dogFilterOn = false;
-
   const layersBtn = document.createElement('button');
   layersBtn.type = 'button';
   layersBtn.textContent = t('map.layers');
@@ -292,14 +290,17 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   mkChip(t('chips.lifts'), 'lifts');
   mkChip(t('chips.fountains'), 'fountains');
   mkChip(t('chips.huts'), 'huts');
-  const barsChip = mkChip(t('chips.food'), 'barsCafes');
+  mkChip(t('chips.food'), 'barsCafes');
 
   // Map · Satellite · 3D live together in one visible switch on the map
   // (same group as the trail page), not buried inside the Layers panel.
+  let flat3DCamera = null;
   function set3D(on){
     overlayStates.terrain = on;
     if(on){
-      map.setTerrain({ source: 'terrain-dem', exaggeration: 1.3 });
+      const currentZoom = map.getZoom();
+      flat3DCamera = { center: map.getCenter(), zoom: currentZoom, bearing: map.getBearing() };
+      map.setTerrain({ source: 'terrain-dem-3d', exaggeration: 1.3 });
       if(!map.getLayer('hillshade-layer')){
         map.addLayer({
           id: 'hillshade-layer',
@@ -308,11 +309,11 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
           paint: { 'hillshade-exaggeration': 0.3 },
         }, map.getLayer('trail-paths-line') ? 'trail-paths-line' : undefined);
       }
-      map.easeTo({ pitch: 38, duration: 500 });
+      map.easeTo({ pitch: 38, zoom: Math.min(currentZoom, 12.25), duration: 500 });
     } else {
       map.setTerrain(null);
       if(map.getLayer('hillshade-layer')) map.removeLayer('hillshade-layer');
-      map.easeTo({ pitch: 0, duration: 500 });
+      map.easeTo({ pitch: 0, ...(flat3DCamera || {}), duration: 500 });
     }
   }
   function ensureSatelliteLayer(){
@@ -375,37 +376,6 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
     });
   })();
 
-  // 🐾 Dog-friendly filter — narrows food & drink to places OSM marks
-  // dog=yes/leashed or with outdoor seating; dog=no always excluded.
-  // Swaps the source data because a layer filter alone wouldn't change
-  // the cluster bubbles' counts.
-  const dogChip = document.createElement('button');
-  dogChip.type = 'button';
-  dogChip.innerHTML = icons ? icons.chipHtml('dog', t('chips.dog')) : t('chips.dog');
-  chipStyle(dogChip, false);
-  dogChip.addEventListener('click', () => {
-    if(!window._dolopawsBars) return; // GeoJSON not loaded yet
-    const srcData = map.getSource('bars-cafes');
-    if(!srcData) return;
-    dogFilterOn = !dogFilterOn;
-    const feats = dogFilterOn
-      ? window._dolopawsBars.filter(f => {
-          const p = f.properties || {};
-          if(p.dog === 'no') return false;
-          return p.dog === 'yes' || p.dog === 'leashed' || p.outdoor_seating === 'yes';
-        })
-      : window._dolopawsBars;
-    srcData.setData({ type: 'FeatureCollection', features: feats });
-    if(dogFilterOn && !overlayStates.barsCafes){
-      overlayStates.barsCafes = true;
-      applyVisibility('barsCafes');
-      chipStyle(barsChip, true);
-    }
-    chipStyle(dogChip, dogFilterOn);
-    renderMapLegend();
-  });
-  panel.appendChild(dogChip);
-
   // UI: dynamic legend — only describes what is actually visible on the
   // map right now, instead of a fixed list of every possible layer.
   function renderMapLegend(){
@@ -421,7 +391,6 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
     if(overlayStates.fountains) html += category('water', '#4E90A8', t('legend.water'));
     if(overlayStates.huts) html += category('hut', '#8A5A16', t('legend.hut'));
     if(overlayStates.barsCafes) html += category('food', '#C4652F', t('legend.food'));
-    if(dogFilterOn) html += category('dog', '#2E4034', t('legend.dogOn'));
     legend.innerHTML = html;
   }
   renderMapLegend();
@@ -1058,6 +1027,13 @@ function addTerrainToggle(map, containerId, exaggeration, defaultPitch){
 
 function addTerrainSource(map){
   map.addSource('terrain-dem', {
+    type: 'raster-dem',
+    tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
+    tileSize: 256,
+    encoding: 'terrarium',
+    maxzoom: 15,
+  });
+  map.addSource('terrain-dem-3d', {
     type: 'raster-dem',
     tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
     tileSize: 256,
@@ -3220,6 +3196,134 @@ async function updateRegionalMapData(map, region) {
   if(routesSource) routesSource.setData(dogRoutesData);
 }
 
+function placeDogPolicyLabel(policy) {
+  return {
+    welcome: 'Dogs welcome',
+    leashed: 'Dogs welcome on leash',
+    'not-allowed': 'Dogs not allowed',
+  }[policy] || 'Dog policy recorded';
+}
+
+function ensurePlaceDogVerificationDialog() {
+  let overlay = document.getElementById('placeDogVerificationOverlay');
+  if(overlay) return overlay;
+  overlay = document.createElement('div');
+  overlay.id = 'placeDogVerificationOverlay';
+  overlay.className = 'place-dog-overlay';
+  overlay.hidden = true;
+  overlay.innerHTML = `
+    <div class="place-dog-dialog" role="dialog" aria-modal="true" aria-labelledby="placeDogDialogTitle">
+      <button type="button" class="place-dog-close" aria-label="Close">&times;</button>
+      <div class="place-dog-kick">ORMA place verification</div>
+      <h2 id="placeDogDialogTitle">Are dogs welcome here?</h2>
+      <p class="place-dog-place" data-place-name></p>
+      <form>
+        <fieldset>
+          <legend>Dog policy</legend>
+          <label><input type="radio" name="policy" value="welcome" required> Dogs welcome</label>
+          <label><input type="radio" name="policy" value="leashed"> Dogs welcome on leash</label>
+          <label><input type="radio" name="policy" value="not-allowed"> Dogs not allowed</label>
+        </fieldset>
+        <label class="place-dog-field">How do you know?
+          <select name="evidence" required>
+            <option value="">Choose evidence</option>
+            <option value="visited">I visited with my dog</option>
+            <option value="staff-confirmed">Staff confirmed the policy</option>
+            <option value="posted-sign">I saw a posted sign</option>
+          </select>
+        </label>
+        <label class="place-dog-field">Note <span>(optional)</span>
+          <textarea name="note" maxlength="300" rows="3" placeholder="For example: terrace only, water bowl available, or seasonal restriction"></textarea>
+        </label>
+        <p class="place-dog-help">Submissions are reviewed by ORMA before a verified badge appears.</p>
+        <div class="place-dog-result" role="status" aria-live="polite"></div>
+        <button type="submit" class="place-dog-submit">Submit for ORMA review</button>
+      </form>
+    </div>`;
+  document.body.appendChild(overlay);
+  const close = () => { overlay.hidden = true; };
+  overlay.querySelector('.place-dog-close').addEventListener('click', close);
+  overlay.addEventListener('click', event => { if(event.target === overlay) close(); });
+  document.addEventListener('keydown', event => {
+    if(event.key === 'Escape' && !overlay.hidden) close();
+  });
+  return overlay;
+}
+
+function openPlaceDogVerification(place, onSubmitted) {
+  const overlay = ensurePlaceDogVerificationDialog();
+  const form = overlay.querySelector('form');
+  const result = overlay.querySelector('.place-dog-result');
+  const submit = overlay.querySelector('.place-dog-submit');
+  form.reset();
+  result.textContent = '';
+  result.className = 'place-dog-result';
+  submit.disabled = false;
+  submit.textContent = 'Submit for ORMA review';
+  overlay.querySelector('[data-place-name]').textContent = place.name || 'Unnamed place';
+  overlay.hidden = false;
+  overlay.querySelector('input[name="policy"]').focus();
+
+  form.onsubmit = async event => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const api = window.DoloPawsCommunity;
+    if(!(api && api.submitPlaceDogFriendliness)){
+      result.textContent = 'Verification is still loading. Please try again.';
+      result.classList.add('error');
+      return;
+    }
+    submit.disabled = true;
+    submit.textContent = 'Sending…';
+    const response = await api.submitPlaceDogFriendliness(
+      place,
+      data.get('policy'),
+      data.get('evidence'),
+      data.get('note')
+    );
+    result.textContent = response.message || (response.ok ? 'Report submitted.' : 'Could not submit this report.');
+    result.classList.toggle('success', !!response.ok);
+    result.classList.toggle('error', !response.ok);
+    if(response.ok){
+      submit.textContent = 'Submitted';
+      if(typeof onSubmitted === 'function') onSubmitted();
+      return;
+    }
+    submit.disabled = false;
+    submit.textContent = 'Try again';
+    if(response.action === 'login'){
+      const login = document.createElement('button');
+      login.type = 'button';
+      login.className = 'place-dog-login';
+      login.textContent = 'Log in';
+      login.addEventListener('click', () => {
+        overlay.hidden = true;
+        const account = document.getElementById('accountBtn');
+        if(account) account.click();
+      });
+      result.append(' ', login);
+    }
+  };
+}
+
+async function hydratePlaceDogVerification(host, place) {
+  if(!host) return;
+  const api = window.DoloPawsCommunity;
+  let verified = null;
+  if(api && api.getVerifiedPlaceDogFriendliness){
+    verified = await api.getVerifiedPlaceDogFriendliness(place.id);
+  }
+  if(!host.isConnected) return;
+  host.innerHTML = verified
+    ? `<span class="orma-verified-badge">${productIcon('dog')} ORMA verified</span><span class="orma-verified-policy">${placeDogPolicyLabel(verified.policy)}</span><button type="button" class="orma-place-verify-btn">Report a change</button>`
+    : `<span class="orma-place-prompt">Know if dogs are welcome here?</span><button type="button" class="orma-place-verify-btn">Help ORMA verify</button>`;
+  host.querySelector('.orma-place-verify-btn').addEventListener('click', () => {
+    openPlaceDogVerification(place, () => {
+      host.innerHTML = '<span class="orma-place-pending">Thanks — pending ORMA review</span>';
+    });
+  });
+}
+
 // Shared helper: adds the full POI layer set for one clustered source.
 // `iconGroup` must be one of the shared icon registry groups ('water',
 // 'huts', 'food') so the high-zoom symbol layer can reuse the same
@@ -3331,19 +3435,24 @@ function addPoiLayerSet(map, sourceId, prefix, circleColor, clusterColor, iconGr
     else if (props.dog === 'leashed') content += `<br>🦮 Dogs on leash`;
     else if (props.dog === 'no') content += `<br>🚫 No dogs`;
     if (props.outdoor_seating && props.outdoor_seating !== 'no') content += `<br>🪑 Outdoor seating`;
-    // No dog tag yet? Let users add one — it lands in OSM and flows back
-    // to ORMA on the next monthly POI refresh.
-    if (!props.dog && props['@id']) {
-      const idParts = String(props['@id']).split('/');
-      if (idParts.length === 2) {
-        content += `<br><span style="font-size:11px;color:#8b8578;">Know if dogs are welcome here? <a href="https://www.openstreetmap.org/edit?${idParts[0]}=${idParts[1]}" target="_blank" rel="noopener">Add it to OpenStreetMap ↗</a></span>`;
-      }
-    }
+    const coordinates = feature.geometry.coordinates.slice(0, 2);
+    const place = {
+      id: String(props['@id'] || `${props.amenity || props.tourism || 'place'}-${coordinates.map(value => Number(value).toFixed(5)).join('-')}`),
+      name: String(props.name || 'Unnamed place'),
+      type: String(props.amenity || props.tourism || 'place'),
+      coordinates,
+    };
+    content += '<div class="orma-place-verification" data-orma-place-verification><span class="orma-place-prompt">Checking ORMA verification…</span></div>';
 
-    new maplibregl.Popup({ offset: 10 })
+    const popup = new maplibregl.Popup({ offset: 10 })
       .setLngLat(feature.geometry.coordinates)
       .setHTML(content)
       .addTo(map);
+    const popupElement = popup.getElement();
+    hydratePlaceDogVerification(
+      popupElement && popupElement.querySelector('[data-orma-place-verification]'),
+      place
+    );
   }));
 
   // Zoom into cluster on click

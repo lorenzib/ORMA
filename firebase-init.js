@@ -821,6 +821,61 @@ async function getActiveFlags(trailId) {
   }
 }
 
+// Place dog policies are submitted as evidence and become "ORMA verified"
+// only after an operator moves the record to the visible state.
+async function submitPlaceDogFriendliness(place, policy, evidence, note) {
+  const eligibility = await getContributionEligibility();
+  if (!eligibility.ok) return eligibility;
+  const allowedPolicies = ["welcome", "leashed", "not-allowed"];
+  const allowedEvidence = ["visited", "staff-confirmed", "posted-sign"];
+  if (!place || !place.id || !allowedPolicies.includes(policy) || !allowedEvidence.includes(evidence)) {
+    return { ok: false, message: "Choose a dog policy and how you verified it." };
+  }
+  try {
+    const coordinates = Array.isArray(place.coordinates) ? place.coordinates : [];
+    await addDoc(collection(db, "placeDogReports"), {
+      placeId: String(place.id).slice(0, 120),
+      placeName: String(place.name || "Unnamed place").slice(0, 120),
+      placeType: String(place.type || "place").slice(0, 40),
+      coordinates: {
+        lng: Number(coordinates[0]),
+        lat: Number(coordinates[1]),
+      },
+      uid: currentUser.uid,
+      policy,
+      evidence,
+      note: String(note || "").trim().slice(0, 300),
+      status: "pending",
+      createdAt: serverTimestamp(),
+    });
+    return { ok: true, message: "Thanks — your report is awaiting ORMA review." };
+  } catch (error) {
+    console.error("submitPlaceDogFriendliness failed:", error);
+    return contributionWriteError(error, "Could not send your report — please try again.");
+  }
+}
+
+async function getVerifiedPlaceDogFriendliness(placeId) {
+  if (!placeId) return null;
+  try {
+    const snapshot = await getDocs(query(
+      collection(db, "placeDogReports"),
+      where("placeId", "==", String(placeId).slice(0, 120)),
+      where("status", "in", ["visible", "reported"])
+    ));
+    const records = snapshot.docs.map(item => ({ id: item.id, ...item.data() }));
+    records.sort((a, b) => {
+      const aMs = a.moderatedAt && a.moderatedAt.toMillis ? a.moderatedAt.toMillis() : 0;
+      const bMs = b.moderatedAt && b.moderatedAt.toMillis ? b.moderatedAt.toMillis() : 0;
+      return bMs - aMs;
+    });
+    return records[0] || null;
+  } catch (error) {
+    console.error("getVerifiedPlaceDogFriendliness failed:", error);
+    return null;
+  }
+}
+
 // Active hazard flags across the user's saved trails, for the notification
 // centre. One indexed query per trail (Firestore allows a single `in`
 // clause per query, and trailId+status already need one each), capped so a
@@ -1059,6 +1114,7 @@ const MODERATION_COLLECTIONS = {
   flag: "flags",
   review: "reviews",
   photo: "trailPhotos",
+  placeDog: "placeDogReports",
 };
 
 async function moderatorIdentity() {
@@ -1152,7 +1208,8 @@ function moderationItem(type, snapshot, reportReasons = [], reportIds = []) {
   return {
     type,
     id: snapshot.id,
-    trailId: data.trailId,
+    trailId: data.trailId || null,
+    targetId: data.placeId || data.trailId,
     authorUid: data.uid,
     status: data.status,
     createdAt: data.createdAt,
@@ -1164,6 +1221,11 @@ function moderationItem(type, snapshot, reportReasons = [], reportIds = []) {
       hikedOn: data.hikedOn || null,
       image: data.image || null,
       caption: data.caption || null,
+      placeName: data.placeName || null,
+      placeType: data.placeType || null,
+      policy: data.policy || null,
+      evidence: data.evidence || null,
+      note: data.note || null,
       confirmationSource: data.confirmationSource || null,
       confirmations: Number(data.confirmations) || 0,
       disputes: Number(data.disputes) || 0,
@@ -1287,17 +1349,19 @@ async function moderateContent(item, toStatus, reason, options = {}) {
       batch.update(doc(db, MODERATION_COLLECTIONS[item.type], item.id), update);
     }
     const auditRef = doc(collection(db, "moderationAudit"));
-    batch.set(auditRef, {
+    const auditRecord = {
       contentType: item.type,
       contentId: item.id,
-      trailId: item.trailId,
+      targetId: item.targetId,
       authorUid: item.authorUid,
       fromStatus: item.status,
       toStatus,
       moderatorUid: moderator.uid,
       reason: String(reason || "").slice(0, 300),
       createdAt: serverTimestamp(),
-    });
+    };
+    if (item.trailId) auditRecord.trailId = item.trailId;
+    batch.set(auditRef, auditRecord);
     for (const reportId of item.reportIds || []) {
       batch.update(doc(db, "reports", reportId), {
         status: toStatus === "visible" ? "dismissed" : "actioned",
@@ -1316,6 +1380,7 @@ async function moderateContent(item, toStatus, reason, options = {}) {
 window.DoloPawsCommunity = {
   recordHikeStart, getWeeklyHikeCount,
   addFlag, getActiveFlags, respondToHazard, deleteFlag,
+  submitPlaceDogFriendliness, getVerifiedPlaceDogFriendliness,
   getActiveFlagsForTrails, getSiteNotices, addSiteNotice, deleteSiteNotice,
   getNotifSeen, setNotifSeen,
   setReview, getReviews, deleteMyReview,

@@ -2657,6 +2657,11 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 @media (min-width:1041px){
   .li-body.list-collapsed{grid-template-columns:1fr;}
   .li-body.list-collapsed .li-list{display:none;}
+  /* Once the map fills the workspace, the trails toggle shares its
+     top-right corner. Keep it first, then place the map and MapLibre
+     controls in separate slots underneath. */
+  .li-body.list-collapsed .li-map-expand{top:52px;}
+  .li-body.list-collapsed .li-map .maplibregl-ctrl-top-right{top:88px;}
 }
 .li-trails-toggle{
   position:absolute;top:12px;right:20px;z-index:8;
@@ -2969,6 +2974,35 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 .td-layer-switch button.on{background:var(--ink);color:#fff;}
 /* App map: the freed bottom-left slot */
 .li-map .td-layer-switch{bottom:10px;left:10px;}
+
+/* ORMA-owned place dog-policy verification. Community evidence stays
+   explicitly pending until an operator approves the public badge. */
+.orma-place-verification{margin-top:9px;padding-top:8px;border-top:1px solid var(--paper-line);font:600 11px/1.4 'Inter',sans-serif;color:var(--ink-soft);}
+.orma-place-prompt,.orma-place-pending,.orma-verified-policy{display:block;margin-bottom:6px;}
+.orma-place-pending{color:var(--accent);font-weight:700;}
+.orma-verified-badge{display:inline-flex;align-items:center;gap:5px;margin-bottom:4px;padding:3px 7px;border-radius:999px;background:#E7F1E8;color:var(--accent);font-weight:800;}
+.orma-verified-policy{color:var(--ink);font-weight:700;}
+.orma-place-verify-btn,.place-dog-login{border:0;background:none;padding:0;color:var(--accent);font:700 11px 'Inter',sans-serif;text-decoration:underline;cursor:pointer;}
+.place-dog-overlay{position:fixed;inset:0;z-index:520;display:grid;place-items:center;padding:18px;background:rgba(23,42,28,.48);}
+.place-dog-overlay[hidden]{display:none;}
+.place-dog-dialog{position:relative;width:min(430px,100%);max-height:calc(100vh - 36px);overflow-y:auto;border:1px solid var(--paper-line);border-radius:16px;background:#fff;padding:24px;box-shadow:0 22px 60px rgba(23,42,28,.25);}
+.place-dog-close{position:absolute;top:10px;right:12px;border:0;background:none;color:var(--ink-soft);font-size:24px;cursor:pointer;}
+.place-dog-kick{color:var(--accent);font:800 10px 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;}
+.place-dog-dialog h2{margin:5px 30px 3px 0;font:700 22px 'Bricolage Grotesque',sans-serif;color:var(--ink);}
+.place-dog-place{margin:0 0 18px;color:var(--ink-soft);font-size:13px;}
+.place-dog-dialog fieldset{display:grid;gap:9px;margin:0 0 16px;padding:0;border:0;}
+.place-dog-dialog legend,.place-dog-field{font:700 12px 'Inter',sans-serif;color:var(--ink);}
+.place-dog-dialog fieldset label{display:flex;align-items:center;gap:8px;font:500 13px 'Inter',sans-serif;}
+.place-dog-field{display:grid;gap:6px;margin-top:13px;}
+.place-dog-field span{font-weight:500;color:var(--ink-soft);}
+.place-dog-field select,.place-dog-field textarea{width:100%;box-sizing:border-box;border:1px solid var(--paper-line);border-radius:9px;background:#fff;padding:9px 10px;color:var(--ink);font:500 13px 'Inter',sans-serif;}
+.place-dog-field textarea{resize:vertical;}
+.place-dog-help{margin:13px 0 8px;color:var(--ink-soft);font-size:11px;line-height:1.45;}
+.place-dog-result{min-height:18px;margin-bottom:8px;font-size:12px;}
+.place-dog-result.success{color:var(--accent);font-weight:700;}
+.place-dog-result.error{color:#9C3A25;}
+.place-dog-submit{width:100%;border:0;border-radius:10px;background:var(--accent);color:#fff;padding:11px 14px;font:800 13px 'Inter',sans-serif;cursor:pointer;}
+.place-dog-submit:disabled{opacity:.6;cursor:wait;}
 /* ---------- responsive: one-pane tablet app ---------- */
 @media (min-width:701px) and (max-width:1040px){
   #returningCustomerHomepage{height:100vh;height:100dvh;}

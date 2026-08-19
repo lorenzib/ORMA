@@ -255,9 +255,7 @@ function makeIconEl(iconKey, bgColor){
 }
 
 function addTerrainToggle(map, containerId, exaggeration, pitch3D, existingBtn){
-  // With `existingBtn` (the "Elevation map" button in the grouped layer
-  // switch) the toggle joins the Flat map · Satellite · Elevation map group instead of floating on the
-  // opposite side of the map.
+  // With `existingBtn`, the toggle joins the Map · Satellite · 3D group.
   let btn = existingBtn || null;
   if(!btn){
     const container = document.getElementById(containerId);
@@ -271,8 +269,16 @@ function addTerrainToggle(map, containerId, exaggeration, pitch3D, existingBtn){
   }
 
   let elevationVisible = false; // clean, flat, label-first map by default
+  let flatCamera = null;
   btn.addEventListener('click', () => {
     if(!elevationVisible){
+      const currentZoom = typeof map.getZoom === 'function' ? map.getZoom() : 12.25;
+      flatCamera = {
+        center: typeof map.getCenter === 'function' ? map.getCenter() : undefined,
+        zoom: currentZoom,
+        bearing: typeof map.getBearing === 'function' ? map.getBearing() : undefined,
+      };
+      map.setTerrain({ source: 'terrain-dem-3d', exaggeration });
       if(!map.getLayer('hillshade-layer')){
         const beforeLayer = map.getLayer('waymarked-hiking-layer')
           ? 'waymarked-hiking-layer'
@@ -290,15 +296,21 @@ function addTerrainToggle(map, containerId, exaggeration, pitch3D, existingBtn){
           },
         }, beforeLayer); // keep hillshade below the trail overlay and labels
       }
-      // Keep a top-down navigation perspective. A tilted terrain camera can
-      // hide the route when remote DEM tiles fail; hillshade adds elevation
-      // context without making the basemap or distances harder to read.
-      map.easeTo({ pitch: 0, duration: 300 });
+      // At close trail-detail zooms the camera can sit below a 2,000–3,000 m
+      // terrain surface, blanking the map. Pull back to a safe planning zoom.
+      map.easeTo({ pitch: pitch3D, zoom: Math.min(currentZoom, 12.25), duration: 500 });
       if(existingBtn){ btn.classList.add('on'); btn.setAttribute('aria-pressed', 'true'); }
       else btn.textContent = window.t('trail.viewFlat');
     } else {
+      map.setTerrain(null);
       if(map.getLayer('hillshade-layer')) map.removeLayer('hillshade-layer');
-      map.easeTo({ pitch: 0, duration: 500 });
+      map.easeTo({
+        pitch: 0,
+        center: flatCamera && flatCamera.center,
+        zoom: flatCamera && flatCamera.zoom,
+        bearing: flatCamera && flatCamera.bearing,
+        duration: 500,
+      });
       if(existingBtn){ btn.classList.remove('on'); btn.setAttribute('aria-pressed', 'false'); }
       else btn.textContent = window.t('trail.view3d');
     }
@@ -331,6 +343,15 @@ function increaseLabelDensity(map){
 
 function addTerrainSource(map){
   map.addSource('terrain-dem', {
+    type: 'raster-dem',
+    tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
+    tileSize: 256,
+    encoding: 'terrarium',
+    maxzoom: 15,
+  });
+  // MapLibre renders more reliably when hillshade and 3D terrain do not
+  // compete for the same raster-dem source.
+  map.addSource('terrain-dem-3d', {
     type: 'raster-dem',
     tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
     tileSize: 256,
@@ -621,39 +642,6 @@ function itinKmLabel(km){
   return `<b style="font-weight:700;">Km ${km % 1 === 0 ? km : km.toFixed(1)}</b>`;
 }
 
-function renderLegendChips(t){
-  const box = document.getElementById('legendChips');
-  if(!box) return;
-  const chips = [];
-  const chip = (iconHtml, label) => chips.push(`<span class="sign-chip">${iconHtml}<span>${label}</span></span>`);
-  const swatch = (css) => `<span style="width:16px;height:0;${css};flex:none;"></span>`;
-  const hasRoutePath = Array.isArray(t.path) && t.path.length > 1;
-
-  if(hasRoutePath){
-    chip(itinIcon('flag'), window.t('legendTrail.start').replace('🚩 ', ''));
-    chip(swatch(`border-top:3px solid ${safetyColor(t.safetyLevel)};border-radius:2px`),
-         window.t('trail.route', {label: trailSafetyLabel(t)}));
-    chip('<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="flex:none;" aria-hidden="true"><path d="M4 4l16 8-16 8 4.5-8z"/></svg>', window.t('legendTrail.dir').replace('➤ ', ''));
-    if(Array.isArray(t.decisionPoints) && t.decisionPoints.length){
-      chip(itinIcon('switch'), window.t('legendTrail.switch').replace('🔀 ', ''));
-    }
-  }
-  // Lift entries only when a lift actually exists near this trail.
-  const liftNear = (typeof gondolas !== 'undefined' && Array.isArray(gondolas)) && gondolas.some(g =>
-    g.from && g.to && [g.from, g.to].some(st =>
-      typeof st.lat === 'number' && Math.abs(st.lat - t.lat) < 0.05 && Math.abs(st.lng - t.lng) < 0.07));
-  if(liftNear){
-    chip(swatch('border-top:3px solid #4E90A8;border-radius:2px'), window.t('legend.liftConfirmed'));
-    chip(swatch('border-top:2px dashed #5A5548'), window.t('legend.liftUnknown'));
-  }
-  chip(itinIcon('hut'), window.t('legend.hut'));
-  chip(itinIcon('food'), window.t('legend.food'));
-  chip(itinIcon('water'), window.t('legend.water'));
-  chip(itinIcon('view'), window.t('legend.view'));
-  chip(itinIcon('picnic'), window.t('legend.picnic'));
-  box.innerHTML = chips.join('');
-}
-
 function buildItinerary(t){
   itin.trail = t;
   itin.items = [];
@@ -877,7 +865,6 @@ function renderTrail(t){
     );
   }
   buildItinerary(t);
-  renderLegendChips(t);
   const hasRoutePath = Array.isArray(t.path) && t.path.length > 1;
   const routeDataNotice = document.getElementById('routeDataNotice');
   if(routeDataNotice){
@@ -941,8 +928,6 @@ function renderTrail(t){
   document.getElementById('trailBadges').innerHTML =
     trailProductBadge(t.safetyLevel, trailSafetyLabel(t)) +
     (t.paid ? trailProductBadge('neutral', window.t('card.paid')) : '');
-  document.getElementById('routeSwatch').style.background = safetyColor(t.safetyLevel);
-  document.getElementById('routeSwatchLabel').textContent = window.t('trail.route', {label: trailSafetyLabel(t)});
   const rawDescription = trField(t, 'desc');
   const descriptionSentences = String(rawDescription).match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [rawDescription];
   let conciseDescription = '';
@@ -1315,9 +1300,9 @@ function renderTrail(t){
         const toggle = attribution.querySelector('.maplibregl-ctrl-attrib-button');
         if(toggle) toggle.setAttribute('aria-expanded', 'false');
       }
-      let poiVisible = true;           // "Points of interest" toggle state
       let liftsVisible = false;        // Lifts are optional planning context
-      const amenityMarkers = [];       // curated rifugi/water Markers (toggled with POIs)
+      const poiStates = { fountains: false, huts: false, food: false, places: false };
+      const amenityMarkers = [];       // { marker, group } for curated fallbacks
       if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(map);
       addTerrainSource(map);
       increaseLabelDensity(map);
@@ -1330,39 +1315,66 @@ function renderTrail(t){
       if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.onIdle(loadSecondaryPois, 4500);
       else setTimeout(loadSecondaryPois, 900);
 
-      // ---- "Points of interest" toggle -----------------------------------
-      // Nearby amenities are shown by default (see detail-pois.js), but the
-      // redesign lets a hiker mute them to read the route alone. POIs are map
-      // LAYERS (detail-pois.js) plus a few curated Marker elements (rifugi /
-      // water, collected in `amenityMarkers` below); the legend and both are
-      // toggled together so the map's amenity language stays consistent.
-      const POI_SOURCES = ['detail-huts', 'detail-bars', 'detail-water', 'detail-places'];
-      const POI_SUFFIXES = ['-layer', '-layer-lowzoom', '-cluster', '-cluster-count'];
-      function applyPoiVisibility(){
-        const v = poiVisible ? 'visible' : 'none';
-        POI_SOURCES.forEach(s => POI_SUFFIXES.forEach(sfx => {
-          const id = s + sfx;
-          if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', v);
-        }));
-        amenityMarkers.forEach(mk => { mk.getElement().style.display = poiVisible ? '' : 'none'; });
-      }
-      const poiToggleBtn = document.getElementById('poiToggle');
-      if (poiToggleBtn){
-        poiToggleBtn.classList.add('on'); // default ON
-        poiToggleBtn.addEventListener('click', () => {
-          poiVisible = !poiVisible;
-          poiToggleBtn.classList.toggle('on', poiVisible);
-          poiToggleBtn.setAttribute('aria-pressed', poiVisible ? 'true' : 'false');
-          const legendKey = document.querySelector('.map-key--bar');
-          if (legendKey) legendKey.style.display = poiVisible ? '' : 'none';
-          applyPoiVisibility();
+      // ---- Layers dropdown -------------------------------------------------
+      // Match the main map: one compact control with independent route and
+      // POI categories, instead of a tall stack of unrelated buttons.
+      const layersBtn = document.getElementById('detailLayersBtn');
+      const layersPanel = document.getElementById('detailLayersPanel');
+      if(layersBtn && layersPanel){
+        layersBtn.addEventListener('click', event => {
+          event.stopPropagation();
+          const open = layersPanel.style.display === 'flex';
+          layersPanel.style.display = open ? 'none' : 'flex';
+          layersBtn.textContent = open ? 'Layers' : 'Close ✕';
+          layersBtn.setAttribute('aria-expanded', String(!open));
+        });
+        layersPanel.addEventListener('click', event => event.stopPropagation());
+        document.addEventListener('click', () => {
+          layersPanel.style.display = 'none';
+          layersBtn.textContent = 'Layers';
+          layersBtn.setAttribute('aria-expanded', 'false');
         });
       }
+
+      const POI_SOURCES = {
+        fountains: ['detail-water'],
+        huts: ['detail-huts'],
+        food: ['detail-bars'],
+        places: ['detail-places'],
+      };
+      const POI_SUFFIXES = ['-layer', '-layer-lowzoom', '-cluster', '-cluster-count'];
+      function applyPoiVisibility(group){
+        const visible = poiStates[group];
+        (POI_SOURCES[group] || []).forEach(source => POI_SUFFIXES.forEach(suffix => {
+          const id = source + suffix;
+          if(map.getLayer(id)) map.setLayoutProperty(id, 'visibility', visible ? 'visible' : 'none');
+        }));
+        amenityMarkers.filter(item => item.group === group).forEach(item => {
+          item.marker.getElement().style.display = visible ? '' : 'none';
+        });
+      }
+      [
+        ['fountains', 'fountainsToggle'],
+        ['huts', 'hutsToggle'],
+        ['food', 'foodToggle'],
+        ['places', 'placesToggle'],
+      ].forEach(([group, buttonId]) => {
+        const button = document.getElementById(buttonId);
+        if(!button) return;
+        button.addEventListener('click', () => {
+          poiStates[group] = !poiStates[group];
+          button.classList.toggle('on', poiStates[group]);
+          button.setAttribute('aria-pressed', String(poiStates[group]));
+          applyPoiVisibility(group);
+        });
+      });
       // detail-pois.js adds its layers asynchronously (after a fetch), so
-      // reapply whenever a POI source finishes loading — otherwise a muted
-      // map would show late-arriving amenity dots.
+      // reapply whenever a POI source finishes loading.
       map.on('sourcedata', (e) => {
-        if (e.sourceId && POI_SOURCES.includes(e.sourceId) && e.isSourceLoaded) applyPoiVisibility();
+        if(!e.sourceId || !e.isSourceLoaded) return;
+        Object.keys(POI_SOURCES).forEach(group => {
+          if(POI_SOURCES[group].includes(e.sourceId)) applyPoiVisibility(group);
+        });
       });
 
       // ---- Lifts toggle -------------------------------------------------
@@ -1438,8 +1450,7 @@ function renderTrail(t){
       if(nearbyToggleBtn){
         nearbyToggleBtn.hidden = nearbyTrails.length === 0;
         if(nearbyTrails.length){
-          const label = nearbyToggleBtn.querySelector('span');
-          if(label) label.textContent = `Nearby trails (${nearbyTrails.length})`;
+          nearbyToggleBtn.textContent = `Nearby trails (${nearbyTrails.length})`;
         }
       }
       if(otherTrails.length){
@@ -1561,15 +1572,14 @@ function renderTrail(t){
             showingNearbyOverview = !showingNearbyOverview;
             nearbyToggleBtn.classList.toggle('on', showingNearbyOverview);
             nearbyToggleBtn.setAttribute('aria-pressed', showingNearbyOverview ? 'true' : 'false');
-            const label = nearbyToggleBtn.querySelector('span');
             const bounds = new maplibregl.LngLatBounds();
             t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
             if(showingNearbyOverview){
               otherTrails.forEach(trail => trail.path.forEach(([lat, lng]) => bounds.extend([lng, lat])));
-              if(label) label.textContent = 'Focus this trail';
+              nearbyToggleBtn.textContent = 'Focus this trail';
               map.fitBounds(bounds, { padding: 54, maxZoom: 13 });
             } else {
-              if(label) label.textContent = `Nearby trails (${nearbyTrails.length})`;
+              nearbyToggleBtn.textContent = `Nearby trails (${nearbyTrails.length})`;
               map.fitBounds(bounds, { padding: 60, maxZoom: 17 });
             }
           });
@@ -1668,7 +1678,8 @@ function renderTrail(t){
               .setLngLat([waypoint.lng, waypoint.lat])
               .setPopup(new maplibregl.Popup({ offset: 14 }).setHTML(`<b>${itinEsc(label)}</b>${typeof waypoint.km === 'number' ? `<br>Km ${waypoint.km}` : ''}`))
               .addTo(map);
-            amenityMarkers.push(mk); // rifugi/water are amenities — toggled with POIs
+            amenityMarkers.push({ marker: mk, group: icon === 'hut' ? 'huts' : 'fountains' });
+            mk.getElement().style.display = 'none';
           };
           (t.rifugi || []).forEach(r => addWaypoint(r, 'hut', trLabel(r.name)));
           (t.waterSources || []).forEach(w => {
@@ -1688,11 +1699,6 @@ function renderTrail(t){
         }
       } else {
         new maplibregl.Marker({ color: '#6FA8BE' }).setLngLat([t.lng, t.lat]).addTo(map);
-        const legend = document.getElementById('mapLegend');
-        if(legend){
-          legend.insertAdjacentHTML('beforeend',
-            '<span style="font-style:italic;">— Rifugi/water map icons need this trail\'s real GPS route, not yet added. See the list below instead.</span>');
-        }
       }
 
       if (typeof makeBasemapPoisClickable === 'function') makeBasemapPoisClickable(map);

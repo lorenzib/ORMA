@@ -37,6 +37,12 @@
       wrap.appendChild(image);
     }
     if(content.caption) wrap.appendChild(element('p', '', content.caption));
+    if(item.type === 'placeDog'){
+      wrap.appendChild(element('p', '', `Place: ${content.placeName || item.targetId}`));
+      wrap.appendChild(element('p', '', `Policy: ${content.policy}`));
+      wrap.appendChild(element('p', '', `Evidence: ${content.evidence}`));
+      if(content.note) wrap.appendChild(element('p', '', `Note: ${content.note}`));
+    }
     if(item.type === 'flag'){
       wrap.appendChild(element(
         'p',
@@ -94,7 +100,7 @@
     meta.append(
       element('span', 'moderation-chip', item.type),
       element('span', 'moderation-chip', item.status),
-      element('span', '', `Trail: ${item.trailId}`),
+      element('span', '', item.trailId ? `Trail: ${item.trailId}` : `Place: ${item.targetId}`),
       element('span', '', `Author: ${item.authorUid}`),
       element('span', '', dateLabel(item.createdAt))
     );
