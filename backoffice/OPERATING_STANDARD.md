@@ -121,6 +121,11 @@ on its own.
 
 - The dashboard shows counts, progress, blocked work, and decisions across all
   six teams.
+- Customer-facing ORMA navigation does not expose a backoffice link or an
+  administrator sign-in flow. Production operators enter through the unlinked
+  dedicated backoffice login and must hold the Firebase moderator claim.
+- Localhost remains an explicit development mode and does not require the
+  production moderator login.
 - Every queue has one clear purpose and one clearly named desk.
 - Copy review presents a real current-versus-proposed page preview.
 - The CEO may approve, edit and approve, request a revision, or reject/park when

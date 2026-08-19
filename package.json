@@ -52,7 +52,8 @@
     "backoffice:materialize-publications": "node backoffice/cli/materialize-publications.js",
     "backoffice:acknowledge-publications": "node backoffice/cli/acknowledge-publications.js",
     "backoffice:orchestration:build": "node backoffice/cli/build-live-orchestration.js",
-    "backoffice:campaign:live": "node backoffice/cli/start-live-trail-campaign.js"
+    "backoffice:campaign:live": "node backoffice/cli/start-live-trail-campaign.js",
+    "build:backoffice-hosting": "node scripts/build-backoffice-hosting.js"
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "5.0.1",

@@ -3,6 +3,44 @@
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
+  "hosting": {
+    "target": "backoffice",
+    "public": "dist/backoffice",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "/backoffice-login.html",
+        "type": 302
+      },
+      {
+        "source": "/index.html",
+        "destination": "/backoffice-login.html",
+        "type": 302
+      }
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
+          { "key": "X-Content-Type-Options", "value": "nosniff" },
+          { "key": "Referrer-Policy", "value": "no-referrer" },
+          { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        ]
+      },
+      {
+        "source": "**/*.html",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-store" }
+        ]
+      }
+    ]
+  },
   "emulators": {
     "firestore": {
       "port": 8080
