@@ -818,6 +818,10 @@ body{background:#EFECE2;}
         <div class="td2-card td2-section td2-about" id="td2AboutCard">
           <div class="td2-kick" style="margin-bottom:14px;">About this trail</div>
           <p id="matchDescription" style="margin-top:0;"></p>
+          <!-- Kept hidden for visitors whose browser still has the previous
+               trail.js cached; that version writes here before building the
+               map and elevation profile. -->
+          <div id="trailTags" hidden aria-hidden="true"></div>
         </div>
 
         <!-- ONLY THE ROUTE CAUTIONS THAT MATTER FOR A DOG -->
@@ -964,7 +968,7 @@ body{background:#EFECE2;}
 <script src="map-runtime.js?v=20260815-4" defer></script>
 <script src="mobile-nav.js?v=20260815-4"></script>
 <script src="accessibility-runtime.js?v=20260815-4" defer></script>
-<script src="i18n.js?v=20260819-2"></script>
+<script src="i18n.js?v=20260819-3"></script>
 <script src="community-content-states.js?v=20260815-4" defer></script>
 <script src="offline-contributions.js?v=20260815-4" defer></script>
 <script type="module" src="firebase-init.js?v=20260818-13"></script>
@@ -999,12 +1003,12 @@ body{background:#EFECE2;}
 <script src="hike-mode.js?v=20260815-4" defer></script>
 <script src="detail-pois.js?v=20260819-2" defer></script>
 <script src="trail-reports.js?v=20260815-4" defer></script>
-<script src="trail.js?v=20260819-2" defer></script>
-<script src="trail-blueprint.js?v=20260815-4" defer></script>
+<script src="trail.js?v=20260819-3" defer></script>
+<script src="trail-blueprint.js?v=20260819-3" defer></script>
 <script src="trail-detail-ui.js?v=20260815-4" defer></script>
 <script src="trail-mobile.js?v=20260815-4" defer></script>
 <script src="recommendation-decision.js?v=20260815-4" defer></script>
 <script src="recommendation-guides.js?v=20260815-4" defer></script>
-<script src="trail-recommendation.js?v=20260815-4" defer></script>
+<script src="trail-recommendation.js?v=20260819-3" defer></script>
 </body>
 </html>

@@ -146,7 +146,19 @@ describe('trail page map controls', () => {
     expect(about).not.toBeNull();
     expect(about.querySelector('.td2-kick').textContent.trim()).toBe('About this trail');
     expect(about.querySelector('#matchDescription')).not.toBeNull();
-    expect(about.querySelector('#trailTags')).toBeNull();
+    const legacyTags = about.querySelector('#trailTags');
+    expect(legacyTags).not.toBeNull();
+    expect(legacyTags.hidden).toBe(true);
+    expect(legacyTags.getAttribute('aria-hidden')).toBe('true');
+  });
+
+  test('map-rendering scripts rotate their cache keys with the detail markup', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+
+    expect(html).toContain('i18n.js?v=20260819-3');
+    expect(html).toContain('trail.js?v=20260819-3');
+    expect(html).toContain('trail-blueprint.js?v=20260819-3');
+    expect(html).toContain('trail-recommendation.js?v=20260819-3');
   });
 
   test('conditions lead the sidebar and safety reading follows the trail description', () => {
