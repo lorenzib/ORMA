@@ -29,18 +29,17 @@
     const api = window.DoloPawsRecommendationGuides;
     if(!root || !api){ return; }
     const safetyRows = document.getElementById('dogSafetyRows');
-    const flaggedGuideIds = safetyRows
-      ? Array.from(safetyRows.querySelectorAll('[data-guide-id]'), node => node.dataset.guideId)
-      : [];
-    const guides = safetyRows && typeof api.selectIds === 'function'
-      ? api.selectIds(flaggedGuideIds, 3)
-      : api.select(recommendation, 3);
-    root.hidden = guides.length === 0;
-    root.innerHTML = guides.length ?
-      `<p class="trail-guide-intro"><strong>${esc(tr('recommendation.guides.intro', 'From our safety guides:'))}</strong> ` +
-      guides.map(guide =>
-        `<a href="${esc(guide.href)}">${esc(tr(`recommendation.guide.${guide.id}.label`, guide.label))} →</a>`
-      ).join('<span class="trail-guide-separator" aria-hidden="true">·</span>') + '</p>' : '';
+    if(!safetyRows) return;
+    safetyRows.querySelectorAll('[data-guide-id]').forEach(row => {
+      const guide = api.GUIDES[row.dataset.guideId];
+      if(!guide || row.querySelector('.safety-row-guide')) return;
+      const copy = row.querySelector('.safety-row-copy') || row;
+      copy.insertAdjacentHTML('beforeend',
+        `<a class="safety-row-guide" href="${esc(guide.href)}">${esc(tr(`recommendation.guide.${guide.id}.label`, guide.label))} <span aria-hidden="true">→</span></a>`
+      );
+    });
+    root.hidden = true;
+    root.innerHTML = '';
   }
 
   function currentTrail(){
