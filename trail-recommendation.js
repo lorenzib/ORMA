@@ -34,7 +34,7 @@
       `<div class="td2-kick">${esc(tr('recommendation.guides.embeddedTitle', 'Safety guides'))}</div>` +
       `<p class="trail-guide-intro">${esc(tr('recommendation.guides.intro', 'Selected from this trail’s cautions.'))}</p>` +
       '<ul>' + guides.map(guide =>
-        `<li><a href="${esc(guide.href)}">${esc(tr(`recommendation.guide.${guide.id}.label`, guide.label))} →` +
+        `<li><a href="${esc(guide.href)}"><strong>${esc(tr('recommendation.guides.readMore', 'Read more'))}:</strong> ${esc(tr(`recommendation.guide.${guide.id}.label`, guide.label))} →` +
           `<span>${esc(tr(`recommendation.guide.${guide.id}.summary`, guide.summary))}</span></a></li>`
       ).join('') + '</ul>' : '';
   }

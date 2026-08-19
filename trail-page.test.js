@@ -128,7 +128,7 @@ describe('trail page map controls', () => {
     expect(document.querySelectorAll('#sideForecast')).toHaveLength(1);
     expect(document.getElementById('sideConditions')).toBeNull();
     expect(document.getElementById('matchAdvice')).toBeNull();
-    expect(document.querySelector('.td-safety-intro').textContent).toMatch(/Only relevant route cautions/i);
+    expect(document.querySelector('.td-safety-intro').textContent).toMatch(/Heat, shade and the route cautions/i);
 
     expect(blueprint).toContain("['route', 'Route effort'");
     expect(blueprint).toContain('trust.heatAssessment(t)');
@@ -157,36 +157,65 @@ describe('trail page map controls', () => {
 
     expect(html).toContain('i18n.js?v=20260819-3');
     expect(html).toContain('trail.js?v=20260819-3');
-    expect(html).toContain('trail-blueprint.js?v=20260819-3');
-    expect(html).toContain('trail-recommendation.js?v=20260819-3');
+    expect(html).toContain('trail-blueprint.js?v=20260819-4');
+    expect(html).toContain('trail-recommendation.js?v=20260819-4');
   });
 
-  test('conditions lead the sidebar and safety reading follows the trail description', () => {
+  test('the map workspace keeps dog fit and elevation together while weather stays in the hero', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     document.body.innerHTML = html;
 
-    const mainColumn = document.querySelector('.td2-col');
-    const about = mainColumn.querySelector('.td2-about');
-    const safety = mainColumn.querySelector('#td2SafetyCard');
-    const guides = safety.querySelector('#trailGuideLinks');
-    expect(about.nextElementSibling).toBe(safety);
-    expect(guides).not.toBeNull();
+    const heroWeather = document.querySelector('.td2-hero-weather');
+    expect(heroWeather.querySelector('#tdConditions')).not.toBeNull();
+    expect(heroWeather.querySelector('#sideForecast').tagName).toBe('DETAILS');
 
-    const sidebar = document.querySelector('.td2-side');
-    expect(sidebar.firstElementChild.id).toBe('tdConditions');
-    expect(document.getElementById('sideForecast').tagName).toBe('DETAILS');
+    const workspace = document.querySelector('.td2-workspace');
+    expect(workspace.firstElementChild.classList.contains('td2-mapcard')).toBe(true);
+    const plan = workspace.querySelector('.td2-plan-stack');
+    const fit = plan.querySelector('.td2-fit-shell');
+    const safety = fit.querySelector('#td2SafetyCard');
+    const guides = safety.querySelector('#trailGuideLinks');
+    expect(fit.querySelector('#recommendationDecision')).not.toBeNull();
+    expect(guides).not.toBeNull();
+    expect(plan.lastElementChild.id).toBe('tdElevationPanel');
     expect(document.getElementById('td2DogCard')).toBeNull();
   });
 
-  test('mobile detail cards follow a live-first single-column sequence', () => {
+  test('below-map content follows the requested story and logistics sequence', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    document.body.innerHTML = html;
 
-    expect(html).toContain('.td2-grid>.td2-col,.td2-grid>.td2-side{display:contents;}');
-    expect(html).toContain('.td2 #tdConditions{order:1;}');
-    expect(html).toContain('.td2 #td2Hazards{order:2;}');
-    expect(html).toContain('.td2 #td2AboutCard{order:3;}');
-    expect(html).toContain('.td2 #td2SafetyCard{order:4;}');
-    expect(html).toContain('.td2 #sideForecast{order:6;}');
+    const story = document.querySelector('.td2-story');
+    expect(Array.from(story.children).map(node => node.id)).toEqual([
+      'td2AboutCard', 'td2PhotosCard', 'td2ReviewsCard'
+    ]);
+    const logistics = document.querySelector('.td2-logistics');
+    expect(Array.from(logistics.children).map(node => node.id)).toEqual([
+      'td2Hazards', 'td2ParkingCard'
+    ]);
+    const gettingThere = document.getElementById('td2ParkingCard');
+    expect(gettingThere.hidden).toBe(false);
+    expect(gettingThere.querySelector('.td2-kick').textContent.trim()).toBe('Getting there');
+    expect(html).toContain('.td2-workspace,.td2-lower-grid{grid-template-columns:1fr;}');
+  });
+
+  test('the hero groups compact facts, weather, and every primary trail action', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    document.body.innerHTML = html;
+
+    const copy = document.querySelector('.td2-hero-copy');
+    expect(copy.querySelector('#trailName').nextElementSibling.id).toBe('heroVerdict');
+    expect(copy.querySelector('#trailFacts')).not.toBeNull();
+    expect(copy.querySelector('.td2-hero-weather')).not.toBeNull();
+    const actionIds = Array.from(copy.querySelector('.td2-actrow').children)
+      .map(node => node.id)
+      .filter(Boolean);
+    expect(actionIds).toEqual(expect.arrayContaining([
+      'detailSaveBtn', 'heroStartHike', 'getDirectionsBtn', 'logWalkBtn',
+      'exportGpxBtn', 'detailShareBtn'
+    ]));
+    expect(copy.querySelector('#offlineDownloadBtn')).not.toBeNull();
+    expect(document.getElementById('tdHeroPhoto')).not.toBeNull();
   });
 
   test('the personalised match links to the scoring explanation', () => {
