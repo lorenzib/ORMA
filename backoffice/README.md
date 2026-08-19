@@ -75,7 +75,9 @@ or publish a guide.
 
 Run `npm run backoffice:review`, then open the printed localhost URL to review the
 queue visually. Localhost is permitted as an explicit development mode; a
-non-local deployment requires the existing Firebase moderator claim. Review
+non-local deployment requires the existing Firebase moderator claim. Production
+operators use the unlinked `/backoffice-login.html` entry; the public ORMA
+navigation does not expose the administrator login or any backoffice link. Review
 decisions remain in browser storage until exported as an audit JSON. The
 generated queue is ignored by Git and is not included in the deployed site.
 

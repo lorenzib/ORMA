@@ -7,10 +7,11 @@
   <title>Verified trail content | ORMA</title>
   <link rel="icon" href="favicon-32.png" sizes="32x32">
   <link rel="stylesheet" href="styles.css?v=20260818-10">
-  <link rel="stylesheet" href="backoffice-review.css?v=20260818-7">
+  <link rel="stylesheet" href="backoffice-review.css?v=20260819-8">
+  <script>document.documentElement.classList.add('bo-auth-pending')</script>
 </head>
 <body class="bo-shell">
-  <header class="bo-header"><a href="index.html" class="bo-brand">🐾 ORMA</a><span>Verified trail content</span></header>
+  <header class="bo-header"><a href="backoffice-review.html" class="bo-brand">🐾 ORMA</a><span>Verified trail content</span></header>
   <main class="bo-main">
     <div class="bo-title-row">
       <div>
@@ -48,6 +49,7 @@
     </section>
   </main>
   <script type="module" src="firebase-init.js"></script>
+  <script src="backoffice-auth-guard.js?v=20260819-1"></script>
   <script src="backoffice/content-review-decisions.js?v=20260818-2"></script>
   <script src="trail-content-desk.js?v=20260818-6"></script>
 </body>
