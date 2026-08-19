@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-08-18T19:55:13.778Z",
+  "generatedAt": "2026-08-19T11:43:53.651Z",
   "mode": "staging-only",
   "stage": "website-publication-preview",
   "sourceEditorialQueue": "backoffice-data/verified-trail-editorial-queue.json",
@@ -23,10 +23,10 @@
           "agentId": "copywriter",
           "action": "approve",
           "note": "",
-          "reviewedAt": "2026-08-18T19:54:40.127Z",
+          "reviewedAt": "2026-08-19T11:43:40.396Z",
           "reviewedBy": "local-editor",
           "publicMutationAllowed": false,
-          "submissionId": "content-review-2026-08-18T19-55-13-762Z"
+          "submissionId": "content-review-2026-08-19T11-43-53-642Z"
         },
         "visual": {
           "contractVersion": "1.0.0",
@@ -35,10 +35,10 @@
           "agentId": "visualDirector",
           "action": "approve",
           "note": "",
-          "reviewedAt": "2026-08-18T19:54:41.409Z",
+          "reviewedAt": "2026-08-19T11:43:37.931Z",
           "reviewedBy": "local-editor",
           "publicMutationAllowed": false,
-          "submissionId": "content-review-2026-08-18T19-55-13-762Z"
+          "submissionId": "content-review-2026-08-19T11-43-53-642Z"
         }
       },
       "proposedWebsiteFields": {
@@ -46,12 +46,13 @@
         "desc": "A demanding 9.528 km circuit from Rifugio Auronzo around the Tre Cime, following trails 101 and 105. The official itinerary gives 468 m of ascent, about 3 hours 30 minutes and a high point of 2,454 m. This is a hard, open high-alpine walk rather than a casual sightseeing loop.\n\nDogs are accepted on the route but must stay on lead throughout. Seasonal livestock may be present beside the Lavaredo pasture segment, so keep your dog close and pass animals conservatively. The route has very little dependable shade and includes a narrower section, although no ferrata equipment is required.",
         "tips": "Start and finish at Rifugio Auronzo. The seasonal toll road and parking are weather-dependent and normally require advance booking; roadside parking is prohibited. Carry sufficient water. A fountain is identified at Malga LangAlm, but its seasonal availability and potability are not guaranteed.",
         "routeRef": "backoffice-data/route-proposals/tre-cime-classic.geojson",
+        "imageIcon": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
+        "imageCredit": "Tre Cime di Lavaredo, Sentiero per il Rifugio Locatelli — Simone A. Bertinotti — CC BY-SA 4.0 — via Wikimedia Commons",
         "heroImage": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
         "imageCreator": "Simone A. Bertinotti",
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-        "imageCredit": "Tre Cime di Lavaredo, Sentiero per il Rifugio Locatelli — Simone A. Bertinotti — CC BY-SA 4.0 — via Wikimedia Commons",
         "imageAlt": "Gravel trail towards Rifugio Locatelli beneath the Tre Cime di Lavaredo peaks.",
         "ormaVerified": true,
         "area": "Alta Pusteria – Tre Cime",
@@ -261,10 +262,10 @@
           "agentId": "copywriter",
           "action": "approve",
           "note": "",
-          "reviewedAt": "2026-08-18T19:55:11.393Z",
+          "reviewedAt": "2026-08-19T11:43:43.145Z",
           "reviewedBy": "local-editor",
           "publicMutationAllowed": false,
-          "submissionId": "content-review-2026-08-18T19-55-13-762Z"
+          "submissionId": "content-review-2026-08-19T11-43-53-642Z"
         },
         "visual": {
           "contractVersion": "1.0.0",
@@ -273,10 +274,10 @@
           "agentId": "visualDirector",
           "action": "approve",
           "note": "",
-          "reviewedAt": "2026-08-18T19:54:48.727Z",
+          "reviewedAt": "2026-08-19T11:43:42.096Z",
           "reviewedBy": "local-editor",
           "publicMutationAllowed": false,
-          "submissionId": "content-review-2026-08-18T19-55-13-762Z"
+          "submissionId": "content-review-2026-08-19T11-43-53-642Z"
         }
       },
       "proposedWebsiteFields": {
@@ -284,12 +285,13 @@
         "desc": "This chairlift-assisted circuit begins at Bai de Dones, rises on the 5 Torri lift and returns on foot through the Cinque Torri open-air museum, refuge area and forest. The approved track contains 1.37 km of lift transport followed by approximately 3.95 km of predominantly downhill walking, with about two hours allowed for the itinerary.\n\nDogs of any size may use the 5 Torri lift free of charge, but both leash and muzzle are required. The upper museum and refuge area is open alpine terrain, while the lower return enters forest. Seasonal sheep grazing is documented in the wider area, so keep dogs close even though an encounter on the exact circuit is variable.",
         "tips": "This itinerary depends on the 5 Torri chairlift operating. The published 2026 season is 6 June to 11 October, subject to weather and snow. Use the approved Bai de Dones parking pin. Carry water: the three refuges are possible service stops, but no freely accessible potable dog-water point has been verified.",
         "routeRef": "backoffice-data/route-proposals/cinque-torri-three-refuges-assisted.geojson",
+        "imageIcon": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cinque_Torri_01.jpg",
+        "imageCredit": "Cinque Torri 01 — Clemens Stockner — CC BY-SA 4.0 — via Wikimedia Commons",
         "heroImage": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cinque_Torri_01.jpg",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cinque_Torri_01.jpg",
         "imageCreator": "Clemens Stockner",
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-        "imageCredit": "Cinque Torri 01 — Clemens Stockner — CC BY-SA 4.0 — via Wikimedia Commons",
         "imageAlt": "The Cinque Torri rock towers viewed from the west in the Ampezzo Dolomites.",
         "ormaVerified": true,
         "area": "Cortina / Cinque Torri",
@@ -486,10 +488,10 @@
           "agentId": "copywriter",
           "action": "approve",
           "note": "",
-          "reviewedAt": "2026-08-18T19:55:03.660Z",
+          "reviewedAt": "2026-08-19T11:43:45.646Z",
           "reviewedBy": "local-editor",
           "publicMutationAllowed": false,
-          "submissionId": "content-review-2026-08-18T19-55-13-762Z"
+          "submissionId": "content-review-2026-08-19T11-43-53-642Z"
         },
         "visual": {
           "contractVersion": "1.0.0",
@@ -498,10 +500,10 @@
           "agentId": "visualDirector",
           "action": "approve",
           "note": "",
-          "reviewedAt": "2026-08-18T19:54:51.293Z",
+          "reviewedAt": "2026-08-19T11:43:44.396Z",
           "reviewedBy": "local-editor",
           "publicMutationAllowed": false,
-          "submissionId": "content-review-2026-08-18T19-55-13-762Z"
+          "submissionId": "content-review-2026-08-19T11-43-53-642Z"
         }
       },
       "proposedWebsiteFields": {
@@ -509,12 +511,13 @@
         "desc": "A complete 3.6 km circuit around Lago di Braies, starting and finishing near the lake hotel and tavern area. Allow about one hour and 39 m of ascent and descent. The path alternates between broad forest and lakeshore sections, narrower rooted ground, uphill steps and a section beside a vertical rock wall.\n\nThe route is dog-friendly, but dogs must remain on lead inside the nature park. No livestock is expected around this exact lakeshore circuit based on the editor’s direct local knowledge; the lead rule still applies because wildlife disturbance remains relevant. Bring enough water for your dog: no potable source has been verified on the circuit, and the protected lake should not be treated as one.",
         "tips": "Use the approved official P1, P2, P3 and P4 parking set. From 1 July to 15 September 2026, between 09:00 and 16:00, valley access is controlled and requires public transport, walking, cycling, or the relevant parking reservation or transit permit. Carry and use a muzzle on public transport.",
         "routeRef": "backoffice-data/route-proposals/lago-braies-circuit.geojson",
+        "imageIcon": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lago_di_Braies_South_Tyrol_5.jpg",
+        "imageCredit": "Lago di Braies South Tyrol 5 — kallerna — CC BY-SA 4.0 — via Wikimedia Commons",
         "heroImage": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lago_di_Braies_South_Tyrol_5.jpg",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_5.jpg",
         "imageCreator": "kallerna",
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-        "imageCredit": "Lago di Braies South Tyrol 5 — kallerna — CC BY-SA 4.0 — via Wikimedia Commons",
         "imageAlt": "Southern shore of Lago di Braies with the lake and surrounding Dolomite peaks.",
         "ormaVerified": true,
         "area": "Prags Valley",

@@ -271,7 +271,463 @@
         }
       ],
       "publicMutationAllowed": false
+    },
+    {
+      "submissionId": "content-review-2026-08-18T19-55-13-762Z",
+      "submittedAt": "2026-08-18T19:55:13.762Z",
+      "status": "processed",
+      "decisions": [
+        {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-relation-1484751-copy",
+          "agentId": "copywriter",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T19:54:40.127Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-relation-1484751-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T19:54:41.409Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-relation-6678431-copy",
+          "agentId": "copywriter",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T19:55:11.393Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-relation-6678431-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T19:54:48.727Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-way-25736154-copy",
+          "agentId": "copywriter",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T19:55:03.660Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-way-25736154-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-18T19:54:51.293Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        }
+      ],
+      "outcomes": [
+        {
+          "jobId": "verified-osm-relation-1484751-copy",
+          "action": "approve",
+          "status": "editorial-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-relation-1484751-visual",
+          "action": "approve",
+          "status": "asset-and-licensing-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-relation-6678431-copy",
+          "action": "approve",
+          "status": "editorial-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-relation-6678431-visual",
+          "action": "approve",
+          "status": "asset-and-licensing-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-way-25736154-copy",
+          "action": "approve",
+          "status": "editorial-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-way-25736154-visual",
+          "action": "approve",
+          "status": "asset-and-licensing-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        }
+      ],
+      "publicMutationAllowed": false
+    },
+    {
+      "submissionId": "content-review-2026-08-18T20-00-16-855Z",
+      "packetGeneratedAt": "2026-08-18T19:31:57.398Z",
+      "submittedAt": "2026-08-18T20:00:16.855Z",
+      "completedAt": "2026-08-18T20:01:01.994Z",
+      "status": "revision-completed",
+      "decisions": [
+        {
+          "jobId": "guide-paw-protection-copy-revision-2026-08-18T19-31-57-398Z",
+          "agentId": "copywriter",
+          "action": "request-revision",
+          "note": "can you add a little bit more on what to do for the paws in case they get damaged, how to deal with it in case of emergency, etc...",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "jobId": "guide-paw-protection-compact-image-2026-08-18-revision-2026-08-18T19-31-57-398Z",
+          "agentId": "visualDirector",
+          "action": "request-revision",
+          "note": "can you add a little bit more on what to do for the paws in case they get damaged, how to deal with it in case of emergency, etc...",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        }
+      ],
+      "outcomes": [
+        {
+          "status": "revised-for-review",
+          "sourceRefs": [
+            "guides/paw-protection.html"
+          ]
+        }
+      ],
+      "publicMutationAllowed": false
+    },
+    {
+      "submissionId": "content-review-2026-08-18T20-59-25-713Z",
+      "packetGeneratedAt": "2026-08-18T20:20:00.000Z",
+      "submittedAt": "2026-08-18T20:59:25.713Z",
+      "completedAt": "2026-08-18T21:00:05.277Z",
+      "status": "revision-completed",
+      "decisions": [
+        {
+          "jobId": "guide-alpine-plants-for-dogs-copy-2026-08-18",
+          "agentId": "copywriter",
+          "action": "request-revision",
+          "note": "Run the full editorial review for this next guide. Improve clarity and practical usefulness, preserve all plant classifications and the visible draft status, and do not imply veterinary or botanist sign-off.",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "jobId": "guide-alpine-plants-for-dogs-image-2026-08-18",
+          "agentId": "visualDirector",
+          "action": "request-revision",
+          "note": "Run the full editorial review for this next guide. Improve clarity and practical usefulness, preserve all plant classifications and the visible draft status, and do not imply veterinary or botanist sign-off.",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        }
+      ],
+      "outcomes": [
+        {
+          "status": "revised-for-review",
+          "sourceRefs": [
+            "guides/alpine-plants-for-dogs.html"
+          ]
+        }
+      ],
+      "publicMutationAllowed": false
+    },
+    {
+      "submissionId": "content-review-2026-08-19T10-41-33-712Z",
+      "submittedAt": "2026-08-19T10:41:33.712Z",
+      "status": "processed",
+      "decisions": [
+        {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-relation-1484751-copy",
+          "agentId": "copywriter",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-19T10:41:17.691Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-relation-1484751-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-19T10:41:16.157Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-relation-6678431-copy",
+          "agentId": "copywriter",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-19T10:41:19.674Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-relation-6678431-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-19T10:41:20.224Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-way-25736154-copy",
+          "agentId": "copywriter",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-19T10:41:25.508Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-way-25736154-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-19T10:41:24.791Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        }
+      ],
+      "outcomes": [
+        {
+          "jobId": "verified-osm-relation-1484751-copy",
+          "action": "approve",
+          "status": "editorial-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-relation-1484751-visual",
+          "action": "approve",
+          "status": "asset-and-licensing-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-relation-6678431-copy",
+          "action": "approve",
+          "status": "editorial-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-relation-6678431-visual",
+          "action": "approve",
+          "status": "asset-and-licensing-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-way-25736154-copy",
+          "action": "approve",
+          "status": "editorial-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-way-25736154-visual",
+          "action": "approve",
+          "status": "asset-and-licensing-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        }
+      ],
+      "publicMutationAllowed": false
+    },
+    {
+      "submissionId": "content-review-2026-08-19T11-42-13-717Z",
+      "packetGeneratedAt": "2026-08-19T10:02:46.000Z",
+      "submittedAt": "2026-08-19T11:42:13.717Z",
+      "completedAt": "2026-08-19T11:43:36.093Z",
+      "status": "revision-completed",
+      "decisions": [
+        {
+          "jobId": "guide-heat-overheating-copy-2026-08-19T10-02-46-000Z",
+          "agentId": "copywriter",
+          "action": "request-revision",
+          "note": "I have read somewhere that just 15 min of sun could induce heathstroke in dogs, so read through a lot of veterinarian journals and sources and make this part quite health-related.",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        }
+      ],
+      "outcomes": [
+        {
+          "status": "revised-for-review",
+          "sourceRefs": [
+            "guides/heat-overheating.html"
+          ]
+        }
+      ],
+      "publicMutationAllowed": false
+    },
+    {
+      "submissionId": "content-review-2026-08-19T11-43-53-642Z",
+      "submittedAt": "2026-08-19T11:43:53.642Z",
+      "status": "processed",
+      "decisions": [
+        {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-relation-1484751-copy",
+          "agentId": "copywriter",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-19T11:43:40.396Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-relation-1484751-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-19T11:43:37.931Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-relation-6678431-copy",
+          "agentId": "copywriter",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-19T11:43:43.145Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-relation-6678431-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-19T11:43:42.096Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "editorial-approval",
+          "jobId": "verified-osm-way-25736154-copy",
+          "agentId": "copywriter",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-19T11:43:45.646Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        },
+        {
+          "contractVersion": "1.0.0",
+          "gate": "asset-and-licensing-approval",
+          "jobId": "verified-osm-way-25736154-visual",
+          "agentId": "visualDirector",
+          "action": "approve",
+          "note": "",
+          "reviewedAt": "2026-08-19T11:43:44.396Z",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        }
+      ],
+      "outcomes": [
+        {
+          "jobId": "verified-osm-relation-1484751-copy",
+          "action": "approve",
+          "status": "editorial-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-relation-1484751-visual",
+          "action": "approve",
+          "status": "asset-and-licensing-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-relation-6678431-copy",
+          "action": "approve",
+          "status": "editorial-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-relation-6678431-visual",
+          "action": "approve",
+          "status": "asset-and-licensing-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-way-25736154-copy",
+          "action": "approve",
+          "status": "editorial-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        },
+        {
+          "jobId": "verified-osm-way-25736154-visual",
+          "action": "approve",
+          "status": "asset-and-licensing-approved",
+          "message": "Approval recorded for the next staging step. No public file was changed."
+        }
+      ],
+      "publicMutationAllowed": false
+    },
+    {
+      "submissionId": "content-review-2026-08-19T11-56-26-576Z",
+      "packetGeneratedAt": "2026-08-19T10:02:46.000Z",
+      "submittedAt": "2026-08-19T11:56:26.576Z",
+      "completedAt": "2026-08-19T11:58:20.054Z",
+      "status": "revision-completed",
+      "decisions": [
+        {
+          "jobId": "guide-water-for-dogs-on-trail-copy-2026-08-19T10-02-46-000Z",
+          "agentId": "copywriter",
+          "action": "request-revision",
+          "note": "make this way more health related - also make sure that we can insert citation on this page as well\nmake the claim that veterinary advice is always more important than what we say here (write it in a better way)\ninclude the space for images",
+          "reviewedBy": "local-editor",
+          "publicMutationAllowed": false
+        }
+      ],
+      "outcomes": [
+        {
+          "status": "revised-for-review",
+          "sourceRefs": [
+            "guides/water-for-dogs-on-trail.html"
+          ]
+        }
+      ],
+      "publicMutationAllowed": false
     }
   ],
-  "updatedAt": "2026-08-18T19:31:57.398Z"
+  "updatedAt": "2026-08-19T11:58:20.054Z"
 }

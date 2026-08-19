@@ -1,19 +1,134 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-08-18T00:00:00.000Z",
+  "generatedAt": "2026-08-19T13:17:40.358Z",
   "mode": "draft-only",
   "publicMutationAllowed": false,
   "workstream": "newsletter",
   "subject": {
     "type": "newsletter",
-    "id": "awaiting-first-run",
+    "id": "issue-2026-08-19",
     "sourceRef": "backoffice-data/newsletter-draft.html",
-    "updatedAt": "2026-08-18T00:00:00.000Z",
+    "updatedAt": "2026-08-19T13:17:40.358Z",
     "original": ""
   },
-  "outputs": [],
+  "outputs": [
+    {
+      "jobId": "newsletter-2026-08-19T13-17-40-358Z-copy",
+      "agentId": "copywriter",
+      "status": "ready-for-review",
+      "responseId": null,
+      "model": "codex",
+      "result": {
+        "issueTitle": "ORMA Notes — Paws, plants and stormy skies",
+        "subjectOptions": [
+          "Before the next Alpine walk: paws, plants and storms",
+          "Two fresh ORMA guides for safer summer walks",
+          "Rocky ground, unfamiliar plants, changing skies"
+        ],
+        "preheader": "Fresh guidance for paws and plants, plus short-lived weather signals across parts of the Alps.",
+        "introduction": "Late-summer walks ask us to notice the small things: the surface under our dogs’ paws, the plants beside the path and the sky overhead. This issue brings together two newly updated ORMA guides and a timely planning note.",
+        "sections": [
+          {
+            "heading": "Newly updated: Alpine plants and dogs",
+            "body": "Our Alpine plants guide helps you approach unfamiliar vegetation cautiously, understand which plants need particular care and know what to do if your dog may have eaten one. Plant identification is never certain from appearance alone, so keep unknown plants out of reach and contact a vet when ingestion is suspected.",
+            "linkUrl": "https://www.app-orma.com/guides/alpine-plants-for-dogs.html",
+            "sourceRefs": [
+              "ORMA Alpine Plants Guide"
+            ]
+          },
+          {
+            "heading": "Protect paws on rocky terrain",
+            "body": "Sharp limestone and scree can wear pads faster than forest paths. Before and during the walk, check paws regularly, watch for discomfort and match distance to your dog’s conditioning—not just their enthusiasm.",
+            "linkUrl": "https://www.app-orma.com/guides/paw-protection.html",
+            "sourceRefs": [
+              "ORMA Paw Protection Guide"
+            ]
+          },
+          {
+            "heading": "Rain and thunderstorms: check before setting out",
+            "body": "Current warnings flag rain and thunderstorms in Friuli Venezia Giulia, Trentino-Alto Adige and Veneto, with rain-flood and thunderstorm warnings also affecting Savoie. These are weather signals, not evidence of trail closures. If you’re heading out before they expire, check the latest local forecast and official access information, and be ready to shorten or postpone the walk.",
+            "linkUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/db23a5c2-55fa-4fe2-90b5-fcab076923c5",
+            "sourceRefs": [
+              "MeteoAlarm Italy — Friuli Venezia Giulia rain",
+              "MeteoAlarm Italy — Trentino-Alto Adige rain",
+              "MeteoAlarm Italy — Veneto rain",
+              "MeteoAlarm Italy — Friuli Venezia Giulia thunderstorms",
+              "MeteoAlarm Italy — Trentino-Alto Adige thunderstorms",
+              "MeteoAlarm Italy — Veneto thunderstorms",
+              "MeteoAlarm France — Savoie rain-flood",
+              "MeteoAlarm France — Savoie thunderstorms"
+            ]
+          }
+        ],
+        "closing": "Walk gently, keep an eye on your dog, and leave room in the plan to turn back. See you on the trail — ORMA",
+        "sources": [
+          {
+            "label": "ORMA Alpine Plants Guide",
+            "url": "https://www.app-orma.com/guides/alpine-plants-for-dogs.html",
+            "checkedAt": "2026-08-19",
+            "supports": "Published ORMA guidance on Alpine plants, suspected ingestion and identification limits."
+          },
+          {
+            "label": "ORMA Paw Protection Guide",
+            "url": "https://www.app-orma.com/guides/paw-protection.html",
+            "checkedAt": "2026-08-19",
+            "supports": "Published ORMA guidance on checking, protecting and conditioning paws for rocky terrain."
+          },
+          {
+            "label": "MeteoAlarm Italy — Friuli Venezia Giulia rain",
+            "url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/db23a5c2-55fa-4fe2-90b5-fcab076923c5",
+            "checkedAt": "2026-08-19",
+            "supports": "Time-limited rain warning for Friuli Venezia Giulia."
+          },
+          {
+            "label": "MeteoAlarm Italy — Trentino-Alto Adige rain",
+            "url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/781dd288-dfb3-40ed-8631-97857abe57ab",
+            "checkedAt": "2026-08-19",
+            "supports": "Time-limited rain warning for Trentino-Alto Adige."
+          },
+          {
+            "label": "MeteoAlarm Italy — Veneto rain",
+            "url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/8a53f03e-0b25-44ab-a036-8cfc372fc9ca",
+            "checkedAt": "2026-08-19",
+            "supports": "Time-limited rain warning for Veneto."
+          },
+          {
+            "label": "MeteoAlarm Italy — Friuli Venezia Giulia thunderstorms",
+            "url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/7e5be577-07a1-4752-bc9d-130bedf677e8",
+            "checkedAt": "2026-08-19",
+            "supports": "Time-limited thunderstorm warning for Friuli Venezia Giulia."
+          },
+          {
+            "label": "MeteoAlarm Italy — Trentino-Alto Adige thunderstorms",
+            "url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/1ff8f39c-1aca-40bc-9dd6-70a9b5e42316",
+            "checkedAt": "2026-08-19",
+            "supports": "Time-limited thunderstorm warning for Trentino-Alto Adige."
+          },
+          {
+            "label": "MeteoAlarm Italy — Veneto thunderstorms",
+            "url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/a550b3d9-2036-4fe1-8160-48c454c628bd",
+            "checkedAt": "2026-08-19",
+            "supports": "Time-limited thunderstorm warning for Veneto."
+          },
+          {
+            "label": "MeteoAlarm France — Savoie rain-flood",
+            "url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/8646784f-93c7-4062-aefb-8f95dbbd242c",
+            "checkedAt": "2026-08-19",
+            "supports": "Time-limited rain-flood warning for Savoie."
+          },
+          {
+            "label": "MeteoAlarm France — Savoie thunderstorms",
+            "url": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/0afa8a3b-b019-43f5-92d0-14c81b684a44",
+            "checkedAt": "2026-08-19",
+            "supports": "Time-limited thunderstorm warning for Savoie."
+          }
+        ]
+      },
+      "error": null
+    }
+  ],
   "summary": {
-    "readyForReview": 0,
+    "readyForReview": 1,
     "blocked": 0
   }
 }

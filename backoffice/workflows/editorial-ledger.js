@@ -33,7 +33,7 @@ function eligibility(candidate,record,asOf){
 }
 
 function selectEditorialWork(candidates,ledger,options={}){
-  const asOf=options.asOf||new Date().toISOString(); const limit=options.limit||1;
+  const asOf=options.asOf||new Date().toISOString(); const limit=options.limit??1;
   const byId=new Map((ledger?.items||[]).map(item=>[item.contentId,item]));
   return candidates.map(candidate=>({...candidate,selection:eligibility(candidate,byId.get(candidate.contentId),asOf)}))
     .filter(candidate=>candidate.selection.eligible)
