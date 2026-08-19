@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const { loadProductionTrails } = require('./scripts/load-production-trails');
 
 const root = __dirname;
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
@@ -21,11 +22,7 @@ function loadRegionalLiftFile(file) {
 }
 
 function loadCanonicalTrails() {
-  const context = { window: {}, console };
-  vm.createContext(context);
-  ['trails-data.js', 'osm-trails-data.js', 'osm-trails-savoy-data.js', 'regions-config.js']
-    .forEach(file => vm.runInContext(read(file), context, { filename: file }));
-  return JSON.parse(vm.runInContext('window.DoloPawsRegions.assign(trails); JSON.stringify(trails)', context));
+  return loadProductionTrails(root);
 }
 
 describe('DATA-03 regional runtime boundaries', () => {

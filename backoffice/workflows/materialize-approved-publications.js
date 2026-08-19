@@ -1,12 +1,14 @@
 'use strict';
 
+const { publicationRequestIsRetryable } = require('./publication-failure-receipts');
+
 function materializeApprovedPublications({ requests, staging, routesByCandidate, overrides, at }){
   const next = JSON.parse(JSON.stringify(overrides || { contractVersion:'1.0.0', trails:[] }));
   next.contractVersion ||= '1.0.0';
   next.trails ||= [];
   const materializedApprovals = new Set(next.trails.map(entry => entry.approvalId).filter(Boolean));
   const approved = (requests?.requests || []).filter(request =>
-    request.status === 'approved-for-pr-creation' && !materializedApprovals.has(request.id));
+    publicationRequestIsRetryable(request) && !materializedApprovals.has(request.id));
   const entries = [];
 
   for(const request of approved){

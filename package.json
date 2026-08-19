@@ -50,6 +50,7 @@
     "backoffice:worker:live": "node backoffice/cli/live-worker.js",
     "backoffice:seed:live": "node backoffice/cli/seed-live-state.js",
     "backoffice:materialize-publications": "node backoffice/cli/materialize-publications.js",
+    "backoffice:record-publication-failure": "node backoffice/cli/record-publication-failure.js",
     "backoffice:acknowledge-publications": "node backoffice/cli/acknowledge-publications.js",
     "backoffice:orchestration:build": "node backoffice/cli/build-live-orchestration.js",
     "backoffice:campaign:live": "node backoffice/cli/start-live-trail-campaign.js",

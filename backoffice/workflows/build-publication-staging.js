@@ -68,7 +68,7 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
         imageCreator: hero.creator,
         imageLicence: hero.license,
         imageLicenceUrl: hero.licenseUrl,
-        imageCredit: hero.credit,
+        imageCreditText: hero.credit,
         imageAlt: hero.altText,
         ormaVerified: true,
         ...VERIFIED_FIELDS[item.candidateId],

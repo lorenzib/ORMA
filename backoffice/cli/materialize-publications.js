@@ -5,13 +5,14 @@ const fs = require('fs/promises');
 const path = require('path');
 const { FirestoreBackofficeStore } = require('../services/firestore-backoffice-store');
 const { materializeApprovedPublications } = require('../workflows/materialize-approved-publications');
+const { publicationRequestIsRetryable } = require('../workflows/publication-failure-receipts');
 
 async function main(){
   const root = path.resolve(__dirname,'../..'); const store = new FirestoreBackofficeStore();
   const [requests,staging] = await Promise.all([store.getArtifact('publication-requests'),store.getArtifact('publication-staging')]);
   const target = path.join(root,'data','verified-trail-overrides.json');
   const overrides = JSON.parse(await fs.readFile(target,'utf8'));
-  const approved = (requests?.requests || []).filter(request => request.status === 'approved-for-pr-creation');
+  const approved = (requests?.requests || []).filter(publicationRequestIsRetryable);
   const routesByCandidate = {};
   for(const request of approved){
     routesByCandidate[request.candidateId] = await store.getArtifact(`route-proposal-${request.candidateId}`);

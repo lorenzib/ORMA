@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const { loadProductionTrails } = require('./scripts/load-production-trails');
+const { buildCanonicalCatalog } = require('./scripts/trail-adapter');
 
 function loadTrust(){
   const context = { window: {}, console };
@@ -189,13 +191,19 @@ describe('trail data trust states', () => {
     expect(detail).not.toContain('No livestock noted in our field data');
 
     const importedPage = fs.readFileSync(path.join(__dirname, 'trails/planetenweg-sentiero-dei-pianeti.html'), 'utf8');
-    const reviewedPage = fs.readFileSync(path.join(__dirname, 'trails/lago-di-braies-loop.html'), 'utf8');
+    const productionTrails = loadProductionTrails(__dirname);
+    const reviewedSource = productionTrails.find(trail => trail.id === 'lago-braies');
+    const reviewedTrail = buildCanonicalCatalog(productionTrails).records.find(trail => trail.id === 'lago-braies');
+    expect(reviewedTrail).toBeDefined();
+    const reviewedPage = fs.readFileSync(path.join(__dirname, 'trails', `${reviewedTrail.slug}.html`), 'utf8');
     expect(importedPage).toContain('Imported trail');
     expect(importedPage).not.toContain('Estimated:');
     expect(importedPage).not.toMatch(/Partly verified|Verification in progress|\d+\/\d+ checks/i);
     expect(importedPage).not.toContain('verified map data');
     expect(reviewedPage).toContain('Verified by ORMA');
-    expect(reviewedPage).toContain('Trail information prepared by ORMA');
+    expect(reviewedPage).toContain(reviewedSource.graduation?.status === 'verified'
+      ? 'This trail has been reviewed by ORMA'
+      : 'Trail information prepared by ORMA');
     expect(reviewedPage).toContain('View source details');
   });
 });

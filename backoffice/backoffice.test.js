@@ -63,6 +63,8 @@ const { buildPublicationStaging } = require('./workflows/build-publication-stagi
 const { buildVerifiedTrailRevisionJobs } = require('./workflows/queue-verified-trail-revisions');
 const { runVerifiedTrailRevision } = require('./workflows/run-verified-trail-revision');
 const { materializeApprovedPublications } = require('./workflows/materialize-approved-publications');
+const { publicationRequestIsRetryable, recordPublicationFailure } = require('./workflows/publication-failure-receipts');
+const { summarizeFailureLog, workflowRunUrl } = require('./cli/record-publication-failure');
 const { ingestPublicationReviews } = require('./workflows/run-live-backoffice-worker');
 const resolutionPolicy = require('./contracts/resolution-policy-v1');
 const fleet = require('./agents/registry-v1');
@@ -930,6 +932,10 @@ describe('ORMA backoffice MVP', () => {
       publicMutationAllowed: false, publicationAuthorized: false,
     }));
     expect(staging.summary).toEqual({ trails: 3, readyForPreview: 3, waitingForApprovals: 0, publicMutations: 0 });
+    expect(staging.items[0].proposedWebsiteFields.imageCredit).toEqual(expect.objectContaining({
+      text:expect.any(String),url:expect.stringMatching(/^https:\/\//),
+    }));
+    expect(staging.items[0].proposedWebsiteFields.imageCreditText).toEqual(expect.any(String));
     expect(staging.items.every(item => (
       item.state === 'ready-for-publication-preview'
       && item.proposedWebsiteFields.name
@@ -1259,6 +1265,35 @@ describe('ORMA backoffice MVP', () => {
     });
     expect(second.materialized).toBe(0);
     expect(second.overrides).toEqual(first.overrides);
+  });
+
+  test('a failed publication keeps the approval, records a bounded receipt and can be retried safely', () => {
+    const failed=recordPublicationFailure({contractVersion:'1.0.0',requests:[{
+      id:'publication-approval-1',candidateId:'osm-relation-1484751',status:'approved-for-pr-creation',
+    }]},{stage:'website-validation',message:'Three generated-site tests failed.',workflowRunUrl:'https://github.com/orma/actions/runs/1'},{at:'2026-08-19T20:31:00.000Z'});
+    expect(failed.recorded).toBe(1);
+    expect(failed.artifact.requests[0]).toEqual(expect.objectContaining({
+      status:'publication-failed',retryable:true,failureStage:'website-validation',failureCount:1,
+      workflowRunUrl:'https://github.com/orma/actions/runs/1',
+    }));
+    expect(failed.artifact.requests[0].failureHistory).toHaveLength(1);
+    expect(publicationRequestIsRetryable(failed.artifact.requests[0])).toBe(true);
+
+    const retried=materializeApprovedPublications({
+      requests:failed.artifact,
+      staging:{items:[{candidateId:'osm-relation-1484751',targetTrailId:'tre-cime',state:'ready-for-publication-preview',proposedWebsiteFields:{name:'Tre Cime'}}]},
+      routesByCandidate:{'osm-relation-1484751':{geometry:{coordinates:[[12.29,46.61],[12.30,46.62]]}}},
+      overrides:{schemaVersion:1,trails:[]},at:'2026-08-19T20:35:00.000Z',
+    });
+    expect(retried.materialized).toBe(1);
+    expect(retried.overrides.trails[0].approvalId).toBe('publication-approval-1');
+  });
+
+  test('publication failure logs and workflow URLs become concise safe receipt fields', () => {
+    const summary=summarizeFailureLog('\u001b[31mFAIL ./trail-trust.test.js\u001b[0m\nnoise\nTest Suites: 3 failed, 91 passed');
+    expect(summary).toBe('FAIL ./trail-trust.test.js\nTest Suites: 3 failed, 91 passed');
+    expect(workflowRunUrl({GITHUB_SERVER_URL:'https://github.com',GITHUB_REPOSITORY:'lorenzib/ORMA',GITHUB_RUN_ID:'123'}))
+      .toBe('https://github.com/lorenzib/ORMA/actions/runs/123');
   });
 
   test('the live worker supersedes repeat clicks and keeps only the latest publication decision per trail', async () => {
