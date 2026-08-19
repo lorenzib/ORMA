@@ -28,12 +28,15 @@ describe('separate Firebase backoffice Hosting package',()=>{
 
   test('hosted trail content desk requests the durable publication receipt asset',()=>{
     const html=fs.readFileSync(path.join(output,'trail-content-desk.html'),'utf8');
-    expect(html).toContain('trail-content-desk.js?v=20260819-1');
+    expect(html).toContain('backoffice/content-receipt-model.js?v=20260819-1');
+    expect(html).toContain('trail-content-desk.js?v=20260819-3');
   });
 
   test('hosted dashboard exposes only protected trail desk links',()=>{
     const html=fs.readFileSync(path.join(output,'backoffice-review.html'),'utf8');
-    expect(html).toContain('Existing Trails is live here now');
+    expect(html).toContain('One linear trail workflow');
+    expect(html).toContain('What happened after your clicks');
+    expect(html).toContain('backoffice/dashboard-model.js?v=20260819-1');
     expect(html).toContain('href="trail-dossier-desk.html"');
     expect(html).not.toMatch(/href="(?:content|new-trail-scouting|hazard-review|image-coverage|newsletter|social|product-ideas)-desk\.html"/);
   });

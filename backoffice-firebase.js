@@ -69,6 +69,25 @@ async function getPublicationReviews(){
   }catch(error){console.error('getPublicationReviews failed:',error);return {ok:false,error:'publication-review-read-failed',reviews:[]};}
 }
 
+async function getContentReviews(){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',reviews:[]};
+  try{
+    const snapshot=await getDocs(query(collection(db,'backofficeReviews'),orderBy('submittedAt','desc'),limit(100)));
+    return {ok:true,reviews:snapshot.docs.map(item=>({id:item.id,...item.data()}))};
+  }catch(error){console.error('getContentReviews failed:',error);return {ok:false,error:'content-review-read-failed',reviews:[]};}
+}
+
+async function getDecisionHistory(){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',decisions:[]};
+  try{
+    const sources=[['backofficeDossierReviews','dossier'],['backofficeReviews','content'],['backofficePublicationReviews','publication']];
+    const snapshots=await Promise.all(sources.map(([name])=>getDocs(query(collection(db,name),orderBy('submittedAt','desc'),limit(20)))));
+    const decisions=snapshots.flatMap((snapshot,index)=>snapshot.docs.map(item=>({id:item.id,stream:sources[index][1],...item.data()})))
+      .sort((a,b)=>(b.submittedAt?.seconds||0)-(a.submittedAt?.seconds||0)).slice(0,30);
+    return {ok:true,decisions};
+  }catch(error){console.error('getDecisionHistory failed:',error);return {ok:false,error:'decision-history-read-failed',decisions:[]};}
+}
+
 async function submitTrailReview(payload){
   const moderator=await moderatorIdentity();
   if(!moderator)return {ok:false,error:'moderator-required'};
@@ -123,7 +142,7 @@ window.DoloPawsAuth={
   async logOut(){await signOut(auth);currentUser=null;},
 };
 window.DoloPawsModeration={getModeratorStatus:async()=>({ok:!!await moderatorIdentity()})};
-window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,submitTrailReview,submitPublicationReview,submitDossierReview};
+window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,submitTrailReview,submitPublicationReview,submitDossierReview};
 
 onAuthStateChanged(auth,user=>{
   currentUser=user;

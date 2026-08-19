@@ -11,7 +11,7 @@
   const revisionActivity=document.getElementById('revisionActivity');
   const revisionJobs=document.getElementById('revisionJobs');
   const refreshRevisions=document.getElementById('refreshRevisions');
-  let decisions=loadDecisions(); let execution; let queue; let staging; let revisions; let publicationRequests={requests:[]}; let publicationReviews=[];
+  let decisions=loadDecisions(); let execution; let queue; let staging; let revisions; let publicationRequests={requests:[]}; let publicationReviews=[]; let contentReviews=[];
 
   function element(tag,className,text){const node=document.createElement(tag);if(className)node.className=className;if(text!==undefined)node.textContent=text;return node;}
   function loadDecisions(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');}catch(error){return {};}}
@@ -37,6 +37,11 @@
     const api=await waitForRemoteBackoffice();const result=await api.getPublicationReviews();
     if(!result.ok)throw new Error(`Could not load publication reviews: ${result.error}`);return result.reviews||[];
   }
+  async function loadContentReviews(){
+    if(LOCAL_MODE)return [];
+    const api=await waitForRemoteBackoffice();const result=await api.getContentReviews();
+    if(!result.ok)throw new Error(`Could not load content review receipts: ${result.error}`);return result.reviews||[];
+  }
   async function responseBody(response){
     const text=await response.text();
     try{return text?JSON.parse(text):{};}
@@ -49,7 +54,7 @@
   }
   function link(label,url){const node=element('a','',`${label} ↗`);node.href=url;node.target='_blank';node.rel='noopener';return node;}
   function decisionLabel(decision){return decision?`${decision.action.replace(/-/g,' ')} saved${decision.note?` · “${decision.note}”`:''}`:'No decision saved yet.';}
-  function revisionFor(output){return (revisions?.jobs||[]).filter(job=>job.jobId===output.jobId).sort((a,b)=>String(b.createdAt).localeCompare(String(a.createdAt)))[0]||null;}
+  function revisionFor(output){return window.ORMAContentReceiptModel.latestRevision(output,revisions?.jobs||[]);}
   function revisionStateText(){
     const jobs=revisions?.jobs||[];const queued=jobs.filter(job=>job.status==='queued').length;const running=jobs.filter(job=>job.status==='running').length;const ready=jobs.filter(job=>job.status==='ready-for-review').length;const blocked=jobs.filter(job=>job.status==='blocked').length;
     if(running)return `${running} trail revision ${running===1?'is':'are'} being processed. This page refreshes automatically.`;
@@ -74,18 +79,18 @@
   }
 
   function reviewControls(output){
-    const wrap=element('div','bo-content-review-actions');
-    const note=element('textarea');note.placeholder=output.agentId==='visualDirector'?'Describe the required image, evidence, licence or attribution change…':'Describe exactly what the Copywriter should change…';note.value=decisions[output.jobId]?.note||'';
+    const wrap=element('div','bo-content-review-actions');const receipt=window.ORMAContentReceiptModel.latestReceipt(output,contentReviews,revisions?.jobs||[]);const advanced=!window.ORMAContentReceiptModel.stillNeedsApproval(output,staging);const locked=Boolean(receipt||advanced);
+    const note=element('textarea');note.placeholder=output.agentId==='visualDirector'?'Describe the required image, evidence, licence or attribution change…':'Describe exactly what the Copywriter should change…';note.value=decisions[output.jobId]?.note||receipt?.decision.note||'';note.disabled=locked;
     const actions=element('div','bo-actions');
     [['approve','Approve'],['request-revision','Request revision'],['reject','Reject'],['clear','Clear']].forEach(([action,label])=>{
-      const button=element('button',decisions[output.jobId]?.action===action?'is-selected':'',label);button.type='button';button.dataset.action=action;
+      const selected=decisions[output.jobId]?.action===action||receipt?.decision.action===action;const button=element('button',selected?'is-selected':'',label);button.type='button';button.dataset.action=action;button.disabled=locked;
       button.addEventListener('click',()=>{
         if(action==='request-revision'&&!note.value.trim()){note.focus();state.textContent='Add a precise revision instruction before requesting revision.';return;}
         decisions=window.ORMAContentReviewDecisions.applyDecision(decisions,{jobId:output.jobId,agentId:output.agentId,action,note:note.value,reviewedBy:'local-editor'});
         saveDecisions();renderPackets();state.textContent=action==='clear'?'Decision cleared.':'Decision saved locally. Submit the trail review when you are ready.';
       });actions.append(button);
     });
-    wrap.append(note,actions,element('p','bo-decision',decisionLabel(decisions[output.jobId])));return wrap;
+    const status=element('p',`bo-decision${locked?' is-queued':''}`,locked?window.ORMAContentReceiptModel.receiptText(output,receipt,staging,revisions?.jobs||[]):decisionLabel(decisions[output.jobId]));wrap.append(note,actions,status);return wrap;
   }
 
   function copyOutput(output){
@@ -128,7 +133,7 @@
   function mappingDetails(fields){const details=element('details','bo-publication-mapping');const count=Object.keys(fields||{}).length;details.append(element('summary','',`Inspect complete website mapping (${count} fields)`),fieldsList(fields));return details;}
   function renderStaging(next){
     staging=next;publicationSummary.replaceChildren();[['Trails',staging.summary.trails],['Ready for preview',staging.summary.readyForPreview],['Waiting for approvals',staging.summary.waitingForApprovals],['Public mutations',staging.summary.publicMutations]].forEach(([label,value])=>publicationSummary.append(element('span','',`${label}: ${value}`)));
-    publicationMapper.replaceChildren();staging.items.forEach(item=>{const source=queue.items.find(candidate=>candidate.candidateId===item.candidateId);const card=element('article',`bo-publication-card is-${item.state}`);card.append(element('h3','',source?.trailName||item.targetTrailId),element('p','bo-content-status',item.state.replace(/-/g,' ')));
+    publicationMapper.replaceChildren();staging.items.forEach(item=>{const source=queue.items.find(candidate=>candidate.candidateId===item.candidateId);const card=element('article',`bo-publication-card is-${item.state}`);card.id=`publication-${item.candidateId}`;card.append(element('h3','',source?.trailName||item.targetTrailId),element('p','bo-content-status',item.state.replace(/-/g,' ')));
       if(item.state!=='ready-for-publication-preview'){card.append(element('p','bo-empty',`Still required: ${item.missingApprovals.join(', ')}. Review both proposals above and submit those decisions first.`));}
       else{const current=publicationRecordFor(item);card.append(element('p','',`${item.operation.replace(/-/g,' ')} · website trail ${item.targetTrailId}`));if(current)card.append(publicationReceipt(current));const note=element('textarea');note.placeholder='Optional publication note…';const actions=element('div','bo-actions');const locked=current&&['queued','processed','approved-for-pr-creation','pull-request-opened'].includes(current.record.status);const decisionState=element('p','bo-decision',current?'The recorded decision remains visible here after every refresh.':'No publication decision recorded yet.');[['approve-for-pr-creation','Approve for PR creation'],['request-changes','Request changes'],['hold','Hold']].forEach(([action,label])=>{const button=element('button','',label);button.type='button';button.disabled=Boolean(locked);button.addEventListener('click',()=>submitPublication(item,action,note.value,card,decisionState));actions.append(button);});note.disabled=Boolean(locked);card.append(note,actions,decisionState,mappingDetails(item.proposedWebsiteFields));}
       publicationMapper.append(card);});
@@ -140,15 +145,15 @@
   }
   submit.addEventListener('click',async()=>{
     const payload=window.ORMAContentReviewDecisions.exportRecord(decisions);submit.disabled=true;state.classList.remove('is-error');state.textContent='Submitting trail-only decisions…';
-    try{let body;if(LOCAL_MODE){const response=await fetch('/api/content-reviews/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});body=await responseBody(response);if(!response.ok)throw new Error(body.error||`Server returned ${response.status}`);}else{body=await (await waitForRemoteBackoffice()).submitTrailReview(payload);if(!body.ok)throw new Error(body.error);}const queued=body.revisionJobs?.length||0;if(queued)revisions.jobs=[...(revisions.jobs||[]),...body.revisionJobs];decisions={};saveDecisions();renderPackets();if(body.publicationStaging)renderStaging(body.publicationStaging);const ready=body.publicationStaging?.summary?.readyForPreview||0;state.textContent=ready?`Step 1 recorded. ${ready} trail${ready===1?' is':'s are'} now ready at Human gate 2. Review the website fields and choose Approve for PR creation.`:(LOCAL_MODE?`Trail review recorded. ${queued?`${queued} trail-agent revision job${queued===1?'':'s'} queued. `:''}Nothing was published.`:`Trail review ${body.reviewId} entered the live orchestration queue. The worker will collect it within five minutes. Nothing was published.`);if(ready)document.getElementById('publicationGate').scrollIntoView({behavior:'smooth',block:'start'});}
+    try{let body;if(LOCAL_MODE){const response=await fetch('/api/content-reviews/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});body=await responseBody(response);if(!response.ok)throw new Error(body.error||`Server returned ${response.status}`);}else{body=await (await waitForRemoteBackoffice()).submitTrailReview(payload);if(!body.ok)throw new Error(body.error);}const queued=body.revisionJobs?.length||0;if(queued)revisions.jobs=[...(revisions.jobs||[]),...body.revisionJobs];if(!LOCAL_MODE)contentReviews=[{id:body.reviewId,status:'queued',submittedAt:new Date().toISOString(),decisions:payload.decisions},...contentReviews];decisions={};saveDecisions();renderPackets();if(body.publicationStaging)renderStaging(body.publicationStaging);const ready=body.publicationStaging?.summary?.readyForPreview||0;state.textContent=ready?`Step 1 recorded. ${ready} trail${ready===1?' is':'s are'} now ready at Human gate 2. Review the website fields and choose Approve for PR creation.`:(LOCAL_MODE?`Trail review recorded. ${queued?`${queued} trail-agent revision job${queued===1?'':'s'} queued. `:''}Nothing was published.`:`Trail review ${body.reviewId} entered the live orchestration queue. Its buttons are now locked and the receipt remains visible while the worker processes it. Nothing was published.`);if(ready)document.getElementById('publicationGate').scrollIntoView({behavior:'smooth',block:'start'});}
     catch(error){state.classList.add('is-error');state.textContent=`Could not submit trail review: ${error.message}`;submit.disabled=false;}
   });
   async function refreshRevisionState(){
     refreshRevisions.disabled=true;
-    try{[execution,staging,revisions,publicationRequests,publicationReviews]=await Promise.all([loadArtifact('verified-trail-editorial-execution',URLS.execution),loadArtifact('publication-staging',URLS.staging),loadRevisionJobs(),loadPublicationRequests(),loadPublicationReviews()]);renderPackets();renderStaging(staging);state.classList.remove('is-error');state.textContent=revisionStateText();}
+    try{[execution,staging,revisions,publicationRequests,publicationReviews,contentReviews]=await Promise.all([loadArtifact('verified-trail-editorial-execution',URLS.execution),loadArtifact('publication-staging',URLS.staging),loadRevisionJobs(),loadPublicationRequests(),loadPublicationReviews(),loadContentReviews()]);renderPackets();renderStaging(staging);state.classList.remove('is-error');state.textContent=revisionStateText();}
     catch(error){state.classList.add('is-error');state.textContent=`Could not refresh revision status: ${error.message}`;}
     finally{refreshRevisions.disabled=false;}
   }
   refreshRevisions.addEventListener('click',refreshRevisionState);
-  Promise.all([loadArtifact('verified-trail-editorial-queue',URLS.queue),loadArtifact('verified-trail-editorial-execution',URLS.execution),loadArtifact('publication-staging',URLS.staging),loadRevisionJobs(),loadPublicationRequests(),loadPublicationReviews()]).then(values=>{[queue,execution,staging,revisions,publicationRequests,publicationReviews]=values;renderPackets();renderStaging(staging);state.textContent=revisionStateText();window.setInterval(refreshRevisionState,10000);}).catch(error=>{state.classList.add('is-error');state.textContent=error.message;});
+  Promise.all([loadArtifact('verified-trail-editorial-queue',URLS.queue),loadArtifact('verified-trail-editorial-execution',URLS.execution),loadArtifact('publication-staging',URLS.staging),loadRevisionJobs(),loadPublicationRequests(),loadPublicationReviews(),loadContentReviews()]).then(values=>{[queue,execution,staging,revisions,publicationRequests,publicationReviews,contentReviews]=values;renderPackets();renderStaging(staging);state.textContent=revisionStateText();window.setInterval(refreshRevisionState,10000);}).catch(error=>{state.classList.add('is-error');state.textContent=error.message;});
 })();
