@@ -69,6 +69,14 @@ async function getPublicationReviews(){
   }catch(error){console.error('getPublicationReviews failed:',error);return {ok:false,error:'publication-review-read-failed',reviews:[]};}
 }
 
+async function getContentReviews(){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',reviews:[]};
+  try{
+    const snapshot=await getDocs(query(collection(db,'backofficeReviews'),orderBy('submittedAt','desc'),limit(100)));
+    return {ok:true,reviews:snapshot.docs.map(item=>({id:item.id,...item.data()}))};
+  }catch(error){console.error('getContentReviews failed:',error);return {ok:false,error:'content-review-read-failed',reviews:[]};}
+}
+
 async function getDecisionHistory(){
   if(!await moderatorIdentity())return {ok:false,error:'moderator-required',decisions:[]};
   try{
@@ -134,7 +142,7 @@ window.DoloPawsAuth={
   async logOut(){await signOut(auth);currentUser=null;},
 };
 window.DoloPawsModeration={getModeratorStatus:async()=>({ok:!!await moderatorIdentity()})};
-window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getDecisionHistory,submitTrailReview,submitPublicationReview,submitDossierReview};
+window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,submitTrailReview,submitPublicationReview,submitDossierReview};
 
 onAuthStateChanged(auth,user=>{
   currentUser=user;
