@@ -30,6 +30,18 @@
       label:'Dog hiking safety guide',
       summary:'Review turn-back decisions and emergency preparation.',
     }),
+    livestock:Object.freeze({
+      id:'livestock',
+      href:'guides/livestock-guard-dogs.html',
+      label:'Livestock and guardian dogs',
+      summary:'Cross grazed pasture calmly and avoid confrontations.',
+    }),
+    altitude:Object.freeze({
+      id:'altitude',
+      href:'guides/altitude-with-your-dog.html',
+      label:'Hiking safely at altitude',
+      summary:'Plan for thinner air, rapid weather changes and lingering snow.',
+    }),
   });
 
   function guideId(code){
@@ -38,6 +50,8 @@
     if(/^trail\.water\./.test(code)) return 'water';
     if(/^trail\.(?:surface-hazards|terrain|descent)\./.test(code)) return 'paws';
     if(/^trail\.exposure\./.test(code)) return 'exposure';
+    if(/^trail\.livestock\./.test(code)) return 'livestock';
+    if(/^trail\.altitude\./.test(code)) return 'altitude';
     return null;
   }
 
@@ -60,6 +74,18 @@
     return selected;
   }
 
-  return Object.freeze({ GUIDES, select });
-});
+  function selectIds(ids, maximum){
+    const selected = [];
+    const seen = new Set();
+    const cap = Number.isFinite(maximum) ? Math.max(0, maximum) : 3;
+    for(const id of Array.isArray(ids) ? ids : []){
+      if(!GUIDES[id] || seen.has(id)) continue;
+      seen.add(id);
+      selected.push(GUIDES[id]);
+      if(selected.length >= cap) break;
+    }
+    return selected;
+  }
 
+  return Object.freeze({ GUIDES, select, selectIds });
+});

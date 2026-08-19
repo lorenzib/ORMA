@@ -97,9 +97,6 @@ h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;}
 .dog-safety-rows{display:flex;flex-direction:column;gap:12px;}
 /* Same characters as the section empty states ("No reviews yet"):
    serif 15px title + 13px soft copy, no banner tint or bar. */
-.td-safety-intro{margin:0 0 14px;padding:0;border:none;background:none;border-radius:0;}
-.td-safety-intro b{display:block;font:700 15px 'Bricolage Grotesque',sans-serif;color:var(--ink);}
-.td-safety-intro span{display:block;margin-top:4px;font-size:13px;line-height:1.55;color:var(--ink-soft);}
 .safety-row{display:flex;align-items:flex-start;gap:14px;background:#fbfaf4;border:1px solid rgba(27,31,25,.09);border-radius:14px;padding:16px 18px;}
 .safety-row .pill{flex:0 0 auto;font:600 11px 'Inter',sans-serif;padding:4px 10px;border-radius:999px;margin-top:1px;}
 .safety-row.is-good .pill{background:#e5efe7;color:#2f5138;}
@@ -326,7 +323,6 @@ body{background:#EFECE2;}
 /* dog-safety */
 .dog-safety-rows{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .td2 .safety-row{background:#FAF8F1;border:1px solid #EDE9DD;border-radius:12px;padding:12px 14px;gap:11px;}
-.td2 .td-safety-intro{grid-column:1/-1;}
 
 /* hazards (now in the sidebar, per prototype) */
 .td2-hazard.has-active{border-left:4px solid #E4B9A8;}
@@ -403,7 +399,6 @@ body{background:#EFECE2;}
 .td2 .safety-row.is-caution .pill{background:#F5E4C6;color:#8A5A16;--mk:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='3.4' stroke-linecap='round' d='M12 4.5v10'/%3E%3Ccircle cx='12' cy='19' r='2' fill='black'/%3E%3C/svg%3E");}
 .td2 .safety-row b{font:800 13px 'Inter',sans-serif;color:#2E4034;}
 .td2 .safety-row small{font-size:12px;color:#6B7A6E;line-height:1.5;margin-top:2px;}
-.td2 .td-safety-intro{grid-column:1/-1;margin:0 0 4px;}
 
 /* Community action buttons → ghost buttons (prototype .btn-g) */
 .td2 .add-report-btn,.td2 .add-photo-btn,.td2 .add-review-btn{display:inline-flex;align-items:center;gap:7px;font:700 13px 'Inter',sans-serif;background:#fff;border:1.5px solid #E4E0D3;color:#2E4034;border-radius:12px;padding:9px 15px;cursor:pointer;}
@@ -501,11 +496,11 @@ body{background:#EFECE2;}
    cautions that selected it. */
 .td2 #trailGuideLinks{margin-top:12px;padding-top:14px;border-top:1px solid #EDE9DD;}
 .td2 #trailGuideLinks[hidden]{display:none;}
-.td2 #trailGuideLinks .trail-guide-intro{margin:6px 0 10px;color:#6B7A6E;font-size:12px;line-height:1.45;}
-.td2 #trailGuideLinks ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
-.td2 #trailGuideLinks a{display:block;height:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #D7E3E7;border-radius:10px;background:#F4F8F9;color:#2E4034;font:700 12.5px/1.35 'Inter',sans-serif;text-decoration:none;}
-.td2 #trailGuideLinks a:hover{border-color:#9FC7D6;background:#fff;}
-.td2 #trailGuideLinks li span{display:block;margin-top:3px;color:#6B7A6E;font-size:11.5px;line-height:1.4;font-weight:500;}
+.td2 #trailGuideLinks .trail-guide-intro{margin:0;color:#6B7A6E;font-size:12px;line-height:1.6;}
+.td2 #trailGuideLinks .trail-guide-intro strong{color:#2E4034;font-weight:700;}
+.td2 #trailGuideLinks .trail-guide-intro a{color:#3E7A91;font-weight:700;text-decoration:none;}
+.td2 #trailGuideLinks .trail-guide-intro a:hover{text-decoration:underline;}
+.td2 #trailGuideLinks .trail-guide-separator{padding:0 4px;color:#A1AAA2;}
 /* Hazard-card header stays on one line: kick + pill left, Flag right. */
 .td2 .td2-hazard-head{flex-wrap:nowrap;}
 .td2 .td2-hazard-head .lhs{flex-wrap:wrap;min-width:0;}
@@ -580,8 +575,6 @@ body{background:#EFECE2;}
 .trail-evidence-foot{margin:30px 0 6px;padding-top:14px;border-top:1px solid #DDD9CC;color:#8A9689;font:500 12px/1.7 'Inter',sans-serif;scroll-margin-top:90px;}
 .trail-evidence-foot .tef-kick{font-weight:700;letter-spacing:.02em;}
 .trail-evidence-foot p{margin:6px 0 0;font-size:12px;color:#8A9689;}
-.recommendation-evidence-link{flex:none;color:#3E7A91;font:800 12px 'Inter',sans-serif;text-decoration:none;}
-.recommendation-evidence-link:hover{text-decoration:underline;}
 .recommendation-columns{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;}
 .recommendation-columns section{padding:15px 16px;border-radius:12px;background:#F7F5EE;}
 .recommendation-columns h3{margin:0 0 9px;font:800 12px 'Inter',sans-serif;color:#2E4034;}
@@ -599,7 +592,6 @@ body{background:#EFECE2;}
 @media(max-width:650px){
   .recommendation-decision{padding:17px 15px;}
   .recommendation-head{display:block;}
-  .recommendation-evidence-link{display:inline-block;margin-top:12px;}
   .recommendation-columns{grid-template-columns:1fr;}
   .recommendation-actions button{flex:1 1 135px;}
 }
@@ -609,7 +601,6 @@ body{background:#EFECE2;}
    Permanent planning information stays white, contextual reading is blue,
    and amber/red is reserved for information that needs attention.
    ============================================================ */
-.td2-safety-card .td-safety-intro{margin:0 0 12px;color:#6B7A6E;font-size:12.5px;line-height:1.5;}
 .td2 .td2-safety-card .dog-safety-rows{gap:0;}
 .td2 .td2-safety-card .safety-row{background:none;border:0;border-radius:0;padding:12px 0;}
 .td2 .td2-safety-card .safety-row+.safety-row{border-top:1px solid #EDE9DD;}
@@ -661,7 +652,6 @@ body{background:#EFECE2;}
 }
 @media(max-width:560px){
   .td2-section{padding:18px 16px;}
-  .td2 #trailGuideLinks ul{grid-template-columns:1fr;}
   .td2-rev-head{align-items:flex-start;gap:12px;}
   .td2-rev-actions{flex-wrap:wrap;justify-content:flex-end;}
   .td2 #td2Hazards:not(.has-active),.td2-community-card.is-empty{padding:16px;}
@@ -733,8 +723,8 @@ body{background:#EFECE2;}
 .td2-mapcard{margin:0;overflow:hidden;}
 .td2-mapcard .trail-map-box{height:clamp(560px,66vh,700px);}
 .td2-plan-stack,.td2-story,.td2-logistics{display:flex;flex-direction:column;gap:18px;min-width:0;}
-.td2-plan-stack,.td2-logistics{position:sticky;top:88px;max-height:calc(100vh - 110px);overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;}
-.td2-fit-shell{overflow:visible;}
+.td2-plan-stack{position:sticky;top:88px;height:clamp(560px,66vh,700px);max-height:calc(100vh - 110px);min-height:0;overflow:hidden;}
+.td2-fit-shell{height:100%;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;}
 .td2-fit-shell .recommendation-decision{margin:0;padding:22px;border:0;border-left:5px solid #7A8A7D;border-radius:0;background:none;box-shadow:none;}
 .td2-fit-shell .recommendation-decision--strong{border-left-color:#4A7856;}
 .td2-fit-shell .recommendation-decision--caution{border-left-color:#BA7517;}
@@ -742,15 +732,12 @@ body{background:#EFECE2;}
 .td2-fit-shell .recommendation-head{display:block;}
 .td2-fit-shell .recommendation-head h2{font-size:25px;line-height:1.05;flex-wrap:wrap;}
 .td2-fit-shell .recommendation-confidence,.td2-fit-shell .recommendation-actions{display:none;}
-.td2-fit-shell .recommendation-evidence-link{display:inline-block;margin-top:8px;font-size:11.5px;}
 .td2-fit-shell .recommendation-columns{grid-template-columns:1fr;gap:8px;margin-top:15px;}
 .td2-fit-shell .recommendation-columns section{padding:12px 13px;}
 .td2-fit-shell .recommendation-columns ul{font-size:12px;line-height:1.45;}
 .td2-fit-shell .td2-safety-card{padding:18px 22px 21px;border-top:1px solid #EDE9DD;}
 .td2-fit-shell .td2-safety-card>.td2-kick{margin-bottom:8px;}
 .td2-fit-shell .dog-safety-rows{grid-template-columns:1fr;}
-.td2-fit-shell #trailGuideLinks ul{grid-template-columns:1fr;}
-.td2-fit-shell #trailGuideLinks a{padding:9px 11px;}
 .td2-map-stack>.td2-elev{padding:18px 20px;border-top:0;}
 .td2-map-stack #elevProf{height:128px;}
 .td2-map-stack .td2-elev-figs{justify-content:space-between;gap:10px;}
@@ -769,7 +756,8 @@ body{background:#EFECE2;}
   .td2-workspace,.td2-lower-grid{grid-template-columns:1fr;}
   .td2-workspace .td2-map-stack{order:1;}
   .td2-workspace .td2-plan-stack{order:2;}
-  .td2-plan-stack{position:static;display:flex;max-height:none;overflow:visible;}
+  .td2-plan-stack{position:static;display:flex;height:auto;max-height:none;overflow:visible;}
+  .td2-fit-shell{height:auto;overflow:visible;}
   .td2-lower-grid .td2-story{order:1;}
   .td2-lower-grid .td2-logistics{order:2;}
   .td2-logistics{position:static;display:flex;max-height:none;overflow:visible;}
@@ -960,7 +948,6 @@ body{background:#EFECE2;}
         <section id="recommendationDecision" class="recommendation-decision" aria-live="polite" hidden></section>
         <div class="td2-section td2-safety-card" id="td2SafetyCard">
           <div class="td2-kick">Important for your dog<span id="td2SafetyDog"></span></div>
-          <p class="td-safety-intro">Heat, shade and the route cautions that matter for your dog.</p>
           <div id="dogSafetyRows" class="dog-safety-rows"></div>
           <div id="trailGuideLinks" class="trail-guide-links" hidden></div>
         </div>
@@ -1029,9 +1016,7 @@ body{background:#EFECE2;}
       <div id="nearbyGrid" class="near-grid"></div>
     </div>
 
-    <!-- TRAIL DATA FOOTNOTE — reference material, deliberately last and
-         quiet. The recommendation card's "Sources & review status" link
-         scrolls here. -->
+    <!-- TRAIL DATA FOOTNOTE — reference material, deliberately last and quiet. -->
     <div class="trail-evidence-foot" id="trailEvidence">
       <span class="tef-kick">Sources &amp; data</span>
       <details class="trail-source-disclosure">
@@ -1139,11 +1124,11 @@ body{background:#EFECE2;}
 <script src="detail-pois.js?v=20260819-2" defer></script>
 <script src="trail-reports.js?v=20260815-4" defer></script>
 <script src="trail.js?v=20260819-4" defer></script>
-<script src="trail-blueprint.js?v=20260819-6" defer></script>
+<script src="trail-blueprint.js?v=20260819-7" defer></script>
 <script src="trail-detail-ui.js?v=20260815-4" defer></script>
 <script src="trail-mobile.js?v=20260815-4" defer></script>
 <script src="recommendation-decision.js?v=20260815-4" defer></script>
-<script src="recommendation-guides.js?v=20260815-4" defer></script>
-<script src="trail-recommendation.js?v=20260819-4" defer></script>
+<script src="recommendation-guides.js?v=20260819-5" defer></script>
+<script src="trail-recommendation.js?v=20260819-5" defer></script>
 </body>
 </html>

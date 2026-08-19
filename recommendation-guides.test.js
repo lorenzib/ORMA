@@ -29,8 +29,15 @@ describe('GUIDE-01 contextual caution guides', () => {
     ['trail.water.none-reviewed', 'water'],
     ['trail.descent.joint-load', 'paws'],
     ['trail.exposure.present', 'exposure'],
+    ['trail.livestock.present', 'livestock'],
+    ['trail.altitude.high', 'altitude'],
   ])('%s selects %s', (code, expected) => {
     expect(guides.select({ cautions:[{ code }] })[0].id).toBe(expected);
+  });
+
+  test('selects guide links from the cautions displayed in the dog-fit card', () => {
+    expect(guides.selectIds(['livestock', 'heat', 'livestock', 'unknown'], 3)
+      .map(guide => guide.id)).toEqual(['livestock', 'heat']);
   });
 });
 

@@ -566,31 +566,31 @@
     const shade = typeof t.shadeCoverage === 'number' ? t.shadeCoverage : null;
     const maxAlt = Math.max(0, ...(t.elevationProfile || []).map(p => Number(p.elev) || 0));
     const rows = [];
-    const caution = (title, sub) => rows.push({ title, sub });
-    const addAssessment = item => {
+    const caution = (title, sub, guideId) => rows.push({ title, sub, guideId });
+    const addAssessment = (item, guideId) => {
       if (!item || item.ok) return;
-      caution(item.title, item.detail);
+      caution(item.title, item.detail, guideId);
     };
 
     addAssessment(trust ? trust.exposureAssessment(t) : (t.exposure
       ? { ok: false, title: 'Exposure', detail: 'Narrow ledges or unprotected drop-offs occur on parts of the route.' }
-      : null));
-    addAssessment(trust ? trust.livestockAssessment(t, text) : null);
+      : null), 'exposure');
+    addAssessment(trust ? trust.livestockAssessment(t, text) : null, 'livestock');
     addAssessment(trust ? trust.surfaceAssessment(t) : (Number(t.terrainRank) !== 0
       ? { ok: false, title: 'Surface hazards', detail: (t.terrainType || 'Gravel and mixed rock') + '. Check pads at breaks; consider booties for tender paws.' }
-      : null));
-    addAssessment(trust ? trust.heatAssessment(t) : null);
+      : null), 'paws');
+    addAssessment(trust ? trust.heatAssessment(t) : null, 'heat');
     addAssessment(trust ? trust.waterAssessment(t) : (hasWater
       ? { ok: true, title: 'Water', detail: 'A water source is mapped on this route. Bring a bowl.' }
-      : { ok: false, title: 'Water', detail: 'No water source is mapped. Carry enough for the dog.' }));
-    if (maxAlt >= 1800) caution('Season & altitude', `Tops out around ${maxAlt} m. Snow lingers into early summer and weather turns quickly.`);
+      : { ok: false, title: 'Water', detail: 'No water source is mapped. Carry enough for the dog.' }), 'water');
+    if (maxAlt >= 1800) caution('Season & altitude', `Tops out around ${maxAlt} m. Snow lingers into early summer and weather turns quickly.`, 'altitude');
 
     if (!rows.length) {
       box.innerHTML = '<p class="safety-clear">No additional route cautions are highlighted. Continue to check live weather and local signs.</p>';
       return;
     }
     const rowMarkup = r => `
-      <div class="safety-row is-caution">
+      <div class="safety-row is-caution"${r.guideId ? ` data-guide-id="${esc(r.guideId)}"` : ''}>
         <span class="pill">Caution</span>
         <span><b>${esc(r.title)}</b><small>${esc(r.sub)}</small></span>
       </div>`;

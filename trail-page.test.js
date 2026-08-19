@@ -128,7 +128,7 @@ describe('trail page map controls', () => {
     expect(document.querySelectorAll('#sideForecast')).toHaveLength(1);
     expect(document.getElementById('sideConditions')).toBeNull();
     expect(document.getElementById('matchAdvice')).toBeNull();
-    expect(document.querySelector('.td-safety-intro').textContent).toMatch(/Heat, shade and the route cautions/i);
+    expect(document.querySelector('.td-safety-intro')).toBeNull();
 
     expect(blueprint).toContain("['route', 'Route effort'");
     expect(blueprint).toContain('trust.heatAssessment(t)');
@@ -157,8 +157,8 @@ describe('trail page map controls', () => {
 
     expect(html).toContain('i18n.js?v=20260819-4');
     expect(html).toContain('trail.js?v=20260819-4');
-    expect(html).toContain('trail-blueprint.js?v=20260819-6');
-    expect(html).toContain('trail-recommendation.js?v=20260819-4');
+    expect(html).toContain('trail-blueprint.js?v=20260819-7');
+    expect(html).toContain('trail-recommendation.js?v=20260819-5');
     expect(html).toContain('offline-packages.js?v=20260819-5');
   });
 
@@ -183,6 +183,9 @@ describe('trail page map controls', () => {
     expect(fit.querySelector('#recommendationDecision')).not.toBeNull();
     expect(guides).not.toBeNull();
     expect(document.getElementById('td2DogCard')).toBeNull();
+    expect(html).toContain('.td2-plan-stack{position:sticky;top:88px;height:clamp(560px,66vh,700px);');
+    expect(html).toContain('.td2-fit-shell{height:100%;min-height:0;overflow:auto;');
+    expect(html).toContain('.td2-fit-shell{height:auto;overflow:visible;}');
   });
 
   test('below-map content follows the requested story and logistics sequence', () => {

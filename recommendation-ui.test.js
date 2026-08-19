@@ -34,13 +34,13 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(controller).not.toContain('trail.safetyLevel');
   });
 
-  test('evidence and the three distinct actions are reachable', () => {
+  test('the three distinct actions remain reachable without a data-detail link on the card', () => {
     expect(html).toContain('id="trailEvidence"');
-    expect(controller).toContain("tr('recommendation.evidence', 'About this trail data ↓')");
+    expect(controller).not.toContain('About this trail data');
+    expect(controller).not.toContain('recommendation-evidence-link');
     expect(controller).toContain('data-recommendation-save');
     expect(controller).toContain('data-recommendation-compare');
     expect(controller).toContain('data-recommendation-download');
-    expect(controller).toContain('evidence.open = true');
   });
 
   test('generated pages defer personalized conclusions to the interactive contract', () => {
@@ -57,7 +57,7 @@ describe('UX-04 canonical recommendation journey', () => {
       '<button id="detailSaveBtn">Save</button>' +
       '<section id="offlinePackagePanel" hidden></section>' +
       '<button id="offlineDownloadBtn">Download</button>' +
-      '<section id="td2SafetyCard"><div id="trailGuideLinks" hidden></div></section>' +
+      '<section id="td2SafetyCard"><div id="dogSafetyRows"><div data-guide-id="livestock"></div></div><div id="trailGuideLinks" hidden></div></section>' +
       '<details id="trailEvidence"></details>' +
       '<section id="recommendationDecision" hidden></section>';
     window.history.replaceState(null, '', '/trail.html?id=demo-loop');
@@ -89,10 +89,11 @@ describe('UX-04 canonical recommendation journey', () => {
     const guideLinks = document.getElementById('trailGuideLinks');
     expect(guideLinks.hidden).toBe(false);
     expect(guideLinks.parentElement.id).toBe('td2SafetyCard');
-    expect(guideLinks.textContent).toContain('Safety guides');
+    expect(guideLinks.textContent).toContain('From our safety guides:');
     expect(guideLinks.textContent).not.toContain('Read before you go');
-    expect(guideLinks.textContent).toContain('Read more:');
-    expect(guideLinks.textContent).toContain('Recognising overheating early');
+    expect(guideLinks.textContent).not.toContain('Read more:');
+    expect(guideLinks.textContent).toContain('Livestock and guardian dogs');
+    expect(guideLinks.textContent).not.toContain('Recognising overheating early');
     // Calm data-completeness chip instead of "low confidence" jargon.
     expect(block.textContent).toContain('Based on partial data');
     expect(block.textContent).not.toContain('low confidence');
