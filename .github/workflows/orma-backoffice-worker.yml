@@ -50,8 +50,19 @@ jobs:
 
       - run: npm ci
 
+      - name: Record worker start
+        id: worker_start
+        shell: bash
+        run: |
+          set -o pipefail
+          ORMA_WORKER_HEALTH_PHASE=start npm run backoffice:worker:health 2>&1 | tee "$RUNNER_TEMP/orma-worker-start.log"
+
       - name: Process review and agent queues
-        run: npm run backoffice:worker:live
+        id: process_queues
+        shell: bash
+        run: |
+          set -o pipefail
+          npm run backoffice:worker:live 2>&1 | tee "$RUNNER_TEMP/orma-worker-queues.log"
 
       - name: Materialize approved trail publications
         id: materialize
@@ -64,11 +75,14 @@ jobs:
         id: publication
         shell: bash
         run: |
-          if git diff --quiet -- data/verified-trail-overrides.json; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          fi
+          set -o pipefail
+          {
+            if git diff --quiet -- data/verified-trail-overrides.json; then
+              echo "changed=false" >> "$GITHUB_OUTPUT"
+            else
+              echo "changed=true" >> "$GITHUB_OUTPUT"
+            fi
+          } 2>&1 | tee "$RUNNER_TEMP/orma-publication-detection.log"
 
       - name: Validate and generate website artifacts
         id: validate_publication
@@ -115,15 +129,20 @@ jobs:
           npm run backoffice:acknowledge-publications 2>&1 | tee "$RUNNER_TEMP/orma-publication-acknowledgement.log"
 
       - name: Record publication automation failure
-        if: ${{ always() && (steps.materialize.outcome == 'failure' || steps.validate_publication.outcome == 'failure' || steps.open_publication_pr.outcome == 'failure' || steps.acknowledge_publication.outcome == 'failure') }}
+        id: publication_failure_receipt
+        if: ${{ always() && (steps.materialize.outcome == 'failure' || steps.publication.outcome == 'failure' || steps.validate_publication.outcome == 'failure' || steps.open_publication_pr.outcome == 'failure' || steps.acknowledge_publication.outcome == 'failure') }}
         shell: bash
         env:
           ORMA_PUBLICATION_PR_URL: ${{ steps.open_publication_pr.outputs.pr_url }}
         run: |
+          set -o pipefail
           stage="publication-automation"
           log="$RUNNER_TEMP/orma-publication-materialize.log"
           retryable="true"
-          if [ "${{ steps.validate_publication.outcome }}" = "failure" ]; then
+          if [ "${{ steps.publication.outcome }}" = "failure" ]; then
+            stage="publication-change-detection"
+            log="$RUNNER_TEMP/orma-publication-detection.log"
+          elif [ "${{ steps.validate_publication.outcome }}" = "failure" ]; then
             stage="website-validation"
             log="$RUNNER_TEMP/orma-publication-validation.log"
           elif [ "${{ steps.open_publication_pr.outcome }}" = "failure" ]; then
@@ -137,4 +156,50 @@ jobs:
           ORMA_AUTOMATION_FAILURE_STAGE="$stage" \
           ORMA_AUTOMATION_FAILURE_LOG="$log" \
           ORMA_AUTOMATION_FAILURE_RETRYABLE="$retryable" \
-          npm run backoffice:record-publication-failure
+          npm run backoffice:record-publication-failure 2>&1 | tee "$RUNNER_TEMP/orma-publication-failure-receipt.log"
+
+      - name: Record worker completion
+        if: ${{ always() }}
+        shell: bash
+        run: |
+          outcome="success"
+          stage=""
+          log=""
+          if [ "${{ steps.worker_start.outcome }}" = "failure" ]; then
+            outcome="failure"
+            stage="worker-health-start"
+            log="$RUNNER_TEMP/orma-worker-start.log"
+          elif [ "${{ steps.process_queues.outcome }}" = "failure" ]; then
+            outcome="failure"
+            stage="review-and-agent-queues"
+            log="$RUNNER_TEMP/orma-worker-queues.log"
+          elif [ "${{ steps.materialize.outcome }}" = "failure" ]; then
+            outcome="failure"
+            stage="publication-materialization"
+            log="$RUNNER_TEMP/orma-publication-materialize.log"
+          elif [ "${{ steps.publication.outcome }}" = "failure" ]; then
+            outcome="failure"
+            stage="publication-change-detection"
+            log="$RUNNER_TEMP/orma-publication-detection.log"
+          elif [ "${{ steps.validate_publication.outcome }}" = "failure" ]; then
+            outcome="failure"
+            stage="website-validation"
+            log="$RUNNER_TEMP/orma-publication-validation.log"
+          elif [ "${{ steps.open_publication_pr.outcome }}" = "failure" ]; then
+            outcome="failure"
+            stage="pull-request-creation"
+            log="$RUNNER_TEMP/orma-publication-pr.log"
+          elif [ "${{ steps.acknowledge_publication.outcome }}" = "failure" ]; then
+            outcome="failure"
+            stage="pull-request-receipt"
+            log="$RUNNER_TEMP/orma-publication-acknowledgement.log"
+          elif [ "${{ steps.publication_failure_receipt.outcome }}" = "failure" ]; then
+            outcome="failure"
+            stage="publication-failure-receipt"
+            log="$RUNNER_TEMP/orma-publication-failure-receipt.log"
+          fi
+          ORMA_WORKER_HEALTH_PHASE=finish \
+          ORMA_WORKER_HEALTH_OUTCOME="$outcome" \
+          ORMA_WORKER_FAILURE_STAGE="$stage" \
+          ORMA_WORKER_FAILURE_LOG="$log" \
+          npm run backoffice:worker:health

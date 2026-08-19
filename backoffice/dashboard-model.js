@@ -14,6 +14,29 @@
     const parsed=new Date(value).getTime();return Number.isNaN(parsed)?0:parsed;
   }
   function plural(count,singular,pluralForm=`${singular}s`){return `${count} ${count===1?singular:pluralForm}`;}
+  function minutesSince(value,nowMs){const at=dateMs(value);return at?Math.max(0,Math.floor((nowMs-at)/60000)):null;}
+  function deriveWorkerHealth(artifact,options={}){
+    const nowMs=options.nowMs??Date.now();
+    const expected=Number(artifact?.expectedIntervalMinutes||5);
+    const delayedAfter=Number(artifact?.delayAfterMinutes||15);
+    const staleAfter=Number(artifact?.staleAfterMinutes||30);
+    const runUrl=artifact?.workflowRunUrl||artifact?.lastFailure?.workflowRunUrl||null;
+    if(!artifact||!artifact.status)return {state:'unknown',label:'No heartbeat',title:'Worker health is not available yet',message:'No protected worker heartbeat has been recorded. Saved decisions remain safe, but automation timing cannot be verified.',runUrl:null,ageMinutes:null,expectedIntervalMinutes:expected};
+    if(artifact.status==='running'){
+      const ageMinutes=minutesSince(artifact.startedAt,nowMs);
+      if(ageMinutes!==null&&ageMinutes>=staleAfter)return {state:'stale',label:'Run appears stuck',title:'ORMA automation has exceeded its run window',message:`Run ${artifact.runId||'unknown'} started ${ageMinutes} minutes ago and has not recorded completion. Inspect the run before submitting anything again.`,runUrl,ageMinutes,expectedIntervalMinutes:expected};
+      return {state:'running',label:'Agents working',title:'ORMA automation is running now',message:`Run ${artifact.runId||'unknown'} started ${ageMinutes??0} minute${ageMinutes===1?'':'s'} ago. This page will refresh when it completes.`,runUrl,ageMinutes,expectedIntervalMinutes:expected};
+    }
+    if(artifact.status==='failed'){
+      const failure=artifact.lastFailure||{};const ageMinutes=minutesSince(artifact.completedAt||failure.failedAt,nowMs);
+      return {state:'failed',label:'Action needed',title:`Worker failed at ${String(failure.stage||'execution').replace(/-/g,' ')}`,message:failure.message||'The latest worker run failed without a captured diagnostic.',runUrl,ageMinutes,expectedIntervalMinutes:expected,consecutiveFailures:Number(artifact.consecutiveFailures||1)};
+    }
+    const completedAt=artifact.lastSuccessfulAt||artifact.completedAt;const ageMinutes=minutesSince(completedAt,nowMs);
+    if(ageMinutes===null)return {state:'unknown',label:'Incomplete heartbeat',title:'Worker completion time is missing',message:'The protected heartbeat exists but has no successful completion time.',runUrl,ageMinutes,expectedIntervalMinutes:expected};
+    if(ageMinutes>=staleAfter)return {state:'stale',label:'Worker stale',title:'No recent successful worker run',message:`The last success was ${ageMinutes} minutes ago. The schedule target is every ${expected} minutes; saved decisions are safe but are not advancing.`,runUrl,ageMinutes,expectedIntervalMinutes:expected};
+    if(ageMinutes>=delayedAfter)return {state:'delayed',label:'Scheduler delayed',title:'The next worker run is late',message:`The last success was ${ageMinutes} minutes ago. GitHub has exceeded ORMA’s ${expected}-minute schedule target; no decision needs to be submitted again.`,runUrl,ageMinutes,expectedIntervalMinutes:expected};
+    return {state:'healthy',label:'Healthy',title:'ORMA automation is responding',message:`The last successful run completed ${ageMinutes} minute${ageMinutes===1?'':'s'} ago. Schedule target: every ${expected} minutes.`,runUrl,ageMinutes,expectedIntervalMinutes:expected};
+  }
   function latestPublicationState(history,requests){
     const latest=new Map();
     const records=[
@@ -30,7 +53,7 @@
   }
   function activityMessage(item){
     const status=item.status||'queued';
-    if(status==='queued')return 'Saved in Firestore. ORMA automation will collect this within five minutes; you may close the page.';
+    if(status==='queued')return 'Saved in Firestore. ORMA automation will collect this on its next successful run; current worker health is shown above.';
     if(status==='superseded')return 'Replaced safely by your later decision.';
     if(status==='blocked')return 'ORMA automation could not complete this handoff; it needs attention.';
     if(status==='publication-failed')return `Publication stopped at ${(item.failureStage||'automation').replace(/-/g,' ')}. Your approval is retained and the failure receipt is linked.`;
@@ -53,7 +76,7 @@
   function buildDashboardModel(input={}){
     const orchestration=input.orchestration||{};const dossiers=input.dossiers||{};const execution=input.execution||{};
     const publication=input.publication||{};const publicationRequests=input.publicationRequests||{requests:[]};
-    const history=input.history||[];const allJobs=input.jobs||[];
+    const history=input.history||[];const allJobs=input.jobs||[];const workerHealth=deriveWorkerHealth(input.workerHealth,input.nowMs==null?{}:{nowMs:input.nowMs});
     const jobs=allJobs.filter(job=>job.jobType==='trail-verification-specialist'||job.jobType==='verified-trail-editorial-revision'||String(job.id||'').startsWith('trail-revision-'));
     const activeJobs=jobs.filter(job=>ACTIVE_JOB_STATES.has(job.status));
     const names=new Map();
@@ -125,7 +148,7 @@
     }
     const activity=[...activityById.values()].sort((a,b)=>b.at-a.at).slice(0,8).map(item=>({...item,message:activityMessage(item)}));
     return {
-      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,publicationInFlight,handoffsInFlight,automationFailures,
+      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,publicationInFlight,handoffsInFlight,automationFailures,workerHealth,
       blockerCount:blockedCandidates.size,trackedTrails:orchestration.summary?.trails||(orchestration.trails||[]).length,
       summary:{needsYou:decisions.length,agentWork:activeJobs.length,blockers:blockedCandidates.size,prsReady:prItems.length},
       pipeline:[
@@ -137,5 +160,5 @@
       ],
     };
   }
-  return {buildDashboardModel,dateMs,latestPublicationState,activityMessage,candidateFromActivity};
+  return {buildDashboardModel,dateMs,deriveWorkerHealth,latestPublicationState,activityMessage,candidateFromActivity};
 });

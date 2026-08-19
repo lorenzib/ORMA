@@ -135,8 +135,13 @@ job lifecycle; and `backofficeReviews` contains immutable moderator decisions.
 Client rules permit moderators to read state and append decisions, but only the
 Admin SDK worker can change an artifact or job status.
 
-`.github/workflows/orma-backoffice-worker.yml` runs every five minutes and may
-also be started with **Run workflow** in GitHub Actions. It claims jobs with a
+`.github/workflows/orma-backoffice-worker.yml` has a five-minute GitHub schedule
+target and may also be started with **Run workflow** in GitHub Actions. GitHub
+can delay scheduled starts, so the worker writes a protected `worker-health`
+artifact at run start and completion. Backoffice Home classifies the real
+heartbeat as healthy, running, delayed, stale or failed and links the exact
+workflow run; it never treats the cron expression as proof that work ran. The
+worker claims jobs with a
 lease, runs the appropriate specialist through the OpenAI Responses API,
 validates the structured result against the locked dossier, and records either
 `ready-for-review`, a delayed retry, or `blocked`. An expired running lease is
