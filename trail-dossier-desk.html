@@ -7,12 +7,13 @@
   <title>Trail Verification Desk | ORMA</title>
   <link rel="icon" href="favicon-32.png" sizes="32x32">
   <link rel="stylesheet" href="styles.css?v=20260818-10">
-  <link rel="stylesheet" href="backoffice-review.css?v=20260819-8">
+  <link rel="stylesheet" href="backoffice-review.css?v=20260819-11">
   <script>document.documentElement.classList.add('bo-auth-pending')</script>
 </head>
 <body class="bo-shell">
-  <header class="bo-header"><a href="backoffice-review.html" class="bo-brand">🐾 ORMA</a><span>Trail verification</span><button class="bo-sign-out" type="button" data-backoffice-sign-out>Sign out</button></header>
+  <header class="bo-header"><a href="backoffice-review.html" class="bo-brand"><span aria-hidden="true">🐾</span><span><strong>ORMA</strong><small>Backoffice</small></span></a><nav class="bo-primary-nav" aria-label="Backoffice navigation"><a href="backoffice-review.html">Home</a><a href="trail-dossier-desk.html" aria-current="page">Trail evidence</a><a href="trail-content-desk.html">Content &amp; release</a></nav><a class="bo-help-link" href="backoffice-review.html#automationExplainer">How automation works</a><button class="bo-sign-out" type="button" data-backoffice-sign-out>Sign out</button></header>
   <main class="bo-main bo-dossier-desk">
+    <nav class="bo-breadcrumb" aria-label="Breadcrumb"><a href="backoffice-review.html">Backoffice Home</a><span aria-hidden="true">›</span><a href="backoffice-review.html#existing-trails">Existing Trails</a><span aria-hidden="true">›</span><span aria-current="page">Stages 1–2 · Evidence and agent work</span></nav>
     <div class="bo-title-row">
       <div>
         <p class="eyebrow">Private backoffice · evidence before content</p>
@@ -21,15 +22,10 @@
       </div>
       <button id="refreshDossiers" class="bo-select-all" type="button">Refresh status</button>
     </div>
-    <nav class="bo-sections" aria-label="Backoffice pages">
-      <a href="backoffice-review.html">All workflows ↗</a>
-      <a href="trail-content-desk.html">Verified trail content ↗</a>
-      <span class="bo-hosted-separation">Guide editing remains in the separate Editorial flow.</span>
-    </nav>
     <div id="dossierState" class="bo-state" role="status" aria-live="polite">Loading trail verification dossiers…</div>
     <section class="bo-content-desk" aria-labelledby="workflowTitle">
       <div class="bo-content-head">
-        <div><p class="eyebrow">Live orchestration</p><h2 id="workflowTitle">Fleet status</h2><p>Queued and active work updates automatically. Human gates remain open until you decide.</p></div>
+        <div><p class="eyebrow">Live orchestration</p><h2 id="workflowTitle">Fleet status</h2><p>Saved decisions are collected by ORMA automation within five minutes. Agent work and human gates then update here automatically.</p></div>
       </div>
       <div id="fleetSummary" class="bo-campaign-metrics"></div>
       <ol id="agentActivity" class="bo-revision-jobs"></ol>
@@ -42,6 +38,6 @@
   <script type="module" src="firebase-init.js"></script>
   <script src="backoffice-auth-guard.js?v=20260819-1"></script>
   <script src="backoffice-session.js?v=20260819-1"></script>
-  <script src="trail-dossier-desk.js?v=20260819-2"></script>
+  <script src="trail-dossier-desk.js?v=20260819-3"></script>
 </body>
 </html>
