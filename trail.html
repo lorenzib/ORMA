@@ -666,6 +666,128 @@ body{background:#EFECE2;}
   .td2-rev-actions{flex-wrap:wrap;justify-content:flex-end;}
   .td2 #td2Hazards:not(.has-active),.td2-community-card.is-empty{padding:16px;}
 }
+
+/* ============================================================
+   MAP-LED TRAIL DETAIL
+   Header = identity, compact facts, weather and actions.
+   Workspace = map left; dog fit and elevation right.
+   Lower grid = story and community left; hazards and access right.
+   ============================================================ */
+.td2-hero{isolation:isolate;}
+.td2-hero-photo{z-index:-2;}
+.td2-hero-veil{z-index:-1;background:linear-gradient(90deg,rgba(24,39,29,.94) 0%,rgba(24,39,29,.78) 48%,rgba(24,39,29,.56) 100%);}
+.td2-hero-in{padding:26px 34px 30px;}
+.td2-hero-copy{margin-top:30px;max-width:100%;}
+.td2-hero #trailName{max-width:900px;font-size:clamp(36px,5vw,58px);line-height:.98;letter-spacing:-.035em;}
+.td2-hero .td2-tags{margin-bottom:13px;}
+.td2-hero #heroVerdict[hidden]{display:none;}
+
+/* Dense facts immediately under the title. The dog fit has a dedicated card
+   beside the map, so the old match cell does not compete in the header. */
+.td2-hero .td2-stat{display:flex;align-items:center;flex-wrap:wrap;gap:0;margin:15px 0 0;border:0;}
+.td2-hero .td2-stat .f{display:inline-flex;align-items:baseline;gap:5px;flex:0 0 auto;padding:0 14px;color:#EAF1E8;}
+.td2-hero .td2-stat .f:first-child{padding-left:0;}
+.td2-hero .td2-stat .f+.f{border-left:1px solid rgba(255,255,255,.28);}
+.td2-hero .td2-stat .f b{display:inline;font-size:15px;line-height:1.2;letter-spacing:0;}
+.td2-hero .td2-stat .f span{display:inline;margin:0;color:#D5DDD6;font-size:11.5px;}
+.td2-hero .td2-stat #statMatch{display:none!important;}
+
+/* Weather sits in the image header and expands in place. */
+.td2-hero-weather{display:flex;align-items:flex-start;gap:10px;margin-top:20px;max-width:900px;}
+.td2-hero-weather .td2-cond,.td2-hero-weather .td2-fc6{box-sizing:border-box;border:1px solid rgba(255,255,255,.22);border-radius:13px;background:rgba(20,34,25,.66);color:#fff;backdrop-filter:blur(10px);}
+.td2-hero-weather .td2-cond{flex:1;padding:13px 15px;}
+.td2-hero-weather .td2-fc6{width:210px;padding:13px 15px;}
+.td2-hero-weather .td2-kick{color:#DCE6DE;}
+.td2-hero-weather #sideFcValley{margin-left:5px;color:#B9C9BD;text-transform:none;letter-spacing:0;font-weight:600;}
+.td2-cond-facts{display:flex;align-items:center;gap:0;margin-top:10px;}
+.td2-hero-weather .td2-cond-row{display:flex;align-items:center;gap:7px;margin:0;padding:0 13px;color:#EAF1E8;font-size:11.5px;}
+.td2-hero-weather .td2-cond-row:first-child{padding-left:0;}
+.td2-hero-weather .td2-cond-row+.td2-cond-row{border-left:1px solid rgba(255,255,255,.22);}
+.td2-hero-weather .td2-cond-row b{color:#fff;}
+.td2-hero-weather .td2-cond-window{margin:9px 0 0;padding:9px 0 0;border-color:rgba(255,255,255,.16);color:#C7D4CA;}
+.td2-hero-weather .td2-cond-window strong{color:#fff;}
+.td2-hero-weather .td2-summary-action{color:#BCE0EE;}
+.td2-hero-weather .td2-fc6-body{border-color:rgba(255,255,255,.18);}
+.td2-hero-weather .td2-fcday .d,.td2-hero-weather .td2-fcday .tp,.td2-hero-weather .td2-fc6-note{color:#EAF1E8;}
+
+/* One action shelf. Links are presented as real controls, and the offline
+   package joins the same shelf when a package is available. */
+.td2-hero-actions{align-items:flex-start;gap:8px;margin-top:18px;padding:0;max-width:100%;}
+.td2-actrow{position:relative;display:flex;flex-wrap:wrap;justify-content:flex-start;gap:8px;}
+.td2-hero .td2-btn-g,.td2-hero .td2-btn-p,.td2-hero .td2-textlink{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;box-sizing:border-box;padding:9px 13px;border:1px solid rgba(255,255,255,.3);border-radius:10px;background:rgba(20,34,25,.52);color:#fff;font:700 12px 'Inter',sans-serif;text-decoration:none;backdrop-filter:blur(8px);}
+.td2-hero .td2-btn-p{background:#3E7A91;border-color:#3E7A91;}
+.td2-hero .td2-textlink:hover,.td2-hero .td2-btn-g:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.55);}
+.td2-hero-actions .td-share-pop{left:auto;right:0;top:calc(100% + 7px);min-width:220px;}
+.td2-hero .trail-directions-status{max-width:600px;text-align:left;}
+.td2-hero .offline-package{width:auto;max-width:none;padding:0;border:0;background:none;}
+.td2-hero .offline-package-row{justify-content:flex-start;}
+.td2-hero .offline-package-row>strong{display:none;}
+.td2-hero .offline-package-status{margin:5px 0 0;text-align:left;}
+.td2-hero .offline-package .td2-btn-g{min-height:40px;}
+
+.td2-wrap{max-width:1240px;}
+.td2-workspace,.td2-lower-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(340px,.85fr);gap:20px;align-items:start;}
+.td2-workspace{margin-top:22px;}
+.td2-mapcard{margin:0;overflow:hidden;}
+.td2-mapcard .trail-map-box{height:clamp(560px,66vh,700px);}
+.td2-plan-stack,.td2-story,.td2-logistics{display:flex;flex-direction:column;gap:18px;min-width:0;}
+.td2-fit-shell{overflow:hidden;}
+.td2-fit-shell .recommendation-decision{margin:0;padding:22px;border:0;border-left:5px solid #7A8A7D;border-radius:0;background:none;box-shadow:none;}
+.td2-fit-shell .recommendation-decision--strong{border-left-color:#4A7856;}
+.td2-fit-shell .recommendation-decision--caution{border-left-color:#BA7517;}
+.td2-fit-shell .recommendation-decision--stop{border-left-color:#9C3A25;}
+.td2-fit-shell .recommendation-head{display:block;}
+.td2-fit-shell .recommendation-head h2{font-size:25px;line-height:1.05;flex-wrap:wrap;}
+.td2-fit-shell .recommendation-confidence,.td2-fit-shell .recommendation-actions{display:none;}
+.td2-fit-shell .recommendation-evidence-link{display:inline-block;margin-top:8px;font-size:11.5px;}
+.td2-fit-shell .recommendation-columns{grid-template-columns:1fr;gap:8px;margin-top:15px;}
+.td2-fit-shell .recommendation-columns section{padding:12px 13px;}
+.td2-fit-shell .recommendation-columns ul{font-size:12px;line-height:1.45;}
+.td2-fit-shell .td2-safety-card{padding:18px 22px 21px;border-top:1px solid #EDE9DD;}
+.td2-fit-shell .td2-safety-card>.td2-kick{margin-bottom:8px;}
+.td2-fit-shell .dog-safety-rows{grid-template-columns:1fr;}
+.td2-fit-shell #trailGuideLinks ul{grid-template-columns:1fr;}
+.td2-fit-shell #trailGuideLinks a{padding:9px 11px;}
+.td2-plan-stack>.td2-elev{padding:18px 20px;border-top:0;}
+.td2-plan-stack #elevProf{height:108px;}
+.td2-plan-stack .td2-elev-figs{justify-content:space-between;gap:10px;}
+
+.td2-lower-grid{margin-top:20px;}
+.td2-story .td2-about,.td2-story #td2PhotosCard,.td2-story #td2ReviewsCard{order:initial;}
+.td2-logistics{position:static;}
+.td2-logistics .td2-parking-grid{grid-template-columns:1fr;}
+.td2-story .trail-photos-list{grid-template-columns:repeat(3,minmax(0,1fr));}
+
+@media(max-width:980px){
+  .td2-workspace,.td2-lower-grid{grid-template-columns:1fr;}
+  .td2-workspace .td2-mapcard{order:1;}
+  .td2-workspace .td2-plan-stack{order:2;}
+  .td2-plan-stack{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);align-items:start;}
+  .td2-lower-grid .td2-story{order:1;}
+  .td2-lower-grid .td2-logistics{order:2;}
+  .td2-logistics{display:grid;grid-template-columns:1fr 1fr;align-items:start;}
+  .td2-mapcard .trail-map-box{height:58vh;min-height:440px;}
+}
+
+@media(max-width:700px){
+  .td2-hero-in{padding:20px 18px 24px;}
+  .td2-hero-copy{margin-top:22px;}
+  .td2-hero #trailName{font-size:36px;line-height:1.02;}
+  .td2-hero .td2-stat{row-gap:8px;}
+  .td2-hero .td2-stat .f{padding:0 9px;}
+  .td2-hero .td2-stat .f:nth-of-type(2){padding-left:0;border-left:0;}
+  .td2-hero-weather{display:block;}
+  .td2-hero-weather .td2-fc6{width:100%;margin-top:8px;}
+  .td2-cond-facts{flex-wrap:wrap;row-gap:9px;}
+  .td2-hero-weather .td2-cond-row{flex:1 1 auto;}
+  .td2-hero-actions{margin-top:14px;}
+  .td2-actrow{width:100%;}
+  .td2-hero .td2-btn-g,.td2-hero .td2-btn-p,.td2-hero .td2-textlink{flex:1 1 auto;}
+  .td2-wrap{padding-left:18px;padding-right:18px;}
+  .td2-plan-stack,.td2-logistics{display:flex;}
+  .td2-mapcard .trail-map-box{height:58vh;min-height:390px;}
+  .td2-story .trail-photos-list{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
 </style>
 </head>
 <body>
@@ -689,31 +811,50 @@ body{background:#EFECE2;}
     <div id="tdHeroVeil" class="td2-hero-veil" hidden></div>
     <div class="td2-hero-in">
       <a class="td2-back" id="tdBreadcrumb" href="browse-trails.html">← All trails</a>
-      <div class="td2-hero-row">
-        <div style="flex:1;min-width:280px;">
-          <div class="td2-tags">
-            <span id="verifiedSeal" hidden></span>
-            <span class="td-risk" id="tdRiskLine" hidden><span class="dot" id="tdRiskDot"></span><span id="tdRiskLabel"></span></span>
-            <div id="heroRating" class="td2-hero-rating" hidden></div>
+      <div class="td2-hero-copy">
+        <div class="td2-tags">
+          <span id="verifiedSeal" hidden></span>
+          <span class="td-risk" id="tdRiskLine" hidden><span class="dot" id="tdRiskDot"></span><span id="tdRiskLabel"></span></span>
+          <div id="heroRating" class="td2-hero-rating" hidden></div>
+        </div>
+        <h1 id="trailName" aria-busy="true"><span class="skeleton" style="width:min(260px,60vw);height:36px;display:inline-block;" aria-label="Loading trail"></span></h1>
+        <p id="heroVerdict" class="td2-hero-sub" hidden></p>
+
+        <!-- Compact route facts sit directly below the title. -->
+        <div id="trailFacts" class="td2-stat"></div>
+
+        <!-- Current weather belongs to the trail header; the week stays
+             available on demand instead of occupying the planning column. -->
+        <div class="td2-hero-weather">
+          <div class="td2-cond" id="tdConditions" hidden>
+            <div class="td2-kick">Today's conditions <span id="sideFcValley"></span></div>
+            <div class="td2-cond-facts">
+              <div class="td2-cond-row"><span>Temperature</span><b class="num" id="tdCondTemp">—</b></div>
+              <div class="td2-cond-row"><span>Paw comfort</span><span class="td2-badge" id="tdCondPaw">—</span></div>
+              <div class="td2-cond-row td2-cond-last"><span>Water sources</span><b id="tdCondWater">—</b></div>
+            </div>
+            <p class="td2-cond-window" id="sideCondWindow"></p>
           </div>
-          <h1 id="trailName" aria-busy="true"><span class="skeleton" style="width:min(260px,60vw);height:36px;display:inline-block;" aria-label="Loading trail"></span></h1>
-          <p id="heroVerdict" class="td2-hero-sub"></p>
+          <details class="td2-fc6" id="sideForecast" hidden>
+            <summary><span class="td2-kick">6-day forecast</span><span class="td2-summary-action">Show forecast</span></summary>
+            <div class="td2-fc6-body">
+              <div id="tdForecastDays"></div>
+              <p class="td2-fc6-note" id="tdForecastNote" hidden></p>
+            </div>
+          </details>
         </div>
 
-        <!-- match + actions (classes kept so trail.js guest/match logic still works) -->
+        <!-- Every primary trail action lives in the header. Classes and IDs
+             stay unchanged so the existing account, map and export handlers
+             continue to own behavior. -->
         <div class="td-actions td2-hero-actions">
           <div class="td2-actrow">
             <button id="detailSaveBtn" class="td2-btn-g" type="button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.4S4.2 14.5 4.2 9.2A4.3 4.3 0 0 1 12 6.6a4.3 4.3 0 0 1 7.8 2.6c0 5.3-7.8 11.2-7.8 11.2z"/></svg> Save</button>
-            <button id="heroStartHike" class="td2-btn-p" type="button" hidden><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Start the hike</button>
-          </div>
-          <div class="td2-linkrow">
-            <a id="getDirectionsBtn" class="td2-textlink" href="#"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>Get directions</a>
-            <span class="sep" aria-hidden="true">·</span>
-            <button id="detailShareBtn" class="td2-textlink" type="button" aria-haspopup="true" aria-expanded="false"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 11H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-2"></path><path d="M12 3v12"></path><path d="M8 7l4-4 4 4"></path></svg>Share</button>
-            <span class="sep" aria-hidden="true">·</span>
-            <a id="logWalkBtn" class="td2-textlink" href="journal.html">Log this walk</a>
-            <span class="sep" aria-hidden="true">·</span>
+            <button id="heroStartHike" class="td2-btn-p" type="button" hidden><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Start hike</button>
+            <a id="getDirectionsBtn" class="td2-textlink" href="#"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg>Directions</a>
+            <a id="logWalkBtn" class="td2-textlink" href="journal.html">Log walk</a>
             <button id="exportGpxBtn" class="td2-textlink" type="button">Export GPX</button>
+            <button id="detailShareBtn" class="td2-textlink" type="button" aria-haspopup="true" aria-expanded="false"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 11H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-2"></path><path d="M12 3v12"></path><path d="M8 7l4-4 4 4"></path></svg>Share</button>
             <div class="td-share-pop" id="tdSharePop" hidden>
               <button type="button" id="tdCopyLink">Copy link</button>
               <a id="tdShareSms" href="#">Message a walking buddy</a>
@@ -723,7 +864,7 @@ body{background:#EFECE2;}
           <span id="getDirectionsStatus" class="trail-directions-status" role="status" aria-live="polite"></span>
           <section id="offlinePackagePanel" class="offline-package" aria-labelledby="offlinePackageTitle" hidden>
             <div class="offline-package-row">
-              <strong id="offlinePackageTitle" data-i18n="offlinePanel.title" style="font-size:12px;color:#fff;margin-right:auto;">Offline map</strong>
+              <strong id="offlinePackageTitle" data-i18n="offlinePanel.title">Offline map</strong>
               <a id="offlineOpenBtn" class="offline-package-open" data-i18n="offlinePanel.action.open" href="offline/trail.html?id=lago-carezza" hidden>Open offline map</a>
               <button id="offlineTestBtn" class="td2-btn-g" data-i18n="downloads.action.test" type="button" hidden>Test offline</button>
               <button id="offlineRemoveBtn" class="td2-btn-g" data-i18n="downloads.action.remove" type="button" hidden>Remove</button>
@@ -733,15 +874,10 @@ body{background:#EFECE2;}
           </section>
         </div>
       </div>
-
-      <!-- stat strip (facts rendered by trail.js as .f cells) -->
-      <div id="trailFacts" class="td2-stat"></div>
     </div>
   </div>
 
   <div class="td2-wrap">
-
-    <section id="recommendationDecision" class="recommendation-decision" aria-live="polite" hidden></section>
 
     <!-- hidden legacy slots trail.js still writes into -->
     <div hidden>
@@ -773,7 +909,8 @@ body{background:#EFECE2;}
       </div>
     </div>
 
-    <!-- ============ DOMINANT MAP CARD + ELEVATION ============ -->
+    <!-- ============ MAP + DOG FIT / ELEVATION WORKSPACE ============ -->
+    <div class="td2-workspace">
     <div class="td2-card td2-mapcard">
       <div id="trailMapBox" class="trail-map-box">
         <div id="trailDetailMap"></div>
@@ -797,7 +934,20 @@ body{background:#EFECE2;}
           <button type="button" data-map3d aria-pressed="false">3D</button>
         </div>
       </div>
-      <div class="td2-elev" id="tdElevationPanel">
+    </div>
+
+    <aside class="td2-plan-stack" aria-label="Trail fit and elevation">
+      <div class="td2-card td2-fit-shell">
+        <section id="recommendationDecision" class="recommendation-decision" aria-live="polite" hidden></section>
+        <div class="td2-section td2-safety-card" id="td2SafetyCard">
+          <div class="td2-kick">Important for your dog<span id="td2SafetyDog"></span></div>
+          <p class="td-safety-intro">Heat, shade and the route cautions that matter for your dog.</p>
+          <div id="dogSafetyRows" class="dog-safety-rows"></div>
+          <div id="trailGuideLinks" class="trail-guide-links" hidden></div>
+        </div>
+      </div>
+
+      <div class="td2-card td2-elev" id="tdElevationPanel">
         <div class="td2-elev-head"><span class="td2-kick" id="tdElevH">Elevation</span><span class="td2-elev-status"><span class="td2-elev-live" id="tdElevLive">Awaiting position</span><span class="r" id="tdElevRange"></span></span></div>
         <svg id="elevProf" viewBox="0 0 1000 170" preserveAspectRatio="none"></svg>
         <div class="td2-elev-figs" id="tdElevFigs" hidden>
@@ -806,11 +956,12 @@ body{background:#EFECE2;}
           <div><strong id="tdElevClimb"></strong> total climb</div>
         </div>
       </div>
+    </aside>
     </div>
 
-    <!-- ============ BODY GRID ============ -->
-    <div class="td2-grid">
-      <div class="td2-col">
+    <!-- ============ BELOW-MAP CONTENT ============ -->
+    <div class="td2-lower-grid">
+      <div class="td2-story">
 
         <!-- ABOUT / THE ROUTE — slim: the human-readable description stays
              up here where it helps choose a trail; the technical data
@@ -822,22 +973,6 @@ body{background:#EFECE2;}
                trail.js cached; that version writes here before building the
                map and elevation profile. -->
           <div id="trailTags" hidden aria-hidden="true"></div>
-        </div>
-
-        <!-- ONLY THE ROUTE CAUTIONS THAT MATTER FOR A DOG -->
-        <div class="td2-card td2-section td2-safety-card" id="td2SafetyCard">
-          <div class="td2-kick" style="margin-bottom:10px;">Important for your dog<span id="td2SafetyDog"></span></div>
-          <p class="td-safety-intro">Only relevant route cautions are highlighted here. Check today’s conditions separately before setting out.</p>
-          <div id="dogSafetyRows" class="dog-safety-rows"></div>
-          <div id="trailGuideLinks" class="trail-guide-links" hidden></div>
-        </div>
-
-        <!-- PARKING & GETTING THERE -->
-        <div class="td2-card td2-section td2-parking" id="td2ParkingCard" hidden>
-          <div class="td2-kick" style="margin-bottom:14px;">Parking &amp; getting there</div>
-          <div class="td2-parking-grid" id="td2ParkingGrid"></div>
-          <a id="td2MapsLink" class="td2-maps-link" href="#" target="_blank" rel="noopener">Open in Maps →</a>
-          <span id="td2MapsStatus" class="parking-directions-status" role="status" aria-live="polite"></span>
         </div>
 
         <!-- PHOTOS -->
@@ -854,17 +989,8 @@ body{background:#EFECE2;}
 
       </div>
 
-      <!-- ============ SIDEBAR ============ -->
-      <aside class="td2-side" aria-label="Trail sidebar">
-        <!-- Today's conditions -->
-        <div class="td2-card td2-section td2-cond" id="tdConditions" hidden>
-          <div class="td2-kick" style="margin-bottom:14px;">Today's conditions <span id="sideFcValley" style="text-transform:none;letter-spacing:0;color:#8A9689;font-weight:600;"></span></div>
-          <div class="td2-cond-row"><span>Temperature</span><b class="num" id="tdCondTemp">—</b></div>
-          <div class="td2-cond-row"><span>Paw comfort</span><span class="td2-badge" id="tdCondPaw">—</span></div>
-          <div class="td2-cond-row td2-cond-last"><span>Water sources</span><b id="tdCondWater">—</b></div>
-          <p class="td2-cond-window" id="sideCondWindow"></p>
-        </div>
-
+      <!-- Hazards and access sit below the map in the right column. -->
+      <aside class="td2-logistics" aria-label="Trail hazards and access">
         <!-- Trail hazards (sidebar, per prototype) -->
         <div class="td2-card td2-section td2-hazard" id="td2Hazards">
           <div class="td2-hazard-head">
@@ -874,14 +1000,12 @@ body{background:#EFECE2;}
           <div id="trailFlagsList"><div class="empty-state empty-state--compact"><p class="empty-state__title">No recent hazard reports</p><p class="empty-state__copy">The community has not reported a current issue here. Conditions can still change.</p></div></div>
         </div>
 
-        <!-- 6-day forecast -->
-        <details class="td2-card td2-section td2-fc6" id="sideForecast" hidden>
-          <summary><span class="td2-kick">6-day forecast</span><span class="td2-summary-action">Show forecast</span></summary>
-          <div class="td2-fc6-body">
-            <div id="tdForecastDays"></div>
-            <p class="td2-fc6-note" id="tdForecastNote" hidden></p>
-          </div>
-        </details>
+        <div class="td2-card td2-section td2-parking" id="td2ParkingCard">
+          <div class="td2-kick" style="margin-bottom:14px;">Getting there</div>
+          <div class="td2-parking-grid" id="td2ParkingGrid"></div>
+          <a id="td2MapsLink" class="td2-maps-link" href="#" target="_blank" rel="noopener" hidden>Open in Maps →</a>
+          <span id="td2MapsStatus" class="parking-directions-status" role="status" aria-live="polite"></span>
+        </div>
       </aside>
     </div>
 
@@ -1004,11 +1128,11 @@ body{background:#EFECE2;}
 <script src="detail-pois.js?v=20260819-2" defer></script>
 <script src="trail-reports.js?v=20260815-4" defer></script>
 <script src="trail.js?v=20260819-3" defer></script>
-<script src="trail-blueprint.js?v=20260819-3" defer></script>
+<script src="trail-blueprint.js?v=20260819-4" defer></script>
 <script src="trail-detail-ui.js?v=20260815-4" defer></script>
 <script src="trail-mobile.js?v=20260815-4" defer></script>
 <script src="recommendation-decision.js?v=20260815-4" defer></script>
 <script src="recommendation-guides.js?v=20260815-4" defer></script>
-<script src="trail-recommendation.js?v=20260819-3" defer></script>
+<script src="trail-recommendation.js?v=20260819-4" defer></script>
 </body>
 </html>

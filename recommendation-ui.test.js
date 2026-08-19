@@ -91,6 +91,7 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(guideLinks.parentElement.id).toBe('td2SafetyCard');
     expect(guideLinks.textContent).toContain('Safety guides');
     expect(guideLinks.textContent).not.toContain('Read before you go');
+    expect(guideLinks.textContent).toContain('Read more:');
     expect(guideLinks.textContent).toContain('Recognising overheating early');
     // Calm data-completeness chip instead of "low confidence" jargon.
     expect(block.textContent).toContain('Based on partial data');
