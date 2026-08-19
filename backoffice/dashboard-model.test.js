@@ -24,7 +24,7 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.decisions.some(item=>item.title==='Worker Trail')).toBe(false);
     expect(model.publicationInFlight).toBe(1);
     expect(model.summary).toEqual({needsYou:2,agentWork:0,blockers:0,prsReady:1});
-    expect(model.activity).toEqual(expect.arrayContaining([expect.objectContaining({status:'queued',message:expect.stringContaining('within five minutes')})]));
+    expect(model.activity).toEqual(expect.arrayContaining([expect.objectContaining({status:'queued',message:expect.stringContaining('next successful run')})]));
   });
 
   test('each evidence decision names its trail and explains the automatic handoff',()=>{
@@ -43,7 +43,7 @@ describe('CEO dashboard workflow model',()=>{
     });
     expect(model.decisions).toHaveLength(0);
     expect(model.handoffsInFlight).toBe(1);
-    expect(model.activity[0]).toEqual(expect.objectContaining({status:'queued',message:expect.stringContaining('within five minutes')}));
+    expect(model.activity[0]).toEqual(expect.objectContaining({status:'queued',message:expect.stringContaining('next successful run')}));
     expect(model.pipeline[0]).toEqual(expect.objectContaining({owner:'System',status:'1 decision being handed off'}));
   });
 
@@ -67,5 +67,18 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.summary).toEqual({needsYou:0,agentWork:0,blockers:1,prsReady:0});
     expect(model.activity[0]).toEqual(expect.objectContaining({status:'publication-failed',message:expect.stringContaining('approval is retained')}));
     expect(model.pipeline[3].status).toContain('blocked with a saved failure receipt');
+  });
+
+  test.each([
+    ['healthy',{status:'healthy',lastSuccessfulAt:'2026-08-19T20:58:00Z'},'healthy'],
+    ['running',{status:'running',runId:'123',startedAt:'2026-08-19T20:56:00Z',workflowRunUrl:'https://github.com/orma/actions/runs/123'},'running'],
+    ['delayed',{status:'healthy',lastSuccessfulAt:'2026-08-19T20:42:00Z'},'delayed'],
+    ['stale',{status:'healthy',lastSuccessfulAt:'2026-08-19T20:20:00Z'},'stale'],
+    ['stuck run',{status:'running',runId:'123',startedAt:'2026-08-19T20:20:00Z'},'stale'],
+    ['failed',{status:'failed',completedAt:'2026-08-19T20:59:00Z',consecutiveFailures:2,lastFailure:{stage:'pull-request-creation',message:'GitHub denied PR creation.',workflowRunUrl:'https://github.com/orma/actions/runs/123'}},'failed'],
+  ])('classifies %s worker health honestly',(_label,workerHealth,state)=>{
+    const model=buildDashboardModel({orchestration:{trails:[]},dossiers:{items:[]},publication:{items:[]},jobs:[],history:[],workerHealth,nowMs:new Date('2026-08-19T21:00:00Z').getTime()});
+    expect(model.workerHealth.state).toBe(state);
+    if(state==='failed')expect(model.workerHealth).toEqual(expect.objectContaining({consecutiveFailures:2,runUrl:'https://github.com/orma/actions/runs/123'}));
   });
 });

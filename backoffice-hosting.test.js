@@ -23,13 +23,13 @@ describe('separate Firebase backoffice Hosting package',()=>{
 
   test('hosted dossier desk requests the current revision-control asset',()=>{
     const html=fs.readFileSync(path.join(output,'trail-dossier-desk.html'),'utf8');
-    expect(html).toContain('trail-dossier-desk.js?v=20260819-3');
+    expect(html).toContain('trail-dossier-desk.js?v=20260819-4');
   });
 
   test('hosted trail content desk requests the durable publication receipt asset',()=>{
     const html=fs.readFileSync(path.join(output,'trail-content-desk.html'),'utf8');
-    expect(html).toContain('backoffice/content-receipt-model.js?v=20260819-2');
-    expect(html).toContain('trail-content-desk.js?v=20260819-5');
+    expect(html).toContain('backoffice/content-receipt-model.js?v=20260819-3');
+    expect(html).toContain('trail-content-desk.js?v=20260819-6');
   });
 
   test('hosted dashboard exposes only protected trail desk links',()=>{
@@ -37,8 +37,10 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('One linear trail workflow');
     expect(html).toContain('What happened after your clicks');
     expect(html).toContain('What ORMA automation does');
-    expect(html).toContain('backoffice/dashboard-model.js?v=20260819-3');
-    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260819-4');
+    expect(html).toContain('backoffice-review.css?v=20260819-12');
+    expect(html).toContain('id="workerHealth"');
+    expect(html).toContain('backoffice/dashboard-model.js?v=20260819-4');
+    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260819-5');
     expect(html).toContain('href="trail-dossier-desk.html"');
     expect(html).not.toMatch(/href="(?:content|new-trail-scouting|hazard-review|image-coverage|newsletter|social|product-ideas)-desk\.html"/);
   });
@@ -76,5 +78,15 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(firebase.hosting.target).toBe('backoffice');
     expect(targets.dolopaws.hosting.backoffice).toEqual(['dolopaws-backoffice']);
     expect(workflow).toContain('deploy --only hosting:backoffice');
+  });
+
+  test('scheduled worker records a durable start and always-run completion receipt',()=>{
+    const workflow=fs.readFileSync(path.join(__dirname,'.github/workflows/orma-backoffice-worker.yml'),'utf8');
+    expect(workflow).toContain('name: Record worker start');
+    expect(workflow).toContain('ORMA_WORKER_HEALTH_PHASE=start');
+    expect(workflow).toContain('name: Record worker completion');
+    expect(workflow).toContain('if: ${{ always() }}');
+    expect(workflow).toContain('ORMA_WORKER_HEALTH_PHASE=finish');
+    expect(workflow).toContain('ORMA_WORKER_FAILURE_STAGE="$stage"');
   });
 });

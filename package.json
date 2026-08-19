@@ -48,6 +48,7 @@
     "backoffice:build-route-proposals": "node scripts/build-route-proposals.js",
     "backoffice:review": "node scripts/serve-backoffice.js",
     "backoffice:worker:live": "node backoffice/cli/live-worker.js",
+    "backoffice:worker:health": "node backoffice/cli/record-worker-health.js",
     "backoffice:seed:live": "node backoffice/cli/seed-live-state.js",
     "backoffice:materialize-publications": "node backoffice/cli/materialize-publications.js",
     "backoffice:record-publication-failure": "node backoffice/cli/record-publication-failure.js",

@@ -28,7 +28,7 @@
     if(!stillNeedsApproval(output,staging))return 'Approved and processed. This output has advanced to the next trail gate.';
     if(!receipt)return '';
     const action=receipt.decision.action.replace(/-/g,' ');const status=receipt.review.status||'queued';const at=dateMs(receipt.review.processedAt||receipt.review.submittedAt);const timestamp=at?formatDate(at):'recorded in Firestore';
-    if(status==='queued')return `${action} saved in Firestore ${timestamp}. ORMA automation will collect it within five minutes; you may close this page. Do not click again.`;
+    if(status==='queued')return `${action} saved in Firestore ${timestamp}. ORMA automation will collect it on its next successful run; Backoffice Home shows live health. You may close this page. Do not click again.`;
     if(status==='blocked')return `${action} could not be processed. The submission is retained and needs operator attention; do not submit a duplicate.`;
     const revision=latestRevision(output,jobs);
     if(receipt.decision.action==='request-revision'&&revision?.status==='blocked')return `Revision blocked after ${timestamp}. The submission is retained and needs operator attention.`;
