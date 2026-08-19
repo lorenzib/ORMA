@@ -75,7 +75,7 @@ The derived display states are:
   confirmations than disputes;
 - **Disputed by the community:** at least two disputes and disputes are not
   outnumbered by confirmations;
-- **Reviewed by ORMA:** explicitly selected by a moderator; and
+- **Verified by ORMA:** explicitly selected by a moderator; and
 - **Confirmed by an official source:** explicitly selected by a moderator.
 
 Official and ORMA labels take precedence over aggregate community wording,

@@ -292,7 +292,7 @@ function trailPage(t, slug, all) {
     : progress
       ? progress.length === REVIEW_CATEGORIES.length
       : verified;
-  const reviewLabel = fullyReviewed ? 'Reviewed by ORMA' : 'Trail overview';
+  const reviewLabel = fullyReviewed ? 'Verified by ORMA' : 'Imported trail';
   const reviewStyle = fullyReviewed ? 'verified' : 'imported';
   const badge = `<span class="dp-badge dp-badge--${reviewStyle}"><span data-dp-icon="${reviewStyle}" data-dp-icon-size="13" aria-hidden="true"></span><span>${reviewLabel}</span></span>`;
 
