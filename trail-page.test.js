@@ -146,6 +146,7 @@ describe('trail page map controls', () => {
     expect(about).not.toBeNull();
     expect(about.querySelector('.td2-kick').textContent.trim()).toBe('About this trail');
     expect(about.querySelector('#matchDescription')).not.toBeNull();
+    expect(about.querySelector('#trailTags')).toBeNull();
   });
 
   test('conditions lead the sidebar and safety reading follows the trail description', () => {
@@ -154,10 +155,10 @@ describe('trail page map controls', () => {
 
     const mainColumn = document.querySelector('.td2-col');
     const about = mainColumn.querySelector('.td2-about');
-    const guides = mainColumn.querySelector('#trailGuideLinks');
     const safety = mainColumn.querySelector('#td2SafetyCard');
-    expect(about.nextElementSibling).toBe(guides);
-    expect(guides.nextElementSibling).toBe(safety);
+    const guides = safety.querySelector('#trailGuideLinks');
+    expect(about.nextElementSibling).toBe(safety);
+    expect(guides).not.toBeNull();
 
     const sidebar = document.querySelector('.td2-side');
     expect(sidebar.firstElementChild.id).toBe('tdConditions');
@@ -172,8 +173,8 @@ describe('trail page map controls', () => {
     expect(html).toContain('.td2 #tdConditions{order:1;}');
     expect(html).toContain('.td2 #td2Hazards{order:2;}');
     expect(html).toContain('.td2 #td2AboutCard{order:3;}');
-    expect(html).toContain('.td2 #td2SafetyCard{order:5;}');
-    expect(html).toContain('.td2 #sideForecast{order:7;}');
+    expect(html).toContain('.td2 #td2SafetyCard{order:4;}');
+    expect(html).toContain('.td2 #sideForecast{order:6;}');
   });
 
   test('the personalised match links to the scoring explanation', () => {

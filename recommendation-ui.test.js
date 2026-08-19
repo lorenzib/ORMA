@@ -57,7 +57,7 @@ describe('UX-04 canonical recommendation journey', () => {
       '<button id="detailSaveBtn">Save</button>' +
       '<section id="offlinePackagePanel" hidden></section>' +
       '<button id="offlineDownloadBtn">Download</button>' +
-      '<aside id="trailGuideLinks" hidden></aside>' +
+      '<section id="td2SafetyCard"><div id="trailGuideLinks" hidden></div></section>' +
       '<details id="trailEvidence"></details>' +
       '<section id="recommendationDecision" hidden></section>';
     window.history.replaceState(null, '', '/trail.html?id=demo-loop');
@@ -88,6 +88,9 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(block.textContent).toContain('Shade is limited.');
     const guideLinks = document.getElementById('trailGuideLinks');
     expect(guideLinks.hidden).toBe(false);
+    expect(guideLinks.parentElement.id).toBe('td2SafetyCard');
+    expect(guideLinks.textContent).toContain('Safety guides');
+    expect(guideLinks.textContent).not.toContain('Read before you go');
     expect(guideLinks.textContent).toContain('Recognising overheating early');
     // Calm data-completeness chip instead of "low confidence" jargon.
     expect(block.textContent).toContain('Based on partial data');
