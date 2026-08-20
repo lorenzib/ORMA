@@ -46,4 +46,11 @@ describe('private ORMA backoffice authentication',()=>{
     const styles=fs.readFileSync(path.join(root,'backoffice-review.css'),'utf8');
     expect(styles).not.toContain('html.bo-auth-pending body{visibility:hidden}');
   });
+
+  test('cache-busts the hosted Firebase module',()=>{
+    const login=fs.readFileSync(path.join(root,'backoffice-hosted-login.html'),'utf8');
+    const build=fs.readFileSync(path.join(root,'scripts/build-backoffice-hosting.js'),'utf8');
+    expect(login).toContain('backoffice-firebase.js?v=20260820-1');
+    expect(build).toContain('backoffice-firebase.js?v=20260820-1');
+  });
 });
