@@ -21,7 +21,7 @@ describe('trail photo provenance', () => {
       });
   });
 
-  test('only exposes curated repository photos and carries their credit into the caption', () => {
+  test('only exposes curated repository photos and uses the community caption', () => {
     const photos = provenance.editorialPhotos({
       editorialPhotos:[
         {
@@ -44,8 +44,6 @@ describe('trail photo provenance', () => {
       status:'approved',
     });
     expect(provenance.photoAlt(photos[0])).toBe('Tre Cime from the circuit trail');
-    expect(provenance.photoCaption(photos[0])).toBe(
-      'Tre Cime di Lavaredo from the circuit trail · Photo: Benedetta Lorenzi · ORMA original'
-    );
+    expect(provenance.photoCaption(photos[0])).toBe('Shared by the ORMA community');
   });
 });

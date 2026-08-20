@@ -24,10 +24,12 @@
 
   function photoCaption(photo){
     const dog=photo?.dogContext?.name;
-    const caption=clean(photo?.caption,500)||(dog?`Shared by ${dog}’s human`:'Shared by the ORMA community');
+    const caption=photo?.isEditorial
+      ? 'Shared by the ORMA community'
+      : (clean(photo?.caption,500)||(dog?`Shared by ${dog}’s human`:'Shared by the ORMA community'));
     const credit=normalizeCredit(photo?.credit,photo?.creditUrl);
     const status=photo?.status==='reported'?'Reported, under review':'';
-    return [caption,credit?.label,status].filter(Boolean).join(' · ');
+    return [caption,photo?.isEditorial?'':credit?.label,status].filter(Boolean).join(' · ');
   }
 
   function photoAlt(photo){return clean(photo?.alt,500)||clean(photo?.caption,500)||'Trail photograph';}
