@@ -20,6 +20,19 @@ const EDIT_SCHEMA = {
   }, required: ['title', 'summary', 'changes', 'sources', 'openQuestions'],
 };
 
+const PICTURE_SCHEMA={
+  type:'object',additionalProperties:false,
+  properties:{
+    searchSummary:{type:'string'},
+    candidates:{type:'array',items:{type:'object',additionalProperties:false,properties:{
+      title:{type:'string'},sourcePageUrl:{type:'string'},assetUrl:{type:'string'},creator:{type:'string'},
+      license:{type:'string'},licenseUrl:{type:'string'},credit:{type:'string'},matchEvidence:{type:'string'},
+      altText:{type:'string'},status:{type:'string',enum:['ready','blocked']},
+    },required:['title','sourcePageUrl','assetUrl','creator','license','licenseUrl','credit','matchEvidence','altText','status']}},
+    coverageGaps:{type:'array',items:{type:'string'}},
+  },required:['searchSummary','candidates','coverageGaps'],
+};
+
 function visibleText(html){
   return html.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ')
     .replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')
@@ -78,4 +91,4 @@ async function runGuideContent(root, options = {}){
   return execution;
 }
 
-module.exports = { EDIT_SCHEMA, visibleText, guideInventory, runGuideContent };
+module.exports = { EDIT_SCHEMA, PICTURE_SCHEMA, visibleText, guideInventory, runGuideContent };

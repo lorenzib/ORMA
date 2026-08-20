@@ -36,8 +36,8 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
   const decisions = latestDecisions(reviewQueue);
   const outputs = new Map((execution?.outputs || []).map(output => [output.jobId, output]));
   const items = editorialQueue.items.map(item => {
-    const target = TARGETS[item.candidateId];
-    if(!target) throw new Error(`No website target mapping for ${item.candidateId}`);
+    const target = TARGETS[item.candidateId]||(item.targetTrailId?{trailId:item.targetTrailId,operation:'update-existing',routeRef:null}:null);
+    const verifiedFields=VERIFIED_FIELDS[item.candidateId]||null;
     const copyJobId = `verified-${item.candidateId}-copy`;
     const visualJobId = `verified-${item.candidateId}-visual`;
     const copyDecision = decisions.get(copyJobId) || null;
@@ -45,18 +45,19 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
     const copyApproved = copyDecision?.action === 'approve';
     const visualApproved = visualDecision?.action === 'approve';
     const missingApprovals = [!copyApproved && 'editorial-approval', !visualApproved && 'asset-and-licensing-approval'].filter(Boolean);
+    const publicationMappingBlockers=[!target&&'website-target-mapping',!verifiedFields&&'structured-website-fields'].filter(Boolean);
     const copyOutput = outputs.get(copyJobId);
     const visualOutput = outputs.get(visualJobId);
     const hero = visualOutput?.result?.candidates?.find(candidate => candidate.status === 'ready') || null;
     const about = section(copyOutput?.result, 'About the trail');
     const dog = section(copyOutput?.result, 'Why it suits dogs');
     const practical = section(copyOutput?.result, 'Important practical notes');
+    const state=missingApprovals.length?'waiting-content-approvals':publicationMappingBlockers.length?'waiting-publication-mapping':'ready-for-publication-preview';
     return {
-      candidateId: item.candidateId, targetTrailId: target.trailId, operation: target.operation,
-      state: missingApprovals.length ? 'waiting-content-approvals' : 'ready-for-publication-preview',
-      missingApprovals,
+      candidateId: item.candidateId, targetTrailId: target?.trailId||item.candidateId, operation: target?.operation||'mapping-required',
+      state,missingApprovals,publicationMappingBlockers,
       sourceApprovals: { copy: copyDecision, visual: visualDecision },
-      proposedWebsiteFields: missingApprovals.length ? null : {
+      proposedWebsiteFields: state!=='ready-for-publication-preview' ? null : {
         name: copyOutput.result.title,
         desc: `${about}\n\n${dog}`,
         tips: practical,
@@ -71,7 +72,7 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
         imageCreditText: hero.credit,
         imageAlt: hero.altText,
         ormaVerified: true,
-        ...VERIFIED_FIELDS[item.candidateId],
+        ...verifiedFields,
         reviewedAt: item.verifiedAt.slice(0,10), reviewedBy:'ORMA verified-trail workflow',
         verified:{ categories:['water','heat','exposure','livestock','surfaceHazards','access'], sources:['Locked ORMA evidence dossier'], date:item.verifiedAt.slice(0,10) },
         graduation:{ status:'verified', required:['photo','route','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'], completed:['photo','route','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'] },
@@ -93,6 +94,7 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
       trails: items.length,
       readyForPreview: items.filter(item => item.state === 'ready-for-publication-preview').length,
       waitingForApprovals: items.filter(item => item.state === 'waiting-content-approvals').length,
+      waitingForMapping:items.filter(item=>item.state==='waiting-publication-mapping').length,
       publicMutations: 0,
     },
   };

@@ -99,4 +99,17 @@ function recordVerifiedTrailReview(execution, decisions){
   });
 }
 
-module.exports = { safeSourcePath, applyExactChanges, applyReviewChanges, applyContentReview, recordVerifiedTrailReview };
+function assertVerifiedTrailReviewDecisions(execution,decisions){
+  const outputs=new Map((execution?.outputs||[]).map(output=>[output.jobId,output]));
+  for(const decision of decisions||[]){
+    const output=outputs.get(decision.jobId);if(!output)throw new Error(`Verified-trail review output was not found: ${decision.jobId}`);
+    if(decision.action!=='approve')continue;
+    if(output.status!=='ready-for-review')throw new Error(`Only a ready proposal can be approved: ${decision.jobId}`);
+    if(output.agentId==='visualDirector'){
+      const ready=(output.result?.candidates||[]).filter(candidate=>candidate.status==='ready');
+      if(ready.length!==1)throw new Error('Visual approval requires exactly one fully licensed ready image');
+    }
+  }
+}
+
+module.exports = { safeSourcePath, applyExactChanges, applyReviewChanges, applyContentReview, recordVerifiedTrailReview,assertVerifiedTrailReviewDecisions };

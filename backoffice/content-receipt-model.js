@@ -11,7 +11,8 @@
     const parsed=new Date(value).getTime();return Number.isNaN(parsed)?0:parsed;
   }
   function latestRevision(output,jobs){
-    return (jobs||[]).filter(job=>job.jobId===output.jobId).sort((a,b)=>dateMs(b.createdAt)-dateMs(a.createdAt))[0]||null;
+    return (jobs||[]).filter(job=>job.jobId===output.jobId&&job.jobType!=='verified-trail-editorial-first-pass')
+      .sort((a,b)=>dateMs(b.createdAt)-dateMs(a.createdAt))[0]||null;
   }
   function latestReceipt(output,reviews,jobs){
     const matches=(reviews||[]).flatMap(review=>(review.decisions||[]).filter(decision=>decision.jobId===output.jobId).map(decision=>({review,decision,at:dateMs(review.submittedAt)}))).sort((a,b)=>b.at-a.at);

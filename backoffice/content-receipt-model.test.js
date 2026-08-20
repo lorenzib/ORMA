@@ -17,6 +17,10 @@ describe('trail content submission receipts',()=>{
     expect(receipt).toBeNull();
   });
 
+  test('the original first-pass job is not mislabelled as a human-requested revision',()=>{
+    expect(model.latestRevision(output,[{id:'first-pass',jobId:output.jobId,jobType:'verified-trail-editorial-first-pass',status:'ready-for-review',createdAt:'2026-08-19T17:00:00Z'}])).toBeNull();
+  });
+
   test('a processed approval remains visibly advanced after refresh',()=>{
     const advanced={items:[{candidateId:'lago-braies',missingApprovals:[]}]};
     expect(model.stillNeedsApproval(output,advanced)).toBe(false);

@@ -28,8 +28,11 @@ describe('separate Firebase backoffice Hosting package',()=>{
 
   test('hosted trail content desk requests the durable publication receipt asset',()=>{
     const html=fs.readFileSync(path.join(output,'trail-content-desk.html'),'utf8');
-    expect(html).toContain('backoffice/content-receipt-model.js?v=20260819-3');
-    expect(html).toContain('trail-content-desk.js?v=20260820-7');
+    const script=fs.readFileSync(path.join(output,'trail-content-desk.js'),'utf8');
+    expect(html).toContain('backoffice/content-receipt-model.js?v=20260820-4');
+    expect(html).toContain('trail-content-desk.js?v=20260820-9');
+    expect(script).toContain("job.jobType==='verified-trail-editorial-first-pass'");
+    expect(script).toContain("Exactly one fully licensed ready image is required before approval");
   });
 
   test('hosted dashboard exposes only protected trail desk links',()=>{
@@ -39,7 +42,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('What ORMA automation does');
     expect(html).toContain('backoffice-review.css?v=20260820-13');
     expect(html).toContain('id="workerHealth"');
-    expect(html).toContain('backoffice/dashboard-model.js?v=20260820-6');
+    expect(html).toContain('backoffice/dashboard-model.js?v=20260820-7');
     expect(html).toContain('backoffice-hosted-dashboard.js?v=20260820-6');
     expect(html).toContain('href="trail-dossier-desk.html"');
     expect(html).not.toMatch(/href="(?:content|new-trail-scouting|hazard-review|image-coverage|newsletter|social|product-ideas)-desk\.html"/);

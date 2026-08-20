@@ -177,6 +177,18 @@ the server-provided delay. They do not consume one of the five evidence
 resolution attempts; exhausted transport retries remain visible as system
 failures and are returned to the durable queue.
 
+When the moderator approves the final evidence dossier as ORMA Verified, that
+same protected decision atomically creates two idempotent trail-only jobs:
+`verified-trail-editorial-first-pass` for the Copywriter and Visual Director.
+The Copywriter receives only the locked facts and must return exactly About the
+trail, Why it suits dogs, and Important practical notes. The Visual Director
+may search for reusable imagery, but a ready candidate requires a direct
+preview, source page, creator, explicit licence, licence URL, credit, and safe
+alt text; otherwise it returns an owned-photo coverage checklist. Both outputs
+return to separate human gates in Content & release. Guide content is never
+admitted to this trail handoff, and neither first pass can authorize
+publication.
+
 Scheduled worker events are inert until the repository variable
 `ORMA_WORKER_AUTOMATION_ENABLED` is `true`; the daily intake campaign uses the
 separate `ORMA_CAMPAIGN_AUTOMATION_ENABLED` variable. Manual workflow runs are
