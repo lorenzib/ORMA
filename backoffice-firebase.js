@@ -1,3 +1,13 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import {
+  getAuth, getIdTokenResult, onAuthStateChanged,
+  signInWithEmailAndPassword, signOut,
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+import {
+  addDoc, collection, doc, getDoc, getDocs, getFirestore, limit,
+  orderBy, query, serverTimestamp,
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyDnEJKnoDltKwpl4QdhA-qLH3a4ugLd68M",
   // Use Firebase's project-native auth domain for the hosted backoffice. The
@@ -9,16 +19,6 @@ const firebaseConfig = {
   messagingSenderId: "331415525455",
   appId: "1:331415525455:web:4a714eea0e95dc9a4ff23a",
 };
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-import {
-  getAuth, getIdTokenResult, onAuthStateChanged,
-  signInWithEmailAndPassword, signOut,
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-import {
-  addDoc, collection, doc, getDoc, getDocs, getFirestore, limit,
-  orderBy, query, serverTimestamp,
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
