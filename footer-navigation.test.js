@@ -104,6 +104,11 @@ describe('footer navigation', () => {
       expect(footer).toMatch(/<div class="hp-footer-h"[^>]*>Follow Us<\/div>/);
       const channels = [...footer.matchAll(/aria-label="ORMA on ([^"]+)"/g)].map(([, name]) => name);
       expect(channels).toEqual(['Instagram', 'Facebook', 'YouTube']);
+
+      // Instagram is live; Facebook and YouTube still await real accounts.
+      expect(footer).toContain(
+        '<a href="https://www.instagram.com/app.orma/" target="_blank" rel="noopener" aria-label="ORMA on Instagram">'
+      );
     });
   });
 
