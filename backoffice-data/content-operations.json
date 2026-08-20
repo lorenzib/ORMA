@@ -1,7 +1,7 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-08-19T13:17:40.358Z",
-  "cycleDate": "2026-08-19",
+  "generatedAt": "2026-08-20T10:00:02.312Z",
+  "cycleDate": "2026-08-20",
   "mode": "draft-only",
   "publicMutationAllowed": false,
   "editorialPolicy": {
@@ -24,8 +24,8 @@
         "picture shortlist",
         "source and freshness notes"
       ],
-      "cycleDate": "2026-08-19",
-      "nextRunOn": "2026-08-26"
+      "cycleDate": "2026-08-20",
+      "nextRunOn": "2026-08-27"
     },
     {
       "id": "collections",
@@ -39,7 +39,7 @@
         "trail inclusion rationale",
         "cover picture shortlist"
       ],
-      "cycleDate": "2026-08-19",
+      "cycleDate": "2026-08-20",
       "nextRunOn": null
     },
     {
@@ -55,8 +55,8 @@
         "picture shortlist",
         "link plan"
       ],
-      "cycleDate": "2026-08-19",
-      "nextRunOn": "2026-09-02"
+      "cycleDate": "2026-08-20",
+      "nextRunOn": "2026-09-03"
     },
     {
       "id": "library-enrichment",
@@ -70,8 +70,8 @@
         "edited drafts",
         "replacement picture candidates"
       ],
-      "cycleDate": "2026-08-19",
-      "nextRunOn": "2026-08-26"
+      "cycleDate": "2026-08-20",
+      "nextRunOn": "2026-08-27"
     },
     {
       "id": "social",
@@ -86,14 +86,14 @@
         "alt text",
         "source links"
       ],
-      "cycleDate": "2026-08-19",
+      "cycleDate": "2026-08-20",
       "nextRunOn": null
     }
   ],
   "jobs": [
     {
       "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-19-guides-edit",
+      "id": "content-ops-2026-08-20-guides-edit",
       "agentId": "copywriter",
       "action": "edit-guides",
       "candidateId": null,
@@ -104,14 +104,14 @@
       ],
       "outputRefs": [],
       "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-19T13:17:40.358Z",
+      "createdAt": "2026-08-20T10:00:02.312Z",
       "startedAt": null,
       "completedAt": null,
       "humanGate": "editorial-approval"
     },
     {
       "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-19-guides-pictures",
+      "id": "content-ops-2026-08-20-guides-pictures",
       "agentId": "visualDirector",
       "action": "gather-pictures-guides",
       "candidateId": null,
@@ -122,14 +122,14 @@
       ],
       "outputRefs": [],
       "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-19T13:17:40.358Z",
+      "createdAt": "2026-08-20T10:00:02.312Z",
       "startedAt": null,
       "completedAt": null,
       "humanGate": "asset-and-licensing-approval"
     },
     {
       "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-19-newsletter-edit",
+      "id": "content-ops-2026-08-20-newsletter-edit",
       "agentId": "copywriter",
       "action": "edit-newsletter",
       "candidateId": null,
@@ -140,14 +140,14 @@
       ],
       "outputRefs": [],
       "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-19T13:17:40.358Z",
+      "createdAt": "2026-08-20T10:00:02.312Z",
       "startedAt": null,
       "completedAt": null,
       "humanGate": "editorial-approval"
     },
     {
       "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-19-newsletter-pictures",
+      "id": "content-ops-2026-08-20-newsletter-pictures",
       "agentId": "visualDirector",
       "action": "gather-pictures-newsletter",
       "candidateId": null,
@@ -158,14 +158,14 @@
       ],
       "outputRefs": [],
       "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-19T13:17:40.358Z",
+      "createdAt": "2026-08-20T10:00:02.312Z",
       "startedAt": null,
       "completedAt": null,
       "humanGate": "asset-and-licensing-approval"
     },
     {
       "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-19-library-enrichment-edit",
+      "id": "content-ops-2026-08-20-library-enrichment-edit",
       "agentId": "copywriter",
       "action": "edit-library-enrichment",
       "candidateId": null,
@@ -176,14 +176,14 @@
       ],
       "outputRefs": [],
       "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-19T13:17:40.358Z",
+      "createdAt": "2026-08-20T10:00:02.312Z",
       "startedAt": null,
       "completedAt": null,
       "humanGate": "editorial-approval"
     },
     {
       "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-19-library-enrichment-pictures",
+      "id": "content-ops-2026-08-20-library-enrichment-pictures",
       "agentId": "visualDirector",
       "action": "gather-pictures-library-enrichment",
       "candidateId": null,
@@ -194,7 +194,7 @@
       ],
       "outputRefs": [],
       "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-19T13:17:40.358Z",
+      "createdAt": "2026-08-20T10:00:02.312Z",
       "startedAt": null,
       "completedAt": null,
       "humanGate": "asset-and-licensing-approval"

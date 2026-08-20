@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135 40" width="135" height="40" role="img" aria-label="Get it on Google Play">
+  <!-- Black badge with a light hairline: the footer sits on dark green, where
+       a pure-black badge would disappear. -->
+  <rect x=".5" y=".5" width="134" height="39" rx="7" fill="#000" stroke="#fff" stroke-opacity=".45"/>
+  <g transform="translate(12 8.6) scale(.96)">
+    <path d="M3 20.5V3.5c0-.59.34-1.11.84-1.35L13.69 12 3.84 21.85C3.34 21.6 3 21.09 3 20.5Z" fill="#00A0FF"/>
+    <path d="M16.81 15.12 6.05 21.34l8.49-8.49 2.27 2.27Z" fill="#00E676"/>
+    <path d="M20.16 10.81c.34.27.59.69.59 1.19 0 .5-.22.9-.57 1.18l-2.29 1.32-2.5-2.5 2.5-2.5 2.27 1.31Z" fill="#FFCE00"/>
+    <path d="M6.05 2.66 16.81 8.88l-2.27 2.27L6.05 2.66Z" fill="#FF3A44"/>
+  </g>
+  <text x="42" y="17" fill="#fff" font-family="Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="8" letter-spacing="1">GET IT ON</text>
+  <text x="42" y="31.5" fill="#fff" font-family="Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="15" font-weight="600" letter-spacing="-.3">Google Play</text>
+</svg>
