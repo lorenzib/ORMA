@@ -62,9 +62,14 @@ describe('empty states and long-form navigation', () => {
     window.eval(read('guide-navigation.js'));
     const en = document.querySelector('[data-lang-block="en"]');
     const h2s = [...en.querySelectorAll('h2')].map(h => h.textContent);
-    expect(h2s).toHaveLength(2);
+    expect(h2s).toHaveLength(3);
     expect(h2s[0]).toContain('The two scores');
-    expect(h2s[1]).toContain('Verified or imported');
+    // The closing sections share one card, so they sit inside the panel
+    // rather than as top-level sections, and stay below the page-nav threshold.
+    expect(h2s[1]).toContain('What we never do');
+    expect(h2s[2]).toContain('Verified or imported');
+    expect(en.querySelectorAll('.sc-panel > .guide-section > h2')).toHaveLength(2);
+    expect(document.querySelector('.guide-page-nav[data-generated]')).toBeNull();
   });
 
   test('long guide articles receive navigation while short ones stay focused', () => {
