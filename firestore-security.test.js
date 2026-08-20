@@ -36,6 +36,8 @@ describe('SEC-01 Firestore configuration contract', () => {
       'backofficeHazardReviews',
       'backofficeEditorialReviews',
       'backofficeImageReviews',
+      'backofficeNewsletterReviews',
+      'backofficeAnalystReviews',
     ];
     clientCollections.forEach(collection => {
       expect(rules).toContain(`/` + collection + '/{');
@@ -57,6 +59,8 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain("request.resource.data.type == 'hazard-resolution-review'");
     expect(rules).toContain("request.resource.data.type == 'website-editorial-review'");
     expect(rules).toContain("request.resource.data.type == 'image-coverage-review'");
+    expect(rules).toContain("request.resource.data.type == 'newsletter-issue-review'");
+    expect(rules).toContain("request.resource.data.type == 'analyst-opportunity-review'");
     expect(rules).toContain("request.resource.data.action in ['approve', 'request-revision', 'reject']");
     expect(rules).toContain("request.resource.data.submittedBy == request.auth.uid");
     expect(client).toContain('window.ORMABackoffice');

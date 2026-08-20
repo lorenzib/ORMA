@@ -73,6 +73,8 @@
     if(item.stream==='hazard')return 'Groundskeeper decision consumed in the protected warning layer; the public website has not been changed.';
     if(item.stream==='editorial')return item.action==='approve'?'Editorial approval consumed; validation and publication have a separate durable receipt.':'Copywriter revision handed off; the revised comparison returns to Editorial.';
     if(item.stream==='image')return 'Image sourcing route consumed. Actual asset and rights approval remain a separate human gate.';
+    if(item.stream==='newsletter')return item.action==='approve'?'Newsletter approved for launch-gated handoff. No email was sent.':'Newsletter revision handed to the agent; the complete issue returns to the same desk.';
+    if(item.stream==='analyst')return 'Analyst decision consumed. Design, implementation and Release retain their named human gates.';
     if(item.stream==='publication')return 'Publication decision consumed by ORMA automation.';
     return 'Decision processed and retained in the audit trail.';
   }
@@ -95,9 +97,11 @@
     const hazards=input.hazards||{hazards:[]};const hazardQueue=input.hazardQueue||{items:[]};const hazardReviews=input.hazardReviews||[];const hazardStatus=input.hazardStatus||{};
     const editorialPackets=input.editorialPackets||[];const editorialReviews=input.editorialReviews||[];const editorialReceipts=input.editorialReceipts||{receipts:[]};const strategyStatus=input.strategyStatus||{};
     const imageAudit=input.imageAudit||{gaps:[],summary:{}};const imageReviews=input.imageReviews||[];
+    const newsletterPacket=input.newsletterPacket||null;const newsletterReviews=input.newsletterReviews||[];const approvedNewsletters=input.approvedNewsletters||{issues:[]};
+    const productIdeas=input.productIdeas||{ideas:[]};const analystReviews=input.analystReviews||[];const productInvestigations=input.productInvestigations||{items:[]};const productDesigns=input.productDesigns||{items:[]};
     const history=input.history||[];const allJobs=input.jobs||[];const timing=input.nowMs==null?{}:{nowMs:input.nowMs};const workerHealth=deriveWorkerHealth(input.workerHealth,timing);const campaignHealth=deriveCampaignHealth(input.campaignHealth,timing);
     const trailJobs=allJobs.filter(job=>['trail-verification-specialist','trail-claim-resolution','verified-trail-editorial-first-pass','verified-trail-editorial-revision'].includes(job.jobType)||String(job.id||'').startsWith('trail-revision-'));
-    const hostedTeamJobs=allJobs.filter(job=>['hosted-editorial-revision','hosted-editorial-publication','hosted-image-sourcing'].includes(job.jobType));
+    const hostedTeamJobs=allJobs.filter(job=>['hosted-editorial-revision','hosted-editorial-publication','hosted-image-sourcing','hosted-newsletter-revision','hosted-product-investigation','hosted-product-design','product-development-handoff'].includes(job.jobType));
     const jobs=[...trailJobs,...hostedTeamJobs];const activeTrailJobs=trailJobs.filter(job=>ACTIVE_JOB_STATES.has(job.status));
     const activeJobs=jobs.filter(job=>ACTIVE_JOB_STATES.has(job.status));
     const names=new Map();
@@ -107,6 +111,7 @@
     for(const item of publication.items||[])if(!names.has(item.candidateId))names.set(item.candidateId,item.targetTrailId||item.candidateId);
     for(const item of newTrailScouting.candidates||[])names.set(item.id,item.name||item.id);
     const hazardNames=new Map((hazards.hazards||[]).map(item=>[item.id,item.title||item.id]));
+    const productNames=new Map((productIdeas.ideas||[]).map(item=>[item.id,item.title||item.id]));
 
     const queuedDossierReviews=(history||[]).filter(item=>item.stream==='dossier'&&item.status==='queued');
     const dossierItems=(dossiers.items||[]).filter(item=>item.state==='awaiting-human'&&!queuedDossierReviews.some(review=>review.reviewId===item.reviewId));
@@ -140,6 +145,16 @@
     const latestImageReviews=latestReviewBy(imageReviews,'slug');const imageItems=(imageAudit.gaps||[]).filter(gap=>{const review=latestImageReviews.get(gap.slug);return !review||['blocked','superseded'].includes(review.status);});
     const editorialHandoffs=editorialReviews.filter(review=>['queued','processing'].includes(review.status)).length;
     const imageHandoffs=imageReviews.filter(review=>['queued','processing'].includes(review.status)).length;
+    const latestNewsletter=(newsletterReviews||[]).filter(review=>review.packetGeneratedAt===newsletterPacket?.generatedAt).sort((a,b)=>dateMs(b.processedAt||b.submittedAt)-dateMs(a.processedAt||a.submittedAt))[0];
+    const newsletterItem=newsletterPacket&&(newsletterPacket.outputs||[]).some(output=>output.status==='ready-for-review')&&(!latestNewsletter||['blocked','superseded'].includes(latestNewsletter.status))?newsletterPacket:null;
+    const analystIdeaReviews=latestReviewBy((analystReviews||[]).filter(review=>(review.subjectType||'idea')==='idea'),'ideaId');
+    const analystMockupReviews=latestReviewBy((analystReviews||[]).filter(review=>review.subjectType==='mockup'),'ideaId');
+    const investigationIds=new Set((productInvestigations.items||[]).map(item=>item.ideaId));
+    const latestDesignByIdea=new Map();for(const design of productDesigns.items||[]){const current=latestDesignByIdea.get(design.ideaId);if(!current||dateMs(design.generatedAt)>=dateMs(current.generatedAt))latestDesignByIdea.set(design.ideaId,design);}
+    const analystIdeaItems=(productIdeas.ideas||[]).filter(idea=>{const review=analystIdeaReviews.get(idea.id);return !review||['blocked','superseded'].includes(review.status)||(review.status==='processed'&&review.action==='investigate-further'&&investigationIds.has(idea.id));});
+    const analystMockupItems=[...latestDesignByIdea.values()].filter(design=>{const review=analystMockupReviews.get(design.ideaId);return !review||['blocked','superseded'].includes(review.status)||(review.status==='processed'&&review.action==='request-mockup-revision');});
+    const newsletterHandoffs=newsletterReviews.filter(review=>['queued','processing'].includes(review.status)).length;
+    const analystHandoffs=analystReviews.filter(review=>['queued','processing'].includes(review.status)).length;
 
     const decisions=[];
     for(const item of dossierItems)decisions.push({
@@ -169,6 +184,9 @@
     if(hazardItems.length)decisions.push({id:'hazard-resolution',kind:'hazard',stage:'Existing Trails · Groundskeeper',title:`${plural(hazardItems.length,'warning')} awaiting removal review`,description:'An authoritative warning expired, but ORMA has retained it until you confirm removal.',next:'Your decision updates the protected warning state. The public website remains unchanged until its release integration is approved.',href:'hazard-review-desk.html',actionLabel:'Review warnings'});
     if(editorialItems.length)decisions.push({id:'editorial-copy',kind:'editorial',stage:'Editorial · Guide copy',title:`${plural(editorialItems.length,'copy packet')} ready`,description:'Compare current and proposed guide copy, edit it directly, then publish or request one revision.',next:'Approval validates and commits only the reviewed guide. A revision returns to the same desk.',href:'editorial-desk.html',actionLabel:'Review copy'});
     if(imageItems.length)decisions.push({id:'editorial-images',kind:'image',stage:'Editorial · Image coverage',title:`${plural(imageItems.length,'visual gap')} needs routing`,description:'Choose owned photography, licensed sourcing, an AI brief or park the gap.',next:'The Visual Director returns actual candidates for a separate visual and rights gate; nothing is placed now.',href:'image-coverage-desk.html',actionLabel:'Review image gaps'});
+    if(newsletterItem)decisions.push({id:'newsletter-issue',kind:'newsletter',stage:'Newsletter · Complete issue',title:newsletterItem.outputs?.find(output=>output.status==='ready-for-review')?.result?.issueTitle||'One issue ready',description:'Review the complete reader-facing issue, subject options and source links.',next:'Approval hands it to launch-gated Social and any future sending integration. No email is sent automatically.',href:'newsletter-desk.html',actionLabel:'Review issue'});
+    if(analystIdeaItems.length)decisions.push({id:'analyst-opportunities',kind:'analyst',stage:'Analyst · Evidence and opportunity',title:`${plural(analystIdeaItems.length,'opportunity')} needs direction`,description:'Review source-linked evidence separately from ORMA inference, then investigate, send to Designer, park or dismiss.',next:'Only “Send to Designer” authorises a mock-up. No implementation starts.',href:'product-ideas-desk.html',actionLabel:'Review opportunities'});
+    if(analystMockupItems.length)decisions.push({id:'analyst-mockups',kind:'analyst',stage:'Analyst · Designer gate',title:`${plural(analystMockupItems.length,'mock-up')} ready`,description:'Review the structured low-fidelity screen and flow proposal.',next:'Approval creates a protected Developer handoff; implementation and Release remain separately gated.',href:'product-ideas-desk.html',actionLabel:'Review mock-ups'});
 
     const blockedCandidates=new Set();
     for(const item of dossierItems)if(item.approvalAllowed===false)blockedCandidates.add(item.candidateId||item.reviewId);
@@ -178,11 +196,17 @@
     if(newTrailStatus.status==='failed')blockedCandidates.add('new-trail-scouting');
     if(hazardStatus.status==='failed'||Number(hazardStatus.summary?.sourceFailures||0)>0)blockedCandidates.add('groundskeeper');
     if(strategyStatus.status==='failed')blockedCandidates.add('strategy-cycle');
+    if(String(strategyStatus.summary?.productStatus||'').startsWith('blocked:'))blockedCandidates.add('analyst-refresh');
 
     const activityById=new Map();
     for(const item of history){
       const candidateId=candidateFromActivity(item,names);
-      const title=item.stream==='hazard'?hazardNames.get(item.hazardId):names.get(candidateId)||item.trailName||candidateId;
+      const title=item.stream==='hazard'?hazardNames.get(item.hazardId)
+        :item.stream==='analyst'?productNames.get(item.ideaId)||item.ideaId
+          :item.stream==='newsletter'?item.issueId||'Newsletter issue'
+            :item.stream==='editorial'?item.sourceRef||'Guide copy'
+              :item.stream==='image'?item.slug||'Image coverage'
+                :names.get(candidateId)||item.trailName||candidateId;
       activityById.set(`${item.stream}:${item.id}`,{...item,candidateId,title:title||'Trail workflow',at:dateMs(item.processedAt||item.submittedAt)});
     }
     for(const request of publicationRequests.requests||[]){
@@ -190,11 +214,13 @@
     }
     const activity=[...activityById.values()].sort((a,b)=>b.at-a.at).slice(0,8).map(item=>({...item,message:activityMessage(item)}));
     return {
-      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,newTrailItems,hazardItems,editorialItems,imageItems,publicationInFlight,handoffsInFlight:handoffsInFlight+newTrailHandoffs+hazardHandoffs+editorialHandoffs+imageHandoffs,automationFailures,workerHealth,campaignHealth,
+      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,newTrailItems,hazardItems,editorialItems,imageItems,newsletterItem,analystIdeaItems,analystMockupItems,publicationInFlight,handoffsInFlight:handoffsInFlight+newTrailHandoffs+hazardHandoffs+editorialHandoffs+imageHandoffs+newsletterHandoffs+analystHandoffs,automationFailures,workerHealth,campaignHealth,
       blockerCount:blockedCandidates.size,trackedTrails:orchestration.summary?.trails||(orchestration.trails||[]).length,
       newTrailProgress:{candidates:(newTrailScouting.candidates||[]).length,waiting:newTrailItems.length,inFlight:newTrailHandoffs,status:newTrailStatus.status||'not-run'},
       groundskeeperProgress:{active:(hazards.hazards||[]).filter(item=>item.state==='active').length,waiting:hazardItems.length,sourceFailures:Number(hazardStatus.summary?.sourceFailures||0),status:hazardStatus.status||'not-run'},
       editorialProgress:{active:editorialPackets.length,waiting:editorialItems.length,inFlight:editorialHandoffs,imageGaps:imageItems.length,published:(editorialReceipts.receipts||[]).filter(item=>item.status==='published').length,status:strategyStatus.status||'not-run'},
+      newsletterProgress:{ready:newsletterItem?1:0,inFlight:newsletterHandoffs,approved:(approvedNewsletters.issues||[]).length,status:strategyStatus.summary?.newsletterStatus||'not-run'},
+      analystProgress:{ideas:(productIdeas.ideas||[]).length,waiting:analystIdeaItems.length,mockups:analystMockupItems.length,inFlight:analystHandoffs,developerHandoffs:allJobs.filter(job=>job.jobType==='product-development-handoff'&&job.status==='ready-for-review').length,status:strategyStatus.summary?.productStatus||'not-run'},
       summary:{needsYou:decisions.length,agentWork:activeJobs.length,blockers:blockedCandidates.size,prsReady:prItems.length},
       pipeline:[
         {number:1,title:'Evidence',owner:dossierItems.length?'You':queuedDossierReviews.length?'System':activeTrailJobs.length?'Agents':'System',status:dossierItems.length?`${plural(dossierItems.length,'decision')} waiting`:queuedDossierReviews.length?`${plural(queuedDossierReviews.length,'decision')} being handed off`:activeTrailJobs.length?`${plural(activeTrailJobs.length,'job')} in progress`:'No decision waiting'},

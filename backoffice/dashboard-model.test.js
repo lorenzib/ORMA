@@ -102,4 +102,20 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.summary.agentWork).toBe(2);
     expect(model.pipeline[1].status).toBe('2 jobs running or queued');
   });
+
+  test('surfaces Newsletter and Analyst gates without double-counting revised mock-ups',()=>{
+    const model=buildDashboardModel({
+      newsletterPacket:{generatedAt:'2026-08-20T12:00:00Z',outputs:[{status:'ready-for-review',result:{issueTitle:'Mountain days'}}]},
+      newsletterReviews:[],approvedNewsletters:{issues:[]},
+      productIdeas:{ideas:[{id:'heat-map',title:'Dog heat map',impact:'high'}]},analystReviews:[],
+      productDesigns:{items:[
+        {ideaId:'heat-map',generatedAt:'2026-08-20T12:01:00Z',mockupTitle:'First mock-up'},
+        {ideaId:'heat-map',generatedAt:'2026-08-20T12:02:00Z',mockupTitle:'Revised mock-up'},
+      ]},jobs:[],
+    });
+    expect(model.decisions.map(item=>item.kind)).toEqual(['newsletter','analyst','analyst']);
+    expect(model.newsletterProgress).toEqual(expect.objectContaining({ready:1,approved:0}));
+    expect(model.analystProgress).toEqual(expect.objectContaining({ideas:1,waiting:1,mockups:1}));
+    expect(model.analystMockupItems).toEqual([expect.objectContaining({mockupTitle:'Revised mock-up'})]);
+  });
 });

@@ -14,6 +14,10 @@ on:
       - editorial-desk.js
       - image-coverage-hosted.html
       - image-coverage-hosted.js
+      - newsletter-hosted.html
+      - newsletter-hosted.js
+      - analyst-hosted.html
+      - analyst-hosted.js
       - backoffice/content-review-decisions.js
       - scripts/build-backoffice-hosting.js
       - firebase.json
@@ -33,6 +37,10 @@ on:
       - editorial-desk.js
       - image-coverage-hosted.html
       - image-coverage-hosted.js
+      - newsletter-hosted.html
+      - newsletter-hosted.js
+      - analyst-hosted.html
+      - analyst-hosted.js
       - backoffice/content-review-decisions.js
       - scripts/build-backoffice-hosting.js
       - firebase.json

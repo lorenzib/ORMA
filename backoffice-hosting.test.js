@@ -15,7 +15,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(files.some(file=>file.startsWith('data/'))).toBe(false);
   });
 
-  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
+  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','newsletter-desk.html','product-ideas-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toContain('src="backoffice-firebase.js"');
     expect(html).not.toContain('src="firebase-init.js');
@@ -48,7 +48,9 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('href="trail-dossier-desk.html"');
     expect(html).toContain('href="editorial-desk.html"');
     expect(html).toContain('href="image-coverage-desk.html"');
-    expect(html).not.toMatch(/href="(?:content|newsletter|social|product-ideas)-desk\.html"/);
+    expect(html).toContain('href="newsletter-desk.html"');
+    expect(html).toContain('href="product-ideas-desk.html"');
+    expect(html).not.toMatch(/href="(?:content|social)-desk\.html"/);
   });
 
   test.each([
@@ -59,6 +61,8 @@ describe('separate Firebase backoffice Hosting package',()=>{
     ['hazard-review-desk.html','Groundskeeper'],
     ['editorial-desk.html','Editorial'],
     ['image-coverage-desk.html','Editorial'],
+    ['newsletter-desk.html','Newsletter'],
+    ['product-ideas-desk.html','Analyst'],
   ])('%s has persistent navigation and a clear current location',(page,current)=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toContain('aria-label="Backoffice navigation"');
@@ -68,11 +72,13 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('href="new-trail-scouting-desk.html"');
     expect(html).toContain('href="hazard-review-desk.html"');
     expect(html).toContain('href="editorial-desk.html"');
+    expect(html).toContain('href="newsletter-desk.html"');
+    expect(html).toContain('href="product-ideas-desk.html"');
     expect(html).toContain(`aria-current="page">${current}</a>`);
   });
 
   test('moderator-facing trail pages explain automation without vague worker language',()=>{
-    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','new-trail-scouting-desk.js','hazard-review-desk.js','editorial-desk.js','image-coverage-hosted.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
+    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','newsletter-desk.html','product-ideas-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','new-trail-scouting-desk.js','hazard-review-desk.js','editorial-desk.js','image-coverage-hosted.js','newsletter-hosted.js','analyst-hosted.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
     const text=files.map(file=>fs.readFileSync(path.join(output,file),'utf8')).join('\n');
     expect(text).toContain('ORMA automation');
     expect(text).not.toMatch(/waiting for the worker|the worker will|worker processed|independent worker/i);

@@ -842,6 +842,58 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    match /backofficeNewsletterReviews/{reviewId} {
+      allow get, list: if isModerator();
+      allow create: if isModerator()
+        && request.resource.data.keys().hasOnly([
+          'contractVersion', 'type', 'status', 'packetGeneratedAt',
+          'action', 'note', 'submittedAt', 'submittedBy',
+          'publicMutationAllowed'
+        ])
+        && request.resource.data.contractVersion == '1.0.0'
+        && request.resource.data.type == 'newsletter-issue-review'
+        && request.resource.data.status == 'queued'
+        && isShortString(request.resource.data.packetGeneratedAt, 80)
+        && request.resource.data.action in ['approve', 'request-revision']
+        && request.resource.data.note is string
+        && request.resource.data.note.size() <= 1500
+        && request.resource.data.submittedAt == request.time
+        && request.resource.data.submittedBy == request.auth.uid
+        && request.resource.data.publicMutationAllowed == false;
+      allow update, delete: if false;
+    }
+
+    match /backofficeAnalystReviews/{reviewId} {
+      allow get, list: if isModerator();
+      allow create: if isModerator()
+        && request.resource.data.keys().hasOnly([
+          'contractVersion', 'type', 'status', 'subjectType', 'ideaId',
+          'action', 'note', 'submittedAt', 'submittedBy',
+          'publicMutationAllowed', 'implementationAuthorized'
+        ])
+        && request.resource.data.contractVersion == '1.0.0'
+        && request.resource.data.type == 'analyst-opportunity-review'
+        && request.resource.data.status == 'queued'
+        && request.resource.data.subjectType in ['idea', 'mockup']
+        && isShortString(request.resource.data.ideaId, 180)
+        && ((request.resource.data.subjectType == 'idea'
+            && request.resource.data.action in [
+              'prioritise', 'investigate-further', 'park', 'dismiss'
+            ])
+          || (request.resource.data.subjectType == 'mockup'
+            && request.resource.data.action in [
+              'approve-mockup-for-developer-brief',
+              'request-mockup-revision', 'reject-mockup'
+            ]))
+        && request.resource.data.note is string
+        && request.resource.data.note.size() <= 1500
+        && request.resource.data.submittedAt == request.time
+        && request.resource.data.submittedBy == request.auth.uid
+        && request.resource.data.publicMutationAllowed == false
+        && request.resource.data.implementationAuthorized == false;
+      allow update, delete: if false;
+    }
+
     // New collections are private until their authorization contract is added.
     match /{document=**} {
       allow read, write: if false;

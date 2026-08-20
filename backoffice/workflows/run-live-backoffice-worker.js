@@ -16,6 +16,8 @@ const {admitNewTrailIntake}=require('./new-trail-intake');
 const {applyHazardReview}=require('./dynamic-hazards');
 const {ingestEditorialReviews,processEditorialJobs}=require('./hosted-editorial');
 const {ingestImageReviews,processImageJobs}=require('./hosted-image-coverage');
+const {ingestNewsletterReviews,processNewsletterJobs}=require('./hosted-newsletter');
+const {ingestAnalystReviews,processAnalystJobs}=require('./hosted-analyst');
 const {validateContentExecution}=require('../contracts/content-result-v1');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
 const path=require('path');
@@ -272,6 +274,8 @@ async function runLiveBackofficeWorker(store, options = {}){
   const hazardReviews=await ingestHazardReviews(store);
   const editorialReviews=await ingestEditorialReviews(store);
   const imageReviews=await ingestImageReviews(store);
+  const newsletterReviews=await ingestNewsletterReviews(store);
+  const analystReviews=await ingestAnalystReviews(store);
   const recoveredJobs = typeof store.recoverExpiredJobs === 'function'
     ? await store.recoverExpiredJobs(options)
     : [];
@@ -281,11 +285,13 @@ async function runLiveBackofficeWorker(store, options = {}){
   const editorialFirstPass=await processEditorialFirstPassJobs(store,options);
   const editorialOperations=await processEditorialJobs(store,options);
   const imageOperations=await processImageJobs(store,options);
+  const newsletterOperations=await processNewsletterJobs(store,options);
+  const analystOperations=await processAnalystJobs(store,options);
   const jobs = await processRevisionJobs(store, options);
   const specialistJobs=await processTrailSpecialistJobs(store,{...options,productionTrails});
   const advancementAfter=await advanceTrailOrchestration(store,options);
   const publications = await ingestPublicationReviews(store);
-  return { workerId:options.workerId || null,campaign,newTrailReviews,hazardReviews,editorialReviews,imageReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,editorialOperations,imageOperations,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,newTrailReviews,hazardReviews,editorialReviews,imageReviews,newsletterReviews,analystReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,editorialOperations,imageOperations,newsletterOperations,analystOperations,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
-module.exports = { iso, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestEditorialReviews,processEditorialJobs,ingestImageReviews,processImageJobs,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { iso, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestEditorialReviews,processEditorialJobs,ingestImageReviews,processImageJobs,ingestNewsletterReviews,processNewsletterJobs,ingestAnalystReviews,processAnalystJobs,ingestPublicationReviews,runLiveBackofficeWorker };
