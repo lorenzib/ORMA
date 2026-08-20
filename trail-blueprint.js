@@ -110,13 +110,17 @@
         : 'Trail information prepared by ORMA. Check current conditions before setting out.';
     }
     const sources = Array.isArray(t.sourceLinks) ? t.sourceLinks : [];
-    if (!sources.length) {
-      links.innerHTML = '<p class="trail-sources">Route map: OpenStreetMap and Waymarked Trails<br>Weather: Open-Meteo</p>';
-      return;
-    }
-    links.innerHTML = '<p class="trail-source-heading">Sources used for this trail</p><ul>' + sources.map(source =>
-      `<li><a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.label)}</a></li>`
-    ).join('') + '</ul><p class="trail-sources">Route map: OpenStreetMap and Waymarked Trails<br>Weather: Open-Meteo</p>';
+    const routeData = [
+      { label:'Route map', value:'<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a><span class="trail-source-muted"> and </span><a href="https://hiking.waymarkedtrails.org/" target="_blank" rel="noopener">Waymarked Trails</a>' },
+      { label:'Weather', value:'<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo forecast</a>' },
+    ];
+    const dataRows = routeData.map(row => `<div class="trail-source-row"><span class="trail-source-label">${row.label}</span><span class="trail-source-value">${row.value}</span></div>`).join('');
+    const evidence = sources.length
+      ? `<ol class="trail-source-list">${sources.map(source =>
+        `<li><a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.label)}</a></li>`
+      ).join('')}</ol>`
+      : '<p class="trail-source-empty">No additional trail-specific sources recorded.</p>';
+    links.innerHTML = `<div class="trail-source-group"><p class="trail-source-group-title">Route and live data</p><div class="trail-source-grid">${dataRows}</div></div><div class="trail-source-group"><p class="trail-source-group-title">Trail evidence</p>${evidence}</div>`;
   })();
 
   /* ---- Answer strip ---------------------------------------------- */
@@ -660,7 +664,7 @@
     // Paw-safety badge from the day's high (same thresholds as the score's heat rules).
     const dayBadge = (hi) => hi >= 22 ? { t: 'Heat', bg: '#F5E4C6', fg: '#8A5A16' } : { t: 'Good', bg: '#E4EADF', fg: '#2C5C34' };
 
-    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&hourly=temperature_2m&forecast_days=6&timezone=auto`)
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,weathercode&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max,sunrise,sunset&hourly=temperature_2m&forecast_days=6&timezone=auto`)
       .then(r => r.json())
       .then(d => {
         if (!d || !d.daily) {
@@ -673,20 +677,6 @@
           temperatureC: d.current && d.current.temperature_2m,
           trailId: t.id,
         });
-        const hrs = (d.hourly ? d.hourly.time : []).map((iso, i) => ({ h: new Date(iso).getHours(), day: iso.slice(0, 10), temp: d.hourly.temperature_2m[i] }));
-        const todayKey = d.daily.time[0];
-
-        const coolestWindow = (dayKey) => {
-          const day = hrs.filter(x => x.day === dayKey && x.h >= 6 && x.h <= 20);
-          if (day.length < 3) return null;
-          let best = 0, bestAvg = Infinity;
-          for (let i = 0; i + 2 < day.length; i++) {
-            const avg = (day[i].temp + day[i + 1].temp + day[i + 2].temp) / 3;
-            if (avg < bestAvg) { bestAvg = avg; best = i; }
-          }
-          return { from: day[best].h, to: day[best + 2].h + 1 };
-        };
-
         // ---- Today's conditions card ----
         if (d.current) {
           const cur = Math.round(d.current.temperature_2m);
@@ -697,11 +687,21 @@
             : { t: 'Good', bg: '#E4EADF', fg: '#2C5C34' };
           const pawEl = $('tdCondPaw');
           if (pawEl) { pawEl.textContent = paw.t; pawEl.style.background = paw.bg; pawEl.style.color = paw.fg; }
-          const win = coolestWindow(todayKey);
+          const win = window.DoloPawsWeatherWindow
+            ? window.DoloPawsWeatherWindow.recommendation({
+              currentTime:d.current.time,
+              durationHours:t.hours,
+              dailyDates:d.daily.time,
+              sunrises:d.daily.sunrise,
+              sunsets:d.daily.sunset,
+              hourlyTimes:d.hourly && d.hourly.time,
+              hourlyTemps:d.hourly && d.hourly.temperature_2m,
+            })
+            : null;
           const winEl = $('sideCondWindow');
-          if (winEl) winEl.innerHTML = win
-            ? `Best walking window: <strong>${win.from}:00–${win.to}:00</strong>, the coolest daylight stretch.`
-            : 'Mountain weather turns quickly; recheck before you set off.';
+          if (winEl) winEl.innerHTML = window.DoloPawsWeatherWindow
+            ? window.DoloPawsWeatherWindow.markup(win)
+            : 'No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.';
         }
         const hasWater = Array.isArray(t.waterSources) && t.waterSources.length > 0;
         const waterEl = $('tdCondWater');

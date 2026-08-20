@@ -157,9 +157,10 @@ describe('trail page map controls', () => {
 
     expect(html).toContain('i18n.js?v=20260819-5');
     expect(html).toContain('trail-photo-provenance.js?v=20260820-1');
+    expect(html).toContain('trail-weather-window.js?v=20260820-1');
     expect(html).toContain('trail.js?v=20260820-1');
     expect(html).toContain('trail-reports.js?v=20260820-1');
-    expect(html).toContain('trail-blueprint.js?v=20260820-1');
+    expect(html).toContain('trail-blueprint.js?v=20260820-3');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
     expect(html).toContain('offline-packages.js?v=20260819-6');
     expect(html).toContain('trail-mobile.js?v=20260819-6');
@@ -172,6 +173,24 @@ describe('trail page map controls', () => {
     expect(document.getElementById('tdHeroCredit')).not.toBeNull();
     expect(html.indexOf('trail-photo-provenance.js')).toBeLessThan(html.indexOf('trail-reports.js'));
     expect(html.indexOf('trail-photo-provenance.js')).toBeLessThan(html.indexOf('trail.js?v='));
+  });
+
+  test('loads the route-aware weather window before the trail blueprint', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    expect(html.indexOf('trail-weather-window.js')).toBeLessThan(html.indexOf('trail-blueprint.js'));
+  });
+
+  test('renders sources as one coherent evidence panel', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
+    const styles = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+    document.body.innerHTML = html;
+    expect(document.getElementById('trailCoords')).not.toBeNull();
+    expect(document.getElementById('trailCoords').tagName).toBe('DIV');
+    expect(blueprint).toContain('trail-source-group-title');
+    expect(blueprint).toContain('trail-source-list');
+    expect(styles).toContain('.trail-source-row');
+    expect(styles).toContain('border-right:1.5px solid currentColor');
   });
 
   test('the map workspace places elevation below the map while dog fit stays alongside it', () => {
