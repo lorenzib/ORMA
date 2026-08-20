@@ -19,6 +19,32 @@
   var mq = window.matchMedia('(max-width:700px)');
   var active = false;
   var actionsHome = null; // where the real buttons live on desktop
+  var weather = document.querySelector('.td2-hero-weather');
+  var weatherHome = weather && weather.parentElement;
+  var weatherNext = weather && weather.nextSibling;
+  var offlinePanel = document.getElementById('offlinePackagePanel');
+  var offlineHome = offlinePanel && offlinePanel.parentElement;
+  var offlineNext = offlinePanel && offlinePanel.nextSibling;
+
+  function placeWeather(){
+    var slot = document.getElementById('mobileWeatherSlot');
+    if(!weather || !weatherHome || !slot) return;
+    if(mq.matches && weather.parentElement !== slot) slot.appendChild(weather);
+    if(!mq.matches && weather.parentElement !== weatherHome){
+      weatherHome.insertBefore(weather, weatherNext);
+    }
+  }
+
+  function placeDownloadAction(){
+    var row = document.querySelector('.td2-actrow');
+    if(!offlinePanel || !offlineHome || !row) return;
+    if(mq.matches && offlinePanel.parentElement !== row){
+      row.insertBefore(offlinePanel, row.firstChild);
+    }
+    if(!mq.matches && offlinePanel.parentElement !== offlineHome){
+      offlineHome.insertBefore(offlinePanel, offlineNext);
+    }
+  }
 
   function profileSummary(){
     try { return JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); }
@@ -144,6 +170,8 @@
   }
 
   function update(){
+    placeWeather();
+    placeDownloadAction();
     if(mq.matches && signedIn()) activate();
     else deactivate();
   }

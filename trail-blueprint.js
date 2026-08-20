@@ -592,7 +592,7 @@
     const rowMarkup = r => `
       <div class="safety-row is-caution"${r.guideId ? ` data-guide-id="${esc(r.guideId)}"` : ''}>
         <span class="pill">Caution</span>
-        <span><b>${esc(r.title)}</b><small>${esc(r.sub)}</small></span>
+        <span class="safety-row-copy"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small></span>
       </div>`;
     const visible = rows.slice(0, 3).map(rowMarkup).join('');
     const remaining = rows.slice(3);
@@ -601,7 +601,7 @@
       : '');
   })();
 
-  /* ---- Getting there — permanent beneath Trail hazards. Build it from
+  /* ---- Getting there — within About this trail. Build it from
      real start/access data and show an honest unavailable state when a
      trail has not yet been geocoded. ----------------------------------- */
   (function parking() {
@@ -617,10 +617,12 @@
       card.hidden = false;
       return;
     }
+    const startLabel = cardCopy(sp.label || t.valley || t.area || 'the marked trailhead')
+      .replace(/^Start here[.:\s-]*/i, '');
     const cards = [{
       ic:pin,
-      t:'Trailhead',
-      s:esc(cardCopy(sp.label || t.valley || t.area || 'Marked trailhead')),
+      t:'Recommended starting point',
+      s:`Head to ${esc(startLabel)}. Use the directions link to navigate to the route start.`,
     }];
     grid.innerHTML = cards.map(c => `<div class="td2-park"><span class="ic">${c.ic}</span><div><div class="t">${esc(c.t)}</div><div class="s">${c.s}</div></div></div>`).join('');
     if (maps) maps.hidden = false;
@@ -703,7 +705,7 @@
         }
         const hasWater = Array.isArray(t.waterSources) && t.waterSources.length > 0;
         const waterEl = $('tdCondWater');
-        if (waterEl) { waterEl.textContent = hasWater ? 'On route' : 'Carry own'; waterEl.style.color = hasWater ? '#2C5C34' : '#8A9689'; }
+        if (waterEl) { waterEl.textContent = hasWater ? 'On route' : 'Carry own'; waterEl.style.color = hasWater ? '#BDEBD9' : '#FFE6A6'; }
         if (condCard) condCard.hidden = false;
 
         // ---- 6-day forecast card ----

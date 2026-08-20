@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080" role="img" aria-label="ORMA dark green social background with shaded topographic paw mark">
+  <defs>
+    <radialGradient id="fade" cx="73%" cy="76%" r="36%">
+      <stop offset="34%" stop-color="white"/>
+      <stop offset="72%" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="soft-mark"><rect width="1080" height="1080" fill="url(#fade)"/></mask>
+    <filter id="muted"><feColorMatrix type="saturate" values="0.45"/></filter>
+  </defs>
+  <rect width="1080" height="1080" fill="#23332A"/>
+  <image href="../../logo.svg" x="430" y="430" width="720" height="720" opacity="0.18" filter="url(#muted)" mask="url(#soft-mark)"/>
+</svg>

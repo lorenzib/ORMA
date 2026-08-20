@@ -1,4 +1,4 @@
-name: Update dog-friendly routes
+name: Scout new dog-friendly routes
 
 on:
   workflow_dispatch: {}        # adds a "Run workflow" button in the Actions tab
@@ -21,26 +21,17 @@ jobs:
       - name: Fetch dog-friendly routes — Dolomites
         run: node scripts/fetch-dog-friendly-routes.js --region dolomites --bbox-only --loops-only --max-km 12
 
-      - name: Promote Dolomites routes to full trail entries
-        run: node scripts/promote-osm-trails.js --region dolomites
-
       - name: Fetch dog-friendly routes — Savoy
         run: node scripts/fetch-dog-friendly-routes.js --region savoy --bbox-only --loops-only --max-km 12
 
-      - name: Promote Savoy routes to full trail entries
-        run: node scripts/promote-osm-trails.js --region savoy
+      - name: Rank candidates near existing ORMA areas
+        run: npm run backoffice:new-trail-scouting
 
-      - name: Validate all production trail sources
-        run: node scripts/validate-production-trails.js
-
-      - name: Build regional runtime payloads
-        run: npm run build:regional-data
-
-      - name: Commit updated trail data
+      - name: Commit refreshed scouting packet
         run: |
           git config user.name "dolopaws-bot"
           git config user.email "actions@github.com"
-          git add dog-friendly-routes.geojson dog-friendly-routes-savoy.geojson osm-trails-data.js osm-trails-savoy-data.js data/access-points.geojson data/access-points-savoy.geojson data/dog-route-review.json data/dog-route-review-savoy.json data/dog-route-overrides.json data/regions/ data/regions-manifest.json regions-runtime-manifest.js
-          git diff --cached --quiet || git commit -m "Update dog-friendly routes and promoted trails from OSM"
+          git add dog-friendly-routes.geojson dog-friendly-routes-savoy.geojson data/access-points.geojson data/access-points-savoy.geojson data/dog-route-review.json data/dog-route-review-savoy.json backoffice-data/new-trail-scouting.json
+          git diff --cached --quiet || git commit -m "Refresh new trail scouting candidates"
           git pull --rebase origin main
           git push

@@ -155,12 +155,13 @@ describe('trail page map controls', () => {
   test('map-rendering scripts rotate their cache keys with the detail markup', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
 
-    expect(html).toContain('i18n.js?v=20260819-4');
-    expect(html).toContain('trail.js?v=20260819-4');
+    expect(html).toContain('i18n.js?v=20260819-5');
+    expect(html).toContain('trail.js?v=20260819-5');
     expect(html).toContain('trail-reports.js?v=20260820-1');
     expect(html).toContain('trail-blueprint.js?v=20260820-1');
-    expect(html).toContain('trail-recommendation.js?v=20260819-5');
-    expect(html).toContain('offline-packages.js?v=20260819-5');
+    expect(html).toContain('trail-recommendation.js?v=20260819-6');
+    expect(html).toContain('offline-packages.js?v=20260819-6');
+    expect(html).toContain('trail-mobile.js?v=20260819-6');
   });
 
   test('the map workspace places elevation below the map while dog fit stays alongside it', () => {
@@ -175,6 +176,7 @@ describe('trail page map controls', () => {
     const mapStack = workspace.querySelector('.td2-map-stack');
     expect(workspace.firstElementChild).toBe(mapStack);
     expect(mapStack.firstElementChild.classList.contains('td2-mapcard')).toBe(true);
+    expect(mapStack.children[1].id).toBe('mobileWeatherSlot');
     expect(mapStack.lastElementChild.id).toBe('tdElevationPanel');
     expect(html).toContain('.td2-map-stack>.td2-elev[hidden]{display:none!important;}');
     const plan = workspace.querySelector('.td2-plan-stack');
@@ -184,8 +186,8 @@ describe('trail page map controls', () => {
     expect(fit.querySelector('#recommendationDecision')).not.toBeNull();
     expect(guides).not.toBeNull();
     expect(document.getElementById('td2DogCard')).toBeNull();
-    expect(html).toContain('.td2-plan-stack{position:sticky;top:88px;height:clamp(560px,66vh,700px);');
-    expect(html).toContain('.td2-fit-shell{height:100%;min-height:0;overflow:auto;');
+    expect(html).toContain('.td2-plan-stack{position:sticky;top:88px;height:auto;');
+    expect(html).toContain('.td2-fit-shell{height:auto;min-height:0;overflow:visible;');
     expect(html).toContain('.td2-fit-shell{height:auto;overflow:visible;}');
   });
 
@@ -195,7 +197,7 @@ describe('trail page map controls', () => {
 
     const story = document.querySelector('.td2-story');
     expect(Array.from(story.children).map(node => node.id)).toEqual([
-      'td2AboutCard', 'td2ParkingCard', 'td2PhotosCard', 'td2ReviewsCard'
+      'td2AboutCard', 'td2PhotosCard', 'td2ReviewsCard'
     ]);
     const logistics = document.querySelector('.td2-logistics');
     expect(Array.from(logistics.children).map(node => node.id)).toEqual([
@@ -204,6 +206,9 @@ describe('trail page map controls', () => {
     const gettingThere = document.getElementById('td2ParkingCard');
     expect(gettingThere.hidden).toBe(false);
     expect(gettingThere.querySelector('.td2-kick').textContent.trim()).toBe('Getting there');
+    expect(gettingThere.parentElement.id).toBe('td2AboutCard');
+    expect(gettingThere.classList.contains('td2-card')).toBe(false);
+    expect(document.getElementById('addReportBtn').textContent).toContain('Report a hazard');
     expect(html).toContain('.td2-workspace,.td2-lower-grid{grid-template-columns:1fr;}');
     expect(html).not.toContain('id="offlineTestBtn"');
   });
@@ -227,12 +232,14 @@ describe('trail page map controls', () => {
     const actionIds = Array.from(copy.querySelector('.td2-actrow').children)
       .map(node => node.id)
       .filter(Boolean);
+    expect(actionIds.slice(0, 2)).toEqual(['heroStartHike', 'detailSaveBtn']);
     expect(actionIds).toEqual(expect.arrayContaining([
       'detailSaveBtn', 'heroStartHike', 'getDirectionsBtn', 'logWalkBtn',
       'exportGpxBtn', 'detailShareBtn'
     ]));
     expect(copy.querySelector('#offlineDownloadBtn')).not.toBeNull();
     expect(document.getElementById('tdHeroPhoto')).not.toBeNull();
+    expect(html).toContain('grid-template-columns:minmax(0,1.65fr) minmax(340px,.85fr);grid-template-areas:"tags weather"');
     expect(html).toContain('grid-template-areas:"tags weather" "title weather" "facts weather" "actions weather"');
     expect(html).toContain('.td2-hero-weather{grid-area:weather;');
   });

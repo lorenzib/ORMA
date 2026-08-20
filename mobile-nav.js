@@ -1,4 +1,10 @@
 (function(){
+  const pathName=window.location.pathname;
+  if(/\/trails\/[^/]+\.html$/.test(pathName)||/\/trail\.html$/.test(pathName)){
+    const hazardScript=document.createElement('script');
+    hazardScript.src=pathName.includes('/trails/')?'../trail-hazards.js?v=20260819-1':'trail-hazards.js?v=20260819-1';
+    hazardScript.defer=true;document.head.appendChild(hazardScript);
+  }
   function installSkipLink(){
     if(!document.body || document.querySelector('.dp-skip-link')) return;
     const link = document.createElement('a');
