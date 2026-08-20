@@ -42,8 +42,9 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('What ORMA automation does');
     expect(html).toContain('backoffice-review.css?v=20260820-13');
     expect(html).toContain('id="workerHealth"');
-    expect(html).toContain('backoffice/dashboard-model.js?v=20260820-7');
-    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260820-6');
+    expect(html).toContain('id="campaignHealth"');
+    expect(html).toContain('backoffice/dashboard-model.js?v=20260820-8');
+    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260820-7');
     expect(html).toContain('href="trail-dossier-desk.html"');
     expect(html).not.toMatch(/href="(?:content|new-trail-scouting|hazard-review|image-coverage|newsletter|social|product-ideas)-desk\.html"/);
   });
@@ -93,5 +94,14 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(workflow).toContain('ORMA_WORKER_FAILURE_STAGE="$stage"');
     expect(workflow).toContain('force_publication_retry:');
     expect(workflow).toContain("ORMA_PUBLICATION_FORCE_RETRY: ${{ github.event.inputs.force_publication_retry || 'false' }}");
+    expect(workflow).toContain("ORMA_CAMPAIGN_AUTOMATION_ENABLED: ${{ vars.ORMA_CAMPAIGN_AUTOMATION_ENABLED || 'false' }}");
+  });
+
+  test('daily campaign and worker catch-up share one lock and due-only receipts',()=>{
+    const campaign=fs.readFileSync(path.join(__dirname,'.github/workflows/orma-trail-campaign.yml'),'utf8');
+    expect(campaign).toContain('group: orma-backoffice-worker');
+    expect(campaign).toContain('--scheduled');
+    const dashboard=fs.readFileSync(path.join(output,'backoffice-hosted-dashboard.js'),'utf8');
+    expect(dashboard).toContain("optional(remote,'trail-campaign-health',null)");
   });
 });

@@ -194,6 +194,16 @@ Scheduled worker events are inert until the repository variable
 separate `ORMA_CAMPAIGN_AUTOMATION_ENABLED` variable. Manual workflow runs are
 always allowed, preserving a controlled activation path.
 
+Because GitHub can deliver cron events later than their expression, every
+successful worker run also performs a due-only catalogue catch-up when the
+campaign variable is enabled. The daily campaign remains a backup trigger and
+shares the worker concurrency lock. Admission jobs use stable IDs, the fleet
+never exceeds five trails in verification, and a protected
+`trail-campaign-health` receipt records running, healthy or failed state, the
+last admitted count, the next eligible check and the exact workflow link.
+Backoffice Home displays that receipt separately from worker health. Repeated
+or delayed triggers therefore cannot admit the same trail twice.
+
 The same workflow then consumes explicit publication approvals. It writes a
 small `data/verified-trail-overrides.json` change, regenerates and validates the
 website, opens a GitHub pull request, and records that PR URL back in Firestore.

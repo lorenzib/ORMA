@@ -82,6 +82,11 @@ describe('CEO dashboard workflow model',()=>{
     if(state==='failed')expect(model.workerHealth).toEqual(expect.objectContaining({consecutiveFailures:2,runUrl:'https://github.com/orma/actions/runs/123'}));
   });
 
+  test('shows the durable catalogue campaign result and its next due check',()=>{
+    const model=buildDashboardModel({campaignHealth:{status:'healthy',nextEligibleAt:'2026-08-21T06:16:00Z',workflowRunUrl:'https://github.com/orma/actions/runs/456',lastResult:{admitted:2,remainingQueueable:8}},nowMs:new Date('2026-08-20T07:00:00Z').getTime()});
+    expect(model.campaignHealth).toEqual(expect.objectContaining({state:'healthy',runUrl:'https://github.com/orma/actions/runs/456',message:expect.stringContaining('admitted 2 trail(s)')}));
+  });
+
   test('counts autonomous resolution and first-pass editorial jobs as visible agent work',()=>{
     const model=buildDashboardModel({jobs:[
       {id:'resolution-1',jobType:'trail-claim-resolution',status:'queued',candidateId:'trail-a'},

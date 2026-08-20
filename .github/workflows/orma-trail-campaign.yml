@@ -11,7 +11,7 @@ on:
     - cron: '15 6 * * *'
 
 concurrency:
-  group: orma-trail-verification-campaign
+  group: orma-backoffice-worker
   cancel-in-progress: false
 
 permissions:
@@ -41,6 +41,11 @@ jobs:
           test -n "$OPENAI_API_KEY" || { echo "Missing OPENAI_API_KEY"; exit 1; }
       - run: npm ci
       - name: Admit the next trail batch
-        run: npm run backoffice:campaign:live -- --limit "$CAMPAIGN_LIMIT"
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            npm run backoffice:campaign:live -- --limit "$CAMPAIGN_LIMIT" --scheduled
+          else
+            npm run backoffice:campaign:live -- --limit "$CAMPAIGN_LIMIT" --force
+          fi
       - name: Start the first agent pass
         run: npm run backoffice:worker:live

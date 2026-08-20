@@ -41,6 +41,8 @@ jobs:
       ORMA_SPECIALIST_CANDIDATE_ID: ${{ github.event.inputs.candidate_id || '' }}
       ORMA_SPECIALIST_LIMIT: ${{ github.event.inputs.specialist_limit || '5' }}
       ORMA_PUBLICATION_FORCE_RETRY: ${{ github.event.inputs.force_publication_retry || 'false' }}
+      ORMA_CAMPAIGN_AUTOMATION_ENABLED: ${{ vars.ORMA_CAMPAIGN_AUTOMATION_ENABLED || 'false' }}
+      ORMA_CAMPAIGN_LIMIT: '5'
     steps:
       - uses: actions/checkout@v4
 
