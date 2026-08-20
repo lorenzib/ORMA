@@ -1381,27 +1381,6 @@ body.map-fs-open{overflow:hidden;}
 .itin-row a{color:var(--accent);font-size:12px;}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 @media (max-width:760px){ .about-grid{grid-template-columns:1fr;} }
-.trail-review-meta{margin:12px 0 0;font-size:12px;font-weight:700;color:var(--ink);}
-.trail-source-disclosure{margin-top:12px;font-size:12px;color:var(--ink-soft);}
-.trail-source-disclosure>summary{cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--forest);}
-.trail-source-disclosure>summary::after{content:'';width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .16s ease;}
-.trail-source-disclosure[open]>summary::after{transform:rotate(225deg) translate(-2px,-1px);}
-.trail-source-disclosure>summary::-webkit-details-marker{display:none;}
-.trail-source-disclosure>#trailCoords{margin:14px 0 0;padding-top:14px;border-top:1px solid var(--paper-line);font-size:12px;color:var(--ink-soft);}
-.trail-source-links{display:grid;gap:18px;margin-top:16px;font-size:12px;color:var(--ink-soft);}
-.trail-source-group{display:grid;gap:8px;}
-.trail-source-group-title{margin:0;color:var(--ink);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
-.trail-source-grid{border-top:1px solid var(--paper-line);}
-.trail-source-row{display:grid;grid-template-columns:minmax(100px,22%) 1fr;gap:16px;padding:9px 0;border-bottom:1px solid var(--paper-line);line-height:1.45;}
-.trail-source-label{font-size:11px;font-weight:700;color:var(--ink-soft);}
-.trail-source-value{color:var(--ink);}
-.trail-source-muted{color:var(--ink-soft);}
-.trail-source-links a{color:var(--forest);text-decoration:underline;text-underline-offset:2px;}
-.trail-source-list{display:grid;gap:8px;margin:0;padding:0;list-style:none;counter-reset:trail-source;}
-.trail-source-list li{counter-increment:trail-source;display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:start;line-height:1.45;}
-.trail-source-list li::before{content:counter(trail-source);display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#E7EEE8;color:var(--forest);font-size:10px;font-weight:800;}
-.trail-source-empty{margin:0;color:var(--ink-soft);font-size:12px;}
-
 /* ---- Trail map legend chips ---- */
 .legend-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
 .legend-chips .sign-chip{padding:5px 12px 5px 9px;font-weight:600;font-size:12px;}

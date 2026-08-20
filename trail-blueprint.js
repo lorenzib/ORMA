@@ -85,42 +85,30 @@
     el.hidden = false;
   })();
 
-  /* ---- Dated review record and route-specific sources ------------ */
-  (function sourceRecord() {
+  /* ---- Public review record --------------------------------------
+     Claim-level evidence remains in the Trail Verification Desk. */
+  (function reviewRecord() {
     const meta = $('trailReviewMeta');
-    const links = $('trailSourceLinks');
-    if (!meta || !links) return;
+    if (!meta) return;
     const graduation = trust && trust.graduationProgress ? trust.graduationProgress(t) : null;
     const progress = trust && trust.reviewProgress ? trust.reviewProgress(t) : null;
     if (graduation) {
       const date = trust.formatReviewDate(t.reviewedAt || (t.verified && t.verified.date));
       meta.textContent = graduation.verified
         ? `Verified by ORMA on ${date}. Check current conditions before setting out.`
-        : 'Based on mapped route data and available ORMA sources. Check current conditions before setting out.';
+        : 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.';
     } else if (progress) {
       meta.textContent = progress.checked === progress.total
-        ? 'Trail details have been source-checked by ORMA. Check current conditions before setting out.'
-        : 'Based on mapped route data and available ORMA sources. Check current conditions before setting out.';
+        ? 'Trail details have been reviewed by ORMA. Check current conditions before setting out.'
+        : 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.';
     } else if (t.routeAudit && t.reviewedAt) {
       const date = trust ? trust.formatReviewDate(t.reviewedAt) : t.reviewedAt;
       meta.textContent = `Route details reviewed by ORMA on ${date}. Check current conditions before setting out.`;
     } else {
       meta.textContent = t.curated === false
-        ? 'Based on mapped route data and available ORMA sources. Check local access rules and current conditions before setting out.'
+        ? 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.'
         : 'Trail information prepared by ORMA. Check current conditions before setting out.';
     }
-    const sources = Array.isArray(t.sourceLinks) ? t.sourceLinks : [];
-    const routeData = [
-      { label:'Route map', value:'<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a><span class="trail-source-muted"> and </span><a href="https://hiking.waymarkedtrails.org/" target="_blank" rel="noopener">Waymarked Trails</a>' },
-      { label:'Weather', value:'<a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo forecast</a>' },
-    ];
-    const dataRows = routeData.map(row => `<div class="trail-source-row"><span class="trail-source-label">${row.label}</span><span class="trail-source-value">${row.value}</span></div>`).join('');
-    const evidence = sources.length
-      ? `<ol class="trail-source-list">${sources.map(source =>
-        `<li><a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.label)}</a></li>`
-      ).join('')}</ol>`
-      : '<p class="trail-source-empty">No additional trail-specific sources recorded.</p>';
-    links.innerHTML = `<div class="trail-source-group"><p class="trail-source-group-title">Route and live data</p><div class="trail-source-grid">${dataRows}</div></div><div class="trail-source-group"><p class="trail-source-group-title">Trail evidence</p>${evidence}</div>`;
   })();
 
   /* ---- Answer strip ---------------------------------------------- */

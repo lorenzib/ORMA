@@ -35,7 +35,8 @@ describe('UX-04 canonical recommendation journey', () => {
   });
 
   test('the three distinct actions remain reachable without a data-detail link on the card', () => {
-    expect(html).toContain('id="trailEvidence"');
+    expect(html).toContain('id="trailReviewNote"');
+    expect(html).not.toContain('id="trailEvidence"');
     expect(controller).not.toContain('About this trail data');
     expect(controller).not.toContain('recommendation-evidence-link');
     expect(controller).toContain('data-recommendation-save');

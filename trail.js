@@ -1006,14 +1006,6 @@ function renderTrail(t){
     }
   })();
 
-  // Coordinates — shown in plain decimal-degree format, matching how most
-  // real trail sites display a trailhead location.
-  const coordSource = t.startPoint || t;
-  if(typeof coordSource.lat === 'number'){
-    document.getElementById('trailCoords').textContent =
-      `${window.t('trail.coords')} ${coordSource.lat.toFixed(5)}, ${coordSource.lng.toFixed(5)}`;
-  }
-
   // Quick facts — ascent/descent, highest/lowest point.
   // Note: summing the sparse elevationProfile points (usually just 5-6
   // samples) systematically UNDERSTATES real ascent, since it misses the
@@ -1135,8 +1127,8 @@ function renderTrail(t){
       box.querySelector('h2').remove(); // card already has the heading
       gtk.appendChild(box);
     } else {
-      const coords = document.getElementById('trailCoords');
-      if (coords && coords.parentNode) coords.parentNode.appendChild(box);
+      const detail = document.getElementById('trailDetailContent');
+      if (detail) detail.appendChild(box);
     }
   } else {
     // No hand-researched notes yet — fill the card with honest facts
