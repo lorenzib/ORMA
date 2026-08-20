@@ -1,0 +1,370 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-19T13:17:40.358Z",
+  "mode": "coverage-audit",
+  "publicMutationAllowed": false,
+  "library": {
+    "ormaRoot": "images/",
+    "ormaAssetsScanned": 40,
+    "personalLibraryConnected": false,
+    "personalAssetsScanned": 0
+  },
+  "pages": [
+    {
+      "slug": "alpine-plants-for-dogs",
+      "title": "Alpine Plants Guide for Dogs",
+      "sourceRef": "guides/alpine-plants-for-dogs.html",
+      "coverageState": "covered",
+      "reasons": [],
+      "existingAssets": [
+        "../images/editorial/alpine-plants-dog-safety-v1.jpg"
+      ],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [
+        {
+          "source": "orma-library",
+          "fileName": "alpine-plants-dog-safety-v1.jpg",
+          "sourceRef": "images/editorial/alpine-plants-dog-safety-v1.jpg",
+          "score": 2,
+          "matchedTerms": [
+            "alpine",
+            "plants"
+          ]
+        }
+      ],
+      "recommendedRoute": "orma-library",
+      "priority": "medium",
+      "status": "covered"
+    },
+    {
+      "slug": "altitude-with-your-dog",
+      "title": "Adjusting for altitude with puppies and seniors",
+      "sourceRef": "guides/altitude-with-your-dog.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The page contains an empty hero image container.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    },
+    {
+      "slug": "breed-group-caveats",
+      "title": "Breed-group caveats for the mountains",
+      "sourceRef": "guides/breed-group-caveats.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    },
+    {
+      "slug": "dog-friendly-hikes-lago-di-braies",
+      "title": "Lago di Braies & Tre Cime with a dog",
+      "sourceRef": "guides/dog-friendly-hikes-lago-di-braies.html",
+      "coverageState": "covered",
+      "reasons": [],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/images/lago-di-braies.webp",
+      "libraryMatches": [
+        {
+          "source": "orma-library",
+          "fileName": "lago-di-braies-480.webp",
+          "sourceRef": "images/lago-di-braies-480.webp",
+          "score": 2,
+          "matchedTerms": [
+            "lago",
+            "braies"
+          ]
+        },
+        {
+          "source": "orma-library",
+          "fileName": "lago-di-braies.jpg",
+          "sourceRef": "images/lago-di-braies.jpg",
+          "score": 2,
+          "matchedTerms": [
+            "lago",
+            "braies"
+          ]
+        },
+        {
+          "source": "orma-library",
+          "fileName": "lago-di-braies.webp",
+          "sourceRef": "images/lago-di-braies.webp",
+          "score": 2,
+          "matchedTerms": [
+            "lago",
+            "braies"
+          ]
+        }
+      ],
+      "recommendedRoute": "orma-library",
+      "priority": "medium",
+      "status": "covered"
+    },
+    {
+      "slug": "dog-friendly-hikes-val-gardena",
+      "title": "Dog-friendly hikes in Val Gardena",
+      "sourceRef": "guides/dog-friendly-hikes-val-gardena.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    },
+    {
+      "slug": "dogs-at-rifugi",
+      "title": "Dogs at rifugi: terrace, indoors, overnight, and why the answer is always \"call\"",
+      "sourceRef": "guides/dogs-at-rifugi.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    },
+    {
+      "slug": "dogs-on-cable-cars",
+      "title": "Taking your dog on cable cars and gondolas: the rules that actually apply",
+      "sourceRef": "guides/dogs-on-cable-cars.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    },
+    {
+      "slug": "heat-overheating",
+      "title": "Recognizing overheating early",
+      "sourceRef": "guides/heat-overheating.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The page contains an empty hero image container.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    },
+    {
+      "slug": "livestock-guard-dogs",
+      "title": "The 40-kilo white dog on the trail is working. Here's what to do, especially with your own dog.",
+      "sourceRef": "guides/livestock-guard-dogs.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    },
+    {
+      "slug": "paw-protection",
+      "title": "Rock changes the walk.",
+      "sourceRef": "guides/paw-protection.html",
+      "coverageState": "covered",
+      "reasons": [],
+      "existingAssets": [
+        "../images/editorial/paw-terrain-limestone-real-v1.jpg",
+        "../images/editorial/paw-terrain-scree-real-v1.jpg",
+        "../images/editorial/paw-terrain-compact-real-v1.jpg",
+        "../images/editorial/paw-check-generated-small-v1.jpg"
+      ],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "medium",
+      "status": "covered"
+    },
+    {
+      "slug": "water-for-dogs-on-trail",
+      "title": "Water for dogs on alpine trails: how much, and where it actually is",
+      "sourceRef": "guides/water-for-dogs-on-trail.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    }
+  ],
+  "gaps": [
+    {
+      "slug": "altitude-with-your-dog",
+      "title": "Adjusting for altitude with puppies and seniors",
+      "sourceRef": "guides/altitude-with-your-dog.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The page contains an empty hero image container.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    },
+    {
+      "slug": "breed-group-caveats",
+      "title": "Breed-group caveats for the mountains",
+      "sourceRef": "guides/breed-group-caveats.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    },
+    {
+      "slug": "dog-friendly-hikes-val-gardena",
+      "title": "Dog-friendly hikes in Val Gardena",
+      "sourceRef": "guides/dog-friendly-hikes-val-gardena.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    },
+    {
+      "slug": "dogs-at-rifugi",
+      "title": "Dogs at rifugi: terrace, indoors, overnight, and why the answer is always \"call\"",
+      "sourceRef": "guides/dogs-at-rifugi.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    },
+    {
+      "slug": "dogs-on-cable-cars",
+      "title": "Taking your dog on cable cars and gondolas: the rules that actually apply",
+      "sourceRef": "guides/dogs-on-cable-cars.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    },
+    {
+      "slug": "heat-overheating",
+      "title": "Recognizing overheating early",
+      "sourceRef": "guides/heat-overheating.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The page contains an empty hero image container.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    },
+    {
+      "slug": "livestock-guard-dogs",
+      "title": "The 40-kilo white dog on the trail is working. Here's what to do, especially with your own dog.",
+      "sourceRef": "guides/livestock-guard-dogs.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    },
+    {
+      "slug": "water-for-dogs-on-trail",
+      "title": "Water for dogs on alpine trails: how much, and where it actually is",
+      "sourceRef": "guides/water-for-dogs-on-trail.html",
+      "coverageState": "missing",
+      "reasons": [
+        "No meaningful editorial image is rendered on the page.",
+        "The social preview also uses the ORMA icon or has no image."
+      ],
+      "existingAssets": [],
+      "ogImage": "https://www.app-orma.com/icon-512.png",
+      "libraryMatches": [],
+      "recommendedRoute": "personal-library-first",
+      "priority": "high",
+      "status": "awaiting-review"
+    }
+  ],
+  "summary": {
+    "pagesScanned": 11,
+    "covered": 3,
+    "missing": 8,
+    "highPriority": 8
+  }
+}

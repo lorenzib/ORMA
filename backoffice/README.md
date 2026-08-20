@@ -1,9 +1,15 @@
 # ORMA Backoffice MVP
 
+> **Current operating contract:**
+> [`OPERATING_STANDARD.md`](./OPERATING_STANDARD.md) defines the six-team model,
+> CEO review gates, cadences, and publishing behaviour that all new backoffice
+> work must preserve. Where older MVP notes below conflict with that standard,
+> the operating standard takes precedence.
+
 This directory contains ORMA's private, evidence-first trail production
 pipeline. It is deliberately separate from the public trail catalogue.
 
-## Current scope
+## Historical implementation notes
 
 The first workflow reads an existing OpenStreetMap snapshot, runs deterministic
 geometry and hard-disqualifier checks, and writes a bounded local review queue.

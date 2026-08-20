@@ -84,6 +84,8 @@ const { validateContentOperations } = require('./contracts/content-operations-v1
 const { planContentOperations } = require('./workflows/plan-content-operations');
 const { outputText } = require('./services/openai-responses-client');
 const { visibleText, runGuideContent } = require('./workflows/run-guide-content');
+const { runEditorialCycle } = require('./workflows/run-editorial-cycle');
+const { runNewsletter, newsletterIsDue } = require('./workflows/run-newsletter');
 const { validateContentExecution } = require('./contracts/content-result-v1');
 const contentReviewDecisions = require('./content-review-decisions');
 const { safeSourcePath, applyExactChanges, applyReviewChanges, recordVerifiedTrailReview } = require('./workflows/apply-content-review');
@@ -99,6 +101,13 @@ const { runTrailSpecialist } = require('./workflows/run-trail-specialist');
 const { startLiveTrailCampaign } = require('./workflows/start-live-trail-campaign');
 const { trailOnlyReviewQueue } = require('./cli/seed-live-state');
 const { compileVerifiedDossier, verificationRecord } = require('./workflows/compile-verified-dossier');
+const { runProductDiscovery } = require('./workflows/run-product-discovery');
+const { applyProductIdeaReview } = require('./workflows/product-ideas-review');
+const { imageSignals, auditImageCoverage } = require('./workflows/audit-image-coverage');
+const { applyImageCoverageReview } = require('./workflows/image-coverage-review');
+const { parseAtomFeed, buildHazardArtifacts, applyHazardReview } = require('./workflows/dynamic-hazards');
+const { planNewTrailScouting } = require('./workflows/plan-new-trail-scouting');
+const { candidateToTrail, selectedNewTrails, admitNewTrailIntake } = require('./workflows/new-trail-intake');
 const mockContentExecution = require('./fixtures/content-execution.mock.json');
 
 const loop = [
@@ -957,11 +966,14 @@ describe('ORMA backoffice MVP', () => {
     });
     expect(validateContentOperations(plan)).toEqual([]);
     expect(plan.publicMutationAllowed).toBe(false);
-    expect(plan.summary).toEqual({ activeWorkstreams: 4, parkedWorkstreams: 1, jobs: 8 });
+    expect(plan.summary).toEqual({ activeWorkstreams: 3, parkedWorkstreams: 2, jobs: 6 });
     expect(plan.workstreams.find(stream => stream.id === 'newsletter')).toEqual(expect.objectContaining({
       cadence: 'every-14-days', nextRunOn: '2026-09-01', status: 'active',
     }));
     expect(plan.workstreams.find(stream => stream.id === 'library-enrichment').nextRunOn).toBe('2026-08-25');
+    expect(plan.workstreams.find(stream => stream.id === 'collections')).toEqual(expect.objectContaining({
+      cadence: 'on-demand', status: 'parked', nextRunOn: null,
+    }));
     expect(plan.workstreams.find(stream => stream.id === 'social')).toEqual(expect.objectContaining({
       status: 'parked', nextRunOn: null,
     }));
@@ -970,29 +982,49 @@ describe('ORMA backoffice MVP', () => {
 
   test('social jobs are created only when the channel is enabled', () => {
     const plan = planContentOperations({ asOf: '2026-08-18', socialEnabled: true });
-    expect(plan.summary).toEqual({ activeWorkstreams: 5, parkedWorkstreams: 0, jobs: 10 });
+    expect(plan.summary).toEqual({ activeWorkstreams: 4, parkedWorkstreams: 1, jobs: 8 });
     expect(plan.jobs.filter(job => job.action.includes('social'))).toHaveLength(2);
   });
 
-  test('guide content runner isolates agents and produces a review artifact', async () => {
+  test('guide content runner produces a copy-only review artifact', async () => {
     const calls = [];
     const execution = await runGuideContent(require('path').resolve(__dirname, '..'), {
       guideId: 'paw-protection', at: '2026-08-18T19:00:00.000Z',
       runAgent: async input => {
         calls.push(input.schemaName);
-        if(input.schemaName === 'orma_guide_pictures') return { responseId: 'resp-pictures', model: 'fixture', data: {
-          searchSummary: 'One candidate checked.', candidates: [], coverageGaps: ['Trail-specific image needed'],
-        } };
         return { responseId: 'resp-edit', model: 'fixture', data: {
           title: 'Paw protection', summary: 'Small clarity edit.', changes: [], sources: [], openQuestions: [],
         } };
       },
     });
     expect(validateContentExecution(execution)).toEqual([]);
-    expect(execution.summary).toEqual({ readyForReview: 2, blocked: 0 });
-    expect(calls.sort()).toEqual(['orma_guide_edit', 'orma_guide_pictures']);
+    expect(execution.summary).toEqual({ readyForReview: 1, blocked: 0 });
+    expect(calls).toEqual(['orma_guide_edit']);
     expect(execution.publicMutationAllowed).toBe(false);
+    expect(execution.subject.original).toContain('<html');
     expect(execution.subject.original.length).toBeGreaterThan(100);
+  });
+
+  test('editorial cycle fills three slots once and preserves unresolved packets', async () => {
+    const fs=require('fs');const os=require('os');const path=require('path');const root=fs.mkdtempSync(path.join(os.tmpdir(),'orma-editorial-cycle-'));
+    fs.mkdirSync(path.join(root,'guides'));fs.mkdirSync(path.join(root,'backoffice-data'));
+    ['a','b','c','d'].forEach(id=>fs.writeFileSync(path.join(root,'guides',`${id}.html`),`<html><main><h1>${id}</h1></main></html>`));
+    fs.writeFileSync(path.join(root,'backoffice-data','editorial-ledger.json'),JSON.stringify({contractVersion:'1.0.0',items:[]}));
+    let calls=0;const runGuide=async (runRoot,{guideId,at})=>{calls++;const sourceRef=`guides/${guideId}.html`;return {contractVersion:'1.0.0',generatedAt:at,mode:'draft-only',publicMutationAllowed:false,subject:{type:'guide',id:guideId,sourceRef,updatedAt:at,original:fs.readFileSync(path.join(runRoot,sourceRef),'utf8')},outputs:[{jobId:`guide-${guideId}-edit`,agentId:'copywriter',status:'ready-for-review',responseId:null,model:'fixture',result:{title:guideId,summary:'Review',changes:[],sources:[],openQuestions:[]},error:null}],summary:{readyForReview:1,blocked:0}};};
+    try{
+      const first=await runEditorialCycle(root,{at:'2026-08-19T10:00:00.000Z',runGuide});
+      const second=await runEditorialCycle(root,{at:'2026-08-26T10:00:00.000Z',runGuide});
+      expect(first.generated).toHaveLength(3);expect(second.preserved).toHaveLength(3);expect(second.generated).toHaveLength(0);expect(calls).toBe(3);
+    }finally{fs.rmSync(root,{recursive:true,force:true});}
+  });
+
+  test('newsletter agent creates one reviewable issue and respects the fourteen-day gate', async () => {
+    const packet=await runNewsletter({newlyPublishedTrails:[],publishedEditorialChanges:[],timelySafetySignals:[{title:'Heat'}],currentEditorialSignals:[]},{at:'2026-08-19T10:00:00.000Z',runAgent:async()=>({model:'fixture',responseId:'newsletter-1',data:{issueTitle:'Cooler trails this week',subjectOptions:['Cooler walks','Plan for heat'],preheader:'A practical ORMA update',introduction:'Hello hikers.',sections:[{heading:'Heat planning',body:'Check current official warnings before leaving.',linkUrl:null,sourceRefs:['MeteoAlarm']}],closing:'Walk well.',sources:[]}})});
+    expect(validateContentExecution(packet)).toEqual([]);expect(packet.summary).toEqual({readyForReview:1,blocked:0});
+    expect(newsletterIsDue(packet,{decisions:[]},'2026-08-20T10:00:00.000Z')).toBe(false);
+    const review={decisions:[{generatedAt:packet.generatedAt,action:'approve',reviewedAt:'2026-08-19T11:00:00.000Z'}]};
+    expect(newsletterIsDue(packet,review,'2026-09-01T10:59:59.000Z')).toBe(false);
+    expect(newsletterIsDue(packet,review,'2026-09-02T11:00:00.000Z')).toBe(true);
   });
 
   test('content runner utilities extract response text and visible guide copy', () => {
@@ -1319,5 +1351,98 @@ describe('ORMA backoffice MVP', () => {
     const store={getArtifact:async id=>artifacts[id],setArtifact:async(id,value)=>{artifacts[id]=value;},putJob:async job=>queued.push(job)};
     const result=await startLiveTrailCampaign(store,[{id:'new-trail',name:'New',curated:true,osmRelation:99,path:[[1,1],[1,1]]}],{at:'2026-08-18T20:00:00.000Z',limit:5,capacity:5});
     expect(result.jobIds).toEqual([]);expect(queued).toEqual([]);expect(artifacts['trail-orchestration'].trails).toHaveLength(5);
+  });
+
+  test('product discovery produces a source-linked research-only review packet', async () => {
+    const packet=await runProductDiscovery({at:'2026-08-19T10:00:00.000Z',runAgent:async input=>{
+      expect(input.webSearch).toBe(true);
+      return {model:'test-model',responseId:'response-1',data:{executiveSummary:'A useful pattern.',ideas:[
+        {id:'condition-layer',category:'feature',title:'Condition layer',signal:'A competitor shipped it.',ormaOpportunity:'Make it dog-first.',whyNow:'Safety.',impact:'high',confidence:'high',suggestedInvestigation:['Check inputs'],sources:[{label:'Official release',url:'https://example.test/release',checkedAt:'2026-08-19',supports:'The release.'}]},
+        {id:'visual-gap',category:'ui',title:'Visual gap',signal:'Photos matter.',ormaOpportunity:'Use owned photos.',whyNow:'Coverage.',impact:'medium',confidence:'medium',suggestedInvestigation:['Audit'],sources:[{label:'Official page',url:'https://example.test/photos',checkedAt:'2026-08-19',supports:'Photo feature.'}]},
+        {id:'editorial-gap',category:'editorial-gap',title:'Editorial gap',signal:'Questions repeat.',ormaOpportunity:'Publish an explainer.',whyNow:'Demand.',impact:'low',confidence:'medium',suggestedInvestigation:['Review queries'],sources:[{label:'Support',url:'https://example.test/support',checkedAt:'2026-08-19',supports:'Common questions.'}]},
+      ]}};
+    }});
+    expect(packet).toEqual(expect.objectContaining({mode:'research-only',publicMutationAllowed:false}));
+    expect(packet.ideas).toHaveLength(3);expect(packet.ideas.every(idea=>idea.status==='awaiting-review')).toBe(true);
+  });
+
+  test('investigate further queues research without authorising feature work', () => {
+    const packet={ideas:[{id:'condition-layer',suggestedInvestigation:['Check inputs']}]};
+    const review=applyProductIdeaReview(packet,{decisions:[],jobs:[]},{ideaId:'condition-layer',action:'investigate-further',note:'Compare Alpine sources.'},'2026-08-19T10:00:00.000Z');
+    expect(review.decisions[0]).toEqual(expect.objectContaining({featureWorkAuthorized:false,publicMutationAllowed:false}));
+    expect(review.jobs[0]).toEqual(expect.objectContaining({agentId:'marketOpportunity',status:'queued',focus:'Compare Alpine sources.'}));
+  });
+
+  test('prioritising an analyst idea authorises a mock-up but not development', () => {
+    const packet={ideas:[{id:'condition-layer',ormaOpportunity:'Dog-first condition layer.',suggestedInvestigation:[]}]};
+    const review=applyProductIdeaReview(packet,{decisions:[],jobs:[]},{ideaId:'condition-layer',action:'prioritise',note:'Start with the trail header.'},'2026-08-19T10:00:00.000Z');
+    expect(review.decisions[0]).toEqual(expect.objectContaining({designExplorationAuthorized:true,featureWorkAuthorized:false,implementationAuthorized:false}));
+    expect(review.jobs[0]).toEqual(expect.objectContaining({agentId:'productDesigner',action:'create-reviewable-mockup',humanGate:'ceo-mockup-approval',implementationAuthorized:false}));
+  });
+
+  test('image coverage recognises editorial imagery and audits the real guide library', async () => {
+    expect(imageSignals('<img src="../images/editorial/paw.jpg" alt="Paw">').editorialImages).toEqual(['../images/editorial/paw.jpg']);
+    const audit=await auditImageCoverage(require('path').resolve(__dirname,'..'),{at:'2026-08-19T10:00:00.000Z'});
+    expect(audit.summary.pagesScanned).toBeGreaterThanOrEqual(11);
+    expect(audit.gaps.map(gap=>gap.slug)).toEqual(expect.arrayContaining(['altitude-with-your-dog','heat-overheating']));
+    expect(audit.pages.find(page=>page.slug==='paw-protection').coverageState).toBe('covered');
+  });
+
+  test('image sourcing stays queued behind asset approval', () => {
+    const audit={gaps:[{slug:'heat-overheating',sourceRef:'guides/heat-overheating.html',reasons:['Empty hero'],libraryMatches:[]}]};
+    const review=applyImageCoverageReview(audit,{decisions:[],jobs:[]},{slug:'heat-overheating',action:'check-personal-library',note:'Look for the Seceda summer shoot.'},'2026-08-19T10:00:00.000Z');
+    expect(review.jobs[0]).toEqual(expect.objectContaining({agentId:'visualDirector',status:'queued',requiresAssetApproval:true,publicMutationAllowed:false}));
+  });
+
+  test('authoritative severe-weather alerts map to affected ORMA trails without claiming closure', () => {
+    const xml=`<feed xmlns="http://www.w3.org/2005/Atom" xmlns:cap="urn:oasis:names:tc:emergency:cap:1.2"><entry><id>alert-1</id><title>Orange wind warning</title><updated>2026-08-19T05:00:00Z</updated><link href="https://example.test/cap" type="application/cap+xml"/><cap:identifier>official-1</cap:identifier><cap:event>Wind</cap:event><cap:areaDesc>Veneto</cap:areaDesc><cap:severity>Severe</cap:severity><cap:certainty>Likely</cap:certainty><cap:expires>2026-08-20T05:00:00Z</cap:expires></entry></feed>`;
+    const alerts=parseAtomFeed(xml,{key:'official-italy',label:'Official Italy',url:'https://example.test/feed'});
+    const artifacts=buildHazardArtifacts({hazards:[]},alerts,[{key:'official-italy',ok:true,alertsRead:1}],[{id:'trail-a',name:'Trail A',region:'dolomites',province:'belluno'}],{at:'2026-08-19T06:00:00.000Z'});
+    expect(artifacts.publicData.hazards).toEqual([expect.objectContaining({state:'active',trailIds:['trail-a'],removalRequiresHumanReview:true})]);
+    expect(artifacts.publicData.hazards[0].message).toContain('not a trail-closure notice');
+  });
+
+  test('an unavailable warning source never clears a previous warning', () => {
+    const previous={hazards:[{id:'source:a',sourceKey:'source',state:'active',expiresAt:'2026-08-18T00:00:00.000Z',message:'Warning.',trailIds:['trail-a']}]};
+    const artifacts=buildHazardArtifacts(previous,[],[{key:'source',ok:false,error:'timeout'}],[],{at:'2026-08-19T06:00:00.000Z'});
+    expect(artifacts.publicData.hazards[0]).toEqual(expect.objectContaining({state:'active',sourceStatus:'unavailable',sourceError:'timeout'}));
+    expect(artifacts.reviewQueue.items).toHaveLength(0);
+  });
+
+  test('expired warnings enter removal review and only human confirmation removes them', () => {
+    const previous={contractVersion:'1.0.0',hazards:[{id:'source:a',sourceKey:'source',state:'active',expiresAt:'2026-08-18T00:00:00.000Z',message:'Warning.',trailIds:['trail-a']}]};
+    const artifacts=buildHazardArtifacts(previous,[],[{key:'source',ok:true,alertsRead:0}],[],{at:'2026-08-19T06:00:00.000Z'});
+    expect(artifacts.publicData.hazards[0].state).toBe('resolution-review');
+    const reviewed=applyHazardReview(artifacts.publicData,{decisions:[]},{hazardId:'source:a',action:'confirm-resolved'},{at:'2026-08-19T07:00:00.000Z'});
+    expect(reviewed.publicData.hazards).toHaveLength(0);expect(reviewed.ledger.decisions[0].action).toBe('confirm-resolved');
+  });
+
+  test('keeping an expired warning active defers the next removal review for one day', () => {
+    const data={contractVersion:'1.0.0',hazards:[{id:'source:a',sourceKey:'source',state:'resolution-review',expiresAt:'2026-08-18T00:00:00.000Z',message:'Warning.',trailIds:['trail-a']}]};
+    const kept=applyHazardReview(data,{decisions:[]},{hazardId:'source:a',action:'keep-active'},{at:'2026-08-19T07:00:00.000Z'});
+    expect(kept.publicData.hazards[0]).toEqual(expect.objectContaining({state:'active',nextRemovalReviewAt:'2026-08-20T07:00:00.000Z'}));
+    const artifacts=buildHazardArtifacts(kept.publicData,[],[{key:'source',ok:true,alertsRead:0}],[],{at:'2026-08-19T08:00:00.000Z'});
+    expect(artifacts.publicData.hazards[0].state).toBe('active');
+  });
+
+  test('new trail scouting prioritises credible loops near existing coverage and never publishes them', () => {
+    const closed=[[11.5,46.5],[11.51,46.5],[11.5,46.5]];const sources=[{region:'dolomites',data:{features:[
+      {type:'Feature',properties:{osm_relation:200,name:'Nearby loop',distance_km:5,loop:true,sac_scale:'hiking'},geometry:{type:'LineString',coordinates:closed}},
+      {type:'Feature',properties:{osm_relation:100,name:'Already public',distance_km:5,loop:true},geometry:{type:'LineString',coordinates:closed}},
+      {type:'Feature',properties:{osm_relation:300,name:'Too hard',distance_km:5,loop:true,sac_scale:'alpine_hiking'},geometry:{type:'LineString',coordinates:closed}},
+    ]}}];
+    const packet=planNewTrailScouting(sources,[{id:'existing',name:'Existing',region:'dolomites',lat:46.5,lng:11.5,osmRelation:100}],{at:'2026-08-19T07:00:00.000Z'});
+    expect(packet.candidates).toEqual([expect.objectContaining({id:'osm-relation-200',expansionTier:'existing-area',status:'awaiting-ceo-selection',publicMutationAllowed:false})]);
+    expect(packet.publicMutationAllowed).toBe(false);
+  });
+
+  test('a selected New Trail enters the existing verification fleet as a non-public intake', async () => {
+    const candidate={id:'osm-relation-200',osmRelation:200,name:'Nearby loop',region:'dolomites',center:[11.5,46.5],distanceKm:5,sourceUrl:'https://www.openstreetmap.org/relation/200'};
+    expect(candidateToTrail(candidate)).toEqual(expect.objectContaining({id:'osm-relation-200',curated:false,osmRelation:200,publicRecordPresent:false}));
+    expect(selectedNewTrails({candidates:[candidate]},{decisions:[{candidateId:candidate.id,action:'send-to-verification'}]})).toHaveLength(1);
+    const artifacts={};const jobs=[];const store={getArtifact:async id=>artifacts[id]||null,setArtifact:async(id,value)=>{artifacts[id]=value;},putJob:async job=>jobs.push(job)};
+    const result=await admitNewTrailIntake(store,{candidates:[candidate]},{decisions:[{candidateId:candidate.id,action:'send-to-verification'}]},{at:'2026-08-19T08:00:00.000Z'});
+    expect(result.jobIds).toHaveLength(1);expect(jobs[0]).toEqual(expect.objectContaining({candidateId:candidate.id,agentId:'cartographer'}));
+    expect(artifacts['trail-orchestration'].trails[0]).toEqual(expect.objectContaining({state:'geometry-audit',publicMutationAllowed:false}));
   });
 });

@@ -1,0 +1,52 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-19T13:17:40.358Z",
+  "mode": "candidate-only",
+  "publicMutationAllowed": false,
+  "policy": {
+    "loopsRequired": true,
+    "maxDistanceKm": 12,
+    "expandFromExistingAreasFirst": true,
+    "animalSuitabilityRequiresVerification": true
+  },
+  "candidates": [
+    {
+      "id": "osm-relation-16395059",
+      "osmRelation": 16395059,
+      "name": "Colombier par la Fullie et le Col de la Cochette",
+      "region": "savoy",
+      "distanceKm": 10,
+      "loopEvidence": "geometry closes within 38 m",
+      "animalFit": "No OSM dog prohibition found; animal suitability still requires evidence review.",
+      "difficulty": "not tagged",
+      "surfaceSummary": {
+        "dirt": 0.9,
+        "grass": 0.4,
+        "ground": 3
+      },
+      "center": [
+        6.122242107070708,
+        45.63692693787878
+      ],
+      "nearestExisting": {
+        "trailId": "osm-19153189",
+        "trailName": "Le Belvédère (Saint-Pierre-d'Albigny)",
+        "distanceKm": 7.768776380019652
+      },
+      "expansionTier": "existing-area",
+      "expansionScore": 3,
+      "whyCandidate": "A plausible loop under 12 km, 7.8 km from Le Belvédère (Saint-Pierre-d'Albigny), awaiting full route and dog-suitability verification.",
+      "sourceUrl": "https://hiking.waymarkedtrails.org/#route?id=16395059",
+      "status": "awaiting-ceo-selection",
+      "nextStage": "route-identity-and-geometry",
+      "publicMutationAllowed": false,
+      "priority": 1
+    }
+  ],
+  "summary": {
+    "candidates": 1,
+    "existingArea": 1,
+    "adjacentArea": 0,
+    "newArea": 0
+  }
+}

@@ -20,6 +20,7 @@
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
 <link rel="stylesheet" href="styles.css?v=20260818-17">
 <link rel="stylesheet" href="homepage-mobile.css?v=20260816-4">
+<link rel="stylesheet" href="homepage-editorial.css?v=20260820-1">
 </head>
 <body>
 
@@ -91,8 +92,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <!-- NEW-VISITOR HOMEPAGE (default; hidden once logged in) — search-first redesign -->
 <div id="newCustomerHomepage" class="hp">
 
-  <div class="hp-announce" id="hpAnnounce"><span class="hp-announce-dot"></span>Summer conditions live · <span id="hpAnnounceCount">trails</span> scored · new valleys weekly</div>
-
   <!-- GUEST BAR -->
   <div class="hp-guestbar">
     <div class="hp-guestbar-copy"><b id="hpGuestTitle">Browsing as a guest, ranked for a medium dog.</b> <span id="hpGuestSub">No account needed. Add your dog any time to sharpen every score.</span></div>
@@ -107,8 +106,8 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     </picture>
     <div class="hp-hero-shade"></div>
     <div class="hp-hero-inner">
-      <h1 data-i18n="hero.h1">Where are we heading today?</h1>
-      <p class="hp-hero-sub" data-i18n="hero.sub">Search a valley or browse our collections, free and no account needed. Every walk is scored for paw safety and matched to your dog.</p>
+      <h1 data-i18n="hero.h1">Find a trail that fits your dog</h1>
+      <p class="hp-hero-sub" data-i18n="hero.sub">Search by place, terrain and conditions. Every trail explains what may suit your dog and what deserves a closer look.</p>
 
       <div class="hp-searchcard">
         <div class="hp-search-row">
@@ -402,11 +401,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 </div>
 
 
-<div class="wrap hp-quote" style="padding:56px 20px 40px;text-align:center;">
-  <blockquote style="margin:0 auto;max-width:640px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:21px;line-height:1.5;color:var(--ink);" data-i18n="quote.text">“A walk is never just a walk when it's shared with a dog — it becomes an act of companionship, curiosity, and joy”</blockquote>
-  <div style="margin-top:12px;font-size:13px;font-weight:700;color:var(--accent);">— ORMA</div>
-</div>
-
 <!-- DOG PROFILE WIZARD (opened by the hero CTA; works for guests) -->
 <div id="dogWizard" class="dw-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="dwTitle">
   <div class="dw-modal">
@@ -500,7 +494,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 
 <script src="mobile-nav.js?v=20260815-4"></script>
 <script src="accessibility-runtime.js?v=20260815-4" defer></script>
-<script src="i18n.js?v=20260819-2"></script>
+<script src="i18n.js?v=20260820-1"></script>
 <script type="module" src="firebase-init.js?v=20260819-1"></script>
 <script src="icon-system.js?v=20260815-4" defer></script>
 <script src="trail-card-visual.js?v=20260815-4" defer></script>
@@ -525,7 +519,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
 <script src="script.js?v=20260819-2" defer></script>
 <script src="dog-wizard.js?v=20260815-4" defer></script>
-<script src="homepage-search.js?v=20260818-8" defer></script>
+<script src="homepage-search.js?v=20260820-1" defer></script>
 <script src="homepage-mobile.js?v=20260816-1" defer></script>
 </body>
 </html>

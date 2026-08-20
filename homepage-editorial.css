@@ -1,0 +1,61 @@
+/* Guest homepage narrative: mission, method, and the weekly catalogue edit. */
+.hp-content{max-width:1320px;padding:50px 40px 44px;}
+
+.hp-mission{
+  grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);
+  align-items:center;
+  gap:48px;
+  margin:0 0 56px;
+  padding:42px 46px;
+  border:0;
+  border-radius:22px;
+  background:var(--ink);
+  box-shadow:0 16px 36px rgba(35,51,42,.12);
+  color:#eef2ed;
+}
+.hp-mission-copy{max-width:700px;}
+.hp-mission-kick{margin-bottom:10px;color:#a8c5b0;font:800 10.5px 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;}
+.hp-mission h2{max-width:680px;margin:0 0 18px;color:#fff;font:700 clamp(28px,3vw,40px)/1.08 'Bricolage Grotesque',sans-serif;letter-spacing:-.02em;}
+.hp-mission-copy p{max-width:660px;margin:10px 0 0;color:#d2ded5;font-size:14px;line-height:1.68;}
+.hp-mission-copy em{color:#fff;font-style:normal;font-weight:700;}
+.hp-mission-quote{margin:0;padding:6px 0 6px 34px;border-left:1px solid rgba(255,255,255,.24);}
+.hp-mission-quote p{max-width:none;margin:0;color:#f6f2e9;font:600 clamp(20px,2vw,27px)/1.35 'Bricolage Grotesque',sans-serif;}
+.hp-mission-quote cite{display:block;margin-top:18px;color:#a8c5b0;font:700 11.5px/1.4 'Inter',sans-serif;font-style:normal;}
+
+.hp-how{margin:0 0 54px;}
+.hp-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:42px;margin-bottom:24px;}
+.hp-section-head>div{max-width:700px;}
+.hp-section-head>p{max-width:430px;margin:0;color:var(--ink-soft);font-size:13.5px;line-height:1.6;}
+.hp-how-h2{font-size:30px;line-height:1.15;}
+.hp-howcard{padding:24px 24px 22px;}
+.hp-howcard p{font-size:13.5px;line-height:1.6;}
+.hp-how-link{display:inline-flex;margin-top:18px;color:var(--accent);font-size:12.5px;font-weight:800;text-decoration:none;}
+.hp-how-link:hover{text-decoration:underline;}
+
+.hp-featured{padding-top:38px;border-top:1px solid var(--paper-line);}
+.hp-feat-h2{font-size:27px;gap:10px;}
+.hp-feat-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--sage-dim);}
+.hp-feat-icon svg{width:20px;height:20px;}
+.hp-ccard-img{height:178px;}
+
+.hp-mission h2,.hp-how h2,.hp-featured h2{scroll-margin-top:86px;}
+
+@media (max-width:900px){
+  .hp-mission{grid-template-columns:1fr;gap:28px;padding:36px 34px;}
+  .hp-mission-copy{max-width:none;}
+  .hp-mission-quote{max-width:650px;}
+  .hp-section-head{align-items:flex-start;flex-direction:column;gap:12px;}
+  .hp-section-head>p{max-width:650px;}
+}
+
+@media (max-width:640px){
+  .hp-content{padding:24px 18px 20px;}
+  .hp-mission{gap:24px;margin-bottom:42px;padding:28px 22px;border-radius:18px;}
+  .hp-mission h2{font-size:28px;}
+  .hp-mission-copy p{font-size:13.5px;}
+  .hp-mission-quote{padding:24px 0 0;border-top:1px solid rgba(255,255,255,.24);border-left:0;}
+  .hp-how{margin-bottom:42px;}
+  .hp-how-h2{font-size:26px;}
+  .hp-featured{padding-top:30px;}
+  .hp-feat-h2{font-size:23px;}
+}

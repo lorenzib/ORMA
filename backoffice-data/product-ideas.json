@@ -1,0 +1,257 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-19T12:24:44.397Z",
+  "mode": "research-only",
+  "publicMutationAllowed": false,
+  "generatedBy": {
+    "agents": [
+      "marketDiscovery",
+      "marketOpportunity"
+    ],
+    "model": "codex",
+    "responseId": null
+  },
+  "executiveSummary": "Competitor investment is clustering around predictive conditions, one-tap route adaptation, legible on-trail cues, offline resilience, and map-led discovery. ORMA’s defensible opportunity is to translate those patterns into dog-specific decisions: paw-level heat and surface risk, climb burden for the selected dog, care waypoints, and evidence-aware access warnings. Highest-priority investigations are the dog conditions card, dog-safe rerouting, and dog-care “up ahead” navigation. These are research proposals only; none is approved or built.",
+  "ideas": [
+    {
+      "id": "dog-conditions-card",
+      "category": "feature",
+      "title": "Dog conditions card",
+      "signal": "AllTrails now puts dynamic, route-specific temperature, precipitation, snow, air-quality, and sun information into a summary card and map overlays. Its launch announcement also points toward ground-condition coverage.",
+      "ormaOpportunity": "Investigate a dog-first pre-hike card that converts forecast and route evidence into practical consequences: exposed-section temperature, snow or mud likelihood, shade timing, water uncertainty, and a plain-language “why this matters for your dog.” Preserve source, forecast time, and uncertainty instead of presenting a binary safe/unsafe verdict.",
+      "whyNow": "Predictive conditions are becoming part of the core trail-selection flow. ORMA already differentiates on heat, shade, water, and individual dog tolerance, so it can provide a more focused interpretation than a general weather layer.",
+      "impact": "high",
+      "confidence": "high",
+      "suggestedInvestigation": [
+        "Which forecast variables can be resolved reliably along Alpine route geometry?",
+        "How should air temperature, solar exposure, surface, ascent, and dog profile combine without implying veterinary certainty?",
+        "What freshness and confidence labels are required?",
+        "Does the card change trail choice or departure time in prototype testing?"
+      ],
+      "sources": [
+        {
+          "label": "AllTrails Trail Conditions support documentation",
+          "url": "https://support.alltrails.com/hc/en-gb/articles/36933535617300-Trail-Conditions",
+          "checkedAt": "2026-08-19",
+          "supports": "Documents the conditions summary card, map overlays, dynamic route-level forecasts, included variables, and data sources."
+        },
+        {
+          "label": "AllTrails Peak launch announcement",
+          "url": "https://www.alltrails.com/press/alltrails-expands-membership-offering-with-alltrails-peak",
+          "checkedAt": "2026-08-19",
+          "supports": "Describes Trail Conditions, its geospatial and community inputs, and planned ground-condition coverage."
+        }
+      ],
+      "status": "awaiting-review"
+    },
+    {
+      "id": "dog-safe-route-adjustments",
+      "category": "feature",
+      "title": "Dog-safe route adjustments",
+      "signal": "AllTrails launched smart route controls that shorten a route, reduce steepness, or increase scenic value with one tap. Suunto simultaneously moved route creation and navigation offline.",
+      "ormaOpportunity": "Explore constrained alternatives such as “less exposed,” “gentler underfoot,” “more shade,” or “earlier water,” generated only where ORMA has adequate evidence. Show the trade-off and changed segments before the owner accepts the alternative; never label an automatically generated route dog-safe by default.",
+      "whyNow": "Route adaptation is shifting from specialist planning to a mainstream interaction. A dog-specific constraint model could be more valuable than generic scenic optimization, especially when weather or the dog’s condition changes shortly before departure.",
+      "impact": "high",
+      "confidence": "medium",
+      "suggestedInvestigation": [
+        "Which adjustments can be supported by current route-network and evidence coverage?",
+        "What hard constraints must prevent generation entirely?",
+        "How should unknown access, livestock, surface, or water evidence affect alternatives?",
+        "Can an initial test use curated alternative routes rather than live generation?"
+      ],
+      "sources": [
+        {
+          "label": "AllTrails Peak launch announcement",
+          "url": "https://www.alltrails.com/press/alltrails-expands-membership-offering-with-alltrails-peak",
+          "checkedAt": "2026-08-19",
+          "supports": "Documents one-tap smart-routing adjustments for shorter, less-steep, and more-scenic routes."
+        },
+        {
+          "label": "Suunto April 2026 navigation update",
+          "url": "https://www.suunto.com/fi-fi/sports/News-Articles-container-page/new-maps--navigation-updates-now-rolling-out-april-2026/",
+          "checkedAt": "2026-08-19",
+          "supports": "Documents offline route creation and navigation, making in-field route changes a current product pattern."
+        }
+      ],
+      "status": "awaiting-review"
+    },
+    {
+      "id": "dog-care-up-ahead",
+      "category": "feature",
+      "title": "Dog-care “up ahead” cues",
+      "signal": "Komoot added named, categorized custom waypoints across phone, Apple Watch, and Garmin, with approaching alerts and distances. Water stops are an explicit example.",
+      "ormaOpportunity": "Investigate a minimal upcoming-needs strip during navigation: verified or unverified water, shade break, exposed section, livestock zone, leash-rule boundary, difficult surface, and bailout point. Prioritize distance and action over generic POI discovery.",
+      "whyNow": "Wearable and glanceable navigation is moving from turns toward anticipation. For a dog owner, knowing that the next water opportunity is uncertain—or that an exposed climb begins in 600 metres—can change behavior before risk escalates.",
+      "impact": "high",
+      "confidence": "high",
+      "suggestedInvestigation": [
+        "Which waypoint types are sufficiently evidenced to surface automatically?",
+        "How many upcoming cues remain useful without creating alert fatigue?",
+        "Should uncertain water produce a different icon and wording from verified availability?",
+        "Which cues belong on the phone first, and which justify later wearable support?"
+      ],
+      "sources": [
+        {
+          "label": "Komoot 2026 feature releases",
+          "url": "https://support.komoot.com/hc/en-us/articles/10621431252250-All-komoot-Feature-Releases-2026",
+          "checkedAt": "2026-08-19",
+          "supports": "Documents custom waypoint categories, cross-device visibility, distance-to-waypoint information, and approaching alerts."
+        }
+      ],
+      "status": "awaiting-review"
+    },
+    {
+      "id": "dog-climb-burden",
+      "category": "ui",
+      "title": "Dog-relative climb burden",
+      "signal": "Komoot now separates meaningful climbs and descents below the elevation graph, locates them on the map, and presents live progress cards during navigation. Its thresholds are tuned by sport.",
+      "ormaOpportunity": "Prototype elevation segments translated for the selected dog: sustained ascent, steep descent, recovery opportunity, surface interaction, and remaining burden. Replace a single total-elevation number with two or three decision-relevant sections and explain why each may matter for that dog.",
+      "whyNow": "Competitors are making elevation actionable rather than merely descriptive. ORMA can advance the pattern by personalizing segment significance for age, size, fitness, joint history, and terrain tolerance.",
+      "impact": "high",
+      "confidence": "medium",
+      "suggestedInvestigation": [
+        "What defines a meaningful climb or descent for different dog profiles?",
+        "How should gradient, length, surface, heat, and accumulated fatigue interact?",
+        "Can the explanation remain understandable without a pseudo-precise risk score?",
+        "Which visualization works best on a small trail card versus the detail page?"
+      ],
+      "sources": [
+        {
+          "label": "Komoot 2026 feature releases",
+          "url": "https://support.komoot.com/hc/en-us/articles/10621431252250-All-komoot-Feature-Releases-2026",
+          "checkedAt": "2026-08-19",
+          "supports": "Documents climb/descent segmentation, redesigned gradient visualization, sport-specific thresholds, and live climb progress."
+        }
+      ],
+      "status": "awaiting-review"
+    },
+    {
+      "id": "map-led-dog-discovery-sheet",
+      "category": "ui",
+      "title": "Map-led dog discovery sheet",
+      "signal": "Outdooractive’s latest app layout keeps the map visible while a dynamic bottom sheet lists routes and nearby content; filters update both pins and snippets.",
+      "ormaOpportunity": "Test a map-and-sheet discovery mode in which moving the Alpine map refreshes dog-relevant route summaries: match explanation, shade, water evidence, access status, livestock advisory, and verification tier. Keep unknown states visible in the collapsed summary.",
+      "whyNow": "ORMA’s dog-specific evidence is strongest when users can compare geography and route facts together. A synchronized sheet could reduce the current separation between browsing a region and judging suitability.",
+      "impact": "medium",
+      "confidence": "high",
+      "suggestedInvestigation": [
+        "Which three dog-specific facts must remain visible in the collapsed sheet?",
+        "Should map movement refresh automatically or require a “search this area” action?",
+        "How should unavailable and unknown differ visually?",
+        "Does this outperform the existing browse flow for choosing among nearby trails?"
+      ],
+      "sources": [
+        {
+          "label": "Outdooractive app getting-started documentation",
+          "url": "https://www.outdooractive.com/en/knowledgepage/getting-started-with-the-outdooractive-app/67018447/",
+          "checkedAt": "2026-08-19",
+          "supports": "Documents the newly introduced map-and-bottom-sheet layout, synchronized filters, markers, and content snippets."
+        }
+      ],
+      "status": "awaiting-review"
+    },
+    {
+      "id": "offline-dog-readiness-check",
+      "category": "feature",
+      "title": "Offline dog-readiness check",
+      "signal": "Suunto made offline maps and offline route creation available without an added fee, while enhancing track-back and off-route alerts. AllTrails also expanded from single-trail downloads to customizable offline areas.",
+      "ormaOpportunity": "Investigate a pre-departure readiness check that confirms route geometry, dog hazard notes, care waypoints, emergency coordinates, and a return path are locally available. Distinguish “map downloaded” from “dog-safety evidence downloaded,” and show the last refresh time.",
+      "whyNow": "Offline capability is becoming baseline rather than premium differentiation. ORMA can compete on completeness and trust: owners need dog-specific context to survive loss of signal, not only map tiles.",
+      "impact": "high",
+      "confidence": "high",
+      "suggestedInvestigation": [
+        "What is the minimum offline package for a safe and useful ORMA hike?",
+        "How should stale closures, water reports, and access rules be communicated offline?",
+        "Can readiness be checked automatically before the user leaves coverage?",
+        "What return-to-start behavior is feasible with the current technical architecture?"
+      ],
+      "sources": [
+        {
+          "label": "Suunto April 2026 navigation update",
+          "url": "https://www.suunto.com/fi-fi/sports/News-Articles-container-page/new-maps--navigation-updates-now-rolling-out-april-2026/",
+          "checkedAt": "2026-08-19",
+          "supports": "Documents free offline maps and routing plus enhanced track-back and off-route alerts."
+        },
+        {
+          "label": "AllTrails Peak launch announcement",
+          "url": "https://www.alltrails.com/press/alltrails-expands-membership-offering-with-alltrails-peak",
+          "checkedAt": "2026-08-19",
+          "supports": "Documents customizable Offline Areas with high-resolution maps and included trail details."
+        }
+      ],
+      "status": "awaiting-review"
+    },
+    {
+      "id": "access-warning-provenance",
+      "category": "ui",
+      "title": "Access warnings with provenance",
+      "signal": "Outdooractive places notices and closures directly among its map layers and emphasizes that recommendations come from official sources and trusted publishers. Komoot also corrected a stile icon that users could misread as a locked obstruction.",
+      "ormaOpportunity": "Explore a compact access-warning system that always answers: what is affected, whether it is a closure or a restriction, who reported it, when it was checked, and what remains unknown. Give dog bans, leash rules, seasonal livestock restrictions, and ordinary gates distinct symbols.",
+      "whyNow": "As map interfaces accumulate warnings, icon ambiguity becomes a safety and accessibility problem. ORMA’s trust position benefits from making evidence and semantics visible rather than compressing every access issue into a generic alert.",
+      "impact": "high",
+      "confidence": "high",
+      "suggestedInvestigation": [
+        "What access states need distinct language and iconography?",
+        "Which sources qualify as authoritative for each Alpine region?",
+        "How should official notices and recent community reports coexist?",
+        "Can users correctly distinguish a stile, leash boundary, seasonal restriction, and full closure in usability tests?"
+      ],
+      "sources": [
+        {
+          "label": "Outdooractive outdoor safety documentation",
+          "url": "https://www.outdooractive.com/en/knowledgepage/keeping-you-safe-in-the-outdoors/801738511/",
+          "checkedAt": "2026-08-19",
+          "supports": "Describes official-source content and route-level notices and closures as planning inputs."
+        },
+        {
+          "label": "Komoot 2026 feature releases",
+          "url": "https://support.komoot.com/hc/en-us/articles/10621431252250-All-komoot-Feature-Releases-2026",
+          "checkedAt": "2026-08-19",
+          "supports": "Documents replacing a misleading padlock-style stile symbol with a semantically accurate icon."
+        }
+      ],
+      "status": "awaiting-review"
+    },
+    {
+      "id": "quiet-trails-dog-context",
+      "category": "editorial-gap",
+      "title": "Explain when a quiet trail is—and is not—better for dogs",
+      "signal": "AllTrails and Komoot now use community heatmaps to help people choose popular routes or quieter alternatives. The underlying framing is about traffic and discovery, not dog-specific consequences.",
+      "ormaOpportunity": "Develop an editorial and collection framework for “quieter with your dog” that separates human footfall from actual suitability. Explain that low traffic can reduce overstimulation but may coincide with livestock, guardian dogs, hunting activity, fewer witnesses, weak phone coverage, or poorly maintained paths. Link every recommendation back to reviewed route evidence.",
+      "whyNow": "Quietness is becoming a mainstream route-selection attribute, creating room for ORMA to define the dog-first interpretation before users equate “less popular” with “safer.”",
+      "impact": "medium",
+      "confidence": "high",
+      "suggestedInvestigation": [
+        "Which available datasets can estimate human traffic without overstating precision?",
+        "Which counter-signals—livestock, hunting, remoteness, access evidence—must accompany quietness?",
+        "Would users value a quietness filter, editorial collection, or both?",
+        "What wording prevents quiet routes being presented as universally preferable?"
+      ],
+      "sources": [
+        {
+          "label": "AllTrails Peak launch announcement",
+          "url": "https://www.alltrails.com/press/alltrails-expands-membership-offering-with-alltrails-peak",
+          "checkedAt": "2026-08-19",
+          "supports": "Documents Community Heatmap as a way to select popular trails or quieter alternatives."
+        },
+        {
+          "label": "Komoot 2026 seasonal update",
+          "url": "https://www.komoot.com/season-updates-2026",
+          "checkedAt": "2026-08-19",
+          "supports": "Documents global heatmaps being used to follow popular routes or seek quieter trails."
+        }
+      ],
+      "status": "awaiting-review"
+    }
+  ],
+  "summary": {
+    "total": 8,
+    "awaitingReview": 8,
+    "highImpact": 6,
+    "categories": [
+      "feature",
+      "ui",
+      "editorial-gap"
+    ]
+  }
+}

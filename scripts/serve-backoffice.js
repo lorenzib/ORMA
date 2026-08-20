@@ -4,6 +4,9 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
+const { execFile } = require('child_process');
+const { promisify } = require('util');
 const { loadProductionTrails } = require('./load-production-trails');
 const { planCatalogueCampaign } = require('../backoffice/workflows/plan-catalogue-campaign');
 const { planContentOperations } = require('../backoffice/workflows/plan-content-operations');
@@ -14,6 +17,14 @@ const { publishContentReview } = require('../backoffice/workflows/publish-conten
 const { contentFingerprint, fingerprint, recordEditorialOutcome } = require('../backoffice/workflows/editorial-ledger');
 const { runEditorialRevision } = require('../backoffice/workflows/run-editorial-revision');
 const { applyDossierReview } = require('../backoffice/workflows/apply-dossier-review');
+const { runProductDiscovery, runFocusedInvestigation } = require('../backoffice/workflows/run-product-discovery');
+const { applyProductIdeaReview } = require('../backoffice/workflows/product-ideas-review');
+const { auditImageCoverage } = require('../backoffice/workflows/audit-image-coverage');
+const { applyImageCoverageReview } = require('../backoffice/workflows/image-coverage-review');
+const { runHazardWatch } = require('../backoffice/cli/hazard-watch');
+const { applyHazardReview } = require('../backoffice/workflows/dynamic-hazards');
+const { planNewTrailScouting, applyNewTrailReview } = require('../backoffice/workflows/plan-new-trail-scouting');
+const { runNewsletter } = require('../backoffice/workflows/run-newsletter');
 
 const root = path.resolve(__dirname, '..');
 const port = Number(process.env.ORMA_BACKOFFICE_PORT || 4173);
@@ -28,11 +39,7 @@ const campaignPath = path.join(root, 'backoffice-data', 'catalogue-campaign.json
 const campaignStatePath = path.join(root, 'backoffice-data', 'catalogue-campaign-state.json');
 const contentOperationsPath = path.join(root, 'backoffice-data', 'content-operations.json');
 const contentExecutionPath = path.join(root, 'backoffice-data', 'content-execution.json');
-const editorialReviewPacketPath = path.join(root, 'backoffice-data', 'editorial-review-packet.json');
-const editorialReviewPacketPaths = [
-  editorialReviewPacketPath,
-  ...[1, 2, 3].map(slot => path.join(root, 'backoffice-data', `editorial-review-packet-${slot}.json`)),
-];
+const editorialReviewPacketPaths = [1, 2, 3].map(slot => path.join(root, 'backoffice-data', `editorial-review-packet-${slot}.json`));
 const newsletterReviewPacketPath = path.join(root, 'backoffice-data', 'newsletter-review-packet.json');
 const verifiedTrailExecutionPath = path.join(root, 'backoffice-data', 'verified-trail-editorial-execution.json');
 const contentReviewQueuePath = path.join(root, 'backoffice-data', 'content-review-queue.json');
@@ -46,7 +53,23 @@ const trailOrchestrationPath=path.join(root,'backoffice-data','trail-orchestrati
 const dossierReviewQueuePath=path.join(root,'backoffice-data','dossier-review-queue.json');
 const specialistJobQueuePath=path.join(root,'backoffice-data','trail-specialist-job-queue.json');
 const liveVerifiedRegistryPath=path.join(root,'backoffice-data','orma-verified-registry-live.json');
+const productIdeasPath=path.join(root,'backoffice-data','product-ideas.json');
+const productIdeasReviewPath=path.join(root,'backoffice-data','product-ideas-review.json');
+const imageCoveragePath=path.join(root,'backoffice-data','image-coverage.json');
+const imageCoverageReviewPath=path.join(root,'backoffice-data','image-coverage-review.json');
+const imageLibraryConfigPath=path.join(root,'backoffice-data','image-library-config.local.json');
+const dynamicHazardsPath=path.join(root,'data','dynamic-hazards.json');
+const hazardReviewQueuePath=path.join(root,'backoffice-data','hazard-review-queue.json');
+const hazardLedgerPath=path.join(root,'backoffice-data','hazard-ledger.json');
+const newTrailScoutingPath=path.join(root,'backoffice-data','new-trail-scouting.json');
+const newTrailScoutingReviewPath=path.join(root,'backoffice-data','new-trail-scouting-review.json');
+const newsletterReviewPath=path.join(root,'backoffice-data','newsletter-review.json');
+const newsletterInputsPath=path.join(root,'backoffice-data','newsletter-inputs.json');
 let editorialRevisionRunning = false;
+let newsletterRevisionRunning = false;
+let productDiscoveryRunning = false;
+let hazardWatchRunning = false;
+const runFile = promisify(execFile);
 
 function json(response, status, value){
   response.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
@@ -65,6 +88,38 @@ async function writeJsonAtomic(file, value){
   const temporary = `${file}.next`;
   await fs.promises.writeFile(temporary, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
   await fs.promises.rename(temporary, file);
+}
+
+async function git(args,options={}){
+  const result=await runFile('git',args,{cwd:root,maxBuffer:4*1024*1024,...options});return result.stdout.trim();
+}
+
+async function publishIsolatedDecision({files,message,requiredRemotePath}){
+  await git(['fetch','origin','main']);
+  try{await git(['cat-file','-e',`origin/main:${requiredRemotePath}`]);}
+  catch(error){return {status:'local-only',reason:'This workflow has not been merged into main yet.'};}
+  await runFile('npm',['run','test:backoffice'],{cwd:root,maxBuffer:4*1024*1024});
+  await runFile('npm',['run','test:static'],{cwd:root,maxBuffer:4*1024*1024});
+  const temporary=await fs.promises.mkdtemp(path.join(os.tmpdir(),'orma-hazard-publish-'));const index=path.join(temporary,'index');
+  const env={...process.env,GIT_INDEX_FILE:index,GIT_AUTHOR_NAME:'ORMA hazard review',GIT_AUTHOR_EMAIL:'actions@github.com',GIT_COMMITTER_NAME:'ORMA hazard review',GIT_COMMITTER_EMAIL:'actions@github.com'};
+  try{
+    const base=await git(['rev-parse','origin/main']);await git(['read-tree',base],{env});
+    for(const file of files){const blob=await git(['hash-object','-w',file]);await git(['update-index','--add','--cacheinfo','100644',blob,file],{env});}
+    const tree=await git(['write-tree'],{env});const commit=await git(['commit-tree',tree,'-p',base,'-m',message],{env});
+    await git(['push','origin',`${commit}:refs/heads/main`]);return {status:'published',commit,paths:files,deployment:'github-pages-triggered'};
+  }finally{await fs.promises.rm(temporary,{recursive:true,force:true});}
+}
+
+async function publishHazardDecision(decision){
+  return publishIsolatedDecision({
+    files:['data/dynamic-hazards.json','backoffice-data/hazard-review-queue.json','backoffice-data/hazard-ledger.json'],
+    requiredRemotePath:'data/dynamic-hazards.json',message:`Hazards: ${decision.action} (${decision.hazardId})`,
+  });
+}
+
+async function publishNewTrailDecision(decision){
+  return publishIsolatedDecision({files:['backoffice-data/new-trail-scouting-review.json'],requiredRemotePath:'backoffice-data/new-trail-scouting.json',
+    message:`New Trails: ${decision.action} (${decision.candidateId})`});
 }
 
 async function readEditorialPackets(){
@@ -393,6 +448,149 @@ async function approveAndPublish(request, response){
   json(response,200,published);
 }
 
+async function runProductDiscoveryNow(request,response){
+  if(productDiscoveryRunning) return json(response,409,{error:'Product discovery is already running'});
+  productDiscoveryRunning=true;
+  try{
+    const packet=await runProductDiscovery();
+    await writeJsonAtomic(productIdeasPath,packet);
+    json(response,200,{packet,message:'A fresh source-linked research packet is ready. Nothing was built or published.'});
+  }finally{productDiscoveryRunning=false;}
+}
+
+async function submitProductIdeaReview(request,response){
+  let body='';for await(const chunk of request){body+=chunk;if(body.length>16384)return json(response,413,{error:'Product review is too large'});}
+  const input=body?JSON.parse(body):{};
+  const [packet,queue]=await Promise.all([
+    readJson(productIdeasPath,null),readJson(productIdeasReviewPath,{contractVersion:'1.0.0',decisions:[],jobs:[]}),
+  ]);
+  const next=applyProductIdeaReview(packet,queue,input);
+  await writeJsonAtomic(productIdeasReviewPath,next);
+  let researchStatus=null;
+  if(input.action==='investigate-further'){
+    const job=next.jobs.filter(item=>item.ideaId===input.ideaId&&item.status==='queued').at(-1);
+    const idea=packet.ideas.find(item=>item.id===input.ideaId);
+    try{
+      job.status='running';job.startedAt=new Date().toISOString();await writeJsonAtomic(productIdeasReviewPath,next);
+      job.result=await runFocusedInvestigation(idea,job.focus);
+      job.status='ready-for-review';job.completedAt=new Date().toISOString();researchStatus='ready-for-review';
+    }catch(error){
+      job.status='blocked';job.completedAt=new Date().toISOString();job.error=error.message;researchStatus='blocked';
+    }
+    next.updatedAt=new Date().toISOString();await writeJsonAtomic(productIdeasReviewPath,next);
+  }
+  const message=input.action==='investigate-further'
+    ?researchStatus==='ready-for-review'
+      ?'Deeper investigation completed and is ready on this idea. No feature work was authorized.'
+      :'The deeper investigation could not complete; the saved job shows what needs attention.'
+    :input.action==='prioritise'
+      ?'Opportunity handed to the Designer for a reviewable mock-up. Development is not authorised.'
+      :'Product decision recorded. No public website file was changed.';
+  json(response,200,{review:next,message,researchStatus});
+}
+
+async function scanImageCoverage(request,response){
+  const libraryConfig=await readJson(imageLibraryConfigPath,null);
+  const audit=await auditImageCoverage(root,{personalLibraryPath:libraryConfig?.folderPath});
+  await writeJsonAtomic(imageCoveragePath,audit);
+  json(response,200,{audit,message:'Image coverage refreshed. Nothing was placed or published.'});
+}
+
+async function connectImageLibrary(request,response){
+  let body='';for await(const chunk of request){body+=chunk;if(body.length>4096)return json(response,413,{error:'Library path is too large'});}
+  const input=body?JSON.parse(body):{};const folderPath=path.resolve(String(input.folderPath||'').trim());
+  const allowed=folderPath.startsWith('/Users/benedettalorenzi/')||folderPath.startsWith('/Volumes/');
+  if(!allowed)return json(response,400,{error:'Choose a folder inside your user account or an attached drive'});
+  const stat=await fs.promises.stat(folderPath);if(!stat.isDirectory())return json(response,400,{error:'The selected path is not a folder'});
+  await writeJsonAtomic(imageLibraryConfigPath,{contractVersion:'1.0.0',folderPath,connectedAt:new Date().toISOString()});
+  const audit=await auditImageCoverage(root,{personalLibraryPath:folderPath});await writeJsonAtomic(imageCoveragePath,audit);
+  json(response,200,{audit,message:`Personal photo library connected. ${audit.library.personalAssetsScanned} images indexed locally.`});
+}
+
+async function submitImageCoverageReview(request,response){
+  let body='';for await(const chunk of request){body+=chunk;if(body.length>16384)return json(response,413,{error:'Image review is too large'});}
+  const input=body?JSON.parse(body):{};
+  const [audit,queue]=await Promise.all([
+    readJson(imageCoveragePath,null),readJson(imageCoverageReviewPath,{contractVersion:'1.0.0',decisions:[],jobs:[]}),
+  ]);
+  const next=applyImageCoverageReview(audit,queue,input);
+  const job=next.jobs.filter(item=>item.slug===input.slug&&item.status==='queued').at(-1);
+  if(job&&input.action==='use-orma-library'){
+    job.status='ready-for-asset-review';job.candidates=[{source:'orma-library',assetRef:job.assetRef,ownership:'ORMA-owned'}];job.completedAt=new Date().toISOString();
+  }
+  if(job&&input.action==='check-personal-library'){
+    const matches=audit.gaps.find(item=>item.slug===input.slug)?.libraryMatches?.filter(item=>item.source==='personal-library')||[];
+    job.status=matches.length?'ready-for-asset-review':audit.library.personalLibraryConnected?'needs-photo-reference':'blocked';
+    job.candidates=matches.map(item=>({source:'personal-library',fileName:item.fileName,matchedTerms:item.matchedTerms,ownership:'owner-supplied-pending-confirmation'}));
+    job.error=job.status==='blocked'?'Connect the personal photo folder before running this route.':null;job.completedAt=new Date().toISOString();
+  }
+  await writeJsonAtomic(imageCoverageReviewPath,next);
+  json(response,200,{review:next,message:input.action==='park'?'Image gap parked.':'Image sourcing job queued. Asset and licensing approval remain required.'});
+}
+
+async function runHazardsNow(request,response){
+  if(hazardWatchRunning)return json(response,409,{error:'The hazard watcher is already running'});
+  hazardWatchRunning=true;
+  try{const artifacts=await runHazardWatch({root});json(response,200,{artifacts,message:'Official warning sources checked. New qualifying warnings were applied to local public data; removals remain human-gated.'});}
+  finally{hazardWatchRunning=false;}
+}
+
+async function submitHazardReview(request,response){
+  let body='';for await(const chunk of request){body+=chunk;if(body.length>8192)return json(response,413,{error:'Hazard review is too large'});}
+  const input=body?JSON.parse(body):{};const [publicData,ledger]=await Promise.all([readJson(dynamicHazardsPath,{contractVersion:'1.0.0',hazards:[]}),readJson(hazardLedgerPath,{contractVersion:'1.0.0',decisions:[]})]);
+  const result=applyHazardReview(publicData,ledger,input);
+  const reviewQueue={contractVersion:'1.0.0',generatedAt:result.publicData.generatedAt,items:result.publicData.hazards.filter(item=>item.state==='resolution-review')};
+  await Promise.all([writeJsonAtomic(dynamicHazardsPath,result.publicData),writeJsonAtomic(hazardLedgerPath,result.ledger),writeJsonAtomic(hazardReviewQueuePath,reviewQueue)]);
+  let publication=null;let publicationError=null;
+  try{publication=await publishHazardDecision(result.decision);}catch(error){publicationError=error.message;}
+  const message=publication?.status==='published'
+    ?`Hazard decision published in commit ${publication.commit.slice(0,7)}. Website deployment triggered.`
+    :publicationError
+      ?`Decision saved locally, but remote publication failed: ${publicationError}`
+      :`${input.action==='confirm-resolved'?'Warning removed':'Warning kept active'} locally. ${publication?.reason||'Publish after the hazard workflow is merged.'}`;
+  json(response,200,{decision:result.decision,publication,publicationError,message});
+}
+
+async function runNewTrailScouting(request,response){
+  const sources=await Promise.all([
+    readJson(path.join(root,'dog-friendly-routes.geojson'),{features:[]}).then(data=>({region:'dolomites',data})),
+    readJson(path.join(root,'dog-friendly-routes-savoy.geojson'),{features:[]}).then(data=>({region:'savoy',data})),
+  ]);
+  const packet=planNewTrailScouting(sources,loadProductionTrails(root));await writeJsonAtomic(newTrailScoutingPath,packet);
+  json(response,200,{packet,message:`${packet.summary.candidates} candidates ranked. Nothing was added to the public catalogue.`});
+}
+
+async function submitNewTrailReview(request,response){
+  let body='';for await(const chunk of request){body+=chunk;if(body.length>8192)return json(response,413,{error:'Scouting review is too large'});}
+  const input=body?JSON.parse(body):{};const [packet,review]=await Promise.all([readJson(newTrailScoutingPath,null),readJson(newTrailScoutingReviewPath,{contractVersion:'1.0.0',decisions:[],intake:[]})]);
+  const next=applyNewTrailReview(packet,review,input);await writeJsonAtomic(newTrailScoutingReviewPath,next);const decision=next.decisions.find(item=>item.candidateId===input.candidateId);
+  let publication=null;let publicationError=null;try{publication=await publishNewTrailDecision(decision);}catch(error){publicationError=error.message;}
+  const message=publication?.status==='published'
+    ?`Scouting decision published in commit ${publication.commit.slice(0,7)}. ${input.action==='send-to-verification'?'The verification fleet has been triggered.':'No verification work was started.'}`
+    :publicationError?`Decision saved locally, but remote handoff failed: ${publicationError}`
+      :`${input.action==='send-to-verification'?'Candidate queued locally for route verification.':'Scouting decision recorded locally.'} ${publication?.reason||''}`;
+  json(response,200,{review:next,publication,publicationError,message});
+}
+
+async function submitNewsletterReview(request,response){
+  let body='';for await(const chunk of request){body+=chunk;if(body.length>8192)return json(response,413,{error:'Newsletter review is too large'});}
+  const input=body?JSON.parse(body):{};if(!['approve','request-revision'].includes(input.action))return json(response,400,{error:'A valid newsletter action is required'});
+  const packet=await readJson(newsletterReviewPacketPath,null);if(!packet||packet.generatedAt!==input.generatedAt)return json(response,409,{error:'The newsletter draft changed. Reload the latest issue.'});
+  if(input.action==='request-revision'&&!String(input.note||'').trim())return json(response,400,{error:'Add a revision note'});
+  if(input.action==='request-revision'&&newsletterRevisionRunning)return json(response,409,{error:'A newsletter revision is already being prepared'});
+  const review=await readJson(newsletterReviewPath,{contractVersion:'1.0.0',decisions:[]});const reviewedAt=new Date().toISOString();const decision={generatedAt:packet.generatedAt,issueId:packet.subject?.id,action:input.action,note:String(input.note||'').trim().slice(0,1500),reviewedAt,reviewedBy:'local-editor',status:input.action==='approve'?'approved-for-sending':'revision-requested',publicMutationAllowed:false};
+  review.updatedAt=reviewedAt;review.decisions=[...(review.decisions||[]).filter(item=>item.generatedAt!==packet.generatedAt),decision];await writeJsonAtomic(newsletterReviewPath,review);
+  if(input.action==='approve')return json(response,200,{decision,message:'Issue approved for the future sending integration and handed to Social for repurposing. Nothing was sent automatically.'});
+  newsletterRevisionRunning=true;
+  try{
+    const inputs=await readJson(newsletterInputsPath,null);if(!inputs)throw new Error('Newsletter inputs are not available');
+    const revised=await runNewsletter(inputs,{root,at:new Date().toISOString(),revisionNote:decision.note,previousPacket:packet});
+    await writeJsonAtomic(newsletterReviewPacketPath,revised);
+    if(!revised.summary.readyForReview)throw new Error(revised.outputs[0]?.error||'The Newsletter agent produced no reviewable draft');
+    json(response,200,{decision,packet:revised,message:'Revision completed. The updated issue is ready here now.'});
+  }finally{newsletterRevisionRunning=false;}
+}
+
 const server = http.createServer(async (request, response) => {
   if(request.method === 'POST' && request.url === '/api/campaign/next'){
     try { await queueNextBatch(request, response); }
@@ -433,6 +631,46 @@ const server = http.createServer(async (request, response) => {
     catch(error){ json(response,500,{error:error.message}); }
     return;
   }
+  if(request.method==='POST'&&request.url==='/api/product-ideas/run'){
+    try{await runProductDiscoveryNow(request,response);}catch(error){json(response,500,{error:error.message});}
+    return;
+  }
+  if(request.method==='POST'&&request.url==='/api/product-ideas/review'){
+    try{await submitProductIdeaReview(request,response);}catch(error){json(response,400,{error:error.message});}
+    return;
+  }
+  if(request.method==='POST'&&request.url==='/api/image-coverage/scan'){
+    try{await scanImageCoverage(request,response);}catch(error){json(response,500,{error:error.message});}
+    return;
+  }
+  if(request.method==='POST'&&request.url==='/api/image-coverage/library'){
+    try{await connectImageLibrary(request,response);}catch(error){json(response,400,{error:error.message});}
+    return;
+  }
+  if(request.method==='POST'&&request.url==='/api/image-coverage/review'){
+    try{await submitImageCoverageReview(request,response);}catch(error){json(response,400,{error:error.message});}
+    return;
+  }
+  if(request.method==='POST'&&request.url==='/api/hazards/run'){
+    try{await runHazardsNow(request,response);}catch(error){json(response,500,{error:error.message});}
+    return;
+  }
+  if(request.method==='POST'&&request.url==='/api/hazards/review'){
+    try{await submitHazardReview(request,response);}catch(error){json(response,400,{error:error.message});}
+    return;
+  }
+  if(request.method==='POST'&&request.url==='/api/new-trails/run'){
+    try{await runNewTrailScouting(request,response);}catch(error){json(response,500,{error:error.message});}
+    return;
+  }
+  if(request.method==='POST'&&request.url==='/api/new-trails/review'){
+    try{await submitNewTrailReview(request,response);}catch(error){json(response,400,{error:error.message});}
+    return;
+  }
+  if(request.method==='POST'&&request.url==='/api/newsletter/review'){
+    try{await submitNewsletterReview(request,response);}catch(error){json(response,400,{error:error.message});}
+    return;
+  }
   const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
   const relative = pathname === '/' ? 'backoffice-review.html' : pathname.replace(/^\/+/, '');
   const target = path.resolve(root, relative);
@@ -456,5 +694,10 @@ server.listen(port, '127.0.0.1', () => {
   console.log(`[backoffice] Trail Content Desk: http://127.0.0.1:${port}/trail-content-desk.html`);
   console.log(`[backoffice] Trail Verification Desk: http://127.0.0.1:${port}/trail-dossier-desk.html`);
   console.log(`[backoffice] Guide Content Edit: http://127.0.0.1:${port}/content-desk.html`);
+  console.log(`[backoffice] Product Ideas: http://127.0.0.1:${port}/product-ideas-desk.html`);
+  console.log(`[backoffice] Image Coverage: http://127.0.0.1:${port}/image-coverage-desk.html`);
+  console.log(`[backoffice] Hazard Review: http://127.0.0.1:${port}/hazard-review-desk.html`);
+  console.log(`[backoffice] New Trail Scouting: http://127.0.0.1:${port}/new-trail-scouting-desk.html`);
+  console.log(`[backoffice] Newsletter: http://127.0.0.1:${port}/newsletter-desk.html`);
   console.log('[backoffice] Localhost only. Press Ctrl+C to stop.');
 });

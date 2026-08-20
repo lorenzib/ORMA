@@ -32,27 +32,27 @@
   .browse-primary-controls .browse-search-shell{max-width:none;min-width:190px;}
   .browse-primary-controls .browse-filter-divider{display:none;}
   .simple-grid{display:flex;flex-direction:column;gap:12px;}
-  .simple-card{display:flex;gap:16px;align-items:stretch;padding:14px;background:var(--card);border:1px solid var(--paper-line);border-radius:var(--radius-panel);transition:box-shadow .2s,border-color .2s,transform .2s;}
+  .simple-card{display:grid;grid-template-columns:120px minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:16px;row-gap:9px;align-items:center;padding:14px;background:var(--card);border:1px solid var(--paper-line);border-radius:var(--radius-panel);transition:box-shadow .2s,border-color .2s,transform .2s;}
   .simple-card:hover{border-color:var(--accent-light);transform:translateY(-2px);box-shadow:var(--shadow-card-hover);}
-  .simple-card .photo{flex:none;width:120px;height:96px;border-radius:var(--radius-thumb,12px);background:#E7ECE3;overflow:hidden;}
-  .simple-card__main{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;text-decoration:none;}
+  .simple-card .photo{grid-column:1;grid-row:1/3;width:120px;height:96px;border-radius:var(--radius-thumb,12px);background:#E7ECE3;overflow:hidden;}
+  .simple-card__main{grid-column:2;grid-row:1;min-width:0;align-self:end;text-decoration:none;}
   .simple-card .name{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;color:var(--ink);}
-  .simple-card__rating{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap;align-items:center;}
-  .simple-card__rating-label{font:700 10px 'Inter',sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
-  .simple-card__reason{display:inline-flex;align-items:flex-start;gap:6px;margin-top:9px;background:var(--success-dim);border-radius:8px;padding:5px 10px;align-self:flex-start;max-width:100%;font-size:12px;line-height:1.35;color:var(--success);}
+  .simple-card__meta{font-size:12px;color:var(--ink-soft);margin-top:3px;}
+  .simple-card__facts{grid-column:2;grid-row:2;display:flex;gap:7px;flex-wrap:wrap;align-items:center;align-self:start;}
+  .simple-card__reason{display:inline-flex;align-items:center;gap:6px;background:var(--success-dim);border-radius:var(--radius-pill);padding:5px 10px;max-width:100%;font-size:12px;line-height:1.35;color:var(--success);}
   .simple-card__reason--water{background:#E3EEF3;color:#3E7A91;}
-  .simple-card__match{flex:none;display:flex;flex-direction:column;align-items:center;align-self:center;justify-content:center;gap:3px;min-width:76px;border-left:1px dashed var(--paper-line);padding-left:12px;}
+  .simple-card__match{grid-column:3;grid-row:1/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:112px;border-left:1px dashed var(--paper-line);padding-left:14px;}
+  .simple-card__score{display:flex;flex-direction:column;align-items:center;gap:3px;}
   .simple-card__match strong{font:800 19px/1 'Inter',sans-serif;color:var(--success);}
   .simple-card__match strong span{font-size:11px;}
-  /* label sized to match the "Trail rating" kicker on the left */
   .simple-card__match small{font:700 10px 'Inter',sans-serif;letter-spacing:.08em;color:var(--ink-soft);white-space:nowrap;}
-  /* tier chip sized to match the Low-risk rating badge */
-  .simple-card__tier{display:inline-flex;align-items:center;min-height:24px;box-sizing:border-box;font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:var(--radius-pill);background:rgba(74,120,86,.12);color:var(--success);}
+  .simple-card__match-actions{display:flex;align-items:center;gap:7px;}
+  .simple-card__tier{display:inline-flex;align-items:center;justify-content:center;min-width:76px;min-height:24px;box-sizing:border-box;font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:var(--radius-pill);background:rgba(74,120,86,.12);color:var(--success);}
   .simple-card__match--good strong{color:#C98A2E;}
   .simple-card__match--good .simple-card__tier{background:rgba(201,138,46,.13);color:#9A651B;}
   .simple-card__match--check strong{color:#9C3A25;}
   .simple-card__match--check .simple-card__tier{background:rgba(156,58,37,.11);color:#9C3A25;}
-  .browse-card-actions{display:flex;align-items:center;gap:8px;margin-top:8px;}
+  .browse-card-actions{display:flex;align-items:center;gap:8px;}
   .browse-card-open{display:none;}
   .browse-card-compare{display:inline-flex;align-items:center;justify-content:center;min-height:28px;border-radius:var(--radius-pill);font:700 10.5px 'Inter',sans-serif;border:1px solid var(--paper-line);background:#fff;color:var(--ink-soft);padding:4px 9px;cursor:pointer;}
   .browse-card-compare[aria-pressed="true"]{background:#EAF3EC;border-color:#7EAD91;color:#24462E;}
@@ -93,11 +93,19 @@
     /* The wrappers are the flex items — without flex:none they shrink in
        the nowrap scroll row and the selects inside pile onto each other. */
     .browse-filter-controls .browse-field,.browse-filter-controls select,.browse-water{flex:none;}
-    .simple-card{gap:12px;padding:12px;flex-wrap:wrap;}
-    .simple-card .photo{width:84px;height:76px;}
-    .simple-card__match{width:100%;min-width:0;flex-direction:row;justify-content:flex-start;border-left:0;border-top:1px dashed var(--paper-line);padding:9px 0 0;}
+    .simple-card{grid-template-columns:84px minmax(0,1fr);grid-template-rows:auto auto auto;column-gap:12px;row-gap:12px;padding:12px;}
+    .simple-card .photo{grid-column:1;grid-row:1;width:84px;height:76px;align-self:start;}
+    .simple-card__main{grid-column:2;grid-row:1;align-self:center;}
+    .simple-card__facts{grid-column:1/-1;grid-row:2;align-items:center;}
+    .simple-card__match{grid-column:1/-1;grid-row:3;width:auto;min-width:0;flex-direction:row;justify-content:space-between;border-left:0;border-top:1px dashed var(--paper-line);padding:10px 0 0;}
+    .simple-card__score{flex-direction:row;align-items:baseline;gap:6px;min-width:0;}
     .simple-card__match strong{font-size:19px;}
-    .simple-card__tier{margin-left:auto;}
+    .simple-card__match-actions{margin-left:auto;flex:none;}
+    .browse-card-compare{min-height:32px;padding-inline:11px;}
+  }
+  @media(max-width:360px){
+    .simple-card__match{display:grid;grid-template-columns:1fr;row-gap:8px;}
+    .simple-card__match-actions{width:100%;justify-content:flex-end;margin-left:0;}
   }
   .trail-trust-note{margin:0 0 14px;padding:11px 13px;border-left:3px solid #8a5a16;background:#f6ecdb;border-radius:0 10px 10px 0;color:#5f4a2c;font-size:12.5px;line-height:1.55;}
   .browse-results-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 14px;color:var(--ink-soft);font-size:12.5px;font-weight:600;flex-wrap:wrap;}
@@ -923,12 +931,10 @@
         const provenanceLabel = trust ? trust.tierLabel(t) : window.t(t.curated === false ? 'badge.importedS' : 'badge.verifiedS');
         const provStyle = trust ? trust.tierBadgeStyle(t) : (t.curated === false ? 'imported' : 'verified');
         const ratingLabel = trust ? trust.riskLabel(t, s[0]) : s[0];
+        const terrainRatingLabel = t.safetyLevel === 'low-risk' ? 'Low-risk terrain' : ratingLabel;
         const provenance = icons
           ? icons.badgeHtml(provStyle, provenanceLabel)
           : `<span class="badge-pill badge-${provStyle}">${provenanceLabel}</span>`;
-        const ratingBadge = icons
-          ? icons.badgeHtml(t.safetyLevel, ratingLabel)
-          : `<span class="safety-badge ${t.safetyLevel === 'low-risk' ? 'safety-low' : t.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution'}">${ratingLabel}</span>`;
         const meta = [t.distance ? `${t.distance} km` : null, t.elevation != null ? `${t.elevation} m climb` : null, t.hours ? `${t.hours} h` : null, t.area]
           .filter(Boolean).join(' · ');
         const match = matchScore(t);
@@ -946,22 +952,29 @@
           ${thumb}
           <a class="simple-card__main" href="${openHref}">
             <div class="name">${t.name}</div>
-            <div style="font-size:12px;color:var(--ink-soft);margin-top:3px;">${meta}</div>
-            <div class="simple-card__rating">
-              <span class="simple-card__rating-label">Trail rating</span>${ratingBadge}${provenance}
-            </div>
-            ${reason ? `<span class="simple-card__reason${reasonIsWater ? ' simple-card__reason--water' : ''}"><b aria-hidden="true">✓</b>${esc(reason)}</span>` : ''}
+            <div class="simple-card__meta">${meta}</div>
           </a>
+          <div class="simple-card__facts">
+            ${icons
+              ? icons.badgeHtml(t.safetyLevel, terrainRatingLabel)
+              : `<span class="safety-badge ${t.safetyLevel === 'low-risk' ? 'safety-low' : t.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution'}">${terrainRatingLabel}</span>`}
+            ${provenance}
+            ${reason ? `<span class="simple-card__reason${reasonIsWater ? ' simple-card__reason--water' : ''}"><b aria-hidden="true">✓</b>${esc(reason)}</span>` : ''}
+          </div>
           <div class="simple-card__match simple-card__match--${tierClass}">
-            <strong>${match}<span>%</span></strong>
-            <small>MATCH FOR YOUR DOG</small>
-            <span class="simple-card__tier">${tier}</span>
-            <div class="browse-card-actions">
-              <a class="browse-card-open" href="${openHref}">${window.t('card.details')} →</a>
-              <button type="button" class="browse-card-compare" data-compare-id="${esc(t.id)}"
-                aria-pressed="${isCompared ? 'true' : 'false'}" ${compareDisabled ? 'disabled' : ''}>
-                ${isCompared ? 'Selected' : 'Compare'}
-              </button>
+            <div class="simple-card__score">
+              <strong>${match}<span>%</span></strong>
+              <small>MATCH FOR YOUR DOG</small>
+            </div>
+            <div class="simple-card__match-actions">
+              <span class="simple-card__tier">${tier}</span>
+              <div class="browse-card-actions">
+                <a class="browse-card-open" href="${openHref}">${window.t('card.details')} →</a>
+                <button type="button" class="browse-card-compare" data-compare-id="${esc(t.id)}"
+                  aria-pressed="${isCompared ? 'true' : 'false'}" ${compareDisabled ? 'disabled' : ''}>
+                  ${isCompared ? 'Selected' : 'Compare'}
+                </button>
+              </div>
             </div>
           </div>
         </article>`;

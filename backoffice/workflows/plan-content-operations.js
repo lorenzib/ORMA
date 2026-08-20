@@ -12,8 +12,8 @@ const WORKSTREAM_DEFINITIONS = Object.freeze([
     outputs: ['editorial brief', 'edited guide draft', 'picture shortlist', 'source and freshness notes'],
   },
   {
-    id: 'collections', label: 'Collections', cadence: 'weekly', status: 'active',
-    goal: 'Create or refresh one intent-led trail collection using existing verified catalogue facts.',
+    id: 'collections', label: 'Collections', cadence: 'on-demand', status: 'parked',
+    goal: 'Maintain collections when catalogue composition changes; do not include them in the weekly freshness rotation.',
     outputs: ['collection concept', 'title and description draft', 'trail inclusion rationale', 'cover picture shortlist'],
   },
   {
@@ -23,12 +23,12 @@ const WORKSTREAM_DEFINITIONS = Object.freeze([
   },
   {
     id: 'library-enrichment', label: 'Library enrichment', cadence: 'weekly', status: 'active',
-    goal: 'Audit the guide library for stale or missing material and propose evidence-backed updates.',
+    goal: 'Audit guides and articles for stale or missing material, propose evidence-backed updates and record a last-reviewed date.',
     outputs: ['freshness audit', 'update priorities', 'edited drafts', 'replacement picture candidates'],
   },
   {
     id: 'social', label: 'Social media', cadence: 'weekly-after-launch', status: 'parked',
-    goal: 'Turn approved ORMA content into a channel-ready editorial queue after social launch.',
+    goal: 'Turn an approved newsletter into Instagram, Facebook and TikTok drafts, plus one ORMA feature-education post after social launch.',
     outputs: ['post concepts', 'captions', 'picture shortlist', 'alt text', 'source links'],
   },
 ]);

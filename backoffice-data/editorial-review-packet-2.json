@@ -1,0 +1,97 @@
+{
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-08-19T11:58:20.054Z",
+  "mode": "draft-only",
+  "publicMutationAllowed": false,
+  "workstream": "website-editorial",
+  "selectionReason": "revision-requested",
+  "subject": {
+    "type": "guide",
+    "id": "water-for-dogs-on-trail",
+    "sourceRef": "guides/water-for-dogs-on-trail.html",
+    "updatedAt": "2026-08-19T11:58:20.054Z",
+    "safetyCritical": true,
+    "original": "Current published guide to hydration, dehydration signs and water planning for dogs on alpine trails."
+  },
+  "outputs": [
+    {
+      "jobId": "guide-water-for-dogs-on-trail-copy-revision-2026-08-19T11-58-20-054Z",
+      "agentId": "copywriter",
+      "status": "ready-for-review",
+      "responseId": null,
+      "model": "codex",
+      "error": null,
+      "result": {
+        "title": "Refocus the trail-water guide on canine health and veterinary care",
+        "summary": "Makes the hydration guidance more clinically cautious, adds visible citation links, gives veterinary advice clear precedence over ORMA guidance, and reserves two responsive image spaces.",
+        "changes": [
+          {
+            "section": "Hero and image spaces",
+            "before": "<div class=\"guide-hero section-page-head\">\n  <div class=\"eyebrow\">Guides · Dog safety in the mountains</div>\n  <h1 style=\"font-size:clamp(28px,5vw,38px);margin-top:14px;\">Water for dogs on alpine trails: how much, and where it actually is</h1>\n  <p class=\"sub section-page-subtitle\">Your dog can't tell you it's two litres short. Here's the arithmetic, the warning signs, and how to plan a route around real fountains instead of hope.</p>\n</div>",
+            "after": "<div class=\"guide-hero section-page-head\">\n  <div class=\"eyebrow\">Guides · Dog health and safety in the mountains</div>\n  <h1 style=\"font-size:clamp(28px,5vw,38px);margin-top:14px;\">Water for dogs on alpine trails: hydration, warning signs and safer planning</h1>\n  <p class=\"sub section-page-subtitle\">Learn how hydration needs vary, which health warning signs need veterinary attention, and how to plan around reliable water points.</p>\n  <figure class=\"gp-image-slot\" data-image-slot=\"dog-trail-hydration\" style=\"min-height:260px;margin:24px 0;background:rgba(0,0,0,.04);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;\"><figcaption>Image space: dog drinking clean water during a mountain walk</figcaption></figure>\n  <figure class=\"gp-image-slot\" data-image-slot=\"dog-hydration-check\" style=\"min-height:220px;margin:24px 0;background:rgba(0,0,0,.04);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;\"><figcaption>Image space: owner checking a dog's gums and general condition</figcaption></figure>\n</div>",
+            "reason": "Shifts the page framing toward canine health and creates two explicit, responsive spaces for editorial images."
+          },
+          {
+            "section": "Hydration needs and citation",
+            "before": "<p>The commonly cited veterinary baseline is roughly <strong>one ounce of water per pound of body weight per day</strong> (call it 60 ml per kilo). That's a resting figure. With sustained exercise, and especially with heat, the requirement can <strong>double to quadruple</strong>. Worked example: a 25 kg dog needs about 1.5 litres on a sofa day; on a hot, shadeless 4-hour hike, plan for something in the range of 3 to 6 litres, between what you carry and what the trail provides.</p>",
+            "after": "<p>A general veterinary reference range for animals at rest in a comfortable temperature is about <strong>44–66 ml of water per kilo of body weight per day</strong>. This is only a starting point: diet, health, activity and environmental conditions can change an individual dog's needs substantially. Ask your veterinarian for a suitable hydration plan if your dog has a medical condition, takes medication, is very young or old, or is not accustomed to strenuous walks. <sup class=\"gp-citation\"><a href=\"https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals\" rel=\"noopener\" aria-label=\"Citation: Merck Veterinary Manual water requirements\">[1]</a></sup></p>",
+            "reason": "Removes an unsupported exercise multiplier and replaces it with a current veterinary range, individual health caveats and an inline citation insertion pattern."
+          },
+          {
+            "section": "Hydration sources",
+            "before": "<p class=\"gp-src\">Sources: <a href=\"https://www.akc.org/expert-advice/health/warning-signs-dehydration-dogs/\" rel=\"noopener\">American Kennel Club: dehydration in dogs</a>; <a href=\"https://wms.org/magazine/magazine/1112/vet-medicine-canine-hydration/Default.aspx\" rel=\"noopener\">Wilderness Medical Society: canine hydration</a></p>",
+            "after": "<p class=\"gp-src\">Sources and citations: <a href=\"https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals\" rel=\"noopener\">[1] Merck Veterinary Manual: water requirements</a>; <a href=\"https://wms.org/magazine/magazine/1112/vet-medicine-canine-hydration/Default.aspx\" rel=\"noopener\">[2] Wilderness Medical Society: canine hydration</a></p>",
+            "reason": "Introduces a numbered citation format that can be extended on the page and prioritizes a peer-reviewed veterinary manual."
+          },
+          {
+            "section": "Health checks",
+            "before": "<table class=\"gp-table\">\n    <tr><th>Check</th><th>What you're looking for</th></tr>\n    <tr><td>Gums</td><td>Should be wet and slick. Dry or sticky gums are an early dehydration flag.</td></tr>\n    <tr><td>Skin tent</td><td>Gently lift the skin near the shoulder blades and release. It should snap back instantly; skin that settles slowly means fluid loss.</td></tr>\n    <tr><td>Eyes</td><td>Sunken eyes are a later, more serious sign.</td></tr>\n    <tr><td>Behaviour</td><td>Lethargy, slowing on flat ground, panting heavier than the pace justifies: the same early signals as heat stress, because the two arrive together.</td></tr>\n  </table>",
+            "after": "<table class=\"gp-table\">\n    <tr><th>Health check</th><th>What may need attention</th></tr>\n    <tr><td>Gums</td><td>Dry or sticky gums can occur with dehydration. Gum colour and refill time are clinical assessments, so ask a veterinarian to show you how to check them correctly.</td></tr>\n    <tr><td>Skin</td><td>A slow return after gently lifting and releasing the skin near the shoulder blades can suggest fluid loss, but age and body condition can make this check misleading.</td></tr>\n    <tr><td>Eyes</td><td>Sunken eyes can accompany more substantial dehydration and warrant prompt veterinary advice.</td></tr>\n    <tr><td>Behaviour and movement</td><td>Weakness, confusion, loss of coordination, collapse, vomiting or panting that remains rapid after stopping can indicate a medical emergency.</td></tr>\n  </table>",
+            "reason": "Makes the section more health focused, explains the limitations of home checks and identifies signs associated with urgent heat-related illness."
+          },
+          {
+            "section": "Response to warning signs",
+            "before": "<p>If you see these: shade, rest, and <strong>small amounts</strong> of water: a dehydrated dog that gulps a bowl can vomit it straight back, making things worse. If signs don't resolve quickly, it's a vet situation, not a wait-and-see situation.</p>",
+            "after": "<p>If you notice possible dehydration or heat illness, stop the walk, move your dog out of the heat and contact a veterinarian promptly for instructions. Heat stroke is an emergency: vomiting, distress, uncoordinated movement, collapse or unconsciousness require immediate veterinary care. Any first-aid steps on this page are temporary support and must not delay professional treatment. <sup class=\"gp-citation\"><a href=\"https://www.merckvetmanual.com/special-pet-topics/emergencies/what-to-do-in-a-dog-or-cat-emergency\" rel=\"noopener\" aria-label=\"Citation: Merck Veterinary Manual emergency guidance\">[3]</a></sup></p>",
+            "reason": "Prioritizes veterinary assessment, provides a clear emergency threshold and adds a current citation for the changed safety claims."
+          },
+          {
+            "section": "Review footer and veterinary precedence",
+            "before": "<p class=\"gp-src\" style=\"margin-top:30px;\">Last reviewed: July 2026. This guide is general information, not veterinary advice: if your dog shows persistent signs of dehydration or heat stress, get to a vet.</p>",
+            "after": "<p class=\"gp-src\" style=\"margin-top:30px;\"><strong>Veterinary guidance comes first.</strong> This page provides general educational information and cannot account for your dog's health, medication, age or fitness. Advice from a veterinarian who knows or has assessed your dog always takes precedence over ORMA content. Contact a veterinarian promptly about possible dehydration or heat illness, and seek immediate care for emergency signs. Last reviewed: 19 August 2026.</p>",
+            "reason": "States clearly and prominently that individualized veterinary advice always overrides the page while recording the substantive health review."
+          }
+        ],
+        "sources": [
+          {
+            "label": "Merck Veterinary Manual: Nutritional Requirements of Small Animals",
+            "url": "https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals",
+            "checkedAt": "2026-08-19",
+            "supports": "Supports the approximate thermoneutral water range of 44–66 ml/kg and explains that diet, environment, activity and health affect individual requirements."
+          },
+          {
+            "label": "Merck Veterinary Manual: The Fluid Resuscitation Plan in Animals",
+            "url": "https://www.merckvetmanual.com/therapeutics/fluid-therapy/the-fluid-resuscitation-plan-in-animals",
+            "checkedAt": "2026-08-19",
+            "supports": "Supports assessing mucous membranes, skin turgor and eyes while recognizing that physical dehydration estimates are affected by factors including age and body condition."
+          },
+          {
+            "label": "Merck Veterinary Manual: What to Do in a Dog or Cat Emergency",
+            "url": "https://www.merckvetmanual.com/special-pet-topics/emergencies/what-to-do-in-a-dog-or-cat-emergency",
+            "checkedAt": "2026-08-19",
+            "supports": "Identifies heat stroke as an emergency and lists vomiting, rapid panting, distress, uncoordinated movement, collapse and unconsciousness among its signs."
+          }
+        ],
+        "openQuestions": []
+      },
+      "revision": {
+        "requestedAt": "2026-08-19T11:58:20.054Z",
+        "instruction": "make this way more health related - also make sure that we can insert citation on this page as well\nmake the claim that veterinary advice is always more important than what we say here (write it in a better way)\ninclude the space for images"
+      }
+    }
+  ],
+  "summary": {
+    "readyForReview": 1,
+    "blocked": 0
+  }
+}
