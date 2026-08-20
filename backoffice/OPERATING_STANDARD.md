@@ -130,8 +130,9 @@ The required handoff is:
 `Analyst scouts -> CEO reviews -> Product Designer prepares visual prototype -> CEO reviews -> Developer implements -> Release`
 
 The Product Designer is a first-class fleet member with a dedicated prompt and
-an interactive prototype review surface. An investigation, priority decision,
-or prototype never authorises development on its own.
+a top-level Design desk. Analyst owns evidence and prioritisation; Design owns
+the full-width interactive screen prototype, usability rationale, revision
+requests and the CEO prototype gate. An investigation, priority decision or prototype never authorises development on its own.
 
 ## CEO review and shipping contract
 
