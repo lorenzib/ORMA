@@ -420,7 +420,7 @@
       // controls change (login pill vs bell + dog pill).
       linksEl.appendChild(navItem('Browse all Trails', 'browse-trails.html', key === 'trails', 'saved.nav.browse'));
       linksEl.appendChild(navItem('Collections', 'collections.html', key === 'collections', 'saved.nav.collections'));
-      linksEl.appendChild(navItem('Safety guide', 'safety-guide.html', key === 'safety', 'saved.nav.safety'));
+      linksEl.appendChild(navItem('Safety library', 'safety-guide.html', key === 'safety', 'saved.nav.safety'));
       linksEl.appendChild(navItem('My walk journal', 'journal.html', key === 'journal', 'saved.nav.journal'));
       if(loggedIn){
         activeBell = buildBell();
