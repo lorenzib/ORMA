@@ -829,13 +829,17 @@ body{background:#EFECE2;}
 /* Trail photos use a horizontal thumbnail carousel and open into a full
    viewer. The viewer controls remain large enough for touch and keyboard. */
 .trail-photo-strip{position:relative;}
-.td2-story .trail-photo-strip .trail-photos-list{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(150px,calc((100% - 20px)/3));gap:10px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;padding:2px;margin:0;}
+.td2-story .trail-photo-strip .trail-photos-list{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(220px,calc((100% - 20px)/3));gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;padding:2px;margin:0;}
 .trail-photo-strip .trail-photos-list::-webkit-scrollbar{display:none;}
 .trail-photo-strip__nav{position:absolute;z-index:3;top:54px;width:36px;height:36px;display:grid;place-items:center;padding:0;border:1px solid rgba(46,64,52,.16);border-radius:50%;background:rgba(255,255,255,.96);color:#2E4034;box-shadow:0 5px 18px rgba(34,49,38,.18);cursor:pointer;}
 .trail-photo-strip__nav[hidden],.trail-photo-viewer__nav[hidden]{display:none;}
 .trail-photo-strip__nav:hover{background:#fff;border-color:#3E7A91;}
 .trail-photo-strip__nav--prev{left:8px;}
 .trail-photo-strip__nav--next{right:8px;}
+.community-photo{border:0;background:transparent;}
+.community-photo__open{display:block;width:100%;padding:0;border:0;border-radius:14px;background:transparent;cursor:zoom-in;overflow:hidden;}
+.community-photo__open:focus-visible{outline:3px solid #3E7A91;outline-offset:3px;}
+.community-photo img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:14px;}
 
 body.trail-photo-viewer-open{overflow:hidden;}
 .trail-photo-viewer{position:fixed;inset:0;z-index:1200;display:grid;place-items:center;box-sizing:border-box;padding:28px 72px;background:rgba(18,25,20,.96);color:#fff;}
@@ -855,7 +859,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 .trail-photo-viewer__meta span{flex:none;color:#B9C8BC;font-weight:750;}
 
 @media(max-width:980px){
-  .td2-story .trail-photo-strip .trail-photos-list{grid-template-columns:none;grid-auto-columns:minmax(150px,calc((100% - 10px)/2));}
+  .td2-story .trail-photo-strip .trail-photos-list{grid-template-columns:none;grid-auto-columns:minmax(190px,calc((100% - 10px)/2));}
   .trail-photo-viewer{padding:68px 18px 24px;}
   .trail-photo-viewer__stage{min-height:0;}
   .trail-photo-viewer__nav{top:50%;width:44px;height:44px;}
@@ -863,7 +867,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
   .trail-photo-viewer__nav--next{right:10px;}
 }
 @media(max-width:560px){
-  .td2-story .trail-photo-strip .trail-photos-list{grid-auto-columns:82%;}
+  .td2-story .trail-photo-strip .trail-photos-list{grid-auto-columns:88%;}
   .trail-photo-strip__nav{top:52px;}
   .trail-photo-viewer__stage img{max-height:calc(100dvh - 190px);border-radius:9px;}
   .trail-photo-viewer__meta{font-size:12px;}
@@ -1054,7 +1058,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 
         <!-- PHOTOS -->
         <div class="td2-card td2-section td2-community-card" id="td2PhotosCard">
-          <div class="td2-rev-head"><span class="td2-kick">Photos<span id="td2PhotoCount"></span></span><button id="addPhotoBtn" type="button" class="add-photo-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Add a photo</button></div>
+          <div class="td2-rev-head"><span class="td2-kick">Added by users<span id="td2PhotoCount"></span></span><button id="addPhotoBtn" type="button" class="add-photo-btn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Add a photo</button></div>
           <div class="trail-photo-strip">
             <button id="trailPhotosPrev" type="button" class="trail-photo-strip__nav trail-photo-strip__nav--prev" aria-label="Previous photos" hidden><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
             <div id="trailPhotosList" class="trail-photos-list"><div class="empty-state empty-state--compact"><p class="empty-state__title">No trail photos yet</p><p class="empty-state__copy">Add a recent, useful view so others can recognise the route and conditions.</p></div></div>
@@ -1216,7 +1220,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="detail-pois.js?v=20260819-2" defer></script>
 <script src="trail-photo-provenance.js?v=20260820-1" defer></script>
 <script src="trail-weather-window.js?v=20260820-1" defer></script>
-<script src="trail-reports.js?v=20260820-1" defer></script>
+<script src="trail-reports.js?v=20260820-2" defer></script>
 <script src="trail.js?v=20260820-1" defer></script>
 <script src="trail-blueprint.js?v=20260820-3" defer></script>
 <script src="trail-detail-ui.js?v=20260815-4" defer></script>
