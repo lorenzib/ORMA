@@ -48,6 +48,9 @@ function initTrailReports(map, trail){
   const photosListEl = document.getElementById('trailPhotosList');
   const photoStripPrev = document.getElementById('trailPhotosPrev');
   const photoStripNext = document.getElementById('trailPhotosNext');
+  const editorialPhotos = window.DoloPawsPhotoProvenance
+    ? window.DoloPawsPhotoProvenance.editorialPhotos(trail)
+    : [];
   let actionStatusTimer = null;
   let closeActivePhotoViewer = null;
 
@@ -273,13 +276,13 @@ function initTrailReports(map, trail){
 
   function renderPhotos(photos){
     if (!photosListEl) return;
-    // This section is deliberately community-only. Editorial trail imagery
-    // belongs in the hero/gallery context, not in the user-added photo feed.
-    const visible = photos.filter(photo =>
+    const visible = editorialPhotos.concat(photos.filter(photo =>
       window.DoloPawsCommunityStates&&window.DoloPawsCommunityStates.isPublic(photo.status)&&
       typeof photo.image==='string'&&photo.image.startsWith('data:image/')
-    )
+    ))
       .sort((a, b) => {
+        if(a.isEditorial!==b.isEditorial)return a.isEditorial?-1:1;
+        if(a.isEditorial&&b.isEditorial)return a.editorialOrder-b.editorialOrder;
         const aDate = reviewDate(a), bDate = reviewDate(b);
         return (bDate ? bDate.getTime() : 0) - (aDate ? aDate.getTime() : 0);
       });
