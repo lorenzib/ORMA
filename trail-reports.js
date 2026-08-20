@@ -48,6 +48,9 @@ function initTrailReports(map, trail){
   const photosListEl = document.getElementById('trailPhotosList');
   const photoStripPrev = document.getElementById('trailPhotosPrev');
   const photoStripNext = document.getElementById('trailPhotosNext');
+  const editorialPhotos = window.DoloPawsPhotoProvenance
+    ? window.DoloPawsPhotoProvenance.editorialPhotos(trail)
+    : [];
   let actionStatusTimer = null;
   let closeActivePhotoViewer = null;
 
@@ -155,11 +158,18 @@ function initTrailReports(map, trail){
   }
 
   function photoCaption(photo){
+    if(window.DoloPawsPhotoProvenance)return window.DoloPawsPhotoProvenance.photoCaption(photo);
     const dog = photo.dogContext && photo.dogContext.name;
     const caption = photo.caption
       ? String(photo.caption)
       : (dog ? `Shared by ${dog}’s human` : 'Shared by the ORMA community');
     return caption + (photo.status === 'reported' ? ' · Reported, under review' : '');
+  }
+
+  function photoAlt(photo){
+    return window.DoloPawsPhotoProvenance
+      ? window.DoloPawsPhotoProvenance.photoAlt(photo)
+      : photoCaption(photo);
   }
 
   function openPhotoCarousel(photos, startIndex, returnFocus){
@@ -203,7 +213,7 @@ function initTrailReports(map, trail){
       const photo = photos[currentIndex];
       const label = photoCaption(photo);
       image.src = photo.image;
-      image.alt = label;
+      image.alt = photoAlt(photo);
       caption.textContent = label;
       count.textContent = `${currentIndex + 1} of ${photos.length}`;
       previous.hidden = photos.length < 2;
@@ -266,12 +276,14 @@ function initTrailReports(map, trail){
 
   function renderPhotos(photos){
     if (!photosListEl) return;
-    const visible = photos.filter(photo =>
-      window.DoloPawsCommunityStates &&
-      window.DoloPawsCommunityStates.isPublic(photo.status) &&
-      typeof photo.image === 'string' && photo.image.startsWith('data:image/')
+    const visible = editorialPhotos.concat(photos).filter(photo =>
+      (photo.isEditorial===true&&typeof photo.image==='string'&&photo.image.startsWith('images/'))||
+      (window.DoloPawsCommunityStates&&window.DoloPawsCommunityStates.isPublic(photo.status)&&
+        typeof photo.image==='string'&&photo.image.startsWith('data:image/'))
     )
       .sort((a, b) => {
+        if(a.isEditorial!==b.isEditorial)return a.isEditorial?-1:1;
+        if(a.isEditorial&&b.isEditorial)return a.editorialOrder-b.editorialOrder;
         const aDate = reviewDate(a), bDate = reviewDate(b);
         return (bDate ? bDate.getTime() : 0) - (aDate ? aDate.getTime() : 0);
       });
@@ -290,7 +302,7 @@ function initTrailReports(map, trail){
       const caption = trEsc(photoCaption(photo));
       return `<figure class="community-photo">
         <button type="button" class="community-photo__open" data-photo-index="${index}" aria-label="Open photo ${index + 1} of ${visible.length}: ${caption}">
-          <img src="${trEsc(photo.image)}" alt="${caption}" loading="lazy" decoding="async">
+          <img src="${trEsc(photo.image)}" alt="${trEsc(photoAlt(photo))}" loading="lazy" decoding="async">
         </button>
         <figcaption>${caption}</figcaption>
       </figure>`;

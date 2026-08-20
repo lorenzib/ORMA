@@ -916,14 +916,29 @@
         "name": "Tre Cime di Lavaredo classic circuit",
         "desc": "A demanding 9.528 km circuit from Rifugio Auronzo around the Tre Cime, following trails 101 and 105. The official itinerary gives 468 m of ascent, about 3 hours 30 minutes and a high point of 2,454 m. This is a hard, open high-alpine walk rather than a casual sightseeing loop.\n\nDogs are accepted on the route but must stay on lead throughout. Seasonal livestock may be present beside the Lavaredo pasture segment, so keep your dog close and pass animals conservatively. The route has very little dependable shade and includes a narrower section, although no ferrata equipment is required.",
         "tips": "Start and finish at Rifugio Auronzo. The seasonal toll road and parking are weather-dependent and normally require advance booking; roadside parking is prohibited. Carry sufficient water. A fountain is identified at Malga LangAlm, but its seasonal availability and potability are not guaranteed.",
-        "imageIcon": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
-        "imageCredit": "Tre Cime di Lavaredo, Sentiero per il Rifugio Locatelli — Simone A. Bertinotti — CC BY-SA 4.0 — via Wikimedia Commons",
-        "heroImage": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
-        "imageCreator": "Simone A. Bertinotti",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
-        "imageAlt": "Gravel trail towards Rifugio Locatelli beneath the Tre Cime di Lavaredo peaks.",
+        "imageIcon": "images/tre-cime-hero.jpg",
+        "imageCredit": {
+          "text": "Benedetta Lorenzi · ORMA original"
+        },
+        "heroImage": "images/tre-cime-hero.jpg",
+        "imageSourcePage": null,
+        "imageCreator": "Benedetta Lorenzi",
+        "imageLicence": "All rights reserved — owner-supplied ORMA original",
+        "imageLicenceUrl": null,
+        "imageAlt": "Tre Cime di Lavaredo rock towers in warm morning light beneath a blue sky.",
+        "editorialPhotos": [
+          {
+            "source": "orma-editorial",
+            "image": "images/tre-cime-gallery-01.jpg",
+            "alt": "Tre Cime di Lavaredo rock towers beneath blue and grey clouds, with the rocky circuit path in the foreground.",
+            "caption": "Tre Cime di Lavaredo from the circuit trail",
+            "credit": {
+              "text": "Benedetta Lorenzi · ORMA original"
+            },
+            "rights": "owner-supplied",
+            "capturedAt": "2025-08-27"
+          }
+        ],
         "ormaVerified": true,
         "area": "Alta Pusteria – Tre Cime",
         "distance": 9.528,
