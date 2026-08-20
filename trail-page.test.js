@@ -156,12 +156,22 @@ describe('trail page map controls', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20260819-5');
-    expect(html).toContain('trail.js?v=20260819-5');
+    expect(html).toContain('trail-photo-provenance.js?v=20260820-1');
+    expect(html).toContain('trail.js?v=20260820-1');
     expect(html).toContain('trail-reports.js?v=20260820-1');
     expect(html).toContain('trail-blueprint.js?v=20260820-1');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
     expect(html).toContain('offline-packages.js?v=20260819-6');
     expect(html).toContain('trail-mobile.js?v=20260819-6');
+  });
+
+  test('has a visible provenance slot and loads photo provenance before photo renderers', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    document.body.innerHTML = html;
+
+    expect(document.getElementById('tdHeroCredit')).not.toBeNull();
+    expect(html.indexOf('trail-photo-provenance.js')).toBeLessThan(html.indexOf('trail-reports.js'));
+    expect(html.indexOf('trail-photo-provenance.js')).toBeLessThan(html.indexOf('trail.js?v='));
   });
 
   test('the map workspace places elevation below the map while dog fit stays alongside it', () => {

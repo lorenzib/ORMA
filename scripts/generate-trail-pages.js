@@ -20,6 +20,7 @@ const fs = require('fs');
 const path = require('path');
 const evidenceContract = require('../trust/evidence-v1.js');
 const recommendationContract = require('../scoring/recommendation-v1.js');
+const photoProvenance = require('../trail-photo-provenance.js');
 const { loadProductionTrails } = require('./load-production-trails');
 const { buildCanonicalCatalog } = require('./trail-adapter');
 
@@ -195,6 +196,14 @@ function photoHtml(t) {
     <source type="image/webp" srcset="${srcset}" sizes="(max-width: 760px) 100vw, 1100px">
     <img class="sp-img" src="../${responsive.fallback}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">
   </picture>`;
+}
+
+function photoCreditHtml(t){
+  if(!t.imageIcon)return '';
+  const credit=photoProvenance.heroCredit(t);if(!credit)return '';
+  const label=escapeHtml(credit.label);
+  const content=credit.url?`<a href="${escapeHtml(credit.url)}" rel="noopener nofollow">${label}</a>`:label;
+  return `<p class="sp-src" style="margin:-8px 0 14px;">${content}</p>`;
 }
 
 // Inline SVG of the elevation profile.
@@ -506,7 +515,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
     ${t.paid ? '<span class="dp-badge dp-badge--neutral"><span>Paid access</span></span>' : ''}
   </div>
   ${t.imageIcon ? photoHtml(t) : routeHtml}
-  ${t.imageIcon && t.imageCredit ? `<p class="sp-src" style="margin:-8px 0 14px;">${t.imageCredit.bare ? '' : 'Photo: '}${t.imageCredit.url ? `<a href="${escapeHtml(t.imageCredit.url)}" rel="noopener nofollow">${escapeHtml(t.imageCredit.text)}</a>` : escapeHtml(t.imageCredit.text)}</p>` : ''}
+  ${photoCreditHtml(t)}
   ${!t.imageIcon && t.imagePlaceholder ? `<p class="sp-src" style="display:flex;align-items:center;gap:8px;margin:-6px 0 14px;"><img src="../logo.svg" alt="" width="22" height="22" style="flex:none;"> We're working on adding photos of this trail.</p>` : ''}
   <p>${escapeHtml(t.desc || '')}</p>
 
@@ -765,4 +774,4 @@ function main() {
 
 if(require.main === module) main();
 
-module.exports = { photoHtml, publicAssetUrl, trailPageAssetUrl, trailPage };
+module.exports = { photoHtml, photoCreditHtml, publicAssetUrl, trailPageAssetUrl, trailPage };

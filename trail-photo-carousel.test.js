@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const photoProvenance = require('./trail-photo-provenance');
 
 describe('trail photo carousel', () => {
   test('opens a clicked thumbnail and supports next, previous, and escape controls', async () => {
@@ -19,6 +20,7 @@ describe('trail photo carousel', () => {
 
     window.t = key => key;
     window.DoloPawsAuth = { currentUser:null };
+    window.DoloPawsPhotoProvenance = photoProvenance;
     window.DoloPawsCommunityStates = {
       isPublic:() => true,
       countsTowardRating:() => true,
@@ -37,22 +39,35 @@ describe('trail photo carousel', () => {
 
     const source = fs.readFileSync(path.join(__dirname, 'trail-reports.js'), 'utf8');
     window.eval(`${source}\nwindow.__initTrailReports = initTrailReports;`);
-    window.__initTrailReports(null, { id:'test-trail', name:'Test trail', path:[] });
+    window.__initTrailReports(null, {
+      id:'test-trail',
+      name:'Test trail',
+      path:[],
+      editorialPhotos:[{
+        source:'orma-editorial',
+        image:'images/tre-cime-gallery-01.jpg',
+        alt:'Tre Cime from the circuit trail',
+        caption:'Tre Cime di Lavaredo from the circuit trail',
+        credit:{ text:'Benedetta Lorenzi · ORMA original' },
+      }],
+    });
     await new Promise(resolve => setTimeout(resolve, 0));
 
     const thumbnails = document.querySelectorAll('.community-photo__open');
-    expect(thumbnails).toHaveLength(3);
+    expect(thumbnails).toHaveLength(4);
+    expect(thumbnails[0].querySelector('img').getAttribute('src')).toBe('images/tre-cime-gallery-01.jpg');
+    expect(thumbnails[0].nextElementSibling.textContent).toContain('Photo: Benedetta Lorenzi · ORMA original');
     expect(document.getElementById('trailPhotosNext').hidden).toBe(false);
 
-    thumbnails[1].click();
+    thumbnails[2].click();
     const viewer = document.querySelector('.trail-photo-viewer');
     expect(viewer).not.toBeNull();
     expect(viewer.querySelector('[data-gallery-caption]').textContent).toBe('Second view');
-    expect(viewer.querySelector('[data-gallery-count]').textContent).toBe('2 of 3');
+    expect(viewer.querySelector('[data-gallery-count]').textContent).toBe('3 of 4');
 
     viewer.dispatchEvent(new KeyboardEvent('keydown', { key:'ArrowRight', bubbles:true }));
     expect(viewer.querySelector('[data-gallery-caption]').textContent).toBe('Third view');
-    expect(viewer.querySelector('[data-gallery-count]').textContent).toBe('3 of 3');
+    expect(viewer.querySelector('[data-gallery-count]').textContent).toBe('4 of 4');
 
     viewer.querySelector('[data-gallery-prev]').click();
     expect(viewer.querySelector('[data-gallery-caption]').textContent).toBe('Second view');
@@ -60,6 +75,6 @@ describe('trail photo carousel', () => {
     viewer.dispatchEvent(new KeyboardEvent('keydown', { key:'Escape', bubbles:true }));
     expect(document.querySelector('.trail-photo-viewer')).toBeNull();
     expect(document.body.classList.contains('trail-photo-viewer-open')).toBe(false);
-    expect(document.activeElement).toBe(thumbnails[1]);
+    expect(document.activeElement).toBe(thumbnails[2]);
   });
 });
