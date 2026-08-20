@@ -919,8 +919,22 @@ function renderTrail(t){
       } else {
         heroPhoto.src = t.imageIcon;
       }
+      heroPhoto.alt = t.imageAlt || `${t.name} trail photograph`;
       heroPhoto.hidden = false;
       heroVeil.hidden = false;
+      const creditEl = document.getElementById('tdHeroCredit');
+      const credit = window.DoloPawsPhotoProvenance
+        ? window.DoloPawsPhotoProvenance.heroCredit(t)
+        : null;
+      if(creditEl && credit){
+        creditEl.replaceChildren();
+        if(credit.url){
+          const link=document.createElement('a');
+          link.href=credit.url;link.target='_blank';link.rel='noopener nofollow';link.textContent=credit.label;
+          creditEl.appendChild(link);
+        }else creditEl.textContent=credit.label;
+        creditEl.hidden=false;
+      }
     }
   }
   document.getElementById('trailMeta').textContent =
