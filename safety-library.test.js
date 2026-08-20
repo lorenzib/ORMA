@@ -25,6 +25,7 @@ describe('Safety library', () => {
     expect(document.body.classList.contains('safety-library-page')).toBe(true);
     expect(html).not.toContain('Find a trail that fits your dog');
     expect(html).not.toContain('Your next walk');
+    expect(html).toMatch(/\.safety-library-page \.hp-prefooter\{[^}]*display:none!important/s);
     expect(html).not.toMatch(/\.sg-disclaimer\{[^}]*border-top:/s);
   });
 
