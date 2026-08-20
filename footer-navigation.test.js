@@ -62,10 +62,10 @@ describe('footer navigation', () => {
       ['saved.html', 'Saved trails'],
       ['downloads.html', 'Downloaded trails'],
       ['walk.html', 'Record a walk'],
-      ['about.html', 'Instagram'],
-      ['about.html', 'Newsletter'],
-      ['contact.html', 'Support'],
+      // Follow Us and Get the app are icon/badge links, so they carry no
+      // text node and never appear in this list.
       ['about.html', 'About us'],
+      ['about.html', 'Newsletter'],
       ['contact.html', 'Contact'],
       ['privacy.html', 'Privacy'],
       ['terms.html', 'Terms'],
@@ -91,7 +91,38 @@ describe('footer navigation', () => {
 
     publicFooterPages().forEach(file => {
       const html = fs.readFileSync(file, 'utf8');
-      expect(html).toMatch(/href="(?:\.\.\/|\/)?styles\.css\?v=20260818-17"/);
+      expect(html).toMatch(/href="(?:\.\.\/|\/)?styles\.css\?v=20260818-18"/);
+    });
+  });
+
+  test('every public footer follows the same three social channels, in order', () => {
+    const pages = publicFooterPages();
+    expect(pages.length).toBeGreaterThan(0);
+    pages.forEach(file => {
+      const footer = footerOf(file);
+      // account.html localises its headings, so allow extra attributes.
+      expect(footer).toMatch(/<div class="hp-footer-h"[^>]*>Follow Us<\/div>/);
+      const channels = [...footer.matchAll(/aria-label="ORMA on ([^"]+)"/g)].map(([, name]) => name);
+      expect(channels).toEqual(['Instagram', 'Facebook', 'YouTube']);
+    });
+  });
+
+  test('every public footer offers both store badges', () => {
+    ['app-store-badge.svg', 'google-play-badge.svg'].forEach(asset => {
+      expect(fs.existsSync(path.join(__dirname, asset))).toBe(true);
+    });
+
+    const pages = publicFooterPages();
+    expect(pages.length).toBeGreaterThan(0);
+    pages.forEach(file => {
+      const footer = footerOf(file);
+      expect(footer).toMatch(/<div class="hp-footer-h"[^>]*>Get the app<\/div>/);
+      expect(footer).toMatch(
+        /src="(?:\.\.\/|\/)?app-store-badge\.svg" alt="Download on the App Store"/
+      );
+      expect(footer).toMatch(
+        /src="(?:\.\.\/|\/)?google-play-badge\.svg" alt="Get it on Google Play"/
+      );
     });
   });
 });
