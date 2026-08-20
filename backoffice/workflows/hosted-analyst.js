@@ -1,23 +1,28 @@
 'use strict';
 
 const {randomUUID}=require('crypto');
+const fs=require('fs');
+const path=require('path');
 const {applyProductIdeaReview}=require('./product-ideas-review');
 const {runFocusedInvestigation}=require('./run-product-discovery');
 const {createStructuredResponse}=require('../services/openai-responses-client');
+const PRODUCT_DESIGNER_INSTRUCTIONS=fs.readFileSync(path.resolve(__dirname,'../agents/prompts/product-designer.md'),'utf8');
 
 const PRODUCT_MOCKUP_SCHEMA={type:'object',additionalProperties:false,properties:{
   mockupTitle:{type:'string'},userProblem:{type:'string'},decisionRationale:{type:'string'},
-  screens:{type:'array',minItems:1,maxItems:5,items:{type:'object',additionalProperties:false,properties:{name:{type:'string'},objective:{type:'string'},blocks:{type:'array',minItems:1,maxItems:8,items:{type:'object',additionalProperties:false,properties:{label:{type:'string'},content:{type:'string'},interaction:{type:'string'}},required:['label','content','interaction']}}},required:['name','objective','blocks']}},
+  visualDirection:{type:'object',additionalProperties:false,properties:{tone:{type:'string'},palette:{type:'string'},density:{type:'string'}},required:['tone','palette','density']},
+  screens:{type:'array',minItems:1,maxItems:5,items:{type:'object',additionalProperties:false,properties:{name:{type:'string'},objective:{type:'string'},device:{type:'string',enum:['mobile','desktop']},layout:{type:'string',enum:['single-column','split','map-led']},blocks:{type:'array',minItems:1,maxItems:8,items:{type:'object',additionalProperties:false,properties:{type:{type:'string',enum:['navigation','hero','map','alert','metric','card-list','text','action-bar']},label:{type:'string'},content:{type:'string'},interaction:{type:'string'},emphasis:{type:'string',enum:['primary','secondary','subtle']}},required:['type','label','content','interaction','emphasis']}}},required:['name','objective','device','layout','blocks']}},
   userFlow:{type:'array',items:{type:'string'}},successCriteria:{type:'array',items:{type:'string'}},constraints:{type:'array',items:{type:'string'}},implementationNotes:{type:'array',items:{type:'string'}},
-},required:['mockupTitle','userProblem','decisionRationale','screens','userFlow','successCriteria','constraints','implementationNotes']};
+},required:['mockupTitle','userProblem','decisionRationale','visualDirection','screens','userFlow','successCriteria','constraints','implementationNotes']};
 
 function iso(value){if(!value)return new Date().toISOString();if(typeof value==='string')return value;if(typeof value.toDate==='function')return value.toDate().toISOString();return new Date(value).toISOString();}
 function latestBySubject(reviews){const latest=new Map();for(const review of reviews){const key=`${review.subjectType||'idea'}:${review.ideaId}`;const current=latest.get(key);const stamp=`${iso(review.submittedAt)}:${review.id}`;const currentStamp=current?`${iso(current.submittedAt)}:${current.id}`:'';if(!current||stamp>currentStamp)latest.set(key,review);}return latest;}
 
 async function runProductDesigner(idea,focus,previousMockup,options={}){
   const runAgent=options.runAgent||createStructuredResponse;const response=await runAgent({schemaName:'orma_product_mockup',schema:PRODUCT_MOCKUP_SCHEMA,webSearch:false,messages:[{role:'developer',content:[
-    'You are the ORMA Product Designer. Turn one CEO-prioritised Analyst opportunity into a concrete reviewable low-fidelity product mock-up.',
-    'Describe screens as structured interface blocks so the protected backoffice can render them as wireframes.',
+    PRODUCT_DESIGNER_INSTRUCTIONS,
+    'You are the ORMA Product Designer. Turn one CEO-prioritised Analyst opportunity into a concrete reviewable visual product prototype.',
+    'Define visual direction, device, layout and typed interface blocks so the protected backoffice can render an interactive prototype.',
     'Respect ORMA dog-first hiking, evidence, safety and premium design principles. Do not write implementation code and do not claim development is authorised.',
     previousMockup?'Revise the prior mock-up literally according to the CEO note.':'Create the first mock-up.',
   ].join('\n')},{role:'user',content:`Opportunity:\n${JSON.stringify(idea,null,2)}\n\nCEO direction:\n${focus||idea.ormaOpportunity}${previousMockup?`\n\nPrevious mock-up:\n${JSON.stringify(previousMockup,null,2).slice(0,30000)}`:''}`} ]},options.clientOptions||{});
@@ -63,4 +68,4 @@ async function processAnalystJobs(store,options={}){
   return outcomes;
 }
 
-module.exports={PRODUCT_MOCKUP_SCHEMA,iso,latestBySubject,runProductDesigner,ingestAnalystReviews,processAnalystJobs};
+module.exports={PRODUCT_DESIGNER_INSTRUCTIONS,PRODUCT_MOCKUP_SCHEMA,iso,latestBySubject,runProductDesigner,ingestAnalystReviews,processAnalystJobs};

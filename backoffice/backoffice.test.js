@@ -86,7 +86,7 @@ const { EDITABLE_FIELDS, PROTECTED_FIELDS, planContentFlow } = require('./workfl
 const { validateContentOperations } = require('./contracts/content-operations-v1');
 const { planContentOperations } = require('./workflows/plan-content-operations');
 const { outputText,createStructuredResponse } = require('./services/openai-responses-client');
-const { visibleText, runGuideContent } = require('./workflows/run-guide-content');
+const { visibleText, runGuideContent, runPageContent } = require('./workflows/run-guide-content');
 const { runEditorialCycle } = require('./workflows/run-editorial-cycle');
 const { runNewsletter, newsletterIsDue } = require('./workflows/run-newsletter');
 const { validateContentExecution } = require('./contracts/content-result-v1');
@@ -1014,6 +1014,23 @@ describe('ORMA backoffice MVP', () => {
     expect(execution.subject.original.length).toBeGreaterThan(100);
   });
 
+  test('governance page runner keeps Privacy and Terms inside the copy-only human gate', async () => {
+    const calls=[];
+    const execution=await runPageContent(require('path').resolve(__dirname,'..'),{
+      pageId:'privacy',sourceRef:'privacy.html',at:'2026-08-20T12:00:00.000Z',
+      runAgent:async input=>{
+        calls.push(input);
+        return {responseId:'resp-privacy',model:'fixture',data:{title:'Privacy',summary:'Clarity review.',changes:[],sources:[],openQuestions:[]}};
+      },
+    });
+    expect(validateContentExecution(execution)).toEqual([]);
+    expect(execution).toEqual(expect.objectContaining({mode:'draft-only',publicMutationAllowed:false}));
+    expect(execution.subject).toEqual(expect.objectContaining({type:'page',id:'privacy',sourceRef:'privacy.html'}));
+    expect(calls[0].schemaName).toBe('orma_governance_page_edit');
+    expect(calls[0].messages[0].content).toContain('instead of inventing a commitment');
+    expect(calls[0].messages[0].content).toContain('Do not propose layouts, design changes, images or image placement');
+  });
+
   test('editorial cycle fills three slots once and preserves unresolved packets', async () => {
     const fs=require('fs');const os=require('os');const path=require('path');const root=fs.mkdtempSync(path.join(os.tmpdir(),'orma-editorial-cycle-'));
     fs.mkdirSync(path.join(root,'guides'));fs.mkdirSync(path.join(root,'backoffice-data'));
@@ -1024,6 +1041,22 @@ describe('ORMA backoffice MVP', () => {
       const first=await runEditorialCycle(root,{at:'2026-08-19T10:00:00.000Z',runGuide});
       const second=await runEditorialCycle(root,{at:'2026-08-26T10:00:00.000Z',runGuide});
       expect(first.generated).toHaveLength(3);expect(second.preserved).toHaveLength(3);expect(second.generated).toHaveLength(0);expect(calls).toBe(3);
+    }finally{fs.rmSync(root,{recursive:true,force:true});}
+  });
+
+  test('editorial cycle prioritises Privacy and Terms before ordinary freshness work', async () => {
+    const fs=require('fs');const os=require('os');const path=require('path');const root=fs.mkdtempSync(path.join(os.tmpdir(),'orma-governance-cycle-'));
+    fs.mkdirSync(path.join(root,'guides'));fs.mkdirSync(path.join(root,'backoffice-data'));
+    fs.writeFileSync(path.join(root,'guides','ordinary.html'),'<html><main><h1>Ordinary guide</h1></main></html>');
+    fs.writeFileSync(path.join(root,'privacy.html'),'<html><main><h1>Privacy</h1></main></html>');
+    fs.writeFileSync(path.join(root,'terms.html'),'<html><main><h1>Terms</h1></main></html>');
+    fs.writeFileSync(path.join(root,'backoffice-data','editorial-ledger.json'),JSON.stringify({contractVersion:'1.0.0',items:[]}));
+    const seen=[];
+    const runPage=async(runRoot,{pageId,sourceRef,at})=>{seen.push(pageId);return {contractVersion:'1.0.0',generatedAt:at,mode:'draft-only',publicMutationAllowed:false,subject:{type:'page',id:pageId,sourceRef,updatedAt:at,original:fs.readFileSync(path.join(runRoot,sourceRef),'utf8')},outputs:[{jobId:`page-${pageId}-edit`,agentId:'copywriter',status:'ready-for-review',responseId:null,model:'fixture',result:{title:pageId,summary:'Review',changes:[],sources:[],openQuestions:[]},error:null}],summary:{readyForReview:1,blocked:0}};};
+    try{
+      const result=await runEditorialCycle(root,{at:'2026-08-20T12:00:00.000Z',limit:2,runPage,runGuide:async()=>{throw new Error('ordinary guide should not be selected');}});
+      expect(result.generated.map(item=>item.contentId)).toEqual(['page-privacy','page-terms']);
+      expect(seen).toEqual(['privacy','terms']);
     }finally{fs.rmSync(root,{recursive:true,force:true});}
   });
 
@@ -1483,13 +1516,13 @@ describe('ORMA backoffice MVP', () => {
     })]);
   });
 
-  test('the live campaign does not exceed five in-flight trails', async () => {
-    const active=Array.from({length:5},(_,index)=>({trailId:`trail-${index}`,candidateId:`trail-${index}`,trailName:`Trail ${index}`,
+  test('the live campaign does not exceed fifteen in-flight trails', async () => {
+    const active=Array.from({length:15},(_,index)=>({trailId:`trail-${index}`,candidateId:`trail-${index}`,trailName:`Trail ${index}`,
       state:'geometry-human-gate',attempts:{cartographer:1},resolutionAttempts:{},jobIds:[],publicMutationAllowed:false}));
     const artifacts={'trail-orchestration':{contractVersion:'1.0.0',publicMutationAllowed:false,trails:active}};const queued=[];
     const store={getArtifact:async id=>artifacts[id],setArtifact:async(id,value)=>{artifacts[id]=value;},putJob:async job=>queued.push(job)};
-    const result=await startLiveTrailCampaign(store,[{id:'new-trail',name:'New',curated:true,osmRelation:99,path:[[1,1],[1,1]]}],{at:'2026-08-18T20:00:00.000Z',limit:5,capacity:5});
-    expect(result.jobIds).toEqual([]);expect(queued).toEqual([]);expect(artifacts['trail-orchestration'].trails).toHaveLength(5);
+    const result=await startLiveTrailCampaign(store,[{id:'new-trail',name:'New',curated:true,osmRelation:99,path:[[1,1],[1,1]]}],{at:'2026-08-18T20:00:00.000Z',limit:10,capacity:15});
+    expect(result.jobIds).toEqual([]);expect(queued).toEqual([]);expect(artifacts['trail-orchestration'].trails).toHaveLength(15);
   });
 
   test('product discovery produces a source-linked research-only review packet', async () => {

@@ -23,7 +23,7 @@ const WORKSTREAM_DEFINITIONS = Object.freeze([
   },
   {
     id: 'library-enrichment', label: 'Library enrichment', cadence: 'weekly', status: 'active',
-    goal: 'Audit guides and articles for stale or missing material, propose evidence-backed updates and record a last-reviewed date.',
+    goal: 'Audit guides, articles and explicitly prioritised governance pages for stale or missing material, propose evidence-backed updates and record the appropriate review date.',
     outputs: ['freshness audit', 'update priorities', 'edited drafts', 'replacement picture candidates'],
   },
   {

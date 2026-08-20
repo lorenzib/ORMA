@@ -4,13 +4,16 @@ const {planCatalogueCampaign}=require('./plan-catalogue-campaign');
 const {summarize}=require('./build-live-orchestration');
 const {validateTrailOrchestration}=require('../contracts/trail-orchestration-v1');
 
+const DEFAULT_CAMPAIGN_LIMIT=10;
+const DEFAULT_TRAIL_CAPACITY=15;
+
 function liveJob(job){
   return {...job,id:`trail-verification-${job.candidateId}-cartographer-1`,
     jobType:'trail-verification-specialist',attempt:1,publicMutationAllowed:false};
 }
 
 async function startLiveTrailCampaign(store,trails,options={}){
-  const at=options.at||new Date().toISOString();const limit=options.limit||5;const capacity=options.capacity||5;
+  const at=options.at||new Date().toISOString();const limit=options.limit||DEFAULT_CAMPAIGN_LIMIT;const capacity=options.capacity||DEFAULT_TRAIL_CAPACITY;
   const existing=await store.getArtifact('trail-orchestration')||{contractVersion:'1.0.0',publicMutationAllowed:false,trails:[]};
   const excluded=existing.trails.map(trail=>trail.trailId);
   const terminal=new Set(['ready-for-editorial','rejected','blocked']);
@@ -35,4 +38,4 @@ async function startLiveTrailCampaign(store,trails,options={}){
   return {campaign,jobIds:created.map(job=>job.id),summary:existing.summary};
 }
 
-module.exports={liveJob,startLiveTrailCampaign};
+module.exports={DEFAULT_CAMPAIGN_LIMIT,DEFAULT_TRAIL_CAPACITY,liveJob,startLiveTrailCampaign};

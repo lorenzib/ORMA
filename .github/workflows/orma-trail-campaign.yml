@@ -6,7 +6,7 @@ on:
       limit:
         description: New trails to admit into verification
         required: false
-        default: '5'
+        default: '10'
   schedule:
     - cron: '15 6 * * *'
 
@@ -28,7 +28,8 @@ jobs:
       OPENAI_API_KEY: ${{ secrets.OPEN_API_KEY }}
       ORMA_CONTENT_ROUTINE_MODEL: gpt-5.6-luna
       ORMA_CONTENT_AUDIT_MODEL: gpt-5.6-terra
-      CAMPAIGN_LIMIT: ${{ github.event.inputs.limit || '5' }}
+      CAMPAIGN_LIMIT: ${{ github.event.inputs.limit || '10' }}
+      CAMPAIGN_CAPACITY: '15'
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -43,9 +44,9 @@ jobs:
       - name: Admit the next trail batch
         run: |
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            npm run backoffice:campaign:live -- --limit "$CAMPAIGN_LIMIT" --scheduled
+            npm run backoffice:campaign:live -- --limit "$CAMPAIGN_LIMIT" --capacity "$CAMPAIGN_CAPACITY" --scheduled
           else
-            npm run backoffice:campaign:live -- --limit "$CAMPAIGN_LIMIT" --force
+            npm run backoffice:campaign:live -- --limit "$CAMPAIGN_LIMIT" --capacity "$CAMPAIGN_CAPACITY" --force
           fi
       - name: Start the first agent pass
         run: npm run backoffice:worker:live
