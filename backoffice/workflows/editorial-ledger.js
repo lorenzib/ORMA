@@ -6,10 +6,11 @@ const {validateEditorialLedger}=require('../contracts/editorial-ledger-v1');
 const DAY_MS=24*60*60*1000;
 const PRIORITY=Object.freeze({
   'revision-requested':0,
-  'safety-critical':1,
-  core:2,
-  gap:3,
-  stale:4,
+  'priority-page':1,
+  'safety-critical':2,
+  core:3,
+  gap:4,
+  stale:5,
 });
 
 function editorialText(html){
@@ -23,12 +24,13 @@ function dateAt(value){ const date=new Date(value); if(Number.isNaN(date.getTime
 function addDays(value,days){ return new Date(dateAt(value).getTime()+days*DAY_MS).toISOString(); }
 
 function eligibility(candidate,record,asOf){
-  if(!record) return {eligible:true,reason:'gap',priority:PRIORITY.gap};
-  if(record.status==='revision-requested') return {eligible:true,reason:'revision-requested',priority:PRIORITY['revision-requested']};
-  if(record.status==='in-review'&&record.activePacketFingerprint===candidate.packetFingerprint) return {eligible:false,reason:'already-in-review'};
+  if(record?.status==='revision-requested') return {eligible:true,reason:'revision-requested',priority:PRIORITY['revision-requested']};
+  if(record?.status==='in-review'&&record.activePacketFingerprint===candidate.packetFingerprint) return {eligible:false,reason:'already-in-review'};
+  if(!record) return {eligible:true,reason:candidate.priorityPage?'priority-page':'gap',priority:candidate.priorityPage?PRIORITY['priority-page']:PRIORITY.gap};
+  if(candidate.priorityPage&&record.contentFingerprint!==candidate.contentFingerprint) return {eligible:true,reason:'priority-page',priority:PRIORITY['priority-page']};
   if(record.contentFingerprint!==candidate.contentFingerprint) return {eligible:true,reason:candidate.safetyCritical?'safety-critical':'core',priority:candidate.safetyCritical?PRIORITY['safety-critical']:PRIORITY.core};
   if(candidate.sourcesFingerprint&&record.sourcesFingerprint!==candidate.sourcesFingerprint) return {eligible:true,reason:candidate.safetyCritical?'safety-critical':'stale',priority:candidate.safetyCritical?PRIORITY['safety-critical']:PRIORITY.stale};
-  if(record.nextEligibleAt&&dateAt(record.nextEligibleAt)<=dateAt(asOf)) return {eligible:true,reason:candidate.safetyCritical?'safety-critical':'stale',priority:candidate.safetyCritical?PRIORITY['safety-critical']:PRIORITY.stale};
+  if(record.nextEligibleAt&&dateAt(record.nextEligibleAt)<=dateAt(asOf)) return {eligible:true,reason:candidate.priorityPage?'priority-page':candidate.safetyCritical?'safety-critical':'stale',priority:candidate.priorityPage?PRIORITY['priority-page']:candidate.safetyCritical?PRIORITY['safety-critical']:PRIORITY.stale};
   return {eligible:false,reason:'cooldown'};
 }
 

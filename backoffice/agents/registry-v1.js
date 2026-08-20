@@ -99,6 +99,15 @@ const AGENTS = Object.freeze({
     owns: ['opportunity-ranking', 'experiment-proposals'],
     humanGates: ['product-prioritisation'],
   },
+  productDesigner: {
+    name: 'Product Designer',
+    phase: 'design',
+    prompt: 'backoffice/agents/prompts/product-designer.md',
+    owns: ['product-prototypes', 'screen-flows', 'interaction-hypotheses', 'design-rationale'],
+    mayPropose: ['visualDirection', 'screens', 'userFlow', 'successCriteria', 'implementationNotes'],
+    mayApprove: [],
+    humanGates: ['ceo-mockup-approval'],
+  },
 });
 
 function getAgent(id){

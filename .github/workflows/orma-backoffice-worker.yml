@@ -10,7 +10,7 @@ on:
       specialist_limit:
         description: Maximum specialist calls in this run
         required: false
-        default: '5'
+        default: '10'
       force_publication_retry:
         description: Retry a publication before its cooldown expires after the external problem is corrected
         type: boolean
@@ -40,10 +40,11 @@ jobs:
       ORMA_CONTENT_ROUTINE_MODEL: gpt-5.6-luna
       ORMA_CONTENT_AUDIT_MODEL: gpt-5.6-terra
       ORMA_SPECIALIST_CANDIDATE_ID: ${{ github.event.inputs.candidate_id || '' }}
-      ORMA_SPECIALIST_LIMIT: ${{ github.event.inputs.specialist_limit || '5' }}
+      ORMA_SPECIALIST_LIMIT: ${{ github.event.inputs.specialist_limit || '10' }}
       ORMA_PUBLICATION_FORCE_RETRY: ${{ github.event.inputs.force_publication_retry || 'false' }}
       ORMA_CAMPAIGN_AUTOMATION_ENABLED: ${{ vars.ORMA_CAMPAIGN_AUTOMATION_ENABLED || 'false' }}
-      ORMA_CAMPAIGN_LIMIT: '5'
+      ORMA_CAMPAIGN_LIMIT: '10'
+      ORMA_CAMPAIGN_CAPACITY: '15'
     steps:
       - uses: actions/checkout@v7
 

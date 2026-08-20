@@ -14,8 +14,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20260818-18">
+<link rel="stylesheet" href="legal.css?v=20260820-1">
 </head>
-<body>
+<body class="legal-page">
 
 <div class="topnav">
   <a class="brand" href="index.html"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Terms</span>
@@ -28,36 +29,65 @@
   </div>
 </div>
 
-<div class="guide-hero section-page-head">
-  <div class="eyebrow">Terms of use</div>
-  <h1>The ground rules</h1>
-  <p class="sub section-page-subtitle">Short, honest, and mostly about keeping you and your dog safe. Last updated 24 July 2026.</p>
-</div>
+<header class="legal-hero">
+  <div class="section-page-head">
+    <div>
+      <span class="eyebrow">Terms of use</span>
+      <h1>The ground rules</h1>
+      <p class="section-page-subtitle">The practical agreement behind using ORMA—short, honest, and centred on keeping you and your dog safe.</p>
+      <div class="legal-promises" aria-label="ORMA terms highlights">
+        <span class="legal-promise">Planning aid, not a guarantee</span>
+        <span class="legal-promise">Respectful community</span>
+        <span class="legal-promise">Free service</span>
+      </div>
+    </div>
+    <div class="legal-hero-mark" aria-hidden="true">
+      <svg viewBox="0 0 64 64"><path d="M18 9h22l8 8v38H18z"/><path d="M40 9v10h8M25 28h16M25 36h16M25 44h11"/></svg>
+    </div>
+  </div>
+</header>
 
-<div class="guide-article">
+<main class="legal-layout">
+  <nav class="legal-toc" aria-label="Terms of use contents">
+    <span class="legal-toc-label">On this page</span>
+    <a href="#what-orma-is">What ORMA is</a>
+    <a href="#on-the-mountain">On the mountain</a>
+    <a href="#your-account">Your account</a>
+    <a href="#community-content">Community content</a>
+    <a href="#our-content">Our content</a>
+    <a href="#the-service">The service</a>
+    <a href="#terms-questions">Questions</a>
+  </nav>
 
-  <section class="guide-section">
+  <article class="legal-document">
+    <div class="legal-updated">
+      <span>Last updated 24 July 2026</span>
+      <a href="privacy.html">Read the privacy policy →</a>
+    </div>
+
+  <section class="legal-intro" id="what-orma-is">
     <h2>What ORMA is</h2>
     <p>ORMA is a free guide to dog-friendly mountain trails. Trail ratings, match percentages and condition notes are <strong>planning aids, not guarantees</strong>. They describe what we knew when we last checked — and mountains change faster than websites.</p>
   </section>
 
-  <section class="guide-section">
-    <h2>You're the one on the mountain</h2>
+  <section class="legal-section" id="on-the-mountain">
+    <h2 data-index="01">You're the one on the mountain</h2>
     <ul>
       <li>Conditions change with weather, season and time of day. A “Low-risk” label is not a promise the trail is safe today.</li>
       <li>You know your dog; we only know what you've told us. The match score is arithmetic, not a vet. Nothing on ORMA is veterinary advice — if your dog shows signs of heat stress, injury or exhaustion, get them to shade, water and a vet.</li>
       <li>Check local rules before you go: leash requirements, protected areas and seasonal closures are yours to follow.</li>
       <li>Using ORMA doesn't transfer any of that responsibility to us. To the extent the law allows, we're not liable for what happens on the trail.</li>
     </ul>
+    <div class="legal-note"><strong>Always use current local information</strong><p>Check weather, official access notices and your dog's condition before setting out. Turn back when the plan no longer fits the day.</p></div>
   </section>
 
-  <section class="guide-section">
-    <h2>Your account</h2>
+  <section class="legal-section" id="your-account">
+    <h2 data-index="02">Your account</h2>
     <p>Keep your login to yourself, and give us honest profile details — the scores are only as good as what you enter. You can delete your account at any time from the <a href="account.html?next=terms.html" style="color:var(--accent);font-weight:600;">account page</a>, which removes your data as described in our <a href="privacy.html" style="color:var(--accent);font-weight:600;">privacy note</a>.</p>
   </section>
 
-  <section class="guide-section">
-    <h2>Community content</h2>
+  <section class="legal-section" id="community-content">
+    <h2 data-index="03">Community content</h2>
     <p>Reviews, condition reports and photos you publish are visible to everyone. By posting, you confirm the content is yours and give us permission to display it on ORMA alongside the trail it describes. Keep it useful and decent:</p>
     <ul>
       <li>Report real conditions — a false “all clear” can put someone's dog at risk.</li>
@@ -67,17 +97,22 @@
     <p>We may remove content or close accounts that break these rules. If you see something that shouldn't be here, use the report control on the post or write to <a href="mailto:hello@app-orma.com" style="color:var(--accent);font-weight:600;">hello@app-orma.com</a>.</p>
   </section>
 
-  <section class="guide-section">
-    <h2>Our content</h2>
+  <section class="legal-section" id="our-content">
+    <h2 data-index="04">Our content</h2>
     <p>Trail write-ups, scores and the ORMA name are ours; map data comes from OpenStreetMap contributors under their licence. You're welcome to share links to any page — that's what they're for. Please don't scrape or republish the dataset wholesale.</p>
   </section>
 
-  <section class="guide-section">
-    <h2>The service itself</h2>
+  <section class="legal-section" id="the-service">
+    <h2 data-index="05">The service itself</h2>
     <p>ORMA is provided as-is, free of charge. We work hard to keep it accurate and online, but we can't promise either, and features may change or disappear as the project evolves. If these terms change materially, we'll note it here with a new date.</p>
   </section>
 
-</div>
+  <section class="legal-section legal-contact" id="terms-questions">
+    <h2 data-index="06">Questions about these terms?</h2>
+    <p>Write to <a href="mailto:hello@app-orma.com">hello@app-orma.com</a> and we’ll help clarify anything that is unclear.</p>
+  </section>
+  </article>
+</main>
 
 <footer class="site-footer hp-footer">
   <div class="hp-footer-grid">

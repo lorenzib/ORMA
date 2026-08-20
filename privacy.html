@@ -14,8 +14,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20260818-18">
+<link rel="stylesheet" href="legal.css?v=20260820-1">
 </head>
-<body>
+<body class="legal-page">
 
 <div class="topnav">
   <a class="brand" href="index.html"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Privacy</span>
@@ -28,21 +29,49 @@
   </div>
 </div>
 
-<div class="guide-hero section-page-head">
-  <div class="eyebrow">Privacy</div>
-  <h1>What we store, and why</h1>
-  <p class="sub section-page-subtitle">Plain language, no surprises. Last updated 10 August 2026.</p>
-</div>
+<header class="legal-hero">
+  <div class="section-page-head">
+    <div>
+      <span class="eyebrow">Privacy at ORMA</span>
+      <h1>What we store,<br>and why</h1>
+      <p class="section-page-subtitle">A plain-language guide to your data, what stays on your device, and the choices you control.</p>
+      <div class="legal-promises" aria-label="ORMA privacy commitments">
+        <span class="legal-promise">No advertising</span>
+        <span class="legal-promise">No personal data sales</span>
+        <span class="legal-promise">Browse without an account</span>
+      </div>
+    </div>
+    <div class="legal-hero-mark" aria-hidden="true">
+      <svg viewBox="0 0 64 64"><path d="M20 28v-8a12 12 0 0 1 24 0v8"/><rect x="13" y="27" width="38" height="28" rx="8"/><path d="M32 37v8"/><circle cx="32" cy="36" r="2.5"/></svg>
+    </div>
+  </div>
+</header>
 
-<div class="guide-article">
+<main class="legal-layout">
+  <nav class="legal-toc" aria-label="Privacy policy contents">
+    <span class="legal-toc-label">On this page</span>
+    <a href="#account-data">Account data</a>
+    <a href="#retention">Retention</a>
+    <a href="#device-data">On your device</a>
+    <a href="#analytics">Anonymous counters</a>
+    <a href="#third-parties">Third parties</a>
+    <a href="#your-choices">Your choices</a>
+    <a href="#privacy-questions">Questions</a>
+  </nav>
 
-  <section class="guide-section">
-    <h2>The short version</h2>
+  <article class="legal-document">
+    <div class="legal-updated">
+      <span>Last updated 10 August 2026</span>
+      <a href="terms.html">Read the terms of use →</a>
+    </div>
+
+    <section class="legal-intro">
+      <h2>The short version</h2>
     <p>You can browse every trail without an account. An account is needed for downloads, saved trails and community contributions. We store the account and dog information you give us so those features work across devices. We do not run ads or sell personal data. Reviews, trail photos and hazard reports can become public after moderation; private dog and health details never do.</p>
-  </section>
+    </section>
 
-  <section class="guide-section">
-    <h2>What we store when you have an account</h2>
+  <section class="legal-section" id="account-data">
+    <h2 data-index="01">What we store with an account</h2>
     <ul>
       <li><strong>Your login</strong> — your email address (or your Google account, if you sign in with Google). Authentication is handled by Google Firebase; we never see or store your password.</li>
       <li><strong>Your dog's profile</strong> — name, breed, age, weight, fitness and any health notes you add, plus an optional photo. This exists purely to score trails for your dog.</li>
@@ -52,8 +81,8 @@
     <p>Login, private profile data, private outcomes and community contributions are stored in Google Firebase. Community contributions are stored separately from your private account record so they can be moderated.</p>
   </section>
 
-  <section class="guide-section" id="retention">
-    <h2>How long each kind of data stays</h2>
+  <section class="legal-section" id="retention">
+    <h2 data-index="02">How long each kind of data stays</h2>
     <ul>
       <li><strong>Login, dog profiles, saved trails and match history:</strong> kept while your account exists and deleted when you cancel it.</li>
       <li><strong>Private post-hike outcomes:</strong> kept while your account exists and deleted with it. An unsent copy may remain on this device until it syncs or you clear local data.</li>
@@ -68,39 +97,39 @@
     <p>The 90-day counter cleanup and 24-month moderation cleanup are operator retention checks rather than client-side deletion. Records subject to an active safety or legal hold are reviewed when that hold ends.</p>
   </section>
 
-  <section class="guide-section">
-    <h2>What stays on your device</h2>
+  <section class="legal-section" id="device-data">
+    <h2 data-index="03">What stays on your device</h2>
     <p>Your browser stores downloaded maps, active and completed hike records, journal entries, pending post-hike outcomes, community contributions waiting to sync, dog photos and small preferences or caches. Queued contributions stay private on this device until Firestore accepts them for moderation. On logout, you choose between keeping public downloads or removing all ORMA local data. Account deletion gives you the same clear choice. Your browser may also evict local data under its own storage rules.</p>
   </section>
 
-  <section class="guide-section">
-    <h2>Anonymous counters</h2>
+  <section class="legal-section" id="analytics">
+    <h2 data-index="04">Anonymous counters</h2>
     <p>When someone starts hike mode on a trail, we count it — trail id and timestamp, nothing else. No account, no location, no device identifiers. It powers the “dogs hiked this week” number.</p>
     <p>Anonymous product usage is separate and optional. It is off until you enable <strong>Share anonymous product usage</strong> in Settings. Allowed events use a random browser identifier, hour-level timestamps and predefined categories; they reject names, email addresses, search text, reviews, health notes, exact coordinates and GPS history. Events waiting offline are discarded after 30 days. Switching the setting off deletes that queue and its identifier immediately.</p>
   </section>
 
-  <section class="guide-section">
-    <h2>Third parties</h2>
+  <section class="legal-section" id="third-parties">
+    <h2 data-index="05">Third parties</h2>
     <ul>
       <li><strong>Google Firebase</strong> — authentication and database (see above).</li>
       <li><strong>GitHub Pages</strong> — hosts the site; like any web host it keeps standard server logs.</li>
       <li><strong>Google Fonts, OpenStreetMap / OpenMapTiles</strong> — your browser fetches fonts and map tiles from their servers when pages and maps load.</li>
     </ul>
-    <p>We run no advertising or third-party tracking scripts.</p>
+    <div class="legal-note"><strong>What we do not use</strong><p>We run no advertising or third-party tracking scripts.</p></div>
   </section>
 
-  <section class="guide-section">
-    <h2>Deleting or correcting your data</h2>
+  <section class="legal-section" id="your-choices">
+    <h2 data-index="06">Deleting or correcting your data</h2>
     <p>Open your <a href="account.html?next=privacy.html" style="color:var(--accent);font-weight:600;">account page</a> and choose <strong>Cancel account</strong>. This deletes your sign-in, dog profiles, saved trails, match history and private post-hike outcomes. You then choose whether this browser also removes downloaded public maps; every other private local record is removed either way.</p>
     <p>Community content and safety or moderation records are handled separately. They are not automatically erased with the private account because an approved review may still inform hikers and a moderation record may be needed to resolve abuse or meet a legal obligation. To request removal or correction of a contribution, or if you cannot access your account, email <a href="mailto:hello@app-orma.com" style="color:var(--accent);font-weight:600;">hello@app-orma.com</a>. We will remove it unless a current safety or legal reason requires limited retention, and we will tell you if that applies.</p>
   </section>
 
-  <section class="guide-section">
-    <h2>Questions</h2>
-    <p>Anything unclear, or a request this page doesn't cover: <a href="mailto:hello@app-orma.com" style="color:var(--accent);font-weight:600;">hello@app-orma.com</a>.</p>
+  <section class="legal-section legal-contact" id="privacy-questions">
+    <h2 data-index="07">Questions about your data?</h2>
+    <p>Anything unclear, or a request this page doesn't cover: <a href="mailto:hello@app-orma.com">hello@app-orma.com</a>.</p>
   </section>
-
-</div>
+  </article>
+</main>
 
 <footer class="site-footer hp-footer">
   <div class="hp-footer-grid">
