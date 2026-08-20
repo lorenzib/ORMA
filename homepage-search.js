@@ -453,14 +453,13 @@
         '<section class="hp-mission" aria-labelledby="hpMissionTitle">' +
           '<div class="hp-mission-copy"><div class="hp-mission-kick">Our mission</div>' +
           '<h2 id="hpMissionTitle">The route must adapt to the dog, never the other way around.</h2>' +
-          '<p>Born in the Italian Dolomites and shaped by years of walking with Freddy, ORMA brings route, terrain and conditions together with what each dog can comfortably handle.</p>' +
-          '<p>In Italian, <em>orma</em> means a footprint: the trace a dog leaves on a trail, and the one they leave on our lives. Our purpose is to help every adventure begin with better information and confidence.</p></div>' +
-          '<blockquote class="hp-mission-quote"><p>“A walk is never just a walk when shared with a dog. It is an act of partnership, curiosity, and joy.”</p><cite>Benedetta, Founder of ORMA</cite></blockquote>' +
+          '<p>Developed in the challenging terrain of the Italian Dolomites, ORMA takes the guesswork out of outdoor exploration. Our platform analyzes routes, terrain types, and environmental conditions to ensure every trail perfectly matches your dog’s physical capabilities.</p>' +
+          '<p>In Italian, <em>orma</em> means footprint. Our mission is to empower dog owners with reliable trail data and insights, ensuring every adventure begins with safety, confidence, and peace of mind.</p></div>' +
+          '<blockquote class="hp-mission-quote"><p>“A walk is never just a walk when shared with a dog. It is an act of partnership, curiosity, and joy.”</p><cite>– ORMA Team</cite></blockquote>' +
         '</section>' +
         '<section class="hp-how" aria-labelledby="hpHowTitle">' +
           '<div class="hp-section-head"><div><div class="hp-kick">How ORMA works</div>' +
-          '<h2 class="hp-how-h2" id="hpHowTitle">From trail information to a recommendation for your dog</h2></div>' +
-          '<p>ORMA keeps the facts about the route separate from the personal recommendation, so you can see what we know and make the final call.</p></div>' +
+          '<h2 class="hp-how-h2" id="hpHowTitle">From trail information to a recommendation for your dog</h2></div></div>' +
           '<div class="hp-how-grid">' + how + '</div>' +
           '<a class="hp-how-link" href="how-scoring-works.html">See how ORMA assesses a trail →</a>' +
         '</section>' +

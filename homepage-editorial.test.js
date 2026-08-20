@@ -22,10 +22,10 @@ describe('guest homepage editorial structure', () => {
     expect(method).toBeGreaterThan(mission);
     expect(featured).toBeGreaterThan(method);
     expect(controller).toContain('The route must adapt to the dog, never the other way around.');
-    expect(controller).toContain('Benedetta, Founder of ORMA');
+    expect(controller).toContain('– ORMA Team');
   });
 
-  test('keeps the founder quote inside the mission instead of a detached footer block', () => {
+  test('keeps the mission quote inside the mission instead of a detached footer block', () => {
     expect(read('homepage-search.js')).toContain('class="hp-mission-quote"');
     expect(read('index.html')).not.toContain('class="wrap hp-quote"');
   });
