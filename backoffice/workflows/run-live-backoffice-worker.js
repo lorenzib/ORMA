@@ -267,6 +267,7 @@ async function ingestHazardReviews(store){
 }
 
 async function runLiveBackofficeWorker(store, options = {}){
+  const newsletterEnabled=options.newsletterEnabled===true;
   const productionTrails=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
   const campaign=await runScheduledTrailCampaign(store,productionTrails,{enabled:options.campaignEnabled===true,
     at:options.at,limit:options.campaignLimit||DEFAULT_CAMPAIGN_LIMIT,capacity:options.campaignCapacity||DEFAULT_TRAIL_CAPACITY,trigger:options.campaignTrigger,
@@ -275,7 +276,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   const hazardReviews=await ingestHazardReviews(store);
   const editorialReviews=await ingestEditorialReviews(store);
   const imageReviews=await ingestImageReviews(store);
-  const newsletterReviews=await ingestNewsletterReviews(store);
+  const newsletterReviews=newsletterEnabled?await ingestNewsletterReviews(store):[];
   const analystReviews=await ingestAnalystReviews(store);
   const recoveredJobs = typeof store.recoverExpiredJobs === 'function'
     ? await store.recoverExpiredJobs(options)
@@ -289,7 +290,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   const jobs = await processRevisionJobs(store, options);
   const editorialOperations=await processEditorialJobs(store,options);
   const imageOperations=await processImageJobs(store,options);
-  const newsletterOperations=await processNewsletterJobs(store,options);
+  const newsletterOperations=newsletterEnabled?await processNewsletterJobs(store,options):[];
   const analystOperations=await processAnalystJobs(store,options);
   const publications = await ingestPublicationReviews(store);
   return { workerId:options.workerId || null,campaign,newTrailReviews,hazardReviews,editorialReviews,imageReviews,newsletterReviews,analystReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,editorialOperations,imageOperations,newsletterOperations,analystOperations,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };

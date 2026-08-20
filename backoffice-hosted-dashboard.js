@@ -58,7 +58,7 @@
     set('newTrailProgress',`${model.newTrailProgress.candidates} candidates · ${model.newTrailProgress.waiting} need you · ${model.newTrailProgress.inFlight} decisions in handoff.`);
     set('groundskeeperProgress',`${model.groundskeeperProgress.active} protected warnings · ${model.groundskeeperProgress.waiting} removal reviews · ${model.groundskeeperProgress.sourceFailures} source failures.`);
     set('editorialProgress',`${model.editorialProgress.active} copy packets · ${model.editorialProgress.waiting} need you · ${model.editorialProgress.imageGaps} image gaps · ${model.editorialProgress.inFlight} handoffs.`);
-    set('newsletterProgress',`${model.newsletterProgress.ready} issue ready · ${model.newsletterProgress.inFlight} handoffs · ${model.newsletterProgress.approved} approved issues.`);
+    set('newsletterProgress',String(model.newsletterProgress.status).startsWith('parked')?'Parked while trail, collection and website content is brought up to standard.':`${model.newsletterProgress.ready} issue ready · ${model.newsletterProgress.inFlight} handoffs · ${model.newsletterProgress.approved} approved issues.`);
     set('analystProgress',`${model.analystProgress.ideas} opportunities · ${model.analystProgress.waiting} need direction · ${model.analystProgress.mockups} mock-ups need review · ${model.analystProgress.developerHandoffs} Developer handoffs.`);
     renderNext(model);renderWorkerHealth(model);renderCampaignHealth(model);renderPipeline(model);renderDecisions(model);renderActivity(model);
   }

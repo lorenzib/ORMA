@@ -26,9 +26,9 @@ or append a CEO decision.
 | Publication receipt reconciler | Every five minutes, inside the queue worker | No new gate; records only a commit already proven live by GitHub Pages |
 | Groundskeeper | Daily at 07:15 Europe/Rome | Confirm removal of an expired warning |
 | Catalogue campaign | Daily at 06:15 UTC, plus due-only worker catch-up | New admissions still enter the normal trail gates |
-| Strategy cycle | Wednesday at 12:00 Europe/Rome | Editorial, image, Newsletter and Analyst desks |
+| Strategy cycle | Wednesday at 12:00 Europe/Rome | Editorial, image and Analyst desks; Newsletter inputs remain parked |
 | New Trail scouting | Wednesday at 12:00 Europe/Rome | Select, park or reject a candidate |
-| Newsletter | Generated only when its 14-day cadence is due | Review one complete issue; approval does not send it |
+| Newsletter | Parked until content readiness is explicitly confirmed | Existing drafts are preserved read-only; no generation, revision or handoff runs |
 | Analyst | Refreshed weekly | Opportunity decision, then a separate mock-up decision |
 
 GitHub cron is a target rather than proof of execution. Backoffice Home reads
@@ -101,6 +101,9 @@ Required repository variables:
 - `ORMA_HAZARD_AUTOMATION_ENABLED=true`
 - `ORMA_NEW_TRAIL_AUTOMATION_ENABLED=true`
 - `ORMA_STRATEGY_AUTOMATION_ENABLED=true`
+- `ORMA_NEWSLETTER_ENABLED=false` while trail, collection and website content
+  is being brought up to standard. Change it to `true` only after the CEO
+  explicitly reopens the Newsletter workflow.
 
 Required secrets are `OPEN_API_KEY` and `FIREBASE_SERVICE_ACCOUNT`. Social has
 no production credentials and remains launch-gated.

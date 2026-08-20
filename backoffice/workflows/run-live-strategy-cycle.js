@@ -41,9 +41,9 @@ function publishedTrailInputs(publication,publicationRequests){
   return (publication?.items||[]).filter(item=>['published','deployed'].includes(item.state)||item.status==='published');
 }
 
-function buildNewsletterInputs({at,publication,publicationRequests,ledger,hazards,ideas}){
+function buildNewsletterInputs({at,publication,publicationRequests,ledger,hazards,ideas,newsletterEnabled=false}){
   const cutoff=new Date(at).getTime()-14*24*60*60*1000;
-  return {contractVersion:'1.0.0',generatedAt:at,issueCadence:'every-14-days',status:'ready-for-newsletter-agent',publicMutationAllowed:false,
+  return {contractVersion:'1.0.0',generatedAt:at,issueCadence:'every-14-days-after-launch',status:newsletterEnabled?'ready-for-newsletter-agent':'parked-awaiting-content-readiness',publicMutationAllowed:false,
     newlyPublishedTrails:publishedTrailInputs(publication,publicationRequests),
     publishedEditorialChanges:(ledger?.items||[]).filter(item=>item.status==='published'&&new Date(item.lastPublishedAt||0).getTime()>=cutoff),
     timelySafetySignals:(hazards?.hazards||[]).filter(item=>item.state==='active').map(item=>({title:item.title,area:item.area,sourceLabel:item.sourceLabel,sourceUrl:item.sourceUrl,expiresAt:item.expiresAt,note:'Topic signal only; do not describe as a trail closure.'})),
@@ -56,6 +56,7 @@ async function runLiveStrategyCycle(store,options={}){
   const at=options.at||new Date().toISOString();
   const runId=options.runId||process.env.GITHUB_RUN_ID||null;
   const workflowRunUrl=options.workflowRunUrl||null;
+  const newsletterEnabled=options.newsletterEnabled===true;
   const metadata={runId,workflowRunUrl,publicMutationAllowed:false};
   const statusBase={contractVersion:'1.0.0',runId,workflowRunUrl,startedAt:at,publicMutationAllowed:false};
   await store.setArtifact('strategy-cycle-status',{...statusBase,status:'running'});
@@ -90,9 +91,9 @@ async function runLiveStrategyCycle(store,options={}){
     ]);
     const newsletterLedger=protectedNewsletterLedger||await readJson(path.join(root,'backoffice-data/newsletter-review.json'),{contractVersion:'1.0.0',decisions:[]});
     await store.setArtifact('newsletter-review-ledger',newsletterLedger,metadata);
-    const newsletterInputs=buildNewsletterInputs({at,publication,publicationRequests,ledger,hazards,ideas:productPacket});await store.setArtifact('newsletter-inputs',newsletterInputs,metadata);
-    let newsletterPacket=previousNewsletter||await readJson(path.join(root,'backoffice-data/newsletter-review-packet.json'),null);let newsletterStatus='not due';
-    if(newsletterIsDue(newsletterPacket,newsletterLedger,at)){
+    const newsletterInputs=buildNewsletterInputs({at,publication,publicationRequests,ledger,hazards,ideas:productPacket,newsletterEnabled});await store.setArtifact('newsletter-inputs',newsletterInputs,metadata);
+    let newsletterPacket=previousNewsletter||await readJson(path.join(root,'backoffice-data/newsletter-review-packet.json'),null);let newsletterStatus=newsletterEnabled?'not due':'parked until content readiness';
+    if(newsletterEnabled&&newsletterIsDue(newsletterPacket,newsletterLedger,at)){
       newsletterPacket=await (options.runNewsletter||runNewsletter)(newsletterInputs,{root,at,...(options.newsletterOptions||{})});await store.setArtifact('newsletter-review-packet',newsletterPacket,metadata);
       newsletterStatus=newsletterPacket.summary.readyForReview?'draft ready':`blocked: ${newsletterPacket.outputs?.[0]?.error||'no draft produced'}`;
     }else if(newsletterPacket)await store.setArtifact('newsletter-review-packet',newsletterPacket,metadata);

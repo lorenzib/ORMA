@@ -17,7 +17,7 @@ const WORKSTREAM_DEFINITIONS = Object.freeze([
     outputs: ['collection concept', 'title and description draft', 'trail inclusion rationale', 'cover picture shortlist'],
   },
   {
-    id: 'newsletter', label: 'Newsletter', cadence: 'every-14-days', status: 'active',
+    id: 'newsletter', label: 'Newsletter', cadence: 'every-14-days-after-launch', status: 'parked',
     goal: 'Package the strongest approved ORMA material into one concise newsletter.',
     outputs: ['subject options', 'preheader', 'newsletter draft', 'picture shortlist', 'link plan'],
   },
@@ -62,9 +62,11 @@ function planContentOperations(options = {}){
   const at = options.at || new Date().toISOString();
   const cycleDate = isoDate(options.asOf || at);
   const socialEnabled = options.socialEnabled === true;
+  const newsletterEnabled = options.newsletterEnabled === true;
   const workstreams = WORKSTREAM_DEFINITIONS.map(definition => {
-    const status = definition.id === 'social' && socialEnabled ? 'active' : definition.status;
-    const nextRunOn = definition.id === 'newsletter' ? addDays(cycleDate, 14)
+    const enabled=(definition.id==='social'&&socialEnabled)||(definition.id==='newsletter'&&newsletterEnabled);
+    const status = enabled ? 'active' : definition.status;
+    const nextRunOn = definition.id === 'newsletter' && status === 'active' ? addDays(cycleDate, 14)
       : status === 'active' ? addDays(cycleDate, 7) : null;
     return { ...definition, status, cycleDate, nextRunOn };
   });

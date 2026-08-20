@@ -101,8 +101,9 @@
     const newsletterPacket=input.newsletterPacket||null;const newsletterReviews=input.newsletterReviews||[];const approvedNewsletters=input.approvedNewsletters||{issues:[]};
     const productIdeas=input.productIdeas||{ideas:[]};const analystReviews=input.analystReviews||[];const productInvestigations=input.productInvestigations||{items:[]};const productDesigns=input.productDesigns||{items:[]};
     const history=input.history||[];const allJobs=input.jobs||[];const timing=input.nowMs==null?{}:{nowMs:input.nowMs};const workerHealth=deriveWorkerHealth(input.workerHealth,timing);const campaignHealth=deriveCampaignHealth(input.campaignHealth,timing);
+    const newsletterParked=String(strategyStatus.summary?.newsletterStatus||'').startsWith('parked');
     const trailJobs=allJobs.filter(job=>['trail-verification-specialist','trail-claim-resolution','verified-trail-editorial-first-pass','verified-trail-editorial-revision'].includes(job.jobType)||String(job.id||'').startsWith('trail-revision-'));
-    const hostedTeamJobs=allJobs.filter(job=>['hosted-editorial-revision','hosted-editorial-publication','hosted-image-sourcing','hosted-newsletter-revision','hosted-product-investigation','hosted-product-design','product-development-handoff'].includes(job.jobType));
+    const hostedTeamJobs=allJobs.filter(job=>['hosted-editorial-revision','hosted-editorial-publication','hosted-image-sourcing','hosted-newsletter-revision','hosted-product-investigation','hosted-product-design','product-development-handoff'].includes(job.jobType)&&(!newsletterParked||job.jobType!=='hosted-newsletter-revision'));
     const jobs=[...trailJobs,...hostedTeamJobs];const activeTrailJobs=trailJobs.filter(job=>ACTIVE_JOB_STATES.has(job.status));
     const activeJobs=jobs.filter(job=>ACTIVE_JOB_STATES.has(job.status));
     const names=new Map();
@@ -147,14 +148,14 @@
     const editorialHandoffs=editorialReviews.filter(review=>['queued','processing'].includes(review.status)).length;
     const imageHandoffs=imageReviews.filter(review=>['queued','processing'].includes(review.status)).length;
     const latestNewsletter=(newsletterReviews||[]).filter(review=>review.packetGeneratedAt===newsletterPacket?.generatedAt).sort((a,b)=>dateMs(b.processedAt||b.submittedAt)-dateMs(a.processedAt||a.submittedAt))[0];
-    const newsletterItem=newsletterPacket&&(newsletterPacket.outputs||[]).some(output=>output.status==='ready-for-review')&&(!latestNewsletter||['blocked','superseded'].includes(latestNewsletter.status))?newsletterPacket:null;
+    const newsletterItem=!newsletterParked&&newsletterPacket&&(newsletterPacket.outputs||[]).some(output=>output.status==='ready-for-review')&&(!latestNewsletter||['blocked','superseded'].includes(latestNewsletter.status))?newsletterPacket:null;
     const analystIdeaReviews=latestReviewBy((analystReviews||[]).filter(review=>(review.subjectType||'idea')==='idea'),'ideaId');
     const analystMockupReviews=latestReviewBy((analystReviews||[]).filter(review=>review.subjectType==='mockup'),'ideaId');
     const investigationIds=new Set((productInvestigations.items||[]).map(item=>item.ideaId));
     const latestDesignByIdea=new Map();for(const design of productDesigns.items||[]){const current=latestDesignByIdea.get(design.ideaId);if(!current||dateMs(design.generatedAt)>=dateMs(current.generatedAt))latestDesignByIdea.set(design.ideaId,design);}
     const analystIdeaItems=(productIdeas.ideas||[]).filter(idea=>{const review=analystIdeaReviews.get(idea.id);return !review||['blocked','superseded'].includes(review.status)||(review.status==='processed'&&review.action==='investigate-further'&&investigationIds.has(idea.id));});
     const analystMockupItems=[...latestDesignByIdea.values()].filter(design=>{const review=analystMockupReviews.get(design.ideaId);return !review||['blocked','superseded'].includes(review.status)||(review.status==='processed'&&review.action==='request-mockup-revision');});
-    const newsletterHandoffs=newsletterReviews.filter(review=>['queued','processing'].includes(review.status)).length;
+    const newsletterHandoffs=newsletterParked?0:newsletterReviews.filter(review=>['queued','processing'].includes(review.status)).length;
     const analystHandoffs=analystReviews.filter(review=>['queued','processing'].includes(review.status)).length;
 
     const decisions=[];
