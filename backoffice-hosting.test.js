@@ -44,7 +44,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('id="workerHealth"');
     expect(html).toContain('id="campaignHealth"');
     expect(html).toContain('backoffice/dashboard-model.js?v=20260820-9');
-    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260820-8');
+    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260820-9');
     expect(html).toContain('href="trail-dossier-desk.html"');
     expect(html).toContain('href="editorial-desk.html"');
     expect(html).toContain('href="image-coverage-desk.html"');
@@ -97,6 +97,18 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(script).toContain("receipt.setAttribute('aria-live','polite')");
     expect(script).toContain('Add the investigation or revision focus in the box above first.');
     expect(script).toContain('Saving this Analyst decision…');
+  });
+
+  test('Newsletter desk is visibly parked and preserves old issues as read-only',()=>{
+    const home=fs.readFileSync(path.join(output,'backoffice-review.html'),'utf8');
+    const html=fs.readFileSync(path.join(output,'newsletter-desk.html'),'utf8');
+    const script=fs.readFileSync(path.join(output,'newsletter-hosted.js'),'utf8');
+    expect(home).toContain('<h3>Newsletter</h3>');
+    expect(home).toContain('<span class="bo-life-status">Parked</span>');
+    expect(html).toContain('Newsletter on hold');
+    expect(html).toContain('newsletter-hosted.js?v=20260820-2');
+    expect(script).toContain('const NEWSLETTER_PARKED=true');
+    expect(script).toContain('This preserved issue is read-only.');
   });
 
   test('Firebase and GitHub deploy only the named backoffice target',()=>{

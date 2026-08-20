@@ -23,6 +23,7 @@ jobs:
       FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       OPENAI_API_KEY: ${{ secrets.OPEN_API_KEY }}
       ORMA_CONTENT_MODEL: gpt-5.6-terra
+      ORMA_NEWSLETTER_ENABLED: ${{ vars.ORMA_NEWSLETTER_ENABLED || 'false' }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -34,5 +35,5 @@ jobs:
           test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
           test -n "$OPENAI_API_KEY" || { echo "Missing OPENAI_API_KEY"; exit 1; }
       - run: npm ci
-      - name: Refresh protected Editorial, Newsletter and Analyst desks
+      - name: Refresh protected Editorial and Analyst desks
         run: npm run backoffice:strategy-cycle:live

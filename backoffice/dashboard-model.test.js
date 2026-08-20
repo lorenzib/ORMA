@@ -128,4 +128,17 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.analystProgress).toEqual(expect.objectContaining({ideas:1,waiting:1,mockups:1}));
     expect(model.analystMockupItems).toEqual([expect.objectContaining({mockupTitle:'Revised mock-up'})]);
   });
+
+  test('keeps preserved Newsletter packets out of the decision queue while parked',()=>{
+    const model=buildDashboardModel({
+      strategyStatus:{summary:{newsletterStatus:'parked until content readiness'}},
+      newsletterPacket:{generatedAt:'2026-08-20T12:00:00Z',outputs:[{status:'ready-for-review',result:{issueTitle:'Preserved issue'}}]},
+      newsletterReviews:[{packetGeneratedAt:'2026-08-20T12:00:00Z',status:'queued'}],
+      jobs:[{id:'newsletter-revision',jobType:'hosted-newsletter-revision',status:'queued'}],
+    });
+    expect(model.decisions.some(item=>item.kind==='newsletter')).toBe(false);
+    expect(model.newsletterProgress).toEqual(expect.objectContaining({ready:0,status:'parked until content readiness'}));
+    expect(model.newsletterProgress.inFlight).toBe(0);
+    expect(model.summary.agentWork).toBe(0);
+  });
 });

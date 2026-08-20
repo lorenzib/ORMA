@@ -16,6 +16,7 @@ async function writeJson(file,value){await fs.writeFile(file,`${JSON.stringify(v
 
 async function main(options = {}){
   const root=options.root||path.resolve(__dirname,'..','..');const data=path.join(root,'backoffice-data');const at=options.at||new Date().toISOString();
+  const newsletterEnabled=options.newsletterEnabled===true;
   const productPath=path.join(data,'product-ideas.json');const existing=await readJson(productPath);
   const age=existing?.generatedAt?new Date(at).getTime()-new Date(existing.generatedAt).getTime():Infinity;
   let productStatus='still-fresh';
@@ -30,7 +31,7 @@ async function main(options = {}){
     readJson(path.join(root,'dog-friendly-routes-savoy.geojson')).then(source=>({region:'savoy',data:source})),
   ]);
   const scouting=planNewTrailScouting(sources,loadProductionTrails(root),{at,limit:25});await writeJson(path.join(data,'new-trail-scouting.json'),scouting);
-  const contentPlan=planContentOperations({asOf:at,at});await writeJson(path.join(data,'content-operations.json'),contentPlan);
+  const contentPlan=planContentOperations({asOf:at,at,newsletterEnabled});await writeJson(path.join(data,'content-operations.json'),contentPlan);
   const editorial=await (options.runEditorialCycle||runEditorialCycle)(root,{at,limit:3,...(options.editorialOptions||{})});
   const [ledger,publication,hazards,ideas]=await Promise.all([
     readJson(path.join(data,'editorial-ledger.json')),
@@ -39,7 +40,7 @@ async function main(options = {}){
     readJson(productPath),
   ]);
   const cutoff=new Date(at).getTime()-14*24*60*60*1000;
-  const newsletterInputs={contractVersion:'1.0.0',generatedAt:at,issueCadence:'every-14-days',status:'ready-for-newsletter-agent',publicMutationAllowed:false,
+  const newsletterInputs={contractVersion:'1.0.0',generatedAt:at,issueCadence:'every-14-days-after-launch',status:newsletterEnabled?'ready-for-newsletter-agent':'parked-awaiting-content-readiness',publicMutationAllowed:false,
     newlyPublishedTrails:(publication?.items||[]).filter(item=>['published','deployed'].includes(item.state)||item.status==='published'),
     publishedEditorialChanges:(ledger?.items||[]).filter(item=>item.status==='published'&&new Date(item.lastPublishedAt||0).getTime()>=cutoff),
     timelySafetySignals:(hazards?.hazards||[]).filter(item=>item.state==='active').map(item=>({title:item.title,area:item.area,sourceLabel:item.sourceLabel,sourceUrl:item.sourceUrl,expiresAt:item.expiresAt,note:'Topic signal only; do not describe as a trail closure.'})),
@@ -48,8 +49,8 @@ async function main(options = {}){
   await writeJson(path.join(data,'newsletter-inputs.json'),newsletterInputs);
   const newsletterPacketPath=path.join(data,'newsletter-review-packet.json');
   const [newsletterPacket,newsletterReview]=await Promise.all([readJson(newsletterPacketPath),readJson(path.join(data,'newsletter-review.json'))]);
-  let newsletterStatus='not due';
-  if(newsletterIsDue(newsletterPacket,newsletterReview,at)){
+  let newsletterStatus=newsletterEnabled?'not due':'parked until content readiness';
+  if(newsletterEnabled&&newsletterIsDue(newsletterPacket,newsletterReview,at)){
     const next=await (options.runNewsletter||runNewsletter)(newsletterInputs,{root,at,...(options.newsletterOptions||{})});
     await writeJson(newsletterPacketPath,next);
     newsletterStatus=next.summary.readyForReview?'draft ready':`blocked: ${next.outputs[0]?.error||'no draft produced'}`;

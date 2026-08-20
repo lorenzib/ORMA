@@ -95,7 +95,12 @@ actual preview and known rights or explicit AI approval.
 
 ### 4. Newsletter
 
-Runs every 14 days and assembles one complete issue from:
+Remains parked until the CEO explicitly confirms that the trail catalogue,
+collections and website content are ready to support useful public links. No
+scheduled issue generation, revision job or downstream handoff runs while it
+is parked. Existing draft and review records are preserved.
+
+Once re-enabled, it runs every 14 days and assembles one complete issue from:
 
 - newly published trails;
 - material changes to published guides; and
@@ -163,7 +168,8 @@ or prototype never authorises development on its own.
 - Image coverage: refreshed with the weekly strategy cycle.
 - New Trail scouting: refreshed with the strategy cycle; admission remains
   CEO-gated.
-- Newsletter: generated when due every 14 days.
+- Newsletter: parked until trail, collection and website content readiness is
+  explicitly confirmed.
 - Analyst discovery: weekly.
 - Social: parked until launch.
 

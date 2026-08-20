@@ -969,15 +969,15 @@ describe('ORMA backoffice MVP', () => {
       .toThrow('Unknown trail id(s): missing');
   });
 
-  test('content operations plans weekly and fortnightly work while parking social', () => {
+  test('content operations parks Newsletter and Social until their explicit gates open', () => {
     const plan = planContentOperations({
       asOf: '2026-08-18', at: '2026-08-18T18:00:00.000Z',
     });
     expect(validateContentOperations(plan)).toEqual([]);
     expect(plan.publicMutationAllowed).toBe(false);
-    expect(plan.summary).toEqual({ activeWorkstreams: 3, parkedWorkstreams: 2, jobs: 6 });
+    expect(plan.summary).toEqual({ activeWorkstreams: 2, parkedWorkstreams: 3, jobs: 4 });
     expect(plan.workstreams.find(stream => stream.id === 'newsletter')).toEqual(expect.objectContaining({
-      cadence: 'every-14-days', nextRunOn: '2026-09-01', status: 'active',
+      cadence: 'every-14-days-after-launch', nextRunOn: null, status: 'parked',
     }));
     expect(plan.workstreams.find(stream => stream.id === 'library-enrichment').nextRunOn).toBe('2026-08-25');
     expect(plan.workstreams.find(stream => stream.id === 'collections')).toEqual(expect.objectContaining({
@@ -991,8 +991,17 @@ describe('ORMA backoffice MVP', () => {
 
   test('social jobs are created only when the channel is enabled', () => {
     const plan = planContentOperations({ asOf: '2026-08-18', socialEnabled: true });
-    expect(plan.summary).toEqual({ activeWorkstreams: 4, parkedWorkstreams: 1, jobs: 8 });
+    expect(plan.summary).toEqual({ activeWorkstreams: 3, parkedWorkstreams: 2, jobs: 6 });
     expect(plan.jobs.filter(job => job.action.includes('social'))).toHaveLength(2);
+  });
+
+  test('Newsletter jobs return only after content readiness is explicitly enabled', () => {
+    const plan = planContentOperations({ asOf: '2026-08-18', newsletterEnabled: true });
+    expect(plan.summary).toEqual({ activeWorkstreams: 3, parkedWorkstreams: 2, jobs: 6 });
+    expect(plan.workstreams.find(stream => stream.id === 'newsletter')).toEqual(expect.objectContaining({
+      status: 'active', nextRunOn: '2026-09-01',
+    }));
+    expect(plan.jobs.filter(job => job.action.includes('newsletter'))).toHaveLength(2);
   });
 
   test('guide content runner produces a copy-only review artifact', async () => {
