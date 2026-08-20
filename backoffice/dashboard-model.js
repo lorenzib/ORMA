@@ -69,6 +69,8 @@
     if(status==='approved-for-pr-creation')return 'Approval consumed. ORMA automation is preparing the website pull request.';
     if(item.stream==='dossier'&&item.action==='request-revision')return 'Revision handed to the selected trail specialist.';
     if(item.stream==='content')return 'Content decision consumed; the trail advances when both outputs are approved.';
+    if(item.stream==='new-trail')return item.action==='send-to-verification'?'Selection consumed; the candidate is entering the capacity-limited Existing Trails verification fleet.':'New Trail decision consumed and retained in the scouting audit trail.';
+    if(item.stream==='hazard')return 'Groundskeeper decision consumed in the protected warning layer; the public website has not been changed.';
     if(item.stream==='publication')return 'Publication decision consumed by ORMA automation.';
     return 'Decision processed and retained in the audit trail.';
   }
@@ -80,10 +82,15 @@
     }
     return '';
   }
+  function latestReviewBy(reviews,key){
+    const latest=new Map();for(const review of reviews||[]){const id=review[key];if(!id)continue;const current=latest.get(id);if(!current||dateMs(review.processedAt||review.submittedAt)>=dateMs(current.processedAt||current.submittedAt))latest.set(id,review);}return latest;
+  }
 
   function buildDashboardModel(input={}){
     const orchestration=input.orchestration||{};const dossiers=input.dossiers||{};const execution=input.execution||{};
     const publication=input.publication||{};const publicationRequests=input.publicationRequests||{requests:[]};
+    const newTrailScouting=input.newTrailScouting||{candidates:[],summary:{}};const newTrailReviews=input.newTrailReviews||[];const newTrailStatus=input.newTrailStatus||{};
+    const hazards=input.hazards||{hazards:[]};const hazardQueue=input.hazardQueue||{items:[]};const hazardReviews=input.hazardReviews||[];const hazardStatus=input.hazardStatus||{};
     const history=input.history||[];const allJobs=input.jobs||[];const timing=input.nowMs==null?{}:{nowMs:input.nowMs};const workerHealth=deriveWorkerHealth(input.workerHealth,timing);const campaignHealth=deriveCampaignHealth(input.campaignHealth,timing);
     const jobs=allJobs.filter(job=>['trail-verification-specialist','trail-claim-resolution','verified-trail-editorial-first-pass','verified-trail-editorial-revision'].includes(job.jobType)||String(job.id||'').startsWith('trail-revision-'));
     const activeJobs=jobs.filter(job=>ACTIVE_JOB_STATES.has(job.status));
@@ -92,6 +99,8 @@
     for(const item of dossiers.items||[])names.set(item.candidateId,item.trailName||names.get(item.candidateId)||item.candidateId);
     for(const output of execution.outputs||[])if(output.candidateId&&!names.has(output.candidateId))names.set(output.candidateId,output.result?.title||output.candidateId);
     for(const item of publication.items||[])if(!names.has(item.candidateId))names.set(item.candidateId,item.targetTrailId||item.candidateId);
+    for(const item of newTrailScouting.candidates||[])names.set(item.id,item.name||item.id);
+    const hazardNames=new Map((hazards.hazards||[]).map(item=>[item.id,item.title||item.id]));
 
     const queuedDossierReviews=(history||[]).filter(item=>item.stream==='dossier'&&item.status==='queued');
     const dossierItems=(dossiers.items||[]).filter(item=>item.state==='awaiting-human'&&!queuedDossierReviews.some(review=>review.reviewId===item.reviewId));
@@ -114,6 +123,12 @@
     const automationFailures=[...latestPublication.values()].map(({record})=>record).filter(record=>record.status==='publication-failed');
     const handoffsInFlight=queuedDossierReviews.length+queuedContentReviews.length+publicationInFlight;
     const prItems=(publicationRequests.requests||[]).filter(request=>request.status==='pull-request-opened'&&request.pullRequestUrl);
+    const latestNewTrailReviews=latestReviewBy(newTrailReviews,'candidateId');
+    const newTrailItems=(newTrailScouting.candidates||[]).filter(candidate=>{const review=latestNewTrailReviews.get(candidate.id);return !review||['blocked','superseded'].includes(review.status);});
+    const latestHazardReviews=latestReviewBy(hazardReviews,'hazardId');
+    const hazardItems=(hazardQueue.items||[]).filter(hazard=>{const review=latestHazardReviews.get(hazard.id);return !review||['blocked','superseded'].includes(review.status);});
+    const newTrailHandoffs=newTrailReviews.filter(review=>review.status==='queued').length;
+    const hazardHandoffs=hazardReviews.filter(review=>review.status==='queued').length;
 
     const decisions=[];
     for(const item of dossierItems)decisions.push({
@@ -139,25 +154,32 @@
       description:'ORMA automation generated and tested the website change. This pull request is the final public-mutation gate.',
       next:'After you merge: the normal website deployment publishes the approved trail change.',href:request.pullRequestUrl,actionLabel:'Review GitHub PR',external:true,
     });
+    if(newTrailItems.length)decisions.push({id:'new-trail-selection',kind:'new-trail',stage:'New Trails · Candidate selection',title:`${plural(newTrailItems.length,'candidate')} ready`,description:'Ranked loop candidates are waiting for selection, parking or rejection.',next:'A selected candidate enters Cartographer verification under the shared five-trail capacity; it is not published.',href:'new-trail-scouting-desk.html',actionLabel:'Review New Trails'});
+    if(hazardItems.length)decisions.push({id:'hazard-resolution',kind:'hazard',stage:'Existing Trails · Groundskeeper',title:`${plural(hazardItems.length,'warning')} awaiting removal review`,description:'An authoritative warning expired, but ORMA has retained it until you confirm removal.',next:'Your decision updates the protected warning state. The public website remains unchanged until its release integration is approved.',href:'hazard-review-desk.html',actionLabel:'Review warnings'});
 
     const blockedCandidates=new Set();
     for(const item of dossierItems)if(item.approvalAllowed===false)blockedCandidates.add(item.candidateId||item.reviewId);
     for(const job of jobs)if(job.status==='blocked')blockedCandidates.add(job.candidateId||job.id);
     for(const request of automationFailures)blockedCandidates.add(request.candidateId||request.id);
     for(const trail of orchestration.trails||[])if((trail.blockers||[]).length||/blocked|source-exhausted/.test(`${trail.state||''} ${trail.stage||''}`))blockedCandidates.add(trail.candidateId||trail.trailId);
+    if(newTrailStatus.status==='failed')blockedCandidates.add('new-trail-scouting');
+    if(hazardStatus.status==='failed'||Number(hazardStatus.summary?.sourceFailures||0)>0)blockedCandidates.add('groundskeeper');
 
     const activityById=new Map();
     for(const item of history){
       const candidateId=candidateFromActivity(item,names);
-      activityById.set(`${item.stream}:${item.id}`,{...item,candidateId,title:names.get(candidateId)||item.trailName||candidateId||'Trail workflow',at:dateMs(item.processedAt||item.submittedAt)});
+      const title=item.stream==='hazard'?hazardNames.get(item.hazardId):names.get(candidateId)||item.trailName||candidateId;
+      activityById.set(`${item.stream}:${item.id}`,{...item,candidateId,title:title||'Trail workflow',at:dateMs(item.processedAt||item.submittedAt)});
     }
     for(const request of publicationRequests.requests||[]){
       activityById.set(`publication:${request.id}`,{...request,stream:'publication',title:names.get(request.candidateId)||request.targetTrailId||'Trail release',at:dateMs(request.acknowledgedAt||request.failedAt||request.reviewedAt)});
     }
     const activity=[...activityById.values()].sort((a,b)=>b.at-a.at).slice(0,8).map(item=>({...item,message:activityMessage(item)}));
     return {
-      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,publicationInFlight,handoffsInFlight,automationFailures,workerHealth,campaignHealth,
+      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,newTrailItems,hazardItems,publicationInFlight,handoffsInFlight:handoffsInFlight+newTrailHandoffs+hazardHandoffs,automationFailures,workerHealth,campaignHealth,
       blockerCount:blockedCandidates.size,trackedTrails:orchestration.summary?.trails||(orchestration.trails||[]).length,
+      newTrailProgress:{candidates:(newTrailScouting.candidates||[]).length,waiting:newTrailItems.length,inFlight:newTrailHandoffs,status:newTrailStatus.status||'not-run'},
+      groundskeeperProgress:{active:(hazards.hazards||[]).filter(item=>item.state==='active').length,waiting:hazardItems.length,sourceFailures:Number(hazardStatus.summary?.sourceFailures||0),status:hazardStatus.status||'not-run'},
       summary:{needsYou:decisions.length,agentWork:activeJobs.length,blockers:blockedCandidates.size,prsReady:prItems.length},
       pipeline:[
         {number:1,title:'Evidence',owner:dossierItems.length?'You':queuedDossierReviews.length?'System':activeJobs.length?'Agents':'System',status:dossierItems.length?`${plural(dossierItems.length,'decision')} waiting`:queuedDossierReviews.length?`${plural(queuedDossierReviews.length,'decision')} being handed off`:activeJobs.length?`${plural(activeJobs.length,'job')} in progress`:'No decision waiting'},

@@ -11,6 +11,9 @@ const { advanceTrailOrchestration } = require('./advance-trail-orchestration');
 const {buildVerifiedEditorialHandoff}=require('./verified-editorial-handoff');
 const {runVerifiedEditorialFirstPass}=require('./run-verified-editorial-first-pass');
 const {runScheduledTrailCampaign}=require('./campaign-scheduler');
+const {applyNewTrailReview}=require('./plan-new-trail-scouting');
+const {admitNewTrailIntake}=require('./new-trail-intake');
+const {applyHazardReview}=require('./dynamic-hazards');
 const {validateContentExecution}=require('../contracts/content-result-v1');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
 const path=require('path');
@@ -217,11 +220,54 @@ async function ingestDossierReviews(store){
   return outcomes;
 }
 
+async function ingestNewTrailReviews(store){
+  if(typeof store.listNewTrailReviews!=='function')return [];
+  const reviews=await store.listNewTrailReviews('queued');const outcomes=[];const effectiveByCandidate=new Map();
+  for(const review of reviews){const current=effectiveByCandidate.get(review.candidateId);const key=`${iso(review.submittedAt)}:${review.id}`;const currentKey=current?`${iso(current.submittedAt)}:${current.id}`:'';if(!current||key>currentKey)effectiveByCandidate.set(review.candidateId,review);}
+  for(const review of reviews){const effective=effectiveByCandidate.get(review.candidateId);if(effective?.id===review.id)continue;await store.markNewTrailReview(review.id,'superseded',{supersededBy:effective.id});outcomes.push({reviewId:review.id,status:'superseded',supersededBy:effective.id});}
+  let ledger=await store.getArtifact('new-trail-scouting-review')||{contractVersion:'1.0.0',updatedAt:null,decisions:[],intake:[]};
+  for(const review of effectiveByCandidate.values()){
+    try{
+      const packet=await store.getArtifact('new-trail-scouting');if(!packet)throw new Error('New Trail scouting packet is not available');
+      ledger=applyNewTrailReview(packet,ledger,review,{at:iso(review.submittedAt),reviewedBy:review.submittedBy||'moderator'});
+      let intake={jobIds:[],summary:{selected:0,admitted:0,waiting:0}};
+      if(review.action==='send-to-verification')intake=await admitNewTrailIntake(store,packet,ledger,{at:iso(review.submittedAt),capacity:5});
+      await Promise.all([store.setArtifact('new-trail-scouting-review',ledger,{lastDecisionId:review.id}),
+        store.markNewTrailReview(review.id,'processed',{outcome:{action:review.action,jobIds:intake.jobIds||[],summary:intake.summary}})]);
+      outcomes.push({reviewId:review.id,candidateId:review.candidateId,status:'processed',action:review.action,jobIds:intake.jobIds||[]});
+    }catch(error){await store.markNewTrailReview(review.id,'blocked',{error:String(error.message||error).slice(0,2000)});outcomes.push({reviewId:review.id,candidateId:review.candidateId,status:'blocked',error:error.message});}
+  }
+  return outcomes;
+}
+
+async function ingestHazardReviews(store){
+  if(typeof store.listHazardReviews!=='function')return [];
+  const reviews=await store.listHazardReviews('queued');const outcomes=[];const effectiveByHazard=new Map();
+  for(const review of reviews){const current=effectiveByHazard.get(review.hazardId);const key=`${iso(review.submittedAt)}:${review.id}`;const currentKey=current?`${iso(current.submittedAt)}:${current.id}`:'';if(!current||key>currentKey)effectiveByHazard.set(review.hazardId,review);}
+  for(const review of reviews){const effective=effectiveByHazard.get(review.hazardId);if(effective?.id===review.id)continue;await store.markHazardReview(review.id,'superseded',{supersededBy:effective.id});outcomes.push({reviewId:review.id,status:'superseded',supersededBy:effective.id});}
+  let ledger=await store.getArtifact('hazard-review-ledger')||{contractVersion:'1.0.0',updatedAt:null,decisions:[]};
+  for(const review of effectiveByHazard.values()){
+    try{
+      const publicData=await store.getArtifact('dynamic-hazards');if(!publicData)throw new Error('Protected hazard state is not available');
+      const result=applyHazardReview(publicData,ledger,review,{at:iso(review.submittedAt)});ledger=result.ledger;
+      const reviewQueue={contractVersion:'1.0.0',generatedAt:iso(review.submittedAt),items:(result.publicData.hazards||[]).filter(item=>item.state==='resolution-review'),publicMutationAllowed:false};
+      const release=await store.getArtifact('hazard-release-receipts')||{contractVersion:'1.0.0',receipts:[]};
+      const receipt={id:review.id,hazardId:review.hazardId,action:review.action,status:'protected-update-applied',websiteState:'publication-integration-pending',reviewedAt:iso(review.submittedAt),publicMutationAllowed:false};
+      const releaseNext={...release,updatedAt:iso(review.submittedAt),receipts:[...(release.receipts||[]).filter(item=>item.id!==receipt.id),receipt].slice(-100)};
+      await Promise.all([store.setArtifact('dynamic-hazards',{...result.publicData,publicMutationAllowed:false},{lastHazardDecisionId:review.id}),store.setArtifact('hazard-review-queue',reviewQueue),store.setArtifact('hazard-review-ledger',ledger),store.setArtifact('hazard-release-receipts',releaseNext),store.markHazardReview(review.id,'processed',{outcome:receipt})]);
+      outcomes.push({reviewId:review.id,hazardId:review.hazardId,status:'processed',action:review.action,websiteState:receipt.websiteState});
+    }catch(error){await store.markHazardReview(review.id,'blocked',{error:String(error.message||error).slice(0,2000)});outcomes.push({reviewId:review.id,hazardId:review.hazardId,status:'blocked',error:error.message});}
+  }
+  return outcomes;
+}
+
 async function runLiveBackofficeWorker(store, options = {}){
   const productionTrails=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
   const campaign=await runScheduledTrailCampaign(store,productionTrails,{enabled:options.campaignEnabled===true,
     at:options.at,limit:options.campaignLimit||5,capacity:options.campaignCapacity||5,trigger:options.campaignTrigger,
     workflowRunUrl:options.workflowRunUrl,runId:options.runId});
+  const newTrailReviews=await ingestNewTrailReviews(store);
+  const hazardReviews=await ingestHazardReviews(store);
   const recoveredJobs = typeof store.recoverExpiredJobs === 'function'
     ? await store.recoverExpiredJobs(options)
     : [];
@@ -233,7 +279,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   const specialistJobs=await processTrailSpecialistJobs(store,{...options,productionTrails});
   const advancementAfter=await advanceTrailOrchestration(store,options);
   const publications = await ingestPublicationReviews(store);
-  return { workerId:options.workerId || null,campaign,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,newTrailReviews,hazardReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
-module.exports = { iso, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { iso, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };

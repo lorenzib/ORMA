@@ -58,8 +58,10 @@ function buildCandidate(feature, region, trails, existingRelations){
 
 function planNewTrailScouting(sources, trails, options={}){
   const at=options.at||new Date().toISOString();const limit=options.limit||25;
+  const excludedCandidateIds=new Set(options.excludedCandidateIds||[]);
   const existingRelations=new Set(trails.map(trail=>trail.osmRelation).filter(Boolean).map(String));
   const candidates=sources.flatMap(source=>(source.data?.features||[]).map(feature=>buildCandidate(feature,source.region,trails,existingRelations)).filter(Boolean))
+    .filter(candidate=>!excludedCandidateIds.has(candidate.id))
     .sort((a,b)=>b.expansionScore-a.expansionScore||(a.nearestExisting?.distanceKm??Infinity)-(b.nearestExisting?.distanceKm??Infinity)||a.distanceKm-b.distanceKm)
     .slice(0,limit).map((candidate,index)=>({...candidate,priority:index+1}));
   return {contractVersion:'1.0.0',generatedAt:at,mode:'candidate-only',publicMutationAllowed:false,policy:{loopsRequired:true,maxDistanceKm:12,expandFromExistingAreasFirst:true,animalSuitabilityRequiresVerification:true},candidates,
@@ -69,7 +71,7 @@ function planNewTrailScouting(sources, trails, options={}){
 function applyNewTrailReview(packet,review,input,options={}){
   const actions=new Set(['send-to-verification','park','reject']);if(!actions.has(input.action))throw new Error('A valid scouting decision is required');
   const candidate=(packet?.candidates||[]).find(item=>item.id===input.candidateId);if(!candidate)throw new Error('Scouting candidate was not found');
-  const at=options.at||new Date().toISOString();const decision={candidateId:candidate.id,action:input.action,note:String(input.note||'').trim().slice(0,1200),reviewedAt:at,reviewedBy:'local-editor',publicMutationAllowed:false};
+  const at=options.at||new Date().toISOString();const decision={candidateId:candidate.id,action:input.action,note:String(input.note||'').trim().slice(0,1200),reviewedAt:at,reviewedBy:options.reviewedBy||'local-editor',publicMutationAllowed:false};
   const decisions=[...(review?.decisions||[]).filter(item=>item.candidateId!==candidate.id),decision];
   const intake=(review?.intake||[]).filter(item=>item.candidateId!==candidate.id);
   if(input.action==='send-to-verification')intake.push({candidateId:candidate.id,trailName:candidate.name,sourceUrl:candidate.sourceUrl,osmRelation:candidate.osmRelation,region:candidate.region,status:'queued',queuedAt:at,nextAgent:'cartographer',nextStage:'route-identity-and-geometry',publicMutationAllowed:false});

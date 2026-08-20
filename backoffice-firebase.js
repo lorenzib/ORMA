@@ -80,13 +80,36 @@ async function getContentReviews(){
 async function getDecisionHistory(){
   if(!await moderatorIdentity())return {ok:false,error:'moderator-required',decisions:[]};
   try{
-    const sources=[['backofficeDossierReviews','dossier'],['backofficeReviews','content'],['backofficePublicationReviews','publication']];
+    const sources=[['backofficeDossierReviews','dossier'],['backofficeReviews','content'],['backofficePublicationReviews','publication'],['backofficeNewTrailReviews','new-trail'],['backofficeHazardReviews','hazard']];
     const snapshots=await Promise.all(sources.map(([name])=>getDocs(query(collection(db,name),orderBy('submittedAt','desc'),limit(20)))));
     const decisions=snapshots.flatMap((snapshot,index)=>snapshot.docs.map(item=>({id:item.id,stream:sources[index][1],...item.data()})))
       .sort((a,b)=>(b.submittedAt?.seconds||0)-(a.submittedAt?.seconds||0)).slice(0,30);
     return {ok:true,decisions};
   }catch(error){console.error('getDecisionHistory failed:',error);return {ok:false,error:'decision-history-read-failed',decisions:[]};}
 }
+
+async function getNewTrailReviews(){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',reviews:[]};
+  try{const snapshot=await getDocs(query(collection(db,'backofficeNewTrailReviews'),orderBy('submittedAt','desc'),limit(100)));return {ok:true,reviews:snapshot.docs.map(item=>({id:item.id,...item.data()}))};}
+  catch(error){console.error('getNewTrailReviews failed:',error);return {ok:false,error:'new-trail-review-read-failed',reviews:[]};}
+}
+
+async function submitNewTrailReview(input){
+  const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
+  try{const review=await addDoc(collection(db,'backofficeNewTrailReviews'),{contractVersion:'1.0.0',type:'new-trail-selection',status:'queued',candidateId:String(input.candidateId||''),action:String(input.action||''),note:String(input.note||'').trim().slice(0,1200),submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false});return {ok:true,reviewId:review.id,status:'queued'};}
+  catch(error){console.error('submitNewTrailReview failed:',error);return {ok:false,error:'new-trail-review-submit-failed'};}
+}
+
+async function getHazardReviews(){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',reviews:[]};
+  try{const snapshot=await getDocs(query(collection(db,'backofficeHazardReviews'),orderBy('submittedAt','desc'),limit(100)));return {ok:true,reviews:snapshot.docs.map(item=>({id:item.id,...item.data()}))};}
+  catch(error){console.error('getHazardReviews failed:',error);return {ok:false,error:'hazard-review-read-failed',reviews:[]};}
+}
+
+async function submitHazardReview(input){
+  const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
+  try{const review=await addDoc(collection(db,'backofficeHazardReviews'),{contractVersion:'1.0.0',type:'hazard-resolution-review',status:'queued',hazardId:String(input.hazardId||''),action:String(input.action||''),note:String(input.note||'').trim().slice(0,1000),submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false});return {ok:true,reviewId:review.id,status:'queued'};}
+  catch(error){console.error('submitHazardReview failed:',error);return {ok:false,error:'hazard-review-submit-failed'};}
 
 async function submitTrailReview(payload){
   const moderator=await moderatorIdentity();
@@ -142,7 +165,7 @@ window.DoloPawsAuth={
   async logOut(){await signOut(auth);currentUser=null;},
 };
 window.DoloPawsModeration={getModeratorStatus:async()=>({ok:!!await moderatorIdentity()})};
-window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,submitTrailReview,submitPublicationReview,submitDossierReview};
+window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,submitTrailReview,submitPublicationReview,submitDossierReview,submitNewTrailReview,submitHazardReview};
 
 onAuthStateChanged(auth,user=>{
   currentUser=user;

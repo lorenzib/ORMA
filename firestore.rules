@@ -753,6 +753,46 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    match /backofficeNewTrailReviews/{reviewId} {
+      allow get, list: if isModerator();
+      allow create: if isModerator()
+        && request.resource.data.keys().hasOnly([
+          'contractVersion', 'type', 'status', 'candidateId', 'action',
+          'note', 'submittedAt', 'submittedBy', 'publicMutationAllowed'
+        ])
+        && request.resource.data.contractVersion == '1.0.0'
+        && request.resource.data.type == 'new-trail-selection'
+        && request.resource.data.status == 'queued'
+        && isShortString(request.resource.data.candidateId, 160)
+        && request.resource.data.action in ['send-to-verification', 'park', 'reject']
+        && request.resource.data.note is string
+        && request.resource.data.note.size() <= 1200
+        && request.resource.data.submittedAt == request.time
+        && request.resource.data.submittedBy == request.auth.uid
+        && request.resource.data.publicMutationAllowed == false;
+      allow update, delete: if false;
+    }
+
+    match /backofficeHazardReviews/{reviewId} {
+      allow get, list: if isModerator();
+      allow create: if isModerator()
+        && request.resource.data.keys().hasOnly([
+          'contractVersion', 'type', 'status', 'hazardId', 'action',
+          'note', 'submittedAt', 'submittedBy', 'publicMutationAllowed'
+        ])
+        && request.resource.data.contractVersion == '1.0.0'
+        && request.resource.data.type == 'hazard-resolution-review'
+        && request.resource.data.status == 'queued'
+        && isShortString(request.resource.data.hazardId, 240)
+        && request.resource.data.action in ['confirm-resolved', 'keep-active']
+        && request.resource.data.note is string
+        && request.resource.data.note.size() <= 1000
+        && request.resource.data.submittedAt == request.time
+        && request.resource.data.submittedBy == request.auth.uid
+        && request.resource.data.publicMutationAllowed == false;
+      allow update, delete: if false;
+    }
+
     // New collections are private until their authorization contract is added.
     match /{document=**} {
       allow read, write: if false;

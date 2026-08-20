@@ -2,13 +2,12 @@ name: ORMA New Trail intake
 
 on:
   workflow_dispatch: {}
-  push:
-    branches: [main]
-    paths:
-      - backoffice-data/new-trail-scouting-review.json
+  schedule:
+    - cron: '0 12 * * 3'
+      timezone: Europe/Rome
 
 concurrency:
-  group: orma-new-trail-intake
+  group: orma-backoffice-worker
   cancel-in-progress: false
 
 permissions:
@@ -35,7 +34,7 @@ jobs:
           test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
           test -n "$OPENAI_API_KEY" || { echo "Missing OPENAI_API_KEY"; exit 1; }
       - run: npm ci
-      - name: Admit CEO-selected New Trails
-        run: npm run backoffice:new-trail-intake
-      - name: Start or continue verification agents
+      - name: Refresh protected New Trail candidates
+        run: npm run backoffice:new-trail-scouting:live
+      - name: Collect moderator selections and continue verification agents
         run: npm run backoffice:worker:live

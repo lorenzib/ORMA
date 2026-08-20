@@ -23,7 +23,7 @@ async function admitNewTrailIntake(store, packet, review, options={}){
   const artifact={contractVersion:'1.0.0',generatedAt:at,publicMutationAllowed:false,candidates:trails};
   await store.setArtifact('new-trail-intake',artifact,{source:'CEO New Trails review'});
   if(!trails.length)return {artifact,jobIds:[],summary:{selected:0}};
-  const result=await startLiveTrailCampaign(store,trails,{at,limit:trails.length,capacity:options.capacity||8});
+  const result=await startLiveTrailCampaign(store,trails,{at,limit:trails.length,capacity:options.capacity||5});
   return {artifact,jobIds:result.jobIds,summary:{selected:trails.length,admitted:result.jobIds.length,waiting:trails.length-result.jobIds.length}};
 }
 

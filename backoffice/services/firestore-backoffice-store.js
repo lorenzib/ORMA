@@ -9,6 +9,8 @@ const COLLECTIONS = Object.freeze({
   reviews: 'backofficeReviews',
   publicationReviews: 'backofficePublicationReviews',
   dossierReviews: 'backofficeDossierReviews',
+  newTrailReviews:'backofficeNewTrailReviews',
+  hazardReviews:'backofficeHazardReviews',
 });
 const configuredDatabases = new WeakSet();
 const ARTIFACT_DATA_ENCODING = 'json-v1';
@@ -184,6 +186,24 @@ class FirestoreBackofficeStore {
 
   async markDossierReview(id,status,fields={}){
     await this.db.collection(COLLECTIONS.dossierReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+  }
+
+  async listNewTrailReviews(status='queued'){
+    const snapshot=await this.db.collection(COLLECTIONS.newTrailReviews).where('status','==',status).get();
+    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+  }
+
+  async markNewTrailReview(id,status,fields={}){
+    await this.db.collection(COLLECTIONS.newTrailReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+  }
+
+  async listHazardReviews(status='queued'){
+    const snapshot=await this.db.collection(COLLECTIONS.hazardReviews).where('status','==',status).get();
+    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+  }
+
+  async markHazardReview(id,status,fields={}){
+    await this.db.collection(COLLECTIONS.hazardReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
   }
 }
 

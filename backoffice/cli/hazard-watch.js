@@ -30,13 +30,19 @@ async function runHazardWatch(options = {}){
   const at = options.at || new Date().toISOString();
   const fetchImpl = options.fetchImpl || fetch;
   const runs = await Promise.all((options.sources || SOURCES).map(source => fetchSource(source, fetchImpl)));
-  const previous = await readJson(path.join(root, 'data', 'dynamic-hazards.json'), { hazards: [] });
+  const previous = options.store
+    ? (await options.store.getArtifact('dynamic-hazards') || await readJson(path.join(root, 'data', 'dynamic-hazards.json'), { hazards: [] }))
+    : await readJson(path.join(root, 'data', 'dynamic-hazards.json'), { hazards: [] });
   const artifacts = buildHazardArtifacts(previous, runs.flatMap(run => run.observations), runs.map(run => run.result), loadProductionTrails(root), { at });
-  await Promise.all([
-    writeJson(path.join(root, 'data', 'dynamic-hazards.json'), artifacts.publicData),
-    writeJson(path.join(root, 'backoffice-data', 'hazard-review-queue.json'), artifacts.reviewQueue),
-    writeJson(path.join(root, 'backoffice-data', 'hazard-watch-status.json'), artifacts.status),
-  ]);
+  if(options.store){
+    const protectedData={...artifacts.publicData,publicMutationAllowed:false};const protectedQueue={...artifacts.reviewQueue,publicMutationAllowed:false};const status={...artifacts.status,status:'healthy',workflowRunUrl:options.workflowRunUrl||null,runId:options.runId||null,publicMutationAllowed:false};
+    await Promise.all([options.store.setArtifact('dynamic-hazards',protectedData,{status:'protected-current'}),options.store.setArtifact('hazard-review-queue',protectedQueue,{status:'awaiting-human'}),options.store.setArtifact('hazard-watch-status',status,{status:'healthy',runId:options.runId||null})]);
+    return {...artifacts,publicData:protectedData,reviewQueue:protectedQueue,status};
+  }else await Promise.all([
+      writeJson(path.join(root, 'data', 'dynamic-hazards.json'), artifacts.publicData),
+      writeJson(path.join(root, 'backoffice-data', 'hazard-review-queue.json'), artifacts.reviewQueue),
+      writeJson(path.join(root, 'backoffice-data', 'hazard-watch-status.json'), artifacts.status),
+    ]);
   return artifacts;
 }
 
