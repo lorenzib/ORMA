@@ -7,43 +7,31 @@ on:
       timezone: Europe/Rome
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 concurrency:
-  group: orma-hazard-watch
+  group: orma-backoffice-worker
   cancel-in-progress: false
 
 jobs:
   check-warnings:
     if: github.event_name == 'workflow_dispatch' || vars.ORMA_HAZARD_AUTOMATION_ENABLED == 'true'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      FIREBASE_PROJECT_ID: dolopaws
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      OPENAI_API_KEY: ${{ secrets.OPEN_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Check authoritative warning feeds
-        run: npm run backoffice:hazard-watch
-      - name: Prepare gated warning update
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          git config user.name "orma-hazard-bot"
-          git config user.email "actions@github.com"
-          git add data/dynamic-hazards.json backoffice-data/hazard-review-queue.json backoffice-data/hazard-watch-status.json
-          if git diff --cached --quiet; then
-            echo "No warning-state change requires review."
-            exit 0
-          fi
-          branch="automation/orma-hazard-watch"
-          git switch -c "$branch"
-          git commit -m "Update ORMA dynamic hazard layer"
-          git fetch origin "$branch:refs/remotes/origin/$branch" || true
-          git push --force-with-lease origin "$branch"
-          existing_pr="$(gh pr list --base main --head "$branch" --state open --json number --jq '.[0].number // empty')"
-          if [ -z "$existing_pr" ]; then
-            gh pr create --base main --head "$branch" --title "Review ORMA dynamic hazard update" --body "The Groundskeeper found a source-backed warning-state change. Review the linked sources and trail mapping before merging. A weather warning is not proof that a specific trail is closed."
-          else
-            echo "Updated existing hazard review PR #$existing_pr."
-          fi
+          cache: npm
+      - name: Check worker secret
+        run: test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
+      - run: npm ci
+      - name: Check authoritative warning feeds into protected Firestore
+        run: npm run backoffice:hazard-watch:live
+      - name: Collect moderator removal decisions
+        run: npm run backoffice:worker:live

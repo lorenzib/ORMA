@@ -15,7 +15,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(files.some(file=>file.startsWith('data/'))).toBe(false);
   });
 
-  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
+  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toContain('src="backoffice-firebase.js"');
     expect(html).not.toContain('src="firebase-init.js');
@@ -43,27 +43,31 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('backoffice-review.css?v=20260820-13');
     expect(html).toContain('id="workerHealth"');
     expect(html).toContain('id="campaignHealth"');
-    expect(html).toContain('backoffice/dashboard-model.js?v=20260820-8');
-    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260820-7');
+    expect(html).toContain('backoffice/dashboard-model.js?v=20260820-9');
+    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260820-8');
     expect(html).toContain('href="trail-dossier-desk.html"');
-    expect(html).not.toMatch(/href="(?:content|new-trail-scouting|hazard-review|image-coverage|newsletter|social|product-ideas)-desk\.html"/);
+    expect(html).not.toMatch(/href="(?:content|image-coverage|newsletter|social|product-ideas)-desk\.html"/);
   });
 
   test.each([
     ['backoffice-review.html','Home'],
     ['trail-dossier-desk.html','Trail evidence'],
     ['trail-content-desk.html','Content &amp; release'],
+    ['new-trail-scouting-desk.html','New Trails'],
+    ['hazard-review-desk.html','Groundskeeper'],
   ])('%s has persistent navigation and a clear current location',(page,current)=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toContain('aria-label="Backoffice navigation"');
     expect(html).toContain('href="backoffice-review.html"');
     expect(html).toContain('href="trail-dossier-desk.html"');
     expect(html).toContain('href="trail-content-desk.html"');
+    expect(html).toContain('href="new-trail-scouting-desk.html"');
+    expect(html).toContain('href="hazard-review-desk.html"');
     expect(html).toContain(`aria-current="page">${current}</a>`);
   });
 
   test('moderator-facing trail pages explain automation without vague worker language',()=>{
-    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
+    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','new-trail-scouting-desk.js','hazard-review-desk.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
     const text=files.map(file=>fs.readFileSync(path.join(output,file),'utf8')).join('\n');
     expect(text).toContain('ORMA automation');
     expect(text).not.toMatch(/waiting for the worker|the worker will|worker processed|independent worker/i);
@@ -103,5 +107,12 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(campaign).toContain('--scheduled');
     const dashboard=fs.readFileSync(path.join(output,'backoffice-hosted-dashboard.js'),'utf8');
     expect(dashboard).toContain("optional(remote,'trail-campaign-health',null)");
+  });
+
+  test('hosts Firestore-backed New Trails and Groundskeeper desks with no local data files',()=>{
+    const newTrails=fs.readFileSync(path.join(output,'new-trail-scouting-desk.js'),'utf8');const groundskeeper=fs.readFileSync(path.join(output,'hazard-review-desk.js'),'utf8');
+    expect(newTrails).toContain("getArtifact('new-trail-scouting')");expect(newTrails).toContain('submitNewTrailReview');
+    expect(groundskeeper).toContain("getArtifact('dynamic-hazards')");expect(groundskeeper).toContain('submitHazardReview');
+    expect(`${newTrails}\n${groundskeeper}`).toContain("const LOCAL_MODE=['127.0.0.1','localhost']");
   });
 });

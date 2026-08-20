@@ -279,11 +279,17 @@ queue, while Social remains launch-gated.
 
 The hosted hazard workflow is inert unless it is started manually or the
 repository variable `ORMA_HAZARD_AUTOMATION_ENABLED` is set to `true`. A run
-opens or updates a dedicated hazard pull request; merging that reviewed PR is
-the public warning gate. New Trail intake is also inert until manually
-dispatched or `ORMA_NEW_TRAIL_AUTOMATION_ENABLED` is enabled. A selected
-candidate enters the Existing Trails verification fleet; selection never
-publishes a trail.
+stores the authoritative feed result, source failures, retained warnings and
+removal-review queue in protected Firestore. The hosted Groundskeeper desk
+records immutable moderator decisions. A processed decision updates only the
+protected warning layer and records `publication-integration-pending`; this
+hosted migration does not claim the public website changed. New Trail scouting
+is also inert until manually dispatched or
+`ORMA_NEW_TRAIL_AUTOMATION_ENABLED` is enabled. It refreshes with the Wednesday
+12:00 local strategy cadence and preserves unresolved candidates across later
+runs. The hosted New Trails desk records selection, park and reject decisions
+in Firestore. A selected candidate enters the shared five-trail-cap Existing
+Trails verification fleet; selection never publishes a trail.
 
 ### Automatic verification cycle
 

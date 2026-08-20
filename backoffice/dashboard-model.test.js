@@ -87,6 +87,13 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.campaignHealth).toEqual(expect.objectContaining({state:'healthy',runUrl:'https://github.com/orma/actions/runs/456',message:expect.stringContaining('admitted 2 trail(s)')}));
   });
 
+  test('surfaces New Trail selection and Groundskeeper removal on the CEO overview',()=>{
+    const model=buildDashboardModel({newTrailScouting:{candidates:[{id:'new-a',name:'New A'}]},newTrailReviews:[],hazards:{hazards:[{id:'hazard-a',title:'Snow warning',state:'resolution-review'}]},hazardQueue:{items:[{id:'hazard-a'}]},hazardReviews:[],jobs:[]});
+    expect(model.decisions.map(item=>item.kind)).toEqual(['new-trail','hazard']);
+    expect(model.newTrailProgress).toEqual(expect.objectContaining({candidates:1,waiting:1}));
+    expect(model.groundskeeperProgress).toEqual(expect.objectContaining({waiting:1}));
+  });
+
   test('counts autonomous resolution and first-pass editorial jobs as visible agent work',()=>{
     const model=buildDashboardModel({jobs:[
       {id:'resolution-1',jobType:'trail-claim-resolution',status:'queued',candidateId:'trail-a'},
