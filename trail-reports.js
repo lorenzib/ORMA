@@ -46,7 +46,10 @@ function initTrailReports(map, trail){
   const ratingEl = document.getElementById('communityRating');
   const heroRatingEl = document.getElementById('heroRating');
   const photosListEl = document.getElementById('trailPhotosList');
+  const photoStripPrev = document.getElementById('trailPhotosPrev');
+  const photoStripNext = document.getElementById('trailPhotosNext');
   let actionStatusTimer = null;
+  let closeActivePhotoViewer = null;
 
   function showActionStatus(message){
     let status = document.getElementById('trailActionStatus');
@@ -151,6 +154,116 @@ function initTrailReports(map, trail){
     }).join('');
   }
 
+  function photoCaption(photo){
+    const dog = photo.dogContext && photo.dogContext.name;
+    const caption = photo.caption
+      ? String(photo.caption)
+      : (dog ? `Shared by ${dog}’s human` : 'Shared by the ORMA community');
+    return caption + (photo.status === 'reported' ? ' · Reported, under review' : '');
+  }
+
+  function openPhotoCarousel(photos, startIndex, returnFocus){
+    if (!photos.length) return;
+    if (closeActivePhotoViewer) closeActivePhotoViewer(false);
+
+    let currentIndex = Math.max(0, Math.min(Number(startIndex) || 0, photos.length - 1));
+    const overlay = document.createElement('div');
+    overlay.className = 'trail-photo-viewer';
+    overlay.innerHTML = `<div class="trail-photo-viewer__dialog">
+      <h2 class="trail-photo-viewer__title">Trail photos</h2>
+      <button type="button" class="trail-photo-viewer__close" data-gallery-close aria-label="Close photo gallery">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="trail-photo-viewer__stage" data-gallery-stage>
+        <button type="button" class="trail-photo-viewer__nav trail-photo-viewer__nav--prev" data-gallery-prev aria-label="Previous photo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <img data-gallery-image alt="">
+        <button type="button" class="trail-photo-viewer__nav trail-photo-viewer__nav--next" data-gallery-next aria-label="Next photo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="trail-photo-viewer__meta">
+        <p data-gallery-caption></p>
+        <span data-gallery-count aria-live="polite"></span>
+      </div>
+    </div>`;
+    document.body.appendChild(overlay);
+    document.body.classList.add('trail-photo-viewer-open');
+
+    const image = overlay.querySelector('[data-gallery-image]');
+    const caption = overlay.querySelector('[data-gallery-caption]');
+    const count = overlay.querySelector('[data-gallery-count]');
+    const previous = overlay.querySelector('[data-gallery-prev]');
+    const next = overlay.querySelector('[data-gallery-next]');
+    let cleanupKeyboard = () => {};
+
+    function show(index){
+      currentIndex = (index + photos.length) % photos.length;
+      const photo = photos[currentIndex];
+      const label = photoCaption(photo);
+      image.src = photo.image;
+      image.alt = label;
+      caption.textContent = label;
+      count.textContent = `${currentIndex + 1} of ${photos.length}`;
+      previous.hidden = photos.length < 2;
+      next.hidden = photos.length < 2;
+    }
+
+    function close(restoreFocus = true){
+      cleanupKeyboard();
+      document.body.classList.remove('trail-photo-viewer-open');
+      overlay.remove();
+      closeActivePhotoViewer = null;
+      if (restoreFocus && returnFocus && document.contains(returnFocus)) returnFocus.focus();
+    }
+    closeActivePhotoViewer = close;
+
+    previous.addEventListener('click', () => show(currentIndex - 1));
+    next.addEventListener('click', () => show(currentIndex + 1));
+    overlay.querySelector('[data-gallery-close]').addEventListener('click', () => close());
+    overlay.addEventListener('click', event => { if (event.target === overlay) close(); });
+    overlay.addEventListener('keydown', event => {
+      if (event.key === 'ArrowLeft') { event.preventDefault(); show(currentIndex - 1); }
+      if (event.key === 'ArrowRight') { event.preventDefault(); show(currentIndex + 1); }
+    });
+
+    let touchStartX = null;
+    const stage = overlay.querySelector('[data-gallery-stage]');
+    stage.addEventListener('touchstart', event => {
+      touchStartX = event.changedTouches[0] ? event.changedTouches[0].clientX : null;
+    }, { passive:true });
+    stage.addEventListener('touchend', event => {
+      if (touchStartX === null || !event.changedTouches[0]) return;
+      const distance = event.changedTouches[0].clientX - touchStartX;
+      touchStartX = null;
+      if (Math.abs(distance) < 45 || photos.length < 2) return;
+      show(currentIndex + (distance < 0 ? 1 : -1));
+    }, { passive:true });
+
+    cleanupKeyboard = enableModalKeyboard(overlay, () => close(), '[data-gallery-close]', returnFocus);
+    show(currentIndex);
+  }
+
+  function updatePhotoStripControls(total){
+    [photoStripPrev, photoStripNext].forEach(button => {
+      if (button) button.hidden = total < 2;
+    });
+  }
+
+  function scrollPhotoStrip(direction){
+    if (!photosListEl) return;
+    const distance = Math.max(180, Math.round(photosListEl.clientWidth * 0.8));
+    if (typeof photosListEl.scrollBy === 'function'){
+      photosListEl.scrollBy({ left: direction * distance, behavior:'smooth' });
+    } else {
+      photosListEl.scrollLeft += direction * distance;
+    }
+  }
+
+  if (photoStripPrev) photoStripPrev.addEventListener('click', () => scrollPhotoStrip(-1));
+  if (photoStripNext) photoStripNext.addEventListener('click', () => scrollPhotoStrip(1));
+
   function renderPhotos(photos){
     if (!photosListEl) return;
     const visible = photos.filter(photo =>
@@ -162,6 +275,7 @@ function initTrailReports(map, trail){
         const aDate = reviewDate(a), bDate = reviewDate(b);
         return (bDate ? bDate.getTime() : 0) - (aDate ? aDate.getTime() : 0);
       });
+    updatePhotoStripControls(visible.length);
     if (!visible.length){
       photosListEl.innerHTML = `<div class="empty-state empty-state--compact">
         <p class="empty-state__title">No trail photos yet</p>
@@ -172,11 +286,18 @@ function initTrailReports(map, trail){
       if (emptyPhoto) emptyPhoto.addEventListener('click', openPhotoModal);
       return;
     }
-    photosListEl.innerHTML = visible.slice(0, 6).map(photo => {
-      const dog = photo.dogContext && photo.dogContext.name;
-      const caption = photo.caption ? trEsc(photo.caption) : (dog ? `Shared by ${trEsc(dog)}’s human` : 'Shared by the ORMA community');
-      return `<figure class="community-photo"><img src="${trEsc(photo.image)}" alt="${caption}"><figcaption>${caption}${photo.status === 'reported' ? ' · Reported, under review' : ''}</figcaption></figure>`;
+    photosListEl.innerHTML = visible.map((photo, index) => {
+      const caption = trEsc(photoCaption(photo));
+      return `<figure class="community-photo">
+        <button type="button" class="community-photo__open" data-photo-index="${index}" aria-label="Open photo ${index + 1} of ${visible.length}: ${caption}">
+          <img src="${trEsc(photo.image)}" alt="${caption}" loading="lazy" decoding="async">
+        </button>
+        <figcaption>${caption}</figcaption>
+      </figure>`;
     }).join('');
+    photosListEl.querySelectorAll('[data-photo-index]').forEach(button => {
+      button.addEventListener('click', () => openPhotoCarousel(visible, Number(button.dataset.photoIndex), button));
+    });
   }
 
   function isExpired(f){
