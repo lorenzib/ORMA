@@ -39,35 +39,39 @@
   .sc-stat b{color:var(--ink,#22312A);}
   .sc-pills{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin:10px 0 2px;}
   .sc-pill{font:700 11px 'Inter',sans-serif;padding:4px 10px;border-radius:999px;white-space:nowrap;}
-  /* Aligned penalty list: one card, fixed chip column, hairline rows */
-  .sc-penlist{background:var(--card,#fff);border:1px solid var(--paper-line,#E5DECF);border-radius:14px;padding:6px 18px;margin:12px 0 0;}
-  .sc-penrow{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px dashed var(--paper-line,#E5DECF);}
+  /* What lowers a match: one card, severity column, reason always visible */
+  .sc-penlist{background:var(--card,#fff);border:1px solid var(--paper-line,#E5DECF);border-radius:14px;padding:4px 18px;margin:12px 0 0;}
+  .sc-penrow{display:flex;align-items:flex-start;gap:15px;padding:13px 0;border-bottom:1px dashed var(--paper-line,#E5DECF);}
   .sc-penrow:last-child{border-bottom:none;}
-  .sc-penrow{position:relative;}
-  .sc-penrow[data-tip]:hover::after{
-    content:attr(data-tip);position:absolute;left:0;bottom:calc(100% + 7px);z-index:20;
-    background:#22312A;color:#F2EDDF;font:500 11.5px/1.5 'Inter',sans-serif;
-    padding:8px 12px;border-radius:9px;width:max-content;max-width:280px;
-    box-shadow:0 10px 24px rgba(23,42,28,.32);pointer-events:none;
-  }
-  .sc-chip{flex:none;width:100px;text-align:center;font:800 12px 'Inter',sans-serif;padding:5px 0;border-radius:8px;}
-  .sc-penrow b{font-size:13px;font-weight:600;color:var(--ink,#22312A);}
-  @media(min-width:760px){
-    .sc-penlist{display:grid;grid-template-columns:1fr 1fr;column-gap:44px;padding:6px 22px;}
-    .sc-penlist .sc-penrow:nth-last-child(-n+2){border-bottom:none;}
-  }
+  .sc-chip{flex:none;width:104px;text-align:center;font:800 10.5px 'Inter',sans-serif;letter-spacing:.04em;text-transform:uppercase;padding:5px 0;border-radius:8px;margin-top:1px;}
+  .sc-penrow b{display:block;font-size:13.5px;font-weight:700;color:var(--ink,#22312A);}
+  .sc-why{display:block;margin-top:3px;font-size:12.5px;line-height:1.55;color:var(--ink-soft,#6b6350);}
+  /* Worked example: the whole system in one dog and one trail */
+  .sc-example{margin:12px 0 0;background:#F6F3EA;border:1px solid var(--paper-line,#E5DECF);border-radius:14px;padding:18px 20px;}
+  .sc-example-head{font-size:13px;line-height:1.6;color:var(--ink,#22312A);margin:0 0 12px;}
+  .sc-example-head b{font-weight:700;}
+  .sc-sum{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:7px 0;border-bottom:1px dashed #E0D8C6;font-size:13px;color:var(--ink-soft,#6b6350);}
+  .sc-sum b{font:700 13px 'Inter',sans-serif;color:var(--ink,#22312A);white-space:nowrap;}
+  .sc-sum--total{border-bottom:none;padding-top:11px;font-size:14px;color:var(--ink,#22312A);font-weight:700;}
+  .sc-sum--total b{font-size:19px;color:#C98A2E;}
+  .sc-example-foot{margin:12px 0 0;font-size:12.5px;line-height:1.6;color:var(--ink-soft,#6b6350);}
+  /* Exact point values, folded away for people who want them */
+  .sc-maths{margin:14px 0 0;}
+  .sc-maths summary{cursor:pointer;font:700 12.5px 'Inter',sans-serif;color:var(--ink,#22312A);padding:9px 14px;background:var(--card,#fff);border:1px solid var(--paper-line,#E5DECF);border-radius:10px;}
+  .sc-maths summary:hover{border-color:#C9BFA6;}
+  .sc-maths[open] summary{border-radius:10px 10px 0 0;border-bottom:none;}
+  .sc-maths-body{border:1px solid var(--paper-line,#E5DECF);border-top:none;border-radius:0 0 10px 10px;padding:4px 16px 12px;background:var(--card,#fff);}
+  .sc-mathrow{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px dashed var(--paper-line,#E5DECF);font-size:12.5px;color:var(--ink-soft,#6b6350);}
+  .sc-mathrow:last-of-type{border-bottom:none;}
+  .sc-mathrow b{font-weight:700;color:var(--ink,#22312A);white-space:nowrap;}
   /* One vertical rhythm for the whole section */
   .guide-section h3{margin:30px 0 6px;}
   .guide-section h3 + p{margin:0 0 4px;}
   .sc-cards{margin:12px 0 0;}
   .sc-note{margin:10px 0 0;}
-  .sc-bands{margin:12px 0 0;}
-  .sc-bands{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-  .sc-band{border-radius:12px;padding:12px 14px;font:700 12.5px 'Inter',sans-serif;line-height:1.4;}
-  .sc-band small{display:block;font-weight:600;font-size:11px;opacity:.85;margin-top:2px;}
   @media(max-width:700px){
     .scoring-article{padding-left:16px;padding-right:16px;}
-    .sc-bands{grid-template-columns:1fr;}
+    .sc-chip{width:88px;}
   }
 </style>
 </head>
@@ -119,52 +123,101 @@
         </div>
       </div>
 
-      <h3>Step 1 · How fit is your dog?</h3>
-      <p>Fitness sets the baselines; puppies, seniors, health issues and extreme builds lower them. A missing fact means a neutral default, never a guess.</p>
+      <h3>Step 1 · We assess the trail</h3>
+      <p>First we describe the mountain, before any dog is involved. This is what becomes the trail rating, and it reads the same for a chihuahua and a husky.</p>
+      <div class="sc-cards">
+        <div class="sc-card">
+          <h4>The ground</h4>
+          <p>Surface underfoot, exposed ledges and drop-offs, scree, ladders and cables, and anything that can cut or burn a paw.</p>
+        </div>
+        <div class="sc-card">
+          <h4>The effort</h4>
+          <p>Distance, how much you climb, and how much you come back down, because long descents are their own kind of work.</p>
+        </div>
+        <div class="sc-card">
+          <h4>The conditions</h4>
+          <p>How much shade the route holds, how hot it runs, water along the way, and whether dogs are allowed at all.</p>
+        </div>
+      </div>
+
+      <h3>Step 2 · You add your dog</h3>
+      <p>Your dog's fitness sets three comfortable limits. Puppies, seniors, health conditions and extreme builds lower them. Anything you leave blank gets a neutral default, never a guess.</p>
       <div class="sc-cards">
         <div class="sc-card">
           <h4>Low fitness</h4>
-          <div class="sc-stat"><span>Terrain</span><b>0 · easy paths</b></div>
-          <div class="sc-stat"><span>Distance</span><b>5 km</b></div>
-          <div class="sc-stat"><span>Climb</span><b>250 m</b></div>
+          <div class="sc-stat"><span>Ground</span><b>Easy paths</b></div>
+          <div class="sc-stat"><span>Distance</span><b>Up to 5 km</b></div>
+          <div class="sc-stat"><span>Climb</span><b>Up to 250 m</b></div>
         </div>
         <div class="sc-card">
           <h4>Moderate fitness</h4>
-          <div class="sc-stat"><span>Terrain</span><b>1 · mixed ground</b></div>
-          <div class="sc-stat"><span>Distance</span><b>10 km</b></div>
-          <div class="sc-stat"><span>Climb</span><b>600 m</b></div>
+          <div class="sc-stat"><span>Ground</span><b>Mixed ground</b></div>
+          <div class="sc-stat"><span>Distance</span><b>Up to 10 km</b></div>
+          <div class="sc-stat"><span>Climb</span><b>Up to 600 m</b></div>
         </div>
         <div class="sc-card">
           <h4>High fitness</h4>
-          <div class="sc-stat"><span>Terrain</span><b>2 · rough ground</b></div>
-          <div class="sc-stat"><span>Distance</span><b>18 km</b></div>
-          <div class="sc-stat"><span>Climb</span><b>1200 m</b></div>
+          <div class="sc-stat"><span>Ground</span><b>Rough ground</b></div>
+          <div class="sc-stat"><span>Distance</span><b>Up to 18 km</b></div>
+          <div class="sc-stat"><span>Climb</span><b>Up to 1200 m</b></div>
         </div>
       </div>
 
-      <h3>Step 2 · How hard is the trail?</h3>
-      <p>Every pairing starts at <b>100</b>.</p>
+      <h3>Step 3 · We explain the match</h3>
+      <p>Every trail starts at 100% for your dog. It loses points wherever the route asks for more than your dog comfortably gives. Nothing else moves the number.</p>
       <div class="sc-penlist">
-        <div class="sc-penrow" data-tip="Each terrain rank above your dog's tolerance costs 30 points." title="Each terrain rank above your dog's tolerance costs 30 points."><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">−30 /rank</span><b>Terrain above limit</b></div>
-        <div class="sc-penrow" data-tip="5 points per kilometre beyond your dog's range, up to 35." title="5 points per kilometre beyond your dog's range, up to 35."><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">to −35</span><b>Too far</b></div>
-        <div class="sc-penrow" data-tip="4 points per extra 100 m of climb, up to 20." title="4 points per extra 100 m of climb, up to 20."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">to −20</span><b>Too much climb</b></div>
-        <div class="sc-penrow" data-tip="Sustained descents over 400 m load the joints of fragile or giant dogs." title="Sustained descents over 400 m load the joints of fragile or giant dogs."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">to −20</span><b>Long descents</b></div>
-        <div class="sc-penrow" data-tip="Drop-offs or exposed ledges; the penalty grows for fragile or vision-impaired dogs." title="Drop-offs or exposed ledges; the penalty grows for fragile or vision-impaired dogs."><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">−30 to −40</span><b>Exposed sections</b></div>
-        <div class="sc-penrow" data-tip="The route's baseline heat risk; heat-sensitive dogs lose the most." title="The route's baseline heat risk; heat-sensitive dogs lose the most."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">−4 to −25</span><b>Heat risk</b></div>
-        <div class="sc-penrow" data-tip="Under 40% shade costs 5 points, under 20% costs 10." title="Under 40% shade costs 5 points, under 20% costs 10."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">−5 / −10</span><b>Little shade</b></div>
-        <div class="sc-penrow" data-tip="8 points per recorded hazard, capped; fragile dogs lose more." title="8 points per recorded hazard, capped; fragile dogs lose more."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">to −30</span><b>Surface hazards</b></div>
-        <div class="sc-penrow" data-tip="Dogs are not allowed on this route, so it is never recommended." title="Dogs are not allowed on this route, so it is never recommended."><span class="sc-chip" style="color:#fff;background:#9C3A25;">Hard stop</span><b>Dogs prohibited</b></div>
-        <div class="sc-penrow" data-tip="Dog access has seasonal rules; the score stays capped at 84 until you check the rule for your date." title="Dog access has seasonal rules; the score stays capped at 84 until you check the rule for your date."><span class="sc-chip" style="color:#8A5A16;background:#8A5A161f;">Cap 84</span><b>Seasonal access</b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">Large</span><b>Rougher ground than your dog handles<span class="sc-why">Rock and scree under a dog built for meadows and forest paths. The single biggest thing we look at.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">Large</span><b>Exposed ledges and drop-offs<span class="sc-why">Places where a slip has consequences. It costs more for dogs that are fragile, elderly or losing their sight.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">Large</span><b>Further than your dog's range<span class="sc-why">Distance beyond the comfortable limit from step 2, growing with every extra kilometre.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">Moderate</span><b>More climbing than your dog's range<span class="sc-why">Height gained above the comfortable limit. Steady climbing tires a dog faster than flat distance.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">Moderate</span><b>Long descents<span class="sc-why">Sustained downhill loads the joints and the back, which matters for giant breeds, long-backed dogs and older dogs.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">Moderate</span><b>Heat on the route<span class="sc-why">How hot the route runs in season. Flat-faced, thick-coated and heat-sensitive dogs lose the most here.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">Moderate</span><b>Surface hazards<span class="sc-why">Recorded hazards along the way, such as sharp rock, loose scree or cable sections.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#8A5A16;background:#8A5A161f;">Small</span><b>Little shade<span class="sc-why">Open routes with nowhere to cool down. Small on its own, and it adds up alongside heat.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#fff;background:#9C3A25;">Never</span><b>Dogs not allowed<span class="sc-why">Some routes prohibit dogs outright. We never recommend those, whatever the rest of the numbers say.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#8A5A16;background:#8A5A161f;">Held back</span><b>Seasonal dog rules<span class="sc-why">Where access depends on the time of year, we hold the score below a great match until you check the rule for your date.</span></b></div>
+      </div>
+      <details class="sc-maths">
+        <summary>The exact numbers, if you want them</summary>
+        <div class="sc-maths-body">
+          <div class="sc-mathrow"><span>Each step of ground rougher than your dog handles</span><b>−30</b></div>
+          <div class="sc-mathrow"><span>Every kilometre beyond your dog's range</span><b>−5, up to −35</b></div>
+          <div class="sc-mathrow"><span>Every extra 100 m of climb</span><b>−4, up to −20</b></div>
+          <div class="sc-mathrow"><span>Sustained descents over 400 m</span><b>up to −20</b></div>
+          <div class="sc-mathrow"><span>Exposed sections</span><b>−30 to −40</b></div>
+          <div class="sc-mathrow"><span>Heat risk on the route</span><b>−4 to −25</b></div>
+          <div class="sc-mathrow"><span>Under 40% shade, under 20% shade</span><b>−5, −10</b></div>
+          <div class="sc-mathrow"><span>Each recorded surface hazard</span><b>−8, capped</b></div>
+          <div class="sc-mathrow"><span>Seasonal access rules</span><b>held at 84</b></div>
+          <div class="sc-mathrow"><span>Dogs prohibited</span><b>never recommended</b></div>
+        </div>
+      </details>
+
+      <h3>All three steps, one dog, one trail</h3>
+      <p>Bruna is nine, a Labrador of moderate fitness who feels the heat. The trail is 12 km with 700 m of climb, on mixed ground she handles fine, but only 30% of it is shaded.</p>
+      <div class="sc-example">
+        <div class="sc-sum"><span>Every trail starts at</span><b>100%</b></div>
+        <div class="sc-sum"><span>2 km further than her comfortable 10 km</span><b>−10</b></div>
+        <div class="sc-sum"><span>100 m more climb than her comfortable 600 m</span><b>−4</b></div>
+        <div class="sc-sum"><span>A hot route for a dog who feels the heat</span><b>−10</b></div>
+        <div class="sc-sum"><span>Under 40% shade to cool down in</span><b>−5</b></div>
+        <div class="sc-sum sc-sum--total"><span>Match for Bruna</span><b>71%</b></div>
+        <p class="sc-example-foot">A <b>Good</b> match: worth doing with her, starting early and carrying water. The ground never cost her anything, because mixed ground is well within what she handles. Had she been a fit three-year-old, the same trail would have scored in the nineties.</p>
       </div>
 
-      <h3>Step 3 · How sure are we?</h3>
-      <p>A score is only as good as our facts. Until we have verified a trail, its match is capped at <b>≈80%</b>, no matter how perfect it looks. The missing points are our homework, not your dog's.</p>
-      <div class="sc-bands">
-        <div class="sc-band" style="color:#2C5C34;background:#2C5C341f;">85 and above<small>Strong option</small></div>
-        <div class="sc-band" style="color:#8A5A16;background:#8A5A161f;">60 – 84<small>Possible with cautions</small></div>
-        <div class="sc-band" style="color:#9C3A25;background:#9C3A251f;">Below 60<small>Not recommended</small></div>
+      <h3>How sure are we?</h3>
+      <p>Two things hold a score back no matter how well a trail suits your dog, and both of them are about us rather than about your dog.</p>
+      <div class="sc-cards">
+        <div class="sc-card">
+          <h4>We have not walked it yet</h4>
+          <p>Imported trails stay below about 80%, however perfect the numbers look. When we verify the trail, the ceiling lifts.</p>
+        </div>
+        <div class="sc-card">
+          <h4>Dog access changes with the season</h4>
+          <p>Where the rules depend on the date, we hold the score at 84 and ask you to check before you go.</p>
+        </div>
       </div>
-      <div class="sc-philosophy">The score drops when your dog's body says caution, and caps when our evidence isn't verified. It rises by us verifying trails, never by you pushing your dog.</div>
+      <div class="sc-philosophy">The missing points are our homework, not your dog's. A score rises when we verify a trail, never by pushing your dog further than it comfortably goes.</div>
 
       <h3>What we never do</h3>
       <p class="sc-note" style="margin:0 0 4px;">No score sees today's weather or your dog's mood. When in doubt, choose the gentler trail.</p>
@@ -220,52 +273,101 @@
         </div>
       </div>
 
-      <h3>Passo 1 · Quanto è in forma il tuo cane?</h3>
-      <p>La forma fisica stabilisce i valori di partenza; cuccioli, cani anziani, problemi di salute e corporature estreme li abbassano. Un dato mancante significa un valore neutro, mai una supposizione.</p>
+      <h3>Passo 1 · Valutiamo il sentiero</h3>
+      <p>Prima descriviamo la montagna, senza ancora considerare nessun cane. È questo che diventa la classificazione del sentiero, ed è identica per un chihuahua e per un husky.</p>
+      <div class="sc-cards">
+        <div class="sc-card">
+          <h4>Il terreno</h4>
+          <p>Il fondo sotto le zampe, cenge esposte e salti di roccia, ghiaioni, scale e cavi, e tutto ciò che può tagliare o ustionare un polpastrello.</p>
+        </div>
+        <div class="sc-card">
+          <h4>Lo sforzo</h4>
+          <p>Distanza, quanto si sale e quanto si ridiscende, perché le lunghe discese sono una fatica a sé.</p>
+        </div>
+        <div class="sc-card">
+          <h4>Le condizioni</h4>
+          <p>Quanta ombra offre il percorso, quanto scalda in stagione, l'acqua lungo il cammino e se i cani sono ammessi.</p>
+        </div>
+      </div>
+
+      <h3>Passo 2 · Aggiungi il tuo cane</h3>
+      <p>La forma fisica del tuo cane stabilisce tre limiti comodi. Cuccioli, cani anziani, problemi di salute e corporature estreme li abbassano. Ciò che lasci in bianco riceve un valore neutro, mai una supposizione.</p>
       <div class="sc-cards">
         <div class="sc-card">
           <h4>Forma bassa</h4>
-          <div class="sc-stat"><span>Terreno</span><b>0 · sentieri facili</b></div>
-          <div class="sc-stat"><span>Distanza</span><b>5 km</b></div>
-          <div class="sc-stat"><span>Dislivello</span><b>250 m</b></div>
+          <div class="sc-stat"><span>Terreno</span><b>Sentieri facili</b></div>
+          <div class="sc-stat"><span>Distanza</span><b>Fino a 5 km</b></div>
+          <div class="sc-stat"><span>Dislivello</span><b>Fino a 250 m</b></div>
         </div>
         <div class="sc-card">
           <h4>Forma moderata</h4>
-          <div class="sc-stat"><span>Terreno</span><b>1 · fondo misto</b></div>
-          <div class="sc-stat"><span>Distanza</span><b>10 km</b></div>
-          <div class="sc-stat"><span>Dislivello</span><b>600 m</b></div>
+          <div class="sc-stat"><span>Terreno</span><b>Terreno misto</b></div>
+          <div class="sc-stat"><span>Distanza</span><b>Fino a 10 km</b></div>
+          <div class="sc-stat"><span>Dislivello</span><b>Fino a 600 m</b></div>
         </div>
         <div class="sc-card">
           <h4>Forma alta</h4>
-          <div class="sc-stat"><span>Terreno</span><b>2 · accidentato</b></div>
-          <div class="sc-stat"><span>Distanza</span><b>18 km</b></div>
-          <div class="sc-stat"><span>Dislivello</span><b>1200 m</b></div>
+          <div class="sc-stat"><span>Terreno</span><b>Terreno accidentato</b></div>
+          <div class="sc-stat"><span>Distanza</span><b>Fino a 18 km</b></div>
+          <div class="sc-stat"><span>Dislivello</span><b>Fino a 1200 m</b></div>
         </div>
       </div>
 
-      <h3>Passo 2 · Quanto è impegnativo il sentiero?</h3>
-      <p>Ogni abbinamento parte da <b>100</b>.</p>
+      <h3>Passo 3 · Spieghiamo la compatibilità</h3>
+      <p>Ogni sentiero parte dal 100% per il tuo cane. Perde punti dove il percorso chiede più di quanto il tuo cane dia comodamente. Nient'altro muove il numero.</p>
       <div class="sc-penlist">
-        <div class="sc-penrow" data-tip="Ogni grado di terreno oltre la tolleranza del tuo cane costa 30 punti." title="Ogni grado di terreno oltre la tolleranza del tuo cane costa 30 punti."><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">−30 /grado</span><b>Terreno oltre il limite</b></div>
-        <div class="sc-penrow" data-tip="5 punti per ogni chilometro oltre il raggio del tuo cane, fino a 35." title="5 punti per ogni chilometro oltre il raggio del tuo cane, fino a 35."><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">fino a −35</span><b>Troppo lungo</b></div>
-        <div class="sc-penrow" data-tip="4 punti ogni 100 m di salita in più, fino a 20." title="4 punti ogni 100 m di salita in più, fino a 20."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">fino a −20</span><b>Troppo dislivello</b></div>
-        <div class="sc-penrow" data-tip="Discese prolungate oltre 400 m caricano le articolazioni dei cani fragili o giganti." title="Discese prolungate oltre 400 m caricano le articolazioni dei cani fragili o giganti."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">fino a −20</span><b>Discese lunghe</b></div>
-        <div class="sc-penrow" data-tip="Strapiombi o cenge esposte; la penalità cresce per cani fragili o ipovedenti." title="Strapiombi o cenge esposte; la penalità cresce per cani fragili o ipovedenti."><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">−30 a −40</span><b>Tratti esposti</b></div>
-        <div class="sc-penrow" data-tip="Il rischio caldo di base del percorso; i cani sensibili al caldo perdono di più." title="Il rischio caldo di base del percorso; i cani sensibili al caldo perdono di più."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">−4 a −25</span><b>Rischio caldo</b></div>
-        <div class="sc-penrow" data-tip="Sotto il 40% di ombra costa 5 punti, sotto il 20% ne costa 10." title="Sotto il 40% di ombra costa 5 punti, sotto il 20% ne costa 10."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">−5 / −10</span><b>Poca ombra</b></div>
-        <div class="sc-penrow" data-tip="8 punti per ogni pericolo registrato, con un massimo; i cani fragili perdono di più." title="8 punti per ogni pericolo registrato, con un massimo; i cani fragili perdono di più."><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">fino a −30</span><b>Pericoli del fondo</b></div>
-        <div class="sc-penrow" data-tip="I cani non sono ammessi su questo percorso, quindi non viene mai consigliato." title="I cani non sono ammessi su questo percorso, quindi non viene mai consigliato."><span class="sc-chip" style="color:#fff;background:#9C3A25;">Stop</span><b>Cani vietati</b></div>
-        <div class="sc-penrow" data-tip="L'accesso ai cani ha regole stagionali; il punteggio resta limitato a 84 finché non verifichi la regola per la tua data." title="L'accesso ai cani ha regole stagionali; il punteggio resta limitato a 84 finché non verifichi la regola per la tua data."><span class="sc-chip" style="color:#8A5A16;background:#8A5A161f;">Tetto 84</span><b>Accesso stagionale</b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">Molto</span><b>Terreno più duro di quanto regga<span class="sc-why">Roccia e ghiaione sotto un cane fatto per prati e sentieri nel bosco. È la cosa che pesa di più.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">Molto</span><b>Cenge esposte e salti di roccia<span class="sc-why">Punti dove uno scivolone ha conseguenze. Costa di più per cani fragili, anziani o che stanno perdendo la vista.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#9C3A25;background:#9C3A251f;">Molto</span><b>Più lungo del raggio del tuo cane<span class="sc-why">Distanza oltre il limite comodo del passo 2, che cresce con ogni chilometro in più.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">Abbastanza</span><b>Più dislivello del suo raggio<span class="sc-why">Quota guadagnata oltre il limite comodo. Salire stanca un cane più della distanza in piano.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">Abbastanza</span><b>Lunghe discese<span class="sc-why">La discesa prolungata carica articolazioni e schiena: conta per taglie giganti, cani lunghi di dorso e cani anziani.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">Abbastanza</span><b>Caldo sul percorso<span class="sc-why">Quanto scalda il percorso in stagione. Cani brachicefali, dal pelo folto e sensibili al caldo perdono di più.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#C98A2E;background:#C98A2E1f;">Abbastanza</span><b>Insidie del fondo<span class="sc-why">Pericoli registrati lungo il percorso, come roccia tagliente, ghiaione mobile o tratti attrezzati.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#8A5A16;background:#8A5A161f;">Poco</span><b>Poca ombra<span class="sc-why">Percorsi aperti senza un posto dove rinfrescarsi. Poco da solo, ma si somma al caldo.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#fff;background:#9C3A25;">Mai</span><b>Cani non ammessi<span class="sc-why">Alcuni percorsi vietano i cani. Non li consigliamo mai, qualunque cosa dicano gli altri numeri.</span></b></div>
+        <div class="sc-penrow"><span class="sc-chip" style="color:#8A5A16;background:#8A5A161f;">Trattenuto</span><b>Regole stagionali<span class="sc-why">Dove l'accesso dipende dal periodo dell'anno, teniamo il punteggio sotto la fascia migliore finché non verifichi la regola per la tua data.</span></b></div>
+      </div>
+      <details class="sc-maths">
+        <summary>I numeri esatti, se li vuoi</summary>
+        <div class="sc-maths-body">
+          <div class="sc-mathrow"><span>Ogni grado di terreno più duro di quanto il cane regga</span><b>−30</b></div>
+          <div class="sc-mathrow"><span>Ogni chilometro oltre il raggio del tuo cane</span><b>−5, fino a −35</b></div>
+          <div class="sc-mathrow"><span>Ogni 100 m di dislivello in più</span><b>−4, fino a −20</b></div>
+          <div class="sc-mathrow"><span>Discese continue oltre 400 m</span><b>fino a −20</b></div>
+          <div class="sc-mathrow"><span>Tratti esposti</span><b>da −30 a −40</b></div>
+          <div class="sc-mathrow"><span>Rischio caldo sul percorso</span><b>da −4 a −25</b></div>
+          <div class="sc-mathrow"><span>Sotto il 40% di ombra, sotto il 20%</span><b>−5, −10</b></div>
+          <div class="sc-mathrow"><span>Ogni insidia del fondo registrata</span><b>−8, con un tetto</b></div>
+          <div class="sc-mathrow"><span>Regole stagionali di accesso</span><b>trattenuto a 84</b></div>
+          <div class="sc-mathrow"><span>Cani vietati</span><b>mai consigliato</b></div>
+        </div>
+      </details>
+
+      <h3>Tre passi, un cane, un sentiero</h3>
+      <p>Bruna ha nove anni, è una labrador di forma moderata e soffre il caldo. Il sentiero è di 12 km con 700 m di dislivello, su terreno misto che lei regge bene, ma solo il 30% è all'ombra.</p>
+      <div class="sc-example">
+        <div class="sc-sum"><span>Ogni sentiero parte da</span><b>100%</b></div>
+        <div class="sc-sum"><span>2 km oltre i suoi comodi 10 km</span><b>−10</b></div>
+        <div class="sc-sum"><span>100 m di dislivello oltre i suoi comodi 600 m</span><b>−4</b></div>
+        <div class="sc-sum"><span>Percorso caldo per un cane che soffre il caldo</span><b>−10</b></div>
+        <div class="sc-sum"><span>Meno del 40% di ombra per rinfrescarsi</span><b>−5</b></div>
+        <div class="sc-sum sc-sum--total"><span>Compatibilità per Bruna</span><b>71%</b></div>
+        <p class="sc-example-foot">Compatibilità <b>buona</b>: vale la pena andarci con lei, partendo presto e portando acqua. Il terreno non le è costato nulla, perché il misto rientra in ciò che regge. Se fosse stata una tre anni in piena forma, lo stesso sentiero sarebbe stato sopra il 90%.</p>
       </div>
 
-      <h3>Passo 3 · Quanto ne siamo certi?</h3>
-      <p>Un punteggio vale quanto i nostri dati. Finché non abbiamo verificato un sentiero, la sua compatibilità è limitata a <b>≈80%</b>, per quanto perfetto sembri. I punti mancanti sono compiti nostri, non del tuo cane.</p>
-      <div class="sc-bands">
-        <div class="sc-band" style="color:#2C5C34;background:#2C5C341f;">85 e oltre<small>Scelta forte</small></div>
-        <div class="sc-band" style="color:#8A5A16;background:#8A5A161f;">60 – 84<small>Possibile con cautele</small></div>
-        <div class="sc-band" style="color:#9C3A25;background:#9C3A251f;">Sotto 60<small>Non consigliato</small></div>
+      <h3>Quanto ne siamo certi?</h3>
+      <p>Due cose trattengono un punteggio per quanto bene il sentiero si adatti al tuo cane, e riguardano noi, non il tuo cane.</p>
+      <div class="sc-cards">
+        <div class="sc-card">
+          <h4>Non l'abbiamo ancora percorso</h4>
+          <p>I sentieri importati restano sotto l'80% circa, per quanto perfetti sembrino i numeri. Quando lo verifichiamo, il tetto si alza.</p>
+        </div>
+        <div class="sc-card">
+          <h4>L'accesso cambia con la stagione</h4>
+          <p>Dove le regole dipendono dalla data, teniamo il punteggio a 84 e ti chiediamo di verificare prima di partire.</p>
+        </div>
       </div>
-      <div class="sc-philosophy">Il punteggio scende quando il corpo del tuo cane dice cautela, e si limita quando le nostre evidenze non sono verificate. Sale perché noi verifichiamo i sentieri, mai perché tu forzi il tuo cane.</div>
+      <div class="sc-philosophy">I punti mancanti sono i nostri compiti a casa, non quelli del tuo cane. Un punteggio sale quando verifichiamo un sentiero, mai forzando il tuo cane oltre ciò che fa comodamente.</div>
 
       <h3>Cosa non facciamo mai</h3>
       <p class="sc-note" style="margin:0 0 4px;">Nessun punteggio vede il meteo di oggi o l'umore del tuo cane. Nel dubbio, scegli il sentiero più dolce.</p>
