@@ -54,20 +54,20 @@ describe('trail photo carousel', () => {
     await new Promise(resolve => setTimeout(resolve, 0));
 
     const thumbnails = document.querySelectorAll('.community-photo__open');
-    expect(thumbnails).toHaveLength(3);
-    expect(thumbnails[0].querySelector('img').getAttribute('src')).toBe('data:image/jpeg;base64,ONE');
+    expect(thumbnails).toHaveLength(4);
+    expect(thumbnails[0].querySelector('img').getAttribute('src')).toBe('images/tre-cime-gallery-01.jpg');
     expect(document.querySelector('.community-photo figcaption')).toBeNull();
     expect(document.getElementById('trailPhotosNext').hidden).toBe(false);
 
-    thumbnails[1].click();
+    thumbnails[2].click();
     const viewer = document.querySelector('.trail-photo-viewer');
     expect(viewer).not.toBeNull();
     expect(viewer.querySelector('[data-gallery-caption]').textContent).toBe('Second view');
-    expect(viewer.querySelector('[data-gallery-count]').textContent).toBe('2 of 3');
+    expect(viewer.querySelector('[data-gallery-count]').textContent).toBe('3 of 4');
 
     viewer.dispatchEvent(new KeyboardEvent('keydown', { key:'ArrowRight', bubbles:true }));
     expect(viewer.querySelector('[data-gallery-caption]').textContent).toBe('Third view');
-    expect(viewer.querySelector('[data-gallery-count]').textContent).toBe('3 of 3');
+    expect(viewer.querySelector('[data-gallery-count]').textContent).toBe('4 of 4');
 
     viewer.querySelector('[data-gallery-prev]').click();
     expect(viewer.querySelector('[data-gallery-caption]').textContent).toBe('Second view');
@@ -75,6 +75,6 @@ describe('trail photo carousel', () => {
     viewer.dispatchEvent(new KeyboardEvent('keydown', { key:'Escape', bubbles:true }));
     expect(document.querySelector('.trail-photo-viewer')).toBeNull();
     expect(document.body.classList.contains('trail-photo-viewer-open')).toBe(false);
-    expect(document.activeElement).toBe(thumbnails[1]);
+    expect(document.activeElement).toBe(thumbnails[2]);
   });
 });
