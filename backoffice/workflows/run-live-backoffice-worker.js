@@ -1,13 +1,16 @@
 'use strict';
 
 const { randomUUID } = require('crypto');
-const { recordVerifiedTrailReview } = require('./apply-content-review');
+const { recordVerifiedTrailReview,assertVerifiedTrailReviewDecisions } = require('./apply-content-review');
 const { buildVerifiedTrailRevisionJobs } = require('./queue-verified-trail-revisions');
 const { buildPublicationStaging } = require('./build-publication-staging');
 const { runVerifiedTrailRevision } = require('./run-verified-trail-revision');
 const { applyDossierReview } = require('./apply-dossier-review');
 const { runTrailSpecialist } = require('./run-trail-specialist');
 const { advanceTrailOrchestration } = require('./advance-trail-orchestration');
+const {buildVerifiedEditorialHandoff}=require('./verified-editorial-handoff');
+const {runVerifiedEditorialFirstPass}=require('./run-verified-editorial-first-pass');
+const {validateContentExecution}=require('../contracts/content-result-v1');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
 const path=require('path');
 
@@ -30,6 +33,7 @@ async function ingestTrailReviews(store, options = {}){
       const allowedJobs = new Set(execution.outputs.map(output => output.jobId));
       const decisions = (review.decisions || []).filter(decision => allowedJobs.has(decision.jobId));
       if(!decisions.length) throw new Error('Review contains no verified-trail decisions');
+      assertVerifiedTrailReviewDecisions(execution,decisions);
       const submittedAt = iso(review.submittedAt); const recorded = recordVerifiedTrailReview(execution, decisions);
       const existingJobs = await store.listJobs(['queued','running','ready-for-review','blocked']);
       const revisionJobs = buildVerifiedTrailRevisionJobs(execution, decisions, submittedAt, existingJobs);
@@ -79,6 +83,35 @@ async function processRevisionJobs(store, options = {}){
     }catch(error){
       await store.failJob(job.id, error); outcomes.push({ jobId:job.id, status:'retry-or-blocked', error:error.message });
     }
+  }
+  return outcomes;
+}
+
+async function processEditorialFirstPassJobs(store,options={}){
+  const workerId=options.workerId||`orma-worker-${randomUUID()}`;
+  const queued=(await store.listJobs(['queued'])).filter(job=>job.jobType==='verified-trail-editorial-first-pass');const outcomes=[];
+  for(const pending of queued.slice(0,options.editorialLimit||4)){
+    const job=await store.claimJob(pending.id,workerId);if(!job)continue;
+    try{
+      const [editorialQueue,dossier,execution]=await Promise.all([
+        store.getArtifact('verified-trail-editorial-queue'),store.getArtifact(`verified-dossier-${job.candidateId}`),
+        store.getArtifact('verified-trail-editorial-execution'),
+      ]);
+      const item=(editorialQueue?.items||[]).find(candidate=>candidate.candidateId===job.candidateId);
+      if(!item)throw new Error(`Verified editorial item not found: ${job.candidateId}`);
+      const result=await runVerifiedEditorialFirstPass({job,item,dossier},options);
+      const current=execution||{contractVersion:'1.0.0',generatedAt:null,mode:'draft-only',stage:'verified-trail-editorial-review',
+        executionOrigin:'live-orma-verified-handoff',sourceQueue:'firestore:verified-trail-editorial-queue',
+        publicMutationAllowed:false,publicationAuthorized:false,outputs:[]};
+      const outputs=[...(current.outputs||[]).filter(output=>output.jobId!==result.output.jobId),result.output];
+      const next={...current,generatedAt:result.output.firstPass.completedAt,outputs,summary:{trails:new Set(outputs.map(output=>output.candidateId)).size,
+        readyForReview:outputs.filter(output=>output.status==='ready-for-review').length,blocked:outputs.filter(output=>output.status==='blocked').length,publicationReady:0}};
+      const errors=validateContentExecution(next);if(errors.length)throw new Error(errors.join('; '));
+      await store.setArtifact('verified-trail-editorial-execution',next,{lastWorkerId:workerId});
+      await store.completeJob(job.id,{responseId:result.job.responseId,model:result.job.model,factIdsUsed:result.job.factIdsUsed,
+        auditSummary:result.job.auditSummary,outputRef:'firestore:verified-trail-editorial-execution'});
+      outcomes.push({jobId:job.id,agentId:job.agentId,status:'ready-for-review'});
+    }catch(error){await store.failJob(job.id,error,{maximumFailures:3});outcomes.push({jobId:job.id,agentId:job.agentId,status:'retry-or-blocked',error:error.message});}
   }
   return outcomes;
 }
@@ -157,9 +190,15 @@ async function ingestDossierReviews(store){
       for(const job of result.jobs)await store.putJob(job);
       const writes=[];
       if(result.verifiedDossier){
-        const registry=await store.getArtifact('orma-verified-registry-live')||{contractVersion:'1.0.0',status:'active',verified:[],publicMutationAllowed:false,publicationAuthorized:false};
+        const [registryValue,editorialQueue]=await Promise.all([store.getArtifact('orma-verified-registry-live'),store.getArtifact('verified-trail-editorial-queue')]);
+        const registry=registryValue||{contractVersion:'1.0.0',status:'active',verified:[],publicMutationAllowed:false,publicationAuthorized:false};
         registry.generatedAt=iso(review.submittedAt);registry.verified=[...(registry.verified||[]).filter(item=>item.candidateId!==result.verifiedRecord.candidateId),result.verifiedRecord];
-        writes.push(store.setArtifact(`verified-dossier-${result.verifiedDossier.candidateId}`,result.verifiedDossier),store.setArtifact('orma-verified-registry-live',registry));
+        const handoff=buildVerifiedEditorialHandoff(result.verifiedDossier,result.verifiedRecord,editorialQueue,{at:iso(review.submittedAt)});
+        for(const job of handoff.jobs){const created=typeof store.putJobIfAbsent==='function'?await store.putJobIfAbsent(job):(await store.putJob(job),true);if(created)result.jobs.push(job);}
+        writes.push(store.setArtifact(`verified-dossier-${result.verifiedDossier.candidateId}`,result.verifiedDossier),
+          store.setArtifact(`route-proposal-${result.verifiedDossier.candidateId}`,{contractVersion:'1.0.0',candidateId:result.verifiedDossier.candidateId,geometry:result.verifiedDossier.routeGeometry,approvedAt:iso(review.submittedAt),publicMutationAllowed:false}),
+          store.setArtifact('orma-verified-registry-live',registry),
+          store.setArtifact('verified-trail-editorial-queue',handoff.queue,{lastVerifiedCandidateId:result.verifiedDossier.candidateId}));
       }
       await Promise.all([
         store.setArtifact('trail-orchestration',result.orchestration),
@@ -183,11 +222,12 @@ async function runLiveBackofficeWorker(store, options = {}){
   const dossierReviews=await ingestDossierReviews(store);
   const advancementBefore=await advanceTrailOrchestration(store,options);
   const reviews = await ingestTrailReviews(store, options);
+  const editorialFirstPass=await processEditorialFirstPassJobs(store,options);
   const jobs = await processRevisionJobs(store, options);
   const specialistJobs=await processTrailSpecialistJobs(store,options);
   const advancementAfter=await advanceTrailOrchestration(store,options);
   const publications = await ingestPublicationReviews(store);
-  return { workerId:options.workerId || null, recoveredJobs, dossierReviews, advancementBefore,reviews,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null, recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
-module.exports = { iso, ingestTrailReviews, processRevisionJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { iso, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestPublicationReviews,runLiveBackofficeWorker };

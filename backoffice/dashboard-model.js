@@ -77,7 +77,7 @@
     const orchestration=input.orchestration||{};const dossiers=input.dossiers||{};const execution=input.execution||{};
     const publication=input.publication||{};const publicationRequests=input.publicationRequests||{requests:[]};
     const history=input.history||[];const allJobs=input.jobs||[];const workerHealth=deriveWorkerHealth(input.workerHealth,input.nowMs==null?{}:{nowMs:input.nowMs});
-    const jobs=allJobs.filter(job=>['trail-verification-specialist','trail-claim-resolution','verified-trail-editorial-revision'].includes(job.jobType)||String(job.id||'').startsWith('trail-revision-'));
+    const jobs=allJobs.filter(job=>['trail-verification-specialist','trail-claim-resolution','verified-trail-editorial-first-pass','verified-trail-editorial-revision'].includes(job.jobType)||String(job.id||'').startsWith('trail-revision-'));
     const activeJobs=jobs.filter(job=>ACTIVE_JOB_STATES.has(job.status));
     const names=new Map();
     for(const trail of orchestration.trails||[])names.set(trail.candidateId||trail.trailId,trail.trailName||trail.name||trail.candidateId);

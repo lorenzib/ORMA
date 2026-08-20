@@ -931,7 +931,7 @@ describe('ORMA backoffice MVP', () => {
       mode: 'staging-only', stage: 'website-publication-preview',
       publicMutationAllowed: false, publicationAuthorized: false,
     }));
-    expect(staging.summary).toEqual({ trails: 3, readyForPreview: 3, waitingForApprovals: 0, publicMutations: 0 });
+    expect(staging.summary).toEqual({ trails: 3, readyForPreview: 3, waitingForApprovals: 0, waitingForMapping:0, publicMutations: 0 });
     expect(staging.items[0].proposedWebsiteFields.imageCredit).toEqual(expect.objectContaining({
       text:expect.any(String),url:expect.stringMatching(/^https:\/\//),
     }));
