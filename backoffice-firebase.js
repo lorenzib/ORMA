@@ -80,7 +80,7 @@ async function getContentReviews(){
 async function getDecisionHistory(){
   if(!await moderatorIdentity())return {ok:false,error:'moderator-required',decisions:[]};
   try{
-    const sources=[['backofficeDossierReviews','dossier'],['backofficeReviews','content'],['backofficePublicationReviews','publication'],['backofficeNewTrailReviews','new-trail'],['backofficeHazardReviews','hazard']];
+    const sources=[['backofficeDossierReviews','dossier'],['backofficeReviews','content'],['backofficePublicationReviews','publication'],['backofficeNewTrailReviews','new-trail'],['backofficeHazardReviews','hazard'],['backofficeEditorialReviews','editorial'],['backofficeImageReviews','image'],['backofficeNewsletterReviews','newsletter'],['backofficeAnalystReviews','analyst']];
     const snapshots=await Promise.all(sources.map(([name])=>getDocs(query(collection(db,name),orderBy('submittedAt','desc'),limit(20)))));
     const decisions=snapshots.flatMap((snapshot,index)=>snapshot.docs.map(item=>({id:item.id,stream:sources[index][1],...item.data()})))
       .sort((a,b)=>(b.submittedAt?.seconds||0)-(a.submittedAt?.seconds||0)).slice(0,30);
@@ -126,6 +126,30 @@ async function submitTrailReview(payload){
   }catch(error){console.error('submitTrailReview failed:',error);return {ok:false,error:'review-submit-failed'};}
 }
 
+async function getEditorialReviews(){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',reviews:[]};
+  try{const snapshot=await getDocs(query(collection(db,'backofficeEditorialReviews'),orderBy('submittedAt','desc'),limit(100)));return {ok:true,reviews:snapshot.docs.map(item=>({id:item.id,...item.data()}))};}
+  catch(error){console.error('getEditorialReviews failed:',error);return {ok:false,error:'editorial-review-read-failed',reviews:[]};}
+}
+
+async function submitEditorialReview(input){
+  const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
+  try{const review=await addDoc(collection(db,'backofficeEditorialReviews'),{contractVersion:'1.0.0',type:'website-editorial-review',status:'queued',packetGeneratedAt:String(input.packetGeneratedAt||''),sourceRef:String(input.sourceRef||''),action:String(input.action||''),note:String(input.note||'').trim().slice(0,1500),edits:Array.isArray(input.edits)?input.edits.slice(0,20):[],submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false});return {ok:true,reviewId:review.id,status:'queued'};}
+  catch(error){console.error('submitEditorialReview failed:',error);return {ok:false,error:'editorial-review-submit-failed'};}
+}
+
+async function getImageReviews(){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',reviews:[]};
+  try{const snapshot=await getDocs(query(collection(db,'backofficeImageReviews'),orderBy('submittedAt','desc'),limit(150)));return {ok:true,reviews:snapshot.docs.map(item=>({id:item.id,...item.data()}))};}
+  catch(error){console.error('getImageReviews failed:',error);return {ok:false,error:'image-review-read-failed',reviews:[]};}
+}
+
+async function submitImageReview(input){
+  const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
+  try{const review=await addDoc(collection(db,'backofficeImageReviews'),{contractVersion:'1.0.0',type:'image-coverage-review',status:'queued',slug:String(input.slug||''),action:String(input.action||''),note:String(input.note||'').trim().slice(0,1500),assetRef:String(input.assetRef||'').slice(0,1000),submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false});return {ok:true,reviewId:review.id,status:'queued'};}
+  catch(error){console.error('submitImageReview failed:',error);return {ok:false,error:'image-review-submit-failed'};}
+}
+
 async function submitPublicationReview(input){
   const moderator=await moderatorIdentity();
   if(!moderator)return {ok:false,error:'moderator-required'};
@@ -165,7 +189,7 @@ window.DoloPawsAuth={
   async logOut(){await signOut(auth);currentUser=null;},
 };
 window.DoloPawsModeration={getModeratorStatus:async()=>({ok:!!await moderatorIdentity()})};
-window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,submitTrailReview,submitPublicationReview,submitDossierReview,submitNewTrailReview,submitHazardReview};
+window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getImageReviews,submitTrailReview,submitPublicationReview,submitDossierReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitImageReview};
 
 onAuthStateChanged(auth,user=>{
   currentUser=user;

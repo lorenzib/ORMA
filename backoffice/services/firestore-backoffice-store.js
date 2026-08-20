@@ -11,6 +11,10 @@ const COLLECTIONS = Object.freeze({
   dossierReviews: 'backofficeDossierReviews',
   newTrailReviews:'backofficeNewTrailReviews',
   hazardReviews:'backofficeHazardReviews',
+  editorialReviews:'backofficeEditorialReviews',
+  imageReviews:'backofficeImageReviews',
+  newsletterReviews:'backofficeNewsletterReviews',
+  analystReviews:'backofficeAnalystReviews',
 });
 const configuredDatabases = new WeakSet();
 const ARTIFACT_DATA_ENCODING = 'json-v1';
@@ -204,6 +208,42 @@ class FirestoreBackofficeStore {
 
   async markHazardReview(id,status,fields={}){
     await this.db.collection(COLLECTIONS.hazardReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+  }
+
+  async listEditorialReviews(status='queued'){
+    const snapshot=await this.db.collection(COLLECTIONS.editorialReviews).where('status','==',status).get();
+    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+  }
+
+  async markEditorialReview(id,status,fields={}){
+    await this.db.collection(COLLECTIONS.editorialReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+  }
+
+  async listImageReviews(status='queued'){
+    const snapshot=await this.db.collection(COLLECTIONS.imageReviews).where('status','==',status).get();
+    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+  }
+
+  async markImageReview(id,status,fields={}){
+    await this.db.collection(COLLECTIONS.imageReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+  }
+
+  async listNewsletterReviews(status='queued'){
+    const snapshot=await this.db.collection(COLLECTIONS.newsletterReviews).where('status','==',status).get();
+    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+  }
+
+  async markNewsletterReview(id,status,fields={}){
+    await this.db.collection(COLLECTIONS.newsletterReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+  }
+
+  async listAnalystReviews(status='queued'){
+    const snapshot=await this.db.collection(COLLECTIONS.analystReviews).where('status','==',status).get();
+    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+  }
+
+  async markAnalystReview(id,status,fields={}){
+    await this.db.collection(COLLECTIONS.analystReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
   }
 }
 
