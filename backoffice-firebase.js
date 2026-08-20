@@ -110,6 +110,7 @@ async function submitHazardReview(input){
   const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
   try{const review=await addDoc(collection(db,'backofficeHazardReviews'),{contractVersion:'1.0.0',type:'hazard-resolution-review',status:'queued',hazardId:String(input.hazardId||''),action:String(input.action||''),note:String(input.note||'').trim().slice(0,1000),submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false});return {ok:true,reviewId:review.id,status:'queued'};}
   catch(error){console.error('submitHazardReview failed:',error);return {ok:false,error:'hazard-review-submit-failed'};}
+}
 
 async function submitTrailReview(payload){
   const moderator=await moderatorIdentity();
