@@ -79,10 +79,11 @@ describe('footer navigation', () => {
     });
   });
 
-  test('every public footer loads the current balanced five-column stylesheet', () => {
+  test('every public footer loads the focused CTA and compact responsive stylesheet', () => {
     const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
-    expect(css).toContain('grid-template-columns:minmax(230px,1.35fr) repeat(4,minmax(0,max-content))');
-    expect(css).toContain('.hp-footer-grid>div:last-child{justify-self:end;}');
+    expect(css).toContain('.hp-prefooter-inner');
+    expect(css).toContain('grid-template-columns:minmax(210px,1.3fr) repeat(4,minmax(100px,.7fr))');
+    expect(css).toContain('.hp-footer-grid{grid-template-columns:1fr 1fr;}');
     expect(css).toContain('max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)))');
 
     publicFooterPages().forEach(file => {
@@ -92,7 +93,8 @@ describe('footer navigation', () => {
 
     publicFooterPages().forEach(file => {
       const html = fs.readFileSync(file, 'utf8');
-      expect(html).toMatch(/href="(?:\.\.\/|\/)?styles\.css\?v=20260818-18"/);
+      expect(html).toMatch(/href="(?:\.\.\/|\/)?styles\.css\?v=20260820-2"/);
+      expect(html).toMatch(/src="(?:\.\.\/|\/)?mobile-nav\.js\?v=20260820-1"/);
     });
   });
 
@@ -115,22 +117,13 @@ describe('footer navigation', () => {
     });
   });
 
-  test('every public footer offers both store badges', () => {
+  test('unreleased app badges are visually retired in favour of one honest status', () => {
     ['app-store-badge.svg', 'google-play-badge.svg'].forEach(asset => {
       expect(fs.existsSync(path.join(__dirname, asset))).toBe(true);
     });
-
-    const pages = publicFooterPages();
-    expect(pages.length).toBeGreaterThan(0);
-    pages.forEach(file => {
-      const footer = footerOf(file);
-      expect(footer).toMatch(/<div class="hp-footer-h"[^>]*>Get the app<\/div>/);
-      expect(footer).toMatch(
-        /src="(?:\.\.\/|\/)?app-store-badge\.svg" alt="Download on the App Store"/
-      );
-      expect(footer).toMatch(
-        /src="(?:\.\.\/|\/)?google-play-badge\.svg" alt="Get it on Google Play"/
-      );
-    });
+    const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+    const navigation = fs.readFileSync(path.join(__dirname, 'mobile-nav.js'), 'utf8');
+    expect(css).toContain('.hp-footer-get>.hp-footer-h,.hp-footer-apps{display:none;}');
+    expect(navigation).toContain("appNote.textContent = 'Mobile apps coming soon'");
   });
 });
