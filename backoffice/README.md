@@ -152,6 +152,18 @@ job lifecycle; and `backofficeReviews` contains immutable moderator decisions.
 Client rules permit moderators to read state and append decisions, but only the
 Admin SDK worker can change an artifact or job status.
 
+The repeatable production contract audit is:
+
+```sh
+npm run backoffice:audit
+```
+
+It checks hosted desk coverage, immutable review contracts, worker and strategy
+coverage, five-attempt resolution, publication failure receipts, schedules,
+supported Node/action runtimes and the private Hosting boundary. External
+account settings remain named manual checks. Operator procedures are in
+[`RUNBOOK.md`](./RUNBOOK.md).
+
 `.github/workflows/orma-backoffice-worker.yml` has a five-minute GitHub schedule
 target and may also be started with **Run workflow** in GitHub Actions. GitHub
 can delay scheduled starts, so the worker writes a protected `worker-health`
@@ -258,8 +270,9 @@ The live trail-verification vertical includes Cartographer, Logistics,
 Regulatory Ranger, Terrain & POI, Evidence Librarian and Red Team execution,
 plus the verified-trail Copywriter and Visual Director revision loop. New Trail
 scouting, dynamic hazard monitoring, image coverage, Newsletter and Analyst
-packets are separate team workflows with their own desks and human gates. Their
-code being present does not mean their schedules are active.
+packets are separate team workflows with their own desks and human gates. Each
+hosted schedule remains independently controlled by its repository activation
+variable; the current production checklist is in [`RUNBOOK.md`](./RUNBOOK.md).
 
 ## Six-team operating commands
 

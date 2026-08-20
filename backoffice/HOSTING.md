@@ -13,15 +13,15 @@ Firebase Hosting serves static interface files publicly. A browser redirect is
 not a data-security boundary, so the Hosting package must never contain files
 from `backoffice-data/`, `data/`, or any generated review JSON.
 
-The deployed package contains only the sign-in shell and the Existing Trails
-review desks. Trail dossiers, jobs, decisions, and publication staging are read
-from or appended to Firestore after Firebase verifies the `moderator` custom
-claim. Firestore rules remain the authoritative access boundary.
+The deployed package contains only the sign-in shell and protected operator
+interfaces. Existing Trails, New Trails, Groundskeeper, Editorial, image
+coverage, Newsletter and Analyst state is read from or appended to Firestore
+after Firebase verifies the `moderator` custom claim. Firestore rules remain
+the authoritative access boundary. Social remains visible but launch-gated and
+has no publishing credentials.
 
-Other team desks remain visible in the six-team overview but are not linked
-from the hosted release until their state and actions have been migrated from
-local files and local API routes to protected Firestore contracts. Guide
-editing remains a separate Editorial workflow.
+Trail verification and guide editing remain separate workflows even though
+both are reachable from the persistent backoffice navigation.
 
 ## Deployment
 
@@ -36,3 +36,6 @@ role.
 
 The temporary Firebase domain and, once connected, `backoffice.app-orma.com`
 must both be listed in Firebase Authentication's authorized domains.
+
+See [`RUNBOOK.md`](./RUNBOOK.md) for schedules, decision receipts, health and
+failure recovery.
