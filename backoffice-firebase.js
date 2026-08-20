@@ -1,6 +1,9 @@
 const firebaseConfig = {
   apiKey: "AIzaSyDnEJKnoDltKwpl4QdhA-qLH3a4ugLd68M",
-  authDomain: "auth.app-orma.com",
+  // Use Firebase's project-native auth domain for the hosted backoffice. The
+  // custom public auth hostname is not the backoffice hosting origin and can
+  // make browser sign-in initialization fail even when the page itself loads.
+  authDomain: "dolopaws.firebaseapp.com",
   projectId: "dolopaws",
   storageBucket: "dolopaws.firebasestorage.app",
   messagingSenderId: "331415525455",
