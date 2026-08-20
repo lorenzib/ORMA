@@ -26,6 +26,7 @@ concurrency:
 permissions:
   contents: write
   pull-requests: write
+  actions: read
 
 jobs:
   process-agent-queue:
@@ -171,6 +172,30 @@ jobs:
           ORMA_AUTOMATION_FAILURE_RETRYABLE="$retryable" \
           npm run backoffice:record-publication-failure 2>&1 | tee "$RUNNER_TEMP/orma-publication-failure-receipt.log"
 
+      - name: Verify the latest successful Pages deployment
+        id: deployed_publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: npm run backoffice:find-pages-deployment
+
+      - name: Check out the exact deployed website commit
+        id: checkout_deployed_publication
+        if: steps.deployed_publication.outputs.found == 'true'
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.deployed_publication.outputs.commit_sha }}
+          path: deployed-site
+
+      - name: Record protected publication deployment receipts
+        id: confirm_deployed_publication
+        if: steps.deployed_publication.outputs.found == 'true'
+        env:
+          ORMA_PUBLICATION_COMMIT_SHA: ${{ steps.deployed_publication.outputs.commit_sha }}
+          ORMA_PUBLICATION_DEPLOYMENT_URL: ${{ steps.deployed_publication.outputs.run_url }}
+          ORMA_PUBLICATION_PUBLIC_BASE_URL: https://www.app-orma.com
+          ORMA_PUBLICATION_OVERRIDES_PATH: deployed-site/data/verified-trail-overrides.json
+        run: npm run backoffice:confirm-publications
+
       - name: Record worker completion
         if: ${{ always() }}
         shell: bash
@@ -210,6 +235,15 @@ jobs:
             outcome="failure"
             stage="publication-failure-receipt"
             log="$RUNNER_TEMP/orma-publication-failure-receipt.log"
+          elif [ "${{ steps.deployed_publication.outcome }}" = "failure" ]; then
+            outcome="failure"
+            stage="publication-deployment-verification"
+          elif [ "${{ steps.checkout_deployed_publication.outcome }}" = "failure" ]; then
+            outcome="failure"
+            stage="publication-deployed-commit-checkout"
+          elif [ "${{ steps.confirm_deployed_publication.outcome }}" = "failure" ]; then
+            outcome="failure"
+            stage="publication-deployment-receipt"
           fi
           ORMA_WORKER_HEALTH_PHASE=finish \
           ORMA_WORKER_HEALTH_OUTCOME="$outcome" \

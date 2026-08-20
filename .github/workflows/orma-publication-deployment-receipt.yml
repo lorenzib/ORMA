@@ -1,17 +1,11 @@
 name: Confirm ORMA trail deployment
 
 on:
-  workflow_run:
-    workflows: ["pages build and deployment"]
-    types: [completed]
   workflow_dispatch:
     inputs:
       publication_commit:
-        description: Commit already deployed successfully by GitHub Pages
-        required: true
-      deployment_run_url:
-        description: URL of the successful GitHub Pages deployment run
-        required: true
+        description: Optional deployed commit to reconcile; leave blank to use the latest successful Pages deployment
+        required: false
 
 concurrency:
   group: orma-publication-deployment-receipt
@@ -19,17 +13,15 @@ concurrency:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   record-deployment:
-    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
       FIREBASE_PROJECT_ID: dolopaws
       FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-      ORMA_PUBLICATION_COMMIT_SHA: ${{ github.event.inputs.publication_commit || github.event.workflow_run.head_sha }}
-      ORMA_PUBLICATION_DEPLOYMENT_URL: ${{ github.event.inputs.deployment_run_url || github.event.workflow_run.html_url }}
       ORMA_PUBLICATION_PUBLIC_BASE_URL: https://www.app-orma.com
       ORMA_PUBLICATION_OVERRIDES_PATH: deployed-site/data/verified-trail-overrides.json
     steps:
@@ -37,24 +29,34 @@ jobs:
         with:
           ref: main
 
-      - name: Check out the exact deployed website commit
-        uses: actions/checkout@v7
-        with:
-          ref: ${{ env.ORMA_PUBLICATION_COMMIT_SHA }}
-          path: deployed-site
-
       - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: npm
 
-      - name: Check receipt credentials and evidence
+      - name: Check receipt credentials
         run: |
           test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
-          test -n "$ORMA_PUBLICATION_COMMIT_SHA" || { echo "Missing deployed commit SHA"; exit 1; }
-          test -n "$ORMA_PUBLICATION_DEPLOYMENT_URL" || { echo "Missing successful deployment run URL"; exit 1; }
 
       - run: npm ci
 
+      - name: Verify the latest successful Pages deployment
+        id: deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ORMA_PUBLICATION_COMMIT_SHA: ${{ github.event.inputs.publication_commit || '' }}
+        run: npm run backoffice:find-pages-deployment
+
+      - name: Check out the exact deployed website commit
+        if: steps.deployment.outputs.found == 'true'
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.deployment.outputs.commit_sha }}
+          path: deployed-site
+
       - name: Record protected publication deployment receipts
+        if: steps.deployment.outputs.found == 'true'
+        env:
+          ORMA_PUBLICATION_COMMIT_SHA: ${{ steps.deployment.outputs.commit_sha }}
+          ORMA_PUBLICATION_DEPLOYMENT_URL: ${{ steps.deployment.outputs.run_url }}
         run: npm run backoffice:confirm-publications
