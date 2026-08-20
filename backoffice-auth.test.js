@@ -41,4 +41,9 @@ describe('private ORMA backoffice authentication',()=>{
     expect(dom.window.document.documentElement.classList.contains('bo-authenticated')).toBe(true);
     dom.window.close();
   });
+
+  test('keeps the hosted login visible while authentication resolves',()=>{
+    const styles=fs.readFileSync(path.join(root,'backoffice-review.css'),'utf8');
+    expect(styles).not.toContain('html.bo-auth-pending body{visibility:hidden}');
+  });
 });
