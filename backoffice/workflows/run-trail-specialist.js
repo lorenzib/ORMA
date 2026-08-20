@@ -3,6 +3,7 @@
 const {createStructuredResponse}=require('../services/openai-responses-client');
 const {runCartographer}=require('./run-cartographer');
 const {candidateFromProductionTrail,referenceFromProductionTrail}=require('./run-catalogue-batch');
+const {mergeClaimResolutionResult}=require('./claim-resolution');
 
 const CATEGORIES=['route','geometry','elevation','parking','water','heat','exposure','livestock','surfaceHazards','access','photo','provenance'];
 const JUDGMENT_AGENTS=new Set(['evidenceLibrarian','redTeam','auditor']);
@@ -53,11 +54,16 @@ async function runTrailSpecialist({job,trail,context},options={}){
   const prompt=PROMPTS[job.agentId]; if(!prompt)throw new Error(`No live specialist handler for ${job.agentId}`);
   const runAgent=options.runAgent||createStructuredResponse;
   const clientOptions={...(options.clientOptions||{}),model:options.clientOptions?.model||modelForAgent(job.agentId,options.env)};
+  const resolutionPrompt=job.resolutionAttempt?`\n\nThis is automated evidence-resolution attempt ${job.resolutionAttempt} of ${job.maximumResolutionAttempts||5} for claim(s) ${(job.claimIds||[]).join(', ')}. Use this materially different strategy: ${job.resolutionStrategyLabel} (${job.resolutionStrategy}). ${job.resolutionInstruction} Return a complete updated specialist result: preserve unrelated prior claims, include every targeted claim, and list only questions that remain open after this attempt. Never claim success merely because a source was not found.`:'';
   const response=await runAgent({schemaName:`orma_${job.agentId}_trail_findings`,schema:SPECIALIST_SCHEMA,webSearch:true,
-    messages:[{role:'developer',content:prompt},{role:'user',content:JSON.stringify({job,trail,context})}]},clientOptions);
+    messages:[{role:'developer',content:prompt+resolutionPrompt},{role:'user',content:JSON.stringify({job,trail,context})}]},clientOptions);
   validateSpecialistResult(response.data);
-  return {responseId:response.responseId,model:response.model,result:{contractVersion:'1.0.0',candidateId:job.candidateId,
-    agentId:job.agentId,action:job.action,generatedAt:options.at||new Date().toISOString(),...response.data,publicMutationAllowed:false}};
+  const at=options.at||new Date().toISOString();
+  const previous=context.slice().reverse().find(item=>item?.agentId===job.agentId&&Array.isArray(item.claims));
+  const current={contractVersion:'1.0.0',candidateId:job.candidateId,
+    agentId:job.agentId,action:job.action,generatedAt:at,...response.data,publicMutationAllowed:false};
+  const result=mergeClaimResolutionResult(previous,current,job,at);
+  return {responseId:response.responseId,model:response.model,result};
 }
 
 module.exports={CATEGORIES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};

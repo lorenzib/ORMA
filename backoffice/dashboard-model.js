@@ -56,7 +56,7 @@
     if(status==='queued')return 'Saved in Firestore. ORMA automation will collect this on its next successful run; current worker health is shown above.';
     if(status==='superseded')return 'Replaced safely by your later decision.';
     if(status==='blocked')return 'ORMA automation could not complete this handoff; it needs attention.';
-    if(status==='publication-failed')return `Publication stopped at ${(item.failureStage||'automation').replace(/-/g,' ')}. Your approval is retained and the failure receipt is linked.`;
+    if(status==='publication-failed')return `Publication stopped at ${(item.failureStage||'automation').replace(/-/g,' ')}. Your approval is retained and the failure receipt is linked.${item.retryMode==='manual'?' Automatic retries are paused until the external setting is corrected and a forced manual run is started.':item.retryAfter?` Automatic retry paused until ${new Date(item.retryAfter).toLocaleString()}.`:''}`;
     if(status==='pull-request-opened')return 'The tested website diff is ready for your final GitHub review.';
     if(status==='approved-for-pr-creation')return 'Approval consumed. ORMA automation is preparing the website pull request.';
     if(item.stream==='dossier'&&item.action==='request-revision')return 'Revision handed to the selected trail specialist.';
@@ -77,7 +77,7 @@
     const orchestration=input.orchestration||{};const dossiers=input.dossiers||{};const execution=input.execution||{};
     const publication=input.publication||{};const publicationRequests=input.publicationRequests||{requests:[]};
     const history=input.history||[];const allJobs=input.jobs||[];const workerHealth=deriveWorkerHealth(input.workerHealth,input.nowMs==null?{}:{nowMs:input.nowMs});
-    const jobs=allJobs.filter(job=>job.jobType==='trail-verification-specialist'||job.jobType==='verified-trail-editorial-revision'||String(job.id||'').startsWith('trail-revision-'));
+    const jobs=allJobs.filter(job=>['trail-verification-specialist','trail-claim-resolution','verified-trail-editorial-revision'].includes(job.jobType)||String(job.id||'').startsWith('trail-revision-'));
     const activeJobs=jobs.filter(job=>ACTIVE_JOB_STATES.has(job.status));
     const names=new Map();
     for(const trail of orchestration.trails||[])names.set(trail.candidateId||trail.trailId,trail.trailName||trail.name||trail.candidateId);

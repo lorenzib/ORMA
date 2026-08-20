@@ -81,4 +81,10 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.workerHealth.state).toBe(state);
     if(state==='failed')expect(model.workerHealth).toEqual(expect.objectContaining({consecutiveFailures:2,runUrl:'https://github.com/orma/actions/runs/123'}));
   });
+
+  test('counts autonomous claim-resolution jobs as visible agent work',()=>{
+    const model=buildDashboardModel({jobs:[{id:'resolution-1',jobType:'trail-claim-resolution',status:'queued',candidateId:'trail-a'}]});
+    expect(model.summary.agentWork).toBe(1);
+    expect(model.pipeline[1].status).toBe('1 job running or queued');
+  });
 });

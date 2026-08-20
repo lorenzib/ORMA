@@ -127,6 +127,8 @@
     if(record.kind==='request'&&status==='publication-failed'){
       wrap.append(element('strong','','Publication automation needs attention'),element('p','',`Your approval is retained. ORMA stopped during ${String(record.record.failureStage||'publication').replace(/-/g,' ')} and can retry this same request after the failure is corrected.`));
       if(record.record.failureMessage)wrap.append(element('p','',record.record.failureMessage));
+      if(record.record.retryMode==='manual')wrap.append(element('p','','Automatic retries are paused to prevent duplicate failure runs. After correcting the external setting, run ORMA backoffice worker manually with “Force publication retry”.'));
+      else if(record.record.retryAfter)wrap.append(element('p','',`Duplicate retries are paused until ${dateValue(record.record.retryAfter).toLocaleString()}.`));
       if(record.record.workflowRunUrl)wrap.append(link('Open failed automation run',record.record.workflowRunUrl));
       return wrap;
     }

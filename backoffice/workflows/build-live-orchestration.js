@@ -5,7 +5,7 @@ const { validateTrailOrchestration } = require('../contracts/trail-orchestration
 function summarize(trails){
   const states={}; for(const trail of trails) states[trail.state]=(states[trail.state]||0)+1;
   return { trails:trails.length, states, awaitingHuman:trails.filter(trail=>trail.state.endsWith('human-gate')).length,
-    running:trails.filter(trail=>['geometry-audit','evidence-research','provenance-audit','red-team'].includes(trail.state)).length };
+    running:trails.filter(trail=>['geometry-audit','evidence-research','evidence-resolution','provenance-audit','red-team'].includes(trail.state)).length };
 }
 
 function seedOrchestrationFromCatalogue(campaign,execution,outputsByCandidate,options={}){

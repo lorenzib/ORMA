@@ -1274,19 +1274,34 @@ describe('ORMA backoffice MVP', () => {
     expect(failed.recorded).toBe(1);
     expect(failed.artifact.requests[0]).toEqual(expect.objectContaining({
       status:'publication-failed',retryable:true,failureStage:'website-validation',failureCount:1,
+      failureKind:'automation-failure',retryAfter:'2026-08-19T20:46:00.000Z',
       workflowRunUrl:'https://github.com/orma/actions/runs/1',
     }));
     expect(failed.artifact.requests[0].failureHistory).toHaveLength(1);
     expect(publicationRequestIsRetryable(failed.artifact.requests[0])).toBe(true);
+    expect(publicationRequestIsRetryable(failed.artifact.requests[0],{at:'2026-08-19T20:35:00.000Z'})).toBe(false);
 
     const retried=materializeApprovedPublications({
       requests:failed.artifact,
       staging:{items:[{candidateId:'osm-relation-1484751',targetTrailId:'tre-cime',state:'ready-for-publication-preview',proposedWebsiteFields:{name:'Tre Cime'}}]},
       routesByCandidate:{'osm-relation-1484751':{geometry:{coordinates:[[12.29,46.61],[12.30,46.62]]}}},
-      overrides:{schemaVersion:1,trails:[]},at:'2026-08-19T20:35:00.000Z',
+      overrides:{schemaVersion:1,trails:[]},at:'2026-08-19T20:35:00.000Z',forceRetry:true,
     });
     expect(retried.materialized).toBe(1);
     expect(retried.overrides.trails[0].approvalId).toBe('publication-approval-1');
+  });
+
+  test('an unchanged GitHub PR permission failure enters a manual circuit breaker',()=>{
+    const failed=recordPublicationFailure({contractVersion:'1.0.0',requests:[{
+      id:'publication-approval-1',candidateId:'osm-relation-1484751',status:'approved-for-pr-creation',
+    }]},{stage:'pull-request-creation',message:'GraphQL: GitHub Actions is not permitted to create or approve pull requests',workflowRunUrl:'https://github.com/orma/actions/runs/2'},{at:'2026-08-19T21:00:00.000Z'});
+    const request=failed.artifact.requests[0];
+    expect(request).toEqual(expect.objectContaining({failureKind:'external-configuration-required',retryMode:'manual',retryAfter:null,manualRetryAvailable:true}));
+    expect(publicationRequestIsRetryable(request,{at:'2026-08-20T20:59:59.000Z'})).toBe(false);
+    expect(publicationRequestIsRetryable(request,{at:'2026-08-20T20:59:59.000Z',force:true})).toBe(true);
+    expect(publicationRequestIsRetryable(request,{at:'2026-08-27T21:00:00.000Z'})).toBe(false);
+    const forcedFailure=recordPublicationFailure(failed.artifact,{stage:'pull-request-creation',message:'GraphQL: GitHub Actions is not permitted to create or approve pull requests'},{at:'2026-08-20T21:00:00.000Z'});
+    expect(forcedFailure.artifact.requests[0].failureCount).toBe(2);
   });
 
   test('publication failure logs and workflow URLs become concise safe receipt fields', () => {
