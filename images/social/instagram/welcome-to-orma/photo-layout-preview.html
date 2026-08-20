@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080,initial-scale=1">
+<title>ORMA photo cards</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
+:root{--green:#222f26;--cream:#f4efe4;--sage:#b9c8bd;--copy:#dce4de}
+*{box-sizing:border-box}
+html,body{width:1080px;height:1350px;margin:0;overflow:hidden;background:var(--green)}
+body{font-family:Inter,Arial,sans-serif;color:var(--cream)}
+.card{position:relative;width:1080px;height:1350px;overflow:hidden;background:var(--green)}
+.card::after{content:"";position:absolute;z-index:0;left:0;right:0;bottom:0;height:420px;background:url('assets/orma-footer-shade.png') center bottom/1080px 420px no-repeat;pointer-events:none}
+.inner{position:relative;z-index:1;width:100%;height:100%;padding:72px 70px}
+.count{position:absolute;top:60px;right:68px;font:700 36px/1 Inter;letter-spacing:.08em;color:var(--sage)}
+.eyebrow{font:700 32px/1 'Bricolage Grotesque',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--sage)}
+h1{font:700 60px/1.02 'Bricolage Grotesque',sans-serif;margin:0;color:var(--cream)}
+p{font:400 31px/1.43 Inter,Arial,sans-serif;margin:0;color:var(--copy)}
+.photo{border:2px solid rgba(244,239,228,.32);background:#19261e;overflow:hidden}
+.photo img{display:block;width:100%;height:100%;object-fit:contain;filter:saturate(.88) contrast(.96) brightness(1.015) sepia(.035)}
+
+.tre .eyebrow{margin-bottom:24px}
+.tre .photo{width:940px;height:650px;margin:0 0 42px}
+.tre h1{font-size:61px;max-width:800px;margin-bottom:24px}
+.tre p{max-width:830px}
+
+.split .inner{padding-top:82px}
+.split .eyebrow{margin-bottom:38px}
+.split-grid{display:grid;grid-template-columns:480px 1fr;gap:54px;align-items:start}
+.split .photo{width:480px;height:640px;display:flex;align-items:center;justify-content:center}
+.split .copy{padding-top:8px}
+.split h1{font-size:57px;margin-bottom:32px}
+.split p{font-size:29px;margin-bottom:28px}
+
+.journey .inner{padding-top:76px}
+.journey .eyebrow{margin-bottom:36px}
+.journey .split-grid{grid-template-columns:450px 1fr;gap:48px}
+.journey .photo{width:450px;height:600px}
+.journey .copy{padding-top:0}
+.journey .intro{font-size:26px;line-height:1.4;margin-bottom:28px}
+.journey h1{font-size:45px;line-height:1.06;margin-bottom:32px}
+.journey .signature{font-size:25px;font-weight:700;color:var(--copy)}
+</style>
+</head>
+<body>
+<main id="card" class="card"></main>
+<script>
+const slides={
+  2:`<section class="card tre"><div class="inner"><div class="count">2 / 7</div><div class="eyebrow">Where it began</div><div class="photo"><img src="source/IMG_5252.jpg" alt="Tre Cime di Lavaredo"></div><h1>Born in the Italian Dolomites</h1><p>The Tre Cime ridge represents the mountains that shaped my life and inspired our mission.</p></div></section>`,
+  3:`<section class="card split"><div class="inner"><div class="count">3 / 7</div><div class="eyebrow">The dog behind ORMA</div><div class="split-grid"><div class="photo"><img src="source/IMG_9626.jpg" alt="Benedetta and Freddy in the Dolomites"></div><div class="copy"><h1>Freddy, my best friend</h1><p>I grew up hiking these trails with Freddy, a terrier cross who went from a whirlwind of puppy energy to an old dog choosing every step with quiet care.</p><p>Through every stage of his life, I learned to match my stride to his.</p></div></div></div></section>`,
+  7:`<section class="card split journey"><div class="inner"><div class="count">7 / 7</div><div class="eyebrow">The journey ahead</div><div class="split-grid"><div class="photo"><img src="source/IMG_7747.jpg" alt="Benedetta holding Freddy in the Dolomites"></div><div class="copy"><p class="intro">As we launch, ORMA features over 150+ dog-scored trails, and as we expand, our purpose remains simple. We map these routes because</p><h1>A walk is never just a walk when shared with a dog. It is an act of partnership, curiosity, and joy.</h1><p class="signature">Benedetta, Founder of ORMA</p></div></div></div></section>`
+};
+const number=new URLSearchParams(location.search).get('slide')||'2';
+document.getElementById('card').outerHTML=slides[number];
+</script>
+</body>
+</html>

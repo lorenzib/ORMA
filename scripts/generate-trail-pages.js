@@ -69,7 +69,7 @@ function safetyClass(level) {
 }
 
 function safetyLabel(level) {
-  if (level === 'low-risk') return 'Low-risk';
+  if (level === 'low-risk') return 'Low-risk terrain';
   if (level === 'moderate') return 'Moderate';
   return 'Caution';
 }

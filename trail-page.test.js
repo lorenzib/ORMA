@@ -157,7 +157,8 @@ describe('trail page map controls', () => {
 
     expect(html).toContain('i18n.js?v=20260819-5');
     expect(html).toContain('trail.js?v=20260819-5');
-    expect(html).toContain('trail-blueprint.js?v=20260819-8');
+    expect(html).toContain('trail-reports.js?v=20260820-1');
+    expect(html).toContain('trail-blueprint.js?v=20260820-1');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
     expect(html).toContain('offline-packages.js?v=20260819-6');
     expect(html).toContain('trail-mobile.js?v=20260819-6');
