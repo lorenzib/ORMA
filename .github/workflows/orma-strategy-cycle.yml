@@ -24,15 +24,15 @@ jobs:
       OPENAI_API_KEY: ${{ secrets.OPEN_API_KEY }}
       ORMA_CONTENT_MODEL: gpt-5.6-terra
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
       - name: Check worker secrets
         run: |
           test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
           test -n "$OPENAI_API_KEY" || { echo "Missing OPENAI_API_KEY"; exit 1; }
       - run: npm ci
-      - name: Refresh Editorial and image coverage in protected Firestore
+      - name: Refresh protected Editorial, Newsletter and Analyst desks
         run: npm run backoffice:strategy-cycle:live

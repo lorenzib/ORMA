@@ -1,6 +1,9 @@
 {
   "name": "dolopaws",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=24"
+  },
   "private": true,
   "scripts": {
     "test": "jest",
@@ -60,6 +63,7 @@
     "backoffice:acknowledge-publications": "node backoffice/cli/acknowledge-publications.js",
     "backoffice:orchestration:build": "node backoffice/cli/build-live-orchestration.js",
     "backoffice:campaign:live": "node backoffice/cli/start-live-trail-campaign.js",
+    "backoffice:audit": "node backoffice/cli/audit-operations.js",
     "build:backoffice-hosting": "node scripts/build-backoffice-hosting.js"
   },
   "devDependencies": {
