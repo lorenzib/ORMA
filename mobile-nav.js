@@ -49,6 +49,92 @@
 
   installAlpinePlantsFooterLink();
 
+  function installFocusedFooter(){
+    document.querySelectorAll('footer.hp-footer').forEach(footer => {
+      if(footer.dataset.focusedFooter === 'true') return;
+      footer.dataset.focusedFooter = 'true';
+
+      const browseLink = Array.from(footer.querySelectorAll('a[href]'))
+        .find(link => /browse-trails\.html$/.test(link.getAttribute('href') || ''));
+      const browseHref = browseLink?.getAttribute('href') || 'browse-trails.html';
+      const prefix = browseHref.slice(0, -'browse-trails.html'.length);
+
+      const banner = document.createElement('section');
+      banner.className = 'hp-prefooter';
+      banner.setAttribute('aria-labelledby', 'hpPrefooterTitle');
+
+      const inner = document.createElement('div');
+      inner.className = 'hp-prefooter-inner';
+      const copyBlock = document.createElement('div');
+      copyBlock.className = 'hp-prefooter-copy';
+      const kicker = document.createElement('p');
+      kicker.className = 'hp-prefooter-kicker';
+      kicker.textContent = 'Your next walk';
+      const title = document.createElement('h2');
+      title.id = 'hpPrefooterTitle';
+      title.textContent = 'Find a trail that fits your dog';
+      const description = document.createElement('p');
+      description.textContent = 'Explore routes with the terrain, conditions and cautions that matter to your companion.';
+      copyBlock.append(kicker, title, description);
+
+      const actions = document.createElement('div');
+      actions.className = 'hp-prefooter-actions';
+      const browse = document.createElement('a');
+      browse.className = 'hp-prefooter-action is-primary';
+      browse.href = prefix + 'browse-trails.html';
+      browse.textContent = 'Browse trails';
+      const profile = document.createElement('a');
+      profile.className = 'hp-prefooter-action';
+      profile.href = prefix + 'account.html';
+      profile.textContent = 'Add your dog';
+      actions.append(browse, profile);
+      inner.append(copyBlock, actions);
+      banner.appendChild(inner);
+      footer.parentNode.insertBefore(banner, footer);
+
+      const groups = footer.querySelectorAll('.hp-footer-grid > div');
+      const groupTitles = ['','Explore','Dog care','Your walks','ORMA'];
+      groups.forEach((group, index) => {
+        const heading = group.querySelector(':scope > .hp-footer-h');
+        if(heading && groupTitles[index]) heading.textContent = groupTitles[index];
+      });
+
+      const appNote = footer.querySelector('.hp-footer-appnote');
+      if(appNote) appNote.textContent = 'Mobile apps coming soon';
+
+      const companyLinks = groups[4]?.querySelector('.hp-footer-links');
+      const newsletter = footer.querySelector('.hp-footer-newsletter');
+      if(companyLinks && newsletter && !companyLinks.querySelector('.hp-footer-newsletter')){
+        companyLinks.appendChild(newsletter);
+      }
+
+      const base = footer.querySelector('.hp-footer-base');
+      const socialRow = footer.querySelector('.hp-footer-social-row');
+      if(base){
+        const copyright = base.querySelector('span');
+        const legal = document.createElement('div');
+        legal.className = 'hp-footer-legal';
+        if(copyright) legal.appendChild(copyright);
+        if(companyLinks){
+          ['privacy.html','terms.html'].forEach(destination => {
+            const link = Array.from(companyLinks.querySelectorAll('a[href]'))
+              .find(item => (item.getAttribute('href') || '').endsWith(destination));
+            if(link) legal.appendChild(link);
+          });
+        }
+        base.replaceChildren();
+        if(socialRow){
+          socialRow.setAttribute('aria-label', 'ORMA social channels');
+          base.appendChild(socialRow);
+        }
+        base.appendChild(legal);
+      }
+      footer.querySelector('.hp-footer-connect')?.remove();
+    });
+  }
+
+  installFocusedFooter();
+
   function secureBlankLinks(root){
     const links = [];
     if(root && root.matches && root.matches('a[target="_blank"]')) links.push(root);
@@ -420,7 +506,7 @@
       // controls change (login pill vs bell + dog pill).
       linksEl.appendChild(navItem('Browse all Trails', 'browse-trails.html', key === 'trails', 'saved.nav.browse'));
       linksEl.appendChild(navItem('Collections', 'collections.html', key === 'collections', 'saved.nav.collections'));
-      linksEl.appendChild(navItem('Safety guide', 'safety-guide.html', key === 'safety', 'saved.nav.safety'));
+      linksEl.appendChild(navItem('Safety library', 'safety-guide.html', key === 'safety', 'saved.nav.safety'));
       linksEl.appendChild(navItem('My walk journal', 'journal.html', key === 'journal', 'saved.nav.journal'));
       if(loggedIn){
         activeBell = buildBell();

@@ -49,6 +49,36 @@ describe('shared navigation hardening', () => {
     expect(link.getAttribute('data-i18n')).toBe('mobile.alpinePlants');
   });
 
+  test('turns the shared footer into the focused CTA and compact navigation', () => {
+    const footer = document.createElement('footer');
+    footer.className = 'site-footer hp-footer';
+    footer.innerHTML = `
+      <div class="hp-footer-grid">
+        <div><p class="hp-footer-blurb">ORMA</p><div class="hp-footer-get"><div class="hp-footer-h">Get the app</div><div class="hp-footer-apps"></div><p class="hp-footer-appnote">Coming soon</p></div></div>
+        <div><div class="hp-footer-h">Trails</div><div class="hp-footer-links"><a href="../browse-trails.html">Browse</a></div></div>
+        <div><div class="hp-footer-h">Caring for your dog</div><div class="hp-footer-links"></div></div>
+        <div><div class="hp-footer-h">Your walks</div><div class="hp-footer-links"></div></div>
+        <div><div class="hp-footer-h">Company</div><div class="hp-footer-links"><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a></div></div>
+      </div>
+      <div class="hp-footer-connect"><div class="hp-footer-social-row"><a href="#instagram">Instagram</a></div><a class="hp-footer-newsletter" href="../about.html">Newsletter</a></div>
+      <div class="hp-footer-base"><span>© ORMA</span></div>`;
+    document.body.appendChild(footer);
+    window.eval(mobileNav);
+
+    const banner = footer.previousElementSibling;
+    expect(banner.className).toBe('hp-prefooter');
+    expect(banner.querySelector('h2').textContent).toBe('Find a trail that fits your dog');
+    expect(banner.querySelector('a.is-primary').getAttribute('href')).toBe('../browse-trails.html');
+    expect(banner.querySelector('.hp-prefooter-actions a:last-child').getAttribute('href')).toBe('../account.html');
+    expect([...footer.querySelectorAll('.hp-footer-grid > div > .hp-footer-h')].map(item => item.textContent))
+      .toEqual(['Explore','Dog care','Your walks','ORMA']);
+    expect(footer.querySelector('.hp-footer-appnote').textContent).toBe('Mobile apps coming soon');
+    expect(footer.querySelector('.hp-footer-grid > div:last-child .hp-footer-newsletter')).not.toBeNull();
+    expect([...footer.querySelectorAll('.hp-footer-legal a')].map(link => link.textContent)).toEqual(['Privacy','Terms']);
+    expect(footer.querySelector('.hp-footer-base > .hp-footer-social-row')).not.toBeNull();
+    expect(footer.querySelector('.hp-footer-connect')).toBeNull();
+  });
+
   test('keeps one notification bell outside the menu after auth refresh', async () => {
     // Use a fresh window so event listeners installed by earlier test runs
     // cannot manufacture duplicate renders that a real page never has.
