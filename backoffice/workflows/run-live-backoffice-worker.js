@@ -10,6 +10,7 @@ const { runTrailSpecialist } = require('./run-trail-specialist');
 const { advanceTrailOrchestration } = require('./advance-trail-orchestration');
 const {buildVerifiedEditorialHandoff}=require('./verified-editorial-handoff');
 const {runVerifiedEditorialFirstPass}=require('./run-verified-editorial-first-pass');
+const {runScheduledTrailCampaign}=require('./campaign-scheduler');
 const {validateContentExecution}=require('../contracts/content-result-v1');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
 const path=require('path');
@@ -121,7 +122,8 @@ async function processTrailSpecialistJobs(store,options={}){
   let queued=(await store.listJobs(['queued'])).filter(job=>['trail-verification-specialist','trail-claim-resolution'].includes(job.jobType));const outcomes=[];
   if(options.specialistCandidateId) queued=queued.filter(job=>job.candidateId===options.specialistCandidateId);
   const intake=await store.getArtifact('new-trail-intake');
-  const trails=options.productionTrails||[...loadProductionTrails(path.resolve(__dirname,'../..')),...(intake?.candidates||[])];
+  const production=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
+  const trails=[...production,...(intake?.candidates||[])];
   const trailById=new Map(trails.map(trail=>[trail.id,trail]));
   for(const pending of queued.slice(0,options.specialistLimit||5)){
     const job=await store.claimJob(pending.id,workerId);if(!job)continue;
@@ -216,6 +218,10 @@ async function ingestDossierReviews(store){
 }
 
 async function runLiveBackofficeWorker(store, options = {}){
+  const productionTrails=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
+  const campaign=await runScheduledTrailCampaign(store,productionTrails,{enabled:options.campaignEnabled===true,
+    at:options.at,limit:options.campaignLimit||5,capacity:options.campaignCapacity||5,trigger:options.campaignTrigger,
+    workflowRunUrl:options.workflowRunUrl,runId:options.runId});
   const recoveredJobs = typeof store.recoverExpiredJobs === 'function'
     ? await store.recoverExpiredJobs(options)
     : [];
@@ -224,10 +230,10 @@ async function runLiveBackofficeWorker(store, options = {}){
   const reviews = await ingestTrailReviews(store, options);
   const editorialFirstPass=await processEditorialFirstPassJobs(store,options);
   const jobs = await processRevisionJobs(store, options);
-  const specialistJobs=await processTrailSpecialistJobs(store,options);
+  const specialistJobs=await processTrailSpecialistJobs(store,{...options,productionTrails});
   const advancementAfter=await advanceTrailOrchestration(store,options);
   const publications = await ingestPublicationReviews(store);
-  return { workerId:options.workerId || null, recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
 module.exports = { iso, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestPublicationReviews,runLiveBackofficeWorker };

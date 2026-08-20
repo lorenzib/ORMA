@@ -37,6 +37,14 @@
     if(ageMinutes>=delayedAfter)return {state:'delayed',label:'Scheduler delayed',title:'The next worker run is late',message:`The last success was ${ageMinutes} minutes ago. GitHub has exceeded ORMA’s ${expected}-minute schedule target; no decision needs to be submitted again.`,runUrl,ageMinutes,expectedIntervalMinutes:expected};
     return {state:'healthy',label:'Healthy',title:'ORMA automation is responding',message:`The last successful run completed ${ageMinutes} minute${ageMinutes===1?'':'s'} ago. Schedule target: every ${expected} minutes.`,runUrl,ageMinutes,expectedIntervalMinutes:expected};
   }
+  function deriveCampaignHealth(artifact,options={}){
+    const nowMs=options.nowMs??Date.now();const runUrl=artifact?.workflowRunUrl||artifact?.lastFailure?.workflowRunUrl||null;
+    if(!artifact||!artifact.status)return {state:'unknown',label:'No campaign receipt',title:'Catalogue intake has not run yet',message:'No protected intake receipt exists yet. Enabling the campaign will create one without publishing any trail.',meta:'Capacity remains limited to five trails in verification',runUrl:null};
+    if(artifact.status==='running')return {state:'running',label:'Checking catalogue',title:'ORMA is admitting the next eligible trails',message:'A due-only campaign pass is running now. It cannot exceed the five-trail verification capacity.',meta:`Started ${minutesSince(artifact.startedAt,nowMs)??0} minute(s) ago · protected Firestore receipt`,runUrl};
+    if(artifact.status==='failed'){const failure=artifact.lastFailure||{};return {state:'failed',label:'Intake failed',title:'The catalogue campaign needs attention',message:failure.message||'The latest campaign failed without a captured diagnostic.',meta:`Retry eligible ${artifact.nextEligibleAt?new Date(artifact.nextEligibleAt).toLocaleString():'after the next worker pass'} · no trail was published`,runUrl};}
+    const result=artifact.lastResult||{};const next=artifact.nextEligibleAt?new Date(artifact.nextEligibleAt).toLocaleString():'not recorded';
+    return {state:'healthy',label:'Intake active',title:'Catalogue admission is automatic and capacity-limited',message:`The last pass admitted ${Number(result.admitted||0)} trail(s); ${Number(result.remainingQueueable||0)} remain eligible outside the active verification fleet.`,meta:`Next due check ${next} · no public mutation`,runUrl};
+  }
   function latestPublicationState(history,requests){
     const latest=new Map();
     const records=[
@@ -76,7 +84,7 @@
   function buildDashboardModel(input={}){
     const orchestration=input.orchestration||{};const dossiers=input.dossiers||{};const execution=input.execution||{};
     const publication=input.publication||{};const publicationRequests=input.publicationRequests||{requests:[]};
-    const history=input.history||[];const allJobs=input.jobs||[];const workerHealth=deriveWorkerHealth(input.workerHealth,input.nowMs==null?{}:{nowMs:input.nowMs});
+    const history=input.history||[];const allJobs=input.jobs||[];const timing=input.nowMs==null?{}:{nowMs:input.nowMs};const workerHealth=deriveWorkerHealth(input.workerHealth,timing);const campaignHealth=deriveCampaignHealth(input.campaignHealth,timing);
     const jobs=allJobs.filter(job=>['trail-verification-specialist','trail-claim-resolution','verified-trail-editorial-first-pass','verified-trail-editorial-revision'].includes(job.jobType)||String(job.id||'').startsWith('trail-revision-'));
     const activeJobs=jobs.filter(job=>ACTIVE_JOB_STATES.has(job.status));
     const names=new Map();
@@ -148,7 +156,7 @@
     }
     const activity=[...activityById.values()].sort((a,b)=>b.at-a.at).slice(0,8).map(item=>({...item,message:activityMessage(item)}));
     return {
-      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,publicationInFlight,handoffsInFlight,automationFailures,workerHealth,
+      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,publicationInFlight,handoffsInFlight,automationFailures,workerHealth,campaignHealth,
       blockerCount:blockedCandidates.size,trackedTrails:orchestration.summary?.trails||(orchestration.trails||[]).length,
       summary:{needsYou:decisions.length,agentWork:activeJobs.length,blockers:blockedCandidates.size,prsReady:prItems.length},
       pipeline:[
@@ -160,5 +168,5 @@
       ],
     };
   }
-  return {buildDashboardModel,dateMs,deriveWorkerHealth,latestPublicationState,activityMessage,candidateFromActivity};
+  return {buildDashboardModel,dateMs,deriveWorkerHealth,deriveCampaignHealth,latestPublicationState,activityMessage,candidateFromActivity};
 });

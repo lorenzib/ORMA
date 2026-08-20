@@ -47,17 +47,22 @@
     const meta=health.state==='failed'&&health.consecutiveFailures>1?`${health.consecutiveFailures} consecutive failures · protected Firestore receipt`:'Protected Firestore heartbeat · page refreshes every 15 seconds';set('workerHealthMeta',meta);
     if(health.runUrl){action.href=health.runUrl;action.hidden=false;}else action.hidden=true;
   }
+  function renderCampaignHealth(model){
+    const health=model.campaignHealth;const card=document.getElementById('campaignHealth');const action=document.getElementById('campaignHealthAction');
+    card.className=`bo-worker-health is-${health.state}`;set('campaignHealthLabel',health.label);set('campaignHealthTitle',health.title);set('campaignHealthCopy',health.message);set('campaignHealthMeta',health.meta);
+    if(health.runUrl){action.href=health.runUrl;action.hidden=false;}else action.hidden=true;
+  }
   function render(model){
     set('needsReviewCount',model.summary.needsYou);set('agentWorkCount',model.summary.agentWork);set('publicWarningCount',model.summary.blockers);set('publishedCount',model.summary.prsReady);
     set('existingCatalogueProgress',`${model.trackedTrails} trails tracked · ${model.summary.needsYou} need you · ${model.summary.agentWork} agent jobs active · ${model.summary.blockers} blocked.`);
-    renderNext(model);renderWorkerHealth(model);renderPipeline(model);renderDecisions(model);renderActivity(model);
+    renderNext(model);renderWorkerHealth(model);renderCampaignHealth(model);renderPipeline(model);renderDecisions(model);renderActivity(model);
   }
   async function load(){
     if(loading)return;loading=true;const refresh=document.getElementById('refreshDashboard');refresh.disabled=true;set('dashboardUpdated','Refreshing protected Firestore…');
-    try{const remote=await api();const [orchestration,dossiers,execution,publication,publicationRequests,workerHealth,jobResult,historyResult]=await Promise.all([
-      required(remote,'trail-orchestration'),required(remote,'dossier-review-queue'),required(remote,'verified-trail-editorial-execution'),required(remote,'publication-staging'),optional(remote,'publication-requests',{requests:[]}),optional(remote,'worker-health',null),remote.getRevisionJobs(),remote.getDecisionHistory(),
+    try{const remote=await api();const [orchestration,dossiers,execution,publication,publicationRequests,workerHealth,campaignHealth,jobResult,historyResult]=await Promise.all([
+      required(remote,'trail-orchestration'),required(remote,'dossier-review-queue'),required(remote,'verified-trail-editorial-execution'),required(remote,'publication-staging'),optional(remote,'publication-requests',{requests:[]}),optional(remote,'worker-health',null),optional(remote,'trail-campaign-health',null),remote.getRevisionJobs(),remote.getDecisionHistory(),
     ]);if(!jobResult?.ok)throw new Error(`Could not load agent jobs: ${jobResult?.error||'unknown error'}`);if(!historyResult?.ok)throw new Error(`Could not load decision receipts: ${historyResult?.error||'unknown error'}`);
-      document.getElementById('executiveDecisionQueue').classList.remove('is-error');render(window.ORMADashboardModel.buildDashboardModel({orchestration,dossiers,execution,publication,publicationRequests,workerHealth,jobs:jobResult.jobs||[],history:historyResult.decisions||[]}));seconds=15;const refreshed=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});set('dashboardUpdated',`Live · refreshed ${refreshed} · next refresh in ${seconds}s`);
+      document.getElementById('executiveDecisionQueue').classList.remove('is-error');render(window.ORMADashboardModel.buildDashboardModel({orchestration,dossiers,execution,publication,publicationRequests,workerHealth,campaignHealth,jobs:jobResult.jobs||[],history:historyResult.decisions||[]}));seconds=15;const refreshed=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});set('dashboardUpdated',`Live · refreshed ${refreshed} · next refresh in ${seconds}s`);
     }catch(error){set('dashboardUpdated','Refresh failed — your last visible state is unchanged');const queue=document.getElementById('executiveDecisionQueue');queue.classList.add('is-error');if(!queue.children.length)queue.textContent=error.message;}
     finally{loading=false;refresh.disabled=false;}
   }

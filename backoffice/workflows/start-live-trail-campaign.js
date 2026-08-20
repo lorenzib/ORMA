@@ -4,9 +4,8 @@ const {planCatalogueCampaign}=require('./plan-catalogue-campaign');
 const {summarize}=require('./build-live-orchestration');
 const {validateTrailOrchestration}=require('../contracts/trail-orchestration-v1');
 
-function liveJob(job,at){
-  const suffix=at.replace(/[:.]/g,'-');
-  return {...job,id:`trail-verification-${job.candidateId}-cartographer-1-${suffix}`,
+function liveJob(job){
+  return {...job,id:`trail-verification-${job.candidateId}-cartographer-1`,
     jobType:'trail-verification-specialist',attempt:1,publicMutationAllowed:false};
 }
 
@@ -20,7 +19,9 @@ async function startLiveTrailCampaign(store,trails,options={}){
   if(!available){campaign.summary.remainingQueueable+=campaign.jobs.length;campaign.summary.jobsCreated=0;campaign.selectedTrailIds=[];campaign.jobs=[];}
   const byId=new Map(campaign.items.map(item=>[item.trailId,item]));const created=[];
   for(const planned of campaign.jobs){
-    const job=liveJob(planned,at);const item=byId.get(job.candidateId);await store.putJob(job);created.push(job);
+    const job=liveJob(planned);const item=byId.get(job.candidateId);
+    if(typeof store.putJobIfAbsent==='function')await store.putJobIfAbsent(job);else await store.putJob(job);
+    created.push(job);
     existing.trails.push({trailId:job.candidateId,candidateId:job.candidateId,trailName:item?.name||job.candidateId,
       state:'geometry-audit',stage:'route-identity-and-geometry',priorityScore:item?.priorityScore||0,
       sourceTrail:{origin:item?.origin||null,externalRelationId:item?.externalRelationId||null,baselineBlockers:item?.baselineBlockers||[]},
