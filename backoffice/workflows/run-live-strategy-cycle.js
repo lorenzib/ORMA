@@ -4,6 +4,8 @@ const fs=require('fs/promises');
 const path=require('path');
 const {runEditorialCycle}=require('./run-editorial-cycle');
 const {auditImageCoverage}=require('./audit-image-coverage');
+const {runProductDiscovery}=require('./run-product-discovery');
+const {runNewsletter,newsletterIsDue}=require('./run-newsletter');
 
 async function readJson(file,fallback=null){
   try{return JSON.parse(await fs.readFile(file,'utf8'));}
@@ -22,6 +24,24 @@ async function hydrate(store,root,artifactId,relativePath,fallback=null){
   if(value)await writeJson(target,value);
   else await fs.rm(target,{force:true});
   return value;
+}
+
+function mergeProductPackets(previous,fresh,reviewLedger){
+  if(!previous)return fresh;
+  const terminal=new Set((reviewLedger?.decisions||[]).filter(item=>['park','dismiss'].includes(item.action)).map(item=>item.ideaId));
+  const unresolved=(previous.ideas||[]).filter(idea=>!terminal.has(idea.id));const seen=new Set(unresolved.map(idea=>idea.id));
+  const ideas=[...unresolved,...(fresh.ideas||[]).filter(idea=>!seen.has(idea.id))].slice(0,12);
+  return {...fresh,ideas,summary:{total:ideas.length,awaitingReview:ideas.length,highImpact:ideas.filter(idea=>idea.impact==='high').length,categories:[...new Set(ideas.map(idea=>idea.category))]},preservedIdeaIds:unresolved.map(idea=>idea.id)};
+}
+
+function buildNewsletterInputs({at,publication,ledger,hazards,ideas}){
+  const cutoff=new Date(at).getTime()-14*24*60*60*1000;
+  return {contractVersion:'1.0.0',generatedAt:at,issueCadence:'every-14-days',status:'ready-for-newsletter-agent',publicMutationAllowed:false,
+    newlyPublishedTrails:(publication?.items||[]).filter(item=>['published','deployed'].includes(item.state)||item.status==='published'),
+    publishedEditorialChanges:(ledger?.items||[]).filter(item=>item.status==='published'&&new Date(item.lastPublishedAt||0).getTime()>=cutoff),
+    timelySafetySignals:(hazards?.hazards||[]).filter(item=>item.state==='active').map(item=>({title:item.title,area:item.area,sourceLabel:item.sourceLabel,sourceUrl:item.sourceUrl,expiresAt:item.expiresAt,note:'Topic signal only; do not describe as a trail closure.'})),
+    currentEditorialSignals:(ideas?.ideas||[]).filter(item=>item.category==='editorial-gap'),
+    policy:'Use only approved ORMA facts and directly linked current sources. One assembled issue receives one CEO review.'};
 }
 
 async function runLiveStrategyCycle(store,options={}){
@@ -47,6 +67,28 @@ async function runLiveStrategyCycle(store,options={}){
 
     const imageAudit=await (options.auditImageCoverage||auditImageCoverage)(root,{at});
     await store.setArtifact('image-coverage',imageAudit,metadata);
+
+    const productReview=await store.getArtifact('product-ideas-review')||await readJson(path.join(root,'backoffice-data/product-ideas-review.json'),{contractVersion:'1.0.0',decisions:[],jobs:[]});
+    await store.setArtifact('product-ideas-review',productReview,metadata);
+    const previousProduct=await store.getArtifact('product-ideas')||await readJson(path.join(root,'backoffice-data/product-ideas.json'),null);
+    const productAge=previousProduct?.generatedAt?new Date(at).getTime()-new Date(previousProduct.generatedAt).getTime():Infinity;
+    let productPacket=previousProduct;let productStatus='still-fresh';
+    if(productAge>=6.5*24*60*60*1000){
+      try{const fresh=await (options.runProductDiscovery||runProductDiscovery)({at,...(options.productOptions||{})});productPacket=mergeProductPackets(previousProduct,fresh,productReview);await store.setArtifact('product-ideas',productPacket,metadata);productStatus=`${productPacket.summary.total} ideas ready`;}
+      catch(error){productStatus=`blocked: ${error.message}`;}
+    }else if(productPacket)await store.setArtifact('product-ideas',productPacket,metadata);
+
+    const [publication,hazards,protectedNewsletterLedger,previousNewsletter]=await Promise.all([
+      store.getArtifact('publication-staging'),store.getArtifact('dynamic-hazards'),store.getArtifact('newsletter-review-ledger'),store.getArtifact('newsletter-review-packet'),
+    ]);
+    const newsletterLedger=protectedNewsletterLedger||await readJson(path.join(root,'backoffice-data/newsletter-review.json'),{contractVersion:'1.0.0',decisions:[]});
+    await store.setArtifact('newsletter-review-ledger',newsletterLedger,metadata);
+    const newsletterInputs=buildNewsletterInputs({at,publication,ledger,hazards,ideas:productPacket});await store.setArtifact('newsletter-inputs',newsletterInputs,metadata);
+    let newsletterPacket=previousNewsletter||await readJson(path.join(root,'backoffice-data/newsletter-review-packet.json'),null);let newsletterStatus='not due';
+    if(newsletterIsDue(newsletterPacket,newsletterLedger,at)){
+      newsletterPacket=await (options.runNewsletter||runNewsletter)(newsletterInputs,{root,at,...(options.newsletterOptions||{})});await store.setArtifact('newsletter-review-packet',newsletterPacket,metadata);
+      newsletterStatus=newsletterPacket.summary.readyForReview?'draft ready':`blocked: ${newsletterPacket.outputs?.[0]?.error||'no draft produced'}`;
+    }else if(newsletterPacket)await store.setArtifact('newsletter-review-packet',newsletterPacket,metadata);
     const summary={
       editorialActive:packets.filter(packet=>(packet.outputs||[]).some(output=>output.status==='ready-for-review')).length,
       editorialPreserved:editorial.preserved.length,
@@ -54,10 +96,14 @@ async function runLiveStrategyCycle(store,options={}){
       editorialBlocked:editorial.blocked.length,
       imagePagesScanned:Number(imageAudit.summary?.pagesScanned||0),
       imageGaps:Number(imageAudit.summary?.missing||0),
+      productIdeas:Number(productPacket?.ideas?.length||0),
+      productStatus,
+      newsletterStatus,
+      newsletterReady:Number(newsletterPacket?.summary?.readyForReview||0),
     };
     const completedAt=options.completedAt||new Date().toISOString();
     await store.setArtifact('strategy-cycle-status',{...statusBase,status:'healthy',completedAt,lastSuccessfulAt:completedAt,summary,failures:editorial.blocked,publicMutationAllowed:false});
-    return {editorial,packets,ledger,imageAudit,summary};
+    return {editorial,packets,ledger,imageAudit,productPacket,productStatus,newsletterInputs,newsletterPacket,newsletterStatus,summary};
   }catch(error){
     const failedAt=new Date().toISOString();
     await store.setArtifact('strategy-cycle-status',{...statusBase,status:'failed',completedAt:failedAt,lastFailure:{failedAt,stage:'editorial-and-image-refresh',message:String(error.message||error).slice(0,2000),workflowRunUrl},publicMutationAllowed:false});
@@ -65,4 +111,4 @@ async function runLiveStrategyCycle(store,options={}){
   }
 }
 
-module.exports={readJson,writeJson,hydrate,runLiveStrategyCycle};
+module.exports={readJson,writeJson,hydrate,mergeProductPackets,buildNewsletterInputs,runLiveStrategyCycle};

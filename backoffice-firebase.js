@@ -150,6 +150,30 @@ async function submitImageReview(input){
   catch(error){console.error('submitImageReview failed:',error);return {ok:false,error:'image-review-submit-failed'};}
 }
 
+async function getNewsletterReviews(){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',reviews:[]};
+  try{const snapshot=await getDocs(query(collection(db,'backofficeNewsletterReviews'),orderBy('submittedAt','desc'),limit(100)));return {ok:true,reviews:snapshot.docs.map(item=>({id:item.id,...item.data()}))};}
+  catch(error){console.error('getNewsletterReviews failed:',error);return {ok:false,error:'newsletter-review-read-failed',reviews:[]};}
+}
+
+async function submitNewsletterReview(input){
+  const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
+  try{const review=await addDoc(collection(db,'backofficeNewsletterReviews'),{contractVersion:'1.0.0',type:'newsletter-issue-review',status:'queued',packetGeneratedAt:String(input.packetGeneratedAt||''),action:String(input.action||''),note:String(input.note||'').trim().slice(0,1500),submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false});return {ok:true,reviewId:review.id,status:'queued'};}
+  catch(error){console.error('submitNewsletterReview failed:',error);return {ok:false,error:'newsletter-review-submit-failed'};}
+}
+
+async function getAnalystReviews(){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',reviews:[]};
+  try{const snapshot=await getDocs(query(collection(db,'backofficeAnalystReviews'),orderBy('submittedAt','desc'),limit(150)));return {ok:true,reviews:snapshot.docs.map(item=>({id:item.id,...item.data()}))};}
+  catch(error){console.error('getAnalystReviews failed:',error);return {ok:false,error:'analyst-review-read-failed',reviews:[]};}
+}
+
+async function submitAnalystReview(input){
+  const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
+  try{const review=await addDoc(collection(db,'backofficeAnalystReviews'),{contractVersion:'1.0.0',type:'analyst-opportunity-review',status:'queued',subjectType:String(input.subjectType||'idea'),ideaId:String(input.ideaId||''),action:String(input.action||''),note:String(input.note||'').trim().slice(0,1500),submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false,implementationAuthorized:false});return {ok:true,reviewId:review.id,status:'queued'};}
+  catch(error){console.error('submitAnalystReview failed:',error);return {ok:false,error:'analyst-review-submit-failed'};}
+}
+
 async function submitPublicationReview(input){
   const moderator=await moderatorIdentity();
   if(!moderator)return {ok:false,error:'moderator-required'};
@@ -189,7 +213,7 @@ window.DoloPawsAuth={
   async logOut(){await signOut(auth);currentUser=null;},
 };
 window.DoloPawsModeration={getModeratorStatus:async()=>({ok:!!await moderatorIdentity()})};
-window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getImageReviews,submitTrailReview,submitPublicationReview,submitDossierReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitImageReview};
+window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getImageReviews,getNewsletterReviews,getAnalystReviews,submitTrailReview,submitPublicationReview,submitDossierReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitImageReview,submitNewsletterReview,submitAnalystReview};
 
 onAuthStateChanged(auth,user=>{
   currentUser=user;

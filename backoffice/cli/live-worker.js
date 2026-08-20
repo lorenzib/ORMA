@@ -24,6 +24,8 @@ async function main(){
     || result.dossierReviews.some(item => item.status === 'blocked')
     || result.editorialReviews.some(item => item.status === 'blocked')
     || result.imageReviews.some(item => item.status === 'blocked')
+    || result.newsletterReviews.some(item => item.status === 'blocked')
+    || result.analystReviews.some(item => item.status === 'blocked')
     || result.publications.some(item => item.status === 'blocked')) process.exitCode = 1;
 }
 
