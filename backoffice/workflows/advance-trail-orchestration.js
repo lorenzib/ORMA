@@ -2,6 +2,12 @@
 
 const {specialistJob}=require('./apply-dossier-review');
 const {summarize}=require('./build-live-orchestration');
+const {
+  MAX_AUTOMATED_ATTEMPTS,resolutionCandidates,ensureResolutionEntries,pendingAttempt,
+  completedAttempts,reconcileCompletedAttempt,addQueuedAttempt,
+}=require('./claim-resolution');
+
+const BASE_AGENTS=Object.freeze(['logistics','regulatoryRanger','terrainPoi']);
 
 function timeValue(value){if(!value)return 0;if(typeof value.toMillis==='function')return value.toMillis();if(Number.isFinite(value.seconds))return value.seconds*1000;return new Date(value).valueOf()||0;}
 
@@ -18,10 +24,48 @@ function dossierBlockingReasons(outputs){
     for(const question of result.openQuestions||[]) reasons.push(`${output.agentId}: open question — ${question}`);
     for(const claim of result.claims||[]){
       if(['conflicted','unresolved','counter-evidence'].includes(claim.finding)) reasons.push(`${output.agentId}/${claim.id}: ${claim.finding}`);
+      if(claim.resolution?.state==='source-exhausted') reasons.push(`${output.agentId}/${claim.id}: five automated resolution strategies exhausted`);
       for(const blocker of claim.blockers||[]) reasons.push(`${output.agentId}/${claim.id}: ${blocker}`);
     }
   }
   return [...new Set(reasons)];
+}
+
+function resolutionLedger(trail){return Object.values(trail.claimResolution||{});}
+
+function queueProvenanceAudit(trail,jobs,queued,at){
+  const base=BASE_AGENTS.map(agent=>latest(jobs,trail.candidateId,agent));
+  if(base.some(job=>!job))return false;
+  const attempt=(trail.attempts.evidenceLibrarian||0)+1;trail.attempts.evidenceLibrarian=attempt;
+  const job=specialistJob(trail,{agentId:'evidenceLibrarian',action:'audit-specialist-evidence',claimIds:['provenance']},attempt,at);
+  job.inputRefs=base.map(item=>`firestore:trail-specialist-output-${item.id}`);
+  queued.push(job);trail.jobIds.push(job.id);trail.state='provenance-audit';trail.stage='source-provenance-audit';trail.updatedAt=at;
+  return true;
+}
+
+function queueClaimResolution(trail,entry,jobs,queued,at){
+  const executionAttempt=(trail.attempts[entry.agentId]||0)+1;trail.attempts[entry.agentId]=executionAttempt;
+  const job=specialistJob(trail,{agentId:entry.agentId,action:'resolve-unresolved-claim',claimIds:[entry.claimId]},executionAttempt,at);
+  const attempt=addQueuedAttempt(entry,job,at);
+  job.jobType='trail-claim-resolution';job.resolutionAttempt=attempt.attemptNumber;
+  job.maximumResolutionAttempts=MAX_AUTOMATED_ATTEMPTS;job.resolutionKey=entry.key;
+  job.resolutionStrategy=attempt.strategy;job.resolutionStrategyLabel=attempt.strategyLabel;
+  job.resolutionInstruction=attempt.instruction;job.notBefore=attempt.notBefore;
+  job.inputRefs=[...new Set([...(job.inputRefs||[]),entry.latestOutputRef].filter(Boolean))];
+  queued.push(job);trail.jobIds.push(job.id);return job;
+}
+
+async function reconcileResolutionAttempts(store,trail,jobs,at){
+  let changed=false;
+  for(const entry of resolutionLedger(trail)){
+    for(const attempt of entry.attempts||[]){
+      if(attempt.status!=='queued')continue;
+      const job=jobs.find(item=>item.id===attempt.jobId&&item.status==='completed');if(!job)continue;
+      const result=await store.getArtifact(`trail-specialist-output-${job.id}`);if(!result)continue;
+      if(reconcileCompletedAttempt(entry,job,result,at))changed=true;
+    }
+  }
+  return changed;
 }
 
 async function advanceTrailOrchestration(store,options={}){
@@ -42,6 +86,7 @@ async function advanceTrailOrchestration(store,options={}){
       trail.gate={id:'agent-failure',status:'awaiting-human',openedAt:at};trail.updatedAt=at;
       nextQueue.items.push({reviewId:`agent-failure-${trail.candidateId}-${failed.id}`,candidateId:trail.candidateId,trailId:trail.trailId,trailName:trail.trailName,
         gateType:'agent-failure',state:'awaiting-human',openedAt:at,approvalAllowed:false,blockingReasons:trail.blockers,sourceTrail:trail.sourceTrail,
+        claimResolution:resolutionLedger(trail),
         specialistOutputs:[{agentId:failed.agentId,jobId:failed.id,result:{summary:failed.lastError||'Agent execution failed',recommendation:'block',claims:[],openQuestions:[]}}],
         allowedActions:['request-revision','reject'],publicMutationAllowed:false});advanced.push(trail.trailId);continue;
     }
@@ -61,11 +106,29 @@ async function advanceTrailOrchestration(store,options={}){
         allowedActions:['approve','request-revision','reject'],publicMutationAllowed:false}); advanced.push(trail.trailId); continue;
     }
     if(trail.state==='evidence-research'){
-      const base=['logistics','regulatoryRanger','terrainPoi'].map(agent=>latest(jobs,trail.candidateId,agent));
+      const base=BASE_AGENTS.map(agent=>latest(jobs,trail.candidateId,agent));
       if(base.some(job=>!job))continue;
-      const attempt=(trail.attempts.evidenceLibrarian||0)+1;trail.attempts.evidenceLibrarian=attempt;
-      const job=specialistJob(trail,{agentId:'evidenceLibrarian',action:'audit-specialist-evidence',claimIds:['provenance']},attempt,at);
-      job.inputRefs=base.map(item=>`firestore:trail-specialist-output-${item.id}`);queued.push(job);trail.jobIds.push(job.id);trail.state='provenance-audit';trail.stage='source-provenance-audit';trail.updatedAt=at;advanced.push(trail.trailId);continue;
+      const outputs=[];for(const job of base){const result=await store.getArtifact(`trail-specialist-output-${job.id}`);if(result)outputs.push({agentId:job.agentId,jobId:job.id,result});}
+      const candidates=resolutionCandidates(outputs);
+      if(candidates.length){
+        const entries=ensureResolutionEntries(trail,candidates);
+        for(const entry of Object.values(entries))if(entry.state==='researchable'&&!pendingAttempt(entry,jobs))queueClaimResolution(trail,entry,jobs,queued,at);
+        trail.state='evidence-resolution';trail.stage='autonomous-claim-resolution';trail.updatedAt=at;advanced.push(trail.trailId);continue;
+      }
+      if(queueProvenanceAudit(trail,jobs,queued,at))advanced.push(trail.trailId);
+      continue;
+    }
+    if(trail.state==='evidence-resolution'){
+      const changed=await reconcileResolutionAttempts(store,trail,jobs,at);let scheduled=false;
+      for(const entry of resolutionLedger(trail)){
+        if(entry.state!=='researchable'||pendingAttempt(entry,jobs))continue;
+        if(completedAttempts(entry).length>=MAX_AUTOMATED_ATTEMPTS){entry.state='source-exhausted';entry.updatedAt=at;continue;}
+        queueClaimResolution(trail,entry,jobs,queued,at);scheduled=true;
+      }
+      const pending=resolutionLedger(trail).some(entry=>pendingAttempt(entry,[...jobs,...queued]));
+      if(scheduled||pending){if(changed||scheduled)advanced.push(trail.trailId);continue;}
+      if(queueProvenanceAudit(trail,jobs,queued,at))advanced.push(trail.trailId);
+      continue;
     }
     if(trail.state==='provenance-audit'){
       const librarian=latest(jobs,trail.candidateId,'evidenceLibrarian');if(!librarian)continue;
@@ -82,6 +145,7 @@ async function advanceTrailOrchestration(store,options={}){
       trail.state='dossier-human-gate';trail.stage='complete-evidence-dossier';trail.currentJobId=red.id;trail.gate={id:'dossier-approval',status:'awaiting-human',openedAt:at};trail.updatedAt=at;
       nextQueue.items.push({reviewId:`dossier-approval-${trail.candidateId}-${red.id}`,candidateId:trail.candidateId,trailId:trail.trailId,trailName:trail.trailName,
         gateType:'dossier-approval',state:'awaiting-human',openedAt:at,approvalAllowed:!blockingReasons.length,blockingReasons,sourceTrail:trail.sourceTrail,specialistOutputs,
+        claimResolution:resolutionLedger(trail),
         allowedActions:['approve','request-revision','reject'],publicMutationAllowed:false});advanced.push(trail.trailId);
     }
   }

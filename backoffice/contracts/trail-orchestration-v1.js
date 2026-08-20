@@ -2,7 +2,7 @@
 
 const VERSION = '1.0.0';
 const STATES = Object.freeze([
-  'geometry-audit', 'geometry-human-gate', 'evidence-research',
+  'geometry-audit', 'geometry-human-gate', 'evidence-research', 'evidence-resolution',
   'provenance-audit', 'red-team', 'dossier-human-gate',
   'ready-for-editorial', 'rejected', 'blocked',
 ]);

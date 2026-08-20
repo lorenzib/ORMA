@@ -10,15 +10,16 @@ const { publicationRequestIsRetryable } = require('../workflows/publication-fail
 async function main(){
   const root = path.resolve(__dirname,'../..'); const store = new FirestoreBackofficeStore();
   const [requests,staging] = await Promise.all([store.getArtifact('publication-requests'),store.getArtifact('publication-staging')]);
+  const at=new Date().toISOString();const forceRetry=process.env.ORMA_PUBLICATION_FORCE_RETRY==='true';
   const target = path.join(root,'data','verified-trail-overrides.json');
   const overrides = JSON.parse(await fs.readFile(target,'utf8'));
-  const approved = (requests?.requests || []).filter(publicationRequestIsRetryable);
+  const approved = (requests?.requests || []).filter(request=>publicationRequestIsRetryable(request,{at,force:forceRetry}));
   const routesByCandidate = {};
   for(const request of approved){
     routesByCandidate[request.candidateId] = await store.getArtifact(`route-proposal-${request.candidateId}`);
   }
   const result = materializeApprovedPublications({
-    requests, staging, routesByCandidate, overrides, at:new Date().toISOString(),
+    requests, staging, routesByCandidate, overrides, at, forceRetry,
   });
   if(!result.materialized){
     console.log('[orma-publication] No new approved publication requests.');

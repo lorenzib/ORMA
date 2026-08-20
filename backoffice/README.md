@@ -110,6 +110,23 @@ the claim becomes `source-exhausted` and must move to direct contact, a field
 check, or remain blocked. The limit never authorizes an unknown claim to become
 supported.
 
+After the human geometry gate, the live orchestrator applies this policy to
+every `unresolved` or `conflicted` Logistics, Regulatory Ranger, and Terrain &
+POI finding before provenance and Red Team review. The five fixed strategies
+are primary-authority scope, geospatial triangulation, local-institution
+cross-check, counter-evidence/freshness review, and a final direct-verification
+escalation check. Each claim has a durable Firestore ledger containing the
+strategy, scheduled and eligible times, job receipt, finding, source count, and
+blockers. Backoffice Trail evidence shows that ledger at the final human gate.
+
+An OpenAI transport, rate-limit, validation, or worker failure is a system
+retry on the same job and does **not** consume another evidence strategy. A
+supported retry replaces only its targeted claim and preserves unrelated
+supported findings. A fifth unresolved retry is labelled `source-exhausted`;
+approval stays locked rather than allowing the model to manufacture a green
+claim. Exact route identity and geometry remain a separate mandatory human
+gate because a language-model search cannot approve coordinates.
+
 The default outputs are `backoffice-data/review-queue.json` and
 `backoffice-data/logistics-review.json`. These evidence and decision artifacts
 form the reproducible seed/audit baseline for Firestore; they must be reviewed
@@ -170,6 +187,13 @@ small `data/verified-trail-overrides.json` change, regenerates and validates the
 website, opens a GitHub pull request, and records that PR URL back in Firestore.
 It never pushes a trail directly to the default branch. Re-running the worker
 is idempotent: one human publication approval can produce only one override.
+Failed releases keep that approval and apply a bounded retry cooldown. Ordinary
+automation failures back off from 15 minutes through 72 hours; the known
+GitHub Actions PR-permission failure opens a manual circuit breaker so the
+schedule cannot create duplicate failed runs continuously. After correcting
+the external setting, start the workflow manually with **Force publication
+retry** to bypass the remaining cooldown. The failure receipt and next eligible
+time stay visible in Home and Content & release.
 
 One-time repository secrets:
 
