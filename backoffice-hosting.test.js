@@ -90,6 +90,15 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).not.toContain('Continue with Google');
   });
 
+  test('Analyst decisions keep validation and save receipts beside the clicked card',()=>{
+    const html=fs.readFileSync(path.join(output,'product-ideas-desk.html'),'utf8');
+    const script=fs.readFileSync(path.join(output,'analyst-hosted.js'),'utf8');
+    expect(html).toContain('analyst-hosted.js?v=20260820-2');
+    expect(script).toContain("receipt.setAttribute('aria-live','polite')");
+    expect(script).toContain('Add the investigation or revision focus in the box above first.');
+    expect(script).toContain('Saving this Analyst decision…');
+  });
+
   test('Firebase and GitHub deploy only the named backoffice target',()=>{
     const firebase=JSON.parse(fs.readFileSync(path.join(__dirname,'firebase.json'),'utf8'));
     const targets=JSON.parse(fs.readFileSync(path.join(__dirname,'.firebaserc'),'utf8')).targets;
