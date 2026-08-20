@@ -2124,8 +2124,9 @@ body.map-fs-open{overflow:hidden;}
 }
 .hp-footer-grid,.hp-footer-base{position:relative;z-index:1;}
 @media (max-width:700px){.hp-footer::after{width:300px;height:300px;right:-50px;bottom:-60px;}}
-/* Six desktop columns: brand plus all five navigation groups on one line. */
-.hp-footer-grid{width:100%;max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));margin:0 auto;display:grid;grid-template-columns:minmax(230px,1.35fr) repeat(5,minmax(0,max-content));justify-content:space-between;column-gap:clamp(14px,1.4vw,24px);row-gap:20px;align-items:start;}
+/* Five desktop columns: brand plus the four navigation groups. Follow Us
+   sits in its own band below them. */
+.hp-footer-grid{width:100%;max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));margin:0 auto;display:grid;grid-template-columns:minmax(230px,1.35fr) repeat(4,minmax(0,max-content));justify-content:space-between;column-gap:clamp(14px,1.4vw,24px);row-gap:20px;align-items:start;}
 .hp-footer-grid>div:last-child{justify-self:end;}
 .hp-footer-brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:10px;}
 /* The logo's badge background disappears on the footer's matching dark
@@ -2138,6 +2139,28 @@ body.map-fs-open{overflow:hidden;}
 .hp-footer-links{display:flex;flex-direction:column;gap:7px;}
 .hp-footer-links a{font-size:14px;line-height:1.5;color:#D4DED3;text-decoration:none;white-space:nowrap;}
 .hp-footer-links a:hover,.hp-footer-social a:hover{color:#F7F4EA;}
+
+/* Stay-in-touch band: a full-width strip under the navigation columns
+   holding the social icons and the newsletter link, the way Komoot and
+   Strava separate "follow us" from the sitemap above it. */
+.hp-footer-connect{
+  width:100%;
+  max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));
+  margin:26px auto 0;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.12);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px 24px;
+  flex-wrap:wrap;
+  position:relative;
+  z-index:1;
+}
+.hp-footer-connect-main{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.hp-footer-connect .hp-footer-h{margin-bottom:0;}
+.hp-footer-newsletter{font-size:14px;color:#D4DED3;text-decoration:none;white-space:nowrap;}
+.hp-footer-newsletter:hover{color:#F7F4EA;}
 
 /* "Follow Us" — icon row that replaced the old text-link Connect column. */
 .hp-footer-social-row{display:flex;align-items:center;gap:10px;}

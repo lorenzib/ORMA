@@ -50,10 +50,10 @@ describe('footer navigation', () => {
 
   test('every public page uses the same ordered footer navigation', () => {
     const expected = [
-      ['how-scoring-works.html', 'How scoring works'],
       ['browse-trails.html', 'Browse all Trails'],
       ['collections.html', 'Collections'],
       ['compare.html', 'Compare trails'],
+      ['how-scoring-works.html', 'How scoring works'],
       ['guides/water-for-dogs-on-trail.html', 'Heat &amp; hydration'],
       ['guides/paw-protection.html', 'Paw protection'],
       ['guides/breed-group-caveats.html', 'Breed group caveats'],
@@ -65,10 +65,11 @@ describe('footer navigation', () => {
       // Follow Us and Get the app are icon/badge links, so they carry no
       // text node and never appear in this list.
       ['about.html', 'About us'],
-      ['about.html', 'Newsletter'],
       ['contact.html', 'Contact'],
       ['privacy.html', 'Privacy'],
       ['terms.html', 'Terms'],
+      // The stay-in-touch band renders after the column grid.
+      ['about.html', 'Newsletter'],
     ];
 
     publicFooterPages().forEach(file => {
@@ -78,9 +79,9 @@ describe('footer navigation', () => {
     });
   });
 
-  test('every public footer loads the current balanced six-column stylesheet', () => {
+  test('every public footer loads the current balanced five-column stylesheet', () => {
     const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
-    expect(css).toContain('grid-template-columns:minmax(230px,1.35fr) repeat(5,minmax(0,max-content))');
+    expect(css).toContain('grid-template-columns:minmax(230px,1.35fr) repeat(4,minmax(0,max-content))');
     expect(css).toContain('.hp-footer-grid>div:last-child{justify-self:end;}');
     expect(css).toContain('max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)))');
 
@@ -95,15 +96,17 @@ describe('footer navigation', () => {
     });
   });
 
-  test('every public footer follows the same three social channels, in order', () => {
+  test('every public footer follows the same four social channels, in order', () => {
     const pages = publicFooterPages();
     expect(pages.length).toBeGreaterThan(0);
     pages.forEach(file => {
       const footer = footerOf(file);
       // account.html localises its headings, so allow extra attributes.
-      expect(footer).toMatch(/<div class="hp-footer-h"[^>]*>Follow Us<\/div>/);
+      // Follow Us is a standalone band below the grid, not a column.
+      expect(footer).toMatch(/<div class="hp-footer-connect">/);
+      expect(footer).toMatch(/<span class="hp-footer-h"[^>]*>Follow Us<\/span>/);
       const channels = [...footer.matchAll(/aria-label="ORMA on ([^"]+)"/g)].map(([, name]) => name);
-      expect(channels).toEqual(['Instagram', 'Facebook', 'YouTube']);
+      expect(channels).toEqual(['Instagram', 'Facebook', 'YouTube', 'TikTok']);
 
       // Instagram is live; Facebook and YouTube still await real accounts.
       expect(footer).toContain(
