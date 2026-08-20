@@ -158,9 +158,9 @@ describe('trail page map controls', () => {
     expect(html).toContain('i18n.js?v=20260819-5');
     expect(html).toContain('trail-photo-provenance.js?v=20260820-1');
     expect(html).toContain('trail-weather-window.js?v=20260820-1');
-    expect(html).toContain('trail.js?v=20260820-1');
+    expect(html).toContain('trail.js?v=20260820-2');
     expect(html).toContain('trail-reports.js?v=20260820-2');
-    expect(html).toContain('trail-blueprint.js?v=20260820-3');
+    expect(html).toContain('trail-blueprint.js?v=20260820-4');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
     expect(html).toContain('offline-packages.js?v=20260819-6');
     expect(html).toContain('trail-mobile.js?v=20260819-6');
@@ -180,17 +180,19 @@ describe('trail page map controls', () => {
     expect(html.indexOf('trail-weather-window.js')).toBeLessThan(html.indexOf('trail-blueprint.js'));
   });
 
-  test('renders sources as one coherent evidence panel', () => {
+  test('keeps trail evidence internal and attributes weather beside its card', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
-    const styles = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
     document.body.innerHTML = html;
-    expect(document.getElementById('trailCoords')).not.toBeNull();
-    expect(document.getElementById('trailCoords').tagName).toBe('DIV');
-    expect(blueprint).toContain('trail-source-group-title');
-    expect(blueprint).toContain('trail-source-list');
-    expect(styles).toContain('.trail-source-row');
-    expect(styles).toContain('border-right:1.5px solid currentColor');
+    expect(document.getElementById('trailEvidence')).toBeNull();
+    expect(document.getElementById('trailCoords')).toBeNull();
+    expect(document.getElementById('trailSourceLinks')).toBeNull();
+    expect(document.getElementById('trailReviewMeta')).not.toBeNull();
+    expect(blueprint).not.toContain('sourceLinks');
+    expect(blueprint).not.toContain('Trail evidence');
+    const weatherSource = document.querySelector('.td2-weather-source');
+    expect(weatherSource.getAttribute('href')).toBe('https://open-meteo.com/');
+    expect(weatherSource.getAttribute('aria-label')).toBe('Weather data by Open-Meteo');
   });
 
   test('the map workspace places elevation below the map while dog fit stays alongside it', () => {

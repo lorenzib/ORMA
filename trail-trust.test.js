@@ -201,9 +201,14 @@ describe('trail data trust states', () => {
     expect(importedPage).not.toMatch(/Partly verified|Verification in progress|\d+\/\d+ checks/i);
     expect(importedPage).not.toContain('verified map data');
     expect(reviewedPage).toContain('Verified by ORMA');
-    expect(reviewedPage).toContain(reviewedSource.graduation?.status === 'verified'
-      ? 'This trail has been reviewed by ORMA'
-      : 'Trail information prepared by ORMA');
-    expect(reviewedPage).toContain('View source details');
+    if (reviewedSource.graduation?.status === 'verified') {
+      expect(reviewedPage).toContain('Verified by ORMA on');
+    }
+    expect(reviewedPage).not.toContain('Sources &amp; data');
+    expect(reviewedPage).not.toContain('View source details');
+    expect(reviewedPage).not.toContain('Trail evidence');
+    (reviewedSource.sourceLinks || []).forEach(source => {
+      expect(reviewedPage).not.toContain(source.url);
+    });
   });
 });

@@ -391,28 +391,10 @@ function trailPage(t, slug, all) {
           .join('\n    ')}`
       : '';
 
-  const reviewSummary = graduation
-    ? graduation.verified
-      ? 'This trail has been reviewed by ORMA. Check current conditions before setting out.'
-      : 'Based on mapped route data and available ORMA sources. Check current conditions before setting out.'
-    : progress
-      ? progress.length === REVIEW_CATEGORIES.length
-        ? 'Trail details have been source-checked by ORMA. Check current conditions before setting out.'
-        : 'Based on mapped route data and available ORMA sources. Check current conditions before setting out.'
-      : t.routeAudit && t.reviewedAt
-        ? 'Route details have been reviewed by ORMA. Check current conditions before setting out.'
-        : !verified
-          ? 'Based on mapped route data and available ORMA sources. Check local access rules and current conditions before setting out.'
-          : 'Trail information prepared by ORMA. Check current conditions before setting out.';
-  const sourceLinks = Array.isArray(t.sourceLinks) && t.sourceLinks.length
-    ? `<ul>${t.sourceLinks.map(source => `<li><a href="${escapeHtml(source.url)}" rel="noopener">${escapeHtml(source.label)}</a></li>`).join('')}</ul>`
+  const reviewDate = t.reviewedAt || (t.verified && t.verified.date);
+  const reviewRecord = verified && reviewDate
+    ? `<p class="sp-review-meta">Verified by ORMA on ${escapeHtml(formatReviewDate(reviewDate))}. Check current conditions before setting out. <a href="../how-scoring-works.html">How ORMA assesses trails →</a></p>`
     : '';
-  const sourceRecord = `<h2>Sources &amp; data</h2>
-    <details class="sp-source-details"><summary>View source details</summary>
-      <p>${escapeHtml(reviewSummary)}</p>
-${sourceLinks}
-      <p class="sp-src">Map data: <a href="https://www.openstreetmap.org/copyright" rel="noopener">OpenStreetMap contributors</a> and Waymarked Trails<br>Weather: Open-Meteo</p>
-    </details>`;
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -473,8 +455,9 @@ ${sourceLinks}
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
-  .sp-source-details{font-size:.9rem;color:var(--ink-soft,#666);}
-  .sp-source-details summary{cursor:pointer;font-weight:700;color:var(--forest,#2E4034);}
+  .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
+  .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
+  .sp-review-meta a:hover{text-decoration:underline;}
   .sp-cta{display:inline-block;margin:26px 0;padding:12px 22px;background:#2E4034;color:#fff;border-radius:10px;font-weight:600;text-decoration:none;}
   .sp-img{max-width:100%;width:480px;max-height:300px;object-fit:cover;border-radius:12px;margin:6px 0 14px;display:block;}
   .sp-route{max-width:100%;width:640px;display:block;margin:6px 0 14px;}
@@ -533,7 +516,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
     ${rifugiHtml}
     ${tipsHtml}
     ${insightsHtml}
-    ${sourceRecord}
+${reviewRecord}
     <div id="dogFit">
     <h2>Is this trail right for <em>your</em> dog?</h2>
     <p>The trail rating above describes the mountain, and it's the same for every dog. What it can't tell you is how this route pairs with your dog's build, age, and health. <a href="../account.html?next=trail.html%3Fid%3D${encodeURIComponent(t.id)}">Create your dog's free profile</a> for a personalised match.</p>

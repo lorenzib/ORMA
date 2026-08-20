@@ -525,6 +525,10 @@ body{background:#EFECE2;}
 .td2-cond-row .num{font-size:15px;font-weight:900;}
 .td2-cond-row #tdCondWater{font-weight:800;}
 .td2 #tdCondPaw{font-size:11px;padding:4px 10px;border-radius:999px;}
+.td2-weather-head{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.td2-weather-source{display:grid;place-items:center;width:18px;height:18px;border:1px solid rgba(255,255,255,.45);border-radius:50%;color:#EAF1E8;font:800 10px/1 'Inter',sans-serif;text-decoration:none;text-transform:none;letter-spacing:0;}
+.td2-weather-source:hover{background:rgba(255,255,255,.12);}
+.td2-weather-source:focus-visible{outline:2px solid #fff!important;outline-offset:2px;}
 .td2-cond-window{font-size:11.5px;color:#8A9689;line-height:1.5;margin:12px 0 0;padding-top:12px;border-top:1px solid #EDE9DD;}
 .td2-cond-window strong{font-weight:700;color:#6B7A6E;}
 
@@ -571,10 +575,12 @@ body{background:#EFECE2;}
 .recommendation-gaps a{color:#3E7A91;font:700 12.5px 'Inter',sans-serif;text-decoration:none;}
 .recommendation-gaps a:hover{text-decoration:underline;}
 .trail-evidence-scoring{margin:8px 0 0;color:#8A9689;font:500 12px/1.7 'Inter',sans-serif;}
-/* End-of-page data footnote: grey, unboxed, colophon-style. */
-.trail-evidence-foot{margin:30px 0 6px;padding-top:14px;border-top:1px solid #DDD9CC;color:#8A9689;font:500 12px/1.7 'Inter',sans-serif;scroll-margin-top:90px;}
-.trail-evidence-foot .tef-kick{font-weight:700;letter-spacing:.02em;}
-.trail-evidence-foot p{margin:6px 0 0;font-size:12px;color:#8A9689;}
+/* Public trust note only. Claim-by-claim evidence stays in the Trail
+   Verification Desk instead of appearing on the customer page. */
+.trail-review-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:30px 0 6px;padding-top:14px;border-top:1px solid #DDD9CC;color:#8A9689;font:500 12px/1.6 'Inter',sans-serif;}
+.trail-review-foot p{margin:0;}
+.trail-review-foot a{flex:none;color:#5F7465;font-weight:700;text-decoration:none;}
+.trail-review-foot a:hover{text-decoration:underline;}
 .recommendation-columns{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;}
 .recommendation-columns section{padding:15px 16px;border-radius:12px;background:#F7F5EE;}
 .recommendation-columns h3{margin:0 0 9px;font:800 12px 'Inter',sans-serif;color:#2E4034;}
@@ -809,6 +815,8 @@ body{background:#EFECE2;}
   #mobileWeatherSlot .td2-cond{padding:12px 14px;}
   #mobileWeatherSlot .td2-fc6{margin-top:0;padding:10px 14px;border-top:1px solid #E4E0D3;}
   #mobileWeatherSlot .td2-kick{color:#6B7A6E;}
+  #mobileWeatherSlot .td2-weather-source{border-color:#AAB5AB;color:#53675A;}
+  #mobileWeatherSlot .td2-weather-source:focus-visible{outline-color:#3E7A91!important;}
   #mobileWeatherSlot #sideFcValley{display:none;}
   #mobileWeatherSlot .td2-cond-facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
   #mobileWeatherSlot .td2-cond-row{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:4px;padding:0 8px 0 0;color:#6B7A6E;border:0;border-right:1px solid #E4E0D3;}
@@ -911,7 +919,10 @@ body.trail-photo-viewer-open{overflow:hidden;}
              available on demand instead of occupying the planning column. -->
         <div class="td2-hero-weather">
           <div class="td2-cond" id="tdConditions" hidden>
-            <div class="td2-kick">Trail weather <span id="sideFcValley"></span></div>
+            <div class="td2-weather-head">
+              <div class="td2-kick">Trail weather <span id="sideFcValley"></span></div>
+              <a class="td2-weather-source" href="https://open-meteo.com/" target="_blank" rel="noopener" aria-label="Weather data by Open-Meteo" title="Weather data by Open-Meteo">i</a>
+            </div>
             <div class="td2-cond-facts">
               <div class="td2-cond-row"><span>Temperature</span><b class="num" id="tdCondTemp">—</b></div>
               <div class="td2-cond-row"><span>Paw comfort</span><span class="td2-badge" id="tdCondPaw">—</span></div>
@@ -1112,15 +1123,10 @@ body.trail-photo-viewer-open{overflow:hidden;}
       <div id="nearbyGrid" class="near-grid"></div>
     </div>
 
-    <!-- TRAIL DATA FOOTNOTE — reference material, deliberately last and quiet. -->
-    <div class="trail-evidence-foot" id="trailEvidence">
-      <span class="tef-kick">Sources &amp; data</span>
-      <details class="trail-source-disclosure">
-        <summary>View source details</summary>
-        <p id="trailReviewMeta" class="trail-review-meta"></p>
-        <div id="trailCoords"></div>
-        <div id="trailSourceLinks" class="trail-source-links"></div>
-      </details>
+    <!-- Public trust note. The detailed evidence record is internal. -->
+    <div class="trail-review-foot" id="trailReviewNote">
+      <p id="trailReviewMeta"></p>
+      <a href="how-scoring-works.html">How ORMA assesses trails →</a>
     </div>
   </div>
 </div>
@@ -1221,8 +1227,8 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="trail-photo-provenance.js?v=20260820-1" defer></script>
 <script src="trail-weather-window.js?v=20260820-1" defer></script>
 <script src="trail-reports.js?v=20260820-2" defer></script>
-<script src="trail.js?v=20260820-1" defer></script>
-<script src="trail-blueprint.js?v=20260820-3" defer></script>
+<script src="trail.js?v=20260820-2" defer></script>
+<script src="trail-blueprint.js?v=20260820-4" defer></script>
 <script src="trail-detail-ui.js?v=20260815-4" defer></script>
 <script src="trail-mobile.js?v=20260819-6" defer></script>
 <script src="recommendation-decision.js?v=20260815-4" defer></script>
