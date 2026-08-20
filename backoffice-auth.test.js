@@ -50,7 +50,7 @@ describe('private ORMA backoffice authentication',()=>{
   test('cache-busts the hosted Firebase module',()=>{
     const login=fs.readFileSync(path.join(root,'backoffice-hosted-login.html'),'utf8');
     const build=fs.readFileSync(path.join(root,'scripts/build-backoffice-hosting.js'),'utf8');
-    expect(login).toContain('backoffice-firebase.js?v=20260820-1');
-    expect(build).toContain('backoffice-firebase.js?v=20260820-1');
+    expect(login).toContain('backoffice-firebase.js?v=20260820-2');
+    expect(build).toContain('backoffice-firebase.js?v=20260820-2');
   });
 });
