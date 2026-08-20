@@ -70,6 +70,7 @@ describe('primary section page headers', () => {
 
     expect(document.querySelector('#how-scoring-works').classList.contains('scoring-article')).toBe(true);
     expect(html).toMatch(/\.scoring-article\s*\{[^}]*max-width:var\(--wrap\)/s);
-    expect(html).toMatch(/\.scoring-article \.guide-section > p\s*\{[^}]*max-width:820px/s);
+    // Intro copy runs the full card width rather than stopping short of it.
+    expect(html).toMatch(/\.scoring-article \.guide-section > p\s*\{[^}]*max-width:none/s);
   });
 });
