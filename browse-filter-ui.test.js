@@ -41,7 +41,7 @@ function reviewedTrail(){
   };
 }
 
-function setup(url){
+function setup(url, trailOverrides = {}){
   const html = source('browse-trails.html');
   const inline = Array.from(html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g))
     .map(match => match[1]).filter(body => body.includes('function renderPage'))[0];
@@ -50,9 +50,15 @@ function setup(url){
   window.HTMLElement.prototype.scrollIntoView = function(){};
   window.t = (key, params) => {
     if(key === 'page.of') return `${params.a}/${params.b}`;
+    const labels = {
+      'legend.low':'Low-risk terrain',
+      'legend.moderate':'Moderate terrain',
+      'legend.caution':'Caution terrain',
+    };
+    if(labels[key]) return labels[key];
     return key;
   };
-  window.trails = [reviewedTrail()];
+  window.trails = [{ ...reviewedTrail(), ...trailOverrides }];
   [
     'trust/evidence-v1.js',
     'scoring/recommendation-adapters-v1.js',
@@ -98,14 +104,27 @@ describe('Browse filter UI', () => {
     expect(window.document.querySelector('.simple-card')).not.toBeNull();
   });
 
-  test('mobile-ready cards use the trail-page terrain language and aligned rows', () => {
-    const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites');
-    const card = window.document.querySelector('.simple-card');
+  test('mobile-ready cards use explicit terrain language and aligned rows', () => {
+    const html = source('browse-trails.html');
+    const i18n = source('i18n.js');
 
-    expect(card.querySelector('.simple-card__facts').textContent).toContain('Low-risk terrain');
-    expect(card.textContent).not.toContain('Trail rating');
-    expect(card.querySelector('.simple-card__score')).not.toBeNull();
-    expect(card.querySelector('.simple-card__match-actions')).not.toBeNull();
+    expect(i18n).toContain("'legend.low': 'Low-risk terrain'");
+    expect(i18n).toContain("'legend.moderate': 'Moderate terrain'");
+    expect(i18n).toContain("'legend.caution': 'Caution terrain'");
+
+    [
+      ['low-risk', 'Low-risk terrain'],
+      ['moderate', 'Moderate terrain'],
+      ['caution', 'Caution terrain'],
+    ].forEach(([safetyLevel, label]) => {
+      const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites', { safetyLevel });
+      const card = window.document.querySelector('.simple-card');
+      expect(card.querySelector('.simple-card__facts').textContent).toContain(label);
+      expect(card.textContent).not.toContain('Trail rating');
+      expect(card.querySelector('.simple-card__score')).not.toBeNull();
+      expect(card.querySelector('.simple-card__match-actions')).not.toBeNull();
+    });
+    expect(html).not.toContain('terrainRatingLabel');
   });
 
   test('selecting a trail opens the persistent comparison tray', () => {

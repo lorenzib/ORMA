@@ -63,4 +63,13 @@ describe('primary section page headers', () => {
     expect(css).toMatch(/\.guide-hero\.section-page-head,[\s\S]*padding:38px var\(--wrap-gutter\) 8px;/);
     expect(css).toMatch(/\.guide-hero \.section-page-subtitle,[\s\S]*white-space:normal;/);
   });
+
+  test('the scoring explainer uses the full website content grid', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'how-scoring-works.html'), 'utf8');
+    document.body.innerHTML = html;
+
+    expect(document.querySelector('#how-scoring-works').classList.contains('scoring-article')).toBe(true);
+    expect(html).toMatch(/\.scoring-article\s*\{[^}]*max-width:var\(--wrap\)/s);
+    expect(html).toMatch(/\.scoring-article \.guide-section > p\s*\{[^}]*max-width:820px/s);
+  });
 });

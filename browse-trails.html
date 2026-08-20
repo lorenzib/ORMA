@@ -932,7 +932,6 @@
         const provenanceLabel = trust ? trust.tierLabel(t) : window.t(t.curated === false ? 'badge.importedS' : 'badge.verifiedS');
         const provStyle = trust ? trust.tierBadgeStyle(t) : (t.curated === false ? 'imported' : 'verified');
         const ratingLabel = trust ? trust.riskLabel(t, s[0]) : s[0];
-        const terrainRatingLabel = t.safetyLevel === 'low-risk' ? 'Low-risk terrain' : ratingLabel;
         const provenance = icons
           ? icons.badgeHtml(provStyle, provenanceLabel)
           : `<span class="badge-pill badge-${provStyle}">${provenanceLabel}</span>`;
@@ -957,8 +956,8 @@
           </a>
           <div class="simple-card__facts">
             ${icons
-              ? icons.badgeHtml(t.safetyLevel, terrainRatingLabel)
-              : `<span class="safety-badge ${t.safetyLevel === 'low-risk' ? 'safety-low' : t.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution'}">${terrainRatingLabel}</span>`}
+              ? icons.badgeHtml(t.safetyLevel, ratingLabel)
+              : `<span class="safety-badge ${t.safetyLevel === 'low-risk' ? 'safety-low' : t.safetyLevel === 'moderate' ? 'safety-moderate' : 'safety-caution'}">${ratingLabel}</span>`}
             ${provenance}
             ${reason ? `<span class="simple-card__reason${reasonIsWater ? ' simple-card__reason--water' : ''}"><b aria-hidden="true">✓</b>${esc(reason)}</span>` : ''}
           </div>
