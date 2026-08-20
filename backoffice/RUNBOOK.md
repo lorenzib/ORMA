@@ -23,6 +23,7 @@ or append a CEO decision.
 | Workflow | Target cadence | Human gate |
 | --- | --- | --- |
 | Queue worker | Every five minutes | Geometry, final dossier, trail content and release decisions |
+| Publication receipt reconciler | Every five minutes, inside the queue worker | No new gate; records only a commit already proven live by GitHub Pages |
 | Groundskeeper | Daily at 07:15 Europe/Rome | Confirm removal of an expired warning |
 | Catalogue campaign | Daily at 06:15 UTC, plus due-only worker catch-up | New admissions still enter the normal trail gates |
 | Strategy cycle | Wednesday at 12:00 Europe/Rome | Editorial, image, Newsletter and Analyst desks |
@@ -76,13 +77,20 @@ and enable **Allow GitHub Actions to create and approve pull requests**. This
 allows the worker to open the review PR; it does not merge or publish the trail
 without the existing final PR review.
 
-After the PR is merged, the successful GitHub Pages run triggers **Confirm ORMA
-trail deployment**. It matches the committed approval IDs, changes the
-protected receipt from `pull-request-opened` to `published`, records the commit
-and deployment-run URL, clears the final-PR gate, and adds the live trail link
-to **What happened after your clicks**. If that reconciliation is ever missed,
-manually run the same workflow with the already deployed commit and the URL of
-its successful Pages run; do not edit the Firestore receipt directly.
+After the PR is merged, the five-minute **ORMA backoffice worker** checks for
+the latest successful GitHub Pages run on `main`. It obtains the evidence from
+the GitHub Actions API, checks out that exact deployed commit, matches the
+committed approval IDs, changes the protected receipt from
+`pull-request-opened` to `published`, records the commit and deployment-run
+URL, clears the final-PR gate, and adds the live trail link to **What happened
+after your clicks**. A delayed Pages run is an expected waiting state: the next
+worker pass checks again without claiming publication early.
+
+If reconciliation is ever missed, manually run **Confirm ORMA trail
+deployment**. Leave its optional commit blank to verify the latest successful
+Pages deployment, or supply the known deployed commit to verify that exact
+deployment. The workflow discovers and validates the successful run itself; do
+not paste an unverified run URL or edit the Firestore receipt directly.
 
 ## Activation and verification
 

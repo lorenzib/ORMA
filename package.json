@@ -61,6 +61,7 @@
     "backoffice:materialize-publications": "node backoffice/cli/materialize-publications.js",
     "backoffice:record-publication-failure": "node backoffice/cli/record-publication-failure.js",
     "backoffice:acknowledge-publications": "node backoffice/cli/acknowledge-publications.js",
+    "backoffice:find-pages-deployment": "node backoffice/cli/find-pages-deployment.js",
     "backoffice:confirm-publications": "node backoffice/cli/confirm-publications.js",
     "backoffice:orchestration:build": "node backoffice/cli/build-live-orchestration.js",
     "backoffice:campaign:live": "node backoffice/cli/start-live-trail-campaign.js",
