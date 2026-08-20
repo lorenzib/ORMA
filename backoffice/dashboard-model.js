@@ -5,7 +5,7 @@
 })(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
   const ACTIVE_JOB_STATES=new Set(['queued','running','in-progress','processing']);
-  const PUBLICATION_OWNED_STATES=new Set(['queued','processed','approved-for-pr-creation','publication-failed','pull-request-opened','hold','request-changes']);
+  const PUBLICATION_OWNED_STATES=new Set(['queued','processed','approved-for-pr-creation','publication-failed','pull-request-opened','published','hold','request-changes']);
 
   function dateMs(value){
     if(!value)return 0;
@@ -53,7 +53,7 @@
     ];
     for(const record of records){
       if(!record.candidateId)continue;
-      const at=dateMs(record.acknowledgedAt||record.processedAt||record.reviewedAt||record.submittedAt);
+      const at=dateMs(record.deployedAt||record.publishedAt||record.acknowledgedAt||record.processedAt||record.reviewedAt||record.submittedAt);
       const current=latest.get(record.candidateId);
       if(!current||at>current.at||(at===current.at&&record.stream==='publication-request'))latest.set(record.candidateId,{record,at});
     }
@@ -66,6 +66,7 @@
     if(status==='blocked')return 'ORMA automation could not complete this handoff; it needs attention.';
     if(status==='publication-failed')return `Publication stopped at ${(item.failureStage||'automation').replace(/-/g,' ')}. Your approval is retained and the failure receipt is linked.${item.retryMode==='manual'?' Automatic retries are paused until the external setting is corrected and a forced manual run is started.':item.retryAfter?` Automatic retry paused until ${new Date(item.retryAfter).toLocaleString()}.`:''}`;
     if(status==='pull-request-opened')return 'The tested website diff is ready for your final GitHub review.';
+    if(status==='published')return `Published on the ORMA website from commit ${String(item.publicationCommit||'unknown').slice(0,7)}. The successful deployment receipt and live trail link are saved.`;
     if(status==='approved-for-pr-creation')return 'Approval consumed. ORMA automation is preparing the website pull request.';
     if(item.stream==='dossier'&&item.action==='request-revision')return 'Revision handed to the selected trail specialist.';
     if(item.stream==='content')return 'Content decision consumed; the trail advances when both outputs are approved.';
@@ -210,7 +211,7 @@
       activityById.set(`${item.stream}:${item.id}`,{...item,candidateId,title:title||'Trail workflow',at:dateMs(item.processedAt||item.submittedAt)});
     }
     for(const request of publicationRequests.requests||[]){
-      activityById.set(`publication:${request.id}`,{...request,stream:'publication',title:names.get(request.candidateId)||request.targetTrailId||'Trail release',at:dateMs(request.acknowledgedAt||request.failedAt||request.reviewedAt)});
+      activityById.set(`publication:${request.id}`,{...request,stream:'publication',title:names.get(request.candidateId)||request.targetTrailId||'Trail release',at:dateMs(request.deployedAt||request.publishedAt||request.acknowledgedAt||request.failedAt||request.reviewedAt)});
     }
     const activity=[...activityById.values()].sort((a,b)=>b.at-a.at).slice(0,8).map(item=>({...item,message:activityMessage(item)}));
     return {

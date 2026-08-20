@@ -34,10 +34,17 @@ function mergeProductPackets(previous,fresh,reviewLedger){
   return {...fresh,ideas,summary:{total:ideas.length,awaitingReview:ideas.length,highImpact:ideas.filter(idea=>idea.impact==='high').length,categories:[...new Set(ideas.map(idea=>idea.category))]},preservedIdeaIds:unresolved.map(idea=>idea.id)};
 }
 
-function buildNewsletterInputs({at,publication,ledger,hazards,ideas}){
+function publishedTrailInputs(publication,publicationRequests){
+  const staged=new Map((publication?.items||[]).map(item=>[item.candidateId,item]));
+  const receipts=(publicationRequests?.requests||[]).filter(item=>item.status==='published');
+  if(receipts.length)return receipts.map(receipt=>({...staged.get(receipt.candidateId),...receipt,state:'published',status:'published'}));
+  return (publication?.items||[]).filter(item=>['published','deployed'].includes(item.state)||item.status==='published');
+}
+
+function buildNewsletterInputs({at,publication,publicationRequests,ledger,hazards,ideas}){
   const cutoff=new Date(at).getTime()-14*24*60*60*1000;
   return {contractVersion:'1.0.0',generatedAt:at,issueCadence:'every-14-days',status:'ready-for-newsletter-agent',publicMutationAllowed:false,
-    newlyPublishedTrails:(publication?.items||[]).filter(item=>['published','deployed'].includes(item.state)||item.status==='published'),
+    newlyPublishedTrails:publishedTrailInputs(publication,publicationRequests),
     publishedEditorialChanges:(ledger?.items||[]).filter(item=>item.status==='published'&&new Date(item.lastPublishedAt||0).getTime()>=cutoff),
     timelySafetySignals:(hazards?.hazards||[]).filter(item=>item.state==='active').map(item=>({title:item.title,area:item.area,sourceLabel:item.sourceLabel,sourceUrl:item.sourceUrl,expiresAt:item.expiresAt,note:'Topic signal only; do not describe as a trail closure.'})),
     currentEditorialSignals:(ideas?.ideas||[]).filter(item=>item.category==='editorial-gap'),
@@ -78,12 +85,12 @@ async function runLiveStrategyCycle(store,options={}){
       catch(error){productStatus=`blocked: ${error.message}`;}
     }else if(productPacket)await store.setArtifact('product-ideas',productPacket,metadata);
 
-    const [publication,hazards,protectedNewsletterLedger,previousNewsletter]=await Promise.all([
-      store.getArtifact('publication-staging'),store.getArtifact('dynamic-hazards'),store.getArtifact('newsletter-review-ledger'),store.getArtifact('newsletter-review-packet'),
+    const [publication,publicationRequests,hazards,protectedNewsletterLedger,previousNewsletter]=await Promise.all([
+      store.getArtifact('publication-staging'),store.getArtifact('publication-requests'),store.getArtifact('dynamic-hazards'),store.getArtifact('newsletter-review-ledger'),store.getArtifact('newsletter-review-packet'),
     ]);
     const newsletterLedger=protectedNewsletterLedger||await readJson(path.join(root,'backoffice-data/newsletter-review.json'),{contractVersion:'1.0.0',decisions:[]});
     await store.setArtifact('newsletter-review-ledger',newsletterLedger,metadata);
-    const newsletterInputs=buildNewsletterInputs({at,publication,ledger,hazards,ideas:productPacket});await store.setArtifact('newsletter-inputs',newsletterInputs,metadata);
+    const newsletterInputs=buildNewsletterInputs({at,publication,publicationRequests,ledger,hazards,ideas:productPacket});await store.setArtifact('newsletter-inputs',newsletterInputs,metadata);
     let newsletterPacket=previousNewsletter||await readJson(path.join(root,'backoffice-data/newsletter-review-packet.json'),null);let newsletterStatus='not due';
     if(newsletterIsDue(newsletterPacket,newsletterLedger,at)){
       newsletterPacket=await (options.runNewsletter||runNewsletter)(newsletterInputs,{root,at,...(options.newsletterOptions||{})});await store.setArtifact('newsletter-review-packet',newsletterPacket,metadata);
@@ -111,4 +118,4 @@ async function runLiveStrategyCycle(store,options={}){
   }
 }
 
-module.exports={readJson,writeJson,hydrate,mergeProductPackets,buildNewsletterInputs,runLiveStrategyCycle};
+module.exports={readJson,writeJson,hydrate,mergeProductPackets,publishedTrailInputs,buildNewsletterInputs,runLiveStrategyCycle};

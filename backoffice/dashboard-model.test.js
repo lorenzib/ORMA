@@ -69,6 +69,16 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.pipeline[3].status).toContain('blocked with a saved failure receipt');
   });
 
+  test('a successful deployment clears the PR gate and leaves a live publication receipt',()=>{
+    const model=buildDashboardModel({
+      orchestration:{trails:[{candidateId:'trail-a',trailName:'Trail A',blockers:[]}]},dossiers:{items:[]},execution:{outputs:[]},jobs:[],history:[],
+      publication:{items:[{candidateId:'trail-a',targetTrailId:'trail-a',state:'published',missingApprovals:[]}]},
+      publicationRequests:{requests:[{id:'release-a',candidateId:'trail-a',targetTrailId:'trail-a',status:'published',publicationCommit:'abcdef123456',deployedAt:'2026-08-20T10:00:00Z',deploymentRunUrl:'https://github.com/orma/actions/runs/2',publicUrl:'https://www.app-orma.com/trail.html?id=trail-a'}]},
+    });
+    expect(model.decisions).toHaveLength(0);expect(model.prItems).toHaveLength(0);expect(model.summary.prsReady).toBe(0);
+    expect(model.activity[0]).toEqual(expect.objectContaining({status:'published',publicUrl:'https://www.app-orma.com/trail.html?id=trail-a',message:expect.stringContaining('commit abcdef1')}));
+  });
+
   test.each([
     ['healthy',{status:'healthy',lastSuccessfulAt:'2026-08-19T20:58:00Z'},'healthy'],
     ['running',{status:'running',runId:'123',startedAt:'2026-08-19T20:56:00Z',workflowRunUrl:'https://github.com/orma/actions/runs/123'},'running'],

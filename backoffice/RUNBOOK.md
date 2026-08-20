@@ -76,6 +76,14 @@ and enable **Allow GitHub Actions to create and approve pull requests**. This
 allows the worker to open the review PR; it does not merge or publish the trail
 without the existing final PR review.
 
+After the PR is merged, the successful GitHub Pages run triggers **Confirm ORMA
+trail deployment**. It matches the committed approval IDs, changes the
+protected receipt from `pull-request-opened` to `published`, records the commit
+and deployment-run URL, clears the final-PR gate, and adds the live trail link
+to **What happened after your clicks**. If that reconciliation is ever missed,
+manually run the same workflow with the already deployed commit and the URL of
+its successful Pages run; do not edit the Firestore receipt directly.
+
 ## Activation and verification
 
 Required repository variables:
