@@ -34,4 +34,4 @@ jobs:
       - name: Check authoritative warning feeds into protected Firestore
         run: npm run backoffice:hazard-watch:live
       - name: Collect moderator removal decisions
-        run: npm run backoffice:worker:live
+        run: npm run backoffice:worker:hazards

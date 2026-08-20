@@ -71,6 +71,8 @@
     if(item.stream==='content')return 'Content decision consumed; the trail advances when both outputs are approved.';
     if(item.stream==='new-trail')return item.action==='send-to-verification'?'Selection consumed; the candidate is entering the capacity-limited Existing Trails verification fleet.':'New Trail decision consumed and retained in the scouting audit trail.';
     if(item.stream==='hazard')return 'Groundskeeper decision consumed in the protected warning layer; the public website has not been changed.';
+    if(item.stream==='editorial')return item.action==='approve'?'Editorial approval consumed; validation and publication have a separate durable receipt.':'Copywriter revision handed off; the revised comparison returns to Editorial.';
+    if(item.stream==='image')return 'Image sourcing route consumed. Actual asset and rights approval remain a separate human gate.';
     if(item.stream==='publication')return 'Publication decision consumed by ORMA automation.';
     return 'Decision processed and retained in the audit trail.';
   }
@@ -91,8 +93,12 @@
     const publication=input.publication||{};const publicationRequests=input.publicationRequests||{requests:[]};
     const newTrailScouting=input.newTrailScouting||{candidates:[],summary:{}};const newTrailReviews=input.newTrailReviews||[];const newTrailStatus=input.newTrailStatus||{};
     const hazards=input.hazards||{hazards:[]};const hazardQueue=input.hazardQueue||{items:[]};const hazardReviews=input.hazardReviews||[];const hazardStatus=input.hazardStatus||{};
+    const editorialPackets=input.editorialPackets||[];const editorialReviews=input.editorialReviews||[];const editorialReceipts=input.editorialReceipts||{receipts:[]};const strategyStatus=input.strategyStatus||{};
+    const imageAudit=input.imageAudit||{gaps:[],summary:{}};const imageReviews=input.imageReviews||[];
     const history=input.history||[];const allJobs=input.jobs||[];const timing=input.nowMs==null?{}:{nowMs:input.nowMs};const workerHealth=deriveWorkerHealth(input.workerHealth,timing);const campaignHealth=deriveCampaignHealth(input.campaignHealth,timing);
-    const jobs=allJobs.filter(job=>['trail-verification-specialist','trail-claim-resolution','verified-trail-editorial-first-pass','verified-trail-editorial-revision'].includes(job.jobType)||String(job.id||'').startsWith('trail-revision-'));
+    const trailJobs=allJobs.filter(job=>['trail-verification-specialist','trail-claim-resolution','verified-trail-editorial-first-pass','verified-trail-editorial-revision'].includes(job.jobType)||String(job.id||'').startsWith('trail-revision-'));
+    const hostedTeamJobs=allJobs.filter(job=>['hosted-editorial-revision','hosted-editorial-publication','hosted-image-sourcing'].includes(job.jobType));
+    const jobs=[...trailJobs,...hostedTeamJobs];const activeTrailJobs=trailJobs.filter(job=>ACTIVE_JOB_STATES.has(job.status));
     const activeJobs=jobs.filter(job=>ACTIVE_JOB_STATES.has(job.status));
     const names=new Map();
     for(const trail of orchestration.trails||[])names.set(trail.candidateId||trail.trailId,trail.trailName||trail.name||trail.candidateId);
@@ -129,6 +135,11 @@
     const hazardItems=(hazardQueue.items||[]).filter(hazard=>{const review=latestHazardReviews.get(hazard.id);return !review||['blocked','superseded'].includes(review.status);});
     const newTrailHandoffs=newTrailReviews.filter(review=>review.status==='queued').length;
     const hazardHandoffs=hazardReviews.filter(review=>review.status==='queued').length;
+    const latestEditorialReviews=new Map();for(const review of editorialReviews){const key=`${review.packetGeneratedAt}:${review.sourceRef}`;const current=latestEditorialReviews.get(key);if(!current||dateMs(review.processedAt||review.submittedAt)>=dateMs(current.processedAt||current.submittedAt))latestEditorialReviews.set(key,review);}
+    const editorialItems=editorialPackets.filter(packet=>{const review=latestEditorialReviews.get(`${packet.generatedAt}:${packet.subject?.sourceRef}`);return !review||['blocked','superseded'].includes(review.status);});
+    const latestImageReviews=latestReviewBy(imageReviews,'slug');const imageItems=(imageAudit.gaps||[]).filter(gap=>{const review=latestImageReviews.get(gap.slug);return !review||['blocked','superseded'].includes(review.status);});
+    const editorialHandoffs=editorialReviews.filter(review=>['queued','processing'].includes(review.status)).length;
+    const imageHandoffs=imageReviews.filter(review=>['queued','processing'].includes(review.status)).length;
 
     const decisions=[];
     for(const item of dossierItems)decisions.push({
@@ -156,6 +167,8 @@
     });
     if(newTrailItems.length)decisions.push({id:'new-trail-selection',kind:'new-trail',stage:'New Trails · Candidate selection',title:`${plural(newTrailItems.length,'candidate')} ready`,description:'Ranked loop candidates are waiting for selection, parking or rejection.',next:'A selected candidate enters Cartographer verification under the shared five-trail capacity; it is not published.',href:'new-trail-scouting-desk.html',actionLabel:'Review New Trails'});
     if(hazardItems.length)decisions.push({id:'hazard-resolution',kind:'hazard',stage:'Existing Trails · Groundskeeper',title:`${plural(hazardItems.length,'warning')} awaiting removal review`,description:'An authoritative warning expired, but ORMA has retained it until you confirm removal.',next:'Your decision updates the protected warning state. The public website remains unchanged until its release integration is approved.',href:'hazard-review-desk.html',actionLabel:'Review warnings'});
+    if(editorialItems.length)decisions.push({id:'editorial-copy',kind:'editorial',stage:'Editorial · Guide copy',title:`${plural(editorialItems.length,'copy packet')} ready`,description:'Compare current and proposed guide copy, edit it directly, then publish or request one revision.',next:'Approval validates and commits only the reviewed guide. A revision returns to the same desk.',href:'editorial-desk.html',actionLabel:'Review copy'});
+    if(imageItems.length)decisions.push({id:'editorial-images',kind:'image',stage:'Editorial · Image coverage',title:`${plural(imageItems.length,'visual gap')} needs routing`,description:'Choose owned photography, licensed sourcing, an AI brief or park the gap.',next:'The Visual Director returns actual candidates for a separate visual and rights gate; nothing is placed now.',href:'image-coverage-desk.html',actionLabel:'Review image gaps'});
 
     const blockedCandidates=new Set();
     for(const item of dossierItems)if(item.approvalAllowed===false)blockedCandidates.add(item.candidateId||item.reviewId);
@@ -164,6 +177,7 @@
     for(const trail of orchestration.trails||[])if((trail.blockers||[]).length||/blocked|source-exhausted/.test(`${trail.state||''} ${trail.stage||''}`))blockedCandidates.add(trail.candidateId||trail.trailId);
     if(newTrailStatus.status==='failed')blockedCandidates.add('new-trail-scouting');
     if(hazardStatus.status==='failed'||Number(hazardStatus.summary?.sourceFailures||0)>0)blockedCandidates.add('groundskeeper');
+    if(strategyStatus.status==='failed')blockedCandidates.add('strategy-cycle');
 
     const activityById=new Map();
     for(const item of history){
@@ -176,14 +190,15 @@
     }
     const activity=[...activityById.values()].sort((a,b)=>b.at-a.at).slice(0,8).map(item=>({...item,message:activityMessage(item)}));
     return {
-      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,newTrailItems,hazardItems,publicationInFlight,handoffsInFlight:handoffsInFlight+newTrailHandoffs+hazardHandoffs,automationFailures,workerHealth,campaignHealth,
+      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,newTrailItems,hazardItems,editorialItems,imageItems,publicationInFlight,handoffsInFlight:handoffsInFlight+newTrailHandoffs+hazardHandoffs+editorialHandoffs+imageHandoffs,automationFailures,workerHealth,campaignHealth,
       blockerCount:blockedCandidates.size,trackedTrails:orchestration.summary?.trails||(orchestration.trails||[]).length,
       newTrailProgress:{candidates:(newTrailScouting.candidates||[]).length,waiting:newTrailItems.length,inFlight:newTrailHandoffs,status:newTrailStatus.status||'not-run'},
       groundskeeperProgress:{active:(hazards.hazards||[]).filter(item=>item.state==='active').length,waiting:hazardItems.length,sourceFailures:Number(hazardStatus.summary?.sourceFailures||0),status:hazardStatus.status||'not-run'},
+      editorialProgress:{active:editorialPackets.length,waiting:editorialItems.length,inFlight:editorialHandoffs,imageGaps:imageItems.length,published:(editorialReceipts.receipts||[]).filter(item=>item.status==='published').length,status:strategyStatus.status||'not-run'},
       summary:{needsYou:decisions.length,agentWork:activeJobs.length,blockers:blockedCandidates.size,prsReady:prItems.length},
       pipeline:[
-        {number:1,title:'Evidence',owner:dossierItems.length?'You':queuedDossierReviews.length?'System':activeJobs.length?'Agents':'System',status:dossierItems.length?`${plural(dossierItems.length,'decision')} waiting`:queuedDossierReviews.length?`${plural(queuedDossierReviews.length,'decision')} being handed off`:activeJobs.length?`${plural(activeJobs.length,'job')} in progress`:'No decision waiting'},
-        {number:2,title:'Agent resolution',owner:'Agents',status:activeJobs.length?`${plural(activeJobs.length,'job')} running or queued`:'No agent work queued'},
+        {number:1,title:'Evidence',owner:dossierItems.length?'You':queuedDossierReviews.length?'System':activeTrailJobs.length?'Agents':'System',status:dossierItems.length?`${plural(dossierItems.length,'decision')} waiting`:queuedDossierReviews.length?`${plural(queuedDossierReviews.length,'decision')} being handed off`:activeTrailJobs.length?`${plural(activeTrailJobs.length,'job')} in progress`:'No decision waiting'},
+        {number:2,title:'Agent resolution',owner:'Agents',status:activeTrailJobs.length?`${plural(activeTrailJobs.length,'job')} running or queued`:'No agent work queued'},
         {number:3,title:'Trail content',owner:contentItems.length?'You':queuedContentReviews.length?'System':'System',status:contentItems.length?`${plural(contentItems.length,'trail')} needs review`:queuedContentReviews.length?`${plural(queuedContentReviews.length,'decision')} being handed off`:'No content decision waiting'},
         {number:4,title:'Release mapping',owner:releaseItems.length?'You':automationFailures.length?'System':publicationInFlight?'System':'System',status:releaseItems.length?`${plural(releaseItems.length,'trail')} needs approval`:automationFailures.length?`${plural(automationFailures.length,'release')} blocked with a saved failure receipt`:publicationInFlight?`${plural(publicationInFlight,'approval')} being processed`:'No release approval waiting'},
         {number:5,title:'Final PR',owner:prItems.length?'You':'System',status:prItems.length?`${plural(prItems.length,'PR')} ready`:automationFailures.length?'PR creation is blocked until automation recovers':'No final PR waiting'},

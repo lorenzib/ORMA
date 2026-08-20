@@ -22,6 +22,8 @@ async function main(){
   console.log(JSON.stringify(result, null, 2));
   if(result.reviews.some(item => item.status === 'blocked')
     || result.dossierReviews.some(item => item.status === 'blocked')
+    || result.editorialReviews.some(item => item.status === 'blocked')
+    || result.imageReviews.some(item => item.status === 'blocked')
     || result.publications.some(item => item.status === 'blocked')) process.exitCode = 1;
 }
 

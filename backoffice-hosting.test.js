@@ -15,7 +15,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(files.some(file=>file.startsWith('data/'))).toBe(false);
   });
 
-  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
+  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toContain('src="backoffice-firebase.js"');
     expect(html).not.toContain('src="firebase-init.js');
@@ -35,7 +35,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(script).toContain("Exactly one fully licensed ready image is required before approval");
   });
 
-  test('hosted dashboard exposes only protected trail desk links',()=>{
+  test('hosted dashboard exposes only migrated protected desk links',()=>{
     const html=fs.readFileSync(path.join(output,'backoffice-review.html'),'utf8');
     expect(html).toContain('One linear trail workflow');
     expect(html).toContain('What happened after your clicks');
@@ -46,7 +46,9 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('backoffice/dashboard-model.js?v=20260820-9');
     expect(html).toContain('backoffice-hosted-dashboard.js?v=20260820-8');
     expect(html).toContain('href="trail-dossier-desk.html"');
-    expect(html).not.toMatch(/href="(?:content|image-coverage|newsletter|social|product-ideas)-desk\.html"/);
+    expect(html).toContain('href="editorial-desk.html"');
+    expect(html).toContain('href="image-coverage-desk.html"');
+    expect(html).not.toMatch(/href="(?:content|newsletter|social|product-ideas)-desk\.html"/);
   });
 
   test.each([
@@ -55,6 +57,8 @@ describe('separate Firebase backoffice Hosting package',()=>{
     ['trail-content-desk.html','Content &amp; release'],
     ['new-trail-scouting-desk.html','New Trails'],
     ['hazard-review-desk.html','Groundskeeper'],
+    ['editorial-desk.html','Editorial'],
+    ['image-coverage-desk.html','Editorial'],
   ])('%s has persistent navigation and a clear current location',(page,current)=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toContain('aria-label="Backoffice navigation"');
@@ -63,11 +67,12 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('href="trail-content-desk.html"');
     expect(html).toContain('href="new-trail-scouting-desk.html"');
     expect(html).toContain('href="hazard-review-desk.html"');
+    expect(html).toContain('href="editorial-desk.html"');
     expect(html).toContain(`aria-current="page">${current}</a>`);
   });
 
   test('moderator-facing trail pages explain automation without vague worker language',()=>{
-    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','new-trail-scouting-desk.js','hazard-review-desk.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
+    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','new-trail-scouting-desk.js','hazard-review-desk.js','editorial-desk.js','image-coverage-hosted.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
     const text=files.map(file=>fs.readFileSync(path.join(output,file),'utf8')).join('\n');
     expect(text).toContain('ORMA automation');
     expect(text).not.toMatch(/waiting for the worker|the worker will|worker processed|independent worker/i);
