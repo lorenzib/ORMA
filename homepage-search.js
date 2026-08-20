@@ -62,7 +62,6 @@
 
   // ---- element refs ----
   var el = {
-    announceCount: document.getElementById('hpAnnounceCount'),
     search: document.getElementById('hpSearch'),
     dogPill: document.getElementById('hpDogPill'),
     dogLabel: document.getElementById('hpDogLabel'),
@@ -409,15 +408,15 @@
   }
 
   var HOW_CARDS = [
-    { title: 'Add your dog',
-      icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="#2E4034" aria-hidden="true"><ellipse cx="6.2" cy="10" rx="1.9" ry="2.5"/><ellipse cx="10" cy="7.4" rx="2" ry="2.7"/><ellipse cx="14" cy="7.4" rx="2" ry="2.7"/><ellipse cx="17.8" cy="10" rx="1.9" ry="2.5"/><path d="M12 12.2c-2.7 0-5 1.9-5 4.3 0 1.7 1.4 2.6 3 2.6 1 0 1.4-.4 2-.4s1 .4 2 .4c1.6 0 3-.9 3-2.6 0-2.4-2.3-4.3-5-4.3z"/></svg>',
-      text: 'Size, energy, what their paws can handle and whether they feel the heat. Takes under a minute.' },
-    { title: 'Every trail gets scored',
+    { title: 'We assess the trail',
       icon: '<svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#2C8FA6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.4 3.1 7.4 7.5 9 4.4-1.6 7.5-4.6 7.5-9V6L12 3z"/><path d="m8.8 12 2.2 2.2 4.2-4.4" stroke="#4A7856"/></svg>',
       text: null /* filled at render time with the live trail count */ },
-    { title: 'Walk with confidence',
+    { title: 'You add your dog',
+      icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="#2E4034" aria-hidden="true"><ellipse cx="6.2" cy="10" rx="1.9" ry="2.5"/><ellipse cx="10" cy="7.4" rx="2" ry="2.7"/><ellipse cx="14" cy="7.4" rx="2" ry="2.7"/><ellipse cx="17.8" cy="10" rx="1.9" ry="2.5"/><path d="M12 12.2c-2.7 0-5 1.9-5 4.3 0 1.7 1.4 2.6 3 2.6 1 0 1.4-.4 2-.4s1 .4 2 .4c1.6 0 3-.9 3-2.6 0-2.4-2.3-4.3-5-4.3z"/></svg>',
+      text: 'A short profile captures size, life stage, energy, heat sensitivity, mobility and what their paws can comfortably handle.' },
+    { title: 'We explain the match',
       icon: '<svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#C98A2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h6a3 3 0 0 1 0 6H8.5a3 3 0 0 0 0 6H16"/><circle cx="6" cy="4" r="2" fill="#C98A2E" stroke="none"/><path d="M18 14c1.3 1.6 2 2.8 2 3.8A2 2 0 0 1 16 18c0-1 .7-2.2 2-3.8z" fill="#4A7856" stroke="none"/></svg>',
-      text: 'See a full paw-safety breakdown before you go, and save the trails that suit your dog best.' },
+      text: 'You see why a route may fit, the cautions that matter and any unknowns to check before deciding.' },
   ];
 
   function renderContent() {
@@ -442,34 +441,39 @@
       var th = weeklyTheme();
       var feat = featured();
       var isGuest = state.dog === 'medium';
-      var featSub = th.blurb + ' · ranked for ' + (isGuest ? 'a medium dog' : esc(dogMeta().name));
+      var featSub = 'This week’s edit: ' + th.blurb.toLowerCase() + ' · ranked for ' + (isGuest ? 'a medium dog' : esc(dogMeta().name));
       var how = HOW_CARDS.map(function (c) {
-        var text = c.text || ('We rate ' + trails.length + ' trails for terrain, shade, water and climb, then match each to your dog as a single %.');
+        var text = c.text || 'We map and review each published trail for route shape, terrain, climb, shade, water, access and hazards.';
         return '<div class="hp-howcard"><div class="hp-howcard-head">' +
           '<span class="hp-howcard-ico">' + c.icon + '</span>' +
           '<div class="hp-howcard-title">' + esc(c.title) + '</div></div>' +
           '<p>' + esc(text) + '</p></div>';
       }).join('');
       el.content.innerHTML =
-        '<div class="hp-how">' +
-          '<div class="hp-how-head"><div class="hp-kick">How ORMA works</div>' +
-          '<h2 class="hp-how-h2">A safer walk in three steps</h2></div>' +
+        '<section class="hp-mission" aria-labelledby="hpMissionTitle">' +
+          '<div class="hp-mission-copy"><div class="hp-mission-kick">Our mission</div>' +
+          '<h2 id="hpMissionTitle">The route must adapt to the dog, never the other way around.</h2>' +
+          '<p>Born in the Italian Dolomites and shaped by years of walking with Freddy, ORMA brings route, terrain and conditions together with what each dog can comfortably handle.</p>' +
+          '<p>In Italian, <em>orma</em> means a footprint: the trace a dog leaves on a trail, and the one they leave on our lives. Our purpose is to help every adventure begin with better information and confidence.</p></div>' +
+          '<blockquote class="hp-mission-quote"><p>“A walk is never just a walk when shared with a dog. It is an act of partnership, curiosity, and joy.”</p><cite>Benedetta, Founder of ORMA</cite></blockquote>' +
+        '</section>' +
+        '<section class="hp-how" aria-labelledby="hpHowTitle">' +
+          '<div class="hp-section-head"><div><div class="hp-kick">How ORMA works</div>' +
+          '<h2 class="hp-how-h2" id="hpHowTitle">From trail information to a recommendation for your dog</h2></div>' +
+          '<p>ORMA keeps the facts about the route separate from the personal recommendation, so you can see what we know and make the final call.</p></div>' +
           '<div class="hp-how-grid">' + how + '</div>' +
-          '<section class="hp-mission" aria-labelledby="hpMissionTitle">' +
-            '<span class="hp-mission-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18.5c2.2-3.8 4.6-5.7 7.2-5.7 2.4 0 3.9 1.5 6.8-3.3"/><circle cx="5" cy="18.5" r="2"/><circle cx="19" cy="9.5" r="2"/><path d="m9.5 7.5 2.5-3 2.5 3"/></svg></span>' +
-            '<div><div class="hp-mission-kick">Our mission</div>' +
-            '<h3 id="hpMissionTitle">Better-prepared walks, happier dogs.</h3>' +
-            '<p>ORMA brings terrain, shade, water and route guidance together with your dog’s needs, helping you choose each walk with confidence and enjoy more of the trail together.</p></div>' +
-          '</section>' +
-        '</div>' +
-        '<div class="hp-coll-head"><div>' +
-          '<div class="hp-kick hp-kick-left">Featured this week</div>' +
-          '<h2 class="hp-feat-h2">' + esc(th.title) + '</h2>' +
-          '<p class="hp-coll-sub">' + featSub + '</p></div>' +
-          '<a href="collections.html" class="hp-coll-all" data-action="seeall">All collections →</a></div>' +
-        '<div class="hp-coll-grid">' + feat.map(function (entry) {
-          return ccardHtml(entry, esc(entry.t.distance) + ' km · ' + esc(valleyOf(entry.t)));
-        }).join('') + '</div>';
+          '<a class="hp-how-link" href="how-scoring-works.html">See how ORMA assesses a trail →</a>' +
+        '</section>' +
+        '<section class="hp-featured" aria-labelledby="hpFeaturedTitle">' +
+          '<div class="hp-coll-head"><div>' +
+            '<div class="hp-kick hp-kick-left">Featured this week</div>' +
+            '<h2 class="hp-feat-h2" id="hpFeaturedTitle"><span class="hp-feat-icon" aria-hidden="true">' + (THEME_ICONS[th.key] || '') + '</span>' + esc(th.title) + '</h2>' +
+            '<p class="hp-coll-sub">' + featSub + '</p></div>' +
+            '<a href="collections.html" class="hp-coll-all" data-action="seeall">All collections →</a></div>' +
+          '<div class="hp-coll-grid">' + feat.map(function (entry) {
+            return ccardHtml(entry, esc(entry.t.distance) + ' km · ' + esc(valleyOf(entry.t)));
+          }).join('') + '</div>' +
+        '</section>';
     }
   }
 
@@ -516,7 +520,6 @@
 
   // ---- static one-time setup ----
   function setupStatic() {
-    if (el.announceCount) el.announceCount.textContent = trails.length + ' trails';
     el.popular.innerHTML = POPULAR.map(function (p, i) {
       return '<button type="button" class="hp-chip" data-pop="' + i + '">' + esc(p.label) + '</button>';
     }).join('');

@@ -98,6 +98,16 @@ describe('Browse filter UI', () => {
     expect(window.document.querySelector('.simple-card')).not.toBeNull();
   });
 
+  test('mobile-ready cards use the trail-page terrain language and aligned rows', () => {
+    const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites');
+    const card = window.document.querySelector('.simple-card');
+
+    expect(card.querySelector('.simple-card__facts').textContent).toContain('Low-risk terrain');
+    expect(card.textContent).not.toContain('Trail rating');
+    expect(card.querySelector('.simple-card__score')).not.toBeNull();
+    expect(card.querySelector('.simple-card__match-actions')).not.toBeNull();
+  });
+
   test('selecting a trail opens the persistent comparison tray', () => {
     const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites');
     const compare = window.document.querySelector('[data-compare-id="reviewed-loop"]');
