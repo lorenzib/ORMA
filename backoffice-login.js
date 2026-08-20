@@ -24,6 +24,11 @@
     message.textContent=text;message.hidden=false;message.dataset.type=type;
   }
   function busy(value){submit.disabled=value;if(google)google.disabled=value;}
+  function authUnavailable(){
+    if(root.DoloPawsAuth&&root.DoloPawsModeration)return false;
+    show('The secure sign-in service is still loading. Refresh this page and try again.');
+    return true;
+  }
 
   async function moderatorStatus(){
     const status=await root.DoloPawsModeration.getModeratorStatus();
@@ -41,6 +46,7 @@
   }
 
   async function signIn(action){
+    if(authUnavailable())return;
     busy(true);message.hidden=true;
     try{
       const result=await action();
@@ -64,4 +70,7 @@
 
   if(root.DoloPawsAuthReady)resolveIdentity();
   else root.addEventListener('dolopaws-auth-ready',resolveIdentity,{once:true});
+  root.setTimeout(()=>{
+    if(!root.DoloPawsAuthReady)authUnavailable();
+  },5000);
 })(window);
