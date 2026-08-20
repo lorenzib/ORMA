@@ -6,6 +6,7 @@ const mobileNav = fs.readFileSync(path.join(__dirname, 'mobile-nav.js'), 'utf8')
 describe('shared navigation hardening', () => {
   beforeEach(() => {
     localStorage.clear();
+    document.body.className = '';
     document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a><div class="links"><a href="browse-trails.html">Trails</a></div></nav>';
     window.eval(mobileNav);
   });
@@ -77,6 +78,23 @@ describe('shared navigation hardening', () => {
     expect([...footer.querySelectorAll('.hp-footer-legal a')].map(link => link.textContent)).toEqual(['Privacy','Terms']);
     expect(footer.querySelector('.hp-footer-base > .hp-footer-social-row')).not.toBeNull();
     expect(footer.querySelector('.hp-footer-connect')).toBeNull();
+  });
+
+  test('omits the dog-profile promotion from the safety library', () => {
+    document.body.className = 'safety-library-page';
+    const footer = document.createElement('footer');
+    footer.className = 'site-footer hp-footer';
+    footer.innerHTML = `
+      <div class="hp-footer-grid">
+        <div></div>
+        <div><div class="hp-footer-links"><a href="browse-trails.html">Browse</a></div></div>
+      </div>
+      <div class="hp-footer-base"><span>© ORMA</span></div>`;
+    document.body.appendChild(footer);
+    window.eval(mobileNav);
+
+    expect(document.querySelector('.hp-prefooter')).toBeNull();
+    expect(footer.dataset.focusedFooter).toBe('true');
   });
 
   test('keeps one notification bell outside the menu after auth refresh', async () => {

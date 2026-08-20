@@ -15,6 +15,19 @@ describe('Safety library', () => {
     expect([...document.querySelectorAll('.sg-guide-card')].every(card => card.getAttribute('href'))).toBe(true);
   });
 
+  test('keeps the safety header aligned with the shared page-header scale', () => {
+    expect(document.querySelector('.sg-hero').classList.contains('section-page-head')).toBe(true);
+    expect(html).not.toContain('ORMA mountain guidance');
+    expect(html).not.toMatch(/\.sg-hero h1\{[^}]*font-size:/s);
+  });
+
+  test('does not show the dog-profile promotion or a divider above the disclaimer', () => {
+    expect(document.body.classList.contains('safety-library-page')).toBe(true);
+    expect(html).not.toContain('Find a trail that fits your dog');
+    expect(html).not.toContain('Your next walk');
+    expect(html).not.toMatch(/\.sg-disclaimer\{[^}]*border-top:/s);
+  });
+
   test('keeps a compact five-rule overview and prominent emergency reference', () => {
     expect(document.querySelectorAll('.sg-rules li')).toHaveLength(5);
     expect(document.querySelector('.sg-emergency').textContent).toContain('European emergency');

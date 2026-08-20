@@ -90,7 +90,9 @@
       actions.append(browse, profile);
       inner.append(copyBlock, actions);
       banner.appendChild(inner);
-      footer.parentNode.insertBefore(banner, footer);
+      if(!document.body.classList.contains('safety-library-page')){
+        footer.parentNode.insertBefore(banner, footer);
+      }
 
       const groups = footer.querySelectorAll('.hp-footer-grid > div');
       const groupTitles = ['','Explore','Dog care','Your walks','ORMA'];
