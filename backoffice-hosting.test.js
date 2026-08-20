@@ -15,7 +15,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(files.some(file=>file.startsWith('data/'))).toBe(false);
   });
 
-  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','newsletter-desk.html','product-ideas-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
+  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','newsletter-desk.html','product-ideas-desk.html','designer-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toMatch(/src="backoffice-firebase\.js\?v=[0-9-]+"/);
     expect(html).not.toContain('src="firebase-init.js');
@@ -50,6 +50,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('href="image-coverage-desk.html"');
     expect(html).toContain('href="newsletter-desk.html"');
     expect(html).toContain('href="product-ideas-desk.html"');
+    expect(html).toContain('href="designer-desk.html"');
     expect(html).not.toMatch(/href="(?:content|social)-desk\.html"/);
   });
 
@@ -63,6 +64,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     ['image-coverage-desk.html','Editorial'],
     ['newsletter-desk.html','Newsletter'],
     ['product-ideas-desk.html','Analyst'],
+    ['designer-desk.html','Design'],
   ])('%s has persistent navigation and a clear current location',(page,current)=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toContain('aria-label="Backoffice navigation"');
@@ -74,11 +76,12 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('href="editorial-desk.html"');
     expect(html).toContain('href="newsletter-desk.html"');
     expect(html).toContain('href="product-ideas-desk.html"');
+    expect(html).toContain('href="designer-desk.html"');
     expect(html).toContain(`aria-current="page">${current}</a>`);
   });
 
   test('moderator-facing trail pages explain automation without vague worker language',()=>{
-    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','newsletter-desk.html','product-ideas-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','new-trail-scouting-desk.js','hazard-review-desk.js','editorial-desk.js','image-coverage-hosted.js','newsletter-hosted.js','analyst-hosted.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
+    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','newsletter-desk.html','product-ideas-desk.html','designer-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','new-trail-scouting-desk.js','hazard-review-desk.js','editorial-desk.js','image-coverage-hosted.js','newsletter-hosted.js','analyst-hosted.js','designer-desk.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
     const text=files.map(file=>fs.readFileSync(path.join(output,file),'utf8')).join('\n');
     expect(text).toContain('ORMA automation');
     expect(text).not.toMatch(/waiting for the worker|the worker will|worker processed|independent worker/i);
@@ -93,10 +96,25 @@ describe('separate Firebase backoffice Hosting package',()=>{
   test('Analyst decisions keep validation and save receipts beside the clicked card',()=>{
     const html=fs.readFileSync(path.join(output,'product-ideas-desk.html'),'utf8');
     const script=fs.readFileSync(path.join(output,'analyst-hosted.js'),'utf8');
-    expect(html).toContain('analyst-hosted.js?v=20260820-2');
+    expect(html).toContain('analyst-hosted.js?v=20260820-3');
     expect(script).toContain("receipt.setAttribute('aria-live','polite')");
     expect(script).toContain('Add the investigation or revision focus in the box above first.');
     expect(script).toContain('Saving this Analyst decision…');
+    expect(script).toContain('designer-desk.html#design-');
+    expect(script).not.toContain('mockupControls');
+  });
+
+  test('Design desk renders visual prototypes and owns their review gate',()=>{
+    const html=fs.readFileSync(path.join(output,'designer-desk.html'),'utf8');
+    const script=fs.readFileSync(path.join(output,'designer-desk.js'),'utf8');
+    expect(html).toContain('Interactive mock-ups');
+    expect(html).toContain('product-prototype.js?v=20260820-1');
+    expect(html).toContain('designer-desk.js?v=20260820-1');
+    expect(script).toContain("optional(remote,'product-design-results'");
+    expect(script).toContain("subjectType:'mockup'");
+    expect(script).toContain('approve-mockup-for-developer-brief');
+    expect(script).toContain('request-mockup-revision');
+    expect(script).toContain('Reject prototype');
   });
 
   test('Newsletter desk is visibly parked and preserves old issues as read-only',()=>{
