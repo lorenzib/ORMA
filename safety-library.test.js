@@ -24,7 +24,6 @@ describe('Safety library', () => {
     expect(html).toMatch(/\.sg-hero-copy\{[^}]*width:100%;[^}]*max-width:none/s);
     expect(html).not.toContain('ORMA mountain guidance');
     expect(html).not.toMatch(/\.sg-hero h1\{[^}]*font-size:/s);
-    expect(html).toMatch(/\.sg-hero,\.sg-wrap\{[^}]*max-width:1440px;[^}]*padding-left:clamp\(28px,4vw,52px\)/s);
   });
 
   test('does not show the dog-profile promotion or a divider above the disclaimer', () => {

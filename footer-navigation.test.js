@@ -84,7 +84,8 @@ describe('footer navigation', () => {
     expect(css).toContain('.hp-prefooter-inner');
     expect(css).toContain('grid-template-columns:minmax(210px,1.3fr) repeat(4,minmax(100px,.7fr))');
     expect(css).toContain('.hp-footer-grid{grid-template-columns:1fr 1fr;}');
-    expect(css).toContain('--wrap-gutter:32px;');
+    expect(css).toContain('--wrap:1440px;');
+    expect(css).toContain('--wrap-gutter:clamp(28px,4vw,52px);');
     expect(css).toContain('.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--wrap-gutter);}');
     expect(css).toContain('.hp-footer-grid{width:100%;max-width:none;margin:0;');
     expect(css).toContain('.hp-footer-base{width:100%;max-width:none;margin:28px 0 0;');
@@ -97,7 +98,7 @@ describe('footer navigation', () => {
     publicFooterPages().forEach(file => {
       const html = fs.readFileSync(file, 'utf8');
       const isHomepage = file === path.join(__dirname, 'index.html');
-      const stylesVersion = isHomepage ? '20260821-7' : '20260821-5';
+      const stylesVersion = '20260821-7';
       const navigationVersion = isHomepage ? '20260821-4' : '20260821-3';
       expect(html).toMatch(new RegExp(`href="(?:\\.\\.\\/|\\/)?styles\\.css\\?v=${stylesVersion}"`));
       expect(html).toMatch(new RegExp(`src="(?:\\.\\.\\/|\\/)?mobile-nav\\.js\\?v=${navigationVersion}"`));

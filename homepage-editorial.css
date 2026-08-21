@@ -1,5 +1,5 @@
 /* Guest homepage narrative: mission, method, and the weekly catalogue edit. */
-.hp-content{max-width:1320px;padding:50px 40px 44px;}
+.hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}
 
 .hp-mission{
   grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);

@@ -117,4 +117,10 @@ describe('guest homepage editorial structure', () => {
     expect(js).toContain('orma-how-match-1920.jpg');
     expect(js).toContain('width="960" height="600"');
   });
+
+  test('uses the shared wider website canvas', () => {
+    const css = read('homepage-editorial.css');
+    expect(css).toContain('.hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}');
+    expect(read('index.html')).toContain('homepage-editorial.css?v=20260821-6');
+  });
 });
