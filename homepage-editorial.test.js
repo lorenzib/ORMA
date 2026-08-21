@@ -22,10 +22,10 @@ describe('guest homepage editorial structure', () => {
     expect(hero).toBeGreaterThan(guestCard);
     expect(html).toContain('Scores use a medium-dog profile.');
     expect(html).toContain('Create a free account only when you choose to save.');
-    expect(controller).toContain("el.guestCta.textContent = 'Browse ' + state.custom.meta.name + '’s matches'");
+    expect(controller).toContain("el.guestCtaLabel.textContent = 'Browse ' + state.custom.meta.name + '’s matches'");
   });
 
-  test('places the profile explanation after the default score and keeps both profile prompts identical', () => {
+  test('places the profile explanation after the default score and keeps one homepage prompt', () => {
     const html = read('index.html');
     const controller = read('homepage-search.js');
     const css = read('styles.css');
@@ -34,8 +34,11 @@ describe('guest homepage editorial structure', () => {
 
     expect(explanation).toBeGreaterThan(title);
     expect(html).toContain('class="hp-guestbar-cta hp-dog-profile-cta"');
+    expect(html).not.toContain('images/orma-add-your-dog-freddy.jpg');
+    expect(html).not.toContain('class="hp-guestbar-cta-media"');
     expect(controller).toContain('class="hp-coll-profile-cta hp-dog-profile-cta"');
     expect(read('mobile-nav.js')).toContain("profile.className = 'hp-prefooter-action is-primary hp-dog-profile-cta'");
+    expect(read('mobile-nav.js')).toContain('returningHome.insertBefore(banner, returningToolbar)');
     expect(css).toContain('.hp-dog-profile-cta{');
     expect(css).toContain('width:224px;');
     expect(css).toContain('min-height:42px;');
@@ -116,11 +119,16 @@ describe('guest homepage editorial structure', () => {
     expect(js).toContain('orma-how-dog-1920.jpg');
     expect(js).toContain('orma-how-match-1920.jpg');
     expect(js).toContain('width="960" height="600"');
+    expect(js).toContain('How trail evidence becomes practical guidance for your dog');
+    expect(js).toContain('We assess the trail first, then compare its terrain and conditions with your dog’s needs to explain the match.');
+    expect(css).toContain('.hp-how-h2{font-size:clamp(21px,2.35vw,30px);line-height:1.15;white-space:nowrap;}');
+    expect(css).toContain('.hp-coll-profile-cta{width:auto;min-height:36px;');
+    expect(css).toContain('filter:saturate(1.14) contrast(1.05) brightness(1.03);');
   });
 
   test('uses the shared wider website canvas', () => {
     const css = read('homepage-editorial.css');
     expect(css).toContain('.hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}');
-    expect(read('index.html')).toContain('homepage-editorial.css?v=20260821-7');
+    expect(read('index.html')).toContain('homepage-editorial.css?v=20260821-9');
   });
 });
