@@ -18,6 +18,9 @@ on:
       - newsletter-hosted.js
       - analyst-hosted.html
       - analyst-hosted.js
+      - designer-desk.html
+      - designer-desk.js
+      - product-prototype.js
       - backoffice/content-review-decisions.js
       - scripts/build-backoffice-hosting.js
       - firebase.json
@@ -41,6 +44,9 @@ on:
       - newsletter-hosted.js
       - analyst-hosted.html
       - analyst-hosted.js
+      - designer-desk.html
+      - designer-desk.js
+      - product-prototype.js
       - backoffice/content-review-decisions.js
       - scripts/build-backoffice-hosting.js
       - firebase.json
