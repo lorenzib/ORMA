@@ -8,7 +8,6 @@ describe('shared trail-filter experience', () => {
     'Under 5 km', '5–10 km', '10 km+',
     'Low risk', 'Moderate', 'Caution',
     'Gentle only', 'Up to mixed', 'Rocky is okay',
-    'Over 40%', 'Over 60%',
     '60%+', '75%+', '85%+',
   ];
 
@@ -32,12 +31,15 @@ describe('shared trail-filter experience', () => {
     const homepage = read('index.html');
     const browse = read('browse-trails.html');
 
-    ['Distance', 'Trail rating', 'Terrain underfoot', 'Shade', 'Minimum match']
+    ['Distance', 'Trail rating', 'Terrain underfoot', 'Minimum match']
       .forEach(label => {
         expect(homepage).toContain(label);
         expect(browse).toContain(label);
       });
     expect(homepage).toContain('id="liRiskSeg"');
+    expect(homepage).not.toContain('id="liShadeSeg"');
+    expect(homepage).not.toContain('id="hpShadeSeg"');
+    expect(browse).not.toContain('id="brShadeSeg"');
     expect(homepage).toContain('id="hpWaterToggle" role="switch"');
     expect(browse).toContain('id="brWaterToggle" role="switch"');
     expect(homepage).toContain('id="liQuickWater"');

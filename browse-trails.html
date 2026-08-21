@@ -26,8 +26,9 @@
      aligned to the same content grid. */
   .browse-design-wrap{padding-top:6px;}
   .browse-primary-controls{display:flex;align-items:flex-end;gap:18px;margin:10px 0 18px;flex-wrap:wrap;}
-  .browse-area-controls{display:flex;align-items:flex-end;gap:12px;flex:1 1 680px;min-width:0;}
-  .browse-geo-group{display:grid;gap:6px;min-width:190px;}
+  .browse-area-controls{display:flex;align-items:flex-end;gap:12px;flex:1 1 820px;min-width:0;}
+  .browse-geo-group{display:grid;gap:6px;min-width:180px;}
+  .browse-geo-group--valley{flex:1 1 260px;min-width:240px;}
   .browse-geo-label{font:700 10.5px/1 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding-left:7px;}
   .browse-geo-group .area-select-shell{width:100%;}
   .browse-primary-controls .browse-tools{flex:0 1 470px;min-width:0;margin:0;flex-wrap:nowrap;justify-content:flex-end;}
@@ -179,6 +180,10 @@
         <span class="browse-geo-label">Region</span>
         <span class="area-select-shell"><select id="browseRegionSelect" aria-label="Filter trails by region"></select></span>
       </label>
+      <label class="browse-geo-group browse-geo-group--valley" for="browseValleySelect">
+        <span class="browse-geo-label">Valley</span>
+        <span class="area-select-shell"><select id="browseValleySelect" aria-label="Filter trails by valley"></select></span>
+      </label>
     </div>
 
     <div class="browse-tools" id="browseTools" aria-label="Filter trails">
@@ -210,8 +215,6 @@
           <div class="browse-filter-group__title">Terrain &amp; trail conditions</div>
           <div class="li-fsec">Terrain underfoot</div>
           <div class="li-seg" id="brTerrainSeg"></div>
-          <div class="li-fsec">Shade</div>
-          <div class="li-seg" id="brShadeSeg"></div>
           <div class="li-frows">
             <div class="li-frow">
               <span class="li-frow-label">Water on route</span>
@@ -533,8 +536,8 @@
 <script src="metric-funnel.js?v=20260815-4" defer></script>
 <script src="guest-context.js?v=20260815-4" defer></script>
 <script src="auth-ui.js?v=20260821-1" defer></script>
-<script src="discovery-state.js?v=20260821-1" defer></script>
-<script src="discovery-filters.js?v=20260821-1" defer></script>
+<script src="discovery-state.js?v=20260821-2" defer></script>
+<script src="discovery-filters.js?v=20260821-2" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>
 <script src="area-dropdown.js?v=20260821-1"></script>
 <script>
@@ -555,8 +558,10 @@
     const search = document.getElementById('browseSearch');
     const countrySelect = document.getElementById('browseCountrySelect');
     const regionSelect = document.getElementById('browseRegionSelect');
+    const valleySelect = document.getElementById('browseValleySelect');
     const countryDropdown = window.OrmaAreaDropdown.enhance(countrySelect);
     const regionDropdown = window.OrmaAreaDropdown.enhance(regionSelect);
+    const valleyDropdown = window.OrmaAreaDropdown.enhance(valleySelect);
     const risk = document.getElementById('browseRisk');
     const distance = document.getElementById('browseDistance');
     const terrain = document.getElementById('browseTerrain');
@@ -579,6 +584,7 @@
     })[char]);
     let countryValue = 'all';
     let regionValue = 'all';
+    let valleyValue = 'all';
     let waterOnly = false;
     let difficultyValue = '';
     let minMatchValue = '';
@@ -641,6 +647,7 @@
       search.value = canonical.search || '';
       countryValue = allowedCountries.includes(canonical.country) ? canonical.country : 'all';
       regionValue = allowedRegions.includes(canonical.region) ? canonical.region : 'all';
+      valleyValue = canonical.valley || 'all';
       if(regionValue === 'dolomites') countryValue = 'italy';
       if(regionValue === 'savoy') countryValue = 'france';
       risk.value = allowedRisks.includes(canonical.risk) ? canonical.risk : 'all';
@@ -664,6 +671,7 @@
         search: search.value,
         country: countryValue === 'all' ? '' : countryValue,
         region: regionValue === 'all' ? '' : regionValue,
+        valley: valleyValue === 'all' ? '' : valleyValue,
         risk: risk.value === 'all' ? '' : risk.value,
         distance: distance.value === 'all' ? '' : distance.value,
         water: waterOnly,
@@ -752,6 +760,7 @@
         search: search.value,
         country: countryValue === 'all' ? '' : countryValue,
         region: regionValue === 'all' ? '' : regionValue,
+        valley: valleyValue === 'all' ? '' : valleyValue,
         risk: risk.value === 'all' ? '' : risk.value,
         distance: distance.value === 'all' ? '' : distance.value,
         water: waterOnly,
@@ -819,13 +828,37 @@
       regionSelect.value = regionValue;
       regionDropdown.refresh();
     }
+    function valleyEntries(){
+      const scoped = trails.filter(trail => {
+        if(regionValue !== 'all') return trail.region === regionValue;
+        if(countryValue === 'italy') return trail.region === 'dolomites';
+        if(countryValue === 'france') return trail.region === 'savoy';
+        return true;
+      });
+      const counts = new Map();
+      scoped.forEach(trail => {
+        if(trail.valley) counts.set(trail.valley, (counts.get(trail.valley) || 0) + 1);
+      });
+      return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    }
+    function renderValleySelect(){
+      if(!valleySelect) return;
+      const entries = valleyEntries();
+      if(valleyValue !== 'all' && !entries.some(([valley]) => valley === valleyValue)) valleyValue = 'all';
+      const total = entries.reduce((sum, [, count]) => sum + count, 0);
+      const items = [option({ value:'all', label:'All valleys' }, total)]
+        .concat(entries.map(([valley, count]) => option({ value:valley, label:valley }, count)));
+      valleySelect.replaceChildren(...items);
+      valleySelect.value = valleyValue;
+      valleyDropdown.refresh();
+    }
 
     // Phone-width: rating / distance / water condense behind one Filters chip.
     function syncFiltersChip(){
       if(waterBtn) waterBtn.setAttribute('aria-pressed', String(waterOnly));
       if(!filtersBtn) return;
       const n = filterApi.active(currentFilterState())
-        .filter(item => !['search','country','region','collection'].includes(item.key)).length;
+        .filter(item => !['search','country','region','valley','collection'].includes(item.key)).length;
       if(filtersCount) filtersCount.textContent = n > 0 ? ' (' + n + ')' : '';
       filtersBtn.classList.toggle('on', n > 0);
     }
@@ -856,9 +889,6 @@
       brSeg('brTerrainSeg', [
         { label:'Any', v:'' }, { label:'Gentle only', v:'soft' }, { label:'Up to mixed', v:'mixed' }, { label:'Rocky is okay', v:'rocky' },
       ], terrain.value, v => { terrain.value = v; });
-      brSeg('brShadeSeg', [
-        { label:'Any', v:'' }, { label:'Over 40%', v:'shade-40' }, { label:'Over 60%', v:'shade-60' },
-      ], heat.value, v => { heat.value = v; });
       brSeg('brMatchSeg', [
         { label:'Any', v:'' }, { label:'60%+', v:'60' }, { label:'75%+', v:'75' }, { label:'85%+', v:'85' },
       ], minMatchValue, v => { minMatchValue = v; });
@@ -936,6 +966,7 @@
 
       renderCountrySelect();
       renderRegionSelect();
+      renderValleySelect();
       syncFiltersChip();
       renderCollections();
       let pool = filteredTrails();
@@ -1127,6 +1158,7 @@
       countryValue = countrySelect.value;
       const selectedRegion = REGIONS.find(item => item.value === regionValue);
       if(selectedRegion && selectedRegion.country !== 'all' && selectedRegion.country !== countryValue) regionValue = 'all';
+      valleyValue = 'all';
       page = 1;
       renderPage('push');
     });
@@ -1134,6 +1166,12 @@
       regionValue = regionSelect.value;
       const selectedRegion = REGIONS.find(item => item.value === regionValue);
       if(selectedRegion && selectedRegion.country !== 'all') countryValue = selectedRegion.country;
+      valleyValue = 'all';
+      page = 1;
+      renderPage('push');
+    });
+    valleySelect.addEventListener('change', () => {
+      valleyValue = valleySelect.value;
       page = 1;
       renderPage('push');
     });
@@ -1148,6 +1186,7 @@
       risk.value = distance.value = 'all';
       countryValue = 'all';
       regionValue = 'all';
+      valleyValue = 'all';
       waterOnly = false;
       if(waterBtn) waterBtn.setAttribute('aria-pressed', 'false');
       collectionKey = 'all';

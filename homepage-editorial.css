@@ -1,6 +1,45 @@
 /* Guest homepage narrative: mission, method, and the weekly catalogue edit. */
 .hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}
 
+/* The logged-in discovery hierarchy reads left to right as one unit. Keep the
+   small geographic title and its selected value on the same baseline. */
+.li-toolbar{
+  grid-template-columns:minmax(260px,1fr) auto auto minmax(150px,auto) auto auto auto;
+  grid-template-areas:
+    "greet greet greet greet greet greet greet"
+    "search country region valley quick filters saved";
+}
+.li-valley-wrap{grid-area:valley;min-width:0;}
+.li-geo-copy{display:inline-flex;align-items:baseline;gap:7px;min-width:0;}
+.li-geo-copy .li-control-kicker{flex:none;line-height:1;}
+.li-geo-copy>span:not(.li-control-kicker){min-width:0;}
+.li-valley-btn{max-width:250px;}
+#liValleyLabel{display:block;max-width:160px;overflow:hidden;text-overflow:ellipsis;}
+.li-valley-menu{left:0;right:auto;width:290px;max-height:min(430px,70vh);overflow-y:auto;padding:10px;}
+
+@media (min-width:1041px) and (max-width:1240px){
+  .li-toolbar{
+    grid-template-columns:minmax(220px,1fr) auto auto minmax(145px,auto) auto auto;
+    grid-template-areas:
+      "greet greet greet greet greet greet"
+      "search country region valley filters saved";
+  }
+  .li-quick-filters{display:none;}
+}
+
+@media (min-width:701px) and (max-width:1040px){
+  .li-valley-wrap{order:3;}
+  .li-saved-only{order:4;}
+  #liFiltersWrap{order:5;}
+}
+
+@media (max-width:700px){
+  .li-valley-wrap{order:4;max-width:100%;}
+  .li-valley-btn{max-width:min(250px,80vw);}
+  .li-saved-only{order:5;}
+  #liFiltersWrap,.li-quick-filters{order:6;}
+}
+
 /* The guest prompt is the single homepage profile invitation. Its image and
    edge-to-edge layout distinguish it from the compact catalogue notice. */
 .hp-guestbar--homepage{

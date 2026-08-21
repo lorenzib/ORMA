@@ -105,13 +105,15 @@ describe('Browse filter UI', () => {
     expect(window.document.querySelector('.simple-card')).not.toBeNull();
   });
 
-  test('country and region are visible, linked geographic controls', () => {
-    const window = setup('https://www.app-orma.com/browse-trails.html?country=italy&region=dolomites');
+  test('country, region and valley are visible, linked geographic controls', () => {
+    const window = setup('https://www.app-orma.com/browse-trails.html?country=italy&region=dolomites&valley=Val%20d%E2%80%99Ega');
 
     expect(window.document.getElementById('browseCountrySelect').textContent).toContain('Italy');
     expect(window.document.getElementById('browseRegionSelect').textContent).toContain('Dolomites');
+    expect(window.document.getElementById('browseValleySelect').textContent).toContain('Val d’Ega');
     expect(window.document.getElementById('browseCountrySelect').value).toBe('italy');
     expect(window.document.getElementById('browseRegionSelect').value).toBe('dolomites');
+    expect(window.document.getElementById('browseValleySelect').value).toBe('Val d’Ega');
     expect(window.location.search).toContain('country=italy');
 
     const countryTrigger = window.document.querySelector('#browseCountrySelect + .area-select-trigger');
@@ -121,6 +123,8 @@ describe('Browse filter UI', () => {
     expect(countryTrigger.textContent).toContain('France');
     expect(window.document.getElementById('browseRegionSelect').textContent).toContain('Savoy');
     expect(window.document.getElementById('browseRegionSelect').textContent).not.toContain('Dolomites');
+    expect(window.document.getElementById('browseValleySelect').value).toBe('all');
+    expect(window.document.getElementById('browseValleySelect').textContent).not.toContain('Val d’Ega');
   });
 
   test('mobile-ready cards use explicit terrain language and aligned rows', () => {

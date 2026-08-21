@@ -51,6 +51,9 @@ function loadHomepageContext(testTrails){
     <button id="liCountryBtn"></button>
     <span id="liCountryLabel"></span>
     <div id="liCountryMenu"></div>
+    <button id="liValleyBtn"></button>
+    <span id="liValleyLabel"></span>
+    <div id="liValleyMenu"></div>
     <button id="liSavedOnlyBtn"><span id="liSavedOnlyCount"></span></button>
     <span id="liDogCtxName"></span>
     <span id="liDogCtxBreedSep" hidden></span>
@@ -126,15 +129,15 @@ describe('returning homepage region + valley filters', () => {
     { id: 'pri', name: 'Primiero Trail', region: 'dolomites', valley: 'Primiero – Pale', area: 'San Martino', lat: 46.26, lng: 11.80, curated: true, distance: 7, elevation: 400, hours: 3.5, terrainType: 'Rocky', safetyLevel: 'moderate' },
   ];
 
-  test('renders valley pills for the active region without province chips', () => {
+  test('keeps provenance in Filters without duplicating the valley control', () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeRegion = "savoy"; activeValley = "all";', context);
     vm.runInContext('renderAreaFilters(null);', context);
 
     const row = document.getElementById('areaFilterRow');
-    expect(row.innerHTML).toContain('data-valley="all"');
-    expect(row.innerHTML).toContain('Maurienne');
-    expect(row.innerHTML).toContain('Tarentaise – Vanoise');
+    expect(row.innerHTML).toContain('data-prov="verified"');
+    expect(row.innerHTML).not.toContain('data-valley');
+    expect(row.innerHTML).not.toContain('Maurienne');
     expect(row.innerHTML).not.toContain('data-province');
     expect(row.innerHTML).not.toContain('province-pills');
   });
@@ -197,15 +200,17 @@ describe('returning homepage region + valley filters', () => {
     expect(vm.runInContext('activeValley', context)).toBe('all');
   });
 
-  test('clicking a valley pill updates activeValley', () => {
+  test('the visible valley dropdown follows the active region and updates activeValley', () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "savoy"; activeValley = "all"; renderAreaFilters(null);', context);
+    vm.runInContext('activeRegion = "savoy"; activeValley = "all"; renderLiValleyControl(null);', context);
 
-    const mauriennePill = document.querySelector('[data-valley="Maurienne"]');
-    expect(mauriennePill).not.toBeNull();
-    mauriennePill.click();
+    const maurienneOption = document.querySelector('[data-valley="Maurienne"]');
+    expect(document.getElementById('liValleyLabel').textContent).toBe('All valleys');
+    expect(maurienneOption).not.toBeNull();
+    maurienneOption.click();
 
     expect(vm.runInContext('activeValley', context)).toBe('Maurienne');
+    expect(document.getElementById('liValleyLabel').textContent).toBe('Maurienne');
   });
 
   test('result list reflects region filter', async () => {
@@ -250,6 +255,9 @@ describe('map-first returning homepage layout contract', () => {
     expect(html).toContain('id="liCountryWrap"');
     expect(html).toContain('id="liSavedOnlyBtn"');
     expect(html).toContain('id="liRegionWrap"');
+    expect(html).toContain('id="liValleyWrap"');
+    expect(html).not.toContain('id="liShadeSeg"');
+    expect(html).not.toContain('id="hpShadeSeg"');
     expect(html).toContain('id="liCollapseTrailsBtn"');
     expect(html).not.toContain('id="liShowTrailsBtn"');
     expect(html).not.toContain('id="liCollapseMapBtn"');
