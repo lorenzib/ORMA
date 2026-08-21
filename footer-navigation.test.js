@@ -84,7 +84,10 @@ describe('footer navigation', () => {
     expect(css).toContain('.hp-prefooter-inner');
     expect(css).toContain('grid-template-columns:minmax(210px,1.3fr) repeat(4,minmax(100px,.7fr))');
     expect(css).toContain('.hp-footer-grid{grid-template-columns:1fr 1fr;}');
-    expect(css).toContain('max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)))');
+    expect(css).toContain('--wrap-gutter:32px;');
+    expect(css).toContain('.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--wrap-gutter);}');
+    expect(css).toContain('.hp-footer-grid{width:100%;max-width:none;margin:0;');
+    expect(css).toContain('.hp-footer-base{width:100%;max-width:none;margin:28px 0 0;');
 
     publicFooterPages().forEach(file => {
       const html = fs.readFileSync(file, 'utf8');
@@ -93,8 +96,8 @@ describe('footer navigation', () => {
 
     publicFooterPages().forEach(file => {
       const html = fs.readFileSync(file, 'utf8');
-      expect(html).toMatch(/href="(?:\.\.\/|\/)?styles\.css\?v=20260821-3"/);
-      expect(html).toMatch(/src="(?:\.\.\/|\/)?mobile-nav\.js\?v=20260821-2"/);
+      expect(html).toMatch(/href="(?:\.\.\/|\/)?styles\.css\?v=20260821-5"/);
+      expect(html).toMatch(/src="(?:\.\.\/|\/)?mobile-nav\.js\?v=20260821-3"/);
     });
   });
 
