@@ -7,8 +7,17 @@ describe('logged-in discovery workspace layout', () => {
   test('uses a dedicated greeting row above the discovery controls', () => {
     expect(html).toContain('class="li-toolbar-greet"');
     expect(html).toContain('id="liToolbarSummary"');
-    expect(css).toMatch(/grid-template-areas:\s*"greet greet greet greet greet"\s*"search country region saved filters"/);
+    expect(css).toMatch(/grid-template-areas:\s*"greet greet greet greet greet greet"\s*"search country region quick filters saved"/);
     expect(css).toMatch(/\.li-toolbar-greet\s*\{[^}]*display:flex;/s);
+  });
+
+  test('groups dog-safety quick filters between location and advanced filters', () => {
+    expect(html).toContain('class="li-quick-filters"');
+    expect(html).not.toContain('id="liQuickLeash"');
+    expect(html).toContain('id="liQuickShade"');
+    expect(html).toContain('id="liQuickWater"');
+    expect(html.indexOf('id="liQuickWater"')).toBeLessThan(html.indexOf('id="liFiltersWrap"'));
+    expect(html.indexOf('id="liFiltersWrap"')).toBeLessThan(html.indexOf('id="liSavedOnlyBtn"'));
   });
 
   test('balances a bounded map with a proportional results pane', () => {

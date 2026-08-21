@@ -18,7 +18,7 @@
    Firebase resolves. The homepage controller clears the class once real
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
-<link rel="stylesheet" href="styles.css?v=20260821-6">
+<link rel="stylesheet" href="styles.css?v=20260821-7">
 <link rel="stylesheet" href="homepage-mobile.css?v=20260821-1">
   <link rel="stylesheet" href="homepage-editorial.css?v=20260821-5">
 </head>
@@ -279,7 +279,8 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     </div>
     <div class="li-search">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input id="liSearch" type="search" placeholder="Find a trail on this map…" aria-label="Find a trail on this map" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="liSearchSuggest" autocomplete="off">
+      <input id="liSearch" type="search" placeholder="Search trails, peaks, or towns…" aria-label="Search trails, peaks, or towns" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="liSearchSuggest" autocomplete="off">
+      <kbd class="li-search-shortcut" aria-hidden="true">⌘K</kbd>
       <div class="li-search-suggest" id="liSearchSuggest" role="listbox" aria-label="Recommended routes" hidden></div>
     </div>
     <div class="li-menuwrap li-country-wrap" id="liCountryWrap">
@@ -289,9 +290,10 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       </button>
       <div class="li-menu li-country-menu" id="liCountryMenu" hidden></div>
     </div>
-    <button type="button" id="liSavedOnlyBtn" class="li-saved-only" aria-pressed="false">
-      <span aria-hidden="true">♥</span><span>Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span>
-    </button>
+    <div class="li-quick-filters" aria-label="Quick dog filters">
+      <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span aria-hidden="true">♧</span><span>High shade</span></button>
+      <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span aria-hidden="true">◉</span><span>Water</span></button>
+    </div>
     <!-- Kept as a rendering target for the controller; the consolidated
          Filters panel is the visible control at every viewport size. -->
     <div class="li-chiprow" id="liChips"></div>
@@ -318,10 +320,12 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <div class="li-seg" id="liShadeSeg"></div>
         <div class="li-fsec" id="liMatchSecLabel">Minimum match</div>
         <div class="li-seg" id="liMatchSeg"></div>
-        <div class="li-frows" id="liToggleRows"></div>
         <button type="button" class="li-apply" id="liFiltersApply">Show trails</button>
       </div>
     </div>
+    <button type="button" id="liSavedOnlyBtn" class="li-saved-only" aria-pressed="false">
+      <span aria-hidden="true">♥</span><span>Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span>
+    </button>
     <a id="liRecordBtn" class="li-record" href="walk.html"><span class="li-record-dot" aria-hidden="true"></span><span class="li-record-label">Record walk</span></a>
   </div>
 
@@ -535,7 +539,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="basemap-poi-click.js" defer></script>
 <script src="dog-routes-layer.js?v=20260815-4" defer></script>
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
-<script src="script.js?v=20260821-1" defer></script>
+<script src="script.js?v=20260821-2" defer></script>
 <script src="dog-wizard.js?v=20260815-4" defer></script>
 <script src="collections-data.js?v=20260815-4" defer></script>
 <script src="homepage-search.js?v=20260821-5" defer></script>

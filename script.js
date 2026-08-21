@@ -1689,34 +1689,20 @@ function renderLiControls(){
     { label: 'Any', v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 },
   ], liFilters.minMatch, v => { liFilters.minMatch = v; });
 
-  const rows = document.getElementById('liToggleRows');
-  if(rows){
-    rows.innerHTML = '';
-    [
-      // Saved trails now has its own first-class toolbar control.
-      // Water remains part of the detailed Filters panel.
-      { label: 'Water on route', on: liFilters.water,
-        toggle: () => { liFilters.water = !liFilters.water; } },
-    ].forEach(tg => {
-      const row = document.createElement('div');
-      row.className = 'li-frow';
-      const iconHtml = tg.icon ? `<span class="li-frow-icon" style="background:${tg.iconBg};">${tg.icon}</span>` : '';
-      row.innerHTML = `
-        <span class="li-frow-label">${iconHtml}${tg.label}</span>
-        <button type="button" class="li-switch${tg.on ? ' on' : ''}" role="switch" aria-checked="${tg.on}" aria-label="${tg.label}"><span class="knob"></span></button>`;
-      row.querySelector('.li-switch').addEventListener('click', () => {
-        tg.toggle();
-        renderReturningHomepage(currentProfileForAdjust);
-      });
-      rows.appendChild(row);
-    });
-  }
-
   const n = liActiveFilterCount();
   const badge = document.getElementById('liFiltersBadge');
-  if(badge) badge.textContent = n > 0 ? ` · ${n}` : '';
+  if(badge) badge.textContent = n > 0 ? `(${n})` : '';
   const filtBtn = document.getElementById('liFiltersBtn');
   if(filtBtn) filtBtn.classList.toggle('on', n > 0);
+
+  const quickStates = [
+    ['liQuickShade', liFilters.shade === '60'],
+    ['liQuickWater', liFilters.water],
+  ];
+  quickStates.forEach(([id, on]) => {
+    const button = document.getElementById(id);
+    if(button) button.setAttribute('aria-pressed', String(on));
+  });
 
   renderLiChips();
 }
@@ -1992,6 +1978,16 @@ function initLoggedInShell(){
     renderReturningHomepage(currentProfileForAdjust);
   });
 
+  const wireQuickFilter = (id, toggle) => {
+    const button = document.getElementById(id);
+    if(button) button.addEventListener('click', () => {
+      toggle();
+      renderReturningHomepage(currentProfileForAdjust);
+    });
+  };
+  wireQuickFilter('liQuickShade', () => { liFilters.shade = liFilters.shade === '60' ? 'any' : '60'; });
+  wireQuickFilter('liQuickWater', () => { liFilters.water = !liFilters.water; });
+
   const paneBody = document.querySelector('#returningCustomerHomepage .li-body');
   const paneButtons = Array.from(document.querySelectorAll('[data-li-pane]'));
   const setPane = (pane) => {
@@ -2053,6 +2049,13 @@ function initLoggedInShell(){
     if(!event.target.closest('.li-search')) hideLiSearchSuggestions();
   });
   document.addEventListener('keydown', (e) => { if(e.key === 'Escape') liCloseMenus(); });
+  document.addEventListener('keydown', (e) => {
+    if((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k'){
+      e.preventDefault();
+      const search = document.getElementById('liSearch');
+      if(search) search.focus();
+    }
+  });
 
   const search = document.getElementById('liSearch');
   const suggestions = document.getElementById('liSearchSuggest');
