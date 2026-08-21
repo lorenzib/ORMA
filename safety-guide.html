@@ -16,17 +16,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20260821-5">
 <style>
-.sg-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,330px);gap:42px;align-items:center;padding-top:46px;padding-bottom:38px;}
+.sg-hero{padding-top:46px;padding-bottom:24px;}
 .safety-library-page .hp-prefooter{display:none!important;}
 .sg-kicker{display:block;margin-bottom:10px;color:var(--accent);font:700 10px/1.2 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;}
 .sg-hero h1{max-width:760px;}
-.sg-hero-copy{max-width:720px;margin:16px 0 0;color:var(--ink-soft);font-size:15px;line-height:1.7;white-space:normal;text-wrap:pretty;}
-.sg-readiness-cta{border:0;border-radius:var(--radius-panel);padding:24px;background:#E4EFF3;color:var(--ink);text-align:left;cursor:pointer;box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease;}
-.sg-readiness-cta:hover{transform:translateY(-2px);box-shadow:var(--shadow-card-hover);}
-.sg-readiness-cta span{display:block;color:var(--accent);font:700 10px/1.2 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;}
-.sg-readiness-cta strong{display:block;margin:9px 0 6px;font:700 21px/1.15 'Bricolage Grotesque',sans-serif;}
-.sg-readiness-cta small{display:block;color:var(--ink-soft);font-size:12.5px;line-height:1.5;}
-.sg-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:42px;align-items:start;}
+.sg-hero-copy{width:100%;max-width:none;margin:16px 0 0;color:var(--ink-soft);font-size:15.5px;line-height:1.72;white-space:normal;text-wrap:pretty;}
+.sg-readiness-fab{position:fixed;right:clamp(18px,3vw,42px);bottom:24px;z-index:85;display:flex;align-items:center;gap:11px;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:9px 17px 9px 9px;background:#4B7653;color:#fff;text-align:left;cursor:pointer;box-shadow:0 14px 34px rgba(28,52,38,.27);transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease;}
+.sg-readiness-fab:hover{transform:translateY(-2px);background:#3C6344;box-shadow:0 18px 38px rgba(28,52,38,.32);}
+.sg-readiness-fab:focus-visible{outline:3px solid #F4BE62;outline-offset:3px;}
+.sg-readiness-fab-icon{display:grid;place-items:center;width:38px;height:38px;flex:none;border-radius:50%;background:rgba(255,255,255,.17);font-size:18px;}
+.sg-readiness-fab-copy{display:flex;flex-direction:column;gap:1px;}
+.sg-readiness-fab small{color:rgba(255,255,255,.75);font:700 9px/1.2 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
+.sg-readiness-fab strong{color:#fff;font:700 14px/1.25 'Bricolage Grotesque',sans-serif;}
+.sg-layout{display:block;}
 .sg-library{display:flex;flex-direction:column;gap:34px;min-width:0;}
 .sg-category-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding-bottom:10px;border-bottom:var(--border);}
 .sg-category-head h2{font-size:24px;}
@@ -40,23 +42,23 @@
 .sg-guide-title{display:block;font:700 16px/1.25 'Bricolage Grotesque',sans-serif;color:var(--ink);transition:color .16s ease;}
 .sg-guide-card p{margin:5px 0 0;color:var(--ink-soft);font-size:12.5px;line-height:1.45;}
 .sg-guide-arrow{color:var(--accent);font-size:21px;line-height:1;}
-.sg-side{display:flex;flex-direction:column;gap:14px;position:sticky;top:106px;}
-.sg-rules{border-radius:var(--radius-panel);padding:17px;background:#263B2E;color:#F8F7EF;}
-.sg-rules .sg-kicker{margin-bottom:7px;color:#A9C8B1;}
-.sg-rules h2{color:#F8F7EF;font-size:20px;}
-.sg-rules ol{list-style:none;margin:10px 0 0;padding:0;}
-.sg-rules li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;padding:8px 0;border-top:1px solid rgba(248,247,239,.16);}
-.sg-rules li>span{color:#A9C8B1;font-size:10px;font-weight:700;}
-.sg-rules b{display:block;color:#F8F7EF;font-size:12.5px;line-height:1.3;}
-.sg-rules small{display:block;margin-top:2px;color:rgba(248,247,239,.68);font-size:10px;line-height:1.35;}
-.sg-emergency{border-radius:var(--radius-panel);padding:20px;background:#A93C31;color:#fff;box-shadow:var(--shadow);}
-.sg-emergency .sg-kicker{margin-bottom:12px;color:#FFE0DA;}
-.sg-emergency-entry{display:block;padding:12px 0;border-top:1px solid rgba(255,255,255,.22);text-decoration:none;}
-.sg-emergency-entry:first-of-type{border-top:0;padding-top:0;}
+.sg-side{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(280px,.7fr);gap:14px;margin-bottom:32px;align-items:stretch;}
+.sg-rules{border-radius:var(--radius-panel);padding:15px 18px;background:#2F7089;color:#F8F7EF;box-shadow:var(--shadow);}
+.sg-rules .sg-kicker{margin-bottom:10px;color:#D8EEF5;}
+.sg-rules ol{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));list-style:none;margin:0;padding:0;}
+.sg-rules li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:6px;padding:2px 9px;border-left:1px solid rgba(248,247,239,.16);}
+.sg-rules li:first-child{border-left:0;padding-left:0;}
+.sg-rules li>span{color:#D8EEF5;font-size:10px;font-weight:700;}
+.sg-rules b{display:block;color:#F8F7EF;font-size:12px;line-height:1.25;}
+.sg-rules small{display:block;margin-top:2px;color:rgba(248,247,239,.68);font-size:9.5px;line-height:1.3;}
+.sg-emergency{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:6px;border-radius:var(--radius-panel);padding:15px 18px;background:#A93C31;color:#fff;box-shadow:var(--shadow);}
+.sg-emergency .sg-kicker{grid-column:1/-1;margin-bottom:0;color:#FFE0DA;}
+.sg-emergency-entry{display:block;padding:0;text-decoration:none;}
+.sg-emergency-entry+.sg-emergency-entry{padding-left:16px;border-left:1px solid rgba(255,255,255,.22);}
 .sg-emergency-entry span{display:block;color:#FFE0DA;font-size:10.5px;}
-.sg-emergency-entry strong{display:block;margin-top:3px;color:#fff;font:700 24px/1.05 'Bricolage Grotesque',sans-serif;}
+.sg-emergency-entry strong{display:block;margin-top:2px;color:#fff;font:700 22px/1.05 'Bricolage Grotesque',sans-serif;}
 .sg-emergency-entry b{display:block;margin-top:3px;color:#fff;font-size:13px;}
-.sg-emergency-entry small{display:block;margin-top:4px;color:rgba(255,255,255,.76);font-size:10.5px;line-height:1.45;}
+.sg-emergency-entry small{display:block;margin-top:3px;color:rgba(255,255,255,.76);font-size:9.5px;line-height:1.35;}
 .sg-disclaimer{margin:30px 0 0;color:var(--muted);font-size:12px;line-height:1.6;}
 .sg-readiness-dialog{width:min(620px,calc(100% - 28px));max-height:calc(100dvh - 28px);padding:0;border:0;border-radius:var(--radius-modal);background:var(--card);color:var(--ink);box-shadow:var(--shadow-modal);}
 .sg-readiness-dialog::backdrop{background:rgba(23,42,28,.62);backdrop-filter:blur(3px);}
@@ -69,25 +71,46 @@
 .sg-question legend{padding:0 0 8px;font-weight:700;font-size:13.5px;line-height:1.45;}
 .sg-answer-row{display:flex;gap:10px;}
 .sg-answer{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:var(--border);border-radius:var(--radius-pill);font-size:12px;cursor:pointer;}
-.sg-quiz-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px;}
+.sg-answer:has(input:checked){border-color:#6FA0B3;background:#EAF3F6;color:var(--ink);}
+.sg-answer input{accent-color:#2F7089;}
+.sg-quiz-actions{display:flex;align-items:center;justify-content:flex-end;gap:16px;margin-top:18px;}
 .sg-quiz-submit{border:0;border-radius:var(--radius-pill);padding:11px 18px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;}
-.sg-quiz-result{min-height:20px;margin:0;color:var(--ink-soft);font-size:12.5px;line-height:1.45;}
+.sg-quiz-validation{margin:0 auto 0 0;color:#A93C31;font-size:12px;line-height:1.4;}
+.sg-quiz-result{margin-top:18px;padding:18px;border:1px solid #D8D3C4;border-radius:14px;background:#F4F1E8;}
+.sg-quiz-result[hidden]{display:none;}
+.sg-quiz-result[data-level="ready"]{border-color:#BED5C4;background:#EAF3EB;}
+.sg-quiz-result[data-level="caution"]{border-color:#E1C98D;background:#FFF7E4;}
+.sg-quiz-result[data-level="stop"]{border-color:#D9AAA4;background:#FBECEA;}
+.sg-quiz-result-label{margin:0 0 5px;color:var(--muted);font:700 9px/1.2 'Inter',sans-serif;letter-spacing:.11em;text-transform:uppercase;}
+.sg-quiz-result h3{margin:0;color:var(--ink);font-size:20px;line-height:1.2;}
+.sg-quiz-result-summary{margin:7px 0 0;color:var(--ink-soft);font-size:12.5px;line-height:1.5;}
+.sg-quiz-recommendations{margin:12px 0 0;padding:11px 0 0 18px;border-top:1px solid rgba(47,73,56,.13);color:var(--ink);font-size:12.5px;line-height:1.5;}
+.sg-quiz-recommendations li+li{margin-top:6px;}
 @media(max-width:900px){
-  .sg-hero{grid-template-columns:1fr;gap:24px;}
-  .sg-readiness-cta{max-width:430px;}
-  .sg-layout{grid-template-columns:1fr;}
-  .sg-side{position:static;grid-row:1;display:grid;grid-template-columns:1fr 1fr;}
+  .sg-side{grid-template-columns:minmax(0,1.55fr) minmax(260px,.8fr);}
+  .sg-rules ol{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px;}
+  .sg-rules li:nth-child(4){border-left:0;padding-left:0;}
+}
+@media(max-width:760px){
+  .sg-side{grid-template-columns:1fr;gap:12px;margin-bottom:32px;}
+  .sg-emergency{order:-1;}
+  .sg-rules ol{grid-template-columns:1fr 1fr;}
+  .sg-rules li:nth-child(odd){border-left:0;padding-left:0;}
+  .sg-rules li:nth-child(4){border-left:1px solid rgba(248,247,239,.16);padding-left:12px;}
 }
 @media(max-width:620px){
   .sg-hero{padding-top:30px;padding-bottom:24px;}
   .sg-layout{gap:28px;}
-  .sg-side{grid-template-columns:1fr;}
   .sg-guide-card{grid-template-columns:88px minmax(0,1fr);gap:13px;padding:13px 0;}
   .sg-guide-card img{width:88px;height:66px;}
   .sg-guide-arrow{display:none;}
   .sg-category-head{align-items:flex-start;flex-direction:column;gap:5px;}
   .sg-quiz{padding:20px;}
   .sg-quiz-actions{align-items:stretch;flex-direction:column;}
+  .sg-quiz-validation{margin:0;}
+  .sg-readiness-fab{right:14px;bottom:16px;padding:8px 14px 8px 8px;}
+  .sg-readiness-fab-icon{width:35px;height:35px;}
+  .sg-readiness-fab small{display:none;}
 }
 </style>
 </head>
@@ -107,68 +130,68 @@
 <header class="sg-hero section-page-head">
   <div class="section-page-head__copy">
     <h1>Safety library</h1>
-    <p class="sg-hero-copy section-page-subtitle">Clear, practical guidance for mountain days with your dog. Browse by the situation you are planning for, from heat and altitude to shared trails and alpine facilities.</p>
+    <p class="sg-hero-copy section-page-subtitle">Mountain conditions can change quickly, and the same route can affect every dog differently. Use this library to plan for heat, altitude, water, terrain and shared spaces; recognise early warning signs; and know when to turn back or seek help. Each guide turns common mountain risks into practical decisions you can make before you leave and while you are on the trail.</p>
   </div>
-  <button class="sg-readiness-cta" type="button" id="openReadinessQuiz" aria-haspopup="dialog">
-    <span>Trail-readiness check</span>
-    <strong>Are you ready?</strong>
-    <small>Test your preparation here →</small>
-  </button>
 </header>
 
 <main class="sg-wrap section-page-wrap">
+  <aside class="sg-side" aria-label="Mountain-safety overview">
+    <section class="sg-rules" aria-labelledby="rulesHeading">
+      <span class="sg-kicker" id="rulesHeading">The five mountain rules</span>
+      <ol>
+        <li><span>1</span><div><b>Check conditions</b><small>Forecast, trail status and heat exposure.</small></div></li>
+        <li><span>2</span><div><b>Carry essentials</b><small>Water, leash, muzzle and first aid.</small></div></li>
+        <li><span>3</span><div><b>Watch your dog</b><small>Behaviour changes come before collapse.</small></div></li>
+        <li><span>4</span><div><b>Protect wildlife</b><small>Use distance and keep control.</small></div></li>
+        <li><span>5</span><div><b>Leave a margin</b><small>Turning back is part of good planning.</small></div></li>
+      </ol>
+    </section>
+
+    <section class="sg-emergency" aria-labelledby="emergencyHeading">
+      <span class="sg-kicker" id="emergencyHeading">Emergency reference</span>
+      <a class="sg-emergency-entry" href="tel:112"><span>European emergency</span><strong>112</strong><small>Police, ambulance, fire or mountain rescue across the EU.</small></a>
+      <div class="sg-emergency-entry"><span>Veterinary ambulance</span><b>Varies by region</b><small>Nearest regional help and directions belong on each trail map.</small></div>
+    </section>
+  </aside>
+
   <div class="sg-layout">
     <div class="sg-library" aria-label="Safety guides">
       <section aria-labelledby="beforeHeading">
         <div class="sg-category-head"><h2 id="beforeHeading">Before you leave</h2><p>Plan around your dog and the route</p></div>
         <div class="sg-guide-list">
-          <a class="sg-guide-card" href="guides/altitude-with-your-dog.html"><img src="images/tre-cime-hero.jpg" alt="" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Altitude</span><span class="sg-guide-title">Altitude with your dog</span><p>Acclimatisation, pace and warning signs.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/breed-group-caveats.html"><img src="images/social/instagram/welcome-to-orma/source/IMG_7747.jpg" alt="" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Your dog</span><span class="sg-guide-title">Breed-group considerations</span><p>When standard trail advice needs adjusting.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/dogs-on-cable-cars.html"><img src="images/le-mont-d-arbois-mont-joux.webp" alt="" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Access</span><span class="sg-guide-title">Dogs on cable cars</span><p>Rules, muzzles and boarding calmly.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/altitude-with-your-dog.html"><img src="images/tre-cime-hero.jpg" alt="The Tre Cime peaks above a high-altitude trail" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Altitude</span><span class="sg-guide-title">Altitude with your dog</span><p>Acclimatisation, pace and warning signs.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/breed-group-caveats.html"><img src="images/editorial/safety-library/breed-group-considerations-v1.jpg" alt="A Miniature Pinscher looks up at a Great Dane while a pug faces the camera" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Your dog</span><span class="sg-guide-title">Breed-group considerations</span><p>When standard trail advice needs adjusting.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/dogs-on-cable-cars.html"><img src="images/editorial/safety-library/dogs-on-cable-cars-v1.jpg" alt="Cable cars crossing a high mountain valley" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Access</span><span class="sg-guide-title">Dogs on cable cars</span><p>Rules, muzzles and boarding calmly.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
         </div>
       </section>
 
       <section aria-labelledby="trailHeading">
         <div class="sg-category-head"><h2 id="trailHeading">On the trail</h2><p>Prevent the most common problems</p></div>
         <div class="sg-guide-list">
-          <a class="sg-guide-card" href="guides/heat-overheating.html"><img src="images/boucle-du-lac-vert.webp" alt="" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Weather &amp; body</span><span class="sg-guide-title">Heat and hydration</span><p>Water planning and recognising overheating early.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/paw-protection.html"><img src="images/editorial/paw-check-generated-small-v1.jpg" alt="" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Terrain</span><span class="sg-guide-title">Paw protection</span><p>Rock, hot ground, snow and first aid.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/alpine-plants-for-dogs.html"><img src="images/editorial/alpine-plants-dog-safety-v1.jpg" alt="" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Plants</span><span class="sg-guide-title">Alpine plants for dogs</span><p>What is safe to pass and dangerous to eat.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/heat-overheating.html"><img src="images/editorial/safety-library/heat-hydration-v1.jpg" alt="A dog drinking from a clear alpine spring" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Weather &amp; body</span><span class="sg-guide-title">Heat and hydration</span><p>Water planning and recognising overheating early.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/paw-protection.html"><img src="images/editorial/safety-library/paw-protection-v2.jpg" alt="A hiker checking a dog's paw on a mountain trail" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Terrain</span><span class="sg-guide-title">Paw protection</span><p>Rock, hot ground, snow and first aid.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/alpine-plants-for-dogs.html"><img src="images/editorial/safety-library/flowers-plants-dogs.jpg" alt="Yellow alpine flowers growing beside a forest trail" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Plants</span><span class="sg-guide-title">Flowers, plants and dogs</span><p>What is safe to pass and dangerous to eat.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
         </div>
       </section>
 
       <section aria-labelledby="sharedHeading">
         <div class="sg-category-head"><h2 id="sharedHeading">Shared spaces</h2><p>Animals, people and facilities</p></div>
         <div class="sg-guide-list">
-          <a class="sg-guide-card" href="guides/livestock-guard-dogs.html"><img src="images/social/instagram/welcome-to-orma/source/IMG_9626.jpg" alt="" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Animals</span><span class="sg-guide-title">Livestock guardian dogs</span><p>Distance, leash handling and retreating safely.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/dogs-at-rifugi.html"><img src="images/lago-di-braies.jpg" alt="" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Facilities</span><span class="sg-guide-title">Dogs at rifugi</span><p>Etiquette, food and overnight stays.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/livestock-guard-dogs.html"><img src="images/editorial/safety-library/livestock-guardian-dogs-v1.jpg" alt="Two white livestock guardian dogs patrolling an alpine pasture" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Animals</span><span class="sg-guide-title">Livestock guardian dogs</span><p>Distance, leash handling and retreating safely.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/dogs-at-rifugi.html"><img src="images/editorial/safety-library/dogs-at-rifugi.jpg" alt="A mountain rifugio below a high rocky peak" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Facilities</span><span class="sg-guide-title">Dogs at rifugi</span><p>Etiquette, food and overnight stays.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
         </div>
       </section>
     </div>
 
-    <aside class="sg-side" aria-label="Mountain-safety overview">
-      <section class="sg-rules" aria-labelledby="rulesHeading">
-        <span class="sg-kicker">The five rules</span>
-        <h2 id="rulesHeading">Every mountain day</h2>
-        <ol>
-          <li><span>1</span><div><b>Check conditions</b><small>Forecast, trail status and heat exposure.</small></div></li>
-          <li><span>2</span><div><b>Carry essentials</b><small>Water, leash, muzzle and first aid.</small></div></li>
-          <li><span>3</span><div><b>Watch your dog</b><small>Behaviour changes come before collapse.</small></div></li>
-          <li><span>4</span><div><b>Protect wildlife</b><small>Use distance and keep control.</small></div></li>
-          <li><span>5</span><div><b>Leave a margin</b><small>Turning back is part of good planning.</small></div></li>
-        </ol>
-      </section>
-
-      <section class="sg-emergency" aria-labelledby="emergencyHeading">
-        <span class="sg-kicker" id="emergencyHeading">Emergency reference</span>
-        <a class="sg-emergency-entry" href="tel:112"><span>European emergency</span><strong>112</strong><small>Police, ambulance, fire or mountain rescue across the EU.</small></a>
-        <div class="sg-emergency-entry"><span>Veterinary ambulance</span><b>Varies by region</b><small>Nearest regional help and directions belong on each trail map.</small></div>
-      </section>
-    </aside>
   </div>
 
   <p class="sg-disclaimer">This library provides general information, not veterinary advice. If your dog shows signs of heat stress, injury or exhaustion, stop early and seek professional help when symptoms do not resolve promptly.</p>
 </main>
+
+<button class="sg-readiness-fab" type="button" id="openReadinessQuiz" aria-haspopup="dialog" aria-controls="readinessQuiz">
+  <span class="sg-readiness-fab-icon" aria-hidden="true">🐾</span>
+  <span class="sg-readiness-fab-copy"><small>60-second trail quiz</small><strong>Paws ready?</strong></span>
+</button>
 
 <dialog class="sg-readiness-dialog" id="readinessQuiz" aria-labelledby="readinessQuizTitle">
   <form class="sg-quiz" id="readinessQuizForm">
@@ -181,7 +204,13 @@
     <fieldset class="sg-question"><legend>3. Do you have a leash, muzzle where required and a basic first-aid kit?</legend><div class="sg-answer-row"><label class="sg-answer"><input type="radio" name="q3" value="yes"> Yes</label><label class="sg-answer"><input type="radio" name="q3" value="no"> Not yet</label></div></fieldset>
     <fieldset class="sg-question"><legend>4. Is the distance, climb and terrain appropriate for your dog today?</legend><div class="sg-answer-row"><label class="sg-answer"><input type="radio" name="q4" value="yes"> Yes</label><label class="sg-answer"><input type="radio" name="q4" value="no"> Not sure</label></div></fieldset>
     <fieldset class="sg-question"><legend>5. Have you saved the route and local emergency contacts for offline use?</legend><div class="sg-answer-row"><label class="sg-answer"><input type="radio" name="q5" value="yes"> Yes</label><label class="sg-answer"><input type="radio" name="q5" value="no"> Not yet</label></div></fieldset>
-    <div class="sg-quiz-actions"><p class="sg-quiz-result" id="readinessQuizResult" aria-live="polite"></p><button class="sg-quiz-submit" type="submit">Check my preparation</button></div>
+    <div class="sg-quiz-actions"><p class="sg-quiz-validation" id="readinessQuizValidation" aria-live="polite"></p><button class="sg-quiz-submit" type="submit">Show my recommendation</button></div>
+    <section class="sg-quiz-result" id="readinessQuizResult" aria-live="polite" aria-labelledby="readinessResultTitle" hidden>
+      <p class="sg-quiz-result-label">Your trail-readiness recommendation</p>
+      <h3 id="readinessResultTitle"></h3>
+      <p class="sg-quiz-result-summary" id="readinessResultSummary"></p>
+      <ul class="sg-quiz-recommendations" id="readinessRecommendations"></ul>
+    </section>
   </form>
 </dialog>
 
@@ -269,9 +298,63 @@
   const closeButton = document.getElementById('closeReadinessQuiz');
   const dialog = document.getElementById('readinessQuiz');
   const form = document.getElementById('readinessQuizForm');
+  const validation = document.getElementById('readinessQuizValidation');
   const result = document.getElementById('readinessQuizResult');
+  const resultTitle = document.getElementById('readinessResultTitle');
+  const resultSummary = document.getElementById('readinessResultSummary');
+  const recommendations = document.getElementById('readinessRecommendations');
 
-  if(!openButton || !closeButton || !dialog || !form || !result) return;
+  if(!openButton || !closeButton || !dialog || !form || !validation || !result || !resultTitle || !resultSummary || !recommendations) return;
+
+  const recommendationByQuestion = [
+    'Check today’s forecast, trail status and heat exposure before you leave.',
+    'Carry enough water for both of you, plus a reserve; never rely on mapped water sources alone.',
+    'Pack a leash, any required muzzle and a basic first-aid kit.',
+    'Choose a shorter or easier route until you know the distance, climb and terrain suit your dog today.',
+    'Save the route and local emergency contacts so they remain available offline.'
+  ];
+
+  const getAnswers = () => Array.from({ length:5 }, (_, index) => form.elements[`q${index + 1}`].value);
+
+  const renderRecommendation = ({ showIncomplete=false, scroll=false } = {}) => {
+    const answers = getAnswers();
+    if(answers.some(answer => !answer)){
+      validation.textContent = showIncomplete ? 'Answer all five checks to see your recommendation.' : '';
+      result.hidden = true;
+      result.removeAttribute('data-level');
+      return false;
+    }
+
+    validation.textContent = '';
+    const ready = answers.filter(answer => answer === 'yes').length;
+    const missing = answers
+      .map((answer, index) => answer === 'no' ? recommendationByQuestion[index] : null)
+      .filter(Boolean);
+
+    if(ready === 5){
+      result.dataset.level = 'ready';
+      resultTitle.textContent = 'Ready — with a final trailhead check';
+      resultSummary.textContent = 'You answered Yes to all five checks. You have covered the essentials, but mountain conditions can still change.';
+      missing.push('Recheck the weather and your dog at the trailhead, keep a turnaround margin and adjust the plan if either has changed.');
+    }else if(ready >= 3){
+      result.dataset.level = 'caution';
+      resultTitle.textContent = 'Almost ready — resolve these items first';
+      resultSummary.textContent = `${ready} of 5 checks are complete. Deal with the remaining ${missing.length === 1 ? 'item' : 'items'} before committing to the route.`;
+    }else{
+      result.dataset.level = 'stop';
+      resultTitle.textContent = 'Pause and prepare before choosing this trail';
+      resultSummary.textContent = `Only ${ready} of 5 checks are complete. This plan needs more preparation before it is a responsible mountain day for your dog.`;
+    }
+
+    recommendations.replaceChildren(...missing.map(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      return li;
+    }));
+    result.hidden = false;
+    if(scroll && typeof result.scrollIntoView === 'function') result.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    return true;
+  };
 
   window.addEventListener('DOMContentLoaded', () => {
     const activeSafetyLink = document.querySelector('.topnav .links a[href="safety-guide.html"]');
@@ -279,8 +362,8 @@
   });
 
   openButton.addEventListener('click', () => {
-    result.textContent = '';
     dialog.showModal();
+    renderRecommendation();
   });
 
   closeButton.addEventListener('click', () => dialog.close());
@@ -289,19 +372,13 @@
     if(event.target === dialog) dialog.close();
   });
 
+  form.addEventListener('change', () => {
+    if(getAnswers().every(Boolean)) renderRecommendation({ scroll:true });
+  });
+
   form.addEventListener('submit', event => {
     event.preventDefault();
-    const answers = Array.from({ length:5 }, (_, index) => form.elements[`q${index + 1}`].value);
-    if(answers.some(answer => !answer)){
-      result.textContent = 'Answer all five checks to see your result.';
-      return;
-    }
-    const ready = answers.filter(answer => answer === 'yes').length;
-    result.textContent = ready === 5
-      ? '5 of 5 ready. Recheck conditions at the trailhead and keep a margin.'
-      : ready >= 3
-        ? `${ready} of 5 ready. Resolve the unchecked items before you leave.`
-        : `${ready} of 5 ready. Pause and prepare the essentials before choosing a trail.`;
+    renderRecommendation({ showIncomplete:true, scroll:true });
   });
 })();
 </script>
