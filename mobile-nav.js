@@ -87,13 +87,13 @@
       title.id = 'hpPrefooterTitle';
       title.textContent = 'Add your dog';
       const description = document.createElement('p');
-      description.textContent = 'Tell ORMA about your dog once to tailor every trail score.';
+      description.textContent = 'Add your dog for personalised matches. Create a free account only when you choose to save.';
       copyBlock.append(kicker, title, description);
 
       const actions = document.createElement('div');
       actions.className = 'hp-prefooter-actions';
       const profile = document.createElement('a');
-      profile.className = 'hp-prefooter-action is-primary';
+      profile.className = 'hp-prefooter-action is-primary hp-dog-profile-cta';
       profile.href = prefix + 'index.html?wizard=1';
       profile.textContent = 'Add your dog';
       actions.append(profile);
