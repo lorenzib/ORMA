@@ -17,7 +17,7 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
     read(root,'backoffice/OPERATING_STANDARD.md'),read(root,'backoffice/HOSTING.md'),read(root,'backoffice/dashboard-model.js'),read(root,'package.json'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
-  const hostedPages=['trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','newsletter-desk.html','product-ideas-desk.html'];
+  const hostedPages=['trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','newsletter-desk.html','product-ideas-desk.html','designer-desk.html'];
   add('six-team-hosted-desks',hostedPages.every(page=>builder.includes(`'${page}'`)),`${hostedPages.length} protected desk routes are allowlisted`);
   const reviewCollections=['backofficeDossierReviews','backofficeReviews','backofficePublicationReviews','backofficeNewTrailReviews','backofficeHazardReviews','backofficeEditorialReviews','backofficeImageReviews','backofficeNewsletterReviews','backofficeAnalystReviews'];
   add('immutable-review-contracts',reviewCollections.every(name=>rules.includes(`/${name}/{`)&&client.includes(`'${name}'`)),`${reviewCollections.length} moderator review collections have client and rules contracts`);

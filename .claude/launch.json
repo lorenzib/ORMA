@@ -45,6 +45,18 @@
         "--strictPort"
       ],
       "port": 4176
+    },
+    {
+      "name": "orma-app-bundle",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4177",
+        "--directory",
+        "/Users/benedettalorenzi/Documents/GitHub/dolopaws/dist/app"
+      ],
+      "port": 4177
     }
   ]
 }

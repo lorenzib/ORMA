@@ -15,7 +15,7 @@ from `backoffice-data/`, `data/`, or any generated review JSON.
 
 The deployed package contains only the sign-in shell and protected operator
 interfaces. Existing Trails, New Trails, Groundskeeper, Editorial, image
-coverage, Newsletter and Analyst state is read from or appended to Firestore
+coverage, Newsletter, Analyst and Design state is read from or appended to Firestore
 after Firebase verifies the `moderator` custom claim. Firestore rules remain
 the authoritative access boundary. Social remains visible but launch-gated and
 has no publishing credentials.
