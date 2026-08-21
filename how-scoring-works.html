@@ -74,11 +74,10 @@
   .sc-mathrow{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px dashed var(--paper-line,#E5DECF);font-size:12.5px;color:var(--ink-soft,#6b6350);}
   .sc-mathrow:last-of-type{border-bottom:none;}
   .sc-mathrow b{font-weight:700;color:var(--ink,#22312A);white-space:nowrap;}
-  .sc-stepper{margin:0;padding-top:8px;counter-reset:sc-step;}
+  .sc-stepper{margin:0;padding-top:8px;}
   .sc-stepnav{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 0 10px;background:transparent;border-bottom:1px solid #E2DDD1;border-radius:0;position:sticky;top:80px;z-index:5;box-shadow:none;}
-  .sc-stepnav button{counter-increment:sc-step;appearance:none;border:1px solid transparent;border-radius:11px;background:transparent;padding:12px 14px;cursor:pointer;text-align:left;font:700 12px/1.25 'Inter',sans-serif;color:#6B6350;transition:background .15s,border-color .15s;}
+  .sc-stepnav button{appearance:none;border:1px solid transparent;border-radius:11px;background:transparent;padding:14px;cursor:pointer;text-align:left;font:700 12px/1.25 'Inter',sans-serif;color:#6B6350;transition:background .15s,border-color .15s;}
   .sc-stepnav button:hover{background:#F4F2EB;border-color:#E2DDD1;}
-  .sc-stepnav button:before{content:"0" counter(sc-step);display:block;margin-bottom:3px;font:600 9px/1 'Inter',sans-serif;letter-spacing:.08em;color:inherit;opacity:.62;}
   .sc-stepnav button.is-on{background:#DCE8D9;border-color:#B8CCB8;color:#22312A;box-shadow:none;}
   .sc-steppanel{padding:24px 0 18px;animation:sc-in .25s ease;}
   .sc-js .sc-steppanel[hidden]{display:none;}
@@ -608,7 +607,9 @@ document.documentElement.classList.add('sc-js');
     if (headings.length !== 3) return;
 
     var italian = langBlock.dataset.langBlock === 'it';
-    var labels = italian ? ['Sentiero', 'Il tuo cane', 'Compatibilità'] : ['Trail', 'Your dog', 'Match'];
+    var labels = italian
+      ? ['Passo 1 · Il sentiero', 'Passo 2 · Il tuo cane', 'Passo 3 · La compatibilità']
+      : ['Step 1 · The Trail', 'Step 2 · Your Dog', 'Step 3 · The Match'];
     var stepper = document.createElement('div');
     stepper.className = 'sc-stepper';
     var nav = document.createElement('div');

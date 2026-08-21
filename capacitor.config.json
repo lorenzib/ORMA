@@ -1,0 +1,13 @@
+{
+  "appId": "com.apporma.orma",
+  "appName": "ORMA",
+  "webDir": "dist/app",
+  "ios": {
+    "contentInset": "never",
+    "limitsNavigationsToAppBoundDomains": false
+  },
+  "server": {
+    "androidScheme": "https",
+    "iosScheme": "capacitor"
+  }
+}
