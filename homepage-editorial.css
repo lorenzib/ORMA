@@ -5,7 +5,7 @@
   grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);
   align-items:center;
   gap:48px;
-  margin:0 0 56px;
+  margin:0 0 32px;
   padding:42px 46px;
   border:0;
   border-radius:22px;
@@ -22,20 +22,34 @@
 .hp-mission-quote p{max-width:none;margin:0;color:#f6f2e9;font:600 clamp(20px,2vw,27px)/1.35 'Bricolage Grotesque',sans-serif;}
 .hp-mission-quote cite{display:block;margin-top:18px;color:#a8c5b0;font:700 11.5px/1.4 'Inter',sans-serif;font-style:normal;}
 
-.hp-how{margin:0 0 54px;}
+.hp-how,.hp-featured{
+  padding:38px 40px;
+  border-radius:22px;
+  box-shadow:0 16px 36px rgba(35,51,42,.08);
+}
+.hp-how{margin:0 0 32px;background:#fff;border:1px solid var(--paper-line);}
 .hp-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:42px;margin-bottom:24px;}
 .hp-section-head>div{max-width:700px;}
 .hp-section-head>p{max-width:430px;margin:0;color:var(--ink-soft);font-size:13.5px;line-height:1.6;}
 .hp-how-h2{font-size:30px;line-height:1.15;}
-.hp-howcard{padding:24px 24px 22px;}
-.hp-howcard p{font-size:13.5px;line-height:1.6;}
+.hp-how-grid{grid-template-columns:repeat(3,minmax(0,280px));justify-content:center;gap:18px;}
+.hp-howcard{width:100%;max-width:280px;align-self:start;overflow:hidden;padding:0;background:#f7f7f2;}
+.hp-howcard-media{position:relative;height:auto;aspect-ratio:16/10;overflow:hidden;padding:5px;background:#dce8dd;border-bottom:1px solid #c8d8ca;box-sizing:border-box;isolation:isolate;}
+.hp-howcard-media img{display:block;width:100%;height:100%;object-fit:cover;border-radius:10px;filter:saturate(.76) contrast(.9) brightness(.98) sepia(.04);}
+.hp-howcard-media::after{content:"";position:absolute;inset:5px;z-index:1;border-radius:10px;background:linear-gradient(145deg,rgba(238,242,237,.10),rgba(48,70,57,.18));mix-blend-mode:soft-light;pointer-events:none;}
+.hp-howcard-copy{padding:15px 17px 17px;}
+.hp-howcard-title{margin-bottom:8px;font-size:15.5px;line-height:1.25;}
+.hp-howcard p{font-size:12.5px;line-height:1.5;}
 .hp-how-link{display:inline-flex;margin-top:18px;color:var(--accent);font-size:12.5px;font-weight:800;text-decoration:none;}
 .hp-how-link:hover{text-decoration:underline;}
 
-.hp-featured{padding-top:38px;border-top:1px solid var(--paper-line);}
-.hp-feat-h2{font-size:27px;gap:10px;}
-.hp-feat-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--sage-dim);}
-.hp-feat-icon svg{width:20px;height:20px;}
+.hp-featured{background:#fff;border:1px solid var(--paper-line);}
+.hp-feat-h2{font-size:27px;}
+.hp-coll-rank-row{display:flex;align-items:center;flex-wrap:wrap;column-gap:8px;row-gap:8px;margin:7px 0 0;color:var(--ink);font-size:12.5px;line-height:1.45;}
+.hp-coll-rank-row strong{font-weight:800;}
+.hp-coll-profile-cta{display:inline-flex;align-items:center;margin:0;padding:6px 11px;border:0;border-radius:999px;background:var(--ink);color:#fff;font:800 11px/1.2 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
+.hp-coll-profile-cta:hover{background:#22332a;}
+.hp-coll-profile-cta:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
 .hp-ccard-img{height:178px;}
 
 .hp-mission h2,.hp-how h2,.hp-featured h2{scroll-margin-top:86px;}
@@ -46,16 +60,23 @@
   .hp-mission-quote{max-width:650px;}
   .hp-section-head{align-items:flex-start;flex-direction:column;gap:12px;}
   .hp-section-head>p{max-width:650px;}
+  .hp-how-grid{grid-template-columns:repeat(2,minmax(0,260px));}
+  .hp-howcard{max-width:260px;}
+  .hp-howcard:last-child{grid-column:1/-1;justify-self:center;}
 }
 
 @media (max-width:640px){
   .hp-content{padding:24px 18px 20px;}
-  .hp-mission{gap:24px;margin-bottom:42px;padding:28px 22px;border-radius:18px;}
+  .hp-mission{gap:24px;margin-bottom:24px;padding:28px 22px;border-radius:18px;}
   .hp-mission h2{font-size:28px;}
   .hp-mission-copy p{font-size:13.5px;}
   .hp-mission-quote{padding:24px 0 0;border-top:1px solid rgba(255,255,255,.24);border-left:0;}
-  .hp-how{margin-bottom:42px;}
+  .hp-how,.hp-featured{padding:28px 22px;border-radius:18px;}
+  .hp-how{margin-bottom:24px;}
   .hp-how-h2{font-size:26px;}
-  .hp-featured{padding-top:30px;}
+  .hp-how-grid{grid-template-columns:minmax(0,320px);}
+  .hp-howcard{max-width:320px;}
+  .hp-howcard:last-child{grid-column:auto;}
   .hp-feat-h2{font-size:23px;}
+  .hp-coll-rank-row{align-items:flex-start;flex-direction:column;}
 }

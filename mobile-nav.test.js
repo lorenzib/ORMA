@@ -38,6 +38,18 @@ describe('shared navigation hardening', () => {
     expect(link.rel.split(/\s+/)).toContain('noopener');
   });
 
+  test('removes the retired pre-footer promotion, including late insertions', async () => {
+    const banner = document.createElement('section');
+    banner.className = 'hp-prefooter';
+    document.body.appendChild(banner);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(document.querySelector('.hp-prefooter')).toBeNull();
+  });
+
+  test('publishes the measured sticky-navigation offset for the guest bar', () => {
+    expect(document.documentElement.style.getPropertyValue('--topnav-sticky-offset')).toMatch(/px$/);
+  });
+
   test('adds the Alpine plants guide beside the existing dog guides', () => {
     const footer = document.createElement('div');
     footer.className = 'hp-footer-links';
