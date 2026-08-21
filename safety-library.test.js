@@ -17,6 +17,9 @@ describe('Safety library', () => {
 
   test('keeps the safety header aligned with the shared page-header scale', () => {
     expect(document.querySelector('.sg-hero').classList.contains('section-page-head')).toBe(true);
+    expect(document.querySelector('.sg-hero-copy').textContent.length).toBeGreaterThan(300);
+    expect(document.querySelector('.sg-hero-copy').textContent).toContain('recognise early warning signs');
+    expect(html).toMatch(/\.sg-hero-copy\{[^}]*width:100%;[^}]*max-width:none/s);
     expect(html).not.toContain('ORMA mountain guidance');
     expect(html).not.toMatch(/\.sg-hero h1\{[^}]*font-size:/s);
   });
@@ -30,20 +33,72 @@ describe('Safety library', () => {
   });
 
   test('keeps a compact five-rule overview and prominent emergency reference', () => {
+    const overview = document.querySelector('.sg-side');
+    expect(overview.nextElementSibling.classList.contains('sg-layout')).toBe(true);
     expect(document.querySelectorAll('.sg-rules li')).toHaveLength(5);
+    expect(document.querySelector('#rulesHeading').textContent).toMatch(/The five mountain rules/i);
+    expect(document.body.textContent).not.toMatch(/Every mountain day/i);
     expect(document.querySelector('.sg-emergency').textContent).toContain('European emergency');
     expect(document.querySelector('.sg-emergency').textContent).toContain('Veterinary ambulance');
     expect(document.querySelector('.sg-emergency a').getAttribute('href')).toBe('tel:112');
     expect(html).toMatch(/\.sg-emergency\{[^}]*background:#A93C31/s);
+    expect(html).toMatch(/\.sg-rules ol\{[^}]*grid-template-columns:repeat\(5/s);
+    expect(html).toMatch(/\.sg-rules\{[^}]*background:#2F7089/s);
   });
 
-  test('offers a five-question readiness questionnaire from the hero', () => {
+  test('offers the five-question readiness questionnaire from a floating action', () => {
     const opener = document.querySelector('#openReadinessQuiz');
-    expect(opener.textContent).toMatch(/Are you ready\?/i);
-    expect(opener.textContent).toMatch(/Test your preparation here/i);
+    expect(opener.classList.contains('sg-readiness-fab')).toBe(true);
+    expect(opener.closest('.sg-hero')).toBeNull();
+    expect(opener.textContent).toMatch(/Paws ready\?/i);
+    expect(opener.querySelector('.sg-readiness-fab-icon').textContent).toBe('🐾');
+    expect(html).toMatch(/\.sg-readiness-fab\{[^}]*background:#4B7653/s);
     expect(document.querySelectorAll('#readinessQuiz .sg-question')).toHaveLength(5);
     expect(document.querySelector('#readinessQuizResult').getAttribute('aria-live')).toBe('polite');
     expect(html).toContain("dialog.showModal()");
-    expect(html).toContain('5 of 5 ready');
+    expect(html).toContain('recommendationByQuestion');
+    expect(html).toContain("form.addEventListener('change'");
+  });
+
+  test('uses the dedicated photographic safety-library imagery', () => {
+    const guideImages = [...document.querySelectorAll('.sg-guide-card img')];
+    const sources = guideImages.map(image => image.getAttribute('src'));
+    expect(sources).toEqual(expect.arrayContaining([
+      'images/editorial/safety-library/breed-group-considerations-v1.jpg',
+      'images/editorial/safety-library/dogs-on-cable-cars-v1.jpg',
+      'images/editorial/safety-library/heat-hydration-v1.jpg',
+      'images/editorial/safety-library/paw-protection-v2.jpg',
+      'images/editorial/safety-library/flowers-plants-dogs.jpg',
+      'images/editorial/safety-library/livestock-guardian-dogs-v1.jpg',
+      'images/editorial/safety-library/dogs-at-rifugi.jpg'
+    ]));
+    expect(guideImages.every(image => image.getAttribute('alt').trim().length > 0)).toBe(true);
+    expect(document.body.textContent).toContain('Flowers, plants and dogs');
+  });
+
+  test('shows a tailored recommendation as soon as all five answers are complete', () => {
+    const script = [...document.querySelectorAll('script')]
+      .find(item => item.textContent.includes("const openButton = document.getElementById('openReadinessQuiz')"));
+    const dialog = document.querySelector('#readinessQuiz');
+    dialog.showModal = jest.fn();
+    dialog.close = jest.fn();
+    const scrollIntoView = jest.fn();
+    document.querySelector('#readinessQuizResult').scrollIntoView = scrollIntoView;
+    window.eval(script.textContent);
+
+    ['yes','no','yes','yes','no'].forEach((answer, index) => {
+      const input = document.querySelector(`input[name="q${index + 1}"][value="${answer}"]`);
+      input.checked = true;
+      input.dispatchEvent(new Event('change', { bubbles:true }));
+    });
+
+    const result = document.querySelector('#readinessQuizResult');
+    expect(result.hidden).toBe(false);
+    expect(result.dataset.level).toBe('caution');
+    expect(document.querySelector('#readinessResultTitle').textContent).toContain('Almost ready');
+    expect(document.querySelector('#readinessResultSummary').textContent).toContain('3 of 5 checks');
+    expect(document.querySelector('#readinessRecommendations').textContent).toContain('Carry enough water');
+    expect(document.querySelector('#readinessRecommendations').textContent).toContain('Save the route');
+    expect(scrollIntoView).toHaveBeenCalled();
   });
 });
