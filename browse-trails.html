@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260821-1">
+<link rel="stylesheet" href="styles.css?v=20260821-2">
 <style>
   /* Guest bar — the homepage component reused verbatim; CTA is a link here */
   a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
@@ -150,9 +150,9 @@
 </div>
 
 <!-- Same guest bar as the homepage, for continuity; hidden once logged in. -->
-<div class="hp-guestbar" id="browseGuestBar">
-  <div class="hp-guestbar-copy"><b>Browsing as a guest, ranked for a medium dog.</b> <span>No account needed. Add your dog any time to sharpen every score.</span></div>
-  <a class="hp-guestbar-cta" href="onboarding.html">Create your dog's profile →</a>
+<div class="hp-guestbar hp-guestbar--compact" id="browseGuestBar">
+  <div class="hp-guestbar-copy"><b>Guest mode · Scores use a medium-dog profile.</b> <span>Add your dog for personalised matches.</span></div>
+  <a class="hp-guestbar-cta" href="index.html?wizard=1">Add your dog</a>
 </div>
 
 <header class="browse-design-head section-page-head">
@@ -491,7 +491,7 @@
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260821-1"></script>
+<script src="mobile-nav.js?v=20260821-2"></script>
 <script src="i18n.js?v=20260815-4"></script>
 <script src="trust/evidence-v1.js?v=20260815-4"></script>
 <script src="trail-trust.js?v=20260819-5"></script>
@@ -508,7 +508,7 @@
 <script src="metrics.js?v=20260815-4" defer></script>
 <script src="metric-funnel.js?v=20260815-4" defer></script>
 <script src="guest-context.js?v=20260815-4" defer></script>
-<script src="auth-ui.js?v=20260818-8" defer></script>
+<script src="auth-ui.js?v=20260821-1" defer></script>
 <script src="discovery-state.js?v=20260818-6" defer></script>
 <script src="discovery-filters.js?v=20260818-6" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>

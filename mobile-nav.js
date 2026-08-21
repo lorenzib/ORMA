@@ -82,25 +82,21 @@
       copyBlock.className = 'hp-prefooter-copy';
       const kicker = document.createElement('p');
       kicker.className = 'hp-prefooter-kicker';
-      kicker.textContent = 'Your next walk';
+      kicker.textContent = 'Personalised trail matching';
       const title = document.createElement('h2');
       title.id = 'hpPrefooterTitle';
-      title.textContent = 'Find a trail that fits your dog';
+      title.textContent = 'Add your dog';
       const description = document.createElement('p');
-      description.textContent = 'Explore routes with the terrain, conditions and cautions that matter to your companion.';
+      description.textContent = 'Tell ORMA about your dog once to tailor every trail score.';
       copyBlock.append(kicker, title, description);
 
       const actions = document.createElement('div');
       actions.className = 'hp-prefooter-actions';
-      const browse = document.createElement('a');
-      browse.className = 'hp-prefooter-action is-primary';
-      browse.href = prefix + 'browse-trails.html';
-      browse.textContent = 'Browse trails';
       const profile = document.createElement('a');
-      profile.className = 'hp-prefooter-action';
-      profile.href = prefix + 'account.html';
+      profile.className = 'hp-prefooter-action is-primary';
+      profile.href = prefix + 'index.html?wizard=1';
       profile.textContent = 'Add your dog';
-      actions.append(browse, profile);
+      actions.append(profile);
       inner.append(copyBlock, actions);
       banner.appendChild(inner);
       if(!document.body.classList.contains('safety-library-page')){

@@ -12,6 +12,38 @@ describe('guest homepage editorial structure', () => {
     expect(translations).toContain("'hero.h1': 'Find a trail that fits your dog'");
   });
 
+  test('keeps a prominent, value-first guest card above the homepage hero', () => {
+    const html = read('index.html');
+    const controller = read('homepage-search.js');
+    const guestCard = html.indexOf('hp-guestbar--homepage');
+    const hero = html.indexOf('class="hp-hero"');
+
+    expect(guestCard).toBeGreaterThan(-1);
+    expect(hero).toBeGreaterThan(guestCard);
+    expect(html).toContain('Scores use a medium-dog profile.');
+    expect(html).toContain('Create a free account only when you choose to save.');
+    expect(controller).toContain("el.guestCta.textContent = 'Browse ' + state.custom.meta.name + '’s matches'");
+  });
+
+  test('shows the value of a dog profile before asking the guest to register', () => {
+    const controller = read('homepage-search.js');
+
+    expect(controller).toContain("dogName + '’s profile is ready'");
+    expect(controller).toContain("matches.slice(0, 3)");
+    expect(controller).toContain('Save profile and see all matches');
+    expect(controller).toContain('See all matches without saving');
+    expect(controller).toContain("openSignup({ next: 'browse-trails.html' })");
+  });
+
+  test('uses the compact guest notice only on the ranking catalogue', () => {
+    const browse = read('browse-trails.html');
+
+    expect(browse).toContain('hp-guestbar--compact');
+    expect(browse).toContain('Guest mode · Scores use a medium-dog profile.');
+    expect(browse).toContain('href="index.html?wizard=1">Add your dog</a>');
+    expect(browse).not.toContain('hp-guestbar--homepage');
+  });
+
   test('orders mission, method, and weekly feature as one page story', () => {
     const controller = read('homepage-search.js');
     const mission = controller.indexOf('<section class="hp-mission"');

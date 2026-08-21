@@ -80,9 +80,9 @@ describe('shared navigation hardening', () => {
 
     const banner = footer.previousElementSibling;
     expect(banner.className).toBe('hp-prefooter');
-    expect(banner.querySelector('h2').textContent).toBe('Find a trail that fits your dog');
-    expect(banner.querySelector('a.is-primary').getAttribute('href')).toBe('../browse-trails.html');
-    expect(banner.querySelector('.hp-prefooter-actions a:last-child').getAttribute('href')).toBe('../account.html');
+    expect(banner.querySelector('h2').textContent).toBe('Add your dog');
+    expect(banner.querySelectorAll('.hp-prefooter-actions a')).toHaveLength(1);
+    expect(banner.querySelector('a.is-primary').getAttribute('href')).toBe('../index.html?wizard=1');
     expect([...footer.querySelectorAll('.hp-footer-grid > div > .hp-footer-h')].map(item => item.textContent))
       .toEqual(['Explore','Dog care','Your walks','ORMA']);
     expect(footer.querySelector('.hp-footer-appnote').textContent).toBe('Mobile apps coming soon');
