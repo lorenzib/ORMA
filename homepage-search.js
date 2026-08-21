@@ -93,6 +93,7 @@
     wizStepLabel: document.getElementById('hpWizStepLabel'),
     wizTitle: document.getElementById('hpWizTitle'),
     wizBars: [document.getElementById('hpWizBar1'), document.getElementById('hpWizBar2'), document.getElementById('hpWizBar3')],
+    wizFoot: document.querySelector('#hpWizard .hp-wiz-foot'),
     wizBack: document.getElementById('hpWizBack'),
     wizNext: document.getElementById('hpWizNext'),
     wizClose: document.getElementById('hpWizClose'),
@@ -286,17 +287,17 @@
 
   function renderGuestBar() {
     if (state.dog === 'custom' && state.custom) {
-      el.guestTitle.textContent = 'Walking with ' + state.custom.meta.name + '.';
-      el.guestSub.textContent = 'Trails are ranked just for them. Log in to save this profile across devices.';
-      el.guestCta.textContent = 'Save profile →';
+      el.guestTitle.textContent = 'Scores are personalised for ' + state.custom.meta.name + '.';
+      el.guestSub.textContent = 'Browse all trails to see ' + state.custom.meta.name + '’s complete ranking.';
+      el.guestCta.textContent = 'Browse ' + state.custom.meta.name + '’s matches';
     } else if (state.dog === 'medium') {
-      el.guestTitle.textContent = 'Browsing as a guest, ranked for a medium dog.';
-      el.guestSub.textContent = 'No account needed. Add your dog any time to sharpen every score.';
-      el.guestCta.textContent = "Create your dog's profile →";
+      el.guestTitle.textContent = 'Scores use a medium-dog profile.';
+      el.guestSub.textContent = 'Add your dog for personalised matches. Create a free account only when you choose to save.';
+      el.guestCta.textContent = 'Add your dog';
     } else {
-      el.guestTitle.textContent = 'Previewing as ' + dogMeta().name + '.';
-      el.guestSub.textContent = 'Create your own dog to tune every score to them.';
-      el.guestCta.textContent = "Create your dog's profile →";
+      el.guestTitle.textContent = 'Previewing scores for ' + dogMeta().name + '.';
+      el.guestSub.textContent = 'Add your own dog to tune every score to them.';
+      el.guestCta.textContent = 'Add your dog';
     }
   }
 
@@ -542,6 +543,32 @@
 
   function renderWizard() {
     var w = state.wiz;
+    if (state.wizStep === 3) {
+      var matches = trails.map(function (t) { return { t: t, score: scoreOf(t) }; })
+        .sort(function (a, b) { return b.score - a.score; });
+      var dogName = state.custom ? state.custom.meta.name : ((w.name || '').trim() || 'Your dog');
+      el.wizStepLabel.textContent = 'Your matches';
+      el.wizTitle.textContent = dogName + '’s profile is ready';
+      el.wizBars.forEach(function (b) { if (b) b.className = 'on'; });
+      if (el.wizFoot) el.wizFoot.hidden = true;
+      el.wizBody.innerHTML = '<div class="hp-wiz-payoff">' +
+        '<p class="hp-wiz-payoff-lead">We ranked ' + matches.length + ' trails using ' + esc(dogName) + '’s size, energy and sensitivities. Here are the strongest matches.</p>' +
+        '<div class="hp-wiz-matches">' + matches.slice(0, 3).map(function (entry) {
+          var t = entry.t, ti = tier(entry.score);
+          return '<a class="hp-wiz-match" href="' + esc(trailHref(t)) + '">' +
+            '<span><b>' + esc(t.name) + '</b><small>' + esc(t.distance) + ' km · ' + esc(valleyOf(t)) + '</small></span>' +
+            '<strong style="color:' + ti.color + '">' + entry.score + '%</strong></a>';
+        }).join('') + '</div>' +
+        '<div class="hp-wiz-payoff-actions">' +
+          '<button type="button" id="hpSaveAndBrowseBtn" class="hp-search-btn">Save profile and see all matches</button>' +
+          '<button type="button" id="hpBrowseWithoutSavingBtn" class="hp-wiz-secondary">See all matches without saving</button>' +
+        '</div>' +
+        '<p class="hp-wiz-device-note">Without an account, this profile stays only on this device.</p>' +
+      '</div>';
+      return;
+    }
+    el.wizTitle.textContent = 'Tell us about your dog';
+    if (el.wizFoot) el.wizFoot.hidden = false;
     el.wizStepLabel.textContent = 'Step ' + (state.wizStep + 1) + ' of 3';
     el.wizBars.forEach(function (b, i) { if (b) b.className = i <= state.wizStep ? 'on' : ''; });
     el.wizBack.textContent = state.wizStep === 0 ? 'Cancel' : '← Back';
@@ -632,8 +659,10 @@
     state.searched = false; state.focused = false; state.query = '';
     resetFilters();
     if (el.search) el.search.value = '';
-    closeWizard();
     renderAll();
+    state.wizStep = 3;
+    renderWizard();
+    focusWizardStep();
   }
 
   // ---- events ----
@@ -741,7 +770,7 @@
     });
 
     el.guestCta.addEventListener('click', function () {
-      if (state.dog === 'custom' && window.DoloPawsAuthUI) window.DoloPawsAuthUI.openSignup();
+      if (state.dog === 'custom') window.location.href = 'browse-trails.html';
       else openWizard();
     });
 
@@ -751,6 +780,15 @@
     el.wizBack.addEventListener('click', function () { if (state.wizStep === 0) closeWizard(); else { state.wizStep--; renderWizard(); focusWizardStep(); } });
     el.wizNext.addEventListener('click', function () { if (state.wizStep < 2) { state.wizStep++; renderWizard(); focusWizardStep(); } else finishWizard(); });
     el.wizBody.addEventListener('click', function (e) {
+      if (e.target.closest('#hpSaveAndBrowseBtn')) {
+        closeWizard();
+        if (window.DoloPawsAuthUI) window.DoloPawsAuthUI.openSignup({ next: 'browse-trails.html' });
+        return;
+      }
+      if (e.target.closest('#hpBrowseWithoutSavingBtn')) {
+        window.location.href = 'browse-trails.html';
+        return;
+      }
       var b = e.target.closest('[data-wfield]'); if (!b) return;
       var field = b.getAttribute('data-wfield'), val = b.getAttribute('data-wval');
       if (field === 'heat') state.wiz.heat = (val === 'true');
