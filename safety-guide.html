@@ -17,11 +17,12 @@
 <link rel="stylesheet" href="styles.css?v=20260821-5">
 <style>
 .sg-hero{padding-top:32px;padding-bottom:18px;}
+.sg-hero.section-page-head--actions{align-items:flex-start;}
 .safety-library-page .hp-prefooter{display:none!important;}
 .sg-kicker{display:block;margin-bottom:10px;color:var(--accent);font:700 10px/1.2 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;}
 .sg-hero h1{max-width:760px;}
 .sg-hero-copy{width:100%;max-width:none;margin:16px 0 0;color:var(--ink-soft);font-size:15.5px;line-height:1.72;white-space:normal;text-wrap:pretty;}
-.sg-readiness-fab{position:fixed;right:clamp(18px,3vw,42px);bottom:24px;z-index:85;display:flex;align-items:center;gap:11px;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:9px 17px 9px 9px;background:#4B7653;color:#fff;text-align:left;cursor:pointer;box-shadow:0 14px 34px rgba(28,52,38,.27);transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease;}
+.sg-readiness-fab{position:relative;z-index:1;display:flex;align-items:center;gap:11px;flex:none;margin-top:3px;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:9px 17px 9px 9px;background:#4B7653;color:#fff;text-align:left;cursor:pointer;box-shadow:0 10px 24px rgba(28,52,38,.2);transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease;}
 .sg-readiness-fab:hover{transform:translateY(-2px);background:#3C6344;box-shadow:0 18px 38px rgba(28,52,38,.32);}
 .sg-readiness-fab:focus-visible{outline:3px solid #F4BE62;outline-offset:3px;}
 .sg-readiness-fab-icon{display:grid;place-items:center;width:38px;height:38px;flex:none;border-radius:50%;background:rgba(255,255,255,.17);font-size:18px;}
@@ -43,24 +44,24 @@
 .sg-guide-title{display:block;font:700 15px/1.2 'Bricolage Grotesque',sans-serif;color:var(--ink);transition:color .16s ease;}
 .sg-guide-card p{margin:5px 0 0;color:var(--ink-soft);font-size:12.5px;line-height:1.45;}
 .sg-guide-arrow{color:var(--accent);font-size:21px;line-height:1;}
-.sg-side{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(280px,.7fr);gap:14px;margin-top:30px;align-items:stretch;}
-.sg-rules{border-radius:var(--radius-panel);padding:15px 18px;background:#2F7089;color:#F8F7EF;box-shadow:var(--shadow);}
-.sg-rules .sg-kicker{margin-bottom:10px;color:#D8EEF5;}
+.sg-side{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(300px,.72fr);gap:18px;margin-top:36px;align-items:stretch;}
+.sg-rules{border-radius:var(--radius-panel);padding:20px 24px;background:#2F7089;color:#F8F7EF;box-shadow:var(--shadow);}
+.sg-rules .sg-kicker{margin-bottom:14px;color:#D8EEF5;font-size:10.5px;}
 .sg-rules ol{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));list-style:none;margin:0;padding:0;}
-.sg-rules li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:6px;padding:2px 9px;border-left:1px solid rgba(248,247,239,.16);}
+.sg-rules li{display:grid;grid-template-columns:20px minmax(0,1fr);gap:7px;padding:2px 12px;border-left:1px solid rgba(248,247,239,.16);}
 .sg-rules li:first-child{border-left:0;padding-left:0;}
-.sg-rules li>span{color:#D8EEF5;font-size:10px;font-weight:700;}
-.sg-rules b{display:block;color:#F8F7EF;font-size:12px;line-height:1.25;}
-.sg-rules small{display:block;margin-top:2px;color:rgba(248,247,239,.68);font-size:9.5px;line-height:1.3;}
-.sg-emergency{display:grid;grid-template-columns:1fr 1fr;column-gap:16px;row-gap:6px;border-radius:var(--radius-panel);padding:15px 18px;background:#A93C31;color:#fff;box-shadow:var(--shadow);}
+.sg-rules li>span{color:#D8EEF5;font-size:11px;font-weight:700;}
+.sg-rules b{display:block;color:#F8F7EF;font-size:13px;line-height:1.3;}
+.sg-rules small{display:block;margin-top:3px;color:rgba(248,247,239,.75);font-size:10.5px;line-height:1.4;}
+.sg-emergency{display:grid;grid-template-columns:1fr 1fr;column-gap:18px;row-gap:9px;border-radius:var(--radius-panel);padding:20px 24px;background:#A93C31;color:#fff;box-shadow:var(--shadow);}
 .sg-emergency .sg-kicker{grid-column:1/-1;margin-bottom:0;color:#FFE0DA;}
 .sg-emergency-entry{display:block;padding:0;text-decoration:none;}
 .sg-emergency-entry+.sg-emergency-entry{padding-left:16px;border-left:1px solid rgba(255,255,255,.22);}
-.sg-emergency-entry span{display:block;color:#FFE0DA;font-size:10.5px;}
+.sg-emergency-entry span{display:block;color:#FFE0DA;font-size:11px;}
 .sg-emergency-entry strong{display:block;margin-top:2px;color:#fff;font:700 22px/1.05 'Bricolage Grotesque',sans-serif;}
-.sg-emergency-entry b{display:block;margin-top:3px;color:#fff;font-size:13px;}
-.sg-emergency-entry small{display:block;margin-top:3px;color:rgba(255,255,255,.76);font-size:9.5px;line-height:1.35;}
-.sg-disclaimer{margin:30px 0 0;color:var(--muted);font-size:12px;line-height:1.6;}
+.sg-emergency-entry b{display:block;margin-top:3px;color:#fff;font-size:14px;}
+.sg-emergency-entry small{display:block;margin-top:4px;color:rgba(255,255,255,.82);font-size:10.5px;line-height:1.4;}
+.sg-disclaimer{margin:22px 0 0;color:var(--muted);font-size:10.5px;line-height:1.4;white-space:nowrap;}
 .sg-readiness-dialog{width:min(620px,calc(100% - 28px));max-height:calc(100dvh - 28px);padding:0;border:0;border-radius:var(--radius-modal);background:var(--card);color:var(--ink);box-shadow:var(--shadow-modal);}
 .sg-readiness-dialog::backdrop{background:rgba(23,42,28,.62);backdrop-filter:blur(3px);}
 .sg-quiz{padding:26px;}
@@ -102,6 +103,7 @@
   .sg-rules ol{grid-template-columns:1fr 1fr;}
   .sg-rules li:nth-child(odd){border-left:0;padding-left:0;}
   .sg-rules li:nth-child(4){border-left:1px solid rgba(248,247,239,.16);padding-left:12px;}
+  .sg-disclaimer{white-space:normal;}
 }
 @media(max-width:620px){
   .sg-hero{padding-top:30px;padding-bottom:24px;}
@@ -112,7 +114,7 @@
   .sg-quiz{padding:20px;}
   .sg-quiz-actions{align-items:stretch;flex-direction:column;}
   .sg-quiz-validation{margin:0;}
-  .sg-readiness-fab{right:14px;bottom:16px;padding:8px 14px 8px 8px;}
+  .sg-readiness-fab{margin-top:0;padding:8px 14px 8px 8px;}
   .sg-readiness-fab-icon{width:35px;height:35px;}
   .sg-readiness-fab small{display:none;}
 }
@@ -131,11 +133,15 @@
   </div>
 </div>
 
-<header class="sg-hero section-page-head">
+<header class="sg-hero section-page-head section-page-head--actions">
   <div class="section-page-head__copy">
     <h1>Safety library</h1>
     <p class="sg-hero-copy section-page-subtitle">Mountain conditions can change quickly, and the same route can affect every dog differently. Use this library to plan for heat, altitude, water, terrain and shared spaces; recognise early warning signs; and know when to turn back or seek help. Each guide turns common mountain risks into practical decisions you can make before you leave and while you are on the trail.</p>
   </div>
+  <button class="sg-readiness-fab" type="button" id="openReadinessQuiz" aria-haspopup="dialog" aria-controls="readinessQuiz">
+    <span class="sg-readiness-fab-icon" aria-hidden="true">🐾</span>
+    <span class="sg-readiness-fab-copy"><small>60-second trail quiz</small><strong>Paws ready?</strong></span>
+  </button>
 </header>
 
 <main class="sg-wrap section-page-wrap">
@@ -191,11 +197,6 @@
 
   <p class="sg-disclaimer">This library provides general information, not veterinary advice. If your dog shows signs of heat stress, injury or exhaustion, stop early and seek professional help when symptoms do not resolve promptly.</p>
 </main>
-
-<button class="sg-readiness-fab" type="button" id="openReadinessQuiz" aria-haspopup="dialog" aria-controls="readinessQuiz">
-  <span class="sg-readiness-fab-icon" aria-hidden="true">🐾</span>
-  <span class="sg-readiness-fab-copy"><small>60-second trail quiz</small><strong>Paws ready?</strong></span>
-</button>
 
 <dialog class="sg-readiness-dialog" id="readinessQuiz" aria-labelledby="readinessQuizTitle">
   <form class="sg-quiz" id="readinessQuizForm">
