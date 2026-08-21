@@ -25,6 +25,22 @@ describe('guest homepage editorial structure', () => {
     expect(controller).toContain("el.guestCta.textContent = 'Browse ' + state.custom.meta.name + '’s matches'");
   });
 
+  test('places the profile explanation after the default score and keeps both profile prompts identical', () => {
+    const html = read('index.html');
+    const controller = read('homepage-search.js');
+    const css = read('styles.css');
+    const title = html.indexOf('Scores use a medium-dog profile.');
+    const explanation = html.indexOf('Add your dog for personalised matches. Create a free account only when you choose to save.');
+
+    expect(explanation).toBeGreaterThan(title);
+    expect(html).toContain('class="hp-guestbar-cta hp-dog-profile-cta"');
+    expect(controller).toContain('class="hp-coll-profile-cta hp-dog-profile-cta"');
+    expect(read('mobile-nav.js')).toContain("profile.className = 'hp-prefooter-action is-primary hp-dog-profile-cta'");
+    expect(css).toContain('.hp-dog-profile-cta{');
+    expect(css).toContain('width:224px;');
+    expect(css).toContain('min-height:42px;');
+  });
+
   test('shows the value of a dog profile before asking the guest to register', () => {
     const controller = read('homepage-search.js');
 

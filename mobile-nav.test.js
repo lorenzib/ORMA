@@ -81,7 +81,10 @@ describe('shared navigation hardening', () => {
     const banner = footer.previousElementSibling;
     expect(banner.className).toBe('hp-prefooter');
     expect(banner.querySelector('h2').textContent).toBe('Add your dog');
+    expect(banner.querySelector('.hp-prefooter-copy > p:last-child').textContent)
+      .toBe('Add your dog for personalised matches. Create a free account only when you choose to save.');
     expect(banner.querySelectorAll('.hp-prefooter-actions a')).toHaveLength(1);
+    expect(banner.querySelector('a.is-primary').classList.contains('hp-dog-profile-cta')).toBe(true);
     expect(banner.querySelector('a.is-primary').getAttribute('href')).toBe('../index.html?wizard=1');
     expect([...footer.querySelectorAll('.hp-footer-grid > div > .hp-footer-h')].map(item => item.textContent))
       .toEqual(['Explore','Dog care','Your walks','ORMA']);

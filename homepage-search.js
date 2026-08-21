@@ -477,7 +477,7 @@
             '<div class="hp-kick hp-kick-left">Featured this week</div>' +
             '<h2 class="hp-feat-h2" id="hpFeaturedTitle">' + esc(featTitle) + '</h2>' +
             '<p class="hp-coll-sub">' + esc(featSub) + '</p>' +
-            '<p class="hp-coll-rank-row"><strong>' + esc(featRankLine) + '</strong> <button type="button" class="hp-coll-profile-cta" data-action="create-dog-profile">' + esc(featProfileCta) + '</button></p></div></div>' +
+            '<p class="hp-coll-rank-row"><strong>' + esc(featRankLine) + '</strong> <button type="button" class="hp-coll-profile-cta hp-dog-profile-cta" data-action="create-dog-profile">' + esc(featProfileCta) + '</button></p></div></div>' +
           '<div class="hp-coll-grid">' + feat.map(function (entry) {
             return ccardHtml(entry, esc(entry.t.distance) + ' km · ' + esc(valleyOf(entry.t)));
           }).join('') + '</div>' +
