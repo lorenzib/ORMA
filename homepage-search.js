@@ -88,6 +88,7 @@
     guestTitle: document.getElementById('hpGuestTitle'),
     guestSub: document.getElementById('hpGuestSub'),
     guestCta: document.getElementById('hpGuestCta'),
+    guestCtaLabel: document.getElementById('hpGuestCtaLabel'),
     content: document.getElementById('hpContent'),
     wizard: document.getElementById('hpWizard'),
     wizBody: document.getElementById('hpWizBody'),
@@ -293,15 +294,15 @@
     if (state.dog === 'custom' && state.custom) {
       el.guestTitle.textContent = 'Scores are personalised for ' + state.custom.meta.name + '.';
       el.guestSub.textContent = 'Browse all trails to see ' + state.custom.meta.name + '’s complete ranking.';
-      el.guestCta.textContent = 'Browse ' + state.custom.meta.name + '’s matches';
+      el.guestCtaLabel.textContent = 'Browse ' + state.custom.meta.name + '’s matches';
     } else if (state.dog === 'medium') {
       el.guestTitle.textContent = 'Scores use a medium-dog profile.';
       el.guestSub.textContent = 'Add your dog for personalised matches. Create a free account only when you choose to save.';
-      el.guestCta.textContent = 'Add your dog';
+      el.guestCtaLabel.textContent = 'Add your dog';
     } else {
       el.guestTitle.textContent = 'Previewing scores for ' + dogMeta().name + '.';
       el.guestSub.textContent = 'Add your own dog to tune every score to them.';
-      el.guestCta.textContent = 'Add your dog';
+      el.guestCtaLabel.textContent = 'Add your dog';
     }
   }
 
@@ -468,7 +469,8 @@
         '</section>' +
         '<section class="hp-how" aria-labelledby="hpHowTitle">' +
           '<div class="hp-section-head"><div><div class="hp-kick">How ORMA works</div>' +
-          '<h2 class="hp-how-h2" id="hpHowTitle">How trail evidence becomes practical guidance for your dog</h2></div></div>' +
+          '<h2 class="hp-how-h2" id="hpHowTitle">How trail evidence becomes practical guidance for your dog</h2>' +
+          '<p class="hp-how-sub">We assess the trail first, then compare its terrain and conditions with your dog’s needs to explain the match.</p></div></div>' +
           '<div class="hp-how-grid">' + how + '</div>' +
           '<a class="hp-how-link" href="how-scoring-works.html">See how ORMA assesses a trail →</a>' +
         '</section>' +
