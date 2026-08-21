@@ -32,6 +32,7 @@ describe('Safety library', () => {
     expect(html).not.toContain('Your next walk');
     expect(html).toMatch(/\.safety-library-page \.hp-prefooter\{[^}]*display:none!important/s);
     expect(html).not.toMatch(/\.sg-disclaimer\{[^}]*border-top:/s);
+    expect(html).toMatch(/\.sg-disclaimer\{[^}]*font-size:10\.5px;[^}]*white-space:nowrap/s);
   });
 
   test('keeps a compact five-rule overview and prominent emergency reference', () => {
@@ -51,10 +52,11 @@ describe('Safety library', () => {
   test('offers the five-question readiness questionnaire from a floating action', () => {
     const opener = document.querySelector('#openReadinessQuiz');
     expect(opener.classList.contains('sg-readiness-fab')).toBe(true);
-    expect(opener.closest('.sg-hero')).toBeNull();
+    expect(opener.closest('.sg-hero')).not.toBeNull();
     expect(opener.textContent).toMatch(/Paws ready\?/i);
     expect(opener.querySelector('.sg-readiness-fab-icon').textContent).toBe('🐾');
     expect(html).toMatch(/\.sg-readiness-fab\{[^}]*background:#4B7653/s);
+    expect(html).not.toMatch(/\.sg-readiness-fab\{[^}]*position:fixed/s);
     expect(document.querySelectorAll('#readinessQuiz .sg-question')).toHaveLength(5);
     expect(document.querySelector('#readinessQuizResult').getAttribute('aria-live')).toBe('polite');
     expect(html).toContain("dialog.showModal()");
