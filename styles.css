@@ -54,8 +54,8 @@
   --space-12:26px;
   --space-14:32px;
   --space-16:40px;
-  --wrap:1200px;
-  --wrap-gutter:32px;
+  --wrap:1440px;
+  --wrap-gutter:clamp(28px,4vw,52px);
 }
 
 *{box-sizing:border-box;}
