@@ -117,9 +117,9 @@
   }
 
   function tier(s) {
-    if (s >= 85) return { bg: '#DCEBDD', color: '#2C5C34', label: 'Great match', pin: '#4A7856' };
-    if (s >= 65) return { bg: '#F5E4C6', color: '#8A5A16', label: 'Good match', pin: '#C98A2E' };
-    return { bg: '#F3D9D2', color: '#9C3A25', label: 'Check first', pin: '#9C3A25' };
+    if (s >= 75) return { bg: '#DCEBDD', color: '#2C5C34', label: 'Great match', kind: 'great' };
+    if (s >= 55) return { bg: '#F5E4C6', color: '#8A5A16', label: 'Good', kind: 'good' };
+    return { bg: '#F3D9D2', color: '#9C3A25', label: 'Check first', kind: 'check' };
   }
 
   // The one taxonomy the whole product uses: the trail rating.
@@ -220,35 +220,21 @@
     }).sort(function (a, b) { return b.score - a.score; });
   }
 
-  // ---- weekly featured collection (rotating theme, real data) ----
-  var THEMES = [
-    { key: 'shady', title: 'Shady lake loops for hot days', blurb: 'Cool, covered trails with water nearby',
-      filter: function (t) { return (t.shadeCoverage || 0) >= 30 && hasWater(t); },
-      apply: function () { state.shade = 'shade'; state.hasWater = true; } },
-    { key: 'water', title: 'Lakeside & stream walks', blurb: 'Trails with water to drink and cool off',
-      filter: hasWater,
-      apply: function () { state.hasWater = true; } },
-    { key: 'meadow', title: 'Open alpine meadow strolls', blurb: 'Wide, gentle meadow paths with big views',
-      filter: function (t) { return (t.shadeCoverage || 0) < 30 && (t.terrainRank || 0) <= 1; },
-      apply: function () { state.terrain = 'soft'; } },
-    { key: 'gentle', title: 'Gentle short loops', blurb: 'Easy, low-climb walks under 4 km',
-      filter: function (t) { return t.distance <= 4; },
-      apply: function () { state.dist = 3; } },
-  ];
-  var THEME_ICONS = {
-    shady: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2c3.4 3.2 5.2 6 5.2 8.6a5.2 5.2 0 0 1-2.2 4.3 4.2 4.2 0 0 1-6 0 5.2 5.2 0 0 1-2.2-4.3C6.8 8 8.6 5.2 12 2z" fill="#4A7856"/><path d="M12 2c1.8 1.7 2.9 3.4 3.5 4.9-.6 1.6-1.7 3.2-3.5 4.9-1.8-1.7-2.9-3.3-3.5-4.9C9.1 5.4 10.2 3.7 12 2z" fill="#6BA57C"/><rect x="10.9" y="14.5" width="2.2" height="7.5" rx="1.1" fill="#8A5A16"/></svg>',
-    water: '<svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5c3 3.6 4.8 6.6 4.8 9.1a4.8 4.8 0 0 1-9.6 0c0-2.5 1.8-5.5 4.8-9.1z" fill="#2C8FA6"/><path d="M12 5.5c1.6 2.1 2.5 3.9 2.5 5.4a2.5 2.5 0 0 1-5 0c0-1.5.9-3.3 2.5-5.4z" fill="#6FA8BE"/></svg>',
-    meadow: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="17" cy="7" r="3" fill="#E8A93A"/><path d="M2 19l5.5-7 3.5 4 3-3.5L21 19z" fill="#4A7856"/></svg>',
-    gentle: '<svg width="22" height="22" viewBox="0 0 24 24" fill="#4A7856" aria-hidden="true"><ellipse cx="6.2" cy="10" rx="1.9" ry="2.5"/><ellipse cx="10" cy="7.4" rx="2" ry="2.7"/><ellipse cx="14" cy="7.4" rx="2" ry="2.7"/><ellipse cx="17.8" cy="10" rx="1.9" ry="2.5"/><path d="M12 12.2c-2.7 0-5 1.9-5 4.3 0 1.7 1.4 2.6 3 2.6 1 0 1.4-.4 2-.4s1 .4 2 .4c1.6 0 3-.9 3-2.6 0-2.4-2.3-4.3-5-4.3z"/></svg>',
-  };
-  function weeklyTheme() {
+  // ---- weekly featured collection (rotating editorial catalogue) ----
+  function weeklyCollection() {
+    var catalogue = window.DoloPawsCollections;
+    var collections = catalogue && typeof catalogue.all === 'function' ? catalogue.all() : [];
+    if (!collections.length) return null;
     var now = new Date();
     var wk = Math.floor((now - new Date(now.getFullYear(), 0, 1)) / (7 * 86400000));
-    return THEMES[wk % THEMES.length];
+    return collections[wk % collections.length];
   }
-  function featured() {
-    var th = weeklyTheme();
-    return trails.filter(th.filter)
+  function featured(collection) {
+    var catalogue = window.DoloPawsCollections;
+    var selected = collection && catalogue && typeof catalogue.trailsFor === 'function'
+      ? catalogue.trailsFor(collection, trails)
+      : [];
+    return selected
       .map(function (t) { return { t: t, score: scoreOf(t) }; })
       .sort(function (a, b) { return b.score - a.score; }).slice(0, 3);
   }
@@ -397,26 +383,35 @@
 
   function ccardHtml(entry, tags) {
     var t = entry.t, s = entry.score, ti = tier(s), df = difficulty(t);
+    var riskBadge = window.DoloPawsIcons
+      ? window.DoloPawsIcons.badgeHtml(df.value, df.label)
+      : '<span class="dp-badge dp-badge--' + df.value + '"><span>' + esc(df.label) + '</span></span>';
     return '<button type="button" class="hp-ccard" data-href="' + esc(trailHref(t)) + '">' +
-      '<span class="hp-ccard-img">' + thumb(t) + '<span class="hp-ccard-pct" style="background:' + ti.pin + '">' + s + '%</span></span>' +
+      '<span class="hp-ccard-img">' + thumb(t) + '</span>' +
       '<span class="hp-ccard-body">' +
         '<span class="hp-ccard-name">' + esc(t.name) + '</span>' +
-        '<span class="hp-ccard-tags"><span class="hp-badge hp-badge-diff"><span class="hp-badge-dot" style="background:' + df.dot + '"></span>' + df.label + '</span>' +
-        '<span class="txt">' + tags + '</span></span>' +
+        '<span class="hp-ccard-meta">' + tags + '</span>' +
+        '<span class="hp-ccard-footer"><span class="hp-ccard-rating">' + riskBadge + '</span>' +
+          '<span class="hp-ccard-match hp-ccard-match--' + ti.kind + '">' +
+            '<span class="hp-ccard-score"><strong>' + s + '<span>%</span></strong><small>MATCH FOR YOUR DOG</small></span>' +
+          '</span></span>' +
       '</span>' +
     '</button>';
   }
 
   var HOW_CARDS = [
-    { title: 'We assess the trail',
-      icon: '<svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#2C8FA6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.4 3.1 7.4 7.5 9 4.4-1.6 7.5-4.6 7.5-9V6L12 3z"/><path d="m8.8 12 2.2 2.2 4.2-4.4" stroke="#4A7856"/></svg>',
-      text: null /* filled at render time with the live trail count */ },
-    { title: 'You add your dog',
-      icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="#2E4034" aria-hidden="true"><ellipse cx="6.2" cy="10" rx="1.9" ry="2.5"/><ellipse cx="10" cy="7.4" rx="2" ry="2.7"/><ellipse cx="14" cy="7.4" rx="2" ry="2.7"/><ellipse cx="17.8" cy="10" rx="1.9" ry="2.5"/><path d="M12 12.2c-2.7 0-5 1.9-5 4.3 0 1.7 1.4 2.6 3 2.6 1 0 1.4-.4 2-.4s1 .4 2 .4c1.6 0 3-.9 3-2.6 0-2.4-2.3-4.3-5-4.3z"/></svg>',
-      text: 'A short profile captures size, life stage, energy, heat sensitivity, mobility and what their paws can comfortably handle.' },
-    { title: 'We explain the match',
-      icon: '<svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="#C98A2E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h6a3 3 0 0 1 0 6H8.5a3 3 0 0 0 0 6H16"/><circle cx="6" cy="4" r="2" fill="#C98A2E" stroke="none"/><path d="M18 14c1.3 1.6 2 2.8 2 3.8A2 2 0 0 1 16 18c0-1 .7-2.2 2-3.8z" fill="#4A7856" stroke="none"/></svg>',
-      text: 'You see why a route may fit, the cautions that matter and any unknowns to check before deciding.' },
+    { title: '1 · We assess the trail',
+      image: 'images/orma-how-assess.jpg?v=20260820-2',
+      alt: 'A marked mountain trail crossing rocky alpine terrain',
+      text: 'We assess the mountain first: ground, effort, exposure, shade, water and access. The trail baseline is the same for every dog.' },
+    { title: '2 · You add your dog',
+      image: 'images/orma-how-dog.jpg?v=20260820-2',
+      alt: 'Freddy standing in an alpine meadow',
+      text: 'Your dog’s fitness, life stage, health and build set comfortable limits. Anything you leave blank stays neutral.' },
+    { title: '3 · We explain the match',
+      image: 'images/orma-how-match.jpg?v=20260820-2',
+      alt: 'A dog and human walking together on a Dolomites trail',
+      text: 'We compare the route with those limits, then show the match score, the cautions that matter and why they matter.' },
   ];
 
   function renderContent() {
@@ -438,40 +433,47 @@
         '<div class="hp-results-sub">' + sub + '</div></div>' +
         '<button type="button" class="hp-clear" data-action="clear">Clear search</button></div>' + body;
     } else {
-      var th = weeklyTheme();
-      var feat = featured();
+      var collection = weeklyCollection();
+      var feat = featured(collection);
       var isGuest = state.dog === 'medium';
-      var featSub = 'This week’s edit: ' + th.blurb.toLowerCase() + ' · ranked for ' + (isGuest ? 'a medium dog' : esc(dogMeta().name));
+      var featTitle = collection ? collection.title : 'Trails selected for your dog';
+      var featSub = collection ? collection.subtitle : 'Published routes ranked for the dog you are browsing with';
+      var featRankLine = isGuest
+        ? 'Browsing as a guest, ranked for a medium dog.'
+        : (state.dog === 'custom'
+          ? 'Browsing with ' + dogMeta().name + ', with trails ranked for them.'
+          : 'Previewing as ' + dogMeta().name + ', with trails ranked for them.');
+      var featProfileCta = state.dog === 'custom' ? 'Save profile →' : "Create your dog's profile →";
       var how = HOW_CARDS.map(function (c) {
         var text = c.text || 'We map and review each published trail for route shape, terrain, climb, shade, water, access and hazards.';
-        return '<div class="hp-howcard"><div class="hp-howcard-head">' +
-          '<span class="hp-howcard-ico">' + c.icon + '</span>' +
-          '<div class="hp-howcard-title">' + esc(c.title) + '</div></div>' +
-          '<p>' + esc(text) + '</p></div>';
+        return '<div class="hp-howcard">' +
+          '<div class="hp-howcard-media"><img src="' + c.image + '" alt="' + esc(c.alt) + '" loading="lazy" decoding="async" width="960" height="540"></div>' +
+          '<div class="hp-howcard-copy"><div class="hp-howcard-title">' + esc(c.title) + '</div>' +
+          '<p>' + esc(text) + '</p></div></div>';
       }).join('');
       el.content.innerHTML =
         '<section class="hp-mission" aria-labelledby="hpMissionTitle">' +
           '<div class="hp-mission-copy"><div class="hp-mission-kick">Our mission</div>' +
           '<h2 id="hpMissionTitle">The route must adapt to the dog, never the other way around.</h2>' +
-          '<p>Developed in the challenging terrain of the Italian Dolomites, ORMA takes the guesswork out of outdoor exploration. Our platform analyzes routes, terrain types, and environmental conditions to ensure every trail perfectly matches your dog’s physical capabilities.</p>' +
-          '<p>In Italian, <em>orma</em> means footprint. Our mission is to empower dog owners with reliable trail data and insights, ensuring every adventure begins with safety, confidence, and peace of mind.</p></div>' +
+          '<p>Every dog moves differently. ORMA helps you choose trails with their needs, pace and limits in mind.</p></div>' +
           '<blockquote class="hp-mission-quote"><p>“A walk is never just a walk when shared with a dog. It is an act of partnership, curiosity, and joy.”</p><cite>– ORMA Team</cite></blockquote>' +
         '</section>' +
         '<section class="hp-how" aria-labelledby="hpHowTitle">' +
           '<div class="hp-section-head"><div><div class="hp-kick">How ORMA works</div>' +
-          '<h2 class="hp-how-h2" id="hpHowTitle">From trail information to a recommendation for your dog</h2></div></div>' +
+          '<h2 class="hp-how-h2" id="hpHowTitle">How trail evidence becomes practical guidance for your dog</h2></div></div>' +
           '<div class="hp-how-grid">' + how + '</div>' +
           '<a class="hp-how-link" href="how-scoring-works.html">See how ORMA assesses a trail →</a>' +
         '</section>' +
         '<section class="hp-featured" aria-labelledby="hpFeaturedTitle">' +
           '<div class="hp-coll-head"><div>' +
             '<div class="hp-kick hp-kick-left">Featured this week</div>' +
-            '<h2 class="hp-feat-h2" id="hpFeaturedTitle"><span class="hp-feat-icon" aria-hidden="true">' + (THEME_ICONS[th.key] || '') + '</span>' + esc(th.title) + '</h2>' +
-            '<p class="hp-coll-sub">' + featSub + '</p></div>' +
-            '<a href="collections.html" class="hp-coll-all" data-action="seeall">All collections →</a></div>' +
+            '<h2 class="hp-feat-h2" id="hpFeaturedTitle">' + esc(featTitle) + '</h2>' +
+            '<p class="hp-coll-sub">' + esc(featSub) + '</p>' +
+            '<p class="hp-coll-rank-row"><strong>' + esc(featRankLine) + '</strong> <button type="button" class="hp-coll-profile-cta" data-action="create-dog-profile">' + esc(featProfileCta) + '</button></p></div></div>' +
           '<div class="hp-coll-grid">' + feat.map(function (entry) {
             return ccardHtml(entry, esc(entry.t.distance) + ' km · ' + esc(valleyOf(entry.t)));
           }).join('') + '</div>' +
+          '<a class="hp-how-link" href="browse-trails.html">Browse more →</a>' +
         '</section>';
     }
   }
@@ -721,13 +723,20 @@
       } else if (a === 'reset') {
         resetFilters();
         renderFiltersPanel(); renderFiltersButton(); renderContent();
-      } else if (a === 'seeall') {
+      } else if (a === 'edit-dog') {
         e.preventDefault();
-        state.query = '';
-        if (el.search) el.search.value = '';
-        resetFilters();
-        weeklyTheme().apply();
-        runSearch();
+        state.menu = 'dog';
+        state.focused = false;
+        syncMenus();
+        renderSuggest();
+        window.requestAnimationFrame(function () {
+          el.dogPill.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          el.dogPill.focus({ preventScroll: true });
+        });
+      } else if (a === 'create-dog-profile') {
+        e.preventDefault();
+        if (state.dog === 'custom' && window.DoloPawsAuthUI) window.DoloPawsAuthUI.openSignup();
+        else openWizard();
       }
     });
 
