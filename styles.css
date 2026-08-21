@@ -2518,12 +2518,12 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
    the static "Tailored to" label. */
 .li-toolbar{
   display:grid;
-  grid-template-columns:minmax(300px,1fr) auto auto auto auto;
+  grid-template-columns:minmax(260px,1fr) auto auto auto auto auto;
   grid-template-areas:
-    "greet greet greet greet greet"
-    "search country region saved filters";
+    "greet greet greet greet greet greet"
+    "search country region quick filters saved";
   align-items:center;
-  gap:14px 10px;
+  gap:14px 8px;
   padding:16px 24px 18px;
   background:var(--bg);
   border-bottom:1px solid var(--paper-line);
@@ -2575,8 +2575,9 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
     margin-inline:auto;
   }
   body[data-homepage-view="returning"] #returningCustomerHomepage > .li-toolbar{
-    padding-inline:40px;
+    padding-inline:0;
   }
+  body[data-homepage-view="returning"] #returningCustomerHomepage > .li-toolbar-greet{padding-inline:40px;}
   body[data-homepage-view="returning"] #returningCustomerHomepage > .li-body{
     flex:none;
     height:clamp(520px,58vh,720px);
@@ -2611,6 +2612,32 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-saved-only[aria-pressed="true"]{border-color:#9C3A25;background:#F8EAE5;color:#8F3827;}
 .li-saved-count{display:grid;place-items:center;min-width:19px;height:19px;padding:0 5px;border-radius:999px;background:#EEF1E9;color:var(--ink-soft);font-size:10px;}
 .li-saved-only[aria-pressed="true"] .li-saved-count{background:#9C3A25;color:#fff;}
+.li-quick-filters{
+  grid-area:quick;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding-inline:8px;
+  border-inline:1px solid var(--paper-line);
+}
+.li-quick-filter{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  height:38px;
+  box-sizing:border-box;
+  padding:0 10px;
+  border:1px solid transparent;
+  border-radius:var(--radius-pill);
+  background:transparent;
+  color:var(--ink-soft);
+  font:700 11.5px/1 'Inter',sans-serif;
+  white-space:nowrap;
+  cursor:pointer;
+}
+.li-quick-filter:hover{background:#fff;border-color:var(--paper-line);color:var(--ink);}
+.li-quick-filter[aria-pressed="true"]{background:#E1ECE2;border-color:#A9C5AE;color:var(--accent);}
 /* Inline chips — Any area · Distance · Terrain · Shade · Water */
 .li-chiprow{display:none;}
 .li-chipwrap{position:relative;}
@@ -2670,6 +2697,16 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 }
 .li-search input::placeholder{color:#9AA69B;}
 .li-search input::-webkit-search-cancel-button{-webkit-appearance:none;}
+.li-search-shortcut{
+  flex:none;
+  padding:3px 6px;
+  border:1px solid #D7DCD2;
+  border-bottom-width:2px;
+  border-radius:6px;
+  background:#F7F8F4;
+  color:#7A877D;
+  font:700 9.5px/1 'Inter',sans-serif;
+}
 .li-search-suggest{
   position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:90;
   overflow:hidden;max-height:min(430px,60vh);overflow-y:auto;
@@ -2709,6 +2746,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-filt:hover{border-color:var(--accent);}
 .li-filt.on{background:#EAF3EC;border-color:#9FC4B0;}
 .li-caret{color:var(--ink-soft);font-size:11px;}
+#liFiltersBadge{color:var(--accent);font-weight:800;}
 #liFiltersBadge:empty{display:none;}
 /* Account pill — translucent on the dark header (TopNav dog pill) */
 .li-account{
@@ -3231,6 +3269,7 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
   .li-region-wrap{order:2;}
   .li-saved-only{order:3;}
   #liFiltersWrap{order:4;}
+  .li-quick-filters{order:3;border-inline:0;padding-inline:0;}
   .li-body{display:block;min-height:0;}
   .li-list-title-row{padding-right:0;}
   .li-body[data-pane="list"] .li-map,
@@ -3256,6 +3295,7 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
   .li-region-wrap{order:3;}
   .li-saved-only{order:4;}
   #liFiltersWrap{order:5;}
+  .li-quick-filters{order:5;max-width:100%;overflow-x:auto;border-inline:0;padding-inline:0;}
   .li-record{display:inline-flex;order:6;}
   .li-top-spacer{display:none;}
   .li-top-actions{margin-left:auto;}

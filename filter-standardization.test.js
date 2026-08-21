@@ -28,12 +28,11 @@ describe('shared trail-filter experience', () => {
     expect(read('script.js')).toContain(label);
   });
 
-  test('offers the same six filter sections and switch-style water control', () => {
+  test('keeps water visible once in each discovery context', () => {
     const homepage = read('index.html');
     const browse = read('browse-trails.html');
-    const loggedController = read('script.js');
 
-    ['Distance', 'Trail rating', 'Terrain underfoot', 'Shade', 'Minimum match', 'Water on route']
+    ['Distance', 'Trail rating', 'Terrain underfoot', 'Shade', 'Minimum match']
       .forEach(label => {
         expect(homepage).toContain(label);
         expect(browse).toContain(label);
@@ -41,7 +40,8 @@ describe('shared trail-filter experience', () => {
     expect(homepage).toContain('id="liRiskSeg"');
     expect(homepage).toContain('id="hpWaterToggle" role="switch"');
     expect(browse).toContain('id="brWaterToggle" role="switch"');
-    expect(loggedController).toContain("{ label: 'Water on route', on: liFilters.water");
+    expect(homepage).toContain('id="liQuickWater"');
+    expect(homepage).not.toContain('id="liToggleRows"');
   });
 
   test('shows a live result count on every apply action', () => {
