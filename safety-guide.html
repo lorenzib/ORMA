@@ -16,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20260821-5">
 <style>
-.sg-hero{padding-top:46px;padding-bottom:24px;}
+.sg-hero{padding-top:32px;padding-bottom:18px;}
 .safety-library-page .hp-prefooter{display:none!important;}
 .sg-kicker{display:block;margin-bottom:10px;color:var(--accent);font:700 10px/1.2 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;}
 .sg-hero h1{max-width:760px;}
@@ -29,20 +29,21 @@
 .sg-readiness-fab small{color:rgba(255,255,255,.75);font:700 9px/1.2 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
 .sg-readiness-fab strong{color:#fff;font:700 14px/1.25 'Bricolage Grotesque',sans-serif;}
 .sg-layout{display:block;}
-.sg-library{display:flex;flex-direction:column;gap:34px;min-width:0;}
-.sg-category-head{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding-bottom:10px;border-bottom:var(--border);}
-.sg-category-head h2{font-size:24px;}
-.sg-category-head p{margin:0;color:var(--ink-soft);font-size:12px;}
+.sg-library{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.2vw,30px);min-width:0;align-items:start;}
+.sg-category{min-width:0;}
+.sg-category-head{min-height:66px;padding:0 0 12px;border-bottom:2px solid rgba(47,73,56,.18);}
+.sg-category-head h2{font-size:24px;line-height:1.1;}
+.sg-category-head p{margin:5px 0 0;color:var(--ink-soft);font-size:12px;line-height:1.35;}
 .sg-guide-list{display:flex;flex-direction:column;}
-.sg-guide-card{display:grid;grid-template-columns:118px minmax(0,1fr) auto;gap:18px;align-items:center;padding:15px 2px;border-bottom:var(--border);text-decoration:none;}
+.sg-guide-card{display:grid;grid-template-columns:112px minmax(0,1fr) auto;gap:13px;align-items:center;min-height:106px;padding:12px 0;border-bottom:var(--border);text-decoration:none;}
 .sg-guide-card:hover .sg-guide-title{color:var(--accent);}
-.sg-guide-card img{width:118px;height:78px;border-radius:11px;object-fit:cover;background:var(--sage-dim);}
+.sg-guide-card img{display:block;width:112px;height:78px;border-radius:11px;object-fit:cover;background:var(--sage-dim);image-rendering:auto;}
 .sg-guide-card-copy{min-width:0;}
 .sg-guide-card .cat{display:block;margin-bottom:4px;color:var(--muted);font:700 9.5px/1.2 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
-.sg-guide-title{display:block;font:700 16px/1.25 'Bricolage Grotesque',sans-serif;color:var(--ink);transition:color .16s ease;}
+.sg-guide-title{display:block;font:700 15px/1.2 'Bricolage Grotesque',sans-serif;color:var(--ink);transition:color .16s ease;}
 .sg-guide-card p{margin:5px 0 0;color:var(--ink-soft);font-size:12.5px;line-height:1.45;}
 .sg-guide-arrow{color:var(--accent);font-size:21px;line-height:1;}
-.sg-side{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(280px,.7fr);gap:14px;margin-bottom:32px;align-items:stretch;}
+.sg-side{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(280px,.7fr);gap:14px;margin-top:30px;align-items:stretch;}
 .sg-rules{border-radius:var(--radius-panel);padding:15px 18px;background:#2F7089;color:#F8F7EF;box-shadow:var(--shadow);}
 .sg-rules .sg-kicker{margin-bottom:10px;color:#D8EEF5;}
 .sg-rules ol{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));list-style:none;margin:0;padding:0;}
@@ -87,12 +88,16 @@
 .sg-quiz-recommendations{margin:12px 0 0;padding:11px 0 0 18px;border-top:1px solid rgba(47,73,56,.13);color:var(--ink);font-size:12.5px;line-height:1.5;}
 .sg-quiz-recommendations li+li{margin-top:6px;}
 @media(max-width:900px){
+  .sg-library{grid-template-columns:1fr;gap:28px;}
+  .sg-category-head{min-height:0;}
+  .sg-guide-card{grid-template-columns:118px minmax(0,1fr) auto;}
+  .sg-guide-card img{width:118px;}
   .sg-side{grid-template-columns:minmax(0,1.55fr) minmax(260px,.8fr);}
   .sg-rules ol{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px;}
   .sg-rules li:nth-child(4){border-left:0;padding-left:0;}
 }
 @media(max-width:760px){
-  .sg-side{grid-template-columns:1fr;gap:12px;margin-bottom:32px;}
+  .sg-side{grid-template-columns:1fr;gap:12px;margin-top:28px;}
   .sg-emergency{order:-1;}
   .sg-rules ol{grid-template-columns:1fr 1fr;}
   .sg-rules li:nth-child(odd){border-left:0;padding-left:0;}
@@ -104,7 +109,6 @@
   .sg-guide-card{grid-template-columns:88px minmax(0,1fr);gap:13px;padding:13px 0;}
   .sg-guide-card img{width:88px;height:66px;}
   .sg-guide-arrow{display:none;}
-  .sg-category-head{align-items:flex-start;flex-direction:column;gap:5px;}
   .sg-quiz{padding:20px;}
   .sg-quiz-actions{align-items:stretch;flex-direction:column;}
   .sg-quiz-validation{margin:0;}
@@ -135,6 +139,37 @@
 </header>
 
 <main class="sg-wrap section-page-wrap">
+  <div class="sg-layout">
+    <div class="sg-library" aria-label="Safety guides">
+      <section class="sg-category" aria-labelledby="beforeHeading">
+        <div class="sg-category-head"><h2 id="beforeHeading">Before you leave</h2><p>Plan around your dog and the route</p></div>
+        <div class="sg-guide-list">
+          <a class="sg-guide-card" href="guides/altitude-with-your-dog.html"><img src="images/tre-cime-hero.jpg" alt="The Tre Cime peaks above a high-altitude trail" width="2000" height="1500" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Altitude</span><span class="sg-guide-title">Altitude with your dog</span><p>Acclimatisation, pace and warning signs.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/breed-group-caveats.html"><img src="images/editorial/safety-library/breed-group-considerations-v1.jpg" alt="A Miniature Pinscher looks up at a Great Dane while a pug faces the camera" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Your dog</span><span class="sg-guide-title">Breed-group considerations</span><p>When standard trail advice needs adjusting.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/dogs-on-cable-cars.html"><img src="images/editorial/safety-library/dogs-on-cable-cars-v1.jpg" alt="Cable cars crossing a high mountain valley" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Access</span><span class="sg-guide-title">Dogs on cable cars</span><p>Rules, muzzles and boarding calmly.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+        </div>
+      </section>
+
+      <section class="sg-category" aria-labelledby="trailHeading">
+        <div class="sg-category-head"><h2 id="trailHeading">On the trail</h2><p>Prevent the most common problems</p></div>
+        <div class="sg-guide-list">
+          <a class="sg-guide-card" href="guides/heat-overheating.html"><img src="images/editorial/safety-library/heat-hydration-v1.jpg" alt="A dog drinking from a clear alpine spring" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Weather &amp; body</span><span class="sg-guide-title">Heat and hydration</span><p>Water planning and recognising overheating early.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/paw-protection.html"><img src="images/editorial/safety-library/paw-protection-v2.jpg" alt="A hiker checking a dog's paw on a mountain trail" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Terrain</span><span class="sg-guide-title">Paw protection</span><p>Rock, hot ground, snow and first aid.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/alpine-plants-for-dogs.html"><img src="images/editorial/safety-library/flowers-plants-dogs.jpg" alt="Yellow alpine flowers growing beside a forest trail" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Plants</span><span class="sg-guide-title">Flowers, plants and dogs</span><p>What is safe to pass and dangerous to eat.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+        </div>
+      </section>
+
+      <section class="sg-category" aria-labelledby="sharedHeading">
+        <div class="sg-category-head"><h2 id="sharedHeading">Shared spaces</h2><p>Animals, people and facilities</p></div>
+        <div class="sg-guide-list">
+          <a class="sg-guide-card" href="guides/livestock-guard-dogs.html"><img src="images/editorial/safety-library/livestock-guardian-dogs-v1.jpg" alt="Two white livestock guardian dogs patrolling an alpine pasture" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Animals</span><span class="sg-guide-title">Livestock guardian dogs</span><p>Distance, leash handling and retreating safely.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/dogs-at-rifugi.html"><img src="images/editorial/safety-library/dogs-at-rifugi.jpg" alt="A mountain rifugio below a high rocky peak" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Facilities</span><span class="sg-guide-title">Dogs at rifugi</span><p>Etiquette, food and overnight stays.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+        </div>
+      </section>
+    </div>
+
+  </div>
+
   <aside class="sg-side" aria-label="Mountain-safety overview">
     <section class="sg-rules" aria-labelledby="rulesHeading">
       <span class="sg-kicker" id="rulesHeading">The five mountain rules</span>
@@ -153,37 +188,6 @@
       <div class="sg-emergency-entry"><span>Veterinary ambulance</span><b>Varies by region</b><small>Nearest regional help and directions belong on each trail map.</small></div>
     </section>
   </aside>
-
-  <div class="sg-layout">
-    <div class="sg-library" aria-label="Safety guides">
-      <section aria-labelledby="beforeHeading">
-        <div class="sg-category-head"><h2 id="beforeHeading">Before you leave</h2><p>Plan around your dog and the route</p></div>
-        <div class="sg-guide-list">
-          <a class="sg-guide-card" href="guides/altitude-with-your-dog.html"><img src="images/tre-cime-hero.jpg" alt="The Tre Cime peaks above a high-altitude trail" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Altitude</span><span class="sg-guide-title">Altitude with your dog</span><p>Acclimatisation, pace and warning signs.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/breed-group-caveats.html"><img src="images/editorial/safety-library/breed-group-considerations-v1.jpg" alt="A Miniature Pinscher looks up at a Great Dane while a pug faces the camera" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Your dog</span><span class="sg-guide-title">Breed-group considerations</span><p>When standard trail advice needs adjusting.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/dogs-on-cable-cars.html"><img src="images/editorial/safety-library/dogs-on-cable-cars-v1.jpg" alt="Cable cars crossing a high mountain valley" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Access</span><span class="sg-guide-title">Dogs on cable cars</span><p>Rules, muzzles and boarding calmly.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-        </div>
-      </section>
-
-      <section aria-labelledby="trailHeading">
-        <div class="sg-category-head"><h2 id="trailHeading">On the trail</h2><p>Prevent the most common problems</p></div>
-        <div class="sg-guide-list">
-          <a class="sg-guide-card" href="guides/heat-overheating.html"><img src="images/editorial/safety-library/heat-hydration-v1.jpg" alt="A dog drinking from a clear alpine spring" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Weather &amp; body</span><span class="sg-guide-title">Heat and hydration</span><p>Water planning and recognising overheating early.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/paw-protection.html"><img src="images/editorial/safety-library/paw-protection-v2.jpg" alt="A hiker checking a dog's paw on a mountain trail" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Terrain</span><span class="sg-guide-title">Paw protection</span><p>Rock, hot ground, snow and first aid.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/alpine-plants-for-dogs.html"><img src="images/editorial/safety-library/flowers-plants-dogs.jpg" alt="Yellow alpine flowers growing beside a forest trail" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Plants</span><span class="sg-guide-title">Flowers, plants and dogs</span><p>What is safe to pass and dangerous to eat.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-        </div>
-      </section>
-
-      <section aria-labelledby="sharedHeading">
-        <div class="sg-category-head"><h2 id="sharedHeading">Shared spaces</h2><p>Animals, people and facilities</p></div>
-        <div class="sg-guide-list">
-          <a class="sg-guide-card" href="guides/livestock-guard-dogs.html"><img src="images/editorial/safety-library/livestock-guardian-dogs-v1.jpg" alt="Two white livestock guardian dogs patrolling an alpine pasture" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Animals</span><span class="sg-guide-title">Livestock guardian dogs</span><p>Distance, leash handling and retreating safely.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/dogs-at-rifugi.html"><img src="images/editorial/safety-library/dogs-at-rifugi.jpg" alt="A mountain rifugio below a high rocky peak" loading="lazy"><span class="sg-guide-card-copy"><span class="cat">Facilities</span><span class="sg-guide-title">Dogs at rifugi</span><p>Etiquette, food and overnight stays.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-        </div>
-      </section>
-    </div>
-
-  </div>
 
   <p class="sg-disclaimer">This library provides general information, not veterinary advice. If your dog shows signs of heat stress, injury or exhaustion, stop early and seek professional help when symptoms do not resolve promptly.</p>
 </main>
