@@ -18,8 +18,8 @@
    Firebase resolves. The homepage controller clears the class once real
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
-<link rel="stylesheet" href="styles.css?v=20260821-2">
-<link rel="stylesheet" href="homepage-mobile.css?v=20260816-4">
+<link rel="stylesheet" href="styles.css?v=20260821-3">
+<link rel="stylesheet" href="homepage-mobile.css?v=20260821-1">
   <link rel="stylesheet" href="homepage-editorial.css?v=20260821-3">
 </head>
 <body>
@@ -127,8 +127,8 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         </div>
         <div class="hp-filter-row">
           <div class="hp-menuwrap hp-filt-wrap">
-            <button type="button" class="hp-filt" id="hpFiltersBtn" aria-haspopup="true" aria-expanded="false"><span class="hp-filt-lab"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Filters<span id="hpFiltersBadge"></span></span><span class="hp-filt-caret">▾</span></button>
-            <div class="hp-menu hp-fpanel" id="hpFiltersPanel" hidden>
+            <button type="button" class="hp-filt discovery-filter-trigger" id="hpFiltersBtn" aria-haspopup="true" aria-expanded="false"><span class="hp-filt-lab"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Filters<span id="hpFiltersBadge"></span></span><span class="hp-filt-caret">▾</span></button>
+            <div class="hp-menu hp-fpanel discovery-filter-panel" id="hpFiltersPanel" hidden>
               <div class="hp-fpanel-head">
                 <span class="hp-fpanel-title">Filter trails</span>
                 <button type="button" id="hpFiltersReset">Reset all</button>
@@ -296,11 +296,11 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
          Filters panel is the visible control at every viewport size. -->
     <div class="li-chiprow" id="liChips"></div>
     <div class="li-menuwrap" id="liFiltersWrap">
-      <button type="button" id="liFiltersBtn" class="li-filt" aria-haspopup="true" aria-expanded="false">
+      <button type="button" id="liFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
         Filters<span id="liFiltersBadge"></span> <span class="li-caret">▾</span>
       </button>
-      <div class="li-menu li-filters-menu" id="liFiltersMenu" hidden>
+      <div class="li-menu li-filters-menu discovery-filter-panel" id="liFiltersMenu" hidden>
         <div class="li-fhead">
           <span>Filter trails</span>
           <button type="button" id="liFiltersReset">Reset all</button>
@@ -310,6 +310,8 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <div id="areaFilterRow" class="li-fareas"></div>
         <div class="li-fsec">Distance</div>
         <div class="li-seg" id="liDistSeg"></div>
+        <div class="li-fsec">Trail rating</div>
+        <div class="li-seg" id="liRiskSeg"></div>
         <div class="li-fsec">Terrain underfoot</div>
         <div class="li-seg" id="liTerrainSeg"></div>
         <div class="li-fsec">Shade</div>
@@ -533,10 +535,10 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="basemap-poi-click.js" defer></script>
 <script src="dog-routes-layer.js?v=20260815-4" defer></script>
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
-<script src="script.js?v=20260819-2" defer></script>
+<script src="script.js?v=20260821-1" defer></script>
 <script src="dog-wizard.js?v=20260815-4" defer></script>
 <script src="collections-data.js?v=20260815-4" defer></script>
-<script src="homepage-search.js?v=20260821-3" defer></script>
+<script src="homepage-search.js?v=20260821-4" defer></script>
 <script src="homepage-mobile.js?v=20260816-1" defer></script>
 </body>
 </html>

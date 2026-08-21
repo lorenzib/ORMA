@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260821-2">
+<link rel="stylesheet" href="styles.css?v=20260821-3">
 <style>
   /* Guest bar — the homepage component reused verbatim; CTA is a link here */
   a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
@@ -174,11 +174,11 @@
     </label>
     <span class="browse-filter-divider" aria-hidden="true"></span>
     <div class="li-menuwrap" id="browseFiltersWrap">
-      <button type="button" id="browseFiltersBtn" class="li-filt" aria-haspopup="true" aria-expanded="false" aria-controls="browseFiltersMenu">
+      <button type="button" id="browseFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="browseFiltersMenu">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
         Filters<span id="browseFiltersCount"></span> <span class="li-caret">▾</span>
       </button>
-      <div class="li-menu li-filters-menu" id="browseFiltersMenu" hidden>
+      <div class="li-menu li-filters-menu discovery-filter-panel" id="browseFiltersMenu" hidden>
         <div class="li-fhead">
           <span>Filter trails</span>
           <button type="button" id="browseFiltersReset">Reset all</button>
@@ -193,8 +193,12 @@
         <div class="li-seg" id="brShadeSeg"></div>
         <div class="li-fsec">Minimum match</div>
         <div class="li-seg" id="brMatchSeg"></div>
-        <div class="li-fsec">Water on route</div>
-        <div class="li-seg" id="brWaterSeg"></div>
+        <div class="li-frows">
+          <div class="li-frow">
+            <span class="li-frow-label">Water on route</span>
+            <button type="button" class="li-switch" id="brWaterToggle" role="switch" aria-checked="false" aria-label="Water on route"><span class="knob"></span></button>
+          </div>
+        </div>
         <button type="button" class="li-apply" id="browseFiltersApply">Show trails</button>
       </div>
     </div>
@@ -804,7 +808,7 @@
         { label:'Any', v:'all' }, { label:'Low risk', v:'low-risk' }, { label:'Moderate', v:'moderate' }, { label:'Caution', v:'caution' },
       ], risk.value, v => { risk.value = v; });
       brSeg('brTerrainSeg', [
-        { label:'Any', v:'' }, { label:'Paved', v:'soft' }, { label:'Gravel', v:'mixed' }, { label:'Rocky', v:'rocky' },
+        { label:'Any', v:'' }, { label:'Gentle only', v:'soft' }, { label:'Up to mixed', v:'mixed' }, { label:'Rocky is okay', v:'rocky' },
       ], terrain.value, v => { terrain.value = v; });
       brSeg('brShadeSeg', [
         { label:'Any', v:'' }, { label:'Over 40%', v:'shade-40' }, { label:'Over 60%', v:'shade-60' },
@@ -812,10 +816,17 @@
       brSeg('brMatchSeg', [
         { label:'Any', v:'' }, { label:'60%+', v:'60' }, { label:'75%+', v:'75' }, { label:'85%+', v:'85' },
       ], minMatchValue, v => { minMatchValue = v; });
-      brSeg('brWaterSeg', [
-        { label:'Any', v:'no' }, { label:'Water on route', v:'yes' },
-      ], waterOnly ? 'yes' : 'no', v => { waterOnly = v === 'yes'; });
+      const waterToggle = document.getElementById('brWaterToggle');
+      if(waterToggle){
+        waterToggle.classList.toggle('on', waterOnly);
+        waterToggle.setAttribute('aria-checked', String(waterOnly));
+      }
     }
+    const waterToggle = document.getElementById('brWaterToggle');
+    if(waterToggle) waterToggle.addEventListener('click', () => {
+      waterOnly = !waterOnly;
+      page = 1; renderPage('push'); buildFilterPanel();
+    });
     const filtersReset = document.getElementById('browseFiltersReset');
     if(filtersReset) filtersReset.addEventListener('click', () => {
       distance.value = 'all'; risk.value = 'all'; terrain.value = ''; heat.value = '';
@@ -885,6 +896,7 @@
       if(distance.value === '10') pool = pool.filter(trail => Number(trail.distance) >= 5);
       const activeFilters = filterApi.active(currentFilterState());
       const hasFilters = activeFilters.length > 0;
+      if(filtersApply) filtersApply.textContent = `Show ${pool.length} ${pool.length === 1 ? 'trail' : 'trails'}`;
       let profilePresent = false;
       try{ profilePresent = !!JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); }
       catch(error){}
