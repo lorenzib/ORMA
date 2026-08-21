@@ -4,6 +4,7 @@ describe('canonical discovery state', () => {
   test('round-trips search, region, filters, dog context, and page', () => {
     const input = {
       search: ' Carezza ',
+      country: 'italy',
       region: 'dolomites',
       risk: 'low-risk',
       distance: '6',
@@ -40,7 +41,7 @@ describe('canonical discovery state', () => {
   });
 
   test('trail links carry the exact canonical browse return target', () => {
-    const state = { search: 'Braies', region: 'dolomites', dog: 'bella', water: true };
+    const state = { search: 'Braies', country:'italy', region:'dolomites', dog:'bella', water:true };
     const trail = new URL(discovery.trailHref('lago-braies', state), 'https://www.app-orma.com/');
 
     expect(trail.searchParams.get('id')).toBe('lago-braies');

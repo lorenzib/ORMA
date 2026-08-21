@@ -65,6 +65,7 @@ function setup(url, trailOverrides = {}){
     'discovery-state.js',
     'discovery-filters.js',
     'comparison-state.js',
+    'area-dropdown.js',
   ].forEach(file => window.eval(source(file)));
   window.eval(inline);
   window.dispatchEvent(new window.Event('DOMContentLoaded'));
@@ -102,6 +103,24 @@ describe('Browse filter UI', () => {
     expect(window.document.getElementById('browseAccess').value).toBe('allowed-reviewed');
     expect(window.document.getElementById('browseVerification').value).toBe('route-audited');
     expect(window.document.querySelector('.simple-card')).not.toBeNull();
+  });
+
+  test('country and region are visible, linked geographic controls', () => {
+    const window = setup('https://www.app-orma.com/browse-trails.html?country=italy&region=dolomites');
+
+    expect(window.document.getElementById('browseCountrySelect').textContent).toContain('Italy');
+    expect(window.document.getElementById('browseRegionSelect').textContent).toContain('Dolomites');
+    expect(window.document.getElementById('browseCountrySelect').value).toBe('italy');
+    expect(window.document.getElementById('browseRegionSelect').value).toBe('dolomites');
+    expect(window.location.search).toContain('country=italy');
+
+    const countryTrigger = window.document.querySelector('#browseCountrySelect + .area-select-trigger');
+    countryTrigger.click();
+    expect(countryTrigger.getAttribute('aria-expanded')).toBe('true');
+    window.document.querySelector('#browseCountrySelectMenu [data-value="france"]').click();
+    expect(countryTrigger.textContent).toContain('France');
+    expect(window.document.getElementById('browseRegionSelect').textContent).toContain('Savoy');
+    expect(window.document.getElementById('browseRegionSelect').textContent).not.toContain('Dolomites');
   });
 
   test('mobile-ready cards use explicit terrain language and aligned rows', () => {
