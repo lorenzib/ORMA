@@ -19,8 +19,8 @@
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
 <link rel="stylesheet" href="styles.css?v=20260821-7">
-<link rel="stylesheet" href="homepage-mobile.css?v=20260821-1">
-  <link rel="stylesheet" href="homepage-editorial.css?v=20260821-6">
+<link rel="stylesheet" href="homepage-mobile.css?v=20260821-2">
+  <link rel="stylesheet" href="homepage-editorial.css?v=20260821-7">
 </head>
 <body>
 
@@ -139,8 +139,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
               <div class="hp-seg" id="hpDiffSeg"></div>
               <div class="hp-fsec">Terrain underfoot</div>
               <div class="hp-seg" id="hpTerrainSeg"></div>
-              <div class="hp-fsec">Shade</div>
-              <div class="hp-seg" id="hpShadeSeg"></div>
               <div class="hp-fsec" id="hpMatchLabel">Minimum match</div>
               <div class="hp-seg" id="hpMatchSeg"></div>
               <div class="hp-frow">
@@ -272,8 +270,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     </div>
     <div class="li-menuwrap li-region-wrap" id="liRegionWrap">
       <button type="button" id="liRegionBtn" class="li-region-btn" aria-haspopup="true" aria-expanded="false">
-        <span class="li-control-kicker">Region</span>
-        <span id="liRegionLabel">Dolomites</span><span class="li-caret">▾</span>
+        <span class="li-geo-copy"><span class="li-control-kicker">Region</span><span id="liRegionLabel">Dolomites</span></span><span class="li-caret">▾</span>
       </button>
       <div class="li-menu li-region-menu" id="liRegionMenu" hidden></div>
     </div>
@@ -285,10 +282,15 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     </div>
     <div class="li-menuwrap li-country-wrap" id="liCountryWrap">
       <button type="button" id="liCountryBtn" class="li-region-btn li-country-btn" aria-haspopup="true" aria-expanded="false">
-        <span class="li-control-kicker">Country</span>
-        <span id="liCountryLabel">Italy</span><span class="li-caret">▾</span>
+        <span class="li-geo-copy"><span class="li-control-kicker">Country</span><span id="liCountryLabel">Italy</span></span><span class="li-caret">▾</span>
       </button>
       <div class="li-menu li-country-menu" id="liCountryMenu" hidden></div>
+    </div>
+    <div class="li-menuwrap li-valley-wrap" id="liValleyWrap">
+      <button type="button" id="liValleyBtn" class="li-region-btn li-valley-btn" aria-haspopup="true" aria-expanded="false">
+        <span class="li-geo-copy"><span class="li-control-kicker">Valley</span><span id="liValleyLabel">All valleys</span></span><span class="li-caret">▾</span>
+      </button>
+      <div class="li-menu li-valley-menu" id="liValleyMenu" hidden></div>
     </div>
     <div class="li-quick-filters" aria-label="Quick dog filters">
       <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span aria-hidden="true">♧</span><span>High shade</span></button>
@@ -307,8 +309,8 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <span>Filter trails</span>
           <button type="button" id="liFiltersReset">Reset all</button>
         </div>
-        <!-- Source and valley refinements — the primary region switch sits
-             separately in the toolbar so it never gets buried in Filters. -->
+        <!-- Source is an advanced refinement. Country, region and valley stay
+             visible in the toolbar so the location hierarchy is never buried. -->
         <div id="areaFilterRow" class="li-fareas"></div>
         <div class="li-fsec">Distance</div>
         <div class="li-seg" id="liDistSeg"></div>
@@ -316,8 +318,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <div class="li-seg" id="liRiskSeg"></div>
         <div class="li-fsec">Terrain underfoot</div>
         <div class="li-seg" id="liTerrainSeg"></div>
-        <div class="li-fsec">Shade</div>
-        <div class="li-seg" id="liShadeSeg"></div>
         <div class="li-fsec" id="liMatchSecLabel">Minimum match</div>
         <div class="li-seg" id="liMatchSeg"></div>
         <button type="button" class="li-apply" id="liFiltersApply">Show trails</button>
@@ -534,15 +534,15 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="metrics.js?v=20260815-4" defer></script>
 <script src="guest-context.js?v=20260815-4" defer></script>
 <script src="auth-ui.js?v=20260821-1" defer></script>
-<script src="discovery-state.js?v=20260818-6" defer></script>
+<script src="discovery-state.js?v=20260821-2" defer></script>
 <script src="map-runtime.js?v=20260815-4" defer></script>
 <script src="basemap-poi-click.js" defer></script>
 <script src="dog-routes-layer.js?v=20260815-4" defer></script>
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
-<script src="script.js?v=20260821-2" defer></script>
+<script src="script.js?v=20260821-3" defer></script>
 <script src="dog-wizard.js?v=20260815-4" defer></script>
 <script src="collections-data.js?v=20260815-4" defer></script>
-<script src="homepage-search.js?v=20260821-5" defer></script>
+<script src="homepage-search.js?v=20260821-6" defer></script>
 <script src="homepage-mobile.js?v=20260816-1" defer></script>
 </body>
 </html>

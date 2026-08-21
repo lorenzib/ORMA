@@ -51,7 +51,6 @@
   var DIST_SEG = [{ label: 'Any', v: 'any' }, { label: 'Under 5 km', v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' }];
   var DIFF_SEG = [{ label: 'Any', v: 'any' }, { label: 'Low risk', v: 'low-risk' }, { label: 'Moderate', v: 'moderate' }, { label: 'Caution', v: 'caution' }];
   var TERRAIN_SEG = [{ label: 'Any', v: 'any' }, { label: 'Gentle only', v: 'soft' }, { label: 'Up to mixed', v: 'mixed' }, { label: 'Rocky is okay', v: 'rocky' }];
-  var SHADE_SEG = [{ label: 'Any', v: 'any' }, { label: 'Over 40%', v: '40' }, { label: 'Over 60%', v: '60' }];
   var MATCH_SEG = [{ label: 'Any', v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 }];
 
   var POPULAR = [
@@ -77,7 +76,6 @@
     distSeg: document.getElementById('hpDistSeg'),
     diffSeg: document.getElementById('hpDiffSeg'),
     terrainSeg: document.getElementById('hpTerrainSeg'),
-    shadeSeg: document.getElementById('hpShadeSeg'),
     matchSeg: document.getElementById('hpMatchSeg'),
     matchLabel: document.getElementById('hpMatchLabel'),
     waterToggle: document.getElementById('hpWaterToggle'),
@@ -274,7 +272,6 @@
     el.distSeg.innerHTML = segHtml(DIST_SEG, state.dist, 'dist');
     el.diffSeg.innerHTML = segHtml(DIFF_SEG, state.diff, 'diff');
     el.terrainSeg.innerHTML = segHtml(TERRAIN_SEG, state.terrain, 'terrain');
-    el.shadeSeg.innerHTML = segHtml(SHADE_SEG, state.shade, 'shade');
     el.matchSeg.innerHTML = segHtml(MATCH_SEG, state.minMatch, 'minMatch');
     el.matchLabel.textContent = 'Minimum match for ' + dogMeta().name;
     el.waterToggle.classList.toggle('on', state.hasWater);

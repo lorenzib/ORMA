@@ -1222,11 +1222,6 @@ function renderAreaFilters(profile){
   if(!row || typeof trails === 'undefined') return;
   if(window.DoloPawsRegions) window.DoloPawsRegions.assign(trails);
 
-  const valleys = window.DoloPawsRegions
-    ? window.DoloPawsRegions.valleysFor(trails, activeRegion)
-    : [];
-  if(activeValley !== 'all' && !valleys.some(([v]) => v === activeValley)) activeValley = 'all';
-
   row.innerHTML = `
     <div class="companion-filter-label">Source</div>
     <div class="prov-toggle" style="width:100%;">
@@ -1238,22 +1233,7 @@ function renderAreaFilters(profile){
         <div class="prov-opt ${k === activeProvenance ? 'active' : ''}" data-prov="${k}" style="flex:1;text-align:center;">${label} <span class="count">${counts[k]}</span></div>`).join('');
       })()}
     </div>
-
-    <div class="companion-filter-label">Valley</div>
-    <div class="valley-pills companion-valleys">
-      <div class="area-pill ${activeValley === 'all' ? 'active' : ''}" data-valley="all">${t('areas.allValleys')}</div>
-      ${valleys.map(([v, n]) => `
-        <div class="area-pill ${v === activeValley ? 'active' : ''}" data-valley="${v}">${v} <span class="pill-count">${n}</span></div>`).join('')}
-    </div>
   `;
-
-  row.querySelectorAll('[data-valley]').forEach(pill => {
-    pill.addEventListener('click', () => {
-      activeValley = pill.dataset.valley;
-      renderReturningHomepage(profile);
-      setCompanionPanelOpen(false);
-    });
-  });
   row.querySelectorAll('[data-prov]').forEach(opt => {
     opt.addEventListener('click', () => {
       activeProvenance = opt.dataset.prov;
@@ -1343,6 +1323,38 @@ function renderLiRegionControl(profile){
     });
     menu.appendChild(button);
   });
+}
+
+// Valley is the third visible geographic level. Its options are rebuilt from
+// the active region, so changing country or region cannot leave a stale valley
+// selected.
+function renderLiValleyControl(profile){
+  const label = document.getElementById('liValleyLabel');
+  const menu = document.getElementById('liValleyMenu');
+  if(!label || !menu || typeof trails === 'undefined') return;
+  if(window.DoloPawsRegions) window.DoloPawsRegions.assign(trails);
+  const valleys = window.DoloPawsRegions
+    ? window.DoloPawsRegions.valleysFor(trails, activeRegion)
+    : [];
+  if(activeValley !== 'all' && !valleys.some(([valley]) => valley === activeValley)) activeValley = 'all';
+  label.textContent = activeValley === 'all' ? 'All valleys' : activeValley;
+  menu.innerHTML = '<div class="li-menu-kick">Valley</div>';
+  const regionCount = trails.filter(trail => trail.region === activeRegion).length;
+  [['all', 'All valleys', regionCount], ...valleys.map(([valley, count]) => [valley, valley, count])]
+    .forEach(([value, name, count]) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'li-menu-item li-region-option' + (value === activeValley ? ' on' : '');
+      button.dataset.valley = value;
+      button.setAttribute('aria-pressed', String(value === activeValley));
+      button.innerHTML = `<span>${name}</span><small>${count} trails</small>`;
+      button.addEventListener('click', () => {
+        activeValley = value;
+        liCloseMenus();
+        renderReturningHomepage(profile);
+      });
+      menu.appendChild(button);
+    });
 }
 
 // Companion sidebar — dog profile card. Avatar, breed/age line, and up to
@@ -1522,11 +1534,11 @@ function liResetAllFilters(){
 }
 
 function liCloseMenus(){
-  ['liFiltersMenu', 'liCountryMenu', 'liRegionMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
+  ['liFiltersMenu', 'liCountryMenu', 'liRegionMenu', 'liValleyMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
     const menu = document.getElementById(id);
     if(menu) menu.hidden = true;
   });
-  ['liFiltersBtn', 'liCountryBtn', 'liRegionBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
+  ['liFiltersBtn', 'liCountryBtn', 'liRegionBtn', 'liValleyBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
     const btn = document.getElementById(id);
     if(btn) btn.setAttribute('aria-expanded', 'false');
   });
@@ -1682,9 +1694,6 @@ function renderLiControls(){
   seg('liTerrainSeg', [
     { label: 'Any', v: 'any' }, { label: 'Gentle only', v: 'soft' }, { label: 'Up to mixed', v: 'mixed' }, { label: 'Rocky is okay', v: 'rocky' },
   ], liFilters.terrain, v => { liFilters.terrain = v; });
-  seg('liShadeSeg', [
-    { label: 'Any', v: 'any' }, { label: 'Over 40%', v: '40' }, { label: 'Over 60%', v: '60' },
-  ], liFilters.shade, v => { liFilters.shade = v; });
   seg('liMatchSeg', [
     { label: 'Any', v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 },
   ], liFilters.minMatch, v => { liFilters.minMatch = v; });
@@ -1970,6 +1979,7 @@ function initLoggedInShell(){
   wireMenu(filtersBtn, document.getElementById('liFiltersMenu'));
   wireMenu(document.getElementById('liCountryBtn'), document.getElementById('liCountryMenu'));
   wireMenu(document.getElementById('liRegionBtn'), document.getElementById('liRegionMenu'));
+  wireMenu(document.getElementById('liValleyBtn'), document.getElementById('liValleyMenu'));
   wireMenu(document.getElementById('liAccountBtn'), document.getElementById('liAccountMenu'));
 
   const savedOnlyBtn = document.getElementById('liSavedOnlyBtn');
@@ -2203,6 +2213,7 @@ async function renderReturningHomepage(profile){
   renderAreaFilters(profile);
   renderLiCountryControl(profile);
   renderLiRegionControl(profile);
+  renderLiValleyControl(profile);
   renderLiSavedControl();
   renderDogProfileCard(profile);
   renderLiHeader(profile);

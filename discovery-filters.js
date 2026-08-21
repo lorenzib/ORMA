@@ -7,7 +7,7 @@
 
   const DISTANCES = [3, 5, 6, 10, 20];
   const FILTER_ORDER = [
-    'search', 'country', 'region', 'risk', 'distance', 'difficulty', 'terrain', 'water', 'heat',
+    'search', 'country', 'region', 'valley', 'risk', 'distance', 'difficulty', 'terrain', 'water', 'heat',
     'exposure', 'access', 'verification', 'collection', 'minMatch',
   ];
 
@@ -81,6 +81,7 @@
       if(trail.region !== expectedRegion && country !== state.country && country !== expectedCode) return false;
     }
     if(state.region && state.region !== 'all' && trail.region !== state.region) return false;
+    if(state.valley && state.valley !== 'all' && trail.valley !== state.valley) return false;
     if(state.risk && state.risk !== 'all' && suitability.safetyLevel !== state.risk) return false;
 
     if(state.distance && state.distance !== 'all'){
@@ -163,6 +164,7 @@
       search: `Search “${state.search}”`,
       country: state.country === 'italy' ? 'Italy' : 'France',
       region: state.region === 'dolomites' ? 'Dolomites region' : 'Savoy region',
+      valley: state.valley,
       risk: `${state.risk} rating`,
       distance: state.distance === 'u5' ? 'Under 5 km'
         : state.distance === '5to10' ? '5–10 km'

@@ -6,6 +6,7 @@ describe('canonical discovery state', () => {
       search: ' Carezza ',
       country: 'italy',
       region: 'dolomites',
+      valley: 'Val di Fassa',
       risk: 'low-risk',
       distance: '6',
       water: true,

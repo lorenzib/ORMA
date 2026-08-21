@@ -40,6 +40,7 @@
       search: text(read(source, 'search'), 120),
       country: allowed('country', read(source, 'country')),
       region: allowed('region', read(source, 'region')),
+      valley: text(read(source, 'valley'), 80),
       risk: allowed('risk', read(source, 'risk')),
       distance: allowed('distance', String(read(source, 'distance') || '')),
       water: read(source, 'water') === '1' || read(source, 'water') === true,
@@ -63,6 +64,7 @@
     if(state.search) params.set('search', state.search);
     if(state.country) params.set('country', state.country);
     if(state.region) params.set('region', state.region);
+    if(state.valley) params.set('valley', state.valley);
     if(state.risk) params.set('risk', state.risk);
     if(state.distance) params.set('distance', state.distance);
     if(state.water) params.set('water', '1');
@@ -92,7 +94,7 @@
 
   function hasFilters(source){
     const state = normalize(source);
-    return Boolean(state.search || state.country || state.region || state.risk || state.distance ||
+    return Boolean(state.search || state.country || state.region || state.valley || state.risk || state.distance ||
       state.water || state.collection || state.difficulty || state.terrain ||
       state.heat || state.exposure || state.access || state.verification ||
       state.shade || state.minMatch);
