@@ -96,8 +96,11 @@ describe('footer navigation', () => {
 
     publicFooterPages().forEach(file => {
       const html = fs.readFileSync(file, 'utf8');
-      expect(html).toMatch(/href="(?:\.\.\/|\/)?styles\.css\?v=20260821-5"/);
-      expect(html).toMatch(/src="(?:\.\.\/|\/)?mobile-nav\.js\?v=20260821-3"/);
+      const isHomepage = file === path.join(__dirname, 'index.html');
+      const stylesVersion = isHomepage ? '20260821-6' : '20260821-5';
+      const navigationVersion = isHomepage ? '20260821-4' : '20260821-3';
+      expect(html).toMatch(new RegExp(`href="(?:\\.\\.\\/|\\/)?styles\\.css\\?v=${stylesVersion}"`));
+      expect(html).toMatch(new RegExp(`src="(?:\\.\\.\\/|\\/)?mobile-nav\\.js\\?v=${navigationVersion}"`));
     });
   });
 
