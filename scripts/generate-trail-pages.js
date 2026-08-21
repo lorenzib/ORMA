@@ -617,7 +617,7 @@ ${reviewRecord}
 </footer>
 
 <script src="../icon-system.js?v=20260717" defer></script>
-<script src="../mobile-nav.js?v=20260815-4"></script>
+<script src="../mobile-nav.js?v=20260821-1"></script>
 </body>
 </html>
 `;
