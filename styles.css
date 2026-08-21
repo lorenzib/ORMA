@@ -2246,6 +2246,7 @@ body.map-fs-open{overflow:hidden;}
 
 /* --- focused pre-footer action + compact site navigation --- */
 .hp-prefooter{background:linear-gradient(135deg,#E5EDE2 0%,#EEF3EB 100%);border-top:1px solid rgba(47,73,56,.08);color:var(--ink);}
+.hp-prefooter--homepage-top{border-top:0;border-bottom:1px solid rgba(47,73,56,.08);}
 .hp-prefooter-inner{width:100%;max-width:none;margin:0;padding:16px max(40px,calc((100% - 1240px)/2));display:flex;align-items:center;justify-content:space-between;gap:16px;}
 .hp-prefooter-copy{display:grid;grid-template-columns:auto 1fr;column-gap:10px;row-gap:3px;align-items:center;max-width:none;}
 .hp-prefooter-kicker{grid-column:1/-1;margin:0;color:var(--ink-soft);font:700 10.5px/1.45 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;}
@@ -2559,6 +2560,21 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-toolbar-summary{margin-left:auto;color:#849086;font:600 11.5px/1.2 'Inter',sans-serif;white-space:nowrap;}
 .li-toolbar-breed{color:inherit;text-decoration:underline;text-decoration-color:#AAB5AA;text-underline-offset:2px;}
 .li-toolbar-breed:hover{color:var(--accent);text-decoration-color:currentColor;}
+
+/* Navigation, profile prompt, and footer remain full-bleed. The desktop
+   search/map/results workspace keeps a clean 40px gutter on both sides. */
+@media (min-width:1041px){
+  .li-toolbar-greet-copy strong{font-size:38px;line-height:1.08;}
+  body[data-homepage-view="returning"] #returningCustomerHomepage > .li-toolbar,
+  body[data-homepage-view="returning"] #returningCustomerHomepage > .li-body{
+    width:calc(100% - 80px);
+    margin-inline:auto;
+  }
+  body[data-homepage-view="returning"] #returningCustomerHomepage > .li-body{
+    border-radius:0 0 18px 18px;
+    overflow:hidden;
+  }
+}
 .li-region-wrap{grid-area:region;flex:none;}
 .li-country-wrap{grid-area:country;flex:none;}
 .li-region-btn{

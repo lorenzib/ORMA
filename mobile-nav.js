@@ -100,7 +100,14 @@
       inner.append(copyBlock, actions);
       banner.appendChild(inner);
       if(!document.body.classList.contains('safety-library-page')){
-        footer.parentNode.insertBefore(banner, footer);
+        const returningHome = document.getElementById('returningCustomerHomepage');
+        const returningToolbar = returningHome && returningHome.querySelector('.li-toolbar');
+        if(returningToolbar){
+          banner.classList.add('hp-prefooter--homepage-top');
+          returningHome.insertBefore(banner, returningToolbar);
+        } else {
+          footer.parentNode.insertBefore(banner, footer);
+        }
       }
 
       const groups = footer.querySelectorAll('.hp-footer-grid > div');

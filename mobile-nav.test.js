@@ -95,6 +95,28 @@ describe('shared navigation hardening', () => {
     expect(footer.querySelector('.hp-footer-connect')).toBeNull();
   });
 
+  test('moves the dog-profile prompt above the personalised map controls', () => {
+    document.body.innerHTML += `
+      <div id="returningCustomerHomepage">
+        <header class="li-top"></header>
+        <div class="li-toolbar"></div>
+      </div>
+      <footer class="site-footer hp-footer">
+        <div class="hp-footer-grid">
+          <div></div>
+          <div><div class="hp-footer-links"><a href="browse-trails.html">Browse</a></div></div>
+        </div>
+        <div class="hp-footer-base"><span>© ORMA</span></div>
+      </footer>`;
+    window.eval(mobileNav);
+
+    const homepage = document.getElementById('returningCustomerHomepage');
+    const banner = homepage.querySelector('.hp-prefooter--homepage-top');
+    expect(banner).not.toBeNull();
+    expect(banner.nextElementSibling.className).toBe('li-toolbar');
+    expect(document.querySelector('footer').previousElementSibling).toBe(homepage);
+  });
+
   test('omits the dog-profile promotion from the safety library', () => {
     document.body.className = 'safety-library-page';
     const footer = document.createElement('footer');
