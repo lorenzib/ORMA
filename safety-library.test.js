@@ -17,6 +17,11 @@ describe('Safety library', () => {
     expect(html).toMatch(/\.sg-library\{[^}]*grid-template-columns:repeat\(3/s);
   });
 
+  test('gives guide titles a stronger readable scale on desktop and mobile', () => {
+    expect(html).toMatch(/\.sg-guide-title\{[^}]*font:700 18px\/1\.16/s);
+    expect(html).toMatch(/@media\(max-width:620px\)[\s\S]*\.sg-guide-title\{font-size:17px;/s);
+  });
+
   test('keeps the safety header aligned with the shared page-header scale', () => {
     expect(document.querySelector('.sg-hero').classList.contains('section-page-head')).toBe(true);
     expect(document.querySelector('.sg-hero-copy').textContent.length).toBeGreaterThan(300);
