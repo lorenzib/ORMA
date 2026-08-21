@@ -6,6 +6,7 @@
   'use strict';
 
   const ALLOWED = Object.freeze({
+    country: ['italy', 'france'],
     region: ['dolomites', 'savoy'],
     risk: ['low-risk', 'moderate', 'caution'],
     distance: ['3', '5', '6', '10', '20', 'u5', '5to10', '10p'],
@@ -37,6 +38,7 @@
   function normalize(source){
     return {
       search: text(read(source, 'search'), 120),
+      country: allowed('country', read(source, 'country')),
       region: allowed('region', read(source, 'region')),
       risk: allowed('risk', read(source, 'risk')),
       distance: allowed('distance', String(read(source, 'distance') || '')),
@@ -59,6 +61,7 @@
     const state = normalize(source);
     const params = new URLSearchParams();
     if(state.search) params.set('search', state.search);
+    if(state.country) params.set('country', state.country);
     if(state.region) params.set('region', state.region);
     if(state.risk) params.set('risk', state.risk);
     if(state.distance) params.set('distance', state.distance);
@@ -89,7 +92,7 @@
 
   function hasFilters(source){
     const state = normalize(source);
-    return Boolean(state.search || state.region || state.risk || state.distance ||
+    return Boolean(state.search || state.country || state.region || state.risk || state.distance ||
       state.water || state.collection || state.difficulty || state.terrain ||
       state.heat || state.exposure || state.access || state.verification ||
       state.shade || state.minMatch);
