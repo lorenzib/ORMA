@@ -38,6 +38,7 @@ function trail(overrides = {}){
 describe('dog-specific discovery filters', () => {
   test('known reviewed facts satisfy all positive safety filters', () => {
     expect(filters.matches(trail(), {
+      country:'italy',
       distance:'5',
       terrain:'soft',
       water:true,
@@ -46,6 +47,12 @@ describe('dog-specific discovery filters', () => {
       access:'allowed-reviewed',
       verification:'route-audited',
     })).toBe(true);
+  });
+
+  test('country and region remain independent geographic filters', () => {
+    expect(filters.matches(trail(), { country:'italy', region:'dolomites' })).toBe(true);
+    expect(filters.matches(trail(), { country:'france' })).toBe(false);
+    expect(filters.matches(trail({ region:'savoy', country:'FR' }), { country:'france', region:'savoy' })).toBe(true);
   });
 
   test.each([
