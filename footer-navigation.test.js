@@ -93,7 +93,7 @@ describe('footer navigation', () => {
 
     publicFooterPages().forEach(file => {
       const html = fs.readFileSync(file, 'utf8');
-      expect(html).toMatch(/href="(?:\.\.\/|\/)?styles\.css\?v=20260821-2"/);
+      expect(html).toMatch(/href="(?:\.\.\/|\/)?styles\.css\?v=20260821-3"/);
       expect(html).toMatch(/src="(?:\.\.\/|\/)?mobile-nav\.js\?v=20260821-2"/);
     });
   });

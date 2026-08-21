@@ -40,23 +40,24 @@
 
   var state = {
     query: '', dog: 'medium',
-    dist: 99, diff: 'any', terrain: 'any', shade: 'any', minMatch: 0, hasWater: false,
+    dist: 'any', diff: 'any', terrain: 'any', shade: 'any', minMatch: 0, hasWater: false,
     searched: false, focused: false, menu: null, custom: null, activeSuggest: -1,
     wizOpen: false, wizStep: 0,
     wiz: { name: '', size: 'medium', energy: 'medium', terrainTol: 'gravel', heat: false },
   };
 
-  // Segment options for the consolidated filter panel.
-  var DIST_SEG = [{ label: 'Any', v: 99 }, { label: '≤3 km', v: 3 }, { label: '≤6 km', v: 6 }, { label: '≤10 km', v: 10 }];
-  var DIFF_SEG = [{ label: 'Any', v: 'any' }, { label: 'Low-risk', v: 'low-risk' }, { label: 'Moderate', v: 'moderate' }, { label: 'Caution', v: 'caution' }];
-  var TERRAIN_SEG = [{ label: 'Any', v: 'any' }, { label: 'Soft', v: 'soft' }, { label: 'Mixed', v: 'mixed' }, { label: 'Rocky', v: 'rocky' }];
-  var SHADE_SEG = [{ label: 'Any', v: 'any' }, { label: 'Prefer shaded', v: 'shade' }];
+  // Shared discovery vocabulary: these labels and thresholds match Browse All
+  // Trails and the logged-in map so a filter always means the same thing.
+  var DIST_SEG = [{ label: 'Any', v: 'any' }, { label: 'Under 5 km', v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' }];
+  var DIFF_SEG = [{ label: 'Any', v: 'any' }, { label: 'Low risk', v: 'low-risk' }, { label: 'Moderate', v: 'moderate' }, { label: 'Caution', v: 'caution' }];
+  var TERRAIN_SEG = [{ label: 'Any', v: 'any' }, { label: 'Gentle only', v: 'soft' }, { label: 'Up to mixed', v: 'mixed' }, { label: 'Rocky is okay', v: 'rocky' }];
+  var SHADE_SEG = [{ label: 'Any', v: 'any' }, { label: 'Over 40%', v: '40' }, { label: 'Over 60%', v: '60' }];
   var MATCH_SEG = [{ label: 'Any', v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 }];
 
   var POPULAR = [
     { label: 'Lago di Braies', apply: function () { state.query = 'Braies'; state.searched = true; } },
     { label: 'Alpe di Siusi', apply: function () { state.query = 'Alpe di Siusi'; state.searched = true; } },
-    { label: 'Shady & short', apply: function () { state.query = ''; state.shade = 'shade'; state.dist = 6; state.searched = true; } },
+    { label: 'Shady & short', apply: function () { state.query = ''; state.shade = '40'; state.dist = 'u5'; state.searched = true; } },
     { label: 'Near water', apply: function () { state.query = 'Carezza'; state.searched = true; } },
   ];
 
@@ -168,12 +169,12 @@
   function canonicalBrowseState() {
     return {
       search: state.query,
-      distance: state.dist === 99 ? '' : String(state.dist),
+      distance: state.dist === 'any' ? '' : String(state.dist),
       water: state.hasWater,
       dog: state.dog,
       risk: state.diff === 'any' ? '' : state.diff,
       terrain: state.terrain === 'any' ? '' : state.terrain,
-      heat: state.shade === 'shade' ? 'shade-reviewed' : '',
+      heat: state.shade === '40' ? 'shade-40' : state.shade === '60' ? 'shade-60' : '',
       minMatch: state.minMatch ? String(state.minMatch) : '',
     };
   }
@@ -192,7 +193,7 @@
   function valleyOf(t) { return t.valley || t.area || ''; }
 
   function filterCount() {
-    return [state.dist !== 99, state.diff !== 'any', state.terrain !== 'any',
+    return [state.dist !== 'any', state.diff !== 'any', state.terrain !== 'any',
       state.shade !== 'any', state.minMatch > 0, state.hasWater].filter(Boolean).length;
   }
 
@@ -203,13 +204,16 @@
         var hay = (t.name + ' ' + (t.area || '') + ' ' + (t.valley || '')).toLowerCase();
         if (hay.indexOf(q) === -1) return false;
       }
-      if (state.dist !== 99 && t.distance > state.dist) return false;
-      if (state.shade === 'shade' && (t.shadeCoverage || 0) < 30) return false;
+      if (state.dist === 'u5' && t.distance >= 5) return false;
+      if (state.dist === '5to10' && (t.distance < 5 || t.distance > 10)) return false;
+      if (state.dist === '10p' && t.distance < 10) return false;
+      if (state.shade === '40' && (t.shadeCoverage || 0) < 40) return false;
+      if (state.shade === '60' && (t.shadeCoverage || 0) < 60) return false;
       if (state.terrain !== 'any') {
         var rank = typeof t.terrainRank === 'number' ? t.terrainRank : 1;
-        if (state.terrain === 'soft' && rank !== 0) return false;
-        if (state.terrain === 'mixed' && rank !== 1) return false;
-        if (state.terrain === 'rocky' && rank < 2) return false;
+        if (state.terrain === 'soft' && rank > 0) return false;
+        if (state.terrain === 'mixed' && rank > 1) return false;
+        if (state.terrain === 'rocky' && rank > 2) return false;
       }
       if (state.diff !== 'any' && difficulty(t).value !== state.diff) return false;
       if (state.hasWater && !hasWater(t)) return false;
@@ -512,7 +516,7 @@
   }
 
   function resetFilters() {
-    state.dist = 99; state.diff = 'any'; state.terrain = 'any';
+    state.dist = 'any'; state.diff = 'any'; state.terrain = 'any';
     state.shade = 'any'; state.minMatch = 0; state.hasWater = false;
   }
 
@@ -704,7 +708,7 @@
       var seg = e.target.closest('[data-seg]');
       if (seg) {
         var kind = seg.getAttribute('data-seg'), val = seg.getAttribute('data-val');
-        if (kind === 'dist') state.dist = parseInt(val, 10);
+        if (kind === 'dist') state.dist = val;
         else if (kind === 'minMatch') state.minMatch = parseInt(val, 10);
         else state[kind] = val;
         renderFiltersPanel(); renderFiltersButton();

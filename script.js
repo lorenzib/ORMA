@@ -156,9 +156,9 @@ let selectedTrailId = null;        // map pin / card selection (Companion layout
 // These sit on top of the region/valley/provenance filters above.
 let liQuery = '';                  // header search box
 // Filter semantics follow the design's chip options (AppShell FilterBar):
-// dist 'any'|'u5'|'5to10'|'10p' · terrain 'any'|'0'|'1'|'2' (Paved/Gravel/
-// Rocky) · shade 'any'|'40'|'60' (Over 40% / Over 60%).
-let liFilters = { dist: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false };
+// dist 'any'|'u5'|'5to10'|'10p' · risk 'any'|'low-risk'|'moderate'|'caution'
+// · terrain 'any'|'soft'|'mixed'|'rocky' · shade 'any'|'40'|'60'.
+let liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false };
 let liShellWired = false;          // header/menus are wired once per page load
 let liDevView = false;             // ?view=returning preview without an account
 
@@ -179,8 +179,11 @@ function filterTrailsForReturningView(list){
   if(liFilters.dist === 'u5') displayList = displayList.filter(x => x.distance < 5);
   else if(liFilters.dist === '5to10') displayList = displayList.filter(x => x.distance >= 5 && x.distance <= 10);
   else if(liFilters.dist === '10p') displayList = displayList.filter(x => x.distance > 10);
-  if(liFilters.terrain !== 'any') displayList = displayList.filter(x => String(x.terrainRank) === liFilters.terrain);
-  if(liFilters.shade === '40') displayList = displayList.filter(x => (x.shadeCoverage || 0) > 40);
+  if(liFilters.risk !== 'any') displayList = displayList.filter(x => x.safetyLevel === liFilters.risk);
+  if(liFilters.terrain === 'soft') displayList = displayList.filter(x => Number(x.terrainRank) <= 0);
+  else if(liFilters.terrain === 'mixed') displayList = displayList.filter(x => Number(x.terrainRank) <= 1);
+  else if(liFilters.terrain === 'rocky') displayList = displayList.filter(x => Number(x.terrainRank) <= 2);
+  if(liFilters.shade === '40') displayList = displayList.filter(x => (x.shadeCoverage || 0) >= 40);
   else if(liFilters.shade === '60') displayList = displayList.filter(x => (x.shadeCoverage || 0) >= 60);
   if(liFilters.minMatch > 0) displayList = displayList.filter(x => x.score >= liFilters.minMatch);
   if(liFilters.water) displayList = displayList.filter(x => Array.isArray(x.waterSources) && x.waterSources.length > 0);
@@ -1496,6 +1499,7 @@ function renderBreedInsight(profile){
 function liActiveFilterCount(){
   return [
     liFilters.dist !== 'any',
+    liFilters.risk !== 'any',
     liFilters.terrain !== 'any',
     liFilters.shade !== 'any',
     liFilters.minMatch > 0,
@@ -1508,7 +1512,7 @@ function liActiveFilterCount(){
 
 function liResetAllFilters(){
   liQuery = '';
-  liFilters = { dist: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false };
+  liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false };
   showingSavedOnly = false;
   activeValley = 'all';
   activeProvenance = 'all';
@@ -1672,8 +1676,11 @@ function renderLiControls(){
   seg('liDistSeg', [
     { label: 'Any', v: 'any' }, { label: 'Under 5 km', v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' },
   ], liFilters.dist, v => { liFilters.dist = v; });
+  seg('liRiskSeg', [
+    { label: 'Any', v: 'any' }, { label: 'Low risk', v: 'low-risk' }, { label: 'Moderate', v: 'moderate' }, { label: 'Caution', v: 'caution' },
+  ], liFilters.risk, v => { liFilters.risk = v; });
   seg('liTerrainSeg', [
-    { label: 'Any', v: 'any' }, { label: 'Paved', v: '0' }, { label: 'Gravel', v: '1' }, { label: 'Rocky', v: '2' },
+    { label: 'Any', v: 'any' }, { label: 'Gentle only', v: 'soft' }, { label: 'Up to mixed', v: 'mixed' }, { label: 'Rocky is okay', v: 'rocky' },
   ], liFilters.terrain, v => { liFilters.terrain = v; });
   seg('liShadeSeg', [
     { label: 'Any', v: 'any' }, { label: 'Over 40%', v: '40' }, { label: 'Over 60%', v: '60' },
@@ -1741,7 +1748,7 @@ function renderLiChips(){
   ];
 
   const DIST_OPTS = [['any','Any'], ['u5','Under 5 km'], ['5to10','5–10 km'], ['10p','10 km+']];
-  const TERRAIN_OPTS = [['any','Any'], ['0','Paved'], ['1','Gravel'], ['2','Rocky']];
+  const TERRAIN_OPTS = [['any','Any'], ['soft','Gentle only'], ['mixed','Up to mixed'], ['rocky','Rocky is okay']];
   const SHADE_OPTS = [['any','Any'], ['40','Over 40%'], ['60','Over 60%']];
   const label = (opts, v) => (opts.find(([k]) => k === v) || opts[0])[1];
 
