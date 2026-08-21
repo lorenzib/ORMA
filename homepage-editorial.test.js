@@ -87,4 +87,18 @@ describe('guest homepage editorial structure', () => {
     expect(css).toContain('@container (max-width:340px)');
     expect(css).toContain('.hp-featured .hp-ccard-match{align-self:flex-end;margin-left:0;}');
   });
+
+  test('keeps the method cards on the same three-column rhythm as featured trails', () => {
+    const css = read('homepage-editorial.css');
+    const js = read('homepage-search.js');
+
+    expect(css).toContain('.hp-how-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:16px;}');
+    expect(css).toContain('.hp-howcard{display:flex;flex-direction:column;width:100%;min-width:0;height:100%');
+    expect(css).toContain('.hp-howcard-media{position:relative;flex:0 0 178px;height:178px;');
+    expect(css).not.toContain('mix-blend-mode:soft-light');
+    expect(js).toContain('orma-how-assess-1920.jpg');
+    expect(js).toContain('orma-how-dog-1920.jpg');
+    expect(js).toContain('orma-how-match-1920.jpg');
+    expect(js).toContain('width="960" height="600"');
+  });
 });
