@@ -2562,15 +2562,25 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-toolbar-breed:hover{color:var(--accent);text-decoration-color:currentColor;}
 
 /* Navigation, profile prompt, and footer remain full-bleed. The desktop
-   search/map/results workspace keeps a clean 40px gutter on both sides. */
+   search/map/results workspace keeps a clean 24px gutter on both sides and
+   grows to use the available height before the footer. */
 @media (min-width:1041px){
   .li-toolbar-greet-copy strong{font-size:38px;line-height:1.08;}
+  .hp-prefooter--homepage-top .hp-prefooter-inner{padding-inline:24px;}
+  body[data-homepage-view="returning"]{min-height:100vh;background:var(--ink);}
+  body[data-homepage-view="returning"] #returningCustomerHomepage{background:var(--bg);}
   body[data-homepage-view="returning"] #returningCustomerHomepage > .li-toolbar,
   body[data-homepage-view="returning"] #returningCustomerHomepage > .li-body{
-    width:calc(100% - 80px);
+    width:calc(100% - 48px);
     margin-inline:auto;
   }
+  body[data-homepage-view="returning"] #returningCustomerHomepage > .li-toolbar{
+    padding-inline:40px;
+  }
   body[data-homepage-view="returning"] #returningCustomerHomepage > .li-body{
+    flex:none;
+    height:clamp(520px,58vh,720px);
+    min-height:520px;
     border-radius:0 0 18px 18px;
     overflow:hidden;
   }
