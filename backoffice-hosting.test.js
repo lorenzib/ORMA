@@ -136,6 +136,9 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(firebase.hosting.target).toBe('backoffice');
     expect(targets.dolopaws.hosting.backoffice).toEqual(['dolopaws-backoffice']);
     expect(workflow).toContain('deploy --only hosting:backoffice');
+    expect(workflow).toContain('- designer-desk.html');
+    expect(workflow).toContain('- designer-desk.js');
+    expect(workflow).toContain('- product-prototype.js');
   });
 
   test('scheduled worker records a durable start and always-run completion receipt',()=>{
