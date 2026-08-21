@@ -45,4 +45,14 @@ describe('guest homepage editorial structure', () => {
     expect(read('homepage-search.js')).not.toContain('announceCount');
     expect(read('homepage-search.js')).toContain('each published trail');
   });
+
+  test('wraps the featured match beneath the risk badge when a card narrows', () => {
+    const css = read('homepage-editorial.css');
+
+    expect(css).toContain('.hp-featured .hp-ccard-footer{flex-wrap:wrap;row-gap:10px;}');
+    expect(css).toContain('.hp-featured .hp-ccard-rating{min-width:max-content;}');
+    expect(css).toContain('.hp-featured .hp-ccard-match{margin-left:auto;}');
+    expect(css).toContain('@container (max-width:340px)');
+    expect(css).toContain('.hp-featured .hp-ccard-match{align-self:flex-end;margin-left:0;}');
+  });
 });
