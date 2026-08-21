@@ -41,7 +41,8 @@ describe('UX-01 canonical discovery integration', () => {
     expect(collections).not.toContain('browse-trails.html?collection=');
     expect(detail).toContain('id="collectionDetail"');
     expect(detail).toContain('collection-detail.js');
-    expect(homepage).toContain('href="collections.html" class="hp-coll-all"');
+    expect(homepage).toContain('catalogue.trailsFor(collection, trails)');
+    expect(homepage).toContain('href="browse-trails.html">Browse more');
     expect(search).toContain('href="collection.html?id=');
     expect(collections).not.toContain('clGrid');
     expect(collections).not.toContain('scoreTrail');

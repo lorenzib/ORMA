@@ -25,6 +25,16 @@ describe('guest homepage editorial structure', () => {
     expect(controller).toContain('– ORMA Team');
   });
 
+  test('rotates the weekly feature through the editorial Collections catalogue', () => {
+    const html = read('index.html');
+    const controller = read('homepage-search.js');
+
+    expect(html.indexOf('collections-data.js')).toBeLessThan(html.indexOf('homepage-search.js'));
+    expect(controller).toContain('DoloPawsCollections');
+    expect(controller).toContain('catalogue.trailsFor(collection, trails)');
+    expect(controller).not.toContain('var THEMES');
+  });
+
   test('keeps the mission quote inside the mission instead of a detached footer block', () => {
     expect(read('homepage-search.js')).toContain('class="hp-mission-quote"');
     expect(read('index.html')).not.toContain('class="wrap hp-quote"');

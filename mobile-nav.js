@@ -34,6 +34,19 @@
 
   installSkipLink();
 
+  // Retire the former full-width pre-footer promotion everywhere. Older
+  // cached builds inserted this block at runtime, so remove it defensively
+  // as well as no longer creating it in the current navigation shell.
+  function removeLegacyPrefooter(root){
+    if(!root) return;
+    if(root.matches && root.matches('.hp-prefooter')) root.remove();
+    if(root.querySelectorAll){
+      root.querySelectorAll('.hp-prefooter').forEach(element => element.remove());
+    }
+  }
+
+  removeLegacyPrefooter(document);
+
   function installAlpinePlantsFooterLink(){
     document.querySelectorAll('.hp-footer-links').forEach(group => {
       const breedLink = Array.from(group.querySelectorAll('a[href]'))
@@ -150,7 +163,10 @@
 
   secureBlankLinks(document);
   if(document.body && typeof MutationObserver !== 'undefined'){
-    new MutationObserver(records => records.forEach(record => record.addedNodes.forEach(secureBlankLinks)))
+    new MutationObserver(records => records.forEach(record => record.addedNodes.forEach(node => {
+      removeLegacyPrefooter(node);
+      secureBlankLinks(node);
+    })))
       .observe(document.body, { childList:true, subtree:true });
   }
 
@@ -165,6 +181,21 @@
   // signal there; pages with live auth re-render on `dolopaws-auth-changed`.
   const navEl = document.querySelector('.topnav');
   const linksEl = navEl && navEl.querySelector('.links');
+
+  // The guest context bar follows the sticky navigation. Its offset is
+  // measured rather than hard-coded so it remains correct when the header
+  // wraps on tablets or changes height after authentication.
+  function syncStickyNavOffset(){
+    if(!navEl) return;
+    const height = Math.ceil(navEl.getBoundingClientRect().height);
+    document.documentElement.style.setProperty('--topnav-sticky-offset', height + 'px');
+  }
+
+  syncStickyNavOffset();
+  window.addEventListener('resize', syncStickyNavOffset);
+  if(navEl && typeof ResizeObserver !== 'undefined'){
+    new ResizeObserver(syncStickyNavOffset).observe(navEl);
+  }
 
   function copy(key, fallback, vars){
     let value = typeof window.t === 'function' ? window.t(key, vars) : fallback;
