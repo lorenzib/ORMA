@@ -13,6 +13,8 @@ describe('Safety library', () => {
     expect(document.querySelectorAll('.sg-guide-card')).toHaveLength(8);
     expect(document.querySelectorAll('.sg-guide-card img')).toHaveLength(8);
     expect([...document.querySelectorAll('.sg-guide-card')].every(card => card.getAttribute('href'))).toBe(true);
+    expect(document.querySelectorAll('.sg-category')).toHaveLength(3);
+    expect(html).toMatch(/\.sg-library\{[^}]*grid-template-columns:repeat\(3/s);
   });
 
   test('keeps the safety header aligned with the shared page-header scale', () => {
@@ -34,7 +36,7 @@ describe('Safety library', () => {
 
   test('keeps a compact five-rule overview and prominent emergency reference', () => {
     const overview = document.querySelector('.sg-side');
-    expect(overview.nextElementSibling.classList.contains('sg-layout')).toBe(true);
+    expect(overview.previousElementSibling.classList.contains('sg-layout')).toBe(true);
     expect(document.querySelectorAll('.sg-rules li')).toHaveLength(5);
     expect(document.querySelector('#rulesHeading').textContent).toMatch(/The five mountain rules/i);
     expect(document.body.textContent).not.toMatch(/Every mountain day/i);
@@ -73,6 +75,9 @@ describe('Safety library', () => {
       'images/editorial/safety-library/dogs-at-rifugi.jpg'
     ]));
     expect(guideImages.every(image => image.getAttribute('alt').trim().length > 0)).toBe(true);
+    expect(guideImages.every(image => image.hasAttribute('width') && image.hasAttribute('height'))).toBe(true);
+    expect(guideImages.every(image => image.getAttribute('decoding') === 'async')).toBe(true);
+    expect(guideImages.every(image => !image.hasAttribute('loading'))).toBe(true);
     expect(document.body.textContent).toContain('Flowers, plants and dogs');
   });
 
