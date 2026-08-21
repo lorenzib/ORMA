@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="styles.css?v=20260821-5">
 <style>
 .sg-hero{padding-top:32px;padding-bottom:18px;}
+.sg-hero,.sg-wrap{max-width:1440px;padding-left:clamp(28px,4vw,52px);padding-right:clamp(28px,4vw,52px);}
 .sg-hero.section-page-head--actions{align-items:flex-start;}
 .safety-library-page .hp-prefooter{display:none!important;}
 .sg-kicker{display:block;margin-bottom:10px;color:var(--accent);font:700 10px/1.2 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;}
@@ -98,6 +99,8 @@
   .sg-rules li:nth-child(4){border-left:0;padding-left:0;}
 }
 @media(max-width:760px){
+  .sg-hero{padding-left:18px;padding-right:18px;}
+  .sg-wrap{padding-left:16px;padding-right:16px;}
   .sg-side{grid-template-columns:1fr;gap:12px;margin-top:28px;}
   .sg-emergency{order:-1;}
   .sg-rules ol{grid-template-columns:1fr 1fr;}
@@ -106,7 +109,8 @@
   .sg-disclaimer{white-space:normal;}
 }
 @media(max-width:620px){
-  .sg-hero{padding-top:30px;padding-bottom:24px;}
+  .sg-hero{padding:30px 18px 24px;}
+  .sg-wrap{padding-left:16px;padding-right:16px;}
   .sg-layout{gap:28px;}
   .sg-guide-card{grid-template-columns:88px minmax(0,1fr);gap:13px;padding:13px 0;}
   .sg-guide-card img{width:88px;height:66px;}
