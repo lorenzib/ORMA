@@ -26,14 +26,16 @@
      aligned to the same content grid. */
   .browse-design-head,.browse-design-wrap{max-width:1680px;padding-left:clamp(24px,3vw,44px);padding-right:clamp(24px,3vw,44px);}
   .browse-design-wrap{padding-top:6px;}
-  .browse-primary-controls{display:flex;align-items:flex-end;gap:18px;margin:10px 0 18px;flex-wrap:wrap;}
-  .browse-area-controls{display:flex;align-items:flex-end;gap:12px;flex:1 1 820px;min-width:0;}
-  .browse-geo-group{display:grid;gap:6px;min-width:180px;}
-  .browse-geo-group--valley{flex:1 1 260px;min-width:240px;}
-  .browse-geo-label{font:700 10.5px/1 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding-left:7px;}
+  .browse-primary-controls{margin:10px 0 18px;}
+  .browse-area-controls{display:flex;align-items:center;gap:9px;min-width:0;}
+  .browse-geo-group{display:block;flex:0 0 130px;width:130px;min-width:0;}
+  .browse-geo-group--valley{flex-basis:150px;width:150px;}
+  .browse-geo-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
   .browse-geo-group .area-select-shell{width:100%;}
-  .browse-primary-controls .browse-tools{flex:0 1 470px;min-width:0;margin:0;flex-wrap:nowrap;justify-content:flex-end;}
-  .browse-primary-controls .browse-search-shell{flex:0 1 320px;width:320px;max-width:320px;min-width:190px;}
+  .browse-geo-group .area-select-trigger{min-height:40px;padding:8px 10px 8px 12px;gap:6px;font-size:12.5px;}
+  .browse-geo-group .area-select-trigger__label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .browse-primary-controls .browse-tools{width:100%;min-width:0;margin:0;flex-wrap:nowrap;justify-content:flex-start;}
+  .browse-primary-controls .browse-search-shell{flex:1 1 240px;width:auto;max-width:none;min-width:220px;}
   .browse-primary-controls .browse-filter-divider{display:none;}
   .simple-grid{display:flex;flex-direction:column;gap:12px;}
   .simple-card{display:grid;grid-template-columns:120px minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:16px;row-gap:9px;align-items:center;padding:14px;background:var(--card);border:1px solid var(--paper-line);border-radius:var(--radius-panel);transition:box-shadow .2s,border-color .2s,transform .2s;}
@@ -77,6 +79,10 @@
   .browse-field--advanced{display:none;}
   .browse-water{min-height:38px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 13px 'Inter',sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap;}
   .browse-water[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
+  .browse-quick-filters{display:flex;align-items:center;gap:8px;}
+  .browse-quick-filter,.browse-saved-only{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:8px 13px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:var(--card);color:var(--ink);font:600 12.5px 'Inter',sans-serif;white-space:nowrap;cursor:pointer;}
+  .browse-quick-filter[aria-pressed="true"],.browse-saved-only[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;color:#24462E;font-weight:700;}
+  .browse-saved-count{display:inline-flex;align-items:center;justify-content:center;min-width:21px;height:21px;padding:0 6px;border-radius:999px;background:#EDF0E8;font-size:11px;}
   .browse-filter-controls{display:none!important;}
   .browse-filter-group{padding:2px 0 11px;}
   .browse-filter-group+.browse-filter-group{border-top:1px solid var(--divider);padding-top:12px;}
@@ -88,7 +94,7 @@
   @media(max-width:760px){
     .browse-design-head{padding-left:18px;padding-right:18px;}
     .browse-design-wrap{padding-left:16px;padding-right:16px;}
-    .browse-primary-controls{display:grid;grid-template-columns:1fr;gap:12px;margin-top:8px;}
+    .browse-primary-controls{margin-top:8px;}
     .browse-area-controls{display:grid;grid-template-columns:1fr;gap:10px;width:100%;min-width:0;}
     .browse-geo-group{width:100%;min-width:0;}
     .browse-primary-controls .browse-tools{width:100%;max-width:none;justify-content:stretch;}
@@ -97,6 +103,9 @@
        visible right under it — never hidden off-screen. */
     .browse-tools{flex-wrap:wrap;overflow-x:visible;padding-bottom:0;gap:9px;}
     .browse-primary-controls .browse-search-shell{flex:1 1 auto;width:auto;max-width:none;}
+    .browse-area-controls,.browse-quick-filters{flex:1 1 100%;}
+    .browse-quick-filters{overflow-x:auto;padding-bottom:2px;scrollbar-width:none;}
+    .browse-quick-filters::-webkit-scrollbar{display:none;}
     .browse-filter-divider{display:none;}
     .browse-filter-controls{flex:1 1 100%;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:9px;padding-bottom:3px;scrollbar-width:none;}
     .browse-filter-controls::-webkit-scrollbar{display:none;}
@@ -174,6 +183,11 @@
   <div id="browseCollections" hidden></div>
 
   <div class="browse-primary-controls">
+    <div class="browse-tools" id="browseTools" aria-label="Search and filter trails">
+    <label class="browse-search-shell">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      <input class="browse-search" id="browseSearch" type="search" placeholder="Search by trail, area or valley" aria-label="Search trails">
+    </label>
     <div class="browse-area-controls" aria-label="Choose trail area">
       <label class="browse-geo-group" for="browseCountrySelect">
         <span class="browse-geo-label">Country</span>
@@ -188,13 +202,10 @@
         <span class="area-select-shell"><select id="browseValleySelect" aria-label="Filter trails by valley"></select></span>
       </label>
     </div>
-
-    <div class="browse-tools" id="browseTools" aria-label="Filter trails">
-    <label class="browse-search-shell">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
-      <input class="browse-search" id="browseSearch" type="search" placeholder="Search by trail, area or valley" aria-label="Search trails">
-    </label>
-    <span class="browse-filter-divider" aria-hidden="true"></span>
+    <div class="browse-quick-filters" aria-label="Quick dog filters">
+      <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span aria-hidden="true">♧</span><span>High shade</span></button>
+      <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span aria-hidden="true">◉</span><span>Water</span></button>
+    </div>
     <div class="li-menuwrap" id="browseFiltersWrap">
       <button type="button" id="browseFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="browseFiltersMenu">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
@@ -218,16 +229,13 @@
           <div class="browse-filter-group__title">Terrain &amp; trail conditions</div>
           <div class="li-fsec">Terrain underfoot</div>
           <div class="li-seg" id="brTerrainSeg"></div>
-          <div class="li-frows">
-            <div class="li-frow">
-              <span class="li-frow-label">Water on route</span>
-              <button type="button" class="li-switch" id="brWaterToggle" role="switch" aria-checked="false" aria-label="Water on route"><span class="knob"></span></button>
-            </div>
-          </div>
         </div>
         <button type="button" class="li-apply" id="browseFiltersApply">Show trails</button>
       </div>
     </div>
+    <button type="button" id="browseSavedOnly" class="browse-saved-only" aria-pressed="false">
+      <span aria-hidden="true">♥</span><span>Saved</span><span class="browse-saved-count" id="browseSavedCount">0</span>
+    </button>
       <div class="browse-filter-controls" id="browseFilterControls" hidden>
       <label class="browse-field"><span>Distance</span>
         <select id="browseDistance" aria-label="Filter by distance">
@@ -250,7 +258,6 @@
           <option value="caution">Caution</option>
         </select>
       </label>
-      <button type="button" id="browseWater" class="browse-water" aria-pressed="false" data-audit-label="Water point listed">Water on route</button>
       <label class="browse-field browse-field--advanced"><span>Terrain tolerance</span>
         <select id="browseTerrain" aria-label="Filter by terrain tolerance">
           <option value="">Any terrain</option>
@@ -566,6 +573,9 @@
     const exposure = document.getElementById('browseExposure');
     const access = document.getElementById('browseAccess');
     const waterBtn = document.getElementById('browseWater');
+    const shadeBtn = document.getElementById('browseQuickShade');
+    const savedOnlyBtn = document.getElementById('browseSavedOnly');
+    const savedCount = document.getElementById('browseSavedCount');
     const filtersBtn = document.getElementById('browseFiltersBtn');
     const filtersCount = document.getElementById('browseFiltersCount');
     const toolsWrap = document.getElementById('browseTools');
@@ -585,6 +595,8 @@
     let difficultyValue = '';
     let minMatchValue = '';
     let dogValue = 'medium';
+    let savedOnly = false;
+    let currentFavorites = {};
 
     const SAFETY = {
       'low-risk': [window.t('legend.low'), '#E4EADF', '#2C5C34'],
@@ -780,7 +792,8 @@
     }
 
     function filteredTrails(){
-      return filterApi.filter(trails, currentFilterState(), filterOptions());
+      const filtered = filterApi.filter(trails, currentFilterState(), filterOptions());
+      return savedOnly ? filtered.filter(trail => currentFavorites[trail.id]) : filtered;
     }
 
     const COUNTRIES = [
@@ -799,11 +812,17 @@
       el.textContent = item.label + ' (' + count + ')';
       return el;
     }
+    function compactAreaTrigger(select){
+      const label = select && select.closest('.area-select-shell')?.querySelector('.area-select-trigger__label');
+      const selected = select && select.options[select.selectedIndex];
+      if(label && selected) label.textContent = selected.textContent.replace(/\s+\(\d+\)$/, '');
+    }
     function renderCountrySelect(){
       if(!countrySelect) return;
       countrySelect.replaceChildren(...COUNTRIES.map(item => option(item, trails.filter(item.match).length)));
       countrySelect.value = countryValue;
       countryDropdown.refresh();
+      compactAreaTrigger(countrySelect);
     }
     // Region remains a separate choice so the model scales when ORMA adds
     // more regions within a country.
@@ -820,6 +839,7 @@
       }));
       regionSelect.value = regionValue;
       regionDropdown.refresh();
+      compactAreaTrigger(regionSelect);
     }
     function valleyEntries(){
       const scoped = trails.filter(trail => {
@@ -844,14 +864,21 @@
       valleySelect.replaceChildren(...items);
       valleySelect.value = valleyValue;
       valleyDropdown.refresh();
+      compactAreaTrigger(valleySelect);
     }
 
     // Phone-width: rating / distance / water condense behind one Filters chip.
     function syncFiltersChip(){
       if(waterBtn) waterBtn.setAttribute('aria-pressed', String(waterOnly));
+      if(shadeBtn) shadeBtn.setAttribute('aria-pressed', String(heat.value === 'shade-60'));
+      if(savedOnlyBtn){
+        savedOnlyBtn.setAttribute('aria-pressed', String(savedOnly));
+        savedOnlyBtn.setAttribute('aria-label', savedOnly ? 'Show all trails' : 'Show saved trails only');
+      }
+      if(savedCount) savedCount.textContent = String(Object.keys(currentFavorites).length);
       if(!filtersBtn) return;
       const n = filterApi.active(currentFilterState())
-        .filter(item => !['search','country','region','valley','collection'].includes(item.key)).length;
+        .filter(item => !['search','country','region','valley','collection','water','heat'].includes(item.key)).length;
       if(filtersCount) filtersCount.textContent = n > 0 ? ' (' + n + ')' : '';
       filtersBtn.classList.toggle('on', n > 0);
     }
@@ -885,17 +912,7 @@
       brSeg('brMatchSeg', [
         { label:'Any', v:'' }, { label:'60%+', v:'60' }, { label:'75%+', v:'75' }, { label:'85%+', v:'85' },
       ], minMatchValue, v => { minMatchValue = v; });
-      const waterToggle = document.getElementById('brWaterToggle');
-      if(waterToggle){
-        waterToggle.classList.toggle('on', waterOnly);
-        waterToggle.setAttribute('aria-checked', String(waterOnly));
-      }
     }
-    const waterToggle = document.getElementById('brWaterToggle');
-    if(waterToggle) waterToggle.addEventListener('click', () => {
-      waterOnly = !waterOnly;
-      page = 1; renderPage('push'); buildFilterPanel();
-    });
     const filtersReset = document.getElementById('browseFiltersReset');
     if(filtersReset) filtersReset.addEventListener('click', () => {
       distance.value = 'all'; risk.value = 'all'; terrain.value = ''; heat.value = '';
@@ -966,7 +983,7 @@
       if(distance.value === '5') pool = pool.filter(trail => Number(trail.distance) < 5);
       if(distance.value === '10') pool = pool.filter(trail => Number(trail.distance) >= 5);
       const activeFilters = filterApi.active(currentFilterState());
-      const hasFilters = activeFilters.length > 0;
+      const hasFilters = activeFilters.length > 0 || savedOnly;
       if(filtersApply) filtersApply.textContent = `Show ${pool.length} ${pool.length === 1 ? 'trail' : 'trails'}`;
       let profilePresent = false;
       try{ profilePresent = !!JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); }
@@ -996,7 +1013,13 @@
         : '';
       let recovery = null;
       let emptyHtml = '';
-      if(!pageTrails.length){
+      if(!pageTrails.length && savedOnly){
+        emptyHtml = '<div class="browse-empty empty-state">' +
+          '<div class="empty-state__icon" aria-hidden="true">' + emptyIcon + '</div>' +
+          '<p class="empty-state__title">No saved trails match these choices</p>' +
+          '<p class="empty-state__copy">Turn off Saved or adjust the visible filters to return to the full trail catalogue.</p>' +
+          '<div class="browse-recovery"><button type="button" data-show-all>Show all trails</button></div></div>';
+      } else if(!pageTrails.length){
         recovery = filterApi.diagnoseZero(trails, currentFilterState(), filterOptions());
         const chips = activeFilters.map(item =>
           `<span class="browse-empty__filter">${esc(item.label)}</span>`
@@ -1077,6 +1100,8 @@
 
       const emptyClear = list.querySelector('[data-clear-empty]');
       if(emptyClear) emptyClear.addEventListener('click', () => clear.click());
+      const showAll = list.querySelector('[data-show-all]');
+      if(showAll) showAll.addEventListener('click', () => { savedOnly = false; page = 1; renderPage(null); });
       list.querySelectorAll('[data-compare-id]').forEach(button => {
         button.addEventListener('click', () => {
           compareIds = compareApi.toggle(compareIds, button.dataset.compareId);
@@ -1174,6 +1199,20 @@
       page = 1;
       renderPage('push');
     });
+    if(shadeBtn) shadeBtn.addEventListener('click', () => {
+      heat.value = heat.value === 'shade-60' ? '' : 'shade-60';
+      page = 1;
+      renderPage('push');
+    });
+    if(savedOnlyBtn) savedOnlyBtn.addEventListener('click', () => {
+      if(!window.DoloPawsAuth || !window.DoloPawsAuth.currentUser){
+        window.location.href = 'saved.html';
+        return;
+      }
+      savedOnly = !savedOnly;
+      page = 1;
+      renderPage(null);
+    });
     clear.addEventListener('click', () => {
       search.value = '';
       risk.value = distance.value = 'all';
@@ -1189,6 +1228,7 @@
       exposure.value = '';
       access.value = '';
       minMatchValue = '';
+      savedOnly = false;
       page = 1;
       renderPage('push');
       search.focus();
@@ -1199,7 +1239,19 @@
       renderPage(null);
     });
 
+    async function loadSavedTrails(){
+      if(!window.DoloPawsAuth || !window.DoloPawsAuth.currentUser){
+        currentFavorites = {};
+      } else {
+        try { currentFavorites = await window.DoloPawsAuth.getFavorites() || {}; }
+        catch(error){ currentFavorites = {}; }
+      }
+      renderPage(null);
+    }
+    window.addEventListener('dolopaws-auth-ready', loadSavedTrails, { once:true });
+    window.addEventListener('dolopaws-auth-changed', loadSavedTrails);
     renderPage('replace');
+    if(window.DoloPawsAuth) loadSavedTrails();
   });
 </script>
 </body>

@@ -104,6 +104,26 @@ describe('Browse filter UI', () => {
     expect(window.document.querySelector('.simple-card')).not.toBeNull();
   });
 
+  test('exposes valley, high shade, water and saved beside search', () => {
+    const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites');
+    const tools = window.document.getElementById('browseTools');
+    const filters = window.document.getElementById('browseFiltersMenu');
+
+    expect(tools.querySelector('#browseValleySelect')).not.toBeNull();
+    expect(tools.querySelector('#browseQuickShade')).not.toBeNull();
+    expect(tools.querySelector('#browseWater')).not.toBeNull();
+    expect(tools.querySelector('#browseSavedOnly')).not.toBeNull();
+    expect(filters.querySelector('#brWaterToggle')).toBeNull();
+
+    window.document.getElementById('browseQuickShade').click();
+    expect(window.location.search).toContain('heat=shade-60');
+    expect(window.document.getElementById('browseQuickShade').getAttribute('aria-pressed')).toBe('true');
+
+    window.document.getElementById('browseWater').click();
+    expect(window.location.search).toContain('water=1');
+    expect(window.document.getElementById('browseWater').getAttribute('aria-pressed')).toBe('true');
+  });
+
   test('retires source-review filtering and strips its legacy URL state', () => {
     const window = setup(
       'https://www.app-orma.com/browse-trails.html?verification=route-audited'

@@ -27,7 +27,7 @@ describe('shared trail-filter experience', () => {
     expect(read('script.js')).toContain(label);
   });
 
-  test('keeps water visible once in each discovery context', () => {
+  test('keeps shade and water visible outside the expanded filters', () => {
     const homepage = read('index.html');
     const browse = read('browse-trails.html');
 
@@ -41,7 +41,10 @@ describe('shared trail-filter experience', () => {
     expect(homepage).not.toContain('id="hpShadeSeg"');
     expect(browse).not.toContain('id="brShadeSeg"');
     expect(homepage).toContain('id="hpWaterToggle" role="switch"');
-    expect(browse).toContain('id="brWaterToggle" role="switch"');
+    expect(browse).not.toContain('id="brWaterToggle"');
+    expect(browse).toContain('id="browseQuickShade"');
+    expect(browse).toContain('id="browseWater"');
+    expect(browse).toContain('id="browseSavedOnly"');
     expect(homepage).toContain('id="liQuickWater"');
     expect(homepage).not.toContain('id="liToggleRows"');
   });
