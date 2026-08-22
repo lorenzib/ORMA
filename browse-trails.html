@@ -24,6 +24,7 @@
   .browse-compare-note em{font-style:normal;font-weight:700;}
   /* Keep the browse-page introduction and discovery controls compact and
      aligned to the same content grid. */
+  .browse-design-head,.browse-design-wrap{max-width:1680px;padding-left:clamp(24px,3vw,44px);padding-right:clamp(24px,3vw,44px);}
   .browse-design-wrap{padding-top:6px;}
   .browse-primary-controls{display:flex;align-items:flex-end;gap:18px;margin:10px 0 18px;flex-wrap:wrap;}
   .browse-area-controls{display:flex;align-items:flex-end;gap:12px;flex:1 1 820px;min-width:0;}
@@ -85,6 +86,8 @@
   @media(max-width:700px){#browseFiltersMenu{position:fixed;top:auto;left:8px;right:8px;width:auto;max-height:70vh;}}
   .browse-results-meta .browse-result-accessible{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
   @media(max-width:760px){
+    .browse-design-head{padding-left:18px;padding-right:18px;}
+    .browse-design-wrap{padding-left:16px;padding-right:16px;}
     .browse-primary-controls{display:grid;grid-template-columns:1fr;gap:12px;margin-top:8px;}
     .browse-area-controls{display:grid;grid-template-columns:1fr;gap:10px;width:100%;min-width:0;}
     .browse-geo-group{width:100%;min-width:0;}
@@ -274,12 +277,6 @@
         <select id="browseAccess" aria-label="Filter by reviewed dog access">
           <option value="">Any dog-access status</option>
           <option value="allowed-reviewed">Dogs permitted</option>
-        </select>
-      </label>
-      <label class="browse-field browse-field--advanced"><span>Trail information</span>
-        <select id="browseVerification" aria-label="Filter by ORMA verification">
-          <option value="">All trails</option>
-          <option value="route-audited">Verified by ORMA</option>
         </select>
       </label>
       </div>
@@ -519,7 +516,7 @@
 </footer>
 
 <script src="mobile-nav.js?v=20260821-3"></script>
-<script src="i18n.js?v=20260815-4"></script>
+<script src="i18n.js?v=20260822-1"></script>
 <script src="trust/evidence-v1.js?v=20260815-4"></script>
 <script src="trail-trust.js?v=20260819-5"></script>
 <script src="scoring/recommendation-v1.js?v=20260815-4"></script>
@@ -536,8 +533,8 @@
 <script src="metric-funnel.js?v=20260815-4" defer></script>
 <script src="guest-context.js?v=20260815-4" defer></script>
 <script src="auth-ui.js?v=20260821-1" defer></script>
-<script src="discovery-state.js?v=20260821-2" defer></script>
-<script src="discovery-filters.js?v=20260821-2" defer></script>
+<script src="discovery-state.js?v=20260822-1" defer></script>
+<script src="discovery-filters.js?v=20260822-1" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>
 <script src="area-dropdown.js?v=20260821-1"></script>
 <script>
@@ -568,7 +565,6 @@
     const heat = document.getElementById('browseHeat');
     const exposure = document.getElementById('browseExposure');
     const access = document.getElementById('browseAccess');
-    const verification = document.getElementById('browseVerification');
     const waterBtn = document.getElementById('browseWater');
     const filtersBtn = document.getElementById('browseFiltersBtn');
     const filtersCount = document.getElementById('browseFiltersCount');
@@ -659,7 +655,6 @@
       heat.value = canonical.heat || (canonical.shade ? 'shade-reviewed' : '');
       exposure.value = canonical.exposure || '';
       access.value = canonical.access || '';
-      verification.value = canonical.verification || '';
       minMatchValue = canonical.minMatch || '';
       dogValue = canonical.dog || 'medium';
       page = canonical.page || 1;
@@ -681,7 +676,6 @@
         heat: heat.value,
         exposure: exposure.value,
         access: access.value,
-        verification: verification.value,
         minMatch: minMatchValue,
         dog: dogValue,
         page,
@@ -770,7 +764,6 @@
         heat: heat.value,
         exposure: exposure.value,
         access: access.value,
-        verification: verification.value,
         minMatch: minMatchValue,
         dog: dogValue,
         page,
@@ -906,7 +899,7 @@
     const filtersReset = document.getElementById('browseFiltersReset');
     if(filtersReset) filtersReset.addEventListener('click', () => {
       distance.value = 'all'; risk.value = 'all'; terrain.value = ''; heat.value = '';
-      exposure.value = ''; access.value = ''; verification.value = '';
+      exposure.value = ''; access.value = '';
       minMatchValue = ''; waterOnly = false;
       page = 1; renderPage('push'); buildFilterPanel();
     });
@@ -1148,7 +1141,7 @@
       }
     }
 
-    [search, risk, distance, terrain, heat, exposure, access, verification].forEach(control => {
+    [search, risk, distance, terrain, heat, exposure, access].forEach(control => {
       control.addEventListener(control === search ? 'input' : 'change', () => {
         page = 1;
         renderPage(control === search ? 'replace' : 'push');
@@ -1195,7 +1188,6 @@
       heat.value = '';
       exposure.value = '';
       access.value = '';
-      verification.value = '';
       minMatchValue = '';
       page = 1;
       renderPage('push');
