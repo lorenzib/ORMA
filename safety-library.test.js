@@ -37,7 +37,7 @@ describe('Safety library', () => {
     expect(html).not.toContain('Your next walk');
     expect(html).toMatch(/\.safety-library-page \.hp-prefooter\{[^}]*display:none!important/s);
     expect(html).not.toMatch(/\.sg-disclaimer\{[^}]*border-top:/s);
-    expect(html).toMatch(/\.sg-disclaimer\{[^}]*font-size:10\.5px;[^}]*white-space:nowrap/s);
+    expect(html).toMatch(/\.sg-disclaimer\{[^}]*font-size:12\.5px;[^}]*white-space:nowrap/s);
   });
 
   test('keeps a compact five-rule overview and prominent emergency reference', () => {
@@ -76,7 +76,7 @@ describe('Safety library', () => {
       'images/editorial/safety-library/breed-group-considerations-v1.jpg',
       'images/editorial/safety-library/dogs-on-cable-cars-v1.jpg',
       'images/editorial/safety-library/heat-hydration-v1.jpg',
-      'images/editorial/safety-library/paw-protection-v2.jpg',
+      'images/editorial/safety-library/paw-protection-forest-v1.jpg',
       'images/editorial/safety-library/flowers-plants-dogs.jpg',
       'images/editorial/safety-library/livestock-guardian-dogs-v1.jpg',
       'images/editorial/safety-library/dogs-at-rifugi.jpg'
