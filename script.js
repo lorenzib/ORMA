@@ -148,12 +148,11 @@ let activeRegion = (() => {
   } catch(e) { return 'dolomites'; }
 })();
 let activeValley = 'all';
-let activeProvenance = 'all';      // 'all' | 'verified' | 'imported'
 let sortKey = 'match';             // 'match' | 'distance' | 'effort' — Companion sort control
 let selectedTrailId = null;        // map pin / card selection (Companion layout)
 
 // Logged-in shell (map + list app layout) — header search + filter panel state.
-// These sit on top of the region/valley/provenance filters above.
+// These sit on top of the region/valley filters above.
 let liQuery = '';                  // header search box
 // Filter semantics follow the design's chip options (AppShell FilterBar):
 // dist 'any'|'u5'|'5to10'|'10p' · risk 'any'|'low-risk'|'moderate'|'caution'
@@ -166,8 +165,6 @@ function filterTrailsForReturningView(list){
   let displayList = showingSavedOnly ? list.filter(x => currentFavorites[x.id]) : list;
   displayList = displayList.filter(x => x.region === activeRegion);
   if(activeValley !== 'all') displayList = displayList.filter(x => x.valley === activeValley);
-  if(activeProvenance === 'verified') displayList = displayList.filter(x => x.curated !== false);
-  if(activeProvenance === 'imported') displayList = displayList.filter(x => x.curated === false);
 
   // Logged-in shell: header search + filter-panel refinements. All of these
   // read real trail fields; items arrive already scored (t.score).
@@ -1217,32 +1214,6 @@ async function activateReturningRegion(region, profile){
   }
 }
 
-function renderAreaFilters(profile){
-  const row = document.getElementById('areaFilterRow');
-  if(!row || typeof trails === 'undefined') return;
-  if(window.DoloPawsRegions) window.DoloPawsRegions.assign(trails);
-
-  row.innerHTML = `
-    <div class="companion-filter-label">Source</div>
-    <div class="prov-toggle" style="width:100%;">
-      ${(() => {
-        const inRegion = trails.filter(x => x.region === activeRegion);
-        const nVerified = inRegion.filter(x => x.curated !== false).length;
-        const counts = { all: inRegion.length, verified: nVerified, imported: inRegion.length - nVerified };
-        return [['all', t('filter.all')],['verified', t('filter.verified')],['imported', t('filter.imported')]].map(([k, label]) => `
-        <div class="prov-opt ${k === activeProvenance ? 'active' : ''}" data-prov="${k}" style="flex:1;text-align:center;">${label} <span class="count">${counts[k]}</span></div>`).join('');
-      })()}
-    </div>
-  `;
-  row.querySelectorAll('[data-prov]').forEach(opt => {
-    opt.addEventListener('click', () => {
-      activeProvenance = opt.dataset.prov;
-      renderReturningHomepage(profile);
-      setCompanionPanelOpen(false);
-    });
-  });
-}
-
 // Country is intentionally separate from Region: people often know the
 // country before they know the local mountain area. Selecting one loads its
 // current region now, while the model remains ready for more regions later.
@@ -1518,7 +1489,6 @@ function liActiveFilterCount(){
     liFilters.water,
     showingSavedOnly,
     activeValley !== 'all',
-    activeProvenance !== 'all',
   ].filter(Boolean).length;
 }
 
@@ -1527,7 +1497,6 @@ function liResetAllFilters(){
   liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false };
   showingSavedOnly = false;
   activeValley = 'all';
-  activeProvenance = 'all';
   const search = document.getElementById('liSearch');
   if(search) search.value = '';
   renderReturningHomepage(currentProfileForAdjust);
@@ -2210,7 +2179,6 @@ async function renderReturningHomepage(profile){
   const listEl = document.getElementById('returningTrailList');
   if(!heading || typeof trails === 'undefined') return;
 
-  renderAreaFilters(profile);
   renderLiCountryControl(profile);
   renderLiRegionControl(profile);
   renderLiValleyControl(profile);
@@ -2292,7 +2260,7 @@ async function renderReturningHomepage(profile){
   updateMapMarkers(displayList);
 
   // Reset to page 1 whenever the filters change; clamp if the list shrank.
-  const filterKey = `${activeRegion}|${activeValley}|${activeProvenance}|${showingSavedOnly}|${liQuery}|${JSON.stringify(liFilters)}|${sortKey}`;
+  const filterKey = `${activeRegion}|${activeValley}|${showingSavedOnly}|${liQuery}|${JSON.stringify(liFilters)}|${sortKey}`;
   if (filterKey !== lastFilterKey){ currentPage = 1; lastFilterKey = filterKey; }
   const collapsed = !showFullList && !showingSavedOnly && displayList.length > TOP_MATCHES + 2;
   const totalPages = collapsed ? 1 : Math.max(1, Math.ceil(displayList.length / TRAILS_PER_PAGE));

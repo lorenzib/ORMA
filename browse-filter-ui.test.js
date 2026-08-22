@@ -92,16 +92,25 @@ describe('Browse filter UI', () => {
     expect(window.document.querySelector('.simple-card')).not.toBeNull();
   });
 
-  test('reviewed dog-safety controls restore from canonical URL state', () => {
+  test('dog-safety controls restore from canonical URL state', () => {
     const window = setup(
-      'https://www.app-orma.com/browse-trails.html?water=1&heat=shade-reviewed&exposure=none-reviewed&access=allowed-reviewed&verification=route-audited'
+      'https://www.app-orma.com/browse-trails.html?water=1&heat=shade-reviewed&exposure=none-reviewed&access=allowed-reviewed'
     );
 
     expect(window.document.getElementById('browseWater').getAttribute('aria-pressed')).toBe('true');
     expect(window.document.getElementById('browseHeat').value).toBe('shade-reviewed');
     expect(window.document.getElementById('browseExposure').value).toBe('none-reviewed');
     expect(window.document.getElementById('browseAccess').value).toBe('allowed-reviewed');
-    expect(window.document.getElementById('browseVerification').value).toBe('route-audited');
+    expect(window.document.querySelector('.simple-card')).not.toBeNull();
+  });
+
+  test('retires source-review filtering and strips its legacy URL state', () => {
+    const window = setup(
+      'https://www.app-orma.com/browse-trails.html?verification=route-audited'
+    );
+
+    expect(window.document.getElementById('browseVerification')).toBeNull();
+    expect(window.location.search).not.toContain('verification=');
     expect(window.document.querySelector('.simple-card')).not.toBeNull();
   });
 

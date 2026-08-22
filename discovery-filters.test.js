@@ -46,7 +46,6 @@ describe('dog-specific discovery filters', () => {
       heat:'shade-reviewed',
       exposure:'none-reviewed',
       access:'allowed-reviewed',
-      verification:'route-audited',
     })).toBe(true);
   });
 

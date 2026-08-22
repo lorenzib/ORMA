@@ -25,7 +25,7 @@ describe('UX-01 canonical discovery integration', () => {
     expect(browse).toContain('id="browseHeat"');
     expect(browse).toContain('id="browseExposure"');
     expect(browse).toContain('id="browseAccess"');
-    expect(browse).toContain('id="browseVerification"');
+    expect(browse).not.toContain('id="browseVerification"');
     expect(browse).toContain('Water point listed');
     expect(browse).toContain('diagnoseZero(trails, currentFilterState(), filterOptions())');
   });

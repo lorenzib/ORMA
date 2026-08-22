@@ -17,7 +17,6 @@
     heat: ['shade-reviewed', 'shade-40', 'shade-60', 'low-reviewed'],
     exposure: ['none-reviewed'],
     access: ['allowed-reviewed', 'leash-ok-reviewed'],
-    verification: ['route-audited', 'field-verified'],
     minMatch: ['60', '75', '85'],
   });
 
@@ -51,7 +50,6 @@
       heat: allowed('heat', read(source, 'heat')),
       exposure: allowed('exposure', read(source, 'exposure')),
       access: allowed('access', read(source, 'access')),
-      verification: allowed('verification', read(source, 'verification')),
       shade: read(source, 'shade') === '1' || read(source, 'shade') === true,
       minMatch: allowed('minMatch', String(read(source, 'minMatch') || '')),
       page: Math.max(1, Number.parseInt(read(source, 'page'), 10) || 1),
@@ -75,7 +73,6 @@
     if(state.heat) params.set('heat', state.heat);
     if(state.exposure) params.set('exposure', state.exposure);
     if(state.access) params.set('access', state.access);
-    if(state.verification) params.set('verification', state.verification);
     if(state.shade) params.set('shade', '1');
     if(state.minMatch) params.set('minMatch', state.minMatch);
     if(state.page > 1) params.set('page', String(state.page));
@@ -96,7 +93,7 @@
     const state = normalize(source);
     return Boolean(state.search || state.country || state.region || state.valley || state.risk || state.distance ||
       state.water || state.collection || state.difficulty || state.terrain ||
-      state.heat || state.exposure || state.access || state.verification ||
+      state.heat || state.exposure || state.access ||
       state.shade || state.minMatch);
   }
 

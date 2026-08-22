@@ -19,9 +19,6 @@ function tForTests(key, params = {}){
   if(key === 'home.noSaved') return 'No saved trails';
   if(key === 'home.noSavedValley') return `No saved trails in ${params.label}`;
   if(key === 'home.noTrailsValley') return `No trails in ${params.label}`;
-  if(key === 'filter.all') return 'All';
-  if(key === 'filter.verified') return 'Verified';
-  if(key === 'filter.imported') return 'Imported';
   if(key === 'safety.low') return 'Low';
   if(key === 'safety.moderate') return 'Moderate';
   if(key === 'safety.caution') return 'Caution';
@@ -44,7 +41,6 @@ function tForTests(key, params = {}){
 
 function loadHomepageContext(testTrails){
   document.body.innerHTML = `
-    <div id="areaFilterRow"></div>
     <button id="liRegionBtn"></button>
     <span id="liRegionLabel"></span>
     <div id="liRegionMenu"></div>
@@ -129,17 +125,14 @@ describe('returning homepage region + valley filters', () => {
     { id: 'pri', name: 'Primiero Trail', region: 'dolomites', valley: 'Primiero – Pale', area: 'San Martino', lat: 46.26, lng: 11.80, curated: true, distance: 7, elevation: 400, hours: 3.5, terrainType: 'Rocky', safetyLevel: 'moderate' },
   ];
 
-  test('keeps provenance in Filters without duplicating the valley control', () => {
-    const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "savoy"; activeValley = "all";', context);
-    vm.runInContext('renderAreaFilters(null);', context);
+  test('does not expose source review status as a user filter', () => {
+    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    const html = fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8');
 
-    const row = document.getElementById('areaFilterRow');
-    expect(row.innerHTML).toContain('data-prov="verified"');
-    expect(row.innerHTML).not.toContain('data-valley');
-    expect(row.innerHTML).not.toContain('Maurienne');
-    expect(row.innerHTML).not.toContain('data-province');
-    expect(row.innerHTML).not.toContain('province-pills');
+    expect(script).not.toContain('activeProvenance');
+    expect(script).not.toContain('data-prov');
+    expect(html).not.toContain('id="areaFilterRow"');
+    expect(html).not.toContain('Under review');
   });
 
   test('renders country choices from regional metadata', () => {
@@ -215,31 +208,18 @@ describe('returning homepage region + valley filters', () => {
 
   test('result list reflects region filter', async () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "savoy"; activeValley = "all"; activeProvenance = "all"; showingSavedOnly = false;', context);
+    vm.runInContext('activeRegion = "savoy"; activeValley = "all"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
   });
 
   test('result list reflects valley filter', async () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "savoy"; activeValley = "Maurienne"; activeProvenance = "all"; showingSavedOnly = false;', context);
+    vm.runInContext('activeRegion = "savoy"; activeValley = "Maurienne"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
   });
 
-  test('provenance filter shows only verified trails', async () => {
-    const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "savoy"; activeValley = "all"; activeProvenance = "verified"; showingSavedOnly = false;', context);
-    await vm.runInContext('renderReturningHomepage(null);', context);
-    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
-  });
-
-  test('provenance filter shows only imported trails', async () => {
-    const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "savoy"; activeValley = "all"; activeProvenance = "imported"; showingSavedOnly = false;', context);
-    await vm.runInContext('renderReturningHomepage(null);', context);
-    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
-  });
 });
 
 describe('map-first returning homepage layout contract', () => {
