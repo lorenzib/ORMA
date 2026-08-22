@@ -116,7 +116,7 @@ describe('guest homepage editorial structure', () => {
     expect(css).toContain('.hp-howcard-media{position:relative;flex:0 0 178px;height:178px;');
     expect(css).not.toContain('mix-blend-mode:soft-light');
     expect(js).toContain('orma-how-assess-1920.jpg');
-    expect(js).toContain('orma-how-dog-1920.jpg');
+    expect(js).toContain('orma-how-add-dog-1920.jpg');
     expect(js).toContain('orma-how-match-1920.jpg');
     expect(js).toContain('width="960" height="600"');
     expect(js).toContain('How trail evidence becomes practical guidance for your dog');
