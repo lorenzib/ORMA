@@ -31,6 +31,16 @@ describe('paw protection field guide redesign', () => {
     ]);
   });
 
+  test('uses compact desktop grids without compromising the mobile stack', () => {
+    expect(html).toContain('.paw-hero-image{display:block;width:100%;height:390px;');
+    expect(html).toContain('.paw-checker{display:grid;grid-template-columns:');
+    expect(html).toContain('.paw-check-items{display:grid;grid-template-columns:repeat(2');
+    expect(html).toContain('.paw-boots{display:grid;grid-template-columns:repeat(2');
+    expect(html).toContain('.paw-checker{display:block;margin:22px auto 6px;}');
+    expect(html).toContain('.paw-check-items{grid-template-columns:1fr;}');
+    expect(html).toContain('.paw-option span{width:100%;min-height:44px;box-sizing:border-box;}');
+  });
+
   test('keeps the medical thresholds and collapsed references', () => {
     const firstAid = document.getElementById('call-vet').textContent;
     expect(firstAid).toMatch(/10 to 15 minutes of steady pressure/i);
