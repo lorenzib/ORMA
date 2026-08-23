@@ -32,15 +32,32 @@
 </header>
 
 <main class="collections-wrap section-page-wrap">
-  <section class="collection-area-filters" aria-label="Filter collections by area">
-    <label class="collection-area-filter" for="collectionCountrySelect">
-      <span class="collection-area-filter__label">Country</span>
-      <span class="area-select-shell"><select id="collectionCountrySelect" aria-label="Filter collections by country"></select></span>
+  <section class="collection-discovery" aria-label="Search and filter collections">
+    <label class="collection-search">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      <input id="collectionSearch" type="search" placeholder="Search collections" aria-label="Search collections">
     </label>
-    <label class="collection-area-filter" for="collectionRegionSelect">
-      <span class="collection-area-filter__label">Region</span>
-      <span class="area-select-shell"><select id="collectionRegionSelect" aria-label="Filter collections by region"></select></span>
-    </label>
+    <div class="collection-filter-menu">
+      <button id="collectionAreaButton" class="collection-filter-button" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="collectionAreaMenu"><span class="collection-filter-kicker">Area</span><span id="collectionAreaSummary">All areas</span><span aria-hidden="true">▾</span></button>
+      <div id="collectionAreaMenu" class="collection-filter-popover collection-area-menu" hidden>
+        <div class="collection-filter-heading">Choose an area</div>
+        <div class="collection-area-filters">
+          <label class="collection-area-filter" for="collectionCountrySelect"><span class="collection-area-filter__label">Country</span><span class="area-select-shell"><select id="collectionCountrySelect" aria-label="Filter collections by country"></select></span></label>
+          <label class="collection-area-filter" for="collectionRegionSelect"><span class="collection-area-filter__label">Region</span><span class="area-select-shell"><select id="collectionRegionSelect" aria-label="Filter collections by region"></select></span></label>
+        </div>
+      </div>
+    </div>
+    <div class="collection-filter-menu">
+      <button id="collectionThemesButton" class="collection-filter-button" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="collectionThemesMenu"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"></path></svg><span>Themes</span><span id="collectionThemesCount" class="collection-filter-count" hidden>0</span><span aria-hidden="true">▾</span></button>
+      <div id="collectionThemesMenu" class="collection-filter-popover collection-themes-menu" hidden>
+        <div class="collection-filter-heading"><span>Themes</span><button id="collectionThemesReset" type="button">Reset all</button></div>
+        <div class="collection-theme-choices" aria-label="Collection themes">
+          <button type="button" data-collection-theme="gentle" aria-pressed="false">Gentle walks</button>
+          <button type="button" data-collection-theme="summer" aria-pressed="false">Summer</button>
+          <button type="button" data-collection-theme="scenic" aria-pressed="false">Scenic</button>
+        </div>
+      </div>
+    </div>
   </section>
   <div class="collection-results-meta"><span id="collectionResultCount" aria-live="polite"></span><button id="collectionFiltersClear" type="button" hidden>Clear area filters</button></div>
   <section id="collectionsGrid" class="collections-grid" aria-label="Trail collections" aria-live="polite"></section>
