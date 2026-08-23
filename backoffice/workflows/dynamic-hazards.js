@@ -89,6 +89,7 @@ function publicWarning(alert, trails, at){
 
 function reconcileHazards(previous = [], observations = [], sourceResults = [], trails = [], options = {}){
   const at = options.at || new Date().toISOString();
+  const expiryReviewMessage = 'The source warning has expired; ORMA is keeping this notice visible until a human confirms removal.';
   const successful = new Set(sourceResults.filter(source => source.ok).map(source => source.key));
   const failed = new Map(sourceResults.filter(source => !source.ok).map(source => [source.key, source.error || 'Source unavailable']));
   const observed = new Map();
@@ -112,7 +113,7 @@ function reconcileHazards(previous = [], observations = [], sourceResults = [], 
         return;
       }
       next.push({ ...old, state: 'resolution-review', resolutionDetectedAt: old.resolutionDetectedAt || at, lastCheckedAt: at,
-        message: `${old.message} The source warning has expired; ORMA is keeping this notice visible until a human confirms removal.` });
+        message: old.message.includes(expiryReviewMessage) ? old.message : `${old.message} ${expiryReviewMessage}` });
     }else next.push({ ...old, lastCheckedAt: at });
   });
   next.push(...observed.values());
