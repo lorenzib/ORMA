@@ -2239,18 +2239,16 @@ body.map-fs-open{overflow:hidden;}
 .hp-menu-scrim{position:fixed;inset:0;z-index:20;}
 .hp-menu-scrim[hidden]{display:none;}
 
-/* --- focused pre-footer action + compact site navigation --- */
-.hp-prefooter{background:linear-gradient(135deg,#E5EDE2 0%,#EEF3EB 100%);border-top:1px solid rgba(47,73,56,.08);color:var(--ink);}
-.hp-prefooter--homepage-top{border-top:0;border-bottom:1px solid rgba(47,73,56,.08);}
-.hp-prefooter-inner{width:100%;max-width:none;margin:0;padding:16px max(40px,calc((100% - 1240px)/2));display:flex;align-items:center;justify-content:space-between;gap:16px;}
-.hp-prefooter-copy{display:grid;grid-template-columns:auto 1fr;column-gap:10px;row-gap:3px;align-items:center;max-width:none;}
-.hp-prefooter-kicker{grid-column:1/-1;margin:0;color:var(--ink-soft);font:700 10.5px/1.45 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;}
-.hp-prefooter h2{margin:0;color:var(--ink);font:700 20px/1.2 'Bricolage Grotesque',sans-serif;}
-.hp-prefooter-copy>p:last-child{margin:0;color:var(--ink-soft);font-size:13px;line-height:1.45;}
-.hp-prefooter-actions{display:flex;align-items:center;gap:10px;flex:none;}
-.hp-prefooter-action{min-height:42px;padding:0 18px;border:1px solid var(--ink);border-radius:12px;display:inline-flex;align-items:center;justify-content:center;color:var(--ink);background:transparent;text-decoration:none;font:700 13.5px 'Inter',sans-serif;transition:transform .15s ease,background-color .15s ease,color .15s ease;}
-.hp-prefooter-action:hover{transform:translateY(-1px);}
-.hp-prefooter-action.is-primary{background:var(--ink);color:#fff;}
+/* --- shared dog-profile prompt directly below the site navigation --- */
+.dog-profile-banner{width:100%;box-sizing:border-box;background:linear-gradient(135deg,#E5EDE2 0%,#EEF3EB 100%);border-bottom:1px solid rgba(47,73,56,.08);color:var(--ink);}
+.dog-profile-banner[hidden]{display:none!important;}
+.dog-profile-banner__inner{width:100%;box-sizing:border-box;margin:0;padding:16px var(--wrap-gutter);display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.dog-profile-banner__copy{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:10px;row-gap:3px;align-items:center;min-width:0;}
+.dog-profile-banner__kicker{grid-column:1/-1;margin:0;color:var(--ink-soft);font:700 10.5px/1.45 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;}
+.dog-profile-banner h2{margin:0;color:var(--ink);font:700 20px/1.2 'Bricolage Grotesque',sans-serif;white-space:nowrap;}
+.dog-profile-banner__copy>p:last-child{margin:0;color:var(--ink-soft);font-size:13px;line-height:1.45;}
+.dog-profile-banner .hp-dog-profile-cta{width:clamp(224px,18vw,320px);flex:none;}
+.dog-profile-banner:not([hidden]) + .hp-guestbar--compact{display:none;}
 .hp-dog-profile-cta{
   display:inline-flex;
   align-items:center;
@@ -2326,12 +2324,11 @@ body.map-fs-open{overflow:hidden;}
   .hp-guestbar--homepage .hp-guestbar-copy b{font-size:18px;width:100%;}
   .hp-guestbar--homepage .hp-guestbar-cta{width:100%;}
   .hp-guestbar--compact .hp-guestbar-copy span{display:none;}
-  .hp-prefooter-inner{padding:14px 18px;align-items:stretch;flex-direction:column;gap:10px;}
-  .hp-prefooter-copy{display:flex;align-items:flex-start;gap:4px;flex-wrap:wrap;}
-  .hp-prefooter-kicker,.hp-prefooter h2,.hp-prefooter-copy>p:last-child{width:100%;}
-  .hp-prefooter h2{font-size:18px;}
-  .hp-prefooter-actions{width:100%;}
-  .hp-prefooter-action{flex:1;}
+  .dog-profile-banner__inner{padding:14px 18px;align-items:stretch;flex-direction:column;gap:10px;}
+  .dog-profile-banner__copy{display:flex;align-items:flex-start;gap:4px;flex-wrap:wrap;}
+  .dog-profile-banner__kicker,.dog-profile-banner h2,.dog-profile-banner__copy>p:last-child{width:100%;}
+  .dog-profile-banner h2{font-size:18px;}
+  .dog-profile-banner .hp-dog-profile-cta{width:100%;}
   .hp-footer{padding-inline:20px;}
   .hp-footer-grid{grid-template-columns:1fr 1fr;}
   .hp-footer-grid>div:first-child{grid-column:1/-1;}
@@ -2561,7 +2558,6 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
    grows to use the available height before the footer. */
 @media (min-width:1041px){
   .li-toolbar-greet-copy strong{font-size:38px;line-height:1.08;}
-  .hp-prefooter--homepage-top .hp-prefooter-inner{padding-inline:24px;}
   body[data-homepage-view="returning"]{min-height:100vh;background:var(--ink);}
   body[data-homepage-view="returning"] #returningCustomerHomepage{background:var(--bg);}
   body[data-homepage-view="returning"] #returningCustomerHomepage > .li-toolbar,

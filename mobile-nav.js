@@ -62,53 +62,80 @@
 
   installAlpinePlantsFooterLink();
 
+  function hasDogProfile(summary){
+    if(!summary || typeof summary !== 'object') return false;
+    if(summary.hasProfile === true) return true;
+    return Array.isArray(summary.dogs) && summary.dogs.length > 0;
+  }
+
+  function installDogProfileBanner(){
+    const topnav = document.querySelector('.topnav');
+    if(document.querySelector('.dog-profile-banner')) return null;
+    const homepageGuestBanner = document.querySelector('.hp-guestbar--homepage');
+
+    const banner = document.createElement('section');
+    banner.className = 'dog-profile-banner';
+    banner.hidden = true;
+    banner.setAttribute('aria-labelledby', 'dogProfileBannerTitle');
+
+    const inner = document.createElement('div');
+    inner.className = 'dog-profile-banner__inner';
+    const copyBlock = document.createElement('div');
+    copyBlock.className = 'dog-profile-banner__copy';
+    const kicker = document.createElement('p');
+    kicker.className = 'dog-profile-banner__kicker';
+    kicker.textContent = 'Personalised trail matching';
+    const title = document.createElement('h2');
+    title.id = 'dogProfileBannerTitle';
+    title.textContent = 'Add your dog';
+    const description = document.createElement('p');
+    description.textContent = 'Add your dog for personalised matches. Create a free account only when you choose to save.';
+    copyBlock.append(kicker, title, description);
+
+    const profile = document.createElement('a');
+    profile.className = 'dog-profile-banner__action hp-dog-profile-cta';
+    profile.href = '/?wizard=1';
+    profile.textContent = 'Add your dog';
+    inner.append(copyBlock, profile);
+    banner.appendChild(inner);
+    if(topnav) topnav.parentNode.insertBefore(banner, topnav.nextSibling);
+    else document.body.insertBefore(banner, document.body.firstChild);
+
+    function sync(summary, signedIn){
+      const current = arguments.length ? summary : authSummary();
+      const member = arguments.length > 1 ? signedIn : !!current;
+      // The guest homepage already ships the exact prompt and its button
+      // opens the in-place wizard. Keep this shared copy ready but hidden
+      // until that same page becomes a signed-in/no-dog experience.
+      banner.hidden = hasDogProfile(current) || (!!homepageGuestBanner && !member);
+    }
+    sync();
+    window.addEventListener('dolopaws-auth-changed', event => {
+      const user = event.detail && event.detail.user;
+      sync(user ? authSummary() : null, !!user);
+    });
+    window.addEventListener('dolopaws-profile-summary-changed', event => {
+      const summary = event.detail && event.detail.summary;
+      sync(summary, !!summary);
+    });
+    window.addEventListener('dolopaws-dog-profile-saved', () => {
+      sync({ hasProfile:true });
+    });
+    window.addEventListener('storage', event => {
+      if(event.key === 'dolopaws-profile-summary'){
+        const summary = authSummary();
+        sync(summary, !!summary);
+      }
+    });
+    return banner;
+  }
+
+  installDogProfileBanner();
+
   function installFocusedFooter(){
     document.querySelectorAll('footer.hp-footer').forEach(footer => {
       if(footer.dataset.focusedFooter === 'true') return;
       footer.dataset.focusedFooter = 'true';
-
-      const browseLink = Array.from(footer.querySelectorAll('a[href]'))
-        .find(link => /browse-trails\.html$/.test(link.getAttribute('href') || ''));
-      const browseHref = browseLink?.getAttribute('href') || 'browse-trails.html';
-      const prefix = browseHref.slice(0, -'browse-trails.html'.length);
-
-      const banner = document.createElement('section');
-      banner.className = 'hp-prefooter';
-      banner.setAttribute('aria-labelledby', 'hpPrefooterTitle');
-
-      const inner = document.createElement('div');
-      inner.className = 'hp-prefooter-inner';
-      const copyBlock = document.createElement('div');
-      copyBlock.className = 'hp-prefooter-copy';
-      const kicker = document.createElement('p');
-      kicker.className = 'hp-prefooter-kicker';
-      kicker.textContent = 'Personalised trail matching';
-      const title = document.createElement('h2');
-      title.id = 'hpPrefooterTitle';
-      title.textContent = 'Add your dog';
-      const description = document.createElement('p');
-      description.textContent = 'Add your dog for personalised matches. Create a free account only when you choose to save.';
-      copyBlock.append(kicker, title, description);
-
-      const actions = document.createElement('div');
-      actions.className = 'hp-prefooter-actions';
-      const profile = document.createElement('a');
-      profile.className = 'hp-prefooter-action is-primary hp-dog-profile-cta';
-      profile.href = '/?wizard=1';
-      profile.textContent = 'Add your dog';
-      actions.append(profile);
-      inner.append(copyBlock, actions);
-      banner.appendChild(inner);
-      if(!document.body.classList.contains('safety-library-page')){
-        const returningHome = document.getElementById('returningCustomerHomepage');
-        const returningToolbar = returningHome && returningHome.querySelector('.li-toolbar');
-        if(returningToolbar){
-          banner.classList.add('hp-prefooter--homepage-top');
-          returningHome.insertBefore(banner, returningToolbar);
-        } else {
-          footer.parentNode.insertBefore(banner, footer);
-        }
-      }
 
       const groups = footer.querySelectorAll('.hp-footer-grid > div');
       const groupTitles = ['','Explore','Dog care','Your walks','ORMA'];

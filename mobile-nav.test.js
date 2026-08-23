@@ -62,6 +62,122 @@ describe('shared navigation hardening', () => {
     expect(link.getAttribute('data-i18n')).toBe('mobile.alpinePlants');
   });
 
+  test('shows the shared profile banner below the header for guests', () => {
+    const nav = document.querySelector('.topnav');
+    const banner = document.querySelector('.dog-profile-banner');
+
+    expect(banner).not.toBeNull();
+    expect(nav.nextElementSibling).toBe(banner);
+    expect(banner.hidden).toBe(false);
+    expect(banner.querySelector('.dog-profile-banner__kicker').textContent)
+      .toBe('Personalised trail matching');
+    expect(banner.querySelector('h2').textContent).toBe('Add your dog');
+    expect(banner.querySelector('.dog-profile-banner__copy > p:last-child').textContent)
+      .toBe('Add your dog for personalised matches. Create a free account only when you choose to save.');
+    expect(banner.querySelector('a').getAttribute('href')).toBe('/?wizard=1');
+  });
+
+  test('shows the shared profile banner first on public flows without the standard header', () => {
+    const frame = document.createElement('iframe');
+    document.body.appendChild(frame);
+    const isolated = frame.contentWindow;
+    isolated.localStorage.clear();
+    isolated.document.body.innerHTML = `
+      <main>Contribution flow</main>
+      <footer><a href="../browse-trails.html">Browse all Trails</a></footer>`;
+    isolated.eval(mobileNav);
+
+    const banner = isolated.document.querySelector('.dog-profile-banner');
+    expect(isolated.document.body.firstElementChild).toBe(banner);
+    expect(banner.hidden).toBe(false);
+    expect(banner.querySelector('a').getAttribute('href')).toBe('/?wizard=1');
+  });
+
+  test('shows the banner for a signed-in account without dog details', () => {
+    const frame = document.createElement('iframe');
+    document.body.appendChild(frame);
+    const isolated = frame.contentWindow;
+    isolated.localStorage.clear();
+    isolated.localStorage.setItem('dolopaws-profile-summary', JSON.stringify({
+      uid:'user-1', hasProfile:false, dogs:[],
+    }));
+    isolated.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a><div class="links"></div></nav>';
+    isolated.eval(mobileNav);
+
+    expect(isolated.document.querySelector('.dog-profile-banner').hidden).toBe(false);
+  });
+
+  test('does not duplicate the homepage guest banner but appears there for a signed-in account without a dog', () => {
+    const frame = document.createElement('iframe');
+    document.body.appendChild(frame);
+    const isolated = frame.contentWindow;
+    isolated.localStorage.clear();
+    isolated.document.body.innerHTML = `
+      <nav class="topnav"><a class="brand" href="index.html">ORMA</a><div class="links"></div></nav>
+      <div class="hp-guestbar hp-guestbar--homepage">Existing guest prompt</div>`;
+    isolated.eval(mobileNav);
+    const banner = isolated.document.querySelector('.dog-profile-banner');
+
+    expect(banner.hidden).toBe(true);
+    isolated.localStorage.setItem('dolopaws-profile-summary', JSON.stringify({
+      uid:'user-1', hasProfile:false, dogs:[],
+    }));
+    isolated.dispatchEvent(new isolated.CustomEvent('dolopaws-auth-changed', {
+      detail:{ user:{ uid:'user-1' } },
+    }));
+    expect(banner.hidden).toBe(false);
+  });
+
+  test('hides the banner once a dog profile exists and reacts to profile changes', () => {
+    const frame = document.createElement('iframe');
+    document.body.appendChild(frame);
+    const isolated = frame.contentWindow;
+    isolated.localStorage.clear();
+    isolated.localStorage.setItem('dolopaws-profile-summary', JSON.stringify({
+      uid:'user-1', hasProfile:true, dogs:[{ id:'dog-1', name:'Eddie' }],
+    }));
+    isolated.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a><div class="links"></div></nav>';
+    isolated.eval(mobileNav);
+    const banner = isolated.document.querySelector('.dog-profile-banner');
+
+    expect(banner.hidden).toBe(true);
+    isolated.dispatchEvent(new isolated.CustomEvent('dolopaws-profile-summary-changed', {
+      detail:{ summary:{ uid:'user-1', hasProfile:false, dogs:[] } },
+    }));
+    expect(banner.hidden).toBe(false);
+    isolated.dispatchEvent(new isolated.CustomEvent('dolopaws-dog-profile-saved', {
+      detail:{ profile:{ id:'dog-1', name:'Eddie' } },
+    }));
+    expect(banner.hidden).toBe(true);
+  });
+
+  test('uses the correct dog-wizard path from nested guide and trail pages', () => {
+    const frame = document.createElement('iframe');
+    document.body.appendChild(frame);
+    const isolated = frame.contentWindow;
+    isolated.localStorage.clear();
+    isolated.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="../index.html">ORMA</a><div class="links"></div></nav>';
+    isolated.eval(mobileNav);
+
+    expect(isolated.document.querySelector('.dog-profile-banner a').getAttribute('href'))
+      .toBe('/?wizard=1');
+  });
+
+  test('every standard public page with the shared header loads this banner bundle', () => {
+    const directories = [__dirname, path.join(__dirname, 'guides'), path.join(__dirname, 'trails')];
+    const pages = directories.flatMap(directory => fs.readdirSync(directory)
+      .filter(name => name.endsWith('.html'))
+      .map(name => path.join(directory, name)))
+      .filter(file => fs.readFileSync(file, 'utf8').includes('class="topnav"'));
+
+    expect(pages.length).toBeGreaterThan(150);
+    pages.forEach(file => {
+      expect(fs.readFileSync(file, 'utf8')).toMatch(
+        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=20260823-1"/
+      );
+    });
+  });
+
   test('turns the shared footer into the focused CTA and compact navigation', () => {
     const footer = document.createElement('footer');
     footer.className = 'site-footer hp-footer';
@@ -78,14 +194,6 @@ describe('shared navigation hardening', () => {
     document.body.appendChild(footer);
     window.eval(mobileNav);
 
-    const banner = footer.previousElementSibling;
-    expect(banner.className).toBe('hp-prefooter');
-    expect(banner.querySelector('h2').textContent).toBe('Add your dog');
-    expect(banner.querySelector('.hp-prefooter-copy > p:last-child').textContent)
-      .toBe('Add your dog for personalised matches. Create a free account only when you choose to save.');
-    expect(banner.querySelectorAll('.hp-prefooter-actions a')).toHaveLength(1);
-    expect(banner.querySelector('a.is-primary').classList.contains('hp-dog-profile-cta')).toBe(true);
-    expect(banner.querySelector('a.is-primary').getAttribute('href')).toBe('/?wizard=1');
     expect([...footer.querySelectorAll('.hp-footer-grid > div > .hp-footer-h')].map(item => item.textContent))
       .toEqual(['Explore','Dog care','Your walks','ORMA']);
     expect(footer.querySelector('.hp-footer-appnote').textContent).toBe('Mobile apps coming soon');
@@ -95,7 +203,7 @@ describe('shared navigation hardening', () => {
     expect(footer.querySelector('.hp-footer-connect')).toBeNull();
   });
 
-  test('moves the dog-profile prompt above the personalised map controls', () => {
+  test('keeps one dog-profile prompt below the header on the personalised homepage', () => {
     document.body.innerHTML += `
       <div id="returningCustomerHomepage">
         <header class="li-top"></header>
@@ -110,14 +218,13 @@ describe('shared navigation hardening', () => {
       </footer>`;
     window.eval(mobileNav);
 
-    const homepage = document.getElementById('returningCustomerHomepage');
-    const banner = homepage.querySelector('.hp-prefooter--homepage-top');
+    const banner = document.querySelector('.dog-profile-banner');
     expect(banner).not.toBeNull();
-    expect(banner.nextElementSibling.className).toBe('li-toolbar');
-    expect(document.querySelector('footer').previousElementSibling).toBe(homepage);
+    expect(document.querySelector('.topnav').nextElementSibling).toBe(banner);
+    expect(document.querySelectorAll('.dog-profile-banner')).toHaveLength(1);
   });
 
-  test('omits the dog-profile promotion from the safety library', () => {
+  test('includes the dog-profile promotion in the safety library', () => {
     document.body.className = 'safety-library-page';
     const footer = document.createElement('footer');
     footer.className = 'site-footer hp-footer';
@@ -130,7 +237,8 @@ describe('shared navigation hardening', () => {
     document.body.appendChild(footer);
     window.eval(mobileNav);
 
-    expect(document.querySelector('.hp-prefooter')).toBeNull();
+    expect(document.querySelector('.dog-profile-banner')).not.toBeNull();
+    expect(document.querySelector('.dog-profile-banner').hidden).toBe(false);
     expect(footer.dataset.focusedFooter).toBe('true');
   });
 
