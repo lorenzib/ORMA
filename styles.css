@@ -58,6 +58,81 @@
   --wrap-gutter:clamp(28px,4vw,52px);
 }
 
+/* Shared end-of-article navigation for Safety Library guides. */
+.safety-continue{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;
+  gap:11px;
+  align-items:stretch;
+  margin:24px 0 0;
+  padding:14px;
+  border:1px solid #d3dbd0;
+  border-radius:14px;
+  background:#e8ede5;
+  box-sizing:border-box;
+}
+.safety-continue__heading{
+  grid-column:1/-1;
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:1px;
+}
+.safety-continue__heading h2{
+  margin:0!important;
+  color:#2e4034;
+  font:700 1rem/1.25 "Bricolage Grotesque",sans-serif!important;
+}
+.safety-continue__heading span{color:#66756a;font-size:.72rem;line-height:1.4;text-align:right;}
+.safety-continue__card{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:9px;
+  align-items:center;
+  min-height:68px;
+  padding:11px 13px;
+  border:1px solid rgba(47,73,56,.12);
+  border-radius:10px;
+  background:#fff;
+  color:#2e4034;
+  text-decoration:none!important;
+  box-sizing:border-box;
+}
+.safety-continue__card:hover{border-color:#8bb8c8;box-shadow:0 4px 12px rgba(30,57,42,.06);}
+.safety-continue__card:focus-visible,.safety-continue__cta:focus-visible{outline:3px solid rgba(62,122,145,.3);outline-offset:2px;}
+.safety-continue__card small{display:block;margin-bottom:2px;color:#2f7089;font-size:.63rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+.safety-continue__card strong{display:block;color:#2e4034;font-size:.84rem;line-height:1.25;}
+.safety-continue__card p{margin:2px 0 0!important;color:#66756a;font-size:.68rem;line-height:1.35;}
+.safety-continue__arrow{color:#2f7089;font-size:1rem;font-weight:800;}
+.safety-continue__cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:0 20px;
+  border-radius:999px;
+  background:#6dafc7;
+  color:#173b49!important;
+  font-size:.82rem;
+  font-weight:800;
+  line-height:1.25;
+  text-align:center;
+  text-decoration:none!important;
+  white-space:nowrap;
+}
+.safety-continue__cta:hover{background:#82bdd1;}
+@media(max-width:760px){
+  .safety-continue{grid-template-columns:1fr 1fr;}
+  .safety-continue__cta{grid-column:1/-1;}
+}
+@media(max-width:560px){
+  .safety-continue{grid-template-columns:1fr;margin-top:20px;padding:12px;}
+  .safety-continue__heading{display:block;}
+  .safety-continue__heading span{display:block;margin-top:3px;text-align:left;}
+  .safety-continue__cta{grid-column:auto;width:100%;box-sizing:border-box;}
+}
+
 *{box-sizing:border-box;}
 html,body{margin:0;padding:0;}
 body{

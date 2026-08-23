@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css?v=20260823-1">
+<link rel="stylesheet" href="../styles.css?v=20260823-2">
 <style>
   :root{--alt-paper:#f4f1e7;--alt-card:#fff;--alt-ink:#2e4034;--alt-soft:#5d6c61;--alt-line:#dcd8cc;--alt-blue:#2f7089;--alt-blue-soft:#e3f0f4;--alt-green:#376245;--alt-green-soft:#e5eee4;--alt-amber:#956016;--alt-amber-soft:#f7e7c8;--alt-red:#9f3e2e;--alt-red-soft:#f6e3de;}
   body{background:var(--alt-paper);}
@@ -98,14 +98,6 @@
   .alt-context-aside h3{margin:0 0 8px;font-size:1rem;}
   .alt-context-aside p{margin:0;color:#4d5f52;font-size:.76rem;line-height:1.52;}
 
-  .alt-next{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:11px;align-items:stretch;margin-top:4px;padding:14px;border:1px solid #d3dbd0;border-radius:14px;background:#e8ede5;}
-  .alt-next h2{grid-column:1/-1;margin:0 0 1px;font-size:1rem;}
-  .alt-next-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px;align-items:center;min-height:68px;padding:11px 13px;border:1px solid rgba(47,73,56,.12);border-radius:10px;background:#fff;color:var(--alt-ink);text-decoration:none;}
-  .alt-next-card small{display:block;margin-bottom:2px;color:var(--alt-blue);font-size:.63rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
-  .alt-next-card strong{display:block;font-size:.84rem;}
-  .alt-next-card p{margin:2px 0 0;color:var(--alt-soft);font-size:.68rem;line-height:1.35;}
-  .alt-next-card>span{color:var(--alt-blue);font-weight:800;}
-  .alt-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:999px;background:#6dafc7;color:#173b49;font-size:.82rem;font-weight:800;text-decoration:none;white-space:nowrap;}
   .alt-sources{margin-top:18px;border-top:1px solid var(--alt-line);color:#839087;}
   .alt-sources summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0;cursor:pointer;list-style:none;font-size:.74rem;}
   .alt-sources summary::-webkit-details-marker{display:none;}
@@ -136,8 +128,6 @@
     .alt-timeline{grid-template-columns:1fr;}
     .alt-step{padding:15px 0;}
     .alt-step+.alt-step{padding-left:0;border-top:1px solid var(--alt-line);border-left:0;}
-    .alt-next{grid-template-columns:1fr;}
-    .alt-cta{width:100%;box-sizing:border-box;}
   }
 </style>
 </head>
@@ -235,11 +225,11 @@
       </aside>
     </section>
 
-    <section class="alt-next" aria-labelledby="altNextTitle">
-      <h2 id="altNextTitle">Continue in the Safety Library</h2>
-      <a class="alt-next-card" href="heat-overheating.html"><div><small>Related symptoms</small><strong>Heat and hydration</strong><p>Separate overheating risk from altitude strain.</p></div><span aria-hidden="true">→</span></a>
-      <a class="alt-next-card" href="dogs-at-rifugi.html"><div><small>Plan recovery</small><strong>Dogs at rifugi</strong><p>Use facilities without assuming access or water.</p></div><span aria-hidden="true">→</span></a>
-      <a class="alt-cta" href="../browse-trails.html">Browse lower, gentler trails →</a>
+    <section class="safety-continue" aria-labelledby="safetyContinueTitle">
+      <div class="safety-continue__heading"><h2 id="safetyContinueTitle">Continue in the Safety Library</h2><span>Useful guidance for your next mountain day</span></div>
+      <a class="safety-continue__card" href="heat-overheating.html"><div><small>Weather &amp; body</small><strong>Heat and hydration</strong><p>Separate overheating risk from altitude strain.</p></div><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
+      <a class="safety-continue__card" href="../safety-guide.html"><div><small>All topics</small><strong>Browse all safety guides</strong><p>Prepare for the situations you may meet outside.</p></div><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
+      <a class="safety-continue__cta" href="../browse-trails.html">Browse trails for your dog →</a>
     </section>
 
     <details class="alt-sources">

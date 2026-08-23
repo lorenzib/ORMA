@@ -61,9 +61,9 @@ describe('altitude health and safety guide', () => {
     expect(sources.open).toBe(false);
     expect(sources.querySelectorAll('a')).toHaveLength(3);
     expect(sources.textContent).toMatch(/general information, not a diagnosis/i);
-    expect(Array.from(document.querySelectorAll('.alt-next-card')).map(link => link.getAttribute('href'))).toEqual([
+    expect(Array.from(document.querySelectorAll('.safety-continue__card')).map(link => link.getAttribute('href'))).toEqual([
       'heat-overheating.html',
-      'dogs-at-rifugi.html',
+      '../safety-guide.html',
     ]);
   });
 });
