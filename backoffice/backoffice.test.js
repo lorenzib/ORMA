@@ -1598,6 +1598,8 @@ describe('ORMA backoffice MVP', () => {
     const previous={contractVersion:'1.0.0',hazards:[{id:'source:a',sourceKey:'source',state:'active',expiresAt:'2026-08-18T00:00:00.000Z',message:'Warning.',trailIds:['trail-a']}]};
     const artifacts=buildHazardArtifacts(previous,[],[{key:'source',ok:true,alertsRead:0}],[],{at:'2026-08-19T06:00:00.000Z'});
     expect(artifacts.publicData.hazards[0].state).toBe('resolution-review');
+    const repeated=buildHazardArtifacts(artifacts.publicData,[],[{key:'source',ok:true,alertsRead:0}],[],{at:'2026-08-19T06:05:00.000Z'});
+    expect(repeated.publicData.hazards[0].message).toBe(artifacts.publicData.hazards[0].message);
     const reviewed=applyHazardReview(artifacts.publicData,{decisions:[]},{hazardId:'source:a',action:'confirm-resolved'},{at:'2026-08-19T07:00:00.000Z'});
     expect(reviewed.publicData.hazards).toHaveLength(0);expect(reviewed.ledger.decisions[0].action).toBe('confirm-resolved');
   });
