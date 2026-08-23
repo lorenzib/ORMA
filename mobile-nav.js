@@ -70,6 +70,7 @@
 
   function installDogProfileBanner(){
     if(document.querySelector('.dog-profile-banner')) return null;
+    if(document.querySelector('[data-inline-dog-profile],[data-hide-dog-profile-banner]')) return null;
     const homepageGuestBanner = document.querySelector('.hp-guestbar--homepage');
 
     const banner = document.createElement('section');

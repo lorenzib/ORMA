@@ -1565,9 +1565,12 @@ describe('ORMA backoffice MVP', () => {
     expect(imageSignals('<img src="../images/editorial/paw.jpg" alt="Paw">').editorialImages).toEqual(['../images/editorial/paw.jpg']);
     const audit=await auditImageCoverage(require('path').resolve(__dirname,'..'),{at:'2026-08-19T10:00:00.000Z'});
     expect(audit.summary.pagesScanned).toBeGreaterThanOrEqual(11);
-    expect(audit.gaps.map(gap=>gap.slug)).toEqual(expect.arrayContaining(['altitude-with-your-dog','heat-overheating']));
+    expect(audit.gaps.map(gap=>gap.slug)).not.toContain('altitude-with-your-dog');
+    expect(audit.gaps.map(gap=>gap.slug)).not.toContain('heat-overheating');
+    expect(audit.pages.find(page=>page.slug==='heat-overheating').coverageState).toBe('covered');
+    expect(audit.pages.find(page=>page.slug==='heat-overheating').existingAssets).toContain('../images/editorial/safety-library/heat-hydration-waterfall-v1.jpg');
     expect(audit.pages.find(page=>page.slug==='alpine-plants-for-dogs').coverageState).toBe('covered');
-    expect(audit.pages.find(page=>page.slug==='paw-protection').existingAssets).toContain('../images/editorial/safety-library/paw-protection-forest-v1.jpg');
+    expect(audit.pages.find(page=>page.slug==='paw-protection').existingAssets).not.toContain('../images/editorial/safety-library/paw-protection-forest-v1.jpg');
   });
 
   test('image sourcing stays queued behind asset approval', () => {
