@@ -77,6 +77,16 @@ describe('shared navigation hardening', () => {
     expect(banner.querySelector('a').getAttribute('href')).toBe('/?wizard=1');
   });
 
+  test('does not duplicate pages that provide an inline dog-profile experience', () => {
+    const frame = document.createElement('iframe');
+    document.body.appendChild(frame);
+    const isolated = frame.contentWindow;
+    isolated.localStorage.clear();
+    isolated.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a></nav><section data-inline-dog-profile></section>';
+    isolated.eval(mobileNav);
+    expect(isolated.document.querySelector('.dog-profile-banner')).toBeNull();
+  });
+
   test('shows the shared profile banner first on public flows without the standard header', () => {
     const frame = document.createElement('iframe');
     document.body.appendChild(frame);
