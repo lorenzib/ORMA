@@ -81,7 +81,8 @@ describe('Safety library', () => {
     const guideImages = [...document.querySelectorAll('.sg-guide-card img')];
     const sources = guideImages.map(image => image.getAttribute('src'));
     expect(sources).toEqual(expect.arrayContaining([
-      'images/editorial/safety-library/breed-group-considerations-v1.jpg',
+      'images/editorial/safety-library/altitude-with-your-dog-v1.jpg',
+      'images/editorial/safety-library/breed-group-considerations-dogs-v2.jpg',
       'images/editorial/safety-library/dogs-on-cable-cars-v3.jpg',
       'images/editorial/safety-library/heat-hydration-waterfall-v1.jpg',
       'images/editorial/safety-library/paw-protection-forest-v1.jpg',

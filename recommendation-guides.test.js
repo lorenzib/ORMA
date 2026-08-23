@@ -42,6 +42,17 @@ describe('GUIDE-01 contextual caution guides', () => {
 });
 
 describe('breed-group guide navigation', () => {
+  test('uses the dedicated breed-group photograph in the guide hero', () => {
+    document.body.innerHTML = fs.readFileSync(path.join(__dirname, 'guides/breed-group-caveats.html'), 'utf8');
+    const image = document.querySelector('.gp-hero-photo img');
+
+    expect(image).not.toBeNull();
+    expect(image.getAttribute('src')).toBe('../images/editorial/safety-library/breed-group-considerations-dogs-v2.jpg');
+    expect(image.getAttribute('alt')).toMatch(/German Shepherd.+brindle shepherd-type dog/i);
+    expect(image.getAttribute('width')).toBe('1200');
+    expect(image.getAttribute('height')).toBe('800');
+  });
+
   test('uses a left contents rail and matching semantic content sections', () => {
     document.body.innerHTML = fs.readFileSync(path.join(__dirname, 'guides/breed-group-caveats.html'), 'utf8');
     const links = [...document.querySelectorAll('.gp-toc a')];
