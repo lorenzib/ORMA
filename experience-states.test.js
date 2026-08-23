@@ -71,10 +71,10 @@ describe('empty states and long-form navigation', () => {
     expect(document.querySelector('.guide-page-nav[data-generated]')).toBeNull();
   });
 
-  test('long guide articles receive navigation while short ones stay focused', () => {
+  test('compact decision guides stay focused without long-form navigation', () => {
     document.documentElement.innerHTML = read('guides/dogs-on-cable-cars.html');
     window.eval(read('guide-navigation.js'));
-    expect(document.querySelectorAll('.guide-page-nav a')).toHaveLength(5);
+    expect(document.querySelectorAll('.guide-page-nav a')).toHaveLength(0);
 
     document.documentElement.innerHTML = read('guides/heat-overheating.html');
     window.eval(read('guide-navigation.js'));

@@ -51,7 +51,7 @@ describe('Safety library', () => {
     expect(document.querySelector('.sg-emergency a').getAttribute('href')).toBe('tel:112');
     expect(html).toMatch(/\.sg-emergency\{[^}]*background:#A93C31/s);
     expect(html).toMatch(/\.sg-rules ol\{[^}]*grid-template-columns:repeat\(5/s);
-    expect(html).toMatch(/\.sg-rules\{[^}]*background:#2F7089/s);
+    expect(html).toMatch(/\.sg-rules\{[^}]*background:var\(--success\)/s);
     expect(html).toMatch(/\.sg-rules small\{[^}]*font-size:12px;[^}]*line-height:1\.45/s);
   });
 
@@ -80,7 +80,7 @@ describe('Safety library', () => {
     const sources = guideImages.map(image => image.getAttribute('src'));
     expect(sources).toEqual(expect.arrayContaining([
       'images/editorial/safety-library/breed-group-considerations-v1.jpg',
-      'images/editorial/safety-library/dogs-on-cable-cars-v1.jpg',
+      'images/editorial/safety-library/dogs-on-cable-cars-v3.jpg',
       'images/editorial/safety-library/heat-hydration-v1.jpg',
       'images/editorial/safety-library/paw-protection-forest-v1.jpg',
       'images/editorial/safety-library/flowers-plants-dogs.jpg',

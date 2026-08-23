@@ -69,7 +69,6 @@
   }
 
   function installDogProfileBanner(){
-    const topnav = document.querySelector('.topnav');
     if(document.querySelector('.dog-profile-banner')) return null;
     const homepageGuestBanner = document.querySelector('.hp-guestbar--homepage');
 
@@ -98,12 +97,24 @@
     profile.textContent = 'Add your dog';
     inner.append(copyBlock, profile);
     banner.appendChild(inner);
-    if(topnav) topnav.parentNode.insertBefore(banner, topnav.nextSibling);
-    else document.body.insertBefore(banner, document.body.firstChild);
+
+    function placeBelowActiveHeader(member){
+      const returningHome = document.getElementById('returningCustomerHomepage');
+      const returningHeader = returningHome && returningHome.querySelector('.li-top');
+      const topnav = document.querySelector('.topnav');
+      if(member && returningHeader){
+        returningHeader.parentNode.insertBefore(banner, returningHeader.nextSibling);
+      } else if(topnav){
+        topnav.parentNode.insertBefore(banner, topnav.nextSibling);
+      } else {
+        document.body.insertBefore(banner, document.body.firstChild);
+      }
+    }
 
     function sync(summary, signedIn){
       const current = arguments.length ? summary : authSummary();
       const member = arguments.length > 1 ? signedIn : !!current;
+      placeBelowActiveHeader(member);
       // The guest homepage already ships the exact prompt and its button
       // opens the in-place wizard. Keep this shared copy ready but hidden
       // until that same page becomes a signed-in/no-dog experience.

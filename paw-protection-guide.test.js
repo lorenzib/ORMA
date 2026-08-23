@@ -63,6 +63,13 @@ describe('paw protection question-led guide', () => {
     window.eval(script);
     const details = document.querySelectorAll('.paw2-detail');
     expect(details).toHaveLength(4);
+    expect(document.getElementById('pawLibraryTitle').textContent.trim()).toBe('Learn more');
+    expect(html).toContain('.paw2-library{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));');
+    expect(html).toContain('.paw2-library{grid-template-columns:repeat(2,minmax(0,1fr));}');
+    expect(html).toContain('.paw2-library{grid-template-columns:1fr;}');
+    expect(html).toContain('background:var(--paw-blue-soft)');
+    expect(html).toContain('.paw2-detail-columns section{padding:15px 17px;border-radius:10px;background:#e8ede5;}');
+    expect(html).toContain('.paw2-detail-columns section:last-child{background:#f4e2dc;}');
     details.forEach(detail => expect(detail.open).toBe(false));
     document.querySelector('a[href="#boots"]').click();
     expect(document.getElementById('boots').open).toBe(true);
@@ -79,6 +86,12 @@ describe('paw protection question-led guide', () => {
     expect(sources.open).toBe(false);
     expect(sources.textContent).toMatch(/VCA Animal Hospitals/i);
     expect(document.querySelector('#call-vet a')).toBeNull();
+    const sideStack = document.querySelector('.paw2-side-stack');
+    expect(Array.from(sideStack.children).map(element => element.className)).toEqual([
+      'paw2-essentials',
+      'paw2-first-aid'
+    ]);
+    expect(sideStack.closest('.paw2-surface-grid')).not.toBeNull();
     const recommendations = document.querySelectorAll('.paw2-next-card');
     expect(recommendations).toHaveLength(2);
     expect(Array.from(recommendations).map(link => link.getAttribute('href'))).toEqual([

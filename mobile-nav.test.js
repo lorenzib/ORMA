@@ -204,24 +204,25 @@ describe('shared navigation hardening', () => {
   });
 
   test('keeps one dog-profile prompt below the header on the personalised homepage', () => {
-    document.body.innerHTML += `
+    const frame = document.createElement('iframe');
+    document.body.appendChild(frame);
+    const isolated = frame.contentWindow;
+    isolated.localStorage.clear();
+    isolated.localStorage.setItem('dolopaws-profile-summary', JSON.stringify({
+      uid:'user-1', hasProfile:false, dogs:[],
+    }));
+    isolated.document.body.innerHTML = `
+      <nav class="topnav"><a class="brand" href="index.html">ORMA</a><div class="links"></div></nav>
       <div id="returningCustomerHomepage">
         <header class="li-top"></header>
         <div class="li-toolbar"></div>
-      </div>
-      <footer class="site-footer hp-footer">
-        <div class="hp-footer-grid">
-          <div></div>
-          <div><div class="hp-footer-links"><a href="browse-trails.html">Browse</a></div></div>
-        </div>
-        <div class="hp-footer-base"><span>© ORMA</span></div>
-      </footer>`;
-    window.eval(mobileNav);
+      </div>`;
+    isolated.eval(mobileNav);
 
-    const banner = document.querySelector('.dog-profile-banner');
+    const banner = isolated.document.querySelector('.dog-profile-banner');
     expect(banner).not.toBeNull();
-    expect(document.querySelector('.topnav').nextElementSibling).toBe(banner);
-    expect(document.querySelectorAll('.dog-profile-banner')).toHaveLength(1);
+    expect(isolated.document.querySelector('.li-top').nextElementSibling).toBe(banner);
+    expect(isolated.document.querySelectorAll('.dog-profile-banner')).toHaveLength(1);
   });
 
   test('includes the dog-profile promotion in the safety library', () => {

@@ -21,7 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css?v=20260823-1">
 <style>
-  :root{--paw-paper:#f4f1e7;--paw-card:#fff;--paw-ink:#2e4034;--paw-soft:#58695d;--paw-line:#dedbcf;--paw-blue:#2e7189;--paw-green:#294334;--paw-green-soft:#e4eadf;--paw-red-soft:#f3d9d2;--paw-orange:#c34b05;}
+  :root{--paw-paper:#f4f1e7;--paw-card:#fff;--paw-ink:#2e4034;--paw-soft:#58695d;--paw-line:#dedbcf;--paw-blue:#2e7189;--paw-blue-soft:#eaf3f6;--paw-green:#294334;--paw-green-soft:#e4eadf;--paw-red-soft:#f3d9d2;--paw-orange:#c34b05;}
   body{background:var(--paw-paper);}
   .paw-guide{padding:0 0 38px;color:var(--paw-ink);}
   .paw-guide h1,.paw-guide h2,.paw-guide h3{font-family:"Bricolage Grotesque",sans-serif;color:var(--paw-ink);}
@@ -206,6 +206,7 @@
   .paw2-tab[aria-selected="true"]{background:#e3f0f4;color:#255f78;box-shadow:inset 0 -3px #2f7089;}
   .paw2-tab:focus-visible{position:relative;z-index:1;outline:3px solid rgba(47,112,137,.3);outline-offset:-3px;}
   .paw2-surface-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.72fr);gap:16px;align-items:start;}
+  .paw2-side-stack{display:grid;gap:16px;min-width:0;}
   .paw2-panels{min-width:0;border:1px solid #d6d2c6;border-top:0;border-radius:0 0 13px 13px;background:#fff;}
   .paw2-panel{padding:22px 25px;}
   .paw2-panel[hidden]{display:none;}
@@ -227,24 +228,19 @@
   .paw2-essentials li>b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.14);color:#d8eef5;font-size:.68rem;}
   .paw2-essentials strong{display:block;color:#fff;font-size:.82rem;}
   .paw2-essentials span{display:block;margin-top:2px;color:rgba(255,255,255,.74);font-size:.7rem;line-height:1.42;}
-  .paw2-stop-banner{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;margin:0 0 22px;padding:15px 18px;border-radius:13px;background:#a93c31;color:#fff;box-shadow:var(--shadow);}
-  .paw2-stop-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.15);font-size:1.05rem;font-weight:800;}
-  .paw2-stop-banner strong{display:block;color:#fff;font-size:.9rem;}
-  .paw2-stop-banner span{display:block;margin-top:2px;color:rgba(255,255,255,.82);font-size:.74rem;line-height:1.4;}
-  .paw2-stop-banner a{color:#fff;font-size:.74rem;font-weight:800;text-decoration:underline;text-underline-offset:3px;white-space:nowrap;}
-  .paw2-library{margin-top:2px;}
-  .paw2-library-head{display:flex;align-items:end;justify-content:space-between;gap:20px;padding-bottom:11px;border-bottom:2px solid rgba(47,73,56,.18);}
+  .paw2-library{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:start;margin-top:2px;}
+  .paw2-library-head{grid-column:1/-1;display:flex;align-items:end;justify-content:space-between;gap:20px;padding-bottom:11px;}
   .paw2-library-head h2{margin:0;font-size:clamp(23px,2.4vw,31px);}
   .paw2-library-head p{margin:0;color:var(--paw-soft);font-size:.78rem;}
-  .paw2-detail{border-bottom:1px solid var(--paw-line);}
-  .paw2-detail summary{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:12px;align-items:center;padding:16px 2px;cursor:pointer;list-style:none;}
+  .paw2-detail{overflow:hidden;border:1px solid rgba(62,122,145,.2);border-radius:12px;background:var(--paw-blue-soft);}
+  .paw2-detail summary{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:12px;align-items:start;min-height:128px;padding:18px;cursor:pointer;list-style:none;}
   .paw2-detail summary::-webkit-details-marker{display:none;}
   .paw2-detail-number{color:var(--paw-blue);font-size:.69rem;font-weight:800;}
   .paw2-detail-title strong{display:block;color:var(--paw-ink);font:700 1.08rem/1.2 "Bricolage Grotesque",sans-serif;}
   .paw2-detail-title span{display:block;margin-top:3px;color:var(--paw-soft);font-size:.74rem;}
   .paw2-detail summary::after{content:"+";color:var(--paw-blue);font-size:1.25rem;}
   .paw2-detail[open] summary::after{content:"−";}
-  .paw2-detail-body{padding:0 40px 20px;color:var(--paw-soft);font-size:.82rem;line-height:1.58;}
+  .paw2-detail-body{padding:0 18px 20px;color:var(--paw-soft);font-size:.82rem;line-height:1.58;}
   .paw2-detail-body p{margin:0;}
   .paw2-detail-body p+p{margin-top:10px;}
   .paw2-detail-body ul{display:grid;grid-template-columns:1fr 1fr;gap:7px 28px;margin:12px 0 0;padding-left:18px;}
@@ -253,7 +249,7 @@
   .paw2-detail-columns section{padding:15px 17px;border-radius:10px;background:#e8ede5;}
   .paw2-detail-columns section:last-child{background:#f4e2dc;}
   .paw2-detail-columns h3{margin:0 0 7px;color:var(--paw-ink);font-size:.9rem;}
-  .paw2-first-aid{display:grid;grid-template-columns:42px minmax(0,1fr);gap:14px;margin:23px 0 18px;padding:18px 20px;border:1px solid #e0b0a8;border-radius:13px;background:#f8e8e4;color:#6e352d;}
+  .paw2-first-aid{display:grid;grid-template-columns:42px minmax(0,1fr);gap:14px;margin:0;padding:18px 20px;border:1px solid #e0b0a8;border-radius:13px;background:#f8e8e4;color:#6e352d;}
   .paw2-first-aid-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:10px;background:#a93c31;color:#fff;font-size:1.35rem;font-weight:800;}
   .paw2-first-aid h2{margin:0 0 5px;color:#76362c;font-size:1.15rem;}
   .paw2-first-aid p{margin:0;color:#75443b;font-size:.78rem;line-height:1.52;}
@@ -286,6 +282,7 @@
     .paw2-surface-heading p{margin-top:6px;text-align:left;}
     .paw2-surface-grid{grid-template-columns:1fr;}
     .paw2-essentials{margin-top:0;}
+    .paw2-library{grid-template-columns:repeat(2,minmax(0,1fr));}
     .paw2-detail-body ul{grid-template-columns:1fr;}
   }
   @media(max-width:560px){
@@ -302,12 +299,12 @@
     .paw2-advice{grid-template-columns:1fr;}
     .paw2-advice div{padding-right:0;}
     .paw2-advice div+div{padding-left:0;border-top:1px solid #e2dfd5;border-left:0;}
-    .paw2-stop-banner{grid-template-columns:auto 1fr;}
-    .paw2-stop-banner a{grid-column:2;}
     .paw2-library-head{display:block;}
     .paw2-library-head p{margin-top:5px;}
+    .paw2-library{grid-template-columns:1fr;}
     .paw2-detail summary{grid-template-columns:24px minmax(0,1fr) auto;gap:9px;}
-    .paw2-detail-body{padding:0 0 18px;}
+    .paw2-detail summary{min-height:0;}
+    .paw2-detail-body{padding:0 18px 18px;}
     .paw2-detail-columns{grid-template-columns:1fr;}
     .paw2-first-aid{grid-template-columns:1fr;}
     .paw2-next{grid-template-columns:1fr;}
@@ -390,24 +387,26 @@
           </div>
         </div>
 
-        <aside class="paw2-essentials" aria-labelledby="pawEssentialsTitle">
-          <span class="paw2-kicker" id="pawEssentialsTitle">Always do these three</span>
-          <ol>
-            <li><b>1</b><div><strong>Check before leaving</strong><span>Look at pads, nails and between every toe.</span></div></li>
-            <li><b>2</b><div><strong>Check early on the trail</strong><span>Pause after the first hot, sharp or gritty section.</span></div></li>
-            <li><b>3</b><div><strong>Rinse, dry and recheck</strong><span>Look again that evening and the next morning.</span></div></li>
-          </ol>
-        </aside>
+        <div class="paw2-side-stack">
+          <aside class="paw2-essentials" aria-labelledby="pawEssentialsTitle">
+            <span class="paw2-kicker" id="pawEssentialsTitle">Always do these three</span>
+            <ol>
+              <li><b>1</b><div><strong>Check before leaving</strong><span>Look at pads, nails and between every toe.</span></div></li>
+              <li><b>2</b><div><strong>Check early on the trail</strong><span>Pause after the first hot, sharp or gritty section.</span></div></li>
+              <li><b>3</b><div><strong>Rinse, dry and recheck</strong><span>Look again that evening and the next morning.</span></div></li>
+            </ol>
+          </aside>
+
+          <aside class="paw2-first-aid" id="call-vet" aria-labelledby="call-vet-title">
+            <span class="paw2-first-aid-icon" aria-hidden="true">!</span>
+            <div><h2 id="call-vet-title">A cut pad needs an early stop</h2><p>Rinse, apply steady pressure and protect the paw for the shortest walk out. Seek urgent veterinary help for severe bleeding, a deep wound, an embedded object or a dog that cannot stand or walk.</p></div>
+          </aside>
+        </div>
       </div>
     </section>
 
-    <aside class="paw2-stop-banner" aria-label="When to stop the walk">
-      <span class="paw2-stop-icon" aria-hidden="true">!</span>
-      <div><strong>A changed stride is your cue to stop and check.</strong><span>Do not wait for blood or a visible split; careful stepping, paw lifting and repeated licking come first.</span></div>
-      <a href="#first-aid">First-aid guidance →</a>
-    </aside>
     <section class="paw2-library" aria-labelledby="pawLibraryTitle">
-      <div class="paw2-library-head"><div><span class="paw2-kicker">Complete guide</span><h2 id="pawLibraryTitle">Open only what you need</h2></div><p>The essentials stay above; detailed advice is organised below.</p></div>
+      <div class="paw2-library-head"><div><span class="paw2-kicker">Complete guide</span><h2 id="pawLibraryTitle">Learn more</h2></div><p>Open each card for practical guidance, organised by task.</p></div>
 
       <details class="paw2-detail" id="boots">
         <summary><span class="paw2-detail-number">01</span><span class="paw2-detail-title"><strong>Choosing and fitting boots</strong><span>When they protect—and when they create rubbing or heat</span></span></summary>
@@ -457,11 +456,6 @@
         </div>
       </details>
     </section>
-
-    <aside class="paw2-first-aid" id="call-vet" aria-labelledby="call-vet-title">
-      <span class="paw2-first-aid-icon" aria-hidden="true">!</span>
-      <div><h2 id="call-vet-title">A cut pad needs an early stop</h2><p>Rinse, apply steady pressure and protect the paw for the shortest walk out. Seek urgent veterinary help for severe bleeding, a deep wound, an embedded object or a dog that cannot stand or walk.</p></div>
-    </aside>
 
     <section class="paw2-next" aria-labelledby="paw2-next-title">
       <div class="paw2-next-heading">
