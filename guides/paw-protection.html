@@ -257,12 +257,21 @@
   .paw2-first-aid-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:10px;background:#a93c31;color:#fff;font-size:1.35rem;font-weight:800;}
   .paw2-first-aid h2{margin:0 0 5px;color:#76362c;font-size:1.15rem;}
   .paw2-first-aid p{margin:0;color:#75443b;font-size:.78rem;line-height:1.52;}
-  .paw2-end{display:flex;align-items:center;justify-content:space-between;gap:20px;}
-  .paw2-keep-reading{color:var(--paw-soft);font-size:.79rem;}
-  .paw2-keep-reading a{color:var(--paw-blue);text-decoration:none;}
+  .paw2-next{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:11px;align-items:stretch;padding:14px;border:1px solid #d3dbd0;border-radius:14px;background:#e8ede5;}
+  .paw2-next-heading{grid-column:1/-1;display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:1px;}
+  .paw2-next-heading h2{margin:0;color:var(--paw-ink);font-size:1rem;}
+  .paw2-next-heading span{color:var(--paw-soft);font-size:.72rem;}
+  .paw2-next-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:9px;align-items:center;min-height:68px;padding:11px 13px;border:1px solid rgba(47,73,56,.12);border-radius:10px;background:#fff;color:var(--paw-ink);text-decoration:none;}
+  .paw2-next-card small{display:block;margin-bottom:2px;color:var(--paw-blue);font-size:.63rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+  .paw2-next-card strong{display:block;font-size:.84rem;line-height:1.25;}
+  .paw2-next-card p{margin:2px 0 0;color:var(--paw-soft);font-size:.68rem;line-height:1.35;}
+  .paw2-next-card>span{color:var(--paw-blue);font-size:1rem;font-weight:800;}
   .paw2-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:999px;background:#6dafc7;color:#173b49;font-size:.82rem;font-weight:800;text-decoration:none;white-space:nowrap;}
   .paw2-sources{margin-top:18px;border-top:1px solid var(--paw-line);color:#839087;}
   .paw2-sources summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0;cursor:pointer;list-style:none;font-size:.74rem;}
+  .paw2-sources-copy{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;}
+  .paw2-sources-copy strong{font-weight:500;}
+  .paw2-sources-copy small{color:#839087;font-size:inherit;}
   .paw2-sources summary::-webkit-details-marker{display:none;}
   .paw2-sources summary::after{content:"+";color:var(--paw-blue);font-size:1.05rem;}
   .paw2-sources[open] summary::after{content:"−";}
@@ -301,8 +310,11 @@
     .paw2-detail-body{padding:0 0 18px;}
     .paw2-detail-columns{grid-template-columns:1fr;}
     .paw2-first-aid{grid-template-columns:1fr;}
-    .paw2-end{align-items:stretch;flex-direction:column;}
+    .paw2-next{grid-template-columns:1fr;}
+    .paw2-next-heading{display:block;}
+    .paw2-next-heading span{display:block;margin-top:3px;}
     .paw2-cta{width:100%;}
+    .paw2-sources-copy{display:grid;gap:3px;}
   }
 </style>
 </head>
@@ -448,16 +460,25 @@
 
     <aside class="paw2-first-aid" id="call-vet" aria-labelledby="call-vet-title">
       <span class="paw2-first-aid-icon" aria-hidden="true">!</span>
-      <div><h2 id="call-vet-title">A cut pad needs an early stop</h2><p>Rinse, apply steady pressure and protect the paw for the shortest walk out. Seek urgent veterinary help for severe bleeding, a deep wound, an embedded object or a dog that cannot stand or walk. <a href="#first-aid">Open the complete first-aid steps.</a></p></div>
+      <div><h2 id="call-vet-title">A cut pad needs an early stop</h2><p>Rinse, apply steady pressure and protect the paw for the shortest walk out. Seek urgent veterinary help for severe bleeding, a deep wound, an embedded object or a dog that cannot stand or walk.</p></div>
     </aside>
 
-    <div class="paw2-end">
-      <span class="paw2-keep-reading">Keep reading: <a href="heat-overheating.html">heat and hydration</a> · <a href="../safety-guide.html">Safety library</a></span>
+    <section class="paw2-next" aria-labelledby="paw2-next-title">
+      <div class="paw2-next-heading">
+        <h2 id="paw2-next-title">Continue in the Safety Library</h2>
+        <span>Useful guidance for your next mountain day</span>
+      </div>
+      <a class="paw2-next-card" href="heat-overheating.html">
+        <div><small>Weather &amp; body</small><strong>Heat and hydration</strong><p>Plan water and recognise overheating early.</p></div><span aria-hidden="true">→</span>
+      </a>
+      <a class="paw2-next-card" href="../safety-guide.html">
+        <div><small>All topics</small><strong>Browse all safety guides</strong><p>Prepare for the situations you may meet outside.</p></div><span aria-hidden="true">→</span>
+      </a>
       <a class="paw2-cta" href="../browse-trails.html">Browse trails for your dog →</a>
-    </div>
+    </section>
 
     <details class="paw2-sources">
-      <summary>Sources and medical references <span>Last reviewed 19 August 2026</span></summary>
+      <summary><span class="paw2-sources-copy"><strong>Sources and medical references</strong><small>Last reviewed 19 August 2026</small></span></summary>
       <p>Veterinary first-aid and paw-care references: <a href="https://vcahospitals.com/know-your-pet/first-aid-for-torn-or-injured-foot-pads-in-dogs" rel="noopener">VCA Animal Hospitals</a>, <a href="https://www.merckvetmanual.com/special-pet-topics/emergencies/wound-management" rel="noopener">Merck Veterinary Manual</a> and <a href="https://www.akc.org/expert-advice/lifestyle/dog-boots/" rel="noopener">American Kennel Club</a>. General information, not veterinary advice. When this page and the mountain disagree, believe the mountain.</p>
     </details>
   </div>
