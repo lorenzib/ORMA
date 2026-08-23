@@ -39,7 +39,7 @@ describe('AUTH-03 account deletion and device cleanup', () => {
     const account = source('account.js');
     const homepage = source('script.js');
     expect(account).toContain("deviceState = removePackages ? 'removed' : 'maps-retained'");
-    expect(account).toContain("'index.html?accountDeleted=1&device='");
+    expect(account).toContain("'/?accountDeleted=1&device='");
     expect(homepage).toContain("device === 'removed'");
     expect(homepage).toContain("device === 'maps-retained'");
     expect(homepage).toContain('device cleanup did not finish');

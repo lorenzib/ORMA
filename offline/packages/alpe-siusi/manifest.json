@@ -3,10 +3,10 @@
   "trailId": "alpe-siusi",
   "name": "Alpe di Siusi Meadow Loop",
   "version": "2026.08.10-beta.3",
-  "generatedAt": "2026-08-15T09:02:48.993Z",
+  "generatedAt": "2026-08-23T15:10:53.366Z",
   "scoringVersion": "1.1.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 278865,
+  "packageBytes": 278853,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.5305,
@@ -112,8 +112,8 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 8205,
-      "sha256": "964bb436fc65f914b923422effef8ce79f3fab0f05091deda1feb1d2f49e2343"
+      "bytes": 8193,
+      "sha256": "9db5e2af074e2b2813db9529786d2719d3406d30f15776930e5db9e279662d9b"
     },
     {
       "role": "style",

@@ -52,6 +52,12 @@ describe('Safety library', () => {
     expect(html).toMatch(/\.sg-emergency\{[^}]*background:#A93C31/s);
     expect(html).toMatch(/\.sg-rules ol\{[^}]*grid-template-columns:repeat\(5/s);
     expect(html).toMatch(/\.sg-rules\{[^}]*background:#2F7089/s);
+    expect(html).toMatch(/\.sg-rules small\{[^}]*font-size:12px;[^}]*line-height:1\.45/s);
+  });
+
+  test('uses a wider safety-specific canvas without changing shared page gutters', () => {
+    expect(html).toMatch(/\.sg-hero\{[^}]*max-width:1520px;[^}]*padding-right:clamp\(20px,3vw,36px\)/s);
+    expect(html).toMatch(/\.sg-wrap\{[^}]*max-width:1520px;[^}]*padding-right:clamp\(20px,3vw,36px\)/s);
   });
 
   test('offers the five-question readiness questionnaire from a floating action', () => {

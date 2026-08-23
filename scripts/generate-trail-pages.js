@@ -479,13 +479,13 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
 <body data-scoring-version="${recommendationContract.VERSION}">
 
 <div class="topnav">
-  <a class="brand" href="../index.html"><img src="../logo.svg?v=3" alt="ORMA logo">ORMA</a>
+  <a class="brand" href="/"><img src="../logo.svg?v=3" alt="ORMA logo">ORMA</a>
   <div class="links">
     <a href="../browse-trails.html" class="active">Browse all Trails</a>
     <a href="../browse-trails.html#collections">Collections</a>
     <a href="../safety-guide.html">Safety guide</a>
     <a href="../journal.html">My walk journal</a>
-    <a class="account-btn" href="../index.html?view=login&amp;next=trails/${slug}.html" data-i18n="nav.login">Log in</a>
+    <a class="account-btn" href="/?view=login&amp;next=trails/${slug}.html" data-i18n="nav.login">Log in</a>
   </div>
 </div>
 

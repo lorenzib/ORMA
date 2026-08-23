@@ -510,7 +510,7 @@
     stopWatch();
     releaseWakeLock();
     clearDraft();
-    window.location.href = 'index.html';
+    window.location.href = '/';
   });
 
   // Re-acquire the wake lock when the tab comes back.

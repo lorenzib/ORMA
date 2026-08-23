@@ -52,7 +52,7 @@
     <img id="obImage" src="images/lago-di-braies.webp" alt="">
     <div class="ob-scrim"></div>
     <span class="ob-brand"><img src="logo.svg?v=5" alt="">ORMA</span>
-    <a class="ob-skip" href="index.html">Skip</a>
+    <a class="ob-skip" href="/">Skip</a>
   </div>
   <div class="ob-body">
     <div class="ob-dashes" id="obDashes" aria-hidden="true"></div>
@@ -98,7 +98,7 @@
   }
   document.getElementById('obBack').addEventListener('click', function(){ if(i > 0){ i--; render(); } });
   document.getElementById('obNext').addEventListener('click', function(){
-    if(i === STEPS.length - 1){ window.location.href = 'index.html?wizard=1'; return; }
+    if(i === STEPS.length - 1){ window.location.href = '/?wizard=1'; return; }
     i++;
     render();
   });

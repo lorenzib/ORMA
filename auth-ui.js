@@ -101,6 +101,7 @@
   }
 
   function safeReturnTarget(value){
+    if(value === '/') return '/';
     if(!value || /^(?:[a-z]+:|\/\/|\/)/i.test(value)) return '';
     return /^[a-z0-9][a-z0-9._/-]*\.html(?:\?[^#]*)?(?:#.*)?$/i.test(value) ? value : '';
   }
