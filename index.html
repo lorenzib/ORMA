@@ -136,7 +136,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         </div>
         <div class="hp-filter-row">
           <div class="hp-menuwrap hp-filt-wrap">
-            <button type="button" class="hp-filt discovery-filter-trigger" id="hpFiltersBtn" aria-haspopup="true" aria-expanded="false"><span class="hp-filt-lab"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Filters<span id="hpFiltersBadge"></span></span><span class="hp-filt-caret">▾</span></button>
+            <button type="button" class="hp-filt discovery-filter-trigger" id="hpFiltersBtn" aria-haspopup="true" aria-expanded="false"><span class="hp-filt-lab"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Filter trails<span id="hpFiltersBadge"></span></span><span class="hp-filt-caret">▾</span></button>
             <div class="hp-menu hp-fpanel discovery-filter-panel" id="hpFiltersPanel" hidden>
               <div class="hp-fpanel-head">
                 <span class="hp-fpanel-title">Filter trails</span>
@@ -277,15 +277,9 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       </span>
       <span class="li-toolbar-summary" id="liToolbarSummary" aria-live="polite"></span>
     </div>
-    <div class="li-menuwrap li-region-wrap" id="liRegionWrap">
-      <button type="button" id="liRegionBtn" class="li-region-btn" aria-haspopup="true" aria-expanded="false">
-        <span class="li-geo-copy"><span class="li-control-kicker">Region</span><span id="liRegionLabel">Dolomites</span></span><span class="li-caret">▾</span>
-      </button>
-      <div class="li-menu li-region-menu" id="liRegionMenu" hidden></div>
-    </div>
     <div class="li-search">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input id="liSearch" type="search" placeholder="Search trails, peaks, or towns…" aria-label="Search trails, peaks, or towns" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="liSearchSuggest" autocomplete="off">
+      <input id="liSearch" type="search" placeholder="Search by trail, area or valley" aria-label="Search by trail, area or valley" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="liSearchSuggest" autocomplete="off">
       <kbd class="li-search-shortcut" aria-hidden="true">⌘K</kbd>
       <div class="li-search-suggest" id="liSearchSuggest" role="listbox" aria-label="Recommended routes" hidden></div>
     </div>
@@ -295,23 +289,22 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       </button>
       <div class="li-menu li-country-menu" id="liCountryMenu" hidden></div>
     </div>
+    <div class="li-menuwrap li-region-wrap" id="liRegionWrap">
+      <button type="button" id="liRegionBtn" class="li-region-btn" aria-haspopup="true" aria-expanded="false">
+        <span class="li-geo-copy"><span class="li-control-kicker">Region</span><span id="liRegionLabel">Dolomites</span></span><span class="li-caret">▾</span>
+      </button>
+      <div class="li-menu li-region-menu" id="liRegionMenu" hidden></div>
+    </div>
     <div class="li-menuwrap li-valley-wrap" id="liValleyWrap">
       <button type="button" id="liValleyBtn" class="li-region-btn li-valley-btn" aria-haspopup="true" aria-expanded="false">
         <span class="li-geo-copy"><span class="li-control-kicker">Valley</span><span id="liValleyLabel">All valleys</span></span><span class="li-caret">▾</span>
       </button>
       <div class="li-menu li-valley-menu" id="liValleyMenu" hidden></div>
     </div>
-    <div class="li-quick-filters" aria-label="Quick dog filters">
-      <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span>High shade</span></button>
-      <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span>Water</span></button>
-    </div>
-    <!-- Kept as a rendering target for the controller; the consolidated
-         Filters panel is the visible control at every viewport size. -->
-    <div class="li-chiprow" id="liChips"></div>
     <div class="li-menuwrap" id="liFiltersWrap">
       <button type="button" id="liFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
-        Filters<span id="liFiltersBadge"></span> <span class="li-caret">▾</span>
+        Filter trails<span id="liFiltersBadge"></span> <span class="li-caret">▾</span>
       </button>
       <div class="li-menu li-filters-menu discovery-filter-panel" id="liFiltersMenu" hidden>
         <div class="li-fhead">
@@ -329,6 +322,13 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <button type="button" class="li-apply" id="liFiltersApply">Show trails</button>
       </div>
     </div>
+    <div class="li-quick-filters" aria-label="Quick dog filters">
+      <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span>High shade</span></button>
+      <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span>Water</span></button>
+    </div>
+    <!-- Kept as a rendering target for the controller; the consolidated
+         Filter trails panel is the visible control at every viewport size. -->
+    <div class="li-chiprow" id="liChips"></div>
     <button type="button" id="liSavedOnlyBtn" class="li-saved-only" aria-pressed="false">
       <span class="orma-saved-heart" aria-hidden="true">♥</span><span>Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span>
     </button>
