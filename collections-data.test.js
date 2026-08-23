@@ -42,18 +42,19 @@ describe('editorial trail collections', () => {
     });
   });
 
-  test('landing page exposes the shared search, area and themes pattern with Browse-style cards', () => {
+  test('landing page exposes search, visible area filters and theme buttons with Browse-style cards', () => {
     const page = fs.readFileSync(path.join(__dirname, 'collections.html'), 'utf8');
     const controller = fs.readFileSync(path.join(__dirname, 'collections-page.js'), 'utf8');
     expect(page).toContain('id="collectionSearch"');
-    expect(page).toContain('id="collectionAreaButton"');
     expect(page).toContain('id="collectionCountrySelect"');
     expect(page).toContain('id="collectionRegionSelect"');
-    expect(page).toContain('id="collectionThemesButton"');
+    expect(page).toContain('id="collectionValleySelect"');
+    expect(page).not.toContain('id="collectionThemesButton"');
     expect(page).toContain('data-collection-theme="gentle"');
     expect(page).not.toContain('Dog essentials');
     expect(page).toContain('area-dropdown.js');
     expect(controller).toContain('THEME_MATCHERS');
+    expect(controller).toContain('collectionInValley');
     expect(controller).toContain('class="simple-card collection-list-card"');
     expect(controller).toContain("waterSpecific(collection.chips[0])");
   });

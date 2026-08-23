@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260823-1">
+<link rel="stylesheet" href="styles.css?v=20260823-4">
 <style>
   /* Guest bar — the homepage component reused verbatim; CTA is a link here */
   a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
@@ -194,15 +194,15 @@
     <div class="browse-area-controls" aria-label="Choose trail area">
       <label class="browse-geo-group" for="browseCountrySelect">
         <span class="browse-geo-label">Country</span>
-        <span class="area-select-shell"><select id="browseCountrySelect" aria-label="Filter trails by country"></select></span>
+        <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label aria-label="Filter trails by country"></select></span>
       </label>
       <label class="browse-geo-group" for="browseRegionSelect">
         <span class="browse-geo-label">Region</span>
-        <span class="area-select-shell"><select id="browseRegionSelect" aria-label="Filter trails by region"></select></span>
+        <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label aria-label="Filter trails by region"></select></span>
       </label>
       <label class="browse-geo-group browse-geo-group--valley" for="browseValleySelect">
         <span class="browse-geo-label">Valley</span>
-        <span class="area-select-shell"><select id="browseValleySelect" aria-label="Filter trails by valley"></select></span>
+        <span class="area-select-shell"><select id="browseValleySelect" data-compact-label aria-label="Filter trails by valley"></select></span>
       </label>
     </div>
     <div class="browse-quick-filters" aria-label="Quick dog filters">
@@ -546,7 +546,7 @@
 <script src="discovery-state.js?v=20260822-1" defer></script>
 <script src="discovery-filters.js?v=20260822-1" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>
-<script src="area-dropdown.js?v=20260821-1"></script>
+<script src="area-dropdown.js?v=20260823-2"></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     // Guest bar mirrors the homepage: members never see it.
