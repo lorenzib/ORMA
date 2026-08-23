@@ -29,7 +29,7 @@
   .alt-breadcrumbs a{color:inherit;text-decoration:none;}
   .alt-breadcrumbs a:hover{text-decoration:underline;}
   .alt-hero h1,.alt-guide h2,.alt-guide h3{font-family:"Bricolage Grotesque",sans-serif;color:var(--alt-ink);}
-  .alt-hero h1{max-width:920px;margin:0 0 10px;font-size:clamp(38px,4.6vw,60px);line-height:1;letter-spacing:-.04em;}
+  .alt-hero h1{max-width:920px;margin:0 0 10px;font-size:clamp(34px,3.8vw,52px);line-height:1;letter-spacing:-.04em;}
   .alt-subtitle{max-width:900px;margin:0;color:var(--alt-soft);font-size:clamp(16px,1.4vw,19px);line-height:1.55;text-wrap:pretty;}
   .alt-meta{display:flex;align-items:center;gap:10px;margin-top:14px;color:#829087;font-size:.72rem;}
   .alt-meta strong{padding:5px 9px;border-radius:999px;background:#e2e9df;color:#395c41;font-size:.68rem;}
@@ -60,6 +60,8 @@
   .alt-section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:14px;}
   .alt-section-head h2{margin:0;font-size:clamp(26px,2.7vw,35px);line-height:1.08;letter-spacing:-.025em;}
   .alt-section-head p{max-width:520px;margin:0;color:var(--alt-soft);font-size:.8rem;line-height:1.5;text-align:right;}
+  .alt-section-head--stacked{display:block;}
+  .alt-section-head--stacked p{max-width:760px;margin:7px 0 0;text-align:left;}
   .alt-health-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
   .alt-health-card{padding:16px;border:1px solid var(--alt-line);border-radius:12px;background:#fff;}
   .alt-health-card b{display:grid;place-items:center;width:28px;height:28px;margin-bottom:10px;border-radius:8px;background:var(--alt-blue-soft);color:var(--alt-blue);font-size:.73rem;}
@@ -68,22 +70,6 @@
   .alt-vet-note{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;margin-top:10px;padding:13px 15px;border-radius:11px;background:#e8ede5;}
   .alt-vet-note strong{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#cbd9c9;color:var(--alt-green);font-size:.8rem;}
   .alt-vet-note p{margin:0;color:#45574a;font-size:.78rem;line-height:1.5;}
-
-  .alt-signs{padding:24px;border:1px solid var(--alt-line);border-radius:16px;background:#fff;}
-  .alt-signs h2{margin:0;font-size:clamp(26px,2.7vw,35px);line-height:1.08;letter-spacing:-.025em;}
-  .alt-signs>p{max-width:860px;margin:8px 0 18px;color:var(--alt-soft);font-size:.82rem;line-height:1.52;}
-  .alt-sign-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
-  .alt-sign{padding:15px;border-radius:11px;}
-  .alt-sign--pause{background:var(--alt-amber-soft);}
-  .alt-sign--descend{background:#f1ddca;}
-  .alt-sign--emergency{background:var(--alt-red-soft);}
-  .alt-sign span{display:block;margin-bottom:7px;color:var(--alt-amber);font-size:.64rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;}
-  .alt-sign--descend span,.alt-sign--emergency span{color:var(--alt-red);}
-  .alt-sign h3{margin:0 0 7px;font-size:1rem;}
-  .alt-sign ul{margin:0;padding-left:18px;color:var(--alt-soft);}
-  .alt-sign li{margin:5px 0;font-size:.74rem;line-height:1.42;}
-  .alt-rule{margin:11px 0 0;padding:11px 14px;border-radius:9px;background:#2f7089;color:#fff;font-size:.78rem;line-height:1.48;}
-  .alt-rule strong{color:#fff;}
 
   .alt-timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:14px;border-top:1px solid var(--alt-line);}
   .alt-step{padding:16px 22px 0 0;}
@@ -111,20 +97,15 @@
     .alt-hero{padding:21px 0 18px;}
     .alt-triage{grid-template-columns:1fr;}
     .alt-result{min-height:0;}
-    .alt-health-grid,.alt-sign-grid{grid-template-columns:1fr;}
-    .alt-sign{display:grid;grid-template-columns:minmax(130px,.55fr) minmax(0,1fr);column-gap:16px;}
-    .alt-sign span,.alt-sign h3{grid-column:1;}
-    .alt-sign ul{grid-column:2;grid-row:1/3;}
+    .alt-health-grid{grid-template-columns:1fr;}
     .alt-context{grid-template-columns:1fr;}
   }
   @media(max-width:560px){
-    .alt-hero h1{font-size:32px;}
+    .alt-hero h1{font-size:30px;}
     .alt-subtitle{font-size:14px;line-height:1.48;}
     .alt-triage{gap:15px;margin:18px 0;padding:17px;}
     .alt-section-head{display:block;}
     .alt-section-head p{margin-top:6px;text-align:left;}
-    .alt-signs{padding:18px;}
-    .alt-sign{display:block;}
     .alt-timeline{grid-template-columns:1fr;}
     .alt-step{padding:15px 0;}
     .alt-step+.alt-step{padding-left:0;border-top:1px solid var(--alt-line);border-left:0;}
@@ -151,7 +132,7 @@
       <a href="../safety-guide.html">Safety library</a><span aria-hidden="true">/</span><span aria-current="page">Altitude</span>
     </nav>
     <h1>Altitude changes the effort before the trail begins</h1>
-    <p class="alt-subtitle section-page-subtitle">Many Dolomites trailheads begin at 1,800–2,300 m, so the safest first outing is a health check in motion—not a test of how far your dog can push.</p>
+    <p class="alt-subtitle section-page-subtitle">Altitude, exertion, heat, dehydration and pain can look similar; plan so you can respond before you need to tell them apart.</p>
     <div class="alt-meta"><strong>5 min guide</strong><span>Last reviewed 23 August 2026</span></div>
   </header>
 
@@ -170,7 +151,7 @@
       <div class="alt-result" data-altitude-result data-tone="neutral" aria-live="polite">
         <span class="alt-result-label" data-altitude-label>Choose one observation</span>
         <h3 data-altitude-title>Start with the dog in front of you</h3>
-        <p data-altitude-copy>Compare breathing effort, gait, interest and recovery with your dog’s normal—not with another dog on the trail.</p>
+        <p data-altitude-copy>Compare breathing effort, gait, interest and recovery with your dog’s normal, rather than with another dog on the trail.</p>
         <p class="alt-result-note" data-altitude-note>When several causes are possible, the safe action matters more than naming the cause on the mountain.</p>
       </div>
     </section>
@@ -178,7 +159,6 @@
     <section class="alt-section" aria-labelledby="altBeforeTitle">
       <div class="alt-section-head">
         <div><span class="alt-kicker">Before you gain height</span><h2 id="altBeforeTitle">Three checks make the first day safer</h2></div>
-        <p>Altitude, exertion, heat, dehydration and pain can look similar; plan so you can respond before you need to tell them apart.</p>
       </div>
       <div class="alt-health-grid">
         <article class="alt-health-card"><b aria-hidden="true">01</b><h3>Know the baseline</h3><p>Notice your dog’s normal breathing effort, gait, appetite and interest before the trip so a meaningful change is easier to spot.</p></article>
@@ -188,22 +168,9 @@
       <div class="alt-vet-note"><strong aria-hidden="true">+</strong><p><b>Speak with your vet before the trip</b> if your dog has heart or lung disease, unexplained coughing, fainting, exercise intolerance, a recent serious illness, or has previously struggled at elevation. Puppies, seniors and flat-faced dogs also deserve a deliberately conservative plan.</p></div>
     </section>
 
-    <section class="alt-signs" aria-labelledby="altSignsTitle">
-      <span class="alt-kicker">Symptoms become decisions</span>
-      <h2 id="altSignsTitle">Know when to pause, descend or get urgent help</h2>
-      <p>Do not continue upward to see whether a worsening dog “walks it off.” Reduce exertion early and escalate the response when breathing, coordination or awareness changes.</p>
-      <div class="alt-sign-grid">
-        <article class="alt-sign alt-sign--pause"><span>Pause and reassess</span><h3>Something is different</h3><ul><li>Unusual tiredness or lagging</li><li>Heavy panting that is slow to ease</li><li>Less interest in food, water or surroundings</li></ul></article>
-        <article class="alt-sign alt-sign--descend"><span>Descend and end the hike</span><h3>Recovery is not normal</h3><ul><li>Weakness or refusal to continue</li><li>Vomiting or persistent coughing</li><li>Stumbling or poor coordination</li></ul></article>
-        <article class="alt-sign alt-sign--emergency"><span>Urgent veterinary help</span><h3>Breathing or awareness is impaired</h3><ul><li>Laboured breathing at rest</li><li>Pale or bluish gums</li><li>Collapse, seizure or disorientation</li></ul></article>
-      </div>
-      <p class="alt-rule"><strong>Decision rule:</strong> if signs are serious or worsening, descend immediately, carry your dog if it is safe to do so, minimise exertion and contact a veterinarian or emergency clinic.</p>
-    </section>
-
     <section class="alt-section" aria-labelledby="altDayTitle">
-      <div class="alt-section-head">
-        <div><span class="alt-kicker">A safer first day</span><h2 id="altDayTitle">Acclimatisation starts before the hike</h2></div>
-        <p>Fitness at home does not prove that a dog is ready for thinner air, especially after a fast drive or lift ascent.</p>
+      <div class="alt-section-head alt-section-head--stacked">
+        <div><span class="alt-kicker">A safer first day</span><h2 id="altDayTitle">Acclimatisation starts before the hike</h2><p>Fitness at home does not prove that a dog is ready for thinner air, especially after a fast drive or lift ascent.</p></div>
       </div>
       <div class="alt-timeline">
         <article class="alt-step"><strong>On arrival</strong><h3>Settle before climbing</h3><p>Offer water, take a calm walk and observe your dog at rest; skip the ambitious route straight out of the car or cable car.</p></article>
