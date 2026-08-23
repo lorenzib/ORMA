@@ -25,6 +25,27 @@
   function safetyLabel(value){
     return {'low-risk':'Low-risk terrain','moderate':'Moderate terrain','caution':'Caution terrain'}[value] || 'Check details';
   }
+  const guestProfile = { fitness:'moderate', breed:'Mixed breed' };
+  function matchScore(trail, profile = guestProfile){
+    try{
+      if(typeof scoreTrail !== 'function' || typeof effectiveOverrides !== 'function') return null;
+      return scoreTrail(trail, effectiveOverrides(profile, null));
+    }catch(error){ return null; }
+  }
+  function matchTier(score){
+    if(score >= 75) return 'great';
+    if(score >= 55) return 'good';
+    return 'check';
+  }
+  function initialMatch(trail){
+    const score = matchScore(trail);
+    return Number.isFinite(score) ? score : '—';
+  }
+  function inlineMatch(trail){
+    const score = initialMatch(trail);
+    const tier = Number.isFinite(score) ? matchTier(score) : 'unknown';
+    return `<span class="collection-difficulty">${esc(safetyLabel(trail.safetyLevel))}</span><span aria-hidden="true"> · </span><span class="collection-dog-match" data-tier="${tier}" data-collection-match-inline="${esc(trail.id)}">${score === '—' ? 'Match unavailable' : `≈${score}% match for a medium dog`}</span>`;
+  }
   const routeColours = ['#365B43','#C4872F','#557F96','#8A6754','#6D7F3F','#7C668F','#B35F4B','#477B70'];
   function card(trail, index){
     const visualHtml = visual.render(trail, { className:'photo' });
@@ -35,6 +56,7 @@
     ].filter(Boolean).join(' · ');
     const href = `trail.html?id=${encodeURIComponent(trail.id)}`;
     const safety = safetyLabel(trail.safetyLevel);
+    const score = initialMatch(trail);
     const detailsId = `collection-trail-details-${index + 1}`;
     return `<article class="simple-card collection-trail-card">
       <div class="collection-trail-card__summary">
@@ -42,7 +64,7 @@
         ${visualHtml}
         <div class="collection-trail-card__summary-copy">
           <div class="name">${esc(trail.name)}</div>
-          <div class="collection-trail-card__summary-meta">Show trail details</div>
+          <div class="collection-trail-card__summary-meta">${inlineMatch(trail)}</div>
         </div>
         <span class="collection-trail-card__chevron" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="m5.5 7.5 4.5 4.5 4.5-4.5"/></svg></span>
         <button type="button" class="collection-trail-card__toggle" aria-expanded="false" aria-controls="${detailsId}" data-trail-name="${esc(trail.name)}" aria-label="Show trail details for ${esc(trail.name)}"></button>
@@ -54,7 +76,7 @@
           <span class="simple-card__reason">${esc(trail.valley || collection.regionLabel)}</span>
         </div>
         <div class="simple-card__match">
-          <div class="simple-card__score"><strong>${Number.isFinite(trail.distance) ? esc(trail.distance) : '—'}<span>${Number.isFinite(trail.distance) ? ' km' : ''}</span></strong><small>TRAIL IN COLLECTION</small></div>
+          <div class="simple-card__score"><strong><span data-collection-match-score="${esc(trail.id)}">${score}</span><span>${score === '—' ? '' : '%'}</span></strong><small data-collection-match-label="${esc(trail.id)}">${score === '—' ? 'MATCH UNAVAILABLE' : 'APPROX. MATCH FOR A MEDIUM DOG'}</small></div>
           <div class="simple-card__match-actions"><a class="collection-list-card__open" href="${href}">View trail →</a></div>
         </div>
       </div>
@@ -85,8 +107,42 @@
   function mapLegend(){
     return selected.map((trail, index) => `<button type="button" class="collection-map-legend__item" data-collection-map-trail="${esc(trail.id)}">
       <span class="collection-map-legend__number" style="--route-colour:${routeColours[index % routeColours.length]}">${index + 1}</span>
-      <span><b>${esc(trail.name)}</b><small>${Number.isFinite(trail.distance) ? `${esc(trail.distance)} km` : 'Distance unavailable'}${trail.area ? ` · ${esc(trail.area)}` : ''}</small></span>
+      <span><b>${esc(trail.name)}</b><small>${inlineMatch(trail)}</small></span>
     </button>`).join('');
+  }
+
+  function updateDogMatches(profile, dogName){
+    selected.forEach(trail => {
+      const score = matchScore(trail, profile);
+      if(!Number.isFinite(score)) return;
+      const tier = matchTier(score);
+      document.querySelectorAll('[data-collection-match-score]').forEach(node => {
+        if(node.dataset.collectionMatchScore === trail.id) node.textContent = score;
+      });
+      document.querySelectorAll('[data-collection-match-label]').forEach(node => {
+        if(node.dataset.collectionMatchLabel === trail.id) node.textContent = `MATCH FOR ${String(dogName || 'YOUR DOG').toUpperCase()}`;
+      });
+      document.querySelectorAll('[data-collection-match-inline]').forEach(node => {
+        if(node.dataset.collectionMatchInline !== trail.id) return;
+        node.dataset.tier = tier;
+        node.textContent = `${score}% match for ${dogName || 'your dog'}`;
+      });
+    });
+  }
+
+  async function syncDogMatches(user){
+    if(!user || !window.DoloPawsAuth){
+      updateDogMatches(guestProfile, 'a medium dog');
+      return;
+    }
+    try{
+      const profile = await window.DoloPawsAuth.getDogProfile();
+      if(profile) updateDogMatches(profile, profile.name || 'your dog');
+    }catch(error){ /* Keep the guest estimate when a profile cannot load. */ }
+  }
+
+  function bindDogMatches(){
+    if(window.DoloPawsAuth) window.DoloPawsAuth.onChange(syncDogMatches);
   }
   function trailCorridors(){
     return selected.map(trail => {
@@ -253,17 +309,18 @@
       <div class="collection-detail-grid">${selected.map(card).join('')}</div>
     </section>`;
 
+  if(window.DoloPawsAuthReady) bindDogMatches();
+  else window.addEventListener('dolopaws-auth-ready', bindDogMatches, { once:true });
+
   shell.querySelectorAll('.collection-trail-card__toggle').forEach(button => {
     button.addEventListener('click', () => {
       const expanded = button.getAttribute('aria-expanded') !== 'true';
       const details = document.getElementById(button.getAttribute('aria-controls'));
       const cardNode = button.closest('.collection-trail-card');
-      const hint = cardNode && cardNode.querySelector('.collection-trail-card__summary-meta');
       button.setAttribute('aria-expanded', String(expanded));
       button.setAttribute('aria-label', `${expanded ? 'Hide' : 'Show'} trail details for ${button.dataset.trailName}`);
       if(details) details.hidden = !expanded;
       if(cardNode) cardNode.classList.toggle('is-open', expanded);
-      if(hint) hint.textContent = expanded ? 'Hide trail details' : 'Show trail details';
     });
   });
 

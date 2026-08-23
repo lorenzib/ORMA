@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260823-1">
+<link rel="stylesheet" href="styles.css?v=20260823-4">
 <style>
   /* Guest bar — the homepage component reused verbatim; CTA is a link here */
   a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
@@ -63,8 +63,8 @@
   .browse-card-compare{display:inline-flex;align-items:center;justify-content:center;min-height:28px;border-radius:var(--radius-pill);font:700 10.5px 'Inter',sans-serif;border:1px solid var(--paper-line);background:#fff;color:var(--ink-soft);padding:4px 9px;cursor:pointer;}
   .browse-card-compare[aria-pressed="true"]{background:#EAF3EC;border-color:#7EAD91;color:#24462E;}
   .browse-card-compare:disabled{cursor:not-allowed;opacity:.48;}
-  /* Filter row: search pill, then rating/distance/water controls. On phones
-     the controls condense behind a single "Filters" chip (design revamp). */
+  /* Filter row: search pill, then location and trail controls. On phones
+     the controls condense behind a single "Filter trails" chip (design revamp). */
   .browse-tools{position:relative;display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:18px;}
   .browse-filter-divider{width:1px;height:22px;background:var(--divider);margin:0 3px;}
   .browse-search-shell{flex:1 1 240px;max-width:320px;display:flex;align-items:center;gap:9px;background:var(--card);border:var(--border-strong);border-radius:var(--radius-pill);padding:9px 15px;color:var(--ink-soft);}
@@ -80,6 +80,9 @@
   .browse-water{min-height:38px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 13px 'Inter',sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap;}
   .browse-water[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
   .browse-quick-filters{display:flex;align-items:center;gap:8px;}
+  #browseFiltersWrap{order:3;}
+  .browse-quick-filters{order:4;}
+  .browse-saved-only{order:5;}
   .browse-quick-filter,.browse-saved-only{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:8px 13px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:var(--card);color:var(--ink);font:600 12.5px 'Inter',sans-serif;white-space:nowrap;cursor:pointer;}
   .browse-quick-filter[aria-pressed="true"],.browse-saved-only[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;color:#24462E;font-weight:700;}
   .browse-saved-count{display:inline-flex;align-items:center;justify-content:center;min-width:21px;height:21px;padding:0 6px;border-radius:999px;background:#EDF0E8;font-size:11px;}
@@ -191,15 +194,15 @@
     <div class="browse-area-controls" aria-label="Choose trail area">
       <label class="browse-geo-group" for="browseCountrySelect">
         <span class="browse-geo-label">Country</span>
-        <span class="area-select-shell"><select id="browseCountrySelect" aria-label="Filter trails by country"></select></span>
+        <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label aria-label="Filter trails by country"></select></span>
       </label>
       <label class="browse-geo-group" for="browseRegionSelect">
         <span class="browse-geo-label">Region</span>
-        <span class="area-select-shell"><select id="browseRegionSelect" aria-label="Filter trails by region"></select></span>
+        <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label aria-label="Filter trails by region"></select></span>
       </label>
       <label class="browse-geo-group browse-geo-group--valley" for="browseValleySelect">
         <span class="browse-geo-label">Valley</span>
-        <span class="area-select-shell"><select id="browseValleySelect" aria-label="Filter trails by valley"></select></span>
+        <span class="area-select-shell"><select id="browseValleySelect" data-compact-label aria-label="Filter trails by valley"></select></span>
       </label>
     </div>
     <div class="browse-quick-filters" aria-label="Quick dog filters">
@@ -209,7 +212,7 @@
     <div class="li-menuwrap" id="browseFiltersWrap">
       <button type="button" id="browseFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="browseFiltersMenu">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
-        Filters<span id="browseFiltersCount"></span> <span class="li-caret">▾</span>
+        Filter trails<span id="browseFiltersCount"></span> <span class="li-caret">▾</span>
       </button>
       <div class="li-menu li-filters-menu discovery-filter-panel" id="browseFiltersMenu" hidden>
         <div class="li-fhead">
@@ -543,7 +546,7 @@
 <script src="discovery-state.js?v=20260822-1" defer></script>
 <script src="discovery-filters.js?v=20260822-1" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>
-<script src="area-dropdown.js?v=20260821-1"></script>
+<script src="area-dropdown.js?v=20260823-2"></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     // Guest bar mirrors the homepage: members never see it.

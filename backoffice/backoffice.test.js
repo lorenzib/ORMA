@@ -1570,7 +1570,8 @@ describe('ORMA backoffice MVP', () => {
     expect(audit.pages.find(page=>page.slug==='heat-overheating').coverageState).toBe('covered');
     expect(audit.pages.find(page=>page.slug==='heat-overheating').existingAssets).toContain('../images/editorial/safety-library/heat-hydration-waterfall-v1.jpg');
     expect(audit.pages.find(page=>page.slug==='alpine-plants-for-dogs').coverageState).toBe('covered');
-    expect(audit.pages.find(page=>page.slug==='paw-protection').existingAssets).not.toContain('../images/editorial/safety-library/paw-protection-forest-v1.jpg');
+    expect(audit.pages.find(page=>page.slug==='paw-protection').coverageState).toBe('covered');
+    expect(audit.pages.find(page=>page.slug==='paw-protection').existingAssets).toContain('../images/editorial/safety-library/paw-protection-forest-v1.jpg');
   });
 
   test('image sourcing stays queued behind asset approval', () => {

@@ -40,7 +40,10 @@
 
     function refresh(){
       const selected = select.options[select.selectedIndex] || select.options[0];
-      trigger.querySelector('.area-select-trigger__label').textContent = selected ? selected.textContent : 'Choose';
+      const selectedLabel = selected ? selected.textContent : 'Choose';
+      trigger.querySelector('.area-select-trigger__label').textContent = select.hasAttribute('data-compact-label')
+        ? selectedLabel.replace(/\s+\(\d+\)$/, '')
+        : selectedLabel;
       menu.replaceChildren(...Array.from(select.options).map(nativeOption => {
         const item = document.createElement('button');
         item.type = 'button';
