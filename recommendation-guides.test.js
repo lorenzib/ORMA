@@ -47,9 +47,9 @@ describe('breed-group guide navigation', () => {
     const image = document.querySelector('.gp-hero-photo img');
 
     expect(image).not.toBeNull();
-    expect(image.getAttribute('src')).toBe('../images/editorial/safety-library/breed-group-considerations-dogs-v2.jpg');
+    expect(image.getAttribute('src')).toBe('../images/editorial/safety-library/breed-group-considerations-dogs-v3.jpg');
     expect(image.getAttribute('alt')).toMatch(/German Shepherd.+brindle shepherd-type dog/i);
-    expect(image.getAttribute('width')).toBe('1200');
+    expect(image.getAttribute('width')).toBe('1500');
     expect(image.getAttribute('height')).toBe('800');
   });
 
