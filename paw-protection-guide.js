@@ -1,65 +1,50 @@
 (function () {
   'use strict';
 
-  const checker = document.getElementById('pawSurfaceChecker');
-  const scoreCard = document.getElementById('pawScore');
-  const scoreNumber = document.getElementById('pawScoreNumber');
-  const scoreStatus = document.getElementById('pawScoreStatus');
-  const scoreSummary = document.getElementById('pawScoreSummary');
-  const scoreReasons = document.getElementById('pawScoreReasons');
+  const tabs = Array.from(document.querySelectorAll('[data-paw-surface]'));
+  const panels = Array.from(document.querySelectorAll('[data-paw-panel]'));
 
-  function selectedInputs(){
-    return checker ? Array.from(checker.querySelectorAll('input[type="radio"]:checked')) : [];
+  function selectSurface(surface, focusTab) {
+    tabs.forEach((tab) => {
+      const selected = tab.dataset.pawSurface === surface;
+      tab.setAttribute('aria-selected', String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+      if (selected && focusTab) tab.focus();
+    });
+    panels.forEach((panel) => {
+      panel.hidden = panel.dataset.pawPanel !== surface;
+    });
   }
 
-  function updateSurfaceScore(){
-    if (!checker || !scoreCard) return;
-    const selected = selectedInputs();
-    const deductions = selected.reduce((total, input) => total + Number(input.value || 0), 0);
-    const score = Math.max(0, 100 - deductions);
-    const reasons = selected.map(input => input.dataset.reason).filter(Boolean);
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => selectSurface(tab.dataset.pawSurface, false));
+    tab.addEventListener('keydown', (event) => {
+      if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      let nextIndex = index;
+      if (event.key === 'Home') nextIndex = 0;
+      else if (event.key === 'End') nextIndex = tabs.length - 1;
+      else if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (index + 1) % tabs.length;
+      else nextIndex = (index - 1 + tabs.length) % tabs.length;
+      selectSurface(tabs[nextIndex].dataset.pawSurface, true);
+    });
+  });
 
-    let tone = 'good';
-    let status = 'Good to go';
-    let summary = 'Nothing here argues against the plan. Check pads at every break anyway, because the surface is the part that changes fastest.';
-    if (score < 80 && score >= 55){
-      tone = 'watch';
-      status = 'Extra checks';
-      summary = 'This combination asks for a shorter plan, more shade and more frequent pad checks. Turn back at the first change in stride.';
-    } else if (score < 55){
-      tone = 'stop';
-      status = 'Choose another plan';
-      summary = 'Today’s surface and paw condition do not support the original plan. Shorten, reroute or wait for better conditions.';
-    }
+  if (tabs.length) selectSurface(tabs[0].dataset.pawSurface, false);
 
-    scoreCard.dataset.tone = tone;
-    scoreNumber.textContent = String(score);
-    scoreStatus.textContent = status;
-    scoreSummary.textContent = summary;
-    scoreReasons.textContent = reasons.length
-      ? reasons.join(' ')
-      : 'Nothing declared that we would subtract for. Keep checking anyway.';
+  function openLinkedDetail() {
+    if (!window.location.hash) return;
+    const target = document.querySelector(window.location.hash);
+    if (target && target.tagName === 'DETAILS') target.open = true;
   }
 
-  if (checker){
-    checker.addEventListener('change', updateSurfaceScore);
-    updateSurfaceScore();
-  }
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target && target.tagName === 'DETAILS') target.open = true;
+    });
+  });
 
-  const checkboxes = Array.from(document.querySelectorAll('.paw-check-item input[type="checkbox"]'));
-  const percent = document.getElementById('pawCheckPercent');
-  const bar = document.getElementById('pawCheckProgress');
-  const progress = document.querySelector('.paw-progress-track[role="progressbar"]');
-
-  function updateChecklist(){
-    if (!checkboxes.length) return;
-    const checked = checkboxes.filter(input => input.checked).length;
-    const value = Math.round((checked / checkboxes.length) * 100);
-    if (percent) percent.textContent = `${value}%`;
-    if (bar) bar.style.width = `${value}%`;
-    if (progress) progress.setAttribute('aria-valuenow', String(checked));
-  }
-
-  checkboxes.forEach(input => input.addEventListener('change', updateChecklist));
-  updateChecklist();
+  window.addEventListener('hashchange', openLinkedDetail);
+  openLinkedDetail();
 })();

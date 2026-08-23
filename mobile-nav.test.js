@@ -74,7 +74,7 @@ describe('shared navigation hardening', () => {
     expect(banner.querySelector('h2').textContent).toBe('Add your dog');
     expect(banner.querySelector('.dog-profile-banner__copy > p:last-child').textContent)
       .toBe('Add your dog for personalised matches. Create a free account only when you choose to save.');
-    expect(banner.querySelector('a').getAttribute('href')).toBe('index.html?wizard=1');
+    expect(banner.querySelector('a').getAttribute('href')).toBe('/?wizard=1');
   });
 
   test('shows the shared profile banner first on public flows without the standard header', () => {
@@ -90,7 +90,7 @@ describe('shared navigation hardening', () => {
     const banner = isolated.document.querySelector('.dog-profile-banner');
     expect(isolated.document.body.firstElementChild).toBe(banner);
     expect(banner.hidden).toBe(false);
-    expect(banner.querySelector('a').getAttribute('href')).toBe('../index.html?wizard=1');
+    expect(banner.querySelector('a').getAttribute('href')).toBe('/?wizard=1');
   });
 
   test('shows the banner for a signed-in account without dog details', () => {
@@ -160,7 +160,7 @@ describe('shared navigation hardening', () => {
     isolated.eval(mobileNav);
 
     expect(isolated.document.querySelector('.dog-profile-banner a').getAttribute('href'))
-      .toBe('../index.html?wizard=1');
+      .toBe('/?wizard=1');
   });
 
   test('every standard public page with the shared header loads this banner bundle', () => {

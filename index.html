@@ -6,6 +6,13 @@
 <title>ORMA | Dog Trails &amp; Terrain Guide</title>
 <meta name="description" content="ORMA ranks every Dolomites route by paw safety, shade, water access, and terrain risk — matched to your dog.">
 <meta name="theme-color" content="#2E4034">
+<link rel="canonical" href="https://www.app-orma.com/">
+<script>/* GitHub Pages serves index.html as the homepage but cannot declare a
+   server-side redirect. Keep the public address canonical while preserving
+   deep-link query parameters and fragments. */
+if(location.protocol !== 'file:' && location.pathname === '/index.html'){
+  location.replace('/' + location.search + location.hash);
+}</script>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -25,7 +32,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <body>
 
 <div class="topnav">
-  <a class="brand" href="index.html" aria-label="ORMA | Dog Trails &amp; Terrain Guide"><img src="logo.svg?v=5" alt="">ORMA</a>
+  <a class="brand" href="/" aria-label="ORMA | Dog Trails &amp; Terrain Guide"><img src="logo.svg?v=5" alt="">ORMA</a>
   <div class="links">
     <a href="browse-trails.html">Browse all Trails</a>
     <a href="collections.html">Collections</a>
@@ -174,7 +181,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 
   <!-- ================= DARK APP HEADER ================= -->
   <header class="li-top">
-    <a class="li-brand" href="index.html" aria-label="ORMA | Dog Trails &amp; Terrain Guide"><img src="logo.svg?v=5" alt="">ORMA</a>
+    <a class="li-brand" href="/" aria-label="ORMA | Dog Trails &amp; Terrain Guide"><img src="logo.svg?v=5" alt="">ORMA</a>
     <nav class="li-nav" aria-label="Site">
       <a href="browse-trails.html">Browse all Trails</a>
       <a href="collections.html">Collections</a>
@@ -206,7 +213,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <div class="li-menu-kick">Switch dog</div>
           <div id="liDogList"></div>
           <button type="button" class="li-menu-item" id="liAddDogBtn">＋ Add another dog</button>
-          <a class="li-menu-item" id="liManageLink" href="account.html?next=index.html">Manage dog profiles →</a>
+          <a class="li-menu-item" id="liManageLink" href="account.html?next=%2F">Manage dog profiles →</a>
           <div class="li-menu-div" role="separator"></div>
           <button type="button" class="li-menu-item" id="savedTrailsBtn">♥ <span class="txt-label">My saved trails</span> <span class="li-menu-count" id="companionSavedCount">0</span></button>
           <a class="li-menu-item" href="downloads.html">Downloaded trails</a>
@@ -235,7 +242,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <div class="li-menu-kick">Switch dog</div>
           <div id="liGreetDogList"></div>
           <button type="button" class="li-menu-item" id="liGreetAddDogBtn">＋ Add another dog</button>
-          <a class="li-menu-item" href="account.html?next=index.html">Manage dog profiles →</a>
+          <a class="li-menu-item" href="account.html?next=%2F">Manage dog profiles →</a>
         </div>
       </div>
       <div class="li-dog-copy">

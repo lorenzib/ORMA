@@ -1567,7 +1567,7 @@ describe('ORMA backoffice MVP', () => {
     expect(audit.summary.pagesScanned).toBeGreaterThanOrEqual(11);
     expect(audit.gaps.map(gap=>gap.slug)).toEqual(expect.arrayContaining(['altitude-with-your-dog','heat-overheating']));
     expect(audit.pages.find(page=>page.slug==='alpine-plants-for-dogs').coverageState).toBe('covered');
-    expect(audit.pages.find(page=>page.slug==='paw-protection').existingAssets).toContain('../images/editorial/paw-check-generated-small-v1.jpg');
+    expect(audit.pages.find(page=>page.slug==='paw-protection').existingAssets).toContain('../images/editorial/safety-library/paw-protection-forest-v1.jpg');
   });
 
   test('image sourcing stays queued behind asset approval', () => {
