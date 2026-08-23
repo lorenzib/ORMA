@@ -223,7 +223,7 @@ describe('shared navigation hardening', () => {
     expect(footer.querySelector('.hp-footer-connect')).toBeNull();
   });
 
-  test('keeps one dog-profile prompt below the header on the personalised homepage', () => {
+  test('keeps one dog-profile prompt below the personalised homepage header', () => {
     document.body.innerHTML += `
       <div id="returningCustomerHomepage">
         <header class="li-top"></header>
@@ -240,7 +240,7 @@ describe('shared navigation hardening', () => {
 
     const banner = document.querySelector('.dog-profile-banner');
     expect(banner).not.toBeNull();
-    expect(document.querySelector('.topnav').nextElementSibling).toBe(banner);
+    expect(document.querySelector('#returningCustomerHomepage .li-top').nextElementSibling).toBe(banner);
     expect(document.querySelectorAll('.dog-profile-banner')).toHaveLength(1);
   });
 

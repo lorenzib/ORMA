@@ -70,7 +70,14 @@
 
   function installDogProfileBanner(){
     const topnav = document.querySelector('.topnav');
-    if(document.querySelector('.dog-profile-banner')) return null;
+    const personalisedHomepageHeader = document.querySelector('#returningCustomerHomepage .li-top');
+    const existingBanner = document.querySelector('.dog-profile-banner');
+    if(existingBanner){
+      if(personalisedHomepageHeader && personalisedHomepageHeader.nextElementSibling !== existingBanner){
+        personalisedHomepageHeader.parentNode.insertBefore(existingBanner, personalisedHomepageHeader.nextSibling);
+      }
+      return existingBanner;
+    }
     if(document.querySelector('[data-inline-dog-profile],[data-hide-dog-profile-banner]')) return null;
     const homepageGuestBanner = document.querySelector('.hp-guestbar--homepage');
 
@@ -99,7 +106,8 @@
     profile.textContent = 'Add your dog';
     inner.append(copyBlock, profile);
     banner.appendChild(inner);
-    if(topnav) topnav.parentNode.insertBefore(banner, topnav.nextSibling);
+    if(personalisedHomepageHeader) personalisedHomepageHeader.parentNode.insertBefore(banner, personalisedHomepageHeader.nextSibling);
+    else if(topnav) topnav.parentNode.insertBefore(banner, topnav.nextSibling);
     else document.body.insertBefore(banner, document.body.firstChild);
 
     function sync(summary, signedIn){
