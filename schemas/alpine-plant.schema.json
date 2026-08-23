@@ -52,8 +52,8 @@
         "actionIfIngested": {"$ref": "#/$defs/nonEmptyStrings"},
         "interestingFact": {"type": "string", "minLength": 1},
         "image": {
-          "type": "object", "required": ["src", "alt", "credit"], "additionalProperties": false,
-          "properties": {"src": {"type": ["string", "null"]}, "alt": {"type": "string"}, "credit": {"type": ["string", "null"]}}
+          "type": "object", "required": ["src", "alt", "credit", "sourceUrl", "license"], "additionalProperties": false,
+          "properties": {"src": {"type": ["string", "null"]}, "alt": {"type": "string"}, "credit": {"type": ["string", "null"]}, "sourceUrl": {"type": ["string", "null"], "format": "uri"}, "license": {"type": ["string", "null"]}}
         },
         "evidence": {
           "type": "array", "minItems": 1,
