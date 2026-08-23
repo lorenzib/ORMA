@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="293.7,24.0 293.7,29.4 284.2,38.9 271.0,63.0 245.4,79.6 245.9,82.5 245.9,78.1 271.0,63.0 284.2,38.9 293.7,29.4 294.9,26.9 293.4,25.2 204.7,96.6 204.7,96.6 428.2,237.0 409.2,236.7 355.6,228.7 327.8,228.5 302.2,217.5 288.8,221.2 282.0,232.4 264.7,236.3 257.4,242.8 248.8,237.2 247.1,232.8 240.6,232.1 223.5,224.3 216.9,216.0 220.8,208.7 217.4,207.7 212.0,211.4 209.4,209.5 190.4,209.2 189.1,206.0 191.3,202.1 203.5,189.7 201.1,179.0 205.0,169.5 201.6,176.1 209.8,170.5 229.6,168.0 231.5,166.6 228.6,158.0 237.1,164.9 237.6,167.5 233.7,172.4 241.8,166.3 243.7,159.5 250.1,170.2 234.0,189.7 241.5,184.8 254.9,180.5 267.8,168.3 268.6,174.8 263.5,192.9 265.4,195.6 282.5,183.6 286.4,172.2 288.6,178.0 287.1,190.9 300.7,178.3 302.2,183.4 324.6,175.1 339.3,178.7 335.8,181.7 341.7,182.4 340.0,183.1 340.7,188.0 352.7,189.0 365.3,196.1 389.0,200.4 395.8,207.7 406.8,212.1 428.0,226.3 444.8,232.8 449.4,238.5 450.9,247.7 447.9,256.0 446.7,251.1 442.8,249.4" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="293.7" cy="24.0" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>An 5 km route near Valloire, imported from the OpenStreetMap hiking network (trail 25). Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.</p>
 

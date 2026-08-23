@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="24.0,63.9 30.8,63.5 38.7,72.7 40.2,77.1 37.6,85.6 27.1,94.4 24.0,106.5 33.6,108.0 53.4,106.2 86.5,99.7 94.6,102.7 105.6,101.4 128.4,102.7 148.3,110.4 152.5,117.2 151.2,122.2 131.2,129.5 114.6,138.2 104.2,144.8 103.8,149.4 108.6,151.4 137.8,152.5 153.4,166.7 216.5,191.3 242.8,216.5 265.6,224.6 276.6,236.3 275.9,243.5 281.6,242.2 295.0,232.5 330.7,218.3 354.4,218.1 377.7,210.6 416.7,202.7 459.0,196.6 496.5,194.8 528.5,187.8 535.5,179.2 558.1,171.6 584.6,170.0 612.9,153.6 616.0,149.4 614.9,144.4 609.4,140.2 576.3,137.1 557.0,126.4 530.5,116.1 497.2,92.0 467.8,83.2 437.3,69.2 385.3,53.4 363.9,50.5 334.5,42.4 302.2,43.3 293.7,36.5 295.4,42.9 271.8,37.6 250.3,43.3 232.3,43.7 219.8,50.1 198.1,50.1 185.6,53.8 157.1,55.8 151.8,53.6 145.9,45.5 109.5,42.4 91.8,44.8 66.3,53.4 51.6,55.6 49.7,63.0 24.0,63.9" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="24.0" cy="63.9" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>A real, GPS-verified loop from Compatsch using trails 7, 6, and 30 — confirmed by multiple independent hiking guides as wide gravel and paved paths, suitable even for all-terrain strollers. Europe's largest high-alpine meadow, gently rolling and wide open.</p>
 

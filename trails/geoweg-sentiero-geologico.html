@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="285.7,177.4 306.1,175.9 317.0,177.6 327.0,184.4 335.7,195.2 346.9,199.4 361.0,200.8 377.4,195.2 385.7,194.8 401.3,189.4 404.5,190.0 420.0,186.2 437.1,184.0 460.2,184.8 471.8,191.2 492.5,197.2 510.6,211.7 520.8,214.9 533.3,215.5 548.5,224.1 566.2,226.4 580.9,223.9 587.9,220.9 596.3,221.5 600.1,222.5 598.5,224.3 609.0,226.8 616.0,231.2 616.0,233.2 609.4,235.2 616.0,233.2 616.0,231.2 609.0,226.8 598.5,224.3 600.1,222.5 596.3,221.5 587.9,220.9 580.9,223.9 566.2,226.4 548.5,224.1 533.3,215.5 520.8,214.9 510.6,211.7 492.5,197.2 471.8,191.2 460.2,184.8 437.1,184.0 424.0,185.8 419.2,182.4 416.2,182.6 417.6,181.2 415.2,181.4 416.8,180.0 403.1,181.6 392.5,174.9 386.3,176.3 380.0,173.5 371.8,167.5 353.7,165.1 340.5,155.5 337.1,149.0 329.0,146.0 324.4,132.6 318.4,128.2 302.1,128.6 293.7,120.5 288.3,119.3 270.4,120.3 263.2,112.3 245.5,106.9 242.5,104.5 242.3,99.8 240.3,96.6 215.8,92.2 198.9,91.2 196.1,88.0 193.3,80.0 193.1,74.5 185.9,61.1 180.0,57.7 171.2,55.3 154.9,44.8 148.3,45.0 114.6,53.6 92.1,67.5 88.5,68.1 80.0,66.7 71.2,60.9 61.8,61.5 47.3,65.1 68.8,60.7 73.8,61.5 80.0,66.7 76.0,71.5 62.0,72.9 62.4,75.5 65.0,76.9 65.2,79.8 55.1,87.6 35.8,92.2 25.6,97.6 24.0,100.2 34.4,104.1 44.7,102.6 51.9,106.5 59.3,103.3 69.6,102.2 74.6,103.7 76.0,109.7 92.9,115.3 97.7,121.1 84.6,124.5 83.4,126.7 100.9,135.6 108.9,134.4 114.2,135.6 112.0,137.6 115.8,138.6 117.2,143.2 121.4,146.4 115.2,149.4 112.2,147.2 105.1,150.6 112.4,155.3 142.9,148.0 146.1,145.8 170.4,145.2 171.0,139.8 190.1,132.0 193.9,129.8 194.9,127.5 206.1,123.7 210.0,125.1 210.6,126.9 208.5,140.8 212.2,144.8 226.0,148.6 235.3,146.4 255.3,150.0 267.0,146.8 274.2,150.2 274.4,157.1 121.4,146.4 160.2,139.4 186.3,129.2 194.9,127.5" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="285.7" cy="177.4" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>An 7.3 km route near Cavalese, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.</p>
 

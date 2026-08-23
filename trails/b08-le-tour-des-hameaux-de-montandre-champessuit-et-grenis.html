@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="422.5,89.0 426.5,98.6 425.1,100.9 407.9,104.3 405.8,106.2 410.4,115.7 414.9,120.8 414.4,155.5 418.1,170.1 417.7,176.1 420.2,181.0 415.5,192.8 415.8,196.6 422.5,208.1 415.6,204.5 416.0,213.5 409.5,213.5 409.7,216.3 404.4,215.4 392.3,227.4 389.5,231.8 388.4,236.3 388.1,239.3 389.6,242.7 388.6,246.9 386.1,251.1 386.5,253.4 383.7,254.8 379.3,256.0 362.8,250.6 361.0,246.9 357.0,244.2 355.7,239.1 358.2,235.8 357.8,233.7 354.2,225.8 351.3,223.5 350.8,219.6 348.4,216.5 347.5,212.3 346.1,211.9 342.6,202.3 338.7,204.4 335.5,199.6 326.8,195.4 318.3,194.5 318.7,190.7 320.6,188.0 320.3,179.1 308.1,180.1 303.1,176.3 300.9,177.3 289.4,170.8 284.6,169.6 276.5,164.1 271.4,154.1 265.5,146.8 265.6,142.0 261.6,141.3 256.0,145.0 248.8,151.3 247.4,152.9 248.3,154.7 244.0,158.5 222.6,158.2 217.9,161.3 214.4,168.0 207.2,170.5 214.4,168.0 217.9,161.3 222.6,158.2 244.0,158.5 248.3,154.7 247.4,152.9 248.8,151.3 256.0,145.0 261.6,141.3 268.1,139.4 284.6,126.9 283.0,125.9 275.5,126.2 270.2,122.7 269.7,119.7 267.2,119.0 269.2,99.9 268.1,94.8 263.9,90.0 263.0,86.5 266.3,79.7 262.3,56.1 268.8,44.5 275.1,37.0 296.6,24.0 295.5,32.4 298.0,43.1 310.6,43.7 318.5,52.1 336.9,43.7 338.7,41.4 339.4,44.2 348.7,53.2 354.9,61.9 362.4,65.3 369.3,67.0 384.4,64.6 395.4,67.4 404.7,72.5 414.7,70.4 427.6,71.6 423.2,74.6 424.2,75.5 428.4,73.5 432.0,73.7 432.8,74.9 426.3,80.0 420.9,86.7 425.6,96.4" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="422.5" cy="89.0" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>A 5.1 km loop near Saint-Jean-de-Maurienne, imported from the OpenStreetMap hiking network (trail B08). Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.</p>
 

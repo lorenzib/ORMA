@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="226.3,29.4 225.6,32.9 227.1,37.6 221.0,45.2 222.2,48.1 221.3,47.3 227.2,49.5 233.7,53.1 242.8,59.8 265.1,61.3 276.7,64.1 291.1,65.7 295.6,68.5 299.0,69.3 303.9,68.2 305.7,68.8 316.6,74.7 329.3,86.8 335.3,94.7 346.2,102.3 351.8,107.5 355.1,112.3 373.0,125.2 374.8,128.5 376.3,135.4 377.4,137.0 383.3,134.9 389.6,135.3 392.4,136.5 403.1,145.7 408.1,145.6 413.1,143.1 414.6,143.2 417.3,144.7 422.3,150.1 423.8,158.4 421.9,161.0 423.7,162.6 424.4,166.8 420.8,172.2 419.1,173.3 419.2,174.1 412.8,180.7 412.2,182.8 412.3,190.8 406.1,192.4 404.8,197.9 400.3,202.6 399.4,204.8 399.0,211.2 390.7,217.3 390.1,241.1 390.7,241.8 389.7,243.6 386.1,246.9 380.9,256.0 381.8,255.6 380.9,256.0 379.1,252.7 379.2,251.2 388.3,243.4 390.2,240.5 385.5,239.0 380.7,243.6 377.2,242.9 378.5,243.9 375.4,242.5 370.5,242.6 359.0,245.7 355.8,248.7 353.7,249.3 339.9,251.8 335.5,251.0 328.1,253.3 335.9,248.2 345.6,238.9 348.9,237.4 351.5,234.1 360.1,229.3 357.7,228.1 352.2,220.9 347.8,218.8 346.9,219.8 342.3,215.3 341.8,209.7 339.3,202.4 338.4,201.5 341.5,198.8 342.7,193.6 334.4,178.0 333.9,173.0 332.1,170.0 333.5,166.0 332.0,154.6 330.4,155.0 331.4,153.9 330.4,155.0 329.8,154.8 328.9,152.0 329.6,145.0 327.1,136.1 314.0,121.6 308.8,118.6 302.6,113.4 291.4,97.0 288.7,94.3 288.4,90.6 282.0,81.8 272.0,75.4 266.9,74.7 256.0,78.0 258.7,75.3 256.8,75.5 252.6,76.6 245.3,81.2 236.8,83.3 234.3,80.2 230.5,79.1 225.4,76.2 226.9,74.4 224.2,72.0 224.0,65.7 222.3,64.0 220.6,59.7 216.1,56.5 217.8,57.4 216.1,56.5 215.6,53.0 218.1,53.1 217.7,50.0 222.1,50.5 220.3,47.3 221.0,45.2 226.8,38.5 227.2,36.7 225.6,32.9 225.6,30.8 226.3,29.4 229.6,28.5 229.1,26.1 226.9,24.0 229.1,26.1 229.6,28.5 228.2,28.6 226.3,29.4" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="226.3" cy="29.4" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   <p class="sp-src" style="display:flex;align-items:center;gap:8px;margin:-6px 0 14px;"><img src="../logo.svg" alt="" width="22" height="22" style="flex:none;"> We're working on adding photos of this trail.</p>
   <p>Official Les Karellis route 09: a 7.7 km loop from Les Karellis to Albanne through forest and alpine pasture, following green waymarks. The official route lists 249 m ascent and about 3½ hours.</p>
 

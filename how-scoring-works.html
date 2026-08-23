@@ -116,16 +116,16 @@
   .sc-status-card summary::-webkit-details-marker{display:none;}
   .sc-status-card summary:after{content:"+";font:400 23px/1 'Inter',sans-serif;color:#52665A;}
   .sc-status-card[open] summary:after{content:"−";}
-  .sc-status-card p{margin:0;padding:0 14px 13px;font-size:11.5px;line-height:1.5;color:#52665A;}
+  .sc-status-card p{margin:0;padding:0 14px 13px;font-size:13px;line-height:1.55;color:#52665A;}
+  .sc-community-note{font-size:11.5px;line-height:1.5;}
   .sc-methodology{margin-top:14px;border-top:1px solid #E5E0D5;}
   .sc-methodology summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0 0;font:700 12px/1.3 'Inter',sans-serif;color:#52665A;}
   .sc-methodology summary::-webkit-details-marker{display:none;}
   .sc-methodology summary:after{content:"+";font:400 22px/1 'Inter',sans-serif;}
   .sc-methodology[open] summary:after{content:"−";}
   .sc-methodology-content{padding:15px 0 0;}
-  .sc-methodology-content strong{display:block;margin-top:15px;font:700 10.5px/1.2 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.06em;color:#52665A;}
-  .sc-methodology-content strong:first-child{margin-top:0;}
-  .sc-methodology-content p{margin:7px 0 0;font-size:11.5px;line-height:1.65;color:#607266;max-width:none;}
+  .sc-methodology-content p{margin:0;font-size:11.5px;line-height:1.7;color:#607266;max-width:none;}
+  .sc-methodology-content strong{color:#52665A;}
   @media(max-width:900px){
     .sc-terrain-figure{grid-template-columns:1fr;}
     .sc-terrain-figure img{height:300px;}
@@ -318,14 +318,11 @@
             <p>From OpenStreetMap, the collaborative map of the world. Route, distance and elevation come from real map data, but nobody from ORMA has walked it yet, so we label it honestly. As we verify imported trails, they graduate.</p>
           </details>
         </div>
-        <p class="sc-note" style="margin-top:24px;">Community reports (livestock guard dogs, dry fountains, a lift that refused a dog) appear alongside our ratings and never silently change them. What we verified stays visible; what hikers report stays attributed to hikers.</p>
+        <p class="sc-note sc-community-note" style="margin-top:24px;">Community reports (livestock guard dogs, dry fountains, a lift that refused a dog) appear alongside our ratings and never silently change them. What we verified stays visible; what hikers report stays attributed to hikers.</p>
         <details class="sc-methodology">
           <summary>Scoring methodology and limits</summary>
           <div class="sc-methodology-content">
-            <strong>The score's boundaries</strong>
-            <p>Only declared, structured facts move the score; free notes and temperament do not. The score surfaces risks early, but the decision is always yours. It cannot see today's weather or your dog's mood, so when in doubt, choose the gentler trail.</p>
-            <strong>What the numbers are based on</strong>
-            <p>The rules follow published veterinary research on heat risk, joint and back health, and life-stage exercise. The exact point values are ORMA's own calibration, and your vet's advice about your own dog always comes first.</p>
+            <p><strong>The score's boundaries.</strong> Only declared, structured facts move the score; free notes and temperament do not. The score surfaces risks early, but the decision is always yours. It cannot see today's weather or your dog's mood, so when in doubt, choose the gentler trail. <strong>What the numbers are based on.</strong> The rules follow published veterinary research on heat risk, joint and back health, and life-stage exercise. The exact point values are ORMA's own calibration, and your vet's advice about your own dog always comes first.</p>
           </div>
         </details>
         </div>
@@ -488,14 +485,11 @@
             <p>Da OpenStreetMap, la mappa collaborativa del mondo. Percorso, distanza e dislivello vengono da dati cartografici reali, ma nessuno di ORMA lo ha ancora percorso, e lo diciamo onestamente. Man mano che li verifichiamo, i sentieri importati passano di categoria.</p>
           </details>
         </div>
-        <p class="sc-note" style="margin-top:24px;">Le segnalazioni della comunità (cani da guardiania, fontane asciutte, un impianto che ha rifiutato un cane) compaiono accanto alle nostre valutazioni e non le cambiano mai in silenzio. Ciò che abbiamo verificato resta visibile; ciò che segnalano gli escursionisti resta attribuito a loro.</p>
+        <p class="sc-note sc-community-note" style="margin-top:24px;">Le segnalazioni della comunità (cani da guardiania, fontane asciutte, un impianto che ha rifiutato un cane) compaiono accanto alle nostre valutazioni e non le cambiano mai in silenzio. Ciò che abbiamo verificato resta visibile; ciò che segnalano gli escursionisti resta attribuito a loro.</p>
         <details class="sc-methodology">
           <summary>Metodo e limiti del punteggio</summary>
           <div class="sc-methodology-content">
-            <strong>I limiti del punteggio</strong>
-            <p>Solo i dati strutturati dichiarati muovono il punteggio; le note libere e il temperamento no. Il punteggio fa emergere i rischi, ma la decisione resta sempre tua. Non vede il meteo di oggi né l'umore del cane: nel dubbio, scegli il sentiero più gentile.</p>
-            <strong>Su cosa si basano i numeri</strong>
-            <p>Le regole seguono la ricerca veterinaria pubblicata su rischio da calore, salute di articolazioni e schiena, ed esercizio per fascia d'età. I valori esatti dei punti sono la calibrazione di ORMA, e il parere del tuo veterinario sul tuo cane viene sempre prima.</p>
+            <p><strong>I limiti del punteggio.</strong> Solo i dati strutturati dichiarati muovono il punteggio; le note libere e il temperamento no. Il punteggio fa emergere i rischi, ma la decisione resta sempre tua. Non vede il meteo di oggi né l'umore del cane: nel dubbio, scegli il sentiero più gentile. <strong>Su cosa si basano i numeri.</strong> Le regole seguono la ricerca veterinaria pubblicata su rischio da calore, salute di articolazioni e schiena, ed esercizio per fascia d'età. I valori esatti dei punti sono la calibrazione di ORMA, e il parere del tuo veterinario sul tuo cane viene sempre prima.</p>
           </div>
         </details>
         </div>

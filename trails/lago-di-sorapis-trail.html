@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="237.3,24.0 242.5,29.7 243.7,34.8 249.2,35.9 260.4,43.4 253.4,45.8 255.8,49.1 269.0,55.1 281.1,58.3 290.0,61.9 294.8,65.1 298.3,77.1 296.6,81.9 291.7,86.9 291.3,89.0 299.2,89.6 307.1,93.1 308.9,91.9 315.8,91.5 318.9,90.2 324.4,91.9 329.2,92.0 339.9,98.1 348.9,100.9 353.8,104.5 358.2,105.2 359.0,108.1 361.8,107.4 363.5,108.7 365.6,114.4 369.3,118.4 370.0,126.3 374.5,132.5 375.0,139.3 379.8,144.7 382.5,151.6 389.6,154.7 392.2,157.5 391.1,158.5 392.7,161.9 398.0,167.2 400.0,171.1 402.7,181.8 401.7,184.8 399.4,182.3 395.3,192.8 398.3,195.5 397.7,198.9 399.6,200.7 400.2,218.0 401.4,220.0 398.9,225.1 401.3,228.7 394.2,235.9 390.3,241.9 389.4,241.8 388.2,248.8 381.2,256.0" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="237.3" cy="24.0" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>A striking turquoise glacial lake, but the path in has narrow, exposed sections with fixed cables in places.</p>
 

@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="242.0,77.2 233.3,84.4 217.0,81.7 221.4,85.5 224.7,93.8 219.3,100.3 209.5,107.8 196.2,129.3 187.4,138.4 179.5,150.5 159.5,163.7 134.5,165.3 155.7,175.1 156.2,183.7 179.1,199.3 186.8,205.8 186.8,205.8 204.3,203.5 218.1,199.3 231.2,189.9 248.1,173.9 261.2,167.4 270.2,165.7 283.3,171.8 321.7,199.9 359.2,223.9 379.2,233.1 419.0,244.3 445.5,256.0 458.4,255.0 474.2,245.4 479.0,245.2 487.6,248.7 488.0,246.8 476.5,234.7 474.7,217.0 470.7,207.8 479.5,190.8 487.4,188.0 495.5,178.5 498.2,170.5 502.8,164.7 505.5,156.6 505.5,150.1 501.8,137.8 494.3,124.3 484.5,114.9 481.5,101.3 467.8,85.9 461.1,65.1 462.0,40.7 457.8,38.2 450.7,38.4 440.5,60.1 442.8,73.8 432.6,58.0 424.4,51.3 412.5,46.1 385.2,37.8 375.0,32.1 360.2,26.9 339.8,24.0 290.0,25.7 285.4,31.5 283.1,32.1 282.5,36.3 310.4,43.4 320.6,48.0 285.8,56.5 274.8,62.4 265.4,65.1 242.0,77.2" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="242.0" cy="77.2" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>A 5.1 km loop near Bolzano / Bozen, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record. Direction shown climbs more gradually (computed from elevation data).</p>
 

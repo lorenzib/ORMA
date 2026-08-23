@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="613.7,42.2 613.0,44.0 614.0,49.3 610.7,60.3 616.0,64.2 608.6,70.7 601.9,85.9 590.3,93.9 566.3,101.6 561.3,104.6 553.3,106.6 545.0,107.3 536.9,106.4 521.5,108.3 505.3,107.7 491.2,112.3 476.6,115.3 467.1,119.2 452.7,121.9 445.2,120.0 438.4,120.4 428.7,124.0 414.0,126.0 406.7,129.6 382.4,133.4 372.0,145.7 372.8,151.6 375.0,153.9 375.7,160.7 369.5,182.6 366.0,185.8 360.7,188.4 357.6,193.8 354.6,196.1 353.3,199.3 349.1,200.4 345.0,203.4 338.6,204.5 332.9,207.4 319.9,217.4 314.3,220.4 305.2,228.7 295.7,231.2 286.2,231.2 286.2,233.2 284.3,235.0 265.7,224.0 255.5,227.1 254.0,229.1 248.5,231.2 240.0,237.8 238.6,234.5 239.6,229.7 237.0,224.0 234.5,222.2 229.9,222.0 220.8,223.1 210.9,227.5 209.8,229.1 211.1,232.7 207.8,235.0 201.2,232.2 200.9,223.8 199.9,223.0 193.9,225.8 184.5,233.2 182.5,233.2 182.5,229.8 186.9,220.1 190.3,208.7 188.5,199.7 189.9,192.4 180.9,192.7 172.6,197.3 148.1,198.7 146.2,195.3 147.4,189.1 145.5,185.4 146.4,181.3 145.4,180.7 139.1,184.1 127.7,187.8 121.4,186.4 118.7,188.4 112.8,189.8 110.5,192.3 110.4,195.7 107.1,202.1 105.8,202.4 97.1,194.8 93.3,189.7 87.3,185.4 87.3,182.0 86.3,181.3 80.3,183.4 79.1,186.5 76.1,188.7 55.6,188.0 59.1,182.6 59.4,175.8 57.7,169.8 61.4,163.3 60.0,161.7 48.3,161.4 35.7,170.8 27.4,172.6 24.0,181.8" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="613.7" cy="42.2" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>An 5.5 km route near Samoëns, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.</p>
 

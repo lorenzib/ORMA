@@ -13,7 +13,7 @@ describe('altitude health and safety guide', () => {
 
   test('leads with health-first framing and no empty hero image', () => {
     expect(document.querySelector('h1').textContent).toMatch(/altitude changes the effort/i);
-    expect(document.querySelector('.alt-subtitle').textContent).toMatch(/health check in motion/i);
+    expect(document.querySelector('.alt-subtitle').textContent).toMatch(/altitude, exertion, heat, dehydration and pain can look similar/i);
     expect(document.querySelector('.gp-hero-photo')).toBeNull();
     expect(document.querySelector('.alt-meta').textContent).toMatch(/Last reviewed 23 August 2026/i);
   });
@@ -39,12 +39,10 @@ describe('altitude health and safety guide', () => {
     expect(document.querySelector(`[data-altitude-state="${state}"]`).getAttribute('aria-pressed')).toBe('true');
   });
 
-  test('keeps emergency signs and descent action visible without interaction', () => {
-    const signs = document.querySelector('.alt-signs').textContent;
-    expect(signs).toMatch(/Laboured breathing at rest/i);
-    expect(signs).toMatch(/Pale or bluish gums/i);
-    expect(signs).toMatch(/Collapse, seizure or disorientation/i);
-    expect(signs).toMatch(/descend immediately/i);
+  test('removes the repeated warning-sign panel while retaining decision guidance', () => {
+    expect(document.querySelector('.alt-signs')).toBeNull();
+    expect(document.querySelector('.alt-triage').textContent).toMatch(/safer next decision/i);
+    expect(document.querySelector('[data-altitude-state="emergency"]')).not.toBeNull();
   });
 
   test('includes pre-trip veterinary flags and conservative first-day planning', () => {

@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="280.5,72.1 282.9,67.7 287.9,63.5 296.1,61.5 296.9,55.7 301.2,44.3 290.7,24.0 320.0,45.5 335.4,52.1 337.8,55.5 372.9,71.7 393.2,85.2 398.6,90.4 398.8,92.6 396.8,94.0 388.0,94.4 383.4,96.8 375.7,96.2 379.8,96.4 375.7,96.2 382.0,99.2 391.6,107.0 391.2,114.2 399.0,118.8 404.4,125.3 404.6,133.1 408.8,136.3 396.8,140.5 385.4,140.3 382.4,143.1 384.0,146.1 395.0,150.9 398.8,164.4 395.6,173.4 397.4,200.1 395.2,203.5 397.8,213.5 394.8,227.5 398.0,248.6 396.4,250.4 385.4,247.0 375.9,247.2 351.9,256.0 349.1,252.6 349.3,247.2 361.1,236.1 362.5,231.5 370.1,227.3 362.3,219.3 361.5,205.7 359.5,202.5 351.7,198.1 337.8,193.6 328.0,193.6 312.6,190.4 308.2,186.4 308.0,179.6 302.2,175.6 298.5,167.6 276.3,156.3 266.3,156.1 261.0,152.7 244.6,151.1 242.0,149.3 238.8,142.5 231.6,136.9 231.2,132.7 233.6,122.1 243.0,122.1 249.8,120.2 258.4,113.4 274.1,105.2 288.3,100.4 294.3,100.0 289.1,88.4 284.1,82.0 282.5,72.7 280.7,71.3 285.3,83.4 293.9,97.0 232.0,121.5 231.2,132.7" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="280.5" cy="72.1" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>An 4.3 km route near Nova Levante / Carezza, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.</p>
 

@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="348.7,58.6 348.7,58.6 324.1,226.4 324.1,226.4 425.1,203.2 433.5,199.4 446.0,183.4 448.6,176.2 464.3,179.3 479.1,177.6 488.4,180.8 521.8,184.6 541.5,191.2 567.1,194.2 560.7,185.7 558.1,173.8 527.9,156.7 523.0,150.9 523.0,138.4 518.0,132.6 502.3,123.9 460.5,114.0 446.9,107.0 440.5,100.1 436.1,100.7 420.8,110.8 414.7,111.1 88.3,157.3 74.1,154.4 72.9,152.9 75.2,151.8 86.3,151.5 113.3,137.8 138.8,134.9 152.8,130.9 170.8,112.9 172.2,108.8 157.1,97.5 126.9,90.2 125.5,87.6 127.8,80.9 145.8,62.0 142.6,59.7 133.3,62.3 127.8,60.6 126.6,57.4 129.5,47.2 140.6,39.7 149.0,38.5 175.7,39.4 197.5,46.1 197.8,35.9 200.4,33.9 225.3,24.0 138.8,134.9 143.5,136.1 143.2,139.0 147.2,144.5 154.5,147.1 177.7,147.4 236.7,169.8 264.8,177.0 308.7,174.4 324.6,168.9 346.4,176.7 386.2,185.2 402.2,191.5 223.9,256.0 223.6,250.2 227.1,240.3 221.0,233.4 259.0,233.9 260.2,227.5 259.3,220.9 252.3,213.3 253.8,211.3 247.7,204.3 230.6,204.6 206.2,191.8 227.4,198.5 232.0,197.3" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="348.7" cy="58.6" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>An 6.2 km route near San Cassiano / Alta Badia, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.</p>
 
