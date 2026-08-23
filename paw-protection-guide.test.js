@@ -67,14 +67,14 @@ describe('paw protection question-led guide', () => {
     expect(sources.open).toBe(false);
     expect(sources.textContent).toMatch(/VCA Animal Hospitals/i);
     expect(document.querySelector('#call-vet a')).toBeNull();
-    const recommendations = document.querySelectorAll('.paw2-next-card');
+    const recommendations = document.querySelectorAll('.safety-continue__card');
     expect(recommendations).toHaveLength(2);
     expect(Array.from(recommendations).map(link => link.getAttribute('href'))).toEqual([
       'heat-overheating.html',
       '../safety-guide.html'
     ]);
     expect(document.querySelector('.paw2-sources-copy small').textContent.trim()).toBe('Last reviewed 19 August 2026');
-    expect(document.querySelector('.paw2-cta').getAttribute('href')).toBe('../browse-trails.html');
+    expect(document.querySelector('.safety-continue__cta').getAttribute('href')).toBe('../browse-trails.html');
     expect(html).not.toContain('src="../breeds-data.js');
     expect(html).not.toContain('src="../firebase-init.js');
     expect(html).toContain('@media(max-width:560px)');

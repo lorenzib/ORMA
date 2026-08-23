@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css?v=20260823-1">
+<link rel="stylesheet" href="../styles.css?v=20260823-2">
 <style>
   .gp-body{max-width:760px;margin:0 auto;padding:10px 20px 60px;}
   .gp-body h2{margin-top:34px;}
@@ -27,7 +27,6 @@
   .gp-src{font-size:.85rem;color:var(--ink-soft,#666);}
   .gp-callout{background:rgba(0,0,0,.035);border-left:4px solid var(--accent-light,#C8D6C0);border-radius:8px;padding:14px 18px;margin:18px 0;}
   .gp-warn{background:#FBEAE6;border-left:4px solid #9C3A25;border-radius:8px;padding:14px 18px;margin:18px 0;}
-  .gp-cta{display:inline-block;margin:10px 0 6px;padding:12px 22px;background:#2E4034;color:#fff;border-radius:10px;font-weight:600;text-decoration:none;}
   .gp-steps{counter-reset:step;list-style:none;padding:0;}
   .gp-steps li{counter-increment:step;position:relative;padding:0 0 14px 44px;}
   .gp-steps li::before{content:counter(step);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:#2E4034;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;}
@@ -107,8 +106,12 @@
 
   <h2>Planning around pastures, not just through them</h2>
   <p>You can't reliably avoid guardian dogs in summer: transhumance puts herds on the most beautiful meadows in the Alps, which is exactly where the trails go. What you can do: prefer routes where pasture sections are short and visible ahead, keep the leash handy from the first cattle grid, and read recent hiker reports before you go. On ORMA, community reports of guardian dogs, herds on trail, and electrified gates appear directly on the trail page, attributed to the hikers who reported them, never silently merged into our ratings.</p>
-  <p><a class="gp-cta" href="../browse-trails.html">Browse trails with community reports →</a></p>
-  <p>Related reading: <a href="../safety-guide.html">the ORMA dog safety guide</a> (see the herding breeds section) and <a href="dogs-on-cable-cars.html">taking your dog on cable cars and gondolas</a>.</p>
+  <section class="safety-continue" aria-labelledby="safetyContinueTitle">
+    <div class="safety-continue__heading"><h2 id="safetyContinueTitle">Continue in the Safety Library</h2><span>Useful guidance for your next mountain day</span></div>
+    <a class="safety-continue__card" href="breed-group-caveats.html"><div><small>Your dog</small><strong>Breed-group considerations</strong><p>Adjust standard trail advice for build and instinct.</p></div><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
+    <a class="safety-continue__card" href="../safety-guide.html"><div><small>All topics</small><strong>Browse all safety guides</strong><p>Prepare for the situations you may meet outside.</p></div><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
+    <a class="safety-continue__cta" href="../browse-trails.html">Browse trails for your dog →</a>
+  </section>
 
   <p class="gp-src" style="margin-top:30px;">Last reviewed: July 2026. This guide summarises official tourism-board and commune guidance; it is general information, not a guarantee of any animal's behaviour. When in doubt, turn back.</p>
 

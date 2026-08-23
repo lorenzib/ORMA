@@ -21,6 +21,12 @@ describe('ORMA icon system', () => {
     expect(expr[expr.length - 1]).toBe('#5A5548');
   });
 
+  test('keeps shade and water quick filters in the shared colourful icon language', () => {
+    expect(icons.renderIconSvg('water')).toContain('fill="#378ADD"');
+    expect(icons.renderIconSvg('shade')).toContain('fill="#2C5C34"');
+    expect(icons.renderIconSvg('shade')).toContain('fill="#8A5A16"');
+  });
+
   test('renders product statuses through one badge component', () => {
     const verified = icons.badgeHtml('verified', 'Verified by ORMA');
     const caution = icons.badgeHtml('caution', 'Caution');

@@ -302,8 +302,8 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <div class="li-menu li-valley-menu" id="liValleyMenu" hidden></div>
     </div>
     <div class="li-quick-filters" aria-label="Quick dog filters">
-      <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span aria-hidden="true">♧</span><span>High shade</span></button>
-      <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span aria-hidden="true">◉</span><span>Water</span></button>
+      <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span>High shade</span></button>
+      <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span>Water</span></button>
     </div>
     <!-- Kept as a rendering target for the controller; the consolidated
          Filters panel is the visible control at every viewport size. -->
@@ -330,7 +330,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       </div>
     </div>
     <button type="button" id="liSavedOnlyBtn" class="li-saved-only" aria-pressed="false">
-      <span aria-hidden="true">♥</span><span>Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span>
+      <span class="orma-saved-heart" aria-hidden="true">♥</span><span>Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span>
     </button>
     <a id="liRecordBtn" class="li-record" href="walk.html"><span class="li-record-dot" aria-hidden="true"></span><span class="li-record-label">Record walk</span></a>
   </div>

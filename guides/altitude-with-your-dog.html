@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hiking at altitude with puppies and senior dogs | ORMA</title>
-<meta name="description" content="Dolomites trailheads start high. How altitude affects puppies and older dogs, and how to plan a gentler first day.">
+<title>Altitude safety for dogs in the mountains | ORMA</title>
+<meta name="description" content="Recognise altitude-related warning signs in dogs, decide when to stop or descend, and plan a safer first day in the Dolomites.">
 <link rel="canonical" href="https://www.app-orma.com/guides/altitude-with-your-dog.html">
 <meta name="theme-color" content="#2E4034">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hiking at altitude with puppies and senior dogs">
-<meta property="og:description" content="Dolomites trailheads start high. How altitude affects puppies and older dogs, and how to plan a gentler first day.">
+<meta property="og:title" content="Altitude safety for dogs in the mountains">
+<meta property="og:description" content="A health-first guide to warning signs, safer acclimatisation and decisions on the trail.">
 <meta property="og:url" content="https://www.app-orma.com/guides/altitude-with-your-dog.html">
 <meta property="og:image" content="https://www.app-orma.com/icon-512.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
@@ -18,51 +18,226 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css?v=20260823-1">
+<link rel="stylesheet" href="../styles.css?v=20260823-2">
 <style>
-  .gp-body{max-width:760px;margin:0 auto;padding:10px 20px 60px;}
-  .gp-body h2{margin-top:34px;}
-  .gp-src{font-size:.85rem;color:var(--ink-soft,#666);}
-  .gp-callout{background:rgba(0,0,0,.035);border-left:4px solid var(--accent-light,#C8D6C0);border-radius:8px;padding:14px 18px;margin:18px 0;}
-  .gp-cta{display:inline-block;margin:10px 0 6px;padding:12px 22px;background:#2E4034;color:#fff;border-radius:10px;font-weight:600;text-decoration:none;}
-  .gp-hero-photo{max-width:900px;margin:18px auto 0;padding:0 20px;}
-  .gp-hero-photo__inner{height:280px;border-radius:16px;background:#e8e4d8 center/cover no-repeat;}
+  :root{--alt-paper:#f4f1e7;--alt-card:#fff;--alt-ink:#2e4034;--alt-soft:#5d6c61;--alt-line:#dcd8cc;--alt-blue:#2f7089;--alt-blue-soft:#e3f0f4;--alt-green:#376245;--alt-green-soft:#e5eee4;--alt-amber:#956016;--alt-amber-soft:#f7e7c8;--alt-red:#9f3e2e;--alt-red-soft:#f6e3de;}
+  body{background:var(--alt-paper);}
+  .alt-guide{padding-bottom:42px;color:var(--alt-ink);}
+  .alt-shell,.alt-hero{width:min(1180px,calc(100% - 48px));margin:0 auto;}
+  .alt-hero{padding:28px 0 23px;border-bottom:1px solid var(--alt-line);}
+  .alt-breadcrumbs{display:flex;align-items:center;gap:8px;margin:0 0 12px;color:#819087;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;}
+  .alt-breadcrumbs a{color:inherit;text-decoration:none;}
+  .alt-breadcrumbs a:hover{text-decoration:underline;}
+  .alt-hero h1,.alt-guide h2,.alt-guide h3{font-family:"Bricolage Grotesque",sans-serif;color:var(--alt-ink);}
+  .alt-hero h1{max-width:920px;margin:0 0 10px;font-size:clamp(38px,4.6vw,60px);line-height:1;letter-spacing:-.04em;}
+  .alt-subtitle{max-width:900px;margin:0;color:var(--alt-soft);font-size:clamp(16px,1.4vw,19px);line-height:1.55;text-wrap:pretty;}
+  .alt-meta{display:flex;align-items:center;gap:10px;margin-top:14px;color:#829087;font-size:.72rem;}
+  .alt-meta strong{padding:5px 9px;border-radius:999px;background:#e2e9df;color:#395c41;font-size:.68rem;}
+  .alt-kicker{display:block;margin-bottom:7px;color:var(--alt-blue);font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;}
+
+  .alt-triage{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:22px;margin:24px 0;padding:22px;border:1px solid #c7dbe2;border-radius:16px;background:var(--alt-blue-soft);}
+  .alt-triage h2{margin:0 0 8px;font-size:clamp(25px,2.7vw,34px);line-height:1.08;letter-spacing:-.025em;}
+  .alt-triage-intro{margin:0;color:#526870;font-size:.82rem;line-height:1.52;}
+  .alt-choices{display:grid;gap:8px;margin-top:17px;}
+  .alt-choice{display:flex;align-items:center;gap:10px;width:100%;min-height:43px;padding:9px 12px;border:1px solid #bbd1d9;border-radius:10px;background:#fff;color:var(--alt-ink);font:700 .77rem "Inter",sans-serif;text-align:left;cursor:pointer;}
+  .alt-choice::before{content:"";width:13px;height:13px;flex:none;border:2px solid #7594a0;border-radius:50%;box-sizing:border-box;}
+  .alt-choice[aria-pressed="true"]{border-color:var(--alt-blue);background:#2f7089;color:#fff;}
+  .alt-choice[aria-pressed="true"]::before{border:4px solid #fff;}
+  .alt-choice:focus-visible{outline:3px solid rgba(47,112,137,.3);outline-offset:2px;}
+  .alt-result{display:flex;flex-direction:column;justify-content:center;min-height:230px;padding:22px 24px;border:1px solid rgba(47,112,137,.16);border-radius:13px;background:#fff;}
+  .alt-result-label{margin:0 0 8px;color:var(--alt-blue);font-size:.65rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;}
+  .alt-result h3{margin:0 0 8px;font-size:clamp(23px,2.4vw,31px);line-height:1.08;}
+  .alt-result p{margin:0;color:var(--alt-soft);font-size:.84rem;line-height:1.58;}
+  .alt-result[data-tone="normal"]{border-color:#b9d1ba;background:var(--alt-green-soft);}
+  .alt-result[data-tone="normal"] .alt-result-label{color:var(--alt-green);}
+  .alt-result[data-tone="caution"]{border-color:#e0c38b;background:var(--alt-amber-soft);}
+  .alt-result[data-tone="caution"] .alt-result-label{color:var(--alt-amber);}
+  .alt-result[data-tone="emergency"]{border-color:#dfaaa0;background:var(--alt-red-soft);}
+  .alt-result[data-tone="emergency"] .alt-result-label{color:var(--alt-red);}
+  .alt-result-note{margin-top:13px!important;padding-top:12px;border-top:1px solid rgba(46,64,52,.13);font-size:.72rem!important;}
+
+  .alt-section{padding:23px 0;}
+  .alt-section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:14px;}
+  .alt-section-head h2{margin:0;font-size:clamp(26px,2.7vw,35px);line-height:1.08;letter-spacing:-.025em;}
+  .alt-section-head p{max-width:520px;margin:0;color:var(--alt-soft);font-size:.8rem;line-height:1.5;text-align:right;}
+  .alt-health-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
+  .alt-health-card{padding:16px;border:1px solid var(--alt-line);border-radius:12px;background:#fff;}
+  .alt-health-card b{display:grid;place-items:center;width:28px;height:28px;margin-bottom:10px;border-radius:8px;background:var(--alt-blue-soft);color:var(--alt-blue);font-size:.73rem;}
+  .alt-health-card h3{margin:0 0 6px;font-size:1rem;}
+  .alt-health-card p{margin:0;color:var(--alt-soft);font-size:.76rem;line-height:1.48;}
+  .alt-vet-note{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;margin-top:10px;padding:13px 15px;border-radius:11px;background:#e8ede5;}
+  .alt-vet-note strong{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#cbd9c9;color:var(--alt-green);font-size:.8rem;}
+  .alt-vet-note p{margin:0;color:#45574a;font-size:.78rem;line-height:1.5;}
+
+  .alt-signs{padding:24px;border:1px solid var(--alt-line);border-radius:16px;background:#fff;}
+  .alt-signs h2{margin:0;font-size:clamp(26px,2.7vw,35px);line-height:1.08;letter-spacing:-.025em;}
+  .alt-signs>p{max-width:860px;margin:8px 0 18px;color:var(--alt-soft);font-size:.82rem;line-height:1.52;}
+  .alt-sign-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
+  .alt-sign{padding:15px;border-radius:11px;}
+  .alt-sign--pause{background:var(--alt-amber-soft);}
+  .alt-sign--descend{background:#f1ddca;}
+  .alt-sign--emergency{background:var(--alt-red-soft);}
+  .alt-sign span{display:block;margin-bottom:7px;color:var(--alt-amber);font-size:.64rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;}
+  .alt-sign--descend span,.alt-sign--emergency span{color:var(--alt-red);}
+  .alt-sign h3{margin:0 0 7px;font-size:1rem;}
+  .alt-sign ul{margin:0;padding-left:18px;color:var(--alt-soft);}
+  .alt-sign li{margin:5px 0;font-size:.74rem;line-height:1.42;}
+  .alt-rule{margin:11px 0 0;padding:11px 14px;border-radius:9px;background:#2f7089;color:#fff;font-size:.78rem;line-height:1.48;}
+  .alt-rule strong{color:#fff;}
+
+  .alt-timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:14px;border-top:1px solid var(--alt-line);}
+  .alt-step{padding:16px 22px 0 0;}
+  .alt-step+.alt-step{padding-left:22px;border-left:1px solid var(--alt-line);}
+  .alt-step strong{display:block;margin-bottom:7px;color:var(--alt-blue);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;}
+  .alt-step h3{margin:0 0 6px;font-size:1rem;}
+  .alt-step p{margin:0;color:var(--alt-soft);font-size:.76rem;line-height:1.5;}
+  .alt-context{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.72fr);gap:18px;align-items:start;}
+  .alt-context-copy p{margin:0;color:var(--alt-soft);font-size:.84rem;line-height:1.64;}
+  .alt-context-copy p+p{margin-top:12px;}
+  .alt-context-aside{padding:17px 18px;border-radius:12px;background:#e8ede5;}
+  .alt-context-aside h3{margin:0 0 8px;font-size:1rem;}
+  .alt-context-aside p{margin:0;color:#4d5f52;font-size:.76rem;line-height:1.52;}
+
+  .alt-sources{margin-top:18px;border-top:1px solid var(--alt-line);color:#839087;}
+  .alt-sources summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0;cursor:pointer;list-style:none;font-size:.74rem;}
+  .alt-sources summary::-webkit-details-marker{display:none;}
+  .alt-sources summary::after{content:"+";color:var(--alt-blue);font-size:1.05rem;}
+  .alt-sources[open] summary::after{content:"−";}
+  .alt-sources p{margin:0;padding:0 0 18px;font-size:.73rem;line-height:1.62;}
+  .alt-sources a{color:var(--alt-blue);}
+
+  @media(max-width:800px){
+    .alt-shell,.alt-hero{width:min(100% - 36px,1180px);}
+    .alt-hero{padding:21px 0 18px;}
+    .alt-triage{grid-template-columns:1fr;}
+    .alt-result{min-height:0;}
+    .alt-health-grid,.alt-sign-grid{grid-template-columns:1fr;}
+    .alt-sign{display:grid;grid-template-columns:minmax(130px,.55fr) minmax(0,1fr);column-gap:16px;}
+    .alt-sign span,.alt-sign h3{grid-column:1;}
+    .alt-sign ul{grid-column:2;grid-row:1/3;}
+    .alt-context{grid-template-columns:1fr;}
+  }
+  @media(max-width:560px){
+    .alt-hero h1{font-size:32px;}
+    .alt-subtitle{font-size:14px;line-height:1.48;}
+    .alt-triage{gap:15px;margin:18px 0;padding:17px;}
+    .alt-section-head{display:block;}
+    .alt-section-head p{margin-top:6px;text-align:left;}
+    .alt-signs{padding:18px;}
+    .alt-sign{display:block;}
+    .alt-timeline{grid-template-columns:1fr;}
+    .alt-step{padding:15px 0;}
+    .alt-step+.alt-step{padding-left:0;border-top:1px solid var(--alt-line);border-left:0;}
+  }
 </style>
 </head>
-<body>
+<body data-hide-dog-profile-banner>
 
+<a class="dp-skip-link" href="#mainContent">Skip to main content</a>
 <div class="topnav">
-  <a class="brand" href="/"><img src="../logo.svg" alt="">ORMA</a>
+  <a class="brand" href="/"><img src="../logo.svg" alt="">ORMA</a><span class="topnav-page">Safety library</span>
   <div class="links">
     <a href="../browse-trails.html">Browse all Trails</a>
     <a href="../collections.html">Collections</a>
-    <a href="../safety-guide.html" class="active">Safety guide</a>
+    <a href="../safety-guide.html" class="active">Safety library</a>
     <a href="../journal.html">My walk journal</a>
     <a class="account-btn" href="/?login=1&amp;next=guides/altitude-with-your-dog.html" data-i18n="nav.login">Log in</a>
   </div>
 </div>
 
-<div class="guide-hero section-page-head">
-  <div class="eyebrow">Guides · Altitude</div>
-  <h1 style="font-size:clamp(28px,5vw,38px);margin-top:14px;">Adjusting for altitude with puppies and seniors</h1>
-  <p class="sub section-page-subtitle">Many Dolomites trailheads start at 1,800–2,300 m. A hike can begin at an elevation your dog has never experienced before it takes a single step.</p>
-</div>
+<main class="alt-guide" id="mainContent">
+  <header class="alt-hero section-page-head">
+    <nav class="alt-breadcrumbs" aria-label="Breadcrumb">
+      <a href="../safety-guide.html">Safety library</a><span aria-hidden="true">/</span><span aria-current="page">Altitude</span>
+    </nav>
+    <h1>Altitude changes the effort before the trail begins</h1>
+    <p class="alt-subtitle section-page-subtitle">Many Dolomites trailheads begin at 1,800–2,300 m, so the safest first outing is a health check in motion—not a test of how far your dog can push.</p>
+    <div class="alt-meta"><strong>5 min guide</strong><span>Last reviewed 23 August 2026</span></div>
+  </header>
 
-<div class="gp-hero-photo"><div class="gp-hero-photo__inner"></div></div>
+  <div class="alt-shell">
+    <section class="alt-triage" aria-labelledby="altTriageTitle">
+      <div>
+        <span class="alt-kicker">On-trail health check</span>
+        <h2 id="altTriageTitle">How is your dog behaving right now?</h2>
+        <p class="alt-triage-intro">Choose the closest observation. This does not diagnose altitude illness; it helps you make the safer next decision.</p>
+        <div class="alt-choices" role="group" aria-label="Choose your dog’s current condition">
+          <button class="alt-choice" type="button" aria-pressed="false" data-altitude-state="normal">Acting and recovering normally</button>
+          <button class="alt-choice" type="button" aria-pressed="false" data-altitude-state="caution">Unusually tired or slow to recover</button>
+          <button class="alt-choice" type="button" aria-pressed="false" data-altitude-state="emergency">Breathing, balance or awareness has changed</button>
+        </div>
+      </div>
+      <div class="alt-result" data-altitude-result data-tone="neutral" aria-live="polite">
+        <span class="alt-result-label" data-altitude-label>Choose one observation</span>
+        <h3 data-altitude-title>Start with the dog in front of you</h3>
+        <p data-altitude-copy>Compare breathing effort, gait, interest and recovery with your dog’s normal—not with another dog on the trail.</p>
+        <p class="alt-result-note" data-altitude-note>When several causes are possible, the safe action matters more than naming the cause on the mountain.</p>
+      </div>
+    </section>
 
-<div class="gp-body">
-  <p>Many popular trailheads in the Dolomites already start at 1,800–2,300 m, meaning a hike can begin at an elevation your dog has never experienced before it's taken a single step. Puppies and older dogs are more sensitive to this than a fit adult dog.</p>
-  <h2>Planning around it</h2>
-  <ul>
-    <li>Puppies should generally be gradually conditioned to distance and elevation. A first Dolomites trip is not the moment to attempt a long ridge route.</li>
-    <li>Senior dogs may tire on climbs well before they show obvious signs. Plan shorter routes with frequent flat sections rather than steady long ascents.</li>
-    <li>Both groups benefit from routes with frequent rifugi or water stops, not for water alone, but as natural, low-pressure excuses to rest.</li>
-    <li>Flat, low-altitude lake loops (like Lago di Carezza or Lago di Braies) are a good first day before attempting anything higher.</li>
-  </ul>
-  <p style="margin-top:24px;">Related: <a href="dogs-at-rifugi.html">dogs at rifugi</a> · <a href="heat-overheating.html">heat and overheating</a> · <a href="../safety-guide.html">the dog safety guide</a></p>
-  <p><a class="gp-cta" href="../browse-trails.html">Browse trails scored for your dog →</a></p>
-  <p class="gp-src" style="margin-top:30px;">Last reviewed: July 2026. When this page and the mountain disagree, believe the mountain.</p>
-</div>
+    <section class="alt-section" aria-labelledby="altBeforeTitle">
+      <div class="alt-section-head">
+        <div><span class="alt-kicker">Before you gain height</span><h2 id="altBeforeTitle">Three checks make the first day safer</h2></div>
+        <p>Altitude, exertion, heat, dehydration and pain can look similar; plan so you can respond before you need to tell them apart.</p>
+      </div>
+      <div class="alt-health-grid">
+        <article class="alt-health-card"><b aria-hidden="true">01</b><h3>Know the baseline</h3><p>Notice your dog’s normal breathing effort, gait, appetite and interest before the trip so a meaningful change is easier to spot.</p></article>
+        <article class="alt-health-card"><b aria-hidden="true">02</b><h3>Plan an easy exit</h3><p>Choose a short, low-commitment route with a simple turnaround and no cable-car timetable controlling your descent.</p></article>
+        <article class="alt-health-card"><b aria-hidden="true">03</b><h3>Change one variable</h3><p>On the first outing, add altitude without also adding a long distance, steep climb, hot afternoon or unfamiliar surface.</p></article>
+      </div>
+      <div class="alt-vet-note"><strong aria-hidden="true">+</strong><p><b>Speak with your vet before the trip</b> if your dog has heart or lung disease, unexplained coughing, fainting, exercise intolerance, a recent serious illness, or has previously struggled at elevation. Puppies, seniors and flat-faced dogs also deserve a deliberately conservative plan.</p></div>
+    </section>
+
+    <section class="alt-signs" aria-labelledby="altSignsTitle">
+      <span class="alt-kicker">Symptoms become decisions</span>
+      <h2 id="altSignsTitle">Know when to pause, descend or get urgent help</h2>
+      <p>Do not continue upward to see whether a worsening dog “walks it off.” Reduce exertion early and escalate the response when breathing, coordination or awareness changes.</p>
+      <div class="alt-sign-grid">
+        <article class="alt-sign alt-sign--pause"><span>Pause and reassess</span><h3>Something is different</h3><ul><li>Unusual tiredness or lagging</li><li>Heavy panting that is slow to ease</li><li>Less interest in food, water or surroundings</li></ul></article>
+        <article class="alt-sign alt-sign--descend"><span>Descend and end the hike</span><h3>Recovery is not normal</h3><ul><li>Weakness or refusal to continue</li><li>Vomiting or persistent coughing</li><li>Stumbling or poor coordination</li></ul></article>
+        <article class="alt-sign alt-sign--emergency"><span>Urgent veterinary help</span><h3>Breathing or awareness is impaired</h3><ul><li>Laboured breathing at rest</li><li>Pale or bluish gums</li><li>Collapse, seizure or disorientation</li></ul></article>
+      </div>
+      <p class="alt-rule"><strong>Decision rule:</strong> if signs are serious or worsening, descend immediately, carry your dog if it is safe to do so, minimise exertion and contact a veterinarian or emergency clinic.</p>
+    </section>
+
+    <section class="alt-section" aria-labelledby="altDayTitle">
+      <div class="alt-section-head">
+        <div><span class="alt-kicker">A safer first day</span><h2 id="altDayTitle">Acclimatisation starts before the hike</h2></div>
+        <p>Fitness at home does not prove that a dog is ready for thinner air, especially after a fast drive or lift ascent.</p>
+      </div>
+      <div class="alt-timeline">
+        <article class="alt-step"><strong>On arrival</strong><h3>Settle before climbing</h3><p>Offer water, take a calm walk and observe your dog at rest; skip the ambitious route straight out of the car or cable car.</p></article>
+        <article class="alt-step"><strong>First outing</strong><h3>Make it a short test</h3><p>Start easy, pause early on flat ground and turn around while your dog is still moving and recovering normally.</p></article>
+        <article class="alt-step"><strong>Afterward</strong><h3>Check recovery, not pride</h3><p>Reassess appetite, behaviour, gait and breathing later that day; increase only one route demand next time if baseline has returned.</p></article>
+      </div>
+    </section>
+
+    <section class="alt-section alt-context" aria-labelledby="altWhyTitle">
+      <div class="alt-context-copy">
+        <span class="alt-kicker">What altitude changes</span>
+        <h2 id="altWhyTitle">Less available oxygen, more work to compensate</h2>
+        <p>As altitude rises, lower oxygen pressure makes breathing and circulation work harder to supply the body. Healthy dogs can adapt, but the response varies and a rapid ascent followed by exercise gives the body less time to adjust.</p>
+        <p>Altitude can also expose a heart or respiratory problem that was subtle at home. A cough, reduced stamina or abnormal breathing should not be dismissed as age, stubbornness or an ordinary bad day.</p>
+      </div>
+      <aside class="alt-context-aside">
+        <h3>No human altitude medication</h3>
+        <p>Do not give acetazolamide, painkillers or other human medication unless a veterinarian has prescribed it specifically for your dog. Medication should never be used to push through warning signs.</p>
+      </aside>
+    </section>
+
+    <section class="safety-continue" aria-labelledby="safetyContinueTitle">
+      <div class="safety-continue__heading"><h2 id="safetyContinueTitle">Continue in the Safety Library</h2><span>Useful guidance for your next mountain day</span></div>
+      <a class="safety-continue__card" href="heat-overheating.html"><div><small>Weather &amp; body</small><strong>Heat and hydration</strong><p>Separate overheating risk from altitude strain.</p></div><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
+      <a class="safety-continue__card" href="../safety-guide.html"><div><small>All topics</small><strong>Browse all safety guides</strong><p>Prepare for the situations you may meet outside.</p></div><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
+      <a class="safety-continue__cta" href="../browse-trails.html">Browse trails for your dog →</a>
+    </section>
+
+    <details class="alt-sources">
+      <summary><strong>Sources, scope and medical references</strong><span>Last reviewed 23 August 2026</span></summary>
+      <p>Veterinary guidance and physiology references: <a href="https://www.petmd.com/dog/can-your-pet-suffer-altitude-sickness" rel="noopener">PetMD veterinary interview on pets at altitude</a>, <a href="https://ppark.vet/blog/can-dogs-get-altitude-sickness/" rel="noopener">Platt Park Veterinary Hospital</a>, and peer-reviewed canine research indexed by PubMed on <a href="https://pubmed.ncbi.nlm.nih.gov/14672455/" rel="noopener">hypoxia and pulmonary pressure at altitude</a>. Experimental studies at extreme simulated elevations explain physiology; they do not define a safe recreational threshold for an individual dog. This guide provides general information, not a diagnosis or a substitute for veterinary care.</p>
+    </details>
+  </div>
+</main>
 
 <footer class="site-footer hp-footer">
   <div class="hp-footer-grid">
@@ -132,7 +307,8 @@
   </div>
 </footer>
 
-<script src="../mobile-nav.js?v=20260823-1"></script>
+<script src="../mobile-nav.js?v=20260823-2"></script>
 <script src="../guide-navigation.js?v=20260717-2"></script>
+<script src="../altitude-guide.js?v=20260823-1"></script>
 </body>
 </html>
