@@ -6,6 +6,7 @@ describe('canonical discovery state', () => {
       search: ' Carezza ',
       country: 'italy',
       region: 'dolomites',
+      valley: 'Val di Fassa',
       risk: 'low-risk',
       distance: '6',
       water: true,
@@ -16,7 +17,6 @@ describe('canonical discovery state', () => {
       heat: 'shade-reviewed',
       exposure: 'none-reviewed',
       access: 'leash-ok-reviewed',
-      verification: 'route-audited',
       shade: true,
       minMatch: '75',
       page: 2,
@@ -38,6 +38,15 @@ describe('canonical discovery state', () => {
     expect(state.risk).toBe('');
     expect(state.dog).toBe('medium');
     expect(state.page).toBe(1);
+  });
+
+  test('drops the retired verification filter from legacy links', () => {
+    const state = discovery.normalize(new URLSearchParams(
+      'region=dolomites&verification=route-audited'
+    ));
+
+    expect(state).not.toHaveProperty('verification');
+    expect(discovery.toParams(state).has('verification')).toBe(false);
   });
 
   test('trail links carry the exact canonical browse return target', () => {

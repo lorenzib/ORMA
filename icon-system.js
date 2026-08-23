@@ -6,6 +6,7 @@
     routes: '#2C5C34',
     lifts: '#4E90A8',
     water: '#4E90A8',
+    shade: '#2C5C34',
     hut: '#8A5A16',
     food: '#C4652F',
     dog: '#2E4034',
@@ -75,6 +76,9 @@
     `,
     water: `
       <path d="M12 5c2.6 3 4.1 5.4 4.1 7.5a4.1 4.1 0 1 1-8.2 0C7.9 10.4 9.4 8 12 5Z"></path>
+    `,
+    shade: `
+      <path d="M12 3.2 6.6 10h3.1L5.8 15h4.4v5.8h3.6V15h4.4l-3.9-5h3.1Z"></path>
     `,
     hut: `
       <path d="M5 11l7-6 7 6"></path>
@@ -179,6 +183,7 @@
   // the map bubbles, the Layers chips and the legend all speak one language.
   const COLOR_GLYPHS = {
     water: '<path d="M12 4c2.9 3.4 4.6 6 4.6 8.4a4.6 4.6 0 11-9.2 0C7.4 10 9.1 7.4 12 4z" fill="#378ADD"/>',
+    shade: '<path d="M12 3.2 6.6 10h3.1L5.8 15h4.4v5.8h3.6V15h4.4l-3.9-5h3.1Z" fill="#2C5C34"/><path d="M10.2 20.8h3.6V15h-3.6Z" fill="#8A5A16"/>',
     hut: '<path d="M5 11.2l7-6.2 7 6.2" fill="none" stroke="#8A5A16" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.8 10.4V18h10.4v-7.6" fill="#D6A038" stroke="#8A5A16" stroke-width="1.5" stroke-linejoin="round"/><path d="M10.4 18v-4.2h3.2V18" fill="#8A5A16"/>',
     food: '<path d="M6 9.5h9.5v5a3.5 3.5 0 01-3.5 3.5H9.5A3.5 3.5 0 016 14.5z" fill="#BA7517"/><path d="M15.5 10.5h1.4a2 2 0 010 4h-1.4" fill="none" stroke="#BA7517" stroke-width="1.6"/><path d="M9 7.2c0-.9.7-1.2.7-2M12 7.2c0-.9.7-1.2.7-2" stroke="#BA7517" stroke-width="1.4" stroke-linecap="round" fill="none"/>',
     lifts: '<path d="M4 7h16" stroke="#5A5548" stroke-width="1.6" stroke-linecap="round"/><path d="M12 7v3" stroke="#5A5548" stroke-width="1.6"/><rect x="8" y="10" width="8" height="7" rx="2" fill="#4E90A8"/><rect x="10" y="11.8" width="4" height="2.6" rx="0.8" fill="#fff"/>',

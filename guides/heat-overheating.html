@@ -3,67 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Recognizing overheating in your dog early | ORMA</title>
-<meta name="description" content="Heat stress escalates fast on exposed alpine trails. The early signs, how to cool your dog on the trail, and how to prevent it.">
+<title>Dog heat and hydration safety | ORMA</title>
+<meta name="description" content="A short, interactive guide to preventing canine heat illness, recognising warning signs and cooling your dog safely on the trail.">
 <link rel="canonical" href="https://www.app-orma.com/guides/heat-overheating.html">
 <meta name="theme-color" content="#2E4034">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Recognizing overheating in your dog early">
-<meta property="og:description" content="Heat stress escalates fast on exposed alpine trails. The early signs, how to cool your dog on the trail, and how to prevent it.">
+<meta property="og:title" content="Dog heat and hydration safety">
+<meta property="og:description" content="Prevent canine heat illness, recognise warning signs and know what to do if your dog overheats on the trail.">
 <meta property="og:url" content="https://www.app-orma.com/guides/heat-overheating.html">
-<meta property="og:image" content="https://www.app-orma.com/icon-512.png">
+<meta property="og:image" content="https://www.app-orma.com/images/editorial/safety-library/heat-hydration-waterfall-v1.jpg">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16.png">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css?v=20260821-1">
+<link rel="stylesheet" href="../styles.css?v=20260823-2">
 <style>
-  .gp-body{max-width:760px;margin:0 auto;padding:10px 20px 60px;}
-  .gp-body h2{margin-top:34px;}
+  .gp-body{max-width:860px;margin:0 auto;padding:22px 20px 60px;}
+  .gp-body h2{margin:0;font-size:clamp(23px,3vw,30px);line-height:1.15;}
   .gp-src{font-size:.85rem;color:var(--ink-soft,#666);}
-  .gp-callout{background:rgba(0,0,0,.035);border-left:4px solid var(--accent-light,#C8D6C0);border-radius:8px;padding:14px 18px;margin:18px 0;}
-  .gp-cta{display:inline-block;margin:10px 0 6px;padding:12px 22px;background:#2E4034;color:#fff;border-radius:10px;font-weight:600;text-decoration:none;}
+  .hs-intro{margin:0 0 22px;color:var(--ink-soft);font-size:1rem;line-height:1.65;}
+  .hs-panel{margin:18px 0;border:1px solid #D7DED6;border-radius:18px;padding:22px;background:#fff;box-shadow:0 8px 24px rgba(32,54,40,.05);}
+  .hs-panel>p{margin:8px 0 0;color:var(--ink-soft);line-height:1.55;}
+  .hs-checks{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:18px 0 14px;}
+  .hs-check{display:flex;align-items:flex-start;gap:10px;border:1px solid #D7DED6;border-radius:12px;padding:12px;background:#F8F8F3;cursor:pointer;font-size:.92rem;line-height:1.4;}
+  .hs-check:has(input:checked){border-color:#75A184;background:#EDF5EE;}
+  .hs-check input{width:18px;height:18px;margin:1px 0 0;flex:none;accent-color:#2E6C4D;}
+  .hs-status{margin:0!important;border-radius:11px;padding:11px 13px;background:#F5EEDA;color:#715115!important;font-weight:650;}
+  .hs-status[data-state="ready"]{background:#E4F1E6;color:#245E3C!important;}
+  .hs-options{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0 14px;}
+  .hs-option{border:1px solid #CAD5CC;border-radius:12px;padding:12px;background:#F8F8F3;color:var(--ink);font:650 .9rem/1.35 Inter,sans-serif;cursor:pointer;}
+  .hs-option:hover,.hs-option[aria-pressed="true"]{border-color:#2E6C4D;background:#E8F1E9;}
+  .hs-response{border-radius:14px;padding:16px;background:#EEF3EE;}
+  .hs-response[hidden]{display:none;}
+  .hs-response[data-level="early"]{border-left:5px solid #C88B19;background:#FFF5DD;}
+  .hs-response[data-level="emergency"]{border-left:5px solid #B33C31;background:#FBEAE7;}
+  .hs-response h3{margin:0 0 7px;font-size:1.18rem;}
+  .hs-response p{margin:0;color:var(--ink-soft);line-height:1.55;}
+  .hs-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 0;counter-reset:heat-step;}
+  .hs-action{position:relative;border-radius:14px;padding:42px 15px 15px;background:#2E4034;color:#fff;counter-increment:heat-step;}
+  .hs-action::before{content:counter(heat-step);position:absolute;top:13px;left:15px;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:#2E4034;font-weight:800;font-size:.75rem;}
+  .hs-action strong{display:block;margin-bottom:5px;color:#fff;}
+  .hs-action span{display:block;color:rgba(255,255,255,.82);font-size:.86rem;line-height:1.48;}
+  .hs-risk{margin:18px 0;border-left:5px solid #C88B19;border-radius:12px;padding:15px 17px;background:#FFF5DD;line-height:1.55;}
+  .hs-risk strong{color:var(--ink);}
+  .hs-sources{margin:24px 0 8px;border-top:1px solid #D7DED6;border-bottom:1px solid #D7DED6;padding:13px 0;}
+  .hs-sources summary{cursor:pointer;font-weight:700;}
+  .hs-sources p{margin:11px 0 0;line-height:1.55;}
   .gp-hero-photo{max-width:900px;margin:18px auto 0;padding:0 20px;}
-  .gp-hero-photo__inner{height:280px;border-radius:16px;background:#e8e4d8 center/cover no-repeat;}
+  .gp-hero-photo__inner{height:clamp(280px,42vw,440px);overflow:hidden;border-radius:16px;background:#e8e4d8;}
+  .gp-hero-photo__inner img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 54%;}
+  @media(max-width:650px){
+    .gp-body{padding-top:18px;}
+    .hs-panel{padding:18px;}
+    .hs-checks,.hs-options,.hs-actions{grid-template-columns:1fr;}
+  }
 </style>
 </head>
 <body>
 
 <div class="topnav">
-  <a class="brand" href="../index.html"><img src="../logo.svg" alt="">ORMA</a>
+  <a class="brand" href="/"><img src="../logo.svg" alt="">ORMA</a>
   <div class="links">
     <a href="../browse-trails.html">Browse all Trails</a>
     <a href="../collections.html">Collections</a>
     <a href="../safety-guide.html" class="active">Safety guide</a>
     <a href="../journal.html">My walk journal</a>
-    <a class="account-btn" href="../index.html?login=1&amp;next=guides/heat-overheating.html" data-i18n="nav.login">Log in</a>
+    <a class="account-btn" href="/?login=1&amp;next=guides/heat-overheating.html" data-i18n="nav.login">Log in</a>
   </div>
 </div>
 
 <div class="guide-hero section-page-head">
   <div class="eyebrow">Guides · Heat & exposure</div>
-  <h1 style="font-size:clamp(28px,5vw,38px);margin-top:14px;">Recognizing overheating early</h1>
-  <p class="sub section-page-subtitle">Sun at altitude is more intense than it feels, and heat stress escalates faster than most owners expect. By the time panting looks severe, the dog is often already in trouble.</p>
+  <h1 style="font-size:clamp(28px,5vw,38px);margin-top:14px;">Heat and hydration safety</h1>
+  <p class="sub section-page-subtitle">Heat illness can develop quickly during exercise—even when the air feels manageable. Use these checks before you leave, then act on changes in your dog rather than waiting for a temperature threshold.</p>
 </div>
 
-<div class="gp-hero-photo"><div class="gp-hero-photo__inner"></div></div>
+<div class="gp-hero-photo"><div class="gp-hero-photo__inner"><img src="../images/editorial/safety-library/heat-hydration-waterfall-v1.jpg" alt="A small dog on a rocky forest stream bed with a waterfall behind" width="1200" height="800" decoding="async"></div></div>
 
-<div class="gp-body">
-  <p>Open alpine meadows and exposed ridgelines offer little shade even when the air temperature feels moderate. Sun exposure at altitude is more intense than it seems, and heat stress in dogs escalates faster than most owners expect.</p>
-  <h2>Signs, in order</h2>
-  <ul>
-    <li><strong>Early signs:</strong> heavier panting than the pace justifies, seeking shade unprompted, slowing down on flat ground.</li>
-    <li><strong>Escalating signs:</strong> bright red gums or tongue, unsteady gait, reluctance to keep moving. Stop immediately and cool the dog if you see these.</li>
-    <li><strong>Cooling on trail:</strong> wet the belly and paw pads with cool (not ice-cold) water, move to shade, and wait. Don't push on "to get to the next rest point."</li>
-    <li><strong>Prevention beats treatment:</strong> pick routes with better shade coverage on hot days, and start early to avoid midday sun on exposed sections.</li>
-  </ul>
-  <div class="gp-callout"><strong>Flat-faced, heavy-coated and overweight dogs overheat first.</strong> ORMA match scores already weight heat sensitivity for the breeds most affected, but a score can't see today's weather. When your dog's profile and the day disagree, believe the day.</div>
-  <p style="margin-top:24px;">Related: <a href="water-for-dogs-on-trail.html">water for dogs on trail</a> · <a href="altitude-with-your-dog.html">hiking at altitude</a> · <a href="../safety-guide.html">the dog safety guide</a></p>
-  <p><a class="gp-cta" href="../browse-trails.html">Browse trails scored for your dog →</a></p>
-  <p class="gp-src" style="margin-top:30px;">Last reviewed: July 2026. When this page and the mountain disagree, believe the mountain.</p>
-</div>
+<main class="gp-body" id="mainContent">
+  <p class="hs-intro">Dogs cool mainly by panting, and exertion generates heat of its own. Shade, carried water and an early turnaround are safety equipment—not optional comforts.</p>
+
+  <section class="hs-panel" aria-labelledby="startCheckTitle">
+    <h2 id="startCheckTitle">Can your dog safely start?</h2>
+    <p>Check all four. An ORMA match score never replaces today’s conditions.</p>
+    <div class="hs-checks">
+      <label class="hs-check"><input type="checkbox" data-heat-check><span>The route has reliable shade or a short escape option.</span></label>
+      <label class="hs-check"><input type="checkbox" data-heat-check><span>I am carrying enough water for my dog and myself.</span></label>
+      <label class="hs-check"><input type="checkbox" data-heat-check><span>We are avoiding the hottest, most exposed part of the day.</span></label>
+      <label class="hs-check"><input type="checkbox" data-heat-check><span>My dog is breathing, walking and behaving normally now.</span></label>
+    </div>
+    <p class="hs-status" id="heatChecklistStatus" role="status" aria-live="polite" data-state="caution">0 of 4 checked. Resolve every unchecked item before setting out.</p>
+  </section>
+
+  <section class="hs-panel" aria-labelledby="symptomCheckTitle">
+    <h2 id="symptomCheckTitle">What are you seeing?</h2>
+    <p>Choose the closest description. This tool supports a decision; it does not diagnose your dog.</p>
+    <div class="hs-options" role="group" aria-label="Choose your dog's current condition">
+      <button class="hs-option" type="button" data-heat-level="normal" aria-pressed="false">Breathing and moving normally</button>
+      <button class="hs-option" type="button" data-heat-level="early" aria-pressed="false">Hard panting, slowing or seeking shade</button>
+      <button class="hs-option" type="button" data-heat-level="emergency" aria-pressed="false">Weakness, abnormal gums, confusion or collapse</button>
+    </div>
+    <div class="hs-response" id="heatResponse" role="status" aria-live="polite" hidden></div>
+  </section>
+
+  <section class="hs-panel" aria-labelledby="coolFirstTitle">
+    <h2 id="coolFirstTitle">Suspect overheating? Cool first, travel second.</h2>
+    <p>A dog’s temperature can keep rising after exercise stops. Start cooling immediately, then seek veterinary help.</p>
+    <div class="hs-actions">
+      <div class="hs-action"><strong>Stop and shade</strong><span>End exercise. Move off hot ground and into shade. Do not walk on to the next rest point.</span></div>
+      <div class="hs-action"><strong>Wet and ventilate</strong><span>Pour cool or cold tap water over the body, avoiding the nose and mouth. Create airflow. Offer water; never force it.</span></div>
+      <div class="hs-action"><strong>Call and transport</strong><span>Call a veterinarian promptly. Use a cooled, ventilated vehicle and continue cooling during the journey if possible.</span></div>
+    </div>
+  </section>
+
+  <p class="hs-risk"><strong>Lower your threshold for turning back</strong> for flat-faced, overweight, thick-coated, very young, older, unfit or unwell dogs. Never cover an overheating dog with a wet towel: it can trap heat.</p>
+
+  <details class="hs-sources">
+    <summary>Medical sources and review date</summary>
+    <p class="gp-src"><a href="https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/heatstroke-in-dogs" target="_blank" rel="noopener">PDSA veterinary guidance: heatstroke in dogs</a><br><a href="https://pubmed.ncbi.nlm.nih.gov/38518416/" target="_blank" rel="noopener">Carter et al. (2024): post-exercise cooling in dogs</a><br>Last reviewed 23 August 2026.</p>
+  </details>
+
+  <p class="gp-src"><strong>Emergency boundary:</strong> vomiting, diarrhoea, abnormal gums, breathing difficulty, weakness, confusion, collapse, seizure or unconsciousness require urgent veterinary advice. This guide is general information, not a diagnosis or substitute for veterinary care.</p>
+  <section class="safety-continue" aria-labelledby="safetyContinueTitle">
+    <div class="safety-continue__heading"><h2 id="safetyContinueTitle">Continue in the Safety Library</h2><span>Useful guidance for your next mountain day</span></div>
+    <a class="safety-continue__card" href="water-for-dogs-on-trail.html"><div><small>Hydration planning</small><strong>Water for dogs on trail</strong><p>Plan quantities, dry stretches and safer water stops.</p></div><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
+    <a class="safety-continue__card" href="../safety-guide.html"><div><small>All topics</small><strong>Browse all safety guides</strong><p>Prepare for the situations you may meet outside.</p></div><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
+    <a class="safety-continue__cta" href="../browse-trails.html">Browse trails for your dog →</a>
+  </section>
+</main>
 
 <footer class="site-footer hp-footer">
   <div class="hp-footer-grid">
@@ -133,7 +202,39 @@
   </div>
 </footer>
 
-<script src="../mobile-nav.js?v=20260821-1"></script>
+<script src="../mobile-nav.js?v=20260823-1"></script>
 <script src="../guide-navigation.js?v=20260717-2"></script>
+<script>
+(() => {
+  const checks = [...document.querySelectorAll('[data-heat-check]')];
+  const checklistStatus = document.getElementById('heatChecklistStatus');
+  const updateChecklist = () => {
+    const completed = checks.filter(check => check.checked).length;
+    const ready = completed === checks.length;
+    checklistStatus.dataset.state = ready ? 'ready' : 'caution';
+    checklistStatus.textContent = ready
+      ? '4 of 4 checked. Start cautiously and keep reassessing your dog.'
+      : `${completed} of 4 checked. Resolve every unchecked item before setting out.`;
+  };
+  checks.forEach(check => check.addEventListener('change', updateChecklist));
+
+  const responses = {
+    normal: ['Keep monitoring', 'Pause regularly and compare your dog with their normal breathing, pace and behaviour. Turn back at the first change.'],
+    early: ['Stop exercise now', 'Move into shade, begin cooling and do not continue the route. If breathing or behaviour does not quickly return towards normal, contact a veterinarian urgently.'],
+    emergency: ['Treat this as an emergency', 'Begin cooling immediately and call a veterinarian now. Do not wait for the dog to recover before seeking advice.']
+  };
+  const response = document.getElementById('heatResponse');
+  document.querySelectorAll('[data-heat-level]').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('[data-heat-level]').forEach(option => option.setAttribute('aria-pressed', String(option === button)));
+      const level = button.dataset.heatLevel;
+      const [title, copy] = responses[level];
+      response.dataset.level = level;
+      response.innerHTML = `<h3>${title}</h3><p>${copy}</p>`;
+      response.hidden = false;
+    });
+  });
+})();
+</script>
 </body>
 </html>

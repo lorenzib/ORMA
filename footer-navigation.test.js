@@ -81,10 +81,14 @@ describe('footer navigation', () => {
 
   test('every public footer loads the focused CTA and compact responsive stylesheet', () => {
     const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
-    expect(css).toContain('.hp-prefooter-inner');
+    expect(css).toContain('.dog-profile-banner__inner');
     expect(css).toContain('grid-template-columns:minmax(210px,1.3fr) repeat(4,minmax(100px,.7fr))');
     expect(css).toContain('.hp-footer-grid{grid-template-columns:1fr 1fr;}');
-    expect(css).toContain('max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)))');
+    expect(css).toContain('--wrap:1440px;');
+    expect(css).toContain('--wrap-gutter:clamp(28px,4vw,52px);');
+    expect(css).toContain('.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--wrap-gutter);}');
+    expect(css).toContain('.hp-footer-grid{width:100%;max-width:none;margin:0;');
+    expect(css).toContain('.hp-footer-base{width:100%;max-width:none;margin:28px 0 0;');
 
     publicFooterPages().forEach(file => {
       const html = fs.readFileSync(file, 'utf8');
@@ -93,8 +97,10 @@ describe('footer navigation', () => {
 
     publicFooterPages().forEach(file => {
       const html = fs.readFileSync(file, 'utf8');
-      expect(html).toMatch(/href="(?:\.\.\/|\/)?styles\.css\?v=20260821-1"/);
-      expect(html).toMatch(/src="(?:\.\.\/|\/)?mobile-nav\.js\?v=20260821-1"/);
+      const stylesVersion = '20260823-[12]';
+      const navigationVersion = '20260823-[12]';
+      expect(html).toMatch(new RegExp(`href="(?:\\.\\.\\/|\\/)?styles\\.css\\?v=${stylesVersion}"`));
+      expect(html).toMatch(new RegExp(`src="(?:\\.\\.\\/|\\/)?mobile-nav\\.js\\?v=${navigationVersion}"`));
     });
   });
 

@@ -6,6 +6,13 @@
 <title>ORMA | Dog Trails &amp; Terrain Guide</title>
 <meta name="description" content="ORMA ranks every Dolomites route by paw safety, shade, water access, and terrain risk — matched to your dog.">
 <meta name="theme-color" content="#2E4034">
+<link rel="canonical" href="https://www.app-orma.com/">
+<script>/* GitHub Pages serves index.html as the homepage but cannot declare a
+   server-side redirect. Keep the public address canonical while preserving
+   deep-link query parameters and fragments. */
+if(location.protocol !== 'file:' && location.pathname === '/index.html'){
+  location.replace('/' + location.search + location.hash);
+}</script>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -19,13 +26,13 @@
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
 <link rel="stylesheet" href="styles.css?v=20260823-1">
-<link rel="stylesheet" href="homepage-mobile.css?v=20260816-4">
-  <link rel="stylesheet" href="homepage-editorial.css?v=20260821-2">
+<link rel="stylesheet" href="homepage-mobile.css?v=20260821-2">
+  <link rel="stylesheet" href="homepage-editorial.css?v=20260821-9">
 </head>
 <body>
 
 <div class="topnav">
-  <a class="brand" href="index.html" aria-label="ORMA | Dog Trails &amp; Terrain Guide"><img src="logo.svg?v=5" alt="">ORMA</a>
+  <a class="brand" href="/" aria-label="ORMA | Dog Trails &amp; Terrain Guide"><img src="logo.svg?v=5" alt="">ORMA</a>
   <div class="links">
     <a href="browse-trails.html">Browse all Trails</a>
     <a href="collections.html">Collections</a>
@@ -93,9 +100,15 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <div id="newCustomerHomepage" class="hp">
 
   <!-- GUEST BAR -->
-  <div class="hp-guestbar">
-    <div class="hp-guestbar-copy"><b id="hpGuestTitle">Browsing as a guest, ranked for a medium dog.</b> <span id="hpGuestSub">No account needed. Add your dog any time to sharpen every score.</span></div>
-    <button type="button" class="hp-guestbar-cta" id="hpGuestCta">Create your dog's profile →</button>
+  <div class="hp-guestbar hp-guestbar--homepage">
+    <div class="hp-guestbar-copy">
+      <span class="hp-guestbar-kicker">Guest mode</span>
+      <b id="hpGuestTitle">Scores use a medium-dog profile.</b>
+      <span id="hpGuestSub">Add your dog for personalised matches. Create a free account only when you choose to save.</span>
+    </div>
+    <button type="button" class="hp-guestbar-cta hp-dog-profile-cta" id="hpGuestCta">
+      <span id="hpGuestCtaLabel">Add your dog</span>
+    </button>
   </div>
 
   <!-- SEARCH HERO -->
@@ -123,8 +136,8 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         </div>
         <div class="hp-filter-row">
           <div class="hp-menuwrap hp-filt-wrap">
-            <button type="button" class="hp-filt" id="hpFiltersBtn" aria-haspopup="true" aria-expanded="false"><span class="hp-filt-lab"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Filters<span id="hpFiltersBadge"></span></span><span class="hp-filt-caret">▾</span></button>
-            <div class="hp-menu hp-fpanel" id="hpFiltersPanel" hidden>
+            <button type="button" class="hp-filt discovery-filter-trigger" id="hpFiltersBtn" aria-haspopup="true" aria-expanded="false"><span class="hp-filt-lab"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>Filters<span id="hpFiltersBadge"></span></span><span class="hp-filt-caret">▾</span></button>
+            <div class="hp-menu hp-fpanel discovery-filter-panel" id="hpFiltersPanel" hidden>
               <div class="hp-fpanel-head">
                 <span class="hp-fpanel-title">Filter trails</span>
                 <button type="button" id="hpFiltersReset">Reset all</button>
@@ -135,8 +148,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
               <div class="hp-seg" id="hpDiffSeg"></div>
               <div class="hp-fsec">Terrain underfoot</div>
               <div class="hp-seg" id="hpTerrainSeg"></div>
-              <div class="hp-fsec">Shade</div>
-              <div class="hp-seg" id="hpShadeSeg"></div>
               <div class="hp-fsec" id="hpMatchLabel">Minimum match</div>
               <div class="hp-seg" id="hpMatchSeg"></div>
               <div class="hp-frow">
@@ -170,7 +181,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 
   <!-- ================= DARK APP HEADER ================= -->
   <header class="li-top">
-    <a class="li-brand" href="index.html" aria-label="ORMA | Dog Trails &amp; Terrain Guide"><img src="logo.svg?v=5" alt="">ORMA</a>
+    <a class="li-brand" href="/" aria-label="ORMA | Dog Trails &amp; Terrain Guide"><img src="logo.svg?v=5" alt="">ORMA</a>
     <nav class="li-nav" aria-label="Site">
       <a href="browse-trails.html">Browse all Trails</a>
       <a href="collections.html">Collections</a>
@@ -202,7 +213,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <div class="li-menu-kick">Switch dog</div>
           <div id="liDogList"></div>
           <button type="button" class="li-menu-item" id="liAddDogBtn">＋ Add another dog</button>
-          <a class="li-menu-item" id="liManageLink" href="account.html?next=index.html">Manage dog profiles →</a>
+          <a class="li-menu-item" id="liManageLink" href="account.html?next=%2F">Manage dog profiles →</a>
           <div class="li-menu-div" role="separator"></div>
           <button type="button" class="li-menu-item" id="savedTrailsBtn">♥ <span class="txt-label">My saved trails</span> <span class="li-menu-count" id="companionSavedCount">0</span></button>
           <a class="li-menu-item" href="downloads.html">Downloaded trails</a>
@@ -231,7 +242,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <div class="li-menu-kick">Switch dog</div>
           <div id="liGreetDogList"></div>
           <button type="button" class="li-menu-item" id="liGreetAddDogBtn">＋ Add another dog</button>
-          <a class="li-menu-item" href="account.html?next=index.html">Manage dog profiles →</a>
+          <a class="li-menu-item" href="account.html?next=%2F">Manage dog profiles →</a>
         </div>
       </div>
       <div class="li-dog-copy">
@@ -268,54 +279,59 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     </div>
     <div class="li-menuwrap li-region-wrap" id="liRegionWrap">
       <button type="button" id="liRegionBtn" class="li-region-btn" aria-haspopup="true" aria-expanded="false">
-        <span class="li-control-kicker">Region</span>
-        <span id="liRegionLabel">Dolomites</span><span class="li-caret">▾</span>
+        <span class="li-geo-copy"><span class="li-control-kicker">Region</span><span id="liRegionLabel">Dolomites</span></span><span class="li-caret">▾</span>
       </button>
       <div class="li-menu li-region-menu" id="liRegionMenu" hidden></div>
     </div>
     <div class="li-search">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-      <input id="liSearch" type="search" placeholder="Find a trail on this map…" aria-label="Find a trail on this map" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="liSearchSuggest" autocomplete="off">
+      <input id="liSearch" type="search" placeholder="Search trails, peaks, or towns…" aria-label="Search trails, peaks, or towns" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="liSearchSuggest" autocomplete="off">
+      <kbd class="li-search-shortcut" aria-hidden="true">⌘K</kbd>
       <div class="li-search-suggest" id="liSearchSuggest" role="listbox" aria-label="Recommended routes" hidden></div>
     </div>
     <div class="li-menuwrap li-country-wrap" id="liCountryWrap">
       <button type="button" id="liCountryBtn" class="li-region-btn li-country-btn" aria-haspopup="true" aria-expanded="false">
-        <span class="li-control-kicker">Country</span>
-        <span id="liCountryLabel">Italy</span><span class="li-caret">▾</span>
+        <span class="li-geo-copy"><span class="li-control-kicker">Country</span><span id="liCountryLabel">Italy</span></span><span class="li-caret">▾</span>
       </button>
       <div class="li-menu li-country-menu" id="liCountryMenu" hidden></div>
     </div>
-    <button type="button" id="liSavedOnlyBtn" class="li-saved-only" aria-pressed="false">
-      <span aria-hidden="true">♥</span><span>Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span>
-    </button>
+    <div class="li-menuwrap li-valley-wrap" id="liValleyWrap">
+      <button type="button" id="liValleyBtn" class="li-region-btn li-valley-btn" aria-haspopup="true" aria-expanded="false">
+        <span class="li-geo-copy"><span class="li-control-kicker">Valley</span><span id="liValleyLabel">All valleys</span></span><span class="li-caret">▾</span>
+      </button>
+      <div class="li-menu li-valley-menu" id="liValleyMenu" hidden></div>
+    </div>
+    <div class="li-quick-filters" aria-label="Quick dog filters">
+      <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span>High shade</span></button>
+      <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span>Water</span></button>
+    </div>
     <!-- Kept as a rendering target for the controller; the consolidated
          Filters panel is the visible control at every viewport size. -->
     <div class="li-chiprow" id="liChips"></div>
     <div class="li-menuwrap" id="liFiltersWrap">
-      <button type="button" id="liFiltersBtn" class="li-filt" aria-haspopup="true" aria-expanded="false">
+      <button type="button" id="liFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
         Filters<span id="liFiltersBadge"></span> <span class="li-caret">▾</span>
       </button>
-      <div class="li-menu li-filters-menu" id="liFiltersMenu" hidden>
+      <div class="li-menu li-filters-menu discovery-filter-panel" id="liFiltersMenu" hidden>
         <div class="li-fhead">
           <span>Filter trails</span>
           <button type="button" id="liFiltersReset">Reset all</button>
         </div>
-        <!-- Source and valley refinements — the primary region switch sits
-             separately in the toolbar so it never gets buried in Filters. -->
-        <div id="areaFilterRow" class="li-fareas"></div>
         <div class="li-fsec">Distance</div>
         <div class="li-seg" id="liDistSeg"></div>
+        <div class="li-fsec">Trail rating</div>
+        <div class="li-seg" id="liRiskSeg"></div>
         <div class="li-fsec">Terrain underfoot</div>
         <div class="li-seg" id="liTerrainSeg"></div>
-        <div class="li-fsec">Shade</div>
-        <div class="li-seg" id="liShadeSeg"></div>
         <div class="li-fsec" id="liMatchSecLabel">Minimum match</div>
         <div class="li-seg" id="liMatchSeg"></div>
-        <div class="li-frows" id="liToggleRows"></div>
         <button type="button" class="li-apply" id="liFiltersApply">Show trails</button>
       </div>
     </div>
+    <button type="button" id="liSavedOnlyBtn" class="li-saved-only" aria-pressed="false">
+      <span class="orma-saved-heart" aria-hidden="true">♥</span><span>Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span>
+    </button>
     <a id="liRecordBtn" class="li-record" href="walk.html"><span class="li-record-dot" aria-hidden="true"></span><span class="li-record-label">Record walk</span></a>
   </div>
 
@@ -504,9 +520,9 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260821-1"></script>
+<script src="mobile-nav.js?v=20260823-1"></script>
 <script src="accessibility-runtime.js?v=20260815-4" defer></script>
-<script src="i18n.js?v=20260820-1"></script>
+<script src="i18n.js?v=20260822-1"></script>
 <script type="module" src="firebase-init.js?v=20260819-1"></script>
 <script src="icon-system.js?v=20260815-4" defer></script>
 <script src="trail-card-visual.js?v=20260815-4" defer></script>
@@ -523,16 +539,16 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="regions-config.js?v=20260816-1" defer></script>
 <script src="metrics.js?v=20260815-4" defer></script>
 <script src="guest-context.js?v=20260815-4" defer></script>
-<script src="auth-ui.js?v=20260818-8" defer></script>
-<script src="discovery-state.js?v=20260818-6" defer></script>
+<script src="auth-ui.js?v=20260821-1" defer></script>
+<script src="discovery-state.js?v=20260822-1" defer></script>
 <script src="map-runtime.js?v=20260815-4" defer></script>
 <script src="basemap-poi-click.js" defer></script>
 <script src="dog-routes-layer.js?v=20260815-4" defer></script>
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
-<script src="script.js?v=20260819-2" defer></script>
+<script src="script.js?v=20260822-1" defer></script>
 <script src="dog-wizard.js?v=20260815-4" defer></script>
 <script src="collections-data.js?v=20260815-4" defer></script>
-<script src="homepage-search.js?v=20260821-2" defer></script>
+<script src="homepage-search.js?v=20260822-1" defer></script>
 <script src="homepage-mobile.js?v=20260816-1" defer></script>
 </body>
 </html>

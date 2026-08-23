@@ -1,9 +1,9 @@
 {
   "contractVersion": "1.0.0",
-  "checkedAt": "2026-08-23T05:17:11.755Z",
+  "checkedAt": "2026-08-21T05:29:21.071Z",
   "summary": {
-    "active": 0,
-    "awaitingRemovalReview": 26,
+    "active": 17,
+    "awaitingRemovalReview": 2,
     "sourceFailures": 0
   },
   "sources": [
@@ -12,14 +12,14 @@
       "label": "MeteoAlarm Italy",
       "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
       "ok": true,
-      "alertsRead": 30
+      "alertsRead": 67
     },
     {
       "key": "meteoalarm-france",
       "label": "MeteoAlarm France",
       "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france",
       "ok": true,
-      "alertsRead": 65
+      "alertsRead": 132
     }
   ],
   "policy": "Authoritative severe-weather warnings may be added automatically. Removal always requires human confirmation. A missing source never means safe."

@@ -77,7 +77,7 @@
       top.id = 'mtrailTop';
       top.innerHTML =
         '<a class="back" href="browse-trails.html">← <span>Trails</span></a>' +
-        '<a class="brand" href="index.html"><img src="logo.svg" alt="">ORMA</a>' +
+        '<a class="brand" href="/"><img src="logo.svg" alt="">ORMA</a>' +
         '<a class="avlink" href="account.html" aria-label="Your account">' + dogAvatarHtml() + '</a>' +
         '<div class="mtrail-progress" aria-hidden="true"><span id="mtrailProgress"></span></div>';
       document.body.insertBefore(top, document.body.firstChild);
@@ -94,7 +94,7 @@
       nav.id = 'mtrailTabs';
       nav.setAttribute('aria-label', 'Primary');
       nav.innerHTML =
-        '<a href="index.html" class="on" aria-current="page">' +
+        '<a href="/" class="on" aria-current="page">' +
           '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg>' +
           '<span>Map</span></a>' +
         '<a href="saved.html">' +

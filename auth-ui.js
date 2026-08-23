@@ -86,6 +86,7 @@
   const toggleRow = modal && modal.querySelector('.auth-toggle');
   const guestLink = document.getElementById('authGuestBtn');
   const requestedNext = new URLSearchParams(window.location.search).get('next');
+  let activeReturnTarget = safeReturnTarget(requestedNext);
   let returnFocus = null;
   const focusableSelector = 'button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
 
@@ -100,13 +101,32 @@
   }
 
   function safeReturnTarget(value){
+    if(value === '/') return '/';
     if(!value || /^(?:[a-z]+:|\/\/|\/)/i.test(value)) return '';
     return /^[a-z0-9][a-z0-9._/-]*\.html(?:\?[^#]*)?(?:#.*)?$/i.test(value) ? value : '';
   }
 
-  function finishAuth(){
+  async function finishAuth(){
+    // A guest may build a dog profile before creating an account. Persist it
+    // before leaving the page so the promised cross-device profile is not
+    // dependent on a later auth-state listener winning a navigation race.
+    try {
+      const pendingRaw = localStorage.getItem('dolopaws-pending-dog-profile');
+      if(pendingRaw && window.DoloPawsAuth){
+        const pending = JSON.parse(pendingRaw);
+        const existing = await window.DoloPawsAuth.getDogProfile();
+        if(pending && pending.name && (!existing || !existing.name)){
+          await window.DoloPawsAuth.setDogProfile(pending);
+        }
+        localStorage.removeItem('dolopaws-pending-dog-profile');
+        localStorage.removeItem('dolopaws-dog-draft');
+      }
+    } catch(err){
+      // Keep the local profile in place if syncing fails. The browse page can
+      // still use it immediately and a later auth-state pass can retry.
+    }
     closeModal();
-    const target = safeReturnTarget(requestedNext);
+    const target = safeReturnTarget(activeReturnTarget);
     if(target) window.location.replace(target);
   }
 
@@ -283,7 +303,7 @@
     submitBtn.disabled = false;
     setMode(mode);
     if(result.ok){
-      finishAuth();
+      await finishAuth();
     } else {
       errorBox.textContent = resultMessage(result);
       errorBox.hidden = false;
@@ -294,7 +314,7 @@
     if(!window.DoloPawsAuth) return;
     const result = await window.DoloPawsAuth.signInGoogle();
     if(result.ok){
-      finishAuth();
+      await finishAuth();
     } else {
       errorBox.textContent = resultMessage(result);
       errorBox.hidden = false;
@@ -313,7 +333,7 @@
     if(!window.DoloPawsAuth) return;
     const result = await window.DoloPawsAuth.signInApple();
     if(result.ok){
-      finishAuth();
+      await finishAuth();
     } else {
       errorBox.textContent = resultMessage(result);
       errorBox.hidden = false;
@@ -336,8 +356,16 @@
   // Expose a way for other scripts (e.g. the homepage teaser CTA) to open
   // the modal already in signup mode.
   window.DoloPawsAuthUI = {
-    openSignup(){ setMode('signup'); openModal(); },
-    openLogin(){ setMode('login'); openModal(); },
+    openSignup(options){
+      if(options && options.next) activeReturnTarget = safeReturnTarget(options.next);
+      setMode('signup');
+      openModal();
+    },
+    openLogin(options){
+      if(options && options.next) activeReturnTarget = safeReturnTarget(options.next);
+      setMode('login');
+      openModal();
+    },
   };
 
   function waitForAuth(cb){

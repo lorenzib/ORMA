@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260821-1">
+<link rel="stylesheet" href="styles.css?v=20260823-1">
 <style>
   /* Guest bar — the homepage component reused verbatim; CTA is a link here */
   a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
@@ -24,14 +24,18 @@
   .browse-compare-note em{font-style:normal;font-weight:700;}
   /* Keep the browse-page introduction and discovery controls compact and
      aligned to the same content grid. */
+  .browse-design-head,.browse-design-wrap{max-width:1680px;padding-left:clamp(24px,3vw,44px);padding-right:clamp(24px,3vw,44px);}
   .browse-design-wrap{padding-top:6px;}
-  .browse-primary-controls{display:flex;align-items:flex-end;gap:18px;margin:10px 0 18px;flex-wrap:wrap;}
-  .browse-area-controls{display:flex;align-items:flex-end;gap:12px;flex:1 1 680px;min-width:0;}
-  .browse-geo-group{display:grid;gap:6px;min-width:190px;}
-  .browse-geo-label{font:700 10.5px/1 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding-left:7px;}
+  .browse-primary-controls{margin:10px 0 18px;}
+  .browse-area-controls{display:flex;align-items:center;gap:9px;min-width:0;}
+  .browse-geo-group{display:block;flex:0 0 130px;width:130px;min-width:0;}
+  .browse-geo-group--valley{flex-basis:150px;width:150px;}
+  .browse-geo-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
   .browse-geo-group .area-select-shell{width:100%;}
-  .browse-primary-controls .browse-tools{flex:0 1 470px;min-width:0;margin:0;flex-wrap:nowrap;justify-content:flex-end;}
-  .browse-primary-controls .browse-search-shell{flex:0 1 320px;width:320px;max-width:320px;min-width:190px;}
+  .browse-geo-group .area-select-trigger{min-height:40px;padding:8px 10px 8px 12px;gap:6px;font-size:12.5px;}
+  .browse-geo-group .area-select-trigger__label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .browse-primary-controls .browse-tools{width:100%;min-width:0;margin:0;flex-wrap:nowrap;justify-content:flex-start;}
+  .browse-primary-controls .browse-search-shell{flex:1 1 240px;width:auto;max-width:none;min-width:220px;}
   .browse-primary-controls .browse-filter-divider{display:none;}
   .simple-grid{display:flex;flex-direction:column;gap:12px;}
   .simple-card{display:grid;grid-template-columns:120px minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:16px;row-gap:9px;align-items:center;padding:14px;background:var(--card);border:1px solid var(--paper-line);border-radius:var(--radius-panel);transition:box-shadow .2s,border-color .2s,transform .2s;}
@@ -75,6 +79,10 @@
   .browse-field--advanced{display:none;}
   .browse-water{min-height:38px;padding:8px 14px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 13px 'Inter',sans-serif;color:var(--ink);cursor:pointer;white-space:nowrap;}
   .browse-water[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
+  .browse-quick-filters{display:flex;align-items:center;gap:8px;}
+  .browse-quick-filter,.browse-saved-only{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:8px 13px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:var(--card);color:var(--ink);font:600 12.5px 'Inter',sans-serif;white-space:nowrap;cursor:pointer;}
+  .browse-quick-filter[aria-pressed="true"],.browse-saved-only[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;color:#24462E;font-weight:700;}
+  .browse-saved-count{display:inline-flex;align-items:center;justify-content:center;min-width:21px;height:21px;padding:0 6px;border-radius:999px;background:#EDF0E8;font-size:11px;}
   .browse-filter-controls{display:none!important;}
   .browse-filter-group{padding:2px 0 11px;}
   .browse-filter-group+.browse-filter-group{border-top:1px solid var(--divider);padding-top:12px;}
@@ -84,7 +92,9 @@
   @media(max-width:700px){#browseFiltersMenu{position:fixed;top:auto;left:8px;right:8px;width:auto;max-height:70vh;}}
   .browse-results-meta .browse-result-accessible{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
   @media(max-width:760px){
-    .browse-primary-controls{display:grid;grid-template-columns:1fr;gap:12px;margin-top:8px;}
+    .browse-design-head{padding-left:18px;padding-right:18px;}
+    .browse-design-wrap{padding-left:16px;padding-right:16px;}
+    .browse-primary-controls{margin-top:8px;}
     .browse-area-controls{display:grid;grid-template-columns:1fr;gap:10px;width:100%;min-width:0;}
     .browse-geo-group{width:100%;min-width:0;}
     .browse-primary-controls .browse-tools{width:100%;max-width:none;justify-content:stretch;}
@@ -93,6 +103,9 @@
        visible right under it — never hidden off-screen. */
     .browse-tools{flex-wrap:wrap;overflow-x:visible;padding-bottom:0;gap:9px;}
     .browse-primary-controls .browse-search-shell{flex:1 1 auto;width:auto;max-width:none;}
+    .browse-area-controls,.browse-quick-filters{flex:1 1 100%;}
+    .browse-quick-filters{overflow-x:auto;padding-bottom:2px;scrollbar-width:none;}
+    .browse-quick-filters::-webkit-scrollbar{display:none;}
     .browse-filter-divider{display:none;}
     .browse-filter-controls{flex:1 1 100%;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:9px;padding-bottom:3px;scrollbar-width:none;}
     .browse-filter-controls::-webkit-scrollbar{display:none;}
@@ -145,7 +158,7 @@
 <body>
 
 <div class="topnav">
-  <a class="brand" href="index.html"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Browse all Trails</span>
+  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Browse all Trails</span>
   <div class="links">
     <a href="browse-trails.html" class="active">Browse all Trails</a>
     <a href="collections.html">Collections</a>
@@ -156,9 +169,9 @@
 </div>
 
 <!-- Same guest bar as the homepage, for continuity; hidden once logged in. -->
-<div class="hp-guestbar" id="browseGuestBar">
-  <div class="hp-guestbar-copy"><b>Browsing as a guest, ranked for a medium dog.</b> <span>No account needed. Add your dog any time to sharpen every score.</span></div>
-  <a class="hp-guestbar-cta" href="onboarding.html">Create your dog's profile →</a>
+<div class="hp-guestbar hp-guestbar--compact" id="browseGuestBar">
+  <div class="hp-guestbar-copy"><b>Guest mode · Scores use a medium-dog profile.</b> <span>Add your dog for personalised matches.</span></div>
+  <a class="hp-guestbar-cta" href="/?wizard=1">Add your dog</a>
 </div>
 
 <header class="browse-design-head section-page-head">
@@ -170,6 +183,11 @@
   <div id="browseCollections" hidden></div>
 
   <div class="browse-primary-controls">
+    <div class="browse-tools" id="browseTools" aria-label="Search and filter trails">
+    <label class="browse-search-shell">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      <input class="browse-search" id="browseSearch" type="search" placeholder="Search by trail, area or valley" aria-label="Search trails">
+    </label>
     <div class="browse-area-controls" aria-label="Choose trail area">
       <label class="browse-geo-group" for="browseCountrySelect">
         <span class="browse-geo-label">Country</span>
@@ -179,20 +197,21 @@
         <span class="browse-geo-label">Region</span>
         <span class="area-select-shell"><select id="browseRegionSelect" aria-label="Filter trails by region"></select></span>
       </label>
+      <label class="browse-geo-group browse-geo-group--valley" for="browseValleySelect">
+        <span class="browse-geo-label">Valley</span>
+        <span class="area-select-shell"><select id="browseValleySelect" aria-label="Filter trails by valley"></select></span>
+      </label>
     </div>
-
-    <div class="browse-tools" id="browseTools" aria-label="Filter trails">
-    <label class="browse-search-shell">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
-      <input class="browse-search" id="browseSearch" type="search" placeholder="Search by trail, area or valley" aria-label="Search trails">
-    </label>
-    <span class="browse-filter-divider" aria-hidden="true"></span>
+    <div class="browse-quick-filters" aria-label="Quick dog filters">
+      <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span>High shade</span></button>
+      <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span>Water</span></button>
+    </div>
     <div class="li-menuwrap" id="browseFiltersWrap">
-      <button type="button" id="browseFiltersBtn" class="li-filt" aria-haspopup="true" aria-expanded="false" aria-controls="browseFiltersMenu">
+      <button type="button" id="browseFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="browseFiltersMenu">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
         Filters<span id="browseFiltersCount"></span> <span class="li-caret">▾</span>
       </button>
-      <div class="li-menu li-filters-menu" id="browseFiltersMenu" hidden>
+      <div class="li-menu li-filters-menu discovery-filter-panel" id="browseFiltersMenu" hidden>
         <div class="li-fhead">
           <span>Filter trails</span>
           <button type="button" id="browseFiltersReset">Reset all</button>
@@ -210,14 +229,13 @@
           <div class="browse-filter-group__title">Terrain &amp; trail conditions</div>
           <div class="li-fsec">Terrain underfoot</div>
           <div class="li-seg" id="brTerrainSeg"></div>
-          <div class="li-fsec">Shade</div>
-          <div class="li-seg" id="brShadeSeg"></div>
-          <div class="li-fsec">Water on route</div>
-          <div class="li-seg" id="brWaterSeg"></div>
         </div>
         <button type="button" class="li-apply" id="browseFiltersApply">Show trails</button>
       </div>
     </div>
+    <button type="button" id="browseSavedOnly" class="browse-saved-only" aria-pressed="false">
+      <span class="orma-saved-heart" aria-hidden="true">♥</span><span>Saved</span><span class="browse-saved-count" id="browseSavedCount">0</span>
+    </button>
       <div class="browse-filter-controls" id="browseFilterControls" hidden>
       <label class="browse-field"><span>Distance</span>
         <select id="browseDistance" aria-label="Filter by distance">
@@ -240,7 +258,6 @@
           <option value="caution">Caution</option>
         </select>
       </label>
-      <button type="button" id="browseWater" class="browse-water" aria-pressed="false" data-audit-label="Water point listed">Water on route</button>
       <label class="browse-field browse-field--advanced"><span>Terrain tolerance</span>
         <select id="browseTerrain" aria-label="Filter by terrain tolerance">
           <option value="">Any terrain</option>
@@ -269,18 +286,12 @@
           <option value="allowed-reviewed">Dogs permitted</option>
         </select>
       </label>
-      <label class="browse-field browse-field--advanced"><span>Trail information</span>
-        <select id="browseVerification" aria-label="Filter by ORMA verification">
-          <option value="">All trails</option>
-          <option value="route-audited">Verified by ORMA</option>
-        </select>
-      </label>
       </div>
     </div>
   </div>
   <!-- What Compare does — feeds the tray at the bottom + compare.html -->
   <aside class="browse-compare-note">
-    <b>Deciding between trails?</b> Pick <em>Compare</em> on two or three and we'll put them side by side — distance, terrain, shade, water and the match for your dog. Unknown stays unknown; we never guess a factor safe.
+    <b>Deciding between trails?</b> Pick <em>Compare</em> on two or three and we'll put them side by side: distance, terrain, shade, water and the match for your dog. Unknown stays unknown; we never guess a factor safe.
   </aside>
   <div class="browse-results-meta">
     <span id="browseResultCount" aria-live="polite"></span>
@@ -511,8 +522,8 @@
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260821-1"></script>
-<script src="i18n.js?v=20260815-4"></script>
+<script src="mobile-nav.js?v=20260823-1"></script>
+<script src="i18n.js?v=20260822-1"></script>
 <script src="trust/evidence-v1.js?v=20260815-4"></script>
 <script src="trail-trust.js?v=20260819-5"></script>
 <script src="scoring/recommendation-v1.js?v=20260815-4"></script>
@@ -528,9 +539,9 @@
 <script src="metrics.js?v=20260815-4" defer></script>
 <script src="metric-funnel.js?v=20260815-4" defer></script>
 <script src="guest-context.js?v=20260815-4" defer></script>
-<script src="auth-ui.js?v=20260818-8" defer></script>
-<script src="discovery-state.js?v=20260818-6" defer></script>
-<script src="discovery-filters.js?v=20260818-6" defer></script>
+<script src="auth-ui.js?v=20260821-1" defer></script>
+<script src="discovery-state.js?v=20260822-1" defer></script>
+<script src="discovery-filters.js?v=20260822-1" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>
 <script src="area-dropdown.js?v=20260821-1"></script>
 <script>
@@ -551,16 +562,20 @@
     const search = document.getElementById('browseSearch');
     const countrySelect = document.getElementById('browseCountrySelect');
     const regionSelect = document.getElementById('browseRegionSelect');
+    const valleySelect = document.getElementById('browseValleySelect');
     const countryDropdown = window.OrmaAreaDropdown.enhance(countrySelect);
     const regionDropdown = window.OrmaAreaDropdown.enhance(regionSelect);
+    const valleyDropdown = window.OrmaAreaDropdown.enhance(valleySelect);
     const risk = document.getElementById('browseRisk');
     const distance = document.getElementById('browseDistance');
     const terrain = document.getElementById('browseTerrain');
     const heat = document.getElementById('browseHeat');
     const exposure = document.getElementById('browseExposure');
     const access = document.getElementById('browseAccess');
-    const verification = document.getElementById('browseVerification');
     const waterBtn = document.getElementById('browseWater');
+    const shadeBtn = document.getElementById('browseQuickShade');
+    const savedOnlyBtn = document.getElementById('browseSavedOnly');
+    const savedCount = document.getElementById('browseSavedCount');
     const filtersBtn = document.getElementById('browseFiltersBtn');
     const filtersCount = document.getElementById('browseFiltersCount');
     const toolsWrap = document.getElementById('browseTools');
@@ -575,10 +590,13 @@
     })[char]);
     let countryValue = 'all';
     let regionValue = 'all';
+    let valleyValue = 'all';
     let waterOnly = false;
     let difficultyValue = '';
     let minMatchValue = '';
     let dogValue = 'medium';
+    let savedOnly = false;
+    let currentFavorites = {};
 
     const SAFETY = {
       'low-risk': [window.t('legend.low'), '#E4EADF', '#2C5C34'],
@@ -637,6 +655,7 @@
       search.value = canonical.search || '';
       countryValue = allowedCountries.includes(canonical.country) ? canonical.country : 'all';
       regionValue = allowedRegions.includes(canonical.region) ? canonical.region : 'all';
+      valleyValue = canonical.valley || 'all';
       if(regionValue === 'dolomites') countryValue = 'italy';
       if(regionValue === 'savoy') countryValue = 'france';
       risk.value = allowedRisks.includes(canonical.risk) ? canonical.risk : 'all';
@@ -648,7 +667,6 @@
       heat.value = canonical.heat || (canonical.shade ? 'shade-reviewed' : '');
       exposure.value = canonical.exposure || '';
       access.value = canonical.access || '';
-      verification.value = canonical.verification || '';
       minMatchValue = canonical.minMatch || '';
       dogValue = canonical.dog || 'medium';
       page = canonical.page || 1;
@@ -660,6 +678,7 @@
         search: search.value,
         country: countryValue === 'all' ? '' : countryValue,
         region: regionValue === 'all' ? '' : regionValue,
+        valley: valleyValue === 'all' ? '' : valleyValue,
         risk: risk.value === 'all' ? '' : risk.value,
         distance: distance.value === 'all' ? '' : distance.value,
         water: waterOnly,
@@ -669,7 +688,6 @@
         heat: heat.value,
         exposure: exposure.value,
         access: access.value,
-        verification: verification.value,
         minMatch: minMatchValue,
         dog: dogValue,
         page,
@@ -748,6 +766,7 @@
         search: search.value,
         country: countryValue === 'all' ? '' : countryValue,
         region: regionValue === 'all' ? '' : regionValue,
+        valley: valleyValue === 'all' ? '' : valleyValue,
         risk: risk.value === 'all' ? '' : risk.value,
         distance: distance.value === 'all' ? '' : distance.value,
         water: waterOnly,
@@ -757,7 +776,6 @@
         heat: heat.value,
         exposure: exposure.value,
         access: access.value,
-        verification: verification.value,
         minMatch: minMatchValue,
         dog: dogValue,
         page,
@@ -774,7 +792,8 @@
     }
 
     function filteredTrails(){
-      return filterApi.filter(trails, currentFilterState(), filterOptions());
+      const filtered = filterApi.filter(trails, currentFilterState(), filterOptions());
+      return savedOnly ? filtered.filter(trail => currentFavorites[trail.id]) : filtered;
     }
 
     const COUNTRIES = [
@@ -793,11 +812,17 @@
       el.textContent = item.label + ' (' + count + ')';
       return el;
     }
+    function compactAreaTrigger(select){
+      const label = select && select.closest('.area-select-shell')?.querySelector('.area-select-trigger__label');
+      const selected = select && select.options[select.selectedIndex];
+      if(label && selected) label.textContent = selected.textContent.replace(/\s+\(\d+\)$/, '');
+    }
     function renderCountrySelect(){
       if(!countrySelect) return;
       countrySelect.replaceChildren(...COUNTRIES.map(item => option(item, trails.filter(item.match).length)));
       countrySelect.value = countryValue;
       countryDropdown.refresh();
+      compactAreaTrigger(countrySelect);
     }
     // Region remains a separate choice so the model scales when ORMA adds
     // more regions within a country.
@@ -814,14 +839,46 @@
       }));
       regionSelect.value = regionValue;
       regionDropdown.refresh();
+      compactAreaTrigger(regionSelect);
+    }
+    function valleyEntries(){
+      const scoped = trails.filter(trail => {
+        if(regionValue !== 'all') return trail.region === regionValue;
+        if(countryValue === 'italy') return trail.region === 'dolomites';
+        if(countryValue === 'france') return trail.region === 'savoy';
+        return true;
+      });
+      const counts = new Map();
+      scoped.forEach(trail => {
+        if(trail.valley) counts.set(trail.valley, (counts.get(trail.valley) || 0) + 1);
+      });
+      return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+    }
+    function renderValleySelect(){
+      if(!valleySelect) return;
+      const entries = valleyEntries();
+      if(valleyValue !== 'all' && !entries.some(([valley]) => valley === valleyValue)) valleyValue = 'all';
+      const total = entries.reduce((sum, [, count]) => sum + count, 0);
+      const items = [option({ value:'all', label:'All valleys' }, total)]
+        .concat(entries.map(([valley, count]) => option({ value:valley, label:valley }, count)));
+      valleySelect.replaceChildren(...items);
+      valleySelect.value = valleyValue;
+      valleyDropdown.refresh();
+      compactAreaTrigger(valleySelect);
     }
 
     // Phone-width: rating / distance / water condense behind one Filters chip.
     function syncFiltersChip(){
       if(waterBtn) waterBtn.setAttribute('aria-pressed', String(waterOnly));
+      if(shadeBtn) shadeBtn.setAttribute('aria-pressed', String(heat.value === 'shade-60'));
+      if(savedOnlyBtn){
+        savedOnlyBtn.setAttribute('aria-pressed', String(savedOnly));
+        savedOnlyBtn.setAttribute('aria-label', savedOnly ? 'Show all trails' : 'Show saved trails only');
+      }
+      if(savedCount) savedCount.textContent = String(Object.keys(currentFavorites).length);
       if(!filtersBtn) return;
       const n = filterApi.active(currentFilterState())
-        .filter(item => !['search','country','region','collection'].includes(item.key)).length;
+        .filter(item => !['search','country','region','valley','collection','water','heat'].includes(item.key)).length;
       if(filtersCount) filtersCount.textContent = n > 0 ? ' (' + n + ')' : '';
       filtersBtn.classList.toggle('on', n > 0);
     }
@@ -850,22 +907,16 @@
         { label:'Any', v:'all' }, { label:'Low risk', v:'low-risk' }, { label:'Moderate', v:'moderate' }, { label:'Caution', v:'caution' },
       ], risk.value, v => { risk.value = v; });
       brSeg('brTerrainSeg', [
-        { label:'Any', v:'' }, { label:'Paved', v:'soft' }, { label:'Gravel', v:'mixed' }, { label:'Rocky', v:'rocky' },
+        { label:'Any', v:'' }, { label:'Gentle only', v:'soft' }, { label:'Up to mixed', v:'mixed' }, { label:'Rocky is okay', v:'rocky' },
       ], terrain.value, v => { terrain.value = v; });
-      brSeg('brShadeSeg', [
-        { label:'Any', v:'' }, { label:'Over 40%', v:'shade-40' }, { label:'Over 60%', v:'shade-60' },
-      ], heat.value, v => { heat.value = v; });
       brSeg('brMatchSeg', [
         { label:'Any', v:'' }, { label:'60%+', v:'60' }, { label:'75%+', v:'75' }, { label:'85%+', v:'85' },
       ], minMatchValue, v => { minMatchValue = v; });
-      brSeg('brWaterSeg', [
-        { label:'Any', v:'no' }, { label:'Water on route', v:'yes' },
-      ], waterOnly ? 'yes' : 'no', v => { waterOnly = v === 'yes'; });
     }
     const filtersReset = document.getElementById('browseFiltersReset');
     if(filtersReset) filtersReset.addEventListener('click', () => {
       distance.value = 'all'; risk.value = 'all'; terrain.value = ''; heat.value = '';
-      exposure.value = ''; access.value = ''; verification.value = '';
+      exposure.value = ''; access.value = '';
       minMatchValue = ''; waterOnly = false;
       page = 1; renderPage('push'); buildFilterPanel();
     });
@@ -925,13 +976,15 @@
 
       renderCountrySelect();
       renderRegionSelect();
+      renderValleySelect();
       syncFiltersChip();
       renderCollections();
       let pool = filteredTrails();
       if(distance.value === '5') pool = pool.filter(trail => Number(trail.distance) < 5);
       if(distance.value === '10') pool = pool.filter(trail => Number(trail.distance) >= 5);
       const activeFilters = filterApi.active(currentFilterState());
-      const hasFilters = activeFilters.length > 0;
+      const hasFilters = activeFilters.length > 0 || savedOnly;
+      if(filtersApply) filtersApply.textContent = `Show ${pool.length} ${pool.length === 1 ? 'trail' : 'trails'}`;
       let profilePresent = false;
       try{ profilePresent = !!JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); }
       catch(error){}
@@ -960,7 +1013,13 @@
         : '';
       let recovery = null;
       let emptyHtml = '';
-      if(!pageTrails.length){
+      if(!pageTrails.length && savedOnly){
+        emptyHtml = '<div class="browse-empty empty-state">' +
+          '<div class="empty-state__icon" aria-hidden="true">' + emptyIcon + '</div>' +
+          '<p class="empty-state__title">No saved trails match these choices</p>' +
+          '<p class="empty-state__copy">Turn off Saved or adjust the visible filters to return to the full trail catalogue.</p>' +
+          '<div class="browse-recovery"><button type="button" data-show-all>Show all trails</button></div></div>';
+      } else if(!pageTrails.length){
         recovery = filterApi.diagnoseZero(trails, currentFilterState(), filterOptions());
         const chips = activeFilters.map(item =>
           `<span class="browse-empty__filter">${esc(item.label)}</span>`
@@ -1041,6 +1100,8 @@
 
       const emptyClear = list.querySelector('[data-clear-empty]');
       if(emptyClear) emptyClear.addEventListener('click', () => clear.click());
+      const showAll = list.querySelector('[data-show-all]');
+      if(showAll) showAll.addEventListener('click', () => { savedOnly = false; page = 1; renderPage(null); });
       list.querySelectorAll('[data-compare-id]').forEach(button => {
         button.addEventListener('click', () => {
           compareIds = compareApi.toggle(compareIds, button.dataset.compareId);
@@ -1105,7 +1166,7 @@
       }
     }
 
-    [search, risk, distance, terrain, heat, exposure, access, verification].forEach(control => {
+    [search, risk, distance, terrain, heat, exposure, access].forEach(control => {
       control.addEventListener(control === search ? 'input' : 'change', () => {
         page = 1;
         renderPage(control === search ? 'replace' : 'push');
@@ -1115,6 +1176,7 @@
       countryValue = countrySelect.value;
       const selectedRegion = REGIONS.find(item => item.value === regionValue);
       if(selectedRegion && selectedRegion.country !== 'all' && selectedRegion.country !== countryValue) regionValue = 'all';
+      valleyValue = 'all';
       page = 1;
       renderPage('push');
     });
@@ -1122,6 +1184,12 @@
       regionValue = regionSelect.value;
       const selectedRegion = REGIONS.find(item => item.value === regionValue);
       if(selectedRegion && selectedRegion.country !== 'all') countryValue = selectedRegion.country;
+      valleyValue = 'all';
+      page = 1;
+      renderPage('push');
+    });
+    valleySelect.addEventListener('change', () => {
+      valleyValue = valleySelect.value;
       page = 1;
       renderPage('push');
     });
@@ -1131,11 +1199,26 @@
       page = 1;
       renderPage('push');
     });
+    if(shadeBtn) shadeBtn.addEventListener('click', () => {
+      heat.value = heat.value === 'shade-60' ? '' : 'shade-60';
+      page = 1;
+      renderPage('push');
+    });
+    if(savedOnlyBtn) savedOnlyBtn.addEventListener('click', () => {
+      if(!window.DoloPawsAuth || !window.DoloPawsAuth.currentUser){
+        window.location.href = 'saved.html';
+        return;
+      }
+      savedOnly = !savedOnly;
+      page = 1;
+      renderPage(null);
+    });
     clear.addEventListener('click', () => {
       search.value = '';
       risk.value = distance.value = 'all';
       countryValue = 'all';
       regionValue = 'all';
+      valleyValue = 'all';
       waterOnly = false;
       if(waterBtn) waterBtn.setAttribute('aria-pressed', 'false');
       collectionKey = 'all';
@@ -1144,8 +1227,8 @@
       heat.value = '';
       exposure.value = '';
       access.value = '';
-      verification.value = '';
       minMatchValue = '';
+      savedOnly = false;
       page = 1;
       renderPage('push');
       search.focus();
@@ -1156,7 +1239,19 @@
       renderPage(null);
     });
 
+    async function loadSavedTrails(){
+      if(!window.DoloPawsAuth || !window.DoloPawsAuth.currentUser){
+        currentFavorites = {};
+      } else {
+        try { currentFavorites = await window.DoloPawsAuth.getFavorites() || {}; }
+        catch(error){ currentFavorites = {}; }
+      }
+      renderPage(null);
+    }
+    window.addEventListener('dolopaws-auth-ready', loadSavedTrails, { once:true });
+    window.addEventListener('dolopaws-auth-changed', loadSavedTrails);
     renderPage('replace');
+    if(window.DoloPawsAuth) loadSavedTrails();
   });
 </script>
 </body>

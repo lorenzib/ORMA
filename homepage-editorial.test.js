@@ -12,6 +12,58 @@ describe('guest homepage editorial structure', () => {
     expect(translations).toContain("'hero.h1': 'Find a trail that fits your dog'");
   });
 
+  test('keeps a prominent, value-first guest card above the homepage hero', () => {
+    const html = read('index.html');
+    const controller = read('homepage-search.js');
+    const guestCard = html.indexOf('hp-guestbar--homepage');
+    const hero = html.indexOf('class="hp-hero"');
+
+    expect(guestCard).toBeGreaterThan(-1);
+    expect(hero).toBeGreaterThan(guestCard);
+    expect(html).toContain('Scores use a medium-dog profile.');
+    expect(html).toContain('Create a free account only when you choose to save.');
+    expect(controller).toContain("el.guestCtaLabel.textContent = 'Browse ' + state.custom.meta.name + '’s matches'");
+  });
+
+  test('places the profile explanation after the default score and keeps one homepage prompt', () => {
+    const html = read('index.html');
+    const controller = read('homepage-search.js');
+    const css = read('styles.css');
+    const title = html.indexOf('Scores use a medium-dog profile.');
+    const explanation = html.indexOf('Add your dog for personalised matches. Create a free account only when you choose to save.');
+
+    expect(explanation).toBeGreaterThan(title);
+    expect(html).toContain('class="hp-guestbar-cta hp-dog-profile-cta"');
+    expect(html).not.toContain('images/orma-add-your-dog-freddy.jpg');
+    expect(html).not.toContain('class="hp-guestbar-cta-media"');
+    expect(controller).toContain('class="hp-coll-profile-cta hp-dog-profile-cta"');
+    expect(read('mobile-nav.js')).toContain("profile.className = 'dog-profile-banner__action hp-dog-profile-cta'");
+    expect(read('mobile-nav.js')).toContain('topnav.parentNode.insertBefore(banner, topnav.nextSibling)');
+    expect(css).toContain('.dog-profile-banner{');
+    expect(css).toContain('.hp-dog-profile-cta{');
+    expect(css).toContain('width:224px;');
+    expect(css).toContain('min-height:42px;');
+  });
+
+  test('shows the value of a dog profile before asking the guest to register', () => {
+    const controller = read('homepage-search.js');
+
+    expect(controller).toContain("dogName + '’s profile is ready'");
+    expect(controller).toContain("matches.slice(0, 3)");
+    expect(controller).toContain('Save profile and see all matches');
+    expect(controller).toContain('See all matches without saving');
+    expect(controller).toContain("openSignup({ next: 'browse-trails.html' })");
+  });
+
+  test('uses the compact guest notice only on the ranking catalogue', () => {
+    const browse = read('browse-trails.html');
+
+    expect(browse).toContain('hp-guestbar--compact');
+    expect(browse).toContain('Guest mode · Scores use a medium-dog profile.');
+    expect(browse).toContain('href="/?wizard=1">Add your dog</a>');
+    expect(browse).not.toContain('hp-guestbar--homepage');
+  });
+
   test('orders mission, method, and weekly feature as one page story', () => {
     const controller = read('homepage-search.js');
     const mission = controller.indexOf('<section class="hp-mission"');
@@ -44,5 +96,40 @@ describe('guest homepage editorial structure', () => {
     expect(read('index.html')).not.toContain('hpAnnounce');
     expect(read('homepage-search.js')).not.toContain('announceCount');
     expect(read('homepage-search.js')).toContain('each published trail');
+  });
+
+  test('wraps the featured match beneath the risk badge when a card narrows', () => {
+    const css = read('homepage-editorial.css');
+
+    expect(css).toContain('.hp-featured .hp-ccard-footer{flex-wrap:wrap;row-gap:10px;}');
+    expect(css).toContain('.hp-featured .hp-ccard-rating{min-width:max-content;}');
+    expect(css).toContain('.hp-featured .hp-ccard-match{margin-left:auto;}');
+    expect(css).toContain('@container (max-width:340px)');
+    expect(css).toContain('.hp-featured .hp-ccard-match{align-self:flex-end;margin-left:0;}');
+  });
+
+  test('keeps the method cards on the same three-column rhythm as featured trails', () => {
+    const css = read('homepage-editorial.css');
+    const js = read('homepage-search.js');
+
+    expect(css).toContain('.hp-how-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:16px;}');
+    expect(css).toContain('.hp-howcard{display:flex;flex-direction:column;width:100%;min-width:0;height:100%');
+    expect(css).toContain('.hp-howcard-media{position:relative;flex:0 0 178px;height:178px;');
+    expect(css).not.toContain('mix-blend-mode:soft-light');
+    expect(js).toContain('orma-how-assess-1920.jpg');
+    expect(js).toContain('orma-how-add-dog-1920.jpg');
+    expect(js).toContain('orma-how-match-1920.jpg');
+    expect(js).toContain('width="960" height="600"');
+    expect(js).toContain('How trail evidence becomes practical guidance for your dog');
+    expect(js).toContain('We assess the trail first, then compare its terrain and conditions with your dog’s needs to explain the match.');
+    expect(css).toContain('.hp-how-h2{font-size:clamp(21px,2.35vw,30px);line-height:1.15;white-space:nowrap;}');
+    expect(css).toContain('.hp-coll-profile-cta{width:auto;min-height:36px;');
+    expect(css).toContain('filter:saturate(1.14) contrast(1.05) brightness(1.03);');
+  });
+
+  test('uses the shared wider website canvas', () => {
+    const css = read('homepage-editorial.css');
+    expect(css).toContain('.hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}');
+    expect(read('index.html')).toContain('homepage-editorial.css?v=20260821-9');
   });
 });

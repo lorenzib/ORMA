@@ -5,6 +5,7 @@ function trail(overrides = {}){
     id:'sample',
     name:'Sample loop',
     region:'dolomites',
+    valley:'Val di Fassa',
     distance:4,
     terrainRank:0,
     shadeCoverage:60,
@@ -45,7 +46,6 @@ describe('dog-specific discovery filters', () => {
       heat:'shade-reviewed',
       exposure:'none-reviewed',
       access:'allowed-reviewed',
-      verification:'route-audited',
     })).toBe(true);
   });
 
@@ -53,6 +53,11 @@ describe('dog-specific discovery filters', () => {
     expect(filters.matches(trail(), { country:'italy', region:'dolomites' })).toBe(true);
     expect(filters.matches(trail(), { country:'france' })).toBe(false);
     expect(filters.matches(trail({ region:'savoy', country:'FR' }), { country:'france', region:'savoy' })).toBe(true);
+  });
+
+  test('valley narrows results inside the selected region', () => {
+    expect(filters.matches(trail(), { region:'dolomites', valley:'Val di Fassa' })).toBe(true);
+    expect(filters.matches(trail(), { region:'dolomites', valley:'Val Gardena' })).toBe(false);
   });
 
   test.each([

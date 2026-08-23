@@ -56,7 +56,7 @@ function renderTeaser(){
 function goToProfileCreation(){
   const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
   if(user){
-    window.location.href = 'account.html?next=index.html';
+    window.location.href = 'account.html?next=%2F';
   } else if(window.DoloPawsWizard){
     // Guests build the dog profile FIRST (no account needed); the
     // signup ask comes only after they've seen their dog's matches.
@@ -148,17 +148,16 @@ let activeRegion = (() => {
   } catch(e) { return 'dolomites'; }
 })();
 let activeValley = 'all';
-let activeProvenance = 'all';      // 'all' | 'verified' | 'imported'
 let sortKey = 'match';             // 'match' | 'distance' | 'effort' — Companion sort control
 let selectedTrailId = null;        // map pin / card selection (Companion layout)
 
 // Logged-in shell (map + list app layout) — header search + filter panel state.
-// These sit on top of the region/valley/provenance filters above.
+// These sit on top of the region/valley filters above.
 let liQuery = '';                  // header search box
 // Filter semantics follow the design's chip options (AppShell FilterBar):
-// dist 'any'|'u5'|'5to10'|'10p' · terrain 'any'|'0'|'1'|'2' (Paved/Gravel/
-// Rocky) · shade 'any'|'40'|'60' (Over 40% / Over 60%).
-let liFilters = { dist: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false };
+// dist 'any'|'u5'|'5to10'|'10p' · risk 'any'|'low-risk'|'moderate'|'caution'
+// · terrain 'any'|'soft'|'mixed'|'rocky' · shade 'any'|'40'|'60'.
+let liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false };
 let liShellWired = false;          // header/menus are wired once per page load
 let liDevView = false;             // ?view=returning preview without an account
 
@@ -166,8 +165,6 @@ function filterTrailsForReturningView(list){
   let displayList = showingSavedOnly ? list.filter(x => currentFavorites[x.id]) : list;
   displayList = displayList.filter(x => x.region === activeRegion);
   if(activeValley !== 'all') displayList = displayList.filter(x => x.valley === activeValley);
-  if(activeProvenance === 'verified') displayList = displayList.filter(x => x.curated !== false);
-  if(activeProvenance === 'imported') displayList = displayList.filter(x => x.curated === false);
 
   // Logged-in shell: header search + filter-panel refinements. All of these
   // read real trail fields; items arrive already scored (t.score).
@@ -179,8 +176,11 @@ function filterTrailsForReturningView(list){
   if(liFilters.dist === 'u5') displayList = displayList.filter(x => x.distance < 5);
   else if(liFilters.dist === '5to10') displayList = displayList.filter(x => x.distance >= 5 && x.distance <= 10);
   else if(liFilters.dist === '10p') displayList = displayList.filter(x => x.distance > 10);
-  if(liFilters.terrain !== 'any') displayList = displayList.filter(x => String(x.terrainRank) === liFilters.terrain);
-  if(liFilters.shade === '40') displayList = displayList.filter(x => (x.shadeCoverage || 0) > 40);
+  if(liFilters.risk !== 'any') displayList = displayList.filter(x => x.safetyLevel === liFilters.risk);
+  if(liFilters.terrain === 'soft') displayList = displayList.filter(x => Number(x.terrainRank) <= 0);
+  else if(liFilters.terrain === 'mixed') displayList = displayList.filter(x => Number(x.terrainRank) <= 1);
+  else if(liFilters.terrain === 'rocky') displayList = displayList.filter(x => Number(x.terrainRank) <= 2);
+  if(liFilters.shade === '40') displayList = displayList.filter(x => (x.shadeCoverage || 0) >= 40);
   else if(liFilters.shade === '60') displayList = displayList.filter(x => (x.shadeCoverage || 0) >= 60);
   if(liFilters.minMatch > 0) displayList = displayList.filter(x => x.score >= liFilters.minMatch);
   if(liFilters.water) displayList = displayList.filter(x => Array.isArray(x.waterSources) && x.waterSources.length > 0);
@@ -1214,52 +1214,6 @@ async function activateReturningRegion(region, profile){
   }
 }
 
-function renderAreaFilters(profile){
-  const row = document.getElementById('areaFilterRow');
-  if(!row || typeof trails === 'undefined') return;
-  if(window.DoloPawsRegions) window.DoloPawsRegions.assign(trails);
-
-  const valleys = window.DoloPawsRegions
-    ? window.DoloPawsRegions.valleysFor(trails, activeRegion)
-    : [];
-  if(activeValley !== 'all' && !valleys.some(([v]) => v === activeValley)) activeValley = 'all';
-
-  row.innerHTML = `
-    <div class="companion-filter-label">Source</div>
-    <div class="prov-toggle" style="width:100%;">
-      ${(() => {
-        const inRegion = trails.filter(x => x.region === activeRegion);
-        const nVerified = inRegion.filter(x => x.curated !== false).length;
-        const counts = { all: inRegion.length, verified: nVerified, imported: inRegion.length - nVerified };
-        return [['all', t('filter.all')],['verified', t('filter.verified')],['imported', t('filter.imported')]].map(([k, label]) => `
-        <div class="prov-opt ${k === activeProvenance ? 'active' : ''}" data-prov="${k}" style="flex:1;text-align:center;">${label} <span class="count">${counts[k]}</span></div>`).join('');
-      })()}
-    </div>
-
-    <div class="companion-filter-label">Valley</div>
-    <div class="valley-pills companion-valleys">
-      <div class="area-pill ${activeValley === 'all' ? 'active' : ''}" data-valley="all">${t('areas.allValleys')}</div>
-      ${valleys.map(([v, n]) => `
-        <div class="area-pill ${v === activeValley ? 'active' : ''}" data-valley="${v}">${v} <span class="pill-count">${n}</span></div>`).join('')}
-    </div>
-  `;
-
-  row.querySelectorAll('[data-valley]').forEach(pill => {
-    pill.addEventListener('click', () => {
-      activeValley = pill.dataset.valley;
-      renderReturningHomepage(profile);
-      setCompanionPanelOpen(false);
-    });
-  });
-  row.querySelectorAll('[data-prov]').forEach(opt => {
-    opt.addEventListener('click', () => {
-      activeProvenance = opt.dataset.prov;
-      renderReturningHomepage(profile);
-      setCompanionPanelOpen(false);
-    });
-  });
-}
-
 // Country is intentionally separate from Region: people often know the
 // country before they know the local mountain area. Selecting one loads its
 // current region now, while the model remains ready for more regions later.
@@ -1340,6 +1294,38 @@ function renderLiRegionControl(profile){
     });
     menu.appendChild(button);
   });
+}
+
+// Valley is the third visible geographic level. Its options are rebuilt from
+// the active region, so changing country or region cannot leave a stale valley
+// selected.
+function renderLiValleyControl(profile){
+  const label = document.getElementById('liValleyLabel');
+  const menu = document.getElementById('liValleyMenu');
+  if(!label || !menu || typeof trails === 'undefined') return;
+  if(window.DoloPawsRegions) window.DoloPawsRegions.assign(trails);
+  const valleys = window.DoloPawsRegions
+    ? window.DoloPawsRegions.valleysFor(trails, activeRegion)
+    : [];
+  if(activeValley !== 'all' && !valleys.some(([valley]) => valley === activeValley)) activeValley = 'all';
+  label.textContent = activeValley === 'all' ? 'All valleys' : activeValley;
+  menu.innerHTML = '<div class="li-menu-kick">Valley</div>';
+  const regionCount = trails.filter(trail => trail.region === activeRegion).length;
+  [['all', 'All valleys', regionCount], ...valleys.map(([valley, count]) => [valley, valley, count])]
+    .forEach(([value, name, count]) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'li-menu-item li-region-option' + (value === activeValley ? ' on' : '');
+      button.dataset.valley = value;
+      button.setAttribute('aria-pressed', String(value === activeValley));
+      button.innerHTML = `<span>${name}</span><small>${count} trails</small>`;
+      button.addEventListener('click', () => {
+        activeValley = value;
+        liCloseMenus();
+        renderReturningHomepage(profile);
+      });
+      menu.appendChild(button);
+    });
 }
 
 // Companion sidebar — dog profile card. Avatar, breed/age line, and up to
@@ -1496,33 +1482,32 @@ function renderBreedInsight(profile){
 function liActiveFilterCount(){
   return [
     liFilters.dist !== 'any',
+    liFilters.risk !== 'any',
     liFilters.terrain !== 'any',
     liFilters.shade !== 'any',
     liFilters.minMatch > 0,
     liFilters.water,
     showingSavedOnly,
     activeValley !== 'all',
-    activeProvenance !== 'all',
   ].filter(Boolean).length;
 }
 
 function liResetAllFilters(){
   liQuery = '';
-  liFilters = { dist: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false };
+  liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false };
   showingSavedOnly = false;
   activeValley = 'all';
-  activeProvenance = 'all';
   const search = document.getElementById('liSearch');
   if(search) search.value = '';
   renderReturningHomepage(currentProfileForAdjust);
 }
 
 function liCloseMenus(){
-  ['liFiltersMenu', 'liCountryMenu', 'liRegionMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
+  ['liFiltersMenu', 'liCountryMenu', 'liRegionMenu', 'liValleyMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
     const menu = document.getElementById(id);
     if(menu) menu.hidden = true;
   });
-  ['liFiltersBtn', 'liCountryBtn', 'liRegionBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
+  ['liFiltersBtn', 'liCountryBtn', 'liRegionBtn', 'liValleyBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
     const btn = document.getElementById(id);
     if(btn) btn.setAttribute('aria-expanded', 'false');
   });
@@ -1672,44 +1657,30 @@ function renderLiControls(){
   seg('liDistSeg', [
     { label: 'Any', v: 'any' }, { label: 'Under 5 km', v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' },
   ], liFilters.dist, v => { liFilters.dist = v; });
+  seg('liRiskSeg', [
+    { label: 'Any', v: 'any' }, { label: 'Low risk', v: 'low-risk' }, { label: 'Moderate', v: 'moderate' }, { label: 'Caution', v: 'caution' },
+  ], liFilters.risk, v => { liFilters.risk = v; });
   seg('liTerrainSeg', [
-    { label: 'Any', v: 'any' }, { label: 'Paved', v: '0' }, { label: 'Gravel', v: '1' }, { label: 'Rocky', v: '2' },
+    { label: 'Any', v: 'any' }, { label: 'Gentle only', v: 'soft' }, { label: 'Up to mixed', v: 'mixed' }, { label: 'Rocky is okay', v: 'rocky' },
   ], liFilters.terrain, v => { liFilters.terrain = v; });
-  seg('liShadeSeg', [
-    { label: 'Any', v: 'any' }, { label: 'Over 40%', v: '40' }, { label: 'Over 60%', v: '60' },
-  ], liFilters.shade, v => { liFilters.shade = v; });
   seg('liMatchSeg', [
     { label: 'Any', v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 },
   ], liFilters.minMatch, v => { liFilters.minMatch = v; });
 
-  const rows = document.getElementById('liToggleRows');
-  if(rows){
-    rows.innerHTML = '';
-    [
-      // Saved trails now has its own first-class toolbar control.
-      // Water remains part of the detailed Filters panel.
-      { label: 'Water on route', on: liFilters.water,
-        toggle: () => { liFilters.water = !liFilters.water; } },
-    ].forEach(tg => {
-      const row = document.createElement('div');
-      row.className = 'li-frow';
-      const iconHtml = tg.icon ? `<span class="li-frow-icon" style="background:${tg.iconBg};">${tg.icon}</span>` : '';
-      row.innerHTML = `
-        <span class="li-frow-label">${iconHtml}${tg.label}</span>
-        <button type="button" class="li-switch${tg.on ? ' on' : ''}" role="switch" aria-checked="${tg.on}" aria-label="${tg.label}"><span class="knob"></span></button>`;
-      row.querySelector('.li-switch').addEventListener('click', () => {
-        tg.toggle();
-        renderReturningHomepage(currentProfileForAdjust);
-      });
-      rows.appendChild(row);
-    });
-  }
-
   const n = liActiveFilterCount();
   const badge = document.getElementById('liFiltersBadge');
-  if(badge) badge.textContent = n > 0 ? ` · ${n}` : '';
+  if(badge) badge.textContent = n > 0 ? `(${n})` : '';
   const filtBtn = document.getElementById('liFiltersBtn');
   if(filtBtn) filtBtn.classList.toggle('on', n > 0);
+
+  const quickStates = [
+    ['liQuickShade', liFilters.shade === '60'],
+    ['liQuickWater', liFilters.water],
+  ];
+  quickStates.forEach(([id, on]) => {
+    const button = document.getElementById(id);
+    if(button) button.setAttribute('aria-pressed', String(on));
+  });
 
   renderLiChips();
 }
@@ -1741,7 +1712,7 @@ function renderLiChips(){
   ];
 
   const DIST_OPTS = [['any','Any'], ['u5','Under 5 km'], ['5to10','5–10 km'], ['10p','10 km+']];
-  const TERRAIN_OPTS = [['any','Any'], ['0','Paved'], ['1','Gravel'], ['2','Rocky']];
+  const TERRAIN_OPTS = [['any','Any'], ['soft','Gentle only'], ['mixed','Up to mixed'], ['rocky','Rocky is okay']];
   const SHADE_OPTS = [['any','Any'], ['40','Over 40%'], ['60','Over 60%']];
   const label = (opts, v) => (opts.find(([k]) => k === v) || opts[0])[1];
 
@@ -1977,6 +1948,7 @@ function initLoggedInShell(){
   wireMenu(filtersBtn, document.getElementById('liFiltersMenu'));
   wireMenu(document.getElementById('liCountryBtn'), document.getElementById('liCountryMenu'));
   wireMenu(document.getElementById('liRegionBtn'), document.getElementById('liRegionMenu'));
+  wireMenu(document.getElementById('liValleyBtn'), document.getElementById('liValleyMenu'));
   wireMenu(document.getElementById('liAccountBtn'), document.getElementById('liAccountMenu'));
 
   const savedOnlyBtn = document.getElementById('liSavedOnlyBtn');
@@ -1984,6 +1956,16 @@ function initLoggedInShell(){
     showingSavedOnly = !showingSavedOnly;
     renderReturningHomepage(currentProfileForAdjust);
   });
+
+  const wireQuickFilter = (id, toggle) => {
+    const button = document.getElementById(id);
+    if(button) button.addEventListener('click', () => {
+      toggle();
+      renderReturningHomepage(currentProfileForAdjust);
+    });
+  };
+  wireQuickFilter('liQuickShade', () => { liFilters.shade = liFilters.shade === '60' ? 'any' : '60'; });
+  wireQuickFilter('liQuickWater', () => { liFilters.water = !liFilters.water; });
 
   const paneBody = document.querySelector('#returningCustomerHomepage .li-body');
   const paneButtons = Array.from(document.querySelectorAll('[data-li-pane]'));
@@ -2046,6 +2028,13 @@ function initLoggedInShell(){
     if(!event.target.closest('.li-search')) hideLiSearchSuggestions();
   });
   document.addEventListener('keydown', (e) => { if(e.key === 'Escape') liCloseMenus(); });
+  document.addEventListener('keydown', (e) => {
+    if((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k'){
+      e.preventDefault();
+      const search = document.getElementById('liSearch');
+      if(search) search.focus();
+    }
+  });
 
   const search = document.getElementById('liSearch');
   const suggestions = document.getElementById('liSearchSuggest');
@@ -2089,7 +2078,7 @@ function initLoggedInShell(){
   const logoutBtn = document.getElementById('liLogoutBtn');
   if(logoutBtn) logoutBtn.addEventListener('click', async () => {
     liCloseMenus();
-    if(liDevView){ window.location.href = 'index.html'; return; }
+    if(liDevView){ window.location.href = '/'; return; }
     window.location.href = 'account.html?logout=1';
   });
 }
@@ -2190,9 +2179,9 @@ async function renderReturningHomepage(profile){
   const listEl = document.getElementById('returningTrailList');
   if(!heading || typeof trails === 'undefined') return;
 
-  renderAreaFilters(profile);
   renderLiCountryControl(profile);
   renderLiRegionControl(profile);
+  renderLiValleyControl(profile);
   renderLiSavedControl();
   renderDogProfileCard(profile);
   renderLiHeader(profile);
@@ -2271,7 +2260,7 @@ async function renderReturningHomepage(profile){
   updateMapMarkers(displayList);
 
   // Reset to page 1 whenever the filters change; clamp if the list shrank.
-  const filterKey = `${activeRegion}|${activeValley}|${activeProvenance}|${showingSavedOnly}|${liQuery}|${JSON.stringify(liFilters)}|${sortKey}`;
+  const filterKey = `${activeRegion}|${activeValley}|${showingSavedOnly}|${liQuery}|${JSON.stringify(liFilters)}|${sortKey}`;
   if (filterKey !== lastFilterKey){ currentPage = 1; lastFilterKey = filterKey; }
   const collapsed = !showFullList && !showingSavedOnly && displayList.length > TOP_MATCHES + 2;
   const totalPages = collapsed ? 1 : Math.max(1, Math.ceil(displayList.length / TRAILS_PER_PAGE));

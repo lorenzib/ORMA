@@ -833,7 +833,7 @@ function init(){
           <p style="margin:14px 0 24px;color:var(--ink-soft);">${window.t('trail.notFoundSub')}</p>
           <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;">
             <a class="auth-submit" href="browse-trails.html" style="display:inline-block;width:auto;padding:11px 22px;text-decoration:none;">Browse trails</a>
-            <a class="fav-btn" href="index.html" style="display:inline-block;padding:11px 22px;text-decoration:none;">Go to homepage</a>
+            <a class="fav-btn" href="/" style="display:inline-block;padding:11px 22px;text-decoration:none;">Go to homepage</a>
           </div>
         </div>`;
     }
@@ -1058,13 +1058,13 @@ function renderTrail(t){
       if(statMatch){
         statMatchVal.textContent = '?';
         statMatchSub.textContent = window.t('trail.matchCellTeaser');
-        statMatchLink.href = 'index.html?profile=1';
+        statMatchLink.href = '/?profile=1';
         statMatchLink.setAttribute('aria-label', window.t('trail.matchCellTeaser'));
         statMatch.hidden = false;
       }
       // Legacy slot retained for the main personalised match summary.
       const el = document.getElementById('trailMatch');
-      if(el){ el.innerHTML = `<a href="index.html?profile=1">${window.t('trail.matchTeaser')}</a>`; el.hidden = false; }
+      if(el){ el.innerHTML = `<a href="/?profile=1">${window.t('trail.matchTeaser')}</a>`; el.hidden = false; }
     }
     function paintMatch(){
       if(typeof recommendTrail !== 'function') return;

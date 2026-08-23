@@ -60,6 +60,8 @@ describe('primary section page headers', () => {
 
   test('editorial headers inherit the canonical website gutter', () => {
     const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+    expect(css).toContain('--wrap:1440px;');
+    expect(css).toContain('--wrap-gutter:clamp(28px,4vw,52px);');
     expect(css).toMatch(/\.guide-hero\.section-page-head,[\s\S]*padding:38px var\(--wrap-gutter\) 8px;/);
     expect(css).toMatch(/\.guide-hero \.section-page-subtitle,[\s\S]*white-space:normal;/);
   });

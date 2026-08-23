@@ -40,6 +40,14 @@ let authResolved = false;
 const changeListeners = [];
 let profileSummarySyncVersion = 0;
 
+function cacheProfileSummary(summary) {
+  if (summary) localStorage.setItem('dolopaws-profile-summary', JSON.stringify(summary));
+  else localStorage.removeItem('dolopaws-profile-summary');
+  window.dispatchEvent(new CustomEvent('dolopaws-profile-summary-changed', {
+    detail: { summary: summary || null },
+  }));
+}
+
 onAuthStateChanged(auth, (user) => {
   currentUser = user;
   authResolved = true;
@@ -56,7 +64,7 @@ onAuthStateChanged(auth, (user) => {
 async function syncProfileSummary(user) {
   const syncVersion = ++profileSummarySyncVersion;
   try {
-    if (!user) { localStorage.removeItem('dolopaws-profile-summary'); return; }
+    if (!user) { cacheProfileSummary(null); return; }
     const dogState = await getDogProfiles();
     const dog = dogState.dogs.find(item => item.id === dogState.activeDogId) || dogState.dogs[0] || null;
     // Breed/fitness/saved-count feed the header dog menu on the static
@@ -68,7 +76,7 @@ async function syncProfileSummary(user) {
     // A slower request started before a profile/photo save must never replace
     // the newer cache when it eventually finishes.
     if (syncVersion !== profileSummarySyncVersion || !currentUser || currentUser.uid !== user.uid) return;
-    localStorage.setItem('dolopaws-profile-summary', JSON.stringify({
+    cacheProfileSummary({
       uid: user.uid,
       hasProfile: !!dog,
       activeDogId: dog && dog.id || null,
@@ -84,7 +92,7 @@ async function syncProfileSummary(user) {
       })),
       moderator,
       saved,
-    }));
+    });
   } catch (e) { /* cache only — never break auth over it */ }
 }
 

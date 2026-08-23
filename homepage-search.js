@@ -40,23 +40,23 @@
 
   var state = {
     query: '', dog: 'medium',
-    dist: 99, diff: 'any', terrain: 'any', shade: 'any', minMatch: 0, hasWater: false,
+    dist: 'any', diff: 'any', terrain: 'any', shade: 'any', minMatch: 0, hasWater: false,
     searched: false, focused: false, menu: null, custom: null, activeSuggest: -1,
     wizOpen: false, wizStep: 0,
     wiz: { name: '', size: 'medium', energy: 'medium', terrainTol: 'gravel', heat: false },
   };
 
-  // Segment options for the consolidated filter panel.
-  var DIST_SEG = [{ label: 'Any', v: 99 }, { label: '≤3 km', v: 3 }, { label: '≤6 km', v: 6 }, { label: '≤10 km', v: 10 }];
-  var DIFF_SEG = [{ label: 'Any', v: 'any' }, { label: 'Low-risk', v: 'low-risk' }, { label: 'Moderate', v: 'moderate' }, { label: 'Caution', v: 'caution' }];
-  var TERRAIN_SEG = [{ label: 'Any', v: 'any' }, { label: 'Soft', v: 'soft' }, { label: 'Mixed', v: 'mixed' }, { label: 'Rocky', v: 'rocky' }];
-  var SHADE_SEG = [{ label: 'Any', v: 'any' }, { label: 'Prefer shaded', v: 'shade' }];
+  // Shared discovery vocabulary: these labels and thresholds match Browse All
+  // Trails and the logged-in map so a filter always means the same thing.
+  var DIST_SEG = [{ label: 'Any', v: 'any' }, { label: 'Under 5 km', v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' }];
+  var DIFF_SEG = [{ label: 'Any', v: 'any' }, { label: 'Low risk', v: 'low-risk' }, { label: 'Moderate', v: 'moderate' }, { label: 'Caution', v: 'caution' }];
+  var TERRAIN_SEG = [{ label: 'Any', v: 'any' }, { label: 'Gentle only', v: 'soft' }, { label: 'Up to mixed', v: 'mixed' }, { label: 'Rocky is okay', v: 'rocky' }];
   var MATCH_SEG = [{ label: 'Any', v: 0 }, { label: '60%+', v: 60 }, { label: '75%+', v: 75 }, { label: '85%+', v: 85 }];
 
   var POPULAR = [
     { label: 'Lago di Braies', apply: function () { state.query = 'Braies'; state.searched = true; } },
     { label: 'Alpe di Siusi', apply: function () { state.query = 'Alpe di Siusi'; state.searched = true; } },
-    { label: 'Shady & short', apply: function () { state.query = ''; state.shade = 'shade'; state.dist = 6; state.searched = true; } },
+    { label: 'Shady & short', apply: function () { state.query = ''; state.shade = '40'; state.dist = 'u5'; state.searched = true; } },
     { label: 'Near water', apply: function () { state.query = 'Carezza'; state.searched = true; } },
   ];
 
@@ -76,7 +76,6 @@
     distSeg: document.getElementById('hpDistSeg'),
     diffSeg: document.getElementById('hpDiffSeg'),
     terrainSeg: document.getElementById('hpTerrainSeg'),
-    shadeSeg: document.getElementById('hpShadeSeg'),
     matchSeg: document.getElementById('hpMatchSeg'),
     matchLabel: document.getElementById('hpMatchLabel'),
     waterToggle: document.getElementById('hpWaterToggle'),
@@ -87,12 +86,14 @@
     guestTitle: document.getElementById('hpGuestTitle'),
     guestSub: document.getElementById('hpGuestSub'),
     guestCta: document.getElementById('hpGuestCta'),
+    guestCtaLabel: document.getElementById('hpGuestCtaLabel'),
     content: document.getElementById('hpContent'),
     wizard: document.getElementById('hpWizard'),
     wizBody: document.getElementById('hpWizBody'),
     wizStepLabel: document.getElementById('hpWizStepLabel'),
     wizTitle: document.getElementById('hpWizTitle'),
     wizBars: [document.getElementById('hpWizBar1'), document.getElementById('hpWizBar2'), document.getElementById('hpWizBar3')],
+    wizFoot: document.querySelector('#hpWizard .hp-wiz-foot'),
     wizBack: document.getElementById('hpWizBack'),
     wizNext: document.getElementById('hpWizNext'),
     wizClose: document.getElementById('hpWizClose'),
@@ -167,12 +168,12 @@
   function canonicalBrowseState() {
     return {
       search: state.query,
-      distance: state.dist === 99 ? '' : String(state.dist),
+      distance: state.dist === 'any' ? '' : String(state.dist),
       water: state.hasWater,
       dog: state.dog,
       risk: state.diff === 'any' ? '' : state.diff,
       terrain: state.terrain === 'any' ? '' : state.terrain,
-      heat: state.shade === 'shade' ? 'shade-reviewed' : '',
+      heat: state.shade === '40' ? 'shade-40' : state.shade === '60' ? 'shade-60' : '',
       minMatch: state.minMatch ? String(state.minMatch) : '',
     };
   }
@@ -191,7 +192,7 @@
   function valleyOf(t) { return t.valley || t.area || ''; }
 
   function filterCount() {
-    return [state.dist !== 99, state.diff !== 'any', state.terrain !== 'any',
+    return [state.dist !== 'any', state.diff !== 'any', state.terrain !== 'any',
       state.shade !== 'any', state.minMatch > 0, state.hasWater].filter(Boolean).length;
   }
 
@@ -202,13 +203,16 @@
         var hay = (t.name + ' ' + (t.area || '') + ' ' + (t.valley || '')).toLowerCase();
         if (hay.indexOf(q) === -1) return false;
       }
-      if (state.dist !== 99 && t.distance > state.dist) return false;
-      if (state.shade === 'shade' && (t.shadeCoverage || 0) < 30) return false;
+      if (state.dist === 'u5' && t.distance >= 5) return false;
+      if (state.dist === '5to10' && (t.distance < 5 || t.distance > 10)) return false;
+      if (state.dist === '10p' && t.distance < 10) return false;
+      if (state.shade === '40' && (t.shadeCoverage || 0) < 40) return false;
+      if (state.shade === '60' && (t.shadeCoverage || 0) < 60) return false;
       if (state.terrain !== 'any') {
         var rank = typeof t.terrainRank === 'number' ? t.terrainRank : 1;
-        if (state.terrain === 'soft' && rank !== 0) return false;
-        if (state.terrain === 'mixed' && rank !== 1) return false;
-        if (state.terrain === 'rocky' && rank < 2) return false;
+        if (state.terrain === 'soft' && rank > 0) return false;
+        if (state.terrain === 'mixed' && rank > 1) return false;
+        if (state.terrain === 'rocky' && rank > 2) return false;
       }
       if (state.diff !== 'any' && difficulty(t).value !== state.diff) return false;
       if (state.hasWater && !hasWater(t)) return false;
@@ -269,7 +273,6 @@
     el.distSeg.innerHTML = segHtml(DIST_SEG, state.dist, 'dist');
     el.diffSeg.innerHTML = segHtml(DIFF_SEG, state.diff, 'diff');
     el.terrainSeg.innerHTML = segHtml(TERRAIN_SEG, state.terrain, 'terrain');
-    el.shadeSeg.innerHTML = segHtml(SHADE_SEG, state.shade, 'shade');
     el.matchSeg.innerHTML = segHtml(MATCH_SEG, state.minMatch, 'minMatch');
     el.matchLabel.textContent = 'Minimum match for ' + dogMeta().name;
     el.waterToggle.classList.toggle('on', state.hasWater);
@@ -286,17 +289,17 @@
 
   function renderGuestBar() {
     if (state.dog === 'custom' && state.custom) {
-      el.guestTitle.textContent = 'Walking with ' + state.custom.meta.name + '.';
-      el.guestSub.textContent = 'Trails are ranked just for them. Log in to save this profile across devices.';
-      el.guestCta.textContent = 'Save profile →';
+      el.guestTitle.textContent = 'Scores are personalised for ' + state.custom.meta.name + '.';
+      el.guestSub.textContent = 'Browse all trails to see ' + state.custom.meta.name + '’s complete ranking.';
+      el.guestCtaLabel.textContent = 'Browse ' + state.custom.meta.name + '’s matches';
     } else if (state.dog === 'medium') {
-      el.guestTitle.textContent = 'Browsing as a guest, ranked for a medium dog.';
-      el.guestSub.textContent = 'No account needed. Add your dog any time to sharpen every score.';
-      el.guestCta.textContent = "Create your dog's profile →";
+      el.guestTitle.textContent = 'Scores use a medium-dog profile.';
+      el.guestSub.textContent = 'Add your dog for personalised matches. Create a free account only when you choose to save.';
+      el.guestCtaLabel.textContent = 'Add your dog';
     } else {
-      el.guestTitle.textContent = 'Previewing as ' + dogMeta().name + '.';
-      el.guestSub.textContent = 'Create your own dog to tune every score to them.';
-      el.guestCta.textContent = "Create your dog's profile →";
+      el.guestTitle.textContent = 'Previewing scores for ' + dogMeta().name + '.';
+      el.guestSub.textContent = 'Add your own dog to tune every score to them.';
+      el.guestCtaLabel.textContent = 'Add your dog';
     }
   }
 
@@ -401,15 +404,18 @@
 
   var HOW_CARDS = [
     { title: '1 · We assess the trail',
-      image: 'images/orma-how-assess.jpg?v=20260820-2',
+      image: 'images/orma-how-assess.jpg?v=20260821-4',
+      image2x: 'images/orma-how-assess-1920.jpg?v=20260821-4',
       alt: 'A marked mountain trail crossing rocky alpine terrain',
       text: 'We assess the mountain first: ground, effort, exposure, shade, water and access. The trail baseline is the same for every dog.' },
     { title: '2 · You add your dog',
-      image: 'images/orma-how-dog.jpg?v=20260820-2',
-      alt: 'Freddy standing in an alpine meadow',
+      image: 'images/orma-how-add-dog.jpg?v=20260821-1',
+      image2x: 'images/orma-how-add-dog-1920.jpg?v=20260821-1',
+      alt: 'A dog standing on a forest trail in the mountains',
       text: 'Your dog’s fitness, life stage, health and build set comfortable limits. Anything you leave blank stays neutral.' },
     { title: '3 · We explain the match',
-      image: 'images/orma-how-match.jpg?v=20260820-2',
+      image: 'images/orma-how-match.jpg?v=20260821-4',
+      image2x: 'images/orma-how-match-1920.jpg?v=20260821-4',
       alt: 'A dog and human walking together on a Dolomites trail',
       text: 'We compare the route with those limits, then show the match score, the cautions that matter and why they matter.' },
   ];
@@ -447,7 +453,7 @@
       var how = HOW_CARDS.map(function (c) {
         var text = c.text || 'We map and review each published trail for route shape, terrain, climb, shade, water, access and hazards.';
         return '<div class="hp-howcard">' +
-          '<div class="hp-howcard-media"><img src="' + c.image + '" alt="' + esc(c.alt) + '" loading="lazy" decoding="async" width="960" height="540"></div>' +
+          '<div class="hp-howcard-media"><img src="' + c.image + '" srcset="' + c.image + ' 1x, ' + c.image2x + ' 2x" alt="' + esc(c.alt) + '" loading="lazy" decoding="async" width="960" height="600"></div>' +
           '<div class="hp-howcard-copy"><div class="hp-howcard-title">' + esc(c.title) + '</div>' +
           '<p>' + esc(text) + '</p></div></div>';
       }).join('');
@@ -460,7 +466,8 @@
         '</section>' +
         '<section class="hp-how" aria-labelledby="hpHowTitle">' +
           '<div class="hp-section-head"><div><div class="hp-kick">How ORMA works</div>' +
-          '<h2 class="hp-how-h2" id="hpHowTitle">How trail evidence becomes practical guidance for your dog</h2></div></div>' +
+          '<h2 class="hp-how-h2" id="hpHowTitle">How trail evidence becomes practical guidance for your dog</h2>' +
+          '<p class="hp-how-sub">We assess the trail first, then compare its terrain and conditions with your dog’s needs to explain the match.</p></div></div>' +
           '<div class="hp-how-grid">' + how + '</div>' +
           '<a class="hp-how-link" href="how-scoring-works.html">See how ORMA assesses a trail →</a>' +
         '</section>' +
@@ -469,7 +476,7 @@
             '<div class="hp-kick hp-kick-left">Featured this week</div>' +
             '<h2 class="hp-feat-h2" id="hpFeaturedTitle">' + esc(featTitle) + '</h2>' +
             '<p class="hp-coll-sub">' + esc(featSub) + '</p>' +
-            '<p class="hp-coll-rank-row"><strong>' + esc(featRankLine) + '</strong> <button type="button" class="hp-coll-profile-cta" data-action="create-dog-profile">' + esc(featProfileCta) + '</button></p></div></div>' +
+            '<p class="hp-coll-rank-row"><strong>' + esc(featRankLine) + '</strong> <button type="button" class="hp-coll-profile-cta hp-dog-profile-cta" data-action="create-dog-profile">' + esc(featProfileCta) + '</button></p></div></div>' +
           '<div class="hp-coll-grid">' + feat.map(function (entry) {
             return ccardHtml(entry, esc(entry.t.distance) + ' km · ' + esc(valleyOf(entry.t)));
           }).join('') + '</div>' +
@@ -511,7 +518,7 @@
   }
 
   function resetFilters() {
-    state.dist = 99; state.diff = 'any'; state.terrain = 'any';
+    state.dist = 'any'; state.diff = 'any'; state.terrain = 'any';
     state.shade = 'any'; state.minMatch = 0; state.hasWater = false;
   }
 
@@ -542,6 +549,32 @@
 
   function renderWizard() {
     var w = state.wiz;
+    if (state.wizStep === 3) {
+      var matches = trails.map(function (t) { return { t: t, score: scoreOf(t) }; })
+        .sort(function (a, b) { return b.score - a.score; });
+      var dogName = state.custom ? state.custom.meta.name : ((w.name || '').trim() || 'Your dog');
+      el.wizStepLabel.textContent = 'Your matches';
+      el.wizTitle.textContent = dogName + '’s profile is ready';
+      el.wizBars.forEach(function (b) { if (b) b.className = 'on'; });
+      if (el.wizFoot) el.wizFoot.hidden = true;
+      el.wizBody.innerHTML = '<div class="hp-wiz-payoff">' +
+        '<p class="hp-wiz-payoff-lead">We ranked ' + matches.length + ' trails using ' + esc(dogName) + '’s size, energy and sensitivities. Here are the strongest matches.</p>' +
+        '<div class="hp-wiz-matches">' + matches.slice(0, 3).map(function (entry) {
+          var t = entry.t, ti = tier(entry.score);
+          return '<a class="hp-wiz-match" href="' + esc(trailHref(t)) + '">' +
+            '<span><b>' + esc(t.name) + '</b><small>' + esc(t.distance) + ' km · ' + esc(valleyOf(t)) + '</small></span>' +
+            '<strong style="color:' + ti.color + '">' + entry.score + '%</strong></a>';
+        }).join('') + '</div>' +
+        '<div class="hp-wiz-payoff-actions">' +
+          '<button type="button" id="hpSaveAndBrowseBtn" class="hp-search-btn">Save profile and see all matches</button>' +
+          '<button type="button" id="hpBrowseWithoutSavingBtn" class="hp-wiz-secondary">See all matches without saving</button>' +
+        '</div>' +
+        '<p class="hp-wiz-device-note">Without an account, this profile stays only on this device.</p>' +
+      '</div>';
+      return;
+    }
+    el.wizTitle.textContent = 'Tell us about your dog';
+    if (el.wizFoot) el.wizFoot.hidden = false;
     el.wizStepLabel.textContent = 'Step ' + (state.wizStep + 1) + ' of 3';
     el.wizBars.forEach(function (b, i) { if (b) b.className = i <= state.wizStep ? 'on' : ''; });
     el.wizBack.textContent = state.wizStep === 0 ? 'Cancel' : '← Back';
@@ -632,8 +665,10 @@
     state.searched = false; state.focused = false; state.query = '';
     resetFilters();
     if (el.search) el.search.value = '';
-    closeWizard();
     renderAll();
+    state.wizStep = 3;
+    renderWizard();
+    focusWizardStep();
   }
 
   // ---- events ----
@@ -675,7 +710,7 @@
       var seg = e.target.closest('[data-seg]');
       if (seg) {
         var kind = seg.getAttribute('data-seg'), val = seg.getAttribute('data-val');
-        if (kind === 'dist') state.dist = parseInt(val, 10);
+        if (kind === 'dist') state.dist = val;
         else if (kind === 'minMatch') state.minMatch = parseInt(val, 10);
         else state[kind] = val;
         renderFiltersPanel(); renderFiltersButton();
@@ -741,7 +776,7 @@
     });
 
     el.guestCta.addEventListener('click', function () {
-      if (state.dog === 'custom' && window.DoloPawsAuthUI) window.DoloPawsAuthUI.openSignup();
+      if (state.dog === 'custom') window.location.href = 'browse-trails.html';
       else openWizard();
     });
 
@@ -751,6 +786,15 @@
     el.wizBack.addEventListener('click', function () { if (state.wizStep === 0) closeWizard(); else { state.wizStep--; renderWizard(); focusWizardStep(); } });
     el.wizNext.addEventListener('click', function () { if (state.wizStep < 2) { state.wizStep++; renderWizard(); focusWizardStep(); } else finishWizard(); });
     el.wizBody.addEventListener('click', function (e) {
+      if (e.target.closest('#hpSaveAndBrowseBtn')) {
+        closeWizard();
+        if (window.DoloPawsAuthUI) window.DoloPawsAuthUI.openSignup({ next: 'browse-trails.html' });
+        return;
+      }
+      if (e.target.closest('#hpBrowseWithoutSavingBtn')) {
+        window.location.href = 'browse-trails.html';
+        return;
+      }
       var b = e.target.closest('[data-wfield]'); if (!b) return;
       var field = b.getAttribute('data-wfield'), val = b.getAttribute('data-wval');
       if (field === 'heat') state.wiz.heat = (val === 'true');

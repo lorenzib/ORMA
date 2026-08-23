@@ -21,11 +21,12 @@
   const addMode = accountParams.get('mode') === 'add';
   const requestedDogId = accountParams.get('dog');
   function safeReturnTarget(value){
+    if(value === '/') return '/';
     if(!value || /^(?:[a-z]+:|\/\/|\/)/i.test(value)) return '';
     return /^[a-z0-9][a-z0-9._/-]*\.html(?:\?[^#]*)?(?:#.*)?$/i.test(value) ? value : '';
   }
   const returnTarget = safeReturnTarget(requestedNext);
-  const backHref = returnTarget || 'index.html';
+  const backHref = returnTarget || '/';
   $('backLink').href = backHref;
   $('backLink').textContent = returnTarget
     ? tKey('account.back', '← Back')
@@ -36,7 +37,7 @@
   const accountLoginLink = $('accountLoginLink');
   if(accountLoginLink){
     const accountReturn = 'account.html' + (returnTarget ? '?next=' + encodeURIComponent(returnTarget) : '');
-    accountLoginLink.href = 'index.html?login=1&next=' + encodeURIComponent(accountReturn);
+    accountLoginLink.href = '/?login=1&next=' + encodeURIComponent(accountReturn);
   }
 
   function tKey(key, fallback, vars){
@@ -552,7 +553,7 @@
         saveStatus.textContent = tKey('account.dogAdded', 'Dog added. Opening the new profile…');
         window.setTimeout(() => window.location.assign(accountHref({})), 400);
       } else if(ok){
-        saveStatus.innerHTML = tKey('account.saved', 'Saved.') + ' <a href="index.html" style="font-weight:700;">' + tKey('account.viewTrails', 'View your personalised trails →') + '</a>';
+        saveStatus.innerHTML = tKey('account.saved', 'Saved.') + ' <a href="/" style="font-weight:700;">' + tKey('account.viewTrails', 'View your personalised trails →') + '</a>';
         base = buildProfile();
       } else {
         saveStatus.textContent = tKey('account.saveError', 'Something went wrong — please try again.');
@@ -778,7 +779,7 @@
         await window.DoloPawsLocalData.cleanup({ removePackages:true });
       }
       await window.DoloPawsAuth.logOut();
-      window.location.href = 'index.html';
+      window.location.href = '/';
     }catch(error){
       logoutStatus.textContent = tKey('account.logout.error', 'Logout could not be completed. Please try again.');
       keepLocalLogoutBtn.disabled = false;
@@ -848,7 +849,7 @@
       }catch(error){
         deviceState = 'cleanup-incomplete';
       }
-      window.location.href = 'index.html?accountDeleted=1&device=' + encodeURIComponent(deviceState);
+      window.location.href = '/?accountDeleted=1&device=' + encodeURIComponent(deviceState);
     } else {
       deleteStatus.hidden = false;
       deleteStatus.textContent = serviceMessage(result);

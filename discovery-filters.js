@@ -7,8 +7,8 @@
 
   const DISTANCES = [3, 5, 6, 10, 20];
   const FILTER_ORDER = [
-    'search', 'country', 'region', 'risk', 'distance', 'difficulty', 'terrain', 'water', 'heat',
-    'exposure', 'access', 'verification', 'collection', 'minMatch',
+    'search', 'country', 'region', 'valley', 'risk', 'distance', 'difficulty', 'terrain', 'water', 'heat',
+    'exposure', 'access', 'collection', 'minMatch',
   ];
 
   function legacyCategoryState(trail, category){
@@ -81,6 +81,7 @@
       if(trail.region !== expectedRegion && country !== state.country && country !== expectedCode) return false;
     }
     if(state.region && state.region !== 'all' && trail.region !== state.region) return false;
+    if(state.valley && state.valley !== 'all' && trail.valley !== state.valley) return false;
     if(state.risk && state.risk !== 'all' && suitability.safetyLevel !== state.risk) return false;
 
     if(state.distance && state.distance !== 'all'){
@@ -140,13 +141,6 @@
         && !['allowed', 'leash-required'].includes(status)) return false;
     }
 
-    if(state.verification){
-      const tier = parts.verification && parts.verification.tier;
-      if(state.verification === 'route-audited'
-        && !['route-audited', 'field-verified'].includes(tier)) return false;
-      if(state.verification === 'field-verified' && tier !== 'field-verified') return false;
-    }
-
     if(state.collection && options && options.collections && options.collections[state.collection]
       && !options.collections[state.collection](trail)) return false;
     if(state.minMatch && options && typeof options.score === 'function'
@@ -163,6 +157,7 @@
       search: `Search “${state.search}”`,
       country: state.country === 'italy' ? 'Italy' : 'France',
       region: state.region === 'dolomites' ? 'Dolomites region' : 'Savoy region',
+      valley: state.valley,
       risk: `${state.risk} rating`,
       distance: state.distance === 'u5' ? 'Under 5 km'
         : state.distance === '5to10' ? '5–10 km'
@@ -181,7 +176,6 @@
         : 'Shade listed',
       exposure: 'No reported exposure',
       access: state.access === 'allowed-reviewed' ? 'Dogs permitted' : 'Dogs allowed, leash is okay',
-      verification: 'Verified by ORMA',
       collection: `${state.collection} collection`,
       minMatch: `${state.minMatch}%+ dog match`,
     };
@@ -222,13 +216,6 @@
         key:'terrain',
         label:'Allow known rocky terrain',
         state:{ ...state, terrain:'rocky', page:1 },
-      });
-    }
-    if(state && state.verification === 'field-verified'){
-      candidates.push({
-        key:'verification',
-        label:'Include ORMA-reviewed trails',
-        state:{ ...state, verification:'route-audited', page:1 },
       });
     }
     return candidates.map(candidate => ({

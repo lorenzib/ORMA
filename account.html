@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260821-1">
+<link rel="stylesheet" href="styles.css?v=20260823-1">
 <style>
   /* Edit-profile screen — tabbed rail + panel layout */
   .acct-wrap{max-width:1000px;margin:0 auto;padding:30px 34px 60px;}
@@ -126,7 +126,7 @@
 <body>
 
 <div class="topnav">
-  <a class="brand" href="index.html"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Account</span>
+  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Account</span>
   <div class="links">
     <a href="browse-trails.html" data-i18n="account.nav.browse">Browse all Trails</a>
     <a href="collections.html" data-i18n="account.nav.collections">Collections</a>
@@ -136,14 +136,14 @@
 </div>
 
 <div class="acct-wrap">
-  <a id="backLink" href="index.html" style="font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;">← Back</a>
+  <a id="backLink" href="/" style="font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;">← Back</a>
   <h1 class="serif" id="accountH1" style="font-size:30px;margin:12px 0 22px;" data-i18n="account.settings.account">Account</h1>
 
   <p id="accountSubline" aria-busy="true" style="font-size:13.5px;color:var(--ink-soft);"><span class="skeleton" style="width:230px;height:13px;display:inline-block;" aria-label="Checking your login status"></span></p>
 
   <div id="loggedOutState" hidden style="text-align:center;padding:40px 20px;">
     <p style="font-size:15px;color:var(--ink-soft);margin-bottom:16px;" data-i18n="account.signedOut">You're not logged in.</p>
-    <a id="accountLoginLink" href="index.html?login=1&amp;next=account.html" class="auth-submit" style="display:inline-block;width:auto;padding:11px 24px;text-decoration:none;" data-i18n="nav.login">Log in</a>
+    <a id="accountLoginLink" href="/?login=1&amp;next=account.html" class="auth-submit" style="display:inline-block;width:auto;padding:11px 24px;text-decoration:none;" data-i18n="nav.login">Log in</a>
   </div>
 
   <div id="loggedInState" hidden>
@@ -152,7 +152,7 @@
        controls remain mounted below so account.js keeps its storage/auth
        contract; this surface mirrors those fields and drives the same save. -->
   <section class="profile-design" id="profileDesign">
-    <a class="profile-back" href="index.html" data-i18n="account.profile.backHome">← Back to Homepage</a>
+    <a class="profile-back" href="/" data-i18n="account.profile.backHome">← Back to Homepage</a>
     <div class="profile-kicker" data-i18n="account.profile.kicker">Dog profile</div>
     <h1 id="profileTitle">Your dog's profile</h1>
     <p class="profile-intro" data-i18n="account.profile.intro">Only the structured fields below are scored. Free-text notes are kept for you and never fed into the calculation.</p>
@@ -182,7 +182,7 @@
             <label><input type="checkbox" value="Joint or hip issues"><span data-i18n="account.condition.joints">Joint or hip issues</span></label><label><input type="checkbox" value="Back / disc history"><span data-i18n="account.condition.back">Back / disc history</span></label><label><input type="checkbox" value="Heart condition"><span data-i18n="account.condition.heart">Heart condition</span></label><label><input type="checkbox" value="Overweight"><span data-i18n="account.condition.overweight">Overweight</span></label><label><input type="checkbox" value="Recovering from injury"><span data-i18n="account.condition.injury">Recovering from injury</span></label><label><input type="checkbox" value="Impaired vision"><span data-i18n="account.condition.vision">Impaired vision</span></label><label><input type="checkbox" value="Heat sensitivity"><span data-i18n="account.condition.heat">Heat sensitivity</span></label>
           </div>
           <label class="flow-field"><span><span data-i18n="account.profile.notes">Notes</span> <small data-i18n="account.optional">Optional</small></span><input id="profileNotes" placeholder="Anything a sitter should know?" data-i18n-ph="account.profile.notesPlaceholder"><small class="profile-hint" data-i18n="account.profile.notesHelp">Kept for you. Never scored.</small></label>
-          <div class="flow-actions"><button type="button" id="profileSave" class="flow-btn" data-i18n="account.profile.save">Save profile</button><a href="index.html" class="flow-btn flow-btn--quiet" data-i18n="account.cancel">Cancel</a><button type="button" id="profileRemoveDog" class="flow-btn flow-btn--quiet" hidden style="border-color:#E4B9A8;color:#9C3A25;" data-i18n="account.profile.removeDog">Remove dog</button></div>
+          <div class="flow-actions"><button type="button" id="profileSave" class="flow-btn" data-i18n="account.profile.save">Save profile</button><a href="/" class="flow-btn flow-btn--quiet" data-i18n="account.cancel">Cancel</a><button type="button" id="profileRemoveDog" class="flow-btn flow-btn--quiet" hidden style="border-color:#E4B9A8;color:#9C3A25;" data-i18n="account.profile.removeDog">Remove dog</button></div>
           <p id="profileSaveStatus" class="profile-hint" role="status" hidden></p>
         </section>
       </div>
@@ -195,7 +195,7 @@
 
   <!-- Phone-only app bar: back · title · save -->
   <div class="ep-mbar">
-    <a id="mobileBackLink" class="ep-mback" href="index.html" aria-label="Back">←</a>
+    <a id="mobileBackLink" class="ep-mback" href="/" aria-label="Back">←</a>
     <div class="ep-mtitle serif" data-i18n="account.editProfile">Edit profile</div>
     <button type="button" class="ep-msave saveBtn" disabled data-i18n="account.save">Save</button>
   </div>
@@ -515,7 +515,7 @@
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260821-1"></script>
+<script src="mobile-nav.js?v=20260823-1"></script>
 <script src="i18n.js?v=20260815-4"></script>
 <script src="offline-packages.js"></script>
 <script src="local-data.js?v=20260815-4"></script>
