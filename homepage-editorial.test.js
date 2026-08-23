@@ -59,7 +59,7 @@ describe('guest homepage editorial structure', () => {
 
     expect(browse).toContain('hp-guestbar--compact');
     expect(browse).toContain('Guest mode · Scores use a medium-dog profile.');
-    expect(browse).toContain('href="index.html?wizard=1">Add your dog</a>');
+    expect(browse).toContain('href="/?wizard=1">Add your dog</a>');
     expect(browse).not.toContain('hp-guestbar--homepage');
   });
 

@@ -85,7 +85,7 @@ describe('shared navigation hardening', () => {
       .toBe('Add your dog for personalised matches. Create a free account only when you choose to save.');
     expect(banner.querySelectorAll('.hp-prefooter-actions a')).toHaveLength(1);
     expect(banner.querySelector('a.is-primary').classList.contains('hp-dog-profile-cta')).toBe(true);
-    expect(banner.querySelector('a.is-primary').getAttribute('href')).toBe('../index.html?wizard=1');
+    expect(banner.querySelector('a.is-primary').getAttribute('href')).toBe('/?wizard=1');
     expect([...footer.querySelectorAll('.hp-footer-grid > div > .hp-footer-h')].map(item => item.textContent))
       .toEqual(['Explore','Dog care','Your walks','ORMA']);
     expect(footer.querySelector('.hp-footer-appnote').textContent).toBe('Mobile apps coming soon');

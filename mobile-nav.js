@@ -94,7 +94,7 @@
       actions.className = 'hp-prefooter-actions';
       const profile = document.createElement('a');
       profile.className = 'hp-prefooter-action is-primary hp-dog-profile-cta';
-      profile.href = prefix + 'index.html?wizard=1';
+      profile.href = '/?wizard=1';
       profile.textContent = 'Add your dog';
       actions.append(profile);
       inner.append(copyBlock, actions);
@@ -243,7 +243,7 @@
 
   if(navEl && linksEl){
     const brand = navEl.querySelector('.brand');
-    const brandHref = (brand && brand.getAttribute('href')) || 'index.html';
+    const brandHref = (brand && brand.getAttribute('href')) || '/';
     // Root-absolute brand href (the 404 page — served at any URL depth)
     // makes every rebuilt link root-absolute too.
     const prefix = brandHref.startsWith('/') ? '/' : (brandHref.startsWith('../') ? '../' : '');
@@ -251,7 +251,7 @@
     const pageFile = (parts[parts.length - 1] || 'index.html').toLowerCase().endsWith('.html')
       ? (parts[parts.length - 1] || 'index.html') : 'index.html';
     // Path relative to the site root, used for post-login return targets.
-    const pagePath = prefix ? (parts[parts.length - 2] + '/' + pageFile) : pageFile;
+    const pagePath = parts.length > 1 ? parts.slice(-2).join('/') : pageFile;
 
     // The login control (button on modal pages, anchor on static pages) is
     // reused across renders so the listener auth-ui.js binds survives.
@@ -483,7 +483,7 @@
         setOpen(false);
         if(window.DoloPawsAuth && typeof window.DoloPawsAuth.logOut === 'function'){
           await window.DoloPawsAuth.logOut();
-          window.location.href = prefix + 'index.html';
+          window.location.href = '/';
         } else {
           // Static pages carry no Firebase; settings has a live logout.
           window.location.href = prefix + 'settings.html';
@@ -586,7 +586,7 @@
             .catch((err) => {
               // Offline or blocked: fall back to the homepage flow.
               console.warn('ORMA lazy login failed:', err);
-              window.location.href = prefix + 'index.html?view=login&next=' + encodeURIComponent(pagePath);
+              window.location.href = '/?view=login&next=' + encodeURIComponent(pagePath);
             });
         }
         if(loginEl){

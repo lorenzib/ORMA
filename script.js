@@ -56,7 +56,7 @@ function renderTeaser(){
 function goToProfileCreation(){
   const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
   if(user){
-    window.location.href = 'account.html?next=index.html';
+    window.location.href = 'account.html?next=%2F';
   } else if(window.DoloPawsWizard){
     // Guests build the dog profile FIRST (no account needed); the
     // signup ask comes only after they've seen their dog's matches.
@@ -2078,7 +2078,7 @@ function initLoggedInShell(){
   const logoutBtn = document.getElementById('liLogoutBtn');
   if(logoutBtn) logoutBtn.addEventListener('click', async () => {
     liCloseMenus();
-    if(liDevView){ window.location.href = 'index.html'; return; }
+    if(liDevView){ window.location.href = '/'; return; }
     window.location.href = 'account.html?logout=1';
   });
 }
