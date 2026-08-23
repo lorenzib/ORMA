@@ -87,6 +87,16 @@ describe('shared navigation hardening', () => {
     expect(isolated.document.querySelector('.dog-profile-banner')).toBeNull();
   });
 
+  test('allows health guides to suppress the generic dog-profile banner', () => {
+    const frame = document.createElement('iframe');
+    document.body.appendChild(frame);
+    const isolated = frame.contentWindow;
+    isolated.localStorage.clear();
+    isolated.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a></nav><main data-hide-dog-profile-banner></main>';
+    isolated.eval(mobileNav);
+    expect(isolated.document.querySelector('.dog-profile-banner')).toBeNull();
+  });
+
   test('shows the shared profile banner first on public flows without the standard header', () => {
     const frame = document.createElement('iframe');
     document.body.appendChild(frame);
@@ -183,7 +193,7 @@ describe('shared navigation hardening', () => {
     expect(pages.length).toBeGreaterThan(150);
     pages.forEach(file => {
       expect(fs.readFileSync(file, 'utf8')).toMatch(
-        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=20260823-1"/
+        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=20260823-[12]"/
       );
     });
   });
