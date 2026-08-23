@@ -241,6 +241,90 @@ img,svg{max-width:100%;height:auto;}
   .about-hero-inner.section-page-head h1,
   .scoring-hero-inner.section-page-head h1{font-size:28px!important;}
 }
+/* Safety Library articles reuse their library-card photography as a compact,
+   readable page header. The photograph remains decorative here because the
+   adjacent title and summary carry the page meaning. */
+.safety-photo-header.section-page-head{
+  --safety-photo-position:center;
+  position:relative;
+  isolation:isolate;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  min-height:clamp(330px,36vw,470px);
+  width:calc(100% - (2 * var(--wrap-gutter)));
+  max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));
+  margin:24px auto 0;
+  padding:clamp(30px,5vw,58px);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:22px;
+  color:#fff;
+  box-shadow:0 14px 36px rgba(34,51,41,.14);
+}
+.safety-photo-header.section-page-head::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:
+    linear-gradient(180deg,rgba(22,38,29,.08) 0%,rgba(22,38,29,.22) 42%,rgba(22,38,29,.88) 100%),
+    linear-gradient(90deg,rgba(22,38,29,.48) 0%,rgba(22,38,29,.08) 72%);
+}
+.safety-photo-header__image{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  display:block;
+  width:100%;
+  height:100%;
+  max-width:none;
+  object-fit:cover;
+  object-position:var(--safety-photo-position);
+}
+.safety-photo-header.section-page-head > :not(.safety-photo-header__image){
+  position:relative;
+  z-index:2;
+}
+.safety-photo-header.section-page-head h1{
+  max-width:980px;
+  margin-top:12px!important;
+  color:#fff!important;
+  font-size:clamp(34px,4.3vw,58px)!important;
+  line-height:1.02;
+  letter-spacing:-.035em;
+  text-shadow:0 2px 18px rgba(0,0,0,.25);
+}
+.safety-photo-header :is(.section-page-subtitle,.sub,.alt-subtitle){
+  max-width:880px;
+  margin-top:13px!important;
+  color:rgba(255,255,255,.92)!important;
+  font-size:clamp(15px,1.35vw,18px)!important;
+  line-height:1.5!important;
+  white-space:normal;
+  text-wrap:pretty;
+}
+.safety-photo-header :is(.eyebrow,.alt-breadcrumbs,.paw2-breadcrumbs,.cg-breadcrumbs,.alt-meta,.paw2-meta,.cg-meta){
+  color:rgba(255,255,255,.82)!important;
+}
+.safety-photo-header :is(.alt-breadcrumbs,.paw2-breadcrumbs) a{
+  color:inherit;
+}
+.safety-photo-header :is(.alt-meta,.paw2-meta,.cg-meta){
+  border-color:rgba(255,255,255,.3)!important;
+}
+@media(max-width:760px){
+  .safety-photo-header.section-page-head{
+    min-height:350px;
+    width:calc(100% - 32px);
+    max-width:none;
+    margin-top:16px;
+    padding:28px 20px!important;
+    border-radius:17px;
+  }
+  .safety-photo-header.section-page-head h1{font-size:clamp(30px,9vw,42px)!important;}
+  .safety-photo-header :is(.section-page-subtitle,.sub,.alt-subtitle){font-size:14px!important;line-height:1.45!important;}
+}
 :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
   outline:3px solid var(--accent) !important;
   outline-offset:3px;

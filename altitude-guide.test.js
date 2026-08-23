@@ -11,12 +11,12 @@ describe('altitude health and safety guide', () => {
     document.documentElement.innerHTML = html;
   });
 
-  test('leads with health-first framing and a dedicated editorial hero image', () => {
+  test('leads with health-first framing and the library image behind the header', () => {
     expect(document.querySelector('h1').textContent).toMatch(/altitude changes the effort/i);
     expect(document.querySelector('.alt-subtitle').textContent).toMatch(/altitude, exertion, heat, dehydration and pain can look similar/i);
-    const hero = document.querySelector('.alt-hero-photo img');
+    const hero = document.querySelector('.alt-hero.safety-photo-header .safety-photo-header__image');
     expect(hero.getAttribute('src')).toBe('../images/editorial/safety-library/altitude-with-your-dog-v1.jpg');
-    expect(hero.getAttribute('alt')).toMatch(/dog running toward the camera/i);
+    expect(hero.getAttribute('alt')).toBe('');
     expect(hero.getAttribute('width')).toBe('1200');
     expect(hero.getAttribute('height')).toBe('800');
     expect(document.querySelector('.alt-meta').textContent).toMatch(/Last reviewed 23 August 2026/i);

@@ -22,10 +22,11 @@ describe('paw protection question-led guide', () => {
     expect(breadcrumb.textContent).toMatch(/Safety library/i);
   });
 
-  test('keeps the image compact and consistent with the Safety Library card', () => {
-    const image = document.querySelector('.paw2-hero-image');
+  test('uses the Safety Library card image behind the compact page header', () => {
+    const image = document.querySelector('.paw2-hero.safety-photo-header .safety-photo-header__image');
     expect(image.getAttribute('src')).toContain('safety-library/paw-protection-forest-v1.jpg');
-    expect(html).toContain('.paw2-hero-image{display:block;width:176px;height:118px;');
+    expect(image.getAttribute('alt')).toBe('');
+    expect(html).not.toContain('class="paw2-hero-image"');
     expect(document.querySelector('.topnav-page').textContent.trim()).toBe('Safety library');
   });
 
