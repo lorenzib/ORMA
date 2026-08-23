@@ -20,6 +20,7 @@ describe('altitude health and safety guide', () => {
     expect(hero.getAttribute('width')).toBe('1200');
     expect(hero.getAttribute('height')).toBe('800');
     expect(document.querySelector('.alt-meta').textContent).toMatch(/Last reviewed 23 August 2026/i);
+    expect(document.querySelectorAll('.alt-jump a')).toHaveLength(3);
   });
 
   test('presents three observable condition choices without a numerical risk score', () => {
@@ -43,10 +44,11 @@ describe('altitude health and safety guide', () => {
     expect(document.querySelector(`[data-altitude-state="${state}"]`).getAttribute('aria-pressed')).toBe('true');
   });
 
-  test('removes the repeated warning-sign panel while retaining decision guidance', () => {
+  test('keeps emergency action inside the interaction without adding a repeated warning panel', () => {
     expect(document.querySelector('.alt-signs')).toBeNull();
     expect(document.querySelector('.alt-triage').textContent).toMatch(/safer next decision/i);
     expect(document.querySelector('[data-altitude-state="emergency"]')).not.toBeNull();
+    expect(document.querySelector('.alt-emergency-strip')).toBeNull();
   });
 
   test('includes pre-trip veterinary flags and conservative first-day planning', () => {
@@ -56,6 +58,10 @@ describe('altitude health and safety guide', () => {
     expect(page).toMatch(/Puppies, seniors and flat-faced dogs/i);
     expect(page).toMatch(/skip the ambitious route/i);
     expect(page).toMatch(/No human altitude medication/i);
+    expect(document.querySelectorAll('.alt-plan-panel')).toHaveLength(2);
+    expect(document.querySelectorAll('.alt-plan-list li')).toHaveLength(6);
+    expect(document.querySelector('.alt-health-grid')).toBeNull();
+    expect(document.querySelector('.alt-timeline')).toBeNull();
   });
 
   test('links supporting references and related safety guides', () => {
