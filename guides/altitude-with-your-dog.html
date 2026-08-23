@@ -34,10 +34,11 @@
   .alt-meta{display:flex;align-items:center;gap:10px;margin-top:14px;color:#829087;font-size:.72rem;}
   .alt-meta strong{padding:5px 9px;border-radius:999px;background:#e2e9df;color:#395c41;font-size:.68rem;}
   .alt-kicker{display:block;margin-bottom:7px;color:var(--alt-blue);font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;}
-  .alt-hero-photo{width:min(1180px,calc(100% - 48px));margin:18px auto 0;}
-  .alt-hero-photo img{display:block;width:100%;height:clamp(260px,34vw,410px);object-fit:cover;object-position:center 52%;border-radius:17px;box-shadow:0 12px 32px rgba(46,64,52,.1);}
+  .alt-jump{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px;}
+  .alt-jump a{display:inline-flex;align-items:center;min-height:34px;padding:7px 11px;border:1px solid var(--alt-line);border-radius:999px;background:#fff;color:var(--alt-ink);font-size:.7rem;font-weight:700;text-decoration:none;}
+  .alt-jump a:hover{border-color:var(--alt-blue);color:var(--alt-blue);}
 
-  .alt-triage{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:22px;margin:24px 0;padding:22px;border:1px solid #c7dbe2;border-radius:16px;background:var(--alt-blue-soft);}
+  .alt-triage{display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:22px;margin:22px 0 12px;padding:22px;border:1px solid #c7dbe2;border-radius:16px;background:var(--alt-blue-soft);}
   .alt-triage h2{margin:0 0 8px;font-size:clamp(25px,2.7vw,34px);line-height:1.08;letter-spacing:-.025em;}
   .alt-triage-intro{margin:0;color:#526870;font-size:.82rem;line-height:1.52;}
   .alt-choices{display:grid;gap:8px;margin-top:17px;}
@@ -59,26 +60,24 @@
   .alt-result-note{margin-top:13px!important;padding-top:12px;border-top:1px solid rgba(46,64,52,.13);font-size:.72rem!important;}
 
   .alt-section{padding:23px 0;}
-  .alt-section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:14px;}
-  .alt-section-head h2{margin:0;font-size:clamp(26px,2.7vw,35px);line-height:1.08;letter-spacing:-.025em;}
-  .alt-section-head p{max-width:520px;margin:0;color:var(--alt-soft);font-size:.8rem;line-height:1.5;text-align:right;}
-  .alt-section-head--stacked{display:block;}
-  .alt-section-head--stacked p{max-width:760px;margin:7px 0 0;text-align:left;}
-  .alt-health-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
-  .alt-health-card{padding:16px;border:1px solid var(--alt-line);border-radius:12px;background:#fff;}
-  .alt-health-card b{display:grid;place-items:center;width:28px;height:28px;margin-bottom:10px;border-radius:8px;background:var(--alt-blue-soft);color:var(--alt-blue);font-size:.73rem;}
-  .alt-health-card h3{margin:0 0 6px;font-size:1rem;}
-  .alt-health-card p{margin:0;color:var(--alt-soft);font-size:.76rem;line-height:1.48;}
   .alt-vet-note{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;margin-top:10px;padding:13px 15px;border-radius:11px;background:#e8ede5;}
   .alt-vet-note strong{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#cbd9c9;color:var(--alt-green);font-size:.8rem;}
   .alt-vet-note p{margin:0;color:#45574a;font-size:.78rem;line-height:1.5;}
 
-  .alt-timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:14px;border-top:1px solid var(--alt-line);}
-  .alt-step{padding:16px 22px 0 0;}
-  .alt-step+.alt-step{padding-left:22px;border-left:1px solid var(--alt-line);}
-  .alt-step strong{display:block;margin-bottom:7px;color:var(--alt-blue);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;}
-  .alt-step h3{margin:0 0 6px;font-size:1rem;}
-  .alt-step p{margin:0;color:var(--alt-soft);font-size:.76rem;line-height:1.5;}
+  .alt-plan{padding:25px 0 23px;}
+  .alt-plan-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:14px;}
+  .alt-plan-head h2{margin:0;font-size:clamp(27px,2.8vw,36px);line-height:1.06;letter-spacing:-.03em;}
+  .alt-plan-head p{max-width:500px;margin:0;color:var(--alt-soft);font-size:.8rem;line-height:1.5;text-align:right;}
+  .alt-plan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
+  .alt-plan-panel{padding:19px;border:1px solid var(--alt-line);border-radius:14px;background:#fff;}
+  .alt-plan-panel>h3{margin:0 0 14px;font-size:1.18rem;}
+  .alt-plan-list{display:grid;gap:0;margin:0;padding:0;list-style:none;counter-reset:alt-plan;}
+  .alt-plan-list li{position:relative;padding:12px 0 12px 42px;border-top:1px solid var(--alt-line);counter-increment:alt-plan;}
+  .alt-plan-list li::before{content:counter(alt-plan,decimal-leading-zero);position:absolute;left:0;top:12px;display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--alt-blue-soft);color:var(--alt-blue);font-size:.68rem;font-weight:800;}
+  .alt-plan-list strong{display:block;margin-bottom:3px;font-size:.82rem;}
+  .alt-plan-list p{margin:0;color:var(--alt-soft);font-size:.75rem;line-height:1.48;}
+  .alt-plan-panel .alt-vet-note{margin-top:12px;}
+
   .alt-context{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.72fr);gap:18px;align-items:start;}
   .alt-context-copy p{margin:0;color:var(--alt-soft);font-size:.84rem;line-height:1.64;}
   .alt-context-copy p+p{margin-top:12px;}
@@ -95,24 +94,19 @@
   .alt-sources a{color:var(--alt-blue);}
 
   @media(max-width:800px){
-    .alt-shell,.alt-hero,.alt-hero-photo{width:min(100% - 36px,1180px);}
+    .alt-shell,.alt-hero{width:min(100% - 36px,1180px);}
     .alt-hero{padding:21px 0 18px;}
     .alt-triage{grid-template-columns:1fr;}
     .alt-result{min-height:0;}
-    .alt-health-grid{grid-template-columns:1fr;}
+    .alt-plan-grid{grid-template-columns:1fr;}
     .alt-context{grid-template-columns:1fr;}
   }
   @media(max-width:560px){
     .alt-hero h1{font-size:30px;}
     .alt-subtitle{font-size:14px;line-height:1.48;}
     .alt-triage{gap:15px;margin:18px 0;padding:17px;}
-    .alt-hero-photo{margin-top:14px;}
-    .alt-hero-photo img{height:220px;object-position:center 52%;}
-    .alt-section-head{display:block;}
-    .alt-section-head p{margin-top:6px;text-align:left;}
-    .alt-timeline{grid-template-columns:1fr;}
-    .alt-step{padding:15px 0;}
-    .alt-step+.alt-step{padding-left:0;border-top:1px solid var(--alt-line);border-left:0;}
+    .alt-plan-head{display:block;}
+    .alt-plan-head p{margin-top:6px;text-align:left;}
   }
 </style>
 </head>
@@ -131,7 +125,7 @@
 </div>
 
 <main class="alt-guide" id="mainContent">
-  <header class="alt-hero safety-photo-header section-page-head content-canvas" style="--safety-photo-position:center 52%;">
+  <header class="alt-hero safety-photo-header section-page-head content-canvas" id="altitudeGuideTitle" style="--safety-photo-position:center 52%;">
     <img class="safety-photo-header__image" src="../images/editorial/safety-library/altitude-with-your-dog-v1.jpg" alt="" width="1200" height="800" decoding="async">
     <nav class="alt-breadcrumbs" aria-label="Breadcrumb">
       <a href="../safety-guide.html">Safety library</a><span aria-hidden="true">/</span><span aria-current="page">Altitude</span>
@@ -139,13 +133,17 @@
     <h1>Altitude changes the effort before the trail begins</h1>
     <p class="alt-subtitle section-page-subtitle">Altitude, exertion, heat, dehydration and pain can look similar; plan so you can respond before you need to tell them apart.</p>
     <div class="alt-meta"><strong>5 min guide</strong><span>Last reviewed 23 August 2026</span></div>
+    <nav class="alt-jump" aria-label="On this page">
+      <a href="#check-now">Check your dog now</a>
+      <a href="#first-day">Plan the first day</a>
+      <a href="#why-altitude">Why altitude matters</a>
+    </nav>
   </header>
-
   <div class="alt-shell content-canvas">
-    <section class="alt-triage" aria-labelledby="altTriageTitle">
+    <section class="alt-triage" id="check-now" aria-labelledby="altTriageTitle">
       <div>
-        <span class="alt-kicker">On-trail health check</span>
-        <h2 id="altTriageTitle">How is your dog behaving right now?</h2>
+        <span class="alt-kicker">Make the next decision</span>
+        <h2 id="altTriageTitle">What should you do right now?</h2>
         <p class="alt-triage-intro">Choose the closest observation. This does not diagnose altitude illness; it helps you make the safer next decision.</p>
         <div class="alt-choices" role="group" aria-label="Choose your dog’s current condition">
           <button class="alt-choice" type="button" aria-pressed="false" data-altitude-state="normal">Acting and recovering normally</button>
@@ -161,30 +159,34 @@
       </div>
     </section>
 
-    <section class="alt-section" aria-labelledby="altBeforeTitle">
-      <div class="alt-section-head">
-        <div><span class="alt-kicker">Before you gain height</span><h2 id="altBeforeTitle">Three checks make the first day safer</h2></div>
+    <section class="alt-plan" id="first-day" aria-labelledby="altPlanTitle">
+      <div class="alt-plan-head">
+        <div><span class="alt-kicker">Before and after arrival</span><h2 id="altPlanTitle">Plan the first 24 hours</h2></div>
+        <p>Fitness at home does not prove that a dog is ready for thinner air, especially after a fast drive or lift ascent.</p>
       </div>
-      <div class="alt-health-grid">
-        <article class="alt-health-card"><b aria-hidden="true">01</b><h3>Know the baseline</h3><p>Notice your dog’s normal breathing effort, gait, appetite and interest before the trip so a meaningful change is easier to spot.</p></article>
-        <article class="alt-health-card"><b aria-hidden="true">02</b><h3>Plan an easy exit</h3><p>Choose a short, low-commitment route with a simple turnaround and no cable-car timetable controlling your descent.</p></article>
-        <article class="alt-health-card"><b aria-hidden="true">03</b><h3>Change one variable</h3><p>On the first outing, add altitude without also adding a long distance, steep climb, hot afternoon or unfamiliar surface.</p></article>
+      <div class="alt-plan-grid">
+        <article class="alt-plan-panel">
+          <h3>Before you gain height</h3>
+          <ol class="alt-plan-list">
+            <li><strong>Know the baseline</strong><p>Notice your dog’s normal breathing effort, gait, appetite and interest before the trip so a meaningful change is easier to spot.</p></li>
+            <li><strong>Plan an easy exit</strong><p>Choose a short, low-commitment route with a simple turnaround and no cable-car timetable controlling your descent.</p></li>
+            <li><strong>Change one variable</strong><p>On the first outing, add altitude without also adding a long distance, steep climb, hot afternoon or unfamiliar surface.</p></li>
+          </ol>
+          <div class="alt-vet-note"><strong aria-hidden="true">+</strong><p><b>Speak with your vet before the trip</b> if your dog has heart or lung disease, unexplained coughing, fainting, exercise intolerance, a recent serious illness, or has previously struggled at elevation. Puppies, seniors and flat-faced dogs also deserve a deliberately conservative plan.</p></div>
+        </article>
+
+        <article class="alt-plan-panel">
+          <h3>Once you arrive</h3>
+          <ol class="alt-plan-list">
+            <li><strong>Settle before climbing</strong><p>Offer water, take a calm walk and observe your dog at rest; skip the ambitious route straight out of the car or cable car.</p></li>
+            <li><strong>Make it a short test</strong><p>Start easy, pause early on flat ground and turn around while your dog is still moving and recovering normally.</p></li>
+            <li><strong>Check recovery, not pride</strong><p>Reassess appetite, behaviour, gait and breathing later that day; increase only one route demand next time if baseline has returned.</p></li>
+          </ol>
+        </article>
       </div>
-      <div class="alt-vet-note"><strong aria-hidden="true">+</strong><p><b>Speak with your vet before the trip</b> if your dog has heart or lung disease, unexplained coughing, fainting, exercise intolerance, a recent serious illness, or has previously struggled at elevation. Puppies, seniors and flat-faced dogs also deserve a deliberately conservative plan.</p></div>
     </section>
 
-    <section class="alt-section" aria-labelledby="altDayTitle">
-      <div class="alt-section-head alt-section-head--stacked">
-        <div><span class="alt-kicker">A safer first day</span><h2 id="altDayTitle">Acclimatisation starts before the hike</h2><p>Fitness at home does not prove that a dog is ready for thinner air, especially after a fast drive or lift ascent.</p></div>
-      </div>
-      <div class="alt-timeline">
-        <article class="alt-step"><strong>On arrival</strong><h3>Settle before climbing</h3><p>Offer water, take a calm walk and observe your dog at rest; skip the ambitious route straight out of the car or cable car.</p></article>
-        <article class="alt-step"><strong>First outing</strong><h3>Make it a short test</h3><p>Start easy, pause early on flat ground and turn around while your dog is still moving and recovering normally.</p></article>
-        <article class="alt-step"><strong>Afterward</strong><h3>Check recovery, not pride</h3><p>Reassess appetite, behaviour, gait and breathing later that day; increase only one route demand next time if baseline has returned.</p></article>
-      </div>
-    </section>
-
-    <section class="alt-section alt-context" aria-labelledby="altWhyTitle">
+    <section class="alt-section alt-context" id="why-altitude" aria-labelledby="altWhyTitle">
       <div class="alt-context-copy">
         <span class="alt-kicker">What altitude changes</span>
         <h2 id="altWhyTitle">Less available oxygen, more work to compensate</h2>
