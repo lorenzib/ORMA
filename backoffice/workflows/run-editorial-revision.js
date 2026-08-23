@@ -36,6 +36,9 @@ function validateRevisionResult(result, sourceHtml){
 
 function revisionPrompt(execution, note, sourceHtml){
   const currentCopy = (execution.outputs || []).find(output => output.agentId === 'copywriter')?.result || null;
+  const governanceRule=execution.subject?.type==='page'
+    ? 'This is a governance page. Do not weaken, expand or invent privacy, legal, safety or operational commitments; flag any uncertainty instead.'
+    : null;
   return [
     'You are the ORMA editorial revision agent. Return only the structured response required by the supplied JSON schema.',
     `The editor requested this revision: ${JSON.stringify(note)}`,
@@ -45,9 +48,10 @@ function revisionPrompt(execution, note, sourceHtml){
     'Each change.after must retain the same outer HTML tag and must be ready to replace before directly.',
     'Keep the change set small. Do not rewrite unrelated copy. Do not use em dashes or double hyphens as sentence punctuation.',
     'Use current, authoritative sources when a factual or safety claim changes. Otherwise preserve the relevant existing sources.',
+    governanceRule,
     `PREVIOUS_RECOMMENDATION_JSON:\n${JSON.stringify(currentCopy, null, 2)}`,
     `CURRENT_SOURCE_HTML:\n${sourceHtml}`,
-  ].join('\n\n');
+  ].filter(Boolean).join('\n\n');
 }
 
 function codexBinary(){
@@ -98,7 +102,7 @@ async function runEditorialRevision(root, execution, note, options = {}){
   const generatedAt = options.at || new Date().toISOString();
   const suffix = generatedAt.replace(/[:.]/g, '-');
   const outputs = (execution.outputs || []).map(output => output.agentId === 'copywriter' ? {
-    ...output, jobId: `guide-${execution.subject.id}-copy-revision-${suffix}`, status: 'ready-for-review',
+    ...output, jobId: `${execution.subject.type}-${execution.subject.id}-copy-revision-${suffix}`, status: 'ready-for-review',
     responseId: response.responseId || null, model: response.model || 'codex', result, error: null,
     revision: { requestedAt: generatedAt, instruction: note },
   } : {

@@ -2085,6 +2085,31 @@ body.map-fs-open{overflow:hidden;}
    This guard also prevents a stale cached navigation bundle from flashing it. */
 .hp-prefooter{display:none!important;}
 
+/* On the personalised map homepage the profile prompt belongs with the
+   discovery controls, not below the map and footer. Keep the retired shared
+   pre-footer hidden everywhere else. */
+.hp-prefooter--homepage-top{
+  display:block!important;
+  border-top:0;
+  border-bottom:1px solid rgba(47,73,56,.08);
+}
+.hp-prefooter--homepage-top .hp-prefooter-inner{
+  max-width:none;
+  padding:16px 32px;
+  gap:20px;
+}
+.hp-prefooter--homepage-top .hp-prefooter-copy{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  column-gap:10px;
+  row-gap:3px;
+  align-items:center;
+  max-width:none;
+}
+.hp-prefooter--homepage-top .hp-prefooter-kicker{grid-column:1/-1;margin:0;}
+.hp-prefooter.hp-prefooter--homepage-top h2{font-size:20px;line-height:1.2;}
+.hp-prefooter--homepage-top .hp-prefooter-copy>p:last-child{margin:0;font-size:13px;}
+
 /* --- content / results --- */
 .hp-content{max-width:1200px;margin:0 auto;padding:34px 40px 20px;}
 .hp-results-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap;}
@@ -2230,63 +2255,38 @@ body.map-fs-open{overflow:hidden;}
 .hp-menu-scrim{position:fixed;inset:0;z-index:20;}
 .hp-menu-scrim[hidden]{display:none;}
 
-/* --- homepage footer (design port) --- */
-.hp-footer{background:var(--ink);color:#D4DED3;padding:34px var(--wrap-gutter) 22px;text-align:left;font-size:14px;position:relative;overflow:hidden;}
-/* The brand mark ghosted tone-on-tone inside the footer band: the logo's
-   dark tile melts into the footer green, so only the paw and its contour
-   rings surface as a shade. Clipped by the footer — it never bleeds onto
-   the page above. */
+/* --- focused pre-footer action + compact site navigation --- */
+.hp-prefooter{background:linear-gradient(135deg,#E5EDE2 0%,#EEF3EB 100%);border-top:1px solid rgba(47,73,56,.08);color:var(--ink);}
+.hp-prefooter-inner{width:100%;max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));margin:0 auto;padding:34px 0;display:flex;align-items:center;justify-content:space-between;gap:28px;}
+.hp-prefooter-copy{max-width:620px;}
+.hp-prefooter-kicker{margin:0 0 7px;color:var(--ink-soft);font:700 10.5px/1.3 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;}
+.hp-prefooter h2{margin:0;color:var(--ink);font:700 clamp(25px,3vw,38px)/1.12 'Bricolage Grotesque',sans-serif;}
+.hp-prefooter-copy>p:last-child{margin:9px 0 0;color:var(--ink-soft);font-size:14px;line-height:1.55;}
+.hp-prefooter-actions{display:flex;align-items:center;gap:10px;flex:none;}
+.hp-prefooter-action{min-height:46px;padding:0 19px;border:1px solid var(--ink);border-radius:12px;display:inline-flex;align-items:center;justify-content:center;color:var(--ink);background:transparent;text-decoration:none;font:700 14px 'Inter',sans-serif;transition:transform .15s ease,background-color .15s ease,color .15s ease;}
+.hp-prefooter-action:hover{transform:translateY(-1px);}
+.hp-prefooter-action.is-primary{background:var(--ink);color:#fff;}
+
+.hp-footer{background:var(--ink);color:#D4DED3;padding:38px var(--wrap-gutter) 22px;text-align:left;font-size:14px;position:relative;overflow:hidden;}
 .hp-footer::after{
-  content:"";position:absolute;right:-70px;bottom:-130px;width:540px;height:560px;
+  content:"";position:absolute;right:-65px;bottom:-120px;width:390px;height:410px;
   background:url('logo.svg?v=5') center/contain no-repeat;
-  opacity:.16;filter:grayscale(55%);
-  /* Soft radial mask: the artwork's paw survives, the tile's corners
-     fade out before they can ghost through the band. */
+  opacity:.12;filter:grayscale(55%);
   -webkit-mask-image:radial-gradient(ellipse 60% 60% at 50% 46%, #000 52%, transparent 76%);
   mask-image:radial-gradient(ellipse 60% 60% at 50% 46%, #000 52%, transparent 76%);
   pointer-events:none;
 }
 .hp-footer-grid,.hp-footer-base{position:relative;z-index:1;}
-@media (max-width:700px){.hp-footer::after{width:300px;height:300px;right:-50px;bottom:-60px;}}
-/* Five desktop columns: brand plus the four navigation groups. Follow Us
-   sits in its own band below them. */
-.hp-footer-grid{width:100%;max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));margin:0 auto;display:grid;grid-template-columns:minmax(230px,1.35fr) repeat(4,minmax(0,max-content));justify-content:space-between;column-gap:clamp(14px,1.4vw,24px);row-gap:20px;align-items:start;}
-.hp-footer-grid>div:last-child{justify-self:end;}
+.hp-footer-grid{width:100%;max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));margin:0 auto;display:grid;grid-template-columns:minmax(210px,1.3fr) repeat(4,minmax(100px,.7fr));column-gap:clamp(18px,2.2vw,32px);row-gap:22px;align-items:start;}
 .hp-footer-brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:10px;}
-/* The logo's badge background disappears on the footer's matching dark
-   green, leaving ~6px of invisible inset — pull the icon left so the
-   visible art lines up with the blurb text below. */
 .hp-footer-brand img{width:32px;height:32px;border-radius:9px;margin-left:-6px;}
 .hp-footer-brand span{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:21px;color:#F7F4EA;}
 .hp-footer-blurb{font-size:14px;line-height:1.5;color:#AEBCAF;max-width:290px;margin:0;}
 .hp-footer-h{font-family:'Inter',sans-serif;font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8DA290;margin-bottom:10px;white-space:nowrap;}
-.hp-footer-links{display:flex;flex-direction:column;gap:7px;}
+.hp-footer-links{display:flex;flex-direction:column;gap:8px;}
 .hp-footer-links a{font-size:14px;line-height:1.5;color:#D4DED3;text-decoration:none;white-space:nowrap;}
 .hp-footer-links a:hover,.hp-footer-social a:hover{color:#F7F4EA;}
-
-/* Stay-in-touch band: a full-width strip under the navigation columns
-   holding the social icons and the newsletter link, the way Komoot and
-   Strava separate "follow us" from the sitemap above it. */
-.hp-footer-connect{
-  width:100%;
-  max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));
-  margin:26px auto 0;
-  padding-top:20px;
-  border-top:1px solid rgba(255,255,255,.12);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:14px 24px;
-  flex-wrap:wrap;
-  position:relative;
-  z-index:1;
-}
-.hp-footer-connect-main{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-.hp-footer-connect .hp-footer-h{margin-bottom:0;}
-.hp-footer-newsletter{font-size:14px;color:#D4DED3;text-decoration:none;white-space:nowrap;}
-.hp-footer-newsletter:hover{color:#F7F4EA;}
-
-/* "Follow Us" — icon row that replaced the old text-link Connect column. */
+.hp-footer-connect{display:none;}
 .hp-footer-social-row{display:flex;align-items:center;gap:10px;}
 .hp-footer-social-row a{
   width:34px;
@@ -2300,30 +2300,29 @@ body.map-fs-open{overflow:hidden;}
 }
 .hp-footer-social-row a:hover{color:#F7F4EA;border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.08);}
 .hp-footer-social-row svg{width:16px;height:16px;fill:currentColor;display:block;}
-
-/* "Get the app" — store badges sit under the brand blurb, where the widest
-   footer column gives them room without squeezing the link groups. */
-.hp-footer-get{margin-top:20px;}
-.hp-footer-apps{display:flex;flex-direction:column;align-items:flex-start;gap:9px;}
-.hp-footer-apps a{display:block;line-height:0;border-radius:7px;transition:opacity .15s ease;}
-.hp-footer-apps a:hover{opacity:.82;}
-.hp-footer-apps img{display:block;width:135px;height:40px;}
-.hp-footer-appnote{margin:10px 0 0;font-size:12px;line-height:1.45;color:#8DA290;}
-.hp-footer-base{max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));margin:22px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
-.hp-footer-base span{font-size:13px;color:#8DA290;}
+.hp-footer-get{margin-top:17px;}
+.hp-footer-get>.hp-footer-h,.hp-footer-apps{display:none;}
+.hp-footer-appnote{margin:0;font-size:12px;line-height:1.45;color:#D4DED3;}
+.hp-footer-base{max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));margin:28px auto 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;}
+.hp-footer-legal{display:flex;align-items:center;justify-content:flex-end;gap:16px;flex-wrap:wrap;}
+.hp-footer-base span,.hp-footer-legal a{font-size:12px;color:#8DA290;text-decoration:none;}
+.hp-footer-legal a:hover{color:#D4DED3;}
 .hp-footer-social{display:flex;gap:18px;}
 .hp-footer-social a{font-size:12px;color:#8DA290;text-decoration:none;}
 @media (max-width:900px){
-  .hp-footer-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .hp-footer-grid{grid-template-columns:repeat(4,minmax(0,1fr));}
   .hp-footer-grid>div:first-child{grid-column:1/-1;}
-  .hp-footer-grid>div:last-child{justify-self:start;}
 }
 @media (max-width:700px){
+  .hp-prefooter-inner{padding:28px 18px;align-items:stretch;flex-direction:column;gap:20px;}
+  .hp-prefooter-actions{width:100%;}
+  .hp-prefooter-action{flex:1;}
   .hp-footer{padding-inline:18px;}
   .hp-footer-grid{grid-template-columns:1fr 1fr;}
-}
-@media (max-width:520px){
-  .hp-footer-grid{grid-template-columns:1fr;}
+  .hp-footer-grid>div:first-child{grid-column:1/-1;}
+  .hp-footer-links a{white-space:normal;}
+  .hp-footer-base{align-items:flex-start;}
+  .hp-footer::after{width:270px;height:280px;right:-70px;bottom:-70px;}
 }
 
 /* ============ SPLIT-IMAGE AUTH MODAL ============ */
@@ -2528,6 +2527,25 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-toolbar-summary{margin-left:auto;color:#849086;font:600 11.5px/1.2 'Inter',sans-serif;white-space:nowrap;}
 .li-toolbar-breed{color:inherit;text-decoration:underline;text-decoration-color:#AAB5AA;text-underline-offset:2px;}
 .li-toolbar-breed:hover{color:var(--accent);text-decoration-color:currentColor;}
+
+/* Keep the navigation and profile prompt full-bleed, while the actual
+   discovery workspace uses the same calm outer gutter as ORMA's section
+   pages. The app-like phone layout remains edge-to-edge. */
+@media (min-width:1041px){
+  .li-toolbar-greet-copy strong{
+    font-size:38px;
+    line-height:1.08;
+  }
+  body[data-homepage-view="returning"] #returningCustomerHomepage > .li-toolbar,
+  body[data-homepage-view="returning"] #returningCustomerHomepage > .li-body{
+    width:calc(100% - 80px);
+    margin-inline:auto;
+  }
+  body[data-homepage-view="returning"] #returningCustomerHomepage > .li-body{
+    border-radius:0 0 18px 18px;
+    overflow:hidden;
+  }
+}
 .li-region-wrap{grid-area:region;flex:none;}
 .li-country-wrap{grid-area:country;flex:none;}
 .li-region-btn{

@@ -6,6 +6,7 @@ const mobileNav = fs.readFileSync(path.join(__dirname, 'mobile-nav.js'), 'utf8')
 describe('shared navigation hardening', () => {
   beforeEach(() => {
     localStorage.clear();
+    document.body.className = '';
     document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a><div class="links"><a href="browse-trails.html">Trails</a></div></nav>';
     window.eval(mobileNav);
   });
@@ -59,6 +60,75 @@ describe('shared navigation hardening', () => {
     const link = footer.querySelector('a[href="guides/alpine-plants-for-dogs.html"]');
     expect(link && link.textContent).toBe('Alpine plants guide');
     expect(link.getAttribute('data-i18n')).toBe('mobile.alpinePlants');
+  });
+
+  test('turns the shared footer into the focused CTA and compact navigation', () => {
+    const footer = document.createElement('footer');
+    footer.className = 'site-footer hp-footer';
+    footer.innerHTML = `
+      <div class="hp-footer-grid">
+        <div><p class="hp-footer-blurb">ORMA</p><div class="hp-footer-get"><div class="hp-footer-h">Get the app</div><div class="hp-footer-apps"></div><p class="hp-footer-appnote">Coming soon</p></div></div>
+        <div><div class="hp-footer-h">Trails</div><div class="hp-footer-links"><a href="../browse-trails.html">Browse</a></div></div>
+        <div><div class="hp-footer-h">Caring for your dog</div><div class="hp-footer-links"></div></div>
+        <div><div class="hp-footer-h">Your walks</div><div class="hp-footer-links"></div></div>
+        <div><div class="hp-footer-h">Company</div><div class="hp-footer-links"><a href="../privacy.html">Privacy</a><a href="../terms.html">Terms</a></div></div>
+      </div>
+      <div class="hp-footer-connect"><div class="hp-footer-social-row"><a href="#instagram">Instagram</a></div><a class="hp-footer-newsletter" href="../about.html">Newsletter</a></div>
+      <div class="hp-footer-base"><span>© ORMA</span></div>`;
+    document.body.appendChild(footer);
+    window.eval(mobileNav);
+
+    const banner = footer.previousElementSibling;
+    expect(banner.className).toBe('hp-prefooter');
+    expect(banner.querySelector('.hp-prefooter-kicker').textContent).toBe('Personalised trail matching');
+    expect(banner.querySelector('h2').textContent).toBe('Add your dog');
+    expect(banner.querySelector('a.is-primary').getAttribute('href')).toBe('../index.html?wizard=1');
+    expect([...footer.querySelectorAll('.hp-footer-grid > div > .hp-footer-h')].map(item => item.textContent))
+      .toEqual(['Explore','Dog care','Your walks','ORMA']);
+    expect(footer.querySelector('.hp-footer-appnote').textContent).toBe('Mobile apps coming soon');
+    expect(footer.querySelector('.hp-footer-grid > div:last-child .hp-footer-newsletter')).not.toBeNull();
+    expect([...footer.querySelectorAll('.hp-footer-legal a')].map(link => link.textContent)).toEqual(['Privacy','Terms']);
+    expect(footer.querySelector('.hp-footer-base > .hp-footer-social-row')).not.toBeNull();
+    expect(footer.querySelector('.hp-footer-connect')).toBeNull();
+  });
+
+  test('moves the dog-profile prompt above the personalised map controls', () => {
+    document.body.innerHTML += `
+      <div id="returningCustomerHomepage">
+        <header class="li-top"></header>
+        <div class="li-toolbar"></div>
+      </div>
+      <footer class="site-footer hp-footer">
+        <div class="hp-footer-grid">
+          <div></div>
+          <div><div class="hp-footer-links"><a href="browse-trails.html">Browse</a></div></div>
+        </div>
+        <div class="hp-footer-base"><span>© ORMA</span></div>
+      </footer>`;
+    window.eval(mobileNav);
+
+    const homepage = document.getElementById('returningCustomerHomepage');
+    const banner = homepage.querySelector('.hp-prefooter--homepage-top');
+    expect(banner).not.toBeNull();
+    expect(banner.nextElementSibling.className).toBe('li-toolbar');
+    expect(document.querySelector('footer').previousElementSibling).toBe(homepage);
+  });
+
+  test('omits the dog-profile promotion from the safety library', () => {
+    document.body.className = 'safety-library-page';
+    const footer = document.createElement('footer');
+    footer.className = 'site-footer hp-footer';
+    footer.innerHTML = `
+      <div class="hp-footer-grid">
+        <div></div>
+        <div><div class="hp-footer-links"><a href="browse-trails.html">Browse</a></div></div>
+      </div>
+      <div class="hp-footer-base"><span>© ORMA</span></div>`;
+    document.body.appendChild(footer);
+    window.eval(mobileNav);
+
+    expect(document.querySelector('.hp-prefooter')).toBeNull();
+    expect(footer.dataset.focusedFooter).toBe('true');
   });
 
   test('keeps one notification bell outside the menu after auth refresh', async () => {

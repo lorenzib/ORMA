@@ -11,6 +11,7 @@ const { advanceTrailOrchestration } = require('./advance-trail-orchestration');
 const {buildVerifiedEditorialHandoff}=require('./verified-editorial-handoff');
 const {runVerifiedEditorialFirstPass}=require('./run-verified-editorial-first-pass');
 const {runScheduledTrailCampaign}=require('./campaign-scheduler');
+const {DEFAULT_CAMPAIGN_LIMIT,DEFAULT_TRAIL_CAPACITY}=require('./start-live-trail-campaign');
 const {applyNewTrailReview}=require('./plan-new-trail-scouting');
 const {admitNewTrailIntake}=require('./new-trail-intake');
 const {applyHazardReview}=require('./dynamic-hazards');
@@ -235,7 +236,7 @@ async function ingestNewTrailReviews(store){
       const packet=await store.getArtifact('new-trail-scouting');if(!packet)throw new Error('New Trail scouting packet is not available');
       ledger=applyNewTrailReview(packet,ledger,review,{at:iso(review.submittedAt),reviewedBy:review.submittedBy||'moderator'});
       let intake={jobIds:[],summary:{selected:0,admitted:0,waiting:0}};
-      if(review.action==='send-to-verification')intake=await admitNewTrailIntake(store,packet,ledger,{at:iso(review.submittedAt),capacity:5});
+      if(review.action==='send-to-verification')intake=await admitNewTrailIntake(store,packet,ledger,{at:iso(review.submittedAt),capacity:DEFAULT_TRAIL_CAPACITY});
       await Promise.all([store.setArtifact('new-trail-scouting-review',ledger,{lastDecisionId:review.id}),
         store.markNewTrailReview(review.id,'processed',{outcome:{action:review.action,jobIds:intake.jobIds||[],summary:intake.summary}})]);
       outcomes.push({reviewId:review.id,candidateId:review.candidateId,status:'processed',action:review.action,jobIds:intake.jobIds||[]});
@@ -266,15 +267,16 @@ async function ingestHazardReviews(store){
 }
 
 async function runLiveBackofficeWorker(store, options = {}){
+  const newsletterEnabled=options.newsletterEnabled===true;
   const productionTrails=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
   const campaign=await runScheduledTrailCampaign(store,productionTrails,{enabled:options.campaignEnabled===true,
-    at:options.at,limit:options.campaignLimit||5,capacity:options.campaignCapacity||5,trigger:options.campaignTrigger,
+    at:options.at,limit:options.campaignLimit||DEFAULT_CAMPAIGN_LIMIT,capacity:options.campaignCapacity||DEFAULT_TRAIL_CAPACITY,trigger:options.campaignTrigger,
     workflowRunUrl:options.workflowRunUrl,runId:options.runId});
   const newTrailReviews=await ingestNewTrailReviews(store);
   const hazardReviews=await ingestHazardReviews(store);
   const editorialReviews=await ingestEditorialReviews(store);
   const imageReviews=await ingestImageReviews(store);
-  const newsletterReviews=await ingestNewsletterReviews(store);
+  const newsletterReviews=newsletterEnabled?await ingestNewsletterReviews(store):[];
   const analystReviews=await ingestAnalystReviews(store);
   const recoveredJobs = typeof store.recoverExpiredJobs === 'function'
     ? await store.recoverExpiredJobs(options)
@@ -282,14 +284,14 @@ async function runLiveBackofficeWorker(store, options = {}){
   const dossierReviews=await ingestDossierReviews(store);
   const advancementBefore=await advanceTrailOrchestration(store,options);
   const reviews = await ingestTrailReviews(store, options);
-  const editorialFirstPass=await processEditorialFirstPassJobs(store,options);
-  const editorialOperations=await processEditorialJobs(store,options);
-  const imageOperations=await processImageJobs(store,options);
-  const newsletterOperations=await processNewsletterJobs(store,options);
-  const analystOperations=await processAnalystJobs(store,options);
-  const jobs = await processRevisionJobs(store, options);
   const specialistJobs=await processTrailSpecialistJobs(store,{...options,productionTrails});
   const advancementAfter=await advanceTrailOrchestration(store,options);
+  const editorialFirstPass=await processEditorialFirstPassJobs(store,options);
+  const jobs = await processRevisionJobs(store, options);
+  const editorialOperations=await processEditorialJobs(store,options);
+  const imageOperations=await processImageJobs(store,options);
+  const newsletterOperations=newsletterEnabled?await processNewsletterJobs(store,options):[];
+  const analystOperations=await processAnalystJobs(store,options);
   const publications = await ingestPublicationReviews(store);
   return { workerId:options.workerId || null,campaign,newTrailReviews,hazardReviews,editorialReviews,imageReviews,newsletterReviews,analystReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,editorialOperations,imageOperations,newsletterOperations,analystOperations,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }

@@ -51,8 +51,8 @@ describe('private ORMA backoffice authentication',()=>{
     const login=fs.readFileSync(path.join(root,'backoffice-hosted-login.html'),'utf8');
     const build=fs.readFileSync(path.join(root,'scripts/build-backoffice-hosting.js'),'utf8');
     const firebase=fs.readFileSync(path.join(root,'backoffice-firebase.js'),'utf8');
-    expect(login).toContain('backoffice-firebase.js?v=20260820-2');
-    expect(build).toContain('backoffice-firebase.js?v=20260820-2');
+    expect(login).toContain('backoffice-firebase.js?v=20260820-3');
+    expect(build).toContain('backoffice-firebase.js?v=20260820-3');
     expect(firebase).toContain('authDomain: "dolopaws.firebaseapp.com"');
   });
 });

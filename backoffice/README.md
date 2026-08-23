@@ -210,7 +210,7 @@ Because GitHub can deliver cron events later than their expression, every
 successful worker run also performs a due-only catalogue catch-up when the
 campaign variable is enabled. The daily campaign remains a backup trigger and
 shares the worker concurrency lock. Admission jobs use stable IDs, the fleet
-never exceeds five trails in verification, and a protected
+never exceeds 15 trails in verification, and a protected
 `trail-campaign-health` receipt records running, healthy or failed state, the
 last admitted count, the next eligible check and the exact workflow link.
 Backoffice Home displays that receipt separately from worker health. Repeated
@@ -301,13 +301,13 @@ is also inert until manually dispatched or
 `ORMA_NEW_TRAIL_AUTOMATION_ENABLED` is enabled. It refreshes with the Wednesday
 12:00 local strategy cadence and preserves unresolved candidates across later
 runs. The hosted New Trails desk records selection, park and reject decisions
-in Firestore. A selected candidate enters the shared five-trail-cap Existing
+in Firestore. A selected candidate enters the shared 15-trail-cap Existing
 Trails verification fleet; selection never publishes a trail.
 
 ### Automatic verification cycle
 
 `.github/workflows/orma-trail-campaign.yml` checks the catalogue every day at
-06:15 UTC and fills, but never exceeds, a five-trail in-flight limit. It admits
+06:15 UTC and fills, but never exceeds, a 15-trail in-flight limit. It admits
 only trails not already represented in durable orchestration state. The main
 worker then performs this sequence:
 
@@ -340,6 +340,12 @@ claim or publish a trail. Once all mandatory claims appear supported, the
 Evidence Librarian and Red Team must still run before the dossier reaches its
 human editorial gate.
 
+The Product Designer is also registered as a first-class strategy-to-design
+agent. A CEO-prioritised Analyst opportunity invokes its dedicated prompt and
+returns a structured, interactive visual prototype to the Analyst desk. The
+prototype remains behind `ceo-mockup-approval`; it cannot authorise code or a
+public change.
+
 ### Cartographer execution
 
 `npm run backoffice:cartographer` fetches the current full-resolution OSM
@@ -352,9 +358,9 @@ an approved public route.
 
 ## Existing-catalogue verification campaign
 
-`npm run backoffice:campaign -- --limit=5` inventories every production trail,
+`npm run backoffice:campaign -- --limit=10` inventories every production trail,
 applies the modern ten-check graduation baseline, ranks incomplete public
-records, and creates at most five draft Cartographer jobs. The campaign output
+records, and creates at most ten draft Cartographer jobs. The campaign output
 is `backoffice-data/catalogue-campaign.json`. It is explicitly `draft-only` and
 cannot mutate public trail data. Existing curated presentation is not accepted
 as modern verification when its source, date or graduation evidence is absent.

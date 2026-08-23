@@ -9,7 +9,7 @@ const output=path.join(root,'dist','backoffice');
 const files=[
   'backoffice-firebase.js','backoffice-login.js','backoffice-auth-guard.js','backoffice-session.js',
   'backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','backoffice/dashboard-model.js',
-  'new-trail-scouting-desk.js','hazard-review-desk.js','editorial-desk.js','image-coverage-hosted.js','newsletter-hosted.js','analyst-hosted.js',
+  'new-trail-scouting-desk.js','hazard-review-desk.js','editorial-desk.js','image-coverage-hosted.js','newsletter-hosted.js','product-prototype.js','analyst-hosted.js',
   'backoffice-review.css','styles.css','favicon-32.png','logo.svg','backoffice/content-review-decisions.js','backoffice/content-receipt-model.js',
 ];
 
@@ -21,8 +21,8 @@ async function copy(relative){
 
 async function hostedPage(source,target=source){
   let html=await fs.readFile(path.join(root,source),'utf8');
-  html=html.replace(/src="firebase-init\.js(?:\?[^\"]*)?"/g,'src="backoffice-firebase.js?v=20260820-2"');
-  html=html.replace(/src="backoffice-firebase\.js(?:\?[^\"]*)?"/g,'src="backoffice-firebase.js?v=20260820-2"');
+  html=html.replace(/src="firebase-init\.js(?:\?[^\"]*)?"/g,'src="backoffice-firebase.js?v=20260820-3"');
+  html=html.replace(/src="backoffice-firebase\.js(?:\?[^\"]*)?"/g,'src="backoffice-firebase.js?v=20260820-3"');
   html=html.replace(/<a href="content-desk\.html">Guide content edit ↗<\/a>/g,'<span class="bo-hosted-separation">Guide editing remains in the separate Editorial flow.</span>');
   const destination=path.join(output,target);await fs.mkdir(path.dirname(destination),{recursive:true});await fs.writeFile(destination,html,'utf8');
 }

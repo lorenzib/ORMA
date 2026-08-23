@@ -143,7 +143,7 @@ async function updateEditorialLedger(execution,decisions,at){
   const sources=(execution.outputs||[]).flatMap(output=>output.result?.sources||[]).map(item=>`${item.url}|${item.checkedAt||''}`).sort();
   const next=recordEditorialOutcome(ledger,{at,contentId:`${execution.subject.type}-${execution.subject.id}`,type:execution.subject.type,sourceRef:execution.subject.sourceRef,
     action,contentFingerprint:contentFingerprint(source),sourcesFingerprint:fingerprint(sources.join('\n')),packetFingerprint:fingerprint(JSON.stringify(execution)),
-    safetyCritical:execution.subject.safetyCritical===true,reviewIntervalDays:42});
+    safetyCritical:execution.subject.safetyCritical===true,reviewIntervalDays:execution.subject.reviewIntervalDays||42});
   const item=next.items.find(entry=>entry.contentId===`${execution.subject.type}-${execution.subject.id}`);
   if(action==='request-revision') item.revisionNote=[...new Set(decisions.map(decision=>decision.note).filter(Boolean))].join(' · ');
   await fs.promises.writeFile(editorialLedgerPath,`${JSON.stringify(next,null,2)}\n`,'utf8');
@@ -157,7 +157,7 @@ async function markEditorialPacketInReview(execution, at){
     at, contentId: `${execution.subject.type}-${execution.subject.id}`, type: execution.subject.type,
     sourceRef: execution.subject.sourceRef, action: 'in-review', contentFingerprint: contentFingerprint(source),
     sourcesFingerprint: fingerprint(sources.join('\n')), packetFingerprint: fingerprint(JSON.stringify(execution)),
-    safetyCritical: execution.subject.safetyCritical === true, reviewIntervalDays: 42,
+    safetyCritical: execution.subject.safetyCritical === true, reviewIntervalDays: execution.subject.reviewIntervalDays || 42,
   });
   const item = next.items.find(entry => entry.contentId === `${execution.subject.type}-${execution.subject.id}`);
   if(item) item.revisionNote = null;

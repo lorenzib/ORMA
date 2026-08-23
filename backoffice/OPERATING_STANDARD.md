@@ -41,6 +41,12 @@ warning may be added automatically. Expiry opens a resolution review; removing
 a warning requires confirmation. Weather warnings are never presented as proof
 that a specific trail is closed.
 
+Existing Trails is the current throughput priority. The hosted worker checks
+its durable specialist queue before general editorial, image, newsletter and
+Analyst generation work. It may keep up to 15 trails in verification and run
+up to ten specialist jobs per worker pass. This changes working capacity only:
+all geometry, evidence, dossier, editorial and release gates remain required.
+
 ### 2. New Trails
 
 Owns discovery before catalogue admission. It prioritises:
@@ -60,7 +66,11 @@ Owns website copy and image coverage as two separate queues.
 
 The weekly copy cycle:
 
-- reviews guides and editorial articles, not design;
+- reviews guides, editorial articles, and explicitly named governance pages,
+  not design;
+- prioritises immediate revision requests first, then the Privacy and Terms
+  pages during the current website-refinement cycle, then safety-critical and
+  ordinary freshness work;
 - excludes collections from automatic freshness review;
 - keeps exactly three copy packets active at a time;
 - shows the current page beside the proposed page;
@@ -68,6 +78,11 @@ The weekly copy cycle:
 - uses current, dated, authoritative sources for factual changes; and
 - adds or updates a visible `Last reviewed` date when the factual review is
   complete.
+
+Privacy and Terms remain copy-only, human-gated reviews. Their visible
+`Last updated` date changes only when an approved edit materially changes the
+published policy or terms; the copy agent must flag legal or implementation
+uncertainty instead of inventing a commitment.
 
 Approval applies only the reviewed changes, runs checks, commits only the
 approved source files, pushes to `main`, and reports the deployment result.
@@ -80,7 +95,12 @@ actual preview and known rights or explicit AI approval.
 
 ### 4. Newsletter
 
-Runs every 14 days and assembles one complete issue from:
+Remains parked until the CEO explicitly confirms that the trail catalogue,
+collections and website content are ready to support useful public links. No
+scheduled issue generation, revision job or downstream handoff runs while it
+is parked. Existing draft and review records are preserved.
+
+Once re-enabled, it runs every 14 days and assembles one complete issue from:
 
 - newly published trails;
 - material changes to published guides; and
@@ -112,10 +132,11 @@ clear evidence-versus-inference language.
 
 The required handoff is:
 
-`Analyst scouts -> CEO reviews -> Designer prepares mock-up -> CEO reviews -> Developer implements -> Release`
+`Analyst scouts -> CEO reviews -> Product Designer prepares visual prototype -> CEO reviews -> Developer implements -> Release`
 
-An investigation, priority decision, or mock-up never authorises development
-on its own.
+The Product Designer is a first-class fleet member with a dedicated prompt and
+an interactive prototype review surface. An investigation, priority decision,
+or prototype never authorises development on its own.
 
 ## CEO review and shipping contract
 
@@ -140,12 +161,15 @@ on its own.
 ## Current cadence
 
 - Dynamic hazard check: daily at 07:15 local time.
+- Existing Trails queue: checked by the hosted worker every five minutes, with
+  a daily catalogue-admission backup and 15-trail capacity.
 - Strategy cycle: Wednesday at 12:00 local time.
 - Editorial copy: weekly, with up to three active reviews.
 - Image coverage: refreshed with the weekly strategy cycle.
 - New Trail scouting: refreshed with the strategy cycle; admission remains
   CEO-gated.
-- Newsletter: generated when due every 14 days.
+- Newsletter: parked until trail, collection and website content readiness is
+  explicitly confirmed.
 - Analyst discovery: weekly.
 - Social: parked until launch.
 
