@@ -178,6 +178,22 @@ img,svg{max-width:100%;height:auto;}
   gap:20px;
 }
 .section-page-head__copy{min-width:0;}
+/* One authoritative horizontal canvas for library, guide and collection
+   content. Page-specific layouts may keep a narrower reading measure inside
+   it, but their outer edges always follow Collections. */
+[class].content-canvas{
+  width:100%;
+  max-width:var(--wrap);
+  margin-left:auto;
+  margin-right:auto;
+  padding-left:var(--wrap-gutter);
+  padding-right:var(--wrap-gutter);
+}
+.gp-body.content-canvas > :is(h1,h2,h3,h4,p,ul,ol,blockquote,details){
+  width:100%;
+  max-width:var(--guide-reading-width,760px);
+}
+.heat-guide-page{--guide-reading-width:860px;}
 /* Editorial pages use the same outer grid as the four primary section
    pages, even when their body copy keeps a narrower reading measure. */
 .guide-hero.section-page-head,
@@ -206,6 +222,9 @@ img,svg{max-width:100%;height:auto;}
    page shares this one wrap so gutters and rhythm stay identical. */
 .section-page-wrap{max-width:var(--wrap);margin:0 auto;padding:8px var(--wrap-gutter) 60px;}
 @media(max-width:760px){
+  [class].content-canvas{padding-left:16px;padding-right:16px;}
+  [class].content-canvas.section-page-head,
+  [class].collection-detail-hero__overlay.content-canvas{padding-left:18px;padding-right:18px;}
   .section-page-head{padding:30px 18px 10px;}
   .section-page-head h1{font-size:28px;}
   .section-page-subtitle{font-size:14px;white-space:normal;text-wrap:pretty;}
@@ -1148,7 +1167,7 @@ img,svg{max-width:100%;height:auto;}
   .collection-detail-back{margin-bottom:50px;}
   .collection-detail-hero h1{font-size:38px;}
   .collection-detail-hero p{font-size:15px;}
-  .collection-detail-content{padding:30px 18px 52px;}
+  .collection-detail-content{padding:30px 16px 52px;}
   .collection-map-section{margin:24px 0 30px;padding:12px;border-radius:17px;}
   .collection-map-section__head{padding:5px 4px 0;}
   .collection-map-section__head h2{font-size:21px;}

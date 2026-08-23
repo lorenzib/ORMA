@@ -223,14 +223,14 @@
   }
 
   shell.innerHTML = `<section class="collection-detail-hero" style="--collection-cover:url('${esc(collection.coverImage)}')">
-      <div class="collection-detail-hero__overlay">
+      <div class="collection-detail-hero__overlay content-canvas">
         <a class="collection-detail-back" href="collections.html">← All collections</a>
         <div class="collection-detail-kick">${esc(collection.country)} · ${esc(collection.regionLabel)} · ${esc(collection.tripLength)}</div>
         <h1>${esc(collection.title)}</h1>
         <p>${esc(collection.subtitle)}</p>
       </div>
     </section>
-    <section class="collection-detail-content">
+    <section class="collection-detail-content content-canvas">
       <div class="collection-detail-intro"><p>${esc(collection.description)}</p>
         <div class="collection-chips">${collection.chips.map(chip => `<span>${esc(chip)}</span>`).join('')}</div>
       </div>
