@@ -37,8 +37,9 @@ describe('guest homepage editorial structure', () => {
     expect(html).not.toContain('images/orma-add-your-dog-freddy.jpg');
     expect(html).not.toContain('class="hp-guestbar-cta-media"');
     expect(controller).toContain('class="hp-coll-profile-cta hp-dog-profile-cta"');
-    expect(read('mobile-nav.js')).toContain("profile.className = 'hp-prefooter-action is-primary hp-dog-profile-cta'");
-    expect(read('mobile-nav.js')).toContain('returningHome.insertBefore(banner, returningToolbar)');
+    expect(read('mobile-nav.js')).toContain("profile.className = 'dog-profile-banner__action hp-dog-profile-cta'");
+    expect(read('mobile-nav.js')).toContain('topnav.parentNode.insertBefore(banner, topnav.nextSibling)');
+    expect(css).toContain('.dog-profile-banner{');
     expect(css).toContain('.hp-dog-profile-cta{');
     expect(css).toContain('width:224px;');
     expect(css).toContain('min-height:42px;');
