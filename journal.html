@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>My Journal | ORMA</title>
-<meta name="description" content="Your walking journal: every hike you and your dog have logged.">
+<meta name="description" content="Your private ORMA Trail Tales: routes, dog-first memories and shareable walk recaps.">
 <meta name="theme-color" content="#2E4034">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -80,6 +80,71 @@
   .jn-edit-photo-prev{width:74px;height:58px;object-fit:cover;border-radius:10px;border:1px solid var(--paper-line);}
   .jn-edit-photo-prev[hidden]{display:none;}
   .jn-edit-photo-btn{border:1.5px solid var(--paper-line);background:#fff;border-radius:10px;padding:9px 13px;font:700 12.5px 'Inter',sans-serif;color:var(--ink);cursor:pointer;}
+  .jn-feature{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(310px,.75fr);min-height:430px;margin:20px 0 24px;background:var(--ink);border-radius:24px;overflow:hidden;box-shadow:0 18px 44px rgba(46,64,52,.13);}
+  .jn-feature[hidden]{display:none;}
+  .jn-feature-visual{position:relative;min-height:430px;background:#dfe8df;isolation:isolate;}
+  .jn-feature-map{position:absolute;inset:0;display:grid;place-items:center;padding:46px;background-color:#dfe8df;background-image:radial-gradient(circle at 16% 22%,rgba(255,255,255,.7) 0 2px,transparent 3px),repeating-radial-gradient(ellipse at 50% 50%,transparent 0 28px,rgba(46,64,52,.075) 29px 30px,transparent 31px 48px);box-sizing:border-box;}
+  .jn-feature-map svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 6px rgba(46,64,52,.12));}
+  .jn-feature-map-fallback{position:absolute;inset:0;display:grid;place-items:center;padding:28px;text-align:center;color:var(--ink-soft);font:700 15px/1.5 'Inter',sans-serif;background:radial-gradient(circle at 35% 30%,#f3efe2 0 8%,transparent 9%),linear-gradient(145deg,#dce8dd,#eef0e6);}
+  .jn-feature-map-fallback[hidden]{display:none;}
+  .jn-feature-photo{position:absolute;z-index:3;right:18px;bottom:18px;width:116px;height:92px;border:4px solid rgba(255,255,255,.92);border-radius:16px;object-fit:cover;box-shadow:0 7px 22px rgba(31,40,33,.24);}
+  .jn-feature-photo[hidden]{display:none;}
+  .jn-private-chip{position:absolute;z-index:3;left:18px;top:18px;display:flex;align-items:center;gap:7px;padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.92);color:var(--ink);font:700 10.5px 'Inter',sans-serif;letter-spacing:.02em;box-shadow:0 5px 15px rgba(31,40,33,.12);}
+  .jn-private-chip:before{content:'';width:7px;height:7px;border-radius:50%;background:#4A7856;}
+  .jn-feature-copy{position:relative;display:flex;flex-direction:column;justify-content:center;padding:34px;color:#fff;overflow:hidden;}
+  .jn-feature-copy:after{content:'🐾';position:absolute;right:-20px;bottom:-42px;font-size:150px;opacity:.035;transform:rotate(-18deg);pointer-events:none;}
+  .jn-kicker{margin:0 0 9px;color:#C7D6C8;font:800 10.5px 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.14em;}
+  .jn-feature h2{margin:0;font:700 clamp(28px,3vw,42px)/1.02 'Bricolage Grotesque',sans-serif;color:#fff;}
+  .jn-feature-meta{margin:10px 0 0;color:#C7D1C8;font-size:12px;}
+  .jn-feature-stats{display:flex;gap:24px;margin:25px 0 19px;padding:18px 0;border-top:1px solid rgba(255,255,255,.13);border-bottom:1px solid rgba(255,255,255,.13);}
+  .jn-feature-stat b{display:block;color:#fff;font:800 20px 'Inter',sans-serif;}
+  .jn-feature-stat span{display:block;margin-top:3px;color:#AEBCAF;font:700 9.5px 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.08em;}
+  .jn-verdict{margin:0 0 12px;color:#fff;font:700 17px/1.35 'Bricolage Grotesque',sans-serif;}
+  .jn-tale-chips{display:flex;gap:7px;flex-wrap:wrap;min-height:25px;}
+  .jn-tale-chip{display:inline-flex;padding:5px 9px;border:1px solid rgba(255,255,255,.18);border-radius:999px;color:#DCE6DD;font:700 10px 'Inter',sans-serif;}
+  .jn-feature-actions{position:relative;z-index:1;display:flex;gap:9px;flex-wrap:wrap;margin-top:25px;}
+  .jn-feature-primary,.jn-feature-secondary{border:0;border-radius:999px;padding:11px 16px;font:800 12px 'Inter',sans-serif;cursor:pointer;}
+  .jn-feature-primary{background:#fff;color:var(--ink);}
+  .jn-feature-secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3);}
+  .jn-feature-primary:hover,.jn-feature-secondary:hover{transform:translateY(-1px);}
+  .jn-showcase{margin-right:auto;color:var(--ink-soft);}
+  .jn-choice-group{margin:17px 0 0;}
+  .jn-choice-label{display:block;margin:0 0 8px;color:var(--ink);font:800 11px 'Inter',sans-serif;text-transform:uppercase;letter-spacing:.07em;}
+  .jn-choice-row{display:flex;flex-wrap:wrap;gap:7px;}
+  .jn-choice{border:1.5px solid var(--paper-line);background:#fff;color:var(--ink);border-radius:999px;padding:8px 11px;font:700 11.5px 'Inter',sans-serif;cursor:pointer;}
+  .jn-choice.on{background:var(--ink);border-color:var(--ink);color:#fff;}
+  .jn-choice[disabled]{opacity:.4;cursor:not-allowed;}
+  .jn-tale-note{margin:9px 0 0;color:var(--ink-soft);font-size:11.5px;line-height:1.45;}
+  .jn-share-modal{max-width:820px;}
+  .jn-share-layout{display:grid;grid-template-columns:minmax(220px,.72fr) minmax(300px,1fr);gap:24px;margin-top:18px;align-items:start;}
+  .jn-share-preview-wrap{display:flex;align-items:center;justify-content:center;min-height:380px;padding:18px;border-radius:16px;background:var(--sage-dim);}
+  .jn-share-preview{display:block;max-width:100%;max-height:420px;border-radius:10px;box-shadow:0 12px 30px rgba(31,40,33,.18);}
+  .jn-share-options{min-width:0;}
+  .jn-check{display:flex!important;align-items:flex-start;gap:9px;margin:13px 0!important;color:var(--ink)!important;font-size:12px!important;line-height:1.45!important;cursor:pointer;}
+  .jn-check input{width:17px!important;height:17px;flex:none;margin:0;padding:0;accent-color:var(--ink);}
+  .jn-share-actions{display:grid;gap:8px;margin-top:18px;}
+  .jn-share-actions button{width:100%;}
+  .jn-share-helper{margin:9px 0 0;color:var(--ink-soft);font-size:11px;line-height:1.45;}
+  .jn-modal-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;}
+  .jn-x{flex:none;border:0;background:none;color:var(--ink-soft);font-size:22px;line-height:1;cursor:pointer;}
+  @media(max-width:800px){
+    .jn-feature{grid-template-columns:1fr;}
+    .jn-feature-visual{min-height:330px;}
+    .jn-feature-copy{padding:28px;}
+    .jn-share-layout{grid-template-columns:1fr;}
+    .jn-share-preview-wrap{min-height:300px;}
+    .jn-share-preview{max-height:360px;}
+  }
+  @media(max-width:520px){
+    .jn-feature{margin-left:-4px;margin-right:-4px;border-radius:18px;}
+    .jn-feature-visual{min-height:275px;}
+    .jn-feature-copy{padding:24px 21px 26px;}
+    .jn-feature-stats{gap:17px;justify-content:space-between;}
+    .jn-feature-primary,.jn-feature-secondary{flex:1;white-space:nowrap;}
+    .jn-share-modal{max-height:calc(100dvh - 24px);}
+    .jn-share-preview-wrap{min-height:220px;padding:12px;}
+    .jn-share-preview{max-height:280px;}
+  }
 </style>
 </head>
 <body>
@@ -105,6 +170,27 @@
 
 <div class="wrap section-page-wrap">
   <a href="/" class="guide-context-return" data-i18n="journal.back">&larr; Back to Homepage</a>
+
+  <section class="jn-feature" id="jnFeature" hidden aria-labelledby="jnFeatureTitle">
+    <div class="jn-feature-visual">
+      <div id="jnFeatureMap" class="jn-feature-map" aria-label="Route map for the latest Trail Tale"></div>
+      <div id="jnFeatureMapFallback" class="jn-feature-map-fallback" data-i18n="journal.tale.fallback">A good walk leaves a mark.</div>
+      <img id="jnFeaturePhoto" class="jn-feature-photo" alt="Walk photo" hidden>
+      <span class="jn-private-chip" data-i18n="journal.tale.private">Private in this browser</span>
+    </div>
+    <div class="jn-feature-copy">
+      <p class="jn-kicker" id="jnFeatureKicker" data-i18n="journal.tale.latest">Latest Trail Tale</p>
+      <h2 id="jnFeatureTitle"></h2>
+      <p class="jn-feature-meta" id="jnFeatureMeta"></p>
+      <div class="jn-feature-stats" id="jnFeatureStats"></div>
+      <p class="jn-verdict" id="jnFeatureVerdict"></p>
+      <div class="jn-tale-chips" id="jnFeatureChips"></div>
+      <div class="jn-feature-actions">
+        <button type="button" class="jn-feature-primary" id="jnFeatureShare" data-i18n="journal.tale.share">Share Trail Tale</button>
+        <button type="button" class="jn-feature-secondary" id="jnFeatureRecap" data-i18n="journal.tale.addFun">Add the fun bits</button>
+      </div>
+    </div>
+  </section>
 
   <div class="jn-stats" id="jnStats"></div>
 
@@ -190,6 +276,65 @@
   </div>
 </div>
 
+<!-- Optional dog-first recap. These answers are always chosen by the user. -->
+<div class="jn-overlay" id="jnTaleOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="jnTaleTitle">
+  <div class="jn-modal">
+    <div class="jn-modal-head">
+      <div><p class="jn-kicker" style="color:var(--accent);" data-i18n="journal.tale.kicker">MAKE IT YOURS</p><h2 id="jnTaleTitle" style="margin:0;font-size:22px;" data-i18n="journal.tale.title">Add the fun bits</h2></div>
+      <button type="button" class="jn-x" id="jnTaleClose" aria-label="Close" data-i18n-aria-label="journal.close">&times;</button>
+    </div>
+    <p class="jn-hint" data-i18n="journal.tale.hint">Three optional details turn the walk into your dog's Trail Tale. Nothing is guessed.</p>
+    <div class="jn-choice-group"><span class="jn-choice-label" data-i18n="journal.tale.paws">How were the paws?</span><div class="jn-choice-row" data-tale-group="paws">
+      <button type="button" class="jn-choice" data-value="happy" data-i18n="journal.tale.pawsHappy">Happy paws</button>
+      <button type="button" class="jn-choice" data-value="tender" data-i18n="journal.tale.pawsTender">A little tender</button>
+      <button type="button" class="jn-choice" data-value="check" data-i18n="journal.tale.pawsCheck">Check them tonight</button>
+    </div></div>
+    <div class="jn-choice-group"><span class="jn-choice-label" data-i18n="journal.tale.energy">Energy at the finish?</span><div class="jn-choice-row" data-tale-group="energy">
+      <button type="button" class="jn-choice" data-value="zoomies" data-i18n="journal.tale.energyZoomies">Still had zoomies</button>
+      <button type="button" class="jn-choice" data-value="justRight" data-i18n="journal.tale.energyRight">Just right</button>
+      <button type="button" class="jn-choice" data-value="nap" data-i18n="journal.tale.energyNap">Ready for a nap</button>
+    </div></div>
+    <div class="jn-choice-group"><span class="jn-choice-label" data-i18n="journal.tale.moment">Best moment?</span><div class="jn-choice-row" data-tale-group="moment">
+      <button type="button" class="jn-choice" data-value="water" data-i18n="journal.tale.momentWater">The water stop</button>
+      <button type="button" class="jn-choice" data-value="view" data-i18n="journal.tale.momentView">The big view</button>
+      <button type="button" class="jn-choice" data-value="sniffs" data-i18n="journal.tale.momentSniffs">Forest sniffing</button>
+      <button type="button" class="jn-choice" data-value="rifugio" data-i18n="journal.tale.momentRifugio">Rifugio rest</button>
+      <button type="button" class="jn-choice" data-value="mud" data-i18n="journal.tale.momentMud">Mud mission</button>
+    </div></div>
+    <p class="jn-tale-note" data-i18n="journal.tale.optional">All optional — skip anything that does not fit the walk.</p>
+    <button type="button" id="jnTaleSave" class="auth-submit" style="width:100%;margin-top:18px;" data-i18n="journal.tale.save">Save Trail Tale</button>
+  </div>
+</div>
+
+<!-- Share chooser: makes a local image; it never publishes a journal entry. -->
+<div class="jn-overlay" id="jnShareOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="jnShareTitle">
+  <div class="jn-modal jn-share-modal">
+    <div class="jn-modal-head">
+      <div><p class="jn-kicker" style="color:var(--accent);" data-i18n="journal.shareCard.kicker">READY TO ROAM</p><h2 id="jnShareTitle" style="margin:0;font-size:22px;" data-i18n="journal.shareCard.title">Share your Trail Tale</h2></div>
+      <button type="button" class="jn-x" id="jnShareClose" aria-label="Close" data-i18n-aria-label="journal.close">&times;</button>
+    </div>
+    <div class="jn-share-layout">
+      <div class="jn-share-preview-wrap"><img id="jnSharePreview" class="jn-share-preview" alt="Trail Tale share preview"></div>
+      <div class="jn-share-options">
+        <div class="jn-choice-group"><span class="jn-choice-label" data-i18n="journal.shareCard.format">Format</span><div class="jn-choice-row" id="jnShareFormats">
+          <button type="button" class="jn-choice on" data-format="post">Post 4:5</button><button type="button" class="jn-choice" data-format="story">Story 9:16</button><button type="button" class="jn-choice" data-format="square">Square 1:1</button>
+        </div></div>
+        <div class="jn-choice-group"><span class="jn-choice-label" data-i18n="journal.shareCard.look">Look</span><div class="jn-choice-row" id="jnShareVisuals">
+          <button type="button" class="jn-choice on" data-visual="split" data-i18n="journal.shareCard.split">Photo + map</button><button type="button" class="jn-choice" data-visual="map" data-i18n="journal.shareCard.map">Route map</button><button type="button" class="jn-choice" data-visual="photo" data-i18n="journal.shareCard.photo">Photo</button>
+        </div></div>
+        <label class="jn-check"><input type="checkbox" id="jnShareHideEnds" checked><span data-i18n="journal.shareCard.hideEnds">Hide the first and last 200 m</span></label>
+        <label class="jn-check"><input type="checkbox" id="jnShareHideRoute"><span data-i18n="journal.shareCard.hideRoute">Hide the route completely</span></label>
+        <div class="jn-share-actions">
+          <button type="button" class="auth-submit" id="jnShareNative" data-i18n="journal.shareCard.native">Share to apps</button>
+          <button type="button" class="jn-edit-photo-btn" id="jnShareDownload" data-i18n="journal.shareCard.download">Download image</button>
+          <button type="button" class="jn-live-link" id="jnShareCopy" style="margin-top:0;" data-i18n="journal.shareCard.copy">Copy caption</button>
+        </div>
+        <p class="jn-share-helper" data-i18n="journal.shareCard.helper">Instagram, WhatsApp, Facebook, Messages and more appear in your device's share sheet.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer hp-footer">
   <div class="hp-footer-grid">
     <div>
@@ -267,13 +412,13 @@
 <script src="regional-trails-loader.js?v=20260815-4" data-default-region="all"></script>
 <script src="trail-audits.js?v=20260815-4" defer></script>
 <script src="regions-config.js" defer></script>
-<script src="walk-card.js?v=20260815-4"></script>
+<script src="walk-card.js?v=20260823-2"></script>
 <script>
 // My Journal. Entries are private, per-account records stored only in this
 // browser. JOURNAL-01 deliberately avoids silently uploading walk history;
 // see docs/architecture/JOURNAL-01-private-local-journal.md.
 document.addEventListener('DOMContentLoaded', function(){
-  var state = { filter: 'all', rating: 5, cond: 'Comfortable', entries: [], favorites: {} };
+  var state = { filter: 'all', rating: 5, cond: 'Comfortable', entries: [], favorites: {}, featuredId: null };
   var COND_OPTIONS = ['Comfortable', 'Warm', 'Hot'];
   var uid = null;
   var journalParams = new URLSearchParams(window.location.search);
@@ -285,6 +430,10 @@ document.addEventListener('DOMContentLoaded', function(){
   var openedPendingTrail = false;
   var statusTimer = null;
   var journalDirty = false;
+  var taleEditingId = null;
+  var shareEntryId = null;
+  var shareOptions = { format:'post', visual:'split', hideEnds:true, hideRoute:false };
+  var sharePreviewToken = 0;
 
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function translate(key, fallback, vars){
@@ -343,6 +492,83 @@ document.addEventListener('DOMContentLoaded', function(){
     return iso.slice(0, 7) === now.toISOString().slice(0, 7);
   }
 
+  function activeRoute(entry){
+    var route = Array.isArray(entry && entry.route) ? entry.route : [];
+    if(route.length > 1) return route;
+    var trail = entry && entry.trailId ? trailById(entry.trailId) : null;
+    return trail && Array.isArray(trail.path) ? trail.path : [];
+  }
+
+  function shareableEntry(entry){
+    return Object.assign({}, entry, { route:activeRoute(entry) });
+  }
+
+  function featuredEntry(){ return entryById(state.featuredId) || state.entries[0] || null; }
+
+  function taleLabel(group, value){
+    var labels = window.DoloPawsWalkCard && window.DoloPawsWalkCard.TALE_LABELS;
+    var fallback = labels && labels[group] ? labels[group][value] : '';
+    var keys = {
+      paws:{ happy:'pawsHappy', tender:'pawsTender', check:'pawsCheck' },
+      energy:{ zoomies:'energyZoomies', justRight:'energyRight', nap:'energyNap' },
+      moment:{ water:'momentWater', view:'momentView', sniffs:'momentSniffs', rifugio:'momentRifugio', mud:'momentMud' }
+    };
+    return keys[group] && keys[group][value] ? translate('journal.tale.' + keys[group][value], fallback, {}) : fallback;
+  }
+
+  // Route-only map: rendered locally so a private recorded route never leaves
+  // this browser to request geographically revealing third-party tiles.
+  function renderFeatureRoute(route){
+    var map = document.getElementById('jnFeatureMap');
+    var fallback = document.getElementById('jnFeatureMapFallback');
+    var points = window.DoloPawsWalkCard ? window.DoloPawsWalkCard.projectRoute(route, 1000, 600, 55) : [];
+    fallback.hidden = points.length > 1;
+    if(points.length < 2){ map.innerHTML = ''; return; }
+    var path = points.map(function(point){ return point.map(function(value){ return Math.round(value * 10) / 10; }).join(','); }).join(' ');
+    var first = points[0], last = points[points.length - 1];
+    map.innerHTML = '<svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Route trace">' +
+      '<polyline points="' + path + '" fill="none" stroke="rgba(255,255,255,.94)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<polyline points="' + path + '" fill="none" stroke="#C4652F" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<circle cx="' + first[0] + '" cy="' + first[1] + '" r="16" fill="#4A7856" stroke="#fff" stroke-width="8"/>' +
+      '<circle cx="' + last[0] + '" cy="' + last[1] + '" r="16" fill="#C4652F" stroke="#fff" stroke-width="8"/>' +
+      '</svg>';
+  }
+
+  function renderFeature(){
+    var section = document.getElementById('jnFeature');
+    var entry = featuredEntry();
+    section.hidden = !entry;
+    if(!entry) return;
+    state.featuredId = entry.id;
+    document.getElementById('jnFeatureKicker').textContent = entry === state.entries[0]
+      ? translate('journal.tale.latest', 'Latest Trail Tale', {})
+      : translate('journal.tale.featured', 'Trail Tale from your journal', {});
+    var date = new Date(entry.date);
+    document.getElementById('jnFeatureTitle').textContent = entry.trail || window.t('journal.defaultName');
+    document.getElementById('jnFeatureMeta').textContent = [
+      date.toLocaleDateString(document.documentElement.lang || undefined, { day:'numeric', month:'long', year:'numeric' }), entry.region || ''
+    ].filter(Boolean).join(' · ');
+    document.getElementById('jnFeatureStats').innerHTML =
+      '<div class="jn-feature-stat"><b>' + esc(entry.dist ? entry.dist + ' km' : '–') + '</b><span>' + esc(window.t('journal.stats.distance')) + '</span></div>' +
+      '<div class="jn-feature-stat"><b>' + esc(entry.dur ? fmtDur(entry.dur) : '–') + '</b><span>' + esc(translate('journal.durationShort', 'Time', {})) + '</span></div>' +
+      '<div class="jn-feature-stat"><b>' + esc(entry.rating ? entry.rating + '/5' : '–') + '</b><span>' + esc(window.t('journal.rating')) + '</span></div>';
+    var tale = entry.tale || {};
+    var energy = taleLabel('energy', tale.energy);
+    var verdict = energy ? (dogDisplayName
+      ? translate('journal.tale.verdictFor', '{name}’s verdict: {energy}.', { name:dogDisplayName, energy:energy.toLowerCase() })
+      : translate('journal.tale.verdict', 'Trail verdict: {energy}.', { energy:energy.toLowerCase() })) : '';
+    document.getElementById('jnFeatureVerdict').textContent = verdict || translate('journal.tale.prompt', 'What was the dog’s verdict?', {});
+    var chips = [];
+    if(taleLabel('paws', tale.paws)) chips.push(taleLabel('paws', tale.paws));
+    if(taleLabel('moment', tale.moment)) chips.push(translate('journal.tale.bestBit', 'Best bit: {moment}', { moment:taleLabel('moment', tale.moment).toLowerCase() }));
+    document.getElementById('jnFeatureChips').innerHTML = chips.map(function(chip){ return '<span class="jn-tale-chip">' + esc(chip) + '</span>'; }).join('');
+    document.getElementById('jnFeatureRecap').textContent = entry.tale && Object.keys(entry.tale).length ? translate('journal.tale.editFun', 'Edit the fun bits', {}) : translate('journal.tale.addFun', 'Add the fun bits', {});
+    var photo = document.getElementById('jnFeaturePhoto');
+    photo.hidden = !entry.photo;
+    if(entry.photo) photo.src = entry.photo;
+    renderFeatureRoute(activeRoute(entry));
+  }
+
   function renderStats(){
     var el = document.getElementById('jnStats');
     var all = state.entries;
@@ -390,6 +616,7 @@ document.addEventListener('DOMContentLoaded', function(){
             ratingHtml +
             (e.cond ? '<span class="jn-cond">' + esc(conditionLabel(e.cond)) + '</span>' : '') +
             photoIndicator(e) +
+            '<button type="button" class="jn-act jn-showcase" data-jn-feature="' + esc(e.id) + '">' + esc(translate('journal.tale.showAbove', 'Show above', {})) + '</button>' +
             '<button type="button" class="jn-act" data-jn-edit="' + esc(e.id) + '">' + esc(window.t('journal.edit')) + '</button>' +
             '<button type="button" class="jn-act" data-jn-share="' + esc(e.id) + '">' + esc(window.t('journal.share')) + '</button>' +
             link +
@@ -399,12 +626,13 @@ document.addEventListener('DOMContentLoaded', function(){
     }).join('');
   }
 
-  function renderAll(){ renderStats(); renderTimeline(); }
+  function renderAll(){ renderStats(); renderFeature(); renderTimeline(); }
 
   // ---- Edit & share ---------------------------------------------------
   var dogDisplayName = '';
   var editingId = null;
   var editPhoto = null; // data URI or null; undefined = untouched
+  var taleDraft = {};
 
   function entryById(id){ return state.entries.find(function(e){ return e.id === id; }); }
 
@@ -490,7 +718,147 @@ document.addEventListener('DOMContentLoaded', function(){
     showStatus(window.t('journal.updated'));
   });
 
+  function syncTaleChoices(){
+    document.querySelectorAll('[data-tale-group]').forEach(function(group){
+      var name = group.getAttribute('data-tale-group');
+      group.querySelectorAll('[data-value]').forEach(function(button){
+        var selected = taleDraft[name] === button.getAttribute('data-value');
+        button.classList.toggle('on', selected);
+        button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+      });
+    });
+  }
+
+  function openTale(entry){
+    if(!entry) return;
+    taleEditingId = entry.id;
+    taleDraft = Object.assign({}, entry.tale || {});
+    syncTaleChoices();
+    document.getElementById('jnTaleOverlay').hidden = false;
+    setTimeout(function(){ document.querySelector('#jnTaleOverlay [data-value]').focus(); }, 0);
+  }
+
+  document.getElementById('jnTaleOverlay').addEventListener('click', function(event){
+    var button = event.target.closest('[data-tale-group] [data-value]');
+    if(button){
+      var group = button.closest('[data-tale-group]').getAttribute('data-tale-group');
+      var value = button.getAttribute('data-value');
+      if(taleDraft[group] === value) delete taleDraft[group]; else taleDraft[group] = value;
+      syncTaleChoices();
+      return;
+    }
+    if(event.target === this) this.hidden = true;
+  });
+  document.getElementById('jnTaleClose').addEventListener('click', function(){ document.getElementById('jnTaleOverlay').hidden = true; });
+  document.getElementById('jnTaleSave').addEventListener('click', function(){
+    var entry = entryById(taleEditingId);
+    if(!entry) return;
+    var previous = entry.tale;
+    if(Object.keys(taleDraft).length) entry.tale = Object.assign({}, taleDraft); else delete entry.tale;
+    if(!persist()){
+      if(previous) entry.tale = previous; else delete entry.tale;
+      showStatus(window.t('journal.saveError'));
+      return;
+    }
+    document.getElementById('jnTaleOverlay').hidden = true;
+    renderAll();
+    showStatus(translate('journal.tale.saved', 'Trail Tale saved.', {}));
+  });
+
+  function currentShareEntry(){
+    var entry = entryById(shareEntryId);
+    return entry ? shareableEntry(entry) : null;
+  }
+
+  function shareCardOptions(){
+    return {
+      dogName:dogDisplayName, format:shareOptions.format, visual:shareOptions.visual,
+      hideEnds:document.getElementById('jnShareHideEnds').checked,
+      hideRoute:document.getElementById('jnShareHideRoute').checked
+    };
+  }
+
+  function syncShareChoices(){
+    document.querySelectorAll('#jnShareFormats [data-format]').forEach(function(button){ button.classList.toggle('on', button.dataset.format === shareOptions.format); });
+    document.querySelectorAll('#jnShareVisuals [data-visual]').forEach(function(button){ button.classList.toggle('on', button.dataset.visual === shareOptions.visual); });
+  }
+
+  function renderSharePreview(){
+    var entry = currentShareEntry();
+    if(!entry || !window.DoloPawsWalkCard) return;
+    var token = ++sharePreviewToken;
+    window.DoloPawsWalkCard.createWalkCard(entry, shareCardOptions()).then(function(canvas){
+      if(token !== sharePreviewToken) return;
+      document.getElementById('jnSharePreview').src = canvas.toDataURL('image/png');
+    }).catch(function(){ showStatus(window.t('journal.shareError')); });
+  }
+
+  function openShare(entry){
+    if(!entry || !window.DoloPawsWalkCard) return;
+    shareEntryId = entry.id;
+    shareOptions = { format:'post', visual:entry.photo ? 'split' : 'map', hideEnds:true, hideRoute:false };
+    document.getElementById('jnShareHideEnds').checked = true;
+    document.getElementById('jnShareHideRoute').checked = false;
+    document.querySelectorAll('#jnShareVisuals [data-visual]').forEach(function(button){
+      button.disabled = !entry.photo && button.dataset.visual !== 'map';
+    });
+    syncShareChoices();
+    document.getElementById('jnShareOverlay').hidden = false;
+    renderSharePreview();
+  }
+
+  document.getElementById('jnShareFormats').addEventListener('click', function(event){
+    var button = event.target.closest('[data-format]');
+    if(!button) return;
+    shareOptions.format = button.dataset.format; syncShareChoices(); renderSharePreview();
+  });
+  document.getElementById('jnShareVisuals').addEventListener('click', function(event){
+    var button = event.target.closest('[data-visual]');
+    if(!button || button.disabled) return;
+    shareOptions.visual = button.dataset.visual; syncShareChoices(); renderSharePreview();
+  });
+  ['jnShareHideEnds','jnShareHideRoute'].forEach(function(id){ document.getElementById(id).addEventListener('change', renderSharePreview); });
+  document.getElementById('jnShareClose').addEventListener('click', function(){ document.getElementById('jnShareOverlay').hidden = true; });
+  document.getElementById('jnShareOverlay').addEventListener('click', function(event){ if(event.target === this) this.hidden = true; });
+  document.getElementById('jnShareNative').addEventListener('click', function(){
+    var button = this, entry = currentShareEntry();
+    if(!entry) return;
+    button.disabled = true;
+    window.DoloPawsWalkCard.shareWalkCard(entry, shareCardOptions()).then(function(method){
+      if(method === 'shared') showStatus(window.t('journal.shared'));
+      else if(method === 'downloaded') showStatus(window.t('journal.downloaded'));
+    }).catch(function(){ showStatus(window.t('journal.shareError')); }).then(function(){ button.disabled = false; });
+  });
+  document.getElementById('jnShareDownload').addEventListener('click', function(){
+    var button = this, entry = currentShareEntry();
+    if(!entry) return;
+    button.disabled = true;
+    window.DoloPawsWalkCard.downloadWalkCard(entry, shareCardOptions()).then(function(){ showStatus(window.t('journal.downloaded')); })
+      .catch(function(){ showStatus(window.t('journal.shareError')); }).then(function(){ button.disabled = false; });
+  });
+  document.getElementById('jnShareCopy').addEventListener('click', function(){
+    var entry = currentShareEntry();
+    if(!entry) return;
+    var caption = window.DoloPawsWalkCard.shareText(entry, dogDisplayName);
+    var done = function(){ showStatus(translate('journal.shareCard.copied', 'Caption copied.', {})); };
+    if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(caption).then(done).catch(function(){ showStatus(window.t('journal.shareError')); });
+    else {
+      var input = document.createElement('textarea'); input.value = caption; input.style.position = 'fixed'; input.style.opacity = '0';
+      document.body.appendChild(input); input.select(); document.execCommand('copy'); input.remove(); done();
+    }
+  });
+
+  document.getElementById('jnFeatureShare').addEventListener('click', function(){ openShare(featuredEntry()); });
+  document.getElementById('jnFeatureRecap').addEventListener('click', function(){ openTale(featuredEntry()); });
+
   document.getElementById('jnTimeline').addEventListener('click', function(event){
+    var featureBtn = event.target.closest('[data-jn-feature]');
+    if(featureBtn){
+      state.featuredId = featureBtn.getAttribute('data-jn-feature');
+      renderFeature();
+      document.getElementById('jnFeature').scrollIntoView({ behavior:'smooth', block:'start' });
+      return;
+    }
     var editBtn = event.target.closest('[data-jn-edit]');
     if(editBtn){
       var entry = entryById(editBtn.getAttribute('data-jn-edit'));
@@ -501,13 +869,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if(shareBtn && window.DoloPawsWalkCard){
       var target = entryById(shareBtn.getAttribute('data-jn-share'));
       if(!target) return;
-      shareBtn.disabled = true;
-      window.DoloPawsWalkCard.shareWalkCard(target, { dogName: dogDisplayName })
-        .then(function(method){
-          showStatus(method === 'shared' ? window.t('journal.shared') : window.t('journal.downloaded'));
-        })
-        .catch(function(){ showStatus(window.t('journal.shareError')); })
-        .then(function(){ shareBtn.disabled = false; });
+      openShare(target);
     }
   });
 
@@ -831,9 +1193,10 @@ document.addEventListener('DOMContentLoaded', function(){
     if(window.history && window.history.replaceState){
       window.history.replaceState({}, '', 'journal.html');
     }
+    state.featuredId = entry.id;
     renderAll();
     showStatus(window.t('journal.saved'));
-    document.getElementById('jnLogBtn').focus();
+    setTimeout(function(){ openTale(entry); }, 160);
   });
 
   document.getElementById('jnTabs').addEventListener('click', function(e){
@@ -855,6 +1218,7 @@ document.addEventListener('DOMContentLoaded', function(){
       document.getElementById('jnLogBtn').style.display = 'none';
       document.getElementById('jnStats').innerHTML = '';
       document.getElementById('jnTimeline').innerHTML = '';
+      document.getElementById('jnFeature').hidden = true;
       document.getElementById('jnEmpty').hidden = true;
       document.getElementById('jnStorageNote').hidden = true;
       return;
@@ -882,6 +1246,11 @@ document.addEventListener('DOMContentLoaded', function(){
     if(journalParams.get('recorded') === '1'){
       showStatus(window.t('journal.saved'));
       if(window.history && window.history.replaceState) window.history.replaceState({}, '', 'journal.html');
+      if(state.entries[0] && !(state.entries[0].tale && Object.keys(state.entries[0].tale).length)){
+        state.featuredId = state.entries[0].id;
+        renderFeature();
+        setTimeout(function(){ openTale(state.entries[0]); }, 220);
+      }
     }
     document.getElementById('jnStorageNote').hidden = false;
     window.DoloPawsAuth.getDogProfile().then(function(p){
@@ -889,6 +1258,7 @@ document.addEventListener('DOMContentLoaded', function(){
         dogDisplayName = p.name;
         document.getElementById('jnTitle').textContent = translate('journal.titleFor', '{name}’s walk journal', { name:p.name });
         document.getElementById('jnEmptyCopy').textContent = translate('journal.empty.copyFor', 'Once {name} has been out, log the walk here or track it live from Hike Mode — it’ll show up in this list.', { name:p.name });
+        renderFeature();
       }
     }).catch(function(){});
   }
