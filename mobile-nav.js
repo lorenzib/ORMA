@@ -71,6 +71,7 @@
   function installDogProfileBanner(){
     const topnav = document.querySelector('.topnav');
     if(document.querySelector('.dog-profile-banner')) return null;
+    if(document.querySelector('[data-inline-dog-profile]')) return null;
     const homepageGuestBanner = document.querySelector('.hp-guestbar--homepage');
 
     const banner = document.createElement('section');
