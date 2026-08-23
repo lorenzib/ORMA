@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="295.3,43.7 285.8,40.4 216.3,54.0 186.5,66.2 152.4,67.2 138.8,64.9 110.7,70.2 79.9,83.1 56.4,84.7 28.6,104.6 24.0,111.5 25.0,115.5 27.0,117.2 51.5,114.2 94.2,125.1 100.4,168.5 204.3,160.8 206.7,157.5 197.4,150.6 194.4,133.1 255.3,142.6 279.8,150.3 283.8,147.3 294.0,146.3 298.0,145.6 296.0,145.0 301.3,143.3 332.7,115.2 382.0,117.2 405.2,148.9 421.1,164.2 430.4,183.7 449.2,187.3 464.1,207.5 495.9,239.6 555.8,241.6 556.1,218.1 566.0,194.6 581.6,176.4 586.5,166.5 588.2,140.7 593.2,133.1 614.7,122.8 616.0,119.8 614.0,110.2 599.5,91.7 570.0,68.2 562.1,55.6 553.1,51.0 511.8,50.3 391.6,38.4 340.0,45.4 319.8,39.7 295.3,43.7" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="295.3" cy="43.7" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>A 3.9 km loop near Brunico / Bruneck, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record. Direction shown climbs more gradually (computed from elevation data).</p>
 

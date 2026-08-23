@@ -15,11 +15,19 @@ describe('generated trail page assets', () => {
   });
 
   test('renders both legacy and owned-photo credits visibly', () => {
-    expect(photoCreditHtml({
+    const licensed = photoCreditHtml({
       imageIcon:'images/trail.jpg',
       imageCredit:'Jane Photographer · CC BY-SA 4.0',
       imageSourcePage:'https://example.com/source',
-    })).toContain('<a href="https://example.com/source"');
+      imageCreator:'Jane Photographer',
+      imageLicence:'CC BY-SA 4.0',
+      imageLicenceUrl:'https://creativecommons.org/licenses/by-sa/4.0/',
+    });
+    expect(licensed).toContain('class="sp-photo-credit"');
+    expect(licensed).toContain('Photo credit');
+    expect(licensed).toContain('<a href="https://example.com/source"');
+    expect(licensed).toContain('rel="license noopener"');
+    expect(licensed).toContain('Cropped for display.');
 
     const owned = photoCreditHtml({
       imageIcon:'images/tre-cime-hero.jpg',

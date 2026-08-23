@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="130.9,219.2 130.4,232.5 134.1,237.6 146.1,248.8 155.9,251.1 161.4,255.7 167.4,256.0 185.8,248.5 197.3,239.1 221.1,228.1 228.3,230.2 223.4,235.9 224.0,238.8 233.7,237.9 278.8,210.6 283.7,210.6 289.7,204.3 316.4,193.4 332.8,174.2 336.2,165.3 347.4,149.8 353.5,142.9 366.4,134.8 381.3,128.8 391.4,127.7 404.6,120.2 413.2,122.5 435.9,118.2 450.5,107.0 483.5,99.8 488.4,91.8 497.3,84.0 503.3,68.5 509.1,62.5 505.3,54.1 509.6,46.4 507.1,37.8 493.6,34.9 485.5,28.0 462.0,24.0 446.2,27.4 434.1,38.6 429.3,47.0 414.3,53.9 382.2,53.9 337.7,47.0 328.2,55.0 311.8,57.9 291.7,67.1 294.0,72.8 294.0,91.8 273.6,108.7 275.4,116.5 270.5,130.2 273.1,138.3 270.8,145.2 266.5,152.1 246.9,165.6 245.2,172.4 240.6,175.9 188.6,190.8 162.5,196.3" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="130.9" cy="219.2" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>A 3 km loop near Auronzo di Cadore, imported from the OpenStreetMap hiking network (trail 50). Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record. Direction shown climbs more gradually (computed from elevation data).</p>
 

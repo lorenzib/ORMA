@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="469.9,156.6 493.3,163.4 518.5,160.2 538.7,163.8 557.0,98.6 530.4,92.4 528.6,75.2 525.3,69.0 480.3,42.4 468.1,56.1 440.3,57.5 432.8,61.1 413.7,94.2 401.4,81.6 397.1,66.9 378.7,55.0 364.3,31.9 349.2,25.4 330.8,24.0 314.2,30.1 293.0,53.9 282.9,86.0 254.4,93.9 211.6,87.4 199.0,77.7 164.4,60.7 153.2,61.8 138.1,71.2 128.3,93.5 120.8,95.3 100.2,113.3 90.9,124.5 86.2,138.6 88.0,149.4 84.8,152.6 88.0,163.4 83.0,180.3 85.5,208.8 90.2,216.4 87.3,237.3 93.0,246.6 101.7,251.7 101.3,255.3 109.6,256.0 124.7,251.0 139.5,242.7 144.6,236.5 206.9,225.4 257.0,221.4 286.1,205.6 303.1,204.1 312.8,196.2 330.4,189.7 338.4,189.4 350.3,198.4 359.6,199.8 373.3,181.4 400.0,169.5 424.1,162.0 444.3,165.9 460.9,156.9 467.3,156.9 460.9,156.9 338.4,189.4 323.2,167.4 309.6,128.8 293.0,109.7 282.9,86.0" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="469.9" cy="156.6" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>An 3.9 km route near Castelrotto / Kastelruth, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.</p>
 

@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="539.0,59.5 548.0,61.8 565.0,61.6 571.6,63.4 576.0,68.1 580.4,70.6 587.0,78.6 591.2,87.7 590.9,93.0 580.0,96.0 572.8,91.9 564.6,91.6 558.1,85.6 555.0,84.6 551.6,85.3 535.4,80.0 512.6,76.7 489.1,68.5 488.3,70.6 482.3,67.9 481.3,68.8 477.1,67.6 475.8,66.2 474.8,69.2 468.1,64.3 456.0,63.9 459.9,70.2 454.3,73.2 440.5,70.6 435.9,72.2 430.1,67.6 426.1,76.0 409.1,66.9 406.3,70.0 404.0,76.0 396.7,69.5 389.3,78.5 389.9,87.6 386.2,90.0 389.3,100.9 382.9,97.9 383.0,102.8 385.3,106.5 383.2,110.5 380.8,112.6 371.7,113.1 365.5,124.7 355.9,129.8 353.4,129.9 347.3,135.4 343.6,136.1 335.6,141.1 334.5,138.5 332.6,138.7 326.7,139.7 318.9,144.8 305.5,146.4 293.0,152.2 286.0,157.6 278.2,161.6 262.4,162.5 255.7,167.6 244.0,171.3 237.5,178.3 231.4,173.0 226.7,177.4 224.9,176.2 222.6,177.0 221.1,175.6 217.9,175.8 205.1,180.7 201.5,184.9 194.6,184.7 186.8,191.4 184.5,191.6 184.0,193.3 174.8,191.9 166.4,194.2 158.2,198.7 153.1,205.4 153.3,207.0 157.5,208.9 161.4,215.6 155.8,216.1 150.0,218.7 121.6,235.2 105.7,241.5 85.0,255.1 79.1,256.0 72.8,254.4 70.0,251.6 71.0,249.7 68.0,248.1 60.7,239.2 54.9,227.8 59.1,228.3 64.2,226.6 68.4,227.5 67.3,221.7 75.2,220.1 75.4,211.5 74.9,208.4 71.9,204.3 73.8,203.8 72.2,200.3 77.7,200.0 81.2,201.7 81.3,188.9 83.6,187.2 85.9,188.1 85.7,185.1 82.9,181.1 73.8,183.9 75.7,178.6 78.7,175.6 64.5,174.8 64.5,173.4 78.9,162.5 81.5,158.6 81.2,155.1 76.3,132.9 77.5,126.6 73.3,122.1 58.2,119.1 64.9,105.4 63.1,102.6 55.3,99.1 48.8,101.7 50.4,98.4 54.7,95.3 62.3,93.0 67.7,92.8 73.6,95.8 87.8,96.8 100.3,93.3 127.4,84.4 127.4,82.7 134.2,83.0 144.6,80.2 155.9,73.6 164.7,70.9 166.4,68.1 170.6,67.9 174.5,69.9 178.7,60.9 186.2,63.2 193.1,58.7 205.8,54.5 210.9,51.0 227.6,47.8 229.7,43.1 232.8,41.5 236.7,41.5 240.2,38.5 246.3,39.6 249.6,37.7 260.3,39.8 280.8,39.1 283.1,32.6 281.0,30.0 286.4,29.4 295.1,29.4 302.0,32.4 306.2,31.7 308.3,33.1 316.5,33.8 319.3,32.4 323.5,33.1 359.2,28.4 375.2,30.1 394.2,27.9 409.3,28.0 423.0,25.6 431.7,27.0 452.5,24.0 481.1,25.8 498.9,29.1 504.0,32.1 506.3,35.9 510.3,37.5 512.1,40.5 515.9,41.0 519.3,43.6 524.5,44.1 530.1,48.2 533.4,56.0 537.5,59.0" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="539.0" cy="59.5" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>A 7.9 km loop near Valloire, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.</p>
 

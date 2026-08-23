@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="106.9,24.0 112.4,24.2 115.3,33.2 114.9,30.7 118.9,38.1 133.4,51.9 133.7,55.9 139.0,64.0 153.1,76.7 159.6,84.3 164.7,94.6 171.8,100.8 175.7,103.1 188.2,106.9 223.2,111.5 232.8,126.7 252.0,147.9 259.2,153.3 285.1,163.3 286.9,164.5 285.9,168.9 319.9,182.8 328.1,191.3 347.8,197.0 388.7,201.8 404.8,190.1 415.7,188.4 426.9,190.6 443.4,196.8 451.8,197.9 484.7,195.5 504.6,196.8 518.8,200.8 520.0,204.0 522.6,205.7 533.1,209.5 530.2,210.2 519.3,206.7 514.4,207.6 484.9,217.2 471.5,224.5 501.9,226.1 508.4,228.1 522.6,235.7 506.1,236.3 502.8,237.7 498.1,243.5 492.0,246.9 491.6,249.1 497.4,250.9 481.1,252.0 469.7,256.0 445.4,252.9 432.2,253.1 403.6,246.6 361.2,245.3 337.5,239.5 318.8,237.5 299.8,232.8 288.2,233.5 268.8,224.8 248.7,224.7 245.8,223.6 242.9,219.4 237.9,216.7 211.4,215.3 198.6,212.4 170.0,211.1 157.3,208.0 149.3,199.1 164.7,201.8 182.4,202.0 207.8,198.8 215.0,200.0 234.8,195.1 241.7,197.0 258.9,198.4 276.8,202.8 274.3,198.8 293.8,202.8 296.4,202.4 292.4,200.4 288.8,195.0 293.1,196.6 309.9,197.0 321.2,199.5 322.1,198.8 319.2,197.1 311.0,186.3 303.1,180.1 304.9,177.4" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="106.9" cy="24.0" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>An 5.9 km route near Bourg-Saint-Maurice, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.</p>
 

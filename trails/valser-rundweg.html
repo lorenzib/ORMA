@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="384.5,98.6 378.5,85.7 372.9,83.9 354.6,74.2 351.4,67.3 347.7,62.5 344.2,53.5 337.7,43.3 327.6,37.6 326.0,35.4 324.3,27.7 321.2,24.0 315.4,24.6 307.6,28.1 294.7,28.1 286.7,32.1 277.6,33.5 275.7,30.7 264.0,30.5 263.2,31.8 263.9,30.1 262.0,29.0 260.0,29.4 259.3,30.8 262.5,32.1 254.5,31.5 255.7,41.0 252.2,70.8 253.2,80.2 249.7,88.8 242.2,100.1 234.9,106.3 233.8,113.8 244.2,126.3 246.4,137.9 254.7,153.8 255.7,159.7 263.3,166.7 269.4,170.2 268.8,181.8 269.8,186.5 285.2,210.2 289.6,220.1 293.1,231.6 297.1,236.0 302.5,239.3 314.4,242.7 322.3,247.2 328.4,248.1 334.7,256.0 349.9,254.0 363.6,254.7 365.9,254.0 366.9,251.2 371.6,249.8 403.5,249.9 403.2,245.2 406.2,236.6 404.2,229.6 398.1,220.1 393.4,208.3 393.6,197.5 389.6,181.9 390.3,174.3 381.5,168.9 378.4,165.3 368.2,162.3 369.3,156.2 365.5,159.1 363.8,162.2 356.7,161.6 348.3,156.7 334.3,157.1 331.1,161.4 320.1,166.0 316.7,171.4 321.2,165.2 331.1,161.4 334.1,158.1 333.6,146.3 335.8,124.7 339.9,125.7 359.5,114.8 366.9,116.2 372.0,115.9 374.7,114.5 372.1,106.2 379.5,105.2 384.5,98.6" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="384.5" cy="98.6" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>A 5.6 km loop near Bressanone / Brixen, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.</p>
 

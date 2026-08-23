@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="247.2,24.0 247.2,24.0 246.3,26.4 251.8,37.4 253.0,44.4 248.3,46.1 246.6,44.2 242.5,43.9 235.4,46.6 228.6,52.0 219.6,53.3 207.9,51.8 189.8,52.2 199.2,53.7 204.6,57.3 211.0,65.1 211.0,69.7 214.0,71.4 215.5,74.2 214.7,78.7 211.2,81.8 210.6,84.2 202.6,87.5 201.4,89.5 203.4,92.0 204.9,97.9 196.2,102.3 195.5,104.1 196.7,106.8 196.0,112.2 199.2,117.5 217.7,132.3 227.1,133.9 233.0,137.0 237.7,135.4 248.5,137.9 249.8,140.4 252.5,141.9 252.3,143.4 254.3,144.8 255.5,148.5 257.9,149.4 259.2,151.2 259.3,154.5 262.1,160.5 259.3,164.1 260.6,166.0 259.9,167.9 262.7,169.7 271.1,167.6 275.2,168.8 287.2,166.6 290.2,167.9 293.6,172.5 306.1,172.6 312.0,175.4 323.1,174.6 331.7,176.2 348.4,180.3 354.9,185.1 363.9,185.3 376.0,182.1 387.1,185.0 415.4,195.2 411.4,202.6 402.2,209.5 412.3,206.0 414.9,206.5 415.4,207.2 412.2,212.4 414.7,214.7 414.7,216.0 407.0,223.7 399.5,227.5 394.9,235.8 395.2,243.3 399.2,251.2 399.2,255.0 400.9,256.0 407.2,251.7 407.9,247.6 414.9,243.6 427.7,239.2 442.2,230.9 448.3,226.0 450.2,217.3 447.0,206.6 446.5,199.4 436.1,189.5 421.0,183.1 412.0,185.4 375.7,174.3 367.2,173.2 358.6,173.6 350.2,167.9 343.0,167.2 339.7,164.1 331.7,159.9 319.8,158.8 317.7,152.2 310.4,151.7 309.3,147.4 305.4,141.1 296.3,146.8 294.7,149.3 271.1,157.4 268.3,160.8 268.0,164.5 266.0,163.2 265.3,165.3 261.6,162.2 262.1,160.5 259.3,154.5 259.2,151.2 257.9,149.4 255.5,148.5 254.3,144.8 252.3,143.4 252.5,141.9 249.8,140.4 248.5,137.9 237.7,135.4 233.0,137.0 227.1,133.9 217.7,132.3 199.2,117.5 196.0,112.2 196.7,106.8 195.5,104.1 196.2,102.3 204.9,97.9 203.4,92.0 201.4,89.5 202.6,87.5 210.6,84.2 211.2,81.8 214.7,78.7 215.5,74.2 214.0,71.4 211.0,69.7 211.0,65.1 204.6,57.3 199.2,53.7 189.8,52.2 207.9,51.8 219.6,53.3 228.6,52.0 235.4,46.6 242.5,43.9 246.6,44.2 248.3,46.1 253.0,44.4 251.8,37.4 245.1,24.6 247.2,24.0" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="247.2" cy="24.0" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>A 7 km loop near Ortisei / Val Gardena, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.</p>
 

@@ -202,8 +202,19 @@ function photoCreditHtml(t){
   if(!t.imageIcon)return '';
   const credit=photoProvenance.heroCredit(t);if(!credit)return '';
   const label=escapeHtml(credit.label);
-  const content=credit.url?`<a href="${escapeHtml(credit.url)}" rel="noopener nofollow">${label}</a>`:label;
-  return `<p class="sp-src" style="margin:-8px 0 14px;">${content}</p>`;
+  let content=credit.url?`<a href="${escapeHtml(credit.url)}" rel="noopener nofollow">${label}</a>`:label;
+  if(credit.url&&t.imageCreator&&t.imageLicence){
+    const title=String(typeof t.imageCredit==='string'?t.imageCredit:t.name).split(/\s+[—·]\s+/)[0].trim();
+    const licence=t.imageLicenceUrl
+      ?`<a href="${escapeHtml(t.imageLicenceUrl)}" rel="license noopener">${escapeHtml(t.imageLicence)}</a>`
+      :escapeHtml(t.imageLicence);
+    const publisher=/Wikimedia Commons/i.test(credit.text)?' <span aria-hidden="true">·</span> via Wikimedia Commons':'';
+    content=`<a href="${escapeHtml(credit.url)}" rel="noopener nofollow">${escapeHtml(title)}</a> by ${escapeHtml(t.imageCreator)} <span aria-hidden="true">·</span> ${licence}${publisher}`;
+  }
+  return `<details class="sp-photo-credit">
+      <summary><span aria-hidden="true">ⓘ</span> Photo credit</summary>
+      <div class="sp-photo-credit__body">${content} <span aria-hidden="true">·</span> Cropped for display.</div>
+    </details>`;
 }
 
 // Inline SVG of the elevation profile.
@@ -455,6 +466,15 @@ function trailPage(t, slug, all) {
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -497,8 +517,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
     ${badge}
     ${t.paid ? '<span class="dp-badge dp-badge--neutral"><span>Paid access</span></span>' : ''}
   </div>
-  ${t.imageIcon ? photoHtml(t) : routeHtml}
-  ${photoCreditHtml(t)}
+  ${t.imageIcon ? `<figure class="sp-photo">${photoHtml(t)}${photoCreditHtml(t)}</figure>` : routeHtml}
   ${!t.imageIcon && t.imagePlaceholder ? `<p class="sp-src" style="display:flex;align-items:center;gap:8px;margin:-6px 0 14px;"><img src="../logo.svg" alt="" width="22" height="22" style="flex:none;"> We're working on adding photos of this trail.</p>` : ''}
   <p>${escapeHtml(t.desc || '')}</p>
 

@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="228.7,49.8 253.6,35.6 263.8,35.8 269.5,38.5 292.4,38.8 308.9,27.2 337.0,26.2 345.7,32.6 349.7,33.1 382.2,24.0 374.9,29.4 371.6,35.3 380.6,32.9 389.9,32.6 406.6,44.6 426.3,47.6 430.7,46.6 447.2,34.6 455.8,31.1 456.9,35.8 463.2,42.5 463.7,48.8 495.8,83.1 495.0,90.2 483.8,92.9 481.1,98.2 483.9,102.5 478.7,104.3 469.7,113.3 463.1,115.6 457.4,113.1 451.1,119.1 444.5,122.5 434.4,123.7 428.1,129.5 429.0,132.5 434.9,135.7 418.6,147.2 415.6,151.7 424.8,159.4 424.8,163.4 418.4,164.5 414.9,161.0 406.4,159.3 392.1,160.3 390.8,166.5 363.9,195.0 363.0,205.0 353.4,213.9 342.2,218.9 318.8,219.2 301.7,226.3 296.8,230.9 289.5,232.2 284.1,236.9 274.0,236.6 274.2,240.7 265.9,241.7 259.9,252.0 255.4,255.1 249.4,256.0 232.6,238.8 226.3,217.1 227.0,204.1 222.6,189.3 204.2,161.5 187.0,106.3 178.1,104.8 171.0,86.5 159.7,77.6 144.2,71.7" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="228.7" cy="49.8" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>Rolling mountain pastures in the quieter Friulian Dolomites, passing a waterfall along the way.</p>
 

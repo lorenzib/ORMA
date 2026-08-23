@@ -31,6 +31,15 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
+  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
+  .sp-photo picture{display:block;}
+  .sp-photo .sp-img{width:100%;margin:0;}
+  .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary::-webkit-details-marker{display:none;}
+  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
+  .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
   .sp-review-meta a{flex:none;color:var(--forest,#2E4034);font-weight:700;text-decoration:none;}
   .sp-review-meta a:hover{text-decoration:underline;}
@@ -117,7 +126,6 @@
     <polyline points="355.7,178.9 312.6,177.3 353.3,177.7 370.8,192.0 461.3,234.7 513.1,233.9 527.5,238.3 532.7,235.9 531.5,225.1 539.9,221.5 558.6,217.1 579.7,223.9 586.9,223.1 582.5,207.6 589.7,206.0 594.1,200.0 603.2,223.5 606.8,223.5 614.8,215.1 616.0,201.2 608.4,185.6 609.2,170.1 590.9,142.6 592.9,135.0 589.7,125.8 583.3,117.9 568.6,112.7 557.8,98.7 555.8,90.8 536.7,78.8 529.5,50.5 519.1,51.3 527.1,48.9 509.2,52.1 494.0,43.7 449.8,41.7 429.4,46.1 424.6,53.7 404.3,60.5 311.8,55.7 260.4,61.7 252.4,58.9 228.1,63.3 214.2,71.2 187.0,75.2 165.1,74.4 128.8,88.8 100.5,94.4 72.6,105.5 24.0,114.7 91.4,113.9 104.9,116.3 203.0,101.5 227.7,101.1 248.8,105.9 296.3,109.5 327.4,116.7 345.7,127.4 586.9,223.1 586.9,219.1 586.9,223.1 579.7,223.9 558.6,217.1 539.9,221.5 530.7,226.3 532.7,235.1 528.7,237.9 532.7,235.9 525.1,237.9 513.1,233.9 461.3,234.7 419.1,212.8" fill="none" stroke="#2E4034" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
     <circle cx="355.7" cy="178.9" r="6" fill="#2E4034" stroke="#fff" stroke-width="2"/>
   </svg>
-  
   
   <p>An 4.1 km route near Val di Funes / Villnöss, imported from the OpenStreetMap hiking network. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.</p>
 
