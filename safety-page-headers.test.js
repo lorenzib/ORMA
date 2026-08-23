@@ -9,7 +9,6 @@ const pages = [
   ['dogs-on-cable-cars.html', 'dogs-on-cable-cars-v3.jpg'],
   ['heat-overheating.html', 'heat-hydration-waterfall-v1.jpg'],
   ['paw-protection.html', 'paw-protection-forest-v1.jpg'],
-  ['alpine-plants-for-dogs.html', 'flowers-plants-dogs.jpg'],
   ['livestock-guard-dogs.html', 'livestock-guardian-dogs-v1.jpg'],
   ['dogs-at-rifugi.html', 'dogs-at-rifugi.jpg'],
 ];
@@ -38,5 +37,15 @@ describe('Safety Library article headers', () => {
     expect(css).toMatch(/\.safety-photo-header\.section-page-head::before\{[^}]*linear-gradient/s);
     expect(css).toMatch(/\.safety-photo-header__image\{[^}]*object-fit:cover;[^}]*object-position:var\(--safety-photo-position\)/s);
     expect(css).toMatch(/@media\(max-width:760px\)[\s\S]*\.safety-photo-header\.section-page-head\{[^}]*min-height:350px/s);
+  });
+
+  test('the visual Alpine plants guide keeps its identification mosaic', () => {
+    document.documentElement.innerHTML = fs.readFileSync(path.join(__dirname, 'guides', 'alpine-plants-for-dogs.html'), 'utf8');
+
+    const header = document.querySelector('.apg-hero.section-page-head');
+    expect(header).not.toBeNull();
+    expect(header.querySelector('h1')).not.toBeNull();
+    expect(header.querySelector('.section-page-subtitle')).not.toBeNull();
+    expect(header.querySelectorAll('.apg-hero-mosaic img')).toHaveLength(3);
   });
 });
