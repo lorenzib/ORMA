@@ -74,8 +74,13 @@ describe('editorial trail collections', () => {
     expect(detail).toContain('data-collection-layer="food" aria-pressed="false"');
     expect(detail).toContain('class="collection-trail-card__toggle" aria-expanded="false"');
     expect(detail).toContain('class="collection-trail-card__details" id="${detailsId}" hidden');
+    expect(detail).toContain('data-collection-match-inline="${esc(trail.id)}"');
+    expect(detail).toContain('data-collection-match-score="${esc(trail.id)}"');
+    expect(detail).toContain('APPROX. MATCH FOR A MEDIUM DOG');
+    expect(detail).toContain('window.DoloPawsAuth.getDogProfile()');
     expect(detail).not.toContain('<span class="simple-card__tier">${esc(safety)}</span>');
     const page = fs.readFileSync(path.join(__dirname, 'collection.html'), 'utf8');
     expect(page).toContain('map-runtime.js');
+    expect(page.indexOf('scoring.js')).toBeLessThan(page.indexOf('collection-detail.js'));
   });
 });

@@ -1114,7 +1114,12 @@ img,svg{max-width:100%;height:auto;}
 .collection-map-legend__item:hover,.collection-map-legend__item:focus-visible{outline:none;background:#E8EEE5;}
 .collection-map-legend__number,.collection-trail-index{display:grid;place-items:center;width:26px;height:26px;box-sizing:border-box;border:2px solid #fff;border-radius:50%;background:var(--route-colour);box-shadow:0 2px 7px rgba(31,48,37,.2);color:#fff;font:800 11px/1 var(--font-sans);}
 .collection-map-legend__item b{display:block;overflow:hidden;text-overflow:ellipsis;color:var(--ink);font-size:11.5px;line-height:1.25;white-space:nowrap;}
-.collection-map-legend__item small{display:block;margin-top:3px;overflow:hidden;text-overflow:ellipsis;color:var(--ink-soft);font-size:10px;white-space:nowrap;}
+.collection-map-legend__item small{display:block;margin-top:3px;color:var(--ink-soft);font-size:10px;line-height:1.3;white-space:normal;}
+.collection-difficulty{color:var(--ink-soft);}
+.collection-dog-match{font-weight:750;}
+.collection-dog-match[data-tier="great"]{color:#2C5C34;}
+.collection-dog-match[data-tier="good"]{color:#8A5A16;}
+.collection-dog-match[data-tier="check"]{color:#9C3A25;}
 .collection-map-marker{display:grid;place-items:center;width:30px;height:30px;padding:0;border:3px solid #fff;border-radius:50%;background:var(--route-colour);box-shadow:0 3px 10px rgba(31,48,37,.32);color:#fff;font:850 11px/1 var(--font-sans);cursor:pointer;}
 .collection-map-marker:focus-visible{outline:3px solid rgba(46,64,52,.35);outline-offset:2px;}
 .collection-map-popup__type{display:block;margin-bottom:4px;color:var(--accent);font:800 9.5px/1 var(--font-sans);letter-spacing:.08em;text-transform:uppercase;}
