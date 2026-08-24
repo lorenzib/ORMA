@@ -39,6 +39,17 @@ describe('Safety Library article headers', () => {
     expect(css).toMatch(/@media\(max-width:760px\)[\s\S]*\.safety-photo-header\.section-page-head\{[^}]*min-height:350px/s);
   });
 
+  test('the cable-car header applies a dog-centred focal zoom', () => {
+    document.documentElement.innerHTML = fs.readFileSync(path.join(__dirname, 'guides', 'dogs-on-cable-cars.html'), 'utf8');
+    const header = document.querySelector('.safety-photo-header');
+    const image = header.querySelector('.safety-photo-header__image');
+    const pageCss = document.querySelector('style').textContent;
+
+    expect(pageCss).toMatch(/\.cg-hero\{--safety-photo-position:center 62%/);
+    expect(pageCss).toMatch(/@media\(max-width:620px\)[\s\S]*\.cg-hero\{--safety-photo-position:center 72%/);
+    expect(image.getAttribute('style')).toBe('inset:-8%;width:116%;height:116%;');
+  });
+
   test('the redesigned Alpine plants guide uses a full-width photographic mosaic', () => {
     document.documentElement.innerHTML = fs.readFileSync(path.join(__dirname, 'guides', 'alpine-plants-for-dogs.html'), 'utf8');
     const css = fs.readFileSync(path.join(__dirname, 'alpine-plants-guide.css'), 'utf8');

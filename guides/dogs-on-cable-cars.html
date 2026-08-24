@@ -26,7 +26,7 @@
   .cg-guide{padding-bottom:42px;color:var(--cg-ink);}
   .cg-guide h1,.cg-guide h2,.cg-guide h3{font-family:"Bricolage Grotesque",sans-serif;color:var(--cg-ink);}
   .cg-shell{width:min(1120px,calc(100% - 48px));margin:0 auto;}
-  .cg-hero{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:38px;align-items:center;width:min(1120px,calc(100% - 48px));margin:0 auto;padding:30px 0 24px;border-bottom:1px solid var(--cg-line);}
+  .cg-hero{--safety-photo-position:center 62%;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:38px;align-items:center;width:min(1120px,calc(100% - 48px));margin:0 auto;padding:30px 0 24px;border-bottom:1px solid var(--cg-line);}
   .cg-breadcrumbs{margin:0 0 11px;color:var(--ink-soft);font-size:.66rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;}
   .cg-hero h1{max-width:760px;margin:0 0 9px;font-size:clamp(38px,4.4vw,56px);line-height:1;letter-spacing:-.04em;}
   .cg-hero .section-page-subtitle{max-width:760px;margin:0;color:var(--cg-soft);font-size:clamp(15px,1.35vw,18px);line-height:1.5;white-space:normal;text-wrap:pretty;}
@@ -88,7 +88,7 @@
     .cg-rule-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
   }
   @media(max-width:620px){
-    .cg-hero{grid-template-columns:1fr;gap:14px;padding:22px 0 18px;}
+    .cg-hero{--safety-photo-position:center 72%;grid-template-columns:1fr;gap:14px;padding:22px 0 18px;}
     .cg-hero h1{font-size:34px;}
     .cg-hero .section-page-subtitle{font-size:14px;}
     .cg-hero-media img{aspect-ratio:2.4/1;}
@@ -144,8 +144,8 @@
 </div>
 
 <main class="cg-guide" id="mainContent">
-  <header class="cg-hero safety-photo-header section-page-head content-canvas" style="--safety-photo-position:center 62%;">
-    <img class="safety-photo-header__image" src="../images/editorial/safety-library/dogs-on-cable-cars-v5.jpg" alt="" width="1086" height="1448" decoding="async">
+  <header class="cg-hero safety-photo-header section-page-head content-canvas">
+    <img class="safety-photo-header__image" src="../images/editorial/safety-library/dogs-on-cable-cars-v5.jpg" alt="" width="1086" height="1448" decoding="async" style="inset:-8%;width:116%;height:116%;">
     <div>
       <p class="cg-breadcrumbs">Safety library / Health &amp; access</p>
       <h1>Cable cars with your dog</h1>
