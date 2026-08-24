@@ -1,5 +1,15 @@
 (function(){
   let mode = 'login'; // 'login' | 'signup' | 'reset'
+  const authScript = document.currentScript;
+  let authAssetRoot;
+  try {
+    authAssetRoot = authScript && authScript.src
+      ? new URL('.', authScript.src)
+      : new URL('/', window.location.href);
+  } catch(error) {
+    authAssetRoot = new URL('http://localhost/');
+  }
+  const authAsset = path => new URL(path, authAssetRoot).href;
 
   // Pages used to carry (or skip) their own copy of the login dialog, so
   // "Log in" bounced everyone to the homepage. The dialog now lives here:
@@ -12,11 +22,11 @@
       '<div id="authModal" class="modal-overlay auth-modal-redesign" hidden role="dialog" aria-modal="true" aria-labelledby="authTitle">' +
         '<div class="modal">' +
           '<div class="auth-hero">' +
-            '<img data-authsrc="images/lago-di-braies.webp" alt="" class="auth-hero-img">' +
+            '<img data-authsrc="' + authAsset('images/lago-di-braies.webp') + '" alt="" class="auth-hero-img">' +
             '<div class="auth-hero-shade"></div>' +
             '<button id="authClose" class="modal-close" aria-label="Close">&times;</button>' +
             '<div class="auth-hero-copy">' +
-              '<span class="auth-hero-brand"><img src="logo.svg" alt="">ORMA</span>' +
+              '<span class="auth-hero-brand"><img src="' + authAsset('logo.svg') + '" alt="">ORMA</span>' +
               '<h2 id="authTitle" data-i18n="nav.login">Log in</h2>' +
               '<p class="hint" id="authHint" data-i18n="auth.hint">Save trails to your account so they follow you across devices.</p>' +
             '</div>' +
@@ -40,7 +50,7 @@
                 '<input type="password" id="authConfirmPassword" autocomplete="new-password">' +
               '</label>' +
               '<button type="button" id="forgotPasswordBtn" class="forgot-link" data-i18n="auth.forgot">Forgot password?</button>' +
-              '<label class="auth-terms" id="authTermsLabel" hidden><input type="checkbox" id="authTerms"> <span>I agree to the <a href="terms.html">terms</a> and <a href="privacy.html">privacy policy</a>.</span></label>' +
+              '<label class="auth-terms" id="authTermsLabel" hidden><input type="checkbox" id="authTerms"> <span>I agree to the <a href="' + authAsset('terms.html') + '">terms</a> and <a href="' + authAsset('privacy.html') + '">privacy policy</a>.</span></label>' +
               '<button type="submit" class="auth-submit" id="authSubmit" data-i18n="nav.login">Log in</button>' +
             '</form>' +
             '<div class="auth-divider"><span>or</span></div>' +
@@ -87,6 +97,7 @@
   const guestLink = document.getElementById('authGuestBtn');
   const requestedNext = new URLSearchParams(window.location.search).get('next');
   let activeReturnTarget = safeReturnTarget(requestedNext);
+  let stayOnPage = false;
   let returnFocus = null;
   const focusableSelector = 'button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
 
@@ -126,13 +137,13 @@
       // still use it immediately and a later auth-state pass can retry.
     }
     closeModal();
-    const target = safeReturnTarget(activeReturnTarget);
+    const target = stayOnPage ? '' : safeReturnTarget(activeReturnTarget);
     if(target) window.location.replace(target);
   }
 
   function openModal(){
     if(window.DoloPawsAuth && window.DoloPawsAuth.currentUser){
-      window.location.href = 'account.html';
+      window.location.href = authAsset('account.html');
       return;
     }
     if(!modal) return; // defensive: injection above guarantees one normally
@@ -145,8 +156,10 @@
     errorBox.hidden = true;
     form.reset();
     setMode(mode);
-    returnFocus = document.activeElement && document.activeElement !== document.body
-      ? document.activeElement : accountBtn;
+    if(!returnFocus){
+      returnFocus = document.activeElement && document.activeElement !== document.body
+        ? document.activeElement : accountBtn;
+    }
     modal.hidden = false;
     document.body.classList.add('auth-modal-open');
     setTimeout(() => emailInput.focus(), 0);
@@ -214,7 +227,13 @@
     }
   }
 
-  if(accountBtn) accountBtn.addEventListener('click', openModal);
+  if(accountBtn) accountBtn.addEventListener('click', () => {
+    // Header login is an in-page action too; never inherit an older
+    // post-auth return target from a previous modal session.
+    stayOnPage = true;
+    activeReturnTarget = '';
+    openModal();
+  });
 
   // Everything below only exists on pages that include the auth modal
   // (index, browse). Wiring it unguarded crashed this whole script on the
@@ -357,13 +376,17 @@
   // the modal already in signup mode.
   window.DoloPawsAuthUI = {
     openSignup(options){
-      if(options && options.next) activeReturnTarget = safeReturnTarget(options.next);
+      stayOnPage = !!(options && options.stay);
+      activeReturnTarget = stayOnPage ? '' : safeReturnTarget(options && options.next || requestedNext);
       setMode('signup');
+      returnFocus = options && options.opener ? options.opener : null;
       openModal();
     },
     openLogin(options){
-      if(options && options.next) activeReturnTarget = safeReturnTarget(options.next);
+      stayOnPage = !!(options && options.stay);
+      activeReturnTarget = stayOnPage ? '' : safeReturnTarget(options && options.next || requestedNext);
       setMode('login');
+      returnFocus = options && options.opener ? options.opener : null;
       openModal();
     },
   };

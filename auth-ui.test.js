@@ -69,6 +69,25 @@ describe('authentication modal accessibility', () => {
     expect(document.activeElement).toBe(toggle);
   });
 
+  test('closes when the visitor clicks outside the dialog', async () => {
+    mountAuth();
+    const opener = document.getElementById('accountBtn');
+    opener.click();
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    const modal = document.getElementById('authModal');
+    modal.dispatchEvent(new MouseEvent('click', { bubbles:true, cancelable:true }));
+
+    expect(modal.hidden).toBe(true);
+    expect(document.body.classList.contains('auth-modal-open')).toBe(false);
+  });
+
+  test('the shared API keeps login and signup on the current page', () => {
+    expect(authScript).toContain('stayOnPage = !!(options && options.stay)');
+    expect(authScript).toContain("activeReturnTarget = stayOnPage ? ''");
+    expect(authScript).toContain("const target = stayOnPage ? ''");
+  });
+
   test('validation, progress and Firebase failures use translation keys', () => {
     expect(authScript).toContain("window.t('auth.error.passwordMismatch')");
     expect(authScript).toContain("window.t('auth.error.termsRequired')");

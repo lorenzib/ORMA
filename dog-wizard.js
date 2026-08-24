@@ -18,6 +18,31 @@
   var phase     = 'form'; // 'draft-prompt' | 'form' | 'close-confirm'
   var data      = makeEmptyData();
 
+  // The profile wizard is a shared dialog. Pages that only load the shared
+  // navigation bundle receive the same markup on demand instead of sending
+  // visitors to the homepage to find it there.
+  if (!document.getElementById('dogWizard') && document.body) {
+    var wizardHost = document.createElement('div');
+    wizardHost.innerHTML =
+      '<div id="dogWizard" class="dw-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="dwTitle">' +
+        '<div class="dw-modal">' +
+          '<button id="dwCloseBtn" class="dw-close" aria-label="Close">&times;</button>' +
+          '<h2 id="dwTitle" class="dw-title">Add a dog</h2>' +
+          '<div id="dwStepCount" class="dw-stepcount" hidden></div>' +
+          '<p id="dwSubtitle" class="dw-subtitle"></p>' +
+          '<div id="dwStepper" class="dw-stepper" role="list"></div>' +
+          '<div id="dwProgress" class="dw-progress" hidden aria-hidden="true"><span></span></div>' +
+          '<div id="dwBody" class="dw-body"></div>' +
+          '<div id="dwFooter" class="dw-footer">' +
+            '<button id="dwBackBtn" type="button" class="dw-btn-ghost">&larr; Back</button>' +
+            '<button id="dwNextBtn" type="button" class="dw-btn-primary">Next &rarr;</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div id="dwToast" class="dw-toast" hidden role="status" aria-live="polite"></div>';
+    while (wizardHost.firstElementChild) document.body.appendChild(wizardHost.firstElementChild);
+  }
+
   // ---- DOM ----
   var overlay   = document.getElementById('dogWizard');
   var titleEl   = document.getElementById('dwTitle');
@@ -30,8 +55,7 @@
   var closeBtn  = document.getElementById('dwCloseBtn');
   var toastEl   = document.getElementById('dwToast');
 
-  // Pages without the wizard markup: register a no-op API and bail
-  // instead of crashing on the missing elements.
+  // Defensive fallback for malformed host pages.
   if (!overlay || !nextBtn || !backBtn || !closeBtn) {
     window.DoloPawsWizard = { open: function () {} };
     return;
@@ -694,7 +718,7 @@
   closeBtn.addEventListener('click', requestClose);
 
   overlay.addEventListener('click', function (e) {
-    if (e.target === overlay) requestClose();
+    if (e.target === overlay) doClose();
   });
 
   // ---- Submit ----
@@ -815,19 +839,25 @@
       '</div>';
 
     document.getElementById('dwSaveProfileBtn').addEventListener('click', function () {
+      var signupReturnFocus = preFocusEl;
       try {
         localStorage.setItem(PENDING_PROFILE_KEY, JSON.stringify(profile));
       } catch (e) {}
       doClose();
-      if (window.DoloPawsAuthUI) {
-        window.DoloPawsAuthUI.openSignup();
+      var openRequest = null;
+      if (window.DoloPawsCTA && typeof window.DoloPawsCTA.openSignup === 'function') {
+        openRequest = window.DoloPawsCTA.openSignup(signupReturnFocus);
+      } else if (window.DoloPawsAuthUI) {
+        openRequest = window.DoloPawsAuthUI.openSignup({ stay:true, opener:signupReturnFocus });
+      }
+      Promise.resolve(openRequest).then(function () {
         // Reframe the auth modal: the user is saving, not "registering".
         var authTitle = document.getElementById('authTitle');
         var authHint  = document.getElementById('authHint');
         if (authTitle) authTitle.textContent = 'Save ' + profile.name + '’s profile';
         if (authHint)  authHint.textContent  = 'Create a free account so ' + profile.name +
           '’s matches follow you across devices.';
-      }
+      });
     });
     document.getElementById('dwSkipSaveBtn').addEventListener('click', function () {
       // Draft already saved — they can resume any time from the CTA.
@@ -859,8 +889,8 @@
   }
 
   // ---- Open ----
-  function openWizard(existingDog) {
-    preFocusEl = document.activeElement;
+  function openWizard(existingDog, options) {
+    preFocusEl = options && options.opener ? options.opener : document.activeElement;
     isEditing  = !!(existingDog && existingDog.name);
 
     if (isEditing) {

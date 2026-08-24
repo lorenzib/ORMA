@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260821-7">
+<link rel="stylesheet" href="styles.css?v=20260824-1">
 <style>
   /* Onboarding — OnboardingScreen.jsx: full-height ink flow, image with
      scrim on top, dashes + copy + Back/Next below. */
@@ -45,7 +45,7 @@
   }
 </style>
 </head>
-<body>
+<body data-hide-dog-profile-banner>
 
 <div class="ob">
   <div class="ob-visual">
@@ -65,8 +65,9 @@
   </div>
 </div>
 
+<script src="mobile-nav.js?v=20260824-1" defer></script>
 <script>
-// Three steps, then straight into the dog wizard on the homepage.
+// Three steps, then open the shared dog wizard without leaving this page.
 (function(){
   var STEPS = [
     { title: 'Every trail, scored for your dog',
@@ -98,7 +99,10 @@
   }
   document.getElementById('obBack').addEventListener('click', function(){ if(i > 0){ i--; render(); } });
   document.getElementById('obNext').addEventListener('click', function(){
-    if(i === STEPS.length - 1){ window.location.href = '/?wizard=1'; return; }
+    if(i === STEPS.length - 1){
+      if(window.DoloPawsCTA) window.DoloPawsCTA.openDogProfile(this);
+      return;
+    }
     i++;
     render();
   });

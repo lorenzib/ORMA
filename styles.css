@@ -1701,10 +1701,10 @@ body.map-fs-open{overflow:hidden;}
 /* ============================================================
    DOG PROFILE WIZARD (dog-wizard.js) — guest-first onboarding
 ============================================================= */
-.dw-overlay{position:fixed;inset:0;background:rgba(46,64,52,.45);align-items:center;justify-content:center;padding:20px;z-index:1000;}
+.dw-overlay{position:fixed;inset:0;background:rgba(23,42,28,.55);align-items:center;justify-content:center;padding:20px;z-index:1000;}
 .dw-overlay[hidden]{display:none !important;}
 .dw-overlay:not([hidden]){display:flex;}
-.dw-modal{position:relative;background:var(--card);border-radius:var(--radius-lg);box-shadow:var(--shadow);width:100%;max-width:520px;max-height:90vh;display:flex;flex-direction:column;padding:26px 28px 22px;}
+.dw-modal{position:relative;background:var(--bg);border-radius:20px;box-shadow:0 30px 70px rgba(23,42,28,.5);width:100%;max-width:520px;max-height:90vh;display:flex;flex-direction:column;padding:26px 28px 22px;}
 .dw-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:24px;line-height:1;color:var(--ink-soft);cursor:pointer;padding:4px;}
 .dw-close:hover{color:var(--ink);}
 .dw-title{font-size:20px;padding-right:28px;}
@@ -2535,6 +2535,7 @@ body.map-fs-open{overflow:hidden;}
 
 /* ============ SPLIT-IMAGE AUTH MODAL ============ */
 .auth-modal-redesign .modal{padding:0;overflow-y:auto;overflow-x:hidden;max-width:380px;max-height:calc(100vh - 40px);background:var(--bg);border-radius:var(--radius-modal);box-shadow:var(--shadow-modal);}
+.auth-modal-redesign.modal-overlay{background:rgba(23,42,28,.55);}
 .auth-hero{position:relative;padding:26px 28px 22px;background:var(--ink);color:var(--bg);overflow:hidden;}
 .auth-hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;}
 .auth-hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,64,52,.35),rgba(46,64,52,.85));}

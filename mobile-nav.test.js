@@ -74,7 +74,9 @@ describe('shared navigation hardening', () => {
     expect(banner.querySelector('h2').textContent).toBe('Add your dog');
     expect(banner.querySelector('.dog-profile-banner__copy > p:last-child').textContent)
       .toBe('Add your dog for personalised matches. Create a free account only when you choose to save.');
-    expect(banner.querySelector('a').getAttribute('href')).toBe('/?wizard=1');
+    const action = banner.querySelector('[data-dog-profile-cta]');
+    expect(action.tagName).toBe('BUTTON');
+    expect(action.textContent).toBe('Add your dog');
   });
 
   test('does not duplicate pages that provide an inline dog-profile experience', () => {
@@ -110,7 +112,7 @@ describe('shared navigation hardening', () => {
     const banner = isolated.document.querySelector('.dog-profile-banner');
     expect(isolated.document.body.firstElementChild).toBe(banner);
     expect(banner.hidden).toBe(false);
-    expect(banner.querySelector('a').getAttribute('href')).toBe('/?wizard=1');
+    expect(banner.querySelector('[data-dog-profile-cta]').tagName).toBe('BUTTON');
   });
 
   test('shows the banner for a signed-in account without dog details', () => {
@@ -171,16 +173,81 @@ describe('shared navigation hardening', () => {
     expect(banner.hidden).toBe(true);
   });
 
-  test('uses the correct dog-wizard path from nested guide and trail pages', () => {
+  test('opens the shared dog wizard in place from nested guide and trail pages', async () => {
     const frame = document.createElement('iframe');
     document.body.appendChild(frame);
     const isolated = frame.contentWindow;
     isolated.localStorage.clear();
     isolated.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="../index.html">ORMA</a><div class="links"></div></nav>';
+    isolated.DoloPawsWizard = { open: jest.fn() };
     isolated.eval(mobileNav);
 
-    expect(isolated.document.querySelector('.dog-profile-banner a').getAttribute('href'))
-      .toBe('/?wizard=1');
+    const action = isolated.document.querySelector('.dog-profile-banner [data-dog-profile-cta]');
+    action.dispatchEvent(new isolated.MouseEvent('click', { bubbles:true, cancelable:true }));
+    await Promise.resolve();
+
+    expect(isolated.DoloPawsWizard.open).toHaveBeenCalledWith(null, { opener:action });
+    expect(isolated.location.pathname).not.toBe('/index.html');
+  });
+
+  test('opens page login links in the shared modal without navigation', async () => {
+    const frame = document.createElement('iframe');
+    document.body.appendChild(frame);
+    const isolated = frame.contentWindow;
+    isolated.localStorage.clear();
+    isolated.document.body.innerHTML = `
+      <nav class="topnav"><a class="brand" href="../index.html">ORMA</a></nav>
+      <a id="guideLogin" href="../index.html?view=login">Log in</a>`;
+    isolated.DoloPawsAuthUI = { openLogin: jest.fn() };
+    isolated.eval(mobileNav);
+
+    const action = isolated.document.getElementById('guideLogin');
+    action.dispatchEvent(new isolated.MouseEvent('click', { bubbles:true, cancelable:true }));
+    await Promise.resolve();
+
+    expect(isolated.DoloPawsAuthUI.openLogin).toHaveBeenCalledWith({ stay:true, opener:action });
+    expect(isolated.location.pathname).not.toBe('/index.html');
+  });
+
+  test.each([
+    ['saved state', '<button id="savedLoginBtn">Log in</button>', 'savedLoginBtn'],
+    ['journal state', '<button id="jnLoginBtn">Log in</button>', 'jnLoginBtn'],
+    ['offline downloads', '<button id="downloadsLoginBtn">log in</button>', 'downloadsLoginBtn'],
+    ['community report', '<button class="place-dog-login" id="placeLogin">Log in</button>', 'placeLogin'],
+  ])('opens the %s login CTA in the same shared modal', async (_label, markup, id) => {
+    const frame = document.createElement('iframe');
+    document.body.appendChild(frame);
+    const isolated = frame.contentWindow;
+    isolated.localStorage.clear();
+    isolated.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a></nav>' + markup;
+    isolated.DoloPawsAuthUI = { openLogin: jest.fn() };
+    isolated.eval(mobileNav);
+
+    const action = isolated.document.getElementById(id);
+    action.dispatchEvent(new isolated.MouseEvent('click', { bubbles:true, cancelable:true }));
+    await Promise.resolve();
+
+    expect(isolated.DoloPawsAuthUI.openLogin).toHaveBeenCalledWith({ stay:true, opener:action });
+  });
+
+  test.each([
+    ['generated trail profile', '<a id="profileCta" href="../account.html?next=trail.html">Create your dog\'s free profile</a>'],
+    ['trail recommendation', '<a id="profileCta" href="onboarding.html">Add your dog to sharpen this score →</a>'],
+    ['trail fit card', '<a id="profileCta" href="account.html?next=trail.html">create a free profile to find out →</a>'],
+  ])('opens the %s CTA in the same dog-profile dialog', async (_label, markup) => {
+    const frame = document.createElement('iframe');
+    document.body.appendChild(frame);
+    const isolated = frame.contentWindow;
+    isolated.localStorage.clear();
+    isolated.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a></nav>' + markup;
+    isolated.DoloPawsWizard = { open: jest.fn() };
+    isolated.eval(mobileNav);
+
+    const action = isolated.document.getElementById('profileCta');
+    action.dispatchEvent(new isolated.MouseEvent('click', { bubbles:true, cancelable:true }));
+    await Promise.resolve();
+
+    expect(isolated.DoloPawsWizard.open).toHaveBeenCalledWith(null, { opener:action });
   });
 
   test('every standard public page with the shared header loads this banner bundle', () => {
@@ -193,9 +260,27 @@ describe('shared navigation hardening', () => {
     expect(pages.length).toBeGreaterThan(150);
     pages.forEach(file => {
       expect(fs.readFileSync(file, 'utf8')).toMatch(
-        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=20260823-[12]"/
+        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=20260824-1"/
       );
     });
+  });
+
+  test('all public login and dog-profile CTAs are covered by the shared launcher', () => {
+    const directories = [__dirname, path.join(__dirname, 'guides'), path.join(__dirname, 'trails')];
+    const pages = directories.flatMap(directory => fs.readdirSync(directory)
+      .filter(name => name.endsWith('.html'))
+      .map(name => path.join(directory, name)));
+    const legacyIntent = /(?:view=login|login=1|wizard=1|addDog=1|mode=add|data-dog-profile-cta|hp-dog-profile-cta)/;
+    const ctaPages = pages.filter(file => legacyIntent.test(fs.readFileSync(file, 'utf8')));
+
+    expect(ctaPages.length).toBeGreaterThan(150);
+    ctaPages.forEach(file => {
+      expect(fs.readFileSync(file, 'utf8')).toMatch(
+        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=20260824-1"/
+      );
+    });
+    expect(mobileNav).not.toContain("window.location.href = '/?view=login");
+    expect(mobileNav).not.toContain("href = '/?wizard=1'");
   });
 
   test('turns the shared footer into the focused CTA and compact navigation', () => {

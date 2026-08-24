@@ -1,4 +1,159 @@
 (function(){
+  const navigationScript = document.currentScript;
+  let siteAssetRoot;
+  try {
+    siteAssetRoot = navigationScript && navigationScript.src
+      ? new URL('.', navigationScript.src)
+      : new URL('/', window.location.href);
+  } catch(error) {
+    // about:blank test frames and embedded previews have no hierarchical
+    // URL. Production pages always take the script-src branch above.
+    siteAssetRoot = new URL('http://localhost/');
+  }
+  let authStackPromise = null;
+  let dogWizardPromise = null;
+
+  function siteAsset(path){
+    return new URL(path, siteAssetRoot).href;
+  }
+
+  function loadSharedScript(path){
+    const source = siteAsset(path);
+    const existing = Array.from(document.scripts).find(script => script.src === source);
+    if(existing && existing.dataset.ormaLoaded === 'true') return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const script = existing || document.createElement('script');
+      const done = () => {
+        script.dataset.ormaLoaded = 'true';
+        resolve();
+      };
+      script.addEventListener('load', done, { once:true });
+      script.addEventListener('error', reject, { once:true });
+      if(!existing){
+        script.src = source;
+        document.body.appendChild(script);
+      } else if(document.readyState === 'complete') {
+        // A preloaded/deferred bundle may already have completed before the
+        // shared launcher was asked for it.
+        window.setTimeout(done, 0);
+      }
+    });
+  }
+
+  function ensureAuthStack(){
+    if(window.DoloPawsAuthUI) return Promise.resolve(window.DoloPawsAuthUI);
+    if(authStackPromise) return authStackPromise;
+    const i18nReady = window.t
+      ? Promise.resolve()
+      : loadSharedScript('i18n.js?v=20260812-5');
+    const firebaseReady = window.DoloPawsAuth
+      ? Promise.resolve()
+      : import(siteAsset('firebase-init.js?v=20260818-13'));
+    authStackPromise = Promise.all([i18nReady, firebaseReady])
+      .then(() => loadSharedScript('auth-ui.js?v=20260824-1'))
+      .then(() => {
+        if(!window.DoloPawsAuthUI) throw new Error('The account dialog did not initialise.');
+        return window.DoloPawsAuthUI;
+      });
+    return authStackPromise;
+  }
+
+  function ensureDogWizard(){
+    if(window.DoloPawsWizard && typeof window.DoloPawsWizard.open === 'function'){
+      return Promise.resolve(window.DoloPawsWizard);
+    }
+    if(dogWizardPromise) return dogWizardPromise;
+    const breedsReady = typeof window.DOG_BREEDS !== 'undefined'
+      ? Promise.resolve()
+      : loadSharedScript('breeds-data.js?v=20260815-4');
+    dogWizardPromise = breedsReady
+      .then(() => loadSharedScript('dog-wizard.js?v=20260824-1'))
+      .then(() => {
+        if(!window.DoloPawsWizard || typeof window.DoloPawsWizard.open !== 'function'){
+          throw new Error('The dog-profile dialog did not initialise.');
+        }
+        return window.DoloPawsWizard;
+      });
+    return dogWizardPromise;
+  }
+
+  function reportLauncherError(kind, error){
+    console.warn('ORMA could not open the ' + kind + ' dialog:', error);
+    window.dispatchEvent(new CustomEvent('dolopaws-dialog-error', {
+      detail:{ kind, error },
+    }));
+  }
+
+  function openLogin(opener){
+    return ensureAuthStack()
+      .then(ui => ui.openLogin({ stay:true, opener }))
+      .catch(error => reportLauncherError('login', error));
+  }
+
+  function openSignup(opener){
+    return ensureAuthStack()
+      .then(ui => ui.openSignup({ stay:true, opener }))
+      .catch(error => reportLauncherError('signup', error));
+  }
+
+  function openDogProfile(opener){
+    return ensureDogWizard()
+      .then(ui => ui.open(null, { opener }))
+      .catch(error => reportLauncherError('dog-profile', error));
+  }
+
+  function loginIntent(control){
+    if(!control || authSummary()) return false;
+    // Keep the private backoffice sign-in and the controls inside the auth
+    // dialog itself outside this public-page dispatcher.
+    if(control.closest('#authModal,.bo-login-shell,.bo-shell')) return false;
+    if(control.matches(
+      '#accountBtn, a.account-btn, button.account-btn,' +
+      '#accountLoginLink,#jnLoginBtn,#savedLoginBtn,#downloadsLoginBtn,' +
+      '.place-dog-login,[data-login-cta]'
+    )) return true;
+    const href = control.getAttribute && (control.getAttribute('href') || '');
+    return /(?:[?&](?:view=login|login=1))(?:&|$)/.test(href);
+  }
+
+  function dogProfileIntent(control){
+    if(!control) return false;
+    if(control.matches('.hp-dog-profile-cta,[data-action="create-dog-profile"],[data-dog-profile-cta]')) return true;
+    const href = control.getAttribute && (control.getAttribute('href') || '');
+    if(/[?&](?:wizard|addDog)=1(?:&|$)/.test(href) || /[?&]mode=add(?:&|$)/.test(href)) return true;
+    const label = String(control.textContent || '').replace(/\s+/g, ' ').trim();
+    if(/onboarding\.html/i.test(href) && /\badd\b.*\bdog\b/i.test(label)) return true;
+    if(!/account\.html/i.test(href)) return false;
+    return (
+      /\b(?:add|create|finish)\b.*\bdog(?:'s|’s)?\b/i.test(label) ||
+      /\bcreate\b.*\b(?:free\s+)?profile\b/i.test(label)
+    );
+  }
+
+  // One capture-phase dispatcher covers navigation controls, page-specific
+  // prompts and dynamically-rendered trail CTAs. It stops their legacy href
+  // handlers before those handlers can send the visitor back to the homepage.
+  document.addEventListener('click', event => {
+    if(event.defaultPrevented || event.button > 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const control = event.target && event.target.closest
+      ? event.target.closest('a,button') : null;
+    if(loginIntent(control)){
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      openLogin(control);
+    } else if(dogProfileIntent(control)){
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      openDogProfile(control);
+    }
+  }, true);
+
+  window.DoloPawsCTA = {
+    openLogin,
+    openSignup,
+    openDogProfile,
+  };
+
   const pathName=window.location.pathname;
   if(/\/trails\/[^/]+\.html$/.test(pathName)||/\/trail\.html$/.test(pathName)){
     const hazardScript=document.createElement('script');
@@ -100,9 +255,10 @@
     description.textContent = 'Add your dog for personalised matches. Create a free account only when you choose to save.';
     copyBlock.append(kicker, title, description);
 
-    const profile = document.createElement('a');
+    const profile = document.createElement('button');
+    profile.type = 'button';
     profile.className = 'dog-profile-banner__action hp-dog-profile-cta';
-    profile.href = '/?wizard=1';
+    profile.setAttribute('data-dog-profile-cta', 'true');
     profile.textContent = 'Add your dog';
     inner.append(copyBlock, profile);
     banner.appendChild(inner);
@@ -589,52 +745,8 @@
         placeBell(activeBell);
         setTimeout(() => placeBell(activeBell), 0);
       } else {
-        // Login must open IN PLACE everywhere (desktop and mobile): pages
-        // without auth-ui — the static trail/guide pages, whose markup
-        // ships a plain homepage-login anchor — load the auth stack on
-        // demand instead of navigating away.
-        let authLoading = null;
-        function lazyOpenLogin(control){
-          if(window.DoloPawsAuthUI){ window.DoloPawsAuthUI.openLogin(); return; }
-          if(authLoading) return;
-          if('disabled' in control) control.disabled = true;
-          function loadScript(src){
-            return new Promise((resolve, reject) => {
-              const s = document.createElement('script');
-              s.src = prefix + src;
-              s.onload = resolve;
-              s.onerror = reject;
-              document.body.appendChild(s);
-            });
-          }
-          // i18n first — auth-ui's modal copy calls window.t().
-          const script = loadScript('i18n.js?v=20260812-5')
-            .then(() => loadScript('auth-ui.js?v=20260812-1'));
-          // import() inside a classic script resolves against THIS script's
-          // URL (the site root), not the page — resolve explicitly against
-          // the document so ../ prefixes on trail pages work.
-          const firebaseUrl = new URL((prefix || './') + 'firebase-init.js', document.baseURI).href;
-          authLoading = Promise.all([import(firebaseUrl), script])
-            .then(() => {
-              if('disabled' in control) control.disabled = false;
-              if(window.DoloPawsAuthUI) window.DoloPawsAuthUI.openLogin();
-            })
-            .catch((err) => {
-              // Offline or blocked: fall back to the homepage flow.
-              console.warn('ORMA lazy login failed:', err);
-              window.location.href = '/?view=login&next=' + encodeURIComponent(pagePath);
-            });
-        }
         if(loginEl){
           linksEl.appendChild(loginEl);
-          // Reused static anchors would still bounce — intercept them.
-          if(loginEl.tagName === 'A' && !loginEl.dataset.lazyLogin){
-            loginEl.dataset.lazyLogin = '1';
-            loginEl.addEventListener('click', (e) => {
-              e.preventDefault();
-              lazyOpenLogin(loginEl);
-            });
-          }
         } else if(pageFile.toLowerCase() !== 'account.html'){
           const login = document.createElement('button');
           login.type = 'button';
@@ -642,7 +754,6 @@
           login.className = 'account-btn';
           login.textContent = 'Log in';
           login.setAttribute('data-i18n', 'nav.login');
-          login.addEventListener('click', () => lazyOpenLogin(login));
           linksEl.appendChild(login);
         }
       }
