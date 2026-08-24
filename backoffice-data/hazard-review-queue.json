@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-08-23T05:17:11.755Z",
+  "generatedAt": "2026-08-24T05:16:31.121Z",
   "items": [
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.057",
@@ -27,7 +27,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z"
     },
     {
@@ -54,7 +54,7 @@
         "Piancavallo Malghe Loop"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.119",
@@ -80,7 +80,7 @@
         "Piancavallo Malghe Loop"
       ],
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.059",
@@ -297,7 +297,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z"
     },
     {
@@ -514,7 +514,7 @@
         "Langer Rundweg am Karer See"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.117",
@@ -730,7 +730,7 @@
         "Langer Rundweg am Karer See"
       ],
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.055",
@@ -781,7 +781,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z"
     },
     {
@@ -832,7 +832,7 @@
         "Sentiero del Sabadalt"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.121",
@@ -882,7 +882,7 @@
         "Sentiero del Sabadalt"
       ],
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.058",
@@ -909,7 +909,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z"
     },
     {
@@ -936,7 +936,7 @@
         "Piancavallo Malghe Loop"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.120",
@@ -962,7 +962,7 @@
         "Piancavallo Malghe Loop"
       ],
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.060",
@@ -1179,7 +1179,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z"
     },
     {
@@ -1396,7 +1396,7 @@
         "Langer Rundweg am Karer See"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.118",
@@ -1612,7 +1612,7 @@
         "Langer Rundweg am Karer See"
       ],
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.056",
@@ -1663,7 +1663,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z"
     },
     {
@@ -1714,7 +1714,7 @@
         "Sentiero del Sabadalt"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.122",
@@ -1764,7 +1764,7 @@
         "Sentiero del Sabadalt"
       ],
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-france:2.49.0.0.250.0.FR.20260819060026.367022",
@@ -1863,7 +1863,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-21T05:29:21.071Z"
     },
     {
@@ -1889,7 +1889,7 @@
       "trailNames": [
         "Piancavallo Malghe Loop"
       ],
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z"
     },
     {
@@ -1989,7 +1989,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-21T05:29:21.071Z"
     },
     {
@@ -2088,7 +2088,7 @@
         "PARCOURS N°11 | LACS DU CHARDONNET"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-france:2.49.0.0.250.0.FR.20260820220346.562023",
@@ -2186,7 +2186,7 @@
         "PARCOURS N°11 | LACS DU CHARDONNET"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-france:2.49.0.0.250.0.FR.20260821160033.305023",
@@ -2284,7 +2284,7 @@
         "PARCOURS N°11 | LACS DU CHARDONNET"
       ],
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260820122240.084",
@@ -2499,7 +2499,7 @@
         "Mittlerer Rundweg am Karer See",
         "Langer Rundweg am Karer See"
       ],
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z"
     },
     {
@@ -2549,7 +2549,7 @@
         "Sentiero Alpago Natura",
         "Sentiero del Sabadalt"
       ],
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z"
     }
   ]
