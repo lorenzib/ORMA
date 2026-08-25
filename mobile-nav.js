@@ -154,7 +154,21 @@
       });
 
       const appNote = footer.querySelector('.hp-footer-appnote');
-      if(appNote) appNote.textContent = 'Mobile apps coming soon';
+      if(appNote) appNote.textContent = 'iPhone and Android apps coming soon.';
+
+      // Keep the familiar store affordances visible before launch without
+      // implying that a real listing exists. Once an actual store URL replaces
+      // the temporary About link, the button becomes a normal link automatically.
+      footer.querySelectorAll('.hp-footer-apps a').forEach(link => {
+        const href = link.getAttribute('href') || '';
+        if(!href.endsWith('about.html')) return;
+        link.dataset.comingSoon = 'true';
+        link.setAttribute('role', 'link');
+        link.setAttribute('aria-disabled', 'true');
+        link.setAttribute('title', 'Coming soon');
+        link.setAttribute('tabindex', '-1');
+        link.removeAttribute('href');
+      });
 
       const companyLinks = groups[4]?.querySelector('.hp-footer-links');
       const newsletter = footer.querySelector('.hp-footer-newsletter');

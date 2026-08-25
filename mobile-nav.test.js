@@ -203,7 +203,7 @@ describe('shared navigation hardening', () => {
     footer.className = 'site-footer hp-footer';
     footer.innerHTML = `
       <div class="hp-footer-grid">
-        <div><p class="hp-footer-blurb">ORMA</p><div class="hp-footer-get"><div class="hp-footer-h">Get the app</div><div class="hp-footer-apps"></div><p class="hp-footer-appnote">Coming soon</p></div></div>
+        <div><p class="hp-footer-blurb">ORMA</p><div class="hp-footer-get"><div class="hp-footer-h">Get the app</div><div class="hp-footer-apps"><a href="about.html"><img src="app-store-badge.svg" alt="Download on the App Store"></a><a href="about.html"><img src="google-play-badge.svg" alt="Get it on Google Play"></a></div><p class="hp-footer-appnote">Coming soon</p></div></div>
         <div><div class="hp-footer-h">Trails</div><div class="hp-footer-links"><a href="../browse-trails.html">Browse</a></div></div>
         <div><div class="hp-footer-h">Caring for your dog</div><div class="hp-footer-links"></div></div>
         <div><div class="hp-footer-h">Your walks</div><div class="hp-footer-links"></div></div>
@@ -216,7 +216,13 @@ describe('shared navigation hardening', () => {
 
     expect([...footer.querySelectorAll('.hp-footer-grid > div > .hp-footer-h')].map(item => item.textContent))
       .toEqual(['Explore','Dog care','Your walks','ORMA']);
-    expect(footer.querySelector('.hp-footer-appnote').textContent).toBe('Mobile apps coming soon');
+    expect(footer.querySelector('.hp-footer-appnote').textContent).toBe('iPhone and Android apps coming soon.');
+    expect(footer.querySelectorAll('.hp-footer-apps a')).toHaveLength(2);
+    expect([...footer.querySelectorAll('.hp-footer-apps a')].every(link =>
+      link.dataset.comingSoon === 'true' &&
+      link.getAttribute('aria-disabled') === 'true' &&
+      !link.hasAttribute('href')
+    )).toBe(true);
     expect(footer.querySelector('.hp-footer-grid > div:last-child .hp-footer-newsletter')).not.toBeNull();
     expect([...footer.querySelectorAll('.hp-footer-legal a')].map(link => link.textContent)).toEqual(['Privacy','Terms']);
     expect(footer.querySelector('.hp-footer-base > .hp-footer-social-row')).not.toBeNull();
