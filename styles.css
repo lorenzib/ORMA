@@ -19,6 +19,16 @@
   --success:#4A7856;
   --success-dim:#E4EADF;
   --sage-dim:#E4EADF;
+  /* Shared Safety Library states. Keep these semantic tokens centralised so
+     every guide renders the same information, safe, caution and stop cards. */
+  --safety-info:var(--accent);
+  --safety-info-soft:#EAF3F6;
+  --safety-safe:#2C5C34;
+  --safety-safe-soft:#DCEBDD;
+  --safety-caution:#8A5A16;
+  --safety-caution-soft:#F5E4C6;
+  --safety-stop:#9C3A25;
+  --safety-stop-soft:#F3D9D2;
   --paper-line:#DEDDD0;
   /* emergency: rescue banner only, never a badge or a rating */
   --emergency-bg:#B5480B;

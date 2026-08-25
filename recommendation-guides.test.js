@@ -55,10 +55,10 @@ describe('breed-group guide navigation', () => {
 
   test('uses seven compact breed cards instead of a long contents rail', () => {
     document.body.innerHTML = fs.readFileSync(path.join(__dirname, 'guides/breed-group-caveats.html'), 'utf8');
-    const sections = [...document.querySelectorAll('.gp-section[id]')];
+    const sections = [...document.querySelectorAll('.scan-card[id]')];
 
     expect(sections).toHaveLength(7);
-    expect(sections.every(section => section.classList.contains('scan-card'))).toBe(true);
+    expect(sections.every(section => !section.classList.contains('gp-section'))).toBe(true);
     expect(document.querySelector('.scan-grid')).not.toBeNull();
     expect(document.querySelector('.gp-toc')).toBeNull();
   });
