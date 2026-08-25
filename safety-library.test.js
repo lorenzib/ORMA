@@ -67,7 +67,10 @@ describe('Safety library', () => {
     expect(opener.classList.contains('sg-readiness-fab')).toBe(true);
     expect(opener.closest('.sg-hero')).not.toBeNull();
     expect(opener.textContent).toMatch(/Paws ready\?/i);
-    expect(opener.querySelector('.sg-readiness-fab-icon').textContent).toBe('🐾');
+    const icon = opener.querySelector('.sg-readiness-fab-icon img');
+    expect(icon).not.toBeNull();
+    expect(icon.getAttribute('src')).toBe('images/editorial/safety-library/inquisitive-dog-quiz-v1.png');
+    expect(icon.getAttribute('alt')).toBe('');
     expect(html).toMatch(/\.sg-readiness-fab\{[^}]*background:var\(--success\)/s);
     expect(html).not.toMatch(/\.sg-readiness-fab\{[^}]*position:fixed/s);
     expect(document.querySelectorAll('#readinessQuiz .sg-question')).toHaveLength(5);
