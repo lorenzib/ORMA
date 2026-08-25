@@ -31,6 +31,19 @@ describe('shareable walk card helpers', () => {
     expect(anonymous).toBe('Our Trail Tale — 1.0 km in 30 min. Made with ORMA 🐾 app-orma.com');
   });
 
+  test('social actions use platform-ready aspect ratios without changing the chosen options', () => {
+    const chosen = { format: 'square', visual: 'map', hideEnds: true };
+    expect(card.platformOptions(chosen, 'instagram')).toEqual({
+      format: 'story', visual: 'map', hideEnds: true,
+    });
+    expect(card.platformOptions(chosen, 'facebook')).toEqual({
+      format: 'post', visual: 'map', hideEnds: true,
+    });
+    expect(chosen.format).toBe('square');
+    expect(card.SOCIAL_PLATFORMS.instagram.filename).toBe('orma-trail-tale-instagram-story.png');
+    expect(card.SOCIAL_PLATFORMS.facebook.filename).toBe('orma-trail-tale-facebook.png');
+  });
+
   test('confirmed dog recap appears in the caption without inventing details', () => {
     const entry = { dist: 3, dur: 50, trail: 'Forest loop', tale: { energy: 'zoomies' } };
     expect(card.taleSentence(entry, 'Eddie')).toBe('Eddie’s verdict: still had zoomies.');

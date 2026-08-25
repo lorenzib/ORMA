@@ -8,6 +8,10 @@
     story: { width:1080, height:1920, label:'Story 9:16' },
     square: { width:1080, height:1080, label:'Square 1:1' }
   };
+  var SOCIAL_PLATFORMS = {
+    instagram: { format:'story', filename:'orma-trail-tale-instagram-story.png' },
+    facebook: { format:'post', filename:'orma-trail-tale-facebook.png' }
+  };
   var INK = '#2E4034', CREAM = '#F5F2E8', SOFT = '#6B7A6E',
       TERRA = '#C4652F', SAGE = '#E7ECE3', LINE = '#E3DFD2';
   var TALE_LABELS = {
@@ -232,36 +236,50 @@
     });
   }
 
-  function download(canvas){
-    var a = document.createElement('a'); a.download = 'orma-trail-tale.png'; a.href = canvas.toDataURL('image/png'); a.click(); return 'downloaded';
+  function platformOptions(options, platform){
+    var social = SOCIAL_PLATFORMS[platform];
+    return Object.assign({}, options || {}, social ? { format:social.format } : {});
   }
 
-  function downloadWalkCard(entry, options){ return createWalkCard(entry, options).then(download); }
+  function download(canvas, filename){
+    var a = document.createElement('a'); a.download = filename || 'orma-trail-tale.png'; a.href = canvas.toDataURL('image/png'); a.click(); return 'downloaded';
+  }
 
-  function shareWalkCard(entry, options){
+  function downloadWalkCard(entry, options){ return createWalkCard(entry, options).then(function(canvas){ return download(canvas); }); }
+
+  function shareWalkCard(entry, options, shareConfig){
     options = options || {};
+    shareConfig = shareConfig || {};
     return createWalkCard(entry, options).then(function(canvas){
       return new Promise(function(resolve){
         canvas.toBlob(function(blob){
-          var file = blob && typeof File !== 'undefined' ? new File([blob], 'orma-trail-tale.png', { type:'image/png' }) : null;
+          var filename = shareConfig.filename || 'orma-trail-tale.png';
+          var file = blob && typeof File !== 'undefined' ? new File([blob], filename, { type:'image/png' }) : null;
           var text = shareText(entry, options.dogName);
           if(file && typeof navigator !== 'undefined' && navigator.share && navigator.canShare && navigator.canShare({ files:[file] })){
-            navigator.share({ files:[file], text:text }).then(function(){ resolve('shared'); }).catch(function(error){
+            navigator.share({ files:[file], title:'ORMA Trail Tale', text:text }).then(function(){ resolve('shared'); }).catch(function(error){
               if(error && error.name === 'AbortError') resolve('cancelled');
-              else resolve(download(canvas));
+              else resolve(download(canvas, filename));
             });
-          } else resolve(download(canvas));
+          } else resolve(download(canvas, filename));
         }, 'image/png');
       });
     });
   }
 
+  function shareWalkCardToPlatform(entry, options, platform){
+    var social = SOCIAL_PLATFORMS[platform] || {};
+    return shareWalkCard(entry, platformOptions(options, platform), { filename:social.filename });
+  }
+
   var api = {
-    FORMATS:FORMATS, TALE_LABELS:TALE_LABELS, projectRoute:projectRoute,
+    FORMATS:FORMATS, SOCIAL_PLATFORMS:SOCIAL_PLATFORMS, TALE_LABELS:TALE_LABELS, projectRoute:projectRoute,
     maskRouteEnds:maskRouteEnds, routeForShare:routeForShare, formatSize:formatSize,
+    platformOptions:platformOptions,
     shareText:shareText, taleSentence:taleSentence, fmtDuration:fmtDuration,
     renderWalkCard:renderWalkCard, createWalkCard:createWalkCard,
-    downloadWalkCard:downloadWalkCard, shareWalkCard:shareWalkCard
+    downloadWalkCard:downloadWalkCard, shareWalkCard:shareWalkCard,
+    shareWalkCardToPlatform:shareWalkCardToPlatform
   };
   global.DoloPawsWalkCard = api;
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
