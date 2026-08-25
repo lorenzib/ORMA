@@ -207,6 +207,7 @@
       <button id="accountTabDog" class="railbtn" role="tab" data-tab="dog" aria-selected="true" aria-controls="tab-dog" tabindex="0"><span class="railico" aria-hidden="true">🐕</span> <span data-i18n="account.tab.dog">Dog</span></button>
       <button id="accountTabHuman" class="railbtn" role="tab" data-tab="human" aria-selected="false" aria-controls="tab-human" tabindex="-1"><span class="railico" aria-hidden="true">👤</span> <span data-i18n="account.tab.human">Human</span></button>
       <button id="accountTabHealth" class="railbtn" role="tab" data-tab="health" aria-selected="false" aria-controls="tab-health" tabindex="-1"><span class="railico" aria-hidden="true">🩺</span> <span data-i18n="account.tab.vet">Vet</span></button>
+      <button id="accountTabPublic" class="railbtn" role="tab" data-tab="public" aria-selected="false" aria-controls="tab-public" tabindex="-1"><span class="railico" aria-hidden="true">🐾</span> <span>Public profile</span></button>
       <button id="accountTabAccount" class="railbtn" role="tab" data-tab="account" aria-selected="false" aria-controls="tab-account" tabindex="-1"><span class="railico" aria-hidden="true">⚙️</span> <span data-i18n="account.tab.settings">Settings</span></button>
       <!-- Settings sub-sections — shown while the Settings tab is active -->
       <nav id="settingsToc" class="settings-toc" aria-label="Settings sections" hidden>
@@ -326,6 +327,34 @@
             <p class="hint saveHint panel-save" hidden></p>
             <p class="hint" id="shareStatus" hidden></p>
           </div>
+        </div>
+      </section>
+
+      <!-- OPT-IN PUBLIC IDENTITY. Private contact and health fields never enter this projection. -->
+      <section id="tab-public" role="tabpanel" aria-labelledby="accountTabPublic" hidden>
+        <div class="kick" style="margin-bottom:6px;">Your public trail identity</div>
+        <h2 class="serif" style="font-size:27px;margin:0 0 8px;">Let people follow the adventures, not your private details.</h2>
+        <p class="hint" style="margin:0 0 22px;max-width:680px;">This profile is separate from your contact, vet and journal information. Only the display name, bio and dog details you choose below can appear publicly.</p>
+        <div class="acct-2col" style="margin-bottom:18px;">
+          <div><label class="lbl" for="publicDisplayName">Public human name</label><input class="fld" id="publicDisplayName" maxlength="40" placeholder="e.g. Bea on the trail"><div class="hint">It can be a nickname. Your account name stays private.</div></div>
+          <div><label class="lbl" for="publicVisibility">Who can follow</label><select class="fld" id="publicVisibility"><option value="public">Public profile · follow instantly</option><option value="private">Private profile · approve requests</option></select></div>
+        </div>
+        <label class="lbl" for="publicBio">Public bio</label>
+        <textarea class="fld" id="publicBio" maxlength="240" rows="3" placeholder="The kind of trails you and your dog love…" style="resize:vertical;margin-bottom:18px;"></textarea>
+        <div class="acct-2col" style="margin-bottom:22px;">
+          <div><label class="lbl" for="publicTagPermission">Who can tag you</label><select class="fld" id="publicTagPermission"><option value="followers">Followers</option><option value="everyone">Everyone</option><option value="none">Nobody</option></select></div>
+          <div style="background:#F4F7F1;border:1px solid #D9E3D6;border-radius:14px;padding:14px 15px;"><label style="display:flex;align-items:flex-start;gap:10px;margin:0;cursor:pointer;"><input type="checkbox" id="publicDogEnabled" style="width:18px;height:18px;flex:none;accent-color:#2E4034;"><span><b id="publicDogLabel">Show my dog</b><br><small style="color:#6B7A6E;">Use the active dog's name and photo on their public profile and Trail Tale cards.</small></span></label></div>
+        </div>
+        <label class="lbl" for="publicDogBio">Dog's public bio</label>
+        <textarea class="fld" id="publicDogBio" maxlength="180" rows="2" placeholder="Chief sniff inspector. Mud enthusiast." style="resize:vertical;margin-bottom:20px;"></textarea>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid #EDE9DD;padding-top:20px;">
+          <button type="button" class="btn-p" id="publicProfileSave">Save public profile</button>
+          <a class="btn-g" id="publicProfileView" href="profile.html" hidden style="text-decoration:none;">View profile</a>
+          <p id="publicProfileStatus" class="hint" role="status" style="margin:0;"></p>
+        </div>
+        <div id="followRequestsPanel" style="border-top:1px solid #EDE9DD;padding-top:22px;margin-top:24px;" hidden>
+          <div class="kick" style="margin-bottom:10px;">Follow requests</div>
+          <div id="followRequestsList" style="display:grid;gap:10px;"></div>
         </div>
       </section>
 
@@ -523,6 +552,7 @@
 <script src="breeds-data.js?v=20260815-4" defer></script>
 <script src="accessibility-runtime.js?v=20260815-4" defer></script>
 <script src="account.js?v=20260815-4" defer></script>
+<script src="social-profile-settings.js?v=20260825-1" defer></script>
 <script src="profile-design.js?v=20260815-4" defer></script>
 </body>
 </html>

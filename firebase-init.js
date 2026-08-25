@@ -467,6 +467,7 @@ async function deleteAccount(password) {
   const uid = currentUser.uid;
   let removedOutcomes = 0;
   let removedProfile = false;
+  let removedPublicProfile = false;
   try {
     if (providerId === "google.com") {
       await reauthenticateWithPopup(currentUser, googleProvider);
@@ -485,6 +486,13 @@ async function deleteAccount(password) {
       await deleteDoc(outcome.ref);
       removedOutcomes += 1;
     }
+    const outgoingFollows = await getDocs(query(collection(db, "follows"), where("followerUid", "==", uid)));
+    const incomingFollows = await getDocs(query(collection(db, "follows"), where("ownerUid", "==", uid)));
+    const followRefs = new Map();
+    outgoingFollows.docs.concat(incomingFollows.docs).forEach(item => followRefs.set(item.ref.path, item.ref));
+    for (const ref of followRefs.values()) await deleteDoc(ref);
+    await deleteDoc(doc(db, "publicProfiles", uid));
+    removedPublicProfile = true;
     await deleteDoc(doc(db, "users", uid));
     removedProfile = true;
   } catch (e) {
@@ -492,7 +500,7 @@ async function deleteAccount(password) {
       ok: false,
       stage: "private-data",
       partial: removedOutcomes > 0,
-      server: { removedOutcomes, removedProfile },
+      server: { removedOutcomes, removedProfile, removedPublicProfile },
       messageKey: removedOutcomes > 0
         ? "account.delete.partialPrivateData"
         : "account.delete.privateDataError",
@@ -509,7 +517,7 @@ async function deleteAccount(password) {
       ok: false,
       stage: "authentication",
       partial: true,
-      server: { removedOutcomes, removedProfile },
+      server: { removedOutcomes, removedProfile, removedPublicProfile },
       messageKey: "account.delete.authenticationError",
       message: "Your private profile was removed, but the sign-in could not be deleted. Sign in again and retry account deletion, or contact support.",
     };
@@ -519,6 +527,7 @@ async function deleteAccount(password) {
     server: {
       authenticationDeleted: true,
       profileDeleted: true,
+      publicProfileDeleted: removedPublicProfile,
       privateOutcomesDeleted: removedOutcomes,
       retainedForSafetyAndModeration: ["community contributions", "reports", "moderation records"],
     },
@@ -592,6 +601,94 @@ function contributionClientId(type) {
   return `${type}-${Date.now().toString(36)}-${random}`.slice(0, 80);
 }
 
+function socialEdgeId(targetType, targetId) {
+  if (!currentUser) return "";
+  return [currentUser.uid, String(targetType || "human"), String(targetId || "")]
+    .join("_").replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 180);
+}
+
+function cleanPublicProfile(input) {
+  const source = input || {};
+  const dogs = Array.isArray(source.dogs) ? source.dogs.slice(0, 5).map(dog => ({
+    id: String(dog && dog.id || "").replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 80),
+    name: String(dog && dog.name || "Your dog").trim().slice(0, 40),
+    bio: String(dog && dog.bio || "").trim().slice(0, 180),
+    photo: String(dog && dog.photo || "").slice(0, 700000),
+    public: dog && dog.public === true,
+  })).filter(dog => dog.id) : [];
+  return {
+    displayName: String(source.displayName || "").trim().slice(0, 40),
+    bio: String(source.bio || "").trim().slice(0, 240),
+    visibility: source.visibility === "private" ? "private" : "public",
+    tagPermission: ["everyone", "followers", "none"].includes(source.tagPermission)
+      ? source.tagPermission : "followers",
+    dogs,
+  };
+}
+
+async function getPublicProfile(uid) {
+  const targetUid = String(uid || currentUser && currentUser.uid || "").slice(0, 128);
+  if (!targetUid) return null;
+  const snap = await getDoc(doc(db, "publicProfiles", targetUid));
+  return snap.exists() ? Object.assign({ uid:targetUid }, snap.data()) : null;
+}
+
+async function setPublicProfile(input) {
+  if (!currentUser) return { ok:false, message:"Log in to create a public profile." };
+  const profile = cleanPublicProfile(input);
+  if (!profile.displayName) return { ok:false, message:"Add a public display name." };
+  await setDoc(doc(db, "publicProfiles", currentUser.uid), Object.assign({}, profile, {
+    uid:currentUser.uid,
+    updatedAt:serverTimestamp(),
+  }), { merge:true });
+  return { ok:true, profile:Object.assign({ uid:currentUser.uid }, profile) };
+}
+
+async function getFollowState(targetType, targetId) {
+  if (!currentUser) return null;
+  const id = socialEdgeId(targetType, targetId);
+  if (!id) return null;
+  const snap = await getDoc(doc(db, "follows", id));
+  return snap.exists() ? Object.assign({ id }, snap.data()) : null;
+}
+
+async function followPublicIdentity(ownerUid, targetType, targetId, isPrivate) {
+  if (!currentUser) return { ok:false, message:"Log in to follow this profile." };
+  if (ownerUid === currentUser.uid) return { ok:false, message:"This is your profile." };
+  const id = socialEdgeId(targetType, targetId);
+  const record = {
+    followerUid:currentUser.uid,
+    ownerUid:String(ownerUid || "").slice(0, 128),
+    targetType:targetType === "dog" ? "dog" : "human",
+    targetId:String(targetId || "").replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 80),
+    status:isPrivate ? "pending" : "accepted",
+    updatedAt:serverTimestamp(),
+  };
+  await setDoc(doc(db, "follows", id), Object.assign({}, record, { createdAt:serverTimestamp() }));
+  return { ok:true, status:record.status };
+}
+
+async function unfollowPublicIdentity(targetType, targetId) {
+  if (!currentUser) return { ok:false };
+  await deleteDoc(doc(db, "follows", socialEdgeId(targetType, targetId)));
+  return { ok:true };
+}
+
+async function getFollowRequests() {
+  if (!currentUser) return [];
+  const snap = await getDocs(query(collection(db, "follows"), where("ownerUid", "==", currentUser.uid)));
+  return snap.docs.map(item => Object.assign({ id:item.id }, item.data()))
+    .filter(item => item.status === "pending");
+}
+
+async function resolveFollowRequest(edgeId, accept) {
+  if (!currentUser) return { ok:false };
+  const ref = doc(db, "follows", String(edgeId || "").slice(0, 180));
+  if (accept) await updateDoc(ref, { status:"accepted", updatedAt:serverTimestamp() });
+  else await deleteDoc(ref);
+  return { ok:true };
+}
+
 function queueOfflineContribution(type, payload, options) {
   if (options && options.skipOfflineQueue) return null;
   const queue = window.DoloPawsOfflineContributions;
@@ -651,6 +748,13 @@ window.DoloPawsAuth = {
   deleteAccount,
   getContributionEligibility,
   sendContributionVerificationEmail,
+  getPublicProfile,
+  setPublicProfile,
+  getFollowState,
+  followPublicIdentity,
+  unfollowPublicIdentity,
+  getFollowRequests,
+  resolveFollowRequest,
   async signUp(email, password, displayName) {
     try {
       const credential = await createUserWithEmailAndPassword(auth, email, password);
