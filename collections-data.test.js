@@ -51,6 +51,10 @@ describe('editorial trail collections', () => {
     expect(page).toContain('id="collectionValleySelect"');
     expect(page).not.toContain('id="collectionThemesButton"');
     expect(page).toContain('data-collection-theme="gentle"');
+    expect(page).toContain('data-dp-icon="gentle"');
+    expect(page).toContain('data-dp-icon="summer"');
+    expect(page).toContain('data-dp-icon="scenic"');
+    expect(page).toContain('icon-system.js');
     expect(page).not.toContain('Dog essentials');
     expect(page).toContain('area-dropdown.js');
     expect(controller).toContain('THEME_MATCHERS');

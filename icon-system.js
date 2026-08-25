@@ -20,6 +20,9 @@
     warning: '#9C3A25',
     mountain: '#5A5548',
     camera: '#2E4034',
+    gentle: '#2C5C34',
+    summer: '#C4652F',
+    scenic: '#28736B',
     'pace-low': '#4E7256',
     'pace-medium': '#2C5C34',
     'pace-high': '#8A5A16',
@@ -148,6 +151,19 @@
       <path d="M5 8h3l1.2-2h5.6L16 8h3v10H5z"></path>
       <circle cx="12" cy="13" r="3"></circle>
     `,
+    gentle: `
+      <path d="M5 17c2.5-4 6-6.2 11.5-7"></path>
+      <circle cx="5" cy="17" r="1.5"></circle>
+      <path d="M16.5 6.5v6"></path>
+    `,
+    summer: `
+      <circle cx="12" cy="12" r="3.5"></circle>
+      <path d="M12 3.5v2M12 18.5v2M3.5 12h2M18.5 12h2M6 6l1.4 1.4M16.6 16.6 18 18M18 6l-1.4 1.4M7.4 16.6 6 18"></path>
+    `,
+    scenic: `
+      <path d="m4 18 5.2-8 2.2 3.1L14.6 7 20 18z"></path>
+      <circle cx="17.5" cy="6" r="2"></circle>
+    `,
     'pace-low': `
       <path d="M5 15c2.5-3 5.5-4.5 9-4.5"></path>
       <path d="m12 8.5 2 2-2 2"></path>
@@ -190,6 +206,9 @@
     routes: '<path d="M6.5 18c2-5 5.5-8.5 11-11" fill="none" stroke="#2C5C34" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.1 3.4"/><circle cx="6.5" cy="18" r="1.8" fill="#2C5C34"/><path d="M17.5 4.2l2.6 1-1 2.5-2.6-1z" fill="#E24B4A"/>',
     dog: '<ellipse cx="12" cy="15" rx="3.7" ry="3.1" fill="#1D9E75"/><ellipse cx="7.4" cy="10.6" rx="1.4" ry="1.9" fill="#5DCAA5"/><ellipse cx="10.7" cy="8.7" rx="1.4" ry="1.9" fill="#5DCAA5"/><ellipse cx="13.9" cy="8.7" rx="1.4" ry="1.9" fill="#5DCAA5"/><ellipse cx="17" cy="10.6" rx="1.4" ry="1.9" fill="#5DCAA5"/>',
     start: '<path d="M8 20V4.5" stroke="#2E4034" stroke-width="1.9" stroke-linecap="round"/><path d="M8 5.5h9l-2.2 3.2L17 12H8z" fill="#E24B4A"/>',
+    gentle: '<path d="M5 17.5c2.7-4.2 6.5-6.6 12-7.5" fill="none" stroke="#2C5C34" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="0.1 3.5"/><circle cx="5" cy="17.5" r="2" fill="#5DCAA5"/><path d="M16.5 6v7" stroke="#5A5548" stroke-width="1.6" stroke-linecap="round"/><path d="M16.5 6.5h3.4l-1.1 1.6 1.1 1.6h-3.4z" fill="#D6A038"/>',
+    summer: '<circle cx="12" cy="12" r="4.2" fill="#D6A038"/><g stroke="#C4652F" stroke-width="1.8" stroke-linecap="round"><path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.6 5.6l1.6 1.6M16.8 16.8l1.6 1.6M18.4 5.6l-1.6 1.6M7.2 16.8l-1.6 1.6"/></g><circle cx="10.5" cy="10.5" r="1.3" fill="#F6E7B0" opacity=".9"/>',
+    scenic: '<path d="m3.5 18.5 5.8-9 2.5 3.5 3.3-5.7 5.4 11.2z" fill="#4E90A8"/><path d="m7.3 12.6 2-3.1 2.5 3.5 1.2-2.1 2 2.2-2.1-.6-1.1 1.8-2.4-1.7z" fill="#F4F1E7"/><path d="M3.5 18.5h17l-5.5-3.8-3.1 1.6-3.1-1.8z" fill="#2C5C34"/><circle cx="18" cy="6" r="2.2" fill="#D6A038"/>',
     toilets: '<circle cx="8.5" cy="5.8" r="1.8" fill="#5B7A99"/><path d="M8.5 8.2v5.6M6.4 9.8h4.2M8.5 13.8v4.4" stroke="#5B7A99" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="15.5" cy="5.8" r="1.8" fill="#5B7A99"/><path d="M15.5 8.2l-2 5.4h4z" fill="#5B7A99"/><path d="M15.5 13.8v4.4" stroke="#5B7A99" stroke-width="1.8" stroke-linecap="round"/>',
     switch: '<path d="M12 19.5v-7M12 12.5L7 7M12 12.5L17 7" fill="none" stroke="#7F77DD" stroke-width="2" stroke-linecap="round"/><circle cx="7" cy="7" r="1.6" fill="#7F77DD"/><circle cx="17" cy="7" r="1.6" fill="#AFA9EC"/>',
   };
