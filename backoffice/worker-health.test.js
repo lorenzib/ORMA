@@ -6,7 +6,7 @@ const {main,runInput}=require('./cli/record-worker-health');
 describe('durable ORMA worker health receipts',()=>{
   test('records a running heartbeat then a successful bounded history receipt',()=>{
     const started=beginWorkerRun(null,{runId:'123',runAttempt:'2',workflowRunUrl:'https://github.com/orma/actions/runs/123',eventName:'schedule',branch:'main',commitSha:'abc'},{at:'2026-08-19T20:00:00Z'});
-    expect(started).toEqual(expect.objectContaining({status:'running',runId:'123',runAttempt:2,expectedIntervalMinutes:5,consecutiveFailures:0}));
+    expect(started).toEqual(expect.objectContaining({status:'running',runId:'123',runAttempt:2,expectedIntervalMinutes:15,delayAfterMinutes:45,staleAfterMinutes:90,consecutiveFailures:0}));
     const completed=finishWorkerRun(started,{outcome:'success'},{at:'2026-08-19T20:03:00Z'});
     expect(completed).toEqual(expect.objectContaining({status:'healthy',durationMs:180000,lastSuccessfulAt:'2026-08-19T20:03:00Z',consecutiveFailures:0}));
     expect(completed.recentRuns).toEqual([expect.objectContaining({runId:'123',outcome:'success'})]);

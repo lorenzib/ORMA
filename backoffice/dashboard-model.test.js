@@ -82,9 +82,9 @@ describe('CEO dashboard workflow model',()=>{
   test.each([
     ['healthy',{status:'healthy',lastSuccessfulAt:'2026-08-19T20:58:00Z'},'healthy'],
     ['running',{status:'running',runId:'123',startedAt:'2026-08-19T20:56:00Z',workflowRunUrl:'https://github.com/orma/actions/runs/123'},'running'],
-    ['delayed',{status:'healthy',lastSuccessfulAt:'2026-08-19T20:42:00Z'},'delayed'],
-    ['stale',{status:'healthy',lastSuccessfulAt:'2026-08-19T20:20:00Z'},'stale'],
-    ['stuck run',{status:'running',runId:'123',startedAt:'2026-08-19T20:20:00Z'},'stale'],
+    ['delayed',{status:'healthy',lastSuccessfulAt:'2026-08-19T20:14:00Z'},'delayed'],
+    ['stale',{status:'healthy',lastSuccessfulAt:'2026-08-19T19:29:00Z'},'stale'],
+    ['stuck run',{status:'running',runId:'123',startedAt:'2026-08-19T19:29:00Z'},'stale'],
     ['failed',{status:'failed',completedAt:'2026-08-19T20:59:00Z',consecutiveFailures:2,lastFailure:{stage:'pull-request-creation',message:'GitHub denied PR creation.',workflowRunUrl:'https://github.com/orma/actions/runs/123'}},'failed'],
   ])('classifies %s worker health honestly',(_label,workerHealth,state)=>{
     const model=buildDashboardModel({orchestration:{trails:[]},dossiers:{items:[]},publication:{items:[]},jobs:[],history:[],workerHealth,nowMs:new Date('2026-08-19T21:00:00Z').getTime()});

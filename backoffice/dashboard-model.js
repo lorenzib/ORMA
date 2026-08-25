@@ -20,9 +20,9 @@
   function minutesSince(value,nowMs){const at=dateMs(value);return at?Math.max(0,Math.floor((nowMs-at)/60000)):null;}
   function deriveWorkerHealth(artifact,options={}){
     const nowMs=options.nowMs??Date.now();
-    const expected=Number(artifact?.expectedIntervalMinutes||5);
-    const delayedAfter=Number(artifact?.delayAfterMinutes||15);
-    const staleAfter=Number(artifact?.staleAfterMinutes||30);
+    const expected=Number(artifact?.expectedIntervalMinutes||15);
+    const delayedAfter=Number(artifact?.delayAfterMinutes||45);
+    const staleAfter=Number(artifact?.staleAfterMinutes||90);
     const runUrl=artifact?.workflowRunUrl||artifact?.lastFailure?.workflowRunUrl||null;
     if(!artifact||!artifact.status)return {state:'unknown',label:'No heartbeat',title:'Worker health is not available yet',message:'No protected worker heartbeat has been recorded. Saved decisions remain safe, but automation timing cannot be verified.',runUrl:null,ageMinutes:null,expectedIntervalMinutes:expected};
     if(artifact.status==='running'){

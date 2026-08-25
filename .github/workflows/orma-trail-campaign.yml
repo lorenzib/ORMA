@@ -8,7 +8,7 @@ on:
         required: false
         default: '10'
   schedule:
-    - cron: '15 8 * * *'
+    - cron: '30 9 * * *'
       timezone: Europe/Rome
 
 concurrency:
@@ -42,7 +42,7 @@ jobs:
           test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
           test -n "$OPENAI_API_KEY" || { echo "Missing OPENAI_API_KEY"; exit 1; }
       - run: npm ci
-      - name: Admit the daily ORMA Verified candidate batch
+      - name: Admit the post-reset daily ORMA Verified candidate batch
         run: |
           if [ "${{ github.event_name }}" = "schedule" ]; then
             npm run backoffice:campaign:live -- --limit "$CAMPAIGN_LIMIT" --capacity "$CAMPAIGN_CAPACITY" --scheduled

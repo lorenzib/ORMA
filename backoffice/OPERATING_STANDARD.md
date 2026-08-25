@@ -41,7 +41,8 @@ warning may be added automatically. Expiry opens a resolution review; removing
 a warning requires confirmation. Weather warnings are never presented as proof
 that a specific trail is closed.
 
-Existing Trails is the current throughput priority. Every day, the protected
+Existing Trails is the current throughput priority. Every day after the
+Firestore quota reset window, the protected
 catalogue campaign admits the next eligible candidates for ORMA Verified
 review, subject to the shared capacity limit. The hosted worker checks
 its durable specialist queue before general editorial, image, newsletter and
@@ -171,13 +172,13 @@ requests and the CEO prototype gate. An investigation, priority decision or prot
 ## Current cadence
 
 - Dynamic hazard check: daily at 07:15 local time.
-- Existing Trails queue: checked by the hosted worker every five minutes, with
-  daily ORMA Verified intake at 08:15 local time and 15-trail capacity.
+- Existing Trails queue: checked by the hosted worker every fifteen minutes,
+  with daily ORMA Verified intake at 09:30 local time and 15-trail capacity.
 - Strategy cycle: Wednesday at 12:00 local time.
 - Editorial copy: weekly, with up to three active non-safety reviews; Safety
   Library copy review is paused during the current UI redesign.
 - Image coverage: refreshed with the weekly strategy cycle.
-- New Trail scouting: Monday through Saturday at 08:30 local time, Dolomites
+- New Trail scouting: Monday through Saturday at 10:00 local time, Dolomites
   first; admission remains CEO-gated.
 - Newsletter: parked until trail, collection and website content readiness is
   explicitly confirmed.

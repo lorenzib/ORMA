@@ -3,7 +3,7 @@ name: ORMA Dolomites-first trail scouting
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '30 8 * * 1-6'
+    - cron: '0 10 * * 1-6'
       timezone: Europe/Rome
 
 concurrency:
