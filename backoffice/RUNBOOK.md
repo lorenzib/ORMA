@@ -100,6 +100,7 @@ Required repository variables:
 - `ORMA_CAMPAIGN_AUTOMATION_ENABLED=true`
 - `ORMA_HAZARD_AUTOMATION_ENABLED=true`
 - `ORMA_NEW_TRAIL_AUTOMATION_ENABLED=true`
+- `ORMA_IMAGE_AUTOMATION_ENABLED=true`
 - `ORMA_STRATEGY_AUTOMATION_ENABLED=true`
 - `ORMA_NEWSLETTER_ENABLED=false` while trail, collection and website content
   is being brought up to standard. Change it to `true` only after the CEO

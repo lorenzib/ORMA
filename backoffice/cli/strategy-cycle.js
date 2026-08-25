@@ -56,7 +56,7 @@ async function main(options = {}){
     newsletterStatus=next.summary.readyForReview?'draft ready':`blocked: ${next.outputs[0]?.error||'no draft produced'}`;
   }
   console.log(`[strategy-cycle] Product discovery: ${productStatus}.`);
-  console.log(`[strategy-cycle] Image coverage: ${audit.summary.missing} gaps across ${audit.summary.pagesScanned} guide pages.`);
+  console.log(`[strategy-cycle] Trail-photo coverage: ${audit.summary.missing} gaps across ${audit.summary.trailsScanned} published trails.`);
   console.log(`[strategy-cycle] New Trail scouting: ${scouting.summary.candidates} candidates ranked.`);
   console.log(`[strategy-cycle] Editorial: ${editorial.preserved.length} preserved, ${editorial.generated.length} generated, ${editorial.blocked.length} blocked.`);
   console.log(`[strategy-cycle] Newsletter inputs: ${newsletterInputs.newlyPublishedTrails.length} trails, ${newsletterInputs.publishedEditorialChanges.length} editorial changes, ${newsletterInputs.timelySafetySignals.length} timely signals.`);

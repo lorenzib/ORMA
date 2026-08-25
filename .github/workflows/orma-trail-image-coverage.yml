@@ -1,0 +1,34 @@
+name: ORMA trail photo coverage
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '0 11 * * 1-6'
+      timezone: Europe/Rome
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orma-trail-image-coverage
+  cancel-in-progress: false
+
+jobs:
+  refresh-protected-trail-photo-queue:
+    if: github.event_name == 'workflow_dispatch' || vars.ORMA_IMAGE_AUTOMATION_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      FIREBASE_PROJECT_ID: dolopaws
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Check worker credentials
+        run: test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
+      - run: npm ci
+      - name: Refresh trail-only photo coverage
+        run: npm run backoffice:image-coverage:live

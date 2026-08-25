@@ -1577,22 +1577,24 @@ describe('ORMA backoffice MVP', () => {
     expect(review.jobs[0]).toEqual(expect.objectContaining({agentId:'productDesigner',action:'create-reviewable-mockup',humanGate:'ceo-mockup-approval',implementationAuthorized:false}));
   });
 
-  test('image coverage recognises editorial imagery and audits the real guide library', async () => {
+  test('trail-photo coverage audits every production trail and ranks Dolomites gaps first', async () => {
     expect(imageSignals('<img src="../images/editorial/paw.jpg" alt="Paw">').editorialImages).toEqual(['../images/editorial/paw.jpg']);
-    const audit=await auditImageCoverage(require('path').resolve(__dirname,'..'),{at:'2026-08-19T10:00:00.000Z'});
-    expect(audit.summary.pagesScanned).toBeGreaterThanOrEqual(11);
-    expect(audit.gaps.map(gap=>gap.slug)).not.toContain('altitude-with-your-dog');
-    expect(audit.gaps.map(gap=>gap.slug)).not.toContain('heat-overheating');
-    expect(audit.pages.find(page=>page.slug==='heat-overheating').coverageState).toBe('covered');
-    expect(audit.pages.find(page=>page.slug==='heat-overheating').existingAssets).toContain('../images/editorial/safety-library/heat-hydration-waterfall-v1.jpg');
-    expect(audit.pages.find(page=>page.slug==='alpine-plants-for-dogs').coverageState).toBe('covered');
-    expect(audit.pages.find(page=>page.slug==='paw-protection').coverageState).toBe('covered');
-    expect(audit.pages.find(page=>page.slug==='paw-protection').existingAssets).toContain('../images/editorial/safety-library/paw-protection-forest-v1.jpg');
+    const root=require('path').resolve(__dirname,'..');const production=require('../scripts/load-production-trails').loadProductionTrails(root);
+    const audit=await auditImageCoverage(root,{at:'2026-08-19T10:00:00.000Z'});
+    expect(audit.mode).toBe('trail-photo-coverage-audit');
+    expect(audit.summary.trailsScanned).toBe(production.length);
+    expect(audit.summary.missing).toBe(production.filter(trail=>!trail.imageIcon&&!trail.heroImage).length);
+    expect(audit.summary.dolomitesMissing).toBe(production.filter(trail=>trail.region==='dolomites'&&!trail.imageIcon&&!trail.heroImage).length);
+    expect(audit.gaps[0].region).toBe('dolomites');
+    expect(audit.gaps.map(gap=>gap.slug)).not.toContain('tre-cime');
+    expect(audit.pages.find(page=>page.slug==='tre-cime').coverageState).toBe('covered');
+    expect(audit.pages.find(page=>page.slug==='tre-cime').existingAssets).toContain('images/tre-cime-hero.jpg');
+    expect(audit.pages.find(page=>page.slug==='alpe-siusi')).toEqual(expect.objectContaining({coverageState:'missing',sourceRef:'trail.html?id=alpe-siusi',priority:'high'}));
   });
 
   test('image sourcing stays queued behind asset approval', () => {
-    const audit={gaps:[{slug:'heat-overheating',sourceRef:'guides/heat-overheating.html',reasons:['Empty hero'],libraryMatches:[]}]};
-    const review=applyImageCoverageReview(audit,{decisions:[],jobs:[]},{slug:'heat-overheating',action:'check-personal-library',note:'Look for the Seceda summer shoot.'},'2026-08-19T10:00:00.000Z');
+    const audit={gaps:[{slug:'seceda',trailId:'seceda',sourceRef:'trail.html?id=seceda',reasons:['Missing cover photo'],libraryMatches:[]}]};
+    const review=applyImageCoverageReview(audit,{decisions:[],jobs:[]},{slug:'seceda',action:'find-licensed',note:'Look for a correctly licensed summer view.'},'2026-08-19T10:00:00.000Z');
     expect(review.jobs[0]).toEqual(expect.objectContaining({agentId:'visualDirector',status:'queued',requiresAssetApproval:true,publicMutationAllowed:false}));
   });
 

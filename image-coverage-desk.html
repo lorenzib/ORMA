@@ -4,40 +4,34 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <title>Image coverage | ORMA</title>
+  <title>Trail photo coverage | ORMA</title>
   <link rel="icon" href="favicon-32.png" sizes="32x32">
   <link rel="stylesheet" href="styles.css?v=20260821-5">
-  <link rel="stylesheet" href="backoffice-review.css?v=20260819-8">
+  <link rel="stylesheet" href="backoffice-review.css?v=20260825-15">
   <script>document.documentElement.classList.add('bo-auth-pending')</script>
 </head>
 <body class="bo-shell">
-  <header class="bo-header"><a href="backoffice-review.html" class="bo-brand">🐾 ORMA</a><span>Editorial · Image coverage</span></header>
+  <header class="bo-header"><a href="backoffice-review.html" class="bo-brand">🐾 ORMA</a><span>Editorial · Trail photos</span></header>
   <main class="bo-main bo-image-desk">
     <div class="bo-title-row">
       <div>
-        <p class="eyebrow">Editorial team · private backoffice</p>
-        <h1>Pages missing pictures</h1>
-        <p class="bo-intro">The agent finds pages with weak or missing imagery and checks owned ORMA assets first. You choose the source route before it captures, generates or places anything.</p>
+        <p class="eyebrow">Editorial · trail-photo agent</p>
+        <h1>Trail photo coverage</h1>
+        <p class="bo-intro">The agent finds published trails without a useful cover photo, prioritises the Dolomites, and keeps every upload behind visual, rights and publication approval.</p>
       </div>
       <button id="scanImageCoverage" class="bo-primary-action">Scan website now</button>
     </div>
     <div id="imageCoverageState" class="bo-state">Scanning the latest coverage report…</div>
     <section class="bo-desk-summary" aria-label="Image coverage summary">
-      <article><strong id="imagePagesScanned">—</strong><span>Guide pages scanned</span></article>
+      <article><strong id="imagePagesScanned">—</strong><span>Published trails scanned</span></article>
       <article><strong id="imageMissingCount">—</strong><span>Missing meaningful imagery</span></article>
       <article><strong id="imageCoveredCount">—</strong><span>Covered</span></article>
       <article><strong id="imageJobsCount">—</strong><span>Image jobs queued</span></article>
     </section>
     <section class="bo-method-note">
-      <strong>Library-first rule</strong>
+      <strong>Owner-upload-first rule</strong>
       <p id="imageLibraryStatus">Checking image libraries…</p>
-      <p>Order: ORMA repository → Benedetta’s personal photo library → properly licensed image → AI option. The coverage scan refreshes every Wednesday at noon. Every final asset still requires visual and licensing approval before website placement.</p>
-      <div class="bo-library-connect">
-        <label for="photoLibraryPath">Personal photo folder</label>
-        <input id="photoLibraryPath" type="text" placeholder="/Users/benedettalorenzi/Pictures/ORMA">
-        <button id="connectPhotoLibrary">Connect and scan</button>
-        <small>The index stays on this Mac; the folder path is not committed to Git.</small>
-      </div>
+      <p>Order: upload an ORMA-owned photo → check existing ORMA assets → properly licensed image → explicit AI option. Every final asset still requires visual and rights approval before website placement.</p>
     </section>
     <section aria-labelledby="gapsTitle">
       <div class="bo-exec-section-head"><div><p class="eyebrow">Visual gaps</p><h2 id="gapsTitle">Choose how each picture should be sourced</h2></div><p>Use the note to identify a location, shoot, folder, dog or visual direction.</p></div>

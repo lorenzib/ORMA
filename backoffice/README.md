@@ -269,7 +269,7 @@ reviewed and merged.
 The live trail-verification vertical includes Cartographer, Logistics,
 Regulatory Ranger, Terrain & POI, Evidence Librarian and Red Team execution,
 plus the verified-trail Copywriter and Visual Director revision loop. New Trail
-scouting, dynamic hazard monitoring, image coverage, Newsletter and Analyst
+scouting, dynamic hazard monitoring, trail-photo coverage, Newsletter and Analyst
 packets are separate team workflows with their own desks and human gates. Each
 hosted schedule remains independently controlled by its repository activation
 variable; the current production checklist is in [`RUNBOOK.md`](./RUNBOOK.md).
@@ -285,8 +285,9 @@ npm run backoffice:review
 ```
 
 The strategy cycle preserves unresolved work, keeps exactly three Editorial
-copy packets active, refreshes image coverage and New Trail candidates, and
-creates Newsletter and Analyst packets only when due. It prepares decisions;
+copy packets active, refreshes New Trail candidates, and creates Newsletter and
+Analyst packets only when due. The separate trail-photo agent audits every
+published trail and prioritises Dolomites gaps. These agents prepare decisions;
 it does not publish. The CEO dashboard links to the dedicated desks for each
 queue, while Social remains launch-gated.
 

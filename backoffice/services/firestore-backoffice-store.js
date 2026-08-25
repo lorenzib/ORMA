@@ -36,7 +36,11 @@ function adminApp(options = {}){
   if(getApps().length) return getApps()[0];
   const raw = options.serviceAccountJson || process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
   const credential = raw ? cert(typeof raw === 'string' ? JSON.parse(raw) : raw) : applicationDefault();
-  return initializeApp({ credential, projectId: options.projectId || process.env.FIREBASE_PROJECT_ID || 'dolopaws' });
+  return initializeApp({
+    credential,
+    projectId: options.projectId || process.env.FIREBASE_PROJECT_ID || 'dolopaws',
+    storageBucket:options.storageBucket||process.env.FIREBASE_STORAGE_BUCKET||'dolopaws.firebasestorage.app',
+  });
 }
 
 function backofficeDb(options = {}){

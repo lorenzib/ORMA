@@ -24,6 +24,7 @@ jobs:
       FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       ORMA_PUBLICATION_PUBLIC_BASE_URL: https://www.app-orma.com
       ORMA_PUBLICATION_OVERRIDES_PATH: deployed-site/data/verified-trail-overrides.json
+      ORMA_TRAIL_IMAGE_OVERRIDES_PATH: deployed-site/data/trail-image-overrides.json
     steps:
       - uses: actions/checkout@v7
         with:
@@ -59,4 +60,6 @@ jobs:
         env:
           ORMA_PUBLICATION_COMMIT_SHA: ${{ steps.deployment.outputs.commit_sha }}
           ORMA_PUBLICATION_DEPLOYMENT_URL: ${{ steps.deployment.outputs.run_url }}
-        run: npm run backoffice:confirm-publications
+        run: |
+          npm run backoffice:confirm-publications
+          npm run backoffice:confirm-trail-images

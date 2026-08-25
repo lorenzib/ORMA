@@ -7,6 +7,9 @@ import {
   addDoc, collection, doc, getDoc, getDocs, getFirestore, limit,
   orderBy, query, serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import {
+  deleteObject, getBytes, getStorage, ref, uploadBytes,
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDnEJKnoDltKwpl4QdhA-qLH3a4ugLd68M",
@@ -23,6 +26,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 let currentUser = null;
 let authResolved = false;
 
@@ -144,14 +148,60 @@ async function submitEditorialReview(input){
 
 async function getImageReviews(){
   if(!await moderatorIdentity())return {ok:false,error:'moderator-required',reviews:[]};
-  try{const snapshot=await getDocs(query(collection(db,'backofficeImageReviews'),orderBy('submittedAt','desc'),limit(150)));return {ok:true,reviews:snapshot.docs.map(item=>({id:item.id,...item.data()}))};}
+  try{const snapshot=await getDocs(query(collection(db,'backofficeImageReviews'),orderBy('submittedAt','desc'),limit(500)));return {ok:true,reviews:snapshot.docs.map(item=>({id:item.id,...item.data()}))};}
   catch(error){console.error('getImageReviews failed:',error);return {ok:false,error:'image-review-read-failed',reviews:[]};}
 }
 
 async function submitImageReview(input){
   const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
-  try{const review=await addDoc(collection(db,'backofficeImageReviews'),{contractVersion:'1.0.0',type:'image-coverage-review',status:'queued',slug:String(input.slug||''),action:String(input.action||''),note:String(input.note||'').trim().slice(0,1500),assetRef:String(input.assetRef||'').slice(0,1000),submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false});return {ok:true,reviewId:review.id,status:'queued'};}
+  try{const review=await addDoc(collection(db,'backofficeImageReviews'),{
+    contractVersion:'2.0.0',type:'image-coverage-review',status:'queued',slug:String(input.slug||''),
+    trailId:String(input.trailId||input.slug||''),action:String(input.action||''),
+    note:String(input.note||'').trim().slice(0,1500),assetRef:String(input.assetRef||'').slice(0,1000),
+    uploadPath:String(input.uploadPath||'').slice(0,1000),fileName:String(input.fileName||'').slice(0,240),
+    mimeType:String(input.mimeType||'').slice(0,120),fileSize:Number(input.fileSize||0),
+    width:Number(input.width||0),height:Number(input.height||0),creator:String(input.creator||'').trim().slice(0,160),
+    rightsBasis:String(input.rightsBasis||'').slice(0,80),altText:String(input.altText||'').trim().slice(0,500),
+    sourcePageUrl:String(input.sourcePageUrl||'').slice(0,1000),license:String(input.license||'').slice(0,160),
+    licenseUrl:String(input.licenseUrl||'').slice(0,1000),sourceType:String(input.sourceType||'').slice(0,80),
+    submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false,
+  });return {ok:true,reviewId:review.id,status:'queued'};}
   catch(error){console.error('submitImageReview failed:',error);return {ok:false,error:'image-review-submit-failed'};}
+}
+
+function safeTrailId(value){return String(value||'').toLowerCase().replace(/[^a-z0-9_-]+/g,'-').replace(/^-+|-+$/g,'').slice(0,100);}
+function safeFileName(value){const cleaned=String(value||'trail-photo.jpg').replace(/[^a-zA-Z0-9._-]+/g,'-').replace(/^-+|-+$/g,'');return cleaned.slice(-180)||'trail-photo.jpg';}
+
+async function uploadTrailImage(input){
+  const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
+  const file=input?.file;const trailId=safeTrailId(input?.trailId);
+  if(!trailId||!file)return {ok:false,error:'trail-and-file-required'};
+  if(!/^image\/(?:jpeg|png|webp|avif)$/i.test(file.type||''))return {ok:false,error:'unsupported-image-type'};
+  if(file.size<=0||file.size>15*1024*1024)return {ok:false,error:'image-size-invalid'};
+  if(input.rightsBasis!=='orma-owned'&&input.rightsBasis!=='permission-granted')return {ok:false,error:'image-rights-required'};
+  const uploadId=globalThis.crypto?.randomUUID?.()||`${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  const uploadPath=`backoffice/trail-images/${trailId}/${uploadId}-${safeFileName(file.name)}`;
+  const uploadRef=ref(storage,uploadPath);
+  try{
+    await uploadBytes(uploadRef,file,{contentType:file.type,customMetadata:{
+      trailId,uploadedBy:moderator.uid,rightsBasis:input.rightsBasis,creator:String(input.creator||'ORMA').slice(0,160),
+    }});
+    const review=await submitImageReview({...input,slug:trailId,trailId,action:'upload-owner-photo',assetRef:uploadPath,uploadPath,
+      fileName:file.name,mimeType:file.type,fileSize:file.size});
+    if(!review.ok){await deleteObject(uploadRef).catch(()=>{});return review;}
+    return {...review,uploadPath};
+  }catch(error){console.error('uploadTrailImage failed:',error);return {ok:false,error:error.code||'trail-image-upload-failed'};}
+}
+
+async function getTrailImagePreview(uploadPath){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required'};
+  const path=String(uploadPath||'');
+  if(!path.startsWith('backoffice/trail-images/'))return {ok:false,error:'invalid-upload-path'};
+  try{
+    const bytes=await getBytes(ref(storage,path),15*1024*1024);
+    return {ok:true,url:URL.createObjectURL(new Blob([bytes]))};
+  }
+  catch(error){return {ok:false,error:error.code||'trail-image-preview-failed'};}
 }
 
 async function getNewsletterReviews(){
@@ -217,7 +267,7 @@ window.DoloPawsAuth={
   async logOut(){await signOut(auth);currentUser=null;},
 };
 window.DoloPawsModeration={getModeratorStatus:async()=>({ok:!!await moderatorIdentity()})};
-window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getImageReviews,getNewsletterReviews,getAnalystReviews,submitTrailReview,submitPublicationReview,submitDossierReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitImageReview,submitNewsletterReview,submitAnalystReview};
+window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getImageReviews,getNewsletterReviews,getAnalystReviews,submitTrailReview,submitPublicationReview,submitDossierReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitImageReview,uploadTrailImage,getTrailImagePreview,submitNewsletterReview,submitAnalystReview};
 
 onAuthStateChanged(auth,user=>{
   currentUser=user;

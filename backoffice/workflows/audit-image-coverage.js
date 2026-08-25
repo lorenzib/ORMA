@@ -2,9 +2,10 @@
 
 const fs = require('fs/promises');
 const path = require('path');
+const { loadProductionTrails } = require('../../scripts/load-production-trails');
 
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
-const STOP_WORDS = new Set(['with','your','dogs','dog','guide','hikes','hiking','trail','trails','the','and','for','from','this','that','orma']);
+const STOP_WORDS = new Set(['with','your','dogs','dog','guide','hikes','hiking','trail','trails','loop','route','the','and','for','from','this','that','orma']);
 
 async function walkImages(directory, source, base){
   try{
@@ -24,7 +25,7 @@ function tokens(value){
 }
 
 function rankLibraryMatches(page, images){
-  const words = tokens(`${page.slug} ${page.title}`);
+  const words = tokens(`${page.slug} ${page.title} ${page.area || ''} ${page.valley || ''}`);
   return images.map(image => {
     const name = tokens(image.fileName); const overlap = words.filter(word => name.includes(word));
     return { ...image, score: overlap.length, matchedTerms: overlap };
@@ -50,38 +51,47 @@ function imageSignals(html){
 
 async function auditImageCoverage(root, options = {}){
   const at = options.at || new Date().toISOString();
-  const guidesDirectory = path.join(root, 'guides');
-  const names = (await fs.readdir(guidesDirectory)).filter(name => name.endsWith('.html')).sort();
   const personalRoot = options.personalLibraryPath || process.env.ORMA_PHOTO_LIBRARY_PATH || null;
   const [ormaImages, personalImages] = await Promise.all([
     walkImages(path.join(root, 'images'), 'orma-library', root),
     personalRoot ? walkImages(path.resolve(personalRoot), 'personal-library', root) : Promise.resolve([]),
   ]);
-  const pages = await Promise.all(names.map(async name => {
-    const sourceRef = path.join('guides', name); const html = await fs.readFile(path.join(root, sourceRef), 'utf8');
-    const page = { slug: name.replace(/\.html$/, ''), title: titleFromHtml(html, name), sourceRef };
-    const signals = imageSignals(html); const candidates = rankLibraryMatches(page, [...ormaImages, ...personalImages]);
-    const hasEditorialImage = signals.editorialImages.length > 0 || signals.backgroundImages.length > 0;
-    const placeholderSocialImage = !signals.ogImage || /icon-512|placeholder/i.test(signals.ogImage);
-    const hasMeaningfulImage = hasEditorialImage || !placeholderSocialImage;
-    const reasons = [];
-    if(!hasMeaningfulImage) reasons.push('No meaningful editorial image is rendered on the page.');
-    if(signals.hasEmptyHero) reasons.push('The page contains an empty hero image container.');
-    if(!hasMeaningfulImage && placeholderSocialImage) reasons.push('The social preview also uses the ORMA icon or has no image.');
+  const trails = options.trails || loadProductionTrails(root);
+  const pages = trails.map(trail => {
+    const page = {
+      slug:String(trail.id), trailId:String(trail.id), title:String(trail.name || trail.id),
+      area:String(trail.area || ''), valley:String(trail.valley || ''), region:String(trail.region || ''),
+      sourceRef:`trail.html?id=${encodeURIComponent(trail.id)}`,
+    };
+    const candidates = rankLibraryMatches(page, [...ormaImages, ...personalImages]);
+    const existingAssets = [...new Set([trail.imageIcon, trail.heroImage].filter(value => typeof value === 'string' && value.trim()))];
+    const hasMeaningfulImage = existingAssets.length > 0 && !existingAssets.every(asset => /icon-512|placeholder/i.test(asset));
+    const reasons = hasMeaningfulImage ? [] : ['This published trail has no meaningful cover photo.'];
+    const dolomites = trail.region === 'dolomites';
+    const priorityScore = (dolomites ? 100 : 0) + (trail.ormaVerified ? 30 : 0) + (trail.curated !== false ? 10 : 0);
     return {
       ...page, coverageState: reasons.length ? 'missing' : 'covered', reasons,
-      existingAssets: [...signals.editorialImages, ...signals.backgroundImages], ogImage: signals.ogImage,
+      existingAssets, ogImage: trail.imageIcon || trail.heroImage || null,
       libraryMatches: candidates,
-      recommendedRoute: candidates.length ? candidates[0].source : personalRoot ? 'licensed-search' : 'personal-library-first',
-      priority: signals.hasEmptyHero ? 'high' : reasons.length > 1 ? 'high' : 'medium', status: reasons.length ? 'awaiting-review' : 'covered',
+      recommendedRoute: candidates.length ? candidates[0].source : 'owner-upload-first',
+      priority: dolomites ? 'high' : 'medium', priorityScore,
+      status: reasons.length ? 'awaiting-review' : 'covered',
     };
-  }));
-  const gaps = pages.filter(page => page.coverageState === 'missing');
+  });
+  const gaps = pages.filter(page => page.coverageState === 'missing')
+    .sort((a,b) => b.priorityScore-a.priorityScore || a.title.localeCompare(b.title));
   return {
-    contractVersion: '1.0.0', generatedAt: at, mode: 'coverage-audit', publicMutationAllowed: false,
+    contractVersion: '2.0.0', generatedAt: at, mode: 'trail-photo-coverage-audit', publicMutationAllowed: false,
     library: { ormaRoot: 'images/', ormaAssetsScanned: ormaImages.length, personalLibraryConnected: Boolean(personalRoot), personalAssetsScanned: personalImages.length },
     pages, gaps,
-    summary: { pagesScanned: pages.length, covered: pages.length-gaps.length, missing: gaps.length, highPriority: gaps.filter(gap=>gap.priority==='high').length },
+    summary: {
+      trailsScanned:pages.length,
+      pagesScanned:pages.length,
+      covered:pages.length-gaps.length,
+      missing:gaps.length,
+      dolomitesMissing:gaps.filter(gap=>gap.region==='dolomites').length,
+      highPriority:gaps.filter(gap=>gap.priority==='high').length,
+    },
   };
 }
 

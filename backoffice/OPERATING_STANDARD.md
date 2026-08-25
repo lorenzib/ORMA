@@ -69,7 +69,7 @@ the required evidence and human gates are complete.
 
 ### 3. Editorial
 
-Owns website copy and image coverage as two separate queues.
+Owns website copy and trail-photo coverage as two separate queues.
 
 The weekly copy cycle:
 
@@ -97,11 +97,14 @@ uncertainty instead of inventing a commitment.
 Approval applies only the reviewed changes, runs checks, commits only the
 approved source files, pushes to `main`, and reports the deployment result.
 
-Image coverage is a separate Editorial workflow. For each genuine gap, the CEO
-chooses between owned photography, a correctly licensed asset, approved AI
-generation, or parking the gap. ORMA's owned photo library should be checked
-before sourcing or generating a replacement. No image is placed without an
-actual preview and known rights or explicit AI approval.
+Trail-photo coverage is a separate Editorial workflow. It audits every
+published trail, not guides or general pages, and ranks Dolomites gaps first.
+For each trail, the CEO can upload her own photograph in a protected backoffice
+space, choose an existing ORMA asset, request correctly licensed candidates,
+explicitly request an AI option, or park the gap. Uploads are not publicly
+readable. The CEO previews the exact image and its creator, rights basis and alt
+text before approving it for a publication pull request. A photo appears on the
+public trail only after that pull request is reviewed, merged and deployed.
 
 ### 4. Newsletter
 
@@ -177,7 +180,8 @@ requests and the CEO prototype gate. An investigation, priority decision or prot
 - Strategy cycle: Wednesday at 12:00 local time.
 - Editorial copy: weekly, with up to three active non-safety reviews; Safety
   Library copy review is paused during the current UI redesign.
-- Image coverage: refreshed with the weekly strategy cycle.
+- Trail-photo coverage: refreshed Monday through Saturday at 11:00 local time,
+  after New Trail scouting; guide-wide image audits are not part of this queue.
 - New Trail scouting: Monday through Saturday at 10:00 local time, Dolomites
   first; admission remains CEO-gated.
 - Newsletter: parked until trail, collection and website content readiness is
