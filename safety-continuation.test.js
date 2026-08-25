@@ -44,11 +44,13 @@ describe('Safety Library continuation component', () => {
     expect(new Set(safetyPages)).toEqual(new Set([...linkedGuides, 'water-for-dogs-on-trail.html']));
   });
 
-  test('shared styles support desktop, compact and mobile layouts', () => {
+  test('shared styles keep the continuation clean across desktop and mobile layouts', () => {
     const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
     expect(css).toContain('.safety-continue{');
-    expect(css).toContain('grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;');
-    expect(css).toContain('@media(max-width:760px)');
+    expect(css).toContain('grid-template-columns:minmax(210px,1fr) auto auto auto;');
+    expect(css).toContain('border-top:1px solid var(--paper-line);');
+    expect(css).toContain('.safety-continue__card small,.safety-continue__card p{display:none;}');
+    expect(css).toContain('@media(max-width:860px)');
     expect(css).toContain('@media(max-width:560px)');
   });
 });

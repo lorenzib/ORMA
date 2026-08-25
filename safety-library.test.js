@@ -49,7 +49,7 @@ describe('Safety library', () => {
     expect(document.querySelector('.sg-emergency').textContent).toContain('European emergency');
     expect(document.querySelector('.sg-emergency').textContent).toContain('Veterinary ambulance');
     expect(document.querySelector('.sg-emergency a').getAttribute('href')).toBe('tel:112');
-    expect(html).toMatch(/\.sg-emergency\{[^}]*background:#A93C31/s);
+    expect(html).toMatch(/\.sg-emergency\{[^}]*background:var\(--emergency-bg\)/s);
     expect(html).toMatch(/\.sg-rules ol\{[^}]*grid-template-columns:repeat\(5/s);
     expect(html).toMatch(/\.sg-rules\{[^}]*background:var\(--success\)/s);
     expect(html).toMatch(/\.sg-rules small\{[^}]*font-size:12px;[^}]*line-height:1\.45/s);
@@ -68,7 +68,7 @@ describe('Safety library', () => {
     expect(opener.closest('.sg-hero')).not.toBeNull();
     expect(opener.textContent).toMatch(/Paws ready\?/i);
     expect(opener.querySelector('.sg-readiness-fab-icon').textContent).toBe('🐾');
-    expect(html).toMatch(/\.sg-readiness-fab\{[^}]*background:#4B7653/s);
+    expect(html).toMatch(/\.sg-readiness-fab\{[^}]*background:var\(--success\)/s);
     expect(html).not.toMatch(/\.sg-readiness-fab\{[^}]*position:fixed/s);
     expect(document.querySelectorAll('#readinessQuiz .sg-question')).toHaveLength(5);
     expect(document.querySelector('#readinessQuizResult').getAttribute('aria-live')).toBe('polite');

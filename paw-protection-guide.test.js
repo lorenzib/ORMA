@@ -69,9 +69,9 @@ describe('paw protection question-led guide', () => {
     expect(html).toContain('.paw2-library{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));');
     expect(html).toContain('.paw2-library{grid-template-columns:repeat(2,minmax(0,1fr));}');
     expect(html).toContain('.paw2-library{grid-template-columns:1fr;}');
-    expect(html).toContain('background:var(--paw-blue-soft)');
-    expect(html).toContain('.paw2-detail-columns section{padding:15px 17px;border-radius:10px;background:#e8ede5;}');
-    expect(html).toContain('.paw2-detail-columns section:last-child{background:#f4e2dc;}');
+    expect(html).toContain('background:var(--safety-info-soft)');
+    expect(html).toContain('.paw2-detail-columns section{padding:15px 17px;border-radius:10px;background:var(--safety-safe-soft);}');
+    expect(html).toContain('.paw2-detail-columns section:last-child{background:var(--safety-stop-soft);}');
     details.forEach(detail => expect(detail.open).toBe(false));
     document.querySelector('a[href="#boots"]').click();
     expect(document.getElementById('boots').open).toBe(true);
