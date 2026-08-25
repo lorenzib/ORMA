@@ -2464,6 +2464,9 @@ body.map-fs-open{overflow:hidden;}
 /* --- outside-click catcher --- */
 .hp-menu-scrim{position:fixed;inset:0;z-index:20;}
 .hp-menu-scrim[hidden]{display:none;}
+@media(max-width:700px){
+  .hp-fpanel.discovery-filter-panel{position:fixed;top:auto;bottom:max(8px,env(safe-area-inset-bottom,0px));right:16px;left:16px;width:auto;max-width:none;max-height:70vh;overflow-y:auto;z-index:60;}
+}
 
 /* --- shared dog-profile prompt directly below the site navigation --- */
 .dog-profile-banner{width:100%;box-sizing:border-box;background:linear-gradient(135deg,#E5EDE2 0%,#EEF3EB 100%);border-bottom:1px solid rgba(47,73,56,.08);color:var(--ink);}
@@ -3533,7 +3536,7 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
   .li-list{border-left:none;border-top:1px solid var(--paper-line);overflow:visible;}
   .li-list-head{position:static;}
   .li-list-title-row{padding-right:0;}
-  .li-filters-menu{position:fixed;top:auto;right:8px;left:8px;width:auto;max-height:70vh;}
+  .li-filters-menu{position:fixed;top:auto;bottom:max(8px,env(safe-area-inset-bottom,0px));right:8px;left:8px;width:auto;max-height:70vh;}
 }
 
 /* ============================================================

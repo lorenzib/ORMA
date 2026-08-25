@@ -14,11 +14,14 @@ describe('shared trail-filter experience', () => {
   test('uses one trigger and panel treatment in all three discovery contexts', () => {
     const homepage = read('index.html');
     const browse = read('browse-trails.html');
+    const styles = read('styles.css');
 
     expect((homepage.match(/discovery-filter-trigger/g) || [])).toHaveLength(2);
     expect((homepage.match(/discovery-filter-panel/g) || [])).toHaveLength(2);
     expect(browse).toContain('id="browseFiltersBtn" class="li-filt discovery-filter-trigger"');
     expect(browse).toContain('id="browseFiltersMenu" hidden');
+    expect(styles).toMatch(/\.li-filters-menu\{position:fixed;top:auto;bottom:max\(8px,env\(safe-area-inset-bottom,0px\)\);/);
+    expect(styles).toMatch(/\.hp-fpanel\.discovery-filter-panel\{position:fixed;top:auto;bottom:max\(8px,env\(safe-area-inset-bottom,0px\)\);/);
   });
 
   test.each(vocabulary)('keeps “%s” consistent across guest, browse and logged-in filters', label => {
