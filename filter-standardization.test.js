@@ -54,4 +54,18 @@ describe('shared trail-filter experience', () => {
     expect(read('browse-trails.html')).toContain('filtersApply.textContent = `Show ${pool.length}');
     expect(read('script.js')).toContain('applyBtn.textContent = `Show ${displayList.length}');
   });
+
+  test('keeps both trail toolbars usable at the narrow-tablet breakpoint', () => {
+    const styles = read('styles.css');
+    const browse = read('browse-trails.html');
+
+    expect(styles).toContain('grid-template-columns:repeat(6,minmax(0,1fr))');
+    expect(styles).toContain('.li-search{grid-column:1/-1;width:100%;max-width:none;}');
+    expect(browse).toContain('.browse-area-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))');
+    expect(browse).toContain('.browse-primary-controls .browse-search-shell{grid-column:1/-1;');
+    expect(browse).toContain('.browse-quick-filters{grid-column:1/span 4;grid-row:4;');
+    expect(browse).toContain('.browse-saved-only{grid-column:5/span 2;grid-row:4;');
+    expect(browse).toContain('.browse-area-controls{grid-template-columns:repeat(2,minmax(0,1fr));}');
+    expect(browse).toContain('overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;');
+  });
 });

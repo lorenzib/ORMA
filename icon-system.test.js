@@ -34,6 +34,8 @@ describe('ORMA icon system', () => {
       expect(svg).toContain('fill="');
       expect(svg).not.toContain('unknown');
     });
+    expect(icons.renderIconSvg('gentle')).toContain('fill="#D98AA3"');
+    expect(icons.renderIconSvg('gentle')).toContain('fill="#D6A038"');
   });
 
   test('renders product statuses through one badge component', () => {
