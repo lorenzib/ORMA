@@ -19,16 +19,6 @@
   --success:#4A7856;
   --success-dim:#E4EADF;
   --sage-dim:#E4EADF;
-  /* Shared Safety Library states: blue = information, green = safe,
-     amber = caution and red = stop. */
-  --safety-info:var(--accent);
-  --safety-info-soft:#EAF3F6;
-  --safety-safe:#2C5C34;
-  --safety-safe-soft:#DCEBDD;
-  --safety-caution:#8A5A16;
-  --safety-caution-soft:#F5E4C6;
-  --safety-stop:#9C3A25;
-  --safety-stop-soft:#F3D9D2;
   --paper-line:#DEDDD0;
   /* emergency: rescue banner only, never a badge or a rating */
   --emergency-bg:#B5480B;
@@ -70,65 +60,97 @@
 
 /* Shared end-of-article navigation for Safety Library guides. */
 .safety-continue{
-  display:grid;
-  grid-template-columns:minmax(210px,1fr) auto auto auto;
-  gap:12px 22px;
+  width:100%;
+  display:flex;
   align-items:center;
-  margin:30px 0 0;
-  padding:19px 0 0;
+  justify-content:space-between;
+  gap:24px;
+  margin:24px 0 0;
+  padding:16px 0;
   border-top:1px solid var(--paper-line);
+  border-bottom:1px solid var(--paper-line);
   box-sizing:border-box;
 }
-.safety-continue__heading{
-  min-width:0;
-}
-.safety-continue__heading h2{
-  margin:0!important;
-  color:var(--ink);
-  font:700 1rem/1.25 "Bricolage Grotesque",sans-serif!important;
-}
-.safety-continue__heading span{display:none;}
-.safety-continue__card{
-  display:inline-flex;
-  gap:7px;
-  align-items:center;
-  min-height:40px;
-  padding:0;
-  border:0;
-  background:transparent;
+.safety-continue__next{
+  display:flex;
+  align-items:baseline;
+  gap:12px;
   color:var(--ink);
   text-decoration:none!important;
-  box-sizing:border-box;
 }
-.safety-continue__card:hover strong{color:var(--accent);}
-.safety-continue__card:focus-visible,.safety-continue__cta:focus-visible{outline:3px solid rgba(62,122,145,.3);outline-offset:3px;}
-.safety-continue__card small,.safety-continue__card p{display:none;}
-.safety-continue__card strong{display:block;color:var(--ink);font-size:.82rem;line-height:1.25;transition:color .16s ease;}
-.safety-continue__arrow{color:var(--accent);font-size:.94rem;font-weight:800;}
-.safety-continue__cta{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:40px;
-  padding:0;
-  background:transparent;
-  color:var(--accent)!important;
-  font-size:.82rem;
+.safety-continue__label{
+  color:var(--ink-soft);
+  font-size:.64rem;
   font-weight:800;
-  line-height:1.25;
-  text-align:center;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.safety-continue__next strong{font-size:.92rem;line-height:1.3;}
+.safety-continue__arrow{color:var(--accent);font-size:1.05rem;font-weight:800;}
+.safety-continue__all{
+  color:var(--accent);
+  font-size:.76rem;
+  font-weight:800;
+  line-height:1.3;
   text-decoration:none!important;
   white-space:nowrap;
 }
-.safety-continue__cta:hover{text-decoration:underline!important;}
-@media(max-width:860px){
-  .safety-continue{grid-template-columns:1fr auto auto;gap:8px 18px;}
-  .safety-continue__heading{grid-column:1/-1;}
+.safety-continue__next:hover strong,.safety-continue__all:hover{text-decoration:underline;}
+.safety-continue__next:focus-visible,.safety-continue__all:focus-visible{outline:3px solid rgba(62,122,145,.3);outline-offset:4px;}
+
+/* Shared sources and review note shown at the end of every Safety Library guide. */
+.safety-sources{
+  margin-top:0;
+  border-bottom:1px solid var(--paper-line);
+  color:var(--ink-soft);
+}
+.safety-sources summary{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+  padding:13px 0;
+  cursor:pointer;
+  list-style:none;
+  font-size:.74rem;
+  line-height:1.45;
+}
+.safety-sources summary::-webkit-details-marker{display:none;}
+.safety-sources__heading{
+  display:flex;
+  align-items:baseline;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.safety-sources__heading strong{color:var(--ink);font-weight:700;}
+.safety-sources__heading span{color:var(--ink-soft);}
+.safety-sources summary::after{
+  content:"+";
+  flex:0 0 auto;
+  color:var(--accent);
+  font-size:1.05rem;
+  font-weight:700;
+  line-height:1;
+}
+.safety-sources[open] summary::after{content:"−";}
+.safety-sources__body{
+  padding:0 0 18px;
+  font-size:.74rem;
+  line-height:1.6;
+}
+.safety-sources__body p{margin:0;}
+.safety-sources__body p+p{margin-top:10px;}
+.safety-sources a{color:var(--accent);}
+.safety-sources__caveat{color:var(--ink);font-weight:600;}
+@media(max-width:760px){
+  .safety-continue{gap:16px;}
 }
 @media(max-width:560px){
-  .safety-continue{grid-template-columns:1fr;margin-top:24px;padding-top:16px;gap:2px;}
-  .safety-continue__heading{grid-column:auto;margin-bottom:6px;}
-  .safety-continue__card,.safety-continue__cta{justify-content:space-between;width:100%;text-align:left;}
+  .safety-continue{align-items:flex-start;flex-direction:column;gap:10px;margin-top:20px;}
+  .safety-continue__next{align-items:flex-start;flex-wrap:wrap;gap:4px 10px;}
+  .safety-continue__label{flex-basis:100%;}
+  .safety-sources__heading{display:grid;gap:3px;}
 }
 
 *{box-sizing:border-box;}
@@ -735,9 +757,9 @@ img,svg{max-width:100%;height:auto;}
   display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;
   padding:5px 12px;border-radius:var(--radius-pill);white-space:nowrap;
 }
-.safety-low{background:var(--safety-safe-soft);color:var(--safety-safe);}
-.safety-moderate{background:var(--safety-caution-soft);color:var(--safety-caution);}
-.safety-caution{background:var(--safety-stop-soft);color:var(--safety-stop);}
+.safety-low{background:#DCEBDD;color:#2C5C34;}
+.safety-moderate{background:#F5E4C6;color:#8A5A16;}
+.safety-caution{background:#F3D9D2;color:#9C3A25;}
 
 /* ---------- AUTH MODAL ---------- */
 .modal-overlay{

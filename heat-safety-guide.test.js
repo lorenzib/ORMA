@@ -46,11 +46,11 @@ describe('Heat and hydration safety guide', () => {
   });
 
   test('shows current veterinary and primary-research sources', () => {
-    const sources = [...document.querySelectorAll('.hs-sources a')].map(link => link.href);
+    const sources = [...document.querySelectorAll('.safety-sources a')].map(link => link.href);
     expect(sources).toEqual(expect.arrayContaining([
       'https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/heatstroke-in-dogs',
       'https://pubmed.ncbi.nlm.nih.gov/38518416/'
     ]));
-    expect(document.querySelector('.hs-sources').textContent).toContain('Last reviewed 23 August 2026');
+    expect(document.querySelector('.safety-sources').textContent).toContain('Last reviewed 23 August 2026');
   });
 });

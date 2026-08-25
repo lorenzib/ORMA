@@ -196,7 +196,6 @@
       .then(response => { if(!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); })
       .then(collection => {
         plants = Array.isArray(collection.plants) ? collection.plants : [];
-        document.getElementById('plantLastReviewed').textContent = collection.meta.lastReviewed;
         render();
       })
       .catch(() => {

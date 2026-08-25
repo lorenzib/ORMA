@@ -19,7 +19,7 @@ describe('scan-first safety guide layouts', () => {
     expect(html).toContain('guide-scan-cards.css?v=20260825-1');
     expect(document.querySelector('.scan-intro')).not.toBeNull();
     expect(document.querySelectorAll('.scan-card').length).toBeGreaterThanOrEqual(3);
-    expect(document.querySelector('.scan-sources')).not.toBeNull();
+    expect(document.querySelector('.safety-sources')).not.toBeNull();
     expect(document.body.textContent).toContain('Last reviewed 25 August 2026');
   });
 

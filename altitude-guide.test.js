@@ -17,8 +17,8 @@ describe('altitude health and safety guide', () => {
     expect(hero.getAttribute('alt')).toBe('');
     expect(hero.getAttribute('width')).toBe('1200');
     expect(hero.getAttribute('height')).toBe('800');
-    expect(document.querySelector('.alt-meta').textContent).toMatch(/Last reviewed 23 August 2026/i);
     expect(document.querySelector('.alt-meta').textContent).toMatch(/2 min guide/i);
+    expect(document.querySelector('.alt-meta').textContent).not.toMatch(/reviewed/i);
     expect(document.querySelector('.alt-jump')).toBeNull();
   });
 
@@ -54,11 +54,12 @@ describe('altitude health and safety guide', () => {
   });
 
   test('links supporting references and related safety guides', () => {
-    const sources = document.querySelector('.alt-sources');
+    const sources = document.querySelector('.safety-sources');
     expect(sources.open).toBe(false);
     expect(sources.querySelectorAll('a')).toHaveLength(3);
     expect(sources.textContent).toMatch(/general information, not a diagnosis/i);
-    expect(Array.from(document.querySelectorAll('.safety-continue__card')).map(link => link.getAttribute('href'))).toEqual([
+    expect(sources.querySelector('summary').textContent).toMatch(/Last reviewed 23 August 2026/i);
+    expect(Array.from(document.querySelectorAll('.safety-continue a')).map(link => link.getAttribute('href'))).toEqual([
       'heat-overheating.html',
       '../safety-guide.html',
     ]);
