@@ -758,6 +758,11 @@ window.DoloPawsAuth = {
   async signUp(email, password, displayName) {
     try {
       const credential = await createUserWithEmailAndPassword(auth, email, password);
+      // Firebase resolves the credential promise before onAuthStateChanged is
+      // guaranteed to have run. Profile handoffs happen immediately after
+      // sign-up, so expose the authenticated user synchronously instead of
+      // briefly making the first dog save look signed out.
+      currentUser = credential.user;
       if (displayName) {
         try {
           await updateProfile(credential.user, { displayName });
@@ -778,7 +783,8 @@ window.DoloPawsAuth = {
   },
   async signIn(email, password) {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const credential = await signInWithEmailAndPassword(auth, email, password);
+      currentUser = credential.user;
       return { ok: true };
     } catch (e) {
       return { ok: false, code: e.code || "auth/unknown", message: friendlyError(e.code) };
@@ -786,7 +792,8 @@ window.DoloPawsAuth = {
   },
   async signInGoogle() {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const credential = await signInWithPopup(auth, googleProvider);
+      currentUser = credential.user;
       return { ok: true };
     } catch (e) {
       return { ok: false, code: e.code || "auth/unknown", message: friendlyError(e.code) };
@@ -795,7 +802,8 @@ window.DoloPawsAuth = {
   appleSignInReady: APPLE_SIGNIN_READY,
   async signInApple() {
     try {
-      await signInWithPopup(auth, appleProvider);
+      const credential = await signInWithPopup(auth, appleProvider);
+      currentUser = credential.user;
       return { ok: true };
     } catch (e) {
       return { ok: false, code: e.code || "auth/unknown", message: friendlyError(e.code) };

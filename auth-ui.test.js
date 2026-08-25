@@ -3,7 +3,7 @@ const path = require('path');
 
 const authScript = fs.readFileSync(path.join(__dirname, 'auth-ui.js'), 'utf8');
 
-function mountAuth(){
+function mountAuth(overrides = {}){
   document.body.innerHTML = `
     <button id="accountBtn">Log in</button>
     <div id="authModal" hidden role="dialog" aria-modal="true" aria-labelledby="authTitle">
@@ -31,6 +31,10 @@ function mountAuth(){
     signIn: jest.fn(),
     signUp: jest.fn(),
     signInGoogle: jest.fn(),
+    getDogProfiles: jest.fn(async () => ({ dogs:[], activeDogId:null })),
+    setDogProfile: jest.fn(async () => true),
+    addDogProfile: jest.fn(async () => true),
+    ...overrides,
   };
   window.eval(authScript);
 }
@@ -76,5 +80,56 @@ describe('authentication modal accessibility', () => {
     expect(authScript).toContain("window.t('auth.signingUp')");
     expect(authScript).toContain("'auth.error.' + code");
     expect(authScript).toContain("window.t('auth.error.generic')");
+  });
+
+  test('persists a guest dog before clearing the handoff after login', async () => {
+    const pending = { name:'Moka', breed:'Podenco', ageBand:'adult', weightBand:'10-15' };
+    localStorage.setItem('dolopaws-pending-dog-profile', JSON.stringify(pending));
+    mountAuth({ signIn:jest.fn(async () => ({ ok:true })) });
+
+    document.getElementById('authEmail').value = 'person@example.com';
+    document.getElementById('authPassword').value = 'password';
+    document.getElementById('authForm').dispatchEvent(new Event('submit', { bubbles:true, cancelable:true }));
+    await new Promise(resolve => setTimeout(resolve, 0));
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    expect(window.DoloPawsAuth.setDogProfile).toHaveBeenCalledWith(pending);
+    expect(localStorage.getItem('dolopaws-pending-dog-profile')).toBeNull();
+  });
+
+  test('retains the guest dog when the account write fails', async () => {
+    const pending = { name:'Moka', breed:'Podenco', ageBand:'adult', weightBand:'10-15' };
+    localStorage.setItem('dolopaws-pending-dog-profile', JSON.stringify(pending));
+    mountAuth({
+      signIn:jest.fn(async () => ({ ok:true })),
+      setDogProfile:jest.fn(async () => false),
+    });
+
+    document.getElementById('authEmail').value = 'person@example.com';
+    document.getElementById('authPassword').value = 'password';
+    document.getElementById('authForm').dispatchEvent(new Event('submit', { bubbles:true, cancelable:true }));
+    await new Promise(resolve => setTimeout(resolve, 0));
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    expect(JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile'))).toEqual(pending);
+  });
+
+  test('adds a handoff dog without overwriting an existing dog', async () => {
+    const pending = { name:'Moka', breed:'Podenco', ageBand:'adult', weightBand:'10-15' };
+    const existing = { id:'luna-1', name:'Luna', breed:'Labrador', ageBand:'adult', weightBand:'20-30' };
+    localStorage.setItem('dolopaws-pending-dog-profile', JSON.stringify(pending));
+    mountAuth({
+      signIn:jest.fn(async () => ({ ok:true })),
+      getDogProfiles:jest.fn(async () => ({ dogs:[existing], activeDogId:existing.id })),
+    });
+
+    document.getElementById('authEmail').value = 'person@example.com';
+    document.getElementById('authPassword').value = 'password';
+    document.getElementById('authForm').dispatchEvent(new Event('submit', { bubbles:true, cancelable:true }));
+    await new Promise(resolve => setTimeout(resolve, 0));
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    expect(window.DoloPawsAuth.addDogProfile).toHaveBeenCalledWith(pending);
+    expect(window.DoloPawsAuth.setDogProfile).not.toHaveBeenCalled();
   });
 });

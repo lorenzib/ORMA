@@ -920,7 +920,25 @@
       $('deletePasswordField').hidden = isGoogle;
       $('deleteGoogleNote').hidden = !isGoogle;
       refreshContributionEligibility();
-      const profilesState = await window.DoloPawsAuth.getDogProfiles();
+      let profilesState = await window.DoloPawsAuth.getDogProfiles();
+      // Recovery for an interrupted guest-wizard/auth handoff. Older builds
+      // could navigate here after deleting the local draft even though the
+      // Firestore write had failed. New builds retain it and retry once the
+      // account page has a definitive signed-in user.
+      if(profilesState && !profilesState.dogs.length){
+        let pendingProfile = null;
+        try { pendingProfile = JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile') || 'null'); } catch(error){}
+        if(pendingProfile && String(pendingProfile.name || '').trim()){
+          const recovered = await window.DoloPawsAuth.setDogProfile(pendingProfile);
+          if(recovered){
+            try {
+              localStorage.removeItem('dolopaws-pending-dog-profile');
+              localStorage.removeItem('dolopaws-dog-draft');
+            } catch(error){}
+            profilesState = await window.DoloPawsAuth.getDogProfiles();
+          }
+        }
+      }
       dogProfiles = profilesState.dogs;
       activeDogId = profilesState.activeDogId;
       if(requestedDogId && dogProfiles.some(dog => dog.id === requestedDogId) && requestedDogId !== activeDogId){

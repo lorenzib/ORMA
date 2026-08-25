@@ -22,6 +22,7 @@ describe('multi-dog account experience', () => {
     expect(client).toContain('existing.lastMatches.slice(0, 250)');
     expect(client).toContain('await runTransaction(db, async transaction =>');
     expect(client).toContain('transaction.set(userRef, committed.payload);');
+    expect(client).toContain('currentUser = credential.user;');
   });
 
   test('the account editor switches dogs and adds another in the same screen', () => {
@@ -39,6 +40,8 @@ describe('multi-dog account experience', () => {
     expect(source('profile-design.js')).toContain("document.getElementById('removeDogBtn')");
     expect(source('firebase-init.js')).toContain('if (state.dogs.length <= 1) return null;');
     expect(controller).toContain('const disabled = missingDog;');
+    expect(controller).toContain("localStorage.getItem('dolopaws-pending-dog-profile')");
+    expect(controller).toContain('const recovered = await window.DoloPawsAuth.setDogProfile(pendingProfile);');
     expect(controller).not.toContain('missingDog || missingOwner');
     expect(controller).toContain("detail:{ ok, addMode }");
     expect(source('profile-design.js')).toContain("'dolopaws-account-save-result'");
@@ -46,6 +49,28 @@ describe('multi-dog account experience', () => {
     expect(source('profile-design.js')).toContain("name.addEventListener('input'");
     expect(source('profile-design.js')).toContain("legacyName.dispatchEvent(new Event('input',{bubbles:true}))");
     expect(page).toContain('placeholder="Your dog\'s name"');
+    expect(page).toContain('profile-design.js?v=20260825-2');
+  });
+
+  test('the visible profile name is copied into the persisted account form before save', () => {
+    document.open();
+    document.write(source('account.html'));
+    document.close();
+    window.t = key => key;
+    window.eval(source('profile-design.js'));
+    const visibleName = document.getElementById('profileName');
+    const storedName = document.getElementById('dogName');
+    const legacySave = document.querySelector('.saveBtn');
+    const saveSpy = jest.fn();
+    legacySave.disabled = false;
+    legacySave.addEventListener('click', saveSpy);
+
+    visibleName.value = 'Moka';
+    visibleName.dispatchEvent(new Event('input', { bubbles:true }));
+    document.getElementById('profileSave').click();
+
+    expect(storedName.value).toBe('Moka');
+    expect(saveSpy).toHaveBeenCalledTimes(1);
   });
 
   test('the wizard appends instead of overwriting an existing dog', () => {

@@ -106,6 +106,29 @@
     return /^[a-z0-9][a-z0-9._/-]*\.html(?:\?[^#]*)?(?:#.*)?$/i.test(value) ? value : '';
   }
 
+  function samePendingDog(left, right){
+    if(!(left && right)) return false;
+    return String(left.name || '').trim().toLowerCase() === String(right.name || '').trim().toLowerCase()
+      && String(left.breed || '').trim().toLowerCase() === String(right.breed || '').trim().toLowerCase()
+      && String(left.ageBand || '') === String(right.ageBand || '')
+      && String(left.weightBand || '') === String(right.weightBand || '');
+  }
+
+  async function persistPendingDog(pending){
+    if(!(pending && pending.name && window.DoloPawsAuth)) return true;
+    const state = typeof window.DoloPawsAuth.getDogProfiles === 'function'
+      ? await window.DoloPawsAuth.getDogProfiles() : null;
+    const dogs = state && Array.isArray(state.dogs) ? state.dogs : [];
+    // A completed write followed by a retried handoff must not duplicate the
+    // same dog. Existing users, however, should have a genuinely new dog
+    // appended rather than their first dog overwritten.
+    if(dogs.some(dog => samePendingDog(dog, pending))) return true;
+    if(dogs.length && typeof window.DoloPawsAuth.addDogProfile === 'function'){
+      return await window.DoloPawsAuth.addDogProfile(pending);
+    }
+    return await window.DoloPawsAuth.setDogProfile(pending);
+  }
+
   async function finishAuth(){
     // A guest may build a dog profile before creating an account. Persist it
     // before leaving the page so the promised cross-device profile is not
@@ -114,16 +137,15 @@
       const pendingRaw = localStorage.getItem('dolopaws-pending-dog-profile');
       if(pendingRaw && window.DoloPawsAuth){
         const pending = JSON.parse(pendingRaw);
-        const existing = await window.DoloPawsAuth.getDogProfile();
-        if(pending && pending.name && (!existing || !existing.name)){
-          await window.DoloPawsAuth.setDogProfile(pending);
-        }
+        const saved = await persistPendingDog(pending);
+        if(!saved) throw new Error('Dog profile handoff was not saved.');
         localStorage.removeItem('dolopaws-pending-dog-profile');
         localStorage.removeItem('dolopaws-dog-draft');
       }
     } catch(err){
-      // Keep the local profile in place if syncing fails. The browse page can
-      // still use it immediately and a later auth-state pass can retry.
+      // Keep the local profile in place if syncing fails. The account page
+      // retries the handoff; never discard the name on an unsuccessful write.
+      console.error('Dog profile handoff could not be saved:', err);
     }
     closeModal();
     const target = safeReturnTarget(activeReturnTarget);
