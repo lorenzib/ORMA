@@ -14,6 +14,7 @@ const GUIDE_FILES = [
 ];
 
 const styles = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+const libraryHtml = fs.readFileSync(path.join(__dirname, 'safety-guide.html'), 'utf8');
 
 describe('shared Safety Library colour system', () => {
   test('defines every semantic guide colour at the shared root', () => {
@@ -49,6 +50,25 @@ describe('shared Safety Library colour system', () => {
     expect(html).toMatch(/\.hs-readiness\{[^}]*background:var\(--hs-card\)/s);
     expect(html).toMatch(/\.hs-symptoms\{[^}]*background:var\(--success-dim\)/s);
     expect(html).toMatch(/\.hs-action\{[^}]*background:var\(--hs-card\)/s);
-    expect(html).toMatch(/\.hs-risk\{[^}]*background:var\(--hs-red\)/s);
+    expect(html).toMatch(/\.hs-risk\{[^}]*background:[^;]*var\(--hs-red\)/s);
+  });
+
+  test('the library assigns one semantic tone to each guide category', () => {
+    document.body.innerHTML = libraryHtml;
+    const assignments = [...document.querySelectorAll('.sg-category')]
+      .map(category => ({
+        heading:category.querySelector('h2').textContent,
+        tone:category.dataset.tone,
+        cards:category.querySelectorAll('.sg-guide-card').length,
+      }));
+
+    expect(assignments).toEqual([
+      { heading:'Before you leave', tone:'info', cards:3 },
+      { heading:'On the trail', tone:'caution', cards:3 },
+      { heading:'Shared spaces', tone:'safe', cards:2 },
+    ]);
+    expect(libraryHtml).toContain('.sg-guide-card{');
+    expect(libraryHtml).toContain('background:var(--sg-tone-soft)');
+    expect(libraryHtml).toContain('border:1px solid var(--sg-tone-border)');
   });
 });
