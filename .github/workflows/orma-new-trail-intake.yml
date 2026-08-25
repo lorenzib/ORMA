@@ -1,9 +1,9 @@
-name: ORMA New Trail intake
+name: ORMA Dolomites-first trail scouting
 
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '0 12 * * 3'
+    - cron: '0 10 * * 1-6'
       timezone: Europe/Rome
 
 concurrency:
@@ -14,7 +14,7 @@ permissions:
   contents: read
 
 jobs:
-  admit-selected-candidates:
+  scout-and-admit-selected-candidates:
     if: github.event_name == 'workflow_dispatch' || vars.ORMA_NEW_TRAIL_AUTOMATION_ENABLED == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 20
@@ -34,7 +34,7 @@ jobs:
           test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
           test -n "$OPENAI_API_KEY" || { echo "Missing OPENAI_API_KEY"; exit 1; }
       - run: npm ci
-      - name: Refresh protected New Trail candidates
+      - name: Refresh protected Dolomites-first trail candidates
         run: npm run backoffice:new-trail-scouting:live
       - name: Collect moderator selections and continue verification agents
         run: npm run backoffice:worker:new-trails

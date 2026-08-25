@@ -27,6 +27,15 @@ describe('ORMA icon system', () => {
     expect(icons.renderIconSvg('shade')).toContain('fill="#8A5A16"');
   });
 
+  test('renders collection themes as filled multicolour glyphs', () => {
+    ['gentle','summer','scenic'].forEach((key) => {
+      const svg = icons.renderIconSvg(key);
+      expect(svg).toContain('<svg');
+      expect(svg).toContain('fill="');
+      expect(svg).not.toContain('unknown');
+    });
+  });
+
   test('renders product statuses through one badge component', () => {
     const verified = icons.badgeHtml('verified', 'Verified by ORMA');
     const caution = icons.badgeHtml('caution', 'Caution');

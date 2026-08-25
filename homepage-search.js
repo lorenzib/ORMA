@@ -406,16 +406,19 @@
     { title: '1 · We assess the trail',
       image: 'images/orma-how-assess.jpg?v=20260821-4',
       image2x: 'images/orma-how-assess-1920.jpg?v=20260821-4',
+      focus: 'trail-marker',
       alt: 'A marked mountain trail crossing rocky alpine terrain',
       text: 'We assess the mountain first: ground, effort, exposure, shade, water and access. The trail baseline is the same for every dog.' },
     { title: '2 · You add your dog',
       image: 'images/orma-how-add-dog.jpg?v=20260821-1',
       image2x: 'images/orma-how-add-dog-1920.jpg?v=20260821-1',
+      focus: 'dog',
       alt: 'A dog standing on a forest trail in the mountains',
       text: 'Your dog’s fitness, life stage, health and build set comfortable limits. Anything you leave blank stays neutral.' },
     { title: '3 · We explain the match',
       image: 'images/orma-how-match.jpg?v=20260821-4',
       image2x: 'images/orma-how-match-1920.jpg?v=20260821-4',
+      focus: 'walking-pair',
       alt: 'A dog and human walking together on a Dolomites trail',
       text: 'We compare the route with those limits, then show the match score, the cautions that matter and why they matter.' },
   ];
@@ -453,7 +456,7 @@
       var how = HOW_CARDS.map(function (c) {
         var text = c.text || 'We map and review each published trail for route shape, terrain, climb, shade, water, access and hazards.';
         return '<div class="hp-howcard">' +
-          '<div class="hp-howcard-media"><img src="' + c.image + '" srcset="' + c.image + ' 1x, ' + c.image2x + ' 2x" alt="' + esc(c.alt) + '" loading="lazy" decoding="async" width="960" height="600"></div>' +
+          '<div class="hp-howcard-media"><img class="hp-howcard-image hp-howcard-image--' + c.focus + '" src="' + c.image + '" srcset="' + c.image + ' 1x, ' + c.image2x + ' 2x" alt="' + esc(c.alt) + '" loading="lazy" decoding="async" width="960" height="600"></div>' +
           '<div class="hp-howcard-copy"><div class="hp-howcard-title">' + esc(c.title) + '</div>' +
           '<p>' + esc(text) + '</p></div></div>';
       }).join('');

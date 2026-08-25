@@ -124,6 +124,16 @@
   .jn-check input{width:17px!important;height:17px;flex:none;margin:0;padding:0;accent-color:var(--ink);}
   .jn-share-actions{display:grid;gap:8px;margin-top:18px;}
   .jn-share-actions button{width:100%;}
+  .jn-share-platforms{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+  .jn-social-share{min-height:58px;display:flex;align-items:center;gap:11px;padding:10px 13px;border:0;border-radius:14px;color:#fff;text-align:left;cursor:pointer;box-shadow:0 8px 20px rgba(46,64,52,.12);transition:transform .16s ease,box-shadow .16s ease;}
+  .jn-social-share:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(46,64,52,.18);}
+  .jn-social-share:focus-visible{outline:3px solid rgba(196,101,47,.35);outline-offset:3px;}
+  .jn-social-share:disabled{opacity:.58;cursor:wait;transform:none;}
+  .jn-social-share--instagram{background:linear-gradient(135deg,#833ab4 0%,#c13584 38%,#e1306c 62%,#f77737 100%);}
+  .jn-social-share--facebook{background:#1877f2;}
+  .jn-social-share__icon{width:34px;height:34px;display:grid;place-items:center;flex:none;border-radius:10px;background:rgba(255,255,255,.16);}
+  .jn-social-share__copy{min-width:0;display:grid;gap:2px;font:800 12.5px/1.2 'Inter',sans-serif;}
+  .jn-social-share__copy small{font:600 9.5px/1.25 'Inter',sans-serif;letter-spacing:.03em;opacity:.82;}
   .jn-share-helper{margin:9px 0 0;color:var(--ink-soft);font-size:11px;line-height:1.45;}
   .jn-modal-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;}
   .jn-x{flex:none;border:0;background:none;color:var(--ink-soft);font-size:22px;line-height:1;cursor:pointer;}
@@ -144,6 +154,7 @@
     .jn-share-modal{max-height:calc(100dvh - 24px);}
     .jn-share-preview-wrap{min-height:220px;padding:12px;}
     .jn-share-preview{max-height:280px;}
+    .jn-share-platforms{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -323,11 +334,21 @@
         <label class="jn-check"><input type="checkbox" id="jnShareHideEnds" checked><span data-i18n="journal.shareCard.hideEnds">Hide the first and last 200 m</span></label>
         <label class="jn-check"><input type="checkbox" id="jnShareHideRoute"><span data-i18n="journal.shareCard.hideRoute">Hide the route completely</span></label>
         <div class="jn-share-actions">
-          <button type="button" class="auth-submit" id="jnShareNative" data-i18n="journal.shareCard.native">Share to apps</button>
+          <div class="jn-share-platforms">
+            <button type="button" class="jn-social-share jn-social-share--instagram" id="jnShareInstagram">
+              <span class="jn-social-share__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></span>
+              <span class="jn-social-share__copy"><span data-i18n="journal.shareCard.instagram">Instagram Story</span><small data-i18n="journal.shareCard.instagramFormat">9:16 card</small></span>
+            </button>
+            <button type="button" class="jn-social-share jn-social-share--facebook" id="jnShareFacebook">
+              <span class="jn-social-share__icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M14.5 8H17V4.2c-.43-.06-1.91-.2-3.67-.2-3.67 0-6.18 2.24-6.18 6.36V14H3v4.25h4.15V24h5.09v-5.75h4.02L16.9 14h-4.66v-3.22C12.24 9.55 12.57 8 14.5 8Z"></path></svg></span>
+              <span class="jn-social-share__copy"><span data-i18n="journal.shareCard.facebook">Facebook Feed</span><small data-i18n="journal.shareCard.facebookFormat">4:5 card</small></span>
+            </button>
+          </div>
+          <button type="button" class="auth-submit" id="jnShareNative" data-i18n="journal.shareCard.native">More sharing options</button>
           <button type="button" class="jn-edit-photo-btn" id="jnShareDownload" data-i18n="journal.shareCard.download">Download image</button>
           <button type="button" class="jn-live-link" id="jnShareCopy" style="margin-top:0;" data-i18n="journal.shareCard.copy">Copy caption</button>
         </div>
-        <p class="jn-share-helper" data-i18n="journal.shareCard.helper">Instagram, WhatsApp, Facebook, Messages and more appear in your device's share sheet.</p>
+        <p class="jn-share-helper" data-i18n="journal.shareCard.helper">On mobile, choose Instagram or Facebook in the next screen. If app sharing is unavailable, ORMA downloads the correctly sized image so you can upload it.</p>
       </div>
     </div>
   </div>
@@ -410,7 +431,7 @@
 <script src="regional-trails-loader.js?v=20260815-4" data-default-region="all"></script>
 <script src="trail-audits.js?v=20260815-4" defer></script>
 <script src="regions-config.js" defer></script>
-<script src="walk-card.js?v=20260823-2"></script>
+<script src="walk-card.js?v=20260825-1"></script>
 <script>
 // My Journal. Entries are private, per-account records stored only in this
 // browser. JOURNAL-01 deliberately avoids silently uploading walk history;
@@ -827,6 +848,18 @@ document.addEventListener('DOMContentLoaded', function(){
       else if(method === 'downloaded') showStatus(window.t('journal.downloaded'));
     }).catch(function(){ showStatus(window.t('journal.shareError')); }).then(function(){ button.disabled = false; });
   });
+  function shareToSocialPlatform(platform, button){
+    var entry = currentShareEntry();
+    if(!entry || !window.DoloPawsWalkCard.shareWalkCardToPlatform) return;
+    button.disabled = true;
+    showStatus(translate('journal.shareCard.choose.' + platform, 'Choose the app in the next screen.', {}));
+    window.DoloPawsWalkCard.shareWalkCardToPlatform(entry, shareCardOptions(), platform).then(function(method){
+      if(method === 'shared') showStatus(window.t('journal.shared'));
+      else if(method === 'downloaded') showStatus(translate('journal.shareCard.downloaded.' + platform, 'Your social card was downloaded and is ready to upload.', {}));
+    }).catch(function(){ showStatus(window.t('journal.shareError')); }).then(function(){ button.disabled = false; });
+  }
+  document.getElementById('jnShareInstagram').addEventListener('click', function(){ shareToSocialPlatform('instagram', this); });
+  document.getElementById('jnShareFacebook').addEventListener('click', function(){ shareToSocialPlatform('facebook', this); });
   document.getElementById('jnShareDownload').addEventListener('click', function(){
     var button = this, entry = currentShareEntry();
     if(!entry) return;

@@ -83,7 +83,7 @@ describe('Safety library', () => {
     expect(sources).toEqual(expect.arrayContaining([
       'images/editorial/safety-library/altitude-with-your-dog-v1.jpg',
       'images/editorial/safety-library/breed-group-considerations-dogs-v3.jpg',
-      'images/editorial/safety-library/dogs-on-cable-cars-v3.jpg',
+      'images/editorial/safety-library/dogs-on-cable-cars-v5.jpg',
       'images/editorial/safety-library/heat-hydration-waterfall-v1.jpg',
       'images/editorial/safety-library/paw-protection-forest-v1.jpg',
       'images/editorial/safety-library/flowers-plants-dogs.jpg',

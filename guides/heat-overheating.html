@@ -76,40 +76,49 @@
 
 <div class="guide-hero safety-photo-header section-page-head content-canvas" style="--safety-photo-position:center 54%;">
   <img class="safety-photo-header__image" src="../images/editorial/safety-library/heat-hydration-waterfall-v1.jpg" alt="" width="1200" height="800" decoding="async">
-  <div class="eyebrow">Guides · Heat & exposure</div>
-  <h1 style="font-size:clamp(28px,5vw,38px);margin-top:14px;">Heat and hydration safety</h1>
-  <p class="sub section-page-subtitle">Heat illness can develop quickly during exercise—even when the air feels manageable. Use these checks before you leave, then act on changes in your dog rather than waiting for a temperature threshold.</p>
+  <a class="safety-back-link" href="../safety-guide.html"><span class="safety-back-link__arrow" aria-hidden="true">←</span> Go back to Safety Library</a>
+  <div>
+    <p class="eyebrow">Safety library / Heat &amp; exposure</p>
+    <h1>Heat and hydration safety</h1>
+    <p class="sub section-page-subtitle">Plan for shade and water, recognise heat stress early, and know how to cool your dog before the trail becomes an emergency.</p>
+    <div class="hs-meta"><strong>3 min guide</strong><span>Reviewed August 2026</span></div>
+  </div>
 </div>
 
 <main class="gp-body content-canvas" id="mainContent">
-  <p class="hs-intro">Dogs cool mainly by panting, and exertion generates heat of its own. Shade, carried water and an early turnaround are safety equipment—not optional comforts.</p>
-
-  <section class="hs-panel" aria-labelledby="startCheckTitle">
-    <h2 id="startCheckTitle">Can your dog safely start?</h2>
-    <p>Check all four. An ORMA match score never replaces today’s conditions.</p>
-    <div class="hs-checks">
-      <label class="hs-check"><input type="checkbox" data-heat-check><span>The route has reliable shade or a short escape option.</span></label>
-      <label class="hs-check"><input type="checkbox" data-heat-check><span>I am carrying enough water for my dog and myself.</span></label>
-      <label class="hs-check"><input type="checkbox" data-heat-check><span>We are avoiding the hottest, most exposed part of the day.</span></label>
-      <label class="hs-check"><input type="checkbox" data-heat-check><span>My dog is breathing, walking and behaving normally now.</span></label>
+  <section class="hs-overview" aria-label="Heat readiness and warning signs">
+    <div class="hs-readiness" aria-labelledby="startCheckTitle">
+      <span class="hs-kicker">Before setting out</span>
+      <h2 id="startCheckTitle">Is today cool enough for this trail?</h2>
+      <p>Dogs cool mainly by panting, while exercise creates heat of its own. Check all four before you leave.</p>
+      <div class="hs-checks">
+        <label class="hs-check"><input type="checkbox" data-heat-check><span>The route has reliable shade or a short escape option.</span></label>
+        <label class="hs-check"><input type="checkbox" data-heat-check><span>I am carrying enough water for my dog and myself.</span></label>
+        <label class="hs-check"><input type="checkbox" data-heat-check><span>We are avoiding the hottest, most exposed part of the day.</span></label>
+        <label class="hs-check"><input type="checkbox" data-heat-check><span>My dog is breathing, walking and behaving normally now.</span></label>
+      </div>
+      <p class="hs-status" id="heatChecklistStatus" role="status" aria-live="polite" data-state="caution">0 of 4 checked. Resolve every unchecked item before setting out.</p>
     </div>
-    <p class="hs-status" id="heatChecklistStatus" role="status" aria-live="polite" data-state="caution">0 of 4 checked. Resolve every unchecked item before setting out.</p>
+
+    <div class="hs-symptoms" aria-labelledby="symptomCheckTitle">
+      <span class="hs-kicker">Read your dog</span>
+      <h2 id="symptomCheckTitle">What are you seeing?</h2>
+      <p>Choose the closest description. This supports a decision; it does not diagnose your dog.</p>
+      <div class="hs-options" role="group" aria-label="Choose your dog's current condition">
+        <button class="hs-option" type="button" data-heat-level="normal" aria-pressed="false">Breathing and moving normally</button>
+        <button class="hs-option" type="button" data-heat-level="early" aria-pressed="false">Hard panting, slowing or seeking shade</button>
+        <button class="hs-option" type="button" data-heat-level="emergency" aria-pressed="false">Weakness, abnormal gums, confusion or collapse</button>
+      </div>
+      <div class="hs-response" id="heatResponse" role="status" aria-live="polite" hidden></div>
+    </div>
   </section>
 
-  <section class="hs-panel" aria-labelledby="symptomCheckTitle">
-    <h2 id="symptomCheckTitle">What are you seeing?</h2>
-    <p>Choose the closest description. This tool supports a decision; it does not diagnose your dog.</p>
-    <div class="hs-options" role="group" aria-label="Choose your dog's current condition">
-      <button class="hs-option" type="button" data-heat-level="normal" aria-pressed="false">Breathing and moving normally</button>
-      <button class="hs-option" type="button" data-heat-level="early" aria-pressed="false">Hard panting, slowing or seeking shade</button>
-      <button class="hs-option" type="button" data-heat-level="emergency" aria-pressed="false">Weakness, abnormal gums, confusion or collapse</button>
+  <section class="hs-section" aria-labelledby="coolFirstTitle">
+    <div class="hs-section-head">
+      <span class="hs-kicker">If symptoms appear</span>
+      <h2 id="coolFirstTitle">Cool first, travel second</h2>
+      <p>A dog’s temperature can keep rising after exercise stops. Begin cooling immediately, then seek veterinary help.</p>
     </div>
-    <div class="hs-response" id="heatResponse" role="status" aria-live="polite" hidden></div>
-  </section>
-
-  <section class="hs-panel" aria-labelledby="coolFirstTitle">
-    <h2 id="coolFirstTitle">Suspect overheating? Cool first, travel second.</h2>
-    <p>A dog’s temperature can keep rising after exercise stops. Start cooling immediately, then seek veterinary help.</p>
     <div class="hs-actions">
       <div class="hs-action"><strong>Stop and shade</strong><span>End exercise. Move off hot ground and into shade. Do not walk on to the next rest point.</span></div>
       <div class="hs-action"><strong>Wet and ventilate</strong><span>Pour cool or cold tap water over the body, avoiding the nose and mouth. Create airflow. Offer water; never force it.</span></div>
@@ -117,20 +126,18 @@
     </div>
   </section>
 
-  <p class="hs-risk"><strong>Lower your threshold for turning back</strong> for flat-faced, overweight, thick-coated, very young, older, unfit or unwell dogs. Never cover an overheating dog with a wet towel: it can trap heat.</p>
-
-  <details class="hs-sources">
-    <summary>Medical sources and review date</summary>
-    <p class="gp-src"><a href="https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/heatstroke-in-dogs" target="_blank" rel="noopener">PDSA veterinary guidance: heatstroke in dogs</a><br><a href="https://pubmed.ncbi.nlm.nih.gov/38518416/" target="_blank" rel="noopener">Carter et al. (2024): post-exercise cooling in dogs</a><br>Last reviewed 23 August 2026.</p>
-  </details>
-
-  <p class="gp-src"><strong>Emergency boundary:</strong> vomiting, diarrhoea, abnormal gums, breathing difficulty, weakness, confusion, collapse, seizure or unconsciousness require urgent veterinary advice. This guide is general information, not a diagnosis or substitute for veterinary care.</p>
+  <p class="hs-risk"><strong>Turn back earlier for higher-risk dogs.</strong>Be more conservative with flat-faced, overweight, thick-coated, very young, older, unfit or unwell dogs. Never cover an overheating dog with a wet towel: it can trap heat.</p>
   <section class="safety-continue" aria-labelledby="safetyContinueTitle">
     <div class="safety-continue__heading"><h2 id="safetyContinueTitle">Continue in the Safety Library</h2><span>Useful guidance for your next mountain day</span></div>
     <a class="safety-continue__card" href="water-for-dogs-on-trail.html"><div><small>Hydration planning</small><strong>Water for dogs on trail</strong><p>Plan quantities, dry stretches and safer water stops.</p></div><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
     <a class="safety-continue__card" href="../safety-guide.html"><div><small>All topics</small><strong>Browse all safety guides</strong><p>Prepare for the situations you may meet outside.</p></div><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
     <a class="safety-continue__cta" href="../browse-trails.html">Browse trails for your dog →</a>
   </section>
+
+  <details class="hs-sources">
+    <summary><span>Medical sources and review date</span><span>Reviewed August 2026</span></summary>
+    <p class="gp-src"><a href="https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/heatstroke-in-dogs" target="_blank" rel="noopener">PDSA veterinary guidance: heatstroke in dogs</a><br><a href="https://pubmed.ncbi.nlm.nih.gov/38518416/" target="_blank" rel="noopener">Carter et al. (2024): post-exercise cooling in dogs</a><br>Last reviewed 23 August 2026.</p>
+  </details>
 </main>
 
 <footer class="site-footer hp-footer">

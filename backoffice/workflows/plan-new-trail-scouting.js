@@ -32,6 +32,11 @@ function nearestExisting(center, trails){
 
 function relationId(feature){return String(feature?.properties?.osm_relation||feature?.properties?.osmRelation||'').trim();}
 
+function compareScoutingCandidates(a,b,primaryRegion='dolomites'){
+  const regionPriority=Number(b.region===primaryRegion)-Number(a.region===primaryRegion);
+  return regionPriority||b.expansionScore-a.expansionScore||(a.nearestExisting?.distanceKm??Infinity)-(b.nearestExisting?.distanceKm??Infinity)||a.distanceKm-b.distanceKm;
+}
+
 function buildCandidate(feature, region, trails, existingRelations){
   const properties=feature.properties||{};const relation=relationId(feature);const center=centerOf(feature.geometry);if(!relation||!center)return null;
   if(existingRelations.has(relation))return null;
@@ -57,15 +62,15 @@ function buildCandidate(feature, region, trails, existingRelations){
 }
 
 function planNewTrailScouting(sources, trails, options={}){
-  const at=options.at||new Date().toISOString();const limit=options.limit||25;
+  const at=options.at||new Date().toISOString();const limit=options.limit||25;const primaryRegion=options.primaryRegion||'dolomites';
   const excludedCandidateIds=new Set(options.excludedCandidateIds||[]);
   const existingRelations=new Set(trails.map(trail=>trail.osmRelation).filter(Boolean).map(String));
   const candidates=sources.flatMap(source=>(source.data?.features||[]).map(feature=>buildCandidate(feature,source.region,trails,existingRelations)).filter(Boolean))
     .filter(candidate=>!excludedCandidateIds.has(candidate.id))
-    .sort((a,b)=>b.expansionScore-a.expansionScore||(a.nearestExisting?.distanceKm??Infinity)-(b.nearestExisting?.distanceKm??Infinity)||a.distanceKm-b.distanceKm)
+    .sort((a,b)=>compareScoutingCandidates(a,b,primaryRegion))
     .slice(0,limit).map((candidate,index)=>({...candidate,priority:index+1}));
-  return {contractVersion:'1.0.0',generatedAt:at,mode:'candidate-only',publicMutationAllowed:false,policy:{loopsRequired:true,maxDistanceKm:12,expandFromExistingAreasFirst:true,animalSuitabilityRequiresVerification:true},candidates,
-    summary:{candidates:candidates.length,existingArea:candidates.filter(item=>item.expansionTier==='existing-area').length,adjacentArea:candidates.filter(item=>item.expansionTier==='adjacent-area').length,newArea:candidates.filter(item=>item.expansionTier==='new-area').length}};
+  return {contractVersion:'1.0.0',generatedAt:at,mode:'candidate-only',publicMutationAllowed:false,policy:{loopsRequired:true,maxDistanceKm:12,primaryRegion,expandFromExistingAreasFirst:true,animalSuitabilityRequiresVerification:true},candidates,
+    summary:{candidates:candidates.length,primaryRegion,primaryRegionCandidates:candidates.filter(item=>item.region===primaryRegion).length,existingArea:candidates.filter(item=>item.expansionTier==='existing-area').length,adjacentArea:candidates.filter(item=>item.expansionTier==='adjacent-area').length,newArea:candidates.filter(item=>item.expansionTier==='new-area').length}};
 }
 
 function applyNewTrailReview(packet,review,input,options={}){
@@ -78,4 +83,4 @@ function applyNewTrailReview(packet,review,input,options={}){
   return {contractVersion:'1.0.0',updatedAt:at,decisions,intake};
 }
 
-module.exports={haversineKm,centerOf,closureMeters,buildCandidate,planNewTrailScouting,applyNewTrailReview};
+module.exports={haversineKm,centerOf,closureMeters,compareScoutingCandidates,buildCandidate,planNewTrailScouting,applyNewTrailReview};

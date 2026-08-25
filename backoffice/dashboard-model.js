@@ -6,6 +6,9 @@
   'use strict';
   const ACTIVE_JOB_STATES=new Set(['queued','running','in-progress','processing']);
   const PUBLICATION_OWNED_STATES=new Set(['queued','processed','approved-for-pr-creation','publication-failed','pull-request-opened','published','hold','request-changes']);
+  const PAUSED_SAFETY_GUIDES=new Set(['alpine-plants-for-dogs','altitude-with-your-dog','breed-group-caveats','dogs-at-rifugi','dogs-on-cable-cars','heat-overheating','livestock-guard-dogs','paw-protection','water-for-dogs-on-trail']);
+
+  function isPausedSafetyPacket(packet){return packet?.subject?.type==='page'&&packet.subject.id==='safety-guide'||packet?.subject?.type==='guide'&&PAUSED_SAFETY_GUIDES.has(packet.subject.id);}
 
   function dateMs(value){
     if(!value)return 0;
@@ -17,9 +20,9 @@
   function minutesSince(value,nowMs){const at=dateMs(value);return at?Math.max(0,Math.floor((nowMs-at)/60000)):null;}
   function deriveWorkerHealth(artifact,options={}){
     const nowMs=options.nowMs??Date.now();
-    const expected=Number(artifact?.expectedIntervalMinutes||5);
-    const delayedAfter=Number(artifact?.delayAfterMinutes||15);
-    const staleAfter=Number(artifact?.staleAfterMinutes||30);
+    const expected=Number(artifact?.expectedIntervalMinutes||15);
+    const delayedAfter=Number(artifact?.delayAfterMinutes||45);
+    const staleAfter=Number(artifact?.staleAfterMinutes||90);
     const runUrl=artifact?.workflowRunUrl||artifact?.lastFailure?.workflowRunUrl||null;
     if(!artifact||!artifact.status)return {state:'unknown',label:'No heartbeat',title:'Worker health is not available yet',message:'No protected worker heartbeat has been recorded. Saved decisions remain safe, but automation timing cannot be verified.',runUrl:null,ageMinutes:null,expectedIntervalMinutes:expected};
     if(artifact.status==='running'){
@@ -96,7 +99,7 @@
     const publication=input.publication||{};const publicationRequests=input.publicationRequests||{requests:[]};
     const newTrailScouting=input.newTrailScouting||{candidates:[],summary:{}};const newTrailReviews=input.newTrailReviews||[];const newTrailStatus=input.newTrailStatus||{};
     const hazards=input.hazards||{hazards:[]};const hazardQueue=input.hazardQueue||{items:[]};const hazardReviews=input.hazardReviews||[];const hazardStatus=input.hazardStatus||{};
-    const editorialPackets=input.editorialPackets||[];const editorialReviews=input.editorialReviews||[];const editorialReceipts=input.editorialReceipts||{receipts:[]};const strategyStatus=input.strategyStatus||{};
+    const editorialPackets=(input.editorialPackets||[]).filter(packet=>!isPausedSafetyPacket(packet));const editorialReviews=input.editorialReviews||[];const editorialReceipts=input.editorialReceipts||{receipts:[]};const strategyStatus=input.strategyStatus||{};
     const imageAudit=input.imageAudit||{gaps:[],summary:{}};const imageReviews=input.imageReviews||[];
     const newsletterPacket=input.newsletterPacket||null;const newsletterReviews=input.newsletterReviews||[];const approvedNewsletters=input.approvedNewsletters||{issues:[]};
     const productIdeas=input.productIdeas||{ideas:[]};const analystReviews=input.analystReviews||[];const productInvestigations=input.productInvestigations||{items:[]};const productDesigns=input.productDesigns||{items:[]};
@@ -220,7 +223,7 @@
       blockerCount:blockedCandidates.size,trackedTrails:orchestration.summary?.trails||(orchestration.trails||[]).length,
       newTrailProgress:{candidates:(newTrailScouting.candidates||[]).length,waiting:newTrailItems.length,inFlight:newTrailHandoffs,status:newTrailStatus.status||'not-run'},
       groundskeeperProgress:{active:(hazards.hazards||[]).filter(item=>item.state==='active').length,waiting:hazardItems.length,sourceFailures:Number(hazardStatus.summary?.sourceFailures||0),status:hazardStatus.status||'not-run'},
-      editorialProgress:{active:editorialPackets.length,waiting:editorialItems.length,inFlight:editorialHandoffs,imageGaps:imageItems.length,published:(editorialReceipts.receipts||[]).filter(item=>item.status==='published').length,status:strategyStatus.status||'not-run'},
+      editorialProgress:{active:editorialPackets.length,waiting:editorialItems.length,inFlight:editorialHandoffs,imageGaps:imageItems.length,published:(editorialReceipts.receipts||[]).filter(item=>item.status==='published').length,pausedSafetyLibrary:true,status:strategyStatus.status||'not-run'},
       newsletterProgress:{ready:newsletterItem?1:0,inFlight:newsletterHandoffs,approved:(approvedNewsletters.issues||[]).length,status:strategyStatus.summary?.newsletterStatus||'not-run'},
       analystProgress:{ideas:(productIdeas.ideas||[]).length,waiting:analystIdeaItems.length,mockups:analystMockupItems.length,inFlight:analystHandoffs,developerHandoffs:allJobs.filter(job=>job.jobType==='product-development-handoff'&&job.status==='ready-for-review').length,status:strategyStatus.summary?.productStatus||'not-run'},
       summary:{needsYou:decisions.length,agentWork:activeJobs.length,blockers:blockedCandidates.size,prsReady:prItems.length},
@@ -233,5 +236,5 @@
       ],
     };
   }
-  return {buildDashboardModel,dateMs,deriveWorkerHealth,deriveCampaignHealth,latestPublicationState,activityMessage,candidateFromActivity};
+  return {buildDashboardModel,dateMs,deriveWorkerHealth,deriveCampaignHealth,latestPublicationState,activityMessage,candidateFromActivity,isPausedSafetyPacket};
 });

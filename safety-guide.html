@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="styles.css?v=20260825-1">
 <style>
 .sg-hero{padding-top:32px;padding-bottom:18px;}
-.sg-hero.section-page-head--actions{align-items:flex-start;}
+.sg-hero.section-page-head--actions{align-items:center;}
 .safety-library-page .hp-prefooter{display:none!important;}
 .sg-kicker{display:block;margin-bottom:10px;color:var(--accent);font:700 10px/1.2 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;}
 .sg-hero h1{max-width:760px;}
@@ -99,6 +99,8 @@
   .sg-rules li:nth-child(4){border-left:0;padding-left:0;}
 }
 @media(max-width:760px){
+  .sg-hero.section-page-head--actions{align-items:flex-start;}
+  .sg-readiness-fab{margin-top:0;}
   .sg-side{grid-template-columns:1fr;gap:12px;margin-top:28px;}
   .sg-emergency{order:-1;}
   .sg-rules ol{grid-template-columns:1fr 1fr;}
@@ -117,9 +119,10 @@
   .sg-quiz{padding:20px;}
   .sg-quiz-actions{align-items:stretch;flex-direction:column;}
   .sg-quiz-validation{margin:0;}
-  .sg-readiness-fab{margin-top:0;padding:8px 14px 8px 8px;}
-  .sg-readiness-fab-icon{width:35px;height:35px;}
-  .sg-readiness-fab small{display:none;}
+  .sg-readiness-fab{margin-top:0;gap:10px;padding:8px 16px 8px 8px;}
+  .sg-readiness-fab-icon{width:46px;height:46px;border-width:2px;}
+  .sg-readiness-fab small{font-size:8px;}
+  .sg-readiness-fab strong{font-size:15.5px;}
 }
 </style>
 </head>
@@ -142,7 +145,7 @@
     <p class="sg-hero-copy section-page-subtitle">Mountain conditions can change quickly, and the same route can affect every dog differently. Use this library to plan for heat, altitude, water, terrain and shared spaces; recognise early warning signs; and know when to turn back or seek help. Each guide turns common mountain risks into practical decisions you can make before you leave and while you are on the trail.</p>
   </div>
   <button class="sg-readiness-fab" type="button" id="openReadinessQuiz" aria-haspopup="dialog" aria-controls="readinessQuiz">
-    <span class="sg-readiness-fab-icon" aria-hidden="true">🐾</span>
+    <span class="sg-readiness-fab-icon" aria-hidden="true"><img src="images/editorial/safety-library/inquisitive-dog-quiz-v1.png" alt="" width="320" height="320"></span>
     <span class="sg-readiness-fab-copy"><small>60-second trail quiz</small><strong>Paws ready?</strong></span>
   </button>
 </header>
@@ -155,7 +158,7 @@
         <div class="sg-guide-list">
           <a class="sg-guide-card" href="guides/altitude-with-your-dog.html"><img src="images/editorial/safety-library/altitude-with-your-dog-v1.jpg" alt="A black-and-white dog running toward the camera on a shaded mountain forest trail" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Altitude</span><span class="sg-guide-title">Altitude with your dog</span><p>Acclimatisation, pace and warning signs.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
           <a class="sg-guide-card" href="guides/breed-group-caveats.html"><img src="images/editorial/safety-library/breed-group-considerations-dogs-v3.jpg" alt="A long-haired German Shepherd and a brindle shepherd-type dog resting together in the grass" width="1500" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Your dog</span><span class="sg-guide-title">Breed-group considerations</span><p>When standard trail advice needs adjusting.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/dogs-on-cable-cars.html"><img class="sg-guide-image-cable-car" src="images/editorial/safety-library/dogs-on-cable-cars-v3.jpg" alt="Teo, muzzled, resting inside a mountain cable car with sunlit larch trees behind him" width="1086" height="1448" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Access</span><span class="sg-guide-title">Dogs on cable cars</span><p>Comfort, fear signals and operator rules.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/dogs-on-cable-cars.html"><img class="sg-guide-image-cable-car" src="images/editorial/safety-library/dogs-on-cable-cars-v5.jpg" alt="Teo, muzzled and harnessed, resting inside a mountain cable car above a sunlit valley" width="1086" height="1448" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Access</span><span class="sg-guide-title">Dogs on cable cars</span><p>Comfort, fear signals and operator rules.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
         </div>
       </section>
 

@@ -164,7 +164,7 @@ supported Node/action runtimes and the private Hosting boundary. External
 account settings remain named manual checks. Operator procedures are in
 [`RUNBOOK.md`](./RUNBOOK.md).
 
-`.github/workflows/orma-backoffice-worker.yml` has a five-minute GitHub schedule
+`.github/workflows/orma-backoffice-worker.yml` has a fifteen-minute GitHub schedule
 target and may also be started with **Run workflow** in GitHub Actions. GitHub
 can delay scheduled starts, so the worker writes a protected `worker-health`
 artifact at run start and completion. Backoffice Home classifies the real

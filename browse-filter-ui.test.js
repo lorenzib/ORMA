@@ -179,6 +179,17 @@ describe('Browse filter UI', () => {
     expect(html).not.toContain('terrainRatingLabel');
   });
 
+  test('mobile discovery controls wrap inside the phone canvas', () => {
+    const html = source('browse-trails.html');
+
+    expect(html).toMatch(/@media\(max-width:760px\)[\s\S]*?\.browse-primary-controls \.browse-tools\{[^}]*flex-wrap:wrap;/);
+    expect(html).toMatch(/\.browse-primary-controls \.browse-search-shell\{[^}]*flex:1 1 100%;[^}]*width:100%;[^}]*min-width:0;/);
+    expect(html).toMatch(/\.browse-area-controls\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\);/);
+    expect(html).toMatch(/\.browse-geo-group--valley\{grid-column:1\/-1;/);
+    expect(html).toMatch(/\.browse-quick-filters\{order:3;[^}]*width:100%;/);
+    expect(html).toMatch(/#browseFiltersMenu\{position:fixed;top:auto;bottom:max\(8px,env\(safe-area-inset-bottom,0px\)\);/);
+  });
+
   test('selecting a trail opens the persistent comparison tray', () => {
     const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites');
     const compare = window.document.querySelector('[data-compare-id="reviewed-loop"]');

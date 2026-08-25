@@ -1,8 +1,8 @@
 'use strict';
 
-const DEFAULT_EXPECTED_INTERVAL_MINUTES = 5;
-const DEFAULT_DELAY_AFTER_MINUTES = 15;
-const DEFAULT_STALE_AFTER_MINUTES = 30;
+const DEFAULT_EXPECTED_INTERVAL_MINUTES = 15;
+const DEFAULT_DELAY_AFTER_MINUTES = 45;
+const DEFAULT_STALE_AFTER_MINUTES = 90;
 
 function text(value, maximum = 2000){
   return String(value || '').trim().slice(0, maximum);
@@ -30,9 +30,9 @@ function beginWorkerRun(previous, input = {}, options = {}){
     startedAt:at,
     completedAt:null,
     durationMs:null,
-    expectedIntervalMinutes:previous?.expectedIntervalMinutes || DEFAULT_EXPECTED_INTERVAL_MINUTES,
-    delayAfterMinutes:previous?.delayAfterMinutes || DEFAULT_DELAY_AFTER_MINUTES,
-    staleAfterMinutes:previous?.staleAfterMinutes || DEFAULT_STALE_AFTER_MINUTES,
+    expectedIntervalMinutes:DEFAULT_EXPECTED_INTERVAL_MINUTES,
+    delayAfterMinutes:DEFAULT_DELAY_AFTER_MINUTES,
+    staleAfterMinutes:DEFAULT_STALE_AFTER_MINUTES,
     lastSuccessfulAt:previous?.lastSuccessfulAt || null,
     lastFailedAt:previous?.lastFailedAt || null,
     consecutiveFailures:Number(previous?.consecutiveFailures || 0),
@@ -71,9 +71,9 @@ function finishWorkerRun(current, input = {}, options = {}){
     startedAt,
     completedAt:at,
     durationMs,
-    expectedIntervalMinutes:current?.expectedIntervalMinutes || DEFAULT_EXPECTED_INTERVAL_MINUTES,
-    delayAfterMinutes:current?.delayAfterMinutes || DEFAULT_DELAY_AFTER_MINUTES,
-    staleAfterMinutes:current?.staleAfterMinutes || DEFAULT_STALE_AFTER_MINUTES,
+    expectedIntervalMinutes:DEFAULT_EXPECTED_INTERVAL_MINUTES,
+    delayAfterMinutes:DEFAULT_DELAY_AFTER_MINUTES,
+    staleAfterMinutes:DEFAULT_STALE_AFTER_MINUTES,
     lastSuccessfulAt:outcome === 'success' ? at : (current?.lastSuccessfulAt || null),
     lastFailedAt:outcome === 'failure' ? at : (current?.lastFailedAt || null),
     consecutiveFailures:outcome === 'success' ? 0 : Number(current?.consecutiveFailures || 0) + 1,

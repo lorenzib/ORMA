@@ -17,7 +17,8 @@ describe('Heat and hydration safety guide', () => {
     expect(document.querySelectorAll('[data-heat-check]')).toHaveLength(4);
     expect(document.querySelectorAll('[data-heat-level]')).toHaveLength(3);
     expect(document.body.textContent).toContain('Cool first, travel second');
-    expect(document.body.textContent).toContain('Emergency boundary');
+    expect(document.body.textContent).toContain('Turn back earlier for higher-risk dogs');
+    expect(document.body.textContent).not.toContain('Emergency boundary');
     expect(html).not.toContain('wet the belly and paw pads');
     expect(html).not.toContain('not ice-cold');
   });
