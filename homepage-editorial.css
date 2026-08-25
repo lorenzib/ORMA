@@ -101,6 +101,9 @@
 .hp-howcard{display:flex;flex-direction:column;width:100%;min-width:0;height:100%;overflow:hidden;padding:0;background:#f7f7f2;}
 .hp-howcard-media{position:relative;flex:0 0 178px;height:178px;overflow:hidden;padding:5px;background:#dce8dd;border-bottom:1px solid #c8d8ca;box-sizing:border-box;isolation:isolate;}
 .hp-howcard-media img{display:block;width:100%;height:100%;object-fit:cover;border-radius:10px;filter:saturate(1.14) contrast(1.05) brightness(1.03);image-rendering:auto;}
+.hp-howcard-image--trail-marker{object-position:62% 100%;}
+.hp-howcard-image--dog{object-position:58% 28%;}
+.hp-howcard-image--walking-pair{object-position:58% 55%;}
 .hp-howcard-copy{display:flex;flex:1;flex-direction:column;padding:15px 17px 17px;}
 .hp-howcard-title{margin-bottom:8px;font-size:15.5px;line-height:1.25;}
 .hp-howcard p{font-size:12.5px;line-height:1.5;}
