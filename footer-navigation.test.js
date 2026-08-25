@@ -123,13 +123,16 @@ describe('footer navigation', () => {
     });
   });
 
-  test('unreleased app badges are visually retired in favour of one honest status', () => {
+  test('shows familiar store badges while clearly disabling unreleased listings', () => {
     ['app-store-badge.svg', 'google-play-badge.svg'].forEach(asset => {
       expect(fs.existsSync(path.join(__dirname, asset))).toBe(true);
     });
     const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
     const navigation = fs.readFileSync(path.join(__dirname, 'mobile-nav.js'), 'utf8');
-    expect(css).toContain('.hp-footer-get>.hp-footer-h,.hp-footer-apps{display:none;}');
-    expect(navigation).toContain("appNote.textContent = 'Mobile apps coming soon'");
+    expect(css).toContain('.hp-footer-apps{display:flex;');
+    expect(css).toContain('.hp-footer-apps a[data-coming-soon="true"]{');
+    expect(navigation).toContain("appNote.textContent = 'iPhone and Android apps coming soon.'");
+    expect(navigation).toContain("link.setAttribute('aria-disabled', 'true')");
+    expect(navigation).toContain("link.removeAttribute('href')");
   });
 });
