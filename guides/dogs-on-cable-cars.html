@@ -26,7 +26,10 @@
   .cg-guide{padding-bottom:42px;color:var(--cg-ink);}
   .cg-guide h1,.cg-guide h2,.cg-guide h3{font-family:"Bricolage Grotesque",sans-serif;color:var(--cg-ink);}
   .cg-shell{width:min(1120px,calc(100% - 48px));margin:0 auto;}
-  .cg-hero{--safety-photo-position:center 62%;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:38px;align-items:center;width:min(1120px,calc(100% - 48px));margin:0 auto;padding:30px 0 24px;border-bottom:1px solid var(--cg-line);}
+  .cg-hero{--safety-photo-position:center 62%;display:flex;align-items:flex-start;justify-content:flex-start;width:min(1120px,calc(100% - 48px));margin:0 auto;padding:38px 42px 30px;border-bottom:1px solid var(--cg-line);}
+  .cg-hero.safety-photo-header.section-page-head{justify-content:flex-start;min-height:clamp(330px,34vw,430px);}
+  .cg-hero.safety-photo-header.section-page-head::before{background:linear-gradient(110deg,rgba(22,38,29,.88) 0%,rgba(22,38,29,.68) 42%,rgba(22,38,29,.12) 78%),linear-gradient(180deg,rgba(22,38,29,.34) 0%,rgba(22,38,29,.06) 68%);}
+  .cg-hero>div{width:min(100%,650px);}
   .cg-breadcrumbs{margin:0 0 11px;color:var(--ink-soft);font-size:.66rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase;}
   .cg-hero h1{max-width:760px;margin:0 0 9px;font-size:clamp(38px,4.4vw,56px);line-height:1;letter-spacing:-.04em;}
   .cg-hero .section-page-subtitle{max-width:760px;margin:0;color:var(--cg-soft);font-size:clamp(15px,1.35vw,18px);line-height:1.5;white-space:normal;text-wrap:pretty;}
@@ -35,8 +38,8 @@
   .cg-hero-media{margin:0;overflow:hidden;border:var(--border);border-radius:15px;background:var(--sage-dim);box-shadow:var(--shadow);}
   .cg-hero-media img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;object-position:center;}
   .cg-kicker{display:block;margin-bottom:7px;color:var(--cg-blue);font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;}
-  .cg-overview{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(280px,.6fr);gap:16px;margin:24px 0 20px;}
-  .cg-decision,.cg-essentials{padding:22px 24px;border-radius:15px;}
+  .cg-overview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:stretch;margin:24px 0 20px;}
+  .cg-decision,.cg-muzzle-practice{padding:22px 24px;border-radius:15px;}
   .cg-decision{border:var(--border);background:var(--card);}
   .cg-decision h2,.cg-section-head h2{margin:0;font-size:clamp(25px,2.6vw,34px);line-height:1.08;letter-spacing:-.025em;}
   .cg-decision>p{margin:8px 0 0;color:var(--cg-soft);font-size:.88rem;line-height:1.52;}
@@ -46,15 +49,16 @@
   .cg-decision-item:nth-child(3){background:var(--cg-red-soft);}
   .cg-decision-item strong{display:block;margin-bottom:4px;font-size:.78rem;}
   .cg-decision-item span{display:block;color:var(--cg-soft);font-size:.72rem;line-height:1.42;}
-  .cg-essentials{background:var(--cg-blue);color:var(--card);box-shadow:var(--shadow);}
-  .cg-essentials .cg-kicker{color:var(--card);}
-  .cg-essentials ul{margin:0;padding:0;list-style:none;}
-  .cg-essentials li{padding:10px 0;border-top:1px solid color-mix(in srgb,var(--card) 18%,transparent);color:color-mix(in srgb,var(--card) 79%,transparent);font-size:.76rem;line-height:1.4;}
-  .cg-essentials li:first-child{border-top:0;}
-  .cg-essentials strong{display:block;margin-bottom:2px;color:var(--card);font-size:.81rem;}
-  .cg-stop-banner{display:grid;grid-template-columns:36px minmax(0,1fr);gap:13px;align-items:center;margin:0 0 24px;padding:15px 18px;border-radius:13px;background:var(--emergency-soft);color:var(--emergency-tint-fg);box-shadow:var(--shadow);}
+  .cg-muzzle-practice{border:1px solid var(--cg-line);background:var(--success-dim);box-shadow:var(--shadow);}
+  .cg-muzzle-practice h2{margin:0 0 6px;font-size:1.25rem;line-height:1.15;}
+  .cg-muzzle-practice>p{margin:0 0 12px;color:var(--cg-soft);font-size:.74rem;line-height:1.45;}
+  .cg-muzzle-practice ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:0;padding:0;list-style:none;counter-reset:muzzle-step;}
+  .cg-muzzle-practice li{position:relative;padding:10px 11px 10px 42px;border-radius:10px;background:var(--card);color:var(--cg-soft);font-size:.72rem;line-height:1.42;counter-increment:muzzle-step;}
+  .cg-muzzle-practice li::before{content:counter(muzzle-step);position:absolute;left:11px;top:10px;display:grid;place-items:center;width:21px;height:21px;border-radius:50%;background:var(--cg-green);color:var(--card);font-size:.65rem;font-weight:800;}
+  .cg-muzzle-practice strong{display:block;margin-bottom:2px;color:var(--ink);font-size:.77rem;}
+  .cg-muzzle-note{margin:11px 0 0!important;padding-top:10px;border-top:1px solid var(--cg-line);font-size:.68rem!important;}
+  .cg-stop-banner{margin:0 0 24px;padding:15px 18px;border-radius:13px;background:var(--emergency-soft);color:var(--emergency-tint-fg);box-shadow:var(--shadow);}
   .cg-decision .cg-stop-banner{margin:14px 0 0;}
-  .cg-stop-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:9px;background:var(--emergency-tint);color:var(--emergency-tint-fg);font-weight:800;}
   .cg-stop-banner strong{display:block;color:var(--emergency-tint-fg);font-size:.9rem;}
   .cg-stop-banner span{display:block;margin-top:2px;color:var(--ink-soft);font-size:.75rem;line-height:1.4;}
   .cg-section{margin:24px 0;}
@@ -65,15 +69,6 @@
   .cg-step b{display:grid;place-items:center;width:25px;height:25px;margin-bottom:12px;border-radius:50%;background:var(--cg-green);color:var(--card);font-size:.7rem;}
   .cg-step h3{margin:0 0 6px;font-size:1.03rem;}
   .cg-step p{margin:0;color:var(--cg-soft);font-size:.78rem;line-height:1.48;}
-  .cg-rules{padding:22px 24px;border:1px solid var(--cg-line);border-radius:15px;background:var(--card);}
-  .cg-rule-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:15px;}
-  .cg-rule{padding:14px;border-radius:11px;background:var(--sage-dim);}
-  .cg-rule strong{display:block;margin-bottom:5px;font-size:.82rem;}
-  .cg-rule span{display:block;color:var(--cg-soft);font-size:.71rem;line-height:1.42;}
-  .cg-kindest{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;margin:22px 0;padding:20px 22px;border-radius:14px;background:var(--success-dim);}
-  .cg-kindest h2{margin:0 0 6px;font-size:1.3rem;}
-  .cg-kindest p{margin:0;color:var(--cg-soft);font-size:.8rem;line-height:1.5;}
-  .cg-cta{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:var(--radius-pill);background:var(--accent-light);color:var(--ink);font-size:.8rem;font-weight:800;text-decoration:none;white-space:nowrap;}
   .cg-sources{margin-top:18px;border-top:1px solid var(--cg-line);color:var(--ink-soft);}
   .cg-sources summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0;cursor:pointer;list-style:none;font-size:.74rem;}
   .cg-sources summary::-webkit-details-marker{display:none;}
@@ -82,23 +77,21 @@
   .cg-sources p{margin:0;padding:0 0 18px;font-size:.74rem;line-height:1.6;}
   .cg-sources a{color:var(--cg-blue);}
   @media(max-width:820px){
-    .cg-hero{grid-template-columns:minmax(0,1fr) 220px;gap:24px;width:min(100% - 36px,1120px);}
+    .cg-hero{width:min(100% - 36px,1120px);padding:30px 28px 24px;}
     .cg-shell{width:min(100% - 36px,1120px);}
     .cg-overview{grid-template-columns:1fr;}
-    .cg-rule-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
   }
   @media(max-width:620px){
-    .cg-hero{--safety-photo-position:center 72%;grid-template-columns:1fr;gap:14px;padding:22px 0 18px;}
+    .cg-hero{--safety-photo-position:center 72%;padding:25px 20px 20px;}
+    .cg-hero.safety-photo-header.section-page-head{min-height:330px;}
     .cg-hero h1{font-size:34px;}
     .cg-hero .section-page-subtitle{font-size:14px;}
     .cg-hero-media img{aspect-ratio:2.4/1;}
     .cg-overview{margin-top:20px;}
-    .cg-decision,.cg-essentials,.cg-rules{padding:19px 17px;}
-    .cg-decision-list,.cg-step-grid,.cg-rule-grid{grid-template-columns:1fr;}
+    .cg-decision,.cg-muzzle-practice{padding:19px 17px;}
+    .cg-decision-list,.cg-muzzle-practice ol,.cg-step-grid{grid-template-columns:1fr;}
     .cg-section-head{display:block;}
     .cg-section-head p{margin-top:6px;text-align:left;}
-    .cg-kindest{grid-template-columns:1fr;gap:15px;}
-    .cg-cta{width:100%;box-sizing:border-box;}
   }
 </style>
 <script type="application/ld+json">
@@ -114,7 +107,7 @@
   {
    "@type": "Question",
    "name": "How can I prepare a dog that is afraid of a gondola?",
-   "acceptedAnswer": {"@type": "Answer", "text": "Use short, reward-based visits that stay below the dog's fear threshold: practise a comfortable basket muzzle at home, visit the station without boarding, and build positive associations gradually. Never force a frightened dog into a cabin; persistent fear should be discussed with a veterinarian or qualified reward-based behaviour professional."}
+   "acceptedAnswer": {"@type": "Answer", "text": "Use short, reward-based sessions that stay below the dog's fear threshold. Hold a comfortable basket muzzle still with a treat inside and let the dog place their nose in voluntarily. Once that is easy, bring the strap behind the ears, fasten it for one or two seconds, reward through the front, and remove it. Build duration gradually. Never force a frightened dog into a muzzle or cabin; persistent fear should be discussed with a veterinarian or qualified reward-based behaviour professional."}
   },
   {
    "@type": "Question",
@@ -167,18 +160,20 @@
           <div class="cg-decision-item"><strong>Choose another route</strong><span>Panics, struggles to breathe or must be forced inside.</span></div>
         </div>
         <aside class="cg-stop-banner" aria-label="Do not force boarding">
-          <span class="cg-stop-icon" aria-hidden="true">!</span>
-          <div><strong>Never force a frightened dog into the cabin.</strong><span>Dragging, carrying or waiting for panic to pass can deepen the fear. Step away and use the alternative plan.</span></div>
+          <strong>Never force a frightened dog into the cabin.</strong><span>Dragging, carrying or waiting for panic to pass can deepen the fear. Step away and use the alternative plan.</span>
         </aside>
       </div>
-      <aside class="cg-essentials" aria-label="Lift-day essentials">
-        <span class="cg-kicker">Bring and check</span>
-        <ul>
-          <li><strong>Practised basket muzzle</strong>Room to pant and drink.</li>
-          <li><strong>Secure harness and short leash</strong>No retractable line in the queue.</li>
-          <li><strong>Water and a plan B</strong>A lower route if boarding is not right today.</li>
-          <li><strong>Current operator rules</strong>Requirements differ by lift and season.</li>
-        </ul>
+      <aside class="cg-muzzle-practice" aria-labelledby="muzzle-practice-title">
+        <span class="cg-kicker">Practise at home</span>
+        <h2 id="muzzle-practice-title">Make the muzzle predict treats</h2>
+        <p>Use a basket muzzle with room to pant and drink. Let your dog choose each step; do not push the muzzle onto the face.</p>
+        <ol>
+          <li><strong>Treat through the muzzle</strong>Hold it still, place a treat inside and let your dog put their nose in voluntarily. Remove it before they pull away.</li>
+          <li><strong>Repeat without fastening</strong>Build several calm nose-in repetitions over short sessions.</li>
+          <li><strong>Fasten from behind</strong>When your dog is comfortable, bring the strap behind the ears, fasten for one or two seconds, feed a treat through the front, then remove it.</li>
+          <li><strong>Add time gradually</strong>Increase by a few seconds while your dog stays relaxed. Practise walking, drinking and taking treats before lift day.</li>
+        </ol>
+        <p class="cg-muzzle-note">If your dog freezes, paws at the muzzle or stops taking food, pause and return to an easier step next time.</p>
       </aside>
     </section>
     <section class="cg-section" aria-labelledby="prepare-title">
@@ -186,28 +181,10 @@
         <div><span class="cg-kicker">Before lift day</span><h2 id="prepare-title">Prepare in three small steps</h2></div>
       </div>
       <div class="cg-step-grid">
-        <article class="cg-step"><b>1</b><h3>Practise the muzzle</h3><p>Build comfort at home with rewards. Keep every practice short enough that your dog can still relax, eat and choose to move away. The station queue should never be the first fitting.</p></article>
+        <article class="cg-step"><b>1</b><h3>Rehearse the full routine</h3><p>Practise fastening, treating, walking and drinking at home. The station queue should never be the first full fitting.</p></article>
         <article class="cg-step"><b>2</b><h3>Visit without boarding</h3><p>Watch the cabins from a comfortable distance, then leave before worry begins.</p></article>
         <article class="cg-step"><b>3</b><h3>Take the easiest ride</h3><p>Choose a quiet time, a short journey and the least crowded cabin available.</p></article>
       </div>
-    </section>
-
-    <section class="cg-rules" aria-labelledby="rules-title">
-      <div class="cg-section-head">
-        <div><span class="cg-kicker">Check before travelling</span><h2 id="rules-title">Rules in brief</h2></div>
-        <p>Policies can change. Make sure to check lifts opening ahead of your hiking day!</p>
-      </div>
-      <div class="cg-rule-grid">
-        <article class="cg-rule"><strong>Cortina Skiworld</strong><span>Listed lifts welcome dogs without a fare; leash and muzzle required.</span></article>
-        <article class="cg-rule"><strong>Lagazuoi</strong><span>Leash and muzzle required; larger dogs need a dedicated ticket.</span></article>
-        <article class="cg-rule"><strong>Val Gardena</strong><span>Ticket, leash and muzzle required; dogs may not occupy seats.</span></article>
-        <article class="cg-rule"><strong>Chamonix valley</strong><span>Many lifts accept dogs, with important lift and nature-reserve exceptions.</span></article>
-      </div>
-    </section>
-
-    <section class="cg-kindest" aria-labelledby="kindest-title">
-      <div><span class="cg-kicker">A healthy choice</span><h2 id="kindest-title">Not boarding is a valid plan</h2><p>A gondola is a convenience, not a test. If your dog cannot recover at the station, choose a lower walk, a quieter day or a route without a lift.</p></div>
-      <a class="cg-cta" href="../browse-trails.html">Browse dog-scored trails →</a>
     </section>
 
     <section class="safety-continue" aria-labelledby="safetyContinueTitle">
