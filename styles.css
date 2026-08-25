@@ -2766,6 +2766,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 
 #returningCustomerHomepage[hidden]{display:none !important;}
 #returningCustomerHomepage{
+  --li-map-section-gap:18px;
   min-height:0;
   display:flex;
   flex-direction:column;
@@ -2885,12 +2886,14 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   }
   body[data-homepage-view="returning"] #returningCustomerHomepage > .li-toolbar{
     padding-inline:0;
+    padding-bottom:var(--li-map-section-gap);
   }
   body[data-homepage-view="returning"] #returningCustomerHomepage > .li-toolbar-greet{padding-inline:40px;}
   body[data-homepage-view="returning"] #returningCustomerHomepage > .li-body{
     flex:none;
     height:clamp(520px,58vh,720px);
     min-height:520px;
+    margin-bottom:var(--li-map-section-gap);
     border-radius:0 0 18px 18px;
     overflow:hidden;
   }

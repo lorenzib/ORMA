@@ -28,6 +28,12 @@ describe('logged-in discovery workspace layout', () => {
     expect(desktopShellRule[1]).not.toContain('height:100dvh');
   });
 
+  test('gives the map the same breathing room above and below', () => {
+    expect(css).toMatch(/#returningCustomerHomepage\s*\{[^}]*--li-map-section-gap:18px;/s);
+    expect(css).toMatch(/#returningCustomerHomepage > \.li-toolbar\s*\{[^}]*padding-bottom:var\(--li-map-section-gap\);/s);
+    expect(css).toMatch(/#returningCustomerHomepage > \.li-body\s*\{[^}]*margin-bottom:var\(--li-map-section-gap\);/s);
+  });
+
   test('keeps one trails toggle anchored while the results pane collapses', () => {
     expect(html.match(/id="liCollapseTrailsBtn"/g)).toHaveLength(1);
     expect(html).not.toContain('id="liShowTrailsBtn"');
