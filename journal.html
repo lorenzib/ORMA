@@ -331,6 +331,14 @@
         <div class="jn-choice-group"><span class="jn-choice-label" data-i18n="journal.shareCard.look">Look</span><div class="jn-choice-row" id="jnShareVisuals">
           <button type="button" class="jn-choice on" data-visual="split" data-i18n="journal.shareCard.split">Photo + map</button><button type="button" class="jn-choice" data-visual="map" data-i18n="journal.shareCard.map">Route map</button><button type="button" class="jn-choice" data-visual="photo" data-i18n="journal.shareCard.photo">Photo</button>
         </div></div>
+        <div class="jn-choice-group"><label class="jn-choice-label" for="jnDogVoice">Your dog's speech bubble</label><input id="jnDogVoice" type="text" maxlength="56" value="Woof, what a walk!" style="width:100%;box-sizing:border-box;border:1.5px solid var(--paper-line);border-radius:12px;padding:10px 12px;font:600 12px 'Inter',sans-serif;color:var(--ink);"></div>
+        <div class="jn-choice-group"><span class="jn-choice-label">Tag in the card</span>
+          <label class="jn-check"><input type="checkbox" id="jnTagDog" checked><span id="jnTagDogLabel">Your dog</span></label>
+          <label class="jn-check"><input type="checkbox" id="jnTagHuman"><span id="jnTagHumanLabel">You</span></label>
+          <label class="jn-choice-label" for="jnCompanionTags" style="margin-top:12px;">Companion public names</label>
+          <input id="jnCompanionTags" type="text" maxlength="120" placeholder="e.g. Luna, Marco (comma separated)" style="width:100%;box-sizing:border-box;border:1.5px solid var(--paper-line);border-radius:12px;padding:10px 12px;font:600 12px 'Inter',sans-serif;color:var(--ink);">
+          <p class="jn-share-helper">Only add companions who agreed to be tagged. ORMA never uses private account names here.</p>
+        </div>
         <label class="jn-check"><input type="checkbox" id="jnShareHideEnds" checked><span data-i18n="journal.shareCard.hideEnds">Hide the first and last 200 m</span></label>
         <label class="jn-check"><input type="checkbox" id="jnShareHideRoute"><span data-i18n="journal.shareCard.hideRoute">Hide the route completely</span></label>
         <div class="jn-share-actions">
@@ -453,6 +461,9 @@ document.addEventListener('DOMContentLoaded', function(){
   var shareEntryId = null;
   var shareOptions = { format:'post', visual:'split', hideEnds:true, hideRoute:false };
   var sharePreviewToken = 0;
+  var dogPhotoData = '';
+  var publicHumanName = '';
+  var publicProfileUrl = '';
 
   function esc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function translate(key, fallback, vars){
@@ -790,8 +801,16 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 
   function shareCardOptions(){
+    var tags = [];
+    if(document.getElementById('jnTagDog').checked && dogDisplayName) tags.push(dogDisplayName);
+    if(document.getElementById('jnTagHuman').checked && publicHumanName) tags.push(publicHumanName);
+    String(document.getElementById('jnCompanionTags').value || '').split(',').map(function(value){ return value.trim(); }).filter(Boolean).slice(0, 4).forEach(function(value){ tags.push(value); });
     return {
       dogName:dogDisplayName, format:shareOptions.format, visual:shareOptions.visual,
+      dogPhoto:dogPhotoData,
+      dogVoice:document.getElementById('jnDogVoice').value || 'Woof, what a walk!',
+      tags:tags,
+      profileUrl:publicProfileUrl,
       hideEnds:document.getElementById('jnShareHideEnds').checked,
       hideRoute:document.getElementById('jnShareHideRoute').checked
     };
@@ -818,6 +837,13 @@ document.addEventListener('DOMContentLoaded', function(){
     shareOptions = { format:'post', visual:entry.photo ? 'split' : 'map', hideEnds:true, hideRoute:false };
     document.getElementById('jnShareHideEnds').checked = true;
     document.getElementById('jnShareHideRoute').checked = false;
+    document.getElementById('jnDogVoice').value = 'Woof, what a walk!';
+    document.getElementById('jnTagDog').checked = !!dogDisplayName;
+    document.getElementById('jnTagHuman').checked = false;
+    document.getElementById('jnTagDogLabel').textContent = dogDisplayName || 'Your dog';
+    document.getElementById('jnTagHumanLabel').textContent = publicHumanName || 'Your public profile (set this in Account)';
+    document.getElementById('jnTagHuman').disabled = !publicHumanName;
+    document.getElementById('jnCompanionTags').value = '';
     document.querySelectorAll('#jnShareVisuals [data-visual]').forEach(function(button){
       button.disabled = !entry.photo && button.dataset.visual !== 'map';
     });
@@ -836,7 +862,8 @@ document.addEventListener('DOMContentLoaded', function(){
     if(!button || button.disabled) return;
     shareOptions.visual = button.dataset.visual; syncShareChoices(); renderSharePreview();
   });
-  ['jnShareHideEnds','jnShareHideRoute'].forEach(function(id){ document.getElementById(id).addEventListener('change', renderSharePreview); });
+  ['jnShareHideEnds','jnShareHideRoute','jnTagDog','jnTagHuman'].forEach(function(id){ document.getElementById(id).addEventListener('change', renderSharePreview); });
+  ['jnDogVoice','jnCompanionTags'].forEach(function(id){ document.getElementById(id).addEventListener('input', renderSharePreview); });
   document.getElementById('jnShareClose').addEventListener('click', function(){ document.getElementById('jnShareOverlay').hidden = true; });
   document.getElementById('jnShareOverlay').addEventListener('click', function(event){ if(event.target === this) this.hidden = true; });
   document.getElementById('jnShareNative').addEventListener('click', function(){
@@ -870,7 +897,8 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('jnShareCopy').addEventListener('click', function(){
     var entry = currentShareEntry();
     if(!entry) return;
-    var caption = window.DoloPawsWalkCard.shareText(entry, dogDisplayName);
+    var options = shareCardOptions();
+    var caption = window.DoloPawsWalkCard.shareText(entry, dogDisplayName, options.tags, options.profileUrl);
     var done = function(){ showStatus(translate('journal.shareCard.copied', 'Caption copied.', {})); };
     if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(caption).then(done).catch(function(){ showStatus(window.t('journal.shareError')); });
     else {
@@ -1287,9 +1315,17 @@ document.addEventListener('DOMContentLoaded', function(){
     window.DoloPawsAuth.getDogProfile().then(function(p){
       if(p && p.name){
         dogDisplayName = p.name;
+        dogPhotoData = p.photo || '';
         document.getElementById('jnTitle').textContent = translate('journal.titleFor', '{name}’s walk journal', { name:p.name });
         document.getElementById('jnEmptyCopy').textContent = translate('journal.empty.copyFor', 'Once {name} has been out, log the walk here or track it live from Hike Mode — it’ll show up in this list.', { name:p.name });
         renderFeature();
+      }
+    }).catch(function(){});
+    window.DoloPawsAuth.getPublicProfile(user.uid).then(function(profile){
+      publicHumanName = profile && profile.displayName || '';
+      if(profile){
+        var publicDog = (profile.dogs || []).find(function(item){ return item.public; });
+        publicProfileUrl = 'https://www.app-orma.com/profile.html?uid=' + encodeURIComponent(user.uid) + (publicDog ? '&dog=' + encodeURIComponent(publicDog.id) : '');
       }
     }).catch(function(){});
   }
