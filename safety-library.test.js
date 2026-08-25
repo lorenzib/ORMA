@@ -67,8 +67,11 @@ describe('Safety library', () => {
     expect(opener.classList.contains('sg-readiness-fab')).toBe(true);
     expect(opener.closest('.sg-hero')).not.toBeNull();
     expect(opener.textContent).toMatch(/Paws ready\?/i);
-    expect(opener.querySelector('.sg-readiness-fab-icon').textContent).toBe('🐾');
+    expect(opener.querySelector('.sg-readiness-fab-icon svg')).not.toBeNull();
+    expect(opener.querySelector('.sg-readiness-fab-icon circle').getAttribute('fill')).toBe('#F4BE62');
     expect(html).toMatch(/\.sg-readiness-fab\{[^}]*background:#4B7653/s);
+    expect(html).toMatch(/\.sg-readiness-fab\{[^}]*margin-top:28px/s);
+    expect(html).toMatch(/\.sg-hero\.section-page-head--actions\{align-items:center;/s);
     expect(html).not.toMatch(/\.sg-readiness-fab\{[^}]*position:fixed/s);
     expect(document.querySelectorAll('#readinessQuiz .sg-question')).toHaveLength(5);
     expect(document.querySelector('#readinessQuizResult').getAttribute('aria-live')).toBe('polite');
