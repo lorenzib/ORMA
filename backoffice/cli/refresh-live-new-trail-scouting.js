@@ -14,8 +14,8 @@ function workflowRunUrl(env){return env.GITHUB_RUN_ID&&env.GITHUB_REPOSITORY?`${
 async function main(options={}){
   const root=options.root||path.resolve(__dirname,'../..');const env=options.env||process.env;const store=options.store||new FirestoreBackofficeStore();
   const result=await refreshLiveNewTrailScouting(store,await sources(root),loadProductionTrails(root),{at:options.at,limit:25,
-    runId:env.GITHUB_RUN_ID||null,workflowRunUrl:workflowRunUrl(env),trigger:env.GITHUB_EVENT_NAME||'manual'});
-  console.log(`[new-trail-scouting-live] ${result.packet.summary.candidates} protected candidates; ${result.packet.summary.existingArea} expand an existing area.`);
+    primaryRegion:'dolomites',runId:env.GITHUB_RUN_ID||null,workflowRunUrl:workflowRunUrl(env),trigger:env.GITHUB_EVENT_NAME||'manual'});
+  console.log(`[new-trail-scouting-live] ${result.packet.summary.candidates} protected candidates; ${result.packet.summary.primaryRegionCandidates} are in the Dolomites-first lane.`);
   console.log('[new-trail-scouting-live] Awaiting moderator selection. Nothing was published.');return result;
 }
 if(require.main===module)main().catch(error=>{console.error(`[new-trail-scouting-live] ${error.stack||error.message}`);process.exitCode=1;});

@@ -11,9 +11,10 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,strategy,standard,hosting,dashboard,packageManifest]=await Promise.all([
+  const [builder,rules,client,worker,strategy,editorialScope,standard,hosting,dashboard,packageManifest]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),read(root,'backoffice/workflows/run-live-strategy-cycle.js'),
+    read(root,'backoffice/workflows/editorial-scope.js'),
     read(root,'backoffice/OPERATING_STANDARD.md'),read(root,'backoffice/HOSTING.md'),read(root,'backoffice/dashboard-model.js'),read(root,'package.json'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
@@ -34,6 +35,9 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   add('worker-cadence',workflows['orma-backoffice-worker.yml']?.includes("cron: '*/5 * * * *'")&&workflows['orma-backoffice-worker.yml']?.includes('ORMA_WORKER_AUTOMATION_ENABLED'),'The queue worker has a five-minute target and an activation variable');
   add('daily-hazard-cadence',workflows['orma-hazard-watch.yml']?.includes("cron: '15 7 * * *'")&&workflows['orma-hazard-watch.yml']?.includes('timezone: Europe/Rome'),'Groundskeeper targets 07:15 Europe/Rome daily');
   add('weekly-strategy-cadence',workflows['orma-strategy-cycle.yml']?.includes("cron: '0 12 * * 3'")&&workflows['orma-strategy-cycle.yml']?.includes('timezone: Europe/Rome'),'Strategy work targets Wednesday 12:00 Europe/Rome');
+  add('daily-orma-verified-intake',workflows['orma-trail-campaign.yml']?.includes("cron: '15 8 * * *'")&&workflows['orma-trail-campaign.yml']?.includes('timezone: Europe/Rome')&&workflows['orma-trail-campaign.yml']?.includes('ORMA_CAMPAIGN_AUTOMATION_ENABLED'),'ORMA Verified candidate intake targets 08:15 Europe/Rome every day');
+  add('dolomites-first-scouting-cadence',workflows['orma-new-trail-intake.yml']?.includes("cron: '30 8 * * 1-6'")&&workflows['orma-new-trail-intake.yml']?.includes('timezone: Europe/Rome')&&standard.includes('Dolomites-first'),'New Trail scouting targets Monday through Saturday with the Dolomites as the primary region');
+  add('safety-editorial-pause',editorialScope.includes("'safety-guide'")&&editorialScope.includes("'paw-protection'")&&standard.includes('protected paused archive'),'Safety Library copy packets are excluded from the active Editorial queue and preserved in a paused archive');
   const setupNodeCount=(workflowText.match(/actions\/setup-node@v7/g)||[]).length;const node24Count=(workflowText.match(/node-version:\s*24/g)||[]).length;
   add('supported-ci-runtime',setupNodeCount>0&&node24Count===setupNodeCount&&!workflowText.includes('node-version: 20')&&!workflowText.match(/actions\/(?:checkout|setup-node|setup-java|cache)@v4/)&&!workflowText.includes('google-github-actions/auth@v2'),'All Node workflows use Node 24 and supported Node-24 action runtimes');
   add('private-hosting-boundary',hosting.includes('must never contain files')&&hosting.includes('`backoffice-data/`, `data/`')&&builder.includes("file.endsWith('.json')")&&builder.includes("file.startsWith(`backoffice-data${path.sep}`)")&&builder.includes("file.startsWith(`data${path.sep}`)"),'The Hosting allowlist excludes internal JSON and data directories');

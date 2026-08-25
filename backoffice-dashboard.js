@@ -29,6 +29,8 @@
     ],
   };
   const LOCAL_MODE=['localhost','127.0.0.1'].includes(location.hostname);
+  const PAUSED_SAFETY_GUIDES=new Set(['alpine-plants-for-dogs','altitude-with-your-dog','breed-group-caveats','dogs-at-rifugi','dogs-on-cable-cars','heat-overheating','livestock-guard-dogs','paw-protection','water-for-dogs-on-trail']);
+  const isPausedSafetyPacket=packet=>packet?.subject?.type==='page'&&packet.subject.id==='safety-guide'||packet?.subject?.type==='guide'&&PAUSED_SAFETY_GUIDES.has(packet.subject.id);
 
   async function json(url,fallback){
     try{const response=await fetch(url,{cache:'no-store'});return response.ok?await response.json():fallback;}
@@ -68,7 +70,7 @@
   async function load(){
     const keys=['orchestration','campaign','dossiers','jobs','trailExecution','publication','ledger','reviewQueue','lastReview','newsletter','newsletterReview','ideas','ideasReview','images','imageReview','hazards','hazardStatus','scouting','scoutingReview'];
     const values=await Promise.all([...keys.map(key=>json(URLS[key],{})),...URLS.packets.map(url=>json(url,null))]);
-    const data=Object.fromEntries(keys.map((key,index)=>[key,values[index]]));const packets=values.slice(keys.length).filter(Boolean);
+    const data=Object.fromEntries(keys.map((key,index)=>[key,values[index]]));const packets=values.slice(keys.length).filter(packet=>packet&&!isPausedSafetyPacket(packet));
     const liveState=await hydrateLiveFleet(data);
     const completed=[...(data.reviewQueue.submissions||[]),data.lastReview].filter(item=>item&&['published','processed'].includes(item.status));
     const resolved=new Set(completed.flatMap(item=>(item.decisions||[]).map(item=>item.jobId)));

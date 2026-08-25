@@ -113,6 +113,13 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.pipeline[1].status).toBe('2 jobs running or queued');
   });
 
+  test('hides paused Safety Library packets from the executive Editorial queue',()=>{
+    const safety={generatedAt:'2026-08-25T08:00:00Z',subject:{type:'guide',id:'paw-protection',sourceRef:'guides/paw-protection.html'},outputs:[{status:'ready-for-review'}]};
+    const ordinary={generatedAt:'2026-08-25T08:00:00Z',subject:{type:'guide',id:'dog-friendly-hikes-val-gardena',sourceRef:'guides/dog-friendly-hikes-val-gardena.html'},outputs:[{status:'ready-for-review'}]};
+    const model=buildDashboardModel({editorialPackets:[safety,ordinary],jobs:[]});
+    expect(model.editorialItems).toEqual([ordinary]);expect(model.editorialProgress).toEqual(expect.objectContaining({active:1,waiting:1,pausedSafetyLibrary:true}));
+  });
+
   test('surfaces Newsletter and Analyst gates without double-counting revised mock-ups',()=>{
     const model=buildDashboardModel({
       newsletterPacket:{generatedAt:'2026-08-20T12:00:00Z',outputs:[{status:'ready-for-review',result:{issueTitle:'Mountain days'}}]},

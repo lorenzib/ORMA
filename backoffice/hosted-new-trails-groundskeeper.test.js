@@ -1,6 +1,6 @@
 'use strict';
 
-const {refreshLiveNewTrailScouting}=require('./workflows/refresh-live-new-trail-scouting');
+const {nextScoutingAt,refreshLiveNewTrailScouting}=require('./workflows/refresh-live-new-trail-scouting');
 const {ingestNewTrailReviews,ingestHazardReviews}=require('./workflows/run-live-backoffice-worker');
 
 const at='2026-08-20T12:00:00.000Z';
@@ -8,12 +8,16 @@ function feature(relation,name='Fresh loop'){return {type:'Feature',properties:{
 function memoryStore(seed={}){const artifacts={...seed};const jobs=[];const marked=[];return {artifacts,jobs,marked,getArtifact:async id=>artifacts[id]||null,setArtifact:async(id,value)=>{artifacts[id]=value;},putJobIfAbsent:async job=>{if(jobs.some(item=>item.id===job.id))return false;jobs.push(job);return true;},listNewTrailReviews:async()=>[],markNewTrailReview:async(id,status,fields)=>marked.push({kind:'new',id,status,fields}),listHazardReviews:async()=>[],markHazardReview:async(id,status,fields)=>marked.push({kind:'hazard',id,status,fields})};}
 
 describe('hosted New Trails and Groundskeeper operations',()=>{
-  test('weekly scouting refresh preserves every unresolved packet and excludes trails already in verification',async()=>{
+  test('six-day scouting refresh preserves every unresolved packet and excludes trails already in verification',async()=>{
     const previous={candidates:[{id:'osm-relation-10',name:'Unresolved',region:'dolomites',expansionTier:'existing-area',priority:1},{id:'osm-relation-11',name:'Decided',region:'dolomites',expansionTier:'existing-area',priority:2},{id:'osm-relation-12',name:'Already admitted',region:'dolomites',expansionTier:'existing-area',priority:3}]};
     const store=memoryStore({'new-trail-scouting':previous,'new-trail-scouting-review':{decisions:[{candidateId:'osm-relation-11',action:'park'}]},'trail-orchestration':{trails:[{candidateId:'osm-relation-12'}]}});
     const result=await refreshLiveNewTrailScouting(store,[{region:'dolomites',data:{features:[feature(20)]}}],[],{at,limit:25,runId:'123'});
     expect(result.packet.candidates.map(item=>item.id)).toEqual(['osm-relation-10','osm-relation-20']);
-    expect(store.artifacts['new-trail-scouting-status']).toEqual(expect.objectContaining({status:'healthy',runId:'123',publicMutationAllowed:false}));
+    expect(store.artifacts['new-trail-scouting-status']).toEqual(expect.objectContaining({status:'healthy',runId:'123',cadence:'monday-through-saturday',primaryRegion:'dolomites',publicMutationAllowed:false}));
+  });
+
+  test('the scouting receipt skips Sunday when scheduling the next refresh',()=>{
+    expect(nextScoutingAt('2026-08-22T06:30:00.000Z')).toBe('2026-08-24T06:30:00.000Z');
   });
 
   test('only the latest New Trail click is effective, preventing an older selection from admitting a parked candidate',async()=>{

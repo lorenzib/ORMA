@@ -25,9 +25,9 @@ or append a CEO decision.
 | Queue worker | Every five minutes | Geometry, final dossier, trail content and release decisions |
 | Publication receipt reconciler | Every five minutes, inside the queue worker | No new gate; records only a commit already proven live by GitHub Pages |
 | Groundskeeper | Daily at 07:15 Europe/Rome | Confirm removal of an expired warning |
-| Catalogue campaign | Daily at 06:15 UTC, plus due-only worker catch-up | New admissions still enter the normal trail gates |
+| ORMA Verified intake | Daily at 08:15 Europe/Rome, plus due-only worker catch-up | New admissions still enter the normal trail gates |
 | Strategy cycle | Wednesday at 12:00 Europe/Rome | Editorial, image and Analyst desks; Newsletter inputs remain parked |
-| New Trail scouting | Wednesday at 12:00 Europe/Rome | Select, park or reject a candidate |
+| New Trail scouting | Monday–Saturday at 08:30 Europe/Rome, Dolomites first | Select, park or reject a candidate |
 | Newsletter | Parked until content readiness is explicitly confirmed | Existing drafts are preserved read-only; no generation, revision or handoff runs |
 | Analyst | Refreshed weekly | Opportunity decision, then a separate mock-up decision |
 
@@ -104,6 +104,10 @@ Required repository variables:
 - `ORMA_NEWSLETTER_ENABLED=false` while trail, collection and website content
   is being brought up to standard. Change it to `true` only after the CEO
   explicitly reopens the Newsletter workflow.
+
+Safety Library copy review is temporarily excluded from the Editorial decision
+queue while the guide interface is being redesigned. Existing packets are
+retained in the protected paused archive; non-safety editorial work continues.
 
 Required secrets are `OPEN_API_KEY` and `FIREBASE_SERVICE_ACCOUNT`. Social has
 no production credentials and remains launch-gated.
