@@ -60,10 +60,10 @@
   .hs-section-head{margin-bottom:14px;}
   .hs-section-head p{max-width:720px;margin:8px 0 0;color:var(--hs-soft);font-size:.8rem;line-height:1.48;text-align:left;}
   .hs-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;counter-reset:heat-step;}
-  .hs-action{position:relative;padding:18px 19px;border:1px solid var(--hs-line);border-radius:13px;background:var(--hs-card);counter-increment:heat-step;}
-  .hs-action::before{content:counter(heat-step);display:grid;place-items:center;width:25px;height:25px;margin-bottom:12px;border-radius:50%;background:var(--hs-green);color:var(--hs-card);font-weight:800;font-size:.7rem;}
-  .hs-action strong{display:block;margin-bottom:6px;color:var(--hs-ink);font-size:1.03rem;}
-  .hs-action span{display:block;color:var(--hs-soft);font-size:.78rem;line-height:1.48;}
+  .hs-action{position:relative;display:grid;grid-template-columns:25px minmax(0,1fr);column-gap:10px;align-items:start;padding:18px 19px;border:1px solid var(--hs-line);border-radius:13px;background:var(--hs-card);counter-increment:heat-step;}
+  .hs-action::before{content:counter(heat-step);display:grid;grid-column:1;grid-row:1;place-items:center;width:25px;height:25px;border-radius:50%;background:var(--hs-green);color:var(--hs-card);font-weight:800;font-size:.7rem;}
+  .hs-action strong{display:flex;grid-column:2;grid-row:1;align-items:center;min-height:25px;margin-bottom:6px;color:var(--hs-ink);font-size:1.03rem;}
+  .hs-action span{display:block;grid-column:2;grid-row:2;color:var(--hs-soft);font-size:.78rem;line-height:1.48;}
   .hs-risk{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:center;max-width:none;margin:18px 0 20px;border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:16px 19px;background:linear-gradient(135deg,#A43E29 0%,var(--hs-red) 100%);color:rgba(255,255,255,.92);box-shadow:0 14px 30px -22px rgba(128,44,28,.72);}
   .hs-risk-avatar{display:block;width:44px;height:44px;border:2px solid rgba(255,255,255,.62);border-radius:50%;object-fit:cover;background:#F1D6B0;box-shadow:0 4px 12px rgba(80,24,14,.24);}
   .hs-risk-label{display:block;margin-bottom:3px;color:#FFD9CB;font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;}

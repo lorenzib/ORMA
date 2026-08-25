@@ -37,6 +37,13 @@ describe('Heat and hydration safety guide', () => {
     expect(nextGuide.getAttribute('href')).toBe('water-for-dogs-on-trail.html');
   });
 
+  test('aligns cooling-step numbers with their action titles', () => {
+    expect(html).toMatch(/\.hs-action\{[^}]*display:grid;[^}]*grid-template-columns:25px minmax\(0,1fr\)/s);
+    expect(html).toMatch(/\.hs-action::before\{[^}]*grid-row:1;/s);
+    expect(html).toMatch(/\.hs-action strong\{[^}]*grid-row:1;[^}]*min-height:25px;/s);
+    expect(html).toMatch(/\.hs-action span\{[^}]*grid-row:2;/s);
+  });
+
   test('updates the pre-walk readiness result as checks are completed', () => {
     const checks = [...document.querySelectorAll('[data-heat-check]')];
     const status = document.getElementById('heatChecklistStatus');
