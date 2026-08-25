@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-08-23T05:17:11.755Z",
+  "generatedAt": "2026-08-24T05:16:31.121Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.057",
@@ -27,7 +27,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z"
     },
     {
@@ -54,7 +54,7 @@
         "Piancavallo Malghe Loop"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.119",
@@ -80,7 +80,7 @@
         "Piancavallo Malghe Loop"
       ],
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.059",
@@ -297,7 +297,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z"
     },
     {
@@ -514,7 +514,7 @@
         "Langer Rundweg am Karer See"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.117",
@@ -730,7 +730,7 @@
         "Langer Rundweg am Karer See"
       ],
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.055",
@@ -781,7 +781,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z"
     },
     {
@@ -832,7 +832,7 @@
         "Sentiero del Sabadalt"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.121",
@@ -882,7 +882,7 @@
         "Sentiero del Sabadalt"
       ],
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.058",
@@ -909,7 +909,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z"
     },
     {
@@ -936,7 +936,7 @@
         "Piancavallo Malghe Loop"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.120",
@@ -962,7 +962,7 @@
         "Piancavallo Malghe Loop"
       ],
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.060",
@@ -1179,7 +1179,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z"
     },
     {
@@ -1396,7 +1396,7 @@
         "Langer Rundweg am Karer See"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.118",
@@ -1612,7 +1612,7 @@
         "Langer Rundweg am Karer See"
       ],
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.056",
@@ -1663,7 +1663,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z"
     },
     {
@@ -1714,7 +1714,7 @@
         "Sentiero del Sabadalt"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.122",
@@ -1764,7 +1764,7 @@
         "Sentiero del Sabadalt"
       ],
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-france:2.49.0.0.250.0.FR.20260819060026.367022",
@@ -1863,7 +1863,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-21T05:29:21.071Z"
     },
     {
@@ -1889,8 +1889,32 @@
       "trailNames": [
         "Piancavallo Malghe Loop"
       ],
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z"
+    },
+    {
+      "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260823105339.039",
+      "state": "active",
+      "severity": "moderate",
+      "event": "Yellow Thunderstorm Warning",
+      "area": "Friuli Venezia Giulia",
+      "title": "Thunderstorm warning for Friuli Venezia Giulia",
+      "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-italy",
+      "sourceLabel": "MeteoAlarm Italy",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/e589dbcd-6ea0-4b0c-afdd-cf889ea3e587",
+      "identifier": "2.49.0.0.380.3.IT.260823105339.039",
+      "effectiveAt": "2026-08-25T06:00:00+00:00",
+      "expiresAt": "2026-08-25T17:59:00+00:00",
+      "firstPublishedAt": "2026-08-24T05:16:31.121Z",
+      "lastSeenAt": "2026-08-24T05:16:31.121Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "piancavallo"
+      ],
+      "trailNames": [
+        "Piancavallo Malghe Loop"
+      ]
     },
     {
       "id": "meteoalarm-france:2.49.0.0.250.0.FR.20260819060028.816023",
@@ -1989,7 +2013,7 @@
       ],
       "sourceStatus": "available",
       "sourceError": "fetch failed",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-21T05:29:21.071Z"
     },
     {
@@ -2088,7 +2112,7 @@
         "PARCOURS N°11 | LACS DU CHARDONNET"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-france:2.49.0.0.250.0.FR.20260820220346.562023",
@@ -2186,7 +2210,7 @@
         "PARCOURS N°11 | LACS DU CHARDONNET"
       ],
       "resolutionDetectedAt": "2026-08-22T05:28:02.675Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
     },
     {
       "id": "meteoalarm-france:2.49.0.0.250.0.FR.20260821160033.305023",
@@ -2284,7 +2308,103 @@
         "PARCOURS N°11 | LACS DU CHARDONNET"
       ],
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z",
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z"
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z"
+    },
+    {
+      "id": "meteoalarm-france:2.49.0.0.250.0.FR.20260824060240.143023",
+      "state": "active",
+      "severity": "moderate",
+      "event": "Moderate thunderstorm warning",
+      "area": "Savoie",
+      "title": "thunderstorm warning for Savoie",
+      "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-france",
+      "sourceLabel": "MeteoAlarm France",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/dc701531-402d-4260-8cd4-b6ce996c727b",
+      "identifier": "2.49.0.0.250.0.FR.20260824060240.143023",
+      "effectiveAt": "2026-08-24T04:00:00+00:00",
+      "expiresAt": "2026-08-24T22:00:00+00:00",
+      "firstPublishedAt": "2026-08-24T05:16:31.121Z",
+      "lastSeenAt": "2026-08-24T05:16:31.121Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "osm-3982382",
+        "osm-9933643",
+        "osm-14095296",
+        "osm-16322228",
+        "osm-16363583",
+        "osm-16395076",
+        "osm-19153189",
+        "osm-15591346",
+        "osm-16365005",
+        "osm-9937537",
+        "osm-10539302",
+        "osm-12118490",
+        "osm-12121346",
+        "osm-12121548",
+        "osm-12121798",
+        "osm-12127424",
+        "osm-12745924",
+        "osm-14375158",
+        "osm-14376573",
+        "osm-14377007",
+        "osm-14378946",
+        "osm-14379010",
+        "osm-14379937",
+        "osm-14381570",
+        "osm-14381584",
+        "osm-14381788",
+        "osm-14381930",
+        "osm-15321049",
+        "osm-15321786",
+        "osm-15535697",
+        "osm-16218739",
+        "osm-16490407",
+        "osm-19531872",
+        "osm-19541366",
+        "osm-19760372",
+        "osm-19855818",
+        "osm-21021130"
+      ],
+      "trailNames": [
+        "Circuit Béatrice de Savoie",
+        "Le Lac Vert",
+        "Les Marais d'Albens",
+        "Boucle du Marais des Chassettes",
+        "Le Marais de Pré Lombard",
+        "Boucle du Lac de la Thuile",
+        "Le Belvédère (Saint-Pierre-d'Albigny)",
+        "Sentier des Buis",
+        "La Galoppaz par la Combe Servenne",
+        "Le Mont Jovet",
+        "Sentier éco-sylve de Poingt-Ravier",
+        "B05 - Le Balcon des Plagnes",
+        "B08 - Le tour des hameaux de Montandré, Champessuit et Grenis",
+        "B02 - Le tour de l'Armélaz",
+        "EN02 - Le terroir de Serpolière",
+        "EN04 - Au fil de l'Arvan",
+        "Circuit des escaliers",
+        "Crêt de la Parenche",
+        "Crêt de Talière",
+        "Route du Lac",
+        "Lac de Pramol",
+        "Croix de Pralognan",
+        "Albannette petite boucle",
+        "Albanne",
+        "Beaumollard",
+        "Marmottes",
+        "La Plagne",
+        "Sentier des Écureuils",
+        "Circuit de la Comtesse Cécile",
+        "La Maïtaz",
+        "Circuit du Ragairon",
+        "Circuit des Sallanches",
+        "Circuit des Demoiselles Coiffées",
+        "Lac Blanc",
+        "Boucle du Moulin de Cornet",
+        "Boucle des cascades",
+        "PARCOURS N°11 | LACS DU CHARDONNET"
+      ]
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260820122240.084",
@@ -2499,8 +2619,222 @@
         "Mittlerer Rundweg am Karer See",
         "Langer Rundweg am Karer See"
       ],
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z"
+    },
+    {
+      "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260823105339.035",
+      "state": "active",
+      "severity": "moderate",
+      "event": "Yellow Thunderstorm Warning",
+      "area": "Trentino Alto Adige",
+      "title": "Thunderstorm warning for Trentino Alto Adige",
+      "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-italy",
+      "sourceLabel": "MeteoAlarm Italy",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/dbd5d699-54ef-484e-b468-ed4ae3f0a2b4",
+      "identifier": "2.49.0.0.380.3.IT.260823105339.035",
+      "effectiveAt": "2026-08-25T00:00:00+00:00",
+      "expiresAt": "2026-08-25T17:59:00+00:00",
+      "firstPublishedAt": "2026-08-24T05:16:31.121Z",
+      "lastSeenAt": "2026-08-24T05:16:31.121Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "alpe-siusi",
+        "seceda",
+        "santa-maddalena",
+        "tre-cime",
+        "cadini",
+        "prato-piazza",
+        "sassolungo",
+        "lago-braies",
+        "lago-carezza",
+        "valley-view",
+        "geotrail-bulla",
+        "giro-del-bulacia",
+        "sentiero-hans-e-paula-steger",
+        "sentiero-del-trenino",
+        "giro-del-sasso-lungo",
+        "osm-123162",
+        "osm-1116675",
+        "osm-1116680",
+        "osm-1780768",
+        "osm-2179746",
+        "osm-3202880",
+        "osm-3885162",
+        "osm-5512443",
+        "osm-6244965",
+        "osm-6404258",
+        "osm-6404633",
+        "osm-6404634",
+        "osm-6410700",
+        "osm-6529356",
+        "osm-6823031",
+        "osm-7045225",
+        "osm-7086961",
+        "osm-7277805",
+        "osm-7446701",
+        "osm-8510456",
+        "osm-9487078",
+        "osm-9492594",
+        "osm-9493733",
+        "osm-9511973",
+        "osm-9511999",
+        "osm-9651462",
+        "osm-9675994",
+        "osm-11764094",
+        "osm-11774783",
+        "osm-11775760",
+        "osm-11780502",
+        "osm-11790553",
+        "osm-11792795",
+        "osm-11795103",
+        "osm-11795251",
+        "osm-11814834",
+        "osm-11814895",
+        "osm-11815025",
+        "osm-11816373",
+        "osm-11828233",
+        "osm-11832013",
+        "osm-11839597",
+        "osm-11860429",
+        "osm-12018939",
+        "osm-12027153",
+        "osm-12039246",
+        "osm-12044077",
+        "osm-12047303",
+        "osm-12079333",
+        "osm-12132169",
+        "osm-12142337",
+        "osm-12150790",
+        "osm-12164395",
+        "osm-12165590",
+        "osm-12172440",
+        "osm-12173965",
+        "osm-12173984",
+        "osm-12174210",
+        "osm-12182516",
+        "osm-12182895",
+        "osm-12182936",
+        "osm-12189165",
+        "osm-12190538",
+        "osm-12190657",
+        "osm-12302191",
+        "osm-12363235",
+        "osm-12371666",
+        "osm-12371689",
+        "osm-12731853",
+        "osm-12736753",
+        "osm-12953352",
+        "osm-13491868",
+        "osm-14058492",
+        "osm-14058632",
+        "osm-15662134",
+        "osm-15791408",
+        "osm-19330972",
+        "osm-19697977",
+        "osm-19703479",
+        "osm-19974724",
+        "osm-19974725"
+      ],
+      "trailNames": [
+        "Alpe di Siusi Meadow Loop",
+        "Seceda Ridge Trail",
+        "Rundweg St. Magdalena",
+        "Tre Cime di Lavaredo classic circuit",
+        "Cadini di Misurina Viewpoint",
+        "Prato Piazza (Plätzwiese)",
+        "Sassolungo–Sassopiatto Loop",
+        "Lago di Braies Seeweg circuit",
+        "Lago di Carezza Loop",
+        "Val di Funes Panorama Trail",
+        "Geotrail Bula / Pufels / Bulla",
+        "Giro del Bulacia",
+        "Sentiero Hans e Paula Steger",
+        "Sentiero del Trenino",
+        "Giro del Sasso Lungo",
+        "Planetenweg - Sentiero dei pianeti",
+        "Familienrundweg",
+        "Sextener Rundweg",
+        "Gsieser Talblickweg",
+        "Ruine Castelfeder - Rovine Castelfeder",
+        "Rundweg Montiggler Seen",
+        "Seeweg",
+        "Wallburgweg",
+        "Steine erzählen",
+        "Rundweg Salla",
+        "Anello dei Pradi",
+        "Anello del Bosco",
+        "Dolomitenblickrunde",
+        "Anton Schwingshackl Weg",
+        "Naturlehrpfad",
+        "Giro del Fausior",
+        "Giro del Zimon",
+        "Waltner Rundweg - 12 - Sentiero circolare di Valtina - 12",
+        "Waltner Rundweg 18",
+        "Dorfrundweg St. Sigmund",
+        "Oswald-von-Wolkenstein-Weg",
+        "Vogelweider Rundweg",
+        "Tru di Lëc",
+        "Roda de Armentara",
+        "Tru dles Viles",
+        "Sagenweg - Sentiero delle leggende",
+        "St. Agatha Rundweg",
+        "Dörferrunde (Natz => Raas => Schabs => Viums)",
+        "1 - Rafeil-Rundweg",
+        "Carl-Toldt-Weg",
+        "Naturerlebnispfad Zans",
+        "Steger-Bühel-Runde",
+        "Rundweg Ölberg",
+        "Kranterrunde",
+        "1 - Dörferrundweg (Vintl)",
+        "Geotrail Bula - Pufels - Bulla",
+        "Kofelrunde",
+        "Rundweg Kasserol",
+        "Bunkerweg",
+        "Valser Rundweg",
+        "Seerundweg",
+        "Fenn Promenade",
+        "Roda dles Viles",
+        "Steinegger Höhenweg",
+        "GEOWeg - Sentiero GEOlogico",
+        "Rundweg Rotwand",
+        "Rundweg Schmieden",
+        "Lang-Erl-Weg",
+        "Giro dei Masi",
+        "Toblacher Höhenweg",
+        "Rundweg Peitlerkofel",
+        "Giro dei Capitelli - Kapellenrunde",
+        "Dörferrundweg",
+        "Schwalbenwandrunde",
+        "Natur- und Kulturweg",
+        "Kleine Schlossrunde",
+        "Große Schlossrunde",
+        "Rundweg Reischach",
+        "Timpfler Rundweg",
+        "Talrundweg",
+        "Schörgaurunde",
+        "Rundweg Schwarzegg - Sentiero circolare Dosso Nero",
+        "Flaaser Rundweg",
+        "Rundweg Langfenn",
+        "Dorfrundweg Rasen",
+        "Panoramaweg",
+        "Kastelaz Promenade",
+        "Kirchensteig",
+        "Rundweg Laugen Elvas",
+        "Albeins-Klerant-Milland - Albes-Cleran-Millan",
+        "archeo",
+        "Birmehlweg - Sentiero Birmehl",
+        "Herrnsteig",
+        "Nössingbühel",
+        "Sagenweg Laurein",
+        "Giro di Bedolpian",
+        "Dorfrundweg - Giro del Paese",
+        "Panoramaweg",
+        "Rundweg Beimsteinkogel",
+        "Mittlerer Rundweg am Karer See",
+        "Langer Rundweg am Karer See"
+      ]
     },
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260820122240.086",
@@ -2549,8 +2883,56 @@
         "Sentiero Alpago Natura",
         "Sentiero del Sabadalt"
       ],
-      "lastCheckedAt": "2026-08-23T05:17:11.755Z",
+      "lastCheckedAt": "2026-08-24T05:16:31.121Z",
       "resolutionDetectedAt": "2026-08-23T05:17:11.755Z"
+    },
+    {
+      "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260823105339.037",
+      "state": "active",
+      "severity": "moderate",
+      "event": "Yellow Thunderstorm Warning",
+      "area": "Veneto",
+      "title": "Thunderstorm warning for Veneto",
+      "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-italy",
+      "sourceLabel": "MeteoAlarm Italy",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/e0c400d2-b291-48d4-8fd6-96d4958337f6",
+      "identifier": "2.49.0.0.380.3.IT.260823105339.037",
+      "effectiveAt": "2026-08-25T00:00:00+00:00",
+      "expiresAt": "2026-08-25T17:59:00+00:00",
+      "firstPublishedAt": "2026-08-24T05:16:31.121Z",
+      "lastSeenAt": "2026-08-24T05:16:31.121Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "nuvolau",
+        "lago-sorapis",
+        "osm-7388748",
+        "osm-7546708",
+        "osm-7547653",
+        "osm-7547983",
+        "osm-7548201",
+        "osm-7548344",
+        "osm-7548489",
+        "osm-7549783",
+        "osm-11855879",
+        "osm-11891581",
+        "osm-13528390"
+      ],
+      "trailNames": [
+        "Passo Giau to Rifugio Nuvolau",
+        "Lago di Sorapis Trail",
+        "Anello dei Colli",
+        "Anello di Soracrode",
+        "Anello dei Forti",
+        "Anello di Valzalina",
+        "Anello di Ciampeviei",
+        "Anello del Sole",
+        "Anello dei Faggi",
+        "Anello del Troi de le Ciaure",
+        "Roda de Cherz",
+        "Sentiero Alpago Natura",
+        "Sentiero del Sabadalt"
+      ]
     }
   ]
 }

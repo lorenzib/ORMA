@@ -1,5 +1,7 @@
 (function(){
   'use strict';
+  const PAUSED_SAFETY_GUIDES=new Set(['alpine-plants-for-dogs','altitude-with-your-dog','breed-group-caveats','dogs-at-rifugi','dogs-on-cable-cars','heat-overheating','livestock-guard-dogs','paw-protection','water-for-dogs-on-trail']);
+  const isPausedSafetyPacket=packet=>packet?.subject?.type==='page'&&packet.subject.id==='safety-guide'||packet?.subject?.type==='guide'&&PAUSED_SAFETY_GUIDES.has(packet.subject.id);
   const state=document.getElementById('editorialState');const grid=document.getElementById('editorialGrid');
   const edited=new Map();
   const el=(tag,cls,text)=>{const node=document.createElement(tag);if(cls)node.className=cls;if(text!==undefined)node.textContent=text;return node;};
@@ -38,9 +40,9 @@
   }
   async function load(){
     const api=await remote();const packetResults=await Promise.all([1,2,3].map(slot=>optional(api,`editorial-review-packet-${slot}`,null)));const [reviewResult,receiptArtifact,statusArtifact]=await Promise.all([api.getEditorialReviews(),optional(api,'editorial-publication-receipts',{receipts:[]}),optional(api,'strategy-cycle-status',{})]);if(!reviewResult?.ok)throw new Error(`Could not load Editorial decisions: ${reviewResult?.error||'unknown error'}`);
-    const packets=packetResults.filter(packet=>(packet?.outputs||[]).some(output=>output.status==='ready-for-review'));const reviews=reviewResult.reviews||[];const receipts=receiptArtifact.receipts||[];grid.replaceChildren(...packets.map((packet,index)=>renderPacket(packet,index,reviews,receipts)));
+    const packets=packetResults.filter(packet=>!isPausedSafetyPacket(packet)&&(packet?.outputs||[]).some(output=>output.status==='ready-for-review'));const reviews=reviewResult.reviews||[];const receipts=receiptArtifact.receipts||[];grid.replaceChildren(...packets.map((packet,index)=>renderPacket(packet,index,reviews,receipts)));
     const waiting=packets.filter(packet=>!latestFor(packet,reviews)).length;const withAutomation=reviews.filter(review=>['queued','processing'].includes(review.status)).length;set('editorialActive',packets.length);set('editorialWaiting',waiting);set('editorialAutomation',withAutomation);set('editorialPublished',receipts.filter(item=>item.status==='published').length);
-    if(!packets.length)grid.append(el('p','bo-decision-empty','No guide copy packet is waiting. The Wednesday strategy cycle will refill empty slots.'));
+    if(!packets.length)grid.append(el('p','bo-decision-empty','No non-safety copy packet is waiting. Safety Library copy review is paused while its interface is being redesigned.'));
     state.classList.toggle('is-error',statusArtifact.status==='failed');state.textContent=statusArtifact.status==='failed'?`Weekly refresh failed: ${statusArtifact.lastFailure?.message||'Unknown failure'}`:`${waiting} of ${packets.length} active copy packets need your decision. Saved handoffs remain visible after refresh.`;
   }
   load().catch(error=>{state.classList.add('is-error');state.textContent=error.message;});

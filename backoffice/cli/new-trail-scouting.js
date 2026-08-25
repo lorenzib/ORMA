@@ -11,9 +11,9 @@ async function main(options={}){
     fs.readFile(path.join(root,'dog-friendly-routes.geojson'),'utf8').then(text=>({region:'dolomites',data:JSON.parse(text)})),
     fs.readFile(path.join(root,'dog-friendly-routes-savoy.geojson'),'utf8').then(text=>({region:'savoy',data:JSON.parse(text)})),
   ]);
-  const packet=planNewTrailScouting(sources,loadProductionTrails(root),{at:options.at,limit:options.limit||25});
+  const packet=planNewTrailScouting(sources,loadProductionTrails(root),{at:options.at,limit:options.limit||25,primaryRegion:'dolomites'});
   const output=path.join(root,'backoffice-data','new-trail-scouting.json');await fs.writeFile(output,`${JSON.stringify(packet,null,2)}\n`,'utf8');
-  console.log(`[new-trail-scouting] ${packet.summary.candidates} candidates; ${packet.summary.existingArea} expand an existing area.`);
+  console.log(`[new-trail-scouting] ${packet.summary.candidates} candidates; ${packet.summary.primaryRegionCandidates} are in the Dolomites-first lane.`);
   console.log('[new-trail-scouting] Candidates only. Nothing was added to the public trail catalogue.');return packet;
 }
 if(require.main===module)main().catch(error=>{console.error(`[new-trail-scouting] ${error.message}`);process.exitCode=1;});

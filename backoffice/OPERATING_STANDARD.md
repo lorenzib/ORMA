@@ -41,7 +41,10 @@ warning may be added automatically. Expiry opens a resolution review; removing
 a warning requires confirmation. Weather warnings are never presented as proof
 that a specific trail is closed.
 
-Existing Trails is the current throughput priority. The hosted worker checks
+Existing Trails is the current throughput priority. Every day after the
+Firestore quota reset window, the protected
+catalogue campaign admits the next eligible candidates for ORMA Verified
+review, subject to the shared capacity limit. The hosted worker checks
 its durable specialist queue before general editorial, image, newsletter and
 Analyst generation work. It may keep up to 15 trails in verification and run
 up to ten specialist jobs per worker pass. This changes working capacity only:
@@ -56,6 +59,10 @@ Owns discovery before catalogue admission. It prioritises:
 - candidates close to areas ORMA already covers; and
 - coherent geographic expansion before unrelated new regions.
 
+The active discovery phase is Dolomites-first. Scouting refreshes Monday
+through Saturday, ranks credible Dolomites candidates ahead of other regions,
+and preserves unresolved candidates between refreshes.
+
 CEO selection sends a candidate into the Existing Trails verification fleet.
 Selection is not publication. A New Trail becomes an Existing Trail only after
 the required evidence and human gates are complete.
@@ -66,11 +73,14 @@ Owns website copy and image coverage as two separate queues.
 
 The weekly copy cycle:
 
-- reviews guides, editorial articles, and explicitly named governance pages,
-  not design;
+- reviews non-safety guides, editorial articles, and explicitly named
+  governance pages, not design;
+- pauses all Safety Library copy packets while the Safety Library UI is being
+  redesigned; existing packets move to a protected paused archive and are not
+  shown as CEO decisions;
 - prioritises immediate revision requests first, then the Privacy and Terms
-  pages during the current website-refinement cycle, then safety-critical and
-  ordinary freshness work;
+  pages during the current website-refinement cycle, then ordinary freshness
+  work outside the Safety Library;
 - excludes collections from automatic freshness review;
 - keeps exactly three copy packets active at a time;
 - shows the current page beside the proposed page;
@@ -162,13 +172,14 @@ requests and the CEO prototype gate. An investigation, priority decision or prot
 ## Current cadence
 
 - Dynamic hazard check: daily at 07:15 local time.
-- Existing Trails queue: checked by the hosted worker every five minutes, with
-  a daily catalogue-admission backup and 15-trail capacity.
+- Existing Trails queue: checked by the hosted worker every fifteen minutes,
+  with daily ORMA Verified intake at 09:30 local time and 15-trail capacity.
 - Strategy cycle: Wednesday at 12:00 local time.
-- Editorial copy: weekly, with up to three active reviews.
+- Editorial copy: weekly, with up to three active non-safety reviews; Safety
+  Library copy review is paused during the current UI redesign.
 - Image coverage: refreshed with the weekly strategy cycle.
-- New Trail scouting: refreshed with the strategy cycle; admission remains
-  CEO-gated.
+- New Trail scouting: Monday through Saturday at 10:00 local time, Dolomites
+  first; admission remains CEO-gated.
 - Newsletter: parked until trail, collection and website content readiness is
   explicitly confirmed.
 - Analyst discovery: weekly.

@@ -4,6 +4,7 @@ const fs=require('fs/promises');
 const path=require('path');
 const {guideInventory,runGuideContent,runPageContent}=require('./run-guide-content');
 const {contentFingerprint,fingerprint,selectEditorialWork,recordEditorialOutcome}=require('./editorial-ledger');
+const {isPausedSafetyEditorialSubject}=require('./editorial-scope');
 
 const PRIORITY_EDITORIAL_PAGES=Object.freeze([
   {pageId:'privacy',sourceRef:'privacy.html',reviewIntervalDays:180},
@@ -18,11 +19,22 @@ function sourcesFingerprint(packet){return fingerprint((packet.outputs||[]).flat
 async function runEditorialCycle(root,options={}){
   const at=options.at||new Date().toISOString();const limit=options.limit||3;const data=path.join(root,'backoffice-data');
   const packetPaths=Array.from({length:limit},(_,index)=>path.join(data,`editorial-review-packet-${index+1}.json`));
+  const pausedPath=path.join(data,'editorial-paused-packets.json');
   let ledger=await readJson(path.join(data,'editorial-ledger.json'),{contractVersion:'1.0.0',items:[]});
   const records=new Map((ledger.items||[]).map(item=>[item.contentId,item]));
   const packetRecords=(await Promise.all(packetPaths.map(async file=>({file,packet:await readJson(file)})))).filter(item=>item.packet);
+  const pausedRecords=packetRecords.filter(item=>isPausedSafetyEditorialSubject(item.packet.subject));
+  const previousPaused=await readJson(pausedPath,{contractVersion:'1.0.0',updatedAt:null,reason:'safety-library-ui-review',packets:[]});
+  const pausedByFingerprint=new Map((previousPaused.packets||[]).map(item=>[item.packetFingerprint,item]));
+  for(const item of pausedRecords){
+    const archived={packetFingerprint:packetFingerprint(item.packet),pausedAt:at,reason:'Safety Library UI review in progress',packet:item.packet};
+    pausedByFingerprint.set(archived.packetFingerprint,archived);
+    await fs.rm(item.file,{force:true});
+  }
+  const pausedArchive={...previousPaused,updatedAt:pausedRecords.length?at:previousPaused.updatedAt,packets:[...pausedByFingerprint.values()]};
+  await writeJson(pausedPath,pausedArchive);
   const active=[];
-  for(const item of packetRecords){
+  for(const item of packetRecords.filter(item=>!isPausedSafetyEditorialSubject(item.packet.subject))){
     const contentId=`${item.packet.subject?.type}-${item.packet.subject?.id}`;const record=records.get(contentId);let currentFingerprint=null;
     try{currentFingerprint=contentFingerprint(await fs.readFile(path.resolve(root,item.packet.subject.sourceRef),'utf8'));}catch(error){if(error.code!=='ENOENT')throw error;}
     if(record?.status==='in-review'&&record.activePacketFingerprint===packetFingerprint(item.packet)&&record.contentFingerprint===currentFingerprint&&(item.packet.outputs||[]).some(output=>output.status==='ready-for-review')) active.push(item);
@@ -39,7 +51,8 @@ async function runEditorialCycle(root,options={}){
   }
   for(const guide of inventory){
     const html=await fs.readFile(guide.file,'utf8');const current=contentFingerprint(html);const contentId=`guide-${guide.id}`;
-    if(!activeIds.has(contentId)) candidates.push({contentId,type:'guide',guideId:guide.id,sourceRef:path.relative(root,guide.file),contentFingerprint:current,packetFingerprint:current,safetyCritical:/heat|water|altitude|paw|plant|livestock|safety|emergency/i.test(guide.id)});
+    const subject={type:'guide',id:guide.id};
+    if(!isPausedSafetyEditorialSubject(subject)&&!activeIds.has(contentId)) candidates.push({contentId,type:'guide',guideId:guide.id,sourceRef:path.relative(root,guide.file),contentFingerprint:current,packetFingerprint:current,safetyCritical:false});
   }
   const selected=selectEditorialWork(candidates,ledger,{asOf:at,limit:freePaths.length});const generated=[];const blocked=[];
   for(let index=0;index<selected.length;index++){
@@ -57,7 +70,7 @@ async function runEditorialCycle(root,options={}){
     }catch(error){blocked.push({contentId:candidate.contentId,error:error.message});}
   }
   await writeJson(path.join(data,'editorial-ledger.json'),ledger);
-  return {preserved:active.map(item=>`${item.packet.subject.type}-${item.packet.subject.id}`),generated,blocked,availableSlots:freePaths.length-generated.length};
+  return {preserved:active.map(item=>`${item.packet.subject.type}-${item.packet.subject.id}`),paused:pausedRecords.map(item=>`${item.packet.subject.type}-${item.packet.subject.id}`),generated,blocked,availableSlots:freePaths.length-generated.length};
 }
 
 module.exports={PRIORITY_EDITORIAL_PAGES,packetFingerprint,sourcesFingerprint,runEditorialCycle};

@@ -8,6 +8,10 @@
     story: { width:1080, height:1920, label:'Story 9:16' },
     square: { width:1080, height:1080, label:'Square 1:1' }
   };
+  var SOCIAL_PLATFORMS = {
+    instagram: { format:'story', filename:'orma-trail-tale-instagram-story.png' },
+    facebook: { format:'post', filename:'orma-trail-tale-facebook.png' }
+  };
   var INK = '#2E4034', CREAM = '#F5F2E8', SOFT = '#6B7A6E',
       TERRA = '#C4652F', SAGE = '#E7ECE3', LINE = '#E3DFD2';
   var TALE_LABELS = {
@@ -102,12 +106,13 @@
     return (dogName ? dogName + '’s verdict: ' : 'Trail verdict: ') + energy.toLowerCase() + '.';
   }
 
-  function shareText(entry, dogName){
+  function shareText(entry, dogName, tags, profileUrl){
     var bits = [];
     bits.push((dogName ? dogName + '’s Trail Tale' : 'Our Trail Tale') + ' — ' + (entry.dist || '?') + ' km in ' + fmtDuration(entry.dur));
     if(entry.trail && entry.trail !== 'Recorded walk') bits.push(entry.trail);
     var verdict = taleSentence(entry, dogName);
-    return bits.join(' · ') + '. ' + (verdict ? verdict + ' ' : '') + 'Made with ORMA 🐾 app-orma.com';
+    var tagLine = (tags || []).filter(Boolean).map(function(tag){ return '@' + String(tag).replace(/^@/, '').replace(/\s+/g, ''); }).join(' ');
+    return bits.join(' · ') + '. ' + (verdict ? verdict + ' ' : '') + (tagLine ? tagLine + ' ' : '') + 'Made with ORMA 🐾 app-orma.com' + (profileUrl ? ' · Follow our trails: ' + profileUrl : '');
   }
 
   function roundRect(ctx, x, y, w, h, r){
@@ -172,6 +177,22 @@
     }
   }
 
+  function drawDogVoice(ctx, dogImage, dogName, voice, x, y, maxWidth){
+    var size = 118, bubbleX = x + size + 24, bubbleW = Math.min(maxWidth - size - 24, 590), bubbleH = 92;
+    ctx.save();
+    ctx.beginPath(); ctx.arc(x + size / 2, y + size / 2, size / 2, 0, Math.PI * 2); ctx.clip();
+    if(dogImage) drawCoverPhoto(ctx, dogImage, x, y, size, size);
+    else { ctx.fillStyle = INK; ctx.fillRect(x, y, size, size); ctx.fillStyle = '#fff'; ctx.font = '54px sans-serif'; ctx.textAlign = 'center'; ctx.fillText('🐾', x + size / 2, y + 78); }
+    ctx.restore();
+    ctx.lineWidth = 7; ctx.strokeStyle = CREAM; ctx.beginPath(); ctx.arc(x + size / 2, y + size / 2, size / 2, 0, Math.PI * 2); ctx.stroke();
+    roundRect(ctx, bubbleX, y + 5, bubbleW, bubbleH, 28); ctx.fillStyle = '#fff'; ctx.fill();
+    ctx.beginPath(); ctx.moveTo(bubbleX + 6, y + 63); ctx.lineTo(bubbleX - 18, y + 78); ctx.lineTo(bubbleX + 12, y + 80); ctx.fillStyle = '#fff'; ctx.fill();
+    ctx.fillStyle = INK; ctx.textAlign = 'left'; ctx.font = '800 30px "Bricolage Grotesque", sans-serif';
+    var message = String(voice || 'Woof, what a walk!').trim().slice(0, 56);
+    ctx.fillText(message, bubbleX + 25, y + 62);
+    if(dogName){ ctx.fillStyle = SOFT; ctx.font = '700 18px Inter, sans-serif'; ctx.fillText(dogName, bubbleX + 25, y + bubbleH + 29); }
+  }
+
   function renderWalkCard(entry, options){
     options = options || {};
     var size = formatSize(options.format), W = size.width, H = size.height;
@@ -193,6 +214,16 @@
     var footerSpace = compact ? 250 : (story ? 440 : 340);
     var visualH = Math.max(compact ? 450 : 560, H - visualY - footerSpace);
     drawVisual(ctx, { photoImage:options.photoImage, visual:options.visual, route:route }, 70, visualY, W - 140, visualH);
+
+    if(options.dogName){
+      drawDogVoice(ctx, options.dogPhotoImage, options.dogName, options.dogVoice, 96, visualY + visualH - 148, W - 192);
+    }
+    if(options.tags && options.tags.length){
+      ctx.fillStyle = '#fff'; ctx.font = '800 20px Inter, sans-serif';
+      ctx.shadowColor = 'rgba(20,35,25,.7)'; ctx.shadowBlur = 8;
+      ctx.fillText('WITH ' + options.tags.slice(0, 5).join(' · '), 96, visualY + visualH - 18);
+      ctx.shadowBlur = 0;
+    }
 
     var statsY = visualY + visualH + (compact ? 58 : 74);
     function stat(x, value, label){
@@ -227,41 +258,55 @@
 
   function createWalkCard(entry, options){
     options = options || {};
-    return loadPhoto(entry.photo).then(function(photoImage){
-      return renderWalkCard(entry, Object.assign({}, options, { photoImage:photoImage }));
+    return Promise.all([loadPhoto(entry.photo), loadPhoto(options.dogPhoto)]).then(function(images){
+      return renderWalkCard(entry, Object.assign({}, options, { photoImage:images[0], dogPhotoImage:images[1] }));
     });
   }
 
-  function download(canvas){
-    var a = document.createElement('a'); a.download = 'orma-trail-tale.png'; a.href = canvas.toDataURL('image/png'); a.click(); return 'downloaded';
+  function platformOptions(options, platform){
+    var social = SOCIAL_PLATFORMS[platform];
+    return Object.assign({}, options || {}, social ? { format:social.format } : {});
   }
 
-  function downloadWalkCard(entry, options){ return createWalkCard(entry, options).then(download); }
+  function download(canvas, filename){
+    var a = document.createElement('a'); a.download = filename || 'orma-trail-tale.png'; a.href = canvas.toDataURL('image/png'); a.click(); return 'downloaded';
+  }
 
-  function shareWalkCard(entry, options){
+  function downloadWalkCard(entry, options){ return createWalkCard(entry, options).then(function(canvas){ return download(canvas); }); }
+
+  function shareWalkCard(entry, options, shareConfig){
     options = options || {};
+    shareConfig = shareConfig || {};
     return createWalkCard(entry, options).then(function(canvas){
       return new Promise(function(resolve){
         canvas.toBlob(function(blob){
-          var file = blob && typeof File !== 'undefined' ? new File([blob], 'orma-trail-tale.png', { type:'image/png' }) : null;
-          var text = shareText(entry, options.dogName);
+          var filename = shareConfig.filename || 'orma-trail-tale.png';
+          var file = blob && typeof File !== 'undefined' ? new File([blob], filename, { type:'image/png' }) : null;
+          var text = shareText(entry, options.dogName, options.tags, options.profileUrl);
           if(file && typeof navigator !== 'undefined' && navigator.share && navigator.canShare && navigator.canShare({ files:[file] })){
-            navigator.share({ files:[file], text:text }).then(function(){ resolve('shared'); }).catch(function(error){
+            navigator.share({ files:[file], title:'ORMA Trail Tale', text:text }).then(function(){ resolve('shared'); }).catch(function(error){
               if(error && error.name === 'AbortError') resolve('cancelled');
-              else resolve(download(canvas));
+              else resolve(download(canvas, filename));
             });
-          } else resolve(download(canvas));
+          } else resolve(download(canvas, filename));
         }, 'image/png');
       });
     });
   }
 
+  function shareWalkCardToPlatform(entry, options, platform){
+    var social = SOCIAL_PLATFORMS[platform] || {};
+    return shareWalkCard(entry, platformOptions(options, platform), { filename:social.filename });
+  }
+
   var api = {
-    FORMATS:FORMATS, TALE_LABELS:TALE_LABELS, projectRoute:projectRoute,
+    FORMATS:FORMATS, SOCIAL_PLATFORMS:SOCIAL_PLATFORMS, TALE_LABELS:TALE_LABELS, projectRoute:projectRoute,
     maskRouteEnds:maskRouteEnds, routeForShare:routeForShare, formatSize:formatSize,
+    platformOptions:platformOptions,
     shareText:shareText, taleSentence:taleSentence, fmtDuration:fmtDuration,
     renderWalkCard:renderWalkCard, createWalkCard:createWalkCard,
-    downloadWalkCard:downloadWalkCard, shareWalkCard:shareWalkCard
+    downloadWalkCard:downloadWalkCard, shareWalkCard:shareWalkCard,
+    shareWalkCardToPlatform:shareWalkCardToPlatform
   };
   global.DoloPawsWalkCard = api;
   if(typeof module !== 'undefined' && module.exports) module.exports = api;

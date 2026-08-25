@@ -136,7 +136,7 @@
       b.setAttribute('aria-selected', String(selected));
       b.tabIndex = selected ? 0 : -1;
     });
-    ['dog','human','health','account'].forEach(t => { $('tab-' + t).hidden = t !== id; });
+    ['dog','human','health','public','account'].forEach(t => { $('tab-' + t).hidden = t !== id; });
     syncSettingsToc(id === 'account');
   }
   railBtns.forEach((b, index) => {

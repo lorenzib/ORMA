@@ -62,15 +62,18 @@ async function runLiveStrategyCycle(store,options={}){
   await store.setArtifact('strategy-cycle-status',{...statusBase,status:'running'});
   try{
     await hydrate(store,root,'editorial-ledger','backoffice-data/editorial-ledger.json',{contractVersion:'1.0.0',items:[]});
+    await hydrate(store,root,'editorial-paused-packets','backoffice-data/editorial-paused-packets.json',{contractVersion:'1.0.0',updatedAt:null,reason:'safety-library-ui-review',packets:[]});
     for(let slot=1;slot<=3;slot++)await hydrate(store,root,`editorial-review-packet-${slot}`,`backoffice-data/editorial-review-packet-${slot}.json`,null);
 
     const editorial=await (options.runEditorialCycle||runEditorialCycle)(root,{at,limit:3,...(options.editorialOptions||{})});
     const ledger=await readJson(path.join(root,'backoffice-data/editorial-ledger.json'),{contractVersion:'1.0.0',items:[]});
-    await store.setArtifact('editorial-ledger',ledger,metadata);
+    const pausedPackets=await readJson(path.join(root,'backoffice-data/editorial-paused-packets.json'),{contractVersion:'1.0.0',updatedAt:null,reason:'safety-library-ui-review',packets:[]});
+    await Promise.all([store.setArtifact('editorial-ledger',ledger,metadata),store.setArtifact('editorial-paused-packets',pausedPackets,metadata)]);
     const packets=[];
     for(let slot=1;slot<=3;slot++){
       const packet=await readJson(path.join(root,`backoffice-data/editorial-review-packet-${slot}.json`),null);
       if(packet){packets.push(packet);await store.setArtifact(`editorial-review-packet-${slot}`,packet,{...metadata,slot});}
+      else await store.setArtifact(`editorial-review-packet-${slot}`,{contractVersion:'1.0.0',generatedAt:at,status:'empty',subject:null,outputs:[],summary:{readyForReview:0,blocked:0},publicMutationAllowed:false},{...metadata,slot,status:'empty'});
     }
 
     const imageAudit=await (options.auditImageCoverage||auditImageCoverage)(root,{at});
@@ -101,6 +104,7 @@ async function runLiveStrategyCycle(store,options={}){
       editorialActive:packets.filter(packet=>(packet.outputs||[]).some(output=>output.status==='ready-for-review')).length,
       editorialPreserved:editorial.preserved.length,
       editorialGenerated:editorial.generated.length,
+      editorialPaused:Number(editorial.paused?.length||0),
       editorialBlocked:editorial.blocked.length,
       imagePagesScanned:Number(imageAudit.summary?.pagesScanned||0),
       imageGaps:Number(imageAudit.summary?.missing||0),

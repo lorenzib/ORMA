@@ -28,6 +28,49 @@ service cloud.firestore {
         && request.auth.token.get('moderator', false) == true;
     }
 
+    function validPublicDog(dog) {
+      return dog is map
+        && dog.keys().hasOnly(['id', 'name', 'bio', 'photo', 'public'])
+        && dog.id is string && dog.id.size() > 0 && dog.id.size() <= 80
+        && dog.name is string && dog.name.size() > 0 && dog.name.size() <= 40
+        && dog.bio is string && dog.bio.size() <= 180
+        && dog.photo is string && dog.photo.size() <= 700000
+        && dog.public is bool;
+    }
+
+    function validPublicProfile(data, uid) {
+      return data.keys().hasOnly([
+          'uid', 'displayName', 'bio', 'visibility', 'tagPermission', 'dogs',
+          'createdAt', 'updatedAt'
+        ])
+        && data.uid == uid
+        && data.displayName is string && data.displayName.size() > 0 && data.displayName.size() <= 40
+        && data.bio is string && data.bio.size() <= 240
+        && data.visibility in ['public', 'private']
+        && data.tagPermission in ['everyone', 'followers', 'none']
+        && data.dogs is list && data.dogs.size() <= 5
+        && (data.dogs.size() < 1 || validPublicDog(data.dogs[0]))
+        && (data.dogs.size() < 2 || validPublicDog(data.dogs[1]))
+        && (data.dogs.size() < 3 || validPublicDog(data.dogs[2]))
+        && (data.dogs.size() < 4 || validPublicDog(data.dogs[3]))
+        && (data.dogs.size() < 5 || validPublicDog(data.dogs[4]))
+        && data.updatedAt == request.time;
+    }
+
+    function validFollow(data) {
+      return data.keys().hasOnly([
+          'followerUid', 'ownerUid', 'targetType', 'targetId', 'status',
+          'createdAt', 'updatedAt'
+        ])
+        && data.followerUid is string && data.followerUid.size() <= 128
+        && data.ownerUid is string && data.ownerUid.size() <= 128
+        && data.ownerUid != data.followerUid
+        && data.targetType in ['human', 'dog']
+        && data.targetId is string && data.targetId.size() > 0 && data.targetId.size() <= 80
+        && data.status in ['accepted', 'pending']
+        && data.updatedAt == request.time;
+    }
+
     function isShortString(value, maximum) {
       return value is string && value.size() > 0 && value.size() <= maximum;
     }
@@ -485,6 +528,50 @@ service cloud.firestore {
       allow create, update: if isOwner(uid)
         && validUserDocument(request.resource.data);
       allow list: if false;
+    }
+
+    // Public identities are an explicit, tightly allowlisted projection of a
+    // member profile. Contact, health, vet, journal and location fields cannot
+    // be written here. A private profile remains visible by direct URL so a
+    // follow request can be made, but its page suppresses bio and activity.
+    match /publicProfiles/{uid} {
+      allow get: if true;
+      allow list: if resource.data.visibility == 'public';
+      allow create, update: if isOwner(uid)
+        && validPublicProfile(request.resource.data, uid);
+      allow delete: if isOwner(uid);
+    }
+
+    // Follow edges never contain contact data. The follower may create or
+    // remove an edge; the target owner alone may approve a private request.
+    match /follows/{edgeId} {
+      allow get: if isSignedIn()
+        && (resource.data.followerUid == request.auth.uid
+          || resource.data.ownerUid == request.auth.uid);
+      allow list: if isSignedIn()
+        && (resource.data.followerUid == request.auth.uid
+          || resource.data.ownerUid == request.auth.uid);
+      allow create: if isSignedIn()
+        && request.resource.data.followerUid == request.auth.uid
+        && validFollow(request.resource.data)
+        && exists(/databases/$(database)/documents/publicProfiles/$(request.resource.data.ownerUid))
+        && (
+          (get(/databases/$(database)/documents/publicProfiles/$(request.resource.data.ownerUid)).data.visibility == 'public'
+            && request.resource.data.status == 'accepted')
+          ||
+          (get(/databases/$(database)/documents/publicProfiles/$(request.resource.data.ownerUid)).data.visibility == 'private'
+            && request.resource.data.status in ['pending'])
+        )
+        && request.resource.data.createdAt == request.time;
+      allow update: if isSignedIn()
+        && resource.data.ownerUid == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt'])
+        && resource.data.status == 'pending'
+        && request.resource.data.status == 'accepted'
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if isSignedIn()
+        && (resource.data.followerUid == request.auth.uid
+          || resource.data.ownerUid == request.auth.uid);
     }
 
     // Structured suitability outcomes are private owner data, not reviews.

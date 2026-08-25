@@ -13,13 +13,13 @@ describe('paw protection question-led guide', () => {
     window.history.replaceState({}, '', '/');
   });
 
-  test('leads with the selected question-led concept and Safety Library breadcrumb', () => {
+  test('leads with the selected question-led concept and Safety Library return CTA', () => {
     expect(document.querySelector('h1').textContent.trim()).toBe('What will your dog walk on?');
     expect(document.querySelector('.section-page-subtitle').textContent).toMatch(/ground conditions/i);
-    const breadcrumb = document.querySelector('.paw2-breadcrumbs');
-    expect(breadcrumb.getAttribute('aria-label')).toBe('Breadcrumb');
-    expect(breadcrumb.querySelector('a').getAttribute('href')).toBe('../safety-guide.html');
-    expect(breadcrumb.textContent).toMatch(/Safety library/i);
+    const returnLink = document.querySelector('.safety-back-link');
+    expect(returnLink.getAttribute('href')).toBe('../safety-guide.html');
+    expect(returnLink.textContent).toMatch(/Go back to Safety Library/i);
+    expect(document.querySelector('.paw2-breadcrumbs').textContent.trim()).toBe('Paw protection');
   });
 
   test('uses the Safety Library card image behind the compact page header', () => {
@@ -69,9 +69,9 @@ describe('paw protection question-led guide', () => {
     expect(html).toContain('.paw2-library{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));');
     expect(html).toContain('.paw2-library{grid-template-columns:repeat(2,minmax(0,1fr));}');
     expect(html).toContain('.paw2-library{grid-template-columns:1fr;}');
-    expect(html).toContain('background:var(--paw-blue-soft)');
-    expect(html).toContain('.paw2-detail-columns section{padding:15px 17px;border-radius:10px;background:#e8ede5;}');
-    expect(html).toContain('.paw2-detail-columns section:last-child{background:#f4e2dc;}');
+    expect(html).toContain('background:var(--safety-info-soft)');
+    expect(html).toContain('.paw2-detail-columns section{padding:15px 17px;border-radius:10px;background:var(--safety-safe-soft);}');
+    expect(html).toContain('.paw2-detail-columns section:last-child{background:var(--safety-stop-soft);}');
     details.forEach(detail => expect(detail.open).toBe(false));
     document.querySelector('a[href="#boots"]').click();
     expect(document.getElementById('boots').open).toBe(true);

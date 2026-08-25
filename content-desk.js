@@ -1,5 +1,7 @@
 (function(){
   'use strict';
+  const PAUSED_SAFETY_GUIDES=new Set(['alpine-plants-for-dogs','altitude-with-your-dog','breed-group-caveats','dogs-at-rifugi','dogs-on-cable-cars','heat-overheating','livestock-guard-dogs','paw-protection','water-for-dogs-on-trail']);
+  const isPausedSafetyPacket=packet=>packet?.subject?.type==='page'&&packet.subject.id==='safety-guide'||packet?.subject?.type==='guide'&&PAUSED_SAFETY_GUIDES.has(packet.subject.id);
   const PACKET_URLS=[
     'backoffice-data/editorial-review-packet-1.json',
     'backoffice-data/editorial-review-packet-2.json',
@@ -59,7 +61,7 @@
     const resolvedJobs=new Set(completed.flatMap(item=>(item.decisions||[]).map(decision=>decision.jobId)));
     const publishedItems=new Map((ledger.items||[]).filter(item=>item.status==='published').map(item=>[item.contentId,item]));
     const resolvedByLedger=candidate=>{const item=publishedItems.get(`${candidate?.subject?.type}-${candidate?.subject?.id}`);return item&&new Date(item.lastPublishedAt||0)>=new Date(candidate.generatedAt||0);};
-    const waiting=packets.filter(candidate=>candidate?.summary?.readyForReview>0&&!resolvedByLedger(candidate)&&candidate.outputs.some(output=>output.status==='ready-for-review'&&!resolvedJobs.has(output.jobId)))
+    const waiting=packets.filter(candidate=>!isPausedSafetyPacket(candidate)&&candidate?.summary?.readyForReview>0&&!resolvedByLedger(candidate)&&candidate.outputs.some(output=>output.status==='ready-for-review'&&!resolvedJobs.has(output.jobId)))
       .sort((a,b)=>new Date(a.generatedAt)-new Date(b.generatedAt));
     execution=waiting[0]||null;
     if(!execution){state.textContent=receipt?.status==='published'&&receipt.publication?.commit?`Published in commit ${receipt.publication.commit.slice(0,7)}. GitHub Pages deployment triggered.`:'Nothing is waiting for review. The next eligible workstream will appear here automatically.';return;}

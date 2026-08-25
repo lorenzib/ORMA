@@ -19,17 +19,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css?v=20260823-5">
+<link rel="stylesheet" href="../styles.css?v=20260825-1">
 <style>
   .gp-body{max-width:760px;margin:0 auto;padding:10px 20px 60px;}
   .gp-body h2{margin-top:34px;}
   .gp-body h3{font-size:15.5px;margin:22px 0 8px;}
-  .gp-src{font-size:.85rem;color:var(--ink-soft,#666);}
-  .gp-callout{background:rgba(0,0,0,.035);border-left:4px solid var(--accent-light,#C8D6C0);border-radius:8px;padding:14px 18px;margin:18px 0;}
-  .gp-warn{background:#FBEAE6;border-left:4px solid #9C3A25;border-radius:8px;padding:14px 18px;margin:18px 0;}
+  .gp-src{font-size:.85rem;color:var(--ink-soft);}
+  .gp-callout{background:var(--safety-info-soft);border-left:4px solid var(--safety-info);border-radius:8px;padding:14px 18px;margin:18px 0;}
+  .gp-warn{background:var(--safety-stop-soft);border-left:4px solid var(--safety-stop);border-radius:8px;padding:14px 18px;margin:18px 0;}
   .gp-steps{counter-reset:step;list-style:none;padding:0;}
   .gp-steps li{counter-increment:step;position:relative;padding:0 0 14px 44px;}
-  .gp-steps li::before{content:counter(step);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:#2E4034;color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;}
+  .gp-steps li::before{content:counter(step);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--card);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;}
 </style>
 <script type="application/ld+json">
 {
@@ -39,12 +39,12 @@
   {
    "@type": "Question",
    "name": "What is a patou or livestock guardian dog?",
-   "acceptedAnswer": {"@type": "Answer", "text": "A large working dog, typically a Pyrenean Mountain Dog (patou), Maremma-Abruzzese sheepdog, or Kangal, raised inside a flock from puppyhood to protect it from predators. It is not a pet: its job is to place itself between the herd and anything it perceives as a threat, bark, and escalate if the threat keeps approaching."}
+   "acceptedAnswer": {"@type": "Answer", "text": "A working dog, often a Pyrenean Mountain Dog (patou), Maremma-Abruzzese sheepdog, or another guardian breed, raised with a flock to deter threats. Barking, approaching and placing itself between visitors and livestock are part of that work; hikers should create distance rather than approach it like a pet."}
   },
   {
    "@type": "Question",
    "name": "What should I do if a guardian dog approaches while I'm hiking with my dog?",
-   "acceptedAnswer": {"@type": "Answer", "text": "Stop, stay calm, keep your dog leashed and close, avoid eye contact with the guardian dog, don't shout or wave poles, and give the herd a wide berth rather than crossing it. Barking is normal and not an attack. If the guardian dog engages your dog directly, official French guidance is to release the leash so the dogs can perform normal canine rituals and your dog can retreat. If the dog does not calm down, turn back."}
+   "acceptedAnswer": {"@type": "Answer", "text": "Stop, stay calm, keep your dog leashed and close, avoid staring at the guardian dog, do not shout or wave poles, and move around the herd rather than through it. If direct dog-to-dog contact becomes unavoidable, Explore Savoie advises releasing your dog rather than trapping it at your legs. If the guardian dog does not calm down, turn back."}
   },
   {
    "@type": "Question",
@@ -75,38 +75,65 @@
 
 <div class="guide-hero safety-photo-header section-page-head content-canvas" style="--safety-photo-position:center 72%;">
   <img class="safety-photo-header__image" src="../images/editorial/safety-library/livestock-guardian-dogs-v1.jpg" alt="" width="1200" height="800" decoding="async">
+  <a class="safety-back-link" href="../safety-guide.html"><span class="safety-back-link__arrow" aria-hidden="true">←</span> Go back to Safety Library</a>
   <div class="eyebrow">Guides · Dog safety in the mountains</div>
-  <h1 style="font-size:clamp(28px,5vw,38px);margin-top:14px;">The 40-kilo white dog on the trail is working. Here's what to do, especially with your own dog.</h1>
-  <p class="sub section-page-subtitle">Livestock guardian dogs protect summer herds across the Dolomites and the French Alps. Most advice online is written for hikers without dogs. Yours changes the encounter completely.</p>
+  <h1 style="font-size:clamp(28px,5vw,38px);margin-top:14px;">Meeting a livestock guardian dog with your own dog</h1>
+  <p class="sub section-page-subtitle">Your safest encounter is the one you prevent: notice the herd early, leash before the pasture and create distance around it.</p>
+  <div class="scan-meta"><strong>3 min guide</strong><span>Last reviewed 25 August 2026</span></div>
 </div>
 
-<div class="gp-body content-canvas">
+<main class="gp-body scan-shell content-canvas" id="mainContent">
+  <section class="scan-intro" aria-labelledby="guardianStartTitle">
+    <div class="scan-intro-copy">
+      <span class="scan-kicker">Understand the job</span>
+      <h2 id="guardianStartTitle">The dog is protecting the flock</h2>
+      <p>Barking, approaching or placing itself between you and livestock are deterrent behaviours. They are not a reason to approach, test the dog or continue through the herd.</p>
+    </div>
+    <aside class="scan-priority">
+      <strong>Default move: leash early and go around</strong>
+      <p>Your dog may be read as a potential predator. A wide, calm detour before either dog reacts is safer than managing contact.</p>
+    </aside>
+  </section>
 
-  <p>Sometime between June and September, on a pasture crossed by a perfectly ordinary trail, a very large white dog will stand up out of the grass, place itself between you and a flock, and start barking. This is a <em>patou</em> (Pyrenean Mountain Dog) or, on the Italian side, often a Maremma-Abruzzese sheepdog, and everything about the next two minutes depends on understanding one thing: <strong>it is not attacking you. It is doing its job.</strong></p>
+  <section class="scan-section" aria-labelledby="guardianDecisionTitle">
+    <div class="scan-section-head">
+      <div><span class="scan-kicker">Use the card that matches the moment</span><h2 id="guardianDecisionTitle">Three decisions</h2></div>
+      <p>Move from prevention to retreat; do not try to “win” the encounter.</p>
+    </div>
+    <div class="scan-grid">
+      <article class="scan-card scan-card--green">
+        <span class="scan-card-label">You see the herd first</span><h3>Detour before contact</h3>
+        <ul class="scan-list"><li>Leash your dog and keep them close.</li><li>Go widely around the flock, not between animals.</li><li>If there is no safe space, turn back.</li></ul>
+      </article>
+      <article class="scan-card scan-card--amber">
+        <span class="scan-card-label">A guardian approaches</span><h3>Stop and become uninteresting</h3>
+        <ul class="scan-list"><li>Stay calm; stop or move very slowly.</li><li>Do not stare, shout, run or raise poles.</li><li>Speak quietly and let the dog assess from a distance.</li></ul>
+      </article>
+      <article class="scan-card scan-card--blue">
+        <span class="scan-card-label">Direct dog-to-dog contact</span><h3>Do not trap your dog at your legs</h3>
+        <p>Keep the leash as the default while you can still create distance. If direct contact becomes unavoidable, Explore Savoie advises releasing your dog so they can communicate and retreat. Move away calmly and turn back if the guardian does not settle.</p>
+      </article>
+    </div>
+    <div class="scan-alert">
+      <strong>Never escalate the guardian-dog encounter</strong>
+      <p>Do not approach the flock, pet or feed the guardian, throw objects or place yourself closer for a photograph.</p>
+      <div class="scan-donts"><span>No running</span><span>No shouting</span><span>No staring</span><span>No raised poles</span><span>No petting</span></div>
+    </div>
+  </section>
 
-  <p>These dogs are placed inside the flock as puppies and grow up bonded to the animals, not to people. As wolves have returned to the Alps, guardian dogs have become steadily more common, which means the classic postcard meadow walk now comes with a real protocol. Barking, approaching, and circling are the dog <em>assessing</em> you; the encounter is routine and ends calmly if you behave predictably.</p>
+  <section class="scan-section" aria-labelledby="pasturePlanTitle">
+    <div class="scan-section-head"><div><span class="scan-kicker">Before the trail</span><h2 id="pasturePlanTitle">Plan for the pasture</h2></div></div>
+    <div class="scan-grid">
+      <article class="scan-card"><h3>Prefer visible crossings</h3><p>Short pasture sections with room to detour give you time to see livestock and working dogs before they react.</p></article>
+      <article class="scan-card"><h3>Read recent reports</h3><p>Herds move. Check current trail reports and follow local signs even when an older report says the pasture was clear.</p></article>
+      <article class="scan-card"><h3>Leash at the first clue</h3><p>Clip on before the cattle grid, bells or animals—not after a guardian dog appears.</p></article>
+    </div>
+  </section>
 
-  <h2>Why your dog raises the stakes</h2>
-  <p>To a guardian dog, your dog is not a tourist: it reads as a canid near the flock, the exact silhouette it exists to intercept. This is why encounters that are mildly stressful for dogless hikers can escalate with a dog present, and why we flag pasture crossings in our trail notes. Two of your dog's instincts work against you here: barking back (a challenge) and hiding behind your legs while leashed (which traps the interaction at your body). Herding breeds are a special case: the urge to gather sheep is precisely the behaviour a guardian dog will not tolerate, which is why <a href="../safety-guide.html">our safety guide</a> tells Border Collie and Aussie owners to keep them leashed through every pasture, no exceptions.</p>
-
-  <h2>The protocol, step by step</h2>
-  <p>This is the official guidance published by the Savoie tourism board and alpine communes, adapted for hikers with a dog:</p>
-  <ol class="gp-steps">
-    <li><strong>See the herd early, plan around it.</strong> The single best move is a wide detour around the flock, never through it. Scan pastures from a distance; guardian dogs are often invisible in the flock until you're close.</li>
-    <li><strong>Leash your dog and keep it close and calm.</strong> Do this before the guardian dog notices you, not after.</li>
-    <li><strong>When the dog approaches barking: stop.</strong> Stay calm. No shouting, no sudden movements, no brandishing poles. Avoid staring it in the eye. Take off sunglasses so it can read your face.</li>
-    <li><strong>Show it you're no threat.</strong> You can speak quietly. Placing an object gently between you and the dog (a bag, a stick held low, not raised) is recommended. Never try to pet it.</li>
-    <li><strong>The counterintuitive part:</strong> if the guardian dog comes to investigate <em>your dog</em> directly, official Savoie guidance says to <strong>release the leash and let the dogs interact</strong>. A leashed dog can't perform normal canine appeasement rituals and can't retreat: holding it pinned to your legs escalates exactly the confrontation you're trying to avoid.</li>
-    <li><strong>Move on slowly, skirting the herd.</strong> The dog may escort you to the edge of its territory. That's normal. If it does not calm down, turn back. A retraced hour beats an incident.</li>
-  </ol>
-  <p class="gp-src">Sources: <a href="https://www.explore-savoie.com/en/responsible-destination/natural-nuggets-in-savoie/meet-a-mountain-dog/" rel="noopener">Explore Savoie (Comité Départemental du Tourisme): Meet a mountain dog</a>; <a href="https://en.valleedaulps.com/reagir-patou/" rel="noopener">Vallée d'Aulps tourism: How to react to a Pyrenean Mountain Dog</a></p>
-
-  <div class="gp-warn">
-    <strong>Cows deserve their own warning.</strong> Statistically, cattle (especially mothers with calves) cause more serious incidents with hikers than guardian dogs do, and a dog at your side is the most common trigger. Keep your dog leashed and give cattle a wide berth; if cattle actually charge, release your dog: it can outrun them, and holding it makes you the target. Also watch for electric fences at pasture gates: we've found electrified gate handles on routes tagged as easy walks, at exactly nose height for a curious dog.
-  </div>
-
-  <h2>Planning around pastures, not just through them</h2>
-  <p>You can't reliably avoid guardian dogs in summer: transhumance puts herds on the most beautiful meadows in the Alps, which is exactly where the trails go. What you can do: prefer routes where pasture sections are short and visible ahead, keep the leash handy from the first cattle grid, and read recent hiker reports before you go. On ORMA, community reports of guardian dogs, herds on trail, and electrified gates appear directly on the trail page, attributed to the hikers who reported them, never silently merged into our ratings.</p>
+  <aside class="scan-alert">
+    <strong>Cattle are a separate hazard</strong>
+    <p>Give cattle—especially cows with calves—a wide berth and keep your dog leashed. If cattle chase or threaten you, official countryside guidance advises releasing the dog so you can reach safety separately. Follow local signs and avoid the field when a safer alternative exists.</p>
+  </aside>
   <section class="safety-continue" aria-labelledby="safetyContinueTitle">
     <div class="safety-continue__heading"><h2 id="safetyContinueTitle">Continue in the Safety Library</h2><span>Useful guidance for your next mountain day</span></div>
     <a class="safety-continue__card" href="breed-group-caveats.html"><div><small>Your dog</small><strong>Breed-group considerations</strong><p>Adjust standard trail advice for build and instinct.</p></div><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
@@ -114,9 +141,11 @@
     <a class="safety-continue__cta" href="../browse-trails.html">Browse trails for your dog →</a>
   </section>
 
-  <p class="gp-src" style="margin-top:30px;">Last reviewed: July 2026. This guide summarises official tourism-board and commune guidance; it is general information, not a guarantee of any animal's behaviour. When in doubt, turn back.</p>
-
-</div>
+  <details class="scan-sources">
+    <summary><strong>Sources, scope and encounter guidance</strong><span>Last reviewed 25 August 2026</span></summary>
+    <p>Guardian-dog references: <a href="https://www.explore-savoie.com/en/responsible-destination/natural-nuggets-in-savoie/meet-a-mountain-dog/" rel="noopener">Explore Savoie: Meet a mountain dog</a> and <a href="https://www.valleedaulps.com/reagir-patou/" rel="noopener">Vallée d’Aulps: Comment réagir face à un patou?</a>. Cattle reference: <a href="https://www.gov.uk/government/news/new-law-comes-into-force-to-protect-farm-animals-from-dog-attacks" rel="noopener">UK Department for Environment, Food &amp; Rural Affairs countryside advice</a>. This is general guidance, not a guarantee of any animal’s behaviour. When in doubt, turn back. Sources checked 25 August 2026.</p>
+  </details>
+</main>
 
 <footer class="site-footer hp-footer">
   <div class="hp-footer-grid">

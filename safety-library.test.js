@@ -49,7 +49,7 @@ describe('Safety library', () => {
     expect(document.querySelector('.sg-emergency').textContent).toContain('European emergency');
     expect(document.querySelector('.sg-emergency').textContent).toContain('Veterinary ambulance');
     expect(document.querySelector('.sg-emergency a').getAttribute('href')).toBe('tel:112');
-    expect(html).toMatch(/\.sg-emergency\{[^}]*background:#A93C31/s);
+    expect(html).toMatch(/\.sg-emergency\{[^}]*background:var\(--emergency-bg\)/s);
     expect(html).toMatch(/\.sg-rules ol\{[^}]*grid-template-columns:repeat\(5/s);
     expect(html).toMatch(/\.sg-rules\{[^}]*background:var\(--success\)/s);
     expect(html).toMatch(/\.sg-rules small\{[^}]*font-size:12px;[^}]*line-height:1\.45/s);
@@ -67,13 +67,8 @@ describe('Safety library', () => {
     expect(opener.classList.contains('sg-readiness-fab')).toBe(true);
     expect(opener.closest('.sg-hero')).not.toBeNull();
     expect(opener.textContent).toMatch(/Paws ready\?/i);
-    const icon = opener.querySelector('.sg-readiness-fab-icon img');
-    expect(icon.getAttribute('src')).toBe('images/editorial/safety-library/inquisitive-dog-quiz-v1.png');
-    expect(icon.getAttribute('alt')).toBe('');
-    expect(html).toMatch(/\.sg-readiness-fab\{[^}]*background:#3F6F49/s);
-    expect(html).toMatch(/\.sg-readiness-fab\{[^}]*margin-top:24px/s);
-    expect(html).toMatch(/\.sg-readiness-fab-icon\{[^}]*width:56px;[^}]*height:56px/s);
-    expect(html).toMatch(/\.sg-hero\.section-page-head--actions\{align-items:center;/s);
+    expect(opener.querySelector('.sg-readiness-fab-icon').textContent).toBe('🐾');
+    expect(html).toMatch(/\.sg-readiness-fab\{[^}]*background:var\(--success\)/s);
     expect(html).not.toMatch(/\.sg-readiness-fab\{[^}]*position:fixed/s);
     expect(document.querySelectorAll('#readinessQuiz .sg-question')).toHaveLength(5);
     expect(document.querySelector('#readinessQuizResult').getAttribute('aria-live')).toBe('polite');

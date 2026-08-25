@@ -39,10 +39,13 @@ describe('Trail Tales journal experience', () => {
     expect(journal).toContain('data-format="square"');
     expect(journal).toContain('id="jnShareHideEnds" checked');
     expect(journal).toContain('id="jnShareHideRoute"');
+    expect(journal).toContain('id="jnShareInstagram"');
+    expect(journal).toContain('id="jnShareFacebook"');
     expect(journal).toContain('id="jnShareNative"');
     expect(journal).toContain('id="jnShareDownload"');
     expect(journal).toContain('id="jnShareCopy"');
     expect(card).toContain("'orma-trail-tale.png'");
+    expect(card).toContain('shareWalkCardToPlatform');
   });
 
   test('does not introduce a public activity link or journal sync', () => {

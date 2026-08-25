@@ -82,9 +82,9 @@ describe('CEO dashboard workflow model',()=>{
   test.each([
     ['healthy',{status:'healthy',lastSuccessfulAt:'2026-08-19T20:58:00Z'},'healthy'],
     ['running',{status:'running',runId:'123',startedAt:'2026-08-19T20:56:00Z',workflowRunUrl:'https://github.com/orma/actions/runs/123'},'running'],
-    ['delayed',{status:'healthy',lastSuccessfulAt:'2026-08-19T20:42:00Z'},'delayed'],
-    ['stale',{status:'healthy',lastSuccessfulAt:'2026-08-19T20:20:00Z'},'stale'],
-    ['stuck run',{status:'running',runId:'123',startedAt:'2026-08-19T20:20:00Z'},'stale'],
+    ['delayed',{status:'healthy',lastSuccessfulAt:'2026-08-19T20:14:00Z'},'delayed'],
+    ['stale',{status:'healthy',lastSuccessfulAt:'2026-08-19T19:29:00Z'},'stale'],
+    ['stuck run',{status:'running',runId:'123',startedAt:'2026-08-19T19:29:00Z'},'stale'],
     ['failed',{status:'failed',completedAt:'2026-08-19T20:59:00Z',consecutiveFailures:2,lastFailure:{stage:'pull-request-creation',message:'GitHub denied PR creation.',workflowRunUrl:'https://github.com/orma/actions/runs/123'}},'failed'],
   ])('classifies %s worker health honestly',(_label,workerHealth,state)=>{
     const model=buildDashboardModel({orchestration:{trails:[]},dossiers:{items:[]},publication:{items:[]},jobs:[],history:[],workerHealth,nowMs:new Date('2026-08-19T21:00:00Z').getTime()});
@@ -111,6 +111,13 @@ describe('CEO dashboard workflow model',()=>{
     ]});
     expect(model.summary.agentWork).toBe(2);
     expect(model.pipeline[1].status).toBe('2 jobs running or queued');
+  });
+
+  test('hides paused Safety Library packets from the executive Editorial queue',()=>{
+    const safety={generatedAt:'2026-08-25T08:00:00Z',subject:{type:'guide',id:'paw-protection',sourceRef:'guides/paw-protection.html'},outputs:[{status:'ready-for-review'}]};
+    const ordinary={generatedAt:'2026-08-25T08:00:00Z',subject:{type:'guide',id:'dog-friendly-hikes-val-gardena',sourceRef:'guides/dog-friendly-hikes-val-gardena.html'},outputs:[{status:'ready-for-review'}]};
+    const model=buildDashboardModel({editorialPackets:[safety,ordinary],jobs:[]});
+    expect(model.editorialItems).toEqual([ordinary]);expect(model.editorialProgress).toEqual(expect.objectContaining({active:1,waiting:1,pausedSafetyLibrary:true}));
   });
 
   test('surfaces Newsletter and Analyst gates without double-counting revised mock-ups',()=>{

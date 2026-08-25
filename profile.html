@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trail profile · ORMA</title>
+  <link rel="stylesheet" href="styles.css?v=20260825-1">
+  <style>
+    body{background:#F5F2E8;color:#2E4034}.pp-shell{max-width:980px;margin:0 auto;padding:70px 28px 100px}.pp-card{background:#fff;border:1px solid #DDD8C8;border-radius:26px;overflow:hidden;box-shadow:0 20px 60px -42px rgba(23,42,28,.55)}
+    .pp-cover{height:210px;background:linear-gradient(135deg,#DCE8D9,#BBD1C0)}.pp-body{padding:0 46px 44px}.pp-avatar{width:132px;height:132px;border-radius:50%;margin-top:-70px;border:7px solid #fff;background:#2E4034 center/cover no-repeat;display:grid;place-items:center;color:#fff;font-size:48px}
+    .pp-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}.pp-head h1{font:700 clamp(34px,5vw,58px) 'Bricolage Grotesque',sans-serif;margin:18px 0 4px}.pp-owner{color:#6B7A6E;font-weight:700}.pp-bio{font-size:18px;line-height:1.6;max-width:650px}.pp-follow{border:0;border-radius:999px;background:#2E4034;color:#fff;padding:13px 24px;font-weight:800;cursor:pointer;margin-top:24px}.pp-follow.secondary{background:#E7ECE3;color:#2E4034}.pp-note{background:#F5F2E8;border-radius:15px;padding:14px 16px;color:#6B7A6E;margin-top:24px}
+    @media(max-width:650px){.pp-shell{padding:30px 14px 70px}.pp-body{padding:0 22px 30px}.pp-head{display:block}.pp-cover{height:150px}.pp-avatar{width:108px;height:108px;margin-top:-58px}}
+  </style>
+</head>
+<body>
+  <header class="topnav"><a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Trail profile</span><nav class="links"><a href="browse-trails.html">Browse trails</a><a href="journal.html">My journal</a><a href="account.html">Account</a></nav></header>
+  <main class="pp-shell">
+    <section class="pp-card" id="profileCard" aria-live="polite">
+      <div class="pp-cover"></div>
+      <div class="pp-body">
+        <div class="pp-head"><div><div class="pp-avatar" id="profileAvatar">🐾</div><h1 id="profileName">Trail profile</h1><div class="pp-owner" id="profileOwner"></div></div><button type="button" class="pp-follow" id="profileFollow" hidden>Follow</button></div>
+        <p class="pp-bio" id="profileBio">Loading this trail profile…</p>
+        <div class="pp-note" id="profilePrivacy" hidden>This is a private trail profile. Send a follow request to see future shared adventures.</div>
+        <p id="profileStatus" role="status"></p>
+      </div>
+    </section>
+  </main>
+  <script src="mobile-nav.js?v=20260823-1"></script>
+  <script type="module" src="firebase-init.js?v=20260825-1"></script>
+  <script src="public-profile.js?v=20260825-1" defer></script>
+</body>
+</html>

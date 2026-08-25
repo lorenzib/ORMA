@@ -119,6 +119,12 @@ describe('guest homepage editorial structure', () => {
     expect(js).toContain('orma-how-assess-1920.jpg');
     expect(js).toContain('orma-how-add-dog-1920.jpg');
     expect(js).toContain('orma-how-match-1920.jpg');
+    expect(js).toContain("focus: 'trail-marker'");
+    expect(js).toContain("focus: 'dog'");
+    expect(js).toContain("focus: 'walking-pair'");
+    expect(css).toContain('.hp-howcard-image--trail-marker{object-position:62% 100%;}');
+    expect(css).toContain('.hp-howcard-image--dog{object-position:58% 28%;}');
+    expect(css).toContain('.hp-howcard-image--walking-pair{object-position:58% 55%;}');
     expect(js).toContain('width="960" height="600"');
     expect(js).toContain('How trail evidence becomes practical guidance for your dog');
     expect(js).toContain('We assess the trail first, then compare its terrain and conditions with your dog’s needs to explain the match.');
@@ -130,6 +136,7 @@ describe('guest homepage editorial structure', () => {
   test('uses the shared wider website canvas', () => {
     const css = read('homepage-editorial.css');
     expect(css).toContain('.hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}');
-    expect(read('index.html')).toContain('homepage-editorial.css?v=20260821-9');
+    expect(read('index.html')).toContain('homepage-editorial.css?v=20260825-1');
+    expect(read('index.html')).toContain('homepage-search.js?v=20260825-1');
   });
 });

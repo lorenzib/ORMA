@@ -1069,6 +1069,22 @@ describe('ORMA backoffice MVP', () => {
     }finally{fs.rmSync(root,{recursive:true,force:true});}
   });
 
+  test('editorial cycle archives Safety Library packets and does not generate new safety reviews', async () => {
+    const fs=require('fs');const os=require('os');const path=require('path');const root=fs.mkdtempSync(path.join(os.tmpdir(),'orma-safety-pause-'));
+    fs.mkdirSync(path.join(root,'guides'));fs.mkdirSync(path.join(root,'backoffice-data'));
+    fs.writeFileSync(path.join(root,'guides','paw-protection.html'),'<html><main><h1>Paws</h1></main></html>');
+    fs.writeFileSync(path.join(root,'guides','dog-friendly-hikes-val-gardena.html'),'<html><main><h1>Val Gardena</h1></main></html>');
+    fs.writeFileSync(path.join(root,'backoffice-data','editorial-ledger.json'),JSON.stringify({contractVersion:'1.0.0',items:[]}));
+    fs.writeFileSync(path.join(root,'backoffice-data','editorial-review-packet-1.json'),JSON.stringify({generatedAt:'2026-08-19T10:00:00Z',subject:{type:'guide',id:'paw-protection',sourceRef:'guides/paw-protection.html'},outputs:[{status:'ready-for-review'}]}));
+    const seen=[];const runGuide=async(runRoot,{guideId,at})=>{seen.push(guideId);const sourceRef=`guides/${guideId}.html`;return {contractVersion:'1.0.0',generatedAt:at,mode:'draft-only',publicMutationAllowed:false,subject:{type:'guide',id:guideId,sourceRef,updatedAt:at,original:fs.readFileSync(path.join(runRoot,sourceRef),'utf8')},outputs:[{jobId:`guide-${guideId}-edit`,agentId:'copywriter',status:'ready-for-review',result:{changes:[],sources:[]}}],summary:{readyForReview:1,blocked:0}};};
+    try{
+      const result=await runEditorialCycle(root,{at:'2026-08-25T10:00:00Z',limit:1,runGuide});
+      expect(result.paused).toEqual(['guide-paw-protection']);expect(seen).toEqual(['dog-friendly-hikes-val-gardena']);
+      const archive=JSON.parse(fs.readFileSync(path.join(root,'backoffice-data','editorial-paused-packets.json'),'utf8'));
+      expect(archive.packets[0]).toEqual(expect.objectContaining({reason:'Safety Library UI review in progress',packet:expect.objectContaining({subject:expect.objectContaining({id:'paw-protection'})})}));
+    }finally{fs.rmSync(root,{recursive:true,force:true});}
+  });
+
   test('newsletter agent creates one reviewable issue and respects the fourteen-day gate', async () => {
     const packet=await runNewsletter({newlyPublishedTrails:[],publishedEditorialChanges:[],timelySafetySignals:[{title:'Heat'}],currentEditorialSignals:[]},{at:'2026-08-19T10:00:00.000Z',runAgent:async()=>({model:'fixture',responseId:'newsletter-1',data:{issueTitle:'Cooler trails this week',subjectOptions:['Cooler walks','Plan for heat'],preheader:'A practical ORMA update',introduction:'Hello hikers.',sections:[{heading:'Heat planning',body:'Check current official warnings before leaving.',linkUrl:null,sourceRefs:['MeteoAlarm']}],closing:'Walk well.',sources:[]}})});
     expect(validateContentExecution(packet)).toEqual([]);expect(packet.summary).toEqual({readyForReview:1,blocked:0});
@@ -1622,6 +1638,14 @@ describe('ORMA backoffice MVP', () => {
     const packet=planNewTrailScouting(sources,[{id:'existing',name:'Existing',region:'dolomites',lat:46.5,lng:11.5,osmRelation:100}],{at:'2026-08-19T07:00:00.000Z'});
     expect(packet.candidates).toEqual([expect.objectContaining({id:'osm-relation-200',expansionTier:'existing-area',status:'awaiting-ceo-selection',publicMutationAllowed:false})]);
     expect(packet.publicMutationAllowed).toBe(false);
+  });
+
+  test('new trail scouting keeps Dolomites candidates ahead of other regions', () => {
+    const loop=[[11.5,46.5],[11.51,46.5],[11.5,46.5]];
+    const feature=(relation,name)=>({type:'Feature',properties:{osm_relation:relation,name,distance_km:5,loop:true},geometry:{type:'LineString',coordinates:loop}});
+    const packet=planNewTrailScouting([{region:'savoy',data:{features:[feature(401,'Savoy loop')]}},{region:'dolomites',data:{features:[feature(402,'Dolomites loop')]}}],[],{at:'2026-08-25T08:30:00Z'});
+    expect(packet.candidates.map(item=>item.name)).toEqual(['Dolomites loop','Savoy loop']);
+    expect(packet.summary).toEqual(expect.objectContaining({primaryRegion:'dolomites',primaryRegionCandidates:1}));
   });
 
   test('a selected New Trail enters the existing verification fleet as a non-public intake', async () => {

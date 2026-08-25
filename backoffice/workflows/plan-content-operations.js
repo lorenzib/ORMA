@@ -8,7 +8,7 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 const WORKSTREAM_DEFINITIONS = Object.freeze([
   {
     id: 'guides', label: 'Guides', cadence: 'weekly', status: 'active',
-    goal: 'Create or refresh one useful, evidence-backed dog hiking guide.',
+    goal: 'Create or refresh one useful, evidence-backed dog hiking guide outside the Safety Library while its UI is under review.',
     outputs: ['editorial brief', 'edited guide draft', 'picture shortlist', 'source and freshness notes'],
   },
   {
@@ -23,7 +23,7 @@ const WORKSTREAM_DEFINITIONS = Object.freeze([
   },
   {
     id: 'library-enrichment', label: 'Library enrichment', cadence: 'weekly', status: 'active',
-    goal: 'Audit guides, articles and explicitly prioritised governance pages for stale or missing material, propose evidence-backed updates and record the appropriate review date.',
+    goal: 'Audit non-safety guides, articles and explicitly prioritised governance pages for stale or missing material; Safety Library copy review is temporarily paused during its UI redesign.',
     outputs: ['freshness audit', 'update priorities', 'edited drafts', 'replacement picture candidates'],
   },
   {
@@ -84,6 +84,7 @@ function planContentOperations(options = {}){
       medicalAndSafetyClaimsRequireHumanReview: true,
       noAutomaticPublishing: true,
       noUnlicensedMediaDownloads: true,
+      safetyLibraryCopyReviewPaused: true,
     },
     workstreams,
     jobs,

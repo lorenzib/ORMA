@@ -4,8 +4,6 @@ const fs = require('fs');
 const path = require('path');
 
 const html = fs.readFileSync(path.join(__dirname, 'guides', 'altitude-with-your-dog.html'), 'utf8');
-const script = fs.readFileSync(path.join(__dirname, 'altitude-guide.js'), 'utf8');
-
 describe('altitude health and safety guide', () => {
   beforeEach(() => {
     document.documentElement.innerHTML = html;
@@ -13,53 +11,44 @@ describe('altitude health and safety guide', () => {
 
   test('leads with health-first framing and the library image behind the header', () => {
     expect(document.querySelector('h1').textContent).toMatch(/altitude changes the effort/i);
-    expect(document.querySelector('.alt-subtitle').textContent).toMatch(/altitude, exertion, heat, dehydration and pain can look similar/i);
+    expect(document.querySelector('.alt-subtitle').textContent).toMatch(/altitude, exertion and heat can look alike/i);
     const hero = document.querySelector('.alt-hero.safety-photo-header .safety-photo-header__image');
     expect(hero.getAttribute('src')).toBe('../images/editorial/safety-library/altitude-with-your-dog-v1.jpg');
     expect(hero.getAttribute('alt')).toBe('');
     expect(hero.getAttribute('width')).toBe('1200');
     expect(hero.getAttribute('height')).toBe('800');
     expect(document.querySelector('.alt-meta').textContent).toMatch(/Last reviewed 23 August 2026/i);
-    expect(document.querySelectorAll('.alt-jump a')).toHaveLength(3);
+    expect(document.querySelector('.alt-meta').textContent).toMatch(/2 min guide/i);
+    expect(document.querySelector('.alt-jump')).toBeNull();
   });
 
-  test('presents three observable condition choices without a numerical risk score', () => {
-    const choices = document.querySelectorAll('[data-altitude-state]');
-    expect(choices).toHaveLength(3);
-    expect(Array.from(choices).map(choice => choice.dataset.altitudeState)).toEqual(['normal', 'caution', 'emergency']);
-    expect(document.querySelector('.alt-triage').textContent).toMatch(/does not diagnose altitude illness/i);
-    expect(document.querySelector('.alt-triage').textContent).not.toMatch(/%/);
+  test('opens with the altitude explanation followed by the veterinary caution', () => {
+    const firstSection = document.querySelector('.alt-shell > section');
+    expect(firstSection.id).toBe('why-altitude');
+    expect(firstSection.textContent).toMatch(/Higher altitude means less available oxygen/i);
+    expect(firstSection.textContent).toMatch(/Ask your vet before travelling/i);
+    expect(firstSection.querySelector('.alt-context-copy').nextElementSibling.classList.contains('alt-vet-note')).toBe(true);
+    expect(firstSection.querySelector('.alt-vet-note').classList.contains('alt-warning-note')).toBe(true);
+    expect(firstSection.querySelector('.alt-vet-note strong')).toBeNull();
+    expect(document.querySelector('.alt-triage')).toBeNull();
+    expect(document.querySelector('script[src*="altitude-guide.js"]')).toBeNull();
   });
 
-  test.each([
-    ['normal', /continue conservatively/i, /short and easy/i],
-    ['caution', /stop ascending/i, /descend and finish the hike/i],
-    ['emergency', /urgent action/i, /seek veterinary help/i],
-  ])('renders %s guidance', (state, labelPattern, copyPattern) => {
-    window.eval(script);
-    document.querySelector(`[data-altitude-state="${state}"]`).click();
-    expect(document.querySelector('[data-altitude-label]').textContent).toMatch(labelPattern);
-    expect(document.querySelector('[data-altitude-result]').textContent).toMatch(copyPattern);
-    expect(document.querySelector('[data-altitude-result]').dataset.tone).toBe(state);
-    expect(document.querySelector(`[data-altitude-state="${state}"]`).getAttribute('aria-pressed')).toBe('true');
-  });
-
-  test('keeps emergency action inside the interaction without adding a repeated warning panel', () => {
-    expect(document.querySelector('.alt-signs')).toBeNull();
-    expect(document.querySelector('.alt-triage').textContent).toMatch(/safer next decision/i);
-    expect(document.querySelector('[data-altitude-state="emergency"]')).not.toBeNull();
-    expect(document.querySelector('.alt-emergency-strip')).toBeNull();
+  test('uses the red warning treatment for the medication guidance', () => {
+    const warning = document.querySelector('.alt-medication');
+    expect(warning.classList.contains('alt-warning-note')).toBe(true);
+    expect(warning.textContent).toMatch(/Never give human altitude or pain medication/i);
   });
 
   test('includes pre-trip veterinary flags and conservative first-day planning', () => {
     const page = document.querySelector('main').textContent;
     expect(page).toMatch(/heart or lung disease/i);
-    expect(page).toMatch(/unexplained coughing/i);
+    expect(page).toMatch(/coughing/i);
     expect(page).toMatch(/Puppies, seniors and flat-faced dogs/i);
     expect(page).toMatch(/skip the ambitious route/i);
     expect(page).toMatch(/No human altitude medication/i);
     expect(document.querySelectorAll('.alt-plan-panel')).toHaveLength(2);
-    expect(document.querySelectorAll('.alt-plan-list li')).toHaveLength(6);
+    expect(document.querySelectorAll('.alt-plan-list li')).toHaveLength(4);
     expect(document.querySelector('.alt-health-grid')).toBeNull();
     expect(document.querySelector('.alt-timeline')).toBeNull();
   });
