@@ -59,8 +59,26 @@ describe('editorial trail collections', () => {
     expect(page).toContain('area-dropdown.js');
     expect(controller).toContain('THEME_MATCHERS');
     expect(controller).toContain('collectionInValley');
-    expect(controller).toContain('class="simple-card collection-list-card"');
-    expect(controller).toContain("waterSpecific(collection.chips[0])");
+    expect(controller).toContain('class="simple-card collection-list-card${isOpen');
+    expect(controller).toContain('class="collection-list-card__summary"');
+    expect(controller).toContain('${esc(collection.subtitle)}');
+    expect(controller).not.toContain('waterSpecific(collection.chips[0])');
+    expect(controller).toContain('data-collection-expand');
+    expect(controller).toContain('data-collection-map-open');
+    expect(controller).toContain("expandedCollectionView = 'map'");
+    expect(controller).toContain('expandedCollectionId');
+    expect(controller).toContain('class="collection-inline-trail"');
+    expect(controller).toContain('data-difficulty="${difficulty}"');
+    expect(controller).toContain("'low-risk':'Low-risk terrain'");
+    expect(page).toContain('map-runtime.js');
+    expect(controller).toContain('collection-inline-map');
+    expect(controller).toContain('collection-map-trail-card');
+    expect(controller).toContain("map.on('click', 'collection-inline-routes-hit'");
+    expect(controller).toContain('new maplibregl.AttributionControl({ compact:true })');
+    expect(controller).toContain("classList.remove('maplibregl-compact-show')");
+    expect(controller).toContain("searchParams.set('collection'");
+    expect(controller).not.toContain('Full collection &amp; map');
+    expect(controller).toContain('trail.html?id=');
   });
 
   test('detail page supports photos and route-outline placeholders', () => {
@@ -85,6 +103,7 @@ describe('editorial trail collections', () => {
     expect(detail).toContain('window.DoloPawsAuth.getDogProfile()');
     expect(detail).not.toContain('<span class="simple-card__tier">${esc(safety)}</span>');
     const page = fs.readFileSync(path.join(__dirname, 'collection.html'), 'utf8');
+    expect(page).toContain("window.location.replace(id ? 'collections.html?collection='");
     expect(page).toContain('map-runtime.js');
     expect(page.indexOf('scoring.js')).toBeLessThan(page.indexOf('collection-detail.js'));
   });

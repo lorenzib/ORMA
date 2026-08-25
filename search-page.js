@@ -61,7 +61,7 @@
       html += '<h2 class="search-subtitle">Areas</h2>' + areas.map(a => '<a class="search-linkrow" href="browse-trails.html?search=' + encodeURIComponent(a[0]) + '"><span><b>' + a[0] + '</b><small>' + a[1] + '</small></span></a>').join('');
     }
     if(active === 'Everything' || active === 'Collections'){
-      html += '<h2 class="search-subtitle" style="margin-top:22px">Collections</h2>' + collections.map(c => '<a class="search-linkrow" href="collection.html?id=' + c[2] + '"><span><b>' + c[0] + '</b><small>' + c[1] + '</small></span><em>Open →</em></a>').join('');
+      html += '<h2 class="search-subtitle" style="margin-top:22px">Collections</h2>' + collections.map(c => '<a class="search-linkrow" href="collections.html?collection=' + c[2] + '"><span><b>' + c[0] + '</b><small>' + c[1] + '</small></span><em>Open →</em></a>').join('');
     }
     if(active === 'Guides'){
       html = '<a class="search-linkrow" href="guides/paw-protection.html"><span><b>Protecting paw pads on rocky terrain</b><small>Guide · paws &amp; terrain</small></span></a><a class="search-linkrow" href="guides/water-for-dogs-on-trail.html"><span><b>Water for dogs on alpine trails</b><small>Guide · heat &amp; hydration</small></span></a>';

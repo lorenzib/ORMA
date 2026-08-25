@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  (function(){
+    var id = new URLSearchParams(window.location.search).get('id');
+    window.location.replace(id ? 'collections.html?collection=' + encodeURIComponent(id) : 'collections.html');
+  })();
+</script>
 <title>Trail collection | ORMA</title>
 <meta name="description" content="A curated ORMA trail collection.">
 <meta name="theme-color" content="#2E4034">
