@@ -92,22 +92,25 @@
   .browse-filter-group__title{font:700 10px/1 'Inter',sans-serif;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
   #browseFiltersBtn.on{border-color:#9FC4B0;font-weight:700;}
   #browseFiltersMenu{left:auto;right:0;}
-  @media(max-width:700px){#browseFiltersMenu{position:fixed;top:auto;left:8px;right:8px;width:auto;max-height:70vh;}}
+  @media(max-width:700px){#browseFiltersMenu{position:fixed;top:auto;bottom:max(8px,env(safe-area-inset-bottom,0px));left:8px;right:8px;width:auto;max-height:70vh;}}
   .browse-results-meta .browse-result-accessible{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
   @media(max-width:760px){
     .browse-design-head{padding-left:18px;padding-right:18px;}
     .browse-design-wrap{padding-left:16px;padding-right:16px;}
     .browse-primary-controls{margin-top:8px;}
-    .browse-area-controls{display:grid;grid-template-columns:1fr;gap:10px;width:100%;min-width:0;}
+    .browse-area-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%;min-width:0;}
     .browse-geo-group{width:100%;min-width:0;}
-    .browse-primary-controls .browse-tools{width:100%;max-width:none;justify-content:stretch;}
+    .browse-geo-group--valley{grid-column:1/-1;}
+    .browse-primary-controls .browse-tools{width:100%;max-width:none;flex-wrap:wrap;justify-content:flex-start;}
     .browse-profile-banner{align-items:flex-start;flex-direction:column;}
     /* Search full-width, and the Distance / Trail rating / Water controls
        visible right under it — never hidden off-screen. */
     .browse-tools{flex-wrap:wrap;overflow-x:visible;padding-bottom:0;gap:9px;}
-    .browse-primary-controls .browse-search-shell{flex:1 1 auto;width:auto;max-width:none;}
+    .browse-primary-controls .browse-search-shell{flex:1 1 100%;width:100%;max-width:none;min-width:0;}
     .browse-area-controls,.browse-quick-filters{flex:1 1 100%;}
-    .browse-quick-filters{overflow-x:auto;padding-bottom:2px;scrollbar-width:none;}
+    .browse-quick-filters{order:3;width:100%;overflow-x:auto;padding-bottom:2px;scrollbar-width:none;}
+    #browseFiltersWrap{order:4;flex:none;}
+    .browse-saved-only{order:5;flex:none;}
     .browse-quick-filters::-webkit-scrollbar{display:none;}
     .browse-filter-divider{display:none;}
     .browse-filter-controls{flex:1 1 100%;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:9px;padding-bottom:3px;scrollbar-width:none;}
