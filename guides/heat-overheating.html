@@ -64,8 +64,15 @@
   .hs-action::before{content:counter(heat-step);display:grid;place-items:center;width:25px;height:25px;margin-bottom:12px;border-radius:50%;background:var(--hs-green);color:var(--hs-card);font-weight:800;font-size:.7rem;}
   .hs-action strong{display:block;margin-bottom:6px;color:var(--hs-ink);font-size:1.03rem;}
   .hs-action span{display:block;color:var(--hs-soft);font-size:.78rem;line-height:1.48;}
-  .hs-risk{max-width:none;margin:16px 0 22px;border-radius:12px;padding:16px 18px;background:var(--hs-red);color:rgba(255,255,255,.9);font-size:.78rem;line-height:1.5;box-shadow:var(--shadow);}
-  .hs-risk strong{display:block;margin-bottom:2px;color:#fff;font-size:.9rem;}
+  .hs-risk{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:center;max-width:none;margin:18px 0 20px;border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:16px 19px;background:linear-gradient(135deg,#A43E29 0%,var(--hs-red) 100%);color:rgba(255,255,255,.92);box-shadow:0 14px 30px -22px rgba(128,44,28,.72);}
+  .hs-risk-avatar{display:block;width:44px;height:44px;border:2px solid rgba(255,255,255,.62);border-radius:50%;object-fit:cover;background:#F1D6B0;box-shadow:0 4px 12px rgba(80,24,14,.24);}
+  .hs-risk-label{display:block;margin-bottom:3px;color:#FFD9CB;font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;}
+  .hs-risk strong{display:block;margin-bottom:4px;color:#fff;font:700 clamp(1.02rem,1.7vw,1.2rem)/1.15 "Bricolage Grotesque",sans-serif;}
+  .hs-risk p{max-width:980px;margin:0;color:rgba(255,255,255,.92);font-size:.78rem;line-height:1.5;}
+  .hs-next-cta{align-items:center;min-height:46px;padding:10px 16px;border-radius:11px;background:var(--accent);color:#fff;box-shadow:0 10px 22px -14px rgba(32,91,112,.7);}
+  .hs-next-cta .safety-continue__label,.hs-next-cta .safety-continue__arrow{color:#D9EFF6;}
+  .hs-next-cta:hover{background:var(--accent-hover);}
+  .hs-next-cta:hover strong{text-decoration:none;}
   @media(max-width:820px){
     .guide-hero{width:min(100% - 36px,1120px);padding:30px 28px 24px;}
     .gp-body{width:min(100% - 36px,1120px);}
@@ -80,6 +87,9 @@
     .hs-readiness,.hs-symptoms{padding:19px 17px;}
     .hs-checks,.hs-actions{grid-template-columns:1fr;}
     .hs-section-head p{margin-top:6px;}
+    .hs-risk{grid-template-columns:38px minmax(0,1fr);gap:11px;padding:14px;}
+    .hs-risk-avatar{width:38px;height:38px;}
+    .hs-next-cta{width:100%;justify-content:center;}
   }
 </style>
 </head>
@@ -108,6 +118,15 @@
 </div>
 
 <main class="gp-body content-canvas" id="mainContent">
+  <aside class="hs-risk" role="note" aria-labelledby="higherRiskTitle">
+    <img class="hs-risk-avatar" src="../images/editorial/safety-library/heat-risk-pug-v1.png" alt="" width="320" height="320" decoding="async">
+    <div>
+      <span class="hs-risk-label">Higher-risk dogs</span>
+      <strong id="higherRiskTitle">Turn back earlier for higher-risk dogs.</strong>
+      <p>Be more conservative with flat-faced, overweight, thick-coated, very young, older, unfit or unwell dogs. Never cover an overheating dog with a wet towel: it can trap heat.</p>
+    </div>
+  </aside>
+
   <section class="hs-overview" aria-label="Heat readiness and warning signs">
     <div class="hs-readiness" aria-labelledby="startCheckTitle">
       <span class="hs-kicker">Before setting out</span>
@@ -148,9 +167,8 @@
     </div>
   </section>
 
-  <p class="hs-risk"><strong>Turn back earlier for higher-risk dogs.</strong>Be more conservative with flat-faced, overweight, thick-coated, very young, older, unfit or unwell dogs. Never cover an overheating dog with a wet towel: it can trap heat.</p>
   <nav class="safety-continue" aria-label="Continue in the Safety Library">
-    <a class="safety-continue__next" href="water-for-dogs-on-trail.html"><span class="safety-continue__label">Next guide</span><strong>Water for dogs on trail</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
+    <a class="safety-continue__next hs-next-cta" href="water-for-dogs-on-trail.html"><span class="safety-continue__label">Next guide</span><strong>Water for dogs on trail</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
     <a class="safety-continue__all" href="../safety-guide.html">All safety guides →</a>
   </nav>
 

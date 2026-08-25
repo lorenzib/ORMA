@@ -23,6 +23,20 @@ describe('Heat and hydration safety guide', () => {
     expect(html).not.toContain('not ice-cold');
   });
 
+  test('makes the higher-risk warning and next-guide action prominent', () => {
+    const warning = document.querySelector('.hs-risk');
+    const overview = document.querySelector('.hs-overview');
+    const cooling = document.getElementById('coolFirstTitle').closest('.hs-section');
+    const nextGuide = document.querySelector('.safety-continue__next');
+    expect(warning.tagName).toBe('ASIDE');
+    expect(warning.querySelector('.hs-risk-avatar').getAttribute('src')).toContain('heat-risk-pug-v1.png');
+    expect(warning.textContent).toContain('Never cover an overheating dog with a wet towel');
+    expect(warning.compareDocumentPosition(overview) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(warning.compareDocumentPosition(cooling) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(nextGuide.classList.contains('hs-next-cta')).toBe(true);
+    expect(nextGuide.getAttribute('href')).toBe('water-for-dogs-on-trail.html');
+  });
+
   test('updates the pre-walk readiness result as checks are completed', () => {
     const checks = [...document.querySelectorAll('[data-heat-check]')];
     const status = document.getElementById('heatChecklistStatus');
