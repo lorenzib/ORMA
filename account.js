@@ -314,9 +314,7 @@
     const exact = ALL.some(b => b.toLowerCase() === q);
     let matches = [];
     if(q.length >= 1 && !exact){
-      const starts = ALL.filter(b => b.toLowerCase().startsWith(q));
-      const contains = ALL.filter(b => !b.toLowerCase().startsWith(q) && b.toLowerCase().includes(q));
-      matches = starts.concat(contains).slice(0, 8);
+      matches = typeof breedSuggestions === 'function' ? breedSuggestions(q, 8) : ALL.filter(b => b.toLowerCase().includes(q)).slice(0, 8);
     }
     breedList.innerHTML = '';
     matches.forEach(name => {
@@ -325,8 +323,8 @@
       d.textContent = name;
       d.addEventListener('mouseenter', () => d.style.background = '#F0EDE1');
       d.addEventListener('mouseleave', () => d.style.background = '');
-      // mousedown fires before the input's blur, so the pick isn't lost
-      d.addEventListener('mousedown', () => {
+      d.addEventListener('pointerdown', event => {
+        event.preventDefault();
         state.breed = name;
         breedInput.value = name;
         breedList.hidden = true;

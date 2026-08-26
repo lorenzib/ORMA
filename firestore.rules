@@ -92,7 +92,7 @@ service cloud.firestore {
         || (data is map
           && data.keys().hasOnly(allowBreed ? ['name', 'breed'] : ['name'])
           && isOptionalString(data, 'name', 40)
-          && (!allowBreed || isOptionalString(data, 'breed', 100)));
+          && (!allowBreed || isOptionalString(data, 'breed', 240)));
     }
 
     // Vet/owner keep only the key allowlist. Firestore evaluates at most

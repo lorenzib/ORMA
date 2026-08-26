@@ -55,6 +55,10 @@ function loadHomepageContext(testTrails){
     <span id="liDogCtxBreedSep" hidden></span>
     <a id="liDogCtxBreed" href="guides/breed-group-caveats.html" hidden></a>
     <span id="liToolbarDogContext"></span>
+    <span id="liAccountName"></span>
+    <span id="liAccountAvatar"></span>
+    <span id="liGreetAvatar"></span>
+    <span id="liDogCtxAvatar"></span>
     <h1 id="returningHeading"></h1>
     <p id="returningSubline"></p>
     <div id="returningTrailList"></div>
@@ -177,6 +181,16 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('liDogCtxBreed').hidden).toBe(false);
     expect(document.getElementById('liDogCtxBreed').getAttribute('href')).toBe('guides/breed-group-caveats.html');
     expect(document.getElementById('liToolbarDogContext').textContent).toContain('Eddie · Podenco Andaluz');
+  });
+
+  test('keeps the cached active dog when a profile read transiently returns null', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    context.localStorage.getItem = key => key === 'dolopaws-profile-summary'
+      ? JSON.stringify({ hasProfile:true, activeDogId:'teo', name:'Teo', dogs:[{ id:'teo', name:'Teo', breed:'Mutt', fitness:'moderate' }] })
+      : null;
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    expect(document.getElementById('liAccountName').textContent).toBe('Teo');
+    expect(document.getElementById('liDogCtxName').textContent).toBe('Teo');
   });
 
   test('switching the separate region control resets the valley', async () => {

@@ -235,6 +235,22 @@ const FCI_BREED_GROUPS = [
 const DOG_BREEDS = FCI_BREED_GROUPS.reduce((acc, g) => acc.concat(g.breeds), [])
   .sort((a, b) => a.localeCompare(b, 'en'));
 
+function breedSuggestions(query, limit = 8) {
+  const q = String(query || '').trim().toLowerCase();
+  if (!q) return [];
+  const aliases = /^(mutt|mongrel|cross(?:breed| bred)?|mix(?:ed)?(?: breed)?)$/.test(q) ? ['mixed breed', 'rescue / unknown mix'] : [q];
+  const matches = DOG_BREEDS.filter(name => aliases.some(term => name.toLowerCase().includes(term)));
+  return matches.sort((a, b) => {
+    const aStarts = aliases.some(term => a.toLowerCase().startsWith(term));
+    const bStarts = aliases.some(term => b.toLowerCase().startsWith(term));
+    return Number(bStarts) - Number(aStarts) || a.localeCompare(b, 'en');
+  }).slice(0, limit);
+}
+
+function breedParts(value) {
+  return String(value || '').split(/\s+\+\s+/).map(part => part.trim()).filter(Boolean);
+}
+
 // ============================================================
 // TRAIT SETS — physical characteristics with a real, documented
 // effect on mountain-trail safety. Names must match the list above.
@@ -318,15 +334,16 @@ const HEAT_SENSITIVE_BREEDS = BRACHY_BREEDS.concat(THICK_COAT_BREEDS);
  * catch-all for dogs we can't classify by name.
  */
 function breedTraits(name){
-  const b = name || '';
-  const brachy = BRACHY_BREEDS.includes(b);
-  const thickCoat = THICK_COAT_BREEDS.includes(b);
+  const breeds = breedParts(name);
+  const has = list => breeds.some(breed => list.includes(breed));
+  const brachy = has(BRACHY_BREEDS);
+  const thickCoat = has(THICK_COAT_BREEDS);
   return {
     brachy,
     thickCoat,
-    giant: GIANT_BREEDS.includes(b),
-    shortLegged: SHORT_LEGGED_BREEDS.includes(b),
-    backRisk: BACK_RISK_BREEDS.includes(b),
+    giant: has(GIANT_BREEDS),
+    shortLegged: has(SHORT_LEGGED_BREEDS),
+    backRisk: has(BACK_RISK_BREEDS),
     heatSensitive: brachy || thickCoat,
   };
 }
@@ -493,6 +510,15 @@ const CURLY_COAT_BREEDS = [
 const ENDURANCE_WORKING_BREEDS = ['Alaskan Husky'];
 
 function breedInsights(name){
+  const parts = breedParts(name);
+  if(parts.length > 1){
+    const seen = new Set();
+    return parts.flatMap(part => breedInsights(part)).filter(item => {
+      if(seen.has(item.title)) return false;
+      seen.add(item.title);
+      return true;
+    });
+  }
   const tr = breedTraits(name);
   const out = [];
 

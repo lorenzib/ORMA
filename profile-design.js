@@ -7,6 +7,7 @@
     return value===key?fallback:value;
   };
   const name=document.getElementById('profileName'),breed=document.getElementById('profileBreed'),age=document.getElementById('profileAge'),weight=document.getElementById('profileWeight'),notes=document.getElementById('profileNotes');
+  let selectedBreeds=[];
   let fitness='moderate';
   const CONDITION_CODES={
     'Joint or hip issues':'joints','Back / disc history':'back','Heart condition':'cardiac',
@@ -14,23 +15,38 @@
     'Heat sensitivity':'heat'
   };
   function canonicalBreeds(){return typeof DOG_BREEDS!=='undefined'?DOG_BREEDS:[];}
-  // Type-ahead combobox: a text input backed by a datalist, so typing
-  // filters the (alphabetical) catalogue natively. Free text stays valid —
-  // it replaces the old separate "Other (not listed)" field.
+  // Custom listbox works consistently on desktop and mobile browsers.
   function setBreedValue(value){
     // Skip while the user is typing: mirror() runs from a MutationObserver
     // and must never clobber (or fight) live input.
-    if(document.activeElement!==breed)breed.value=String(value||'');
+    if(document.activeElement!==breed){selectedBreeds=typeof breedParts==='function'?breedParts(value):String(value||'').split(/\s+\+\s+/).filter(Boolean);breed.value='';paintBreedSelection();}
   }
-  (function populateBreedOptions(){
+  function savedBreedValue(){return selectedBreeds.length?selectedBreeds.join(' + '):breed.value.trim();}
+  function paintBreedSelection(){
+    const chips=document.getElementById('profileBreedChips');
+    chips.replaceChildren(...selectedBreeds.map((value,index)=>{const chip=document.createElement('button');chip.type='button';chip.className='breed-selection-chip';chip.textContent=value+' ×';chip.setAttribute('aria-label','Remove '+value);chip.addEventListener('click',()=>{selectedBreeds.splice(index,1);paintBreedSelection();paintBreedInsight();});return chip;}));
+    paintBreedInsight();
+  }
+  function paintBreedInsight(){
+    const card=document.getElementById('profileBreedInsight');
+    const value=savedBreedValue();
+    const lines=value&&typeof breedInsights==='function'?breedInsights(value):[];
+    if(!value||!lines.length){card.hidden=true;return;}
+    document.getElementById('profileBreedInsightTitle').textContent=selectedBreeds.length>1?'Heads-up for this mix':'Heads-up for this breed';
+    document.getElementById('profileBreedInsightCopy').textContent=lines.slice(0,2).map(line=>line.sub).join(' ');
+    card.hidden=false;
+  }
+  (function wireBreedOptions(){
     const list=document.getElementById('profileBreedList');
     if(!list)return;
-    list.replaceChildren();
-    canonicalBreeds().forEach(value=>{
-      const option=document.createElement('option');
-      option.value=value;
-      list.appendChild(option);
-    });
+    function paint(){
+      const q=breed.value.trim();
+      const values=typeof breedSuggestions==='function'?breedSuggestions(q,8):canonicalBreeds().filter(x=>x.toLowerCase().includes(q.toLowerCase())).slice(0,8);
+      list.replaceChildren(...values.map(value=>{const option=document.createElement('button');option.type='button';option.className='breed-suggestion';option.setAttribute('role','option');option.textContent=value;option.addEventListener('pointerdown',event=>{event.preventDefault();if(!selectedBreeds.includes(value))selectedBreeds.push(value);breed.value='';list.hidden=true;breed.setAttribute('aria-expanded','false');paintBreedSelection();breed.focus();});return option;}));
+      list.hidden=!q||!values.length;breed.setAttribute('aria-expanded',String(!list.hidden));
+    }
+    breed.addEventListener('input',()=>{paint();paintBreedInsight();});breed.addEventListener('focus',paint);
+    breed.addEventListener('blur',()=>setTimeout(()=>{list.hidden=true;breed.setAttribute('aria-expanded','false');},150));
   })();
   function paintName(value){
     const display=value||t('account.yourDog','Your dog');
@@ -103,7 +119,7 @@
   document.getElementById('profileSave').addEventListener('click',()=>{
     const legacyName=document.getElementById('dogName'),legacyBreed=document.getElementById('dogBreed'),legacyNotes=document.getElementById('medicalNotes');
     if(legacyName){legacyName.value=name.value;legacyName.dispatchEvent(new Event('input',{bubbles:true}));}
-    if(legacyBreed){legacyBreed.value=breed.value.trim();legacyBreed.dispatchEvent(new Event('input',{bubbles:true}));}
+    if(legacyBreed){legacyBreed.value=savedBreedValue();legacyBreed.dispatchEvent(new Event('input',{bubbles:true}));}
     if(legacyNotes){legacyNotes.value=notes.value;legacyNotes.dispatchEvent(new Event('input',{bubbles:true}));}
     const conditions=Array.from(root.querySelectorAll('#profileConditions input:checked')).map(input=>CONDITION_CODES[input.value]).filter(Boolean);
     window.dispatchEvent(new CustomEvent('dolopaws-profile-design-values',{detail:{ageBand:age.value,weightBand:weight.value,fitness,conditions}}));

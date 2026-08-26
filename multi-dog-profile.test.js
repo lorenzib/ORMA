@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const vm = require('vm');
 
 function source(file){
   return fs.readFileSync(path.join(__dirname, file), 'utf8');
@@ -88,15 +89,37 @@ describe('multi-dog account experience', () => {
     const breeds = source('breeds-data.js');
     expect(wizard).toContain("typeof DOG_BREEDS !== 'undefined'");
     expect(manager).toContain("typeof DOG_BREEDS!=='undefined'?DOG_BREEDS:[]");
-    // One alphabetical catalogue behind type-ahead comboboxes (datalist);
-    // free text replaces the old "Other (not listed)" branch on both views.
+    // One alphabetical catalogue behind mobile-safe type-ahead listboxes.
     expect(breeds).toContain('.sort((a, b) => a.localeCompare(b');
-    expect(wizard).toContain('list="dwBreedList"');
-    expect(wizard).toContain('<datalist id="dwBreedList">');
-    expect(page).toContain('list="profileBreedList"');
-    expect(page).toContain('<datalist id="profileBreedList">');
+    expect(wizard).toContain('aria-controls="dwBreedList"');
+    expect(wizard).toContain('class="breed-suggestions" role="listbox"');
+    expect(page).toContain('aria-controls="profileBreedList"');
+    expect(page).toContain('class="breed-suggestions" role="listbox"');
+    expect(breeds).toContain('function breedSuggestions(query, limit = 8)');
+    expect(breeds).toContain('mutt|mongrel');
     expect(page).not.toContain('id="profileBreedOther"');
     expect(page).not.toContain('<option>Border Collie</option><option>Labrador Retriever</option>');
+  });
+
+  test('informal mutt searches return selectable mixed-breed suggestions', () => {
+    const context = {};
+    vm.createContext(context);
+    vm.runInContext(source('breeds-data.js'), context);
+    const suggestions = vm.runInContext('breedSuggestions("mutt")', context);
+    expect(Array.from(suggestions)).toEqual(expect.arrayContaining([
+      'Mixed breed — small (under 10 kg)', 'Mixed breed — medium (10–25 kg)',
+      'Mixed breed — large (over 25 kg)', 'Rescue / unknown mix',
+    ]));
+  });
+
+  test('combines physical traits and guidance for a two-breed mix', () => {
+    const context = {};
+    vm.createContext(context);
+    vm.runInContext(source('breeds-data.js'), context);
+    const result = vm.runInContext('({ traits:breedTraits("French Bulldog + Siberian Husky"), lines:breedInsights("French Bulldog + Siberian Husky") })', context);
+    expect(result.traits.brachy).toBe(true);
+    expect(result.traits.thickCoat).toBe(true);
+    expect(Array.from(result.lines).length).toBeGreaterThan(0);
   });
 
   test('moderator access is outside the dog profile and in the account menu', () => {

@@ -450,8 +450,7 @@
 
   function renderBreedStep() {
     var breeds = (typeof DOG_BREEDS !== 'undefined') ? DOG_BREEDS : [];
-    // Type-ahead combobox: typing filters the alphabetical catalogue via
-    // the native datalist; free text stays valid (replaces "Other").
+    // Use an in-page listbox because mobile browsers expose datalists inconsistently.
     var startValue = data.breed === OTHER_VALUE ? data.breedOther : data.breed;
 
     bodyEl.innerHTML =
@@ -459,13 +458,12 @@
         '<label class="dw-label" for="dwBreed">' +
           'Breed <span class="dw-required" aria-label="required">*</span>' +
         '</label>' +
-        '<input type="text" class="dw-input" id="dwBreed" list="dwBreedList"' +
+        '<input type="text" class="dw-input" id="dwBreed" role="combobox"' +
                ' autocomplete="off" placeholder="Start typing a breed\u2026"' +
                ' value="' + esc(startValue) + '"' +
+               ' aria-autocomplete="list" aria-expanded="false" aria-controls="dwBreedList"' +
                ' aria-required="true" aria-describedby="dwBreedErr">' +
-        '<datalist id="dwBreedList">' +
-          breeds.map(function (b) { return '<option value="' + esc(b) + '">'; }).join('') +
-        '</datalist>' +
+        '<div id="dwBreedList" class="breed-suggestions" role="listbox" hidden></div>' +
         '<span class="dw-field-error" id="dwBreedErr" role="alert" hidden>' +
           'Please tell us the breed \u2014 pick a suggestion or type your own.' +
         '</span>' +
@@ -496,12 +494,35 @@
       '</div>';
 
     var breedInput = document.getElementById('dwBreed');
+    var breedList = document.getElementById('dwBreedList');
+    function paintBreedSuggestions() {
+      var q = breedInput.value.trim();
+      var matches = typeof breedSuggestions === 'function' ? breedSuggestions(q, 8) : breeds.filter(function (b) { return b.toLowerCase().includes(q.toLowerCase()); }).slice(0, 8);
+      breedList.innerHTML = matches.map(function (name) { return '<button type="button" class="breed-suggestion" role="option" data-breed="' + esc(name) + '">' + esc(name) + '</button>'; }).join('');
+      breedList.hidden = !q || !matches.length;
+      breedInput.setAttribute('aria-expanded', String(!breedList.hidden));
+    }
+    breedList.addEventListener('pointerdown', function (event) {
+      var option = event.target.closest('[data-breed]');
+      if (!option) return;
+      event.preventDefault();
+      breedInput.value = option.dataset.breed;
+      data.breed = option.dataset.breed;
+      data.breedOther = '';
+      isDirty = true;
+      breedList.hidden = true;
+      breedInput.setAttribute('aria-expanded', 'false');
+      breedInput.focus();
+    });
     breedInput.addEventListener('input', function () {
       data.breed      = breedInput.value;
       data.breedOther = '';
       isDirty         = true;
       if(breedInput.value.trim()) document.getElementById('dwBreedErr').hidden = true;
+      paintBreedSuggestions();
     });
+    breedInput.addEventListener('focus', paintBreedSuggestions);
+    breedInput.addEventListener('blur', function () { setTimeout(function () { breedList.hidden = true; breedInput.setAttribute('aria-expanded', 'false'); }, 150); });
     var weightSelect = document.getElementById('dwWeightBand');
     weightSelect.addEventListener('change', function () {
       data.weightBand = weightSelect.value;

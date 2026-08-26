@@ -1571,6 +1571,20 @@ function liFillAvatar(el, profile){
   }
 }
 
+// Profile reads and the cached summary are refreshed independently. If a
+// network read briefly returns null, keep painting the active cached dog
+// instead of flashing the signed-in fallback between completed renders.
+function liResolveActiveProfile(profile){
+  if(profile && profile.name) return profile;
+  let summary = null;
+  try { summary = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); } catch(e){}
+  if(!(summary && summary.hasProfile !== false)) return profile;
+  const dogs = Array.isArray(summary.dogs) ? summary.dogs : [];
+  const active = dogs.find(dog => dog && dog.id === summary.activeDogId) || dogs[0];
+  if(active && active.name) return active;
+  return summary.name ? summary : profile;
+}
+
 function renderLiDogLists(profile){
   let summary = null;
   try { summary = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); } catch(e){}
@@ -2202,6 +2216,7 @@ function liMatchColHtml(t){
 }
 
 async function renderReturningHomepage(profile){
+  profile = liResolveActiveProfile(profile);
   const heading = document.getElementById('returningHeading');
   const subline = document.getElementById('returningSubline');
   const toolbarSummary = document.getElementById('liToolbarSummary');

@@ -81,12 +81,12 @@ async function syncProfileSummary(user) {
       hasProfile: !!dog,
       activeDogId: dog && dog.id || null,
       name: dog && dog.name ? String(dog.name).slice(0, 40) : null,
-      breed: dog && dog.breed ? String(dog.breed).slice(0, 40) : null,
+      breed: dog && dog.breed ? String(dog.breed).slice(0, 240) : null,
       fitness: dog && dog.fitness ? String(dog.fitness).slice(0, 20) : null,
       dogs: dogState.dogs.map(item => ({
         id:item.id,
         name:item.name ? String(item.name).slice(0, 40) : 'Your dog',
-        breed:item.breed ? String(item.breed).slice(0, 40) : null,
+        breed:item.breed ? String(item.breed).slice(0, 240) : null,
         fitness:item.fitness ? String(item.fitness).slice(0, 20) : null,
         photo:typeof item.photo === 'string' && item.photo.startsWith('data:image/') ? item.photo : null,
       })),
@@ -134,7 +134,7 @@ function sanitizedDogProfile(dog, index) {
   const source = dog && typeof dog === 'object' ? dog : {};
   const clean = {};
   const stringFields = {
-    name:40, breed:100, dob:10, ageBand:10, weightBand:10,
+    name:40, breed:240, dob:10, ageBand:10, weightBand:10,
     size:20, neuter:20, coat:20, healthNotes:1000, photoId:80,
   };
   Object.entries(stringFields).forEach(([field, maximum]) => {
