@@ -98,16 +98,8 @@
 }
 .safety-continue__next strong{font-size:.92rem;line-height:1.3;}
 .safety-continue__arrow{color:var(--accent);font-size:1.05rem;font-weight:800;}
-.safety-continue__all{
-  color:var(--accent);
-  font-size:.76rem;
-  font-weight:800;
-  line-height:1.3;
-  text-decoration:none!important;
-  white-space:nowrap;
-}
-.safety-continue__next:hover strong,.safety-continue__all:hover{text-decoration:underline;}
-.safety-continue__next:focus-visible,.safety-continue__all:focus-visible{outline:3px solid rgba(62,122,145,.3);outline-offset:4px;}
+.safety-continue__next:hover strong{text-decoration:underline;}
+.safety-continue__next:focus-visible{outline:3px solid rgba(62,122,145,.3);outline-offset:4px;}
 
 /* Shared sources and review note shown at the end of every Safety Library guide. */
 .safety-sources{

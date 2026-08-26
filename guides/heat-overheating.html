@@ -36,29 +36,25 @@
   .gp-body h2{margin:0;font-size:clamp(25px,2.6vw,34px);line-height:1.08;letter-spacing:-.025em;}
   .gp-src{font-size:.74rem;color:var(--hs-soft);line-height:1.55;}
   .hs-kicker{display:block;margin-bottom:7px;color:var(--hs-blue);font-size:.65rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;}
-  .hs-overview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:stretch;margin:24px 0 20px;}
-  .hs-readiness,.hs-symptoms{padding:22px 24px;border-radius:15px;}
-  .hs-readiness{border:var(--border);background:var(--hs-card);}
-  .hs-symptoms{border:1px solid var(--hs-line);background:var(--success-dim);box-shadow:var(--shadow);}
-  .hs-readiness>p,.hs-symptoms>p{margin:8px 0 0;color:var(--hs-soft);font-size:.82rem;line-height:1.5;}
+  .hs-overview{margin:24px 0 20px;}
+  .hs-readiness{padding:22px 24px;border:var(--border);border-radius:15px;background:var(--hs-card);}
+  .hs-readiness>p{margin:8px 0 0;color:var(--hs-soft);font-size:.82rem;line-height:1.5;}
   .hs-checks{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:16px 0 12px;}
-  .hs-check{display:flex;align-items:flex-start;gap:9px;border:1px solid var(--hs-line);border-radius:10px;padding:10px 11px;background:var(--hs-paper);cursor:pointer;font-size:.76rem;line-height:1.4;}
-  .hs-check:has(input:checked){border-color:var(--safety-safe);background:var(--safety-safe-soft);}
-  .hs-check input{width:16px;height:16px;margin:1px 0 0;flex:none;accent-color:var(--safety-safe);}
+  .hs-check{display:flex;align-items:flex-start;gap:9px;border:1px solid var(--hs-line);border-radius:10px;padding:10px 11px;background:var(--hs-card);cursor:pointer;font-size:.76rem;line-height:1.4;transition:border-color .15s ease,background .15s ease;}
+  .hs-check:has(input:checked){border-color:var(--safety-info);background:var(--safety-info-soft);}
+  .hs-check input{width:16px;height:16px;margin:1px 0 0;flex:none;accent-color:var(--safety-info);}
   .hs-status{margin:0!important;border-radius:10px;padding:10px 12px;background:var(--hs-amber-soft);color:var(--hs-amber)!important;font-size:.72rem!important;font-weight:700;}
   .hs-status[data-state="ready"]{background:var(--safety-safe-soft);color:var(--safety-safe)!important;}
-  .hs-options{display:grid;grid-template-columns:1fr;gap:9px;margin:16px 0 12px;}
-  .hs-option{border:1px solid var(--hs-line);border-radius:10px;padding:11px 12px;background:var(--hs-card);color:var(--hs-ink);font:650 .77rem/1.38 Inter,sans-serif;text-align:left;cursor:pointer;}
-  .hs-option:hover,.hs-option[aria-pressed="true"]{border-color:var(--safety-info);background:var(--safety-info-soft);}
-  .hs-response{border-radius:10px;padding:11px 12px;background:var(--safety-safe-soft);}
-  .hs-response[hidden]{display:none;}
-  .hs-response[data-level="early"]{border-left:4px solid var(--hs-amber);background:var(--hs-amber-soft);}
-  .hs-response[data-level="emergency"]{border-left:4px solid var(--hs-red);background:var(--hs-red-soft);}
-  .hs-response h3{margin:0 0 4px;font-size:.9rem;}
-  .hs-response p{margin:0;color:var(--hs-soft);font-size:.72rem;line-height:1.45;}
   .hs-section{margin:24px 0;}
   .hs-section-head{margin-bottom:14px;}
   .hs-section-head p{max-width:720px;margin:8px 0 0;color:var(--hs-soft);font-size:.8rem;line-height:1.48;text-align:left;}
+  .hs-observations{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
+  .hs-observation{padding:18px 19px;border:1px solid var(--hs-line);border-radius:13px;background:var(--hs-card);}
+  .hs-observation-label{display:block;margin-bottom:8px;color:var(--safety-safe);font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;}
+  .hs-observation--early .hs-observation-label{color:var(--safety-caution);}
+  .hs-observation--emergency .hs-observation-label{color:var(--safety-stop);}
+  .hs-observation h3{margin:0 0 7px;font-size:1.03rem;line-height:1.25;}
+  .hs-observation p{margin:0;color:var(--hs-soft);font-size:.78rem;line-height:1.48;}
   .hs-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;counter-reset:heat-step;}
   .hs-action{position:relative;display:grid;grid-template-columns:25px minmax(0,1fr);column-gap:10px;align-items:start;padding:18px 19px;border:1px solid var(--hs-line);border-radius:13px;background:var(--hs-card);counter-increment:heat-step;}
   .hs-action::before{content:counter(heat-step);display:grid;grid-column:1;grid-row:1;place-items:center;width:25px;height:25px;border-radius:50%;background:var(--hs-green);color:var(--hs-card);font-weight:800;font-size:.7rem;}
@@ -69,14 +65,9 @@
   .hs-risk-label{display:block;margin-bottom:3px;color:#FFD9CB;font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;}
   .hs-risk strong{display:block;margin-bottom:4px;color:#fff;font:700 clamp(1.02rem,1.7vw,1.2rem)/1.15 "Bricolage Grotesque",sans-serif;}
   .hs-risk p{max-width:980px;margin:0;color:rgba(255,255,255,.92);font-size:.78rem;line-height:1.5;}
-  .hs-next-cta{align-items:center;min-height:46px;padding:10px 16px;border-radius:11px;background:var(--accent);color:#fff;box-shadow:0 10px 22px -14px rgba(32,91,112,.7);}
-  .hs-next-cta .safety-continue__label,.hs-next-cta .safety-continue__arrow{color:#D9EFF6;}
-  .hs-next-cta:hover{background:var(--accent-hover);}
-  .hs-next-cta:hover strong{text-decoration:none;}
   @media(max-width:820px){
     .guide-hero{width:min(100% - 36px,1120px);padding:30px 28px 24px;}
     .gp-body{width:min(100% - 36px,1120px);}
-    .hs-overview{grid-template-columns:1fr;}
   }
   @media(max-width:620px){
     .guide-hero{padding:25px 20px 20px;}
@@ -84,16 +75,16 @@
     .guide-hero h1{font-size:34px!important;}
     .guide-hero .section-page-subtitle{font-size:14px;}
     .hs-overview{margin-top:20px;}
-    .hs-readiness,.hs-symptoms{padding:19px 17px;}
-    .hs-checks,.hs-actions{grid-template-columns:1fr;}
+    .hs-readiness{padding:19px 17px;}
+    .hs-checks,.hs-observations,.hs-actions{grid-template-columns:1fr;}
     .hs-section-head p{margin-top:6px;}
     .hs-risk{grid-template-columns:38px minmax(0,1fr);gap:11px;padding:14px;}
     .hs-risk-avatar{width:38px;height:38px;}
-    .hs-next-cta{width:100%;justify-content:center;}
   }
 </style>
+<link rel="stylesheet" href="safety-guide-system.css?v=20260825-1">
 </head>
-<body class="heat-guide-page">
+<body class="heat-guide-page safety-guide-article">
 
 <div class="topnav">
   <a class="brand" href="/"><img src="../logo.svg" alt="">ORMA</a>
@@ -127,7 +118,7 @@
     </div>
   </aside>
 
-  <section class="hs-overview" aria-label="Heat readiness and warning signs">
+  <section class="hs-overview" aria-label="Heat readiness">
     <div class="hs-readiness" aria-labelledby="startCheckTitle">
       <span class="hs-kicker">Before setting out</span>
       <h2 id="startCheckTitle">Is today cool enough for this trail?</h2>
@@ -141,16 +132,30 @@
       <p class="hs-status" id="heatChecklistStatus" role="status" aria-live="polite" data-state="caution">0 of 4 checked. Resolve every unchecked item before setting out.</p>
     </div>
 
-    <div class="hs-symptoms" aria-labelledby="symptomCheckTitle">
+  </section>
+
+  <section class="hs-section" aria-labelledby="symptomCheckTitle">
+    <div class="hs-section-head">
       <span class="hs-kicker">Read your dog</span>
       <h2 id="symptomCheckTitle">What are you seeing?</h2>
-      <p>Choose the closest description. This supports a decision; it does not diagnose your dog.</p>
-      <div class="hs-options" role="group" aria-label="Choose your dog's current condition">
-        <button class="hs-option" type="button" data-heat-level="normal" aria-pressed="false">Breathing and moving normally</button>
-        <button class="hs-option" type="button" data-heat-level="early" aria-pressed="false">Hard panting, slowing or seeking shade</button>
-        <button class="hs-option" type="button" data-heat-level="emergency" aria-pressed="false">Weakness, abnormal gums, confusion or collapse</button>
-      </div>
-      <div class="hs-response" id="heatResponse" role="status" aria-live="polite" hidden></div>
+      <p>Compare your dog with their normal breathing, pace and behaviour. Use the closest card to decide what to do next.</p>
+    </div>
+    <div class="hs-observations">
+      <article class="hs-observation hs-observation--normal">
+        <span class="hs-observation-label">Normal</span>
+        <h3>Breathing and moving normally</h3>
+        <p>Keep monitoring. Pause regularly and turn back at the first change in breathing, pace or behaviour.</p>
+      </article>
+      <article class="hs-observation hs-observation--early">
+        <span class="hs-observation-label">Early heat stress</span>
+        <h3>Hard panting, slowing or seeking shade</h3>
+        <p>Stop exercise now. Move into shade, begin cooling and do not continue. Contact a veterinarian urgently if your dog does not quickly return towards normal.</p>
+      </article>
+      <article class="hs-observation hs-observation--emergency">
+        <span class="hs-observation-label">Emergency</span>
+        <h3>Weakness, abnormal gums, confusion or collapse</h3>
+        <p>Begin cooling immediately and call a veterinarian now. Do not wait for your dog to recover before seeking advice.</p>
+      </article>
     </div>
   </section>
 
@@ -168,8 +173,8 @@
   </section>
 
   <nav class="safety-continue" aria-label="Continue in the Safety Library">
-    <a class="safety-continue__next hs-next-cta" href="water-for-dogs-on-trail.html"><span class="safety-continue__label">Next guide</span><strong>Water for dogs on trail</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
-    <a class="safety-continue__all" href="../safety-guide.html">All safety guides →</a>
+    <a class="safety-continue__next" href="water-for-dogs-on-trail.html"><span class="safety-continue__label">Next guide</span><strong>Water for dogs on trail</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
+    <a class="safety-continue__find" data-safety-find-trail href="../?wizard=1" aria-label="Find your trail: add your dog"><span class="safety-continue__label">Find your trail</span><strong data-safety-find-copy>Add your dog</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
   </nav>
 
   <details class="safety-sources">
@@ -250,7 +255,7 @@
 </footer>
 
 <script src="../mobile-nav.js?v=20260823-1"></script>
-<script src="../guide-navigation.js?v=20260717-2"></script>
+<script src="../guide-navigation.js?v=20260825-1"></script>
 <script>
 (() => {
   const checks = [...document.querySelectorAll('[data-heat-check]')];
@@ -265,22 +270,6 @@
   };
   checks.forEach(check => check.addEventListener('change', updateChecklist));
 
-  const responses = {
-    normal: ['Keep monitoring', 'Pause regularly and compare your dog with their normal breathing, pace and behaviour. Turn back at the first change.'],
-    early: ['Stop exercise now', 'Move into shade, begin cooling and do not continue the route. If breathing or behaviour does not quickly return towards normal, contact a veterinarian urgently.'],
-    emergency: ['Treat this as an emergency', 'Begin cooling immediately and call a veterinarian now. Do not wait for the dog to recover before seeking advice.']
-  };
-  const response = document.getElementById('heatResponse');
-  document.querySelectorAll('[data-heat-level]').forEach(button => {
-    button.addEventListener('click', () => {
-      document.querySelectorAll('[data-heat-level]').forEach(option => option.setAttribute('aria-pressed', String(option === button)));
-      const level = button.dataset.heatLevel;
-      const [title, copy] = responses[level];
-      response.dataset.level = level;
-      response.innerHTML = `<h3>${title}</h3><p>${copy}</p>`;
-      response.hidden = false;
-    });
-  });
 })();
 </script>
 </body>

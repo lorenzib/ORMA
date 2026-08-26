@@ -14,6 +14,7 @@ const GUIDE_FILES = [
 ];
 
 const styles = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+const guideSystem = fs.readFileSync(path.join(__dirname, 'guides', 'safety-guide-system.css'), 'utf8');
 const libraryHtml = fs.readFileSync(path.join(__dirname, 'safety-guide.html'), 'utf8');
 
 describe('shared Safety Library colour system', () => {
@@ -44,16 +45,18 @@ describe('shared Safety Library colour system', () => {
       .every(card => !card.classList.contains('gp-section'))).toBe(true);
   });
 
-  test('heat guide preserves neutral, safe and stop card treatments', () => {
+  test('heat guide uses white sections, blue selections, pale-red alerts and white numbered actions', () => {
     const html = fs.readFileSync(path.join(__dirname, 'guides', 'heat-overheating.html'), 'utf8');
 
-    expect(html).toMatch(/\.hs-readiness\{[^}]*background:var\(--hs-card\)/s);
-    expect(html).toMatch(/\.hs-symptoms\{[^}]*background:var\(--success-dim\)/s);
-    expect(html).toMatch(/\.hs-action\{[^}]*background:var\(--hs-card\)/s);
     expect(html).toMatch(/\.hs-risk\{[^}]*background:[^;]*var\(--hs-red\)/s);
+    expect(guideSystem).toMatch(/\.hs-readiness[^}]*\.hs-observation[^}]*background:var\(--card\)/s);
+    expect(guideSystem).toMatch(/\.hs-check:has\(input:checked\)[^}]*background:var\(--safety-info-soft\)/s);
+    expect(guideSystem).toMatch(/\.hs-risk[^}]*background:var\(--safety-stop-soft\)/s);
+    expect(guideSystem).toMatch(/\.hs-action[^}]*background:var\(--card\)/s);
+    expect(guideSystem).toMatch(/\.hs-action::before[^}]*background:var\(--safety-safe\)/s);
   });
 
-  test('the library assigns one semantic tone to each guide category', () => {
+  test('the library keeps its categories while presenting every guide card in one colour', () => {
     document.body.innerHTML = libraryHtml;
     const assignments = [...document.querySelectorAll('.sg-category')]
       .map(category => ({
@@ -67,6 +70,8 @@ describe('shared Safety Library colour system', () => {
       { heading:'On the trail', tone:'caution', cards:3 },
       { heading:'Shared spaces', tone:'safe', cards:2 },
     ]);
+    expect(libraryHtml).not.toContain('.sg-category[data-tone="caution"]');
+    expect(libraryHtml).not.toContain('.sg-category[data-tone="safe"]');
     expect(libraryHtml).toContain('.sg-guide-card{');
     expect(libraryHtml).toContain('background:var(--sg-tone-soft)');
     expect(libraryHtml).toContain('border:1px solid var(--sg-tone-border)');

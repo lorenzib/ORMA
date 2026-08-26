@@ -26,7 +26,7 @@ describe('shared website content canvas', () => {
   test.each([
     ['guides/alpine-plants-for-dogs.html', '.apg-wrap'],
     ['guides/altitude-with-your-dog.html', '.alt-shell'],
-    ['guides/breed-group-caveats.html', '.gp-layout'],
+    ['guides/breed-group-caveats.html', '.scan-shell'],
     ['guides/dogs-at-rifugi.html', '.gp-body'],
     ['guides/dogs-on-cable-cars.html', '.cg-shell'],
     ['guides/heat-overheating.html', '.gp-body'],

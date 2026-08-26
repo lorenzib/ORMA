@@ -4,14 +4,14 @@
   --scan-ink:#2e4034;
   --scan-soft:#5e6e62;
   --scan-line:#ddd8ca;
-  --scan-blue:#2f7089;
-  --scan-blue-soft:#e3f0f4;
-  --scan-green:#3f6749;
-  --scan-green-soft:#e5eee4;
-  --scan-amber:#8c5b18;
-  --scan-amber-soft:#f7e8ca;
-  --scan-red:#8e3d30;
-  --scan-red-soft:#f6e5df;
+  --scan-blue:var(--safety-info);
+  --scan-blue-soft:var(--safety-info-soft);
+  --scan-green:var(--safety-safe);
+  --scan-green-soft:var(--safety-safe-soft);
+  --scan-amber:var(--safety-caution);
+  --scan-amber-soft:var(--safety-caution-soft);
+  --scan-red:var(--safety-stop);
+  --scan-red-soft:var(--safety-stop-soft);
 }
 body{background:var(--scan-paper);}
 .scan-shell{padding-top:28px;padding-bottom:60px;color:var(--scan-ink);}

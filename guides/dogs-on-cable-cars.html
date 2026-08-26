@@ -50,7 +50,7 @@
   .cg-decision-item strong{display:block;margin-bottom:4px;font-size:.78rem;}
   .cg-decision-item span{display:block;color:var(--cg-soft);font-size:.72rem;line-height:1.42;}
   .cg-muzzle-practice{border:1px solid var(--cg-line);background:var(--success-dim);box-shadow:var(--shadow);}
-  .cg-muzzle-practice h2{margin:0 0 6px;font-size:1.25rem;line-height:1.15;}
+  .cg-muzzle-practice h2{margin:0 0 6px;font-size:clamp(.92rem,4.6vw,1.25rem);line-height:1.15;letter-spacing:-.015em;white-space:nowrap;}
   .cg-muzzle-practice>p{margin:0 0 12px;color:var(--cg-soft);font-size:.74rem;line-height:1.45;}
   .cg-muzzle-practice ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:0;padding:0;list-style:none;counter-reset:muzzle-step;}
   .cg-muzzle-practice li{position:relative;padding:10px 11px 10px 42px;border-radius:10px;background:var(--card);color:var(--cg-soft);font-size:.72rem;line-height:1.42;counter-increment:muzzle-step;}
@@ -65,10 +65,10 @@
   .cg-section-head{display:flex;align-items:end;justify-content:space-between;gap:22px;margin-bottom:14px;}
   .cg-section-head p{max-width:470px;margin:0;color:var(--cg-soft);font-size:.8rem;line-height:1.48;text-align:right;}
   .cg-step-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}
-  .cg-step{padding:18px 19px;border:1px solid var(--cg-line);border-radius:13px;background:var(--card);}
-  .cg-step b{display:grid;place-items:center;width:25px;height:25px;margin-bottom:12px;border-radius:50%;background:var(--cg-green);color:var(--card);font-size:.7rem;}
-  .cg-step h3{margin:0 0 6px;font-size:1.03rem;}
-  .cg-step p{margin:0;color:var(--cg-soft);font-size:.78rem;line-height:1.48;}
+  .cg-step{display:grid;grid-template-columns:25px minmax(0,1fr);column-gap:10px;align-items:start;padding:18px 19px;border:1px solid var(--cg-line);border-radius:13px;background:var(--card);}
+  .cg-step b{grid-column:1;grid-row:1;display:grid;place-items:center;width:25px;height:25px;margin:0;border-radius:50%;background:var(--cg-green);color:var(--card);font-size:.7rem;}
+  .cg-step h3{grid-column:2;grid-row:1;margin:2px 0 8px;font-size:1.03rem;}
+  .cg-step p{grid-column:2;grid-row:2;margin:0;color:var(--cg-soft);font-size:.78rem;line-height:1.48;}
   .cg-sources{margin-top:18px;border-top:1px solid var(--cg-line);color:var(--ink-soft);}
   .cg-sources summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 0;cursor:pointer;list-style:none;font-size:.74rem;}
   .cg-sources summary::-webkit-details-marker{display:none;}
@@ -94,6 +94,7 @@
     .cg-section-head p{margin-top:6px;text-align:left;}
   }
 </style>
+<link rel="stylesheet" href="safety-guide-system.css?v=20260825-1">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -123,7 +124,7 @@
 }
 </script>
 </head>
-<body>
+<body class="safety-guide-article">
 
 <div class="topnav">
   <a class="brand" href="/"><img src="../logo.svg" alt="">ORMA</a>
@@ -189,7 +190,7 @@
 
     <nav class="safety-continue" aria-label="Continue in the Safety Library">
       <a class="safety-continue__next" href="dogs-at-rifugi.html"><span class="safety-continue__label">Next guide</span><strong>Dogs at rifugi</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
-      <a class="safety-continue__all" href="../safety-guide.html">All safety guides →</a>
+      <a class="safety-continue__find" data-safety-find-trail href="../?wizard=1" aria-label="Find your trail: add your dog"><span class="safety-continue__label">Find your trail</span><strong data-safety-find-copy>Add your dog</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
     </nav>
 
     <details class="safety-sources">
@@ -271,6 +272,6 @@
 </footer>
 
 <script src="../mobile-nav.js?v=20260823-1"></script>
-<script src="../guide-navigation.js?v=20260717-2"></script>
+<script src="../guide-navigation.js?v=20260825-1"></script>
 </body>
 </html>

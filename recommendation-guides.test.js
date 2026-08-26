@@ -53,13 +53,16 @@ describe('breed-group guide navigation', () => {
     expect(image.getAttribute('height')).toBe('800');
   });
 
-  test('uses seven compact breed cards instead of a long contents rail', () => {
+  test('uses exhaustive filterable trait cards instead of a long contents rail', () => {
     document.body.innerHTML = fs.readFileSync(path.join(__dirname, 'guides/breed-group-caveats.html'), 'utf8');
     const sections = [...document.querySelectorAll('.scan-card[id]')];
 
-    expect(sections).toHaveLength(7);
+    expect(sections).toHaveLength(13);
     expect(sections.every(section => !section.classList.contains('gp-section'))).toBe(true);
     expect(document.querySelector('.scan-grid')).not.toBeNull();
+    expect(document.querySelectorAll('[data-breed-filter]')).toHaveLength(13);
+    expect(document.querySelectorAll('.breed-edge')).toHaveLength(13);
     expect(document.querySelector('.gp-toc')).toBeNull();
+    expect(document.body.textContent).not.toContain('How ORMA uses this');
   });
 });

@@ -34,10 +34,13 @@ describe('altitude health and safety guide', () => {
     expect(document.querySelector('script[src*="altitude-guide.js"]')).toBeNull();
   });
 
-  test('uses the red warning treatment for the medication guidance', () => {
-    const warning = document.querySelector('.alt-medication');
+  test('keeps the medication guidance inside the veterinary warning', () => {
+    const warning = document.querySelector('.alt-vet-note');
     expect(warning.classList.contains('alt-warning-note')).toBe(true);
+    expect(warning.textContent).toMatch(/Ask your vet before travelling/i);
+    expect(warning.textContent).toMatch(/No human altitude medication/i);
     expect(warning.textContent).toMatch(/Never give human altitude or pain medication/i);
+    expect(document.querySelector('.alt-medication')).toBeNull();
   });
 
   test('includes pre-trip veterinary flags and conservative first-day planning', () => {
@@ -53,6 +56,14 @@ describe('altitude health and safety guide', () => {
     expect(document.querySelector('.alt-timeline')).toBeNull();
   });
 
+  test('places the first-day explanation directly below its title', () => {
+    const head = document.querySelector('.alt-plan-head');
+    expect(head.querySelector('h2').textContent).toBe('Keep the first day simple');
+    expect(head.querySelector('h2').closest('div').nextElementSibling.textContent).toBe(
+      'A fit dog can still struggle after a fast drive or lift ascent.'
+    );
+  });
+
   test('links supporting references and related safety guides', () => {
     const sources = document.querySelector('.safety-sources');
     expect(sources.open).toBe(false);
@@ -61,7 +72,7 @@ describe('altitude health and safety guide', () => {
     expect(sources.querySelector('summary').textContent).toMatch(/Last reviewed 23 August 2026/i);
     expect(Array.from(document.querySelectorAll('.safety-continue a')).map(link => link.getAttribute('href'))).toEqual([
       'heat-overheating.html',
-      '../safety-guide.html',
+      '../?wizard=1',
     ]);
   });
 });

@@ -41,6 +41,25 @@
   .gp-toc a{display:block;padding:10px 11px;border-radius:9px;color:var(--ink);font-size:13px;font-weight:550;line-height:1.35;text-decoration:none;}
   .gp-toc a:hover,.gp-toc a.is-active{background:var(--safety-info-soft);color:var(--safety-info);font-weight:700;}
   .gp-mobile-toc{display:none;}
+  .breed-picker{margin:0 0 18px;padding:22px 24px;border:1px solid color-mix(in srgb,var(--safety-info) 28%,transparent);border-radius:16px;background:var(--safety-info-soft);}
+  .breed-picker__head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:14px;}
+  .breed-picker__head h2{margin:0;font-size:clamp(24px,2.35vw,32px);line-height:1.08;letter-spacing:-.025em;}
+  .breed-picker__reset{border:0;background:transparent;color:var(--safety-info);font:750 .72rem/1.2 "Inter",sans-serif;text-decoration:underline;cursor:pointer;}
+  .breed-picker__options{display:flex;flex-wrap:wrap;gap:8px;}
+  .breed-picker__options button{min-height:42px;padding:9px 13px;border:1px solid color-mix(in srgb,var(--safety-info) 30%,var(--paper-line));border-radius:999px;background:#fff;color:var(--ink);font:700 .73rem/1.25 "Inter",sans-serif;cursor:pointer;transition:background .15s ease,border-color .15s ease,color .15s ease,transform .15s ease;}
+  .breed-picker__options button:hover{border-color:var(--safety-info);transform:translateY(-1px);}
+  .breed-picker__options button[aria-pressed="true"]{border-color:var(--safety-info);background:var(--safety-info);color:#fff;box-shadow:0 7px 16px -11px rgba(24,65,81,.8);}
+  .breed-picker__options button:focus-visible,.breed-picker__reset:focus-visible,.breed-edge summary:focus-visible{outline:3px solid rgba(62,122,145,.3);outline-offset:3px;}
+  .breed-picker__status{margin:13px 0 0;color:#476975;font-size:.73rem;font-weight:700;}
+  .breed-emergency{margin:0 0 24px;}
+  .breed-guide-card[hidden]{display:none;}
+  .breed-edge{margin-top:13px;border-top:1px solid var(--paper-line);}
+  .breed-edge summary{padding:11px 0 0;cursor:pointer;color:var(--safety-info);font-size:.7rem;font-weight:800;list-style:none;}
+  .breed-edge summary::-webkit-details-marker{display:none;}
+  .breed-edge summary::after{content:" +";}
+  .breed-edge[open] summary::after{content:" −";}
+  .breed-edge p{margin-top:8px!important;color:var(--ink-soft)!important;font-size:.72rem!important;line-height:1.5!important;}
+  .breed-empty{padding:18px;border:1px solid var(--paper-line);border-radius:14px;background:#fff;color:var(--ink-soft);font-size:.78rem;}
   @media(max-width:820px){
     .gp-hero-photo{width:calc(100% - 32px);margin-top:14px;}
     .gp-hero-photo img{height:220px;object-position:center 58%;}
@@ -56,10 +75,18 @@
     .gp-mobile-toc a:active{background:var(--safety-info-soft);}
     .gp-section{padding:21px 19px;border-radius:14px;scroll-margin-top:130px;}
     .gp-body h2{font-size:22px;}
+    .breed-picker{padding:19px 18px;}
+  }
+  @media(max-width:560px){
+    .breed-picker__head{display:block;}
+    .breed-picker__reset{margin-top:10px;padding:0;}
+    .breed-picker__options{display:grid;grid-template-columns:1fr 1fr;}
+    .breed-picker__options button{width:100%;border-radius:11px;text-align:left;}
   }
 </style>
+<link rel="stylesheet" href="safety-guide-system.css?v=20260825-1">
 </head>
-<body>
+<body class="safety-guide-article">
 
 <div class="topnav">
   <a class="brand" href="/"><img src="../logo.svg" alt="">ORMA</a>
@@ -77,93 +104,172 @@
   <a class="safety-back-link" href="../safety-guide.html"><span class="safety-back-link__arrow" aria-hidden="true">←</span> Go back to Safety Library</a>
   <div class="eyebrow">Guides · Know your dog's build</div>
   <h1 style="font-size:clamp(28px,5vw,38px);margin-top:14px;">Choose the trail for the dog in front of you</h1>
-  <p class="sub section-page-subtitle">Breed group is a useful prompt, not a verdict. Use these cards to spot where build or instinct may change an otherwise ordinary mountain day.</p>
-  <div class="scan-meta"><strong>3 min guide</strong></div>
+  <p class="sub section-page-subtitle">Select every trait that fits your dog. Mixed breeds may fit several cards, and the dog’s health and behaviour today always matter more than the label.</p>
+  <div class="scan-meta"><strong>5 min guide</strong></div>
 </div>
 
 <main class="scan-shell content-canvas" id="mainContent">
   <section class="scan-intro" aria-labelledby="breedStartTitle">
     <div class="scan-intro-copy">
-      <span class="scan-kicker">Start with the individual</span>
-      <h2 id="breedStartTitle">Build and instinct change the effort</h2>
-      <p>Use the relevant card as a planning check, then judge the dog you know: their health, conditioning, behaviour, recovery and the conditions today.</p>
+      <span class="scan-kicker">Start with the dog, not the pedigree</span>
+      <h2 id="breedStartTitle">One dog can fit several cards</h2>
+      <p>Select every visible trait or known condition that applies. Breed examples help you recognise a pattern; they do not predict the health, stamina or temperament of an individual dog.</p>
     </div>
     <aside class="scan-priority">
-      <strong>Your dog today outranks the breed label</strong>
-      <p>If gait, breathing, enthusiasm or recovery are different from normal, shorten the plan even when the route looks suitable on paper.</p>
+      <strong>Use today’s baseline</strong>
+      <p>If breathing, gait, enthusiasm, appetite or recovery differ from normal, shorten the plan. Ask your vet before a demanding trip if there is a history of collapse, breathing difficulty, spinal pain, heart or lung disease, or recent illness.</p>
     </aside>
   </section>
 
-  <section class="scan-section" aria-labelledby="breedCardsTitle">
-    <div class="scan-section-head">
-      <div><span class="scan-kicker">Seven quick checks</span><h2 id="breedCardsTitle">Find the card that fits</h2></div>
-      <p>Each card gives the adjustment most likely to change the route choice.</p>
+  <section class="breed-picker" aria-labelledby="breedPickerTitle">
+    <div class="breed-picker__head">
+      <div><span class="scan-kicker">Build your trail check</span><h2 id="breedPickerTitle">What describes your dog?</h2></div>
+      <button class="breed-picker__reset" type="button" data-breed-reset hidden>Clear selections</button>
     </div>
-    <div class="scan-grid">
-      <article class="scan-card scan-card--blue" id="flat-faced">
-        <span class="scan-card-label">Breathing &amp; cooling</span><h2>Flat-faced breeds</h2>
-        <p class="scan-examples">Bulldogs, Pugs, French Bulldogs, Boxers, Boston Terriers, Shih Tzus</p>
-        <div class="scan-rule"><strong>Choose:</strong> short, shaded routes with water and an easy exit.</div>
-        <ul class="scan-list"><li>Avoid warm, humid or exposed climbs; exercise is a major heat-illness trigger.</li><li>Noisy or laboured breathing at rest or light effort is not normal—stop and seek veterinary advice.</li></ul>
-      </article>
-
-      <article class="scan-card" id="giant-heavy">
-        <span class="scan-card-label">Heat &amp; joint load</span><h2>Giant and heavy breeds</h2>
-        <p class="scan-examples">Bernese, Saint Bernards, Great Danes, Newfoundlands, Mastiffs</p>
-        <div class="scan-rule"><strong>Choose:</strong> gradual descents, frequent flat recovery sections and cool conditions.</div>
-        <ul class="scan-list"><li>Let the dog set the downhill pace; shorten the day for a new short stride, stiffness or altered gait.</li><li>Check lift size, muzzle and ticket rules before relying on a gondola.</li></ul>
-      </article>
-
-      <article class="scan-card" id="small-short-legged">
-        <span class="scan-card-label">Stride &amp; obstacles</span><h2>Small or short-legged breeds</h2>
-        <p class="scan-examples">Dachshunds, Corgis, Jack Russells, small terriers</p>
-        <div class="scan-rule"><strong>Choose:</strong> smooth ground with fewer forced jumps and a conservative first distance.</div>
-        <ul class="scan-list"><li>Rock steps and scree cost more effort when every obstacle is body-height.</li><li>Pack a dry layer for small, wet dogs during cool or windy stops.</li></ul>
-      </article>
-
-      <article class="scan-card scan-card--green" id="herding">
-        <span class="scan-card-label">Drive &amp; livestock</span><h2>Herding breeds</h2>
-        <p class="scan-examples">Border Collies, Australian Shepherds, Shelties, Cattle Dogs</p>
-        <div class="scan-rule"><strong>Non-negotiable:</strong> leash before entering any pasture.</div>
-        <ul class="scan-list"><li>Do not allow staring, circling or gathering behaviour around livestock.</li><li>Schedule rests: high drive can hide fatigue.</li></ul>
-      </article>
-
-      <article class="scan-card" id="guardian-farm">
-        <span class="scan-card-label">Space &amp; guarding</span><h2>Guardian and farm breeds</h2>
-        <p class="scan-examples">Maremmano, Kuvasz, Pyrenean Mountain Dog, Hovawart and other guarding types</p>
-        <div class="scan-rule"><strong>Choose:</strong> visible trails with room to pass other dogs and livestock widely.</div>
-        <ul class="scan-list"><li>Do not approach a working guardian dog or the animals it protects.</li><li>Give your own dog more distance if they become still, watchful or uncomfortable.</li></ul>
-      </article>
-
-      <article class="scan-card" id="sighthounds">
-        <span class="scan-card-label">Cold &amp; skin</span><h2>Sighthounds and lean breeds</h2>
-        <p class="scan-examples">Greyhounds, Whippets, Vizslas, Pointers, podenco-type breeds</p>
-        <div class="scan-rule"><strong>Pack:</strong> a warm layer for exposed rests and post-rain stops.</div>
-        <ul class="scan-list"><li>Check legs and flanks after sharp limestone or dense scrub.</li><li>Keep rest stops short when the dog begins to shiver.</li></ul>
-      </article>
-
-      <article class="scan-card scan-card--amber" id="hunting-scent">
-        <span class="scan-card-label">Recall &amp; wildlife</span><h2>Hunting and scent breeds</h2>
-        <p class="scan-examples">Scent hounds, Pointers, Setters, Nordic and primitive spitz breeds</p>
-        <div class="scan-rule"><strong>Choose:</strong> a leash or long line on exposed ground and anywhere wildlife is active.</div>
-        <ul class="scan-list"><li>Assume recall will weaken once scent or movement takes over.</li><li>Test freedom only in low-stakes places, never for the first time near cliffs or livestock.</li></ul>
-      </article>
+    <div class="breed-picker__options" role="group" aria-label="Dog traits">
+      <button type="button" data-breed-filter="airway" aria-pressed="false">Flat or short nose</button>
+      <button type="button" data-breed-filter="dense" aria-pressed="false">Dense or double coat</button>
+      <button type="button" data-breed-filter="giant" aria-pressed="false">Large, giant or heavy</button>
+      <button type="button" data-breed-filter="deep" aria-pressed="false">Deep chest</button>
+      <button type="button" data-breed-filter="spine" aria-pressed="false">Long back or short legs</button>
+      <button type="button" data-breed-filter="small" aria-pressed="false">Small or toy size</button>
+      <button type="button" data-breed-filter="thin" aria-pressed="false">Thin, short or pale coat</button>
+      <button type="button" data-breed-filter="drive" aria-pressed="false">High working drive</button>
+      <button type="button" data-breed-filter="prey" aria-pressed="false">Strong scent or prey drive</button>
+      <button type="button" data-breed-filter="guardian" aria-pressed="false">Guardian instinct</button>
+      <button type="button" data-breed-filter="collapse" aria-pressed="false">Collapse or noisy-breathing history</button>
+      <button type="button" data-breed-filter="coat" aria-pressed="false">Long coat or floppy ears</button>
+      <button type="button" data-breed-filter="individual" aria-pressed="false">Young, older or medical needs</button>
     </div>
+    <p class="breed-picker__status" data-breed-status aria-live="polite">Showing all 13 trail checks.</p>
   </section>
 
-  <aside class="scan-priority" style="margin-top:14px;">
-    <strong>How ORMA uses this</strong>
-    <p>Match scores can account for profile details such as build and heat sensitivity, but they cannot see today’s weather or your dog’s current condition. When the score and the dog disagree, believe the dog.</p>
+  <aside class="scan-alert breed-emergency">
+    <strong>Stop the outing and get veterinary help</strong>
+    <p>Collapse, blue or grey gums, struggling to breathe, repeated unproductive retching with a swollen abdomen, sudden spinal pain, weakness or a new wobbly gait are not “breed quirks”. Treat them as urgent.</p>
   </aside>
+
+  <section class="scan-section" aria-labelledby="breedCardsTitle">
+    <div class="scan-section-head">
+      <div><span class="scan-kicker">Your selected checks</span><h2 id="breedCardsTitle">Adjust the route, not the dog</h2></div>
+      <p>Choose the most conservative adjustment when more than one card applies.</p>
+    </div>
+    <div class="scan-grid breed-guide-grid" data-breed-grid>
+      <article class="scan-card breed-guide-card" id="flat-faced" data-breed-trait="airway">
+        <span class="scan-card-label">Airway &amp; cooling</span><h2>Flat or short nose</h2>
+        <p class="scan-examples">Pug, French or English Bulldog, Boston Terrier, Boxer, Shih Tzu, Pekingese, Japanese Chin, Brussels Griffon, Dogue de Bordeaux</p>
+        <div class="scan-rule"><strong>Choose:</strong> short, shaded, cool routes with water and an immediate exit.</div>
+        <ul class="scan-list"><li>Warmth, humidity, excitement and climbing all increase airway and heat load.</li><li>Noisy or laboured breathing at rest or light effort is not normal.</li></ul>
+        <details class="breed-edge"><summary>Edge cases</summary><p>Cavaliers and some crosses can have a shortened muzzle without looking extremely flat. Body condition and any diagnosed airway disease can add risk.</p></details>
+      </article>
+
+      <article class="scan-card breed-guide-card" id="dense-coated" data-breed-trait="dense">
+        <span class="scan-card-label">Coat &amp; heat</span><h2>Dense or double coat</h2>
+        <p class="scan-examples">Chow Chow, Husky, Malamute, Akita, Samoyed, Keeshond, Newfoundland, Bernese Mountain Dog, German Spitz</p>
+        <div class="scan-rule"><strong>Choose:</strong> the coolest part of the day, reliable shade and low-exertion escape options.</div>
+        <ul class="scan-list"><li>Do not use cold-weather ability as evidence of heat tolerance.</li><li>Stop at the first change in pace, breathing, coordination or responsiveness.</li></ul>
+        <details class="breed-edge"><summary>Edge cases</summary><p>Dark coats, overweight dogs and dogs not acclimatised to heat may need an even smaller margin. Ask a vet or qualified groomer before making major coat changes.</p></details>
+      </article>
+
+      <article class="scan-card breed-guide-card" id="giant-heavy" data-breed-trait="giant">
+        <span class="scan-card-label">Joint load &amp; rescue</span><h2>Large, giant or heavy</h2>
+        <p class="scan-examples">Great Dane, Saint Bernard, Newfoundland, Bernese, Leonberger, Mastiff, Rottweiler, large livestock guardians</p>
+        <div class="scan-rule"><strong>Choose:</strong> gradual descents, stable footing and a route from which you could evacuate a dog you cannot carry.</div>
+        <ul class="scan-list"><li>Downhill braking and repeated rock steps can reveal discomfort before flat walking does.</li><li>Turn back for a new short stride, stiffness, reluctance or altered gait.</li></ul>
+        <details class="breed-edge"><summary>Edge cases</summary><p>Growing large-breed dogs, dogs with arthritis or previous orthopaedic surgery need an individual exercise plan from their vet.</p></details>
+      </article>
+
+      <article class="scan-card breed-guide-card" id="deep-chested" data-breed-trait="deep">
+        <span class="scan-card-label">Bloat / GDV awareness</span><h2>Deep chest</h2>
+        <p class="scan-examples">Great Dane, Weimaraner, Irish or Gordon Setter, Standard Poodle, Doberman, German Shepherd, Saint Bernard</p>
+        <div class="scan-rule"><strong>Plan:</strong> know the nearest emergency vet and follow your own vet’s feeding and prevention advice.</div>
+        <ul class="scan-list"><li>Repeated retching without producing anything, drooling, distress or a swelling abdomen is an emergency.</li><li>Discuss individual GDV risk and preventive gastropexy with your vet before remote trips.</li></ul>
+        <details class="breed-edge"><summary>Edge cases</summary><p>Any breed can develop gastric dilatation or volvulus. Age, a close relative with GDV and large or giant size can add risk.</p></details>
+      </article>
+
+      <article class="scan-card breed-guide-card" id="long-backed" data-breed-trait="spine">
+        <span class="scan-card-label">Spine &amp; repeated drops</span><h2>Long back or short legs</h2>
+        <p class="scan-examples">Dachshund, Corgi, Basset Hound, Pekingese, Beagle, Lhasa Apso, Shih Tzu and other chondrodystrophic dogs</p>
+        <div class="scan-rule"><strong>Choose:</strong> smooth, ramp-like terrain with fewer jumps, ledges and body-height steps.</div>
+        <ul class="scan-list"><li>Do not pull or encourage a reluctant dog over repeated obstacles.</li><li>Stop for back or neck pain, trembling, weakness, crossed hind feet or a new wobbly gait.</li></ul>
+        <details class="breed-edge"><summary>Edge cases</summary><p>French Bulldogs and some mixed breeds can also carry chondrodystrophic body traits. A previous disc episode requires a vet-led activity plan.</p></details>
+      </article>
+
+      <article class="scan-card breed-guide-card" id="small-toy" data-breed-trait="small">
+        <span class="scan-card-label">Stride, cold &amp; exposure</span><h2>Small or toy size</h2>
+        <p class="scan-examples">Chihuahua, Yorkshire Terrier, Maltese, Papillon, Toy Poodle, Pomeranian, Miniature Pinscher and small crosses</p>
+        <div class="scan-rule"><strong>Choose:</strong> shorter distances, low steps and sheltered rest points; carry a secure emergency carrier.</div>
+        <ul class="scan-list"><li>A small dog takes more steps and meets more obstacles at body height.</li><li>Wind, rain and cold can reduce tolerance quickly, especially when the dog stops moving.</li></ul>
+        <details class="breed-edge"><summary>Edge cases</summary><p>Being easy to carry does not make an exposed scramble suitable. Use a well-fitted harness and do not rely on carrying a dog across terrain that is unsafe for you.</p></details>
+      </article>
+
+      <article class="scan-card breed-guide-card" id="thin-coated" data-breed-trait="thin">
+        <span class="scan-card-label">Cold, sun &amp; skin</span><h2>Thin, short, hairless or pale coat</h2>
+        <p class="scan-examples">Greyhound, Whippet, Italian Greyhound, Vizsla, Pointer, Dalmatian, Chinese Crested, Xoloitzcuintli; dogs with pink noses or pale skin</p>
+        <div class="scan-rule"><strong>Pack:</strong> a dry insulating layer and plan shade on high-UV, exposed routes.</div>
+        <ul class="scan-list"><li>Shorten cold exposure for shivering, paw lifting, a tucked posture or reluctance to walk.</li><li>Ask your vet which dog-safe sun protection is suitable for thinly furred or pale areas.</li></ul>
+        <details class="breed-edge"><summary>Edge cases</summary><p>Small size, old age, low body weight and illness further reduce cold tolerance. Sharp limestone and scrub can also injure thin skin.</p></details>
+      </article>
+
+      <article class="scan-card breed-guide-card" id="high-drive" data-breed-trait="drive">
+        <span class="scan-card-label">Drive &amp; self-pacing</span><h2>High working or sporting drive</h2>
+        <p class="scan-examples">Border Collie, Australian Shepherd, Cattle Dog, Belgian Malinois, working Spaniels, Retrievers, Pointers and Setters</p>
+        <div class="scan-rule"><strong>Plan:</strong> scheduled shaded rests and calm walking before the dog looks tired.</div>
+        <ul class="scan-list"><li>Task focus and excitement can override self-pacing.</li><li>Leash before livestock and stop repetitive chasing, retrieving or circling in heat.</li></ul>
+        <details class="breed-edge"><summary>Edge cases</summary><p>A dog that stays enthusiastic can still be overheating. Compare coordination, response to cues and recovery with that dog’s normal.</p></details>
+      </article>
+
+      <article class="scan-card breed-guide-card" id="hunting-scent" data-breed-trait="prey">
+        <span class="scan-card-label">Recall &amp; wildlife</span><h2>Strong scent or prey drive</h2>
+        <p class="scan-examples">Beagle, Bloodhound and scent hounds; Terriers; Pointers and Setters; Sighthounds; Nordic and primitive breeds; many crosses</p>
+        <div class="scan-rule"><strong>Choose:</strong> a fixed leash or managed long line wherever wildlife, livestock, cliffs or roads raise the consequence of recall failure.</div>
+        <ul class="scan-list"><li>Assume recall may weaken when scent or movement takes over.</li><li>Do not test off-leash reliability for the first time in high-consequence terrain.</li></ul>
+        <details class="breed-edge"><summary>Edge cases</summary><p>Reliable recall at home does not predict recall around marmots, deer or livestock. Local leash rules always override the plan.</p></details>
+      </article>
+
+      <article class="scan-card breed-guide-card" id="guardian-farm" data-breed-trait="guardian">
+        <span class="scan-card-label">Space &amp; guarding</span><h2>Guardian or territorial instinct</h2>
+        <p class="scan-examples">Maremma, Great Pyrenees, Kuvasz, Kangal, Anatolian Shepherd, Tibetan Mastiff, Hovawart and guardian-type crosses</p>
+        <div class="scan-rule"><strong>Choose:</strong> visible trails with room to create distance from dogs, people and livestock.</div>
+        <ul class="scan-list"><li>Avoid narrow bottlenecks if your dog becomes still, watchful, blocking or vocal around approaches.</li><li>Never approach a working guardian dog or the animals it protects.</li></ul>
+        <details class="breed-edge"><summary>Edge cases</summary><p>Breed does not guarantee behaviour. Use the response you actually see and turn around early when distance is disappearing.</p></details>
+      </article>
+
+      <article class="scan-card breed-guide-card" id="collapse-airway" data-breed-trait="collapse">
+        <span class="scan-card-label">Known or suspected medical risk</span><h2>Collapse or noisy-breathing history</h2>
+        <p class="scan-examples">Exercise-induced collapse is documented in Labradors and some related breeds; exercise-triggered collapse also occurs in Border Collies and related herding breeds. Laryngeal paralysis is commonest in older large dogs, especially Labradors.</p>
+        <div class="scan-rule"><strong>Before hiking:</strong> get a diagnosis and an individual limit from your vet; do not “test” the dog on a remote trail.</div>
+        <ul class="scan-list"><li>Heat, excitement and intense exercise can worsen several collapse or airway disorders.</li><li>Collapse, disorientation, staggering, blue gums or struggling to breathe needs urgent help.</li></ul>
+        <details class="breed-edge"><summary>Edge cases</summary><p>A changed bark, raspy breathing, coughing, gagging or new heat intolerance in an older large dog deserves veterinary assessment before the next hike.</p></details>
+      </article>
+
+      <article class="scan-card breed-guide-card" id="long-coated" data-breed-trait="coat">
+        <span class="scan-card-label">Grass awns &amp; hidden skin</span><h2>Long coat, feathering or floppy ears</h2>
+        <p class="scan-examples">Spaniels, Setters, long-coated Retrievers, Poodles and doodle-type coats, Bearded Collie, Briard, long-eared hounds</p>
+        <div class="scan-rule"><strong>After grass or scrub:</strong> inspect ears, eyes, armpits, groin, coat and every space between the toes.</div>
+        <ul class="scan-list"><li>Barbed grass awns can enter skin, ears, eyes, nose or paws and migrate into tissue.</li><li>Persistent sneezing, head shaking, eye pain or licking one paw after exposure needs prompt veterinary attention.</li></ul>
+        <details class="breed-edge"><summary>Edge cases</summary><p>Awn risk comes from exposure and coat/ear structure, not pedigree. Short-coated dogs can still inhale or step on them.</p></details>
+      </article>
+
+      <article class="scan-card breed-guide-card" id="individual-needs" data-breed-trait="individual">
+        <span class="scan-card-label">Breed-independent limits</span><h2>Young, older or medically limited</h2>
+        <p class="scan-examples">Puppies; seniors; overweight or under-conditioned dogs; pregnancy; recent illness or surgery; heart, lung, neurologic, joint or metabolic disease; sensory or mobility differences</p>
+        <div class="scan-rule"><strong>Choose:</strong> a vet-approved distance with simple terrain, frequent reassessment and an evacuation plan.</div>
+        <ul class="scan-list"><li>Do not use another dog of the same breed as the benchmark.</li><li>Medication, surgery or a good day does not prove readiness for a longer route.</li></ul>
+        <details class="breed-edge"><summary>Edge cases</summary><p>Blind, deaf and three-legged dogs can hike successfully when the route and handling match the individual. Familiar cues, secure footing and conservative exposure matter more than a generic breed rule.</p></details>
+      </article>
+    </div>
+    <p class="breed-empty" data-breed-empty hidden>No cards match that combination. Clear the selections and choose the traits you can see in your dog.</p>
+  </section>
 
   <nav class="safety-continue" aria-label="Continue in the Safety Library">
     <a class="safety-continue__next" href="livestock-guard-dogs.html"><span class="safety-continue__label">Next guide</span><strong>Livestock guardian dogs</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
-    <a class="safety-continue__all" href="../safety-guide.html">All safety guides →</a>
+    <a class="safety-continue__find" data-safety-find-trail href="../?wizard=1" aria-label="Find your trail: add your dog"><span class="safety-continue__label">Find your trail</span><strong data-safety-find-copy>Add your dog</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
   </nav>
   <details class="safety-sources">
     <summary><span class="safety-sources__heading"><strong>Sources and medical references</strong><span>Last reviewed 25 August 2026</span></span></summary>
     <div class="safety-sources__body">
-      <p>Veterinary references: <a href="https://www.rvc.ac.uk/research/focus/brachycephaly/health-issues" rel="noopener">Royal Veterinary College: brachycephaly health issues</a> and the <a href="https://www.rvc.ac.uk/Media/Default/VetCompass/BWG%20Heat%20related%20illness%20in%20dogs.pdf" rel="noopener">Brachycephalic Working Group heat-illness consensus</a>. Working-function cards are planning prompts, not predictions of temperament or a substitute for veterinary advice. Sources checked 25 August 2026.</p>
+      <p>Veterinary references checked 25 August 2026: <a href="https://www.rvc.ac.uk/research/focus/brachycephaly/health-issues" rel="noopener">Royal Veterinary College on brachycephaly</a> and its <a href="https://www.rvc.ac.uk/Media/Default/VetCompass/BWG%20Heat%20related%20illness%20in%20dogs.pdf" rel="noopener">heat-illness consensus</a>; American College of Veterinary Surgeons guidance on <a href="https://www.acvs.org/small-animal/gastric-dilatation-volvulus/" rel="noopener">gastric dilatation-volvulus</a> and <a href="https://www.acvs.org/small-animal/intervertebral-disc-disease/" rel="noopener">intervertebral disc disease</a>; Cornell University guidance on <a href="https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/health-info/laryngeal-paralysis" rel="noopener">laryngeal paralysis</a> and <a href="https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-information/winter-safety-tips" rel="noopener">cold-weather tolerance</a>; University of Minnesota research on <a href="https://vetmed.umn.edu/research/research-labs/canine-genetics-lab/canine-genetics-testing/dynamin-1-associated-exercise" rel="noopener">exercise-induced collapse</a> and <a href="https://vetmed.umn.edu/research/research-labs/canine-genetics-lab/canine-genetics-research/border-collie-collapse" rel="noopener">Border Collie collapse</a>; and UC Davis guidance on <a href="https://healthtopics.vetmed.ucdavis.edu/health-topics/foxtails" rel="noopener">grass awns</a>. Breed examples are prompts, not diagnoses or predictions of temperament.</p>
       <p class="safety-sources__caveat">This is general information, not a diagnosis or a substitute for veterinary care.</p>
     </div>
   </details>
@@ -238,6 +344,7 @@
 </footer>
 
 <script src="../mobile-nav.js?v=20260823-1"></script>
-<script src="../guide-navigation.js?v=20260717-2"></script>
+<script src="../guide-navigation.js?v=20260825-1"></script>
+<script src="../breed-group-guide.js?v=20260825-1"></script>
 </body>
 </html>

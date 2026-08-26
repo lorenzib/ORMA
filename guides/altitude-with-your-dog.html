@@ -37,11 +37,12 @@
   .alt-section{padding:23px 0;}
   .alt-vet-note{margin-top:10px;padding:13px 15px;border-radius:11px;background:var(--alt-green-soft);}
   .alt-vet-note p{margin:0;color:var(--alt-ink);font-size:.78rem;line-height:1.5;}
+  .alt-vet-note p+p{margin-top:9px;}
 
   .alt-plan{padding:25px 0 23px;}
-  .alt-plan-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:14px;}
+  .alt-plan-head{margin-bottom:14px;}
   .alt-plan-head h2{margin:0;font-size:clamp(27px,2.8vw,36px);line-height:1.06;letter-spacing:-.03em;}
-  .alt-plan-head p{max-width:500px;margin:0;color:var(--alt-soft);font-size:.8rem;line-height:1.5;text-align:right;}
+  .alt-plan-head p{max-width:500px;margin:6px 0 0;color:var(--alt-soft);font-size:.8rem;line-height:1.5;}
   .alt-plan-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;}
   .alt-plan-panel{padding:19px;border:1px solid var(--alt-line);border-radius:14px;background:var(--alt-card);}
   .alt-plan-panel>h3{margin:0 0 14px;font-size:1.18rem;}
@@ -77,12 +78,11 @@
   @media(max-width:560px){
     .alt-hero h1{font-size:30px;}
     .alt-subtitle{font-size:14px;line-height:1.48;}
-    .alt-plan-head{display:block;}
-    .alt-plan-head p{margin-top:6px;text-align:left;}
   }
 </style>
+<link rel="stylesheet" href="safety-guide-system.css?v=20260825-1">
 </head>
-<body data-hide-dog-profile-banner>
+<body class="safety-guide-article" data-hide-dog-profile-banner>
 
 <a class="dp-skip-link" href="#mainContent">Skip to main content</a>
 <div class="topnav">
@@ -112,7 +112,10 @@
         <h2 id="altWhyTitle">Why altitude feels harder</h2>
         <p>Higher altitude means less available oxygen. Rapid ascent plus exercise can increase breathing and circulation effort, or reveal a heart or respiratory problem that was subtle at home. Stop for a new cough, low stamina or abnormal breathing.</p>
       </div>
-      <div class="alt-vet-note alt-warning-note"><p><b>Ask your vet before travelling</b> if your dog has heart or lung disease, coughing, fainting, poor exercise tolerance or a previous problem at elevation. Be extra conservative with puppies, seniors and flat-faced dogs.</p></div>
+      <div class="alt-vet-note alt-warning-note">
+        <p><b>Ask your vet before travelling</b> if your dog has heart or lung disease, coughing, fainting, poor exercise tolerance or a previous problem at elevation. Be extra conservative with puppies, seniors and flat-faced dogs.</p>
+        <p><b>No human altitude medication</b><br>Never give human altitude or pain medication unless prescribed for your dog. Do not use medication to push through warning signs.</p>
+      </div>
     </section>
 
     <section class="alt-plan" id="first-day" aria-labelledby="altPlanTitle">
@@ -139,14 +142,9 @@
       </div>
     </section>
 
-    <aside class="alt-context-aside alt-medication alt-warning-note">
-      <h3>No human altitude medication</h3>
-      <p>Never give human altitude or pain medication unless prescribed for your dog. Do not use medication to push through warning signs.</p>
-    </aside>
-
     <nav class="safety-continue" aria-label="Continue in the Safety Library">
       <a class="safety-continue__next" href="heat-overheating.html"><span class="safety-continue__label">Next guide</span><strong>Heat and hydration</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
-      <a class="safety-continue__all" href="../safety-guide.html">All safety guides →</a>
+      <a class="safety-continue__find" data-safety-find-trail href="../?wizard=1" aria-label="Find your trail: add your dog"><span class="safety-continue__label">Find your trail</span><strong data-safety-find-copy>Add your dog</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
     </nav>
 
     <details class="safety-sources">
@@ -228,6 +226,6 @@
 </footer>
 
 <script src="../mobile-nav.js?v=20260823-2"></script>
-<script src="../guide-navigation.js?v=20260717-2"></script>
+<script src="../guide-navigation.js?v=20260825-1"></script>
 </body>
 </html>

@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Meeting a livestock guardian dog on trail, with your own dog | ORMA</title>
-<meta name="description" content="What to do when you and your dog meet a patou or pastore abruzzese guarding a herd in the Alps or Dolomites. The official protocol, the counterintuitive leash rule, and how to plan around pastures.">
+<title>Meeting a livestock guardian dog with your own dog | ORMA</title>
+<meta name="description" content="See the herd early, leash your dog, detour widely and know what to do if a livestock guardian dog approaches or direct conflict begins.">
 <link rel="canonical" href="https://www.app-orma.com/guides/livestock-guard-dogs.html">
 <meta name="theme-color" content="#2E4034">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Meeting a livestock guardian dog on trail, with your own dog">
-<meta property="og:description" content="The official protocol for patou and pastore abruzzese encounters when hiking with a dog, including the leash rule most people get wrong.">
+<meta property="og:title" content="Meeting a livestock guardian dog with your own dog">
+<meta property="og:description" content="A short decision guide for preventing contact, responding calmly and retreating safely around guarded herds.">
 <meta property="og:url" content="https://www.app-orma.com/guides/livestock-guard-dogs.html">
 <meta property="og:image" content="https://www.app-orma.com/images/editorial/safety-library/livestock-guardian-dogs-v1.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -22,16 +22,16 @@
 <link rel="stylesheet" href="../styles.css?v=20260825-2">
 <link rel="stylesheet" href="guide-scan-cards.css?v=20260825-1">
 <style>
-  .gp-body{max-width:760px;margin:0 auto;padding:10px 20px 60px;}
-  .gp-body h2{margin-top:34px;}
-  .gp-body h3{font-size:15.5px;margin:22px 0 8px;}
-  .gp-src{font-size:.85rem;color:var(--ink-soft);}
-  .gp-callout{background:var(--safety-info-soft);border-left:4px solid var(--safety-info);border-radius:8px;padding:14px 18px;margin:18px 0;}
-  .gp-warn{background:var(--safety-stop-soft);border-left:4px solid var(--safety-stop);border-radius:8px;padding:14px 18px;margin:18px 0;}
-  .gp-steps{counter-reset:step;list-style:none;padding:0;}
-  .gp-steps li{counter-increment:step;position:relative;padding:0 0 14px 44px;}
-  .gp-steps li::before{content:counter(step);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--ink);color:var(--card);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;}
+  .guardian-plan{margin-top:14px;}
+  .guardian-plan .scan-list{margin-top:10px;}
+  .guardian-prepare{margin-top:14px;padding:20px 22px;border:1px solid var(--paper-line);border-radius:15px;background:var(--card);}
+  .guardian-prepare h2{margin:0 0 9px;font-size:clamp(22px,2.3vw,29px);line-height:1.1;}
+  .guardian-prepare .scan-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
+  .guardian-cattle{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--paper-line);color:var(--scan-soft);font-size:.76rem;line-height:1.55;}
+  .guardian-cattle strong{color:var(--scan-ink);}
+  @media(max-width:680px){.guardian-prepare .scan-list{grid-template-columns:1fr;}}
 </style>
+<link rel="stylesheet" href="safety-guide-system.css?v=20260825-1">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -45,23 +45,18 @@
   {
    "@type": "Question",
    "name": "What should I do if a guardian dog approaches while I'm hiking with my dog?",
-   "acceptedAnswer": {"@type": "Answer", "text": "Stop, stay calm, keep your dog leashed and close, avoid staring at the guardian dog, do not shout or wave poles, and move around the herd rather than through it. If direct dog-to-dog contact becomes unavoidable, Explore Savoie advises releasing your dog rather than trapping it at your legs. If the guardian dog does not calm down, turn back."}
+   "acceptedAnswer": {"@type": "Answer", "text": "Stop and stay calm. Keep your dog leashed and close while you can still create distance, avoid staring, do not shout or raise poles, and move around the herd rather than through it. If actual dog-to-dog conflict begins, French national guidance says to release the lead rather than trapping your dog at your legs."}
   },
   {
    "@type": "Question",
    "name": "Should I keep my dog on a leash near alpine herds?",
-   "acceptedAnswer": {"@type": "Answer", "text": "Yes: through any pasture your dog should be leashed and kept close, both for the livestock's sake and because a loose dog is exactly what a guardian dog is trained to intercept. The one exception, per official guidance from Savoie, is the moment a guardian dog directly engages your dog: then release the leash rather than holding your dog trapped."}
-  },
-  {
-   "@type": "Question",
-   "name": "When and where are guardian dogs active in the Alps and Dolomites?",
-   "acceptedAnswer": {"@type": "Answer", "text": "During the summer grazing season, roughly June to September, on alpine pastures, exactly the meadows the most popular trails cross. They work day and night, alone or in groups, and are increasingly common as wolves return to the Alps."}
+   "acceptedAnswer": {"@type": "Answer", "text": "Yes. Leash early and keep your dog close around livestock and guardian dogs. Do not pick your dog up. Release the lead only if actual conflict with the guardian dog begins, then move away calmly."}
   }
  ]
 }
 </script>
 </head>
-<body>
+<body class="safety-guide-article">
 
 <div class="topnav">
   <a class="brand" href="/"><img src="../logo.svg" alt="">ORMA</a>
@@ -79,8 +74,8 @@
   <a class="safety-back-link" href="../safety-guide.html"><span class="safety-back-link__arrow" aria-hidden="true">←</span> Go back to Safety Library</a>
   <div class="eyebrow">Guides · Dog safety in the mountains</div>
   <h1 style="font-size:clamp(28px,5vw,38px);margin-top:14px;">Meeting a livestock guardian dog with your own dog</h1>
-  <p class="sub section-page-subtitle">Your safest encounter is the one you prevent: notice the herd early, leash before the pasture and create distance around it.</p>
-  <div class="scan-meta"><strong>3 min guide</strong></div>
+  <p class="sub section-page-subtitle">See the herd early, leash your dog and detour. Release the lead only if actual dog-to-dog conflict begins.</p>
+  <div class="scan-meta"><strong>2 min guide</strong></div>
 </div>
 
 <main class="gp-body scan-shell content-canvas" id="mainContent">
@@ -98,21 +93,21 @@
 
   <section class="scan-section" aria-labelledby="guardianDecisionTitle">
     <div class="scan-section-head">
-      <div><span class="scan-kicker">Use the card that matches the moment</span><h2 id="guardianDecisionTitle">Three decisions</h2></div>
-      <p>Move from prevention to retreat; do not try to “win” the encounter.</p>
+      <div><span class="scan-kicker">Use the moment</span><h2 id="guardianDecisionTitle">Three moves, in order</h2></div>
+      <p>Prevent contact first. Release the lead only if actual dog-to-dog conflict begins.</p>
     </div>
     <div class="scan-grid">
-      <article class="scan-card scan-card--green">
-        <span class="scan-card-label">You see the herd first</span><h3>Detour before contact</h3>
-        <ul class="scan-list"><li>Leash your dog and keep them close.</li><li>Go widely around the flock, not between animals.</li><li>If there is no safe space, turn back.</li></ul>
+      <article class="scan-card scan-step">
+        <span class="scan-step-number">01</span><div><span class="scan-card-label">You see the herd first</span><h3>Leash and detour</h3>
+        <p>Keep your dog close and go widely around the flock, never between animals. Turn back if there is no safe gap.</p></div>
       </article>
-      <article class="scan-card scan-card--amber">
-        <span class="scan-card-label">A guardian approaches</span><h3>Stop and become uninteresting</h3>
-        <ul class="scan-list"><li>Stay calm; stop or move very slowly.</li><li>Do not stare, shout, run or raise poles.</li><li>Speak quietly and let the dog assess from a distance.</li></ul>
+      <article class="scan-card scan-step">
+        <span class="scan-step-number">02</span><div><span class="scan-card-label">A guardian approaches</span><h3>Stop and become uninteresting</h3>
+        <p>Stay calm and still, or move very slowly. Avoid staring; keep poles down and let the dog assess you from a distance.</p></div>
       </article>
-      <article class="scan-card scan-card--blue">
-        <span class="scan-card-label">Direct dog-to-dog contact</span><h3>Do not trap your dog at your legs</h3>
-        <p>Keep the leash as the default while you can still create distance. If direct contact becomes unavoidable, Explore Savoie advises releasing your dog so they can communicate and retreat. Move away calmly and turn back if the guardian does not settle.</p>
+      <article class="scan-card scan-step">
+        <span class="scan-step-number">03</span><div><span class="scan-card-label">Actual dog-to-dog conflict</span><h3>Release the lead</h3>
+        <p>Leash is the default while distance is still possible. If conflict actually begins, French national guidance says to release the lead. Never pick your dog up; move away calmly and turn back.</p></div>
       </article>
     </div>
     <div class="scan-alert">
@@ -122,28 +117,20 @@
     </div>
   </section>
 
-  <section class="scan-section" aria-labelledby="pasturePlanTitle">
-    <div class="scan-section-head"><div><span class="scan-kicker">Before the trail</span><h2 id="pasturePlanTitle">Plan for the pasture</h2></div></div>
-    <div class="scan-grid">
-      <article class="scan-card"><h3>Prefer visible crossings</h3><p>Short pasture sections with room to detour give you time to see livestock and working dogs before they react.</p></article>
-      <article class="scan-card"><h3>Read recent reports</h3><p>Herds move. Check current trail reports and follow local signs even when an older report says the pasture was clear.</p></article>
-      <article class="scan-card"><h3>Leash at the first clue</h3><p>Clip on before the cattle grid, bells or animals—not after a guardian dog appears.</p></article>
-    </div>
+  <section class="guardian-prepare" aria-labelledby="pasturePlanTitle">
+    <span class="scan-kicker">Before the trail</span><h2 id="pasturePlanTitle">Make room to avoid the encounter</h2>
+    <ul class="scan-list"><li>Check local signs, current pastoral maps and recent trail reports.</li><li>Avoid the pasture if dogs are prohibited or no wide detour exists.</li><li>Leash at the first clue: bells, a cattle grid, livestock or a warning sign.</li></ul>
+    <p class="guardian-cattle"><strong>Cattle are different:</strong> give them—especially cows with calves—a wide berth. Keep your dog leashed, but release the lead if cattle chase you so you can reach safety separately.</p>
   </section>
-
-  <aside class="scan-alert">
-    <strong>Cattle are a separate hazard</strong>
-    <p>Give cattle—especially cows with calves—a wide berth and keep your dog leashed. If cattle chase or threaten you, official countryside guidance advises releasing the dog so you can reach safety separately. Follow local signs and avoid the field when a safer alternative exists.</p>
-  </aside>
   <nav class="safety-continue" aria-label="Continue in the Safety Library">
     <a class="safety-continue__next" href="breed-group-caveats.html"><span class="safety-continue__label">Next guide</span><strong>Breed-group considerations</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
-    <a class="safety-continue__all" href="../safety-guide.html">All safety guides →</a>
+    <a class="safety-continue__find" data-safety-find-trail href="../?wizard=1" aria-label="Find your trail: add your dog"><span class="safety-continue__label">Find your trail</span><strong data-safety-find-copy>Add your dog</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>
   </nav>
 
   <details class="safety-sources">
     <summary><span class="safety-sources__heading"><strong>Sources and medical references</strong><span>Last reviewed 25 August 2026</span></span></summary>
     <div class="safety-sources__body">
-      <p>Guardian-dog references: <a href="https://www.explore-savoie.com/en/responsible-destination/natural-nuggets-in-savoie/meet-a-mountain-dog/" rel="noopener">Explore Savoie: Meet a mountain dog</a> and <a href="https://www.valleedaulps.com/reagir-patou/" rel="noopener">Vallée d’Aulps: Comment réagir face à un patou?</a>. Cattle reference: <a href="https://www.gov.uk/government/news/new-law-comes-into-force-to-protect-farm-animals-from-dog-attacks" rel="noopener">UK Department for Environment, Food &amp; Rural Affairs countryside advice</a>. This is general guidance, not a guarantee of any animal’s behaviour. When in doubt, turn back. Sources checked 25 August 2026.</p>
+      <p>References checked 25 August 2026: <a href="https://parcsnationaux.fr/fr/des-decouvertes/visiter-et-semerveiller/la-reglementation-et-les-conseils/les-chiens-de-protection" rel="noopener">French National Parks guardian-dog guidance</a> and its <a href="https://www.parcsnationaux.fr/sites/parcsnationaux.fr/files/2024-07/dreal-depliant-3volets-450x210mm-FR.pdf" rel="noopener">official DREAL leaflet</a>, which says to keep a companion dog leashed but release the lead if actual conflict begins; <a href="https://www.valleedaulps.com/reagir-patou/" rel="noopener">Vallée d’Aulps current guidance</a>; and <a href="https://www.gov.uk/government/news/new-law-comes-into-force-to-protect-farm-animals-from-dog-attacks" rel="noopener">UK Department for Environment, Food &amp; Rural Affairs cattle advice</a>, which separately advises releasing the lead if cattle chase you. Local signs and restrictions override general guidance. Animal behaviour is never guaranteed.</p>
       <p class="safety-sources__caveat">This is general information, not a diagnosis or a substitute for veterinary care.</p>
     </div>
   </details>
@@ -218,6 +205,6 @@
 </footer>
 
 <script src="../mobile-nav.js?v=20260823-1"></script>
-<script src="../guide-navigation.js?v=20260717-2"></script>
+<script src="../guide-navigation.js?v=20260825-1"></script>
 </body>
 </html>

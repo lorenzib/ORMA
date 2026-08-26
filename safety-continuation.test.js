@@ -28,15 +28,19 @@ describe('Safety Library continuation component', () => {
 
     const block = blocks[0];
     const next = block.querySelector('.safety-continue__next');
-    const allGuides = block.querySelector('.safety-continue__all');
+    const findTrail = block.querySelector('.safety-continue__find');
     expect(block.tagName).toBe('NAV');
     expect(block.getAttribute('aria-label')).toBe('Continue in the Safety Library');
     expect(block.querySelectorAll('a')).toHaveLength(2);
     expect(next.querySelector('.safety-continue__label').textContent).toBe('Next guide');
     expect(next.getAttribute('href')).not.toBe(name);
-    expect(allGuides.getAttribute('href')).toBe('../safety-guide.html');
+    expect(block.querySelector('.safety-continue__all')).toBeNull();
+    expect(findTrail.getAttribute('href')).toBe('../?wizard=1');
+    expect(findTrail.hasAttribute('data-safety-find-trail')).toBe(true);
+    expect(findTrail.querySelector('.safety-continue__label').textContent).toBe('Find your trail');
+    expect(findTrail.querySelector('[data-safety-find-copy]').textContent).toBe('Add your dog');
     expect(block.querySelector('.safety-continue__cta')).toBeNull();
-    expect(block.textContent).not.toMatch(/Browse trails for your dog/);
+    expect(block.textContent).not.toMatch(/All safety guides/);
     expect(block.compareDocumentPosition(page.querySelector('footer')) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(page.querySelectorAll('.gp-cta')).toHaveLength(0);
   });
@@ -66,12 +70,46 @@ describe('Safety Library continuation component', () => {
 
   test('shared styles support desktop, compact and mobile layouts', () => {
     const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+    const systemCss = fs.readFileSync(path.join(__dirname, 'guides', 'safety-guide-system.css'), 'utf8');
     expect(css).toContain('.safety-continue{');
     expect(css).toContain('display:flex;');
     expect(css).toContain('.safety-continue__next{');
-    expect(css).toContain('.safety-continue__all{');
+    expect(systemCss).toContain('.safety-guide-article .safety-continue__find{');
+    expect(systemCss).toContain('background:var(--safety-info);');
     expect(css).toContain('@media(max-width:760px)');
     expect(css).toContain('@media(max-width:560px)');
     expect(css).toContain('.safety-sources{');
+  });
+
+  test('the find-trail action follows cached and live authentication state', () => {
+    const script = fs.readFileSync(path.join(__dirname, 'guide-navigation.js'), 'utf8');
+    document.body.innerHTML = '<a data-safety-find-trail href="../?wizard=1"><strong data-safety-find-copy>Add your dog</strong></a>';
+    localStorage.removeItem('dolopaws-profile-summary');
+    delete window.DoloPawsAuth;
+    window.eval(script);
+
+    const action = document.querySelector('[data-safety-find-trail]');
+    expect(action.getAttribute('href')).toBe('../?wizard=1');
+    expect(action.textContent).toBe('Add your dog');
+
+    window.dispatchEvent(new CustomEvent('dolopaws-auth-changed', { detail:{ user:{ uid:'member-1' } } }));
+    expect(action.getAttribute('href')).toBe('../browse-trails.html');
+    expect(action.textContent).toBe('Explore all matches');
+
+    window.dispatchEvent(new CustomEvent('dolopaws-auth-changed', { detail:{ user:null } }));
+    expect(action.getAttribute('href')).toBe('../?wizard=1');
+    expect(action.textContent).toBe('Add your dog');
+  });
+
+  test('a cached signed-in visitor sees all matches on first paint', () => {
+    const script = fs.readFileSync(path.join(__dirname, 'guide-navigation.js'), 'utf8');
+    document.body.innerHTML = '<a data-safety-find-trail href="../?wizard=1"><strong data-safety-find-copy>Add your dog</strong></a>';
+    localStorage.setItem('dolopaws-profile-summary', JSON.stringify({ uid:'member-2', hasProfile:false }));
+    delete window.DoloPawsAuth;
+    window.eval(script);
+
+    const action = document.querySelector('[data-safety-find-trail]');
+    expect(action.getAttribute('href')).toBe('../browse-trails.html');
+    expect(action.textContent).toBe('Explore all matches');
   });
 });
