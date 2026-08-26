@@ -25,7 +25,8 @@
 .sg-readiness-fab{position:relative;z-index:1;display:flex;align-items:center;gap:11px;flex:none;margin-top:3px;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:9px 17px 9px 9px;background:var(--success);color:var(--card);text-align:left;cursor:pointer;box-shadow:0 10px 24px rgba(28,52,38,.2);transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease;}
 .sg-readiness-fab:hover{transform:translateY(-2px);background:var(--safety-safe);box-shadow:0 18px 38px rgba(28,52,38,.32);}
 .sg-readiness-fab:focus-visible{outline:3px solid var(--safety-caution-soft);outline-offset:3px;}
-.sg-readiness-fab-icon{display:grid;place-items:center;width:38px;height:38px;flex:none;border-radius:50%;background:rgba(255,255,255,.17);font-size:18px;}
+.sg-readiness-fab-icon{display:grid;place-items:center;width:38px;height:38px;flex:none;overflow:hidden;border:3px solid var(--card);border-radius:50%;background:rgba(255,255,255,.17);font-size:18px;}
+.sg-readiness-fab-icon img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover;}
 .sg-readiness-fab-copy{display:flex;flex-direction:column;gap:1px;}
 .sg-readiness-fab small{color:rgba(255,255,255,.75);font:700 9px/1.2 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
 .sg-readiness-fab strong{color:var(--card);font:700 14px/1.25 'Bricolage Grotesque',sans-serif;}
@@ -36,11 +37,12 @@
 .sg-category-head h2{font-size:24px;line-height:1.1;}
 .sg-category-head p{margin:5px 0 0;color:var(--ink-soft);font-size:12px;line-height:1.35;}
 .sg-guide-list{display:flex;flex-direction:column;gap:10px;margin-top:12px;}
-.sg-guide-card{display:grid;grid-template-columns:112px minmax(0,1fr) auto;gap:13px;align-items:center;min-height:106px;padding:12px;border:1px solid var(--sg-tone-border);border-radius:14px;background:var(--sg-tone-soft);text-decoration:none;box-shadow:0 6px 18px -18px rgba(46,64,52,.35);transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease;}
+.sg-guide-card{display:grid;grid-template-columns:112px minmax(0,1fr) auto;gap:13px;align-items:center;min-height:106px;padding:12px;border:1px solid var(--sg-tone-border);border-radius:14px;background:var(--card);text-decoration:none;box-shadow:0 6px 18px -18px rgba(46,64,52,.35);transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease;}
 .sg-guide-card:hover{border-color:var(--sg-tone);box-shadow:0 14px 26px -18px rgba(46,64,52,.45);transform:translateY(-1px);}
 .sg-guide-card:hover .sg-guide-title{color:var(--sg-tone);}
 .sg-guide-card img{display:block;width:112px;height:78px;border:2px solid rgba(255,255,255,.75);border-radius:11px;object-fit:cover;background:var(--card);box-shadow:0 5px 12px -9px rgba(35,51,42,.55);image-rendering:auto;}
 .sg-guide-card img.sg-guide-image-cable-car{object-position:center 56%;}
+.sg-guide-card img.sg-guide-image-paw{object-position:center 72%;}
 .sg-guide-card-copy{min-width:0;}
 .sg-guide-card .cat{display:block;margin-bottom:4px;color:var(--sg-tone);font:800 9.5px/1.2 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
 .sg-guide-title{display:block;font:700 18px/1.16 'Bricolage Grotesque',sans-serif;color:var(--ink);transition:color .16s ease;}
@@ -167,7 +169,7 @@
         <div class="sg-category-head"><h2 id="trailHeading">On the trail</h2><p>Prevent the most common problems</p></div>
         <div class="sg-guide-list">
           <a class="sg-guide-card" href="guides/heat-overheating.html"><img src="images/editorial/safety-library/heat-hydration-waterfall-v1.jpg" alt="A small dog on a rocky forest stream bed with a waterfall behind" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Weather &amp; body</span><span class="sg-guide-title">Heat and hydration</span><p>Water planning and recognising overheating early.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
-          <a class="sg-guide-card" href="guides/paw-protection.html"><img src="images/editorial/safety-library/paw-protection-forest-v1.jpg" alt="A dog standing carefully on rocky forest terrain" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Terrain</span><span class="sg-guide-title">Paw protection</span><p>Rock, hot ground, snow and first aid.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
+          <a class="sg-guide-card" href="guides/paw-protection.html"><img class="sg-guide-image-paw" src="images/editorial/safety-library/paw-protection-mountain-dog-v2.jpg" alt="A harnessed dog standing on a rocky mountain trail below a Dolomite cirque" width="3024" height="4032" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Terrain</span><span class="sg-guide-title">Paw protection</span><p>Rock, hot ground, snow and first aid.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
           <a class="sg-guide-card" href="guides/alpine-plants-for-dogs.html"><img src="images/editorial/safety-library/flowers-plants-dogs.jpg" alt="Yellow alpine flowers growing beside a forest trail" width="1200" height="800" decoding="async"><span class="sg-guide-card-copy"><span class="cat">Plants</span><span class="sg-guide-title">Flowers, plants and dogs</span><p>What is safe to pass and dangerous to eat.</p></span><span class="sg-guide-arrow" aria-hidden="true">›</span></a>
         </div>
       </section>

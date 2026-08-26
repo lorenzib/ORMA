@@ -72,6 +72,8 @@ describe('Safety library', () => {
     expect(icon.getAttribute('src')).toBe('images/editorial/safety-library/inquisitive-dog-quiz-v1.png');
     expect(icon.getAttribute('alt')).toBe('');
     expect(html).toMatch(/\.sg-readiness-fab\{[^}]*background:var\(--success\)/s);
+    expect(html).toMatch(/\.sg-readiness-fab-icon\{[^}]*border:3px solid var\(--card\);[^}]*border-radius:50%/s);
+    expect(html).toMatch(/\.sg-readiness-fab-icon img\{[^}]*width:100%;[^}]*height:100%;[^}]*border-radius:50%;[^}]*object-fit:cover/s);
     expect(html).not.toMatch(/\.sg-readiness-fab\{[^}]*position:fixed/s);
     expect(document.querySelectorAll('#readinessQuiz .sg-question')).toHaveLength(5);
     expect(document.querySelector('#readinessQuizResult').getAttribute('aria-live')).toBe('polite');
@@ -88,7 +90,7 @@ describe('Safety library', () => {
       'images/editorial/safety-library/breed-group-considerations-dogs-v3.jpg',
       'images/editorial/safety-library/dogs-on-cable-cars-v5.jpg',
       'images/editorial/safety-library/heat-hydration-waterfall-v1.jpg',
-      'images/editorial/safety-library/paw-protection-forest-v1.jpg',
+      'images/editorial/safety-library/paw-protection-mountain-dog-v2.jpg',
       'images/editorial/safety-library/flowers-plants-dogs.jpg',
       'images/editorial/safety-library/livestock-guardian-dogs-v1.jpg',
       'images/editorial/safety-library/dogs-at-rifugi.jpg'
@@ -97,6 +99,10 @@ describe('Safety library', () => {
     expect(guideImages.every(image => image.hasAttribute('width') && image.hasAttribute('height'))).toBe(true);
     expect(guideImages.every(image => image.getAttribute('decoding') === 'async')).toBe(true);
     expect(guideImages.every(image => !image.hasAttribute('loading'))).toBe(true);
+    const pawImage = document.querySelector('a[href="guides/paw-protection.html"] img');
+    expect(pawImage.classList.contains('sg-guide-image-paw')).toBe(true);
+    expect(pawImage.getAttribute('alt')).toMatch(/dog.*mountain trail.*Dolomite/i);
+    expect(html).toContain('.sg-guide-card img.sg-guide-image-paw{object-position:center 72%;}');
     expect(document.body.textContent).toContain('Flowers, plants and dogs');
   });
 

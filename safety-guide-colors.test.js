@@ -73,7 +73,8 @@ describe('shared Safety Library colour system', () => {
     expect(libraryHtml).not.toContain('.sg-category[data-tone="caution"]');
     expect(libraryHtml).not.toContain('.sg-category[data-tone="safe"]');
     expect(libraryHtml).toContain('.sg-guide-card{');
-    expect(libraryHtml).toContain('background:var(--sg-tone-soft)');
+    expect(libraryHtml).toContain('background:var(--card)');
+    expect(libraryHtml).not.toContain('background:var(--sg-tone-soft)');
     expect(libraryHtml).toContain('border:1px solid var(--sg-tone-border)');
   });
 });
