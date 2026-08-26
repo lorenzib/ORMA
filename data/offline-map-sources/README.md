@@ -29,5 +29,19 @@ Regenerate the SVG:
 node scripts/render-offline-osm-map.js
 ```
 
+Build or refresh the routable walking graph for a trail whose OSM extract and
+`offline/packages/<trail-id>/route.geojson` are present, then publish browser
+coverage:
+
+```sh
+node scripts/build-offline-footpath-network.js <trail-id>
+npm run build:trail-routing
+```
+
+The graph builder excludes private/no pedestrian access, `foot=no`, `dog=no`,
+and demanding/alpine SAC scales. A generated graph is mapped routing evidence,
+not proof of a current opening; the product must keep its local-sign and
+temporary-closure warning.
+
 The output is a ORMA-designed Produced Work. The source data and output
 retain the required OpenStreetMap attribution.

@@ -3,6 +3,7 @@
 
   const DEFAULT_MAX_KM = 100;
   const TRAIL_JOIN_MAX_KM = 5;
+  const MAX_GPS_ACCURACY_M = 500;
 
   function finiteCoordinate(point){
     return point && Number.isFinite(point.lat) && Number.isFinite(point.lng);
@@ -44,6 +45,131 @@
       return { lat:point[0], lng:point[1] };
     }
     return finiteCoordinate(point) ? { lat:point.lat, lng:point.lng } : null;
+  }
+
+  function recommendedTrailAccess(trail){
+    if(!trail) return null;
+    const declared = finiteCoordinate(trail.startPoint) ? trail.startPoint : null;
+    const firstPathPoint = Array.isArray(trail.path) && trail.path.length
+      ? normalizeRoutePoint(trail.path[0])
+      : null;
+    const fallback = finiteCoordinate(trail) ? trail : firstPathPoint;
+    const point = declared || fallback;
+    if(!point) return null;
+    return {
+      point:{ lat:point.lat, lng:point.lng },
+      label:declared && declared.label
+        ? declared.label
+        : (trail.curated === false ? 'Mapped route start' : 'Recommended starting point'),
+      kind:trail.curated === false ? 'mapped-start' : 'recommended-start',
+    };
+  }
+
+  function bearing(first, second){
+    const rad = Math.PI / 180;
+    const lat1 = first.lat * rad;
+    const lat2 = second.lat * rad;
+    const deltaLng = (second.lng - first.lng) * rad;
+    const y = Math.sin(deltaLng) * Math.cos(lat2);
+    const x = Math.cos(lat1) * Math.sin(lat2) -
+      Math.sin(lat1) * Math.cos(lat2) * Math.cos(deltaLng);
+    return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+  }
+
+  function signedBearingChange(first, second){
+    return ((second - first + 540) % 360) - 180;
+  }
+
+  function routeInstructions(path){
+    if(!Array.isArray(path)) return [];
+    const points = path.map(normalizeRoutePoint).filter(Boolean);
+    if(points.length < 2) return [];
+    const segments = [];
+    for(let index = 0; index < points.length - 1; index += 1){
+      const distanceM = distanceKm(points[index], points[index + 1]) * 1000;
+      if(!Number.isFinite(distanceM) || distanceM < 1) continue;
+      segments.push({
+        distanceM,
+        bearing:bearing(points[index], points[index + 1]),
+      });
+    }
+    if(!segments.length) return [];
+
+    const steps = [];
+    let action = 'Follow the mapped path';
+    let heading = segments[0].bearing;
+    let distanceM = 0;
+    segments.forEach((segment, index) => {
+      const change = signedBearingChange(heading, segment.bearing);
+      if(index > 0 && Math.abs(change) >= 35){
+        steps.push({ action, distanceM:Math.round(distanceM) });
+        const side = change > 0 ? 'right' : 'left';
+        action = `${Math.abs(change) < 75 ? 'Bear' : 'Turn'} ${side}`;
+        distanceM = 0;
+      }
+      distanceM += segment.distanceM;
+      heading = segment.bearing;
+    });
+    if(distanceM > 0) steps.push({ action, distanceM:Math.round(distanceM) });
+    steps.push({ action:'Join the trail', distanceM:0 });
+    return steps;
+  }
+
+  async function planTrailEntry(navigatorLike, trail, graph, router, userAgent, options){
+    options = options || {};
+    const origin = await currentPosition(navigatorLike);
+    const accuracyM = Number(origin.accuracyM);
+    if(Number.isFinite(accuracyM) && accuracyM > MAX_GPS_ACCURACY_M){
+      return {
+        allowed:false,
+        mode:'unreliable-location',
+        origin,
+        accuracyM,
+        maxAccuracyM:MAX_GPS_ACCURACY_M,
+      };
+    }
+
+    const maxRouteDistanceM = Number.isFinite(options.maxRouteDistanceM)
+      ? options.maxRouteDistanceM
+      : TRAIL_JOIN_MAX_KM * 1000;
+    const maxSnapDistanceM = Number.isFinite(options.maxSnapDistanceM)
+      ? options.maxSnapDistanceM
+      : Math.min(120, Math.max(35, (Number.isFinite(accuracyM) ? accuracyM : 20) + 15));
+    if(graph && router && typeof router.routeToTrail === 'function'){
+      const mapped = router.routeToTrail(origin, graph, { maxRouteDistanceM, maxSnapDistanceM });
+      if(mapped){
+        return {
+          ...mapped,
+          allowed:true,
+          mode:'mapped-footpath',
+          origin,
+          accuracyM,
+          distanceKm:mapped.distanceM / 1000,
+          maxKm:maxRouteDistanceM / 1000,
+          instructions:routeInstructions(mapped.path),
+          url:null,
+        };
+      }
+    }
+
+    const access = recommendedTrailAccess(trail);
+    if(!access){
+      return { allowed:false, mode:'unavailable', origin, accuracyM };
+    }
+    const limitKm = Number.isFinite(options.maxFallbackDistanceKm)
+      ? options.maxFallbackDistanceKm
+      : TRAIL_JOIN_MAX_KM;
+    const fallback = assess(origin, access.point, limitKm);
+    return {
+      ...fallback,
+      mode:'recommended-start',
+      origin,
+      target:access.point,
+      targetLabel:access.label,
+      targetKind:access.kind,
+      accuracyM,
+      url:fallback.allowed ? directionsUrl(origin, access.point, userAgent, 'walking') : null,
+    };
   }
 
   // Find the closest point on the route polyline, not merely its closest
@@ -143,6 +269,7 @@
   root.DoloPawsTrailAccess = Object.freeze({
     DEFAULT_MAX_KM,
     TRAIL_JOIN_MAX_KM,
+    MAX_GPS_ACCURACY_M,
     assess,
     currentPosition,
     directionsUrl,
@@ -150,5 +277,8 @@
     nearestPointOnRoute,
     planFromCurrent,
     planToNearestRoute,
+    planTrailEntry,
+    recommendedTrailAccess,
+    routeInstructions,
   });
 })(typeof window !== 'undefined' ? window : globalThis);

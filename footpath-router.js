@@ -1,7 +1,7 @@
 (function(root){
   'use strict';
 
-  const VERSION = '1.0.0';
+  const VERSION = '1.1.0';
   const EARTH_RADIUS_M = 6371000;
 
   function validPoint(point){
@@ -48,11 +48,49 @@
        !Array.isArray(graph.edges) || !Array.isArray(graph.trailNodes)) return false;
     if(graph.nodes.length < 2 || graph.edges.length < 1 || graph.trailNodes.length < 1) return false;
     if(graph.nodes.some(node => !validPoint(pointFromNode(node)))) return false;
+    if(!graph.trailNodes.every(index => Number.isInteger(index) && index >= 0 && index < graph.nodes.length)) return false;
     return graph.edges.every(edge => Array.isArray(edge) && edge.length >= 3 &&
       Number.isInteger(edge[0]) && Number.isInteger(edge[1]) &&
       edge[0] >= 0 && edge[0] < graph.nodes.length &&
       edge[1] >= 0 && edge[1] < graph.nodes.length &&
       Number.isFinite(edge[2]) && edge[2] > 0);
+  }
+
+  class MinQueue {
+    constructor(){ this.items = []; }
+    get length(){ return this.items.length; }
+    push(item){
+      this.items.push(item);
+      let index = this.items.length - 1;
+      while(index > 0){
+        const parent = Math.floor((index - 1) / 2);
+        if(this.items[parent][0] <= item[0]) break;
+        this.items[index] = this.items[parent];
+        index = parent;
+      }
+      this.items[index] = item;
+    }
+    shift(){
+      if(!this.items.length) return null;
+      const first = this.items[0];
+      const last = this.items.pop();
+      if(this.items.length){
+        let index = 0;
+        while(true){
+          const left = index * 2 + 1;
+          const right = left + 1;
+          if(left >= this.items.length) break;
+          const child = right < this.items.length && this.items[right][0] < this.items[left][0]
+            ? right
+            : left;
+          if(this.items[child][0] >= last[0]) break;
+          this.items[index] = this.items[child];
+          index = child;
+        }
+        this.items[index] = last;
+      }
+      return first;
+    }
   }
 
   function nearestEdge(position, graph){
@@ -88,7 +126,7 @@
     const goals = new Set(graph.trailNodes);
     const distances = Array(graph.nodes.length).fill(Infinity);
     const previous = Array(graph.nodes.length).fill(-1);
-    const queue = [];
+    const queue = new MinQueue();
     const edgeLength = snapped.edge[2];
     const sourceCandidates = [
       [snapped.edge[0], edgeLength * snapped.fraction],
@@ -103,7 +141,6 @@
 
     let goal = -1;
     while(queue.length){
-      queue.sort((a, b) => a[0] - b[0]);
       const [distance, nodeIndex] = queue.shift();
       if(distance !== distances[nodeIndex]) continue;
       if(distance > maxRouteDistanceM) break;
@@ -138,6 +175,7 @@
       target:dedupedPath[dedupedPath.length - 1],
       distanceM:distances[goal],
       snapDistanceM:snapped.distanceM,
+      goalNode:goal,
       source:'openstreetmap',
     };
   }

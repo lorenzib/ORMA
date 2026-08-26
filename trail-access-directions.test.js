@@ -104,4 +104,90 @@ describe('trailhead access directions', () => {
     expect(plan.distanceKm).toBeGreaterThan(5);
     expect(plan.url).toBeNull();
   });
+
+  test('prioritises a connected mapped footpath route over geometric proximity', async () => {
+    const navigatorLike = {
+      geolocation:{
+        getCurrentPosition:success => success({
+          coords:{ latitude:46.00002, longitude:11.0001, accuracy:12 },
+        }),
+      },
+    };
+    const graph = {
+      schemaVersion:1,
+      nodes:[[11, 46], [11.001, 46], [11.002, 46]],
+      edges:[[0, 1, 77, 'footway'], [1, 2, 77, 'path']],
+      trailNodes:[2],
+    };
+    require('./footpath-router.js');
+    const plan = await access.planTrailEntry(
+      navigatorLike,
+      { id:'test', path:[[46, 11.002]], startPoint:{ lat:46, lng:11.002 } },
+      graph,
+      window.DoloPawsFootpathRouter,
+      'Android'
+    );
+    expect(plan.mode).toBe('mapped-footpath');
+    expect(plan.allowed).toBe(true);
+    expect(plan.path.length).toBeGreaterThan(2);
+    expect(plan.url).toBeNull();
+    expect(plan.instructions.at(-1).action).toBe('Join the trail');
+  });
+
+  test('falls back to the declared start without claiming an ORMA walking route', async () => {
+    const navigatorLike = {
+      geolocation:{
+        getCurrentPosition:success => success({
+          coords:{ latitude:46, longitude:11, accuracy:15 },
+        }),
+      },
+    };
+    const plan = await access.planTrailEntry(
+      navigatorLike,
+      {
+        curated:true,
+        path:[[46, 11.01]],
+        startPoint:{ lat:46, lng:11.01, label:'Recommended valley start' },
+      },
+      null,
+      null,
+      'Android'
+    );
+    expect(plan.mode).toBe('recommended-start');
+    expect(plan.targetLabel).toBe('Recommended valley start');
+    expect(plan.targetKind).toBe('recommended-start');
+    expect(plan.allowed).toBe(true);
+    expect(plan.url).toContain('travelmode=walking');
+  });
+
+  test('does not route from a GPS fix too weak to choose a safe path', async () => {
+    const navigatorLike = {
+      geolocation:{
+        getCurrentPosition:success => success({
+          coords:{ latitude:46, longitude:11, accuracy:650 },
+        }),
+      },
+    };
+    const plan = await access.planTrailEntry(
+      navigatorLike,
+      { path:[[46, 11.01]] },
+      null,
+      null,
+      'Android'
+    );
+    expect(plan.mode).toBe('unreliable-location');
+    expect(plan.allowed).toBe(false);
+    expect(plan.maxAccuracyM).toBe(500);
+  });
+
+  test('turns route geometry into compact on-map steps', () => {
+    const steps = access.routeInstructions([
+      { lat:46, lng:11 },
+      { lat:46, lng:11.001 },
+      { lat:45.999, lng:11.001 },
+    ]);
+    expect(steps[0].action).toBe('Follow the mapped path');
+    expect(steps.some(step => /left|right/.test(step.action))).toBe(true);
+    expect(steps.at(-1)).toEqual({ action:'Join the trail', distanceM:0 });
+  });
 });

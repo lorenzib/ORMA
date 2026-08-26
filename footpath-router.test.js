@@ -63,6 +63,7 @@ describe('HIKE-07 mapped footpath rejoin router', () => {
       trailNodes:[2],
     })).toBeNull();
     expect(router.validateGraph({})).toBe(false);
+    expect(router.validateGraph({ ...graph, trailNodes:[99] })).toBe(false);
   });
 
   test('Carezza package routes a known side footpath back to the stored trail', () => {

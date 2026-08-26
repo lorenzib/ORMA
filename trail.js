@@ -83,11 +83,18 @@ function formatApproachDistance(distanceKm){
 
 function initNearestTrailDirections(map, t){
   const button = document.getElementById('mapNearestDirectionsBtn');
+  const panel = document.getElementById('mapNearestDirectionsPanel');
   const status = document.getElementById('mapNearestDirectionsStatus');
-  if(!button || !status || !Array.isArray(t.path) || !t.path.length || !window.DoloPawsTrailAccess) return;
+  const stepsWrap = document.getElementById('mapNearestDirectionsStepsWrap');
+  const stepsList = document.getElementById('mapNearestDirectionsSteps');
+  if(!button || !panel || !status || !Array.isArray(t.path) || !t.path.length ||
+     !window.DoloPawsTrailAccess || !window.DoloPawsFootpathRouter) return;
 
-  const defaultLabel = 'Directions to nearest trail point';
+  const defaultLabel = 'Find a walking route';
+  const coverage = window.DoloPawsTrailRoutingCoverage;
+  const coverageEntry = coverage && coverage.trails ? coverage.trails[t.id] : null;
   let activePlan = null;
+  let graphPromise = null;
   let originMarker = null;
   let targetMarker = null;
   button.hidden = false;
@@ -105,7 +112,79 @@ function initNearestTrailDirections(map, t){
     return element;
   }
 
-  function showPlan(plan){
+  function setPanelMessage(message){
+    panel.hidden = !message;
+    status.textContent = message || '';
+  }
+
+  function clearSteps(){
+    if(stepsWrap) stepsWrap.hidden = true;
+    if(stepsList) stepsList.replaceChildren();
+  }
+
+  function renderSteps(instructions){
+    clearSteps();
+    if(!stepsWrap || !stepsList || !Array.isArray(instructions) || !instructions.length) return;
+    instructions.slice(0, 12).forEach(step => {
+      const item = document.createElement('li');
+      const distance = step.distanceM > 0
+        ? ` for ${formatApproachDistance(step.distanceM / 1000)}`
+        : '';
+      item.textContent = `${step.action}${distance}`;
+      stepsList.appendChild(item);
+    });
+    stepsWrap.hidden = false;
+  }
+
+  function loadRoutingGraph(){
+    if(!coverageEntry || !coverageEntry.graphUrl) return Promise.resolve(null);
+    if(!graphPromise){
+      graphPromise = fetch(coverageEntry.graphUrl, { credentials:'same-origin' })
+        .then(response => {
+          if(!response.ok) throw new Error(`routing-graph-${response.status}`);
+          return response.json();
+        })
+        .then(graph => window.DoloPawsFootpathRouter.validateGraph(graph) ? graph : null)
+        .catch(() => null);
+    }
+    return graphPromise;
+  }
+
+  function removeMappedRoute(){
+    if(!map.isStyleLoaded() || !map.getSource('trail-access-route')) return;
+    map.getSource('trail-access-route').setData({ type:'FeatureCollection', features:[] });
+  }
+
+  function drawMappedRoute(path){
+    if(!map.isStyleLoaded() || !Array.isArray(path) || path.length < 2) return;
+    const data = {
+      type:'Feature',
+      properties:{ mode:'mapped-footpath' },
+      geometry:{ type:'LineString', coordinates:path.map(point => [point.lng, point.lat]) },
+    };
+    const source = map.getSource('trail-access-route');
+    if(source){
+      source.setData(data);
+      return;
+    }
+    map.addSource('trail-access-route', { type:'geojson', data });
+    map.addLayer({
+      id:'trail-access-route-casing',
+      type:'line',
+      source:'trail-access-route',
+      layout:{ 'line-join':'round', 'line-cap':'round' },
+      paint:{ 'line-color':'#ffffff', 'line-width':8, 'line-opacity':0.92 },
+    });
+    map.addLayer({
+      id:'trail-access-route-line',
+      type:'line',
+      source:'trail-access-route',
+      layout:{ 'line-join':'round', 'line-cap':'round' },
+      paint:{ 'line-color':'#3E7A91', 'line-width':5, 'line-opacity':0.96 },
+    });
+  }
+
+  function showPlan(plan, mapped){
     if(originMarker) originMarker.remove();
     if(targetMarker) targetMarker.remove();
     originMarker = new maplibregl.Marker({ element:markerElement('you') })
@@ -116,7 +195,13 @@ function initNearestTrailDirections(map, t){
       .addTo(map);
     const bounds = new maplibregl.LngLatBounds();
     bounds.extend([plan.origin.lng, plan.origin.lat]);
-    bounds.extend([plan.target.lng, plan.target.lat]);
+    if(mapped && Array.isArray(plan.path)){
+      drawMappedRoute(plan.path);
+      plan.path.forEach(point => bounds.extend([point.lng, point.lat]));
+    } else {
+      removeMappedRoute();
+      bounds.extend([plan.target.lng, plan.target.lat]);
+    }
     map.fitBounds(bounds, { padding:70, maxZoom:16, duration:700 });
   }
 
@@ -128,29 +213,56 @@ function initNearestTrailDirections(map, t){
 
     button.disabled = true;
     button.setAttribute('aria-busy', 'true');
-    setButtonLabel('Finding nearest point…');
-    status.textContent = 'Checking your location against this trail…';
+    setButtonLabel('Finding a safe route…');
+    clearSteps();
+    setPanelMessage('Checking your location against mapped walking paths…');
     try{
-      const plan = await window.DoloPawsTrailAccess.planToNearestRoute(navigator, t.path, navigator.userAgent, 5);
-      if(Number.isFinite(plan.accuracyM) && plan.accuracyM > 500){
-        status.textContent = `Your location is only accurate to about ${Math.round(plan.accuracyM)} m. Move into a clearer area and try again.`;
+      const graph = await loadRoutingGraph();
+      const plan = await window.DoloPawsTrailAccess.planTrailEntry(
+        navigator,
+        t,
+        graph,
+        window.DoloPawsFootpathRouter,
+        navigator.userAgent,
+        { maxRouteDistanceM:5000, maxFallbackDistanceKm:5 }
+      );
+      if(plan.mode === 'unreliable-location'){
+        setPanelMessage(`Your location is only accurate to about ${Math.round(plan.accuracyM)} m. Move into a clearer area and try again.`);
         setButtonLabel('Try location again');
         return;
       }
-      if(!plan.allowed){
-        status.textContent = `The nearest trail point is ${formatApproachDistance(plan.distanceKm)} away. Directions are available when you are within 5 km of the trail.`;
+      if(plan.mode === 'mapped-footpath'){
+        activePlan = plan;
+        showPlan(plan, true);
+        renderSteps(plan.instructions);
+        const snapNote = plan.snapDistanceM > 20
+          ? ` Your GPS is about ${formatApproachDistance(plan.snapDistanceM / 1000)} from the mapped path.`
+          : '';
+        setPanelMessage(`Mapped footpath route · ${formatApproachDistance(plan.distanceKm)} to the trail.${snapNote} Check local signs and temporary closures.`);
+        setButtonLabel('Refresh walking route');
+        return;
+      }
+      if(plan.mode === 'recommended-start' && plan.allowed){
+        activePlan = plan;
+        showPlan(plan, false);
+        const startType = plan.targetKind === 'mapped-start' ? 'listed route start' : 'recommended start';
+        setPanelMessage(`ORMA does not yet have a connected footpath network here. The ${startType} is about ${formatApproachDistance(plan.distanceKm)} away as the crow flies; your maps app will calculate the actual walk.`);
+        setButtonLabel('Open directions to start');
+        return;
+      }
+      if(plan.mode === 'recommended-start'){
+        const startType = plan.targetKind === 'mapped-start' ? 'listed route start' : 'recommended start';
+        setPanelMessage(`The ${startType} is about ${formatApproachDistance(plan.distanceKm)} away. Walking directions are available when you are within 5 km.`);
         setButtonLabel('Try location again');
         return;
       }
-      activePlan = plan;
-      showPlan(plan);
-      status.textContent = `Nearest trail point: ${formatApproachDistance(plan.distanceKm)} away. Maps may suggest a longer walk—use public paths and follow local signs.`;
-      setButtonLabel('Open walking directions');
+      setPanelMessage('ORMA cannot identify a reliable access point for this trail yet. Use the recommended starting-point information below the map.');
+      setButtonLabel(defaultLabel);
     }catch(error){
       const denied = error && (error.code === 1 || error.message === 'geolocation-unavailable');
-      status.textContent = denied
+      setPanelMessage(denied
         ? 'Allow location access to find the nearest point on this trail.'
-        : 'We could not get a reliable location. Check your signal and try again.';
+        : 'We could not get a reliable location. Check your signal and try again.');
       setButtonLabel(defaultLabel);
     }finally{
       button.disabled = false;

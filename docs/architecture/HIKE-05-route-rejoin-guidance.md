@@ -3,6 +3,26 @@
 **Status:** Carezza and Alpe di Siusi mapped-footpath pilots implemented in
 code; physical-device validation and broader rollout remain open.
 
+## Pre-hike access routing
+
+The online trail map also exposes **Find a walking route** before hike mode.
+With a reliable GPS fix it first looks for a trail-specific packaged walking
+network and calculates the shortest connected route to a reachable trail node,
+up to five kilometres of network distance. The map draws that route and offers
+compact turn prompts derived from its geometry.
+
+When no packaged network can provide a connection, ORMA does not treat the
+geometrically closest coordinate as walkable. It instead offers the trail's
+declared recommended start (or mapped route start for an imported trail) as an
+explicit fallback in Apple Maps or Google Maps. The UI says that the external
+provider will calculate the actual walk and never labels that fallback as an
+ORMA route.
+
+`scripts/build-trail-routing-coverage.js` discovers every valid packaged graph
+and publishes `trail-routing-coverage.js`; the browser has no hardcoded trail
+allowlist. Adding a valid graph and rebuilding coverage therefore enables the
+same planner for another trail without a product-code change.
+
 ## Product behaviour
 
 A hiker with a usable GPS fix near, but not on, the route sees **Find closest
@@ -55,7 +75,8 @@ downloaded application. It:
 
 1. snaps the current fix only when it is sufficiently close to a mapped edge;
 2. uses the GPS accuracy to cap the permitted snap distance;
-3. calculates the lowest-cost connected graph route to any trail node;
+3. calculates the lowest-cost connected graph route to any trail node with a
+   priority queue that remains practical for larger trail corridors;
 4. returns the full path geometry, distance, and target; and
 5. returns `null` rather than inventing a connection.
 

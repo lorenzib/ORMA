@@ -50,14 +50,20 @@ describe('map browsing controls', () => {
     expect(blueprint).toContain('planFromCurrent(navigator, accessTarget, navigator.userAgent, 100)');
   });
 
-  test('the trail map offers walking directions to the nearest route point within 5 km', () => {
+  test('the trail map prefers a mapped footpath route and keeps the start-point fallback explicit', () => {
     const trail = source('trail.html');
     const detail = source('trail.js');
+    const coverage = source('trail-routing-coverage.js');
 
     expect(trail).toContain('id="mapNearestDirectionsBtn"');
     expect(trail).toContain('id="mapNearestDirectionsStatus"');
-    expect(detail).toContain('planToNearestRoute(navigator, t.path, navigator.userAgent, 5)');
-    expect(detail).toContain('Directions are available when you are within 5 km of the trail.');
+    expect(trail).toContain('id="mapNearestDirectionsSteps"');
+    expect(detail).toContain('planTrailEntry(');
+    expect(detail).toContain("mode === 'mapped-footpath'");
+    expect(detail).toContain('ORMA does not yet have a connected footpath network here.');
+    expect(detail).not.toContain('planToNearestRoute(navigator, t.path');
+    expect(coverage).toContain('offline/packages/alpe-siusi/footpath-network.json');
+    expect(coverage).toContain('offline/packages/lago-carezza/footpath-network.json');
   });
 
   test('the compare explainer sits in a plain white card', () => {
