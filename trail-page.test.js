@@ -158,12 +158,15 @@ describe('trail page map controls', () => {
     expect(html).toContain('i18n.js?v=20260819-5');
     expect(html).toContain('trail-photo-provenance.js?v=20260820-1');
     expect(html).toContain('trail-weather-window.js?v=20260820-1');
-    expect(html).toContain('trail.js?v=20260820-2');
+    expect(html).toContain('hike-mode.js?v=20260826-1');
+    expect(html).toContain('detail-pois.js?v=20260826-1');
+    expect(html).toContain('trail.js?v=20260826-1');
     expect(html).toContain('trail-reports.js?v=20260820-2');
     expect(html).toContain('trail-blueprint.js?v=20260820-4');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
     expect(html).toContain('offline-packages.js?v=20260819-6');
-    expect(html).toContain('trail-mobile.js?v=20260819-6');
+    expect(html).toContain('trail-detail-ui.js?v=20260826-1');
+    expect(html).toContain('trail-mobile.js?v=20260826-1');
   });
 
   test('has a visible provenance slot and loads photo provenance before photo renderers', () => {
@@ -419,5 +422,24 @@ describe('trail page map controls', () => {
     expect(hikeMode).toContain('rejoinBtn.hidden = false');
     expect(hikeMode).not.toContain('routeDistanceM > Math.max(15');
     expect(trail).toContain('if(!routeIsLoop)');
+  });
+
+  test('mobile map controls have dedicated zones and nearby POIs start visible', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+    const detailPois = fs.readFileSync(path.join(__dirname, 'detail-pois.js'), 'utf8');
+    const ui = fs.readFileSync(path.join(__dirname, 'trail-detail-ui.js'), 'utf8');
+    document.body.innerHTML = html;
+
+    expect(document.getElementById('mobileMapHikeSlot')).not.toBeNull();
+    expect(document.getElementById('fountainsToggle').getAttribute('aria-pressed')).toBe('true');
+    expect(document.getElementById('hutsToggle').getAttribute('aria-pressed')).toBe('true');
+    expect(document.getElementById('foodToggle').getAttribute('aria-pressed')).toBe('true');
+    expect(document.getElementById('placesToggle').getAttribute('aria-pressed')).toBe('true');
+    expect(trail).toContain('const poiStates = { fountains: true, huts: true, food: true, places: true }');
+    expect(trail).toContain("'raster-opacity': 0.68");
+    expect(detailPois).toContain("'text-field': ['coalesce', ['get', 'name'], '']");
+    expect(ui).toContain('mobileHikeSlot.appendChild(heroBtn)');
+    expect(html).toContain('.td2 #mapStartHikeBtn{display:none!important;}');
   });
 });

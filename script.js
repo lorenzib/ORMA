@@ -782,9 +782,9 @@ function initTrailMap(){
       filter: ['has', 'point_count'],
       paint: {
         'circle-color': '#2E4034',
-        'circle-radius': ['step', ['get', 'point_count'], 17, 10, 21, 30, 25],
-        'circle-stroke-width': 3,
-        'circle-stroke-color': 'rgba(255,255,255,.9)',
+        'circle-radius': ['step', ['get', 'point_count'], 20, 10, 24, 30, 28],
+        'circle-stroke-width': 3.5,
+        'circle-stroke-color': '#ffffff',
       },
     });
     trailMapInstance.addLayer({
@@ -794,9 +794,14 @@ function initTrailMap(){
       filter: ['has', 'point_count'],
       layout: {
         'text-field': ['get', 'point_count_abbreviated'],
-        'text-size': 12,
+        'text-font': ['Noto Sans Bold'],
+        'text-size': 14,
       },
-      paint: { 'text-color': '#fff' },
+      paint: {
+        'text-color': '#fff',
+        'text-halo-color': 'rgba(0,0,0,.28)',
+        'text-halo-width': 1,
+      },
     });
     // Pin colour = match tier for THIS dog (mirrors the on-map legend and
     // the % badges in the list); a red ring marks saved trails.

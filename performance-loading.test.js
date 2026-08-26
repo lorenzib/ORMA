@@ -34,7 +34,10 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(detail).toContain('whenVisible(detailMapTarget, initDetailMap');
     expect(detail).toContain('function publicLiftNote(note)');
     expect(detail).not.toContain("p.label ? '<br>' + p.label");
-    expect(detail).toContain('onIdle(loadSecondaryPois, 4500)');
+    // Trail-adjacent planning POIs are part of the primary map experience;
+    // defer briefly for map interactivity, but do not leave them absent for
+    // several seconds on a phone.
+    expect(detail).toContain('onIdle(loadSecondaryPois, 1400)');
     expect(detail).toContain("const liftsToggleBtn = document.getElementById('liftsToggle')");
     expect(detail.indexOf('renderAllLifts(map, { visible: liftsVisible });'))
       .toBeGreaterThan(detail.indexOf('const loadSecondaryPois = () =>'));
