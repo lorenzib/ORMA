@@ -269,7 +269,7 @@ reviewed and merged.
 The live trail-verification vertical includes Cartographer, Logistics,
 Regulatory Ranger, Terrain & POI, Evidence Librarian and Red Team execution,
 plus the verified-trail Copywriter and Visual Director revision loop. New Trail
-scouting, dynamic hazard monitoring, image coverage, Newsletter and Analyst
+scouting, dynamic hazard monitoring, trail-photo coverage, Newsletter and Analyst
 packets are separate team workflows with their own desks and human gates. Each
 hosted schedule remains independently controlled by its repository activation
 variable; the current production checklist is in [`RUNBOOK.md`](./RUNBOOK.md).
@@ -285,10 +285,18 @@ npm run backoffice:review
 ```
 
 The strategy cycle preserves unresolved work, keeps exactly three Editorial
-copy packets active, refreshes image coverage and New Trail candidates, and
-creates Newsletter and Analyst packets only when due. It prepares decisions;
+copy packets active, refreshes New Trail candidates, and creates Newsletter and
+Analyst packets only when due. The separate trail-photo agent audits every
+published trail and prioritises Dolomites gaps. These agents prepare decisions;
 it does not publish. The CEO dashboard links to the dedicated desks for each
 queue, while Social remains launch-gated.
+
+The trail-photo desk does not require Firebase Storage or another paid image
+bucket. A moderator upload is compressed in the browser to at most 560 KiB and
+stored temporarily as a private Firestore review document. After exact preview
+and rights approval, the worker writes the image into `images/trails/` in the
+publication pull request. GitHub becomes the permanent asset store and the
+temporary Firestore document is deleted only after deployment is confirmed.
 
 The hosted hazard workflow is inert unless it is started manually or the
 repository variable `ORMA_HAZARD_AUTOMATION_ENABLED` is set to `true`. A run

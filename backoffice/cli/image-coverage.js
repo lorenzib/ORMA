@@ -10,7 +10,7 @@ async function main(){
   const audit = await auditImageCoverage(root);
   const output = path.join(root, 'backoffice-data', 'image-coverage.json');
   await fs.writeFile(output, `${JSON.stringify(audit, null, 2)}\n`, 'utf8');
-  console.log(`[image-coverage] ${audit.summary.pagesScanned} guides scanned; ${audit.summary.missing} need imagery.`);
+  console.log(`[image-coverage] ${audit.summary.trailsScanned} published trails scanned; ${audit.summary.missing} need photos; ${audit.summary.dolomitesMissing} are in the Dolomites.`);
   console.log(`[image-coverage] ORMA library: ${audit.library.ormaAssetsScanned} images. Personal library connected: ${audit.library.personalLibraryConnected ? 'yes' : 'no'}.`);
   console.log('[image-coverage] Nothing was added to the public website.');
   console.log(`[image-coverage] Artifact: ${output}`);

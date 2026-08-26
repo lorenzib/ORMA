@@ -60,6 +60,7 @@ function initHikeMode(map, trail){
 
   const pauseBtn = document.createElement('button');
   pauseBtn.type = 'button';
+  pauseBtn.id = 'mapPauseHikeBtn';
   pauseBtn.textContent = hikeLabel('hike.pause', 'Pause');
   pauseBtn.hidden = true;
   pauseBtn.style.cssText = 'position:absolute;top:10px;left:132px;z-index:6;padding:9px 14px;border-radius:14px;background:#fff;color:var(--ink);border:1px solid rgba(46,64,52,.2);font-size:12.5px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2);';

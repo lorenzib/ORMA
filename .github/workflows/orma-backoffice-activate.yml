@@ -47,7 +47,7 @@ jobs:
 
       - run: npm ci
 
-      - name: Deploy private Firestore contracts
+      - name: Deploy private Firestore and photo-storage contracts
         run: npx --yes firebase-tools@15.26.0 deploy --only firestore:rules,firestore:indexes --project dolopaws --non-interactive
 
       - name: Seed current local review state

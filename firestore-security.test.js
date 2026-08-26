@@ -14,6 +14,19 @@ describe('SEC-01 Firestore configuration contract', () => {
       indexes: 'firestore.indexes.json',
     });
     expect(rules).toContain("rules_version = '2';");
+    expect(firebaseConfig.storage).toBeUndefined();
+  });
+
+  test('trail-photo uploads use a bounded private Firestore staging queue',()=>{
+    const uploadBlock=rules.slice(rules.indexOf('match /backofficeImageUploads'),rules.indexOf('match /backofficeNewsletterReviews'));
+    expect(uploadBlock).toContain('allow get: if isModerator();');
+    expect(uploadBlock).toContain('allow list: if false;');
+    expect(uploadBlock).toContain('request.resource.data.fileSize <= 573440');
+    expect(uploadBlock).toContain('request.resource.data.uploadData.size() <= 800000');
+    expect(uploadBlock).toContain("request.resource.data.mimeType in ['image/jpeg', 'image/png', 'image/webp']");
+    expect(uploadBlock).toContain('allow update: if false;');
+    expect(rules).toContain("'upload-owner-photo', 'approve-uploaded-photo', 'approve-image-candidate'");
+    expect(rules).toContain("request.resource.data.uploadRef.matches('^backofficeImageUploads/[A-Za-z0-9_-]+$')");
   });
 
   test('every client-side collection has an explicit rule boundary', () => {
@@ -36,6 +49,7 @@ describe('SEC-01 Firestore configuration contract', () => {
       'backofficeHazardReviews',
       'backofficeEditorialReviews',
       'backofficeImageReviews',
+      'backofficeImageUploads',
       'backofficeNewsletterReviews',
       'backofficeAnalystReviews',
     ];

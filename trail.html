@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20260823-1">
-<link rel="stylesheet" href="trail-mobile.css?v=20260815-4">
+<link rel="stylesheet" href="trail-mobile.css?v=20260826-1">
 <link rel="stylesheet" href="pre-hike-readiness.css?v=20260815-4">
 <style>
 /* ---- Companion reference tokens, trail detail (design-handoff fidelity) ---- */
@@ -485,6 +485,31 @@ body{background:#EFECE2;}
 .td2 .trail-map-box.map-fs:has(.td2-elev:not([hidden])) .td-layer-switch{bottom:132px;}
 .td2 .trail-map-box.map-fs .maplibregl-ctrl-top-right{top:calc(max(12px,env(safe-area-inset-top)) + 36px);right:env(safe-area-inset-right);}
 .td2 .trail-map-box.map-fs .map-expand-btn{top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));}
+.td2 .mobile-map-hike-slot{display:none;}
+
+@media(max-width:700px){
+  /* Four predictable mobile zones: utility controls at the top corners,
+     live state centred between them, map modes bottom-left and the hike
+     action bottom-right. No two controls share an anchor. */
+  .td2 .trail-map-box .map-btn{top:12px;left:12px;}
+  .td2 .trail-map-box .map-panel{top:56px;left:12px;max-width:calc(100% - 24px);}
+  .td2 .trail-map-box .td-live-pill{top:14px;left:50%;right:auto;transform:translateX(-50%);max-width:44%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .td2 .trail-map-box .maplibregl-ctrl-top-right{top:56px;right:0;}
+  .td2 .trail-map-box .td-layer-switch{left:12px;bottom:12px;gap:5px;}
+  .td2 .trail-map-box .td-layer-switch button{padding:8px 10px;}
+  .td2 .mobile-map-hike-slot{position:absolute;right:12px;bottom:12px;z-index:9;display:block;}
+  .td2 .mobile-map-hike-slot:empty{display:none;}
+  .td2 .mobile-map-hike-slot #heroStartHike{display:inline-flex;width:auto;min-width:126px;min-height:38px;align-items:center;justify-content:center;padding:9px 14px;border-radius:10px;background:#3E7A91;color:#fff;border:0;box-shadow:0 5px 16px rgba(23,42,28,.28);font:800 12.5px/1 'Inter',sans-serif;}
+  .td2 .mobile-map-hike-slot #heroStartHike.recording{background:#9C3A25;}
+  .td2 #mapStartHikeBtn{display:none!important;}
+  .td2 #mapPauseHikeBtn{top:56px!important;left:12px!important;}
+  .td2 #mapHikeStatus{bottom:60px!important;max-width:70%!important;padding:8px 12px!important;font-size:11px!important;line-height:1.35!important;}
+  .td2 #mapHikeRejoinBtn{bottom:112px!important;}
+  .td2 .trail-map-box.map-fs .td-live-pill{top:calc(max(14px,env(safe-area-inset-top)));}
+  .td2 .trail-map-box.map-fs .map-btn{top:max(12px,env(safe-area-inset-top));}
+  .td2 .trail-map-box.map-fs .map-panel{top:calc(max(12px,env(safe-area-inset-top)) + 44px);}
+  .td2 .trail-map-box.map-fs .mobile-map-hike-slot{right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));}
+}
 
 /* ---- Consistency pass: one visual language across the page ---- */
 /* Review stars: the same gold everywhere (hero, average, review rows). */
@@ -1016,14 +1041,15 @@ body.trail-photo-viewer-open{overflow:hidden;}
         <div id="detailLayersPanel" class="map-panel">
           <button id="routesToggle" type="button" class="map-chip on" aria-pressed="true">Trail routes</button>
           <button id="liftsToggle" type="button" class="map-chip" aria-pressed="false">Lift stations &amp; names</button>
-          <button id="fountainsToggle" type="button" class="map-chip" aria-pressed="false">Fountains</button>
-          <button id="hutsToggle" type="button" class="map-chip" aria-pressed="false">Mountain huts</button>
-          <button id="foodToggle" type="button" class="map-chip" aria-pressed="false">Food &amp; drink</button>
-          <button id="placesToggle" type="button" class="map-chip" aria-pressed="false">Other places</button>
+      <button id="fountainsToggle" type="button" class="map-chip on" aria-pressed="true">Fountains</button>
+      <button id="hutsToggle" type="button" class="map-chip on" aria-pressed="true">Mountain huts</button>
+      <button id="foodToggle" type="button" class="map-chip on" aria-pressed="true">Food &amp; drink</button>
+      <button id="placesToggle" type="button" class="map-chip on" aria-pressed="true">Other places</button>
           <button id="nearbyToggle" type="button" class="map-chip" aria-pressed="false" hidden>Nearby trails</button>
         </div>
         <span id="tdLivePill" class="td-live-pill" hidden><span class="dot"></span>You are here · live</span>
         <button id="mapExpandBtn" type="button" class="map-expand-btn" aria-label="Expand map" aria-expanded="false"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span></button>
+        <div id="mobileMapHikeSlot" class="mobile-map-hike-slot" aria-label="Hike controls"></div>
         <!-- One grouped switch, bottom-left: base style + 3D toggle -->
         <div class="td-layer-switch" id="tdLayerSwitch" role="group" aria-label="Map style">
           <button type="button" data-maplayer="map" class="on" aria-pressed="true">Map</button>
@@ -1234,15 +1260,15 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="hike-session.js?v=20260815-4" defer></script>
 <script src="hike-completions.js?v=20260815-4" defer></script>
 <script src="post-hike-outcomes.js?v=20260815-4" defer></script>
-<script src="hike-mode.js?v=20260815-4" defer></script>
-<script src="detail-pois.js?v=20260819-2" defer></script>
+<script src="hike-mode.js?v=20260826-1" defer></script>
+<script src="detail-pois.js?v=20260826-1" defer></script>
 <script src="trail-photo-provenance.js?v=20260820-1" defer></script>
 <script src="trail-weather-window.js?v=20260820-1" defer></script>
 <script src="trail-reports.js?v=20260820-2" defer></script>
-<script src="trail.js?v=20260820-2" defer></script>
+<script src="trail.js?v=20260826-1" defer></script>
 <script src="trail-blueprint.js?v=20260820-4" defer></script>
-<script src="trail-detail-ui.js?v=20260815-4" defer></script>
-<script src="trail-mobile.js?v=20260819-6" defer></script>
+<script src="trail-detail-ui.js?v=20260826-1" defer></script>
+<script src="trail-mobile.js?v=20260826-1" defer></script>
 <script src="recommendation-decision.js?v=20260815-4" defer></script>
 <script src="recommendation-guides.js?v=20260819-5" defer></script>
 <script src="trail-recommendation.js?v=20260819-6" defer></script>

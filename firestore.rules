@@ -908,25 +908,98 @@ service cloud.firestore {
       allow get, list: if isModerator();
       allow create: if isModerator()
         && request.resource.data.keys().hasOnly([
-          'contractVersion', 'type', 'status', 'slug', 'action', 'note',
-          'assetRef', 'submittedAt', 'submittedBy', 'publicMutationAllowed'
+          'contractVersion', 'type', 'status', 'slug', 'trailId', 'action', 'note',
+          'assetRef', 'uploadRef', 'fileName', 'mimeType', 'fileSize',
+          'width', 'height', 'creator', 'rightsBasis', 'altText',
+          'sourcePageUrl', 'license', 'licenseUrl', 'sourceType',
+          'submittedAt', 'submittedBy', 'publicMutationAllowed'
         ])
-        && request.resource.data.contractVersion == '1.0.0'
+        && request.resource.data.contractVersion == '2.1.0'
         && request.resource.data.type == 'image-coverage-review'
         && request.resource.data.status == 'queued'
         && isShortString(request.resource.data.slug, 180)
+        && isShortString(request.resource.data.trailId, 180)
         && request.resource.data.action in [
-          'use-orma-library', 'check-personal-library', 'find-licensed',
-          'generate-ai', 'park'
+          'use-orma-library', 'upload-owner-photo', 'approve-uploaded-photo', 'approve-image-candidate',
+          'find-licensed', 'generate-ai', 'park'
         ]
         && request.resource.data.note is string
         && request.resource.data.note.size() <= 1500
         && request.resource.data.assetRef is string
         && request.resource.data.assetRef.size() <= 1000
+        && request.resource.data.uploadRef is string
+        && request.resource.data.uploadRef.size() <= 1000
+        && request.resource.data.fileName is string
+        && request.resource.data.fileName.size() <= 240
+        && request.resource.data.mimeType is string
+        && request.resource.data.mimeType.size() <= 120
+        && request.resource.data.fileSize is number
+        && request.resource.data.fileSize >= 0
+        && request.resource.data.fileSize <= 573440
+        && request.resource.data.width is number
+        && request.resource.data.width >= 0
+        && request.resource.data.width <= 12000
+        && request.resource.data.height is number
+        && request.resource.data.height >= 0
+        && request.resource.data.height <= 12000
+        && request.resource.data.creator is string
+        && request.resource.data.creator.size() <= 160
+        && request.resource.data.rightsBasis in ['', 'orma-owned', 'permission-granted', 'licensed']
+        && request.resource.data.altText is string
+        && request.resource.data.altText.size() <= 500
+        && request.resource.data.sourcePageUrl is string
+        && request.resource.data.sourcePageUrl.size() <= 1000
+        && request.resource.data.license is string
+        && request.resource.data.license.size() <= 160
+        && request.resource.data.licenseUrl is string
+        && request.resource.data.licenseUrl.size() <= 1000
+        && request.resource.data.sourceType is string
+        && request.resource.data.sourceType.size() <= 80
+        && (
+          !(request.resource.data.action in ['upload-owner-photo', 'approve-uploaded-photo'])
+          || request.resource.data.uploadRef.matches('^backofficeImageUploads/[A-Za-z0-9_-]+$')
+        )
+        && (
+          request.resource.data.action != 'approve-image-candidate'
+          || request.resource.data.assetRef.matches('^(images/|https://).+')
+        )
         && request.resource.data.submittedAt == request.time
         && request.resource.data.submittedBy == request.auth.uid
         && request.resource.data.publicMutationAllowed == false;
       allow update, delete: if false;
+    }
+
+    match /backofficeImageUploads/{uploadId} {
+      allow get: if isModerator();
+      allow list: if false;
+      allow create: if isModerator()
+        && request.resource.data.keys().hasOnly([
+          'contractVersion', 'type', 'trailId', 'fileName', 'mimeType',
+          'fileSize', 'width', 'height', 'uploadData', 'uploadedAt',
+          'uploadedBy', 'publicMutationAllowed'
+        ])
+        && request.resource.data.contractVersion == '1.0.0'
+        && request.resource.data.type == 'trail-image-upload'
+        && isShortString(request.resource.data.trailId, 180)
+        && isShortString(request.resource.data.fileName, 240)
+        && request.resource.data.mimeType in ['image/jpeg', 'image/png', 'image/webp']
+        && request.resource.data.fileSize is number
+        && request.resource.data.fileSize > 0
+        && request.resource.data.fileSize <= 573440
+        && request.resource.data.width is number
+        && request.resource.data.width > 0
+        && request.resource.data.width <= 1600
+        && request.resource.data.height is number
+        && request.resource.data.height > 0
+        && request.resource.data.height <= 1600
+        && request.resource.data.uploadData is string
+        && request.resource.data.uploadData.size() <= 800000
+        && request.resource.data.uploadData.matches('^data:image/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$')
+        && request.resource.data.uploadedAt == request.time
+        && request.resource.data.uploadedBy == request.auth.uid
+        && request.resource.data.publicMutationAllowed == false;
+      allow update: if false;
+      allow delete: if isModerator() && resource.data.uploadedBy == request.auth.uid;
     }
 
     match /backofficeNewsletterReviews/{reviewId} {

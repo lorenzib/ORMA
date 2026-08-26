@@ -131,6 +131,19 @@ function initDetailPois(map, trail){
         visibility: 'none',
         'icon-image': icons ? icons.getPoiMapIconExpression(group) : '',
         'icon-size': 1,
+        'icon-padding': 4,
+        'text-field': ['coalesce', ['get', 'name'], ''],
+        'text-font': ['Noto Sans Regular'],
+        'text-size': 11,
+        'text-anchor': 'top',
+        'text-offset': [0, 1.25],
+        'text-max-width': 12,
+        'text-optional': true,
+      },
+      paint: {
+        'text-color': '#243128',
+        'text-halo-color': 'rgba(255,255,255,.96)',
+        'text-halo-width': 2,
       },
     });
     map.addLayer({

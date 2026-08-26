@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 const { applyVerifiedTrailOverrides } = require('./verified-trail-overrides');
+const { applyTrailImageOverrides } = require('./trail-image-overrides');
 
 const DEFAULT_FILES = [
   'trails-data.js',
@@ -33,7 +34,9 @@ function loadProductionTrails(root, files = DEFAULT_FILES){
   }
   const overridePath = path.join(root, 'data', 'verified-trail-overrides.json');
   const overrides = fs.existsSync(overridePath) ? JSON.parse(fs.readFileSync(overridePath, 'utf8')) : { trails:[] };
-  return applyVerifiedTrailOverrides(trails, overrides);
+  const imageOverridePath=path.join(root,'data','trail-image-overrides.json');
+  const imageOverrides=fs.existsSync(imageOverridePath)?JSON.parse(fs.readFileSync(imageOverridePath,'utf8')):{trails:[]};
+  return applyTrailImageOverrides(applyVerifiedTrailOverrides(trails, overrides),imageOverrides);
 }
 
 module.exports = {

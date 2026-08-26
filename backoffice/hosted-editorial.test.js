@@ -40,7 +40,33 @@ describe('hosted Editorial operations',()=>{
 
 describe('hosted image coverage routing',()=>{
   test('owned image route returns an actual preview candidate but does not place it',async()=>{
-    const audit={gaps:[{slug:'altitude',title:'Altitude',sourceRef:'guides/altitude.html',reasons:['Missing image'],libraryMatches:[{source:'orma-library',fileName:'mountain.jpg',sourceRef:'images/mountain.jpg'}]}]};const store=memoryStore({'image-coverage':audit});store.reviews.image.push({id:'image-1',slug:'altitude',action:'use-orma-library',assetRef:'images/mountain.jpg',note:'',submittedAt:at});await ingestImageReviews(store);const outcomes=await processImageJobs(store,{workerId:'worker'});
+    const audit={gaps:[{slug:'seceda',trailId:'seceda',title:'Seceda Ridge Trail',sourceRef:'trail.html?id=seceda',reasons:['Missing image'],libraryMatches:[{source:'orma-library',fileName:'mountain.jpg',sourceRef:'images/mountain.jpg'}]}]};const store=memoryStore({'image-coverage':audit});store.reviews.image.push({id:'image-1',slug:'seceda',trailId:'seceda',action:'use-orma-library',assetRef:'images/mountain.jpg',note:'',submittedAt:at});await ingestImageReviews(store);const outcomes=await processImageJobs(store,{workerId:'worker'});
     expect(outcomes[0].status).toBe('completed');expect(store.artifacts['image-coverage-results'].items[0].candidates[0]).toEqual(expect.objectContaining({assetUrl:'images/mountain.jpg',license:'ORMA-owned',status:'ready-for-asset-review'}));expect(store.artifacts['image-coverage-results'].items[0].publicMutationAllowed).toBe(false);
+  });
+
+  test('moderator upload returns a protected preview candidate',async()=>{
+    const audit={gaps:[{slug:'seceda',trailId:'seceda',title:'Seceda Ridge Trail',sourceRef:'trail.html?id=seceda',reasons:['Missing image'],libraryMatches:[]}]};
+    const store=memoryStore({'image-coverage':audit});store.reviews.image.push({id:'upload-1',slug:'seceda',trailId:'seceda',action:'upload-owner-photo',assetRef:'backofficeImageUploads/upload-asset-1',uploadRef:'backofficeImageUploads/upload-asset-1',fileName:'one.jpg',mimeType:'image/jpeg',fileSize:100,width:1200,height:800,creator:'Benedetta Lorenzi',rightsBasis:'orma-owned',altText:'Seceda ridge in summer',note:'',submittedAt:at});
+    await ingestImageReviews(store);await processImageJobs(store,{workerId:'worker'});
+    expect(store.artifacts['image-coverage-results'].items[0].candidates[0]).toEqual(expect.objectContaining({uploadRef:'backofficeImageUploads/upload-asset-1',creator:'Benedetta Lorenzi',status:'ready-for-asset-review'}));
+    expect(store.artifacts['trail-image-publication-requests']).toBeUndefined();
+  });
+
+  test('exact uploaded preview approval creates a human-gated publication request',async()=>{
+    const candidate={title:'one.jpg',uploadRef:'backofficeImageUploads/upload-asset-1',creator:'Benedetta Lorenzi',license:'ORMA-owned',altText:'Seceda ridge in summer',status:'ready-for-asset-review',mimeType:'image/jpeg',fileSize:100,width:1200,height:800};
+    const audit={gaps:[{slug:'seceda',trailId:'seceda',title:'Seceda Ridge Trail',sourceRef:'trail.html?id=seceda',reasons:['Missing image'],libraryMatches:[]}]};
+    const store=memoryStore({'image-coverage':audit,'image-coverage-results':{items:[{slug:'seceda',generatedAt:at,summary:'Ready',candidates:[candidate]}]}});
+    store.reviews.image.push({id:'approval-1',slug:'seceda',trailId:'seceda',action:'approve-uploaded-photo',assetRef:candidate.uploadRef,uploadRef:candidate.uploadRef,fileName:candidate.title,mimeType:candidate.mimeType,fileSize:100,width:1200,height:800,creator:candidate.creator,rightsBasis:'orma-owned',altText:candidate.altText,note:'Approved',submittedAt:at});
+    await ingestImageReviews(store);await processImageJobs(store,{workerId:'worker'});
+    expect(store.artifacts['trail-image-publication-requests'].requests[0]).toEqual(expect.objectContaining({id:'approval-1',trailId:'seceda',uploadRef:candidate.uploadRef,status:'approved-for-pr-creation',publicMutationAllowed:false}));
+  });
+
+  test('an exact licensed candidate can use the same publication lane',async()=>{
+    const assetUrl='https://upload.wikimedia.org/example/seceda.jpg';const candidate={title:'Seceda',assetUrl,sourcePageUrl:'https://commons.wikimedia.org/wiki/File:Seceda.jpg',creator:'Example photographer',license:'CC BY-SA 4.0',licenseUrl:'https://creativecommons.org/licenses/by-sa/4.0/',altText:'Seceda ridge',status:'ready-for-asset-review'};
+    const audit={gaps:[{slug:'seceda',trailId:'seceda',title:'Seceda Ridge Trail',sourceRef:'trail.html?id=seceda',reasons:['Missing image'],libraryMatches:[]}]};
+    const store=memoryStore({'image-coverage':audit,'image-coverage-results':{items:[{slug:'seceda',generatedAt:at,summary:'Licensed candidate',candidates:[candidate]}]}});
+    store.reviews.image.push({id:'approval-licensed',slug:'seceda',trailId:'seceda',action:'approve-image-candidate',assetRef:assetUrl,creator:candidate.creator,rightsBasis:'licensed',license:candidate.license,licenseUrl:candidate.licenseUrl,sourcePageUrl:candidate.sourcePageUrl,sourceType:'licensed-source',altText:candidate.altText,note:'Approved',submittedAt:at});
+    await ingestImageReviews(store);await processImageJobs(store,{workerId:'worker'});
+    expect(store.artifacts['trail-image-publication-requests'].requests[0]).toEqual(expect.objectContaining({id:'approval-licensed',assetRef:assetUrl,license:'CC BY-SA 4.0',sourceType:'licensed-source',status:'approved-for-pr-creation'}));
   });
 });

@@ -5,7 +5,7 @@
   function node(tag,className,text){const element=document.createElement(tag);if(className)element.className=className;if(text!==undefined)element.textContent=text;return element;}
   function setState(text,error=false){const el=document.getElementById('imageCoverageState');el.textContent=text;el.className=`bo-state${error?' is-error':''}`;}
   function decisionFor(slug){return (review.decisions||[]).find(item=>item.slug===slug);}
-  function actionLabel(action){return ({'use-orma-library':'Use ORMA image','check-personal-library':'Check my photo library','find-licensed':'Find licensed image','generate-ai':'Create AI option','park':'Park'})[action]||action;}
+  function actionLabel(action){return ({'use-orma-library':'Review ORMA image','find-licensed':'Find licensed image','generate-ai':'Prepare AI option','park':'Park'})[action]||action;}
 
   async function decide(gap,action,note,assetSelect,button){
     button.disabled=true;setState('Saving the image brief…');
@@ -37,43 +37,35 @@
     const page=node('a','bo-source-pill','Open current page ↗');page.href=gap.sourceRef;page.target='_blank';top.append(copy,page);article.append(top);
     const reasons=node('ul','bo-image-reasons');gap.reasons.forEach(reason=>reasons.append(node('li','',reason)));article.append(reasons);
     const candidates=libraryCandidates(gap);if(candidates)article.append(candidates.wrap);
-    else article.append(node('p','bo-no-match','No likely filename match was found in the ORMA repository. Check your personal photo library before commissioning another source.'));
-    const personalMatches=gap.libraryMatches.filter(match=>match.source==='personal-library');
-    if(personalMatches.length)article.append(node('p','bo-personal-matches',`Possible personal-library matches: ${personalMatches.map(match=>match.fileName).join(', ')}`));
+    else article.append(node('p','bo-no-match','No likely filename match was found in the ORMA repository. Use the protected hosted desk to upload your own photograph, or request another source.'));
     const controls=node('div','bo-idea-controls');const note=node('textarea');note.placeholder='Optional: location, shoot, folder, dog, framing or other direction…';note.value=decision?.note||'';controls.append(note);
     const actions=node('div','bo-actions');const choices=[
       ...(candidates?[['use-orma-library','Use selected ORMA image']]:[]),
-      ['check-personal-library','Check my photo library'],['find-licensed','Find licensed image'],['generate-ai','Create AI option'],['park','Park'],
+      ['find-licensed','Find licensed image'],['generate-ai','Prepare AI option'],['park','Park'],
     ];
     choices.forEach(([action,label])=>{const button=node('button',decision?.action===action?'is-selected':'',label);button.dataset.action=action;button.addEventListener('click',()=>decide(gap,action,note.value,candidates?.select,button));actions.append(button);});
     controls.append(actions,node('small','bo-decision',decision?`Saved ${new Date(decision.reviewedAt).toLocaleString()} · ${actionLabel(decision.action)}`:'Awaiting your source decision.'));article.append(controls);return article;
   }
 
   function render(){
-    document.getElementById('imagePagesScanned').textContent=String(audit.summary.pagesScanned);
+    document.getElementById('imagePagesScanned').textContent=String(audit.summary.trailsScanned||audit.summary.pagesScanned);
     document.getElementById('imageMissingCount').textContent=String(audit.summary.missing);
     document.getElementById('imageCoveredCount').textContent=String(audit.summary.covered);
     document.getElementById('imageJobsCount').textContent=String((review.jobs||[]).filter(job=>job.status==='queued').length);
-    document.getElementById('imageLibraryStatus').textContent=`ORMA repository: ${audit.library.ormaAssetsScanned} images scanned. Personal photo library: ${audit.library.personalLibraryConnected?`${audit.library.personalAssetsScanned} images connected`:'not connected to the background service yet'}.`;
+    document.getElementById('imageLibraryStatus').textContent=`ORMA repository: ${audit.library.ormaAssetsScanned} images scanned. Upload your own photograph from the protected hosted backoffice.`;
     const grid=document.getElementById('imageGapGrid');grid.replaceChildren(...audit.gaps.map(card));
   }
 
   async function load(){
     [audit,review]=await Promise.all([json('backoffice-data/image-coverage.json',null),json('backoffice-data/image-coverage-review.json',{decisions:[],jobs:[]})]);
     if(!audit){setState('No image coverage scan is available yet. Select “Scan website now”.',true);return;}
-    render();setState(`Coverage scanned ${new Date(audit.generatedAt).toLocaleString()} · ${audit.summary.missing} gaps are ready for routing.`);
+    render();setState(`Coverage scanned ${new Date(audit.generatedAt).toLocaleString()} · ${audit.summary.missing} trail-photo gaps are ready for routing.`);
   }
 
   document.getElementById('scanImageCoverage').addEventListener('click',async event=>{
-    event.currentTarget.disabled=true;setState('Scanning guide pages and owned image indexes…');
+    event.currentTarget.disabled=true;setState('Scanning published trails and owned image indexes…');
     try{const response=await fetch('/api/image-coverage/scan',{method:'POST'});const result=await response.json();if(!response.ok)throw new Error(result.error||'Scan failed');audit=result.audit;render();setState(`Fresh scan complete · ${audit.summary.missing} gaps found.`);}
     catch(error){setState(`Could not scan: ${error.message}`,true);}finally{event.currentTarget.disabled=false;}
-  });
-  document.getElementById('connectPhotoLibrary').addEventListener('click',async event=>{
-    const folderPath=document.getElementById('photoLibraryPath').value.trim();if(!folderPath){setState('Enter the local folder that contains your photography.',true);return;}
-    event.currentTarget.disabled=true;setState('Indexing your personal photo folder locally…');
-    try{const response=await fetch('/api/image-coverage/library',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({folderPath})});const result=await response.json();if(!response.ok)throw new Error(result.error||'Could not connect library');audit=result.audit;render();setState(result.message);}
-    catch(error){setState(`Could not connect the folder: ${error.message}`,true);}finally{event.currentTarget.disabled=false;}
   });
   load();
 })();

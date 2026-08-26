@@ -69,6 +69,8 @@
     if(status==='blocked')return 'ORMA automation could not complete this handoff; it needs attention.';
     if(status==='publication-failed')return `Publication stopped at ${(item.failureStage||'automation').replace(/-/g,' ')}. Your approval is retained and the failure receipt is linked.${item.retryMode==='manual'?' Automatic retries are paused until the external setting is corrected and a forced manual run is started.':item.retryAfter?` Automatic retry paused until ${new Date(item.retryAfter).toLocaleString()}.`:''}`;
     if(status==='pull-request-opened')return 'The tested website diff is ready for your final GitHub review.';
+    if(status==='awaiting-pr-merge')return 'The tested trail-photo diff is ready for your final GitHub review.';
+    if(status==='pr-materialized')return 'The approved trail photo has been materialized and the publishing worker is preparing its pull request.';
     if(status==='published')return `Published on the ORMA website from commit ${String(item.publicationCommit||'unknown').slice(0,7)}. The successful deployment receipt and live trail link are saved.`;
     if(status==='approved-for-pr-creation')return 'Approval consumed. ORMA automation is preparing the website pull request.';
     if(item.stream==='dossier'&&item.action==='request-revision')return 'Revision handed to the selected trail specialist.';
@@ -100,7 +102,8 @@
     const newTrailScouting=input.newTrailScouting||{candidates:[],summary:{}};const newTrailReviews=input.newTrailReviews||[];const newTrailStatus=input.newTrailStatus||{};
     const hazards=input.hazards||{hazards:[]};const hazardQueue=input.hazardQueue||{items:[]};const hazardReviews=input.hazardReviews||[];const hazardStatus=input.hazardStatus||{};
     const editorialPackets=(input.editorialPackets||[]).filter(packet=>!isPausedSafetyPacket(packet));const editorialReviews=input.editorialReviews||[];const editorialReceipts=input.editorialReceipts||{receipts:[]};const strategyStatus=input.strategyStatus||{};
-    const imageAudit=input.imageAudit||{gaps:[],summary:{}};const imageReviews=input.imageReviews||[];
+    const imageAudit=input.imageAudit||{gaps:[],summary:{}};const imageReviews=input.imageReviews||[];const imageResults=input.imageResults||{items:[]};
+    const imagePublicationRequests=input.imagePublicationRequests||{requests:[]};const imageStatus=input.imageStatus||{};
     const newsletterPacket=input.newsletterPacket||null;const newsletterReviews=input.newsletterReviews||[];const approvedNewsletters=input.approvedNewsletters||{issues:[]};
     const productIdeas=input.productIdeas||{ideas:[]};const analystReviews=input.analystReviews||[];const productInvestigations=input.productInvestigations||{items:[]};const productDesigns=input.productDesigns||{items:[]};
     const history=input.history||[];const allJobs=input.jobs||[];const timing=input.nowMs==null?{}:{nowMs:input.nowMs};const workerHealth=deriveWorkerHealth(input.workerHealth,timing);const campaignHealth=deriveCampaignHealth(input.campaignHealth,timing);
@@ -147,9 +150,13 @@
     const hazardHandoffs=hazardReviews.filter(review=>review.status==='queued').length;
     const latestEditorialReviews=new Map();for(const review of editorialReviews){const key=`${review.packetGeneratedAt}:${review.sourceRef}`;const current=latestEditorialReviews.get(key);if(!current||dateMs(review.processedAt||review.submittedAt)>=dateMs(current.processedAt||current.submittedAt))latestEditorialReviews.set(key,review);}
     const editorialItems=editorialPackets.filter(packet=>{const review=latestEditorialReviews.get(`${packet.generatedAt}:${packet.subject?.sourceRef}`);return !review||['blocked','superseded'].includes(review.status);});
-    const latestImageReviews=latestReviewBy(imageReviews,'slug');const imageItems=(imageAudit.gaps||[]).filter(gap=>{const review=latestImageReviews.get(gap.slug);return !review||['blocked','superseded'].includes(review.status);});
+    const latestImageReviews=latestReviewBy(imageReviews,'slug');const imageResultBySlug=new Map((imageResults.items||[]).map(item=>[item.slug,item]));
+    const imageRequestByTrail=new Map((imagePublicationRequests.requests||[]).map(item=>[item.trailId,item]));
+    const imageItems=(imageAudit.gaps||[]).filter(gap=>{const review=latestImageReviews.get(gap.slug);const result=imageResultBySlug.get(gap.slug);const request=imageRequestByTrail.get(gap.trailId||gap.slug);
+      const previewReady=(result?.candidates||[]).some(candidate=>candidate.status==='ready-for-asset-review');return !request&&(!review||['blocked','superseded'].includes(review.status)||previewReady);});
     const editorialHandoffs=editorialReviews.filter(review=>['queued','processing'].includes(review.status)).length;
-    const imageHandoffs=imageReviews.filter(review=>['queued','processing'].includes(review.status)).length;
+    const imageHandoffs=imageReviews.filter(review=>['queued','processing'].includes(review.status)).length+(imagePublicationRequests.requests||[]).filter(request=>['approved-for-pr-creation','pr-materialized'].includes(request.status)).length;
+    const imagePrItems=(imagePublicationRequests.requests||[]).filter(request=>request.status==='awaiting-pr-merge'&&request.publicationPrUrl);
     const latestNewsletter=(newsletterReviews||[]).filter(review=>review.packetGeneratedAt===newsletterPacket?.generatedAt).sort((a,b)=>dateMs(b.processedAt||b.submittedAt)-dateMs(a.processedAt||a.submittedAt))[0];
     const newsletterItem=!newsletterParked&&newsletterPacket&&(newsletterPacket.outputs||[]).some(output=>output.status==='ready-for-review')&&(!latestNewsletter||['blocked','superseded'].includes(latestNewsletter.status))?newsletterPacket:null;
     const analystIdeaReviews=latestReviewBy((analystReviews||[]).filter(review=>(review.subjectType||'idea')==='idea'),'ideaId');
@@ -185,10 +192,13 @@
       description:'ORMA automation generated and tested the website change. This pull request is the final public-mutation gate.',
       next:'After you merge: the normal website deployment publishes the approved trail change.',href:request.pullRequestUrl,actionLabel:'Review GitHub PR',external:true,
     });
+    for(const request of imagePrItems)decisions.push({id:`image-pr-${request.id}`,kind:'pull-request',stage:'Trail photos · Final website diff',title:request.title||request.trailId,
+      description:'The approved trail photo and its rights metadata are in a tested website pull request.',next:'After you merge, the normal website deployment adds the photo to the trail.',
+      href:request.publicationPrUrl,actionLabel:'Review photo PR',external:true});
     if(newTrailItems.length)decisions.push({id:'new-trail-selection',kind:'new-trail',stage:'New Trails · Candidate selection',title:`${plural(newTrailItems.length,'candidate')} ready`,description:'Ranked loop candidates are waiting for selection, parking or rejection.',next:'A selected candidate enters Cartographer verification under the shared 15-trail capacity; it is not published.',href:'new-trail-scouting-desk.html',actionLabel:'Review New Trails'});
     if(hazardItems.length)decisions.push({id:'hazard-resolution',kind:'hazard',stage:'Existing Trails · Groundskeeper',title:`${plural(hazardItems.length,'warning')} awaiting removal review`,description:'An authoritative warning expired, but ORMA has retained it until you confirm removal.',next:'Your decision updates the protected warning state. The public website remains unchanged until its release integration is approved.',href:'hazard-review-desk.html',actionLabel:'Review warnings'});
     if(editorialItems.length)decisions.push({id:'editorial-copy',kind:'editorial',stage:'Editorial · Guide copy',title:`${plural(editorialItems.length,'copy packet')} ready`,description:'Compare current and proposed guide copy, edit it directly, then publish or request one revision.',next:'Approval validates and commits only the reviewed guide. A revision returns to the same desk.',href:'editorial-desk.html',actionLabel:'Review copy'});
-    if(imageItems.length)decisions.push({id:'editorial-images',kind:'image',stage:'Editorial · Image coverage',title:`${plural(imageItems.length,'visual gap')} needs routing`,description:'Choose owned photography, licensed sourcing, an AI brief or park the gap.',next:'The Visual Director returns actual candidates for a separate visual and rights gate; nothing is placed now.',href:'image-coverage-desk.html',actionLabel:'Review image gaps'});
+    if(imageItems.length)decisions.push({id:'editorial-images',kind:'image',stage:'Editorial · Trail photos',title:`${plural(imageItems.length,'trail photo')} needs routing`,description:'Upload your photo, choose an owned asset, request licensed sourcing or explicitly prepare an AI option.',next:'The Visual Director returns the exact asset for visual and rights approval before any publishing PR.',href:'image-coverage-desk.html',actionLabel:'Review trail photos'});
     if(newsletterItem)decisions.push({id:'newsletter-issue',kind:'newsletter',stage:'Newsletter · Complete issue',title:newsletterItem.outputs?.find(output=>output.status==='ready-for-review')?.result?.issueTitle||'One issue ready',description:'Review the complete reader-facing issue, subject options and source links.',next:'Approval hands it to launch-gated Social and any future sending integration. No email is sent automatically.',href:'newsletter-desk.html',actionLabel:'Review issue'});
     if(analystIdeaItems.length)decisions.push({id:'analyst-opportunities',kind:'analyst',stage:'Analyst · Evidence and opportunity',title:`${plural(analystIdeaItems.length,'opportunity')} needs direction`,description:'Review source-linked evidence separately from ORMA inference, then investigate, send to Designer, park or dismiss.',next:'Only “Send to Designer” authorises a mock-up. No implementation starts.',href:'product-ideas-desk.html',actionLabel:'Review opportunities'});
     if(analystMockupItems.length)decisions.push({id:'analyst-mockups',kind:'analyst',stage:'Design · Visual prototype gate',title:`${plural(analystMockupItems.length,'prototype')} ready`,description:'Click through the actual proposed screens and inspect the interaction flow.',next:'Approval creates a protected Developer handoff; implementation and Release remain separately gated.',href:'designer-desk.html',actionLabel:'Review prototypes'});
@@ -201,6 +211,7 @@
     if(newTrailStatus.status==='failed')blockedCandidates.add('new-trail-scouting');
     if(hazardStatus.status==='failed'||Number(hazardStatus.summary?.sourceFailures||0)>0)blockedCandidates.add('groundskeeper');
     if(strategyStatus.status==='failed')blockedCandidates.add('strategy-cycle');
+    if(imageStatus.status==='failed')blockedCandidates.add('trail-photo-coverage');
     if(String(strategyStatus.summary?.productStatus||'').startsWith('blocked:'))blockedCandidates.add('analyst-refresh');
 
     const activityById=new Map();
@@ -217,22 +228,25 @@
     for(const request of publicationRequests.requests||[]){
       activityById.set(`publication:${request.id}`,{...request,stream:'publication',title:names.get(request.candidateId)||request.targetTrailId||'Trail release',at:dateMs(request.deployedAt||request.publishedAt||request.acknowledgedAt||request.failedAt||request.reviewedAt)});
     }
+    for(const request of imagePublicationRequests.requests||[]){
+      activityById.set(`image-publication:${request.id}`,{...request,stream:'image-publication',pullRequestUrl:request.publicationPrUrl,title:request.title||request.trailId||'Trail photo',at:dateMs(request.deployedAt||request.publishedAt||request.prCreatedAt||request.approvedAt)});
+    }
     const activity=[...activityById.values()].sort((a,b)=>b.at-a.at).slice(0,8).map(item=>({...item,message:activityMessage(item)}));
     return {
-      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,newTrailItems,hazardItems,editorialItems,imageItems,newsletterItem,analystIdeaItems,analystMockupItems,publicationInFlight,handoffsInFlight:handoffsInFlight+newTrailHandoffs+hazardHandoffs+editorialHandoffs+imageHandoffs+newsletterHandoffs+analystHandoffs,automationFailures,workerHealth,campaignHealth,
+      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,imagePrItems,newTrailItems,hazardItems,editorialItems,imageItems,newsletterItem,analystIdeaItems,analystMockupItems,publicationInFlight,handoffsInFlight:handoffsInFlight+newTrailHandoffs+hazardHandoffs+editorialHandoffs+imageHandoffs+newsletterHandoffs+analystHandoffs,automationFailures,workerHealth,campaignHealth,
       blockerCount:blockedCandidates.size,trackedTrails:orchestration.summary?.trails||(orchestration.trails||[]).length,
       newTrailProgress:{candidates:(newTrailScouting.candidates||[]).length,waiting:newTrailItems.length,inFlight:newTrailHandoffs,status:newTrailStatus.status||'not-run'},
       groundskeeperProgress:{active:(hazards.hazards||[]).filter(item=>item.state==='active').length,waiting:hazardItems.length,sourceFailures:Number(hazardStatus.summary?.sourceFailures||0),status:hazardStatus.status||'not-run'},
       editorialProgress:{active:editorialPackets.length,waiting:editorialItems.length,inFlight:editorialHandoffs,imageGaps:imageItems.length,published:(editorialReceipts.receipts||[]).filter(item=>item.status==='published').length,pausedSafetyLibrary:true,status:strategyStatus.status||'not-run'},
       newsletterProgress:{ready:newsletterItem?1:0,inFlight:newsletterHandoffs,approved:(approvedNewsletters.issues||[]).length,status:strategyStatus.summary?.newsletterStatus||'not-run'},
       analystProgress:{ideas:(productIdeas.ideas||[]).length,waiting:analystIdeaItems.length,mockups:analystMockupItems.length,inFlight:analystHandoffs,developerHandoffs:allJobs.filter(job=>job.jobType==='product-development-handoff'&&job.status==='ready-for-review').length,status:strategyStatus.summary?.productStatus||'not-run'},
-      summary:{needsYou:decisions.length,agentWork:activeJobs.length,blockers:blockedCandidates.size,prsReady:prItems.length},
+      summary:{needsYou:decisions.length,agentWork:activeJobs.length,blockers:blockedCandidates.size,prsReady:prItems.length+imagePrItems.length},
       pipeline:[
         {number:1,title:'Evidence',owner:dossierItems.length?'You':queuedDossierReviews.length?'System':activeTrailJobs.length?'Agents':'System',status:dossierItems.length?`${plural(dossierItems.length,'decision')} waiting`:queuedDossierReviews.length?`${plural(queuedDossierReviews.length,'decision')} being handed off`:activeTrailJobs.length?`${plural(activeTrailJobs.length,'job')} in progress`:'No decision waiting'},
         {number:2,title:'Agent resolution',owner:'Agents',status:activeTrailJobs.length?`${plural(activeTrailJobs.length,'job')} running or queued`:'No agent work queued'},
         {number:3,title:'Trail content',owner:contentItems.length?'You':queuedContentReviews.length?'System':'System',status:contentItems.length?`${plural(contentItems.length,'trail')} needs review`:queuedContentReviews.length?`${plural(queuedContentReviews.length,'decision')} being handed off`:'No content decision waiting'},
         {number:4,title:'Release mapping',owner:releaseItems.length?'You':automationFailures.length?'System':publicationInFlight?'System':'System',status:releaseItems.length?`${plural(releaseItems.length,'trail')} needs approval`:automationFailures.length?`${plural(automationFailures.length,'release')} blocked with a saved failure receipt`:publicationInFlight?`${plural(publicationInFlight,'approval')} being processed`:'No release approval waiting'},
-        {number:5,title:'Final PR',owner:prItems.length?'You':'System',status:prItems.length?`${plural(prItems.length,'PR')} ready`:automationFailures.length?'PR creation is blocked until automation recovers':'No final PR waiting'},
+        {number:5,title:'Final PR',owner:prItems.length+imagePrItems.length?'You':'System',status:prItems.length+imagePrItems.length?`${plural(prItems.length+imagePrItems.length,'PR')} ready`:automationFailures.length?'PR creation is blocked until automation recovers':'No final PR waiting'},
       ],
     };
   }

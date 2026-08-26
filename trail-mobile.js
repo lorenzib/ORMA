@@ -110,24 +110,19 @@
     }
   }
 
-  // Move the hero's real Save / Start-the-hike buttons into the sticky bar
-  // (and back). Their listeners, labels and .saved/.recording state are
-  // owned by trail.js / trail-detail-ui.js and travel with the elements.
+  // Keep Save in the sticky bar. Start-the-hike now belongs to the map's
+  // dedicated action slot, where the route and GPS context are visible.
   function adoptButtons(){
     var bar = document.getElementById('mtrailActions');
     var save = document.getElementById('detailSaveBtn');
-    var hike = document.getElementById('heroStartHike');
     if(!bar || !save) return;
     if(!actionsHome) actionsHome = save.parentElement;
     bar.appendChild(save);
-    if(hike) bar.appendChild(hike);
   }
   function returnButtons(){
     if(!actionsHome) return;
     var save = document.getElementById('detailSaveBtn');
-    var hike = document.getElementById('heroStartHike');
     if(save) actionsHome.appendChild(save);
-    if(hike) actionsHome.appendChild(hike);
   }
 
   function measure(){

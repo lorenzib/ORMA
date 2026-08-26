@@ -18,6 +18,22 @@
   const heroBtn = document.getElementById('heroStartHike');
   const liveBanner = document.getElementById('td2LiveBanner');
   const mapBox = document.getElementById('trailMapBox');
+  const mobileHikeSlot = document.getElementById('mobileMapHikeSlot');
+  const hikeHome = heroBtn && heroBtn.parentElement;
+  const hikeNext = heroBtn && heroBtn.nextSibling;
+  const mobileQuery = window.matchMedia('(max-width:700px)');
+
+  function placeHikeAction() {
+    if (!heroBtn || !hikeHome || !mobileHikeSlot) return;
+    if (mobileQuery.matches && heroBtn.parentElement !== mobileHikeSlot) {
+      mobileHikeSlot.appendChild(heroBtn);
+    } else if (!mobileQuery.matches && heroBtn.parentElement !== hikeHome) {
+      hikeHome.insertBefore(heroBtn, hikeNext);
+    }
+  }
+  if (mobileQuery.addEventListener) mobileQuery.addEventListener('change', placeHikeAction);
+  else if (mobileQuery.addListener) mobileQuery.addListener(placeHikeAction);
+  placeHikeAction();
 
   function recording() {
     return !!(mapBox && mapBox.classList.contains('hike-status-visible'));

@@ -100,6 +100,7 @@ Required repository variables:
 - `ORMA_CAMPAIGN_AUTOMATION_ENABLED=true`
 - `ORMA_HAZARD_AUTOMATION_ENABLED=true`
 - `ORMA_NEW_TRAIL_AUTOMATION_ENABLED=true`
+- `ORMA_IMAGE_AUTOMATION_ENABLED=true`
 - `ORMA_STRATEGY_AUTOMATION_ENABLED=true`
 - `ORMA_NEWSLETTER_ENABLED=false` while trail, collection and website content
   is being brought up to standard. Change it to `true` only after the CEO
@@ -111,6 +112,11 @@ retained in the protected paused archive; non-safety editorial work continues.
 
 Required secrets are `OPEN_API_KEY` and `FIREBASE_SERVICE_ACCOUNT`. Social has
 no production credentials and remains launch-gated.
+
+Trail-photo uploads use the existing protected Firestore queue and do not need
+a Firebase Storage bucket or a paid storage plan. The browser enforces the
+560 KiB compressed-image limit; the publication worker moves approved bytes to
+GitHub and removes the temporary Firestore copy after live deployment is proven.
 
 Run the repeatable code-and-configuration audit before an operational release:
 

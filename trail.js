@@ -1292,7 +1292,10 @@ function renderTrail(t){
         if(toggle) toggle.setAttribute('aria-expanded', 'false');
       }
       let liftsVisible = false;        // Lifts are optional planning context
-      const poiStates = { fountains: false, huts: false, food: false, places: false };
+      // A trail map is a planning surface, so nearby essentials should be
+      // visible without asking hikers to discover four separate toggles.
+      // The Layers menu still lets people hide any category individually.
+      const poiStates = { fountains: true, huts: true, food: true, places: true };
       const amenityMarkers = [];       // { marker, group } for curated fallbacks
       if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(map);
       addTerrainSource(map);
@@ -1303,7 +1306,7 @@ function renderTrail(t){
         renderAllLifts(map, { visible: liftsVisible });
         if (typeof initDetailPois === 'function') initDetailPois(map, t);
       };
-      if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.onIdle(loadSecondaryPois, 4500);
+      if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.onIdle(loadSecondaryPois, 1400);
       else setTimeout(loadSecondaryPois, 900);
 
       // ---- Layers dropdown -------------------------------------------------
@@ -1414,7 +1417,7 @@ function renderTrail(t){
         // around the route stays discoverable. "Marked routes" un-ticks it
         // for anyone who wants the clean basemap.
         layout: { visibility: 'visible' },
-        paint: { 'raster-opacity': 0.4 },
+        paint: { 'raster-opacity': 0.68 },
       }, firstLabelLayer ? firstLabelLayer.id : undefined);
       if (typeof addBaseHillshade === 'function') addBaseHillshade(map, 'waymarked-hiking-layer');
       const routesToggleBtn = document.getElementById('routesToggle');
@@ -1670,7 +1673,7 @@ function renderTrail(t){
               .setPopup(new maplibregl.Popup({ offset: 14 }).setHTML(`<b>${itinEsc(label)}</b>${typeof waypoint.km === 'number' ? `<br>Km ${waypoint.km}` : ''}`))
               .addTo(map);
             amenityMarkers.push({ marker: mk, group: icon === 'hut' ? 'huts' : 'fountains' });
-            mk.getElement().style.display = 'none';
+            mk.getElement().style.display = poiStates[icon === 'hut' ? 'huts' : 'fountains'] ? '' : 'none';
           };
           (t.rifugi || []).forEach(r => addWaypoint(r, 'hut', trLabel(r.name)));
           (t.waterSources || []).forEach(w => {

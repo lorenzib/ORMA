@@ -13,6 +13,7 @@ const COLLECTIONS = Object.freeze({
   hazardReviews:'backofficeHazardReviews',
   editorialReviews:'backofficeEditorialReviews',
   imageReviews:'backofficeImageReviews',
+  imageUploads:'backofficeImageUploads',
   newsletterReviews:'backofficeNewsletterReviews',
   analystReviews:'backofficeAnalystReviews',
 });
@@ -36,7 +37,10 @@ function adminApp(options = {}){
   if(getApps().length) return getApps()[0];
   const raw = options.serviceAccountJson || process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
   const credential = raw ? cert(typeof raw === 'string' ? JSON.parse(raw) : raw) : applicationDefault();
-  return initializeApp({ credential, projectId: options.projectId || process.env.FIREBASE_PROJECT_ID || 'dolopaws' });
+  return initializeApp({
+    credential,
+    projectId: options.projectId || process.env.FIREBASE_PROJECT_ID || 'dolopaws',
+  });
 }
 
 function backofficeDb(options = {}){
@@ -70,6 +74,19 @@ class FirestoreBackofficeStore {
       transaction.set(ref,{contractVersion:'1.0.0',artifactId:id,...metadata,
         ...encodeArtifactData(data),updatedAt:FieldValue.serverTimestamp()});return true;
     });
+  }
+
+  async getImageUpload(reference){
+    const match=String(reference||'').match(/^backofficeImageUploads\/([A-Za-z0-9_-]+)$/);
+    if(!match)throw new Error('Invalid temporary trail image reference');
+    const snapshot=await this.db.collection(COLLECTIONS.imageUploads).doc(match[1]).get();
+    return snapshot.exists?{id:snapshot.id,...snapshot.data()}:null;
+  }
+
+  async deleteImageUpload(reference){
+    const match=String(reference||'').match(/^backofficeImageUploads\/([A-Za-z0-9_-]+)$/);
+    if(!match)throw new Error('Invalid temporary trail image reference');
+    await this.db.collection(COLLECTIONS.imageUploads).doc(match[1]).delete();
   }
 
   async putJob(job){
