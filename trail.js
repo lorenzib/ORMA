@@ -1274,14 +1274,16 @@ function renderTrail(t){
   // engine only as the map approaches the viewport (or a control is focused).
   const initDetailMap = () => {
   if(typeof maplibregl !== 'undefined' && typeof t.lat === 'number' && typeof t.lng === 'number'){
-    const map = new maplibregl.Map({
+    const detailMapOptions = {
       container: 'trailDetailMap',
       style: 'https://tiles.openfreemap.org/styles/liberty',
       center: [t.lng, t.lat],
       zoom: 14,
       pitch: 0, // clean, flat, label-first by default — 3D is opt-in via the toggle
       attributionControl: { compact: true },
-    });
+    };
+    const map = new maplibregl.Map(window.DoloPawsMapRuntime
+      ? window.DoloPawsMapRuntime.mapOptions(detailMapOptions) : detailMapOptions);
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
     window._dolopawsTrailMap = map; // debug/test handle
     initNearestTrailDirections(map, t);
@@ -1343,6 +1345,7 @@ function renderTrail(t){
           type: 'raster',
           source: 'satellite',
           layout: { visibility: 'none' },
+          paint: { 'raster-resampling': 'linear', 'raster-fade-duration': 100 },
         }, firstSymbol && firstSymbol.id);
         return true;
       };
@@ -1369,6 +1372,7 @@ function renderTrail(t){
     }
 
     map.on('load', async () => {
+      if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(map);
       const attribution = document.querySelector('#trailDetailMap .maplibregl-ctrl-attrib');
       if(attribution){
         attribution.classList.add('maplibregl-compact');
@@ -1502,7 +1506,7 @@ function renderTrail(t){
         // around the route stays discoverable. "Marked routes" un-ticks it
         // for anyone who wants the clean basemap.
         layout: { visibility: 'visible' },
-        paint: { 'raster-opacity': 0.68 },
+        paint: { 'raster-opacity': 0.62, 'raster-resampling': 'linear' },
       }, firstLabelLayer ? firstLabelLayer.id : undefined);
       if (typeof addBaseHillshade === 'function') addBaseHillshade(map, 'waymarked-hiking-layer');
       const routesToggleBtn = document.getElementById('routesToggle');

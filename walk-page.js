@@ -58,14 +58,17 @@
   // ---- Map trace -----------------------------------------------------
   function initMap(center, fallback){
     if(map || typeof maplibregl === 'undefined') return;
-    map = new maplibregl.Map({
+    var walkMapOptions = {
       container: 'wrMap',
       style: 'https://tiles.openfreemap.org/styles/liberty',
       center: [center.lng, center.lat],
       zoom: fallback ? 9 : 15.5,
       attributionControl: { compact: true },
-    });
+    };
+    map = new maplibregl.Map(window.DoloPawsMapRuntime
+      ? window.DoloPawsMapRuntime.mapOptions(walkMapOptions) : walkMapOptions);
     map.on('load', function(){
+      if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(map);
       // Same walkable-network detail as every other ORMA map: marked
       // hiking routes plus subtle relief, under the recording trace.
       var firstLabel = map.getStyle().layers.find(function(l){ return l.type === 'symbol'; });
@@ -76,7 +79,7 @@
         attribution: '© Sarah Hoffmann (CC-BY-SA) — waymarkedtrails.org',
       });
       map.addLayer({ id: 'waymarked-hiking-layer', type: 'raster', source: 'waymarked-hiking',
-        paint: { 'raster-opacity': 0.4 } }, firstLabel ? firstLabel.id : undefined);
+        paint: { 'raster-opacity': 0.54, 'raster-resampling': 'linear' } }, firstLabel ? firstLabel.id : undefined);
       map.addSource('terrain-dem', {
         type: 'raster-dem',
         tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
@@ -333,7 +336,8 @@
         maxzoom:19,
         attribution:'Imagery © Esri',
       });
-      map.addLayer({ id:'satellite-layer', type:'raster', source:'satellite', layout:{ visibility:'none' } },
+      map.addLayer({ id:'satellite-layer', type:'raster', source:'satellite', layout:{ visibility:'none' },
+        paint:{ 'raster-resampling':'linear', 'raster-fade-duration':100 } },
         map.getLayer('waymarked-hiking-layer') ? 'waymarked-hiking-layer' : undefined);
       return true;
     }

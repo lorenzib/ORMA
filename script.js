@@ -349,6 +349,7 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
       type: 'raster',
       source: 'satellite',
       layout: { visibility: 'none' },
+      paint: { 'raster-resampling': 'linear', 'raster-fade-duration': 100 },
     }, firstSymbol && firstSymbol.id);
     return true;
   }
@@ -514,13 +515,15 @@ function initGuestMap(){
   const el = document.getElementById('guestPreviewMap');
   if(!el) return;
 
-  guestMapInstance = new maplibregl.Map({
+  const guestMapOptions = {
     container: 'guestPreviewMap',
     style: 'https://tiles.openfreemap.org/styles/liberty',
     center: [12.05, 46.55],
     zoom: 8,
     scrollZoom: false,
-  });
+  };
+  guestMapInstance = new maplibregl.Map(window.DoloPawsMapRuntime
+    ? window.DoloPawsMapRuntime.mapOptions(guestMapOptions) : guestMapOptions);
 
   guestMapInstance.addControl(new maplibregl.GeolocateControl({
     positionOptions: { enableHighAccuracy: true },
@@ -549,6 +552,7 @@ function initGuestMap(){
   }
 
   guestMapInstance.on('load', async () => {
+    if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(guestMapInstance);
     addTerrainSource(guestMapInstance);
     // Guests get the same walkable-network view: marked routes + relief.
     const guestFirstLabel = guestMapInstance.getStyle().layers.find(l => l.type === 'symbol');
@@ -562,7 +566,7 @@ function initGuestMap(){
       id: 'waymarked-hiking-layer',
       type: 'raster',
       source: 'waymarked-hiking',
-      paint: { 'raster-opacity': 0.4 },
+      paint: { 'raster-opacity': 0.54, 'raster-resampling': 'linear' },
     }, guestFirstLabel ? guestFirstLabel.id : undefined);
     addBaseHillshade(guestMapInstance, 'waymarked-hiking-layer');
     increaseLabelDensity(guestMapInstance);
@@ -676,7 +680,7 @@ function initTrailMap(){
   // Note: MapLibre uses [lng, lat] order — the opposite of Leaflet's [lat, lng].
   // Scroll zoom is fine here: in the logged-in shell the map is a fixed
   // pane (the document doesn't scroll), so the wheel can't hijack scrolling.
-  trailMapInstance = new maplibregl.Map({
+  const trailMapOptions = {
     container: 'trailMap',
     style: 'https://tiles.openfreemap.org/styles/liberty',
     center: [12.05, 46.55],
@@ -685,7 +689,9 @@ function initTrailMap(){
     // Collapsed ⓘ attribution (tap to expand) — the full-width credit line
     // collided with the phone layout's bottom-centre Record pill.
     attributionControl: { compact: true },
-  });
+  };
+  trailMapInstance = new maplibregl.Map(window.DoloPawsMapRuntime
+    ? window.DoloPawsMapRuntime.mapOptions(trailMapOptions) : trailMapOptions);
   trailMapInstance.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
   trailMapInstance.addControl(new maplibregl.GeolocateControl({
     positionOptions: { enableHighAccuracy: true },
@@ -726,6 +732,7 @@ function initTrailMap(){
   };
 
   trailMapInstance.on('load', async () => {
+    if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(trailMapInstance);
     collapseMapAttribution(el);
     addTerrainSource(trailMapInstance);
     increaseLabelDensity(trailMapInstance);
@@ -750,7 +757,7 @@ function initTrailMap(){
       type: 'raster',
       source: 'waymarked-hiking',
       layout: { visibility: 'visible' },
-      paint: { 'raster-opacity': 0.4 },
+      paint: { 'raster-opacity': 0.54, 'raster-resampling': 'linear' },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
     addBaseHillshade(trailMapInstance, 'waymarked-hiking-layer');
     

@@ -329,17 +329,20 @@
     if(!mapEl || typeof maplibregl === 'undefined') return Promise.resolve(null);
     return new Promise(resolve => {
       const firstStart = selected.map(startCoordinates).find(Boolean) || [11.9, 46.55];
-      const map = new maplibregl.Map({
+      const collectionMapOptions = {
         container: mapEl,
         style:'https://tiles.openfreemap.org/styles/liberty',
         center:firstStart,
         zoom:9,
         scrollZoom:false,
         attributionControl:{ compact:true },
-      });
+      };
+      const map = new maplibregl.Map(window.DoloPawsMapRuntime
+        ? window.DoloPawsMapRuntime.mapOptions(collectionMapOptions) : collectionMapOptions);
       window._ormaCollectionMap = map;
       map.addControl(new maplibregl.NavigationControl({ showCompass:false }), 'top-right');
       map.on('load', () => {
+        if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(map);
         const layerGroups = { hiking:['collection-waymarked-hiking-layer'], rifugi:[], water:[], food:[] };
         const firstLabel = map.getStyle().layers.find(layer => layer.type === 'symbol');
         map.addSource('collection-waymarked-hiking', {
@@ -352,7 +355,7 @@
           id:'collection-waymarked-hiking-layer',
           type:'raster',
           source:'collection-waymarked-hiking',
-          paint:{ 'raster-opacity':.38 },
+          paint:{ 'raster-opacity':.54, 'raster-resampling':'linear' },
         }, firstLabel ? firstLabel.id : undefined);
 
         function setLayerVisibility(group, visible){
