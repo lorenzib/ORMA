@@ -64,6 +64,16 @@ h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;}
 .map-expand-btn{position:absolute;right:16px;bottom:52px;z-index:7;min-height:36px;font:600 12px 'Inter',sans-serif;background:var(--card);border:1px solid var(--paper-line);padding:7px 13px;border-radius:9px;box-shadow:0 2px 6px rgba(0,0,0,.15);cursor:pointer;color:var(--ink);}
 .trail-map-box .map-btn--terrain{right:16px;bottom:96px;z-index:7;}
 .route-data-notice{position:absolute;top:12px;left:12px;z-index:7;max-width:min(300px,calc(100% - 86px));margin:0;padding:10px 12px;border-radius:10px;background:rgba(251,250,244,.96);border:1px solid var(--paper-line);box-shadow:0 2px 8px rgba(0,0,0,.14);font:600 11.5px/1.45 'Inter',sans-serif;color:var(--ink);}
+.map-nearest-directions{position:absolute;right:12px;bottom:44px;z-index:8;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:38px;padding:9px 13px;border:1px solid rgba(46,64,52,.12);border-radius:11px;background:#3E7A91;color:#fff;box-shadow:0 4px 14px rgba(23,42,28,.22);font:700 12px/1.2 'Inter',sans-serif;cursor:pointer;}
+.map-nearest-directions:hover{background:#32697e;}
+.map-nearest-directions:focus-visible{outline:3px solid rgba(159,199,214,.85);outline-offset:2px;}
+.map-nearest-directions[hidden]{display:none;}
+.map-nearest-directions[aria-busy="true"]{cursor:wait;opacity:.78;}
+.map-nearest-directions-status{position:absolute;right:12px;bottom:90px;z-index:8;width:min(310px,calc(100% - 24px));margin:0;padding:9px 11px;border:1px solid rgba(46,64,52,.14);border-radius:10px;background:rgba(255,255,255,.96);box-shadow:0 4px 14px rgba(23,42,28,.18);color:#2E4034;font:600 11px/1.4 'Inter',sans-serif;backdrop-filter:blur(8px);}
+.map-nearest-directions-status:empty{display:none;}
+.map-access-marker{display:grid;place-items:center;width:28px;height:28px;border:3px solid #fff;border-radius:50%;background:#3E7A91;box-shadow:0 3px 10px rgba(23,42,28,.32);color:#fff;font:800 12px/1 'Inter',sans-serif;}
+.map-access-marker--you{width:20px;height:20px;background:#2E4034;font-size:0;}
+.trail-map-box.hike-status-visible .map-nearest-directions,.trail-map-box.hike-status-visible .map-nearest-directions-status{display:none;}
 .legend-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
 
 /* Sub tabs */
@@ -483,6 +493,8 @@ body{background:#EFECE2;}
 .td2 .trail-map-box.map-fs #mapHikeRejoinBtn{bottom:218px!important;}
 .td2 .trail-map-box.map-fs .td-layer-switch{left:max(12px,env(safe-area-inset-left));bottom:max(12px,env(safe-area-inset-bottom));}
 .td2 .trail-map-box.map-fs:has(.td2-elev:not([hidden])) .td-layer-switch{bottom:132px;}
+.td2 .trail-map-box.map-fs:has(.td2-elev:not([hidden])) .map-nearest-directions{bottom:132px;}
+.td2 .trail-map-box.map-fs:has(.td2-elev:not([hidden])) .map-nearest-directions-status{bottom:178px;}
 .td2 .trail-map-box.map-fs .maplibregl-ctrl-top-right{top:calc(max(12px,env(safe-area-inset-top)) + 36px);right:env(safe-area-inset-right);}
 .td2 .trail-map-box.map-fs .map-expand-btn{top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));}
 .td2 .mobile-map-hike-slot{display:none;}
@@ -1048,6 +1060,8 @@ body.trail-photo-viewer-open{overflow:hidden;}
           <button id="nearbyToggle" type="button" class="map-chip" aria-pressed="false" hidden>Nearby trails</button>
         </div>
         <span id="tdLivePill" class="td-live-pill" hidden><span class="dot"></span>You are here · live</span>
+        <p id="mapNearestDirectionsStatus" class="map-nearest-directions-status" role="status" aria-live="polite"></p>
+        <button id="mapNearestDirectionsBtn" type="button" class="map-nearest-directions" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L9.6 14.4"/><path d="M22 2l-7.9 20-4.5-7.6L2 9.9 22 2z"/></svg><span>Directions to nearest trail point</span></button>
         <button id="mapExpandBtn" type="button" class="map-expand-btn" aria-label="Expand map" aria-expanded="false"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span></button>
         <div id="mobileMapHikeSlot" class="mobile-map-hike-slot" aria-label="Hike controls"></div>
         <!-- One grouped switch, bottom-left: base style + 3D toggle -->
@@ -1254,7 +1268,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="hike-gps-policy.js?v=20260815-4" defer></script>
 <script src="route-rejoin.js?v=20260815-4" defer></script>
 <script src="hike-distance.js?v=20260815-4" defer></script>
-<script src="trail-access-directions.js?v=20260815-4" defer></script>
+<script src="trail-access-directions.js?v=20260826-1" defer></script>
 <script src="footpath-router.js?v=20260815-4" defer></script>
 <script src="pre-hike-readiness.js?v=20260815-4" defer></script>
 <script src="hike-session.js?v=20260815-4" defer></script>

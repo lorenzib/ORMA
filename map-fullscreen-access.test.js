@@ -50,6 +50,16 @@ describe('map browsing controls', () => {
     expect(blueprint).toContain('planFromCurrent(navigator, accessTarget, navigator.userAgent, 100)');
   });
 
+  test('the trail map offers walking directions to the nearest route point within 5 km', () => {
+    const trail = source('trail.html');
+    const detail = source('trail.js');
+
+    expect(trail).toContain('id="mapNearestDirectionsBtn"');
+    expect(trail).toContain('id="mapNearestDirectionsStatus"');
+    expect(detail).toContain('planToNearestRoute(navigator, t.path, navigator.userAgent, 5)');
+    expect(detail).toContain('Directions are available when you are within 5 km of the trail.');
+  });
+
   test('the compare explainer sits in a plain white card', () => {
     const html = fs.readFileSync(path.join(__dirname, 'browse-trails.html'), 'utf8');
     expect(html).toContain('.browse-compare-note{margin:0 0 12px;padding:12px 15px;background:#fff;border:1px solid var(--paper-line);');

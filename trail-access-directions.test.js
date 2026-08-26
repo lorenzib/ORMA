@@ -55,4 +55,53 @@ describe('trailhead access directions', () => {
     expect(plan.allowed).toBe(true);
     expect(plan.url).toContain('destination=46.4,11.5');
   });
+
+  test('finds the closest point between recorded route vertices', () => {
+    const nearest = access.nearestPointOnRoute(
+      { lat:46, lng:11.01 },
+      [[45.99, 11], [46.01, 11]]
+    );
+    expect(nearest.segmentIndex).toBe(0);
+    expect(nearest.fraction).toBeCloseTo(0.5, 2);
+    expect(nearest.point.lat).toBeCloseTo(46, 4);
+    expect(nearest.point.lng).toBeCloseTo(11, 4);
+    expect(nearest.distanceKm).toBeLessThan(1);
+  });
+
+  test('offers walking directions to a nearest route point within 5 km', async () => {
+    const navigatorLike = {
+      geolocation:{
+        getCurrentPosition:success => success({
+          coords:{ latitude:46, longitude:11.01, accuracy:18 },
+        }),
+      },
+    };
+    const plan = await access.planToNearestRoute(
+      navigatorLike,
+      [[45.99, 11], [46.01, 11]],
+      'Android'
+    );
+    expect(plan.allowed).toBe(true);
+    expect(plan.maxKm).toBe(5);
+    expect(plan.target.lat).toBeCloseTo(46, 4);
+    expect(plan.url).toContain('travelmode=walking');
+  });
+
+  test('does not offer directions when every route point is over 5 km away', async () => {
+    const navigatorLike = {
+      geolocation:{
+        getCurrentPosition:success => success({
+          coords:{ latitude:46, longitude:11.1, accuracy:20 },
+        }),
+      },
+    };
+    const plan = await access.planToNearestRoute(
+      navigatorLike,
+      [[45.99, 11], [46.01, 11]],
+      'Android'
+    );
+    expect(plan.allowed).toBe(false);
+    expect(plan.distanceKm).toBeGreaterThan(5);
+    expect(plan.url).toBeNull();
+  });
 });

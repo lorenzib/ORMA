@@ -75,6 +75,90 @@ function mapDistanceKm(a, b){
   return 6371 * 2 * Math.asin(Math.sqrt(h));
 }
 
+function formatApproachDistance(distanceKm){
+  if(!Number.isFinite(distanceKm)) return '';
+  if(distanceKm < 1) return `${Math.max(10, Math.round(distanceKm * 1000 / 10) * 10)} m`;
+  return `${distanceKm.toFixed(distanceKm < 10 ? 1 : 0)} km`;
+}
+
+function initNearestTrailDirections(map, t){
+  const button = document.getElementById('mapNearestDirectionsBtn');
+  const status = document.getElementById('mapNearestDirectionsStatus');
+  if(!button || !status || !Array.isArray(t.path) || !t.path.length || !window.DoloPawsTrailAccess) return;
+
+  const defaultLabel = 'Directions to nearest trail point';
+  let activePlan = null;
+  let originMarker = null;
+  let targetMarker = null;
+  button.hidden = false;
+
+  function setButtonLabel(label){
+    const labelNode = button.querySelector('span');
+    if(labelNode) labelNode.textContent = label;
+  }
+
+  function markerElement(type){
+    const element = document.createElement('span');
+    element.className = `map-access-marker map-access-marker--${type}`;
+    element.setAttribute('aria-hidden', 'true');
+    if(type === 'join') element.textContent = '✓';
+    return element;
+  }
+
+  function showPlan(plan){
+    if(originMarker) originMarker.remove();
+    if(targetMarker) targetMarker.remove();
+    originMarker = new maplibregl.Marker({ element:markerElement('you') })
+      .setLngLat([plan.origin.lng, plan.origin.lat])
+      .addTo(map);
+    targetMarker = new maplibregl.Marker({ element:markerElement('join') })
+      .setLngLat([plan.target.lng, plan.target.lat])
+      .addTo(map);
+    const bounds = new maplibregl.LngLatBounds();
+    bounds.extend([plan.origin.lng, plan.origin.lat]);
+    bounds.extend([plan.target.lng, plan.target.lat]);
+    map.fitBounds(bounds, { padding:70, maxZoom:16, duration:700 });
+  }
+
+  button.addEventListener('click', async () => {
+    if(activePlan && activePlan.url){
+      window.open(activePlan.url, '_blank', 'noopener');
+      return;
+    }
+
+    button.disabled = true;
+    button.setAttribute('aria-busy', 'true');
+    setButtonLabel('Finding nearest point…');
+    status.textContent = 'Checking your location against this trail…';
+    try{
+      const plan = await window.DoloPawsTrailAccess.planToNearestRoute(navigator, t.path, navigator.userAgent, 5);
+      if(Number.isFinite(plan.accuracyM) && plan.accuracyM > 500){
+        status.textContent = `Your location is only accurate to about ${Math.round(plan.accuracyM)} m. Move into a clearer area and try again.`;
+        setButtonLabel('Try location again');
+        return;
+      }
+      if(!plan.allowed){
+        status.textContent = `The nearest trail point is ${formatApproachDistance(plan.distanceKm)} away. Directions are available when you are within 5 km of the trail.`;
+        setButtonLabel('Try location again');
+        return;
+      }
+      activePlan = plan;
+      showPlan(plan);
+      status.textContent = `Nearest trail point: ${formatApproachDistance(plan.distanceKm)} away. Maps may suggest a longer walk—use public paths and follow local signs.`;
+      setButtonLabel('Open walking directions');
+    }catch(error){
+      const denied = error && (error.code === 1 || error.message === 'geolocation-unavailable');
+      status.textContent = denied
+        ? 'Allow location access to find the nearest point on this trail.'
+        : 'We could not get a reliable location. Check your signal and try again.';
+      setButtonLabel(defaultLabel);
+    }finally{
+      button.disabled = false;
+      button.removeAttribute('aria-busy');
+    }
+  });
+}
+
 function sampledTrailPath(trail, maxPoints = 30){
   const path = Array.isArray(trail && trail.path) && trail.path.length
     ? trail.path
@@ -1200,6 +1284,7 @@ function renderTrail(t){
     });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
     window._dolopawsTrailMap = map; // debug/test handle
+    initNearestTrailDirections(map, t);
 
     // Fullscreen map — manual ⤢ toggle, and automatic during hike mode.
     const mapBox = document.getElementById('trailMapBox');
