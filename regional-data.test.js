@@ -84,6 +84,14 @@ describe('DATA-03 regional runtime boundaries', () => {
     expect(read('dog-routes-layer.js')).toContain("poiUrl(activeRegion, 'dog-routes')");
   });
 
+  test('background route overlays do not open third-party route popups', () => {
+    const layer = read('dog-routes-layer.js');
+    expect(layer).toContain("id: 'dog-routes-line'");
+    expect(layer).not.toContain("map.on('click', 'dog-routes-line'");
+    expect(layer).not.toContain('View on Waymarked Trails');
+    expect(layer).not.toContain('new maplibregl.Popup');
+  });
+
   test('static generation still reads the complete canonical source catalog', () => {
     const generator = read('scripts/generate-trail-pages.js');
     const loader = read('scripts/load-production-trails.js');

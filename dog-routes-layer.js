@@ -59,44 +59,8 @@ function initializeDogRoutes(map, region) {
         }, beforeId);
       }
 
-      // One popup instance, same duplicate-popup discipline as the water markers
-      let routePopup = null;
-
-      map.on('click', 'dog-routes-line', (e) => {
-        const f = e.features && e.features[0];
-        if (!f) return;
-        if (routePopup) { routePopup.remove(); routePopup = null; }
-
-        const p = f.properties;
-        const km = p.distance_km ? `${p.distance_km} km` : '';
-        const loopBadge = (p.loop === true || p.loop === 'true')
-          ? '<span style="background:#e8f5e9;color:#2e7d32;border-radius:10px;padding:1px 8px;font-size:11px;">Loop</span>'
-          : '';
-        const leash = p.leash && p.leash !== 'null'
-          ? `<div style="font-size:12px;margin-top:4px;">🦮 Leash: ${p.leash}</div>` : '';
-        const notes = p.dogFriendlyNotes && p.dogFriendlyNotes !== 'null'
-          ? `<div style="font-size:12px;margin-top:4px;">${p.dogFriendlyNotes}</div>` : '';
-
-        routePopup = new maplibregl.Popup({ offset: 10 })
-          .setLngLat(e.lngLat)
-          .setHTML(`
-            <div style="min-width:180px;">
-              <strong>${p.name || 'Unnamed route'}</strong> ${loopBadge}
-              <div style="font-size:12px;color:#555;margin-top:2px;">
-                ${[km, p.ref ? 'Trail ' + p.ref : ''].filter(Boolean).join(' · ')}
-              </div>
-              ${leash}
-              ${notes}
-              <div style="margin-top:6px;">
-                <a href="${p.waymarkedtrails}" target="_blank" rel="noopener" style="font-size:12px;">View on Waymarked Trails ↗</a>
-              </div>
-            </div>
-          `)
-          .addTo(map);
-      });
-
-      map.on('mouseenter', 'dog-routes-line', () => { map.getCanvas().style.cursor = 'pointer'; });
-      map.on('mouseleave', 'dog-routes-line', () => { map.getCanvas().style.cursor = ''; });
+      // Background routes are deliberately non-interactive. Trail selection and
+      // directions are handled by ORMA's own trail layers and controls.
     })
     .catch(error => {
       console.error('❌ Error loading dog routes GeoJSON:', error.message);
