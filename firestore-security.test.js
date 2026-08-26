@@ -3,7 +3,6 @@ const path = require('path');
 
 const root = __dirname;
 const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
-const storageRules = fs.readFileSync(path.join(root, 'storage.rules'), 'utf8');
 const firebaseConfig = JSON.parse(fs.readFileSync(path.join(root, 'firebase.json'), 'utf8'));
 const indexes = JSON.parse(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8'));
 const client = fs.readFileSync(path.join(root, 'firebase-init.js'), 'utf8');
@@ -15,17 +14,19 @@ describe('SEC-01 Firestore configuration contract', () => {
       indexes: 'firestore.indexes.json',
     });
     expect(rules).toContain("rules_version = '2';");
-    expect(firebaseConfig.storage).toEqual({rules:'storage.rules'});
-    expect(storageRules).toContain("rules_version = '2';");
+    expect(firebaseConfig.storage).toBeUndefined();
   });
 
-  test('trail-photo uploads are private, moderator-only and size/type bounded',()=>{
-    expect(storageRules).toContain('match /backoffice/trail-images/{trailId}/{fileName}');
-    expect(storageRules).toContain('allow read: if isModerator();');
-    expect(storageRules).toContain('request.resource.size <= 15 * 1024 * 1024');
-    expect(storageRules).toContain("request.resource.contentType.matches('image/(jpeg|png|webp|avif)')");
-    expect(storageRules).toMatch(/match \/\{allPaths=\*\*\}[\s\S]*allow read, write: if false;/);
+  test('trail-photo uploads use a bounded private Firestore staging queue',()=>{
+    const uploadBlock=rules.slice(rules.indexOf('match /backofficeImageUploads'),rules.indexOf('match /backofficeNewsletterReviews'));
+    expect(uploadBlock).toContain('allow get: if isModerator();');
+    expect(uploadBlock).toContain('allow list: if false;');
+    expect(uploadBlock).toContain('request.resource.data.fileSize <= 573440');
+    expect(uploadBlock).toContain('request.resource.data.uploadData.size() <= 800000');
+    expect(uploadBlock).toContain("request.resource.data.mimeType in ['image/jpeg', 'image/png', 'image/webp']");
+    expect(uploadBlock).toContain('allow update: if false;');
     expect(rules).toContain("'upload-owner-photo', 'approve-uploaded-photo', 'approve-image-candidate'");
+    expect(rules).toContain("request.resource.data.uploadRef.matches('^backofficeImageUploads/[A-Za-z0-9_-]+$')");
   });
 
   test('every client-side collection has an explicit rule boundary', () => {
@@ -48,6 +49,7 @@ describe('SEC-01 Firestore configuration contract', () => {
       'backofficeHazardReviews',
       'backofficeEditorialReviews',
       'backofficeImageReviews',
+      'backofficeImageUploads',
       'backofficeNewsletterReviews',
       'backofficeAnalystReviews',
     ];

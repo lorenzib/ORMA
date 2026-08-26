@@ -291,6 +291,13 @@ published trail and prioritises Dolomites gaps. These agents prepare decisions;
 it does not publish. The CEO dashboard links to the dedicated desks for each
 queue, while Social remains launch-gated.
 
+The trail-photo desk does not require Firebase Storage or another paid image
+bucket. A moderator upload is compressed in the browser to at most 560 KiB and
+stored temporarily as a private Firestore review document. After exact preview
+and rights approval, the worker writes the image into `images/trails/` in the
+publication pull request. GitHub becomes the permanent asset store and the
+temporary Firestore document is deleted only after deployment is confirmed.
+
 The hosted hazard workflow is inert unless it is started manually or the
 repository variable `ORMA_HAZARD_AUTOMATION_ENABLED` is set to `true`. A run
 stores the authoritative feed result, source failures, retained warnings and

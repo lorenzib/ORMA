@@ -11,11 +11,12 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   const workflowNames=(await fs.readdir(workflowDir)).filter(name=>name.endsWith('.yml')||name.endsWith('.yaml'));
   const workflowEntries=await Promise.all(workflowNames.map(async name=>[name,await read(root,`.github/workflows/${name}`)]));
   const workflows=Object.fromEntries(workflowEntries);const workflowText=workflowEntries.map(([,value])=>value).join('\n');
-  const [builder,rules,client,worker,strategy,editorialScope,standard,hosting,dashboard,packageManifest]=await Promise.all([
+  const [builder,rules,client,worker,strategy,editorialScope,standard,hosting,dashboard,packageManifest,firebaseJson,materializer]=await Promise.all([
     read(root,'scripts/build-backoffice-hosting.js'),read(root,'firestore.rules'),read(root,'backoffice-firebase.js'),
     read(root,'backoffice/workflows/run-live-backoffice-worker.js'),read(root,'backoffice/workflows/run-live-strategy-cycle.js'),
     read(root,'backoffice/workflows/editorial-scope.js'),
     read(root,'backoffice/OPERATING_STANDARD.md'),read(root,'backoffice/HOSTING.md'),read(root,'backoffice/dashboard-model.js'),read(root,'package.json'),
+    read(root,'firebase.json'),read(root,'backoffice/workflows/materialize-approved-trail-images.js'),
   ]);
   const checks=[];const add=(id,ok,detail)=>checks.push({id,status:ok?'pass':'fail',detail});
   const hostedPages=['trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','newsletter-desk.html','product-ideas-desk.html','designer-desk.html'];
@@ -38,6 +39,8 @@ async function auditOperationalContract(root=path.resolve(__dirname,'../..'),opt
   add('daily-orma-verified-intake',workflows['orma-trail-campaign.yml']?.includes("cron: '30 9 * * *'")&&workflows['orma-trail-campaign.yml']?.includes('timezone: Europe/Rome')&&workflows['orma-trail-campaign.yml']?.includes('ORMA_CAMPAIGN_AUTOMATION_ENABLED'),'ORMA Verified candidate intake targets 09:30 Europe/Rome every day, after the Firestore quota reset window');
   add('dolomites-first-scouting-cadence',workflows['orma-new-trail-intake.yml']?.includes("cron: '0 10 * * 1-6'")&&workflows['orma-new-trail-intake.yml']?.includes('timezone: Europe/Rome')&&standard.includes('Dolomites-first'),'New Trail scouting targets Monday through Saturday after the quota reset window, with the Dolomites as the primary region');
   add('trail-photo-coverage-cadence',workflows['orma-trail-image-coverage.yml']?.includes("cron: '0 11 * * 1-6'")&&workflows['orma-trail-image-coverage.yml']?.includes('ORMA_IMAGE_AUTOMATION_ENABLED')&&workflows['orma-trail-image-coverage.yml']?.includes('backoffice:image-coverage:live')&&standard.includes('trail-photo coverage'),'Trail-photo coverage refreshes Monday through Saturday after scouting, with a separate activation variable and protected queue');
+  const firebaseConfig=JSON.parse(firebaseJson);const rulesDeploy=workflows['deploy-firestore-rules.yml']||'';
+  add('free-trail-photo-staging',!firebaseConfig.storage&&rules.includes('/backofficeImageUploads/{')&&rules.includes('fileSize <= 573440')&&client.includes("collection(db,'backofficeImageUploads')")&&client.includes('560*1024')&&materializer.includes('store.getImageUpload(request.uploadRef)')&&materializer.includes('size>560*1024')&&!rulesDeploy.includes('firestore,storage'),'Moderator photos use bounded private Firestore staging, move into GitHub after approval, and require no paid storage bucket');
   add('safety-editorial-pause',editorialScope.includes("'safety-guide'")&&editorialScope.includes("'paw-protection'")&&standard.includes('protected paused archive'),'Safety Library copy packets are excluded from the active Editorial queue and preserved in a paused archive');
   const setupNodeCount=(workflowText.match(/actions\/setup-node@v7/g)||[]).length;const node24Count=(workflowText.match(/node-version:\s*24/g)||[]).length;
   add('supported-ci-runtime',setupNodeCount>0&&node24Count===setupNodeCount&&!workflowText.includes('node-version: 20')&&!workflowText.match(/actions\/(?:checkout|setup-node|setup-java|cache)@v4/)&&!workflowText.includes('google-github-actions/auth@v2'),'All Node workflows use Node 24 and supported Node-24 action runtimes');

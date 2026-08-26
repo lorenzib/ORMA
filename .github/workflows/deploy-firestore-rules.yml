@@ -10,7 +10,6 @@ on:
     paths:
       - firestore.rules
       - firestore.indexes.json
-      - storage.rules
       - firebase.json
   workflow_dispatch: {}
 
@@ -43,11 +42,11 @@ jobs:
             exit 1
           fi
 
-      - name: Deploy Firestore and protected photo-storage rules
+      - name: Deploy Firestore rules and indexes
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
           printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "$RUNNER_TEMP/firebase-sa.json"
           export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/firebase-sa.json"
-          npx firebase-tools deploy --only firestore,storage --project dolopaws --non-interactive
+          npx firebase-tools deploy --only firestore --project dolopaws --non-interactive
           rm -f "$RUNNER_TEMP/firebase-sa.json"

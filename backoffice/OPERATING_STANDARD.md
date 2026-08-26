@@ -102,9 +102,13 @@ published trail, not guides or general pages, and ranks Dolomites gaps first.
 For each trail, the CEO can upload her own photograph in a protected backoffice
 space, choose an existing ORMA asset, request correctly licensed candidates,
 explicitly request an AI option, or park the gap. Uploads are not publicly
-readable. The CEO previews the exact image and its creator, rights basis and alt
-text before approving it for a publication pull request. A photo appears on the
-public trail only after that pull request is reviewed, merged and deployed.
+readable. The browser compresses an uploaded photo to a strict 560 KiB maximum
+and holds it temporarily in the protected Firestore review queue; ORMA does not
+require a paid photo-storage bucket. The CEO previews the exact image and its
+creator, rights basis and alt text before approving it for a publication pull
+request. The worker copies an approved photo into GitHub, which is the permanent
+public asset store, and deletes the temporary Firestore copy after the reviewed
+pull request is merged and deployed.
 
 ### 4. Newsletter
 

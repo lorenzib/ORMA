@@ -46,19 +46,19 @@ describe('hosted image coverage routing',()=>{
 
   test('moderator upload returns a protected preview candidate',async()=>{
     const audit={gaps:[{slug:'seceda',trailId:'seceda',title:'Seceda Ridge Trail',sourceRef:'trail.html?id=seceda',reasons:['Missing image'],libraryMatches:[]}]};
-    const store=memoryStore({'image-coverage':audit});store.reviews.image.push({id:'upload-1',slug:'seceda',trailId:'seceda',action:'upload-owner-photo',assetRef:'backoffice/trail-images/seceda/one.jpg',uploadPath:'backoffice/trail-images/seceda/one.jpg',fileName:'one.jpg',mimeType:'image/jpeg',fileSize:100,width:1200,height:800,creator:'Benedetta Lorenzi',rightsBasis:'orma-owned',altText:'Seceda ridge in summer',note:'',submittedAt:at});
+    const store=memoryStore({'image-coverage':audit});store.reviews.image.push({id:'upload-1',slug:'seceda',trailId:'seceda',action:'upload-owner-photo',assetRef:'backofficeImageUploads/upload-asset-1',uploadRef:'backofficeImageUploads/upload-asset-1',fileName:'one.jpg',mimeType:'image/jpeg',fileSize:100,width:1200,height:800,creator:'Benedetta Lorenzi',rightsBasis:'orma-owned',altText:'Seceda ridge in summer',note:'',submittedAt:at});
     await ingestImageReviews(store);await processImageJobs(store,{workerId:'worker'});
-    expect(store.artifacts['image-coverage-results'].items[0].candidates[0]).toEqual(expect.objectContaining({storagePath:'backoffice/trail-images/seceda/one.jpg',creator:'Benedetta Lorenzi',status:'ready-for-asset-review'}));
+    expect(store.artifacts['image-coverage-results'].items[0].candidates[0]).toEqual(expect.objectContaining({uploadRef:'backofficeImageUploads/upload-asset-1',creator:'Benedetta Lorenzi',status:'ready-for-asset-review'}));
     expect(store.artifacts['trail-image-publication-requests']).toBeUndefined();
   });
 
   test('exact uploaded preview approval creates a human-gated publication request',async()=>{
-    const candidate={title:'one.jpg',storagePath:'backoffice/trail-images/seceda/one.jpg',creator:'Benedetta Lorenzi',license:'ORMA-owned',altText:'Seceda ridge in summer',status:'ready-for-asset-review',mimeType:'image/jpeg',fileSize:100,width:1200,height:800};
+    const candidate={title:'one.jpg',uploadRef:'backofficeImageUploads/upload-asset-1',creator:'Benedetta Lorenzi',license:'ORMA-owned',altText:'Seceda ridge in summer',status:'ready-for-asset-review',mimeType:'image/jpeg',fileSize:100,width:1200,height:800};
     const audit={gaps:[{slug:'seceda',trailId:'seceda',title:'Seceda Ridge Trail',sourceRef:'trail.html?id=seceda',reasons:['Missing image'],libraryMatches:[]}]};
     const store=memoryStore({'image-coverage':audit,'image-coverage-results':{items:[{slug:'seceda',generatedAt:at,summary:'Ready',candidates:[candidate]}]}});
-    store.reviews.image.push({id:'approval-1',slug:'seceda',trailId:'seceda',action:'approve-uploaded-photo',assetRef:candidate.storagePath,uploadPath:candidate.storagePath,fileName:candidate.title,mimeType:candidate.mimeType,fileSize:100,width:1200,height:800,creator:candidate.creator,rightsBasis:'orma-owned',altText:candidate.altText,note:'Approved',submittedAt:at});
+    store.reviews.image.push({id:'approval-1',slug:'seceda',trailId:'seceda',action:'approve-uploaded-photo',assetRef:candidate.uploadRef,uploadRef:candidate.uploadRef,fileName:candidate.title,mimeType:candidate.mimeType,fileSize:100,width:1200,height:800,creator:candidate.creator,rightsBasis:'orma-owned',altText:candidate.altText,note:'Approved',submittedAt:at});
     await ingestImageReviews(store);await processImageJobs(store,{workerId:'worker'});
-    expect(store.artifacts['trail-image-publication-requests'].requests[0]).toEqual(expect.objectContaining({id:'approval-1',trailId:'seceda',status:'approved-for-pr-creation',publicMutationAllowed:false}));
+    expect(store.artifacts['trail-image-publication-requests'].requests[0]).toEqual(expect.objectContaining({id:'approval-1',trailId:'seceda',uploadRef:candidate.uploadRef,status:'approved-for-pr-creation',publicMutationAllowed:false}));
   });
 
   test('an exact licensed candidate can use the same publication lane',async()=>{

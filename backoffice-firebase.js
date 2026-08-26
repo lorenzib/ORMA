@@ -4,12 +4,9 @@ import {
   signInWithEmailAndPassword, signOut,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import {
-  addDoc, collection, doc, getDoc, getDocs, getFirestore, limit,
-  orderBy, query, serverTimestamp,
+  addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit,
+  orderBy, query, serverTimestamp, setDoc,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-import {
-  deleteObject, getBytes, getStorage, ref, uploadBytes,
-} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDnEJKnoDltKwpl4QdhA-qLH3a4ugLd68M",
@@ -18,7 +15,6 @@ const firebaseConfig = {
   // make browser sign-in initialization fail even when the page itself loads.
   authDomain: "dolopaws.firebaseapp.com",
   projectId: "dolopaws",
-  storageBucket: "dolopaws.firebasestorage.app",
   messagingSenderId: "331415525455",
   appId: "1:331415525455:web:4a714eea0e95dc9a4ff23a",
 };
@@ -26,7 +22,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const storage = getStorage(app);
 let currentUser = null;
 let authResolved = false;
 
@@ -155,10 +150,10 @@ async function getImageReviews(){
 async function submitImageReview(input){
   const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
   try{const review=await addDoc(collection(db,'backofficeImageReviews'),{
-    contractVersion:'2.0.0',type:'image-coverage-review',status:'queued',slug:String(input.slug||''),
+    contractVersion:'2.1.0',type:'image-coverage-review',status:'queued',slug:String(input.slug||''),
     trailId:String(input.trailId||input.slug||''),action:String(input.action||''),
     note:String(input.note||'').trim().slice(0,1500),assetRef:String(input.assetRef||'').slice(0,1000),
-    uploadPath:String(input.uploadPath||'').slice(0,1000),fileName:String(input.fileName||'').slice(0,240),
+    uploadRef:String(input.uploadRef||'').slice(0,1000),fileName:String(input.fileName||'').slice(0,240),
     mimeType:String(input.mimeType||'').slice(0,120),fileSize:Number(input.fileSize||0),
     width:Number(input.width||0),height:Number(input.height||0),creator:String(input.creator||'').trim().slice(0,160),
     rightsBasis:String(input.rightsBasis||'').slice(0,80),altText:String(input.altText||'').trim().slice(0,500),
@@ -171,35 +166,36 @@ async function submitImageReview(input){
 
 function safeTrailId(value){return String(value||'').toLowerCase().replace(/[^a-z0-9_-]+/g,'-').replace(/^-+|-+$/g,'').slice(0,100);}
 function safeFileName(value){const cleaned=String(value||'trail-photo.jpg').replace(/[^a-zA-Z0-9._-]+/g,'-').replace(/^-+|-+$/g,'');return cleaned.slice(-180)||'trail-photo.jpg';}
+function fileDataUrl(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result||''));reader.onerror=()=>reject(new Error('Could not prepare this photo.'));reader.readAsDataURL(file);});}
 
 async function uploadTrailImage(input){
   const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
   const file=input?.file;const trailId=safeTrailId(input?.trailId);
   if(!trailId||!file)return {ok:false,error:'trail-and-file-required'};
-  if(!/^image\/(?:jpeg|png|webp|avif)$/i.test(file.type||''))return {ok:false,error:'unsupported-image-type'};
-  if(file.size<=0||file.size>15*1024*1024)return {ok:false,error:'image-size-invalid'};
+  if(!/^image\/(?:jpeg|png|webp)$/i.test(file.type||''))return {ok:false,error:'unsupported-image-type'};
+  if(file.size<=0||file.size>560*1024)return {ok:false,error:'image-size-invalid'};
   if(input.rightsBasis!=='orma-owned'&&input.rightsBasis!=='permission-granted')return {ok:false,error:'image-rights-required'};
-  const uploadId=globalThis.crypto?.randomUUID?.()||`${Date.now()}-${Math.random().toString(16).slice(2)}`;
-  const uploadPath=`backoffice/trail-images/${trailId}/${uploadId}-${safeFileName(file.name)}`;
-  const uploadRef=ref(storage,uploadPath);
+  const uploadDocument=doc(collection(db,'backofficeImageUploads'));const uploadRef=`backofficeImageUploads/${uploadDocument.id}`;
   try{
-    await uploadBytes(uploadRef,file,{contentType:file.type,customMetadata:{
-      trailId,uploadedBy:moderator.uid,rightsBasis:input.rightsBasis,creator:String(input.creator||'ORMA').slice(0,160),
-    }});
-    const review=await submitImageReview({...input,slug:trailId,trailId,action:'upload-owner-photo',assetRef:uploadPath,uploadPath,
+    const uploadData=await fileDataUrl(file);
+    await setDoc(uploadDocument,{contractVersion:'1.0.0',type:'trail-image-upload',trailId,fileName:safeFileName(file.name),mimeType:file.type,
+      fileSize:file.size,width:Number(input.width||0),height:Number(input.height||0),uploadData,uploadedAt:serverTimestamp(),
+      uploadedBy:moderator.uid,publicMutationAllowed:false});
+    const review=await submitImageReview({...input,slug:trailId,trailId,action:'upload-owner-photo',assetRef:uploadRef,uploadRef,
       fileName:file.name,mimeType:file.type,fileSize:file.size});
-    if(!review.ok){await deleteObject(uploadRef).catch(()=>{});return review;}
-    return {...review,uploadPath};
+    if(!review.ok){await deleteDoc(uploadDocument).catch(()=>{});return review;}
+    return {...review,uploadRef};
   }catch(error){console.error('uploadTrailImage failed:',error);return {ok:false,error:error.code||'trail-image-upload-failed'};}
 }
 
-async function getTrailImagePreview(uploadPath){
+async function getTrailImagePreview(uploadRef){
   if(!await moderatorIdentity())return {ok:false,error:'moderator-required'};
-  const path=String(uploadPath||'');
-  if(!path.startsWith('backoffice/trail-images/'))return {ok:false,error:'invalid-upload-path'};
+  const path=String(uploadRef||'');const match=path.match(/^backofficeImageUploads\/([A-Za-z0-9_-]+)$/);
+  if(!match)return {ok:false,error:'invalid-upload-reference'};
   try{
-    const bytes=await getBytes(ref(storage,path),15*1024*1024);
-    return {ok:true,url:URL.createObjectURL(new Blob([bytes]))};
+    const snapshot=await getDoc(doc(db,'backofficeImageUploads',match[1]));if(!snapshot.exists())return {ok:false,error:'upload-not-found'};
+    const data=snapshot.data();if(!String(data.uploadData||'').startsWith('data:image/'))return {ok:false,error:'invalid-upload-data'};
+    return {ok:true,url:data.uploadData};
   }
   catch(error){return {ok:false,error:error.code||'trail-image-preview-failed'};}
 }

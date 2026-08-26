@@ -28,13 +28,19 @@
   async function prepareImage(file){
     if(!file||!/^image\/(?:jpeg|png|webp|avif)$/i.test(file.type||''))throw new Error('Choose a JPG, PNG, WebP or AVIF photo.');
     if(file.size>25*1024*1024)throw new Error('Choose a photo smaller than 25 MB.');
-    const source=await decodeImage(file);const maximum=2400;const scale=Math.min(1,maximum/Math.max(source.width,source.height));
-    const width=Math.max(1,Math.round(source.width*scale));const height=Math.max(1,Math.round(source.height*scale));
-    const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;
-    const context=canvas.getContext('2d',{alpha:false});context.drawImage(source,0,0,width,height);if(source.close)source.close();
-    const blob=await new Promise((resolve,reject)=>canvas.toBlob(value=>value?resolve(value):reject(new Error('Could not prepare this photo.')),'image/jpeg',0.88));
+    const source=await decodeImage(file);let prepared=null;
+    for(const maximum of [1600,1400,1200,1000]){
+      const scale=Math.min(1,maximum/Math.max(source.width,source.height));const width=Math.max(1,Math.round(source.width*scale));const height=Math.max(1,Math.round(source.height*scale));
+      const canvas=document.createElement('canvas');canvas.width=width;canvas.height=height;canvas.getContext('2d',{alpha:false}).drawImage(source,0,0,width,height);
+      for(const quality of [0.82,0.70,0.58]){
+        const blob=await new Promise((resolve,reject)=>canvas.toBlob(value=>value?resolve(value):reject(new Error('Could not prepare this photo.')),'image/jpeg',quality));
+        if(blob.size<=560*1024){prepared={blob,width,height};break;}
+      }
+      if(prepared)break;
+    }
+    if(source.close)source.close();if(!prepared)throw new Error('This photo could not be compressed enough for the free publishing queue.');
     const stem=String(file.name||'trail-photo').replace(/\.[^.]+$/,'').replace(/[^a-zA-Z0-9_-]+/g,'-').slice(0,120)||'trail-photo';
-    return {file:new File([blob],`${stem}.jpg`,{type:'image/jpeg'}),width,height};
+    return {file:new File([prepared.blob],`${stem}.jpg`,{type:'image/jpeg'}),width:prepared.width,height:prepared.height};
   }
 
   function publicationStatus(gap,review,result,request){
@@ -60,7 +66,7 @@
 
   function uploadPanel(gap){
     const wrap=el('section','bo-trail-upload');wrap.append(el('h4','','Upload your photo'));
-    wrap.append(el('p','bo-upload-helper','JPG, PNG, WebP or AVIF. ORMA prepares a web-sized copy; the upload remains private until you approve its preview.'));
+    wrap.append(el('p','bo-upload-helper','JPG, PNG, WebP or AVIF. ORMA compresses it locally for the free protected review queue; the permanent copy moves to GitHub only after approval.'));
     const picker=el('input','bo-trail-upload__file');picker.type='file';picker.accept='image/jpeg,image/png,image/webp,image/avif';
     const preview=el('img','bo-trail-upload__preview');preview.alt='Selected trail photo preview';preview.hidden=true;
     const creator=el('input');creator.type='text';creator.placeholder='Photographer / creator';creator.value='Benedetta Lorenzi';creator.maxLength=160;
@@ -90,7 +96,7 @@
 
   async function attachCandidatePreview(image,candidate){
     if(candidate.assetUrl){image.src=/^https?:/i.test(candidate.assetUrl)?candidate.assetUrl:`https://app-orma.com/${String(candidate.assetUrl).replace(/^\//,'')}`;return;}
-    if(candidate.storagePath){const response=await remote.getTrailImagePreview(candidate.storagePath);if(response?.ok)image.src=response.url;else image.replaceWith(el('p','bo-no-match','Protected preview could not be loaded.'));}
+    if(candidate.uploadRef){const response=await remote.getTrailImagePreview(candidate.uploadRef);if(response?.ok)image.src=response.url;else image.replaceWith(el('p','bo-no-match','Protected preview could not be loaded.'));}
   }
 
   function resultBlock(gap,result,request){
@@ -103,15 +109,15 @@
       if(candidate.sourcePageUrl){const source=el('a','bo-source-pill','Open source ↗');source.href=candidate.sourcePageUrl;source.target='_blank';source.rel='noopener';item.append(source);}
       if(candidate.licenseUrl){const licence=el('a','bo-source-pill','Licence ↗');licence.href=candidate.licenseUrl;licence.target='_blank';licence.rel='noopener';item.append(licence);}
       if(candidate.generationPrompt)item.append(el('p','bo-decision-next',`AI brief: ${candidate.generationPrompt}`));
-      if(candidate.status==='ready-for-asset-review'&&candidate.storagePath&&!request){
+      if(candidate.status==='ready-for-asset-review'&&candidate.uploadRef&&!request){
         const approve=el('button','bo-primary-action','Approve photo for publishing');approve.type='button';
-        approve.addEventListener('click',()=>submitRoute(gap,{action:'approve-uploaded-photo',assetRef:candidate.storagePath,uploadPath:candidate.storagePath,
+        approve.addEventListener('click',()=>submitRoute(gap,{action:'approve-uploaded-photo',assetRef:candidate.uploadRef,uploadRef:candidate.uploadRef,
           fileName:candidate.title,mimeType:candidate.mimeType||'',fileSize:candidate.fileSize||0,width:candidate.width||0,height:candidate.height||0,
           creator:candidate.creator||'ORMA',rightsBasis:candidate.license==='Permission granted'?'permission-granted':'orma-owned',altText:candidate.altText||`${gap.title} trail`,
           note:'Exact uploaded preview and rights record approved for the trail-photo publication PR.'},approve));item.append(approve);
       }else if(candidate.status==='ready-for-asset-review'&&candidate.assetUrl&&!request){
         const approve=el('button','bo-primary-action','Approve this image for publishing');approve.type='button';
-        approve.addEventListener('click',()=>submitRoute(gap,{action:'approve-image-candidate',assetRef:candidate.assetUrl,uploadPath:'',
+        approve.addEventListener('click',()=>submitRoute(gap,{action:'approve-image-candidate',assetRef:candidate.assetUrl,uploadRef:'',
           creator:candidate.creator||'ORMA',rightsBasis:candidate.license==='ORMA-owned'?'orma-owned':'licensed',altText:candidate.altText||`${gap.title} trail`,
           sourcePageUrl:candidate.sourcePageUrl||'',license:candidate.license||'',licenseUrl:candidate.licenseUrl||'',
           sourceType:String(candidate.assetUrl).startsWith('images/')?'orma-library':'licensed-source',

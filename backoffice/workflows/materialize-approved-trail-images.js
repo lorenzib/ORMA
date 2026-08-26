@@ -7,7 +7,7 @@ const MIME_EXTENSIONS=Object.freeze({'image/jpeg':'.jpg','image/png':'.png','ima
 
 function safeSegment(value){return String(value||'').toLowerCase().replace(/[^a-z0-9_-]+/g,'-').replace(/^-+|-+$/g,'').slice(0,100);}
 
-async function materializeApprovedTrailImages({root,store,bucket,at=new Date().toISOString()}){
+async function materializeApprovedTrailImages({root,store,at=new Date().toISOString()}){
   const artifact=await store.getArtifact('trail-image-publication-requests')||{contractVersion:'1.0.0',requests:[]};
   const approved=(artifact.requests||[]).filter(request=>['approved-for-pr-creation','pr-materialized'].includes(request.status));
   if(!approved.length)return {materialized:0,assetRefs:[],requests:artifact};
@@ -20,14 +20,19 @@ async function materializeApprovedTrailImages({root,store,bucket,at=new Date().t
   for(const request of approved){
     const trailId=safeSegment(request.trailId);if(!trailId)throw new Error(`Invalid trail id for image request: ${request.id}`);
     let relativeRef;
-    if(request.storagePath){
-      if(!String(request.storagePath).startsWith('backoffice/trail-images/'))throw new Error(`Invalid trail image storage path: ${request.id}`);
-      const object=bucket.file(request.storagePath);const [metadata]=await object.getMetadata();
-      const contentType=String(metadata.contentType||request.mimeType||'');const extension=MIME_EXTENSIONS[contentType];
+    if(request.uploadRef){
+      if(!/^backofficeImageUploads\/[A-Za-z0-9_-]+$/.test(String(request.uploadRef)))throw new Error(`Invalid temporary trail image reference: ${request.id}`);
+      if(typeof store.getImageUpload!=='function')throw new Error('The backoffice store cannot read temporary trail images');
+      const upload=await store.getImageUpload(request.uploadRef);if(!upload)throw new Error(`Temporary trail image was not found: ${request.id}`);
+      const match=String(upload.uploadData||'').match(/^data:(image\/(?:jpeg|png|webp));base64,([A-Za-z0-9+/=]+)$/);
+      if(!match)throw new Error(`Temporary trail image data is invalid: ${request.id}`);
+      const contentType=String(upload.mimeType||request.mimeType||match[1]);const extension=MIME_EXTENSIONS[contentType];
       if(!extension)throw new Error(`Unsupported uploaded image type for ${trailId}: ${contentType||'unknown'}`);
-      const size=Number(metadata.size||request.fileSize||0);if(!size||size>15*1024*1024)throw new Error(`Uploaded image size is invalid for ${trailId}`);
+      if(match[1]!==contentType)throw new Error(`Temporary trail image type does not match for ${trailId}`);
+      const buffer=Buffer.from(match[2],'base64');const size=Number(upload.fileSize||request.fileSize||buffer.length);
+      if(!size||size>560*1024||buffer.length!==size)throw new Error(`Temporary trail image size is invalid for ${trailId}`);
       const suffix=safeSegment(request.id).slice(0,24)||'approved';relativeRef=`images/trails/${trailId}-${suffix}${extension}`;
-      const [buffer]=await object.download();await fs.writeFile(path.join(root,relativeRef),buffer);assetRefs.push(relativeRef);
+      await fs.writeFile(path.join(root,relativeRef),buffer);assetRefs.push(relativeRef);
     }else{
       relativeRef=String(request.assetRef||'');
       if(!/^(?:images\/|https:\/\/)/i.test(relativeRef))throw new Error(`Invalid approved trail image source: ${request.id}`);
@@ -37,7 +42,7 @@ async function materializeApprovedTrailImages({root,store,bucket,at=new Date().t
       imageIcon:relativeRef,heroImage:relativeRef,imageAlt:request.altText||`${request.title||trailId} trail`,
       imageCredit:`Photo by ${request.creator||'ORMA'}`,imageCreditText:`Photo by ${request.creator||'ORMA'}`,
       imageCreator:request.creator||'ORMA',imageLicence:licence,
-      imageLicenceUrl:request.licenseUrl||null,imageSourcePage:request.sourcePageUrl||null,imageSourceType:request.sourceType||(request.storagePath?'moderator-upload':'licensed-source'),
+      imageLicenceUrl:request.licenseUrl||null,imageSourcePage:request.sourcePageUrl||null,imageSourceType:request.sourceType||(request.uploadRef?'moderator-upload':'licensed-source'),
     };
     const entry={id:request.trailId,approvedReviewId:request.id,approvedAt:request.approvedAt||at,fields};
     overrides.trails=[...(overrides.trails||[]).filter(item=>item.id!==request.trailId),entry];

@@ -13,7 +13,13 @@ async function main(options={}){
   if(!requests){console.log('[trail-images] No protected trail-photo receipt is ready for deployment reconciliation.');return {published:0,requestIds:[]};}
   const result=recordTrailImageDeployment(requests,overrides,{commitSha:env.ORMA_PUBLICATION_COMMIT_SHA,deploymentRunUrl:env.ORMA_PUBLICATION_DEPLOYMENT_URL,
     publicBaseUrl:env.ORMA_PUBLICATION_PUBLIC_BASE_URL||'https://www.app-orma.com'},{at:options.at});
-  if(result.published)await store.setArtifact('trail-image-publication-requests',result.artifact,{lastDeploymentCommit:env.ORMA_PUBLICATION_COMMIT_SHA});
+  if(result.published){
+    if(typeof store.deleteImageUpload==='function'){
+      const published=new Set(result.requestIds||[]);const uploadRefs=(requests.requests||[]).filter(item=>published.has(item.id)&&item.uploadRef).map(item=>item.uploadRef);
+      await Promise.all(uploadRefs.map(reference=>store.deleteImageUpload(reference)));
+    }
+    await store.setArtifact('trail-image-publication-requests',result.artifact,{lastDeploymentCommit:env.ORMA_PUBLICATION_COMMIT_SHA});
+  }
   console.log(`[trail-images] Confirmed ${result.published} deployed trail photo(s).`);return result;
 }
 

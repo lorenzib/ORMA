@@ -13,6 +13,7 @@ const COLLECTIONS = Object.freeze({
   hazardReviews:'backofficeHazardReviews',
   editorialReviews:'backofficeEditorialReviews',
   imageReviews:'backofficeImageReviews',
+  imageUploads:'backofficeImageUploads',
   newsletterReviews:'backofficeNewsletterReviews',
   analystReviews:'backofficeAnalystReviews',
 });
@@ -39,7 +40,6 @@ function adminApp(options = {}){
   return initializeApp({
     credential,
     projectId: options.projectId || process.env.FIREBASE_PROJECT_ID || 'dolopaws',
-    storageBucket:options.storageBucket||process.env.FIREBASE_STORAGE_BUCKET||'dolopaws.firebasestorage.app',
   });
 }
 
@@ -74,6 +74,19 @@ class FirestoreBackofficeStore {
       transaction.set(ref,{contractVersion:'1.0.0',artifactId:id,...metadata,
         ...encodeArtifactData(data),updatedAt:FieldValue.serverTimestamp()});return true;
     });
+  }
+
+  async getImageUpload(reference){
+    const match=String(reference||'').match(/^backofficeImageUploads\/([A-Za-z0-9_-]+)$/);
+    if(!match)throw new Error('Invalid temporary trail image reference');
+    const snapshot=await this.db.collection(COLLECTIONS.imageUploads).doc(match[1]).get();
+    return snapshot.exists?{id:snapshot.id,...snapshot.data()}:null;
+  }
+
+  async deleteImageUpload(reference){
+    const match=String(reference||'').match(/^backofficeImageUploads\/([A-Za-z0-9_-]+)$/);
+    if(!match)throw new Error('Invalid temporary trail image reference');
+    await this.db.collection(COLLECTIONS.imageUploads).doc(match[1]).delete();
   }
 
   async putJob(job){

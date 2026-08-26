@@ -32,7 +32,7 @@ async function ingestImageReviews(store){
     try{
       const audit=await store.getArtifact('image-coverage');if(!audit)throw new Error('Image coverage audit is unavailable');
       queue=applyImageCoverageReview(audit,queue,{slug:review.slug,trailId:review.trailId,action:review.action,note:review.note,
-        assetRef:review.assetRef,uploadPath:review.uploadPath,fileName:review.fileName,mimeType:review.mimeType,
+        assetRef:review.assetRef,uploadRef:review.uploadRef,fileName:review.fileName,mimeType:review.mimeType,
         fileSize:review.fileSize,width:review.width,height:review.height,creator:review.creator,
         rightsBasis:review.rightsBasis,altText:review.altText,sourcePageUrl:review.sourcePageUrl,
         license:review.license,licenseUrl:review.licenseUrl,sourceType:review.sourceType},iso(review.submittedAt));
@@ -58,17 +58,17 @@ async function processImageJobs(store,options={}){
       }else if(job.sourcePreference==='upload-owner-photo'){
         result={contractVersion:'2.0.0',slug:gap.slug,trailId:gap.trailId||gap.slug,generatedAt:new Date().toISOString(),sourcePreference:job.sourcePreference,
           summary:'Your uploaded trail photo is ready for visual and rights approval.',candidates:[{title:job.fileName||gap.title,sourcePageUrl:null,
-            assetUrl:null,storagePath:job.uploadPath,creator:job.creator||'ORMA',license:job.rightsBasis==='permission-granted'?'Permission granted':'ORMA-owned',
+            assetUrl:null,uploadRef:job.uploadRef,creator:job.creator||'ORMA',license:job.rightsBasis==='permission-granted'?'Permission granted':'ORMA-owned',
             licenseUrl:null,rightsEvidence:job.rightsBasis==='permission-granted'?'Uploader confirmed permission to publish.':'Uploader confirmed that ORMA owns this photo.',
             altText:job.altText||`${gap.title} trail`,status:'ready-for-asset-review',generationPrompt:null,width:job.width||null,height:job.height||null,
             mimeType:job.mimeType||null,fileSize:job.fileSize||null}],publicMutationAllowed:false};
       }else if(job.sourcePreference==='approve-uploaded-photo'){
         const previous=await store.getArtifact('image-coverage-results')||{items:[]};
         const prior=(previous.items||[]).find(item=>item.slug===job.slug);
-        const candidate=(prior?.candidates||[]).find(item=>item.storagePath===job.uploadPath&&item.status==='ready-for-asset-review');
+        const candidate=(prior?.candidates||[]).find(item=>item.uploadRef===job.uploadRef&&item.status==='ready-for-asset-review');
         if(!candidate)throw new Error('The uploaded photo must complete visual preview review before publication approval');
         const requests=await store.getArtifact('trail-image-publication-requests')||{contractVersion:'1.0.0',requests:[]};
-        const request={id:job.reviewId,trailId:gap.trailId||gap.slug,title:gap.title,storagePath:job.uploadPath,fileName:job.fileName||candidate.title,
+        const request={id:job.reviewId,trailId:gap.trailId||gap.slug,title:gap.title,uploadRef:job.uploadRef,fileName:job.fileName||candidate.title,
           mimeType:job.mimeType||candidate.mimeType,fileSize:job.fileSize||candidate.fileSize,width:job.width||candidate.width,height:job.height||candidate.height,
           creator:job.creator||candidate.creator,rightsBasis:job.rightsBasis,altText:job.altText||candidate.altText,status:'approved-for-pr-creation',
           approvedAt:new Date().toISOString(),approvedBy:'moderator',publicMutationAllowed:false};
@@ -77,7 +77,7 @@ async function processImageJobs(store,options={}){
           {lastReviewId:job.reviewId,publicMutationAllowed:false});
         result={...prior,contractVersion:'2.0.0',generatedAt:request.approvedAt,sourcePreference:job.sourcePreference,
           summary:'Photo approved and sent to the pull-request publishing lane.',status:'approved-for-pr-creation',
-          candidates:(prior.candidates||[]).map(item=>item.storagePath===job.uploadPath?{...item,status:'approved-for-publication'}:item),publicMutationAllowed:false};
+          candidates:(prior.candidates||[]).map(item=>item.uploadRef===job.uploadRef?{...item,status:'approved-for-publication'}:item),publicMutationAllowed:false};
       }else if(job.sourcePreference==='approve-image-candidate'){
         const previous=await store.getArtifact('image-coverage-results')||{items:[]};const prior=(previous.items||[]).find(item=>item.slug===job.slug);
         const candidate=(prior?.candidates||[]).find(item=>item.assetUrl===job.assetRef&&item.status==='ready-for-asset-review');
