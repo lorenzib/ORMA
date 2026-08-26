@@ -233,16 +233,33 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   layersBtn.textContent = t('map.layers');
   layersBtn.className = 'map-btn';
   layersBtn.style.left = '10px';
+  layersBtn.setAttribute('aria-expanded', 'false');
   container.appendChild(layersBtn);
 
   const panel = document.createElement('div');
   panel.className = 'map-panel';
+  panel.id = `${containerId}LayersPanel`;
+  panel.setAttribute('role', 'group');
+  panel.setAttribute('aria-label', t('map.layers'));
+  layersBtn.setAttribute('aria-controls', panel.id);
   container.appendChild(panel);
 
+  const mapShell = container.closest('.li-map');
+  function setLayersOpen(open){
+    panel.style.display = open ? 'flex' : 'none';
+    layersBtn.textContent = open ? t('map.closeLayers') : t('map.layers');
+    layersBtn.setAttribute('aria-expanded', String(open));
+    if(mapShell) mapShell.classList.toggle('map-layers-open', open);
+  }
+
   layersBtn.addEventListener('click', () => {
-    const open = panel.style.display === 'flex';
-    panel.style.display = open ? 'none' : 'flex';
-    layersBtn.textContent = open ? t('map.layers') : t('map.closeLayers');
+    setLayersOpen(panel.style.display !== 'flex');
+  });
+  document.addEventListener('keydown', event => {
+    if(event.key === 'Escape' && panel.style.display === 'flex'){
+      setLayersOpen(false);
+      layersBtn.focus();
+    }
   });
 
   function chipStyle(el, on){

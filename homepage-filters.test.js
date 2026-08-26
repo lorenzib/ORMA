@@ -282,4 +282,16 @@ describe('map-first returning homepage layout contract', () => {
     expect(mobileJs).toContain('var lastOpenPct = SNAPS[1];');
     expect(mobileCss).toContain('height:26dvh');
   });
+
+  test('keeps mobile filters compact and makes the layers panel independently scrollable', () => {
+    expect(mobileCss).toContain('body.mhome-active .li-quick-filters{grid-column:1/3;grid-row:4;');
+    expect(mobileCss).toContain('body.mhome-active #liFiltersWrap{grid-column:3/5;grid-row:4;}');
+    expect(mobileCss).toContain('body.mhome-active .li-saved-only{grid-column:5/7;grid-row:4;}');
+    expect(mobileCss).toContain('overscroll-behavior:contain');
+    expect(mobileCss).toContain('.li-map.map-layers-open{z-index:47;}');
+    expect(mobileCss).toContain('.li-map.map-fs .li-record-fab{bottom:calc(18px + env(safe-area-inset-bottom));}');
+    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    expect(script).toContain("mapShell.classList.toggle('map-layers-open', open)");
+    expect(script).toContain("layersBtn.setAttribute('aria-expanded', String(open))");
+  });
 });
