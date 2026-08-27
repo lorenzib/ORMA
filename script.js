@@ -620,7 +620,7 @@ function initGuestMap(){
         ],
         'line-width': 2.5,
       },
-    });
+    }, 'waymarked-hiking-layer');
 
     const bounds = new maplibregl.LngLatBounds();
     trails.forEach(t => {
@@ -778,7 +778,7 @@ function initTrailMap(){
         ],
         'line-width': 3,
       },
-    });
+    }, 'waymarked-hiking-layer');
     // Wide, near-invisible twin of the route line so a fingertip (or a
     // slightly-off cursor) still hits the trail — 3px is too thin a target.
     trailMapInstance.addLayer({
@@ -788,7 +788,7 @@ function initTrailMap(){
       minzoom: 10,
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: { 'line-color': '#000', 'line-width': 18, 'line-opacity': 0.01 },
-    });
+    }, 'waymarked-hiking-layer');
 
     // Cluster trailheads at wider zooms so the map communicates density
     // without becoming a field of indistinguishable dots.

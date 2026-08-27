@@ -298,14 +298,26 @@ describe('map-first returning homepage layout contract', () => {
   });
 
   test('keeps mobile filters compact and makes the layers panel independently scrollable', () => {
-    expect(mobileCss).toContain('body.mhome-active .li-quick-filters{grid-column:1/3;grid-row:4;');
-    expect(mobileCss).toContain('body.mhome-active #liFiltersWrap{grid-column:3/5;grid-row:4;}');
-    expect(mobileCss).toContain('body.mhome-active .li-saved-only{grid-column:5/7;grid-row:4;}');
+    expect(html).toContain('<div class="li-mobile-actions" aria-label="Trail actions">');
+    expect(mobileCss).toContain('body.mhome-active .li-mobile-actions{grid-column:1/-1;grid-row:4;display:flex;');
+    expect(mobileCss).toContain('body.mhome-active #liQuickShade{order:1;min-width:128px;}');
+    expect(mobileCss).toContain('body.mhome-active #liQuickWater{order:2;min-width:96px;}');
+    expect(mobileCss).toContain('body.mhome-active .li-saved-only{order:3;min-width:110px;}');
+    expect(mobileCss).toContain('body.mhome-active .li-saved-count{display:grid;');
     expect(mobileCss).toContain('overscroll-behavior:contain');
     expect(mobileCss).toContain('.li-map.map-layers-open{z-index:47;}');
     expect(mobileCss).toContain('.li-map.map-fs .li-record-fab{bottom:calc(18px + env(safe-area-inset-bottom));}');
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     expect(script).toContain("mapShell.classList.toggle('map-layers-open', open)");
     expect(script).toContain("layersBtn.setAttribute('aria-expanded', String(open))");
+  });
+
+  test('keeps hiking route numbers and road shields above ORMA trail strokes', () => {
+    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    const trailScript = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+    expect(script).toMatch(/id: 'trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(script).toMatch(/id: 'guest-trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(trailScript).toMatch(/id: 'single-trail-path-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
   });
 });

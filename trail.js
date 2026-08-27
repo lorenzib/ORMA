@@ -1681,7 +1681,7 @@ function renderTrail(t){
             'line-opacity': 0.68,
             'line-dasharray': [1.5, 1.25],
           },
-        });
+        }, 'waymarked-hiking-layer');
         // Wide invisible twin so the thin neighbour lines are easy to hit.
         map.addLayer({
           id: 'other-trails-hit',
@@ -1690,7 +1690,7 @@ function renderTrail(t){
           minzoom: 9,
           layout: { 'line-join': 'round', 'line-cap': 'round' },
           paint: { 'line-color': '#000', 'line-width': 16, 'line-opacity': 0.01 },
-        });
+        }, 'waymarked-hiking-layer');
         map.addSource('nearby-trail-points', {
           type: 'geojson',
           data: {
@@ -1801,14 +1801,14 @@ function renderTrail(t){
           source: 'single-trail-path',
           layout: { 'line-join': 'round', 'line-cap': 'round' },
           paint: { 'line-color': '#2E4034', 'line-width': 7, 'line-opacity': 0.9 },
-        });
+        }, 'waymarked-hiking-layer');
         map.addLayer({
           id: 'single-trail-path-line',
           type: 'line',
           source: 'single-trail-path',
           layout: { 'line-join': 'round', 'line-cap': 'round' },
           paint: { 'line-color': safetyColor(t.safetyLevel), 'line-width': 4 },
-        });
+        }, 'waymarked-hiking-layer');
 
         // Closed loops are intentionally direction-neutral: hikers can join
         // anywhere and walk clockwise or anticlockwise. Keep arrows only for
