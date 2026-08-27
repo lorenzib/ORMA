@@ -586,11 +586,7 @@
         <span class="pill">Caution</span>
         <span class="safety-row-copy"><b>${esc(r.title)}</b><small>${esc(r.sub)}</small></span>
       </div>`;
-    const visible = rows.slice(0, 3).map(rowMarkup).join('');
-    const remaining = rows.slice(3);
-    box.innerHTML = visible + (remaining.length
-      ? `<details class="safety-more"><summary>${remaining.length} more consideration${remaining.length === 1 ? '' : 's'}</summary>${remaining.map(rowMarkup).join('')}</details>`
-      : '');
+    box.innerHTML = rows.map(rowMarkup).join('');
   })();
 
   /* ---- Getting there — within About this trail. Build it from

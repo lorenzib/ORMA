@@ -47,6 +47,12 @@ describe('ORMA icon system', () => {
     expect(verified + caution).not.toMatch(/[🐾🗺️⚠️]/u);
   });
 
+  test('keeps verification inside labelled UI instead of an ambiguous map pin', () => {
+    expect(icons.renderIconSvg('verified', { mode:'inline' })).toContain('<svg');
+    expect(icons.renderIconSvg('verified', { mode:'marker' })).toBe('');
+    expect(icons.renderIconSvg('verified', { mode:'map' })).toBe('');
+  });
+
   test('provides shared functional icons used outside the map', () => {
     ['verified','imported','new','heat','warning','mountain','camera','pace-low','pace-medium','pace-high'].forEach((key) => {
       expect(icons.renderIconSvg(key)).toContain('<svg');

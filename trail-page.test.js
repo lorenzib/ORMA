@@ -133,7 +133,9 @@ describe('trail page map controls', () => {
     expect(blueprint).toContain("['route', 'Route effort'");
     expect(blueprint).toContain('trust.heatAssessment(t)');
     expect(blueprint).toContain('if (!item || item.ok) return;');
-    expect(blueprint).toContain('const visible = rows.slice(0, 3)');
+    expect(blueprint).toContain("box.innerHTML = rows.map(rowMarkup).join('');");
+    expect(blueprint).not.toContain('more consideration');
+    expect(blueprint).not.toContain('rows.slice(0, 3)');
     expect((blueprint.match(/api\.open-meteo\.com/g) || [])).toHaveLength(1);
     expect(trail).not.toContain('api.open-meteo.com');
   });
@@ -162,7 +164,7 @@ describe('trail page map controls', () => {
     expect(html).toContain('detail-pois.js?v=20260826-1');
     expect(html).toContain('trail.js?v=20260826-1');
     expect(html).toContain('trail-reports.js?v=20260820-2');
-    expect(html).toContain('trail-blueprint.js?v=20260820-4');
+    expect(html).toContain('trail-blueprint.js?v=20260826-1');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
     expect(html).toContain('offline-packages.js?v=20260819-6');
     expect(html).toContain('trail-detail-ui.js?v=20260826-1');

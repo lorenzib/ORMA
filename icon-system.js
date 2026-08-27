@@ -267,6 +267,10 @@
   function renderIconSvg(iconKey, options = {}){
     const normalizedKey = normalizeIconKey(iconKey);
     const mode = normalizeMode(options.mode || 'inline');
+    // Verification only has a clear meaning beside a text label. A bare
+    // checkmark on a map can be mistaken for a destination, completion or
+    // live safety state, so never render it as a standalone map pin.
+    if(normalizedKey === 'verified' && (mode === 'marker' || mode === 'map')) return '';
     const size = normalizeSize(options.size, mode);
     const badge = mode === 'legend' || mode === 'marker' || mode === 'map';
 
@@ -296,8 +300,10 @@
 
   function createSvgElement(iconKey, options = {}){
     if(!global.document || typeof global.DOMParser !== 'function') return null;
+    const markup = renderIconSvg(iconKey, options);
+    if(!markup) return null;
     const parser = new global.DOMParser();
-    const doc = parser.parseFromString(renderIconSvg(iconKey, options), 'image/svg+xml');
+    const doc = parser.parseFromString(markup, 'image/svg+xml');
     return global.document.importNode(doc.documentElement, true);
   }
 
@@ -336,6 +342,7 @@
     el.className = 'dp-marker dp-marker--icon';
     const svg = createSvgElement(iconKey, { mode: 'marker', color: options.color || getCategoryColor(iconKey), size: options.size || 30 });
     if(svg) el.replaceChildren(svg);
+    else el.hidden = true;
     return el;
   }
 
