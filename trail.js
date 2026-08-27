@@ -1015,7 +1015,10 @@ function safeTrailReturn(value){
   return /^(?:browse-trails|compare|saved|journal)\.html(?:\?[^#]*)?(?:#.*)?$/i.test(value) ? value : '';
 }
 
+let trailInitStarted = false;
 function init(){
+  if(trailInitStarted) return;
+  trailInitStarted = true;
   if(window.DoloPawsRegions && typeof trails !== 'undefined') window.DoloPawsRegions.assign(trails);
   const trail = (typeof trails !== 'undefined') ? trails.find(x => x.id === trailId) : null;
 
@@ -2047,7 +2050,11 @@ function renderTrail(t){
   }
 }
 
-if(document.readyState === 'loading'){
+// This file is deferred, so the trail DOM and synchronous regional payload
+// are available even if authentication is still delaying DOMContentLoaded.
+if(document.querySelector('.td2')){
+  init();
+} else if(document.readyState === 'loading'){
   document.addEventListener('DOMContentLoaded', init);
 } else {
   init();

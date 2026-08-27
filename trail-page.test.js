@@ -64,6 +64,14 @@ function loadTrailScript(overrides = {}){
 }
 
 describe('trail page map controls', () => {
+  test('renders without waiting for authentication-delayed DOMContentLoaded', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+    expect(html).toContain('<script type="module" src="firebase-init.js?v=20260818-13" async>');
+    expect(trail).toContain("if(document.querySelector('.td2')){");
+    expect(trail).toContain('if(trailInitStarted) return;');
+  });
+
   test('uses the main-map Layers pattern and removes the redundant map key', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     document.body.innerHTML = html;
@@ -162,7 +170,7 @@ describe('trail page map controls', () => {
     expect(html).toContain('trail-weather-window.js?v=20260820-1');
     expect(html).toContain('hike-mode.js?v=20260826-1');
     expect(html).toContain('detail-pois.js?v=20260826-1');
-    expect(html).toContain('trail.js?v=20260826-1');
+    expect(html).toContain('trail.js?v=20260827-1');
     expect(html).toContain('trail-reports.js?v=20260820-2');
     expect(html).toContain('trail-blueprint.js?v=20260826-1');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
