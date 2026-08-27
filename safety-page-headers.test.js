@@ -65,16 +65,19 @@ describe('Safety Library article headers', () => {
     expect(image.getAttribute('style')).toBe('inset:-8%;width:116%;height:116%;');
   });
 
-  test('the redesigned Alpine plants guide uses a full-width photographic mosaic', () => {
+  test('the Alpine plants guide reuses its library image as a full-width photo header', () => {
     document.documentElement.innerHTML = fs.readFileSync(path.join(__dirname, 'guides', 'alpine-plants-for-dogs.html'), 'utf8');
     const css = fs.readFileSync(path.join(__dirname, 'alpine-plants-guide.css'), 'utf8');
     const header = document.querySelector('.apg-hero.section-page-head');
 
     expect(header).not.toBeNull();
+    expect(header.classList.contains('safety-photo-header')).toBe(true);
     expect(header.querySelector('h1')).not.toBeNull();
     expect(header.querySelector('.section-page-subtitle')).not.toBeNull();
-    expect(header.querySelector('.apg-hero-mosaic')).not.toBeNull();
-    expect(header.querySelectorAll('.apg-hero-tile img')).toHaveLength(3);
+    const image = header.querySelector('.safety-photo-header__image');
+    expect(image).not.toBeNull();
+    expect(image.getAttribute('src')).toBe('../images/editorial/safety-library/flowers-plants-dogs.jpg');
+    expect(header.querySelector('.apg-hero-mosaic')).toBeNull();
     expect(css).toMatch(/\.apg-hero\.section-page-head\{[^}]*width:100%;[^}]*max-width:none;[^}]*margin:0/s);
   });
 });

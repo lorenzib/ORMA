@@ -4,7 +4,7 @@
   const PRESENTATION = {
     safe:{ label:'Low concern', groupTitle:'Safe to pass, not to eat', icon:'shield', tone:'safe', meaning:'No known poisoning risk from normal proximity or sniffing. This does not mean edible.' },
     caution:{ label:'In-between', groupTitle:'Avoid chewing or contact', icon:'triangle', tone:'caution', meaning:'Prevent chewing, ingestion or irritating contact.' },
-    dangerous:{ label:'Dangerous', groupTitle:'Keep out of your dog’s mouth', icon:'octagon', tone:'dangerous', meaning:'Suspected ingestion needs urgent veterinary advice.' },
+    dangerous:{ label:'Dangerous', groupTitle:'Keep out of your dog’s mouth', icon:'octagon', tone:'dangerous', meaning:'Prevent chewing and keep fallen berries, seeds, bulbs and cuttings out of reach.' },
   };
   const HABITATS = {
     meadow:{ label:'Meadow / pasture', pattern:/meadow|pasture|grassland|lawn|field/i },
@@ -19,6 +19,27 @@
     berry:['berry', 'berries', 'fruit', 'aril', 'arils', 'hip', 'hips'],
     berries:['berry', 'berries', 'fruit', 'aril', 'arils', 'hip', 'hips'],
     purple:['purple', 'violet', 'lilac'],
+  };
+  const AVOID_COPY = {
+    'common-yarrow':'Do not let your dog graze the flower heads or leaves.',
+    'wild-rose':'Keep your dog out of thorny growth and discourage eating hips or foliage.',
+    'hens-and-chicks':'Discourage chewing, even though this plant is classed as non-toxic.',
+    'buttercup':'Do not let your dog chew fresh flowers, leaves or stems.',
+    'stinging-nettle':'Avoid face, eye, paw and bare-skin contact with the stinging hairs.',
+    'monkshood':'Keep your dog from mouthing any part of the plant.',
+    'autumn-crocus':'Keep your dog away from flowers, leaves, seeds and bulbs.',
+    'alpine-rhododendron':'Do not allow chewing of flowers, leaves or woody stems.',
+    'foxglove':'Keep all parts out of your dog’s mouth, including fallen flowers and leaves.',
+    'lily-of-the-valley':'Prevent chewing of leaves, flowers, berries and underground stems.',
+    'european-yew':'Keep your dog from needles, twigs, seeds, red arils and hedge clippings.',
+    'daffodil':'Prevent chewing and digging; bulbs carry the greatest concentration of toxin.',
+    'arum':'Keep your dog from biting the leaves, flower or bright berry spike.',
+    'spring-crocus':'Prevent grazing and digging; an uncertain crocus-like plant should be treated cautiously.',
+    'alpine-cyclamen':'Prevent chewing and digging; the underground tuber carries the greatest risk.',
+    'roman-chamomile':'Do not let your dog graze the flowers or foliage.',
+    'golden-cinquefoil':'Discourage grazing even though cinquefoil is classed as non-toxic.',
+    'fireweed':'Discourage eating large amounts of flowers or foliage.',
+    'cornflower':'Discourage grazing and do not assume every blue flower is cornflower.',
   };
 
   function escapeHtml(value){
@@ -54,13 +75,12 @@
     return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 2-6 6v8l6 6h8l6-6V8l-6-6H8Z"/><path d="M12 7v6m0 4h.01"/></svg>';
   }
 
-  function chips(values, className){
-    return (values || []).map(value => `<span class="apg-chip ${className || ''}">${escapeHtml(value)}</span>`).join('');
+  function expandIcon(){
+    return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg>';
   }
 
-  function list(values, ordered){
-    const tag = ordered ? 'ol' : 'ul';
-    return `<${tag}>${(values || []).map(value => `<li>${escapeHtml(value)}</li>`).join('')}</${tag}>`;
+  function collapseIcon(){
+    return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h5V3M21 8h-5V3M3 16h5v5M21 16h-5v5"/></svg>';
   }
 
   function floweringMonths(values){
@@ -70,35 +90,23 @@
 
   function plantCard(plant){
     const status = PRESENTATION[plant.safety];
-    const detailId = `plant-detail-${plant.id}`;
     const image = plant.image && plant.image.src
       ? `<figure class="apg-image"><img src="${escapeHtml(plant.image.src)}" alt="${escapeHtml(plant.image.alt)}" loading="lazy"><details class="apg-photo-credit"><summary aria-label="Show photo credit">©</summary><div>Photo: <a href="${escapeHtml(plant.image.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(plant.image.credit)}</a> · ${escapeHtml(plant.image.license)}</div></details></figure>`
       : '<div class="apg-image apg-image--missing" aria-label="No botanically verified image is available"><span aria-hidden="true">⌁</span><b>Verified image pending</b><small>Use the visible identification features below.</small></div>';
-    const aliases = (plant.aliases || []).length ? `<p class="apg-aliases">Also known as ${escapeHtml(plant.aliases.join(', '))}</p>` : '';
-    const urgent = plant.safety === 'dangerous'
-      ? `<div class="apg-card-urgent"><strong>Suspected ingestion?</strong> ${escapeHtml(plant.actionIfIngested[0])} <a href="#plant-emergency">See emergency steps</a></div>` : '';
+    const avoid = plant.avoid || AVOID_COPY[plant.id] || plant.summary;
+    const monitor = (plant.monitor || plant.symptoms || []).slice(0, 5).join(', ');
+    const expandButton = plant.image && plant.image.src
+      ? `<button class="apg-photo-expand" type="button" data-plant-image="${escapeHtml(plant.image.src)}" data-plant-alt="${escapeHtml(plant.image.alt)}" aria-label="Expand ${escapeHtml(plant.commonName)} photograph">${expandIcon()}</button>` : '';
     return `<article class="apg-card apg-card--${status.tone}" data-plant-id="${escapeHtml(plant.id)}">
-      <div class="apg-card-visual">${image}<div class="apg-card-status apg-card-status--${status.tone}">${icon(status.icon)}<span>${status.label}</span></div></div>
+      <div class="apg-card-visual">${image}</div>
       <div class="apg-card-copy">
+        <div class="apg-card-label apg-card-label--${status.tone}">${icon(status.icon)}<span>${status.label}</span></div>
         <h2>${escapeHtml(plant.commonName)}</h2>
         <p class="apg-scientific"><i>${escapeHtml(plant.scientificName)}</i></p>
-        ${aliases}
-        <p class="apg-look"><b>Look for:</b> ${escapeHtml((plant.identification || []).slice(0, 2).join('. '))}.</p>
-        <p class="apg-dog-rule"><b>For your dog:</b> ${escapeHtml(plant.summary)}</p>
-        ${urgent}
-        <details id="${detailId}" class="apg-detail">
-          <summary>See identification, symptoms and what to do</summary>
-          <div class="apg-detail-body">
-            <div class="apg-chips">${chips(plant.season.map(value => value[0].toUpperCase() + value.slice(1)))}${chips(habitatFacets(plant).map(value => HABITATS[value].label), 'apg-chip--habitat')}</div>
-            <section><h3>What to look for</h3>${list(plant.identification)}${plant.lookalikes.length ? `<h4>Possible lookalikes</h4>${list(plant.lookalikes)}` : ''}</section>
-            <section><h3>Where and when</h3><p>${escapeHtml(plant.habitats.join('; '))}</p><p><strong>Broad elevation:</strong> ${escapeHtml(plant.elevation)}</p><p><strong>Flowering months:</strong> ${floweringMonths(plant.floweringMonths)}</p></section>
-            <section><h3>Dog safety</h3><p>${escapeHtml(plant.dogSafety)}</p><h4>Possible symptoms</h4>${plant.symptoms.length ? list(plant.symptoms) : '<p>No poisoning symptoms are expected from normal proximity. Physical irritation or overeating can still cause problems.</p>'}</section>
-            <section class="apg-action apg-action--${status.tone}"><h3>If eaten</h3>${list(plant.actionIfIngested, true)}</section>
-            <section><h3>Interesting fact</h3><p>${escapeHtml(plant.interestingFact)}</p></section>
-            <footer class="apg-evidence"><p><strong>Veterinary review required</strong> · Evidence confidence: ${escapeHtml(plant.confidence)} · Last content review: ${escapeHtml(plant.lastReviewed)}</p><ul>${plant.evidence.map(item => `<li><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.label)} <span class="sr-only">(opens in a new tab)</span></a></li>`).join('')}</ul></footer>
-          </div>
-        </details>
+        <p class="apg-dog-rule"><b>Avoid:</b> ${escapeHtml(avoid)}</p>
+        <p class="apg-monitor"><b>Monitor for:</b> ${escapeHtml(monitor || 'persistent vomiting, diarrhoea or unusual behaviour after chewing plant material')}.</p>
       </div>
+      ${expandButton}
     </article>`;
   }
 
@@ -121,14 +129,55 @@
       results:document.getElementById('plantResults'), count:document.getElementById('plantResultCount'),
       active:document.getElementById('plantActiveFilters'),
     };
+    const dropdowns = [controls.season, controls.habitat]
+      .map(select => global.OrmaAreaDropdown && global.OrmaAreaDropdown.enhance(select))
+      .filter(Boolean);
     const state = stateFromUrl(window.location);
     let plants = [];
+    let activeExpandTrigger = null;
+    const lightbox = document.createElement('dialog');
+    lightbox.className = 'apg-lightbox';
+    lightbox.setAttribute('aria-label', 'Expanded plant photograph');
+    lightbox.innerHTML = `<div class="apg-lightbox__panel"><img class="apg-lightbox__image" alt=""><button class="apg-lightbox__close" type="button" aria-label="Close expanded photograph">${collapseIcon()}</button></div>`;
+    document.body.append(lightbox);
+
+    function closeLightbox(){
+      if(lightbox.open) lightbox.close();
+    }
+
+    function openLightbox(trigger){
+      const source = trigger.dataset.plantImage;
+      if(!source) return;
+      activeExpandTrigger = trigger;
+      const image = lightbox.querySelector('.apg-lightbox__image');
+      image.src = source;
+      image.alt = trigger.dataset.plantAlt || '';
+      lightbox.showModal();
+      lightbox.querySelector('.apg-lightbox__close').focus();
+    }
+
+    controls.results.addEventListener('click', event => {
+      const trigger = event.target.closest('.apg-photo-expand');
+      if(trigger) openLightbox(trigger);
+    });
+    lightbox.querySelector('.apg-lightbox__close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', event => {
+      if(event.target === lightbox || !event.target.closest('.apg-lightbox__image, .apg-lightbox__close')) closeLightbox();
+    });
+    lightbox.addEventListener('close', () => {
+      const image = lightbox.querySelector('.apg-lightbox__image');
+      image.removeAttribute('src');
+      image.alt = '';
+      if(activeExpandTrigger && activeExpandTrigger.isConnected) activeExpandTrigger.focus();
+      activeExpandTrigger = null;
+    });
 
     function syncControls(){
       controls.query.value = state.query;
       controls.safetyButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.plantSafety === state.safety)));
       controls.season.value = state.season;
       controls.habitat.value = state.habitat;
+      dropdowns.forEach(dropdown => dropdown.refresh());
     }
 
     function syncUrl(){
