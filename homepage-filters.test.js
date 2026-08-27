@@ -265,10 +265,11 @@ describe('map-first returning homepage layout contract', () => {
     expect(css).toMatch(/\.li-chiprow\{display:none;/);
   });
 
-  test('keeps returning-home search on the map instead of navigating away', () => {
+  test('opens returning-home search results through the dynamic trail detail route', () => {
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     expect(script).toContain('renderLiSearchSuggestions(currentProfileForAdjust)');
-    expect(script).toContain('focusMapOnTrail(trail.id, matches)');
+    expect(script).toContain('window.location.href = `trail.html?id=${encodeURIComponent(trail.id)}&from=${encodeURIComponent(window.location.pathname + window.location.search)}`');
+    expect(script).not.toContain('focusMapOnTrail(trail.id, matches)');
     expect(script).not.toContain("search.addEventListener('focus', () => {\n      window.location.href = 'search.html");
   });
 

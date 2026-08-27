@@ -2168,8 +2168,11 @@ function renderLiSearchSuggestions(profile){
       option.addEventListener('click', () => {
         search.value = trail.name;
         hideLiSearchSuggestions();
-        liRevealMapPane();
-        focusMapOnTrail(trail.id, matches);
+        // A search result is a destination, not just a map-focus control.
+        // Always use the dynamic detail route so catalogue trails that do not
+        // have a generated static HTML page (for example the Rasa/Odle route)
+        // open exactly like trails selected from Browse all Trails.
+        window.location.href = `trail.html?id=${encodeURIComponent(trail.id)}&from=${encodeURIComponent(window.location.pathname + window.location.search)}`;
       });
       suggestions.appendChild(option);
     });
