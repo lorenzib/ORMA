@@ -89,6 +89,8 @@ describe('editorial trail collections', () => {
     expect(detail).toContain('collectionTrailMap');
     expect(detail).toContain("map.addSource('collection-routes'");
     expect(detail).toContain("map.addSource('collection-waymarked-hiking'");
+    expect(detail).toContain("paint:{ 'raster-opacity':1, 'raster-resampling':'linear' }");
+    expect(detail).toContain("}, 'collection-waymarked-hiking-layer');");
     expect(detail).toContain("addPoiLayers(map, 'rifugi'");
     expect(detail).toContain("addPoiLayers(map, 'water'");
     expect(detail).toContain("addPoiLayers(map, 'food'");

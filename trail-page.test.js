@@ -447,7 +447,7 @@ describe('trail page map controls', () => {
     expect(document.getElementById('foodToggle').getAttribute('aria-pressed')).toBe('true');
     expect(document.getElementById('placesToggle').getAttribute('aria-pressed')).toBe('true');
     expect(trail).toContain('const poiStates = { fountains: true, huts: true, food: true, places: true }');
-    expect(trail).toContain("'raster-opacity': 0.62");
+    expect(trail).toContain("'raster-opacity': 1");
     expect(trail).toContain("'raster-resampling': 'linear'");
     expect(detailPois).toContain("'text-field': ['coalesce', ['get', 'name'], '']");
     expect(ui).toContain('mobileHikeSlot.appendChild(heroBtn)');

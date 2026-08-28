@@ -1621,7 +1621,11 @@ function renderTrail(t){
         // around the route stays discoverable. "Marked routes" un-ticks it
         // for anyone who wants the clean basemap.
         layout: { visibility: 'visible' },
-        paint: { 'raster-opacity': 0.62, 'raster-resampling': 'linear' },
+        // Keep Waymarked Trails' numbered shields fully opaque. The selected
+        // ORMA route is deliberately drawn beneath this layer, so lowering
+        // the raster opacity lets the route bleed through route references
+        // and can make their numbers unreadable.
+        paint: { 'raster-opacity': 1, 'raster-resampling': 'linear' },
       }, firstLabelLayer ? firstLabelLayer.id : undefined);
       if (typeof addBaseHillshade === 'function') addBaseHillshade(map, 'waymarked-hiking-layer');
       const routesToggleBtn = document.getElementById('routesToggle');

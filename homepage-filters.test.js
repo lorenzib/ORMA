@@ -319,5 +319,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toMatch(/id: 'guest-trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(trailScript).toMatch(/id: 'single-trail-path-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(script.match(/'raster-opacity': 1/g)).toHaveLength(2);
+    expect(trailScript).toContain("'raster-opacity': 1");
   });
 });

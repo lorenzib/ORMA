@@ -79,7 +79,7 @@
         attribution: '© Sarah Hoffmann (CC-BY-SA) — waymarkedtrails.org',
       });
       map.addLayer({ id: 'waymarked-hiking-layer', type: 'raster', source: 'waymarked-hiking',
-        paint: { 'raster-opacity': 0.54, 'raster-resampling': 'linear' } }, firstLabel ? firstLabel.id : undefined);
+        paint: { 'raster-opacity': 1, 'raster-resampling': 'linear' } }, firstLabel ? firstLabel.id : undefined);
       map.addSource('terrain-dem', {
         type: 'raster-dem',
         tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
@@ -91,7 +91,7 @@
       map.addSource('walk', { type: 'geojson', data: routeGeo() });
       map.addLayer({ id: 'walk-line', type: 'line', source: 'walk',
         paint: { 'line-color': '#C4652F', 'line-width': 4 },
-        layout: { 'line-cap': 'round', 'line-join': 'round' } });
+        layout: { 'line-cap': 'round', 'line-join': 'round' } }, 'waymarked-hiking-layer');
       map.addSource('walk-position', { type: 'geojson', data: positionGeo(latestFix) });
       map.addLayer({ id: 'walk-position-accuracy', type: 'fill', source: 'walk-position',
         filter: ['==', ['geometry-type'], 'Polygon'],

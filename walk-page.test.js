@@ -79,5 +79,7 @@ describe('walk recorder authentication restoration', () => {
     expect(source).toContain('Satellite');
     expect(source).toContain('data-wr-3d');
     expect(source).toContain('Centre map on my position');
+    expect(source).toContain("'raster-opacity': 1");
+    expect(source).toMatch(/id: 'walk-line'[\s\S]*?}, 'waymarked-hiking-layer'\);/);
   });
 });

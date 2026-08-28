@@ -355,7 +355,7 @@
           id:'collection-waymarked-hiking-layer',
           type:'raster',
           source:'collection-waymarked-hiking',
-          paint:{ 'raster-opacity':.54, 'raster-resampling':'linear' },
+          paint:{ 'raster-opacity':1, 'raster-resampling':'linear' },
         }, firstLabel ? firstLabel.id : undefined);
 
         function setLayerVisibility(group, visible){
@@ -377,8 +377,11 @@
           geometry:{ type:'LineString', coordinates:trail.path.map(([lat, lng]) => [Number(lng), Number(lat)]) },
         }));
         map.addSource('collection-routes', { type:'geojson', data:{ type:'FeatureCollection', features } });
-        map.addLayer({ id:'collection-routes-casing', type:'line', source:'collection-routes', layout:{ 'line-join':'round', 'line-cap':'round' }, paint:{ 'line-color':'#FFFFFF', 'line-width':7, 'line-opacity':.92 } });
-        map.addLayer({ id:'collection-routes-line', type:'line', source:'collection-routes', layout:{ 'line-join':'round', 'line-cap':'round' }, paint:{ 'line-color':['get','colour'], 'line-width':4 } });
+        // Draw ORMA's highlighted routes beneath the hiking-reference raster.
+        // Its route numbers and shields remain readable while the coloured
+        // lines stay visible everywhere the reference tiles are transparent.
+        map.addLayer({ id:'collection-routes-casing', type:'line', source:'collection-routes', layout:{ 'line-join':'round', 'line-cap':'round' }, paint:{ 'line-color':'#FFFFFF', 'line-width':7, 'line-opacity':.92 } }, 'collection-waymarked-hiking-layer');
+        map.addLayer({ id:'collection-routes-line', type:'line', source:'collection-routes', layout:{ 'line-join':'round', 'line-cap':'round' }, paint:{ 'line-color':['get','colour'], 'line-width':4 } }, 'collection-waymarked-hiking-layer');
 
         const allBounds = new maplibregl.LngLatBounds();
         selected.forEach((trail, index) => {

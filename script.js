@@ -566,7 +566,7 @@ function initGuestMap(){
       id: 'waymarked-hiking-layer',
       type: 'raster',
       source: 'waymarked-hiking',
-      paint: { 'raster-opacity': 0.54, 'raster-resampling': 'linear' },
+      paint: { 'raster-opacity': 1, 'raster-resampling': 'linear' },
     }, guestFirstLabel ? guestFirstLabel.id : undefined);
     addBaseHillshade(guestMapInstance, 'waymarked-hiking-layer');
     increaseLabelDensity(guestMapInstance);
@@ -757,7 +757,7 @@ function initTrailMap(){
       type: 'raster',
       source: 'waymarked-hiking',
       layout: { visibility: 'visible' },
-      paint: { 'raster-opacity': 0.54, 'raster-resampling': 'linear' },
+      paint: { 'raster-opacity': 1, 'raster-resampling': 'linear' },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
     addBaseHillshade(trailMapInstance, 'waymarked-hiking-layer');
     
