@@ -87,15 +87,22 @@ function initNearestTrailDirections(map, t){
   const status = document.getElementById('mapNearestDirectionsStatus');
   const stepsWrap = document.getElementById('mapNearestDirectionsStepsWrap');
   const stepsList = document.getElementById('mapNearestDirectionsSteps');
+  const routePointToggle = document.getElementById('routePointToggle');
+  const mapBox = document.getElementById('trailMapBox');
   if(!button || !panel || !status || !Array.isArray(t.path) || !t.path.length ||
      !window.DoloPawsTrailAccess || !window.DoloPawsFootpathRouter) return;
 
   const defaultLabel = 'Find a walking route';
   const coverage = window.DoloPawsTrailRoutingCoverage;
   const coverageEntry = coverage && coverage.trails ? coverage.trails[t.id] : null;
+  const coverageEntries = coverage && coverage.trails
+    ? Object.values(coverage.trails).filter(entry => entry && entry.graphUrl && entry.bounds)
+    : [];
   let activePlan = null;
-  let graphPromise = null;
+  const graphPromises = new Map();
   let originMarker = null;
+  let targetMarker = null;
+  let pointPickMode = false;
   button.hidden = false;
 
   function setButtonLabel(label){
@@ -134,18 +141,49 @@ function initNearestTrailDirections(map, t){
     stepsWrap.hidden = false;
   }
 
-  function loadRoutingGraph(){
-    if(!coverageEntry || !coverageEntry.graphUrl) return Promise.resolve(null);
-    if(!graphPromise){
-      graphPromise = fetch(coverageEntry.graphUrl, { credentials:'same-origin' })
+  function loadRoutingGraph(entry){
+    const selectedEntry = entry || coverageEntry;
+    if(!selectedEntry || !selectedEntry.graphUrl) return Promise.resolve(null);
+    if(!graphPromises.has(selectedEntry.graphUrl)){
+      graphPromises.set(selectedEntry.graphUrl, fetch(selectedEntry.graphUrl, { credentials:'same-origin' })
         .then(response => {
           if(!response.ok) throw new Error(`routing-graph-${response.status}`);
           return response.json();
         })
         .then(graph => window.DoloPawsFootpathRouter.validateGraph(graph) ? graph : null)
-        .catch(() => null);
+        .catch(() => null));
     }
-    return graphPromise;
+    return graphPromises.get(selectedEntry.graphUrl);
+  }
+
+  function boundsContainPoint(bounds, point){
+    return bounds && point &&
+      point.lat >= bounds.south && point.lat <= bounds.north &&
+      point.lng >= bounds.west && point.lng <= bounds.east;
+  }
+
+  function routingEntriesForPoint(point, origin){
+    const candidates = coverageEntries
+      .filter(entry => boundsContainPoint(entry.bounds, point) && boundsContainPoint(entry.bounds, origin))
+      .sort((first, second) => {
+        if(first === coverageEntry) return -1;
+        if(second === coverageEntry) return 1;
+        const firstArea = (first.bounds.north - first.bounds.south) * (first.bounds.east - first.bounds.west);
+        const secondArea = (second.bounds.north - second.bounds.south) * (second.bounds.east - second.bounds.west);
+        return firstArea - secondArea;
+      });
+    return candidates.filter((entry, index) =>
+      candidates.findIndex(candidate => candidate.graphUrl === entry.graphUrl) === index);
+  }
+
+  function setPointPickMode(enabled){
+    pointPickMode = enabled;
+    if(routePointToggle){
+      routePointToggle.classList.toggle('on', enabled);
+      routePointToggle.setAttribute('aria-pressed', String(enabled));
+      routePointToggle.textContent = enabled ? 'Tap a mapped route…' : 'Route to a mapped point';
+    }
+    if(mapBox) mapBox.classList.toggle('route-pick-mode', enabled);
   }
 
   function removeMappedRoute(){
@@ -196,7 +234,96 @@ function initNearestTrailDirections(map, t){
       removeMappedRoute();
       bounds.extend([plan.target.lng, plan.target.lat]);
     }
+    if(targetMarker) targetMarker.remove();
+    if(plan.mode === 'mapped-point' || plan.mode === 'external-point'){
+      targetMarker = new maplibregl.Marker({ element:markerElement('target') })
+        .setLngLat([plan.target.lng, plan.target.lat])
+        .addTo(map);
+    }
     map.fitBounds(bounds, { padding:70, maxZoom:16, duration:700 });
+  }
+
+  async function routeToSelectedPoint(target){
+    button.disabled = true;
+    button.setAttribute('aria-busy', 'true');
+    clearSteps();
+    setPanelMessage('Connecting your location to the selected mapped route…');
+    try{
+      const origin = await window.DoloPawsTrailAccess.currentPosition(navigator);
+      if(Number.isFinite(origin.accuracyM) && origin.accuracyM > window.DoloPawsTrailAccess.MAX_GPS_ACCURACY_M){
+        setPanelMessage(`Your location is only accurate to about ${Math.round(origin.accuracyM)} m. Move into a clearer area and try again.`);
+        setButtonLabel('Try location again');
+        return;
+      }
+      const entries = routingEntriesForPoint(target, origin);
+      let plan = null;
+      for(const entry of entries){
+        const graph = await loadRoutingGraph(entry);
+        plan = await window.DoloPawsTrailAccess.planMappedPoint(
+          navigator,
+          target,
+          graph,
+          window.DoloPawsFootpathRouter,
+          navigator.userAgent,
+          { origin, maxRouteDistanceM:5000, maxFallbackDistanceKm:5 }
+        );
+        if(plan.mode === 'mapped-point') break;
+      }
+      if(!plan){
+        plan = await window.DoloPawsTrailAccess.planMappedPoint(
+          navigator,
+          target,
+          null,
+          window.DoloPawsFootpathRouter,
+          navigator.userAgent,
+          { origin, maxRouteDistanceM:5000, maxFallbackDistanceKm:5 }
+        );
+      }
+      activePlan = plan;
+      if(plan.mode === 'mapped-point'){
+        showPlan(plan, true);
+        renderSteps(plan.instructions);
+        const targetSnap = plan.targetSnapDistanceM > 20
+          ? ` The selected point was snapped ${formatApproachDistance(plan.targetSnapDistanceM / 1000)} to a connected path.`
+          : '';
+        setPanelMessage(`Mapped walking route · ${formatApproachDistance(plan.distanceKm)} to the selected route point.${targetSnap} Check local signs and temporary closures.`);
+        setButtonLabel(defaultLabel);
+        return;
+      }
+      if(plan.mode === 'external-point' && plan.allowed){
+        showPlan(plan, false);
+        setPanelMessage('This selected point is not connected to ORMA’s current walking graph. Your maps app can calculate the approach instead.');
+        setButtonLabel('Open directions to selected point');
+        return;
+      }
+      setPanelMessage('That point is outside ORMA’s current walking coverage. Choose a closer mapped route point.');
+      setButtonLabel(defaultLabel);
+    }catch(error){
+      setPanelMessage('We could not calculate a route to that point. Check your location signal and try again.');
+      setButtonLabel(defaultLabel);
+    }finally{
+      button.disabled = false;
+      button.removeAttribute('aria-busy');
+    }
+  }
+
+  if(routePointToggle){
+    routePointToggle.addEventListener('click', event => {
+      event.stopPropagation();
+      const enabled = !pointPickMode;
+      setPointPickMode(enabled);
+      if(enabled){
+        clearSteps();
+        setPanelMessage('Tap the mapped trail or footpath you want to reach. ORMA will use connected walking paths where coverage is available.');
+        const layersButton = document.getElementById('detailLayersBtn');
+        if(layersButton && layersButton.getAttribute('aria-expanded') === 'true') layersButton.click();
+      }
+    });
+    map.on('click', event => {
+      if(!pointPickMode) return;
+      setPointPickMode(false);
+      routeToSelectedPoint({ lat:event.lngLat.lat, lng:event.lngLat.lng });
+    });
   }
 
   button.addEventListener('click', async () => {

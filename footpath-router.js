@@ -1,7 +1,7 @@
 (function(root){
   'use strict';
 
-  const VERSION = '1.1.0';
+  const VERSION = '1.2.0';
   const EARTH_RADIUS_M = 6371000;
 
   function validPoint(point){
@@ -180,8 +180,105 @@
     };
   }
 
+  // Route between two arbitrary points on the same published walking graph.
+  // This lets one regional graph serve trail access and user-selected mapped
+  // route points instead of requiring a bespoke graph for every interaction.
+  function routeToPoint(position, target, graph, options){
+    options = options || {};
+    if(!validPoint(position) || !validPoint(target) || !validateGraph(graph)) return null;
+    const maxSnapDistanceM = Number.isFinite(options.maxSnapDistanceM)
+      ? options.maxSnapDistanceM
+      : 35;
+    const maxTargetSnapDistanceM = Number.isFinite(options.maxTargetSnapDistanceM)
+      ? options.maxTargetSnapDistanceM
+      : 90;
+    const maxRouteDistanceM = Number.isFinite(options.maxRouteDistanceM)
+      ? options.maxRouteDistanceM
+      : 5000;
+    const sourceSnap = nearestEdge(position, graph);
+    const targetSnap = nearestEdge(target, graph);
+    if(!sourceSnap || sourceSnap.distanceM > maxSnapDistanceM ||
+       !targetSnap || targetSnap.distanceM > maxTargetSnapDistanceM) return null;
+
+    if(sourceSnap.edgeIndex === targetSnap.edgeIndex){
+      const distanceM = sourceSnap.edge[2] * Math.abs(sourceSnap.fraction - targetSnap.fraction);
+      if(distanceM > maxRouteDistanceM) return null;
+      return {
+        version:VERSION,
+        routingMode:'mapped-point',
+        path:[sourceSnap.point, targetSnap.point],
+        target:targetSnap.point,
+        distanceM,
+        snapDistanceM:sourceSnap.distanceM,
+        targetSnapDistanceM:targetSnap.distanceM,
+        source:'openstreetmap',
+      };
+    }
+
+    const adjacency = Array.from({ length:graph.nodes.length }, () => []);
+    graph.edges.forEach(edge => {
+      adjacency[edge[0]].push([edge[1], edge[2]]);
+      adjacency[edge[1]].push([edge[0], edge[2]]);
+    });
+    const distances = Array(graph.nodes.length).fill(Infinity);
+    const previous = Array(graph.nodes.length).fill(-1);
+    const queue = new MinQueue();
+    [
+      [sourceSnap.edge[0], sourceSnap.edge[2] * sourceSnap.fraction],
+      [sourceSnap.edge[1], sourceSnap.edge[2] * (1 - sourceSnap.fraction)],
+    ].forEach(([nodeIndex, distance]) => {
+      if(distance < distances[nodeIndex]){
+        distances[nodeIndex] = distance;
+        queue.push([distance, nodeIndex]);
+      }
+    });
+    while(queue.length){
+      const [distance, nodeIndex] = queue.shift();
+      if(distance !== distances[nodeIndex]) continue;
+      if(distance > maxRouteDistanceM) break;
+      adjacency[nodeIndex].forEach(([next, cost]) => {
+        const candidate = distance + cost;
+        if(candidate < distances[next] && candidate <= maxRouteDistanceM){
+          distances[next] = candidate;
+          previous[next] = nodeIndex;
+          queue.push([candidate, next]);
+        }
+      });
+    }
+    const selected = [
+      [targetSnap.edge[0], targetSnap.edge[2] * targetSnap.fraction],
+      [targetSnap.edge[1], targetSnap.edge[2] * (1 - targetSnap.fraction)],
+    ].map(([nodeIndex, finalCost]) => ({
+      nodeIndex,
+      distanceM:distances[nodeIndex] + finalCost,
+    })).filter(candidate => Number.isFinite(candidate.distanceM))
+      .sort((first, second) => first.distanceM - second.distanceM)[0];
+    if(!selected || selected.distanceM > maxRouteDistanceM) return null;
+
+    const nodePath = [];
+    for(let cursor = selected.nodeIndex; cursor >= 0; cursor = previous[cursor]){
+      nodePath.push(cursor);
+      if(previous[cursor] < 0) break;
+    }
+    nodePath.reverse();
+    const path = [sourceSnap.point, ...nodePath.map(index => pointFromNode(graph.nodes[index])), targetSnap.point];
+    const dedupedPath = path.filter((point, index) => !index ||
+      point.lat !== path[index - 1].lat || point.lng !== path[index - 1].lng);
+    return {
+      version:VERSION,
+      routingMode:'mapped-point',
+      path:dedupedPath,
+      target:targetSnap.point,
+      distanceM:selected.distanceM,
+      snapDistanceM:sourceSnap.distanceM,
+      targetSnapDistanceM:targetSnap.distanceM,
+      source:'openstreetmap',
+    };
+  }
+
   root.DoloPawsFootpathRouter = Object.freeze({
     VERSION,
+    routeToPoint,
     validateGraph,
     routeToTrail,
   });

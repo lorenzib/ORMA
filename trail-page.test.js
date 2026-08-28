@@ -170,8 +170,9 @@ describe('trail page map controls', () => {
     expect(html).toContain('trail-weather-window.js?v=20260820-1');
     expect(html).toContain('hike-mode.js?v=20260826-1');
     expect(html).toContain('detail-pois.js?v=20260826-1');
-    expect(html).toContain('trail-access-directions.js?v=20260828-1');
-    expect(html).toContain('trail.js?v=20260828-2');
+    expect(html).toContain('trail-access-directions.js?v=20260828-2');
+    expect(html).toContain('footpath-router.js?v=20260828-2');
+    expect(html).toContain('trail.js?v=20260828-3');
     expect(html).toContain('trail-reports.js?v=20260820-2');
     expect(html).toContain('trail-blueprint.js?v=20260826-1');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
@@ -444,6 +445,7 @@ describe('trail page map controls', () => {
 
     expect(document.getElementById('mobileMapHikeSlot')).not.toBeNull();
     expect(document.getElementById('routesToggle').getAttribute('aria-pressed')).toBe('true');
+    expect(document.getElementById('routePointToggle').getAttribute('aria-pressed')).toBe('false');
     expect(document.getElementById('fountainsToggle').getAttribute('aria-pressed')).toBe('false');
     expect(document.getElementById('hutsToggle').getAttribute('aria-pressed')).toBe('false');
     expect(document.getElementById('foodToggle').getAttribute('aria-pressed')).toBe('false');
@@ -456,5 +458,12 @@ describe('trail page map controls', () => {
     expect(detailPois).toContain("'text-field': ['coalesce', ['get', 'name'], '']");
     expect(ui).toContain('mobileHikeSlot.appendChild(heroBtn)');
     expect(html).toContain('.td2 #mapStartHikeBtn{display:none!important;}');
+  });
+
+  test('selected route points reuse overlapping published walking graphs', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+    expect(source).toContain('routingEntriesForPoint(target, origin)');
+    expect(source).toContain("plan.mode === 'mapped-point'");
+    expect(source).toContain('Open directions to selected point');
   });
 });

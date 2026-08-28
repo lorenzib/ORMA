@@ -79,6 +79,7 @@ h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;}
 .map-nearest-directions-steps li+li{margin-top:4px;}
 .map-access-marker{display:grid;place-items:center;width:28px;height:28px;border:3px solid #fff;border-radius:50%;background:#3E7A91;box-shadow:0 3px 10px rgba(23,42,28,.32);color:#fff;font:800 12px/1 'Inter',sans-serif;}
 .map-access-marker--you{width:20px;height:20px;background:#2E4034;font-size:0;}
+.trail-map-box.route-pick-mode #trailDetailMap canvas{cursor:crosshair!important;}
 .trail-map-box.hike-status-visible .map-nearest-directions,.trail-map-box.hike-status-visible .map-nearest-directions-panel{display:none;}
 .legend-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
 
@@ -1058,6 +1059,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
         <button id="detailLayersBtn" type="button" class="map-btn" aria-expanded="false">Layers</button>
         <div id="detailLayersPanel" class="map-panel">
           <button id="routesToggle" type="button" class="map-chip on" aria-pressed="true">Trail routes</button>
+          <button id="routePointToggle" type="button" class="map-chip" aria-pressed="false">Route to a mapped point</button>
           <button id="liftsToggle" type="button" class="map-chip" aria-pressed="false">Lift stations &amp; names</button>
       <button id="fountainsToggle" type="button" class="map-chip" aria-pressed="false">Fountains</button>
       <button id="hutsToggle" type="button" class="map-chip" aria-pressed="false">Mountain huts</button>
@@ -1278,8 +1280,8 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="route-rejoin.js?v=20260815-4" defer></script>
 <script src="hike-distance.js?v=20260815-4" defer></script>
 <script src="trail-routing-coverage.js?v=20260828-1" defer></script>
-<script src="trail-access-directions.js?v=20260828-1" defer></script>
-<script src="footpath-router.js?v=20260826-1" defer></script>
+<script src="trail-access-directions.js?v=20260828-2" defer></script>
+<script src="footpath-router.js?v=20260828-2" defer></script>
 <script src="pre-hike-readiness.js?v=20260815-4" defer></script>
 <script src="hike-session.js?v=20260815-4" defer></script>
 <script src="hike-completions.js?v=20260815-4" defer></script>
@@ -1289,7 +1291,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="trail-photo-provenance.js?v=20260820-1" defer></script>
 <script src="trail-weather-window.js?v=20260820-1" defer></script>
 <script src="trail-reports.js?v=20260820-2" defer></script>
-<script src="trail.js?v=20260828-2" defer></script>
+<script src="trail.js?v=20260828-3" defer></script>
 <script src="trail-blueprint.js?v=20260826-1" defer></script>
 <script src="trail-detail-ui.js?v=20260826-1" defer></script>
 <script src="trail-mobile.js?v=20260826-1" defer></script>

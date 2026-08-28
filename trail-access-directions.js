@@ -296,6 +296,51 @@
     };
   }
 
+  async function planMappedPoint(navigatorLike, target, graph, router, userAgent, options){
+    options = options || {};
+    const origin = finiteCoordinate(options.origin)
+      ? options.origin
+      : await currentPosition(navigatorLike);
+    const accuracyM = Number(origin.accuracyM);
+    if(Number.isFinite(accuracyM) && accuracyM > MAX_GPS_ACCURACY_M){
+      return { allowed:false, mode:'unreliable-location', origin, accuracyM };
+    }
+    if(graph && router && typeof router.routeToPoint === 'function'){
+      const mapped = router.routeToPoint(origin, target, graph, {
+        maxRouteDistanceM:Number.isFinite(options.maxRouteDistanceM) ? options.maxRouteDistanceM : 5000,
+        maxSnapDistanceM:Number.isFinite(options.maxSnapDistanceM)
+          ? options.maxSnapDistanceM
+          : Math.min(120, Math.max(35, (Number.isFinite(accuracyM) ? accuracyM : 20) + 15)),
+        maxTargetSnapDistanceM:Number.isFinite(options.maxTargetSnapDistanceM)
+          ? options.maxTargetSnapDistanceM
+          : 90,
+      });
+      if(mapped){
+        return {
+          ...mapped,
+          allowed:true,
+          mode:'mapped-point',
+          origin,
+          accuracyM,
+          distanceKm:mapped.distanceM / 1000,
+          instructions:routeInstructions(mapped.path),
+          url:null,
+        };
+      }
+    }
+    const fallback = assess(origin, target, Number.isFinite(options.maxFallbackDistanceKm)
+      ? options.maxFallbackDistanceKm
+      : TRAIL_JOIN_MAX_KM);
+    return {
+      ...fallback,
+      mode:'external-point',
+      origin,
+      target,
+      accuracyM,
+      url:fallback.allowed ? directionsUrl(origin, target, userAgent, 'walking') : null,
+    };
+  }
+
   root.DoloPawsTrailAccess = Object.freeze({
     DEFAULT_MAX_KM,
     TRAIL_JOIN_MAX_KM,
@@ -307,6 +352,7 @@
     distanceKm,
     nearestPointOnRoute,
     planFromCurrent,
+    planMappedPoint,
     planToNearestRoute,
     planTrailEntry,
     recommendedTrailAccess,

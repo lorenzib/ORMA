@@ -230,6 +230,59 @@ describe('trailhead access directions', () => {
     expect(plan.maxAccuracyM).toBe(500);
   });
 
+  test('plans an internal route to a user-selected mapped point', async () => {
+    require('./footpath-router.js');
+    const navigatorLike = {
+      geolocation:{
+        getCurrentPosition:success => success({
+          coords:{ latitude:46.00002, longitude:11.0001, accuracy:12 },
+        }),
+      },
+    };
+    const graph = {
+      schemaVersion:1,
+      nodes:[[11, 46], [11.001, 46], [11.002, 46]],
+      edges:[[0, 1, 77, 'footway'], [1, 2, 77, 'path']],
+      trailNodes:[2],
+    };
+    const plan = await access.planMappedPoint(
+      navigatorLike,
+      { lat:46.00002, lng:11.0019 },
+      graph,
+      window.DoloPawsFootpathRouter,
+      'Android'
+    );
+    expect(plan.mode).toBe('mapped-point');
+    expect(plan.allowed).toBe(true);
+    expect(plan.url).toBeNull();
+    expect(plan.instructions.length).toBeGreaterThan(0);
+  });
+
+  test('reuses a captured location while checking overlapping regional graphs', async () => {
+    require('./footpath-router.js');
+    const navigatorLike = {
+      geolocation:{
+        getCurrentPosition:() => { throw new Error('location should be reused'); },
+      },
+    };
+    const graph = {
+      schemaVersion:1,
+      nodes:[[11, 46], [11.001, 46], [11.002, 46]],
+      edges:[[0, 1, 77, 'footway'], [1, 2, 77, 'path']],
+      trailNodes:[2],
+    };
+    const plan = await access.planMappedPoint(
+      navigatorLike,
+      { lat:46.00002, lng:11.0019 },
+      graph,
+      window.DoloPawsFootpathRouter,
+      'Android',
+      { origin:{ lat:46.00002, lng:11.0001, accuracyM:12 } }
+    );
+    expect(plan.mode).toBe('mapped-point');
+    expect(plan.origin.lng).toBeCloseTo(11.0001, 4);
+  });
+
   test('turns route geometry into compact on-map steps', () => {
     const steps = access.routeInstructions([
       { lat:46, lng:11 },

@@ -47,6 +47,29 @@ describe('HIKE-07 mapped footpath rejoin router', () => {
     expect(result.distanceM).toBeLessThan(130);
   });
 
+  test('routes between two selected points on the shared walking graph', () => {
+    const result = router.routeToPoint(
+      { lat:46.00002, lng:11.0001 },
+      { lat:46.00002, lng:11.0019 },
+      graph,
+      { maxSnapDistanceM:20, maxTargetSnapDistanceM:20 }
+    );
+    expect(result).not.toBeNull();
+    expect(result.routingMode).toBe('mapped-point');
+    expect(result.path.length).toBeGreaterThanOrEqual(3);
+    expect(result.distanceM).toBeGreaterThan(100);
+    expect(result.target.lng).toBeCloseTo(11.0019, 4);
+  });
+
+  test('does not guess a selected destination far from the walking graph', () => {
+    expect(router.routeToPoint(
+      { lat:46.00002, lng:11.0001 },
+      { lat:46.01, lng:11.01 },
+      graph,
+      { maxSnapDistanceM:20, maxTargetSnapDistanceM:20 }
+    )).toBeNull();
+  });
+
   test('returns no route when the user is not close to a mapped footpath', () => {
     expect(router.routeToTrail(
       { lat:46.002, lng:11.002 },
