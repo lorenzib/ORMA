@@ -1501,10 +1501,9 @@ function renderTrail(t){
         if(toggle) toggle.setAttribute('aria-expanded', 'false');
       }
       let liftsVisible = false;        // Lifts are optional planning context
-      // A trail map is a planning surface, so nearby essentials should be
-      // visible without asking hikers to discover four separate toggles.
-      // The Layers menu still lets people hide any category individually.
-      const poiStates = { fountains: true, huts: true, food: true, places: true };
+      // Keep the trail itself visually dominant on first load. Nearby
+      // amenities remain available as explicit, independent layer choices.
+      const poiStates = { fountains: false, huts: false, food: false, places: false };
       const amenityMarkers = [];       // { marker, group } for curated fallbacks
       if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(map);
       addTerrainSource(map);

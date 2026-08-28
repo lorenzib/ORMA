@@ -171,7 +171,7 @@ describe('trail page map controls', () => {
     expect(html).toContain('hike-mode.js?v=20260826-1');
     expect(html).toContain('detail-pois.js?v=20260826-1');
     expect(html).toContain('trail-access-directions.js?v=20260828-1');
-    expect(html).toContain('trail.js?v=20260828-1');
+    expect(html).toContain('trail.js?v=20260828-2');
     expect(html).toContain('trail-reports.js?v=20260820-2');
     expect(html).toContain('trail-blueprint.js?v=20260826-1');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
@@ -435,7 +435,7 @@ describe('trail page map controls', () => {
     expect(trail).toContain('if(!routeIsLoop)');
   });
 
-  test('mobile map controls have dedicated zones and nearby POIs start visible', () => {
+  test('mobile map controls have dedicated zones and only mapped routes start visible', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
     const detailPois = fs.readFileSync(path.join(__dirname, 'detail-pois.js'), 'utf8');
@@ -443,11 +443,12 @@ describe('trail page map controls', () => {
     document.body.innerHTML = html;
 
     expect(document.getElementById('mobileMapHikeSlot')).not.toBeNull();
-    expect(document.getElementById('fountainsToggle').getAttribute('aria-pressed')).toBe('true');
-    expect(document.getElementById('hutsToggle').getAttribute('aria-pressed')).toBe('true');
-    expect(document.getElementById('foodToggle').getAttribute('aria-pressed')).toBe('true');
-    expect(document.getElementById('placesToggle').getAttribute('aria-pressed')).toBe('true');
-    expect(trail).toContain('const poiStates = { fountains: true, huts: true, food: true, places: true }');
+    expect(document.getElementById('routesToggle').getAttribute('aria-pressed')).toBe('true');
+    expect(document.getElementById('fountainsToggle').getAttribute('aria-pressed')).toBe('false');
+    expect(document.getElementById('hutsToggle').getAttribute('aria-pressed')).toBe('false');
+    expect(document.getElementById('foodToggle').getAttribute('aria-pressed')).toBe('false');
+    expect(document.getElementById('placesToggle').getAttribute('aria-pressed')).toBe('false');
+    expect(trail).toContain('const poiStates = { fountains: false, huts: false, food: false, places: false }');
     expect(trail).toContain("'raster-opacity': 1");
     expect(trail).toContain("'raster-resampling': 'linear'");
     expect(trail).not.toContain("element.textContent = '✓'");
