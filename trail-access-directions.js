@@ -4,6 +4,7 @@
   const DEFAULT_MAX_KM = 100;
   const TRAIL_JOIN_MAX_KM = 5;
   const MAX_GPS_ACCURACY_M = 500;
+  const NEAR_ROUTE_FALLBACK_MAX_M = 150;
 
   function finiteCoordinate(point){
     return point && Number.isFinite(point.lat) && Number.isFinite(point.lng);
@@ -152,6 +153,35 @@
       }
     }
 
+    // If the hiker is already beside the published route, direct the maps app
+    // to the closest point on that route instead of sending them kilometres
+    // away to its official start. Keep this deliberately short-range: without
+    // a connected footpath graph ORMA must not invent an approach across
+    // private land, buildings, water, or other unmapped obstacles.
+    const nearest = nearestPointOnRoute(origin, trail && trail.path);
+    const nearbyLimitM = Number.isFinite(options.maxNearbyRouteDistanceM)
+      ? options.maxNearbyRouteDistanceM
+      : Math.min(
+        NEAR_ROUTE_FALLBACK_MAX_M,
+        Math.max(40, (Number.isFinite(accuracyM) ? accuracyM : 20) + 20)
+      );
+    if(nearest && nearest.distanceKm * 1000 <= nearbyLimitM){
+      return {
+        allowed:true,
+        mode:'nearest-route',
+        origin,
+        target:nearest.point,
+        targetLabel:'Nearest point on this trail',
+        targetKind:'nearest-route-point',
+        accuracyM,
+        distanceKm:nearest.distanceKm,
+        maxKm:nearbyLimitM / 1000,
+        segmentIndex:nearest.segmentIndex,
+        fraction:nearest.fraction,
+        url:directionsUrl(origin, nearest.point, userAgent, 'walking'),
+      };
+    }
+
     const access = recommendedTrailAccess(trail);
     if(!access){
       return { allowed:false, mode:'unavailable', origin, accuracyM };
@@ -270,6 +300,7 @@
     DEFAULT_MAX_KM,
     TRAIL_JOIN_MAX_KM,
     MAX_GPS_ACCURACY_M,
+    NEAR_ROUTE_FALLBACK_MAX_M,
     assess,
     currentPosition,
     directionsUrl,

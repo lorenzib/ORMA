@@ -50,7 +50,7 @@ describe('map browsing controls', () => {
     expect(blueprint).toContain('planFromCurrent(navigator, accessTarget, navigator.userAgent, 100)');
   });
 
-  test('the trail map prefers a mapped footpath route and keeps the start-point fallback explicit', () => {
+  test('the trail map prefers a mapped footpath route, supports a nearby route handoff, and keeps the start-point fallback explicit', () => {
     const trail = source('trail.html');
     const detail = source('trail.js');
     const coverage = source('trail-routing-coverage.js');
@@ -60,6 +60,8 @@ describe('map browsing controls', () => {
     expect(trail).toContain('id="mapNearestDirectionsSteps"');
     expect(detail).toContain('planTrailEntry(');
     expect(detail).toContain("mode === 'mapped-footpath'");
+    expect(detail).toContain("mode === 'nearest-route'");
+    expect(detail).toContain('Open directions to nearest trail point');
     expect(detail).toContain('ORMA does not yet have a connected footpath network here.');
     expect(detail).not.toContain('planToNearestRoute(navigator, t.path');
     expect(coverage).toContain('offline/packages/alpe-siusi/footpath-network.json');

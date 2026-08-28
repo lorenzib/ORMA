@@ -134,6 +134,56 @@ describe('trailhead access directions', () => {
     expect(plan.instructions.at(-1).action).toBe('Join the trail');
   });
 
+  test('offers external directions to the nearest route point when the hiker is already beside it', async () => {
+    const navigatorLike = {
+      geolocation:{
+        getCurrentPosition:success => success({
+          coords:{ latitude:46.0002, longitude:11.005, accuracy:35 },
+        }),
+      },
+    };
+    const plan = await access.planTrailEntry(
+      navigatorLike,
+      {
+        curated:false,
+        path:[[46, 11], [46, 11.01]],
+        startPoint:{ lat:46, lng:11.04, label:'Mapped route start' },
+      },
+      null,
+      null,
+      'Android'
+    );
+    expect(plan.mode).toBe('nearest-route');
+    expect(plan.targetKind).toBe('nearest-route-point');
+    expect(plan.distanceKm).toBeLessThan(0.04);
+    expect(plan.target.lng).toBeCloseTo(11.005, 4);
+    expect(plan.url).toContain('travelmode=walking');
+    expect(plan.url).toContain('destination=');
+  });
+
+  test('keeps the declared-start fallback when the nearest route point is not truly nearby', async () => {
+    const navigatorLike = {
+      geolocation:{
+        getCurrentPosition:success => success({
+          coords:{ latitude:46, longitude:11, accuracy:25 },
+        }),
+      },
+    };
+    const plan = await access.planTrailEntry(
+      navigatorLike,
+      {
+        curated:false,
+        path:[[46, 11.01], [46, 11.02]],
+        startPoint:{ lat:46, lng:11.01, label:'Mapped route start' },
+      },
+      null,
+      null,
+      'Android'
+    );
+    expect(plan.mode).toBe('recommended-start');
+    expect(plan.targetKind).toBe('mapped-start');
+  });
+
   test('falls back to the declared start without claiming an ORMA walking route', async () => {
     const navigatorLike = {
       geolocation:{

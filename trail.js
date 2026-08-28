@@ -242,6 +242,17 @@ function initNearestTrailDirections(map, t){
         setButtonLabel('Refresh walking route');
         return;
       }
+      if(plan.mode === 'nearest-route'){
+        activePlan = plan;
+        showPlan(plan, false);
+        const distanceM = plan.distanceKm * 1000;
+        const overlapsFix = Number.isFinite(plan.accuracyM) && distanceM <= plan.accuracyM;
+        setPanelMessage(overlapsFix
+          ? 'Your location overlaps this trail. Open your maps app for the nearest mapped point, and check local signs before joining.'
+          : `The nearest point on this trail is about ${formatApproachDistance(plan.distanceKm)} away. Your maps app will calculate the walk; check local signs and access before joining.`);
+        setButtonLabel('Open directions to nearest trail point');
+        return;
+      }
       if(plan.mode === 'recommended-start' && plan.allowed){
         activePlan = plan;
         showPlan(plan, false);

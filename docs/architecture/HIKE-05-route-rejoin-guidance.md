@@ -12,12 +12,14 @@ network and calculates the shortest connected route to a reachable trail node,
 up to five kilometres of network distance. The map draws that route and offers
 compact turn prompts derived from its geometry.
 
-When no packaged network can provide a connection, ORMA does not treat the
-geometrically closest coordinate as walkable. It instead offers the trail's
-declared recommended start (or mapped route start for an imported trail) as an
-explicit fallback in Apple Maps or Google Maps. The UI says that the external
-provider will calculate the actual walk and never labels that fallback as an
-ORMA route.
+When no packaged network can provide a connection, ORMA only uses the
+geometrically closest trail coordinate when the hiker is already beside the
+published route: the point must be within a short, GPS-aware threshold capped
+at 150 metres. It hands that point to Apple Maps or Google Maps and tells the
+hiker to check local signs and access. Beyond that threshold it offers the
+trail's declared recommended start (or mapped route start for an imported
+trail). Neither fallback is labelled as an ORMA walking route; the external
+provider calculates the actual walk.
 
 `scripts/build-trail-routing-coverage.js` discovers every valid packaged graph
 and every online graph under `routing-graphs/`, then publishes
