@@ -27,6 +27,8 @@
     "check:trail-sources": "node scripts/check-trail-sources.js",
     "build:regional-data": "node scripts/build-regional-runtime-data.js",
     "build:trail-routing": "node scripts/build-trail-routing-coverage.js",
+    "fetch:trail-routing:funes": "node scripts/build-mapped-trail-routing.js --funes",
+    "fetch:trail-routing:all": "node scripts/build-mapped-trail-routing.js --all --resume",
     "generate:artifacts": "npm run validate:production-trails && node scripts/generate-trail-pages.js && npm run build:regional-data && npm run build:trail-routing",
     "check:generated": "node scripts/check-generated-artifacts.js",
     "quality:gate": "node scripts/run-quality-gate.js",

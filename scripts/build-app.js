@@ -53,7 +53,7 @@ const RUNTIME_FILES = [
 ];
 
 // Whole directories that ship as-is.
-const RUNTIME_DIRS = ['offline/packages', 'trails', 'guides'];
+const RUNTIME_DIRS = ['offline/packages', 'routing-graphs', 'trails', 'guides'];
 
 // Never ships, even if something links to it.
 const DENY = [

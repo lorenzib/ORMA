@@ -6,7 +6,26 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 const packagesDir = path.join(root, 'offline', 'packages');
+const onlineGraphsDir = path.join(root, 'routing-graphs');
 const trails = {};
+
+function publishGraph(trailId, graphPath, graphUrl){
+  const graph = JSON.parse(fs.readFileSync(graphPath, 'utf8'));
+  if(graph.schemaVersion !== 1 || graph.trailId !== trailId ||
+     !Array.isArray(graph.nodes) || !Array.isArray(graph.edges) ||
+     !Array.isArray(graph.trailNodes) || !graph.trailNodes.length){
+    throw new Error(`Invalid footpath routing graph for ${trailId}`);
+  }
+  trails[trailId] = {
+    graphUrl,
+    source:'OpenStreetMap',
+    networkStatus:'mapped',
+    bounds:graph.bounds,
+    nodeCount:graph.nodes.length,
+    edgeCount:graph.edges.length,
+    retrievedAt:graph.retrievedAt || null,
+  };
+}
 
 if(fs.existsSync(packagesDir)){
   fs.readdirSync(packagesDir, { withFileTypes:true })
@@ -15,20 +34,18 @@ if(fs.existsSync(packagesDir)){
     .forEach(entry => {
       const graphPath = path.join(packagesDir, entry.name, 'footpath-network.json');
       if(!fs.existsSync(graphPath)) return;
-      const graph = JSON.parse(fs.readFileSync(graphPath, 'utf8'));
-      if(graph.schemaVersion !== 1 || graph.trailId !== entry.name ||
-         !Array.isArray(graph.nodes) || !Array.isArray(graph.edges) ||
-         !Array.isArray(graph.trailNodes) || !graph.trailNodes.length){
-        throw new Error(`Invalid footpath routing graph for ${entry.name}`);
-      }
-      trails[entry.name] = {
-        graphUrl:`offline/packages/${entry.name}/footpath-network.json`,
-        source:'OpenStreetMap',
-        networkStatus:'mapped',
-        bounds:graph.bounds,
-        nodeCount:graph.nodes.length,
-        edgeCount:graph.edges.length,
-      };
+      publishGraph(entry.name, graphPath, `offline/packages/${entry.name}/footpath-network.json`);
+    });
+}
+
+if(fs.existsSync(onlineGraphsDir)){
+  fs.readdirSync(onlineGraphsDir, { withFileTypes:true })
+    .filter(entry => entry.isFile() && /^[a-z0-9-]+\.json$/.test(entry.name))
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .forEach(entry => {
+      const trailId = entry.name.replace(/\.json$/, '');
+      if(trails[trailId]) return;
+      publishGraph(trailId, path.join(onlineGraphsDir, entry.name), `routing-graphs/${entry.name}`);
     });
 }
 

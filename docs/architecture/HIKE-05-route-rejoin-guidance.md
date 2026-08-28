@@ -1,7 +1,8 @@
 # HIKE-05 — Route rejoin guidance
 
 **Status:** Carezza and Alpe di Siusi mapped-footpath pilots implemented in
-code; physical-device validation and broader rollout remain open.
+code. The catalogue graph builder now supports staged rollout, beginning with
+Val di Funes–Odle; physical-device validation remains open.
 
 ## Pre-hike access routing
 
@@ -19,9 +20,13 @@ provider will calculate the actual walk and never labels that fallback as an
 ORMA route.
 
 `scripts/build-trail-routing-coverage.js` discovers every valid packaged graph
-and publishes `trail-routing-coverage.js`; the browser has no hardcoded trail
-allowlist. Adding a valid graph and rebuilding coverage therefore enables the
-same planner for another trail without a product-code change.
+and every online graph under `routing-graphs/`, then publishes
+`trail-routing-coverage.js`; the browser has no hardcoded trail allowlist.
+`scripts/build-mapped-trail-routing.js` retrieves a five-kilometre walkable
+OpenStreetMap corridor for a selected published trail, removes private,
+dog-prohibited and demanding/alpine segments, and retains only components that
+actually reach that trail. Adding a valid graph and rebuilding coverage enables
+the same planner for another trail without a product-code change.
 
 ## Product behaviour
 
