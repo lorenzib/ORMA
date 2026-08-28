@@ -96,7 +96,6 @@ function initNearestTrailDirections(map, t){
   let activePlan = null;
   let graphPromise = null;
   let originMarker = null;
-  let targetMarker = null;
   button.hidden = false;
 
   function setButtonLabel(label){
@@ -108,7 +107,6 @@ function initNearestTrailDirections(map, t){
     const element = document.createElement('span');
     element.className = `map-access-marker map-access-marker--${type}`;
     element.setAttribute('aria-hidden', 'true');
-    if(type === 'join') element.textContent = '✓';
     return element;
   }
 
@@ -186,12 +184,8 @@ function initNearestTrailDirections(map, t){
 
   function showPlan(plan, mapped){
     if(originMarker) originMarker.remove();
-    if(targetMarker) targetMarker.remove();
     originMarker = new maplibregl.Marker({ element:markerElement('you') })
       .setLngLat([plan.origin.lng, plan.origin.lat])
-      .addTo(map);
-    targetMarker = new maplibregl.Marker({ element:markerElement('join') })
-      .setLngLat([plan.target.lng, plan.target.lat])
       .addTo(map);
     const bounds = new maplibregl.LngLatBounds();
     bounds.extend([plan.origin.lng, plan.origin.lat]);

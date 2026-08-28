@@ -450,6 +450,8 @@ describe('trail page map controls', () => {
     expect(trail).toContain('const poiStates = { fountains: true, huts: true, food: true, places: true }');
     expect(trail).toContain("'raster-opacity': 1");
     expect(trail).toContain("'raster-resampling': 'linear'");
+    expect(trail).not.toContain("element.textContent = '✓'");
+    expect(trail).not.toContain("markerElement('join')");
     expect(detailPois).toContain("'text-field': ['coalesce', ['get', 'name'], '']");
     expect(ui).toContain('mobileHikeSlot.appendChild(heroBtn)');
     expect(html).toContain('.td2 #mapStartHikeBtn{display:none!important;}');
