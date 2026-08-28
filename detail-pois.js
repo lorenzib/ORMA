@@ -236,7 +236,7 @@ function initDetailPois(map, trail){
     })
     .catch(() => {});
 
-  // Viewpoints, picnic spots, sights and toilets from the trail-corridor
+  // Viewpoints, picnic spots, selected sights and toilets from the trail-corridor
   // amenity sweep (data/trail-amenities/). Waits for the two layers above so
   // anything they already drew is skipped rather than doubled.
   const PLACE_KINDS = ['viewpoint', 'picnic', 'sight', 'toilets', 'information'];
@@ -248,6 +248,7 @@ function initDetailPois(map, trail){
       const near = (data.features || []).filter(f =>
         inBox(f) &&
         PLACE_KINDS.includes(f.properties && f.properties.kind) &&
+        !(f.properties && f.properties.kind === 'sight' && f.properties.historic) &&
         !drawnIds.has(f.properties['@id']));
       if (!near.length) return;
       addPoiLayerSet('detail-places', near, 'places');

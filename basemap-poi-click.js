@@ -38,6 +38,20 @@ const DOLOPAWS_INTERACTIVE_LAYERS = [
 // pan-click near a label would make the map feel broken, not richer.
 const POI_SOURCE_LAYERS = ['poi', 'mountain_peak', 'poi_transit'];
 
+// Historic monuments and sites are intentionally outside ORMA's trail-
+// planning map scope. The dedicated nearby-places layer omits them too;
+// ignore any equivalent symbol that still comes from the base style.
+const HISTORIC_POI_TYPES = new Set([
+  'historic', 'memorial', 'monument', 'wayside_cross', 'wayside_shrine',
+  'ruins', 'archaeological_site',
+]);
+
+function isHistoricPoi(props){
+  if (!props) return false;
+  if (props.historic) return true;
+  return [props.class, props.subclass].some(value => HISTORIC_POI_TYPES.has(value));
+}
+
 // subclass (raw OSM value) → label. Falls back to prettified text for
 // anything not listed, so unknown types still get a sensible popup.
 const POI_LABELS = {
@@ -111,6 +125,7 @@ function makeBasemapPoisClickable(map){
     const poi = hits.find(f =>
       f.layer && f.layer.type === 'symbol' &&
       POI_SOURCE_LAYERS.includes(f.sourceLayer) &&
+      !isHistoricPoi(f.properties) &&
       (f.properties.name || f.properties['name:en'] || f.properties['name:it'])
     );
     if (!poi) return;
@@ -166,7 +181,8 @@ function makeBasemapPoisClickable(map){
       const hits = map.queryRenderedFeatures(
         [[e.point.x - 4, e.point.y - 4], [e.point.x + 4, e.point.y + 4]]);
       const overPoi = hits.some(f => f.layer && f.layer.type === 'symbol' &&
-        POI_SOURCE_LAYERS.includes(f.sourceLayer) && f.properties.name);
+        POI_SOURCE_LAYERS.includes(f.sourceLayer) &&
+        !isHistoricPoi(f.properties) && f.properties.name);
       // Only touch the cursor when a ORMA layer hasn't already set it.
       if (overPoi) {
         map.getCanvas().style.cursor = 'pointer';

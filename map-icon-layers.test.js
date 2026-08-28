@@ -55,12 +55,14 @@ function loadBrowserScript(filename, overrides = {}){
 
 function createMapMock(){
   const layers = [];
+  const sources = {};
   return {
     layers,
+    sources,
     addLayer: jest.fn((layer) => {
       layers.push(layer);
     }),
-    addSource: jest.fn(),
+    addSource: jest.fn((id, source) => { sources[id] = source; }),
     getLayer: jest.fn((id) => layers.find((layer) => layer.id === id) || null),
     getSource: jest.fn(() => ({
       getClusterExpansionZoom: jest.fn(() => Promise.resolve(13)),
@@ -126,6 +128,7 @@ describe('shared map icon layers', () => {
           json: async () => ({
             features: [
               { geometry: { type: 'Point', coordinates: [12.012, 46.012] }, properties: { '@id': 'node/1', kind: 'viewpoint', tourism: 'viewpoint' } },
+              { geometry: { type: 'Point', coordinates: [12.013, 46.013] }, properties: { '@id': 'node/2', kind: 'sight', historic: 'memorial' } },
             ],
           }),
         }),
@@ -182,5 +185,9 @@ describe('shared map icon layers', () => {
         }),
       }),
     ]));
+    expect(map.sources['detail-places'].data.features).toHaveLength(1);
+    expect(map.sources['detail-places'].data.features[0].properties.kind).toBe('viewpoint');
+    expect(fs.readFileSync(path.join(__dirname, 'basemap-poi-click.js'), 'utf8'))
+      .toContain('!isHistoricPoi(f.properties)');
   });
 });
