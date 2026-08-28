@@ -35,4 +35,14 @@ describe('shared map quality profile', () => {
         .toBeLessThan(html.indexOf(`src="${mapScript}`));
     });
   });
+
+  test('uses the full-width trail card without a duplicate map popup', () => {
+    const homepage = read('index.html');
+    const script = read('script.js');
+    expect(homepage).toContain('id="mapCallout"');
+    expect(homepage).toContain('id="mapCalloutOpen"');
+    expect(script).toContain('showMapCallout(t)');
+    expect(script).not.toContain('showTrailMapPopup');
+    expect(script).not.toContain("className: 'trail-map-popup'");
+  });
 });

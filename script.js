@@ -875,12 +875,11 @@ function initTrailMap(){
       if(selected){
         selectTrail(selected);
         jumpToCard(selected.id);
-        showTrailMapPopup(selected, e.lngLat);
       }
     });
     // The route line itself is a click target too — no need to hunt for
-    // the trailhead dot. Clicking anywhere on a trail pops up its card
-    // with a direct link to the trail page.
+    // the trailhead dot. Clicking anywhere on a trail opens the single,
+    // full-width ORMA trail card below the map.
     trailMapInstance.on('click', 'trail-paths-hit', (e) => {
       const feature = e.features && e.features[0];
       if(!feature) return;
@@ -888,7 +887,6 @@ function initTrailMap(){
       if(selected){
         selectTrail(selected);
         jumpToCard(selected.id);
-        showTrailMapPopup(selected, e.lngLat);
       }
     });
     ['trail-clusters','trail-unclustered','trail-paths-hit'].forEach(layerId => {
@@ -2568,31 +2566,6 @@ if(mapCalloutClose){
     setSelectedTrailPoint(null);
   });
 }
-// Popup shown when a trail is clicked ON the map (route line or trailhead
-// dot) — name, real score, and a direct link to the trail page, so the map
-// alone is enough to jump into a trail.
-let trailMapPopup = null;
-function showTrailMapPopup(t, lngLat){
-  if(!trailMapInstance || typeof maplibregl === 'undefined') return;
-  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
-  const dot = liMatchTier(Number(t.score) || 0).color;
-  const score = typeof t.score === 'number'
-    ? `${t.curated === false ? '≈' : ''}${t.score}% match`
-    : '';
-  if(trailMapPopup) trailMapPopup.remove();
-  trailMapPopup = new maplibregl.Popup({ offset: 12, maxWidth: '260px', className: 'trail-map-popup' })
-    .setLngLat(lngLat)
-    .setHTML(
-      `<div style="font:700 14px 'Bricolage Grotesque',sans-serif;color:#2E4034;">${esc(t.name)}</div>` +
-      `<div style="display:flex;align-items:center;gap:6px;margin-top:4px;font:600 11.5px 'Inter',sans-serif;color:#6B7A6E;">` +
-        `<span style="width:8px;height:8px;border-radius:50%;background:${dot};flex:none;"></span>` +
-        `${esc(`${t.distance} km`)}${score ? ` · ${esc(score)}` : ''}` +
-      `</div>` +
-      `<a href="trail.html?id=${encodeURIComponent(t.id)}" style="display:inline-block;margin-top:9px;font:700 12.5px 'Inter',sans-serif;color:#fff;background:#2E4034;padding:8px 14px;border-radius:9px;text-decoration:none;">Open trail →</a>`
-    )
-    .addTo(trailMapInstance);
-}
-
 function showMapCallout(t){
   const callout = document.getElementById('mapCallout');
   if(!callout) return;
