@@ -313,13 +313,16 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toContain("layersBtn.setAttribute('aria-expanded', String(open))");
   });
 
-  test('keeps hiking route numbers and road shields above ORMA trail strokes', () => {
+  test('gives ORMA-mapped routes a distinct overlay above the marked-route network', () => {
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     const trailScript = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
     expect(script).toMatch(/id: 'trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).toMatch(/id: 'guest-trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).toMatch(/id: 'trail-paths-casing'[\s\S]*?minzoom: 7[\s\S]*?'line-width': \['interpolate'[\s\S]*?10, 8[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).toMatch(/id: 'guest-trail-paths-casing'[\s\S]*?'line-width': \['interpolate'[\s\S]*?10, 7[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(script).toMatch(/id: 'trail-paths-orma-halo'[\s\S]*?'line-color': '#FFFDF7'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
+    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-color': '#3E7A91'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
+    expect(script).toMatch(/id: 'guest-trail-paths-orma-line'[\s\S]*?'line-color': '#3E7A91'[\s\S]*?guestFirstLabel \? guestFirstLabel\.id : undefined\);/);
     expect(trailScript).toMatch(/id: 'single-trail-path-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script.match(/7, 0\.64/g)).toHaveLength(2);
