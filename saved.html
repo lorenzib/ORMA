@@ -62,6 +62,15 @@
     <p class="empty-state__copy" data-i18n="saved.error.copy">Your shortlist is still safe. Check your connection and try again.</p>
     <div class="empty-state__actions"><button type="button" id="savedRetryBtn" class="empty-state__action" data-i18n="saved.error.action">Try again</button></div>
   </div>
+
+  <section id="my-routes" style="margin-top:42px;padding-top:30px;border-top:1px solid var(--paper-line);">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+      <div><h2 style="margin:0;font:700 25px 'Bricolage Grotesque',sans-serif;">My routes</h2><p style="margin:6px 0 0;color:var(--ink-soft);font-size:13px;">Draft routes saved on this device. They are not ORMA-verified trails.</p></div>
+      <a href="route-planner.html" class="empty-state__action">Create a draft route</a>
+    </div>
+    <div id="savedRouteList" style="display:grid;gap:12px;margin-top:18px;"></div>
+    <div id="savedRouteEmpty" style="margin-top:16px;padding:18px;border:1px dashed var(--paper-line);border-radius:14px;color:var(--ink-soft);font-size:13px;">No draft routes are saved on this device yet.</div>
+  </section>
 </div>
 
 <footer class="site-footer hp-footer">
@@ -148,6 +157,7 @@
 <script src="regional-trails-loader.js?v=20260815-4" data-default-region="all"></script>
 <script src="trail-audits.js?v=20260815-4" defer></script>
 <script src="regions-config.js" defer></script>
+<script src="route-drafts.js?v=20260831-1"></script>
 <script>
 // Saved trails screen. Same card language as the browse list; Remove
 // writes straight back to the account's favorites. Card explanations come
@@ -165,6 +175,31 @@ document.addEventListener('DOMContentLoaded', function(){
   var SAFETY = { 'low-risk': ['Low-risk', '#2C5C34'], 'moderate': ['Moderate', '#8A5A16'], 'caution': ['Caution', '#9C3A25'] };
   var loginBtn = document.getElementById('savedLoginBtn');
   var statusTimer = null;
+
+  function renderDraftRoutes(){
+    var routeList = document.getElementById('savedRouteList');
+    var routeEmpty = document.getElementById('savedRouteEmpty');
+    if(!routeList || !window.DoloPawsRouteDrafts) return;
+    var records = window.DoloPawsRouteDrafts.read();
+    routeEmpty.hidden = records.length > 0;
+    routeList.innerHTML = records.map(function(record){
+      var distance = record.distanceM < 1000
+        ? Math.round(record.distanceM / 10) * 10 + ' m'
+        : (record.distanceM / 1000).toFixed(1) + ' km';
+      var date = new Date(record.updatedAt || record.createdAt);
+      var dateLabel = Number.isNaN(date.getTime()) ? '' : date.toLocaleDateString();
+      return '<article style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px;border:1px solid var(--paper-line);border-radius:14px;background:var(--card);">' +
+        '<div><strong style="display:block;font-size:15px;">' + esc(record.name) + '</strong><span style="display:block;margin-top:5px;color:var(--ink-soft);font-size:12px;">' + esc(distance + (dateLabel ? ' · Saved ' + dateLabel : '')) + '</span></div>' +
+        '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;"><a href="route-planner.html?route=' + encodeURIComponent(record.id) + '" class="empty-state__action">Open</a><button type="button" data-remove-route="' + esc(record.id) + '" class="save save-btn">Delete</button></div></article>';
+    }).join('');
+    routeList.querySelectorAll('[data-remove-route]').forEach(function(button){
+      button.addEventListener('click', function(){
+        window.DoloPawsRouteDrafts.remove(button.dataset.removeRoute);
+        renderDraftRoutes();
+      });
+    });
+  }
+  renderDraftRoutes();
   if(loginBtn) loginBtn.addEventListener('click', function(){
     var accountBtn = document.getElementById('accountBtn');
     if(accountBtn) accountBtn.click();

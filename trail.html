@@ -1079,7 +1079,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
         <div id="trailDetailMap"></div>
         <p id="routeDataNotice" class="route-data-notice" hidden></p>
         <button id="detailLayersBtn" type="button" class="map-btn" aria-expanded="false">Layers</button>
-        <button id="mapLoopComposerBtn" type="button" class="map-loop-open" aria-controls="mapLoopComposerPanel" aria-pressed="false" hidden>Plan a loop</button>
         <div id="detailLayersPanel" class="map-panel">
           <button id="routesToggle" type="button" class="map-chip on" aria-pressed="true">Trail routes</button>
           <button id="routePointToggle" type="button" class="map-chip" aria-pressed="false">Route to a mapped point</button>
@@ -1097,22 +1096,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
           <details id="mapNearestDirectionsStepsWrap" class="map-nearest-directions-steps" hidden><summary>Route steps</summary><ol id="mapNearestDirectionsSteps"></ol></details>
         </div>
         <button id="mapNearestDirectionsBtn" type="button" class="map-nearest-directions" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L9.6 14.4"/><path d="M22 2l-7.9 20-4.5-7.6L2 9.9 22 2z"/></svg><span>Find a walking route</span></button>
-        <section id="mapLoopComposerPanel" class="map-loop-composer" aria-labelledby="mapLoopComposerTitle" hidden>
-          <div class="map-loop-head"><strong id="mapLoopComposerTitle">Create a loop</strong><button id="mapLoopDismissBtn" type="button" class="map-loop-dismiss" aria-label="Close loop planner">×</button></div>
-          <p id="mapLoopStatus" class="map-loop-status" role="status" aria-live="polite">Tap the map to choose your start.</p>
-          <div class="map-loop-summary" aria-label="Loop summary">
-            <span>Distance<strong id="mapLoopDistance">—</strong></span>
-            <span>Ascent<strong id="mapLoopAscent">Unavailable</strong></span>
-            <span>Points<strong id="mapLoopPointCount">0 / 3</strong></span>
-          </div>
-          <ol id="mapLoopPointList" class="map-loop-points" aria-label="Selected route points"></ol>
-          <div class="map-loop-actions">
-            <button id="mapLoopAddCentreBtn" type="button" class="map-loop-action">Add map centre</button>
-            <button id="mapLoopUndoBtn" type="button" class="map-loop-action" disabled>Undo</button>
-            <button id="mapLoopCloseBtn" type="button" class="map-loop-action map-loop-action--primary" disabled>Close loop</button>
-            <button id="mapLoopSaveBtn" type="button" class="map-loop-action map-loop-action--primary" hidden disabled>Save loop</button>
-          </div>
-        </section>
         <button id="mapExpandBtn" type="button" class="map-expand-btn" aria-label="Expand map" aria-expanded="false"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span></button>
         <div id="mobileMapHikeSlot" class="mobile-map-hike-slot" aria-label="Hike controls"></div>
         <!-- One grouped switch, bottom-left: base style + 3D toggle -->

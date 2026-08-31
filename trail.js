@@ -1826,7 +1826,6 @@ function renderTrail(t){
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
     window._dolopawsTrailMap = map; // debug/test handle
     initNearestTrailDirections(map, t);
-    initLoopComposer(map, t);
 
     // Fullscreen map — manual ⤢ toggle, and automatic during hike mode.
     const mapBox = document.getElementById('trailMapBox');

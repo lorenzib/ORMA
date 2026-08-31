@@ -3848,3 +3848,5 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
   }
   .dw-footer .dw-back-none{display:none;}
 }
+.li-plan-route{position:absolute;top:14px;left:14px;z-index:8;display:inline-flex;align-items:center;min-height:38px;padding:0 14px;border-radius:10px;background:#2E4034;color:#fff;text-decoration:none;font:700 12px 'Inter',sans-serif;box-shadow:0 4px 14px rgba(23,42,28,.24)}
+.li-plan-route:hover{background:#24352b}.li-plan-route:focus-visible{outline:3px solid rgba(159,199,214,.9);outline-offset:2px}
