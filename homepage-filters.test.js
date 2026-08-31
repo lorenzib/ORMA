@@ -313,7 +313,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toContain("layersBtn.setAttribute('aria-expanded', String(open))");
   });
 
-  test('gives ORMA-mapped routes a distinct overlay above the marked-route network', () => {
+  test('keeps marked-route numbers above the distinct ORMA route highlight', () => {
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     const trailScript = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
     expect(script).toMatch(/id: 'trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
@@ -323,6 +323,8 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toMatch(/id: 'trail-paths-orma-halo'[\s\S]*?'line-color': '#FFFDF7'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
     expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-color': '#3E7A91'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
     expect(script).toMatch(/id: 'guest-trail-paths-orma-line'[\s\S]*?'line-color': '#3E7A91'[\s\S]*?guestFirstLabel \? guestFirstLabel\.id : undefined\);/);
+    expect(script).toContain("guestMapInstance.moveLayer('waymarked-hiking-layer', guestFirstLabel.id)");
+    expect(script).toContain("trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id)");
     expect(trailScript).toMatch(/id: 'single-trail-path-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script.match(/7, 0\.64/g)).toHaveLength(2);

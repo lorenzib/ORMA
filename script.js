@@ -644,9 +644,10 @@ function initGuestMap(){
       },
     }, 'waymarked-hiking-layer');
     // The catalogue needs a visual language of its own. A light halo and
-    // teal line sits *above* marked routes but below place labels. Its white
-    // edge keeps official trail shields readable where paths coincide, while the
-    // colour says this is an ORMA-mapped route rather than another waymark.
+    // teal line identify an ORMA-mapped route without replacing the signed
+    // hiking network. The public marked-route raster is lifted back above
+    // these strokes below, so its route numbers and waymarks remain visible
+    // wherever the two paths coincide.
     guestMapInstance.addLayer({
       id: 'guest-trail-paths-orma-halo',
       type: 'line',
@@ -669,6 +670,9 @@ function initGuestMap(){
         'line-opacity': 1,
       },
     }, guestFirstLabel ? guestFirstLabel.id : undefined);
+    if(guestFirstLabel && guestMapInstance.getLayer('waymarked-hiking-layer')){
+      guestMapInstance.moveLayer('waymarked-hiking-layer', guestFirstLabel.id);
+    }
 
     const bounds = new maplibregl.LngLatBounds();
     trails.forEach(t => {
@@ -851,9 +855,9 @@ function initTrailMap(){
       },
     }, 'waymarked-hiking-layer');
     // ORMA-mapped routes are deliberately distinct from the public marked
-    // network: a teal, white-edged line is reserved for our catalogue.
-    // Place labels remain above it, and the high-contrast edge protects route-number
-    // shields where a recommended route follows an official marked trail.
+    // network: a teal, white-edged line is reserved for our catalogue. The
+    // marked-route raster is then lifted above it (while staying below place
+    // labels), preserving signed route numbers where the paths coincide.
     trailMapInstance.addLayer({
       id: 'trail-paths-orma-halo',
       type: 'line',
@@ -878,6 +882,9 @@ function initTrailMap(){
         'line-opacity': 1,
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
+    if(firstLabelLayer && trailMapInstance.getLayer('waymarked-hiking-layer')){
+      trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id);
+    }
     // Wide, near-invisible twin of the route line so a fingertip (or a
     // slightly-off cursor) still hits the trail — 3px is too thin a target.
     trailMapInstance.addLayer({
