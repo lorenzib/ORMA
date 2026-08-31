@@ -643,6 +643,32 @@ function initGuestMap(){
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 4.5, 13, 5.5],
       },
     }, 'waymarked-hiking-layer');
+    // The catalogue needs a visual language of its own. A light halo and
+    // teal line sits *above* marked routes but below place labels. Its white
+    // edge keeps official trail shields readable where paths coincide, while the
+    // colour says this is an ORMA-mapped route rather than another waymark.
+    guestMapInstance.addLayer({
+      id: 'guest-trail-paths-orma-halo',
+      type: 'line',
+      source: 'guest-trail-paths',
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: {
+        'line-color': '#FFFDF7',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 4.5, 10, 7, 13, 8.5],
+        'line-opacity': 0.94,
+      },
+    }, guestFirstLabel ? guestFirstLabel.id : undefined);
+    guestMapInstance.addLayer({
+      id: 'guest-trail-paths-orma-line',
+      type: 'line',
+      source: 'guest-trail-paths',
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: {
+        'line-color': '#3E7A91',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 3.5, 13, 4.5],
+        'line-opacity': 1,
+      },
+    }, guestFirstLabel ? guestFirstLabel.id : undefined);
 
     const bounds = new maplibregl.LngLatBounds();
     trails.forEach(t => {
@@ -824,6 +850,34 @@ function initTrailMap(){
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 5, 13, 6],
       },
     }, 'waymarked-hiking-layer');
+    // ORMA-mapped routes are deliberately distinct from the public marked
+    // network: a teal, white-edged line is reserved for our catalogue.
+    // Place labels remain above it, and the high-contrast edge protects route-number
+    // shields where a recommended route follows an official marked trail.
+    trailMapInstance.addLayer({
+      id: 'trail-paths-orma-halo',
+      type: 'line',
+      source: 'trail-paths',
+      minzoom: 7,
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: {
+        'line-color': '#FFFDF7',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 4.5, 10, 7.5, 13, 9],
+        'line-opacity': 0.94,
+      },
+    }, firstLabelLayer ? firstLabelLayer.id : undefined);
+    trailMapInstance.addLayer({
+      id: 'trail-paths-orma-line',
+      type: 'line',
+      source: 'trail-paths',
+      minzoom: 7,
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: {
+        'line-color': '#3E7A91',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 4, 13, 5],
+        'line-opacity': 1,
+      },
+    }, firstLabelLayer ? firstLabelLayer.id : undefined);
     // Wide, near-invisible twin of the route line so a fingertip (or a
     // slightly-off cursor) still hits the trail — 3px is too thin a target.
     trailMapInstance.addLayer({
