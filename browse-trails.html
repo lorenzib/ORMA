@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260823-4">
+<link rel="stylesheet" href="styles.css?v=20260831-3">
 <style>
   /* Guest bar — the homepage component reused verbatim; CTA is a link here */
   a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
@@ -28,11 +28,13 @@
   .browse-design-wrap{padding-top:6px;}
   .browse-primary-controls{margin:10px 0 18px;}
   .browse-area-controls{display:flex;align-items:center;gap:9px;min-width:0;}
-  .browse-geo-group{display:block;flex:0 0 130px;width:130px;min-width:0;}
-  .browse-geo-group--valley{flex-basis:150px;width:150px;}
+  .browse-geo-group{display:block;flex:0 0 150px;width:150px;min-width:0;}
+  .browse-geo-group--valley{flex-basis:170px;width:170px;}
   .browse-geo-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
   .browse-geo-group .area-select-shell{width:100%;}
-  .browse-geo-group .area-select-trigger{min-height:40px;padding:8px 10px 8px 12px;gap:6px;font-size:12.5px;}
+  .browse-geo-group .area-select-trigger{min-height:42px;padding:8px 10px 8px 12px;gap:6px;font-size:12.5px;}
+  .browse-geo-group .area-select-trigger__copy{display:inline-flex;align-items:baseline;gap:8px;min-width:0;}
+  .browse-geo-group .area-select-trigger__kicker{flex:none;color:#3E7A91;font:800 9px/1 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
   .browse-geo-group .area-select-trigger__label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .browse-primary-controls .browse-tools{width:100%;min-width:0;margin:0;flex-wrap:nowrap;justify-content:flex-start;}
   .browse-primary-controls .browse-search-shell{flex:1 1 240px;width:auto;max-width:none;min-width:220px;}
@@ -212,15 +214,15 @@
     <div class="browse-area-controls" aria-label="Choose trail area">
       <label class="browse-geo-group" for="browseCountrySelect">
         <span class="browse-geo-label">Country</span>
-        <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label aria-label="Filter trails by country"></select></span>
+        <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label data-control-kicker="Country" aria-label="Filter trails by country"></select></span>
       </label>
       <label class="browse-geo-group" for="browseRegionSelect">
         <span class="browse-geo-label">Region</span>
-        <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label aria-label="Filter trails by region"></select></span>
+        <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label data-control-kicker="Region" aria-label="Filter trails by region"></select></span>
       </label>
       <label class="browse-geo-group browse-geo-group--valley" for="browseValleySelect">
         <span class="browse-geo-label">Valley</span>
-        <span class="area-select-shell"><select id="browseValleySelect" data-compact-label aria-label="Filter trails by valley"></select></span>
+        <span class="area-select-shell"><select id="browseValleySelect" data-compact-label data-control-kicker="Valley" aria-label="Filter trails by valley"></select></span>
       </label>
     </div>
     <div class="browse-quick-filters" aria-label="Quick dog filters">

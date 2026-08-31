@@ -191,6 +191,17 @@ describe('Browse filter UI', () => {
     expect(html).toMatch(/#browseFiltersMenu\{[^}]*position:fixed;[^}]*bottom:max\(8px,env\(safe-area-inset-bottom\)\);[^}]*overflow-y:auto;/);
   });
 
+  test('uses the same labelled white pill treatment for browse area controls', () => {
+    const html = source('browse-trails.html');
+    const dropdown = source('area-dropdown.js');
+
+    expect(html).toContain('data-control-kicker="Country"');
+    expect(html).toContain('data-control-kicker="Region"');
+    expect(html).toContain('data-control-kicker="Valley"');
+    expect(html).toContain('.area-select-trigger__kicker');
+    expect(dropdown).toContain("const controlKicker = select.dataset.controlKicker;");
+  });
+
   test('selecting a trail opens the persistent comparison tray', () => {
     const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites');
     const compare = window.document.querySelector('[data-compare-id="reviewed-loop"]');

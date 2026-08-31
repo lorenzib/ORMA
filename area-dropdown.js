@@ -18,7 +18,14 @@
     trigger.setAttribute('aria-expanded', 'false');
     trigger.setAttribute('aria-controls', menuId);
     trigger.setAttribute('aria-label', select.getAttribute('aria-label') || 'Choose an option');
-    trigger.innerHTML = '<span class="area-select-trigger__label"></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const controlKicker = select.dataset.controlKicker;
+    if(controlKicker){
+      trigger.classList.add('area-select-trigger--kicker');
+      trigger.innerHTML = '<span class="area-select-trigger__copy"><span class="area-select-trigger__kicker"></span><span class="area-select-trigger__label"></span></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      trigger.querySelector('.area-select-trigger__kicker').textContent = controlKicker;
+    }else{
+      trigger.innerHTML = '<span class="area-select-trigger__label"></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
 
     const menu = document.createElement('div');
     menu.id = menuId;
