@@ -1177,6 +1177,7 @@ function init(){
 }
 
 function renderTrail(t){
+  if(window.ORMA_VeterinaryCare) window.ORMA_VeterinaryCare.init(t);
   if(window.DoloPawsMetricFunnel){
     const profilePresent = (() => {
       try{ return !!JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); }
