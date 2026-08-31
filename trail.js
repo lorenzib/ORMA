@@ -1177,7 +1177,6 @@ function init(){
 }
 
 function renderTrail(t){
-  if(window.ORMA_VeterinaryCare) window.ORMA_VeterinaryCare.init(t);
   if(window.DoloPawsMetricFunnel){
     const profilePresent = (() => {
       try{ return !!JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); }
@@ -1631,7 +1630,7 @@ function renderTrail(t){
       let liftsVisible = false;        // Lifts are optional planning context
       // Keep the trail itself visually dominant on first load. Nearby
       // amenities remain available as explicit, independent layer choices.
-      const poiStates = { fountains: false, huts: false, food: false, places: false };
+      const poiStates = { fountains: false, huts: false, food: false, places: false, veterinary: false };
       const amenityMarkers = [];       // { marker, group } for curated fallbacks
       if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(map);
       addTerrainSource(map);
@@ -1698,6 +1697,55 @@ function renderTrail(t){
           applyPoiVisibility(group);
         });
       });
+
+      // Veterinary facilities are fetched only when requested: the nearest
+      // options can sit well beyond the route viewport and do not need to
+      // compete with the trail during ordinary map use.
+      const veterinaryButton = document.getElementById('veterinaryToggle');
+      let veterinaryResults = null;
+      let veterinaryLoad = null;
+      if(veterinaryButton){
+        veterinaryButton.addEventListener('click', async () => {
+          const care = window.ORMA_VeterinaryCare;
+          if(!care) return;
+          poiStates.veterinary = !poiStates.veterinary;
+          veterinaryButton.classList.toggle('on', poiStates.veterinary);
+          veterinaryButton.setAttribute('aria-pressed', String(poiStates.veterinary));
+          if(!poiStates.veterinary){
+            care.setVisible(map, false);
+            return;
+          }
+          if(veterinaryResults){
+            care.setVisible(map, true);
+            care.focusFacilities(map, t, veterinaryResults);
+            return;
+          }
+          veterinaryButton.disabled = true;
+          veterinaryButton.textContent = 'Finding veterinary clinics…';
+          try{
+            veterinaryLoad = veterinaryLoad || care.loadMapLayer(map, t);
+            veterinaryResults = await veterinaryLoad;
+            if(!veterinaryResults.length){
+              poiStates.veterinary = false;
+              veterinaryButton.classList.remove('on');
+              veterinaryButton.setAttribute('aria-pressed', 'false');
+              veterinaryButton.textContent = 'No veterinary clinics mapped nearby';
+              return;
+            }
+            veterinaryButton.textContent = `Veterinary clinics (${veterinaryResults.length})`;
+            care.setVisible(map, poiStates.veterinary);
+            if(poiStates.veterinary) care.focusFacilities(map, t, veterinaryResults);
+          }catch(error){
+            veterinaryLoad = null;
+            poiStates.veterinary = false;
+            veterinaryButton.classList.remove('on');
+            veterinaryButton.setAttribute('aria-pressed', 'false');
+            veterinaryButton.textContent = 'Veterinary clinics unavailable';
+          }finally{
+            veterinaryButton.disabled = false;
+          }
+        });
+      }
       // detail-pois.js adds its layers asynchronously (after a fetch), so
       // reapply whenever a POI source finishes loading.
       map.on('sourcedata', (e) => {
