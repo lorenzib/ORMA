@@ -49,12 +49,50 @@ describe('ORMA compact veterinary care', () => {
     expect(storage.value).toContain('retrievedAt');
   });
 
-  test('trail markup retains FNOVI as fallback and avoids unsafe care claims', () => {
+  test('places veterinary care in map layers without directory or OpenStreetMap links', () => {
     const fs = require('fs');
     const html = fs.readFileSync(require('path').join(__dirname, 'trail.html'), 'utf8');
-    expect(html).toContain('id="vetCareButton"');
-    expect(html).toContain('id="vetCareDialog"');
-    expect(html).toContain('Verify or search more on FNOVI');
+    expect(html).toContain('id="veterinaryToggle"');
+    expect(html).not.toContain('id="vetCareButton"');
+    expect(html).not.toContain('id="vetCareDialog"');
+    expect(html).not.toContain('View on OpenStreetMap');
+    expect(html).not.toContain('openstreetmap.org/');
+    expect(html).not.toContain('Verify or search more on FNOVI');
     expect(html).not.toMatch(/open now|verified available|24\/7 veterinary/i);
+  });
+
+  test('builds safe clinic map popups with no OpenStreetMap listing link', () => {
+    const html = care.popupHtml({
+      name:'Clinic <North>',
+      address:'Via & Roma 2',
+      website:'https://clinic.example/',
+      distanceKm:2.4,
+    });
+    expect(html).toContain('Clinic &lt;North&gt;');
+    expect(html).toContain('Via &amp; Roma 2');
+    expect(html).toContain('2.4 km straight-line');
+    expect(html).toContain('Facility website');
+    expect(html).toContain('Confirm availability before travelling.');
+    expect(html).not.toContain('OpenStreetMap');
+    expect(html).not.toContain('openstreetmap.org');
+  });
+
+  test('adds a hidden veterinary layer that can be toggled independently', () => {
+    const layers = [];
+    const map = {
+      addSource:jest.fn(),
+      addLayer:jest.fn(layer => layers.push(layer)),
+      getSource:jest.fn(() => null),
+      getLayer:jest.fn(id => layers.find(layer => layer.id === id)),
+      setLayoutProperty:jest.fn(),
+      on:jest.fn(),
+      getCanvas:jest.fn(() => ({ style:{} })),
+    };
+    care.addLayers(map, [{ name:'Clinic', address:'', website:'', lat:46, lng:11, distanceKm:1 }]);
+    expect(map.addSource).toHaveBeenCalledWith(care.SOURCE_ID, expect.objectContaining({ type:'geojson' }));
+    expect(layers.map(layer => layer.id)).toEqual(care.LAYER_IDS);
+    expect(layers.every(layer => layer.layout.visibility === 'none')).toBe(true);
+    care.setVisible(map, true);
+    expect(map.setLayoutProperty).toHaveBeenCalledTimes(care.LAYER_IDS.length);
   });
 });

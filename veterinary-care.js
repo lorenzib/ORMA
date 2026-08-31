@@ -5,10 +5,15 @@
     'https://overpass-api.de/api/interpreter',
     'https://overpass.kumi.systems/api/interpreter',
   ];
-  const FNOVI_URL = 'https://www.struttureveterinarie.it/?q=ricercastruttureavanzata';
   const SEARCH_RADIUS_M = 30000;
   const CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000;
   const REQUEST_TIMEOUT_MS = 8000;
+  const SOURCE_ID = 'detail-veterinary';
+  const LAYER_IDS = [
+    'detail-veterinary-points',
+    'detail-veterinary-crosses',
+    'detail-veterinary-labels',
+  ];
 
   function haversineKm(a, b) {
     const radians = Math.PI / 180;
@@ -144,93 +149,152 @@
     return `${distanceKm.toFixed(distanceKm < 10 ? 1 : 0)} km straight-line`;
   }
 
-  function appendExternalLink(parent, label, href, className) {
-    const link = document.createElement('a');
-    link.className = className || '';
-    link.href = href;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    link.textContent = label;
-    parent.appendChild(link);
+  function escapeHtml(value) {
+    return String(value == null ? '' : value).replace(/[&<>"']/g, character => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+    }[character]));
   }
 
-  function renderResults(list, status, results) {
-    list.replaceChildren();
-    if (!results.length) {
-      status.textContent = 'No mapped facilities are available here right now.';
+  function toFeature(result) {
+    return {
+      type: 'Feature',
+      geometry: { type: 'Point', coordinates: [result.lng, result.lat] },
+      properties: {
+        name: result.name,
+        address: result.address,
+        website: result.website,
+        distanceKm: result.distanceKm,
+      },
+    };
+  }
+
+  function popupHtml(properties) {
+    const website = safeWebsite(properties.website);
+    let html = '<div class="dp-poi-popup vet-map-popup">';
+    html += '<span class="dp-poi-type">Veterinary clinic</span>';
+    html += `<strong class="dp-poi-name">${escapeHtml(properties.name || 'Mapped veterinary facility')}</strong>`;
+    const distanceKm = Number(properties.distanceKm);
+    if (Number.isFinite(distanceKm)) html += `<span>${escapeHtml(formatDistance(distanceKm))}</span>`;
+    if (properties.address) html += `<span>${escapeHtml(properties.address)}</span>`;
+    html += '<span>Confirm availability before travelling.</span>';
+    if (website) html += `<a href="${escapeHtml(website)}" target="_blank" rel="noopener noreferrer">Facility website ↗</a>`;
+    return html + '</div>';
+  }
+
+  function setVisible(map, visible) {
+    LAYER_IDS.forEach(id => {
+      if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', visible ? 'visible' : 'none');
+    });
+  }
+
+  function addLayers(map, results) {
+    const data = { type: 'FeatureCollection', features: results.map(toFeature) };
+    const existing = map.getSource(SOURCE_ID);
+    if (existing) {
+      if (typeof existing.setData === 'function') existing.setData(data);
       return;
     }
-    status.textContent = 'OpenStreetMap listings may be incomplete. Confirm availability before travelling.';
-    results.forEach(result => {
-      const item = document.createElement('li');
-      item.className = 'vet-care-result';
-      const title = document.createElement('strong');
-      title.textContent = result.name;
-      const meta = document.createElement('span');
-      meta.className = 'vet-care-meta';
-      meta.textContent = [formatDistance(result.distanceKm), result.address].filter(Boolean).join(' · ');
-      item.append(title, meta);
-      const links = document.createElement('span');
-      links.className = 'vet-care-result-links';
-      if (result.website) appendExternalLink(links, 'Facility website ↗', result.website);
-      if (result.id) appendExternalLink(links, 'View on OpenStreetMap ↗', `https://www.openstreetmap.org/${result.id}`);
-      if (links.childElementCount) item.appendChild(links);
-      list.appendChild(item);
+    map.addSource(SOURCE_ID, {
+      type: 'geojson',
+      data,
+      attribution: 'Veterinary facility data © OpenStreetMap contributors',
+    });
+    map.addLayer({
+      id: 'detail-veterinary-points',
+      type: 'circle',
+      source: SOURCE_ID,
+      layout: { visibility: 'none' },
+      paint: {
+        'circle-radius': ['interpolate', ['linear'], ['zoom'], 7, 7, 13, 10],
+        'circle-color': '#B44435',
+        'circle-stroke-color': '#ffffff',
+        'circle-stroke-width': 2,
+      },
+    });
+    map.addLayer({
+      id: 'detail-veterinary-crosses',
+      type: 'symbol',
+      source: SOURCE_ID,
+      layout: {
+        visibility: 'none',
+        'text-field': '+',
+        'text-font': ['Noto Sans Regular'],
+        'text-size': 16,
+        'text-offset': [0, -0.05],
+      },
+      paint: { 'text-color': '#ffffff' },
+    });
+    map.addLayer({
+      id: 'detail-veterinary-labels',
+      type: 'symbol',
+      source: SOURCE_ID,
+      minzoom: 9,
+      layout: {
+        visibility: 'none',
+        'text-field': ['get', 'name'],
+        'text-font': ['Noto Sans Regular'],
+        'text-size': 11,
+        'text-anchor': 'top',
+        'text-offset': [0, 1.25],
+        'text-max-width': 13,
+        'text-optional': true,
+      },
+      paint: {
+        'text-color': '#243128',
+        'text-halo-color': 'rgba(255,255,255,.96)',
+        'text-halo-width': 2,
+      },
+    });
+    map.on('mouseenter', 'detail-veterinary-points', () => { map.getCanvas().style.cursor = 'pointer'; });
+    map.on('mouseleave', 'detail-veterinary-points', () => { map.getCanvas().style.cursor = ''; });
+    map.on('click', 'detail-veterinary-points', event => {
+      const feature = event.features && event.features[0];
+      if (!feature || !root.maplibregl) return;
+      new root.maplibregl.Popup({ offset: 12, maxWidth: '240px' })
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML(popupHtml(feature.properties || {}))
+        .addTo(map);
     });
   }
 
-  function init(trail, options) {
-    const button = document.getElementById('vetCareButton');
-    const dialog = document.getElementById('vetCareDialog');
-    const close = document.getElementById('vetCareClose');
-    const list = document.getElementById('vetCareResults');
-    const status = document.getElementById('vetCareStatus');
+  async function loadMapLayer(map, trail, options) {
     const point = trailStart(trail);
-    if (!button || !dialog || !close || !list || !status || !point) return;
+    if (!map || !point) return [];
+    const results = await fetchFacilities(point, options);
+    addLayers(map, results);
+    return results;
+  }
 
-    let loaded = false;
-    function closeDialog() {
-      if (typeof dialog.close === 'function' && dialog.open) dialog.close();
-      else dialog.removeAttribute('open');
-      button.setAttribute('aria-expanded', 'false');
-      button.focus();
-    }
-    close.addEventListener('click', closeDialog);
-    dialog.addEventListener('cancel', event => {
-      event.preventDefault();
-      closeDialog();
-    });
-    dialog.addEventListener('click', event => {
-      if (event.target === dialog) closeDialog();
-    });
-    button.addEventListener('click', async () => {
-      if (typeof dialog.showModal === 'function') dialog.showModal();
-      else dialog.setAttribute('open', '');
-      button.setAttribute('aria-expanded', 'true');
-      close.focus();
-      if (loaded) return;
-      loaded = true;
-      status.textContent = 'Finding mapped veterinary facilities near the trail start…';
-      try {
-        renderResults(list, status, await fetchFacilities(point, options));
-      } catch (error) {
-        status.textContent = 'No mapped facilities are available here right now.';
-        list.replaceChildren();
-      }
-    });
+  function focusFacilities(map, trail, results) {
+    const point = trailStart(trail);
+    if (!map || !point || !Array.isArray(results) || !results.length || typeof map.fitBounds !== 'function') return;
+    const points = [point, ...results];
+    const lngs = points.map(item => item.lng);
+    const lats = points.map(item => item.lat);
+    map.fitBounds([
+      [Math.min(...lngs), Math.min(...lats)],
+      [Math.max(...lngs), Math.max(...lats)],
+    ], { padding: 64, maxZoom: 12.5, duration: 700 });
   }
 
   const api = {
-    FNOVI_URL,
+    LAYER_IDS,
     SEARCH_RADIUS_M,
+    SOURCE_ID,
+    addLayers,
     buildQuery,
+    escapeHtml,
     fetchFacilities,
+    focusFacilities,
     formatAddress,
     formatDistance,
     haversineKm,
-    init,
+    loadMapLayer,
     normalizeResults,
+    popupHtml,
     safeWebsite,
+    setVisible,
+    toFeature,
     trailStart,
   };
   root.ORMA_VeterinaryCare = api;

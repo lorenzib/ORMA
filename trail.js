@@ -1469,7 +1469,6 @@ function init(){
 }
 
 function renderTrail(t){
-  if(window.ORMA_VeterinaryCare) window.ORMA_VeterinaryCare.init(t);
   if(window.DoloPawsMetricFunnel){
     const profilePresent = (() => {
       try{ return !!JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); }
@@ -1924,7 +1923,7 @@ function renderTrail(t){
       let liftsVisible = false;        // Lifts are optional planning context
       // Keep the trail itself visually dominant on first load. Nearby
       // amenities remain available as explicit, independent layer choices.
-      const poiStates = { fountains: false, huts: false, food: false, places: false };
+      const poiStates = { fountains: false, huts: false, food: false, places: false, veterinary: false };
       const amenityMarkers = [];       // { marker, group } for curated fallbacks
       if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(map);
       addTerrainSource(map);
@@ -1991,6 +1990,55 @@ function renderTrail(t){
           applyPoiVisibility(group);
         });
       });
+
+      // Veterinary facilities are fetched only when requested: the nearest
+      // options can sit well beyond the route viewport and do not need to
+      // compete with the trail during ordinary map use.
+      const veterinaryButton = document.getElementById('veterinaryToggle');
+      let veterinaryResults = null;
+      let veterinaryLoad = null;
+      if(veterinaryButton){
+        veterinaryButton.addEventListener('click', async () => {
+          const care = window.ORMA_VeterinaryCare;
+          if(!care) return;
+          poiStates.veterinary = !poiStates.veterinary;
+          veterinaryButton.classList.toggle('on', poiStates.veterinary);
+          veterinaryButton.setAttribute('aria-pressed', String(poiStates.veterinary));
+          if(!poiStates.veterinary){
+            care.setVisible(map, false);
+            return;
+          }
+          if(veterinaryResults){
+            care.setVisible(map, true);
+            care.focusFacilities(map, t, veterinaryResults);
+            return;
+          }
+          veterinaryButton.disabled = true;
+          veterinaryButton.textContent = 'Finding veterinary clinics…';
+          try{
+            veterinaryLoad = veterinaryLoad || care.loadMapLayer(map, t);
+            veterinaryResults = await veterinaryLoad;
+            if(!veterinaryResults.length){
+              poiStates.veterinary = false;
+              veterinaryButton.classList.remove('on');
+              veterinaryButton.setAttribute('aria-pressed', 'false');
+              veterinaryButton.textContent = 'No veterinary clinics mapped nearby';
+              return;
+            }
+            veterinaryButton.textContent = `Veterinary clinics (${veterinaryResults.length})`;
+            care.setVisible(map, poiStates.veterinary);
+            if(poiStates.veterinary) care.focusFacilities(map, t, veterinaryResults);
+          }catch(error){
+            veterinaryLoad = null;
+            poiStates.veterinary = false;
+            veterinaryButton.classList.remove('on');
+            veterinaryButton.setAttribute('aria-pressed', 'false');
+            veterinaryButton.textContent = 'Veterinary clinics unavailable';
+          }finally{
+            veterinaryButton.disabled = false;
+          }
+        });
+      }
       // detail-pois.js adds its layers asynchronously (after a fetch), so
       // reapply whenever a POI source finishes loading.
       map.on('sourcedata', (e) => {
@@ -2046,19 +2094,22 @@ function renderTrail(t){
         // around the route stays discoverable. "Marked routes" un-ticks it
         // for anyone who wants the clean basemap.
         layout: { visibility: 'visible' },
-        // Keep the public network contextual rather than dominant. ORMA's
-        // selected route is deliberately drawn beneath this raster: the
-        // reduced opacity lets its wider casing remain visible, while the
-        // Waymarked shield artwork (including route numbers) stays on top.
+        // Keep the public network contextual at regional zoom, then make the
+        // source fully opaque once individual trail shields need to be read.
+        // ORMA's selected route remains beneath this raster, so its stroke
+        // cannot wash through the numbered Waymarked artwork at local zoom.
         paint: {
           'raster-opacity': [
             'interpolate', ['linear'], ['zoom'],
-            9, 0.48,
-            13, 0.58,
-            16, 0.72,
+            9, 0.52,
+            12, 0.68,
+            14, 0.90,
+            15, 1,
           ],
-          'raster-saturation': -0.45,
-          'raster-contrast': -0.12,
+          // Desaturate the network colour while sharpening the light/dark
+          // edges inside route-number shields.
+          'raster-saturation': -0.40,
+          'raster-contrast': 0.22,
           'raster-resampling': 'linear',
         },
       }, firstLabelLayer ? firstLabelLayer.id : undefined);
