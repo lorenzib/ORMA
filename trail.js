@@ -1801,19 +1801,22 @@ function renderTrail(t){
         // around the route stays discoverable. "Marked routes" un-ticks it
         // for anyone who wants the clean basemap.
         layout: { visibility: 'visible' },
-        // Keep the public network contextual rather than dominant. ORMA's
-        // selected route is deliberately drawn beneath this raster: the
-        // reduced opacity lets its wider casing remain visible, while the
-        // Waymarked shield artwork (including route numbers) stays on top.
+        // Keep the public network contextual at regional zoom, then make the
+        // source fully opaque once individual trail shields need to be read.
+        // ORMA's selected route remains beneath this raster, so its stroke
+        // cannot wash through the numbered Waymarked artwork at local zoom.
         paint: {
           'raster-opacity': [
             'interpolate', ['linear'], ['zoom'],
-            9, 0.48,
-            13, 0.58,
-            16, 0.72,
+            9, 0.52,
+            12, 0.68,
+            14, 0.90,
+            15, 1,
           ],
-          'raster-saturation': -0.45,
-          'raster-contrast': -0.12,
+          // Desaturate the network colour while sharpening the light/dark
+          // edges inside route-number shields.
+          'raster-saturation': -0.40,
+          'raster-contrast': 0.22,
           'raster-resampling': 'linear',
         },
       }, firstLabelLayer ? firstLabelLayer.id : undefined);

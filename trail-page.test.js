@@ -453,11 +453,12 @@ describe('trail page map controls', () => {
     expect(document.getElementById('foodToggle').getAttribute('aria-pressed')).toBe('false');
     expect(document.getElementById('placesToggle').getAttribute('aria-pressed')).toBe('false');
     expect(trail).toContain('const poiStates = { fountains: false, huts: false, food: false, places: false, veterinary: false }');
-    expect(trail).toContain("9, 0.48");
-    expect(trail).toContain("13, 0.58");
-    expect(trail).toContain("16, 0.72");
-    expect(trail).toContain("'raster-saturation': -0.45");
-    expect(trail).toContain("'raster-contrast': -0.12");
+    expect(trail).toContain("9, 0.52");
+    expect(trail).toContain("12, 0.68");
+    expect(trail).toContain("14, 0.90");
+    expect(trail).toContain("15, 1");
+    expect(trail).toContain("'raster-saturation': -0.40");
+    expect(trail).toContain("'raster-contrast': 0.22");
     expect(trail).toContain("'line-width': 9");
     expect(trail).toContain("'raster-resampling': 'linear'");
     expect(trail).not.toContain("element.textContent = '✓'");

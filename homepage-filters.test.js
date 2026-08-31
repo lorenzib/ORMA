@@ -321,10 +321,11 @@ describe('map-first returning homepage layout contract', () => {
     expect(trailScript).toMatch(/id: 'single-trail-path-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script.match(/'raster-opacity': 1/g)).toHaveLength(2);
-    expect(trailScript).toContain("9, 0.48");
-    expect(trailScript).toContain("13, 0.58");
-    expect(trailScript).toContain("16, 0.72");
-    expect(trailScript).toContain("'raster-saturation': -0.45");
-    expect(trailScript).toContain("'raster-contrast': -0.12");
+    expect(trailScript).toContain("9, 0.52");
+    expect(trailScript).toContain("12, 0.68");
+    expect(trailScript).toContain("14, 0.90");
+    expect(trailScript).toContain("15, 1");
+    expect(trailScript).toContain("'raster-saturation': -0.40");
+    expect(trailScript).toContain("'raster-contrast': 0.22");
   });
 });
