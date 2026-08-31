@@ -566,7 +566,18 @@ function initGuestMap(){
       id: 'waymarked-hiking-layer',
       type: 'raster',
       source: 'waymarked-hiking',
-      paint: { 'raster-opacity': 1, 'raster-resampling': 'linear' },
+      paint: {
+        'raster-opacity': [
+          'interpolate', ['linear'], ['zoom'],
+          7, 0.64,
+          10, 0.72,
+          12, 0.86,
+          14, 1,
+        ],
+        'raster-saturation': -0.68,
+        'raster-contrast': 0.18,
+        'raster-resampling': 'linear',
+      },
     }, guestFirstLabel ? guestFirstLabel.id : undefined);
     addBaseHillshade(guestMapInstance, 'waymarked-hiking-layer');
     increaseLabelDensity(guestMapInstance);
@@ -606,6 +617,17 @@ function initGuestMap(){
       data: { type: 'FeatureCollection', features: pathFeatures },
     });
     guestMapInstance.addLayer({
+      id: 'guest-trail-paths-casing',
+      type: 'line',
+      source: 'guest-trail-paths',
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: {
+        'line-color': '#203B2A',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 3.5, 10, 7, 13, 9],
+        'line-opacity': 0.96,
+      },
+    }, 'waymarked-hiking-layer');
+    guestMapInstance.addLayer({
       id: 'guest-trail-paths-line',
       type: 'line',
       source: 'guest-trail-paths',
@@ -618,7 +640,7 @@ function initGuestMap(){
           'caution', '#9C3A25',
           '#2E4034',
         ],
-        'line-width': 2.5,
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 4.5, 13, 5.5],
       },
     }, 'waymarked-hiking-layer');
 
@@ -757,7 +779,18 @@ function initTrailMap(){
       type: 'raster',
       source: 'waymarked-hiking',
       layout: { visibility: 'visible' },
-      paint: { 'raster-opacity': 1, 'raster-resampling': 'linear' },
+      paint: {
+        'raster-opacity': [
+          'interpolate', ['linear'], ['zoom'],
+          7, 0.64,
+          10, 0.72,
+          12, 0.86,
+          14, 1,
+        ],
+        'raster-saturation': -0.68,
+        'raster-contrast': 0.18,
+        'raster-resampling': 'linear',
+      },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
     addBaseHillshade(trailMapInstance, 'waymarked-hiking-layer');
     
@@ -766,17 +799,29 @@ function initTrailMap(){
       data: { type: 'FeatureCollection', features: [] },
     });
     trailMapInstance.addLayer({
+      id: 'trail-paths-casing',
+      type: 'line',
+      source: 'trail-paths',
+      minzoom: 7,
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: {
+        'line-color': '#203B2A',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 3.5, 10, 8, 13, 10],
+        'line-opacity': 0.96,
+      },
+    }, 'waymarked-hiking-layer');
+    trailMapInstance.addLayer({
       id: 'trail-paths-line',
       type: 'line',
       source: 'trail-paths',
-      minzoom: 10,
+      minzoom: 7,
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': [
           'step', ['coalesce', ['get', 'score'], 0],
           '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
         ],
-        'line-width': 3,
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 5, 13, 6],
       },
     }, 'waymarked-hiking-layer');
     // Wide, near-invisible twin of the route line so a fingertip (or a

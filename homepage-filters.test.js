@@ -318,9 +318,16 @@ describe('map-first returning homepage layout contract', () => {
     const trailScript = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
     expect(script).toMatch(/id: 'trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).toMatch(/id: 'guest-trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(script).toMatch(/id: 'trail-paths-casing'[\s\S]*?minzoom: 7[\s\S]*?'line-width': \['interpolate'[\s\S]*?10, 8[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(script).toMatch(/id: 'guest-trail-paths-casing'[\s\S]*?'line-width': \['interpolate'[\s\S]*?10, 7[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(trailScript).toMatch(/id: 'single-trail-path-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script.match(/'raster-opacity': 1/g)).toHaveLength(2);
+    expect(script.match(/7, 0\.64/g)).toHaveLength(2);
+    expect(script.match(/10, 0\.72/g)).toHaveLength(2);
+    expect(script.match(/12, 0\.86/g)).toHaveLength(2);
+    expect(script.match(/14, 1/g)).toHaveLength(2);
+    expect(script.match(/'raster-saturation': -0\.68/g)).toHaveLength(2);
+    expect(script.match(/'raster-contrast': 0\.18/g)).toHaveLength(2);
     expect(trailScript).toContain("9, 0.52");
     expect(trailScript).toContain("12, 0.68");
     expect(trailScript).toContain("14, 0.90");
