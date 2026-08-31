@@ -2930,23 +2930,23 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   grid-area:quick;
   display:flex;
   align-items:center;
-  gap:5px;
-  padding-inline:8px;
-  border-inline:1px solid var(--paper-line);
+  gap:8px;
+  padding:0;
+  border:0;
 }
 .li-quick-filter{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:5px;
-  height:38px;
+  gap:7px;
+  height:42px;
   box-sizing:border-box;
-  padding:0 10px;
-  border:1px solid transparent;
+  padding:0 13px;
+  border:1.5px solid var(--paper-line);
   border-radius:var(--radius-pill);
-  background:transparent;
-  color:var(--ink-soft);
-  font:700 11.5px/1 'Inter',sans-serif;
+  background:#fff;
+  color:var(--ink);
+  font:700 12.5px/1 'Inter',sans-serif;
   white-space:nowrap;
   cursor:pointer;
 }

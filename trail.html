@@ -77,6 +77,28 @@ h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;}
 .map-nearest-directions-steps summary{color:#32697e;font-weight:800;cursor:pointer;}
 .map-nearest-directions-steps ol{margin:7px 0 0;padding-left:20px;color:#53675A;font-weight:600;}
 .map-nearest-directions-steps li+li{margin-top:4px;}
+.map-loop-open{position:absolute;top:12px;left:88px;z-index:8;min-height:36px;padding:7px 12px;border:0;border-radius:9px;background:rgba(255,255,255,.95);color:#2E4034;box-shadow:0 2px 8px rgba(23,42,28,.16);font:700 11.5px/1.2 'Inter',sans-serif;cursor:pointer;}
+.map-loop-open[hidden]{display:none;}
+.map-loop-open[aria-pressed="true"]{background:#2E4034;color:#fff;}
+.map-loop-composer{position:absolute;left:12px;right:12px;bottom:12px;z-index:10;padding:13px 14px;border:1px solid rgba(46,64,52,.14);border-radius:16px;background:rgba(255,253,248,.98);box-shadow:0 8px 28px rgba(23,42,28,.24);color:#2E4034;backdrop-filter:blur(10px);}
+.map-loop-composer[hidden]{display:none;}
+.map-loop-head,.map-loop-summary,.map-loop-actions{display:flex;align-items:center;}
+.map-loop-head{justify-content:space-between;gap:12px;}
+.map-loop-head strong{font:750 15px/1.2 'Bricolage Grotesque','Inter',sans-serif;}
+.map-loop-dismiss{width:34px;height:34px;flex:none;border:1px solid #D8D4C8;border-radius:50%;background:#fff;color:#2E4034;font-size:20px;line-height:1;cursor:pointer;}
+.map-loop-status{margin:5px 0 10px;color:#5F6D63;font:600 12px/1.4 'Inter',sans-serif;}
+.map-loop-summary{gap:18px;margin-bottom:10px;}
+.map-loop-summary span{display:grid;gap:2px;color:#6B776F;font:600 10.5px/1.2 'Inter',sans-serif;}
+.map-loop-summary strong{color:#2E4034;font-size:13px;}
+.map-loop-points{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px;padding:0;list-style:none;}
+.map-loop-point{display:inline-flex;align-items:center;gap:5px;padding:5px 7px;border:1px solid #DED9CD;border-radius:999px;background:#fff;color:#536159;font:650 11px/1 'Inter',sans-serif;}
+.map-loop-point button{width:22px;height:22px;border:0;border-radius:50%;background:#F0EDE4;color:#536159;cursor:pointer;}
+.map-loop-actions{gap:7px;flex-wrap:wrap;}
+.map-loop-action{min-height:36px;padding:8px 11px;border:1px solid #D8D4C8;border-radius:10px;background:#fff;color:#2E4034;font:700 11.5px/1.2 'Inter',sans-serif;cursor:pointer;}
+.map-loop-action--primary{margin-left:auto;border-color:#2E4034;background:#2E4034;color:#fff;}
+.map-loop-action:disabled{cursor:not-allowed;opacity:.45;}
+.map-loop-composer[data-state="closed"] .map-loop-action--primary{background:#E5E1D7;color:#68756D;border-color:#E5E1D7;}
+.trail-map-box.loop-composer-active .td-layer-switch,.trail-map-box.loop-composer-active .mobile-map-hike-slot,.trail-map-box.loop-composer-active .map-nearest-directions,.trail-map-box.loop-composer-active .map-nearest-directions-panel{display:none!important;}
 .map-access-marker{display:grid;place-items:center;width:28px;height:28px;border:3px solid #fff;border-radius:50%;background:#3E7A91;box-shadow:0 3px 10px rgba(23,42,28,.32);color:#fff;font:800 12px/1 'Inter',sans-serif;}
 .map-access-marker--you{width:20px;height:20px;background:#2E4034;font-size:0;}
 .trail-map-box.route-pick-mode #trailDetailMap canvas{cursor:crosshair!important;}
@@ -1087,6 +1109,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
         <div id="trailDetailMap"></div>
         <p id="routeDataNotice" class="route-data-notice" hidden></p>
         <button id="detailLayersBtn" type="button" class="map-btn" aria-expanded="false">Layers</button>
+        <button id="mapLoopComposerBtn" type="button" class="map-loop-open" aria-controls="mapLoopComposerPanel" aria-pressed="false" hidden>Plan a loop</button>
         <div id="detailLayersPanel" class="map-panel">
           <button id="routesToggle" type="button" class="map-chip on" aria-pressed="true">Trail routes</button>
           <button id="routePointToggle" type="button" class="map-chip" aria-pressed="false">Route to a mapped point</button>
@@ -1103,6 +1126,22 @@ body.trail-photo-viewer-open{overflow:hidden;}
           <details id="mapNearestDirectionsStepsWrap" class="map-nearest-directions-steps" hidden><summary>Route steps</summary><ol id="mapNearestDirectionsSteps"></ol></details>
         </div>
         <button id="mapNearestDirectionsBtn" type="button" class="map-nearest-directions" hidden><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L9.6 14.4"/><path d="M22 2l-7.9 20-4.5-7.6L2 9.9 22 2z"/></svg><span>Find a walking route</span></button>
+        <section id="mapLoopComposerPanel" class="map-loop-composer" aria-labelledby="mapLoopComposerTitle" hidden>
+          <div class="map-loop-head"><strong id="mapLoopComposerTitle">Create a loop</strong><button id="mapLoopDismissBtn" type="button" class="map-loop-dismiss" aria-label="Close loop planner">×</button></div>
+          <p id="mapLoopStatus" class="map-loop-status" role="status" aria-live="polite">Tap the map to choose your start.</p>
+          <div class="map-loop-summary" aria-label="Loop summary">
+            <span>Distance<strong id="mapLoopDistance">—</strong></span>
+            <span>Ascent<strong id="mapLoopAscent">Unavailable</strong></span>
+            <span>Points<strong id="mapLoopPointCount">0 / 3</strong></span>
+          </div>
+          <ol id="mapLoopPointList" class="map-loop-points" aria-label="Selected route points"></ol>
+          <div class="map-loop-actions">
+            <button id="mapLoopAddCentreBtn" type="button" class="map-loop-action">Add map centre</button>
+            <button id="mapLoopUndoBtn" type="button" class="map-loop-action" disabled>Undo</button>
+            <button id="mapLoopCloseBtn" type="button" class="map-loop-action map-loop-action--primary" disabled>Close loop</button>
+            <button id="mapLoopSaveBtn" type="button" class="map-loop-action map-loop-action--primary" hidden disabled>Save loop</button>
+          </div>
+        </section>
         <button id="mapExpandBtn" type="button" class="map-expand-btn" aria-label="Expand map" aria-expanded="false"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span></button>
         <div id="mobileMapHikeSlot" class="mobile-map-hike-slot" aria-label="Hike controls"></div>
         <!-- One grouped switch, bottom-left: base style + 3D toggle -->
@@ -1311,7 +1350,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="hike-distance.js?v=20260815-4" defer></script>
 <script src="trail-routing-coverage.js?v=20260828-1" defer></script>
 <script src="trail-access-directions.js?v=20260828-2" defer></script>
-<script src="footpath-router.js?v=20260828-2" defer></script>
+<script src="footpath-router.js?v=20260831-1" defer></script>
 <script src="pre-hike-readiness.js?v=20260815-4" defer></script>
 <script src="hike-session.js?v=20260815-4" defer></script>
 <script src="hike-completions.js?v=20260815-4" defer></script>
@@ -1322,7 +1361,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="trail-weather-window.js?v=20260820-1" defer></script>
 <script src="trail-reports.js?v=20260820-2" defer></script>
 <script src="veterinary-care.js?v=20260831-1" defer></script>
-<script src="trail.js?v=20260831-1" defer></script>
+<script src="trail.js?v=20260831-2" defer></script>
 <script src="trail-blueprint.js?v=20260826-1" defer></script>
 <script src="trail-detail-ui.js?v=20260826-1" defer></script>
 <script src="trail-mobile.js?v=20260826-1" defer></script>

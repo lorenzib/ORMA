@@ -70,6 +70,76 @@ describe('HIKE-07 mapped footpath rejoin router', () => {
     )).toBeNull();
   });
 
+  test('closes an ordered three-point route over mapped graph edges', () => {
+    const result = router.routeLoop([
+      { lat:46.00001, lng:11.00005 },
+      { lat:46.00001, lng:11.00195 },
+      { lat:46.00095, lng:11.001 },
+    ], graph, {
+      maxSnapDistanceM:20,
+      maxTargetSnapDistanceM:20,
+      maxLegDistanceM:500,
+      maxTotalDistanceM:1000,
+    });
+    expect(result).not.toBeNull();
+    expect(result.routingMode).toBe('mapped-loop');
+    expect(result.closed).toBe(true);
+    expect(result.legs).toHaveLength(3);
+    expect(result.points).toHaveLength(3);
+    expect(result.path.length).toBeGreaterThan(4);
+    expect(result.path.at(-1)).toEqual(result.path[0]);
+    expect(result.distanceM).toBeGreaterThan(250);
+    expect(result.source).toBe('openstreetmap');
+  });
+
+  test('previews ordered points without inventing the closing leg', () => {
+    const result = router.routeThroughPoints([
+      { lat:46.00001, lng:11.00005 },
+      { lat:46.00001, lng:11.00195 },
+      { lat:46.00095, lng:11.001 },
+    ], graph, {
+      maxSnapDistanceM:20,
+      maxTargetSnapDistanceM:20,
+      maxLegDistanceM:500,
+      maxTotalDistanceM:1000,
+    });
+    expect(result.routingMode).toBe('mapped-waypoints');
+    expect(result.closed).toBe(false);
+    expect(result.legs).toHaveLength(2);
+    expect(result.path.at(-1)).not.toEqual(result.path[0]);
+  });
+
+  test('fails closed for too few points, disconnected points, or route limits', () => {
+    expect(router.routeLoop([
+      { lat:46, lng:11 },
+      { lat:46, lng:11.001 },
+    ], graph)).toBeNull();
+    expect(router.routeLoop([
+      { lat:46, lng:11 },
+      { lat:46, lng:11.001 },
+      { lat:46.01, lng:11.01 },
+    ], graph, { maxTargetSnapDistanceM:20 })).toBeNull();
+    expect(router.routeLoop([
+      { lat:46, lng:11 },
+      { lat:46, lng:11.001 },
+      { lat:46.001, lng:11.001 },
+    ], graph, { maxTotalDistanceM:100 })).toBeNull();
+  });
+
+  test('rejects duplicate legs and more points than the bounded composer allows', () => {
+    expect(router.routeLoop([
+      { lat:46, lng:11 },
+      { lat:46, lng:11 },
+      { lat:46.001, lng:11.001 },
+    ], graph)).toBeNull();
+    expect(router.routeLoop([
+      { lat:46, lng:11 },
+      { lat:46, lng:11.001 },
+      { lat:46.001, lng:11.001 },
+      { lat:46.001, lng:11 },
+    ], graph)).toBeNull();
+  });
+
   test('returns no route when the user is not close to a mapped footpath', () => {
     expect(router.routeToTrail(
       { lat:46.002, lng:11.002 },
@@ -125,5 +195,27 @@ describe('HIKE-07 mapped footpath rejoin router', () => {
     expect(result.path.length).toBeGreaterThan(20);
     expect(result.distanceM).toBeGreaterThan(300);
     expect(result.distanceM).toBeLessThan(400);
+  });
+
+  test('builds a bounded loop on the published Carezza walking graph', () => {
+    const fs = require('fs');
+    const graphData = JSON.parse(fs.readFileSync(
+      require('path').join(__dirname, 'offline/packages/lago-carezza/footpath-network.json'),
+      'utf8'
+    ));
+    const points = [20, 80, 160].map(index => ({
+      lng:graphData.nodes[index][0],
+      lat:graphData.nodes[index][1],
+    }));
+    const result = router.routeLoop(points, graphData, {
+      maxSnapDistanceM:5,
+      maxTargetSnapDistanceM:5,
+      maxTotalDistanceM:10000,
+    });
+    expect(result).not.toBeNull();
+    expect(result.routingMode).toBe('mapped-loop');
+    expect(result.distanceM).toBeGreaterThan(900);
+    expect(result.distanceM).toBeLessThan(1000);
+    expect(result.path.at(-1)).toEqual(result.path[0]);
   });
 });

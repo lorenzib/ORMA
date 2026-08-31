@@ -21,6 +21,16 @@ describe('logged-in discovery workspace layout', () => {
     expect(html.indexOf('id="liQuickWater"')).toBeLessThan(html.indexOf('id="liSavedOnlyBtn"'));
   });
 
+  test('contains the quick shade and water filters in white outlined controls', () => {
+    const rule = css.match(/\.li-quick-filter\s*\{([^}]*)\}/s);
+    expect(rule).not.toBeNull();
+    expect(rule[1]).toContain('border:1.5px solid var(--paper-line)');
+    expect(rule[1]).toContain('background:#fff');
+    expect(rule[1]).toContain('height:42px');
+    expect(rule[1]).not.toContain('background:transparent');
+    expect(rule[1]).not.toContain('border:1px solid transparent');
+  });
+
   test('balances a bounded map with a proportional results pane', () => {
     expect(css).toMatch(/\.li-body\s*\{[^}]*grid-template-columns:minmax\(0,1\.65fr\) minmax\(380px,\.9fr\);[^}]*height:500px;/s);
     const desktopShellRule = css.match(/#returningCustomerHomepage\s*\{([^}]*)\}/);

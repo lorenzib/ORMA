@@ -1,7 +1,7 @@
 (function(root){
   'use strict';
 
-  const VERSION = '1.2.0';
+  const VERSION = '1.3.0';
   const EARTH_RADIUS_M = 6371000;
 
   function validPoint(point){
@@ -276,8 +276,69 @@
     };
   }
 
+  function routeThroughPoints(points, graph, options){
+    options = options || {};
+    const closeLoop = options.closeLoop === true;
+    const maxPoints = Number.isInteger(options.maxPoints) ? options.maxPoints : 3;
+    const maxLegDistanceM = Number.isFinite(options.maxLegDistanceM)
+      ? options.maxLegDistanceM
+      : 5000;
+    const maxTotalDistanceM = Number.isFinite(options.maxTotalDistanceM)
+      ? options.maxTotalDistanceM
+      : 10000;
+    const minLegDistanceM = Number.isFinite(options.minLegDistanceM)
+      ? options.minLegDistanceM
+      : 25;
+    if(!Array.isArray(points) || points.length < 2 || points.length > maxPoints ||
+       points.some(point => !validPoint(point)) || !validateGraph(graph) ||
+       (closeLoop && points.length < 3)) return null;
+
+    const targets = closeLoop ? points.concat(points[0]) : points.slice();
+    const legs = [];
+    const path = [];
+    let distanceM = 0;
+    for(let index = 0; index < targets.length - 1; index += 1){
+      const leg = routeToPoint(targets[index], targets[index + 1], graph, {
+        maxSnapDistanceM:options.maxSnapDistanceM,
+        maxTargetSnapDistanceM:options.maxTargetSnapDistanceM,
+        maxRouteDistanceM:maxLegDistanceM,
+      });
+      if(!leg || leg.distanceM < minLegDistanceM || distanceM + leg.distanceM > maxTotalDistanceM){
+        return null;
+      }
+      distanceM += leg.distanceM;
+      legs.push(leg);
+      leg.path.forEach((point, pointIndex) => {
+        const previous = path[path.length - 1];
+        if(pointIndex === 0 && previous && previous.lat === point.lat && previous.lng === point.lng) return;
+        path.push(point);
+      });
+    }
+    if(closeLoop && path.length > 1){
+      path[path.length - 1] = { ...path[0] };
+    }
+    return {
+      version:VERSION,
+      routingMode:closeLoop ? 'mapped-loop' : 'mapped-waypoints',
+      path,
+      legs,
+      points:closeLoop
+        ? legs.map(leg => ({ ...leg.path[0] }))
+        : legs.map(leg => ({ ...leg.path[0] })).concat({ ...legs[legs.length - 1].path.at(-1) }),
+      distanceM,
+      source:'openstreetmap',
+      closed:closeLoop,
+    };
+  }
+
+  function routeLoop(points, graph, options){
+    return routeThroughPoints(points, graph, { ...(options || {}), closeLoop:true });
+  }
+
   root.DoloPawsFootpathRouter = Object.freeze({
     VERSION,
+    routeLoop,
+    routeThroughPoints,
     routeToPoint,
     validateGraph,
     routeToTrail,

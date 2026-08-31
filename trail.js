@@ -81,6 +81,298 @@ function formatApproachDistance(distanceKm){
   return `${distanceKm.toFixed(distanceKm < 10 ? 1 : 0)} km`;
 }
 
+function initLoopComposer(map, t){
+  const openButton = document.getElementById('mapLoopComposerBtn');
+  const panel = document.getElementById('mapLoopComposerPanel');
+  const dismissButton = document.getElementById('mapLoopDismissBtn');
+  const addCentreButton = document.getElementById('mapLoopAddCentreBtn');
+  const undoButton = document.getElementById('mapLoopUndoBtn');
+  const closeButton = document.getElementById('mapLoopCloseBtn');
+  const saveButton = document.getElementById('mapLoopSaveBtn');
+  const status = document.getElementById('mapLoopStatus');
+  const distance = document.getElementById('mapLoopDistance');
+  const pointCount = document.getElementById('mapLoopPointCount');
+  const pointList = document.getElementById('mapLoopPointList');
+  const mapBox = document.getElementById('trailMapBox');
+  const coverage = window.DoloPawsTrailRoutingCoverage;
+  const coverageEntry = coverage && coverage.trails ? coverage.trails[t.id] : null;
+  const router = window.DoloPawsFootpathRouter;
+  if(!openButton || !panel || !dismissButton || !addCentreButton || !undoButton ||
+     !closeButton || !saveButton || !status || !distance || !pointCount || !pointList ||
+     !coverageEntry || !coverageEntry.graphUrl || !router ||
+     typeof router.routeThroughPoints !== 'function' || typeof router.routeLoop !== 'function') return;
+
+  const MAX_POINTS = 3;
+  const MAX_LEG_DISTANCE_M = 5000;
+  const MAX_TOTAL_DISTANCE_M = Number.isFinite(coverage.maxWalkingRouteM)
+    ? coverage.maxWalkingRouteM * 2
+    : 10000;
+  const STORAGE_KEY = 'orma-custom-loops-v1';
+  let active = false;
+  let busy = false;
+  let closed = false;
+  let points = [];
+  let preview = null;
+  let graphPromise = null;
+  let calculationVersion = 0;
+  let markers = [];
+  openButton.hidden = false;
+
+  function loadGraph(){
+    if(!graphPromise){
+      graphPromise = fetch(coverageEntry.graphUrl, { credentials:'same-origin' })
+        .then(response => {
+          if(!response.ok) throw new Error(`routing-graph-${response.status}`);
+          return response.json();
+        })
+        .then(graph => router.validateGraph(graph) ? graph : null)
+        .catch(() => null);
+    }
+    return graphPromise;
+  }
+
+  function markerElement(index){
+    const element = document.createElement('span');
+    element.className = `map-access-marker ${index === 0 ? 'map-access-marker--you' : 'map-access-marker--target'}`;
+    element.textContent = index === 0 ? '' : String(index);
+    element.setAttribute('aria-hidden', 'true');
+    return element;
+  }
+
+  function drawMarkers(){
+    markers.forEach(marker => marker.remove());
+    markers = points.map((point, index) => new maplibregl.Marker({ element:markerElement(index) })
+      .setLngLat([point.lng, point.lat])
+      .addTo(map));
+  }
+
+  function emptyRoute(){
+    return { type:'FeatureCollection', features:[] };
+  }
+
+  function drawRoute(path){
+    const data = Array.isArray(path) && path.length > 1 ? {
+      type:'Feature',
+      properties:{ mode:closed ? 'mapped-loop' : 'mapped-waypoints' },
+      geometry:{ type:'LineString', coordinates:path.map(point => [point.lng, point.lat]) },
+    } : emptyRoute();
+    if(!map.isStyleLoaded()){
+      map.once('load', () => drawRoute(path));
+      return;
+    }
+    const source = map.getSource('trail-loop-route');
+    if(source){
+      source.setData(data);
+      return;
+    }
+    map.addSource('trail-loop-route', { type:'geojson', data });
+    map.addLayer({
+      id:'trail-loop-route-casing',
+      type:'line',
+      source:'trail-loop-route',
+      layout:{ 'line-join':'round', 'line-cap':'round' },
+      paint:{ 'line-color':'#ffffff', 'line-width':10, 'line-opacity':0.92 },
+    });
+    map.addLayer({
+      id:'trail-loop-route-line',
+      type:'line',
+      source:'trail-loop-route',
+      layout:{ 'line-join':'round', 'line-cap':'round' },
+      paint:{ 'line-color':'#2E684F', 'line-width':6, 'line-opacity':0.98 },
+    });
+  }
+
+  function pointLabel(index){
+    return index === 0 ? 'Start' : `Point ${index + 1}`;
+  }
+
+  function renderPointList(){
+    pointList.replaceChildren();
+    points.forEach((point, index) => {
+      const item = document.createElement('li');
+      item.className = 'map-loop-point';
+      item.append(document.createTextNode(pointLabel(index)));
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.textContent = '×';
+      remove.disabled = busy;
+      remove.setAttribute('aria-label', `Remove ${pointLabel(index).toLowerCase()}`);
+      remove.addEventListener('click', () => removePoint(index));
+      item.append(remove);
+      pointList.append(item);
+    });
+  }
+
+  function render(){
+    panel.hidden = !active;
+    openButton.setAttribute('aria-pressed', String(active));
+    if(mapBox) mapBox.classList.toggle('loop-composer-active', active);
+    panel.dataset.state = closed ? 'closed' : 'open';
+    distance.textContent = preview ? formatApproachDistance(preview.distanceM / 1000) : '—';
+    pointCount.textContent = `${points.length} / ${MAX_POINTS}`;
+    addCentreButton.disabled = busy || closed || points.length >= MAX_POINTS;
+    undoButton.disabled = busy || !points.length;
+    closeButton.hidden = closed;
+    closeButton.disabled = busy || points.length < MAX_POINTS || !preview;
+    saveButton.hidden = !closed;
+    saveButton.disabled = busy || !closed || !preview;
+    renderPointList();
+  }
+
+  function fitPreview(){
+    if(!preview || !Array.isArray(preview.path) || !preview.path.length || !window.maplibregl) return;
+    const bounds = new maplibregl.LngLatBounds();
+    preview.path.forEach(point => bounds.extend([point.lng, point.lat]));
+    map.fitBounds(bounds, { padding:{ top:70, right:50, bottom:190, left:50 }, maxZoom:16, duration:500 });
+  }
+
+  async function recalculate(closeRequested){
+    const version = ++calculationVersion;
+    if(points.length < 2){
+      preview = null;
+      closed = false;
+      drawRoute([]);
+      status.textContent = points.length ? 'Tap the map to add a must-pass point.' : 'Tap the map to choose your start.';
+      render();
+      return;
+    }
+    busy = true;
+    status.textContent = closeRequested ? 'Closing the loop on mapped walking paths…' : 'Connecting the selected points…';
+    render();
+    const graph = await loadGraph();
+    if(version !== calculationVersion) return;
+    const options = {
+      maxPoints:MAX_POINTS,
+      maxLegDistanceM:MAX_LEG_DISTANCE_M,
+      maxTotalDistanceM:MAX_TOTAL_DISTANCE_M,
+      maxSnapDistanceM:90,
+      maxTargetSnapDistanceM:90,
+    };
+    const result = graph
+      ? (closeRequested ? router.routeLoop(points, graph, options) : router.routeThroughPoints(points, graph, options))
+      : null;
+    busy = false;
+    if(!result){
+      preview = null;
+      closed = false;
+      drawRoute([]);
+      status.textContent = graph
+        ? 'These points cannot form a bounded mapped route. Remove a point and choose a closer path.'
+        : 'ORMA’s walking graph is unavailable here right now. Your points have been kept.';
+      render();
+      return;
+    }
+    preview = result;
+    closed = closeRequested;
+    drawRoute(preview.path);
+    status.textContent = closed
+      ? 'Loop ready. Review mapped access, signs, and current conditions before saving.'
+      : points.length < MAX_POINTS
+        ? 'Mapped preview ready. Add another must-pass point.'
+        : 'Mapped preview ready. Close the loop when the shape looks right.';
+    render();
+    if(closed) fitPreview();
+  }
+
+  function addPoint(point){
+    if(!active || busy || closed || points.length >= MAX_POINTS ||
+       !point || !Number.isFinite(point.lat) || !Number.isFinite(point.lng)) return;
+    points.push({ lat:point.lat, lng:point.lng });
+    drawMarkers();
+    recalculate(false);
+  }
+
+  function removePoint(index){
+    if(busy || index < 0 || index >= points.length) return;
+    calculationVersion += 1;
+    points.splice(index, 1);
+    closed = false;
+    preview = null;
+    saveButton.textContent = 'Save loop';
+    drawMarkers();
+    recalculate(false);
+  }
+
+  function reset(){
+    calculationVersion += 1;
+    busy = false;
+    closed = false;
+    points = [];
+    preview = null;
+    markers.forEach(marker => marker.remove());
+    markers = [];
+    drawRoute([]);
+    status.textContent = 'Tap the map to choose your start.';
+    saveButton.textContent = 'Save loop';
+    render();
+  }
+
+  function open(){
+    const routePointToggle = document.getElementById('routePointToggle');
+    if(routePointToggle && routePointToggle.getAttribute('aria-pressed') === 'true') routePointToggle.click();
+    active = true;
+    reset();
+    render();
+  }
+
+  function dismiss(){
+    active = false;
+    reset();
+    render();
+    openButton.focus();
+  }
+
+  function save(){
+    if(!closed || !preview) return;
+    const record = {
+      id:`loop-${Date.now()}`,
+      sourceTrailId:t.id,
+      createdAt:new Date().toISOString(),
+      graphUrl:coverageEntry.graphUrl,
+      source:preview.source,
+      distanceM:Math.round(preview.distanceM),
+      points:points.map(point => ({ lat:point.lat, lng:point.lng })),
+      path:preview.path.map(point => [point.lat, point.lng]),
+    };
+    try{
+      const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      const records = Array.isArray(existing) ? existing : [];
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([record, ...records].slice(0, 20)));
+      saveButton.textContent = 'Saved';
+      saveButton.disabled = true;
+      status.textContent = 'Loop saved on this device. Review local signs and conditions before walking.';
+    }catch(error){
+      status.textContent = 'This browser could not save the loop. The mapped preview is still available.';
+    }
+  }
+
+  openButton.addEventListener('click', () => active ? dismiss() : open());
+  dismissButton.addEventListener('click', dismiss);
+  addCentreButton.addEventListener('click', () => {
+    const centre = map.getCenter();
+    addPoint({ lat:centre.lat, lng:centre.lng });
+  });
+  undoButton.addEventListener('click', () => {
+    if(closed){
+      closed = false;
+      preview = null;
+      saveButton.textContent = 'Save loop';
+      recalculate(false);
+      return;
+    }
+    removePoint(points.length - 1);
+  });
+  closeButton.addEventListener('click', () => recalculate(true));
+  saveButton.addEventListener('click', save);
+  map.on('click', event => {
+    if(active) addPoint({ lat:event.lngLat.lat, lng:event.lngLat.lng });
+  });
+  document.addEventListener('keydown', event => {
+    if(event.key === 'Escape' && active) dismiss();
+  });
+  render();
+}
+
 function initNearestTrailDirections(map, t){
   const button = document.getElementById('mapNearestDirectionsBtn');
   const panel = document.getElementById('mapNearestDirectionsPanel');
@@ -1535,6 +1827,7 @@ function renderTrail(t){
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
     window._dolopawsTrailMap = map; // debug/test handle
     initNearestTrailDirections(map, t);
+    initLoopComposer(map, t);
 
     // Fullscreen map — manual ⤢ toggle, and automatic during hike mode.
     const mapBox = document.getElementById('trailMapBox');
