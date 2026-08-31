@@ -172,7 +172,7 @@ describe('trail page map controls', () => {
     expect(html).toContain('detail-pois.js?v=20260826-1');
     expect(html).toContain('trail-access-directions.js?v=20260828-2');
     expect(html).toContain('footpath-router.js?v=20260828-2');
-    expect(html).toContain('trail.js?v=20260828-3');
+    expect(html).toContain('trail.js?v=20260831-1');
     expect(html).toContain('trail-reports.js?v=20260820-2');
     expect(html).toContain('trail-blueprint.js?v=20260826-1');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
@@ -451,7 +451,12 @@ describe('trail page map controls', () => {
     expect(document.getElementById('foodToggle').getAttribute('aria-pressed')).toBe('false');
     expect(document.getElementById('placesToggle').getAttribute('aria-pressed')).toBe('false');
     expect(trail).toContain('const poiStates = { fountains: false, huts: false, food: false, places: false }');
-    expect(trail).toContain("'raster-opacity': 1");
+    expect(trail).toContain("9, 0.48");
+    expect(trail).toContain("13, 0.58");
+    expect(trail).toContain("16, 0.72");
+    expect(trail).toContain("'raster-saturation': -0.45");
+    expect(trail).toContain("'raster-contrast': -0.12");
+    expect(trail).toContain("'line-width': 9");
     expect(trail).toContain("'raster-resampling': 'linear'");
     expect(trail).not.toContain("element.textContent = '✓'");
     expect(trail).not.toContain("markerElement('join')");

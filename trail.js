@@ -1752,11 +1752,21 @@ function renderTrail(t){
         // around the route stays discoverable. "Marked routes" un-ticks it
         // for anyone who wants the clean basemap.
         layout: { visibility: 'visible' },
-        // Keep Waymarked Trails' numbered shields fully opaque. The selected
-        // ORMA route is deliberately drawn beneath this layer, so lowering
-        // the raster opacity lets the route bleed through route references
-        // and can make their numbers unreadable.
-        paint: { 'raster-opacity': 1, 'raster-resampling': 'linear' },
+        // Keep the public network contextual rather than dominant. ORMA's
+        // selected route is deliberately drawn beneath this raster: the
+        // reduced opacity lets its wider casing remain visible, while the
+        // Waymarked shield artwork (including route numbers) stays on top.
+        paint: {
+          'raster-opacity': [
+            'interpolate', ['linear'], ['zoom'],
+            9, 0.48,
+            13, 0.58,
+            16, 0.72,
+          ],
+          'raster-saturation': -0.45,
+          'raster-contrast': -0.12,
+          'raster-resampling': 'linear',
+        },
       }, firstLabelLayer ? firstLabelLayer.id : undefined);
       if (typeof addBaseHillshade === 'function') addBaseHillshade(map, 'waymarked-hiking-layer');
       const routesToggleBtn = document.getElementById('routesToggle');
@@ -1935,14 +1945,14 @@ function renderTrail(t){
           type: 'line',
           source: 'single-trail-path',
           layout: { 'line-join': 'round', 'line-cap': 'round' },
-          paint: { 'line-color': '#2E4034', 'line-width': 7, 'line-opacity': 0.9 },
+          paint: { 'line-color': '#2E4034', 'line-width': 9, 'line-opacity': 0.96 },
         }, 'waymarked-hiking-layer');
         map.addLayer({
           id: 'single-trail-path-line',
           type: 'line',
           source: 'single-trail-path',
           layout: { 'line-join': 'round', 'line-cap': 'round' },
-          paint: { 'line-color': safetyColor(t.safetyLevel), 'line-width': 4 },
+          paint: { 'line-color': safetyColor(t.safetyLevel), 'line-width': 5 },
         }, 'waymarked-hiking-layer');
 
         // Closed loops are intentionally direction-neutral: hikers can join
