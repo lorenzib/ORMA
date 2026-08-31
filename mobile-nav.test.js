@@ -77,6 +77,30 @@ describe('shared navigation hardening', () => {
     expect(banner.querySelector('a').getAttribute('href')).toBe('/?wizard=1');
   });
 
+  test('invites a guest to save the named device profile instead of adding the dog again', () => {
+    const frame = document.createElement('iframe');
+    document.body.appendChild(frame);
+    const isolated = frame.contentWindow;
+    isolated.localStorage.clear();
+    isolated.localStorage.setItem('dolopaws-pending-dog-profile', JSON.stringify({ name:'Eddie' }));
+    const openSignup = jest.fn();
+    isolated.DoloPawsAuthUI = { openSignup };
+    isolated.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a><div class="links"><button id="accountBtn">Log in</button></div></nav>';
+    isolated.eval(mobileNav);
+
+    const banner = isolated.document.querySelector('.dog-profile-banner');
+    const action = banner.querySelector('.dog-profile-banner__action');
+    expect(banner.hidden).toBe(false);
+    expect(banner.querySelector('h2').textContent).toBe('Save Eddie’s profile');
+    expect(banner.querySelector('.dog-profile-banner__copy > p:last-child').textContent)
+      .toBe('Eddie’s matches are ready on this device. Create a free account to keep the profile.');
+    expect(action.textContent).toBe('Save Eddie’s profile');
+    expect(action.dataset.action).toBe('save-pending-dog');
+
+    action.click();
+    expect(openSignup).toHaveBeenCalledWith({ next:'blank' });
+  });
+
   test('does not duplicate pages that provide an inline dog-profile experience', () => {
     const frame = document.createElement('iframe');
     document.body.appendChild(frame);
@@ -193,7 +217,7 @@ describe('shared navigation hardening', () => {
     expect(pages.length).toBeGreaterThan(150);
     pages.forEach(file => {
       expect(fs.readFileSync(file, 'utf8')).toMatch(
-        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=20260823-[12]"/
+        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=(?:20260823-[12]|20260831-1)"/
       );
     });
   });

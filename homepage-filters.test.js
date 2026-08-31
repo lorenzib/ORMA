@@ -302,7 +302,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(html).toContain('<div class="li-mobile-actions" aria-label="Trail actions">');
     expect(mobileCss).toContain('body.mhome-active .li-mobile-actions{grid-column:1/-1;grid-row:4;display:flex;');
     expect(mobileCss).toContain('body.mhome-active #liQuickShade{order:1;min-width:128px;}');
-    expect(mobileCss).toContain('body.mhome-active #liQuickWater{order:2;min-width:96px;}');
+    expect(mobileCss).toContain('body.mhome-active #liQuickWater{order:2;min-width:96px;gap:4px;}');
     expect(mobileCss).toContain('body.mhome-active .li-saved-only{order:3;min-width:110px;}');
     expect(mobileCss).toContain('body.mhome-active .li-saved-count{display:grid;');
     expect(mobileCss).toContain('overscroll-behavior:contain');

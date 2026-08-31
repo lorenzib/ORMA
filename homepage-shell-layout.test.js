@@ -29,6 +29,7 @@ describe('logged-in discovery workspace layout', () => {
     expect(rule[1]).toContain('height:42px');
     expect(rule[1]).not.toContain('background:transparent');
     expect(rule[1]).not.toContain('border:1px solid transparent');
+    expect(css).toContain('#liQuickWater{gap:4px;}');
   });
 
   test('balances a bounded map with a proportional results pane', () => {

@@ -51,7 +51,7 @@
   body.mhome-active .li-mobile-actions::-webkit-scrollbar{display:none;}
   body.mhome-active .li-quick-filters{display:contents;}
   body.mhome-active #liQuickShade{order:1;min-width:128px;}
-  body.mhome-active #liQuickWater{order:2;min-width:96px;}
+  body.mhome-active #liQuickWater{order:2;min-width:96px;gap:4px;}
   body.mhome-active .li-saved-only{order:3;min-width:110px;}
   body.mhome-active #liFiltersWrap{order:4;flex:none;min-width:124px;}
   body.mhome-active .li-country-btn,

@@ -2952,6 +2952,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 }
 .li-quick-filter:hover{background:#fff;border-color:var(--paper-line);color:var(--ink);}
 .li-quick-filter[aria-pressed="true"]{background:#E1ECE2;border-color:#A9C5AE;color:var(--accent);}
+#liQuickWater{gap:4px;}
 /* Inline chips — Any area · Distance · Terrain · Shade · Water */
 .li-chiprow{display:none;}
 .li-chipwrap{position:relative;}

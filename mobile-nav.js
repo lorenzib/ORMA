@@ -68,6 +68,14 @@
     return Array.isArray(summary.dogs) && summary.dogs.length > 0;
   }
 
+  function pendingDogProfile(){
+    try {
+      const profile = JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile') || 'null');
+      const name = profile && typeof profile.name === 'string' ? profile.name.trim().slice(0, 40) : '';
+      return name ? { name } : null;
+    } catch(error){ return null; }
+  }
+
   function installDogProfileBanner(){
     const topnav = document.querySelector('.topnav');
     const personalisedHomepageHeader = document.querySelector('#returningCustomerHomepage .li-top');
@@ -104,6 +112,17 @@
     profile.className = 'dog-profile-banner__action hp-dog-profile-cta';
     profile.href = '/?wizard=1';
     profile.textContent = 'Add your dog';
+    profile.addEventListener('click', event => {
+      if(profile.dataset.action !== 'save-pending-dog') return;
+      event.preventDefault();
+      const next = window.location.pathname.split('/').pop() + window.location.search + window.location.hash;
+      if(window.DoloPawsAuthUI && typeof window.DoloPawsAuthUI.openSignup === 'function'){
+        window.DoloPawsAuthUI.openSignup({ next });
+        return;
+      }
+      const account = document.getElementById('accountBtn');
+      if(account) account.click();
+    });
     inner.append(copyBlock, profile);
     banner.appendChild(inner);
     if(personalisedHomepageHeader) personalisedHomepageHeader.parentNode.insertBefore(banner, personalisedHomepageHeader.nextSibling);
@@ -113,6 +132,21 @@
     function sync(summary, signedIn){
       const current = arguments.length ? summary : authSummary();
       const member = arguments.length > 1 ? signedIn : !!current;
+      const pending = member ? null : pendingDogProfile();
+      if(pending){
+        const saveLabel = `Save ${pending.name}’s profile`;
+        title.textContent = saveLabel;
+        description.textContent = `${pending.name}’s matches are ready on this device. Create a free account to keep the profile.`;
+        profile.textContent = saveLabel;
+        profile.href = '#save-dog-profile';
+        profile.dataset.action = 'save-pending-dog';
+      }else{
+        title.textContent = 'Add your dog';
+        description.textContent = 'Add your dog for personalised matches. Create a free account only when you choose to save.';
+        profile.textContent = 'Add your dog';
+        profile.href = '/?wizard=1';
+        delete profile.dataset.action;
+      }
       // The guest homepage already ships the exact prompt and its button
       // opens the in-place wizard. Keep this shared copy ready but hidden
       // until that same page becomes a signed-in/no-dog experience.
