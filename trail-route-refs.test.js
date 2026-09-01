@@ -35,6 +35,39 @@ describe('trail route-number guidance', () => {
     })).toEqual(['15A']);
   });
 
+  test('splits route numbers at mapped switch points instead of combining them', () => {
+    const path = [[46, 11], [46, 11.1], [46, 11.2], [46, 11.3], [46, 11.4], [46, 11.5]];
+    expect(refs.segmentsForTrail({
+      path,
+      decisionPoints: [
+        { lat:46, lng:11.2, instruction:'Switch from trail 7 onto trail 6' },
+        { lat:46, lng:11.4, instruction:'Switch from trail 6 onto trail 30' },
+      ],
+    })).toEqual([
+      { ref:'7', path:path.slice(0, 3) },
+      { ref:'6', path:path.slice(2, 5) },
+      { ref:'30', path:path.slice(4) },
+    ]);
+  });
+
+  test('does not invent section geometry from an unlocated text sequence', () => {
+    expect(refs.segmentsForTrail({
+      path:[[46, 11], [46, 11.1]],
+      routeSource:{ name:'Circuit using paths 7, 6 and 30' },
+    })).toEqual([]);
+  });
+
+  test('exposes switch timing for detailed route guidance', () => {
+    const trail = {
+      decisionPoints:[
+        { km:2.31, lat:46, lng:11.2, instruction:'Switch from trail 7 onto trail 6' },
+      ],
+    };
+    expect(refs.switchesForTrail(trail)).toEqual([
+      expect.objectContaining({ from:'7', to:'6', km:2.31, lat:46, lng:11.2 }),
+    ]);
+  });
+
   test('does not mistake historical years following a route name for trail numbers', () => {
     expect(refs.forTrail({
       desc:'Waymarked Trails relation 9445694 follows the old railway line (1916–1960).',

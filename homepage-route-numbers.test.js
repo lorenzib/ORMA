@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-describe('logged-in homepage route numbers', () => {
+describe('logged-in homepage mapped-route hierarchy', () => {
   const root = __dirname;
   const script = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
@@ -11,13 +11,14 @@ describe('logged-in homepage route numbers', () => {
     expect(html.indexOf('trail-route-refs.js')).toBeLessThan(html.indexOf('script.js?v='));
   });
 
-  test('adds a prominent score-coloured number above each personalised route', () => {
-    expect(script).toContain("id: 'trail-paths-route-number'");
-    expect(script).toContain("'symbol-placement': 'line'");
-    expect(script).toContain("'symbol-spacing': 240");
-    expect(script).toContain("'text-field': ['get', 'routeRef']");
-    expect(script).toContain("9, 14, 12, 17, 15, 20");
-    expect(script).toContain("'text-halo-width': 5");
-    expect(script).toContain('window.DoloPawsTrailRouteRefs.forTrail(t)[0]');
+  test('keeps official mapped numbers above a wider ORMA colour underlay', () => {
+    expect(script).not.toContain("id: 'trail-paths-route-number'");
+    expect(script).not.toContain("source: 'trail-route-refs'");
+    expect(script).toContain("13, 18, 16, 22");
+    expect(script).toContain("13, 13, 16, 16");
+    expect(script).toContain("}, 'waymarked-hiking-layer');");
+    expect(script).toContain("14, 0.82");
+    expect(script).toContain("16, 0.95");
+    expect(script).toContain("'raster-resampling': 'nearest'");
   });
 });

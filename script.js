@@ -625,15 +625,15 @@ function initGuestMap(){
       paint: {
         'raster-opacity': [
           'interpolate', ['linear'], ['zoom'],
-          7, 0.10,
-          10, 0.14,
-          12, 0.20,
-          14, 0.52,
-          16, 0.72,
+          7, 0.16,
+          10, 0.25,
+          12, 0.45,
+          14, 0.82,
+          16, 0.95,
         ],
-        'raster-saturation': -1,
-        'raster-contrast': 0.20,
-        'raster-resampling': 'linear',
+        'raster-saturation': -0.72,
+        'raster-contrast': 0.36,
+        'raster-resampling': 'nearest',
       },
     }, guestFirstLabel ? guestFirstLabel.id : undefined);
     addBaseHillshade(guestMapInstance, 'waymarked-hiking-layer');
@@ -907,8 +907,8 @@ function initTrailMap(){
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 5, 13, 6],
       },
     }, 'waymarked-hiking-layer');
-    // Only ORMA routes carry personalised match colour. The surrounding mapped
-    // network remains neutral, and no extra coloured rail is drawn around it.
+    // Keep the official mapped route and its shields on top. ORMA contributes
+    // only the wider match-colour underlay, avoiding a second number style.
     trailMapInstance.addLayer({
       id: 'trail-paths-orma-halo',
       type: 'line',
@@ -917,10 +917,10 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#FFFDF7',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 7, 10, 11, 13, 15, 16, 18],
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 8, 10, 13, 13, 18, 16, 22],
         'line-opacity': 0.94,
       },
-    }, firstLabelLayer ? firstLabelLayer.id : undefined);
+    }, 'waymarked-hiking-layer');
     trailMapInstance.addLayer({
       id: 'trail-paths-orma-line',
       type: 'line',
@@ -932,43 +932,10 @@ function initTrailMap(){
           'step', ['coalesce', ['get', 'score'], 0],
           '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
         ],
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2.5, 10, 5, 13, 7, 16, 9],
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 5, 10, 8, 13, 13, 16, 16],
         'line-opacity': 1,
       },
-    }, firstLabelLayer ? firstLabelLayer.id : undefined);
-    // Route numbers from the waymarked raster are baked into its tiles and
-    // can be too small to read. Draw ORMA's own label above each personalised
-    // route so the number stays clear without strengthening the background
-    // walking network.
-    trailMapInstance.addLayer({
-      id: 'trail-paths-route-number',
-      type: 'symbol',
-      source: 'trail-paths',
-      minzoom: 9,
-      filter: ['has', 'routeRef'],
-      layout: {
-        'symbol-placement': 'line',
-        'symbol-spacing': 240,
-        'text-field': ['get', 'routeRef'],
-        'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
-        'text-size': ['interpolate', ['linear'], ['zoom'], 9, 14, 12, 17, 15, 20],
-        'text-letter-spacing': 0.04,
-        'text-padding': 8,
-        'text-rotation-alignment': 'viewport',
-        'text-keep-upright': true,
-        'text-allow-overlap': true,
-        'text-ignore-placement': true,
-      },
-      paint: {
-        'text-color': '#FFFFFF',
-        'text-halo-color': [
-          'step', ['coalesce', ['get', 'score'], 0],
-          '#9C3A25', 65, '#A76612', 85, '#2C5C34',
-        ],
-        'text-halo-width': 5,
-        'text-halo-blur': 0.25,
-      },
-    });
+    }, 'waymarked-hiking-layer');
     if(firstLabelLayer && trailMapInstance.getLayer('waymarked-hiking-layer')){
       trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id);
     }
@@ -1282,14 +1249,10 @@ function updatePathLayer(list){
       properties: {
         id: t.id, name: t.name, safetyLevel: t.safetyLevel,
         score: typeof t.score === 'number' ? t.score : 0,
-        routeRef: window.DoloPawsTrailRouteRefs
-          ? (window.DoloPawsTrailRouteRefs.forTrail(t)[0] || '')
-          : String(t.ref || ''),
       },
       geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
     }));
   trailMapInstance.getSource('trail-paths').setData({ type: 'FeatureCollection', features });
-  
   // NOTE: The 'water-sources' source is managed exclusively by initializeWaterSources(),
   // which loads the full OSM dataset (Trentino, Veneto, Savoy) from
   // water-sources-all-regions.geojson. Do NOT overwrite it here — the old code that

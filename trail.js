@@ -24,7 +24,6 @@ function applyDetailRouteColor(color){
   if(!map || !map.isStyleLoaded || !map.isStyleLoaded()) return;
   if(map.getLayer('single-trail-path-line')) map.setPaintProperty('single-trail-path-line', 'line-color', color);
   if(map.getLayer('single-trail-direction-arrows')) map.setPaintProperty('single-trail-direction-arrows', 'text-halo-color', color);
-  if(map.getLayer('single-trail-route-number')) map.setPaintProperty('single-trail-route-number', 'text-color', color);
 }
 
 function safetyClass(level){
@@ -2251,27 +2250,6 @@ function renderTrail(t){
 
       if(Array.isArray(t.path) && t.path.length > 1){
         const selectedRouteColor = window._dolopawsTrailRouteColor || safetyColor(t.safetyLevel);
-        const selectedRouteRefs = window.DoloPawsTrailRouteRefs
-          ? window.DoloPawsTrailRouteRefs.forTrail(t)
-          : (t.ref ? [String(t.ref)] : []);
-        const selectedRouteRefLabel = selectedRouteRefs.join(' → ');
-        const selectedRouteRefsAreSections = Array.isArray(t.routeRefSegments) && t.routeRefSegments.length > 0;
-        const selectedRouteRefFeatures = (selectedRouteRefsAreSections ? t.routeRefSegments : [])
-          .filter(segment => segment && segment.ref && Array.isArray(segment.path) && segment.path.length > 1)
-          .map(segment => ({
-            type: 'Feature',
-            properties: { routeRef: String(segment.ref) },
-            geometry: selectedRouteRefsAreSections
-              ? { type: 'Point', coordinates: segment.path[Math.floor(segment.path.length / 2)].slice().reverse() }
-              : { type: 'LineString', coordinates: segment.path.map(([lat, lng]) => [lng, lat]) },
-          }));
-        if(!selectedRouteRefFeatures.length && selectedRouteRefLabel){
-          selectedRouteRefFeatures.push({
-            type: 'Feature',
-            properties: { routeRef: selectedRouteRefLabel },
-            geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
-          });
-        }
         map.addSource('single-trail-path', {
           type: 'geojson',
           data: {
@@ -2280,55 +2258,23 @@ function renderTrail(t){
             geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
           },
         });
-        if(selectedRouteRefFeatures.length){
-          map.addSource('single-trail-route-refs', {
-            type: 'geojson',
-            data: { type: 'FeatureCollection', features: selectedRouteRefFeatures },
-          });
-        }
-        // Match the logged-in homepage: a bright halo separates the selected
-        // score-coloured route from the muted public walking network.
+        // The mapped hiking route remains authoritative and sits above ORMA's
+        // match colour. A white outer casing and wider colour underlay make the
+        // selected route obvious without drawing a second set of route numbers.
         map.addLayer({
           id: 'single-trail-path-casing',
           type: 'line',
           source: 'single-trail-path',
           layout: { 'line-join': 'round', 'line-cap': 'round' },
-          paint: { 'line-color': '#FFFDF7', 'line-width': 13, 'line-opacity': 0.94 },
-        }, firstLabelLayer ? firstLabelLayer.id : undefined);
+          paint: { 'line-color': '#FFFDF7', 'line-width': 17, 'line-opacity': 0.96 },
+        }, 'waymarked-hiking-layer');
         map.addLayer({
           id: 'single-trail-path-line',
           type: 'line',
           source: 'single-trail-path',
           layout: { 'line-join': 'round', 'line-cap': 'round' },
-          paint: { 'line-color': selectedRouteColor, 'line-width': 7, 'line-opacity': 1 },
-        }, firstLabelLayer ? firstLabelLayer.id : undefined);
-
-        if(selectedRouteRefFeatures.length){
-          map.addLayer({
-            id: 'single-trail-route-number',
-            type: 'symbol',
-            source: 'single-trail-route-refs',
-            minzoom: 9,
-            layout: {
-              'symbol-placement': selectedRouteRefsAreSections ? 'point' : 'line',
-              'symbol-spacing': 120,
-              'text-field': ['get', 'routeRef'],
-              'text-size': ['interpolate', ['linear'], ['zoom'], 9, 19, 13, 23, 16, 26],
-              'text-font': ['Noto Sans Regular'],
-              'text-letter-spacing': 0.05,
-              'text-rotation-alignment': 'viewport',
-              'text-keep-upright': true,
-              'text-allow-overlap': true,
-              'text-ignore-placement': true,
-            },
-            paint: {
-              'text-color': selectedRouteColor,
-              'text-halo-color': '#FFFDF7',
-              'text-halo-width': 8,
-              'text-halo-blur': 0,
-            },
-          }, firstLabelLayer ? firstLabelLayer.id : undefined);
-        }
+          paint: { 'line-color': selectedRouteColor, 'line-width': 13, 'line-opacity': 1 },
+        }, 'waymarked-hiking-layer');
 
         // Closed loops are intentionally direction-neutral: hikers can join
         // anywhere and walk clockwise or anticlockwise. Keep arrows only for
