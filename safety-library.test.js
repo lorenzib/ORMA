@@ -20,6 +20,7 @@ describe('Safety library', () => {
   test('gives guide titles a stronger readable scale on desktop and mobile', () => {
     expect(html).toMatch(/\.sg-guide-title\{[^}]*font:700 18px\/1\.16/s);
     expect(html).toMatch(/@media\(max-width:620px\)[\s\S]*\.sg-guide-title\{font-size:17px;/s);
+    expect(html).toMatch(/@media\(max-width:620px\)[\s\S]*\.sg-guide-card\{[^}]*padding:13px 12px;/s);
   });
 
   test('keeps the safety header aligned with the shared page-header scale', () => {
