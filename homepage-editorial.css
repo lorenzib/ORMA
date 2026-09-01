@@ -4,11 +4,11 @@
 /* The logged-in discovery hierarchy reads left to right as one unit. Keep the
    small geographic title and its selected value on the same baseline. */
 .li-toolbar{
-  grid-template-columns:minmax(280px,360px) 196px 196px 178px max-content max-content max-content;
+  grid-template-columns:minmax(280px,360px) 196px 196px 178px max-content max-content max-content max-content;
   justify-content:start;
   grid-template-areas:
-    "greet greet greet greet greet greet greet"
-    "search country region valley filters quick saved";
+    "greet greet greet greet greet greet greet greet"
+    "search country region valley filters quick plan saved";
 }
 .li-country-wrap,.li-region-wrap{width:196px;min-width:196px;}
 .li-valley-wrap{grid-area:valley;width:178px;min-width:178px;}
@@ -26,7 +26,7 @@
     grid-template-areas:
       "greet greet greet greet"
       "search country region valley"
-      "filters quick quick saved";
+      "filters quick plan saved";
   }
 }
 

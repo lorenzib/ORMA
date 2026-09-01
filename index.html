@@ -119,7 +119,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     </picture>
     <div class="hp-hero-shade"></div>
     <div class="hp-hero-inner">
-      <h1 data-i18n="hero.h1">Find a trail that fits your dog</h1>
+      <h1 data-i18n="hero.h1">Where are we going today?</h1>
       <p class="hp-hero-sub" data-i18n="hero.sub">Search by place, terrain and conditions. Every trail explains what may suit your dog and what deserves a closer look.</p>
 
       <div class="hp-searchcard">
@@ -272,10 +272,9 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     <div class="li-toolbar-greet">
       <span class="li-avatar li-greet-avatar" id="liGreetAvatar" aria-hidden="true">🐾</span>
       <span class="li-toolbar-greet-copy">
-        <strong data-i18n="hero.h1">Where are we heading today?</strong>
+        <strong data-i18n="hero.h1">Where are we going today?</strong>
         <small id="liToolbarDogContext">Your dog</small>
       </span>
-      <span class="li-toolbar-summary" id="liToolbarSummary" aria-live="polite"></span>
     </div>
     <div class="li-search">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
@@ -327,10 +326,10 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span>High shade</span></button>
       <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span>Water</span></button>
     </div>
+    <a class="li-plan-route" href="route-planner.html">Draft a loop</a>
     <button type="button" id="liSavedOnlyBtn" class="li-saved-only" aria-pressed="false">
       <span class="orma-saved-heart" aria-hidden="true">♥</span><span>Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span>
     </button>
-    <a class="li-plan-route" href="route-planner.html">Draft a loop</a>
     </div>
     <!-- Kept as a rendering target for the controller; the consolidated
          Filter trails panel is the visible control at every viewport size. -->
@@ -397,7 +396,10 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <p class="li-newsline" id="returningSubline" hidden></p>
         <div class="li-list-title-row">
           <div>
-            <div class="li-kick" id="companionKicker">Ranked for your dog</div>
+            <div class="li-list-kicker-row">
+              <div class="li-kick" id="companionKicker">Ranked for your dog</div>
+              <span class="li-list-summary" id="liToolbarSummary" aria-live="polite"></span>
+            </div>
             <div class="li-list-title" id="companionListTitle">Top trails</div>
           </div>
         </div>

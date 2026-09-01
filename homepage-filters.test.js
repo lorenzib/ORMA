@@ -308,8 +308,8 @@ describe('map-first returning homepage layout contract', () => {
     expect(mobileCss).toContain('body.mhome-active #liFiltersWrap{order:1;flex:none;width:auto;min-width:124px;}');
     expect(mobileCss).toContain('body.mhome-active #liQuickShade{order:2;min-width:128px;}');
     expect(mobileCss).toContain('body.mhome-active #liQuickWater{order:3;min-width:96px;gap:4px;}');
-    expect(mobileCss).toContain('body.mhome-active .li-saved-only{order:4;min-width:110px;}');
-    expect(mobileCss).toContain('body.mhome-active .li-plan-route{order:5;flex:none;width:auto;');
+    expect(mobileCss).toContain('body.mhome-active .li-saved-only{order:5;min-width:110px;}');
+    expect(mobileCss).toContain('body.mhome-active .li-plan-route{order:4;flex:none;width:auto;');
     expect(mobileCss).toContain('body.mhome-active .li-saved-count{display:grid;');
     expect(mobileCss).toContain('overscroll-behavior:contain');
     expect(mobileCss).toContain('.li-map.map-layers-open{z-index:47;}');

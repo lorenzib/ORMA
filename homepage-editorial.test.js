@@ -8,8 +8,8 @@ describe('guest homepage editorial structure', () => {
     const html = read('index.html');
     const translations = read('i18n.js');
 
-    expect(html).toContain('Find a trail that fits your dog');
-    expect(translations).toContain("'hero.h1': 'Find a trail that fits your dog'");
+    expect(html).toContain('Where are we going today?');
+    expect(translations).toContain("'hero.h1': 'Where are we going today?'");
   });
 
   test('keeps a prominent, value-first guest card above the homepage hero', () => {

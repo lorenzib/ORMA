@@ -2846,10 +2846,10 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
    the static "Tailored to" label. */
 .li-toolbar{
   display:grid;
-  grid-template-columns:minmax(260px,1fr) auto auto auto auto auto auto;
+  grid-template-columns:minmax(260px,1fr) auto auto auto auto auto auto auto;
   grid-template-areas:
-    "greet greet greet greet greet greet greet"
-    "search country region valley filters quick saved";
+    "greet greet greet greet greet greet greet greet"
+    "search country region valley filters quick plan saved";
   align-items:center;
   gap:14px 8px;
   padding:16px 24px 18px;
@@ -2885,7 +2885,6 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-toolbar-greet-copy{display:flex;flex-direction:column;min-width:0;}
 .li-toolbar-greet-copy strong{font:700 21px/1.12 'Bricolage Grotesque',sans-serif;white-space:nowrap;}
 .li-toolbar-greet-copy small{margin-top:2px;font:600 10.5px/1.2 'Inter',sans-serif;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:none;}
-.li-toolbar-summary{margin-left:auto;color:#849086;font:600 11.5px/1.2 'Inter',sans-serif;white-space:nowrap;}
 .li-toolbar-breed{color:inherit;text-decoration:underline;text-decoration-color:#AAB5AA;text-underline-offset:2px;}
 .li-toolbar-breed:hover{color:var(--accent);text-decoration-color:currentColor;}
 
@@ -2939,6 +2938,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   border-radius:var(--radius-pill);background:#fff;color:var(--ink);
   font:700 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;
 }
+.li-plan-route{grid-area:plan;margin-left:10px;}
 .li-saved-only:hover{border-color:#9C3A25;}
 .li-saved-only[aria-pressed="true"]{border-color:#9C3A25;background:#F8EAE5;color:#8F3827;}
 .li-saved-count{display:grid;place-items:center;min-width:19px;height:19px;padding:0 5px;border-radius:999px;background:#EEF1E9;color:var(--ink-soft);font-size:10px;}
@@ -3359,6 +3359,9 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-edit:hover{border-color:var(--accent);}
 .li-newsline{font-size:12px;color:var(--success);font-weight:600;margin:10px 0 0;}
 .li-list-title-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:0;padding-right:142px;}
+.li-list-title-row>div{width:100%;min-width:0;}
+.li-list-kicker-row{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.li-list-summary{color:#849086;font:600 11.5px/1.2 'Inter',sans-serif;letter-spacing:0;text-transform:none;white-space:nowrap;}
 .li-kick{
   font:700 10.5px 'Inter',sans-serif;
   letter-spacing:.14em;
@@ -3662,7 +3665,6 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
   .li-toolbar{display:flex;padding:10px 14px;flex-wrap:wrap;}
   .li-dogctx-wrap{display:none;}
   .li-toolbar-greet{display:flex;width:100%;min-width:0;}
-  .li-toolbar-summary{display:none;}
   .li-search{order:1;flex:1 1 100%;max-width:none;min-width:170px;}
   .li-country-wrap{order:2;}
   .li-region-wrap{order:3;}
@@ -3901,9 +3903,8 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
   }
   .dw-footer .dw-back-none{display:none;}
 }
-.li-plan-route{position:absolute;top:16px;right:24px;display:inline-flex;align-items:center;justify-content:center;height:42px;box-sizing:border-box;padding:0 14px;border:1.5px solid var(--ink);border-radius:var(--radius-pill);background:var(--ink);color:#fff;text-decoration:none;font:700 12.5px 'Inter',sans-serif;white-space:nowrap}
+.li-plan-route{display:inline-flex;align-items:center;justify-content:center;height:42px;box-sizing:border-box;padding:0 14px;border:1.5px solid var(--ink);border-radius:var(--radius-pill);background:var(--ink);color:#fff;text-decoration:none;font:700 12.5px 'Inter',sans-serif;white-space:nowrap}
 .li-plan-route:hover{background:#24352b}.li-plan-route:focus-visible{outline:3px solid rgba(159,199,214,.9);outline-offset:2px}
-@media (min-width:1041px){body[data-homepage-view="returning"] .li-plan-route{right:0}body[data-homepage-view="returning"] .li-toolbar-greet{padding-right:116px}}
-@media (max-width:1040px){.li-plan-route{position:static}}
+@media (max-width:1040px){.li-plan-route{margin-left:8px}}
 @media (max-width:760px){.li-plan-route{grid-area:auto;grid-column:span 2;width:100%}}
 @media (max-width:480px){.li-plan-route{grid-column:span 3}}
