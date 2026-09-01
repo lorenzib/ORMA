@@ -146,10 +146,23 @@ describe('multi-dog account experience', () => {
     expect(homepage).toContain('id="liGreetDogList"');
     expect(controller).toContain('function renderLiDogLists(profile)');
     expect(controller).toContain('DoloPawsAuth.selectDogProfile(dog.id)');
-    expect(controller).toContain('account.html?dog=${encodeURIComponent(dog.id)}&next=%2F');
     expect(controller).toContain("['liManageLink','liGreetManageLink']");
     expect(homepage).toContain('id="liGreetManageLink"');
     expect(source('mobile-nav.js')).toContain("activeId ? 'dog=' + encodeURIComponent(activeId) + '&' : ''");
+  });
+
+  test('dog selection dismisses navigation layers and does not reload the homepage', () => {
+    const nav = source('mobile-nav.js');
+    const controller = source('script.js');
+    expect(nav).toContain("a, #accountBtn, .nav-dogmenu-row, .nav-dogmenu-item");
+    expect(nav).toMatch(/row\.addEventListener\('click',[\s\S]*?setOpen\(false\);[\s\S]*?selectDogProfile\(d\.id\)/);
+    expect(controller).toMatch(/row\.addEventListener\('click',[\s\S]*?liCloseMenus\(\);[\s\S]*?selectDogProfile\(dog\.id\)/);
+    const homepageSwitcher = controller.slice(
+      controller.indexOf('function renderLiDogLists'),
+      controller.indexOf('function renderLiHeader')
+    );
+    expect(homepageSwitcher).not.toContain('window.location.reload()');
+    expect(homepageSwitcher).not.toContain('window.location.href');
   });
 
   test('account settings lists and switches every dog without relying on a header menu', () => {

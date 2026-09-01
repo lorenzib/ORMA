@@ -497,11 +497,18 @@
         row.appendChild(txt);
         row.addEventListener('click', async () => {
           if(d.id === activeId){ setOpen(false); return; }
+          // Dismiss the dog panel immediately. A slow profile sync must never
+          // leave an open navigation layer sitting above the rest of the site.
+          setOpen(false);
           row.disabled = true;
           if(window.DoloPawsAuth && typeof window.DoloPawsAuth.selectDogProfile === 'function'){
-            const ok = await window.DoloPawsAuth.selectDogProfile(d.id);
-            if(ok) window.location.reload();
-            else row.disabled = false;
+            try {
+              const ok = await window.DoloPawsAuth.selectDogProfile(d.id);
+              if(ok) window.location.reload();
+              else row.disabled = false;
+            } catch(error){
+              row.disabled = false;
+            }
             return;
           }
           // Static pages have no Firebase client. Keep the local choice so
@@ -759,7 +766,7 @@
   });
 
   links.addEventListener('click', function(e){
-    if(e.target.closest('a, #accountBtn')) setOpen(false);
+    if(e.target.closest('a, #accountBtn, .nav-dogmenu-row, .nav-dogmenu-item')) setOpen(false);
   });
 
   document.addEventListener('click', function(e){

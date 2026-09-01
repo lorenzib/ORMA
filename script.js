@@ -1771,15 +1771,26 @@ function renderLiDogLists(profile){
       copy.append(name, meta);
       row.append(avatar, copy);
       row.addEventListener('click', async () => {
-        if(dog.id === activeId){
-          window.location.href = `account.html?dog=${encodeURIComponent(dog.id)}&next=%2F`;
-          return;
-        }
+        // The account dropdown is not a modal. Always dismiss it first so an
+        // active-dog click or a slow network request can never block the page.
+        liCloseMenus();
+        if(dog.id === activeId) return;
         if(!window.DoloPawsAuth || !window.DoloPawsAuth.selectDogProfile) return;
         row.disabled = true;
-        const ok = await window.DoloPawsAuth.selectDogProfile(dog.id);
-        if(ok) window.location.reload();
-        else row.disabled = false;
+        row.setAttribute('aria-busy', 'true');
+        try {
+          // selectDogProfile dispatches dolopaws-dog-profile-saved, which
+          // refreshes scores and dog context in place. Reloading here was
+          // redundant and could strand the homepage during a slow reload.
+          await window.DoloPawsAuth.selectDogProfile(dog.id);
+        } catch(error){
+          // Keep the rest of the homepage usable even if profile sync fails.
+        } finally {
+          if(row.isConnected){
+            row.disabled = false;
+            row.removeAttribute('aria-busy');
+          }
+        }
       });
       list.appendChild(row);
     });
