@@ -830,18 +830,17 @@ body{background:#EFECE2;}
 
 .td2-story .td2-about,.td2-story #td2PhotosCard,.td2-story #td2ReviewsCard{order:initial;}
 .td2-logistics{position:static;}
-.td2-about-getting{margin-top:20px;padding-top:20px;border-top:1px solid #E4E0D3;}
-.td2-about-getting .td2-kick{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
-.td2-about-getting .td2-kick svg{color:#3E7A91;flex:none;}
-.td2-about-getting .td2-parking-grid{display:block;}
-.td2-about-getting .td2-park{padding:0;border:0;border-radius:0;background:transparent;}
-.td2-about-getting .td2-park .ic{display:none;}
-.td2-about-getting .td2-park .t{font-size:13px;}
-.td2-about-getting .td2-park .s{margin-top:4px;font-size:13px;line-height:1.55;color:#6B7A6E;}
-.td2-about-getting .td2-route-refs{margin-top:14px;padding-top:14px;border-top:1px solid #E4E0D3;}
-.td2-route-ref-list{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:8px;}
-.td2-route-ref{display:inline-flex;align-items:center;justify-content:center;min-width:34px;min-height:28px;box-sizing:border-box;padding:3px 8px;border:2px solid #B54835;border-radius:7px;background:#fff;color:#202821;font:800 12px/1 'Inter',sans-serif;}
-.td2-route-ref-arrow{color:#7A877D;font-size:14px;font-weight:800;}
+.td2-about-getting,.td2-about-around{margin-top:20px;padding-top:20px;border-top:1px solid #E4E0D3;}
+.td2-about-getting .td2-kick,.td2-about-around .td2-kick{display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.td2-about-getting .td2-kick svg,.td2-about-around .td2-kick svg{color:#3E7A91;flex:none;}
+.td2-about-getting .td2-parking-grid,.td2-about-around .td2-parking-grid{display:block;}
+.td2-about-getting .td2-park,.td2-about-around .td2-park{padding:0;border:0;border-radius:0;background:transparent;}
+.td2-about-getting .td2-park .ic,.td2-about-around .td2-park .ic{display:none;}
+.td2-about-getting .td2-park .t,.td2-about-around .td2-park .t{font-size:13px;}
+.td2-about-getting .td2-park .s,.td2-about-around .td2-park .s{margin-top:7px;font-size:13px;line-height:1.55;color:#56665A;}
+.td2-route-ref-list{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:9px;}
+.td2-route-ref{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:36px;box-sizing:border-box;padding:5px 10px;border:3px solid #B54835;border-radius:8px;background:#fff;color:#202821;font:800 15px/1 'Inter',sans-serif;box-shadow:0 1px 2px rgba(32,40,33,.08);}
+.td2-route-ref-arrow{color:#657369;font-size:17px;font-weight:800;}
 .td2-about-getting .td2-maps-link{display:inline-flex;margin-top:10px;}
 .td2-story .trail-photos-list{grid-template-columns:repeat(3,minmax(0,1fr));}
 .td2-story>.td2-card,.td2-logistics>.td2-card,.td2-map-stack>.td2-card{scroll-margin-top:88px;}
@@ -1145,6 +1144,10 @@ body.trail-photo-viewer-open{overflow:hidden;}
             <a id="td2MapsLink" class="td2-maps-link" href="#" target="_blank" rel="noopener" hidden>Directions to the recommended start →</a>
             <span id="td2MapsStatus" class="parking-directions-status" role="status" aria-live="polite"></span>
           </section>
+          <section class="td2-about-around" id="td2GettingAroundCard" aria-labelledby="td2GettingAroundHeading">
+            <div class="td2-kick" id="td2GettingAroundHeading"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17l5-5 4 4 7-9"></path><path d="M15 7h5v5"></path></svg>Getting around</div>
+            <div class="td2-parking-grid" id="td2GettingAroundGrid"></div>
+          </section>
           <!-- Kept hidden for visitors whose browser still has the previous
                trail.js cached; that version writes here before building the
                map and elevation profile. -->
@@ -1326,9 +1329,9 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="trail-weather-window.js?v=20260820-1" defer></script>
 <script src="trail-reports.js?v=20260820-2" defer></script>
 <script src="veterinary-care.js?v=20260831-2" defer></script>
-<script src="trail.js?v=20260901-4" defer></script>
+<script src="trail.js?v=20260901-5" defer></script>
 <script src="trail-route-refs.js?v=20260901-1" defer></script>
-<script src="trail-blueprint.js?v=20260901-1" defer></script>
+<script src="trail-blueprint.js?v=20260901-2" defer></script>
 <script src="trail-detail-ui.js?v=20260826-1" defer></script>
 <script src="trail-mobile.js?v=20260826-1" defer></script>
 <script src="recommendation-decision.js?v=20260815-4" defer></script>

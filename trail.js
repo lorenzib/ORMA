@@ -24,7 +24,7 @@ function applyDetailRouteColor(color){
   if(!map || !map.isStyleLoaded || !map.isStyleLoaded()) return;
   if(map.getLayer('single-trail-path-line')) map.setPaintProperty('single-trail-path-line', 'line-color', color);
   if(map.getLayer('single-trail-direction-arrows')) map.setPaintProperty('single-trail-direction-arrows', 'text-halo-color', color);
-  if(map.getLayer('single-trail-route-number')) map.setPaintProperty('single-trail-route-number', 'text-halo-color', color);
+  if(map.getLayer('single-trail-route-number')) map.setPaintProperty('single-trail-route-number', 'text-color', color);
 }
 
 function safetyClass(level){
@@ -2251,7 +2251,7 @@ function renderTrail(t){
         const selectedRouteRefs = window.DoloPawsTrailRouteRefs
           ? window.DoloPawsTrailRouteRefs.forTrail(t)
           : (t.ref ? [String(t.ref)] : []);
-        const selectedRouteRefLabel = selectedRouteRefs.join(' · ');
+        const selectedRouteRefLabel = selectedRouteRefs.join(' → ');
         map.addSource('single-trail-path', {
           type: 'geojson',
           data: {
@@ -2285,20 +2285,21 @@ function renderTrail(t){
             minzoom: 9,
             layout: {
               'symbol-placement': 'line',
-              'symbol-spacing': 240,
+              'symbol-spacing': 120,
               'text-field': ['get', 'routeRef'],
-              'text-size': ['interpolate', ['linear'], ['zoom'], 9, 13, 13, 16, 16, 18],
+              'text-size': ['interpolate', ['linear'], ['zoom'], 9, 19, 13, 23, 16, 26],
               'text-font': ['Noto Sans Regular'],
+              'text-letter-spacing': 0.05,
               'text-rotation-alignment': 'viewport',
               'text-keep-upright': true,
               'text-allow-overlap': true,
               'text-ignore-placement': true,
             },
             paint: {
-              'text-color': '#FFFFFF',
-              'text-halo-color': selectedRouteColor,
-              'text-halo-width': 5,
-              'text-halo-blur': 0.2,
+              'text-color': selectedRouteColor,
+              'text-halo-color': '#FFFDF7',
+              'text-halo-width': 8,
+              'text-halo-blur': 0,
             },
           }, firstLabelLayer ? firstLabelLayer.id : undefined);
         }

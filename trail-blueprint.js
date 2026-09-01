@@ -589,12 +589,12 @@
     box.innerHTML = rows.map(rowMarkup).join('');
   })();
 
-  /* ---- Getting there — within About this trail. Build it from
-     real start/access data and show an honest unavailable state when a
-     trail has not yet been geocoded. ----------------------------------- */
+  /* ---- Getting there + getting around — keep travel to the trailhead
+     separate from the numbered waymarks used once the walk begins. ----- */
   (function parking() {
     const card = $('td2ParkingCard'), grid = $('td2ParkingGrid'), maps = $('td2MapsLink');
-    if (!card || !grid) return;
+    const aroundCard = $('td2GettingAroundCard'), aroundGrid = $('td2GettingAroundGrid');
+    if (!card || !grid || !aroundCard || !aroundGrid) return;
     const sp = t.startPoint || {};
     const lat = typeof sp.lat === 'number' ? sp.lat : t.lat;
     const lng = typeof sp.lng === 'number' ? sp.lng : t.lng;
@@ -602,35 +602,39 @@
     const routeRefs = window.DoloPawsTrailRouteRefs
       ? window.DoloPawsTrailRouteRefs.forTrail(t)
       : [];
+    const startLabel = cardCopy(sp.label || t.valley || t.area || 'the marked trailhead')
+      .replace(/^Start here[.:\s-]*/i, '');
+    const routeStartLabel = startLabel.split(/[.!?]/)[0].trim() || startLabel;
+    const routeSequence = routeRefs.join(' → ');
     const routeRefMarkup = routeRefs.length
       ? `<div class="td2-route-ref-list" aria-label="Trail numbers in order">${routeRefs.map((ref, index) =>
           `${index ? '<span class="td2-route-ref-arrow" aria-hidden="true">→</span>' : ''}<span class="td2-route-ref">${esc(ref)}</span>`
-        ).join('')}</div><div class="s">Follow these numbered waymarks in order and confirm the destination name at each junction.</div>`
-      : '<div class="s">Numbered waymarks are not yet verified for this route. Follow the mapped line and confirm destination names on local signs.</div>';
+        ).join('')}</div><div class="s">Start at ${esc(routeStartLabel)} and follow ${routeRefs.length === 1 ? 'trail' : 'trails'} ${esc(routeSequence)}${routeRefs.length > 1 ? ' in this order' : ''}. Confirm the destination name at each junction.</div>`
+      : `<div class="s">Start at ${esc(routeStartLabel)}. Numbered waymarks are not yet verified for this route, so follow the mapped line and confirm destination names on local signs.</div>`;
     const routeCard = {
       ic:'',
-      t:routeRefs.length ? 'Trail numbers to follow' : 'Trail numbers',
+      t:routeRefs.length ? 'Trail numbers to follow' : 'Trail numbers unavailable',
       s:routeRefMarkup,
       routeRefs:true,
     };
     const renderCards = cards => cards.map(c => `<div class="td2-park${c.routeRefs ? ' td2-route-refs' : ''}"><span class="ic">${c.ic}</span><div><div class="t">${esc(c.t)}</div>${c.routeRefs ? c.s : `<div class="s">${c.s}</div>`}</div></div>`).join('');
+    aroundGrid.innerHTML = renderCards([routeCard]);
+    aroundCard.hidden = false;
     if (typeof lat !== 'number' || typeof lng !== 'number') {
       grid.innerHTML = renderCards([{
         ic:pin,
         t:'Recommended starting point',
         s:'Trailhead directions are not yet available for this route.',
-      }, routeCard]);
+      }]);
       if (maps) maps.hidden = true;
       card.hidden = false;
       return;
     }
-    const startLabel = cardCopy(sp.label || t.valley || t.area || 'the marked trailhead')
-      .replace(/^Start here[.:\s-]*/i, '');
     const cards = [{
       ic:pin,
       t:'Recommended starting point',
       s:`Head to ${esc(startLabel)}. Use the directions link to navigate to the route start.`,
-    }, routeCard];
+    }];
     grid.innerHTML = renderCards(cards);
     if (maps) maps.hidden = false;
     wireTrailheadDirections(maps, $('td2MapsStatus'));
