@@ -77,9 +77,6 @@ h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;}
 .map-nearest-directions-steps summary{color:#32697e;font-weight:800;cursor:pointer;}
 .map-nearest-directions-steps ol{margin:7px 0 0;padding-left:20px;color:#53675A;font-weight:600;}
 .map-nearest-directions-steps li+li{margin-top:4px;}
-.map-route-point-action{position:absolute;top:56px;left:12px;z-index:5;display:inline-flex;align-items:center;min-height:36px;padding:7px 12px;border:1px solid rgba(46,64,52,.14);border-radius:9px;background:rgba(255,255,255,.96);color:#2E4034;box-shadow:0 2px 8px rgba(23,42,28,.16);font:700 11.5px/1.2 'Inter',sans-serif;cursor:pointer;}
-.map-route-point-action.on{background:#2E4034;color:#fff;}
-.map-route-point-action .dp-chip-label{pointer-events:none;}
 .map-loop-open{position:absolute;top:12px;left:88px;z-index:8;min-height:36px;padding:7px 12px;border:0;border-radius:9px;background:rgba(255,255,255,.95);color:#2E4034;box-shadow:0 2px 8px rgba(23,42,28,.16);font:700 11.5px/1.2 'Inter',sans-serif;cursor:pointer;}
 .map-loop-open[hidden]{display:none;}
 .map-loop-open[aria-pressed="true"]{background:#2E4034;color:#fff;}
@@ -104,7 +101,6 @@ h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;}
 .trail-map-box.loop-composer-active .td-layer-switch,.trail-map-box.loop-composer-active .mobile-map-hike-slot,.trail-map-box.loop-composer-active .map-nearest-directions,.trail-map-box.loop-composer-active .map-nearest-directions-panel{display:none!important;}
 .map-access-marker{display:grid;place-items:center;width:28px;height:28px;border:3px solid #fff;border-radius:50%;background:#3E7A91;box-shadow:0 3px 10px rgba(23,42,28,.32);color:#fff;font:800 12px/1 'Inter',sans-serif;}
 .map-access-marker--you{width:20px;height:20px;background:#2E4034;font-size:0;}
-.trail-map-box.route-pick-mode #trailDetailMap canvas{cursor:crosshair!important;}
 .trail-map-box.hike-status-visible .map-nearest-directions,.trail-map-box.hike-status-visible .map-nearest-directions-panel{display:none;}
 .legend-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;}
 
@@ -1104,7 +1100,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
           <button id="veterinaryToggle" type="button" class="map-chip" aria-pressed="false">Veterinary clinics</button>
           <button id="nearbyToggle" type="button" class="map-chip" aria-pressed="false" hidden>Nearby trails</button>
         </div>
-        <button id="routePointToggle" type="button" class="map-route-point-action" aria-pressed="false">Route to a mapped point</button>
         <span id="tdLivePill" class="td-live-pill" hidden><span class="dot"></span>You are here · live</span>
         <div id="mapNearestDirectionsPanel" class="map-nearest-directions-panel" hidden>
           <p id="mapNearestDirectionsStatus" class="map-nearest-directions-status" role="status" aria-live="polite"></p>

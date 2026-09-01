@@ -87,7 +87,8 @@ describe('trail page map controls', () => {
     expect(document.getElementById('veterinaryToggle')).not.toBeNull();
     expect(document.getElementById('foodToggle')).toBeNull();
     expect(document.getElementById('placesToggle')).toBeNull();
-    expect(document.getElementById('routePointToggle').closest('#detailLayersPanel')).toBeNull();
+    expect(document.getElementById('routePointToggle')).toBeNull();
+    expect(html).not.toContain('Route to a mapped point');
   });
 
   test('marked routes and relief are on by default, opt-out via the toggle', () => {
@@ -462,20 +463,26 @@ describe('trail page map controls', () => {
 
     expect(document.getElementById('mobileMapHikeSlot')).not.toBeNull();
     expect(document.getElementById('routesToggle').getAttribute('aria-pressed')).toBe('true');
-    expect(document.getElementById('routePointToggle').getAttribute('aria-pressed')).toBe('false');
+    expect(document.getElementById('routePointToggle')).toBeNull();
     expect(document.getElementById('fountainsToggle')).toBeNull();
     expect(document.getElementById('hutsToggle')).toBeNull();
     expect(document.getElementById('foodToggle')).toBeNull();
     expect(document.getElementById('placesToggle')).toBeNull();
     expect(trail).toContain('const poiStates = { fountains: true, huts: true, food: true, places: true, veterinary: false }');
     expect(detailPois.match(/visibility: 'visible'/g)).toHaveLength(2);
-    expect(trail).toContain('9, 0.52');
-    expect(trail).toContain('12, 0.68');
-    expect(trail).toContain('14, 0.90');
-    expect(trail).toContain('15, 1');
-    expect(trail).toContain("'raster-saturation': -0.40");
+    expect(trail).toContain('9, 0.45');
+    expect(trail).toContain('12, 0.58');
+    expect(trail).toContain('14, 0.72');
+    expect(trail).toContain('15, 0.82');
+    expect(trail).toContain("'raster-saturation': -1");
     expect(trail).toContain("'raster-contrast': 0.22");
-    expect(trail).toContain("'line-width': 9");
+    expect(trail).toContain("'line-width': 13");
+    expect(trail).toContain("return score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25'");
+    expect(trail).toContain("'line-color': selectedRouteColor, 'line-width': 7");
+    expect(trail).toContain("'line-color': '#858D88'");
+    expect(trail).toContain("id: 'single-trail-route-number'");
+    expect(trail).toContain("'text-field': ['get', 'routeRef']");
+    expect(trail).toContain("window.DoloPawsTrailRouteRefs.forTrail(t)");
     expect(trail).toContain("'raster-resampling': 'linear'");
     expect(trail).not.toContain("element.textContent = '✓'");
     expect(trail).not.toContain("markerElement('join')");

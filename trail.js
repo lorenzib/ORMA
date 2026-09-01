@@ -13,6 +13,20 @@ function safetyColor(level){
   return '#9C3A25';
 }
 
+// The logged-in homepage colours routes by the dog's match score. Reuse its
+// exact thresholds here so opening a trail never changes the map's meaning.
+function detailRouteColorForScore(score){
+  return score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25';
+}
+function applyDetailRouteColor(color){
+  window._dolopawsTrailRouteColor = color;
+  const map = window._dolopawsTrailMap;
+  if(!map || !map.isStyleLoaded || !map.isStyleLoaded()) return;
+  if(map.getLayer('single-trail-path-line')) map.setPaintProperty('single-trail-path-line', 'line-color', color);
+  if(map.getLayer('single-trail-direction-arrows')) map.setPaintProperty('single-trail-direction-arrows', 'text-halo-color', color);
+  if(map.getLayer('single-trail-route-number')) map.setPaintProperty('single-trail-route-number', 'text-halo-color', color);
+}
+
 function safetyClass(level){
   if(level === 'low-risk') return 'safety-low';
   if(level === 'moderate') return 'safety-moderate';
@@ -308,8 +322,6 @@ function initLoopComposer(map, t){
   }
 
   function open(){
-    const routePointToggle = document.getElementById('routePointToggle');
-    if(routePointToggle && routePointToggle.getAttribute('aria-pressed') === 'true') routePointToggle.click();
     active = true;
     reset();
     render();
@@ -379,8 +391,6 @@ function initNearestTrailDirections(map, t){
   const status = document.getElementById('mapNearestDirectionsStatus');
   const stepsWrap = document.getElementById('mapNearestDirectionsStepsWrap');
   const stepsList = document.getElementById('mapNearestDirectionsSteps');
-  const routePointToggle = document.getElementById('routePointToggle');
-  const mapBox = document.getElementById('trailMapBox');
   if(!button || !panel || !status || !Array.isArray(t.path) || !t.path.length ||
      !window.DoloPawsTrailAccess || !window.DoloPawsFootpathRouter) return;
 
@@ -393,14 +403,7 @@ function initNearestTrailDirections(map, t){
   let activePlan = null;
   const graphPromises = new Map();
   let originMarker = null;
-  const setRoutePointLabel = label => {
-    routePointToggle.innerHTML = window.DoloPawsIcons
-      ? window.DoloPawsIcons.chipHtml('routes', label)
-      : label;
-  };
-  if(routePointToggle) setRoutePointLabel('Route to a mapped point');
   let targetMarker = null;
-  let pointPickMode = false;
   button.hidden = false;
 
   function setButtonLabel(label){
@@ -472,16 +475,6 @@ function initNearestTrailDirections(map, t){
       });
     return candidates.filter((entry, index) =>
       candidates.findIndex(candidate => candidate.graphUrl === entry.graphUrl) === index);
-  }
-
-  function setPointPickMode(enabled){
-    pointPickMode = enabled;
-    if(routePointToggle){
-      routePointToggle.classList.toggle('on', enabled);
-      routePointToggle.setAttribute('aria-pressed', String(enabled));
-      setRoutePointLabel(enabled ? 'Tap a mapped route…' : 'Route to a mapped point');
-    }
-    if(mapBox) mapBox.classList.toggle('route-pick-mode', enabled);
   }
 
   function removeMappedRoute(){
@@ -603,25 +596,6 @@ function initNearestTrailDirections(map, t){
       button.disabled = false;
       button.removeAttribute('aria-busy');
     }
-  }
-
-  if(routePointToggle){
-    routePointToggle.addEventListener('click', event => {
-      event.stopPropagation();
-      const enabled = !pointPickMode;
-      setPointPickMode(enabled);
-      if(enabled){
-        clearSteps();
-        setPanelMessage('Tap the mapped trail or footpath you want to reach. ORMA will use connected walking paths where coverage is available.');
-        const layersButton = document.getElementById('detailLayersBtn');
-        if(layersButton && layersButton.getAttribute('aria-expanded') === 'true') layersButton.click();
-      }
-    });
-    map.on('click', event => {
-      if(!pointPickMode) return;
-      setPointPickMode(false);
-      routeToSelectedPoint({ lat:event.lngLat.lat, lng:event.lngLat.lng });
-    });
   }
 
   button.addEventListener('click', async () => {
@@ -1684,6 +1658,7 @@ function renderTrail(t){
     // Personal match — needs a logged-in profile. Guests see the facts
     // plus an honest invitation: the score exists, it just isn't theirs yet.
     function paintMatchTeaser(){
+      applyDetailRouteColor(safetyColor(t.safetyLevel));
       const actions = document.querySelector('.td-actions');
       if(actions) actions.classList.add('guest-actions');
       if(statMatch){
@@ -1707,6 +1682,7 @@ function renderTrail(t){
         if(!profile){ paintMatchTeaser(); return; }
         const recommendation = recommendTrail(t, effectiveOverrides(profile, null));
         const n = recommendation.score;
+        applyDetailRouteColor(detailRouteColorForScore(n));
         const actions = document.querySelector('.td-actions');
         if(actions) actions.classList.remove('guest-actions');
         const name = profile.name || window.t('trail.yourDog');
@@ -2100,12 +2076,12 @@ function renderTrail(t){
         paint: {
           'raster-opacity': [
             'interpolate', ['linear'], ['zoom'],
-            9, 0.52,
-            12, 0.68,
-            14, 0.90,
-            15, 1,
+            9, 0.45,
+            12, 0.58,
+            14, 0.72,
+            15, 0.82,
           ],
-          'raster-saturation': -0.40,
+          'raster-saturation': -1,
           'raster-contrast': 0.22,
           'raster-resampling': 'linear',
         },
@@ -2157,15 +2133,9 @@ function renderTrail(t){
           minzoom: 9,
           layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
           paint: {
-            'line-color': [
-              'match', ['get', 'safetyLevel'],
-              'low-risk', '#2C5C34',
-              'moderate', '#8A5A16',
-              'caution', '#9C3A25',
-              '#2E4034',
-            ],
+            'line-color': '#858D88',
             'line-width': 3.5,
-            'line-opacity': 0.68,
+            'line-opacity': 0.52,
             'line-dasharray': [1.5, 1.25],
           },
         }, 'waymarked-hiking-layer');
@@ -2202,7 +2172,7 @@ function renderTrail(t){
           layout: { visibility: 'none' },
           paint: {
             'circle-radius': 6,
-            'circle-color': '#78AFC5',
+            'circle-color': '#929A95',
             'circle-stroke-color': '#ffffff',
             'circle-stroke-width': 2,
           },
@@ -2221,7 +2191,7 @@ function renderTrail(t){
             'text-anchor': 'top',
           },
           paint: {
-            'text-color': '#243128',
+            'text-color': '#59615C',
             'text-halo-color': '#ffffff',
             'text-halo-width': 2,
           },
@@ -2277,30 +2247,61 @@ function renderTrail(t){
       }
 
       if(Array.isArray(t.path) && t.path.length > 1){
+        const selectedRouteColor = window._dolopawsTrailRouteColor || safetyColor(t.safetyLevel);
+        const selectedRouteRefs = window.DoloPawsTrailRouteRefs
+          ? window.DoloPawsTrailRouteRefs.forTrail(t)
+          : (t.ref ? [String(t.ref)] : []);
+        const selectedRouteRefLabel = selectedRouteRefs.join(' · ');
         map.addSource('single-trail-path', {
           type: 'geojson',
           data: {
             type: 'Feature',
+            properties: { routeRef: selectedRouteRefLabel },
             geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
           },
         });
-        // Casing — a wider Pine line underneath the safety-colored route.
-        // This is the detail that makes a route line read as intentional/
-        // premium rather than a thin stroke — same visual trick Komoot uses.
+        // Match the logged-in homepage: a bright halo separates the selected
+        // score-coloured route from the muted public walking network.
         map.addLayer({
           id: 'single-trail-path-casing',
           type: 'line',
           source: 'single-trail-path',
           layout: { 'line-join': 'round', 'line-cap': 'round' },
-          paint: { 'line-color': '#2E4034', 'line-width': 9, 'line-opacity': 0.96 },
-        }, 'waymarked-hiking-layer');
+          paint: { 'line-color': '#FFFDF7', 'line-width': 13, 'line-opacity': 0.94 },
+        }, firstLabelLayer ? firstLabelLayer.id : undefined);
         map.addLayer({
           id: 'single-trail-path-line',
           type: 'line',
           source: 'single-trail-path',
           layout: { 'line-join': 'round', 'line-cap': 'round' },
-          paint: { 'line-color': safetyColor(t.safetyLevel), 'line-width': 5 },
-        }, 'waymarked-hiking-layer');
+          paint: { 'line-color': selectedRouteColor, 'line-width': 7, 'line-opacity': 1 },
+        }, firstLabelLayer ? firstLabelLayer.id : undefined);
+
+        if(selectedRouteRefLabel){
+          map.addLayer({
+            id: 'single-trail-route-number',
+            type: 'symbol',
+            source: 'single-trail-path',
+            minzoom: 9,
+            layout: {
+              'symbol-placement': 'line',
+              'symbol-spacing': 240,
+              'text-field': ['get', 'routeRef'],
+              'text-size': ['interpolate', ['linear'], ['zoom'], 9, 13, 13, 16, 16, 18],
+              'text-font': ['Noto Sans Regular'],
+              'text-rotation-alignment': 'viewport',
+              'text-keep-upright': true,
+              'text-allow-overlap': true,
+              'text-ignore-placement': true,
+            },
+            paint: {
+              'text-color': '#FFFFFF',
+              'text-halo-color': selectedRouteColor,
+              'text-halo-width': 5,
+              'text-halo-blur': 0.2,
+            },
+          }, firstLabelLayer ? firstLabelLayer.id : undefined);
+        }
 
         // Closed loops are intentionally direction-neutral: hikers can join
         // anywhere and walk clockwise or anticlockwise. Keep arrows only for
@@ -2323,7 +2324,7 @@ function renderTrail(t){
             },
             paint: {
               'text-color': '#ffffff',
-              'text-halo-color': safetyColor(t.safetyLevel),
+              'text-halo-color': selectedRouteColor,
               'text-halo-width': 2,
             },
           });
