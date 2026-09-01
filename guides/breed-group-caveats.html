@@ -51,7 +51,12 @@
   .breed-picker__options button[aria-pressed="true"]{border-color:var(--safety-info);background:var(--safety-info);color:#fff;box-shadow:0 7px 16px -11px rgba(24,65,81,.8);}
   .breed-picker__options button:focus-visible,.breed-picker__reset:focus-visible,.breed-edge summary:focus-visible{outline:3px solid rgba(62,122,145,.3);outline-offset:3px;}
   .breed-picker__status{margin:13px 0 0;color:#476975;font-size:.73rem;font-weight:700;}
-  .breed-emergency{margin:0 0 24px;}
+  .breed-check-experience{display:grid;gap:22px;padding:26px;border:1px solid var(--paper-line);border-radius:18px;background:#fff;box-shadow:0 10px 30px rgba(30,48,36,.045);}
+  .breed-check-experience .scan-intro{margin:0;}
+  .breed-check-experience .scan-intro-copy,.breed-check-experience .scan-priority,.breed-check-experience .breed-picker,.breed-check-experience .scan-card{background:#fff;}
+  .breed-check-experience .scan-priority{border-color:var(--paper-line);}
+  .breed-check-experience .scan-section{margin:0;padding-top:22px;border-top:1px solid var(--paper-line);}
+  .breed-emergency{margin:0;}
   .breed-guide-card[hidden]{display:none;}
   .breed-edge{margin-top:13px;border-top:1px solid var(--paper-line);}
   .breed-edge summary{padding:11px 0 0;cursor:pointer;color:var(--safety-info);font-size:.7rem;font-weight:800;list-style:none;}
@@ -75,6 +80,7 @@
     .gp-mobile-toc a:active{background:var(--safety-info-soft);}
     .gp-section{padding:21px 19px;border-radius:14px;scroll-margin-top:130px;}
     .gp-body h2{font-size:22px;}
+    .breed-check-experience{gap:18px;padding:18px;border-radius:15px;}
     .breed-picker{padding:19px 18px;}
   }
   @media(max-width:560px){
@@ -109,6 +115,12 @@
 </div>
 
 <main class="scan-shell content-canvas" id="mainContent">
+  <div class="breed-check-experience">
+  <aside class="scan-alert breed-emergency">
+    <strong>Stop the outing and get veterinary help</strong>
+    <p>Collapse, blue or grey gums, struggling to breathe, repeated unproductive retching with a swollen abdomen, sudden spinal pain, weakness or a new wobbly gait are not “breed quirks”. Treat them as urgent.</p>
+  </aside>
+
   <section class="scan-intro" aria-labelledby="breedStartTitle">
     <div class="scan-intro-copy">
       <span class="scan-kicker">Start with the dog, not the pedigree</span>
@@ -143,11 +155,6 @@
     </div>
     <p class="breed-picker__status" data-breed-status aria-live="polite">Showing all 13 trail checks.</p>
   </section>
-
-  <aside class="scan-alert breed-emergency">
-    <strong>Stop the outing and get veterinary help</strong>
-    <p>Collapse, blue or grey gums, struggling to breathe, repeated unproductive retching with a swollen abdomen, sudden spinal pain, weakness or a new wobbly gait are not “breed quirks”. Treat them as urgent.</p>
-  </aside>
 
   <section class="scan-section" aria-labelledby="breedCardsTitle">
     <div class="scan-section-head">
@@ -261,6 +268,7 @@
     </div>
     <p class="breed-empty" data-breed-empty hidden>No cards match that combination. Clear the selections and choose the traits you can see in your dog.</p>
   </section>
+  </div>
 
   <nav class="safety-continue" aria-label="Continue in the Safety Library">
     <a class="safety-continue__next" href="livestock-guard-dogs.html"><span class="safety-continue__label">Next guide</span><strong>Livestock guardian dogs</strong><span class="safety-continue__arrow" aria-hidden="true">→</span></a>

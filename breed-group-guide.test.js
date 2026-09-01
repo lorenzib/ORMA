@@ -20,6 +20,17 @@ describe('interactive breed and build guide', () => {
     expect(document.querySelector('[data-breed-reset]').hidden).toBe(true);
   });
 
+  test('keeps the emergency, selector and rendered cards in one white experience', () => {
+    const experience = document.querySelector('.breed-check-experience');
+    expect(experience).not.toBeNull();
+    expect(experience.firstElementChild.classList.contains('breed-emergency')).toBe(true);
+    expect(experience.querySelector('.breed-picker')).not.toBeNull();
+    expect(experience.querySelector('[data-breed-grid]')).not.toBeNull();
+    expect(experience.querySelector('.breed-picker').compareDocumentPosition(
+      experience.querySelector('[data-breed-grid]')
+    ) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
   test('supports multiple trait selections and a clear action', () => {
     const airway = document.querySelector('[data-breed-filter="airway"]');
     const deepChest = document.querySelector('[data-breed-filter="deep"]');
