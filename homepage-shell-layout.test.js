@@ -43,7 +43,13 @@ describe('logged-in discovery workspace layout', () => {
     expect(rule[1]).not.toContain('background:transparent');
     expect(rule[1]).not.toContain('border:1px solid transparent');
     expect(css).toContain('#liQuickWater{gap:4px;padding-right:17px;}');
-    expect(css).toContain('background:#3E7A91;color:#fff');
+    expect(css).toContain('background:var(--success);color:#fff');
+  });
+
+  test('uses a secondary green for Draft a loop, distinct from the navigation green', () => {
+    expect(css).toMatch(/\.li-plan-route\{[^}]*border:1\.5px solid var\(--success\);[^}]*background:var\(--success\);/s);
+    expect(css).toContain('--success:#4A7856;');
+    expect(css).toContain('--ink:#2E4034;');
   });
 
   test('balances a bounded map with a proportional results pane', () => {
