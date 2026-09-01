@@ -353,10 +353,11 @@ describe('map-first returning homepage layout contract', () => {
     expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script.match(/7, 0\.10/g)).toHaveLength(2);
     expect(script.match(/10, 0\.14/g)).toHaveLength(2);
-    expect(script.match(/12, 0\.19/g)).toHaveLength(2);
-    expect(script.match(/14, 0\.24/g)).toHaveLength(2);
+    expect(script.match(/12, 0\.20/g)).toHaveLength(2);
+    expect(script.match(/14, 0\.52/g)).toHaveLength(2);
+    expect(script.match(/16, 0\.72/g)).toHaveLength(2);
     expect(script.match(/'raster-saturation': -1/g)).toHaveLength(2);
-    expect(script.match(/'raster-contrast': -0\.06/g)).toHaveLength(2);
+    expect(script.match(/'raster-contrast': 0\.20/g)).toHaveLength(2);
     expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': \['interpolate'[\s\S]*?13, 7, 16, 9/);
     expect(script).not.toContain("id: 'trail-clusters'");
     expect(script).not.toContain("id: 'trail-cluster-count'");
