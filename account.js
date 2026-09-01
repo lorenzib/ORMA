@@ -64,6 +64,7 @@
   let base = {};
   let dogProfiles = [];
   let activeDogId = null;
+  let profileLoadDegraded = false;
   let designValues = null;
   const state = {
     name:'', breed:'', dob:'', weight:20, size:'Large',
@@ -113,7 +114,7 @@
     }
     const add = $('profileAddDog');
     if(add){
-      add.disabled = addMode || dogProfiles.length >= 5;
+      add.disabled = profileLoadDegraded || addMode || dogProfiles.length >= 5;
       add.textContent = dogProfiles.length >= 5
         ? tKey('account.maximumDogs', 'Maximum 5 dogs')
         : addMode
@@ -878,6 +879,31 @@
     window.addEventListener('dolopaws-auth-ready', cb, { once: true });
   }
 
+  function cachedDogStateFor(user){
+    let summary = null;
+    try { summary = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); } catch(error){}
+    if(!summary || summary.uid !== user.uid || !Array.isArray(summary.dogs)) return null;
+    const dogs = summary.dogs.filter(dog => dog && dog.id).map(dog => ({
+      id:dog.id, name:dog.name || '', breed:dog.breed || '',
+      fitness:dog.fitness || 'moderate', photo:dog.photo || null,
+    }));
+    if(!dogs.length) return null;
+    const activeDogId = dogs.some(dog => dog.id === summary.activeDogId)
+      ? summary.activeDogId : dogs[0].id;
+    return { dogs, activeDogId, loadError:true, cached:true };
+  }
+
+  async function loadDogProfiles(user){
+    let result = await window.DoloPawsAuth.getDogProfiles();
+    if(result && !result.loadError) return result;
+    await new Promise(resolve => window.setTimeout(resolve, 350));
+    result = await window.DoloPawsAuth.getDogProfiles();
+    return result && !result.loadError ? result : (cachedDogStateFor(user) || result);
+  }
+
+  const profileLoadRetry = $('profileLoadRetry');
+  if(profileLoadRetry) profileLoadRetry.addEventListener('click', () => window.location.reload());
+
   waitForAuth(() => {
     window.DoloPawsAuth.onChange(async (user) => {
       if(!user){
@@ -918,12 +944,16 @@
       $('deletePasswordField').hidden = isGoogle;
       $('deleteGoogleNote').hidden = !isGoogle;
       refreshContributionEligibility();
-      let profilesState = await window.DoloPawsAuth.getDogProfiles();
+      let profilesState = await loadDogProfiles(user);
+      profilesState = profilesState || { dogs:[], activeDogId:null, loadError:true };
+      profileLoadDegraded = !!profilesState.loadError;
+      const profileLoadStatus = $('profileLoadStatus');
+      if(profileLoadStatus) profileLoadStatus.hidden = !profileLoadDegraded;
       // Recovery for an interrupted guest-wizard/auth handoff. Older builds
       // could navigate here after deleting the local draft even though the
       // Firestore write had failed. New builds retain it and retry once the
       // account page has a definitive signed-in user.
-      if(profilesState && !profilesState.dogs.length){
+      if(!profileLoadDegraded && profilesState && !profilesState.dogs.length){
         let pendingProfile = null;
         try { pendingProfile = JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile') || 'null'); } catch(error){}
         if(pendingProfile && String(pendingProfile.name || '').trim()){
@@ -1017,6 +1047,14 @@
       renderBreedList();
       breedInput.value = state.breed;
       renderDerived();
+      if(profileLoadDegraded){
+        // The cached summary identifies the dog but omits private health and
+        // contact fields. Keep the editor read-only until the full read works.
+        document.querySelectorAll('#profileDesign input, #profileDesign select, #profileDesign button')
+          .forEach(control => {
+            if(control.id !== 'profileLoadRetry') control.disabled = true;
+          });
+      }
       window.dispatchEvent(new CustomEvent('dolopaws-account-profile-loaded', { detail:{ profile } }));
     });
   });

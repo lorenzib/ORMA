@@ -24,6 +24,8 @@ describe('multi-dog account experience', () => {
     expect(client).toContain('await runTransaction(db, async transaction =>');
     expect(client).toContain('transaction.set(userRef, committed.payload);');
     expect(client).toContain('currentUser = credential.user;');
+    expect(client).toContain('loadError:true');
+    expect(client).toContain('if (dogState && dogState.loadError) return;');
   });
 
   test('the account editor switches dogs and adds another in the same screen', () => {
@@ -44,6 +46,10 @@ describe('multi-dog account experience', () => {
     expect(controller).toContain('const disabled = missingDog;');
     expect(controller).toContain("localStorage.getItem('dolopaws-pending-dog-profile')");
     expect(controller).toContain('const recovered = await window.DoloPawsAuth.setDogProfile(pendingProfile);');
+    expect(controller).toContain('async function loadDogProfiles(user)');
+    expect(controller).toContain('cachedDogStateFor(user)');
+    expect(controller).toContain('if(!profileLoadDegraded && profilesState && !profilesState.dogs.length)');
+    expect(page).toContain('id="profileLoadRetry"');
     expect(controller).not.toContain('missingDog || missingOwner');
     expect(controller).toContain("detail:{ ok, addMode }");
     expect(source('profile-design.js')).toContain("'dolopaws-account-save-result'");

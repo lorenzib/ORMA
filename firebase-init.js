@@ -66,6 +66,10 @@ async function syncProfileSummary(user) {
   try {
     if (!user) { cacheProfileSummary(null); return; }
     const dogState = await getDogProfiles();
+    // Keep the last known-good header/profile summary during a transient
+    // Firestore failure. Replacing it with an empty account is what made the
+    // header and the profile manager disagree after navigation.
+    if (dogState && dogState.loadError) return;
     const dog = dogState.dogs.find(item => item.id === dogState.activeDogId) || dogState.dogs[0] || null;
     // Breed/fitness/saved-count feed the header dog menu on the static
     // pages, which have no Firebase and read only this cache.
@@ -232,7 +236,11 @@ async function getDogProfiles() {
     return normalizedDogState(snap.exists() ? snap.data() : {});
   } catch (e) {
     console.error("Failed to load dog profiles:", e);
-    return { dogs:[], activeDogId:null };
+    // A failed read is not the same thing as an account with no dogs.
+    return {
+      dogs:[], activeDogId:null, loadError:true,
+      errorCode:e && e.code ? String(e.code) : 'profile-read-failed',
+    };
   }
 }
 
