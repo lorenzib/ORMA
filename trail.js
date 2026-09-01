@@ -2088,21 +2088,25 @@ function renderTrail(t){
         // around the route stays discoverable. "Marked routes" un-ticks it
         // for anyone who wants the clean basemap.
         layout: { visibility: 'visible' },
-        // Keep the public network contextual, but render its small route-number
-        // shields close to their native opacity and without interpolation blur.
-        // The selected ORMA route is drawn above this raster, so the stronger
-        // shields do not compete with the active route line.
+        // Match the homepage treatment: the public network should read as
+        // quiet grey context while its red/white/black route shields retain a
+        // trace of colour. Linear resampling removes the blocky, pixelated
+        // edges that nearest-neighbour scaling caused at close trail zooms.
+        // This raster remains above the wider ORMA match-colour line, leaving
+        // that green/amber/red line visible as the selected route's underlay.
         paint: {
           'raster-opacity': [
             'interpolate', ['linear'], ['zoom'],
-            9, 0.50,
-            12, 0.65,
-            14, 0.88,
-            15, 0.96,
+            7, 0.10,
+            10, 0.14,
+            12, 0.20,
+            14, 0.52,
+            16, 0.72,
           ],
-          'raster-saturation': -0.72,
-          'raster-contrast': 0.36,
-          'raster-resampling': 'nearest',
+          'raster-saturation': -0.90,
+          'raster-contrast': 0.20,
+          'raster-resampling': 'linear',
+          'raster-fade-duration': 120,
         },
       }, firstLabelLayer ? firstLabelLayer.id : undefined);
       if (typeof addBaseHillshade === 'function') addBaseHillshade(map, 'waymarked-hiking-layer');
