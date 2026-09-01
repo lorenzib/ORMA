@@ -8,6 +8,12 @@ const {queuePriorityImageSourcing,DEFAULT_IMAGE_SOURCING_CAPACITY}=require('../w
 
 function workflowRunUrl(env){return env.GITHUB_RUN_ID&&env.GITHUB_REPOSITORY?`${env.GITHUB_SERVER_URL||'https://github.com'}/${env.GITHUB_REPOSITORY}/actions/runs/${env.GITHUB_RUN_ID}`:null;}
 
+function sourcingCapacity(env, fallback=DEFAULT_IMAGE_SOURCING_CAPACITY){
+  const requested=Number.parseInt(env.ORMA_IMAGE_SOURCING_CAPACITY||'',10);
+  if(!Number.isFinite(requested))return fallback;
+  return Math.max(1,Math.min(DEFAULT_IMAGE_SOURCING_CAPACITY,requested));
+}
+
 async function main(options={}){
   const root=options.root||path.resolve(__dirname,'../..');const env=options.env||process.env;const store=options.store||new FirestoreBackofficeStore();
   const startedAt=options.at||new Date().toISOString();const statusBase={contractVersion:'1.0.0',runId:env.GITHUB_RUN_ID||null,
@@ -15,7 +21,8 @@ async function main(options={}){
   await store.setArtifact('trail-image-coverage-status',{...statusBase,status:'running'},{status:'running'});
   try{
     const audit=await auditImageCoverage(root,{at:startedAt});
-    const sourcing=await queuePriorityImageSourcing(store,audit,{at:startedAt,capacity:options.capacity||DEFAULT_IMAGE_SOURCING_CAPACITY});
+    const capacity=options.capacity??sourcingCapacity(env);
+    const sourcing=await queuePriorityImageSourcing(store,audit,{at:startedAt,capacity});
     const completedAt=options.completedAt||new Date().toISOString();
     await Promise.all([
       store.setArtifact('image-coverage',audit,{mode:audit.mode,publicMutationAllowed:false}),
@@ -33,4 +40,4 @@ async function main(options={}){
 
 if(require.main===module)main().catch(error=>{console.error(`[trail-image-coverage] ${error.stack||error.message}`);process.exitCode=1;});
 
-module.exports={workflowRunUrl,main};
+module.exports={workflowRunUrl,sourcingCapacity,main};
