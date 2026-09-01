@@ -302,21 +302,24 @@ describe('map-first returning homepage layout contract', () => {
     expect(mobileCss).toContain('height:26dvh');
   });
 
-  test('keeps mobile filters compact and makes the layers panel independently scrollable', () => {
+  test('uses a deliberate mobile filter row and compact map controls', () => {
     expect(html).toContain('<div class="li-mobile-actions" aria-label="Trail actions">');
-    expect(mobileCss).toContain('body.mhome-active .li-mobile-actions{grid-column:1/-1;grid-row:4;display:flex;');
-    expect(mobileCss).toContain('body.mhome-active #liFiltersWrap{order:1;flex:none;width:auto;min-width:124px;}');
-    expect(mobileCss).toContain('body.mhome-active #liQuickShade{order:2;min-width:128px;}');
-    expect(mobileCss).toContain('body.mhome-active #liQuickWater{order:3;min-width:96px;gap:4px;}');
-    expect(mobileCss).toContain('body.mhome-active .li-saved-only{order:5;min-width:110px;}');
-    expect(mobileCss).toContain('body.mhome-active .li-plan-route{order:4;flex:none;width:auto;');
+    expect(mobileCss).toContain('body.mhome-active .li-mobile-actions{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.9fr) minmax(0,1.05fr);');
+    expect(mobileCss).toContain('body.mhome-active .li-quick-filters{display:none;}');
+    expect(mobileCss).toContain('body.mhome-active #liFiltersWrap{order:1;width:100%;min-width:0;}');
+    expect(mobileCss).toContain('body.mhome-active .li-saved-only{order:2;width:100%;min-width:0;}');
+    expect(mobileCss).toContain('body.mhome-active .li-plan-route{order:3;width:100%;min-width:0;');
+    expect(mobileCss).toContain('body.mhome-active .li-geo-copy .li-control-kicker{display:inline;');
     expect(mobileCss).toContain('body.mhome-active .li-saved-count{display:grid;');
-    expect(mobileCss).toContain('overscroll-behavior:contain');
     expect(mobileCss).toContain('.li-map.map-layers-open{z-index:47;}');
+    expect(mobileCss).toContain('#trailMap .map-btn{height:32px;padding:0 11px;font-size:11.5px;');
+    expect(mobileCss).toContain('#trailMap .td-layer-switch{top:auto;right:auto;left:12px;bottom:calc(var(--mhome-sheet,26dvh) + env(safe-area-inset-bottom) + 12px);}');
     expect(mobileCss).toContain('.li-map.map-fs .li-record-fab{bottom:calc(18px + env(safe-area-inset-bottom));}');
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     expect(script).toContain("mapShell.classList.toggle('map-layers-open', open)");
     expect(script).toContain("layersBtn.setAttribute('aria-expanded', String(open))");
+    expect(script).toContain("window.matchMedia('(max-width:700px)').matches");
+    expect(script).toContain("'<button type=\"button\" data-map3d aria-pressed=\"false\">Terrain</button>'");
   });
 
   test('groups card actions on the left and gives the dog match a larger right panel', () => {

@@ -410,14 +410,16 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   (function buildLayerSwitch(){
     const host = map.getContainer();
     if(!host || host.querySelector('.td-layer-switch')) return;
+    const terrainOnly = window.matchMedia && window.matchMedia('(max-width:700px)').matches;
     const wrap = document.createElement('div');
-    wrap.className = 'td-layer-switch td-layer-switch--home';
+    wrap.className = 'td-layer-switch td-layer-switch--home' + (terrainOnly ? ' td-layer-switch--terrain-only' : '');
     wrap.setAttribute('role', 'group');
-    wrap.setAttribute('aria-label', 'Map style');
-    wrap.innerHTML =
-      '<button type="button" data-maplayer="map" class="on" aria-pressed="true">Map</button>' +
-      '<button type="button" data-maplayer="satellite" aria-pressed="false">Satellite</button>' +
-      '<button type="button" data-map3d aria-pressed="false">3D</button>';
+    wrap.setAttribute('aria-label', terrainOnly ? 'Terrain' : 'Map style');
+    wrap.innerHTML = terrainOnly
+      ? '<button type="button" data-map3d aria-pressed="false">Terrain</button>'
+      : '<button type="button" data-maplayer="map" class="on" aria-pressed="true">Map</button>' +
+        '<button type="button" data-maplayer="satellite" aria-pressed="false">Satellite</button>' +
+        '<button type="button" data-map3d aria-pressed="false">3D</button>';
     host.appendChild(wrap);
     wrap.addEventListener('click', (e) => {
       const threeD = e.target.closest('[data-map3d]');
