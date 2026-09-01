@@ -19,7 +19,7 @@ async function fetchSource(source, fetchImpl){
     const response = await fetchImpl(source.url, { headers: { 'User-Agent': 'ORMA-hazard-watch/1.0' } });
     if(!response.ok) throw new Error(`HTTP ${response.status}`);
     const observations = parseAtomFeed(await response.text(), source);
-    return { result: { key: source.key, label: source.label, url: source.url, ok: true, alertsRead: observations.length }, observations };
+    return { result: { key: source.key, label: source.label, url: source.url, ok: true, completeSnapshot: true, alertsRead: observations.length }, observations };
   }catch(error){
     return { result: { key: source.key, label: source.label, url: source.url, ok: false, alertsRead: 0, error: error.message }, observations: [] };
   }
@@ -49,7 +49,7 @@ async function runHazardWatch(options = {}){
 async function main(){
   const artifacts = await runHazardWatch();
   console.log(`[hazard-watch] ${artifacts.status.summary.active} active warnings; ${artifacts.status.summary.awaitingRemovalReview} awaiting removal review; ${artifacts.status.summary.sourceFailures} source failures.`);
-  console.log('[hazard-watch] New authoritative warnings are public-data ready. Warning removal remains human-gated.');
+  console.log('[hazard-watch] New authoritative warnings and source-confirmed removals are reflected in protected data; outages retain the last known warning.');
 }
 
 if(require.main === module) main().catch(error => { console.error(`[hazard-watch] ${error.message}`); process.exitCode = 1; });

@@ -91,6 +91,7 @@ function reconcileHazards(previous = [], observations = [], sourceResults = [], 
   const at = options.at || new Date().toISOString();
   const expiryReviewMessage = 'The source warning has expired; ORMA is keeping this notice visible until a human confirms removal.';
   const successful = new Set(sourceResults.filter(source => source.ok).map(source => source.key));
+  const complete = new Set(sourceResults.filter(source => source.ok && source.completeSnapshot === true).map(source => source.key));
   const failed = new Map(sourceResults.filter(source => !source.ok).map(source => [source.key, source.error || 'Source unavailable']));
   const observed = new Map();
   observations.forEach(alert => { const warning = publicWarning(alert, trails, at); if(warning) observed.set(warning.id, warning); });
@@ -106,6 +107,9 @@ function reconcileHazards(previous = [], observations = [], sourceResults = [], 
       next.push({ ...old, sourceStatus: 'unavailable', sourceError: failed.get(old.sourceKey), lastCheckedAt: at });
       return;
     }
+    // A complete successful feed is the authoritative snapshot of currently
+    // active warnings. Absence here is upstream removal evidence, not outage.
+    if(complete.has(old.sourceKey)) return;
     const expired = old.expiresAt && new Date(old.expiresAt).getTime() <= new Date(at).getTime();
     if(successful.has(old.sourceKey) && expired){
       if(old.nextRemovalReviewAt && new Date(old.nextRemovalReviewAt).getTime() > new Date(at).getTime()){
@@ -123,14 +127,21 @@ function reconcileHazards(previous = [], observations = [], sourceResults = [], 
 function buildHazardArtifacts(previousData, observations, sourceResults, trails, options = {}){
   const at = options.at || new Date().toISOString();
   const hazards = reconcileHazards(previousData?.hazards || [], observations, sourceResults, trails, { at });
+  const remainingIds = new Set(hazards.map(item => item.id));
+  const completeSources = new Set(sourceResults.filter(source => source.ok && source.completeSnapshot === true).map(source => source.key));
+  const automaticallyRemoved = (previousData?.hazards || []).filter(item => completeSources.has(item.sourceKey) && !remainingIds.has(item.id)).map(item => ({
+    hazardId:item.id, sourceKey:item.sourceKey, sourceLabel:item.sourceLabel || null,
+    title:item.title || null, removedAt:at, reason:'absent-from-complete-authoritative-snapshot',
+  }));
   return {
     publicData: { contractVersion: '1.0.0', generatedAt: at, hazards },
     reviewQueue: { contractVersion: '1.0.0', generatedAt: at, items: hazards.filter(item => item.state === 'resolution-review') },
     status: {
       contractVersion: '1.0.0', checkedAt: at,
-      summary: { active: hazards.filter(item => item.state === 'active').length, awaitingRemovalReview: hazards.filter(item => item.state === 'resolution-review').length, sourceFailures: sourceResults.filter(item => !item.ok).length },
+      summary: { active: hazards.filter(item => item.state === 'active').length, awaitingRemovalReview: hazards.filter(item => item.state === 'resolution-review').length, automaticallyRemoved: automaticallyRemoved.length, sourceFailures: sourceResults.filter(item => !item.ok).length },
       sources: sourceResults,
-      policy: 'Authoritative severe-weather warnings may be added automatically. Removal always requires human confirmation. A missing source never means safe.',
+      automaticRemovals: automaticallyRemoved,
+      policy: 'Authoritative warnings may be added automatically. A warning absent from a complete successful authoritative snapshot is removed automatically. Source failure never means safe.',
     },
   };
 }

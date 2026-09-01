@@ -37,9 +37,12 @@ Owns trails that are already in ORMA and verifies:
 - dynamic hazards that may affect a covered area.
 
 Dynamic hazards run daily. A source-backed severe, extreme, or dog-critical
-warning may be added automatically. Expiry opens a resolution review; removing
-a warning requires confirmation. Weather warnings are never presented as proof
-that a specific trail is closed.
+warning may be added automatically. When a successfully fetched authoritative
+active-warning feed affirmatively stops listing a warning, the protected hazard
+is removed automatically and the watcher records that removal. Expiry without
+a complete successful source snapshot opens a resolution review; source failure
+or outage never removes the last known warning. Weather warnings are never
+presented as proof that a specific trail is closed.
 
 Existing Trails is the current throughput priority. Every day after the
 Firestore quota reset window, the protected

@@ -1613,6 +1613,15 @@ describe('ORMA backoffice MVP', () => {
     expect(artifacts.reviewQueue.items).toHaveLength(0);
   });
 
+  test('a complete authoritative snapshot automatically removes warnings the source no longer lists', () => {
+    const previous={contractVersion:'1.0.0',hazards:[{id:'source:a',sourceKey:'source',sourceLabel:'Official source',state:'active',expiresAt:'2026-08-20T00:00:00.000Z',title:'Wind warning',message:'Warning.',trailIds:['trail-a']}]};
+    const artifacts=buildHazardArtifacts(previous,[],[{key:'source',ok:true,completeSnapshot:true,alertsRead:0}],[],{at:'2026-08-19T06:00:00.000Z'});
+    expect(artifacts.publicData.hazards).toEqual([]);
+    expect(artifacts.reviewQueue.items).toEqual([]);
+    expect(artifacts.status.summary.automaticallyRemoved).toBe(1);
+    expect(artifacts.status.automaticRemovals).toEqual([expect.objectContaining({hazardId:'source:a',sourceKey:'source',reason:'absent-from-complete-authoritative-snapshot'})]);
+  });
+
   test('expired warnings enter removal review and only human confirmation removes them', () => {
     const previous={contractVersion:'1.0.0',hazards:[{id:'source:a',sourceKey:'source',state:'active',expiresAt:'2026-08-18T00:00:00.000Z',message:'Warning.',trailIds:['trail-a']}]};
     const artifacts=buildHazardArtifacts(previous,[],[{key:'source',ok:true,alertsRead:0}],[],{at:'2026-08-19T06:00:00.000Z'});
