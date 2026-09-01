@@ -496,6 +496,20 @@
 
     var breedInput = document.getElementById('dwBreed');
     var breedList = document.getElementById('dwBreedList');
+    function syncBreedFromInput() {
+      data.breed = breedInput.value;
+      data.breedOther = '';
+      isDirty = true;
+      if (breedInput.value.trim()) document.getElementById('dwBreedErr').hidden = true;
+    }
+    function selectBreedOption(option) {
+      if (!option) return;
+      breedInput.value = option.dataset.breed;
+      syncBreedFromInput();
+      breedList.hidden = true;
+      breedInput.setAttribute('aria-expanded', 'false');
+      breedInput.focus();
+    }
     function paintBreedSuggestions() {
       var q = breedInput.value.trim();
       var matches = typeof breedSuggestions === 'function' ? breedSuggestions(q, 8) : breeds.filter(function (b) { return b.toLowerCase().includes(q.toLowerCase()); }).slice(0, 8);
@@ -507,19 +521,23 @@
       var option = event.target.closest('[data-breed]');
       if (!option) return;
       event.preventDefault();
-      breedInput.value = option.dataset.breed;
-      data.breed = option.dataset.breed;
-      data.breedOther = '';
-      isDirty = true;
-      breedList.hidden = true;
-      breedInput.setAttribute('aria-expanded', 'false');
-      breedInput.focus();
+      selectBreedOption(option);
+    });
+    // iOS and embedded webviews do not always deliver pointerdown before the
+    // synthetic click. Keep click as a complete selection path of its own.
+    breedList.addEventListener('click', function (event) {
+      var option = event.target.closest('[data-breed]');
+      if (!option) return;
+      event.preventDefault();
+      selectBreedOption(option);
     });
     breedInput.addEventListener('input', function () {
-      data.breed      = breedInput.value;
-      data.breedOther = '';
-      isDirty         = true;
-      if(breedInput.value.trim()) document.getElementById('dwBreedErr').hidden = true;
+      syncBreedFromInput();
+      paintBreedSuggestions();
+    });
+    breedInput.addEventListener('change', syncBreedFromInput);
+    breedInput.addEventListener('compositionend', function () {
+      syncBreedFromInput();
       paintBreedSuggestions();
     });
     breedInput.addEventListener('focus', paintBreedSuggestions);
@@ -660,6 +678,13 @@
       return nameOk && ageOk;
     }
     if (step.id === 'breed') {
+      // Read the rendered value at validation time as well. Some mobile
+      // keyboards update the textbox before their final input/change event.
+      var breedInput = document.getElementById('dwBreed');
+      if (breedInput) {
+        data.breed = breedInput.value;
+        data.breedOther = '';
+      }
       var breedOk   = !!(data.breed === OTHER_VALUE ? data.breedOther.trim() : String(data.breed || '').trim());
       var fitnessOk = !!data.fitness;
       if (!breedOk)   document.getElementById('dwBreedErr').hidden   = false;

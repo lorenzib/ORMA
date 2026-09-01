@@ -43,6 +43,8 @@ describe('add-dog wizard persistence', () => {
     jest.useRealTimers();
     delete window.DoloPawsWizard;
     delete window.DoloPawsAuth;
+    delete window.DOG_BREEDS;
+    delete window.breedSuggestions;
   });
 
   test('adds another dog without a preliminary profile read', async () => {
@@ -60,6 +62,45 @@ describe('add-dog wizard persistence', () => {
     expect(auth.addDogProfile).toHaveBeenCalledTimes(1);
     expect(auth.setDogProfile).not.toHaveBeenCalled();
     expect(document.getElementById('dogWizard').hidden).toBe(true);
+  });
+
+  test('accepts a breed chosen by click when no pointer event is delivered', () => {
+    const auth = { currentUser:{ uid:'owner-1' }, addDogProfile:jest.fn(async () => true) };
+    installWizard(auth);
+    window.DOG_BREEDS = ['Podenco Andaluz'];
+    window.breedSuggestions = () => ['Podenco Andaluz'];
+    window.DoloPawsWizard.open();
+    change('dwName', 'Eddie');
+    change('dwAgeBand', '5-6');
+    document.getElementById('dwNextBtn').click();
+    change('dwBreed', 'Pod');
+
+    const option = document.querySelector('[data-breed="Podenco Andaluz"]');
+    option.dispatchEvent(new MouseEvent('click', { bubbles:true }));
+
+    expect(document.getElementById('dwBreed').value).toBe('Podenco Andaluz');
+  });
+
+  test('validates and saves the visible breed when a mobile keyboard omits its final event', async () => {
+    const auth = { currentUser:{ uid:'owner-1' }, addDogProfile:jest.fn(async () => true) };
+    installWizard(auth);
+    window.DoloPawsWizard.open();
+    change('dwName', 'Eddie');
+    change('dwAgeBand', '5-6');
+    document.getElementById('dwNextBtn').click();
+    document.getElementById('dwBreed').value = 'Podenco Andaluz';
+    document.querySelector('[data-key="fitness"][data-value="high"]').click();
+
+    document.getElementById('dwNextBtn').click();
+
+    expect(document.getElementById('dwNotes')).not.toBeNull();
+    document.getElementById('dwNextBtn').click();
+    document.getElementById('dwNextBtn').click();
+    await flushSave();
+
+    expect(auth.addDogProfile).toHaveBeenCalledWith(expect.objectContaining({
+      name:'Eddie', breed:'Podenco Andaluz', fitness:'high',
+    }));
   });
 
   test('recovers the save button when persistence rejects', async () => {
