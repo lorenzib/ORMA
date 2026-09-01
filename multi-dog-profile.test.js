@@ -11,6 +11,7 @@ describe('multi-dog account experience', () => {
     const client = source('firebase-init.js');
     expect(client).toContain('async function getDogProfiles()');
     expect(client).toContain('async function addDogProfile(dogObj)');
+    expect(client).toContain('function getLastDogProfileError()');
     expect(client).toContain('async function selectDogProfile(id)');
     expect(client).toContain('async function removeDogProfile(id)');
     expect(client).toContain('dogs:state.dogs');
@@ -43,7 +44,7 @@ describe('multi-dog account experience', () => {
     expect(controller).toContain('window.location.assign(accountHref({}))');
     expect(source('profile-design.js')).toContain("document.getElementById('removeDogBtn')");
     expect(source('firebase-init.js')).toContain('if (state.dogs.length <= 1) return null;');
-    expect(controller).toContain('const disabled = missingDog;');
+    expect(controller).toContain('const disabled = missingDog || saveInFlight;');
     expect(controller).toContain("localStorage.getItem('dolopaws-pending-dog-profile')");
     expect(controller).toContain('const recovered = await window.DoloPawsAuth.setDogProfile(pendingProfile);');
     expect(controller).toContain('async function loadDogProfiles(user)');
@@ -51,13 +52,13 @@ describe('multi-dog account experience', () => {
     expect(controller).toContain('if(!profileLoadDegraded && profilesState && !profilesState.dogs.length)');
     expect(page).toContain('id="profileLoadRetry"');
     expect(controller).not.toContain('missingDog || missingOwner');
-    expect(controller).toContain("detail:{ ok, addMode }");
+    expect(controller).toContain("detail:{ ok, addMode, message:ok ? '' : dogSaveFailureMessage() }");
     expect(source('profile-design.js')).toContain("'dolopaws-account-save-result'");
     expect(source('profile-design.js')).not.toContain("status.textContent='Profile saved.'");
     expect(source('profile-design.js')).toContain("name.addEventListener('input'");
     expect(source('profile-design.js')).toContain("legacyName.dispatchEvent(new Event('input',{bubbles:true}))");
     expect(page).toContain('placeholder="Your dog\'s name"');
-    expect(page).toContain('profile-design.js?v=20260901-2');
+    expect(page).toContain('profile-design.js?v=20260901-3');
     const manager = source('profile-design.js');
     expect(manager).toContain("attributeFilter:['hidden']");
     expect(manager).not.toContain("{attributes:true,subtree:true}");
@@ -78,9 +79,13 @@ describe('multi-dog account experience', () => {
 
     visibleName.value = 'Moka';
     visibleName.dispatchEvent(new Event('input', { bubbles:true }));
+    const visibleBreed = document.getElementById('profileBreed');
+    visibleBreed.value = 'Border Collie';
+    visibleBreed.dispatchEvent(new Event('input', { bubbles:true }));
     document.getElementById('profileSave').click();
 
     expect(storedName.value).toBe('Moka');
+    expect(document.getElementById('dogBreed').value).toBe('Border Collie');
     expect(saveSpy).toHaveBeenCalledTimes(1);
   });
 
@@ -118,6 +123,41 @@ describe('multi-dog account experience', () => {
     expect(wizard).toContain("showToast('We couldn’t save your dog. Check your connection and try again.')");
     expect(wizard).toContain('id="dwPhotoInput"');
     expect(wizard).toContain('photo:      isDogPhoto(data.photo) ? data.photo : null');
+  });
+
+  test('signed-in add-dog entry points use the one canonical account editor', () => {
+    const homepage = source('script.js');
+    const navigation = source('mobile-nav.js');
+    const addHandler = homepage.slice(
+      homepage.indexOf("const addDog = document.getElementById('liAddDogBtn')"),
+      homepage.indexOf("const logoutBtn = document.getElementById('liLogoutBtn')")
+    );
+    const mobileAdd = navigation.slice(
+      navigation.indexOf("const addLink = document.createElement('a')"),
+      navigation.indexOf("const manage = document.createElement('a')")
+    );
+
+    expect(homepage).toContain("window.location.href = 'account.html?mode=add&next=%2F'");
+    expect(addHandler).toContain("window.location.assign('account.html?mode=add&next=%2F')");
+    expect(addHandler).not.toContain('DoloPawsWizard.open');
+    expect(mobileAdd).toContain("account.html?mode=add&next=");
+    expect(mobileAdd).not.toContain('preventDefault');
+    expect(mobileAdd).not.toContain('DoloPawsWizard.open');
+    expect(navigation).toContain('member ? addDogAccountHref()');
+  });
+
+  test('the account add flow validates visible identity fields and recovers after save errors', () => {
+    const controller = source('account.js');
+    const manager = source('profile-design.js');
+    expect(manager).toContain("if(!name.value.trim())missing.push");
+    expect(manager).toContain("if(!savedBreedValue().trim())missing.push");
+    expect(manager).toContain("profileSaveStatus.style.color='#9C3A25'");
+    expect(controller).toContain('let saveInFlight = false;');
+    expect(controller).toContain("console.error('Failed to save dog profile:', error)");
+    expect(controller).toContain('if(profileSave) profileSave.disabled = false;');
+    expect(controller).toContain('renderDerived();');
+    expect(controller).toContain('dogSaveFailureMessage()');
+    expect(source('firebase-init.js')).toContain("lastDogProfileError = { code:'dog-limit'");
   });
 
   test('a committed dog save does not wait for profile-summary network lookups', () => {

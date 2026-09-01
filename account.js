@@ -57,6 +57,19 @@
     return result && result.message ? result.message : tKey('auth.error.generic', 'Something went wrong — please try again.');
   }
 
+  function dogSaveFailureMessage(){
+    const error = window.DoloPawsAuth
+      && typeof window.DoloPawsAuth.getLastDogProfileError === 'function'
+      ? window.DoloPawsAuth.getLastDogProfileError()
+      : null;
+    const code = error && String(error.code || '');
+    if(code === 'dog-limit') return tKey('account.maximumDogs', 'An ORMA account can store up to five dogs.');
+    if(code === 'not-signed-in') return tKey('account.saveSignedOut', 'Your session ended. Sign in again, then save this dog.');
+    if(code.includes('permission-denied')) return tKey('account.savePermission', 'ORMA could not save this profile. Refresh the page, sign in again and retry.');
+    if(code.includes('unavailable') || code.includes('network')) return tKey('account.saveOffline', 'ORMA could not reach the server. Check your connection and try again.');
+    return tKey('account.saveError', 'Something went wrong — please try again.');
+  }
+
   // ---------- Profile state ----------
   // `base` is the profile exactly as loaded, so saving preserves fields this
   // screen doesn't edit (fitness, legacy ageBand, …). `state` is what the
@@ -66,6 +79,7 @@
   let activeDogId = null;
   let profileLoadDegraded = false;
   let designValues = null;
+  let saveInFlight = false;
   const state = {
     name:'', breed:'', dob:'', weight:20, size:'Large',
     neuter:'Unknown', coat:'Short', sens:[], photo:null, photos:[],
@@ -392,13 +406,13 @@
     $('ownerName').style.borderColor = '';
     $('ownerEmail').style.borderColor = '';
     const missingDog = nm.length === 0;
-    const disabled = missingDog;
+    const disabled = missingDog || saveInFlight;
     document.querySelectorAll('.saveBtn').forEach(b => { b.disabled = disabled; });
-    const profileSave = $('profileSave');
-    if(profileSave) profileSave.disabled = disabled;
     document.querySelectorAll('.saveHint').forEach(h => {
       h.hidden = !disabled;
-      h.textContent = tKey('account.validation.name', "Add your dog's name first.");
+      h.textContent = saveInFlight
+        ? tKey('account.saving', 'Saving…')
+        : tKey('account.validation.name', "Add your dog's name first.");
     });
   }
 
@@ -615,17 +629,33 @@
 
   document.querySelectorAll('.saveBtn').forEach(btn => {
     btn.addEventListener('click', async () => {
-      if(!window.DoloPawsAuth || btn.disabled) return;
+      if(!window.DoloPawsAuth || btn.disabled || saveInFlight) return;
       const label = btn.textContent; // "Save changes", or "Save" on the phone app bar
+      saveInFlight = true;
+      document.querySelectorAll('.saveBtn').forEach(button => { button.disabled = true; });
+      const profileSave = $('profileSave');
+      if(profileSave) profileSave.disabled = true;
       btn.textContent = tKey('account.saving', 'Saving…');
-      const ok = addMode
-        ? await window.DoloPawsAuth.addDogProfile(buildProfile())
-        : await window.DoloPawsAuth.setDogProfile(buildProfile(), base.id || activeDogId);
-      btn.textContent = label;
+      saveStatus.hidden = false;
+      saveStatus.style.color = '';
+      saveStatus.textContent = tKey('account.saving', 'Saving…');
+      let ok = false;
+      try {
+        ok = addMode
+          ? await window.DoloPawsAuth.addDogProfile(buildProfile())
+          : await window.DoloPawsAuth.setDogProfile(buildProfile(), base.id || activeDogId);
+      } catch(error){
+        console.error('Failed to save dog profile:', error);
+      } finally {
+        saveInFlight = false;
+        btn.textContent = label;
+        if(profileSave) profileSave.disabled = false;
+        renderDerived();
+      }
       saveStatus.hidden = false;
       saveStatus.style.color = ok ? '#2C5C34' : '#9C3A25';
       window.dispatchEvent(new CustomEvent('dolopaws-account-save-result', {
-        detail:{ ok, addMode }
+        detail:{ ok, addMode, message:ok ? '' : dogSaveFailureMessage() }
       }));
       if(ok && returnTarget){
         saveStatus.textContent = tKey('account.savedReturning', 'Saved. Returning you to where you were…');
@@ -637,7 +667,7 @@
         saveStatus.innerHTML = tKey('account.saved', 'Saved.') + ' <a href="/" style="font-weight:700;">' + tKey('account.viewTrails', 'View your personalised trails →') + '</a>';
         base = buildProfile();
       } else {
-        saveStatus.textContent = tKey('account.saveError', 'Something went wrong — please try again.');
+        saveStatus.textContent = dogSaveFailureMessage();
       }
     });
   });

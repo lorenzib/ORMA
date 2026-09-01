@@ -37,6 +37,7 @@ appleProvider.addScope('name');
 
 let currentUser = null;
 let authResolved = false;
+let lastDogProfileError = null;
 const changeListeners = [];
 let profileSummarySyncVersion = 0;
 
@@ -394,10 +395,18 @@ async function setDogProfile(dogObj, targetDogId) {
 }
 
 async function addDogProfile(dogObj) {
-  if (!currentUser) return false;
+  lastDogProfileError = null;
+  if (!currentUser) {
+    lastDogProfileError = { code:'not-signed-in', message:'Sign in again before saving this dog.' };
+    return false;
+  }
+  let limitReached = false;
   try {
-    return await mutateDogState(state => {
-      if (state.dogs.length >= 5) return null;
+    const saved = await mutateDogState(state => {
+      if (state.dogs.length >= 5) {
+        limitReached = true;
+        return null;
+      }
       const occupied = new Set(state.dogs.map(dog => dog.id));
       let id = dogId(dogObj, state.dogs.length), suffix = 2;
       while (occupied.has(id)) id = `${dogId(dogObj, state.dogs.length).slice(0, 70)}-${suffix++}`;
@@ -405,10 +414,22 @@ async function addDogProfile(dogObj) {
       if (typeof dog.photo === 'string' && dog.photo.startsWith('data:image/') && !dog.photoId) dog.photoId = newDogPhotoId(id);
       return { dogs:state.dogs.concat(dog), activeDogId:id };
     });
+    if (!saved && limitReached) {
+      lastDogProfileError = { code:'dog-limit', message:'An ORMA account can store up to five dogs.' };
+    }
+    return saved;
   } catch (e) {
     console.error("Failed to add dog profile:", e);
+    lastDogProfileError = {
+      code:e && e.code ? String(e.code) : 'profile-save-failed',
+      message:e && e.message ? String(e.message) : 'The dog profile could not be saved.',
+    };
     return false;
   }
+}
+
+function getLastDogProfileError() {
+  return lastDogProfileError ? { ...lastDogProfileError } : null;
 }
 
 async function selectDogProfile(id) {
@@ -809,6 +830,7 @@ window.DoloPawsAuth = {
   setDogProfile,
   getDogProfiles,
   addDogProfile,
+  getLastDogProfileError,
   selectDogProfile,
   removeDogProfile,
   getLastMatches,

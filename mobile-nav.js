@@ -84,6 +84,16 @@
     } catch(error){ return null; }
   }
 
+  function currentReturnTarget(){
+    const path = window.location.pathname.replace(/^\/+/, '');
+    const page = !path || path === 'index.html' ? '/' : path;
+    return page === '/' ? page : page + window.location.search + window.location.hash;
+  }
+
+  function addDogAccountHref(){
+    return '/account.html?mode=add&next=' + encodeURIComponent(currentReturnTarget());
+  }
+
   function installDogProfileBanner(){
     const topnav = document.querySelector('.topnav');
     const personalisedHomepageHeader = document.querySelector('#returningCustomerHomepage .li-top');
@@ -152,7 +162,7 @@
         title.textContent = 'Add your dog';
         description.textContent = 'Add your dog for personalised matches. Create a free account only when you choose to save.';
         profile.textContent = 'Add your dog';
-        profile.href = '/?wizard=1';
+        profile.href = member ? addDogAccountHref() : '/?wizard=1';
         delete profile.dataset.action;
       }
       // The guest homepage already ships the exact prompt and its button
@@ -522,20 +532,13 @@
         menu.appendChild(row);
       });
 
-      // "Add another dog" stays in the account profile experience. The
-      // homepage may use its in-place wizard, which now appends as well.
+      // Signed-in additions stay in the account profile experience. Guests
+      // alone use the homepage wizard, where no remote write happens yet.
       const addLink = document.createElement('a');
       addLink.className = 'nav-dogmenu-manage';
       addLink.href = prefix + 'account.html?mode=add&next=' + encodeURIComponent(pagePath);
       addLink.textContent = copy('mobile.addDog', '＋ Add another dog');
       addLink.setAttribute('data-i18n', 'mobile.addDog');
-      addLink.addEventListener('click', (e) => {
-        if(window.DoloPawsWizard && typeof window.DoloPawsWizard.open === 'function'){
-          e.preventDefault();
-          setOpen(false);
-          window.DoloPawsWizard.open();
-        }
-      });
       menu.appendChild(addLink);
       const manage = document.createElement('a');
       manage.className = 'nav-dogmenu-manage';

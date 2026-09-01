@@ -210,6 +210,30 @@ describe('private user documents', () => {
       activeDogId: 'legacy-dog-1',
     }));
   });
+
+  test('an owner can append and activate a second dog profile', async () => {
+    const owner = ordinaryDb('owner-1');
+    const userRef = doc(owner, 'users/owner-1');
+    const firstDog = {
+      id:'luna-1', name:'Luna', breed:'Border Collie', fitness:'moderate',
+      ageBand:'3-4', weightBand:'15-20', conditions:[], healthNotes:'',
+    };
+    const secondDog = {
+      id:'eddie-2', name:'Eddie', breed:'Podenco Andaluz', fitness:'high',
+      ageBand:'5-6', weightBand:'10-15', conditions:[], healthNotes:'',
+    };
+
+    await assertSucceeds(setDoc(userRef, {
+      dog:firstDog, dogs:[firstDog], activeDogId:firstDog.id,
+    }));
+    await assertSucceeds(setDoc(userRef, {
+      dog:secondDog, dogs:[firstDog, secondDog], activeDogId:secondDog.id,
+    }));
+    const saved = (await getDoc(userRef)).data();
+    expect(saved.dogs).toHaveLength(2);
+    expect(saved.activeDogId).toBe('eddie-2');
+    expect(saved.dog.breed).toBe('Podenco Andaluz');
+  });
 });
 
 describe('anonymous hike counter', () => {

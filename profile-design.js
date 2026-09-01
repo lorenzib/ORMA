@@ -4,7 +4,10 @@
   const t=(key,fallback,vars)=>{
     if(!window.t)return fallback;
     const value=window.t(key,vars);
-    return value===key?fallback:value;
+    if(value!==key)return value;
+    let output=fallback;
+    Object.keys(vars||{}).forEach(name=>{output=output.split('{'+name+'}').join(vars[name]);});
+    return output;
   };
   const name=document.getElementById('profileName'),breed=document.getElementById('profileBreed'),age=document.getElementById('profileAge'),weight=document.getElementById('profileWeight'),notes=document.getElementById('profileNotes');
   const addMode=new URLSearchParams(window.location.search).get('mode')==='add';
@@ -144,7 +147,7 @@
     const ok=!!(event.detail&&event.detail.ok);
     profileSaveStatus.textContent=ok
       ? (event.detail.addMode?t('account.dogAddedSuccess','Dog added successfully.'):t('account.profileSaved','Profile saved.'))
-      : t('account.saveError','Something went wrong — please try again.');
+      : (event.detail&&event.detail.message)||t('account.saveError','Something went wrong — please try again.');
     profileSaveStatus.style.color=ok?'#2C5C34':'#9C3A25';
     profileSaveStatus.hidden=false;
   });
@@ -153,10 +156,21 @@
     if(legacyName){legacyName.value=name.value;legacyName.dispatchEvent(new Event('input',{bubbles:true}));}
     if(legacyBreed){legacyBreed.value=savedBreedValue();legacyBreed.dispatchEvent(new Event('input',{bubbles:true}));}
     if(legacyNotes){legacyNotes.value=notes.value;legacyNotes.dispatchEvent(new Event('input',{bubbles:true}));}
+    const missing=[];
+    if(!name.value.trim())missing.push({label:t('account.profile.name','name'),field:name});
+    if(!savedBreedValue().trim())missing.push({label:t('account.profile.breed','breed'),field:breed});
+    if(missing.length){
+      profileSaveStatus.textContent=t('account.validation.required','Add your dog’s {fields} before saving.',{fields:missing.map(item=>item.label.toLowerCase()).join(' and ')});
+      profileSaveStatus.style.color='#9C3A25';
+      profileSaveStatus.hidden=false;
+      missing[0].field.focus();
+      return;
+    }
     const conditions=Array.from(root.querySelectorAll('#profileConditions input:checked')).map(input=>CONDITION_CODES[input.value]).filter(Boolean);
     window.dispatchEvent(new CustomEvent('dolopaws-profile-design-values',{detail:{ageBand:age.value,weightBand:weight.value,fitness,conditions}}));
     const save=Array.from(document.querySelectorAll('.saveBtn')).find(b=>!b.disabled);
     if(save){
+      document.getElementById('profileSave').disabled=true;
       profileSaveStatus.textContent=t('account.saving','Saving…');
       profileSaveStatus.style.color='';
       profileSaveStatus.hidden=false;

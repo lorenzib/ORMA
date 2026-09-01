@@ -56,7 +56,7 @@ function renderTeaser(){
 function goToProfileCreation(){
   const user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
   if(user){
-    window.location.href = 'account.html?next=%2F';
+    window.location.href = 'account.html?mode=add&next=%2F';
   } else if(window.DoloPawsWizard){
     // Guests build the dog profile FIRST (no account needed); the
     // signup ask comes only after they've seen their dog's matches.
@@ -2311,7 +2311,10 @@ function initLoggedInShell(){
   const addDog = document.getElementById('liAddDogBtn');
   if(addDog) addDog.addEventListener('click', () => {
     liCloseMenus();
-    if(window.DoloPawsWizard && typeof window.DoloPawsWizard.open === 'function') window.DoloPawsWizard.open();
+    // Signed-in additions use the account editor: one form, one validation
+    // contract and one persistence path. The homepage wizard remains the
+    // guest preview flow only.
+    window.location.assign('account.html?mode=add&next=%2F');
   });
 
   const logoutBtn = document.getElementById('liLogoutBtn');
