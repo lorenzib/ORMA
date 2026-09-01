@@ -313,7 +313,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toContain("layersBtn.setAttribute('aria-expanded', String(open))");
   });
 
-  test('keeps marked-route numbers above the distinct ORMA route highlight', () => {
+  test('keeps the public route network subdued beneath the distinct ORMA route highlight', () => {
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     const trailScript = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
     expect(script).toMatch(/id: 'trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
@@ -323,16 +323,19 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toMatch(/id: 'trail-paths-orma-halo'[\s\S]*?'line-color': '#FFFDF7'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
     expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-color': '#3E7A91'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
     expect(script).toMatch(/id: 'guest-trail-paths-orma-line'[\s\S]*?'line-color': '#3E7A91'[\s\S]*?guestFirstLabel \? guestFirstLabel\.id : undefined\);/);
-    expect(script).toContain("guestMapInstance.moveLayer('waymarked-hiking-layer', guestFirstLabel.id)");
-    expect(script).toContain("trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id)");
+    expect(script).not.toContain("guestMapInstance.moveLayer('waymarked-hiking-layer', guestFirstLabel.id)");
+    expect(script).not.toContain("trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id)");
     expect(trailScript).toMatch(/id: 'single-trail-path-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script.match(/7, 0\.64/g)).toHaveLength(2);
-    expect(script.match(/10, 0\.72/g)).toHaveLength(2);
-    expect(script.match(/12, 0\.86/g)).toHaveLength(2);
-    expect(script.match(/14, 1/g)).toHaveLength(2);
-    expect(script.match(/'raster-saturation': -0\.68/g)).toHaveLength(2);
-    expect(script.match(/'raster-contrast': 0\.18/g)).toHaveLength(2);
+    expect(script.match(/7, 0\.20/g)).toHaveLength(2);
+    expect(script.match(/10, 0\.28/g)).toHaveLength(2);
+    expect(script.match(/12, 0\.38/g)).toHaveLength(2);
+    expect(script.match(/14, 0\.50/g)).toHaveLength(2);
+    expect(script.match(/'raster-saturation': -0\.86/g)).toHaveLength(2);
+    expect(script.match(/'raster-contrast': -0\.06/g)).toHaveLength(2);
+    expect(script).toContain('clusterMinPoints: 5');
+    expect(script).toContain("'circle-color': '#DCE8DE'");
+    expect(script).toContain("'text-size': 11");
     expect(trailScript).toContain("9, 0.52");
     expect(trailScript).toContain("12, 0.68");
     expect(trailScript).toContain("14, 0.90");

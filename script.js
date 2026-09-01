@@ -554,7 +554,7 @@ function initGuestMap(){
   guestMapInstance.on('load', async () => {
     if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(guestMapInstance);
     addTerrainSource(guestMapInstance);
-    // Guests get the same walkable-network view: marked routes + relief.
+    // Keep the public walking network as quiet context beneath ORMA routes.
     const guestFirstLabel = guestMapInstance.getStyle().layers.find(l => l.type === 'symbol');
     guestMapInstance.addSource('waymarked-hiking', {
       type: 'raster',
@@ -569,13 +569,13 @@ function initGuestMap(){
       paint: {
         'raster-opacity': [
           'interpolate', ['linear'], ['zoom'],
-          7, 0.64,
-          10, 0.72,
-          12, 0.86,
-          14, 1,
+          7, 0.20,
+          10, 0.28,
+          12, 0.38,
+          14, 0.50,
         ],
-        'raster-saturation': -0.68,
-        'raster-contrast': 0.18,
+        'raster-saturation': -0.86,
+        'raster-contrast': -0.06,
         'raster-resampling': 'linear',
       },
     }, guestFirstLabel ? guestFirstLabel.id : undefined);
@@ -670,9 +670,6 @@ function initGuestMap(){
         'line-opacity': 1,
       },
     }, guestFirstLabel ? guestFirstLabel.id : undefined);
-    if(guestFirstLabel && guestMapInstance.getLayer('waymarked-hiking-layer')){
-      guestMapInstance.moveLayer('waymarked-hiking-layer', guestFirstLabel.id);
-    }
 
     const bounds = new maplibregl.LngLatBounds();
     trails.forEach(t => {
@@ -796,7 +793,7 @@ function initTrailMap(){
     // that join later without rebuilding the controls.
     const allLiftMarkers = [];
     
-    // Waymarked Trails hiking overlay — shows route numbers, waymarking, and trail network detail
+    // Public marked routes are supporting context, not the primary route language.
     const firstLabelLayer = trailMapInstance.getStyle().layers.find(l => l.type === 'symbol');
     trailMapInstance.addSource('waymarked-hiking', {
       type: 'raster',
@@ -812,13 +809,13 @@ function initTrailMap(){
       paint: {
         'raster-opacity': [
           'interpolate', ['linear'], ['zoom'],
-          7, 0.64,
-          10, 0.72,
-          12, 0.86,
-          14, 1,
+          7, 0.20,
+          10, 0.28,
+          12, 0.38,
+          14, 0.50,
         ],
-        'raster-saturation': -0.68,
-        'raster-contrast': 0.18,
+        'raster-saturation': -0.86,
+        'raster-contrast': -0.06,
         'raster-resampling': 'linear',
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
@@ -882,9 +879,6 @@ function initTrailMap(){
         'line-opacity': 1,
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
-    if(firstLabelLayer && trailMapInstance.getLayer('waymarked-hiking-layer')){
-      trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id);
-    }
     // Wide, near-invisible twin of the route line so a fingertip (or a
     // slightly-off cursor) still hits the trail — 3px is too thin a target.
     trailMapInstance.addLayer({
@@ -904,6 +898,7 @@ function initTrailMap(){
       cluster: true,
       clusterMaxZoom: 11,
       clusterRadius: 48,
+      clusterMinPoints: 5,
     });
     trailMapInstance.addLayer({
       id: 'trail-clusters',
@@ -911,9 +906,9 @@ function initTrailMap(){
       source: 'trail-points',
       filter: ['has', 'point_count'],
       paint: {
-        'circle-color': '#2E4034',
-        'circle-radius': ['step', ['get', 'point_count'], 20, 10, 24, 30, 28],
-        'circle-stroke-width': 3.5,
+        'circle-color': '#DCE8DE',
+        'circle-radius': ['step', ['get', 'point_count'], 15, 10, 18, 30, 21],
+        'circle-stroke-width': 2,
         'circle-stroke-color': '#ffffff',
       },
     });
@@ -925,12 +920,11 @@ function initTrailMap(){
       layout: {
         'text-field': ['get', 'point_count_abbreviated'],
         'text-font': ['Noto Sans Bold'],
-        'text-size': 14,
+        'text-size': 11,
       },
       paint: {
-        'text-color': '#fff',
-        'text-halo-color': 'rgba(0,0,0,.28)',
-        'text-halo-width': 1,
+        'text-color': '#365B43',
+        'text-halo-width': 0,
       },
     });
     // Pin colour = match tier for THIS dog (mirrors the on-map legend and
