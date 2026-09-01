@@ -215,6 +215,16 @@ describe('Browse filter UI', () => {
     expect(html).toContain('.browse-geo-group .area-select-trigger__kicker{display:none;}');
   });
 
+  test('stretches the complete filter row across wide screens', () => {
+    const html = source('browse-trails.html');
+
+    expect(html).toContain('@media(min-width:1501px)');
+    expect(html).toMatch(/@media\(min-width:1501px\)[\s\S]*?\.browse-primary-controls \.browse-tools\{[^}]*display:grid;[^}]*grid-template-columns:[^}]*minmax\(108px,\.75fr\);/);
+    expect(html).toMatch(/@media\(min-width:1501px\)[\s\S]*?\.browse-area-controls,\.browse-quick-filters\{display:contents;\}/);
+    expect(html).toContain('#browseFiltersWrap{grid-column:5;width:100%;}');
+    expect(html).toContain('.browse-saved-only{grid-column:8;width:100%;min-width:0;}');
+  });
+
   test('selecting a trail opens the persistent comparison tray', () => {
     const window = setup('https://www.app-orma.com/browse-trails.html?region=dolomites');
     const compare = window.document.querySelector('[data-compare-id="reviewed-loop"]');
