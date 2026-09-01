@@ -554,9 +554,7 @@ function initGuestMap(){
   guestMapInstance.on('load', async () => {
     if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(guestMapInstance);
     addTerrainSource(guestMapInstance);
-    // Keep the public walking network in its original cartographic colours.
-    // Route shields are navigation information, so their red/white artwork
-    // and black numbers must not be desaturated or faded.
+    // Keep the public walking network as quiet, grey context around ORMA routes.
     const guestFirstLabel = guestMapInstance.getStyle().layers.find(l => l.type === 'symbol');
     guestMapInstance.addSource('waymarked-hiking', {
       type: 'raster',
@@ -571,13 +569,13 @@ function initGuestMap(){
       paint: {
         'raster-opacity': [
           'interpolate', ['linear'], ['zoom'],
-          7, 0.48,
-          10, 0.66,
-          12, 0.84,
-          14, 1,
+          7, 0.12,
+          10, 0.18,
+          12, 0.24,
+          14, 0.30,
         ],
-        'raster-saturation': 0,
-        'raster-contrast': 0,
+        'raster-saturation': -0.86,
+        'raster-contrast': -0.06,
         'raster-resampling': 'linear',
       },
     }, guestFirstLabel ? guestFirstLabel.id : undefined);
@@ -816,13 +814,13 @@ function initTrailMap(){
       paint: {
         'raster-opacity': [
           'interpolate', ['linear'], ['zoom'],
-          7, 0.48,
-          10, 0.66,
-          12, 0.84,
-          14, 1,
+          7, 0.12,
+          10, 0.18,
+          12, 0.24,
+          14, 0.30,
         ],
-        'raster-saturation': 0,
-        'raster-contrast': 0,
+        'raster-saturation': -0.86,
+        'raster-contrast': -0.06,
         'raster-resampling': 'linear',
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);

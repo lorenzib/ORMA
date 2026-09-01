@@ -2093,13 +2093,18 @@ function renderTrail(t){
         // around the route stays discoverable. "Marked routes" un-ticks it
         // for anyone who wants the clean basemap.
         layout: { visibility: 'visible' },
-        // Preserve Waymarked Trails' original route artwork at every zoom:
-        // red/white shields and their black numbers are navigation information,
-        // not decorative context to be greyed or faded.
+        // Keep the public network grey and contextual while retaining enough
+        // local contrast for route-number shields to remain readable.
         paint: {
-          'raster-opacity': 1,
-          'raster-saturation': 0,
-          'raster-contrast': 0,
+          'raster-opacity': [
+            'interpolate', ['linear'], ['zoom'],
+            9, 0.52,
+            12, 0.68,
+            14, 0.90,
+            15, 1,
+          ],
+          'raster-saturation': -0.40,
+          'raster-contrast': 0.22,
           'raster-resampling': 'linear',
         },
       }, firstLabelLayer ? firstLabelLayer.id : undefined);
