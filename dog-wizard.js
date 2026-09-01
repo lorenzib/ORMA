@@ -14,6 +14,7 @@
   // ---- State ----
   var stepIndex = 0;
   var isEditing = false;
+  var editingDogId = null;
   var isDirty   = false;
   var phase     = 'form'; // 'draft-prompt' | 'form' | 'close-confirm'
   var data      = makeEmptyData();
@@ -741,30 +742,38 @@
 
   function finishWizard() {
     var profile = buildProfile();
-    var user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
+    var auth = window.DoloPawsAuth;
+    var user = auth && auth.currentUser;
 
     if (user) {
-      // Logged in: persist immediately, exactly like the account page.
+      // Logged in: add directly. Reading the whole dog list first created an
+      // unnecessary second network round-trip and could leave this button
+      // stuck even though the subsequent transaction was never started.
       nextBtn.disabled = true;
       nextBtn.textContent = 'Saving…';
-      var save = typeof window.DoloPawsAuth.addDogProfile === 'function'
-        ? window.DoloPawsAuth.getDogProfiles().then(function(state){
-            return state && state.dogs.length
-              ? window.DoloPawsAuth.addDogProfile(profile)
-              : window.DoloPawsAuth.setDogProfile(profile);
-          })
-        : window.DoloPawsAuth.setDogProfile(profile);
-      save.then(function (ok) {
-        nextBtn.disabled = false;
+      Promise.resolve().then(function () {
+        if (isEditing && editingDogId && typeof auth.setDogProfile === 'function') {
+          return auth.setDogProfile(profile, editingDogId);
+        }
+        if (typeof auth.addDogProfile === 'function') {
+          return auth.addDogProfile(profile);
+        }
+        return typeof auth.setDogProfile === 'function'
+          ? auth.setDogProfile(profile)
+          : false;
+      }).then(function (ok) {
         if (!ok) {
-          nextBtn.textContent = 'Save dog';
-          showToast('Something went wrong — please try again.');
-          return;
+          throw new Error('dog-profile-save-failed');
         }
         clearDraft();
         window.dispatchEvent(new CustomEvent('dolopaws-dog-profile-saved', { detail: { profile: profile } }));
         doClose();
         showToast(profile.name + ' was saved successfully.');
+      }).catch(function (error) {
+        console.error('Failed to save dog from wizard:', error);
+        nextBtn.disabled = false;
+        nextBtn.textContent = isEditing ? 'Save changes' : 'Save dog';
+        showToast('We couldn’t save your dog. Check your connection and try again.');
       });
       return;
     }
@@ -883,6 +892,7 @@
   function openWizard(existingDog) {
     preFocusEl = document.activeElement;
     isEditing  = !!(existingDog && existingDog.name);
+    editingDogId = isEditing && typeof existingDog.id === 'string' ? existingDog.id : null;
 
     if (isEditing) {
       // The combobox accepts any breed string directly — no Other branch.

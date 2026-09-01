@@ -86,10 +86,24 @@ describe('multi-dog account experience', () => {
 
   test('the wizard appends instead of overwriting an existing dog', () => {
     const wizard = source('dog-wizard.js');
-    expect(wizard).toContain('DoloPawsAuth.getDogProfiles()');
-    expect(wizard).toContain('DoloPawsAuth.addDogProfile(profile)');
+    expect(wizard).not.toContain('auth.getDogProfiles()');
+    expect(wizard).toContain('return auth.addDogProfile(profile)');
+    expect(wizard).toContain("auth.setDogProfile(profile, editingDogId)");
+    expect(wizard).toContain("nextBtn.textContent = isEditing ? 'Save changes' : 'Save dog'");
+    expect(wizard).toContain("showToast('We couldn’t save your dog. Check your connection and try again.')");
     expect(wizard).toContain('id="dwPhotoInput"');
     expect(wizard).toContain('photo:      isDogPhoto(data.photo) ? data.photo : null');
+  });
+
+  test('a committed dog save does not wait for profile-summary network lookups', () => {
+    const client = source('firebase-init.js');
+    const mutation = client.slice(
+      client.indexOf('async function mutateDogState'),
+      client.indexOf('async function setDogProfile')
+    );
+    expect(mutation).toContain('cacheCommittedDogSummary(mutationUser, committed);');
+    expect(mutation).toContain('syncProfileSummary(mutationUser);');
+    expect(mutation).not.toContain('await syncProfileSummary');
   });
 
   test('both add-dog views use the same comprehensive breed catalogue', () => {

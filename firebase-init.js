@@ -284,12 +284,45 @@ function dogStatePayload(state, existing) {
   return { payload, dogs, active };
 }
 
+// A dog write is complete when its Firestore transaction commits. Paint the
+// new selected dog into the local summary immediately so navigation updates
+// without waiting for unrelated favorites and moderator lookups.
+function cacheCommittedDogSummary(user, committed) {
+  if (!user || !committed) return;
+  try {
+    let previous = null;
+    try {
+      previous = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null');
+    } catch (e) {}
+    const sameUser = previous && previous.uid === user.uid ? previous : null;
+    const dog = committed.active;
+    cacheProfileSummary({
+      uid:user.uid,
+      hasProfile:!!dog,
+      activeDogId:dog && dog.id || null,
+      name:dog && dog.name ? String(dog.name).slice(0, 40) : null,
+      breed:dog && dog.breed ? String(dog.breed).slice(0, 240) : null,
+      fitness:dog && dog.fitness ? String(dog.fitness).slice(0, 20) : null,
+      dogs:committed.dogs.map(item => ({
+        id:item.id,
+        name:item.name ? String(item.name).slice(0, 40) : 'Your dog',
+        breed:item.breed ? String(item.breed).slice(0, 240) : null,
+        fitness:item.fitness ? String(item.fitness).slice(0, 20) : null,
+        photo:typeof item.photo === 'string' && item.photo.startsWith('data:image/') ? item.photo : null,
+      })),
+      moderator:sameUser ? sameUser.moderator === true : false,
+      saved:sameUser && typeof sameUser.saved === 'number' ? sameUser.saved : null,
+    });
+  } catch (e) { /* cache only — the committed save still succeeded */ }
+}
+
 // Every dog mutation is transactional. Photo uploads, profile switches and
 // edits can therefore finish in any order without one stale full-document
 // write erasing another dog's newer photo.
 async function mutateDogState(mutator) {
   if (!currentUser) return false;
-  const userRef = doc(db, "users", currentUser.uid);
+  const mutationUser = currentUser;
+  const userRef = doc(db, "users", mutationUser.uid);
   let committed = null;
   await runTransaction(db, async transaction => {
     const snapshot = await transaction.get(userRef);
@@ -301,7 +334,12 @@ async function mutateDogState(mutator) {
     transaction.set(userRef, committed.payload);
   });
   if (!committed) return false;
-  await syncProfileSummary(currentUser);
+  if (currentUser && currentUser.uid === mutationUser.uid) {
+    cacheCommittedDogSummary(mutationUser, committed);
+    // Refresh favorites and moderator status in the background. Neither is
+    // part of saving a dog, so a slow lookup must not hold the form hostage.
+    syncProfileSummary(mutationUser);
+  }
   window.dispatchEvent(new CustomEvent('dolopaws-dog-profile-saved', {
     detail:{ profile:committed.active, dogs:committed.dogs, activeDogId:committed.payload.activeDogId }
   }));
