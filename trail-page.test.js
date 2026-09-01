@@ -511,6 +511,7 @@ describe('trail page map controls', () => {
     expect(trail).toContain("id:'single-trail-route-number'");
     expect(trail).toContain("source:'single-trail-route-refs'");
     expect(trail).toContain('window.DoloPawsTrailRouteRefs.addShieldLayer');
+    expect(html).toContain('.td2-hero{background:#243128;color:#EAF1E8;position:relative;overflow:visible;z-index:2;}');
     expect(trail).toContain("}, 'waymarked-hiking-layer');");
     expect(trail).toContain("'raster-resampling': 'linear'");
     expect(trail).toContain("'raster-fade-duration': 120");
