@@ -19,7 +19,7 @@ describe('paw protection question-led guide', () => {
     expect(document.querySelector('.section-page-subtitle').textContent).toMatch(/main surface/i);
     const returnLink = document.querySelector('.safety-back-link');
     expect(returnLink.getAttribute('href')).toBe('../safety-guide.html');
-    expect(returnLink.textContent).toMatch(/Go back to Safety Library/i);
+    expect(returnLink.textContent).toMatch(/Safety guides/i);
     expect(document.querySelector('.paw2-breadcrumbs').textContent.trim()).toBe('Paw protection');
   });
 
@@ -122,8 +122,8 @@ describe('paw protection question-led guide', () => {
     const recommendations = document.querySelectorAll('.safety-continue a');
     expect(recommendations).toHaveLength(2);
     expect(Array.from(recommendations).map(link => link.getAttribute('href'))).toEqual([
-      'heat-overheating.html',
-      '../?wizard=1'
+      'water-for-dogs-on-trail.html',
+      'alpine-plants-for-dogs.html'
     ]);
     expect(document.querySelector('.safety-sources__heading span').textContent.trim()).toBe('Last reviewed 19 August 2026');
     expect(document.querySelector('.safety-continue__cta')).toBeNull();

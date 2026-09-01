@@ -27,18 +27,17 @@ describe('Safety Library continuation component', () => {
     expect(blocks).toHaveLength(1);
 
     const block = blocks[0];
+    const previous = block.querySelector('.safety-continue__previous');
     const next = block.querySelector('.safety-continue__next');
-    const findTrail = block.querySelector('.safety-continue__find');
     expect(block.tagName).toBe('NAV');
     expect(block.getAttribute('aria-label')).toBe('Continue in the Safety Library');
     expect(block.querySelectorAll('a')).toHaveLength(2);
+    expect(previous.querySelector('.safety-continue__label').textContent).toBe('Past guide');
     expect(next.querySelector('.safety-continue__label').textContent).toBe('Next guide');
+    expect(previous.getAttribute('href')).not.toBe(name);
     expect(next.getAttribute('href')).not.toBe(name);
     expect(block.querySelector('.safety-continue__all')).toBeNull();
-    expect(findTrail.getAttribute('href')).toBe('../?wizard=1');
-    expect(findTrail.hasAttribute('data-safety-find-trail')).toBe(true);
-    expect(findTrail.querySelector('.safety-continue__label').textContent).toBe('Find your trail');
-    expect(findTrail.querySelector('[data-safety-find-copy]').textContent).toBe('Add your dog');
+    expect(block.querySelector('.safety-continue__find')).toBeNull();
     expect(block.querySelector('.safety-continue__cta')).toBeNull();
     expect(block.textContent).not.toMatch(/All safety guides/);
     expect(block.compareDocumentPosition(page.querySelector('footer')) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
@@ -74,8 +73,8 @@ describe('Safety Library continuation component', () => {
     expect(css).toContain('.safety-continue{');
     expect(css).toContain('display:flex;');
     expect(css).toContain('.safety-continue__next{');
-    expect(systemCss).toContain('.safety-guide-article .safety-continue__find{');
-    expect(systemCss).toContain('background:var(--safety-info);');
+    expect(systemCss).toContain('.safety-continue__previous,.safety-continue__next');
+    expect(systemCss).toContain('background:var(--ink);');
     expect(css).toContain('@media(max-width:760px)');
     expect(css).toContain('@media(max-width:560px)');
     expect(css).toContain('.safety-sources{');

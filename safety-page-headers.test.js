@@ -38,12 +38,14 @@ describe('Safety Library article headers', () => {
 
   test('the shared treatment crops photographs, protects contrast, and compacts on mobile', () => {
     const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+    const systemCss = fs.readFileSync(path.join(__dirname, 'guides', 'safety-guide-system.css'), 'utf8');
 
     expect(css).toMatch(/\.safety-photo-header\.section-page-head\{[^}]*position:relative;[^}]*min-height:clamp\(330px,36vw,470px\)[^}]*width:100%;[^}]*max-width:none;[^}]*border-radius:0/s);
     expect(css).toMatch(/\.safety-photo-header\.section-page-head::before\{[^}]*linear-gradient/s);
     expect(css).toMatch(/\.safety-photo-header__image\{[^}]*object-fit:cover;[^}]*object-position:var\(--safety-photo-position\)/s);
     expect(css).toMatch(/@media\(max-width:760px\)[\s\S]*\.safety-photo-header\.section-page-head\{[^}]*min-height:350px/s);
-    expect(css).toMatch(/\.safety-back-link\{[^}]*display:inline-flex;[^}]*min-height:42px;[^}]*border-radius:999px/s);
+    expect(css).toMatch(/\.safety-back-link\{[^}]*display:inline-flex/s);
+    expect(systemCss).toMatch(/\.safety-guide-article \.safety-back-link\{[^}]*background:transparent;[^}]*color:#BCE0EE!important/s);
   });
 
   test.each(safetyArticles)('%s provides a prominent return CTA to the Safety Library', filename => {
@@ -51,7 +53,7 @@ describe('Safety Library article headers', () => {
     const links = document.querySelectorAll('a.safety-back-link[href="../safety-guide.html"]');
 
     expect(links).toHaveLength(1);
-    expect(links[0].textContent.replace(/\s+/g, ' ').trim()).toBe('← Go back to Safety Library');
+    expect(links[0].textContent.replace(/\s+/g, ' ').trim()).toBe('← Safety guides');
   });
 
   test('the cable-car header applies a dog-centred focal zoom', () => {

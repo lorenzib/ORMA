@@ -48,14 +48,20 @@
   color:var(--safety-safe);
 }
 .safety-guide-article .safety-back-link{
-  border-color:var(--safety-info);
-  background:var(--safety-info);
-  color:#fff!important;
-  box-shadow:0 7px 18px rgba(24,65,81,.26);
+  min-height:0;
+  margin-bottom:20px;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:#BCE0EE!important;
+  box-shadow:none;
+  font-size:13px;
 }
 .safety-guide-article .safety-back-link:hover{
-  background:var(--accent-hover);
-  box-shadow:0 9px 22px rgba(24,65,81,.34);
+  background:transparent;
+  box-shadow:none;
+  text-decoration:underline;
 }
 
 /* Card geometry and semantic fills. Page-specific grids stay intact. */
@@ -149,51 +155,34 @@
 }
 .safety-guide-article .paw2-detail-number{color:var(--safety-safe);}
 
-/* Shared end-of-guide action: the next guide is always a visible button. */
+/* Guide-to-guide navigation mirrors the page edges: previous on the left,
+   next on the right, both in ORMA's signature dark green. */
 .safety-guide-article .safety-continue{
   align-items:center;
   margin-top:32px;
   padding:17px 0;
 }
-.safety-guide-article .safety-continue__next{
-  display:inline-flex;
-  align-items:center;
-  min-height:48px;
-  padding:10px 17px;
-  border-radius:11px;
-  background:var(--safety-safe);
-  color:#fff;
-  box-shadow:0 10px 22px -14px rgba(35,79,43,.7);
-  transition:background .15s ease,transform .15s ease,box-shadow .15s ease;
-}
-.safety-guide-article .safety-continue__next :is(.safety-continue__label,.safety-continue__arrow){color:var(--safety-safe-soft);}
-.safety-guide-article .safety-continue__next:hover{
-  transform:translateY(-1px);
-  background:#244D2B;
-  box-shadow:0 13px 25px -14px rgba(35,79,43,.82);
-}
-.safety-guide-article .safety-continue__next:hover strong{text-decoration:none;}
-.safety-guide-article .safety-continue__find{
+.safety-guide-article :is(.safety-continue__previous,.safety-continue__next){
   display:inline-flex;
   align-items:center;
   gap:12px;
   min-height:48px;
   padding:10px 17px;
   border-radius:11px;
-  background:var(--safety-info);
+  background:var(--ink);
   color:#fff;
   text-decoration:none!important;
-  box-shadow:0 10px 22px -14px rgba(24,65,81,.72);
+  box-shadow:0 10px 22px -14px rgba(23,42,28,.74);
   transition:background .15s ease,transform .15s ease,box-shadow .15s ease;
 }
-.safety-guide-article .safety-continue__find strong{font-size:.92rem;line-height:1.3;}
-.safety-guide-article .safety-continue__find :is(.safety-continue__label,.safety-continue__arrow){color:var(--safety-info-soft);}
-.safety-guide-article .safety-continue__find:hover{
+.safety-guide-article :is(.safety-continue__previous,.safety-continue__next) :is(.safety-continue__label,.safety-continue__arrow){color:#DDE8DF;}
+.safety-guide-article :is(.safety-continue__previous,.safety-continue__next):hover{
   transform:translateY(-1px);
-  background:var(--accent-hover);
-  box-shadow:0 13px 25px -14px rgba(24,65,81,.84);
+  background:#1D3024;
+  box-shadow:0 13px 25px -14px rgba(23,42,28,.88);
 }
-.safety-guide-article :is(.safety-continue__next,.safety-continue__find):focus-visible{
+.safety-guide-article :is(.safety-continue__previous,.safety-continue__next):hover strong{text-decoration:none;}
+.safety-guide-article :is(.safety-continue__previous,.safety-continue__next):focus-visible{
   outline:3px solid rgba(62,122,145,.3);
   outline-offset:4px;
 }
@@ -245,7 +234,7 @@
 
 @media(max-width:560px){
   .safety-guide-article .safety-continue{align-items:stretch;}
-  .safety-guide-article :is(.safety-continue__next,.safety-continue__find){
+  .safety-guide-article :is(.safety-continue__previous,.safety-continue__next){
     display:grid;
     grid-template-columns:max-content minmax(0,1fr) max-content;
     align-items:center;
@@ -255,7 +244,7 @@
     text-align:left;
   }
   .safety-guide-article .safety-continue__label{flex-basis:auto;}
-  .safety-guide-article :is(.safety-continue__next,.safety-continue__find) strong{min-width:0;}
-  .safety-guide-article :is(.safety-continue__next,.safety-continue__find) .safety-continue__arrow{justify-self:end;}
+  .safety-guide-article :is(.safety-continue__previous,.safety-continue__next) strong{min-width:0;}
+  .safety-guide-article :is(.safety-continue__previous,.safety-continue__next) .safety-continue__arrow{justify-self:end;}
   .water-card{padding:19px 17px;}
 }

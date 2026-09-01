@@ -24,23 +24,22 @@ describe('shared Safety Library guide visual system', () => {
 
     const stylesheets = [...document.querySelectorAll('link[rel="stylesheet"]')];
     expect(document.body.classList.contains('safety-guide-article')).toBe(true);
-    expect(stylesheets.at(-1).getAttribute('href')).toBe('safety-guide-system.css?v=20260901-3');
+    expect(stylesheets.at(-1).getAttribute('href')).toBe('safety-guide-system.css?v=20260901-4');
     expect(document.querySelectorAll('.safety-continue')).toHaveLength(1);
     expect(document.querySelectorAll('.safety-sources')).toHaveLength(1);
   });
 
-  test('defines common canvas, hero, card, source and next-guide treatments', () => {
+  test('defines common canvas, hero, card, source and guide-navigation treatments', () => {
     expect(systemCss).toContain('--safety-guide-width:1680px');
     expect(systemCss).toContain('--safety-guide-gutter:clamp(24px,3vw,44px)');
     expect(systemCss).toContain('--guide-reading-width:none');
     expect(systemCss).toMatch(/\.safety-guide-article \.safety-photo-header\.section-page-head\{[^}]*justify-content:flex-end;[^}]*width:100%;[^}]*max-width:none;[^}]*margin:0;[^}]*border-radius:0;/s);
     expect(systemCss).toContain('--safety-guide-card-radius:15px');
     expect(systemCss).toContain('.safety-guide-article .safety-photo-header.section-page-head');
-    expect(systemCss).toContain('.safety-guide-article .safety-continue__next');
-    expect(systemCss).toContain('.safety-guide-article .safety-continue__find');
-    expect(systemCss).toContain('background:var(--safety-safe)');
-    expect(systemCss).toMatch(/\.safety-guide-article \.safety-continue__find\{[^}]*background:var\(--safety-info\)/s);
-    expect(systemCss).toMatch(/\.safety-guide-article \.safety-back-link\{[^}]*background:var\(--safety-info\)[^}]*color:#fff!important/s);
+    expect(systemCss).toContain('.safety-continue__previous,.safety-continue__next');
+    expect(systemCss).toContain('background:var(--ink)');
+    expect(systemCss).not.toContain('.safety-continue__find');
+    expect(systemCss).toMatch(/\.safety-guide-article \.safety-back-link\{[^}]*background:transparent;[^}]*color:#BCE0EE!important/s);
     expect(systemCss).toContain('.safety-guide-article .safety-sources');
     expect(systemCss).toMatch(/@media\(max-width:560px\)[\s\S]*grid-template-columns:max-content minmax\(0,1fr\) max-content/);
     expect(systemCss).toMatch(/\.safety-guide-article \.safety-continue__label\{flex-basis:auto;/);
