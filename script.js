@@ -284,6 +284,12 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
     }
   }
 
+  function loadOverlayData(key){
+    if(key === 'fountains') return initializeWaterSources(map);
+    if(key === 'huts' || key === 'barsCafes') return initializeHutsBars(map);
+    return Promise.resolve();
+  }
+
   function mkChip(label, key){
     const chip = document.createElement('button');
     chip.type = 'button';
@@ -293,11 +299,27 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
       : key;
     chip.innerHTML = icons ? icons.chipHtml(iconKey, label) : label;
     chipStyle(chip, overlayStates[key]);
-    chip.addEventListener('click', () => {
+    chip.addEventListener('click', async () => {
       overlayStates[key] = !overlayStates[key];
-      applyVisibility(key);
       chipStyle(chip, overlayStates[key]);
       renderMapLegend();
+      if(!overlayStates[key]){
+        applyVisibility(key);
+        return;
+      }
+      chip.disabled = true;
+      chip.setAttribute('aria-busy', 'true');
+      try{
+        await loadOverlayData(key);
+        applyVisibility(key);
+      }catch(error){
+        overlayStates[key] = false;
+        chipStyle(chip, false);
+        renderMapLegend();
+      }finally{
+        chip.disabled = false;
+        chip.removeAttribute('aria-busy');
+      }
     });
     panel.appendChild(chip);
     return chip;
@@ -1083,15 +1105,15 @@ function initTrailMap(){
     // Create overlay toggle controls
     const overlayControls = createMapOverlayControls(trailMapInstance, 'trailMap', allLiftMarkers);
     
-    // Keep the trail catalogue interactive first. Regional water, dog-route,
-    // hut and bar datasets are secondary and join after the map becomes idle.
+    // Keep the trail catalogue interactive first. Water and hut/bar datasets
+    // are several megabytes and every corresponding layer starts hidden, so
+    // they load only when a visitor selects that layer. This avoids JSON
+    // parsing and cluster creation blocking taps and navigation on phones.
     const loadSecondaryMapData = () => {
       const liftMarkers = renderGondolas(trailMapInstance, 'trailmap-gondolas') || [];
       liftMarkers.forEach(marker => allLiftMarkers.push(marker));
       if(overlayControls) overlayControls.sync('lifts');
-      initializeWaterSources(trailMapInstance);
       if (typeof initializeDogRoutes === 'function') initializeDogRoutes(trailMapInstance, activeRegion);
-      initializeHutsBars(trailMapInstance);
     };
     if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.onIdle(loadSecondaryMapData, 5000);
     else setTimeout(loadSecondaryMapData, 900);
@@ -3068,15 +3090,19 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
  * Initialize water sources layer on the map
  * Call this after map is loaded
  */
+const waterSourcesLoads = new WeakMap();
+
 function initializeWaterSources(map) {
   // The map can already have this source/layer from initTrailMap().
   // Re-adding the same IDs throws and interrupts map-load setup.
   const hasSource = !!map.getSource('water-sources');
+  if(hasSource) return Promise.resolve(map.getSource('water-sources'));
+  if(waterSourcesLoads.has(map)) return waterSourcesLoads.get(map);
   if(!hasSource){
     const waterAsset = window.DoloPawsRegionalData
       ? window.DoloPawsRegionalData.poiUrl(activeRegion, 'water')
       : './water-sources-all-regions.geojson';
-    fetch(waterAsset)
+    const load = fetch(waterAsset)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}: Failed to load GeoJSON`);
@@ -3111,12 +3137,15 @@ function initializeWaterSources(map) {
         
         // Add layers after source is ready
         addWaterSourcesLayers(map);
+        return map.getSource('water-sources');
       })
       .catch(error => {
         console.error('❌ Error loading water sources GeoJSON:', error.message);
+        waterSourcesLoads.delete(map);
+        throw error;
       });
-    
-    return; // Exit early since layers will be added in the fetch callback
+    waterSourcesLoads.set(map, load);
+    return load;
   }
 }
 
@@ -3333,13 +3362,16 @@ function filterWaterSources(map, type) {
  * (Trentino, Veneto, Savoy) — same pattern as water sources.
  * ============================================================
  */
+const hutsBarsLoads = new WeakMap();
+
 function initializeHutsBars(map) {
-  if(map.getSource('mountain-huts') || map.getSource('bars-cafes')) return;
+  if(map.getSource('mountain-huts') && map.getSource('bars-cafes')) return Promise.resolve();
+  if(hutsBarsLoads.has(map)) return hutsBarsLoads.get(map);
 
   const hutsBarsAsset = window.DoloPawsRegionalData
     ? window.DoloPawsRegionalData.poiUrl(activeRegion, 'huts-bars')
     : './huts-bars-all-regions.geojson';
-  fetch(hutsBarsAsset)
+  const load = fetch(hutsBarsAsset)
     .then(response => {
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}: Failed to load huts/bars GeoJSON`);
@@ -3393,57 +3425,78 @@ function initializeHutsBars(map) {
       });
 
       addHutsBarsLayers(map);
+      return { huts, bars };
     })
     .catch(error => {
       console.error('❌ Error loading huts/bars GeoJSON:', error.message);
+      hutsBarsLoads.delete(map);
+      throw error;
     });
+  hutsBarsLoads.set(map, load);
+  return load;
 }
 
 async function updateRegionalMapData(map, region) {
   if(!map || !window.DoloPawsRegionalData) return;
   const regional = window.DoloPawsRegionalData;
-  const urls = [
-    regional.poiUrl(region, 'water'),
-    regional.poiUrl(region, 'huts-bars'),
-    regional.poiUrl(region, 'dog-routes'),
-  ];
-  if(urls.some(url => !url)) return;
-  const responses = await Promise.all(urls.map(url => fetch(url)));
-  if(responses.some(response => !response.ok)) throw new Error('Regional map data unavailable');
-  const [waterData, hutsBarsData, dogRoutesData] = await Promise.all(responses.map(response => response.json()));
-
-  const pointFeatures = (waterData.features || []).map(feature => {
-    const geometry = feature.geometry;
-    if(!geometry || geometry.type === 'Point') return feature;
-    const ring = geometry.type === 'Polygon'
-      ? (geometry.coordinates[0] || [])
-      : geometry.type === 'MultiPolygon'
-        ? ((geometry.coordinates[0] || [])[0] || [])
-        : [];
-    if(!ring.length) return null;
-    const lng = ring.reduce((sum, point) => sum + point[0], 0) / ring.length;
-    const lat = ring.reduce((sum, point) => sum + point[1], 0) / ring.length;
-    return { ...feature, geometry: { type: 'Point', coordinates: [lng, lat] } };
-  }).filter(Boolean);
   const waterSource = map.getSource('water-sources');
-  if(waterSource) waterSource.setData({ type: 'FeatureCollection', features: pointFeatures });
-
-  const amenities = (hutsBarsData.features || []).filter(feature => feature.geometry && feature.geometry.type === 'Point');
-  const isHut = properties => properties && (
-    properties.tourism === 'alpine_hut' || properties.tourism === 'wilderness_hut' || properties.amenity === 'shelter'
-  );
-  const huts = amenities.filter(feature => isHut(feature.properties));
-  const bars = amenities.filter(feature => !isHut(feature.properties));
   const hutsSource = map.getSource('mountain-huts');
   const barsSource = map.getSource('bars-cafes');
-  if(hutsSource) hutsSource.setData({ type: 'FeatureCollection', features: huts });
-  if(barsSource) barsSource.setData({ type: 'FeatureCollection', features: bars });
-  window._dolopawsHuts = huts;
-  window._dolopawsBars = bars;
-  if(typeof registerPoiFeatures === 'function') registerPoiFeatures(amenities);
-
   const routesSource = map.getSource('dog-routes');
-  if(routesSource) routesSource.setData(dogRoutesData);
+  const jobs = [];
+
+  const fetchGeoJson = async url => {
+    if(!url) throw new Error('Regional map data unavailable');
+    const response = await fetch(url);
+    if(!response.ok) throw new Error('Regional map data unavailable');
+    return response.json();
+  };
+
+  // Only refresh datasets that the visitor has already asked the map to
+  // create. Hidden, unopened layers must stay off the network on a region
+  // switch as well as during the initial mobile load.
+  if(waterSource){
+    jobs.push(fetchGeoJson(regional.poiUrl(region, 'water')).then(waterData => {
+      const pointFeatures = (waterData.features || []).map(feature => {
+        const geometry = feature.geometry;
+        if(!geometry || geometry.type === 'Point') return feature;
+        const ring = geometry.type === 'Polygon'
+          ? (geometry.coordinates[0] || [])
+          : geometry.type === 'MultiPolygon'
+            ? ((geometry.coordinates[0] || [])[0] || [])
+            : [];
+        if(!ring.length) return null;
+        const lng = ring.reduce((sum, point) => sum + point[0], 0) / ring.length;
+        const lat = ring.reduce((sum, point) => sum + point[1], 0) / ring.length;
+        return { ...feature, geometry: { type: 'Point', coordinates: [lng, lat] } };
+      }).filter(Boolean);
+      waterSource.setData({ type: 'FeatureCollection', features: pointFeatures });
+    }));
+  }
+
+  if(hutsSource && barsSource){
+    jobs.push(fetchGeoJson(regional.poiUrl(region, 'huts-bars')).then(hutsBarsData => {
+      const amenities = (hutsBarsData.features || []).filter(feature => feature.geometry && feature.geometry.type === 'Point');
+      const isHut = properties => properties && (
+        properties.tourism === 'alpine_hut' || properties.tourism === 'wilderness_hut' || properties.amenity === 'shelter'
+      );
+      const huts = amenities.filter(feature => isHut(feature.properties));
+      const bars = amenities.filter(feature => !isHut(feature.properties));
+      hutsSource.setData({ type: 'FeatureCollection', features: huts });
+      barsSource.setData({ type: 'FeatureCollection', features: bars });
+      window._dolopawsHuts = huts;
+      window._dolopawsBars = bars;
+      if(typeof registerPoiFeatures === 'function') registerPoiFeatures(amenities);
+    }));
+  }
+
+  if(routesSource){
+    jobs.push(fetchGeoJson(regional.poiUrl(region, 'dog-routes')).then(dogRoutesData => {
+      routesSource.setData(dogRoutesData);
+    }));
+  }
+
+  await Promise.all(jobs);
 }
 
 function placeDogPolicyLabel(policy) {

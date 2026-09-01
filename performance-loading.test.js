@@ -17,7 +17,7 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(runtime).toContain('Promise.all([loadStyle(), loadScript()])');
   });
 
-  test('homepage and detail map scheduling includes secondary POIs', () => {
+  test('homepage lazy-loads hidden POIs while detail scheduling includes trail-adjacent POIs', () => {
     const homepage = read('script.js');
     const detail = read('trail.js');
     expect(homepage).toContain('function scheduleGuestMap()');
@@ -25,6 +25,16 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(homepage).toContain("renderGondolas(guestMapInstance, 'guest-gondolas', { visible: false })");
     expect(homepage).toContain('const overlayStates = { routes: true, lifts: false');
     expect(homepage).toContain('onIdle(loadSecondaryMapData, 5000)');
+    const secondaryMapData = homepage.slice(
+      homepage.indexOf('const loadSecondaryMapData = () =>'),
+      homepage.indexOf("if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.onIdle(loadSecondaryMapData, 5000)")
+    );
+    expect(secondaryMapData).not.toContain('initializeWaterSources');
+    expect(secondaryMapData).not.toContain('initializeHutsBars');
+    expect(homepage).toContain("if(key === 'fountains') return initializeWaterSources(map)");
+    expect(homepage).toContain("if(key === 'huts' || key === 'barsCafes') return initializeHutsBars(map)");
+    expect(homepage).toContain('if(waterSourcesLoads.has(map)) return waterSourcesLoads.get(map)');
+    expect(homepage).toContain('if(hutsBarsLoads.has(map)) return hutsBarsLoads.get(map)');
     expect(homepage.indexOf("renderGondolas(trailMapInstance, 'trailmap-gondolas')"))
       .toBeGreaterThan(homepage.indexOf('const loadSecondaryMapData = () =>'));
     expect(homepage).toContain("overlayControls.sync('lifts')");
