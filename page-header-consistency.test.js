@@ -49,6 +49,21 @@ describe('primary section page headers', () => {
     expect(css).toMatch(/\.section-page-head h1\s*\{[^}]*font-size:38px;/s);
   });
 
+  test.each(['collections.html', 'safety-guide.html', 'journal.html'])('%s follows the Browse trails horizontal canvas', file => {
+    document.body.innerHTML = fs.readFileSync(path.join(__dirname, file), 'utf8');
+
+    expect(document.querySelector('.section-page-head').classList.contains('browse-canvas-head')).toBe(true);
+    expect(document.querySelector('.section-page-wrap').classList.contains('browse-canvas-wrap')).toBe(true);
+  });
+
+  test('the Browse canvas preserves its desktop and mobile gutters', () => {
+    const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+    expect(css).toMatch(/\[class\]\.section-page-head\.browse-canvas-head\{[^}]*max-width:1680px;[^}]*padding-left:clamp\(24px,3vw,44px\);[^}]*padding-right:clamp\(24px,3vw,44px\);/s);
+    expect(css).toMatch(/\[class\]\.section-page-wrap\.browse-canvas-wrap\{[^}]*max-width:1680px;[^}]*padding-left:clamp\(24px,3vw,44px\);[^}]*padding-right:clamp\(24px,3vw,44px\);/s);
+    expect(css).toMatch(/@media\(max-width:760px\)[\s\S]*\[class\]\.section-page-head\.browse-canvas-head\{padding-left:18px;padding-right:18px;\}/);
+    expect(css).toMatch(/@media\(max-width:760px\)[\s\S]*\[class\]\.section-page-wrap\.browse-canvas-wrap\{padding-left:16px;padding-right:16px;\}/);
+  });
+
   test.each(editorialPages)('%s uses the same outer title and description margins', file => {
     document.body.innerHTML = fs.readFileSync(path.join(__dirname, file), 'utf8');
 

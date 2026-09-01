@@ -243,6 +243,18 @@ img,svg{max-width:100%;height:auto;}
 /* The matching content column under a section-page-head: every section
    page shares this one wrap so gutters and rhythm stay identical. */
 .section-page-wrap{max-width:var(--wrap);margin:0 auto;padding:8px var(--wrap-gutter) 60px;}
+/* Primary discovery pages follow the wider Browse trails canvas. Keep the
+   title and the content below it on the same left and right edges. */
+[class].section-page-head.browse-canvas-head{
+  max-width:1680px;
+  padding-left:clamp(24px,3vw,44px);
+  padding-right:clamp(24px,3vw,44px);
+}
+[class].section-page-wrap.browse-canvas-wrap{
+  max-width:1680px;
+  padding-left:clamp(24px,3vw,44px);
+  padding-right:clamp(24px,3vw,44px);
+}
 @media(max-width:760px){
   [class].content-canvas{padding-left:16px;padding-right:16px;}
   [class].content-canvas.section-page-head,
@@ -252,6 +264,8 @@ img,svg{max-width:100%;height:auto;}
   .section-page-subtitle{font-size:14px;white-space:normal;text-wrap:pretty;}
   .section-page-head--actions{align-items:flex-start;flex-direction:column;gap:14px;}
   .section-page-wrap{padding:10px 16px 44px;}
+  [class].section-page-head.browse-canvas-head{padding-left:18px;padding-right:18px;}
+  [class].section-page-wrap.browse-canvas-wrap{padding-left:16px;padding-right:16px;}
   .guide-hero.section-page-head,
   .compare-hero.section-page-head,
   .apg-hero.section-page-head,
