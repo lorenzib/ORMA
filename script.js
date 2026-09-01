@@ -2703,19 +2703,24 @@ if(mapCalloutClose){
 function showMapCallout(t){
   const callout = document.getElementById('mapCallout');
   if(!callout) return;
+  const trailUrl = 'trail.html?id=' + encodeURIComponent(t.id);
   const thumb = document.getElementById('mapCalloutThumb');
-  if(thumb) thumb.innerHTML = trailCardVisual(t, { className:'li-thumb photo' });
+  if(thumb){
+    thumb.innerHTML = trailCardVisual(t, { className:'li-thumb photo' });
+    thumb.href = trailUrl;
+    thumb.setAttribute('aria-label', `Open ${t.name} trail details`);
+  }
   const kickEl = document.getElementById('mapCalloutKick');
   if(kickEl) kickEl.textContent = [t.valley, t.area].filter(Boolean).join(' · ');
   const nameEl = document.getElementById('mapCalloutName');
   nameEl.textContent = t.name;
-  nameEl.href = 'trail.html?id=' + encodeURIComponent(t.id);
+  nameEl.href = trailUrl;
   const metaEl = document.getElementById('mapCalloutMeta');
   if(metaEl) metaEl.textContent = liRowMeta(t);
   const ratingEl = document.getElementById('mapCalloutRating');
   if(ratingEl) ratingEl.innerHTML = `<span class="safety-badge ${safetyClass(t.safetyLevel)}">${trailSafetyLabel(t)}</span>`;
   const openEl = document.getElementById('mapCalloutOpen');
-  if(openEl) openEl.href = 'trail.html?id=' + encodeURIComponent(t.id);
+  if(openEl) openEl.href = trailUrl;
   // Directions is a destination-only handoff, same as the list rows: straight
   // to Google Maps, with a two-app chooser on Apple devices.
   const directionsEl = document.getElementById('mapCalloutDirections');
