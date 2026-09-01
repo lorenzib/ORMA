@@ -182,7 +182,7 @@ describe('trail page map controls', () => {
     expect(html).toContain('veterinary-care.js?v=20260831-2');
     expect(html).toContain('trail.js?v=20260901-3');
     expect(html).toContain('trail-reports.js?v=20260820-2');
-    expect(html).toContain('trail-blueprint.js?v=20260826-1');
+    expect(html).toContain('trail-blueprint.js?v=20260901-1');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
     expect(html).toContain('offline-packages.js?v=20260819-6');
     expect(html).toContain('trail-detail-ui.js?v=20260826-1');
@@ -272,6 +272,11 @@ describe('trail page map controls', () => {
     expect(gettingThere.querySelector('.td2-kick').textContent.trim()).toBe('Getting there');
     expect(gettingThere.parentElement.id).toBe('td2AboutCard');
     expect(gettingThere.classList.contains('td2-card')).toBe(false);
+    expect(html).toContain('trail-route-refs.js?v=20260901-1');
+    const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
+    expect(blueprint).toContain("t:routeRefs.length ? 'Trail numbers to follow' : 'Trail numbers'");
+    expect(blueprint).toContain('Numbered waymarks are not yet verified for this route.');
+    expect(html).toContain('.td2-route-ref{display:inline-flex;');
     expect(document.getElementById('addReportBtn').textContent).toContain('Report a hazard');
     expect(html).toContain('.td2-content-column,.td2-sidebar-column{display:contents;}');
     expect(html).not.toContain('class="td2-lower-grid"');

@@ -599,8 +599,27 @@
     const lat = typeof sp.lat === 'number' ? sp.lat : t.lat;
     const lng = typeof sp.lng === 'number' ? sp.lng : t.lng;
     const pin = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2E4034" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>';
+    const routeRefs = window.DoloPawsTrailRouteRefs
+      ? window.DoloPawsTrailRouteRefs.forTrail(t)
+      : [];
+    const routeRefMarkup = routeRefs.length
+      ? `<div class="td2-route-ref-list" aria-label="Trail numbers in order">${routeRefs.map((ref, index) =>
+          `${index ? '<span class="td2-route-ref-arrow" aria-hidden="true">→</span>' : ''}<span class="td2-route-ref">${esc(ref)}</span>`
+        ).join('')}</div><div class="s">Follow these numbered waymarks in order and confirm the destination name at each junction.</div>`
+      : '<div class="s">Numbered waymarks are not yet verified for this route. Follow the mapped line and confirm destination names on local signs.</div>';
+    const routeCard = {
+      ic:'',
+      t:routeRefs.length ? 'Trail numbers to follow' : 'Trail numbers',
+      s:routeRefMarkup,
+      routeRefs:true,
+    };
+    const renderCards = cards => cards.map(c => `<div class="td2-park${c.routeRefs ? ' td2-route-refs' : ''}"><span class="ic">${c.ic}</span><div><div class="t">${esc(c.t)}</div>${c.routeRefs ? c.s : `<div class="s">${c.s}</div>`}</div></div>`).join('');
     if (typeof lat !== 'number' || typeof lng !== 'number') {
-      grid.innerHTML = `<div class="td2-park"><span class="ic">${pin}</span><div><div class="t">Getting there</div><div class="s">Trailhead directions are not yet available for this route.</div></div></div>`;
+      grid.innerHTML = renderCards([{
+        ic:pin,
+        t:'Recommended starting point',
+        s:'Trailhead directions are not yet available for this route.',
+      }, routeCard]);
       if (maps) maps.hidden = true;
       card.hidden = false;
       return;
@@ -611,8 +630,8 @@
       ic:pin,
       t:'Recommended starting point',
       s:`Head to ${esc(startLabel)}. Use the directions link to navigate to the route start.`,
-    }];
-    grid.innerHTML = cards.map(c => `<div class="td2-park"><span class="ic">${c.ic}</span><div><div class="t">${esc(c.t)}</div><div class="s">${c.s}</div></div></div>`).join('');
+    }, routeCard];
+    grid.innerHTML = renderCards(cards);
     if (maps) maps.hidden = false;
     wireTrailheadDirections(maps, $('td2MapsStatus'));
     card.hidden = false;
