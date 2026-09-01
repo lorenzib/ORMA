@@ -332,13 +332,14 @@ describe('map-first returning homepage layout contract', () => {
 
   test('uses a deliberate mobile filter row and compact map controls', () => {
     expect(html).toContain('<div class="li-mobile-actions" aria-label="Trail actions">');
-    expect(mobileCss).toContain('body.mhome-active .li-mobile-actions{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));');
-    expect(mobileCss).toContain('body.mhome-active .li-quick-filters{grid-column:1/3;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));');
-    expect(mobileCss).toContain('body.mhome-active #liQuickWater{grid-column:1;grid-row:1;}');
-    expect(mobileCss).toContain('body.mhome-active #liQuickShade{grid-column:2;grid-row:1;}');
+    expect(mobileCss).toContain('body.mhome-active .li-toolbar-greet-copy{display:flex;min-width:0;flex-direction:column;');
+    expect(mobileCss).toContain('body.mhome-active .li-search{grid-column:1/5;grid-row:2;');
+    expect(mobileCss).toContain('body.mhome-active .li-mobile-actions{display:contents;}');
+    expect(mobileCss).toContain('body.mhome-active .li-quick-filters{display:none;}');
     expect(mobileCss).toContain('body.mhome-active #liFiltersWrap,');
-    expect(mobileCss).toContain('body.mhome-active .li-plan-route{display:none;}');
-    expect(mobileCss).toContain('body.mhome-active .li-saved-only{grid-column:3;grid-row:1;');
+    expect(mobileCss).toContain('body.mhome-active .li-saved-only{grid-column:5/7;grid-row:2;');
+    expect(mobileCss).toContain('body.mhome-active .li-plan-route{grid-column:1/4;grid-row:4;display:inline-flex;');
+    expect(mobileCss).toContain('body.mhome-active .li-record{grid-column:4/7;grid-row:4;display:inline-flex!important;');
     expect(mobileCss).toContain('body.mhome-active .li-menuwrap.li-has-selection .li-geo-copy .li-control-kicker{display:none;}');
     expect(mobileCss).toContain('body.mhome-active #liValleyWrap:not(.li-has-selection) #liValleyLabel{display:none;}');
     expect(mobileCss).toContain('body.mhome-active .li-saved-count{display:grid;');
