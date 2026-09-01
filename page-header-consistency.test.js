@@ -87,6 +87,9 @@ describe('primary section page headers', () => {
 
     expect(document.querySelector('#how-scoring-works').classList.contains('scoring-article')).toBe(true);
     expect(html).toMatch(/\.scoring-article\s*\{[^}]*max-width:var\(--wrap\)/s);
+    expect(html).toContain('.scoring-article [data-lang-block]>.guide-section{padding-top:18px;}');
+    expect(html).toContain('images/editorial/scoring-dogs/bruna-labrador.png');
+    expect(html).toContain('images/editorial/scoring-dogs/luna-border-collie.png');
     // Intro copy runs the full card width rather than stopping short of it.
     expect(html).toMatch(/\.scoring-article \.guide-section > p\s*\{[^}]*max-width:none/s);
   });

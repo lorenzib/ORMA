@@ -37,7 +37,7 @@
   .sc-sources p{margin:8px 0 0;line-height:1.55;}
   .sc-sources a{color:inherit;}
   /* Card grids reusing the catalogue's colour system */
-  .scoring-article [data-lang-block]>.guide-section{padding-top:0;}
+  .scoring-article [data-lang-block]>.guide-section{padding-top:18px;}
   .scoring-article h2{font-size:clamp(26px,2.7vw,34px);line-height:1.08;letter-spacing:-.03em;}
   .sc-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;}
   .sc-card{background:var(--card,#fff);border:1px solid var(--paper-line,#E5DECF);border-radius:18px;padding:20px;box-shadow:0 12px 34px rgba(46,64,52,.055);}
@@ -54,7 +54,7 @@
   .sc-dogtab{display:flex;align-items:center;gap:12px;text-align:left;cursor:pointer;padding:12px 14px;border:1.5px solid var(--paper-line,#E5DECF);border-radius:14px;background:var(--card,#fff);font-family:'Inter',sans-serif;transition:border-color .15s,box-shadow .15s,background .15s;}
   .sc-dogtab:hover{border-color:#C9BFA6;}
   .sc-dogtab.is-on{border-color:#4A7856;background:#F2F6F1;box-shadow:0 4px 14px rgba(74,120,86,.13);}
-  .sc-dogface{flex:none;border-radius:50%;}
+  .sc-dogface{flex:none;width:46px;height:46px;border-radius:50%;object-fit:cover;}
   .sc-dogname{display:block;font:700 14px 'Inter',sans-serif;color:var(--ink,#22312A);}
   .sc-dogname small{display:block;margin-top:2px;font:500 12px/1.45 'Inter',sans-serif;color:var(--ink-soft,#6b6350);}
   .sc-dogpanel{margin:12px 0 0;background:#FDFBF5;border:1px solid var(--paper-line,#E5DECF);border-radius:16px;padding:20px 22px;}
@@ -118,20 +118,14 @@
   .sc-status-card[open] summary:after{content:"−";}
   .sc-status-card p{margin:0;padding:0 14px 13px;font-size:13px;line-height:1.55;color:#52665A;}
   .sc-community-note{font-size:11.5px;line-height:1.5;}
-  .sc-methodology{margin-top:14px;border-top:1px solid #E5E0D5;}
-  .sc-methodology summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0 0;font:700 12px/1.3 'Inter',sans-serif;color:#52665A;}
-  .sc-methodology summary::-webkit-details-marker{display:none;}
-  .sc-methodology summary:after{content:"+";font:400 22px/1 'Inter',sans-serif;}
-  .sc-methodology[open] summary:after{content:"−";}
-  .sc-methodology-content{padding:15px 0 0;}
-  .sc-methodology-content p{margin:0;font-size:11.5px;line-height:1.7;color:#607266;max-width:none;}
-  .sc-methodology-content strong{color:#52665A;}
+  .sc-limits{margin:18px 2px 30px;padding-top:16px;border-top:1px solid #D9D3C6;font-size:12px;line-height:1.7;color:#607266;}
   @media(max-width:900px){
     .sc-terrain-figure{grid-template-columns:1fr;}
     .sc-terrain-figure img{height:300px;}
   }
   @media(max-width:700px){
     .scoring-article{padding-left:16px;padding-right:16px;}
+    .scoring-article [data-lang-block]>.guide-section{padding-top:14px;}
     .sc-inline-score{grid-template-columns:1fr;row-gap:8px;}
     .sc-inline-score .scoring-card-copy{grid-column:1;grid-row:auto;transform:none;}
     .sc-stepnav{top:64px;}
@@ -276,10 +270,10 @@
       <div class="sc-dogs" data-sc-dogs>
         <div class="sc-dogtabs" role="tablist" aria-label="Choose a dog">
           <button type="button" class="sc-dogtab is-on" data-dog="bruna" role="tab" aria-selected="true">
-            <svg class="sc-dogface" viewBox="0 0 64 64" width="46" height="46" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#F0E4CC"/><ellipse cx="15" cy="35" rx="7" ry="13" fill="#B5813C"/><ellipse cx="49" cy="35" rx="7" ry="13" fill="#B5813C"/><ellipse cx="32" cy="32" rx="17" ry="16" fill="#E3B36A"/><ellipse cx="32" cy="41" rx="10" ry="8" fill="#F5E2BE"/><ellipse cx="32" cy="36.5" rx="3.4" ry="2.6" fill="#4A3524"/><path d="M32 39.5v2.5" stroke="#4A3524" stroke-width="1.5" stroke-linecap="round"/><path d="M28 44.5c1.6 1.6 6.4 1.6 8 0" fill="none" stroke="#4A3524" stroke-width="1.5" stroke-linecap="round"/><circle cx="25" cy="28" r="2.4" fill="#3A2A1B"/><circle cx="39" cy="28" r="2.4" fill="#3A2A1B"/></svg><span class="sc-dogname">Bruna<small>9 years, Labrador, moderate fitness, feels the heat</small></span>
+            <img class="sc-dogface" src="images/editorial/scoring-dogs/bruna-labrador.png" width="46" height="46" alt="Bruna, a senior yellow Labrador"><span class="sc-dogname">Bruna<small>9 years, Labrador, moderate fitness, feels the heat</small></span>
           </button>
           <button type="button" class="sc-dogtab" data-dog="luna" role="tab" aria-selected="false">
-            <svg class="sc-dogface" viewBox="0 0 64 64" width="46" height="46" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#E4EAE1"/><ellipse cx="15" cy="31" rx="6.5" ry="12" fill="#332F2C"/><ellipse cx="49" cy="31" rx="6.5" ry="12" fill="#332F2C"/><ellipse cx="32" cy="32" rx="17" ry="16" fill="#332F2C"/><path d="M32 16.5c3.4 0 5.2 5.4 5.2 11.2 0 5.4-2 8.8-5.2 8.8s-5.2-3.4-5.2-8.8c0-5.8 1.8-11.2 5.2-11.2z" fill="#F6F3EA"/><ellipse cx="32" cy="41" rx="9.5" ry="7.5" fill="#F6F3EA"/><ellipse cx="32" cy="36.5" rx="3.2" ry="2.4" fill="#332F2C"/><path d="M32 39.5v2.5" stroke="#332F2C" stroke-width="1.5" stroke-linecap="round"/><path d="M28 44.5c1.6 1.6 6.4 1.6 8 0" fill="none" stroke="#332F2C" stroke-width="1.5" stroke-linecap="round"/><circle cx="24.5" cy="28" r="2.4" fill="#F6F3EA"/><circle cx="39.5" cy="28" r="2.4" fill="#3A2A1B"/></svg><span class="sc-dogname">Luna<small>3 years, border collie, high fitness, never tired</small></span>
+            <img class="sc-dogface" src="images/editorial/scoring-dogs/luna-border-collie.png" width="46" height="46" alt="Luna, a young black-and-white border collie"><span class="sc-dogname">Luna<small>3 years, border collie, high fitness, never tired</small></span>
           </button>
         </div>
         <div class="sc-dogpanel" data-panel="bruna">
@@ -319,16 +313,11 @@
           </details>
         </div>
         <p class="sc-note sc-community-note" style="margin-top:24px;">Community reports (livestock guard dogs, dry fountains, a lift that refused a dog) appear alongside our ratings and never silently change them. What we verified stays visible; what hikers report stays attributed to hikers.</p>
-        <details class="sc-methodology">
-          <summary>Scoring methodology and limits</summary>
-          <div class="sc-methodology-content">
-            <p><strong>The score's boundaries.</strong> Only declared, structured facts move the score; free notes and temperament do not. The score surfaces risks early, but the decision is always yours. It cannot see today's weather or your dog's mood, so when in doubt, choose the gentler trail. <strong>What the numbers are based on.</strong> The rules follow published veterinary research on heat risk, joint and back health, and life-stage exercise. The exact point values are ORMA's own calibration, and your vet's advice about your own dog always comes first.</p>
-          </div>
-        </details>
         </div>
         </details>
       </section>
     </div>
+    <p class="sc-limits">Only declared, structured facts move the score; free notes and temperament do not. The score surfaces risks early, but the decision is always yours. It cannot see today's weather or your dog's mood, so when in doubt, choose the gentler trail. The rules follow published veterinary research on heat risk, joint and back health, and life-stage exercise. The exact point values are ORMA's own calibration, and your vet's advice about your own dog always comes first.</p>
   </div>
   <div data-lang-block="it" hidden>
 
@@ -443,10 +432,10 @@
       <div class="sc-dogs" data-sc-dogs>
         <div class="sc-dogtabs" role="tablist" aria-label="Scegli un cane">
           <button type="button" class="sc-dogtab is-on" data-dog="bruna" role="tab" aria-selected="true">
-            <svg class="sc-dogface" viewBox="0 0 64 64" width="46" height="46" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#F0E4CC"/><ellipse cx="15" cy="35" rx="7" ry="13" fill="#B5813C"/><ellipse cx="49" cy="35" rx="7" ry="13" fill="#B5813C"/><ellipse cx="32" cy="32" rx="17" ry="16" fill="#E3B36A"/><ellipse cx="32" cy="41" rx="10" ry="8" fill="#F5E2BE"/><ellipse cx="32" cy="36.5" rx="3.4" ry="2.6" fill="#4A3524"/><path d="M32 39.5v2.5" stroke="#4A3524" stroke-width="1.5" stroke-linecap="round"/><path d="M28 44.5c1.6 1.6 6.4 1.6 8 0" fill="none" stroke="#4A3524" stroke-width="1.5" stroke-linecap="round"/><circle cx="25" cy="28" r="2.4" fill="#3A2A1B"/><circle cx="39" cy="28" r="2.4" fill="#3A2A1B"/></svg><span class="sc-dogname">Bruna<small>9 anni, labrador, forma moderata, soffre il caldo</small></span>
+            <img class="sc-dogface" src="images/editorial/scoring-dogs/bruna-labrador.png" width="46" height="46" alt="Bruna, una labrador anziana dal mantello giallo"><span class="sc-dogname">Bruna<small>9 anni, labrador, forma moderata, soffre il caldo</small></span>
           </button>
           <button type="button" class="sc-dogtab" data-dog="luna" role="tab" aria-selected="false">
-            <svg class="sc-dogface" viewBox="0 0 64 64" width="46" height="46" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#E4EAE1"/><ellipse cx="15" cy="31" rx="6.5" ry="12" fill="#332F2C"/><ellipse cx="49" cy="31" rx="6.5" ry="12" fill="#332F2C"/><ellipse cx="32" cy="32" rx="17" ry="16" fill="#332F2C"/><path d="M32 16.5c3.4 0 5.2 5.4 5.2 11.2 0 5.4-2 8.8-5.2 8.8s-5.2-3.4-5.2-8.8c0-5.8 1.8-11.2 5.2-11.2z" fill="#F6F3EA"/><ellipse cx="32" cy="41" rx="9.5" ry="7.5" fill="#F6F3EA"/><ellipse cx="32" cy="36.5" rx="3.2" ry="2.4" fill="#332F2C"/><path d="M32 39.5v2.5" stroke="#332F2C" stroke-width="1.5" stroke-linecap="round"/><path d="M28 44.5c1.6 1.6 6.4 1.6 8 0" fill="none" stroke="#332F2C" stroke-width="1.5" stroke-linecap="round"/><circle cx="24.5" cy="28" r="2.4" fill="#F6F3EA"/><circle cx="39.5" cy="28" r="2.4" fill="#3A2A1B"/></svg><span class="sc-dogname">Luna<small>3 anni, border collie, forma alta, mai stanca</small></span>
+            <img class="sc-dogface" src="images/editorial/scoring-dogs/luna-border-collie.png" width="46" height="46" alt="Luna, una giovane border collie bianca e nera"><span class="sc-dogname">Luna<small>3 anni, border collie, forma alta, mai stanca</small></span>
           </button>
         </div>
         <div class="sc-dogpanel" data-panel="bruna">
@@ -486,16 +475,11 @@
           </details>
         </div>
         <p class="sc-note sc-community-note" style="margin-top:24px;">Le segnalazioni della comunità (cani da guardiania, fontane asciutte, un impianto che ha rifiutato un cane) compaiono accanto alle nostre valutazioni e non le cambiano mai in silenzio. Ciò che abbiamo verificato resta visibile; ciò che segnalano gli escursionisti resta attribuito a loro.</p>
-        <details class="sc-methodology">
-          <summary>Metodo e limiti del punteggio</summary>
-          <div class="sc-methodology-content">
-            <p><strong>I limiti del punteggio.</strong> Solo i dati strutturati dichiarati muovono il punteggio; le note libere e il temperamento no. Il punteggio fa emergere i rischi, ma la decisione resta sempre tua. Non vede il meteo di oggi né l'umore del cane: nel dubbio, scegli il sentiero più gentile. <strong>Su cosa si basano i numeri.</strong> Le regole seguono la ricerca veterinaria pubblicata su rischio da calore, salute di articolazioni e schiena, ed esercizio per fascia d'età. I valori esatti dei punti sono la calibrazione di ORMA, e il parere del tuo veterinario sul tuo cane viene sempre prima.</p>
-          </div>
-        </details>
         </div>
         </details>
       </section>
     </div>
+    <p class="sc-limits">Solo i dati strutturati dichiarati muovono il punteggio; le note libere e il temperamento no. Il punteggio fa emergere i rischi, ma la decisione resta sempre tua. Non vede il meteo di oggi né l'umore del cane: nel dubbio, scegli il sentiero più gentile. Le regole seguono la ricerca veterinaria pubblicata su rischio da calore, salute di articolazioni e schiena, ed esercizio per fascia d'età. I valori esatti dei punti sono la calibrazione di ORMA, e il parere del tuo veterinario sul tuo cane viene sempre prima.</p>
   </div>
 </div>
 

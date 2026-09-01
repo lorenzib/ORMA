@@ -69,9 +69,10 @@ describe('empty states and long-form navigation', () => {
     expect(en.querySelector('.sc-verification > summary').textContent).toContain('Verified or imported');
     expect(en.querySelectorAll('.sc-panel > .guide-section > h2')).toHaveLength(0);
     expect(en.querySelector('.sc-community-note')).not.toBeNull();
-    expect(en.querySelectorAll('.sc-methodology-content p')).toHaveLength(1);
-    expect(en.querySelector('.sc-methodology-content p').textContent).toContain("The score's boundaries");
-    expect(en.querySelector('.sc-methodology-content p').textContent).toContain('What the numbers are based on');
+    expect(en.querySelectorAll('.sc-methodology-content')).toHaveLength(0);
+    expect(en.querySelectorAll(':scope > .sc-limits')).toHaveLength(1);
+    expect(en.querySelector('.sc-limits').textContent).toContain('Only declared, structured facts move the score');
+    expect(en.querySelector('.sc-limits strong')).toBeNull();
     expect(document.querySelector('.guide-page-nav[data-generated]')).toBeNull();
   });
 

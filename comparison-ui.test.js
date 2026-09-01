@@ -30,6 +30,11 @@ describe('Trail comparison journey', () => {
     expect(page).toContain('Unknown means ORMA does not have enough reviewed evidence');
   });
 
+  test('uses the same wide responsive canvas as Collections', () => {
+    expect(page).toContain('class="compare-hero section-page-head content-canvas browse-canvas-head"');
+    expect(page).toContain('class="compare-wrap section-page-wrap content-canvas browse-canvas-wrap"');
+  });
+
   test('mobile comparison scrolls with sticky labels', () => {
     expect(page).toContain('@media(max-width:700px)');
     expect(page).toContain('.compare-scroll{overflow-x:auto');
