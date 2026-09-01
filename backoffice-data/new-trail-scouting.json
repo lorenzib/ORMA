@@ -1,11 +1,12 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-08-20T10:00:02.312Z",
+  "generatedAt": "2026-09-01T09:25:24.628Z",
   "mode": "candidate-only",
   "publicMutationAllowed": false,
   "policy": {
     "loopsRequired": true,
     "maxDistanceKm": 12,
+    "primaryRegion": "dolomites",
     "expandFromExistingAreasFirst": true,
     "animalSuitabilityRequiresVerification": true
   },
@@ -45,6 +46,8 @@
   ],
   "summary": {
     "candidates": 1,
+    "primaryRegion": "dolomites",
+    "primaryRegionCandidates": 0,
     "existingArea": 1,
     "adjacentArea": 0,
     "newArea": 0

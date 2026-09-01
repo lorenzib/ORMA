@@ -894,6 +894,7 @@
     "id": 12371786,
     "name": "Col de Névache - ?",
     "reasons": [
+      "contains T3+/ferrata/ladder/dog=no way",
       "not a loop (loops-only mode)"
     ]
   },
@@ -1952,13 +1953,6 @@
   {
     "id": 17877712,
     "name": "Grand Tour de Tarentaise - 1. Val d'Isère -> Col du Palet",
-    "reasons": [
-      "not a loop (loops-only mode)"
-    ]
-  },
-  {
-    "id": 17877713,
-    "name": "Grand Tour de Tarentaise - Traversée de la Vanoise de refuge en refuge",
     "reasons": [
       "not a loop (loops-only mode)"
     ]

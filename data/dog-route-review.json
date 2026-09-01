@@ -1902,13 +1902,6 @@
     ]
   },
   {
-    "id": 5999432,
-    "name": "Sentiero per Cupolà di sopra",
-    "reasons": [
-      "not a loop (loops-only mode)"
-    ]
-  },
-  {
     "id": 6042814,
     "name": "Sentiero dell'Ardo",
     "reasons": [
@@ -2460,6 +2453,13 @@
     ]
   },
   {
+    "id": 7191637,
+    "name": "Sentiero Cembra - Pinè",
+    "reasons": [
+      "not a loop (loops-only mode)"
+    ]
+  },
+  {
     "id": 7204041,
     "name": "Sentiero del Piz dele Agole",
     "reasons": [
@@ -2615,6 +2615,13 @@
     ]
   },
   {
+    "id": 7277805,
+    "name": "Waltner Rundweg - 12 - Sentiero circolare di Valtina - 12",
+    "reasons": [
+      "contains T3+/ferrata/ladder/dog=no way"
+    ]
+  },
+  {
     "id": 7284808,
     "name": "Waalweg",
     "reasons": [
@@ -2641,6 +2648,7 @@
     "id": 7296387,
     "name": "Via ferrata a Cima Campagnacia",
     "reasons": [
+      "contains T3+/ferrata/ladder/dog=no way",
       "not a loop (loops-only mode)"
     ]
   },
@@ -5906,6 +5914,13 @@
     ]
   },
   {
+    "id": 13507662,
+    "name": "Nik Trail",
+    "reasons": [
+      "not a loop (loops-only mode)"
+    ]
+  },
+  {
     "id": 13509581,
     "name": "Sentiero della sensibilità",
     "reasons": [
@@ -8056,7 +8071,7 @@
   },
   {
     "id": 20017003,
-    "name": "Via Alpina Stage 26: Silianer Hütte - Drei-Zinnen-Hütte / Rifugio Locatelli",
+    "name": "Via Alpina",
     "reasons": [
       "contains T3+/ferrata/ladder/dog=no way",
       "not a loop (loops-only mode)"
@@ -8073,6 +8088,35 @@
   {
     "id": 20608593,
     "name": "Sentiero Frassati",
+    "reasons": [
+      "not a loop (loops-only mode)"
+    ]
+  },
+  {
+    "id": 21148386,
+    "name": "Discesa alpinistica dalla Pala",
+    "reasons": [
+      "contains T3+/ferrata/ladder/dog=no way",
+      "not a loop (loops-only mode)"
+    ]
+  },
+  {
+    "id": 21241937,
+    "name": "Panoramica",
+    "reasons": [
+      "not a loop (loops-only mode)"
+    ]
+  },
+  {
+    "id": 21241992,
+    "name": "Passeggiata Lungoboite",
+    "reasons": [
+      "not a loop (loops-only mode)"
+    ]
+  },
+  {
+    "id": 21242578,
+    "name": "Il Sentiero dei Suoni",
     "reasons": [
       "not a loop (loops-only mode)"
     ]
