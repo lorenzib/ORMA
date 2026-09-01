@@ -353,7 +353,7 @@ describe('map-first returning homepage layout contract', () => {
   });
 
   test('groups card actions on the left and gives the dog match a larger right panel', () => {
-    expect(css).toMatch(/@media \(min-width:641px\)[\s\S]*?\.li-row\{[\s\S]*?display:grid;[\s\S]*?grid-template-columns:66px minmax\(0,1fr\) minmax\(168px,196px\) 34px;/);
+    expect(css).toMatch(/@media \(min-width:641px\)[\s\S]*?\.li-row\{[\s\S]*?display:grid;[\s\S]*?grid-template-columns:66px minmax\(0,1fr\) minmax\(144px,168px\) 34px;/);
     expect(css).toMatch(/\.li-match\{[\s\S]*?grid-column:3;[\s\S]*?grid-row:1\/3;/);
     expect(css).not.toContain('.li-match-reason');
     expect(css).toMatch(/\.li-heart\{grid-column:4;grid-row:1\/3;align-self:center;\}/);

@@ -3494,7 +3494,7 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 @media (min-width:641px){
   .li-row{
     display:grid;
-    grid-template-columns:66px minmax(0,1fr) minmax(168px,196px) 34px;
+    grid-template-columns:66px minmax(0,1fr) minmax(144px,168px) 34px;
     grid-template-rows:auto auto;
     align-items:center;
   }
