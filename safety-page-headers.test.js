@@ -7,11 +7,11 @@ const pages = [
   ['altitude-with-your-dog.html', 'altitude-with-your-dog-v1.jpg'],
   ['breed-group-caveats.html', 'breed-group-considerations-dogs-v3.jpg'],
   ['dogs-on-cable-cars.html', 'dogs-on-cable-cars-v5.jpg'],
-  ['heat-overheating.html', 'heat-hydration-waterfall-v1.jpg'],
+  ['heat-overheating.html', 'dog-hydration-lake-unbranded-v1.jpg'],
   ['paw-protection.html', 'paw-protection-forest-v1.jpg'],
   ['livestock-guard-dogs.html', 'livestock-guardian-dogs-v1.jpg'],
   ['dogs-at-rifugi.html', 'dogs-at-rifugi.jpg'],
-  ['water-for-dogs-on-trail.html', 'heat-hydration-waterfall-v1.jpg'],
+  ['water-for-dogs-on-trail.html', 'dog-hydration-lake-unbranded-v1.jpg'],
 ];
 
 const safetyArticles = [

@@ -89,7 +89,7 @@ describe('Safety library', () => {
       'images/editorial/safety-library/altitude-with-your-dog-v1.jpg',
       'images/editorial/safety-library/breed-group-considerations-dogs-v3.jpg',
       'images/editorial/safety-library/dogs-on-cable-cars-v5.jpg',
-      'images/editorial/safety-library/heat-hydration-waterfall-v1.jpg',
+      'images/editorial/safety-library/dog-hydration-lake-unbranded-v1.jpg',
       'images/editorial/safety-library/paw-protection-mountain-dog-v2.jpg',
       'images/editorial/safety-library/flowers-plants-dogs.jpg',
       'images/editorial/safety-library/livestock-guardian-dogs-v1.jpg',

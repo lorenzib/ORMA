@@ -67,7 +67,7 @@ describe('shared Safety Library guide visual system', () => {
     document.documentElement.innerHTML = html;
 
     expect(document.querySelector('.safety-photo-header .safety-back-link')).not.toBeNull();
-    expect(document.querySelector('.safety-photo-header__image').getAttribute('src')).toContain('heat-hydration-waterfall-v1.jpg');
+    expect(document.querySelector('.safety-photo-header__image').getAttribute('src')).toContain('dog-hydration-lake-unbranded-v1.jpg');
     expect(document.querySelector('main').classList.contains('water-guide-body')).toBe(true);
     expect(document.querySelectorAll('.water-card')).toHaveLength(4);
     expect(document.querySelectorAll('.water-card--info')).toHaveLength(1);

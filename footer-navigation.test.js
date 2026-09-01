@@ -97,7 +97,7 @@ describe('footer navigation', () => {
 
     publicFooterPages().forEach(file => {
       const html = fs.readFileSync(file, 'utf8');
-      const stylesVersion = '(?:20260823-[12345]|20260825-[12]|20260827-1|20260831-2)';
+      const stylesVersion = '(?:20260823-[12345]|20260825-[12]|20260827-1|20260831-[23])';
       const navigationVersion = '(?:20260823-[12]|20260831-1)';
       expect(html).toMatch(new RegExp(`href="(?:\\.\\.\\/|\\/)?styles\\.css\\?v=${stylesVersion}"`));
       expect(html).toMatch(new RegExp(`src="(?:\\.\\.\\/|\\/)?mobile-nav\\.js\\?v=${navigationVersion}"`));
