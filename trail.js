@@ -2323,6 +2323,19 @@ function renderTrail(t){
             },
           });
         }
+        const routeRefFeatures = window.DoloPawsTrailRouteRefs
+          ? window.DoloPawsTrailRouteRefs.featuresForTrail(t)
+          : [];
+        if(routeRefFeatures.length){
+          map.addSource('single-trail-route-refs', {
+            type:'geojson',
+            data:{ type:'FeatureCollection', features:routeRefFeatures },
+          });
+          window.DoloPawsTrailRouteRefs.addShieldLayer(map, {
+            id:'single-trail-route-number',
+            source:'single-trail-route-refs',
+          });
+        }
         const bounds = new maplibregl.LngLatBounds();
         t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
         map.fitBounds(bounds, { padding: 60, maxZoom: 17 });

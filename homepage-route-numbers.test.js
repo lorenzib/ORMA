@@ -4,6 +4,7 @@ const path = require('path');
 describe('logged-in homepage mapped-route hierarchy', () => {
   const root = __dirname;
   const script = fs.readFileSync(path.join(root, 'script.js'), 'utf8');
+  const routeRefs = fs.readFileSync(path.join(root, 'trail-route-refs.js'), 'utf8');
   const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 
   test('loads route reference extraction before the homepage controller', () => {
@@ -21,15 +22,15 @@ describe('logged-in homepage mapped-route hierarchy', () => {
     expect(script).toContain("13, 5, 16, 7");
   });
 
-  test('uses scalable white shields with black numbers that grow with zoom', () => {
-    expect(script).toContain("id: 'trail-paths-route-number'");
-    expect(script).toContain("source: 'trail-route-refs'");
-    expect(script).toContain("'icon-image': 'orma-route-number-shield'");
-    expect(script).toContain("'icon-text-fit': 'both'");
-    expect(script).toContain("'text-color': '#202821'");
-    expect(script).toContain("8, 12, 12, 14, 16, 18, 19, 22");
-    expect(script).toContain("8, 0.85, 12, 1, 16, 1.2, 19, 1.4");
-    expect(script).toContain('window.DoloPawsTrailRouteRefs.segmentsForTrail(t)');
-    expect(script).toContain('refs.length === 1');
+  test('uses the shared high-contrast route-number shields', () => {
+    expect(script).toContain("id:'trail-paths-route-number'");
+    expect(script).toContain("source:'trail-route-refs'");
+    expect(script).toContain('window.DoloPawsTrailRouteRefs.addShieldLayer');
+    expect(script).toContain('window.DoloPawsTrailRouteRefs.featuresForTrail(t)');
+    expect(routeRefs).toContain("const SHIELD_IMAGE_ID = 'orma-route-number-shield'");
+    expect(routeRefs).toContain("'icon-text-fit':'both'");
+    expect(routeRefs).toContain("'text-color':'#17221B'");
+    expect(routeRefs).toContain('8, 14, 12, 16, 16, 18, 19, 20');
+    expect(routeRefs).toContain('8, 1, 12, 1.08, 16, 1.18, 19, 1.24');
   });
 });

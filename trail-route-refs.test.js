@@ -57,6 +57,19 @@ describe('trail route-number guidance', () => {
     })).toEqual([]);
   });
 
+  test('builds the same line-labelled GeoJSON used by both route maps', () => {
+    const trail = {
+      id:'route-7',
+      ref:'7',
+      path:[[46, 11], [46.1, 11.1]],
+    };
+    expect(refs.featuresForTrail(trail)).toEqual([{
+      type:'Feature',
+      properties:{ id:'route-7', routeRef:'7' },
+      geometry:{ type:'LineString', coordinates:[[11, 46], [11.1, 46.1]] },
+    }]);
+  });
+
   test('exposes switch timing for detailed route guidance', () => {
     const trail = {
       decisionPoints:[

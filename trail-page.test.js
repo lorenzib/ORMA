@@ -195,7 +195,7 @@ describe('trail page map controls', () => {
     expect(html).toContain('trail-access-directions.js?v=20260828-2');
     expect(html).toContain('footpath-router.js?v=20260831-1');
     expect(html).toContain('veterinary-care.js?v=20260831-2');
-    expect(html).toContain('trail.js?v=20260901-10');
+    expect(html).toContain('trail.js?v=20260901-11');
     expect(html).toContain('trail-reports.js?v=20260820-2');
     expect(html).toContain('trail-blueprint.js?v=20260901-3');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
@@ -294,7 +294,8 @@ describe('trail page map controls', () => {
     expect(gettingAround.querySelector('.td2-kick').textContent.trim()).toBe('Getting around');
     expect(gettingAround.previousElementSibling).toBe(gettingThere);
     expect(gettingThere.querySelector('#td2MapsLink').nextElementSibling.id).toBe('td2MapsStatus');
-    expect(html).toContain('trail-route-refs.js?v=20260901-3');
+    expect(html).toContain('trail-route-refs.js?v=20260901-4');
+    expect(html.indexOf('trail-route-refs.js')).toBeLessThan(html.indexOf('trail.js?v='));
     const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
     expect(blueprint).toContain("routeSwitches.length ? 'Trail numbers and switches'");
     expect(blueprint).toContain('Start at ${esc(routeStartLabel)} and follow');
@@ -507,8 +508,9 @@ describe('trail page map controls', () => {
     expect(trail).toContain("return score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25'");
     expect(trail).toContain("'line-color': selectedRouteColor, 'line-width': 13");
     expect(trail).toContain("'line-color': '#858D88'");
-    expect(trail).not.toContain("id: 'single-trail-route-number'");
-    expect(trail).not.toContain("source: 'single-trail-route-refs'");
+    expect(trail).toContain("id:'single-trail-route-number'");
+    expect(trail).toContain("source:'single-trail-route-refs'");
+    expect(trail).toContain('window.DoloPawsTrailRouteRefs.addShieldLayer');
     expect(trail).toContain("}, 'waymarked-hiking-layer');");
     expect(trail).toContain("'raster-resampling': 'linear'");
     expect(trail).toContain("'raster-fade-duration': 120");

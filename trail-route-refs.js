@@ -136,7 +136,89 @@
     return refs.slice(0, 8);
   }
 
-  const api = { forTrail, refsFromText, normaliseRef, segmentsForTrail, switchesForTrail };
+  const SHIELD_IMAGE_ID = 'orma-route-number-shield';
+
+  function featuresForTrail(trail) {
+    const sections = segmentsForTrail(trail);
+    const refs = forTrail(trail);
+    const labelledPaths = sections.length
+      ? sections
+      : (refs.length === 1 && Array.isArray(trail && trail.path)
+        ? [{ ref:refs[0], path:trail.path }]
+        : []);
+    return labelledPaths
+      .filter(section => section.ref && Array.isArray(section.path) && section.path.length > 1)
+      .map(section => ({
+        type:'Feature',
+        properties:{ id:trail.id, routeRef:section.ref },
+        geometry:{ type:'LineString', coordinates:section.path.map(([lat, lng]) => [lng, lat]) },
+      }));
+  }
+
+  function registerShieldImage(map) {
+    if(map.hasImage(SHIELD_IMAGE_ID)) return;
+    const canvas = document.createElement('canvas');
+    canvas.width = 80;
+    canvas.height = 56;
+    const context = canvas.getContext('2d');
+    context.fillStyle = '#FFFFFF';
+    context.fillRect(2, 2, 76, 52);
+    context.strokeStyle = '#17221B';
+    context.lineWidth = 4;
+    context.strokeRect(4, 4, 72, 48);
+    map.addImage(
+      SHIELD_IMAGE_ID,
+      context.getImageData(0, 0, 80, 56),
+      { pixelRatio:2, stretchX:[[16, 64]], stretchY:[[14, 42]], content:[11, 8, 69, 48] }
+    );
+  }
+
+  function addShieldLayer(map, options) {
+    const config = options || {};
+    if(!config.id || !config.source || map.getLayer(config.id)) return;
+    registerShieldImage(map);
+    map.addLayer({
+      id:config.id,
+      type:'symbol',
+      source:config.source,
+      minzoom:8,
+      layout:{
+        'symbol-placement':'line',
+        'symbol-spacing':['interpolate', ['linear'], ['zoom'], 8, 165, 12, 205, 16, 245, 19, 285],
+        'icon-image':SHIELD_IMAGE_ID,
+        'icon-text-fit':'both',
+        'icon-text-fit-padding':[4, 7, 4, 7],
+        'icon-size':['interpolate', ['linear'], ['zoom'], 8, 1, 12, 1.08, 16, 1.18, 19, 1.24],
+        'icon-rotation-alignment':'viewport',
+        'icon-allow-overlap':true,
+        'icon-ignore-placement':true,
+        'text-field':['get', 'routeRef'],
+        'text-font':['Open Sans Bold', 'Arial Unicode MS Bold'],
+        'text-size':['interpolate', ['linear'], ['zoom'], 8, 14, 12, 16, 16, 18, 19, 20],
+        'text-rotation-alignment':'viewport',
+        'text-keep-upright':true,
+        'text-allow-overlap':true,
+        'text-ignore-placement':true,
+      },
+      paint:{
+        'text-color':'#17221B',
+        'text-halo-color':'#FFFFFF',
+        'text-halo-width':0.6,
+      },
+    }, config.beforeId);
+  }
+
+  const api = {
+    forTrail,
+    refsFromText,
+    normaliseRef,
+    segmentsForTrail,
+    switchesForTrail,
+    featuresForTrail,
+    registerShieldImage,
+    addShieldLayer,
+    SHIELD_IMAGE_ID,
+  };
   global.DoloPawsTrailRouteRefs = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);
