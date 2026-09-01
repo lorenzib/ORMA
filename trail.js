@@ -1368,6 +1368,7 @@ function buildItinerary(t){
 const params = new URLSearchParams(window.location.search);
 const trailId = params.get('id');
 const trailReturnTarget = params.get('from');
+const hikeDeepLinkRequested = params.get('hike') === '1';
 let pendingTrailAction = params.get('action');
 let trailActionConsumed = false;
 
@@ -2415,6 +2416,31 @@ function renderTrail(t){
         await detailMapSchedule.start();
         if(window._dolopawsTrailMap) expand.click();
       }, { capture:true });
+    }
+    // QR links open at the top of the trail page, while the map normally
+    // waits until it approaches the viewport. Hike mode is created by the
+    // map's load handler, so a deep link must bypass that visibility gate.
+    if(hikeDeepLinkRequested && detailMapSchedule && detailMapSchedule.start){
+      const hikeLoadStatus = document.createElement('div');
+      hikeLoadStatus.id = 'hikeDeepLinkStatus';
+      hikeLoadStatus.className = 'dw-toast dw-toast--in';
+      hikeLoadStatus.setAttribute('role', 'status');
+      hikeLoadStatus.setAttribute('aria-live', 'polite');
+      hikeLoadStatus.textContent = 'Preparing hike guidance…';
+      document.body.appendChild(hikeLoadStatus);
+      let hikeModeReady = false;
+      const clearHikeLoadStatus = () => {
+        hikeModeReady = true;
+        hikeLoadStatus.remove();
+      };
+      window.addEventListener('dolopaws-hike-mode-ready', clearHikeLoadStatus, { once:true });
+      detailMapSchedule.start();
+      setTimeout(() => {
+        if(hikeModeReady || !hikeLoadStatus.isConnected) return;
+        hikeLoadStatus.textContent = detailMapTarget && detailMapTarget.dataset.mapState === 'error'
+          ? 'Hike guidance could not load. Check your connection and reload this page.'
+          : 'Hike guidance is taking longer than expected. Check your connection and reload this page.';
+      }, 12000);
     }
   } else {
     initDetailMap();

@@ -1303,6 +1303,12 @@ function initHikeMode(map, trail){
   else window.addEventListener('dolopaws-auth-ready', checkForRecovery, { once: true });
   window.addEventListener('dolopaws-auth-changed', checkForRecovery);
 
+  // Lets the QR/deep-link boot path replace its loading message as soon as
+  // the hike controls exist, before the readiness sheet opens.
+  window.dispatchEvent(new CustomEvent('dolopaws-hike-mode-ready', {
+    detail: { trailId: trail.id },
+  }));
+
   // Deep link from the journal's "Track it live instead →": start recording
   // straight away (the browser still gates this behind its location prompt).
   if (new URLSearchParams(window.location.search).get('hike') === '1'){

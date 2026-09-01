@@ -75,7 +75,18 @@ describe('desktop-to-phone handoff',()=>{
     expect(hikeMode).toContain("phoneUrl.searchParams.delete('from')");
     expect(hikeMode).toContain("phoneUrl.hash='start-hike'");
     expect(hikeMode).toContain('window.ORMADeviceHandoff.shouldHandoff()');
+    expect(hikeMode).toContain("'dolopaws-hike-mode-ready'");
     expect(trailPage).toContain('device-handoff.js?v=20260901-1');
-    expect(trailPage).toContain('hike-mode.js?v=20260901-1');
+    expect(trailPage).toContain('hike-mode.js?v=20260901-2');
+  });
+
+  test('a mobile hike deep link bypasses lazy map loading and reports progress',()=>{
+    const trail=fs.readFileSync(path.join(__dirname,'trail.js'),'utf8');
+    expect(trail).toContain("const hikeDeepLinkRequested = params.get('hike') === '1'");
+    expect(trail).toContain('if(hikeDeepLinkRequested && detailMapSchedule && detailMapSchedule.start)');
+    expect(trail).toContain('detailMapSchedule.start()');
+    expect(trail).toContain('Preparing hike guidance…');
+    expect(trail).toContain("'dolopaws-hike-mode-ready'");
+    expect(trail).toContain('Hike guidance is taking longer than expected.');
   });
 });
