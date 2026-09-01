@@ -384,7 +384,7 @@ function initNearestTrailDirections(map, t){
   if(!button || !panel || !status || !Array.isArray(t.path) || !t.path.length ||
      !window.DoloPawsTrailAccess || !window.DoloPawsFootpathRouter) return;
 
-  const defaultLabel = 'Find a walking route';
+  const defaultLabel = 'Get directions to trail';
   const coverage = window.DoloPawsTrailRoutingCoverage;
   const coverageEntry = coverage && coverage.trails ? coverage.trails[t.id] : null;
   const coverageEntries = coverage && coverage.trails
@@ -550,7 +550,7 @@ function initNearestTrailDirections(map, t){
       const origin = await window.DoloPawsTrailAccess.currentPosition(navigator);
       if(Number.isFinite(origin.accuracyM) && origin.accuracyM > window.DoloPawsTrailAccess.MAX_GPS_ACCURACY_M){
         setPanelMessage(`Your location is only accurate to about ${Math.round(origin.accuracyM)} m. Move into a clearer area and try again.`);
-        setButtonLabel('Try location again');
+        setButtonLabel('Try again');
         return;
       }
       const entries = routingEntriesForPoint(target, origin);
@@ -632,7 +632,7 @@ function initNearestTrailDirections(map, t){
 
     button.disabled = true;
     button.setAttribute('aria-busy', 'true');
-    setButtonLabel('Finding a safe route…');
+    setButtonLabel('Calculating directions…');
     clearSteps();
     setPanelMessage('Checking your location against mapped walking paths…');
     try{
@@ -647,7 +647,7 @@ function initNearestTrailDirections(map, t){
       );
       if(plan.mode === 'unreliable-location'){
         setPanelMessage(`Your location is only accurate to about ${Math.round(plan.accuracyM)} m. Move into a clearer area and try again.`);
-        setButtonLabel('Try location again');
+        setButtonLabel('Try again');
         return;
       }
       if(plan.mode === 'mapped-footpath'){
@@ -683,7 +683,7 @@ function initNearestTrailDirections(map, t){
       if(plan.mode === 'recommended-start'){
         const startType = plan.targetKind === 'mapped-start' ? 'listed route start' : 'recommended start';
         setPanelMessage(`The ${startType} is about ${formatApproachDistance(plan.distanceKm)} away. Walking directions are available when you are within 5 km.`);
-        setButtonLabel('Try location again');
+        setButtonLabel('Try again');
         return;
       }
       setPanelMessage('ORMA cannot identify a reliable access point for this trail yet. Use the recommended starting-point information below the map.');

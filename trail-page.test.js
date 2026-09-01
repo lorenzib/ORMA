@@ -180,7 +180,7 @@ describe('trail page map controls', () => {
     expect(html).toContain('trail-access-directions.js?v=20260828-2');
     expect(html).toContain('footpath-router.js?v=20260831-1');
     expect(html).toContain('veterinary-care.js?v=20260831-2');
-    expect(html).toContain('trail.js?v=20260901-2');
+    expect(html).toContain('trail.js?v=20260901-3');
     expect(html).toContain('trail-reports.js?v=20260820-2');
     expect(html).toContain('trail-blueprint.js?v=20260826-1');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
@@ -480,5 +480,16 @@ describe('trail page map controls', () => {
     expect(source).toContain('routingEntriesForPoint(target, origin)');
     expect(source).toContain("plan.mode === 'mapped-point'");
     expect(source).toContain('Open directions to selected point');
+  });
+
+  test('labels and positions automatic trail directions above the map-style switch', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const source = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
+    expect(html).toContain('<span>Get directions to trail</span>');
+    expect(html).toContain('.map-nearest-directions{position:absolute;left:14px;bottom:56px;');
+    expect(html).toContain('.td-layer-switch{position:absolute;bottom:14px;left:14px;');
+    expect(source).toContain("const defaultLabel = 'Get directions to trail'");
+    expect(source).toContain("setButtonLabel('Calculating directions…')");
+    expect(source).toContain("setButtonLabel('Try again')");
   });
 });
