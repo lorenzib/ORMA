@@ -57,7 +57,7 @@ describe('multi-dog account experience', () => {
     expect(source('profile-design.js')).toContain("name.addEventListener('input'");
     expect(source('profile-design.js')).toContain("legacyName.dispatchEvent(new Event('input',{bubbles:true}))");
     expect(page).toContain('placeholder="Your dog\'s name"');
-    expect(page).toContain('profile-design.js?v=20260901-1');
+    expect(page).toContain('profile-design.js?v=20260901-2');
     const manager = source('profile-design.js');
     expect(manager).toContain("attributeFilter:['hidden']");
     expect(manager).not.toContain("{attributes:true,subtree:true}");
@@ -82,6 +82,31 @@ describe('multi-dog account experience', () => {
 
     expect(storedName.value).toBe('Moka');
     expect(saveSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test('add mode stays visibly distinct and keeps the second dog breed editable', () => {
+    window.history.replaceState({}, '', '/account.html?mode=add');
+    document.open();
+    document.write(source('account.html'));
+    document.close();
+    window.t = key => key;
+    window.DOG_BREEDS = ['Briard', 'Border Collie'];
+    window.eval(source('profile-design.js'));
+    window.dispatchEvent(new CustomEvent('dolopaws-account-profile-loaded', { detail:{ profile:{} } }));
+
+    expect(document.getElementById('profileTitle').textContent).toBe('Add another dog');
+
+    const visibleBreed = document.getElementById('profileBreed');
+    const storedBreed = document.getElementById('dogBreed');
+    visibleBreed.value = 'Bri';
+    visibleBreed.dispatchEvent(new Event('input', { bubbles:true }));
+    expect(storedBreed.value).toBe('Bri');
+    document.querySelector('#profileBreedList button').click();
+    expect(storedBreed.value).toBe('Briard');
+    expect(document.getElementById('profileBreedChips').textContent).toContain('Briard');
+
+    delete window.DOG_BREEDS;
+    window.history.replaceState({}, '', '/');
   });
 
   test('the wizard appends instead of overwriting an existing dog', () => {

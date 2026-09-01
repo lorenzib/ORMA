@@ -7,6 +7,7 @@
     return value===key?fallback:value;
   };
   const name=document.getElementById('profileName'),breed=document.getElementById('profileBreed'),age=document.getElementById('profileAge'),weight=document.getElementById('profileWeight'),notes=document.getElementById('profileNotes');
+  const addMode=new URLSearchParams(window.location.search).get('mode')==='add';
   let selectedBreeds=[];
   let fitness='moderate';
   const CONDITION_CODES={
@@ -21,10 +22,23 @@
     // and must never clobber (or fight) live input.
     if(document.activeElement!==breed){selectedBreeds=typeof breedParts==='function'?breedParts(value):String(value||'').split(/\s+\+\s+/).filter(Boolean);breed.value='';paintBreedSelection();}
   }
-  function savedBreedValue(){return selectedBreeds.length?selectedBreeds.join(' + '):breed.value.trim();}
+  function savedBreedValue(){
+    const typed=breed.value.trim();
+    const values=selectedBreeds.slice();
+    if(typed&&!values.includes(typed))values.push(typed);
+    return values.join(' + ');
+  }
+  function syncBreedDraft(){
+    const legacyBreed=document.getElementById('dogBreed');
+    if(!legacyBreed)return;
+    const value=savedBreedValue();
+    if(legacyBreed.value===value)return;
+    legacyBreed.value=value;
+    legacyBreed.dispatchEvent(new Event('input',{bubbles:true}));
+  }
   function paintBreedSelection(){
     const chips=document.getElementById('profileBreedChips');
-    chips.replaceChildren(...selectedBreeds.map((value,index)=>{const chip=document.createElement('button');chip.type='button';chip.className='breed-selection-chip';chip.textContent=value+' ×';chip.setAttribute('aria-label','Remove '+value);chip.addEventListener('click',()=>{selectedBreeds.splice(index,1);paintBreedSelection();paintBreedInsight();});return chip;}));
+    chips.replaceChildren(...selectedBreeds.map((value,index)=>{const chip=document.createElement('button');chip.type='button';chip.className='breed-selection-chip';chip.textContent=value+' ×';chip.setAttribute('aria-label','Remove '+value);chip.addEventListener('click',()=>{selectedBreeds.splice(index,1);paintBreedSelection();syncBreedDraft();});return chip;}));
     paintBreedInsight();
   }
   function paintBreedInsight(){
@@ -39,19 +53,31 @@
   (function wireBreedOptions(){
     const list=document.getElementById('profileBreedList');
     if(!list)return;
+    function choose(value){
+      if(!selectedBreeds.includes(value))selectedBreeds.push(value);
+      breed.value='';
+      list.hidden=true;
+      breed.setAttribute('aria-expanded','false');
+      paintBreedSelection();
+      syncBreedDraft();
+      breed.focus();
+    }
     function paint(){
       const q=breed.value.trim();
       const values=typeof breedSuggestions==='function'?breedSuggestions(q,8):canonicalBreeds().filter(x=>x.toLowerCase().includes(q.toLowerCase())).slice(0,8);
-      list.replaceChildren(...values.map(value=>{const option=document.createElement('button');option.type='button';option.className='breed-suggestion';option.setAttribute('role','option');option.textContent=value;option.addEventListener('pointerdown',event=>{event.preventDefault();if(!selectedBreeds.includes(value))selectedBreeds.push(value);breed.value='';list.hidden=true;breed.setAttribute('aria-expanded','false');paintBreedSelection();breed.focus();});return option;}));
+      list.replaceChildren(...values.map(value=>{const option=document.createElement('button');option.type='button';option.className='breed-suggestion';option.setAttribute('role','option');option.textContent=value;option.addEventListener('pointerdown',event=>{event.preventDefault();choose(value);});option.addEventListener('click',()=>choose(value));return option;}));
       list.hidden=!q||!values.length;breed.setAttribute('aria-expanded',String(!list.hidden));
     }
-    breed.addEventListener('input',()=>{paint();paintBreedInsight();});breed.addEventListener('focus',paint);
-    breed.addEventListener('blur',()=>setTimeout(()=>{list.hidden=true;breed.setAttribute('aria-expanded','false');},150));
+    breed.addEventListener('input',()=>{paint();paintBreedInsight();syncBreedDraft();});breed.addEventListener('focus',paint);
+    breed.addEventListener('keydown',event=>{if(event.key==='Enter'&&!list.hidden){const first=list.querySelector('button');if(first){event.preventDefault();choose(first.textContent);}}else if(event.key==='Escape'){list.hidden=true;breed.setAttribute('aria-expanded','false');}});
+    breed.addEventListener('blur',()=>setTimeout(()=>{list.hidden=true;breed.setAttribute('aria-expanded','false');syncBreedDraft();},150));
   })();
   function paintName(value){
     const display=value||t('account.yourDog','Your dog');
     const title=document.getElementById('profileTitle');
-    if(title)title.textContent=t('account.profile.title','{name}’s profile',{name:display});
+    if(title)title.textContent=addMode
+      ? t('account.addDog','Add another dog')
+      : t('account.profile.title','{name}’s profile',{name:display});
     root.querySelectorAll('[data-profile-avatar]').forEach(el=>el.textContent=display.charAt(0).toUpperCase());
   }
   function mirror(){
@@ -87,7 +113,6 @@
     root.querySelectorAll('#profileConditions input').forEach(input=>{input.checked=conditions.includes(CONDITION_CODES[input.value]);});
     updateImpact();
   });
-  setTimeout(mirror,300);
   document.getElementById('profileFitness').addEventListener('click',e=>{const b=e.target.closest('[data-fitness]');if(!b)return;fitness=b.dataset.fitness;document.querySelectorAll('[data-fitness]').forEach(x=>x.classList.toggle('on',x===b));updateImpact();});
   document.getElementById('profileConditions').addEventListener('change',updateImpact);
   function updateImpact(){
