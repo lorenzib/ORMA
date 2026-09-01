@@ -38,10 +38,22 @@
 
 .safety-guide-article .safety-photo-header.section-page-head h1{
   max-width:none;
-  font-size:clamp(38px,4.4vw,58px)!important;
+  font-size:clamp(28px,3.25vw,52px)!important;
+  white-space:nowrap;
 }
 
-.safety-guide-article .safety-photo-header :is(.section-page-subtitle,.sub,.alt-subtitle){max-width:none;}
+.safety-guide-article .safety-photo-header :is(.section-page-subtitle,.sub,.alt-subtitle){
+  max-width:none;
+  font-size:clamp(12px,1.05vw,17px)!important;
+  white-space:nowrap;
+}
+.safety-guide-article .safety-topic{
+  margin:0 0 10px;
+  color:rgba(255,255,255,.82)!important;
+  font:800 11px/1.2 'Inter',sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
 .safety-guide-article .safety-photo-header :is(.alt-meta,.paw2-meta,.cg-meta,.hs-meta,.scan-meta) strong{
   border-radius:var(--radius-pill);
   background:rgba(255,255,255,.92);
@@ -226,6 +238,8 @@
     padding:28px 20px!important;
   }
   .safety-guide-article .safety-photo-header.section-page-head h1{font-size:clamp(30px,9vw,42px)!important;}
+  .safety-guide-article .safety-photo-header.section-page-head h1,
+  .safety-guide-article .safety-photo-header :is(.section-page-subtitle,.sub,.alt-subtitle){white-space:normal;}
   .safety-guide-article .apg-hero.section-page-head{padding:31px 18px 22px;}
   .water-guide-body{padding-top:20px!important;padding-bottom:44px!important;}
   .water-guide-grid{grid-template-columns:1fr;}

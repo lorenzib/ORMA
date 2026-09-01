@@ -22,40 +22,39 @@
 <link rel="stylesheet" href="../styles.css?v=20260825-2">
 <link rel="stylesheet" href="guide-scan-cards.css?v=20260825-1">
 <style>
-  /* Keep this guide as one editorial flow rather than a stack of cards. */
-  .guardian-plan{margin-top:14px;}
-  .guardian-plan .scan-list{margin-top:10px;}
+  /* Section headings remain on the page; guidance sits in white reading
+     surfaces directly beneath them. */
   .scan-shell{padding-top:32px;}
-  .scan-intro{gap:clamp(28px,5vw,72px);margin-bottom:34px;}
-  .scan-intro-copy,.scan-priority,.scan-card.scan-step,.guardian-prepare{
+  .scan-intro{display:block;margin-bottom:28px;}
+  .scan-card.scan-step{
     padding:0;
     border:0;
     border-radius:0;
     background:transparent;
     box-shadow:none;
   }
-  .scan-priority{align-content:start;border-left:2px solid var(--safety-info);padding-left:22px;}
-  .scan-priority strong{margin-top:2px;}
+  .scan-section-head,.guardian-section-head{margin-bottom:14px;}
+  .scan-section-head h2,.guardian-section-head h2{margin:0;font-size:clamp(22px,2.3vw,29px);line-height:1.1;}
+  .guardian-content-card{padding:22px 24px;border:1px solid var(--paper-line);border-radius:14px;background:#fff;box-shadow:0 10px 26px -24px rgba(23,42,28,.45);}
+  .guardian-content-card>p:first-child{margin-top:0;}
+  .guardian-content-card>p:last-child{margin-bottom:0;}
+  .guardian-steps-card{padding:24px;}
   .scan-section{margin-top:0;padding-top:28px;border-top:1px solid var(--paper-line);}
   .scan-grid{gap:0;}
   .scan-card.scan-step{grid-template-columns:32px minmax(0,1fr);gap:11px;}
   .scan-card.scan-step+ .scan-card.scan-step{border-left:1px solid var(--paper-line);padding-left:clamp(18px,2vw,30px);margin-left:clamp(18px,2vw,30px);}
-  .scan-alert{margin-top:26px;padding:0 0 0 18px;border:0;border-left:3px solid var(--safety-stop);border-radius:0;background:transparent;box-shadow:none;}
-  .scan-donts span{background:transparent;}
+  .scan-alert{margin-top:24px;}
   .guardian-prepare{margin-top:34px;padding-top:28px;border-top:1px solid var(--paper-line);}
-  .guardian-prepare h2{margin:0 0 9px;font-size:clamp(22px,2.3vw,29px);line-height:1.1;}
   .guardian-prepare .scan-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}
   .guardian-cattle{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--paper-line);color:var(--scan-soft);font-size:.76rem;line-height:1.55;}
   .guardian-cattle strong{color:var(--scan-ink);}
   @media(max-width:960px){.scan-card.scan-step+ .scan-card.scan-step{margin-left:0;padding-left:0;border-left:0;border-top:1px solid var(--paper-line);padding-top:18px;}.scan-grid{gap:20px;}}
-  @media(max-width:680px){.scan-intro{gap:22px;}.scan-priority{padding-left:16px;}.guardian-prepare .scan-list{grid-template-columns:1fr;}.scan-section{padding-top:24px;}}
+  @media(max-width:680px){.guardian-content-card,.guardian-steps-card{padding:18px;}.guardian-prepare .scan-list{grid-template-columns:1fr;}.scan-section{padding-top:24px;}}
 </style>
-<link rel="stylesheet" href="safety-guide-system.css?v=20260901-4">
+<link rel="stylesheet" href="safety-guide-system.css?v=20260901-5">
 <style>
   /* Safety-library defaults intentionally use cards. This guide is a concise
      decision sequence, so its hierarchy lives in headings and rules instead. */
-  .safety-guide-article .scan-intro-copy,
-  .safety-guide-article .scan-priority,
   .safety-guide-article .scan-card.scan-step,
   .safety-guide-article .guardian-prepare{
     padding:0;
@@ -64,15 +63,6 @@
     background:transparent;
     box-shadow:none;
   }
-  .safety-guide-article .scan-alert{
-    padding:0 0 0 18px;
-    border:0;
-    border-left:3px solid var(--safety-stop);
-    border-radius:0;
-    background:transparent;
-    box-shadow:none;
-  }
-  .safety-guide-article .scan-donts span{background:transparent;}
 </style>
 <script type="application/ld+json">
 {
@@ -114,30 +104,28 @@
 <div class="guide-hero safety-photo-header section-page-head content-canvas" style="--safety-photo-position:center 72%;">
   <img class="safety-photo-header__image" src="../images/editorial/safety-library/livestock-guardian-dogs-v1.jpg" alt="" width="1200" height="800" decoding="async">
   <a class="safety-back-link" href="../safety-guide.html">← Safety guides</a>
-  <div class="eyebrow">Guides · Dog safety in the mountains</div>
+  <div class="safety-topic">Safety library / Animals &amp; shared spaces</div>
   <h1 style="font-size:clamp(28px,5vw,38px);margin-top:14px;">Meeting a livestock guardian dog with your own dog</h1>
-  <p class="sub section-page-subtitle">See the herd early, leash your dog and detour. Release the lead only if actual dog-to-dog conflict begins.</p>
+  <p class="sub section-page-subtitle">See the herd early, leash your dog, create distance and detour calmly around guarded livestock.</p>
   <div class="scan-meta"><strong>2 min guide</strong></div>
 </div>
 
 <main class="gp-body scan-shell content-canvas" id="mainContent">
   <section class="scan-intro" aria-labelledby="guardianStartTitle">
-    <div class="scan-intro-copy">
+    <div class="guardian-section-head">
       <span class="scan-kicker">Understand the job</span>
       <h2 id="guardianStartTitle">The dog is protecting the flock</h2>
+    </div>
+    <div class="guardian-content-card">
       <p>Barking, approaching or placing itself between you and livestock are deterrent behaviours. They are not a reason to approach, test the dog or continue through the herd.</p>
     </div>
-    <aside class="scan-priority">
-      <strong>Default move: leash early and go around</strong>
-      <p>Your dog may be read as a potential predator. A wide, calm detour before either dog reacts is safer than managing contact.</p>
-    </aside>
   </section>
 
   <section class="scan-section" aria-labelledby="guardianDecisionTitle">
     <div class="scan-section-head">
       <div><span class="scan-kicker">Use the moment</span><h2 id="guardianDecisionTitle">Three moves, in order</h2></div>
-      <p>Prevent contact first. Release the lead only if actual dog-to-dog conflict begins.</p>
     </div>
+    <div class="guardian-content-card guardian-steps-card">
     <div class="scan-grid">
       <article class="scan-card scan-step">
         <span class="scan-step-number">01</span><div><span class="scan-card-label">You see the herd first</span><h3>Leash and detour</h3>
@@ -157,12 +145,15 @@
       <p>Do not approach the flock, pet or feed the guardian, throw objects or place yourself closer for a photograph.</p>
       <div class="scan-donts"><span>No running</span><span>No shouting</span><span>No staring</span><span>No raised poles</span><span>No petting</span></div>
     </div>
+    </div>
   </section>
 
   <section class="guardian-prepare" aria-labelledby="pasturePlanTitle">
-    <span class="scan-kicker">Before the trail</span><h2 id="pasturePlanTitle">Make room to avoid the encounter</h2>
-    <ul class="scan-list"><li>Check local signs, current pastoral maps and recent trail reports.</li><li>Avoid the pasture if dogs are prohibited or no wide detour exists.</li><li>Leash at the first clue: bells, a cattle grid, livestock or a warning sign.</li></ul>
-    <p class="guardian-cattle"><strong>Cattle are different:</strong> give them—especially cows with calves—a wide berth. Keep your dog leashed, but release the lead if cattle chase you so you can reach safety separately.</p>
+    <div class="guardian-section-head"><span class="scan-kicker">Before the trail</span><h2 id="pasturePlanTitle">Make room to avoid the encounter</h2></div>
+    <div class="guardian-content-card">
+      <ul class="scan-list"><li>Check local signs, current pastoral maps and recent trail reports.</li><li>Avoid the pasture if dogs are prohibited or no wide detour exists.</li><li>Leash at the first clue: bells, a cattle grid, livestock or a warning sign.</li></ul>
+      <p class="guardian-cattle"><strong>Cattle are different:</strong> give them—especially cows with calves—a wide berth. Keep your dog leashed, but release the lead if cattle chase you so you can reach safety separately.</p>
+    </div>
   </section>
   <nav class="safety-continue" aria-label="Continue in the Safety Library">
     <a class="safety-continue__previous" href="alpine-plants-for-dogs.html"><span class="safety-continue__arrow" aria-hidden="true">←</span><span class="safety-continue__label">Past guide</span><strong>Flowers, plants and dogs</strong></a>

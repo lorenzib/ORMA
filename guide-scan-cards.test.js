@@ -17,7 +17,7 @@ describe('scan-first safety guide layouts', () => {
     document.body.innerHTML = html;
 
     expect(html).toContain('guide-scan-cards.css?v=20260825-1');
-    expect(document.querySelector('.scan-intro')).not.toBeNull();
+    expect(document.querySelector('.scan-intro,.breed-check-experience')).not.toBeNull();
     expect(document.querySelectorAll('.scan-card').length).toBeGreaterThanOrEqual(3);
     expect(document.querySelector('.safety-sources')).not.toBeNull();
     expect(document.body.textContent).toContain('Last reviewed 25 August 2026');
@@ -51,6 +51,10 @@ describe('scan-first safety guide layouts', () => {
     expect(html).toContain('French national guidance says to release the lead');
     expect(document.querySelectorAll('.scan-card')).toHaveLength(3);
     expect(document.querySelectorAll('.scan-step')).toHaveLength(3);
+    expect(document.querySelectorAll('.guardian-content-card')).toHaveLength(3);
+    expect(Array.from(document.querySelectorAll('.guardian-section-head,.scan-section-head')).every(head => !head.closest('.guardian-content-card'))).toBe(true);
+    expect(html).not.toContain('Default move: leash early and go around');
+    expect(html).not.toContain('Prevent contact first. Release the lead only if actual dog-to-dog conflict begins.');
     expect(html).not.toContain('Plan for the pasture');
     expect(html).not.toContain('Explore Savoie');
     expect(html).not.toContain('class="gp-steps"');

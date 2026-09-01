@@ -20,7 +20,7 @@ describe('paw protection question-led guide', () => {
     const returnLink = document.querySelector('.safety-back-link');
     expect(returnLink.getAttribute('href')).toBe('../safety-guide.html');
     expect(returnLink.textContent).toMatch(/Safety guides/i);
-    expect(document.querySelector('.paw2-breadcrumbs').textContent.trim()).toBe('Paw protection');
+    expect(document.querySelector('.safety-topic').textContent.trim()).toBe('Safety library / Terrain & paws');
   });
 
   test('uses the Safety Library card image behind the compact page header', () => {
