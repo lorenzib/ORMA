@@ -181,9 +181,9 @@ describe('trail page map controls', () => {
     expect(html).toContain('trail-access-directions.js?v=20260828-2');
     expect(html).toContain('footpath-router.js?v=20260831-1');
     expect(html).toContain('veterinary-care.js?v=20260831-2');
-    expect(html).toContain('trail.js?v=20260901-6');
+    expect(html).toContain('trail.js?v=20260901-7');
     expect(html).toContain('trail-reports.js?v=20260820-2');
-    expect(html).toContain('trail-blueprint.js?v=20260901-2');
+    expect(html).toContain('trail-blueprint.js?v=20260901-3');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
     expect(html).toContain('offline-packages.js?v=20260819-6');
     expect(html).toContain('trail-detail-ui.js?v=20260826-1');
@@ -280,7 +280,7 @@ describe('trail page map controls', () => {
     expect(gettingAround.querySelector('.td2-kick').textContent.trim()).toBe('Getting around');
     expect(gettingAround.previousElementSibling).toBe(gettingThere);
     expect(gettingThere.querySelector('#td2MapsLink').nextElementSibling.id).toBe('td2MapsStatus');
-    expect(html).toContain('trail-route-refs.js?v=20260901-1');
+    expect(html).toContain('trail-route-refs.js?v=20260901-2');
     const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
     expect(blueprint).toContain("t:routeRefs.length ? 'Trail numbers to follow' : 'Trail numbers unavailable'");
     expect(blueprint).toContain('Start at ${esc(routeStartLabel)} and follow');
@@ -478,12 +478,12 @@ describe('trail page map controls', () => {
     expect(document.getElementById('placesToggle')).toBeNull();
     expect(trail).toContain('const poiStates = { fountains: true, huts: true, food: true, places: true, veterinary: false }');
     expect(detailPois.match(/visibility: 'visible'/g)).toHaveLength(2);
-    expect(trail).toContain('9, 0.45');
-    expect(trail).toContain('12, 0.58');
-    expect(trail).toContain('14, 0.72');
-    expect(trail).toContain('15, 0.82');
-    expect(trail).toContain("'raster-saturation': -1");
-    expect(trail).toContain("'raster-contrast': 0.22");
+    expect(trail).toContain('9, 0.50');
+    expect(trail).toContain('12, 0.65');
+    expect(trail).toContain('14, 0.88');
+    expect(trail).toContain('15, 0.96');
+    expect(trail).toContain("'raster-saturation': -0.72");
+    expect(trail).toContain("'raster-contrast': 0.36");
     expect(trail).toContain("'line-width': 13");
     expect(trail).toContain("return score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25'");
     expect(trail).toContain("'line-color': selectedRouteColor, 'line-width': 7");
@@ -498,7 +498,7 @@ describe('trail page map controls', () => {
     expect(trail).toContain("'text-halo-width': 8");
     expect(trail).toContain("'text-halo-color': '#FFFDF7'");
     expect(trail).toContain("window.DoloPawsTrailRouteRefs.forTrail(t)");
-    expect(trail).toContain("'raster-resampling': 'linear'");
+    expect(trail).toContain("'raster-resampling': 'nearest'");
     expect(trail).not.toContain("element.textContent = '✓'");
     expect(trail).not.toContain("markerElement('join')");
     expect(detailPois).toContain("'text-field': ['coalesce', ['get', 'name'], '']");
