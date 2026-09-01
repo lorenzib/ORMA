@@ -305,8 +305,9 @@ describe('trail page map controls', () => {
     expect(copy.querySelector('#offlineDownloadBtn')).not.toBeNull();
     expect(document.getElementById('tdHeroPhoto')).not.toBeNull();
     expect(html).toContain('grid-template-columns:minmax(0,1.65fr) minmax(340px,.85fr);grid-template-areas:"tags weather"');
-    expect(html).toContain('width:calc(100% - (2 * var(--wrap-gutter)));max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));');
-    expect(html).toContain('margin-left:var(--wrap-gutter);margin-right:var(--wrap-gutter);');
+    expect(html).toContain('--trail-detail-wrap:1680px;--trail-detail-gutter:clamp(24px,3vw,44px);');
+    expect(html).toContain('width:calc(100% - (2 * var(--trail-detail-gutter)));max-width:calc(var(--trail-detail-wrap) - (2 * var(--trail-detail-gutter)));');
+    expect(html).toContain('margin-left:var(--trail-detail-gutter);margin-right:var(--trail-detail-gutter);');
     expect(html).toContain('grid-template-areas:"tags weather" "title weather" "facts weather" "actions weather"');
     expect(html).toContain('.td2-hero-weather{grid-area:weather;');
   });

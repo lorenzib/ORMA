@@ -273,6 +273,7 @@ h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;}
    ============================================================ */
 body{background:#EFECE2;}
 .td2 .num{font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-.02em;font-variant-numeric:tabular-nums;}
+.td2{--trail-detail-wrap:1680px;--trail-detail-gutter:clamp(24px,3vw,44px);}
 .td2-kick{font:700 10.5px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8A9689;}
 .td2-card{background:#fff;border:1px solid #E4E0D3;border-radius:16px;}
 .td2-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:7px;}
@@ -743,7 +744,7 @@ body{background:#EFECE2;}
 .td2-hero{isolation:isolate;}
 .td2-hero-photo{z-index:-2;}
 .td2-hero-veil{z-index:-1;background:linear-gradient(90deg,rgba(24,39,29,.94) 0%,rgba(24,39,29,.78) 48%,rgba(24,39,29,.56) 100%);}
-.td2-hero-in{width:calc(100% - (2 * var(--wrap-gutter)));max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));box-sizing:border-box;padding:26px 0 30px;}
+.td2-hero-in{width:calc(100% - (2 * var(--trail-detail-gutter)));max-width:calc(var(--trail-detail-wrap) - (2 * var(--trail-detail-gutter)));box-sizing:border-box;padding:26px 0 30px;}
 .td2-hero-copy{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(340px,.85fr);grid-template-areas:"tags weather" "title weather" "facts weather" "actions weather";column-gap:20px;row-gap:13px;align-items:start;margin-top:30px;max-width:100%;}
 .td2-hero #trailName{grid-area:title;max-width:760px;margin:0;font-size:clamp(36px,4.4vw,54px);line-height:1;letter-spacing:-.035em;}
 .td2-hero .td2-tags{grid-area:tags;margin:0;}
@@ -797,7 +798,7 @@ body{background:#EFECE2;}
 .td2-hero .offline-package-status{margin:0;text-align:left;}
 .td2-hero .offline-package .td2-btn-g{min-height:40px;}
 
-.td2-wrap{width:calc(100% - (2 * var(--wrap-gutter)));max-width:calc(var(--wrap) - (2 * var(--wrap-gutter)));padding-left:0;padding-right:0;}
+.td2-wrap{width:calc(100% - (2 * var(--trail-detail-gutter)));max-width:calc(var(--trail-detail-wrap) - (2 * var(--trail-detail-gutter)));padding-left:0;padding-right:0;}
 .td2-workspace{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(340px,.85fr);gap:20px;align-items:start;}
 .td2-workspace{margin-top:22px;}
 .td2-content-column,.td2-sidebar-column{display:flex;flex-direction:column;gap:20px;min-width:0;}
@@ -840,7 +841,7 @@ body{background:#EFECE2;}
 .td2-story>.td2-card,.td2-logistics>.td2-card,.td2-map-stack>.td2-card{scroll-margin-top:88px;}
 
 @media(max-width:980px){
-  .td2-hero-in,.td2-wrap{width:auto;max-width:none;margin-left:var(--wrap-gutter);margin-right:var(--wrap-gutter);padding-left:0;padding-right:0;}
+  .td2-hero-in,.td2-wrap{width:auto;max-width:none;margin-left:var(--trail-detail-gutter);margin-right:var(--trail-detail-gutter);padding-left:0;padding-right:0;}
   .td2-hero-copy{display:block;}
   .td2-hero-weather{margin-top:20px;}
   .td2-hero-actions{margin-top:14px;}
