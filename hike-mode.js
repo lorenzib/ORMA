@@ -16,11 +16,12 @@
  * BEFORE trail.js.
  */
 
-function initHikeMode(map, trail){
+function initHikeMode(map, trail, options){
   if (!('geolocation' in navigator)) return; // no GPS — don't show the button
   if (!Array.isArray(trail.path) || trail.path.length < 2) return;
 
-  const container = map.getContainer();
+  const container = (options && options.container) || (map && map.getContainer());
+  if(!container) return;
   container.style.position = container.style.position || 'relative';
 
   // ---- Precompute cumulative distance along the path (meters) -------------
@@ -239,7 +240,7 @@ function initHikeMode(map, trail){
   let liveMarker = null;
   let rejoinMarker = null;
   function showLiveDot(){
-    if (typeof maplibregl === 'undefined') return;
+    if (!map || typeof maplibregl === 'undefined') return;
     if (!liveMarker){
       const dot = document.createElement('div');
       dot.className = 'hike-live-dot';
@@ -256,7 +257,7 @@ function initHikeMode(map, trail){
 
   function hideRejoinGuidance(){
     if(rejoinMarker) rejoinMarker.remove();
-    const source = map.getSource('dolopaws-rejoin-direction');
+    const source = map && map.getSource ? map.getSource('dolopaws-rejoin-direction') : null;
     if(source){
       source.setData({ type: 'FeatureCollection', features: [] });
     }
@@ -296,7 +297,8 @@ function initHikeMode(map, trail){
 
   function showRejoinGuidance(guidance){
     if(!guidance || guidance.routingMode !== 'mapped-footpath' ||
-       !Array.isArray(guidance.path) || typeof maplibregl === 'undefined') return;
+       !Array.isArray(guidance.path) || !map || typeof maplibregl === 'undefined' ||
+       !map.isStyleLoaded || !map.isStyleLoaded()) return;
     if(!rejoinMarker){
       const target = document.createElement('div');
       target.setAttribute('aria-label', hikeLabel('hike.rejoinTarget', 'Closest point on trail'));
@@ -336,10 +338,20 @@ function initHikeMode(map, trail){
   // Map tile fetches fail silently when the connection drops mid-hike —
   // navigator.onLine often stays true on a weak mountain signal, so track
   // actual failed fetches too.
-  map.on('error', (e) => {
-    const msg = e && e.error && (e.error.message || String(e.error));
-    if (msg && /fetch|network|failed|abort/i.test(msg)) lastTileError = Date.now();
-  });
+  let mapErrorListenerBound = false;
+  function attachMap(nextMap){
+    if(!nextMap) return;
+    map = nextMap;
+    if(!mapErrorListenerBound && map.on){
+      mapErrorListenerBound = true;
+      map.on('error', (e) => {
+        const msg = e && e.error && (e.error.message || String(e.error));
+        if (msg && /fetch|network|failed|abort/i.test(msg)) lastTileError = Date.now();
+      });
+    }
+    if(active) showLiveDot();
+  }
+  attachMap(map);
 
   function offlineNote(){
     const offline = !navigator.onLine || (Date.now() - lastTileError < 30000);
@@ -427,7 +439,9 @@ function initHikeMode(map, trail){
     if(firstFix && assessment.usableForProgress){
       firstFix = false;
       recordConfirmedHikeStart(accuracy);
-      map.easeTo({ center: [lng, lat], zoom: Math.max(map.getZoom(), 15), duration: 800 });
+      if(map && map.easeTo && map.getZoom){
+        map.easeTo({ center: [lng, lat], zoom: Math.max(map.getZoom(), 15), duration: 800 });
+      }
     }
 
     if(assessment.usableForProgress) lastIdx = snap.idx;
@@ -1326,4 +1340,6 @@ function initHikeMode(map, trail){
       if(!active && !durableSession && (!loaded || loaded.status === 'empty')) requestNewHike();
     }, 400);
   }
+
+  return { attachMap };
 }

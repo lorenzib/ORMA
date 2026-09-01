@@ -1793,6 +1793,15 @@ function renderTrail(t){
     document.getElementById('directionsWrap').hidden = false;
   }
 
+  // Hike recording must not wait for the remote map engine or map tiles. QR
+  // deep links initialise the GPS/readiness flow immediately; the map attaches
+  // later when its normal lazy-load completes.
+  const detailMapTarget = document.getElementById('trailMapBox') || document.getElementById('trailDetailMap');
+  const hikeModeContainer = document.getElementById('trailDetailMap');
+  const hikeModeController = typeof initHikeMode === 'function'
+    ? initHikeMode(null, t, { container:hikeModeContainer })
+    : null;
+
   // The detail map is expensive and sits below the trail summary. Load its
   // engine only as the map approaches the viewport (or a control is focused).
   const initDetailMap = () => {
@@ -1895,6 +1904,7 @@ function renderTrail(t){
     }
 
     map.on('load', async () => {
+      if(hikeModeController && hikeModeController.attachMap) hikeModeController.attachMap(map);
       if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(map);
       const attribution = document.querySelector('#trailDetailMap .maplibregl-ctrl-attrib');
       if(attribution){
@@ -2308,9 +2318,6 @@ function renderTrail(t){
 
         setupElevationProfile(map, t);
 
-        // "Start hike" companion — live progress, off-route warning, wake lock.
-        if (typeof initHikeMode === 'function') initHikeMode(map, t);
-
         // NOTE: curated rifugi/water emoji markers used to be placed here
         // from the trail's km data — removed: they duplicated the real OSM
         // amenity dots (detail-pois.js), showing two markers for the same
@@ -2372,7 +2379,6 @@ function renderTrail(t){
     });
   }
   };
-  const detailMapTarget = document.getElementById('trailMapBox') || document.getElementById('trailDetailMap');
   if(window.DoloPawsMapRuntime){
     const detailMapSchedule = window.DoloPawsMapRuntime.whenVisible(detailMapTarget, initDetailMap, {
       rootMargin:'360px 0px',
@@ -2388,30 +2394,10 @@ function renderTrail(t){
         if(window._dolopawsTrailMap) expand.click();
       }, { capture:true });
     }
-    // QR links open at the top of the trail page, while the map normally
-    // waits until it approaches the viewport. Hike mode is created by the
-    // map's load handler, so a deep link must bypass that visibility gate.
+    // Let the map prepare in the background for hike guidance, but do not
+    // block the readiness sheet or GPS recording on that network work.
     if(hikeDeepLinkRequested && detailMapSchedule && detailMapSchedule.start){
-      const hikeLoadStatus = document.createElement('div');
-      hikeLoadStatus.id = 'hikeDeepLinkStatus';
-      hikeLoadStatus.className = 'dw-toast dw-toast--in';
-      hikeLoadStatus.setAttribute('role', 'status');
-      hikeLoadStatus.setAttribute('aria-live', 'polite');
-      hikeLoadStatus.textContent = 'Preparing hike guidance…';
-      document.body.appendChild(hikeLoadStatus);
-      let hikeModeReady = false;
-      const clearHikeLoadStatus = () => {
-        hikeModeReady = true;
-        hikeLoadStatus.remove();
-      };
-      window.addEventListener('dolopaws-hike-mode-ready', clearHikeLoadStatus, { once:true });
       detailMapSchedule.start();
-      setTimeout(() => {
-        if(hikeModeReady || !hikeLoadStatus.isConnected) return;
-        hikeLoadStatus.textContent = detailMapTarget && detailMapTarget.dataset.mapState === 'error'
-          ? 'Hike guidance could not load. Check your connection and reload this page.'
-          : 'Hike guidance is taking longer than expected. Check your connection and reload this page.';
-      }, 12000);
     }
   } else {
     initDetailMap();
