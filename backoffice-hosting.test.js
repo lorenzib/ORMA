@@ -35,27 +35,49 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(script).toContain("Exactly one fully licensed ready image is required before approval");
   });
 
-  test('hosted dashboard exposes only migrated protected desk links',()=>{
+  test('hosted dashboard keeps the MVP trail lanes prominent and parks the rest',()=>{
     const html=fs.readFileSync(path.join(output,'backoffice-review.html'),'utf8');
-    expect(html).toContain('One linear trail workflow');
-    expect(html).toContain('What happened after your clicks');
-    expect(html).toContain('What ORMA automation does');
-    expect(html).toContain('backoffice-review.css?v=20260820-13');
+    expect(html).toContain('Needs your decision');
+    expect(html).toContain('MVP workstreams');
+    expect(html).toContain('Parked for MVP');
+    expect(html).toContain('backoffice-review.css?v=20260901-1');
     expect(html).toContain('id="workerHealth"');
     expect(html).toContain('id="campaignHealth"');
     expect(html).toContain('backoffice/dashboard-model.js?v=20260825-10');
-    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260825-10');
+    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260901-1');
     expect(html).toContain('href="trail-dossier-desk.html"');
-    expect(html).toContain('href="editorial-desk.html"');
+    expect(html).toContain('href="new-trail-scouting-desk.html"');
+    expect(html).toContain('href="hazard-review-desk.html"');
     expect(html).toContain('href="image-coverage-desk.html"');
+    expect(html).toContain('href="editorial-desk.html"');
     expect(html).toContain('href="newsletter-desk.html"');
     expect(html).toContain('href="product-ideas-desk.html"');
     expect(html).toContain('href="designer-desk.html"');
+    expect(html).not.toContain('One linear trail workflow');
+    expect(html).not.toContain('View all six ORMA teams');
     expect(html).not.toMatch(/href="(?:content|social)-desk\.html"/);
   });
 
+  test('dashboard primary navigation contains only active MVP desks',()=>{
+    const html=fs.readFileSync(path.join(output,'backoffice-review.html'),'utf8');
+    const nav=html.match(/<nav class="bo-primary-nav"[\s\S]*?<\/nav>/)?.[0]||'';
+    expect(nav).toContain('>Home</a>');
+    expect(nav).toContain('>Existing Trails</a>');
+    expect(nav).toContain('>New Trails</a>');
+    expect(nav).toContain('>Trail photos</a>');
+    expect(nav).toContain('>Hazards</a>');
+    expect(nav).not.toMatch(/Editorial|Newsletter|Analyst|Design/);
+  });
+
+  test('dashboard does not fetch parked workstream artifacts',()=>{
+    const script=fs.readFileSync(path.join(output,'backoffice-hosted-dashboard.js'),'utf8');
+    expect(script).not.toMatch(/editorial-review-packet|strategy-cycle-status|newsletter-review-packet|approved-newsletters|product-ideas|product-investigation-results|product-design-results/);
+    expect(script).toContain("optional(remote,'image-coverage'");
+    expect(script).toContain("optional(remote,'new-trail-scouting'");
+    expect(script).toContain("optional(remote,'hazard-review-queue'");
+  });
+
   test.each([
-    ['backoffice-review.html','Home'],
     ['trail-dossier-desk.html','Trail evidence'],
     ['trail-content-desk.html','Content &amp; release'],
     ['new-trail-scouting-desk.html','New Trails'],
@@ -121,8 +143,8 @@ describe('separate Firebase backoffice Hosting package',()=>{
     const home=fs.readFileSync(path.join(output,'backoffice-review.html'),'utf8');
     const html=fs.readFileSync(path.join(output,'newsletter-desk.html'),'utf8');
     const script=fs.readFileSync(path.join(output,'newsletter-hosted.js'),'utf8');
-    expect(home).toContain('<h3>Newsletter</h3>');
-    expect(home).toContain('<span class="bo-life-status">Parked</span>');
+    expect(home).toContain('<summary>Parked for MVP</summary>');
+    expect(home).toContain('Editorial copy, Newsletter, Social, Analyst and Design are paused.');
     expect(html).toContain('Newsletter on hold');
     expect(html).toContain('newsletter-hosted.js?v=20260820-2');
     expect(script).toContain('const NEWSLETTER_PARKED=true');
