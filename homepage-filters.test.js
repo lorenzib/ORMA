@@ -54,6 +54,7 @@ function loadHomepageContext(testTrails){
     <span id="liDogCtxName"></span>
     <span id="liDogCtxBreedSep" hidden></span>
     <a id="liDogCtxBreed" href="guides/breed-group-caveats.html" hidden></a>
+    <strong id="liToolbarGreeting"></strong>
     <span id="liToolbarDogContext"></span>
     <span id="liAccountName"></span>
     <span id="liAccountAvatar"></span>
@@ -173,14 +174,16 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
   });
 
-  test('renders a static tailored-to dog name with a linked breed', () => {
+  test('turns the active dog into useful greeting and ranking context', () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('renderLiToolbarContext({ name: "Eddie", breed: "Podenco Andaluz" });', context);
     expect(document.getElementById('liDogCtxName').textContent).toBe('Eddie');
     expect(document.getElementById('liDogCtxBreed').textContent).toBe('Podenco Andaluz');
     expect(document.getElementById('liDogCtxBreed').hidden).toBe(false);
     expect(document.getElementById('liDogCtxBreed').getAttribute('href')).toBe('guides/breed-group-caveats.html');
-    expect(document.getElementById('liToolbarDogContext').textContent).toContain('Eddie · Podenco Andaluz');
+    expect(document.getElementById('liToolbarGreeting').textContent).toBe('Where are we going today, Eddie?');
+    expect(document.getElementById('liToolbarDogContext').textContent).toBe('Trails ranked for Eddie’s needs and your current choices.');
+    expect(document.getElementById('liToolbarDogContext').textContent).not.toContain('Podenco Andaluz');
   });
 
   test('keeps the cached active dog when a profile read transiently returns null', async () => {
@@ -191,6 +194,8 @@ describe('returning homepage region + valley filters', () => {
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(document.getElementById('liAccountName').textContent).toBe('Teo');
     expect(document.getElementById('liDogCtxName').textContent).toBe('Teo');
+    expect(document.querySelector('.li-match-lbl').textContent).toBe('Match for Teo');
+    expect(document.querySelector('.li-match-reason').textContent.length).toBeGreaterThan(10);
   });
 
   test('switching the separate region control resets the valley', async () => {
@@ -286,7 +291,8 @@ describe('map-first returning homepage layout contract', () => {
     expect(routeLayer).toContain("'step', ['coalesce', ['get', 'score'], 0]");
     expect(routeLayer).not.toContain("['get', 'safetyLevel']");
     expect(markerLayer).toContain("'step', ['coalesce', ['get', 'score'], 0]");
-    expect(script).toContain("breedLink.href = 'guides/breed-group-caveats.html'");
+    expect(script).toContain('Where are we going today, ${profile.name}?');
+    expect(script).toContain('Trails ranked for ${profile.name}\\u2019s needs');
     expect(script).not.toContain('trails scored`');
   });
 
@@ -329,8 +335,9 @@ describe('map-first returning homepage layout contract', () => {
   });
 
   test('groups card actions on the left and gives the dog match a larger right panel', () => {
-    expect(css).toMatch(/@media \(min-width:641px\)[\s\S]*?\.li-row\{[\s\S]*?display:grid;[\s\S]*?grid-template-columns:66px minmax\(0,1fr\) minmax\(128px,158px\) 34px;/);
+    expect(css).toMatch(/@media \(min-width:641px\)[\s\S]*?\.li-row\{[\s\S]*?display:grid;[\s\S]*?grid-template-columns:66px minmax\(0,1fr\) minmax\(168px,196px\) 34px;/);
     expect(css).toMatch(/\.li-match\{[\s\S]*?grid-column:3;[\s\S]*?grid-row:1\/3;/);
+    expect(css).toMatch(/\.li-match-reason\{display:-webkit-box;[^}]*-webkit-line-clamp:2;/);
     expect(css).toMatch(/\.li-heart\{grid-column:4;grid-row:1\/3;align-self:center;\}/);
     expect(css).toMatch(/\.li-row-bar\{[\s\S]*?grid-column:1\/3;[\s\S]*?grid-row:2;/);
     expect(css).toMatch(/@media \(max-width:640px\)[\s\S]*?\.li-row\{display:flex;\}/);

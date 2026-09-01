@@ -1785,22 +1785,15 @@ function renderLiToolbarContext(profile){
     ctxBreed.title = hasBreedName ? `Read hiking caveats for ${breed}` : '';
   }
   if(ctxBreedSep) ctxBreedSep.hidden = !hasBreedName;
+  const greeting = document.getElementById('liToolbarGreeting');
+  if(greeting) greeting.textContent = profile && profile.name
+    ? `Where are we going today, ${profile.name}?`
+    : 'Where are we going today?';
   const toolbarContext = document.getElementById('liToolbarDogContext');
   if(!toolbarContext) return;
-  toolbarContext.replaceChildren(document.createTextNode(dogName));
-  if(breed){
-    toolbarContext.appendChild(document.createTextNode(' · '));
-    if(hasBreedName){
-      const breedLink = document.createElement('a');
-      breedLink.className = 'li-toolbar-breed';
-      breedLink.href = 'guides/breed-group-caveats.html';
-      breedLink.textContent = breed;
-      breedLink.title = `Read hiking caveats for ${breed}`;
-      toolbarContext.appendChild(breedLink);
-    } else {
-      toolbarContext.appendChild(document.createTextNode(breed));
-    }
-  }
+  toolbarContext.textContent = profile && profile.name
+    ? `Trails ranked for ${profile.name}\u2019s needs and your current choices.`
+    : 'Trails ranked for your dog\u2019s needs and your current choices.';
 }
 
 // Filter panel — segmented options + toggle rows. Rebuilt on every render
@@ -2331,13 +2324,22 @@ function liMatchTier(score){
     : score >= 65 ? { color: '#C98A2E', label: 'Good' }
     : { color: '#9C3A25', label: 'Check first' };
 }
-function liMatchColHtml(t){
+function liPersonalisationText(value){
+  return String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[ch]));
+}
+function liMatchColHtml(t, profile, overrides){
   const tier = liMatchTier(t.score);
   const isEst = t.curated === false;
+  const dogName = profile && profile.name ? profile.name : '';
+  const matchLabel = dogName ? `Match for ${dogName}` : 'Match for your dog';
+  const reason = matchReason(t, overrides);
   return `<div class="li-match" aria-label="${t.score}% match${isEst ? ' (estimated)' : ''}">
       <b style="color:${tier.color};">${isEst ? '≈' : ''}${t.score}<span>%</span></b>
-      <span class="li-match-lbl">Match for your dog</span>
+      <span class="li-match-lbl">${liPersonalisationText(matchLabel)}</span>
       <span class="li-match-tier" style="background:${tier.color}1f;color:${tier.color};">${tier.label}</span>
+      <span class="li-match-reason" title="${liPersonalisationText(reason)}">${liPersonalisationText(reason)}</span>
     </div>`;
 }
 
@@ -2391,7 +2393,9 @@ async function renderReturningHomepage(profile){
   // The cloud is Eddie speaking — one line, no counts, true for any area.
   // When the owner has set "Adjust for today", the dog voices those declared
   // conditions (never guessed weather); otherwise it asks the usual question.
-  let bubbleLine = t('home.bubble');
+  let bubbleLine = profile && profile.name
+    ? `Where are we going today, ${profile.name}?`
+    : t('home.bubble');
   if(adjustOverride){
     if(adjustOverride.energy === 'low') bubbleLine = "I'm on low battery, keep it short and easy today.";
     else if(adjustOverride.distance === '5') bubbleLine = 'Something short and sweet today, please.';
@@ -2493,7 +2497,7 @@ async function renderReturningHomepage(profile){
         ${newBadge || importedBadge ? `<div class="li-row-badges">${newBadge}${importedBadge}</div>` : ''}
         <div class="li-rating-row"><span class="li-rating-kick">Trail rating</span><span class="safety-badge ${safetyClass(t.safetyLevel)}">${trailSafetyLabel(t)}</span></div>
       </div>
-      ${liMatchColHtml(t)}
+      ${liMatchColHtml(t, profile, overrides)}
       <button type="button" class="li-heart save-btn" data-id="${t.id}" aria-pressed="${isFav}" aria-label="${isFav ? 'Remove ' + t.name + ' from saved trails' : 'Save ' + t.name}">${isFav ? '♥' : '♡'}</button>
       <div class="li-row-bar">
         <button type="button" class="li-bar-act locate-btn" data-id="${t.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>See on map</button>
@@ -2769,7 +2773,12 @@ function showMapCallout(t){
     };
   }
   const matchEl = document.getElementById('mapCalloutMatch');
-  if(matchEl) matchEl.innerHTML = liMatchColHtml(t);
+  if(matchEl){
+    const overrides = currentProfileForAdjust
+      ? effectiveOverrides(currentProfileForAdjust, adjustOverride)
+      : { terrain:'1', distance:'10', heatSensitive:false };
+    matchEl.innerHTML = liMatchColHtml(t, currentProfileForAdjust, overrides);
+  }
   callout.hidden = false;
 }
 function hideMapCallout(){
