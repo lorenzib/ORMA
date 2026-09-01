@@ -554,7 +554,9 @@ function initGuestMap(){
   guestMapInstance.on('load', async () => {
     if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(guestMapInstance);
     addTerrainSource(guestMapInstance);
-    // Keep the public walking network as quiet context around ORMA routes.
+    // Keep the public walking network in its original cartographic colours.
+    // Route shields are navigation information, so their red/white artwork
+    // and black numbers must not be desaturated or faded.
     const guestFirstLabel = guestMapInstance.getStyle().layers.find(l => l.type === 'symbol');
     guestMapInstance.addSource('waymarked-hiking', {
       type: 'raster',
@@ -569,13 +571,13 @@ function initGuestMap(){
       paint: {
         'raster-opacity': [
           'interpolate', ['linear'], ['zoom'],
-          7, 0.12,
-          10, 0.18,
-          12, 0.24,
-          14, 0.30,
+          7, 0.48,
+          10, 0.66,
+          12, 0.84,
+          14, 1,
         ],
-        'raster-saturation': -0.86,
-        'raster-contrast': -0.06,
+        'raster-saturation': 0,
+        'raster-contrast': 0,
         'raster-resampling': 'linear',
       },
     }, guestFirstLabel ? guestFirstLabel.id : undefined);
@@ -796,7 +798,9 @@ function initTrailMap(){
     // that join later without rebuilding the controls.
     const allLiftMarkers = [];
     
-    // Public marked routes are supporting context, not the primary route language.
+    // Public marked routes retain their original cartographic colours. Their
+    // red/white shields and black numbers are navigation information and must
+    // remain fully legible at every zoom where the source provides them.
     const firstLabelLayer = trailMapInstance.getStyle().layers.find(l => l.type === 'symbol');
     trailMapInstance.addSource('waymarked-hiking', {
       type: 'raster',
@@ -812,13 +816,13 @@ function initTrailMap(){
       paint: {
         'raster-opacity': [
           'interpolate', ['linear'], ['zoom'],
-          7, 0.12,
-          10, 0.18,
-          12, 0.24,
-          14, 0.30,
+          7, 0.48,
+          10, 0.66,
+          12, 0.84,
+          14, 1,
         ],
-        'raster-saturation': -0.86,
-        'raster-contrast': -0.06,
+        'raster-saturation': 0,
+        'raster-contrast': 0,
         'raster-resampling': 'linear',
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
@@ -854,10 +858,10 @@ function initTrailMap(){
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 5, 13, 6],
       },
     }, 'waymarked-hiking-layer');
-    // ORMA-mapped routes are deliberately distinct from the public marked
-    // network: a teal, white-edged line is reserved for our catalogue. The
-    // marked-route raster is then lifted above it (while staying below place
-    // labels), preserving signed route numbers where the paths coincide.
+    // ORMA routes use the same personalised match tiers as the list and map
+    // pins: green (great), amber (good), red (check first). The marked-route
+    // raster is then lifted above the highlight so its original trail-number
+    // shields remain visible wherever the two paths coincide.
     trailMapInstance.addLayer({
       id: 'trail-paths-orma-halo',
       type: 'line',
@@ -866,7 +870,7 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#FFFDF7',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 6, 10, 10, 13, 12],
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 7, 10, 11, 13, 15, 16, 18],
         'line-opacity': 0.94,
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
@@ -877,14 +881,37 @@ function initTrailMap(){
       minzoom: 7,
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': '#3E7A91',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 3, 10, 5.5, 13, 7],
+        'line-color': [
+          'step', ['coalesce', ['get', 'score'], 0],
+          '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
+        ],
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 4, 10, 7.5, 13, 11, 16, 14],
         'line-opacity': 1,
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
     if(firstLabelLayer && trailMapInstance.getLayer('waymarked-hiking-layer')){
       trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id);
     }
+    // A second, gapped match outline sits above the marked-route raster. The
+    // coloured rails make ORMA's personalised route unmistakable, while the
+    // transparent centre preserves the original red/white shield and black
+    // trail number instead of painting across it.
+    trailMapInstance.addLayer({
+      id: 'trail-paths-match-outline',
+      type: 'line',
+      source: 'trail-paths',
+      minzoom: 7,
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: {
+        'line-color': [
+          'step', ['coalesce', ['get', 'score'], 0],
+          '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
+        ],
+        'line-gap-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 3.5, 13, 5, 16, 7],
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 1, 10, 1.75, 13, 2.5, 16, 3.5],
+        'line-opacity': 0.98,
+      },
+    }, firstLabelLayer ? firstLabelLayer.id : undefined);
     // Wide, near-invisible twin of the route line so a fingertip (or a
     // slightly-off cursor) still hits the trail — 3px is too thin a target.
     trailMapInstance.addLayer({

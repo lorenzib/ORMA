@@ -181,9 +181,9 @@
       source:'planner-waymarked-hiking',
       layout:{ visibility:'visible' },
       paint:{
-        'raster-opacity':['interpolate',['linear'],['zoom'],7,.12,10,.18,12,.24,14,.30],
-        'raster-saturation':-.86,
-        'raster-contrast':-.06,
+        'raster-opacity':['interpolate',['linear'],['zoom'],7,.48,10,.66,12,.84,14,1],
+        'raster-saturation':0,
+        'raster-contrast':0,
         'raster-resampling':'linear',
       },
     }, label && label.id);

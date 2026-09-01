@@ -168,7 +168,7 @@
       setLayout(map, id, 'text-size', ['interpolate', ['linear'], ['zoom'], minzoom, 10, 16, 12, 19, 14]);
     });
 
-    ['waymarked-hiking-layer', 'collection-waymarked-hiking-layer', 'satellite-layer'].forEach(id => {
+    ['waymarked-hiking-layer', 'collection-waymarked-hiking-layer', 'planner-waymarked-hiking-layer', 'satellite-layer'].forEach(id => {
       setPaint(map, id, 'raster-resampling', 'linear');
       setPaint(map, id, 'raster-fade-duration', 100);
     });
