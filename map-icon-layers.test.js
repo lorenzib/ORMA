@@ -189,6 +189,11 @@ describe('shared map icon layers', () => {
         }),
       }),
     ]));
+    expect(Object.values(map.sources)).toEqual(expect.not.arrayContaining([
+      expect.objectContaining({ cluster: true }),
+    ]));
+    expect(map.layers.some(layer => layer.id.endsWith('-cluster'))).toBe(false);
+    expect(map.layers.some(layer => layer.id.endsWith('-cluster-count'))).toBe(false);
     expect(map.sources['detail-places'].data.features).toHaveLength(1);
     expect(map.sources['detail-places'].data.features[0].properties.kind).toBe('viewpoint');
     expect(fs.readFileSync(path.join(__dirname, 'basemap-poi-click.js'), 'utf8'))

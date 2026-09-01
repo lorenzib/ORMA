@@ -176,7 +176,7 @@ describe('trail page map controls', () => {
     expect(html).toContain('trail-photo-provenance.js?v=20260820-1');
     expect(html).toContain('trail-weather-window.js?v=20260820-1');
     expect(html).toContain('hike-mode.js?v=20260826-1');
-    expect(html).toContain('detail-pois.js?v=20260901-1');
+    expect(html).toContain('detail-pois.js?v=20260901-2');
     expect(html).toContain('trail-access-directions.js?v=20260828-2');
     expect(html).toContain('footpath-router.js?v=20260831-1');
     expect(html).toContain('veterinary-care.js?v=20260831-2');
@@ -459,7 +459,7 @@ describe('trail page map controls', () => {
     expect(document.getElementById('foodToggle')).toBeNull();
     expect(document.getElementById('placesToggle')).toBeNull();
     expect(trail).toContain('const poiStates = { fountains: true, huts: true, food: true, places: true, veterinary: false }');
-    expect(detailPois.match(/visibility: 'visible'/g)).toHaveLength(4);
+    expect(detailPois.match(/visibility: 'visible'/g)).toHaveLength(2);
     expect(trail).toContain('9, 0.52');
     expect(trail).toContain('12, 0.68');
     expect(trail).toContain('14, 0.90');

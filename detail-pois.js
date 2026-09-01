@@ -98,13 +98,10 @@ function initDetailPois(map, trail){
 
   function addPoiLayerSet(sourceId, features, group){
     if (!features.length || map.getSource(sourceId)) return;
-    const clusterColor = icons ? icons.getPoiClusterColor(group) : '#5A5548';
     const circleColor = icons ? icons.getPoiCircleColorExpression(group) : '#5A5548';
     map.addSource(sourceId, {
       type: 'geojson',
       data: { type: 'FeatureCollection', features },
-      cluster: true,
-      clusterRadius: group === 'food' ? 65 : 50,
     });
     map.addLayer({
       id: sourceId + '-layer-lowzoom',
@@ -146,33 +143,6 @@ function initDetailPois(map, trail){
         'text-halo-width': 2,
       },
     });
-    map.addLayer({
-      id: sourceId + '-cluster',
-      type: 'circle',
-      source: sourceId,
-      filter: ['has', 'point_count'],
-      layout: { visibility: 'visible' },
-      paint: {
-        'circle-radius': ['step', ['get', 'point_count'], 20, 5, 25, 10, 30],
-        'circle-color': clusterColor,
-        'circle-opacity': 0.72,
-        'circle-stroke-width': 2,
-        'circle-stroke-color': '#fff',
-      },
-    });
-    map.addLayer({
-      id: sourceId + '-cluster-count',
-      type: 'symbol',
-      source: sourceId,
-      filter: ['has', 'point_count'],
-      layout: {
-        visibility: 'visible',
-        'text-field': ['get', 'point_count'],
-        'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
-        'text-size': 12,
-      },
-      paint: { 'text-color': '#fff' },
-    });
     [sourceId + '-layer', sourceId + '-layer-lowzoom'].forEach((layerId) => {
       map.on('mouseenter', layerId, () => { map.getCanvas().style.cursor = 'pointer'; });
       map.on('mouseleave', layerId, () => { map.getCanvas().style.cursor = ''; });
@@ -184,13 +154,6 @@ function initDetailPois(map, trail){
         .setHTML(poiPopupHtml(f.properties))
         .addTo(map);
     }));
-    map.on('click', sourceId + '-cluster', (e) => {
-      const clusterId = e.features[0].properties.cluster_id;
-      const source = map.getSource(sourceId);
-      source.getClusterExpansionZoom(clusterId).then((zoom) => {
-        map.easeTo({ center: e.features[0].geometry.coordinates, zoom });
-      }).catch(() => {});
-    });
   }
 
   // Features already drawn by the huts/bars/water layers, so the corridor
