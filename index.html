@@ -25,9 +25,9 @@ if(location.protocol !== 'file:' && location.pathname === '/index.html'){
    Firebase resolves. The homepage controller clears the class once real
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
-<link rel="stylesheet" href="styles.css?v=20260901-3">
+<link rel="stylesheet" href="styles.css?v=20260901-4">
 <link rel="stylesheet" href="homepage-mobile.css?v=20260901-5">
-  <link rel="stylesheet" href="homepage-editorial.css?v=20260901-2">
+  <link rel="stylesheet" href="homepage-editorial.css?v=20260901-3">
 </head>
 <body>
 
@@ -330,11 +330,11 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <span class="orma-saved-heart" aria-hidden="true">♥</span><span>Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span>
     </button>
     <a class="li-plan-route" href="route-planner.html">Draft a loop</a>
+    <a id="liRecordBtn" class="li-record" href="walk.html"><span class="li-record-dot" aria-hidden="true"></span><span class="li-record-label">Record walk</span></a>
     </div>
     <!-- Kept as a rendering target for the controller; the consolidated
          Filter trails panel is the visible control at every viewport size. -->
     <div class="li-chiprow" id="liChips"></div>
-    <a id="liRecordBtn" class="li-record" href="walk.html"><span class="li-record-dot" aria-hidden="true"></span><span class="li-record-label">Record walk</span></a>
   </div>
 
   <!-- ================= BODY: MAP + LIST ================= -->
@@ -342,12 +342,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 
     <div class="li-map" id="trailMapWrap">
       <div id="trailMap" role="region" aria-label="Trail map with individual match-coloured trail markers."></div>
-      <!-- Desktop record FAB — bottom-centre of the map (mockup Component C).
-           Phones keep the compact toolbar chip (#liRecordBtn) instead. -->
-      <a id="liRecordFab" class="li-record-fab" href="walk.html">
-        <span class="li-record-fab-dot" aria-hidden="true"></span>
-        <span class="li-record-fab-label">Record walk</span>
-      </a>
       <button id="homeMapExpandBtn" type="button" class="map-expand-btn li-map-expand" aria-label="Expand map" aria-expanded="false"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span></button>
       <!-- Dog conditions card — real profile-derived readings, no invented weather -->
       <div class="li-cond" id="liConditionsCard" hidden>
@@ -396,10 +390,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <p class="li-newsline" id="returningSubline" hidden></p>
         <div class="li-list-title-row">
           <div>
-            <div class="li-list-kicker-row">
-              <div class="li-kick" id="companionKicker">Ranked for your dog</div>
-              <span class="li-list-summary" id="liToolbarSummary" aria-live="polite"></span>
-            </div>
+            <div class="li-kick" id="companionKicker">Ranked for your dog</div>
             <div class="li-list-title" id="companionListTitle">Top trails</div>
           </div>
         </div>
@@ -551,7 +542,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="dog-routes-layer.js?v=20260826-1" defer></script>
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
 <script src="veterinary-care.js?v=20260901-1" defer></script>
-<script src="script.js?v=20260901-8" defer></script>
+<script src="script.js?v=20260901-9" defer></script>
 <script src="dog-wizard.js?v=20260825-2" defer></script>
 <script src="collections-data.js?v=20260815-4" defer></script>
 <script src="homepage-search.js?v=20260825-1" defer></script>

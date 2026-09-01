@@ -6,8 +6,8 @@ describe('logged-in discovery workspace layout', () => {
 
   test('uses a dedicated greeting row above the discovery controls', () => {
     expect(html).toContain('class="li-toolbar-greet"');
-    expect(html).toContain('id="liToolbarSummary"');
-    expect(css).toMatch(/grid-template-areas:\s*"greet greet greet greet greet greet greet greet"\s*"search country region valley filters quick saved plan"/);
+    expect(html).not.toContain('id="liToolbarSummary"');
+    expect(css).toMatch(/grid-template-areas:\s*"greet greet greet greet greet greet greet greet greet"\s*"search country region valley filters quick saved plan record"/);
     expect(css).toMatch(/\.li-toolbar-greet\s*\{[^}]*display:flex;/s);
   });
 
@@ -19,18 +19,19 @@ describe('logged-in discovery workspace layout', () => {
     expect(html.indexOf('id="liValleyWrap"')).toBeLessThan(html.indexOf('id="liFiltersWrap"'));
     expect(html.indexOf('id="liFiltersWrap"')).toBeLessThan(html.indexOf('id="liQuickShade"'));
     expect(html.indexOf('id="liSavedOnlyBtn"')).toBeLessThan(html.indexOf('class="li-plan-route"'));
+    expect(html.indexOf('class="li-plan-route"')).toBeLessThan(html.indexOf('id="liRecordBtn"'));
     expect(html.indexOf('id="liQuickWater"')).toBeLessThan(html.indexOf('id="liSavedOnlyBtn"'));
   });
 
   test('bounds desktop search width so geographic labels remain readable', () => {
     const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
-    expect(editorialCss).toContain('grid-template-columns:minmax(280px,360px) 196px 196px 178px max-content max-content max-content max-content;');
+    expect(editorialCss).toContain('grid-template-columns:minmax(280px,360px) 196px 196px 178px max-content max-content max-content max-content max-content;');
     expect(editorialCss).toContain('justify-content:start;');
     expect(editorialCss).toContain('.li-country-wrap,.li-region-wrap{width:196px;min-width:196px;}');
     expect(editorialCss).toContain('.li-valley-wrap{grid-area:valley;width:178px;min-width:178px;}');
-    expect(editorialCss).toContain('"search country region valley filters quick saved plan"');
+    expect(editorialCss).toContain('"search country region valley filters quick saved plan record"');
     expect(editorialCss).toContain('@media (min-width:1041px) and (max-width:1500px)');
-    expect(editorialCss).toContain('"filters quick saved plan"');
+    expect(editorialCss).toContain('"filters quick saved plan record"');
   });
 
   test('contains the quick shade and water filters in white outlined controls', () => {

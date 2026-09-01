@@ -296,6 +296,8 @@ describe('map-first returning homepage layout contract', () => {
     const toolbarEnd = html.indexOf('<!-- ================= BODY:', toolbarStart);
     expect(record).toBeGreaterThan(toolbarStart);
     expect(record).toBeLessThan(toolbarEnd);
+    expect(html.indexOf('class="li-plan-route"')).toBeLessThan(record);
+    expect(html).not.toContain('id="liRecordFab"');
     expect(html).not.toContain('class="li-pane-toggle"');
     expect(html).not.toContain('<details class="li-legend">');
     expect(html).not.toContain('Map key');
@@ -319,7 +321,6 @@ describe('map-first returning homepage layout contract', () => {
     expect(mobileCss).toContain('.li-map.map-layers-open{z-index:47;}');
     expect(mobileCss).toContain('#trailMap .map-btn{height:32px;padding:0 11px;font-size:11.5px;');
     expect(mobileCss).toContain('#trailMap .td-layer-switch{top:auto;right:auto;left:12px;bottom:calc(var(--mhome-sheet,26dvh) + env(safe-area-inset-bottom) + 12px);}');
-    expect(mobileCss).toContain('.li-map.map-fs .li-record-fab{bottom:calc(18px + env(safe-area-inset-bottom));}');
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     expect(script).toContain("mapShell.classList.toggle('map-layers-open', open)");
     expect(script).toContain("layersBtn.setAttribute('aria-expanded', String(open))");

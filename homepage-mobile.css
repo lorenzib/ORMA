@@ -134,12 +134,10 @@
   body.mhome-active .li-map.map-fs #trailMap .td-layer-switch{top:auto;bottom:calc(12px + env(safe-area-inset-bottom));}
   body.mhome-active .li-map.map-fs #trailMap .map-panel{top:calc(52px + env(safe-area-inset-top));bottom:auto;max-height:calc(100% - 64px - env(safe-area-inset-top) - env(safe-area-inset-bottom));}
   body.mhome-active .li-map.map-fs #trailMap .maplibregl-ctrl-top-right{top:calc(52px + env(safe-area-inset-top));}
-  body.mhome-active .li-map.map-fs .li-record-fab{bottom:calc(18px + env(safe-area-inset-bottom));}
 
   /* Recording is a map action, not part of the page title. Dock the full
      pill above the results sheet so it never collides with the greeting. */
   body.mhome-active .li-record{display:none!important;}
-  body.mhome-active .li-record-fab{display:flex;position:fixed;left:50%;top:auto;bottom:calc(var(--mhome-sheet,26dvh) + env(safe-area-inset-bottom) + 14px);z-index:44;padding:10px 18px;transform:translateX(-50%);}
   body.mhome-active .maplibregl-ctrl-bottom-right{left:auto;right:0;max-width:32%;}
   body.mhome-active .maplibregl-ctrl-bottom-right .maplibregl-ctrl-attrib{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 

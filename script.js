@@ -2345,7 +2345,6 @@ async function renderReturningHomepage(profile){
   profile = liResolveActiveProfile(profile);
   const heading = document.getElementById('returningHeading');
   const subline = document.getElementById('returningSubline');
-  const toolbarSummary = document.getElementById('liToolbarSummary');
   const listEl = document.getElementById('returningTrailList');
   if(!heading || typeof trails === 'undefined') return;
 
@@ -2423,9 +2422,6 @@ async function renderReturningHomepage(profile){
   // "Show N trails" — the apply button doubles as the live result count.
   const applyBtn = document.getElementById('liFiltersApply');
   if(applyBtn) applyBtn.textContent = `Show ${displayList.length} ${displayList.length === 1 ? 'trail' : 'trails'}`;
-
-  const savedCount = Object.keys(currentFavorites || {}).length;
-  if(toolbarSummary) toolbarSummary.textContent = `${displayList.length} trails · ${savedCount} saved`;
 
   updateMapMarkers(displayList);
 

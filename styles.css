@@ -2846,10 +2846,10 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
    the static "Tailored to" label. */
 .li-toolbar{
   display:grid;
-  grid-template-columns:minmax(260px,1fr) auto auto auto auto auto auto auto;
+  grid-template-columns:minmax(260px,1fr) auto auto auto auto auto auto auto auto;
   grid-template-areas:
-    "greet greet greet greet greet greet greet greet"
-    "search country region valley filters quick saved plan";
+    "greet greet greet greet greet greet greet greet greet"
+    "search country region valley filters quick saved plan record";
   align-items:center;
   gap:14px 8px;
   padding:16px 24px 18px;
@@ -3435,28 +3435,10 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 html.early-member #newCustomerHomepage{display:none;}
 html.early-member #returningCustomerHomepage[hidden]{display:block;}
 .li-cond-t-mobile{display:none;}
-/* Phone record chip — desktop uses the map FAB below instead. */
-.li-record{display:none;flex:none;align-items:center;justify-content:center;gap:8px;min-height:39px;box-sizing:border-box;padding:9px 15px;border-radius:999px;background:#C4652F;color:#fff;font:800 12.5px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;box-shadow:0 6px 16px -10px rgba(23,42,28,.55);}
+.li-record{grid-area:record;display:inline-flex;flex:none;align-items:center;justify-content:center;gap:8px;height:46px;box-sizing:border-box;padding:0 18px;border-radius:999px;background:#C4652F;color:#fff;font:800 12.5px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;box-shadow:0 6px 16px -10px rgba(23,42,28,.55);}
 .li-record:hover{background:#A9541F;}
 .li-record-dot{width:8px;height:8px;border-radius:50%;background:#fff;}
 
-/* Desktop record FAB — bottom-centre of the map canvas (mockup C). */
-.li-record-fab{
-  position:absolute;left:50%;bottom:20px;transform:translateX(-50%);
-  z-index:8;display:flex;align-items:center;gap:10px;
-  padding:12px 22px;border-radius:999px;background:#D56B30;color:#fff;
-  text-decoration:none;white-space:nowrap;
-  box-shadow:0 14px 34px -12px rgba(160,70,20,.65);
-  transition:filter .15s ease, transform .15s ease;
-}
-.li-record-fab:hover{filter:brightness(1.06);}
-.li-record-fab:active{transform:translateX(-50%) scale(.98);}
-.li-record-fab-dot{position:relative;width:10px;height:10px;flex:none;}
-.li-record-fab-dot::before{content:"";position:absolute;inset:0;border-radius:50%;background:rgba(255,255,255,.7);animation:li-fab-ping 1.6s cubic-bezier(0,0,.2,1) infinite;}
-.li-record-fab-dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:#fff;}
-@keyframes li-fab-ping{0%{transform:scale(1);opacity:.8;}80%,100%{transform:scale(2.2);opacity:0;}}
-.li-record-fab-label{font:800 13.5px/1 'Inter',sans-serif;letter-spacing:.04em;text-transform:uppercase;}
-@media (max-width:700px){.li-record-fab{display:none;}}
 .li-rating-row{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center;}
 /* Card quick actions: a quiet bar across the card bottom — focus the
    homepage map, or hand off to the platform's maps app. */
