@@ -319,6 +319,13 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toContain("layersBtn.setAttribute('aria-expanded', String(open))");
   });
 
+  test('groups card actions on the left and gives the dog match a larger right panel', () => {
+    expect(css).toMatch(/@media \(min-width:641px\)[\s\S]*?\.li-row\{[\s\S]*?display:grid;[\s\S]*?grid-template-columns:66px minmax\(0,1fr\) minmax\(128px,158px\) 34px;/);
+    expect(css).toMatch(/\.li-match\{[\s\S]*?grid-column:3;[\s\S]*?grid-row:1\/3;/);
+    expect(css).toMatch(/\.li-row-bar\{[\s\S]*?grid-column:1\/3;[\s\S]*?grid-row:2;/);
+    expect(css).toMatch(/@media \(max-width:640px\)[\s\S]*?\.li-row\{display:flex;\}/);
+  });
+
   test('labels the main-map fountain layer as Water', () => {
     const translations = fs.readFileSync(path.join(__dirname, 'i18n.js'), 'utf8');
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
