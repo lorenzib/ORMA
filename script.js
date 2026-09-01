@@ -1379,6 +1379,8 @@ function renderLiCountryControl(profile){
   const entries = Object.entries(configs);
   const activeConfig = entries.find(([, config]) => config.countryCode === activeCountry);
   label.textContent = activeConfig ? activeConfig[1].country : 'Country';
+  const countryWrap = document.getElementById('liCountryWrap');
+  if(countryWrap) countryWrap.classList.toggle('li-has-selection', !!activeConfig);
   menu.innerHTML = '<div class="li-menu-kick">Country</div>';
   entries.forEach(([region, config]) => {
     const button = document.createElement('button');
@@ -1421,6 +1423,8 @@ function renderLiRegionControl(profile){
   const menu = document.getElementById('liRegionMenu');
   if(!label || !menu || typeof trails === 'undefined') return;
   label.textContent = activeRegion === 'savoy' ? 'Savoy' : 'Dolomites';
+  const regionWrap = document.getElementById('liRegionWrap');
+  if(regionWrap) regionWrap.classList.toggle('li-has-selection', !!activeRegion);
   menu.innerHTML = '<div class="li-menu-kick">Region</div>';
   [['dolomites', 'Dolomites'], ['savoy', 'Savoy / French Alps']].forEach(([region, name]) => {
     const button = document.createElement('button');
@@ -1455,6 +1459,8 @@ function renderLiValleyControl(profile){
     : [];
   if(activeValley !== 'all' && !valleys.some(([valley]) => valley === activeValley)) activeValley = 'all';
   label.textContent = activeValley === 'all' ? 'All valleys' : activeValley;
+  const valleyWrap = document.getElementById('liValleyWrap');
+  if(valleyWrap) valleyWrap.classList.toggle('li-has-selection', activeValley !== 'all');
   menu.innerHTML = '<div class="li-menu-kick">Valley</div>';
   const regionCount = trails.filter(trail => trail.region === activeRegion).length;
   [['all', 'All valleys', regionCount], ...valleys.map(([valley, count]) => [valley, valley, count])]

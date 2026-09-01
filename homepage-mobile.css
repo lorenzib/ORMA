@@ -45,24 +45,32 @@
   body.mhome-active .li-country-wrap{grid-column:1/3;grid-row:3;}
   body.mhome-active .li-region-wrap{grid-column:3/5;grid-row:3;}
   body.mhome-active .li-valley-wrap{grid-column:5/7;grid-row:3;}
-  /* One deliberate action row: detailed filters, saved trails and the route
-     planner. Shade and water remain inside Filter trails instead of creating
-     a horizontally scrolling fifth-control rail. */
-  body.mhome-active .li-mobile-actions{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.9fr) minmax(0,1.05fr);align-items:center;gap:7px;min-width:0;overflow:visible;padding:0;}
-  body.mhome-active .li-quick-filters{display:none;}
-  body.mhome-active #liFiltersWrap{order:1;width:100%;min-width:0;}
-  body.mhome-active .li-saved-only{order:2;width:100%;min-width:0;}
-  body.mhome-active .li-plan-route{order:3;width:100%;min-width:0;height:42px;padding:0 10px;margin-left:0;}
+  body.mhome-active .li-country-wrap,
+  body.mhome-active .li-region-wrap,
+  body.mhome-active .li-valley-wrap{width:100%;min-width:0;max-width:none;}
+  /* Two predictable location/filter rows below search. Geography always stays
+     on one line; the quick dog filters and Saved form the next line. */
+  body.mhome-active .li-mobile-actions{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:7px;min-width:0;overflow:visible;padding:0;}
+  body.mhome-active .li-quick-filters{grid-column:1/3;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;width:100%;padding:0;border:0;overflow:visible;}
+  body.mhome-active #liQuickWater{grid-column:1;grid-row:1;}
+  body.mhome-active #liQuickShade{grid-column:2;grid-row:1;}
+  body.mhome-active #liFiltersWrap,
+  body.mhome-active .li-plan-route{display:none;}
+  body.mhome-active .li-saved-only{grid-column:3;grid-row:1;width:100%;min-width:0;}
   body.mhome-active .li-country-btn,
   body.mhome-active .li-region-btn,
   body.mhome-active .li-saved-only,
-  body.mhome-active .li-filt{width:auto;flex:none;height:42px;padding:0 13px;gap:7px;font-size:13px;}
+  body.mhome-active .li-filt{width:100%;flex:none;height:42px;padding:0 13px;gap:7px;font-size:13px;}
   body.mhome-active .li-quick-filter{width:auto;flex:none;height:42px;padding:0 13px;border:1.5px solid var(--paper-line);border-radius:999px;background:#fff;gap:7px;font-size:13px;white-space:nowrap;}
   body.mhome-active .li-quick-filter [data-dp-icon]{display:grid;place-items:center;}
   body.mhome-active .li-saved-only{font-size:13px;}
   body.mhome-active .orma-saved-heart{font-family:Arial,sans-serif;font-size:19px;}
   body.mhome-active .li-geo-copy{display:inline-flex;align-items:baseline;gap:5px;min-width:0;overflow:hidden;}
-  body.mhome-active .li-geo-copy .li-control-kicker{display:inline;flex:none;font-size:8px;letter-spacing:.07em;}
+  body.mhome-active .li-geo-copy .li-control-kicker{display:inline;flex:none;font-size:11px;letter-spacing:.07em;}
+  body.mhome-active .li-menuwrap.li-has-selection .li-geo-copy .li-control-kicker{display:none;}
+  body.mhome-active #liCountryWrap:not(.li-has-selection) #liCountryLabel,
+  body.mhome-active #liRegionWrap:not(.li-has-selection) #liRegionLabel,
+  body.mhome-active #liValleyWrap:not(.li-has-selection) #liValleyLabel{display:none;}
   body.mhome-active .li-geo-copy>span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   body.mhome-active .li-saved-count{display:grid;min-width:21px;height:21px;padding:0 5px;font-size:11px;}
   body.mhome-active .li-filt{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;border:1.5px solid var(--paper-line);background:#fff;color:var(--ink);line-height:1;cursor:pointer;}
@@ -248,14 +256,12 @@
   body.mhome-active .li-region-wrap,
   body.mhome-active .li-valley-wrap{width:100%;min-width:0;max-width:none;}
   body.mhome-active .li-mobile-actions{grid-column:1/-1;grid-row:2;grid-template-columns:repeat(3,minmax(0,1fr));height:36px;}
-  body.mhome-active #liFiltersWrap{grid-column:1;grid-row:1;width:100%;min-width:0;}
-  body.mhome-active .li-saved-only{grid-column:2;grid-row:1;width:100%;min-width:0;}
-  body.mhome-active .li-plan-route{grid-column:3;grid-row:1;width:100%;min-width:0;margin:0;}
-  body.mhome-active #liFiltersBtn{width:100%;}
+  body.mhome-active .li-quick-filters{grid-column:1/3;grid-row:1;}
+  body.mhome-active .li-saved-only{grid-column:3;grid-row:1;width:100%;min-width:0;}
   body.mhome-active .li-country-btn,
   body.mhome-active .li-region-btn,
   body.mhome-active .li-saved-only,
   body.mhome-active .li-filt,
   body.mhome-active .li-plan-route{height:36px;padding-inline:8px;font-size:11px;}
-  body.mhome-active .li-control-kicker{display:none;}
+  body.mhome-active .li-menuwrap:not(.li-has-selection) .li-control-kicker{display:inline;}
 }

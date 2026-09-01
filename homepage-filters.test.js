@@ -41,14 +41,14 @@ function tForTests(key, params = {}){
 
 function loadHomepageContext(testTrails){
   document.body.innerHTML = `
-    <button id="liRegionBtn"></button>
-    <span id="liRegionLabel"></span>
+    <div id="liRegionWrap"><button id="liRegionBtn"></button>
+    <span id="liRegionLabel"></span></div>
     <div id="liRegionMenu"></div>
-    <button id="liCountryBtn"></button>
-    <span id="liCountryLabel"></span>
+    <div id="liCountryWrap"><button id="liCountryBtn"></button>
+    <span id="liCountryLabel"></span></div>
     <div id="liCountryMenu"></div>
-    <button id="liValleyBtn"></button>
-    <span id="liValleyLabel"></span>
+    <div id="liValleyWrap"><button id="liValleyBtn"></button>
+    <span id="liValleyLabel"></span></div>
     <div id="liValleyMenu"></div>
     <button id="liSavedOnlyBtn"><span id="liSavedOnlyCount"></span></button>
     <span id="liDogCtxName"></span>
@@ -213,11 +213,13 @@ describe('returning homepage region + valley filters', () => {
 
     const maurienneOption = document.querySelector('[data-valley="Maurienne"]');
     expect(document.getElementById('liValleyLabel').textContent).toBe('All valleys');
+    expect(document.getElementById('liValleyWrap').classList.contains('li-has-selection')).toBe(false);
     expect(maurienneOption).not.toBeNull();
     maurienneOption.click();
 
     expect(vm.runInContext('activeValley', context)).toBe('Maurienne');
     expect(document.getElementById('liValleyLabel').textContent).toBe('Maurienne');
+    expect(document.getElementById('liValleyWrap').classList.contains('li-has-selection')).toBe(true);
   });
 
   test('result list reflects region filter', async () => {
@@ -304,12 +306,15 @@ describe('map-first returning homepage layout contract', () => {
 
   test('uses a deliberate mobile filter row and compact map controls', () => {
     expect(html).toContain('<div class="li-mobile-actions" aria-label="Trail actions">');
-    expect(mobileCss).toContain('body.mhome-active .li-mobile-actions{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.9fr) minmax(0,1.05fr);');
-    expect(mobileCss).toContain('body.mhome-active .li-quick-filters{display:none;}');
-    expect(mobileCss).toContain('body.mhome-active #liFiltersWrap{order:1;width:100%;min-width:0;}');
-    expect(mobileCss).toContain('body.mhome-active .li-saved-only{order:2;width:100%;min-width:0;}');
-    expect(mobileCss).toContain('body.mhome-active .li-plan-route{order:3;width:100%;min-width:0;');
-    expect(mobileCss).toContain('body.mhome-active .li-geo-copy .li-control-kicker{display:inline;');
+    expect(mobileCss).toContain('body.mhome-active .li-mobile-actions{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));');
+    expect(mobileCss).toContain('body.mhome-active .li-quick-filters{grid-column:1/3;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));');
+    expect(mobileCss).toContain('body.mhome-active #liQuickWater{grid-column:1;grid-row:1;}');
+    expect(mobileCss).toContain('body.mhome-active #liQuickShade{grid-column:2;grid-row:1;}');
+    expect(mobileCss).toContain('body.mhome-active #liFiltersWrap,');
+    expect(mobileCss).toContain('body.mhome-active .li-plan-route{display:none;}');
+    expect(mobileCss).toContain('body.mhome-active .li-saved-only{grid-column:3;grid-row:1;');
+    expect(mobileCss).toContain('body.mhome-active .li-menuwrap.li-has-selection .li-geo-copy .li-control-kicker{display:none;}');
+    expect(mobileCss).toContain('body.mhome-active #liValleyWrap:not(.li-has-selection) #liValleyLabel{display:none;}');
     expect(mobileCss).toContain('body.mhome-active .li-saved-count{display:grid;');
     expect(mobileCss).toContain('.li-map.map-layers-open{z-index:47;}');
     expect(mobileCss).toContain('#trailMap .map-btn{height:32px;padding:0 11px;font-size:11.5px;');
@@ -325,6 +330,7 @@ describe('map-first returning homepage layout contract', () => {
   test('groups card actions on the left and gives the dog match a larger right panel', () => {
     expect(css).toMatch(/@media \(min-width:641px\)[\s\S]*?\.li-row\{[\s\S]*?display:grid;[\s\S]*?grid-template-columns:66px minmax\(0,1fr\) minmax\(128px,158px\) 34px;/);
     expect(css).toMatch(/\.li-match\{[\s\S]*?grid-column:3;[\s\S]*?grid-row:1\/3;/);
+    expect(css).toMatch(/\.li-heart\{grid-column:4;grid-row:1\/3;align-self:center;\}/);
     expect(css).toMatch(/\.li-row-bar\{[\s\S]*?grid-column:1\/3;[\s\S]*?grid-row:2;/);
     expect(css).toMatch(/@media \(max-width:640px\)[\s\S]*?\.li-row\{display:flex;\}/);
   });
