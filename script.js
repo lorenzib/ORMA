@@ -554,7 +554,7 @@ function initGuestMap(){
   guestMapInstance.on('load', async () => {
     if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(guestMapInstance);
     addTerrainSource(guestMapInstance);
-    // Keep the public walking network as quiet context beneath ORMA routes.
+    // Keep the public walking network as quiet context around ORMA routes.
     const guestFirstLabel = guestMapInstance.getStyle().layers.find(l => l.type === 'symbol');
     guestMapInstance.addSource('waymarked-hiking', {
       type: 'raster',
@@ -569,10 +569,10 @@ function initGuestMap(){
       paint: {
         'raster-opacity': [
           'interpolate', ['linear'], ['zoom'],
-          7, 0.20,
-          10, 0.28,
-          12, 0.38,
-          14, 0.50,
+          7, 0.12,
+          10, 0.18,
+          12, 0.24,
+          14, 0.30,
         ],
         'raster-saturation': -0.86,
         'raster-contrast': -0.06,
@@ -655,7 +655,7 @@ function initGuestMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#FFFDF7',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 4.5, 10, 7, 13, 8.5],
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 5.5, 10, 9, 13, 11],
         'line-opacity': 0.94,
       },
     }, guestFirstLabel ? guestFirstLabel.id : undefined);
@@ -666,10 +666,13 @@ function initGuestMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#3E7A91',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 3.5, 13, 4.5],
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2.5, 10, 5, 13, 6.5],
         'line-opacity': 1,
       },
     }, guestFirstLabel ? guestFirstLabel.id : undefined);
+    if(guestFirstLabel && guestMapInstance.getLayer('waymarked-hiking-layer')){
+      guestMapInstance.moveLayer('waymarked-hiking-layer', guestFirstLabel.id);
+    }
 
     const bounds = new maplibregl.LngLatBounds();
     trails.forEach(t => {
@@ -809,10 +812,10 @@ function initTrailMap(){
       paint: {
         'raster-opacity': [
           'interpolate', ['linear'], ['zoom'],
-          7, 0.20,
-          10, 0.28,
-          12, 0.38,
-          14, 0.50,
+          7, 0.12,
+          10, 0.18,
+          12, 0.24,
+          14, 0.30,
         ],
         'raster-saturation': -0.86,
         'raster-contrast': -0.06,
@@ -863,7 +866,7 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#FFFDF7',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 4.5, 10, 7.5, 13, 9],
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 6, 10, 10, 13, 12],
         'line-opacity': 0.94,
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
@@ -875,10 +878,13 @@ function initTrailMap(){
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
         'line-color': '#3E7A91',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 4, 13, 5],
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 3, 10, 5.5, 13, 7],
         'line-opacity': 1,
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
+    if(firstLabelLayer && trailMapInstance.getLayer('waymarked-hiking-layer')){
+      trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id);
+    }
     // Wide, near-invisible twin of the route line so a fingertip (or a
     // slightly-off cursor) still hits the trail — 3px is too thin a target.
     trailMapInstance.addLayer({
@@ -904,7 +910,7 @@ function initTrailMap(){
       id: 'trail-clusters',
       type: 'circle',
       source: 'trail-points',
-      filter: ['has', 'point_count'],
+      filter: ['all', ['has', 'point_count'], ['>=', ['get', 'point_count'], 5]],
       paint: {
         'circle-color': '#DCE8DE',
         'circle-radius': ['step', ['get', 'point_count'], 15, 10, 18, 30, 21],
@@ -916,7 +922,7 @@ function initTrailMap(){
       id: 'trail-cluster-count',
       type: 'symbol',
       source: 'trail-points',
-      filter: ['has', 'point_count'],
+      filter: ['all', ['has', 'point_count'], ['>=', ['get', 'point_count'], 5]],
       layout: {
         'text-field': ['get', 'point_count_abbreviated'],
         'text-font': ['Noto Sans Bold'],
