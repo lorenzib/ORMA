@@ -946,42 +946,11 @@ function initTrailMap(){
       paint: { 'line-color': '#000', 'line-width': 18, 'line-opacity': 0.01 },
     }, 'waymarked-hiking-layer');
 
-    // Cluster trailheads at wider zooms so the map communicates density
-    // without becoming a field of indistinguishable dots.
+    // Every trailhead remains individually visible at every zoom. Aggregate
+    // numbers hide the match colour and make it harder to scan actual trails.
     trailMapInstance.addSource('trail-points', {
       type: 'geojson',
       data: { type: 'FeatureCollection', features: [] },
-      cluster: true,
-      clusterMaxZoom: 11,
-      clusterRadius: 48,
-      clusterMinPoints: 5,
-    });
-    trailMapInstance.addLayer({
-      id: 'trail-clusters',
-      type: 'circle',
-      source: 'trail-points',
-      filter: ['all', ['has', 'point_count'], ['>=', ['get', 'point_count'], 5]],
-      paint: {
-        'circle-color': '#DCE8DE',
-        'circle-radius': ['step', ['get', 'point_count'], 15, 10, 18, 30, 21],
-        'circle-stroke-width': 2,
-        'circle-stroke-color': '#ffffff',
-      },
-    });
-    trailMapInstance.addLayer({
-      id: 'trail-cluster-count',
-      type: 'symbol',
-      source: 'trail-points',
-      filter: ['all', ['has', 'point_count'], ['>=', ['get', 'point_count'], 5]],
-      layout: {
-        'text-field': ['get', 'point_count_abbreviated'],
-        'text-font': ['Noto Sans Bold'],
-        'text-size': 11,
-      },
-      paint: {
-        'text-color': '#365B43',
-        'text-halo-width': 0,
-      },
     });
     // Pin colour = match tier for THIS dog (mirrors the on-map legend and
     // the % badges in the list); a red ring marks saved trails.
@@ -989,7 +958,6 @@ function initTrailMap(){
       id: 'trail-unclustered',
       type: 'circle',
       source: 'trail-points',
-      filter: ['!', ['has', 'point_count']],
       paint: {
         'circle-color': [
           'step', ['coalesce', ['get', 'score'], 0],
@@ -1015,15 +983,6 @@ function initTrailMap(){
       },
     });
 
-    trailMapInstance.on('click', 'trail-clusters', async (e) => {
-      const feature = e.features && e.features[0];
-      if(!feature) return;
-      const source = trailMapInstance.getSource('trail-points');
-      try {
-        const zoom = await source.getClusterExpansionZoom(feature.properties.cluster_id);
-        trailMapInstance.easeTo({ center: feature.geometry.coordinates, zoom });
-      } catch(err) { /* cluster may have changed during a filter update */ }
-    });
     trailMapInstance.on('click', 'trail-unclustered', (e) => {
       const feature = e.features && e.features[0];
       if(!feature) return;
@@ -1045,7 +1004,7 @@ function initTrailMap(){
         jumpToCard(selected.id);
       }
     });
-    ['trail-clusters','trail-unclustered','trail-paths-hit'].forEach(layerId => {
+    ['trail-unclustered','trail-paths-hit'].forEach(layerId => {
       trailMapInstance.on('mouseenter', layerId, () => { trailMapInstance.getCanvas().style.cursor = 'pointer'; });
       trailMapInstance.on('mouseleave', layerId, () => { trailMapInstance.getCanvas().style.cursor = ''; });
     });

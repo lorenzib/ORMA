@@ -356,10 +356,10 @@ describe('map-first returning homepage layout contract', () => {
     expect(script.match(/'raster-saturation': -1/g)).toHaveLength(2);
     expect(script.match(/'raster-contrast': -0\.06/g)).toHaveLength(2);
     expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': \['interpolate'[\s\S]*?13, 7, 16, 9/);
-    expect(script).toContain('clusterMinPoints: 5');
-    expect(script.match(/filter: \['all', \['has', 'point_count'\], \['>=', \['get', 'point_count'\], 5\]\]/g)).toHaveLength(2);
-    expect(script).toContain("'circle-color': '#DCE8DE'");
-    expect(script).toContain("'text-size': 11");
+    expect(script).not.toContain("id: 'trail-clusters'");
+    expect(script).not.toContain("id: 'trail-cluster-count'");
+    expect(script).not.toContain('clusterMinPoints');
+    expect(script).not.toContain('getClusterExpansionZoom(feature.properties.cluster_id)');
     expect(trailScript).toContain("9, 0.52");
     expect(trailScript).toContain("12, 0.68");
     expect(trailScript).toContain("14, 0.90");

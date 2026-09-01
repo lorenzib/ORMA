@@ -29,6 +29,7 @@ describe('standalone draft route planner', () => {
   test('allows three to eight points and requires a closed mapped preview before saving', () => {
     expect(plannerHtml).toContain('id="plannerClose"');
     expect(plannerHtml).toContain('id="plannerSave"');
+    expect(plannerHtml).toContain('Close the loop before you can save the draft.');
     expect(plannerSource).toContain('const MIN_LOOP_POINTS = 3');
     expect(plannerSource).toContain('const MAX_POINTS = 8');
     expect(plannerSource).toContain('points.length < MIN_LOOP_POINTS');
