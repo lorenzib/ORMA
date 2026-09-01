@@ -21,6 +21,13 @@ describe('logged-in discovery workspace layout', () => {
     expect(html.indexOf('id="liQuickWater"')).toBeLessThan(html.indexOf('id="liSavedOnlyBtn"'));
   });
 
+  test('bounds desktop search width so geographic labels remain readable', () => {
+    const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
+    expect(editorialCss).toContain('grid-template-columns:minmax(280px,520px)');
+    expect(editorialCss).toContain('.li-country-wrap,.li-region-wrap{min-width:205px;}');
+    expect(editorialCss).toContain('width:100%;justify-content:space-between;');
+  });
+
   test('contains the quick shade and water filters in white outlined controls', () => {
     const rule = css.match(/\.li-quick-filter\s*\{([^}]*)\}/s);
     expect(rule).not.toBeNull();
