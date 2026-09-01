@@ -51,6 +51,12 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(loader).toContain('regionForTrail:');
   });
 
+  test('an uncached parking lookup cannot block trail-detail rendering', () => {
+    const detail = read('trail.js');
+    expect(detail).toContain('improveLoopStart(trail, { deferOnMiss:true })');
+    expect(detail).toContain('if(deferOnMiss) return Promise.resolve()');
+  });
+
   test('oversized trail photos have mobile WebP variants and JPEG fallbacks', () => {
     const stems = [
       'lago-di-braies',

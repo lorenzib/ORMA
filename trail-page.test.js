@@ -64,6 +64,20 @@ function loadTrailScript(overrides = {}){
 }
 
 describe('trail page map controls', () => {
+  test('an unresolved parking request does not hold the trail loading shell open', async () => {
+    const context = loadTrailScript({ fetch: () => new Promise(() => {}) });
+    const path = Array.from({ length:21 }, (_, index) => [46.5 + index * 0.00001, 11.6]);
+    path[path.length - 1] = path[0];
+
+    const result = await Promise.race([
+      context.improveLoopStart({ id:'slow-loop', curated:false, path }, { deferOnMiss:true })
+        .then(() => 'render-ready'),
+      new Promise(resolve => setTimeout(() => resolve('blocked'), 50)),
+    ]);
+
+    expect(result).toBe('render-ready');
+  });
+
   test('renders without waiting for authentication-delayed DOMContentLoaded', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
@@ -176,12 +190,12 @@ describe('trail page map controls', () => {
     expect(html).toContain('i18n.js?v=20260901-1');
     expect(html).toContain('trail-photo-provenance.js?v=20260820-1');
     expect(html).toContain('trail-weather-window.js?v=20260820-1');
-    expect(html).toContain('hike-mode.js?v=20260901-2');
+    expect(html).toContain('hike-mode.js?v=20260901-3');
     expect(html).toContain('detail-pois.js?v=20260901-2');
     expect(html).toContain('trail-access-directions.js?v=20260828-2');
     expect(html).toContain('footpath-router.js?v=20260831-1');
     expect(html).toContain('veterinary-care.js?v=20260831-2');
-    expect(html).toContain('trail.js?v=20260901-8');
+    expect(html).toContain('trail.js?v=20260901-10');
     expect(html).toContain('trail-reports.js?v=20260820-2');
     expect(html).toContain('trail-blueprint.js?v=20260901-3');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');

@@ -1076,7 +1076,7 @@ function renderAllLifts(map, options){
 // ============================================================
 const PARK_CACHE_TTL = 30 * 24 * 3600 * 1000;
 const PARK_MAX_DIST_M = 350;      // parking must be this close to the route
-const PARK_LOOKUP_WAIT_MS = 2800; // never block first paint longer than this
+const PARK_LOOKUP_WAIT_MS = 2800;
 
 function isLoopPath(path){
   return Array.isArray(path) && path.length > 20 &&
@@ -1138,8 +1138,9 @@ function applyLoopRotation(trail, rot){
   trail.lng = trail.path[0][1];
 }
 
-function improveLoopStart(trail){
+function improveLoopStart(trail, options){
   if(!trail || trail.curated !== false || !isLoopPath(trail.path)) return Promise.resolve();
+  const deferOnMiss = !!(options && options.deferOnMiss);
   const cacheKey = 'dolopaws-parkstart-' + trail.id;
   try {
     const cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
@@ -1162,8 +1163,12 @@ function improveLoopStart(trail){
     return rot;
   }).catch(() => null);
 
-  // Wait briefly; if Overpass is slow, render with the imported order now —
-  // the lookup still finishes into the cache for the next visit.
+  // A trail-detail navigation must never wait on Overpass. On the first visit,
+  // let the lookup finish into the cache while the page renders immediately;
+  // later visits can apply that cached start synchronously above.
+  if(deferOnMiss) return Promise.resolve();
+
+  // Non-navigation callers may still opt into the former bounded wait.
   const timeout = new Promise(res => setTimeout(() => res('timeout'), PARK_LOOKUP_WAIT_MS));
   return Promise.race([lookup, timeout]).then(rot => {
     if(rot && rot !== 'timeout') applyLoopRotation(trail, rot);
@@ -1443,9 +1448,11 @@ function init(){
     return;
   }
 
-  // Imported circuits: settle the real-world start FIRST, so every consumer
-  // below (map, flag, directions, weather, hike mode) sees the same km 0.
-  improveLoopStart(trail).then(() => renderTrail(trail), () => renderTrail(trail));
+  // Cached real-world starts are applied before rendering. A cache miss starts
+  // the lookup in the background so a slow third-party service cannot hold a
+  // mobile navigation on the loading shell.
+  improveLoopStart(trail, { deferOnMiss:true })
+    .then(() => renderTrail(trail), () => renderTrail(trail));
 }
 
 function renderTrail(t){
