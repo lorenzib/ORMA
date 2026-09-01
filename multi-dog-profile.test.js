@@ -57,7 +57,10 @@ describe('multi-dog account experience', () => {
     expect(source('profile-design.js')).toContain("name.addEventListener('input'");
     expect(source('profile-design.js')).toContain("legacyName.dispatchEvent(new Event('input',{bubbles:true}))");
     expect(page).toContain('placeholder="Your dog\'s name"');
-    expect(page).toContain('profile-design.js?v=20260825-2');
+    expect(page).toContain('profile-design.js?v=20260901-1');
+    const manager = source('profile-design.js');
+    expect(manager).toContain("attributeFilter:['hidden']");
+    expect(manager).not.toContain("{attributes:true,subtree:true}");
   });
 
   test('the visible profile name is copied into the persisted account form before save', () => {
@@ -215,15 +218,32 @@ describe('multi-dog account experience', () => {
 
   test('photos remain isolated to the active dog', () => {
     const account = source('account.js');
+    const accountHtml = source('account.html');
     const nav = source('mobile-nav.js');
     const homepage = source('script.js');
     expect(account).toContain("const dogKey = addMode ? 'new' : (base.id || activeDogId || 'new')");
     expect(account).toContain("(addMode ? 'new' : (activeDogId || 'new'))");
-    expect(account).toContain("setDogProfile({ photo: dataUrl }, base.id || activeDogId)");
+    expect(accountHtml).toContain('id="dogPhotoInput" accept="image/*" multiple');
+    expect(accountHtml).toContain('id="dogPhotoGallery"');
+    expect(accountHtml).toContain('id="dogPhotoAddBtn"');
+    expect(account).toContain('const MAX_DOG_PHOTOS = 4');
+    expect(account).toContain('photos:state.photos.slice()');
+    expect(account).toContain('Make photo ${index + 1} the profile photo');
+    expect(account).toContain('Remove photo ${index + 1}');
+    expect(source('firebase-init.js')).toContain('clean.photos = photos.slice(0, 4)');
     expect(source('firebase-init.js')).toContain('newDogPhotoId(existingDog.id)');
     expect(nav).toContain('summary.dogs.find(dog => dog.id === summary.activeDogId)');
     expect(nav).toContain("return typeof photo === 'string' && photo.startsWith('data:image/') ? photo : null");
     expect(homepage).toContain('const photo = liDogPhoto(profile);');
+  });
+
+  test('dog menu omits saved and journal shortcuts', () => {
+    const nav = source('mobile-nav.js');
+    const homepage = source('index.html');
+    const accountMenu = homepage.slice(homepage.indexOf('id="liAccountMenu"'), homepage.indexOf('id="liGreetSwitchWrap"'));
+    expect(nav).not.toContain('menu.appendChild(savedItem)');
+    expect(accountMenu).not.toContain('id="savedTrailsBtn"');
+    expect(accountMenu).not.toContain('journal.html');
   });
 
   test('the beta charter matches the implemented optional multi-dog scope', () => {

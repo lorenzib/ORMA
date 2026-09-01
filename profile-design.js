@@ -67,7 +67,14 @@
     if(legacyName){legacyName.value=name.value;legacyName.dispatchEvent(new Event('input',{bubbles:true}));}
     paintName(name.value.trim());
   });
-  const observer=new MutationObserver(mirror);observer.observe(document.getElementById('loggedInState'),{attributes:true,subtree:true});
+  // Only react when authentication shows or hides the logged-in shell.
+  // Watching every descendant attribute caused mirror() to observe its own
+  // hidden/aria updates and spin indefinitely, freezing the account page.
+  const loggedInState=document.getElementById('loggedInState');
+  const observer=new MutationObserver(records=>{
+    if(records.some(record=>record.attributeName==='hidden')&&!loggedInState.hidden)mirror();
+  });
+  observer.observe(loggedInState,{attributes:true,attributeFilter:['hidden']});
   window.addEventListener('dolopaws-account-profile-loaded',event=>{
     const p=event.detail&&event.detail.profile||{};
     mirror();

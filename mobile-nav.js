@@ -568,7 +568,6 @@
         '<span class="nav-dogmenu-heart" aria-hidden="true">♥</span>' + savedLabel +
         (Number.isFinite(summary.saved) ? '<span class="nav-dogmenu-count">' + summary.saved + '</span>' : ''),
         'saved.html');
-      menu.appendChild(savedItem);
       menu.appendChild(menuItem(copy('mobile.downloads', 'Downloaded trails'), 'downloads.html', 'mobile.downloads'));
       menu.appendChild(menuItem(copy('mobile.settings', 'Account settings'), 'settings.html', 'mobile.settings'));
       if(summary.moderator === true){

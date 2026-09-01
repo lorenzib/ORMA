@@ -132,6 +132,8 @@ service cloud.firestore {
           // data:image/ prefix before upload.
           && (data.get('photo', null) == null
             || (data.photo is string && data.photo.size() <= 700000))
+          && (data.get('photos', null) == null
+            || (data.photos is list && data.photos.size() <= 4))
           && (data.get('vet', null) == null || validVet(data.vet))
           && (data.get('owner', null) == null || validOwner(data.owner)));
     }

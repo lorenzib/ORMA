@@ -117,6 +117,14 @@
     .acct-grid>.acct-card:not(.acct-rail){border:none;background:transparent;border-radius:0;padding:22px 0 !important;}
     #tab-dog>div:first-child{flex-direction:column;text-align:center;gap:12px;}
     #dogPhotoBtn{width:104px !important;height:104px !important;font-size:34px !important;}
+    .dog-photo-gallery{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:-10px 0 24px 122px;}
+    .dog-photo-thumb{position:relative;width:58px;height:58px;flex:none;}
+    .dog-photo-thumb__select{width:100%;height:100%;padding:0;border:2px solid transparent;border-radius:13px;background:center/cover no-repeat;cursor:pointer;}
+    .dog-photo-thumb.is-primary .dog-photo-thumb__select{border-color:var(--accent);box-shadow:0 0 0 2px #fff inset;}
+    .dog-photo-thumb__remove{position:absolute;top:-7px;right:-7px;width:23px;height:23px;padding:0;border:2px solid #fff;border-radius:50%;background:#9C3A25;color:#fff;display:grid;place-items:center;font:800 14px/1 'Inter',sans-serif;cursor:pointer;}
+    .dog-photo-add{height:42px;padding:0 14px;border:1.5px dashed #AEB9AD;border-radius:12px;background:#F7F8F4;color:var(--accent);font:750 12px 'Inter',sans-serif;cursor:pointer;}
+    .dog-photo-count{font:650 11px 'Inter',sans-serif;color:var(--ink-soft);}
+    @media(max-width:640px){.dog-photo-gallery{margin-left:0;}}
     .panel-save{display:none !important;}
     .ep-mfooter{display:flex;gap:10px;align-items:center;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:14px 16px calc(14px + env(safe-area-inset-bottom));background:rgba(247,244,235,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(27,31,25,.08);}
     #cancelOverlay{align-items:flex-end !important;padding:0 !important;}
@@ -231,7 +239,7 @@
       <!-- DOG DETAILS -->
       <section id="tab-dog" role="tabpanel" aria-labelledby="accountTabDog">
         <div style="display:flex;align-items:center;gap:18px;margin-bottom:26px;">
-          <input type="file" id="dogPhotoInput" accept="image/*" style="display:none;">
+          <input type="file" id="dogPhotoInput" accept="image/*" multiple style="display:none;">
           <div style="position:relative;flex:none;">
             <button type="button" id="dogPhotoBtn" aria-label="Change photo" style="width:88px;height:88px;border-radius:50%;border:2px dashed #C5C3B4;background-color:#EAF0E6;background-size:cover;background-position:center;overflow:hidden;cursor:pointer;display:grid;place-items:center;color:var(--success);font:800 30px 'Inter',sans-serif;"></button>
             <span style="position:absolute;bottom:-2px;right:-2px;width:28px;height:28px;border-radius:50%;border:2px solid #fff;background:var(--accent);display:grid;place-items:center;pointer-events:none;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></span>
@@ -241,6 +249,10 @@
             <div class="hint" style="margin-top:2px;" data-i18n="account.photo.updateHint">Update the photo and details below</div>
             <p id="dogPhotoStatus" class="hint" hidden></p>
           </div>
+        </div>
+        <div id="dogPhotoGallery" class="dog-photo-gallery" aria-label="Photos for this dog">
+          <button type="button" id="dogPhotoAddBtn" class="dog-photo-add">＋ Add photos</button>
+          <span id="dogPhotoCount" class="dog-photo-count">0 of 4</span>
         </div>
 
         <div class="acct-2col" style="margin-bottom:20px;">
@@ -550,15 +562,15 @@
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260901-2"></script>
+<script src="mobile-nav.js?v=20260901-4"></script>
 <script src="i18n.js?v=20260815-4"></script>
 <script src="offline-packages.js"></script>
 <script src="local-data.js?v=20260815-4"></script>
-<script type="module" src="firebase-init.js?v=20260825-2"></script>
+<script type="module" src="firebase-init.js?v=20260901-1"></script>
 <script src="breeds-data.js?v=20260815-4" defer></script>
 <script src="accessibility-runtime.js?v=20260815-4" defer></script>
-<script src="account.js?v=20260825-2" defer></script>
+<script src="account.js?v=20260901-1" defer></script>
 <script src="social-profile-settings.js?v=20260825-1" defer></script>
-<script src="profile-design.js?v=20260825-2" defer></script>
+<script src="profile-design.js?v=20260901-1" defer></script>
 </body>
 </html>

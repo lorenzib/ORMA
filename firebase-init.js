@@ -153,11 +153,29 @@ function sanitizedDogProfile(dog, index) {
   if (source.age === null || (typeof source.age === 'number' && source.age >= 0 && source.age <= 30)) clean.age = source.age;
   if (Array.isArray(source.sens)) clean.sens = source.sens.slice(0, 10);
   if (Array.isArray(source.conditions)) clean.conditions = source.conditions.slice(0, 10);
-  if (source.photo === null || (
-    typeof source.photo === 'string'
-    && /^data:image\/(jpeg|jpg|png|webp);base64,/.test(source.photo)
-    && source.photo.length <= 700000
-  )) clean.photo = source.photo;
+  const validPhoto = value => typeof value === 'string'
+    && /^data:image\/(jpeg|jpg|png|webp);base64,/.test(value)
+    && value.length <= 700000;
+  const requestedPhotos = Array.isArray(source.photos) ? source.photos : [];
+  const photos = [];
+  let photoDataSize = 0;
+  requestedPhotos.forEach(value => {
+    if(!validPhoto(value) || photos.includes(value) || photos.length >= 4) return;
+    if(photoDataSize + value.length > 780000) return;
+    photos.push(value);
+    photoDataSize += value.length;
+  });
+  if(validPhoto(source.photo) && !photos.includes(source.photo)
+    && photos.length < 4 && photoDataSize + source.photo.length <= 780000){
+    photos.unshift(source.photo);
+  }
+  if(photos.length){
+    clean.photos = photos.slice(0, 4);
+    clean.photo = clean.photos[0];
+  } else if(source.photo === null || source.photos != null){
+    clean.photo = null;
+    clean.photos = [];
+  }
   ['jointIssues', 'heatIssues'].forEach(field => {
     if (typeof source[field] === 'boolean') clean[field] = source[field];
   });
@@ -315,6 +333,10 @@ async function setDogProfile(dogObj, targetDogId) {
       const dogs = state.dogs.slice();
       const existingDog = dogs[index];
       const nextDog = { ...existingDog, ...dogObj, id:existingDog.id };
+      if (Array.isArray(dogObj.photos)) {
+        nextDog.photos = dogObj.photos.slice(0, 4);
+        nextDog.photo = nextDog.photos[0] || null;
+      }
       if (Object.prototype.hasOwnProperty.call(dogObj, 'photo')) {
         if (typeof dogObj.photo === 'string' && dogObj.photo.startsWith('data:image/')) {
           if (dogObj.photo !== existingDog.photo || !existingDog.photoId) {

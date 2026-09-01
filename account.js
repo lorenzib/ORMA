@@ -68,7 +68,7 @@
   let designValues = null;
   const state = {
     name:'', breed:'', dob:'', weight:20, size:'Large',
-    neuter:'Unknown', coat:'Short', sens:[], photo:null,
+    neuter:'Unknown', coat:'Short', sens:[], photo:null, photos:[],
     vetName:'', vetPhone:'', chip:'', insurer:'', policy:'', medical:'',
     ownerName:'', ownerPhone:'', ownerEmail:'', emName:'', emPhone:'',
   };
@@ -375,6 +375,7 @@
       el.style.backgroundImage = state.photo ? 'url(' + state.photo + ')' : 'none';
       el.textContent = state.photo ? '' : initial;
     });
+    renderDogPhotoGallery();
 
     // Emergency card preview
     $('cardName').textContent = displayName;
@@ -408,8 +409,35 @@
   const LEGACY_PHOTO_KEY = 'dolopaws-dog-photo';
   const PHOTO_INPUT_MAX_BYTES = 8 * 1024 * 1024;
   const PHOTO_MAX_PX = 300;
+  const MAX_DOG_PHOTOS = 4;
+  const MAX_ACCOUNT_PHOTO_DATA = 780000;
   const dogPhotoInput = $('dogPhotoInput');
   const dogPhotoStatus = $('dogPhotoStatus');
+  const dogPhotoGallery = $('dogPhotoGallery');
+  const dogPhotoAddBtn = $('dogPhotoAddBtn');
+  const dogPhotoCount = $('dogPhotoCount');
+
+  function validPhoto(value){
+    return typeof value === 'string' && /^data:image\/(?:jpeg|jpg|png|webp);base64,/.test(value);
+  }
+  function photoList(profile){
+    const source = profile && Array.isArray(profile.photos) ? profile.photos : [];
+    const values = source.filter(validPhoto);
+    if(profile && validPhoto(profile.photo) && !values.includes(profile.photo)) values.unshift(profile.photo);
+    return values.slice(0, MAX_DOG_PHOTOS);
+  }
+  function syncPrimaryPhoto(){
+    state.photos = state.photos.filter(validPhoto).slice(0, MAX_DOG_PHOTOS);
+    state.photo = state.photos[0] || null;
+  }
+  function accountPhotoDataSize(nextPhotos){
+    const currentId = addMode ? null : (base.id || activeDogId);
+    const otherTotal = dogProfiles.reduce((total, dog) => {
+      if(dog && dog.id === currentId) return total;
+      return total + photoList(dog).reduce((sum, photo) => sum + photo.length, 0);
+    }, 0);
+    return otherTotal + nextPhotos.reduce((sum, photo) => sum + photo.length, 0);
+  }
 
   function photoCacheKey(){
     const u = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
@@ -420,6 +448,61 @@
     dogPhotoStatus.hidden = false;
     dogPhotoStatus.style.color = ok ? '#2C5C34' : '#9C3A25';
     dogPhotoStatus.textContent = text;
+  }
+  function persistDogPhotos(){
+    syncPrimaryPhoto();
+    renderDerived();
+    const key = photoCacheKey();
+    try {
+      if(key && state.photo) localStorage.setItem(key, state.photo);
+      else if(key) localStorage.removeItem(key);
+    } catch(error){}
+    if(addMode || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return Promise.resolve(true);
+    return window.DoloPawsAuth.setDogProfile({
+      photo:state.photo,
+      photos:state.photos.slice(),
+    }, base.id || activeDogId).then(ok => {
+      if(ok){
+        base.photo = state.photo;
+        base.photos = state.photos.slice();
+      }
+      photoStatus(ok
+        ? tKey('account.photo.synced', 'Photos saved to your account — they will show on any device you log in from.')
+        : tKey('account.photo.localOnly', "Photos saved on this device — couldn't reach your account just now."), ok);
+      return ok;
+    });
+  }
+  function renderDogPhotoGallery(){
+    if(!dogPhotoGallery || !dogPhotoAddBtn || !dogPhotoCount) return;
+    dogPhotoGallery.querySelectorAll('.dog-photo-thumb').forEach(node => node.remove());
+    state.photos.forEach((photo, index) => {
+      const item = document.createElement('span');
+      item.className = 'dog-photo-thumb' + (index === 0 ? ' is-primary' : '');
+      const select = document.createElement('button');
+      select.type = 'button';
+      select.className = 'dog-photo-thumb__select';
+      select.style.backgroundImage = `url(${photo})`;
+      select.setAttribute('aria-label', index === 0 ? 'Current profile photo' : `Make photo ${index + 1} the profile photo`);
+      select.addEventListener('click', () => {
+        if(index === 0) return;
+        state.photos = [state.photos[index], ...state.photos.filter((_, photoIndex) => photoIndex !== index)];
+        persistDogPhotos();
+      });
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'dog-photo-thumb__remove';
+      remove.textContent = '×';
+      remove.setAttribute('aria-label', `Remove photo ${index + 1}`);
+      remove.addEventListener('click', () => {
+        state.photos.splice(index, 1);
+        persistDogPhotos();
+      });
+      item.append(select, remove);
+      dogPhotoGallery.insertBefore(item, dogPhotoAddBtn);
+    });
+    dogPhotoAddBtn.disabled = state.photos.length >= MAX_DOG_PHOTOS;
+    dogPhotoAddBtn.textContent = state.photos.length >= MAX_DOG_PHOTOS ? 'Photo limit reached' : '＋ Add photos';
+    dogPhotoCount.textContent = `${state.photos.length} of ${MAX_DOG_PHOTOS}`;
   }
   function downscalePhoto(file){
     return new Promise((resolve, reject) => {
@@ -444,36 +527,34 @@
   }
 
   $('dogPhotoBtn').addEventListener('click', () => dogPhotoInput.click());
-  dogPhotoInput.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if(!file) return;
-    if(!file.type.startsWith('image/')){
-      photoStatus(tKey('account.photo.typeError', 'Please select an image file.'), false);
-      dogPhotoInput.value = '';
+  if(dogPhotoAddBtn) dogPhotoAddBtn.addEventListener('click', () => dogPhotoInput.click());
+  dogPhotoInput.addEventListener('change', async (e) => {
+    const available = MAX_DOG_PHOTOS - state.photos.length;
+    const files = Array.from(e.target.files || []).slice(0, available);
+    dogPhotoInput.value = '';
+    if(!files.length) return;
+    if(files.some(file => !file.type.startsWith('image/'))){
+      photoStatus(tKey('account.photo.typeError', 'Please select image files only.'), false);
       return;
     }
-    if(file.size > PHOTO_INPUT_MAX_BYTES){
-      photoStatus(tKey('account.photo.sizeError', 'Photo must be smaller than 8 MB.'), false);
-      dogPhotoInput.value = '';
+    if(files.some(file => file.size > PHOTO_INPUT_MAX_BYTES)){
+      photoStatus(tKey('account.photo.sizeError', 'Each photo must be smaller than 8 MB.'), false);
       return;
     }
     dogPhotoStatus.hidden = true;
-    downscalePhoto(file).then((dataUrl) => {
-      state.photo = dataUrl;
-      renderDerived();
-      const key = photoCacheKey();
-      try { if(key) localStorage.setItem(key, dataUrl); } catch (err) { /* cache only */ }
-      if(!addMode && window.DoloPawsAuth && window.DoloPawsAuth.currentUser){
-        window.DoloPawsAuth.setDogProfile({ photo: dataUrl }, base.id || activeDogId).then((ok) => {
-          photoStatus(ok
-            ? tKey('account.photo.synced', 'Photo saved to your account — it will show on any device you log in from.')
-            : tKey('account.photo.localOnly', "Photo saved on this device — couldn't reach your account just now."), ok);
-        });
+    try {
+      const additions = [];
+      for(const file of files) additions.push(await downscalePhoto(file));
+      const nextPhotos = state.photos.concat(additions).slice(0, MAX_DOG_PHOTOS);
+      if(accountPhotoDataSize(nextPhotos) > MAX_ACCOUNT_PHOTO_DATA){
+        photoStatus('These photos would make the dog profiles too large to sync. Choose fewer or smaller photos.', false);
+        return;
       }
-    }).catch(() => {
-      photoStatus(tKey('account.photo.typeError', 'Please select an image file.'), false);
-      dogPhotoInput.value = '';
-    });
+      state.photos = nextPhotos;
+      await persistDogPhotos();
+    } catch(error){
+      photoStatus(tKey('account.photo.typeError', 'One of those photos could not be read.'), false);
+    }
   });
 
   // ---------- Save / cancel / remove ----------
@@ -516,6 +597,7 @@
       coat: state.coat,
       sens: state.sens,
       photo: state.photo || null,
+      photos: state.photos.slice(),
       conditions: conditions,
       healthNotes: state.medical.trim(),
       vet: { name: state.vetName.trim(), phone: state.vetPhone.trim(), chip: state.chip.trim(), insurer: state.insurer.trim(), policy: state.policy.trim() },
@@ -886,6 +968,7 @@
     const dogs = summary.dogs.filter(dog => dog && dog.id).map(dog => ({
       id:dog.id, name:dog.name || '', breed:dog.breed || '',
       fitness:dog.fitness || 'moderate', photo:dog.photo || null,
+      photos:Array.isArray(dog.photos) ? dog.photos.slice(0, 4) : [],
     }));
     if(!dogs.length) return null;
     const activeDogId = dogs.some(dog => dog.id === summary.activeDogId)
@@ -990,9 +1073,11 @@
       const pKey = 'dolopaws-dog-photo-' + user.uid + '-'
         + (addMode ? 'new' : (activeDogId || 'new'));
       const isImage = v => typeof v === 'string' && v.startsWith('data:image/');
-      if(!addMode && isImage(profile.photo)){
-        state.photo = profile.photo;
-        try { localStorage.setItem(pKey, profile.photo); } catch(e){}
+      const savedPhotos = photoList(profile);
+      if(!addMode && savedPhotos.length){
+        state.photos = savedPhotos;
+        syncPrimaryPhoto();
+        try { localStorage.setItem(pKey, state.photo); } catch(e){}
       } else {
         let local = null;
         try {
@@ -1000,12 +1085,14 @@
             || (dogProfiles.length <= 1 ? localStorage.getItem(LEGACY_PHOTO_KEY) : null);
         } catch(e){}
         if(!addMode && local && isImage(local)){
-          state.photo = local;
-          window.DoloPawsAuth.setDogProfile({ photo: local }, profile.id || activeDogId).then((ok) => {
+          state.photos = [local];
+          syncPrimaryPhoto();
+          window.DoloPawsAuth.setDogProfile({ photo: local, photos:[local] }, profile.id || activeDogId).then((ok) => {
             if(ok){ try { localStorage.setItem(pKey, local); localStorage.removeItem(LEGACY_PHOTO_KEY); } catch(e){} }
           });
         } else {
           state.photo = null;
+          state.photos = [];
         }
       }
 

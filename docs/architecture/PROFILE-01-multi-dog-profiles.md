@@ -20,9 +20,12 @@ The private `users/{uid}` document stores:
 
 Adding a dog appends a new profile instead of overwriting an existing one.
 Switching changes only `activeDogId` and the compatibility mirror. Each dog
-owns its own data-image photo; selecting or editing another dog must not copy
-that photo. The legacy single-dog record is migrated into the list once and is
-not repeatedly duplicated.
+owns a bounded gallery of up to four compressed data-image photos. `photo`
+remains the primary/avatar compatibility field and mirrors the first item in
+`photos`; selecting or editing another dog must not copy that gallery. The
+client also bounds total account photo data before syncing so the private user
+document stays below Firestore's document limit. The legacy single-photo dog
+record is migrated into the gallery once and is not repeatedly duplicated.
 
 ## User experience
 
