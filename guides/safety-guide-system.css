@@ -22,13 +22,12 @@
   min-height:clamp(340px,34vw,450px);
   justify-content:flex-end;
   width:100%;
-  max-width:var(--safety-guide-width);
-  margin-right:auto;
-  margin-left:auto;
-  padding-right:var(--safety-guide-gutter);
-  padding-left:var(--safety-guide-gutter);
+  max-width:none;
+  margin:0;
+  padding-right:max(var(--safety-guide-gutter),calc((100vw - var(--safety-guide-width))/2 + var(--safety-guide-gutter)));
+  padding-left:max(var(--safety-guide-gutter),calc((100vw - var(--safety-guide-width))/2 + var(--safety-guide-gutter)));
   border:0;
-  border-radius:var(--radius-panel);
+  border-radius:0;
 }
 
 .safety-guide-article .safety-photo-header.section-page-head::before{
@@ -89,6 +88,13 @@
 .safety-guide-article :is(.scan-card--red,.scan-alert,.alt-warning-note,.gp-warn,.water-card--stop){
   border-color:color-mix(in srgb,var(--safety-stop) 38%,transparent);
   background:var(--safety-stop-soft);
+}
+
+/* Water-guide sections use one calm white surface. Semantic colour remains in
+   their kickers and urgent inset warning, rather than tinting entire cards. */
+.safety-guide-article :is(.water-card,.water-card--info,.water-card--safe,.water-card--caution,.water-card--stop){
+  border-color:var(--paper-line);
+  background:var(--card);
 }
 
 /* One calm alert treatment throughout the library: pale red keeps the warning

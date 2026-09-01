@@ -24,7 +24,7 @@ describe('shared Safety Library guide visual system', () => {
 
     const stylesheets = [...document.querySelectorAll('link[rel="stylesheet"]')];
     expect(document.body.classList.contains('safety-guide-article')).toBe(true);
-    expect(stylesheets.at(-1).getAttribute('href')).toBe('safety-guide-system.css?v=20260901-2');
+    expect(stylesheets.at(-1).getAttribute('href')).toBe('safety-guide-system.css?v=20260901-3');
     expect(document.querySelectorAll('.safety-continue')).toHaveLength(1);
     expect(document.querySelectorAll('.safety-sources')).toHaveLength(1);
   });
@@ -33,7 +33,7 @@ describe('shared Safety Library guide visual system', () => {
     expect(systemCss).toContain('--safety-guide-width:1680px');
     expect(systemCss).toContain('--safety-guide-gutter:clamp(24px,3vw,44px)');
     expect(systemCss).toContain('--guide-reading-width:none');
-    expect(systemCss).toMatch(/\.safety-guide-article \.safety-photo-header\.section-page-head\{[^}]*justify-content:flex-end;[^}]*width:100%;[^}]*max-width:var\(--safety-guide-width\)/s);
+    expect(systemCss).toMatch(/\.safety-guide-article \.safety-photo-header\.section-page-head\{[^}]*justify-content:flex-end;[^}]*width:100%;[^}]*max-width:none;[^}]*margin:0;[^}]*border-radius:0;/s);
     expect(systemCss).toContain('--safety-guide-card-radius:15px');
     expect(systemCss).toContain('.safety-guide-article .safety-photo-header.section-page-head');
     expect(systemCss).toContain('.safety-guide-article .safety-continue__next');
@@ -46,11 +46,11 @@ describe('shared Safety Library guide visual system', () => {
     expect(systemCss).toMatch(/\.safety-guide-article \.safety-continue__label\{flex-basis:auto;/);
   });
 
-  test('maps information, safe action, caution and stop cards to semantic tokens', () => {
+  test('keeps water cards white while other guide cards use semantic tokens', () => {
     expect(systemCss).toMatch(/\.water-card--info[^}]*background:var\(--safety-info-soft\)/s);
-    expect(systemCss).toMatch(/\.water-card--safe[^}]*background:var\(--safety-safe-soft\)/s);
-    expect(systemCss).toMatch(/\.water-card--caution[^}]*background:var\(--safety-caution-soft\)/s);
-    expect(systemCss).toMatch(/\.water-card--stop[^}]*background:var\(--safety-stop-soft\)/s);
+    expect(systemCss).toMatch(/\.safety-guide-article :is\(\.water-card,[^}]*background:var\(--card\)/s);
+    expect(systemCss).toMatch(/\.scan-card--green[^}]*background:var\(--safety-safe-soft\)/s);
+    expect(systemCss).toMatch(/\.scan-card--amber[^}]*background:var\(--safety-caution-soft\)/s);
   });
 
   test('uses one pale red for alerts and green numbers on white action cards', () => {
@@ -72,9 +72,11 @@ describe('shared Safety Library guide visual system', () => {
     expect(document.querySelector('.safety-photo-header .safety-back-link')).not.toBeNull();
     expect(document.querySelector('.safety-photo-header__image').getAttribute('src')).toContain('dog-hydration-lake-unbranded-v1.jpg');
     expect(document.querySelector('main').classList.contains('water-guide-body')).toBe(true);
-    expect(document.querySelectorAll('.water-card')).toHaveLength(4);
+    expect(document.querySelectorAll('.water-card')).toHaveLength(3);
     expect(document.querySelectorAll('.water-card--info')).toHaveLength(1);
     expect(document.querySelectorAll('.water-card--caution')).toHaveLength(1);
-    expect(document.querySelectorAll('.water-card--safe')).toHaveLength(1);
+    expect(document.querySelectorAll('.water-card--safe')).toHaveLength(0);
+    expect(document.querySelector('#waterArithmeticTitle').closest('.water-card').textContent).toContain('Build a carrying margin into that arithmetic');
+    expect(document.body.textContent).not.toContain('Pack with margin');
   });
 });
