@@ -199,7 +199,8 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('liAccountName').textContent).toBe('Teo');
     expect(document.getElementById('liDogCtxName').textContent).toBe('Teo');
     expect(document.querySelector('.li-match-lbl').textContent).toBe('Match for Teo');
-    expect(document.querySelector('.li-match-reason').textContent.length).toBeGreaterThan(10);
+    expect(document.querySelector('.li-match').getAttribute('title').length).toBeGreaterThan(10);
+    expect(document.querySelector('.li-match-reason')).toBeNull();
   });
 
   test('opens the active dog editor from the dog row and both manage links', () => {
@@ -354,7 +355,7 @@ describe('map-first returning homepage layout contract', () => {
   test('groups card actions on the left and gives the dog match a larger right panel', () => {
     expect(css).toMatch(/@media \(min-width:641px\)[\s\S]*?\.li-row\{[\s\S]*?display:grid;[\s\S]*?grid-template-columns:66px minmax\(0,1fr\) minmax\(168px,196px\) 34px;/);
     expect(css).toMatch(/\.li-match\{[\s\S]*?grid-column:3;[\s\S]*?grid-row:1\/3;/);
-    expect(css).toMatch(/\.li-match-reason\{display:-webkit-box;[^}]*-webkit-line-clamp:2;/);
+    expect(css).not.toContain('.li-match-reason');
     expect(css).toMatch(/\.li-heart\{grid-column:4;grid-row:1\/3;align-self:center;\}/);
     expect(css).toMatch(/\.li-row-bar\{[\s\S]*?grid-column:1\/3;[\s\S]*?grid-row:2;/);
     expect(css).toMatch(/@media \(max-width:640px\)[\s\S]*?\.li-row\{display:flex;\}/);

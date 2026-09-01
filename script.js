@@ -2345,11 +2345,10 @@ function liMatchColHtml(t, profile, overrides){
   const dogName = profile && profile.name ? profile.name : '';
   const matchLabel = dogName ? `Match for ${dogName}` : 'Match for your dog';
   const reason = matchReason(t, overrides);
-  return `<div class="li-match" aria-label="${t.score}% match${isEst ? ' (estimated)' : ''}">
+  return `<div class="li-match" aria-label="${t.score}% match${isEst ? ' (estimated)' : ''}" title="${liPersonalisationText(reason)}">
       <b style="color:${tier.color};">${isEst ? '≈' : ''}${t.score}<span>%</span></b>
       <span class="li-match-lbl">${liPersonalisationText(matchLabel)}</span>
       <span class="li-match-tier" style="background:${tier.color}1f;color:${tier.color};">${tier.label}</span>
-      <span class="li-match-reason" title="${liPersonalisationText(reason)}">${liPersonalisationText(reason)}</span>
     </div>`;
 }
 
