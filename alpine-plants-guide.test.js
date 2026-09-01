@@ -55,6 +55,7 @@ describe('Alpine plants guide', () => {
     expect(card).toContain('commons.wikimedia.org');
     expect(card).toContain('class="apg-photo-credit"');
     expect(card).toContain('aria-label="Show photo credit"');
+    expect(card).toContain('title="Photo credit">C</summary>');
     expect(card).not.toContain('Veterinary review required');
     expect(card).not.toContain('Where you may meet it');
     expect(card).not.toContain('class="apg-detail-copy"');

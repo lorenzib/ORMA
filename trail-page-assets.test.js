@@ -24,7 +24,8 @@ describe('generated trail page assets', () => {
       imageLicenceUrl:'https://creativecommons.org/licenses/by-sa/4.0/',
     });
     expect(licensed).toContain('class="sp-photo-credit"');
-    expect(licensed).toContain('Photo credit');
+    expect(licensed).toContain('aria-label="Show photo credit"');
+    expect(licensed).toContain('title="Photo credit">C</summary>');
     expect(licensed).toContain('<a href="https://example.com/source"');
     expect(licensed).toContain('rel="license noopener"');
     expect(licensed).toContain('Cropped for display.');

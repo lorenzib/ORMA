@@ -180,7 +180,7 @@ describe('trail page map controls', () => {
     expect(html).toContain('trail-access-directions.js?v=20260828-2');
     expect(html).toContain('footpath-router.js?v=20260831-1');
     expect(html).toContain('veterinary-care.js?v=20260831-2');
-    expect(html).toContain('trail.js?v=20260901-3');
+    expect(html).toContain('trail.js?v=20260901-4');
     expect(html).toContain('trail-reports.js?v=20260820-2');
     expect(html).toContain('trail-blueprint.js?v=20260901-1');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
@@ -194,6 +194,9 @@ describe('trail page map controls', () => {
     document.body.innerHTML = html;
 
     expect(document.getElementById('tdHeroCredit')).not.toBeNull();
+    expect(document.querySelector('#tdHeroCredit > summary').textContent.trim()).toBe('C');
+    expect(document.querySelector('#tdHeroCredit > summary').getAttribute('aria-label')).toBe('Show photo credit');
+    expect(document.getElementById('tdHeroCreditText')).not.toBeNull();
     expect(html.indexOf('trail-photo-provenance.js')).toBeLessThan(html.indexOf('trail-reports.js'));
     expect(html.indexOf('trail-photo-provenance.js')).toBeLessThan(html.indexOf('trail.js?v='));
   });

@@ -35,9 +35,10 @@
   .sp-photo picture{display:block;}
   .sp-photo .sp-img{width:100%;margin:0;}
   .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
-  .sp-photo-credit summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;width:max-content;margin-left:auto;padding:7px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(34,49,42,.88);box-shadow:0 3px 12px rgba(0,0,0,.2);font:700 11px/1.2 'Inter',sans-serif;backdrop-filter:blur(5px);}
+  .sp-photo-credit summary{cursor:pointer;list-style:none;display:grid;place-items:center;width:28px;height:28px;margin-left:auto;border:1px solid rgba(255,255,255,.62);border-radius:50%;background:rgba(34,49,42,.88);color:#fff;box-shadow:0 3px 12px rgba(0,0,0,.2);font:800 12px/1 'Inter',sans-serif;backdrop-filter:blur(5px);}
   .sp-photo-credit summary::-webkit-details-marker{display:none;}
-  .sp-photo-credit summary:hover{background:rgba(34,49,42,.98);}
+  .sp-photo-credit summary:hover,.sp-photo-credit summary:focus-visible{background:rgba(34,49,42,.98);border-color:#fff;}
+  .sp-photo-credit summary:focus-visible{outline:3px solid rgba(255,255,255,.45);outline-offset:2px;}
   .sp-photo-credit__body{position:absolute;right:0;bottom:calc(100% + 8px);width:min(340px,calc(100vw - 48px));padding:10px 12px;border-radius:10px;background:rgba(34,49,42,.96);box-shadow:0 8px 24px rgba(0,0,0,.24);font-size:11px;line-height:1.5;color:#fff;}
   .sp-photo-credit__body a{color:#fff;text-underline-offset:2px;}
   .sp-review-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:28px 0 0;padding-top:14px;border-top:1px solid var(--paper-line,#ddd);font-size:.8rem;color:var(--ink-soft,#666);}
@@ -122,7 +123,7 @@
     <span class="dp-badge dp-badge--neutral"><span>Paid access</span></span>
   </div>
   <figure class="sp-photo"><img class="sp-img" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Lago_di_Braies_South_Tyrol_5.jpg" alt="Southern shore of Lago di Braies with the lake and surrounding Dolomite peaks." loading="lazy" decoding="async"><details class="sp-photo-credit">
-      <summary><span aria-hidden="true">ⓘ</span> Photo credit</summary>
+      <summary aria-label="Show photo credit" title="Photo credit">C</summary>
       <div class="sp-photo-credit__body"><a href="https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_5.jpg" rel="noopener nofollow">Lago di Braies South Tyrol 5</a> by kallerna <span aria-hidden="true">·</span> <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license noopener">CC BY-SA 4.0</a> <span aria-hidden="true">·</span> via Wikimedia Commons <span aria-hidden="true">·</span> Cropped for display.</div>
     </details></figure>
   

@@ -301,8 +301,14 @@ body{background:#EFECE2;}
 .td2-hero .td-log-link{color:#9FC7D6;}
 .td2-hero #trailMatch{font-size:12px;color:#9FE1CB;}
 .td2-hero #trailMatch a{color:#9FE1CB !important;}
-.td2-hero-credit{margin:12px 0 0;text-align:right;color:#D9E3DB;font-size:11px;line-height:1.4;}
-.td2-hero-credit a{color:inherit;text-decoration:underline;text-decoration-color:rgba(255,255,255,.45);text-underline-offset:2px;}
+.td2-hero-credit{margin:12px 0 0;text-align:right;color:#fff;font-size:11px;line-height:1.4;}
+.td2-hero-credit[hidden]{display:none;}
+.td2-hero-credit summary{width:28px;height:28px;margin-left:auto;display:grid;place-items:center;border:1px solid rgba(255,255,255,.62);border-radius:50%;background:rgba(35,53,42,.82);color:#fff;font:800 12px/1 'Inter',sans-serif;cursor:pointer;list-style:none;box-shadow:0 2px 8px rgba(12,27,18,.22);}
+.td2-hero-credit summary::-webkit-details-marker{display:none;}
+.td2-hero-credit summary:hover,.td2-hero-credit summary:focus-visible{background:#2E4034;border-color:#fff;}
+.td2-hero-credit summary:focus-visible{outline:3px solid rgba(255,255,255,.45);outline-offset:2px;}
+.td2-hero-credit-text{display:block;width:max-content;max-width:min(620px,calc(100vw - 36px));margin:7px 0 0 auto;padding:7px 10px;border-radius:8px;background:rgba(35,53,42,.9);}
+.td2-hero-credit a{color:inherit;text-decoration:underline;text-decoration-color:rgba(255,255,255,.55);text-underline-offset:2px;}
 .td2-btn-p{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 24px;border-radius:12px;border:none;background:#3E7A91;color:#fff;font-weight:800;font-size:14.5px;cursor:pointer;font-family:'Inter',sans-serif;text-decoration:none;}
 .td2-btn-p:hover{background:#33667A;}
 .td2-btn-p.recording{background:#9C3A25;}
@@ -869,7 +875,7 @@ body{background:#EFECE2;}
   .td2-hero .td2-stat .f{padding:0 9px;}
   .td2-hero .td2-stat .f:nth-of-type(2){padding-left:0;border-left:0;}
   .td2-hero-actions{margin-top:12px;}
-  .td2-hero-credit{text-align:left;}
+  .td2-hero-credit{text-align:right;}
   .td2-actrow{display:grid;width:100%;grid-template-columns:1.35fr 1fr 1fr;gap:7px;}
   .td2-hero .td2-btn-g,.td2-hero .td2-btn-p,.td2-hero .td2-textlink{width:100%;min-width:0;padding:8px 7px;font-size:11.5px;}
   .td2-actrow>#offlinePackagePanel:not([hidden]),.td2-actrow>#offlinePackagePanel:not([hidden]) .offline-package-row{display:contents;}
@@ -1044,7 +1050,10 @@ body.trail-photo-viewer-open{overflow:hidden;}
           <span id="getDirectionsStatus" class="trail-directions-status" role="status" aria-live="polite"></span>
         </div>
       </div>
-      <p id="tdHeroCredit" class="td2-hero-credit" hidden></p>
+      <details id="tdHeroCredit" class="td2-hero-credit" hidden>
+        <summary aria-label="Show photo credit" title="Photo credit">C</summary>
+        <span id="tdHeroCreditText" class="td2-hero-credit-text"></span>
+      </details>
     </div>
   </div>
 
@@ -1321,7 +1330,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="trail-weather-window.js?v=20260820-1" defer></script>
 <script src="trail-reports.js?v=20260820-2" defer></script>
 <script src="veterinary-care.js?v=20260831-2" defer></script>
-<script src="trail.js?v=20260901-3" defer></script>
+<script src="trail.js?v=20260901-4" defer></script>
 <script src="trail-route-refs.js?v=20260901-1" defer></script>
 <script src="trail-blueprint.js?v=20260901-1" defer></script>
 <script src="trail-detail-ui.js?v=20260826-1" defer></script>
