@@ -7,7 +7,7 @@ describe('logged-in discovery workspace layout', () => {
   test('uses a dedicated greeting row above the discovery controls', () => {
     expect(html).toContain('class="li-toolbar-greet"');
     expect(html).toContain('id="liToolbarSummary"');
-    expect(css).toMatch(/grid-template-areas:\s*"greet greet greet greet greet greet greet greet"\s*"search country region valley filters quick plan saved"/);
+    expect(css).toMatch(/grid-template-areas:\s*"greet greet greet greet greet greet greet greet"\s*"search country region valley filters quick saved plan"/);
     expect(css).toMatch(/\.li-toolbar-greet\s*\{[^}]*display:flex;/s);
   });
 
@@ -18,7 +18,7 @@ describe('logged-in discovery workspace layout', () => {
     expect(html).toContain('id="liQuickWater"');
     expect(html.indexOf('id="liValleyWrap"')).toBeLessThan(html.indexOf('id="liFiltersWrap"'));
     expect(html.indexOf('id="liFiltersWrap"')).toBeLessThan(html.indexOf('id="liQuickShade"'));
-    expect(html.indexOf('class="li-plan-route"')).toBeLessThan(html.indexOf('id="liSavedOnlyBtn"'));
+    expect(html.indexOf('id="liSavedOnlyBtn"')).toBeLessThan(html.indexOf('class="li-plan-route"'));
     expect(html.indexOf('id="liQuickWater"')).toBeLessThan(html.indexOf('id="liSavedOnlyBtn"'));
   });
 
@@ -28,9 +28,9 @@ describe('logged-in discovery workspace layout', () => {
     expect(editorialCss).toContain('justify-content:start;');
     expect(editorialCss).toContain('.li-country-wrap,.li-region-wrap{width:196px;min-width:196px;}');
     expect(editorialCss).toContain('.li-valley-wrap{grid-area:valley;width:178px;min-width:178px;}');
-    expect(editorialCss).toContain('"search country region valley filters quick plan saved"');
+    expect(editorialCss).toContain('"search country region valley filters quick saved plan"');
     expect(editorialCss).toContain('@media (min-width:1041px) and (max-width:1500px)');
-    expect(editorialCss).toContain('"filters quick plan saved"');
+    expect(editorialCss).toContain('"filters quick saved plan"');
   });
 
   test('contains the quick shade and water filters in white outlined controls', () => {
@@ -41,7 +41,8 @@ describe('logged-in discovery workspace layout', () => {
     expect(rule[1]).toContain('height:42px');
     expect(rule[1]).not.toContain('background:transparent');
     expect(rule[1]).not.toContain('border:1px solid transparent');
-    expect(css).toContain('#liQuickWater{gap:4px;}');
+    expect(css).toContain('#liQuickWater{gap:4px;padding-right:17px;}');
+    expect(css).toContain('background:#3E7A91;color:#fff');
   });
 
   test('balances a bounded map with a proportional results pane', () => {

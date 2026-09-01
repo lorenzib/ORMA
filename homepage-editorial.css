@@ -8,7 +8,7 @@
   justify-content:start;
   grid-template-areas:
     "greet greet greet greet greet greet greet greet"
-    "search country region valley filters quick plan saved";
+    "search country region valley filters quick saved plan";
 }
 .li-country-wrap,.li-region-wrap{width:196px;min-width:196px;}
 .li-valley-wrap{grid-area:valley;width:178px;min-width:178px;}
@@ -26,7 +26,7 @@
     grid-template-areas:
       "greet greet greet greet"
       "search country region valley"
-      "filters quick plan saved";
+      "filters quick saved plan";
   }
 }
 

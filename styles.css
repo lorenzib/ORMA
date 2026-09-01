@@ -2849,7 +2849,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   grid-template-columns:minmax(260px,1fr) auto auto auto auto auto auto auto;
   grid-template-areas:
     "greet greet greet greet greet greet greet greet"
-    "search country region valley filters quick plan saved";
+    "search country region valley filters quick saved plan";
   align-items:center;
   gap:14px 8px;
   padding:16px 24px 18px;
@@ -2969,7 +2969,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 }
 .li-quick-filter:hover{background:#fff;border-color:var(--paper-line);color:var(--ink);}
 .li-quick-filter[aria-pressed="true"]{background:#E1ECE2;border-color:#A9C5AE;color:var(--accent);}
-#liQuickWater{gap:4px;}
+#liQuickWater{gap:4px;padding-right:17px;}
 /* Inline chips — Any area · Distance · Terrain · Shade · Water */
 .li-chiprow{display:none;}
 .li-chipwrap{position:relative;}
@@ -3903,8 +3903,8 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
   }
   .dw-footer .dw-back-none{display:none;}
 }
-.li-plan-route{display:inline-flex;align-items:center;justify-content:center;height:42px;box-sizing:border-box;padding:0 14px;border:1.5px solid var(--ink);border-radius:var(--radius-pill);background:var(--ink);color:#fff;text-decoration:none;font:700 12.5px 'Inter',sans-serif;white-space:nowrap}
-.li-plan-route:hover{background:#24352b}.li-plan-route:focus-visible{outline:3px solid rgba(159,199,214,.9);outline-offset:2px}
+.li-plan-route{display:inline-flex;align-items:center;justify-content:center;height:46px;box-sizing:border-box;padding:0 20px;border:1.5px solid #3E7A91;border-radius:var(--radius-pill);background:#3E7A91;color:#fff;text-decoration:none;font:700 13px 'Inter',sans-serif;white-space:nowrap;box-shadow:0 3px 10px rgba(62,122,145,.18)}
+.li-plan-route:hover{background:#32697E;border-color:#32697E}.li-plan-route:focus-visible{outline:3px solid rgba(159,199,214,.9);outline-offset:2px}
 @media (max-width:1040px){.li-plan-route{margin-left:8px}}
 @media (max-width:760px){.li-plan-route{grid-area:auto;grid-column:span 2;width:100%}}
 @media (max-width:480px){.li-plan-route{grid-column:span 3}}
