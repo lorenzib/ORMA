@@ -23,9 +23,13 @@ describe('logged-in discovery workspace layout', () => {
 
   test('bounds desktop search width so geographic labels remain readable', () => {
     const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
-    expect(editorialCss).toContain('grid-template-columns:minmax(280px,520px)');
-    expect(editorialCss).toContain('.li-country-wrap,.li-region-wrap{min-width:205px;}');
-    expect(editorialCss).toContain('width:100%;justify-content:space-between;');
+    expect(editorialCss).toContain('grid-template-columns:minmax(280px,360px) 196px 196px 178px max-content max-content max-content;');
+    expect(editorialCss).toContain('justify-content:start;');
+    expect(editorialCss).toContain('.li-country-wrap,.li-region-wrap{width:196px;min-width:196px;}');
+    expect(editorialCss).toContain('.li-valley-wrap{grid-area:valley;width:178px;min-width:178px;}');
+    expect(editorialCss).toContain('"search country region valley filters quick saved"');
+    expect(editorialCss).toContain('@media (min-width:1041px) and (max-width:1500px)');
+    expect(editorialCss).toContain('"filters quick quick saved"');
   });
 
   test('contains the quick shade and water filters in white outlined controls', () => {

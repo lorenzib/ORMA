@@ -28,8 +28,10 @@
   .browse-design-wrap{padding-top:6px;}
   .browse-primary-controls{margin:10px 0 18px;}
   .browse-area-controls{display:flex;align-items:center;gap:9px;min-width:0;}
-  .browse-geo-group{display:block;flex:0 0 150px;width:150px;min-width:0;}
-  .browse-geo-group--valley{flex-basis:170px;width:170px;}
+  /* Match the signed-in map toolbar: Search is deliberately bounded so the
+     complete All countries / All regions labels never compete for space. */
+  .browse-geo-group{display:block;flex:0 0 196px;width:196px;min-width:0;}
+  .browse-geo-group--valley{flex-basis:178px;width:178px;}
   .browse-geo-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
   .browse-geo-group .area-select-shell{width:100%;}
   .browse-geo-group .area-select-trigger{min-height:42px;padding:8px 10px 8px 12px;gap:6px;font-size:12.5px;}
@@ -37,7 +39,7 @@
   .browse-geo-group .area-select-trigger__kicker{flex:none;color:#3E7A91;font:800 9px/1 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
   .browse-geo-group .area-select-trigger__label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .browse-primary-controls .browse-tools{width:100%;min-width:0;margin:0;flex-wrap:nowrap;justify-content:flex-start;}
-  .browse-primary-controls .browse-search-shell{flex:1 1 240px;width:auto;max-width:none;min-width:220px;}
+  .browse-primary-controls .browse-search-shell{flex:1 1 300px;width:auto;max-width:360px;min-width:180px;}
   .browse-primary-controls .browse-filter-divider{display:none;}
   .simple-grid{display:flex;flex-direction:column;gap:12px;}
   .simple-card{display:grid;grid-template-columns:120px minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:16px;row-gap:9px;align-items:center;padding:14px;background:var(--card);border:1px solid var(--paper-line);border-radius:var(--radius-panel);transition:box-shadow .2s,border-color .2s,transform .2s;}
@@ -94,6 +96,18 @@
   .browse-filter-group__title{font:700 10px/1 'Inter',sans-serif;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
   #browseFiltersBtn.on{border-color:#9FC4B0;font-weight:700;}
   #browseFiltersMenu{left:auto;right:0;}
+  @media(min-width:761px) and (max-width:1500px){
+    .browse-primary-controls .browse-tools{
+      display:grid;
+      grid-template-columns:minmax(260px,360px) 196px 196px 178px;
+      gap:9px;
+    }
+    .browse-primary-controls .browse-search-shell{grid-column:1;grid-row:1;width:100%;max-width:none;min-width:0;}
+    .browse-area-controls{grid-column:2/-1;grid-row:1;}
+    #browseFiltersWrap{grid-column:1;grid-row:2;width:max-content;}
+    .browse-quick-filters{grid-column:2/span 2;grid-row:2;}
+    .browse-saved-only{grid-column:4;grid-row:2;width:max-content;}
+  }
   @media(max-width:700px){
     #browseFiltersMenu{
       position:fixed;top:auto;right:8px;bottom:max(8px,env(safe-area-inset-bottom));left:8px;
@@ -141,6 +155,7 @@
     .browse-card-compare{min-height:32px;padding-inline:11px;}
   }
   @media(max-width:480px){
+    .browse-geo-group .area-select-trigger__kicker{display:none;}
     .browse-area-controls{grid-template-columns:repeat(2,minmax(0,1fr));}
     .browse-area-controls .browse-geo-group--valley{grid-column:1/-1;}
     #browseFiltersWrap{grid-column:1/-1;}
