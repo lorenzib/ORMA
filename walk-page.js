@@ -18,6 +18,8 @@
   var overlayRegion = 'dolomites';
   var overlayPromises = {};
   var bootedUid = null;
+  var startPending = false;
+  var MAX_START_ACCURACY_M = 50;
 
   var els = {
     time: document.getElementById('wrTime'),
@@ -434,6 +436,67 @@
     }, { enableHighAccuracy: true, maximumAge: 2000, timeout: 15000 });
   }
 
+  function fixFromPosition(pos){
+    if(!pos || !pos.coords) return null;
+    var fix = {
+      lat: Number(pos.coords.latitude), lng: Number(pos.coords.longitude),
+      accuracy: Number(pos.coords.accuracy), timestamp: pos.timestamp || Date.now(),
+    };
+    if(!Number.isFinite(fix.lat) || !Number.isFinite(fix.lng) || !Number.isFinite(fix.accuracy)) return null;
+    return fix;
+  }
+
+  function resetStartButton(){
+    startPending = false;
+    els.start.disabled = false;
+    setButtons();
+  }
+
+  function locationErrorText(error){
+    if(error && error.code === 1) return 'Location access is off — allow it in your browser settings, then try again';
+    if(error && error.code === 3) return 'Could not find your location — move outdoors and try again';
+    return 'Location unavailable — check permissions and try again';
+  }
+
+  function startWithLocation(){
+    if(startPending) return;
+    if(!navigator.geolocation){
+      els.gps.textContent = 'Location is required to record a walk';
+      return;
+    }
+    startPending = true;
+    els.start.disabled = true;
+    els.start.textContent = 'Finding location…';
+    els.gps.textContent = 'Finding your position before starting…';
+    navigator.geolocation.getCurrentPosition(function(pos){
+      var fix = fixFromPosition(pos);
+      if(!fix){
+        els.gps.textContent = 'Location unavailable — try again';
+        resetStartButton();
+        return;
+      }
+      if(fix.accuracy > MAX_START_ACCURACY_M){
+        els.gps.textContent = 'GPS signal is too weak — move outdoors and try again';
+        resetStartButton();
+        return;
+      }
+      if(recorder.status === 'idle') recorder.start(Date.now());
+      else recorder.resume(Date.now());
+      recorder.addFix(fix);
+      els.gps.textContent = 'GPS ±' + Math.round(fix.accuracy) + ' m';
+      traceUpdate(fix);
+      startWatch();
+      requestWakeLock();
+      if(!tickTimer) tickTimer = setInterval(paint, 1000);
+      if(!draftTimer) draftTimer = setInterval(saveDraft, 10000);
+      resetStartButton();
+      paint();
+    }, function(error){
+      els.gps.textContent = locationErrorText(error);
+      resetStartButton();
+    }, { enableHighAccuracy:true, maximumAge:5000, timeout:15000 });
+  }
+
   function stopWatch(){
     if(watchId != null && navigator.geolocation) navigator.geolocation.clearWatch(watchId);
     watchId = null;
@@ -485,13 +548,7 @@
   // ---- Controls ------------------------------------------------------
   els.start.addEventListener('click', function(){
     if(!uid){ els.gate.hidden = false; return; }
-    if(recorder.status === 'idle') recorder.start(Date.now());
-    else recorder.resume(Date.now());
-    startWatch();
-    requestWakeLock();
-    if(!tickTimer) tickTimer = setInterval(paint, 1000);
-    if(!draftTimer) draftTimer = setInterval(saveDraft, 10000);
-    setButtons();
+    startWithLocation();
   });
 
   els.pause.addEventListener('click', function(){

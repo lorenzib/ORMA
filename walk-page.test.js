@@ -29,10 +29,24 @@ function renderWalkPage(auth, summary){
   return { recorder, gate:document.getElementById('wrGate'), start:document.getElementById('wrStart') };
 }
 
+function setGeolocation(overrides = {}){
+  const position = { coords:{ latitude:46.5, longitude:11.6, accuracy:12 }, timestamp:Date.now() };
+  Object.defineProperty(navigator, 'geolocation', {
+    configurable:true,
+    value:{
+      getCurrentPosition:jest.fn(success => success(position)),
+      watchPosition:jest.fn(() => 17),
+      clearWatch:jest.fn(),
+      ...overrides,
+    },
+  });
+}
+
 describe('walk recorder authentication restoration', () => {
   beforeEach(() => {
     jest.useFakeTimers();
     delete window.maplibregl;
+    setGeolocation();
   });
 
   afterEach(() => {
@@ -41,6 +55,7 @@ describe('walk recorder authentication restoration', () => {
     delete window.DoloPawsAuth;
     delete window.DoloPawsAuthReady;
     delete window.DoloPawsWalkRecorder;
+    delete navigator.geolocation;
   });
 
   test('a cached confirmed member can record while Firebase restores', () => {
@@ -59,6 +74,43 @@ describe('walk recorder authentication restoration', () => {
     expect(view.gate.hidden).toBe(false);
     view.start.click();
     expect(view.recorder.start).not.toHaveBeenCalled();
+  });
+
+  test('does not start a walk when location permission is denied', () => {
+    setGeolocation({ getCurrentPosition:jest.fn((success, error) => error({ code:1 })) });
+    const auth = { currentUser:null, authResolved:false, onChange:jest.fn() };
+    const view = renderWalkPage(auth, { uid:'user-1', name:'Eddie' });
+    view.start.click();
+    expect(view.recorder.start).not.toHaveBeenCalled();
+    expect(view.recorder.resume).not.toHaveBeenCalled();
+    expect(view.recorder.addFix).not.toHaveBeenCalled();
+    expect(document.getElementById('wrGps').textContent).toContain('Location access is off');
+    expect(view.start.hidden).toBe(false);
+    expect(view.start.disabled).toBe(false);
+  });
+
+  test('does not start a walk until a usable location is available', () => {
+    let locate;
+    setGeolocation({ getCurrentPosition:jest.fn(success => { locate = success; }) });
+    const auth = { currentUser:null, authResolved:false, onChange:jest.fn() };
+    const view = renderWalkPage(auth, { uid:'user-1', name:'Eddie' });
+    view.start.click();
+    expect(view.recorder.start).not.toHaveBeenCalled();
+    expect(view.start.disabled).toBe(true);
+    locate({ coords:{ latitude:46.5, longitude:11.6, accuracy:15 }, timestamp:Date.now() });
+    expect(view.recorder.start).toHaveBeenCalledTimes(1);
+    expect(view.recorder.addFix).toHaveBeenCalledWith(expect.objectContaining({ lat:46.5, lng:11.6, accuracy:15 }));
+  });
+
+  test('rejects an inaccurate location without beginning the timer', () => {
+    setGeolocation({ getCurrentPosition:jest.fn(success => success({
+      coords:{ latitude:46.5, longitude:11.6, accuracy:120 }, timestamp:Date.now(),
+    })) });
+    const auth = { currentUser:null, authResolved:false, onChange:jest.fn() };
+    const view = renderWalkPage(auth, { uid:'user-1', name:'Eddie' });
+    view.start.click();
+    expect(view.recorder.start).not.toHaveBeenCalled();
+    expect(document.getElementById('wrGps').textContent).toContain('GPS signal is too weak');
   });
 
   test('Firebase stores the UID and does not notify before auth resolves', () => {
