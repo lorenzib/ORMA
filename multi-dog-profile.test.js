@@ -31,6 +31,7 @@ describe('multi-dog account experience', () => {
     const controller = source('account.js');
     expect(page).toContain('id="profileDogList"');
     expect(page).toContain('id="profileAddDog"');
+    expect(page).not.toContain('class="profile-kicker"');
     expect(controller).toContain("accountParams.get('mode') === 'add'");
     expect(controller).toContain('DoloPawsAuth.addDogProfile(buildProfile())');
     expect(controller).toContain('DoloPawsAuth.selectDogProfile(dog.id)');
@@ -139,6 +140,10 @@ describe('multi-dog account experience', () => {
     expect(homepage).toContain('id="liGreetDogList"');
     expect(controller).toContain('function renderLiDogLists(profile)');
     expect(controller).toContain('DoloPawsAuth.selectDogProfile(dog.id)');
+    expect(controller).toContain('account.html?dog=${encodeURIComponent(dog.id)}&next=%2F');
+    expect(controller).toContain("['liManageLink','liGreetManageLink']");
+    expect(homepage).toContain('id="liGreetManageLink"');
+    expect(source('mobile-nav.js')).toContain("activeId ? 'dog=' + encodeURIComponent(activeId) + '&' : ''");
   });
 
   test('account settings lists and switches every dog without relying on a header menu', () => {

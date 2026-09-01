@@ -524,7 +524,9 @@
       menu.appendChild(addLink);
       const manage = document.createElement('a');
       manage.className = 'nav-dogmenu-manage';
-      manage.href = prefix + 'account.html?next=' + encodeURIComponent(pagePath);
+      manage.href = prefix + 'account.html?'
+        + (activeId ? 'dog=' + encodeURIComponent(activeId) + '&' : '')
+        + 'next=' + encodeURIComponent(pagePath);
       manage.textContent = copy('mobile.manageDogs', 'Manage dog profiles →');
       manage.setAttribute('data-i18n', 'mobile.manageDogs');
       menu.appendChild(manage);

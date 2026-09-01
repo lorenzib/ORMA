@@ -60,6 +60,10 @@ function loadHomepageContext(testTrails){
     <span id="liAccountAvatar"></span>
     <span id="liGreetAvatar"></span>
     <span id="liDogCtxAvatar"></span>
+    <div id="liDogList"></div>
+    <div id="liGreetDogList"></div>
+    <a id="liManageLink"></a>
+    <a id="liGreetManageLink"></a>
     <h1 id="returningHeading"></h1>
     <p id="returningSubline"></p>
     <div id="returningTrailList"></div>
@@ -196,6 +200,19 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('liDogCtxName').textContent).toBe('Teo');
     expect(document.querySelector('.li-match-lbl').textContent).toBe('Match for Teo');
     expect(document.querySelector('.li-match-reason').textContent.length).toBeGreaterThan(10);
+  });
+
+  test('opens the active dog editor from the dog row and both manage links', () => {
+    const context = loadHomepageContext(sampleTrails);
+    context.localStorage.getItem = key => key === 'dolopaws-profile-summary'
+      ? JSON.stringify({ hasProfile:true, activeDogId:'teo', dogs:[{ id:'teo', name:'Teo', breed:'Mutt', fitness:'moderate' }] })
+      : null;
+    vm.runInContext('renderLiHeader({ id:"teo", name:"Teo", breed:"Mutt", fitness:"moderate" });', context);
+
+    expect(document.getElementById('liManageLink').getAttribute('href')).toBe('account.html?dog=teo&next=%2F');
+    expect(document.getElementById('liGreetManageLink').getAttribute('href')).toBe('account.html?dog=teo&next=%2F');
+    document.querySelector('#liDogList .nav-dogmenu-row').click();
+    expect(context.location.href).toBe('account.html?dog=teo&next=%2F');
   });
 
   test('switching the separate region control resets the valley', async () => {

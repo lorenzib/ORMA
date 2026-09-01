@@ -1735,7 +1735,11 @@ function renderLiDogLists(profile){
       copy.append(name, meta);
       row.append(avatar, copy);
       row.addEventListener('click', async () => {
-        if(dog.id === activeId || !window.DoloPawsAuth || !window.DoloPawsAuth.selectDogProfile) return;
+        if(dog.id === activeId){
+          window.location.href = `account.html?dog=${encodeURIComponent(dog.id)}&next=%2F`;
+          return;
+        }
+        if(!window.DoloPawsAuth || !window.DoloPawsAuth.selectDogProfile) return;
         row.disabled = true;
         const ok = await window.DoloPawsAuth.selectDogProfile(dog.id);
         if(ok) window.location.reload();
@@ -1760,10 +1764,16 @@ function renderLiHeader(profile){
   liFillAvatar(document.getElementById('liGreetAvatar'), profile);
   liFillAvatar(document.getElementById('liDogCtxAvatar'), profile);
   renderLiDogLists(profile);
-  const manage = document.getElementById('liManageLink');
-  if(manage) manage.textContent = (profile && profile.name)
-    ? 'Manage dog profiles →'
-    : "Set up your dog's profile";
+  ['liManageLink','liGreetManageLink'].forEach(id => {
+    const manage = document.getElementById(id);
+    if(!manage) return;
+    manage.textContent = (profile && profile.name)
+      ? 'Manage dog profiles →'
+      : "Set up your dog's profile";
+    manage.href = profile && profile.id
+      ? `account.html?dog=${encodeURIComponent(profile.id)}&next=%2F`
+      : 'account.html?next=%2F';
+  });
   const matchLabel = document.getElementById('liMatchSecLabel');
   if(matchLabel) matchLabel.textContent = (profile && profile.name)
     ? `Minimum match for ${profile.name}`

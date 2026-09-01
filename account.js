@@ -952,8 +952,6 @@
       if(addMode){
         const title = document.querySelector('#profileDesign > h1');
         if(title) title.textContent = tKey('account.addDog', 'Add another dog');
-        const kicker = document.querySelector('#profileDesign > .profile-kicker');
-        if(kicker) kicker.textContent = tKey('account.newDogProfile', 'New dog profile');
         const removeBlock = $('removeDogBlock');
         if(removeBlock) removeBlock.hidden = true;
       }
