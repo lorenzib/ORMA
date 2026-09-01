@@ -105,6 +105,8 @@ Required repository variables:
 - `ORMA_NEWSLETTER_ENABLED=false` while trail, collection and website content
   is being brought up to standard. Change it to `true` only after the CEO
   explicitly reopens the Newsletter workflow.
+- `ORMA_EDITORIAL_ENABLED=false` during the MVP catalogue-and-coverage phase.
+- `ORMA_ANALYST_ENABLED=false` during the MVP catalogue-and-coverage phase.
 
 Safety Library copy review is temporarily excluded from the Editorial decision
 queue while the guide interface is being redesigned. Existing packets are

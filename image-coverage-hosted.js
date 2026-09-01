@@ -15,6 +15,7 @@
   function latest(slug){return reviews.filter(item=>item.slug===slug).sort((a,b)=>stamp(b.submittedAt)-stamp(a.submittedAt))[0]||null;}
   function resultFor(slug){return (results||[]).filter(item=>item.slug===slug).sort((a,b)=>new Date(b.generatedAt)-new Date(a.generatedAt))[0]||null;}
   function requestFor(slug){return (requests||[]).filter(item=>item.trailId===slug).sort((a,b)=>new Date(b.approvedAt||0)-new Date(a.approvedAt||0))[0]||null;}
+  function jobFor(slug){return (jobs||[]).find(item=>item.slug===slug&&item.jobType==='hosted-image-sourcing'&&['queued','running'].includes(item.status))||null;}
   function routeLabel(action){return ({'use-orma-library':'ORMA-owned asset','upload-owner-photo':'uploaded photo','approve-uploaded-photo':'approved upload','approve-image-candidate':'approved image','find-licensed':'licensed-image research','generate-ai':'AI image brief',park:'parked'})[action]||action;}
   function message(text,error=false){state.classList.toggle('is-error',error);state.textContent=text;}
 
@@ -43,12 +44,13 @@
     return {file:new File([prepared.blob],`${stem}.jpg`,{type:'image/jpeg'}),width:prepared.width,height:prepared.height};
   }
 
-  function publicationStatus(gap,review,result,request){
+  function publicationStatus(gap,review,result,request,job){
     if(request?.status==='published')return {label:'Live',tone:'is-ready',detail:'The approved photo is deployed on this trail.'};
     if(request?.status==='awaiting-pr-merge')return {label:'Publishing PR open',tone:'is-ready',detail:'The approved photo is in a reviewable pull request.'};
     if(request?.status==='pr-materialized')return {label:'Preparing publishing PR',tone:'is-running',detail:'The worker has materialized the approved photo.'};
     if(request?.status==='approved-for-pr-creation'||result?.status==='approved-for-pr-creation')return {label:'Approved for publishing',tone:'is-running',detail:'The next worker pass will prepare the repository change.'};
     if(review?.status==='queued'||review?.status==='processing')return {label:'Agent working',tone:'is-running',detail:`${routeLabel(review.action)} is being processed.`};
+    if(job)return {label:'Agent working',tone:'is-running',detail:'Credited, correctly licensed photo candidates are being sourced.'};
     if((result?.candidates||[]).some(candidate=>candidate.status==='ready-for-asset-review'))return {label:'Preview needs approval',tone:'is-review',detail:'Check the exact image and rights information below.'};
     if(review?.status==='blocked')return {label:'Blocked',tone:'is-blocked',detail:review.error||'The saved image route needs attention.'};
     return {label:gap.region==='dolomites'?'Dolomites priority':'Photo needed',tone:'',detail:'Choose your own photo or another sourcing route.'};
@@ -129,25 +131,25 @@
     return block;
   }
 
-  function sourcingControls(gap,owned,review){
+  function sourcingControls(gap,owned,review,job){
     const controls=el('div','bo-idea-controls');const note=el('textarea');note.placeholder='Optional: exact location, season, framing, dog or visual direction';
     let select=null;if(owned.length){const library=el('div','bo-library-candidates');library.append(el('strong','','Possible ORMA repository matches'));select=el('select','bo-asset-select');
       for(const match of owned){const option=el('option','',match.fileName||match.sourceRef);option.value=match.sourceRef||match.fileName;select.append(option);}library.append(select);controls.append(library);}
     const actions=el('div','bo-actions');const choices=[...(owned.length?[['use-orma-library','Review selected ORMA image']]:[]),['find-licensed','Find licensed options'],['generate-ai','Prepare an AI option'],['park','Park for now']];
-    const busy=review&&['queued','processing'].includes(review.status);
+    const busy=(review&&['queued','processing'].includes(review.status))||Boolean(job);
     for(const [action,label] of choices){const button=el('button','',label);button.disabled=!!busy;button.addEventListener('click',()=>submitRoute(gap,{action,note:note.value,assetRef:select?.value||''},button));actions.append(button);}
     controls.append(note,actions);return controls;
   }
 
   function card(gap){
-    const review=latest(gap.slug);const result=resultFor(gap.slug);const request=requestFor(gap.slug);const status=publicationStatus(gap,review,result,request);
+    const review=latest(gap.slug);const result=resultFor(gap.slug);const request=requestFor(gap.slug);const job=jobFor(gap.slug);const status=publicationStatus(gap,review,result,request,job);
     const article=el('article','bo-image-gap-card bo-trail-image-card');
     const top=el('div','bo-image-gap-head');const copy=el('div');copy.append(el('span',`bo-life-status ${status.tone}`,status.label),el('h3','',gap.title),
       el('p','bo-trail-image-meta',[gap.area,gap.valley].filter(Boolean).join(' · ')||gap.region));
     const link=el('a','bo-source-pill','Open trail ↗');link.href=`https://app-orma.com/trail.html?id=${encodeURIComponent(gap.trailId||gap.slug)}`;link.target='_blank';link.rel='noopener';top.append(copy,link);article.append(top,el('p','bo-decision-next',status.detail));
     if(result)article.append(resultBlock(gap,result,request));
     if(!request&&!['queued','processing'].includes(review?.status))article.append(uploadPanel(gap));
-    const owned=(gap.libraryMatches||[]).filter(item=>item.source==='orma-library');if(!request)article.append(sourcingControls(gap,owned,review));
+    const owned=(gap.libraryMatches||[]).filter(item=>item.source==='orma-library');if(!request)article.append(sourcingControls(gap,owned,review,job));
     if(review)article.append(el('small','bo-decision',review.status==='blocked'?`Blocked: ${review.error||'See the automation receipt.'}`:`Latest decision: ${routeLabel(review.action)} · ${review.status}.`));
     return article;
   }

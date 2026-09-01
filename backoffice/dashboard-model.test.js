@@ -116,12 +116,13 @@ describe('CEO dashboard workflow model',()=>{
   test('hides paused Safety Library packets from the executive Editorial queue',()=>{
     const safety={generatedAt:'2026-08-25T08:00:00Z',subject:{type:'guide',id:'paw-protection',sourceRef:'guides/paw-protection.html'},outputs:[{status:'ready-for-review'}]};
     const ordinary={generatedAt:'2026-08-25T08:00:00Z',subject:{type:'guide',id:'dog-friendly-hikes-val-gardena',sourceRef:'guides/dog-friendly-hikes-val-gardena.html'},outputs:[{status:'ready-for-review'}]};
-    const model=buildDashboardModel({editorialPackets:[safety,ordinary],jobs:[]});
+    const model=buildDashboardModel({editorialPackets:[safety,ordinary],strategyStatus:{summary:{editorialStatus:'active'}},jobs:[]});
     expect(model.editorialItems).toEqual([ordinary]);expect(model.editorialProgress).toEqual(expect.objectContaining({active:1,waiting:1,pausedSafetyLibrary:true}));
   });
 
   test('surfaces Newsletter and Analyst gates without double-counting revised mock-ups',()=>{
     const model=buildDashboardModel({
+      strategyStatus:{summary:{editorialStatus:'active',productStatus:'active'}},
       newsletterPacket:{generatedAt:'2026-08-20T12:00:00Z',outputs:[{status:'ready-for-review',result:{issueTitle:'Mountain days'}}]},
       newsletterReviews:[],approvedNewsletters:{issues:[]},
       productIdeas:{ideas:[{id:'heat-map',title:'Dog heat map',impact:'high'}]},analystReviews:[],
@@ -134,6 +135,27 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.newsletterProgress).toEqual(expect.objectContaining({ready:1,approved:0}));
     expect(model.analystProgress).toEqual(expect.objectContaining({ideas:1,waiting:1,mockups:1}));
     expect(model.analystMockupItems).toEqual([expect.objectContaining({mockupTitle:'Revised mock-up'})]);
+  });
+
+  test('keeps preserved Editorial and Analyst work out of the MVP decision queue',()=>{
+    const model=buildDashboardModel({
+      strategyStatus:{summary:{editorialStatus:'parked for MVP; existing packets preserved',productStatus:'parked for MVP; existing ideas preserved'}},
+      editorialPackets:[{generatedAt:'2026-08-20T12:00:00Z',subject:{type:'page',id:'privacy'},outputs:[{status:'ready-for-review'}]}],
+      productIdeas:{ideas:[{id:'saved-idea',title:'Saved idea'}]},
+      jobs:[{id:'old-analyst',jobType:'hosted-product-design',status:'queued'}],
+    });
+    expect(model.decisions.some(item=>['editorial','analyst'].includes(item.kind))).toBe(false);
+    expect(model.editorialProgress).toEqual(expect.objectContaining({active:0,waiting:0,status:'parked for MVP; existing packets preserved'}));
+    expect(model.analystProgress).toEqual(expect.objectContaining({ideas:0,waiting:0,status:'parked for MVP; existing ideas preserved'}));
+    expect(model.summary.agentWork).toBe(0);
+  });
+
+  test('keeps the executive trail-photo queue bounded while prioritising ready previews',()=>{
+    const gaps=Array.from({length:20},(_,index)=>({slug:`trail-${index}`,trailId:`trail-${index}`,title:`Trail ${index}`}));
+    const model=buildDashboardModel({imageAudit:{gaps,summary:{missing:20}},imageResults:{items:[{slug:'trail-19',candidates:[{status:'ready-for-asset-review'}]}]},jobs:[]});
+    expect(model.imageItems).toHaveLength(15);
+    expect(model.imageItems[0].slug).toBe('trail-19');
+    expect(model.decisions.find(item=>item.kind==='image').title).toBe('15 trail photos need routing');
   });
 
   test('keeps preserved Newsletter packets out of the decision queue while parked',()=>{

@@ -975,29 +975,29 @@ describe('ORMA backoffice MVP', () => {
     });
     expect(validateContentOperations(plan)).toEqual([]);
     expect(plan.publicMutationAllowed).toBe(false);
-    expect(plan.summary).toEqual({ activeWorkstreams: 2, parkedWorkstreams: 3, jobs: 4 });
+    expect(plan.summary).toEqual({ activeWorkstreams: 0, parkedWorkstreams: 5, jobs: 0 });
     expect(plan.workstreams.find(stream => stream.id === 'newsletter')).toEqual(expect.objectContaining({
       cadence: 'every-14-days-after-launch', nextRunOn: null, status: 'parked',
     }));
-    expect(plan.workstreams.find(stream => stream.id === 'library-enrichment').nextRunOn).toBe('2026-08-25');
+    expect(plan.workstreams.find(stream => stream.id === 'library-enrichment')).toEqual(expect.objectContaining({status:'parked',nextRunOn:null}));
     expect(plan.workstreams.find(stream => stream.id === 'collections')).toEqual(expect.objectContaining({
       cadence: 'on-demand', status: 'parked', nextRunOn: null,
     }));
     expect(plan.workstreams.find(stream => stream.id === 'social')).toEqual(expect.objectContaining({
       status: 'parked', nextRunOn: null,
     }));
-    expect(new Set(plan.jobs.map(job => job.agentId))).toEqual(new Set(['copywriter', 'visualDirector']));
+    expect(plan.editorialPolicy.editorialCopyMvpPaused).toBe(true);
   });
 
   test('social jobs are created only when the channel is enabled', () => {
     const plan = planContentOperations({ asOf: '2026-08-18', socialEnabled: true });
-    expect(plan.summary).toEqual({ activeWorkstreams: 3, parkedWorkstreams: 2, jobs: 6 });
+    expect(plan.summary).toEqual({ activeWorkstreams: 1, parkedWorkstreams: 4, jobs: 2 });
     expect(plan.jobs.filter(job => job.action.includes('social'))).toHaveLength(2);
   });
 
   test('Newsletter jobs return only after content readiness is explicitly enabled', () => {
     const plan = planContentOperations({ asOf: '2026-08-18', newsletterEnabled: true });
-    expect(plan.summary).toEqual({ activeWorkstreams: 3, parkedWorkstreams: 2, jobs: 6 });
+    expect(plan.summary).toEqual({ activeWorkstreams: 1, parkedWorkstreams: 4, jobs: 2 });
     expect(plan.workstreams.find(stream => stream.id === 'newsletter')).toEqual(expect.objectContaining({
       status: 'active', nextRunOn: '2026-09-01',
     }));

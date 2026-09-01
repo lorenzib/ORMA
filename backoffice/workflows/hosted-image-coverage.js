@@ -24,6 +24,33 @@ async function runImageSourcing(gap,job,options={}){
 
 function latestBySlug(reviews){const latest=new Map();for(const review of reviews){const current=latest.get(review.slug);const key=`${iso(review.submittedAt)}:${review.id}`;const currentKey=current?`${iso(current.submittedAt)}:${current.id}`:'';if(!current||key>currentKey)latest.set(review.slug,review);}return latest;}
 
+const DEFAULT_IMAGE_SOURCING_CAPACITY=15;
+
+async function queuePriorityImageSourcing(store,audit,options={}){
+  const at=options.at||new Date().toISOString();const capacity=options.capacity||DEFAULT_IMAGE_SOURCING_CAPACITY;
+  const gapSlugs=new Set((audit?.gaps||[]).map(gap=>gap.slug));
+  const [jobs,results,requests]=await Promise.all([
+    store.listJobs(['queued','running','ready-for-review']),
+    store.getArtifact('image-coverage-results'),
+    store.getArtifact('trail-image-publication-requests'),
+  ]);
+  const occupied=new Set((jobs||[]).filter(job=>job.jobType==='hosted-image-sourcing'&&gapSlugs.has(job.slug)).map(job=>job.slug));
+  for(const item of results?.items||[]){if(gapSlugs.has(item.slug)&&(item.candidates||[]).some(candidate=>candidate.status==='ready-for-asset-review'))occupied.add(item.slug);}
+  for(const request of requests?.requests||[]){if(gapSlugs.has(request.trailId)&&request.status!=='published')occupied.add(request.trailId);}
+  const queued=[];
+  for(const gap of audit?.gaps||[]){
+    if(occupied.size>=capacity)break;
+    if(occupied.has(gap.slug))continue;
+    const job={id:`image-coverage-auto-find-licensed-${gap.slug}`,jobType:'hosted-image-sourcing',agentId:'visualDirector',status:'queued',
+      createdAt:at,slug:gap.slug,trailId:gap.trailId||gap.slug,sourceRef:gap.sourceRef,sourcePreference:'find-licensed',reviewId:null,
+      brief:`Scout correctly licensed, credited photo candidates for ${gap.title}. Preserve creator, source page, licence URL and alt text.`,
+      humanGate:'asset-and-rights-approval',requiresAssetApproval:true,requiresLicensingApproval:true,publicMutationAllowed:false};
+    const created=typeof store.putJobIfAbsent==='function'?await store.putJobIfAbsent(job):(await store.putJob(job),true);
+    if(created){queued.push(job.id);occupied.add(gap.slug);}
+  }
+  return {capacity,active:occupied.size,queued:queued.length,jobIds:queued};
+}
+
 async function ingestImageReviews(store){
   if(typeof store.listImageReviews!=='function')return [];
   const reviews=await store.listImageReviews('queued');const outcomes=[];const effective=latestBySlug(reviews);let queue=await store.getArtifact('image-coverage-review')||{contractVersion:'1.0.0',decisions:[],jobs:[]};
@@ -95,11 +122,13 @@ async function processImageJobs(store,options={}){
           candidates:(prior.candidates||[]).map(item=>item.assetUrl===assetRef?{...item,status:'approved-for-publication'}:item),publicMutationAllowed:false};
       }else result=await runImageSourcing(gap,job,options);
       const artifact=await store.getArtifact('image-coverage-results')||{contractVersion:'1.0.0',items:[]};const next={...artifact,updatedAt:result.generatedAt,items:[...(artifact.items||[]).filter(item=>item.slug!==job.slug),{...result,reviewId:job.reviewId}].slice(-500)};
-      await Promise.all([store.setArtifact('image-coverage-results',next,{lastWorkerId:workerId}),store.completeSystemJob(job.id,{outputRef:'firestore:image-coverage-results'}),store.markImageReview(job.reviewId,'processed',{outcome:{status:(result.candidates||[]).some(item=>item.status==='ready-for-asset-review')?'asset-review-ready':result.status||'sourcing-complete',outputRef:'firestore:image-coverage-results',publicMutationAllowed:false}})]);
+      const writes=[store.setArtifact('image-coverage-results',next,{lastWorkerId:workerId}),store.completeSystemJob(job.id,{outputRef:'firestore:image-coverage-results'})];
+      if(job.reviewId)writes.push(store.markImageReview(job.reviewId,'processed',{outcome:{status:(result.candidates||[]).some(item=>item.status==='ready-for-asset-review')?'asset-review-ready':result.status||'sourcing-complete',outputRef:'firestore:image-coverage-results',publicMutationAllowed:false}}));
+      await Promise.all(writes);
       outcomes.push({jobId:job.id,reviewId:job.reviewId,status:'completed'});
-    }catch(error){const failures=Number(job.systemFailures||0)+1;await store.failJob(job.id,error,{maximumFailures:3});if(failures>=3)await store.markImageReview(job.reviewId,'blocked',{error:String(error.message||error).slice(0,2000)});outcomes.push({jobId:job.id,status:'retry-or-blocked',error:error.message});}
+    }catch(error){const failures=Number(job.systemFailures||0)+1;await store.failJob(job.id,error,{maximumFailures:3});if(failures>=3&&job.reviewId)await store.markImageReview(job.reviewId,'blocked',{error:String(error.message||error).slice(0,2000)});outcomes.push({jobId:job.id,status:'retry-or-blocked',error:error.message});}
   }
   return outcomes;
 }
 
-module.exports={IMAGE_SOURCE_SCHEMA,runImageSourcing,latestBySlug,ingestImageReviews,processImageJobs};
+module.exports={IMAGE_SOURCE_SCHEMA,DEFAULT_IMAGE_SOURCING_CAPACITY,runImageSourcing,latestBySlug,queuePriorityImageSourcing,ingestImageReviews,processImageJobs};

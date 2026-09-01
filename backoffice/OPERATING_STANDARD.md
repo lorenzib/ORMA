@@ -1,7 +1,7 @@
 # ORMA Agentic Backoffice Operating Standard
 
 Status: **current baseline**
-Effective from: **19 August 2026**
+Effective from: **1 September 2026**
 
 This document is the normative product contract for ORMA's agentic backoffice.
 The interface and automation will continue to evolve, but changes must preserve
@@ -74,7 +74,13 @@ the required evidence and human gates are complete.
 
 Owns website copy and trail-photo coverage as two separate queues.
 
-The weekly copy cycle:
+Website copy generation is parked during the MVP catalogue-and-coverage phase.
+Existing active and paused packets, ledgers, review decisions and publication
+receipts are preserved, but scheduled runs do not generate replacement copy
+packets or present copy as a current CEO priority. The copy lane can be reopened
+only by an explicit CEO decision.
+
+When reopened, the copy cycle:
 
 - reviews non-safety guides, editorial articles, and explicitly named
   governance pages, not design;
@@ -102,6 +108,11 @@ approved source files, pushes to `main`, and reports the deployment result.
 
 Trail-photo coverage is a separate Editorial workflow. It audits every
 published trail, not guides or general pages, and ranks Dolomites gaps first.
+During the MVP phase it is an active throughput lane: the daily refresh keeps
+up to 15 trail-photo searches or exact asset reviews active, automatically
+queues correctly licensed and credited candidate scouting for the highest
+priority unfilled trails, and preserves the remaining coverage inventory
+without presenting every gap as simultaneous work.
 For each trail, the CEO can upload her own photograph in a protected backoffice
 space, choose an existing ORMA asset, request correctly licensed candidates,
 explicitly request an AI option, or park the gap. Uploads are not publicly
@@ -146,9 +157,14 @@ a second version of the underlying trail or safety facts.
 
 ### 6. Analyst
 
-Runs as an independent product-discovery lane. It scouts competitor releases,
-feature patterns, UI improvements, and editorial gaps, with direct sources and
-clear evidence-versus-inference language.
+Is parked during the MVP catalogue-and-coverage phase. Existing ideas,
+investigations, prototypes and decisions are preserved, but no scheduled
+discovery, investigation, design or Developer handoff work is generated until
+the CEO explicitly reopens the lane.
+
+When reopened, Analyst runs as an independent product-discovery lane. It scouts
+competitor releases, feature patterns, UI improvements, and editorial gaps,
+with direct sources and clear evidence-versus-inference language.
 
 The required handoff is:
 
@@ -184,16 +200,18 @@ requests and the CEO prototype gate. An investigation, priority decision or prot
 - Dynamic hazard check: daily at 07:15 local time.
 - Existing Trails queue: checked by the hosted worker every fifteen minutes,
   with daily ORMA Verified intake at 09:30 local time and 15-trail capacity.
-- Strategy cycle: Wednesday at 12:00 local time.
-- Editorial copy: weekly, with up to three active non-safety reviews; Safety
-  Library copy review is paused during the current UI redesign.
-- Trail-photo coverage: refreshed Monday through Saturday at 11:00 local time,
-  after New Trail scouting; guide-wide image audits are not part of this queue.
+- Strategy cycle: parked during the MVP phase; manual recovery remains
+  available without generating Editorial or Analyst work by default.
+- Editorial copy: parked during the MVP phase. Existing review packets are
+  preserved; Safety Library copy remains in its protected paused archive.
+- Trail-photo coverage and licensed candidate scouting: daily at 11:00 local
+  time, after New Trail scouting, with at most 15 active searches or reviews;
+  guide-wide image audits are not part of this queue.
 - New Trail scouting: Monday through Saturday at 10:00 local time, Dolomites
   first; admission remains CEO-gated.
 - Newsletter: parked until trail, collection and website content readiness is
   explicitly confirmed.
-- Analyst discovery: weekly.
+- Analyst discovery: parked during the MVP phase; existing work is preserved.
 - Social: parked until launch.
 
 The local macOS background services keep these workflows available after login.

@@ -3,7 +3,6 @@
 const fs=require('fs/promises');
 const path=require('path');
 const {runEditorialCycle}=require('./run-editorial-cycle');
-const {auditImageCoverage}=require('./audit-image-coverage');
 const {runProductDiscovery}=require('./run-product-discovery');
 const {runNewsletter,newsletterIsDue}=require('./run-newsletter');
 
@@ -57,6 +56,8 @@ async function runLiveStrategyCycle(store,options={}){
   const runId=options.runId||process.env.GITHUB_RUN_ID||null;
   const workflowRunUrl=options.workflowRunUrl||null;
   const newsletterEnabled=options.newsletterEnabled===true;
+  const editorialEnabled=options.editorialEnabled===true;
+  const analystEnabled=options.analystEnabled===true;
   const metadata={runId,workflowRunUrl,publicMutationAllowed:false};
   const statusBase={contractVersion:'1.0.0',runId,workflowRunUrl,startedAt:at,publicMutationAllowed:false};
   await store.setArtifact('strategy-cycle-status',{...statusBase,status:'running'});
@@ -65,7 +66,9 @@ async function runLiveStrategyCycle(store,options={}){
     await hydrate(store,root,'editorial-paused-packets','backoffice-data/editorial-paused-packets.json',{contractVersion:'1.0.0',updatedAt:null,reason:'safety-library-ui-review',packets:[]});
     for(let slot=1;slot<=3;slot++)await hydrate(store,root,`editorial-review-packet-${slot}`,`backoffice-data/editorial-review-packet-${slot}.json`,null);
 
-    const editorial=await (options.runEditorialCycle||runEditorialCycle)(root,{at,limit:3,...(options.editorialOptions||{})});
+    const editorial=editorialEnabled
+      ?await (options.runEditorialCycle||runEditorialCycle)(root,{at,limit:3,...(options.editorialOptions||{})})
+      :{preserved:[],paused:[],generated:[],blocked:[],availableSlots:0,status:'parked-for-mvp'};
     const ledger=await readJson(path.join(root,'backoffice-data/editorial-ledger.json'),{contractVersion:'1.0.0',items:[]});
     const pausedPackets=await readJson(path.join(root,'backoffice-data/editorial-paused-packets.json'),{contractVersion:'1.0.0',updatedAt:null,reason:'safety-library-ui-review',packets:[]});
     await Promise.all([store.setArtifact('editorial-ledger',ledger,metadata),store.setArtifact('editorial-paused-packets',pausedPackets,metadata)]);
@@ -75,16 +78,19 @@ async function runLiveStrategyCycle(store,options={}){
       if(packet){packets.push(packet);await store.setArtifact(`editorial-review-packet-${slot}`,packet,{...metadata,slot});}
       else await store.setArtifact(`editorial-review-packet-${slot}`,{contractVersion:'1.0.0',generatedAt:at,status:'empty',subject:null,outputs:[],summary:{readyForReview:0,blocked:0},publicMutationAllowed:false},{...metadata,slot,status:'empty'});
     }
+    if(!editorialEnabled)editorial.preserved=packets.map(packet=>`${packet.subject?.type||'content'}-${packet.subject?.id||'unknown'}`);
 
-    const imageAudit=await (options.auditImageCoverage||auditImageCoverage)(root,{at});
-    await store.setArtifact('image-coverage',imageAudit,metadata);
+    const imageAudit=await store.getArtifact('image-coverage')||await readJson(path.join(root,'backoffice-data/image-coverage.json'),{summary:{trailsScanned:0,pagesScanned:0,missing:0},gaps:[]});
 
     const productReview=await store.getArtifact('product-ideas-review')||await readJson(path.join(root,'backoffice-data/product-ideas-review.json'),{contractVersion:'1.0.0',decisions:[],jobs:[]});
     await store.setArtifact('product-ideas-review',productReview,metadata);
     const previousProduct=await store.getArtifact('product-ideas')||await readJson(path.join(root,'backoffice-data/product-ideas.json'),null);
     const productAge=previousProduct?.generatedAt?new Date(at).getTime()-new Date(previousProduct.generatedAt).getTime():Infinity;
     let productPacket=previousProduct;let productStatus='still-fresh';
-    if(productAge>=6.5*24*60*60*1000){
+    if(!analystEnabled){
+      productStatus='parked for MVP; existing ideas preserved';
+      if(productPacket)await store.setArtifact('product-ideas',productPacket,metadata);
+    }else if(productAge>=6.5*24*60*60*1000){
       try{const fresh=await (options.runProductDiscovery||runProductDiscovery)({at,...(options.productOptions||{})});productPacket=mergeProductPackets(previousProduct,fresh,productReview);await store.setArtifact('product-ideas',productPacket,metadata);productStatus=`${productPacket.summary.total} ideas ready`;}
       catch(error){productStatus=`blocked: ${error.message}`;}
     }else if(productPacket)await store.setArtifact('product-ideas',productPacket,metadata);
@@ -101,11 +107,12 @@ async function runLiveStrategyCycle(store,options={}){
       newsletterStatus=newsletterPacket.summary.readyForReview?'draft ready':`blocked: ${newsletterPacket.outputs?.[0]?.error||'no draft produced'}`;
     }else if(newsletterPacket)await store.setArtifact('newsletter-review-packet',newsletterPacket,metadata);
     const summary={
-      editorialActive:packets.filter(packet=>(packet.outputs||[]).some(output=>output.status==='ready-for-review')).length,
+      editorialActive:editorialEnabled?packets.filter(packet=>(packet.outputs||[]).some(output=>output.status==='ready-for-review')).length:0,
       editorialPreserved:editorial.preserved.length,
       editorialGenerated:editorial.generated.length,
       editorialPaused:Number(editorial.paused?.length||0),
       editorialBlocked:editorial.blocked.length,
+      editorialStatus:editorialEnabled?'active':'parked for MVP; existing packets preserved',
       imagePagesScanned:Number(imageAudit.summary?.pagesScanned||0),
       imageGaps:Number(imageAudit.summary?.missing||0),
       productIdeas:Number(productPacket?.ideas?.length||0),
@@ -118,7 +125,7 @@ async function runLiveStrategyCycle(store,options={}){
     return {editorial,packets,ledger,imageAudit,productPacket,productStatus,newsletterInputs,newsletterPacket,newsletterStatus,summary};
   }catch(error){
     const failedAt=new Date().toISOString();
-    await store.setArtifact('strategy-cycle-status',{...statusBase,status:'failed',completedAt:failedAt,lastFailure:{failedAt,stage:'editorial-and-image-refresh',message:String(error.message||error).slice(0,2000),workflowRunUrl},publicMutationAllowed:false});
+    await store.setArtifact('strategy-cycle-status',{...statusBase,status:'failed',completedAt:failedAt,lastFailure:{failedAt,stage:'parked-strategy-preservation',message:String(error.message||error).slice(0,2000),workflowRunUrl},publicMutationAllowed:false});
     throw error;
   }
 }

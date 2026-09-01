@@ -42,9 +42,10 @@ The ignored runtime artifact is `backoffice-data/content-flow.json`.
 
 ### Content operations calendar
 
-The broader content-operations planner runs the editing and picture-gathering
-pair across guides, collections, a fortnightly newsletter, and a weekly library
-freshness pass. Social media remains parked until explicitly enabled.
+The broader content-operations planner is parked during the MVP
+catalogue-and-coverage phase. Existing Editorial records remain available, but
+the default plan creates no guide or library-enrichment jobs. Newsletter and
+Social also remain parked until explicitly enabled.
 
 ```sh
 npm run backoffice:content-ops
@@ -53,11 +54,11 @@ npm run backoffice:content-ops -- --as-of=2026-08-18
 npm run backoffice:content-ops -- --enable-social
 ```
 
-This writes `backoffice-data/content-operations.json`. Each active workstream
-gets one Copywriter job and one Visual Director job. The newsletter's next date
-is 14 days after the cycle date; weekly streams advance seven days. The command
-plans work only—it does not invoke a model, send a newsletter, post to social
-media, or publish site changes.
+This writes `backoffice-data/content-operations.json`. During the MVP phase its
+default output is a preservation plan with zero queued content jobs. Explicitly
+reopened workstreams get one Copywriter job and one Visual Director job. The
+command plans work only—it does not invoke a model, send a newsletter, post to
+social media, or publish site changes.
 
 Execute the first end-to-end guide slice with an API key in your shell:
 

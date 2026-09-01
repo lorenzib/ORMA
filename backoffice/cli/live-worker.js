@@ -18,7 +18,9 @@ async function main(){
     ?`${process.env.GITHUB_SERVER_URL||'https://github.com'}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`:null;
   const result = await runLiveBackofficeWorker(new FirestoreBackofficeStore(), { workerId,runId:process.env.GITHUB_RUN_ID||null,
     workflowRunUrl,campaignTrigger:'worker-catch-up',campaignEnabled:process.env.ORMA_CAMPAIGN_AUTOMATION_ENABLED==='true',
-    campaignLimit:positiveInteger(process.env.ORMA_CAMPAIGN_LIMIT,10),campaignCapacity:positiveInteger(process.env.ORMA_CAMPAIGN_CAPACITY,15),newsletterEnabled:process.env.ORMA_NEWSLETTER_ENABLED==='true',limit:5,specialistLimit,specialistCandidateId });
+    campaignLimit:positiveInteger(process.env.ORMA_CAMPAIGN_LIMIT,10),campaignCapacity:positiveInteger(process.env.ORMA_CAMPAIGN_CAPACITY,15),
+    editorialEnabled:process.env.ORMA_EDITORIAL_ENABLED==='true',analystEnabled:process.env.ORMA_ANALYST_ENABLED==='true',
+    newsletterEnabled:process.env.ORMA_NEWSLETTER_ENABLED==='true',limit:5,specialistLimit,specialistCandidateId });
   console.log(JSON.stringify(result, null, 2));
   if(result.reviews.some(item => item.status === 'blocked')
     || result.dossierReviews.some(item => item.status === 'blocked')

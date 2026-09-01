@@ -4,6 +4,7 @@
 const path=require('path');
 const {FirestoreBackofficeStore}=require('../services/firestore-backoffice-store');
 const {auditImageCoverage}=require('../workflows/audit-image-coverage');
+const {queuePriorityImageSourcing,DEFAULT_IMAGE_SOURCING_CAPACITY}=require('../workflows/hosted-image-coverage');
 
 function workflowRunUrl(env){return env.GITHUB_RUN_ID&&env.GITHUB_REPOSITORY?`${env.GITHUB_SERVER_URL||'https://github.com'}/${env.GITHUB_REPOSITORY}/actions/runs/${env.GITHUB_RUN_ID}`:null;}
 
@@ -13,13 +14,16 @@ async function main(options={}){
     workflowRunUrl:workflowRunUrl(env),trigger:env.GITHUB_EVENT_NAME||'manual',startedAt,publicMutationAllowed:false};
   await store.setArtifact('trail-image-coverage-status',{...statusBase,status:'running'},{status:'running'});
   try{
-    const audit=await auditImageCoverage(root,{at:startedAt});const completedAt=options.completedAt||new Date().toISOString();
+    const audit=await auditImageCoverage(root,{at:startedAt});
+    const sourcing=await queuePriorityImageSourcing(store,audit,{at:startedAt,capacity:options.capacity||DEFAULT_IMAGE_SOURCING_CAPACITY});
+    const completedAt=options.completedAt||new Date().toISOString();
     await Promise.all([
       store.setArtifact('image-coverage',audit,{mode:audit.mode,publicMutationAllowed:false}),
-      store.setArtifact('trail-image-coverage-status',{...statusBase,status:'healthy',completedAt,lastSuccessfulAt:completedAt,summary:audit.summary},{status:'healthy'}),
+      store.setArtifact('trail-image-coverage-status',{...statusBase,status:'healthy',completedAt,lastSuccessfulAt:completedAt,summary:{...audit.summary,sourcing}},{status:'healthy'}),
     ]);
     console.log(`[trail-image-coverage] ${audit.summary.trailsScanned} published trails scanned; ${audit.summary.missing} need photos; ${audit.summary.dolomitesMissing} Dolomites gaps.`);
-    console.log('[trail-image-coverage] Protected review queue refreshed. Nothing was published.');return audit;
+    console.log(`[trail-image-coverage] ${sourcing.queued} credited-photo search job(s) queued; ${sourcing.active}/${sourcing.capacity} active slots.`);
+    console.log('[trail-image-coverage] Protected review queue refreshed. Nothing was published.');return {...audit,sourcing};
   }catch(error){
     const failedAt=options.completedAt||new Date().toISOString();
     await store.setArtifact('trail-image-coverage-status',{...statusBase,status:'failed',completedAt:failedAt,lastFailure:{failedAt,message:String(error.message||error).slice(0,2000)},publicMutationAllowed:false},{status:'failed'});

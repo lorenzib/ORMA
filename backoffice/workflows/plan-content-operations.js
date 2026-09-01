@@ -7,7 +7,7 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 
 const WORKSTREAM_DEFINITIONS = Object.freeze([
   {
-    id: 'guides', label: 'Guides', cadence: 'weekly', status: 'active',
+    id: 'guides', label: 'Guides', cadence: 'on-demand-after-mvp', status: 'parked',
     goal: 'Create or refresh one useful, evidence-backed dog hiking guide outside the Safety Library while its UI is under review.',
     outputs: ['editorial brief', 'edited guide draft', 'picture shortlist', 'source and freshness notes'],
   },
@@ -22,7 +22,7 @@ const WORKSTREAM_DEFINITIONS = Object.freeze([
     outputs: ['subject options', 'preheader', 'newsletter draft', 'picture shortlist', 'link plan'],
   },
   {
-    id: 'library-enrichment', label: 'Library enrichment', cadence: 'weekly', status: 'active',
+    id: 'library-enrichment', label: 'Library enrichment', cadence: 'on-demand-after-mvp', status: 'parked',
     goal: 'Audit non-safety guides, articles and explicitly prioritised governance pages for stale or missing material; Safety Library copy review is temporarily paused during its UI redesign.',
     outputs: ['freshness audit', 'update priorities', 'edited drafts', 'replacement picture candidates'],
   },
@@ -63,8 +63,10 @@ function planContentOperations(options = {}){
   const cycleDate = isoDate(options.asOf || at);
   const socialEnabled = options.socialEnabled === true;
   const newsletterEnabled = options.newsletterEnabled === true;
+  const editorialEnabled = options.editorialEnabled === true;
   const workstreams = WORKSTREAM_DEFINITIONS.map(definition => {
-    const enabled=(definition.id==='social'&&socialEnabled)||(definition.id==='newsletter'&&newsletterEnabled);
+    const enabled=(definition.id==='social'&&socialEnabled)||(definition.id==='newsletter'&&newsletterEnabled)
+      ||(['guides','library-enrichment'].includes(definition.id)&&editorialEnabled);
     const status = enabled ? 'active' : definition.status;
     const nextRunOn = definition.id === 'newsletter' && status === 'active' ? addDays(cycleDate, 14)
       : status === 'active' ? addDays(cycleDate, 7) : null;
@@ -85,6 +87,7 @@ function planContentOperations(options = {}){
       noAutomaticPublishing: true,
       noUnlicensedMediaDownloads: true,
       safetyLibraryCopyReviewPaused: true,
+      editorialCopyMvpPaused: !editorialEnabled,
     },
     workstreams,
     jobs,
