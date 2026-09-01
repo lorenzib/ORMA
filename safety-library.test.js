@@ -89,9 +89,9 @@ describe('Safety library', () => {
     expect(sources).toEqual(expect.arrayContaining([
       'images/editorial/safety-library/altitude-with-your-dog-v1.jpg',
       'images/editorial/safety-library/breed-group-considerations-dogs-v3.jpg',
-      'images/editorial/safety-library/dogs-on-cable-cars-v5.jpg',
+      'images/editorial/safety-library/dogs-on-cable-cars-v6.jpg',
       'images/editorial/safety-library/dog-hydration-lake-unbranded-v1.jpg',
-      'images/editorial/safety-library/paw-protection-mountain-dog-v2.jpg',
+      'images/editorial/safety-library/paw-protection-forest-dog-v4.jpg',
       'images/editorial/safety-library/flowers-plants-dogs.jpg',
       'images/editorial/safety-library/livestock-guardian-dogs-v1.jpg',
       'images/editorial/safety-library/dogs-at-rifugi.jpg'
@@ -102,7 +102,7 @@ describe('Safety library', () => {
     expect(guideImages.every(image => !image.hasAttribute('loading'))).toBe(true);
     const pawImage = document.querySelector('a[href="guides/paw-protection.html"] img');
     expect(pawImage.classList.contains('sg-guide-image-paw')).toBe(true);
-    expect(pawImage.getAttribute('alt')).toMatch(/dog.*mountain trail.*Dolomite/i);
+    expect(pawImage.getAttribute('alt')).toMatch(/dog.*leash-free.*forest trail/i);
     expect(html).toContain('.sg-guide-card img.sg-guide-image-paw{object-position:center 72%;}');
     expect(document.body.textContent).toContain('Flowers, plants and dogs');
   });

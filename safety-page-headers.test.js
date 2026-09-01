@@ -6,9 +6,9 @@ const path = require('path');
 const pages = [
   ['altitude-with-your-dog.html', 'altitude-with-your-dog-v1.jpg'],
   ['breed-group-caveats.html', 'breed-group-considerations-dogs-v3.jpg'],
-  ['dogs-on-cable-cars.html', 'dogs-on-cable-cars-v5.jpg'],
+  ['dogs-on-cable-cars.html', 'dogs-on-cable-cars-hero-v6.jpg'],
   ['heat-overheating.html', 'dog-hydration-lake-unbranded-v1.jpg'],
-  ['paw-protection.html', 'paw-protection-mountain-dog-v2.jpg'],
+  ['paw-protection.html', 'paw-protection-forest-dog-v4.jpg'],
   ['livestock-guard-dogs.html', 'livestock-guardian-dogs-v1.jpg'],
   ['dogs-at-rifugi.html', 'dogs-at-rifugi.jpg'],
   ['water-for-dogs-on-trail.html', 'dog-hydration-lake-unbranded-v1.jpg'],
@@ -62,9 +62,9 @@ describe('Safety Library article headers', () => {
     const image = header.querySelector('.safety-photo-header__image');
     const pageCss = document.querySelector('style').textContent;
 
-    expect(pageCss).toMatch(/\.cg-hero\{--safety-photo-position:center 62%/);
-    expect(pageCss).toMatch(/@media\(max-width:620px\)[\s\S]*\.cg-hero\{--safety-photo-position:center 72%/);
-    expect(image.getAttribute('style')).toBe('inset:-8%;width:116%;height:116%;');
+    expect(pageCss).toMatch(/\.cg-hero\{--safety-photo-position:center/);
+    expect(pageCss).toMatch(/@media\(max-width:620px\)[\s\S]*\.cg-hero\{--safety-photo-position:right center/);
+    expect(image.hasAttribute('style')).toBe(false);
   });
 
   test('the Alpine plants guide reuses its library image as a full-width photo header', () => {

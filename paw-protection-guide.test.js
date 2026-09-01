@@ -25,7 +25,7 @@ describe('paw protection question-led guide', () => {
 
   test('uses the Safety Library card image behind the compact page header', () => {
     const image = document.querySelector('.paw2-hero.safety-photo-header .safety-photo-header__image');
-    expect(image.getAttribute('src')).toContain('safety-library/paw-protection-mountain-dog-v2.jpg');
+    expect(image.getAttribute('src')).toContain('safety-library/paw-protection-forest-dog-v4.jpg');
     expect(image.getAttribute('alt')).toBe('');
     expect(html).not.toContain('class="paw2-hero-image"');
     expect(document.querySelector('.topnav-page').textContent.trim()).toBe('Safety library');
