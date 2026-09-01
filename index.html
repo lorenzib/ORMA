@@ -27,7 +27,7 @@ if(location.protocol !== 'file:' && location.pathname === '/index.html'){
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
 <link rel="stylesheet" href="styles.css?v=20260901-8">
 <link rel="stylesheet" href="homepage-mobile.css?v=20260901-6">
-  <link rel="stylesheet" href="homepage-editorial.css?v=20260901-3">
+  <link rel="stylesheet" href="homepage-editorial.css?v=20260901-4">
 </head>
 <body>
 
@@ -330,8 +330,8 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     <a class="li-plan-route" href="route-planner.html">Draft a loop</a>
     <a id="liRecordBtn" class="li-record" href="walk.html"><span class="li-record-dot" aria-hidden="true"></span><span class="li-record-label">Record walk</span></a>
     </div>
-    <!-- Kept as a rendering target for the controller; the consolidated
-         Filter trails panel is the visible control at every viewport size. -->
+    <!-- Kept as a rendering target for the controller. Detailed discovery
+         filters live on Browse All Trails; this toolbar keeps the core actions. -->
     <div class="li-chiprow" id="liChips"></div>
   </div>
 

@@ -11,7 +11,7 @@ describe('logged-in discovery workspace layout', () => {
     expect(css).toMatch(/\.li-toolbar-greet\s*\{[^}]*display:flex;/s);
   });
 
-  test('places advanced filtering directly after the location controls', () => {
+  test('keeps the core filters and actions directly after the location controls', () => {
     expect(html).toContain('class="li-quick-filters"');
     expect(html).not.toContain('id="liQuickLeash"');
     expect(html).toContain('id="liQuickShade"');
@@ -21,17 +21,18 @@ describe('logged-in discovery workspace layout', () => {
     expect(html.indexOf('id="liSavedOnlyBtn"')).toBeLessThan(html.indexOf('class="li-plan-route"'));
     expect(html.indexOf('class="li-plan-route"')).toBeLessThan(html.indexOf('id="liRecordBtn"'));
     expect(html.indexOf('id="liQuickWater"')).toBeLessThan(html.indexOf('id="liSavedOnlyBtn"'));
+    const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
+    expect(editorialCss).toContain('#liFiltersWrap{display:none;}');
   });
 
-  test('bounds desktop search width so geographic labels remain readable', () => {
+  test('uses the same one-line desktop control rhythm as Browse All Trails', () => {
     const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
-    expect(editorialCss).toContain('grid-template-columns:minmax(280px,360px) 196px 196px 178px max-content max-content max-content max-content max-content;');
-    expect(editorialCss).toContain('justify-content:start;');
-    expect(editorialCss).toContain('.li-country-wrap,.li-region-wrap{width:196px;min-width:196px;}');
-    expect(editorialCss).toContain('.li-valley-wrap{grid-area:valley;width:178px;min-width:178px;}');
-    expect(editorialCss).toContain('"search country region valley filters quick saved plan record"');
-    expect(editorialCss).toContain('@media (min-width:1041px) and (max-width:1500px)');
-    expect(editorialCss).toContain('"filters quick saved plan record"');
+    expect(editorialCss).toContain('grid-template-columns:minmax(210px,2fr)');
+    expect(editorialCss).toContain('@media (min-width:1101px)');
+    expect(editorialCss).toContain('.li-mobile-actions,.li-quick-filters{display:contents;}');
+    expect(editorialCss).toContain('#liQuickShade{grid-column:5;grid-row:2;}');
+    expect(editorialCss).toContain('.li-plan-route{grid-area:auto;grid-column:8;grid-row:2;}');
+    expect(editorialCss).toContain('.li-record{grid-area:auto;grid-column:9;grid-row:2;}');
   });
 
   test('contains the quick shade and water filters in white outlined controls', () => {

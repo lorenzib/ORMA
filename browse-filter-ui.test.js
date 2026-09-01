@@ -209,7 +209,7 @@ describe('Browse filter UI', () => {
     expect(html).toContain('.browse-geo-group{display:block;flex:0 0 196px;width:196px;');
     expect(html).toContain('.browse-geo-group--valley{flex-basis:178px;width:178px;}');
     expect(html).toContain('max-width:360px;min-width:180px;');
-    expect(editorialCss).toContain('minmax(280px,360px) 196px 196px 178px max-content max-content max-content');
+    expect(editorialCss).toContain('grid-template-columns:minmax(210px,2fr)');
     expect(html).toContain('@media(min-width:761px) and (max-width:1100px)');
     expect(html).toContain('grid-template-columns:minmax(260px,360px) 196px 196px 178px;');
     expect(html).toContain('.browse-geo-group .area-select-trigger__kicker{display:none;}');
