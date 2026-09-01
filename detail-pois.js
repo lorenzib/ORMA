@@ -76,7 +76,7 @@ function initDetailPois(map, trail){
     else if (props.tourism === 'museum') { typeLabel = tt('poi.museum', 'Museum'); iconKey = 'sight'; }
     else if (props.tourism === 'artwork') { typeLabel = tt('poi.artwork', 'Artwork'); iconKey = 'sight'; }
     else if (props.tourism === 'attraction') { typeLabel = tt('poi.attraction', 'Attraction'); iconKey = 'sight'; }
-    else if (props.tourism === 'information') { typeLabel = tt('poi.info', 'Visitor information'); }
+    else if (props.tourism === 'information') { typeLabel = tt('poi.info', 'Visitor information'); iconKey = 'information'; }
     else if (props.historic) { typeLabel = tt('poi.historic', 'Historic site'); iconKey = 'sight'; }
     const typeIcon = (iconKey && icons && icons.renderIconSvg)
       ? `<span style="display:inline-block;vertical-align:-2px;margin-right:3px;">${icons.renderIconSvg(iconKey, { mode: 'inline', color: 'currentColor', size: 13 })}</span>`
@@ -112,7 +112,7 @@ function initDetailPois(map, trail){
       source: sourceId,
       filter: ['!', ['has', 'point_count']],
       maxzoom: iconMinZoom,
-      layout: { visibility: 'none' },
+      layout: { visibility: 'visible' },
       paint: {
         'circle-radius': 5.5,
         'circle-color': circleColor,
@@ -128,7 +128,7 @@ function initDetailPois(map, trail){
       filter: ['!', ['has', 'point_count']],
       minzoom: iconMinZoom,
       layout: {
-        visibility: 'none',
+        visibility: 'visible',
         'icon-image': icons ? icons.getPoiMapIconExpression(group) : '',
         'icon-size': 1,
         'icon-padding': 4,
@@ -151,7 +151,7 @@ function initDetailPois(map, trail){
       type: 'circle',
       source: sourceId,
       filter: ['has', 'point_count'],
-      layout: { visibility: 'none' },
+      layout: { visibility: 'visible' },
       paint: {
         'circle-radius': ['step', ['get', 'point_count'], 20, 5, 25, 10, 30],
         'circle-color': clusterColor,
@@ -166,7 +166,7 @@ function initDetailPois(map, trail){
       source: sourceId,
       filter: ['has', 'point_count'],
       layout: {
-        visibility: 'none',
+        visibility: 'visible',
         'text-field': ['get', 'point_count'],
         'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
         'text-size': 12,

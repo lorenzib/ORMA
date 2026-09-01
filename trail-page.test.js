@@ -77,11 +77,17 @@ describe('trail page map controls', () => {
     document.body.innerHTML = html;
     expect(document.querySelector('.map-key--bar')).toBeNull();
     expect(document.getElementById('detailLayersBtn')).not.toBeNull();
-    expect(document.getElementById('detailLayersPanel')).not.toBeNull();
-    expect(document.getElementById('fountainsToggle')).not.toBeNull();
-    expect(document.getElementById('hutsToggle')).not.toBeNull();
+    const panel = document.getElementById('detailLayersPanel');
+    expect(panel).not.toBeNull();
+    expect([...panel.querySelectorAll('button')].map(button => button.id)).toEqual([
+      'routesToggle', 'liftsToggle', 'veterinaryToggle', 'nearbyToggle',
+    ]);
+    expect(document.getElementById('fountainsToggle')).toBeNull();
+    expect(document.getElementById('hutsToggle')).toBeNull();
     expect(document.getElementById('veterinaryToggle')).not.toBeNull();
-    expect(document.getElementById('foodToggle')).not.toBeNull();
+    expect(document.getElementById('foodToggle')).toBeNull();
+    expect(document.getElementById('placesToggle')).toBeNull();
+    expect(document.getElementById('routePointToggle').closest('#detailLayersPanel')).toBeNull();
   });
 
   test('marked routes and relief are on by default, opt-out via the toggle', () => {
@@ -166,15 +172,15 @@ describe('trail page map controls', () => {
   test('map-rendering scripts rotate their cache keys with the detail markup', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
 
-    expect(html).toContain('i18n.js?v=20260819-5');
+    expect(html).toContain('i18n.js?v=20260901-1');
     expect(html).toContain('trail-photo-provenance.js?v=20260820-1');
     expect(html).toContain('trail-weather-window.js?v=20260820-1');
     expect(html).toContain('hike-mode.js?v=20260826-1');
-    expect(html).toContain('detail-pois.js?v=20260826-1');
+    expect(html).toContain('detail-pois.js?v=20260901-1');
     expect(html).toContain('trail-access-directions.js?v=20260828-2');
     expect(html).toContain('footpath-router.js?v=20260831-1');
     expect(html).toContain('veterinary-care.js?v=20260831-2');
-    expect(html).toContain('trail.js?v=20260901-1');
+    expect(html).toContain('trail.js?v=20260901-2');
     expect(html).toContain('trail-reports.js?v=20260820-2');
     expect(html).toContain('trail-blueprint.js?v=20260826-1');
     expect(html).toContain('trail-recommendation.js?v=20260819-6');
@@ -438,7 +444,7 @@ describe('trail page map controls', () => {
     expect(trail).toContain('if(!routeIsLoop)');
   });
 
-  test('mobile map controls have dedicated zones and only mapped routes start visible', () => {
+  test('mobile map controls have dedicated zones and trail amenities start visible', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
     const detailPois = fs.readFileSync(path.join(__dirname, 'detail-pois.js'), 'utf8');
@@ -448,11 +454,12 @@ describe('trail page map controls', () => {
     expect(document.getElementById('mobileMapHikeSlot')).not.toBeNull();
     expect(document.getElementById('routesToggle').getAttribute('aria-pressed')).toBe('true');
     expect(document.getElementById('routePointToggle').getAttribute('aria-pressed')).toBe('false');
-    expect(document.getElementById('fountainsToggle').getAttribute('aria-pressed')).toBe('false');
-    expect(document.getElementById('hutsToggle').getAttribute('aria-pressed')).toBe('false');
-    expect(document.getElementById('foodToggle').getAttribute('aria-pressed')).toBe('false');
-    expect(document.getElementById('placesToggle').getAttribute('aria-pressed')).toBe('false');
-    expect(trail).toContain('const poiStates = { fountains: false, huts: false, food: false, places: false, veterinary: false }');
+    expect(document.getElementById('fountainsToggle')).toBeNull();
+    expect(document.getElementById('hutsToggle')).toBeNull();
+    expect(document.getElementById('foodToggle')).toBeNull();
+    expect(document.getElementById('placesToggle')).toBeNull();
+    expect(trail).toContain('const poiStates = { fountains: true, huts: true, food: true, places: true, veterinary: false }');
+    expect(detailPois.match(/visibility: 'visible'/g)).toHaveLength(4);
     expect(trail).toContain('9, 0.52');
     expect(trail).toContain('12, 0.68');
     expect(trail).toContain('14, 0.90');

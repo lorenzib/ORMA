@@ -9,6 +9,9 @@
     shade: '#2C5C34',
     hut: '#8A5A16',
     food: '#C4652F',
+    veterinary: '#B44435',
+    nearby: '#4E90A8',
+    information: '#28736B',
     dog: '#2E4034',
     start: '#2E4034',
     switch: '#D6A038',
@@ -50,6 +53,7 @@
     viewpoint: { icon: 'camera', color: '#28736B' },
     picnic: { icon: 'picnic', color: '#4E7256' },
     sight: { icon: 'sight', color: '#5A5548' },
+    information: { icon: 'information', color: '#28736B' },
     unknown: { icon: 'unknown', color: '#5A5548' },
   };
 
@@ -95,6 +99,21 @@
       <path d="M8 11v8"></path>
       <path d="M15 5v14"></path>
       <path d="M15 5c2 0 3 2 3 4s-1 4-3 4"></path>
+    `,
+    veterinary: `
+      <path d="M12 5v14"></path>
+      <path d="M5 12h14"></path>
+    `,
+    nearby: `
+      <path d="M7.5 18.5c-2.2-2.7-3.3-4.9-3.3-6.7a3.3 3.3 0 0 1 6.6 0c0 1.8-1.1 4-3.3 6.7Z"></path>
+      <circle cx="7.5" cy="11.8" r="1"></circle>
+      <path d="M16.5 18.5c-2.2-2.7-3.3-4.9-3.3-6.7a3.3 3.3 0 0 1 6.6 0c0 1.8-1.1 4-3.3 6.7Z"></path>
+      <circle cx="16.5" cy="11.8" r="1"></circle>
+    `,
+    information: `
+      <circle cx="12" cy="12" r="7"></circle>
+      <path d="M12 11v5"></path>
+      <path d="M12 8h.01"></path>
     `,
     dog: `
       <circle cx="8" cy="8.2" r="1.6"></circle>
@@ -216,6 +235,9 @@
     scenic: '<path d="m3.5 18.5 5.8-9 2.5 3.5 3.3-5.7 5.4 11.2z" fill="#4E90A8"/><path d="m7.3 12.6 2-3.1 2.5 3.5 1.2-2.1 2 2.2-2.1-.6-1.1 1.8-2.4-1.7z" fill="#F4F1E7"/><path d="M3.5 18.5h17l-5.5-3.8-3.1 1.6-3.1-1.8z" fill="#2C5C34"/><circle cx="18" cy="6" r="2.2" fill="#D6A038"/>',
     toilets: '<circle cx="8.5" cy="5.8" r="1.8" fill="#5B7A99"/><path d="M8.5 8.2v5.6M6.4 9.8h4.2M8.5 13.8v4.4" stroke="#5B7A99" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="15.5" cy="5.8" r="1.8" fill="#5B7A99"/><path d="M15.5 8.2l-2 5.4h4z" fill="#5B7A99"/><path d="M15.5 13.8v4.4" stroke="#5B7A99" stroke-width="1.8" stroke-linecap="round"/>',
     switch: '<path d="M12 19.5v-7M12 12.5L7 7M12 12.5L17 7" fill="none" stroke="#7F77DD" stroke-width="2" stroke-linecap="round"/><circle cx="7" cy="7" r="1.6" fill="#7F77DD"/><circle cx="17" cy="7" r="1.6" fill="#AFA9EC"/>',
+    veterinary: '<circle cx="12" cy="12" r="9" fill="#B44435"/><path d="M12 7v10M7 12h10" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>',
+    nearby: '<path d="M7.5 19c-2.3-2.9-3.5-5.2-3.5-7a3.5 3.5 0 017 0c0 1.8-1.2 4.1-3.5 7z" fill="#4E90A8"/><circle cx="7.5" cy="12" r="1.2" fill="#fff"/><path d="M16.5 19c-2.3-2.9-3.5-5.2-3.5-7a3.5 3.5 0 017 0c0 1.8-1.2 4.1-3.5 7z" fill="#2C5C34"/><circle cx="16.5" cy="12" r="1.2" fill="#fff"/>',
+    information: '<circle cx="12" cy="12" r="9" fill="#28736B"/><path d="M12 10.5v6" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.5" r="1.2" fill="#fff"/>',
   };
 
   const VALID_MODES = new Set(['inline', 'legend', 'marker', 'map']);
@@ -390,6 +412,7 @@
         ['==', ['get', 'kind'], 'viewpoint'], '#28736B',
         ['==', ['get', 'kind'], 'picnic'], '#4E7256',
         ['==', ['get', 'kind'], 'toilets'], '#5B7A99',
+        ['==', ['get', 'kind'], 'information'], '#28736B',
         '#5A5548',
       ];
     }
@@ -446,6 +469,7 @@
         ['==', ['get', 'kind'], 'picnic'], getMapImageName('picnic'),
         ['==', ['get', 'kind'], 'toilets'], getMapImageName('toilets'),
         ['==', ['get', 'kind'], 'sight'], getMapImageName('sight'),
+        ['==', ['get', 'kind'], 'information'], getMapImageName('information'),
         getMapImageName('unknown'),
       ];
     }

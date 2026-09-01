@@ -273,13 +273,17 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).not.toContain("search.addEventListener('focus', () => {\n      window.location.href = 'search.html");
   });
 
-  test('uses match score for both route and marker colours and links breed caveats', () => {
+  test('keeps the public network neutral and uses match score for ORMA routes and markers', () => {
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     const routeLayerStart = script.indexOf("id: 'trail-paths-line'");
     const routeLayerEnd = script.indexOf("id: 'trail-paths-hit'", routeLayerStart);
     const routeLayer = script.slice(routeLayerStart, routeLayerEnd);
+    const markerLayerStart = script.indexOf("id: 'trail-unclustered'");
+    const markerLayer = script.slice(markerLayerStart);
+    expect(routeLayer).toContain("'line-color': '#858D88'");
     expect(routeLayer).toContain("'step', ['coalesce', ['get', 'score'], 0]");
     expect(routeLayer).not.toContain("['get', 'safetyLevel']");
+    expect(markerLayer).toContain("'step', ['coalesce', ['get', 'score'], 0]");
     expect(script).toContain("breedLink.href = 'guides/breed-group-caveats.html'");
     expect(script).not.toContain('trails scored`');
   });
@@ -313,6 +317,23 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toContain("layersBtn.setAttribute('aria-expanded', String(open))");
   });
 
+  test('labels the main-map fountain layer as Water', () => {
+    const translations = fs.readFileSync(path.join(__dirname, 'i18n.js'), 'utf8');
+    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    expect(translations).toContain("'chips.fountains': 'Water'");
+    expect(translations).toContain("'chips.fountains': 'Acqua'");
+    expect(script).toContain("mkChip(t('chips.fountains'), 'fountains')");
+  });
+
+  test('offers OSM veterinary clinics with the shared medical-cross icon', () => {
+    const translations = fs.readFileSync(path.join(__dirname, 'i18n.js'), 'utf8');
+    const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
+    expect(html).toContain('veterinary-care.js?v=20260901-1');
+    expect(translations).toContain("'chips.veterinary': 'Veterinary clinics'");
+    expect(script).toContain("icons.chipHtml('veterinary', label)");
+    expect(script).toContain('care.loadMapLayer(map, veterinaryOrigin)');
+  });
+
   test('keeps route shields above a stronger ORMA highlight and only clusters five or more trails', () => {
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     const trailScript = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
@@ -322,19 +343,19 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toMatch(/id: 'guest-trail-paths-casing'[\s\S]*?'line-width': \['interpolate'[\s\S]*?10, 7[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).toMatch(/id: 'trail-paths-orma-halo'[\s\S]*?'line-color': '#FFFDF7'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
     expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-color': \[[\s\S]*?'step'[\s\S]*?65, '#C98A2E', 85, '#4A7856'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
-    expect(script).toMatch(/id: 'trail-paths-match-outline'[\s\S]*?'line-color':[\s\S]*?65, '#C98A2E', 85, '#4A7856'[\s\S]*?'line-gap-width':/);
-    expect(script).toMatch(/id: 'guest-trail-paths-orma-line'[\s\S]*?'line-color': '#3E7A91'[\s\S]*?guestFirstLabel \? guestFirstLabel\.id : undefined\);/);
+    expect(script).not.toContain("id: 'trail-paths-match-outline'");
+    expect(script).toMatch(/id: 'guest-trail-paths-orma-line'[\s\S]*?'line-color': \[[\s\S]*?'low-risk', '#4A7856'[\s\S]*?'moderate', '#C98A2E'[\s\S]*?'caution', '#9C3A25'[\s\S]*?guestFirstLabel \? guestFirstLabel\.id : undefined\);/);
     expect(script).toContain("guestMapInstance.moveLayer('waymarked-hiking-layer', guestFirstLabel.id)");
     expect(script).toContain("trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id)");
     expect(trailScript).toMatch(/id: 'single-trail-path-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script.match(/7, 0\.12/g)).toHaveLength(2);
-    expect(script.match(/10, 0\.18/g)).toHaveLength(2);
-    expect(script.match(/12, 0\.24/g)).toHaveLength(2);
-    expect(script.match(/14, 0\.30/g)).toHaveLength(2);
-    expect(script.match(/'raster-saturation': -0\.86/g)).toHaveLength(2);
+    expect(script.match(/7, 0\.10/g)).toHaveLength(2);
+    expect(script.match(/10, 0\.14/g)).toHaveLength(2);
+    expect(script.match(/12, 0\.19/g)).toHaveLength(2);
+    expect(script.match(/14, 0\.24/g)).toHaveLength(2);
+    expect(script.match(/'raster-saturation': -1/g)).toHaveLength(2);
     expect(script.match(/'raster-contrast': -0\.06/g)).toHaveLength(2);
-    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': \['interpolate'[\s\S]*?13, 11, 16, 14/);
+    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': \['interpolate'[\s\S]*?13, 7, 16, 9/);
     expect(script).toContain('clusterMinPoints: 5');
     expect(script.match(/filter: \['all', \['has', 'point_count'\], \['>=', \['get', 'point_count'\], 5\]\]/g)).toHaveLength(2);
     expect(script).toContain("'circle-color': '#DCE8DE'");

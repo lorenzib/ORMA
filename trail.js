@@ -393,6 +393,12 @@ function initNearestTrailDirections(map, t){
   let activePlan = null;
   const graphPromises = new Map();
   let originMarker = null;
+  const setRoutePointLabel = label => {
+    routePointToggle.innerHTML = window.DoloPawsIcons
+      ? window.DoloPawsIcons.chipHtml('routes', label)
+      : label;
+  };
+  if(routePointToggle) setRoutePointLabel('Route to a mapped point');
   let targetMarker = null;
   let pointPickMode = false;
   button.hidden = false;
@@ -473,7 +479,7 @@ function initNearestTrailDirections(map, t){
     if(routePointToggle){
       routePointToggle.classList.toggle('on', enabled);
       routePointToggle.setAttribute('aria-pressed', String(enabled));
-      routePointToggle.textContent = enabled ? 'Tap a mapped route…' : 'Route to a mapped point';
+      setRoutePointLabel(enabled ? 'Tap a mapped route…' : 'Route to a mapped point');
     }
     if(mapBox) mapBox.classList.toggle('route-pick-mode', enabled);
   }
@@ -1920,11 +1926,21 @@ function renderTrail(t){
         if(toggle) toggle.setAttribute('aria-expanded', 'false');
       }
       let liftsVisible = false;        // Lifts are optional planning context
-      // Keep the trail itself visually dominant on first load. Nearby
-      // amenities remain available as explicit, independent layer choices.
-      const poiStates = { fountains: false, huts: false, food: false, places: false, veterinary: false };
+      // Everyday trail context is visible immediately; only optional planning
+      // overlays remain in Layers.
+      const poiStates = { fountains: true, huts: true, food: true, places: true, veterinary: false };
       const amenityMarkers = [];       // { marker, group } for curated fallbacks
       if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(map);
+      const setLayerChipLabel = (button, iconKey, label) => {
+        if(!button) return;
+        button.innerHTML = window.DoloPawsIcons
+          ? window.DoloPawsIcons.chipHtml(iconKey, label)
+          : label;
+      };
+      setLayerChipLabel(document.getElementById('routesToggle'), 'routes', 'Trail routes');
+      setLayerChipLabel(document.getElementById('liftsToggle'), 'lifts', 'Lift stations');
+      setLayerChipLabel(document.getElementById('veterinaryToggle'), 'veterinary', 'Veterinary clinics');
+      setLayerChipLabel(document.getElementById('nearbyToggle'), 'nearby', 'Nearby trails');
       addTerrainSource(map);
       increaseLabelDensity(map);
       addTerrainToggle(map, 'trailDetailMap', 1.5, 45,
@@ -1974,22 +1990,6 @@ function renderTrail(t){
           item.marker.getElement().style.display = visible ? '' : 'none';
         });
       }
-      [
-        ['fountains', 'fountainsToggle'],
-        ['huts', 'hutsToggle'],
-        ['food', 'foodToggle'],
-        ['places', 'placesToggle'],
-      ].forEach(([group, buttonId]) => {
-        const button = document.getElementById(buttonId);
-        if(!button) return;
-        button.addEventListener('click', () => {
-          poiStates[group] = !poiStates[group];
-          button.classList.toggle('on', poiStates[group]);
-          button.setAttribute('aria-pressed', String(poiStates[group]));
-          applyPoiVisibility(group);
-        });
-      });
-
       // Veterinary facilities are fetched only when requested: the nearest
       // options can sit well beyond the route viewport and do not need to
       // compete with the trail during ordinary map use.
@@ -2013,7 +2013,7 @@ function renderTrail(t){
             return;
           }
           veterinaryButton.disabled = true;
-          veterinaryButton.textContent = 'Finding veterinary clinics…';
+          setLayerChipLabel(veterinaryButton, 'veterinary', 'Finding veterinary clinics…');
           try{
             veterinaryLoad = veterinaryLoad || care.loadMapLayer(map, t);
             veterinaryResults = await veterinaryLoad;
@@ -2021,10 +2021,10 @@ function renderTrail(t){
               poiStates.veterinary = false;
               veterinaryButton.classList.remove('on');
               veterinaryButton.setAttribute('aria-pressed', 'false');
-              veterinaryButton.textContent = 'No veterinary clinics mapped nearby';
+              setLayerChipLabel(veterinaryButton, 'veterinary', 'No veterinary clinics mapped nearby');
               return;
             }
-            veterinaryButton.textContent = `Veterinary clinics (${veterinaryResults.length})`;
+            setLayerChipLabel(veterinaryButton, 'veterinary', `Veterinary clinics (${veterinaryResults.length})`);
             care.setVisible(map, poiStates.veterinary);
             if(poiStates.veterinary) care.focusFacilities(map, t, veterinaryResults);
           }catch(error){
@@ -2032,7 +2032,7 @@ function renderTrail(t){
             poiStates.veterinary = false;
             veterinaryButton.classList.remove('on');
             veterinaryButton.setAttribute('aria-pressed', 'false');
-            veterinaryButton.textContent = 'Veterinary clinics unavailable';
+            setLayerChipLabel(veterinaryButton, 'veterinary', 'Veterinary clinics unavailable');
           }finally{
             veterinaryButton.disabled = false;
           }
@@ -2133,7 +2133,7 @@ function renderTrail(t){
       if(nearbyToggleBtn){
         nearbyToggleBtn.hidden = nearbyTrails.length === 0;
         if(nearbyTrails.length){
-          nearbyToggleBtn.textContent = `Nearby trails (${nearbyTrails.length})`;
+          setLayerChipLabel(nearbyToggleBtn, 'nearby', `Nearby trails (${nearbyTrails.length})`);
         }
       }
       if(otherTrails.length){
@@ -2153,7 +2153,7 @@ function renderTrail(t){
           type: 'line',
           source: 'other-trails',
           minzoom: 9,
-          layout: { 'line-join': 'round', 'line-cap': 'round' },
+          layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
           paint: {
             'line-color': [
               'match', ['get', 'safetyLevel'],
@@ -2173,7 +2173,7 @@ function renderTrail(t){
           type: 'line',
           source: 'other-trails',
           minzoom: 9,
-          layout: { 'line-join': 'round', 'line-cap': 'round' },
+          layout: { visibility: 'none', 'line-join': 'round', 'line-cap': 'round' },
           paint: { 'line-color': '#000', 'line-width': 16, 'line-opacity': 0.01 },
         }, 'waymarked-hiking-layer');
         map.addSource('nearby-trail-points', {
@@ -2197,6 +2197,7 @@ function renderTrail(t){
           id: 'nearby-trail-points-circle',
           type: 'circle',
           source: 'nearby-trail-points',
+          layout: { visibility: 'none' },
           paint: {
             'circle-radius': 6,
             'circle-color': '#78AFC5',
@@ -2210,6 +2211,7 @@ function renderTrail(t){
           source: 'nearby-trail-points',
           minzoom: 8,
           layout: {
+            visibility: 'none',
             'text-field': ['get', 'name'],
             'text-size': 11,
             'text-font': ['Noto Sans Regular'],
@@ -2255,14 +2257,17 @@ function renderTrail(t){
             showingNearbyOverview = !showingNearbyOverview;
             nearbyToggleBtn.classList.toggle('on', showingNearbyOverview);
             nearbyToggleBtn.setAttribute('aria-pressed', showingNearbyOverview ? 'true' : 'false');
+            ['other-trails-line', 'other-trails-hit', 'nearby-trail-points-circle', 'nearby-trail-points-label'].forEach(id => {
+              if(map.getLayer(id)) map.setLayoutProperty(id, 'visibility', showingNearbyOverview ? 'visible' : 'none');
+            });
             const bounds = new maplibregl.LngLatBounds();
             t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
             if(showingNearbyOverview){
               otherTrails.forEach(trail => trail.path.forEach(([lat, lng]) => bounds.extend([lng, lat])));
-              nearbyToggleBtn.textContent = 'Focus this trail';
+              setLayerChipLabel(nearbyToggleBtn, 'routes', 'Focus this trail');
               map.fitBounds(bounds, { padding: 54, maxZoom: 13 });
             } else {
-              nearbyToggleBtn.textContent = `Nearby trails (${nearbyTrails.length})`;
+              setLayerChipLabel(nearbyToggleBtn, 'nearby', `Nearby trails (${nearbyTrails.length})`);
               map.fitBounds(bounds, { padding: 60, maxZoom: 17 });
             }
           });

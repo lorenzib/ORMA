@@ -54,9 +54,14 @@ describe('ORMA icon system', () => {
   });
 
   test('provides shared functional icons used outside the map', () => {
-    ['verified','imported','new','heat','warning','mountain','camera','pace-low','pace-medium','pace-high'].forEach((key) => {
+    ['verified','imported','new','heat','warning','mountain','camera','pace-low','pace-medium','pace-high','veterinary','nearby','information'].forEach((key) => {
       expect(icons.renderIconSvg(key)).toContain('<svg');
       expect(icons.renderIconSvg(key)).not.toContain('unknown');
     });
+  });
+
+  test('gives visitor information its own shared map symbol', () => {
+    const expr = icons.getPoiMapIconExpression('places');
+    expect(expr).toContain(icons.getMapImageName('information'));
   });
 });

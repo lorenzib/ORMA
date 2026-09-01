@@ -157,6 +157,7 @@ describe('shared map icon layers', () => {
         type: 'symbol',
         minzoom: icons.ICON_MIN_ZOOM,
         layout: expect.objectContaining({
+          visibility: 'visible',
           'icon-image': icons.getPoiMapIconExpression('huts'),
         }),
       }),
@@ -165,6 +166,7 @@ describe('shared map icon layers', () => {
         type: 'symbol',
         minzoom: icons.ICON_MIN_ZOOM,
         layout: expect.objectContaining({
+          visibility: 'visible',
           'icon-image': icons.getPoiMapIconExpression('food'),
         }),
       }),
@@ -173,6 +175,7 @@ describe('shared map icon layers', () => {
         type: 'symbol',
         minzoom: icons.ICON_MIN_ZOOM,
         layout: expect.objectContaining({
+          visibility: 'visible',
           'icon-image': icons.getPoiMapIconExpression('water'),
         }),
       }),
@@ -181,6 +184,7 @@ describe('shared map icon layers', () => {
         type: 'symbol',
         minzoom: icons.ICON_MIN_ZOOM,
         layout: expect.objectContaining({
+          visibility: 'visible',
           'icon-image': icons.getPoiMapIconExpression('places'),
         }),
       }),

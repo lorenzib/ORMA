@@ -227,7 +227,7 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   // the map on mobile.
   // Marked routes default ON — the waymarked network is how walkable
   // ground stays visible; the Layers panel un-ticks it for a clean map.
-  const overlayStates = { routes: true, lifts: false, fountains: false, huts: false, barsCafes: false, terrain: false };
+  const overlayStates = { routes: true, lifts: false, fountains: false, huts: false, barsCafes: false, veterinary: false, terrain: false };
   const layersBtn = document.createElement('button');
   layersBtn.type = 'button';
   layersBtn.textContent = t('map.layers');
@@ -308,6 +308,60 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   mkChip(t('chips.fountains'), 'fountains');
   mkChip(t('chips.huts'), 'huts');
   mkChip(t('chips.food'), 'barsCafes');
+
+  // Veterinary facilities use the same OSM-backed layer and medical-cross
+  // icon as the trail detail map. Fetch only when requested because the
+  // search radius is much wider than the ordinary amenity datasets.
+  const veterinaryChip = document.createElement('button');
+  veterinaryChip.type = 'button';
+  const setVeterinaryLabel = label => {
+    veterinaryChip.innerHTML = icons ? icons.chipHtml('veterinary', label) : label;
+  };
+  setVeterinaryLabel(t('chips.veterinary'));
+  chipStyle(veterinaryChip, false);
+  let veterinaryResults = null;
+  let veterinaryLoad = null;
+  let veterinaryOrigin = null;
+  veterinaryChip.addEventListener('click', async () => {
+    const care = window.ORMA_VeterinaryCare;
+    if(!care) return;
+    overlayStates.veterinary = !overlayStates.veterinary;
+    chipStyle(veterinaryChip, overlayStates.veterinary);
+    if(!overlayStates.veterinary){
+      care.setVisible(map, false);
+      return;
+    }
+    if(veterinaryResults){
+      care.setVisible(map, true);
+      care.focusFacilities(map, veterinaryOrigin, veterinaryResults);
+      return;
+    }
+    veterinaryChip.disabled = true;
+    setVeterinaryLabel('Finding veterinary clinics…');
+    try{
+      const center = map.getCenter();
+      veterinaryOrigin = { lat: Number(center.lat), lng: Number(center.lng) };
+      veterinaryLoad = veterinaryLoad || care.loadMapLayer(map, veterinaryOrigin);
+      veterinaryResults = await veterinaryLoad;
+      if(!veterinaryResults.length){
+        overlayStates.veterinary = false;
+        chipStyle(veterinaryChip, false);
+        setVeterinaryLabel('No veterinary clinics mapped nearby');
+        return;
+      }
+      setVeterinaryLabel(`${t('chips.veterinary')} (${veterinaryResults.length})`);
+      care.setVisible(map, overlayStates.veterinary);
+      if(overlayStates.veterinary) care.focusFacilities(map, veterinaryOrigin, veterinaryResults);
+    }catch(error){
+      veterinaryLoad = null;
+      overlayStates.veterinary = false;
+      chipStyle(veterinaryChip, false);
+      setVeterinaryLabel('Veterinary clinics unavailable');
+    }finally{
+      veterinaryChip.disabled = false;
+    }
+  });
+  panel.appendChild(veterinaryChip);
 
   // Map · Satellite · 3D live together in one visible switch on the map
   // (same group as the trail page), not buried inside the Layers panel.
@@ -569,12 +623,12 @@ function initGuestMap(){
       paint: {
         'raster-opacity': [
           'interpolate', ['linear'], ['zoom'],
-          7, 0.12,
-          10, 0.18,
-          12, 0.24,
-          14, 0.30,
+          7, 0.10,
+          10, 0.14,
+          12, 0.19,
+          14, 0.24,
         ],
-        'raster-saturation': -0.86,
+        'raster-saturation': -1,
         'raster-contrast': -0.06,
         'raster-resampling': 'linear',
       },
@@ -622,7 +676,7 @@ function initGuestMap(){
       source: 'guest-trail-paths',
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': '#203B2A',
+        'line-color': '#F8F6F0',
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 3.5, 10, 7, 13, 9],
         'line-opacity': 0.96,
       },
@@ -633,21 +687,12 @@ function initGuestMap(){
       source: 'guest-trail-paths',
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': [
-          'match', ['get', 'safetyLevel'],
-          'low-risk', '#2C5C34',
-          'moderate', '#8A5A16',
-          'caution', '#9C3A25',
-          '#2E4034',
-        ],
+        'line-color': '#858D88',
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 4.5, 13, 5.5],
       },
     }, 'waymarked-hiking-layer');
-    // The catalogue needs a visual language of its own. A light halo and
-    // teal line identify an ORMA-mapped route without replacing the signed
-    // hiking network. The public marked-route raster is lifted back above
-    // these strokes below, so its route numbers and waymarks remain visible
-    // wherever the two paths coincide.
+    // The surrounding network stays grey, while ORMA routes retain their
+    // green / amber / red safety language and a clear white halo.
     guestMapInstance.addLayer({
       id: 'guest-trail-paths-orma-halo',
       type: 'line',
@@ -665,7 +710,13 @@ function initGuestMap(){
       source: 'guest-trail-paths',
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': '#3E7A91',
+        'line-color': [
+          'match', ['get', 'safetyLevel'],
+          'low-risk', '#4A7856',
+          'moderate', '#C98A2E',
+          'caution', '#9C3A25',
+          '#6F7872',
+        ],
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2.5, 10, 5, 13, 6.5],
         'line-opacity': 1,
       },
@@ -796,9 +847,8 @@ function initTrailMap(){
     // that join later without rebuilding the controls.
     const allLiftMarkers = [];
     
-    // Public marked routes retain their original cartographic colours. Their
-    // red/white shields and black numbers are navigation information and must
-    // remain fully legible at every zoom where the source provides them.
+    // Public marked routes stay fully grey and quiet so the map remains useful
+    // as context rather than becoming a wall of competing route colours.
     const firstLabelLayer = trailMapInstance.getStyle().layers.find(l => l.type === 'symbol');
     trailMapInstance.addSource('waymarked-hiking', {
       type: 'raster',
@@ -814,12 +864,12 @@ function initTrailMap(){
       paint: {
         'raster-opacity': [
           'interpolate', ['linear'], ['zoom'],
-          7, 0.12,
-          10, 0.18,
-          12, 0.24,
-          14, 0.30,
+          7, 0.10,
+          10, 0.14,
+          12, 0.19,
+          14, 0.24,
         ],
-        'raster-saturation': -0.86,
+        'raster-saturation': -1,
         'raster-contrast': -0.06,
         'raster-resampling': 'linear',
       },
@@ -837,7 +887,7 @@ function initTrailMap(){
       minzoom: 7,
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': '#203B2A',
+        'line-color': '#F8F6F0',
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 3.5, 10, 8, 13, 10],
         'line-opacity': 0.96,
       },
@@ -849,17 +899,12 @@ function initTrailMap(){
       minzoom: 7,
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': [
-          'step', ['coalesce', ['get', 'score'], 0],
-          '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
-        ],
+        'line-color': '#858D88',
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 5, 13, 6],
       },
     }, 'waymarked-hiking-layer');
-    // ORMA routes use the same personalised match tiers as the list and map
-    // pins: green (great), amber (good), red (check first). The marked-route
-    // raster is then lifted above the highlight so its original trail-number
-    // shields remain visible wherever the two paths coincide.
+    // Only ORMA routes carry personalised match colour. The surrounding mapped
+    // network remains neutral, and no extra coloured rail is drawn around it.
     trailMapInstance.addLayer({
       id: 'trail-paths-orma-halo',
       type: 'line',
@@ -883,33 +928,13 @@ function initTrailMap(){
           'step', ['coalesce', ['get', 'score'], 0],
           '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
         ],
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 4, 10, 7.5, 13, 11, 16, 14],
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2.5, 10, 5, 13, 7, 16, 9],
         'line-opacity': 1,
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
     if(firstLabelLayer && trailMapInstance.getLayer('waymarked-hiking-layer')){
       trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id);
     }
-    // A second, gapped match outline sits above the marked-route raster. The
-    // coloured rails make ORMA's personalised route unmistakable, while the
-    // transparent centre preserves the original red/white shield and black
-    // trail number instead of painting across it.
-    trailMapInstance.addLayer({
-      id: 'trail-paths-match-outline',
-      type: 'line',
-      source: 'trail-paths',
-      minzoom: 7,
-      layout: { 'line-join': 'round', 'line-cap': 'round' },
-      paint: {
-        'line-color': [
-          'step', ['coalesce', ['get', 'score'], 0],
-          '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
-        ],
-        'line-gap-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 3.5, 13, 5, 16, 7],
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 1, 10, 1.75, 13, 2.5, 16, 3.5],
-        'line-opacity': 0.98,
-      },
-    }, firstLabelLayer ? firstLabelLayer.id : undefined);
     // Wide, near-invisible twin of the route line so a fingertip (or a
     // slightly-off cursor) still hits the trail — 3px is too thin a target.
     trailMapInstance.addLayer({
