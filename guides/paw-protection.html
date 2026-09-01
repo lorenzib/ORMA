@@ -214,52 +214,51 @@
   .paw2-icon-stroke-tertiary{fill:none;stroke:var(--icon-tertiary);stroke-linecap:round;stroke-linejoin:round;}
   .paw2-tab[aria-selected="true"]{background:var(--paw-card);color:var(--paw-ink);box-shadow:inset 0 -3px var(--surface-accent);}
   .paw2-tab:focus-visible{position:relative;z-index:1;outline:3px solid var(--surface-accent);outline-offset:-3px;}
-  .paw2-surface-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.72fr);gap:16px;align-items:start;}
+  .paw2-surface-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.72fr);gap:16px;align-items:stretch;}
   .paw2-side-stack{display:grid;gap:16px;min-width:0;}
   .paw2-panels{min-width:0;border:1px solid var(--paw-line);border-top:0;border-radius:0 0 13px 13px;background:var(--paw-card);}
   .paw2-panel{padding:22px 25px;}
   .paw2-panel[hidden]{display:none;}
   .paw2-panel h3{margin:0 0 7px;font-size:clamp(22px,2.3vw,29px);line-height:1.1;letter-spacing:-.02em;}
   .paw2-panel>p{max-width:780px;margin:0;color:var(--paw-soft);font-size:.86rem;line-height:1.55;}
-  .paw2-advice{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:17px;border-top:1px solid var(--paw-line);}
-  .paw2-advice div{padding:13px 18px 0 0;}
-  .paw2-advice div+div{padding-left:18px;border-left:1px solid var(--paw-line);}
+  .paw2-advice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px;}
+  .paw2-advice div{padding:12px 14px;border-radius:10px;background:#F5F6F1;}
+  .paw2-advice div+div{padding-left:14px;}
   .paw2-advice strong{display:block;margin-bottom:4px;color:var(--paw-blue);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;}
   .paw2-advice span{display:block;color:var(--paw-soft);font-size:.78rem;line-height:1.5;}
-  .paw2-stop{margin:0;padding:13px 0 0;border-top:1px solid var(--paw-line);color:var(--paw-soft);font-size:.78rem;line-height:1.5;}
+  .paw2-stop{margin:10px 0 0;padding:11px 14px;border-radius:10px;background:var(--safety-stop-soft);color:var(--paw-soft);font-size:.78rem;line-height:1.5;}
   .paw2-stop strong{display:block;margin-bottom:4px;color:var(--safety-stop);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;}
   .paw2-stop span{display:block;}
   .paw2-panel-link{display:inline-block;margin-top:12px;color:var(--paw-blue);font-size:.75rem;font-weight:800;text-decoration:none;}
   .paw2-panel-link:hover{text-decoration:underline;}
-  .paw2-essentials{padding:20px 21px;border:1px solid var(--paw-line);border-radius:13px;background:var(--paw-card);color:var(--paw-ink);box-shadow:0 8px 26px rgba(46,64,52,.04);}
+  .paw2-essentials{height:100%;box-sizing:border-box;padding:20px 21px;border:1px solid var(--paw-line);border-radius:13px;background:var(--paw-card);color:var(--paw-ink);box-shadow:0 8px 26px rgba(46,64,52,.04);}
   .paw2-essentials .paw2-kicker{margin-bottom:9px;color:var(--paw-blue);}
   .paw2-essentials ol{margin:0;padding:0;list-style:none;}
-  .paw2-essentials li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:9px;align-items:start;padding:11px 0;border-top:1px solid var(--paw-line);}
-  .paw2-essentials li:first-child{border-top:0;}
+  .paw2-essentials li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:9px;align-items:start;padding:11px 0;}
   .paw2-essentials li>b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--safety-safe);color:#fff;font-size:.68rem;}
   .paw2-essentials strong{display:block;color:var(--paw-ink);font-size:.82rem;}
   .paw2-essentials span{display:block;margin-top:2px;color:var(--paw-soft);font-size:.7rem;line-height:1.42;}
-  .paw2-library{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;align-items:start;margin-top:2px;}
+  .paw2-library{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch;margin-top:8px;}
   .paw2-library-head{grid-column:1/-1;display:flex;align-items:end;justify-content:space-between;gap:20px;padding-bottom:11px;}
   .paw2-library-head h2{margin:0;font-size:clamp(23px,2.4vw,31px);}
   .paw2-library-head p{margin:0;color:var(--paw-soft);font-size:.78rem;}
-  .paw2-detail{overflow:hidden;border:1px solid var(--accent-pale);border-radius:12px;background:var(--safety-info-soft);}
-  .paw2-detail[open]{grid-column:1/-1;}
-  .paw2-detail summary{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:12px;align-items:start;min-height:128px;padding:18px;cursor:pointer;list-style:none;}
-  .paw2-detail[open] summary{min-height:0;}
+  .paw2-detail{box-sizing:border-box;overflow:hidden;border:1px solid var(--accent-pale);border-radius:12px;background:var(--paw-card);}
+  .paw2-detail[open]{grid-column:auto;}
+  .paw2-detail:not([open]){align-self:start;}
+  .paw2-detail summary{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:12px;align-items:start;padding:17px 18px 13px;cursor:pointer;list-style:none;}
   .paw2-detail summary::-webkit-details-marker{display:none;}
   .paw2-detail-number{color:var(--paw-blue);font-size:.69rem;font-weight:800;}
   .paw2-detail-title strong{display:block;color:var(--paw-ink);font:700 1.08rem/1.2 "Bricolage Grotesque",sans-serif;}
   .paw2-detail-title span{display:block;margin-top:3px;color:var(--paw-soft);font-size:.74rem;}
   .paw2-detail summary::after{content:"+";color:var(--paw-blue);font-size:1.25rem;}
   .paw2-detail[open] summary::after{content:"−";}
-  .paw2-detail-body{padding:0 18px 20px;color:var(--paw-soft);font-size:.82rem;line-height:1.58;}
+  .paw2-detail-body{padding:0 18px 18px;color:var(--paw-soft);font-size:.79rem;line-height:1.5;}
   .paw2-detail-body p{margin:0;}
   .paw2-detail-body p+p{margin-top:10px;}
-  .paw2-detail-body ul{display:grid;grid-template-columns:1fr 1fr;gap:7px 28px;margin:12px 0 0;padding-left:18px;}
+  .paw2-detail-body ul{display:grid;grid-template-columns:1fr 1fr;gap:6px 22px;margin:10px 0 0;padding-left:18px;}
   .paw2-detail-body li{padding-left:2px;}
-  .paw2-detail-columns{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:18px 0;}
-  .paw2-detail-columns section{padding:15px 17px;border-radius:10px;background:var(--safety-safe-soft);}
+  .paw2-detail-columns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}
+  .paw2-detail-columns section{padding:12px 13px;border-radius:10px;background:var(--safety-safe-soft);}
   .paw2-detail-columns section:last-child{background:var(--safety-stop-soft);}
   .paw2-detail-columns h3{margin:0 0 7px;color:var(--paw-ink);font-size:.9rem;}
   .paw2-first-aid{margin:0 0 16px;padding:21px 23px;border:1px solid var(--safety-stop);border-radius:13px;background:var(--safety-stop-soft);color:var(--safety-stop);box-shadow:0 10px 24px -22px rgba(92,29,18,.55);}
@@ -294,7 +293,6 @@
     .paw2-surface-heading p{margin-top:6px;text-align:left;}
     .paw2-surface-grid{grid-template-columns:1fr;}
     .paw2-essentials{margin-top:0;}
-    .paw2-library{grid-template-columns:repeat(2,minmax(0,1fr));}
     .paw2-detail-body ul{grid-template-columns:1fr;}
   }
   @media(max-width:560px){
@@ -311,13 +309,12 @@
     .paw2-panels{margin-top:0;border-top:0;border-radius:0 0 11px 11px;}
     .paw2-panel{padding:19px 17px;}
     .paw2-advice{grid-template-columns:1fr;}
-    .paw2-advice div{padding:13px 0;}
-    .paw2-advice div+div{padding-left:0;border-top:1px solid var(--paw-line);border-left:0;}
+    .paw2-advice div{padding:12px 14px;}
+    .paw2-advice div+div{padding-left:14px;}
     .paw2-library-head{display:block;}
     .paw2-library-head p{margin-top:5px;}
     .paw2-library{grid-template-columns:1fr;}
     .paw2-detail summary{grid-template-columns:24px minmax(0,1fr) auto;gap:9px;}
-    .paw2-detail summary{min-height:0;}
     .paw2-detail-body{padding:0 18px 18px;}
     .paw2-detail-columns{grid-template-columns:1fr;}
     .paw2-next{grid-template-columns:1fr;}
@@ -419,24 +416,24 @@
     </section>
 
     <section class="paw2-library" aria-labelledby="pawLibraryTitle">
-      <div class="paw2-library-head"><div><span class="paw2-kicker">Complete guide</span><h2 id="pawLibraryTitle">Learn more</h2></div><p>Open each card for practical guidance, organised by task.</p></div>
+      <div class="paw2-library-head"><div><span class="paw2-kicker">Complete guide</span><h2 id="pawLibraryTitle">Learn more</h2></div><p>Open by default. Collapse anything you do not need.</p></div>
 
-      <details class="paw2-detail" id="boots">
+      <details class="paw2-detail" id="boots" open>
         <summary><span class="paw2-detail-number">01</span><span class="paw2-detail-title"><strong>Choosing and fitting boots</strong><span>When they protect and when they create rubbing or heat</span></span></summary>
         <div class="paw2-detail-body">
-          <p>Boots are useful for a known surface problem, not as insurance against an unsuitable route. Fit them at home and rehearse on at least ten ordinary walks before relying on them in the mountains.</p>
+          <p>Use boots for a known surface problem—not to make an unsuitable route safe. Fit and practise with them at home before mountain use.</p>
           <div class="paw2-detail-columns">
-            <section><h3>Boots can help</h3><p>On long scree descents, crusted spring snow, salted winter paths or when a protected walk-out is unavoidable.</p></section>
-            <section><h3>Boots can hurt</h3><p>When they are new, overly tight, trapping grit or adding heat on exposed rock. Stop and refit at the first rub.</p></section>
+            <section><h3>Boots can help</h3><p>On scree, crusted snow, salted paths or a protected walk-out.</p></section>
+            <section><h3>Boots can hurt</h3><p>If new, tight, gritty or hot. Stop and refit at the first rub.</p></section>
           </div>
-          <p><strong>Balms condition; they do not armour.</strong> Apply the evening before or after, not as a slippery coating on the morning of a rocky day.</p>
+          <p><strong>Balms condition; they do not armour.</strong> Apply the evening before or after, never just before rocky ground.</p>
         </div>
       </details>
 
-      <details class="paw2-detail" id="paw-check">
+      <details class="paw2-detail" id="paw-check" open>
         <summary><span class="paw2-detail-number">02</span><span class="paw2-detail-title"><strong>The 60-second paw check</strong><span>Six places to inspect at every break</span></span></summary>
         <div class="paw2-detail-body">
-          <p>Check one paw at a time while your dog is settled. Compare paws; a difference in colour, temperature or sensitivity is useful information.</p>
+          <p>Check one paw at a time and compare all four for changes in colour, temperature or sensitivity.</p>
           <ul>
             <li><strong>Between the toes:</strong> grit, seeds, resin or packed snow.</li>
             <li><strong>Pad rims:</strong> pale fraying or a lifted flap.</li>
@@ -448,10 +445,10 @@
         </div>
       </details>
 
-      <details class="paw2-detail" id="conditioning">
+      <details class="paw2-detail" id="conditioning" open>
         <summary><span class="paw2-detail-number">03</span><span class="paw2-detail-title"><strong>Conditioning paws for mountain terrain</strong><span>Build the surface before adding distance</span></span></summary>
         <div class="paw2-detail-body">
-          <p>A dog that walks two easy hours every day is not automatically ready for two hours of limestone. Pads adapt slowly and specifically to the ground they meet.</p>
+          <p>Everyday distance does not guarantee readiness for limestone or scree. Build exposure to the actual surface gradually.</p>
           <ul>
             <li><strong>Build:</strong> add time on familiar ground before changing the surface.</li>
             <li><strong>Rehearse:</strong> try one short route with the real ground and equipment.</li>
@@ -461,11 +458,11 @@
         </div>
       </details>
 
-      <details class="paw2-detail" id="first-aid">
+      <details class="paw2-detail" id="first-aid" open>
         <summary><span class="paw2-detail-number">04</span><span class="paw2-detail-title"><strong>First aid and veterinary help</strong><span>What to do for a cut pad and when it is urgent</span></span></summary>
         <div class="paw2-detail-body">
-          <p><strong>Stop walking.</strong> Rinse with clean water, remove only loose and easily reached debris, and never dig for an embedded object. Apply steady pressure with clean gauze or cloth, then use a loose non-stick dressing for the walk out. Carry your dog if you can.</p>
-          <p>Get urgent veterinary help for severe bleeding, bleeding that continues after 10 to 15 minutes of steady pressure, a deep or gaping wound, exposed tissue, a deeply embedded object, or a dog that cannot stand or walk.</p>
+          <p><strong>Stop walking.</strong> Rinse with clean water, remove only loose debris and never dig for an object. Apply steady pressure, add a loose non-stick dressing and carry your dog if possible.</p>
+          <p>Seek urgent veterinary help for severe or persistent bleeding after 10 to 15 minutes of steady pressure, a deep or gaping wound, exposed tissue, a deeply embedded object, or a dog that cannot stand or walk.</p>
         </div>
       </details>
     </section>

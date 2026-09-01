@@ -74,23 +74,22 @@ describe('paw protection question-led guide', () => {
     expect(document.querySelector('[data-paw-panel="snow"]').hidden).toBe(false);
   });
 
-  test('keeps deeper guidance collapsed and opens linked detail when requested', () => {
+  test('keeps deeper guidance open, concise and still collapsible', () => {
     window.eval(script);
     const details = document.querySelectorAll('.paw2-detail');
     expect(details).toHaveLength(4);
     expect(document.getElementById('pawLibraryTitle').textContent.trim()).toBe('Learn more');
-    expect(html).toContain('.paw2-library{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));');
-    expect(html).toContain('.paw2-library{grid-template-columns:repeat(2,minmax(0,1fr));}');
+    expect(html).toContain('.paw2-library{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));');
     expect(html).toContain('.paw2-library{grid-template-columns:1fr;}');
-    expect(html).toContain('.paw2-detail[open]{grid-column:1/-1;}');
-    expect(html).toContain('.paw2-detail[open] summary{min-height:0;}');
-    expect(html).toContain('background:var(--safety-info-soft)');
-    expect(html).toContain('.paw2-detail-columns{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin:18px 0;}');
-    expect(html).toContain('.paw2-detail-columns section{padding:15px 17px;border-radius:10px;background:var(--safety-safe-soft);}');
+    expect(html).toContain('.paw2-detail[open]{grid-column:auto;}');
+    expect(html).toContain('background:var(--paw-card)');
+    expect(html).toContain('.paw2-detail-columns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}');
+    expect(html).toContain('.paw2-detail-columns section{padding:12px 13px;border-radius:10px;background:var(--safety-safe-soft);}');
     expect(html).toContain('.paw2-detail-columns section:last-child{background:var(--safety-stop-soft);}');
     expect(html).not.toContain('help—and');
     expect(html).not.toContain('protect—and');
-    details.forEach(detail => expect(detail.open).toBe(false));
+    details.forEach(detail => expect(detail.open).toBe(true));
+    document.getElementById('boots').open = false;
     document.querySelector('a[href="#boots"]').click();
     expect(document.getElementById('boots').open).toBe(true);
   });
@@ -113,7 +112,10 @@ describe('paw protection question-led guide', () => {
     expect(document.querySelector('.paw2-side-stack').children).toHaveLength(1);
     expect(document.querySelector('.paw2-essentials').textContent).toMatch(/Always do these three/i);
     expect(html).toContain('background:var(--paw-card);color:var(--paw-ink)');
-    expect(html).toContain('.paw2-stop{margin:0;padding:13px 0 0;border-top:1px solid var(--paw-line);color:var(--paw-soft)');
+    expect(html).toContain('.paw2-advice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px;}');
+    expect(html).not.toMatch(/\.paw2-advice\{[^}]*border-top:/);
+    expect(html).not.toMatch(/\.paw2-advice div\+div\{[^}]*border-left:/);
+    expect(html).toContain('.paw2-stop{margin:10px 0 0;padding:11px 14px;border-radius:10px;background:var(--safety-stop-soft);color:var(--paw-soft)');
     expect(html).toContain('.paw2-stop strong{display:block;margin-bottom:4px;color:var(--safety-stop)');
     expect(document.querySelectorAll('.paw2-stop strong')).toHaveLength(3);
     expect(Array.from(document.querySelectorAll('.paw2-stop strong')).every(label => label.textContent.trim() === 'Stop if')).toBe(true);
