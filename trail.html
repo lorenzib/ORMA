@@ -1310,8 +1310,21 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="scoring/recommendation-adapters-v1.js?v=20260815-4" defer></script>
 <script src="scoring.js?v=20260815-4" defer></script>
 <script src="trail-trust.js?v=20260819-5" defer></script>
-<script src="regions-runtime-manifest.js?v=20260815-4"></script>
-<script src="regional-trails-loader.js?v=20260815-4" data-default-region="trail"></script>
+<script src="regions-runtime-manifest.js?v=20260901-2"></script>
+<script>
+  // The homepage has already loaded the selected public trail. Reuse that
+  // small, public payload during the hand-off instead of fetching it again.
+  (function(){
+    try{
+      var id = new URLSearchParams(location.search).get('id');
+      var cached = id && JSON.parse(sessionStorage.getItem('orma-trail-detail:' + id) || 'null');
+      if(cached && cached.trail && cached.trail.id === id && Date.now() - cached.at < 10 * 60 * 1000){
+        window.trails = [cached.trail];
+      }
+    }catch(error){}
+  })();
+</script>
+<script src="regional-trails-loader.js?v=20260901-1" data-default-region="trail"></script>
 <script src="trail-audits.js?v=20260815-4" defer></script>
 <script src="regions-config.js"></script>
 <script src="basemap-poi-click.js" defer></script>
@@ -1333,8 +1346,8 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="trail-weather-window.js?v=20260820-1" defer></script>
 <script src="trail-reports.js?v=20260820-2" defer></script>
 <script src="veterinary-care.js?v=20260831-2" defer></script>
-<script src="trail-route-refs.js?v=20260901-4" defer></script>
 <script src="trail.js?v=20260901-11" defer></script>
+<script src="trail-route-refs.js?v=20260901-4" defer></script>
 <script src="trail-blueprint.js?v=20260901-3" defer></script>
 <script src="trail-detail-ui.js?v=20260826-1" defer></script>
 <script src="trail-mobile.js?v=20260826-1" defer></script>

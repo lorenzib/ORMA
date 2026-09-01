@@ -57,7 +57,13 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(read('index.html')).toContain('data-default-region="dolomites"');
     expect(read('trail.html')).toContain('data-default-region="trail"');
     const loader = read('regional-trails-loader.js');
+    const homepage = read('script.js');
+    const detail = read('trail.html');
     expect(loader).toContain("mode === 'trail'");
+    expect(loader).toContain('entry.details && entry.details[trailId]');
+    expect(loader).toContain('alreadyPrimed');
+    expect(homepage).toContain("function warmTrailDetail(t)");
+    expect(detail).toContain("sessionStorage.getItem('orma-trail-detail:' + id)");
     expect(loader).toContain('regionForTrail:');
   });
 

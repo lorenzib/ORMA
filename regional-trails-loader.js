@@ -35,6 +35,7 @@
 
   var current = document.currentScript;
   var params = new URLSearchParams(window.location.search);
+  var trailId = params.get('id');
   var requested = params.get('region');
   var mode = current && current.dataset.defaultRegion || 'all';
   if (mode === 'trail') mode = manifest.trailRegion[params.get('id')] || 'dolomites';
@@ -44,10 +45,18 @@
   // This loader runs synchronously at the end of the HTML parser. The initial
   // regional payload therefore exists before deferred application scripts run.
   initial.forEach(function (region) {
-    var source = assetUrl(region, 'trails');
+    var entry = manifest.regions[region] || {};
+    // A detail page needs one trail to paint its title, facts and route. Loading
+    // a whole region here made every mobile detail view wait on the catalogue.
+    // The full regional package can still be requested later for nearby trails.
+    var alreadyPrimed = mode === 'trail' && trailId && Array.isArray(window.trails) &&
+      window.trails.some(function (trail) { return trail && trail.id === trailId; });
+    var source = alreadyPrimed ? null : mode === 'trail' && trailId && entry.details && entry.details[trailId]
+      ? entry.details[trailId]
+      : assetUrl(region, 'trails');
     if (!source) return;
     document.write('<script src="' + source + '"><' + '/script>');
-    loaded.add(region);
+    if (source === entry.trails) loaded.add(region);
   });
 
   window.DoloPawsRegionalData = {

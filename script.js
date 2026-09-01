@@ -2770,9 +2770,16 @@ if(mapCalloutClose){
     setSelectedTrailPoint(null);
   });
 }
+function warmTrailDetail(t){
+  if(!t || !t.id) return;
+  try{
+    sessionStorage.setItem('orma-trail-detail:' + t.id, JSON.stringify({ at:Date.now(), trail:t }));
+  }catch(error){}
+}
 function showMapCallout(t){
   const callout = document.getElementById('mapCallout');
   if(!callout) return;
+  warmTrailDetail(t);
   const trailUrl = 'trail.html?id=' + encodeURIComponent(t.id);
   const thumb = document.getElementById('mapCalloutThumb');
   if(thumb){

@@ -1076,7 +1076,9 @@ function renderAllLifts(map, options){
 // ============================================================
 const PARK_CACHE_TTL = 30 * 24 * 3600 * 1000;
 const PARK_MAX_DIST_M = 350;      // parking must be this close to the route
-const PARK_LOOKUP_WAIT_MS = 2800;
+// Parking refinement is helpful, but it is not allowed to delay the first
+// trail render. The result is cached for the next visit if it arrives later.
+const PARK_LOOKUP_WAIT_MS = 0;
 
 function isLoopPath(path){
   return Array.isArray(path) && path.length > 20 &&

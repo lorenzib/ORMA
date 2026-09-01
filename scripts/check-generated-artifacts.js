@@ -12,6 +12,7 @@ const generatedTargets = [
   'sitemap.xml',
   'trails',
   'data/regions',
+  'data/trail-details',
   'data/regions-manifest.json',
   'regions-runtime-manifest.js',
   'data/generated/trail-validation-report.json',

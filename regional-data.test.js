@@ -21,6 +21,13 @@ function loadRegionalLiftFile(file) {
   return JSON.parse(JSON.stringify(context.window.gondolas));
 }
 
+function loadTrailDetailFile(file) {
+  const context = { window: {} };
+  vm.createContext(context);
+  vm.runInContext(read(file), context, { filename: file });
+  return JSON.parse(JSON.stringify(context.window.trails));
+}
+
 function loadCanonicalTrails() {
   return loadProductionTrails(root);
 }
@@ -51,6 +58,20 @@ describe('DATA-03 regional runtime boundaries', () => {
       expect(entry.dogRoutes).toMatch(/dog-friendly-routes/);
       [entry.trails, entry.water, entry.hutsBars, entry.dogRoutes].forEach(file => {
         expect(fs.existsSync(path.join(root, file.split('?')[0]))).toBe(true);
+      });
+    }
+  });
+
+  test('detail pages can load a single published trail before the regional catalogue', () => {
+    for (const region of ['dolomites', 'savoy']) {
+      const entry = manifest.regions[region];
+      const detailEntries = Object.entries(entry.details || {});
+      expect(detailEntries).toHaveLength(entry.trailCount);
+      detailEntries.forEach(([trailId, file]) => {
+        expect(fs.existsSync(path.join(root, file.split('?')[0]))).toBe(true);
+        const payload = loadTrailDetailFile(file.split('?')[0]);
+        expect(payload).toHaveLength(1);
+        expect(payload[0].id).toBe(trailId);
       });
     }
   });
