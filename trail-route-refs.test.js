@@ -26,6 +26,15 @@ describe('trail route-number guidance', () => {
     })).toEqual([]);
   });
 
+  test('reads verified references attached only to mapped route sections', () => {
+    expect(refs.forTrail({
+      routeRefSegments: [
+        { ref:'15A', path:[[46.64, 11.92], [46.63, 11.92]] },
+        { ref:'RA', path:[[46.63, 11.92], [46.62, 11.91]] },
+      ],
+    })).toEqual(['15A']);
+  });
+
   test('does not mistake historical years following a route name for trail numbers', () => {
     expect(refs.forTrail({
       desc:'Waymarked Trails relation 9445694 follows the old railway line (1916–1960).',

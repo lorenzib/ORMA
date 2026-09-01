@@ -606,10 +606,13 @@
       .replace(/^Start here[.:\s-]*/i, '');
     const routeStartLabel = startLabel.split(/[.!?]/)[0].trim() || startLabel;
     const routeSequence = routeRefs.join(' → ');
+    const hasSectionOnlyRefs = Array.isArray(t.routeRefSegments) && t.routeRefSegments.length > 0;
     const routeRefMarkup = routeRefs.length
       ? `<div class="td2-route-ref-list" aria-label="Trail numbers in order">${routeRefs.map((ref, index) =>
           `${index ? '<span class="td2-route-ref-arrow" aria-hidden="true">→</span>' : ''}<span class="td2-route-ref">${esc(ref)}</span>`
-        ).join('')}</div><div class="s">Start at ${esc(routeStartLabel)} and follow ${routeRefs.length === 1 ? 'trail' : 'trails'} ${esc(routeSequence)}${routeRefs.length > 1 ? ' in this order' : ''}. Confirm the destination name at each junction.</div>`
+        ).join('')}</div><div class="s">${hasSectionOnlyRefs
+          ? `${routeRefs.length === 1 ? 'Trail' : 'Trails'} ${esc(routeSequence)} ${routeRefs.length === 1 ? 'is' : 'are'} marked only on the verified section${routeRefs.length === 1 ? '' : 's'} shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.`
+          : `Start at ${esc(routeStartLabel)} and follow ${routeRefs.length === 1 ? 'trail' : 'trails'} ${esc(routeSequence)}${routeRefs.length > 1 ? ' in this order' : ''}. Confirm the destination name at each junction.`}</div>`
       : `<div class="s">Start at ${esc(routeStartLabel)}. Numbered waymarks are not yet verified for this route, so follow the mapped line and confirm destination names on local signs.</div>`;
     const routeCard = {
       ic:'',

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-01T16:22:15.544Z",
+  "generatedAt": "2026-09-01T16:32:58.803Z",
   "regions": {
     "dolomites": {
       "trailCount": 111,
-      "trails": "data/regions/dolomites-trails.js?v=c553630ad4f9",
+      "trails": "data/regions/dolomites-trails.js?v=70d945be387a",
       "water": "data/regions/dolomites-water.geojson",
       "hutsBars": "data/regions/dolomites-huts-bars.geojson",
       "dogRoutes": "dog-friendly-routes.geojson",

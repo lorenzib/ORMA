@@ -2253,14 +2253,37 @@ function renderTrail(t){
           ? window.DoloPawsTrailRouteRefs.forTrail(t)
           : (t.ref ? [String(t.ref)] : []);
         const selectedRouteRefLabel = selectedRouteRefs.join(' → ');
+        const selectedRouteRefsAreSections = Array.isArray(t.routeRefSegments) && t.routeRefSegments.length > 0;
+        const selectedRouteRefFeatures = (selectedRouteRefsAreSections ? t.routeRefSegments : [])
+          .filter(segment => segment && segment.ref && Array.isArray(segment.path) && segment.path.length > 1)
+          .map(segment => ({
+            type: 'Feature',
+            properties: { routeRef: String(segment.ref) },
+            geometry: selectedRouteRefsAreSections
+              ? { type: 'Point', coordinates: segment.path[Math.floor(segment.path.length / 2)].slice().reverse() }
+              : { type: 'LineString', coordinates: segment.path.map(([lat, lng]) => [lng, lat]) },
+          }));
+        if(!selectedRouteRefFeatures.length && selectedRouteRefLabel){
+          selectedRouteRefFeatures.push({
+            type: 'Feature',
+            properties: { routeRef: selectedRouteRefLabel },
+            geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
+          });
+        }
         map.addSource('single-trail-path', {
           type: 'geojson',
           data: {
             type: 'Feature',
-            properties: { routeRef: selectedRouteRefLabel },
+            properties: {},
             geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
           },
         });
+        if(selectedRouteRefFeatures.length){
+          map.addSource('single-trail-route-refs', {
+            type: 'geojson',
+            data: { type: 'FeatureCollection', features: selectedRouteRefFeatures },
+          });
+        }
         // Match the logged-in homepage: a bright halo separates the selected
         // score-coloured route from the muted public walking network.
         map.addLayer({
@@ -2278,14 +2301,14 @@ function renderTrail(t){
           paint: { 'line-color': selectedRouteColor, 'line-width': 7, 'line-opacity': 1 },
         }, firstLabelLayer ? firstLabelLayer.id : undefined);
 
-        if(selectedRouteRefLabel){
+        if(selectedRouteRefFeatures.length){
           map.addLayer({
             id: 'single-trail-route-number',
             type: 'symbol',
-            source: 'single-trail-path',
+            source: 'single-trail-route-refs',
             minzoom: 9,
             layout: {
-              'symbol-placement': 'line',
+              'symbol-placement': selectedRouteRefsAreSections ? 'point' : 'line',
               'symbol-spacing': 120,
               'text-field': ['get', 'routeRef'],
               'text-size': ['interpolate', ['linear'], ['zoom'], 9, 19, 13, 23, 16, 26],

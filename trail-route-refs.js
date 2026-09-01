@@ -38,6 +38,8 @@
       else if (field != null) values.push(field);
     });
     if (trail && trail.ref != null) values.push(trail.ref);
+    (Array.isArray(trail && trail.routeRefSegments) ? trail.routeRefSegments : [])
+      .forEach(segment => values.push(segment && segment.ref));
     return values.map(value => normaliseRef(
       value && typeof value === 'object'
         ? value.ref || value.number || value.label

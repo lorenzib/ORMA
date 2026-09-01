@@ -284,6 +284,7 @@ describe('trail page map controls', () => {
     const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
     expect(blueprint).toContain("t:routeRefs.length ? 'Trail numbers to follow' : 'Trail numbers unavailable'");
     expect(blueprint).toContain('Start at ${esc(routeStartLabel)} and follow');
+    expect(blueprint).toContain('marked only on the verified section');
     expect(blueprint).toContain("startLabel.split(/[.!?]/)[0].trim()");
     expect(blueprint).toContain('aroundGrid.innerHTML = renderCards([routeCard])');
     expect(blueprint).toContain('Numbered waymarks are not yet verified for this route,');
@@ -488,6 +489,9 @@ describe('trail page map controls', () => {
     expect(trail).toContain("'line-color': selectedRouteColor, 'line-width': 7");
     expect(trail).toContain("'line-color': '#858D88'");
     expect(trail).toContain("id: 'single-trail-route-number'");
+    expect(trail).toContain("source: 'single-trail-route-refs'");
+    expect(trail).toContain('Array.isArray(t.routeRefSegments)');
+    expect(trail).toContain("selectedRouteRefsAreSections ? 'point' : 'line'");
     expect(trail).toContain("'text-field': ['get', 'routeRef']");
     expect(trail).toContain("'symbol-spacing': 120");
     expect(trail).toContain("9, 19, 13, 23, 16, 26");

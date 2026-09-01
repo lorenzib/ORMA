@@ -68,6 +68,19 @@ describe('DATA-03 regional runtime boundaries', () => {
     });
   });
 
+  test('scoped route-reference verification reaches the regional trail payload without verifying the whole trail', () => {
+    const trail = loadRegionalTrailFile('data/regions/dolomites-trails.js')
+      .find(item => item.id === 'osm-9511973');
+    expect(trail.ormaVerified).not.toBe(true);
+    expect(trail.routeRefSegments).toEqual(expect.arrayContaining([
+      expect.objectContaining({ ref:'15A', path:expect.any(Array) }),
+    ]));
+    expect(trail.routeRefSegments[0].source).toEqual(expect.objectContaining({
+      url:'https://api.openstreetmap.org/api/0.6/relation/9511973/full',
+      checkedAt:'2026-09-01',
+    }));
+  });
+
   test('homepage and detail page load one region while catalog surfaces may request all', () => {
     expect(read('index.html')).toContain('data-default-region="dolomites"');
     expect(read('trail.html')).toContain('data-default-region="trail"');
