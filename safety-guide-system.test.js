@@ -24,13 +24,16 @@ describe('shared Safety Library guide visual system', () => {
 
     const stylesheets = [...document.querySelectorAll('link[rel="stylesheet"]')];
     expect(document.body.classList.contains('safety-guide-article')).toBe(true);
-    expect(stylesheets.at(-1).getAttribute('href')).toBe('safety-guide-system.css?v=20260825-1');
+    expect(stylesheets.at(-1).getAttribute('href')).toBe('safety-guide-system.css?v=20260901-2');
     expect(document.querySelectorAll('.safety-continue')).toHaveLength(1);
     expect(document.querySelectorAll('.safety-sources')).toHaveLength(1);
   });
 
   test('defines common canvas, hero, card, source and next-guide treatments', () => {
-    expect(systemCss).toContain('--safety-guide-width:1180px');
+    expect(systemCss).toContain('--safety-guide-width:1680px');
+    expect(systemCss).toContain('--safety-guide-gutter:clamp(24px,3vw,44px)');
+    expect(systemCss).toContain('--guide-reading-width:none');
+    expect(systemCss).toMatch(/\.safety-guide-article \.safety-photo-header\.section-page-head\{[^}]*justify-content:flex-end;[^}]*width:100%;[^}]*max-width:var\(--safety-guide-width\)/s);
     expect(systemCss).toContain('--safety-guide-card-radius:15px');
     expect(systemCss).toContain('.safety-guide-article .safety-photo-header.section-page-head');
     expect(systemCss).toContain('.safety-guide-article .safety-continue__next');
