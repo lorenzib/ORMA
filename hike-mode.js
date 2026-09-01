@@ -1284,6 +1284,17 @@ function initHikeMode(map, trail){
     if(active) finishHike();
     else if(completionRetry) completionRetry();
     else if(durableSession) resumeHike();
+    else if(window.ORMADeviceHandoff&&window.ORMADeviceHandoff.shouldHandoff()){
+      const phoneUrl=new URL(window.location.href);
+      phoneUrl.searchParams.delete('from');
+      phoneUrl.searchParams.set('hike','1');
+      phoneUrl.hash='start-hike';
+      window.ORMADeviceHandoff.open({
+        title:'Start this hike on your phone',
+        description:'Live hike guidance needs the phone you will carry on the trail.',
+        url:phoneUrl.href,
+      });
+    }
     else requestNewHike();
   });
   pauseBtn.addEventListener('click', pauseHike);
@@ -1296,6 +1307,14 @@ function initHikeMode(map, trail){
   // straight away (the browser still gates this behind its location prompt).
   if (new URLSearchParams(window.location.search).get('hike') === '1'){
     setTimeout(async () => {
+      if(window.ORMADeviceHandoff&&window.ORMADeviceHandoff.shouldHandoff()){
+        window.ORMADeviceHandoff.open({
+          title:'Start this hike on your phone',
+          description:'Live hike guidance needs the phone you will carry on the trail.',
+          url:window.location.href,
+        });
+        return;
+      }
       await checkForRecovery();
       const loaded = window.DoloPawsHikeSession && window.DoloPawsHikeSession.load();
       if(!active && !durableSession && (!loaded || loaded.status === 'empty')) requestNewHike();

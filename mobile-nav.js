@@ -1,4 +1,12 @@
 (function(){
+  const navigationScript=document.currentScript;
+  if(!window.ORMADeviceHandoff&&navigationScript&&navigationScript.src&&!document.querySelector('script[data-orma-device-handoff]')){
+    const handoffScript=document.createElement('script');
+    handoffScript.src=new URL('device-handoff.js?v=20260901-1',navigationScript.src).href;
+    handoffScript.defer=true;
+    handoffScript.dataset.ormaDeviceHandoff='true';
+    document.head.appendChild(handoffScript);
+  }
   const pathName=window.location.pathname;
   if(/\/trails\/[^/]+\.html$/.test(pathName)||/\/trail\.html$/.test(pathName)){
     const hazardScript=document.createElement('script');

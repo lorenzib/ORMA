@@ -4,6 +4,10 @@ const path = require('path');
 const mobileNav = fs.readFileSync(path.join(__dirname, 'mobile-nav.js'), 'utf8');
 
 describe('shared navigation hardening', () => {
+  test('loads the shared send-to-phone behavior on public pages', () => {
+    expect(mobileNav).toContain("new URL('device-handoff.js?v=20260901-1',navigationScript.src)");
+  });
+
   beforeEach(() => {
     localStorage.clear();
     document.body.className = '';
@@ -217,7 +221,7 @@ describe('shared navigation hardening', () => {
     expect(pages.length).toBeGreaterThan(150);
     pages.forEach(file => {
       expect(fs.readFileSync(file, 'utf8')).toMatch(
-        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=(?:20260823-[12]|20260831-1)"/
+        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=(?:20260823-[12]|20260831-1|20260901-2)"/
       );
     });
   });
