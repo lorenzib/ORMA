@@ -936,6 +936,39 @@ function initTrailMap(){
         'line-opacity': 1,
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
+    // Route numbers from the waymarked raster are baked into its tiles and
+    // can be too small to read. Draw ORMA's own label above each personalised
+    // route so the number stays clear without strengthening the background
+    // walking network.
+    trailMapInstance.addLayer({
+      id: 'trail-paths-route-number',
+      type: 'symbol',
+      source: 'trail-paths',
+      minzoom: 9,
+      filter: ['has', 'routeRef'],
+      layout: {
+        'symbol-placement': 'line',
+        'symbol-spacing': 240,
+        'text-field': ['get', 'routeRef'],
+        'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+        'text-size': ['interpolate', ['linear'], ['zoom'], 9, 14, 12, 17, 15, 20],
+        'text-letter-spacing': 0.04,
+        'text-padding': 8,
+        'text-rotation-alignment': 'viewport',
+        'text-keep-upright': true,
+        'text-allow-overlap': true,
+        'text-ignore-placement': true,
+      },
+      paint: {
+        'text-color': '#FFFFFF',
+        'text-halo-color': [
+          'step', ['coalesce', ['get', 'score'], 0],
+          '#9C3A25', 65, '#A76612', 85, '#2C5C34',
+        ],
+        'text-halo-width': 5,
+        'text-halo-blur': 0.25,
+      },
+    });
     if(firstLabelLayer && trailMapInstance.getLayer('waymarked-hiking-layer')){
       trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id);
     }
@@ -1249,6 +1282,9 @@ function updatePathLayer(list){
       properties: {
         id: t.id, name: t.name, safetyLevel: t.safetyLevel,
         score: typeof t.score === 'number' ? t.score : 0,
+        routeRef: window.DoloPawsTrailRouteRefs
+          ? (window.DoloPawsTrailRouteRefs.forTrail(t)[0] || '')
+          : String(t.ref || ''),
       },
       geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
     }));
