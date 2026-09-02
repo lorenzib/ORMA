@@ -152,7 +152,14 @@
 
   /* Selected-pin preview card docks above the tab bar (same card as the
      list rows — no separate condensed header on mobile) */
-  body.mhome-active .map-callout{position:fixed;left:10px;right:10px;top:auto;bottom:calc(var(--mhome-sheet,26dvh) + env(safe-area-inset-bottom) + 10px);transform:none;width:auto;z-index:46;}
+  body.mhome-active > .map-callout{position:fixed;left:10px;right:10px;top:auto;bottom:calc(var(--mhome-sheet,26dvh) + env(safe-area-inset-bottom) + 10px);transform:none;width:auto;z-index:60;max-height:min(42dvh,330px);}
+  @media (prefers-reduced-motion:no-preference){
+    body.mhome-active > .map-callout:not([hidden]){animation:mhome-map-card-up .2s cubic-bezier(.22,1,.36,1);}
+  }
+  @keyframes mhome-map-card-up{
+    from{opacity:0;transform:translateY(16px) scale(.985);}
+    to{opacity:1;transform:translateY(0) scale(1);}
+  }
 
   /* ---- BOTTOM SHEET: the ranked list ---- */
   /* Beige sheet, white card rows — matches the desktop pane inversion fix */

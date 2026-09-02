@@ -1335,6 +1335,21 @@ function selectTrail(t){
   if(typeof showMapCallout === 'function') showMapCallout(t);
 }
 
+function liRouteDistanceMeters(first, second){
+  if(!Array.isArray(first) || !Array.isArray(second)) return Infinity;
+  const lat1 = Number(first[0]);
+  const lng1 = Number(first[1]);
+  const lat2 = Number(second[0]);
+  const lng2 = Number(second[1]);
+  if(![lat1, lng1, lat2, lng2].every(Number.isFinite)) return Infinity;
+  const radians = Math.PI / 180;
+  const deltaLat = (lat2 - lat1) * radians;
+  const deltaLng = (lng2 - lng1) * radians;
+  const a = Math.sin(deltaLat / 2) ** 2 +
+    Math.cos(lat1 * radians) * Math.cos(lat2 * radians) * Math.sin(deltaLng / 2) ** 2;
+  return 6371000 * 2 * Math.asin(Math.sqrt(a));
+}
+
 function setSelectedTrailPoint(id){
   if(!trailMapLoaded || !trailMapInstance || !trailMapInstance.getLayer('trail-selected-point')) return;
   trailMapInstance.setFilter('trail-selected-point', ['==', ['get', 'id'], id || '__none__']);
@@ -1360,7 +1375,7 @@ function setSelectedTrailRoute(trail, options){
   ['trail-selected-route-casing','trail-selected-route-line','trail-selected-route-number'].forEach(layerId => {
     if(trailMapInstance.getLayer(layerId)) trailMapInstance.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
   });
-  const isLoop = visible && distMeters(route[0], route[route.length - 1]) <= 75;
+  const isLoop = visible && liRouteDistanceMeters(route[0], route[route.length - 1]) <= 75;
   if(trailMapInstance.getLayer('trail-selected-route-arrows')){
     trailMapInstance.setLayoutProperty('trail-selected-route-arrows', 'visibility', visible && !isLoop ? 'visible' : 'none');
   }
@@ -2934,9 +2949,19 @@ function warmTrailDetail(t){
     sessionStorage.setItem('orma-trail-detail:' + t.id, JSON.stringify({ at:Date.now(), trail:t }));
   }catch(error){}
 }
+function placeMapCallout(){
+  const callout = document.getElementById('mapCallout');
+  const mapWrap = document.getElementById('trailMapWrap');
+  if(!callout || !mapWrap) return;
+  const mobileTarget = document.body.classList.contains('mhome-active');
+  const target = mobileTarget ? document.body : mapWrap;
+  if(callout.parentElement !== target) target.appendChild(callout);
+}
+window.addEventListener('dolopaws-mobile-layout-change', placeMapCallout);
 function showMapCallout(t){
   const callout = document.getElementById('mapCallout');
   if(!callout) return;
+  placeMapCallout();
   warmTrailDetail(t);
   const trailUrl = 'trail.html?id=' + encodeURIComponent(t.id);
   const thumb = document.getElementById('mapCalloutThumb');

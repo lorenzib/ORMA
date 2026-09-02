@@ -26,7 +26,7 @@ if(location.protocol !== 'file:' && location.pathname === '/index.html'){
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
 <link rel="stylesheet" href="styles.css?v=20260901-8">
-<link rel="stylesheet" href="homepage-mobile.css?v=20260901-6">
+<link rel="stylesheet" href="homepage-mobile.css?v=20260902-1">
   <link rel="stylesheet" href="homepage-editorial.css?v=20260901-4">
 </head>
 <body>
@@ -362,7 +362,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <!-- Selected-trail preview — the design's TrailPreview card, docked at
            the foot of the map: kicker · name · meta + provenance · trail
            rating · Open trail → / Save, with the match column mid-right. -->
-      <div id="mapCallout" class="map-callout" hidden>
+      <div id="mapCallout" class="map-callout" aria-live="polite" hidden>
         <a class="map-callout-thumb" id="mapCalloutThumb" href="#"></a>
         <div class="map-callout-body">
           <div class="map-callout-kick" id="mapCalloutKick"></div>
@@ -547,7 +547,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
 <script src="veterinary-care.js?v=20260901-1" defer></script>
 <script src="trail-route-refs.js?v=20260901-4" defer></script>
-<script src="script.js?v=20260902-4" defer></script>
+<script src="script.js?v=20260902-5" defer></script>
 <script src="dog-wizard.js?v=20260901-2" defer></script>
 <script src="collections-data.js?v=20260815-4" defer></script>
 <script src="homepage-search.js?v=20260825-1" defer></script>

@@ -152,6 +152,7 @@
     ensureUi();
     placeAccountWrap(true);
     document.body.classList.add('mhome-active');
+    window.dispatchEvent(new CustomEvent('dolopaws-mobile-layout-change'));
     window.scrollTo(0, 0);
     // classList.add applies synchronously, so measuring right away is safe;
     // the delayed pass catches font loading / safe-area settling.
@@ -169,6 +170,7 @@
     active = false;
     placeAccountWrap(false);
     document.body.classList.remove('mhome-active');
+    window.dispatchEvent(new CustomEvent('dolopaws-mobile-layout-change'));
     document.body.style.removeProperty('--mhome-top');
     document.body.style.removeProperty('--mhome-tabs');
     var list = listEl();
