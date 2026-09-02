@@ -184,8 +184,8 @@ describe('Browse filter UI', () => {
 
     expect(html).toMatch(/@media\(max-width:760px\)[\s\S]*?\.browse-primary-controls \.browse-tools\{[^}]*display:grid;[^}]*grid-template-columns:repeat\(6,minmax\(0,1fr\)\);/);
     expect(html).toMatch(/\.browse-primary-controls \.browse-search-shell\{[^}]*grid-column:1\/-1;[^}]*grid-row:1;[^}]*width:100%;[^}]*min-width:0;/);
-    expect(html).toMatch(/\.browse-area-controls\{[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\);/);
-    expect(html).toMatch(/\.browse-geo-group--valley\{grid-column:1\/-1;/);
+    expect(html).toMatch(/\.browse-area-controls\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\);/);
+    expect(html).toMatch(/\.browse-geo-group--valley\{grid-column:auto;/);
     expect(html).toMatch(/\.browse-quick-filters\{grid-column:1\/span 4;grid-row:4;[^}]*width:100%;/);
     expect(html).toMatch(/\.browse-saved-only\{grid-column:5\/span 2;grid-row:4;[^}]*width:100%;/);
     expect(html).toMatch(/#browseFiltersMenu\{[^}]*position:fixed;[^}]*bottom:max\(8px,env\(safe-area-inset-bottom\)\);[^}]*overflow-y:auto;/);
@@ -198,6 +198,7 @@ describe('Browse filter UI', () => {
     expect(html).toContain('data-control-kicker="Country"');
     expect(html).toContain('data-control-kicker="Region"');
     expect(html).toContain('data-control-kicker="Valley"');
+    expect(html.match(/data-kicker-until-selected/g)).toHaveLength(3);
     expect(html).toContain('id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26"');
     expect(html).toContain('.area-select-trigger__kicker');
     expect(dropdown).toContain("const controlKicker = select.dataset.controlKicker;");
@@ -213,7 +214,7 @@ describe('Browse filter UI', () => {
     expect(editorialCss).toContain('grid-template-columns:minmax(210px,2fr)');
     expect(html).toContain('@media(min-width:761px) and (max-width:1100px)');
     expect(html).toContain('grid-template-columns:minmax(260px,360px) 196px 196px 178px;');
-    expect(html).toContain('.browse-geo-group .area-select-trigger__kicker{display:none;}');
+    expect(html).toContain('.browse-geo-group .area-select-trigger--kicker-until-selected:not(.area-select-trigger--has-selection) .area-select-trigger__label{display:none;}');
   });
 
   test('stretches the complete filter row across wide screens', () => {

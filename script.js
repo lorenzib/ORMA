@@ -1603,6 +1603,7 @@ function renderLiCountryControl(profile){
       : trails.filter(trail => trail.region === region).length), 0);
     button.innerHTML = `<span>${config.name}</span><small>${count} trails</small>`;
     button.addEventListener('click', async () => {
+      countryWrap?.classList.remove('li-mobile-default-label');
       if(countryCode === activeCountry){ liCloseMenus(); return; }
       button.disabled = true;
       const changed = await activateReturningGeography(countryCode, 'all', profile);
@@ -1651,6 +1652,7 @@ function renderLiRegionControl(profile){
     button.setAttribute('aria-pressed', String(region === activeRegion));
     button.innerHTML = `<span>${name}</span><small>${count} trails</small>`;
     button.addEventListener('click', async () => {
+      regionWrap?.classList.remove('li-mobile-default-label');
       if(region === activeRegion){ liCloseMenus(); return; }
       button.disabled = true;
       const country = region === 'all' ? activeCountry : configs[region].countryCode;
@@ -1690,6 +1692,7 @@ function renderLiValleyControl(profile){
       button.setAttribute('aria-pressed', String(value === activeValley));
       button.innerHTML = `<span>${name}</span><small>${count} trails</small>`;
       button.addEventListener('click', () => {
+        valleyWrap?.classList.remove('li-mobile-default-label');
         activeValley = value;
         liCloseMenus();
         renderReturningHomepage(profile);
