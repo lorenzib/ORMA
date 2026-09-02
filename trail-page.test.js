@@ -230,7 +230,7 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20260901-1');
-    expect(html).toContain('trail-app.bundle.js?v=20260902-2');
+    expect(html).toContain('trail-app.bundle.js?v=20260902-3');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
       'detail-pois.js', 'trail-access-directions.js', 'footpath-router.js',
@@ -546,9 +546,9 @@ describe('trail page map controls', () => {
     expect(trail).toContain("return score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25'");
     expect(trail).toContain("'line-color': selectedRouteColor, 'line-width': 13");
     expect(trail).toContain("'line-color': '#858D88'");
-    expect(trail).toContain("id:'single-trail-route-number'");
-    expect(trail).toContain("source:'single-trail-route-refs'");
-    expect(trail).toContain('window.DoloPawsTrailRouteRefs.addShieldLayer');
+    expect(trail).not.toContain("id:'single-trail-route-number'");
+    expect(trail).not.toContain("source:'single-trail-route-refs'");
+    expect(trail).not.toContain('window.DoloPawsTrailRouteRefs.addShieldLayer');
     expect(html).toContain('.td2-hero{background:#243128;color:#EAF1E8;position:relative;overflow:visible;z-index:2;}');
     expect(trail).toContain("}, 'waymarked-hiking-layer');");
     expect(trail).toContain("'raster-resampling': 'linear'");
