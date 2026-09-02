@@ -1,7 +1,7 @@
 /* ============================================================
    TRAIL DETAIL — mobile app layout (≤700px, signed in)
    Ported from "ORMA Trail Detail (Logged in) - Mobile".
-   Chrome (top bar, progress, sticky actions, tab nav) is injected
+   Chrome (top bar, progress, tab nav) is injected
    by trail-mobile.js; everything here is scoped to body.mtrail-active
    so guests and desktop keep the standard responsive page.
 ============================================================= */
@@ -55,46 +55,13 @@
     transition:width .08s linear;
   }
 
-  /* clear the fixed top bar; leave room for the fixed bottom bars */
+  /* clear the fixed top bar; leave room for the bottom tab bar */
   body.mtrail-active .td2{padding-top:calc(var(--mtrail-top,58px) + 3px);}
   body.mtrail-active .td2-wrap{
-    padding-bottom:calc(var(--mtrail-actions,66px) + var(--mtrail-tabs,72px) + 28px);
+    padding-bottom:calc(var(--mtrail-tabs,72px) + 28px);
   }
 
-  /* ---------- sticky action bar + tab nav ---------- */
-  body.mtrail-active .mtrail-actions{
-    position:fixed;left:0;right:0;
-    bottom:var(--mtrail-tabs,72px);
-    z-index:50;
-    display:flex;gap:10px;align-items:center;
-    padding:11px 16px;
-    background:rgba(247,244,235,.96);
-    -webkit-backdrop-filter:blur(12px);
-    backdrop-filter:blur(12px);
-    border-top:1px solid rgba(27,31,25,.08);
-  }
-  /* the page's real buttons, re-dressed for the bar */
-  /* Save stretches alone; yields to the primary button when GPS exists */
-  body.mtrail-active .mtrail-actions #detailSaveBtn{
-    flex:1;min-height:48px;padding:12px 18px;justify-content:center;
-    background:#fff;border:1.5px solid #E4E0D3;color:#2E4034;
-    border-radius:12px;font:700 13.5px 'Inter',sans-serif;
-    display:inline-flex;align-items:center;gap:7px;
-  }
-  body.mtrail-active .mtrail-actions #detailSaveBtn.saved{
-    background:#EAF3EC;border-color:#9FC4B0;color:#2C5C34;
-  }
-  body.mtrail-active .mtrail-actions #heroStartHike:not([hidden]) ~ #detailSaveBtn,
-  body.mtrail-active .mtrail-actions #detailSaveBtn:has(~ #heroStartHike:not([hidden])){
-    flex:none;
-  }
-  body.mtrail-active .mtrail-actions #heroStartHike{
-    flex:2;min-height:48px;
-    border-radius:12px;font:800 15px 'Inter',sans-serif;
-  }
-  body.mtrail-active .mtrail-actions #heroStartHike[hidden]{display:none;}
-  body.mtrail-active .mtrail-actions #heroStartHike.recording{background:#9C3A25;}
-
+  /* ---------- tab nav ---------- */
   body.mtrail-active .mtrail-tabs{
     position:fixed;left:0;right:0;bottom:0;z-index:55;
     display:flex;align-items:stretch;
@@ -111,7 +78,6 @@
 
   /* ---------- hero, per the mobile design ---------- */
   body.mtrail-active .td2-back{display:none;}          /* top bar has back */
-  body.mtrail-active .td2-actrow{display:none;}        /* buttons moved to the bar */
   body.mtrail-active .td2-hero-in{padding:16px 16px 0;}
   body.mtrail-active .td2-hero-row{margin-top:2px;gap:10px;}
   body.mtrail-active .td2-hero #trailName{font:700 30px/1.06 'Bricolage Grotesque',sans-serif;}
@@ -121,15 +87,42 @@
   }
   body.mtrail-active .td2-linkrow{flex-wrap:wrap;}
 
+  /* Keep every desktop action in the title area, condensed into a phone-safe
+     three-column shelf. The real controls stay in place, so their handlers,
+     signed-in state and share/export menus remain identical to desktop. */
+  body.mtrail-active .td2-actrow{
+    display:grid;width:100%;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;
+  }
+  body.mtrail-active .td2-hero .td2-btn-g,
+  body.mtrail-active .td2-hero .td2-btn-p,
+  body.mtrail-active .td2-hero .td2-textlink{
+    min-height:36px;padding:7px 6px;border-radius:9px;font-size:10.5px;line-height:1.1;
+  }
+  body.mtrail-active .td2-actrow>#heroStartHike{order:1;grid-column:span 2;}
+  body.mtrail-active .td2-actrow>#detailSaveBtn{order:2;}
+  body.mtrail-active .td2-actrow>#getDirectionsBtn{order:3;}
+  body.mtrail-active .td2-actrow>#logWalkBtn{order:4;}
+  body.mtrail-active .td2-actrow>#exportGpxBtn{order:5;}
+  body.mtrail-active .td2-actrow>#detailShareBtn{order:6;}
+  body.mtrail-active .td2-actrow>#offlinePackagePanel:not([hidden]),
+  body.mtrail-active .td2-actrow>#offlinePackagePanel:not([hidden]) .offline-package-row{display:contents;}
+  body.mtrail-active .td2-actrow>#offlinePackagePanel #offlineDownloadBtn,
+  body.mtrail-active .td2-actrow>#offlinePackagePanel #offlineOpenBtn,
+  body.mtrail-active .td2-actrow>#offlinePackagePanel #offlineRemoveBtn{order:7;grid-column:span 2;}
+  body.mtrail-active .td2-actrow>#heroStartHike[hidden]{display:none;}
+  body.mtrail-active .td2-actrow>#heroStartHike.recording{background:#9C3A25;}
+
   /* stat strip → the design's 3-column hairline grid */
   body.mtrail-active .td2-stat{
     display:grid;grid-template-columns:repeat(3,1fr);
     border-top:1px solid rgba(255,255,255,.12);
-    margin-top:16px;
+    margin-top:11px;
   }
   body.mtrail-active .td2-stat .f{
-    flex:none;padding:13px 4px 12px 0;border-left:none;
+    flex:none;min-width:0;padding:9px 4px 8px 0;border-left:none;
   }
+  body.mtrail-active .td2-stat .f b{font-size:13px;}
+  body.mtrail-active .td2-stat .f span{font-size:9.5px;}
   body.mtrail-active .td2-stat .f:nth-child(3n+2),
   body.mtrail-active .td2-stat .f:nth-child(3n){
     border-left:1px solid rgba(255,255,255,.12);padding-left:14px;
@@ -139,6 +132,9 @@
   body.mtrail-active .td2-wrap{padding-left:16px;padding-right:16px;}
   body.mtrail-active .td2-mapcard .trail-map-box{height:340px;min-height:300px;}
   body.mtrail-active .td2 .trail-photos-list{grid-template-columns:repeat(3,1fr);}
+  body.mtrail-active .td2-fit-shell>#td2AboutCard{
+    margin:0;border:0;border-top:1px solid #EDE9DD;border-radius:0;box-shadow:none;
+  }
 
   /* nearby trails → horizontal snap row (design) */
   body.mtrail-active .near-grid{

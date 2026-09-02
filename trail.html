@@ -23,7 +23,7 @@
 </script>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="styles.css?v=20260823-1">
-<link rel="stylesheet" href="trail-mobile.css?v=20260826-1">
+<link rel="stylesheet" href="trail-mobile.css?v=20260902-1">
 <link rel="stylesheet" href="pre-hike-readiness.css?v=20260815-4">
 <style>
 /* ---- Companion reference tokens, trail detail (design-handoff fidelity) ---- */
@@ -860,6 +860,8 @@ body{background:#EFECE2;}
 .td2-about-getting .td2-maps-link{display:inline-flex;margin-top:10px;}
 .td2-story .trail-photos-list{grid-template-columns:repeat(3,minmax(0,1fr));}
 .td2-story>.td2-card,.td2-logistics>.td2-card,.td2-map-stack>.td2-card{scroll-margin-top:88px;}
+.td2-mobile-card-toggle{display:none;}
+.td2-mobile-card-body{display:block;}
 
 @media(max-width:980px){
   .td2-hero-in,.td2-wrap{width:auto;max-width:none;margin-left:var(--trail-detail-gutter);margin-right:var(--trail-detail-gutter);padding-left:0;padding-right:0;}
@@ -901,15 +903,26 @@ body{background:#EFECE2;}
   .td2-hero .offline-package-status{display:none;}
   .td2-hero .offline-package-row{justify-content:stretch;}
   .td2-hero .offline-package-row>*{flex:1 1 auto;text-align:center;}
-  #mobileWeatherSlot{margin-top:12px;}
+  #mobileWeatherSlot{margin-top:0;}
   #mobileWeatherSlot:empty{display:none;}
   #mobileWeatherSlot .td2-hero-weather{display:block;margin:0;background:#fff;border:1px solid #E4E0D3;color:#2E4034;box-shadow:none;backdrop-filter:none;}
+  .td2-mobile-card-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;box-sizing:border-box;padding:13px 14px;border:0;border-bottom:1px solid #E4E0D3;background:transparent;color:#2E4034;text-align:left;cursor:pointer;}
+  .td2-mobile-card-toggle:focus-visible{outline:2px solid #3E7A91;outline-offset:-3px;}
+  .td2-mobile-toggle-action{display:inline-flex;align-items:center;gap:5px;color:#3E7A91;font:800 10.5px 'Inter',sans-serif;letter-spacing:.03em;}
+  .td2-mobile-collapsible.is-mobile-collapsed .td2-mobile-card-toggle{border-bottom:0;}
+  .td2-mobile-collapsible.is-mobile-collapsed .td2-mobile-card-body{display:none;}
+  #tdElevationPanel>.td2-mobile-card-toggle{padding:0 0 13px;}
+  #tdElevationPanel.is-mobile-collapsed>.td2-mobile-card-toggle{padding-bottom:0;}
+  #tdElevationPanel .td2-elev-head>.td2-kick{display:none;}
+  #tdElevationPanel .td2-elev-head{justify-content:flex-end;}
   #mobileWeatherSlot .td2-cond,#mobileWeatherSlot .td2-fc6{background:transparent;border:0;color:#2E4034;box-shadow:none;backdrop-filter:none;}
   #mobileWeatherSlot .td2-cond{padding:12px 14px;}
   #mobileWeatherSlot .td2-fc6{margin-top:0;padding:10px 14px;border-top:1px solid #E4E0D3;}
   #mobileWeatherSlot .td2-kick{color:#6B7A6E;}
   #mobileWeatherSlot .td2-weather-source{border-color:#AAB5AB;color:#53675A;}
   #mobileWeatherSlot .td2-weather-source:focus-visible{outline-color:#3E7A91!important;}
+  #mobileWeatherSlot .td2-cond .td2-weather-head{justify-content:flex-end;margin-bottom:5px;}
+  #mobileWeatherSlot .td2-cond .td2-weather-head>.td2-kick{display:none;}
   #mobileWeatherSlot #sideFcValley{display:none;}
   #mobileWeatherSlot .td2-cond-facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
   #mobileWeatherSlot .td2-cond-row{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:4px;padding:0 8px 0 0;color:#6B7A6E;border:0;border-right:1px solid #E4E0D3;}
@@ -1010,26 +1023,32 @@ body.trail-photo-viewer-open{overflow:hidden;}
 
         <!-- Current weather belongs to the trail header; the week stays
              available on demand instead of occupying the planning column. -->
-        <div class="td2-hero-weather">
-          <div class="td2-cond" id="tdConditions" hidden>
-            <div class="td2-weather-head">
-              <div class="td2-kick">Trail weather <span id="sideFcValley"></span></div>
-              <a class="td2-weather-source" href="https://open-meteo.com/" target="_blank" rel="noopener" aria-label="Weather data by Open-Meteo" title="Weather data by Open-Meteo">i</a>
+        <div class="td2-hero-weather td2-mobile-collapsible">
+          <button class="td2-mobile-card-toggle" type="button" aria-expanded="true" aria-controls="tdWeatherBody">
+            <span class="td2-kick">Trail weather</span>
+            <span class="td2-mobile-toggle-action">Hide <span aria-hidden="true">⌃</span></span>
+          </button>
+          <div class="td2-mobile-card-body" id="tdWeatherBody">
+            <div class="td2-cond" id="tdConditions" hidden>
+              <div class="td2-weather-head">
+                <div class="td2-kick">Trail weather <span id="sideFcValley"></span></div>
+                <a class="td2-weather-source" href="https://open-meteo.com/" target="_blank" rel="noopener" aria-label="Weather data by Open-Meteo" title="Weather data by Open-Meteo">i</a>
+              </div>
+              <div class="td2-cond-facts">
+                <div class="td2-cond-row"><span>Temperature</span><b class="num" id="tdCondTemp">—</b></div>
+                <div class="td2-cond-row"><span>Paw comfort</span><span class="td2-badge" id="tdCondPaw">—</span></div>
+                <div class="td2-cond-row td2-cond-last"><span>Water sources</span><b id="tdCondWater">—</b></div>
+              </div>
+              <p class="td2-cond-window" id="sideCondWindow"></p>
             </div>
-            <div class="td2-cond-facts">
-              <div class="td2-cond-row"><span>Temperature</span><b class="num" id="tdCondTemp">—</b></div>
-              <div class="td2-cond-row"><span>Paw comfort</span><span class="td2-badge" id="tdCondPaw">—</span></div>
-              <div class="td2-cond-row td2-cond-last"><span>Water sources</span><b id="tdCondWater">—</b></div>
-            </div>
-            <p class="td2-cond-window" id="sideCondWindow"></p>
+            <details class="td2-fc6" id="sideForecast" hidden>
+              <summary><span class="td2-kick">6-day outlook</span><span class="td2-summary-action">View</span></summary>
+              <div class="td2-fc6-body">
+                <div id="tdForecastDays"></div>
+                <p class="td2-fc6-note" id="tdForecastNote" hidden></p>
+              </div>
+            </details>
           </div>
-          <details class="td2-fc6" id="sideForecast" hidden>
-            <summary><span class="td2-kick">6-day outlook</span><span class="td2-summary-action">View</span></summary>
-            <div class="td2-fc6-body">
-              <div id="tdForecastDays"></div>
-              <p class="td2-fc6-note" id="tdForecastNote" hidden></p>
-            </div>
-          </details>
         </div>
 
         <!-- Every primary trail action lives in the header. Classes and IDs
@@ -1133,17 +1152,23 @@ body.trail-photo-viewer-open{overflow:hidden;}
       </div>
     </div>
 
-    <div id="mobileWeatherSlot" aria-label="Trail weather"></div>
-
-    <div class="td2-card td2-elev" id="tdElevationPanel">
-      <div class="td2-elev-head"><span class="td2-kick" id="tdElevH">Elevation</span><span class="td2-elev-status"><span class="td2-elev-live" id="tdElevLive">Awaiting position</span><span class="r" id="tdElevRange"></span></span></div>
-      <svg id="elevProf" viewBox="0 0 1000 170" preserveAspectRatio="none"></svg>
-      <div class="td2-elev-figs" id="tdElevFigs" hidden>
-        <div><strong id="tdElevStart"></strong> start</div>
-        <div><strong id="tdElevHigh"></strong> high point</div>
-        <div><strong id="tdElevClimb"></strong> total climb</div>
+    <div class="td2-card td2-elev td2-mobile-collapsible" id="tdElevationPanel">
+      <button class="td2-mobile-card-toggle" type="button" aria-expanded="true" aria-controls="tdElevationBody">
+        <span class="td2-kick">Elevation</span>
+        <span class="td2-mobile-toggle-action">Hide <span aria-hidden="true">⌃</span></span>
+      </button>
+      <div class="td2-mobile-card-body" id="tdElevationBody">
+        <div class="td2-elev-head"><span class="td2-kick" id="tdElevH">Elevation</span><span class="td2-elev-status"><span class="td2-elev-live" id="tdElevLive">Awaiting position</span><span class="r" id="tdElevRange"></span></span></div>
+        <svg id="elevProf" viewBox="0 0 1000 170" preserveAspectRatio="none"></svg>
+        <div class="td2-elev-figs" id="tdElevFigs" hidden>
+          <div><strong id="tdElevStart"></strong> start</div>
+          <div><strong id="tdElevHigh"></strong> high point</div>
+          <div><strong id="tdElevClimb"></strong> total climb</div>
+        </div>
       </div>
     </div>
+
+    <div id="mobileWeatherSlot" aria-label="Trail weather"></div>
     </div>
 
     <!-- ============ BELOW-MAP CONTENT ============ -->
@@ -1387,6 +1412,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
     if(window.performance && performance.mark) performance.mark('orma-trail-critical-render');
   })();
 </script>
-<script src="trail-app.bundle.js?v=20260902-3" defer></script>
+<script src="trail-app.bundle.js?v=20260902-4" defer></script>
 </body>
 </html>

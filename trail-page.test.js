@@ -87,7 +87,7 @@ describe('trail page map controls', () => {
     expect(trail).toContain('if(trailInitStarted) return;');
   });
 
-  test('mobile hike controls settle after their map observer runs', () => {
+  test('mobile hike controls stay with the complete hero action shelf', () => {
     const ui = fs.readFileSync(path.join(__dirname, 'trail-detail-ui.js'), 'utf8');
     document.body.innerHTML = `
       <main class="td2">
@@ -114,7 +114,7 @@ describe('trail page map controls', () => {
     window.setInterval = () => 1;
     try {
       window.eval(ui);
-      expect(hero.parentElement.id).toBe('mobileMapHikeSlot');
+      expect(hero.parentElement.id).toBe('desktopActions');
       expect(heroWrites).toBe(1);
       expect(callbacks.length).toBeGreaterThan(0);
       callbacks[0]([]);
@@ -230,7 +230,8 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20260901-1');
-    expect(html).toContain('trail-app.bundle.js?v=20260902-3');
+    expect(html).toContain('trail-app.bundle.js?v=20260902-4');
+    expect(html).toContain('trail-mobile.css?v=20260902-1');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
       'detail-pois.js', 'trail-access-directions.js', 'footpath-router.js',
@@ -289,8 +290,14 @@ describe('trail page map controls', () => {
     expect(workspace.lastElementChild).toBe(sidebarColumn);
     expect(contentColumn.firstElementChild).toBe(mapStack);
     expect(mapStack.firstElementChild.classList.contains('td2-mapcard')).toBe(true);
-    expect(mapStack.children[1].id).toBe('mobileWeatherSlot');
-    expect(mapStack.lastElementChild.id).toBe('tdElevationPanel');
+    expect(mapStack.children[1].id).toBe('tdElevationPanel');
+    expect(mapStack.lastElementChild.id).toBe('mobileWeatherSlot');
+    const elevationToggle = document.querySelector('[aria-controls="tdElevationBody"]');
+    const weatherToggle = document.querySelector('[aria-controls="tdWeatherBody"]');
+    expect(elevationToggle.getAttribute('aria-expanded')).toBe('true');
+    expect(weatherToggle.getAttribute('aria-expanded')).toBe('true');
+    expect(elevationToggle.textContent).toContain('Elevation');
+    expect(weatherToggle.textContent).toContain('Trail weather');
     expect(html).toContain('.td2-map-stack>.td2-elev[hidden]{display:none!important;}');
     const plan = sidebarColumn.querySelector('.td2-plan-stack');
     const fit = plan.querySelector('.td2-fit-shell');
@@ -383,6 +390,19 @@ describe('trail page map controls', () => {
     expect(html).toContain('margin-left:var(--trail-detail-gutter);margin-right:var(--trail-detail-gutter);');
     expect(html).toContain('grid-template-areas:"tags weather" "title weather" "facts weather" "actions weather"');
     expect(html).toContain('.td2-hero-weather{grid-area:weather;');
+  });
+
+  test('the logged-in mobile layout keeps hero actions and moves about below the recommendation', () => {
+    const mobile = fs.readFileSync(path.join(__dirname, 'trail-mobile.js'), 'utf8');
+    const mobileCss = fs.readFileSync(path.join(__dirname, 'trail-mobile.css'), 'utf8');
+
+    expect(mobile).toContain("recommendation.insertAdjacentElement('afterend', about)");
+    expect(mobile).toContain('restoreAbout();');
+    expect(mobile).not.toContain('bar.appendChild(save)');
+    expect(mobileCss).toContain('body.mtrail-active .td2-actrow{');
+    expect(mobileCss).toContain('display:grid;width:100%;grid-template-columns:repeat(3,minmax(0,1fr));');
+    expect(mobileCss).toContain('body.mtrail-active .td2-actrow>#heroStartHike{order:1;grid-column:span 2;}');
+    expect(mobileCss).not.toContain('body.mtrail-active .td2-actrow{display:none;}');
   });
 
   test('routes without elevation data remove the current elevation card completely', () => {
@@ -558,7 +578,8 @@ describe('trail page map controls', () => {
     expect(trail).not.toContain("element.textContent = '✓'");
     expect(trail).not.toContain("markerElement('join')");
     expect(detailPois).toContain("'text-field': ['coalesce', ['get', 'name'], '']");
-    expect(ui).toContain('mobileHikeSlot.appendChild(heroBtn)');
+    expect(ui).toContain('hikeHome.insertBefore(heroBtn, hikeNext)');
+    expect(ui).not.toContain('mobileHikeSlot.appendChild(heroBtn)');
     expect(html).toContain('.td2 #mapStartHikeBtn{display:none!important;}');
   });
 

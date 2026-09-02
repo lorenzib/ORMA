@@ -14681,21 +14681,15 @@ if(document.querySelector('.td2')){
   const heroBtn = document.getElementById('heroStartHike');
   const liveBanner = document.getElementById('td2LiveBanner');
   const mapBox = document.getElementById('trailMapBox');
-  const mobileHikeSlot = document.getElementById('mobileMapHikeSlot');
   const hikeHome = heroBtn && heroBtn.parentElement;
   const hikeNext = heroBtn && heroBtn.nextSibling;
-  const mobileQuery = window.matchMedia('(max-width:700px)');
 
   function placeHikeAction() {
-    if (!heroBtn || !hikeHome || !mobileHikeSlot) return;
-    if (mobileQuery.matches && heroBtn.parentElement !== mobileHikeSlot) {
-      mobileHikeSlot.appendChild(heroBtn);
-    } else if (!mobileQuery.matches && heroBtn.parentElement !== hikeHome) {
+    if (!heroBtn || !hikeHome) return;
+    if (heroBtn.parentElement !== hikeHome) {
       hikeHome.insertBefore(heroBtn, hikeNext);
     }
   }
-  if (mobileQuery.addEventListener) mobileQuery.addEventListener('change', placeHikeAction);
-  else if (mobileQuery.addListener) mobileQuery.addListener(placeHikeAction);
   placeHikeAction();
 
   function recording() {
@@ -14736,8 +14730,8 @@ if(document.querySelector('.td2')){
       const nextHidden = !mapBtn;
       if (heroBtn.hidden !== nextHidden) heroBtn.hidden = nextHidden;
       heroBtn.classList.toggle('recording', rec);
-      // On mobile this button lives inside mapBox, whose MutationObserver
-      // calls syncHike. Replacing identical markup on every callback creates
+      // The map observer calls syncHike whenever hike mode changes. Replacing
+      // identical markup on every callback creates
       // a self-triggering mutation loop that locks the page. Only rewrite the
       // button when its actual state changes.
       const nextState = rec ? 'recording' : 'idle';
@@ -14850,10 +14844,10 @@ if(document.querySelector('.td2')){
 
    Same pattern as homepage-mobile.js: purely additive chrome on top of the
    desktop .td2 layout. Injects a compact top bar (back · brand · dog
-   avatar), a scroll progress bar, a sticky Save/Start action bar and the
-   bottom tab nav, then MOVES the page's real #detailSaveBtn/#heroStartHike
-   into the action bar — handlers and state travel with the nodes, so no
-   mirroring is needed. All visual re-layout lives in trail-mobile.css under
+   avatar), a scroll progress bar and the bottom tab nav. The complete set of
+   real trail actions stays in the hero, so mobile has the same capabilities
+   as desktop without mirrored handlers. All visual re-layout lives in
+   trail-mobile.css under
    body.mtrail-active. Activates only for signed-in visitors (the same
    dolopaws-profile-summary signal trail-detail-ui.js already uses); guests
    keep the plain responsive page. */
@@ -14865,10 +14859,12 @@ if(document.querySelector('.td2')){
 
   var mq = window.matchMedia('(max-width:700px)');
   var active = false;
-  var actionsHome = null; // where the real buttons live on desktop
   var weather = document.querySelector('.td2-hero-weather');
   var weatherHome = weather && weather.parentElement;
   var weatherNext = weather && weather.nextSibling;
+  var about = document.getElementById('td2AboutCard');
+  var aboutHome = about && about.parentElement;
+  var aboutNext = about && about.nextSibling;
   var offlinePanel = document.getElementById('offlinePackagePanel');
   var offlineHome = offlinePanel && offlinePanel.parentElement;
   var offlineNext = offlinePanel && offlinePanel.nextSibling;
@@ -14891,6 +14887,35 @@ if(document.querySelector('.td2')){
     if(!mq.matches && offlinePanel.parentElement !== offlineHome){
       offlineHome.insertBefore(offlinePanel, offlineNext);
     }
+  }
+
+  function placeAboutAfterRecommendation(){
+    var recommendation = document.getElementById('recommendationDecision');
+    if(!about || !aboutHome || !recommendation || !recommendation.parentElement) return;
+    if(about.previousElementSibling !== recommendation){
+      recommendation.insertAdjacentElement('afterend', about);
+    }
+  }
+
+  function restoreAbout(){
+    if(!about || !aboutHome || about.parentElement === aboutHome) return;
+    if(aboutNext && aboutNext.parentElement === aboutHome) aboutHome.insertBefore(about, aboutNext);
+    else aboutHome.appendChild(about);
+  }
+
+  function initMobileDisclosures(){
+    document.querySelectorAll('.td2-mobile-card-toggle').forEach(function(button){
+      if(button.dataset.mobileDisclosureReady === 'true') return;
+      button.dataset.mobileDisclosureReady = 'true';
+      button.addEventListener('click', function(){
+        var card = button.closest('.td2-mobile-collapsible');
+        if(!card) return;
+        var collapsed = card.classList.toggle('is-mobile-collapsed');
+        button.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+        var action = button.querySelector('.td2-mobile-toggle-action');
+        if(action) action.innerHTML = (collapsed ? 'Show <span aria-hidden="true">⌄</span>' : 'Hide <span aria-hidden="true">⌃</span>');
+      });
+    });
   }
 
   function profileSummary(){
@@ -14929,12 +14954,6 @@ if(document.querySelector('.td2')){
         '<div class="mtrail-progress" aria-hidden="true"><span id="mtrailProgress"></span></div>';
       document.body.insertBefore(top, document.body.firstChild);
     }
-    if(!document.getElementById('mtrailActions')){
-      var bar = document.createElement('div');
-      bar.className = 'mtrail-actions';
-      bar.id = 'mtrailActions';
-      document.body.appendChild(bar);
-    }
     if(!document.getElementById('mtrailTabs')){
       var nav = document.createElement('nav');
       nav.className = 'mtrail-tabs';
@@ -14957,27 +14976,10 @@ if(document.querySelector('.td2')){
     }
   }
 
-  // Keep Save in the sticky bar. Start-the-hike now belongs to the map's
-  // dedicated action slot, where the route and GPS context are visible.
-  function adoptButtons(){
-    var bar = document.getElementById('mtrailActions');
-    var save = document.getElementById('detailSaveBtn');
-    if(!bar || !save) return;
-    if(!actionsHome) actionsHome = save.parentElement;
-    bar.appendChild(save);
-  }
-  function returnButtons(){
-    if(!actionsHome) return;
-    var save = document.getElementById('detailSaveBtn');
-    if(save) actionsHome.appendChild(save);
-  }
-
   function measure(){
     var top = document.getElementById('mtrailTop');
-    var bar = document.getElementById('mtrailActions');
     var tabs = document.getElementById('mtrailTabs');
     if(top) document.body.style.setProperty('--mtrail-top', top.offsetHeight + 'px');
-    if(bar) document.body.style.setProperty('--mtrail-actions', bar.offsetHeight + 'px');
     if(tabs) document.body.style.setProperty('--mtrail-tabs', tabs.offsetHeight + 'px');
   }
 
@@ -14995,7 +14997,7 @@ if(document.querySelector('.td2')){
     if(active) return;
     active = true;
     ensureUi();
-    adoptButtons();
+    placeAboutAfterRecommendation();
     document.body.classList.add('mtrail-active');
     measure();
     setTimeout(function(){ if(active){ measure(); onScroll(); } }, 120);
@@ -15004,14 +15006,14 @@ if(document.querySelector('.td2')){
   function deactivate(){
     if(!active) return;
     active = false;
-    returnButtons();
+    restoreAbout();
     document.body.classList.remove('mtrail-active');
     document.body.style.removeProperty('--mtrail-top');
-    document.body.style.removeProperty('--mtrail-actions');
     document.body.style.removeProperty('--mtrail-tabs');
   }
 
   function update(){
+    initMobileDisclosures();
     placeWeather();
     placeDownloadAction();
     if(mq.matches && signedIn()) activate();

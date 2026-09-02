@@ -18,21 +18,15 @@
   const heroBtn = document.getElementById('heroStartHike');
   const liveBanner = document.getElementById('td2LiveBanner');
   const mapBox = document.getElementById('trailMapBox');
-  const mobileHikeSlot = document.getElementById('mobileMapHikeSlot');
   const hikeHome = heroBtn && heroBtn.parentElement;
   const hikeNext = heroBtn && heroBtn.nextSibling;
-  const mobileQuery = window.matchMedia('(max-width:700px)');
 
   function placeHikeAction() {
-    if (!heroBtn || !hikeHome || !mobileHikeSlot) return;
-    if (mobileQuery.matches && heroBtn.parentElement !== mobileHikeSlot) {
-      mobileHikeSlot.appendChild(heroBtn);
-    } else if (!mobileQuery.matches && heroBtn.parentElement !== hikeHome) {
+    if (!heroBtn || !hikeHome) return;
+    if (heroBtn.parentElement !== hikeHome) {
       hikeHome.insertBefore(heroBtn, hikeNext);
     }
   }
-  if (mobileQuery.addEventListener) mobileQuery.addEventListener('change', placeHikeAction);
-  else if (mobileQuery.addListener) mobileQuery.addListener(placeHikeAction);
   placeHikeAction();
 
   function recording() {
@@ -73,8 +67,8 @@
       const nextHidden = !mapBtn;
       if (heroBtn.hidden !== nextHidden) heroBtn.hidden = nextHidden;
       heroBtn.classList.toggle('recording', rec);
-      // On mobile this button lives inside mapBox, whose MutationObserver
-      // calls syncHike. Replacing identical markup on every callback creates
+      // The map observer calls syncHike whenever hike mode changes. Replacing
+      // identical markup on every callback creates
       // a self-triggering mutation loop that locks the page. Only rewrite the
       // button when its actual state changes.
       const nextState = rec ? 'recording' : 'idle';
