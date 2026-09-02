@@ -589,9 +589,9 @@
 <script src="scoring.js?v=20260815-4"></script>
 <script type="module" src="firebase-init.js?v=20260901-1"></script>
 <script src="icon-system.js?v=20260815-4" defer></script>
-<script src="trail-card-visual.js?v=20260815-4" defer></script>
+<script src="trail-card-visual.js?v=20260902-1" defer></script>
 <script src="regions-runtime-manifest.js?v=20260815-4"></script>
-<script src="regional-trails-loader.js?v=20260815-4" data-default-region="all"></script>
+<script src="regional-trails-loader.js?v=20260902-1" data-default-region="all"></script>
 <script src="trail-audits.js?v=20260815-4" defer></script>
 <script src="regions-config.js"></script>
 <script src="metrics.js?v=20260815-4" defer></script>
@@ -623,6 +623,21 @@
     const valleySelect = document.getElementById('browseValleySelect');
     const countryDropdown = window.OrmaAreaDropdown.enhance(countrySelect);
     const regionDropdown = window.OrmaAreaDropdown.enhance(regionSelect);
+
+    function primeTrailLink(link){
+      if(!link || !window.DoloPawsRegionalData || typeof window.DoloPawsRegionalData.primeTrailDetail !== 'function') return;
+      const id = new URL(link.href, window.location.href).searchParams.get('id');
+      const trail = id && trails.find(item => item.id === id);
+      if(trail) window.DoloPawsRegionalData.primeTrailDetail(trail);
+    }
+
+    // Mobile taps usually navigate straight from a list card. Prime the one
+    // selected public trail before navigation so the detail page does not
+    // need another network round trip before it can paint.
+    document.addEventListener('pointerdown', event => {
+      const link = event.target.closest('a[href*="trail.html?id="]');
+      if(link) primeTrailLink(link);
+    }, { capture:true, passive:true });
     const valleyDropdown = window.OrmaAreaDropdown.enhance(valleySelect);
     const risk = document.getElementById('browseRisk');
     const distance = document.getElementById('browseDistance');
@@ -1169,6 +1184,7 @@
       });
       list.querySelectorAll('.simple-card__main,.browse-card-open').forEach(link => {
         link.addEventListener('click', () => {
+          primeTrailLink(link);
           const id = new URL(link.href, window.location.href).searchParams.get('id');
           if(id && window.DoloPawsMetricFunnel){
             window.DoloPawsMetricFunnel.recordOnce(

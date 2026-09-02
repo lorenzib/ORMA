@@ -1508,29 +1508,47 @@ function renderTrail(t){
   document.title = `${t.name} | ORMA`;
   document.getElementById('pageTitle').textContent = `${t.name} | ORMA`;
   document.getElementById('trailName').textContent = t.name;
+  document.getElementById('trailName').removeAttribute('aria-busy');
   // Photo-backed hero (per prototype): trail photo under a dark gradient.
   // Trails without an image keep the flat dark hero.
   if(t.imageIcon){
     const heroPhoto = document.getElementById('tdHeroPhoto');
     const heroVeil = document.getElementById('tdHeroVeil');
     if(heroPhoto && heroVeil){
+      const responsivePhotoByTrailId = {
+        'lago-braies':'images/lago-di-braies.webp',
+        'lago-carezza':'images/lago-di-carezza.webp',
+        'osm-16322228':'images/boucle-du-marais-des-chassettes.webp',
+        'osm-3982382':'images/circuit-beatrice-de-savoie.webp',
+        'osm-10116380':'images/itineraire-decouverte-de-la-nature.webp',
+      };
+      const responsiveSource = responsivePhotoByTrailId[t.id] || t.imageIcon;
       const responsiveWidths = {
         'images/lago-di-braies.webp':[480,900],
         'images/lago-di-carezza.webp':[480,900],
         'images/boucle-du-marais-des-chassettes.webp':[480,960,1280],
         'images/circuit-beatrice-de-savoie.webp':[480,960,1280],
         'images/itineraire-decouverte-de-la-nature.webp':[480,960,1280],
-      }[t.imageIcon];
+      }[responsiveSource];
       if(responsiveWidths){
-        const stem = t.imageIcon.replace(/\.webp$/, '');
+        const stem = responsiveSource.replace(/\.webp$/, '');
         heroPhoto.src = `${stem}.jpg`;
         heroPhoto.srcset = responsiveWidths.map((width, index) =>
-          `${width === 900 ? t.imageIcon : `${stem}-${width}.webp`} ${width}w`
+          `${width === 900 ? responsiveSource : `${stem}-${width}.webp`} ${width}w`
+        ).join(', ');
+        heroPhoto.sizes = '(max-width: 700px) 100vw, 1200px';
+      } else if(/^https:\/\/commons\.wikimedia\.org\/wiki\/Special:Redirect\/file\//i.test(t.imageIcon)){
+        const separator = t.imageIcon.includes('?') ? '&' : '?';
+        heroPhoto.src = `${t.imageIcon}${separator}width=960`;
+        heroPhoto.srcset = [480, 960, 1600].map(width =>
+          `${t.imageIcon}${separator}width=${width} ${width}w`
         ).join(', ');
         heroPhoto.sizes = '(max-width: 700px) 100vw, 1200px';
       } else {
         heroPhoto.src = t.imageIcon;
       }
+      heroPhoto.decoding = 'async';
+      heroPhoto.fetchPriority = 'high';
       heroPhoto.alt = t.imageAlt || `${t.name} trail photograph`;
       heroPhoto.hidden = false;
       heroVeil.hidden = false;

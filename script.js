@@ -2442,6 +2442,7 @@ function renderLiSearchSuggestions(profile){
       option.addEventListener('click', () => {
         search.value = trail.name;
         hideLiSearchSuggestions();
+        warmTrailDetail(trail);
         // A search result is a destination, not just a map-focus control.
         // Always use the dynamic detail route so catalogue trails that do not
         // have a generated static HTML page (for example the Rasa/Odle route)
@@ -2668,7 +2669,15 @@ async function renderReturningHomepage(profile){
   listEl.querySelectorAll('.li-row').forEach(row => {
     row.addEventListener('click', (e) => {
       if(e.target.closest('a, button, .photo')) return;
+      warmTrailDetail(trails.find(trail => trail.id === row.dataset.id));
       window.location.href = 'trail.html?id=' + row.dataset.id;
+    });
+  });
+
+  listEl.querySelectorAll('.li-row-name').forEach(link => {
+    link.addEventListener('click', () => {
+      const row = link.closest('.li-row');
+      warmTrailDetail(trails.find(trail => row && trail.id === row.dataset.id));
     });
   });
 
@@ -2851,6 +2860,10 @@ if(mapCalloutClose){
 }
 function warmTrailDetail(t){
   if(!t || !t.id) return;
+  if(window.DoloPawsRegionalData && typeof window.DoloPawsRegionalData.primeTrailDetail === 'function'){
+    window.DoloPawsRegionalData.primeTrailDetail(t);
+    return;
+  }
   try{
     sessionStorage.setItem('orma-trail-detail:' + t.id, JSON.stringify({ at:Date.now(), trail:t }));
   }catch(error){}

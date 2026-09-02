@@ -1324,7 +1324,47 @@ body.trail-photo-viewer-open{overflow:hidden;}
     }catch(error){}
   })();
 </script>
-<script src="regional-trails-loader.js?v=20260901-1" data-default-region="trail"></script>
+<script src="regional-trails-loader.js?v=20260902-1" data-default-region="trail"></script>
+<script>
+  // Paint the identifying trail content as soon as the tiny detail payload is
+  // available. The full application can continue booting below without
+  // leaving mobile visitors staring at a skeleton meanwhile.
+  (function(){
+    var id = new URLSearchParams(location.search).get('id');
+    var trail = id && Array.isArray(window.trails)
+      ? window.trails.find(function(item){ return item && item.id === id; })
+      : null;
+    if(!trail) return;
+    var name = document.getElementById('trailName');
+    if(name){
+      name.textContent = trail.name;
+      name.removeAttribute('aria-busy');
+    }
+    document.title = trail.name + ' | ORMA';
+    var pageTitle = document.getElementById('pageTitle');
+    if(pageTitle) pageTitle.textContent = document.title;
+    var facts = document.getElementById('trailFacts');
+    if(facts){
+      var rows = [
+        [trail.distance, ' km', window.t('trail.fact.distance')],
+        [trail.elevation, ' m', window.t('trail.fact.ascent')],
+        [trail.hours, ' h', window.t('trail.fact.duration')],
+      ];
+      rows.forEach(function(row){
+        if(row[0] == null) return;
+        var item = document.createElement('span');
+        item.className = 'f';
+        var value = document.createElement('b');
+        value.textContent = row[0] + row[1];
+        var label = document.createElement('span');
+        label.textContent = row[2];
+        item.append(value, label);
+        facts.appendChild(item);
+      });
+    }
+    if(window.performance && performance.mark) performance.mark('orma-trail-critical-render');
+  })();
+</script>
 <script src="trail-audits.js?v=20260815-4" defer></script>
 <script src="regions-config.js"></script>
 <script src="basemap-poi-click.js" defer></script>
@@ -1346,8 +1386,8 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="trail-weather-window.js?v=20260820-1" defer></script>
 <script src="trail-reports.js?v=20260820-2" defer></script>
 <script src="veterinary-care.js?v=20260831-2" defer></script>
-<script src="trail.js?v=20260901-11" defer></script>
 <script src="trail-route-refs.js?v=20260901-4" defer></script>
+<script src="trail.js?v=20260902-1" defer></script>
 <script src="trail-blueprint.js?v=20260901-3" defer></script>
 <script src="trail-detail-ui.js?v=20260826-1" defer></script>
 <script src="trail-mobile.js?v=20260826-1" defer></script>

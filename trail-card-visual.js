@@ -67,9 +67,30 @@
     'images/itineraire-decouverte-de-la-nature.webp': [480, 960, 1280],
   };
 
+  var responsivePhotoByTrailId = {
+    'lago-braies': 'images/lago-di-braies.webp',
+    'lago-carezza': 'images/lago-di-carezza.webp',
+    'osm-16322228': 'images/boucle-du-marais-des-chassettes.webp',
+    'osm-3982382': 'images/circuit-beatrice-de-savoie.webp',
+    'osm-10116380': 'images/itineraire-decouverte-de-la-nature.webp',
+  };
+
+  function isCommonsRedirect(source){
+    return /^https:\/\/commons\.wikimedia\.org\/wiki\/Special:Redirect\/file\//i.test(source || '');
+  }
+
+  function withWidth(source, width){
+    return source + (source.indexOf('?') === -1 ? '?' : '&') + 'width=' + width;
+  }
+
   function photoAttributes(source){
     var widths = responsivePhotos[source];
-    if(!widths) return '';
+    if(!widths){
+      if(isCommonsRedirect(source)){
+        return ' srcset="' + escapeHtml(withWidth(source, 320)) + ' 320w, ' + escapeHtml(withWidth(source, 640)) + ' 640w" sizes="(max-width: 640px) 42vw, 240px" decoding="async"';
+      }
+      return ' decoding="async"';
+    }
     var stem = source.replace(/\.webp$/, '');
     var entries = widths.map(function(width, index){
       var url = width === 900 ? source : stem + '-' + width + '.webp';
@@ -79,6 +100,7 @@
   }
 
   function photoFallback(source){
+    if(isCommonsRedirect(source)) return withWidth(source, 480);
     return responsivePhotos[source] ? source.replace(/\.webp$/, '.jpg') : source;
   }
 
@@ -94,8 +116,9 @@
     if(options.clickable) classes.push('trail-visual--clickable');
 
     if(typeof trail.imageIcon === 'string' && trail.imageIcon.trim()){
+      var photoSource = responsivePhotoByTrailId[trail.id] || trail.imageIcon;
       classes.push('trail-visual--photo');
-      return '<div class="' + classes.join(' ') + '"' + attrs + '><img src="' + escapeHtml(photoFallback(trail.imageIcon)) + '"' + photoAttributes(trail.imageIcon) + ' alt="' + escapeHtml(name) + '" loading="lazy"></div>';
+      return '<div class="' + classes.join(' ') + '"' + attrs + '><img src="' + escapeHtml(photoFallback(photoSource)) + '"' + photoAttributes(photoSource) + ' alt="' + escapeHtml(name) + '" loading="lazy"></div>';
     }
     if(usablePath(trail.path)){
       classes.push('trail-visual--route');

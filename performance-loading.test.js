@@ -64,7 +64,18 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(loader).toContain('alreadyPrimed');
     expect(homepage).toContain("function warmTrailDetail(t)");
     expect(detail).toContain("sessionStorage.getItem('orma-trail-detail:' + id)");
+    expect(loader).toContain('primeTrailDetail: primeTrailDetail');
+    expect(read('browse-trails.html')).toContain('primeTrailLink(link)');
+    expect(homepage).toContain('warmTrailDetail(trail);');
     expect(loader).toContain('regionForTrail:');
+  });
+
+  test('trail identity paints before deferred detail features finish booting', () => {
+    const page = read('trail.html');
+    const criticalRender = page.indexOf("performance.mark('orma-trail-critical-render')");
+    expect(criticalRender).toBeGreaterThan(page.indexOf('data-default-region="trail"'));
+    expect(criticalRender).toBeLessThan(page.indexOf('src="trail-audits.js'));
+    expect(page).toContain("name.removeAttribute('aria-busy')");
   });
 
   test('an uncached parking lookup cannot block trail-detail rendering', () => {
@@ -101,5 +112,10 @@ describe('PERF-02 asset and regional loading contract', () => {
     });
     expect(read('index.html')).not.toContain('lago-di-braies.png');
     expect(read('trail-card-visual.js')).toContain('srcset=');
+    expect(read('trail-card-visual.js')).toContain('responsivePhotoByTrailId');
+    expect(read('trail-card-visual.js')).toContain("withWidth(source, 480)");
+    const detailRuntime = read('trail.js');
+    expect(detailRuntime).toContain("'lago-braies':'images/lago-di-braies.webp'");
+    expect(detailRuntime).toContain("width=${width}");
   });
 });

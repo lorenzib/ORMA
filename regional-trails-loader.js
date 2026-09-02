@@ -33,6 +33,19 @@
     return assetUrl(region, key);
   }
 
+  function primeTrailDetail(trail) {
+    if (!trail || !trail.id) return false;
+    try {
+      sessionStorage.setItem('orma-trail-detail:' + trail.id, JSON.stringify({
+        at: Date.now(),
+        trail: trail,
+      }));
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
   var current = document.currentScript;
   var params = new URLSearchParams(window.location.search);
   var trailId = params.get('id');
@@ -66,5 +79,6 @@
     trailCount: function (region) { return manifest.regions[region] && manifest.regions[region].trailCount || 0; },
     poiUrl: poiUrl,
     regionForTrail: function (trailId) { return manifest.trailRegion[trailId] || null; },
+    primeTrailDetail: primeTrailDetail,
   };
 })();
