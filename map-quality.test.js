@@ -48,4 +48,12 @@ describe('shared map quality profile', () => {
     expect(script).not.toContain('showTrailMapPopup');
     expect(script).not.toContain("className: 'trail-map-popup'");
   });
+
+  test('renders high-contrast route-number shields over layered map routes', () => {
+    const refs = read('trail-route-refs.js');
+    expect(refs).toContain("canvas.width = 104");
+    expect(refs).toContain("'symbol-spacing':['interpolate', ['linear'], ['zoom'], 8, 125");
+    expect(refs).toContain("'text-size':['interpolate', ['linear'], ['zoom'], 8, 16");
+    expect(refs).toContain("'text-halo-width':1.2");
+  });
 });

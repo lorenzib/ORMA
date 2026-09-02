@@ -158,18 +158,18 @@
   function registerShieldImage(map) {
     if(map.hasImage(SHIELD_IMAGE_ID)) return;
     const canvas = document.createElement('canvas');
-    canvas.width = 80;
-    canvas.height = 56;
+    canvas.width = 104;
+    canvas.height = 68;
     const context = canvas.getContext('2d');
     context.fillStyle = '#FFFFFF';
-    context.fillRect(2, 2, 76, 52);
+    context.fillRect(2, 2, 100, 64);
     context.strokeStyle = '#17221B';
-    context.lineWidth = 4;
-    context.strokeRect(4, 4, 72, 48);
+    context.lineWidth = 5;
+    context.strokeRect(4.5, 4.5, 95, 59);
     map.addImage(
       SHIELD_IMAGE_ID,
-      context.getImageData(0, 0, 80, 56),
-      { pixelRatio:2, stretchX:[[16, 64]], stretchY:[[14, 42]], content:[11, 8, 69, 48] }
+      context.getImageData(0, 0, 104, 68),
+      { pixelRatio:2, stretchX:[[20, 84]], stretchY:[[16, 52]], content:[14, 9, 90, 59] }
     );
   }
 
@@ -184,17 +184,17 @@
       minzoom:8,
       layout:{
         'symbol-placement':'line',
-        'symbol-spacing':['interpolate', ['linear'], ['zoom'], 8, 165, 12, 205, 16, 245, 19, 285],
+        'symbol-spacing':['interpolate', ['linear'], ['zoom'], 8, 125, 12, 155, 16, 190, 19, 230],
         'icon-image':SHIELD_IMAGE_ID,
         'icon-text-fit':'both',
-        'icon-text-fit-padding':[4, 7, 4, 7],
-        'icon-size':['interpolate', ['linear'], ['zoom'], 8, 1, 12, 1.08, 16, 1.18, 19, 1.24],
+        'icon-text-fit-padding':[6, 10, 6, 10],
+        'icon-size':['interpolate', ['linear'], ['zoom'], 8, 1.08, 12, 1.16, 16, 1.26, 19, 1.34],
         'icon-rotation-alignment':'viewport',
         'icon-allow-overlap':true,
         'icon-ignore-placement':true,
         'text-field':['get', 'routeRef'],
         'text-font':['Open Sans Bold', 'Arial Unicode MS Bold'],
-        'text-size':['interpolate', ['linear'], ['zoom'], 8, 14, 12, 16, 16, 18, 19, 20],
+        'text-size':['interpolate', ['linear'], ['zoom'], 8, 16, 12, 18, 16, 21, 19, 23],
         'text-rotation-alignment':'viewport',
         'text-keep-upright':true,
         'text-allow-overlap':true,
@@ -203,7 +203,7 @@
       paint:{
         'text-color':'#17221B',
         'text-halo-color':'#FFFFFF',
-        'text-halo-width':0.6,
+        'text-halo-width':1.2,
       },
     }, config.beforeId);
   }
