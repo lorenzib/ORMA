@@ -44,7 +44,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('id="workerHealth"');
     expect(html).toContain('id="campaignHealth"');
     expect(html).toContain('backoffice/dashboard-model.js?v=20260825-10');
-    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260901-1');
+    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260902-1');
     expect(html).toContain('href="trail-dossier-desk.html"');
     expect(html).toContain('href="new-trail-scouting-desk.html"');
     expect(html).toContain('href="hazard-review-desk.html"');
@@ -75,6 +75,13 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(script).toContain("optional(remote,'image-coverage'");
     expect(script).toContain("optional(remote,'new-trail-scouting'");
     expect(script).toContain("optional(remote,'hazard-review-queue'");
+  });
+
+  test('dashboard refreshes conservatively and pauses polling in hidden tabs',()=>{
+    const script=fs.readFileSync(path.join(output,'backoffice-hosted-dashboard.js'),'utf8');
+    expect(script).toContain('const REFRESH_SECONDS=300');
+    expect(script).toContain("document.addEventListener('visibilitychange'");
+    expect(script).toContain('if(loading||document.hidden)return');
   });
 
   test.each([

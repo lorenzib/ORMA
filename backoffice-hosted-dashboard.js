@@ -2,8 +2,9 @@
   'use strict';
 
   const set=(id,value)=>{const node=document.getElementById(id);if(node)node.textContent=value;};
+  const REFRESH_SECONDS=300;
   let loading=false;
-  let seconds=15;
+  let seconds=REFRESH_SECONDS;
 
   function element(tag,className,text){
     const node=document.createElement(tag);
@@ -150,7 +151,7 @@
       const model=window.ORMADashboardModel.buildDashboardModel({orchestration,dossiers,execution,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviews:newTrailReviewResult.reviews||[],hazards,hazardQueue,hazardStatus,hazardReviews:hazardReviewResult.reviews||[],strategyStatus,imageAudit,imageResults,imagePublicationRequests,imageStatus,imageReviews:imageReviewResult.reviews||[],jobs:jobResult.jobs||[],history:historyResult.decisions||[]});
       document.getElementById('executiveDecisionQueue').classList.remove('is-error');
       render(model);
-      seconds=15;
+      seconds=REFRESH_SECONDS;
       const refreshed=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
       set('dashboardUpdated',`Live · ${refreshed} · refresh in ${seconds}s`);
     }catch(error){
@@ -165,8 +166,13 @@
   }
 
   document.getElementById('refreshDashboard').addEventListener('click',load);
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden)return;
+    seconds=REFRESH_SECONDS;
+    load();
+  });
   window.setInterval(()=>{
-    if(loading)return;
+    if(loading||document.hidden)return;
     seconds-=1;
     if(seconds<=0){load();return;}
     const node=document.getElementById('dashboardUpdated');
