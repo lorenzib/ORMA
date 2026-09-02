@@ -12,10 +12,11 @@ describe('logged-in homepage mapped-route hierarchy', () => {
     expect(html.indexOf('trail-route-refs.js')).toBeLessThan(html.indexOf('script.js?v='));
   });
 
-  test('draws a consistent purple mapped route above the ORMA colour underlay', () => {
+  test('keeps every mapped route rail in the active dog match colour', () => {
     expect(script).toContain("id: 'trail-paths-mapped-casing'");
     expect(script).toContain("id: 'trail-paths-mapped-line'");
-    expect(script).toContain("'line-color': '#76528C'");
+    expect(script).toMatch(/id: 'trail-paths-mapped-casing'[\s\S]*?'step'[\s\S]*?65, '#C98A2E', 85, '#4A7856'/);
+    expect(script).toMatch(/id: 'trail-paths-mapped-line'[\s\S]*?'step'[\s\S]*?65, '#C98A2E', 85, '#4A7856'/);
     expect(script).toContain("13, 18, 16, 22");
     expect(script).toContain("13, 13, 16, 16");
     expect(script).toContain("13, 11, 16, 14");

@@ -418,7 +418,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toMatch(/id: 'guest-trail-paths-orma-line'[\s\S]*?'line-color': \[[\s\S]*?'low-risk', '#4A7856'[\s\S]*?'moderate', '#C98A2E'[\s\S]*?'caution', '#9C3A25'[\s\S]*?guestFirstLabel \? guestFirstLabel\.id : undefined\);/);
     expect(script).toContain("guestMapInstance.moveLayer('waymarked-hiking-layer', guestFirstLabel.id)");
     expect(script).not.toContain("trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id)");
-    expect(trailScript).toMatch(/id: 'single-trail-path-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(trailScript).toMatch(/id: 'single-trail-path-line'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
     expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script.match(/7, 0\.10/g)).toHaveLength(1);
     expect(script.match(/10, 0\.14/g)).toHaveLength(1);
@@ -430,7 +430,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toContain('7, 0.16');
     expect(script).toContain('16, 0.95');
     expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': \['interpolate'[\s\S]*?13, 13, 16, 16/);
-    expect(script).toMatch(/id: 'trail-paths-mapped-line'[\s\S]*?'line-color': '#76528C'[\s\S]*?13, 5, 16, 7/);
+    expect(script).toMatch(/id: 'trail-paths-mapped-line'[\s\S]*?'line-color': \[[\s\S]*?'step'[\s\S]*?65, '#C98A2E', 85, '#4A7856'[\s\S]*?13, 5, 16, 7/);
     expect(script).not.toContain("id: 'trail-clusters'");
     expect(script).not.toContain("id: 'trail-cluster-count'");
     expect(script).not.toContain('clusterMinPoints');

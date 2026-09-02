@@ -2299,23 +2299,22 @@ function renderTrail(t){
             geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
           },
         });
-        // The mapped hiking route remains authoritative and sits above ORMA's
-        // match colour. A white outer casing and wider colour underlay make the
-        // selected route obvious without drawing a second set of route numbers.
+        // Keep the route above the hiking-network raster so its visible colour
+        // always communicates this dog's match. Labels remain above the route.
         map.addLayer({
           id: 'single-trail-path-casing',
           type: 'line',
           source: 'single-trail-path',
           layout: { 'line-join': 'round', 'line-cap': 'round' },
           paint: { 'line-color': '#FFFDF7', 'line-width': 17, 'line-opacity': 0.96 },
-        }, 'waymarked-hiking-layer');
+        }, firstLabelLayer ? firstLabelLayer.id : undefined);
         map.addLayer({
           id: 'single-trail-path-line',
           type: 'line',
           source: 'single-trail-path',
           layout: { 'line-join': 'round', 'line-cap': 'round' },
           paint: { 'line-color': selectedRouteColor, 'line-width': 13, 'line-opacity': 1 },
-        }, 'waymarked-hiking-layer');
+        }, firstLabelLayer ? firstLabelLayer.id : undefined);
 
         // Closed loops are intentionally direction-neutral: hikers can join
         // anywhere and walk clockwise or anticlockwise. Keep arrows only for

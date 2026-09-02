@@ -946,9 +946,9 @@ function initTrailMap(){
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 5, 13, 6],
       },
     }, 'waymarked-hiking-layer');
-    // ORMA match colour remains the widest underlay. Above it, mask the raw
-    // raster route with one consistent mapped-route UI: white casing, purple
-    // rail and a white shield with black text.
+    // Every visible route rail uses the active dog's match tier. The narrower
+    // mapped-route layers still mask the raw raster symbology and carry route
+    // shields, but must not replace the personalised colour with a fixed rail.
     trailMapInstance.addLayer({
       id: 'trail-paths-orma-halo',
       type: 'line',
@@ -983,7 +983,10 @@ function initTrailMap(){
       minzoom: 7,
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': '#FFFDF7',
+        'line-color': [
+          'step', ['coalesce', ['get', 'score'], 0],
+          '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
+        ],
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 5, 10, 8, 13, 11, 16, 14],
         'line-opacity': 1,
       },
@@ -995,7 +998,10 @@ function initTrailMap(){
       minzoom: 7,
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': '#76528C',
+        'line-color': [
+          'step', ['coalesce', ['get', 'score'], 0],
+          '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
+        ],
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 3.5, 13, 5, 16, 7],
         'line-opacity': 1,
       },

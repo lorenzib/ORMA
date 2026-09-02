@@ -545,12 +545,14 @@ describe('trail page map controls', () => {
     expect(trail).toContain("'line-color': '#FFFDF7', 'line-width': 17");
     expect(trail).toContain("return score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25'");
     expect(trail).toContain("'line-color': selectedRouteColor, 'line-width': 13");
+    expect(trail).toMatch(/id: 'single-trail-path-casing'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
+    expect(trail).toMatch(/id: 'single-trail-path-line'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
     expect(trail).toContain("'line-color': '#858D88'");
     expect(trail).not.toContain("id:'single-trail-route-number'");
     expect(trail).not.toContain("source:'single-trail-route-refs'");
     expect(trail).not.toContain('window.DoloPawsTrailRouteRefs.addShieldLayer');
     expect(html).toContain('.td2-hero{background:#243128;color:#EAF1E8;position:relative;overflow:visible;z-index:2;}');
-    expect(trail).toContain("}, 'waymarked-hiking-layer');");
+    expect(trail).toContain("}, firstLabelLayer ? firstLabelLayer.id : undefined);");
     expect(trail).toContain("'raster-resampling': 'linear'");
     expect(trail).toContain("'raster-fade-duration': 120");
     expect(trail).not.toContain("element.textContent = '✓'");
