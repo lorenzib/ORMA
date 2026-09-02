@@ -10,7 +10,7 @@ describe('PERF-02 asset and regional loading contract', () => {
     const detail = read('trail.html');
     [homepage, detail].forEach(html => expect(html).not.toContain('unpkg.com/maplibre-gl@5.24.0'));
     expect(homepage).toContain('map-runtime.js?v=20260826-1');
-    expect(detail).toContain('trail-app.bundle.js?v=20260902-1');
+    expect(detail).toContain('trail-app.bundle.js?v=20260902-2');
     const runtime = read('map-runtime.js');
     expect(runtime).toContain('IntersectionObserver');
     expect(runtime).toContain("rootMargin: opts.rootMargin || '320px 0px'");
@@ -113,7 +113,7 @@ describe('PERF-02 asset and regional loading contract', () => {
 
   test('trail application code ships as one ordered, reproducible request', () => {
     const page = read('trail.html');
-    expect(page).toContain('<script src="trail-app.bundle.js?v=20260902-1" defer>');
+    expect(page).toContain('<script src="trail-app.bundle.js?v=20260902-2" defer>');
     expect(page).not.toContain('<script src="map-runtime.js');
     expect(page).not.toContain('<script src="trail.js');
     expect(trailBundle.SOURCES.length).toBeGreaterThan(40);

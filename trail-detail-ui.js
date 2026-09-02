@@ -70,11 +70,20 @@
     const mapBtn = document.getElementById('mapStartHikeBtn');
     const rec = recording();
     if (heroBtn) {
-      heroBtn.hidden = !mapBtn; // hike-mode only injects the button when GPS exists
+      const nextHidden = !mapBtn;
+      if (heroBtn.hidden !== nextHidden) heroBtn.hidden = nextHidden;
       heroBtn.classList.toggle('recording', rec);
-      heroBtn.innerHTML = rec
-        ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg> End · <span class="hike-elapsed">' + fmtElapsed() + '</span>'
-        : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Start the hike';
+      // On mobile this button lives inside mapBox, whose MutationObserver
+      // calls syncHike. Replacing identical markup on every callback creates
+      // a self-triggering mutation loop that locks the page. Only rewrite the
+      // button when its actual state changes.
+      const nextState = rec ? 'recording' : 'idle';
+      if (heroBtn.dataset.hikeUiState !== nextState) {
+        heroBtn.dataset.hikeUiState = nextState;
+        heroBtn.innerHTML = rec
+          ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg> End · <span class="hike-elapsed">' + fmtElapsed() + '</span>'
+          : '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Start the hike';
+      }
     }
     if (liveBanner) liveBanner.hidden = !rec;
     if (!rec && elapsedTimer) { clearInterval(elapsedTimer); elapsedTimer = null; hikeStartedAt = null; }

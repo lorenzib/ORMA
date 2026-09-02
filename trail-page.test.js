@@ -87,6 +87,14 @@ describe('trail page map controls', () => {
     expect(trail).toContain('if(trailInitStarted) return;');
   });
 
+  test('mobile hike controls do not trigger their map observer forever', () => {
+    const ui = fs.readFileSync(path.join(__dirname, 'trail-detail-ui.js'), 'utf8');
+    expect(ui).toContain("const nextState = rec ? 'recording' : 'idle';");
+    expect(ui).toContain('if (heroBtn.dataset.hikeUiState !== nextState)');
+    expect(ui.indexOf('if (heroBtn.dataset.hikeUiState !== nextState)'))
+      .toBeLessThan(ui.indexOf('heroBtn.innerHTML = rec'));
+  });
+
   test('uses the main-map Layers pattern and removes the redundant map key', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     document.body.innerHTML = html;
@@ -190,7 +198,7 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20260901-1');
-    expect(html).toContain('trail-app.bundle.js?v=20260902-1');
+    expect(html).toContain('trail-app.bundle.js?v=20260902-2');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
       'detail-pois.js', 'trail-access-directions.js', 'footpath-router.js',
