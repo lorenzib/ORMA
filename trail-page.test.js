@@ -87,12 +87,44 @@ describe('trail page map controls', () => {
     expect(trail).toContain('if(trailInitStarted) return;');
   });
 
-  test('mobile hike controls do not trigger their map observer forever', () => {
+  test('mobile hike controls settle after their map observer runs', () => {
     const ui = fs.readFileSync(path.join(__dirname, 'trail-detail-ui.js'), 'utf8');
-    expect(ui).toContain("const nextState = rec ? 'recording' : 'idle';");
-    expect(ui).toContain('if (heroBtn.dataset.hikeUiState !== nextState)');
-    expect(ui.indexOf('if (heroBtn.dataset.hikeUiState !== nextState)'))
-      .toBeLessThan(ui.indexOf('heroBtn.innerHTML = rec'));
+    document.body.innerHTML = `
+      <main class="td2">
+        <div id="desktopActions"><button id="heroStartHike" hidden>Start hike</button></div>
+        <div id="trailMapBox"><div id="mobileMapHikeSlot"></div></div>
+      </main>`;
+    const hero = document.getElementById('heroStartHike');
+    const innerHtml = Object.getOwnPropertyDescriptor(Element.prototype, 'innerHTML');
+    let heroWrites = 0;
+    Object.defineProperty(hero, 'innerHTML', {
+      configurable:true,
+      get(){ return innerHtml.get.call(this); },
+      set(value){ heroWrites += 1; innerHtml.set.call(this, value); },
+    });
+    const callbacks = [];
+    const OriginalObserver = window.MutationObserver;
+    const originalMatchMedia = window.matchMedia;
+    const originalSetInterval = window.setInterval;
+    window.MutationObserver = class {
+      constructor(callback){ callbacks.push(callback); }
+      observe(){}
+    };
+    window.matchMedia = () => ({ matches:true, addEventListener(){} });
+    window.setInterval = () => 1;
+    try {
+      window.eval(ui);
+      expect(hero.parentElement.id).toBe('mobileMapHikeSlot');
+      expect(heroWrites).toBe(1);
+      expect(callbacks.length).toBeGreaterThan(0);
+      callbacks[0]([]);
+      callbacks[0]([]);
+      expect(heroWrites).toBe(1);
+    } finally {
+      window.MutationObserver = OriginalObserver;
+      window.matchMedia = originalMatchMedia;
+      window.setInterval = originalSetInterval;
+    }
   });
 
   test('uses the main-map Layers pattern and removes the redundant map key', () => {
