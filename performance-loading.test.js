@@ -73,6 +73,16 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(detail).toContain('if(deferOnMiss) return Promise.resolve()');
   });
 
+  test('homepage selection promotes one route with detail-map hierarchy', () => {
+    const homepage = read('script.js');
+    expect(homepage).toContain("id:'trail-selected-route-casing'");
+    expect(homepage).toContain("id:'trail-selected-route-line'");
+    expect(homepage).toContain("id:'trail-selected-route-number'");
+    expect(homepage).toContain("function setSelectedTrailRoute(trail, options)");
+    expect(homepage).toContain('setSelectedTrailRoute(t);');
+    expect(homepage).toContain('setSelectedTrailRoute(null, { fit:false });');
+  });
+
   test('oversized trail photos have mobile WebP variants and JPEG fallbacks', () => {
     const stems = [
       'lago-di-braies',

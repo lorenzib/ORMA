@@ -994,6 +994,47 @@ function initTrailMap(){
         source:'trail-route-refs',
       });
     }
+    // Once a visitor chooses a trail, give it the same clear, route-first
+    // treatment used by a detail page. The wider catalogue stays underneath
+    // as quiet context instead of competing with the chosen walk.
+    trailMapInstance.addSource('trail-selected-route', {
+      type:'geojson', data:{ type:'FeatureCollection', features:[] },
+    });
+    trailMapInstance.addSource('trail-selected-route-refs', {
+      type:'geojson', data:{ type:'FeatureCollection', features:[] },
+    });
+    trailMapInstance.addLayer({
+      id:'trail-selected-route-casing', type:'line', source:'trail-selected-route',
+      layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
+      paint:{ 'line-color':'#FFFDF7', 'line-width':['interpolate',['linear'],['zoom'],8,9,12,14,16,18], 'line-opacity':0.97 },
+    }, firstLabelLayer ? firstLabelLayer.id : undefined);
+    trailMapInstance.addLayer({
+      id:'trail-selected-route-line', type:'line', source:'trail-selected-route',
+      layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
+      paint:{
+        'line-color':['step',['coalesce',['get','score'],0],'#9C3A25',65,'#C98A2E',85,'#4A7856'],
+        'line-width':['interpolate',['linear'],['zoom'],8,5,12,9,16,13], 'line-opacity':1,
+      },
+    }, firstLabelLayer ? firstLabelLayer.id : undefined);
+    trailMapInstance.addLayer({
+      id:'trail-selected-route-arrows', type:'symbol', source:'trail-selected-route',
+      layout:{
+        visibility:'none', 'symbol-placement':'line', 'symbol-spacing':80,
+        'text-field':'➤', 'text-size':18, 'text-rotation-alignment':'map',
+        'text-keep-upright':false, 'text-allow-overlap':true, 'text-ignore-placement':true,
+      },
+      paint:{
+        'text-color':'#ffffff',
+        'text-halo-color':['step',['coalesce',['get','score'],0],'#9C3A25',65,'#C98A2E',85,'#4A7856'],
+        'text-halo-width':2,
+      },
+    }, firstLabelLayer ? firstLabelLayer.id : undefined);
+    if(window.DoloPawsTrailRouteRefs){
+      window.DoloPawsTrailRouteRefs.addShieldLayer(trailMapInstance, {
+        id:'trail-selected-route-number', source:'trail-selected-route-refs',
+        beforeId:firstLabelLayer && firstLabelLayer.id,
+      });
+    }
     // Wide, near-invisible twin of the route line so a fingertip (or a
     // slightly-off cursor) still hits the trail — 3px is too thin a target.
     trailMapInstance.addLayer({
@@ -1089,6 +1130,8 @@ function initTrailMap(){
     trailMapLoaded = true;
     if(pendingPathList) updatePathLayer(pendingPathList);
     if(pendingMarkerList) updateMapMarkers(pendingMarkerList);
+    const selected = currentMapTrails.find(trail => trail.id === selectedTrailId);
+    if(selected) setSelectedTrailRoute(selected, { fit:false });
   });
 }
 
@@ -1273,6 +1316,7 @@ function makeTrailDot(){
 function selectTrail(t){
   selectedTrailId = t.id;
   setSelectedTrailPoint(t.id);
+  setSelectedTrailRoute(t);
   document.querySelectorAll('#returningTrailList .tc-selected').forEach(c => c.classList.remove('tc-selected'));
   const card = document.getElementById(`trail-card-${t.id}`);
   if(card) card.classList.add('tc-selected');
@@ -1282,6 +1326,37 @@ function selectTrail(t){
 function setSelectedTrailPoint(id){
   if(!trailMapLoaded || !trailMapInstance || !trailMapInstance.getLayer('trail-selected-point')) return;
   trailMapInstance.setFilter('trail-selected-point', ['==', ['get', 'id'], id || '__none__']);
+}
+
+function setSelectedTrailRoute(trail, options){
+  if(!trailMapLoaded || !trailMapInstance || !trailMapInstance.getSource('trail-selected-route')) return;
+  const config = options || {};
+  const route = Array.isArray(trail && trail.path) && trail.path.length > 1 ? trail.path : [];
+  const visible = route.length > 1;
+  trailMapInstance.getSource('trail-selected-route').setData({
+    type:'FeatureCollection',
+    features:visible ? [{
+      type:'Feature',
+      properties:{ id:trail.id, score:typeof trail.score === 'number' ? trail.score : 0 },
+      geometry:{ type:'LineString', coordinates:route.map(([lat, lng]) => [lng, lat]) },
+    }] : [],
+  });
+  const refs = visible && window.DoloPawsTrailRouteRefs
+    ? window.DoloPawsTrailRouteRefs.featuresForTrail(trail) : [];
+  const refsSource = trailMapInstance.getSource('trail-selected-route-refs');
+  if(refsSource) refsSource.setData({ type:'FeatureCollection', features:refs });
+  ['trail-selected-route-casing','trail-selected-route-line','trail-selected-route-number'].forEach(layerId => {
+    if(trailMapInstance.getLayer(layerId)) trailMapInstance.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
+  });
+  const isLoop = visible && distMeters(route[0], route[route.length - 1]) <= 75;
+  if(trailMapInstance.getLayer('trail-selected-route-arrows')){
+    trailMapInstance.setLayoutProperty('trail-selected-route-arrows', 'visibility', visible && !isLoop ? 'visible' : 'none');
+  }
+  if(visible && config.fit !== false){
+    const bounds = new maplibregl.LngLatBounds();
+    route.forEach(([lat, lng]) => bounds.extend([lng, lat]));
+    trailMapInstance.fitBounds(bounds, { padding:window.innerWidth < 720 ? 44 : 64, maxZoom:17, duration:420 });
+  }
 }
 
 function jumpToCard(trailId){
@@ -2771,6 +2846,7 @@ if(mapCalloutClose){
     hideMapCallout();
     document.querySelectorAll('#returningTrailList .tc-selected').forEach(c => c.classList.remove('tc-selected'));
     setSelectedTrailPoint(null);
+    setSelectedTrailRoute(null, { fit:false });
   });
 }
 function warmTrailDetail(t){
