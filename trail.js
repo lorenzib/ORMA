@@ -2424,10 +2424,44 @@ function renderTrail(t){
   }
   };
   if(window.DoloPawsMapRuntime){
-    const detailMapSchedule = window.DoloPawsMapRuntime.whenVisible(detailMapTarget, initDetailMap, {
-      rootMargin:'360px 0px',
-      triggers:[document.getElementById('mapExpandBtn')],
-    });
+    const mobileMapLoadBtn = document.getElementById('mobileMapLoadBtn');
+    const deferMobileMap = !!(window.matchMedia && window.matchMedia('(max-width: 700px)').matches && !hikeDeepLinkRequested);
+    let detailMapSchedule;
+    if(deferMobileMap){
+      let mapStartPromise = null;
+      detailMapTarget.dataset.mapState = 'waiting';
+      const startMobileMap = () => {
+        if(mapStartPromise) return mapStartPromise;
+        detailMapTarget.dataset.mapState = 'loading';
+        if(mobileMapLoadBtn) mobileMapLoadBtn.hidden = true;
+        mapStartPromise = window.DoloPawsMapRuntime.load()
+          .then(initDetailMap)
+          .then(result => {
+            detailMapTarget.dataset.mapState = 'ready';
+            return result;
+          })
+          .catch(error => {
+            detailMapTarget.dataset.mapState = 'error';
+            detailMapTarget.setAttribute('aria-label', 'Map unavailable. Trail details remain available below.');
+            console.error('ORMA map failed to initialise:', error);
+            return null;
+          });
+        return mapStartPromise;
+      };
+      detailMapSchedule = { start:startMobileMap, get promise(){ return mapStartPromise; } };
+      if(mobileMapLoadBtn) mobileMapLoadBtn.addEventListener('click', startMobileMap, { once:true });
+      // Once the document itself has finished, prepare the map in idle time.
+      // A direct tap always wins and starts it immediately.
+      window.addEventListener('load', () => {
+        if(typeof requestIdleCallback === 'function') requestIdleCallback(startMobileMap, { timeout:8000 });
+        else setTimeout(startMobileMap, 4000);
+      }, { once:true });
+    }else{
+      detailMapSchedule = window.DoloPawsMapRuntime.whenVisible(detailMapTarget, initDetailMap, {
+        rootMargin:'360px 0px',
+        triggers:[document.getElementById('mapExpandBtn')],
+      });
+    }
     const expand = document.getElementById('mapExpandBtn');
     if(expand){
       expand.addEventListener('click', async event => {

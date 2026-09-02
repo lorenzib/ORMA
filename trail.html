@@ -11,7 +11,17 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script>
+  // Typography is decorative, not a reason to hold a trail page on its
+  // loading state. Fetch the web fonts only after the first usable render.
+  window.addEventListener('load', function(){
+    var fonts = document.createElement('link');
+    fonts.rel = 'stylesheet';
+    fonts.href = 'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap';
+    document.head.appendChild(fonts);
+  }, { once:true });
+</script>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
 <link rel="stylesheet" href="styles.css?v=20260823-1">
 <link rel="stylesheet" href="trail-mobile.css?v=20260826-1">
 <link rel="stylesheet" href="pre-hike-readiness.css?v=20260815-4">
@@ -60,6 +70,7 @@ h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;}
 /* Map hero */
 .trail-map-box{position:relative;height:396px;border-radius:20px;overflow:hidden;border:1px solid rgba(27,31,25,.1);margin-top:24px;background:linear-gradient(160deg,#d9e4cf 0%,#c7d6bb 45%,#e7ead9 100%);}
 #trailDetailMap{width:100%;height:100%;}
+.mobile-map-load{display:none;position:absolute;inset:50% auto auto 50%;z-index:9;transform:translate(-50%,-50%);min-width:190px;min-height:46px;padding:11px 18px;border:1px solid rgba(255,255,255,.55);border-radius:999px;background:#2E4034;color:#fff;box-shadow:0 8px 24px rgba(23,42,28,.25);font:750 13px/1.2 'Inter',system-ui,sans-serif;cursor:pointer;}
 /* Keep custom controls in a dedicated bottom-right stack. */
 .map-expand-btn{position:absolute;right:16px;bottom:52px;z-index:7;min-height:36px;font:600 12px 'Inter',sans-serif;background:var(--card);border:1px solid var(--paper-line);padding:7px 13px;border-radius:9px;box-shadow:0 2px 6px rgba(0,0,0,.15);cursor:pointer;color:var(--ink);}
 .trail-map-box .map-btn--terrain{right:16px;bottom:96px;z-index:7;}
@@ -535,6 +546,7 @@ body{background:#EFECE2;}
 .td2 .mobile-map-hike-slot{display:none;}
 
 @media(max-width:700px){
+  .trail-map-box[data-map-state="waiting"] .mobile-map-load{display:block;}
   /* Four predictable mobile zones: utility controls at the top corners,
      live state centred between them, map modes bottom-left and the hike
      action bottom-right. No two controls share an anchor. */
@@ -1095,6 +1107,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
     <div class="td2-card td2-mapcard">
       <div id="trailMapBox" class="trail-map-box">
         <div id="trailDetailMap"></div>
+        <button id="mobileMapLoadBtn" type="button" class="mobile-map-load">Load interactive map</button>
         <p id="routeDataNotice" class="route-data-notice" hidden></p>
         <button id="detailLayersBtn" type="button" class="map-btn" aria-expanded="false">Layers</button>
         <div id="detailLayersPanel" class="map-panel">
@@ -1297,7 +1310,32 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="i18n.js?v=20260901-1"></script>
 <script src="community-content-states.js?v=20260815-4" defer></script>
 <script src="offline-contributions.js?v=20260815-4" defer></script>
-<script type="module" src="firebase-init.js?v=20260901-1" async></script>
+<script>
+  // Account services are useful after the page is interactive, but loading
+  // the Firebase app/auth/Firestore graph during navigation keeps mobile
+  // browsers spinning on a large third-party module chain.
+  (function(){
+    var firebaseStarted = false;
+    function loadTrailFirebase(){
+      if(firebaseStarted) return;
+      firebaseStarted = true;
+      var firebase = document.createElement('script');
+      firebase.type = 'module';
+      firebase.async = true;
+      firebase.src = 'firebase-init.js?v=20260902-1';
+      document.head.appendChild(firebase);
+    }
+    function scheduleTrailFirebase(){
+      if('requestIdleCallback' in window){
+        requestIdleCallback(loadTrailFirebase, { timeout:3500 });
+      }else{
+        setTimeout(loadTrailFirebase, 1200);
+      }
+    }
+    if(document.readyState === 'complete') scheduleTrailFirebase();
+    else window.addEventListener('load', scheduleTrailFirebase, { once:true });
+  })();
+</script>
 <script src="icon-system.js?v=20260901-1" defer></script>
 <script src="guest-context.js?v=20260815-4" defer></script>
 <script src="auth-ui.js?v=20260821-1" defer></script>
@@ -1387,7 +1425,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 <script src="trail-reports.js?v=20260820-2" defer></script>
 <script src="veterinary-care.js?v=20260831-2" defer></script>
 <script src="trail-route-refs.js?v=20260901-4" defer></script>
-<script src="trail.js?v=20260902-1" defer></script>
+<script src="trail.js?v=20260902-2" defer></script>
 <script src="trail-blueprint.js?v=20260901-3" defer></script>
 <script src="trail-detail-ui.js?v=20260826-1" defer></script>
 <script src="trail-mobile.js?v=20260826-1" defer></script>

@@ -99,6 +99,18 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(homepage).toContain('function liScheduleNewMatchSync(scored, profile)');
   });
 
+  test('mobile trail navigation does not wait for Firebase, fonts or MapLibre', () => {
+    const page = read('trail.html');
+    const runtime = read('trail.js');
+    expect(page).not.toContain('<script type="module" src="firebase-init.js');
+    expect(page).toContain("window.addEventListener('load', scheduleTrailFirebase");
+    expect(page).toContain("window.addEventListener('load', function(){");
+    expect(page).toContain('id="mobileMapLoadBtn"');
+    expect(runtime).toContain("window.matchMedia('(max-width: 700px)').matches");
+    expect(runtime).toContain("detailMapTarget.dataset.mapState = 'waiting'");
+    expect(runtime).toContain("window.addEventListener('load', () =>");
+  });
+
   test('an uncached parking lookup cannot block trail-detail rendering', () => {
     const detail = read('trail.js');
     expect(detail).toContain('improveLoopStart(trail, { deferOnMiss:true })');
