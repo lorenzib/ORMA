@@ -1024,7 +1024,7 @@ function initTrailMap(){
       id:'trail-selected-route-line', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
       paint:{
-        'line-color':['step',['coalesce',['get','score'],0],'#9C3A25',65,'#C98A2E',85,'#4A7856'],
+        'line-color':['coalesce',['get','routeColor'],'#4A7856'],
         'line-width':['interpolate',['linear'],['zoom'],8,5,12,9,16,13], 'line-opacity':1,
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
@@ -1037,7 +1037,7 @@ function initTrailMap(){
       },
       paint:{
         'text-color':'#ffffff',
-        'text-halo-color':['step',['coalesce',['get','score'],0],'#9C3A25',65,'#C98A2E',85,'#4A7856'],
+        'text-halo-color':['coalesce',['get','routeColor'],'#4A7856'],
         'text-halo-width':2,
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
@@ -1360,11 +1360,14 @@ function setSelectedTrailRoute(trail, options){
   const config = options || {};
   const route = Array.isArray(trail && trail.path) && trail.path.length > 1 ? trail.path : [];
   const visible = route.length > 1;
+  const routeColor = !trail ? '#4A7856'
+    : trail.score >= 85 ? '#4A7856'
+      : trail.score >= 65 ? '#C98A2E' : '#9C3A25';
   trailMapInstance.getSource('trail-selected-route').setData({
     type:'FeatureCollection',
     features:visible ? [{
       type:'Feature',
-      properties:{ id:trail.id, score:typeof trail.score === 'number' ? trail.score : 0 },
+      properties:{ id:trail.id, routeColor },
       geometry:{ type:'LineString', coordinates:route.map(([lat, lng]) => [lng, lat]) },
     }] : [],
   });
@@ -1372,6 +1375,15 @@ function setSelectedTrailRoute(trail, options){
     ? window.DoloPawsTrailRouteRefs.featuresForTrail(trail) : [];
   const refsSource = trailMapInstance.getSource('trail-selected-route-refs');
   if(refsSource) refsSource.setData({ type:'FeatureCollection', features:refs });
+  // Remove the selected feature from the broad homepage route stack while it
+  // is focused. Otherwise its purple mapped-route rail remains visible and
+  // fights the clean detail-map treatment above it.
+  ['trail-paths-casing','trail-paths-line','trail-paths-orma-halo','trail-paths-orma-line',
+    'trail-paths-mapped-casing','trail-paths-mapped-line','trail-paths-route-number'].forEach(layerId => {
+    if(trailMapInstance.getLayer(layerId)){
+      trailMapInstance.setFilter(layerId, visible ? ['!=', ['get','id'], trail.id] : null);
+    }
+  });
   ['trail-selected-route-casing','trail-selected-route-line','trail-selected-route-number'].forEach(layerId => {
     if(trailMapInstance.getLayer(layerId)) trailMapInstance.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
   });
