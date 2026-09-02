@@ -78,6 +78,27 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(page).toContain("name.removeAttribute('aria-busy')");
   });
 
+  test('signed-in homepage paints from cache before cloud profile and match-history reads finish', () => {
+    const html = read('index.html');
+    const homepage = read('script.js');
+    expect(html).toContain('id="hpHeroImage" loading="lazy" fetchpriority="auto"');
+    expect(html).toContain("!document.documentElement.classList.contains('early-member')");
+    const authHandler = homepage.slice(
+      homepage.indexOf("window.addEventListener('dolopaws-auth-changed'"),
+      homepage.indexOf('// Show the dog photo bubble')
+    );
+    expect(authHandler.indexOf('renderReturningHomepage(profile);'))
+      .toBeLessThan(authHandler.indexOf('window.DoloPawsAuth.getDogProfile()'));
+    expect(authHandler).toContain('await Promise.all([');
+
+    const renderer = homepage.slice(
+      homepage.indexOf('async function renderReturningHomepage'),
+      homepage.indexOf('// Attach locate + save handlers')
+    );
+    expect(renderer).not.toContain('await window.DoloPawsAuth.getLastMatches()');
+    expect(homepage).toContain('function liScheduleNewMatchSync(scored, profile)');
+  });
+
   test('an uncached parking lookup cannot block trail-detail rendering', () => {
     const detail = read('trail.js');
     expect(detail).toContain('improveLoopStart(trail, { deferOnMiss:true })');

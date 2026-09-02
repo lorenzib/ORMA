@@ -146,10 +146,12 @@ describe('returning homepage region + valley filters', () => {
 
   test('renders country choices from regional metadata', () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "dolomites"; renderLiCountryControl(null);', context);
+    vm.runInContext('activeCountry = "IT"; activeRegion = "dolomites"; renderLiCountryControl(null);', context);
 
+    const all = document.querySelector('[data-country="all"]');
     const italy = document.querySelector('[data-country="IT"]');
     const france = document.querySelector('[data-country="FR"]');
+    expect(all).not.toBeNull();
     expect(italy).not.toBeNull();
     expect(france).not.toBeNull();
     expect(italy.textContent).toContain('Italy');
@@ -157,16 +159,29 @@ describe('returning homepage region + valley filters', () => {
     expect(italy.getAttribute('aria-pressed')).toBe('true');
   });
 
-  test('country choice loads its region and resets an incompatible valley', async () => {
+  test('country choice selects that country, resets region and valley', async () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "dolomites"; activeValley = "Val Gardena"; renderLiCountryControl(null);', context);
+    vm.runInContext('activeCountry = "IT"; activeRegion = "dolomites"; activeValley = "Val Gardena"; renderLiCountryControl(null);', context);
 
     document.querySelector('[data-country="FR"]').click();
     await Promise.resolve();
     await Promise.resolve();
 
-    expect(vm.runInContext('activeRegion', context)).toBe('savoy');
+    expect(vm.runInContext('activeCountry', context)).toBe('FR');
+    expect(vm.runInContext('activeRegion', context)).toBe('all');
     expect(vm.runInContext('activeValley', context)).toBe('all');
+  });
+
+  test('All country and region return to the same neutral UI as All valleys', () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('activeCountry = "all"; activeRegion = "all"; activeValley = "all"; renderLiCountryControl(null); renderLiRegionControl(null); renderLiValleyControl(null);', context);
+
+    expect(document.getElementById('liCountryLabel').textContent).toBe('All countries');
+    expect(document.getElementById('liRegionLabel').textContent).toBe('All regions');
+    expect(document.getElementById('liValleyLabel').textContent).toBe('All valleys');
+    expect(document.getElementById('liCountryWrap').classList.contains('li-has-selection')).toBe(false);
+    expect(document.getElementById('liRegionWrap').classList.contains('li-has-selection')).toBe(false);
+    expect(document.getElementById('liValleyWrap').classList.contains('li-has-selection')).toBe(false);
   });
 
   test('saved-only toolbar control reflects and filters saved trails', async () => {
@@ -218,7 +233,7 @@ describe('returning homepage region + valley filters', () => {
 
   test('switching the separate region control resets the valley', async () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "savoy"; activeValley = "Maurienne"; renderLiRegionControl(null);', context);
+    vm.runInContext('activeCountry = "all"; activeRegion = "savoy"; activeValley = "Maurienne"; renderLiRegionControl(null);', context);
 
     const dolomitesTab = Array.from(document.querySelectorAll('.li-region-option'))
       .find(button => button.textContent.includes('Dolomites'));
@@ -227,12 +242,13 @@ describe('returning homepage region + valley filters', () => {
     await Promise.resolve();
 
     expect(vm.runInContext('activeRegion', context)).toBe('dolomites');
+    expect(vm.runInContext('activeCountry', context)).toBe('IT');
     expect(vm.runInContext('activeValley', context)).toBe('all');
   });
 
   test('the visible valley dropdown follows the active region and updates activeValley', () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "savoy"; activeValley = "all"; renderLiValleyControl(null);', context);
+    vm.runInContext('activeCountry = "FR"; activeRegion = "savoy"; activeValley = "all"; renderLiValleyControl(null);', context);
 
     const maurienneOption = document.querySelector('[data-valley="Maurienne"]');
     expect(document.getElementById('liValleyLabel').textContent).toBe('All valleys');
@@ -247,16 +263,23 @@ describe('returning homepage region + valley filters', () => {
 
   test('result list reflects region filter', async () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "savoy"; activeValley = "all"; showingSavedOnly = false;', context);
+    vm.runInContext('activeCountry = "FR"; activeRegion = "savoy"; activeValley = "all"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
   });
 
   test('result list reflects valley filter', async () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeRegion = "savoy"; activeValley = "Maurienne"; showingSavedOnly = false;', context);
+    vm.runInContext('activeCountry = "FR"; activeRegion = "savoy"; activeValley = "Maurienne"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
+  });
+
+  test('All countries returns the full loaded catalogue', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('activeCountry = "all"; activeRegion = "all"; activeValley = "all"; showingSavedOnly = false;', context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
   });
 
 });

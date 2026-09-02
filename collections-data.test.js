@@ -50,6 +50,7 @@ describe('editorial trail collections', () => {
     expect(page).toContain('data-control-kicker="Country"');
     expect(page).toContain('data-control-kicker="Region"');
     expect(page).toContain('data-control-kicker="Valley"');
+    expect((page.match(/data-kicker-until-selected/g) || [])).toHaveLength(3);
     expect(page).toContain('id="collectionRegionSelect"');
     expect(page).toContain('id="collectionValleySelect"');
     expect(page).not.toContain('id="collectionThemesButton"');
@@ -60,6 +61,8 @@ describe('editorial trail collections', () => {
     expect(page).toContain('icon-system.js');
     expect(page).not.toContain('Dog essentials');
     expect(page).toContain('area-dropdown.js');
+    expect(fs.readFileSync(path.join(__dirname, 'area-dropdown.js'), 'utf8')).toContain("select.value !== 'all'");
+    expect(fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8')).toContain('.area-select-trigger--kicker-until-selected.area-select-trigger--has-selection .area-select-trigger__kicker{display:none;}');
     expect(controller).toContain('THEME_MATCHERS');
     expect(controller).toContain('collectionInValley');
     expect(controller).toContain('class="simple-card collection-list-card${isOpen');

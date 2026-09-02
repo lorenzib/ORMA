@@ -21,6 +21,9 @@
     const controlKicker = select.dataset.controlKicker;
     if(controlKicker){
       trigger.classList.add('area-select-trigger--kicker');
+      if(select.hasAttribute('data-kicker-until-selected')){
+        trigger.classList.add('area-select-trigger--kicker-until-selected');
+      }
       trigger.innerHTML = '<span class="area-select-trigger__copy"><span class="area-select-trigger__kicker"></span><span class="area-select-trigger__label"></span></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       trigger.querySelector('.area-select-trigger__kicker').textContent = controlKicker;
     }else{
@@ -48,6 +51,8 @@
     function refresh(){
       const selected = select.options[select.selectedIndex] || select.options[0];
       const selectedLabel = selected ? selected.textContent : 'Choose';
+      trigger.classList.toggle('area-select-trigger--has-selection',
+        !select.hasAttribute('data-kicker-until-selected') || select.value !== 'all');
       trigger.querySelector('.area-select-trigger__label').textContent = select.hasAttribute('data-compact-label')
         ? selectedLabel.replace(/\s+\(\d+\)$/, '')
         : selectedLabel;

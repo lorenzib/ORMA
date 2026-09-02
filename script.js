@@ -147,6 +147,7 @@ let activeRegion = (() => {
     return requested === 'savoy' ? 'savoy' : 'dolomites';
   } catch(e) { return 'dolomites'; }
 })();
+let activeCountry = activeRegion === 'savoy' ? 'FR' : 'IT';
 let activeValley = 'all';
 let sortKey = 'match';             // 'match' | 'distance' | 'effort' — Companion sort control
 let selectedTrailId = null;        // map pin / card selection (Companion layout)
@@ -160,10 +161,21 @@ let liQuery = '';                  // header search box
 let liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false };
 let liShellWired = false;          // header/menus are wired once per page load
 let liDevView = false;             // ?view=returning preview without an account
+let liNewMatchIds = new Set();
+let liNewMatchSyncKey = '';
+let liNewMatchSyncInFlight = null;
 
 function filterTrailsForReturningView(list){
   let displayList = showingSavedOnly ? list.filter(x => currentFavorites[x.id]) : list;
-  displayList = displayList.filter(x => x.region === activeRegion);
+  if(activeCountry !== 'all'){
+    displayList = displayList.filter(x => {
+      const country = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
+        ? window.DoloPawsRegions.countryForRegion(x.region)
+        : (x.region === 'savoy' ? 'FR' : 'IT');
+      return country === activeCountry;
+    });
+  }
+  if(activeRegion !== 'all') displayList = displayList.filter(x => x.region === activeRegion);
   if(activeValley !== 'all') displayList = displayList.filter(x => x.valley === activeValley);
 
   // Logged-in shell: header search + filter-panel refinements. All of these
@@ -1477,15 +1489,53 @@ document.addEventListener('keydown', (e) => {
 window.addEventListener('resize', () => setCompanionPanelOpen(false));
 setCompanionPanelOpen(false);
 
-async function activateReturningRegion(region, profile){
-  if(region === activeRegion) return true;
+function liRegionConfigs(){
+  return window.DoloPawsRegions && window.DoloPawsRegions.REGIONS
+    ? window.DoloPawsRegions.REGIONS
+    : {
+        dolomites: { label: 'Dolomites', country: 'Italy', countryCode: 'IT' },
+        savoy: { label: 'Savoy', country: 'France', countryCode: 'FR' }
+      };
+}
+
+function liRegionIdsForCountry(countryCode){
+  return Object.entries(liRegionConfigs())
+    .filter(([, config]) => countryCode === 'all' || config.countryCode === countryCode)
+    .map(([region]) => region);
+}
+
+function liSelectedGeographyLabel(){
+  const configs = liRegionConfigs();
+  if(activeRegion !== 'all') return (configs[activeRegion] && configs[activeRegion].label) || activeRegion;
+  if(activeCountry !== 'all'){
+    const config = Object.values(configs).find(item => item.countryCode === activeCountry);
+    return config ? config.country : 'All regions';
+  }
+  return 'All countries';
+}
+
+function liTrailIsInSelectedGeography(trail, includeValley){
+  const country = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
+    ? window.DoloPawsRegions.countryForRegion(trail.region)
+    : (trail.region === 'savoy' ? 'FR' : 'IT');
+  if(activeCountry !== 'all' && country !== activeCountry) return false;
+  if(activeRegion !== 'all' && trail.region !== activeRegion) return false;
+  return !includeValley || activeValley === 'all' || trail.valley === activeValley;
+}
+
+async function activateReturningGeography(country, region, profile){
+  if(country === activeCountry && region === activeRegion) return true;
   try {
-    if(window.DoloPawsRegionalData) await window.DoloPawsRegionalData.loadRegion(region);
+    const regions = region === 'all' ? liRegionIdsForCountry(country) : [region];
+    if(window.DoloPawsRegionalData){
+      await Promise.all(regions.map(regionId => window.DoloPawsRegionalData.loadRegion(regionId)));
+    }
+    activeCountry = country;
     activeRegion = region;
     activeValley = 'all';
     selectedTrailId = null;
     hideMapCallout();
-    if(trailMapInstance) await updateRegionalMapData(trailMapInstance, region);
+    if(trailMapInstance) await updateRegionalMapData(trailMapInstance, regions);
     renderReturningHomepage(profile);
     return true;
   } catch(e) {
@@ -1495,42 +1545,40 @@ async function activateReturningRegion(region, profile){
 }
 
 // Country is intentionally separate from Region: people often know the
-// country before they know the local mountain area. Selecting one loads its
-// current region now, while the model remains ready for more regions later.
+// country before they know the local mountain area. Selecting one leaves the
+// region open, which keeps this cascade useful as more regions are added.
 function renderLiCountryControl(profile){
   const label = document.getElementById('liCountryLabel');
   const menu = document.getElementById('liCountryMenu');
   if(!label || !menu || typeof trails === 'undefined') return;
-  const configs = window.DoloPawsRegions && window.DoloPawsRegions.REGIONS
-    ? window.DoloPawsRegions.REGIONS
-    : {
-        dolomites: { country: 'Italy', countryCode: 'IT' },
-        savoy: { country: 'France', countryCode: 'FR' }
-      };
-  const activeCountry = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
-    ? window.DoloPawsRegions.countryForRegion(activeRegion)
-    : (activeRegion === 'savoy' ? 'FR' : 'IT');
-  const entries = Object.entries(configs);
-  const activeConfig = entries.find(([, config]) => config.countryCode === activeCountry);
-  label.textContent = activeConfig ? activeConfig[1].country : 'Country';
+  const configs = liRegionConfigs();
+  const countries = new Map();
+  Object.entries(configs).forEach(([region, config]) => {
+    if(!countries.has(config.countryCode)) countries.set(config.countryCode, { name:config.country, regions:[] });
+    countries.get(config.countryCode).regions.push(region);
+  });
+  const activeConfig = countries.get(activeCountry);
+  label.textContent = activeConfig ? activeConfig.name : 'All countries';
   const countryWrap = document.getElementById('liCountryWrap');
-  if(countryWrap) countryWrap.classList.toggle('li-has-selection', !!activeConfig);
+  if(countryWrap) countryWrap.classList.toggle('li-has-selection', activeCountry !== 'all');
   menu.innerHTML = '<div class="li-menu-kick">Country</div>';
-  entries.forEach(([region, config]) => {
+  const totalCount = Object.keys(configs).reduce((sum, region) => sum + (window.DoloPawsRegionalData
+    ? window.DoloPawsRegionalData.trailCount(region)
+    : trails.filter(trail => trail.region === region).length), 0);
+  [['all', { name:'All countries', regions:Object.keys(configs) }], ...countries.entries()].forEach(([countryCode, config]) => {
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'li-menu-item li-region-option' + (config.countryCode === activeCountry ? ' on' : '');
-    button.dataset.country = config.countryCode;
-    button.dataset.region = region;
-    button.setAttribute('aria-pressed', String(config.countryCode === activeCountry));
-    const count = window.DoloPawsRegionalData
+    button.className = 'li-menu-item li-region-option' + (countryCode === activeCountry ? ' on' : '');
+    button.dataset.country = countryCode;
+    button.setAttribute('aria-pressed', String(countryCode === activeCountry));
+    const count = countryCode === 'all' ? totalCount : config.regions.reduce((sum, region) => sum + (window.DoloPawsRegionalData
       ? window.DoloPawsRegionalData.trailCount(region)
-      : trails.filter(trail => trail.region === region).length;
-    button.innerHTML = `<span>${config.country}</span><small>${count} trails</small>`;
+      : trails.filter(trail => trail.region === region).length), 0);
+    button.innerHTML = `<span>${config.name}</span><small>${count} trails</small>`;
     button.addEventListener('click', async () => {
-      if(region === activeRegion){ liCloseMenus(); return; }
+      if(countryCode === activeCountry){ liCloseMenus(); return; }
       button.disabled = true;
-      const changed = await activateReturningRegion(region, profile);
+      const changed = await activateReturningGeography(countryCode, 'all', profile);
       button.disabled = false;
       if(changed) liCloseMenus();
     });
@@ -1556,23 +1604,30 @@ function renderLiRegionControl(profile){
   const label = document.getElementById('liRegionLabel');
   const menu = document.getElementById('liRegionMenu');
   if(!label || !menu || typeof trails === 'undefined') return;
-  label.textContent = activeRegion === 'savoy' ? 'Savoy' : 'Dolomites';
+  const configs = liRegionConfigs();
+  label.textContent = activeRegion === 'all' ? 'All regions' : ((configs[activeRegion] && configs[activeRegion].label) || 'Region');
   const regionWrap = document.getElementById('liRegionWrap');
-  if(regionWrap) regionWrap.classList.toggle('li-has-selection', !!activeRegion);
+  if(regionWrap) regionWrap.classList.toggle('li-has-selection', activeRegion !== 'all');
   menu.innerHTML = '<div class="li-menu-kick">Region</div>';
-  [['dolomites', 'Dolomites'], ['savoy', 'Savoy / French Alps']].forEach(([region, name]) => {
+  const availableRegions = liRegionIdsForCountry(activeCountry);
+  const allCount = availableRegions.reduce((sum, region) => sum + (window.DoloPawsRegionalData
+    ? window.DoloPawsRegionalData.trailCount(region)
+    : trails.filter(trail => trail.region === region).length), 0);
+  [['all', 'All regions', allCount], ...availableRegions.map(region => [
+    region,
+    (configs[region] && configs[region].label) || region,
+    window.DoloPawsRegionalData ? window.DoloPawsRegionalData.trailCount(region) : trails.filter(trail => trail.region === region).length
+  ])].forEach(([region, name, count]) => {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'li-menu-item li-region-option' + (region === activeRegion ? ' on' : '');
     button.setAttribute('aria-pressed', String(region === activeRegion));
-    const count = window.DoloPawsRegionalData
-      ? window.DoloPawsRegionalData.trailCount(region)
-      : trails.filter(trail => trail.region === region).length;
     button.innerHTML = `<span>${name}</span><small>${count} trails</small>`;
     button.addEventListener('click', async () => {
       if(region === activeRegion){ liCloseMenus(); return; }
       button.disabled = true;
-      const changed = await activateReturningRegion(region, profile);
+      const country = region === 'all' ? activeCountry : configs[region].countryCode;
+      const changed = await activateReturningGeography(country, region, profile);
       button.disabled = false;
       if(changed) liCloseMenus();
     });
@@ -1581,22 +1636,24 @@ function renderLiRegionControl(profile){
 }
 
 // Valley is the third visible geographic level. Its options are rebuilt from
-// the active region, so changing country or region cannot leave a stale valley
-// selected.
+// the active country/region selection, so an "All" reset cannot leave a stale
+// valley selected.
 function renderLiValleyControl(profile){
   const label = document.getElementById('liValleyLabel');
   const menu = document.getElementById('liValleyMenu');
   if(!label || !menu || typeof trails === 'undefined') return;
   if(window.DoloPawsRegions) window.DoloPawsRegions.assign(trails);
-  const valleys = window.DoloPawsRegions
-    ? window.DoloPawsRegions.valleysFor(trails, activeRegion)
-    : [];
+  const valleyCounts = new Map();
+  trails.filter(trail => liTrailIsInSelectedGeography(trail, false)).forEach(trail => {
+    valleyCounts.set(trail.valley, (valleyCounts.get(trail.valley) || 0) + 1);
+  });
+  const valleys = [...valleyCounts.entries()].sort((a, b) => b[1] - a[1]);
   if(activeValley !== 'all' && !valleys.some(([valley]) => valley === activeValley)) activeValley = 'all';
   label.textContent = activeValley === 'all' ? 'All valleys' : activeValley;
   const valleyWrap = document.getElementById('liValleyWrap');
   if(valleyWrap) valleyWrap.classList.toggle('li-has-selection', activeValley !== 'all');
   menu.innerHTML = '<div class="li-menu-kick">Valley</div>';
-  const regionCount = trails.filter(trail => trail.region === activeRegion).length;
+  const regionCount = trails.filter(trail => liTrailIsInSelectedGeography(trail, false)).length;
   [['all', 'All valleys', regionCount], ...valleys.map(([valley, count]) => [valley, valley, count])]
     .forEach(([value, name, count]) => {
       const button = document.createElement('button');
@@ -2009,20 +2066,14 @@ function renderLiChips(){
   const wrap = document.getElementById('liChips');
   if(!wrap || typeof trails === 'undefined') return;
 
-  const valleys = window.DoloPawsRegions
-    ? window.DoloPawsRegions.valleysFor(trails, activeRegion)
-    : [];
-  const otherRegion = activeRegion === 'dolomites' ? 'savoy' : 'dolomites';
-  const otherLabel = otherRegion === 'savoy' ? 'Savoy / French Alps' : 'Dolomites';
+  const valleyCounts = new Map();
+  trails.filter(trail => liTrailIsInSelectedGeography(trail, false)).forEach(trail => {
+    valleyCounts.set(trail.valley, (valleyCounts.get(trail.valley) || 0) + 1);
+  });
+  const valleys = [...valleyCounts.entries()].sort((a, b) => b[1] - a[1]);
   const areaOptions = [
     { label: 'Any area', pick(){ activeValley = 'all'; } },
     ...valleys.map(([v, n]) => ({ label: `${v} (${n})`, value: v, pick(){ activeValley = v; } })),
-    { label: otherLabel + ' →', async pick(){
-      if(window.DoloPawsRegionalData) await window.DoloPawsRegionalData.loadRegion(otherRegion);
-      activeRegion = otherRegion;
-      if(trailMapInstance) await updateRegionalMapData(trailMapInstance, otherRegion);
-      activeValley = 'all';
-    } },
   ];
 
   const DIST_OPTS = [['any','Any'], ['u5','Under 5 km'], ['5to10','5–10 km'], ['10p','10 km+']];
@@ -2034,7 +2085,7 @@ function renderLiChips(){
     { key: 'area', title: 'Area',
       display: activeValley !== 'all' ? activeValley : 'Any area',
       on: activeValley !== 'all',
-      options: areaOptions.map(o => ({ label: o.label, selected: o.value ? o.value === activeValley : activeValley === 'all' && !o.label.endsWith('→'), pick: o.pick })) },
+      options: areaOptions.map(o => ({ label: o.label, selected: o.value ? o.value === activeValley : activeValley === 'all', pick: o.pick })) },
     { key: 'dist', title: 'Distance',
       display: liFilters.dist === 'any' ? 'Distance' : label(DIST_OPTS, liFilters.dist),
       on: liFilters.dist !== 'any',
@@ -2140,7 +2191,7 @@ function renderLiConditionsCard(profile, displayList){
   condTitle.querySelector('.li-cond-t-desk').textContent = `${name}'s conditions`;
   condTitle.querySelector('.li-cond-t-mobile').textContent = name;
   document.getElementById('liCondSub').textContent =
-    (activeRegion === 'savoy' ? t('region.savoy') : t('region.theDolomites')) + ' · today';
+    liSelectedGeographyLabel() + ' · today';
   liFillAvatar(document.getElementById('liCondAvatar'), profile);
 
   const great = (displayList || []).filter(x => x.score >= 85).length;
@@ -2421,7 +2472,7 @@ function renderLiSearchSuggestions(profile){
   if(!query){ hideLiSearchSuggestions(); return; }
   const overrides = profile ? effectiveOverrides(profile, adjustOverride) : { terrain:'1', distance:'10', heatSensitive:false };
   const matches = trails
-    .filter(trail => trail.region === activeRegion)
+    .filter(trail => liTrailIsInSelectedGeography(trail, true))
     .filter(trail => [trail.name, trail.area, trail.valley].some(value => String(value || '').toLowerCase().includes(query)))
     .map(trail => ({ ...trail, score:recommendTrail(trail, overrides).score }))
     .sort((a, b) => b.score - a.score || a.distance - b.distance)
@@ -2429,7 +2480,7 @@ function renderLiSearchSuggestions(profile){
 
   suggestions.innerHTML = '';
   if(!matches.length){
-    suggestions.innerHTML = '<div class="li-search-empty">No routes found in this region.</div>';
+    suggestions.innerHTML = '<div class="li-search-empty">No routes found in this area.</div>';
   } else {
     matches.forEach((trail, index) => {
       const option = document.createElement('button');
@@ -2501,7 +2552,32 @@ function liMatchColHtml(t, profile, overrides){
     </div>`;
 }
 
-async function renderReturningHomepage(profile){
+function liScheduleNewMatchSync(scored, profile){
+  const auth = window.DoloPawsAuth;
+  const user = auth && auth.currentUser;
+  if(!user || typeof auth.getLastMatches !== 'function' || typeof auth.setLastMatches !== 'function') return;
+  const key = `${user.uid || 'signed-in'}|${profile && profile.id || 'active'}`;
+  if(key === liNewMatchSyncKey) return;
+  liNewMatchSyncKey = key;
+  liNewMatchIds = new Set();
+  const currentTopIds = scored.filter(trail => trail.score >= NEW_MATCH_THRESHOLD).map(trail => trail.id);
+  liNewMatchSyncInFlight = Promise.resolve()
+    .then(() => auth.getLastMatches())
+    .then(previous => {
+      if(key !== liNewMatchSyncKey) return;
+      liNewMatchIds = Array.isArray(previous)
+        ? new Set(currentTopIds.filter(id => !previous.includes(id)))
+        : new Set();
+      renderReturningHomepage(currentProfileForAdjust, { skipNewMatchSync:true });
+      return auth.setLastMatches(currentTopIds);
+    })
+    .catch(error => console.warn('Could not refresh new-match history.', error))
+    .finally(() => {
+      if(key === liNewMatchSyncKey) liNewMatchSyncInFlight = null;
+    });
+}
+
+async function renderReturningHomepage(profile, options = {}){
   profile = liResolveActiveProfile(profile);
   const heading = document.getElementById('returningHeading');
   const subline = document.getElementById('returningSubline');
@@ -2533,20 +2609,10 @@ async function renderReturningHomepage(profile){
     listEl.dataset.scoringVersion = window.DoloPawsScoring.VERSION;
   }
 
-  // Genuine new-match detection: compare today's strong matches against
-  // what was stored on the account the last time they visited. This is
-  // computed against the FULL list, regardless of which view is showing,
-  // so a saved trail's NEW MATCH badge stays accurate either way.
-  let newIds = new Set();
-  if(window.DoloPawsAuth && window.DoloPawsAuth.currentUser){
-    const previous = await window.DoloPawsAuth.getLastMatches();
-    const currentTopIds = scored.filter(t => t.score >= NEW_MATCH_THRESHOLD).map(t => t.id);
-    if(Array.isArray(previous)){
-      newIds = new Set(currentTopIds.filter(id => !previous.includes(id)));
-    }
-    // Store today's snapshot for next visit — after comparing, not before.
-    await window.DoloPawsAuth.setLastMatches(currentTopIds);
-  }
+  // Paint first. Match-history comparison is useful but non-critical, so it
+  // runs after the page is interactive instead of blocking every mobile load.
+  const newIds = liNewMatchIds;
+  if(!options.skipNewMatchSync) liScheduleNewMatchSync(scored, profile);
 
   // The cloud is Eddie speaking — one line, no counts, true for any area.
   // When the owner has set "Adjust for today", the dog voices those declared
@@ -2588,7 +2654,7 @@ async function renderReturningHomepage(profile){
   updateMapMarkers(displayList);
 
   // Reset to page 1 whenever the filters change; clamp if the list shrank.
-  const filterKey = `${activeRegion}|${activeValley}|${showingSavedOnly}|${liQuery}|${JSON.stringify(liFilters)}|${sortKey}`;
+  const filterKey = `${activeCountry}|${activeRegion}|${activeValley}|${showingSavedOnly}|${liQuery}|${JSON.stringify(liFilters)}|${sortKey}`;
   if (filterKey !== lastFilterKey){ currentPage = 1; lastFilterKey = filterKey; }
   const collapsed = !showFullList && !showingSavedOnly && displayList.length > TOP_MATCHES + 2;
   const totalPages = collapsed ? 1 : Math.max(1, Math.ceil(displayList.length / TRAILS_PER_PAGE));
@@ -2611,7 +2677,7 @@ async function renderReturningHomepage(profile){
       ? activeValley
       : activeProvince !== 'all'
         ? provinceLabel(activeProvince)
-        : (activeRegion === 'savoy' ? t('region.savoy') : t('region.theDolomites'));
+        : liSelectedGeographyLabel();
     const msg = showingSavedOnly && activeValley !== 'all'
       ? t('home.noSavedValley', {label})
       : showingSavedOnly
@@ -3064,7 +3130,12 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
     if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
     initLoggedInShell();
 
-    let profile = null;
+    // The local summary is intentionally small, but it is enough to rank and
+    // paint the first screen while Firebase refreshes the full profile and
+    // favourites. This removes the signed-in blank wait on mobile networks.
+    let profile = liResolveActiveProfile(null);
+    currentProfileForAdjust = profile;
+    renderReturningHomepage(profile);
     if(user && window.DoloPawsAuth){
       // Guest-wizard handoff: if they built a dog profile before signing
       // up, persist it now — but never overwrite a profile that already
@@ -3082,8 +3153,12 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
         }
       } catch(err){ /* never block login on handoff */ }
 
-      profile = await window.DoloPawsAuth.getDogProfile();
-      currentFavorites = await window.DoloPawsAuth.getFavorites();
+      const [cloudProfile, cloudFavorites] = await Promise.all([
+        window.DoloPawsAuth.getDogProfile().catch(() => null),
+        window.DoloPawsAuth.getFavorites().catch(() => ({})),
+      ]);
+      profile = cloudProfile || profile;
+      currentFavorites = cloudFavorites || {};
     } else {
       // ?view=returning preview — use the guest wizard draft if one exists.
       try { profile = JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile') || 'null'); } catch(err){ profile = null; }
@@ -3486,9 +3561,10 @@ function initializeHutsBars(map) {
   return load;
 }
 
-async function updateRegionalMapData(map, region) {
+async function updateRegionalMapData(map, regionSelection) {
   if(!map || !window.DoloPawsRegionalData) return;
   const regional = window.DoloPawsRegionalData;
+  const regions = (Array.isArray(regionSelection) ? regionSelection : [regionSelection]).filter(Boolean);
   const waterSource = map.getSource('water-sources');
   const hutsSource = map.getSource('mountain-huts');
   const barsSource = map.getSource('bars-cafes');
@@ -3501,12 +3577,19 @@ async function updateRegionalMapData(map, region) {
     if(!response.ok) throw new Error('Regional map data unavailable');
     return response.json();
   };
+  const fetchCombinedGeoJson = async kind => {
+    const collections = await Promise.all(regions.map(region => fetchGeoJson(regional.poiUrl(region, kind))));
+    return {
+      type: 'FeatureCollection',
+      features: collections.flatMap(collection => Array.isArray(collection.features) ? collection.features : [])
+    };
+  };
 
   // Only refresh datasets that the visitor has already asked the map to
   // create. Hidden, unopened layers must stay off the network on a region
   // switch as well as during the initial mobile load.
   if(waterSource){
-    jobs.push(fetchGeoJson(regional.poiUrl(region, 'water')).then(waterData => {
+    jobs.push(fetchCombinedGeoJson('water').then(waterData => {
       const pointFeatures = (waterData.features || []).map(feature => {
         const geometry = feature.geometry;
         if(!geometry || geometry.type === 'Point') return feature;
@@ -3525,7 +3608,7 @@ async function updateRegionalMapData(map, region) {
   }
 
   if(hutsSource && barsSource){
-    jobs.push(fetchGeoJson(regional.poiUrl(region, 'huts-bars')).then(hutsBarsData => {
+    jobs.push(fetchCombinedGeoJson('huts-bars').then(hutsBarsData => {
       const amenities = (hutsBarsData.features || []).filter(feature => feature.geometry && feature.geometry.type === 'Point');
       const isHut = properties => properties && (
         properties.tourism === 'alpine_hut' || properties.tourism === 'wilderness_hut' || properties.amenity === 'shelter'
@@ -3541,7 +3624,7 @@ async function updateRegionalMapData(map, region) {
   }
 
   if(routesSource){
-    jobs.push(fetchGeoJson(regional.poiUrl(region, 'dog-routes')).then(dogRoutesData => {
+    jobs.push(fetchCombinedGeoJson('dog-routes').then(dogRoutesData => {
       routesSource.setData(dogRoutesData);
     }));
   }

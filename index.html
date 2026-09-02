@@ -115,8 +115,14 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
   <div class="hp-hero">
     <picture>
       <source srcset="images/orma-mission-forest-960.jpg?v=20260820-2 960w, images/orma-mission-forest.jpg?v=20260820-2 2400w" sizes="100vw">
-      <img src="images/orma-mission-forest.jpg?v=20260820-2" alt="" class="hp-hero-img" fetchpriority="high" decoding="async" width="2400" height="1800">
+      <img src="images/orma-mission-forest.jpg?v=20260820-2" alt="" class="hp-hero-img" id="hpHeroImage" loading="lazy" fetchpriority="auto" decoding="async" width="2400" height="1800">
     </picture>
+    <script>/* Do not spend a signed-in phone's startup bandwidth on the hidden
+       guest hero. Genuine guest visits still promote it immediately as LCP. */
+    try{if(!document.documentElement.classList.contains('early-member')){
+      const hero=document.getElementById('hpHeroImage');
+      if(hero){hero.loading='eager';hero.fetchPriority='high';}
+    }}catch(e){}</script>
     <div class="hp-hero-shade"></div>
     <div class="hp-hero-inner">
       <h1 data-i18n="hero.h1">Where are we going today?</h1>
@@ -321,7 +327,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       </div>
     </div>
     <div class="li-quick-filters" aria-label="Quick dog filters">
-      <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span>High shade</span></button>
+      <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26" aria-hidden="true"></span><span>High shade</span></button>
       <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span>Water</span></button>
     </div>
     <button type="button" id="liSavedOnlyBtn" class="li-saved-only" aria-pressed="false">
@@ -541,7 +547,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
 <script src="veterinary-care.js?v=20260901-1" defer></script>
 <script src="trail-route-refs.js?v=20260901-4" defer></script>
-<script src="script.js?v=20260902-3" defer></script>
+<script src="script.js?v=20260902-4" defer></script>
 <script src="dog-wizard.js?v=20260901-2" defer></script>
 <script src="collections-data.js?v=20260815-4" defer></script>
 <script src="homepage-search.js?v=20260825-1" defer></script>

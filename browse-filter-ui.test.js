@@ -198,6 +198,7 @@ describe('Browse filter UI', () => {
     expect(html).toContain('data-control-kicker="Country"');
     expect(html).toContain('data-control-kicker="Region"');
     expect(html).toContain('data-control-kicker="Valley"');
+    expect(html).toContain('id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26"');
     expect(html).toContain('.area-select-trigger__kicker');
     expect(dropdown).toContain("const controlKicker = select.dataset.controlKicker;");
   });
