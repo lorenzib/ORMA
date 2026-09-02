@@ -41,6 +41,15 @@ describe('automatic ORMA Verified editorial handoff',()=>{
     expect(result.output.result.changes.map(change=>change.section)).toEqual(handoff.item.editorialBrief.requiredSections);
   });
 
+  test('numbered-route copy must cite the locked recommended starting point',async()=>{
+    const numbered={...dossier,claims:[...dossier.claims,{id:'logistics-recommended-start',label:'access: recommended-start',state:'supported',proposedValue:'Start at Rifugio Example, 46.0000, 11.0000.',sourceIds:['source-1']}]};
+    const handoff=buildVerifiedEditorialHandoff(numbered,record,null,{at});const job=handoff.jobs[0];
+    expect(handoff.item.editorialBrief.requiredStartFactId).toBe('logistics-recommended-start');
+    const payload=copyPayload(handoff.item);payload.factIdsUsed=payload.factIdsUsed.filter(id=>id!=='logistics-recommended-start');
+    await expect(runVerifiedEditorialFirstPass({job,item:handoff.item,dossier:numbered},{at,env:{},runAgent:async()=>({responseId:'copy-response',model:'test-model',data:payload})}))
+      .rejects.toThrow('must use recommended start fact');
+  });
+
   test('Visual Director cannot mark an incompletely licensed image ready',async()=>{
     const handoff=buildVerifiedEditorialHandoff(dossier,record,null,{at});const job=handoff.jobs[1];
     await expect(runVerifiedEditorialFirstPass({job,item:handoff.item,dossier},{at,env:{},runAgent:async()=>({responseId:'visual-response',model:'test-model',data:{

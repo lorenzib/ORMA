@@ -36,7 +36,7 @@ Owns trails that are already in ORMA and verifies:
 - parking, access, and how to get there; and
 - dynamic hazards that may affect a covered area.
 
-Dynamic hazards run daily. A source-backed severe, extreme, or dog-critical
+Dynamic hazards run hourly. A source-backed severe, extreme, or dog-critical
 warning may be added automatically. When a successfully fetched authoritative
 active-warning feed affirmatively stops listing a warning, the protected hazard
 is removed automatically and the watcher records that removal. Expiry without
@@ -52,6 +52,12 @@ its durable specialist queue before general editorial, image, newsletter and
 Analyst generation work. It may keep up to 15 trails in verification and run
 up to ten specialist jobs per worker pass. This changes working capacity only:
 all geometry, evidence, dossier, editorial and release gates remain required.
+
+For every named or numbered official route, verification must identify the
+recommended starting point and direction from an authoritative route source.
+The approved geometry is oriented from that point, and the numbered trail
+description follows the route in that order. A nearby parking pin is access
+evidence only and must never be substituted for an authoritative route start.
 
 ### 2. New Trails
 
@@ -197,7 +203,10 @@ requests and the CEO prototype gate. An investigation, priority decision or prot
 
 ## Current cadence
 
-- Dynamic hazard check: daily at 07:15 local time.
+- Dynamic hazard check: hourly at minute 7, Europe/Rome, clear of the
+  quarter-hour queue worker. Successfully fetched
+  authoritative feeds remove warnings that they affirmatively resolve; source
+  outages retain the last known warning.
 - Existing Trails queue: checked by the hosted worker every fifteen minutes,
   with daily ORMA Verified intake at 09:30 local time and 15-trail capacity.
 - Strategy cycle: parked during the MVP phase; manual recovery remains

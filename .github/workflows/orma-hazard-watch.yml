@@ -1,9 +1,9 @@
-name: ORMA daily hazard watch
+name: ORMA hourly hazard watch
 
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '15 7 * * *'
+    - cron: '7 * * * *'
       timezone: Europe/Rome
 
 permissions:

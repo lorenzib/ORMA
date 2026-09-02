@@ -5,8 +5,24 @@ const {validateDossier}=require('../contracts/dossier-v1');
 
 function sourceId(url,index){return `source-${index+1}-${createHash('sha256').update(url).digest('hex').slice(0,10)}`;}
 
+function numberedRouteReference(review,trail){
+  const cartographer=(review.specialistOutputs||[]).find(output=>output.agentId==='cartographer')?.result;
+  const value=cartographer?.relation?.tags?.ref||trail?.sourceTrail?.ref||trail?.routeRef||null;
+  return String(value||'').trim()||null;
+}
+
+function authoritativeRecommendedStart(review){
+  return (review.specialistOutputs||[]).flatMap(output=>(output.result?.claims||[]).map(claim=>({agentId:output.agentId,claim})))
+    .find(({agentId,claim})=>agentId==='logistics'&&claim.id==='recommended-start'&&claim.finding==='supported-proposal'
+      &&(claim.sources||[]).some(source=>/^https:\/\//.test(source.url||'')&&String(source.authority||'').trim()));
+}
+
 function compileVerifiedDossier(review,trail,options={}){
   if(!review.approvalAllowed)throw new Error('A blocked dossier cannot be compiled as verified');
+  const routeReference=numberedRouteReference(review,trail);
+  if(routeReference&&!authoritativeRecommendedStart(review)){
+    throw new Error(`Numbered route ${routeReference} requires an authoritative recommended-start claim before verification`);
+  }
   const at=options.at||new Date().toISOString();const sourceMap=new Map();
   function addSource(source){const url=source?.url;if(!/^https:\/\//.test(url||''))return null;if(sourceMap.has(url))return sourceMap.get(url).id;
     const id=sourceId(url,sourceMap.size);sourceMap.set(url,{id,url,label:source.label||source.provider||url,authority:source.authority||null,
@@ -39,4 +55,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={compileVerifiedDossier,verificationRecord};
+module.exports={numberedRouteReference,authoritativeRecommendedStart,compileVerifiedDossier,verificationRecord};

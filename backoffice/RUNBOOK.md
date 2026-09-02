@@ -24,12 +24,12 @@ or append a CEO decision.
 | --- | --- | --- |
 | Queue worker | Every fifteen minutes | Geometry, final dossier, trail content and release decisions |
 | Publication receipt reconciler | Every fifteen minutes, inside the queue worker | No new gate; records only a commit already proven live by GitHub Pages |
-| Groundskeeper | Daily at 07:15 Europe/Rome | Confirm removal of an expired warning |
+| Groundskeeper | Hourly at minute 7, Europe/Rome, clear of the quarter-hour queue worker | Automatic removal only when a successfully fetched authoritative active-warning feed affirmatively resolves the warning; expiry-only cases remain human-gated |
 | ORMA Verified intake | Daily at 09:30 Europe/Rome, after the Firestore quota reset window, plus due-only worker catch-up | New admissions still enter the normal trail gates |
-| Strategy cycle | Wednesday at 12:00 Europe/Rome | Editorial, image and Analyst desks; Newsletter inputs remain parked |
+| Strategy cycle | Parked during the MVP catalogue-and-coverage phase | Existing artifacts remain available for manual recovery |
 | New Trail scouting | Monday–Saturday at 10:00 Europe/Rome, after the Firestore quota reset window, Dolomites first | Select, park or reject a candidate |
 | Newsletter | Parked until content readiness is explicitly confirmed | Existing drafts are preserved read-only; no generation, revision or handoff runs |
-| Analyst | Refreshed weekly | Opportunity decision, then a separate mock-up decision |
+| Analyst | Parked during the MVP catalogue-and-coverage phase | Existing work is preserved; no new opportunity or mock-up work is generated |
 
 GitHub cron is a target rather than proof of execution. Backoffice Home reads
 the saved worker and campaign health receipts and links the exact workflow run.
@@ -108,9 +108,9 @@ Required repository variables:
 - `ORMA_EDITORIAL_ENABLED=false` during the MVP catalogue-and-coverage phase.
 - `ORMA_ANALYST_ENABLED=false` during the MVP catalogue-and-coverage phase.
 
-Safety Library copy review is temporarily excluded from the Editorial decision
-queue while the guide interface is being redesigned. Existing packets are
-retained in the protected paused archive; non-safety editorial work continues.
+Website copy review is parked during the MVP catalogue-and-coverage phase.
+Existing packets, including Safety Library packets, remain retained in their
+protected paused archives; no scheduled copy generation runs.
 
 Required secrets are `OPEN_API_KEY` and `FIREBASE_SERVICE_ACCOUNT`. Social has
 no production credentials and remains launch-gated.

@@ -1463,6 +1463,17 @@ describe('ORMA backoffice MVP', () => {
     expect(record).toEqual(expect.objectContaining({verifiedBy:'editor-a',nextStage:'editorial-and-publication-review'}));
   });
 
+  test('a numbered route cannot be verified without an authoritative recommended starting point', () => {
+    const at='2026-09-02T10:00:00.000Z';
+    const cartographer={agentId:'cartographer',jobId:'cart-a',result:{source:{provider:'OSM',url:'https://example.test/route',endpoint:'https://example.test/raw',externalId:'relation/19',relationVersion:2,licence:'ODbL-1.0'},relation:{tags:{name:'Trail 19',ref:'19'}},geometry:{type:'LineString',coordinates:[[1,1],[1,1]]},assessment:{pointCount:2,distanceKm:1}}};
+    const parking={id:'parking',category:'parking',proposedValue:'Use P1.',finding:'supported-proposal',confidence:.9,rationale:'Official source.',sources:[{label:'Authority',url:'https://example.test/parking',authority:'Municipality',accessedAt:at}],blockers:[]};
+    const review={reviewId:'dossier-19',candidateId:'trail-19',approvalAllowed:true,specialistOutputs:[cartographer,{agentId:'logistics',jobId:'log-a',result:{claims:[parking]}}]};
+    const trail={candidateId:'trail-19',trailId:'trail-19',trailName:'Trail 19'};
+    expect(()=>compileVerifiedDossier(review,trail,{at})).toThrow('requires an authoritative recommended-start claim');
+    review.specialistOutputs[1].result.claims.push({id:'recommended-start',category:'access',proposedValue:'Start at Rifugio Example, 46.0000, 11.0000.',finding:'supported-proposal',confidence:.95,rationale:'The official route page identifies the start.',sources:[{label:'Official route',url:'https://example.test/trail-19',authority:'Park authority',accessedAt:at}],blockers:[]});
+    expect(compileVerifiedDossier(review,trail,{at}).claims).toEqual(expect.arrayContaining([expect.objectContaining({id:'logistics-recommended-start'})]));
+  });
+
   test('a web-search specialist returns proposed evidence without public mutation authority', async () => {
     const response=await runTrailSpecialist({
       job:{agentId:'logistics',candidateId:'trail-a',action:'verify-parking-and-access'},trail:{id:'trail-a'},context:[],

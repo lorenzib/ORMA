@@ -13,6 +13,7 @@ function assertVerifiedDossier(dossier){
 
 function editorialItem(dossier,record,at){
   assertVerifiedDossier(dossier);
+  const requiredStartFact=(dossier.claims||[]).find(claim=>claim.id==='logistics-recommended-start');
   return {
     candidateId:dossier.candidateId,trailName:dossier.trailName,targetTrailId:dossier.trailId,
     dossierRef:`trail-dossier-desk.html#verified-${dossier.candidateId}`,
@@ -23,6 +24,8 @@ function editorialItem(dossier,record,at){
     evidenceSources:dossier.sources||[],routeGeometry:dossier.routeGeometry||null,
     editorialBrief:{objective:'Produce concise premium ORMA trail copy using only the locked dossier facts.',
       requiredSections:['About the trail','Why it suits dogs','Important practical notes'],
+      routeNarrativeRule:'For a numbered route, begin at the locked authoritative recommended starting point and describe the trail in the approved geometry order.',
+      requiredStartFactId:requiredStartFact?.id||null,
       prohibited:['invent facts','soften safety caveats','change metrics','claim current operating conditions']},
     visualBrief:{objective:'Find a genuinely reusable trail image or return an explicit owned-photo checklist.',
       requiredChecks:['direct preview','source page','creator','licence','licence URL','credit','location-safe alt text'],

@@ -60,8 +60,10 @@ async function runCartographer(candidate, dossier, options = {}){
       id: 'geometry-approval',
       instructions: [
         'Compare the reconstructed line with the named official route and trail numbers.',
+        'For a named or numbered route, identify its authoritative recommended starting point before approval.',
+        'Rotate a loop or reverse a line so coordinate 0 is the approved recommended starting point; follow an authoritative recommended direction when one is specified.',
         'Inspect every disconnected component, gap, duplicate branch and road crossing.',
-        'Approve route geometry separately from parking and trailhead coordinates.',
+        'Approve route geometry separately from parking; a nearby parking pin is not proof of the route start.',
       ],
     },
   };

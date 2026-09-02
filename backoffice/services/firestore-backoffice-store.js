@@ -53,11 +53,21 @@ function backofficeDb(options = {}){
 }
 
 class FirestoreBackofficeStore {
-  constructor(options = {}){ this.db = backofficeDb(options); }
+  constructor(options = {}){
+    this.db = backofficeDb(options);
+    this.artifactCache = new Map();
+    this.queryCache = new Map();
+  }
+
+  invalidate(prefix){
+    for(const key of this.queryCache.keys()) if(key.startsWith(prefix)) this.queryCache.delete(key);
+  }
 
   async getArtifact(id){
+    if(this.artifactCache.has(id)) return this.artifactCache.get(id);
     const snapshot = await this.db.collection(COLLECTIONS.artifacts).doc(id).get();
-    return snapshot.exists ? decodeArtifactData(snapshot.data()) : null;
+    const data=snapshot.exists ? decodeArtifactData(snapshot.data()) : null;
+    this.artifactCache.set(id,data);return data;
   }
 
   async setArtifact(id, data, metadata = {}){
@@ -65,15 +75,18 @@ class FirestoreBackofficeStore {
       contractVersion: '1.0.0', artifactId: id, ...metadata,
       ...encodeArtifactData(data), updatedAt: FieldValue.serverTimestamp(),
     }, { merge: true });
+    this.artifactCache.set(id,data);
   }
 
   async setArtifactIfAbsent(id,data,metadata={}){
     const ref=this.db.collection(COLLECTIONS.artifacts).doc(id);
-    return this.db.runTransaction(async transaction=>{
+    const created=await this.db.runTransaction(async transaction=>{
       const snapshot=await transaction.get(ref);if(snapshot.exists)return false;
       transaction.set(ref,{contractVersion:'1.0.0',artifactId:id,...metadata,
         ...encodeArtifactData(data),updatedAt:FieldValue.serverTimestamp()});return true;
     });
+    if(created)this.artifactCache.set(id,data);else this.artifactCache.delete(id);
+    return created;
   }
 
   async getImageUpload(reference){
@@ -91,20 +104,24 @@ class FirestoreBackofficeStore {
 
   async putJob(job){
     await this.db.collection(COLLECTIONS.jobs).doc(job.id).set({ ...job, updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+    this.invalidate('jobs:');
   }
 
   async putJobIfAbsent(job){
     const ref=this.db.collection(COLLECTIONS.jobs).doc(job.id);
     return this.db.runTransaction(async transaction=>{
-      const snapshot=await transaction.get(ref);if(snapshot.exists)return false;
+      const snapshot=await transaction.get(ref);if(snapshot.exists){this.invalidate('jobs:');return false;}
       transaction.set(ref,{...job,updatedAt:FieldValue.serverTimestamp()});return true;
-    });
+    }).finally(()=>this.invalidate('jobs:'));
   }
 
   async listJobs(statuses = ['queued']){
+    const key=`jobs:${[...statuses].sort().join(',')}`;
+    if(this.queryCache.has(key)) return this.queryCache.get(key);
     const snapshots = await Promise.all(statuses.map(status => this.db.collection(COLLECTIONS.jobs).where('status', '==', status).get()));
-    return snapshots.flatMap(snapshot => snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
+    const jobs=snapshots.flatMap(snapshot => snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })))
       .sort((a, b) => String(a.createdAt || '').localeCompare(String(b.createdAt || '')));
+    this.queryCache.set(key,jobs);return jobs;
   }
 
   async recoverExpiredJobs(options = {}){
@@ -123,6 +140,7 @@ class FirestoreBackofficeStore {
       updatedAt:FieldValue.serverTimestamp(),
     }));
     await batch.commit();
+    this.invalidate('jobs:');
     return expired.map(doc => doc.id);
   }
 
@@ -141,7 +159,7 @@ class FirestoreBackofficeStore {
         leaseExpiresAt: Timestamp.fromDate(new Date(now.getTime() + leaseMs)), updatedAt: FieldValue.serverTimestamp(),
       });
       return { id, ...job, status: 'running', workerId, startedAt: now.toISOString() };
-    });
+    }).finally(()=>this.invalidate('jobs:'));
   }
 
   async completeJob(id, fields = {}){
@@ -149,11 +167,13 @@ class FirestoreBackofficeStore {
       ...fields, status: 'ready-for-review', completedAt: FieldValue.serverTimestamp(),
       leaseExpiresAt: FieldValue.delete(), updatedAt: FieldValue.serverTimestamp(),
     });
+    this.invalidate('jobs:');
   }
 
   async completeSystemJob(id, fields={}){
     await this.db.collection(COLLECTIONS.jobs).doc(id).update({...fields,status:'completed',completedAt:FieldValue.serverTimestamp(),
       leaseExpiresAt:FieldValue.delete(),updatedAt:FieldValue.serverTimestamp()});
+    this.invalidate('jobs:');
   }
 
   async markJobReviewed(id, action, reviewedAt){
@@ -164,6 +184,7 @@ class FirestoreBackofficeStore {
       status, reviewAction:action, reviewedAt:Timestamp.fromDate(new Date(reviewedAt)),
       updatedAt:FieldValue.serverTimestamp(),
     });
+    this.invalidate('jobs:');
   }
 
   async failJob(id, error, options = {}){
@@ -179,88 +200,92 @@ class FirestoreBackofficeStore {
         notBefore: blocked ? FieldValue.delete() : Timestamp.fromMillis(Date.now() + delayMs),
         leaseExpiresAt: FieldValue.delete(), updatedAt: FieldValue.serverTimestamp(),
       });
-    });
+    }).finally(()=>this.invalidate('jobs:'));
+  }
+
+  async listReviewCollection(collection,status){
+    const key=`reviews:${collection}:${status}`;
+    if(this.queryCache.has(key))return this.queryCache.get(key);
+    const snapshot=await this.db.collection(collection).where('status','==',status).get();
+    const reviews=snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+    this.queryCache.set(key,reviews);return reviews;
+  }
+
+  async markReviewCollection(collection,id,status,fields={}){
+    await this.db.collection(collection).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+    this.invalidate(`reviews:${collection}:`);
   }
 
   async listReviews(status = 'queued'){
-    const snapshot = await this.db.collection(COLLECTIONS.reviews).where('status', '==', status).get();
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    return this.listReviewCollection(COLLECTIONS.reviews,status);
   }
 
   async markReview(id, status, fields = {}){
-    await this.db.collection(COLLECTIONS.reviews).doc(id).update({ status, ...fields, processedAt: FieldValue.serverTimestamp() });
+    return this.markReviewCollection(COLLECTIONS.reviews,id,status,fields);
   }
 
   async listPublicationReviews(status = 'queued'){
-    const snapshot = await this.db.collection(COLLECTIONS.publicationReviews).where('status', '==', status).get();
-    return snapshot.docs.map(doc => ({ id:doc.id, ...doc.data() }));
+    return this.listReviewCollection(COLLECTIONS.publicationReviews,status);
   }
 
   async markPublicationReview(id, status, fields = {}){
-    await this.db.collection(COLLECTIONS.publicationReviews).doc(id).update({ status, ...fields, processedAt:FieldValue.serverTimestamp() });
+    return this.markReviewCollection(COLLECTIONS.publicationReviews,id,status,fields);
   }
 
   async listDossierReviews(status = 'queued'){
-    const snapshot=await this.db.collection(COLLECTIONS.dossierReviews).where('status','==',status).get();
-    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+    return this.listReviewCollection(COLLECTIONS.dossierReviews,status);
   }
 
   async markDossierReview(id,status,fields={}){
-    await this.db.collection(COLLECTIONS.dossierReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+    return this.markReviewCollection(COLLECTIONS.dossierReviews,id,status,fields);
   }
 
   async listNewTrailReviews(status='queued'){
-    const snapshot=await this.db.collection(COLLECTIONS.newTrailReviews).where('status','==',status).get();
-    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+    return this.listReviewCollection(COLLECTIONS.newTrailReviews,status);
   }
 
   async markNewTrailReview(id,status,fields={}){
-    await this.db.collection(COLLECTIONS.newTrailReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+    return this.markReviewCollection(COLLECTIONS.newTrailReviews,id,status,fields);
   }
 
   async listHazardReviews(status='queued'){
-    const snapshot=await this.db.collection(COLLECTIONS.hazardReviews).where('status','==',status).get();
-    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+    return this.listReviewCollection(COLLECTIONS.hazardReviews,status);
   }
 
   async markHazardReview(id,status,fields={}){
-    await this.db.collection(COLLECTIONS.hazardReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+    return this.markReviewCollection(COLLECTIONS.hazardReviews,id,status,fields);
   }
 
   async listEditorialReviews(status='queued'){
-    const snapshot=await this.db.collection(COLLECTIONS.editorialReviews).where('status','==',status).get();
-    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+    return this.listReviewCollection(COLLECTIONS.editorialReviews,status);
   }
 
   async markEditorialReview(id,status,fields={}){
-    await this.db.collection(COLLECTIONS.editorialReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+    return this.markReviewCollection(COLLECTIONS.editorialReviews,id,status,fields);
   }
 
   async listImageReviews(status='queued'){
-    const snapshot=await this.db.collection(COLLECTIONS.imageReviews).where('status','==',status).get();
-    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+    return this.listReviewCollection(COLLECTIONS.imageReviews,status);
   }
 
   async markImageReview(id,status,fields={}){
-    await this.db.collection(COLLECTIONS.imageReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+    return this.markReviewCollection(COLLECTIONS.imageReviews,id,status,fields);
   }
 
   async listNewsletterReviews(status='queued'){
-    const snapshot=await this.db.collection(COLLECTIONS.newsletterReviews).where('status','==',status).get();
-    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+    return this.listReviewCollection(COLLECTIONS.newsletterReviews,status);
   }
 
   async markNewsletterReview(id,status,fields={}){
-    await this.db.collection(COLLECTIONS.newsletterReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+    return this.markReviewCollection(COLLECTIONS.newsletterReviews,id,status,fields);
   }
 
   async listAnalystReviews(status='queued'){
-    const snapshot=await this.db.collection(COLLECTIONS.analystReviews).where('status','==',status).get();
-    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+    return this.listReviewCollection(COLLECTIONS.analystReviews,status);
   }
 
   async markAnalystReview(id,status,fields={}){
-    await this.db.collection(COLLECTIONS.analystReviews).doc(id).update({status,...fields,processedAt:FieldValue.serverTimestamp()});
+    return this.markReviewCollection(COLLECTIONS.analystReviews,id,status,fields);
   }
 }
 
