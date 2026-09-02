@@ -2,15 +2,15 @@ const fs = require('fs');
 const path = require('path');
 
 const read = file => fs.readFileSync(path.join(__dirname, file), 'utf8');
+const trailBundle = require('./scripts/build-trail-page-bundle.js');
 
 describe('PERF-02 asset and regional loading contract', () => {
   test('homepage and trail detail load MapLibre on demand', () => {
     const homepage = read('index.html');
     const detail = read('trail.html');
-    [homepage, detail].forEach(html => {
-      expect(html).not.toContain('unpkg.com/maplibre-gl@5.24.0');
-      expect(html).toContain('map-runtime.js?v=20260826-1');
-    });
+    [homepage, detail].forEach(html => expect(html).not.toContain('unpkg.com/maplibre-gl@5.24.0'));
+    expect(homepage).toContain('map-runtime.js?v=20260826-1');
+    expect(detail).toContain('trail-app.bundle.js?v=20260902-1');
     const runtime = read('map-runtime.js');
     expect(runtime).toContain('IntersectionObserver');
     expect(runtime).toContain("rootMargin: opts.rootMargin || '320px 0px'");
@@ -74,7 +74,7 @@ describe('PERF-02 asset and regional loading contract', () => {
     const page = read('trail.html');
     const criticalRender = page.indexOf("performance.mark('orma-trail-critical-render')");
     expect(criticalRender).toBeGreaterThan(page.indexOf('data-default-region="trail"'));
-    expect(criticalRender).toBeLessThan(page.indexOf('src="trail-audits.js'));
+    expect(criticalRender).toBeLessThan(page.indexOf('src="trail-app.bundle.js'));
     expect(page).toContain("name.removeAttribute('aria-busy')");
   });
 
@@ -109,6 +109,15 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(runtime).toContain("window.matchMedia('(max-width: 700px)').matches");
     expect(runtime).toContain("detailMapTarget.dataset.mapState = 'waiting'");
     expect(runtime).toContain("window.addEventListener('load', () =>");
+  });
+
+  test('trail application code ships as one ordered, reproducible request', () => {
+    const page = read('trail.html');
+    expect(page).toContain('<script src="trail-app.bundle.js?v=20260902-1" defer>');
+    expect(page).not.toContain('<script src="map-runtime.js');
+    expect(page).not.toContain('<script src="trail.js');
+    expect(trailBundle.SOURCES.length).toBeGreaterThan(40);
+    expect(read(trailBundle.OUTPUT)).toBe(trailBundle.bundleSource());
   });
 
   test('an uncached parking lookup cannot block trail-detail rendering', () => {

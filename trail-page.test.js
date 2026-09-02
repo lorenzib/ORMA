@@ -187,39 +187,35 @@ describe('trail page map controls', () => {
 
   test('map-rendering scripts rotate their cache keys with the detail markup', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20260901-1');
-    expect(html).toContain('trail-photo-provenance.js?v=20260820-1');
-    expect(html).toContain('trail-weather-window.js?v=20260820-1');
-    expect(html).toContain('hike-mode.js?v=20260901-3');
-    expect(html).toContain('detail-pois.js?v=20260901-2');
-    expect(html).toContain('trail-access-directions.js?v=20260828-2');
-    expect(html).toContain('footpath-router.js?v=20260831-1');
-    expect(html).toContain('veterinary-care.js?v=20260831-2');
-    expect(html).toContain('trail.js?v=20260902-2');
-    expect(html).toContain('trail-reports.js?v=20260820-2');
-    expect(html).toContain('trail-blueprint.js?v=20260901-3');
-    expect(html).toContain('trail-recommendation.js?v=20260819-6');
-    expect(html).toContain('offline-packages.js?v=20260819-6');
-    expect(html).toContain('trail-detail-ui.js?v=20260826-1');
-    expect(html).toContain('trail-mobile.js?v=20260826-1');
+    expect(html).toContain('trail-app.bundle.js?v=20260902-1');
+    [
+      'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
+      'detail-pois.js', 'trail-access-directions.js', 'footpath-router.js',
+      'veterinary-care.js', 'trail.js', 'trail-reports.js', 'trail-blueprint.js',
+      'trail-recommendation.js', 'offline-packages.js', 'trail-detail-ui.js',
+      'trail-mobile.js',
+    ].forEach(source => expect(bundle).toContain(`// ---- ${source} ----`));
   });
 
   test('has a visible provenance slot and loads photo provenance before photo renderers', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
     document.body.innerHTML = html;
 
     expect(document.getElementById('tdHeroCredit')).not.toBeNull();
     expect(document.querySelector('#tdHeroCredit > summary').textContent.trim()).toBe('C');
     expect(document.querySelector('#tdHeroCredit > summary').getAttribute('aria-label')).toBe('Show photo credit');
     expect(document.getElementById('tdHeroCreditText')).not.toBeNull();
-    expect(html.indexOf('trail-photo-provenance.js')).toBeLessThan(html.indexOf('trail-reports.js'));
-    expect(html.indexOf('trail-photo-provenance.js')).toBeLessThan(html.indexOf('trail.js?v='));
+    expect(bundle.indexOf('// ---- trail-photo-provenance.js ----')).toBeLessThan(bundle.indexOf('// ---- trail-reports.js ----'));
+    expect(bundle.indexOf('// ---- trail-photo-provenance.js ----')).toBeLessThan(bundle.indexOf('// ---- trail.js ----'));
   });
 
   test('loads the route-aware weather window before the trail blueprint', () => {
-    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
-    expect(html.indexOf('trail-weather-window.js')).toBeLessThan(html.indexOf('trail-blueprint.js'));
+    const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
+    expect(bundle.indexOf('// ---- trail-weather-window.js ----')).toBeLessThan(bundle.indexOf('// ---- trail-blueprint.js ----'));
   });
 
   test('keeps trail evidence internal and attributes weather beside its card', () => {
@@ -295,8 +291,8 @@ describe('trail page map controls', () => {
     expect(gettingAround.querySelector('.td2-kick').textContent.trim()).toBe('Getting around');
     expect(gettingAround.previousElementSibling).toBe(gettingThere);
     expect(gettingThere.querySelector('#td2MapsLink').nextElementSibling.id).toBe('td2MapsStatus');
-    expect(html).toContain('trail-route-refs.js?v=20260901-4');
-    expect(html.indexOf('trail-route-refs.js')).toBeLessThan(html.indexOf('trail.js?v='));
+    const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
+    expect(bundle.indexOf('// ---- trail-route-refs.js ----')).toBeLessThan(bundle.indexOf('// ---- trail.js ----'));
     const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
     expect(blueprint).toContain("routeSwitches.length ? 'Trail numbers and switches'");
     expect(blueprint).toContain('Start at ${esc(routeStartLabel)} and follow');
@@ -471,7 +467,8 @@ describe('trail page map controls', () => {
     expect(trail).toContain("'hillshade-method': 'igor'");
     expect(trail).toContain("on ? 'Close map' : 'Expand map'");
     expect(hikeMode).toContain('rejoin.segmentFraction');
-    expect(html.indexOf('hike-distance.js')).toBeLessThan(html.indexOf('hike-mode.js'));
+    const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
+    expect(bundle.indexOf('// ---- hike-distance.js ----')).toBeLessThan(bundle.indexOf('// ---- hike-mode.js ----'));
     expect(hikeMode).toContain("window.t('hike.walked'");
     expect(hikeMode).not.toContain("window.t('hike.kmOf'");
     expect(hikeMode).toContain("rejoinBtn.id = 'mapHikeRejoinBtn'");
