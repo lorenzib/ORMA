@@ -69,6 +69,27 @@ describe('hosted image coverage routing',()=>{
     expect(store.artifacts['trail-image-publication-requests']).toBeUndefined();
   });
 
+  test('moderator uploads bypass older delayed automatic searches',async()=>{
+    const gaps=[
+      {slug:'old-one',trailId:'old-one',title:'Old one',sourceRef:'trail.html?id=old-one',reasons:['Missing image'],libraryMatches:[]},
+      {slug:'old-two',trailId:'old-two',title:'Old two',sourceRef:'trail.html?id=old-two',reasons:['Missing image'],libraryMatches:[]},
+      {slug:'seceda',trailId:'seceda',title:'Seceda Ridge Trail',sourceRef:'trail.html?id=seceda',reasons:['Missing image'],libraryMatches:[]},
+    ];
+    const store=memoryStore({'image-coverage':{gaps}});
+    store.jobs.push(
+      {id:'auto-old-one',jobType:'hosted-image-sourcing',slug:'old-one',status:'queued',sourcePreference:'find-licensed',createdAt:'2026-08-19T00:00:00Z'},
+      {id:'auto-old-two',jobType:'hosted-image-sourcing',slug:'old-two',status:'queued',sourcePreference:'find-licensed',createdAt:'2026-08-19T00:01:00Z'},
+      {id:'upload-new',jobType:'hosted-image-sourcing',slug:'seceda',trailId:'seceda',status:'queued',sourcePreference:'upload-owner-photo',reviewId:'upload-review',uploadRef:'backofficeImageUploads/upload-new',fileName:'new.jpg',mimeType:'image/jpeg',fileSize:100,creator:'Benedetta Lorenzi',rightsBasis:'orma-owned',altText:'Seceda ridge',createdAt:'2026-09-03T00:00:00Z'},
+    );
+    store.reviews.image.push({id:'upload-review',slug:'seceda',status:'processing'});
+    const claimed=[];const originalClaim=store.claimJob;
+    store.claimJob=async(id,workerId)=>{claimed.push(id);if(id.startsWith('auto-'))return null;return originalClaim(id,workerId);};
+    const outcomes=await processImageJobs(store,{workerId:'worker',imageLimit:1});
+    expect(claimed).toEqual(['upload-new']);
+    expect(outcomes).toEqual([expect.objectContaining({jobId:'upload-new',status:'completed'})]);
+    expect(store.artifacts['image-coverage-results'].items[0].candidates[0].uploadRef).toBe('backofficeImageUploads/upload-new');
+  });
+
   test('exact uploaded preview approval creates a human-gated publication request',async()=>{
     const candidate={title:'one.jpg',uploadRef:'backofficeImageUploads/upload-asset-1',creator:'Benedetta Lorenzi',license:'ORMA-owned',altText:'Seceda ridge in summer',status:'ready-for-asset-review',mimeType:'image/jpeg',fileSize:100,width:1200,height:800};
     const audit={gaps:[{slug:'seceda',trailId:'seceda',title:'Seceda Ridge Trail',sourceRef:'trail.html?id=seceda',reasons:['Missing image'],libraryMatches:[]}]};

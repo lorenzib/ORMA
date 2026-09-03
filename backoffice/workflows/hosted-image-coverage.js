@@ -73,8 +73,22 @@ async function ingestImageReviews(store){
 }
 
 async function processImageJobs(store,options={}){
-  const workerId=options.workerId||`orma-worker-${randomUUID()}`;const queued=(await store.listJobs(['queued'])).filter(job=>job.jobType==='hosted-image-sourcing');const outcomes=[];
-  for(const pending of queued.slice(0,options.imageLimit||2)){
+  const workerId=options.workerId||`orma-worker-${randomUUID()}`;const outcomes=[];const limit=options.imageLimit||2;
+  const priority={
+    'approve-uploaded-photo':0,
+    'upload-owner-photo':1,
+    'approve-image-candidate':2,
+    'use-orma-library':3,
+    'generate-ai':4,
+    'find-licensed':5,
+  };
+  const queued=(await store.listJobs(['queued'])).filter(job=>job.jobType==='hosted-image-sourcing').sort((a,b)=>{
+    const aPriority=(priority[a.sourcePreference]??10)-(a.reviewId?0:0.5);
+    const bPriority=(priority[b.sourcePreference]??10)-(b.reviewId?0:0.5);
+    return aPriority-bPriority||String(a.createdAt||'').localeCompare(String(b.createdAt||''));
+  });
+  for(const pending of queued){
+    if(outcomes.length>=limit)break;
     const job=await store.claimJob(pending.id,workerId);if(!job)continue;
     try{
       const audit=await store.getArtifact('image-coverage');const gap=(audit?.gaps||[]).find(item=>item.slug===job.slug);if(!gap)throw new Error('Image gap no longer exists');let result;
