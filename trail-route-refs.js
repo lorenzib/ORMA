@@ -141,10 +141,14 @@
   function featuresForTrail(trail) {
     const sections = segmentsForTrail(trail);
     const refs = forTrail(trail);
+    // Verified section geometry remains the first choice. When a route has a
+    // known sequence of references but no surveyed switch coordinates, keep
+    // the sequence together on the full ORMA line. This makes the numbers
+    // visible without pretending that an unverified point is the junction.
     const labelledPaths = sections.length
       ? sections
-      : (refs.length === 1 && Array.isArray(trail && trail.path)
-        ? [{ ref:refs[0], path:trail.path }]
+      : (refs.length && Array.isArray(trail && trail.path)
+        ? [{ ref:refs.join(' / '), path:trail.path }]
         : []);
     return labelledPaths
       .filter(section => section.ref && Array.isArray(section.path) && section.path.length > 1)

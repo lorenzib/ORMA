@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-02T09:25:01.562Z",
+  "generatedAt": "2026-09-03T12:31:22.343Z",
   "regions": {
     "dolomites": {
       "trailCount": 111,
-      "trails": "data/regions/dolomites-trails.js?v=70d945be387a",
+      "trails": "data/regions/dolomites-trails.js?v=c675f314cc1c",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=16838be26bd3",
         "seceda": "data/trail-details/seceda.js?v=95c669f3ef53",
@@ -14,7 +14,7 @@
         "prato-piazza": "data/trail-details/prato-piazza.js?v=965b85a26b51",
         "nuvolau": "data/trail-details/nuvolau.js?v=db9f4c04a0e2",
         "sassolungo": "data/trail-details/sassolungo.js?v=0248303360ae",
-        "lago-braies": "data/trail-details/lago-braies.js?v=296f9d6e735e",
+        "lago-braies": "data/trail-details/lago-braies.js?v=3856567eb48e",
         "lago-carezza": "data/trail-details/lago-carezza.js?v=4d1feccf4d24",
         "lago-sorapis": "data/trail-details/lago-sorapis.js?v=761cc7ceb4f6",
         "valley-view": "data/trail-details/valley-view.js?v=ec2fa77e3269",

@@ -230,7 +230,7 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20260901-1');
-    expect(html).toContain('trail-app.bundle.js?v=20260903-1');
+    expect(html).toContain('trail-app.bundle.js?v=20260903-2');
     expect(html).toContain('trail-mobile.css?v=20260902-1');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
@@ -568,9 +568,10 @@ describe('trail page map controls', () => {
     expect(trail).toMatch(/id: 'single-trail-path-casing'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
     expect(trail).toMatch(/id: 'single-trail-path-line'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
     expect(trail).toContain("'line-color': '#858D88'");
-    expect(trail).not.toContain("id:'single-trail-route-number'");
-    expect(trail).not.toContain("source:'single-trail-route-refs'");
-    expect(trail).not.toContain('window.DoloPawsTrailRouteRefs.addShieldLayer');
+    expect(trail).toContain("id:'single-trail-route-number'");
+    expect(trail).toContain("source:'single-trail-route-refs'");
+    expect(trail).toContain('window.DoloPawsTrailRouteRefs.addShieldLayer');
+    expect(trail).toMatch(/id:'single-trail-route-number'[\s\S]*?beforeId:firstLabelLayer && firstLabelLayer\.id/);
     expect(html).toContain('.td2-hero{background:#243128;color:#EAF1E8;position:relative;overflow:visible;z-index:2;}');
     expect(trail).toContain("}, firstLabelLayer ? firstLabelLayer.id : undefined);");
     expect(trail).toContain("'raster-resampling': 'linear'");

@@ -31,7 +31,8 @@ describe('logged-in homepage mapped-route hierarchy', () => {
     expect(routeRefs).toContain("const SHIELD_IMAGE_ID = 'orma-route-number-shield'");
     expect(routeRefs).toContain("'icon-text-fit':'both'");
     expect(routeRefs).toContain("'text-color':'#17221B'");
-    expect(routeRefs).toContain('8, 14, 12, 16, 16, 18, 19, 20');
-    expect(routeRefs).toContain('8, 1, 12, 1.08, 16, 1.18, 19, 1.24');
+    expect(routeRefs).toContain('8, 16, 12, 18, 16, 21, 19, 23');
+    expect(routeRefs).toContain('8, 1.08, 12, 1.16, 16, 1.26, 19, 1.34');
+    expect(routeRefs).toContain("refs.join(' / ')");
   });
 });

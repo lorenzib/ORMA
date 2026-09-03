@@ -102,6 +102,16 @@ describe('DATA-03 regional runtime boundaries', () => {
     }));
   });
 
+  test('published Lago di Braies payload carries its official route numbers', () => {
+    const trail = loadRegionalTrailFile('data/regions/dolomites-trails.js')
+      .find(item => item.id === 'lago-braies');
+    expect(trail.routeRefs).toEqual(['1', '19']);
+    expect(trail.routeSource).toEqual(expect.objectContaining({
+      provider:'Südtirol official tourism portal',
+      url:expect.stringContaining('suedtirol.info'),
+    }));
+  });
+
   test('homepage and detail page load one region while catalog surfaces may request all', () => {
     expect(read('index.html')).toContain('data-default-region="dolomites"');
     expect(read('trail.html')).toContain('data-default-region="trail"');

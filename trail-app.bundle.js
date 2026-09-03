@@ -11200,10 +11200,14 @@ function initTrailReports(map, trail){
   function featuresForTrail(trail) {
     const sections = segmentsForTrail(trail);
     const refs = forTrail(trail);
+    // Verified section geometry remains the first choice. When a route has a
+    // known sequence of references but no surveyed switch coordinates, keep
+    // the sequence together on the full ORMA line. This makes the numbers
+    // visible without pretending that an unverified point is the junction.
     const labelledPaths = sections.length
       ? sections
-      : (refs.length === 1 && Array.isArray(trail && trail.path)
-        ? [{ ref:refs[0], path:trail.path }]
+      : (refs.length && Array.isArray(trail && trail.path)
+        ? [{ ref:refs.join(' / '), path:trail.path }]
         : []);
     return labelledPaths
       .filter(section => section.ref && Array.isArray(section.path) && section.path.length > 1)
@@ -13631,9 +13635,23 @@ function renderTrail(t){
             },
           });
         }
-        // The basemap already carries standard hiking-route references.
-        // Do not repeat them as oversized white shields over the selected
-        // trail; they obscure junctions and the route itself on phones.
+        // Put the trail's known references on the ORMA route itself. The
+        // public hiking raster sits below the thick match-colour line, so its
+        // baked-in numbers can otherwise disappear beneath the selected path.
+        const routeRefFeatures = window.DoloPawsTrailRouteRefs
+          ? window.DoloPawsTrailRouteRefs.featuresForTrail(t)
+          : [];
+        if(routeRefFeatures.length){
+          map.addSource('single-trail-route-refs', {
+            type:'geojson',
+            data:{ type:'FeatureCollection', features:routeRefFeatures },
+          });
+          window.DoloPawsTrailRouteRefs.addShieldLayer(map, {
+            id:'single-trail-route-number',
+            source:'single-trail-route-refs',
+            beforeId:firstLabelLayer && firstLabelLayer.id,
+          });
+        }
         const bounds = new maplibregl.LngLatBounds();
         t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
         map.fitBounds(bounds, { padding: 60, maxZoom: 17 });

@@ -70,6 +70,19 @@ describe('trail route-number guidance', () => {
     }]);
   });
 
+  test('keeps an unlocated route-number sequence together on the ORMA line', () => {
+    const path = [[46, 11], [46.1, 11.1], [46.2, 11.2]];
+    expect(refs.featuresForTrail({
+      id:'multi-ref-route',
+      path,
+      routeSource:{ name:'Circuit using paths 7, 6 and 30' },
+    })).toEqual([{
+      type:'Feature',
+      properties:{ id:'multi-ref-route', routeRef:'7 / 6 / 30' },
+      geometry:{ type:'LineString', coordinates:[[11, 46], [11.1, 46.1], [11.2, 46.2]] },
+    }]);
+  });
+
   test('exposes switch timing for detailed route guidance', () => {
     const trail = {
       decisionPoints:[
