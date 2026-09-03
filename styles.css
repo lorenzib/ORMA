@@ -3452,7 +3452,9 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 .li-cond-t-mobile{display:none;}
 .li-record{grid-area:record;display:inline-flex;flex:none;align-items:center;justify-content:center;gap:8px;height:46px;box-sizing:border-box;padding:0 18px;border-radius:999px;background:#C4652F;color:#fff;font:800 12.5px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;box-shadow:0 6px 16px -10px rgba(23,42,28,.55);}
 .li-record:hover{background:#A9541F;}
-.li-record-dot{width:8px;height:8px;border-radius:50%;background:#fff;}
+.li-record-dot{width:8px;height:8px;border-radius:50%;background:#fff;animation:recordLivePulse 1.8s ease-out infinite;}
+@keyframes recordLivePulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.72);}70%{box-shadow:0 0 0 8px rgba(255,255,255,0);}100%{box-shadow:0 0 0 0 rgba(255,255,255,0);}}
+@media (prefers-reduced-motion:reduce){.li-record-dot{animation:none;}}
 
 .li-rating-row{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center;}
 /* Card quick actions: a quiet bar across the card bottom — focus the
