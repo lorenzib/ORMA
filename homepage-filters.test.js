@@ -438,10 +438,10 @@ describe('map-first returning homepage layout contract', () => {
     expect(trailScript).toContain("7, 0.10");
     expect(trailScript).toContain("10, 0.14");
     expect(trailScript).toContain("12, 0.20");
-    expect(trailScript).toContain("14, 0.52");
-    expect(trailScript).toContain("16, 0.72");
+    expect(trailScript).toContain("14, 0.64");
+    expect(trailScript).toContain("16, 0.92");
     expect(trailScript).toContain("'raster-saturation': -0.90");
     expect(trailScript).toContain("'raster-resampling': 'linear'");
-    expect(trailScript).toContain("'raster-contrast': 0.20");
+    expect(trailScript).toContain("'raster-contrast': 0.38");
   });
 });

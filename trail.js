@@ -2110,8 +2110,11 @@ function renderTrail(t){
         layout: { visibility: 'visible' },
         // Match the homepage treatment: the public network should read as
         // quiet grey context while its red/white/black route shields retain a
-        // trace of colour. Linear resampling removes the blocky, pixelated
-        // edges that nearest-neighbour scaling caused at close trail zooms.
+        // trace of colour. At detail-page zooms the same raster is deliberately
+        // more opaque and higher contrast so its existing trail numbers remain
+        // readable; no duplicate number layer is drawn over the map. Linear
+        // resampling removes the blocky, pixelated edges that nearest-neighbour
+        // scaling caused at close trail zooms.
         // This raster remains above the wider ORMA match-colour line, leaving
         // that green/amber/red line visible as the selected route's underlay.
         paint: {
@@ -2120,11 +2123,11 @@ function renderTrail(t){
             7, 0.10,
             10, 0.14,
             12, 0.20,
-            14, 0.52,
-            16, 0.72,
+            14, 0.64,
+            16, 0.92,
           ],
           'raster-saturation': -0.90,
-          'raster-contrast': 0.20,
+          'raster-contrast': 0.38,
           'raster-resampling': 'linear',
           'raster-fade-duration': 120,
         },

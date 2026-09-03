@@ -230,7 +230,7 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20260901-1');
-    expect(html).toContain('trail-app.bundle.js?v=20260902-4');
+    expect(html).toContain('trail-app.bundle.js?v=20260903-1');
     expect(html).toContain('trail-mobile.css?v=20260902-1');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
@@ -558,10 +558,10 @@ describe('trail page map controls', () => {
     expect(trail).toContain('7, 0.10');
     expect(trail).toContain('10, 0.14');
     expect(trail).toContain('12, 0.20');
-    expect(trail).toContain('14, 0.52');
-    expect(trail).toContain('16, 0.72');
+    expect(trail).toContain('14, 0.64');
+    expect(trail).toContain('16, 0.92');
     expect(trail).toContain("'raster-saturation': -0.90");
-    expect(trail).toContain("'raster-contrast': 0.20");
+    expect(trail).toContain("'raster-contrast': 0.38");
     expect(trail).toContain("'line-color': '#FFFDF7', 'line-width': 17");
     expect(trail).toContain("return score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25'");
     expect(trail).toContain("'line-color': selectedRouteColor, 'line-width': 13");
