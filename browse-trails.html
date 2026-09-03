@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260831-3">
+<link rel="stylesheet" href="styles.css?v=20260903-1">
 <style>
   /* Guest bar — the homepage component reused verbatim; CTA is a link here */
   a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
@@ -38,6 +38,10 @@
   .browse-geo-group .area-select-trigger__copy{display:inline-flex;align-items:baseline;gap:8px;min-width:0;}
   .browse-geo-group .area-select-trigger__kicker{flex:none;color:#3E7A91;font:800 9px/1 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
   .browse-geo-group .area-select-trigger__label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  /* Match Collections: until a location is chosen, each selector presents
+     only its category prompt instead of a redundant "All …" label. */
+  .browse-geo-group .area-select-trigger--kicker-until-selected:not(.area-select-trigger--has-selection) .area-select-trigger__label{display:none;}
+  .browse-geo-group .area-select-trigger--kicker-until-selected.area-select-trigger--has-selection .area-select-trigger__kicker{display:none;}
   .browse-primary-controls .browse-tools{width:100%;min-width:0;margin:0;flex-wrap:nowrap;justify-content:flex-start;}
   .browse-primary-controls .browse-search-shell{flex:1 1 300px;width:auto;max-width:360px;min-width:180px;}
   .browse-primary-controls .browse-filter-divider{display:none;}
@@ -146,8 +150,6 @@
     .browse-geo-group,.browse-geo-group--valley{width:100%;min-width:0;flex:none;}
     .browse-geo-group--valley{grid-column:auto;}
     .browse-geo-group .area-select-trigger{width:100%;min-width:0;justify-content:space-between;padding-inline:10px;}
-    .browse-geo-group .area-select-trigger--kicker-until-selected:not(.area-select-trigger--has-selection) .area-select-trigger__label{display:none;}
-    .browse-geo-group .area-select-trigger--kicker-until-selected.area-select-trigger--has-selection .area-select-trigger__kicker{display:none;}
     .browse-primary-controls .browse-tools{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));width:100%;max-width:none;flex-wrap:wrap;justify-content:stretch;}
     .browse-profile-banner{align-items:flex-start;flex-direction:column;}
     /* Search full-width, and the Distance / Trail rating / Water controls

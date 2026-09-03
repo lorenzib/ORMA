@@ -2927,6 +2927,18 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   font:700 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;
 }
 .li-control-kicker{font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);}
+/* Geographic controls begin as concise category prompts, like Collections.
+   A concrete country, region, or valley replaces its prompt only after the
+   visitor makes that choice. The homepage's default map scope remains intact. */
+.li-menuwrap:not(.li-has-selection) .li-geo-copy .li-control-kicker,
+.li-menuwrap.li-mobile-default-label .li-geo-copy .li-control-kicker{display:inline;}
+.li-menuwrap.li-has-selection:not(.li-mobile-default-label) .li-geo-copy .li-control-kicker{display:none;}
+.li-menuwrap:not(.li-has-selection) #liCountryLabel,
+.li-menuwrap:not(.li-has-selection) #liRegionLabel,
+.li-menuwrap:not(.li-has-selection) #liValleyLabel,
+.li-menuwrap.li-mobile-default-label #liCountryLabel,
+.li-menuwrap.li-mobile-default-label #liRegionLabel,
+.li-menuwrap.li-mobile-default-label #liValleyLabel{display:none;}
 .li-region-btn:hover,.li-region-btn[aria-expanded="true"]{border-color:var(--accent);background:#F7FAF8;}
 .li-region-menu{left:0;right:auto;width:230px;padding:10px;}
 .li-country-menu{left:0;right:auto;width:190px;padding:10px;}
