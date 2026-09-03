@@ -235,7 +235,15 @@ const trails = [
     tips:"Reachable by bus (line 172) from Ortisei, or park at Passo Pinei. Best June through October. Moderate terrain with some real ascent/descent — not the flattest option on this list, but not technical either."
   },
   {
-    id:'giro-del-bulacia', name:'Giro del Bulacia', area:'Tires / Fiè allo Sciliar', lat:46.545689, lng:11.6124627,
+    id:'giro-del-bulacia', name:'Giro della Bullaccia', area:'Compatsch / Alpe di Siusi', lat:46.545689, lng:11.6124627,
+    osmRelation:9483250,
+    waymarkedtrails:'https://hiking.waymarkedtrails.org/#route?id=9483250',
+    source:'https://www.suedtirol.info/it/it/esperienze-eventi/plp-esperienze/esperienze-alto-adige/pdp-esperienze.smgpoi6af98cb6de2e22ce1ffbb5b17b729a38.giro-della-bullaccia.alpe-di-siusi',
+    sourceLinks:[
+      {label:'Südtirol — Giro della Bullaccia official itinerary',url:'https://www.suedtirol.info/it/it/esperienze-eventi/plp-esperienze/esperienze-alto-adige/pdp-esperienze.smgpoi6af98cb6de2e22ce1ffbb5b17b729a38.giro-della-bullaccia.alpe-di-siusi',categories:['route','access']},
+      {label:'Waymarked Trails — Puflatschumrundung / Giro della Bullaccia relation 9483250',url:'https://hiking.waymarkedtrails.org/#route?id=9483250',categories:['route']},
+      {label:'Waymarked Trails — trail 14 relation 9483233 (optional-route evidence)',url:'https://hiking.waymarkedtrails.org/#route?id=9483233',categories:['route']}
+    ],
     path:[[46.545689,11.6124627],[46.5458311,11.6120166],[46.5458453,11.6102646],[46.5459299,11.6098149],[46.5468575,11.6086503],[46.5473717,11.6077324],[46.5479519,11.6075814],[46.5482725,11.6073391],[46.5487186,11.6057855],[46.5491273,11.6052406],[46.5496457,11.6039329],[46.5500327,11.6041106],[46.5505045,11.6038637],[46.5509402,11.6038382],[46.5511142,11.6032458],[46.5515682,11.6030217],[46.5518775,11.602009],[46.5525206,11.6008772],[46.552791,11.6008583],[46.553128,11.6011681],[46.5538783,11.6015332],[46.5547578,11.5996038],[46.5553109,11.5995279],[46.556108,11.5990671],[46.5569921,11.5992982],[46.5576057,11.6001432],[46.5576727,11.6017628],[46.5578297,11.6022983],[46.5582142,11.6025769],[46.558917,11.603943],[46.559667,11.6043274],[46.5593845,11.6055485],[46.5593238,11.6064885],[46.5590816,11.6071564],[46.5591126,11.6076228],[46.5597782,11.6074036],[46.5603365,11.6074227],[46.5607548,11.6079625],[46.5612155,11.6081871],[46.5619736,11.6079596],[46.5626358,11.6080467],[46.5628221,11.6078177],[46.562708,11.6085286],[46.5625334,11.6087571],[46.5627817,11.6092893],[46.5626808,11.6107267],[46.5632513,11.6116775],[46.5635006,11.6132215],[46.5637187,11.6136752],[46.5640286,11.6139717],[46.5644454,11.6161472],[46.5642983,11.6167486],[46.5639076,11.6172675],[46.5636322,11.6179836],[46.5636603,11.619112],[46.5634469,11.620279],[46.5635033,11.6209973],[46.5634331,11.6211091],[46.5631048,11.6202682],[46.5625045,11.6196347],[46.5603514,11.6189942],[46.5596746,11.6182753],[46.5591499,11.6182284],[46.5579326,11.6187434],[46.5568922,11.6186826],[46.5560641,11.6180836],[46.5558028,11.6176148],[46.5548271,11.6166499],[46.5543134,11.6167063],[46.5533372,11.6161089],[46.5523272,11.6166906],[46.5518316,11.6165531],[46.5516653,11.616364],[46.5513406,11.6165118],[46.5508406,11.6157822],[46.5501715,11.615132],[46.5498238,11.6151097],[46.548956,11.61379],[46.54869,11.6147275],[46.548599,11.6147181],[46.5486206,11.6149377],[46.548159,11.6146758],[46.5479738,11.6148661],[46.5478855,11.6148066],[46.547819,11.6149994],[46.5467298,11.6131195],[46.5462982,11.6126581],[46.545689,11.6124627]],
     distance:6.64, elevation:null, hours:'2.5–3 (estimated - not source-verified)', paid:true,
     terrainType:'Meadow & alpine pasture track', terrainRank:0,
@@ -244,7 +252,7 @@ const trails = [
     shadeCoverage:null, heatRisk:null, safetyLevel:'moderate', exposure:false,
     waterSources:[{km:null,label:'Tschötsch Alm (malga)'},{km:null,label:'Rifugio Puflatsch/Bullaccia'},{km:null,label:'Baita Arnica'}],
     rifugi:[{km:null,name:'Tschötsch Alm'},{km:null,name:'Rifugio Puflatsch'},{km:null,name:'Baita Arnica'}],
-    startPoint:{lat:46.545689,lng:11.6124627,label:'Start here — Compaccio/Kompatsch area parking'},
+    startPoint:{lat:46.545689,lng:11.6124627,label:'Start here — Compatsch route start'},
     desc:"GPS-verified closed loop (Waymarked Trails relation 9483250) near Bulaccia in the Sciliar-Catinaccio park, officially marked as a \"PU\" trail. Confirmed dog-friendly via an independent hiking blog account of the route done together with a dog. Passes Tschötsch Alm, Rifugio Puflatsch, and the Panche delle Streghe (Witches' Benches) viewpoint.",
     tips:"There's an electrified cattle gate partway up — approach calmly and guide your dog through rather than letting them investigate it. Skip this trail if there's heavy snow cover (avalanche risk on some sections). Elevation profile and exact water-source/rifugio positions along the km-marks are not yet verified — treat as approximate."
   },

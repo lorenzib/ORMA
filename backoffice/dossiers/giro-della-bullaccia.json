@@ -1,0 +1,105 @@
+{
+  "contractVersion": "1.0.0",
+  "candidateId": "giro-del-bulacia",
+  "title": "Giro della Bullaccia — route identity and geometry correction",
+  "reviewState": "blocked",
+  "researchedAt": "2026-09-03",
+  "researchMethod": "Official destination itinerary cross-checked against the editor-supplied Waymarked Trails GeoJSON for relation 9483250 and GPX for trail 14 (relation 9483233). No field visit is claimed.",
+  "referenceMetrics": {
+    "distanceKm": 8.4,
+    "computedDistanceKm": 6.76,
+    "ascentM": 413,
+    "durationMinutes": 156,
+    "minimumElevationM": 1852,
+    "maximumElevationM": 2173,
+    "sourceId": "suedtirol-bullaccia"
+  },
+  "editorialSummary": "The official identity is Giro della Bullaccia, starting and ending at Compatsch. The supplied relation 9483250 is a closed 6.76 km circuit. Trail 14 is a separate 3.53 km open line that intersects the circuit but continues south beyond Compatsch. Preserve it as proposed optional-route evidence; do not silently splice it into the main route.",
+  "promotionGate": {
+    "canApproveParking": false,
+    "canApproveRoute": false,
+    "canPublish": false,
+    "blockers": [
+      "Official distance is 8.4 km while the supplied closed geometry computes to 6.76 km.",
+      "Trail 14 requires a human decision about the exact detour entry, exit and user-facing purpose.",
+      "The official route direction and ordered trail-number changes still require cartographic verification."
+    ]
+  },
+  "sources": [
+    {
+      "id": "suedtirol-bullaccia",
+      "label": "Südtirol — Giro della Bullaccia",
+      "url": "https://www.suedtirol.info/it/it/esperienze-eventi/plp-esperienze/esperienze-alto-adige/pdp-esperienze.smgpoi6af98cb6de2e22ce1ffbb5b17b729a38.giro-della-bullaccia.alpe-di-siusi",
+      "authority": "official-regional-destination-route-portal",
+      "retrievedAt": "2026-09-03",
+      "freshness": "current-2026",
+      "supports": ["routeIdentity", "officialStart", "officialFinish", "itinerary", "metrics", "access"]
+    },
+    {
+      "id": "waymarked-9483250",
+      "label": "Editor-supplied Puflatschumrundung / Giro della Bullaccia GeoJSON",
+      "url": "https://hiking.waymarkedtrails.org/#route?id=9483250",
+      "authority": "OpenStreetMap-route-relation-and-editor-supplied-export",
+      "retrievedAt": "2026-09-03",
+      "freshness": "exported-2026-09-03",
+      "supports": ["candidateRouteGeometry", "computedDistance", "closedCircuit"]
+    },
+    {
+      "id": "waymarked-9483233",
+      "label": "Editor-supplied trail 14 GPX",
+      "url": "https://hiking.waymarkedtrails.org/#route?id=9483233",
+      "authority": "OpenStreetMap-route-relation-and-editor-supplied-export",
+      "retrievedAt": "2026-09-03",
+      "freshness": "exported-2026-09-03",
+      "supports": ["optionalRouteCandidate", "routeIntersections"]
+    }
+  ],
+  "claims": [
+    {
+      "id": "route-identity",
+      "category": "route",
+      "label": "Official route identity",
+      "proposedValue": "Use the canonical Italian name Giro della Bullaccia; start and finish at Compatsch.",
+      "state": "supported",
+      "confidence": 0.99,
+      "sourceIds": ["suedtirol-bullaccia"],
+      "evidenceSummary": "The official destination itinerary names the route and explicitly describes departure and return at Compatsch.",
+      "humanChecks": ["Preserve the existing internal slug until redirects and stored references can be migrated safely."]
+    },
+    {
+      "id": "route-geometry",
+      "category": "route",
+      "label": "Main circuit geometry",
+      "proposedValue": "Use the editor-supplied 1,008-point closed geometry from relation 9483250 as the candidate main circuit.",
+      "state": "conflicted",
+      "confidence": 0.75,
+      "sourceIds": ["suedtirol-bullaccia", "waymarked-9483250"],
+      "evidenceSummary": "The geometry closes exactly and computes to 6.76 km, but the official itinerary publishes 8.4 km.",
+      "blocker": "Resolve whether relation 9483250 is a shorter variant or whether the official metric uses a materially different line.",
+      "humanChecks": ["Compare the line with Engelsrast, Croce Filln, Panche delle Streghe and Croce Goller.", "Orient the approved geometry from Compatsch in the official direction."]
+    },
+    {
+      "id": "trail-14-option",
+      "category": "route",
+      "label": "Optional trail 14 route",
+      "proposedValue": "Retain trail 14 as an optional detour or approach overlay, not as a replacement for the main circuit.",
+      "state": "unresolved",
+      "confidence": 0.7,
+      "sourceIds": ["waymarked-9483250", "waymarked-9483233"],
+      "evidenceSummary": "The 3.53 km open trail intersects the main circuit at several points and continues about 740 m south of the circuit start.",
+      "blocker": "The intended entry, exit and purpose of the detour are not established by the official itinerary.",
+      "humanChecks": ["Choose exact entry and exit coordinates.", "Confirm whether the option is a detour, access route or numbered guidance segment."]
+    },
+    {
+      "id": "route-metrics",
+      "category": "elevation",
+      "label": "Official effort metrics",
+      "proposedValue": "The official itinerary reports 8.4 km, 413 m ascent and descent, 2 hours 36 minutes, and elevations from 1,852 m to 2,173 m.",
+      "state": "supported",
+      "confidence": 0.98,
+      "sourceIds": ["suedtirol-bullaccia"],
+      "evidenceSummary": "The figures are published together on the official route page.",
+      "humanChecks": ["Do not apply these figures to the 6.76 km geometry until the route mismatch is resolved."]
+    }
+  ]
+}
