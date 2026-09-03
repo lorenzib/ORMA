@@ -31,7 +31,7 @@ describe('shared trail-filter experience', () => {
     const geoStyles = read('geo-filters.css');
 
     [homepage, browse, collections].forEach(html => {
-      expect(html).toContain('geo-filters.css?v=20260902-1');
+      expect(html).toContain('geo-filters.css?v=20260903-1');
       expect((html.match(/geo-filter-control/g) || [])).toHaveLength(3);
     });
     expect(geoStyles).toContain('width:205px');
@@ -39,6 +39,21 @@ describe('shared trail-filter experience', () => {
     expect(geoStyles).toContain('border-radius:999px');
     expect(geoStyles).toContain('color:#3E7A91');
     expect(geoStyles).toContain('border-right:2.5px solid #66776C');
+    expect(geoStyles).toContain('width:min(240px,calc(100vw - 32px))');
+    expect(geoStyles).toContain('.geo-filter-control:last-child .area-select-menu');
+  });
+
+  test('keeps all three collection filters in one mobile row and aligns homepage menus', () => {
+    const styles = read('styles.css');
+    const mobile = read('homepage-mobile.css');
+
+    expect(styles).toContain('.collection-area-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;gap:7px;}');
+    expect(styles).toContain('.collection-area-filters .collection-area-filter:last-child{grid-column:auto;}');
+    expect(mobile).toContain('body.mhome-active .li-menuwrap{position:relative;}');
+    expect(mobile).toContain('body.mhome-active .li-region-wrap .li-menu{left:50%;transform:translateX(-50%);}');
+    expect(mobile).toContain('body.mhome-active .li-valley-wrap .li-menu{left:auto;right:0;transform:none;}');
+    expect(mobile).toContain("font:650 13px 'Inter',sans-serif;");
+    expect(mobile).toContain('font-weight:800;');
   });
 
   test.each(vocabulary)('keeps “%s” consistent across guest, browse and logged-in filters', label => {

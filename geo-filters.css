@@ -100,6 +100,19 @@
     min-height:42px;
     padding-inline:13px;
   }
+  .geo-filter-control .area-select-menu{
+    width:min(240px,calc(100vw - 32px));
+    min-width:0;
+  }
+  .geo-filter-control:nth-child(2) .area-select-menu{
+    left:50%;
+    transform:translateX(-50%);
+  }
+  .geo-filter-control:last-child .area-select-menu{
+    left:auto;
+    right:0;
+    transform:none;
+  }
 }
 
 @media (orientation:landscape) and (max-height:520px) and (max-width:700px){
