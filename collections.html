@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20260902-1">
+<link rel="stylesheet" href="geo-filters.css?v=20260902-1">
 </head>
 <body>
 <div class="topnav">
@@ -38,9 +39,9 @@
       <input id="collectionSearch" type="search" placeholder="Search collections" aria-label="Search collections">
     </label>
     <div class="collection-area-filters" aria-label="Collection location">
-      <span class="collection-area-filter area-select-shell"><select id="collectionCountrySelect" data-compact-label data-control-kicker="Country" data-kicker-until-selected aria-label="Filter collections by country"></select></span>
-      <span class="collection-area-filter area-select-shell"><select id="collectionRegionSelect" data-compact-label data-control-kicker="Region" data-kicker-until-selected aria-label="Filter collections by region"></select></span>
-      <span class="collection-area-filter area-select-shell"><select id="collectionValleySelect" data-compact-label data-control-kicker="Valley" data-kicker-until-selected aria-label="Filter collections by valley"></select></span>
+      <span class="collection-area-filter area-select-shell geo-filter-control"><select id="collectionCountrySelect" data-compact-label data-control-kicker="Country" data-kicker-until-selected aria-label="Filter collections by country"></select></span>
+      <span class="collection-area-filter area-select-shell geo-filter-control"><select id="collectionRegionSelect" data-compact-label data-control-kicker="Region" data-kicker-until-selected aria-label="Filter collections by region"></select></span>
+      <span class="collection-area-filter area-select-shell geo-filter-control"><select id="collectionValleySelect" data-compact-label data-control-kicker="Valley" data-kicker-until-selected aria-label="Filter collections by valley"></select></span>
     </div>
     <div class="collection-theme-choices" aria-label="Collection themes">
       <button type="button" data-collection-theme="gentle" aria-pressed="false"><span data-dp-icon="gentle" data-dp-icon-size="20" aria-hidden="true"></span><span>Gentle walks</span></button>

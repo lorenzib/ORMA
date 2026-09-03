@@ -213,6 +213,7 @@
     .compare-tray__go{padding-inline:11px;}
   }
 </style>
+<link rel="stylesheet" href="geo-filters.css?v=20260902-1">
 </head>
 <body>
 
@@ -248,15 +249,15 @@
       <input class="browse-search" id="browseSearch" type="search" placeholder="Search by trail, area or valley" aria-label="Search trails">
     </label>
     <div class="browse-area-controls" aria-label="Choose trail area">
-      <label class="browse-geo-group" for="browseCountrySelect">
+      <label class="browse-geo-group geo-filter-control" for="browseCountrySelect">
         <span class="browse-geo-label">Country</span>
         <span class="area-select-shell"><select id="browseCountrySelect" data-compact-label data-kicker-until-selected data-control-kicker="Country" aria-label="Filter trails by country"></select></span>
       </label>
-      <label class="browse-geo-group" for="browseRegionSelect">
+      <label class="browse-geo-group geo-filter-control" for="browseRegionSelect">
         <span class="browse-geo-label">Region</span>
         <span class="area-select-shell"><select id="browseRegionSelect" data-compact-label data-kicker-until-selected data-control-kicker="Region" aria-label="Filter trails by region"></select></span>
       </label>
-      <label class="browse-geo-group browse-geo-group--valley" for="browseValleySelect">
+      <label class="browse-geo-group browse-geo-group--valley geo-filter-control" for="browseValleySelect">
         <span class="browse-geo-label">Valley</span>
         <span class="area-select-shell"><select id="browseValleySelect" data-compact-label data-kicker-until-selected data-control-kicker="Valley" aria-label="Filter trails by valley"></select></span>
       </label>

@@ -1,0 +1,112 @@
+/* Shared Country · Region · Valley controls.
+   Placement remains page-owned; this file keeps the visible control identical
+   on the signed-in homepage, Browse All Trails and Collections. */
+.geo-filter-control{
+  width:205px;
+  min-width:205px;
+}
+.li-toolbar .geo-filter-control{
+  width:100%;
+  min-width:0;
+}
+.geo-filter-control .area-select-shell{
+  width:100%;
+}
+.geo-filter-control .li-region-btn,
+.geo-filter-control .area-select-trigger{
+  width:100%;
+  height:46px;
+  min-height:46px;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:0 16px;
+  border:1.5px solid #D8D9CF;
+  border-radius:999px;
+  background:#FFFFFF;
+  box-shadow:0 1px 2px rgba(46,64,52,.06);
+  color:var(--ink);
+  font:700 12.5px 'Inter',sans-serif;
+  text-align:left;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:border-color .16s ease,box-shadow .16s ease,background .16s ease;
+}
+.geo-filter-control .li-region-btn:hover,
+.geo-filter-control .li-region-btn[aria-expanded="true"],
+.geo-filter-control[data-open] .area-select-trigger,
+.geo-filter-control.area-select-shell[data-open] .area-select-trigger,
+.geo-filter-control .area-select-shell[data-open] .area-select-trigger,
+.geo-filter-control .area-select-trigger:hover{
+  border-color:#78917F;
+  background:#FFFFFF;
+  box-shadow:0 0 0 3px rgba(92,127,102,.1),0 5px 14px rgba(46,64,52,.08);
+}
+.geo-filter-control .li-geo-copy,
+.geo-filter-control .area-select-trigger__copy{
+  display:inline-flex;
+  align-items:baseline;
+  gap:8px;
+  min-width:0;
+  overflow:hidden;
+}
+.geo-filter-control .li-control-kicker,
+.geo-filter-control .area-select-trigger__kicker{
+  flex:none;
+  color:#3E7A91;
+  font:800 9px/1 'Inter',sans-serif;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.geo-filter-control .li-geo-copy>span:last-child,
+.geo-filter-control .area-select-trigger__label{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.geo-filter-control .area-select-trigger svg{
+  width:18px;
+  height:18px;
+  flex:none;
+  color:#66776C;
+  stroke-width:2.3;
+}
+.geo-filter-control .li-caret{
+  width:9px;
+  height:9px;
+  flex:none;
+  box-sizing:border-box;
+  border-right:2.5px solid #66776C;
+  border-bottom:2.5px solid #66776C;
+  font-size:0;
+  transform:rotate(45deg) translate(-1px,1px);
+  transform-origin:center;
+}
+.geo-filter-control .li-region-btn[aria-expanded="true"] .li-caret{
+  transform:rotate(225deg) translate(-1px,1px);
+}
+
+@media(max-width:700px){
+  .geo-filter-control{
+    width:100%;
+    min-width:0;
+  }
+  .geo-filter-control .li-region-btn,
+  .geo-filter-control .area-select-trigger{
+    height:42px;
+    min-height:42px;
+    padding-inline:13px;
+  }
+}
+
+@media (orientation:landscape) and (max-height:520px) and (max-width:700px){
+  .geo-filter-control .li-region-btn,
+  .geo-filter-control .area-select-trigger{
+    height:36px;
+    min-height:36px;
+    padding-inline:9px;
+  }
+}

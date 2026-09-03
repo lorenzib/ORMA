@@ -24,6 +24,23 @@ describe('shared trail-filter experience', () => {
     expect(styles).toMatch(/\.hp-fpanel\.discovery-filter-panel\{position:fixed;top:auto;bottom:max\(8px,env\(safe-area-inset-bottom,0px\)\);/);
   });
 
+  test('uses one geographic filter treatment on homepage, browse and collections', () => {
+    const homepage = read('index.html');
+    const browse = read('browse-trails.html');
+    const collections = read('collections.html');
+    const geoStyles = read('geo-filters.css');
+
+    [homepage, browse, collections].forEach(html => {
+      expect(html).toContain('geo-filters.css?v=20260902-1');
+      expect((html.match(/geo-filter-control/g) || [])).toHaveLength(3);
+    });
+    expect(geoStyles).toContain('width:205px');
+    expect(geoStyles).toContain('height:46px');
+    expect(geoStyles).toContain('border-radius:999px');
+    expect(geoStyles).toContain('color:#3E7A91');
+    expect(geoStyles).toContain('border-right:2.5px solid #66776C');
+  });
+
   test.each(vocabulary)('keeps “%s” consistent across guest, browse and logged-in filters', label => {
     expect(read('homepage-search.js')).toContain(label);
     expect(read('browse-trails.html')).toContain(label);
@@ -64,11 +81,11 @@ describe('shared trail-filter experience', () => {
 
     expect(styles).toContain('grid-template-columns:repeat(6,minmax(0,1fr))');
     expect(styles).toContain('.li-search{grid-column:1/-1;width:100%;max-width:none;}');
-    expect(browse).toContain('.browse-area-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))');
+    expect(browse).toContain('.browse-area-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))');
     expect(browse).toContain('.browse-primary-controls .browse-search-shell{grid-column:1/-1;');
     expect(browse).toContain('.browse-quick-filters{grid-column:1/span 4;grid-row:4;');
     expect(browse).toContain('.browse-saved-only{grid-column:5/span 2;grid-row:4;');
-    expect(browse).toContain('.browse-area-controls{grid-template-columns:repeat(2,minmax(0,1fr));}');
+    expect(browse).toContain('.browse-area-controls{grid-template-columns:repeat(3,minmax(0,1fr));}');
     expect(browse).toContain('overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;');
   });
 });
