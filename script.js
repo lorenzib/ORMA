@@ -1178,6 +1178,35 @@ function scheduleTrailMap(){
   }
 }
 
+// On phones the map is the homepage itself, not content farther down the
+// document. The returning-member panel and the fixed mobile shell become
+// visible in separate auth/layout callbacks, so an IntersectionObserver
+// created between those callbacks can observe the old zero-sized layout and
+// never start. Explicitly start the already-idempotent scheduler on mobile;
+// desktop keeps its lazy-loading behaviour.
+function startMobileTrailMap(){
+  const returningHome = document.getElementById('returningCustomerHomepage');
+  const isMobile = typeof window.matchMedia === 'function'
+    && window.matchMedia('(max-width: 700px)').matches;
+  if(!isMobile || !returningHome || returningHome.hidden) return Promise.resolve(null);
+
+  scheduleTrailMap();
+  if(trailMapInstance){
+    requestAnimationFrame(() => trailMapInstance.resize());
+    return Promise.resolve(trailMapInstance);
+  }
+  if(!trailMapSchedule || typeof trailMapSchedule.start !== 'function') return Promise.resolve(null);
+
+  return trailMapSchedule.start().then(result => {
+    if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
+    return result;
+  });
+}
+
+window.addEventListener('dolopaws-mobile-layout-change', () => {
+  if(document.body.classList.contains('mhome-active')) startMobileTrailMap();
+});
+
 function pathThumbnailSvg(path){
   if(!Array.isArray(path) || path.length < 2) return null;
   const lats = path.map(p => p[0]), lngs = path.map(p => p[1]);
@@ -3171,6 +3200,7 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
     document.body.dataset.homepageView = 'returning';
     adjustOverride = null;
     scheduleTrailMap();
+    startMobileTrailMap();
     // The map pane may have been hidden (or sized differently) when the map
     // was created — make sure MapLibre measures the now-visible container.
     if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());

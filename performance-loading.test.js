@@ -22,6 +22,10 @@ describe('PERF-02 asset and regional loading contract', () => {
     const detail = read('trail.js');
     expect(homepage).toContain('function scheduleGuestMap()');
     expect(homepage).toContain('function scheduleTrailMap()');
+    expect(homepage).toContain('function startMobileTrailMap()');
+    expect(homepage).toContain("window.addEventListener('dolopaws-mobile-layout-change'");
+    expect(homepage).toContain("window.matchMedia('(max-width: 700px)').matches");
+    expect(homepage).toContain('return trailMapSchedule.start().then(result =>');
     expect(homepage).toContain("renderGondolas(guestMapInstance, 'guest-gondolas', { visible: false })");
     expect(homepage).toContain('const overlayStates = { routes: true, lifts: false');
     expect(homepage).toContain('onIdle(loadSecondaryMapData, 5000)');
