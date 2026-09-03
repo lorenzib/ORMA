@@ -1,7 +1,7 @@
 'use strict';
 
 const {applyEditedCopy,ingestEditorialReviews,processEditorialJobs}=require('./workflows/hosted-editorial');
-const {queuePriorityImageSourcing,ingestImageReviews,processImageJobs}=require('./workflows/hosted-image-coverage');
+const {queuePriorityImageSourcing,ingestImageReviews,processImageJobs,compactImageResults}=require('./workflows/hosted-image-coverage');
 
 const at='2026-08-20T12:00:00.000Z';
 function packet(generatedAt=at){return {contractVersion:'1.0.0',generatedAt,mode:'draft-only',publicMutationAllowed:false,subject:{type:'guide',id:'paw-care',sourceRef:'guides/paw-protection.html',original:'<p>Old</p>'},outputs:[{jobId:'guide-paw-care-edit',agentId:'copywriter',status:'ready-for-review',result:{title:'Paw care',summary:'Update',changes:[{section:'Intro',before:'<p>Old</p>',after:'<p>New</p>',reason:'Freshness'}],sources:[],openQuestions:[]}}],summary:{readyForReview:1,blocked:0}};}
@@ -39,6 +39,15 @@ describe('hosted Editorial operations',()=>{
 });
 
 describe('hosted image coverage routing',()=>{
+  test('large result history is compacted without dropping reviewable photos',()=>{
+    const payload='x'.repeat(30000);const history=Array.from({length:50},(_,index)=>({slug:`old-${index}`,summary:payload,candidates:[]}));
+    const ready={slug:'uploaded',sourcePreference:'upload-owner-photo',candidates:[{status:'ready-for-asset-review',uploadRef:'backofficeImageUploads/one'}]};
+    const compacted=compactImageResults([...history,ready],{contractVersion:'1.0.0'});
+    expect(compacted).toContain(ready);
+    expect(Buffer.byteLength(JSON.stringify({contractVersion:'1.0.0',items:compacted}),'utf8')).toBeLessThanOrEqual(850000);
+    expect(compacted.length).toBeLessThan(51);
+  });
+
   test('automatically fills a bounded queue with credited-photo scouting jobs',async()=>{
     const gaps=Array.from({length:20},(_,index)=>({slug:`trail-${index}`,trailId:`trail-${index}`,title:`Trail ${index}`,sourceRef:`trail.html?id=trail-${index}`,reasons:['Missing image'],libraryMatches:[]}));
     const store=memoryStore({'image-coverage':{gaps}});

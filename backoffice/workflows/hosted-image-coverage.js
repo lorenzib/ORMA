@@ -25,6 +25,21 @@ async function runImageSourcing(gap,job,options={}){
 function latestBySlug(reviews){const latest=new Map();for(const review of reviews){const current=latest.get(review.slug);const key=`${iso(review.submittedAt)}:${review.id}`;const currentKey=current?`${iso(current.submittedAt)}:${current.id}`:'';if(!current||key>currentKey)latest.set(review.slug,review);}return latest;}
 
 const DEFAULT_IMAGE_SOURCING_CAPACITY=15;
+const IMAGE_RESULTS_SAFE_BYTES=850000;
+
+function actionableImageResult(item){
+  return (item?.candidates||[]).some(candidate=>['ready-for-asset-review','approved-for-publication'].includes(candidate.status))
+    || ['upload-owner-photo','approve-uploaded-photo','approve-image-candidate','use-orma-library'].includes(item?.sourcePreference);
+}
+
+function compactImageResults(items,artifact={}){
+  const actionable=items.filter(actionableImageResult);const history=items.filter(item=>!actionableImageResult(item));
+  let kept=[...actionable,...history.slice(-40)];
+  while(history.length&&Buffer.byteLength(JSON.stringify({...artifact,items:kept}),'utf8')>IMAGE_RESULTS_SAFE_BYTES){
+    const removable=kept.findIndex(item=>!actionableImageResult(item));if(removable<0)break;kept.splice(removable,1);
+  }
+  return kept;
+}
 
 async function queuePriorityImageSourcing(store,audit,options={}){
   const at=options.at||new Date().toISOString();const capacity=options.capacity||DEFAULT_IMAGE_SOURCING_CAPACITY;
@@ -135,7 +150,8 @@ async function processImageJobs(store,options={}){
         result={...prior,contractVersion:'2.0.0',generatedAt:approvedAt,sourcePreference:job.sourcePreference,summary:'Image approved and sent to the pull-request publishing lane.',status:'approved-for-pr-creation',
           candidates:(prior.candidates||[]).map(item=>item.assetUrl===assetRef?{...item,status:'approved-for-publication'}:item),publicMutationAllowed:false};
       }else result=await runImageSourcing(gap,job,options);
-      const artifact=await store.getArtifact('image-coverage-results')||{contractVersion:'1.0.0',items:[]};const next={...artifact,updatedAt:result.generatedAt,items:[...(artifact.items||[]).filter(item=>item.slug!==job.slug),{...result,reviewId:job.reviewId}].slice(-500)};
+      const artifact=await store.getArtifact('image-coverage-results')||{contractVersion:'1.0.0',items:[]};const merged=[...(artifact.items||[]).filter(item=>item.slug!==job.slug),{...result,reviewId:job.reviewId}];
+      const next={...artifact,updatedAt:result.generatedAt,items:compactImageResults(merged,artifact)};
       const writes=[store.setArtifact('image-coverage-results',next,{lastWorkerId:workerId}),store.completeSystemJob(job.id,{outputRef:'firestore:image-coverage-results'})];
       if(job.reviewId)writes.push(store.markImageReview(job.reviewId,'processed',{outcome:{status:(result.candidates||[]).some(item=>item.status==='ready-for-asset-review')?'asset-review-ready':result.status||'sourcing-complete',outputRef:'firestore:image-coverage-results',publicMutationAllowed:false}}));
       await Promise.all(writes);
@@ -145,4 +161,4 @@ async function processImageJobs(store,options={}){
   return outcomes;
 }
 
-module.exports={IMAGE_SOURCE_SCHEMA,DEFAULT_IMAGE_SOURCING_CAPACITY,runImageSourcing,latestBySlug,queuePriorityImageSourcing,ingestImageReviews,processImageJobs};
+module.exports={IMAGE_SOURCE_SCHEMA,DEFAULT_IMAGE_SOURCING_CAPACITY,runImageSourcing,latestBySlug,compactImageResults,queuePriorityImageSourcing,ingestImageReviews,processImageJobs};
