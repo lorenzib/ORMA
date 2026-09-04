@@ -181,6 +181,31 @@ function sanitizedDogProfile(dog, index) {
     if (typeof source[field] === 'boolean') clean[field] = source[field];
   });
 
+  // Behaviour travels as one nested map so the dog record gains a single key
+  // and stays inside the Firestore rule's key-count bound. Only recognised
+  // answers are copied: an unrecognised value is dropped rather than stored,
+  // so a stale client cannot write a scale value the scorer would misread.
+  if (source.behaviour && typeof source.behaviour === 'object') {
+    const scales = {
+      recall: ['reliable', 'variable', 'unreliable'],
+      reactivity: ['none', 'mild', 'strong'],
+      preyDrive: ['low', 'moderate', 'high'],
+      livestockComfort: ['confident', 'cautious', 'reactive'],
+      trafficComfort: ['confident', 'cautious', 'reactive'],
+      crowdComfort: ['confident', 'cautious', 'reactive'],
+      heatTolerance: ['robust', 'average', 'low'],
+    };
+    const behaviour = {};
+    Object.entries(scales).forEach(([field, allowed]) => {
+      if (allowed.includes(source.behaviour[field])) behaviour[field] = source.behaviour[field];
+    });
+    const minutes = Number(source.behaviour.preferredDurationMin);
+    if (Number.isFinite(minutes) && minutes > 0 && minutes <= 1440) {
+      behaviour.preferredDurationMin = Math.round(minutes);
+    }
+    if (Object.keys(behaviour).length) clean.behaviour = behaviour;
+  }
+
   if (source.vet && typeof source.vet === 'object') {
     clean.vet = {};
     const limits = { name:100, phone:40, chip:80, insurer:100, policy:100 };

@@ -20,6 +20,7 @@
     "metrics",
     "suitability",
     "waypoints",
+    "segments",
     "content",
     "sources",
     "verification",
@@ -29,7 +30,7 @@
   ],
   "properties": {
     "schemaVersion": {
-      "const": "1.0.0"
+      "const": "1.1.0"
     },
     "recordVersion": {
       "type": "integer",
@@ -44,10 +45,17 @@
       "pattern": "^[a-z0-9][a-z0-9-]{1,99}$"
     },
     "origin": {
-      "enum": ["curated", "osm"]
+      "enum": [
+        "curated",
+        "osm"
+      ]
     },
     "lifecycle": {
-      "enum": ["draft", "published", "retired"]
+      "enum": [
+        "draft",
+        "published",
+        "retired"
+      ]
     },
     "name": {
       "type": "string",
@@ -62,29 +70,43 @@
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["type", "coordinates"],
+          "required": [
+            "type",
+            "coordinates"
+          ],
           "properties": {
-            "type": { "const": "LineString" },
+            "type": {
+              "const": "LineString"
+            },
             "coordinates": {
               "type": "array",
               "minItems": 2,
-              "items": { "$ref": "#/$defs/position" }
+              "items": {
+                "$ref": "#/$defs/position"
+              }
             }
           }
         },
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["type", "coordinates"],
+          "required": [
+            "type",
+            "coordinates"
+          ],
           "properties": {
-            "type": { "const": "MultiLineString" },
+            "type": {
+              "const": "MultiLineString"
+            },
             "coordinates": {
               "type": "array",
               "minItems": 1,
               "items": {
                 "type": "array",
                 "minItems": 2,
-                "items": { "$ref": "#/$defs/position" }
+                "items": {
+                  "$ref": "#/$defs/position"
+                }
               }
             }
           }
@@ -97,20 +119,35 @@
     "trailhead": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["position", "label", "status"],
+      "required": [
+        "position",
+        "label",
+        "status"
+      ],
       "properties": {
         "position": {
           "oneOf": [
-            { "$ref": "#/$defs/position" },
-            { "type": "null" }
+            {
+              "$ref": "#/$defs/position"
+            },
+            {
+              "type": "null"
+            }
           ]
         },
         "label": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "maxLength": 240
         },
         "status": {
-          "enum": ["reviewed", "mapped-suggestion", "unknown"]
+          "enum": [
+            "reviewed",
+            "mapped-suggestion",
+            "unknown"
+          ]
         }
       }
     },
@@ -128,17 +165,40 @@
         "difficulty"
       ],
       "properties": {
-        "distanceKm": { "$ref": "#/$defs/nonNegativeNumberOrNull" },
-        "ascentM": { "$ref": "#/$defs/nonNegativeNumberOrNull" },
-        "descentM": { "$ref": "#/$defs/nonNegativeNumberOrNull" },
-        "durationMinutes": { "$ref": "#/$defs/nonNegativeNumberOrNull" },
-        "minElevationM": { "$ref": "#/$defs/numberOrNull" },
-        "maxElevationM": { "$ref": "#/$defs/numberOrNull" },
+        "distanceKm": {
+          "$ref": "#/$defs/nonNegativeNumberOrNull"
+        },
+        "ascentM": {
+          "$ref": "#/$defs/nonNegativeNumberOrNull"
+        },
+        "descentM": {
+          "$ref": "#/$defs/nonNegativeNumberOrNull"
+        },
+        "durationMinutes": {
+          "$ref": "#/$defs/nonNegativeNumberOrNull"
+        },
+        "minElevationM": {
+          "$ref": "#/$defs/numberOrNull"
+        },
+        "maxElevationM": {
+          "$ref": "#/$defs/numberOrNull"
+        },
         "routeType": {
-          "enum": ["loop", "out-and-back", "point-to-point", "unknown"]
+          "enum": [
+            "loop",
+            "out-and-back",
+            "point-to-point",
+            "unknown"
+          ]
         },
         "difficulty": {
-          "enum": ["easy", "moderate", "hard", "expert", "unknown"]
+          "enum": [
+            "easy",
+            "moderate",
+            "hard",
+            "expert",
+            "unknown"
+          ]
         }
       }
     },
@@ -152,39 +212,76 @@
         "heatRisk",
         "exposure",
         "surfaceHazards",
-        "dogAccess"
+        "dogAccess",
+        "livestockPresence",
+        "wildlifePresence",
+        "sightlines",
+        "roadProximity",
+        "crowding"
       ],
       "properties": {
         "safetyLevel": {
-          "enum": ["low-risk", "moderate", "caution", "unknown"]
+          "enum": [
+            "low-risk",
+            "moderate",
+            "caution",
+            "unknown"
+          ]
         },
         "terrainRank": {
           "oneOf": [
-            { "type": "integer", "minimum": 0, "maximum": 3 },
-            { "type": "null" }
+            {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 3
+            },
+            {
+              "type": "null"
+            }
           ]
         },
         "shadePercent": {
           "oneOf": [
-            { "type": "number", "minimum": 0, "maximum": 100 },
-            { "type": "null" }
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100
+            },
+            {
+              "type": "null"
+            }
           ]
         },
         "heatRisk": {
-          "enum": ["low", "moderate", "high", "unknown"]
+          "enum": [
+            "low",
+            "moderate",
+            "high",
+            "unknown"
+          ]
         },
         "exposure": {
-          "type": ["boolean", "null"]
+          "type": [
+            "boolean",
+            "null"
+          ]
         },
         "surfaceHazards": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1, "maxLength": 160 },
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
           "uniqueItems": true
         },
         "dogAccess": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["status", "notes"],
+          "required": [
+            "status",
+            "notes"
+          ],
           "properties": {
             "status": {
               "enum": [
@@ -196,44 +293,135 @@
               ]
             },
             "notes": {
-              "type": ["string", "null"],
+              "type": [
+                "string",
+                "null"
+              ],
               "maxLength": 500
             }
           }
+        },
+        "livestockPresence": {
+          "enum": [
+            "none",
+            "seasonal",
+            "likely",
+            "unknown"
+          ]
+        },
+        "wildlifePresence": {
+          "enum": [
+            "low",
+            "moderate",
+            "high",
+            "unknown"
+          ]
+        },
+        "sightlines": {
+          "enum": [
+            "open",
+            "mixed",
+            "restricted",
+            "unknown"
+          ]
+        },
+        "roadProximity": {
+          "enum": [
+            "none",
+            "crossings",
+            "alongside",
+            "unknown"
+          ]
+        },
+        "crowding": {
+          "enum": [
+            "quiet",
+            "moderate",
+            "busy",
+            "unknown"
+          ]
         }
       }
     },
     "waypoints": {
       "type": "array",
-      "items": { "$ref": "#/$defs/waypoint" }
+      "items": {
+        "$ref": "#/$defs/waypoint"
+      }
+    },
+    "segments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/segment"
+      }
     },
     "content": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["summary", "tips"],
+      "required": [
+        "summary",
+        "tips"
+      ],
       "properties": {
-        "summary": { "type": ["string", "null"], "maxLength": 1000 },
-        "tips": { "type": ["string", "null"], "maxLength": 1000 }
+        "summary": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 1000
+        },
+        "tips": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 1000
+        }
       }
     },
     "sources": {
       "type": "array",
       "minItems": 1,
-      "items": { "$ref": "#/$defs/source" }
+      "items": {
+        "$ref": "#/$defs/source"
+      }
     },
     "verification": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["tier", "status", "reviewedAt", "reviewedBy", "categories"],
+      "required": [
+        "tier",
+        "status",
+        "reviewedAt",
+        "reviewedBy",
+        "categories"
+      ],
       "properties": {
         "tier": {
-          "enum": ["imported", "mapped", "route-audited", "field-verified"]
+          "enum": [
+            "imported",
+            "mapped",
+            "route-audited",
+            "field-verified"
+          ]
         },
         "status": {
-          "enum": ["unreviewed", "in-progress", "verified"]
+          "enum": [
+            "unreviewed",
+            "in-progress",
+            "verified"
+          ]
         },
-        "reviewedAt": { "$ref": "#/$defs/dateOrNull" },
-        "reviewedBy": { "type": ["string", "null"], "maxLength": 120 },
+        "reviewedAt": {
+          "$ref": "#/$defs/dateOrNull"
+        },
+        "reviewedBy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 120
+        },
         "categories": {
           "type": "object",
           "additionalProperties": false,
@@ -247,13 +435,27 @@
             "access"
           ],
           "properties": {
-            "route": { "$ref": "#/$defs/reviewState" },
-            "water": { "$ref": "#/$defs/reviewState" },
-            "heat": { "$ref": "#/$defs/reviewState" },
-            "exposure": { "$ref": "#/$defs/reviewState" },
-            "livestock": { "$ref": "#/$defs/reviewState" },
-            "surfaceHazards": { "$ref": "#/$defs/reviewState" },
-            "access": { "$ref": "#/$defs/reviewState" }
+            "route": {
+              "$ref": "#/$defs/reviewState"
+            },
+            "water": {
+              "$ref": "#/$defs/reviewState"
+            },
+            "heat": {
+              "$ref": "#/$defs/reviewState"
+            },
+            "exposure": {
+              "$ref": "#/$defs/reviewState"
+            },
+            "livestock": {
+              "$ref": "#/$defs/reviewState"
+            },
+            "surfaceHazards": {
+              "$ref": "#/$defs/reviewState"
+            },
+            "access": {
+              "$ref": "#/$defs/reviewState"
+            }
           }
         }
       }
@@ -261,21 +463,49 @@
     "freshness": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["geometryAt", "safetyAt", "accessAt"],
+      "required": [
+        "geometryAt",
+        "safetyAt",
+        "accessAt"
+      ],
       "properties": {
-        "geometryAt": { "$ref": "#/$defs/dateOrNull" },
-        "safetyAt": { "$ref": "#/$defs/dateOrNull" },
-        "accessAt": { "$ref": "#/$defs/dateOrNull" }
+        "geometryAt": {
+          "$ref": "#/$defs/dateOrNull"
+        },
+        "safetyAt": {
+          "$ref": "#/$defs/dateOrNull"
+        },
+        "accessAt": {
+          "$ref": "#/$defs/dateOrNull"
+        }
       }
     },
     "provenance": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["externalId", "generatedAt", "generatorVersion"],
+      "required": [
+        "externalId",
+        "generatedAt",
+        "generatorVersion"
+      ],
       "properties": {
-        "externalId": { "type": ["string", "null"], "maxLength": 120 },
-        "generatedAt": { "$ref": "#/$defs/dateOrNull" },
-        "generatorVersion": { "type": ["string", "null"], "maxLength": 80 }
+        "externalId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 120
+        },
+        "generatedAt": {
+          "$ref": "#/$defs/dateOrNull"
+        },
+        "generatorVersion": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 80
+        }
       }
     },
     "unknownFields": {
@@ -291,55 +521,132 @@
     "position": {
       "type": "array",
       "prefixItems": [
-        { "type": "number", "minimum": -180, "maximum": 180 },
-        { "type": "number", "minimum": -90, "maximum": 90 }
+        {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        }
       ],
       "items": false,
       "minItems": 2,
       "maxItems": 2
     },
     "numberOrNull": {
-      "type": ["number", "null"]
+      "type": [
+        "number",
+        "null"
+      ]
     },
     "nonNegativeNumberOrNull": {
       "oneOf": [
-        { "type": "number", "minimum": 0 },
-        { "type": "null" }
+        {
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
       ]
     },
     "dateOrNull": {
       "oneOf": [
-        { "type": "string", "format": "date" },
-        { "type": "null" }
+        {
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "type": "null"
+        }
       ]
     },
     "reviewState": {
-      "enum": ["verified", "unreviewed", "unknown"]
+      "enum": [
+        "verified",
+        "unreviewed",
+        "unknown"
+      ]
     },
     "region": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "name", "countryCode"],
+      "required": [
+        "id",
+        "name",
+        "countryCode"
+      ],
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-        "name": { "type": "string", "minLength": 1, "maxLength": 120 },
-        "countryCode": { "type": "string", "pattern": "^[A-Z]{2}$" }
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "countryCode": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        }
       }
     },
     "waypoint": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "type", "name", "position", "distanceKm", "status", "seasonal"],
+      "required": [
+        "id",
+        "type",
+        "name",
+        "position",
+        "distanceKm",
+        "status",
+        "seasonal"
+      ],
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,79}$" },
-        "type": {
-          "enum": ["water", "parking", "trailhead", "shelter", "hazard", "emergency-exit", "other"]
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{1,79}$"
         },
-        "name": { "type": "string", "minLength": 1, "maxLength": 160 },
-        "position": { "$ref": "#/$defs/position" },
-        "distanceKm": { "$ref": "#/$defs/nonNegativeNumberOrNull" },
-        "status": { "enum": ["reviewed", "mapped", "unknown"] },
-        "seasonal": { "type": ["boolean", "null"] }
+        "type": {
+          "enum": [
+            "water",
+            "parking",
+            "trailhead",
+            "shelter",
+            "hazard",
+            "emergency-exit",
+            "other"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "position": {
+          "$ref": "#/$defs/position"
+        },
+        "distanceKm": {
+          "$ref": "#/$defs/nonNegativeNumberOrNull"
+        },
+        "status": {
+          "enum": [
+            "reviewed",
+            "mapped",
+            "unknown"
+          ]
+        },
+        "seasonal": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
       }
     },
     "source": {
@@ -357,20 +664,47 @@
         "licence"
       ],
       "properties": {
-        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,79}$" },
-        "label": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{1,79}$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
         "url": {
           "oneOf": [
-            { "type": "string", "format": "uri" },
-            { "type": "null" }
+            {
+              "type": "string",
+              "format": "uri"
+            },
+            {
+              "type": "null"
+            }
           ]
         },
-        "provider": { "type": "string", "minLength": 1, "maxLength": 120 },
-        "kind": {
-          "enum": ["official", "osm", "field-review", "computed", "legacy", "other"]
+        "provider": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
         },
-        "retrievedAt": { "$ref": "#/$defs/dateOrNull" },
-        "observedAt": { "$ref": "#/$defs/dateOrNull" },
+        "kind": {
+          "enum": [
+            "official",
+            "osm",
+            "field-review",
+            "computed",
+            "legacy",
+            "other"
+          ]
+        },
+        "retrievedAt": {
+          "$ref": "#/$defs/dateOrNull"
+        },
+        "observedAt": {
+          "$ref": "#/$defs/dateOrNull"
+        },
         "categories": {
           "type": "array",
           "items": {
@@ -388,7 +722,85 @@
           },
           "uniqueItems": true
         },
-        "licence": { "type": ["string", "null"], "maxLength": 120 }
+        "licence": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 120
+        }
+      }
+    },
+    "segment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "fromKm",
+        "toKm",
+        "advisory",
+        "note",
+        "status",
+        "seasonal"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]{1,79}$"
+        },
+        "type": {
+          "enum": [
+            "livestock",
+            "wildlife",
+            "road",
+            "exposure",
+            "crowding",
+            "surface",
+            "water-scarce",
+            "other"
+          ]
+        },
+        "fromKm": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "toKm": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "advisory": {
+          "enum": [
+            "leash-required",
+            "leash-recommended",
+            "avoid",
+            "caution",
+            "information"
+          ]
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 240
+        },
+        "status": {
+          "enum": [
+            "reviewed",
+            "mapped",
+            "reported",
+            "unknown"
+          ]
+        },
+        "seasonal": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
       }
     }
   }

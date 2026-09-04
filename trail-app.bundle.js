@@ -4097,11 +4097,71 @@ function breedInsights(name){
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
-  const VERSION = '1.1.0';
+  const VERSION = '1.3.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
     moderate: { terrain: 1, distanceKm: 10, ascentM: 600 },
     high: { terrain: 2, distanceKm: 18, ascentM: 1200 },
+  };
+  // Ordered easiest-to-hardest. The index is the difficulty rank a rule
+  // multiplies by, so a scale may gain values only at its end.
+  const BEHAVIOUR_SCALES = {
+    recall: ['reliable', 'variable', 'unreliable'],
+    reactivity: ['none', 'mild', 'strong'],
+    preyDrive: ['low', 'moderate', 'high'],
+    livestockComfort: ['confident', 'cautious', 'reactive'],
+    trafficComfort: ['confident', 'cautious', 'reactive'],
+    crowdComfort: ['confident', 'cautious', 'reactive'],
+    heatTolerance: ['robust', 'average', 'low'],
+  };
+  const BEHAVIOUR_KEYS = Object.keys(BEHAVIOUR_SCALES);
+  // Behaviour is a fit signal layered on top of the physical assessment. It
+  // is capped so a behavioural mismatch can move a route out of
+  // "strong option" without ever outweighing terrain, exposure and access.
+  const BEHAVIOUR_PENALTY_CAP = 45;
+  // Reassurance requires evidence. A positive statement resting on a review
+  // category ORMA has not reviewed is not shown at all: on an unreviewed
+  // route, "no exposed section is recorded" reads as a safety claim when it
+  // only means nobody looked. The matching `unknowns` entry is the honest
+  // channel for that, and it already exists.
+  //
+  // Cautions are deliberately NOT filtered this way. Suppressing a warning
+  // for want of a review would hide a real hazard and leave its penalty
+  // unexplained; unreviewed evidence may fall short of reassuring without
+  // falling short of worth mentioning.
+  const REASSURANCE_EVIDENCE = [
+    ['trail.terrain.', 'route'],
+    ['trail.exposure.', 'exposure'],
+    ['trail.heat.', 'heat'],
+    ['trail.shade.', 'heat'],
+    ['trail.surface-hazards.', 'surfaceHazards'],
+    ['trail.dog-access.', 'access'],
+    ['trail.water.', 'water'],
+    ['trail.livestock.', 'livestock'],
+  ];
+  // Measured route metrics and the five behaviour attributes carry their own
+  // evidence: a distance is computed from the geometry, and an attribute is
+  // only ever set away from `unknown` by someone recording it.
+  function reassuranceIsBacked(entry, categories){
+    const rest = REASSURANCE_EVIDENCE.find(([prefix]) => entry.code.startsWith(prefix));
+    return !rest || categories[rest[1]] === 'verified';
+  }
+
+  // A positioned advisory is only worth showing when ORMA stands behind where
+  // it is. An unconfirmed community report waits for confirmation instead.
+  const SEGMENT_SHOWN_STATUSES = new Set(['reviewed', 'mapped']);
+  const SEGMENT_ADVISORIES = [
+    'leash-required', 'leash-recommended', 'avoid', 'caution', 'information',
+  ];
+  const SEGMENT_TYPE_LABELS = {
+    livestock: 'grazing livestock',
+    wildlife: 'wildlife activity',
+    road: 'road traffic',
+    exposure: 'exposed ground',
+    crowding: 'heavy foot traffic',
+    surface: 'difficult footing',
+    'water-scarce': 'no water access',
+    other: 'a recorded caution',
   };
   const REVIEW_CATEGORIES = [
     'route', 'water', 'heat', 'exposure', 'livestock',
@@ -4128,6 +4188,31 @@ function breedInsights(name){
     return Number.isFinite(value) ? value : null;
   }
 
+  // Returns the difficulty rank of a declared behaviour, or null when the
+  // owner has not answered. Null must stay silent: an unanswered question is
+  // not evidence of an easy dog.
+  function behaviourRank(behaviour, key){
+    const index = BEHAVIOUR_SCALES[key].indexOf(behaviour ? behaviour[key] : undefined);
+    return index === -1 ? null : index;
+  }
+
+  function deriveBehaviour(dog){
+    const source = dog && dog.behaviour ? dog.behaviour : {};
+    const ranks = {};
+    let declaredCount = 0;
+    for(const key of BEHAVIOUR_KEYS){
+      const rank = behaviourRank(source, key);
+      ranks[key] = rank;
+      if(rank !== null) declaredCount += 1;
+    }
+    const preferredDurationMin = Number.isFinite(source.preferredDurationMin)
+      && source.preferredDurationMin > 0
+      ? source.preferredDurationMin
+      : null;
+    if(preferredDurationMin !== null) declaredCount += 1;
+    return { ...ranks, preferredDurationMin, declaredCount };
+  }
+
   function deriveDog(dog, unknowns){
     dog = dog || {};
     const fitnessKnown = Object.prototype.hasOwnProperty.call(FITNESS, dog.fitness);
@@ -4151,8 +4236,13 @@ function breedInsights(name){
       || conditions.has('recovering') || traits.backRisk === true;
     const giant = traits.giant === true || (weight !== null && weight >= 45);
     const toy = weight !== null && weight < 5;
+    const behaviour = deriveBehaviour(dog);
+    // A declared low heat tolerance adds sensitivity. A declared robust
+    // tolerance deliberately removes nothing: heat injury is fast and
+    // irreversible, so an owner's confidence never lowers a safety guard.
     const heatSensitive = traits.heatSensitive === true || conditions.has('heat')
-      || conditions.has('cardiac') || conditions.has('overweight');
+      || conditions.has('cardiac') || conditions.has('overweight')
+      || behaviour.heatTolerance === 2;
     const fragile = orthopedic || senior;
 
     let terrain = base.terrain;
@@ -4196,8 +4286,29 @@ function breedInsights(name){
       fragile,
       giant,
       impairedVision: conditions.has('vision'),
+      behaviour,
+      // Confidence measures evidence quality, not behavioural detail, so
+      // behaviour deliberately does not enter completeness. Adding it would
+      // silently restate every reviewed fixture decision.
       completeness: [fitnessKnown, age !== null, weight !== null].filter(Boolean).length,
     };
+  }
+
+  // A segment is only usable when it names a real, ordered stretch of the
+  // route. A malformed segment is dropped rather than rendered as a vague
+  // warning, because "lead on somewhere" is worse than saying nothing.
+  function usableSegments(trail){
+    const segments = Array.isArray(trail && trail.segments) ? trail.segments : [];
+    return segments.filter(segment => segment
+      && SEGMENT_ADVISORIES.includes(segment.advisory)
+      && Number.isFinite(segment.fromKm) && Number.isFinite(segment.toKm)
+      && segment.fromKm >= 0 && segment.toKm > segment.fromKm)
+      .slice()
+      .sort((a, b) => a.fromKm - b.fromKm);
+  }
+
+  function formatKm(value){
+    return Number(value.toFixed(1)).toString();
   }
 
   function trailParts(trail){
@@ -4206,6 +4317,7 @@ function breedInsights(name){
       metrics: trail.metrics || {},
       suitability: trail.suitability || {},
       waypoints: Array.isArray(trail.waypoints) ? trail.waypoints : [],
+      segments: usableSegments(trail),
       verification: trail.verification || {},
     };
   }
@@ -4363,14 +4475,201 @@ function breedInsights(name){
       unknowns.push(item('trail.dog-access.unknown', 'The current dog-access rule is unknown.'));
     }
 
-    const reviewedWater = parts.waypoints.some(point =>
-      point.type === 'water' && point.status === 'reviewed');
+    const reviewedWaterCount = parts.waypoints.filter(point =>
+      point.type === 'water' && point.status === 'reviewed').length;
     if(categories.water === 'verified'){
-      if(reviewedWater){
-        positives.push(item('trail.water.reviewed', 'At least one reviewed water point is recorded.'));
+      if(reviewedWaterCount > 0){
+        positives.push(item('trail.water.reviewed',
+          reviewedWaterCount === 1
+            ? 'Water is available at one reviewed point.'
+            : `Water is available at ${reviewedWaterCount} reviewed points.`,
+          { count:reviewedWaterCount },
+          reviewedWaterCount === 1 ? 'trail.water.reviewed.one' : 'trail.water.reviewed.many'));
       }else{
         cautions.push(item('trail.water.none-reviewed',
           'No usable water point is confirmed; carry the full supply.'));
+      }
+    }
+
+    // ---- Behaviour-aware fit (v1.2.0) -------------------------------------
+    // Every rule below needs BOTH a recorded route attribute and a declared
+    // behaviour. An undeclared behaviour stays silent in both directions: it
+    // never invents a penalty, and it never invents reassurance. An unknown
+    // route attribute is reported as unknown only when the owner declared a
+    // behaviour it would have interacted with, so quiet profiles keep a
+    // short explanation.
+    const behaviour = dog.behaviour;
+    const recall = behaviour.recall;
+    const preyDrive = behaviour.preyDrive;
+    const reactivity = behaviour.reactivity;
+    const livestockComfort = behaviour.livestockComfort;
+    const trafficComfort = behaviour.trafficComfort;
+    const crowdComfort = behaviour.crowdComfort;
+    let behaviourPenalty = 0;
+
+    const rank = value => (value === null ? 0 : value);
+    const declaredAny = (...values) => values.some(value => value !== null);
+
+    const livestockPresence = suitability.livestockPresence;
+    const stockRelevant = declaredAny(livestockComfort, preyDrive, recall);
+    if(livestockPresence === 'likely' || livestockPresence === 'seasonal'){
+      const seasonal = livestockPresence === 'seasonal';
+      const drivers = [];
+      let load = 0;
+      if(rank(livestockComfort) > 0){
+        load += livestockComfort * 9;
+        drivers.push(livestockComfort === 2
+          ? 'this dog reacts to livestock'
+          : 'this dog is unsure around livestock');
+      }
+      if(rank(preyDrive) > 0){
+        load += preyDrive * 5;
+        drivers.push(preyDrive === 2 ? 'prey drive is high' : 'prey drive is moderate');
+      }
+      if(rank(recall) > 0){
+        load += recall * 5;
+        drivers.push(recall === 2 ? 'recall is unreliable' : 'recall is variable');
+      }
+      if(load > 0){
+        behaviourPenalty += Math.round(load * (seasonal ? 0.6 : 1));
+        const summary = drivers.join(', ');
+        cautions.push(item('trail.livestock.behaviour-risk',
+          `${seasonal ? 'Livestock graze this route in season' : 'Grazing livestock is recorded on this route'}, and ${summary}.`,
+          { presence:livestockPresence, drivers:summary },
+          seasonal ? 'trail.livestock.behaviour-risk.seasonal' : 'trail.livestock.behaviour-risk'));
+      }
+    }else if(livestockPresence === 'none' && stockRelevant){
+      positives.push(item('trail.livestock.none',
+        'No grazing livestock is recorded on this route.'));
+    }else if(stockRelevant){
+      unknowns.push(item('trail.livestock.presence-unknown',
+        'Whether livestock graze this route is unknown. Carry a lead for open pasture.'));
+    }
+
+    const wildlifePresence = suitability.wildlifePresence;
+    const chaseRelevant = declaredAny(preyDrive, recall);
+    if(wildlifePresence === 'high' || wildlifePresence === 'moderate'){
+      const high = wildlifePresence === 'high';
+      let load = 0;
+      if(rank(preyDrive) > 0) load += preyDrive * (high ? 6 : 3);
+      if(rank(recall) > 0) load += recall * (high ? 4 : 2);
+      if(load > 0){
+        behaviourPenalty += Math.round(load);
+        cautions.push(item('trail.wildlife.chase-risk',
+          high
+            ? 'Wildlife is active on this route, which matters for a dog that chases.'
+            : 'Some wildlife activity is recorded here, which matters for a dog that chases.',
+          { presence:wildlifePresence },
+          high ? 'trail.wildlife.chase-risk.high' : 'trail.wildlife.chase-risk.moderate'));
+      }
+    }else if(wildlifePresence === 'low' && chaseRelevant){
+      positives.push(item('trail.wildlife.low', 'Little wildlife activity is recorded here.'));
+    }
+
+    const sightlines = suitability.sightlines;
+    if(rank(recall) > 0){
+      if(sightlines === 'open'){
+        positives.push(item('trail.sightlines.open',
+          'Open sightlines keep this dog visible on most sections.'));
+      }else if(sightlines === 'restricted'){
+        behaviourPenalty += recall * 5;
+        cautions.push(item('trail.sightlines.restricted',
+          'Enclosed, twisting ground makes it harder to keep this dog in view.'));
+      }
+    }
+
+    const roadProximity = suitability.roadProximity;
+    const trafficRelevant = declaredAny(trafficComfort, recall);
+    if(roadProximity === 'alongside' || roadProximity === 'crossings'){
+      const alongside = roadProximity === 'alongside';
+      let load = 0;
+      if(rank(trafficComfort) > 0) load += trafficComfort * (alongside ? 7 : 4);
+      if(rank(recall) > 0) load += recall * (alongside ? 4 : 2);
+      if(load > 0){
+        behaviourPenalty += Math.round(load);
+        cautions.push(item('trail.road.traffic-risk',
+          alongside
+            ? 'The route runs alongside a road, which matters for this dog around traffic.'
+            : 'The route crosses a road, which matters for this dog around traffic.',
+          { proximity:roadProximity },
+          alongside ? 'trail.road.traffic-risk.alongside' : 'trail.road.traffic-risk.crossings'));
+      }
+    }else if(roadProximity === 'none' && trafficRelevant){
+      positives.push(item('trail.road.none', 'The route keeps clear of roads and traffic.'));
+    }
+
+    const crowding = suitability.crowding;
+    const socialRelevant = declaredAny(crowdComfort, reactivity);
+    const socialRank = Math.max(rank(crowdComfort), rank(reactivity));
+    if(crowding === 'busy' || crowding === 'moderate'){
+      const busy = crowding === 'busy';
+      if(socialRank > 0){
+        behaviourPenalty += Math.round(socialRank * (busy ? 8 : 4));
+        cautions.push(item('trail.crowding.social-risk',
+          busy
+            ? 'This is a busy route, and this dog needs space from other people and dogs.'
+            : 'This route sees steady foot traffic, and this dog needs space from other people and dogs.',
+          { crowding },
+          busy ? 'trail.crowding.social-risk.busy' : 'trail.crowding.social-risk.moderate'));
+      }
+    }else if(crowding === 'quiet' && socialRelevant){
+      positives.push(item('trail.crowding.quiet',
+        'This is a quiet route with room to give other walkers space.'));
+    }
+
+    const preferredDurationMin = behaviour.preferredDurationMin;
+    const durationMinutes = numberOrNull(metrics.durationMinutes);
+    if(preferredDurationMin !== null && durationMinutes !== null){
+      if(durationMinutes > preferredDurationMin * 1.25){
+        behaviourPenalty += Math.min(10, Math.ceil((durationMinutes - preferredDurationMin) / 30) * 3);
+        cautions.push(item('trail.duration.above-preference',
+          `At about ${Math.round(durationMinutes)} minutes this route runs longer than the preferred ${preferredDurationMin} minutes.`,
+          { durationMinutes:Math.round(durationMinutes), preferredDurationMin }));
+      }else{
+        positives.push(item('trail.duration.within-preference',
+          `At about ${Math.round(durationMinutes)} minutes this route fits the preferred walk length.`,
+          { durationMinutes:Math.round(durationMinutes), preferredDurationMin }));
+      }
+    }
+
+    if(behaviourPenalty > 0) score -= Math.min(BEHAVIOUR_PENALTY_CAP, behaviourPenalty);
+
+    // ---- Route segments ---------------------------------------------------
+    // Segments carry the "where" of an advisory. The aggregate rules above
+    // already carry the score, so a lead advisory is explanation rather than
+    // a second penalty for the same fact. Only "avoid" describes a hazard
+    // that no aggregate attribute represents, so only it is scored here.
+    const leashAdvisories = [];
+    for(const segment of parts.segments){
+      if(!SEGMENT_SHOWN_STATUSES.has(segment.status)) continue;
+      const label = SEGMENT_TYPE_LABELS[segment.type] || SEGMENT_TYPE_LABELS.other;
+      const fromKm = formatKm(segment.fromKm);
+      const toKm = formatKm(segment.toKm);
+      const vars = {
+        fromKm:Number(fromKm), toKm:Number(toKm),
+        type:segment.type || 'other', label,
+        note:typeof segment.note === 'string' && segment.note.trim() ? segment.note.trim() : null,
+      };
+      // Two short sentences: what is there, then what to do about it.
+      const detail = vars.note || label;
+      const where = `${detail.charAt(0).toUpperCase()}${detail.slice(1)} between kilometres ${fromKm} and ${toKm}.`;
+      if(segment.advisory === 'leash-required' || segment.advisory === 'leash-recommended'){
+        const required = segment.advisory === 'leash-required';
+        leashAdvisories.push({ ...vars, advisory:segment.advisory });
+        cautions.push(item(`segment.${segment.advisory}.${vars.type}.${fromKm}-${toKm}`,
+          `${where} ${required ? 'Lead required.' : 'Lead recommended.'}`,
+          vars,
+          required ? 'segment.leash-required' : 'segment.leash-recommended'));
+      }else if(segment.advisory === 'avoid'){
+        score -= 20;
+        cautions.push(item(`segment.avoid.${vars.type}.${fromKm}-${toKm}`,
+          `${where} Avoid this stretch.`, vars, 'segment.avoid'));
+      }else if(segment.advisory === 'caution'){
+        cautions.push(item(`segment.caution.${vars.type}.${fromKm}-${toKm}`,
+          `${where} Take care here.`, vars, 'segment.caution'));
+      }else{
+        positives.push(item(`segment.information.${vars.type}.${fromKm}-${toKm}`,
+          where, vars, 'segment.information'));
       }
     }
 
@@ -4435,7 +4734,7 @@ function breedInsights(name){
       category,
       confidence,
       evidenceTier: parts.verification.tier || 'unknown',
-      positiveReasons: unique(positives),
+      positiveReasons: unique(positives).filter(entry => reassuranceIsBacked(entry, categories)),
       cautions: unique(cautions),
       unknowns: unique(unknowns),
       hardStops: unique(hardStops),
@@ -4445,6 +4744,10 @@ function breedInsights(name){
         ascentM: dog.ascentM,
         heatSensitive: dog.heatSensitive,
       },
+      // Ordered by start distance so navigation can consume them directly
+      // without re-deriving where a lead advisory begins.
+      leashAdvisories,
+      behaviourDeclaredCount: dog.behaviour.declaredCount,
     };
   }
 
@@ -4515,6 +4818,34 @@ function breedInsights(name){
     };
   }
 
+  const BEHAVIOUR_SCALES = {
+    recall: ['reliable', 'variable', 'unreliable'],
+    reactivity: ['none', 'mild', 'strong'],
+    preyDrive: ['low', 'moderate', 'high'],
+    livestockComfort: ['confident', 'cautious', 'reactive'],
+    trafficComfort: ['confident', 'cautious', 'reactive'],
+    crowdComfort: ['confident', 'cautious', 'reactive'],
+    heatTolerance: ['robust', 'average', 'low'],
+  };
+
+  // Only recognised answers are forwarded. An unrecognised or legacy value is
+  // dropped rather than coerced, so a stale client cannot silently downgrade a
+  // dog to the easiest end of a scale.
+  function behaviour(profile){
+    const source = profile && profile.behaviour;
+    const normalized = {};
+    if(source && typeof source === 'object'){
+      for(const [key, scale] of Object.entries(BEHAVIOUR_SCALES)){
+        if(scale.includes(source[key])) normalized[key] = source[key];
+      }
+      const minutes = Number(source.preferredDurationMin);
+      if(Number.isFinite(minutes) && minutes > 0 && minutes <= 1440){
+        normalized.preferredDurationMin = Math.round(minutes);
+      }
+    }
+    return normalized;
+  }
+
   function normalizeDog(profile, options){
     profile = profile || {};
     return {
@@ -4524,6 +4855,7 @@ function breedInsights(name){
         ? profile.fitness : 'unknown',
       conditions: conditions(profile),
       traits: traits(profile),
+      behaviour: behaviour(profile),
     };
   }
 
@@ -4582,6 +4914,14 @@ function breedInsights(name){
       exposure: typeof trail.exposure === 'boolean' ? trail.exposure : null,
       surfaceHazards: Array.isArray(trail.surfaceHazards) ? trail.surfaceHazards : [],
       dogAccess: legacyDogAccess(trail),
+      // Legacy presentation records carry no reviewed behaviour attributes.
+      // Declaring them unknown keeps the engine's "say nothing without
+      // evidence" branch, rather than reading absence as safety.
+      livestockPresence: 'unknown',
+      wildlifePresence: 'unknown',
+      sightlines: 'unknown',
+      roadProximity: 'unknown',
+      crowding: 'unknown',
     };
     const categories = verificationCategories(trail, suitability);
     const tier = root && root.DoloPawsEvidenceV1
@@ -4594,6 +4934,7 @@ function breedInsights(name){
         distanceKm: Number.isFinite(trail.distance) ? trail.distance : null,
         ascentM: Number.isFinite(trail.elevation) ? trail.elevation : null,
         descentM: Number.isFinite(trail.descent) ? trail.descent : null,
+        durationMinutes: Number.isFinite(trail.hours) ? Math.round(trail.hours * 60) : null,
       },
       suitability,
       waypoints: (Array.isArray(trail.waterSources) ? trail.waterSources : []).map((water, index) => ({
@@ -4601,6 +4942,7 @@ function breedInsights(name){
         type: 'water',
         status: categories.water === 'verified' ? 'reviewed' : 'mapped',
       })),
+      segments: Array.isArray(trail.segments) ? trail.segments : [],
       verification: { tier, categories },
     };
   }
@@ -4651,6 +4993,7 @@ function breedInsights(name){
     ageYears,
     weightKg,
     conditions,
+    behaviour,
     normalizeDog,
     normalizeTrail,
     effectiveLimits,
@@ -15382,9 +15725,56 @@ if(document.querySelector('.td2')){
       }
       return output;
     };
-    const reasons = messages(recommendation.positiveReasons, translate);
+    // Only four reasons and four cautions reach the card, so what survives the
+    // cut decides whether the explanation reads as specific to this dog or as
+    // boilerplate. The engine emits in calculation order, which puts every
+    // behaviour and positioned advisory last — exactly the lines worth
+    // showing. Rank before slicing; ties keep the engine's own order.
+    const rank = (tiers, fallback) => item => {
+      const code = typeof item.code === 'string' ? item.code : '';
+      const index = tiers.findIndex(tier => tier.some(prefix => code.startsWith(prefix)));
+      return index === -1 ? fallback : index;
+    };
+    const ordered = (items, tiers, fallback) => {
+      const score = rank(tiers, fallback);
+      return items
+        .map((item, index) => ({ item, index, tier:score(item) }))
+        .sort((a, b) => a.tier - b.tier || a.index - b.index)
+        .map(entry => entry.item);
+    };
+
+    const REASON_TIERS = [
+      // What the owner asked for: does this route fit this dog, this walk?
+      ['trail.distance.within-range', 'trail.duration.within-preference'],
+      // Present properties an owner plans around, and that are true of this
+      // dog in particular.
+      ['trail.sightlines.', 'trail.water.reviewed'],
+      // Absences rank below presences: "no livestock recorded" is weaker
+      // information than "water at two points", and reads as filler when it
+      // crowds out a fact the owner can act on.
+      ['trail.livestock.none', 'trail.wildlife.low', 'trail.road.none',
+        'trail.crowding.quiet', 'trail.dog-access.'],
+    ];
+    const CAUTION_TIERS = [
+      // Route facts that can end a walk.
+      ['trail.dog-access.', 'trail.exposure.present', 'trail.terrain.above-tolerance',
+        'segment.avoid'],
+      // Positioned and behavioural: specific, and actionable on the day.
+      ['segment.', 'trail.livestock.', 'trail.wildlife.', 'trail.road.',
+        'trail.sightlines.', 'trail.crowding.'],
+    ];
+    const rankedReasons = ordered(
+      (Array.isArray(recommendation.positiveReasons) ? recommendation.positiveReasons : [])
+        .filter(Boolean),
+      REASON_TIERS, REASON_TIERS.length);
+    const rankedCautions = ordered(
+      (Array.isArray(recommendation.cautions) ? recommendation.cautions : []).filter(Boolean),
+      CAUTION_TIERS, CAUTION_TIERS.length);
+
+    const reasons = messages(rankedReasons, translate);
+    // Hard stops always lead: nothing below them changes the decision.
     const cautions = messages(recommendation.hardStops, translate)
-      .concat(messages(recommendation.cautions, translate));
+      .concat(messages(rankedCautions, translate));
     const rawUnknowns = (Array.isArray(recommendation.unknowns) ? recommendation.unknowns : [])
       .filter(Boolean);
     const unknowns = messages(rawUnknowns, translate);
@@ -15552,6 +15942,15 @@ if(document.querySelector('.td2')){
     return `<ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`;
   }
 
+  function sections(entries){
+    const rendered = entries
+      .filter(([, items]) => items.length)
+      .map(([title, items]) =>
+        `<section><h3>${esc(title)}</h3>${list(items)}</section>`)
+      .join('');
+    return rendered ? `<div class="recommendation-columns">${rendered}</div>` : '';
+  }
+
   function renderGuideLinks(recommendation){
     const root = document.getElementById('trailGuideLinks');
     const api = window.DoloPawsRecommendationGuides;
@@ -15621,12 +16020,13 @@ if(document.querySelector('.td2')){
           gapCta +
         '</div>' +
       '</div>' +
-      '<div class="recommendation-columns">' +
-        `<section><h3>${esc(tr('recommendation.reasons.title', 'Why it may fit'))}</h3>` +
-          list(view.reasons, tr('recommendation.reasons.empty', 'No positive reason is established yet.')) + '</section>' +
-        `<section><h3>${esc(tr('recommendation.cautions.title', 'Cautions'))}</h3>` +
-          list(view.cautions, tr('recommendation.cautions.empty', 'No specific caution is identified; review unknowns before deciding.')) + '</section>' +
-      '</div>' +
+      // A heading over a line explaining that there is nothing to say is the
+      // opposite of crisp. A section with nothing behind it is dropped; what
+      // ORMA has not established stays in the unknowns disclosure below.
+      sections([
+        [tr('recommendation.reasons.title', 'Why it may fit'), view.reasons],
+        [tr('recommendation.cautions.title', 'Cautions'), view.cautions],
+      ]) +
       '<div class="recommendation-actions" aria-label="Trail actions">' +
         `<button type="button" data-recommendation-save>${esc(tr('recommendation.action.save', 'Save trail'))}</button>` +
         `<button type="button" data-recommendation-compare>${esc(tr('recommendation.action.compare', 'Add to comparison'))}</button>` +

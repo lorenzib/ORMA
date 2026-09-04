@@ -30,7 +30,7 @@ const byOrigin = Object.fromEntries(['curated', 'osm'].map(origin => [
   },
 ]));
 const report = {
-  schemaVersion: '1.0.0',
+  schemaVersion: '1.1.0',
   adapterVersion: ADAPTER_VERSION,
   sources: DEFAULT_FILES,
   totals: {

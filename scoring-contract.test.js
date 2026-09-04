@@ -11,7 +11,7 @@ function run(fixture){
 
 describe('SCORE-01 canonical recommendation contract', () => {
   test('the fixture set and calculator use the same immutable version', () => {
-    expect(scoring.VERSION).toBe('1.1.0');
+    expect(scoring.VERSION).toBe('1.3.0');
     expect(fixtures.scoringVersion).toBe(scoring.VERSION);
   });
 
@@ -103,6 +103,195 @@ describe('SCORE-01 canonical recommendation contract', () => {
     expect(distance.message).toMatch(/km route/);
     expect(distance.messageKey).toBe('trail.distance.within-range');
     expect(distance.vars).toEqual(expect.objectContaining({ distance:expect.any(Number) }));
+  });
+
+  // ---- SCORE-03 behaviour-aware fit -------------------------------------
+
+  const reviewedCategories = {
+    route:'verified', water:'verified', heat:'verified', exposure:'verified',
+    livestock:'verified', surfaceHazards:'verified', access:'verified',
+  };
+  const idealPhysicalRoute = {
+    metrics:{ distanceKm:4, ascentM:100, descentM:100 },
+    suitability:{
+      terrainRank:0, shadePercent:70, heatRisk:'low', exposure:false,
+      surfaceHazards:[], dogAccess:{ status:'allowed' },
+    },
+    waypoints:[{ type:'water', status:'reviewed' }],
+    verification:{ tier:'field-verified', categories:reviewedCategories },
+  };
+  const steadyDog = { fitness:'moderate', ageYears:4, weightKg:22, conditions:[] };
+
+  function scoreWith(trailOverrides, behaviour){
+    return scoring.calculateRecommendation({
+      dog:{ ...steadyDog, ...(behaviour ? { behaviour } : {}) },
+      trail:{
+        ...idealPhysicalRoute,
+        ...trailOverrides,
+        suitability:{ ...idealPhysicalRoute.suitability, ...(trailOverrides.suitability || {}) },
+      },
+    });
+  }
+
+  test('a positioned advisory names its kilometres and is exposed for navigation', () => {
+    const result = scoreWith({
+      segments:[{
+        id:'upper-pasture', type:'livestock', fromKm:2.1, toKm:3.4,
+        advisory:'leash-recommended', note:'open grazing pasture',
+        status:'reviewed', seasonal:true,
+      }],
+    }, { recall:'variable' });
+    const advisory = result.cautions.find(entry => entry.messageKey === 'segment.leash-recommended');
+
+    expect(advisory.message).toBe(
+      'Open grazing pasture between kilometres 2.1 and 3.4. Lead recommended.');
+    expect(advisory.vars).toEqual(expect.objectContaining({ fromKm:2.1, toKm:3.4, type:'livestock' }));
+    expect(result.leashAdvisories).toEqual([
+      expect.objectContaining({ fromKm:2.1, toKm:3.4, advisory:'leash-recommended' }),
+    ]);
+  });
+
+  test('two advisories of the same kind on one route both survive', () => {
+    const result = scoreWith({
+      segments:[
+        { id:'lower', type:'livestock', fromKm:5.0, toKm:6.2, advisory:'leash-recommended',
+          note:null, status:'reviewed', seasonal:null },
+        { id:'upper', type:'livestock', fromKm:2.1, toKm:3.4, advisory:'leash-recommended',
+          note:null, status:'reviewed', seasonal:null },
+      ],
+    }, { recall:'variable' });
+    const advisories = result.cautions.filter(entry => entry.messageKey === 'segment.leash-recommended');
+
+    // Ordered by start distance so navigation can consume them directly.
+    expect(advisories).toHaveLength(2);
+    expect(result.leashAdvisories.map(entry => entry.fromKm)).toEqual([2.1, 5]);
+  });
+
+  test('an advisory that cannot be placed on the route is dropped, not shown vaguely', () => {
+    const result = scoreWith({
+      segments:[
+        { id:'bad-order', type:'livestock', fromKm:4, toKm:2, advisory:'leash-recommended',
+          status:'reviewed' },
+        { id:'no-range', type:'livestock', fromKm:null, toKm:null, advisory:'leash-recommended',
+          status:'reviewed' },
+      ],
+    }, { recall:'variable' });
+
+    expect(result.leashAdvisories).toEqual([]);
+    expect(result.cautions.some(entry => /kilometres/.test(entry.message))).toBe(false);
+  });
+
+  test('undeclared behaviour neither penalises nor reassures', () => {
+    const hostile = {
+      suitability:{
+        livestockPresence:'likely', wildlifePresence:'high', sightlines:'restricted',
+        roadProximity:'alongside', crowding:'busy',
+      },
+    };
+    const silent = scoreWith(hostile, undefined);
+    const baseline = scoreWith({}, undefined);
+
+    expect(silent.score).toBe(baseline.score);
+    expect(silent.behaviourDeclaredCount).toBe(0);
+    expect(silent.cautions.map(entry => entry.code)).not.toContain('trail.livestock.behaviour-risk');
+    // Silence runs both ways: a quiet route must not be talked up either.
+    expect(scoreWith({ suitability:{ livestockPresence:'none', crowding:'quiet' } }, undefined)
+      .positiveReasons.map(entry => entry.code)).not.toContain('trail.livestock.none');
+  });
+
+  test('behaviour can move a route out of strong option but never outweighs the route', () => {
+    const hostile = {
+      suitability:{
+        livestockPresence:'likely', wildlifePresence:'high', sightlines:'restricted',
+        roadProximity:'alongside', crowding:'busy',
+      },
+    };
+    const hardest = scoreWith(hostile, {
+      recall:'unreliable', reactivity:'strong', preyDrive:'high',
+      livestockComfort:'reactive', trafficComfort:'reactive',
+      crowdComfort:'reactive', heatTolerance:'low',
+    });
+
+    // Every rule fires at its hardest, so the uncapped load far exceeds the
+    // cap; the deduction must still stop at 45 off an otherwise ideal route.
+    // A route this wrong for this dog should indeed read as not recommended.
+    expect(hardest.score).toBe(55);
+    expect(hardest.category).toBe('not-recommended');
+    // But behaviour is a fit signal, never a prohibition: it must not reach
+    // the hard-stop floor reserved for routes that ban dogs outright.
+    expect(hardest.hardStops).toEqual([]);
+    expect(hardest.score).toBeGreaterThan(
+      scoreWith({ suitability:{ dogAccess:{ status:'prohibited' } } }, undefined).score);
+  });
+
+  test('reassurance requires reviewed evidence, warnings do not', () => {
+    const unreviewed = {
+      route:'unreviewed', water:'unreviewed', heat:'unreviewed', exposure:'unreviewed',
+      livestock:'unreviewed', surfaceHazards:'unreviewed', access:'unreviewed',
+    };
+    const result = scoring.calculateRecommendation({
+      dog:steadyDog,
+      trail:{
+        ...idealPhysicalRoute,
+        suitability:{ ...idealPhysicalRoute.suitability, heatRisk:'moderate', shadePercent:30 },
+        verification:{ tier:'imported', categories:unreviewed },
+      },
+    });
+    const codes = result.positiveReasons.map(entry => entry.code);
+
+    // "No exposed section is recorded" on a route nobody reviewed is a safety
+    // claim dressed as a fact. It must not appear.
+    expect(codes).not.toContain('trail.exposure.none-known');
+    expect(codes).not.toContain('trail.terrain.within-tolerance');
+    expect(codes).not.toContain('trail.dog-access.allowed');
+    // Measured geometry stands on its own and still does.
+    expect(codes).toContain('trail.distance.within-range');
+    expect(codes).toContain('trail.ascent.within-range');
+    // Warnings are never suppressed for want of a review: hiding one would
+    // conceal a hazard and leave its penalty unexplained.
+    expect(result.cautions.map(entry => entry.code)).toEqual(
+      expect.arrayContaining(['trail.heat.moderate', 'trail.shade.low']));
+  });
+
+  test('the same reassurance appears once the evidence is reviewed', () => {
+    const result = scoreWith({}, undefined);
+    expect(result.positiveReasons.map(entry => entry.code)).toEqual(
+      expect.arrayContaining([
+        'trail.exposure.none-known', 'trail.terrain.within-tolerance', 'trail.dog-access.allowed',
+      ]));
+  });
+
+  test('an unconfirmed advisory waits for confirmation instead of being shown', () => {
+    const reported = scoreWith({
+      segments:[{ id:'walker-report', type:'livestock', fromKm:2.1, toKm:3.4,
+        advisory:'leash-recommended', note:'cattle seen here', status:'reported' }],
+    }, { recall:'variable' });
+
+    expect(reported.leashAdvisories).toEqual([]);
+    expect(reported.cautions.some(entry => /kilometres/.test(entry.message))).toBe(false);
+  });
+
+  test('a declared robust heat tolerance never clears a medical heat risk', () => {
+    const result = scoring.calculateRecommendation({
+      dog:{ ...steadyDog, conditions:['cardiac'], behaviour:{ heatTolerance:'robust' } },
+      trail:idealPhysicalRoute,
+    });
+
+    expect(result.effectiveDogLimits.heatSensitive).toBe(true);
+  });
+
+  test('reviewed water points are counted rather than reported as at least one', () => {
+    const result = scoreWith({
+      waypoints:[
+        { type:'water', status:'reviewed' },
+        { type:'water', status:'reviewed' },
+        { type:'water', status:'mapped' },
+      ],
+    }, undefined);
+    const water = result.positiveReasons.find(entry => entry.code === 'trail.water.reviewed');
+
+    expect(water.message).toBe('Water is available at 2 reviewed points.');
+    expect(water.vars).toEqual({ count:2 });
   });
 
   test('route cautions name the recorded hazards instead of showing only a count', () => {
