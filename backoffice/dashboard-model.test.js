@@ -86,10 +86,12 @@ describe('CEO dashboard workflow model',()=>{
     ['stale',{status:'healthy',lastSuccessfulAt:'2026-08-19T19:29:00Z'},'stale'],
     ['stuck run',{status:'running',runId:'123',startedAt:'2026-08-19T19:29:00Z'},'stale'],
     ['failed',{status:'failed',completedAt:'2026-08-19T20:59:00Z',consecutiveFailures:2,lastFailure:{stage:'pull-request-creation',message:'GitHub denied PR creation.',workflowRunUrl:'https://github.com/orma/actions/runs/123'}},'failed'],
+    ['publication blocked',{status:'blocked',completedAt:'2026-08-19T20:59:00Z',publicationGate:{message:'Validate ORMA failed. Queue and agent work may continue; approvals stay saved.',validationRunUrl:'https://github.com/orma/actions/runs/456'}},'blocked'],
   ])('classifies %s worker health honestly',(_label,workerHealth,state)=>{
     const model=buildDashboardModel({orchestration:{trails:[]},dossiers:{items:[]},publication:{items:[]},jobs:[],history:[],workerHealth,nowMs:new Date('2026-08-19T21:00:00Z').getTime()});
     expect(model.workerHealth.state).toBe(state);
     if(state==='failed')expect(model.workerHealth).toEqual(expect.objectContaining({consecutiveFailures:2,runUrl:'https://github.com/orma/actions/runs/123'}));
+    if(state==='blocked')expect(model.workerHealth).toEqual(expect.objectContaining({label:'Publishing paused',runUrl:'https://github.com/orma/actions/runs/456'}));
   });
 
   test('shows the durable catalogue campaign result and its next due check',()=>{

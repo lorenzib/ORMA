@@ -23,6 +23,10 @@ these responsibilities and gates unless the CEO explicitly changes the model.
    last known public safety state.
 7. The CEO dashboard is the operating overview. Detailed evidence and editing
    belong in separate, clearly named team desks.
+8. A broken website build must not make every quarter-hour worker repeat the
+   same publication attempt. Queue and agent work continue, but publication
+   materialization is circuit-broken until the checked-out commit has a
+   successful `Validate ORMA` result.
 
 ## Team ownership
 
@@ -209,6 +213,13 @@ requests and the CEO prototype gate. An investigation, priority decision or prot
 - No unrelated dirty workspace files may be included in an automated commit.
 - Agent output must not bypass tests, source/licensing checks, or a required
   human gate.
+- Before consuming an approved trail or trail-photo publication, the hosted
+  worker checks the latest completed `Validate ORMA` run for its exact commit.
+  A failed, cancelled, or missing result pauses only materialization and pull
+  request creation. The approval stays saved, specialist queues continue, and
+  Backoffice Home records `Publishing paused` with the validation-run link.
+  The next scheduled worker pass resumes publication automatically after that
+  exact commit is green.
 
 ## Current cadence
 

@@ -60,9 +60,9 @@ describe('shared trail-filter experience', () => {
     const styles = read('styles.css');
     const geoStyles = read('geo-filters.css');
 
-    expect(styles).toMatch(/\.li-toolbar\{[\s\S]*?display:flex;[\s\S]*?flex-wrap:wrap;/);
-    expect(styles).toContain('.li-toolbar>.li-search{flex:1 1 300px;}');
-    expect(styles).toMatch(/\.li-mobile-actions\{[\s\S]*?display:flex;[\s\S]*?flex-wrap:wrap;/);
+    expect(styles).toMatch(/\.li-toolbar\{[\s\S]*?display:grid;[\s\S]*?grid-template-columns:minmax\(260px,1fr\) auto auto auto auto auto auto auto auto;/);
+    expect(styles).toContain('"search country region valley filters quick saved plan record";');
+    expect(styles).toContain('.li-mobile-actions{display:contents;}');
     expect(geoStyles).toMatch(/\.li-toolbar \.geo-filter-control\{[\s\S]*?width:205px;[\s\S]*?flex:0 0 205px;/);
     expect(geoStyles).toMatch(/@media\(max-width:760px\)\{[\s\S]*?\.li-toolbar \.geo-filter-control\{[\s\S]*?width:100%;[\s\S]*?min-width:0;/);
   });

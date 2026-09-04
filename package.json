@@ -62,6 +62,7 @@
     "backoffice:worker:new-trails": "node backoffice/cli/scoped-review-worker.js new-trails",
     "backoffice:worker:hazards": "node backoffice/cli/scoped-review-worker.js hazards",
     "backoffice:worker:health": "node backoffice/cli/record-worker-health.js",
+    "backoffice:publication-gate": "node backoffice/cli/check-publication-gate.js",
     "backoffice:seed:live": "node backoffice/cli/seed-live-state.js",
     "backoffice:materialize-publications": "node backoffice/cli/materialize-publications.js",
     "backoffice:materialize-trail-images": "node backoffice/cli/materialize-trail-images.js",

@@ -67,7 +67,8 @@ describe('altitude health and safety guide', () => {
   test('links supporting references and related safety guides', () => {
     const sources = document.querySelector('.safety-sources');
     expect(sources.open).toBe(false);
-    expect(sources.querySelectorAll('a')).toHaveLength(3);
+    expect(sources.textContent).toMatch(/PetMD and Platt Park Veterinary Hospital/i);
+    expect(sources.textContent).toMatch(/published research on hypoxia and pulmonary pressure/i);
     expect(sources.textContent).toMatch(/general information, not a diagnosis/i);
     expect(sources.querySelector('summary').textContent).toMatch(/Last reviewed 23 August 2026/i);
     expect(Array.from(document.querySelectorAll('.safety-continue a')).map(link => link.getAttribute('href'))).toEqual([

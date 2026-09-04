@@ -63,6 +63,12 @@ jobs:
 
       - run: npm ci
 
+      - name: Check website publication gate
+        id: website_gate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: npm run backoffice:publication-gate
+
       - name: Record worker start
         id: worker_start
         shell: bash
@@ -79,6 +85,7 @@ jobs:
 
       - name: Materialize approved trail publications
         id: materialize
+        if: steps.website_gate.outputs.publication_allowed == 'true'
         shell: bash
         run: |
           set -o pipefail
@@ -86,6 +93,7 @@ jobs:
 
       - name: Materialize approved trail photos
         id: materialize_images
+        if: steps.website_gate.outputs.publication_allowed == 'true'
         shell: bash
         run: |
           set -o pipefail
@@ -231,11 +239,20 @@ jobs:
       - name: Record worker completion
         if: ${{ always() }}
         shell: bash
+        env:
+          ORMA_GATE_ALLOWED: ${{ steps.website_gate.outputs.publication_allowed }}
+          ORMA_GATE_MESSAGE: ${{ steps.website_gate.outputs.message }}
+          ORMA_GATE_RUN_URL: ${{ steps.website_gate.outputs.validation_run_url }}
         run: |
           outcome="success"
           stage=""
           log=""
-          if [ "${{ steps.worker_start.outcome }}" = "failure" ]; then
+          message=""
+          validation_url=""
+          if [ "${{ steps.website_gate.outcome }}" = "failure" ]; then
+            outcome="failure"
+            stage="website-publication-gate-check"
+          elif [ "${{ steps.worker_start.outcome }}" = "failure" ]; then
             outcome="failure"
             stage="worker-health-start"
             log="$RUNNER_TEMP/orma-worker-start.log"
@@ -284,9 +301,16 @@ jobs:
           elif [ "${{ steps.confirm_deployed_publication.outcome }}" = "failure" ]; then
             outcome="failure"
             stage="publication-deployment-receipt"
+          elif [ "$ORMA_GATE_ALLOWED" != "true" ]; then
+            outcome="blocked"
+            stage="website-publication-gate"
+            message="$ORMA_GATE_MESSAGE"
+            validation_url="$ORMA_GATE_RUN_URL"
           fi
           ORMA_WORKER_HEALTH_PHASE=finish \
           ORMA_WORKER_HEALTH_OUTCOME="$outcome" \
           ORMA_WORKER_FAILURE_STAGE="$stage" \
           ORMA_WORKER_FAILURE_LOG="$log" \
+          ORMA_WORKER_FAILURE_MESSAGE="$message" \
+          ORMA_WORKER_VALIDATION_RUN_URL="$validation_url" \
           npm run backoffice:worker:health

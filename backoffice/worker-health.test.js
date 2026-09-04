@@ -20,6 +20,14 @@ describe('durable ORMA worker health receipts',()=>{
     expect(second.recentRuns).toHaveLength(2);
   });
 
+  test('records a blocked publication gate without counting a queue-worker failure',()=>{
+    const started=beginWorkerRun({consecutiveFailures:2,lastSuccessfulAt:'2026-09-05T07:00:00Z'}, {runId:'3',commitSha:'abc'},{at:'2026-09-05T08:00:00Z'});
+    const blocked=finishWorkerRun(started,{outcome:'blocked',failureStage:'website-publication-gate',failureMessage:'Validate ORMA failed. Queue and agent work may continue; approvals stay saved.',validationRunUrl:'https://github.com/orma/actions/runs/3'},{at:'2026-09-05T08:02:00Z'});
+    expect(blocked).toEqual(expect.objectContaining({status:'blocked',lastBlockedAt:'2026-09-05T08:02:00Z',consecutiveFailures:2,lastSuccessfulAt:'2026-09-05T07:00:00Z'}));
+    expect(blocked.publicationGate).toEqual(expect.objectContaining({stage:'website-publication-gate',commitSha:'abc',validationRunUrl:'https://github.com/orma/actions/runs/3'}));
+    expect(blocked.recentRuns.at(-1)).toEqual(expect.objectContaining({outcome:'blocked'}));
+  });
+
   test('CLI writes the protected start heartbeat with GitHub identity',async()=>{
     const writes=[];const store={getArtifact:async()=>null,setArtifact:async(id,data,metadata)=>writes.push({id,data,metadata})};
     const env={ORMA_WORKER_HEALTH_PHASE:'start',GITHUB_RUN_ID:'456',GITHUB_RUN_ATTEMPT:'1',GITHUB_SERVER_URL:'https://github.com',GITHUB_REPOSITORY:'lorenzib/ORMA',GITHUB_EVENT_NAME:'workflow_dispatch',GITHUB_REF_NAME:'main',GITHUB_SHA:'def'};

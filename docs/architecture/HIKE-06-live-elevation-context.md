@@ -41,7 +41,7 @@ follows the official MapLibre hillshade layer contract.
 
 ## Offline boundary
 
-Carezza beta.16 and Alpe di Siusi beta.3 now contain a mandatory, checksum-
+Carezza beta.17 and Alpe di Siusi beta.4 now contain a mandatory, checksum-
 verified `route-profile-v1` resource. The standalone offline screen renders
 the stored profile and drives its cursor from nearest-segment route progress.
 The readout remains explicitly approximate route elevation rather than GPS

@@ -113,7 +113,9 @@
     set('photoProgress',`${model.editorialProgress.imageGaps} priority reviews active`);
     set('groundskeeperProgress',`${model.groundskeeperProgress.active} warnings · ${model.groundskeeperProgress.waiting} need review`);
     set('communityProgress',community.items.length?`${community.items.length} submissions need you`:'Queue clear');
-    const workerMeta=model.workerHealth.state==='failed'&&model.workerHealth.consecutiveFailures>1
+    const workerMeta=model.workerHealth.state==='blocked'
+      ?'Agent queues remain active · publication waits for green CI'
+      :model.workerHealth.state==='failed'&&model.workerHealth.consecutiveFailures>1
       ?`${model.workerHealth.consecutiveFailures} consecutive failures`
       :'Protected heartbeat';
     renderHealth('workerHealth',model.workerHealth,workerMeta);
