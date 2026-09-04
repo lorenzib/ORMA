@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-04T08:13:41.146Z",
+  "updatedAt": "2026-09-04T22:37:27.032Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -44,6 +44,91 @@
         "imageIcon": "images/trails/sentiero-hans-e-paula-steger-gpphnhmww9vijh81aqd4.jpg",
         "heroImage": "images/trails/sentiero-hans-e-paula-steger-gpphnhmww9vijh81aqd4.jpg",
         "imageAlt": "Sentiero Hans e Paula Steger trail",
+        "imageCredit": "Photo by Benedetta Lorenzi",
+        "imageCreditText": "Photo by Benedetta Lorenzi",
+        "imageCreator": "Benedetta Lorenzi",
+        "imageLicence": "ORMA-owned",
+        "imageLicenceUrl": null,
+        "imageSourcePage": null,
+        "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "osm-19974724",
+      "approvedReviewId": "EwXarW0prqXI8GCwuMXt",
+      "approvedAt": "2026-09-04T15:07:32.000Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19974724-ewxarw0prqxi8gcwumxt.jpg",
+        "heroImage": "images/trails/osm-19974724-ewxarw0prqxi8gcwumxt.jpg",
+        "imageAlt": "Mittlerer Rundweg am Karer See trail",
+        "imageCredit": "Photo by Benedetta Lorenzi",
+        "imageCreditText": "Photo by Benedetta Lorenzi",
+        "imageCreator": "Benedetta Lorenzi",
+        "imageLicence": "ORMA-owned",
+        "imageLicenceUrl": null,
+        "imageSourcePage": null,
+        "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "osm-19974725",
+      "approvedReviewId": "siOGyTmasFv00MS7PgLT",
+      "approvedAt": "2026-09-04T15:07:32.805Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19974725-siogytmasfv00ms7pglt.jpg",
+        "heroImage": "images/trails/osm-19974725-siogytmasfv00ms7pglt.jpg",
+        "imageAlt": "Langer Rundweg am Karer See trail",
+        "imageCredit": "Photo by Benedetta Lorenzi",
+        "imageCreditText": "Photo by Benedetta Lorenzi",
+        "imageCreator": "Benedetta Lorenzi",
+        "imageLicence": "ORMA-owned",
+        "imageLicenceUrl": null,
+        "imageSourcePage": null,
+        "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "osm-7388748",
+      "approvedReviewId": "csHNw6X7gK7axjDXClqa",
+      "approvedAt": "2026-09-04T20:15:25.268Z",
+      "fields": {
+        "imageIcon": "images/tre-cime-gallery-01.jpg",
+        "heroImage": "images/tre-cime-gallery-01.jpg",
+        "imageAlt": "Anello dei Colli",
+        "imageCredit": "Photo by ORMA",
+        "imageCreditText": "Photo by ORMA",
+        "imageCreator": "ORMA",
+        "imageLicence": "ORMA-owned",
+        "imageLicenceUrl": null,
+        "imageSourcePage": null,
+        "imageSourceType": "orma-library"
+      }
+    },
+    {
+      "id": "lago-sorapis",
+      "approvedReviewId": "f1E5FPFAIwocWzN2kIOw",
+      "approvedAt": "2026-09-04T20:28:23.363Z",
+      "fields": {
+        "imageIcon": "images/trails/lago-sorapis-f1e5fpfaiwocwzn2kiow.jpg",
+        "heroImage": "images/trails/lago-sorapis-f1e5fpfaiwocwzn2kiow.jpg",
+        "imageAlt": "Lago di Sorapis Trail trail",
+        "imageCredit": "Photo by Benedetta Lorenzi",
+        "imageCreditText": "Photo by Benedetta Lorenzi",
+        "imageCreator": "Benedetta Lorenzi",
+        "imageLicence": "ORMA-owned",
+        "imageLicenceUrl": null,
+        "imageSourcePage": null,
+        "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "osm-19697977",
+      "approvedReviewId": "hTq57tVg3snv1E5D6TkV",
+      "approvedAt": "2026-09-04T20:28:24.015Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19697977-htq57tvg3snv1e5d6tkv.jpg",
+        "heroImage": "images/trails/osm-19697977-htq57tvg3snv1e5d6tkv.jpg",
+        "imageAlt": "Panoramaweg trail",
         "imageCredit": "Photo by Benedetta Lorenzi",
         "imageCreditText": "Photo by Benedetta Lorenzi",
         "imageCreator": "Benedetta Lorenzi",
