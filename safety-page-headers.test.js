@@ -53,7 +53,7 @@ describe('Safety Library article headers', () => {
     const links = document.querySelectorAll('a.safety-back-link[href="../safety-guide.html"]');
 
     expect(links).toHaveLength(1);
-    expect(links[0].textContent.replace(/\s+/g, ' ').trim()).toBe('← Safety guides');
+    expect(links[0].textContent.replace(/\s+/g, ' ').trim()).toBe('← Back to Safety Library');
   });
 
   test('the cable-car header applies a dog-centred focal zoom', () => {
@@ -62,8 +62,8 @@ describe('Safety Library article headers', () => {
     const image = header.querySelector('.safety-photo-header__image');
     const pageCss = document.querySelector('style').textContent;
 
-    expect(pageCss).toMatch(/\.cg-hero\{--safety-photo-position:center/);
-    expect(pageCss).toMatch(/@media\(max-width:620px\)[\s\S]*\.cg-hero\{--safety-photo-position:right center/);
+    expect(pageCss).toMatch(/\.cg-hero\{--safety-photo-position:62% center/);
+    expect(pageCss).toMatch(/@media\(max-width:620px\)[\s\S]*\.cg-hero\{--safety-photo-position:62% center/);
     expect(image.hasAttribute('style')).toBe(false);
   });
 

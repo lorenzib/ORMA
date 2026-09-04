@@ -19,7 +19,7 @@ describe('paw protection question-led guide', () => {
     expect(document.querySelector('.section-page-subtitle').textContent).toMatch(/main surface/i);
     const returnLink = document.querySelector('.safety-back-link');
     expect(returnLink.getAttribute('href')).toBe('../safety-guide.html');
-    expect(returnLink.textContent).toMatch(/Safety guides/i);
+    expect(returnLink.textContent.trim()).toBe('← Back to Safety Library');
     expect(document.querySelector('.safety-topic').textContent.trim()).toBe('Safety library / Terrain & paws');
   });
 

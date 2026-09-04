@@ -405,7 +405,7 @@ function trailPage(t, slug, all) {
 
   const reviewDate = t.reviewedAt || (t.verified && t.verified.date);
   const reviewRecord = verified && reviewDate
-    ? `<p class="sp-review-meta">Verified by ORMA on ${escapeHtml(formatReviewDate(reviewDate))}. Check current conditions before setting out. <a href="../how-scoring-works.html">How ORMA assesses trails →</a></p>`
+    ? `<p class="sp-review-meta">Verified by ORMA on ${escapeHtml(formatReviewDate(reviewDate))}. Check current conditions before setting out.</p>`
     : '';
 
   const jsonLd = {

@@ -35,7 +35,7 @@ describe('Heat and hydration safety guide', () => {
     expect(warning.compareDocumentPosition(overview) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(warning.compareDocumentPosition(cooling) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(nextGuide.classList.contains('hs-next-cta')).toBe(false);
-    expect(html).toContain('safety-guide-system.css?v=20260901-5');
+    expect(html).toContain('safety-guide-system.css?v=20260904-1');
     expect(nextGuide.getAttribute('href')).toBe('water-for-dogs-on-trail.html');
   });
 

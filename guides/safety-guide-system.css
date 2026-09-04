@@ -60,8 +60,11 @@
   color:var(--safety-safe);
 }
 .safety-guide-article .safety-back-link{
+  position:absolute!important;
+  top:clamp(22px,3vw,36px);
+  left:max(var(--safety-guide-gutter),calc((100vw - var(--safety-guide-width))/2 + var(--safety-guide-gutter)));
   min-height:0;
-  margin-bottom:20px;
+  margin:0;
   padding:0;
   border:0;
   border-radius:0;
@@ -240,6 +243,7 @@
   .safety-guide-article .safety-photo-header.section-page-head h1{font-size:clamp(30px,9vw,42px)!important;}
   .safety-guide-article .safety-photo-header.section-page-head h1,
   .safety-guide-article .safety-photo-header :is(.section-page-subtitle,.sub,.alt-subtitle){white-space:normal;}
+  .safety-guide-article .safety-back-link{top:20px;left:20px;}
   .safety-guide-article .apg-hero.section-page-head{padding:31px 18px 22px;}
   .water-guide-body{padding-top:20px!important;padding-bottom:44px!important;}
   .water-guide-grid{grid-template-columns:1fr;}

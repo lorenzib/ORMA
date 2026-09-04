@@ -409,6 +409,18 @@ describe('trail page map controls', () => {
     expect(html).toContain('.td2-hero-weather{grid-area:weather;');
   });
 
+  test('trail detail pages do not link to the scoring explainer', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const generator = fs.readFileSync(path.join(__dirname, 'scripts', 'generate-trail-pages.js'), 'utf8');
+    const generatedPages = fs.readdirSync(path.join(__dirname, 'trails'))
+      .filter(name => name.endsWith('.html'))
+      .map(name => fs.readFileSync(path.join(__dirname, 'trails', name), 'utf8'));
+
+    expect(html).not.toContain('How ORMA assesses trails');
+    expect(generator).not.toContain('How ORMA assesses trails');
+    generatedPages.forEach(page => expect(page).not.toContain('How ORMA assesses trails'));
+  });
+
   test('the logged-in mobile layout keeps hero actions and moves about below the recommendation', () => {
     const mobile = fs.readFileSync(path.join(__dirname, 'trail-mobile.js'), 'utf8');
     const mobileCss = fs.readFileSync(path.join(__dirname, 'trail-mobile.css'), 'utf8');
