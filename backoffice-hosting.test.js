@@ -181,6 +181,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(workflow).toContain('force_publication_retry:');
     expect(workflow).toContain("ORMA_PUBLICATION_FORCE_RETRY: ${{ github.event.inputs.force_publication_retry || 'false' }}");
     expect(workflow).toContain("ORMA_CAMPAIGN_AUTOMATION_ENABLED: ${{ vars.ORMA_CAMPAIGN_AUTOMATION_ENABLED || 'false' }}");
+    expect(workflow).toContain('data/generated/trail-validation-report.json data/trail-details data/regions');
   });
 
   test('daily campaign and worker catch-up share one lock and due-only receipts',()=>{
