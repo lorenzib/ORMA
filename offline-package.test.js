@@ -138,6 +138,21 @@ describe('Lago di Carezza offline package', () => {
     expect(app).toContain('Vetted by ORMA.');
   });
 
+  test('presents downloaded route essentials and stored map context clearly', () => {
+    const shell = fs.readFileSync(path.join(root, 'offline', 'trail.html'), 'utf8');
+    const app = fs.readFileSync(path.join(root, 'offline', 'offline-app.js'), 'utf8');
+    const css = fs.readFileSync(path.join(root, 'offline', 'offline.css'), 'utf8');
+
+    expect(shell).toContain('class="route-at-a-glance"');
+    expect(shell).toContain('id="mapDistance"');
+    expect(shell).toContain('id="mapAnnotations"');
+    expect(shell).toContain('class="package-details"');
+    expect(app).toContain('renderMapDetails(safety, manifest.bounds)');
+    expect(app).toContain('Start / finish');
+    expect(css).toContain('.route-at-a-glance');
+    expect(css).toContain('.map-annotation');
+  });
+
   test('offers private structured feedback after an offline completion', () => {
     const shell = fs.readFileSync(path.join(root, 'offline', 'trail.html'), 'utf8');
     const app = fs.readFileSync(path.join(root, 'offline', 'offline-app.js'), 'utf8');

@@ -32,6 +32,11 @@
     failureMessage: document.getElementById('failureMessage'),
     offlineMap: document.getElementById('offlineMap'),
     mapFrame: document.getElementById('mapFrame'),
+    mapAnnotations: document.getElementById('mapAnnotations'),
+    mapDistance: document.getElementById('mapDistance'),
+    mapDuration: document.getElementById('mapDuration'),
+    mapAscent: document.getElementById('mapAscent'),
+    mapShade: document.getElementById('mapShade'),
     locationButton: document.getElementById('locationButton'),
     locationState: document.getElementById('locationState'),
     rejoinButton: document.getElementById('offlineRejoinBtn'),
@@ -127,6 +132,53 @@
     term.textContent = label;
     detail.textContent = value;
     elements.facts.append(term, detail);
+  }
+
+  function addMapAnnotation(label, type, lat, lng, bounds, detail){
+    if(!elements.mapAnnotations || !Number.isFinite(lat) || !Number.isFinite(lng)) return;
+    const point = positionPercent(lat, lng, bounds);
+    if(point.x < 0 || point.x > 100 || point.y < 0 || point.y > 100) return;
+    const marker = document.createElement('span');
+    marker.className = `map-annotation map-annotation--${type}`;
+    marker.style.left = `${point.x}%`;
+    marker.style.top = `${point.y}%`;
+    marker.setAttribute('role', 'img');
+    marker.setAttribute('aria-label', detail ? `${label}. ${detail}` : label);
+    marker.innerHTML = `<i aria-hidden="true"></i><b>${label}</b>`;
+    elements.mapAnnotations.appendChild(marker);
+  }
+
+  function renderMapDetails(safety, bounds){
+    const facts = safety.facts || {};
+    elements.mapDistance.textContent = Number.isFinite(facts.distanceKm) ? `${facts.distanceKm} km` : '—';
+    elements.mapDuration.textContent = facts.expectedDuration || '—';
+    elements.mapAscent.textContent = Number.isFinite(facts.ascentM) ? `${facts.ascentM} m` : '—';
+    elements.mapShade.textContent = Number.isFinite(facts.shadePercent) ? `${facts.shadePercent}%` : '—';
+    elements.mapAnnotations.replaceChildren();
+    const waypoints = safety.waypoints || [];
+    const trailheadWater = safety.trailhead && waypoints.find(waypoint =>
+      waypoint.type === 'water' &&
+      Math.abs(waypoint.lat - safety.trailhead.lat) < 0.00001 &&
+      Math.abs(waypoint.lng - safety.trailhead.lng) < 0.00001
+    );
+    if(safety.trailhead){
+      addMapAnnotation(
+        `${routeIsLoop ? 'Start / finish' : 'Start'}${trailheadWater ? ' · water' : ''}`,
+        'start',
+        safety.trailhead.lat,
+        safety.trailhead.lng,
+        bounds,
+        safety.trailhead.label
+      );
+    }
+    waypoints.filter(waypoint => waypoint !== trailheadWater).forEach(waypoint => addMapAnnotation(
+      waypoint.type === 'water' ? 'Water point' : waypoint.label,
+      waypoint.type === 'water' ? 'water' : 'point',
+      waypoint.lat,
+      waypoint.lng,
+      bounds,
+      waypoint.reliability || waypoint.label
+    ));
   }
 
   function positionPercent(lat, lng, bounds){
@@ -705,12 +757,13 @@
       const failureLink = document.getElementById('failureTrailLink');
       if(failureLink) failureLink.href = `../trail.html?id=${encodeURIComponent(trailId)}`;
       const requiredCount = manifest.resources.filter(resource => resource.required !== false).length;
-      elements.packageState.textContent = `Checksum-verified ${requiredCount} required stored resources · ${formatBytes(manifest.packageBytes)}`;
+      elements.packageState.textContent = `Ready offline · ${formatBytes(manifest.packageBytes)} · ${requiredCount} stored files verified`;
       elements.offlineMap.src = URL.createObjectURL(await resources.map.blob());
       if(manifest.image && manifest.image.width && manifest.image.height){
         elements.mapFrame.style.aspectRatio = `${manifest.image.width} / ${manifest.image.height}`;
       }
       renderElevationProfile(elevationProfile);
+      renderMapDetails(safety, manifest.bounds);
 
       addFact('Route', safety.facts.routeType);
       addFact('Distance', `${safety.facts.distanceKm} km`);

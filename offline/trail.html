@@ -17,21 +17,36 @@
 
   <main>
     <section class="intro">
-      <p class="eyebrow">Offline beta package</p>
-      <h1 id="trailName">Loading downloaded trail…</h1>
+      <a class="back-link" href="../downloads.html">← Downloaded trails</a>
+      <div class="intro-title-row">
+        <div>
+          <p class="eyebrow">Ready on this device</p>
+          <h1 id="trailName">Loading downloaded trail…</h1>
+        </div>
+        <span class="offline-ready-badge"><i aria-hidden="true"></i>Available offline</span>
+      </div>
       <p id="packageState" class="state" role="status" aria-live="polite">Verifying package resources…</p>
     </section>
 
     <section id="mapSection" class="map-card" aria-labelledby="mapTitle" hidden>
       <div class="map-heading">
         <div>
-          <p class="eyebrow">Stored map</p>
-          <h2 id="mapTitle">Route context</h2>
+          <p class="eyebrow">Downloaded route</p>
+          <h2 id="mapTitle">Offline trail map</h2>
+          <p class="map-heading-copy">Route, paths and useful points saved on this device.</p>
         </div>
         <button id="locationButton" type="button">Show my position</button>
       </div>
+      <div class="route-at-a-glance" aria-label="Route summary">
+        <span><small>Distance</small><strong id="mapDistance">—</strong></span>
+        <span><small>Time</small><strong id="mapDuration">—</strong></span>
+        <span><small>Climb</small><strong id="mapAscent">—</strong></span>
+        <span><small>Shade</small><strong id="mapShade">—</strong></span>
+      </div>
       <div id="mapFrame" class="map-frame">
         <img id="offlineMap" alt="Offline route map for Lago di Carezza">
+        <span class="stored-map-badge">Saved map</span>
+        <div id="mapAnnotations" class="map-annotations" aria-label="Stored route points"></div>
         <svg id="rejoinDirection" class="rejoin-direction" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" hidden>
           <polyline id="rejoinDirectionLine"></polyline>
         </svg>
@@ -40,6 +55,8 @@
       </div>
       <div class="map-legend" aria-label="Map key">
         <span><i class="key-route"></i>ORMA route</span>
+        <span><i class="key-start"></i>Start / finish</span>
+        <span><i class="key-point"></i>Stored water point</span>
         <span><i class="key-path"></i>Mapped path</span>
         <span><i class="key-road"></i>Road</span>
         <span><i class="key-water"></i>Water</span>
@@ -111,7 +128,7 @@
         <button id="offlineOutcomeSave" type="button" disabled>Save private feedback</button>
         <p id="offlineOutcomeStatus" class="offline-outcome-status" role="status" aria-live="polite"></p>
       </div>
-      <p class="map-warning">Beta offline map. Compare it with posted signs and do not treat ORMA as an emergency-navigation service.</p>
+      <p class="map-warning"><strong>Use with local signs.</strong> This downloaded map works without connectivity, but it is not an emergency-navigation service.</p>
     </section>
 
     <section id="factsSection" class="grid" hidden>
@@ -126,11 +143,21 @@
       </article>
     </section>
 
-    <section id="sourceSection" class="card" hidden>
-      <p class="eyebrow">Package status</p>
-      <p id="verificationNotice"></p>
-      <p id="packageMeta" class="muted"></p>
-      <p class="muted">Map and route source information is retained in the downloaded package. <a id="licenceLink" href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors · ODbL</a></p>
+    <section id="sourceSection" class="card package-card" hidden>
+      <div class="package-status-row">
+        <div>
+          <p class="eyebrow">Package status</p>
+          <strong id="verificationNotice"></strong>
+        </div>
+        <span class="package-verified"><i aria-hidden="true">✓</i> Files verified</span>
+      </div>
+      <details class="package-details">
+        <summary>Package and source details <span aria-hidden="true">⌄</span></summary>
+        <div class="package-details-body">
+          <p id="packageMeta" class="muted"></p>
+          <p class="muted">Map and route source information is retained in the downloaded package. <a id="licenceLink" href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors · ODbL</a></p>
+        </div>
+      </details>
     </section>
 
     <section id="failure" class="failure" hidden>

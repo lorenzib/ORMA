@@ -2,11 +2,11 @@
   "schemaVersion": 1,
   "trailId": "alpe-siusi",
   "name": "Alpe di Siusi Meadow Loop",
-  "version": "2026.08.10-beta.3",
-  "generatedAt": "2026-08-31T18:47:27.394Z",
+  "version": "2026.09.04-beta.4",
+  "generatedAt": "2026-09-04T14:14:09.893Z",
   "scoringVersion": "1.1.0",
   "verificationStatus": "field-review-required",
-  "packageBytes": 286402,
+  "packageBytes": 295286,
   "packageBudgetBytes": 5242880,
   "bounds": {
     "south": 46.5305,
@@ -112,24 +112,24 @@
       "required": true,
       "label": "Offline trail page",
       "url": "/offline/trail.html",
-      "bytes": 8193,
-      "sha256": "9db5e2af074e2b2813db9529786d2719d3406d30f15776930e5db9e279662d9b"
+      "bytes": 9670,
+      "sha256": "11024bc83cedfc41e922406fbc5d8260366e03e09355aa0c78737f45a1c1ea9c"
     },
     {
       "role": "style",
       "required": true,
       "label": "Offline trail styles",
       "url": "/offline/offline.css",
-      "bytes": 6398,
-      "sha256": "9fd68423998f5d90fe5c7de99e77b5c474572ffa4a8a5c1e66350f6c790a4328"
+      "bytes": 11338,
+      "sha256": "99c9fbf376a2990959b7ab4e83fa889efee27ce8c5b7c8ce488566e6dfec7c75"
     },
     {
       "role": "app",
       "required": true,
       "label": "Offline trail application",
       "url": "/offline/offline-app.js",
-      "bytes": 31673,
-      "sha256": "6f81679d4f72fe492539dd2b82468f5142eed186a7b0af7d1ca319ef631371dc"
+      "bytes": 34140,
+      "sha256": "9111e3ba0a5ff965ddfce7fc64f5bdc7142a65369abe23872dc32b8d42878eef"
     },
     {
       "role": "gps-policy",
