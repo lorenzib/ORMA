@@ -155,7 +155,7 @@
       .device-handoff__close{position:absolute;top:18px;right:18px;display:grid;place-items:center;width:38px;height:38px;border:0;border-radius:50%;background:#F0F1ED;color:#1B1F19;font:400 25px/1 sans-serif;cursor:pointer}
       .device-handoff__eyebrow{margin:0 48px 8px 0;color:#3E7A91;font:800 10px/1.2 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase}.device-handoff h2{margin:0 48px 10px 0;font:700 34px/1.05 'Bricolage Grotesque',Inter,sans-serif}.device-handoff__intro{margin:0;color:#68736B;font:400 14px/1.55 Inter,sans-serif}
       .device-handoff__body{display:grid;grid-template-columns:210px minmax(0,1fr);gap:24px;align-items:center;margin-top:26px;padding-top:26px;border-top:1px solid #E4E0D3}.device-handoff__qr{display:grid;place-items:center;min-height:210px;padding:10px;border:1px solid #E4E0D3;border-radius:16px;background:#fff}.device-handoff__qr svg{display:block;width:188px;height:188px}.device-handoff__qr-fallback{color:#68736B;font:600 12px/1.4 Inter,sans-serif;text-align:center}
-      .device-handoff__instructions{margin:0 0 15px;font:600 14px/1.45 Inter,sans-serif}.device-handoff__url{display:block;max-width:100%;overflow:hidden;margin:0 0 14px;color:#68736B;font:500 11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;text-overflow:ellipsis;white-space:nowrap}.device-handoff__actions{display:grid;gap:9px}.device-handoff__actions button,.device-handoff__actions a{display:flex;align-items:center;justify-content:center;min-height:42px;padding:0 14px;border-radius:10px;font:800 12px/1 Inter,sans-serif;text-decoration:none;cursor:pointer}.device-handoff__copy{border:1px solid #2E4034;background:#2E4034;color:#fff}.device-handoff__open{border:1px solid #D7DDD7;background:#fff;color:#2E4034}
+      .device-handoff__instructions{margin:0 0 15px;font:600 14px/1.45 Inter,sans-serif}.device-handoff__url{display:block;max-width:100%;overflow:hidden;margin:0 0 14px;color:#68736B;font:500 11px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;text-overflow:ellipsis;white-space:nowrap}.device-handoff__actions{display:grid;gap:9px}.device-handoff__actions button,.device-handoff__actions a{display:flex;align-items:center;justify-content:center;min-height:42px;padding:0 14px;border-radius:10px;font:800 12px/1 Inter,sans-serif;text-decoration:none;cursor:pointer}.device-handoff__copy{border:1px solid #2E4034;background:#2E4034;color:#fff}.device-handoff__share{border:1px solid #D7DDD7;background:#fff;color:#2E4034}
       @media(max-width:620px){.device-handoff{padding:14px}.device-handoff__panel{padding:28px 22px;border-radius:19px}.device-handoff h2{font-size:29px}.device-handoff__body{grid-template-columns:1fr}.device-handoff__qr{width:210px;justify-self:center}}
     `;
     document.head.appendChild(style);
@@ -183,9 +183,9 @@
         <div class="device-handoff__body">
           <div class="device-handoff__qr"><span class="device-handoff__qr-fallback" hidden>QR code unavailable. Copy the link instead.</span></div>
           <div>
-            <p class="device-handoff__instructions">Scan with your phone camera, or copy the link and send it to yourself.</p>
+            <p class="device-handoff__instructions">Scan with your phone camera, or share the link with yourself by email.</p>
             <span class="device-handoff__url"></span>
-            <div class="device-handoff__actions"><button class="device-handoff__copy" type="button">Copy link</button><a class="device-handoff__open" href="#">Open link</a></div>
+            <div class="device-handoff__actions"><button class="device-handoff__copy" type="button">Copy link</button><a class="device-handoff__share" href="#">Share by email</a></div>
           </div>
         </div>
       </section>`;
@@ -226,8 +226,9 @@
     modal.querySelector('#deviceHandoffTitle').textContent=options&&options.title||'Continue on your phone';
     modal.querySelector('#deviceHandoffIntro').textContent=options&&options.description||'This action needs your phone’s location while you are outdoors.';
     modal.querySelector('.device-handoff__url').textContent=target;
-    const openLink=modal.querySelector('.device-handoff__open');
-    openLink.href=target;
+    const shareLink=modal.querySelector('.device-handoff__share');
+    const shareTitle=options&&options.title||'Continue on your phone';
+    shareLink.href=`mailto:?subject=${encodeURIComponent(`ORMA | ${shareTitle}`)}&body=${encodeURIComponent(`Open this ORMA link on your phone:\n${target}`)}`;
     const copyButton=modal.querySelector('.device-handoff__copy');
     copyButton.textContent='Copy link';
     copyButton.onclick=()=>copyLink(target,copyButton);
