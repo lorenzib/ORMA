@@ -67,7 +67,10 @@ describe('altitude health and safety guide', () => {
   test('links supporting references and related safety guides', () => {
     const sources = document.querySelector('.safety-sources');
     expect(sources.open).toBe(false);
-    expect(sources.querySelectorAll('a')).toHaveLength(3);
+    // Sources are named in prose rather than linked out; the guarantee is that
+    // the reader can still see what was consulted and that it is not advice.
+    expect(sources.textContent).toMatch(/PetMD/);
+    expect(sources.textContent).toMatch(/Platt Park Veterinary Hospital/);
     expect(sources.textContent).toMatch(/general information, not a diagnosis/i);
     expect(sources.querySelector('summary').textContent).toMatch(/Last reviewed 23 August 2026/i);
     expect(Array.from(document.querySelectorAll('.safety-continue a')).map(link => link.getAttribute('href'))).toEqual([

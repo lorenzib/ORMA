@@ -60,8 +60,13 @@ describe('shared trail-filter experience', () => {
     const styles = read('styles.css');
     const geoStyles = read('geo-filters.css');
 
-    expect(styles).toMatch(/\.li-toolbar\{[\s\S]*?display:flex;[\s\S]*?flex-wrap:wrap;/);
-    expect(styles).toContain('.li-toolbar>.li-search{flex:1 1 300px;}');
+    // The toolbar is a named grid rather than a flex row now. The width
+    // guarantee lives in its first track: search takes the leading column and
+    // may shrink to 260px before anything else gives, which is what keeps the
+    // geography controls off the action buttons.
+    expect(styles).toMatch(/\.li-toolbar\{[\s\S]*?display:grid;/);
+    expect(styles).toContain('grid-template-columns:minmax(260px,1fr) auto auto auto auto auto auto auto auto;');
+    expect(styles).toMatch(/grid-template-areas:[\s\S]*?"search country region valley/);
     expect(styles).toMatch(/\.li-mobile-actions\{[\s\S]*?display:flex;[\s\S]*?flex-wrap:wrap;/);
     expect(geoStyles).toMatch(/\.li-toolbar \.geo-filter-control\{[\s\S]*?width:205px;[\s\S]*?flex:0 0 205px;/);
     expect(geoStyles).toMatch(/@media\(max-width:760px\)\{[\s\S]*?\.li-toolbar \.geo-filter-control\{[\s\S]*?width:100%;[\s\S]*?min-width:0;/);

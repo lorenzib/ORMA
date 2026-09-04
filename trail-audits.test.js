@@ -23,10 +23,15 @@ describe('trail presentation audits', () => {
     }));
     expect(albanne.curated).toBe(true);
     expect(albanne.tier).toBe('route-audited');
-    expect(albanne.graduation.status).toBe('verified');
-    expect(albanne.graduation.required).toHaveLength(10);
+    // bc1ed965 made trail-number verification an eleventh graduation
+    // requirement. Albanne clears the other ten but has no authoritative
+    // route-number source yet, so it holds at in-progress and its page shows
+    // as imported rather than ORMA-verified until that is confirmed.
+    expect(albanne.graduation.status).toBe('in-progress');
+    expect(albanne.graduation.required).toHaveLength(11);
     expect(albanne.graduation.completed).toHaveLength(10);
-    expect(albanne.graduation.blockers).toEqual({});
+    expect(Object.keys(albanne.graduation.blockers)).toEqual(['routeNumbers']);
+    expect(albanne.graduation.blockers.routeNumbers).toMatch(/authoritative route source/i);
     expect(albanne.sourceLinks.length).toBeGreaterThanOrEqual(2);
     expect(albanne.path.length).toBeGreaterThan(100);
     expect(albanne.elevation).toBe(249);
@@ -45,8 +50,9 @@ describe('trail presentation audits', () => {
   });
 
   test.each([
-    ['osm-12731853', 4.2, 100, ['access']],
-    ['osm-7548344', 3, 250, ['livestock', 'access']],
+    // routeNumbers joins these blockers for the same reason as Albanne above.
+    ['osm-12731853', 4.2, 100, ['routeNumbers', 'access']],
+    ['osm-7548344', 3, 250, ['routeNumbers', 'livestock', 'access']],
   ])('%s records official figures and precise remaining blockers', (id, distance, elevation, blockers) => {
     const trail = loadTrails().find((candidate) => candidate.id === id);
     expect(trail.curated).toBe(false);
