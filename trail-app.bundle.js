@@ -2612,6 +2612,23 @@ ${points}
     return version ? `Package ${version}` : 'Package revision unavailable';
   }
 
+  function availabilityForTrail(trailId, trailCollection){
+    const trail = Array.isArray(trailCollection)
+      ? trailCollection.find(item => item && item.id === trailId)
+      : null;
+    const packageReady = !!PACKAGES[trailId];
+    if(trail && trail.curated === false){
+      return { visible:true, enabled:false, reason:'imported' };
+    }
+    if(packageReady){
+      return { visible:true, enabled:true, reason:'verified-package' };
+    }
+    if(trail){
+      return { visible:true, enabled:false, reason:'package-pending' };
+    }
+    return { visible:false, enabled:false, reason:'unknown-trail' };
+  }
+
   function initPanel(){
     const panel = document.getElementById('offlinePackagePanel');
     const downloadButton = document.getElementById('offlineDownloadBtn');
@@ -2621,7 +2638,9 @@ ${points}
     if(!panel || !downloadButton || !openButton || !removeButton || !status) return;
 
     const trailId = new URLSearchParams(window.location.search).get('id');
-    if(!PACKAGES[trailId]) return;
+    const trailCollection = typeof trails !== 'undefined' ? trails : null;
+    const availability = availabilityForTrail(trailId, trailCollection);
+    if(!availability.visible) return;
     panel.hidden = false;
 
     function setStatus(message, state){
@@ -2631,6 +2650,31 @@ ${points}
       status.setAttribute('aria-busy', String(busy));
       panel.setAttribute('aria-busy', String(busy));
     }
+
+    if(!availability.enabled){
+      panel.dataset.availability = availability.reason;
+      downloadButton.hidden = false;
+      downloadButton.disabled = true;
+      downloadButton.setAttribute('aria-disabled', 'true');
+      downloadButton.textContent = tr(
+        'offlinePanel.action.notEnabled',
+        'Offline map not enabled yet'
+      );
+      setStatus(
+        availability.reason === 'imported'
+          ? tr(
+            'offlinePanel.unavailable.imported',
+            'Offline map download is not enabled yet for imported trails.'
+          )
+          : tr(
+            'offlinePanel.unavailable.verified',
+            'This verified trail’s offline package is still being prepared.'
+          ),
+        'unavailable'
+      );
+      return;
+    }
+    panel.dataset.availability = availability.reason;
 
     function signedIn(){
       return !!(window.DoloPawsAuth && window.DoloPawsAuth.currentUser);
@@ -2862,6 +2906,7 @@ ${points}
     isQuotaError,
     resourceIsRequired,
     contentFreshnessState,
+    availabilityForTrail,
     verifyCachedResource,
     PACKAGE_STATES,
   };

@@ -93,7 +93,7 @@
   body.mtrail-active .td2-actrow>#offlinePackagePanel:not([hidden]) .offline-package-row{display:contents;}
   body.mtrail-active .td2-actrow>#offlinePackagePanel #offlineDownloadBtn,
   body.mtrail-active .td2-actrow>#offlinePackagePanel #offlineOpenBtn,
-  body.mtrail-active .td2-actrow>#offlinePackagePanel #offlineRemoveBtn{order:7;grid-column:1/-1;}
+  body.mtrail-active .td2-actrow>#offlinePackagePanel #offlineRemoveBtn{order:7;grid-column:auto;white-space:normal;}
   body.mtrail-active .td2-actrow>#heroStartHike[hidden]{display:none;}
   body.mtrail-active .td2-actrow>#heroStartHike.recording{background:#9C3A25;}
 

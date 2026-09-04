@@ -187,6 +187,19 @@ describe('OFF-03 offline package ownership metadata', () => {
       .toBe('Beta package 5');
   });
 
+  test('enables published verified packages and disables imported trail downloads', () => {
+    const availability = window.DoloPawsOffline.availabilityForTrail;
+
+    expect(availability('alpe-siusi', [{ id:'alpe-siusi', curated:true }]))
+      .toEqual({ visible:true, enabled:true, reason:'verified-package' });
+    expect(availability('alpe-siusi', [{ id:'alpe-siusi', curated:false }]))
+      .toEqual({ visible:true, enabled:false, reason:'imported' });
+    expect(availability('verified-without-package', [{ id:'verified-without-package', curated:true }]))
+      .toEqual({ visible:true, enabled:false, reason:'package-pending' });
+    expect(availability('missing-trail', []))
+      .toEqual({ visible:false, enabled:false, reason:'unknown-trail' });
+  });
+
   test('keeps lifecycle details visible when an update is available', () => {
     const source = require('fs').readFileSync(
       require('path').join(__dirname, 'offline-packages.js'),

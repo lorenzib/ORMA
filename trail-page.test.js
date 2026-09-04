@@ -229,9 +229,9 @@ describe('trail page map controls', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
-    expect(html).toContain('i18n.js?v=20260904-1');
-    expect(html).toContain('trail-app.bundle.js?v=20260904-1');
-    expect(html).toContain('trail-mobile.css?v=20260904-1');
+    expect(html).toContain('i18n.js?v=20260904-2');
+    expect(html).toContain('trail-app.bundle.js?v=20260904-2');
+    expect(html).toContain('trail-mobile.css?v=20260904-2');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
       'detail-pois.js', 'trail-access-directions.js', 'footpath-router.js',
@@ -248,8 +248,9 @@ describe('trail page map controls', () => {
 
     expect(html).toContain('id="offlineOpenBtn" class="offline-package-open td2-btn-g"');
     expect(html).toContain('id="offlineRemoveBtn" class="td2-btn-g" data-i18n="offlinePanel.action.remove"');
-    expect(mobileCss).toContain('grid-column:1/-1');
+    expect(mobileCss).toContain('#offlineRemoveBtn{order:7;grid-column:auto;white-space:normal;}');
     expect(mobileCss).toContain('.td2-hero-in{padding:16px 16px 30px;}');
+    expect(html).toContain('.td2-btn-g:disabled{cursor:not-allowed;opacity:.68;}');
     expect(mobile).not.toContain('mtrailTabs');
     expect(mobileCss).not.toContain('.mtrail-tabs');
   });
