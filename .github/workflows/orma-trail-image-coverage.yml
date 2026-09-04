@@ -1,7 +1,17 @@
 name: ORMA trail photo coverage
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      capacity:
+        description: Maximum active trail-photo searches or reviews
+        required: true
+        default: '15'
+        type: choice
+        options:
+          - '5'
+          - '10'
+          - '15'
   schedule:
     - cron: '0 11 * * *'
       timezone: Europe/Rome
@@ -21,6 +31,7 @@ jobs:
     env:
       FIREBASE_PROJECT_ID: dolopaws
       FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      ORMA_IMAGE_SOURCING_CAPACITY: ${{ inputs.capacity || '15' }}
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
