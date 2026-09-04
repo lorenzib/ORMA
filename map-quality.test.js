@@ -31,7 +31,7 @@ describe('shared map quality profile', () => {
     pages.forEach(([page, mapScript]) => {
       const html = read(page);
       if(page === 'trail.html'){
-        expect(html).toContain('trail-app.bundle.js?v=20260904-2');
+        expect(html).toContain('trail-app.bundle.js?v=20260904-3');
         expect(html).not.toContain('<script src="map-runtime.js');
         return;
       }
