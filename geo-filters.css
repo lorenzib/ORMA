@@ -6,8 +6,9 @@
   min-width:205px;
 }
 .li-toolbar .geo-filter-control{
-  width:100%;
-  min-width:0;
+  width:205px;
+  min-width:205px;
+  flex:0 0 205px;
 }
 .geo-filter-control .area-select-shell{
   width:100%;
@@ -112,6 +113,14 @@
     left:auto;
     right:0;
     transform:none;
+  }
+}
+
+@media(max-width:760px){
+  .li-toolbar .geo-filter-control{
+    width:100%;
+    min-width:0;
+    flex:none;
   }
 }
 

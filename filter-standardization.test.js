@@ -31,7 +31,7 @@ describe('shared trail-filter experience', () => {
     const geoStyles = read('geo-filters.css');
 
     [homepage, browse, collections].forEach(html => {
-      expect(html).toContain('geo-filters.css?v=20260903-1');
+      expect(html).toContain('geo-filters.css?v=20260904-1');
       expect((html.match(/geo-filter-control/g) || [])).toHaveLength(3);
     });
     expect(geoStyles).toContain('width:205px');
@@ -54,6 +54,17 @@ describe('shared trail-filter experience', () => {
     expect(mobile).toContain('body.mhome-active .li-valley-wrap .li-menu{left:auto;right:0;transform:none;}');
     expect(mobile).toContain("font:650 13px 'Inter',sans-serif;");
     expect(mobile).toContain('font-weight:800;');
+  });
+
+  test('keeps homepage geography at the Collections width without overlapping actions', () => {
+    const styles = read('styles.css');
+    const geoStyles = read('geo-filters.css');
+
+    expect(styles).toMatch(/\.li-toolbar\{[\s\S]*?display:flex;[\s\S]*?flex-wrap:wrap;/);
+    expect(styles).toContain('.li-toolbar>.li-search{flex:1 1 300px;}');
+    expect(styles).toMatch(/\.li-mobile-actions\{[\s\S]*?display:flex;[\s\S]*?flex-wrap:wrap;/);
+    expect(geoStyles).toMatch(/\.li-toolbar \.geo-filter-control\{[\s\S]*?width:205px;[\s\S]*?flex:0 0 205px;/);
+    expect(geoStyles).toMatch(/@media\(max-width:760px\)\{[\s\S]*?\.li-toolbar \.geo-filter-control\{[\s\S]*?width:100%;[\s\S]*?min-width:0;/);
   });
 
   test.each(vocabulary)('keeps “%s” consistent across guest, browse and logged-in filters', label => {
