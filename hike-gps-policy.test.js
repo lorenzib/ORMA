@@ -131,8 +131,9 @@ describe('HIKE-03 accuracy-aware GPS policy', () => {
     const path = require('path');
     const page = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const hikeMode = fs.readFileSync(path.join(__dirname, 'hike-mode.js'), 'utf8');
-    expect(page.indexOf('hike-gps-policy.js')).toBeGreaterThan(-1);
-    expect(page.indexOf('hike-gps-policy.js')).toBeLessThan(page.indexOf('hike-mode.js'));
+    const { expectBundledBefore, expectTrailBundleLoaded } = require('./test-support/trail-runtime.js');
+    expectTrailBundleLoaded();
+    expectBundledBefore('hike-gps-policy.js', 'hike-mode.js');
     expect(hikeMode).toContain('DoloPawsGpsPolicy.assessFix');
     expect(hikeMode).toContain('rejoin ? rejoin.distanceM : snap.minDist');
     expect(hikeMode).toContain("'hike.gpsOnTrail'");

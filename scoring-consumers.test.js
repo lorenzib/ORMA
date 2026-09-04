@@ -59,6 +59,14 @@ describe('SCORE-02 scoring consumers', () => {
   test.each(['index.html', 'trail.html', 'saved.html', 'safety-guide.html'])(
     '%s loads canonical dependencies before the compatibility facade',
     file => {
+      if(file === 'trail.html'){
+        const { expectBundledBefore, expectTrailBundleLoaded } = require('./test-support/trail-runtime.js');
+        expectTrailBundleLoaded();
+        expectBundledBefore('trust/evidence-v1.js', 'scoring/recommendation-v1.js');
+        expectBundledBefore('scoring/recommendation-v1.js', 'scoring/recommendation-adapters-v1.js');
+        expectBundledBefore('scoring/recommendation-adapters-v1.js', 'scoring.js');
+        return;
+      }
       const html = read(file);
       const evidence = html.indexOf('trust/evidence-v1.js');
       const engine = html.indexOf('scoring/recommendation-v1.js');

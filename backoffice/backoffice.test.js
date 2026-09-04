@@ -1600,7 +1600,9 @@ describe('ORMA backoffice MVP', () => {
     expect(audit.gaps.map(gap=>gap.slug)).not.toContain('tre-cime');
     expect(audit.pages.find(page=>page.slug==='tre-cime').coverageState).toBe('covered');
     expect(audit.pages.find(page=>page.slug==='tre-cime').existingAssets).toContain('images/tre-cime-hero.jpg');
-    expect(audit.pages.find(page=>page.slug==='alpe-siusi')).toEqual(expect.objectContaining({coverageState:'missing',sourceRef:'trail.html?id=alpe-siusi',priority:'high'}));
+    const expectedDolomitesGap=production.find(trail=>trail.region==='dolomites'&&!trail.imageIcon&&!trail.heroImage);
+    expect(expectedDolomitesGap).toBeDefined();
+    expect(audit.pages.find(page=>page.slug===expectedDolomitesGap.id)).toEqual(expect.objectContaining({coverageState:'missing',sourceRef:`trail.html?id=${expectedDolomitesGap.id}`,priority:'high'}));
   });
 
   test('image sourcing stays queued behind asset approval', () => {

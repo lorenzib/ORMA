@@ -142,10 +142,8 @@ describe('OUT-01 private post-hike outcomes', () => {
   });
 
   test('loads the outcome API before the online completion UI', () => {
-    const shell = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
-    expect(shell.indexOf('post-hike-outcomes.js')).toBeGreaterThan(-1);
-    expect(shell.indexOf('post-hike-outcomes.js')).toBeLessThan(
-      shell.indexOf('hike-mode.js')
-    );
+    const { expectBundledBefore, expectTrailBundleLoaded } = require('./test-support/trail-runtime.js');
+    expectTrailBundleLoaded();
+    expectBundledBefore('post-hike-outcomes.js', 'hike-mode.js');
   });
 });

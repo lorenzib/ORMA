@@ -1,6 +1,7 @@
 const readiness = require('./pre-hike-readiness');
 const fs = require('fs');
 const path = require('path');
+const { expectBundledBefore, expectTrailBundleLoaded } = require('./test-support/trail-runtime.js');
 
 const NOW = Date.UTC(2026, 6, 30, 10, 0, 0);
 
@@ -134,7 +135,8 @@ describe('UX-06 pre-hike readiness model', () => {
     const hikeMode = fs.readFileSync(path.join(__dirname, 'hike-mode.js'), 'utf8');
     const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
     expect(page).toContain('pre-hike-readiness.css');
-    expect(page.indexOf('pre-hike-readiness.js')).toBeLessThan(page.indexOf('hike-mode.js'));
+    expectTrailBundleLoaded();
+    expectBundledBefore('pre-hike-readiness.js', 'hike-mode.js');
     expect(hikeMode).toContain('window.DoloPawsReadiness.open(trail, startHike)');
     expect(blueprint).toContain("new CustomEvent('dolopaws-weather-ready'");
   });

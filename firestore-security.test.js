@@ -162,9 +162,9 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain('validModeratorTransition(');
     expect(client.match(/where\("status", "in", \["visible", "reported"\]\)/g))
       .toHaveLength(4);
-    expect(trailShell.indexOf('community-content-states.js')).toBeLessThan(
-      trailShell.indexOf('trail-reports.js')
-    );
+    const { expectBundledBefore, expectTrailBundleLoaded } = require('./test-support/trail-runtime.js');
+    expectTrailBundleLoaded();
+    expectBundledBefore('community-content-states.js', 'trail-reports.js');
     expect(reports).toContain('countsTowardRating(review.status)');
     expect(photoPage).toContain('DoloPawsCommunity.addTrailPhoto');
     expect(hazardPage).toContain('DoloPawsCommunity.addFlag');

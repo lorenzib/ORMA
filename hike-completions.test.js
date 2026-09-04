@@ -130,8 +130,9 @@ describe('HIKE-04 durable hike completions', () => {
     const finishEnd = hikeMode.indexOf('function finishHike', finishStart);
     const finishFlow = hikeMode.slice(finishStart, finishEnd);
 
-    expect(page.indexOf('hike-completions.js')).toBeGreaterThan(-1);
-    expect(page.indexOf('hike-completions.js')).toBeLessThan(page.indexOf('hike-mode.js'));
+    const { expectBundledBefore, expectTrailBundleLoaded } = require('./test-support/trail-runtime.js');
+    expectTrailBundleLoaded();
+    expectBundledBefore('hike-completions.js', 'hike-mode.js');
     expect(finishFlow.indexOf('DoloPawsHikeCompletions.save')).toBeGreaterThan(-1);
     expect(finishFlow.indexOf('DoloPawsHikeCompletions.save'))
       .toBeLessThan(finishFlow.indexOf('clearDurableSession()'));

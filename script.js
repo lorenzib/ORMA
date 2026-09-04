@@ -1994,7 +1994,10 @@ function renderLiDogLists(profile){
         // The account dropdown is not a modal. Always dismiss it first so an
         // active-dog click or a slow network request can never block the page.
         liCloseMenus();
-        if(dog.id === activeId) return;
+        if(dog.id === activeId){
+          window.location.href = `account.html?dog=${encodeURIComponent(dog.id)}&next=%2F`;
+          return;
+        }
         if(!window.DoloPawsAuth || !window.DoloPawsAuth.selectDogProfile) return;
         row.disabled = true;
         row.setAttribute('aria-busy', 'true');

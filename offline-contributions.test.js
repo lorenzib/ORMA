@@ -64,8 +64,14 @@ describe('MOD-04 offline community contribution queue', () => {
     const path = require('path');
     ['trail.html', 'reviews.html', 'photo-upload.html', 'trail-report.html'].forEach(file => {
       const html = fs.readFileSync(path.join(__dirname, file), 'utf8');
-      expect(html.indexOf('offline-contributions.js')).toBeGreaterThan(-1);
-      expect(html.indexOf('offline-contributions.js')).toBeLessThan(html.indexOf('firebase-init.js'));
+      if(file === 'trail.html'){
+        const { expectBundled, expectTrailBundleLoaded } = require('./test-support/trail-runtime.js');
+        expectTrailBundleLoaded();
+        expectBundled('offline-contributions.js');
+      }else{
+        expect(html.indexOf('offline-contributions.js')).toBeGreaterThan(-1);
+        expect(html.indexOf('offline-contributions.js')).toBeLessThan(html.indexOf('firebase-init.js'));
+      }
     });
   });
 });

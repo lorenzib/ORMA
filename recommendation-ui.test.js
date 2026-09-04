@@ -12,8 +12,10 @@ describe('UX-04 canonical recommendation journey', () => {
 
   test('trail detail exposes one canonical decision block', () => {
     expect(html).toContain('id="recommendationDecision"');
-    expect(html).toContain('recommendation-decision.js');
-    expect(html).toContain('trail-recommendation.js');
+    const { expectBundled, expectTrailBundleLoaded } = require('./test-support/trail-runtime.js');
+    expectTrailBundleLoaded();
+    expectBundled('recommendation-decision.js');
+    expectBundled('trail-recommendation.js');
     expect(controller).toContain('const recommendation = recommendTrail(trail, subjectFor(profile))');
     expect(controller).toContain('root.dataset.scoringVersion = view.scoringVersion');
   });

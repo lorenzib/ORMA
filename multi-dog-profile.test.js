@@ -244,7 +244,8 @@ describe('multi-dog account experience', () => {
       controller.indexOf('function renderLiHeader')
     );
     expect(homepageSwitcher).not.toContain('window.location.reload()');
-    expect(homepageSwitcher).not.toContain('window.location.href');
+    expect(homepageSwitcher).toContain('if(dog.id === activeId)');
+    expect(homepageSwitcher).toContain('window.location.href = `account.html?dog=${encodeURIComponent(dog.id)}&next=%2F`');
   });
 
   test('account settings lists and switches every dog without relying on a header menu', () => {

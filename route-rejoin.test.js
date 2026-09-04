@@ -58,12 +58,8 @@ describe('HIKE-05 route rejoin guidance', () => {
   });
 
   test('the online trail loads guidance before hike mode', () => {
-    const fs = require('fs');
-    const path = require('path');
-    const page = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
-    const guidanceIndex = page.indexOf('route-rejoin.js');
-    const hikeModeIndex = page.indexOf('hike-mode.js');
-    expect(guidanceIndex).toBeGreaterThan(-1);
-    expect(guidanceIndex).toBeLessThan(hikeModeIndex);
+    const { expectBundledBefore, expectTrailBundleLoaded } = require('./test-support/trail-runtime.js');
+    expectTrailBundleLoaded();
+    expectBundledBefore('route-rejoin.js', 'hike-mode.js');
   });
 });

@@ -11,6 +11,7 @@ const osmSource = fs.readFileSync(
   'utf8'
 );
 const scoring = require('./scoring/recommendation-v1.js');
+const { expectBundled, expectTrailBundleLoaded } = require('./test-support/trail-runtime.js');
 
 function localPathFor(resource){
   if(resource.url.startsWith('/')) return path.join(root, resource.url);
@@ -218,7 +219,8 @@ describe('Lago di Carezza offline package', () => {
     const trailPage = fs.readFileSync(path.join(root, 'trail.html'), 'utf8');
     const controller = fs.readFileSync(path.join(root, 'offline-packages.js'), 'utf8');
     expect(trailPage).toContain('id="offlineDownloadBtn"');
-    expect(trailPage).toContain('src="offline-packages.js');
+    expectTrailBundleLoaded();
+    expectBundled('offline-packages.js');
     expect(controller).toContain('window.DoloPawsAuth.currentUser');
     expect(controller).toContain("request('download')");
   });

@@ -71,8 +71,8 @@ describe('altitude health and safety guide', () => {
     expect(sources.textContent).toMatch(/general information, not a diagnosis/i);
     expect(sources.querySelector('summary').textContent).toMatch(/Last reviewed 23 August 2026/i);
     expect(Array.from(document.querySelectorAll('.safety-continue a')).map(link => link.getAttribute('href'))).toEqual([
-      'heat-overheating.html',
-      '../?wizard=1',
+      'dogs-at-rifugi.html',
+      'breed-group-caveats.html',
     ]);
   });
 });

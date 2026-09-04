@@ -365,9 +365,9 @@ describe('map-first returning homepage layout contract', () => {
     expect(mobileCss).toContain('body.mhome-active .li-record{grid-column:4/7;grid-row:4;display:inline-flex!important;');
     expect(mobileCss).toContain('body.mhome-active .li-menuwrap.li-mobile-default-label .li-geo-copy .li-control-kicker{display:inline;}');
     expect(mobileCss).toContain('body.mhome-active #liValleyWrap.li-mobile-default-label #liValleyLabel{display:none;}');
-    expect(html).toContain('class="li-menuwrap li-country-wrap li-mobile-default-label"');
-    expect(html).toContain('class="li-menuwrap li-region-wrap li-mobile-default-label"');
-    expect(html).toContain('class="li-menuwrap li-valley-wrap li-mobile-default-label"');
+    expect(html).toContain('class="li-menuwrap li-country-wrap li-mobile-default-label geo-filter-control"');
+    expect(html).toContain('class="li-menuwrap li-region-wrap li-mobile-default-label geo-filter-control"');
+    expect(html).toContain('class="li-menuwrap li-valley-wrap li-mobile-default-label geo-filter-control"');
     expect(mobileCss).toContain('body.mhome-active .li-saved-count{display:grid;');
     expect(mobileCss).toContain('.li-map.map-layers-open{z-index:47;}');
     expect(mobileCss).toContain('#trailMap .map-btn{height:32px;padding:0 11px;font-size:11.5px;');

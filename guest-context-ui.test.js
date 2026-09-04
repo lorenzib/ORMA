@@ -7,6 +7,12 @@ describe('UX-05 guest context integration', () => {
   test.each(['index.html', 'browse-trails.html', 'trail.html'])(
     '%s loads guest context before authentication UI',
     page => {
+      if(page === 'trail.html'){
+        const { expectBundledBefore, expectTrailBundleLoaded } = require('./test-support/trail-runtime.js');
+        expectTrailBundleLoaded();
+        expectBundledBefore('guest-context.js', 'auth-ui.js');
+        return;
+      }
       const html = read(page);
       expect(html.indexOf('guest-context.js')).toBeGreaterThan(-1);
       expect(html.indexOf('guest-context.js')).toBeLessThan(html.indexOf('auth-ui.js'));

@@ -6,7 +6,13 @@ const read = name => fs.readFileSync(path.join(__dirname, name), 'utf8');
 describe('A11Y-01 core journey contract', () => {
   test('loads the shared accessibility runtime on core journey pages', () => {
     ['index.html', 'trail.html', 'account.html'].forEach(page => {
-      expect(read(page)).toContain('accessibility-runtime.js');
+      if(page === 'trail.html'){
+        const { expectBundled, expectTrailBundleLoaded } = require('./test-support/trail-runtime.js');
+        expectTrailBundleLoaded();
+        expectBundled('accessibility-runtime.js');
+      }else{
+        expect(read(page)).toContain('accessibility-runtime.js');
+      }
     });
   });
 

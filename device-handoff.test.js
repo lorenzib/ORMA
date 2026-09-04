@@ -2,6 +2,7 @@
 
 const fs=require('fs');
 const path=require('path');
+const { expectBundled, expectTrailBundleLoaded } = require('./test-support/trail-runtime.js');
 
 const source=fs.readFileSync(path.join(__dirname,'device-handoff.js'),'utf8');
 
@@ -77,7 +78,8 @@ describe('desktop-to-phone handoff',()=>{
     expect(hikeMode).toContain('window.ORMADeviceHandoff.shouldHandoff()');
     expect(hikeMode).toContain("'dolopaws-hike-mode-ready'");
     expect(trailPage).toContain('device-handoff.js?v=20260901-1');
-    expect(trailPage).toContain('hike-mode.js?v=20260901-3');
+    expectTrailBundleLoaded();
+    expectBundled('hike-mode.js');
   });
 
   test('a mobile hike deep link starts independently while the map loads in the background',()=>{

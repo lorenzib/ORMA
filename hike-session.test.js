@@ -112,8 +112,9 @@ describe('HIKE-01 durable active-hike session', () => {
     const page = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const hikeMode = fs.readFileSync(path.join(__dirname, 'hike-mode.js'), 'utf8');
 
-    expect(page.indexOf('hike-session.js')).toBeGreaterThan(-1);
-    expect(page.indexOf('hike-session.js')).toBeLessThan(page.indexOf('hike-mode.js'));
+    const { expectBundledBefore, expectTrailBundleLoaded } = require('./test-support/trail-runtime.js');
+    expectTrailBundleLoaded();
+    expectBundledBefore('hike-session.js', 'hike-mode.js');
     expect(hikeMode).toContain('DoloPawsHikeSession.create');
     expect(hikeMode).toContain('DoloPawsHikeSession.updateProgress');
     expect(hikeMode).toContain("'completion-pending'");
