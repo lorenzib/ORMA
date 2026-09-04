@@ -215,23 +215,22 @@
   .paw2-tab[aria-selected="true"]{background:var(--paw-card);color:var(--paw-ink);box-shadow:inset 0 -3px var(--surface-accent);}
   .paw2-tab:focus-visible{position:relative;z-index:1;outline:3px solid var(--surface-accent);outline-offset:-3px;}
   .paw2-surface-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,.72fr);gap:16px;align-items:stretch;}
-  .paw2-side-stack{display:grid;gap:16px;min-width:0;}
+  .paw2-side-stack{display:grid;grid-template-rows:auto 1fr;gap:16px;min-width:0;}
   .paw2-panels{min-width:0;border:1px solid var(--paw-line);border-top:0;border-radius:0 0 13px 13px;background:var(--paw-card);}
   .paw2-panel{padding:22px 25px;}
   .paw2-panel[hidden]{display:none;}
   .paw2-panel h3{margin:0 0 7px;font-size:clamp(22px,2.3vw,29px);line-height:1.1;letter-spacing:-.02em;}
   .paw2-panel>p{max-width:780px;margin:0;color:var(--paw-soft);font-size:.86rem;line-height:1.55;}
-  .paw2-advice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px;}
-  .paw2-advice div{padding:12px 14px;border-radius:10px;background:#F5F6F1;}
-  .paw2-advice div+div{padding-left:14px;}
-  .paw2-advice strong{display:block;margin-bottom:4px;color:var(--paw-blue);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;}
-  .paw2-advice span{display:block;color:var(--paw-soft);font-size:.78rem;line-height:1.5;}
-  .paw2-stop{margin:10px 0 0;padding:11px 14px;border-radius:10px;background:var(--safety-stop-soft);color:var(--paw-soft);font-size:.78rem;line-height:1.5;}
-  .paw2-stop strong{display:block;margin-bottom:4px;color:var(--safety-stop);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;}
-  .paw2-stop span{display:block;}
+  .paw2-advice-list{display:grid;gap:7px;margin:16px 0 0;padding:0;list-style:none;}
+  .paw2-advice-list li{display:grid;grid-template-columns:7px minmax(0,1fr);gap:8px;align-items:start;color:var(--paw-soft);font-size:.8rem;line-height:1.5;}
+  .paw2-advice-list li::before{content:"";width:5px;height:5px;margin-top:.58em;border-radius:50%;background:var(--paw-blue);}
+  .paw2-advice-list strong{color:var(--paw-ink);font-size:inherit;}
+  .paw2-advice-list span{color:inherit;}
+  .paw2-advice-list .paw2-advice-stop::before{background:var(--safety-stop);}
+  .paw2-advice-list .paw2-advice-stop strong{color:var(--safety-stop);}
   .paw2-panel-link{display:inline-block;margin-top:12px;color:var(--paw-blue);font-size:.75rem;font-weight:800;text-decoration:none;}
   .paw2-panel-link:hover{text-decoration:underline;}
-  .paw2-essentials{height:100%;box-sizing:border-box;padding:20px 21px;border:1px solid var(--paw-line);border-radius:13px;background:var(--paw-card);color:var(--paw-ink);box-shadow:0 8px 26px rgba(46,64,52,.04);}
+  .paw2-essentials{height:auto;box-sizing:border-box;padding:20px 21px;border:1px solid var(--paw-line);border-radius:13px;background:var(--paw-card);color:var(--paw-ink);box-shadow:0 8px 26px rgba(46,64,52,.04);}
   .paw2-essentials .paw2-kicker{margin-bottom:9px;color:var(--paw-blue);}
   .paw2-essentials ol{margin:0;padding:0;list-style:none;}
   .paw2-essentials li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:9px;align-items:start;padding:11px 0;}
@@ -261,7 +260,7 @@
   .paw2-detail-columns section{padding:12px 13px;border-radius:10px;background:var(--safety-safe-soft);}
   .paw2-detail-columns section:last-child{background:var(--safety-stop-soft);}
   .paw2-detail-columns h3{margin:0 0 7px;color:var(--paw-ink);font-size:.9rem;}
-  .paw2-first-aid{margin:0 0 16px;padding:21px 23px;border:1px solid var(--safety-stop);border-radius:13px;background:var(--safety-stop-soft);color:var(--safety-stop);box-shadow:0 10px 24px -22px rgba(92,29,18,.55);}
+  .paw2-first-aid{margin:0;padding:19px 21px;border:1px solid var(--safety-stop);border-radius:13px;background:var(--safety-stop-soft);color:var(--safety-stop);box-shadow:0 10px 24px -22px rgba(92,29,18,.55);}
   .paw2-first-aid h2{margin:0 0 6px;color:var(--safety-stop);font-size:clamp(1.18rem,2vw,1.42rem);}
   .paw2-first-aid p{max-width:930px;margin:0;color:var(--safety-stop);font-size:.84rem;line-height:1.58;}
   .paw2-next{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:11px;align-items:stretch;padding:14px;border:1px solid #d3dbd0;border-radius:14px;background:#e8ede5;}
@@ -308,9 +307,8 @@
     .paw2-tab[aria-selected="true"]{box-shadow:inset 0 -3px var(--surface-accent);}
     .paw2-panels{margin-top:0;border-top:0;border-radius:0 0 11px 11px;}
     .paw2-panel{padding:19px 17px;}
-    .paw2-advice{grid-template-columns:1fr;}
-    .paw2-advice div{padding:12px 14px;}
-    .paw2-advice div+div{padding-left:14px;}
+    .paw2-advice-list{gap:9px;}
+    .paw2-advice-list li{font-size:.82rem;}
     .paw2-library-head{display:block;}
     .paw2-library-head p{margin-top:5px;}
     .paw2-library{grid-template-columns:1fr;}
@@ -359,10 +357,6 @@
         <p>The advice changes with the ground. Select the condition your dog will repeat for most of the walk.</p>
       </div>
 
-      <aside class="paw2-first-aid" id="call-vet" aria-labelledby="call-vet-title">
-        <div><h2 id="call-vet-title">A cut pad needs an early stop</h2><p>Rinse, apply steady pressure and protect the paw for the shortest walk out. Seek urgent veterinary help for severe bleeding, a deep wound, an embedded object or a dog that cannot stand or walk.</p></div>
-      </aside>
-
       <div class="paw2-surface-grid">
         <div>
           <div class="paw2-tabs" role="tablist" aria-label="Trail surface">
@@ -376,8 +370,11 @@
               <span class="paw2-kicker">Hot ground</span>
               <h3>Choose a cooler time or another route</h3>
               <p>Sun-heated stone can burn pads even when the air feels comfortable. Exposed rock also stays hot after the temperature begins to fall.</p>
-              <div class="paw2-advice"><div><strong>Before</strong><span>Check shade and press the back of your hand to the surface for five seconds.</span></div><div><strong>During</strong><span>Use shaded breaks and test again whenever the trail surface changes.</span></div></div>
-              <p class="paw2-stop"><strong>Stop if</strong><span>Your dog lifts paws, seeks every patch of shade, licks repeatedly or changes stride.</span></p>
+              <ul class="paw2-advice-list">
+                <li><span><strong>Before:</strong> Check shade and press the back of your hand to the surface for five seconds.</span></li>
+                <li><span><strong>During:</strong> Use shaded breaks and test again whenever the trail surface changes.</span></li>
+                <li class="paw2-advice-stop"><span><strong>Stop if:</strong> Your dog lifts paws, seeks every patch of shade, licks repeatedly or changes stride.</span></li>
+              </ul>
               <a class="paw2-panel-link" href="heat-overheating.html">Read the heat and hydration guide →</a>
             </section>
 
@@ -385,8 +382,11 @@
               <span class="paw2-kicker">Sharp rock &amp; scree</span>
               <h3>Slow the pace and shorten the distance</h3>
               <p>Angular limestone and sliding scree abrade pad rims with every step. Long descents are often harder on paws than the climb.</p>
-              <div class="paw2-advice"><div><strong>Before</strong><span>Inspect pads and nails. Use boots only if they have already been fitted and practised.</span></div><div><strong>During</strong><span>Check after the first rough section and at every break before continuing.</span></div></div>
-              <p class="paw2-stop"><strong>Stop if</strong><span>The stride shortens, one paw is lifted, a rim starts to fray or a nail is damaged.</span></p>
+              <ul class="paw2-advice-list">
+                <li><span><strong>Before:</strong> Inspect pads and nails. Use boots only if they have already been fitted and practised.</span></li>
+                <li><span><strong>During:</strong> Check after the first rough section and at every break before continuing.</span></li>
+                <li class="paw2-advice-stop"><span><strong>Stop if:</strong> The stride shortens, one paw is lifted, a rim starts to fray or a nail is damaged.</span></li>
+              </ul>
               <a class="paw2-panel-link" href="#boots">See when boots help and when they hurt →</a>
             </section>
 
@@ -394,14 +394,21 @@
               <span class="paw2-kicker">Snow, salt &amp; grit</span>
               <h3>Prevent buildup between the toes</h3>
               <p>Packed snow, ice and path salt rub between toes and can irritate already dry pads. Debris may stay hidden until the walk home.</p>
-              <div class="paw2-advice"><div><strong>Before</strong><span>Trim excess paw fur, inspect for existing cracks and carry clean water for rinsing.</span></div><div><strong>After</strong><span>Remove buildup gently, rinse away grit or salt and dry carefully between the toes.</span></div></div>
-              <p class="paw2-stop"><strong>Stop if</strong><span>Ice balls form repeatedly, skin looks red, a paw is held up or your dog resists walking.</span></p>
+              <ul class="paw2-advice-list">
+                <li><span><strong>Before:</strong> Trim excess paw fur, inspect for existing cracks and carry clean water for rinsing.</span></li>
+                <li><span><strong>During:</strong> Remove buildup gently whenever it forms; rinse away grit or salt and dry carefully between the toes.</span></li>
+                <li class="paw2-advice-stop"><span><strong>Stop if:</strong> Ice balls form repeatedly, skin looks red, a paw is held up or your dog resists walking.</span></li>
+              </ul>
               <a class="paw2-panel-link" href="#paw-check">Open the 60-second paw check →</a>
             </section>
           </div>
         </div>
 
         <div class="paw2-side-stack">
+          <aside class="paw2-first-aid" id="call-vet" aria-labelledby="call-vet-title">
+            <div><h2 id="call-vet-title">A cut pad needs an early stop</h2><p>Rinse, apply steady pressure and protect the paw for the shortest walk out. Seek urgent veterinary help for severe bleeding, a deep wound, an embedded object or a dog that cannot stand or walk.</p></div>
+          </aside>
+
           <aside class="paw2-essentials" aria-labelledby="pawEssentialsTitle">
             <span class="paw2-kicker" id="pawEssentialsTitle">Always do these three</span>
             <ol>

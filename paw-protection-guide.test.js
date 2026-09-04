@@ -107,18 +107,19 @@ describe('paw protection question-led guide', () => {
     expect(document.querySelector('#call-vet a')).toBeNull();
     expect(document.querySelector('#call-vet .paw2-first-aid-icon')).toBeNull();
     const firstAidAlert = document.getElementById('call-vet');
-    expect(firstAidAlert.previousElementSibling.className).toBe('paw2-surface-heading');
-    expect(firstAidAlert.nextElementSibling.className).toBe('paw2-surface-grid');
-    expect(document.querySelector('.paw2-side-stack').children).toHaveLength(1);
+    expect(firstAidAlert.parentElement.className).toBe('paw2-side-stack');
+    expect(firstAidAlert.nextElementSibling.className).toBe('paw2-essentials');
+    expect(document.querySelector('.paw2-side-stack').children).toHaveLength(2);
     expect(document.querySelector('.paw2-essentials').textContent).toMatch(/Always do these three/i);
     expect(html).toContain('background:var(--paw-card);color:var(--paw-ink)');
-    expect(html).toContain('.paw2-advice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px;}');
-    expect(html).not.toMatch(/\.paw2-advice\{[^}]*border-top:/);
-    expect(html).not.toMatch(/\.paw2-advice div\+div\{[^}]*border-left:/);
-    expect(html).toContain('.paw2-stop{margin:10px 0 0;padding:11px 14px;border-radius:10px;background:var(--safety-stop-soft);color:var(--paw-soft)');
-    expect(html).toContain('.paw2-stop strong{display:block;margin-bottom:4px;color:var(--safety-stop)');
-    expect(document.querySelectorAll('.paw2-stop strong')).toHaveLength(3);
-    expect(Array.from(document.querySelectorAll('.paw2-stop strong')).every(label => label.textContent.trim() === 'Stop if')).toBe(true);
+    const adviceLists = Array.from(document.querySelectorAll('.paw2-advice-list'));
+    expect(adviceLists).toHaveLength(3);
+    adviceLists.forEach((list) => {
+      expect(list.querySelectorAll('li')).toHaveLength(3);
+      expect(Array.from(list.querySelectorAll('strong')).map(label => label.textContent.trim())).toEqual(['Before:', 'During:', 'Stop if:']);
+    });
+    expect(html).toContain('.paw2-advice-list{display:grid;gap:7px;margin:16px 0 0;padding:0;list-style:none;}');
+    expect(html).toContain('.paw2-advice-list .paw2-advice-stop strong{color:var(--safety-stop);}');
     const recommendations = document.querySelectorAll('.safety-continue a');
     expect(recommendations).toHaveLength(2);
     expect(Array.from(recommendations).map(link => link.getAttribute('href'))).toEqual([
