@@ -167,9 +167,11 @@
     const context = canvas.getContext('2d');
     context.fillStyle = '#FFFFFF';
     context.fillRect(2, 2, 100, 64);
-    context.strokeStyle = '#17221B';
-    context.lineWidth = 5;
-    context.strokeRect(4.5, 4.5, 95, 59);
+    // Thinner keyline than the old 5px slab: at the reduced icon-size the
+    // heavy border was most of what the eye saw.
+    context.strokeStyle = '#3A4A3E';
+    context.lineWidth = 3;
+    context.strokeRect(3.5, 3.5, 97, 61);
     map.addImage(
       SHIELD_IMAGE_ID,
       context.getImageData(0, 0, 104, 68),
@@ -186,23 +188,33 @@
       type:'symbol',
       source:config.source,
       minzoom:8,
+      // minzoom 12: a route number is wayfinding detail. Below that it is
+      // just a box sitting on a line nobody is following yet.
+      minzoom:12,
       layout:{
         'symbol-placement':'line',
-        'symbol-spacing':['interpolate', ['linear'], ['zoom'], 8, 125, 12, 155, 16, 190, 19, 230],
+        'symbol-spacing':['interpolate', ['linear'], ['zoom'], 12, 220, 16, 260, 19, 300],
         'icon-image':SHIELD_IMAGE_ID,
         'icon-text-fit':'both',
-        'icon-text-fit-padding':[6, 10, 6, 10],
-        'icon-size':['interpolate', ['linear'], ['zoom'], 8, 1.08, 12, 1.16, 16, 1.26, 19, 1.34],
+        'icon-text-fit-padding':[4, 7, 4, 7],
+        'icon-size':['interpolate', ['linear'], ['zoom'], 12, 0.72, 16, 0.82, 19, 0.9],
         'icon-rotation-alignment':'viewport',
-        'icon-allow-overlap':true,
-        'icon-ignore-placement':true,
+        // Collision on. Shields that fight each other for the same bend are
+        // the clutter; one readable shield per stretch of path is the point.
+        'icon-allow-overlap':false,
+        'icon-ignore-placement':false,
+        'icon-padding':6,
         'text-field':['get', 'routeRef'],
-        'text-font':['Open Sans Bold', 'Arial Unicode MS Bold'],
-        'text-size':['interpolate', ['linear'], ['zoom'], 8, 16, 12, 18, 16, 21, 19, 23],
+        // The tile server (openfreemap) serves Noto only. Asking for
+        // "Open Sans Bold" 404s every glyph range and MapLibre silently
+        // rasterises a fallback locally — which is what made these shields
+        // render as oversized, blurry clip-art boxes.
+        'text-font':['Noto Sans Bold'],
+        'text-size':['interpolate', ['linear'], ['zoom'], 12, 11.5, 16, 13, 19, 14],
         'text-rotation-alignment':'viewport',
         'text-keep-upright':true,
-        'text-allow-overlap':true,
-        'text-ignore-placement':true,
+        'text-allow-overlap':false,
+        'text-ignore-placement':false,
       },
       paint:{
         'text-color':'#17221B',

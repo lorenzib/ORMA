@@ -166,7 +166,9 @@ describe('shared map icon layers', () => {
         type: 'symbol',
         minzoom: icons.ICON_MIN_ZOOM,
         layout: expect.objectContaining({
-          visibility: 'visible',
+          // Food starts behind the Layers control: water and huts are what a
+          // dog walker needs unprompted, everything else buried the route.
+          visibility: 'none',
           'icon-image': icons.getPoiMapIconExpression('food'),
         }),
       }),
@@ -184,7 +186,7 @@ describe('shared map icon layers', () => {
         type: 'symbol',
         minzoom: icons.ICON_MIN_ZOOM,
         layout: expect.objectContaining({
-          visibility: 'visible',
+          visibility: 'none',
           'icon-image': icons.getPoiMapIconExpression('places'),
         }),
       }),

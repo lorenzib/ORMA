@@ -134,7 +134,11 @@ describe('PERF-02 asset and regional loading contract', () => {
     const homepage = read('script.js');
     expect(homepage).toContain("id:'trail-selected-route-casing'");
     expect(homepage).toContain("id:'trail-selected-route-line'");
-    expect(homepage).toContain("id:'trail-selected-route-number'");
+    // The chosen route highlights the marked path from underneath, so
+    // Waymarked's own numbers show on it and we no longer reprint them.
+    expect(homepage).not.toContain("id:'trail-selected-route-number'");
+    expect(homepage).toMatch(/id:'trail-selected-route-casing'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(homepage).toMatch(/id:'trail-selected-route-line'[\s\S]*?'line-opacity':0\.55[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(homepage).toContain("function setSelectedTrailRoute(trail, options)");
     expect(homepage).toContain('setSelectedTrailRoute(t);');
     expect(homepage).toContain('setSelectedTrailRoute(null, { fit:false });');

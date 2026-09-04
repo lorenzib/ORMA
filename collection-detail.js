@@ -344,7 +344,8 @@
       map.on('load', () => {
         if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(map);
         const layerGroups = { hiking:['collection-waymarked-hiking-layer'], rifugi:[], water:[], food:[] };
-        const firstLabel = map.getStyle().layers.find(layer => layer.type === 'symbol');
+        const firstLabel = { id: window.ORMAMapStyle.firstLabelLayerId(map) };
+        window.ORMAMapStyle.quietBasemap(map);
         map.addSource('collection-waymarked-hiking', {
           type:'raster',
           tiles:['https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png'],
@@ -355,8 +356,13 @@
           id:'collection-waymarked-hiking-layer',
           type:'raster',
           source:'collection-waymarked-hiking',
-          paint:{ 'raster-opacity':1, 'raster-resampling':'linear' },
-        }, firstLabel ? firstLabel.id : undefined);
+          // Full strength at trail zoom, backed off across a whole region so
+          // several collection routes stay distinguishable from each other.
+          paint:{
+            'raster-opacity':['interpolate',['linear'],['zoom'],7,.45,10,.7,12,.88,14,1],
+            'raster-resampling':'linear',
+          },
+        }, firstLabel.id);
 
         function setLayerVisibility(group, visible){
           (layerGroups[group] || []).forEach(layerId => {

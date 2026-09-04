@@ -31,8 +31,13 @@ describe('logged-in homepage mapped-route hierarchy', () => {
     expect(routeRefs).toContain("const SHIELD_IMAGE_ID = 'orma-route-number-shield'");
     expect(routeRefs).toContain("'icon-text-fit':'both'");
     expect(routeRefs).toContain("'text-color':'#17221B'");
-    expect(routeRefs).toContain('8, 16, 12, 18, 16, 21, 19, 23');
-    expect(routeRefs).toContain('8, 1.08, 12, 1.16, 16, 1.26, 19, 1.34');
+    // Sized for reading, not for shouting: the previous 16-23px text in a
+    // 1.08-1.34 scaled shield produced clip-art slabs, and the requested
+    // "Open Sans Bold" 404s on the tile server so the glyphs were rasterised
+    // locally and blurred.
+    expect(routeRefs).toContain('12, 11.5, 16, 13, 19, 14');
+    expect(routeRefs).toContain('12, 0.72, 16, 0.82, 19, 0.9');
+    expect(routeRefs).toContain("'text-font':['Noto Sans Bold']");
     expect(routeRefs).toContain("refs.join(' / ')");
   });
 });

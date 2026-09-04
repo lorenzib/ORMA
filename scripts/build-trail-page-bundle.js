@@ -7,6 +7,7 @@ const ROOT = path.resolve(__dirname, '..');
 const OUTPUT = 'trail-app.bundle.js';
 const SOURCES = [
   'map-runtime.js',
+  'map-style.js',
   'accessibility-runtime.js',
   'community-content-states.js',
   'offline-contributions.js',

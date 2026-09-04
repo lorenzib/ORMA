@@ -181,6 +181,245 @@
 })(window);
 ;
 
+// ---- map-style.js ----
+/**
+ * map-style.js — one shared cartographic treatment for every ORMA map.
+ *
+ * Before this file each map (trail detail, homepage, route planner,
+ * collection) added the Waymarked Trails raster with its own hand-tuned
+ * paint block, and the trail detail map desaturated it by -0.90 with a
+ * contrast bump. That turned Waymarked's red route lines and their
+ * red/white route-number shields into grey smudges: legible as "something
+ * is there", illegible as "which path is this".
+ *
+ * The hiking network IS the product on a dog-walking map, so it is now
+ * drawn in its own colours, and everything that used to compete with it
+ * (basemap POI icons, road shields, dense amenity pins) is quietened
+ * instead. The reference is AllTrails: a calm base, one unmistakable route
+ * line, and the marked path network readable underneath it.
+ *
+ * Everything here is idempotent — calling twice on the same map is a no-op.
+ */
+(function (global) {
+  'use strict';
+
+  // Waymarked Trails' public hiking layer. Same OSM data as our vector base,
+  // but with the route-relation rendering (numbered routes, waymark colours)
+  // that a general-purpose basemap does not draw.
+  const WAYMARKED_TILES = 'https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png';
+  const WAYMARKED_ATTRIBUTION = '© Sarah Hoffmann (CC-BY-SA) — waymarkedtrails.org';
+  const WAYMARKED_SOURCE = 'waymarked-hiking';
+  const WAYMARKED_LAYER = 'waymarked-hiking-layer';
+
+  // The tile server serves Noto only. Asking for "Open Sans Bold" 404s every
+  // glyph range and MapLibre silently falls back to locally-rasterised
+  // glyphs, which is what made the route-number shields look like clip-art.
+  const FONT_BOLD = ['Noto Sans Bold'];
+  const FONT_REGULAR = ['Noto Sans Regular'];
+
+  // Basemap symbol layers that add noise without helping a walker: shop and
+  // service icons, road shields, aerodrome clutter. Hidden rather than
+  // deleted so a caller can put them back.
+  const NOISY_BASE_LAYER_PATTERN = /^(poi|place_|airport|highway-name|road_shield|highway-shield|ferry|water_name-line)/i;
+  const KEEP_BASE_LAYER_PATTERN = /(peak|mountain|alpine|hut|shelter|water|spring|park|forest|place_label_city|place_label_town|place_label_village)/i;
+
+  function isStyleReady(map) {
+    try {
+      return !!(map && typeof map.getStyle === 'function' && map.getStyle() && map.getStyle().layers);
+    } catch (error) {
+      return false;
+    }
+  }
+
+  /**
+   * The id of the first symbol (text/icon) layer in the base style.
+   *
+   * Anything inserted with no target position stacks on top of EVERYTHING,
+   * including every place name. Inserting before this id keeps an overlay
+   * above roads and fills but below all labels, so names stay readable in
+   * flat and 3D alike.
+   */
+  function firstLabelLayerId(map) {
+    if (!isStyleReady(map)) return undefined;
+    const layer = map.getStyle().layers.find(item => item.type === 'symbol');
+    return layer ? layer.id : undefined;
+  }
+
+  /**
+   * Add the Waymarked Trails hiking network in its own colours.
+   *
+   * The opacity ramp is the only concession to legibility: at region zoom the
+   * network is context and sits back; from trail zoom up it is the subject
+   * and reads at nearly full strength. No desaturation, no contrast
+   * stretching — their shields are designed to be read.
+   */
+  function addWaymarkedHiking(map, options) {
+    const config = options || {};
+    if (!map || map.getLayer(WAYMARKED_LAYER)) return WAYMARKED_LAYER;
+    if (!map.getSource(WAYMARKED_SOURCE)) {
+      map.addSource(WAYMARKED_SOURCE, {
+        type: 'raster',
+        tiles: [WAYMARKED_TILES],
+        tileSize: 256,
+        maxzoom: 18,
+        attribution: WAYMARKED_ATTRIBUTION,
+      });
+    }
+    const beforeId = config.beforeId !== undefined ? config.beforeId : firstLabelLayerId(map);
+    map.addLayer({
+      id: WAYMARKED_LAYER,
+      type: 'raster',
+      source: WAYMARKED_SOURCE,
+      layout: { visibility: config.visible === false ? 'none' : 'visible' },
+      paint: {
+        // Quiet at overview zooms, near-solid once a single valley fills the
+        // screen. The old ramp topped out at 0.92 but paired it with a -0.90
+        // saturation kill, which is what made the shields unreadable.
+        'raster-opacity': [
+          'interpolate', ['linear'], ['zoom'],
+          7, 0.22,
+          10, 0.38,
+          12, 0.62,
+          14, 0.88,
+          16, 0.95,
+        ],
+        // Native colours. Waymarked's palette is already a muted
+        // cartographic one; it does not need our correction.
+        'raster-saturation': 0,
+        'raster-contrast': 0,
+        'raster-resampling': 'linear',
+        'raster-fade-duration': 120,
+      },
+    }, beforeId && map.getLayer(beforeId) ? beforeId : undefined);
+    return WAYMARKED_LAYER;
+  }
+
+  function setWaymarkedVisible(map, visible) {
+    if (!map || !map.getLayer(WAYMARKED_LAYER)) return;
+    map.setLayoutProperty(WAYMARKED_LAYER, 'visibility', visible ? 'visible' : 'none');
+  }
+
+  /**
+   * Turn down the base style so the hiking network can be the loudest thing
+   * on the map. Shops, ATMs, road shields and aerodromes are not why anyone
+   * opens a dog-walking map; peaks, huts, water and settlement names are.
+   */
+  function quietBasemap(map) {
+    if (!isStyleReady(map)) return;
+    map.getStyle().layers.forEach(layer => {
+      if (layer.type !== 'symbol') return;
+      if (!NOISY_BASE_LAYER_PATTERN.test(layer.id)) return;
+      if (KEEP_BASE_LAYER_PATTERN.test(layer.id)) return;
+      try {
+        map.setLayoutProperty(layer.id, 'visibility', 'none');
+      } catch (error) { /* style variant without this layer */ }
+    });
+  }
+
+  function widthRamp(a, b, c, d, scale) {
+    const factor = scale || 1;
+    return [
+      'interpolate', ['linear'], ['zoom'],
+      8, a * factor,
+      12, b * factor,
+      14, c * factor,
+      17, d * factor,
+    ];
+  }
+
+  /**
+   * The selected route, drawn as a highlight *underneath* the hiking network
+   * rather than a line painted over it.
+   *
+   * A solid match-colour line on top buries the very thing a walker follows:
+   * Waymarked's own route line and its numbered shields end up hidden under
+   * our paint, which is why we used to reprint the numbers ourselves in a
+   * second shield layer. Inverting the stack — a white casing, then a
+   * translucent match-colour corridor, with the raster on top — leaves the
+   * marked route and its real numbers legible down the middle of the
+   * highlight, and the corridor still reads as "this is your route" at a
+   * glance. Pass `beforeId` as the waymarked layer id to get this ordering.
+   *
+   * `mode: 'overlay'` keeps the old opaque-line-on-top treatment, for maps
+   * with no hiking raster to sit beneath.
+   */
+  function routeLinePaint(color, options) {
+    const config = options || {};
+    const scale = config.scale || 1;
+    if (config.mode === 'overlay') {
+      return {
+        casing: {
+          'line-color': config.casingColor || '#FFFDF7',
+          'line-opacity': 0.95,
+          'line-width': widthRamp(5, 9, 13, 19, scale),
+        },
+        line: {
+          'line-color': color,
+          'line-opacity': 1,
+          'line-width': widthRamp(2.5, 5.5, 8.5, 13, scale),
+        },
+      };
+    }
+    return {
+      casing: {
+        'line-color': config.casingColor || '#FFFFFF',
+        'line-opacity': 0.9,
+        'line-width': widthRamp(10, 16, 23, 33, scale),
+      },
+      // Translucent on purpose: the marked route draws through it, and the
+      // terrain underneath still reads.
+      line: {
+        'line-color': color,
+        'line-opacity': 0.55,
+        'line-width': widthRamp(7, 12, 18, 26, scale),
+      },
+    };
+  }
+
+  /**
+   * Add a cased route line as a pair of layers. Returns the two layer ids so
+   * callers can toggle or query them.
+   */
+  function addRouteLine(map, options) {
+    const config = options || {};
+    const source = config.source;
+    const id = config.id;
+    if (!map || !source || !id || map.getLayer(id)) return null;
+    const paint = routeLinePaint(config.color || '#2E4034', config);
+    // Default to sitting under the hiking network when it is present, so the
+    // route highlights the marked path instead of covering it.
+    const fallbackBefore = map.getLayer(WAYMARKED_LAYER) ? WAYMARKED_LAYER : firstLabelLayerId(map);
+    const beforeId = config.beforeId !== undefined ? config.beforeId : fallbackBefore;
+    const target = beforeId && map.getLayer(beforeId) ? beforeId : undefined;
+    const layout = { 'line-join': 'round', 'line-cap': 'round' };
+    map.addLayer({
+      id: id + '-casing', type: 'line', source, layout, paint: paint.casing,
+    }, target);
+    map.addLayer({
+      id, type: 'line', source, layout, paint: paint.line,
+    }, target);
+    return { casing: id + '-casing', line: id };
+  }
+
+  global.ORMAMapStyle = {
+    WAYMARKED_SOURCE,
+    WAYMARKED_LAYER,
+    WAYMARKED_TILES,
+    WAYMARKED_ATTRIBUTION,
+    FONT_BOLD,
+    FONT_REGULAR,
+    firstLabelLayerId,
+    addWaymarkedHiking,
+    setWaymarkedVisible,
+    quietBasemap,
+    routeLinePaint,
+    addRouteLine,
+  };
+  // Historic name kept so nothing has to change in one commit.
+  global.DoloPawsMapStyle = global.ORMAMapStyle;
+})(typeof window !== 'undefined' ? window : globalThis);
+;
+
 // ---- accessibility-runtime.js ----
 (function(global){
   'use strict';
@@ -9640,6 +9879,12 @@ function initHikeMode(map, trail, options){
  */
 
 function initDetailPois(map, trail){
+  // What a dog walker needs unprompted is water and shelter. Food and
+  // sightseeing are planning extras and now start behind the Layers control
+  // rather than covering the route on first paint.
+  // Group names here match the icon-system's ('water'), not trail.js's
+  // chip key for the same layer ('fountains').
+  const DEFAULT_VISIBLE_GROUPS = new Set(['water', 'huts']);
   if (!trail || typeof trail.lat !== 'number' || typeof trail.lng !== 'number') return;
   const icons = window.DoloPawsIcons;
   const iconMinZoom = icons ? icons.ICON_MIN_ZOOM : 12;
@@ -9732,12 +9977,12 @@ function initDetailPois(map, trail){
       source: sourceId,
       filter: ['!', ['has', 'point_count']],
       maxzoom: iconMinZoom,
-      layout: { visibility: 'visible' },
+      layout: { visibility: DEFAULT_VISIBLE_GROUPS.has(group) ? 'visible' : 'none' },
       paint: {
-        'circle-radius': 5.5,
+        'circle-radius': 4,
         'circle-color': circleColor,
-        'circle-opacity': 0.85,
-        'circle-stroke-width': 1.5,
+        'circle-opacity': 0.7,
+        'circle-stroke-width': 1.25,
         'circle-stroke-color': '#fff',
       },
     });
@@ -9748,19 +9993,26 @@ function initDetailPois(map, trail){
       filter: ['!', ['has', 'point_count']],
       minzoom: iconMinZoom,
       layout: {
-        visibility: 'visible',
+        visibility: DEFAULT_VISIBLE_GROUPS.has(group) ? 'visible' : 'none',
         'icon-image': icons ? icons.getPoiMapIconExpression(group) : '',
-        'icon-size': 1,
-        'icon-padding': 4,
+        'icon-size': 0.82,
+        // Collision on, generous padding: the previous settings let ~40
+        // identical pins stack over a 7.5 km route until the route itself
+        // was the least visible thing on the map.
+        'icon-padding': 12,
+        'icon-allow-overlap': false,
+        'icon-optional': false,
         'text-field': ['coalesce', ['get', 'name'], ''],
         'text-font': ['Noto Sans Regular'],
         'text-size': 11,
         'text-anchor': 'top',
-        'text-offset': [0, 1.25],
+        'text-offset': [0, 1.15],
         'text-max-width': 12,
+        'text-padding': 4,
         'text-optional': true,
       },
       paint: {
+        'icon-opacity': 0.92,
         'text-color': '#243128',
         'text-halo-color': 'rgba(255,255,255,.96)',
         'text-halo-width': 2,
@@ -11275,9 +11527,11 @@ function initTrailReports(map, trail){
     const context = canvas.getContext('2d');
     context.fillStyle = '#FFFFFF';
     context.fillRect(2, 2, 100, 64);
-    context.strokeStyle = '#17221B';
-    context.lineWidth = 5;
-    context.strokeRect(4.5, 4.5, 95, 59);
+    // Thinner keyline than the old 5px slab: at the reduced icon-size the
+    // heavy border was most of what the eye saw.
+    context.strokeStyle = '#3A4A3E';
+    context.lineWidth = 3;
+    context.strokeRect(3.5, 3.5, 97, 61);
     map.addImage(
       SHIELD_IMAGE_ID,
       context.getImageData(0, 0, 104, 68),
@@ -11294,23 +11548,33 @@ function initTrailReports(map, trail){
       type:'symbol',
       source:config.source,
       minzoom:8,
+      // minzoom 12: a route number is wayfinding detail. Below that it is
+      // just a box sitting on a line nobody is following yet.
+      minzoom:12,
       layout:{
         'symbol-placement':'line',
-        'symbol-spacing':['interpolate', ['linear'], ['zoom'], 8, 125, 12, 155, 16, 190, 19, 230],
+        'symbol-spacing':['interpolate', ['linear'], ['zoom'], 12, 220, 16, 260, 19, 300],
         'icon-image':SHIELD_IMAGE_ID,
         'icon-text-fit':'both',
-        'icon-text-fit-padding':[6, 10, 6, 10],
-        'icon-size':['interpolate', ['linear'], ['zoom'], 8, 1.08, 12, 1.16, 16, 1.26, 19, 1.34],
+        'icon-text-fit-padding':[4, 7, 4, 7],
+        'icon-size':['interpolate', ['linear'], ['zoom'], 12, 0.72, 16, 0.82, 19, 0.9],
         'icon-rotation-alignment':'viewport',
-        'icon-allow-overlap':true,
-        'icon-ignore-placement':true,
+        // Collision on. Shields that fight each other for the same bend are
+        // the clutter; one readable shield per stretch of path is the point.
+        'icon-allow-overlap':false,
+        'icon-ignore-placement':false,
+        'icon-padding':6,
         'text-field':['get', 'routeRef'],
-        'text-font':['Open Sans Bold', 'Arial Unicode MS Bold'],
-        'text-size':['interpolate', ['linear'], ['zoom'], 8, 16, 12, 18, 16, 21, 19, 23],
+        // The tile server (openfreemap) serves Noto only. Asking for
+        // "Open Sans Bold" 404s every glyph range and MapLibre silently
+        // rasterises a fallback locally — which is what made these shields
+        // render as oversized, blurry clip-art boxes.
+        'text-font':['Noto Sans Bold'],
+        'text-size':['interpolate', ['linear'], ['zoom'], 12, 11.5, 16, 13, 19, 14],
         'text-rotation-alignment':'viewport',
         'text-keep-upright':true,
-        'text-allow-overlap':true,
-        'text-ignore-placement':true,
+        'text-allow-overlap':false,
+        'text-ignore-placement':false,
       },
       paint:{
         'text-color':'#17221B',
@@ -13282,7 +13546,11 @@ function renderTrail(t){
       let liftsVisible = false;        // Lifts are optional planning context
       // Everyday trail context is visible immediately; only optional planning
       // overlays remain in Layers.
-      const poiStates = { fountains: true, huts: true, food: true, places: true, veterinary: false };
+      // Water and huts are what a dog walker needs without asking; food and
+      // sights are planning extras and stay behind Layers so the route, not a
+      // field of identical pins, is what you see first. Mirrors
+      // DEFAULT_VISIBLE_GROUPS in detail-pois.js.
+      const poiStates = { fountains: true, huts: true, food: false, places: false, veterinary: false };
       const amenityMarkers = [];       // { marker, group } for curated fallbacks
       if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(map);
       const setLayerChipLabel = (button, iconKey, label) => {
@@ -13344,6 +13612,29 @@ function renderTrail(t){
           item.marker.getElement().style.display = visible ? '' : 'none';
         });
       }
+      // Water / huts / food / places each get their own chip so nothing that
+      // used to be visible is merely gone — it moved behind a control.
+      const POI_CHIPS = [
+        { id:'fountainsToggle', group:'fountains', icon:'water', label:'Drinking water' },
+        { id:'hutsToggle', group:'huts', icon:'hut', label:'Huts & shelters' },
+        { id:'foodToggle', group:'food', icon:'food', label:'Food & drink' },
+        { id:'placesToggle', group:'places', icon:'sight', label:'Points of interest' },
+      ];
+      POI_CHIPS.forEach(chip => {
+        const button = document.getElementById(chip.id);
+        if(!button) return;
+        setLayerChipLabel(button, chip.icon, chip.label);
+        const on = !!poiStates[chip.group];
+        button.classList.toggle('on', on);
+        button.setAttribute('aria-pressed', String(on));
+        button.addEventListener('click', () => {
+          poiStates[chip.group] = !poiStates[chip.group];
+          button.classList.toggle('on', poiStates[chip.group]);
+          button.setAttribute('aria-pressed', String(poiStates[chip.group]));
+          applyPoiVisibility(chip.group);
+        });
+      });
+
       // Veterinary facilities are fetched only when requested: the nearest
       // options can sit well beyond the route viewport and do not need to
       // compete with the trail during ordinary map use.
@@ -13426,51 +13717,14 @@ function renderTrail(t){
       // data as our base map, but with their dedicated trail-route styling
       // (numbered routes, waymarking) that a general basemap doesn't draw.
       //
-      // IMPORTANT: adding a layer with no target position stacks it on top
-      // of EVERYTHING in the base style, including all its text labels —
-      // that's what was actually causing the "hard to read" problem, in
-      // both 3D and flat mode. Finding the first text/label layer and
-      // inserting before it keeps the overlay above roads/fills but below
-      // every place name, so labels stay legible either way.
-      const firstLabelLayer = map.getStyle().layers.find(l => l.type === 'symbol');
-      map.addSource('waymarked-hiking', {
-        type: 'raster',
-        tiles: ['https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png'],
-        tileSize: 256,
-        attribution: '© Sarah Hoffmann (CC-BY-SA) — waymarkedtrails.org',
-      });
-      map.addLayer({
-        id: 'waymarked-hiking-layer',
-        type: 'raster',
-        source: 'waymarked-hiking',
-        // VISIBLE by default: the waymark network is how walkable ground
-        // around the route stays discoverable. "Marked routes" un-ticks it
-        // for anyone who wants the clean basemap.
-        layout: { visibility: 'visible' },
-        // Match the homepage treatment: the public network should read as
-        // quiet grey context while its red/white/black route shields retain a
-        // trace of colour. At detail-page zooms the same raster is deliberately
-        // more opaque and higher contrast so its existing trail numbers remain
-        // readable; no duplicate number layer is drawn over the map. Linear
-        // resampling removes the blocky, pixelated edges that nearest-neighbour
-        // scaling caused at close trail zooms.
-        // This raster remains above the wider ORMA match-colour line, leaving
-        // that green/amber/red line visible as the selected route's underlay.
-        paint: {
-          'raster-opacity': [
-            'interpolate', ['linear'], ['zoom'],
-            7, 0.10,
-            10, 0.14,
-            12, 0.20,
-            14, 0.64,
-            16, 0.92,
-          ],
-          'raster-saturation': -0.90,
-          'raster-contrast': 0.38,
-          'raster-resampling': 'linear',
-          'raster-fade-duration': 120,
-        },
-      }, firstLabelLayer ? firstLabelLayer.id : undefined);
+      // Drawn in Waymarked's own colours by map-style.js. The previous
+      // treatment desaturated it by -0.90 and pushed contrast, which turned
+      // their red route lines and route-number shields into unreadable grey
+      // smudges — the "illegible signs" complaint. Inserting before the first
+      // label layer keeps it above roads and fills but below every place name.
+      const firstLabelId = window.ORMAMapStyle.firstLabelLayerId(map);
+      window.ORMAMapStyle.quietBasemap(map);
+      window.ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId });
       if (typeof addBaseHillshade === 'function') addBaseHillshade(map, 'waymarked-hiking-layer');
       const routesToggleBtn = document.getElementById('routesToggle');
       if (routesToggleBtn){
@@ -13641,22 +13895,18 @@ function renderTrail(t){
             geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
           },
         });
-        // Keep the route above the hiking-network raster so its visible colour
-        // always communicates this dog's match. Labels remain above the route.
-        map.addLayer({
-          id: 'single-trail-path-casing',
-          type: 'line',
-          source: 'single-trail-path',
-          layout: { 'line-join': 'round', 'line-cap': 'round' },
-          paint: { 'line-color': '#FFFDF7', 'line-width': 17, 'line-opacity': 0.96 },
-        }, firstLabelLayer ? firstLabelLayer.id : undefined);
-        map.addLayer({
+        // The route is a highlight UNDER the hiking network, not a line over
+        // it: a translucent match-colour corridor with a white casing, with
+        // the waymarked raster drawing on top. Waymarked's own route line and
+        // its numbered shields then run down the middle of the highlight, so
+        // the numbers a walker actually follows stay visible and we no longer
+        // reprint them ourselves.
+        window.ORMAMapStyle.addRouteLine(map, {
           id: 'single-trail-path-line',
-          type: 'line',
           source: 'single-trail-path',
-          layout: { 'line-join': 'round', 'line-cap': 'round' },
-          paint: { 'line-color': selectedRouteColor, 'line-width': 13, 'line-opacity': 1 },
-        }, firstLabelLayer ? firstLabelLayer.id : undefined);
+          color: selectedRouteColor,
+          beforeId: window.ORMAMapStyle.WAYMARKED_LAYER,
+        });
 
         // Closed loops are intentionally direction-neutral: hikers can join
         // anywhere and walk clockwise or anticlockwise. Keep arrows only for
@@ -13682,25 +13932,16 @@ function renderTrail(t){
               'text-halo-color': selectedRouteColor,
               'text-halo-width': 2,
             },
-          });
+          // Above the hiking raster so they stay visible, below the labels so
+          // they never sit on a place name.
+          }, firstLabelId);
         }
-        // Put the trail's known references on the ORMA route itself. The
-        // public hiking raster sits below the thick match-colour line, so its
-        // baked-in numbers can otherwise disappear beneath the selected path.
-        const routeRefFeatures = window.DoloPawsTrailRouteRefs
-          ? window.DoloPawsTrailRouteRefs.featuresForTrail(t)
-          : [];
-        if(routeRefFeatures.length){
-          map.addSource('single-trail-route-refs', {
-            type:'geojson',
-            data:{ type:'FeatureCollection', features:routeRefFeatures },
-          });
-          window.DoloPawsTrailRouteRefs.addShieldLayer(map, {
-            id:'single-trail-route-number',
-            source:'single-trail-route-refs',
-            beforeId:firstLabelLayer && firstLabelLayer.id,
-          });
-        }
+        // No ORMA route-number shields here any more. They existed only
+        // because the old opaque route line hid Waymarked's baked-in numbers;
+        // now the raster draws above the highlight and those real numbers are
+        // visible, so a second set of our own would just be duplicates
+        // fighting them for space. The reference list still renders as text in
+        // the trail details column via trail-blueprint.js.
         const bounds = new maplibregl.LngLatBounds();
         t.path.forEach(([lat, lng]) => bounds.extend([lng, lat]));
         map.fitBounds(bounds, { padding: 60, maxZoom: 17 });

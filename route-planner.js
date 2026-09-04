@@ -14,18 +14,48 @@
   const pointList = document.getElementById('plannerPointList');
   const undoButton = document.getElementById('plannerUndo');
   const resetButton = document.getElementById('plannerReset');
-  const closeButton = document.getElementById('plannerClose');
   const saveButton = document.getElementById('plannerSave');
   const savedLink = document.getElementById('plannerSavedLink');
   const layersButton = document.getElementById('plannerLayers');
   const layersPanel = document.getElementById('plannerLayersPanel');
   const markedRoutesButton = document.getElementById('plannerMarkedRoutes');
   const poiButtons = Array.from(document.querySelectorAll('[data-planner-poi]'));
+  const shapeButtons = Array.from(document.querySelectorAll('[data-planner-shape]'));
+  const ascent = document.getElementById('plannerAscent');
+  const finishButton = document.getElementById('plannerFinish');
   const MIN_LOOP_POINTS = 3;
-  const MAX_POINTS = 8;
+  const MAX_POINTS = 25;
   const MAX_ROUTE_DISTANCE_M = 30000;
+
+  // Three shapes, matching how walks are actually planned. The router has
+  // always been able to do all three — only the UI insisted on a closed loop.
+  //   loop          finish where you started
+  //   point-to-point  A to B, one way
+  //   out-and-back  walk out, return along the same line
+  const SHAPES = {
+    loop: {
+      label:'Loop',
+      minPoints:MIN_LOOP_POINTS,
+      finishLabel:'Close loop',
+      hint:'Loop: ORMA connects your points and returns to the start.',
+    },
+    'point-to-point': {
+      label:'Point to point',
+      minPoints:2,
+      finishLabel:'Finish route',
+      hint:'Point to point: a one-way route from your first point to your last.',
+    },
+    'out-and-back': {
+      label:'Out & back',
+      minPoints:2,
+      finishLabel:'Finish route',
+      hint:'Out & back: ORMA walks your line out, then returns along the same paths.',
+    },
+  };
+
   const graphCache = new Map();
   const poiDataCache = new Map();
+  let shape = 'loop';
   let points = [];
   let markers = [];
   let preview = null;
@@ -33,6 +63,11 @@
   let busy = false;
   let calculationVersion = 0;
   let editingId = null;
+  let finished = false;
+
+  function shapeConfig(){ return SHAPES[shape] || SHAPES.loop; }
+  function minPoints(){ return shapeConfig().minPoints; }
+  function wantsLoop(){ return shape === 'loop'; }
 
   const baseOptions = {
     container:mapElement,
@@ -100,18 +135,86 @@
     return metres < 1000 ? `${Math.round(metres / 10) * 10} m` : `${(metres / 1000).toFixed(1)} km`;
   }
 
-  function markerElement(index){
+  function markerElement(index, total){
     const element = document.createElement('span');
-    element.className = `planner-marker${index === 0 ? ' planner-marker--start' : ''}`;
-    element.textContent = index === 0 ? 'S' : String(index + 1);
+    const isStart = index === 0;
+    const isEnd = !wantsLoop() && total > 1 && index === total - 1;
+    element.className = `planner-marker${isStart ? ' planner-marker--start' : ''}${isEnd ? ' planner-marker--end' : ''}`;
+    element.textContent = isStart ? 'S' : isEnd ? 'F' : String(index + 1);
+    element.title = 'Drag to move this point';
     element.setAttribute('aria-hidden', 'true');
     return element;
   }
 
+  // Waypoints are draggable: nudging a point beats deleting it and starting
+  // the leg again, and it is how every other route drawer behaves.
   function drawMarkers(){
     markers.forEach(marker => marker.remove());
-    markers = points.map((point, index) => new maplibregl.Marker({ element:markerElement(index) })
-      .setLngLat([point.lng, point.lat]).addTo(map));
+    markers = points.map((point, index) => {
+      const marker = new maplibregl.Marker({
+        element:markerElement(index, points.length),
+        draggable:true,
+      }).setLngLat([point.lng, point.lat]).addTo(map);
+      marker.on('dragend', () => {
+        if(busy){ marker.setLngLat([points[index].lng, points[index].lat]); return; }
+        const moved = marker.getLngLat();
+        points[index] = { lat:moved.lat, lng:moved.lng };
+        if(index === 0) selectedCoverage = coverageFor(points[0]);
+        preview = null;
+        recalculate(false);
+      });
+      return marker;
+    });
+  }
+
+  // Clicking the drawn line inserts a point into that leg, so you can bend a
+  // leg around a hazard without discarding everything after it.
+  //
+  // The click must land *between* two waypoints, not past either end: the
+  // rendered path can pass close to a click that actually continues beyond
+  // the final waypoint, and folding that into the middle silently reorders
+  // the walk. Projections at the extremes are rejected and appended instead.
+  const INSERT_EDGE_MARGIN = 0.03;   // fraction of a leg treated as its ends
+  const INSERT_MAX_OFFSET_M = 400;   // how far off a leg a click may still be
+
+  function insertPointNearest(candidate){
+    if(points.length < 2) return false;
+    let bestIndex = -1;
+    let bestDistance = Infinity;
+    for(let index = 0; index < points.length - 1; index += 1){
+      const leg = projectOntoSegment(candidate, points[index], points[index + 1]);
+      if(leg.t <= INSERT_EDGE_MARGIN || leg.t >= 1 - INSERT_EDGE_MARGIN) continue;
+      if(leg.distanceM < bestDistance){ bestDistance = leg.distanceM; bestIndex = index + 1; }
+    }
+    if(bestIndex < 0 || bestDistance > INSERT_MAX_OFFSET_M) return false;
+    points.splice(bestIndex, 0, candidate);
+    return true;
+  }
+
+  function metresBetween(first, second){
+    const rad = value => value * Math.PI / 180;
+    const dLat = rad(second.lat - first.lat);
+    const dLng = rad(second.lng - first.lng);
+    const a = Math.sin(dLat / 2) ** 2 +
+      Math.cos(rad(first.lat)) * Math.cos(rad(second.lat)) * Math.sin(dLng / 2) ** 2;
+    return 6371000 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+
+  // Planar approximation — fine at the scale of one walking leg. Returns the
+  // perpendicular offset in metres plus the unclamped projection factor, so
+  // callers can tell "beside this leg" from "past the end of it".
+  function projectOntoSegment(point, start, end){
+    const scale = Math.cos(start.lat * Math.PI / 180);
+    const px = (point.lng - start.lng) * scale;
+    const py = point.lat - start.lat;
+    const ex = (end.lng - start.lng) * scale;
+    const ey = end.lat - start.lat;
+    const lengthSq = ex * ex + ey * ey;
+    const t = lengthSq ? (px * ex + py * ey) / lengthSq : 0;
+    const clamped = Math.max(0, Math.min(1, t));
+    const dx = px - ex * clamped;
+    const dy = py - ey * clamped;
+    return { t, distanceM:Math.sqrt(dx * dx + dy * dy) * 111320 };
   }
 
   function emptyGeoJson(){ return { type:'FeatureCollection', features:[] }; }
@@ -133,9 +236,14 @@
     const source = map.getSource('draft-route');
     if(source){ source.setData(data); return; }
     const label = firstLabelLayer();
+    // The draft is a highlight under the marked network, not a line over it:
+    // while you are drawing, the paths you are snapping to have to stay
+    // visible — including their numbers — or you are tracing blind.
+    const under = map.getLayer('planner-waymarked-hiking-layer')
+      ? 'planner-waymarked-hiking-layer' : (label && label.id);
     map.addSource('draft-route', { type:'geojson', data });
-    map.addLayer({ id:'draft-route-case', type:'line', source:'draft-route', layout:{'line-cap':'round','line-join':'round'}, paint:{'line-color':'#fff','line-width':10,'line-opacity':.94} }, label && label.id);
-    map.addLayer({ id:'draft-route-line', type:'line', source:'draft-route', layout:{'line-cap':'round','line-join':'round'}, paint:{'line-color':'#2E684F','line-width':6,'line-opacity':.98} }, label && label.id);
+    map.addLayer({ id:'draft-route-case', type:'line', source:'draft-route', layout:{'line-cap':'round','line-join':'round'}, paint:{'line-color':'#fff','line-width':['interpolate',['linear'],['zoom'],8,10,12,16,14,23,17,33],'line-opacity':.9} }, under);
+    map.addLayer({ id:'draft-route-line', type:'line', source:'draft-route', layout:{'line-cap':'round','line-join':'round'}, paint:{'line-color':'#2E684F','line-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26],'line-opacity':.55} }, under);
   }
 
   function addPlannerMapContext(){
@@ -169,6 +277,9 @@
         'hillshade-method':'igor',
       },
     }, label && label.id);
+    // Shops, ATMs and road shields compete with the very paths you are
+    // tracing along. Turn them down; keep peaks, huts, water, place names.
+    if(window.ORMAMapStyle) window.ORMAMapStyle.quietBasemap(map);
     map.addSource('planner-waymarked-hiking', {
       type:'raster',
       tiles:['https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png'],
@@ -366,16 +477,31 @@
   }
 
   function render(){
+    const config = shapeConfig();
     distance.textContent = preview ? formatDistance(preview.distanceM) : '—';
+    if(ascent){
+      ascent.textContent = preview && Number.isFinite(preview.ascentM)
+        ? `${Math.round(preview.ascentM)} m` : '—';
+    }
     pointCount.textContent = `${points.length} / ${MAX_POINTS}`;
+    shapeButtons.forEach(button => {
+      const on = button.dataset.plannerShape === shape;
+      button.classList.toggle('on', on);
+      button.setAttribute('aria-pressed', String(on));
+      button.disabled = busy;
+    });
     undoButton.disabled = busy || !points.length;
     resetButton.disabled = busy || !points.length;
-    closeButton.disabled = busy || points.length < MIN_LOOP_POINTS || !preview || preview.closed;
-    saveButton.disabled = busy || !preview || !preview.closed;
+    if(finishButton){
+      finishButton.textContent = config.finishLabel;
+      finishButton.disabled = busy || points.length < config.minPoints || finished;
+    }
+    saveButton.disabled = busy || !preview || !finished;
     pointList.replaceChildren();
     points.forEach((point, index) => {
       const item = document.createElement('li');
-      item.textContent = index === 0 ? 'Start' : `Point ${index + 1}`;
+      const isEnd = !wantsLoop() && points.length > 1 && index === points.length - 1;
+      item.textContent = index === 0 ? 'Start' : isEnd ? 'Finish' : `Point ${index + 1}`;
       const remove = document.createElement('button');
       remove.type = 'button';
       remove.textContent = '×';
@@ -418,44 +544,50 @@
     return 'No mapped walking route connects those points. Undo the last point and choose a nearby path.';
   }
 
-  async function recalculate(closeRequested){
+  async function recalculate(finishRequested){
     const version = ++calculationVersion;
+    const config = shapeConfig();
     if(points.length < 2){
       preview = null;
+      finished = false;
       busy = false;
-      status.textContent = points.length ? 'Choose another must-pass point.' : 'Tap the map to choose your start.';
+      status.textContent = points.length ? config.hint : 'Tap the map to choose your start.';
       drawPath([]);
       render();
       return;
     }
     busy = true;
-    status.textContent = closeRequested ? 'Closing the draft on mapped walking paths…' : 'Connecting your selected points…';
+    status.textContent = finishRequested ? 'Finishing the draft on mapped walking paths…' : 'Connecting your selected points…';
     render();
 
+    const closeLoop = finishRequested && wantsLoop();
+    const outAndBack = finishRequested && shape === 'out-and-back';
     let result = null;
     let routeFailure = null;
     try{
       result = await walkingRouter.route(points, {
-        closeLoop:closeRequested,
+        closeLoop,
+        outAndBack,
         maxDistanceM:MAX_ROUTE_DISTANCE_M,
         timeoutMs:20000,
       });
     }catch(error){
       routeFailure = error;
-      result = await localFallback(closeRequested);
+      result = await localFallback(closeLoop);
     }
     if(version !== calculationVersion) return;
     busy = false;
     preview = result;
+    finished = Boolean(result) && finishRequested;
     drawPath(result ? result.path : []);
     status.textContent = result
-      ? (result.closed
+      ? (finished
         ? 'Draft ready. Check signs, access and current conditions before using it.'
-        : points.length < MIN_LOOP_POINTS
-          ? 'Preview ready. Add another must-pass point.'
+        : points.length < config.minPoints
+          ? `${config.hint} Add another point.`
           : points.length < MAX_POINTS
-            ? 'Preview ready. Close the loop now or add another must-pass point.'
-            : 'Eight points selected. Close the loop when the shape looks right.')
+            ? `Preview ready. Drag a point to adjust it, click the line to insert one, or press ${config.finishLabel.toLowerCase()}.`
+            : `${MAX_POINTS} points selected — press ${config.finishLabel.toLowerCase()} when the shape looks right.`)
       : failureMessage(routeFailure);
     render();
   }
@@ -464,6 +596,7 @@
     calculationVersion += 1;
     points = [];
     preview = null;
+    finished = false;
     selectedCoverage = null;
     editingId = null;
     busy = false;
@@ -478,10 +611,14 @@
     points = record.points.map(point => ({ ...point }));
     const match = entries().find(([id, entry]) => id === record.coverageId || entry.graphUrl === record.graphUrl);
     selectedCoverage = match ? { id:match[0], ...match[1] } : coverageFor(points[0]);
+    shape = SHAPES[record.shape] ? record.shape : 'loop';
+    finished = true;
     preview = {
       distanceM:record.distanceM,
+      ascentM:Number.isFinite(record.ascentM) ? record.ascentM : null,
       path:record.path.map(point => ({ lat:point[0], lng:point[1] })),
-      closed:true,
+      closed:shape !== 'point-to-point',
+      shape,
       source:record.source,
     };
     drawMarkers();
@@ -494,35 +631,64 @@
   }
 
   map.on('click', event => {
-    if(busy || (preview && preview.closed) || points.length >= MAX_POINTS) return;
+    if(busy || finished || points.length >= MAX_POINTS) return;
     const point = { lat:event.lngLat.lat, lng:event.lngLat.lng };
-    if(!points.length) selectedCoverage = coverageFor(point);
-    points.push(point);
+    if(!points.length){
+      selectedCoverage = coverageFor(point);
+      points.push(point);
+    }else{
+      // Clicking on (or very near) the drawn line inserts a point into that
+      // leg; clicking anywhere else extends the route from the last point.
+      const onLine = map.getLayer('draft-route-line')
+        && map.queryRenderedFeatures(event.point, { layers:['draft-route-line'] }).length > 0;
+      if(!(onLine && insertPointNearest(point))) points.push(point);
+    }
     drawMarkers();
     recalculate(false);
   });
+  map.on('mousemove', event => {
+    if(busy || finished || points.length < 2) return;
+    const onLine = map.getLayer('draft-route-line')
+      && map.queryRenderedFeatures(event.point, { layers:['draft-route-line'] }).length > 0;
+    map.getCanvas().style.cursor = onLine ? 'copy' : 'crosshair';
+  });
 
   undoButton.addEventListener('click', () => {
-    if(preview && preview.closed){ preview = null; recalculate(false); return; }
+    // Undo on a finished route reopens it for editing before it removes a
+    // point — otherwise finishing costs you the last leg you just placed.
+    if(finished){ finished = false; recalculate(false); return; }
     points.pop();
     selectedCoverage = points[0] ? coverageFor(points[0]) : null;
     drawMarkers();
     recalculate(false);
   });
   resetButton.addEventListener('click', reset);
-  closeButton.addEventListener('click', () => recalculate(true));
+  if(finishButton) finishButton.addEventListener('click', () => recalculate(true));
+  shapeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const next = button.dataset.plannerShape;
+      if(busy || !SHAPES[next] || next === shape) return;
+      shape = next;
+      finished = false;
+      preview = null;
+      drawMarkers();
+      recalculate(false);
+    });
+  });
   saveButton.addEventListener('click', () => {
-    if(!preview || !preview.closed) return;
+    if(!preview || !finished) return;
     const now = new Date().toISOString();
     const record = drafts.save({
-      id:editingId || `loop-${Date.now()}`,
-      name:`Draft loop · ${formatDistance(preview.distanceM)}`,
+      id:editingId || `${shape}-${Date.now()}`,
+      name:`Draft ${shapeConfig().label.toLowerCase()} · ${formatDistance(preview.distanceM)}`,
       createdAt:now,
       updatedAt:now,
       graphUrl:selectedCoverage ? selectedCoverage.graphUrl : '',
       coverageId:selectedCoverage ? selectedCoverage.id : '',
       source:preview.source,
+      shape,
       distanceM:preview.distanceM,
+      ascentM:Number.isFinite(preview.ascentM) ? preview.ascentM : null,
       points,
       path:preview.path.map(point => [point.lat, point.lng]),
     });

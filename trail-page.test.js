@@ -134,14 +134,17 @@ describe('trail page map controls', () => {
     expect(document.getElementById('detailLayersBtn')).not.toBeNull();
     const panel = document.getElementById('detailLayersPanel');
     expect(panel).not.toBeNull();
+    // Every POI group that is hidden by default has its own chip: things
+    // that used to be visible must be reachable, not merely gone.
     expect([...panel.querySelectorAll('button')].map(button => button.id)).toEqual([
-      'routesToggle', 'liftsToggle', 'veterinaryToggle', 'nearbyToggle',
+      'routesToggle', 'fountainsToggle', 'hutsToggle', 'foodToggle',
+      'placesToggle', 'liftsToggle', 'veterinaryToggle', 'nearbyToggle',
     ]);
-    expect(document.getElementById('fountainsToggle')).toBeNull();
-    expect(document.getElementById('hutsToggle')).toBeNull();
+    expect(document.getElementById('fountainsToggle').getAttribute('aria-pressed')).toBe('true');
+    expect(document.getElementById('hutsToggle').getAttribute('aria-pressed')).toBe('true');
     expect(document.getElementById('veterinaryToggle')).not.toBeNull();
-    expect(document.getElementById('foodToggle')).toBeNull();
-    expect(document.getElementById('placesToggle')).toBeNull();
+    expect(document.getElementById('foodToggle').getAttribute('aria-pressed')).toBe('false');
+    expect(document.getElementById('placesToggle').getAttribute('aria-pressed')).toBe('false');
     expect(document.getElementById('routePointToggle')).toBeNull();
     expect(html).not.toContain('Route to a mapped point');
   });
@@ -154,9 +157,12 @@ describe('trail page map controls', () => {
     const toggle = document.getElementById('routesToggle');
     expect(toggle.getAttribute('aria-pressed')).toBe('true');
     expect(toggle.className).toContain('on');
-    // The waymarked overlay starts visible on both interactive maps, and
-    // both carry the always-on base hillshade.
-    expect(trail).toContain("layout: { visibility: 'visible' }");
+    // The waymarked overlay starts visible on both interactive maps (via the
+    // shared map-style.js helper), and both carry the always-on hillshade.
+    expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map');
+    expect(home).toContain('ORMAMapStyle.addWaymarkedHiking(trailMapInstance');
+    expect(fs.readFileSync(path.join(__dirname, 'map-style.js'), 'utf8'))
+      .toContain("visibility: config.visible === false ? 'none' : 'visible'");
     expect(home).toContain('routes: true');
     expect(trail).toContain("id: 'base-hillshade'");
     expect(home).toContain("id: 'base-hillshade'");
@@ -578,33 +584,43 @@ describe('trail page map controls', () => {
     expect(document.getElementById('mobileMapHikeSlot')).not.toBeNull();
     expect(document.getElementById('routesToggle').getAttribute('aria-pressed')).toBe('true');
     expect(document.getElementById('routePointToggle')).toBeNull();
-    expect(document.getElementById('fountainsToggle')).toBeNull();
-    expect(document.getElementById('hutsToggle')).toBeNull();
-    expect(document.getElementById('foodToggle')).toBeNull();
-    expect(document.getElementById('placesToggle')).toBeNull();
-    expect(trail).toContain('const poiStates = { fountains: true, huts: true, food: true, places: true, veterinary: false }');
-    expect(detailPois.match(/visibility: 'visible'/g)).toHaveLength(2);
-    expect(trail).toContain('7, 0.10');
-    expect(trail).toContain('10, 0.14');
-    expect(trail).toContain('12, 0.20');
-    expect(trail).toContain('14, 0.64');
-    expect(trail).toContain('16, 0.92');
-    expect(trail).toContain("'raster-saturation': -0.90");
-    expect(trail).toContain("'raster-contrast': 0.38");
-    expect(trail).toContain("'line-color': '#FFFDF7', 'line-width': 17");
+    // Water and huts start on; food and points of interest are one tap away.
+    expect(document.getElementById('fountainsToggle').getAttribute('aria-pressed')).toBe('true');
+    expect(document.getElementById('hutsToggle').getAttribute('aria-pressed')).toBe('true');
+    expect(document.getElementById('foodToggle').getAttribute('aria-pressed')).toBe('false');
+    expect(document.getElementById('placesToggle').getAttribute('aria-pressed')).toBe('false');
+    expect(trail).toContain('const poiStates = { fountains: true, huts: true, food: false, places: false, veterinary: false }');
+    expect(detailPois).toContain("const DEFAULT_VISIBLE_GROUPS = new Set(['water', 'huts'])");
+    // Collision handling on the POI symbols: ~40 identical pins over a 7.5 km
+    // route made the route the least visible thing on the map.
+    expect(detailPois).toContain("'icon-allow-overlap': false");
+    expect(detailPois).toContain("'icon-padding': 12");
+    // Waymarked overlay is drawn by the shared helper, in its own colours.
+    expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId })');
+    expect(trail).toContain('ORMAMapStyle.quietBasemap(map)');
+    expect(trail).not.toContain("'raster-saturation': -0.90");
+    expect(trail).not.toContain("'raster-contrast': 0.38");
     expect(trail).toContain("return score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25'");
-    expect(trail).toContain("'line-color': selectedRouteColor, 'line-width': 13");
-    expect(trail).toMatch(/id: 'single-trail-path-casing'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
-    expect(trail).toMatch(/id: 'single-trail-path-line'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
+    // The route contours the marked path instead of covering it: it goes in
+    // BELOW the waymarked raster, so that raster draws down its middle.
+    expect(trail).toContain("ORMAMapStyle.addRouteLine(map, {");
+    expect(trail).toContain("id: 'single-trail-path-line',");
+    expect(trail).toContain('color: selectedRouteColor,');
+    expect(trail).toContain('beforeId: window.ORMAMapStyle.WAYMARKED_LAYER,');
     expect(trail).toContain("'line-color': '#858D88'");
-    expect(trail).toContain("id:'single-trail-route-number'");
-    expect(trail).toContain("source:'single-trail-route-refs'");
-    expect(trail).toContain('window.DoloPawsTrailRouteRefs.addShieldLayer');
-    expect(trail).toMatch(/id:'single-trail-route-number'[\s\S]*?beforeId:firstLabelLayer && firstLabelLayer\.id/);
+    // No ORMA route-number shields on the detail map. The route now
+    // highlights the marked path from underneath, so Waymarked's own numbers
+    // are visible on it and ours would only be duplicates fighting for space.
+    expect(trail).not.toContain("id:'single-trail-route-number'");
+    expect(trail).not.toContain('window.DoloPawsTrailRouteRefs.addShieldLayer');
     expect(html).toContain('.td2-hero{background:#243128;color:#EAF1E8;position:relative;overflow:visible;z-index:2;}');
-    expect(trail).toContain("}, firstLabelLayer ? firstLabelLayer.id : undefined);");
-    expect(trail).toContain("'raster-resampling': 'linear'");
-    expect(trail).toContain("'raster-fade-duration': 120");
+    // Overlays still slot in below the first label layer so place names
+    // stay on top in flat and 3D alike.
+    expect(trail).toContain('const firstLabelId = window.ORMAMapStyle.firstLabelLayerId(map)');
+    expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId })');
+    const mapStyle = fs.readFileSync(path.join(__dirname, 'map-style.js'), 'utf8');
+    expect(mapStyle).toContain("'raster-resampling': 'linear'");
+    expect(mapStyle).toContain("'raster-fade-duration': 120");
     expect(trail).not.toContain("element.textContent = '✓'");
     expect(trail).not.toContain("markerElement('join')");
     expect(detailPois).toContain("'text-field': ['coalesce', ['get', 'name'], '']");

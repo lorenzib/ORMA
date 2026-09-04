@@ -94,7 +94,7 @@ function loadHomepageContext(testTrails){
     t: tForTests,
     scoreTrail: () => 80,
     recommendTrail: () => ({
-      scoringVersion: '1.1.0',
+      scoringVersion: '1.2.0',
       score: 80,
       category: 'possible-with-cautions',
       confidence: 'low',
@@ -418,30 +418,27 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toMatch(/id: 'guest-trail-paths-orma-line'[\s\S]*?'line-color': \[[\s\S]*?'low-risk', '#4A7856'[\s\S]*?'moderate', '#C98A2E'[\s\S]*?'caution', '#9C3A25'[\s\S]*?guestFirstLabel \? guestFirstLabel\.id : undefined\);/);
     expect(script).toContain("guestMapInstance.moveLayer('waymarked-hiking-layer', guestFirstLabel.id)");
     expect(script).not.toContain("trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id)");
-    expect(trailScript).toMatch(/id: 'single-trail-path-line'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
+    // The selected route is now a zoom-scaled cased pair from map-style.js.
+    expect(trailScript).toContain('ORMAMapStyle.addRouteLine(map, {');
     expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script.match(/7, 0\.10/g)).toHaveLength(1);
-    expect(script.match(/10, 0\.14/g)).toHaveLength(1);
-    expect(script.match(/12, 0\.20/g)).toHaveLength(1);
-    expect(script.match(/14, 0\.52/g)).toHaveLength(1);
-    expect(script.match(/16, 0\.72/g)).toHaveLength(1);
-    expect(script.match(/'raster-saturation': -1/g)).toHaveLength(1);
-    expect(script.match(/'raster-contrast': 0\.20/g)).toHaveLength(1);
-    expect(script).toContain('7, 0.16');
-    expect(script).toContain('16, 0.95');
+    // Both homepage maps now share one Waymarked treatment instead of two
+    // hand-tuned desaturation blocks that greyed the network into mush.
+    expect(script).toContain('ORMAMapStyle.addWaymarkedHiking(guestMapInstance');
+    expect(script).toContain('ORMAMapStyle.addWaymarkedHiking(trailMapInstance');
+    expect(script).not.toContain("'raster-saturation': -1");
+    expect(script).not.toContain("'raster-contrast': 0.20");
     expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': \['interpolate'[\s\S]*?13, 13, 16, 16/);
     expect(script).toMatch(/id: 'trail-paths-mapped-line'[\s\S]*?'line-color': \[[\s\S]*?'step'[\s\S]*?65, '#C98A2E', 85, '#4A7856'[\s\S]*?13, 5, 16, 7/);
     expect(script).not.toContain("id: 'trail-clusters'");
     expect(script).not.toContain("id: 'trail-cluster-count'");
     expect(script).not.toContain('clusterMinPoints');
     expect(script).not.toContain('getClusterExpansionZoom(feature.properties.cluster_id)');
-    expect(trailScript).toContain("7, 0.10");
-    expect(trailScript).toContain("10, 0.14");
-    expect(trailScript).toContain("12, 0.20");
-    expect(trailScript).toContain("14, 0.64");
-    expect(trailScript).toContain("16, 0.92");
-    expect(trailScript).toContain("'raster-saturation': -0.90");
-    expect(trailScript).toContain("'raster-resampling': 'linear'");
-    expect(trailScript).toContain("'raster-contrast': 0.38");
+    expect(trailScript).toContain('ORMAMapStyle.addWaymarkedHiking(map');
+    expect(trailScript).not.toContain("'raster-saturation': -0.90");
+    expect(trailScript).not.toContain("'raster-contrast': 0.38");
+    const mapStyle = fs.readFileSync(path.join(__dirname, 'map-style.js'), 'utf8');
+    expect(mapStyle).toContain("'raster-resampling': 'linear'");
+    expect(mapStyle).toContain("'raster-saturation': 0");
+    expect(mapStyle).toContain('14, 0.88');
   });
 });

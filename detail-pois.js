@@ -17,6 +17,12 @@
  */
 
 function initDetailPois(map, trail){
+  // What a dog walker needs unprompted is water and shelter. Food and
+  // sightseeing are planning extras and now start behind the Layers control
+  // rather than covering the route on first paint.
+  // Group names here match the icon-system's ('water'), not trail.js's
+  // chip key for the same layer ('fountains').
+  const DEFAULT_VISIBLE_GROUPS = new Set(['water', 'huts']);
   if (!trail || typeof trail.lat !== 'number' || typeof trail.lng !== 'number') return;
   const icons = window.DoloPawsIcons;
   const iconMinZoom = icons ? icons.ICON_MIN_ZOOM : 12;
@@ -109,12 +115,12 @@ function initDetailPois(map, trail){
       source: sourceId,
       filter: ['!', ['has', 'point_count']],
       maxzoom: iconMinZoom,
-      layout: { visibility: 'visible' },
+      layout: { visibility: DEFAULT_VISIBLE_GROUPS.has(group) ? 'visible' : 'none' },
       paint: {
-        'circle-radius': 5.5,
+        'circle-radius': 4,
         'circle-color': circleColor,
-        'circle-opacity': 0.85,
-        'circle-stroke-width': 1.5,
+        'circle-opacity': 0.7,
+        'circle-stroke-width': 1.25,
         'circle-stroke-color': '#fff',
       },
     });
@@ -125,19 +131,26 @@ function initDetailPois(map, trail){
       filter: ['!', ['has', 'point_count']],
       minzoom: iconMinZoom,
       layout: {
-        visibility: 'visible',
+        visibility: DEFAULT_VISIBLE_GROUPS.has(group) ? 'visible' : 'none',
         'icon-image': icons ? icons.getPoiMapIconExpression(group) : '',
-        'icon-size': 1,
-        'icon-padding': 4,
+        'icon-size': 0.82,
+        // Collision on, generous padding: the previous settings let ~40
+        // identical pins stack over a 7.5 km route until the route itself
+        // was the least visible thing on the map.
+        'icon-padding': 12,
+        'icon-allow-overlap': false,
+        'icon-optional': false,
         'text-field': ['coalesce', ['get', 'name'], ''],
         'text-font': ['Noto Sans Regular'],
         'text-size': 11,
         'text-anchor': 'top',
-        'text-offset': [0, 1.25],
+        'text-offset': [0, 1.15],
         'text-max-width': 12,
+        'text-padding': 4,
         'text-optional': true,
       },
       paint: {
+        'icon-opacity': 0.92,
         'text-color': '#243128',
         'text-halo-color': 'rgba(255,255,255,.96)',
         'text-halo-width': 2,

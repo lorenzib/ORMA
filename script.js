@@ -644,32 +644,13 @@ function initGuestMap(){
   guestMapInstance.on('load', async () => {
     if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(guestMapInstance);
     addTerrainSource(guestMapInstance);
-    // Keep the public walking network as quiet, grey context around ORMA routes.
-    const guestFirstLabel = guestMapInstance.getStyle().layers.find(l => l.type === 'symbol');
-    guestMapInstance.addSource('waymarked-hiking', {
-      type: 'raster',
-      tiles: ['https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png'],
-      tileSize: 256,
-      attribution: '© Sarah Hoffmann (CC-BY-SA) — waymarkedtrails.org',
-    });
-    guestMapInstance.addLayer({
-      id: 'waymarked-hiking-layer',
-      type: 'raster',
-      source: 'waymarked-hiking',
-      paint: {
-        'raster-opacity': [
-          'interpolate', ['linear'], ['zoom'],
-          7, 0.16,
-          10, 0.25,
-          12, 0.45,
-          14, 0.82,
-          16, 0.95,
-        ],
-        'raster-saturation': -0.72,
-        'raster-contrast': 0.36,
-        'raster-resampling': 'nearest',
-      },
-    }, guestFirstLabel ? guestFirstLabel.id : undefined);
+    // The marked walking network is the map's subject, not its wallpaper:
+    // drawn in Waymarked's own colours by map-style.js so their route lines
+    // and numbered shields stay readable. Shop/ATM/road-shield noise from the
+    // base style is turned down instead.
+    const guestFirstLabel = { id: window.ORMAMapStyle.firstLabelLayerId(guestMapInstance) };
+    window.ORMAMapStyle.quietBasemap(guestMapInstance);
+    window.ORMAMapStyle.addWaymarkedHiking(guestMapInstance, { beforeId: guestFirstLabel.id });
     addBaseHillshade(guestMapInstance, 'waymarked-hiking-layer');
     increaseLabelDensity(guestMapInstance);
     preventTransitPoiDuplication(guestMapInstance);
@@ -885,34 +866,12 @@ function initTrailMap(){
     // that join later without rebuilding the controls.
     const allLiftMarkers = [];
     
-    // Public marked routes stay fully grey and quiet so the map remains useful
-    // as context rather than becoming a wall of competing route colours.
-    const firstLabelLayer = trailMapInstance.getStyle().layers.find(l => l.type === 'symbol');
-    trailMapInstance.addSource('waymarked-hiking', {
-      type: 'raster',
-      tiles: ['https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png'],
-      tileSize: 256,
-      attribution: '© Sarah Hoffmann (CC-BY-SA) — waymarkedtrails.org',
-    });
-    trailMapInstance.addLayer({
-      id: 'waymarked-hiking-layer',
-      type: 'raster',
-      source: 'waymarked-hiking',
-      layout: { visibility: 'visible' },
-      paint: {
-        'raster-opacity': [
-          'interpolate', ['linear'], ['zoom'],
-          7, 0.10,
-          10, 0.14,
-          12, 0.20,
-          14, 0.52,
-          16, 0.72,
-        ],
-        'raster-saturation': -1,
-        'raster-contrast': 0.20,
-        'raster-resampling': 'linear',
-      },
-    }, firstLabelLayer ? firstLabelLayer.id : undefined);
+    // Public marked routes in their own colours — this network is what the
+    // hiking paths are actually based on, so it has to be readable rather
+    // than washed to grey. See map-style.js.
+    const firstLabelLayer = { id: window.ORMAMapStyle.firstLabelLayerId(trailMapInstance) };
+    window.ORMAMapStyle.quietBasemap(trailMapInstance);
+    window.ORMAMapStyle.addWaymarkedHiking(trailMapInstance, { beforeId: firstLabelLayer.id });
     addBaseHillshade(trailMapInstance, 'waymarked-hiking-layer');
     
     trailMapInstance.addSource('trail-paths', {
@@ -1018,22 +977,26 @@ function initTrailMap(){
     trailMapInstance.addSource('trail-selected-route', {
       type:'geojson', data:{ type:'FeatureCollection', features:[] },
     });
-    trailMapInstance.addSource('trail-selected-route-refs', {
-      type:'geojson', data:{ type:'FeatureCollection', features:[] },
-    });
+    // The chosen walk is a highlight UNDER the hiking network, matching the
+    // detail page: a white casing and a translucent match-colour corridor,
+    // with the waymarked raster drawing on top. Waymarked's own line and its
+    // numbered shields then run down the middle, so the numbers a walker
+    // actually follows stay readable instead of being covered and reprinted.
+    // (The catalogue rails above deliberately mask the raster and keep their
+    // own shields — they are "which trails exist", not "this is your route".)
     trailMapInstance.addLayer({
       id:'trail-selected-route-casing', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
-      paint:{ 'line-color':'#FFFDF7', 'line-width':['interpolate',['linear'],['zoom'],8,9,12,14,16,18], 'line-opacity':0.97 },
-    }, firstLabelLayer ? firstLabelLayer.id : undefined);
+      paint:{ 'line-color':'#FFFFFF', 'line-width':['interpolate',['linear'],['zoom'],8,10,12,16,14,23,17,33], 'line-opacity':0.9 },
+    }, 'waymarked-hiking-layer');
     trailMapInstance.addLayer({
       id:'trail-selected-route-line', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
       paint:{
         'line-color':['coalesce',['get','routeColor'],'#4A7856'],
-        'line-width':['interpolate',['linear'],['zoom'],8,5,12,9,16,13], 'line-opacity':1,
+        'line-width':['interpolate',['linear'],['zoom'],8,7,12,12,14,18,17,26], 'line-opacity':0.55,
       },
-    }, firstLabelLayer ? firstLabelLayer.id : undefined);
+    }, 'waymarked-hiking-layer');
     trailMapInstance.addLayer({
       id:'trail-selected-route-arrows', type:'symbol', source:'trail-selected-route',
       layout:{
@@ -1047,12 +1010,9 @@ function initTrailMap(){
         'text-halo-width':2,
       },
     }, firstLabelLayer ? firstLabelLayer.id : undefined);
-    if(window.DoloPawsTrailRouteRefs){
-      window.DoloPawsTrailRouteRefs.addShieldLayer(trailMapInstance, {
-        id:'trail-selected-route-number', source:'trail-selected-route-refs',
-        beforeId:firstLabelLayer && firstLabelLayer.id,
-      });
-    }
+    // No ORMA shields on the selected route: the raster now draws above the
+    // highlight, so Waymarked's real route numbers are visible on it and a
+    // second set of ours would only fight them for space.
     // Wide, near-invisible twin of the route line so a fingertip (or a
     // slightly-off cursor) still hits the trail — 3px is too thin a target.
     trailMapInstance.addLayer({
@@ -1406,10 +1366,6 @@ function setSelectedTrailRoute(trail, options){
       geometry:{ type:'LineString', coordinates:route.map(([lat, lng]) => [lng, lat]) },
     }] : [],
   });
-  const refs = visible && window.DoloPawsTrailRouteRefs
-    ? window.DoloPawsTrailRouteRefs.featuresForTrail(trail) : [];
-  const refsSource = trailMapInstance.getSource('trail-selected-route-refs');
-  if(refsSource) refsSource.setData({ type:'FeatureCollection', features:refs });
   // Remove the selected feature from the broad homepage route stack while it
   // is focused. Otherwise its purple mapped-route rail remains visible and
   // fights the clean detail-map treatment above it.
@@ -1419,7 +1375,7 @@ function setSelectedTrailRoute(trail, options){
       trailMapInstance.setFilter(layerId, visible ? ['!=', ['get','id'], trail.id] : null);
     }
   });
-  ['trail-selected-route-casing','trail-selected-route-line','trail-selected-route-number'].forEach(layerId => {
+  ['trail-selected-route-casing','trail-selected-route-line'].forEach(layerId => {
     if(trailMapInstance.getLayer(layerId)) trailMapInstance.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
   });
   const isLoop = visible && liRouteDistanceMeters(route[0], route[route.length - 1]) <= 75;
@@ -3427,7 +3383,7 @@ function addWaterSourcesLayers(map) {
       layout: {
         visibility: 'none',  // ← ADDED: Default hidden
         'text-field': ['get', 'point_count'],
-        'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+        'text-font': ['Noto Sans Bold'],
         'text-size': 12
       },
       paint: {
@@ -3903,7 +3859,7 @@ function addPoiLayerSet(map, sourceId, prefix, circleColor, clusterColor, iconGr
       layout: {
         visibility: 'none',
         'text-field': ['get', 'point_count'],
-        'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+        'text-font': ['Noto Sans Bold'],
         'text-size': 12
       },
       paint: { 'text-color': '#fff' }

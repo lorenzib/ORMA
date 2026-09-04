@@ -95,7 +95,10 @@ describe('editorial trail collections', () => {
     expect(detail).toContain('collectionTrailMap');
     expect(detail).toContain("map.addSource('collection-routes'");
     expect(detail).toContain("map.addSource('collection-waymarked-hiking'");
-    expect(detail).toContain("paint:{ 'raster-opacity':1, 'raster-resampling':'linear' }");
+    // Full strength at trail zoom, eased back across a whole region so
+    // several collection routes stay distinguishable from each other.
+    expect(detail).toContain("'raster-opacity':['interpolate',['linear'],['zoom'],7,.45,10,.7,12,.88,14,1]");
+    expect(detail).toContain("ORMAMapStyle.quietBasemap(map)");
     expect(detail).toContain("}, 'collection-waymarked-hiking-layer');");
     expect(detail).toContain("addPoiLayers(map, 'rifugi'");
     expect(detail).toContain("addPoiLayers(map, 'water'");

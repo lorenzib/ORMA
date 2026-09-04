@@ -8,7 +8,7 @@
     return point && Number.isFinite(Number(point.lng)) && Number.isFinite(Number(point.lat));
   }
 
-  function normalisePoints(points, closeLoop){
+  function normalisePoints(points, closeLoop, outAndBack){
     const routePoints = (points || []).filter(validPoint).map(point => ({
       lng:Number(point.lng),
       lat:Number(point.lat),
@@ -17,6 +17,14 @@
       const first = routePoints[0];
       const last = routePoints[routePoints.length - 1];
       if(first.lng !== last.lng || first.lat !== last.lat) routePoints.push({ ...first });
+    }
+    // Out-and-back: send the return leg to the router too, rather than
+    // mirroring the line locally. The router then reports the real distance
+    // and the real climb for the whole walk, including the way home.
+    if(outAndBack && !closeLoop && routePoints.length > 1){
+      for(let index = routePoints.length - 2; index >= 0; index -= 1){
+        routePoints.push({ ...routePoints[index] });
+      }
     }
     return routePoints;
   }
@@ -43,7 +51,7 @@
 
   async function route(points, options){
     const settings = options || {};
-    const routePoints = normalisePoints(points, Boolean(settings.closeLoop));
+    const routePoints = normalisePoints(points, Boolean(settings.closeLoop), Boolean(settings.outAndBack));
     if(routePoints.length < 2) throw routeError('Choose at least two points.', 'too-few-points');
 
     const endpoint = settings.endpoint || DEFAULT_ENDPOINT;
@@ -91,10 +99,18 @@
     if(Number.isFinite(settings.maxDistanceM) && distanceM > settings.maxDistanceM){
       throw routeError('That draft is longer than the current 30 km planning limit.', 'too-long');
     }
+    // BRouter reports climb as "filtered ascend" (noise-filtered) and
+    // "plain-ascend" (raw). The filtered figure is the one worth showing.
+    const properties = feature.properties || {};
+    const ascentValue = Number(properties['filtered ascend'] !== undefined
+      ? properties['filtered ascend']
+      : properties['plain-ascend']);
     return {
       path,
       distanceM,
-      closed:Boolean(settings.closeLoop),
+      ascentM:Number.isFinite(ascentValue) ? ascentValue : null,
+      closed:Boolean(settings.closeLoop) || Boolean(settings.outAndBack),
+      shape:settings.closeLoop ? 'loop' : (settings.outAndBack ? 'out-and-back' : 'point-to-point'),
       source:'openstreetmap-brouter',
     };
   }
