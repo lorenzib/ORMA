@@ -1,271 +1,30 @@
 {
   "contractVersion": "1.0.0",
-  "checkedAt": "2026-09-02T10:37:57.982Z",
+  "checkedAt": "2026-09-04T21:19:27.559Z",
   "summary": {
-    "active": 2,
+    "active": 0,
     "awaitingRemovalReview": 0,
-    "automaticallyRemoved": 30,
-    "sourceFailures": 0
+    "automaticallyRemoved": 0,
+    "sourceFailures": 2
   },
   "sources": [
     {
       "key": "meteoalarm-italy",
       "label": "MeteoAlarm Italy",
       "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-      "ok": true,
-      "completeSnapshot": true,
-      "alertsRead": 17
+      "ok": false,
+      "alertsRead": 0,
+      "error": "fetch failed"
     },
     {
       "key": "meteoalarm-france",
       "label": "MeteoAlarm France",
       "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france",
-      "ok": true,
-      "completeSnapshot": true,
-      "alertsRead": 5
+      "ok": false,
+      "alertsRead": 0,
+      "error": "fetch failed"
     }
   ],
-  "automaticRemovals": [
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.057",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Rain warning for Friuli Venezia Giulia",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260820122240.076",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Rain warning for Friuli Venezia Giulia",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.119",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Rain warning for Friuli Venezia Giulia",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.059",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Rain warning for Trentino Alto Adige",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260820122240.072",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Rain warning for Trentino Alto Adige",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.117",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Rain warning for Trentino Alto Adige",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.055",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Rain warning for Veneto",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260820122240.074",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Rain warning for Veneto",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.121",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Rain warning for Veneto",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.058",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Friuli Venezia Giulia",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260820122240.075",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Friuli Venezia Giulia",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.120",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Friuli Venezia Giulia",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.060",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Trentino Alto Adige",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260820122240.071",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Trentino Alto Adige",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.118",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Trentino Alto Adige",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260819120322.056",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Veneto",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260820122240.073",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Veneto",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260821101555.122",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Veneto",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-france:2.49.0.0.250.0.FR.20260819060026.367022",
-      "sourceKey": "meteoalarm-france",
-      "sourceLabel": "MeteoAlarm France",
-      "title": "rain-flood warning for Savoie",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260820122240.088",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Friuli Venezia Giulia",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260823105339.039",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Friuli Venezia Giulia",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-france:2.49.0.0.250.0.FR.20260819060028.816023",
-      "sourceKey": "meteoalarm-france",
-      "sourceLabel": "MeteoAlarm France",
-      "title": "thunderstorm warning for Savoie",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-france:2.49.0.0.250.0.FR.20260821060304.586023",
-      "sourceKey": "meteoalarm-france",
-      "sourceLabel": "MeteoAlarm France",
-      "title": "thunderstorm warning for Savoie",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-france:2.49.0.0.250.0.FR.20260820220346.562023",
-      "sourceKey": "meteoalarm-france",
-      "sourceLabel": "MeteoAlarm France",
-      "title": "thunderstorm warning for Savoie",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-france:2.49.0.0.250.0.FR.20260821160033.305023",
-      "sourceKey": "meteoalarm-france",
-      "sourceLabel": "MeteoAlarm France",
-      "title": "thunderstorm warning for Savoie",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-france:2.49.0.0.250.0.FR.20260824060240.143023",
-      "sourceKey": "meteoalarm-france",
-      "sourceLabel": "MeteoAlarm France",
-      "title": "thunderstorm warning for Savoie",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260820122240.084",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Trentino Alto Adige",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260823105339.035",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Trentino Alto Adige",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260820122240.086",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Veneto",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    },
-    {
-      "hazardId": "meteoalarm-italy:2.49.0.0.380.3.IT.260823105339.037",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "title": "Thunderstorm warning for Veneto",
-      "removedAt": "2026-09-02T10:37:57.982Z",
-      "reason": "absent-from-complete-authoritative-snapshot"
-    }
-  ],
+  "automaticRemovals": [],
   "policy": "Authoritative warnings may be added automatically. A warning absent from a complete successful authoritative snapshot is removed automatically. Source failure never means safe."
 }

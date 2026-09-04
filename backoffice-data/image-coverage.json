@@ -1,11 +1,11 @@
 {
   "contractVersion": "2.0.0",
-  "generatedAt": "2026-08-25T16:56:55.857Z",
+  "generatedAt": "2026-09-03T10:00:05.787Z",
   "mode": "trail-photo-coverage-audit",
   "publicMutationAllowed": false,
   "library": {
     "ormaRoot": "images/",
-    "ormaAssetsScanned": 136,
+    "ormaAssetsScanned": 158,
     "personalLibraryConnected": false,
     "personalAssetsScanned": 0
   },

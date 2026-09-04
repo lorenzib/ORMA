@@ -3,7 +3,7 @@
 const { validateTrailRecord, REVIEW_CATEGORIES } = require('./trail-schema');
 const evidence = require('../trust/evidence-v1.js');
 
-const ADAPTER_VERSION = '1.0.0';
+const ADAPTER_VERSION = '1.1.0';
 const UNKNOWN_ROOTS = new Set([
   'metrics', 'trailhead', 'suitability', 'waypoints', 'content', 'sources',
   'verification', 'freshness', 'provenance',
@@ -384,6 +384,15 @@ function adaptLegacyTrail(legacy, options = {}){
     surfaceHazards: Array.isArray(legacy.surfaceHazards)
       ? legacy.surfaceHazards.map(String).filter(Boolean) : [],
     dogAccess: dogAccessFor(legacy),
+    // Behaviour attributes are declared unknown rather than inferred. A
+    // description that mentions cattle is evidence of a sentence, not of
+    // grazing on the day someone walks it, so these stay unknown until the
+    // review workflow records them.
+    livestockPresence: 'unknown',
+    wildlifePresence: 'unknown',
+    sightlines: 'unknown',
+    roadProximity: 'unknown',
+    crowding: 'unknown',
   };
   const exclusionReasons = publicationDiagnostics(legacy, stats, metrics);
   const start = legacy.startPoint
@@ -420,7 +429,7 @@ function adaptLegacyTrail(legacy, options = {}){
     .filter(Boolean);
 
   const record = {
-    schemaVersion: '1.0.0',
+    schemaVersion: '1.1.0',
     recordVersion: 1,
     id: String(legacy.id || ''),
     slug: options.slug || slugify(legacy.name) || slugify(legacy.id),
@@ -440,6 +449,9 @@ function adaptLegacyTrail(legacy, options = {}){
     metrics,
     suitability,
     waypoints: waterPoints,
+    // Legacy sources carry no positioned advisories. An empty list states
+    // that none is recorded, which is different from claiming none exists.
+    segments: [],
     content: {
       summary: typeof legacy.desc === 'string' && legacy.desc.trim() ? legacy.desc : null,
       tips: typeof legacy.tips === 'string' && legacy.tips.trim() ? legacy.tips : null,

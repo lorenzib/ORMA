@@ -8,6 +8,7 @@
     { id: 'basics', label: 'Basics' },
     { id: 'breed',  label: 'Breed & Size' },
     { id: 'health', label: 'Health' },
+    { id: 'behaviour', label: 'Behaviour' },
     { id: 'review', label: 'Review' },
   ];
 
@@ -46,6 +47,7 @@
       name: '', ageBand: '',
       breed: '', breedOther: '', weightBand: '', fitness: '',
       conditions: [], healthNotes: '', photo: null,
+      behaviour: {}, preferredDurationMin: '',
     };
   }
 
@@ -87,6 +89,59 @@
     ['15-20', '15–20 kg'], ['20-30', '20–30 kg'], ['30-40', '30–40 kg'],
     ['40-55', '40–55 kg'], ['55plus', 'Over 55 kg'],
   ];
+  // Each scale is ordered easiest-to-hardest, matching
+  // scoring/recommendation-v1.js. Leaving one blank is meaningful: the
+  // scorer stays silent about that trait rather than assuming the easy end.
+  // Each scale is ordered easiest-to-hardest, matching
+  // scoring/recommendation-v1.js. Leaving one blank is meaningful: the
+  // scorer stays silent about that trait rather than assuming the easy end.
+  var BEHAVIOUR_FIELDS = [
+    ['recall', 'Recall off-lead', [
+      ['reliable', 'Reliable, comes back first time'],
+      ['variable', 'Variable, usually but not always'],
+      ['unreliable', 'Unreliable, stays on the lead'],
+    ]],
+    ['reactivity', 'Reactivity to dogs or people', [
+      ['none', 'Relaxed, takes others in their stride'],
+      ['mild', 'Mild, needs a little space'],
+      ['strong', 'Strong, needs real distance'],
+    ]],
+    ['preyDrive', 'Prey drive', [
+      ['low', 'Low, ignores wildlife'],
+      ['moderate', 'Moderate, notices and follows'],
+      ['high', 'High, will chase given the chance'],
+    ]],
+    ['livestockComfort', 'Around livestock', [
+      ['confident', 'Confident, settled around stock'],
+      ['cautious', 'Unsure, wary or over-interested'],
+      ['reactive', 'Reactive, barks or lunges'],
+    ]],
+    ['trafficComfort', 'Around traffic', [
+      ['confident', 'Confident, ignores passing vehicles'],
+      ['cautious', 'Unsure, startles near roads'],
+      ['reactive', 'Reactive, bolts or lunges at vehicles'],
+    ]],
+    ['crowdComfort', 'In crowds', [
+      ['confident', 'Confident, fine on a busy path'],
+      ['cautious', 'Unsure, prefers quieter routes'],
+      ['reactive', 'Reactive, needs to avoid busy trails'],
+    ]],
+    ['heatTolerance', 'Heat tolerance', [
+      ['robust', 'Robust, copes well in warm weather'],
+      ['average', 'Average, slows down when it is hot'],
+      ['low', 'Low, struggles in the heat'],
+    ]],
+  ];
+  var DURATION_OPTIONS = [
+    ['30', 'About 30 minutes'], ['60', 'About 1 hour'], ['90', 'About 1.5 hours'],
+    ['120', 'About 2 hours'], ['180', 'About 3 hours'], ['240', '4 hours or more'],
+  ];
+  var BEHAVIOUR_LABELS = {};
+  BEHAVIOUR_FIELDS.forEach(function (f) {
+    BEHAVIOUR_LABELS[f[0]] = {};
+    f[2].forEach(function (o) { BEHAVIOUR_LABELS[f[0]][o[0]] = o[1].split(', ')[0]; });
+  });
+
   var CONDITION_OPTIONS = [
     ['joints', 'Joint or mobility issues (hip or elbow dysplasia, arthritis, luxating patella)'],
     ['back', 'Back or disc problems (e.g. IVDD)'],
@@ -337,6 +392,7 @@
     if (step.id === 'basics')  renderBasicsStep();
     else if (step.id === 'breed')  renderBreedStep();
     else if (step.id === 'health') renderHealthStep();
+    else if (step.id === 'behaviour') renderBehaviourStep();
     else if (step.id === 'review') renderReviewStep();
   }
 
@@ -584,6 +640,45 @@
     notesEl.addEventListener('input', function () { data.healthNotes = notesEl.value; isDirty = true; });
   }
 
+  function renderBehaviourStep() {
+    function selectFor(key, label, options, value) {
+      return '<div class="dw-field-group">' +
+          '<label class="dw-label" for="dwB_' + key + '">' +
+            esc(label) + ' <span class="dw-optional">(optional)</span>' +
+          '</label>' +
+          '<select class="dw-select" id="dwB_' + key + '" data-behaviour-key="' + key + '">' +
+            '<option value="">Not sure yet\u2026</option>' +
+            options.map(function (o) {
+              return '<option value="' + o[0] + '"' +
+                (value === o[0] ? ' selected' : '') + '>' + o[1] + '</option>';
+            }).join('') +
+          '</select>' +
+        '</div>';
+    }
+
+    bodyEl.innerHTML =
+      '<p class="dw-step-hint">These shape where a route is safe for your dog, not just how hard it is. ' +
+      'Every answer is optional. Leave one blank and ORMA stays quiet about it rather than guessing.</p>' +
+      BEHAVIOUR_FIELDS.map(function (f) {
+        return selectFor(f[0], f[1], f[2], data.behaviour[f[0]]);
+      }).join('') +
+      selectFor('preferredDurationMin', 'Preferred walk length', DURATION_OPTIONS, data.preferredDurationMin);
+
+    bodyEl.querySelectorAll('select[data-behaviour-key]').forEach(function (sel) {
+      sel.addEventListener('change', function () {
+        var key = sel.dataset.behaviourKey;
+        isDirty = true;
+        if (key === 'preferredDurationMin') {
+          data.preferredDurationMin = sel.value;
+          return;
+        }
+        if (sel.value) data.behaviour[key] = sel.value;
+        else delete data.behaviour[key];
+      });
+    });
+    focusFirstIn(bodyEl);
+  }
+
   function renderReviewStep() {
     var breedDisplay = data.breed === OTHER_VALUE ? data.breedOther : data.breed;
     var fitMap = { low: 'Low', moderate: 'Moderate', high: 'High' };
@@ -608,6 +703,21 @@
         '</div>'
       : '';
 
+    var behaviourRows = BEHAVIOUR_FIELDS
+      .filter(function (f) { return data.behaviour[f[0]]; })
+      .map(function (f) { return row(f[1], BEHAVIOUR_LABELS[f[0]][data.behaviour[f[0]]]); })
+      .join('');
+    var durationLabel = (DURATION_OPTIONS.filter(function (o) {
+      return o[0] === data.preferredDurationMin;
+    })[0] || [])[1] || '';
+    if (durationLabel) behaviourRows += row('Preferred walk length', durationLabel);
+    var behaviourSection = behaviourRows
+      ? '<div class="dw-review-section">' +
+          '<div class="dw-review-title">Behaviour</div>' +
+          '<div class="dw-review-rows">' + behaviourRows + '</div>' +
+        '</div>'
+      : '';
+
     bodyEl.innerHTML =
       '<p class="dw-step-hint">Review your dog\'s profile before saving.</p>' +
       '<div class="dw-review-card">' +
@@ -627,6 +737,7 @@
           '</div>' +
         '</div>' +
         healthSection +
+        behaviourSection +
       '</div>';
   }
 
@@ -749,6 +860,12 @@
   // script.js and trail.js read it with zero translation.
   function buildProfile() {
     var conditions = data.conditions.slice();
+    var behaviour = {};
+    Object.keys(data.behaviour).forEach(function (key) {
+      if (data.behaviour[key]) behaviour[key] = data.behaviour[key];
+    });
+    var minutes = parseInt(data.preferredDurationMin, 10);
+    if (minutes > 0) behaviour.preferredDurationMin = minutes;
     return {
       name:       data.name.trim(),
       breed:      data.breed === OTHER_VALUE ? data.breedOther.trim() : String(data.breed || '').trim(),
@@ -759,6 +876,7 @@
       conditions: conditions,
       healthNotes: data.healthNotes.trim(),
       photo:      isDogPhoto(data.photo) ? data.photo : null,
+      behaviour:  behaviour,
       // Legacy mirrors so any cached older script keeps working.
       jointIssues: conditions.indexOf('joints') !== -1,
       heatIssues:  conditions.indexOf('heat') !== -1,
@@ -931,7 +1049,13 @@
         conditions:  Array.isArray(existingDog.conditions) ? existingDog.conditions.slice() : [],
         healthNotes: existingDog.healthNotes || '',
         photo:       isDogPhoto(existingDog.photo) ? existingDog.photo : null,
+        behaviour:   existingDog.behaviour && typeof existingDog.behaviour === 'object'
+          ? Object.assign({}, existingDog.behaviour) : {},
+        preferredDurationMin: existingDog.behaviour
+          && existingDog.behaviour.preferredDurationMin
+          ? String(existingDog.behaviour.preferredDurationMin) : '',
       });
+      delete data.behaviour.preferredDurationMin;
       stepIndex = 0;
       isDirty   = false;
       phase     = 'form';

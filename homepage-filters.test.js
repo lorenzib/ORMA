@@ -94,7 +94,7 @@ function loadHomepageContext(testTrails){
     t: tForTests,
     scoreTrail: () => 80,
     recommendTrail: () => ({
-      scoringVersion: '1.2.0',
+      scoringVersion: '1.3.0',
       score: 80,
       category: 'possible-with-cautions',
       confidence: 'low',

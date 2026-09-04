@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "recordVersion": 1,
   "id": "osm-19330972",
   "slug": "dorfrundweg-giro-del-paese",
@@ -14,32 +14,101 @@
   "geometry": {
     "type": "LineString",
     "coordinates": [
-      [11.36906, 46.28099],
-      [11.36882, 46.28079],
-      [11.36872, 46.28059],
-      [11.36878, 46.28012],
-      [11.36867, 46.27979],
-      [11.36596, 46.27944],
-      [11.36522, 46.27953],
-      [11.36492, 46.27965],
-      [11.36478, 46.27982],
-      [11.36484, 46.28015],
-      [11.36526, 46.28056],
-      [11.36501, 46.28123],
-      [11.36563, 46.28211],
-      [11.36609, 46.28122],
-      [11.3667, 46.28119],
-      [11.36759, 46.28165],
-      [11.36795, 46.28169],
-      [11.36824, 46.28154],
-      [11.36831, 46.28123],
-      [11.36904, 46.28111],
-      [11.36906, 46.28099]
+      [
+        11.36906,
+        46.28099
+      ],
+      [
+        11.36882,
+        46.28079
+      ],
+      [
+        11.36872,
+        46.28059
+      ],
+      [
+        11.36878,
+        46.28012
+      ],
+      [
+        11.36867,
+        46.27979
+      ],
+      [
+        11.36596,
+        46.27944
+      ],
+      [
+        11.36522,
+        46.27953
+      ],
+      [
+        11.36492,
+        46.27965
+      ],
+      [
+        11.36478,
+        46.27982
+      ],
+      [
+        11.36484,
+        46.28015
+      ],
+      [
+        11.36526,
+        46.28056
+      ],
+      [
+        11.36501,
+        46.28123
+      ],
+      [
+        11.36563,
+        46.28211
+      ],
+      [
+        11.36609,
+        46.28122
+      ],
+      [
+        11.3667,
+        46.28119
+      ],
+      [
+        11.36759,
+        46.28165
+      ],
+      [
+        11.36795,
+        46.28169
+      ],
+      [
+        11.36824,
+        46.28154
+      ],
+      [
+        11.36831,
+        46.28123
+      ],
+      [
+        11.36904,
+        46.28111
+      ],
+      [
+        11.36906,
+        46.28099
+      ]
     ]
   },
-  "center": [11.369062, 46.2809872],
+  "center": [
+    11.369062,
+    46.2809872
+  ],
   "trailhead": {
-    "position": [11.369062, 46.2809872],
+    "position": [
+      11.369062,
+      46.2809872
+    ],
     "label": "Bus stop Abzweigung Guggal - Bivio Guggal, 120 m from the route",
     "status": "mapped-suggestion"
   },
@@ -63,19 +132,28 @@
     "dogAccess": {
       "status": "unknown",
       "notes": null
-    }
+    },
+    "livestockPresence": "unknown",
+    "wildlifePresence": "unknown",
+    "sightlines": "unknown",
+    "roadProximity": "unknown",
+    "crowding": "unknown"
   },
   "waypoints": [
     {
       "id": "osm-19330972-water-1",
       "type": "water",
       "name": "Drinking water mapped near route start",
-      "position": [11.36906, 46.28099],
+      "position": [
+        11.36906,
+        46.28099
+      ],
       "distanceKm": 0,
       "status": "mapped",
       "seasonal": null
     }
   ],
+  "segments": [],
   "content": {
     "summary": "A short loop near Cavalese imported from the OpenStreetMap hiking network.",
     "tips": "Imported route: check access, weather, water and dog restrictions locally before relying on it."
@@ -89,7 +167,12 @@
       "kind": "osm",
       "retrievedAt": "2026-07-17",
       "observedAt": null,
-      "categories": ["route", "metrics", "water", "content"],
+      "categories": [
+        "route",
+        "metrics",
+        "water",
+        "content"
+      ],
       "licence": "ODbL-1.0"
     },
     {
@@ -100,7 +183,9 @@
       "kind": "computed",
       "retrievedAt": "2026-07-17",
       "observedAt": null,
-      "categories": ["metrics"],
+      "categories": [
+        "metrics"
+      ],
       "licence": null
     }
   ],
@@ -130,24 +215,29 @@
     "generatorVersion": "promote-osm-trails/legacy"
   },
   "unknownFields": [
+    "/freshness/accessAt",
+    "/freshness/safetyAt",
     "/metrics/descentM",
     "/metrics/difficulty",
-    "/suitability/shadePercent",
-    "/suitability/heatRisk",
-    "/suitability/exposure",
-    "/suitability/dogAccess/status",
-    "/suitability/dogAccess/notes",
-    "/waypoints/0/seasonal",
     "/sources/0/observedAt",
-    "/sources/1/observedAt",
     "/sources/1/licence",
+    "/sources/1/observedAt",
+    "/suitability/crowding",
+    "/suitability/dogAccess/notes",
+    "/suitability/dogAccess/status",
+    "/suitability/exposure",
+    "/suitability/heatRisk",
+    "/suitability/livestockPresence",
+    "/suitability/roadProximity",
+    "/suitability/shadePercent",
+    "/suitability/sightlines",
+    "/suitability/wildlifePresence",
+    "/verification/categories/access",
+    "/verification/categories/exposure",
+    "/verification/categories/heat",
+    "/verification/categories/livestock",
     "/verification/reviewedAt",
     "/verification/reviewedBy",
-    "/verification/categories/heat",
-    "/verification/categories/exposure",
-    "/verification/categories/livestock",
-    "/verification/categories/access",
-    "/freshness/safetyAt",
-    "/freshness/accessAt"
+    "/waypoints/0/seasonal"
   ]
 }

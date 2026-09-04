@@ -24,6 +24,15 @@
     return `<ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`;
   }
 
+  function sections(entries){
+    const rendered = entries
+      .filter(([, items]) => items.length)
+      .map(([title, items]) =>
+        `<section><h3>${esc(title)}</h3>${list(items)}</section>`)
+      .join('');
+    return rendered ? `<div class="recommendation-columns">${rendered}</div>` : '';
+  }
+
   function renderGuideLinks(recommendation){
     const root = document.getElementById('trailGuideLinks');
     const api = window.DoloPawsRecommendationGuides;
@@ -93,12 +102,13 @@
           gapCta +
         '</div>' +
       '</div>' +
-      '<div class="recommendation-columns">' +
-        `<section><h3>${esc(tr('recommendation.reasons.title', 'Why it may fit'))}</h3>` +
-          list(view.reasons, tr('recommendation.reasons.empty', 'No positive reason is established yet.')) + '</section>' +
-        `<section><h3>${esc(tr('recommendation.cautions.title', 'Cautions'))}</h3>` +
-          list(view.cautions, tr('recommendation.cautions.empty', 'No specific caution is identified; review unknowns before deciding.')) + '</section>' +
-      '</div>' +
+      // A heading over a line explaining that there is nothing to say is the
+      // opposite of crisp. A section with nothing behind it is dropped; what
+      // ORMA has not established stays in the unknowns disclosure below.
+      sections([
+        [tr('recommendation.reasons.title', 'Why it may fit'), view.reasons],
+        [tr('recommendation.cautions.title', 'Cautions'), view.cautions],
+      ]) +
       '<div class="recommendation-actions" aria-label="Trail actions">' +
         `<button type="button" data-recommendation-save>${esc(tr('recommendation.action.save', 'Save trail'))}</button>` +
         `<button type="button" data-recommendation-compare>${esc(tr('recommendation.action.compare', 'Add to comparison'))}</button>` +

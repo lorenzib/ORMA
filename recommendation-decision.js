@@ -52,9 +52,56 @@
       }
       return output;
     };
-    const reasons = messages(recommendation.positiveReasons, translate);
+    // Only four reasons and four cautions reach the card, so what survives the
+    // cut decides whether the explanation reads as specific to this dog or as
+    // boilerplate. The engine emits in calculation order, which puts every
+    // behaviour and positioned advisory last — exactly the lines worth
+    // showing. Rank before slicing; ties keep the engine's own order.
+    const rank = (tiers, fallback) => item => {
+      const code = typeof item.code === 'string' ? item.code : '';
+      const index = tiers.findIndex(tier => tier.some(prefix => code.startsWith(prefix)));
+      return index === -1 ? fallback : index;
+    };
+    const ordered = (items, tiers, fallback) => {
+      const score = rank(tiers, fallback);
+      return items
+        .map((item, index) => ({ item, index, tier:score(item) }))
+        .sort((a, b) => a.tier - b.tier || a.index - b.index)
+        .map(entry => entry.item);
+    };
+
+    const REASON_TIERS = [
+      // What the owner asked for: does this route fit this dog, this walk?
+      ['trail.distance.within-range', 'trail.duration.within-preference'],
+      // Present properties an owner plans around, and that are true of this
+      // dog in particular.
+      ['trail.sightlines.', 'trail.water.reviewed'],
+      // Absences rank below presences: "no livestock recorded" is weaker
+      // information than "water at two points", and reads as filler when it
+      // crowds out a fact the owner can act on.
+      ['trail.livestock.none', 'trail.wildlife.low', 'trail.road.none',
+        'trail.crowding.quiet', 'trail.dog-access.'],
+    ];
+    const CAUTION_TIERS = [
+      // Route facts that can end a walk.
+      ['trail.dog-access.', 'trail.exposure.present', 'trail.terrain.above-tolerance',
+        'segment.avoid'],
+      // Positioned and behavioural: specific, and actionable on the day.
+      ['segment.', 'trail.livestock.', 'trail.wildlife.', 'trail.road.',
+        'trail.sightlines.', 'trail.crowding.'],
+    ];
+    const rankedReasons = ordered(
+      (Array.isArray(recommendation.positiveReasons) ? recommendation.positiveReasons : [])
+        .filter(Boolean),
+      REASON_TIERS, REASON_TIERS.length);
+    const rankedCautions = ordered(
+      (Array.isArray(recommendation.cautions) ? recommendation.cautions : []).filter(Boolean),
+      CAUTION_TIERS, CAUTION_TIERS.length);
+
+    const reasons = messages(rankedReasons, translate);
+    // Hard stops always lead: nothing below them changes the decision.
     const cautions = messages(recommendation.hardStops, translate)
-      .concat(messages(recommendation.cautions, translate));
+      .concat(messages(rankedCautions, translate));
     const rawUnknowns = (Array.isArray(recommendation.unknowns) ? recommendation.unknowns : [])
       .filter(Boolean);
     const unknowns = messages(rawUnknowns, translate);

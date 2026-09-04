@@ -56,6 +56,34 @@
     };
   }
 
+  const BEHAVIOUR_SCALES = {
+    recall: ['reliable', 'variable', 'unreliable'],
+    reactivity: ['none', 'mild', 'strong'],
+    preyDrive: ['low', 'moderate', 'high'],
+    livestockComfort: ['confident', 'cautious', 'reactive'],
+    trafficComfort: ['confident', 'cautious', 'reactive'],
+    crowdComfort: ['confident', 'cautious', 'reactive'],
+    heatTolerance: ['robust', 'average', 'low'],
+  };
+
+  // Only recognised answers are forwarded. An unrecognised or legacy value is
+  // dropped rather than coerced, so a stale client cannot silently downgrade a
+  // dog to the easiest end of a scale.
+  function behaviour(profile){
+    const source = profile && profile.behaviour;
+    const normalized = {};
+    if(source && typeof source === 'object'){
+      for(const [key, scale] of Object.entries(BEHAVIOUR_SCALES)){
+        if(scale.includes(source[key])) normalized[key] = source[key];
+      }
+      const minutes = Number(source.preferredDurationMin);
+      if(Number.isFinite(minutes) && minutes > 0 && minutes <= 1440){
+        normalized.preferredDurationMin = Math.round(minutes);
+      }
+    }
+    return normalized;
+  }
+
   function normalizeDog(profile, options){
     profile = profile || {};
     return {
@@ -65,6 +93,7 @@
         ? profile.fitness : 'unknown',
       conditions: conditions(profile),
       traits: traits(profile),
+      behaviour: behaviour(profile),
     };
   }
 
@@ -123,6 +152,14 @@
       exposure: typeof trail.exposure === 'boolean' ? trail.exposure : null,
       surfaceHazards: Array.isArray(trail.surfaceHazards) ? trail.surfaceHazards : [],
       dogAccess: legacyDogAccess(trail),
+      // Legacy presentation records carry no reviewed behaviour attributes.
+      // Declaring them unknown keeps the engine's "say nothing without
+      // evidence" branch, rather than reading absence as safety.
+      livestockPresence: 'unknown',
+      wildlifePresence: 'unknown',
+      sightlines: 'unknown',
+      roadProximity: 'unknown',
+      crowding: 'unknown',
     };
     const categories = verificationCategories(trail, suitability);
     const tier = root && root.DoloPawsEvidenceV1
@@ -135,6 +172,7 @@
         distanceKm: Number.isFinite(trail.distance) ? trail.distance : null,
         ascentM: Number.isFinite(trail.elevation) ? trail.elevation : null,
         descentM: Number.isFinite(trail.descent) ? trail.descent : null,
+        durationMinutes: Number.isFinite(trail.hours) ? Math.round(trail.hours * 60) : null,
       },
       suitability,
       waypoints: (Array.isArray(trail.waterSources) ? trail.waterSources : []).map((water, index) => ({
@@ -142,6 +180,7 @@
         type: 'water',
         status: categories.water === 'verified' ? 'reviewed' : 'mapped',
       })),
+      segments: Array.isArray(trail.segments) ? trail.segments : [],
       verification: { tier, categories },
     };
   }
@@ -192,6 +231,7 @@
     ageYears,
     weightKg,
     conditions,
+    behaviour,
     normalizeDog,
     normalizeTrail,
     effectiveLimits,
