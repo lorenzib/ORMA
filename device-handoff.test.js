@@ -77,7 +77,7 @@ describe('desktop-to-phone handoff',()=>{
     expect(hikeMode).toContain("phoneUrl.hash='start-hike'");
     expect(hikeMode).toContain('window.ORMADeviceHandoff.shouldHandoff()');
     expect(hikeMode).toContain("'dolopaws-hike-mode-ready'");
-    expect(trailPage).toContain('device-handoff.js?v=20260901-1');
+    expect(trailPage).toContain('device-handoff.js?v=20260904-1');
     expectTrailBundleLoaded();
     expectBundled('hike-mode.js');
   });
