@@ -3,7 +3,7 @@
 
    Same pattern as homepage-mobile.js: purely additive chrome on top of the
    desktop .td2 layout. Injects a compact top bar (back · brand · dog
-   avatar), a scroll progress bar and the bottom tab nav. The complete set of
+   avatar) and a scroll progress bar. The complete set of
    real trail actions stays in the hero, so mobile has the same capabilities
    as desktop without mirrored handlers. All visual re-layout lives in
    trail-mobile.css under
@@ -113,33 +113,11 @@
         '<div class="mtrail-progress" aria-hidden="true"><span id="mtrailProgress"></span></div>';
       document.body.insertBefore(top, document.body.firstChild);
     }
-    if(!document.getElementById('mtrailTabs')){
-      var nav = document.createElement('nav');
-      nav.className = 'mtrail-tabs';
-      nav.id = 'mtrailTabs';
-      nav.setAttribute('aria-label', 'Primary');
-      nav.innerHTML =
-        '<a href="/" class="on" aria-current="page">' +
-          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3 3 6v15l6-3 6 3 6-3V3l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg>' +
-          '<span>Map</span></a>' +
-        '<a href="saved.html">' +
-          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>' +
-          '<span>Saved</span></a>' +
-        '<a href="journal.html">' +
-          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>' +
-          '<span>Journal</span></a>' +
-        '<a href="account.html">' +
-          '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>' +
-          '<span>Profile</span></a>';
-      document.body.appendChild(nav);
-    }
   }
 
   function measure(){
     var top = document.getElementById('mtrailTop');
-    var tabs = document.getElementById('mtrailTabs');
     if(top) document.body.style.setProperty('--mtrail-top', top.offsetHeight + 'px');
-    if(tabs) document.body.style.setProperty('--mtrail-tabs', tabs.offsetHeight + 'px');
   }
 
   function onScroll(){
@@ -168,7 +146,6 @@
     restoreAbout();
     document.body.classList.remove('mtrail-active');
     document.body.style.removeProperty('--mtrail-top');
-    document.body.style.removeProperty('--mtrail-tabs');
   }
 
   function update(){
