@@ -35,8 +35,10 @@ function beginWorkerRun(previous, input = {}, options = {}){
     staleAfterMinutes:DEFAULT_STALE_AFTER_MINUTES,
     lastSuccessfulAt:previous?.lastSuccessfulAt || null,
     lastFailedAt:previous?.lastFailedAt || null,
+    lastBlockedAt:previous?.lastBlockedAt || null,
     consecutiveFailures:Number(previous?.consecutiveFailures || 0),
     lastFailure:previous?.lastFailure || null,
+    publicationGate:previous?.publicationGate || null,
     recentRuns:[...(previous?.recentRuns || [])].slice(-19),
   };
 }
@@ -45,7 +47,7 @@ function finishWorkerRun(current, input = {}, options = {}){
   const at=options.at || new Date().toISOString();
   const startedAt=current?.startedAt || input.startedAt || at;
   const durationMs=Math.max(0,new Date(at).getTime()-new Date(startedAt).getTime());
-  const outcome=input.outcome === 'success' ? 'success' : 'failure';
+  const outcome=['success','blocked'].includes(input.outcome) ? input.outcome : 'failure';
   const currentIdentity=runIdentity(current || {});const incomingIdentity=runIdentity(input);
   const identity={};
   for(const key of Object.keys(currentIdentity))identity[key]=incomingIdentity[key] == null ? currentIdentity[key] : incomingIdentity[key];
@@ -56,6 +58,13 @@ function finishWorkerRun(current, input = {}, options = {}){
     failedAt:at,
     workflowRunUrl:identity.workflowRunUrl,
   } : null;
+  const publicationGate=outcome === 'blocked' ? {
+    stage:text(input.failureStage || 'website-publication-gate', 160),
+    message:text(input.failureMessage || 'Website publication is paused until Validate ORMA passes.'),
+    blockedAt:at,
+    validationRunUrl:text(input.validationRunUrl,1000) || null,
+    commitSha:identity.commitSha,
+  } : null;
   const receipt={
     ...identity,
     outcome,
@@ -63,10 +72,11 @@ function finishWorkerRun(current, input = {}, options = {}){
     completedAt:at,
     durationMs,
     ...(failure ? { failureStage:failure.stage, failureMessage:failure.message } : {}),
+    ...(publicationGate ? { blockedStage:publicationGate.stage, blockedMessage:publicationGate.message } : {}),
   };
   return {
     contractVersion:'1.0.0',
-    status:outcome === 'success' ? 'healthy' : 'failed',
+    status:outcome === 'success' ? 'healthy' : outcome === 'failure' ? 'failed' : 'blocked',
     ...identity,
     startedAt,
     completedAt:at,
@@ -76,8 +86,10 @@ function finishWorkerRun(current, input = {}, options = {}){
     staleAfterMinutes:DEFAULT_STALE_AFTER_MINUTES,
     lastSuccessfulAt:outcome === 'success' ? at : (current?.lastSuccessfulAt || null),
     lastFailedAt:outcome === 'failure' ? at : (current?.lastFailedAt || null),
-    consecutiveFailures:outcome === 'success' ? 0 : Number(current?.consecutiveFailures || 0) + 1,
+    lastBlockedAt:outcome === 'blocked' ? at : (current?.lastBlockedAt || null),
+    consecutiveFailures:outcome === 'success' ? 0 : outcome === 'failure' ? Number(current?.consecutiveFailures || 0) + 1 : Number(current?.consecutiveFailures || 0),
     lastFailure:failure || current?.lastFailure || null,
+    publicationGate:publicationGate || (outcome === 'success' ? null : current?.publicationGate || null),
     recentRuns:[...(current?.recentRuns || []),receipt].slice(-20),
   };
 }

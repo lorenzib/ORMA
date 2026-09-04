@@ -40,11 +40,11 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('Needs your decision');
     expect(html).toContain('MVP workstreams');
     expect(html).toContain('Parked for MVP');
-    expect(html).toContain('backoffice-review.css?v=20260901-1');
+    expect(html).toContain('backoffice-review.css?v=20260905-1');
     expect(html).toContain('id="workerHealth"');
     expect(html).toContain('id="campaignHealth"');
-    expect(html).toContain('backoffice/dashboard-model.js?v=20260825-10');
-    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260902-1');
+    expect(html).toContain('backoffice/dashboard-model.js?v=20260905-1');
+    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260905-1');
     expect(html).toContain('href="trail-dossier-desk.html"');
     expect(html).toContain('href="new-trail-scouting-desk.html"');
     expect(html).toContain('href="hazard-review-desk.html"');
@@ -188,6 +188,12 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(workflow).toContain("ORMA_PUBLICATION_FORCE_RETRY: ${{ github.event.inputs.force_publication_retry || 'false' }}");
     expect(workflow).toContain("ORMA_CAMPAIGN_AUTOMATION_ENABLED: ${{ vars.ORMA_CAMPAIGN_AUTOMATION_ENABLED || 'false' }}");
     expect(workflow).toContain('data/generated/trail-validation-report.json data/trail-details data/regions');
+    expect(workflow).toContain('name: Check website publication gate');
+    expect(workflow).toContain('npm run backoffice:publication-gate');
+    expect(workflow).toMatch(/name: Materialize approved trail publications[\s\S]*?if: steps\.website_gate\.outputs\.publication_allowed == 'true'/);
+    expect(workflow).toMatch(/name: Materialize approved trail photos[\s\S]*?if: steps\.website_gate\.outputs\.publication_allowed == 'true'/);
+    expect(workflow).toContain('outcome="blocked"');
+    expect(workflow).toContain('ORMA_WORKER_VALIDATION_RUN_URL="$validation_url"');
   });
 
   test('daily campaign and worker catch-up share one lock and due-only receipts',()=>{

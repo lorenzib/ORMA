@@ -169,9 +169,13 @@ account settings remain named manual checks. Operator procedures are in
 target and may also be started with **Run workflow** in GitHub Actions. GitHub
 can delay scheduled starts, so the worker writes a protected `worker-health`
 artifact at run start and completion. Backoffice Home classifies the real
-heartbeat as healthy, running, delayed, stale or failed and links the exact
-workflow run; it never treats the cron expression as proof that work ran. The
-worker claims jobs with a
+heartbeat as healthy, running, publishing paused, delayed, stale or failed and
+links the exact workflow run; it never treats the cron expression as proof that work ran. The
+worker checks the completed `Validate ORMA` result for its exact commit before
+materializing an approved website or trail-photo release. A red or missing
+result keeps approvals saved and lets agent queues continue, while avoiding a
+repeated generate-and-test failure every fifteen minutes. Publication resumes
+on the next pass after that commit is green. The worker claims jobs with a
 lease, runs the appropriate specialist through the OpenAI Responses API,
 validates the structured result against the locked dossier, and records either
 `ready-for-review`, a delayed retry, or `blocked`. An expired running lease is

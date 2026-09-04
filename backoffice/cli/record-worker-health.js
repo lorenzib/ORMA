@@ -44,6 +44,7 @@ async function main(options={}){
       outcome:env.ORMA_WORKER_HEALTH_OUTCOME,
       failureStage:env.ORMA_WORKER_FAILURE_STAGE,
       failureMessage:await failureMessage(env),
+      validationRunUrl:env.ORMA_WORKER_VALIDATION_RUN_URL,
     },{at});
   await store.setArtifact('worker-health',health,{runId:health.runId,status:health.status});
   console.log(`[orma-worker-health] ${health.status} · run ${health.runId||'manual'} · ${health.workflowRunUrl||'no run URL'}`);

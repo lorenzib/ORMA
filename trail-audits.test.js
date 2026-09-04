@@ -12,7 +12,7 @@ function loadTrails() {
 }
 
 describe('trail presentation audits', () => {
-  test('Albanne has completed its dated, sourced route audit', () => {
+  test('Albanne keeps its dated, sourced route audit and explicit route-number blocker', () => {
     const albanne = loadTrails().find((trail) => trail.id === 'osm-14381570');
     expect(albanne.reviewedAt).toBe('2026-07-26');
     expect(albanne.routeAudit).toEqual(expect.objectContaining({
@@ -23,10 +23,12 @@ describe('trail presentation audits', () => {
     }));
     expect(albanne.curated).toBe(true);
     expect(albanne.tier).toBe('route-audited');
-    expect(albanne.graduation.status).toBe('verified');
-    expect(albanne.graduation.required).toHaveLength(10);
+    expect(albanne.graduation.status).toBe('in-progress');
+    expect(albanne.graduation.required).toHaveLength(11);
     expect(albanne.graduation.completed).toHaveLength(10);
-    expect(albanne.graduation.blockers).toEqual({});
+    expect(albanne.graduation.blockers).toEqual({
+      routeNumbers: expect.stringMatching(/authoritative route source/i),
+    });
     expect(albanne.sourceLinks.length).toBeGreaterThanOrEqual(2);
     expect(albanne.path.length).toBeGreaterThan(100);
     expect(albanne.elevation).toBe(249);
@@ -45,8 +47,8 @@ describe('trail presentation audits', () => {
   });
 
   test.each([
-    ['osm-12731853', 4.2, 100, ['access']],
-    ['osm-7548344', 3, 250, ['livestock', 'access']],
+    ['osm-12731853', 4.2, 100, ['routeNumbers', 'access']],
+    ['osm-7548344', 3, 250, ['routeNumbers', 'livestock', 'access']],
   ])('%s records official figures and precise remaining blockers', (id, distance, elevation, blockers) => {
     const trail = loadTrails().find((candidate) => candidate.id === id);
     expect(trail.curated).toBe(false);
