@@ -4853,10 +4853,12 @@ function effectiveOverrides(profile, adjustOverride){
         elevation: 'Profile present; headline ascent corrected to the official 249 m figure.'
       },
       graduation: {
-        status: 'verified',
-        required: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        status: 'in-progress',
+        required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
-        blockers: {}
+        blockers: {
+          routeNumbers: 'Confirm from an authoritative route source that route 09 applies from the recommended start and that no numbered switch is required.'
+        }
       },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
@@ -4988,9 +4990,10 @@ function effectiveOverrides(profile, adjustOverride){
       },
       graduation: {
         status: 'in-progress',
-        required: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards'],
         blockers: {
+          routeNumbers: 'Verify the ordered trail-number guidance and every numbered switch, or an authoritative named-only/no-switch statement.',
           access: 'The official route crosses the protected Laugen biotope but the available route material does not state the dog-access or leash rule for this specific reserve.'
         }
       },
@@ -5091,9 +5094,10 @@ function effectiveOverrides(profile, adjustOverride){
       },
       graduation: {
         status: 'in-progress',
-        required: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'surfaceHazards'],
         blockers: {
+          routeNumbers: 'Verify the ordered trail-number guidance and every numbered switch, or an authoritative named-only/no-switch statement.',
           livestock: 'The available official route material does not address current livestock or guardian-dog conditions.',
           access: 'The available official route material does not state a route-specific dog-access or leash rule.'
         }
@@ -14525,6 +14529,9 @@ if(document.querySelector('.td2')){
     const routeSwitches = window.DoloPawsTrailRouteRefs
       ? window.DoloPawsTrailRouteRefs.switchesForTrail(t)
       : [];
+    const verifiedRouteGuidance = t.routeNumberGuidance && typeof t.routeNumberGuidance === 'object'
+      ? t.routeNumberGuidance
+      : null;
     const routeBadges = routeRefs.length
       ? `<div class="td2-route-ref-list" aria-label="Trail numbers in order">${routeRefs.map((ref, index) =>
           `${index ? '<span class="td2-route-ref-arrow" aria-hidden="true">→</span>' : ''}<span class="td2-route-ref">${esc(ref)}</span>`
@@ -14542,14 +14549,16 @@ if(document.querySelector('.td2')){
           <li>Stay on trail <b>${esc(routeSwitches[routeSwitches.length - 1].to)}</b> for the final section to the route finish.</li>
         </ol>`
       : '';
-    const routeRefMarkup = routeRefs.length
+    const routeRefMarkup = verifiedRouteGuidance
+      ? `<div class="s"><p><b>Start:</b> ${esc(verifiedRouteGuidance.start)}</p><p><b>Trail numbers in order:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>Switches:</b> ${esc(verifiedRouteGuidance.switches)}</p></div>`
+      : routeRefs.length
       ? `${routeBadges}${switchGuidance || `<div class="s">${hasSectionOnlyRefs
           ? `${routeRefs.length === 1 ? 'Trail' : 'Trails'} ${esc(routeSequence)} ${routeRefs.length === 1 ? 'is' : 'are'} marked only on the verified section${routeRefs.length === 1 ? '' : 's'} shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.`
           : `Start at ${esc(routeStartLabel)} and follow ${routeRefs.length === 1 ? 'trail' : 'trails'} ${esc(routeSequence)}${routeRefs.length > 1 ? ' in this order' : ''}. Confirm the destination name at each junction.`}</div>`}`
       : `<div class="s">Start at ${esc(routeStartLabel)}. Numbered waymarks are not yet verified for this route, so follow the mapped line and confirm destination names on local signs.</div>`;
     const routeCard = {
       ic:'',
-      t:routeSwitches.length ? 'Trail numbers and switches' : (routeRefs.length ? 'Trail numbers to follow' : 'Trail numbers unavailable'),
+      t:verifiedRouteGuidance || routeSwitches.length ? 'Trail numbers and switches' : (routeRefs.length ? 'Trail numbers to follow' : 'Trail-number guidance'),
       s:routeRefMarkup,
       routeRefs:true,
     };
