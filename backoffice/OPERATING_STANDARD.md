@@ -58,6 +58,11 @@ recommended starting point and direction from an authoritative route source.
 The approved geometry is oriented from that point, and the numbered trail
 description follows the route in that order. A nearby parking pin is access
 evidence only and must never be substituted for an authoritative route start.
+When an official route is genuinely unnumbered, verification must provide an
+ordered landmark sequence and useful turn instructions from the authoritative
+route description instead. A statement that trail numbers are unavailable is
+not publishable route guidance; if neither numbered nor landmark directions can
+be established, the route-following claim remains unresolved.
 
 ### 2. New Trails
 

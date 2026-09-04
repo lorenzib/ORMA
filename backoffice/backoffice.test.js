@@ -968,10 +968,23 @@ describe('ORMA backoffice MVP', () => {
       ['logistics-route-number-switches','At km 5.3, switch from 101 to 105.'],
     ].map(([id,value])=>({id,value,sourceIds:['route-source']}));
     expect(routeNumberGuidance({lockedFacts,evidenceSources:[source]})).toEqual({
-      start:'Start at Rifugio Auronzo.',status:'Numbered route.',
+      mode:'numbered',start:'Start at Rifugio Auronzo.',status:'Numbered route.',
       sequence:'Start on 101, then follow 105.',switches:'At km 5.3, switch from 101 to 105.',
       sources:[{label:source.label,url:source.url,authority:source.authority,accessedAt:source.accessedAt}],
     });
+  });
+
+  test('Publication Mapper marks unnumbered official routes as landmark-led guidance', () => {
+    const source={id:'route-source',label:'Official route guide',url:'https://example.test/route',authority:'Municipality',accessedAt:'2026-09-04'};
+    const lockedFacts=[
+      ['logistics-recommended-start','Start at Chemin de Pré-Marquis.'],
+      ['logistics-route-number-status','Official landmark-led route; no trail number is used.'],
+      ['logistics-route-number-sequence','Cross Les Grands Champs, then descend to the Ruisseau de la Combe.'],
+      ['logistics-route-number-switches','At the road, turn left towards Beauvoir and Montarlet.'],
+    ].map(([id,value])=>({id,value,sourceIds:['route-source']}));
+    expect(routeNumberGuidance({lockedFacts,evidenceSources:[source]})).toEqual(expect.objectContaining({
+      mode:'landmarks',sequence:expect.stringContaining('Les Grands Champs'),switches:expect.stringContaining('turn left'),
+    }));
   });
 
   test('content flow creates only editing and picture-gathering jobs', () => {

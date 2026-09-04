@@ -229,9 +229,9 @@ describe('trail page map controls', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
-    expect(html).toContain('i18n.js?v=20260901-1');
-    expect(html).toContain('trail-app.bundle.js?v=20260903-2');
-    expect(html).toContain('trail-mobile.css?v=20260902-1');
+    expect(html).toContain('i18n.js?v=20260904-1');
+    expect(html).toContain('trail-app.bundle.js?v=20260904-1');
+    expect(html).toContain('trail-mobile.css?v=20260904-1');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
       'detail-pois.js', 'trail-access-directions.js', 'footpath-router.js',
@@ -239,6 +239,19 @@ describe('trail page map controls', () => {
       'trail-recommendation.js', 'offline-packages.js', 'trail-detail-ui.js',
       'trail-mobile.js',
     ].forEach(source => expect(bundle).toContain(`// ---- ${source} ----`));
+  });
+
+  test('mobile offline actions remain boxed and no app-style tab bar is injected', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    const mobile = fs.readFileSync(path.join(__dirname, 'trail-mobile.js'), 'utf8');
+    const mobileCss = fs.readFileSync(path.join(__dirname, 'trail-mobile.css'), 'utf8');
+
+    expect(html).toContain('id="offlineOpenBtn" class="offline-package-open td2-btn-g"');
+    expect(html).toContain('id="offlineRemoveBtn" class="td2-btn-g" data-i18n="offlinePanel.action.remove"');
+    expect(mobileCss).toContain('grid-column:1/-1');
+    expect(mobileCss).toContain('.td2-hero-in{padding:16px 16px 30px;}');
+    expect(mobile).not.toContain('mtrailTabs');
+    expect(mobileCss).not.toContain('.mtrail-tabs');
   });
 
   test('has a visible provenance slot and loads photo provenance before photo renderers', () => {
@@ -341,17 +354,18 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
     expect(bundle.indexOf('// ---- trail-route-refs.js ----')).toBeLessThan(bundle.indexOf('// ---- trail.js ----'));
     const blueprint = fs.readFileSync(path.join(__dirname, 'trail-blueprint.js'), 'utf8');
-    expect(blueprint).toContain("routeSwitches.length ? 'Waymarked trail numbers and switches'");
+    expect(blueprint).toContain("verifiedRouteGuidance ? 'How to follow this route'");
     expect(blueprint).toContain('Begin the hike on trail <b>${esc(routeSwitches[0].from)}</b>');
     expect(blueprint).toContain('At approximately km ${esc(item.km.toFixed(1)');
     expect(blueprint).toContain('switch from trail <b>${esc(item.from)}</b> to trail <b>${esc(item.to)}</b>');
-    expect(blueprint).toContain('<b>Trail numbers in order:</b> ${esc(verifiedRouteGuidance.sequence)}');
-    expect(blueprint).toContain('<b>Switches:</b> ${esc(verifiedRouteGuidance.switches)}');
+    expect(blueprint).toContain("guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'");
+    expect(blueprint).toContain("guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'");
+    expect(blueprint).toContain('<b>Start:</b> ${esc(verifiedRouteGuidance.start)}');
     expect(blueprint).toContain('for the final section to the route finish');
     expect(blueprint).toContain('marked only on the verified section');
-    expect(blueprint).toContain('aroundGrid.innerHTML = renderCards([routeCard])');
-    expect(blueprint).toContain('does not publish a usable trail number or numbered switch');
-    expect(blueprint).not.toContain('<b>Start:</b> ${esc(verifiedRouteGuidance.start)}');
+    expect(blueprint).toContain('aroundGrid.innerHTML = routeRefMarkup ? renderCards([routeCard])');
+    expect(blueprint).toContain('<b>Route overview:</b> ${esc(routeOverview)}');
+    expect(blueprint).not.toContain('does not publish a usable trail number or numbered switch');
     expect(html).toContain('.td2-route-ref{display:inline-flex;');
     expect(html).toContain('.td2-route-switch-list{display:grid;');
     expect(document.getElementById('addReportBtn').textContent).toContain('Report a hazard');

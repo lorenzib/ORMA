@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-20T09:37:12.448Z",
+  "updatedAt": "2026-09-04T14:00:44.000Z",
   "trails": [
     {
       "id": "cinque-torri-assisted",
@@ -37,6 +37,21 @@
           "lng": 12.037604,
           "label": "Bai de Dones — approved parking pin"
         },
+        "routeNumberStatus": "official-landmark-route",
+        "routeNumberGuidance": {
+          "mode": "landmarks",
+          "start": "Start at Baita Bai de Dones and take the 5 Torri chairlift to Rifugio Scoiattoli.",
+          "sequence": "From Rifugio Scoiattoli, follow signs through the Cinque Torri open-air museum. Leave the museum on the east side of the towers and continue to Rifugio Cinque Torri. From the refuge, follow the cart track and then the forest path to Lago di Bai de Dones; continue on the same path for about five minutes to Baita Bai de Dones.",
+          "switches": "At the east side of the Cinque Torri, leave the museum route for Rifugio Cinque Torri. At Rifugio Cinque Torri, take the descending cart track; where it enters the forest, remain on the path signed for Lago di Bai de Dones and Baita Bai de Dones.",
+          "sources": [
+            {
+              "label": "Official Cinque Torri three-refuges circuit",
+              "url": "https://5torri.it/EN/e1-Circular-hike-of-the-three-Refuges",
+              "authority": "Impianti Averau / Cinque Torri",
+              "reviewedAt": "2026-09-04"
+            }
+          ]
+        },
         "reviewedAt": "2026-08-18",
         "reviewedBy": "ORMA verified-trail workflow",
         "verified": {
@@ -54,7 +69,7 @@
           "date": "2026-08-18"
         },
         "graduation": {
-          "status": "in-progress",
+          "status": "verified",
           "required": [
             "photo",
             "route",
@@ -71,6 +86,7 @@
           "completed": [
             "photo",
             "route",
+            "routeNumbers",
             "mapPoints",
             "elevation",
             "water",
@@ -79,10 +95,7 @@
             "livestock",
             "surfaceHazards",
             "access"
-          ],
-          "blockers": {
-            "routeNumbers": "Re-verify the authoritative start, ordered trail references and every switch under the current route-guidance contract."
-          }
+          ]
         },
         "verifiedAt": "2026-08-18T15:06:17.733Z",
         "id": "cinque-torri-assisted",
@@ -961,6 +974,31 @@
           "lng": 12.292858,
           "label": "Parcheggio Rifugio Auronzo (P1) — approved parking pin"
         },
+        "routeRefs": [
+          "101",
+          "105"
+        ],
+        "routeNumberStatus": "official-numbered-route",
+        "routeNumberGuidance": {
+          "mode": "numbered",
+          "start": "Start at Rifugio Auronzo.",
+          "sequence": "Follow trail 101 from Rifugio Auronzo to Rifugio Lavaredo, then climb to Forcella Lavaredo and continue to Rifugio Locatelli. From Rifugio Locatelli, follow trail 105 across the northern side of the Tre Cime and via Forcella Col di Mezzo back to Rifugio Auronzo.",
+          "switches": "At Rifugio Locatelli, leave trail 101 and take trail 105 towards Forcella Col di Mezzo and Rifugio Auronzo.",
+          "sources": [
+            {
+              "label": "Official Tre Cime di Lavaredo circuit",
+              "url": "https://www.trecimetrek.it/en/percorso-singolo-en/?route=tre_cim_di",
+              "authority": "Tre Cime Trek / Consorzio Turistico Auronzo Misurina",
+              "reviewedAt": "2026-09-04"
+            },
+            {
+              "label": "Giro delle Tre Cime route guide",
+              "url": "https://www.visitdolomitibellunesi.com/it/pois/giro-delle-tre-cime",
+              "authority": "Dolomiti Bellunesi tourism portal",
+              "reviewedAt": "2026-09-04"
+            }
+          ]
+        },
         "reviewedAt": "2026-08-18",
         "reviewedBy": "ORMA verified-trail workflow",
         "verified": {
@@ -978,7 +1016,7 @@
           "date": "2026-08-18"
         },
         "graduation": {
-          "status": "in-progress",
+          "status": "verified",
           "required": [
             "photo",
             "route",
@@ -995,6 +1033,7 @@
           "completed": [
             "photo",
             "route",
+            "routeNumbers",
             "mapPoints",
             "elevation",
             "water",
@@ -1003,10 +1042,7 @@
             "livestock",
             "surfaceHazards",
             "access"
-          ],
-          "blockers": {
-            "routeNumbers": "Re-verify the authoritative start, ordered trail references and every switch under the current route-guidance contract."
-          }
+          ]
         },
         "verifiedAt": "2026-08-18T15:04:59.634Z",
         "id": "tre-cime",
@@ -9362,6 +9398,26 @@
           "lng": 12.085296,
           "label": "Lago di Braies access — use the approved official P1–P4 parking set"
         },
+        "routeNumberGuidance": {
+          "mode": "numbered",
+          "start": "Start at the lakeside access by Hotel Lago di Braies / Hotel Pragser Wildsee.",
+          "sequence": "Follow the official lakeside circuit using markers 1 and 19. Keep to the path around the lake; one shore is a broad forest road and the opposite shore includes climbs and steps.",
+          "switches": "The official route publishes markers 1 and 19 together for the lake circuit rather than a separate numbered change point. At junctions, continue on the combined 1/19 lakeside circuit signs and keep to the path around the lake.",
+          "sources": [
+            {
+              "label": "Official Lago di Braies lake circuit",
+              "url": "https://www.dreizinnen.com/en/activity/family-hiking-tour-walk-around-the-pragser-wildsee-lake_49953",
+              "authority": "Drei Zinnen Dolomites tourism association",
+              "reviewedAt": "2026-09-04"
+            },
+            {
+              "label": "Pragser Wildsee visitor information",
+              "url": "https://www.prags.bz/de",
+              "authority": "Braies / Prags official visitor portal",
+              "reviewedAt": "2026-09-04"
+            }
+          ]
+        },
         "reviewedAt": "2026-08-18",
         "reviewedBy": "ORMA verified-trail workflow",
         "verified": {
@@ -9379,7 +9435,7 @@
           "date": "2026-08-18"
         },
         "graduation": {
-          "status": "in-progress",
+          "status": "verified",
           "required": [
             "photo",
             "route",
@@ -9396,6 +9452,7 @@
           "completed": [
             "photo",
             "route",
+            "routeNumbers",
             "mapPoints",
             "elevation",
             "water",
@@ -9404,10 +9461,7 @@
             "livestock",
             "surfaceHazards",
             "access"
-          ],
-          "blockers": {
-            "routeNumbers": "Re-verify the authoritative start, ordered trail references and every switch under the current route-guidance contract."
-          }
+          ]
         },
         "verifiedAt": "2026-08-18T15:23:40.415Z",
         "id": "lago-braies",
@@ -10102,6 +10156,39 @@
         "region": "dolomites",
         "curated": true,
         "publicationApprovalId": "t4QdPtwQ13d0cAPg3DS2"
+      }
+    },
+    {
+      "id": "osm-16363583",
+      "verificationScope": "routeGuidance",
+      "reviewedAt": "2026-09-04",
+      "fields": {
+        "routeNumberStatus": "official-landmark-route",
+        "routeNumberSource": {
+          "provider": "Grand Chambéry Alpes Tourisme",
+          "name": "Le Marais de Pré Lombard",
+          "url": "https://www.chamberymontagnes.com/que-faire/activites-pleine-nature/le-marais-de-pre-lombard-la-motte-servolex-fr-5783171/"
+        },
+        "routeNumberGuidance": {
+          "mode": "landmarks",
+          "start": "Start on Chemin de Pré-Marquis. Place Rémi Catin, opposite the Post Office, is the official parking and alternative access point.",
+          "sequence": "Join Rue de Servolex and climb to the hamlet of Servolex. Cross Les Grands Champs, then descend to the Ruisseau de la Combe. Join the road and climb left through Beauvoir towards Montarlet. Descend to the marshes and follow the wide track beside the Leysse before returning to the start.",
+          "switches": "After Les Grands Champs, take the steep descending path to the Ruisseau de la Combe. On reaching the road, turn left uphill towards Beauvoir and Montarlet. Near the motorway, turn right to complete the loop back to the starting point.",
+          "sources": [
+            {
+              "label": "Official Le Marais de Pré Lombard route guide",
+              "url": "https://www.chamberymontagnes.com/que-faire/activites-pleine-nature/le-marais-de-pre-lombard-la-motte-servolex-fr-5783171/",
+              "authority": "Grand Chambéry Alpes Tourisme",
+              "reviewedAt": "2026-09-04"
+            },
+            {
+              "label": "La Motte-Servolex municipal route page",
+              "url": "https://www.mairie-lamotteservolex.fr/apiref/equipement/la-motte-servolex/le-marais-de-pre-lombard/5531844-7/",
+              "authority": "Ville de La Motte-Servolex",
+              "reviewedAt": "2026-09-04"
+            }
+          ]
+        }
       }
     },
     {

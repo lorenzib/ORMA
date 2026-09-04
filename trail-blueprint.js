@@ -612,6 +612,13 @@
     const verifiedRouteGuidance = t.routeNumberGuidance && typeof t.routeNumberGuidance === 'object'
       ? t.routeNumberGuidance
       : null;
+    const routeOverview = cardCopy(String(t.desc || '').split(/\n\s*\n/)[0] || '');
+    const guidanceIsLandmarkLed = verifiedRouteGuidance && verifiedRouteGuidance.mode === 'landmarks';
+    const guidanceSourceLinks = verifiedRouteGuidance && Array.isArray(verifiedRouteGuidance.sources)
+      ? verifiedRouteGuidance.sources.filter(source => source && /^https:\/\//.test(source.url || '')).map(source =>
+          `<a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.label || source.authority || 'Official route guide')} ↗</a>`
+        ).join(' · ')
+      : '';
     const routeBadges = routeRefs.length
       ? `<div class="td2-route-ref-list" aria-label="Trail numbers in order">${routeRefs.map((ref, index) =>
           `${index ? '<span class="td2-route-ref-arrow" aria-hidden="true">→</span>' : ''}<span class="td2-route-ref">${esc(ref)}</span>`
@@ -630,23 +637,25 @@
         </ol>`
       : '';
     const routeRefMarkup = verifiedRouteGuidance
-      ? `<div class="s"><p><b>Trail numbers in order:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>Switches:</b> ${esc(verifiedRouteGuidance.switches)}</p></div>`
+      ? `<div class="s"><p><b>Start:</b> ${esc(verifiedRouteGuidance.start)}</p><p><b>${guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'}:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>${guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'}:</b> ${esc(verifiedRouteGuidance.switches)}</p>${guidanceSourceLinks ? `<p class="td2-route-sources">${guidanceSourceLinks}</p>` : ''}</div>`
       : routeRefs.length
       ? `${routeBadges}${switchGuidance || `<div class="s">${hasSectionOnlyRefs
           ? `${routeRefs.length === 1 ? 'Trail' : 'Trails'} ${esc(routeSequence)} ${routeRefs.length === 1 ? 'is' : 'are'} marked only on the verified section${routeRefs.length === 1 ? '' : 's'} shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.`
           : routeRefs.length === 1
             ? `Follow waymarked trail <b>${esc(routeRefs[0])}</b> along the mapped hike. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.`
             : `This hike uses trails ${esc(routeSequence)}, but the exact numbered switch point${routeRefs.length > 2 ? 's are' : ' is'} still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.`}</div>`}`
-      : `<div class="s">This hike is mapped on Waymarked Trails as <b>${esc((t.routeNumberSource && t.routeNumberSource.name) || (t.routeSource && t.routeSource.name) || t.name)}</b>, but its current route record does not publish a usable trail number or numbered switch. Follow the named waymarks and mapped ORMA line, and confirm destination names on local signs.${t.waymarkedtrails ? ` <a href="${esc(t.waymarkedtrails)}" target="_blank" rel="noopener">View the Waymarked Trails route ↗</a>` : ''}</div>`;
+      : routeOverview
+        ? `<div class="s"><p><b>Route overview:</b> ${esc(routeOverview)}</p></div>`
+        : '';
     const routeCard = {
       ic:'',
-      t:verifiedRouteGuidance || routeSwitches.length ? 'Waymarked trail numbers and switches' : (routeRefs.length ? 'Waymarked trail numbers' : 'Waymarked route'),
+      t:verifiedRouteGuidance ? 'How to follow this route' : (routeSwitches.length ? 'Waymarked trail numbers and switches' : (routeRefs.length ? 'Waymarked trail numbers' : 'Route overview')),
       s:routeRefMarkup,
       routeRefs:true,
     };
     const renderCards = cards => cards.map(c => `<div class="td2-park${c.routeRefs ? ' td2-route-refs' : ''}"><span class="ic">${c.ic}</span><div><div class="t">${esc(c.t)}</div>${c.routeRefs ? c.s : `<div class="s">${c.s}</div>`}</div></div>`).join('');
-    aroundGrid.innerHTML = renderCards([routeCard]);
-    aroundCard.hidden = false;
+    aroundGrid.innerHTML = routeRefMarkup ? renderCards([routeCard]) : '';
+    aroundCard.hidden = !routeRefMarkup;
     if (typeof lat !== 'number' || typeof lng !== 'number') {
       grid.innerHTML = renderCards([{
         ic:pin,

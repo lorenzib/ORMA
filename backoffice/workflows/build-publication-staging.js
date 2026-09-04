@@ -42,7 +42,8 @@ function routeNumberGuidance(item){
   const sources=(item.evidenceSources||[]).filter(source=>sourceIds.includes(source.id)).map(source=>({
     label:source.label,url:source.url,authority:source.authority||null,accessedAt:source.accessedAt||null,
   }));
-  return {start:start.value,status:status.value,sequence:sequence.value,switches:switches.value,sources};
+  const landmarkLed=/(?:unnumbered|named-only|landmark|no (?:usable )?(?:trail )?number)/i.test(status.value||'');
+  return {mode:landmarkLed?'landmarks':'numbered',start:start.value,status:status.value,sequence:sequence.value,switches:switches.value,sources};
 }
 
 function buildPublicationStaging(editorialQueue, execution, reviewQueue, options = {}){
