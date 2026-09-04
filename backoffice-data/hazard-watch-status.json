@@ -1,28 +1,28 @@
 {
   "contractVersion": "1.0.0",
-  "checkedAt": "2026-09-04T21:19:27.559Z",
+  "checkedAt": "2026-09-04T22:07:04.278Z",
   "summary": {
     "active": 0,
     "awaitingRemovalReview": 0,
     "automaticallyRemoved": 0,
-    "sourceFailures": 2
+    "sourceFailures": 0
   },
   "sources": [
     {
       "key": "meteoalarm-italy",
       "label": "MeteoAlarm Italy",
       "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
-      "ok": false,
-      "alertsRead": 0,
-      "error": "fetch failed"
+      "ok": true,
+      "completeSnapshot": true,
+      "alertsRead": 38
     },
     {
       "key": "meteoalarm-france",
       "label": "MeteoAlarm France",
       "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france",
-      "ok": false,
-      "alertsRead": 0,
-      "error": "fetch failed"
+      "ok": true,
+      "completeSnapshot": true,
+      "alertsRead": 38
     }
   ],
   "automaticRemovals": [],
