@@ -614,11 +614,6 @@
       : null;
     const routeOverview = cardCopy(String(t.desc || '').split(/\n\s*\n/)[0] || '');
     const guidanceIsLandmarkLed = verifiedRouteGuidance && verifiedRouteGuidance.mode === 'landmarks';
-    const guidanceSourceLinks = verifiedRouteGuidance && Array.isArray(verifiedRouteGuidance.sources)
-      ? verifiedRouteGuidance.sources.filter(source => source && /^https:\/\//.test(source.url || '')).map(source =>
-          `<a href="${esc(source.url)}" target="_blank" rel="noopener">${esc(source.label || source.authority || 'Official route guide')} ↗</a>`
-        ).join(' · ')
-      : '';
     const routeBadges = routeRefs.length
       ? `<div class="td2-route-ref-list" aria-label="Trail numbers in order">${routeRefs.map((ref, index) =>
           `${index ? '<span class="td2-route-ref-arrow" aria-hidden="true">→</span>' : ''}<span class="td2-route-ref">${esc(ref)}</span>`
@@ -637,7 +632,7 @@
         </ol>`
       : '';
     const routeRefMarkup = verifiedRouteGuidance
-      ? `<div class="s"><p><b>Start:</b> ${esc(verifiedRouteGuidance.start)}</p><p><b>${guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'}:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>${guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'}:</b> ${esc(verifiedRouteGuidance.switches)}</p>${guidanceSourceLinks ? `<p class="td2-route-sources">${guidanceSourceLinks}</p>` : ''}</div>`
+      ? `<div class="s"><p><b>Start:</b> ${esc(verifiedRouteGuidance.start)}</p><p><b>${guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'}:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>${guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'}:</b> ${esc(verifiedRouteGuidance.switches)}</p></div>`
       : routeRefs.length
       ? `${routeBadges}${switchGuidance || `<div class="s">${hasSectionOnlyRefs
           ? `${routeRefs.length === 1 ? 'Trail' : 'Trails'} ${esc(routeSequence)} ${routeRefs.length === 1 ? 'is' : 'are'} marked only on the verified section${routeRefs.length === 1 ? '' : 's'} shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.`
