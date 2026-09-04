@@ -518,6 +518,14 @@ async function main() {
       source: 'osm', curated: false,
       osmRelation: p.osm_relation,
       waymarkedtrails: p.waymarkedtrails,
+      ...(p.ref && /^(?:[A-Za-z]{1,4}-?)?\d{1,4}[A-Za-z]?$/.test(String(p.ref).trim().replace(/\s+/g, ''))
+        ? { routeRefs:[String(p.ref).trim().toUpperCase().replace(/\s+/g, '')], routeNumberStatus:'mapped-relation-ref' }
+        : { routeNumberStatus:'not-listed-in-mapped-source' }),
+      routeNumberSource: {
+        provider:'Waymarked Trails / OpenStreetMap',
+        name:p.name || null,
+        url:p.waymarkedtrails || `https://www.openstreetmap.org/relation/${p.osm_relation}`,
+      },
       name: p.name, area: nearestLocality(pts[0][0], pts[0][1]),
       lat: pts[0][0], lng: pts[0][1],
       path: pts.map(([la, ln]) => [Math.round(la * 1e5) / 1e5, Math.round(ln * 1e5) / 1e5]),

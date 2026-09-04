@@ -102,6 +102,20 @@ describe('DATA-03 regional runtime boundaries', () => {
     }));
   });
 
+  test('mapped Waymarked Trails numbers reach trail-detail payloads', () => {
+    const all = ['data/regions/dolomites-trails.js', 'data/regions/savoy-trails.js']
+      .flatMap(loadRegionalTrailFile);
+    expect(all.every(trail => typeof trail.routeNumberStatus === 'string')).toBe(true);
+    expect(all.find(trail => trail.id === 'osm-1116675')).toEqual(expect.objectContaining({
+      routeRefs:['19'],
+      routeNumberStatus:'mapped-relation-ref',
+    }));
+    expect(all.find(trail => trail.id === 'osm-16363583')).toEqual(expect.objectContaining({
+      routeNumberStatus:'not-listed-in-mapped-source',
+      routeNumberSource:expect.objectContaining({ name:'Le Marais de Pré Lombard' }),
+    }));
+  });
+
   test('published Lago di Braies payload carries its official route numbers', () => {
     const trail = loadRegionalTrailFile('data/regions/dolomites-trails.js')
       .find(item => item.id === 'lago-braies');
