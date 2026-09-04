@@ -54,10 +54,11 @@
           "date": "2026-08-18"
         },
         "graduation": {
-          "status": "verified",
+          "status": "in-progress",
           "required": [
             "photo",
             "route",
+            "routeNumbers",
             "mapPoints",
             "elevation",
             "water",
@@ -78,7 +79,10 @@
             "livestock",
             "surfaceHazards",
             "access"
-          ]
+          ],
+          "blockers": {
+            "routeNumbers": "Re-verify the authoritative start, ordered trail references and every switch under the current route-guidance contract."
+          }
         },
         "verifiedAt": "2026-08-18T15:06:17.733Z",
         "id": "cinque-torri-assisted",
@@ -974,10 +978,11 @@
           "date": "2026-08-18"
         },
         "graduation": {
-          "status": "verified",
+          "status": "in-progress",
           "required": [
             "photo",
             "route",
+            "routeNumbers",
             "mapPoints",
             "elevation",
             "water",
@@ -998,7 +1003,10 @@
             "livestock",
             "surfaceHazards",
             "access"
-          ]
+          ],
+          "blockers": {
+            "routeNumbers": "Re-verify the authoritative start, ordered trail references and every switch under the current route-guidance contract."
+          }
         },
         "verifiedAt": "2026-08-18T15:04:59.634Z",
         "id": "tre-cime",
@@ -9371,10 +9379,11 @@
           "date": "2026-08-18"
         },
         "graduation": {
-          "status": "verified",
+          "status": "in-progress",
           "required": [
             "photo",
             "route",
+            "routeNumbers",
             "mapPoints",
             "elevation",
             "water",
@@ -9395,7 +9404,10 @@
             "livestock",
             "surfaceHazards",
             "access"
-          ]
+          ],
+          "blockers": {
+            "routeNumbers": "Re-verify the authoritative start, ordered trail references and every switch under the current route-guidance contract."
+          }
         },
         "verifiedAt": "2026-08-18T15:23:40.415Z",
         "id": "lago-braies",

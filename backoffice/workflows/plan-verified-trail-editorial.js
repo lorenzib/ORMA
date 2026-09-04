@@ -5,6 +5,7 @@ const { createAgentJob } = require('../contracts/agent-job-v1');
 const LOCKED_FACT_FIELDS = Object.freeze([
   'route geometry', 'distance and elevation', 'parking coordinates', 'dog access rules',
   'surface and exposure', 'water guidance', 'livestock guidance', 'seasonal access',
+  'recommended route start', 'trail-number sequence', 'trail-number switches',
 ]);
 
 const DOSSIER_SLUGS = Object.freeze({
@@ -34,6 +35,7 @@ function planVerifiedTrailEditorial(registry, dossiers, mediaPacket, options = {
       verifiedAt: verified.verifiedAt,
       verificationConditions: verified.conditions,
       lockedFacts: dossier.claims.map(claim => ({ id: claim.id, label: claim.label, value: claim.proposedValue, sourceIds: claim.sourceIds })),
+      evidenceSources: dossier.sources || [],
       editorialBrief: {
         objective: 'Produce concise premium ORMA trail copy using only the locked dossier facts.',
         requiredSections: ['About the trail', 'Why it suits dogs', 'Important practical notes'],

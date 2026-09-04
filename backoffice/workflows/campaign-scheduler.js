@@ -40,7 +40,9 @@ async function runScheduledTrailCampaign(store,trails,options={}){
   try{
     const result=await startLiveTrailCampaign(store,trails,{at:eligibility.at,limit:options.limit||5,capacity:options.capacity||5});
     const completedAt=options.completedAt||new Date().toISOString();const receipt={outcome:'success',startedAt:eligibility.at,completedAt,
-      admitted:result.jobIds.length,remainingQueueable:result.campaign.summary.remainingQueueable,...runIdentity};
+      admitted:result.jobIds.length,remainingQueueable:result.campaign.summary.remainingQueueable,
+      routeNumberGuidanceVerified:result.campaign.summary.routeNumberGuidanceVerified,
+      routeNumberGuidanceOutstanding:result.campaign.summary.routeNumberGuidanceOutstanding,...runIdentity};
     const health={...started,status:'healthy',completedAt,lastSuccessfulAt:completedAt,
       nextEligibleAt:nextAt(completedAt,Number(options.intervalHours||DEFAULT_INTERVAL_HOURS)),lastResult:receipt,
       recentRuns:[...started.recentRuns,receipt].slice(-20)};

@@ -2,6 +2,7 @@
 
 const {specialistJob}=require('./apply-dossier-review');
 const {summarize}=require('./build-live-orchestration');
+const {routeGuidanceBlockingReasons}=require('./compile-verified-dossier');
 const {
   MAX_AUTOMATED_ATTEMPTS,resolutionCandidates,ensureResolutionEntries,pendingAttempt,
   completedAttempts,reconcileCompletedAttempt,addQueuedAttempt,
@@ -17,7 +18,7 @@ function latest(jobs,candidateId,agentId,status='completed'){
 }
 
 function dossierBlockingReasons(outputs){
-  const reasons=[];
+  const reasons=routeGuidanceBlockingReasons(outputs);
   for(const output of outputs){
     const result=output.result||{};
     if(result.recommendation&&result.recommendation!=='advance') reasons.push(`${output.agentId}: recommendation is ${result.recommendation}`);

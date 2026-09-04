@@ -23,7 +23,7 @@ const SPECIALIST_SCHEMA={type:'object',additionalProperties:false,properties:{
 },required:['summary','claims','openQuestions','recommendation']};
 
 const PROMPTS={
-  logistics:'You are ORMA Logistics Agent. Verify exact parking, road access, public transport and the pedestrian connection to the approved route. For every named or numbered official route, identify the authoritative recommended starting point as a distinct claim with ID recommended-start; include its label and coordinates in the proposed value. Add a recommended-direction claim when the authority specifies one. If an authoritative route source does not establish the start, return recommended-start as unresolved. Prefer official operators and current authoritative sources. Never infer a route start from a nearby parking pin or proximity alone. Return proposals, citations, conflicts and unresolved questions; you cannot approve a claim.',
+  logistics:'You are ORMA Logistics Agent. Verify exact parking, road access, public transport and the pedestrian connection to the approved route. For every route, return a distinct recommended-start claim with the authoritative start label and coordinates; a nearby parking pin is not a route start. Add recommended-direction when the authority specifies one. Always return three distinct route-number claims: route-number-status (numbered, or source-backed named-only/un-numbered); route-number-sequence (a reader-facing ordered instruction naming the first reference at the recommended start and every later reference, or an explicit source-backed statement that no numbered reference applies); and route-number-switches (a reader-facing instruction for every change, with outgoing reference, incoming reference, mapped coordinate, and distance-from-start or unambiguous landmark, or a source-backed statement that no numbered switch is required). The combined claims must be publishable as a concise start/then-switch trail-number write-up. If any part is not established, return that claim as unresolved. Prefer official operators and current authoritative sources. Never infer a route start, trail number, sequence, or switch from proximity or map appearance alone. Return proposals, citations, conflicts and unresolved questions; you cannot approve a claim.',
   regulatoryRanger:'You are ORMA Regulatory Ranger. Verify dog access, leash rules, protected-area rules and seasonal restrictions for this exact route and jurisdiction. Prefer current official authorities. Separate rules from advice and never generalize a regional rule without applicability evidence. You cannot approve a claim.',
   terrainPoi:'You are ORMA Terrain & POI Analyst. Verify elevation, shade, surface, exposure, water, POIs and livestock indicators for this exact route. Distinguish mapped presence from potable or currently available water. Do not infer absence from lack of web mentions. You cannot approve a claim.',
   evidenceLibrarian:'You are ORMA Evidence Librarian. Audit the supplied specialist outputs for source authority, freshness, duplication, applicability and claim-to-source traceability. Identify missing provenance and conflicts. You cannot approve the dossier.',
@@ -39,10 +39,16 @@ function modelForAgent(agentId,env=process.env){
   return env.ORMA_CONTENT_ROUTINE_MODEL||sharedOverride||'gpt-5.6-luna';
 }
 
-function validateSpecialistResult(result){
+function validateSpecialistResult(result,agentId){
   for(const claim of result.claims||[]){
     if(claim.finding==='supported-proposal'&&!claim.sources.length)throw new Error(`Supported proposal ${claim.id} requires a source`);
     for(const source of claim.sources||[]){if(!/^https:\/\//.test(source.url))throw new Error(`Specialist source must be HTTPS: ${source.url}`);}
+  }
+  if(agentId==='logistics'){
+    const ids=new Set((result.claims||[]).map(claim=>claim.id));
+    const required=['recommended-start','route-number-status','route-number-sequence','route-number-switches'];
+    const missing=required.filter(id=>!ids.has(id));
+    if(missing.length)throw new Error(`Logistics result omitted mandatory route guidance claim(s): ${missing.join(', ')}`);
   }
 }
 
@@ -57,7 +63,7 @@ async function runTrailSpecialist({job,trail,context},options={}){
   const resolutionPrompt=job.resolutionAttempt?`\n\nThis is automated evidence-resolution attempt ${job.resolutionAttempt} of ${job.maximumResolutionAttempts||5} for claim(s) ${(job.claimIds||[]).join(', ')}. Use this materially different strategy: ${job.resolutionStrategyLabel} (${job.resolutionStrategy}). ${job.resolutionInstruction} Return a complete updated specialist result: preserve unrelated prior claims, include every targeted claim, and list only questions that remain open after this attempt. Never claim success merely because a source was not found.`:'';
   const response=await runAgent({schemaName:`orma_${job.agentId}_trail_findings`,schema:SPECIALIST_SCHEMA,webSearch:true,
     messages:[{role:'developer',content:prompt+resolutionPrompt},{role:'user',content:JSON.stringify({job,trail,context})}]},clientOptions);
-  validateSpecialistResult(response.data);
+  validateSpecialistResult(response.data,job.agentId);
   const at=options.at||new Date().toISOString();
   const previous=context.slice().reverse().find(item=>item?.agentId===job.agentId&&Array.isArray(item.claims));
   const current={contractVersion:'1.0.0',candidateId:job.candidateId,

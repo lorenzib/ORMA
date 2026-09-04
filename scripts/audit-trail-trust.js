@@ -18,7 +18,7 @@ const imported = trails.filter(t => t.curated === false);
 const missing = (list, field) => list.filter(t => t[field] === undefined || t[field] === null).length;
 const risks = list => Object.fromEntries(['low-risk', 'moderate', 'caution'].map(level => [level, list.filter(t => t.safetyLevel === level).length]));
 const reviewCategories = ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'];
-const graduationCategories = ['photo', 'route', 'mapPoints', 'elevation', ...reviewCategories];
+const graduationCategories = ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', ...reviewCategories];
 const sourceReviewed = trails.filter(t => t.verified && Array.isArray(t.verified.categories));
 const graduationReviewed = trails.filter(t => t.graduation && Array.isArray(t.graduation.completed));
 
@@ -68,11 +68,14 @@ const invalidGraduations = graduationReviewed.filter(t => {
   const completed = t.graduation.completed;
   const hasUnknownCheck = required.some(check => !graduationCategories.includes(check));
   const allComplete = required.every(check => completed.includes(check));
+  const modernRouteNumbersComplete = completed.includes('routeNumbers');
   const safetyMirrored = reviewCategories.every(category =>
     !completed.includes(category) || (t.verified && t.verified.categories.includes(category))
   );
-  if (t.graduation.status === 'verified') return hasUnknownCheck || !allComplete || !safetyMirrored || t.curated === false;
-  return hasUnknownCheck || !safetyMirrored || t.curated !== false;
+  if (t.graduation.status === 'verified') return hasUnknownCheck || !allComplete || !modernRouteNumbersComplete || !safetyMirrored || t.curated === false;
+  // Existing curated trails may re-enter verification when a new mandatory
+  // check is introduced (for example authoritative route-number guidance).
+  return hasUnknownCheck || !safetyMirrored;
 });
 
 if (invalid.length || invalidSourceReviews.length || invalidGraduations.length) {

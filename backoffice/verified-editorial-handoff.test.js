@@ -10,7 +10,11 @@ const at='2026-08-20T01:00:00.000Z';
 const dossier={contractVersion:'1.0.0',candidateId:'trail-a',trailId:'trail-a',trailName:'Trail A',reviewState:'accepted',
   sources:[{id:'source-1',label:'Park authority',url:'https://example.test/trail',authority:'Park',accessedAt:at}],
   claims:[{id:'route-identity',label:'Approved route identity',state:'supported',proposedValue:'Trail A circuit',sourceIds:['source-1']},
-    {id:'logistics-parking',label:'parking: parking',state:'supported',proposedValue:'Use official P1.',sourceIds:['source-1']}],
+    {id:'logistics-parking',label:'parking: parking',state:'supported',proposedValue:'Use official P1.',sourceIds:['source-1']},
+    {id:'logistics-recommended-start',label:'access: recommended-start',state:'supported',proposedValue:'Start at the official trailhead, 46.0000, 11.0000.',sourceIds:['source-1']},
+    {id:'logistics-route-number-status',label:'route: route-number-status',state:'supported',proposedValue:'Named-only route; no numbered reference applies.',sourceIds:['source-1']},
+    {id:'logistics-route-number-sequence',label:'route: route-number-sequence',state:'supported',proposedValue:'Start on the signed Trail A circuit; no numbered sequence applies.',sourceIds:['source-1']},
+    {id:'logistics-route-number-switches',label:'route: route-number-switches',state:'supported',proposedValue:'No numbered switch is required.',sourceIds:['source-1']}],
   routeGeometry:{type:'LineString',coordinates:[[11,46],[11.01,46.01],[11,46]]},
   ormaVerification:{status:'verified',verifiedAt:at,verifiedBy:'moderator',conditions:['Recheck seasonal access.']},
   publicMutationAllowed:false,publicationAuthorized:false};
@@ -42,7 +46,8 @@ describe('automatic ORMA Verified editorial handoff',()=>{
   });
 
   test('numbered-route copy must cite the locked recommended starting point',async()=>{
-    const numbered={...dossier,claims:[...dossier.claims,{id:'logistics-recommended-start',label:'access: recommended-start',state:'supported',proposedValue:'Start at Rifugio Example, 46.0000, 11.0000.',sourceIds:['source-1']}]};
+    const numbered={...dossier,claims:dossier.claims.map(claim=>claim.id==='logistics-recommended-start'
+      ?{...claim,proposedValue:'Start at Rifugio Example, 46.0000, 11.0000.'}:claim)};
     const handoff=buildVerifiedEditorialHandoff(numbered,record,null,{at});const job=handoff.jobs[0];
     expect(handoff.item.editorialBrief.requiredStartFactId).toBe('logistics-recommended-start');
     const payload=copyPayload(handoff.item);payload.factIdsUsed=payload.factIdsUsed.filter(id=>id!=='logistics-recommended-start');
@@ -92,10 +97,17 @@ describe('automatic ORMA Verified editorial handoff',()=>{
   });
 
   test('final dossier approval automatically persists the editorial queue and both first-pass jobs',async()=>{
+    const routeSource={label:'Park authority',url:'https://example.test/trail',authority:'Park',accessedAt:at};
+    const routeGuidance=[
+      {id:'recommended-start',category:'access',proposedValue:'Start at the official trailhead, 46.0000, 11.0000.',finding:'supported-proposal',confidence:.95,rationale:'Official route guide.',sources:[routeSource],blockers:[]},
+      {id:'route-number-status',category:'route',proposedValue:'Named route; no numbered reference applies.',finding:'supported-proposal',confidence:.95,rationale:'Official route guide.',sources:[routeSource],blockers:[]},
+      {id:'route-number-sequence',category:'route',proposedValue:'No numbered sequence applies.',finding:'supported-proposal',confidence:.95,rationale:'Official route guide.',sources:[routeSource],blockers:[]},
+      {id:'route-number-switches',category:'route',proposedValue:'No numbered switch is required.',finding:'supported-proposal',confidence:.95,rationale:'Official route guide.',sources:[routeSource],blockers:[]},
+    ];
     const reviewItem={reviewId:'dossier-review-a',candidateId:'trail-a',trailId:'trail-a',trailName:'Trail A',gateType:'dossier-approval',state:'awaiting-human',approvalAllowed:true,
       sourceTrail:{externalRelationId:'relation/1'},specialistOutputs:[
         {agentId:'cartographer',jobId:'cart-a',result:{source:{provider:'OSM',url:'https://www.openstreetmap.org/relation/1',endpoint:'https://api.openstreetmap.org/api/0.6/relation/1/full',externalId:'relation/1',relationVersion:1,relationTimestamp:at,licence:'ODbL-1.0'},relation:{tags:{name:'Trail A'}},geometry:dossier.routeGeometry,assessment:{pointCount:3,distanceKm:2}}},
-        {agentId:'logistics',jobId:'log-a',result:{claims:[{id:'parking',category:'parking',proposedValue:'Use official P1.',finding:'supported-proposal',confidence:.9,rationale:'Official.',sources:[{label:'Park authority',url:'https://example.test/trail',authority:'Park',accessedAt:at}],blockers:[]}] }},
+        {agentId:'logistics',jobId:'log-a',result:{claims:[{id:'parking',category:'parking',proposedValue:'Use official P1.',finding:'supported-proposal',confidence:.9,rationale:'Official.',sources:[{label:'Park authority',url:'https://example.test/trail',authority:'Park',accessedAt:at}],blockers:[]},...routeGuidance] }},
       ]};
     const artifacts={'trail-orchestration':{contractVersion:'1.0.0',publicMutationAllowed:false,summary:{},trails:[{trailId:'trail-a',candidateId:'trail-a',trailName:'Trail A',state:'dossier-human-gate',stage:'complete-evidence-dossier',attempts:{},resolutionAttempts:{},jobIds:['cart-a','log-a'],gate:{id:'dossier-approval',status:'awaiting-human'},sourceTrail:{externalRelationId:'relation/1'},publicMutationAllowed:false}]},
       'dossier-review-queue':{contractVersion:'1.0.0',items:[reviewItem],publicMutationAllowed:false}};

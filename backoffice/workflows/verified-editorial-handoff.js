@@ -9,6 +9,10 @@ function assertVerifiedDossier(dossier){
   }
   const unsupported=(dossier.claims||[]).filter(claim=>claim.state!=='supported');
   if(unsupported.length)throw new Error(`Verified editorial handoff found unsupported claims: ${unsupported.map(claim=>claim.id).join(', ')}`);
+  const ids=new Set((dossier.claims||[]).map(claim=>claim.id));
+  const required=['logistics-recommended-start','logistics-route-number-status','logistics-route-number-sequence','logistics-route-number-switches'];
+  const missing=required.filter(id=>!ids.has(id));
+  if(missing.length)throw new Error(`Verified editorial handoff requires route guidance: ${missing.join(', ')}`);
 }
 
 function editorialItem(dossier,record,at){

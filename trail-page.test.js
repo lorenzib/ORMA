@@ -345,6 +345,8 @@ describe('trail page map controls', () => {
     expect(blueprint).toContain('Start at ${esc(routeStartLabel)} and follow');
     expect(blueprint).toContain('At approximately km ${esc(item.km.toFixed(1)');
     expect(blueprint).toContain('switch from trail <b>${esc(item.from)}</b> to trail <b>${esc(item.to)}</b>');
+    expect(blueprint).toContain('<b>Trail numbers in order:</b> ${esc(verifiedRouteGuidance.sequence)}');
+    expect(blueprint).toContain('<b>Switches:</b> ${esc(verifiedRouteGuidance.switches)}');
     expect(blueprint).toContain('for the final section to the route finish');
     expect(blueprint).toContain('marked only on the verified section');
     expect(blueprint).toContain("startLabel.split(/[.!?]/)[0].trim()");

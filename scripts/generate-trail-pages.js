@@ -98,7 +98,7 @@ function displayStartLabel(t, label) {
 
 const REGION_LABEL = { dolomites: 'Dolomites, Italy', savoy: 'Savoy, France' };
 const REVIEW_CATEGORIES = ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'];
-const GRADUATION_CATEGORIES = ['photo', 'route', 'mapPoints', 'elevation', ...REVIEW_CATEGORIES];
+const GRADUATION_CATEGORIES = ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', ...REVIEW_CATEGORIES];
 
 function reviewProgress(t) {
   if (!t.verified || !Array.isArray(t.verified.categories)) return null;
@@ -107,9 +107,10 @@ function reviewProgress(t) {
 
 function graduationProgress(t) {
   if (!t.graduation || !Array.isArray(t.graduation.completed)) return null;
-  const required = Array.isArray(t.graduation.required) && t.graduation.required.length
-    ? t.graduation.required
-    : GRADUATION_CATEGORIES;
+  const required = [...new Set([
+    ...(Array.isArray(t.graduation.required) ? t.graduation.required : []),
+    ...GRADUATION_CATEGORIES,
+  ])];
   const completed = required.filter(check => t.graduation.completed.includes(check));
   return {
     completed: completed.length,

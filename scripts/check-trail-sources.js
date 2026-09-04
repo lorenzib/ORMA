@@ -30,7 +30,7 @@ const ROCKY_SHARE_THRESHOLD = 0.3;
 // The six hazard categories VERIFICATION.md asks every curated trail to have
 // a non-OSM citable source for. Order here is the order they're reported in.
 const HAZARD_CATEGORIES = ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'];
-const GRADUATION_CATEGORIES = ['photo', 'route', 'mapPoints', 'elevation', ...HAZARD_CATEGORIES];
+const GRADUATION_CATEGORIES = ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', ...HAZARD_CATEGORIES];
 
 function loadTrails() {
   const src = TRAIL_FILES.map((f) => fs.readFileSync(path.join(ROOT, f), 'utf8')).join('\n');
@@ -102,7 +102,10 @@ function verificationProgress(trail) {
 
 function graduationProgress(trail) {
   if (!trail.graduation || !Array.isArray(trail.graduation.completed)) return null;
-  const required = Array.isArray(trail.graduation.required) ? trail.graduation.required : GRADUATION_CATEGORIES;
+  const required = [...new Set([
+    ...(Array.isArray(trail.graduation.required) ? trail.graduation.required : []),
+    ...GRADUATION_CATEGORIES,
+  ])];
   const completed = required.filter(check => trail.graduation.completed.includes(check));
   return { completed, missing: required.filter(check => !completed.includes(check)) };
 }

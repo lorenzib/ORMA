@@ -8,6 +8,8 @@ const PROTECTED_FIELDS = Object.freeze([
   'path', 'lat', 'lng', 'distance', 'elevation', 'hours', 'terrainType',
   'terrainRank', 'surfaceHazards', 'shadeCoverage', 'heatRisk', 'safetyLevel',
   'exposure', 'waterSources', 'startPoint', 'decisionPoints', 'rifugi',
+  'routeRefs', 'routeRefSegments', 'routeNumberStatus', 'routeNumberSource',
+  'routeNumberGuidance',
 ]);
 
 function compactTrail(trail){

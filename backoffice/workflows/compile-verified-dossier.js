@@ -17,12 +17,37 @@ function authoritativeRecommendedStart(review){
       &&(claim.sources||[]).some(source=>/^https:\/\//.test(source.url||'')&&String(source.authority||'').trim()));
 }
 
+const REQUIRED_ROUTE_GUIDANCE_CLAIMS=['route-number-status','route-number-sequence','route-number-switches'];
+
+function supportedLogisticsClaim(review,id){
+  return (review.specialistOutputs||[]).flatMap(output=>(output.result?.claims||[]).map(claim=>({agentId:output.agentId,claim})))
+    .find(({agentId,claim})=>agentId==='logistics'&&claim.id===id&&claim.finding==='supported-proposal'
+      &&String(claim.proposedValue||'').trim()
+      &&(claim.sources||[]).some(source=>/^https:\/\//.test(source.url||'')&&String(source.authority||'').trim()));
+}
+
+function assertRouteGuidance(review,trail){
+  const missing=REQUIRED_ROUTE_GUIDANCE_CLAIMS.filter(id=>!supportedLogisticsClaim(review,id));
+  if(!authoritativeRecommendedStart(review))missing.unshift('recommended-start');
+  if(missing.length){
+    throw new Error(`${trail?.trailName||trail?.trailId||'Trail'} requires supported route-number guidance before verification: ${missing.join(', ')}`);
+  }
+}
+
+function routeGuidanceBlockingReasons(outputs){
+  const review={specialistOutputs:outputs||[]};
+  const missing=REQUIRED_ROUTE_GUIDANCE_CLAIMS.filter(id=>!supportedLogisticsClaim(review,id));
+  if(!authoritativeRecommendedStart(review))missing.unshift('recommended-start');
+  return missing.map(id=>`logistics/${id}: supported authoritative route guidance is required`);
+}
+
 function compileVerifiedDossier(review,trail,options={}){
   if(!review.approvalAllowed)throw new Error('A blocked dossier cannot be compiled as verified');
   const routeReference=numberedRouteReference(review,trail);
   if(routeReference&&!authoritativeRecommendedStart(review)){
     throw new Error(`Numbered route ${routeReference} requires an authoritative recommended-start claim before verification`);
   }
+  assertRouteGuidance(review,trail);
   const at=options.at||new Date().toISOString();const sourceMap=new Map();
   function addSource(source){const url=source?.url;if(!/^https:\/\//.test(url||''))return null;if(sourceMap.has(url))return sourceMap.get(url).id;
     const id=sourceId(url,sourceMap.size);sourceMap.set(url,{id,url,label:source.label||source.provider||url,authority:source.authority||null,
@@ -55,4 +80,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={numberedRouteReference,authoritativeRecommendedStart,compileVerifiedDossier,verificationRecord};
+module.exports={numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,compileVerifiedDossier,verificationRecord};

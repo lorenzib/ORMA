@@ -31,6 +31,20 @@ function latestDecisions(reviewQueue){
 
 function section(result, name){ return result?.changes?.find(change => change.section === name)?.after || null; }
 
+function routeNumberGuidance(item){
+  const facts=new Map((item?.lockedFacts||[]).map(fact=>[fact.id,fact]));
+  const start=facts.get('logistics-recommended-start');
+  const status=facts.get('logistics-route-number-status');
+  const sequence=facts.get('logistics-route-number-sequence');
+  const switches=facts.get('logistics-route-number-switches');
+  if(!start||!status||!sequence||!switches)return null;
+  const sourceIds=[...new Set([start,status,sequence,switches].flatMap(fact=>fact.sourceIds||[]))];
+  const sources=(item.evidenceSources||[]).filter(source=>sourceIds.includes(source.id)).map(source=>({
+    label:source.label,url:source.url,authority:source.authority||null,accessedAt:source.accessedAt||null,
+  }));
+  return {start:start.value,status:status.value,sequence:sequence.value,switches:switches.value,sources};
+}
+
 function buildPublicationStaging(editorialQueue, execution, reviewQueue, options = {}){
   const at = options.at || new Date().toISOString();
   const decisions = latestDecisions(reviewQueue);
@@ -45,13 +59,14 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
     const copyApproved = copyDecision?.action === 'approve';
     const visualApproved = visualDecision?.action === 'approve';
     const missingApprovals = [!copyApproved && 'editorial-approval', !visualApproved && 'asset-and-licensing-approval'].filter(Boolean);
-    const publicationMappingBlockers=[!target&&'website-target-mapping',!verifiedFields&&'structured-website-fields'].filter(Boolean);
     const copyOutput = outputs.get(copyJobId);
     const visualOutput = outputs.get(visualJobId);
     const hero = visualOutput?.result?.candidates?.find(candidate => candidate.status === 'ready') || null;
     const about = section(copyOutput?.result, 'About the trail');
     const dog = section(copyOutput?.result, 'Why it suits dogs');
     const practical = section(copyOutput?.result, 'Important practical notes');
+    const routeGuidance=routeNumberGuidance(item);
+    const publicationMappingBlockers=[!target&&'website-target-mapping',!verifiedFields&&'structured-website-fields',!routeGuidance&&'route-number-guidance'].filter(Boolean);
     const state=missingApprovals.length?'waiting-content-approvals':publicationMappingBlockers.length?'waiting-publication-mapping':'ready-for-publication-preview';
     return {
       candidateId: item.candidateId, targetTrailId: target?.trailId||item.candidateId, operation: target?.operation||'mapping-required',
@@ -72,10 +87,11 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
         imageCreditText: hero.credit,
         imageAlt: hero.altText,
         ormaVerified: true,
+        routeNumberGuidance:routeGuidance,
         ...verifiedFields,
         reviewedAt: item.verifiedAt.slice(0,10), reviewedBy:'ORMA verified-trail workflow',
         verified:{ categories:['water','heat','exposure','livestock','surfaceHazards','access'], sources:['Locked ORMA evidence dossier'], date:item.verifiedAt.slice(0,10) },
-        graduation:{ status:'verified', required:['photo','route','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'], completed:['photo','route','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'] },
+        graduation:{ status:'verified', required:['photo','route','routeNumbers','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'], completed:['photo','route','routeNumbers','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'] },
         verifiedAt: item.verifiedAt,
       },
       lockedEvidence: { dossierRef: item.dossierRef, facts: item.lockedFacts, verificationConditions: item.verificationConditions },
@@ -100,4 +116,4 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
   };
 }
 
-module.exports = { TARGETS, VERIFIED_FIELDS, latestDecisions, buildPublicationStaging };
+module.exports = { TARGETS, VERIFIED_FIELDS, latestDecisions, routeNumberGuidance, buildPublicationStaging };

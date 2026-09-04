@@ -4,7 +4,7 @@ const { VERSION, validateCampaign } = require('../contracts/catalogue-campaign-v
 const { createAgentJob } = require('../contracts/agent-job-v1');
 
 const GRADUATION_CHECKS = Object.freeze([
-  'photo', 'route', 'mapPoints', 'elevation', 'water', 'heat',
+  'photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat',
   'exposure', 'livestock', 'surfaceHazards', 'access',
 ]);
 const SAFETY_FIELDS = Object.freeze([
@@ -46,6 +46,7 @@ function baselineBlockers(trail){
     if(trail[field] === undefined || trail[field] === null) blockers.push(`${field}-unknown`);
   });
   if(!trail.verified || !Array.isArray(trail.verified.categories)) blockers.push('category-review-incomplete');
+  if(!trail.graduation?.completed?.includes('routeNumbers')) blockers.push('route-number-guidance-unverified');
   return blockers;
 }
 
@@ -119,6 +120,8 @@ function planCatalogueCampaign(trails, options = {}){
       curated: items.filter(item => item.origin === 'curated').length,
       imported: items.filter(item => item.origin === 'imported').length,
       modernGraduationVerified: items.filter(item => item.modernGraduationVerified).length,
+      routeNumberGuidanceVerified: trails.filter(trail=>trail.graduation?.completed?.includes('routeNumbers')).length,
+      routeNumberGuidanceOutstanding: trails.filter(trail=>!trail.graduation?.completed?.includes('routeNumbers')).length,
       identityCheckQueued: items.filter(item => item.campaignState === 'identity-check-queued').length,
       sourceIdentityRequired: items.filter(item => item.campaignState === 'source-identity-required').length,
       previouslyQueued: excludedTrailIds.size,

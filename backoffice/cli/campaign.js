@@ -36,6 +36,7 @@ async function main(args = process.argv.slice(2)){
   console.log(`[campaign] Catalogue trails: ${campaign.summary.total}`);
   console.log(`[campaign] Curated/imported: ${campaign.summary.curated}/${campaign.summary.imported}`);
   console.log(`[campaign] Modern graduation verified: ${campaign.summary.modernGraduationVerified}`);
+  console.log(`[campaign] Trail-number guidance verified/outstanding: ${campaign.summary.routeNumberGuidanceVerified}/${campaign.summary.routeNumberGuidanceOutstanding}`);
   console.log(`[campaign] Identity check available: ${campaign.summary.identityCheckQueued}`);
   console.log(`[campaign] Source identity required: ${campaign.summary.sourceIdentityRequired}`);
   console.log(`[campaign] Draft Cartographer jobs created: ${campaign.summary.jobsCreated}`);

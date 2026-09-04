@@ -48,10 +48,12 @@
         elevation: 'Profile present; headline ascent corrected to the official 249 m figure.'
       },
       graduation: {
-        status: 'verified',
-        required: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        status: 'in-progress',
+        required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
-        blockers: {}
+        blockers: {
+          routeNumbers: 'Confirm from an authoritative route source that route 09 applies from the recommended start and that no numbered switch is required.'
+        }
       },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
@@ -183,9 +185,10 @@
       },
       graduation: {
         status: 'in-progress',
-        required: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards'],
         blockers: {
+          routeNumbers: 'Verify the ordered trail-number guidance and every numbered switch, or an authoritative named-only/no-switch statement.',
           access: 'The official route crosses the protected Laugen biotope but the available route material does not state the dog-access or leash rule for this specific reserve.'
         }
       },
@@ -286,9 +289,10 @@
       },
       graduation: {
         status: 'in-progress',
-        required: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'surfaceHazards'],
         blockers: {
+          routeNumbers: 'Verify the ordered trail-number guidance and every numbered switch, or an authoritative named-only/no-switch statement.',
           livestock: 'The available official route material does not address current livestock or guardian-dog conditions.',
           access: 'The available official route material does not state a route-specific dog-access or leash rule.'
         }

@@ -13,7 +13,7 @@ const SOURCE_CATEGORIES = new Set([
   'surfaceHazards', 'access', 'content',
 ]);
 const GRADUATION_CATEGORIES = new Set([
-  'photo', 'route', 'mapPoints', 'elevation', ...REVIEW_CATEGORIES,
+  'photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', ...REVIEW_CATEGORIES,
 ]);
 
 function slugify(value){

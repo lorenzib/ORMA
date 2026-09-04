@@ -59,7 +59,7 @@ const verifiedTrailEditorialQueue = require('../backoffice-data/verified-trail-e
 const { planVerifiedTrailEditorial } = require('./workflows/plan-verified-trail-editorial');
 const verifiedTrailEditorialExecution = require('../backoffice-data/verified-trail-editorial-execution.json');
 const { compileVerifiedEditorialPreview } = require('./workflows/compile-verified-editorial-preview');
-const { buildPublicationStaging } = require('./workflows/build-publication-staging');
+const { buildPublicationStaging,routeNumberGuidance } = require('./workflows/build-publication-staging');
 const { buildVerifiedTrailRevisionJobs } = require('./workflows/queue-verified-trail-revisions');
 const { runVerifiedTrailRevision } = require('./workflows/run-verified-trail-revision');
 const { materializeApprovedPublications } = require('./workflows/materialize-approved-publications');
@@ -106,6 +106,22 @@ const { positiveInteger } = require('./cli/live-worker');
 const { startLiveTrailCampaign } = require('./workflows/start-live-trail-campaign');
 const { trailOnlyReviewQueue } = require('./cli/seed-live-state');
 const { compileVerifiedDossier, verificationRecord } = require('./workflows/compile-verified-dossier');
+
+function supportedRouteGuidanceClaims(at, options={}){
+  const source={label:'Official route guide',url:'https://example.test/route-guide',authority:'Park authority',accessedAt:at};
+  return [
+    ...(options.includeStart===false?[]:[{id:'recommended-start',category:'access',proposedValue:options.start||'Start at the official trailhead, 46.0000, 11.0000.',finding:'supported-proposal',confidence:.95,rationale:'The official route guide identifies the start.',sources:[source],blockers:[]}]),
+    {id:'route-number-status',category:'route',proposedValue:options.status||'Named route; no numbered reference applies.',finding:'supported-proposal',confidence:.95,rationale:'The official route guide identifies the route.',sources:[source],blockers:[]},
+    {id:'route-number-sequence',category:'route',proposedValue:options.sequence||'No numbered sequence applies.',finding:'supported-proposal',confidence:.95,rationale:'The official route guide identifies the route.',sources:[source],blockers:[]},
+    {id:'route-number-switches',category:'route',proposedValue:options.switches||'No numbered switch is required.',finding:'supported-proposal',confidence:.95,rationale:'The official route guide identifies the route.',sources:[source],blockers:[]},
+  ];
+}
+function unresolvedRouteGuidanceClaims(){
+  return ['recommended-start','route-number-status','route-number-sequence','route-number-switches'].map(id=>({
+    id,category:id==='recommended-start'?'access':'route',proposedValue:'Unresolved',finding:'unresolved',confidence:0,
+    rationale:'No authoritative source located.',sources:[],blockers:[`${id}-unresolved`],
+  }));
+}
 const { runProductDiscovery } = require('./workflows/run-product-discovery');
 const { applyProductIdeaReview } = require('./workflows/product-ideas-review');
 const { imageSignals, auditImageCoverage } = require('./workflows/audit-image-coverage');
@@ -396,11 +412,11 @@ describe('ORMA backoffice MVP', () => {
   test('catalogue campaign recognises only complete modern graduation as ORMA verified', () => {
     const complete = {
       status: 'verified',
-      completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat',
+      completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat',
         'exposure', 'livestock', 'surfaceHazards', 'access'],
     };
     expect(hasFullGraduation({ graduation: complete })).toBe(true);
-    expect(hasFullGraduation({ graduation: { ...complete, completed: complete.completed.slice(1) } })).toBe(false);
+    expect(hasFullGraduation({ graduation: { ...complete, completed: complete.completed.filter(check=>check!=='routeNumbers') } })).toBe(false);
     expect(hasFullGraduation({ graduation: { ...complete, status: 'in-progress' } })).toBe(false);
   });
 
@@ -418,6 +434,8 @@ describe('ORMA backoffice MVP', () => {
     expect(campaign.publicMutationAllowed).toBe(false);
     expect(campaign.jobs).toHaveLength(2);
     expect(campaign.jobs.every(job => job.humanGate === 'geometry-approval')).toBe(true);
+    expect(campaign.items.every(item=>item.baselineBlockers.includes('route-number-guidance-unverified'))).toBe(true);
+    expect(campaign.summary.routeNumberGuidanceOutstanding).toBe(3);
     expect(campaign.items.find(item => item.trailId === 'curated-one').campaignState).toBe('source-identity-required');
     expect(relationExternalId(trails[1])).toBe('relation/123');
   });
@@ -931,21 +949,29 @@ describe('ORMA backoffice MVP', () => {
       mode: 'staging-only', stage: 'website-publication-preview',
       publicMutationAllowed: false, publicationAuthorized: false,
     }));
-    expect(staging.summary).toEqual({ trails: 3, readyForPreview: 3, waitingForApprovals: 0, waitingForMapping:0, publicMutations: 0 });
-    expect(staging.items[0].proposedWebsiteFields.imageCredit).toEqual(expect.objectContaining({
-      text:expect.any(String),url:expect.stringMatching(/^https:\/\//),
-    }));
-    expect(staging.items[0].proposedWebsiteFields.imageCreditText).toEqual(expect.any(String));
+    expect(staging.summary).toEqual({ trails: 3, readyForPreview: 0, waitingForApprovals: 0, waitingForMapping:3, publicMutations: 0 });
     expect(staging.items.every(item => (
-      item.state === 'ready-for-publication-preview'
-      && item.proposedWebsiteFields.name
-      && item.proposedWebsiteFields.desc
-      && item.proposedWebsiteFields.tips
-      && item.proposedWebsiteFields.routeRef
-      && item.proposedWebsiteFields.imageCredit
+      item.state === 'waiting-publication-mapping'
+      && item.publicationMappingBlockers.includes('route-number-guidance')
+      && item.proposedWebsiteFields === null
       && item.humanGate === 'website-preview-and-publication-approval'
       && item.publicationAuthorized === false
     ))).toBe(true);
+  });
+
+  test('Publication Mapper preserves the approved start, sequence and switches as website guidance', () => {
+    const source={id:'route-source',label:'Official route guide',url:'https://example.test/route',authority:'Park',accessedAt:'2026-09-04'};
+    const lockedFacts=[
+      ['logistics-recommended-start','Start at Rifugio Auronzo.'],
+      ['logistics-route-number-status','Numbered route.'],
+      ['logistics-route-number-sequence','Start on 101, then follow 105.'],
+      ['logistics-route-number-switches','At km 5.3, switch from 101 to 105.'],
+    ].map(([id,value])=>({id,value,sourceIds:['route-source']}));
+    expect(routeNumberGuidance({lockedFacts,evidenceSources:[source]})).toEqual({
+      start:'Start at Rifugio Auronzo.',status:'Numbered route.',
+      sequence:'Start on 101, then follow 105.',switches:'At km 5.3, switch from 101 to 105.',
+      sources:[{label:source.label,url:source.url,authority:source.authority,accessedAt:source.accessedAt}],
+    });
   });
 
   test('content flow creates only editing and picture-gathering jobs', () => {
@@ -1448,13 +1474,13 @@ describe('ORMA backoffice MVP', () => {
 
   test('the final gate locks approval when any specialist finding is unresolved', () => {
     expect(dossierBlockingReasons([{agentId:'redTeam',result:{recommendation:'needs-resolution',claims:[{id:'parking',finding:'unresolved',blockers:['No authority source']}]} }]))
-      .toEqual(['redTeam: recommendation is needs-resolution','redTeam/parking: unresolved','redTeam/parking: No authority source']);
+      .toEqual(expect.arrayContaining(['logistics/recommended-start: supported authoritative route guidance is required','logistics/route-number-status: supported authoritative route guidance is required','redTeam: recommendation is needs-resolution','redTeam/parking: unresolved','redTeam/parking: No authority source']));
   });
 
   test('final human approval compiles a durable ORMA Verified editorial handoff', () => {
     const at='2026-08-18T20:00:00.000Z';const review={reviewId:'dossier-a',candidateId:'trail-a',gateType:'dossier-approval',state:'awaiting-human',approvalAllowed:true,specialistOutputs:[
       {agentId:'cartographer',jobId:'cart-a',result:{source:{provider:'OSM',url:'https://example.test/route',endpoint:'https://example.test/raw',externalId:'relation/1',relationVersion:2,licence:'ODbL-1.0'},relation:{tags:{name:'Trail A'}},geometry:{type:'LineString',coordinates:[[1,1],[1,1]]},assessment:{pointCount:2,distanceKm:1}}},
-      {agentId:'logistics',jobId:'log-a',result:{claims:[{id:'parking',category:'parking',proposedValue:'Use P1.',finding:'supported-proposal',confidence:.9,rationale:'Official source.',sources:[{label:'Authority',url:'https://example.test/parking',authority:'Municipality',accessedAt:at}],blockers:[]}] }},
+      {agentId:'logistics',jobId:'log-a',result:{claims:[{id:'parking',category:'parking',proposedValue:'Use P1.',finding:'supported-proposal',confidence:.9,rationale:'Official source.',sources:[{label:'Authority',url:'https://example.test/parking',authority:'Municipality',accessedAt:at}],blockers:[]},...supportedRouteGuidanceClaims(at)] }},
     ]};
     const trail={candidateId:'trail-a',trailId:'trail-a',trailName:'Trail A',sourceTrail:{externalRelationId:'relation/1'}};
     const dossier=compileVerifiedDossier(review,trail,{at,verifiedBy:'editor-a'});const record=verificationRecord(dossier);
@@ -1467,7 +1493,7 @@ describe('ORMA backoffice MVP', () => {
     const at='2026-09-02T10:00:00.000Z';
     const cartographer={agentId:'cartographer',jobId:'cart-a',result:{source:{provider:'OSM',url:'https://example.test/route',endpoint:'https://example.test/raw',externalId:'relation/19',relationVersion:2,licence:'ODbL-1.0'},relation:{tags:{name:'Trail 19',ref:'19'}},geometry:{type:'LineString',coordinates:[[1,1],[1,1]]},assessment:{pointCount:2,distanceKm:1}}};
     const parking={id:'parking',category:'parking',proposedValue:'Use P1.',finding:'supported-proposal',confidence:.9,rationale:'Official source.',sources:[{label:'Authority',url:'https://example.test/parking',authority:'Municipality',accessedAt:at}],blockers:[]};
-    const review={reviewId:'dossier-19',candidateId:'trail-19',approvalAllowed:true,specialistOutputs:[cartographer,{agentId:'logistics',jobId:'log-a',result:{claims:[parking]}}]};
+    const review={reviewId:'dossier-19',candidateId:'trail-19',approvalAllowed:true,specialistOutputs:[cartographer,{agentId:'logistics',jobId:'log-a',result:{claims:[parking,...supportedRouteGuidanceClaims(at,{includeStart:false,status:'Numbered route 19.',sequence:'Start on trail 19.',switches:'No numbered switch is required.'})]}}]};
     const trail={candidateId:'trail-19',trailId:'trail-19',trailName:'Trail 19'};
     expect(()=>compileVerifiedDossier(review,trail,{at})).toThrow('requires an authoritative recommended-start claim');
     review.specialistOutputs[1].result.claims.push({id:'recommended-start',category:'access',proposedValue:'Start at Rifugio Example, 46.0000, 11.0000.',finding:'supported-proposal',confidence:.95,rationale:'The official route page identifies the start.',sources:[{label:'Official route',url:'https://example.test/trail-19',authority:'Park authority',accessedAt:at}],blockers:[]});
@@ -1483,7 +1509,7 @@ describe('ORMA backoffice MVP', () => {
       return {responseId:'resp-a',model:'test-model',data:{
         summary:'Parking remains unresolved.',
         claims:[{id:'parking',category:'parking',proposedValue:'Unknown',finding:'unresolved',confidence:0,
-          rationale:'No authoritative source located.',sources:[],blockers:['parking-pin-unverified']}],
+          rationale:'No authoritative source located.',sources:[],blockers:['parking-pin-unverified']},...unresolvedRouteGuidanceClaims()],
         openQuestions:['Contact the municipality.'],recommendation:'needs-resolution',
       }};
     }});
@@ -1517,7 +1543,7 @@ describe('ORMA backoffice MVP', () => {
     };
     const result=await processTrailSpecialistJobs(store,{
       specialistCandidateId:'trail-b',specialistLimit:5,productionTrails:[{id:'trail-b'}],env:{},
-      runAgent:async()=>({responseId:'resp-b',model:'gpt-5.6-luna',data:{summary:'Checked.',claims:[],openQuestions:[],recommendation:'advance'}}),
+      runAgent:async()=>({responseId:'resp-b',model:'gpt-5.6-luna',data:{summary:'Checked.',claims:unresolvedRouteGuidanceClaims(),openQuestions:[],recommendation:'advance'}}),
     });
     expect(result).toEqual([expect.objectContaining({jobId:'job-b',status:'completed'})]);
     expect(completed).toEqual(['job-b']);
