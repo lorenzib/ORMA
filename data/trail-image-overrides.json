@@ -1,5 +1,57 @@
 {
   "schemaVersion": 1,
-  "updatedAt": null,
-  "trails": []
+  "updatedAt": "2026-09-04T08:13:41.146Z",
+  "trails": [
+    {
+      "id": "alpe-siusi",
+      "approvedReviewId": "aWdy0ikCoO8Dud0tseoI",
+      "approvedAt": "2026-09-03T21:24:03.637Z",
+      "fields": {
+        "imageIcon": "images/trails/alpe-siusi-awdy0ikcoo8dud0tseoi.jpg",
+        "heroImage": "images/trails/alpe-siusi-awdy0ikcoo8dud0tseoi.jpg",
+        "imageAlt": "Alpe di Siusi",
+        "imageCredit": "Photo by Benedetta Lorenzi",
+        "imageCreditText": "Photo by Benedetta Lorenzi",
+        "imageCreator": "Benedetta Lorenzi",
+        "imageLicence": "ORMA-owned",
+        "imageLicenceUrl": null,
+        "imageSourcePage": null,
+        "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "giro-del-bulacia",
+      "approvedReviewId": "Vf4qJCGNTv1uc52LJmmR",
+      "approvedAt": "2026-09-03T21:24:04.197Z",
+      "fields": {
+        "imageIcon": "images/trails/giro-del-bulacia-vf4qjcgntv1uc52ljmmr.jpg",
+        "heroImage": "images/trails/giro-del-bulacia-vf4qjcgntv1uc52ljmmr.jpg",
+        "imageAlt": "Giro del Bulacia trail",
+        "imageCredit": "Photo by Benedetta Lorenzi",
+        "imageCreditText": "Photo by Benedetta Lorenzi",
+        "imageCreator": "Benedetta Lorenzi",
+        "imageLicence": "ORMA-owned",
+        "imageLicenceUrl": null,
+        "imageSourcePage": null,
+        "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "sentiero-hans-e-paula-steger",
+      "approvedReviewId": "GPpHNHMWw9VijH81aQD4",
+      "approvedAt": "2026-09-04T08:13:38.469Z",
+      "fields": {
+        "imageIcon": "images/trails/sentiero-hans-e-paula-steger-gpphnhmww9vijh81aqd4.jpg",
+        "heroImage": "images/trails/sentiero-hans-e-paula-steger-gpphnhmww9vijh81aqd4.jpg",
+        "imageAlt": "Sentiero Hans e Paula Steger trail",
+        "imageCredit": "Photo by Benedetta Lorenzi",
+        "imageCreditText": "Photo by Benedetta Lorenzi",
+        "imageCreator": "Benedetta Lorenzi",
+        "imageLicence": "ORMA-owned",
+        "imageLicenceUrl": null,
+        "imageSourcePage": null,
+        "imageSourceType": "moderator-upload"
+      }
+    }
+  ]
 }

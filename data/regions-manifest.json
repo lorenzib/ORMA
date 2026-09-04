@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-03T12:45:51.908Z",
+  "generatedAt": "2026-09-04T08:08:43.719Z",
   "regions": {
     "dolomites": {
       "trailCount": 111,
-      "trails": "data/regions/dolomites-trails.js?v=c675f314cc1c",
+      "trails": "data/regions/dolomites-trails.js?v=1b696af8771d",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=16838be26bd3",
         "seceda": "data/trail-details/seceda.js?v=95c669f3ef53",
@@ -20,7 +20,7 @@
         "valley-view": "data/trail-details/valley-view.js?v=ec2fa77e3269",
         "piancavallo": "data/trail-details/piancavallo.js?v=a38aab3defad",
         "geotrail-bulla": "data/trail-details/geotrail-bulla.js?v=3f96a51306e8",
-        "giro-del-bulacia": "data/trail-details/giro-del-bulacia.js?v=0ebcd334820e",
+        "giro-del-bulacia": "data/trail-details/giro-del-bulacia.js?v=8fbf12a764f5",
         "sentiero-hans-e-paula-steger": "data/trail-details/sentiero-hans-e-paula-steger.js?v=66fa1e0748a3",
         "sentiero-del-trenino": "data/trail-details/sentiero-del-trenino.js?v=06065302c471",
         "giro-del-sasso-lungo": "data/trail-details/giro-del-sasso-lungo.js?v=6d78d4df8a9c",
