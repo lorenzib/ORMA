@@ -4,7 +4,7 @@ const recommendation = {
   score:72,
   category:'possible-with-cautions',
   confidence:'medium',
-  scoringVersion:'1.1.0',
+  scoringVersion:'1.3.0',
   evidenceTier:'route-audited',
   positiveReasons:[{ message:'Distance is within range.' }],
   cautions:[{ message:'Shade is limited.' }],
@@ -25,7 +25,63 @@ describe('canonical recommendation decision presentation', () => {
     expect(result.reasons).toEqual(['Distance is within range.']);
     expect(result.cautions).toEqual(['Shade is limited.']);
     expect(result.unknowns).toHaveLength(2);
-    expect(result.scoringVersion).toBe('1.1.0');
+    expect(result.scoringVersion).toBe('1.3.0');
+  });
+
+  test('the four shown reasons keep the ones specific to this dog', () => {
+    // Engine emission order, which puts every behaviour reason last.
+    const result = decision.present({
+      ...recommendation,
+      positiveReasons:[
+        { code:'trail.terrain.within-tolerance', message:'Terrain is fine.' },
+        { code:'trail.distance.within-range', message:'Distance is within range.' },
+        { code:'trail.ascent.within-range', message:'Ascent is within range.' },
+        { code:'trail.exposure.none-known', message:'No exposed section.' },
+        { code:'trail.shade.good', message:'Substantial shade.' },
+        { code:'trail.dog-access.allowed', message:'Dogs are allowed.' },
+        { code:'trail.water.reviewed', message:'Water is available at 2 reviewed points.' },
+        { code:'trail.sightlines.open', message:'Open sightlines keep this dog visible.' },
+        { code:'trail.duration.within-preference', message:'Fits the preferred walk length.' },
+      ],
+    }, { dogName:'Eddie' });
+
+    expect(result.reasons).toEqual([
+      'Distance is within range.',
+      'Fits the preferred walk length.',
+      'Water is available at 2 reviewed points.',
+      'Open sightlines keep this dog visible.',
+    ]);
+  });
+
+  test('a positioned advisory is not crowded out by generic cautions', () => {
+    const result = decision.present({
+      ...recommendation,
+      cautions:[
+        { code:'trail.descent.joint-load', message:'Sustained descent.' },
+        { code:'trail.shade.low', message:'Shade is limited.' },
+        { code:'trail.heat.moderate', message:'Moderate heat risk.' },
+        { code:'conditions.heat.moderate', message:'Moderate heat load today.' },
+        { code:'trail.wildlife.chase-risk', message:'Wildlife is active here.' },
+        { code:'segment.leash-recommended.livestock.2.1-3.4',
+          message:'Lead recommended between kilometres 2.1 and 3.4 — open grazing pasture.' },
+      ],
+    }, { dogName:'Eddie' });
+
+    expect(result.cautions).toContain(
+      'Lead recommended between kilometres 2.1 and 3.4 — open grazing pasture.');
+    expect(result.cautions).toContain('Wildlife is active here.');
+  });
+
+  test('a hard stop always leads the cautions', () => {
+    const result = decision.present({
+      ...recommendation,
+      hardStops:[{ code:'trail.dog-access.prohibited', message:'Dogs are prohibited.' }],
+      cautions:[
+        { code:'segment.leash-recommended.livestock.2.1-3.4', message:'Lead recommended.' },
+      ],
+    }, { dogName:'Eddie' });
+
+    expect(result.cautions[0]).toBe('Dogs are prohibited.');
   });
 
   test('labels guest output as unpersonalized', () => {

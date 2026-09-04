@@ -23,6 +23,45 @@ function browserScoring(){
   return context;
 }
 
+describe('SCORE-03 behaviour normalization at the legacy boundary', () => {
+  const adapters = require('./scoring/recommendation-adapters-v1.js');
+
+  test('only recognised scale answers reach the scorer', () => {
+    const normalized = adapters.normalizeDog({
+      fitness:'moderate',
+      behaviour:{
+        recall:'variable',
+        // A stale or hand-edited client must not be able to write a value the
+        // scorer would misread as the easy end of a scale.
+        preyDrive:'extreme',
+        livestockComfort:'',
+        heatTolerance:null,
+        preferredDurationMin:'90',
+      },
+    });
+
+    expect(normalized.behaviour).toEqual({ recall:'variable', preferredDurationMin:90 });
+  });
+
+  test('an out-of-range preferred duration is dropped rather than clamped', () => {
+    expect(adapters.behaviour({ behaviour:{ preferredDurationMin:0 } })).toEqual({});
+    expect(adapters.behaviour({ behaviour:{ preferredDurationMin:5000 } })).toEqual({});
+    expect(adapters.behaviour({})).toEqual({});
+  });
+
+  test('legacy presentation trails declare behaviour attributes unknown, not benign', () => {
+    const normalized = adapters.normalizeTrail({
+      id:'legacy', distance:6, elevation:200, terrainRank:1, path:[[46, 12], [46.1, 12.1]],
+    });
+
+    expect(normalized.suitability).toEqual(expect.objectContaining({
+      livestockPresence:'unknown', wildlifePresence:'unknown',
+      sightlines:'unknown', roadProximity:'unknown', crowding:'unknown',
+    }));
+    expect(normalized.segments).toEqual([]);
+  });
+});
+
 describe('SCORE-02 scoring consumers', () => {
   test('browser compatibility functions delegate to one versioned result', () => {
     const context = browserScoring();

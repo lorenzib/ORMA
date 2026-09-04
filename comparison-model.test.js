@@ -21,7 +21,7 @@ const recommendation = {
   score:88,
   category:'strong-option',
   confidence:'high',
-  scoringVersion:'1.1.0',
+  scoringVersion:'1.3.0',
   positiveReasons:[{ message:'Terrain is suitable.' }],
   cautions:[],
   hardStops:[],

@@ -3,11 +3,11 @@
 const TOP_LEVEL_FIELDS = [
   'schemaVersion', 'recordVersion', 'id', 'slug', 'origin', 'lifecycle',
   'name', 'region', 'geometry', 'center', 'trailhead', 'metrics',
-  'suitability', 'waypoints', 'content', 'sources', 'verification',
+  'suitability', 'waypoints', 'segments', 'content', 'sources', 'verification',
   'freshness', 'provenance', 'unknownFields',
 ];
 const UNKNOWN_ROOTS = new Set([
-  'metrics', 'trailhead', 'suitability', 'waypoints', 'content', 'sources',
+  'metrics', 'trailhead', 'suitability', 'waypoints', 'segments', 'content', 'sources',
   'verification', 'freshness', 'provenance',
 ]);
 const ENUMS = {
@@ -24,6 +24,14 @@ const ENUMS = {
   trailheadStatus: ['reviewed', 'mapped-suggestion', 'unknown'],
   waypointStatus: ['reviewed', 'mapped', 'unknown'],
   waypointType: ['water', 'parking', 'trailhead', 'shelter', 'hazard', 'emergency-exit', 'other'],
+  livestockPresence: ['none', 'seasonal', 'likely', 'unknown'],
+  wildlifePresence: ['low', 'moderate', 'high', 'unknown'],
+  sightlines: ['open', 'mixed', 'restricted', 'unknown'],
+  roadProximity: ['none', 'crossings', 'alongside', 'unknown'],
+  crowding: ['quiet', 'moderate', 'busy', 'unknown'],
+  segmentType: ['livestock', 'wildlife', 'road', 'exposure', 'crowding', 'surface', 'water-scarce', 'other'],
+  segmentAdvisory: ['leash-required', 'leash-recommended', 'avoid', 'caution', 'information'],
+  segmentStatus: ['reviewed', 'mapped', 'reported', 'unknown'],
   sourceKind: ['official', 'osm', 'field-review', 'computed', 'legacy', 'other'],
 };
 const REVIEW_CATEGORIES = [
@@ -107,7 +115,7 @@ function validateTrailRecord(record){
   }
   if(errors.some(error => error.startsWith('/: missing'))) return errors;
 
-  if(record.schemaVersion !== '1.0.0') add(errors, '/schemaVersion', 'expected 1.0.0');
+  if(record.schemaVersion !== '1.1.0') add(errors, '/schemaVersion', 'expected 1.1.0');
   if(!Number.isInteger(record.recordVersion) || record.recordVersion < 1) add(errors, '/recordVersion', 'expected a positive integer');
   if(typeof record.id !== 'string' || !/^[a-z0-9][a-z0-9-]{1,79}$/.test(record.id)) add(errors, '/id', 'invalid canonical ID');
   if(typeof record.slug !== 'string' || !/^[a-z0-9][a-z0-9-]{1,99}$/.test(record.slug)) add(errors, '/slug', 'invalid slug');
@@ -176,6 +184,11 @@ function validateTrailRecord(record){
       add(errors, '/suitability/exposure', 'expected boolean or null');
     }
     if(!Array.isArray(record.suitability.surfaceHazards)) add(errors, '/suitability/surfaceHazards', 'expected an array');
+    checkEnum(errors, '/suitability/livestockPresence', record.suitability.livestockPresence, ENUMS.livestockPresence);
+    checkEnum(errors, '/suitability/wildlifePresence', record.suitability.wildlifePresence, ENUMS.wildlifePresence);
+    checkEnum(errors, '/suitability/sightlines', record.suitability.sightlines, ENUMS.sightlines);
+    checkEnum(errors, '/suitability/roadProximity', record.suitability.roadProximity, ENUMS.roadProximity);
+    checkEnum(errors, '/suitability/crowding', record.suitability.crowding, ENUMS.crowding);
     if(!isObject(record.suitability.dogAccess)) add(errors, '/suitability/dogAccess', 'expected an object');
     else{
       checkEnum(errors, '/suitability/dogAccess/status', record.suitability.dogAccess.status, ENUMS.dogAccess);
@@ -194,6 +207,29 @@ function validateTrailRecord(record){
     checkNullableNumber(errors, `${base}/distanceKm`, waypoint.distanceKm, { min: 0, max: 1000 });
     checkEnum(errors, `${base}/status`, waypoint.status, ENUMS.waypointStatus);
     if(waypoint.seasonal !== null && typeof waypoint.seasonal !== 'boolean') add(errors, `${base}/seasonal`, 'expected boolean or null');
+  });
+
+  if(!Array.isArray(record.segments)) add(errors, '/segments', 'expected an array');
+  else record.segments.forEach((segment, index) => {
+    const base = `/segments/${index}`;
+    if(!isObject(segment)){ add(errors, base, 'expected an object'); return; }
+    checkString(errors, `${base}/id`, segment.id, false);
+    checkEnum(errors, `${base}/type`, segment.type, ENUMS.segmentType);
+    checkEnum(errors, `${base}/advisory`, segment.advisory, ENUMS.segmentAdvisory);
+    checkEnum(errors, `${base}/status`, segment.status, ENUMS.segmentStatus);
+    checkNullableNumber(errors, `${base}/fromKm`, segment.fromKm, { min: 0, max: 1000 });
+    checkNullableNumber(errors, `${base}/toKm`, segment.toKm, { min: 0, max: 1000 });
+    // An advisory that cannot be placed on the route is worse than none:
+    // "lead on somewhere" is not actionable, so the range must be ordered
+    // and fully known.
+    if(segment.fromKm === null || segment.toKm === null){
+      add(errors, base, 'fromKm and toKm are required to place an advisory');
+    }else if(Number.isFinite(segment.fromKm) && Number.isFinite(segment.toKm)
+      && segment.toKm <= segment.fromKm){
+      add(errors, `${base}/toKm`, 'must be greater than fromKm');
+    }
+    if(segment.note !== null) checkString(errors, `${base}/note`, segment.note, false);
+    if(segment.seasonal !== null && typeof segment.seasonal !== 'boolean') add(errors, `${base}/seasonal`, 'expected boolean or null');
   });
 
   if(!isObject(record.content)) add(errors, '/content', 'expected an object');

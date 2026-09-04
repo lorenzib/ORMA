@@ -28,8 +28,17 @@ function advanceToReview() {
   document.getElementById('dwNextBtn').click();
   change('dwBreed', 'Podenco Andaluz');
   document.querySelector('[data-key="fitness"][data-value="high"]').click();
-  document.getElementById('dwNextBtn').click();
-  document.getElementById('dwNextBtn').click();
+  advanceToSaveStep();
+}
+
+// Every step after the breed step is optional, so walk forward until the
+// footer offers the save action. Counting clicks would silently break the
+// save assertions each time a step is added to the wizard.
+function advanceToSaveStep() {
+  const nextBtn = document.getElementById('dwNextBtn');
+  for (let index = 0; index < 10 && nextBtn.textContent.startsWith('Next'); index += 1) {
+    nextBtn.click();
+  }
 }
 
 async function flushSave() {
@@ -94,13 +103,56 @@ describe('add-dog wizard persistence', () => {
     document.getElementById('dwNextBtn').click();
 
     expect(document.getElementById('dwNotes')).not.toBeNull();
-    document.getElementById('dwNextBtn').click();
+    advanceToSaveStep();
     document.getElementById('dwNextBtn').click();
     await flushSave();
 
     expect(auth.addDogProfile).toHaveBeenCalledWith(expect.objectContaining({
       name:'Eddie', breed:'Podenco Andaluz', fitness:'high',
     }));
+  });
+
+  test('PROFILE-02 behaviour answers reach the saved profile', async () => {
+    const auth = {
+      currentUser:{ uid:'owner-1' }, addDogProfile:jest.fn(async () => true),
+      setDogProfile:jest.fn(async () => true),
+    };
+    installWizard(auth);
+    window.DoloPawsWizard.open();
+    change('dwName', 'Eddie');
+    change('dwAgeBand', '5-6');
+    document.getElementById('dwNextBtn').click();
+    change('dwBreed', 'Border Collie');
+    document.querySelector('[data-key="fitness"][data-value="moderate"]').click();
+    document.getElementById('dwNextBtn').click();
+    document.getElementById('dwNextBtn').click();
+
+    change('dwB_recall', 'variable');
+    change('dwB_preyDrive', 'high');
+    change('dwB_preferredDurationMin', '90');
+    advanceToSaveStep();
+    document.getElementById('dwNextBtn').click();
+    await flushSave();
+
+    expect(auth.addDogProfile).toHaveBeenCalledWith(expect.objectContaining({
+      behaviour:{ recall:'variable', preyDrive:'high', preferredDurationMin:90 },
+    }));
+  });
+
+  test('an unanswered behaviour question is left out rather than defaulted', async () => {
+    const auth = {
+      currentUser:{ uid:'owner-1' }, addDogProfile:jest.fn(async () => true),
+      setDogProfile:jest.fn(async () => true),
+    };
+    installWizard(auth);
+    window.DoloPawsWizard.open();
+    advanceToReview();
+    document.getElementById('dwNextBtn').click();
+    await flushSave();
+
+    // An absent key is what makes the scorer stay silent about that trait.
+    // Writing an easy default here would quietly reassure the owner instead.
+    expect(auth.addDogProfile).toHaveBeenCalledWith(expect.objectContaining({ behaviour:{} }));
   });
 
   test('recovers the save button when persistence rejects', async () => {
@@ -130,7 +182,8 @@ describe('add-dog wizard persistence', () => {
     window.DoloPawsWizard.open({
       id:'eddie-1', name:'Eddie', ageBand:'5-6', breed:'Podenco Andaluz', fitness:'high',
     });
-    for (let step = 0; step < 4; step += 1) document.getElementById('dwNextBtn').click();
+    advanceToSaveStep();
+    document.getElementById('dwNextBtn').click();
     await flushSave();
     expect(auth.setDogProfile).toHaveBeenCalledWith(expect.objectContaining({ name:'Eddie' }), 'eddie-1');
     expect(auth.addDogProfile).not.toHaveBeenCalled();

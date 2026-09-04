@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "recordVersion": 1,
   "id": "lago-carezza",
   "slug": "lago-di-carezza-loop",
@@ -14,44 +14,149 @@
   "geometry": {
     "type": "LineString",
     "coordinates": [
-      [11.57585, 46.41032],
-      [11.57584, 46.41024],
-      [11.57554, 46.41022],
-      [11.57483, 46.40998],
-      [11.57432, 46.40973],
-      [11.57404, 46.40957],
-      [11.57381, 46.40934],
-      [11.57361, 46.40923],
-      [11.57327, 46.40913],
-      [11.5728, 46.40913],
-      [11.57287, 46.40878],
-      [11.57299, 46.40852],
-      [11.57316, 46.40829],
-      [11.57345, 46.4081],
-      [11.574, 46.40802],
-      [11.57424, 46.40804],
-      [11.57459, 46.4082],
-      [11.57514, 46.40815],
-      [11.57547, 46.40832],
-      [11.5762, 46.40844],
-      [11.57631, 46.40855],
-      [11.57628, 46.40883],
-      [11.57639, 46.40903],
-      [11.57677, 46.40892],
-      [11.57703, 46.40895],
-      [11.57719, 46.40917],
-      [11.57739, 46.40934],
-      [11.57738, 46.40941],
-      [11.57714, 46.40968],
-      [11.57686, 46.40992],
-      [11.57675, 46.41018],
-      [11.57663, 46.41023],
-      [11.57585, 46.41032]
+      [
+        11.57585,
+        46.41032
+      ],
+      [
+        11.57584,
+        46.41024
+      ],
+      [
+        11.57554,
+        46.41022
+      ],
+      [
+        11.57483,
+        46.40998
+      ],
+      [
+        11.57432,
+        46.40973
+      ],
+      [
+        11.57404,
+        46.40957
+      ],
+      [
+        11.57381,
+        46.40934
+      ],
+      [
+        11.57361,
+        46.40923
+      ],
+      [
+        11.57327,
+        46.40913
+      ],
+      [
+        11.5728,
+        46.40913
+      ],
+      [
+        11.57287,
+        46.40878
+      ],
+      [
+        11.57299,
+        46.40852
+      ],
+      [
+        11.57316,
+        46.40829
+      ],
+      [
+        11.57345,
+        46.4081
+      ],
+      [
+        11.574,
+        46.40802
+      ],
+      [
+        11.57424,
+        46.40804
+      ],
+      [
+        11.57459,
+        46.4082
+      ],
+      [
+        11.57514,
+        46.40815
+      ],
+      [
+        11.57547,
+        46.40832
+      ],
+      [
+        11.5762,
+        46.40844
+      ],
+      [
+        11.57631,
+        46.40855
+      ],
+      [
+        11.57628,
+        46.40883
+      ],
+      [
+        11.57639,
+        46.40903
+      ],
+      [
+        11.57677,
+        46.40892
+      ],
+      [
+        11.57703,
+        46.40895
+      ],
+      [
+        11.57719,
+        46.40917
+      ],
+      [
+        11.57739,
+        46.40934
+      ],
+      [
+        11.57738,
+        46.40941
+      ],
+      [
+        11.57714,
+        46.40968
+      ],
+      [
+        11.57686,
+        46.40992
+      ],
+      [
+        11.57675,
+        46.41018
+      ],
+      [
+        11.57663,
+        46.41023
+      ],
+      [
+        11.57585,
+        46.41032
+      ]
     ]
   },
-  "center": [11.5752, 46.4091],
+  "center": [
+    11.5752,
+    46.4091
+  ],
   "trailhead": {
-    "position": [11.57585, 46.41032],
+    "position": [
+      11.57585,
+      46.41032
+    ],
     "label": "Main parking area at Lago di Carezza",
     "status": "mapped-suggestion"
   },
@@ -75,17 +180,37 @@
     "dogAccess": {
       "status": "unknown",
       "notes": "Local leash rules and temporary restrictions still require a dated review."
-    }
+    },
+    "livestockPresence": "seasonal",
+    "wildlifePresence": "moderate",
+    "sightlines": "open",
+    "roadProximity": "none",
+    "crowding": "busy"
   },
   "waypoints": [
     {
       "id": "lago-carezza-trailhead-water",
       "type": "water",
       "name": "Trailhead fountain",
-      "position": [11.57585, 46.41032],
+      "position": [
+        11.57585,
+        46.41032
+      ],
       "distanceKm": 0,
       "status": "mapped",
       "seasonal": null
+    }
+  ],
+  "segments": [
+    {
+      "id": "alpe-pasture-upper",
+      "type": "livestock",
+      "fromKm": 2.1,
+      "toKm": 3.4,
+      "advisory": "leash-recommended",
+      "note": "Open grazing pasture with free-roaming cattle from June to September",
+      "status": "reviewed",
+      "seasonal": true
     }
   ],
   "content": {
@@ -101,7 +226,15 @@
       "kind": "legacy",
       "retrievedAt": null,
       "observedAt": null,
-      "categories": ["route", "metrics", "water", "heat", "exposure", "access", "content"],
+      "categories": [
+        "route",
+        "metrics",
+        "water",
+        "heat",
+        "exposure",
+        "access",
+        "content"
+      ],
       "licence": null
     },
     {
@@ -112,7 +245,11 @@
       "kind": "osm",
       "retrievedAt": "2026-07-27",
       "observedAt": null,
-      "categories": ["route", "water", "access"],
+      "categories": [
+        "route",
+        "water",
+        "access"
+      ],
       "licence": "ODbL-1.0"
     }
   ],
