@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Community moderation | ORMA Backoffice</title>
+  <link rel="icon" href="favicon-32.png" sizes="32x32">
+  <link rel="stylesheet" href="styles.css?v=20260821-5">
+  <link rel="stylesheet" href="backoffice-review.css?v=20260901-1">
+  <link rel="stylesheet" href="moderation.css?v=20260904-1">
+  <script>document.documentElement.classList.add('bo-auth-pending')</script>
+</head>
+<body class="bo-shell moderation-shell">
+  <header class="bo-header">
+    <a href="backoffice-review.html" class="bo-brand"><span aria-hidden="true">🐾</span><span><strong>ORMA</strong><small>Backoffice</small></span></a>
+    <nav class="bo-primary-nav" aria-label="Backoffice navigation">
+      <a href="backoffice-review.html">Home</a>
+      <a href="trail-dossier-desk.html">Trail evidence</a>
+      <a href="trail-content-desk.html">Content &amp; release</a>
+      <a href="new-trail-scouting-desk.html">New Trails</a>
+      <a href="hazard-review-desk.html">Groundskeeper</a>
+      <a href="community-moderation-desk.html" aria-current="page">Community</a>
+      <a href="editorial-desk.html">Editorial</a>
+      <a href="newsletter-desk.html">Newsletter</a>
+      <a href="product-ideas-desk.html">Analyst</a>
+      <a href="designer-desk.html">Design</a>
+    </nav>
+    <button class="bo-sign-out" type="button" data-backoffice-sign-out>Sign out</button>
+  </header>
+
+  <main class="bo-main moderation-main">
+    <nav class="bo-breadcrumb" aria-label="Breadcrumb"><a href="backoffice-review.html">Backoffice Home</a><span>Community moderation</span></nav>
+    <div class="bo-content-head moderation-title-row">
+      <div>
+        <p class="eyebrow">Protected human gate</p>
+        <h1>Community moderation</h1>
+        <p class="moderation-intro">Review what users submit before it affects the public site: trail photos, reviews, place observations and hazard reports.</p>
+      </div>
+      <button id="moderationRefresh" class="bo-primary-action" type="button">Refresh queue</button>
+    </div>
+
+    <section class="bo-desk-summary moderation-summary" aria-label="Community queue summary">
+      <article><strong id="communityPendingCount">—</strong><span>Need a decision</span></article>
+      <article><strong id="communityHazardCount">—</strong><span>Hazards</span></article>
+      <article><strong id="communityPhotoCount">—</strong><span>User photos</span></article>
+      <article><strong id="communityReviewCount">—</strong><span>Reviews &amp; places</span></article>
+    </section>
+
+    <div class="bo-method-note moderation-gate-note"><strong>Nothing is published without this gate</strong><p>Every decision is applied atomically with its report resolutions and an immutable audit receipt. User identities are limited to internal IDs; dog profiles and email addresses never enter this desk.</p></div>
+    <div id="moderationState" class="moderation-state" role="status" aria-live="polite">Checking moderator access…</div>
+
+    <nav class="moderation-filters" aria-label="Filter community queue">
+      <button type="button" class="is-active" data-moderation-filter="all" aria-pressed="true">All <span>0</span></button>
+      <button type="button" data-moderation-filter="flag" aria-pressed="false">Hazards <span>0</span></button>
+      <button type="button" data-moderation-filter="photo" aria-pressed="false">Photos <span>0</span></button>
+      <button type="button" data-moderation-filter="review" aria-pressed="false">Reviews <span>0</span></button>
+      <button type="button" data-moderation-filter="placeDog" aria-pressed="false">Places <span>0</span></button>
+    </nav>
+    <section id="moderationQueue" class="moderation-queue" aria-label="Community content requiring moderation"></section>
+
+    <details id="noticeComposer" class="bo-compact-details moderation-notices" hidden>
+      <summary>Site notices</summary>
+      <p class="moderation-intro">Post a factual update to every visitor’s notification centre. Notices are immutable; delete and repost to correct one.</p>
+      <form id="noticeForm" class="moderation-notice-form">
+        <input id="noticeTitle" maxlength="80" required placeholder="Title — e.g. Three new Val Pusteria trails are live">
+        <textarea id="noticeBody" maxlength="280" required rows="3" placeholder="One or two sentences. Plain facts, no urgency theatre."></textarea>
+        <input id="noticeHref" maxlength="200" placeholder="Link within the site (optional) — e.g. browse-trails.html?region=savoy">
+        <div class="moderation-notice-actions">
+          <select id="noticeType"><option value="news">News</option><option value="trail">New trail</option><option value="safety">Safety advisory</option></select>
+          <select id="noticeExpiry"><option value="">Never expires</option><option value="7">Expires in 7 days</option><option value="30">Expires in 30 days</option><option value="90">Expires in 90 days</option></select>
+          <button type="submit" id="noticeSubmit">Post notice</button>
+        </div>
+        <p id="noticeStatus" role="status" aria-live="polite"></p>
+      </form>
+      <div id="noticeList" class="moderation-notice-list"></div>
+    </details>
+  </main>
+
+  <script src="community-content-states.js?v=20260815-4"></script>
+  <script type="module" src="backoffice-firebase.js?v=20260904-1"></script>
+  <script src="backoffice-auth-guard.js?v=20260819-1"></script>
+  <script src="backoffice-session.js?v=20260819-1"></script>
+  <script src="moderation-page.js?v=20260904-1"></script>
+</body>
+</html>

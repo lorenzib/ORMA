@@ -20,6 +20,10 @@ on:
       - analyst-hosted.js
       - designer-desk.html
       - designer-desk.js
+      - community-moderation-desk.html
+      - moderation-page.js
+      - moderation.css
+      - community-content-states.js
       - product-prototype.js
       - backoffice/content-review-decisions.js
       - scripts/build-backoffice-hosting.js
@@ -46,6 +50,10 @@ on:
       - analyst-hosted.js
       - designer-desk.html
       - designer-desk.js
+      - community-moderation-desk.html
+      - moderation-page.js
+      - moderation.css
+      - community-content-states.js
       - product-prototype.js
       - backoffice/content-review-decisions.js
       - scripts/build-backoffice-hosting.js

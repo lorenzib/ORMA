@@ -2018,8 +2018,6 @@ function renderLiDogLists(profile){
       list.appendChild(row);
     });
   });
-  const moderator = document.getElementById('liModeratorLink');
-  if(moderator) moderator.hidden = !(summary && summary.moderator === true);
 }
 
 // Dog pill + switcher panel labels. Called on every render so a wizard

@@ -573,9 +573,6 @@
         'saved.html');
       menu.appendChild(menuItem(copy('mobile.downloads', 'Downloaded trails'), 'downloads.html', 'mobile.downloads'));
       menu.appendChild(menuItem(copy('mobile.settings', 'Account settings'), 'settings.html', 'mobile.settings'));
-      if(summary.moderator === true){
-        menu.appendChild(menuItem(copy('mobile.moderator', 'Moderator workspace'), 'moderation.html', 'mobile.moderator'));
-      }
       menu.appendChild(menuDiv());
       const logout = document.createElement('button');
       logout.type = 'button';

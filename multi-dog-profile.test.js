@@ -211,14 +211,14 @@ describe('multi-dog account experience', () => {
     expect(Array.from(result.lines).length).toBeGreaterThan(0);
   });
 
-  test('moderator access is outside the dog profile and in the account menu', () => {
+  test('moderator access is absent from the customer account experience', () => {
     const account = source('account.html');
     const nav = source('mobile-nav.js');
     const homepage = source('index.html');
     expect(account).not.toContain('id="moderatorToolsBox"');
     expect(account).not.toContain('Open moderation queue');
-    expect(nav).toContain("'moderation.html', 'mobile.moderator'");
-    expect(homepage).toContain('id="liModeratorLink"');
+    expect(nav).not.toContain('moderation.html');
+    expect(homepage).not.toContain('liModeratorLink');
   });
 
   test('the signed-in homepage renders every dog as a real switch control', () => {

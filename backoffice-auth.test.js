@@ -11,7 +11,7 @@ const protectedPages=[
   'backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html',
   'content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html',
   'image-coverage-desk.html','newsletter-desk.html','social-desk.html',
-  'product-ideas-desk.html',
+  'product-ideas-desk.html','community-moderation-desk.html',
 ];
 
 describe('private ORMA backoffice authentication',()=>{
@@ -28,7 +28,7 @@ describe('private ORMA backoffice authentication',()=>{
   test.each(protectedPages)('%s requires the shared moderator guard',page=>{
     const html=fs.readFileSync(path.join(root,page),'utf8');
     expect(html).toContain("classList.add('bo-auth-pending')");
-    expect(html).toContain('src="firebase-init.js"');
+    expect(html).toMatch(/src="(?:firebase-init|backoffice-firebase)\.js/);
     expect(html).toContain('src="backoffice-auth-guard.js');
   });
 
@@ -51,8 +51,8 @@ describe('private ORMA backoffice authentication',()=>{
     const login=fs.readFileSync(path.join(root,'backoffice-hosted-login.html'),'utf8');
     const build=fs.readFileSync(path.join(root,'scripts/build-backoffice-hosting.js'),'utf8');
     const firebase=fs.readFileSync(path.join(root,'backoffice-firebase.js'),'utf8');
-    expect(login).toContain('backoffice-firebase.js?v=20260826-1');
-    expect(build).toContain('backoffice-firebase.js?v=20260826-1');
+    expect(login).toContain('backoffice-firebase.js?v=20260904-1');
+    expect(build).toContain('backoffice-firebase.js?v=20260904-1');
     expect(firebase).toContain('authDomain: "dolopaws.firebaseapp.com"');
   });
 });

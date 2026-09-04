@@ -193,6 +193,10 @@ requests and the CEO prototype gate. An investigation, priority decision or prot
 - Customer-facing ORMA navigation does not expose a backoffice link or an
   administrator sign-in flow. Production operators enter through the unlinked
   dedicated backoffice login and must hold the Firebase moderator claim.
+- Customer pages only collect community photos, reviews, place observations
+  and hazard reports. Their publish, hide, remove and restoration decisions
+  live in the dedicated Community moderation desk, appear in the dashboard's
+  human-decision count, and produce immutable audit receipts.
 - Localhost remains an explicit development mode and does not require the
   production moderator login.
 - Every queue has one clear purpose and one clearly named desk.

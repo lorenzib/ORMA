@@ -5,6 +5,10 @@
   const queue = document.getElementById('moderationQueue');
   let loading = false;
   let reloadRequested = false;
+  let items = [];
+  let activeFilter = 'all';
+
+  const TYPE_LABELS = { flag:'Hazard', photo:'Photo', review:'Review', placeDog:'Place report' };
 
   function element(tag, className, text){
     const node = document.createElement(tag);
@@ -98,7 +102,7 @@
     const card = element('article', 'moderation-card');
     const meta = element('div', 'moderation-meta');
     meta.append(
-      element('span', 'moderation-chip', item.type),
+      element('span', 'moderation-chip', TYPE_LABELS[item.type] || item.type),
       element('span', 'moderation-chip', item.status),
       element('span', '', item.trailId ? `Trail: ${item.trailId}` : `Place: ${item.targetId}`),
       element('span', '', `Author: ${item.authorUid}`),
@@ -154,6 +158,48 @@
     return card;
   }
 
+  function typeCount(type){ return items.filter(item => item.type === type).length; }
+
+  function updateSummary(){
+    const values = {
+      communityPendingCount:items.length,
+      communityHazardCount:typeCount('flag'),
+      communityPhotoCount:typeCount('photo'),
+      communityReviewCount:typeCount('review') + typeCount('placeDog'),
+    };
+    Object.entries(values).forEach(([id,value]) => {
+      const node = document.getElementById(id);
+      if(node) node.textContent = String(value);
+    });
+    document.querySelectorAll('[data-moderation-filter]').forEach(button => {
+      const filter = button.dataset.moderationFilter;
+      const count = filter === 'all' ? items.length : typeCount(filter);
+      const countNode = button.querySelector('span');
+      if(countNode) countNode.textContent = String(count);
+      button.classList.toggle('is-active', filter === activeFilter);
+      button.setAttribute('aria-pressed', String(filter === activeFilter));
+    });
+  }
+
+  function renderQueue(){
+    queue.replaceChildren();
+    const visible = activeFilter === 'all' ? items : items.filter(item => item.type === activeFilter);
+    visible.forEach(item => queue.appendChild(renderCard(item)));
+    if(!visible.length){
+      queue.appendChild(element('p', 'moderation-empty', activeFilter === 'all'
+        ? 'Nothing needs a community moderation decision.'
+        : `No ${TYPE_LABELS[activeFilter] || activeFilter} submissions need a decision.`));
+    }
+    updateSummary();
+  }
+
+  document.querySelectorAll('[data-moderation-filter]').forEach(button => {
+    button.addEventListener('click', () => {
+      activeFilter = button.dataset.moderationFilter || 'all';
+      renderQueue();
+    });
+  });
+
   async function loadQueue(){
     if(loading){
       reloadRequested = true;
@@ -164,8 +210,8 @@
     state.classList.remove('is-error');
     state.textContent = 'Loading private moderation queue…';
     const result = await window.DoloPawsModeration.getQueue();
-    queue.replaceChildren();
     if(!result.ok){
+      queue.replaceChildren();
       state.classList.add('is-error');
       state.textContent = result.error === 'moderator-required'
         ? 'Access denied. Sign in with an authorized moderator account.'
@@ -177,9 +223,10 @@
       }
       return;
     }
-    result.items.forEach(item => queue.appendChild(renderCard(item)));
-    state.textContent = result.items.length
-      ? `${result.items.length} contribution${result.items.length === 1 ? '' : 's'} in the queue.`
+    items = result.items;
+    renderQueue();
+    state.textContent = items.length
+      ? `${items.length} contribution${items.length === 1 ? '' : 's'} need a human decision.`
       : 'The moderation queue is clear.';
     showNoticeComposer();
     loading = false;
@@ -206,7 +253,7 @@
       const submit = document.getElementById('noticeSubmit');
       submit.disabled = true;
       status.textContent = 'Posting…';
-      const result = await window.DoloPawsAuth.addSiteNotice({
+      const result = await window.DoloPawsModeration.addSiteNotice({
         title: document.getElementById('noticeTitle').value.trim(),
         body: document.getElementById('noticeBody').value.trim(),
         href: document.getElementById('noticeHref').value.trim() || null,
@@ -214,7 +261,7 @@
         expiresDays: parseFloat(document.getElementById('noticeExpiry').value) || undefined,
       });
       submit.disabled = false;
-      status.textContent = result.ok ? 'Notice posted.' : (result.message || 'Posting failed.');
+      status.textContent = result.ok ? 'Notice posted.' : 'Posting failed. Check access and try again.';
       if(result.ok){ form.reset(); renderNoticeList(); }
     });
     renderNoticeList();
@@ -222,10 +269,11 @@
 
   async function renderNoticeList(){
     const list = document.getElementById('noticeList');
-    if(!list || typeof window.DoloPawsAuth.getSiteNotices !== 'function') return;
-    const notices = await window.DoloPawsAuth.getSiteNotices();
+    if(!list || typeof window.DoloPawsModeration.getSiteNotices !== 'function') return;
+    const result = await window.DoloPawsModeration.getSiteNotices();
     list.replaceChildren();
-    notices.forEach(notice => {
+    if(!result.ok) return;
+    result.notices.forEach(notice => {
       const row = element('div', 'moderation-content');
       row.appendChild(element('p', '', `${notice.title} — ${notice.body}`));
       const meta = element('p', '', `${notice.type} · ${dateLabel(notice.createdAt)}`);
@@ -235,8 +283,8 @@
       del.type = 'button';
       del.addEventListener('click', async () => {
         del.disabled = true;
-        const ok = await window.DoloPawsAuth.deleteSiteNotice(notice.id);
-        if(ok) renderNoticeList();
+        const deleted = await window.DoloPawsModeration.deleteSiteNotice(notice.id);
+        if(deleted.ok) renderNoticeList();
         else del.disabled = false;
       });
       row.appendChild(del);
@@ -246,8 +294,11 @@
 
   function boot(){
     if(!(window.DoloPawsAuth && window.DoloPawsModeration)) return;
-    window.DoloPawsAuth.onChange(loadQueue);
+    loadQueue();
   }
+
+  const refresh = document.getElementById('moderationRefresh');
+  if(refresh) refresh.addEventListener('click', loadQueue);
 
   if(window.DoloPawsAuthReady) boot();
   else window.addEventListener('dolopaws-auth-ready', boot, { once:true });

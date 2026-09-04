@@ -2,13 +2,16 @@
 
 ## Outcome
 
-`moderation.html` is a private operator surface for reviews, photos, and hazard
-reports that are pending, reported, hidden, or removed. Visible content with
-an open abuse report also enters the queue.
+`community-moderation-desk.html` is a dedicated protected backoffice gate for
+reviews, photos, place observations, and hazard reports that are pending,
+reported, hidden, or removed. Visible content with an open abuse report also
+enters the queue. The backoffice dashboard includes this queue in “Needs you”.
 
-The page is not linked from the public navigation and asks search engines not
-to index it. Those are usability measures only. Firestore authorization is the
-actual security boundary.
+No moderator entry point appears in customer navigation or dog profiles. The
+legacy `moderation.html` address only hands an operator to the separate
+backoffice origin, and the native-app build excludes it. The backoffice page
+asks search engines not to index it. Those are usability measures only;
+Firestore authorization remains the actual security boundary.
 
 ## Authority
 
@@ -17,7 +20,7 @@ claim:
 
 `moderator: true`
 
-The client refreshes the ID token before loading the queue. Firestore Rules
+The backoffice-only client refreshes the ID token before loading the queue. Firestore Rules
 independently require the same claim for private queue reads, content-state
 decisions, abuse-report resolution, and audit creation. An ordinary,
 unverified, or merely verified account cannot inspect the queue.

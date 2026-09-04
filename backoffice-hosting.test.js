@@ -15,7 +15,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(files.some(file=>file.startsWith('data/'))).toBe(false);
   });
 
-  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','newsletter-desk.html','product-ideas-desk.html','designer-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
+  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','newsletter-desk.html','product-ideas-desk.html','designer-desk.html','community-moderation-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toMatch(/src="backoffice-firebase\.js\?v=[0-9-]+"/);
     expect(html).not.toContain('src="firebase-init.js');
@@ -49,6 +49,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('href="new-trail-scouting-desk.html"');
     expect(html).toContain('href="hazard-review-desk.html"');
     expect(html).toContain('href="image-coverage-desk.html"');
+    expect(html).toContain('href="community-moderation-desk.html"');
     expect(html).toContain('href="editorial-desk.html"');
     expect(html).toContain('href="newsletter-desk.html"');
     expect(html).toContain('href="product-ideas-desk.html"');
@@ -66,6 +67,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(nav).toContain('>New Trails</a>');
     expect(nav).toContain('>Trail photos</a>');
     expect(nav).toContain('>Hazards</a>');
+    expect(nav).toContain('>Community</a>');
     expect(nav).not.toMatch(/Editorial|Newsletter|Analyst|Design/);
   });
 
@@ -94,6 +96,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     ['newsletter-desk.html','Newsletter'],
     ['product-ideas-desk.html','Analyst'],
     ['designer-desk.html','Design'],
+    ['community-moderation-desk.html','Community'],
   ])('%s has persistent navigation and a clear current location',(page,current)=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toContain('aria-label="Backoffice navigation"');
@@ -102,6 +105,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('href="trail-content-desk.html"');
     expect(html).toContain('href="new-trail-scouting-desk.html"');
     expect(html).toContain('href="hazard-review-desk.html"');
+    expect(html).toContain('href="community-moderation-desk.html"');
     expect(html).toContain('href="editorial-desk.html"');
     expect(html).toContain('href="newsletter-desk.html"');
     expect(html).toContain('href="product-ideas-desk.html"');
@@ -110,7 +114,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
   });
 
   test('moderator-facing trail pages explain automation without vague worker language',()=>{
-    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','newsletter-desk.html','product-ideas-desk.html','designer-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','new-trail-scouting-desk.js','hazard-review-desk.js','editorial-desk.js','image-coverage-hosted.js','newsletter-hosted.js','analyst-hosted.js','designer-desk.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
+    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','editorial-desk.html','image-coverage-desk.html','newsletter-desk.html','product-ideas-desk.html','designer-desk.html','community-moderation-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','new-trail-scouting-desk.js','hazard-review-desk.js','editorial-desk.js','image-coverage-hosted.js','newsletter-hosted.js','analyst-hosted.js','designer-desk.js','moderation-page.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
     const text=files.map(file=>fs.readFileSync(path.join(output,file),'utf8')).join('\n');
     expect(text).toContain('ORMA automation');
     expect(text).not.toMatch(/waiting for the worker|the worker will|worker processed|independent worker/i);
@@ -168,6 +172,8 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(workflow).toContain('- designer-desk.html');
     expect(workflow).toContain('- designer-desk.js');
     expect(workflow).toContain('- product-prototype.js');
+    expect(workflow).toContain('- community-moderation-desk.html');
+    expect(workflow).toContain('- moderation-page.js');
   });
 
   test('scheduled worker records a durable start and always-run completion receipt',()=>{
@@ -197,5 +203,18 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(newTrails).toContain("getArtifact('new-trail-scouting')");expect(newTrails).toContain('submitNewTrailReview');
     expect(groundskeeper).toContain("getArtifact('dynamic-hazards')");expect(groundskeeper).toContain('submitHazardReview');
     expect(`${newTrails}\n${groundskeeper}`).toContain("const LOCAL_MODE=['127.0.0.1','localhost']");
+  });
+
+  test('hosts community submissions as a distinct protected human gate',()=>{
+    const home=fs.readFileSync(path.join(output,'backoffice-review.html'),'utf8');
+    const html=fs.readFileSync(path.join(output,'community-moderation-desk.html'),'utf8');
+    const client=fs.readFileSync(path.join(output,'backoffice-firebase.js'),'utf8');
+    const dashboard=fs.readFileSync(path.join(output,'backoffice-hosted-dashboard.js'),'utf8');
+    expect(home).toContain('id="communityProgress"');
+    expect(html).toContain('Protected human gate');
+    expect(html).toContain('Nothing is published without this gate');
+    expect(client).toContain('getModerationQueue');
+    expect(client).toContain("collection(db,'moderationAudit')");
+    expect(dashboard).toContain('remote.getModerationQueue()');
   });
 });

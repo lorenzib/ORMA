@@ -37,9 +37,20 @@
     return result?.ok?result.data:fallback;
   }
 
-  function renderDecisions(model){
+  function renderDecisions(model,community){
     const queue=document.getElementById('executiveDecisionQueue');
     queue.replaceChildren();
+    if(community.items.length){
+      const count=community.items.length;
+      const types=new Set(community.items.map(item=>item.type));
+      const card=element('article','bo-exec-decision is-priority is-community');
+      const owner=element('span','bo-owner-chip is-you','Your turn');
+      const body=element('div','bo-exec-decision-body');
+      body.append(element('small','','Community gate'),element('h3','',`${count} user submission${count===1?'':'s'} need review`),
+        element('p','',`Check ${Array.from(types).map(type=>({flag:'hazards',photo:'photos',review:'reviews',placeDog:'place reports'}[type]||type)).join(', ')} before anything changes on the public site.`));
+      const link=element('a','',`Review community queue ↗`);link.href='community-moderation-desk.html';
+      card.append(owner,body,link);queue.append(card);
+    }
     for(const task of model.decisions){
       const card=element('article',`bo-exec-decision is-priority is-${task.kind}`);
       const owner=element('span','bo-owner-chip is-you','Your turn');
@@ -92,8 +103,8 @@
     if(health.runUrl){action.href=health.runUrl;action.hidden=false;}else action.hidden=true;
   }
 
-  function render(model){
-    set('needsReviewCount',model.summary.needsYou);
+  function render(model,community){
+    set('needsReviewCount',model.summary.needsYou+community.items.length);
     set('agentWorkCount',model.summary.agentWork);
     set('publicWarningCount',model.summary.blockers);
     set('publishedCount',model.summary.prsReady);
@@ -101,12 +112,13 @@
     set('newTrailProgress',`${model.newTrailProgress.candidates} candidates · ${model.newTrailProgress.waiting} need you`);
     set('photoProgress',`${model.editorialProgress.imageGaps} priority reviews active`);
     set('groundskeeperProgress',`${model.groundskeeperProgress.active} warnings · ${model.groundskeeperProgress.waiting} need review`);
+    set('communityProgress',community.items.length?`${community.items.length} submissions need you`:'Queue clear');
     const workerMeta=model.workerHealth.state==='failed'&&model.workerHealth.consecutiveFailures>1
       ?`${model.workerHealth.consecutiveFailures} consecutive failures`
       :'Protected heartbeat';
     renderHealth('workerHealth',model.workerHealth,workerMeta);
     renderHealth('campaignHealth',model.campaignHealth,model.campaignHealth.meta);
-    renderDecisions(model);
+    renderDecisions(model,community);
     renderActivity(model);
   }
 
@@ -118,7 +130,7 @@
     set('dashboardUpdated','Refreshing protected Firestore…');
     try{
       const remote=await api();
-      const [orchestration,dossiers,execution,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviewResult,hazards,hazardQueue,hazardStatus,hazardReviewResult,imageAudit,imageResults,imagePublicationRequests,imageStatus,imageReviewResult,jobResult,historyResult]=await Promise.all([
+      const [orchestration,dossiers,execution,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviewResult,hazards,hazardQueue,hazardStatus,hazardReviewResult,imageAudit,imageResults,imagePublicationRequests,imageStatus,imageReviewResult,jobResult,historyResult,communityResult]=await Promise.all([
         required(remote,'trail-orchestration'),
         required(remote,'dossier-review-queue'),
         required(remote,'verified-trail-editorial-execution'),
@@ -140,17 +152,19 @@
         remote.getImageReviews(),
         remote.getRevisionJobs(),
         remote.getDecisionHistory(),
+        remote.getModerationQueue(),
       ]);
       if(!jobResult?.ok)throw new Error(`Could not load agent jobs: ${jobResult?.error||'unknown error'}`);
       if(!historyResult?.ok)throw new Error(`Could not load decision receipts: ${historyResult?.error||'unknown error'}`);
       if(!newTrailReviewResult?.ok)throw new Error(`Could not load New Trail decisions: ${newTrailReviewResult?.error||'unknown error'}`);
       if(!hazardReviewResult?.ok)throw new Error(`Could not load hazard decisions: ${hazardReviewResult?.error||'unknown error'}`);
       if(!imageReviewResult?.ok)throw new Error(`Could not load image decisions: ${imageReviewResult?.error||'unknown error'}`);
+      if(!communityResult?.ok)throw new Error(`Could not load community moderation: ${communityResult?.error||'unknown error'}`);
 
       const strategyStatus={summary:{editorialStatus:'parked for MVP',newsletterStatus:'parked for MVP',productStatus:'parked for MVP'}};
       const model=window.ORMADashboardModel.buildDashboardModel({orchestration,dossiers,execution,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviews:newTrailReviewResult.reviews||[],hazards,hazardQueue,hazardStatus,hazardReviews:hazardReviewResult.reviews||[],strategyStatus,imageAudit,imageResults,imagePublicationRequests,imageStatus,imageReviews:imageReviewResult.reviews||[],jobs:jobResult.jobs||[],history:historyResult.decisions||[]});
       document.getElementById('executiveDecisionQueue').classList.remove('is-error');
-      render(model);
+      render(model,communityResult);
       seconds=REFRESH_SECONDS;
       const refreshed=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
       set('dashboardUpdated',`Live · ${refreshed} · refresh in ${seconds}s`);

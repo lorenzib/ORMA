@@ -27,7 +27,7 @@ const modules = path.join(root, 'node_modules');
 const ENTRY_PAGES = [
   'index.html', '404.html', 'about.html', 'account.html', 'browse-trails.html',
   'collection.html', 'collections.html', 'compare.html', 'contact.html',
-  'downloads.html', 'how-scoring-works.html', 'journal.html', 'moderation.html',
+  'downloads.html', 'how-scoring-works.html', 'journal.html',
   'my-trails.html', 'notifications.html', 'onboarding.html', 'photo-upload.html',
   'privacy.html', 'reviews.html', 'safety-guide.html', 'saved.html', 'search.html',
   'settings.html', 'terms.html', 'trail-report.html', 'trail.html', 'walk.html',

@@ -5,7 +5,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import {
   addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit,
-  orderBy, query, serverTimestamp, setDoc,
+  orderBy, query, serverTimestamp, setDoc, Timestamp, where, writeBatch,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -253,6 +253,105 @@ async function submitDossierReview(input){
   }catch(error){console.error('submitDossierReview failed:',error);return {ok:false,error:'dossier-review-submit-failed'};}
 }
 
+const MODERATION_COLLECTIONS={flag:'flags',review:'reviews',photo:'trailPhotos',placeDog:'placeDogReports'};
+
+function moderationItem(type,snapshot,reportReasons=[],reportIds=[]){
+  const data=snapshot.data();
+  return {type,id:snapshot.id,trailId:data.trailId||null,targetId:data.placeId||data.trailId||snapshot.id,authorUid:data.uid,status:data.status,createdAt:data.createdAt,
+    content:{type:data.type||null,km:typeof data.km==='number'?data.km:null,rating:typeof data.rating==='number'?data.rating:null,
+      text:data.text||null,hikedOn:data.hikedOn||null,image:data.image||null,caption:data.caption||null,
+      placeName:data.placeName||null,placeType:data.placeType||null,policy:data.policy||null,evidence:data.evidence||null,note:data.note||null,
+      confirmationSource:data.confirmationSource||null,confirmations:Number(data.confirmations)||0,disputes:Number(data.disputes)||0,
+      expiresAt:data.expiresAt||null,lifecyclePresent:data.confirmationSource!=null&&data.confirmations!=null&&data.disputes!=null&&data.expiresAt!=null},
+    reportReasons,reportIds};
+}
+
+async function getModerationQueue(){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',items:[]};
+  try{
+    const types=Object.keys(MODERATION_COLLECTIONS);
+    const [contentResults,reportResult]=await Promise.all([
+      Promise.all(types.map(async type=>{
+        const queueStates=type==='flag'?['pending','visible','reported','hidden','removed']:['pending','reported','hidden','removed'];
+        const snapshot=await getDocs(query(collection(db,MODERATION_COLLECTIONS[type]),where('status','in',queueStates)));
+        return snapshot.docs.map(item=>moderationItem(type,item)).filter(item=>type!=='flag'||item.status!=='visible'||
+          !item.content.lifecyclePresent||!item.content.expiresAt||item.content.expiresAt.toMillis()<=Date.now());
+      })),
+      getDocs(query(collection(db,'reports'),where('status','==','open'))),
+    ]);
+    const openReports=reportResult.docs.map(item=>({id:item.id,...item.data()}));
+    const byTarget=new Map();
+    openReports.forEach(report=>{
+      const key=`${report.targetType}:${report.targetId}`;
+      const group=byTarget.get(key)||{reasons:[],ids:[]};
+      group.reasons.push({text:String(report.reason||'').slice(0,200),createdAt:report.createdAt||null});
+      group.ids.push(report.id);byTarget.set(key,group);
+    });
+    const items=contentResults.flat();const existing=new Set(items.map(item=>`${item.type}:${item.id}`));
+    for(const [key,reports] of byTarget){
+      const separator=key.indexOf(':');const type=key.slice(0,separator);const id=key.slice(separator+1);
+      if(existing.has(key)||!MODERATION_COLLECTIONS[type])continue;
+      const target=await getDoc(doc(db,MODERATION_COLLECTIONS[type],id));
+      if(target.exists())items.push(moderationItem(type,target,reports.reasons,reports.ids));
+    }
+    items.forEach(item=>{const reports=byTarget.get(`${item.type}:${item.id}`);if(reports){item.reportReasons=reports.reasons;item.reportIds=reports.ids;}});
+    items.sort((a,b)=>(b.createdAt?.toMillis?.()||0)-(a.createdAt?.toMillis?.()||0));
+    return {ok:true,items};
+  }catch(error){console.error('getModerationQueue failed:',error);return {ok:false,error:'queue-unavailable',items:[]};}
+}
+
+async function moderateContent(item,toStatus,reason,options={}){
+  const moderator=await moderatorIdentity();
+  if(!moderator||!item||!MODERATION_COLLECTIONS[item.type])return {ok:false,error:'moderator-required'};
+  const allowed={pending:['visible','hidden','removed'],visible:['visible','hidden','removed'],reported:['visible','hidden','removed'],hidden:['visible','removed'],removed:['visible']};
+  if(!allowed[item.status]||!allowed[item.status].includes(toStatus))return {ok:false,error:'invalid-transition'};
+  try{
+    const batch=writeBatch(db);
+    const confirmationSource=item.type==='flag'&&['community','dolopaws-reviewed','official'].includes(options.confirmationSource)?options.confirmationSource:null;
+    const needsLifecycle=item.type==='flag'&&!item.content.lifecyclePresent;
+    if(item.status!==toStatus||confirmationSource||needsLifecycle){
+      const update={status:toStatus,moderatedAt:serverTimestamp(),moderatedBy:moderator.uid};
+      if(item.type==='flag'&&(confirmationSource||needsLifecycle)){
+        const expiry=window.DoloPawsCommunityStates?.hazardExpiryDate
+          ?window.DoloPawsCommunityStates.hazardExpiryDate(item.content.type)
+          :new Date(Date.now()+30*24*3600*1000);
+        update.confirmationSource=confirmationSource||'community';
+        if(needsLifecycle){update.confirmations=0;update.disputes=0;}
+        if(update.confirmationSource!=='community'){update.confirmedAt=serverTimestamp();update.confirmedBy=moderator.uid;}
+        update.expiresAt=Timestamp.fromDate(expiry);
+      }
+      batch.update(doc(db,MODERATION_COLLECTIONS[item.type],item.id),update);
+    }
+    const auditRef=doc(collection(db,'moderationAudit'));
+    const audit={contentType:item.type,contentId:item.id,targetId:item.targetId,authorUid:item.authorUid,fromStatus:item.status,toStatus,
+      moderatorUid:moderator.uid,reason:String(reason||'').slice(0,300),createdAt:serverTimestamp()};
+    if(item.trailId)audit.trailId=item.trailId;
+    batch.set(auditRef,audit);
+    for(const reportId of item.reportIds||[])batch.update(doc(db,'reports',reportId),{status:toStatus==='visible'?'dismissed':'actioned',resolvedAt:serverTimestamp(),resolvedBy:moderator.uid});
+    await batch.commit();return {ok:true,auditId:auditRef.id};
+  }catch(error){console.error('moderateContent failed:',error);return {ok:false,error:'decision-failed'};}
+}
+
+async function getSiteNotices(){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',notices:[]};
+  try{const snapshot=await getDocs(query(collection(db,'siteNotices'),orderBy('createdAt','desc'),limit(10)));return {ok:true,notices:snapshot.docs.map(item=>({id:item.id,...item.data()}))};}
+  catch(error){console.error('getSiteNotices failed:',error);return {ok:false,error:'notice-read-failed',notices:[]};}
+}
+
+async function addSiteNotice(notice){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required'};
+  try{const ref=await addDoc(collection(db,'siteNotices'),{title:String(notice.title||'').slice(0,80),body:String(notice.body||'').slice(0,280),
+    href:notice.href?String(notice.href).slice(0,200):null,type:['news','trail','safety'].includes(notice.type)?notice.type:'news',createdAt:serverTimestamp(),
+    expiresAt:Number.isFinite(notice.expiresDays)?Timestamp.fromMillis(Date.now()+notice.expiresDays*864e5):null});return {ok:true,id:ref.id};}
+  catch(error){console.error('addSiteNotice failed:',error);return {ok:false,error:'notice-create-failed'};}
+}
+
+async function deleteSiteNotice(noticeId){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required'};
+  try{await deleteDoc(doc(db,'siteNotices',String(noticeId)));return {ok:true};}
+  catch(error){console.error('deleteSiteNotice failed:',error);return {ok:false,error:'notice-delete-failed'};}
+}
+
 window.DoloPawsAuth={
   get currentUser(){return currentUser;},
   get authResolved(){return authResolved;},
@@ -262,8 +361,8 @@ window.DoloPawsAuth={
   },
   async logOut(){await signOut(auth);currentUser=null;},
 };
-window.DoloPawsModeration={getModeratorStatus:async()=>({ok:!!await moderatorIdentity()})};
-window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getImageReviews,getNewsletterReviews,getAnalystReviews,submitTrailReview,submitPublicationReview,submitDossierReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitImageReview,uploadTrailImage,getTrailImagePreview,submitNewsletterReview,submitAnalystReview};
+window.DoloPawsModeration={getModeratorStatus:async()=>({ok:!!await moderatorIdentity()}),getQueue:getModerationQueue,decide:moderateContent,getSiteNotices,addSiteNotice,deleteSiteNotice};
+window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getImageReviews,getNewsletterReviews,getAnalystReviews,getModerationQueue,moderateContent,submitTrailReview,submitPublicationReview,submitDossierReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitImageReview,uploadTrailImage,getTrailImagePreview,submitNewsletterReview,submitAnalystReview};
 
 onAuthStateChanged(auth,user=>{
   currentUser=user;
