@@ -109,12 +109,45 @@ function build() {
   return { ...stats, exclude };
 }
 
-module.exports = { build, readConfig, patternToTest, buildMatchers, OUT };
+const MANIFEST = path.join(ROOT, 'pages-public-manifest.json');
+
+/** Everything the built site exposes at its top level. */
+function topLevelOf(dir) {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  return {
+    directories: entries.filter(e => e.isDirectory()).map(e => e.name).sort(),
+    files: entries.filter(e => !e.isDirectory()).map(e => e.name).sort(),
+  };
+}
+
+function readManifest() {
+  return JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
+}
+
+function writeManifest(site) {
+  const listed = topLevelOf(site);
+  fs.writeFileSync(MANIFEST, JSON.stringify({
+    _comment: [
+      'Every top-level entry the public site is allowed to publish.',
+      'pages-site-build.test.js compares the built _site against this list in',
+      'both directions, so adding a page here is a deliberate, reviewable step',
+      'and dropping one by accident fails the build.',
+      'Regenerate with: node scripts/build-pages-site.js --write-manifest',
+    ],
+    ...listed,
+  }, null, 2) + '\n');
+  return listed;
+}
+
+module.exports = { build, readConfig, patternToTest, buildMatchers, topLevelOf, readManifest, OUT, MANIFEST };
 
 if (require.main === module) {
+  const writeMode = process.argv.includes('--write-manifest');
   const stats = build();
   console.log(`Built ${path.relative(ROOT, OUT) || '_site'} — ${stats.copied} files published.`);
-  console.log(`Excluded ${stats.excluded.length} top-level entries via _config.yml:`);
-  stats.excluded.slice(0, 40).forEach(entry => console.log(`  - ${entry}`));
-  if (stats.excluded.length > 40) console.log(`  … and ${stats.excluded.length - 40} more`);
+  console.log(`Excluded ${stats.excluded.length} top-level entries via _config.yml.`);
+  if (writeMode) {
+    const listed = writeManifest(OUT);
+    console.log(`Wrote pages-public-manifest.json — ${listed.directories.length} directories, ${listed.files.length} files.`);
+  }
 }
