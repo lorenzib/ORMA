@@ -2,7 +2,7 @@
 'use strict';
 
 /**
- * build-pages-site.js — assemble the directory GitHub Pages publishes.
+ * build-pages-site.js, assemble the directory GitHub Pages publishes.
  *
  * The repository has a .nojekyll file, so Pages serves it verbatim and never
  * runs Jekyll. That means the `exclude:` list in _config.yml was never
@@ -144,10 +144,10 @@ module.exports = { build, readConfig, patternToTest, buildMatchers, topLevelOf, 
 if (require.main === module) {
   const writeMode = process.argv.includes('--write-manifest');
   const stats = build();
-  console.log(`Built ${path.relative(ROOT, OUT) || '_site'} — ${stats.copied} files published.`);
+  console.log(`Built ${path.relative(ROOT, OUT) || '_site'}, ${stats.copied} files published.`);
   console.log(`Excluded ${stats.excluded.length} top-level entries via _config.yml.`);
   if (writeMode) {
     const listed = writeManifest(OUT);
-    console.log(`Wrote pages-public-manifest.json — ${listed.directories.length} directories, ${listed.files.length} files.`);
+    console.log(`Wrote pages-public-manifest.json, ${listed.directories.length} directories, ${listed.files.length} files.`);
   }
 }

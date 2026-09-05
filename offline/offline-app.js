@@ -150,10 +150,10 @@
 
   function renderMapDetails(safety, bounds){
     const facts = safety.facts || {};
-    elements.mapDistance.textContent = Number.isFinite(facts.distanceKm) ? `${facts.distanceKm} km` : '—';
-    elements.mapDuration.textContent = facts.expectedDuration || '—';
-    elements.mapAscent.textContent = Number.isFinite(facts.ascentM) ? `${facts.ascentM} m` : '—';
-    elements.mapShade.textContent = Number.isFinite(facts.shadePercent) ? `${facts.shadePercent}%` : '—';
+    elements.mapDistance.textContent = Number.isFinite(facts.distanceKm) ? `${facts.distanceKm} km` : ', ';
+    elements.mapDuration.textContent = facts.expectedDuration || ', ';
+    elements.mapAscent.textContent = Number.isFinite(facts.ascentM) ? `${facts.ascentM} m` : ', ';
+    elements.mapShade.textContent = Number.isFinite(facts.shadePercent) ? `${facts.shadePercent}%` : ', ';
     elements.mapAnnotations.replaceChildren();
     const waypoints = safety.waypoints || [];
     const trailheadWater = safety.trailhead && waypoints.find(waypoint =>

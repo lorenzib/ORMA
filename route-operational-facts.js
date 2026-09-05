@@ -32,7 +32,7 @@
     'protected-area': 'Protected area',
   });
 
-  const UNVERIFIED_NOTE = 'Not yet verified — check before you go';
+  const UNVERIFIED_NOTE = 'Not yet verified, check before you go';
   // A year is the point past which an opening-hours or dog rule is likely to
   // have moved without anyone telling us.
   const STALE_AFTER_MONTHS = 12;
@@ -114,7 +114,7 @@
     const label = monthLabel(fact.verified_at);
     const asOf = isDate(asOfDate) ? asOfDate : new Date().toISOString().slice(0, 10);
     if(monthsBetween(fact.verified_at, asOf) >= STALE_AFTER_MONTHS){
-      return { state:'stale', label:`Last verified ${label} — may have changed`, verifiedLabel:label };
+      return { state:'stale', label:`Last verified ${label}, may have changed`, verifiedLabel:label };
     }
     return { state:'verified', label:`Verified ${label}`, verifiedLabel:label };
   }

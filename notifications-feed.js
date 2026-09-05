@@ -57,7 +57,7 @@
       return t ? t.name : trailId;
     };
 
-    // Live community hazard reports on this account's saved trails — the
+    // Live community hazard reports on this account's saved trails, the
     // one feed section that genuinely arrives between visits.
     hazardFlags.forEach(function(flag){
       if(!flag || !flag.id) return;
@@ -72,7 +72,7 @@
         body: (flag.text ? String(flag.text).slice(0, 160) + ' ' : '')
           + (flag.confirmationSource === 'community' && flag.confirmations > 0
             ? 'Confirmed by ' + flag.confirmations + ' walker' + (flag.confirmations === 1 ? '' : 's') + '.'
-            : 'Community report — conditions can change.'),
+            : 'Community report, conditions can change.'),
         href: 'trail.html?id=' + flag.trailId,
       });
     });

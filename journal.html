@@ -215,7 +215,7 @@
   <div id="jnEmpty" class="empty-state" hidden>
     <div class="empty-state__icon" aria-hidden="true"><span data-dp-icon="dog" data-dp-icon-size="20"></span></div>
     <p class="empty-state__title" data-i18n="journal.empty.title">No walks logged yet</p>
-    <p class="empty-state__copy" id="jnEmptyCopy" data-i18n="journal.empty.copy">Once your dog has been out, log the walk here or track it live from Hike Mode — it'll show up in this list.</p>
+    <p class="empty-state__copy" id="jnEmptyCopy" data-i18n="journal.empty.copy">Once your dog has been out, log the walk here or track it live from Hike Mode, it'll show up in this list.</p>
     <div class="empty-state__actions">
       <button type="button" id="jnEmptyLogBtn" class="empty-state__action" data-i18n="journal.log">+ Log a walk</button>
       <button type="button" id="jnEmptyLiveBtn" class="fav-btn" data-i18n="journal.trackLive">Track live instead</button>
@@ -265,7 +265,7 @@
   </div>
 </div>
 
-<!-- EDIT WALK — rename, notes, photo. Sharing renders the walk card. -->
+<!-- EDIT WALK, rename, notes, photo. Sharing renders the walk card. -->
 <div class="jn-overlay" id="jnEditOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="jnEditTitle">
   <div class="jn-modal">
     <h2 id="jnEditTitle" style="margin:0 0 4px;font-size:20px;" data-i18n="journal.editTitle">Edit walk</h2>
@@ -310,7 +310,7 @@
       <button type="button" class="jn-choice" data-value="rifugio" data-i18n="journal.tale.momentRifugio">Rifugio rest</button>
       <button type="button" class="jn-choice" data-value="mud" data-i18n="journal.tale.momentMud">Mud mission</button>
     </div></div>
-    <p class="jn-tale-note" data-i18n="journal.tale.optional">All optional — skip anything that does not fit the walk.</p>
+    <p class="jn-tale-note" data-i18n="journal.tale.optional">All optional, skip anything that does not fit the walk.</p>
     <button type="button" id="jnTaleSave" class="auth-submit" style="width:100%;margin-top:18px;" data-i18n="journal.tale.save">Save Trail Tale</button>
   </div>
 </div>
@@ -625,7 +625,7 @@ document.addEventListener('DOMContentLoaded', function(){
     box.innerHTML = list.map(function(e){
       var d = new Date(e.date);
       var link = e.trailId ? '<a class="jn-again" href="trail.html?id=' + encodeURIComponent(e.trailId) + '&from=journal.html">' + esc(window.t('journal.walkAgain')) + '</a>' : '';
-      // Hike-mode saves carry no star rating — skip the row instead of
+      // Hike-mode saves carry no star rating, skip the row instead of
       // rendering "undefined out of 5".
       var ratingHtml = e.rating
         ? '<span class="jn-stars" aria-label="' + esc(translate('journal.ratingValue', '{rating} out of 5', { rating:e.rating })) + '">' + stars(e.rating) + '</span>'
@@ -1124,7 +1124,7 @@ document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('jnEmptyLogBtn').addEventListener('click', function(){
     document.getElementById('jnLogBtn').click();
   });
-  // "Track live instead" records anywhere — no trail needed.
+  // "Track live instead" records anywhere, no trail needed.
   document.getElementById('jnEmptyLiveBtn').addEventListener('click', function(){
     window.location.href = 'walk.html';
   });
@@ -1138,7 +1138,7 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   overlay.addEventListener('change', function(){ journalDirty = true; updateSaveState(); });
 
-  // "Walking right now?" — jump into GPS Hike Mode on the chosen trail.
+  // "Walking right now?", jump into GPS Hike Mode on the chosen trail.
   document.getElementById('jnTrackLive').addEventListener('click', function(){
     var id = trailInput.value;
     journalDirty = false;
@@ -1312,7 +1312,7 @@ document.addEventListener('DOMContentLoaded', function(){
         dogDisplayName = p.name;
         dogPhotoData = p.photo || '';
         document.getElementById('jnTitle').textContent = translate('journal.titleFor', '{name}’s walk journal', { name:p.name });
-        document.getElementById('jnEmptyCopy').textContent = translate('journal.empty.copyFor', 'Once {name} has been out, log the walk here or track it live from Hike Mode — it’ll show up in this list.', { name:p.name });
+        document.getElementById('jnEmptyCopy').textContent = translate('journal.empty.copyFor', 'Once {name} has been out, log the walk here or track it live from Hike Mode, it’ll show up in this list.', { name:p.name });
         renderFeature();
       }
     }).catch(function(){});

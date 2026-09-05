@@ -1,11 +1,11 @@
 /**
- * account.js — tabbed edit-profile screen (Dog / Human / Vet / Settings).
+ * account.js, tabbed edit-profile screen (Dog / Human / Vet / Settings).
  *
  * The whole dog profile lives in one Firestore object (users/{uid} → dog),
  * loaded once into `state` and written back on Save. New design fields
  * (size, neuter, coat, sens, vet, owner) ride along in the same object;
  * the fields the trail scorer reads (breed, fitness, dob, ageBand,
- * weightBand, conditions, healthNotes — see SCORING.md) are kept filled,
+ * weightBand, conditions, healthNotes, see SCORING.md) are kept filled,
  * with sens heat/joints mirrored into conditions so scoring keeps working.
  */
 (function(){
@@ -52,9 +52,9 @@
     if(result && result.messageKey) return tKey(result.messageKey, result.message, result.messageVars);
     if(result && result.code){
       const key = 'auth.error.' + String(result.code).replace(/^auth\//, '').replace(/-/g, '_');
-      return tKey(key, result.message || tKey('auth.error.generic', 'Something went wrong — please try again.'));
+      return tKey(key, result.message || tKey('auth.error.generic', 'Something went wrong, please try again.'));
     }
-    return result && result.message ? result.message : tKey('auth.error.generic', 'Something went wrong — please try again.');
+    return result && result.message ? result.message : tKey('auth.error.generic', 'Something went wrong, please try again.');
   }
 
   function dogSaveFailureMessage(){
@@ -67,7 +67,7 @@
     if(code === 'not-signed-in') return tKey('account.saveSignedOut', 'Your session ended. Sign in again, then save this dog.');
     if(code.includes('permission-denied')) return tKey('account.savePermission', 'ORMA could not save this profile. Refresh the page, sign in again and retry.');
     if(code.includes('unavailable') || code.includes('network')) return tKey('account.saveOffline', 'ORMA could not reach the server. Check your connection and try again.');
-    return tKey('account.saveError', 'Something went wrong — please try again.');
+    return tKey('account.saveError', 'Something went wrong, please try again.');
   }
 
   // ---------- Profile state ----------
@@ -324,7 +324,7 @@
   function allBreeds(){ return (typeof DOG_BREEDS !== 'undefined') ? DOG_BREEDS : []; }
   function renderBreedList(){
     const ALL = allBreeds();
-    $('breedHint').textContent = tKey('account.breedHint', 'Search {count} breeds — or type your own', { count:ALL.length });
+    $('breedHint').textContent = tKey('account.breedHint', 'Search {count} breeds, or type your own', { count:ALL.length });
     const q = state.breed.trim().toLowerCase();
     const exact = ALL.some(b => b.toLowerCase() === q);
     let matches = [];
@@ -373,7 +373,7 @@
     const removeDogHelp = $('removeDogHelp');
     const humanHelp = $('humanHelp');
     if(removeDogBtn) removeDogBtn.textContent = tKey('account.removeDogNamed', 'Remove {name}', { name:dogReference });
-    if(removeDogHelp) removeDogHelp.textContent = tKey('account.removeDogHelp', 'Permanently deletes {name}’s profile and all its data — photo, health, vet and emergency details. You can add a dog again later.', { name:dogReference });
+    if(removeDogHelp) removeDogHelp.textContent = tKey('account.removeDogHelp', 'Permanently deletes {name}’s profile and all its data, photo, health, vet and emergency details. You can add a dog again later.', { name:dogReference });
     if(humanHelp) humanHelp.textContent = tKey('account.humanHelp', 'Who to reach if {name} is found or needs help on the trail.', { name:dogReference });
 
     const m = ageMonthsFrom(state.dob);
@@ -393,11 +393,11 @@
 
     // Emergency card preview
     $('cardName').textContent = displayName;
-    $('cardBreed').textContent = state.breed.trim() || '—';
+    $('cardBreed').textContent = state.breed.trim() || ', ';
     $('cardChip').textContent = state.chip.trim() || tKey('account.notRecorded', 'Not recorded');
     $('cardMedical').textContent = state.medical.trim() || tKey('account.noneNoted', 'None noted');
     $('cardVet').textContent = joinBits([state.vetName.trim(), state.vetPhone.trim()], tKey('account.notRecorded', 'Not recorded'));
-    $('cardOwner').textContent = joinBits([state.ownerName.trim(), state.ownerPhone.trim(), state.ownerEmail.trim()], '—');
+    $('cardOwner').textContent = joinBits([state.ownerName.trim(), state.ownerPhone.trim(), state.ownerEmail.trim()], ', ');
     $('cardEmergency').textContent = joinBits([state.emName.trim(), state.emPhone.trim()], tKey('account.notSet', 'Not set'));
 
     // A dog profile can be saved with dog information alone, matching the
@@ -481,8 +481,8 @@
         base.photos = state.photos.slice();
       }
       photoStatus(ok
-        ? tKey('account.photo.synced', 'Photos saved to your account — they will show on any device you log in from.')
-        : tKey('account.photo.localOnly', "Photos saved on this device — couldn't reach your account just now."), ok);
+        ? tKey('account.photo.synced', 'Photos saved to your account, they will show on any device you log in from.')
+        : tKey('account.photo.localOnly', "Photos saved on this device, couldn't reach your account just now."), ok);
       return ok;
     });
   }
@@ -678,7 +678,7 @@
 
   $('removeDogBtn').addEventListener('click', async () => {
     const nm = state.name.trim() || 'this dog';
-    if(!window.confirm(tKey('account.removeConfirm', 'Remove {name}? This permanently deletes the profile and all its data — photo, health, vet and emergency details.', { name:nm }))) return;
+    if(!window.confirm(tKey('account.removeConfirm', 'Remove {name}? This permanently deletes the profile and all its data, photo, health, vet and emergency details.', { name:nm }))) return;
     if(!window.DoloPawsAuth) return;
     const ok = await window.DoloPawsAuth.removeDogProfile(base.id || activeDogId);
     const key = photoCacheKey();
@@ -691,24 +691,24 @@
     } else {
       saveStatus.hidden = false;
       saveStatus.style.color = '#9C3A25';
-      saveStatus.textContent = tKey('account.saveError', 'Something went wrong — please try again.');
+      saveStatus.textContent = tKey('account.saveError', 'Something went wrong, please try again.');
     }
   });
 
   // ---------- Share card ----------
   $('shareCardBtn').addEventListener('click', async () => {
     const nm = state.name.trim() || tKey('account.thisDogTitle', 'This dog');
-    const text = tKey('account.card.title', '{name} — ORMA emergency card', { name:nm })
-      + '\n' + tKey('account.card.breed', 'Breed: {value}', { value:state.breed.trim() || '—' })
-      + '\n' + tKey('account.card.microchip', 'Microchip: {value}', { value:state.chip.trim() || '—' })
+    const text = tKey('account.card.title', '{name}, ORMA emergency card', { name:nm })
+      + '\n' + tKey('account.card.breed', 'Breed: {value}', { value:state.breed.trim() || ', ' })
+      + '\n' + tKey('account.card.microchip', 'Microchip: {value}', { value:state.chip.trim() || ', ' })
       + '\n' + tKey('account.card.medical', 'Medical: {value}', { value:state.medical.trim() || tKey('account.none', 'None') })
-      + '\n' + tKey('account.card.owner', 'Owner: {value}', { value:[state.ownerName.trim() || '—', state.ownerPhone.trim(), state.ownerEmail.trim()].filter(Boolean).join(' ') })
-      + '\n' + tKey('account.card.emergency', 'Emergency: {value}', { value:[state.emName.trim() || '—', state.emPhone.trim()].filter(Boolean).join(' ') })
-      + '\n' + tKey('account.card.vet', 'Vet: {value}', { value:[state.vetName.trim() || '—', state.vetPhone.trim()].filter(Boolean).join(' ') });
+      + '\n' + tKey('account.card.owner', 'Owner: {value}', { value:[state.ownerName.trim() || ', ', state.ownerPhone.trim(), state.ownerEmail.trim()].filter(Boolean).join(' ') })
+      + '\n' + tKey('account.card.emergency', 'Emergency: {value}', { value:[state.emName.trim() || ', ', state.emPhone.trim()].filter(Boolean).join(' ') })
+      + '\n' + tKey('account.card.vet', 'Vet: {value}', { value:[state.vetName.trim() || ', ', state.vetPhone.trim()].filter(Boolean).join(' ') });
     const status = $('shareStatus');
     try {
       if(navigator.share){
-        await navigator.share({ title: tKey('account.card.shareTitle', '{name} — emergency card', { name:nm }), text: text });
+        await navigator.share({ title: tKey('account.card.shareTitle', '{name}, emergency card', { name:nm }), text: text });
       } else if(navigator.clipboard){
         await navigator.clipboard.writeText(text);
         status.hidden = false;
@@ -835,7 +835,7 @@
     acctEmailBtn.textContent = tKey('account.update', 'Update');
     acctEmailHint.style.color = result.ok ? '#2C5C34' : '#9C3A25';
     acctEmailHint.textContent = result.ok
-      ? tKey('account.email.sent', 'Confirmation link sent to {email} — the change applies once you click it.', { email:next })
+      ? tKey('account.email.sent', 'Confirmation link sent to {email}, the change applies once you click it.', { email:next })
       : serviceMessage(result);
   });
 
@@ -853,7 +853,7 @@
     resetStatus.hidden = false;
     resetStatus.style.color = result.ok ? '#2C5C34' : '#9C3A25';
     resetStatus.textContent = result.ok
-      ? tKey('account.password.sent', 'Reset link sent to {email} — check your inbox.', { email:user.email })
+      ? tKey('account.password.sent', 'Reset link sent to {email}, check your inbox.', { email:user.email })
       : serviceMessage(result);
   });
 

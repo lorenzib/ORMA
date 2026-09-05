@@ -125,7 +125,7 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(block).toContain('allow create: if isModerator()');
     expect(block).toContain('allow update: if false;');
     expect(block).toContain('allow delete: if isModerator();');
-    // Links stay inside the site — absolute schemes (https:, javascript:)
+    // Links stay inside the site, absolute schemes (https:, javascript:)
     // are rejected so a notice can never smuggle an external redirect.
     expect(block).toContain("!request.resource.data.href.matches('^[a-zA-Z]+:.*$')");
   });

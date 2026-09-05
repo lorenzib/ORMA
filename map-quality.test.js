@@ -86,7 +86,7 @@ describe('shared map quality profile', () => {
   test('the selected route highlights the marked path from underneath', () => {
     const style = read('map-style.js');
     // A solid line ON TOP buries Waymarked's own route line and its numbered
-    // shields — which is why we used to reprint the numbers ourselves. The
+    // shields, which is why we used to reprint the numbers ourselves. The
     // route goes below the raster as a translucent corridor instead.
     expect(style).toContain("'line-opacity': 0.55");
     expect(style).toContain('widthRamp(10, 16, 23, 33, scale)');
@@ -101,7 +101,7 @@ describe('shared map quality profile', () => {
     // Direction arrows stay above the raster but below place names.
     expect(trail).toMatch(/id: 'single-trail-direction-arrows'[\s\S]*?\}, firstLabelId\);/);
 
-    // Route planner draws its draft under the network too — you cannot trace
+    // Route planner draws its draft under the network too, you cannot trace
     // a path you have painted over.
     expect(read('route-planner.js')).toContain("? 'planner-waymarked-hiking-layer' : (label && label.id)");
     // Collection routes sit below their raster on the live inline map.
@@ -162,7 +162,7 @@ describe('shared map quality profile', () => {
   test('the collection map colours by the signed-in dog, not a generic one', () => {
     // Scoring every visitor against the guest profile would leave this map
     // answering "does this suit a generic dog" while every other ORMA surface
-    // answers "does this suit yours" — the same defect the palette clean-up
+    // answers "does this suit yours", the same defect the palette clean-up
     // set out to remove, one layer down.
     const page = read('collections-page.js');
     expect(page).toContain('matchSubject || scoring.GUEST_SUBJECT');
@@ -184,8 +184,8 @@ describe('shared map quality profile', () => {
   test('no homepage guest map: the container was deleted in July 2026', () => {
     // #guestPreviewMap left index.html in 784afd0b (2026-07-17) and was never
     // replaced, so initGuestMap() returned on its first line and ~160 lines of
-    // map setup could not run. It was still being maintained — the cartography
-    // work restyled layers in there that nothing renders — so it is deleted.
+    // map setup could not run. It was still being maintained, the cartography
+    // work restyled layers in there that nothing renders, so it is deleted.
     // A signed-out visitor sees no map on the homepage at all.
     // Comments explaining the removal legitimately name these symbols, so
     // check the code with line comments stripped.
@@ -201,7 +201,7 @@ describe('shared map quality profile', () => {
 
   test('the guest scoring profile has exactly one definition', () => {
     // Four copies of { terrain:'1', distance:'10', heatSensitive:false } were
-    // scattered through script.js — the same duplication that produced three
+    // scattered through script.js, the same duplication that produced three
     // rival colour palettes.
     const script = read('script.js');
     expect(script).toContain('function guestOverrides()');
@@ -214,8 +214,7 @@ describe('shared map quality profile', () => {
 
   test('browse maps start quiet, the navigating map does not', () => {
     // AllTrails shows no path network at browse zooms at all. Ours has to
-    // appear eventually — Dolomites walkers follow the numbers on signposts —
-    // but not while you are still deciding which valley to drive to.
+    // appear eventually, Dolomites walkers follow the numbers on signposts, // but not while you are still deciding which valley to drive to.
     const homepage = read('script.js');
     expect(homepage).toContain('const overlayStates = { routes: false, lifts: false');
     expect(homepage).toContain('visible: false });');
@@ -231,7 +230,7 @@ describe('shared map quality profile', () => {
     // The trail detail map keeps the network on and unthrottled. Its opening
     // fitBounds lands anywhere from z10.7 to z17 across the catalogue, so a
     // zoom threshold there would show the network on some trails and not
-    // others with no explanation — worse than either choice.
+    // others with no explanation, worse than either choice.
     const trail = read('trail.js');
     expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId })');
     expect(trail).not.toContain('minzoom: NETWORK_MIN_ZOOM');

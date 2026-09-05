@@ -1,5 +1,5 @@
 /**
- * trail-reports.js — community dog-safety flags on the trail detail page.
+ * trail-reports.js, community dog-safety flags on the trail detail page.
  *
  * Renders active flags as banners in a "Trail reports" section, places
  * km-tagged flags as ⚠️ markers on the route map, and provides the
@@ -7,7 +7,7 @@
  * slider, short note).
  *
  * Product rule this file enforces: community flags display ALONGSIDE the
- * ORMA verified safety score — they never alter it. Type-specific expiry
+ * ORMA verified safety score, they never alter it. Type-specific expiry
  * removes stale flags from the active safety view without deleting history.
  *
  * Usage: initTrailReports(map, trail) inside trail.js's map 'load'
@@ -29,8 +29,7 @@ function trEsc(s){
     c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
-// One star glyph for every rating UI on the page (rows, average, picker) —
-// filled or outlined, sized per context. Replaces the mixed ★/☆ text chars.
+// One star glyph for every rating UI on the page (rows, average, picker), // filled or outlined, sized per context. Replaces the mixed ★/☆ text chars.
 function starSvgIcon(filled, size){
   const s = size || 13;
   return filled
@@ -578,8 +577,8 @@ function initTrailReports(map, trail){
           showActionStatus('Photo submitted for review. It will appear after approval.');
           return;
         }
-        error.textContent = result.message || 'Could not add this photo — please try again.';
-      } catch (e) { error.textContent = 'Could not prepare this photo — please try another image.'; }
+        error.textContent = result.message || 'Could not add this photo, please try again.';
+      } catch (e) { error.textContent = 'Could not prepare this photo, please try another image.'; }
       error.hidden = false;
       submit.disabled = false;
       submit.textContent = 'Add photo';
@@ -667,9 +666,9 @@ function initTrailReports(map, trail){
           showActionStatus('Review submitted for moderation. It will appear after approval.');
           return;
         }
-        error.textContent = result.message || 'Could not post your review — please try again.';
+        error.textContent = result.message || 'Could not post your review, please try again.';
       } catch (e) {
-        error.textContent = 'Could not post your review — please try again.';
+        error.textContent = 'Could not post your review, please try again.';
       }
       error.hidden = false;
       submit.disabled = false;

@@ -1,5 +1,5 @@
 /**
- * homepage-search.js — controller for the redesigned logged-out homepage
+ * homepage-search.js, controller for the redesigned logged-out homepage
  * (search-first hero + live suggestions + consolidated filters + dog
  * mini-wizard), ported from the Claude Design prototype
  * "ORMA Homepage - final.dc.html" and wired to REAL data + scoring:

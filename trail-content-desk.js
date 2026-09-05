@@ -133,7 +133,7 @@
       if(record.record.workflowRunUrl)wrap.append(link('Open failed automation run',record.record.workflowRunUrl));
       return wrap;
     }
-    const labels={queued:'Saved · awaiting ORMA automation',processed:'Decision processed',superseded:'Earlier duplicate safely superseded','approved-for-pr-creation':'Approval processed — preparing the PR','request-changes':'Changes requested',hold:'Publication held',blocked:'Decision blocked'};
+    const labels={queued:'Saved · awaiting ORMA automation',processed:'Decision processed',superseded:'Earlier duplicate safely superseded','approved-for-pr-creation':'Approval processed, preparing the PR','request-changes':'Changes requested',hold:'Publication held',blocked:'Decision blocked'};
     wrap.append(element('strong','',labels[status]||status.replace(/-/g,' ')));
     const when=dateValue(record.record.acknowledgedAt||record.record.reviewedAt||record.record.submittedAt);
     wrap.append(element('p','',`${record.record.action?`${record.record.action.replace(/-/g,' ')} · `:''}${when&&!Number.isNaN(when.getTime())?when.toLocaleString():'Recorded in the live queue'}.`));

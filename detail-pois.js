@@ -1,13 +1,12 @@
 /**
- * detail-pois.js — real nearby POIs on the trail detail map.
+ * detail-pois.js, real nearby POIs on the trail detail map.
  *
  * The homepage map loads the full OSM POI datasets (huts, bars & cafés,
  * drinking water); the trail detail map used to show only the few
- * hand-curated markers stored on the trail itself — so places visible on
+ * hand-curated markers stored on the trail itself, so places visible on
  * the homepage "disappeared" when opening a trail. This file loads the
  * same two GeoJSON files, filters them to the trail's surroundings
- * (~2 km beyond the route's bounding box), and shows them by default —
- * on a single-trail page, "what's nearby" shouldn't hide behind a toggle.
+ * (~2 km beyond the route's bounding box), and shows them by default, * on a single-trail page, "what's nearby" shouldn't hide behind a toggle.
  *
  * Also registers the filtered features with basemap-poi-click.js, so
  * clicking the base map's own icons gets the enriched popup here too.
@@ -53,7 +52,7 @@ function initDetailPois(map, trail){
   const esc = (typeof trEsc === 'function') ? trEsc
     : s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-  // Every popup states IN WORDS what the place is — an icon plus an
+  // Every popup states IN WORDS what the place is, an icon plus an
   // elevation is a riddle, not information.
   function tt(key, fallback){
     if(!window.t) return fallback;
@@ -62,7 +61,7 @@ function initDetailPois(map, trail){
   }
   function poiPopupHtml(props){
     // Place type: icon-system SVG (same visual language as the page chrome)
-    // plus a plain-text label — no emoji.
+    // plus a plain-text label, no emoji.
     let typeLabel = tt('poi.place', 'Point of interest'), iconKey = null;
     if (props.tourism === 'alpine_hut') { typeLabel = tt('legend.hut', 'Mountain hut'); iconKey = 'hut'; }
     else if (props.tourism === 'wilderness_hut') { typeLabel = tt('poi.wildhut', 'Wilderness hut'); iconKey = 'hut'; }
@@ -196,7 +195,7 @@ function initDetailPois(map, trail){
         try { window.onDetailPoisReady(near); } catch (e) {}
       }
     })
-    .catch(() => { /* nearby POIs are a bonus — never break the page */ });
+    .catch(() => { /* nearby POIs are a bonus, never break the page */ });
 
   // Drinking water
   const waterLoad = fetch(regionalPoiUrl('water'))

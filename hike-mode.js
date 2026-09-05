@@ -1,5 +1,5 @@
 /**
- * hike-mode.js — "Start hike" companion for the trail detail page.
+ * hike-mode.js, "Start hike" companion for the trail detail page.
  *
  * Turns the trail map into an on-trail companion: live position snapped to
  * the route, progress readout (km walked, next water / rifugio ahead),
@@ -7,7 +7,7 @@
  * mid-hike.
  *
  * Everything works from data already on the trail object (path, distance,
- * rifugi, waterSources) — no network calls, so the safety features keep
+ * rifugi, waterSources), no network calls, so the safety features keep
  * working even when the signal drops in a valley. Only the map tiles need
  * connectivity, and GPS itself is satellite-based and works offline.
  *
@@ -17,7 +17,7 @@
  */
 
 function initHikeMode(map, trail, options){
-  if (!('geolocation' in navigator)) return; // no GPS — don't show the button
+  if (!('geolocation' in navigator)) return; // no GPS, don't show the button
   if (!Array.isArray(trail.path) || trail.path.length < 2) return;
 
   const container = (options && options.container) || (map && map.getContainer());
@@ -111,9 +111,9 @@ function initHikeMode(map, trail, options){
   // ---- State ---------------------------------------------------------------
   let active = false;
   let watchId = null;
-  let lastTileError = 0;   // last failed tile/style fetch — signals the map may grey out
+  let lastTileError = 0;   // last failed tile/style fetch, signals the map may grey out
   let wakeLock = null;
-  let lastIdx = 0;          // last snapped path index — used for continuity
+  let lastIdx = 0;          // last snapped path index, used for continuity
   let offRouteStreak = 0;   // consecutive fixes far from the route
   let offRouteSince = null; // first fix in the current sustained off-route run
   let announcedOffRoute = false;
@@ -335,8 +335,7 @@ function initHikeMode(map, trail, options){
     }
   }
 
-  // Map tile fetches fail silently when the connection drops mid-hike —
-  // navigator.onLine often stays true on a weak mountain signal, so track
+  // Map tile fetches fail silently when the connection drops mid-hike, // navigator.onLine often stays true on a weak mountain signal, so track
   // actual failed fetches too.
   let mapErrorListenerBound = false;
   function attachMap(nextMap){
@@ -364,7 +363,7 @@ function initHikeMode(map, trail, options){
   async function acquireWakeLock(){
     try {
       if ('wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen');
-    } catch (e) { /* not supported or denied — hike mode still works */ }
+    } catch (e) { /* not supported or denied, hike mode still works */ }
   }
   document.addEventListener('visibilitychange', () => {
     // The lock is auto-released when the app backgrounds; re-acquire on return.
@@ -374,7 +373,7 @@ function initHikeMode(map, trail, options){
   // ---- Snap a GPS fix to the nearest point on the route --------------------
   // Continuity bias: when several path points are similarly close (common on
   // out-and-back or tightly-folded loops), prefer the one nearest to where
-  // we last were — stops the readout jumping between overlapping segments.
+  // we last were, stops the readout jumping between overlapping segments.
   function snapToPath(lat, lng){
     let minDist = Infinity;
     const dists = new Array(trail.path.length);
@@ -589,7 +588,7 @@ function initHikeMode(map, trail, options){
     }
     const validFixLabel = lastValidFixAt
       ? new Date(lastValidFixAt).toLocaleTimeString()
-      : '—';
+      : ', ';
     const reliabilityNote = assessment.freshness === 'stale'
       ? window.t('hike.gpsStale')
       : !assessment.reliableForWarning
@@ -605,7 +604,7 @@ function initHikeMode(map, trail, options){
         : 'hike.gpsNearTrail';
     panel.innerHTML = parts.join(' · ')
       + `<br><span style="font-weight:400;opacity:.85;">${window.t(gpsStatusKey, {
-        accuracy: Number.isFinite(accuracy) ? Math.round(accuracy) : '—',
+        accuracy: Number.isFinite(accuracy) ? Math.round(accuracy) : ', ',
         time: validFixLabel,
       })}${reliabilityNote ? `<br>${reliabilityNote}` : ''}</span>`
       + offlineNote();
@@ -677,7 +676,7 @@ function initHikeMode(map, trail, options){
           if (ok) localStorage.setItem(guardKey, '1');
         });
       }
-    } catch (e) { /* private browsing etc. — skip silently */ }
+    } catch (e) { /* private browsing etc., skip silently */ }
   }
 
   function startHike(){
@@ -856,10 +855,9 @@ function initHikeMode(map, trail, options){
   }
 
   // ---- Completion screen: save / discard, photos, share-to-trail flag ------
-  // Replaces the old "Hike ended — log this walk →" link with the design's
+  // Replaces the old "Hike ended, log this walk →" link with the design's
   // full-screen summary. Saving writes straight into the walk journal store
-  // (same schema journal.html reads), carrying { photos, shareToTrail } —
-  // the flag the trail page checks before surfacing a walk's photos.
+  // (same schema journal.html reads), carrying { photos, shareToTrail }, // the flag the trail page checks before surfacing a walk's photos.
   function esc(s){
     return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   }
@@ -888,11 +886,11 @@ function initHikeMode(map, trail, options){
     const dog = dogSummary();
     const dogName = dog.name || 'Your dog';
     const km = completion.distanceKm;
-    const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : '—';
+    const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : ', ';
     const SAFETY_LABEL = { 'low-risk': 'Low-risk', 'moderate': 'Moderate', 'caution': 'Caution' };
     const safetyClass = trail.safetyLevel === 'low-risk' ? 'safety-low'
       : trail.safetyLevel === 'caution' ? 'safety-caution' : 'safety-moderate';
-    // The trail page already computed the personal match — reuse its figure.
+    // The trail page already computed the personal match, reuse its figure.
     const scoreEl = document.querySelector('.personal-score b');
     const matchPct = scoreEl ? parseInt(scoreEl.textContent, 10) : NaN;
 
@@ -1020,9 +1018,9 @@ function initHikeMode(map, trail, options){
 
     function renderOutcome(){
       const labels = [
-        ['appropriate', 'Yes — appropriate'],
+        ['appropriate', 'Yes, appropriate'],
         ['appropriate_with_unexpected_cautions', 'Yes, with unexpected cautions'],
-        ['not_appropriate', 'No — not appropriate'],
+        ['not_appropriate', 'No, not appropriate'],
         ['did_not_complete', 'We turned back'],
         ['prefer_not_to_answer', 'Prefer not to answer'],
       ];
@@ -1262,7 +1260,7 @@ function initHikeMode(map, trail, options){
         entries.sort((a, b) => new Date(b.date) - new Date(a.date));
         localStorage.setItem(key, JSON.stringify(entries));
         saved = true;
-      } catch (e) { /* storage full/blocked — still leave the page gracefully */ }
+      } catch (e) { /* storage full/blocked, still leave the page gracefully */ }
       if(saved && window.DoloPawsHikeCompletions){
         window.DoloPawsHikeCompletions.markFollowUp(
           completion.completionId,

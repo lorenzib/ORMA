@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20260905-1">
 <style>
-  /* Account settings — standalone page per AccountSettings.dc.html:
+  /* Account settings, standalone page per AccountSettings.dc.html:
      sticky section sidebar, white cards, destructive zone last. */
   .st-wrap{max-width:1020px;margin:0 auto;padding:40px 24px 60px;}
   .st-back{display:inline-block;margin:0 0 18px;font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;}
@@ -38,7 +38,7 @@
   .st-field{margin-bottom:16px;}
   .st-divider-row{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #EDE9DD;margin-top:16px;padding-top:14px;flex-wrap:wrap;}
   .st-divider-row span{font-size:13px;color:var(--ink-soft);line-height:1.5;}
-  /* quiet / ghost buttons — pill shape per Button.jsx */
+  /* quiet / ghost buttons, pill shape per Button.jsx */
   .st-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:8px 16px;border-radius:999px;border:1.5px solid var(--paper-line);background:#fff;color:var(--ink);font:700 12.5px 'Inter',sans-serif;cursor:pointer;text-decoration:none;}
   .st-btn:hover{border-color:var(--accent);color:var(--accent);}
   .st-btn[hidden]{display:none;}
@@ -270,7 +270,7 @@
 <script src="auth-ui.js?v=20260821-1" defer></script>
 <script src="metrics.js?v=20260815-4" defer></script>
 <script>
-// Account settings — standalone page (AccountSettings.dc.html template).
+// Account settings, standalone page (AccountSettings.dc.html template).
 // Notification + privacy switches share account.js's device-level storage
 // keys, so flipping them here or on the profile page stays in sync.
 document.addEventListener('DOMContentLoaded', function(){
@@ -349,7 +349,7 @@ document.addEventListener('DOMContentLoaded', function(){
   var metricsEnabled = !!(window.DoloPawsMetrics && window.DoloPawsMetrics.consent() === 'granted');
   switchRow(privacyList, {
     label:'Share anonymous product usage',
-    sub:'Optional. Uses allowlisted events only—never names, search text, health notes or GPS locations.',
+    sub:'Optional. Uses allowlisted events only, never names, search text, health notes or GPS locations.',
     on:metricsEnabled,
     onChange:function(on){
       if(window.DoloPawsMetrics){
@@ -391,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function(){
       $('stEmailBtn').textContent = 'Update';
       $('stEmailHint').style.color = result.ok ? '#2C5C34' : '#9C3A25';
       $('stEmailHint').textContent = result.ok
-        ? 'Confirmation link sent to the new address — click it to finish the change.'
+        ? 'Confirmation link sent to the new address, click it to finish the change.'
         : result.message;
     });
   });
@@ -403,7 +403,7 @@ document.addEventListener('DOMContentLoaded', function(){
       status.hidden = false;
       status.style.color = result.ok ? '#2C5C34' : '#9C3A25';
       status.textContent = result.ok
-        ? 'Link sent to ' + user.email + ' — open it to set your password.'
+        ? 'Link sent to ' + user.email + ', open it to set your password.'
         : result.message;
     });
   });
@@ -411,7 +411,7 @@ document.addEventListener('DOMContentLoaded', function(){
     window.location.href = 'account.html?logout=1';
   });
 
-  // "Download my data" — everything this device holds for the account.
+  // "Download my data", everything this device holds for the account.
   $('stDownloadBtn').addEventListener('click', function(){
     var user = window.DoloPawsAuth && window.DoloPawsAuth.currentUser;
     var bundle = { exportedAt: new Date().toISOString(), email: user ? user.email : null };
@@ -463,7 +463,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 
-  // Name — stored on the profile as ownerName (same field the emergency
+  // Name, stored on the profile as ownerName (same field the emergency
   // card uses), saved when you leave the field.
   var savedName = '';
   function saveName(){
@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function(){
       var hint = $('stNameHint');
       hint.hidden = false;
       hint.style.color = ok ? '#2C5C34' : '#9C3A25';
-      hint.textContent = ok ? 'Saved.' : "Couldn't save just now — try again.";
+      hint.textContent = ok ? 'Saved.' : "Couldn't save just now, try again.";
       if(ok) savedName = next;
     });
   }
@@ -512,7 +512,7 @@ document.addEventListener('DOMContentLoaded', function(){
     if(!dogs.length){
       var empty = document.createElement('p');
       empty.className = 'blurb';
-      empty.textContent = 'No dog profile yet — add your dog to start scoring trails.';
+      empty.textContent = 'No dog profile yet, add your dog to start scoring trails.';
       list.appendChild(empty);
       return;
     }
@@ -557,13 +557,13 @@ document.addEventListener('DOMContentLoaded', function(){
               choose.disabled = false;
               choose.textContent = 'Use this dog';
               status.style.color = '#9C3A25';
-              status.textContent = "Couldn't switch dogs just now — try again.";
+              status.textContent = "Couldn't switch dogs just now, try again.";
             }
           }).catch(function(){
             choose.disabled = false;
             choose.textContent = 'Use this dog';
             status.style.color = '#9C3A25';
-            status.textContent = "Couldn't switch dogs just now — try again.";
+            status.textContent = "Couldn't switch dogs just now, try again.";
           });
         });
       }

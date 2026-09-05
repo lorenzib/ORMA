@@ -196,8 +196,8 @@ describe('multi-dog account experience', () => {
     vm.runInContext(source('breeds-data.js'), context);
     const suggestions = vm.runInContext('breedSuggestions("mutt")', context);
     expect(Array.from(suggestions)).toEqual(expect.arrayContaining([
-      'Mixed breed — small (under 10 kg)', 'Mixed breed — medium (10–25 kg)',
-      'Mixed breed — large (over 25 kg)', 'Rescue / unknown mix',
+      'Mixed breed, small (under 10 kg)', 'Mixed breed, medium (10–25 kg)',
+      'Mixed breed, large (over 25 kg)', 'Rescue / unknown mix',
     ]));
   });
 
@@ -265,7 +265,7 @@ describe('multi-dog account experience', () => {
     document.close();
     const controller = [...settings.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)]
       .map(match => match[1])
-      .find(script => script.includes('Account settings — standalone page'));
+      .find(script => script.includes('Account settings, standalone page'));
     const dogs = [
       { id:'eddie', name:'Eddie', breed:'Podenco Andaluz', fitness:'high' },
       { id:'pippo', name:'Pippo', breed:'Briard', fitness:'moderate' },

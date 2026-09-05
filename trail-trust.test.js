@@ -162,7 +162,7 @@ describe('trail data trust states', () => {
   test('a trail with no route cannot be route-audited or walked', () => {
     const trust = loadTrust();
     // Curated viewpoint/place listings with no path (e.g. Seceda Ridge) may
-    // not claim the route was audited — there is no route.
+    // not claim the route was audited, there is no route.
     expect(trust.tierOf({ name: 'Seceda Ridge Trail' })).toBe('under-review');
     expect(trust.tierOf({ curated: true })).toBe('under-review');
     expect(trust.tierOf({ path: [[46.5, 11.6]] })).toBe('under-review'); // single point is not a route

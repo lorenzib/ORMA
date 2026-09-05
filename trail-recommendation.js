@@ -120,7 +120,7 @@
     const chip = view.confidenceLabel
       ? `<span class="recommendation-confidence recommendation-confidence--${esc(view.confidence)}">${esc(view.confidenceLabel)}</span>`
       : '';
-    // Dog-side gaps are the one thing the reader can fix right now — the
+    // Dog-side gaps are the one thing the reader can fix right now, the
     // card face turns them into a profile CTA instead of a caveat.
     const canOpenWizard = !!(window.DoloPawsWizard && typeof window.DoloPawsWizard.open === 'function');
     const gapCta = !view.dogName

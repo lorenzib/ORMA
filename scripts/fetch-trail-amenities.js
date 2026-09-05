@@ -3,8 +3,8 @@
 //
 // Unlike the region-wide huts-bars/water dumps, this queries Overpass with an
 // `around` corridor built from each trail's `path` geometry, so coverage is
-// exactly "everything mapped within RADIUS_M of a trail we ship" — bars,
-// huts, water, viewpoints, picnic spots, shelters and sights — for 100% of
+// exactly "everything mapped within RADIUS_M of a trail we ship", bars,
+// huts, water, viewpoints, picnic spots, shelters and sights, for 100% of
 // trails in every region listed in the manifest.
 //
 // Outputs, per region:
@@ -25,7 +25,7 @@ const RADIUS_M = Number(process.argv.includes('--radius')
 
 // kumi first: the main instance 406es requests it does not like and queues
 // heavily; the mirrors answer in seconds. A descriptive User-Agent is
-// required by the Overpass usage policy — without it Apache rejects with 406.
+// required by the Overpass usage policy, without it Apache rejects with 406.
 const ENDPOINTS = [
   'https://overpass.kumi.systems/api/interpreter',
   'https://overpass.private.coffee/api/interpreter',

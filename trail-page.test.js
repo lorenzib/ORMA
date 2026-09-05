@@ -163,7 +163,7 @@ describe('trail page map controls', () => {
     expect(home).toContain('ORMAMapStyle.addWaymarkedHiking(trailMapInstance');
     expect(fs.readFileSync(path.join(__dirname, 'map-style.js'), 'utf8'))
       .toContain("visibility: config.visible === false ? 'none' : 'visible'");
-    // The detail map keeps the network on — it is the navigating surface,
+    // The detail map keeps the network on, it is the navigating surface,
     // where trail numbers are the point. The homepage is a browse map and
     // now starts without it; its chip is what turns it back on.
     expect(home).toContain('routes: false');
@@ -393,7 +393,7 @@ describe('trail page map controls', () => {
 
     expect(blueprint).toContain(".replace(/\\s*(?:—|--)+\\s*/g, '. ')");
     expect(blueprint).toContain('descEl.textContent = cardCopy(t.desc)');
-    expect(blueprint).not.toContain('is warm — walk early');
+    expect(blueprint).not.toContain('is warm, walk early');
   });
 
   test('the hero groups compact facts, weather, and every primary trail action', () => {
@@ -541,7 +541,7 @@ describe('trail page map controls', () => {
     clickHandler();
     expect(classes.has('on')).toBe(true);
     expect(attrs['aria-pressed']).toBe('true');
-    // Label must stay put — the pressed state carries the meaning.
+    // Label must stay put, the pressed state carries the meaning.
     expect(groupBtn.textContent).toBe('3D');
     expect(terrainCalls[0]).toEqual({ source: 'terrain-dem-3d', exaggeration: 1.5 });
     expect(cameraCalls[0].pitch).toBe(45);

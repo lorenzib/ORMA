@@ -609,7 +609,7 @@
 
   function renderHealthStep() {
     bodyEl.innerHTML =
-      '<p class="dw-step-hint">All fields in this step are optional — they help us flag trails that might not be a good fit. Only these structured facts move the score; free-text notes are kept for you.</p>' +
+      '<p class="dw-step-hint">All fields in this step are optional, they help us flag trails that might not be a good fit. Only these structured facts move the score; free-text notes are kept for you.</p>' +
       '<div class="dw-field-group">' +
         '<span class="dw-label" id="dwCondLabel">' +
           'Health conditions <span class="dw-optional">(optional)</span>' +
@@ -967,7 +967,7 @@
       var good = scored.filter(function (s) { return s.score >= 70; });
       var strong = scored.filter(function (s) { return s.score >= 85; });
 
-      // For a fit dog nearly everything clears 70% — "163 of 167" reads
+      // For a fit dog nearly everything clears 70%, "163 of 167" reads
       // as no filter at all. When matches are abundant, lead with the
       // strong ones instead; the number stays honest either way.
       if (good.length > trails.length * 0.6 && strong.length > 0) {
@@ -975,7 +975,7 @@
       } else {
         titleEl.textContent = good.length + ' of ' + trails.length + ' trails match ' + profile.name;
       }
-      subtitleEl.textContent = 'Scored on terrain, distance, exposure, heat and shade — for ' +
+      subtitleEl.textContent = 'Scored on terrain, distance, exposure, heat and shade, for ' +
         profile.name + '’s build, age and health.';
 
       topCards = '<div class="dw-payoff-list">' +
@@ -998,8 +998,8 @@
         '<button class="dw-btn-primary dw-payoff-cta" id="dwSaveProfileBtn">' +
           'Create a free account to save ' + esc(profile.name) + '’s profile →' +
         '</button>' +
-        '<p class="dw-payoff-hint">Their matches will follow you across devices — nothing to re-enter.</p>' +
-        '<button class="dw-keep-link" id="dwSkipSaveBtn">Not now — keep browsing</button>' +
+        '<p class="dw-payoff-hint">Their matches will follow you across devices, nothing to re-enter.</p>' +
+        '<button class="dw-keep-link" id="dwSkipSaveBtn">Not now, keep browsing</button>' +
       '</div>';
 
     document.getElementById('dwSaveProfileBtn').addEventListener('click', function () {
@@ -1018,7 +1018,7 @@
       }
     });
     document.getElementById('dwSkipSaveBtn').addEventListener('click', function () {
-      // Draft already saved — they can resume any time from the CTA.
+      // Draft already saved, they can resume any time from the CTA.
       doClose();
       showToast(profile.name + '’s profile is kept as a draft on this device.');
     });
@@ -1059,7 +1059,7 @@
     editingDogId = isEditing && typeof existingDog.id === 'string' ? existingDog.id : null;
 
     if (isEditing) {
-      // The combobox accepts any breed string directly — no Other branch.
+      // The combobox accepts any breed string directly, no Other branch.
       data = Object.assign(makeEmptyData(), {
         name:        existingDog.name       || '',
         breed:       existingDog.breed      || '',

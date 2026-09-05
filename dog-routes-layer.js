@@ -41,7 +41,7 @@ function initializeDogRoutes(map, region) {
         }, beforeId);
       }
 
-      // Main line — NEUTRAL grey-blue on purpose: green/amber/red belong
+      // Main line, NEUTRAL grey-blue on purpose: green/amber/red belong
       // exclusively to the safety rating (this used to be green for loops,
       // which read as "low-risk" against the legend and contradicted the
       // trail page's own rating).

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Browse all trails — ORMA</title>
-<meta name="description" content="Every dog-friendly trail in ORMA — Dolomites and Savoy — browsable without an account, each scored for paw safety, shade, water and terrain.">
+<title>Browse all trails, ORMA</title>
+<meta name="description" content="Every dog-friendly trail in ORMA, Dolomites and Savoy, browsable without an account, each scored for paw safety, shade, water and terrain.">
 <meta name="theme-color" content="#2E4034">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -15,10 +15,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20260905-1">
 <style>
-  /* Guest bar — the homepage component reused verbatim; CTA is a link here */
+  /* Guest bar, the homepage component reused verbatim; CTA is a link here */
   a.hp-guestbar-cta{display:inline-flex;align-items:center;text-decoration:none;white-space:nowrap;}
   .hp-guestbar[hidden]{display:none;}
-  /* Compare explainer — sits with the results, same sage info treatment */
+  /* Compare explainer, sits with the results, same sage info treatment */
   .browse-compare-note{margin:0 0 12px;padding:12px 15px;background:#fff;border:1px solid var(--paper-line);border-radius:12px;font-size:12.5px;line-height:1.55;color:var(--ink-soft);}
   .browse-compare-note b{font-family:'Bricolage Grotesque',sans-serif;font-size:13.5px;}
   .browse-compare-note em{font-style:normal;font-weight:700;}
@@ -153,7 +153,7 @@
     .browse-primary-controls .browse-tools{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));width:100%;max-width:none;flex-wrap:wrap;justify-content:stretch;}
     .browse-profile-banner{align-items:flex-start;flex-direction:column;}
     /* Search full-width, and the Distance / Trail rating / Water controls
-       visible right under it — never hidden off-screen. */
+       visible right under it, never hidden off-screen. */
     .browse-tools{flex-wrap:wrap;overflow-x:visible;padding-bottom:0;gap:9px;}
     .browse-primary-controls .browse-search-shell{grid-column:1/-1;grid-row:1;width:100%;max-width:none;min-width:0;}
     .browse-area-controls{grid-column:1/-1;grid-row:2;}
@@ -166,7 +166,7 @@
     .browse-filter-divider{display:none;}
     .browse-filter-controls{flex:1 1 100%;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:9px;padding-bottom:3px;scrollbar-width:none;}
     .browse-filter-controls::-webkit-scrollbar{display:none;}
-    /* The wrappers are the flex items — without flex:none they shrink in
+    /* The wrappers are the flex items, without flex:none they shrink in
        the nowrap scroll row and the selects inside pile onto each other. */
     .browse-filter-controls .browse-field,.browse-filter-controls select,.browse-water{flex:none;}
     .simple-card{grid-template-columns:84px minmax(0,1fr);grid-template-rows:auto auto auto;column-gap:12px;row-gap:12px;padding:12px;}
@@ -196,7 +196,7 @@
   .browse-recovery{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:14px;}
   .browse-recovery button{min-height:40px;border:1.5px solid var(--paper-line);border-radius:10px;background:#fff;color:var(--ink);padding:8px 13px;font:700 12.5px 'Inter',sans-serif;cursor:pointer;}
   .browse-recovery button.safe{background:#EAF3EC;border-color:#9FC4B0;}
-  /* Compare tray — mirrors the navigation header: same dark-green glass,
+  /* Compare tray, mirrors the navigation header: same dark-green glass,
      beige nav-link text, and the CTA styled like the header's cream pill. */
   .compare-tray{position:fixed;left:50%;bottom:18px;z-index:80;width:min(680px,calc(100% - 28px));transform:translateX(-50%);display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 14px 13px 18px;border:1px solid rgba(242,238,226,.09);border-radius:16px;background:rgba(38,53,42,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#DCE1D4;box-shadow:0 18px 45px rgba(18,30,22,.34);}
   .compare-tray[hidden]{display:none;}
@@ -351,7 +351,7 @@
       </div>
     </div>
   </div>
-  <!-- What Compare does — feeds the tray at the bottom + compare.html -->
+  <!-- What Compare does, feeds the tray at the bottom + compare.html -->
   <aside class="browse-compare-note">
     <b>Deciding between trails?</b> Pick <em>Compare</em> on two or three and we'll put them side by side: distance, terrain, shade, water and the match for your dog. Unknown stays unknown; we never guess a factor safe.
   </aside>
@@ -365,7 +365,7 @@
   <details hidden style="margin-top:34px;font-size:13.5px;color:var(--ink-soft);">
     <summary style="cursor:pointer;font-weight:700;color:var(--ink);">Full trail index (A–Z)</summary>
     <div style="columns:2;column-gap:28px;margin-top:14px;line-height:2;">
-<!-- TRAIL-INDEX-START (auto-generated by scripts/generate-trail-pages.js — do not edit by hand) -->
+<!-- TRAIL-INDEX-START (auto-generated by scripts/generate-trail-pages.js, do not edit by hand) -->
 <p style="font-weight:700;color:var(--ink);break-inside:avoid;">Dolomites, Italy</p>
 <a href="trail.html?id=osm-11774783" style="display:block;color:inherit;">1 - Rafeil-Rundweg</a>
 <a href="trail.html?id=alpe-siusi" style="display:block;color:inherit;">Alpe di Siusi Meadow Loop</a>
@@ -678,7 +678,7 @@
 
     // The full catalog and every trail page are open to everyone.
     // What stays personal (match %, saving, reporting) prompts login on
-    // the trail page itself — at the moment it's actually wanted.
+    // the trail page itself, at the moment it's actually wanted.
     const PER_PAGE = 15;
     const allowedCountries = ['all', 'italy', 'france'];
     const allowedRegions = ['all', 'dolomites', 'savoy'];
@@ -686,7 +686,7 @@
     const allowedDistances = ['all', '3', '5', '6', '10', '20', 'u5', '5to10', '10p'];
     let page = 1;
 
-    // Curated collections — same predicates as the homepage "Featured this
+    // Curated collections, same predicates as the homepage "Featured this
     // week" themes, so a collection means the same thing everywhere.
     const filterApi = window.DoloPawsDiscoveryFilters;
     const canonicalParts = t => filterApi.normalizedTrail(t);
@@ -954,7 +954,7 @@
       if(filtersCount) filtersCount.textContent = n > 0 ? ' (' + n + ')' : '';
       filtersBtn.classList.toggle('on', n > 0);
     }
-    // Consolidated Filters panel — the homepage's segmented panel, driving
+    // Consolidated Filters panel, the homepage's segmented panel, driving
     // the same hidden selects the filter engine already reads.
     const filtersMenu = document.getElementById('browseFiltersMenu');
     function brSeg(elId, opts, cur, pick){

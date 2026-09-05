@@ -2,7 +2,7 @@
  * basemap-poi-click.js
  * Makes the base map's own POI icons (drawn by the OpenFreeMap "liberty"
  * style) clickable, Google Maps-style. ORMA' own layers already have
- * click handlers — this handler detects those and stays out of their way.
+ * click handlers, this handler detects those and stays out of their way.
  *
  * Popup tiers:
  *   1. Generic: name + human-readable type (from the vector tile's
@@ -13,8 +13,8 @@
  *      dogs-welcome instantly.
  *   2b. Enriched live from OSM: when there's no local match, a small
  *      Overpass query (40 m around the icon, sent from the visitor's own
- *      browser) fetches the place's full OSM tags — website, phone, hours,
- *      cuisine, dog policy, Wikipedia — and the open popup updates in
+ *      browser) fetches the place's full OSM tags, website, phone, hours,
+ *      cuisine, dog policy, Wikipedia, and the open popup updates in
  *      place. Fails silently (e.g. offline), leaving the Tier-1 popup.
  *   3. Escape hatch: every popup ends with a "more info" OpenStreetMap
  *      link, so no click ever dead-ends.
@@ -34,7 +34,7 @@ const DOLOPAWS_INTERACTIVE_LAYERS = [
 ];
 
 // Base-style source layers whose features should be clickable. 'place'
-// (town/village name labels) is deliberately excluded — popping up on every
+// (town/village name labels) is deliberately excluded, popping up on every
 // pan-click near a label would make the map feel broken, not richer.
 const POI_SOURCE_LAYERS = ['poi', 'mountain_peak', 'poi_transit'];
 
@@ -77,7 +77,7 @@ function poiLabel(props){
   return '📍 ' + pretty.charAt(0).toUpperCase() + pretty.slice(1);
 }
 
-// OSM data can contain anything — never inject it into popups as raw HTML.
+// OSM data can contain anything, never inject it into popups as raw HTML.
 function escHtml(s){
   return String(s).replace(/[&<>"']/g,
     c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -110,13 +110,12 @@ function buildDetailLines(tags){
 
 function makeBasemapPoisClickable(map){
   map.on('click', (e) => {
-    // 1) If the click landed on a ORMA layer, its own handler owns it —
-    //    without this bail-out, users would get two stacked popups.
+    // 1) If the click landed on a ORMA layer, its own handler owns it, //    without this bail-out, users would get two stacked popups.
     const ownLayers = DOLOPAWS_INTERACTIVE_LAYERS.filter(id => map.getLayer(id));
     if (ownLayers.length &&
         map.queryRenderedFeatures(e.point, { layers: ownLayers }).length) return;
 
-    // 2) Query with a small tolerance box — bare-point hits miss small
+    // 2) Query with a small tolerance box, bare-point hits miss small
     //    icons about half the time, especially on mobile.
     const box = [[e.point.x - 6, e.point.y - 6], [e.point.x + 6, e.point.y + 6]];
     const hits = map.queryRenderedFeatures(box);
@@ -140,7 +139,7 @@ function makeBasemapPoisClickable(map){
     if (p.ele) baseHtml += `<br>⛰️ ${escHtml(p.ele)} m`;
 
     // No per-POI source link: an osm.org object page is a mappers' database
-    // view, not visitor information — and the map corner already carries the
+    // view, not visitor information, and the map corner already carries the
     // OpenStreetMap attribution. Real details (website, phone, hours) render
     // above when the data has them.
     const footer = '';
@@ -163,13 +162,13 @@ function makeBasemapPoisClickable(map){
       + footer);
 
     fetchOsmDetails(name, lng, lat).then(tags => {
-      if (!popup.isOpen()) return; // user already closed it — don't reopen
+      if (!popup.isOpen()) return; // user already closed it, don't reopen
       const details = buildDetailLines(tags);
       popup.setHTML(baseHtml + details + footer);
     });
   });
 
-  // Pointer cursor over base-map POIs — throttled via requestAnimationFrame
+  // Pointer cursor over base-map POIs, throttled via requestAnimationFrame
   // so panning stays smooth (queryRenderedFeatures on every raw mousemove
   // event stutters on low-end phones).
   let rafPending = false;
@@ -198,7 +197,7 @@ function makeBasemapPoisClickable(map){
 // One tiny query per clicked landmark, sent from the visitor's own browser
 // (so the rate-limit issues the build pipeline had with shared GitHub IPs
 // don't apply). Results are cached for the session so re-clicking the same
-// icon is free. Any failure — offline, timeout, 429 — resolves to null and
+// icon is free. Any failure, offline, timeout, 429, resolves to null and
 // the popup simply keeps its basic content.
 const _osmDetailCache = new Map();
 

@@ -63,13 +63,13 @@ function checkTrail(trail, osmProps) {
   const links = [];
 
   if (!osmProps) {
-    flags.push('No matching OSM relation found in the fetched geojson — cross-check skipped.');
+    flags.push('No matching OSM relation found in the fetched geojson, cross-check skipped.');
     return { flags, links };
   }
 
   if (osmProps.website) links.push(`Official portal: ${osmProps.website}`);
   if (osmProps.waymarkedtrails) links.push(`Waymarked Trails: ${osmProps.waymarkedtrails}`);
-  if (!osmProps.website) flags.push('No official portal link on record — plan on a trip report or field visit instead.');
+  if (!osmProps.website) flags.push('No official portal link on record, plan on a trip report or field visit instead.');
 
   const share = rockyShare(osmProps.surfaces);
   if (share !== null) {
@@ -78,17 +78,17 @@ function checkTrail(trail, osmProps) {
       flags.push(`OSM surfaces are ${Math.round(share * 100)}% rock/mud/scree, but terrainRank is ${trail.terrainRank ?? 0} and no surfaceHazards are listed.`);
     }
   } else {
-    flags.push('No OSM surface data — terrainRank/surfaceHazards not cross-checkable here.');
+    flags.push('No OSM surface data, terrainRank/surfaceHazards not cross-checkable here.');
   }
 
   if (osmProps.sac_scale && !trail.sacScale) {
-    flags.push(`OSM sac_scale is "${osmProps.sac_scale}" — not reflected in the trail entry.`);
+    flags.push(`OSM sac_scale is "${osmProps.sac_scale}", not reflected in the trail entry.`);
   }
   if (osmProps.leash && !trail.leash) {
-    flags.push(`OSM leash tag is "${osmProps.leash}" — not reflected in the trail entry (trail.leash).`);
+    flags.push(`OSM leash tag is "${osmProps.leash}", not reflected in the trail entry (trail.leash).`);
   }
   if (osmProps.dogFriendlyNotes && !trail.dogNotes) {
-    flags.push(`OSM dogFriendlyNotes present — not reflected in the trail entry (trail.dogNotes).`);
+    flags.push(`OSM dogFriendlyNotes present, not reflected in the trail entry (trail.dogNotes).`);
   }
 
   return { flags, links };
@@ -156,7 +156,7 @@ function main() {
       if (graduation.missing.length) console.log(`  Graduation blockers: ${graduation.missing.join(', ')}`);
     }
     for (const source of trail.sourceLinks || []) {
-      console.log(`  Review source: ${source.label} — ${source.url}`);
+      console.log(`  Review source: ${source.label}, ${source.url}`);
     }
     for (const link of links) console.log(`  ${link}`);
     for (const flag of flags) console.log(`  ⚑ ${flag}`);

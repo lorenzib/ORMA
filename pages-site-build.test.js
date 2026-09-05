@@ -34,7 +34,7 @@ describe('the published site matches its allowlist', () => {
   // A denylist only catches the mistakes we already made. This compares the
   // built site against pages-public-manifest.json in BOTH directions, so a new
   // desk page added without a _config.yml exclude fails here even though no
-  // rule names it — and a public page dropped by an over-broad exclude fails
+  // rule names it, and a public page dropped by an over-broad exclude fails
   // too, instead of silently vanishing from the site.
   const manifest = () => JSON.parse(
     fs.readFileSync(path.join(ROOT, 'pages-public-manifest.json'), 'utf8'),
@@ -46,8 +46,8 @@ describe('the published site matches its allowlist', () => {
     const unexpected = entries
       .filter(entry => !(entry.isDirectory() ? allowed.directories : allowed.files).includes(entry.name))
       .map(entry => (entry.isDirectory() ? `${entry.name}/` : entry.name));
-    // If this fails: either exclude it in _config.yml, or — if it really is
-    // public — run `node scripts/build-pages-site.js --write-manifest`.
+    // If this fails: either exclude it in _config.yml, or, if it really is
+    // public, run `node scripts/build-pages-site.js --write-manifest`.
     expect(unexpected).toEqual([]);
   });
 

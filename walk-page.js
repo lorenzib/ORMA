@@ -78,7 +78,7 @@
         type: 'raster',
         tiles: ['https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png'],
         tileSize: 256,
-        attribution: '© Sarah Hoffmann (CC-BY-SA) — waymarkedtrails.org',
+        attribution: '© Sarah Hoffmann (CC-BY-SA), waymarkedtrails.org',
       });
       map.addLayer({ id: 'waymarked-hiking-layer', type: 'raster', source: 'waymarked-hiking',
         paint: { 'raster-opacity': 1, 'raster-resampling': 'linear' } }, firstLabel ? firstLabel.id : undefined);
@@ -413,7 +413,7 @@
       els.gps.textContent = 'GPS ±' + Math.round(pos.coords.accuracy) + ' m';
       traceUpdate(fix);
     }, function(){
-      els.gps.textContent = 'Location unavailable — tap ◎ after allowing access';
+      els.gps.textContent = 'Location unavailable, tap ◎ after allowing access';
       initMap({ lat:46.54, lng:11.80 }, true);
     }, { enableHighAccuracy:true, maximumAge:5000, timeout:12000 });
   }
@@ -428,11 +428,11 @@
       var result = recorder.addFix(fix);
       els.gps.textContent = result.accepted || result.reason === 'jitter'
         ? 'GPS ±' + Math.round(pos.coords.accuracy) + ' m'
-        : 'GPS signal is weak — walk on, it will catch up';
+        : 'GPS signal is weak, walk on, it will catch up';
       traceUpdate(fix);
       paint();
     }, function(){
-      els.gps.textContent = 'Location unavailable — check permissions';
+      els.gps.textContent = 'Location unavailable, check permissions';
     }, { enableHighAccuracy: true, maximumAge: 2000, timeout: 15000 });
   }
 
@@ -453,9 +453,9 @@
   }
 
   function locationErrorText(error){
-    if(error && error.code === 1) return 'Location access is off — allow it in your browser settings, then try again';
-    if(error && error.code === 3) return 'Could not find your location — move outdoors and try again';
-    return 'Location unavailable — check permissions and try again';
+    if(error && error.code === 1) return 'Location access is off, allow it in your browser settings, then try again';
+    if(error && error.code === 3) return 'Could not find your location, move outdoors and try again';
+    return 'Location unavailable, check permissions and try again';
   }
 
   function startWithLocation(){
@@ -471,12 +471,12 @@
     navigator.geolocation.getCurrentPosition(function(pos){
       var fix = fixFromPosition(pos);
       if(!fix){
-        els.gps.textContent = 'Location unavailable — try again';
+        els.gps.textContent = 'Location unavailable, try again';
         resetStartButton();
         return;
       }
       if(fix.accuracy > MAX_START_ACCURACY_M){
-        els.gps.textContent = 'GPS signal is too weak — move outdoors and try again';
+        els.gps.textContent = 'GPS signal is too weak, move outdoors and try again';
         resetStartButton();
         return;
       }
@@ -620,7 +620,7 @@
     els.gate.hidden = false;
   }
 
-  // onChange is firebase-init's own registry — it fires for every auth
+  // onChange is firebase-init's own registry, it fires for every auth
   // state including session restore. The DOM 'dolopaws-auth-changed' event
   // only exists on pages that load auth-ui.js, which this page does not.
   function watchAuth(){

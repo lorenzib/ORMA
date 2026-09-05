@@ -1,4 +1,4 @@
-/* Mobile app layout for the logged-in homepage (≤700px) — ported from the
+/* Mobile app layout for the logged-in homepage (≤700px), ported from the
    Claude Design prototype "ORMA Homepage (Logged in) - Mobile.dc.html".
 
    Purely additive on top of the desktop li-* shell: injects the bottom tab
@@ -6,7 +6,7 @@
    CSS variables, and drives the bottom-sheet drag with snap points. All
    visual re-layout lives in homepage-mobile.css under body.mhome-active.
    Search, filters, map, ranked list and the account menu keep their normal
-   wiring — this module never re-renders content. */
+   wiring, this module never re-renders content. */
 (function(){
   'use strict';
 
@@ -55,7 +55,7 @@
 
   // The bell and the account pill stay in the dark app header (desktop
   // only). On phones the standard topnav is visible and already carries
-  // both in its menu — duplicating them in the search toolbar was noise.
+  // both in its menu, duplicating them in the search toolbar was noise.
   function placeAccountWrap(){
     var actions = returning.querySelector('.li-top-actions');
     var bell = document.getElementById('liBellWrap');
@@ -125,7 +125,7 @@
         list.classList.remove('mhome-dragging');
         // A tap (no real drag) toggles hidden <-> last open height.
         if(!moved){ toggleSheet(); return; }
-        // Snap from the tracked height, not a DOM measurement — if the whole
+        // Snap from the tracked height, not a DOM measurement, if the whole
         // gesture lands in one frame the re-enabled transition would report
         // the pre-drag height and snap the sheet straight back.
         var cur = lastH / A;

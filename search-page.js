@@ -33,7 +33,7 @@
     if(!q){
       summary.textContent = '';
       refine.hidden = true;
-      results.innerHTML = '<section class="search-empty"><h2>Search the Dolomites and Savoy</h2><p>Try a valley, a lake, or a trail name — German and Italian names both work.</p></section>';
+      results.innerHTML = '<section class="search-empty"><h2>Search the Dolomites and Savoy</h2><p>Try a valley, a lake, or a trail name, German and Italian names both work.</p></section>';
       return;
     }
     refine.hidden = false;

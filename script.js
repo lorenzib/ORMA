@@ -48,7 +48,7 @@ function guestMatchScore(trail){
   catch(error){ return null; }
 }
 
-// GUEST TEASER — generic default profile, illustrative blurred scores
+// GUEST TEASER, generic default profile, illustrative blurred scores
 // ============================================================
 function renderTeaser(){
   const grid = document.getElementById('teaserGrid');
@@ -102,7 +102,7 @@ const unlockBtn = document.getElementById('unlockBtn');
 if(unlockBtn) unlockBtn.addEventListener('click', () => { window.location.href = 'browse-trails.html'; });
 
 // ============================================================
-// RETURNING VISITOR — real profile, real scoring, real favorites,
+// RETURNING VISITOR, real profile, real scoring, real favorites,
 // genuine "new since last visit" detection (not a decorative badge).
 // ============================================================
 const NEW_MATCH_THRESHOLD = 70; // trails scoring at/above this count as "a match" for new-match tracking
@@ -153,7 +153,7 @@ function showHomeActionStatus(message){
 let showingSavedOnly = false;
 let activeArea = 'all';
 
-// Pagination for the trail list — 15 cards per page. The map always shows
+// Pagination for the trail list, 15 cards per page. The map always shows
 // ALL trails matching the current filters; only the card list paginates.
 const TRAILS_PER_PAGE = 15;
 let currentPage = 1;
@@ -166,10 +166,10 @@ let activeRegion = (() => {
 })();
 let activeCountry = activeRegion === 'savoy' ? 'FR' : 'IT';
 let activeValley = 'all';
-let sortKey = 'match';             // 'match' | 'distance' | 'effort' — Companion sort control
+let sortKey = 'match';             // 'match' | 'distance' | 'effort', Companion sort control
 let selectedTrailId = null;        // map pin / card selection (Companion layout)
 
-// Logged-in shell (map + list app layout) — header search + filter panel state.
+// Logged-in shell (map + list app layout), header search + filter panel state.
 // These sit on top of the region/valley filters above.
 let liQuery = '';                  // header search box
 // Filter semantics follow the design's chip options (AppShell FilterBar):
@@ -215,12 +215,12 @@ function filterTrailsForReturningView(list){
   if(liFilters.water) displayList = displayList.filter(x => Array.isArray(x.waterSources) && x.waterSources.length > 0);
 
   // Sort is applied last so it always reflects the current filtered set.
-  // 'match' just keeps the incoming order — the list is already sorted by
+  // 'match' just keeps the incoming order, the list is already sorted by
   // score desc before filtering, in renderReturningHomepage().
   if(sortKey === 'distance') displayList = displayList.slice().sort((a, b) => a.distance - b.distance);
   else if(sortKey === 'effort') displayList = displayList.slice().sort((a, b) => a.elevation - b.elevation);
   else if(sortKey === 'today'){
-    // "Coolest" — lowest heat load first, from the trail's real heat fields
+    // "Coolest", lowest heat load first, from the trail's real heat fields
     // (heatRisk tier, then shade). Stable sort keeps match order within ties.
     const hr = { low: 0, moderate: 1, high: 2 };
     displayList = displayList.slice().sort((a, b) =>
@@ -251,15 +251,14 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   container.style.position = container.style.position || 'relative';
   const icons = window.DoloPawsIcons;
 
-  // UI: one compact "Layers" button that expands into a chip panel —
-  // replaces the old stack of full-width buttons that covered a third of
+  // UI: one compact "Layers" button that expands into a chip panel, // replaces the old stack of full-width buttons that covered a third of
   // the map on mobile.
   // Marked routes default OFF here. This is a browse map: you are
   // choosing which walk to do, not following one, and the full marked
     // network buries the ORMA routes you are meant to be picking between.
     // AllTrails draws no path network at all at these zooms. The Layers
     // panel ticks it back on in one tap, and the trail detail map still
-    // shows it by default — that is where you actually read trail numbers.
+    // shows it by default, that is where you actually read trail numbers.
   const overlayStates = { routes: false, lifts: false, fountains: false, huts: false, barsCafes: false, veterinary: false, terrain: false };
   const layersBtn = document.createElement('button');
   layersBtn.type = 'button';
@@ -490,7 +489,7 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
       const sat = base.getAttribute('data-maplayer') === 'satellite';
       map.setLayoutProperty('satellite-layer', 'visibility', sat ? 'visible' : 'none');
       // The vector style's building fills sit above the raster and would
-      // paint every roof grey on top of the photo imagery — hide them
+      // paint every roof grey on top of the photo imagery, hide them
       // while satellite is on.
       map.getStyle().layers.forEach(layer => {
         if(layer['source-layer'] === 'building' || /building/i.test(layer.id)){
@@ -505,7 +504,7 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
     });
   })();
 
-  // UI: dynamic legend — only describes what is actually visible on the
+  // UI: dynamic legend, only describes what is actually visible on the
   // map right now, instead of a fixed list of every possible layer.
   function renderMapLegend(){
     const legend = document.getElementById('trailMapLegend');
@@ -624,8 +623,7 @@ function renderGondolas(map, sourceId, options){
 // The guest preview map used to live here. Its container #guestPreviewMap was
 // removed from index.html in 784afd0b (2026-07-17) and never replaced, so
 // initGuestMap() returned on its first line and roughly 160 lines of map
-// setup — terrain, waymarked overlay, route rails, lift markers, POI layers —
-// could not run. Signed-out visitors see no map on the homepage at all.
+// setup, terrain, waymarked overlay, route rails, lift markers, POI layers, // could not run. Signed-out visitors see no map on the homepage at all.
 //
 // It was still being maintained: the recent cartography work restyled layers
 // in here that nothing renders. Deleted rather than left to collect edits.
@@ -650,7 +648,7 @@ function initTrailMap(){
   if(trailMapInstance || typeof maplibregl === 'undefined') return;
   const el = document.getElementById('trailMap');
   if(!el) return;
-  // Note: MapLibre uses [lng, lat] order — the opposite of Leaflet's [lat, lng].
+  // Note: MapLibre uses [lng, lat] order, the opposite of Leaflet's [lat, lng].
   // Scroll zoom is fine here: in the logged-in shell the map is a fixed
   // pane (the document doesn't scroll), so the wheel can't hijack scrolling.
   const trailMapOptions = {
@@ -659,7 +657,7 @@ function initTrailMap(){
     center: [12.05, 46.55],
     zoom: 9,
     scrollZoom: true,
-    // Collapsed ⓘ attribution (tap to expand) — the full-width credit line
+    // Collapsed ⓘ attribution (tap to expand), the full-width credit line
     // collided with the phone layout's bottom-centre Record pill.
     attributionControl: { compact: true },
   };
@@ -717,7 +715,7 @@ function initTrailMap(){
     // that join later without rebuilding the controls.
     const allLiftMarkers = [];
     
-    // Public marked routes in their own colours — this network is what the
+    // Public marked routes in their own colours, this network is what the
     // hiking paths are actually based on, so it has to be readable rather
     // than washed to grey. See map-style.js.
     const firstLabelLayer = { id: window.ORMAMapStyle.firstLabelLayerId(trailMapInstance) };
@@ -798,7 +796,7 @@ function initTrailMap(){
     // numbered shields then run down the middle, so the numbers a walker
     // actually follows stay readable instead of being covered and reprinted.
     // (The catalogue rails above deliberately mask the raster and keep their
-    // own shields — they are "which trails exist", not "this is your route".)
+    // own shields, they are "which trails exist", not "this is your route".)
     trailMapInstance.addLayer({
       id:'trail-selected-route-casing', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
@@ -829,7 +827,7 @@ function initTrailMap(){
     // highlight, so Waymarked's real route numbers are visible on it and a
     // second set of ours would only fight them for space.
     // Wide, near-invisible twin of the route line so a fingertip (or a
-    // slightly-off cursor) still hits the trail — 3px is too thin a target.
+    // slightly-off cursor) still hits the trail, 3px is too thin a target.
     trailMapInstance.addLayer({
       id: 'trail-paths-hit',
       type: 'line',
@@ -882,7 +880,7 @@ function initTrailMap(){
         jumpToCard(selected.id);
       }
     });
-    // The route line itself is a click target too — no need to hunt for
+    // The route line itself is a click target too, no need to hunt for
     // the trailhead dot. Clicking anywhere on a trail opens the single,
     // full-width ORMA trail card below the map.
     trailMapInstance.on('click', 'trail-paths-hit', (e) => {
@@ -1001,7 +999,7 @@ function pathThumbnailSvg(path){
 
 // Increases label density by telling every text/icon layer in the base
 // style to render even when it would otherwise overlap a neighbor. By
-// default, vector styles hide crowded labels for cleanliness — this trades
+// default, vector styles hide crowded labels for cleanliness, this trades
 // some visual tidiness for more names actually being visible, which is
 // what was being asked for here. Works on any style without needing to
 // know its specific internal layer names, since it targets every layer of
@@ -1015,17 +1013,17 @@ function increaseLabelDensity(map){
     // clearing their minzoom makes them appear even when zoomed far out,
     // which is the effect that was actually wanted. Everything else (POI
     // icons, road names, house numbers) keeps the style's own collision
-    // rules — forcing those all visible at once made town centers like
+    // rules, forcing those all visible at once made town centers like
     // Canazei unreadably dense.
     if(sl !== 'place' && sl !== 'mountain_peak') return;
     try {
       map.setLayerZoomRange(layer.id, 0, 24);
       map.setLayoutProperty(layer.id, 'text-optional', true);
       // NOTE: deliberately NOT setting text-allow-overlap/icon-allow-overlap
-      // anymore — that disabled collision detection entirely and was the
+      // anymore, that disabled collision detection entirely and was the
       // root cause of the overcrowded map. MapLibre's collision logic now
       // prunes overlapping labels automatically at every zoom.
-    } catch(e) { /* some layers may not support one of these props — skip silently */ }
+    } catch(e) { /* some layers may not support one of these props, skip silently */ }
   });
 }
 
@@ -1048,7 +1046,7 @@ function preventTransitPoiDuplication(map){
     try {
       const excludeTransit = ['!', ['match', ['get', 'class'], ['airport', 'bus', 'rail'], true, false]];
       map.setFilter(layerId, ['all', layer.filter, excludeTransit]);
-    } catch(e) { /* layer may not exist in this style version — skip silently */ }
+    } catch(e) { /* layer may not exist in this style version, skip silently */ }
   });
 }
 
@@ -1121,7 +1119,7 @@ function addBaseHillshade(map, beforeId){
   }, beforeId && map.getLayer(beforeId) ? beforeId : undefined);
 }
 
-// Compact dot marker for trails — replaces MapLibre's default teardrop
+// Compact dot marker for trails, replaces MapLibre's default teardrop
 // pin, which turns into a wall of signposts with 100+ trails on screen.
 function makeTrailDot(){
   const el = document.createElement('div');
@@ -1225,7 +1223,7 @@ function updatePathLayer(list){
   trailMapInstance.getSource('trail-paths').setData({ type: 'FeatureCollection', features });
   // NOTE: The 'water-sources' source is managed exclusively by initializeWaterSources(),
   // which loads the full OSM dataset (Trentino, Veneto, Savoy) from
-  // water-sources-all-regions.geojson. Do NOT overwrite it here — the old code that
+  // water-sources-all-regions.geojson. Do NOT overwrite it here, the old code that
   // replaced its data with per-trail points was wiping out all the fountain markers.
 }
 
@@ -1497,10 +1495,10 @@ function renderLiValleyControl(profile){
     });
 }
 
-// Companion sidebar — dog profile card. Avatar, breed/age line, and up to
+// Companion sidebar, dog profile card. Avatar, breed/age line, and up to
 // three trait chips reused straight from breedInsights() titles (so the
 // wording is always identical to the homepage insight card and the
-// per-trail "why this works" copy — one source of truth, three surfaces).
+// per-trail "why this works" copy, one source of truth, three surfaces).
 function renderDogProfileCard(profile){
   const nameEl = document.getElementById('companionDogName');
   const metaEl = document.getElementById('companionDogMeta');
@@ -1519,7 +1517,7 @@ function renderDogProfileCard(profile){
   const ageLabel = age != null ? (age < 1 ? 'under 1 yr' : Math.round(age) + ' yrs') : null;
   metaEl.textContent = [hasBreedName ? breed : null, ageLabel].filter(Boolean).join(' · ') || (profile ? 'Profile saved' : 'No profile yet');
 
-  // Physical identity only (size/weight, coat, life stage) — the WHY behind
+  // Physical identity only (size/weight, coat, life stage), the WHY behind
   // each trait (cold at rest, thin skin, etc.) is the breed-insight card's
   // job just below. Repeating those same titles up here read as duplicated
   // content once both cards were on screen together, so this card now
@@ -1550,7 +1548,7 @@ function renderDogProfileCard(profile){
   liFillAvatar(document.getElementById('liGreetRowAvatar'), profile);
 }
 
-// Companion sidebar — conditions / readiness card. ORMA has no live
+// Companion sidebar, conditions / readiness card. ORMA has no live
 // weather feed, so rather than inventing a temperature this reflects the
 // dog's REAL heat-sensitivity (breed traits + declared health conditions,
 // the same flag effectiveOverrides() already uses to penalise the score)
@@ -1564,7 +1562,7 @@ function renderConditionsCard(profile){
   if(!card) return;
 
   // The "Adjust for today" button lives inside this card, so the card
-  // itself must stay visible even with no saved profile yet — otherwise
+  // itself must stay visible even with no saved profile yet, otherwise
   // a logged-in user without a dog profile would have no way to reach it.
   if(!profile){
     labelEl.textContent = 'HEAT READINESS';
@@ -1593,13 +1591,13 @@ function renderConditionsCard(profile){
 // physical traits via breedInsights() (breeds-data.js) and shows only lines
 // that apply. Unknown/mixed breeds → card stays hidden (health profile does the
 // work instead). Physical traits only, never temperament.
-// Breed labels that carry no classifiable breed information — coarse
+// Breed labels that carry no classifiable breed information, coarse
 // size buckets or a genuine unknown. The card still renders for these,
 // just headed by the dog's name instead of a breed name (profileInsights
 // still supplies weight/age/condition-derived lines for them).
 const NON_BREED_LABELS = new Set([
-  'Mixed breed — small (under 10 kg)', 'Mixed breed — medium (10–25 kg)',
-  'Mixed breed — large (over 25 kg)', 'Rescue / unknown mix',
+  'Mixed breed, small (under 10 kg)', 'Mixed breed, medium (10–25 kg)',
+  'Mixed breed, large (over 25 kg)', 'Rescue / unknown mix',
 ]);
 
 function renderBreedInsight(profile){
@@ -1644,7 +1642,7 @@ function renderBreedInsight(profile){
 }
 
 // ============================================================
-// LOGGED-IN SHELL — header search, filter panel, account menu and
+// LOGGED-IN SHELL, header search, filter panel, account menu and
 // on-map conditions card for the map-first homepage layout.
 // ============================================================
 
@@ -1835,7 +1833,7 @@ function renderLiToolbarContext(profile){
     : 'Trails ranked for your dog\u2019s needs and your current choices.';
 }
 
-// Filter panel — segmented options + toggle rows. Rebuilt on every render
+// Filter panel, segmented options + toggle rows. Rebuilt on every render
 // so the active states always mirror the real filter state.
 function renderLiControls(){
   const seg = (elId, opts, cur, pick) => {
@@ -1999,7 +1997,7 @@ function renderLiChips(){
   }
 }
 
-// Conditions card on the map — real profile-derived readings only (heat
+// Conditions card on the map, real profile-derived readings only (heat
 // tolerance and paw/terrain tolerance from the same overrides the scorer
 // uses, plus today's great-match count). No invented weather.
 function renderLiConditionsCard(profile, displayList){
@@ -2010,7 +2008,7 @@ function renderLiConditionsCard(profile, displayList){
   const overrides = effectiveOverrides(profile, null);
   const name = profile.name || 'Your dog';
   // Desktop card: "{dog}'s conditions". The phone pill shows just the
-  // dog's name — the greeting lives above the search bar there, and
+  // dog's name, the greeting lives above the search bar there, and
   // "Eddie's conditions" read oddly as a map title. Both spans render;
   // CSS picks one per layout, so re-renders stay safe.
   const condTitle = document.getElementById('liCondTitle');
@@ -2077,7 +2075,7 @@ function refreshLiBellBadge(){
 }
 
 // Second pass with the Firestore content (hazard flags on saved trails,
-// operator notices) once per page view — the sync pass above painted the
+// operator notices) once per page view, the sync pass above painted the
 // derived-only count immediately.
 let liBellLiveFetchKey = null;
 let liBellLiveRequest = 0;
@@ -2441,7 +2439,7 @@ async function renderReturningHomepage(profile, options = {}){
   const newIds = liNewMatchIds;
   if(!options.skipNewMatchSync) liScheduleNewMatchSync(scored, profile);
 
-  // The cloud is Eddie speaking — one line, no counts, true for any area.
+  // The cloud is Eddie speaking, one line, no counts, true for any area.
   // When the owner has set "Adjust for today", the dog voices those declared
   // conditions (never guessed weather); otherwise it asks the usual question.
   let bubbleLine = profile && profile.name
@@ -2474,7 +2472,7 @@ async function renderReturningHomepage(profile, options = {}){
 
   renderLiConditionsCard(profile, displayList);
 
-  // "Show N trails" — the apply button doubles as the live result count.
+  // "Show N trails", the apply button doubles as the live result count.
   const applyBtn = document.getElementById('liFiltersApply');
   if(applyBtn) applyBtn.textContent = `Show ${displayList.length} ${displayList.length === 1 ? 'trail' : 'trails'}`;
 
@@ -2557,7 +2555,7 @@ async function renderReturningHomepage(profile, options = {}){
     </div>`;
   }).join('');
 
-  // Whole row opens the trail page — except clicks on the heart, links,
+  // Whole row opens the trail page, except clicks on the heart, links,
   // or the thumbnail (which locates the trail on the map instead).
   listEl.querySelectorAll('.li-row').forEach(row => {
     row.addEventListener('click', (e) => {
@@ -2670,7 +2668,7 @@ async function renderReturningHomepage(profile, options = {}){
 }
 
 // Destination-only handoff to a maps app. Apple devices get a two-option
-// chooser (Apple Maps or Google Maps — many iPhone users prefer Google);
+// chooser (Apple Maps or Google Maps, many iPhone users prefer Google);
 // everywhere else links straight to Google Maps, the only one of the two
 // that exists there.
 function trailheadCoords(t){
@@ -2702,7 +2700,7 @@ function focusMapOnTrail(trailId, list){
   const t = list.find(x => x.id === trailId);
   if(!t) return;
   selectTrail(t);
-  // On the phone layout the sheet covers the map — let it duck down.
+  // On the phone layout the sheet covers the map, let it duck down.
   window.dispatchEvent(new CustomEvent('dolopaws-map-focus'));
   document.getElementById('trailMap').scrollIntoView({ behavior: 'smooth', block: 'center' });
   if(Array.isArray(t.path) && t.path.length > 1){
@@ -2728,7 +2726,7 @@ if(savedTrailsBtn){
   });
 }
 
-// Companion sort control — Best match / Shortest / Least climb
+// Companion sort control, Best match / Shortest / Least climb
 const companionSortGroup = document.getElementById('companionSortGroup');
 if(companionSortGroup){
   companionSortGroup.addEventListener('click', (e) => {
@@ -2740,7 +2738,7 @@ if(companionSortGroup){
   });
 }
 
-// Map pin / card selection callout — clears via the × on the callout.
+// Map pin / card selection callout, clears via the × on the callout.
 const mapCalloutClose = document.getElementById('mapCalloutClose');
 if(mapCalloutClose){
   mapCalloutClose.addEventListener('click', () => {
@@ -2925,11 +2923,11 @@ document.querySelectorAll('.adj-pill').forEach(p => {
   p.style.color = 'var(--ink)';
   p.style.cursor = 'pointer';
   p.style.fontFamily = "'Inter',sans-serif";
-  p.style.background = 'none'; // pills are now real <button>s — kill the UA default
+  p.style.background = 'none'; // pills are now real <button>s, kill the UA default
 });
 
 // ============================================================
-// AUTH STATE — switch between guest and returning homepage
+// AUTH STATE, switch between guest and returning homepage
 // ============================================================
 // Wizard saves while logged in should refresh the homepage immediately.
 window.addEventListener('dolopaws-dog-profile-saved', (e) => {
@@ -2964,7 +2962,7 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
     scheduleTrailMap();
     startMobileTrailMap();
     // The map pane may have been hidden (or sized differently) when the map
-    // was created — make sure MapLibre measures the now-visible container.
+    // was created, make sure MapLibre measures the now-visible container.
     if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
     initLoggedInShell();
 
@@ -2976,7 +2974,7 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
     renderReturningHomepage(profile);
     if(user && window.DoloPawsAuth){
       // Guest-wizard handoff: if they built a dog profile before signing
-      // up, persist it now — but never overwrite a profile that already
+      // up, persist it now, but never overwrite a profile that already
       // exists on the account (e.g. logging into an older account).
       try {
         const pendingRaw = localStorage.getItem('dolopaws-pending-dog-profile');
@@ -2998,7 +2996,7 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
       profile = cloudProfile || profile;
       currentFavorites = cloudFavorites || {};
     } else {
-      // ?view=returning preview — use the guest wizard draft if one exists.
+      // ?view=returning preview, use the guest wizard draft if one exists.
       try { profile = JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile') || 'null'); } catch(err){ profile = null; }
       currentFavorites = {};
     }
@@ -3322,7 +3320,7 @@ function filterWaterSources(map, type) {
  * ============================================================
  * Huts & Bars Integration for ORMA
  * Adds mountain huts, bars, cafés and pubs from OpenStreetMap
- * (Trentino, Veneto, Savoy) — same pattern as water sources.
+ * (Trentino, Veneto, Savoy), same pattern as water sources.
  * ============================================================
  */
 const hutsBarsLoads = new WeakMap();
@@ -3593,7 +3591,7 @@ async function hydratePlaceDogVerification(host, place) {
     : `<span class="orma-place-prompt">Know if dogs are welcome here?</span><button type="button" class="orma-place-verify-btn">Help ORMA verify</button>`;
   host.querySelector('.orma-place-verify-btn').addEventListener('click', () => {
     openPlaceDogVerification(place, () => {
-      host.innerHTML = '<span class="orma-place-pending">Thanks — pending ORMA review</span>';
+      host.innerHTML = '<span class="orma-place-pending">Thanks, pending ORMA review</span>';
     });
   });
 }
@@ -3799,7 +3797,7 @@ Optional color legend:
 */
 
 // ============================================================
-// DEV PREVIEW — index.html?view=returning shows the logged-in shell
+// DEV PREVIEW, index.html?view=returning shows the logged-in shell
 // without an account (profile falls back to the guest wizard draft;
 // cloud saves stay disabled). Mirrors the ?view= contract documented
 // in homepage-view.js.
@@ -3811,5 +3809,5 @@ Optional color legend:
       liDevView = true;
       window.dispatchEvent(new CustomEvent('dolopaws-auth-changed', { detail: { user: null, devView: 'returning' } }));
     }
-  } catch(e){ /* preview-only convenience — never break the real page */ }
+  } catch(e){ /* preview-only convenience, never break the real page */ }
 })();
