@@ -1,8 +1,8 @@
 {
   "contractVersion": "1.0.0",
-  "checkedAt": "2026-09-05T09:13:06.082Z",
+  "checkedAt": "2026-09-05T10:07:04.035Z",
   "summary": {
-    "active": 0,
+    "active": 1,
     "awaitingRemovalReview": 0,
     "automaticallyRemoved": 0,
     "sourceFailures": 0
@@ -14,7 +14,7 @@
       "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
       "ok": true,
       "completeSnapshot": true,
-      "alertsRead": 38
+      "alertsRead": 22
     },
     {
       "key": "meteoalarm-france",

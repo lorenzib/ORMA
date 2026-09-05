@@ -933,6 +933,45 @@ function initHikeMode(map, trail, options){
               <option value="more_than_listed">More water than listed</option>
               <option value="not_checked">I did not check</option>
             </select>
+            <label for="hkLivestock">Did you encounter livestock? <span>Optional</span></label>
+            <select id="hkLivestock">
+              <option value="">Prefer not to answer</option>
+              <option value="none">No livestock at all</option>
+              <option value="seen_at_distance">Seen, but at a distance</option>
+              <option value="close_encounter">Passed close to them</option>
+            </select>
+            <label for="hkOffLead">Were dogs off-lead on this route? <span>Optional</span></label>
+            <select id="hkOffLead">
+              <option value="">Prefer not to answer</option>
+              <option value="all_on_lead">Everyone kept dogs on the lead</option>
+              <option value="some_off_lead">Some dogs were off-lead</option>
+              <option value="mostly_off_lead">Most dogs were off-lead</option>
+            </select>
+            <label for="hkCrowding">How busy was it? <span>Optional</span></label>
+            <select id="hkCrowding">
+              <option value="">Prefer not to answer</option>
+              <option value="quiet">Quiet, room to give space</option>
+              <option value="moderate">Steady foot traffic</option>
+              <option value="busy">Busy throughout</option>
+            </select>
+            <label for="hkEnjoyment">Did ${esc(dogName)} enjoy it? <span>Optional</span></label>
+            <select id="hkEnjoyment">
+              <option value="">Prefer not to answer</option>
+              <option value="loved_it">Loved it</option>
+              <option value="fine">Took it in their stride</option>
+              <option value="struggled">Struggled with it</option>
+            </select>
+            <label for="hkReactiveFit">Would you recommend it for a reactive dog? <span>Optional</span></label>
+            <select id="hkReactiveFit">
+              <option value="">Prefer not to answer</option>
+              <option value="yes">Yes, there is room to pass</option>
+              <option value="with_care">Only with care</option>
+              <option value="no">No, too little space</option>
+            </select>
+            <label class="hk-outcome-check">
+              <input type="checkbox" id="hkMissingRestriction">
+              A posted restriction was missing from ORMA
+            </label>
             <fieldset>
               <legend>Any material hazard we should account for? <span>Optional</span></legend>
               <div class="hk-hazard-options">
@@ -1045,6 +1084,14 @@ function initHikeMode(map, trail, options){
       const result = window.DoloPawsPostHikeOutcomes.save(completion, {
         response:outcomeResponse,
         waterAccuracy:q('#hkWaterAccuracy').value || null,
+        // Empty stays null: an unanswered question is a gap in the evidence,
+        // not a quiet claim that the pleasant answer applies.
+        livestockEncountered:q('#hkLivestock').value || null,
+        offLeadObserved:q('#hkOffLead').value || null,
+        crowding:q('#hkCrowding').value || null,
+        dogEnjoyment:q('#hkEnjoyment').value || null,
+        reactiveDogFit:q('#hkReactiveFit').value || null,
+        missingRestriction:q('#hkMissingRestriction').checked ? true : null,
         hazards,
         offlinePackageUsed,
       }, user.uid);

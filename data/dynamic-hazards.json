@@ -1,5 +1,30 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-05T09:13:06.082Z",
-  "hazards": []
+  "generatedAt": "2026-09-05T10:07:04.035Z",
+  "hazards": [
+    {
+      "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260905115008.071",
+      "state": "active",
+      "severity": "moderate",
+      "event": "Yellow Thunderstorm Warning",
+      "area": "Friuli Venezia Giulia",
+      "title": "Thunderstorm warning for Friuli Venezia Giulia",
+      "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
+      "sourceKey": "meteoalarm-italy",
+      "sourceLabel": "MeteoAlarm Italy",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/c94167ea-61a5-4471-9ea7-0317e83b7d94",
+      "identifier": "2.49.0.0.380.3.IT.260905115008.071",
+      "effectiveAt": "2026-09-05T12:00:00+00:00",
+      "expiresAt": "2026-09-05T17:59:00+00:00",
+      "firstPublishedAt": "2026-09-05T10:07:04.035Z",
+      "lastSeenAt": "2026-09-05T10:07:04.035Z",
+      "removalRequiresHumanReview": true,
+      "trailIds": [
+        "piancavallo"
+      ],
+      "trailNames": [
+        "Piancavallo Malghe Loop"
+      ]
+    }
+  ]
 }

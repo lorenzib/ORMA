@@ -46,7 +46,7 @@ Complete one record per route and package version.
 | Field | Result |
 |---|---|
 | Trail ID | `lago-carezza` |
-| Package version | `2026.09.04-beta.17` |
+| Package version | `2026.09.05-beta.18` |
 | Reviewed at (ISO date/time and timezone) |  |
 | Reviewer |  |
 | Weather and recent conditions |  |
@@ -68,7 +68,7 @@ Complete one record per route and package version.
 | Field | Result |
 |---|---|
 | Trail ID | `alpe-siusi` |
-| Package version | `2026.09.04-beta.4` |
+| Package version | `2026.09.05-beta.5` |
 | Reviewed at (ISO date/time and timezone) |  |
 | Reviewer |  |
 | Weather and recent conditions |  |
