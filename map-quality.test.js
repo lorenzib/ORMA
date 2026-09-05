@@ -14,7 +14,7 @@ describe('shared map quality profile', () => {
   });
 
   test('applies the profile to the primary map experiences', () => {
-    ['script.js', 'trail.js', 'walk-page.js', 'collection-detail.js'].forEach(file => {
+    ['script.js', 'trail.js', 'walk-page.js'].forEach(file => {
       const source = read(file);
       expect(source).toContain('DoloPawsMapRuntime.mapOptions');
       expect(source).toContain('DoloPawsMapRuntime.enhance');
@@ -25,7 +25,6 @@ describe('shared map quality profile', () => {
     const pages = [
       ['index.html', 'script.js'],
       ['trail.html', 'trail.js'],
-      ['collection.html', 'collection-detail.js'],
       ['walk.html', 'walk-page.js'],
     ];
     pages.forEach(([page, mapScript]) => {
@@ -105,8 +104,8 @@ describe('shared map quality profile', () => {
     // Route planner draws its draft under the network too — you cannot trace
     // a path you have painted over.
     expect(read('route-planner.js')).toContain("? 'planner-waymarked-hiking-layer' : (label && label.id)");
-    // Collection routes already sat below their raster.
-    expect(read('collection-detail.js')).toContain("}, 'collection-waymarked-hiking-layer');");
+    // Collection routes sit below their raster on the live inline map.
+    expect(read('collections-page.js')).toContain('beneath);');
   });
 
   test('no map reprints route numbers that Waymarked already draws', () => {
@@ -125,14 +124,15 @@ describe('shared map quality profile', () => {
   });
 
   test('every map draws the shared Waymarked treatment', () => {
-    ['trail.js', 'script.js', 'collection-detail.js'].forEach(file => {
+    ['trail.js', 'script.js', 'collections-page.js'].forEach(file => {
       const source = read(file);
       expect(source).toContain('ORMAMapStyle');
       expect(source).not.toContain("'raster-saturation': -0.90");
       expect(source).not.toContain("'raster-saturation': -1");
     });
     expect(read('route-planner.js')).toContain('ORMAMapStyle.quietBasemap(map)');
-    ['index.html', 'collection.html', 'collections.html', 'route-planner.html', 'walk.html']
+    // collection.html is a redirect stub and loads no scripts at all.
+    ['index.html', 'collections.html', 'route-planner.html', 'walk.html']
       .forEach(file => expect(read(file)).toContain('map-style.js'));
     expect(read('scripts/build-trail-page-bundle.js')).toContain("'map-style.js'");
   });
