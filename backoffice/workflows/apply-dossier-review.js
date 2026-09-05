@@ -6,7 +6,12 @@ const {compileVerifiedDossier,verificationRecord}=require('./compile-verified-do
 
 const BASE_SPECIALISTS=Object.freeze([
   {agentId:'logistics',action:'verify-parking-and-access',claimIds:['parking','road-access','pedestrian-connection']},
-  {agentId:'regulatoryRanger',action:'verify-dog-and-seasonal-rules',claimIds:['dog-access','leash-rules','seasonal-restrictions']},
+  // The Ranger already establishes route-level dog rules from published
+  // sources. Rifugio and lift policies are the same work at entity
+  // granularity, so they belong to the same specialist and the same human
+  // gate rather than to a separate manual exercise.
+  {agentId:'regulatoryRanger',action:'verify-dog-and-seasonal-rules',
+    claimIds:['dog-access','leash-rules','seasonal-restrictions','rifugio-dog-policy','lift-dog-policy']},
   {agentId:'terrainPoi',action:'verify-terrain-water-heat-and-livestock',claimIds:['elevation','shade','surface','water','exposure','livestock']},
 ]);
 

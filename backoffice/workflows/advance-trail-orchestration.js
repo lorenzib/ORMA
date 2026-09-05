@@ -91,6 +91,88 @@ async function orchestrationJobs(store,state){
   return store.getJobsByIds(orchestrationJobIds(state));
 }
 
+
+const GATE_STATES=Object.freeze({'geometry-human-gate':'geometry-approval','dossier-human-gate':'dossier-approval'});
+// A review item embeds the full specialist evidence, and Firestore caps a document
+// at 1 MiB. Restoring every stranded trail at once overflowed it and failed the
+// whole worker pass, so restoration fills the remaining room and stops.
+const REVIEW_QUEUE_SAFE_BYTES=800000;
+const RESOLVED_REVIEWS_KEPT=25;
+
+// Resolved review items were never removed, so the queue grew without bound until
+// it filled its 1 MiB document and left no room for the trails still waiting. The
+// durable receipt of a decision lives in backofficeDossierReviews, not here; this
+// queue only needs the open work plus recent context.
+function pruneResolvedReviews(queue,keep=RESOLVED_REVIEWS_KEPT){
+  const items=queue.items||[];
+  const open=items.filter(item=>item.state==='awaiting-human');
+  const resolved=items.filter(item=>item.state!=='awaiting-human')
+    .sort((a,b)=>String(a.openedAt||'').localeCompare(String(b.openedAt||'')));
+  const dropped=Math.max(0,resolved.length-keep);
+  return {items:[...resolved.slice(dropped),...open],dropped};
+}
+
+// A review item is written once, at the moment a trail enters a gate. No branch
+// below matches a trail that is already parked at one, so if the item is ever
+// consumed, superseded or lost, the trail waits forever: the orchestration says
+// "awaiting a decision" while the desk shows nothing to decide. This rebuilds the
+// missing item from the trail's own record so a parked trail is always visible.
+async function restoreMissingGateReviews(store,state,queue,at,jobs=[]){
+  // Reclaim room before deciding what fits: a queue full of decided history would
+  // otherwise leave none for the trails still waiting.
+  const pruned=pruneResolvedReviews(queue);
+  queue.items=pruned.items;
+  const live=new Set((queue.items||[]).filter(item=>item.state==='awaiting-human')
+    .map(item=>String(item.trailId||item.candidateId)));
+  const restored=[];
+  for(const trail of state.trails||[]){
+    if(!String(trail.state||'').endsWith('-human-gate'))continue;
+    if(live.has(String(trail.trailId))||live.has(String(trail.candidateId)))continue;
+    const gateType=trail.gate?.id||GATE_STATES[trail.state]||'dossier-approval';
+    const jobId=trail.currentJobId||null;
+    // A dossier is judged on the whole specialist set, not just the last job, so
+    // gather the same latest-per-agent outputs the original gate used. Restoring
+    // from one output alone would invent route-guidance blockers that are not real.
+    const latestByAgent=new Map();
+    for(const job of jobs.filter(item=>item.candidateId===trail.candidateId&&item.status==='completed')){
+      const current=latestByAgent.get(job.agentId);
+      if(!current||timeValue(job.completedAt||job.createdAt)>timeValue(current.completedAt||current.createdAt))latestByAgent.set(job.agentId,job);
+    }
+    let outputs=[];
+    for(const job of latestByAgent.values()){
+      const result=await store.getArtifact(`trail-specialist-output-${job.id}`);
+      if(result)outputs.push({agentId:job.agentId,jobId:job.id,result});
+    }
+    if(!outputs.length&&jobId){
+      const result=await store.getArtifact(`trail-specialist-output-${jobId}`);
+      if(result)outputs=[{agentId:result.agentId||(gateType==='geometry-approval'?'cartographer':'redTeam'),jobId,result}];
+    }
+    const geometry=outputs.find(item=>item.agentId==='cartographer')||outputs[0];
+    // Never restore a trail as approvable unless the same checks that gate a fresh
+    // one still pass. When the evidence cannot be re-read, it needs a human.
+    const blockingReasons=outputs.length
+      ?(gateType==='geometry-approval'?(geometry?.result?.blockers||[]):dossierBlockingReasons(outputs))
+      :(trail.blockers||[]);
+    const approvalAllowed=gateType==='agent-failure'?false
+      :outputs.length?(gateType==='geometry-approval'
+        ?geometry?.result?.reviewState==='ready-for-human-review'&&!blockingReasons.length
+        :!blockingReasons.length)
+      :false;
+    const item={
+      reviewId:`${gateType}-${trail.candidateId}-${jobId||'restored'}`,candidateId:trail.candidateId,
+      trailId:trail.trailId,trailName:trail.trailName,gateType,state:'awaiting-human',openedAt:trail.gate?.openedAt||at,
+      approvalAllowed,blockingReasons,sourceTrail:trail.sourceTrail,specialistOutputs:outputs,
+      claimResolution:resolutionLedger(trail),restoredAt:at,
+      allowedActions:gateType==='agent-failure'?['request-revision','reject']:['approve','request-revision','reject'],
+      publicMutationAllowed:false};
+    const next=[...(queue.items||[]),item];
+    if(Buffer.byteLength(JSON.stringify({...queue,items:next}),'utf8')>REVIEW_QUEUE_SAFE_BYTES)break;
+    queue.items=next;
+    restored.push(trail.trailId);
+  }
+  return restored;
+}
+
 async function advanceTrailOrchestration(store,options={}){
   const at=options.at||new Date().toISOString(); const state=await store.getArtifact('trail-orchestration');
   if(!state)return {advanced:[],queued:[]};
@@ -173,10 +255,13 @@ async function advanceTrailOrchestration(store,options={}){
     }
   }
   for(const job of queued)await store.putJob(job);
-  if(advanced.length){next.generatedAt=at;next.summary=summarize(next.trails);nextQueue.updatedAt=at;nextQueue.summary={awaitingHuman:nextQueue.items.filter(item=>item.state==='awaiting-human').length,
+  const restored=await restoreMissingGateReviews(store,next,nextQueue,at,jobs);
+  // Persist whenever anything moved or was repaired. Gating the write on advanced
+  // alone discarded queue repairs on any pass where no trail changed state.
+  if(advanced.length||restored.length){next.generatedAt=at;next.summary=summarize(next.trails);nextQueue.updatedAt=at;nextQueue.summary={awaitingHuman:nextQueue.items.filter(item=>item.state==='awaiting-human').length,
     approvalAllowed:nextQueue.items.filter(item=>item.state==='awaiting-human'&&item.approvalAllowed).length,blocked:nextQueue.items.filter(item=>item.state==='awaiting-human'&&!item.approvalAllowed).length};
     await Promise.all([store.setArtifact('trail-orchestration',next),store.setArtifact('dossier-review-queue',nextQueue)]);}
-  return {advanced,queued:queued.map(job=>job.id)};
+  return {advanced,restored,queued:queued.map(job=>job.id)};
 }
 
-module.exports={orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
+module.exports={GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,RESOLVED_REVIEWS_KEPT,pruneResolvedReviews,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};

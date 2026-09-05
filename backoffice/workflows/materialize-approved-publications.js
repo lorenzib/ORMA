@@ -1,8 +1,9 @@
 'use strict';
 
+const { operationalFactsFromClaims, mergeOperationalFacts } = require('./compile-operational-facts');
 const { publicationRequestIsRetryable } = require('./publication-failure-receipts');
 
-function materializeApprovedPublications({ requests, staging, routesByCandidate, overrides, at, forceRetry=false }){
+function materializeApprovedPublications({ requests, staging, routesByCandidate, overrides, operationalFacts, at, forceRetry=false }){
   const next = JSON.parse(JSON.stringify(overrides || { contractVersion:'1.0.0', trails:[] }));
   next.contractVersion ||= '1.0.0';
   next.trails ||= [];
@@ -10,6 +11,10 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
   const approved = (requests?.requests || []).filter(request =>
     publicationRequestIsRetryable(request,{at,force:forceRetry}) && !materializedApprovals.has(request.id));
   const entries = [];
+  // Rifugio and lift policies ride the same approval as the publication that
+  // carries them, so a fact can only reach the table through the human gate
+  // that approved its dossier.
+  const approvedFacts = [];
 
   for(const request of approved){
     const item = staging?.items?.find(candidate => candidate.candidateId === request.candidateId);
@@ -38,6 +43,12 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
       generatedAt:at,
       fields,
     };
+    approvedFacts.push(...operationalFactsFromClaims(item.proposedOperationalClaims, {
+      trailId:item.targetTrailId,
+      at,
+      verifiedBy:request.approvedBy || 'ORMA Regulatory Ranger',
+    }));
+
     const index = next.trails.findIndex(trail => trail.id === entry.id);
     if(index >= 0) next.trails[index] = entry;
     else next.trails.push(entry);
@@ -45,7 +56,14 @@ function materializeApprovedPublications({ requests, staging, routesByCandidate,
   }
 
   if(entries.length) next.updatedAt = at;
-  return { overrides:next, entries, materialized:entries.length };
+  const facts = mergeOperationalFacts(operationalFacts, approvedFacts, at);
+  return {
+    overrides:next,
+    entries,
+    materialized:entries.length,
+    operationalFacts:facts.table,
+    operationalFactsChanged:facts.changed,
+  };
 }
 
 module.exports = { materializeApprovedPublications };

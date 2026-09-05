@@ -4,6 +4,13 @@ const {createStructuredResponse}=require('../services/openai-responses-client');
 const {runCartographer}=require('./run-cartographer');
 const {candidateFromProductionTrail,referenceFromProductionTrail}=require('./run-catalogue-batch');
 const {mergeClaimResolutionResult}=require('./claim-resolution');
+const {CLAIM_ENTITY_TYPE,POLICY_BY_RULE}=require('./compile-operational-facts');
+
+// A claim that names one rifugio, lift or protected area rather than the whole
+// route. These are the only claim ids that compile into operational facts, so
+// the list is taken from the compiler instead of restated here.
+const ENTITY_POLICY_CLAIM_IDS=Object.freeze(Object.keys(CLAIM_ENTITY_TYPE));
+const ENTITY_POLICY_RULES=Object.freeze(Object.keys(POLICY_BY_RULE));
 
 const CATEGORIES=['route','geometry','elevation','parking','water','heat','exposure','livestock','surfaceHazards','access','photo','provenance'];
 const JUDGMENT_AGENTS=new Set(['evidenceLibrarian','redTeam','auditor']);
@@ -17,14 +24,17 @@ const SPECIALIST_SCHEMA={type:'object',additionalProperties:false,properties:{
       label:{type:'string'},url:{type:'string'},authority:{type:'string'},accessedAt:{type:'string'},
     },required:['label','url','authority','accessedAt']}},
     blockers:{type:'array',items:{type:'string'}},
-  },required:['id','category','proposedValue','finding','confidence','rationale','sources','blockers']}},
+    entityName:{type:['string','null'],description:'For an entity policy claim, the single rifugio, lift or protected area this claim is about. Null otherwise.'},
+    rule:{type:'string',enum:[...ENTITY_POLICY_RULES,'not-applicable'],description:'For an entity policy claim, the published rule in controlled form; not-applicable for any claim that is not about a single rifugio, lift or protected area.'},
+    observedAt:{type:['string','null'],description:'For an entity policy claim, the ISO date the source was read. Null otherwise.'},
+  },required:['id','category','proposedValue','finding','confidence','rationale','sources','blockers','entityName','rule','observedAt']}},
   openQuestions:{type:'array',items:{type:'string'}},
   recommendation:{type:'string',enum:['advance','needs-resolution','block']},
 },required:['summary','claims','openQuestions','recommendation']};
 
 const PROMPTS={
   logistics:'You are ORMA Logistics Agent. Verify exact parking, road access, public transport and the pedestrian connection to the approved route. For every route, return a distinct recommended-start claim with the authoritative start label and coordinates; a nearby parking pin is not a route start. Add recommended-direction when the authority specifies one. Always return three distinct route-following claims using the existing IDs: route-number-status identifies whether navigation is numbered or landmark-led; route-number-sequence gives the complete reader-facing order from the recommended start; and route-number-switches gives every decision point. For a numbered route, name the first reference and every later reference; locate each switch with its outgoing reference, incoming reference, mapped coordinate and distance-from-start or an unambiguous landmark. For a genuinely unnumbered route, do not answer merely that no number or switch applies: use the official route description to provide an ordered landmark sequence and useful turn instructions instead. The combined claims must be publishable as concise start/then-turn directions. If the authoritative source does not establish enough information to guide the reader, return the affected claim as unresolved. Prefer official operators and current authoritative sources. Never infer a route start, number, landmark order or turn from proximity or map appearance alone. Return proposals, citations, conflicts and unresolved questions; you cannot approve a claim.',
-  regulatoryRanger:'You are ORMA Regulatory Ranger. Verify dog access, leash rules, protected-area rules and seasonal restrictions for this exact route and jurisdiction. Prefer current official authorities. Separate rules from advice and never generalize a regional rule without applicability evidence. You cannot approve a claim.',
+  regulatoryRanger:'You are ORMA Regulatory Ranger. Verify dog access, leash rules, protected-area rules and seasonal restrictions for this exact route and jurisdiction. Also verify the dog policy of each rifugio, mountain hut and lift on or serving the route, one claim per entity: return a rifugio-dog-policy claim for every hut and a lift-dog-policy claim for every cable car, chairlift or funicular a walker would use. For every entity policy claim set entityName to that single entity as the operator names it, observedAt to the ISO date you read the source, and rule to exactly one of: accepted, accepted-leashed, accepted-muzzled, not-accepted, contact-required, unknown. Set rule to not-applicable on every claim that is not about a single entity. Use accepted-muzzled only where a muzzle is actually required, contact-required where the operator publishes no rule and a walker must ask, and unknown where you could not establish anything. Never merge two entities into one claim and never infer an entity policy from a neighbouring operator, a regional norm or a review site. Prefer current official authorities. Separate rules from advice and never generalize a regional rule without applicability evidence. You cannot approve a claim.',
   terrainPoi:'You are ORMA Terrain & POI Analyst. Verify elevation, shade, surface, exposure, water, POIs and livestock indicators for this exact route. Distinguish mapped presence from potable or currently available water. Do not infer absence from lack of web mentions. You cannot approve a claim.',
   evidenceLibrarian:'You are ORMA Evidence Librarian. Audit the supplied specialist outputs for source authority, freshness, duplication, applicability and claim-to-source traceability. Identify missing provenance and conflicts. You cannot approve the dossier.',
   redTeam:'You are ORMA Red Team. Challenge the supplied route dossier. Search for counter-evidence, variant mismatch, unsupported inference, stale rules and safety claims that are stronger than their sources. Return objections or a bounded advance recommendation. You cannot approve the dossier.',
@@ -43,6 +53,12 @@ function validateSpecialistResult(result,agentId){
   for(const claim of result.claims||[]){
     if(claim.finding==='supported-proposal'&&!claim.sources.length)throw new Error(`Supported proposal ${claim.id} requires a source`);
     for(const source of claim.sources||[]){if(!/^https:\/\//.test(source.url))throw new Error(`Specialist source must be HTTPS: ${source.url}`);}
+  }
+  for(const claim of result.claims||[]){
+    if(!ENTITY_POLICY_CLAIM_IDS.includes(claim.id)||claim.finding!=='supported-proposal')continue;
+    if(!String(claim.entityName||'').trim())throw new Error(`Entity policy claim ${claim.id} requires the entity it is about`);
+    if(!(typeof claim.rule==='string'&&Object.hasOwn(POLICY_BY_RULE,claim.rule)))throw new Error(`Entity policy claim ${claim.id} requires a rule from the published vocabulary, got ${JSON.stringify(claim.rule)}`);
+    if(!/^\d{4}-\d{2}-\d{2}/.test(String(claim.observedAt||'')))throw new Error(`Entity policy claim ${claim.id} requires the date its source was read`);
   }
   if(agentId==='logistics'){
     const ids=new Set((result.claims||[]).map(claim=>claim.id));
@@ -72,4 +88,4 @@ async function runTrailSpecialist({job,trail,context},options={}){
   return {responseId:response.responseId,model:response.model,result};
 }
 
-module.exports={CATEGORIES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
+module.exports={CATEGORIES,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};

@@ -28,12 +28,29 @@ function referenceFromProductionTrail(trail){
   };
 }
 
+// What the reconstruction found, in the form the campaign planner reads back.
+// It is keyed to the relation that was examined, so correcting a trail's source
+// retires the verdict rather than freezing the trail out.
+function identityCheckFrom(result, at){
+  return {
+    externalRelationId: result.source?.externalId || null,
+    checkedAt: result.generatedAt || at,
+    reviewState: result.reviewState,
+    blockers: result.blockers || [],
+    closedLoop: !(result.assessment?.issues || []).includes('not-closed-loop'),
+    reconstructedDistanceKm: result.comparison?.reconstructedDistanceKm ?? null,
+    officialDistanceKm: result.comparison?.officialDistanceKm ?? null,
+    distanceDeltaPercent: result.comparison?.distanceDeltaPercent ?? null,
+  };
+}
+
 async function runCatalogueBatch(campaign, trails, options = {}){
   const at = options.at || new Date().toISOString();
   const executeCartographer = options.runCartographer || runCartographer;
   const trailById = new Map(trails.map(trail => [trail.id, trail]));
   const outputs = [];
   const jobs = [];
+  const identityChecks = {};
   for(const queuedJob of campaign.jobs || []){
     const startedAt = options.at || new Date().toISOString();
     const job = { ...queuedJob, status: 'running', startedAt };
@@ -46,8 +63,12 @@ async function runCatalogueBatch(campaign, trails, options = {}){
       );
       const outputRef = `backoffice-data/cartographer/${trail.id}.json`;
       outputs.push({ outputRef, result });
+      identityChecks[trail.id] = identityCheckFrom(result, at);
       jobs.push({
-        ...job, status: result.reviewState === 'ready-for-human-review' ? 'needs-human' : 'needs-human',
+        // A reconstruction that contradicted the record is not a route waiting
+        // for a geometry review. Reporting both as `needs-human` told the
+        // operator that a failed identity check was ready for their approval.
+        ...job, status: result.reviewState === 'ready-for-human-review' ? 'needs-human' : 'blocked',
         completedAt: options.at || new Date().toISOString(), outputRefs: [outputRef],
         outcome: result.reviewState, blockers: result.blockers,
       });
@@ -65,10 +86,11 @@ async function runCatalogueBatch(campaign, trails, options = {}){
     summary: {
       attempted: jobs.length,
       needsHuman: jobs.filter(job => job.status === 'needs-human').length,
+      blocked: jobs.filter(job => job.status === 'blocked').length,
       failed: jobs.filter(job => job.status === 'failed').length,
     },
-    jobs, outputs,
+    jobs, outputs, identityChecks,
   };
 }
 
-module.exports = { candidateFromProductionTrail, referenceFromProductionTrail, runCatalogueBatch };
+module.exports = { candidateFromProductionTrail, referenceFromProductionTrail, identityCheckFrom, runCatalogueBatch };
