@@ -63,7 +63,12 @@ function compileVerifiedDossier(review,trail,options={}){
     }
     for(const claim of result.claims||[]){const ids=(claim.sources||[]).map(addSource).filter(Boolean);claims.push({id:`${output.agentId}-${claim.id}`,
       label:`${claim.category}: ${claim.id}`,state:'supported',proposedValue:claim.proposedValue,sourceIds:ids,humanAcceptedFinding:claim.finding,
-      confidence:claim.confidence,rationale:claim.rationale});}
+      confidence:claim.confidence,rationale:claim.rationale,
+      // The dossier claim id is namespaced by agent, so the specialist's own id
+      // is kept alongside it: downstream compilers match on what the agent said,
+      // not on how this function chose to prefix it.
+      agentId:output.agentId,claimId:claim.id,
+      entityName:claim.entityName||null,rule:claim.rule||null,observedAt:claim.observedAt||null});}
   }
   const dossier={contractVersion:'1.0.0',candidateId:trail.candidateId,trailId:trail.trailId,trailName:trail.trailName,
     reviewState:'accepted',sources:[...sourceMap.values()],claims,routeGeometry:geometry,

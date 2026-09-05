@@ -17,6 +17,12 @@ function claim(overrides = {}){
 }
 
 describe('Regulatory Ranger claims become operational facts', () => {
+  test.each(['constructor','toString','__proto__','hasOwnProperty'])(
+    'the inherited key %s is not a rule or an entity type', key => {
+      expect(compiler.operationalFactsFromClaims([claim({ rule:key })], context)).toEqual([]);
+      expect(compiler.operationalFactsFromClaims([claim({ id:key })], context)).toEqual([]);
+    });
+
   test('a supported, dated, sourced claim becomes a valid fact', () => {
     const [fact] = compiler.operationalFactsFromClaims([claim({ notes:'Not in the dining room.' })], context);
 
