@@ -205,28 +205,7 @@
         if(heading && groupTitles[index]) heading.textContent = groupTitles[index];
       });
 
-      const appNote = footer.querySelector('.hp-footer-appnote');
-      if(appNote) appNote.textContent = 'iPhone and Android apps coming soon.';
-
-      // Keep the familiar store affordances visible before launch without
-      // implying that a real listing exists. Once an actual store URL replaces
-      // the temporary About link, the button becomes a normal link automatically.
-      footer.querySelectorAll('.hp-footer-apps a').forEach(link => {
-        const href = link.getAttribute('href') || '';
-        if(!href.endsWith('about.html')) return;
-        link.dataset.comingSoon = 'true';
-        link.setAttribute('role', 'link');
-        link.setAttribute('aria-disabled', 'true');
-        link.setAttribute('title', 'Coming soon');
-        link.setAttribute('tabindex', '-1');
-        link.removeAttribute('href');
-      });
-
       const companyLinks = groups[4]?.querySelector('.hp-footer-links');
-      const newsletter = footer.querySelector('.hp-footer-newsletter');
-      if(companyLinks && newsletter && !companyLinks.querySelector('.hp-footer-newsletter')){
-        companyLinks.appendChild(newsletter);
-      }
 
       const base = footer.querySelector('.hp-footer-base');
       const socialRow = footer.querySelector('.hp-footer-social-row');
@@ -783,3 +762,40 @@
     if(window.innerWidth > 700) setOpen(false);
   });
 })();
+
+// ---- Add to home screen ----------------------------------------------------
+// The footer states how to install ORMA without any script, so the advice is
+// always true. Where the browser offers a real install prompt, the button
+// upgrades that into one tap. Browsers that never fire the event (iOS Safari)
+// simply keep the written instruction.
+(function ormaInstallPrompt(){
+  var deferred = null;
+
+  function buttons(){
+    return Array.prototype.slice.call(document.querySelectorAll('[data-orma-install]'));
+  }
+
+  window.addEventListener('beforeinstallprompt', function (event) {
+    event.preventDefault();
+    deferred = event;
+    buttons().forEach(function (button) {
+      button.hidden = false;
+      button.addEventListener('click', function () {
+        if(!deferred) return;
+        deferred.prompt();
+        // The choice is the user's; either way the prompt is spent.
+        deferred.userChoice.finally(function () {
+          deferred = null;
+          buttons().forEach(function (item) { item.hidden = true; });
+        });
+      }, { once:true });
+    });
+  });
+
+  window.addEventListener('appinstalled', function () {
+    deferred = null;
+    buttons().forEach(function (button) { button.hidden = true; });
+  });
+})();
+
+
