@@ -330,7 +330,8 @@ describe('trail page map controls', () => {
     expect(fit.querySelector('#recommendationDecision')).not.toBeNull();
     expect(guides).not.toBeNull();
     expect(document.getElementById('td2DogCard')).toBeNull();
-    expect(html).toContain('.td2-plan-stack{position:sticky;top:88px;height:auto;');
+    expect(html).toContain('.td2-sidebar-column{position:sticky;top:88px;align-self:start;}');
+    expect(html).toContain('.td2-plan-stack{position:static;height:auto;');
     expect(html).toContain('.td2-fit-shell{height:auto;min-height:0;overflow:visible;');
     expect(html).toContain('.td2-fit-shell{height:auto;overflow:visible;}');
   });
