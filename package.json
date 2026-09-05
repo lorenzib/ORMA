@@ -61,6 +61,7 @@
     "backoffice:publication-gate": "node backoffice/cli/check-publication-gate.js",
     "backoffice:seed:live": "node backoffice/cli/seed-live-state.js",
     "backoffice:materialize-publications": "node backoffice/cli/materialize-publications.js",
+    "backoffice:image-occupancy": "node backoffice/cli/report-image-occupancy.js",
     "backoffice:materialize-trail-images": "node backoffice/cli/materialize-trail-images.js",
     "backoffice:acknowledge-trail-images": "node backoffice/cli/acknowledge-trail-images.js",
     "backoffice:record-publication-failure": "node backoffice/cli/record-publication-failure.js",
