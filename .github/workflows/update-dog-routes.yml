@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   fetch-routes:
@@ -28,10 +29,31 @@ jobs:
         run: npm run backoffice:new-trail-scouting
 
       - name: Commit refreshed scouting packet
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           git config user.name "dolopaws-bot"
           git config user.email "actions@github.com"
           git add dog-friendly-routes.geojson dog-friendly-routes-savoy.geojson data/access-points.geojson data/access-points-savoy.geojson data/dog-route-review.json data/dog-route-review-savoy.json backoffice-data/new-trail-scouting.json
-          git diff --cached --quiet || git commit -m "Refresh new trail scouting candidates"
-          git pull --rebase origin main
-          git push
+
+          # Regeneration stamps a fresh generatedAt on every run, so a diff is
+          # not by itself a change worth publishing. Committing those was how
+          # this job produced a steady trickle of empty commits.
+          substantive="$(git diff --cached -U0 | grep -E '^[+-][^+-]' | grep -vE 'generatedAt' || true)"
+          if [ -z "$substantive" ]; then
+            echo "Only generation timestamps changed; nothing to publish."
+            git reset
+            exit 0
+          fi
+
+          # main is protected and requires a reviewed pull request, so this
+          # opens one rather than pushing. It also means regenerated output
+          # gets a quality-gate run before it lands, which a direct push
+          # never had.
+          branch="orma-bot/route-scouting-${GITHUB_RUN_ID}"
+          git checkout -b "$branch"
+          git commit -m "Refresh new trail scouting candidates"
+          git push origin "$branch"
+          gh pr create --base "${GITHUB_REF_NAME}" --head "$branch" \
+            --title "Refresh new trail scouting candidates" \
+            --body "Refreshed dog-friendly route candidates and access points. Opened automatically because main requires a reviewed pull request."
