@@ -117,7 +117,11 @@ describe('shared map quality profile', () => {
     const homepage = read('script.js');
     expect(homepage).not.toContain("id:'trail-selected-route-number'");
     expect(homepage).not.toContain("'trail-selected-route-refs'");
-    expect(homepage).toContain("id:'trail-paths-route-number'");
+    // The catalogue rails now contour the raster as well, so no ORMA map
+    // reprints a route number anywhere.
+    expect(homepage).not.toContain("id:'trail-paths-route-number'");
+    expect(homepage).not.toContain('addShieldLayer');
+    expect(read('collections-page.js')).toContain('style.addWaymarkedHiking(map');
   });
 
   test('every map draws the shared Waymarked treatment', () => {
