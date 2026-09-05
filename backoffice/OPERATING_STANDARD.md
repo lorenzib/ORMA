@@ -87,41 +87,11 @@ CEO selection sends a candidate into the Existing Trails verification fleet.
 Selection is not publication. A New Trail becomes an Existing Trail only after
 the required evidence and human gates are complete.
 
-### 3. Editorial
+### 3. Trail photos
 
-Owns website copy and trail-photo coverage as two separate queues.
-
-Website copy generation is parked during the MVP catalogue-and-coverage phase.
-Existing active and paused packets, ledgers, review decisions and publication
-receipts are preserved, but scheduled runs do not generate replacement copy
-packets or present copy as a current CEO priority. The copy lane can be reopened
-only by an explicit CEO decision.
-
-When reopened, the copy cycle:
-
-- reviews non-safety guides, editorial articles, and explicitly named
-  governance pages, not design;
-- pauses all Safety Library copy packets while the Safety Library UI is being
-  redesigned; existing packets move to a protected paused archive and are not
-  shown as CEO decisions;
-- prioritises immediate revision requests first, then the Privacy and Terms
-  pages during the current website-refinement cycle, then ordinary freshness
-  work outside the Safety Library;
-- excludes collections from automatic freshness review;
-- keeps exactly three copy packets active at a time;
-- shows the current page beside the proposed page;
-- allows the CEO to edit proposed copy before approval;
-- uses current, dated, authoritative sources for factual changes; and
-- adds or updates a visible `Last reviewed` date when the factual review is
-  complete.
-
-Privacy and Terms remain copy-only, human-gated reviews. Their visible
-`Last updated` date changes only when an approved edit materially changes the
-published policy or terms; the copy agent must flag legal or implementation
-uncertainty instead of inventing a commitment.
-
-Approval applies only the reviewed changes, runs checks, commits only the
-approved source files, pushes to `main`, and reports the deployment result.
+Owns trail-photo coverage only. The website-copy and Safety Library queues are
+retired: their agents, desks and scheduled runs are removed rather than gated,
+and any future copy work starts from a new explicit decision.
 
 Trail-photo coverage is a separate Editorial workflow. It audits every
 published trail, not guides or general pages, and ranks Dolomites gaps first.
@@ -140,57 +110,6 @@ creator, rights basis and alt text before approving it for a publication pull
 request. The worker copies an approved photo into GitHub, which is the permanent
 public asset store, and deletes the temporary Firestore copy after the reviewed
 pull request is merged and deployed.
-
-### 4. Newsletter
-
-Remains parked until the CEO explicitly confirms that the trail catalogue,
-collections and website content are ready to support useful public links. No
-scheduled issue generation, revision job or downstream handoff runs while it
-is parked. Existing draft and review records are preserved.
-
-Once re-enabled, it runs every 14 days and assembles one complete issue from:
-
-- newly published trails;
-- material changes to published guides; and
-- useful, current, source-linked seasonal signals.
-
-It reuses approved upstream facts and never reopens their editorial decision.
-The CEO reviews one reader-facing issue, with subject options, source links,
-approval, and an immediate revision path. Approval hands the issue to Social
-and to any future sending integration. It must not claim an email was sent when
-no sending service is connected.
-
-### 5. Social Media
-
-Remains launch-gated until the channels and publishing credentials are
-explicitly enabled. Once active, it:
-
-- repurposes approved newsletter material for Instagram, Facebook, and TikTok;
-- adapts the format to each channel; and
-- regularly explains useful ORMA product features.
-
-Social consumes the approved newsletter packet. It does not publish or invent
-a second version of the underlying trail or safety facts.
-
-### 6. Analyst
-
-Is parked during the MVP catalogue-and-coverage phase. Existing ideas,
-investigations, prototypes and decisions are preserved, but no scheduled
-discovery, investigation, design or Developer handoff work is generated until
-the CEO explicitly reopens the lane.
-
-When reopened, Analyst runs as an independent product-discovery lane. It scouts
-competitor releases, feature patterns, UI improvements, and editorial gaps,
-with direct sources and clear evidence-versus-inference language.
-
-The required handoff is:
-
-`Analyst scouts -> CEO reviews -> Product Designer prepares visual prototype -> CEO reviews -> Developer implements -> Release`
-
-The Product Designer is a first-class fleet member with a dedicated prompt and
-a top-level Design desk. Analyst owns evidence and prioritisation; Design owns
-the full-width interactive screen prototype, usability rationale, revision
-requests and the CEO prototype gate. An investigation, priority decision or prototype never authorises development on its own.
 
 ## CEO review and shipping contract
 
@@ -233,10 +152,6 @@ requests and the CEO prototype gate. An investigation, priority decision or prot
   with daily ORMA Verified intake at 09:30 local time and 15-trail capacity.
   Hazard freshness does not depend on this cadence; the hazard watch runs on its
   own hourly schedule.
-- Strategy cycle: parked during the MVP phase; manual recovery remains
-  available without generating Editorial or Analyst work by default.
-- Editorial copy: parked during the MVP phase. Existing review packets are
-  preserved; Safety Library copy remains in its protected paused archive.
 - Trail-photo coverage and licensed candidate scouting: daily at 11:00 local
   time, after New Trail scouting, with at most 15 active searches or reviews;
   guide-wide image audits are not part of this queue.
@@ -246,15 +161,15 @@ requests and the CEO prototype gate. An investigation, priority decision or prot
   paused until both lanes reach full coverage of the existing catalogue.
   Cadence when resumed: Monday through Saturday at 10:00 local time, Dolomites
   first; admission remains CEO-gated.
-- Newsletter: parked until trail, collection and website content readiness is
-  explicitly confirmed.
-- Analyst discovery: parked during the MVP phase; existing work is preserved.
-- Social: parked until launch.
+The Newsletter, Social, Analyst, Product Design and website-copy lanes are
+retired. Their agents, desks, scheduled workflows and npm entry points are
+removed from the repository. Firestore review collections and existing artifacts
+are left untouched, so no decision history is lost, but nothing reads or writes
+them. Reopening any of these lanes is a new, explicit build.
 
-The local macOS background services keep these workflows available after login.
-Scheduled drafting uses the signed-in local Codex session when no API key is
-configured. Hosted production workers use server-side credentials and must
-preserve the same contracts.
+Hosted production workers use server-side credentials and must preserve these
+contracts. The duplicate local desk server is retired; the hosted backoffice is
+the single operator surface.
 
 ## Definition of done for future iterations
 

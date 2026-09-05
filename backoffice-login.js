@@ -4,9 +4,8 @@
   const HOSTED=/\.web\.app$/i.test(root.location.hostname)||root.location.hostname==='backoffice.app-orma.com';
   const ALL_DESTINATIONS=new Set([
     'backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html',
-    'content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html',
-    'image-coverage-desk.html','newsletter-desk.html','social-desk.html',
-    'product-ideas-desk.html','community-moderation-desk.html',
+    'new-trail-scouting-desk.html','hazard-review-desk.html',
+    'image-coverage-desk.html','community-moderation-desk.html',
   ]);
   const ALLOWED_DESTINATIONS=HOSTED?new Set(['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','community-moderation-desk.html']):ALL_DESTINATIONS;
   const params=new URLSearchParams(root.location.search);

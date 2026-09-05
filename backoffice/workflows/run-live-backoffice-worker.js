@@ -15,10 +15,7 @@ const {DEFAULT_CAMPAIGN_LIMIT,DEFAULT_TRAIL_CAPACITY}=require('./start-live-trai
 const {applyNewTrailReview}=require('./plan-new-trail-scouting');
 const {admitNewTrailIntake}=require('./new-trail-intake');
 const {applyHazardReview}=require('./dynamic-hazards');
-const {ingestEditorialReviews,processEditorialJobs}=require('./hosted-editorial');
 const {ingestImageReviews,processImageJobs}=require('./hosted-image-coverage');
-const {ingestNewsletterReviews,processNewsletterJobs}=require('./hosted-newsletter');
-const {ingestAnalystReviews,processAnalystJobs}=require('./hosted-analyst');
 const {validateContentExecution}=require('../contracts/content-result-v1');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
 const path=require('path');
@@ -267,19 +264,13 @@ async function ingestHazardReviews(store){
 }
 
 async function runLiveBackofficeWorker(store, options = {}){
-  const newsletterEnabled=options.newsletterEnabled===true;
-  const editorialEnabled=options.editorialEnabled===true;
-  const analystEnabled=options.analystEnabled===true;
   const productionTrails=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
   const campaign=await runScheduledTrailCampaign(store,productionTrails,{enabled:options.campaignEnabled===true,
     at:options.at,limit:options.campaignLimit||DEFAULT_CAMPAIGN_LIMIT,capacity:options.campaignCapacity||DEFAULT_TRAIL_CAPACITY,trigger:options.campaignTrigger,
     workflowRunUrl:options.workflowRunUrl,runId:options.runId});
   const newTrailReviews=await ingestNewTrailReviews(store);
   const hazardReviews=await ingestHazardReviews(store);
-  const editorialReviews=editorialEnabled?await ingestEditorialReviews(store):[];
   const imageReviews=await ingestImageReviews(store);
-  const newsletterReviews=newsletterEnabled?await ingestNewsletterReviews(store):[];
-  const analystReviews=analystEnabled?await ingestAnalystReviews(store):[];
   const recoveredJobs = typeof store.recoverExpiredJobs === 'function'
     ? await store.recoverExpiredJobs(options)
     : [];
@@ -290,12 +281,9 @@ async function runLiveBackofficeWorker(store, options = {}){
   const advancementAfter=await advanceTrailOrchestration(store,options);
   const editorialFirstPass=await processEditorialFirstPassJobs(store,options);
   const jobs = await processRevisionJobs(store, options);
-  const editorialOperations=editorialEnabled?await processEditorialJobs(store,options):[];
   const imageOperations=await processImageJobs(store,options);
-  const newsletterOperations=newsletterEnabled?await processNewsletterJobs(store,options):[];
-  const analystOperations=analystEnabled?await processAnalystJobs(store,options):[];
   const publications = await ingestPublicationReviews(store);
-  return { workerId:options.workerId || null,campaign,newTrailReviews,hazardReviews,editorialReviews,imageReviews,newsletterReviews,analystReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,editorialOperations,imageOperations,newsletterOperations,analystOperations,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,newTrailReviews,hazardReviews,imageReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,imageOperations,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
-module.exports = { iso, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestEditorialReviews,processEditorialJobs,ingestImageReviews,processImageJobs,ingestNewsletterReviews,processNewsletterJobs,ingestAnalystReviews,processAnalystJobs,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { iso, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestImageReviews,processImageJobs,ingestPublicationReviews,runLiveBackofficeWorker };
