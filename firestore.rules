@@ -279,6 +279,23 @@ service cloud.firestore {
         && validModerationMetadata(data);
     }
 
+    function validTrailHazardReport(data) {
+      return data.keys().hasOnly([
+          'trailId', 'trailName', 'area', 'category', 'description',
+          'observedOn', 'uid', 'status', 'createdAt',
+          'verdict', 'sourceCount', 'hazardId', 'vettedAt', 'updatedAt'
+        ])
+        && isShortString(data.trailId, 120)
+        && isShortString(data.trailName, 160)
+        && data.area is string && data.area.size() <= 160
+        && data.category in ['closure', 'route-damage', 'livestock', 'water', 'snow-or-ice', 'rockfall', 'other']
+        && data.description is string
+        && data.description.size() >= 10 && data.description.size() <= 600
+        && data.observedOn is string && data.observedOn.size() <= 10
+        && isShortString(data.uid, 128)
+        && data.createdAt is timestamp;
+    }
+
     function validPlaceDogReport(data) {
       return data.keys().hasOnly([
           'placeId', 'placeName', 'placeType', 'coordinates', 'uid',
@@ -723,6 +740,21 @@ service cloud.firestore {
 
     // First-hand place observations remain pending until an ORMA moderator
     // reviews them. Only visible/reported records may power public badges.
+    // Customer hazard reports are vetted by the Hazard Analyst, never by a reader.
+    // A reporter may see their own submission; nobody else reads the raw report,
+    // because what the public sees is the vetted hazard, not the claim.
+    match /trailHazardReports/{reportId} {
+      allow get: if isModerator() || isOwner(resource.data.uid);
+      allow list: if isModerator();
+      allow create: if isContributor()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && request.resource.data.createdAt == request.time
+        && !request.resource.data.keys().hasAny(['verdict', 'sourceCount', 'hazardId', 'vettedAt'])
+        && validTrailHazardReport(request.resource.data);
+      allow update, delete: if isModerator();
+    }
+
     match /placeDogReports/{reportId} {
       allow get: if isModerator()
         || isOwner(resource.data.uid)

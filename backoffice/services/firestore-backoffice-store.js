@@ -14,6 +14,7 @@ const COLLECTIONS = Object.freeze({
   editorialReviews:'backofficeEditorialReviews',
   imageReviews:'backofficeImageReviews',
   imageUploads:'backofficeImageUploads',
+  hazardReports:'trailHazardReports',
   newsletterReviews:'backofficeNewsletterReviews',
   analystReviews:'backofficeAnalystReviews',
 });
@@ -127,6 +128,17 @@ class FirestoreBackofficeStore {
   // Reading every job in the collection to then filter by a known id list was the
   // dominant Firestore read cost: it grew with every job ever created and ran twice
   // per worker pass. Fetch only the referenced documents instead.
+  async listHazardReports(status='pending',limit=25){
+    const snapshot=await this.db.collection(COLLECTIONS.hazardReports).where('status','==',status).limit(limit).get();
+    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+  }
+
+  async markHazardReport(id,status,fields={}){
+    await this.db.collection(COLLECTIONS.hazardReports).doc(id).set({
+      ...fields,status,vettedAt:FieldValue.serverTimestamp(),updatedAt:FieldValue.serverTimestamp(),
+    },{merge:true});
+  }
+
   async getJobsByIds(ids = []){
     const unique = [...new Set(ids.filter(Boolean).map(String))];
     if(!unique.length) return [];

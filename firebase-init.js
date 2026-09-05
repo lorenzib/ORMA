@@ -1053,6 +1053,43 @@ async function getActiveFlags(trailId) {
 }
 
 // Place dog policies are submitted as evidence and become "ORMA verified"
+// A hazard report goes straight to the Hazard Analyst rather than a moderation
+// queue. The agent looks for independent corroboration and decides whether the
+// warning is published as confirmed, published under an explicit unverified
+// label, or not published at all. Nothing a reader submits is shown unreviewed.
+const TRAIL_HAZARD_CATEGORIES = [
+  "closure", "route-damage", "livestock", "water", "snow-or-ice", "rockfall", "other",
+];
+
+async function reportTrailHazard(trail, category, description, observedOn) {
+  const eligibility = await getContributionEligibility();
+  if (!eligibility.ok) return eligibility;
+  if (!trail || !trail.id || !TRAIL_HAZARD_CATEGORIES.includes(category)) {
+    return { ok: false, message: "Choose what kind of hazard you saw." };
+  }
+  const text = String(description || "").trim();
+  if (text.length < 10) {
+    return { ok: false, message: "Describe what you saw in a sentence or two." };
+  }
+  try {
+    await addDoc(collection(db, "trailHazardReports"), {
+      trailId: String(trail.id).slice(0, 120),
+      trailName: String(trail.name || trail.id).slice(0, 160),
+      area: String(trail.area || "").slice(0, 160),
+      category,
+      description: text.slice(0, 600),
+      observedOn: String(observedOn || "").slice(0, 10),
+      uid: currentUser.uid,
+      status: "pending",
+      createdAt: serverTimestamp(),
+    });
+    return { ok: true, message: "Thanks — ORMA is checking this against official sources now." };
+  } catch (error) {
+    console.error("reportTrailHazard failed:", error);
+    return contributionWriteError(error, "Could not send your report — please try again.");
+  }
+}
+
 // only after an operator moves the record to the visible state.
 async function submitPlaceDogFriendliness(place, policy, evidence, note) {
   const eligibility = await getContributionEligibility();
@@ -1318,6 +1355,7 @@ window.DoloPawsCommunity = {
   recordHikeStart, getWeeklyHikeCount,
   addFlag, getActiveFlags, respondToHazard, deleteFlag,
   submitPlaceDogFriendliness, getVerifiedPlaceDogFriendliness,
+  reportTrailHazard, TRAIL_HAZARD_CATEGORIES,
   getActiveFlagsForTrails, getSiteNotices,
   getNotifSeen, setNotifSeen,
   setReview, getReviews, deleteMyReview,

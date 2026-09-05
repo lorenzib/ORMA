@@ -1525,22 +1525,27 @@ describe('ORMA backoffice MVP', () => {
     expect(artifacts.status.automaticRemovals).toEqual([expect.objectContaining({hazardId:'source:a',sourceKey:'source',reason:'absent-from-complete-authoritative-snapshot'})]);
   });
 
-  test('expired warnings enter removal review and only human confirmation removes them', () => {
+  test('an expired warning is removed automatically, with no human gate', () => {
     const previous={contractVersion:'1.0.0',hazards:[{id:'source:a',sourceKey:'source',state:'active',expiresAt:'2026-08-18T00:00:00.000Z',message:'Warning.',trailIds:['trail-a']}]};
     const artifacts=buildHazardArtifacts(previous,[],[{key:'source',ok:true,alertsRead:0}],[],{at:'2026-08-19T06:00:00.000Z'});
-    expect(artifacts.publicData.hazards[0].state).toBe('resolution-review');
-    const repeated=buildHazardArtifacts(artifacts.publicData,[],[{key:'source',ok:true,alertsRead:0}],[],{at:'2026-08-19T06:05:00.000Z'});
-    expect(repeated.publicData.hazards[0].message).toBe(artifacts.publicData.hazards[0].message);
-    const reviewed=applyHazardReview(artifacts.publicData,{decisions:[]},{hazardId:'source:a',action:'confirm-resolved'},{at:'2026-08-19T07:00:00.000Z'});
-    expect(reviewed.publicData.hazards).toHaveLength(0);expect(reviewed.ledger.decisions[0].action).toBe('confirm-resolved');
+    expect(artifacts.publicData.hazards).toHaveLength(0);
+    expect(artifacts.reviewQueue.items).toHaveLength(0);
+    expect(artifacts.status.automaticRemovals[0]).toEqual(expect.objectContaining({hazardId:'source:a',reason:'source-warning-expired'}));
   });
 
-  test('keeping an expired warning active defers the next removal review for one day', () => {
-    const data={contractVersion:'1.0.0',hazards:[{id:'source:a',sourceKey:'source',state:'resolution-review',expiresAt:'2026-08-18T00:00:00.000Z',message:'Warning.',trailIds:['trail-a']}]};
-    const kept=applyHazardReview(data,{decisions:[]},{hazardId:'source:a',action:'keep-active'},{at:'2026-08-19T07:00:00.000Z'});
-    expect(kept.publicData.hazards[0]).toEqual(expect.objectContaining({state:'active',nextRemovalReviewAt:'2026-08-20T07:00:00.000Z'}));
-    const artifacts=buildHazardArtifacts(kept.publicData,[],[{key:'source',ok:true,alertsRead:0}],[],{at:'2026-08-19T08:00:00.000Z'});
-    expect(artifacts.publicData.hazards[0].state).toBe('active');
+  test('an unreachable source keeps its warning rather than assuming it is safe', () => {
+    const previous={contractVersion:'1.0.0',hazards:[{id:'source:a',sourceKey:'source',state:'active',expiresAt:'2026-08-18T00:00:00.000Z',message:'Warning.',trailIds:['trail-a']}]};
+    const artifacts=buildHazardArtifacts(previous,[],[{key:'source',ok:false,error:'timeout'}],[],{at:'2026-08-19T06:00:00.000Z'});
+    expect(artifacts.publicData.hazards).toHaveLength(1);
+    expect(artifacts.publicData.hazards[0].sourceStatus).toBe('unavailable');
+  });
+
+  test('a community hazard is never reconciled against the weather feeds', () => {
+    const previous={contractVersion:'1.0.0',hazards:[{id:'community-r1',origin:'community',sourceKey:'community-report',
+      state:'active',expiresAt:'2026-08-18T00:00:00.000Z',message:'Bridge out.',trailIds:['trail-a']}]};
+    const artifacts=buildHazardArtifacts(previous,[],[{key:'source',ok:true,completeSnapshot:true,alertsRead:0}],[],{at:'2026-08-19T06:00:00.000Z'});
+    expect(artifacts.publicData.hazards).toHaveLength(1);
+    expect(artifacts.status.automaticRemovals).toHaveLength(0);
   });
 
   test('new trail scouting prioritises credible loops near existing coverage and never publishes them', () => {

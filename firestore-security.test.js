@@ -146,9 +146,9 @@ describe('SEC-01 Firestore configuration contract', () => {
   });
 
   test('client contribution states match the create rules', () => {
-    expect(client.match(/status: "pending"/g)).toHaveLength(4);
+    expect(client.match(/status: "pending"/g)).toHaveLength(5);
     expect(client).toContain('status: "open"');
-    expect(rules.match(/request\.resource\.data\.status == 'pending'/g)).toHaveLength(5);
+    expect(rules.match(/request\.resource\.data\.status == 'pending'/g)).toHaveLength(6);
     expect(rules).toContain("request.resource.data.status == 'open'");
   });
 

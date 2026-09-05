@@ -40,13 +40,32 @@ Owns trails that are already in ORMA and verifies:
 - parking, access, and how to get there; and
 - dynamic hazards that may affect a covered area.
 
-Dynamic hazards run hourly. A source-backed severe, extreme, or dog-critical
-warning may be added automatically. When a successfully fetched authoritative
-active-warning feed affirmatively stops listing a warning, the protected hazard
-is removed automatically and the watcher records that removal. Expiry without
-a complete successful source snapshot opens a resolution review; source failure
-or outage never removes the last known warning. Weather warnings are never
-presented as proof that a specific trail is closed.
+Dynamic hazards run hourly and are fully automatic in both directions. A
+source-backed severe, extreme, or dog-critical warning is added without review.
+A warning is removed without review when a successfully fetched authoritative
+feed stops listing it, or when its own stated expiry passes on a source that
+answered. There is no human removal gate. Source failure or outage never removes
+the last known warning, because an unreachable source is not evidence of safety.
+Weather warnings are never presented as proof that a specific trail is closed.
+
+Customer hazard reports are a separate, equally automatic lane. A signed-in
+contributor reports a hazard on one trail; the Hazard Analyst searches for
+independent corroboration in official notices, park and comune bulletins, alpine
+club updates and local news, and decides without a human:
+
+- corroborated by at least one retrieved source: published as a confirmed ORMA
+  hazard carrying its citations, for at most thirty days;
+- plausible but uncorroborated: published under an explicit "reported by a hiker
+  and not yet confirmed" label, at moderate severity, for seven days. Most
+  genuinely local hazards are never published online, so silence is not treated
+  as evidence against the reporter;
+- contradicted by a current authoritative source, spam, abuse, or not a hazard:
+  never published.
+
+A published community hazard re-checks itself daily and removes itself when its
+corroboration lapses or its life ends. Raw reports are never public; only the
+vetted hazard is. Community hazards follow this lifecycle alone and are never
+reconciled against the weather feeds.
 
 Existing Trails is the current throughput priority. Every day after the
 Firestore quota reset window, the protected
@@ -154,10 +173,13 @@ page travel with it.
 
 ## Current cadence
 
-- Dynamic hazard check: hourly at minute 7, Europe/Rome, clear of the
-  quarter-hour queue worker. Successfully fetched
-  authoritative feeds remove warnings that they affirmatively resolve; source
-  outages retain the last known warning.
+- Dynamic hazard check: hourly at minute 7, Europe/Rome, clear of the queue
+  worker. Successfully fetched authoritative feeds remove warnings that they
+  affirmatively resolve or that have passed their own expiry; source outages
+  retain the last known warning.
+- Customer hazard vetting: inside every worker pass, at most three reports or
+  re-checks per pass, published or rejected by the Hazard Analyst without a
+  human gate.
 - Existing Trails queue: checked by the hosted worker every thirty minutes,
   with daily ORMA Verified intake at 09:30 local time and 15-trail capacity.
   Hazard freshness does not depend on this cadence; the hazard watch runs on its
