@@ -25,14 +25,17 @@ describe('trail-photo backfill inside the worker pass',()=>{
     expect(offered.filter(ref=>String(ref).startsWith('images/trails/'))).toEqual([]);
   });
 
-  test('scans the catalogue, writes the audit and queues scouting for the gaps',async()=>{
+  test('scans the catalogue, writes the audit and cancels retired scouting jobs',async()=>{
     const target=store();
-    const result=await refreshTrailPhotoBackfill(target,{root,at:'2026-09-05T10:00:00Z',imageSourcingCapacity:3});
+    target.jobs.push({id:'old-scout',jobType:'hosted-image-sourcing',sourcePreference:'find-licensed',status:'queued'});
+    target.listJobs=async()=>target.jobs;
+    target.putJob=async job=>{target.jobs=target.jobs.map(item=>item.id===job.id?job:item);};
+    const result=await refreshTrailPhotoBackfill(target,{root,at:'2026-09-05T10:00:00Z'});
     expect(result.status).toBe('running');
     expect(result.trailsScanned).toBeGreaterThan(0);
+    expect(result.retiredSourcingJobs).toBe(1);
     expect(target.artifacts.get('image-coverage').mode).toBe('trail-photo-coverage-audit');
-    expect(target.jobs).toHaveLength(3);
-    expect(target.jobs.every(job=>job.jobType==='hosted-image-sourcing'&&job.sourcePreference==='find-licensed')).toBe(true);
+    expect(target.jobs.find(job=>job.id==='old-scout').status).toBe('cancelled');
   });
 
   test('reports complete and queues nothing once every trail has a photo',async()=>{
