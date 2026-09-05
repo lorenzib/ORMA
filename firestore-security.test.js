@@ -218,4 +218,22 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(client).not.toContain('DoloPawsModeration');
     expect(client).not.toContain('moderationAudit');
   });
+  test("the product analytics receiver is write-only and shape-locked", () => {
+    const eventsBlock = rules.slice(rules.indexOf("match /productEvents"));
+    expect(eventsBlock).toContain("allow read: if false;");
+    expect(eventsBlock).toContain("allow delete: if isModerator();");
+    // The document id is the event id, so a retried delivery is idempotent
+    // rather than duplicating, and an event cannot be edited after the fact.
+    expect(eventsBlock).toContain("request.resource.data.id == eventId");
+    expect(eventsBlock).toContain("allow update: if request.resource.data == resource.data;");
+    // Only the eight METRIC-01 families, and no extra keys alongside them.
+    expect(rules).toContain("function isProductEventFamily(value)");
+    expect(eventsBlock).toContain("isProductEventFamily(request.resource.data.family)");
+    expect(eventsBlock).toContain("request.resource.data.schemaVersion == 1");
+    expect(eventsBlock).toContain("hasOnly([");
+    // Delivery is registered by the customer client, and consent stays upstream
+    // in metrics.js -- the transport only moves already-accepted events.
+    expect(client).toContain("metrics.setTransport");
+    expect(client).toContain("productEvents");
+  });
 });
