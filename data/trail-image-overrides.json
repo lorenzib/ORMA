@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-04T22:37:27.032Z",
+  "updatedAt": "2026-09-05T14:58:33.051Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -129,6 +129,40 @@
         "imageIcon": "images/trails/osm-19697977-htq57tvg3snv1e5d6tkv.jpg",
         "heroImage": "images/trails/osm-19697977-htq57tvg3snv1e5d6tkv.jpg",
         "imageAlt": "Panoramaweg trail",
+        "imageCredit": "Photo by Benedetta Lorenzi",
+        "imageCreditText": "Photo by Benedetta Lorenzi",
+        "imageCreator": "Benedetta Lorenzi",
+        "imageLicence": "ORMA-owned",
+        "imageLicenceUrl": null,
+        "imageSourcePage": null,
+        "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "osm-12363235",
+      "approvedReviewId": "gP5X7tqWYPtC8N8mnh93",
+      "approvedAt": "2026-09-05T14:54:28.997Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12363235-gp5x7tqwyptc8n8mnh93.jpg",
+        "heroImage": "images/trails/osm-12363235-gp5x7tqwyptc8n8mnh93.jpg",
+        "imageAlt": "Panoramaweg trail",
+        "imageCredit": "Photo by Benedetta Lorenzi",
+        "imageCreditText": "Photo by Benedetta Lorenzi",
+        "imageCreator": "Benedetta Lorenzi",
+        "imageLicence": "ORMA-owned",
+        "imageLicenceUrl": null,
+        "imageSourcePage": null,
+        "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "prato-piazza",
+      "approvedReviewId": "VFbeAfQdaIwz5AswUWlH",
+      "approvedAt": "2026-09-05T14:54:28.997Z",
+      "fields": {
+        "imageIcon": "images/trails/prato-piazza-vfbeafqdaiwz5aswuwlh.jpg",
+        "heroImage": "images/trails/prato-piazza-vfbeafqdaiwz5aswuwlh.jpg",
+        "imageAlt": "Prato Piazza (Plätzwiese) trail",
         "imageCredit": "Photo by Benedetta Lorenzi",
         "imageCreditText": "Photo by Benedetta Lorenzi",
         "imageCreator": "Benedetta Lorenzi",
