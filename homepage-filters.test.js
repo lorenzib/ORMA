@@ -412,10 +412,11 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toMatch(/id: 'guest-trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).toMatch(/id: 'trail-paths-casing'[\s\S]*?minzoom: 7[\s\S]*?'line-width': \['interpolate'[\s\S]*?10, 8[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).toMatch(/id: 'guest-trail-paths-casing'[\s\S]*?'line-width': \['interpolate'[\s\S]*?10, 7[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script).toMatch(/id: 'trail-paths-orma-halo'[\s\S]*?'line-color': '#FFFDF7'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
-    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-color': \[[\s\S]*?'step'[\s\S]*?65, '#C98A2E', 85, '#4A7856'[\s\S]*?firstLabelLayer \? firstLabelLayer\.id : undefined\);/);
+    // Halo is a white casing beneath the raster now, not a cream halo above it.
+    expect(script).toMatch(/id: 'trail-paths-orma-halo'[\s\S]*?'line-color': '#FFFFFF'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-opacity': 0\.55[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).not.toContain("id: 'trail-paths-match-outline'");
-    expect(script).toMatch(/id: 'guest-trail-paths-orma-line'[\s\S]*?'line-color': \[[\s\S]*?'low-risk', '#4A7856'[\s\S]*?'moderate', '#C98A2E'[\s\S]*?'caution', '#9C3A25'[\s\S]*?guestFirstLabel \? guestFirstLabel\.id : undefined\);/);
+    expect(script).toMatch(/id: 'guest-trail-paths-orma-line'[\s\S]*?'line-color': \[[\s\S]*?'low-risk', '#4A7856'[\s\S]*?'moderate', '#C98A2E'[\s\S]*?'caution', '#9C3A25'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).toContain("guestMapInstance.moveLayer('waymarked-hiking-layer', guestFirstLabel.id)");
     expect(script).not.toContain("trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id)");
     // The selected route is now a zoom-scaled cased pair from map-style.js.
@@ -427,8 +428,8 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toContain('ORMAMapStyle.addWaymarkedHiking(trailMapInstance');
     expect(script).not.toContain("'raster-saturation': -1");
     expect(script).not.toContain("'raster-contrast': 0.20");
-    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': \['interpolate'[\s\S]*?13, 13, 16, 16/);
-    expect(script).toMatch(/id: 'trail-paths-mapped-line'[\s\S]*?'line-color': \[[\s\S]*?'step'[\s\S]*?65, '#C98A2E', 85, '#4A7856'[\s\S]*?13, 5, 16, 7/);
+    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-width': \['interpolate'[\s\S]*?13, 15, 16, 20/);
+    expect(script).not.toContain("id: 'trail-paths-mapped-line'");
     expect(script).not.toContain("id: 'trail-clusters'");
     expect(script).not.toContain("id: 'trail-cluster-count'");
     expect(script).not.toContain('clusterMinPoints');

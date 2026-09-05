@@ -163,15 +163,22 @@
     }
     window.history[mode === 'replace' ? 'replaceState' : 'pushState']({ collection:collectionId }, '', url);
   }
+  // Focus emphasis has to keep the zoom ramp: setting a flat pixel width here
+  // would snap the corridor back to a hairline the moment a trail is picked.
+  const CORRIDOR_WIDTH = ['interpolate',['linear'],['zoom'],7,4.5,10,9,13,14,16,19];
+  const CORRIDOR_WIDTH_FOCUS = ['interpolate',['linear'],['zoom'],7,6,10,12,13,18,16,24];
+  const CORRIDOR_OPACITY = .62;
   function focusMapTrail(map, trailId){
     if(!map || !map.getLayer('collection-inline-routes-line')) return;
-    map.setPaintProperty('collection-inline-routes-line', 'line-width', ['case',['==',['get','id'],trailId],7,4]);
-    map.setPaintProperty('collection-inline-routes-line', 'line-opacity', ['case',['==',['get','id'],trailId],1,.52]);
+    map.setPaintProperty('collection-inline-routes-line', 'line-width',
+      ['case',['==',['get','id'],trailId], CORRIDOR_WIDTH_FOCUS, CORRIDOR_WIDTH]);
+    map.setPaintProperty('collection-inline-routes-line', 'line-opacity',
+      ['case',['==',['get','id'],trailId], .78, .3]);
   }
   function clearMapTrailFocus(map){
     if(!map || !map.getLayer('collection-inline-routes-line')) return;
-    map.setPaintProperty('collection-inline-routes-line', 'line-width', 4);
-    map.setPaintProperty('collection-inline-routes-line', 'line-opacity', .9);
+    map.setPaintProperty('collection-inline-routes-line', 'line-width', CORRIDOR_WIDTH);
+    map.setPaintProperty('collection-inline-routes-line', 'line-opacity', CORRIDOR_OPACITY);
   }
   function mapTrailCardHtml(trail, index){
     const difficulty = ['low-risk','moderate','caution'].includes(trail.safetyLevel) ? trail.safetyLevel : 'unknown';
@@ -216,10 +223,20 @@
           properties:{ id:trail.id, name:trail.name, colour:difficultyColour(trail.safetyLevel) },
           geometry:{ type:'LineString', coordinates:trail.path.map(([lat,lng]) => [Number(lng),Number(lat)]) },
         }));
+        // Same cartography as every other ORMA map: the marked hiking network
+        // in its own colours, a quietened base, and each collection route as a
+        // cased corridor UNDERNEATH the raster so the marked path and its real
+        // numbers read down the middle. This map previously had no hiking
+        // network at all.
+        const style = window.ORMAMapStyle;
+        if(style) style.quietBasemap(map);
+        const beneath = style ? style.addWaymarkedHiking(map, { beforeId: style.firstLabelLayerId(map) }) : undefined;
         map.addSource('collection-inline-routes', { type:'geojson', data:{ type:'FeatureCollection', features } });
-        map.addLayer({ id:'collection-inline-routes-hit', type:'line', source:'collection-inline-routes', layout:{ 'line-join':'round','line-cap':'round' }, paint:{ 'line-color':'#000000','line-width':18,'line-opacity':0 } });
-        map.addLayer({ id:'collection-inline-routes-casing', type:'line', source:'collection-inline-routes', layout:{ 'line-join':'round','line-cap':'round' }, paint:{ 'line-color':'#FFFFFF','line-width':7,'line-opacity':.92 } });
-        map.addLayer({ id:'collection-inline-routes-line', type:'line', source:'collection-inline-routes', layout:{ 'line-join':'round','line-cap':'round' }, paint:{ 'line-color':['get','colour'],'line-width':4,'line-opacity':.9 } });
+        map.addLayer({ id:'collection-inline-routes-hit', type:'line', source:'collection-inline-routes', layout:{ 'line-join':'round','line-cap':'round' }, paint:{ 'line-color':'#000000','line-width':22,'line-opacity':0 } }, beneath);
+        map.addLayer({ id:'collection-inline-routes-casing', type:'line', source:'collection-inline-routes', layout:{ 'line-join':'round','line-cap':'round' }, paint:{ 'line-color':'#FFFFFF','line-opacity':.9,'line-width':['interpolate',['linear'],['zoom'],7,7,10,13,13,19,16,25] } }, beneath);
+        // A touch more opaque than a single-route map: several coloured
+        // corridors share this view and must stay distinguishable.
+        map.addLayer({ id:'collection-inline-routes-line', type:'line', source:'collection-inline-routes', layout:{ 'line-join':'round','line-cap':'round' }, paint:{ 'line-color':['get','colour'],'line-opacity':CORRIDOR_OPACITY,'line-width':CORRIDOR_WIDTH } }, beneath);
         const trailsById = new Map(collectionTrails.map((trail,index) => [trail.id,{ trail,index }]));
         map.on('mouseenter', 'collection-inline-routes-hit', () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'collection-inline-routes-hit', () => { map.getCanvas().style.cursor = ''; });
