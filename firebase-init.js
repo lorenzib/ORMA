@@ -1369,3 +1369,31 @@ window.DoloPawsPrivateOutcomes = {
 
 window.DoloPawsAuthReady = true;
 window.dispatchEvent(new CustomEvent('dolopaws-auth-ready'));
+
+// METRIC-01 delivery.
+//
+// metrics.js queues consented events in the browser and holds them until a
+// first-party receiver exists. This registers Firestore as that receiver.
+// Consent, schema validation, retention and the queue all stay in metrics.js:
+// this only moves an already-accepted event, keyed by its own event id, so a
+// delivery retried after a lost acknowledgement rewrites one document rather
+// than duplicating it.
+//
+// Registration is attempted more than once on purpose. metrics.js is a
+// deferred classic script and this file is a module, so on pages that list
+// metrics.js after this one it has not run yet when this module executes.
+let metricsTransportRegistered = false;
+function registerMetricsTransport(){
+  if(metricsTransportRegistered) return;
+  const metrics = window.DoloPawsMetrics;
+  if(!metrics || typeof metrics.setTransport !== 'function') return;
+  metricsTransportRegistered = metrics.setTransport(async (event) => {
+    await setDoc(doc(db, 'productEvents', event.id), event);
+    return true;
+  });
+  if(metricsTransportRegistered) Promise.resolve(metrics.flush()).catch(() => {});
+}
+
+registerMetricsTransport();
+window.addEventListener('DOMContentLoaded', registerMetricsTransport);
+window.addEventListener('load', registerMetricsTransport);
