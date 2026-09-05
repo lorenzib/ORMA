@@ -30,6 +30,42 @@ beforeAll(() => {
 
 const inSite = relative => fs.existsSync(path.join(SITE, relative));
 
+describe('the published site matches its allowlist', () => {
+  // A denylist only catches the mistakes we already made. This compares the
+  // built site against pages-public-manifest.json in BOTH directions, so a new
+  // desk page added without a _config.yml exclude fails here even though no
+  // rule names it — and a public page dropped by an over-broad exclude fails
+  // too, instead of silently vanishing from the site.
+  const manifest = () => JSON.parse(
+    fs.readFileSync(path.join(ROOT, 'pages-public-manifest.json'), 'utf8'),
+  );
+
+  test('publishes nothing that is not on the allowlist', () => {
+    const allowed = manifest();
+    const entries = fs.readdirSync(SITE, { withFileTypes: true });
+    const unexpected = entries
+      .filter(entry => !(entry.isDirectory() ? allowed.directories : allowed.files).includes(entry.name))
+      .map(entry => (entry.isDirectory() ? `${entry.name}/` : entry.name));
+    // If this fails: either exclude it in _config.yml, or — if it really is
+    // public — run `node scripts/build-pages-site.js --write-manifest`.
+    expect(unexpected).toEqual([]);
+  });
+
+  test('publishes everything the allowlist promises', () => {
+    const allowed = manifest();
+    const missing = [...allowed.directories, ...allowed.files]
+      .filter(name => !fs.existsSync(path.join(SITE, name)));
+    expect(missing).toEqual([]);
+  });
+
+  test('the allowlist admits no operator surface', () => {
+    const allowed = manifest();
+    const suspicious = [...allowed.directories, ...allowed.files].filter(name =>
+      /(^|-)desk\.|^backoffice|^moderation|-hosted\.|\.test\.js$|^firestore|^firebase\./i.test(name));
+    expect(suspicious).toEqual([]);
+  });
+});
+
 describe('the published site keeps operator data out', () => {
   // The exposure that started this: 4.7 MB of editorial queues, product ideas,
   // hazard packets and newsletter inputs served from www.app-orma.com.
@@ -60,9 +96,11 @@ describe('the published site keeps operator data out', () => {
     expect(found).toEqual([]);
   });
 
-  test('does not publish repository tooling or manifests', () => {
+  test('does not publish repository tooling, config or manifests', () => {
     ['docs', 'scripts', 'schemas', 'test-support', 'config', 'node_modules', '.git',
-      'package.json', 'package-lock.json'].forEach(entry => {
+      'package.json', 'package-lock.json', 'prototypes',
+      'firestore.rules', 'firestore.indexes.json', 'firebase.json',
+      'AGENTS.md', 'README.md', '_config.yml'].forEach(entry => {
       expect({ entry, published: inSite(entry) }).toEqual({ entry, published: false });
     });
   });

@@ -49,3 +49,20 @@ exclude:
   - jest.config.js
   - package.json
   - package-lock.json
+  # Firebase configuration and security rules. The rules are enforced
+  # server-side so publishing them is not itself a hole, but 49 kB of access
+  # conditions is a complete map of the data model — reconnaissance we have no
+  # reason to hand out.
+  - firestore.rules
+  - firestore.indexes.json
+  - firestore-emulator.spec.cjs
+  - firebase.json
+  # Internal documentation and build configuration. SCORING.md and
+  # VERIFICATION.md stay: public pages link to them.
+  - AGENTS.md
+  - README.md
+  - TRAIL_AUDIT_GUIDE.md
+  - TRAIL_AUDIT_TASK.md
+  - _config.yml
+  - pages-public-manifest.json
+  - capacitor.config.json
