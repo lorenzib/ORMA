@@ -2,6 +2,7 @@
 
 const { getApps, initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 const { getFirestore, FieldValue, Timestamp } = require('firebase-admin/firestore');
+const { providerOutage } = require('./provider-outage');
 
 const COLLECTIONS = Object.freeze({
   artifacts: 'backofficeArtifacts',
@@ -219,12 +220,21 @@ class FirestoreBackofficeStore {
     const ref = this.db.collection(COLLECTIONS.jobs).doc(id);
     await this.db.runTransaction(async transaction => {
       const snapshot = await transaction.get(ref); if(!snapshot.exists) return;
-      const job = snapshot.data(); const failures = Number(job.systemFailures || 0) + 1;
-      const maximum = options.maximumFailures || 3; const blocked = failures >= maximum;
-      const delayMs = (options.retryDelaysMs || [60_000, 360_000, 1_440_000])[Math.min(failures - 1, 2)];
+      const job = snapshot.data();
+      // A provider outage says nothing about the job, so it never counts towards
+      // the failure budget and never blocks. It waits longer instead, because
+      // retrying hard against an exhausted quota helps nobody.
+      const outage = providerOutage(error);
+      const failures = outage ? Number(job.systemFailures || 0) : Number(job.systemFailures || 0) + 1;
+      const maximum = options.maximumFailures || 3;
+      const blocked = !outage && failures >= maximum;
+      const delayMs = outage
+        ? (options.outageDelayMs || 1_800_000)
+        : (options.retryDelaysMs || [60_000, 360_000, 1_440_000])[Math.min(failures - 1, 2)];
       transaction.update(ref, {
         status: blocked ? 'blocked' : 'queued', systemFailures: failures,
         lastError: String(error?.message || error).slice(0, 2000),
+        ...(outage ? { providerOutages: Number(job.providerOutages || 0) + 1, lastOutageAt: FieldValue.serverTimestamp() } : {}),
         notBefore: blocked ? FieldValue.delete() : Timestamp.fromMillis(Date.now() + delayMs),
         leaseExpiresAt: FieldValue.delete(), updatedAt: FieldValue.serverTimestamp(),
       });

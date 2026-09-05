@@ -3,6 +3,7 @@
 
 const { FirestoreBackofficeStore } = require('../services/firestore-backoffice-store');
 const { runLiveBackofficeWorker } = require('../workflows/run-live-backoffice-worker');
+const { providerOutage } = require('../services/provider-outage');
 
 function positiveInteger(value,fallback){
   const parsed=Number.parseInt(value,10);
@@ -16,7 +17,8 @@ const REVIEW_LANES = Object.freeze(['reviews', 'dossierReviews', 'imageReviews',
 
 function blockedLanes(result = {}){
   return REVIEW_LANES.filter(lane => (result[lane] || []).some(item => item.status === 'blocked'))
-    .concat((result.communityHazards?.vetted || []).some(item => item.status === 'vetting-failed') ? ['communityHazards'] : []);
+    .concat((result.communityHazards?.vetted || [])
+      .some(item => item.status === 'vetting-failed' && !providerOutage(item.error)) ? ['communityHazards'] : []);
 }
 
 async function main(){
