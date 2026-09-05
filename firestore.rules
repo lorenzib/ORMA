@@ -318,14 +318,18 @@ service cloud.firestore {
       return data.keys().hasAll([
           'schemaVersion', 'outcomeId', 'completionId', 'trailId', 'response',
           'waterAccuracy', 'hazards', 'recordedHikePresent',
-          'offlinePackageUsed', 'createdAt'
+          'offlinePackageUsed', 'createdAt',
+          'offLeadObserved', 'livestockEncountered', 'crowding',
+          'dogEnjoyment', 'reactiveDogFit', 'missingRestriction'
         ])
         && data.keys().hasOnly([
           'schemaVersion', 'outcomeId', 'completionId', 'trailId', 'response',
           'waterAccuracy', 'hazards', 'recordedHikePresent',
-          'offlinePackageUsed', 'createdAt'
+          'offlinePackageUsed', 'createdAt',
+          'offLeadObserved', 'livestockEncountered', 'crowding',
+          'dogEnjoyment', 'reactiveDogFit', 'missingRestriction'
         ])
-        && data.schemaVersion == 1
+        && data.schemaVersion == 2
         && isShortString(data.outcomeId, 200)
         && data.outcomeId == outcomeId
         && isShortString(data.completionId, 180)
@@ -337,6 +341,16 @@ service cloud.firestore {
         && (data.waterAccuracy == null || data.waterAccuracy in [
           'accurate', 'less_than_listed', 'more_than_listed', 'not_checked'
         ])
+        && (data.offLeadObserved == null || data.offLeadObserved in [
+          'all_on_lead', 'some_off_lead', 'mostly_off_lead'
+        ])
+        && (data.livestockEncountered == null || data.livestockEncountered in [
+          'none', 'seen_at_distance', 'close_encounter'
+        ])
+        && (data.crowding == null || data.crowding in ['quiet', 'moderate', 'busy'])
+        && (data.dogEnjoyment == null || data.dogEnjoyment in ['loved_it', 'fine', 'struggled'])
+        && (data.reactiveDogFit == null || data.reactiveDogFit in ['yes', 'with_care', 'no'])
+        && (data.missingRestriction == null || data.missingRestriction is bool)
         && data.hazards is list
         && data.hazards.size() <= 6
         && data.hazards.hasOnly([

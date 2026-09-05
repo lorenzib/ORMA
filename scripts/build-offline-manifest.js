@@ -8,8 +8,8 @@ const path = require('path');
 const root = path.resolve(__dirname, '..');
 const trailId = process.argv[2];
 const configs = {
-  'lago-carezza': { name:'Lago di Carezza Loop', height:1140, version:'2026.09.04-beta.17' },
-  'alpe-siusi': { name:'Alpe di Siusi Meadow Loop', height:720, version:'2026.09.04-beta.4' },
+  'lago-carezza': { name:'Lago di Carezza Loop', height:1140, version:'2026.09.05-beta.18' },
+  'alpe-siusi': { name:'Alpe di Siusi Meadow Loop', height:720, version:'2026.09.05-beta.5' },
 };
 const config = configs[trailId];
 if(!config) throw new Error(`Unsupported offline package: ${trailId || '(missing)'}`);

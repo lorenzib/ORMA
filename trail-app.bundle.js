@@ -8616,7 +8616,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
   'use strict';
 
   const STORAGE_KEY = 'dolopaws-post-hike-outcomes-v1';
-  const SCHEMA_VERSION = 1;
+  const SCHEMA_VERSION = 2;
   const RESPONSES = Object.freeze([
     'appropriate',
     'appropriate_with_unexpected_cautions',
@@ -8638,6 +8638,35 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     'access',
     'water',
   ]);
+  // Community observations. Each is optional and stored as null when the owner
+  // does not answer, matching waterAccuracy above: an unanswered question is a
+  // gap in the evidence, never a claim that the pleasant answer applies.
+  //
+  // These are the signals that populate the trail attributes SCORE-03 reads.
+  // livestockEncountered feeds livestockPresence, crowding feeds crowding, and
+  // offLeadObserved and missingRestriction inform access, which is why they are
+  // asked as bounded observations rather than free text.
+  const OFF_LEAD = Object.freeze([
+    'all_on_lead',
+    'some_off_lead',
+    'mostly_off_lead',
+  ]);
+  const LIVESTOCK_ENCOUNTER = Object.freeze([
+    'none',
+    'seen_at_distance',
+    'close_encounter',
+  ]);
+  const CROWDING = Object.freeze(['quiet', 'moderate', 'busy']);
+  const DOG_ENJOYMENT = Object.freeze(['loved_it', 'fine', 'struggled']);
+  const REACTIVE_DOG_FIT = Object.freeze(['yes', 'with_care', 'no']);
+  const OBSERVATIONS = Object.freeze({
+    offLeadObserved: OFF_LEAD,
+    livestockEncountered: LIVESTOCK_ENCOUNTER,
+    crowding: CROWDING,
+    dogEnjoyment: DOG_ENJOYMENT,
+    reactiveDogFit: REACTIVE_DOG_FIT,
+  });
+  const OBSERVATION_KEYS = Object.freeze(Object.keys(OBSERVATIONS));
   const SYNC_STATES = Object.freeze(['pending', 'synced']);
   const ID_PATTERN = /^[A-Za-z0-9:._-]{1,160}$/;
   const TRAIL_PATTERN = /^[A-Za-z0-9._-]{1,80}$/;
@@ -8667,6 +8696,9 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
       Array.isArray(record.hazards) && record.hazards.length <= HAZARDS.length &&
       record.hazards.every(value => HAZARDS.includes(value)) &&
       new Set(record.hazards).size === record.hazards.length &&
+      OBSERVATION_KEYS.every(key =>
+        record[key] === null || OBSERVATIONS[key].includes(record[key])) &&
+      (record.missingRestriction === null || typeof record.missingRestriction === 'boolean') &&
       typeof record.recordedHikePresent === 'boolean' &&
       typeof record.offlinePackageUsed === 'boolean' &&
       finite(record.createdAt) && record.createdAt > 0 &&
@@ -8687,6 +8719,20 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     let value;
     try{ value = JSON.parse(raw); }
     catch(error){ return { status:'corrupt', store:null }; }
+    if(value && value.schemaVersion === 1 && Array.isArray(value.records)){
+      // Schema 1 predates the community observations. Those check-ins are still
+      // valid evidence for what they did record, so they are migrated with the
+      // new questions left unanswered rather than discarded.
+      value = {
+        schemaVersion:SCHEMA_VERSION,
+        records:value.records.map(record => ({
+          ...record,
+          schemaVersion:SCHEMA_VERSION,
+          ...Object.fromEntries(OBSERVATION_KEYS.map(key => [key, null])),
+          missingRestriction:null,
+        })),
+      };
+    }
     if(!value || value.schemaVersion !== SCHEMA_VERSION || !Array.isArray(value.records)){
       return {
         status:value && value.schemaVersion !== SCHEMA_VERSION ? 'incompatible' : 'corrupt',
@@ -8708,6 +8754,17 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     }catch(error){
       return { ok:false, error:'storage-write-failed' };
     }
+  }
+
+  // An unrecognised answer is dropped rather than coerced, so a stale client
+  // cannot write a value the aggregation would later misread.
+  function observations(input){
+    const out = {};
+    for(const key of OBSERVATION_KEYS){
+      const value = input && input[key];
+      out[key] = OBSERVATIONS[key].includes(value) ? value : null;
+    }
+    return out;
   }
 
   function createRecord(completion, input, ownerId, now){
@@ -8734,6 +8791,10 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
       response:input.response,
       waterAccuracy,
       hazards,
+      ...observations(input),
+      missingRestriction:typeof input.missingRestriction === 'boolean'
+        ? input.missingRestriction
+        : null,
       recordedHikePresent:true,
       offlinePackageUsed:!!input.offlinePackageUsed,
       createdAt:finite(now) ? now : Date.now(),
@@ -8841,6 +8902,8 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     STORAGE_KEY,
     SCHEMA_VERSION,
     RESPONSES,
+    OBSERVATIONS,
+    OBSERVATION_KEYS,
     WATER_STATES,
     HAZARDS,
     validRecord,
@@ -9728,6 +9791,45 @@ function initHikeMode(map, trail, options){
               <option value="more_than_listed">More water than listed</option>
               <option value="not_checked">I did not check</option>
             </select>
+            <label for="hkLivestock">Did you encounter livestock? <span>Optional</span></label>
+            <select id="hkLivestock">
+              <option value="">Prefer not to answer</option>
+              <option value="none">No livestock at all</option>
+              <option value="seen_at_distance">Seen, but at a distance</option>
+              <option value="close_encounter">Passed close to them</option>
+            </select>
+            <label for="hkOffLead">Were dogs off-lead on this route? <span>Optional</span></label>
+            <select id="hkOffLead">
+              <option value="">Prefer not to answer</option>
+              <option value="all_on_lead">Everyone kept dogs on the lead</option>
+              <option value="some_off_lead">Some dogs were off-lead</option>
+              <option value="mostly_off_lead">Most dogs were off-lead</option>
+            </select>
+            <label for="hkCrowding">How busy was it? <span>Optional</span></label>
+            <select id="hkCrowding">
+              <option value="">Prefer not to answer</option>
+              <option value="quiet">Quiet, room to give space</option>
+              <option value="moderate">Steady foot traffic</option>
+              <option value="busy">Busy throughout</option>
+            </select>
+            <label for="hkEnjoyment">Did ${esc(dogName)} enjoy it? <span>Optional</span></label>
+            <select id="hkEnjoyment">
+              <option value="">Prefer not to answer</option>
+              <option value="loved_it">Loved it</option>
+              <option value="fine">Took it in their stride</option>
+              <option value="struggled">Struggled with it</option>
+            </select>
+            <label for="hkReactiveFit">Would you recommend it for a reactive dog? <span>Optional</span></label>
+            <select id="hkReactiveFit">
+              <option value="">Prefer not to answer</option>
+              <option value="yes">Yes, there is room to pass</option>
+              <option value="with_care">Only with care</option>
+              <option value="no">No, too little space</option>
+            </select>
+            <label class="hk-outcome-check">
+              <input type="checkbox" id="hkMissingRestriction">
+              A posted restriction was missing from ORMA
+            </label>
             <fieldset>
               <legend>Any material hazard we should account for? <span>Optional</span></legend>
               <div class="hk-hazard-options">
@@ -9840,6 +9942,14 @@ function initHikeMode(map, trail, options){
       const result = window.DoloPawsPostHikeOutcomes.save(completion, {
         response:outcomeResponse,
         waterAccuracy:q('#hkWaterAccuracy').value || null,
+        // Empty stays null: an unanswered question is a gap in the evidence,
+        // not a quiet claim that the pleasant answer applies.
+        livestockEncountered:q('#hkLivestock').value || null,
+        offLeadObserved:q('#hkOffLead').value || null,
+        crowding:q('#hkCrowding').value || null,
+        dogEnjoyment:q('#hkEnjoyment').value || null,
+        reactiveDogFit:q('#hkReactiveFit').value || null,
+        missingRestriction:q('#hkMissingRestriction').checked ? true : null,
         hazards,
         offlinePackageUsed,
       }, user.uid);

@@ -61,7 +61,7 @@ experience, and includes test-data cleanup for a phone that is not the owner's.
 
 ## Pending elevation-profile retest
 
-The current packages (`lago-carezza` beta.17 and `alpe-siusi` beta.4) add a
+The current packages (`lago-carezza` beta.18 and `alpe-siusi` beta.5) add a
 checksum-verified stored route profile. Before closing OFF-01, repeat the
 iPhone airplane-mode test on both routes and confirm that:
 
