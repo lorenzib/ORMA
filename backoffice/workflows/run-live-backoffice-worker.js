@@ -15,7 +15,8 @@ const {DEFAULT_CAMPAIGN_LIMIT,DEFAULT_TRAIL_CAPACITY}=require('./start-live-trai
 const {applyNewTrailReview}=require('./plan-new-trail-scouting');
 const {admitNewTrailIntake}=require('./new-trail-intake');
 const {applyHazardReview}=require('./dynamic-hazards');
-const {ingestImageReviews,processImageJobs}=require('./hosted-image-coverage');
+const {ingestImageReviews,processImageJobs,queuePriorityImageSourcing,DEFAULT_IMAGE_SOURCING_CAPACITY}=require('./hosted-image-coverage');
+const {auditImageCoverage}=require('./audit-image-coverage');
 const {validateContentExecution}=require('../contracts/content-result-v1');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
 const path=require('path');
@@ -263,11 +264,34 @@ async function ingestHazardReviews(store){
   return outcomes;
 }
 
+// Trail-photo coverage is a finite backfill, not a standing audit. It rides the
+// worker pass instead of a scheduled workflow: the scan is a local filesystem read,
+// so the only Firestore cost is one artifact write, and it stops on its own once
+// every published trail has a photo.
+async function refreshTrailPhotoBackfill(store,options={}){
+  const root=options.root||path.resolve(__dirname,'../..');
+  const at=options.at||new Date().toISOString();
+  try{
+    const audit=await auditImageCoverage(root,{at,trails:options.productionTrails});
+    if(!audit.gaps.length){
+      await store.setArtifact('image-coverage',audit,{mode:audit.mode,publicMutationAllowed:false});
+      return {status:'complete',...audit.summary,queued:0};
+    }
+    const sourcing=await queuePriorityImageSourcing(store,audit,{at,
+      capacity:options.imageSourcingCapacity||DEFAULT_IMAGE_SOURCING_CAPACITY});
+    await store.setArtifact('image-coverage',audit,{mode:audit.mode,publicMutationAllowed:false});
+    return {status:'running',...audit.summary,queued:sourcing.queued,active:sourcing.active,capacity:sourcing.capacity};
+  }catch(error){
+    return {status:'failed',error:String(error.message||error).slice(0,2000)};
+  }
+}
+
 async function runLiveBackofficeWorker(store, options = {}){
   const productionTrails=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
   const campaign=await runScheduledTrailCampaign(store,productionTrails,{enabled:options.campaignEnabled===true,
     at:options.at,limit:options.campaignLimit||DEFAULT_CAMPAIGN_LIMIT,capacity:options.campaignCapacity||DEFAULT_TRAIL_CAPACITY,trigger:options.campaignTrigger,
     workflowRunUrl:options.workflowRunUrl,runId:options.runId});
+  const trailPhotoBackfill=await refreshTrailPhotoBackfill(store,{...options,productionTrails});
   const newTrailReviews=await ingestNewTrailReviews(store);
   const hazardReviews=await ingestHazardReviews(store);
   const imageReviews=await ingestImageReviews(store);
@@ -283,7 +307,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   const jobs = await processRevisionJobs(store, options);
   const imageOperations=await processImageJobs(store,options);
   const publications = await ingestPublicationReviews(store);
-  return { workerId:options.workerId || null,campaign,newTrailReviews,hazardReviews,imageReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,imageOperations,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,trailPhotoBackfill,newTrailReviews,hazardReviews,imageReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,imageOperations,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
-module.exports = { iso, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestImageReviews,processImageJobs,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { iso, refreshTrailPhotoBackfill, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestImageReviews,processImageJobs,ingestPublicationReviews,runLiveBackofficeWorker };

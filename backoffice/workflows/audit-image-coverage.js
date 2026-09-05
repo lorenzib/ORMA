@@ -7,12 +7,20 @@ const { loadProductionTrails } = require('../../scripts/load-production-trails')
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.avif']);
 const STOP_WORDS = new Set(['with','your','dogs','dog','guide','hikes','hiking','trail','trails','loop','route','the','and','for','from','this','that','orma']);
 
+// images/trails holds photos already published for a specific trail. A trail's
+// photo belongs to that trail and must never be offered as a candidate for
+// another one, so the library scan skips the directory entirely.
+const PUBLISHED_TRAIL_PHOTO_DIRECTORY = 'trails';
+
 async function walkImages(directory, source, base){
   try{
     const entries = await fs.readdir(directory, { withFileTypes: true });
     const nested = await Promise.all(entries.map(async entry => {
       const target = path.join(directory, entry.name);
-      if(entry.isDirectory()) return walkImages(target, source, base);
+      if(entry.isDirectory()){
+        if(source === 'orma-library' && entry.name === PUBLISHED_TRAIL_PHOTO_DIRECTORY) return [];
+        return walkImages(target, source, base);
+      }
       if(!IMAGE_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) return [];
       return [{ source, fileName: entry.name, sourceRef: source === 'orma-library' ? path.relative(base, target) : null, absolutePath: target }];
     }));
@@ -95,4 +103,4 @@ async function auditImageCoverage(root, options = {}){
   };
 }
 
-module.exports = { tokens, rankLibraryMatches, imageSignals, auditImageCoverage };
+module.exports = { PUBLISHED_TRAIL_PHOTO_DIRECTORY, tokens, rankLibraryMatches, imageSignals, auditImageCoverage };

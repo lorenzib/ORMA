@@ -4,10 +4,30 @@ const fs=require('fs/promises');
 const path=require('path');
 
 const MIME_EXTENSIONS=Object.freeze({'image/jpeg':'.jpg','image/png':'.png','image/webp':'.webp','image/avif':'.avif'});
+// A licensed photo is copied into the repository rather than hot-linked: the remote
+// host is not ORMA's to depend on, and a link that rots leaves a trail with no cover.
+const MAXIMUM_REMOTE_IMAGE_BYTES=2*1024*1024;
+
+async function downloadLicensedImage(url,{fetchImpl}={}){
+  const request=fetchImpl||globalThis.fetch;
+  if(typeof request!=='function')throw new Error('No fetch implementation is available to download a licensed trail image');
+  if(!/^https:\/\//i.test(String(url||'')))throw new Error('A licensed trail image must be served over https');
+  const response=await request(url,{redirect:'follow'});
+  if(!response.ok)throw new Error(`Licensed trail image could not be downloaded (${response.status})`);
+  const contentType=String(response.headers.get('content-type')||'').split(';')[0].trim().toLowerCase();
+  const extension=MIME_EXTENSIONS[contentType];
+  if(!extension)throw new Error(`Unsupported licensed image type: ${contentType||'unknown'}`);
+  const buffer=Buffer.from(await response.arrayBuffer());
+  if(!buffer.length)throw new Error('The licensed trail image was empty');
+  if(buffer.length>MAXIMUM_REMOTE_IMAGE_BYTES){
+    throw new Error(`The licensed trail image is ${Math.round(buffer.length/1024)} KiB; choose a rendition under ${MAXIMUM_REMOTE_IMAGE_BYTES/1024} KiB`);
+  }
+  return {buffer,extension,contentType};
+}
 
 function safeSegment(value){return String(value||'').toLowerCase().replace(/[^a-z0-9_-]+/g,'-').replace(/^-+|-+$/g,'').slice(0,100);}
 
-async function materializeApprovedTrailImages({root,store,at=new Date().toISOString()}){
+async function materializeApprovedTrailImages({root,store,at=new Date().toISOString(),fetchImpl}){
   const artifact=await store.getArtifact('trail-image-publication-requests')||{contractVersion:'1.0.0',requests:[]};
   const approved=(artifact.requests||[]).filter(request=>['approved-for-pr-creation','pr-materialized'].includes(request.status));
   if(!approved.length)return {materialized:0,assetRefs:[],requests:artifact};
@@ -19,6 +39,16 @@ async function materializeApprovedTrailImages({root,store,at=new Date().toISOStr
   await fs.mkdir(path.join(root,'images','trails'),{recursive:true});
   for(const request of approved){
     const trailId=safeSegment(request.trailId);if(!trailId)throw new Error(`Invalid trail id for image request: ${request.id}`);
+    // A published trail photo is final. Re-approving a trail that already has one
+    // would silently replace the picture readers have already seen, so the request
+    // is retired instead of overwriting the existing entry.
+    const existing=(overrides.trails||[]).find(item=>item.id===request.trailId&&item.fields?.imageIcon);
+    if(existing&&existing.approvedReviewId!==request.id){
+      const index=nextRequests.findIndex(item=>item.id===request.id);
+      nextRequests[index]={...request,status:'superseded-by-published-photo',supersededAt:at,
+        publicAssetRef:existing.fields.imageIcon,publicMutationAllowed:false};
+      continue;
+    }
     let relativeRef;
     if(request.uploadRef){
       if(!/^backofficeImageUploads\/[A-Za-z0-9_-]+$/.test(String(request.uploadRef)))throw new Error(`Invalid temporary trail image reference: ${request.id}`);
@@ -33,9 +63,13 @@ async function materializeApprovedTrailImages({root,store,at=new Date().toISOStr
       if(!size||size>560*1024||buffer.length!==size)throw new Error(`Temporary trail image size is invalid for ${trailId}`);
       const suffix=safeSegment(request.id).slice(0,24)||'approved';relativeRef=`images/trails/${trailId}-${suffix}${extension}`;
       await fs.writeFile(path.join(root,relativeRef),buffer);assetRefs.push(relativeRef);
+    }else if(/^https:\/\//i.test(String(request.assetRef||''))){
+      const {buffer,extension}=await downloadLicensedImage(request.assetRef,{fetchImpl});
+      const suffix=safeSegment(request.id).slice(0,24)||'licensed';relativeRef=`images/trails/${trailId}-${suffix}${extension}`;
+      await fs.writeFile(path.join(root,relativeRef),buffer);assetRefs.push(relativeRef);
     }else{
       relativeRef=String(request.assetRef||'');
-      if(!/^(?:images\/|https:\/\/)/i.test(relativeRef))throw new Error(`Invalid approved trail image source: ${request.id}`);
+      if(!relativeRef.startsWith('images/'))throw new Error(`Invalid approved trail image source: ${request.id}`);
     }
     const licence=request.license||(request.rightsBasis==='permission-granted'?'Used with permission':'ORMA-owned');
     const fields={
@@ -55,4 +89,4 @@ async function materializeApprovedTrailImages({root,store,at=new Date().toISOStr
   return {materialized:approved.length,assetRefs,requests,overrides};
 }
 
-module.exports={MIME_EXTENSIONS,safeSegment,materializeApprovedTrailImages};
+module.exports={MIME_EXTENSIONS,MAXIMUM_REMOTE_IMAGE_BYTES,downloadLicensedImage,safeSegment,materializeApprovedTrailImages};
