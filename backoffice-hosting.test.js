@@ -41,11 +41,11 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('MVP workstreams');
     expect(html).toContain('Trail coverage');
     expect(html).toContain('id="coverageRows"');
-    expect(html).toContain('backoffice-review.css?v=20260905-1');
+    expect(html).toContain('backoffice-review.css?v=20260905-2');
     expect(html).toContain('id="workerHealth"');
     expect(html).toContain('id="campaignHealth"');
-    expect(html).toContain('backoffice/dashboard-model.js?v=20260905-1');
-    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260905-1');
+    expect(html).toContain('backoffice/dashboard-model.js?v=20260905-2');
+    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260905-2');
     expect(html).toContain('href="trail-dossier-desk.html"');
     expect(html).toContain('href="image-coverage-desk.html"');
     expect(html).toContain('href="community-moderation-desk.html"');
