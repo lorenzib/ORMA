@@ -27,7 +27,11 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(homepage).toContain("window.matchMedia('(max-width: 700px)').matches");
     expect(homepage).toContain('return trailMapSchedule.start().then(result =>');
     expect(homepage).toContain("renderGondolas(guestMapInstance, 'guest-gondolas', { visible: false })");
-    expect(homepage).toContain('const overlayStates = { routes: true, lifts: false');
+    // Browse maps start with the marked network off: choosing a walk and
+    // following one want different maps. The Layers chip restores it.
+    expect(homepage).toContain('const overlayStates = { routes: false, lifts: false');
+    expect(homepage).toContain("addWaymarkedHiking(trailMapInstance, { beforeId: firstLabelLayer.id, visible: false })");
+    expect(homepage).toContain("addWaymarkedHiking(guestMapInstance, { beforeId: guestFirstLabel.id, visible: false })");
     expect(homepage).toContain('onIdle(loadSecondaryMapData, 5000)');
     const secondaryMapData = homepage.slice(
       homepage.indexOf('const loadSecondaryMapData = () =>'),

@@ -123,6 +123,31 @@ describe('shared map quality profile', () => {
     expect(read('collections-page.js')).toContain('style.addWaymarkedHiking(map');
   });
 
+  test('browse maps start quiet, the navigating map does not', () => {
+    // AllTrails shows no path network at browse zooms at all. Ours has to
+    // appear eventually — Dolomites walkers follow the numbers on signposts —
+    // but not while you are still deciding which valley to drive to.
+    const homepage = read('script.js');
+    expect(homepage).toContain('const overlayStates = { routes: false, lifts: false');
+    expect(homepage).toContain('visible: false });');
+    // Nothing is removed without a way back: the Layers chip drives the layer.
+    expect(homepage).toContain("routes:   ['waymarked-hiking-layer']");
+
+    // The collection map opens at a fixed zoom 9 and has no layers control, so
+    // zoom is the affordance there instead of a chip.
+    const collections = read('collections-page.js');
+    expect(collections).toContain('const NETWORK_MIN_ZOOM = 13.5');
+    expect(collections).toContain('minzoom: NETWORK_MIN_ZOOM');
+
+    // The trail detail map keeps the network on and unthrottled. Its opening
+    // fitBounds lands anywhere from z10.7 to z17 across the catalogue, so a
+    // zoom threshold there would show the network on some trails and not
+    // others with no explanation — worse than either choice.
+    const trail = read('trail.js');
+    expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId })');
+    expect(trail).not.toContain('minzoom: NETWORK_MIN_ZOOM');
+  });
+
   test('every map draws the shared Waymarked treatment', () => {
     ['trail.js', 'script.js', 'collections-page.js'].forEach(file => {
       const source = read(file);
