@@ -104,7 +104,11 @@
     const root = document.getElementById('recommendationDecision');
     const api = window.DoloPawsRecommendationDecision;
     if(!root || !api || typeof recommendTrail !== 'function') return;
-    const recommendation = recommendTrail(trail, subjectFor(profile));
+    // The weather arrives after the first paint, so the card scores without it
+    // and re-scores when it lands. Absent conditions stay 'not-provided'
+    // rather than being guessed at.
+    const conditions = window.DoloPawsCurrentConditions || undefined;
+    const recommendation = recommendTrail(trail, subjectFor(profile), conditions);
     const view = api.present(recommendation, {
       dogName:profile && profile.name,
       translate:window.t,
@@ -283,4 +287,5 @@
   }
   window.addEventListener('dolopaws-auth-changed', renderCurrent);
   window.addEventListener('dolopaws-dog-profile-saved', renderCurrent);
+  window.addEventListener('dolopaws-conditions-ready', renderCurrent);
 })();

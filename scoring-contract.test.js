@@ -11,7 +11,7 @@ function run(fixture){
 
 describe('SCORE-01 canonical recommendation contract', () => {
   test('the fixture set and calculator use the same immutable version', () => {
-    expect(scoring.VERSION).toBe('1.4.0');
+    expect(scoring.VERSION).toBe('1.5.0');
     expect(fixtures.scoringVersion).toBe(scoring.VERSION);
   });
 

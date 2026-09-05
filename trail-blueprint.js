@@ -738,6 +738,20 @@
               hourlyTemps:d.hourly && d.hourly.temperature_2m,
             })
             : null;
+          // Today's heat, in the vocabulary the recommendation engine reads.
+          // Until now nothing supplied currentConditions, so the score never
+          // reflected the day it was being read on.
+          if (window.DoloPawsWeatherWindow) {
+            const conditions = window.DoloPawsWeatherWindow.currentConditions({
+              currentTime:d.current.time,
+              temperatureC:d.current.temperature_2m,
+              hourlyTimes:d.hourly && d.hourly.time,
+              hourlyTemps:d.hourly && d.hourly.temperature_2m,
+            });
+            window.DoloPawsCurrentConditions = conditions;
+            window.dispatchEvent(new CustomEvent('dolopaws-conditions-ready', { detail:conditions }));
+          }
+
           const winEl = $('sideCondWindow');
           if (winEl) winEl.innerHTML = window.DoloPawsWeatherWindow
             ? window.DoloPawsWeatherWindow.markup(win)

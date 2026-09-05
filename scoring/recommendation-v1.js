@@ -5,7 +5,7 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
-  const VERSION = '1.4.0';
+  const VERSION = '1.5.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
     moderate: { terrain: 1, distanceKm: 10, ascentM: 600 },
@@ -621,8 +621,17 @@
           : 'Current heat conditions add material risk.', null,
         dog.heatSensitive ? 'conditions.heat.high.sensitive' : 'conditions.heat.high'));
       }else if(conditions.heatRisk === 'moderate'){
+        // "Moderate" on its own tells an owner nothing they can act on. When
+        // the forecast says when it turns hot, the hour is the advice.
+        const hotFrom = typeof conditions.hotFromLabel === 'string' && conditions.hotFromLabel
+          ? conditions.hotFromLabel
+          : null;
         penalise(dog.heatSensitive ? 10 : 4, item('conditions.heat.moderate',
-          'Current conditions add moderate heat load.'));
+          hotFrom
+            ? `Current conditions add moderate heat load, and it turns hot from ${hotFrom}.`
+            : 'Current conditions add moderate heat load.',
+          hotFrom ? { hotFrom } : null,
+          hotFrom ? 'conditions.heat.moderate.from' : 'conditions.heat.moderate'));
       }else if(conditions.heatRisk === 'low'){
         positives.push(item('conditions.heat.low', 'Current heat conditions are low-risk.'));
       }else{

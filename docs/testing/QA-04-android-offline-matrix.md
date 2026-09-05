@@ -21,8 +21,8 @@ owner data.
 | Same phone | Installed ORMA experience | Carezza and Alpe di Siusi |
 | Older/lower-powered supported phone | Current supported Chrome browser tab | One-route smoke test, then both if a defect appears |
 
-- Carezza package: `2026.09.05-beta.19`
-- Alpe di Siusi package: `2026.09.05-beta.6`
+- Carezza package: `2026.09.05-beta.20`
+- Alpe di Siusi package: `2026.09.05-beta.7`
 
 Record manufacturer, model, Android version, Chrome version, free storage, and
 display mode. Do not record passwords, a precise home location, or continuous
