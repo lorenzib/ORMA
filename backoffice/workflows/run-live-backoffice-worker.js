@@ -16,7 +16,7 @@ const {applyNewTrailReview}=require('./plan-new-trail-scouting');
 const {admitNewTrailIntake}=require('./new-trail-intake');
 const {applyHazardReview}=require('./dynamic-hazards');
 const {runHazardVetting,applyHazardVetting,expireCommunityHazards}=require('./community-hazard-vetting');
-const {ingestImageReviews,processImageJobs,queuePriorityImageSourcing,DEFAULT_IMAGE_SOURCING_CAPACITY}=require('./hosted-image-coverage');
+const {ingestImageReviews,processImageJobs,queuePriorityImageSourcing,promotePendingOwnerUploads,DEFAULT_IMAGE_SOURCING_CAPACITY}=require('./hosted-image-coverage');
 const {auditImageCoverage}=require('./audit-image-coverage');
 const {validateContentExecution}=require('../contracts/content-result-v1');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
@@ -347,8 +347,9 @@ async function runLiveBackofficeWorker(store, options = {}){
   const editorialFirstPass=await processEditorialFirstPassJobs(store,options);
   const jobs = await processRevisionJobs(store, options);
   const imageOperations=await processImageJobs(store,options);
+  const promotedUploads=await promotePendingOwnerUploads(store,options).catch(error=>({promoted:[],error:String(error.message||error).slice(0,500)}));
   const publications = await ingestPublicationReviews(store);
-  return { workerId:options.workerId || null,campaign,trailPhotoBackfill,newTrailReviews,hazardReviews,communityHazards,imageReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,imageOperations,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,trailPhotoBackfill,newTrailReviews,hazardReviews,communityHazards,imageReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,imageOperations,promotedUploads,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
 module.exports = { iso, refreshTrailPhotoBackfill, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestImageReviews,processImageJobs,ingestPublicationReviews,runLiveBackofficeWorker };

@@ -131,9 +131,13 @@ space, choose an existing ORMA asset, request correctly licensed candidates,
 explicitly request an AI option, or park the gap. Uploads are not publicly
 readable. The browser compresses an uploaded photo to a strict 560 KiB maximum
 and holds it temporarily in the protected Firestore review queue; ORMA does not
-require a paid photo-storage bucket. The CEO previews the exact image and its
-creator, rights basis and alt text before approving it for a publication pull
-request. The worker copies an approved photo into GitHub, which is the permanent
+require a paid photo-storage bucket. For a licensed, AI or ORMA-library candidate the CEO
+previews the exact image and its creator, rights basis and alt text before
+approving it for a publication pull request. An owner upload skips that second
+step: the uploader has already seen the photo in the upload preview and declared
+its creator, rights basis and alt text there, so it goes straight to the
+publishing lane. The publication pull request remains the human gate in both
+cases, and nothing reaches the website without a merge. The worker copies an approved photo into GitHub, which is the permanent
 public asset store, and deletes the temporary Firestore copy after the reviewed
 pull request is merged and deployed. A licensed photo is downloaded and
 committed the same way rather than hot-linked, so ORMA never depends on a

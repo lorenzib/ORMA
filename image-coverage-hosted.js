@@ -68,7 +68,7 @@
 
   function uploadPanel(gap){
     const wrap=el('section','bo-trail-upload');wrap.append(el('h4','','Upload your photo'));
-    wrap.append(el('p','bo-upload-helper','JPG, PNG, WebP or AVIF. ORMA compresses it locally for the free protected review queue; the permanent copy moves to GitHub only after approval.'));
+    wrap.append(el('p','bo-upload-helper','JPG, PNG, WebP or AVIF. ORMA compresses it locally, then sends your photo straight to a publishing pull request — your own photos need no second approval here. Check the preview below before you upload.'));
     const picker=el('input','bo-trail-upload__file');picker.type='file';picker.accept='image/jpeg,image/png,image/webp,image/avif';
     const preview=el('img','bo-trail-upload__preview');preview.alt='Selected trail photo preview';preview.hidden=true;
     const creator=el('input');creator.type='text';creator.placeholder='Photographer / creator';creator.value='Benedetta Lorenzi';creator.maxLength=160;
@@ -77,7 +77,7 @@
     for(const [value,label] of [['orma-owned','I own this photo'],['permission-granted','I have permission from the creator']]){const option=el('option','',label);option.value=value;rightsBasis.append(option);}
     rightsKind.append(rightsKindLabel,rightsBasis);
     const rightsLabel=el('label','bo-trail-upload__rights');const rights=el('input');rights.type='checkbox';rightsLabel.append(rights,document.createTextNode(' I own this photo or have permission to publish it on ORMA.'));
-    const upload=el('button','bo-primary-action','Upload for preview');upload.type='button';upload.disabled=true;
+    const upload=el('button','bo-primary-action','Upload and send to publishing');upload.type='button';upload.disabled=true;
     let prepared=null;
     picker.addEventListener('change',async()=>{
       upload.disabled=true;prepared=null;preview.hidden=true;
@@ -91,7 +91,7 @@
       const response=await remote.uploadTrailImage({file:prepared.file,trailId:gap.trailId||gap.slug,creator:creator.value.trim(),rightsBasis:rightsBasis.value,
         altText:alt.value.trim()||`${gap.title} trail`,width:prepared.width,height:prepared.height});
       if(!response?.ok){message(`Upload failed: ${response?.error||'unknown error'}`,true);upload.disabled=false;picker.disabled=false;return;}
-      message('Photo uploaded. The agent is preparing the protected preview and rights record.');window.setTimeout(()=>window.location.reload(),1400);
+      message('Photo uploaded. It goes straight to a publishing pull request for you to merge.');window.setTimeout(()=>window.location.reload(),1400);
     });
     wrap.append(picker,preview,creator,alt,rightsKind,rightsLabel,upload);return wrap;
   }
