@@ -38,6 +38,12 @@ function identityCheckFrom(result, at){
     reviewState: result.reviewState,
     blockers: result.blockers || [],
     closedLoop: !(result.assessment?.issues || []).includes('not-closed-loop'),
+    // The relation's own name, and whether it reconstructed as one line. A
+    // relation carrying variants and spurs reconstructs as several components
+    // whose lengths sum to far more than the walk, so its total is not a
+    // distance the route can be compared against.
+    relationName: result.relation?.tags?.name || null,
+    componentCount: Array.isArray(result.components) ? result.components.length : null,
     reconstructedDistanceKm: result.comparison?.reconstructedDistanceKm ?? null,
     officialDistanceKm: result.comparison?.officialDistanceKm ?? null,
     distanceDeltaPercent: result.comparison?.distanceDeltaPercent ?? null,
