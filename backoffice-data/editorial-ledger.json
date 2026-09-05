@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "updatedAt": "2026-08-19T11:58:20.054Z",
+  "updatedAt": "2026-09-03T10:00:05.787Z",
   "items": [
     {
       "contentId": "guide-paw-protection",
@@ -71,6 +71,32 @@
       "nextEligibleAt": "2026-08-26T10:02:46.000Z",
       "activePacketFingerprint": "1fb98e19a934374bd391bd036935ff4c1cd883c95d6173f17162ab992ee9b44d",
       "revisionNote": null
+    },
+    {
+      "contentId": "page-terms",
+      "type": "page",
+      "sourceRef": "terms.html",
+      "status": "in-review",
+      "contentFingerprint": "ea86635c97eb98e463a2ca3c2c7c6b9ba61e37eca249bbf9b52ecd8541d91524",
+      "sourcesFingerprint": "f9627439ca9dcb128bc099945d09e9184c27a23bec32500468764b393e20ca5e",
+      "lastDecision": "in-review",
+      "lastReviewedAt": "2026-09-03T10:00:05.787Z",
+      "lastPublishedAt": null,
+      "nextEligibleAt": "2027-03-02T10:00:05.787Z",
+      "activePacketFingerprint": "f9e6fb0c48e8992843146af1e95cf7ec85a3c53a3125f48ab016f375ba6b5271"
+    },
+    {
+      "contentId": "guide-dog-friendly-hikes-lago-di-braies",
+      "type": "guide",
+      "sourceRef": "guides/dog-friendly-hikes-lago-di-braies.html",
+      "status": "in-review",
+      "contentFingerprint": "0cdcf6366ebe7b194caec12d835d3bf9ea06811cf7d2e82be8fdb726fe907648",
+      "sourcesFingerprint": "a7d7948d74eb28b122bc50e1462bf5b92a90801f0c5fe3a797b714d59df31ae0",
+      "lastDecision": "in-review",
+      "lastReviewedAt": "2026-09-03T10:00:05.787Z",
+      "lastPublishedAt": null,
+      "nextEligibleAt": "2026-10-15T10:00:05.787Z",
+      "activePacketFingerprint": "e7439d9bcc67e867cc08b6af550699ede6fe2494b1e232e4f37cdf638fe5efe0"
     }
   ]
 }

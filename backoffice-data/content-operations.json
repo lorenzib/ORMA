@@ -1,7 +1,7 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-08-20T10:00:02.312Z",
-  "cycleDate": "2026-08-20",
+  "generatedAt": "2026-09-03T10:00:05.787Z",
+  "cycleDate": "2026-09-03",
   "mode": "draft-only",
   "publicMutationAllowed": false,
   "editorialPolicy": {
@@ -9,23 +9,25 @@
     "currentClaimsRequireDatedSources": true,
     "medicalAndSafetyClaimsRequireHumanReview": true,
     "noAutomaticPublishing": true,
-    "noUnlicensedMediaDownloads": true
+    "noUnlicensedMediaDownloads": true,
+    "safetyLibraryCopyReviewPaused": true,
+    "editorialCopyMvpPaused": true
   },
   "workstreams": [
     {
       "id": "guides",
       "label": "Guides",
-      "cadence": "weekly",
-      "status": "active",
-      "goal": "Create or refresh one useful, evidence-backed dog hiking guide.",
+      "cadence": "on-demand-after-mvp",
+      "status": "parked",
+      "goal": "Create or refresh one useful, evidence-backed dog hiking guide outside the Safety Library while its UI is under review.",
       "outputs": [
         "editorial brief",
         "edited guide draft",
         "picture shortlist",
         "source and freshness notes"
       ],
-      "cycleDate": "2026-08-20",
-      "nextRunOn": "2026-08-27"
+      "cycleDate": "2026-09-03",
+      "nextRunOn": null
     },
     {
       "id": "collections",
@@ -39,14 +41,14 @@
         "trail inclusion rationale",
         "cover picture shortlist"
       ],
-      "cycleDate": "2026-08-20",
+      "cycleDate": "2026-09-03",
       "nextRunOn": null
     },
     {
       "id": "newsletter",
       "label": "Newsletter",
-      "cadence": "every-14-days",
-      "status": "active",
+      "cadence": "every-14-days-after-launch",
+      "status": "parked",
       "goal": "Package the strongest approved ORMA material into one concise newsletter.",
       "outputs": [
         "subject options",
@@ -55,23 +57,23 @@
         "picture shortlist",
         "link plan"
       ],
-      "cycleDate": "2026-08-20",
-      "nextRunOn": "2026-09-03"
+      "cycleDate": "2026-09-03",
+      "nextRunOn": null
     },
     {
       "id": "library-enrichment",
       "label": "Library enrichment",
-      "cadence": "weekly",
-      "status": "active",
-      "goal": "Audit guides and articles for stale or missing material, propose evidence-backed updates and record a last-reviewed date.",
+      "cadence": "on-demand-after-mvp",
+      "status": "parked",
+      "goal": "Audit non-safety guides, articles and explicitly prioritised governance pages for stale or missing material; Safety Library copy review is temporarily paused during its UI redesign.",
       "outputs": [
         "freshness audit",
         "update priorities",
         "edited drafts",
         "replacement picture candidates"
       ],
-      "cycleDate": "2026-08-20",
-      "nextRunOn": "2026-08-27"
+      "cycleDate": "2026-09-03",
+      "nextRunOn": null
     },
     {
       "id": "social",
@@ -86,123 +88,14 @@
         "alt text",
         "source links"
       ],
-      "cycleDate": "2026-08-20",
+      "cycleDate": "2026-09-03",
       "nextRunOn": null
     }
   ],
-  "jobs": [
-    {
-      "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-20-guides-edit",
-      "agentId": "copywriter",
-      "action": "edit-guides",
-      "candidateId": null,
-      "claimIds": [],
-      "status": "queued",
-      "inputRefs": [
-        "content-operations/workstreams/guides"
-      ],
-      "outputRefs": [],
-      "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-20T10:00:02.312Z",
-      "startedAt": null,
-      "completedAt": null,
-      "humanGate": "editorial-approval"
-    },
-    {
-      "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-20-guides-pictures",
-      "agentId": "visualDirector",
-      "action": "gather-pictures-guides",
-      "candidateId": null,
-      "claimIds": [],
-      "status": "queued",
-      "inputRefs": [
-        "content-operations/workstreams/guides"
-      ],
-      "outputRefs": [],
-      "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-20T10:00:02.312Z",
-      "startedAt": null,
-      "completedAt": null,
-      "humanGate": "asset-and-licensing-approval"
-    },
-    {
-      "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-20-newsletter-edit",
-      "agentId": "copywriter",
-      "action": "edit-newsletter",
-      "candidateId": null,
-      "claimIds": [],
-      "status": "queued",
-      "inputRefs": [
-        "content-operations/workstreams/newsletter"
-      ],
-      "outputRefs": [],
-      "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-20T10:00:02.312Z",
-      "startedAt": null,
-      "completedAt": null,
-      "humanGate": "editorial-approval"
-    },
-    {
-      "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-20-newsletter-pictures",
-      "agentId": "visualDirector",
-      "action": "gather-pictures-newsletter",
-      "candidateId": null,
-      "claimIds": [],
-      "status": "queued",
-      "inputRefs": [
-        "content-operations/workstreams/newsletter"
-      ],
-      "outputRefs": [],
-      "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-20T10:00:02.312Z",
-      "startedAt": null,
-      "completedAt": null,
-      "humanGate": "asset-and-licensing-approval"
-    },
-    {
-      "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-20-library-enrichment-edit",
-      "agentId": "copywriter",
-      "action": "edit-library-enrichment",
-      "candidateId": null,
-      "claimIds": [],
-      "status": "queued",
-      "inputRefs": [
-        "content-operations/workstreams/library-enrichment"
-      ],
-      "outputRefs": [],
-      "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-20T10:00:02.312Z",
-      "startedAt": null,
-      "completedAt": null,
-      "humanGate": "editorial-approval"
-    },
-    {
-      "contractVersion": "1.0.0",
-      "id": "content-ops-2026-08-20-library-enrichment-pictures",
-      "agentId": "visualDirector",
-      "action": "gather-pictures-library-enrichment",
-      "candidateId": null,
-      "claimIds": [],
-      "status": "queued",
-      "inputRefs": [
-        "content-operations/workstreams/library-enrichment"
-      ],
-      "outputRefs": [],
-      "requestedBy": "workflow-orchestrator",
-      "createdAt": "2026-08-20T10:00:02.312Z",
-      "startedAt": null,
-      "completedAt": null,
-      "humanGate": "asset-and-licensing-approval"
-    }
-  ],
+  "jobs": [],
   "summary": {
-    "activeWorkstreams": 3,
-    "parkedWorkstreams": 2,
-    "jobs": 6
+    "activeWorkstreams": 0,
+    "parkedWorkstreams": 5,
+    "jobs": 0
   }
 }
