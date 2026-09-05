@@ -75,6 +75,14 @@ service cloud.firestore {
       return value is string && value.size() > 0 && value.size() <= maximum;
     }
 
+    function isProductEventFamily(value) {
+      return value in [
+        'discovery_search', 'dog_profile', 'trail_decision', 'trail_saved',
+        'offline_package', 'hike_session', 'community_contribution',
+        'post_hike_outcome'
+      ];
+    }
+
     function isTrailId(value) {
       return isShortString(value, 80)
         && value.matches('^[A-Za-z0-9._-]+$');
@@ -655,6 +663,38 @@ service cloud.firestore {
         && request.resource.data.startedAt == request.time;
       allow read: if true;
       allow update: if false;
+      allow delete: if isModerator();
+    }
+
+    // METRIC-01 product analytics receiver.
+    //
+    // Consent is enforced in the browser: metrics.js refuses to create an
+    // identifier or an event until the customer opts in. These rules enforce
+    // the wire shape so the collection cannot become a general write target.
+    //
+    // The collection is write-only. Nothing in the site reads it back, and the
+    // document id is the client's own event id, so a delivery retried after a
+    // lost acknowledgement rewrites one document instead of duplicating it.
+    match /productEvents/{eventId} {
+      allow create: if isShortString(eventId, 64)
+        && request.resource.data.keys().hasOnly([
+             'schemaVersion', 'id', 'clientId', 'family', 'state',
+             'properties', 'occurredHour'
+           ])
+        && request.resource.data.keys().hasAll([
+             'schemaVersion', 'id', 'clientId', 'family', 'state',
+             'properties', 'occurredHour'
+           ])
+        && request.resource.data.schemaVersion == 1
+        && request.resource.data.id == eventId
+        && isShortString(request.resource.data.clientId, 64)
+        && isProductEventFamily(request.resource.data.family)
+        && isShortString(request.resource.data.state, 40)
+        && request.resource.data.properties is map
+        && request.resource.data.properties.size() <= 12
+        && isShortString(request.resource.data.occurredHour, 30);
+      allow update: if request.resource.data == resource.data;
+      allow read: if false;
       allow delete: if isModerator();
     }
 
