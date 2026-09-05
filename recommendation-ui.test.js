@@ -36,6 +36,28 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(controller).not.toContain('trail.safetyLevel');
   });
 
+  test('P0-3 keeps a guest on the trail they were reading', () => {
+    const wizard = source('dog-wizard.js');
+
+    // The CTA opens the wizard in place. Navigating to onboarding.html is the
+    // thing this story exists to remove.
+    expect(controller).toContain('data-add-dog');
+    expect(controller).toContain("window.DoloPawsWizard.open(null, { returnToPage:true })");
+    expect(wizard).toContain('returnToPage = !!(options && options.returnToPage)');
+
+    // A guest's dog is kept for the session as soon as it is complete, so the
+    // next trail scores for their dog without an account.
+    expect(wizard).toContain("localStorage.setItem(PENDING_PROFILE_KEY, JSON.stringify(profile))");
+    expect(wizard).toContain("new CustomEvent('dolopaws-dog-profile-saved'");
+    expect(controller).toContain("window.localStorage.getItem('dolopaws-pending-dog-profile')");
+    expect(controller).toContain("window.addEventListener('dolopaws-dog-profile-saved', renderCurrent)");
+
+    // The score change is visible, once, and respects reduced motion.
+    expect(controller).toContain("classList.add('is-rescored')");
+    expect(html).toContain('@keyframes recommendation-rescore');
+    expect(html).toContain('prefers-reduced-motion:reduce');
+  });
+
   test('the three distinct actions remain reachable without a data-detail link on the card', () => {
     expect(html).toContain('id="trailReviewNote"');
     expect(html).not.toContain('id="trailEvidence"');

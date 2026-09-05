@@ -16319,7 +16319,37 @@ if(document.querySelector('.td2')){
     };
   }
 
-  return Object.freeze({ CATEGORY, present, translatedMessage });
+  // P0-3: what changed when the reader added their own dog. A move of two
+  // points or less is not a move — claiming one would be inventing drama the
+  // score does not support.
+  const SAME_SCORE_TOLERANCE = 2;
+
+  function firstRunCallout(before, after, translate){
+    if(!before || !after) return null;
+    if(!Number.isFinite(before.score) || !Number.isFinite(after.score)) return null;
+    if(!before.forName || !after.forName || before.forName === after.forName) return null;
+
+    const tr = (key, fallback, vars) => {
+      if(typeof translate === 'function'){
+        const value = translate(key, vars);
+        if(value && value !== key) return value;
+      }
+      let output = fallback;
+      for(const name of Object.keys(vars || {})) output = output.split(`{${name}}`).join(vars[name]);
+      return output;
+    };
+
+    if(Math.abs(after.score - before.score) <= SAME_SCORE_TOLERANCE){
+      return tr('recommendation.firstRun.same',
+        'Same score for {name} as for {before} on this trail.',
+        { name:after.forName, before:before.forName });
+    }
+    return tr('recommendation.firstRun.moved',
+      'Was {beforeScore}% for {before} · now {afterScore}% for {name}. See why below.',
+      { beforeScore:before.score, before:before.forName, afterScore:after.score, name:after.forName });
+  }
+
+  return Object.freeze({ CATEGORY, SAME_SCORE_TOLERANCE, present, translatedMessage, firstRunCallout });
 });
 ;
 
@@ -16498,6 +16528,21 @@ if(document.querySelector('.td2')){
     return typeof trails !== 'undefined' ? trails.find(trail => trail.id === id) : null;
   }
 
+  // P0-3: what the reader saw before they added their dog, so the change can
+  // be stated rather than explained.
+  let previousRender = null;
+  let pendingCallout = null;
+
+  function guestProfile(){
+    try{
+      const raw = window.localStorage.getItem('dolopaws-pending-dog-profile');
+      const profile = raw ? JSON.parse(raw) : null;
+      return profile && typeof profile === 'object' && profile.name ? profile : null;
+    }catch(error){
+      return null;
+    }
+  }
+
   function subjectFor(profile){
     if(!profile) return {};
     return typeof effectiveOverrides === 'function'
@@ -16523,14 +16568,21 @@ if(document.querySelector('.td2')){
       : '';
     // Dog-side gaps are the one thing the reader can fix right now — the
     // card face turns them into a profile CTA instead of a caveat.
+    const canOpenWizard = !!(window.DoloPawsWizard && typeof window.DoloPawsWizard.open === 'function');
     const gapCta = !view.dogName
-      ? `<p class="recommendation-gaps"><a href="onboarding.html">${esc(tr('recommendation.gap.addDog', 'Add your dog to sharpen this score →'))}</a></p>`
+      ? (canOpenWizard
+        ? `<p class="recommendation-gaps"><button type="button" class="recommendation-add-dog" data-add-dog>${esc(tr('recommendation.gap.addDog', 'Add your dog to sharpen this score →'))}</button></p>`
+        : `<p class="recommendation-gaps"><a href="onboarding.html">${esc(tr('recommendation.gap.addDog', 'Add your dog to sharpen this score →'))}</a></p>`)
       : view.dogGapFields.length
         ? `<p class="recommendation-gaps"><a href="account.html">${esc(tr('recommendation.gap.fields', 'Add {name}’s {fields} to sharpen this score →', {
             name:view.dogName,
             fields:friendlyList(view.dogGapFields),
           }))}</a></p>`
         : '';
+
+    const thisRender = { score:view.score, forName:view.breakdownFor };
+    pendingCallout = api.firstRunCallout(previousRender, thisRender, window.t);
+    previousRender = thisRender;
 
     root.className = `recommendation-decision recommendation-decision--${view.tone}`;
     root.dataset.scoringVersion = view.scoringVersion;
@@ -16547,6 +16599,9 @@ if(document.querySelector('.td2')){
       // A heading over a line explaining that there is nothing to say is the
       // opposite of crisp. A section with nothing behind it is dropped; what
       // ORMA has not established stays in the unknowns disclosure below.
+      (pendingCallout
+        ? `<p class="recommendation-firstrun" role="status">${esc(pendingCallout)}</p>`
+        : '') +
       breakdown(view, tr) +
       sections([
         [tr('recommendation.reasons.title', 'Why it may fit'), view.reasons],
@@ -16650,7 +16705,26 @@ if(document.querySelector('.td2')){
     if(window.DoloPawsAuth && window.DoloPawsAuth.currentUser){
       try { profile = await window.DoloPawsAuth.getDogProfile(); } catch(error){}
     }
+    // No account yet is not the same as no dog. A guest who added one scores
+    // against it here and on every other trail, until they choose to save.
+    if(!profile) profile = guestProfile();
     renderDecision(trail, profile);
+    const add = document.getElementById('recommendationDecision');
+    const trigger = add && add.querySelector('[data-add-dog]');
+    if(trigger){
+      // Opened in place, and told to come back here rather than to a payoff
+      // screen listing other trails.
+      trigger.addEventListener('click', () => {
+        window.DoloPawsWizard.open(null, { returnToPage:true });
+      });
+    }
+    if(pendingCallout){
+      // A visible change, once, so the reader sees the score move rather than
+      // finding a different number where the old one was.
+      add.classList.add('is-rescored');
+      window.setTimeout(() => add.classList.remove('is-rescored'), 1400);
+      pendingCallout = null;
+    }
   }
 
   renderCurrent();
@@ -16658,5 +16732,6 @@ if(document.querySelector('.td2')){
     window.addEventListener('dolopaws-auth-ready', renderCurrent, { once:true });
   }
   window.addEventListener('dolopaws-auth-changed', renderCurrent);
+  window.addEventListener('dolopaws-dog-profile-saved', renderCurrent);
 })();
 ;
