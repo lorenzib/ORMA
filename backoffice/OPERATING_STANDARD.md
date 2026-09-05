@@ -77,9 +77,11 @@ Owns discovery before catalogue admission. It prioritises:
 - candidates close to areas ORMA already covers; and
 - coherent geographic expansion before unrelated new regions.
 
-The active discovery phase is Dolomites-first. Scouting refreshes Monday
-through Saturday, ranks credible Dolomites candidates ahead of other regions,
-and preserves unresolved candidates between refreshes.
+The active discovery phase is Dolomites-first. Scouting is paused during the
+trail-photo and ORMA Verified backfills; existing candidates are preserved and
+nothing is deleted. When resumed it refreshes Monday through Saturday, ranks
+credible Dolomites candidates ahead of other regions, and preserves unresolved
+candidates between refreshes.
 
 CEO selection sends a candidate into the Existing Trails verification fleet.
 Selection is not publication. A New Trail becomes an Existing Trail only after
@@ -227,8 +229,10 @@ requests and the CEO prototype gate. An investigation, priority decision or prot
   quarter-hour queue worker. Successfully fetched
   authoritative feeds remove warnings that they affirmatively resolve; source
   outages retain the last known warning.
-- Existing Trails queue: checked by the hosted worker every fifteen minutes,
+- Existing Trails queue: checked by the hosted worker every thirty minutes,
   with daily ORMA Verified intake at 09:30 local time and 15-trail capacity.
+  Hazard freshness does not depend on this cadence; the hazard watch runs on its
+  own hourly schedule.
 - Strategy cycle: parked during the MVP phase; manual recovery remains
   available without generating Editorial or Analyst work by default.
 - Editorial copy: parked during the MVP phase. Existing review packets are
@@ -236,7 +240,11 @@ requests and the CEO prototype gate. An investigation, priority decision or prot
 - Trail-photo coverage and licensed candidate scouting: daily at 11:00 local
   time, after New Trail scouting, with at most 15 active searches or reviews;
   guide-wide image audits are not part of this queue.
-- New Trail scouting: Monday through Saturday at 10:00 local time, Dolomites
+- New Trail scouting: paused for the duration of the trail-photo and ORMA
+  Verified backfills. Each newly admitted trail opens a new photo gap and a new
+  verification gap faster than either backfill closes one, so intake stays
+  paused until both lanes reach full coverage of the existing catalogue.
+  Cadence when resumed: Monday through Saturday at 10:00 local time, Dolomites
   first; admission remains CEO-gated.
 - Newsletter: parked until trail, collection and website content readiness is
   explicitly confirmed.

@@ -2,9 +2,10 @@
   'use strict';
 
   const set=(id,value)=>{const node=document.getElementById(id);if(node)node.textContent=value;};
-  const REFRESH_SECONDS=300;
+  const REFRESH_SECONDS=900;
   let loading=false;
   let seconds=REFRESH_SECONDS;
+  let lastLoadedAt=null;
 
   function element(tag,className,text){
     const node=document.createElement(tag);
@@ -168,6 +169,7 @@
       document.getElementById('executiveDecisionQueue').classList.remove('is-error');
       render(model,communityResult);
       seconds=REFRESH_SECONDS;
+      lastLoadedAt=Date.now();
       const refreshed=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
       set('dashboardUpdated',`Live · ${refreshed} · refresh in ${seconds}s`);
     }catch(error){
@@ -183,7 +185,14 @@
 
   document.getElementById('refreshDashboard').addEventListener('click',load);
   document.addEventListener('visibilitychange',()=>{
-    if(document.hidden)return;
+    if(document.hidden||loading)return;
+    // Refocusing is not new information. Only re-read when the visible state is
+    // already older than one refresh interval.
+    const age=lastLoadedAt?Date.now()-lastLoadedAt:Infinity;
+    if(age<REFRESH_SECONDS*1000){
+      seconds=Math.max(1,REFRESH_SECONDS-Math.round(age/1000));
+      return;
+    }
     seconds=REFRESH_SECONDS;
     load();
   });

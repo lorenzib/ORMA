@@ -69,10 +69,32 @@ async function reconcileResolutionAttempts(store,trail,jobs,at){
   return changed;
 }
 
+// Every job an orchestrated trail can reference is recorded on the trail itself, so
+// the advance pass never needs a collection-wide scan. Falls back to the old status
+// query for stores that predate id-based fetching (the local file store and tests).
+function orchestrationJobIds(state){
+  const ids=[];
+  for(const trail of state?.trails||[]){
+    ids.push(...(trail.jobIds||[]));
+    if(trail.pendingRevisionJobId)ids.push(trail.pendingRevisionJobId);
+    for(const entry of Object.values(trail.claimResolution||{})){
+      for(const attempt of entry.attempts||[])if(attempt.jobId)ids.push(attempt.jobId);
+    }
+  }
+  return [...new Set(ids)];
+}
+
+async function orchestrationJobs(store,state){
+  if(typeof store.getJobsByIds!=='function'){
+    return store.listJobs(['queued','running','completed','ready-for-review','blocked','approved','rejected','revision-requested']);
+  }
+  return store.getJobsByIds(orchestrationJobIds(state));
+}
+
 async function advanceTrailOrchestration(store,options={}){
   const at=options.at||new Date().toISOString(); const state=await store.getArtifact('trail-orchestration');
   if(!state)return {advanced:[],queued:[]};
-  const jobs=await store.listJobs(['queued','running','completed','ready-for-review','blocked','approved','rejected','revision-requested']);
+  const jobs=await orchestrationJobs(store,state);
   const reviewQueue=await store.getArtifact('dossier-review-queue')||{contractVersion:'1.0.0',items:[],publicMutationAllowed:false};
   const next=JSON.parse(JSON.stringify(state)); const nextQueue=JSON.parse(JSON.stringify(reviewQueue)); const queued=[]; const advanced=[];
   for(const trail of next.trails){
@@ -157,4 +179,4 @@ async function advanceTrailOrchestration(store,options={}){
   return {advanced,queued:queued.map(job=>job.id)};
 }
 
-module.exports={timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
+module.exports={orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
