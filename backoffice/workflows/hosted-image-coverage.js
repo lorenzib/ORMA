@@ -88,6 +88,55 @@ async function ingestImageReviews(store){
   return outcomes;
 }
 
+
+// One place that turns an owner's uploaded photo into a publication request, used
+// both by a fresh upload and by promoting uploads that are still waiting on the
+// second approval this lane no longer asks for.
+async function recordUploadPublicationRequest(store,gap,job,candidate,approvedAt){
+  const requests=await store.getArtifact('trail-image-publication-requests')||{contractVersion:'1.0.0',requests:[]};
+  const request={id:job.reviewId||`upload-${gap.slug}-${approvedAt}`,trailId:gap.trailId||gap.slug,title:gap.title,
+    uploadRef:job.uploadRef,fileName:job.fileName||candidate.title,mimeType:job.mimeType||candidate.mimeType,
+    fileSize:job.fileSize||candidate.fileSize,width:job.width||candidate.width,height:job.height||candidate.height,
+    creator:job.creator||candidate.creator,rightsBasis:job.rightsBasis,altText:job.altText||candidate.altText,
+    status:'approved-for-pr-creation',approvedAt,approvedBy:'owner-upload',publicMutationAllowed:false};
+  await store.setArtifact('trail-image-publication-requests',{...requests,updatedAt:approvedAt,
+    requests:[...(requests.requests||[]).filter(item=>item.id!==request.id&&!(item.trailId===request.trailId&&item.status==='approved-for-pr-creation')),request]},
+    {lastReviewId:job.reviewId,publicMutationAllowed:false});
+  return request;
+}
+
+// Uploads that completed before owner photos stopped needing a second approval are
+// still sitting in preview. They are the owner's own photos, so they move on too.
+// Licensed and AI candidates are untouched: those still need a look.
+async function promotePendingOwnerUploads(store,options={}){
+  const at=options.at||new Date().toISOString();
+  const [results,requests,audit]=await Promise.all([
+    store.getArtifact('image-coverage-results'),
+    store.getArtifact('trail-image-publication-requests'),
+    store.getArtifact('image-coverage'),
+  ]);
+  if(!results?.items?.length)return {promoted:[]};
+  const open=new Set((requests?.requests||[]).filter(item=>item.status!=='published').map(item=>item.trailId));
+  const gaps=new Map((audit?.gaps||[]).map(gap=>[gap.slug,gap]));
+  const promoted=[];let items=results.items;
+  for(const item of results.items){
+    if(open.has(item.trailId||item.slug))continue;
+    const gap=gaps.get(item.slug);if(!gap)continue;
+    const candidate=(item.candidates||[]).find(entry=>entry.uploadRef&&entry.status==='ready-for-asset-review');
+    if(!candidate)continue;
+    const job={reviewId:item.reviewId,uploadRef:candidate.uploadRef,fileName:candidate.title,mimeType:candidate.mimeType,
+      fileSize:candidate.fileSize,width:candidate.width,height:candidate.height,creator:candidate.creator,
+      rightsBasis:candidate.license==='Permission granted'?'permission-granted':'orma-owned',altText:candidate.altText};
+    await recordUploadPublicationRequest(store,gap,job,candidate,at);
+    items=items.map(entry=>entry.slug!==item.slug?entry:{...entry,generatedAt:at,status:'approved-for-pr-creation',
+      summary:'Your photo is in the pull-request publishing lane.',
+      candidates:(entry.candidates||[]).map(one=>one.uploadRef===candidate.uploadRef?{...one,status:'approved-for-publication'}:one)});
+    promoted.push(item.slug);
+  }
+  if(promoted.length)await store.setArtifact('image-coverage-results',{...results,updatedAt:at,items},{lastPromotedAt:at});
+  return {promoted};
+}
+
 async function processImageJobs(store,options={}){
   const workerId=options.workerId||`orma-worker-${randomUUID()}`;const outcomes=[];const limit=options.imageLimit||2;
   const priority={
@@ -113,12 +162,20 @@ async function processImageJobs(store,options={}){
         if(!match)throw new Error('The selected ORMA-owned image is no longer available');
         result={contractVersion:'1.0.0',slug:gap.slug,generatedAt:new Date().toISOString(),sourcePreference:job.sourcePreference,summary:'One ORMA-owned candidate is ready for visual placement review.',candidates:[{title:match.fileName||gap.title,sourcePageUrl:null,assetUrl:match.sourceRef||job.assetRef,creator:'ORMA',license:'ORMA-owned',licenseUrl:null,rightsEvidence:'Selected from the protected ORMA repository inventory.',altText:gap.title,status:'ready-for-asset-review',generationPrompt:null}],publicMutationAllowed:false};
       }else if(job.sourcePreference==='upload-owner-photo'){
-        result={contractVersion:'2.0.0',slug:gap.slug,trailId:gap.trailId||gap.slug,generatedAt:new Date().toISOString(),sourcePreference:job.sourcePreference,
-          summary:'Your uploaded trail photo is ready for visual and rights approval.',candidates:[{title:job.fileName||gap.title,sourcePageUrl:null,
-            assetUrl:null,uploadRef:job.uploadRef,creator:job.creator||'ORMA',license:job.rightsBasis==='permission-granted'?'Permission granted':'ORMA-owned',
-            licenseUrl:null,rightsEvidence:job.rightsBasis==='permission-granted'?'Uploader confirmed permission to publish.':'Uploader confirmed that ORMA owns this photo.',
-            altText:job.altText||`${gap.title} trail`,status:'ready-for-asset-review',generationPrompt:null,width:job.width||null,height:job.height||null,
-            mimeType:job.mimeType||null,fileSize:job.fileSize||null}],publicMutationAllowed:false};
+        // The uploader owns the photo, saw it in the upload preview, and declared its
+        // creator, rights basis and alt text there. A second desk approval repeated
+        // that without adding review, so an owner upload goes straight to the
+        // publishing lane; the publication pull request remains the human gate.
+        const approvedAt=new Date().toISOString();
+        const candidate={title:job.fileName||gap.title,sourcePageUrl:null,
+          assetUrl:null,uploadRef:job.uploadRef,creator:job.creator||'ORMA',license:job.rightsBasis==='permission-granted'?'Permission granted':'ORMA-owned',
+          licenseUrl:null,rightsEvidence:job.rightsBasis==='permission-granted'?'Uploader confirmed permission to publish.':'Uploader confirmed that ORMA owns this photo.',
+          altText:job.altText||`${gap.title} trail`,status:'approved-for-publication',generationPrompt:null,width:job.width||null,height:job.height||null,
+          mimeType:job.mimeType||null,fileSize:job.fileSize||null};
+        await recordUploadPublicationRequest(store,gap,job,candidate,approvedAt);
+        result={contractVersion:'2.0.0',slug:gap.slug,trailId:gap.trailId||gap.slug,generatedAt:approvedAt,sourcePreference:job.sourcePreference,
+          summary:'Your photo is in the pull-request publishing lane.',status:'approved-for-pr-creation',
+          candidates:[candidate],publicMutationAllowed:false};
       }else if(job.sourcePreference==='approve-uploaded-photo'){
         const previous=await store.getArtifact('image-coverage-results')||{items:[]};
         const prior=(previous.items||[]).find(item=>item.slug===job.slug);
@@ -162,4 +219,4 @@ async function processImageJobs(store,options={}){
   return outcomes;
 }
 
-module.exports={IMAGE_SOURCE_SCHEMA,DEFAULT_IMAGE_SOURCING_CAPACITY,runImageSourcing,latestBySlug,compactImageResults,queuePriorityImageSourcing,ingestImageReviews,processImageJobs};
+module.exports={IMAGE_SOURCE_SCHEMA,recordUploadPublicationRequest,promotePendingOwnerUploads,DEFAULT_IMAGE_SOURCING_CAPACITY,runImageSourcing,latestBySlug,compactImageResults,queuePriorityImageSourcing,ingestImageReviews,processImageJobs};
