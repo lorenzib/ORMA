@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-05T20:54:58.988Z",
+  "updatedAt": "2026-09-05T21:14:34.033Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -237,6 +237,74 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gruppo_delle_Pale_in_estate.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "nuvolau",
+      "approvedReviewId": "commons-nuvolau",
+      "approvedAt": "2026-09-05T21:14:34.033Z",
+      "fields": {
+        "imageIcon": "images/trails/nuvolau-commons.jpg",
+        "heroImage": "images/trails/nuvolau-commons.jpg",
+        "imageAlt": "Passo Giau with the Gusela and Monte Nuvolau behind",
+        "imageCredit": "Passo di Giau",
+        "imageCreditText": "Passo di Giau by Frisia Orientalis",
+        "imageCreator": "Frisia Orientalis",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Passo_di_Giau.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "sassolungo",
+      "approvedReviewId": "commons-sassolungo",
+      "approvedAt": "2026-09-05T21:14:34.033Z",
+      "fields": {
+        "imageIcon": "images/trails/sassolungo-commons.jpg",
+        "heroImage": "images/trails/sassolungo-commons.jpg",
+        "imageAlt": "The Sassopiatto in the Dolomites at evening",
+        "imageCredit": "Plattkofel Abends",
+        "imageCreditText": "Plattkofel Abends by Fafner",
+        "imageCreator": "Fafner",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Plattkofel_Abends.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12027153",
+      "approvedReviewId": "commons-osm-12027153",
+      "approvedAt": "2026-09-05T21:14:34.033Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12027153-commons.jpg",
+        "heroImage": "images/trails/osm-12027153-commons.jpg",
+        "imageAlt": "The Latemar massif seen from San Floriano",
+        "imageCredit": "Latemar uit San Floriano",
+        "imageCreditText": "Latemar uit San Floriano by Cars en travel at Dutch Wikipedia",
+        "imageCreator": "Cars en travel at Dutch Wikipedia",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Latemar_uit_San_Floriano.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "piancavallo",
+      "approvedReviewId": "commons-piancavallo",
+      "approvedAt": "2026-09-05T21:14:34.033Z",
+      "fields": {
+        "imageIcon": "images/trails/piancavallo-commons.jpg",
+        "heroImage": "images/trails/piancavallo-commons.jpg",
+        "imageAlt": "Piancavallo in summer",
+        "imageCredit": "Piancavallo d'estate",
+        "imageCreditText": "Piancavallo d'estate by Croberto68",
+        "imageCreator": "Croberto68",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Piancavallo_d%27estate.jpg",
         "imageSourceType": "licensed-source"
       }
     }
