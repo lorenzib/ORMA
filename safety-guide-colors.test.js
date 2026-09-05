@@ -33,7 +33,7 @@ describe('shared Safety Library colour system', () => {
 
   test.each(GUIDE_FILES)('%s requests the recovered shared stylesheet', name => {
     const html = fs.readFileSync(path.join(__dirname, 'guides', name), 'utf8');
-    expect(html).toContain('../styles.css?v=20260825-2');
+    expect(html).toContain('../styles.css?v=20260905-1');
   });
 
   test('breed cards do not inherit the retired two-column guide-panel layout', () => {
