@@ -3633,6 +3633,18 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 .place-dog-submit{width:100%;border:0;border-radius:10px;background:var(--accent);color:#fff;padding:11px 14px;font:800 13px 'Inter',sans-serif;cursor:pointer;}
 .place-dog-submit:disabled{opacity:.6;cursor:wait;}
 /* ---------- responsive: one-pane tablet app ---------- */
+/* The full desktop grid needs more room than a laptop at ordinary browser
+   zoom once all three geographic controls are present. Before those tracks
+   can collide, use the same compact, wrapping control treatment as tablet. */
+@media (min-width:1041px) and (max-width:1560px){
+  .li-toolbar{display:flex;flex-wrap:wrap;padding:12px 20px;gap:10px 8px;}
+  .li-mobile-actions{display:contents;}
+  .li-toolbar-greet{display:flex;flex:1 1 100%;}
+  .li-search{flex:1 1 320px;min-width:260px;}
+  .li-country-wrap,.li-region-wrap,.li-valley-wrap,
+  #liFiltersWrap,.li-quick-filters,.li-saved-only,.li-plan-route,.li-record{flex:none;}
+}
+
 @media (min-width:701px) and (max-width:1040px){
   #returningCustomerHomepage{height:100vh;height:100dvh;}
   .li-toolbar{display:flex;flex-wrap:wrap;padding:9px 16px;gap:9px;}

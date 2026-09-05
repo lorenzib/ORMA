@@ -709,19 +709,19 @@ function initGuestMap(){
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 4.5, 13, 5.5],
       },
     }, 'waymarked-hiking-layer');
-    // The surrounding network stays grey, while ORMA routes retain their
-    // green / amber / red safety language and a clear white halo.
+    // ORMA routes keep their green / amber / red safety language, but as a
+    // cased corridor under the hiking raster rather than a line over it.
     guestMapInstance.addLayer({
       id: 'guest-trail-paths-orma-halo',
       type: 'line',
       source: 'guest-trail-paths',
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': '#FFFDF7',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 5.5, 10, 9, 13, 11],
-        'line-opacity': 0.94,
+        'line-color': '#FFFFFF',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 6, 10, 12, 13, 17],
+        'line-opacity': 0.9,
       },
-    }, guestFirstLabel ? guestFirstLabel.id : undefined);
+    }, 'waymarked-hiking-layer');
     guestMapInstance.addLayer({
       id: 'guest-trail-paths-orma-line',
       type: 'line',
@@ -735,10 +735,10 @@ function initGuestMap(){
           'caution', '#9C3A25',
           '#6F7872',
         ],
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2.5, 10, 5, 13, 6.5],
-        'line-opacity': 1,
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 3.5, 10, 8, 13, 12],
+        'line-opacity': 0.55,
       },
-    }, guestFirstLabel ? guestFirstLabel.id : undefined);
+    }, 'waymarked-hiking-layer');
     if(guestFirstLabel && guestMapInstance.getLayer('waymarked-hiking-layer')){
       guestMapInstance.moveLayer('waymarked-hiking-layer', guestFirstLabel.id);
     }
@@ -859,7 +859,6 @@ function initTrailMap(){
     increaseLabelDensity(trailMapInstance);
     preventTransitPoiDuplication(trailMapInstance);
     if(window.DoloPawsIcons) await window.DoloPawsIcons.registerMapImages(trailMapInstance);
-    if(window.DoloPawsTrailRouteRefs) window.DoloPawsTrailRouteRefs.registerShieldImage(trailMapInstance);
     
     // Secondary lift markers are filled after the route catalogue is usable.
     // The shared array lets an already-rendered layer control manage markers
@@ -875,10 +874,6 @@ function initTrailMap(){
     addBaseHillshade(trailMapInstance, 'waymarked-hiking-layer');
     
     trailMapInstance.addSource('trail-paths', {
-      type: 'geojson',
-      data: { type: 'FeatureCollection', features: [] },
-    });
-    trailMapInstance.addSource('trail-route-refs', {
       type: 'geojson',
       data: { type: 'FeatureCollection', features: [] },
     });
@@ -905,9 +900,19 @@ function initTrailMap(){
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 5, 13, 6],
       },
     }, 'waymarked-hiking-layer');
-    // Every visible route rail uses the active dog's match tier. The narrower
-    // mapped-route layers still mask the raw raster symbology and carry route
-    // shields, but must not replace the personalised colour with a fixed rail.
+    // Catalogue rails, same treatment as the detail map: a white casing and a
+    // translucent match-tier corridor drawn BENEATH the hiking raster, so the
+    // marked routes and their real numbers read down the middle of each rail.
+    //
+    // This replaces four stacked layers (halo, line, mapped-casing,
+    // mapped-line) whose only job was to mask the raster's own symbology, plus
+    // the shield layer that reprinted numbers the mask was hiding. With the
+    // raster on top, Waymarked's numbers are visible and none of that is
+    // needed.
+    const catalogueMatchColour = [
+      'step', ['coalesce', ['get', 'score'], 0],
+      '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
+    ];
     trailMapInstance.addLayer({
       id: 'trail-paths-orma-halo',
       type: 'line',
@@ -915,11 +920,11 @@ function initTrailMap(){
       minzoom: 7,
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': '#FFFDF7',
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 8, 10, 13, 13, 18, 16, 22],
-        'line-opacity': 0.94,
+        'line-color': '#FFFFFF',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 8, 10, 14, 13, 20, 16, 26],
+        'line-opacity': 0.9,
       },
-    }, firstLabelLayer ? firstLabelLayer.id : undefined);
+    }, 'waymarked-hiking-layer');
     trailMapInstance.addLayer({
       id: 'trail-paths-orma-line',
       type: 'line',
@@ -927,50 +932,11 @@ function initTrailMap(){
       minzoom: 7,
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': [
-          'step', ['coalesce', ['get', 'score'], 0],
-          '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
-        ],
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 5, 10, 8, 13, 13, 16, 16],
-        'line-opacity': 1,
+        'line-color': catalogueMatchColour,
+        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 5, 10, 10, 13, 15, 16, 20],
+        'line-opacity': 0.55,
       },
-    }, firstLabelLayer ? firstLabelLayer.id : undefined);
-    trailMapInstance.addLayer({
-      id: 'trail-paths-mapped-casing',
-      type: 'line',
-      source: 'trail-paths',
-      minzoom: 7,
-      layout: { 'line-join': 'round', 'line-cap': 'round' },
-      paint: {
-        'line-color': [
-          'step', ['coalesce', ['get', 'score'], 0],
-          '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
-        ],
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 5, 10, 8, 13, 11, 16, 14],
-        'line-opacity': 1,
-      },
-    }, firstLabelLayer ? firstLabelLayer.id : undefined);
-    trailMapInstance.addLayer({
-      id: 'trail-paths-mapped-line',
-      type: 'line',
-      source: 'trail-paths',
-      minzoom: 7,
-      layout: { 'line-join': 'round', 'line-cap': 'round' },
-      paint: {
-        'line-color': [
-          'step', ['coalesce', ['get', 'score'], 0],
-          '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
-        ],
-        'line-width': ['interpolate', ['linear'], ['zoom'], 7, 2, 10, 3.5, 13, 5, 16, 7],
-        'line-opacity': 1,
-      },
-    }, firstLabelLayer ? firstLabelLayer.id : undefined);
-    if(window.DoloPawsTrailRouteRefs){
-      window.DoloPawsTrailRouteRefs.addShieldLayer(trailMapInstance, {
-        id:'trail-paths-route-number',
-        source:'trail-route-refs',
-      });
-    }
+    }, 'waymarked-hiking-layer');
     // Once a visitor chooses a trail, give it the same clear, route-first
     // treatment used by a detail page. The wider catalogue stays underneath
     // as quiet context instead of competing with the chosen walk.
@@ -1369,8 +1335,8 @@ function setSelectedTrailRoute(trail, options){
   // Remove the selected feature from the broad homepage route stack while it
   // is focused. Otherwise its purple mapped-route rail remains visible and
   // fights the clean detail-map treatment above it.
-  ['trail-paths-casing','trail-paths-line','trail-paths-orma-halo','trail-paths-orma-line',
-    'trail-paths-mapped-casing','trail-paths-mapped-line','trail-paths-route-number'].forEach(layerId => {
+  ['trail-paths-casing','trail-paths-line','trail-paths-orma-halo',
+    'trail-paths-orma-line'].forEach(layerId => {
     if(trailMapInstance.getLayer(layerId)){
       trailMapInstance.setFilter(layerId, visible ? ['!=', ['get','id'], trail.id] : null);
     }
@@ -1413,11 +1379,6 @@ function updatePathLayer(list){
       geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
     }));
   trailMapInstance.getSource('trail-paths').setData({ type: 'FeatureCollection', features });
-  const routeRefFeatures = window.DoloPawsTrailRouteRefs
-    ? list.flatMap(t => window.DoloPawsTrailRouteRefs.featuresForTrail(t))
-    : [];
-  trailMapInstance.getSource('trail-route-refs')
-    .setData({ type:'FeatureCollection', features:routeRefFeatures });
   // NOTE: The 'water-sources' source is managed exclusively by initializeWaterSources(),
   // which loads the full OSM dataset (Trentino, Veneto, Savoy) from
   // water-sources-all-regions.geojson. Do NOT overwrite it here — the old code that
