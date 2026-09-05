@@ -94,7 +94,7 @@ function loadHomepageContext(testTrails){
     t: tForTests,
     scoreTrail: () => 80,
     recommendTrail: () => ({
-      scoringVersion: '1.3.0',
+      scoringVersion: '1.5.0',
       score: 80,
       category: 'possible-with-cautions',
       confidence: 'low',
@@ -329,9 +329,9 @@ describe('map-first returning homepage layout contract', () => {
     const markerLayerStart = script.indexOf("id: 'trail-unclustered'");
     const markerLayer = script.slice(markerLayerStart);
     expect(routeLayer).toContain("'line-color': '#858D88'");
-    expect(routeLayer).toContain("'step', ['coalesce', ['get', 'score'], 0]");
+    expect(routeLayer).toContain("matchColourExpression('score')");
     expect(routeLayer).not.toContain("['get', 'safetyLevel']");
-    expect(markerLayer).toContain("'step', ['coalesce', ['get', 'score'], 0]");
+    expect(markerLayer).toContain("matchColourExpression('score')");
     expect(script).toContain('Where are we going today, ${profile.name}?');
     expect(script).toContain('Trails ranked for ${profile.name}\\u2019s needs');
     expect(script).not.toContain('trails scored`');
@@ -409,22 +409,19 @@ describe('map-first returning homepage layout contract', () => {
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     const trailScript = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
     expect(script).toMatch(/id: 'trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script).toMatch(/id: 'guest-trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).toMatch(/id: 'trail-paths-casing'[\s\S]*?minzoom: 7[\s\S]*?'line-width': \['interpolate'[\s\S]*?10, 8[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script).toMatch(/id: 'guest-trail-paths-casing'[\s\S]*?'line-width': \['interpolate'[\s\S]*?10, 7[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     // Halo is a white casing beneath the raster now, not a cream halo above it.
     expect(script).toMatch(/id: 'trail-paths-orma-halo'[\s\S]*?'line-color': '#FFFFFF'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-opacity': 0\.55[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).not.toContain("id: 'trail-paths-match-outline'");
-    expect(script).toMatch(/id: 'guest-trail-paths-orma-line'[\s\S]*?'line-color': \[[\s\S]*?'low-risk', '#4A7856'[\s\S]*?'moderate', '#C98A2E'[\s\S]*?'caution', '#9C3A25'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script).toContain("guestMapInstance.moveLayer('waymarked-hiking-layer', guestFirstLabel.id)");
+    // The guest map is coloured by match score against the medium-dog profile,
+    // not by the trail's safety level — green/amber/red has one meaning now.
     expect(script).not.toContain("trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id)");
     // The selected route is now a zoom-scaled cased pair from map-style.js.
     expect(trailScript).toContain('ORMAMapStyle.addRouteLine(map, {');
     expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     // Both homepage maps now share one Waymarked treatment instead of two
     // hand-tuned desaturation blocks that greyed the network into mush.
-    expect(script).toContain('ORMAMapStyle.addWaymarkedHiking(guestMapInstance');
     expect(script).toContain('ORMAMapStyle.addWaymarkedHiking(trailMapInstance');
     expect(script).not.toContain("'raster-saturation': -1");
     expect(script).not.toContain("'raster-contrast': 0.20");

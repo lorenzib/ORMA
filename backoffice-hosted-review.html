@@ -7,7 +7,7 @@
   <title>Backoffice Home | ORMA</title>
   <link rel="icon" href="favicon-32.png" sizes="32x32">
   <link rel="stylesheet" href="styles.css?v=20260821-5">
-  <link rel="stylesheet" href="backoffice-review.css?v=20260905-1">
+  <link rel="stylesheet" href="backoffice-review.css?v=20260905-2">
   <script>document.documentElement.classList.add('bo-auth-pending')</script>
 </head>
 <body class="bo-shell">
@@ -16,9 +16,8 @@
     <nav class="bo-primary-nav" aria-label="Backoffice navigation">
       <a href="backoffice-review.html" aria-current="page">Home</a>
       <a href="trail-dossier-desk.html">Existing Trails</a>
-      <a href="new-trail-scouting-desk.html">New Trails</a>
+      
       <a href="image-coverage-desk.html">Trail photos</a>
-      <a href="hazard-review-desk.html">Hazards</a>
       <a href="community-moderation-desk.html">Community</a>
     </nav>
     <button class="bo-sign-out" type="button" data-backoffice-sign-out>Sign out</button>
@@ -62,13 +61,45 @@
       <div id="executiveDecisionQueue" class="bo-decision-queue"><p class="bo-dashboard-loading">Checking protected review desks…</p></div>
     </section>
 
+
+    <section class="bo-coverage" aria-labelledby="coverageTitle">
+      <div class="bo-exec-section-head">
+        <div><p class="eyebrow">Where everything stands</p><h2 id="coverageTitle">Trail coverage</h2></div>
+        <p>Every published trail, across the three lanes that are running.</p>
+      </div>
+      <section class="bo-desk-summary" aria-label="Coverage totals">
+        <article><strong id="coverageComplete">—</strong><span>Photo and verified</span></article>
+        <article><strong id="coveragePhoto">—</strong><span>Have a photo</span></article>
+        <article><strong id="coverageVerified">—</strong><span>ORMA Verified</span></article>
+        <article><strong id="coverageHazards">—</strong><span>With a live hazard</span></article>
+      </section>
+      <div class="bo-coverage-controls">
+        <label class="bo-coverage-search"><span class="sr-only">Search trails</span>
+          <input id="coverageSearch" type="search" placeholder="Search a trail, area or valley" autocomplete="off"></label>
+        <div class="bo-coverage-filters" role="group" aria-label="Filter trails">
+          <button type="button" data-coverage-filter="all" aria-pressed="true">All</button>
+          <button type="button" data-coverage-filter="no-photo" aria-pressed="false">Needs a photo</button>
+          <button type="button" data-coverage-filter="not-verified" aria-pressed="false">Not verified</button>
+          <button type="button" data-coverage-filter="hazard" aria-pressed="false">Has a hazard</button>
+          <button type="button" data-coverage-filter="done" aria-pressed="false">Complete</button>
+        </div>
+      </div>
+      <div class="bo-coverage-scroll">
+        <table class="bo-coverage-table">
+          <caption id="coverageCaption" class="sr-only">Trail coverage across photo, verification and hazard state</caption>
+          <thead><tr><th scope="col">Trail</th><th scope="col">Photo</th><th scope="col">Verified</th><th scope="col">Hazards</th></tr></thead>
+          <tbody id="coverageRows"><tr><td colspan="4" class="bo-dashboard-loading">Loading trail coverage…</td></tr></tbody>
+        </table>
+      </div>
+      <p id="coverageEmpty" class="bo-decision-empty" hidden>No trail matches this filter.</p>
+    </section>
+
     <section class="bo-mvp-work" aria-labelledby="mvpWorkTitle">
       <div class="bo-exec-section-head"><div><p class="eyebrow">Active now</p><h2 id="mvpWorkTitle">MVP workstreams</h2></div><p>Open a desk only when you need its detail.</p></div>
       <div class="bo-mvp-grid">
         <article><span>Catalogue</span><h3>Existing Trails</h3><p>Verify routes, evidence, content and release.</p><strong id="existingCatalogueProgress">Loading trail state…</strong><div><a href="trail-dossier-desk.html">Evidence ↗</a><a href="trail-content-desk.html">Content &amp; release ↗</a></div></article>
-        <article><span>Reach</span><h3>New Trails</h3><p>Scout credible Dolomites loops and select candidates.</p><strong id="newTrailProgress">Loading scouting state…</strong><div><a href="new-trail-scouting-desk.html">Scouting ↗</a></div></article>
         <article><span>Coverage</span><h3>Trail photos</h3><p>Fill priority gaps with credited, licensed pictures.</p><strong id="photoProgress">Loading photo coverage…</strong><div><a href="image-coverage-desk.html">Photo desk ↗</a></div></article>
-        <article><span>Safety</span><h3>Hazards</h3><p>Keep source-backed warnings accurate.</p><strong id="groundskeeperProgress">Loading hazard state…</strong><div><a href="hazard-review-desk.html">Hazard desk ↗</a></div></article>
+        <article><span>Safety</span><h3>Hazards</h3><p>Added, vetted and removed automatically. Nothing here needs you.</p><strong id="groundskeeperProgress">Loading hazard state…</strong></article>
         <article><span>Community</span><h3>User submissions</h3><p>Review user photos, reviews, place observations and hazard reports before they affect the public site.</p><strong id="communityProgress">Loading community queue…</strong><div><a href="community-moderation-desk.html">Moderation gate ↗</a></div></article>
       </div>
     </section>
@@ -76,12 +107,6 @@
     <details class="bo-compact-details bo-exec-activity">
       <summary>Recent receipts and handoffs</summary>
       <ol id="dashboardActivity" class="bo-activity-list"><li class="bo-dashboard-loading">Loading decision receipts…</li></ol>
-    </details>
-
-    <details class="bo-compact-details bo-parked-work">
-      <summary>Parked for MVP</summary>
-      <p>Editorial copy, Newsletter, Social, Analyst and Design are paused. Existing work is preserved.</p>
-      <nav aria-label="Parked backoffice desks"><a href="editorial-desk.html">Editorial copy</a><a href="newsletter-desk.html">Newsletter</a><a href="product-ideas-desk.html">Analyst</a><a href="designer-desk.html">Design</a></nav>
     </details>
 
     <details id="automationExplainer" class="bo-compact-details bo-automation-help">
@@ -93,7 +118,7 @@
   <script type="module" src="backoffice-firebase.js"></script>
   <script src="backoffice-auth-guard.js?v=20260819-1"></script>
   <script src="backoffice-session.js?v=20260819-1"></script>
-  <script src="backoffice/dashboard-model.js?v=20260905-1"></script>
-  <script src="backoffice-hosted-dashboard.js?v=20260905-1"></script>
+  <script src="backoffice/dashboard-model.js?v=20260905-2"></script>
+  <script src="backoffice-hosted-dashboard.js?v=20260905-2"></script>
 </body>
 </html>

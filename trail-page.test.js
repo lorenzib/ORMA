@@ -163,7 +163,11 @@ describe('trail page map controls', () => {
     expect(home).toContain('ORMAMapStyle.addWaymarkedHiking(trailMapInstance');
     expect(fs.readFileSync(path.join(__dirname, 'map-style.js'), 'utf8'))
       .toContain("visibility: config.visible === false ? 'none' : 'visible'");
-    expect(home).toContain('routes: true');
+    // The detail map keeps the network on — it is the navigating surface,
+    // where trail numbers are the point. The homepage is a browse map and
+    // now starts without it; its chip is what turns it back on.
+    expect(home).toContain('routes: false');
+    expect(home).toContain("routes:   ['waymarked-hiking-layer']");
     expect(trail).toContain("id: 'base-hillshade'");
     expect(home).toContain("id: 'base-hillshade'");
   });
@@ -236,7 +240,7 @@ describe('trail page map controls', () => {
     const bundle = fs.readFileSync(path.join(__dirname, 'trail-app.bundle.js'), 'utf8');
 
     expect(html).toContain('i18n.js?v=20260904-3');
-    expect(html).toContain('trail-app.bundle.js?v=20260904-3');
+    expect(html).toContain('trail-app.bundle.js?v=20260905-1');
     expect(html).toContain('trail-mobile.css?v=20260904-3');
     [
       'trail-photo-provenance.js', 'trail-weather-window.js', 'hike-mode.js',
@@ -326,7 +330,8 @@ describe('trail page map controls', () => {
     expect(fit.querySelector('#recommendationDecision')).not.toBeNull();
     expect(guides).not.toBeNull();
     expect(document.getElementById('td2DogCard')).toBeNull();
-    expect(html).toContain('.td2-plan-stack{position:sticky;top:88px;height:auto;');
+    expect(html).toContain('.td2-sidebar-column{position:sticky;top:88px;align-self:start;}');
+    expect(html).toContain('.td2-plan-stack{position:static;height:auto;');
     expect(html).toContain('.td2-fit-shell{height:auto;min-height:0;overflow:visible;');
     expect(html).toContain('.td2-fit-shell{height:auto;overflow:visible;}');
   });
@@ -371,7 +376,9 @@ describe('trail page map controls', () => {
     expect(blueprint).toContain('for the final section to the route finish');
     expect(blueprint).toContain('marked only on the verified section');
     expect(blueprint).toContain('aroundGrid.innerHTML = routeRefMarkup ? renderCards([routeCard])');
-    expect(blueprint).toContain('<b>Route overview:</b> ${esc(routeOverview)}');
+    expect(blueprint).toContain(".replace(/^\\s*route\\s+overview\\s*:\\s*/i, '')");
+    expect(blueprint).toContain('<b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route.');
+    expect(blueprint).toContain('? `${routeBadges}<div class="s"><p><b>Start:</b>');
     expect(blueprint).not.toContain('does not publish a usable trail number or numbered switch');
     expect(html).toContain('.td2-route-ref{display:inline-flex;');
     expect(html).toContain('.td2-route-switch-list{display:grid;');
@@ -600,7 +607,11 @@ describe('trail page map controls', () => {
     expect(trail).toContain('ORMAMapStyle.quietBasemap(map)');
     expect(trail).not.toContain("'raster-saturation': -0.90");
     expect(trail).not.toContain("'raster-contrast': 0.38");
-    expect(trail).toContain("return score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25'");
+    // Guests are scored against the medium-dog profile rather than switching
+    // the line to the trail's intrinsic risk in a near-identical palette.
+    expect(trail).toContain('window.ORMAMapStyle.matchColour(score)');
+    expect(trail).toContain('applyDetailRouteColor(detailRouteColorForScore(guestMatchScore(t)))');
+    expect(trail).not.toContain('function safetyColor(');
     // The route contours the marked path instead of covering it: it goes in
     // BELOW the waymarked raster, so that raster draws down its middle.
     expect(trail).toContain("ORMAMapStyle.addRouteLine(map, {");

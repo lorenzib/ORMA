@@ -17,7 +17,7 @@ on:
         required: false
         default: false
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/30 * * * *'
 
 concurrency:
   group: orma-backoffice-worker
@@ -43,9 +43,6 @@ jobs:
       ORMA_SPECIALIST_LIMIT: ${{ github.event.inputs.specialist_limit || '10' }}
       ORMA_PUBLICATION_FORCE_RETRY: ${{ github.event.inputs.force_publication_retry || 'false' }}
       ORMA_CAMPAIGN_AUTOMATION_ENABLED: ${{ vars.ORMA_CAMPAIGN_AUTOMATION_ENABLED || 'false' }}
-      ORMA_NEWSLETTER_ENABLED: ${{ vars.ORMA_NEWSLETTER_ENABLED || 'false' }}
-      ORMA_EDITORIAL_ENABLED: 'false'
-      ORMA_ANALYST_ENABLED: 'false'
       ORMA_CAMPAIGN_LIMIT: '10'
       ORMA_CAMPAIGN_CAPACITY: '15'
     steps:
@@ -137,7 +134,7 @@ jobs:
             git config user.name "ORMA Backoffice"
             git config user.email "orma-backoffice@users.noreply.github.com"
             git checkout -b "$branch"
-            git add data/verified-trail-overrides.json data/trail-image-overrides.json data/generated/trail-validation-report.json data/trail-details data/regions data/regions-manifest.json regions-runtime-manifest.js trails sitemap.xml browse-trails.html
+            git add data/verified-trail-overrides.json data/route-operational-facts.json data/trail-image-overrides.json data/generated/trail-validation-report.json data/trail-details data/regions data/regions-manifest.json regions-runtime-manifest.js trails sitemap.xml browse-trails.html
             if [ -d images/trails ]; then git add images/trails; fi
             git diff --quiet || {
               echo "Publication generation left tracked files unstaged:"

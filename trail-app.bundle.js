@@ -270,6 +270,12 @@
       id: WAYMARKED_LAYER,
       type: 'raster',
       source: WAYMARKED_SOURCE,
+      // `minzoom` holds the network back until it is navigational rather than
+      // decorative. AllTrails draws no path network at browse zooms at all;
+      // ours has to appear eventually because Dolomites walkers follow the
+      // numbers on the signposts, but it does not have to be there while you
+      // are still choosing a valley.
+      ...(Number.isFinite(config.minzoom) ? { minzoom: config.minzoom } : {}),
       layout: { visibility: config.visible === false ? 'none' : 'visible' },
       paint: {
         // Quiet at overview zooms, near-solid once a single valley fills the
@@ -314,6 +320,40 @@
         map.setLayoutProperty(layer.id, 'visibility', 'none');
       } catch (error) { /* style variant without this layer */ }
     });
+  }
+
+  // ── Match colour ────────────────────────────────────────────────────────
+  // Green / amber / red on an ORMA map means one thing and one thing only:
+  // how well this walk suits the dog. It never means how hard the trail is.
+  //
+  // Three near-identical green/amber/red palettes used to exist — the match
+  // tiers, trail.js's safetyColor() and collections' difficultyColour() — and
+  // two of them encoded the trail's intrinsic risk while looking exactly like
+  // a match tier. A guest on a trail page got one meaning, a signed-in owner
+  // another, from the same coloured line.
+  const MATCH_COLOURS = Object.freeze({ good: '#4A7856', fair: '#C98A2E', poor: '#9C3A25' });
+  const MATCH_GOOD = 85;
+  const MATCH_FAIR = 65;
+  // Shown when no score could be produced at all. Deliberately not a tier
+  // colour: an unknown fit must not read as a good or bad one.
+  const MATCH_UNKNOWN = '#6B7A6E';
+
+  function matchColour(score) {
+    const value = Number(score);
+    if (!Number.isFinite(value)) return MATCH_UNKNOWN;
+    if (value >= MATCH_GOOD) return MATCH_COLOURS.good;
+    return value >= MATCH_FAIR ? MATCH_COLOURS.fair : MATCH_COLOURS.poor;
+  }
+
+  /** The same tiers as a data-driven expression, for layers styled per feature. */
+  function matchColourExpression(property) {
+    return [
+      'step', ['coalesce', ['get', property || 'score'], -1],
+      MATCH_UNKNOWN,
+      0, MATCH_COLOURS.poor,
+      MATCH_FAIR, MATCH_COLOURS.fair,
+      MATCH_GOOD, MATCH_COLOURS.good,
+    ];
   }
 
   function widthRamp(a, b, c, d, scale) {
@@ -409,6 +449,11 @@
     FONT_BOLD,
     FONT_REGULAR,
     firstLabelLayerId,
+    MATCH_COLOURS,
+    MATCH_GOOD,
+    MATCH_FAIR,
+    matchColour,
+    matchColourExpression,
     addWaymarkedHiking,
     setWaymarkedVisible,
     quietBasemap,
@@ -4097,7 +4142,7 @@ function breedInsights(name){
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
-  const VERSION = '1.3.0';
+  const VERSION = '1.5.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
     moderate: { terrain: 1, distanceKm: 10, ascentM: 600 },
@@ -4172,7 +4217,7 @@ function breedInsights(name){
   ]);
 
   function item(code, message, vars, messageKey){
-    return { code, message, vars:vars || null, messageKey:messageKey || code };
+    return { code, message, vars:vars || null, messageKey:messageKey || code, impact:0 };
   }
 
   function unique(items){
@@ -4350,13 +4395,23 @@ function breedInsights(name){
     const conditions = input.currentConditions || { status: 'not-provided' };
     let score = 100;
 
+    // Every deduction is recorded on the entry that caused it. P0-1 ranks the
+    // breakdown by these numbers, so a penalty applied without one would show
+    // up as a factor that silently moved the score.
+    function penalise(points, entry, bucket){
+      const cost = Math.max(0, Math.round(points));
+      score -= cost;
+      entry.impact = -cost;
+      (bucket || cautions).push(entry);
+      return entry;
+    }
+
     const terrain = numberOrNull(suitability.terrainRank);
     if(terrain === null){
       unknowns.push(item('trail.terrain.unknown', 'Terrain difficulty is unknown.'));
     }else if(terrain > dog.terrain){
       const penalty = (terrain - dog.terrain) * 30;
-      score -= penalty;
-      cautions.push(item('trail.terrain.above-tolerance',
+      penalise(penalty, item('trail.terrain.above-tolerance',
         `Terrain is above this dog's effective tolerance (${terrain} versus ${dog.terrain}).`,
         { terrain, tolerance:dog.terrain }));
     }else{
@@ -4368,8 +4423,7 @@ function breedInsights(name){
     if(distance === null){
       unknowns.push(item('trail.distance.unknown', 'Route distance is unknown.'));
     }else if(distance > dog.distanceKm){
-      score -= Math.min(35, Math.round((distance - dog.distanceKm) * 5));
-      cautions.push(item('trail.distance.above-range',
+      penalise(Math.min(35, Math.round((distance - dog.distanceKm) * 5)), item('trail.distance.above-range',
         `The ${distance} km route exceeds this dog's effective ${dog.distanceKm} km range.`,
         { distance, range:dog.distanceKm }));
     }else{
@@ -4381,8 +4435,7 @@ function breedInsights(name){
     if(ascent === null){
       unknowns.push(item('trail.ascent.unknown', 'Total ascent is unknown.'));
     }else if(ascent > dog.ascentM){
-      score -= Math.min(20, Math.ceil((ascent - dog.ascentM) / 100) * 4);
-      cautions.push(item('trail.ascent.above-range',
+      penalise(Math.min(20, Math.ceil((ascent - dog.ascentM) / 100) * 4), item('trail.ascent.above-range',
         `The ${ascent} m climb exceeds this dog's effective ${dog.ascentM} m climbing range.`,
         { ascent, range:dog.ascentM }));
     }else{
@@ -4394,30 +4447,26 @@ function breedInsights(name){
     if(descent === null){
       unknowns.push(item('trail.descent.unknown', 'Total descent is unknown.'));
     }else if((dog.fragile || dog.giant) && descent > 400){
-      score -= Math.min(20, Math.ceil((descent - 400) / 100) * 4);
-      cautions.push(item('trail.descent.joint-load',
+      penalise(Math.min(20, Math.ceil((descent - 400) / 100) * 4), item('trail.descent.joint-load',
         'The sustained descent may place extra load on joints.'));
     }
 
     if(suitability.exposure === null || suitability.exposure === undefined){
       unknowns.push(item('trail.exposure.unknown', 'Exposure and drop-offs have not been established.'));
     }else if(suitability.exposure){
-      score -= 30 + ((dog.fragile || dog.impairedVision) ? 10 : 0);
-      cautions.push(item('trail.exposure.present',
+      penalise(30 + ((dog.fragile || dog.impairedVision) ? 10 : 0), item('trail.exposure.present',
         'The route includes exposed terrain or drop-offs.'));
     }else{
       positives.push(item('trail.exposure.none-known', 'No exposed section is recorded.'));
     }
 
     if(suitability.heatRisk === 'high'){
-      score -= dog.heatSensitive ? 25 : 12;
-      cautions.push(item('trail.heat.high', dog.heatSensitive
+      penalise(dog.heatSensitive ? 25 : 12, item('trail.heat.high', dog.heatSensitive
         ? 'The route has high heat risk and this dog is heat-sensitive.'
         : 'The route has high baseline heat risk.', null,
       dog.heatSensitive ? 'trail.heat.high.sensitive' : 'trail.heat.high'));
     }else if(suitability.heatRisk === 'moderate'){
-      score -= dog.heatSensitive ? 10 : 4;
-      cautions.push(item('trail.heat.moderate', dog.heatSensitive
+      penalise(dog.heatSensitive ? 10 : 4, item('trail.heat.moderate', dog.heatSensitive
         ? 'Moderate route heat risk matters more for this heat-sensitive dog.'
         : 'The route has moderate baseline heat risk.', null,
       dog.heatSensitive ? 'trail.heat.moderate.sensitive' : 'trail.heat.moderate'));
@@ -4431,11 +4480,9 @@ function breedInsights(name){
     if(shade === null){
       unknowns.push(item('trail.shade.unknown', 'Shade coverage is unknown.'));
     }else if(shade < 20){
-      score -= 10;
-      cautions.push(item('trail.shade.very-low', 'The route has very little shade.'));
+      penalise(10, item('trail.shade.very-low', 'The route has very little shade.'));
     }else if(shade < 40){
-      score -= 5;
-      cautions.push(item('trail.shade.low', 'Shade is limited on this route.'));
+      penalise(5, item('trail.shade.low', 'Shade is limited on this route.'));
     }else if(shade >= 60){
       positives.push(item('trail.shade.good', 'The route has substantial shade.'));
     }
@@ -4446,12 +4493,12 @@ function breedInsights(name){
       unknowns.push(item('trail.surface-hazards.unknown', 'Surface hazards are unknown.'));
     }else if(hazards.length){
       const multiplier = dog.fragile ? 1.5 : 1;
-      score -= Math.min(dog.fragile ? 30 : 20, Math.round(hazards.length * 8 * multiplier));
+      const hazardCost = Math.min(dog.fragile ? 30 : 20, Math.round(hazards.length * 8 * multiplier));
       const hazardSummary = hazards
         .map(hazard => String(hazard).trim().replace(/[.;]+$/, ''))
         .filter(Boolean)
         .join('; ');
-      cautions.push(item('trail.surface-hazards.present',
+      penalise(hazardCost, item('trail.surface-hazards.present',
         `Recorded route cautions: ${hazardSummary}.`,
         { count:hazards.length, hazards:hazardSummary },
         hazards.length === 1 ? 'trail.surface-hazards.present.one' : 'trail.surface-hazards.present.many'));
@@ -4461,11 +4508,17 @@ function breedInsights(name){
     }
 
     if(access.status === 'prohibited'){
-      hardStops.push(item('trail.dog-access.prohibited', 'Dogs are prohibited on this route.'));
+      const stop = item('trail.dog-access.prohibited', 'Dogs are prohibited on this route.');
+      // A prohibition is not a deduction, it is a ceiling. Recording the drop
+      // it actually caused keeps the breakdown's numbers adding up.
+      stop.impact = Math.min(0, 5 - score);
+      hardStops.push(stop);
       score = Math.min(score, 5);
     }else if(access.status === 'seasonal-restrictions'){
-      cautions.push(item('trail.dog-access.seasonal',
-        'Dog access has seasonal restrictions that must be checked for the hike date.'));
+      const seasonalEntry = item('trail.dog-access.seasonal',
+        'Dog access has seasonal restrictions that must be checked for the hike date.');
+      seasonalEntry.impact = Math.min(0, 84 - score);
+      cautions.push(seasonalEntry);
       score = Math.min(score, 84);
     }else if(access.status === 'leash-required'){
       positives.push(item('trail.dog-access.leash', 'Dogs are allowed when kept on a leash.'));
@@ -4506,6 +4559,17 @@ function breedInsights(name){
     const trafficComfort = behaviour.trafficComfort;
     const crowdComfort = behaviour.crowdComfort;
     let behaviourPenalty = 0;
+    // Behaviour charges are collected raw and settled after the cap, so each
+    // entry's recorded impact is its share of what was actually deducted.
+    const behaviourCharges = [];
+
+    function chargeBehaviour(points, entry){
+      const raw = Math.max(0, Math.round(points));
+      behaviourPenalty += raw;
+      behaviourCharges.push({ entry, raw });
+      cautions.push(entry);
+      return entry;
+    }
 
     const rank = value => (value === null ? 0 : value);
     const declaredAny = (...values) => values.some(value => value !== null);
@@ -4531,9 +4595,8 @@ function breedInsights(name){
         drivers.push(recall === 2 ? 'recall is unreliable' : 'recall is variable');
       }
       if(load > 0){
-        behaviourPenalty += Math.round(load * (seasonal ? 0.6 : 1));
         const summary = drivers.join(', ');
-        cautions.push(item('trail.livestock.behaviour-risk',
+        chargeBehaviour(Math.round(load * (seasonal ? 0.6 : 1)), item('trail.livestock.behaviour-risk',
           `${seasonal ? 'Livestock graze this route in season' : 'Grazing livestock is recorded on this route'}, and ${summary}.`,
           { presence:livestockPresence, drivers:summary },
           seasonal ? 'trail.livestock.behaviour-risk.seasonal' : 'trail.livestock.behaviour-risk'));
@@ -4554,8 +4617,7 @@ function breedInsights(name){
       if(rank(preyDrive) > 0) load += preyDrive * (high ? 6 : 3);
       if(rank(recall) > 0) load += recall * (high ? 4 : 2);
       if(load > 0){
-        behaviourPenalty += Math.round(load);
-        cautions.push(item('trail.wildlife.chase-risk',
+        chargeBehaviour(Math.round(load), item('trail.wildlife.chase-risk',
           high
             ? 'Wildlife is active on this route, which matters for a dog that chases.'
             : 'Some wildlife activity is recorded here, which matters for a dog that chases.',
@@ -4572,8 +4634,7 @@ function breedInsights(name){
         positives.push(item('trail.sightlines.open',
           'Open sightlines keep this dog visible on most sections.'));
       }else if(sightlines === 'restricted'){
-        behaviourPenalty += recall * 5;
-        cautions.push(item('trail.sightlines.restricted',
+        chargeBehaviour(recall * 5, item('trail.sightlines.restricted',
           'Enclosed, twisting ground makes it harder to keep this dog in view.'));
       }
     }
@@ -4586,8 +4647,7 @@ function breedInsights(name){
       if(rank(trafficComfort) > 0) load += trafficComfort * (alongside ? 7 : 4);
       if(rank(recall) > 0) load += recall * (alongside ? 4 : 2);
       if(load > 0){
-        behaviourPenalty += Math.round(load);
-        cautions.push(item('trail.road.traffic-risk',
+        chargeBehaviour(Math.round(load), item('trail.road.traffic-risk',
           alongside
             ? 'The route runs alongside a road, which matters for this dog around traffic.'
             : 'The route crosses a road, which matters for this dog around traffic.',
@@ -4604,8 +4664,7 @@ function breedInsights(name){
     if(crowding === 'busy' || crowding === 'moderate'){
       const busy = crowding === 'busy';
       if(socialRank > 0){
-        behaviourPenalty += Math.round(socialRank * (busy ? 8 : 4));
-        cautions.push(item('trail.crowding.social-risk',
+        chargeBehaviour(Math.round(socialRank * (busy ? 8 : 4)), item('trail.crowding.social-risk',
           busy
             ? 'This is a busy route, and this dog needs space from other people and dogs.'
             : 'This route sees steady foot traffic, and this dog needs space from other people and dogs.',
@@ -4621,8 +4680,7 @@ function breedInsights(name){
     const durationMinutes = numberOrNull(metrics.durationMinutes);
     if(preferredDurationMin !== null && durationMinutes !== null){
       if(durationMinutes > preferredDurationMin * 1.25){
-        behaviourPenalty += Math.min(10, Math.ceil((durationMinutes - preferredDurationMin) / 30) * 3);
-        cautions.push(item('trail.duration.above-preference',
+        chargeBehaviour(Math.min(10, Math.ceil((durationMinutes - preferredDurationMin) / 30) * 3), item('trail.duration.above-preference',
           `At about ${Math.round(durationMinutes)} minutes this route runs longer than the preferred ${preferredDurationMin} minutes.`,
           { durationMinutes:Math.round(durationMinutes), preferredDurationMin }));
       }else{
@@ -4632,7 +4690,28 @@ function breedInsights(name){
       }
     }
 
-    if(behaviourPenalty > 0) score -= Math.min(BEHAVIOUR_PENALTY_CAP, behaviourPenalty);
+    if(behaviourPenalty > 0){
+      const applied = Math.min(BEHAVIOUR_PENALTY_CAP, behaviourPenalty);
+      score -= applied;
+      // Share the applied total across the charges in proportion to their raw
+      // load. Uncapped this is exact; capped, every entry shrinks together
+      // rather than one arbitrarily absorbing the whole reduction.
+      // Largest-remainder allocation. Rounding each share independently can
+      // leave the recorded costs a point or two off what was deducted, which
+      // would break the one property the breakdown depends on.
+      const ratio = applied / behaviourPenalty;
+      const shares = behaviourCharges.map(charge => {
+        const exact = charge.raw * ratio;
+        const whole = Math.floor(exact);
+        return { charge, whole, remainder:exact - whole };
+      });
+      let allocated = shares.reduce((sum, share) => sum + share.whole, 0);
+      shares
+        .slice()
+        .sort((a, b) => b.remainder - a.remainder)
+        .forEach(share => { if(allocated < applied){ share.whole += 1; allocated += 1; } });
+      shares.forEach(share => { share.charge.entry.impact = -share.whole; });
+    }
 
     // ---- Route segments ---------------------------------------------------
     // Segments carry the "where" of an advisory. The aggregate rules above
@@ -4661,8 +4740,7 @@ function breedInsights(name){
           vars,
           required ? 'segment.leash-required' : 'segment.leash-recommended'));
       }else if(segment.advisory === 'avoid'){
-        score -= 20;
-        cautions.push(item(`segment.avoid.${vars.type}.${fromKm}-${toKm}`,
+        penalise(20, item(`segment.avoid.${vars.type}.${fromKm}-${toKm}`,
           `${where} Avoid this stretch.`, vars, 'segment.avoid'));
       }else if(segment.advisory === 'caution'){
         cautions.push(item(`segment.caution.${vars.type}.${fromKm}-${toKm}`,
@@ -4675,15 +4753,22 @@ function breedInsights(name){
 
     if(conditions.status === 'known'){
       if(conditions.heatRisk === 'high'){
-        score -= dog.heatSensitive ? 25 : 10;
-        cautions.push(item('conditions.heat.high', dog.heatSensitive
+        penalise(dog.heatSensitive ? 25 : 10, item('conditions.heat.high', dog.heatSensitive
           ? 'Current heat conditions are high-risk for this heat-sensitive dog.'
           : 'Current heat conditions add material risk.', null,
         dog.heatSensitive ? 'conditions.heat.high.sensitive' : 'conditions.heat.high'));
       }else if(conditions.heatRisk === 'moderate'){
-        score -= dog.heatSensitive ? 10 : 4;
-        cautions.push(item('conditions.heat.moderate',
-          'Current conditions add moderate heat load.'));
+        // "Moderate" on its own tells an owner nothing they can act on. When
+        // the forecast says when it turns hot, the hour is the advice.
+        const hotFrom = typeof conditions.hotFromLabel === 'string' && conditions.hotFromLabel
+          ? conditions.hotFromLabel
+          : null;
+        penalise(dog.heatSensitive ? 10 : 4, item('conditions.heat.moderate',
+          hotFrom
+            ? `Current conditions add moderate heat load, and it turns hot from ${hotFrom}.`
+            : 'Current conditions add moderate heat load.',
+          hotFrom ? { hotFrom } : null,
+          hotFrom ? 'conditions.heat.moderate.from' : 'conditions.heat.moderate'));
       }else if(conditions.heatRisk === 'low'){
         positives.push(item('conditions.heat.low', 'Current heat conditions are low-risk.'));
       }else{
@@ -4714,9 +4799,28 @@ function breedInsights(name){
       }
     }
 
-    if(criticalUnknown) score = Math.min(score, 80);
-    score = Math.max(5, Math.min(100, Math.round(score)));
+    if(criticalUnknown && score > 80){
+      const ceiling = item('evidence.critical.capped',
+        'Unreviewed safety evidence holds this recommendation below a strong option.');
+      ceiling.impact = 80 - score;
+      // This moved the score, so it belongs in the breakdown rather than in
+      // the unknowns disclosure, which factors deliberately does not include.
+      cautions.push(ceiling);
+      score = 80;
+    }
+    // The breakdown's numbers must add up to the number on the card. When the
+    // demands exceed everything the dog has, the floor is what the reader sees,
+    // so the floor is recorded rather than left as an unexplained gap.
+    const rawScore = Math.round(score);
+    score = Math.max(5, Math.min(100, rawScore));
+    if(rawScore < 5){
+      const floor = item('score.floor',
+        'The demands above already exceed what this dog can comfortably take, so the score rests at its floor.');
+      floor.impact = 5 - rawScore;
+      cautions.push(floor);
+    }
 
+    const shownPositives = unique(positives).filter(entry => reassuranceIsBacked(entry, categories));
     const confidencePoints = verifiedCount + dog.completeness;
     const confidence = confidencePoints >= 9
       ? 'high'
@@ -4734,7 +4838,13 @@ function breedInsights(name){
       category,
       confidence,
       evidenceTier: parts.verification.tier || 'unknown',
-      positiveReasons: unique(positives).filter(entry => reassuranceIsBacked(entry, categories)),
+      positiveReasons: shownPositives,
+      // Descending order of impact, top negative first. Ties keep the order the
+      // engine evaluated them in, so the list is stable between runs.
+      factors: [...unique(hardStops), ...unique(cautions), ...shownPositives]
+        .map((entry, index) => ({ ...entry, order:index }))
+        .sort((a, b) => a.impact - b.impact || a.order - b.order)
+        .map(({ order, ...entry }) => entry),
       cautions: unique(cautions),
       unknowns: unique(unknowns),
       hardStops: unique(hardStops),
@@ -5037,8 +5147,14 @@ function scoreTrail(trail, subject, currentConditions){
   return recommendTrail(trail, subject, currentConditions).score;
 }
 
+// The profile a visitor is scored against before they add a dog. The site
+// already tells them so ("Scores use a medium-dog profile"), so guest maps can
+// colour by match honestly rather than falling back to a different meaning.
+const GUEST_SUBJECT = Object.freeze({ terrain:'1', distance:'10', heatSensitive:false });
+
 window.DoloPawsScoring = Object.freeze({
   VERSION: SCORING_VERSION,
+  GUEST_SUBJECT,
   recommendTrail,
   scoreTrail,
 });
@@ -5476,16 +5592,15 @@ function effectiveOverrides(profile, adjustOverride){
       routeAudit: {
         photo: 'No licensed trail photo is currently used; no credit is due.',
         route: 'Full route geometry present and matched to Les Karellis route 09.',
+        routeNumbers: 'Les Karellis states the route follows green waymark no. 9 (\u201Csuivez le balisage vert n\u00B09\u201D) departing from the tourist office, which is the recommended start. The official description names no second number, so no numbered switch applies.',
         mapPoints: 'Mapped water points checked at their source GPS coordinates.',
         elevation: 'Profile present; headline ascent corrected to the official 249 m figure.'
       },
       graduation: {
-        status: 'in-progress',
+        status: 'verified',
         required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
-        completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
-        blockers: {
-          routeNumbers: 'Confirm from an authoritative route source that route 09 applies from the recommended start and that no numbered switch is required.'
-        }
+        completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        blockers: {}
       },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
@@ -5612,15 +5727,15 @@ function effectiveOverrides(profile, adjustOverride){
       routeAudit: {
         photo: 'No reusable trail photograph is used; the official board image is retained only as a source, not copied.',
         route: 'Closed OSM relation checked against the official Laugen–Elvas overview board; the official board lists a 4.2 km circuit.',
+        routeNumbers: 'Bezirksgemeinschaft Eisacktal describes this circuit by name only, with no numbered waymark and no numbered switch, so the named-only statement stands in place of trail-number guidance.',
         mapPoints: 'Two water points and the suggested start were traced to exact source coordinates.',
         elevation: 'Profile present and scaled to 4.2 km; headline ascent corrected from the sampled 181 m to the official 100 m.'
       },
       graduation: {
         status: 'in-progress',
         required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
-        completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards'],
+        completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards'],
         blockers: {
-          routeNumbers: 'Verify the ordered trail-number guidance and every numbered switch, or an authoritative named-only/no-switch statement.',
           access: 'The official route crosses the protected Laugen biotope but the available route material does not state the dog-access or leash rule for this specific reserve.'
         }
       },
@@ -8617,7 +8732,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
   'use strict';
 
   const STORAGE_KEY = 'dolopaws-post-hike-outcomes-v1';
-  const SCHEMA_VERSION = 1;
+  const SCHEMA_VERSION = 2;
   const RESPONSES = Object.freeze([
     'appropriate',
     'appropriate_with_unexpected_cautions',
@@ -8639,6 +8754,35 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     'access',
     'water',
   ]);
+  // Community observations. Each is optional and stored as null when the owner
+  // does not answer, matching waterAccuracy above: an unanswered question is a
+  // gap in the evidence, never a claim that the pleasant answer applies.
+  //
+  // These are the signals that populate the trail attributes SCORE-03 reads.
+  // livestockEncountered feeds livestockPresence, crowding feeds crowding, and
+  // offLeadObserved and missingRestriction inform access, which is why they are
+  // asked as bounded observations rather than free text.
+  const OFF_LEAD = Object.freeze([
+    'all_on_lead',
+    'some_off_lead',
+    'mostly_off_lead',
+  ]);
+  const LIVESTOCK_ENCOUNTER = Object.freeze([
+    'none',
+    'seen_at_distance',
+    'close_encounter',
+  ]);
+  const CROWDING = Object.freeze(['quiet', 'moderate', 'busy']);
+  const DOG_ENJOYMENT = Object.freeze(['loved_it', 'fine', 'struggled']);
+  const REACTIVE_DOG_FIT = Object.freeze(['yes', 'with_care', 'no']);
+  const OBSERVATIONS = Object.freeze({
+    offLeadObserved: OFF_LEAD,
+    livestockEncountered: LIVESTOCK_ENCOUNTER,
+    crowding: CROWDING,
+    dogEnjoyment: DOG_ENJOYMENT,
+    reactiveDogFit: REACTIVE_DOG_FIT,
+  });
+  const OBSERVATION_KEYS = Object.freeze(Object.keys(OBSERVATIONS));
   const SYNC_STATES = Object.freeze(['pending', 'synced']);
   const ID_PATTERN = /^[A-Za-z0-9:._-]{1,160}$/;
   const TRAIL_PATTERN = /^[A-Za-z0-9._-]{1,80}$/;
@@ -8668,6 +8812,9 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
       Array.isArray(record.hazards) && record.hazards.length <= HAZARDS.length &&
       record.hazards.every(value => HAZARDS.includes(value)) &&
       new Set(record.hazards).size === record.hazards.length &&
+      OBSERVATION_KEYS.every(key =>
+        record[key] === null || OBSERVATIONS[key].includes(record[key])) &&
+      (record.missingRestriction === null || typeof record.missingRestriction === 'boolean') &&
       typeof record.recordedHikePresent === 'boolean' &&
       typeof record.offlinePackageUsed === 'boolean' &&
       finite(record.createdAt) && record.createdAt > 0 &&
@@ -8688,6 +8835,20 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     let value;
     try{ value = JSON.parse(raw); }
     catch(error){ return { status:'corrupt', store:null }; }
+    if(value && value.schemaVersion === 1 && Array.isArray(value.records)){
+      // Schema 1 predates the community observations. Those check-ins are still
+      // valid evidence for what they did record, so they are migrated with the
+      // new questions left unanswered rather than discarded.
+      value = {
+        schemaVersion:SCHEMA_VERSION,
+        records:value.records.map(record => ({
+          ...record,
+          schemaVersion:SCHEMA_VERSION,
+          ...Object.fromEntries(OBSERVATION_KEYS.map(key => [key, null])),
+          missingRestriction:null,
+        })),
+      };
+    }
     if(!value || value.schemaVersion !== SCHEMA_VERSION || !Array.isArray(value.records)){
       return {
         status:value && value.schemaVersion !== SCHEMA_VERSION ? 'incompatible' : 'corrupt',
@@ -8709,6 +8870,17 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     }catch(error){
       return { ok:false, error:'storage-write-failed' };
     }
+  }
+
+  // An unrecognised answer is dropped rather than coerced, so a stale client
+  // cannot write a value the aggregation would later misread.
+  function observations(input){
+    const out = {};
+    for(const key of OBSERVATION_KEYS){
+      const value = input && input[key];
+      out[key] = OBSERVATIONS[key].includes(value) ? value : null;
+    }
+    return out;
   }
 
   function createRecord(completion, input, ownerId, now){
@@ -8735,6 +8907,10 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
       response:input.response,
       waterAccuracy,
       hazards,
+      ...observations(input),
+      missingRestriction:typeof input.missingRestriction === 'boolean'
+        ? input.missingRestriction
+        : null,
       recordedHikePresent:true,
       offlinePackageUsed:!!input.offlinePackageUsed,
       createdAt:finite(now) ? now : Date.now(),
@@ -8842,6 +9018,8 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
     STORAGE_KEY,
     SCHEMA_VERSION,
     RESPONSES,
+    OBSERVATIONS,
+    OBSERVATION_KEYS,
     WATER_STATES,
     HAZARDS,
     validRecord,
@@ -9250,6 +9428,43 @@ function initHikeMode(map, trail, options){
     return { idx: bestIdx, dist: dists[bestIdx], minDist };
   }
 
+  // ---- Lead advisories (positioned segments from the canonical scorer) -----
+  // The rules for which advisories are usable live in recommendation-v1.js and
+  // are not repeated here: this reads the leashAdvisories it already returns,
+  // ordered by start distance. They do not depend on the dog, so an empty
+  // subject is enough.
+  let leashZones = [];
+  const announcedZones = Object.create(null);
+
+  function resolveLeashZones(activeTrail){
+    leashZones = [];
+    const scoring = window.DoloPawsScoring;
+    if(!scoring || typeof scoring.recommendTrail !== 'function') return;
+    try{
+      const result = scoring.recommendTrail(activeTrail, {});
+      if(result && Array.isArray(result.leashAdvisories)) leashZones = result.leashAdvisories;
+    }catch(error){
+      // A scorer failure must never stop a walk from being recorded.
+      leashZones = [];
+    }
+  }
+
+  // Returns the advisory to speak about right now: the one being walked
+  // through, else the next one close enough ahead to act on.
+  const LEAD_WARNING_KM = 0.3;
+
+  function leashZoneFor(currentKm){
+    if(!Number.isFinite(currentKm)) return null;
+    for(const zone of leashZones){
+      if(currentKm >= zone.fromKm && currentKm <= zone.toKm) return { zone, inside:true, ahead:0 };
+    }
+    for(const zone of leashZones){
+      const ahead = zone.fromKm - currentKm;
+      if(ahead > 0 && ahead <= LEAD_WARNING_KM) return { zone, inside:false, ahead };
+    }
+    return null;
+  }
+
   // ---- Next POI ahead (from km-tagged rifugi / water sources) --------------
   function nextAhead(list, currentKm, labelKey){
     let best = null;
@@ -9389,6 +9604,24 @@ function initHikeMode(map, trail, options){
     if (hut) parts.push(window.t('hike.hutIn', {name: hut.label, d: hut.ahead.toFixed(1)}));
     const decision = isLoop ? null : nextAhead(trail.decisionPoints, currentRouteKm, 'instruction');
     if (decision && decision.ahead < 0.5) parts.push(window.t('hike.ahead', {what: decision.label}));
+
+    // Lead advisories are a range rather than a next-point search, so unlike
+    // the readouts above they stay meaningful on a loop.
+    const lead = assessment.usableForProgress ? leashZoneFor(currentRouteKm) : null;
+    if (lead) {
+      const detail = lead.zone.note || lead.zone.label;
+      const message = lead.inside
+        ? window.t('hike.leadOnNow', {what: detail})
+        : window.t('hike.leadOnAhead', {m: Math.round(lead.ahead * 1000), what: detail});
+      parts.push(message);
+      // Announce each zone once entering and once approaching, so the phone
+      // speaks up when it matters without repeating on every fix.
+      const key = `${lead.zone.fromKm}-${lead.zone.toKm}-${lead.inside ? 'in' : 'near'}`;
+      if (!announcedZones[key]) {
+        announcedZones[key] = true;
+        urgentAnnouncer.textContent = message;
+      }
+    }
     const validFixLabel = lastValidFixAt
       ? new Date(lastValidFixAt).toLocaleTimeString()
       : '—';
@@ -9499,6 +9732,8 @@ function initHikeMode(map, trail, options){
     lastValidFixAt = null;
     offRouteStreak = 0;
     offRouteSince = null;
+    resolveLeashZones(trail);
+    for(const key of Object.keys(announcedZones)) delete announcedZones[key];
     beginDurableSession();
     updateRejoinControl();
     // A hiker needs a navigation screen, not an article: go fullscreen.
@@ -9570,6 +9805,10 @@ function initHikeMode(map, trail, options){
     lastValidFixAt = progress ? progress.recordedAt : null;
     offRouteStreak = 0;
     offRouteSince = null;
+    // A restored session re-resolves its advisories; it may have been stored
+    // before this build existed, or the trail record may have gained one since.
+    resolveLeashZones(trail);
+    for(const key of Object.keys(announcedZones)) delete announcedZones[key];
     persistSessionState('active');
     updateRejoinControl();
     if(window.DoloPawsMapFS) window.DoloPawsMapFS.enter();
@@ -9729,6 +9968,45 @@ function initHikeMode(map, trail, options){
               <option value="more_than_listed">More water than listed</option>
               <option value="not_checked">I did not check</option>
             </select>
+            <label for="hkLivestock">Did you encounter livestock? <span>Optional</span></label>
+            <select id="hkLivestock">
+              <option value="">Prefer not to answer</option>
+              <option value="none">No livestock at all</option>
+              <option value="seen_at_distance">Seen, but at a distance</option>
+              <option value="close_encounter">Passed close to them</option>
+            </select>
+            <label for="hkOffLead">Were dogs off-lead on this route? <span>Optional</span></label>
+            <select id="hkOffLead">
+              <option value="">Prefer not to answer</option>
+              <option value="all_on_lead">Everyone kept dogs on the lead</option>
+              <option value="some_off_lead">Some dogs were off-lead</option>
+              <option value="mostly_off_lead">Most dogs were off-lead</option>
+            </select>
+            <label for="hkCrowding">How busy was it? <span>Optional</span></label>
+            <select id="hkCrowding">
+              <option value="">Prefer not to answer</option>
+              <option value="quiet">Quiet, room to give space</option>
+              <option value="moderate">Steady foot traffic</option>
+              <option value="busy">Busy throughout</option>
+            </select>
+            <label for="hkEnjoyment">Did ${esc(dogName)} enjoy it? <span>Optional</span></label>
+            <select id="hkEnjoyment">
+              <option value="">Prefer not to answer</option>
+              <option value="loved_it">Loved it</option>
+              <option value="fine">Took it in their stride</option>
+              <option value="struggled">Struggled with it</option>
+            </select>
+            <label for="hkReactiveFit">Would you recommend it for a reactive dog? <span>Optional</span></label>
+            <select id="hkReactiveFit">
+              <option value="">Prefer not to answer</option>
+              <option value="yes">Yes, there is room to pass</option>
+              <option value="with_care">Only with care</option>
+              <option value="no">No, too little space</option>
+            </select>
+            <label class="hk-outcome-check">
+              <input type="checkbox" id="hkMissingRestriction">
+              A posted restriction was missing from ORMA
+            </label>
             <fieldset>
               <legend>Any material hazard we should account for? <span>Optional</span></legend>
               <div class="hk-hazard-options">
@@ -9841,6 +10119,14 @@ function initHikeMode(map, trail, options){
       const result = window.DoloPawsPostHikeOutcomes.save(completion, {
         response:outcomeResponse,
         waterAccuracy:q('#hkWaterAccuracy').value || null,
+        // Empty stays null: an unanswered question is a gap in the evidence,
+        // not a quiet claim that the pleasant answer applies.
+        livestockEncountered:q('#hkLivestock').value || null,
+        offLeadObserved:q('#hkOffLead').value || null,
+        crowding:q('#hkCrowding').value || null,
+        dogEnjoyment:q('#hkEnjoyment').value || null,
+        reactiveDogFit:q('#hkReactiveFit').value || null,
+        missingRestriction:q('#hkMissingRestriction').checked ? true : null,
         hazards,
         offlinePackageUsed,
       }, user.uid);
@@ -10579,7 +10865,50 @@ function initDetailPois(map, trail){
     return `${prefix} <strong>${start}</strong> · for this ${result.durationHours} h route, finish by <strong>${finish}</strong>, at least 1 hour before forecast sunset.`;
   }
 
-  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,minuteOfDay,formatTime,recommendation,markup};
+  // Heat thresholds already shipped on the trail page's conditions card, reused
+  // here so one number does not mean two different things in two places.
+  const WARM_C=22;
+  const HOT_C=28;
+
+  // The hour heat actually becomes a problem today, read off the forecast
+  // rather than asserted. Returns null when the forecast never crosses the
+  // threshold, so the caller can stay silent instead of inventing an hour.
+  function heatOnset(input){
+    const times=Array.isArray(input&&input.hourlyTimes)?input.hourlyTimes:[];
+    const temps=Array.isArray(input&&input.hourlyTemps)?input.hourlyTemps:[];
+    if(!times.length||times.length!==temps.length)return null;
+    const today=dayKey(input.currentTime);
+    const nowMinute=minuteOfDay(input.currentTime);
+    if(!today||nowMinute===null)return null;
+    const threshold=Number.isFinite(input.thresholdC)?input.thresholdC:HOT_C;
+
+    for(let index=0;index<times.length;index+=1){
+      if(dayKey(times[index])!==today)continue;
+      const minute=minuteOfDay(times[index]);
+      const temp=Number(temps[index]);
+      if(minute===null||!Number.isFinite(temp))continue;
+      if(minute<nowMinute)continue;
+      if(temp>=threshold)return {minutes:minute,label:formatTime(minute),temperatureC:Math.round(temp)};
+    }
+    return null;
+  }
+
+  // Today's heat, in the vocabulary the recommendation engine reads.
+  function currentConditions(input){
+    const temp=Number(input&&input.temperatureC);
+    if(!Number.isFinite(temp))return {status:'not-provided'};
+    const heatRisk=temp>=HOT_C?'high':temp>=WARM_C?'moderate':'low';
+    const onset=heatOnset(input);
+    return {
+      status:'known',
+      heatRisk,
+      // Only present when the forecast actually crosses the threshold later
+      // today. Absent means the engine says nothing about an hour.
+      hotFromLabel:onset&&heatRisk!=='high'?onset.label:null,
+    };
+  }
+
+  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,WARM_C,HOT_C,minuteOfDay,formatTime,recommendation,markup,heatOnset,currentConditions};
 });
 ;
 
@@ -11943,6 +12272,198 @@ function initTrailReports(map, trail){
 })(typeof window !== 'undefined' ? window : globalThis);
 ;
 
+// ---- route-operational-facts.js ----
+(function(root, factory){
+  const api = factory();
+  if(typeof module === 'object' && module.exports) module.exports = api;
+  if(root) root.DoloPawsOperationalFacts = api;
+})(typeof window !== 'undefined' ? window : globalThis, function(){
+  'use strict';
+
+  const CONTRACT_VERSION = '1.0.0';
+
+  const ENTITY_TYPES = Object.freeze(['rifugio', 'lift', 'protected-area']);
+  // `unknown` is a recorded answer: someone asked and could not get one. It is
+  // not the same as an unverified fact, which has no answer at all.
+  const DOG_POLICIES = Object.freeze([
+    'accepted',
+    'accepted_leashed',
+    'accepted_muzzled',
+    'not_accepted',
+    'unknown',
+  ]);
+  const VERIFIED_SOURCES = Object.freeze(['phone', 'website', 'email', 'in-person']);
+
+  const POLICY_LABEL = Object.freeze({
+    accepted: 'dogs accepted',
+    accepted_leashed: 'dogs accepted, leashed',
+    accepted_muzzled: 'muzzle required',
+    not_accepted: 'dogs not accepted',
+    unknown: 'policy not published',
+  });
+  const ENTITY_LABEL = Object.freeze({
+    rifugio: 'Rifugio',
+    lift: 'Lift',
+    'protected-area': 'Protected area',
+  });
+
+  const UNVERIFIED_NOTE = 'Not yet verified — check before you go';
+  // A year is the point past which an opening-hours or dog rule is likely to
+  // have moved without anyone telling us.
+  const STALE_AFTER_MONTHS = 12;
+
+  const ID_PATTERN = /^[a-z0-9][a-z0-9-]{1,79}$/;
+  const TRAIL_PATTERN = /^[A-Za-z0-9._-]{1,80}$/;
+  const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+
+  function isDate(value){
+    return typeof value === 'string' && DATE_PATTERN.test(value)
+      && !Number.isNaN(Date.parse(`${value}T00:00:00Z`));
+  }
+
+  function text(value, maximum){
+    return typeof value === 'string' && value.trim().length > 0 && value.length <= maximum;
+  }
+
+  // A fact is only usable when it can be attributed. An entry that claims a
+  // policy without a verification date, source and reviewer is rejected
+  // outright rather than shown with a caveat: an unattributable policy on a
+  // dog-safety page is worse than no policy at all.
+  function validateFact(fact, index){
+    const at = `/facts/${index}`;
+    const errors = [];
+    if(!fact || typeof fact !== 'object'){ return [`${at}: expected an object`]; }
+    if(typeof fact.id !== 'string' || !ID_PATTERN.test(fact.id)) errors.push(`${at}/id: expected a slug`);
+    if(typeof fact.trail_id !== 'string' || !TRAIL_PATTERN.test(fact.trail_id)) errors.push(`${at}/trail_id: expected a trail id`);
+    if(!ENTITY_TYPES.includes(fact.entity_type)) errors.push(`${at}/entity_type: expected one of ${ENTITY_TYPES.join(', ')}`);
+    if(!text(fact.entity_name, 160)) errors.push(`${at}/entity_name: expected a non-empty name`);
+    if(!DOG_POLICIES.includes(fact.dog_policy)) errors.push(`${at}/dog_policy: expected one of ${DOG_POLICIES.join(', ')}`);
+    if(fact.policy_notes !== null && !text(fact.policy_notes, 400)) errors.push(`${at}/policy_notes: expected text or null`);
+
+    const verified = fact.verified_at !== null && fact.verified_at !== undefined;
+    if(verified && !isDate(fact.verified_at)) errors.push(`${at}/verified_at: expected an ISO date or null`);
+    if(verified){
+      if(!VERIFIED_SOURCES.includes(fact.verified_source)) errors.push(`${at}/verified_source: expected one of ${VERIFIED_SOURCES.join(', ')}`);
+      if(!text(fact.verified_by, 120)) errors.push(`${at}/verified_by: expected a reviewer`);
+    }else{
+      // Without a date there is nothing standing behind the policy, so the
+      // only value it may carry is `unknown`.
+      if(fact.dog_policy !== 'unknown'){
+        errors.push(`${at}/dog_policy: an unverified fact may only record 'unknown'`);
+      }
+    }
+    return errors;
+  }
+
+  function validateTable(table){
+    const errors = [];
+    if(!table || typeof table !== 'object') return ['/: expected an object'];
+    if(table.contractVersion !== CONTRACT_VERSION) errors.push(`/contractVersion: expected ${CONTRACT_VERSION}`);
+    if(table.updatedAt !== null && !isDate(table.updatedAt)) errors.push('/updatedAt: expected an ISO date or null');
+    if(!Array.isArray(table.facts)) return errors.concat('/facts: expected an array');
+    const seen = new Set();
+    table.facts.forEach((fact, index) => {
+      errors.push(...validateFact(fact, index));
+      if(fact && typeof fact.id === 'string'){
+        if(seen.has(fact.id)) errors.push(`/facts/${index}/id: duplicate id`);
+        seen.add(fact.id);
+      }
+    });
+    return errors;
+  }
+
+  function monthsBetween(fromISO, toISO){
+    const from = new Date(`${fromISO}T00:00:00Z`);
+    const to = new Date(`${toISO}T00:00:00Z`);
+    return (to.getUTCFullYear() - from.getUTCFullYear()) * 12
+      + (to.getUTCMonth() - from.getUTCMonth());
+  }
+
+  function monthLabel(iso){
+    const date = new Date(`${iso}T00:00:00Z`);
+    return date.toLocaleDateString('en-GB', { month:'short', year:'numeric', timeZone:'UTC' });
+  }
+
+  function verification(fact, asOfDate){
+    if(!fact || !isDate(fact.verified_at)) return { state:'unverified', label:UNVERIFIED_NOTE };
+    const label = monthLabel(fact.verified_at);
+    const asOf = isDate(asOfDate) ? asOfDate : new Date().toISOString().slice(0, 10);
+    if(monthsBetween(fact.verified_at, asOf) >= STALE_AFTER_MONTHS){
+      return { state:'stale', label:`Last verified ${label} — may have changed`, verifiedLabel:label };
+    }
+    return { state:'verified', label:`Verified ${label}`, verifiedLabel:label };
+  }
+
+  function factsFor(trailId, table){
+    const facts = table && Array.isArray(table.facts) ? table.facts : [];
+    return facts.filter(fact => fact && fact.trail_id === trailId);
+  }
+
+  // Render-ready rows for one trail. Entities ORMA already knows about (the
+  // km-tagged rifugi on the route) appear even with no fact recorded, so the
+  // page can name them and say plainly that nobody has checked yet. That is
+  // the difference between "we have not asked" and "there is nothing here".
+  function rowsFor(trail, table, asOfDate){
+    if(!trail || typeof trail.id !== 'string') return [];
+    const facts = factsFor(trail.id, table);
+    const byName = new Map();
+    for(const fact of facts){
+      byName.set(String(fact.entity_name).trim().toLowerCase(), fact);
+    }
+
+    const rows = facts.map(fact => ({
+      entityType: fact.entity_type,
+      entityName: fact.entity_name,
+      policy: fact.dog_policy,
+      policyLabel: POLICY_LABEL[fact.dog_policy],
+      notes: fact.policy_notes || null,
+      km: null,
+      ...verification(fact, asOfDate),
+    }));
+
+    const rifugi = Array.isArray(trail.rifugi) ? trail.rifugi : [];
+    for(const place of rifugi){
+      const name = place && typeof place.name === 'string' ? place.name.trim() : '';
+      if(!name || byName.has(name.toLowerCase())) continue;
+      rows.push({
+        entityType:'rifugio',
+        entityName:name,
+        // No fact means no policy. Never a default, never an empty string.
+        policy:null,
+        policyLabel:null,
+        notes:null,
+        km:Number.isFinite(place.km) ? place.km : null,
+        state:'unverified',
+        label:UNVERIFIED_NOTE,
+      });
+    }
+
+    return rows.sort((a, b) => {
+      if(a.km !== null && b.km !== null) return a.km - b.km;
+      if(a.km !== null) return -1;
+      if(b.km !== null) return 1;
+      return a.entityName.localeCompare(b.entityName);
+    });
+  }
+
+  return Object.freeze({
+    CONTRACT_VERSION,
+    ENTITY_TYPES,
+    DOG_POLICIES,
+    VERIFIED_SOURCES,
+    POLICY_LABEL,
+    ENTITY_LABEL,
+    UNVERIFIED_NOTE,
+    STALE_AFTER_MONTHS,
+    validateFact,
+    validateTable,
+    verification,
+    factsFor,
+    rowsFor,
+  });
+});
+;
+
 // ---- trail.js ----
 function safetyLabel(level){
   if(level === 'low-risk') return t('safety.low');
@@ -11953,16 +12474,25 @@ function trailSafetyLabel(trail){
   const base = safetyLabel(trail.safetyLevel);
   return window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.riskLabel(trail, base) : base;
 }
-function safetyColor(level){
-  if(level === 'low-risk') return '#2C5C34';
-  if(level === 'moderate') return '#8A5A16';
-  return '#9C3A25';
+// Green/amber/red on the map means how well the walk suits the dog — never
+// how hard the trail is. One palette, defined once in map-style.js, so opening
+// a trail never changes the map's meaning. (This replaces safetyColor(), which
+// coloured the same line by the trail's intrinsic risk in a near-identical
+// palette, so a guest and a signed-in owner read the same line differently.)
+function detailRouteColorForScore(score){
+  return window.ORMAMapStyle
+    ? window.ORMAMapStyle.matchColour(score)
+    : (score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25');
 }
 
-// The logged-in homepage colours routes by the dog's match score. Reuse its
-// exact thresholds here so opening a trail never changes the map's meaning.
-function detailRouteColorForScore(score){
-  return score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25';
+// A visitor with no dog yet is scored against the medium-dog profile the site
+// already tells them about, so the map still answers "does this suit a dog?"
+// instead of quietly switching to a different question.
+function guestMatchScore(trail){
+  const scoring = window.DoloPawsScoring;
+  if(!scoring || typeof scoring.scoreTrail !== 'function') return null;
+  try{ return scoring.scoreTrail(trail, scoring.GUEST_SUBJECT); }
+  catch(error){ return null; }
 }
 function applyDetailRouteColor(color){
   window._dolopawsTrailRouteColor = color;
@@ -11994,6 +12524,59 @@ function trustedStartLabel(trail, label){
   return window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.startPointLabel(trail, label) : label;
 }
 
+// ---- On this route --------------------------------------------------------
+// Operational facts (rifugio dog policy, lift muzzle rules) come from the
+// route_operational_fact table, which starts empty and is filled by the
+// editorial process. Until a fact exists the block still names the places on
+// the route and says plainly that nobody has checked, which is the difference
+// between "we have not asked" and "there is nothing here".
+function renderOnThisRoute(t, table){
+  const api = window.DoloPawsOperationalFacts;
+  if(!api) return '';
+  const rows = api.rowsFor(t, table);
+  if(!rows.length) return '';
+
+  const items = rows.map(row => {
+    const where = row.km !== null ? `Km ${row.km} — ` : '';
+    const kind = api.ENTITY_LABEL[row.entityType] || '';
+    // No verified fact means no policy line at all. Never a guess, never blank.
+    const policy = row.policyLabel
+      ? `<span class="td2-onroute-policy">${escapeLiftPopupText(row.policyLabel)}</span>`
+      : '';
+    const notes = row.notes ? `<span class="td2-onroute-note">${escapeLiftPopupText(row.notes)}</span>` : '';
+    const stamp = `<span class="td2-onroute-stamp is-${escapeLiftPopupText(row.state)}">${escapeLiftPopupText(row.label)}</span>`;
+    return `<li><span class="td2-onroute-name">${escapeLiftPopupText(where)}${escapeLiftPopupText(row.entityName)}</span>` +
+      `<span class="td2-onroute-kind">${escapeLiftPopupText(kind)}</span>${policy}${notes}${stamp}</li>`;
+  }).join('');
+
+  return `
+    <div style="margin-bottom:14px;" id="td2OnRoute">
+      <div class="dp-inline-status" style="font-weight:700;color:var(--ink);margin-bottom:4px;">${trailProductIcon('hut')}<span>On this route</span></div>
+      <ul class="td2-onroute">${items}</ul>
+    </div>`;
+}
+
+// The table is small and rarely changes, so it is fetched once and the block
+// is re-rendered in place if any fact applies. A failed fetch leaves the
+// honest unverified block exactly as it is.
+function hydrateOnThisRoute(t){
+  const api = window.DoloPawsOperationalFacts;
+  if(!api || !document.getElementById('td2OnRoute')) return;
+  const prefix = location.pathname.includes('/trails/') ? '../' : '';
+  fetch(`${prefix}data/route-operational-facts.json`, { cache:'no-store' })
+    .then(response => response.ok ? response.json() : null)
+    .then(table => {
+      if(!table || !api.factsFor(t.id, table).length) return;
+      const host = document.getElementById('td2OnRoute');
+      if(!host) return;
+      const replacement = document.createElement('div');
+      replacement.innerHTML = renderOnThisRoute(t, table);
+      const next = replacement.firstElementChild;
+      if(next) host.replaceWith(next);
+    })
+    .catch(() => {});
+}
+
 function renderTrailDetailContent(t){
   const rifugi = Array.isArray(t.rifugi) ? t.rifugi : [];
   const water = Array.isArray(t.waterSources) ? t.waterSources : [];
@@ -12007,7 +12590,10 @@ function renderTrailDetailContent(t){
       (t.curated === false ? '<p style="margin:0 0 14px;font-size:12px;color:var(--ink-soft);">Availability can change. Carry a backup supply.</p>' : '')
     : `<p style="margin:0 0 14px;">${window.t('trail.noWater')}</p>`;
 
+  setTimeout(() => hydrateOnThisRoute(t), 0);
+
   return `
+    ${renderOnThisRoute(t, null)}
     <div style="margin-bottom:14px;">
       <div class="dp-inline-status" style="font-weight:700;color:var(--ink);margin-bottom:4px;">${trailProductIcon('hut')}<span>${withoutLeadingSymbol(window.t('trail.rifugiHead'))}</span></div>
       ${rifugiHtml}
@@ -13631,7 +14217,7 @@ function renderTrail(t){
     // Personal match — needs a logged-in profile. Guests see the facts
     // plus an honest invitation: the score exists, it just isn't theirs yet.
     function paintMatchTeaser(){
-      applyDetailRouteColor(safetyColor(t.safetyLevel));
+      applyDetailRouteColor(detailRouteColorForScore(guestMatchScore(t)));
       const actions = document.querySelector('.td-actions');
       if(actions) actions.classList.add('guest-actions');
       if(statMatch){
@@ -14229,7 +14815,7 @@ function renderTrail(t){
       }
 
       if(Array.isArray(t.path) && t.path.length > 1){
-        const selectedRouteColor = window._dolopawsTrailRouteColor || safetyColor(t.safetyLevel);
+        const selectedRouteColor = window._dolopawsTrailRouteColor || detailRouteColorForScore(guestMatchScore(t));
         map.addSource('single-trail-path', {
           type: 'geojson',
           data: {
@@ -15160,7 +15746,8 @@ if(document.querySelector('.td2')){
     const verifiedRouteGuidance = t.routeNumberGuidance && typeof t.routeNumberGuidance === 'object'
       ? t.routeNumberGuidance
       : null;
-    const routeOverview = cardCopy(String(t.desc || '').split(/\n\s*\n/)[0] || '');
+    const routeOverview = cardCopy(String(t.desc || '').split(/\n\s*\n/)[0] || '')
+      .replace(/^\s*route\s+overview\s*:\s*/i, '');
     const guidanceIsLandmarkLed = verifiedRouteGuidance && verifiedRouteGuidance.mode === 'landmarks';
     const routeBadges = routeRefs.length
       ? `<div class="td2-route-ref-list" aria-label="Trail numbers in order">${routeRefs.map((ref, index) =>
@@ -15179,8 +15766,9 @@ if(document.querySelector('.td2')){
           <li>Stay on trail <b>${esc(routeSwitches[routeSwitches.length - 1].to)}</b> for the final section to the route finish.</li>
         </ol>`
       : '';
+    const noRouteNumbers = '<div class="s"><p><b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route. Follow the mapped ORMA line and local destination signs.</p></div>';
     const routeRefMarkup = verifiedRouteGuidance
-      ? `<div class="s"><p><b>Start:</b> ${esc(verifiedRouteGuidance.start)}</p><p><b>${guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'}:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>${guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'}:</b> ${esc(verifiedRouteGuidance.switches)}</p></div>`
+      ? `${routeBadges}<div class="s"><p><b>Start:</b> ${esc(verifiedRouteGuidance.start)}</p><p><b>${guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'}:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>${guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'}:</b> ${esc(verifiedRouteGuidance.switches)}</p></div>`
       : routeRefs.length
       ? `${routeBadges}${switchGuidance || `<div class="s">${hasSectionOnlyRefs
           ? `${routeRefs.length === 1 ? 'Trail' : 'Trails'} ${esc(routeSequence)} ${routeRefs.length === 1 ? 'is' : 'are'} marked only on the verified section${routeRefs.length === 1 ? '' : 's'} shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.`
@@ -15188,7 +15776,7 @@ if(document.querySelector('.td2')){
             ? `Follow waymarked trail <b>${esc(routeRefs[0])}</b> along the mapped hike. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.`
             : `This hike uses trails ${esc(routeSequence)}, but the exact numbered switch point${routeRefs.length > 2 ? 's are' : ' is'} still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.`}</div>`}`
       : routeOverview
-        ? `<div class="s"><p><b>Route overview:</b> ${esc(routeOverview)}</p></div>`
+        ? `${noRouteNumbers}<div class="s"><p>${esc(routeOverview)}</p></div>`
         : '';
     const routeCard = {
       ic:'',
@@ -15284,6 +15872,20 @@ if(document.querySelector('.td2')){
               hourlyTemps:d.hourly && d.hourly.temperature_2m,
             })
             : null;
+          // Today's heat, in the vocabulary the recommendation engine reads.
+          // Until now nothing supplied currentConditions, so the score never
+          // reflected the day it was being read on.
+          if (window.DoloPawsWeatherWindow) {
+            const conditions = window.DoloPawsWeatherWindow.currentConditions({
+              currentTime:d.current.time,
+              temperatureC:d.current.temperature_2m,
+              hourlyTimes:d.hourly && d.hourly.time,
+              hourlyTemps:d.hourly && d.hourly.temperature_2m,
+            });
+            window.DoloPawsCurrentConditions = conditions;
+            window.dispatchEvent(new CustomEvent('dolopaws-conditions-ready', { detail:conditions }));
+          }
+
           const winEl = $('sideCondWindow');
           if (winEl) winEl.innerHTML = window.DoloPawsWeatherWindow
             ? window.DoloPawsWeatherWindow.markup(win)
@@ -15763,6 +16365,17 @@ if(document.querySelector('.td2')){
       ['segment.', 'trail.livestock.', 'trail.wildlife.', 'trail.road.',
         'trail.sightlines.', 'trail.crowding.'],
     ];
+    const allFactors = (Array.isArray(recommendation.factors) ? recommendation.factors : [])
+      .filter(entry => entry && typeof entry.message === 'string');
+    const floorEntry = allFactors.find(entry => entry.code === 'score.floor') || null;
+    const breakdownFactors = allFactors
+      .filter(entry => entry !== floorEntry)
+      .map(entry => ({
+        impact:Number.isFinite(entry.impact) ? entry.impact : 0,
+        message:translatedMessage(entry, translate),
+        code:entry.code,
+      }));
+
     const rankedReasons = ordered(
       (Array.isArray(recommendation.positiveReasons) ? recommendation.positiveReasons : [])
         .filter(Boolean),
@@ -15804,6 +16417,15 @@ if(document.querySelector('.td2')){
       dogName:dogName || null,
       reasons:reasons.slice(0, 4),
       cautions:cautions.slice(0, 4),
+      // P0-1: the full ordered breakdown, most negative first. Unlike the two
+      // summary lists above this is not truncated — the acceptance criterion
+      // is that it lists exactly the factors the score was computed from.
+      breakdownFor:dogName || 'a medium dog',
+      breakdown:breakdownFactors,
+      // The floor is not a factor the reader can act on, and rendering its
+      // positive impact alongside the costs reads as a bonus. It closes the
+      // list as a note instead, explaining why the total stops where it does.
+      breakdownNote:floorEntry ? translatedMessage(floorEntry, translate) : null,
       unknowns:unknowns.slice(0, 5),
       additionalUnknowns:Math.max(0, unknowns.length - 5),
       heroSummary:dogName
@@ -15817,7 +16439,37 @@ if(document.querySelector('.td2')){
     };
   }
 
-  return Object.freeze({ CATEGORY, present, translatedMessage });
+  // P0-3: what changed when the reader added their own dog. A move of two
+  // points or less is not a move — claiming one would be inventing drama the
+  // score does not support.
+  const SAME_SCORE_TOLERANCE = 2;
+
+  function firstRunCallout(before, after, translate){
+    if(!before || !after) return null;
+    if(!Number.isFinite(before.score) || !Number.isFinite(after.score)) return null;
+    if(!before.forName || !after.forName || before.forName === after.forName) return null;
+
+    const tr = (key, fallback, vars) => {
+      if(typeof translate === 'function'){
+        const value = translate(key, vars);
+        if(value && value !== key) return value;
+      }
+      let output = fallback;
+      for(const name of Object.keys(vars || {})) output = output.split(`{${name}}`).join(vars[name]);
+      return output;
+    };
+
+    if(Math.abs(after.score - before.score) <= SAME_SCORE_TOLERANCE){
+      return tr('recommendation.firstRun.same',
+        'Same score for {name} as for {before} on this trail.',
+        { name:after.forName, before:before.forName });
+    }
+    return tr('recommendation.firstRun.moved',
+      'Was {beforeScore}% for {before} · now {afterScore}% for {name}. See why below.',
+      { beforeScore:before.score, before:before.forName, afterScore:after.score, name:after.forName });
+  }
+
+  return Object.freeze({ CATEGORY, SAME_SCORE_TOLERANCE, present, translatedMessage, firstRunCallout });
 });
 ;
 
@@ -15942,6 +16594,28 @@ if(document.querySelector('.td2')){
     return `<ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`;
   }
 
+  // P0-1: the breakdown sits directly under the Match %, headed in the dog's
+  // name, and lists every factor the score was computed from in descending
+  // order of impact. Each row carries both the points and the reason, so no
+  // factor ever reads as a bare label or a bare number.
+  function breakdown(view, tr){
+    if(!view.breakdown.length) return '';
+    const rows = view.breakdown.map(factor => {
+      const points = factor.impact === 0
+        ? tr('recommendation.breakdown.noCost', 'no cost')
+        : `${factor.impact > 0 ? '+' : '\u2212'}${Math.abs(factor.impact)}`;
+      const tone = factor.impact < 0 ? 'cost' : 'clear';
+      return `<li><span class="recommendation-factor-impact is-${tone}">${esc(points)}</span>` +
+        `<span class="recommendation-factor-reason">${esc(factor.message)}</span></li>`;
+    }).join('');
+    const note = view.breakdownNote
+      ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`
+      : '';
+    return `<section class="recommendation-breakdown">` +
+      `<h3>${esc(tr('recommendation.breakdown.title', 'Why this score for {name}', { name:view.breakdownFor }))}</h3>` +
+      `<ol class="recommendation-factors">${rows}</ol>${note}</section>`;
+  }
+
   function sections(entries){
     const rendered = entries
       .filter(([, items]) => items.length)
@@ -15974,6 +16648,21 @@ if(document.querySelector('.td2')){
     return typeof trails !== 'undefined' ? trails.find(trail => trail.id === id) : null;
   }
 
+  // P0-3: what the reader saw before they added their dog, so the change can
+  // be stated rather than explained.
+  let previousRender = null;
+  let pendingCallout = null;
+
+  function guestProfile(){
+    try{
+      const raw = window.localStorage.getItem('dolopaws-pending-dog-profile');
+      const profile = raw ? JSON.parse(raw) : null;
+      return profile && typeof profile === 'object' && profile.name ? profile : null;
+    }catch(error){
+      return null;
+    }
+  }
+
   function subjectFor(profile){
     if(!profile) return {};
     return typeof effectiveOverrides === 'function'
@@ -15985,7 +16674,11 @@ if(document.querySelector('.td2')){
     const root = document.getElementById('recommendationDecision');
     const api = window.DoloPawsRecommendationDecision;
     if(!root || !api || typeof recommendTrail !== 'function') return;
-    const recommendation = recommendTrail(trail, subjectFor(profile));
+    // The weather arrives after the first paint, so the card scores without it
+    // and re-scores when it lands. Absent conditions stay 'not-provided'
+    // rather than being guessed at.
+    const conditions = window.DoloPawsCurrentConditions || undefined;
+    const recommendation = recommendTrail(trail, subjectFor(profile), conditions);
     const view = api.present(recommendation, {
       dogName:profile && profile.name,
       translate:window.t,
@@ -15999,14 +16692,21 @@ if(document.querySelector('.td2')){
       : '';
     // Dog-side gaps are the one thing the reader can fix right now — the
     // card face turns them into a profile CTA instead of a caveat.
+    const canOpenWizard = !!(window.DoloPawsWizard && typeof window.DoloPawsWizard.open === 'function');
     const gapCta = !view.dogName
-      ? `<p class="recommendation-gaps"><a href="onboarding.html">${esc(tr('recommendation.gap.addDog', 'Add your dog to sharpen this score →'))}</a></p>`
+      ? (canOpenWizard
+        ? `<p class="recommendation-gaps"><button type="button" class="recommendation-add-dog" data-add-dog>${esc(tr('recommendation.gap.addDog', 'Add your dog to sharpen this score →'))}</button></p>`
+        : `<p class="recommendation-gaps"><a href="onboarding.html">${esc(tr('recommendation.gap.addDog', 'Add your dog to sharpen this score →'))}</a></p>`)
       : view.dogGapFields.length
         ? `<p class="recommendation-gaps"><a href="account.html">${esc(tr('recommendation.gap.fields', 'Add {name}’s {fields} to sharpen this score →', {
             name:view.dogName,
             fields:friendlyList(view.dogGapFields),
           }))}</a></p>`
         : '';
+
+    const thisRender = { score:view.score, forName:view.breakdownFor };
+    pendingCallout = api.firstRunCallout(previousRender, thisRender, window.t);
+    previousRender = thisRender;
 
     root.className = `recommendation-decision recommendation-decision--${view.tone}`;
     root.dataset.scoringVersion = view.scoringVersion;
@@ -16023,6 +16723,10 @@ if(document.querySelector('.td2')){
       // A heading over a line explaining that there is nothing to say is the
       // opposite of crisp. A section with nothing behind it is dropped; what
       // ORMA has not established stays in the unknowns disclosure below.
+      (pendingCallout
+        ? `<p class="recommendation-firstrun" role="status">${esc(pendingCallout)}</p>`
+        : '') +
+      breakdown(view, tr) +
       sections([
         [tr('recommendation.reasons.title', 'Why it may fit'), view.reasons],
         [tr('recommendation.cautions.title', 'Cautions'), view.cautions],
@@ -16125,7 +16829,26 @@ if(document.querySelector('.td2')){
     if(window.DoloPawsAuth && window.DoloPawsAuth.currentUser){
       try { profile = await window.DoloPawsAuth.getDogProfile(); } catch(error){}
     }
+    // No account yet is not the same as no dog. A guest who added one scores
+    // against it here and on every other trail, until they choose to save.
+    if(!profile) profile = guestProfile();
     renderDecision(trail, profile);
+    const add = document.getElementById('recommendationDecision');
+    const trigger = add && add.querySelector('[data-add-dog]');
+    if(trigger){
+      // Opened in place, and told to come back here rather than to a payoff
+      // screen listing other trails.
+      trigger.addEventListener('click', () => {
+        window.DoloPawsWizard.open(null, { returnToPage:true });
+      });
+    }
+    if(pendingCallout){
+      // A visible change, once, so the reader sees the score move rather than
+      // finding a different number where the old one was.
+      add.classList.add('is-rescored');
+      window.setTimeout(() => add.classList.remove('is-rescored'), 1400);
+      pendingCallout = null;
+    }
   }
 
   renderCurrent();
@@ -16133,5 +16856,7 @@ if(document.querySelector('.td2')){
     window.addEventListener('dolopaws-auth-ready', renderCurrent, { once:true });
   }
   window.addEventListener('dolopaws-auth-changed', renderCurrent);
+  window.addEventListener('dolopaws-dog-profile-saved', renderCurrent);
+  window.addEventListener('dolopaws-conditions-ready', renderCurrent);
 })();
 ;

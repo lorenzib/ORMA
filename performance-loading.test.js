@@ -10,7 +10,7 @@ describe('PERF-02 asset and regional loading contract', () => {
     const detail = read('trail.html');
     [homepage, detail].forEach(html => expect(html).not.toContain('unpkg.com/maplibre-gl@5.24.0'));
     expect(homepage).toContain('map-runtime.js?v=20260826-1');
-    expect(detail).toContain('trail-app.bundle.js?v=20260904-3');
+    expect(detail).toContain('trail-app.bundle.js?v=20260905-1');
     const runtime = read('map-runtime.js');
     expect(runtime).toContain('IntersectionObserver');
     expect(runtime).toContain("rootMargin: opts.rootMargin || '320px 0px'");
@@ -20,14 +20,15 @@ describe('PERF-02 asset and regional loading contract', () => {
   test('homepage lazy-loads hidden POIs while detail scheduling includes trail-adjacent POIs', () => {
     const homepage = read('script.js');
     const detail = read('trail.js');
-    expect(homepage).toContain('function scheduleGuestMap()');
     expect(homepage).toContain('function scheduleTrailMap()');
     expect(homepage).toContain('function startMobileTrailMap()');
     expect(homepage).toContain("window.addEventListener('dolopaws-mobile-layout-change'");
     expect(homepage).toContain("window.matchMedia('(max-width: 700px)').matches");
     expect(homepage).toContain('return trailMapSchedule.start().then(result =>');
-    expect(homepage).toContain("renderGondolas(guestMapInstance, 'guest-gondolas', { visible: false })");
-    expect(homepage).toContain('const overlayStates = { routes: true, lifts: false');
+    // Browse maps start with the marked network off: choosing a walk and
+    // following one want different maps. The Layers chip restores it.
+    expect(homepage).toContain('const overlayStates = { routes: false, lifts: false');
+    expect(homepage).toContain("addWaymarkedHiking(trailMapInstance, { beforeId: firstLabelLayer.id, visible: false })");
     expect(homepage).toContain('onIdle(loadSecondaryMapData, 5000)');
     const secondaryMapData = homepage.slice(
       homepage.indexOf('const loadSecondaryMapData = () =>'),
@@ -117,7 +118,7 @@ describe('PERF-02 asset and regional loading contract', () => {
 
   test('trail application code ships as one ordered, reproducible request', () => {
     const page = read('trail.html');
-    expect(page).toContain('<script src="trail-app.bundle.js?v=20260904-3" defer>');
+    expect(page).toContain('<script src="trail-app.bundle.js?v=20260905-1" defer>');
     expect(page).not.toContain('<script src="map-runtime.js');
     expect(page).not.toContain('<script src="trail.js');
     expect(trailBundle.SOURCES.length).toBeGreaterThan(40);

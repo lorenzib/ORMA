@@ -35,6 +35,14 @@ describe('logged-in discovery workspace layout', () => {
     expect(editorialCss).toContain('.li-record{grid-area:auto;grid-column:9;grid-row:2;}');
   });
 
+  test('keeps the desktop control sequence in one rail instead of moving filters between rows', () => {
+    expect(css).toContain('@media (min-width:1041px) and (max-width:1560px)');
+    expect(css).toContain('"search country region valley filters quick saved plan record"');
+    expect(css).toContain('overflow-x:auto;');
+    expect(css).toContain('#liQuickShade{grid-column:6;grid-row:2;}');
+    expect(css).not.toContain('.li-toolbar{display:flex;flex-wrap:wrap;padding:12px 20px;gap:10px 8px;}');
+  });
+
   test('contains the quick shade and water filters in white outlined controls', () => {
     const rule = css.match(/\.li-quick-filter\s*\{([^}]*)\}/s);
     expect(rule).not.toBeNull();

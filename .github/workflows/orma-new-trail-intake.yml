@@ -15,7 +15,9 @@ permissions:
 
 jobs:
   scout-and-admit-selected-candidates:
-    if: github.event_name == 'workflow_dispatch' || vars.ORMA_NEW_TRAIL_AUTOMATION_ENABLED == 'true'
+    # Paused during the image and verification backfill: new trails add gaps to both
+    # lanes faster than they close. Re-enable by setting ORMA_NEW_TRAIL_INTAKE_RESUMED.
+    if: github.event_name == 'workflow_dispatch' || (vars.ORMA_NEW_TRAIL_AUTOMATION_ENABLED == 'true' && vars.ORMA_NEW_TRAIL_INTAKE_RESUMED == 'true')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:

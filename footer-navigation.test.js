@@ -69,7 +69,6 @@ describe('footer navigation', () => {
       ['privacy.html', 'Privacy'],
       ['terms.html', 'Terms'],
       // The stay-in-touch band renders after the column grid.
-      ['about.html', 'Newsletter'],
     ];
 
     publicFooterPages().forEach(file => {
@@ -97,14 +96,14 @@ describe('footer navigation', () => {
 
     publicFooterPages().forEach(file => {
       const html = fs.readFileSync(file, 'utf8');
-      const stylesVersion = '(?:20260821-[57]|20260823-[12345]|20260825-[12]|20260827-1|20260831-[23]|20260901-[16]|20260903-[12]|20260904-[12]|20260905-1)';
-      const navigationVersion = '(?:20260823-[12]|20260831-1|20260901-[245])';
+      const stylesVersion = '(?:20260821-[57]|20260823-[12345]|20260825-[12]|20260827-1|20260831-[23]|20260901-[16]|20260903-[12]|20260904-[12]|20260905-[123])';
+      const navigationVersion = '(?:20260823-[12]|20260831-1|20260901-[245]|20260905-[12])';
       expect(html).toMatch(new RegExp(`href="(?:\\.\\.\\/|\\/)?styles\\.css\\?v=${stylesVersion}"`));
       expect(html).toMatch(new RegExp(`src="(?:\\.\\.\\/|\\/)?mobile-nav\\.js\\?v=${navigationVersion}"`));
     });
   });
 
-  test('every public footer follows the same four social channels, in order', () => {
+  test('every public footer links only to channels that actually exist', () => {
     const pages = publicFooterPages();
     expect(pages.length).toBeGreaterThan(0);
     pages.forEach(file => {
@@ -113,26 +112,35 @@ describe('footer navigation', () => {
       // Follow Us is a standalone band below the grid, not a column.
       expect(footer).toMatch(/<div class="hp-footer-connect">/);
       expect(footer).toMatch(/<span class="hp-footer-h"[^>]*>Follow Us<\/span>/);
+      // Facebook, YouTube and TikTok were icons pointing at about.html. A dead
+      // link undercuts the one thing this product sells, so they are gone until
+      // the accounts exist.
       const channels = [...footer.matchAll(/aria-label="ORMA on ([^"]+)"/g)].map(([, name]) => name);
-      expect(channels).toEqual(['Instagram', 'Facebook', 'YouTube', 'TikTok']);
+      expect(channels).toEqual(['Instagram']);
+      expect(footer).not.toContain('about.html" aria-label="ORMA on');
 
-      // Instagram is live; Facebook and YouTube still await real accounts.
       expect(footer).toContain(
         '<a href="https://www.instagram.com/app.orma/" target="_blank" rel="noopener" aria-label="ORMA on Instagram">'
       );
     });
   });
 
-  test('shows familiar store badges while clearly disabling unreleased listings', () => {
-    ['app-store-badge.svg', 'google-play-badge.svg'].forEach(asset => {
-      expect(fs.existsSync(path.join(__dirname, asset))).toBe(true);
-    });
-    const css = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
+  test('offers a real install route instead of unreleased store listings', () => {
     const navigation = fs.readFileSync(path.join(__dirname, 'mobile-nav.js'), 'utf8');
-    expect(css).toContain('.hp-footer-apps{display:flex;');
-    expect(css).toContain('.hp-footer-apps a[data-coming-soon="true"]{');
-    expect(navigation).toContain("appNote.textContent = 'iPhone and Android apps coming soon.'");
-    expect(navigation).toContain("link.setAttribute('aria-disabled', 'true')");
-    expect(navigation).toContain("link.removeAttribute('href')");
+
+    // There is no iOS or Android listing, so the badges are gone rather than
+    // shown-but-disabled. The written instruction is true with no script at
+    // all, and the button only appears where a real install prompt exists.
+    publicFooterPages().forEach(file => {
+      const footer = footerOf(file);
+      expect(footer).not.toContain('app-store-badge');
+      expect(footer).not.toContain('google-play-badge');
+      expect(footer).toContain('data-orma-install');
+      expect(footer).toMatch(/Add ORMA to your home screen/);
+    });
+
+    expect(navigation).toContain("window.addEventListener('beforeinstallprompt'");
+    expect(navigation).toContain("window.addEventListener('appinstalled'");
+    expect(navigation).not.toContain('data-coming-soon');
   });
 });

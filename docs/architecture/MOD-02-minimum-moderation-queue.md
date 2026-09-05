@@ -7,10 +7,13 @@ reviews, photos, place observations, and hazard reports that are pending,
 reported, hidden, or removed. Visible content with an open abuse report also
 enters the queue. The backoffice dashboard includes this queue in “Needs you”.
 
-No moderator entry point appears in customer navigation or dog profiles. The
-legacy `moderation.html` address only hands an operator to the separate
-backoffice origin, and the native-app build excludes it. The backoffice page
-asks search engines not to index it. Those are usability measures only;
+No moderator entry point appears in customer navigation or dog profiles, and
+no moderation surface is published on the customer origin at all: the legacy
+`moderation.html` redirect is deleted, the desk and its scripts are excluded
+from the public Jekyll build in `_config.yml`, and the customer Firebase client
+(`firebase-init.js`) carries no moderator code — `DoloPawsModeration` and
+`ORMABackoffice` exist only in `backoffice-firebase.js`. The backoffice page
+asks search engines not to index it. Those are surface-reduction measures only;
 Firestore authorization remains the actual security boundary.
 
 ## Authority

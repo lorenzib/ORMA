@@ -7,16 +7,25 @@ function trailSafetyLabel(trail){
   const base = safetyLabel(trail.safetyLevel);
   return window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.riskLabel(trail, base) : base;
 }
-function safetyColor(level){
-  if(level === 'low-risk') return '#2C5C34';
-  if(level === 'moderate') return '#8A5A16';
-  return '#9C3A25';
+// Green/amber/red on the map means how well the walk suits the dog — never
+// how hard the trail is. One palette, defined once in map-style.js, so opening
+// a trail never changes the map's meaning. (This replaces safetyColor(), which
+// coloured the same line by the trail's intrinsic risk in a near-identical
+// palette, so a guest and a signed-in owner read the same line differently.)
+function detailRouteColorForScore(score){
+  return window.ORMAMapStyle
+    ? window.ORMAMapStyle.matchColour(score)
+    : (score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25');
 }
 
-// The logged-in homepage colours routes by the dog's match score. Reuse its
-// exact thresholds here so opening a trail never changes the map's meaning.
-function detailRouteColorForScore(score){
-  return score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25';
+// A visitor with no dog yet is scored against the medium-dog profile the site
+// already tells them about, so the map still answers "does this suit a dog?"
+// instead of quietly switching to a different question.
+function guestMatchScore(trail){
+  const scoring = window.DoloPawsScoring;
+  if(!scoring || typeof scoring.scoreTrail !== 'function') return null;
+  try{ return scoring.scoreTrail(trail, scoring.GUEST_SUBJECT); }
+  catch(error){ return null; }
 }
 function applyDetailRouteColor(color){
   window._dolopawsTrailRouteColor = color;
@@ -48,6 +57,59 @@ function trustedStartLabel(trail, label){
   return window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.startPointLabel(trail, label) : label;
 }
 
+// ---- On this route --------------------------------------------------------
+// Operational facts (rifugio dog policy, lift muzzle rules) come from the
+// route_operational_fact table, which starts empty and is filled by the
+// editorial process. Until a fact exists the block still names the places on
+// the route and says plainly that nobody has checked, which is the difference
+// between "we have not asked" and "there is nothing here".
+function renderOnThisRoute(t, table){
+  const api = window.DoloPawsOperationalFacts;
+  if(!api) return '';
+  const rows = api.rowsFor(t, table);
+  if(!rows.length) return '';
+
+  const items = rows.map(row => {
+    const where = row.km !== null ? `Km ${row.km} — ` : '';
+    const kind = api.ENTITY_LABEL[row.entityType] || '';
+    // No verified fact means no policy line at all. Never a guess, never blank.
+    const policy = row.policyLabel
+      ? `<span class="td2-onroute-policy">${escapeLiftPopupText(row.policyLabel)}</span>`
+      : '';
+    const notes = row.notes ? `<span class="td2-onroute-note">${escapeLiftPopupText(row.notes)}</span>` : '';
+    const stamp = `<span class="td2-onroute-stamp is-${escapeLiftPopupText(row.state)}">${escapeLiftPopupText(row.label)}</span>`;
+    return `<li><span class="td2-onroute-name">${escapeLiftPopupText(where)}${escapeLiftPopupText(row.entityName)}</span>` +
+      `<span class="td2-onroute-kind">${escapeLiftPopupText(kind)}</span>${policy}${notes}${stamp}</li>`;
+  }).join('');
+
+  return `
+    <div style="margin-bottom:14px;" id="td2OnRoute">
+      <div class="dp-inline-status" style="font-weight:700;color:var(--ink);margin-bottom:4px;">${trailProductIcon('hut')}<span>On this route</span></div>
+      <ul class="td2-onroute">${items}</ul>
+    </div>`;
+}
+
+// The table is small and rarely changes, so it is fetched once and the block
+// is re-rendered in place if any fact applies. A failed fetch leaves the
+// honest unverified block exactly as it is.
+function hydrateOnThisRoute(t){
+  const api = window.DoloPawsOperationalFacts;
+  if(!api || !document.getElementById('td2OnRoute')) return;
+  const prefix = location.pathname.includes('/trails/') ? '../' : '';
+  fetch(`${prefix}data/route-operational-facts.json`, { cache:'no-store' })
+    .then(response => response.ok ? response.json() : null)
+    .then(table => {
+      if(!table || !api.factsFor(t.id, table).length) return;
+      const host = document.getElementById('td2OnRoute');
+      if(!host) return;
+      const replacement = document.createElement('div');
+      replacement.innerHTML = renderOnThisRoute(t, table);
+      const next = replacement.firstElementChild;
+      if(next) host.replaceWith(next);
+    })
+    .catch(() => {});
+}
+
 function renderTrailDetailContent(t){
   const rifugi = Array.isArray(t.rifugi) ? t.rifugi : [];
   const water = Array.isArray(t.waterSources) ? t.waterSources : [];
@@ -61,7 +123,10 @@ function renderTrailDetailContent(t){
       (t.curated === false ? '<p style="margin:0 0 14px;font-size:12px;color:var(--ink-soft);">Availability can change. Carry a backup supply.</p>' : '')
     : `<p style="margin:0 0 14px;">${window.t('trail.noWater')}</p>`;
 
+  setTimeout(() => hydrateOnThisRoute(t), 0);
+
   return `
+    ${renderOnThisRoute(t, null)}
     <div style="margin-bottom:14px;">
       <div class="dp-inline-status" style="font-weight:700;color:var(--ink);margin-bottom:4px;">${trailProductIcon('hut')}<span>${withoutLeadingSymbol(window.t('trail.rifugiHead'))}</span></div>
       ${rifugiHtml}
@@ -1685,7 +1750,7 @@ function renderTrail(t){
     // Personal match — needs a logged-in profile. Guests see the facts
     // plus an honest invitation: the score exists, it just isn't theirs yet.
     function paintMatchTeaser(){
-      applyDetailRouteColor(safetyColor(t.safetyLevel));
+      applyDetailRouteColor(detailRouteColorForScore(guestMatchScore(t)));
       const actions = document.querySelector('.td-actions');
       if(actions) actions.classList.add('guest-actions');
       if(statMatch){
@@ -2283,7 +2348,7 @@ function renderTrail(t){
       }
 
       if(Array.isArray(t.path) && t.path.length > 1){
-        const selectedRouteColor = window._dolopawsTrailRouteColor || safetyColor(t.safetyLevel);
+        const selectedRouteColor = window._dolopawsTrailRouteColor || detailRouteColorForScore(guestMatchScore(t));
         map.addSource('single-trail-path', {
           type: 'geojson',
           data: {

@@ -2,3 +2,67 @@ include:
   - CNAME
 exclude:
   - experiments
+  - prototypes
+  # Operator surface. These pages and their scripts are built and served from
+  # backoffice.app-orma.com by scripts/build-backoffice-hosting.js, which reads
+  # them straight from the repo root and is unaffected by this list. Keeping
+  # them out of the public Jekyll build means www.app-orma.com serves the
+  # customer site only — moderation and review exist in the backoffice, nowhere
+  # else. community-content-states.js is deliberately absent: it is shared with
+  # the public reviews, photo-upload and trail-report pages.
+  - community-moderation-desk.html
+  - moderation-page.js
+  - moderation.css
+  - backoffice-login.js
+  - backoffice-review.css
+  - backoffice-auth-guard.js
+  - backoffice-session.js
+  - backoffice-firebase.js
+  - backoffice-hosted-login.html
+  - backoffice-hosted-review.html
+  - backoffice-hosted-dashboard.js
+  - image-coverage-hosted.html
+  - image-coverage-hosted.js
+  - newsletter-desk.js
+  - social-desk.js
+  - trail-content-desk.html
+  - trail-content-desk.js
+  - trail-dossier-desk.html
+  - trail-dossier-desk.js
+
+  # Operator data and repository tooling. PR #151 excluded the desk pages and
+  # their scripts but left the data they read, so backoffice-data/*.json was
+  # still fetchable on the public site. Nothing in the customer-facing runtime
+  # references any of these — the desks that read backoffice-data/ are
+  # themselves excluded above, and the hosted backoffice is served from
+  # dist/backoffice via Firebase and talks to the remote API instead.
+  - backoffice-data
+  - backoffice
+  # Repository tooling and internal documentation, never fetched at runtime.
+  - docs
+  - scripts
+  - schemas
+  - test-support
+  - config
+  # Node test suites; they run in CI, never in a browser.
+  - "*.test.js"
+  - jest.config.js
+  - package.json
+  - package-lock.json
+  # Firebase configuration and security rules. The rules are enforced
+  # server-side so publishing them is not itself a hole, but 49 kB of access
+  # conditions is a complete map of the data model — reconnaissance we have no
+  # reason to hand out.
+  - firestore.rules
+  - firestore.indexes.json
+  - firestore-emulator.spec.cjs
+  - firebase.json
+  # Internal documentation and build configuration. SCORING.md and
+  # VERIFICATION.md stay: public pages link to them.
+  - AGENTS.md
+  - README.md
+  - TRAIL_AUDIT_GUIDE.md
+  - TRAIL_AUDIT_TASK.md
+  - _config.yml
+  - pages-public-manifest.json
+  - capacitor.config.json

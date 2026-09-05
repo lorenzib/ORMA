@@ -8,8 +8,8 @@ const path = require('path');
 const root = path.resolve(__dirname, '..');
 const trailId = process.argv[2];
 const configs = {
-  'lago-carezza': { name:'Lago di Carezza Loop', height:1140, version:'2026.09.04-beta.17' },
-  'alpe-siusi': { name:'Alpe di Siusi Meadow Loop', height:720, version:'2026.09.04-beta.4' },
+  'lago-carezza': { name:'Lago di Carezza Loop', height:1140, version:'2026.09.05-beta.20' },
+  'alpe-siusi': { name:'Alpe di Siusi Meadow Loop', height:720, version:'2026.09.05-beta.7' },
 };
 const config = configs[trailId];
 if(!config) throw new Error(`Unsupported offline package: ${trailId || '(missing)'}`);
@@ -63,12 +63,44 @@ const mapped = {
   sourceState:'mapped', sourceLabel:'Mapped data', freshnessState:'unknown',
   freshnessLabel:'Freshness unknown', observedAt:null, observedLabel:'date unknown',
 };
+// A package revision labels what people download. Anything that does not
+// change a downloadable byte must not move it: the physical device-test gates
+// are tied to the revision, so a cosmetic bump silently invalidates QA
+// evidence that is still perfectly valid.
+const previous = (() => {
+  try{ return JSON.parse(fs.readFileSync(path.join(packageDir, 'manifest.json'), 'utf8')); }
+  catch(error){ return null; }
+})();
+
+function sameBytes(before, after){
+  if(!before || !Array.isArray(before.resources)) return false;
+  if(before.resources.length !== after.length) return false;
+  const key = list => list
+    .map(item => `${item.url}:${item.bytes}:${item.sha256 || item.hash || ''}`)
+    .sort()
+    .join('|');
+  return key(before.resources) === key(after);
+}
+
+const unchanged = sameBytes(previous, resources);
+if(unchanged){
+  console.error(`[keep] ${trailId} packaged bytes are unchanged; keeping revision ${previous.version}.`);
+}else if(previous && previous.version === config.version){
+  console.error(
+    `[error] ${trailId} packaged bytes changed but the revision is still ${config.version}.\n` +
+    '        Bump the version in scripts/build-offline-manifest.js so the download people\n' +
+    '        already have is not silently replaced under the same label.');
+  process.exit(1);
+}
+
 const manifest = {
   schemaVersion:1,
   trailId,
   name:config.name,
-  version:config.version,
-  generatedAt:new Date().toISOString(),
+  // Follows the bytes, not the calendar.
+  version:unchanged ? previous.version : config.version,
+  // The build did not happen if nothing was rebuilt, so the stamp stands.
+  generatedAt:unchanged && previous.generatedAt ? previous.generatedAt : new Date().toISOString(),
   scoringVersion:require('../scoring/recommendation-v1.js').VERSION,
   verificationStatus:'field-review-required',
   packageBytes:resources.reduce((total, item) => total + item.bytes, 0),

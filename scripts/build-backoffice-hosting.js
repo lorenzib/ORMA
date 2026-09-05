@@ -9,7 +9,7 @@ const output=path.join(root,'dist','backoffice');
 const files=[
   'backoffice-firebase.js','backoffice-login.js','backoffice-auth-guard.js','backoffice-session.js',
   'backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','backoffice/dashboard-model.js',
-  'new-trail-scouting-desk.js','hazard-review-desk.js','editorial-desk.js','image-coverage-hosted.js','newsletter-hosted.js','product-prototype.js','analyst-hosted.js','designer-desk.js',
+  'image-coverage-hosted.js',
   'moderation-page.js','moderation.css','community-content-states.js',
   'backoffice-review.css','styles.css','favicon-32.png','logo.svg','backoffice/content-review-decisions.js','backoffice/content-receipt-model.js',
 ];
@@ -24,7 +24,7 @@ async function hostedPage(source,target=source){
   let html=await fs.readFile(path.join(root,source),'utf8');
   html=html.replace(/src="firebase-init\.js(?:\?[^\"]*)?"/g,'src="backoffice-firebase.js?v=20260904-1"');
   html=html.replace(/src="backoffice-firebase\.js(?:\?[^\"]*)?"/g,'src="backoffice-firebase.js?v=20260904-1"');
-  html=html.replace(/<a href="content-desk\.html">Guide content edit ↗<\/a>/g,'<span class="bo-hosted-separation">Guide editing remains in the separate Editorial flow.</span>');
+
   const destination=path.join(output,target);await fs.mkdir(path.dirname(destination),{recursive:true});await fs.writeFile(destination,html,'utf8');
 }
 
@@ -40,13 +40,7 @@ async function build(){
   await hostedPage('backoffice-hosted-login.html','backoffice-login.html');
   await hostedPage('trail-dossier-desk.html');
   await hostedPage('trail-content-desk.html');
-  await hostedPage('new-trail-scouting-desk.html');
-  await hostedPage('hazard-review-desk.html');
-  await hostedPage('editorial-desk.html');
   await hostedPage('image-coverage-hosted.html','image-coverage-desk.html');
-  await hostedPage('newsletter-hosted.html','newsletter-desk.html');
-  await hostedPage('analyst-hosted.html','product-ideas-desk.html');
-  await hostedPage('designer-desk.html');
   await hostedPage('community-moderation-desk.html');
   await hostedPage('backoffice-hosted-review.html','backoffice-review.html');
   await fs.writeFile(path.join(output,'robots.txt'),'User-agent: *\nDisallow: /\n','utf8');

@@ -8,15 +8,14 @@ const {JSDOM}=require('jsdom');
 
 const root=__dirname;
 const protectedPages=[
-  'backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html',
-  'content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html',
-  'image-coverage-desk.html','newsletter-desk.html','social-desk.html',
-  'product-ideas-desk.html','community-moderation-desk.html',
+  'trail-dossier-desk.html','trail-content-desk.html',
+  
+  'community-moderation-desk.html',
 ];
 
 describe('private ORMA backoffice authentication',()=>{
   test('uses a dedicated unlinked login with no public-app navigation',()=>{
-    const login=fs.readFileSync(path.join(root,'backoffice-login.html'),'utf8');
+    const login=fs.readFileSync(path.join(root,'backoffice-hosted-login.html'),'utf8');
     const publicHome=fs.readFileSync(path.join(root,'index.html'),'utf8');
     expect(login).toContain('Restricted operator access');
     expect(login).toContain('noindex,nofollow,noarchive');

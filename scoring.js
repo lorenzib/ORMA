@@ -32,8 +32,14 @@ function scoreTrail(trail, subject, currentConditions){
   return recommendTrail(trail, subject, currentConditions).score;
 }
 
+// The profile a visitor is scored against before they add a dog. The site
+// already tells them so ("Scores use a medium-dog profile"), so guest maps can
+// colour by match honestly rather than falling back to a different meaning.
+const GUEST_SUBJECT = Object.freeze({ terrain:'1', distance:'10', heatSensitive:false });
+
 window.DoloPawsScoring = Object.freeze({
   VERSION: SCORING_VERSION,
+  GUEST_SUBJECT,
   recommendTrail,
   scoreTrail,
 });

@@ -12,10 +12,10 @@ describe('MOD-02 minimum moderation queue', () => {
   const rules = read('firestore.rules');
   const page = read('moderation-page.js');
   const shell = read('community-moderation-desk.html');
-  const legacy = read('moderation.html');
   const account = read('account.html');
   const navigation = read('mobile-nav.js');
   const homepage = read('index.html');
+  const customerClient = read('firebase-init.js');
 
   test('requires the trusted moderator claim on client and server', () => {
     expect(client).toContain('getIdTokenResult(currentUser,true)');
@@ -32,7 +32,10 @@ describe('MOD-02 minimum moderation queue', () => {
     expect(navigation).not.toContain('summary.moderator === true');
     expect(homepage).not.toContain('liModeratorLink');
     expect(shell).toContain('href="community-moderation-desk.html" aria-current="page">Community</a>');
-    expect(legacy).toContain('https://backoffice.app-orma.com/community-moderation-desk.html');
+    // No moderation surface survives on the customer site — not even a redirect.
+    expect(fs.existsSync(path.join(__dirname, 'moderation.html'))).toBe(false);
+    expect(customerClient).not.toContain('DoloPawsModeration');
+    expect(customerClient).not.toContain('getModerationQueue');
   });
 
   test('queues every state needing a decision or restoration', () => {

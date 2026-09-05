@@ -612,7 +612,8 @@
     const verifiedRouteGuidance = t.routeNumberGuidance && typeof t.routeNumberGuidance === 'object'
       ? t.routeNumberGuidance
       : null;
-    const routeOverview = cardCopy(String(t.desc || '').split(/\n\s*\n/)[0] || '');
+    const routeOverview = cardCopy(String(t.desc || '').split(/\n\s*\n/)[0] || '')
+      .replace(/^\s*route\s+overview\s*:\s*/i, '');
     const guidanceIsLandmarkLed = verifiedRouteGuidance && verifiedRouteGuidance.mode === 'landmarks';
     const routeBadges = routeRefs.length
       ? `<div class="td2-route-ref-list" aria-label="Trail numbers in order">${routeRefs.map((ref, index) =>
@@ -631,8 +632,9 @@
           <li>Stay on trail <b>${esc(routeSwitches[routeSwitches.length - 1].to)}</b> for the final section to the route finish.</li>
         </ol>`
       : '';
+    const noRouteNumbers = '<div class="s"><p><b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route. Follow the mapped ORMA line and local destination signs.</p></div>';
     const routeRefMarkup = verifiedRouteGuidance
-      ? `<div class="s"><p><b>Start:</b> ${esc(verifiedRouteGuidance.start)}</p><p><b>${guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'}:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>${guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'}:</b> ${esc(verifiedRouteGuidance.switches)}</p></div>`
+      ? `${routeBadges}<div class="s"><p><b>Start:</b> ${esc(verifiedRouteGuidance.start)}</p><p><b>${guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'}:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>${guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'}:</b> ${esc(verifiedRouteGuidance.switches)}</p></div>`
       : routeRefs.length
       ? `${routeBadges}${switchGuidance || `<div class="s">${hasSectionOnlyRefs
           ? `${routeRefs.length === 1 ? 'Trail' : 'Trails'} ${esc(routeSequence)} ${routeRefs.length === 1 ? 'is' : 'are'} marked only on the verified section${routeRefs.length === 1 ? '' : 's'} shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.`
@@ -640,7 +642,7 @@
             ? `Follow waymarked trail <b>${esc(routeRefs[0])}</b> along the mapped hike. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.`
             : `This hike uses trails ${esc(routeSequence)}, but the exact numbered switch point${routeRefs.length > 2 ? 's are' : ' is'} still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.`}</div>`}`
       : routeOverview
-        ? `<div class="s"><p><b>Route overview:</b> ${esc(routeOverview)}</p></div>`
+        ? `${noRouteNumbers}<div class="s"><p>${esc(routeOverview)}</p></div>`
         : '';
     const routeCard = {
       ic:'',
@@ -736,6 +738,20 @@
               hourlyTemps:d.hourly && d.hourly.temperature_2m,
             })
             : null;
+          // Today's heat, in the vocabulary the recommendation engine reads.
+          // Until now nothing supplied currentConditions, so the score never
+          // reflected the day it was being read on.
+          if (window.DoloPawsWeatherWindow) {
+            const conditions = window.DoloPawsWeatherWindow.currentConditions({
+              currentTime:d.current.time,
+              temperatureC:d.current.temperature_2m,
+              hourlyTimes:d.hourly && d.hourly.time,
+              hourlyTemps:d.hourly && d.hourly.temperature_2m,
+            });
+            window.DoloPawsCurrentConditions = conditions;
+            window.dispatchEvent(new CustomEvent('dolopaws-conditions-ready', { detail:conditions }));
+          }
+
           const winEl = $('sideCondWindow');
           if (winEl) winEl.innerHTML = window.DoloPawsWeatherWindow
             ? window.DoloPawsWeatherWindow.markup(win)

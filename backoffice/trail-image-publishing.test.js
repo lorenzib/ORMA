@@ -3,7 +3,7 @@
 const fs=require('fs/promises');
 const os=require('os');
 const path=require('path');
-const {materializeApprovedTrailImages}=require('./workflows/materialize-approved-trail-images');
+const {materializeApprovedTrailImages,MAXIMUM_REMOTE_IMAGE_BYTES}=require('./workflows/materialize-approved-trail-images');
 const {recordTrailImageDeployment}=require('./workflows/trail-image-deployment-receipts');
 const {main:confirmTrailImages}=require('./cli/confirm-trail-images');
 
@@ -43,12 +43,48 @@ describe('human-approved trail-photo publishing',()=>{
     }finally{await fs.rm(root,{recursive:true,force:true});}
   });
 
-  test('materializes an approved licensed URL without copying a private upload',async()=>{
+  test('copies an approved licensed photo into the repository instead of hot-linking it',async()=>{
     const root=await fs.mkdtemp(path.join(os.tmpdir(),'orma-licensed-photo-'));await fs.mkdir(path.join(root,'data'),{recursive:true});
     await fs.writeFile(path.join(root,'data/trail-image-overrides.json'),JSON.stringify({schemaVersion:1,updatedAt:null,trails:[]}));
     const url='https://upload.wikimedia.org/example/seceda.jpg';const artifact={requests:[{id:'licensed-1',trailId:'seceda',title:'Seceda Ridge Trail',assetRef:url,sourcePageUrl:'https://commons.wikimedia.org/wiki/File:Seceda.jpg',creator:'Example photographer',license:'CC BY-SA 4.0',licenseUrl:'https://creativecommons.org/licenses/by-sa/4.0/',sourceType:'licensed-source',altText:'Seceda ridge',status:'approved-for-pr-creation'}]};
     const store={getArtifact:async()=>artifact,setArtifact:async()=>{}};
-    try{const result=await materializeApprovedTrailImages({root,store,at:'2026-08-25T10:05:00Z'});expect(result.materialized).toBe(1);expect(result.overrides.trails[0].fields).toEqual(expect.objectContaining({imageIcon:url,imageLicence:'CC BY-SA 4.0',imageSourceType:'licensed-source'}));}
-    finally{await fs.rm(root,{recursive:true,force:true});}
+    const fetchImpl=async()=>({ok:true,headers:{get:()=>'image/jpeg'},arrayBuffer:async()=>Buffer.from('licensed-bytes')});
+    try{
+      const result=await materializeApprovedTrailImages({root,store,at:'2026-08-25T10:05:00Z',fetchImpl});
+      expect(result.materialized).toBe(1);
+      expect(result.assetRefs[0]).toMatch(/^images\/trails\/seceda-.*\.jpg$/);
+      expect(await fs.readFile(path.join(root,result.assetRefs[0]),'utf8')).toBe('licensed-bytes');
+      expect(result.overrides.trails[0].fields).toEqual(expect.objectContaining({imageIcon:result.assetRefs[0],
+        imageLicence:'CC BY-SA 4.0',imageSourceType:'licensed-source',imageSourcePage:'https://commons.wikimedia.org/wiki/File:Seceda.jpg'}));
+      expect(result.overrides.trails[0].fields.imageIcon).not.toBe(url);
+    }finally{await fs.rm(root,{recursive:true,force:true});}
+  });
+
+  test('refuses a licensed rendition that is too large to commit',async()=>{
+    const root=await fs.mkdtemp(path.join(os.tmpdir(),'orma-licensed-big-'));await fs.mkdir(path.join(root,'data'),{recursive:true});
+    await fs.writeFile(path.join(root,'data/trail-image-overrides.json'),JSON.stringify({schemaVersion:1,updatedAt:null,trails:[]}));
+    const artifact={requests:[{id:'licensed-2',trailId:'seceda',assetRef:'https://upload.wikimedia.org/huge.jpg',creator:'x',license:'CC BY 4.0',status:'approved-for-pr-creation'}]};
+    const store={getArtifact:async()=>artifact,setArtifact:async()=>{}};
+    const fetchImpl=async()=>({ok:true,headers:{get:()=>'image/jpeg'},arrayBuffer:async()=>Buffer.alloc(MAXIMUM_REMOTE_IMAGE_BYTES+1)});
+    try{
+      await expect(materializeApprovedTrailImages({root,store,fetchImpl})).rejects.toThrow(/choose a rendition under/);
+    }finally{await fs.rm(root,{recursive:true,force:true});}
+  });
+
+  test('never replaces a photo a trail already has',async()=>{
+    const root=await fs.mkdtemp(path.join(os.tmpdir(),'orma-photo-immutable-'));await fs.mkdir(path.join(root,'data'),{recursive:true});
+    await fs.writeFile(path.join(root,'data/trail-image-overrides.json'),JSON.stringify({schemaVersion:1,updatedAt:'2026-09-01T00:00:00Z',
+      trails:[{id:'seceda',approvedReviewId:'approval-1',fields:{imageIcon:'images/trails/seceda-first.jpg'}}]}));
+    const artifact={requests:[{id:'approval-2',trailId:'seceda',assetRef:'images/tre-cime-hero.jpg',creator:'ORMA',status:'approved-for-pr-creation'}]};
+    const writes=[];const store={getArtifact:async()=>artifact,setArtifact:async(id,value)=>writes.push({id,value})};
+    try{
+      const result=await materializeApprovedTrailImages({root,store,at:'2026-09-05T10:00:00Z'});
+      const overrides=JSON.parse(await fs.readFile(path.join(root,'data/trail-image-overrides.json'),'utf8'));
+      expect(overrides.trails).toHaveLength(1);
+      expect(overrides.trails[0].fields.imageIcon).toBe('images/trails/seceda-first.jpg');
+      expect(overrides.trails[0].approvedReviewId).toBe('approval-1');
+      expect(writes[0].value.requests[0].status).toBe('superseded-by-published-photo');
+      expect(result.assetRefs).toEqual([]);
+    }finally{await fs.rm(root,{recursive:true,force:true});}
   });
 });
