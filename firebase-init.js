@@ -14,7 +14,7 @@ import {
   signOut as fbSignOut, onAuthStateChanged, GoogleAuthProvider, OAuthProvider, signInWithPopup,
   sendPasswordResetEmail, deleteUser, reauthenticateWithCredential,
   EmailAuthProvider, reauthenticateWithPopup, verifyBeforeUpdateEmail,
-  sendEmailVerification, reload, updateProfile, getIdTokenResult
+  sendEmailVerification, reload, updateProfile
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import {
   getFirestore, doc, getDoc, setDoc, deleteDoc,
@@ -76,8 +76,6 @@ async function syncProfileSummary(user) {
     // pages, which have no Firebase and read only this cache.
     let saved = null;
     try { saved = Object.keys((await getFavorites()) || {}).length; } catch (e) {}
-    let moderator = false;
-    try { moderator = (await getIdTokenResult(user)).claims.moderator === true; } catch (e) {}
     // A slower request started before a profile/photo save must never replace
     // the newer cache when it eventually finishes.
     if (syncVersion !== profileSummarySyncVersion || !currentUser || currentUser.uid !== user.uid) return;
@@ -95,7 +93,6 @@ async function syncProfileSummary(user) {
         fitness:item.fitness ? String(item.fitness).slice(0, 20) : null,
         photo:typeof item.photo === 'string' && item.photo.startsWith('data:image/') ? item.photo : null,
       })),
-      moderator,
       saved,
     });
   } catch (e) { /* cache only — never break auth over it */ }
@@ -312,7 +309,7 @@ function dogStatePayload(state, existing) {
 
 // A dog write is complete when its Firestore transaction commits. Paint the
 // new selected dog into the local summary immediately so navigation updates
-// without waiting for unrelated favorites and moderator lookups.
+// without waiting for the unrelated favorites lookup.
 function cacheCommittedDogSummary(user, committed) {
   if (!user || !committed) return;
   try {
@@ -336,7 +333,6 @@ function cacheCommittedDogSummary(user, committed) {
         fitness:item.fitness ? String(item.fitness).slice(0, 20) : null,
         photo:typeof item.photo === 'string' && item.photo.startsWith('data:image/') ? item.photo : null,
       })),
-      moderator:sameUser ? sameUser.moderator === true : false,
       saved:sameUser && typeof sameUser.saved === 'number' ? sameUser.saved : null,
     });
   } catch (e) { /* cache only — the committed save still succeeded */ }
@@ -362,8 +358,8 @@ async function mutateDogState(mutator) {
   if (!committed) return false;
   if (currentUser && currentUser.uid === mutationUser.uid) {
     cacheCommittedDogSummary(mutationUser, committed);
-    // Refresh favorites and moderator status in the background. Neither is
-    // part of saving a dog, so a slow lookup must not hold the form hostage.
+    // Refresh favorites in the background. They are not part of saving a dog,
+    // so a slow lookup must not hold the form hostage.
     syncProfileSummary(mutationUser);
   }
   window.dispatchEvent(new CustomEvent('dolopaws-dog-profile-saved', {
@@ -1139,33 +1135,6 @@ async function getSiteNotices() {
   }
 }
 
-async function addSiteNotice(notice) {
-  if (!currentUser) return { ok: false, message: "Sign in first." };
-  try {
-    const payload = {
-      title: String(notice.title || "").slice(0, 80),
-      body: String(notice.body || "").slice(0, 280),
-      href: notice.href ? String(notice.href).slice(0, 200) : null,
-      type: ["news", "trail", "safety"].includes(notice.type) ? notice.type : "news",
-      createdAt: serverTimestamp(),
-      expiresAt: Number.isFinite(notice.expiresDays)
-        ? Timestamp.fromMillis(Date.now() + notice.expiresDays * 864e5)
-        : null,
-    };
-    const ref = await addDoc(collection(db, "siteNotices"), payload);
-    return { ok: true, id: ref.id };
-  } catch (e) {
-    console.error("addSiteNotice failed:", e);
-    return { ok: false, message: "Could not post the notice." };
-  }
-}
-
-async function deleteSiteNotice(noticeId) {
-  if (!currentUser) return false;
-  try { await deleteDoc(doc(db, "siteNotices", String(noticeId))); return true; }
-  catch (e) { console.error("deleteSiteNotice failed:", e); return false; }
-}
-
 async function respondToHazard(flagId, stance) {
   const eligibility = await getContributionEligibility();
   if (!eligibility.ok) return eligibility;
@@ -1345,299 +1314,15 @@ async function reportContent(targetType, targetId, reason) {
   } catch (e) { return false; }
 }
 
-const MODERATION_COLLECTIONS = {
-  flag: "flags",
-  review: "reviews",
-  photo: "trailPhotos",
-  placeDog: "placeDogReports",
-};
-
-async function moderatorIdentity() {
-  if (!currentUser) return null;
-  try {
-    const token = await getIdTokenResult(currentUser, true);
-    return token.claims && token.claims.moderator === true
-      ? { uid: currentUser.uid }
-      : null;
-  } catch (e) {
-    return null;
-  }
-}
-
-async function getBackofficeArtifact(artifactId) {
-  if (!await moderatorIdentity()) return { ok:false, error:'moderator-required', data:null };
-  try {
-    const snapshot = await getDoc(doc(db, 'backofficeArtifacts', artifactId));
-    if(!snapshot.exists()) return { ok:false, error:'artifact-not-found', data:null };
-    const artifact = snapshot.data();
-    const data = artifact.dataEncoding === 'json-v1'
-      ? JSON.parse(artifact.data)
-      : artifact.data;
-    return { ok:true, data, updatedAt:artifact.updatedAt || null };
-  } catch (error) {
-    console.error('getBackofficeArtifact failed:', error);
-    return { ok:false, error:'artifact-read-failed', data:null };
-  }
-}
-
-async function getBackofficeRevisionJobs() {
-  if (!await moderatorIdentity()) return { ok:false, error:'moderator-required', jobs:[] };
-  try {
-    const snapshot = await getDocs(query(collection(db, 'backofficeJobs'), orderBy('createdAt', 'desc'), limit(100)));
-    return { ok:true, jobs:snapshot.docs.map(item => ({ id:item.id, ...item.data() })) };
-  } catch (error) {
-    console.error('getBackofficeRevisionJobs failed:', error);
-    return { ok:false, error:'job-read-failed', jobs:[] };
-  }
-}
-
-async function submitBackofficeTrailReview(payload) {
-  const moderator = await moderatorIdentity();
-  if (!moderator) return { ok:false, error:'moderator-required' };
-  if (!payload || payload.gate !== 'content-review' || !Array.isArray(payload.decisions) || !payload.decisions.length) {
-    return { ok:false, error:'decisions-required' };
-  }
-  try {
-    const review = await addDoc(collection(db, 'backofficeReviews'), {
-      contractVersion:'1.0.0', type:'verified-trail-content-review', gate:'content-review', status:'queued',
-      decisions:payload.decisions, submittedAt:serverTimestamp(), submittedBy:moderator.uid, publicMutationAllowed:false,
-    });
-    return { ok:true, reviewId:review.id, status:'queued' };
-  } catch (error) {
-    console.error('submitBackofficeTrailReview failed:', error);
-    return { ok:false, error:'review-submit-failed' };
-  }
-}
-
-async function submitBackofficePublicationReview(input) {
-  const moderator = await moderatorIdentity();
-  if (!moderator) return { ok:false, error:'moderator-required' };
-  try {
-    const review = await addDoc(collection(db, 'backofficePublicationReviews'), {
-      contractVersion:'1.0.0', type:'verified-trail-publication-review', status:'queued',
-      candidateId:String(input.candidateId || ''), action:String(input.action || ''),
-      note:String(input.note || '').trim().slice(0,1500), submittedAt:serverTimestamp(),
-      submittedBy:moderator.uid, publicMutationAllowed:false,
-    });
-    return { ok:true, reviewId:review.id, status:'queued' };
-  } catch (error) {
-    console.error('submitBackofficePublicationReview failed:', error);
-    return { ok:false, error:'publication-review-submit-failed' };
-  }
-}
-
-async function submitBackofficeDossierReview(input) {
-  const moderator=await moderatorIdentity();
-  if(!moderator)return {ok:false,error:'moderator-required'};
-  try{
-    const review=await addDoc(collection(db,'backofficeDossierReviews'),{
-      contractVersion:'1.0.0',type:'trail-dossier-review',status:'queued',
-      reviewId:String(input.reviewId||''),candidateId:String(input.candidateId||''),
-      action:String(input.action||''),targetAgent:String(input.targetAgent||''),
-      note:String(input.note||'').trim().slice(0,1500),submittedAt:serverTimestamp(),
-      submittedBy:moderator.uid,publicMutationAllowed:false,
-    });
-    return {ok:true,reviewId:review.id,status:'queued'};
-  }catch(error){console.error('submitBackofficeDossierReview failed:',error);return {ok:false,error:'dossier-review-submit-failed'};}
-}
-
-function moderationItem(type, snapshot, reportReasons = [], reportIds = []) {
-  const data = snapshot.data();
-  return {
-    type,
-    id: snapshot.id,
-    trailId: data.trailId || null,
-    targetId: data.placeId || data.trailId,
-    authorUid: data.uid,
-    status: data.status,
-    createdAt: data.createdAt,
-    content: {
-      type: data.type || null,
-      km: typeof data.km === "number" ? data.km : null,
-      rating: typeof data.rating === "number" ? data.rating : null,
-      text: data.text || null,
-      hikedOn: data.hikedOn || null,
-      image: data.image || null,
-      caption: data.caption || null,
-      placeName: data.placeName || null,
-      placeType: data.placeType || null,
-      policy: data.policy || null,
-      evidence: data.evidence || null,
-      note: data.note || null,
-      confirmationSource: data.confirmationSource || null,
-      confirmations: Number(data.confirmations) || 0,
-      disputes: Number(data.disputes) || 0,
-      expiresAt: data.expiresAt || null,
-      lifecyclePresent: data.confirmationSource != null &&
-        data.confirmations != null &&
-        data.disputes != null &&
-        data.expiresAt != null,
-    },
-    reportReasons,
-    reportIds,
-  };
-}
-
-async function getModerationQueue() {
-  if (!await moderatorIdentity()) return { ok: false, error: "moderator-required", items: [] };
-  try {
-    const types = Object.keys(MODERATION_COLLECTIONS);
-    const [contentResults, reportResult] = await Promise.all([
-      Promise.all(types.map(async type => {
-        const queueStates = type === "flag"
-          ? ["pending", "visible", "reported", "hidden", "removed"]
-          : ["pending", "reported", "hidden", "removed"];
-        const snap = await getDocs(query(
-          collection(db, MODERATION_COLLECTIONS[type]),
-          where("status", "in", queueStates)
-        ));
-        return snap.docs
-          .map(item => moderationItem(type, item))
-          .filter(item => type !== "flag" || item.status !== "visible" ||
-            !item.content.lifecyclePresent ||
-            !item.content.expiresAt ||
-            item.content.expiresAt.toMillis() <= Date.now());
-      })),
-      getDocs(query(collection(db, "reports"), where("status", "==", "open"))),
-    ]);
-    const openReports = reportResult.docs.map(item => ({ id: item.id, ...item.data() }));
-    const byTarget = new Map();
-    openReports.forEach(report => {
-      const key = `${report.targetType}:${report.targetId}`;
-      const group = byTarget.get(key) || { reasons: [], ids: [] };
-      group.reasons.push({
-        text: String(report.reason || "").slice(0, 200),
-        createdAt: report.createdAt || null,
-      });
-      group.ids.push(report.id);
-      byTarget.set(key, group);
-    });
-    const items = contentResults.flat();
-    const existing = new Set(items.map(item => `${item.type}:${item.id}`));
-    for (const [key, reports] of byTarget) {
-      const separator = key.indexOf(":");
-      const type = key.slice(0, separator);
-      const id = key.slice(separator + 1);
-      if (existing.has(key) || !MODERATION_COLLECTIONS[type]) continue;
-      const target = await getDoc(doc(db, MODERATION_COLLECTIONS[type], id));
-      if (target.exists()) items.push(moderationItem(type, target, reports.reasons, reports.ids));
-    }
-    items.forEach(item => {
-      const reports = byTarget.get(`${item.type}:${item.id}`);
-      if (reports) {
-        item.reportReasons = reports.reasons;
-        item.reportIds = reports.ids;
-      }
-    });
-    items.sort((a, b) => {
-      const aMs = a.createdAt && a.createdAt.toMillis ? a.createdAt.toMillis() : 0;
-      const bMs = b.createdAt && b.createdAt.toMillis ? b.createdAt.toMillis() : 0;
-      return bMs - aMs;
-    });
-    return { ok: true, items };
-  } catch (e) {
-    console.error("getModerationQueue failed:", e);
-    return { ok: false, error: "queue-unavailable", items: [] };
-  }
-}
-
-async function moderateContent(item, toStatus, reason, options = {}) {
-  const moderator = await moderatorIdentity();
-  if (!moderator || !item || !MODERATION_COLLECTIONS[item.type]) {
-    return { ok: false, error: "moderator-required" };
-  }
-  const allowed = {
-    pending: ["visible", "hidden", "removed"],
-    visible: ["visible", "hidden", "removed"],
-    reported: ["visible", "hidden", "removed"],
-    hidden: ["visible", "removed"],
-    removed: ["visible"],
-  };
-  if (!allowed[item.status] || !allowed[item.status].includes(toStatus)) {
-    return { ok: false, error: "invalid-transition" };
-  }
-  try {
-    const batch = writeBatch(db);
-    const confirmationSource = item.type === "flag" &&
-      ["community", "dolopaws-reviewed", "official"].includes(options.confirmationSource)
-      ? options.confirmationSource : null;
-    const needsLifecycle = item.type === "flag" && !item.content.lifecyclePresent;
-    if (item.status !== toStatus || confirmationSource || needsLifecycle) {
-      const update = {
-        status: toStatus,
-        moderatedAt: serverTimestamp(),
-        moderatedBy: moderator.uid,
-      };
-      if (item.type === "flag" && (confirmationSource || needsLifecycle)) {
-        const expiry = window.DoloPawsCommunityStates &&
-          window.DoloPawsCommunityStates.hazardExpiryDate
-          ? window.DoloPawsCommunityStates.hazardExpiryDate(item.content.type)
-          : new Date(Date.now() + 30 * 24 * 3600 * 1000);
-        update.confirmationSource = confirmationSource || "community";
-        if (needsLifecycle) {
-          update.confirmations = 0;
-          update.disputes = 0;
-        }
-        if (update.confirmationSource !== "community") {
-          update.confirmedAt = serverTimestamp();
-          update.confirmedBy = moderator.uid;
-        }
-        update.expiresAt = Timestamp.fromDate(expiry);
-      }
-      batch.update(doc(db, MODERATION_COLLECTIONS[item.type], item.id), update);
-    }
-    const auditRef = doc(collection(db, "moderationAudit"));
-    const auditRecord = {
-      contentType: item.type,
-      contentId: item.id,
-      targetId: item.targetId,
-      authorUid: item.authorUid,
-      fromStatus: item.status,
-      toStatus,
-      moderatorUid: moderator.uid,
-      reason: String(reason || "").slice(0, 300),
-      createdAt: serverTimestamp(),
-    };
-    if (item.trailId) auditRecord.trailId = item.trailId;
-    batch.set(auditRef, auditRecord);
-    for (const reportId of item.reportIds || []) {
-      batch.update(doc(db, "reports", reportId), {
-        status: toStatus === "visible" ? "dismissed" : "actioned",
-        resolvedAt: serverTimestamp(),
-        resolvedBy: moderator.uid,
-      });
-    }
-    await batch.commit();
-    return { ok: true, auditId: auditRef.id };
-  } catch (e) {
-    console.error("moderateContent failed:", e);
-    return { ok: false, error: "decision-failed" };
-  }
-}
-
 window.DoloPawsCommunity = {
   recordHikeStart, getWeeklyHikeCount,
   addFlag, getActiveFlags, respondToHazard, deleteFlag,
   submitPlaceDogFriendliness, getVerifiedPlaceDogFriendliness,
-  getActiveFlagsForTrails, getSiteNotices, addSiteNotice, deleteSiteNotice,
+  getActiveFlagsForTrails, getSiteNotices,
   getNotifSeen, setNotifSeen,
   setReview, getReviews, deleteMyReview,
   addTrailPhoto, getTrailPhotos,
   reportContent,
-};
-
-window.DoloPawsModeration = {
-  getModeratorStatus: async () => ({ ok: !!await moderatorIdentity() }),
-  getQueue: getModerationQueue,
-  decide: moderateContent,
-};
-
-window.ORMABackoffice = {
-  getArtifact:getBackofficeArtifact,
-  getRevisionJobs:getBackofficeRevisionJobs,
-  submitTrailReview:submitBackofficeTrailReview,
-  submitPublicationReview:submitBackofficePublicationReview,
-  submitDossierReview:submitBackofficeDossierReview,
 };
 
 window.DoloPawsPrivateOutcomes = {
