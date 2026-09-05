@@ -94,3 +94,42 @@ describe('a trail parked at a gate is always visible',()=>{
     expect(target.map.get('dossier-review-queue').summary.awaitingHuman).toBe(1);
   });
 });
+
+describe('the review queue cannot outgrow its Firestore document',()=>{
+  const {restoreMissingGateReviews,REVIEW_QUEUE_SAFE_BYTES}=require('./workflows/advance-trail-orchestration');
+
+  test('restores only as many trails as fit, and never overflows',async()=>{
+    // A realistic dossier is large; fifteen of them do not fit in one document.
+    const heavy={agentId:'redTeam',recommendation:'advance',openQuestions:[],
+      claims:Array.from({length:40},(_,i)=>({id:`claim-${i}`,finding:'supported',
+        evidence:'x'.repeat(3000),sources:[{url:'https://example.org/a',authority:'A'}]}))};
+    const artifacts={};const trails=[];const jobs=[];
+    for(let i=0;i<15;i+=1){
+      artifacts[`trail-specialist-output-job-${i}`]=heavy;
+      jobs.push({id:`job-${i}`,candidateId:`c${i}`,agentId:'redTeam',status:'completed',completedAt:AT});
+      trails.push({candidateId:`c${i}`,trailId:`trail-${i}`,trailName:`Trail ${i}`,state:'dossier-human-gate',
+        currentJobId:`job-${i}`,jobIds:[`job-${i}`],attempts:{},blockers:[],gate:{id:'dossier-approval',openedAt:AT}});
+    }
+    const queue={contractVersion:'1.0.0',items:[]};
+    const restored=await restoreMissingGateReviews(store(artifacts),{trails},queue,AT,jobs);
+    expect(restored.length).toBeGreaterThan(0);
+    expect(restored.length).toBeLessThan(15);
+    expect(Buffer.byteLength(JSON.stringify(queue),'utf8')).toBeLessThanOrEqual(REVIEW_QUEUE_SAFE_BYTES);
+  });
+
+  test('a later pass restores the ones that did not fit',async()=>{
+    const small={agentId:'redTeam',recommendation:'advance',openQuestions:[],claims:[]};
+    const artifacts={'trail-specialist-output-job-a':small,'trail-specialist-output-job-b':small};
+    const trails=[
+      {candidateId:'ca',trailId:'a',state:'dossier-human-gate',currentJobId:'job-a',jobIds:['job-a'],attempts:{},blockers:[],gate:{id:'dossier-approval'}},
+      {candidateId:'cb',trailId:'b',state:'dossier-human-gate',currentJobId:'job-b',jobIds:['job-b'],attempts:{},blockers:[],gate:{id:'dossier-approval'}},
+    ];
+    const jobs=[{id:'job-a',candidateId:'ca',agentId:'redTeam',status:'completed'},
+      {id:'job-b',candidateId:'cb',agentId:'redTeam',status:'completed'}];
+    const queue={items:[]};
+    await restoreMissingGateReviews(store(artifacts),{trails:[trails[0]]},queue,AT,jobs);
+    expect(queue.items.map(item=>item.trailId)).toEqual(['a']);
+    await restoreMissingGateReviews(store(artifacts),{trails},queue,AT,jobs);
+    expect(queue.items.map(item=>item.trailId)).toEqual(['a','b']);
+  });
+});
