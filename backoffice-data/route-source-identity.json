@@ -1,0 +1,19 @@
+{
+  "contractVersion": "1.0.0",
+  "updatedAt": "2026-09-05T20:51:19.148Z",
+  "checks": {
+    "seceda": {
+      "externalRelationId": "relation/6528494",
+      "checkedAt": "2026-09-05T20:51:19.572Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "reconstructedDistanceKm": 8.81,
+      "officialDistanceKm": 10.8,
+      "distanceDeltaPercent": -18.4
+    }
+  }
+}
