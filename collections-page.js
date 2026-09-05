@@ -38,11 +38,26 @@
     moderate:'Moderate terrain',
     caution:'Caution terrain',
   })[value] || 'Difficulty not rated';
-  const difficultyColour = value => ({
-    'low-risk':'#365B43',
-    moderate:'#C4872F',
-    caution:'#B35F4B',
-  })[value] || '#6B796F';
+  // Route colour answers "how well does this walk suit the dog", never "how
+  // hard is this trail" — the same question, palette and thresholds as the
+  // homepage and trail detail maps. This replaces a third near-identical
+  // green/amber/red keyed on safetyLevel, which read as a match tier on a page
+  // that showed no scores at all.
+  //
+  // Before anyone adds a dog we score against the medium-dog guest profile the
+  // site already tells visitors about, rather than switching to a different
+  // meaning when signed out.
+  function trailMatchScore(trail){
+    const scoring = window.DoloPawsScoring;
+    if(!scoring || typeof scoring.scoreTrail !== 'function') return null;
+    try{ return scoring.scoreTrail(trail, scoring.GUEST_SUBJECT); }
+    catch(error){ return null; }
+  }
+  function matchColour(trail){
+    return window.ORMAMapStyle
+      ? window.ORMAMapStyle.matchColour(trailMatchScore(trail))
+      : '#6B796F';
+  }
 
   const COUNTRIES = [
     { value:'all', label:'All countries' },
@@ -224,7 +239,7 @@
         }
         const features = collectionTrails.filter(usablePath).map(trail => ({
           type:'Feature',
-          properties:{ id:trail.id, name:trail.name, colour:difficultyColour(trail.safetyLevel) },
+          properties:{ id:trail.id, name:trail.name, colour:matchColour(trail) },
           geometry:{ type:'LineString', coordinates:trail.path.map(([lat,lng]) => [Number(lng),Number(lat)]) },
         }));
         // Same cartography as every other ORMA map: the marked hiking network
@@ -273,7 +288,7 @@
           const marker = document.createElement('button');
           marker.type = 'button';
           marker.className = 'collection-map-marker';
-          marker.style.setProperty('--route-colour', difficultyColour(trail.safetyLevel));
+          marker.style.setProperty('--route-colour', matchColour(trail));
           marker.textContent = index + 1;
           marker.setAttribute('aria-label', `${trail.name}, ${difficultyLabel(trail.safetyLevel)}`);
           marker.addEventListener('click', () => focusMapTrail(map, trail.id));
