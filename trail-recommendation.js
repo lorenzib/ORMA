@@ -78,6 +78,21 @@
     return typeof trails !== 'undefined' ? trails.find(trail => trail.id === id) : null;
   }
 
+  // P0-3: what the reader saw before they added their dog, so the change can
+  // be stated rather than explained.
+  let previousRender = null;
+  let pendingCallout = null;
+
+  function guestProfile(){
+    try{
+      const raw = window.localStorage.getItem('dolopaws-pending-dog-profile');
+      const profile = raw ? JSON.parse(raw) : null;
+      return profile && typeof profile === 'object' && profile.name ? profile : null;
+    }catch(error){
+      return null;
+    }
+  }
+
   function subjectFor(profile){
     if(!profile) return {};
     return typeof effectiveOverrides === 'function'
@@ -103,14 +118,21 @@
       : '';
     // Dog-side gaps are the one thing the reader can fix right now — the
     // card face turns them into a profile CTA instead of a caveat.
+    const canOpenWizard = !!(window.DoloPawsWizard && typeof window.DoloPawsWizard.open === 'function');
     const gapCta = !view.dogName
-      ? `<p class="recommendation-gaps"><a href="onboarding.html">${esc(tr('recommendation.gap.addDog', 'Add your dog to sharpen this score →'))}</a></p>`
+      ? (canOpenWizard
+        ? `<p class="recommendation-gaps"><button type="button" class="recommendation-add-dog" data-add-dog>${esc(tr('recommendation.gap.addDog', 'Add your dog to sharpen this score →'))}</button></p>`
+        : `<p class="recommendation-gaps"><a href="onboarding.html">${esc(tr('recommendation.gap.addDog', 'Add your dog to sharpen this score →'))}</a></p>`)
       : view.dogGapFields.length
         ? `<p class="recommendation-gaps"><a href="account.html">${esc(tr('recommendation.gap.fields', 'Add {name}’s {fields} to sharpen this score →', {
             name:view.dogName,
             fields:friendlyList(view.dogGapFields),
           }))}</a></p>`
         : '';
+
+    const thisRender = { score:view.score, forName:view.breakdownFor };
+    pendingCallout = api.firstRunCallout(previousRender, thisRender, window.t);
+    previousRender = thisRender;
 
     root.className = `recommendation-decision recommendation-decision--${view.tone}`;
     root.dataset.scoringVersion = view.scoringVersion;
@@ -127,6 +149,9 @@
       // A heading over a line explaining that there is nothing to say is the
       // opposite of crisp. A section with nothing behind it is dropped; what
       // ORMA has not established stays in the unknowns disclosure below.
+      (pendingCallout
+        ? `<p class="recommendation-firstrun" role="status">${esc(pendingCallout)}</p>`
+        : '') +
       breakdown(view, tr) +
       sections([
         [tr('recommendation.reasons.title', 'Why it may fit'), view.reasons],
@@ -230,7 +255,26 @@
     if(window.DoloPawsAuth && window.DoloPawsAuth.currentUser){
       try { profile = await window.DoloPawsAuth.getDogProfile(); } catch(error){}
     }
+    // No account yet is not the same as no dog. A guest who added one scores
+    // against it here and on every other trail, until they choose to save.
+    if(!profile) profile = guestProfile();
     renderDecision(trail, profile);
+    const add = document.getElementById('recommendationDecision');
+    const trigger = add && add.querySelector('[data-add-dog]');
+    if(trigger){
+      // Opened in place, and told to come back here rather than to a payoff
+      // screen listing other trails.
+      trigger.addEventListener('click', () => {
+        window.DoloPawsWizard.open(null, { returnToPage:true });
+      });
+    }
+    if(pendingCallout){
+      // A visible change, once, so the reader sees the score move rather than
+      // finding a different number where the old one was.
+      add.classList.add('is-rescored');
+      window.setTimeout(() => add.classList.remove('is-rescored'), 1400);
+      pendingCallout = null;
+    }
   }
 
   renderCurrent();
@@ -238,4 +282,5 @@
     window.addEventListener('dolopaws-auth-ready', renderCurrent, { once:true });
   }
   window.addEventListener('dolopaws-auth-changed', renderCurrent);
+  window.addEventListener('dolopaws-dog-profile-saved', renderCurrent);
 })();

@@ -678,6 +678,14 @@ body{background:#EFECE2;}
 .recommendation-factor-impact.is-clear{color:#6B7A6E;font-weight:700;}
 .recommendation-factor-reason{flex:1;color:#3E4A40;font:500 12.5px/1.5 'Inter',sans-serif;}
 .recommendation-breakdown-note{margin:10px 0 0;color:#6B7A6E;font:600 12px/1.5 'Inter',sans-serif;}
+.recommendation-firstrun{margin:12px 0 0;padding:10px 13px;border-radius:10px;background:#EAF3F6;color:#2F6274;font:700 12.5px/1.5 'Inter',sans-serif;}
+.recommendation-add-dog{appearance:none;border:0;background:none;padding:0;cursor:pointer;color:#3E7A91;font:700 12.5px 'Inter',sans-serif;text-align:left;}
+.recommendation-add-dog:hover{text-decoration:underline;}
+/* One pass, so the reader sees the score change rather than finding a
+   different number where the old one was. */
+@keyframes recommendation-rescore{0%{background:#EAF3F6;}100%{background:#fff;}}
+.recommendation-decision.is-rescored{animation:recommendation-rescore 1.4s ease-out 1;}
+@media(prefers-reduced-motion:reduce){.recommendation-decision.is-rescored{animation:none;}}
 
 .recommendation-columns section{padding:15px 16px;border-radius:12px;background:#F7F5EE;}
 .recommendation-columns h3{margin:0 0 9px;font:800 12px 'Inter',sans-serif;color:#2E4034;}

@@ -921,9 +921,24 @@
       return;
     }
 
-    // Guest: show the payoff (their dog's real matches) BEFORE any
-    // account ask. The draft is kept so nothing is lost if they bail.
+    // A guest's dog is kept for the session as soon as it is complete, so
+    // every other trail scores for their dog straight away. Signing up is
+    // still only asked for when they try to save something.
     saveDraft();
+    try {
+      localStorage.setItem(PENDING_PROFILE_KEY, JSON.stringify(profile));
+    } catch (e) {}
+    window.dispatchEvent(new CustomEvent('dolopaws-dog-profile-saved', {
+      detail: { profile: profile, guest: true },
+    }));
+
+    if (returnToPage) {
+      doClose();
+      return;
+    }
+
+    // Otherwise: show the payoff (their dog's real matches) BEFORE any
+    // account ask. The draft is kept so nothing is lost if they bail.
     phase = 'payoff';
     render();
     focusFirstIn(bodyEl);
@@ -1032,7 +1047,13 @@
   }
 
   // ---- Open ----
-  function openWizard(existingDog) {
+  // When the wizard is opened from a page that scores a specific trail, the
+  // reader should land back on that trail with their new score, not on a
+  // payoff screen listing other trails. The caller says so explicitly.
+  var returnToPage = false;
+
+  function openWizard(existingDog, options) {
+    returnToPage = !!(options && options.returnToPage);
     preFocusEl = document.activeElement;
     isEditing  = !!(existingDog && existingDog.name);
     editingDogId = isEditing && typeof existingDog.id === 'string' ? existingDog.id : null;

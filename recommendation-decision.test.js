@@ -108,6 +108,34 @@ describe('canonical recommendation decision presentation', () => {
     expect(guest.breakdown).toHaveLength(1);
   });
 
+  describe('P0-3 the before/after first-run moment', () => {
+    const guest = { score:78, forName:'a medium dog' };
+
+    test('states the move in both scores and both names', () => {
+      expect(decision.firstRunCallout(guest, { score:61, forName:'Nina' }))
+        .toBe('Was 78% for a medium dog · now 61% for Nina. See why below.');
+    });
+
+    test('a move of two points or less is not a move', () => {
+      // Anything else invents drama the score does not support.
+      expect(decision.firstRunCallout(guest, { score:76, forName:'Nina' }))
+        .toBe('Same score for Nina as for a medium dog on this trail.');
+      expect(decision.firstRunCallout(guest, { score:80, forName:'Nina' }))
+        .toBe('Same score for Nina as for a medium dog on this trail.');
+      // Three points is a move.
+      expect(decision.firstRunCallout(guest, { score:81, forName:'Nina' }))
+        .toMatch(/^Was 78% /);
+      expect(decision.SAME_SCORE_TOLERANCE).toBe(2);
+    });
+
+    test('says nothing when there is nothing to compare', () => {
+      expect(decision.firstRunCallout(null, { score:61, forName:'Nina' })).toBeNull();
+      // Re-rendering for the same dog is not a first run.
+      expect(decision.firstRunCallout({ score:61, forName:'Nina' }, { score:55, forName:'Nina' })).toBeNull();
+      expect(decision.firstRunCallout(guest, { score:null, forName:'Nina' })).toBeNull();
+    });
+  });
+
   test('labels guest output as unpersonalized', () => {
     const result = decision.present(recommendation);
 
