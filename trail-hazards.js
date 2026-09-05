@@ -72,7 +72,10 @@
     const trail={id:identity.id||identity.slug,name:heading?heading.textContent.trim():identity.slug,
       area:(document.querySelector('[data-trail-area]')||{}).textContent||''};
     const prefix=location.pathname.includes('/trails/')?'../':'';
-    const anchorFor=()=>document.querySelector('.sp-badges')||document.querySelector('main h1')||document.querySelector('main');
+    // trail.html has no .sp-badges strip and no <main>, so both the warning
+    // stack and the report control silently vanished there. #ormaHazardMount is
+    // the explicit anchor that page provides.
+    const anchorFor=()=>document.getElementById('ormaHazardMount')||document.querySelector('.sp-badges')||document.querySelector('main h1')||document.querySelector('main');
     const reportAnchor=anchorFor();
     if(reportAnchor&&reportAnchor.parentNode)installReportControl(trail,reportAnchor);
     const response=await fetch(`${prefix}data/dynamic-hazards.json`,{cache:'no-store'});if(!response.ok)return;
@@ -88,8 +91,11 @@
       detail.append(document.createTextNode(`${item.expiresAt?` · source expiry ${new Date(item.expiresAt).toLocaleString()}`:''}`));
       if(item.verificationState==='reported-unverified')card.classList.add('is-unverified');
       card.append(title,copy,detail);stack.append(card);});
-    const anchor=document.querySelector('.sp-badges')||document.querySelector('main h1')||document.querySelector('main');
-    if(anchor?.parentNode)anchor.insertAdjacentElement(anchor.classList.contains('sp-badges')?'afterend':'afterend',stack);
+    // A safety warning must never be dropped for want of an anchor: fall back
+    // to the top of the document rather than discarding the stack.
+    const anchor=anchorFor();
+    if(anchor?.parentNode)anchor.insertAdjacentElement('afterend',stack);
+    else if(document.body)document.body.prepend(stack);
   }
   load().catch(()=>{});
 })();
