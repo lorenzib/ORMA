@@ -1,5 +1,7 @@
 'use strict';
 
+const {CLAIM_ENTITY_TYPE}=require('./compile-operational-facts');
+
 const TARGETS = Object.freeze({
   'osm-relation-1484751': { trailId: 'tre-cime', operation: 'update-existing', routeRef: 'backoffice-data/route-proposals/tre-cime-classic.geojson' },
   'osm-relation-6678431': { trailId: 'cinque-torri-assisted', operation: 'create-new', routeRef: 'backoffice-data/route-proposals/cinque-torri-three-refuges-assisted.geojson' },
@@ -46,6 +48,20 @@ function routeNumberGuidance(item){
   return {mode:landmarkLed?'landmarks':'numbered',start:start.value,status:status.value,sequence:sequence.value,switches:switches.value,sources};
 }
 
+// The locked facts that name one rifugio, lift or protected area. These ride the
+// publication approval so a policy reaches the operational facts table through
+// the same human gate that approved the dossier carrying it, and no other way.
+function operationalClaims(item){
+  return (item?.lockedFacts||[])
+    .filter(fact=>typeof fact.claimId==='string'&&Object.hasOwn(CLAIM_ENTITY_TYPE,fact.claimId))
+    .map(fact=>({
+      id:fact.id,claimId:fact.claimId,state:fact.state,humanAcceptedFinding:fact.humanAcceptedFinding,
+      entityName:fact.entityName,rule:fact.rule,observedAt:fact.observedAt,sourceIds:fact.sourceIds||[],
+      // The claim's own sentence is what a walker reads next to the policy.
+      notes:fact.value||null,
+    }));
+}
+
 function buildPublicationStaging(editorialQueue, execution, reviewQueue, options = {}){
   const at = options.at || new Date().toISOString();
   const decisions = latestDecisions(reviewQueue);
@@ -72,6 +88,7 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
     return {
       candidateId: item.candidateId, targetTrailId: target?.trailId||item.candidateId, operation: target?.operation||'mapping-required',
       state,missingApprovals,publicationMappingBlockers,
+      proposedOperationalClaims: operationalClaims(item),
       sourceApprovals: { copy: copyDecision, visual: visualDecision },
       proposedWebsiteFields: state!=='ready-for-publication-preview' ? null : {
         name: copyOutput.result.title,
