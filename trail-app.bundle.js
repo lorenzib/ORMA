@@ -4142,7 +4142,7 @@ function breedInsights(name){
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
-  const VERSION = '1.4.0';
+  const VERSION = '1.5.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
     moderate: { terrain: 1, distanceKm: 10, ascentM: 600 },
@@ -4758,8 +4758,17 @@ function breedInsights(name){
           : 'Current heat conditions add material risk.', null,
         dog.heatSensitive ? 'conditions.heat.high.sensitive' : 'conditions.heat.high'));
       }else if(conditions.heatRisk === 'moderate'){
+        // "Moderate" on its own tells an owner nothing they can act on. When
+        // the forecast says when it turns hot, the hour is the advice.
+        const hotFrom = typeof conditions.hotFromLabel === 'string' && conditions.hotFromLabel
+          ? conditions.hotFromLabel
+          : null;
         penalise(dog.heatSensitive ? 10 : 4, item('conditions.heat.moderate',
-          'Current conditions add moderate heat load.'));
+          hotFrom
+            ? `Current conditions add moderate heat load, and it turns hot from ${hotFrom}.`
+            : 'Current conditions add moderate heat load.',
+          hotFrom ? { hotFrom } : null,
+          hotFrom ? 'conditions.heat.moderate.from' : 'conditions.heat.moderate'));
       }else if(conditions.heatRisk === 'low'){
         positives.push(item('conditions.heat.low', 'Current heat conditions are low-risk.'));
       }else{
@@ -10856,7 +10865,50 @@ function initDetailPois(map, trail){
     return `${prefix} <strong>${start}</strong> · for this ${result.durationHours} h route, finish by <strong>${finish}</strong>, at least 1 hour before forecast sunset.`;
   }
 
-  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,minuteOfDay,formatTime,recommendation,markup};
+  // Heat thresholds already shipped on the trail page's conditions card, reused
+  // here so one number does not mean two different things in two places.
+  const WARM_C=22;
+  const HOT_C=28;
+
+  // The hour heat actually becomes a problem today, read off the forecast
+  // rather than asserted. Returns null when the forecast never crosses the
+  // threshold, so the caller can stay silent instead of inventing an hour.
+  function heatOnset(input){
+    const times=Array.isArray(input&&input.hourlyTimes)?input.hourlyTimes:[];
+    const temps=Array.isArray(input&&input.hourlyTemps)?input.hourlyTemps:[];
+    if(!times.length||times.length!==temps.length)return null;
+    const today=dayKey(input.currentTime);
+    const nowMinute=minuteOfDay(input.currentTime);
+    if(!today||nowMinute===null)return null;
+    const threshold=Number.isFinite(input.thresholdC)?input.thresholdC:HOT_C;
+
+    for(let index=0;index<times.length;index+=1){
+      if(dayKey(times[index])!==today)continue;
+      const minute=minuteOfDay(times[index]);
+      const temp=Number(temps[index]);
+      if(minute===null||!Number.isFinite(temp))continue;
+      if(minute<nowMinute)continue;
+      if(temp>=threshold)return {minutes:minute,label:formatTime(minute),temperatureC:Math.round(temp)};
+    }
+    return null;
+  }
+
+  // Today's heat, in the vocabulary the recommendation engine reads.
+  function currentConditions(input){
+    const temp=Number(input&&input.temperatureC);
+    if(!Number.isFinite(temp))return {status:'not-provided'};
+    const heatRisk=temp>=HOT_C?'high':temp>=WARM_C?'moderate':'low';
+    const onset=heatOnset(input);
+    return {
+      status:'known',
+      heatRisk,
+      // Only present when the forecast actually crosses the threshold later
+      // today. Absent means the engine says nothing about an hour.
+      hotFromLabel:onset&&heatRisk!=='high'?onset.label:null,
+    };
+  }
+
+  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,WARM_C,HOT_C,minuteOfDay,formatTime,recommendation,markup,heatOnset,currentConditions};
 });
 ;
 
@@ -15820,6 +15872,20 @@ if(document.querySelector('.td2')){
               hourlyTemps:d.hourly && d.hourly.temperature_2m,
             })
             : null;
+          // Today's heat, in the vocabulary the recommendation engine reads.
+          // Until now nothing supplied currentConditions, so the score never
+          // reflected the day it was being read on.
+          if (window.DoloPawsWeatherWindow) {
+            const conditions = window.DoloPawsWeatherWindow.currentConditions({
+              currentTime:d.current.time,
+              temperatureC:d.current.temperature_2m,
+              hourlyTimes:d.hourly && d.hourly.time,
+              hourlyTemps:d.hourly && d.hourly.temperature_2m,
+            });
+            window.DoloPawsCurrentConditions = conditions;
+            window.dispatchEvent(new CustomEvent('dolopaws-conditions-ready', { detail:conditions }));
+          }
+
           const winEl = $('sideCondWindow');
           if (winEl) winEl.innerHTML = window.DoloPawsWeatherWindow
             ? window.DoloPawsWeatherWindow.markup(win)
@@ -16608,7 +16674,11 @@ if(document.querySelector('.td2')){
     const root = document.getElementById('recommendationDecision');
     const api = window.DoloPawsRecommendationDecision;
     if(!root || !api || typeof recommendTrail !== 'function') return;
-    const recommendation = recommendTrail(trail, subjectFor(profile));
+    // The weather arrives after the first paint, so the card scores without it
+    // and re-scores when it lands. Absent conditions stay 'not-provided'
+    // rather than being guessed at.
+    const conditions = window.DoloPawsCurrentConditions || undefined;
+    const recommendation = recommendTrail(trail, subjectFor(profile), conditions);
     const view = api.present(recommendation, {
       dogName:profile && profile.name,
       translate:window.t,
@@ -16787,5 +16857,6 @@ if(document.querySelector('.td2')){
   }
   window.addEventListener('dolopaws-auth-changed', renderCurrent);
   window.addEventListener('dolopaws-dog-profile-saved', renderCurrent);
+  window.addEventListener('dolopaws-conditions-ready', renderCurrent);
 })();
 ;

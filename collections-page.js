@@ -47,10 +47,18 @@
   // Before anyone adds a dog we score against the medium-dog guest profile the
   // site already tells visitors about, rather than switching to a different
   // meaning when signed out.
+  // Scored against the signed-in dog when there is one, and the medium-dog
+  // guest profile otherwise. Colouring everyone by the guest profile would
+  // leave this map answering "does this suit a generic dog" while every other
+  // ORMA surface answers "does this suit yours" — the same defect, one layer
+  // down, that this palette clean-up existed to remove.
+  let matchSubject = null;                    // null until a dog profile resolves
+  const repaintOnSubjectChange = new Set();
+
   function trailMatchScore(trail){
     const scoring = window.DoloPawsScoring;
     if(!scoring || typeof scoring.scoreTrail !== 'function') return null;
-    try{ return scoring.scoreTrail(trail, scoring.GUEST_SUBJECT); }
+    try{ return scoring.scoreTrail(trail, matchSubject || scoring.GUEST_SUBJECT); }
     catch(error){ return null; }
   }
   function matchColour(trail){
@@ -58,6 +66,22 @@
       ? window.ORMAMapStyle.matchColour(trailMatchScore(trail))
       : '#6B796F';
   }
+
+  // Auth resolves after first paint, so a map drawn with the guest profile has
+  // to recolour rather than stay wrong for the rest of the session.
+  function resolveMatchSubject(){
+    const auth = window.DoloPawsAuth;
+    if(!auth || !auth.currentUser || typeof auth.getDogProfile !== 'function') return;
+    auth.getDogProfile().then(profile => {
+      if(!profile) return;
+      const next = typeof effectiveOverrides === 'function'
+        ? effectiveOverrides(profile, null) : profile;
+      matchSubject = next;
+      repaintOnSubjectChange.forEach(repaint => { try{ repaint(); }catch(error){} });
+    }).catch(() => {});
+  }
+  resolveMatchSubject();
+  window.addEventListener('dolopaws-auth-changed', resolveMatchSubject);
 
   const COUNTRIES = [
     { value:'all', label:'All countries' },
@@ -168,6 +192,8 @@
     if(activeMap){
       activeMap.remove();
       activeMap = null;
+      // Repaints close over the map that is going away.
+      repaintOnSubjectChange.clear();
     }
   }
   function updateCollectionUrl(collectionId, mode = 'push', view = expandedCollectionView){
@@ -257,13 +283,34 @@
             // that does not exist here — zooming in is the affordance.
             minzoom: NETWORK_MIN_ZOOM,
           }) : undefined;
+        const mapMarkerElements = [];
         map.addSource('collection-inline-routes', { type:'geojson', data:{ type:'FeatureCollection', features } });
+        // If the dog profile lands after this map is drawn, restyle it in place
+        // rather than leaving it coloured for a generic dog all session. Cleared
+        // with the map in resetActiveMap().
+        const repaintMatchColours = () => {
+          const source = map.getSource('collection-inline-routes');
+          if(source){
+            source.setData({
+              type:'FeatureCollection',
+              features: features.map(feature => ({
+                ...feature,
+                properties:{ ...feature.properties, colour: matchColour(trailsByFeatureId.get(feature.properties.id)) },
+              })),
+            });
+          }
+          mapMarkerElements.forEach(({ element, trail }) => {
+            element.style.setProperty('--route-colour', matchColour(trail));
+          });
+        };
+        repaintOnSubjectChange.add(repaintMatchColours);
         map.addLayer({ id:'collection-inline-routes-hit', type:'line', source:'collection-inline-routes', layout:{ 'line-join':'round','line-cap':'round' }, paint:{ 'line-color':'#000000','line-width':22,'line-opacity':0 } }, beneath);
         map.addLayer({ id:'collection-inline-routes-casing', type:'line', source:'collection-inline-routes', layout:{ 'line-join':'round','line-cap':'round' }, paint:{ 'line-color':'#FFFFFF','line-opacity':.9,'line-width':['interpolate',['linear'],['zoom'],7,7,10,13,13,19,16,25] } }, beneath);
         // A touch more opaque than a single-route map: several coloured
         // corridors share this view and must stay distinguishable.
         map.addLayer({ id:'collection-inline-routes-line', type:'line', source:'collection-inline-routes', layout:{ 'line-join':'round','line-cap':'round' }, paint:{ 'line-color':['get','colour'],'line-opacity':CORRIDOR_OPACITY,'line-width':CORRIDOR_WIDTH } }, beneath);
         const trailsById = new Map(collectionTrails.map((trail,index) => [trail.id,{ trail,index }]));
+          const trailsByFeatureId = new Map(collectionTrails.map(trail => [trail.id, trail]));
         map.on('mouseenter', 'collection-inline-routes-hit', () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'collection-inline-routes-hit', () => { map.getCanvas().style.cursor = ''; });
         map.on('click', 'collection-inline-routes-hit', event => {
@@ -289,6 +336,7 @@
           marker.type = 'button';
           marker.className = 'collection-map-marker';
           marker.style.setProperty('--route-colour', matchColour(trail));
+          mapMarkerElements.push({ element:marker, trail });
           marker.textContent = index + 1;
           marker.setAttribute('aria-label', `${trail.name}, ${difficultyLabel(trail.safetyLevel)}`);
           marker.addEventListener('click', () => focusMapTrail(map, trail.id));

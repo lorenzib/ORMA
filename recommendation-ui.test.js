@@ -16,7 +16,12 @@ describe('UX-04 canonical recommendation journey', () => {
     expectTrailBundleLoaded();
     expectBundled('recommendation-decision.js');
     expectBundled('trail-recommendation.js');
-    expect(controller).toContain('const recommendation = recommendTrail(trail, subjectFor(profile))');
+    // The card scores against today when the forecast has landed, and against
+    // the route alone before it has. Nothing else supplies currentConditions,
+    // so this is the only place the "today" in the pitch actually enters.
+    expect(controller).toContain('recommendTrail(trail, subjectFor(profile), conditions)');
+    expect(controller).toContain('window.DoloPawsCurrentConditions || undefined');
+    expect(controller).toContain("window.addEventListener('dolopaws-conditions-ready', renderCurrent)");
     expect(controller).toContain('root.dataset.scoringVersion = view.scoringVersion');
   });
 
@@ -91,7 +96,7 @@ describe('UX-04 canonical recommendation journey', () => {
       score:64,
       category:'possible-with-cautions',
       confidence:'low',
-      scoringVersion:'1.4.0',
+      scoringVersion:'1.5.0',
       evidenceTier:'mapped',
       positiveReasons:[{ message:'Distance is within range.' }],
       cautions:[{ code:'trail.shade.low', message:'Shade is limited.' }],

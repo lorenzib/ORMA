@@ -25,7 +25,7 @@
       "status": "pending",
       "owner": "Product owner",
       "evidence": "docs/testing/QA-04-iphone-offline-hike-session.md",
-      "summary": "Repeat the physical iPhone airplane-mode journey against the current Carezza beta.19 and Alpe di Siusi beta.6 packages.",
+      "summary": "Repeat the physical iPhone airplane-mode journey against the current Carezza beta.20 and Alpe di Siusi beta.7 packages.",
       "safeFallback": "Do not open the public beta until both current packages pass."
     },
     {
