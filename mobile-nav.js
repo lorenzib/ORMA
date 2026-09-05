@@ -10,7 +10,7 @@
   const pathName=window.location.pathname;
   if(/\/trails\/[^/]+\.html$/.test(pathName)||/\/trail\.html$/.test(pathName)){
     const hazardScript=document.createElement('script');
-    hazardScript.src=pathName.includes('/trails/')?'../trail-hazards.js?v=20260819-1':'trail-hazards.js?v=20260819-1';
+    hazardScript.src=pathName.includes('/trails/')?'../trail-hazards.js?v=20260905-2':'trail-hazards.js?v=20260905-2';
     hazardScript.defer=true;document.head.appendChild(hazardScript);
   }
   function installSkipLink(){
