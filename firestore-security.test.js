@@ -6,6 +6,9 @@ const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
 const firebaseConfig = JSON.parse(fs.readFileSync(path.join(root, 'firebase.json'), 'utf8'));
 const indexes = JSON.parse(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8'));
 const client = fs.readFileSync(path.join(root, 'firebase-init.js'), 'utf8');
+// Moderation and backoffice review are private-interface only. They live in the
+// backoffice client; the customer client above must not carry them at all.
+const backofficeClient = fs.readFileSync(path.join(root, 'backoffice-firebase.js'), 'utf8');
 
 describe('SEC-01 Firestore configuration contract', () => {
   test('Firebase configuration versions the rules and index sources', () => {
@@ -77,8 +80,9 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain("request.resource.data.type == 'analyst-opportunity-review'");
     expect(rules).toContain("request.resource.data.action in ['approve', 'request-revision', 'reject']");
     expect(rules).toContain("request.resource.data.submittedBy == request.auth.uid");
-    expect(client).toContain('window.ORMABackoffice');
-    expect(client).toContain('submitDossierReview:submitBackofficeDossierReview');
+    expect(backofficeClient).toContain('window.ORMABackoffice');
+    expect(backofficeClient).toContain('submitDossierReview');
+    expect(client).not.toContain('ORMABackoffice');
   });
 
   test('private account documents are owner-only and cannot carry role grants', () => {
@@ -210,6 +214,8 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain('validModerationAudit(request.resource.data)');
     expect(rules).toContain('allow get, list: if isModerator()');
     expect(rules).toContain('allow update, delete: if false');
-    expect(client).toContain('window.DoloPawsModeration');
+    expect(backofficeClient).toContain('window.DoloPawsModeration');
+    expect(client).not.toContain('DoloPawsModeration');
+    expect(client).not.toContain('moderationAudit');
   });
 });

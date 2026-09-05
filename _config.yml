@@ -2,3 +2,53 @@ include:
   - CNAME
 exclude:
   - experiments
+  # Operator surface. These pages and their scripts are built and served from
+  # backoffice.app-orma.com by scripts/build-backoffice-hosting.js, which reads
+  # them straight from the repo root and is unaffected by this list. Keeping
+  # them out of the public Jekyll build means www.app-orma.com serves the
+  # customer site only — moderation and review exist in the backoffice, nowhere
+  # else. community-content-states.js is deliberately absent: it is shared with
+  # the public reviews, photo-upload and trail-report pages.
+  - community-moderation-desk.html
+  - moderation-page.js
+  - moderation.css
+  - backoffice-login.html
+  - backoffice-login.js
+  - backoffice-review.html
+  - backoffice-review.js
+  - backoffice-review.css
+  - backoffice-dashboard.js
+  - backoffice-auth-guard.js
+  - backoffice-session.js
+  - backoffice-firebase.js
+  - backoffice-hosted-login.html
+  - backoffice-hosted-review.html
+  - backoffice-hosted-dashboard.js
+  - content-desk.html
+  - content-desk.js
+  - designer-desk.html
+  - designer-desk.js
+  - editorial-desk.html
+  - editorial-desk.js
+  - hazard-review-desk.html
+  - hazard-review-desk.js
+  - image-coverage-desk.html
+  - image-coverage-desk.js
+  - image-coverage-hosted.html
+  - image-coverage-hosted.js
+  - new-trail-scouting-desk.html
+  - new-trail-scouting-desk.js
+  - newsletter-desk.html
+  - newsletter-desk.js
+  - newsletter-hosted.html
+  - newsletter-hosted.js
+  - product-ideas-desk.html
+  - product-ideas-desk.js
+  - analyst-hosted.html
+  - analyst-hosted.js
+  - social-desk.html
+  - social-desk.js
+  - trail-content-desk.html
+  - trail-content-desk.js
+  - trail-dossier-desk.html
+  - trail-dossier-desk.js
