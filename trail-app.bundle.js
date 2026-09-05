@@ -9250,6 +9250,43 @@ function initHikeMode(map, trail, options){
     return { idx: bestIdx, dist: dists[bestIdx], minDist };
   }
 
+  // ---- Lead advisories (positioned segments from the canonical scorer) -----
+  // The rules for which advisories are usable live in recommendation-v1.js and
+  // are not repeated here: this reads the leashAdvisories it already returns,
+  // ordered by start distance. They do not depend on the dog, so an empty
+  // subject is enough.
+  let leashZones = [];
+  const announcedZones = Object.create(null);
+
+  function resolveLeashZones(activeTrail){
+    leashZones = [];
+    const scoring = window.DoloPawsScoring;
+    if(!scoring || typeof scoring.recommendTrail !== 'function') return;
+    try{
+      const result = scoring.recommendTrail(activeTrail, {});
+      if(result && Array.isArray(result.leashAdvisories)) leashZones = result.leashAdvisories;
+    }catch(error){
+      // A scorer failure must never stop a walk from being recorded.
+      leashZones = [];
+    }
+  }
+
+  // Returns the advisory to speak about right now: the one being walked
+  // through, else the next one close enough ahead to act on.
+  const LEAD_WARNING_KM = 0.3;
+
+  function leashZoneFor(currentKm){
+    if(!Number.isFinite(currentKm)) return null;
+    for(const zone of leashZones){
+      if(currentKm >= zone.fromKm && currentKm <= zone.toKm) return { zone, inside:true, ahead:0 };
+    }
+    for(const zone of leashZones){
+      const ahead = zone.fromKm - currentKm;
+      if(ahead > 0 && ahead <= LEAD_WARNING_KM) return { zone, inside:false, ahead };
+    }
+    return null;
+  }
+
   // ---- Next POI ahead (from km-tagged rifugi / water sources) --------------
   function nextAhead(list, currentKm, labelKey){
     let best = null;
@@ -9389,6 +9426,24 @@ function initHikeMode(map, trail, options){
     if (hut) parts.push(window.t('hike.hutIn', {name: hut.label, d: hut.ahead.toFixed(1)}));
     const decision = isLoop ? null : nextAhead(trail.decisionPoints, currentRouteKm, 'instruction');
     if (decision && decision.ahead < 0.5) parts.push(window.t('hike.ahead', {what: decision.label}));
+
+    // Lead advisories are a range rather than a next-point search, so unlike
+    // the readouts above they stay meaningful on a loop.
+    const lead = assessment.usableForProgress ? leashZoneFor(currentRouteKm) : null;
+    if (lead) {
+      const detail = lead.zone.note || lead.zone.label;
+      const message = lead.inside
+        ? window.t('hike.leadOnNow', {what: detail})
+        : window.t('hike.leadOnAhead', {m: Math.round(lead.ahead * 1000), what: detail});
+      parts.push(message);
+      // Announce each zone once entering and once approaching, so the phone
+      // speaks up when it matters without repeating on every fix.
+      const key = `${lead.zone.fromKm}-${lead.zone.toKm}-${lead.inside ? 'in' : 'near'}`;
+      if (!announcedZones[key]) {
+        announcedZones[key] = true;
+        urgentAnnouncer.textContent = message;
+      }
+    }
     const validFixLabel = lastValidFixAt
       ? new Date(lastValidFixAt).toLocaleTimeString()
       : '—';
@@ -9499,6 +9554,8 @@ function initHikeMode(map, trail, options){
     lastValidFixAt = null;
     offRouteStreak = 0;
     offRouteSince = null;
+    resolveLeashZones(trail);
+    for(const key of Object.keys(announcedZones)) delete announcedZones[key];
     beginDurableSession();
     updateRejoinControl();
     // A hiker needs a navigation screen, not an article: go fullscreen.
@@ -9570,6 +9627,10 @@ function initHikeMode(map, trail, options){
     lastValidFixAt = progress ? progress.recordedAt : null;
     offRouteStreak = 0;
     offRouteSince = null;
+    // A restored session re-resolves its advisories; it may have been stored
+    // before this build existed, or the trail record may have gained one since.
+    resolveLeashZones(trail);
+    for(const key of Object.keys(announcedZones)) delete announcedZones[key];
     persistSessionState('active');
     updateRejoinControl();
     if(window.DoloPawsMapFS) window.DoloPawsMapFS.enter();
