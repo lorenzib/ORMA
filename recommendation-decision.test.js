@@ -4,7 +4,7 @@ const recommendation = {
   score:72,
   category:'possible-with-cautions',
   confidence:'medium',
-  scoringVersion:'1.4.0',
+  scoringVersion:'1.5.0',
   evidenceTier:'route-audited',
   positiveReasons:[{ message:'Distance is within range.' }],
   cautions:[{ message:'Shade is limited.' }],
@@ -25,7 +25,7 @@ describe('canonical recommendation decision presentation', () => {
     expect(result.reasons).toEqual(['Distance is within range.']);
     expect(result.cautions).toEqual(['Shade is limited.']);
     expect(result.unknowns).toHaveLength(2);
-    expect(result.scoringVersion).toBe('1.4.0');
+    expect(result.scoringVersion).toBe('1.5.0');
   });
 
   test('the four shown reasons keep the ones specific to this dog', () => {
