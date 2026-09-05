@@ -1110,6 +1110,14 @@ body.trail-photo-viewer-open{overflow:hidden;}
       <div id="communityRating" hidden></div>
     </div>
 
+    <!-- ============ AREA WARNINGS ============ -->
+    <!-- trail-hazards.js renders official area warnings into this mount.
+         Static trail pages anchor the same stack after their .sp-badges strip;
+         trail.html has no badge strip, so the mount has to be explicit. Keep it
+         first inside .td2-wrap: a safety warning belongs above the fold, and
+         removing this element silently hides every hazard on this page. -->
+    <div id="ormaHazardMount"></div>
+
     <!-- ============ LIVE RECORDING BANNER ============ -->
     <div class="td2-live" id="td2LiveBanner" hidden>
       <div class="l"><span class="rd"></span><div><div style="font-size:14px;font-weight:800;" id="tdLiveTitle">Recording your walk</div><div style="font-size:12px;color:#9FC7B0;margin-top:1px;">Live GPS · stay on marked paths</div></div></div>
@@ -1327,7 +1335,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 </footer>
 
 <script src="device-handoff.js?v=20260904-1"></script>
-<script src="mobile-nav.js?v=20260905-1"></script>
+<script src="mobile-nav.js?v=20260905-2"></script>
 <script src="i18n.js?v=20260904-3"></script>
 <script>
   // Account services are useful after the page is interactive, but loading
