@@ -99,12 +99,7 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.campaignHealth).toEqual(expect.objectContaining({state:'healthy',runUrl:'https://github.com/orma/actions/runs/456',message:expect.stringContaining('admitted 2 trail(s)')}));
   });
 
-  test('surfaces New Trail selection and Groundskeeper removal on the CEO overview',()=>{
-    const model=buildDashboardModel({newTrailScouting:{candidates:[{id:'new-a',name:'New A'}]},newTrailReviews:[],hazards:{hazards:[{id:'hazard-a',title:'Snow warning',state:'resolution-review'}]},hazardQueue:{items:[{id:'hazard-a'}]},hazardReviews:[],jobs:[]});
-    expect(model.decisions.map(item=>item.kind)).toEqual(['new-trail','hazard']);
-    expect(model.newTrailProgress).toEqual(expect.objectContaining({candidates:1,waiting:1}));
-    expect(model.groundskeeperProgress).toEqual(expect.objectContaining({waiting:1}));
-  });
+
 
   test('counts autonomous resolution and first-pass editorial jobs as visible agent work',()=>{
     const model=buildDashboardModel({jobs:[
@@ -189,5 +184,53 @@ describe('orchestration job reads',()=>{
     const store={listJobs:async statuses=>{scanned.push(statuses);return [{id:'job-1'}];}};
     await orchestrationJobs(store,state);
     expect(scanned[0]).toContain('completed');
+  });
+});
+
+describe('trail coverage grid',()=>{
+  const {buildCoverageGrid}=require('./dashboard-model');
+
+  const imageAudit={pages:[
+    {trailId:'seceda',title:'Seceda Ridge',area:'Val Gardena',valley:'Val Gardena',region:'dolomites',coverageState:'covered'},
+    {trailId:'tre-cime',title:'Tre Cime circuit',area:'Alta Pusteria',valley:'Alta Pusteria – Tre Cime',region:'dolomites',coverageState:'missing'},
+    {trailId:'lac-vert',title:'Boucle du Lac Vert',area:'Haute-Savoie',valley:'',region:'savoy',coverageState:'missing'},
+  ]};
+  const hazards={hazards:[
+    {title:'Storm warning',severity:'severe',trailIds:['tre-cime']},
+    {title:'Unconfirmed: bridge out',origin:'community',verificationState:'reported-unverified',trailIds:['lac-vert']},
+  ]};
+  const verifiedRegistry={verified:[{trailId:'seceda'}]};
+  const orchestration={trails:[{trailId:'tre-cime',stage:'evidence-research'}]};
+
+  test('reports one row per published trail across the three running lanes',()=>{
+    const grid=buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration});
+    expect(grid.rows).toHaveLength(3);
+    const seceda=grid.rows.find(row=>row.trailId==='seceda');
+    expect(seceda).toEqual(expect.objectContaining({photo:'covered',verified:'verified',hazardState:'clear'}));
+    const treCime=grid.rows.find(row=>row.trailId==='tre-cime');
+    expect(treCime).toEqual(expect.objectContaining({photo:'missing',verified:'in-progress',
+      verificationStage:'evidence-research',hazardState:'active'}));
+  });
+
+  test('separates a confirmed hazard from an unconfirmed hiker report',()=>{
+    const grid=buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration});
+    expect(grid.rows.find(row=>row.trailId==='lac-vert').hazardState).toBe('unconfirmed');
+    expect(grid.summary.unconfirmedHazards).toBe(1);
+  });
+
+  test('puts the work first: missing photos before covered, Dolomites before the rest',()=>{
+    const grid=buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration});
+    expect(grid.rows.map(row=>row.trailId)).toEqual(['tre-cime','lac-vert','seceda']);
+  });
+
+  test('summarises the two backfills against the whole catalogue',()=>{
+    const grid=buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration});
+    expect(grid.summary).toEqual(expect.objectContaining({trails:3,photoCovered:1,photoMissing:2,
+      verified:1,verificationInProgress:1,trailsWithHazards:2,complete:1}));
+  });
+
+  test('survives an empty or absent artifact without throwing',()=>{
+    expect(buildCoverageGrid().rows).toEqual([]);
+    expect(buildCoverageGrid({imageAudit:{pages:[]}}).summary.trails).toBe(0);
   });
 });

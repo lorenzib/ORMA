@@ -15,7 +15,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(files.some(file=>file.startsWith('data/'))).toBe(false);
   });
 
-  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','image-coverage-desk.html','community-moderation-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
+  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html','image-coverage-desk.html','community-moderation-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toMatch(/src="backoffice-firebase\.js\?v=[0-9-]+"/);
     expect(html).not.toContain('src="firebase-init.js');
@@ -39,15 +39,14 @@ describe('separate Firebase backoffice Hosting package',()=>{
     const html=fs.readFileSync(path.join(output,'backoffice-review.html'),'utf8');
     expect(html).toContain('Needs your decision');
     expect(html).toContain('MVP workstreams');
-    expect(html).toContain('Parked for MVP');
+    expect(html).toContain('Trail coverage');
+    expect(html).toContain('id="coverageRows"');
     expect(html).toContain('backoffice-review.css?v=20260905-1');
     expect(html).toContain('id="workerHealth"');
     expect(html).toContain('id="campaignHealth"');
     expect(html).toContain('backoffice/dashboard-model.js?v=20260905-1');
     expect(html).toContain('backoffice-hosted-dashboard.js?v=20260905-1');
     expect(html).toContain('href="trail-dossier-desk.html"');
-    expect(html).toContain('href="new-trail-scouting-desk.html"');
-    expect(html).toContain('href="hazard-review-desk.html"');
     expect(html).toContain('href="image-coverage-desk.html"');
     expect(html).toContain('href="community-moderation-desk.html"');
     // The retired lanes must be gone from the shell, not merely unlinked.
@@ -62,11 +61,11 @@ describe('separate Firebase backoffice Hosting package',()=>{
     const nav=html.match(/<nav class="bo-primary-nav"[\s\S]*?<\/nav>/)?.[0]||'';
     expect(nav).toContain('>Home</a>');
     expect(nav).toContain('>Existing Trails</a>');
-    expect(nav).toContain('>New Trails</a>');
     expect(nav).toContain('>Trail photos</a>');
-    expect(nav).toContain('>Hazards</a>');
     expect(nav).toContain('>Community</a>');
-    expect(nav).not.toMatch(/Editorial|Newsletter|Analyst|Design/);
+    // Hazards and New Trails have no human gate any more: hazards are fully
+    // automatic and intake is paused, so neither keeps a desk.
+    expect(nav).not.toMatch(/Editorial|Newsletter|Analyst|Design|Hazards|New Trails/);
   });
 
   test('dashboard does not fetch parked workstream artifacts',()=>{
@@ -89,8 +88,6 @@ describe('separate Firebase backoffice Hosting package',()=>{
   test.each([
     ['trail-dossier-desk.html','Trail evidence'],
     ['trail-content-desk.html','Content &amp; release'],
-    ['new-trail-scouting-desk.html','New Trails'],
-    ['hazard-review-desk.html','Groundskeeper'],
     ['image-coverage-desk.html','Trail photos'],
     ['community-moderation-desk.html','Community'],
   ])('%s has persistent navigation and a clear current location',(page,current)=>{
@@ -99,14 +96,12 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('href="backoffice-review.html"');
     expect(html).toContain('href="trail-dossier-desk.html"');
     expect(html).toContain('href="trail-content-desk.html"');
-    expect(html).toContain('href="new-trail-scouting-desk.html"');
-    expect(html).toContain('href="hazard-review-desk.html"');
     expect(html).toContain('href="community-moderation-desk.html"');
     expect(html).toContain(`aria-current="page">${current}</a>`);
   });
 
   test('moderator-facing trail pages explain automation without vague worker language',()=>{
-    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html','hazard-review-desk.html','image-coverage-desk.html','community-moderation-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','new-trail-scouting-desk.js','hazard-review-desk.js','image-coverage-hosted.js','moderation-page.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
+    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','image-coverage-desk.html','community-moderation-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','image-coverage-hosted.js','moderation-page.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
     const text=files.map(file=>fs.readFileSync(path.join(output,file),'utf8')).join('\n');
     expect(text).toContain('ORMA automation');
     expect(text).not.toMatch(/waiting for the worker|the worker will|worker processed|independent worker/i);
@@ -164,13 +159,6 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(campaign).toContain('--scheduled');
     const dashboard=fs.readFileSync(path.join(output,'backoffice-hosted-dashboard.js'),'utf8');
     expect(dashboard).toContain("optional(remote,'trail-campaign-health',null)");
-  });
-
-  test('hosts Firestore-backed New Trails and Groundskeeper desks with no local data files',()=>{
-    const newTrails=fs.readFileSync(path.join(output,'new-trail-scouting-desk.js'),'utf8');const groundskeeper=fs.readFileSync(path.join(output,'hazard-review-desk.js'),'utf8');
-    expect(newTrails).toContain("getArtifact('new-trail-scouting')");expect(newTrails).toContain('submitNewTrailReview');
-    expect(groundskeeper).toContain("getArtifact('dynamic-hazards')");expect(groundskeeper).toContain('submitHazardReview');
-    expect(`${newTrails}\n${groundskeeper}`).toContain("const LOCAL_MODE=['127.0.0.1','localhost']");
   });
 
   test('hosts community submissions as a distinct protected human gate',()=>{

@@ -9,7 +9,7 @@ const {JSDOM}=require('jsdom');
 const root=__dirname;
 const protectedPages=[
   'trail-dossier-desk.html','trail-content-desk.html',
-  'new-trail-scouting-desk.html','hazard-review-desk.html',
+  
   'community-moderation-desk.html',
 ];
 

@@ -125,6 +125,74 @@
     renderActivity(model);
   }
 
+
+  // Coverage grid: the inspection surface. Filtering is local to the already-loaded
+  // rows, so changing a filter never costs another Firestore read.
+  let coverage={rows:[],summary:{}};
+  let coverageFilter='all';
+  let coverageQuery='';
+
+  const HAZARD_LABEL={active:'Live',unconfirmed:'Unconfirmed',clear:'Clear'};
+
+  function coverageMatches(row){
+    if(coverageFilter==='no-photo'&&row.photo!=='missing')return false;
+    if(coverageFilter==='not-verified'&&row.verified==='verified')return false;
+    if(coverageFilter==='hazard'&&!row.hazards.length)return false;
+    if(coverageFilter==='done'&&!(row.photo==='covered'&&row.verified==='verified'))return false;
+    if(!coverageQuery)return true;
+    return `${row.title} ${row.area} ${row.valley} ${row.trailId}`.toLowerCase().includes(coverageQuery);
+  }
+
+  function coverageCell(state,label){
+    const cell=element('td');const pill=element('span',`bo-coverage-pill is-${state}`,label);cell.append(pill);return cell;
+  }
+
+  function coverageRow(row){
+    const tr=element('tr');
+    const name=element('td','bo-coverage-name');
+    name.append(element('strong','',row.title));
+    const where=[row.valley||row.area,row.region==='dolomites'?'Dolomites':''].filter(Boolean).join(' · ');
+    if(where)name.append(element('small','',where));
+    tr.append(name);
+    tr.append(coverageCell(row.photo==='covered'?'ok':'todo',row.photo==='covered'?'Has one':'Needed'));
+    tr.append(coverageCell(row.verified==='verified'?'ok':row.verified==='in-progress'?'progress':'todo',
+      row.verified==='verified'?'Verified':row.verified==='in-progress'?(row.verificationStage||'In progress'):'Not started'));
+    const hazard=coverageCell(row.hazardState==='active'?'alert':row.hazardState==='unconfirmed'?'progress':'ok',
+      HAZARD_LABEL[row.hazardState]||'Clear');
+    if(row.hazards.length)hazard.title=row.hazards.map(item=>item.title).join('\n');
+    tr.append(hazard);
+    return tr;
+  }
+
+  function renderCoverage(){
+    const body=document.getElementById('coverageRows');
+    const empty=document.getElementById('coverageEmpty');
+    if(!body)return;
+    const visible=coverage.rows.filter(coverageMatches);
+    body.replaceChildren(...visible.map(coverageRow));
+    if(empty)empty.hidden=visible.length>0;
+    const caption=document.getElementById('coverageCaption');
+    if(caption)caption.textContent=`${visible.length} of ${coverage.rows.length} trails`;
+    const summary=coverage.summary||{};
+    set('coverageComplete',`${summary.complete||0}/${summary.trails||0}`);
+    set('coveragePhoto',`${summary.photoCovered||0}/${summary.trails||0}`);
+    set('coverageVerified',`${summary.verified||0}/${summary.trails||0}`);
+    set('coverageHazards',String(summary.trailsWithHazards||0));
+  }
+
+  function bindCoverageControls(){
+    const search=document.getElementById('coverageSearch');
+    if(search)search.addEventListener('input',()=>{coverageQuery=search.value.trim().toLowerCase();renderCoverage();});
+    for(const button of document.querySelectorAll('[data-coverage-filter]')){
+      button.addEventListener('click',()=>{
+        coverageFilter=button.dataset.coverageFilter;
+        for(const other of document.querySelectorAll('[data-coverage-filter]'))
+          other.setAttribute('aria-pressed',String(other===button));
+        renderCoverage();
+      });
+    }
+  }
+
   async function load(){
     if(loading)return;
     loading=true;
@@ -133,7 +201,7 @@
     set('dashboardUpdated','Refreshing protected Firestore…');
     try{
       const remote=await api();
-      const [orchestration,dossiers,execution,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviewResult,hazards,hazardQueue,hazardStatus,hazardReviewResult,imageAudit,imageResults,imagePublicationRequests,imageStatus,imageReviewResult,jobResult,historyResult,communityResult]=await Promise.all([
+      const [orchestration,dossiers,execution,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviewResult,hazards,hazardQueue,hazardStatus,hazardReviewResult,imageAudit,imageResults,imagePublicationRequests,imageStatus,imageReviewResult,jobResult,historyResult,communityResult,verifiedRegistry]=await Promise.all([
         required(remote,'trail-orchestration'),
         required(remote,'dossier-review-queue'),
         required(remote,'verified-trail-editorial-execution'),
@@ -156,6 +224,7 @@
         remote.getRevisionJobs(),
         remote.getDecisionHistory(),
         remote.getModerationQueue(),
+        optional(remote,'orma-verified-registry-live',{verified:[]}),
       ]);
       if(!jobResult?.ok)throw new Error(`Could not load agent jobs: ${jobResult?.error||'unknown error'}`);
       if(!historyResult?.ok)throw new Error(`Could not load decision receipts: ${historyResult?.error||'unknown error'}`);
@@ -167,6 +236,8 @@
       const strategyStatus={summary:{editorialStatus:'parked for MVP',newsletterStatus:'parked for MVP',productStatus:'parked for MVP'}};
       const model=window.ORMADashboardModel.buildDashboardModel({orchestration,dossiers,execution,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviews:newTrailReviewResult.reviews||[],hazards,hazardQueue,hazardStatus,hazardReviews:hazardReviewResult.reviews||[],strategyStatus,imageAudit,imageResults,imagePublicationRequests,imageStatus,imageReviews:imageReviewResult.reviews||[],jobs:jobResult.jobs||[],history:historyResult.decisions||[]});
       document.getElementById('executiveDecisionQueue').classList.remove('is-error');
+      coverage=window.ORMADashboardModel.buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration});
+      renderCoverage();
       render(model,communityResult);
       seconds=REFRESH_SECONDS;
       lastLoadedAt=Date.now();
@@ -203,5 +274,6 @@
     const node=document.getElementById('dashboardUpdated');
     if(node&&node.textContent.startsWith('Live ·'))node.textContent=node.textContent.replace(/refresh in \d+s/,`refresh in ${seconds}s`);
   },1000);
+  bindCoverageControls();
   load();
 })();
