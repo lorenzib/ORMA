@@ -26,6 +26,12 @@ const POLICY_BY_RULE = Object.freeze({
   unknown:'unknown',
 });
 
+// The rule and the claim id both arrive from a language model, so these maps are
+// read by own key only: a plain lookup would answer `constructor` with a function.
+function lookup(map, key){
+  return typeof key === 'string' && Object.hasOwn(map, key) ? map[key] : null;
+}
+
 function slug(value){
   return String(value || '')
     .toLowerCase()
@@ -48,13 +54,20 @@ function isoDate(value){
 // the truth, while an `unknown` row asserts that somebody asked.
 function factFromClaim(claim, context){
   if(!claim || typeof claim !== 'object') return null;
-  const entityType = CLAIM_ENTITY_TYPE[claim.id] || CLAIM_ENTITY_TYPE[claim.claimId];
+  const entityType = lookup(CLAIM_ENTITY_TYPE, claim.claimId) || lookup(CLAIM_ENTITY_TYPE, claim.id);
   if(!entityType) return null;
   if(claim.state !== 'supported') return null;
 
+  // An accepted dossier marks every claim `supported`, because that is what the
+  // human accepted the dossier to mean. What the specialist actually found is
+  // kept in `humanAcceptedFinding`, and only a supported proposal is evidence:
+  // accepting a dossier that records an unresolved rule accepts that it is
+  // unresolved, not that the rifugio takes dogs.
+  if(claim.humanAcceptedFinding && claim.humanAcceptedFinding !== 'supported-proposal') return null;
+
   const entityName = String(claim.entityName || claim.subject || '').trim();
   const rule = String(claim.rule || claim.proposedValue || '').trim();
-  const dogPolicy = POLICY_BY_RULE[rule];
+  const dogPolicy = lookup(POLICY_BY_RULE, rule);
   if(!entityName || !dogPolicy) return null;
 
   // The date must be when the source was observed, not when the publication
