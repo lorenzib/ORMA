@@ -1,5 +1,9 @@
 (function(){
   'use strict';
+
+  // Zoom at which the marked hiking network stops being clutter and starts
+  // being wayfinding. Shared with the trail detail map.
+  const NETWORK_MIN_ZOOM = 13.5;
   const api = window.DoloPawsCollections;
   const grid = document.getElementById('collectionsGrid');
   if(!api || !grid || typeof trails === 'undefined') return;
@@ -230,7 +234,14 @@
         // network at all.
         const style = window.ORMAMapStyle;
         if(style) style.quietBasemap(map);
-        const beneath = style ? style.addWaymarkedHiking(map, { beforeId: style.firstLabelLayerId(map) }) : undefined;
+        const beneath = style ? style.addWaymarkedHiking(map, {
+            beforeId: style.firstLabelLayerId(map),
+            // This map opens at zoom 9 to frame a whole collection, and has no
+            // layers control. Holding the network back until you zoom in keeps
+            // the browse view calm without hiding anything behind a control
+            // that does not exist here — zooming in is the affordance.
+            minzoom: NETWORK_MIN_ZOOM,
+          }) : undefined;
         map.addSource('collection-inline-routes', { type:'geojson', data:{ type:'FeatureCollection', features } });
         map.addLayer({ id:'collection-inline-routes-hit', type:'line', source:'collection-inline-routes', layout:{ 'line-join':'round','line-cap':'round' }, paint:{ 'line-color':'#000000','line-width':22,'line-opacity':0 } }, beneath);
         map.addLayer({ id:'collection-inline-routes-casing', type:'line', source:'collection-inline-routes', layout:{ 'line-join':'round','line-cap':'round' }, paint:{ 'line-color':'#FFFFFF','line-opacity':.9,'line-width':['interpolate',['linear'],['zoom'],7,7,10,13,13,19,16,25] } }, beneath);
