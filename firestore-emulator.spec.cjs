@@ -106,13 +106,21 @@ function validPhoto(uid, overrides = {}){
 
 function validOutcome(overrides = {}){
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     outcomeId: 'outcome:completion:session-1',
     completionId: 'completion:session-1',
     trailId: 'lago-carezza',
     response: 'appropriate',
     waterAccuracy: 'accurate',
     hazards: ['surface'],
+    // Community observations. Every one is optional, so the canonical fixture
+    // carries a mix of answered and unanswered to prove the rule accepts both.
+    offLeadObserved: 'some_off_lead',
+    livestockEncountered: 'seen_at_distance',
+    crowding: 'busy',
+    dogEnjoyment: null,
+    reactiveDogFit: null,
+    missingRestriction: null,
     recordedHikePresent: true,
     offlinePackageUsed: true,
     createdAt: serverTimestamp(),
@@ -283,6 +291,13 @@ describe('private post-hike outcomes', () => {
     await assertFails(getDoc(doc(other, path)));
     await assertFails(getDoc(doc(guest, path)));
     await assertFails(updateDoc(ref, { response:'not_appropriate' }));
+    // The observation vocabularies are bounded server-side, not just in the
+    // client, so a stale or hand-rolled write cannot store a value the
+    // aggregation would later misread.
+    await assertFails(setDoc(doc(owner, 'users/owner-1/outcomes/outcome:bad-crowding'),
+      validOutcome({ outcomeId:'outcome:bad-crowding', crowding:'heaving' })));
+    await assertFails(setDoc(doc(owner, 'users/owner-1/outcomes/outcome:bad-restriction'),
+      validOutcome({ outcomeId:'outcome:bad-restriction', missingRestriction:'yes' })));
     await assertFails(deleteDoc(doc(other, path)));
     await assertSucceeds(deleteDoc(ref));
   });
