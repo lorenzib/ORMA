@@ -159,6 +159,28 @@ describe('shared map quality profile', () => {
     expect(read('collections.html')).toContain('scoring.js');
   });
 
+  test('the collection map colours by the signed-in dog, not a generic one', () => {
+    // Scoring every visitor against the guest profile would leave this map
+    // answering "does this suit a generic dog" while every other ORMA surface
+    // answers "does this suit yours" — the same defect the palette clean-up
+    // set out to remove, one layer down.
+    const page = read('collections-page.js');
+    expect(page).toContain('matchSubject || scoring.GUEST_SUBJECT');
+    expect(page).toContain('auth.getDogProfile()');
+    expect(page).toContain('effectiveOverrides(profile, null)');
+    // Auth resolves after first paint, so an already-drawn map must restyle.
+    expect(page).toContain('repaintOnSubjectChange');
+    expect(page).toContain('const repaintMatchColours');
+    expect(page).toContain("window.addEventListener('dolopaws-auth-changed', resolveMatchSubject)");
+    // Both the corridors and the start markers carry the colour.
+    expect(page).toContain("source.setData({");
+    expect(page).toContain("element.style.setProperty('--route-colour', matchColour(trail))");
+    // A destroyed map must not be reachable from a later profile change.
+    expect(page).toMatch(/activeMap = null;[\s\S]*?repaintOnSubjectChange\.clear\(\);/);
+    // The page needs auth loaded to resolve a profile at all.
+    expect(read('collections.html')).toContain('firebase-init.js');
+  });
+
   test('browse maps start quiet, the navigating map does not', () => {
     // AllTrails shows no path network at browse zooms at all. Ours has to
     // appear eventually — Dolomites walkers follow the numbers on signposts —
