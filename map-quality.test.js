@@ -123,6 +123,42 @@ describe('shared map quality profile', () => {
     expect(read('collections-page.js')).toContain('style.addWaymarkedHiking(map');
   });
 
+  test('green/amber/red means dog match on every map, and nothing else', () => {
+    // Three near-identical green/amber/red palettes used to coexist: the match
+    // tiers, trail.js safetyColor() and collections difficultyColour(). Two of
+    // them encoded the trail's intrinsic risk while looking exactly like a
+    // match tier, so a guest and a signed-in owner read the same coloured line
+    // as answering different questions.
+    const style = read('map-style.js');
+    expect(style).toContain("MATCH_COLOURS = Object.freeze({ good: '#4A7856', fair: '#C98A2E', poor: '#9C3A25' })");
+    expect(style).toContain('function matchColour(score)');
+    expect(style).toContain('function matchColourExpression(property)');
+    // An unknown fit must not read as a good or bad one.
+    expect(style).toContain("MATCH_UNKNOWN = '#6B7A6E'");
+
+    // The rival palettes are gone.
+    expect(read('trail.js')).not.toContain('function safetyColor(');
+    expect(read('collections-page.js')).not.toContain('difficultyColour(');
+
+    // Every map route colour now comes from the one definition.
+    ['script.js', 'trail.js', 'collections-page.js'].forEach(file => {
+      expect(read(file)).toMatch(/ORMAMapStyle\.matchColour(Expression)?\(/);
+    });
+    // No map re-inlines the thresholds.
+    ['script.js', 'trail.js', 'collections-page.js'].forEach(file => {
+      expect(read(file)).not.toContain("65, '#C98A2E', 85, '#4A7856'");
+    });
+
+    // Guests are scored against one shared profile rather than falling back to
+    // a different meaning. The site already tells them it is a medium dog.
+    expect(read('scoring.js')).toContain('GUEST_SUBJECT');
+    expect(read('script.js')).toContain('scoring.GUEST_SUBJECT');
+    expect(read('trail.js')).toContain('scoring.GUEST_SUBJECT');
+    expect(read('collections-page.js')).toContain('scoring.GUEST_SUBJECT');
+    // The collection page needs the engine loaded to score at all.
+    expect(read('collections.html')).toContain('scoring.js');
+  });
+
   test('browse maps start quiet, the navigating map does not', () => {
     // AllTrails shows no path network at browse zooms at all. Ours has to
     // appear eventually — Dolomites walkers follow the numbers on signposts —

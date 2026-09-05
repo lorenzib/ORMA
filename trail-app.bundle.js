@@ -322,6 +322,40 @@
     });
   }
 
+  // ── Match colour ────────────────────────────────────────────────────────
+  // Green / amber / red on an ORMA map means one thing and one thing only:
+  // how well this walk suits the dog. It never means how hard the trail is.
+  //
+  // Three near-identical green/amber/red palettes used to exist — the match
+  // tiers, trail.js's safetyColor() and collections' difficultyColour() — and
+  // two of them encoded the trail's intrinsic risk while looking exactly like
+  // a match tier. A guest on a trail page got one meaning, a signed-in owner
+  // another, from the same coloured line.
+  const MATCH_COLOURS = Object.freeze({ good: '#4A7856', fair: '#C98A2E', poor: '#9C3A25' });
+  const MATCH_GOOD = 85;
+  const MATCH_FAIR = 65;
+  // Shown when no score could be produced at all. Deliberately not a tier
+  // colour: an unknown fit must not read as a good or bad one.
+  const MATCH_UNKNOWN = '#6B7A6E';
+
+  function matchColour(score) {
+    const value = Number(score);
+    if (!Number.isFinite(value)) return MATCH_UNKNOWN;
+    if (value >= MATCH_GOOD) return MATCH_COLOURS.good;
+    return value >= MATCH_FAIR ? MATCH_COLOURS.fair : MATCH_COLOURS.poor;
+  }
+
+  /** The same tiers as a data-driven expression, for layers styled per feature. */
+  function matchColourExpression(property) {
+    return [
+      'step', ['coalesce', ['get', property || 'score'], -1],
+      MATCH_UNKNOWN,
+      0, MATCH_COLOURS.poor,
+      MATCH_FAIR, MATCH_COLOURS.fair,
+      MATCH_GOOD, MATCH_COLOURS.good,
+    ];
+  }
+
   function widthRamp(a, b, c, d, scale) {
     const factor = scale || 1;
     return [
@@ -415,6 +449,11 @@
     FONT_BOLD,
     FONT_REGULAR,
     firstLabelLayerId,
+    MATCH_COLOURS,
+    MATCH_GOOD,
+    MATCH_FAIR,
+    matchColour,
+    matchColourExpression,
     addWaymarkedHiking,
     setWaymarkedVisible,
     quietBasemap,
@@ -5099,8 +5138,14 @@ function scoreTrail(trail, subject, currentConditions){
   return recommendTrail(trail, subject, currentConditions).score;
 }
 
+// The profile a visitor is scored against before they add a dog. The site
+// already tells them so ("Scores use a medium-dog profile"), so guest maps can
+// colour by match honestly rather than falling back to a different meaning.
+const GUEST_SUBJECT = Object.freeze({ terrain:'1', distance:'10', heatSensitive:false });
+
 window.DoloPawsScoring = Object.freeze({
   VERSION: SCORING_VERSION,
+  GUEST_SUBJECT,
   recommendTrail,
   scoreTrail,
 });
@@ -12377,16 +12422,25 @@ function trailSafetyLabel(trail){
   const base = safetyLabel(trail.safetyLevel);
   return window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.riskLabel(trail, base) : base;
 }
-function safetyColor(level){
-  if(level === 'low-risk') return '#2C5C34';
-  if(level === 'moderate') return '#8A5A16';
-  return '#9C3A25';
+// Green/amber/red on the map means how well the walk suits the dog — never
+// how hard the trail is. One palette, defined once in map-style.js, so opening
+// a trail never changes the map's meaning. (This replaces safetyColor(), which
+// coloured the same line by the trail's intrinsic risk in a near-identical
+// palette, so a guest and a signed-in owner read the same line differently.)
+function detailRouteColorForScore(score){
+  return window.ORMAMapStyle
+    ? window.ORMAMapStyle.matchColour(score)
+    : (score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25');
 }
 
-// The logged-in homepage colours routes by the dog's match score. Reuse its
-// exact thresholds here so opening a trail never changes the map's meaning.
-function detailRouteColorForScore(score){
-  return score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25';
+// A visitor with no dog yet is scored against the medium-dog profile the site
+// already tells them about, so the map still answers "does this suit a dog?"
+// instead of quietly switching to a different question.
+function guestMatchScore(trail){
+  const scoring = window.DoloPawsScoring;
+  if(!scoring || typeof scoring.scoreTrail !== 'function') return null;
+  try{ return scoring.scoreTrail(trail, scoring.GUEST_SUBJECT); }
+  catch(error){ return null; }
 }
 function applyDetailRouteColor(color){
   window._dolopawsTrailRouteColor = color;
@@ -14111,7 +14165,7 @@ function renderTrail(t){
     // Personal match — needs a logged-in profile. Guests see the facts
     // plus an honest invitation: the score exists, it just isn't theirs yet.
     function paintMatchTeaser(){
-      applyDetailRouteColor(safetyColor(t.safetyLevel));
+      applyDetailRouteColor(detailRouteColorForScore(guestMatchScore(t)));
       const actions = document.querySelector('.td-actions');
       if(actions) actions.classList.add('guest-actions');
       if(statMatch){
@@ -14709,7 +14763,7 @@ function renderTrail(t){
       }
 
       if(Array.isArray(t.path) && t.path.length > 1){
-        const selectedRouteColor = window._dolopawsTrailRouteColor || safetyColor(t.safetyLevel);
+        const selectedRouteColor = window._dolopawsTrailRouteColor || detailRouteColorForScore(guestMatchScore(t));
         map.addSource('single-trail-path', {
           type: 'geojson',
           data: {

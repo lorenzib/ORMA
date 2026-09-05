@@ -30,13 +30,22 @@ function trailCardVisual(trail, options = {}){
 }
 
 // ============================================================
+// Scores a trail against the medium-dog guest profile, for surfaces shown
+// before anyone has added a dog.
+function guestMatchScore(trail){
+  const scoring = window.DoloPawsScoring;
+  if(!scoring || typeof scoring.scoreTrail !== 'function') return null;
+  try{ return scoring.scoreTrail(trail, scoring.GUEST_SUBJECT); }
+  catch(error){ return null; }
+}
+
 // GUEST TEASER — generic default profile, illustrative blurred scores
 // ============================================================
 function renderTeaser(){
   const grid = document.getElementById('teaserGrid');
   if(!grid || typeof trails === 'undefined') return;
 
-  const generic = { terrain:'1', distance:'10', heatSensitive:false };
+  const generic = window.DoloPawsScoring.GUEST_SUBJECT;
   const picks = ['lago-braies', 'alpe-siusi', 'santa-maddalena']
     .map(id => trails.find(t => t.id === id))
     .filter(Boolean);
@@ -685,7 +694,9 @@ function initGuestMap(){
       .filter(t => Array.isArray(t.path) && t.path.length > 1)
       .map(t => ({
         type: 'Feature',
-        properties: { name: t.name, safetyLevel: t.safetyLevel },
+        // Scored, not safety-levelled: coloured by how well the walk suits a
+        // dog, same as every other ORMA map.
+        properties: { name: t.name, score: guestMatchScore(t) },
         geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
       }));
     guestMapInstance.addSource('guest-trail-paths', {
@@ -732,13 +743,7 @@ function initGuestMap(){
       source: 'guest-trail-paths',
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': [
-          'match', ['get', 'safetyLevel'],
-          'low-risk', '#4A7856',
-          'moderate', '#C98A2E',
-          'caution', '#9C3A25',
-          '#6F7872',
-        ],
+        'line-color': window.ORMAMapStyle.matchColourExpression('score'),
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 3.5, 10, 8, 13, 12],
         'line-opacity': 0.55,
       },
@@ -913,10 +918,7 @@ function initTrailMap(){
     // the shield layer that reprinted numbers the mask was hiding. With the
     // raster on top, Waymarked's numbers are visible and none of that is
     // needed.
-    const catalogueMatchColour = [
-      'step', ['coalesce', ['get', 'score'], 0],
-      '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
-    ];
+    const catalogueMatchColour = window.ORMAMapStyle.matchColourExpression('score');
     trailMapInstance.addLayer({
       id: 'trail-paths-orma-halo',
       type: 'line',
@@ -1007,10 +1009,7 @@ function initTrailMap(){
       type: 'circle',
       source: 'trail-points',
       paint: {
-        'circle-color': [
-          'step', ['coalesce', ['get', 'score'], 0],
-          '#9C3A25', 65, '#C98A2E', 85, '#4A7856',
-        ],
+        'circle-color': window.ORMAMapStyle.matchColourExpression('score'),
         'circle-radius': 7,
         'circle-stroke-width': 2.5,
         'circle-stroke-color': [
@@ -1325,9 +1324,7 @@ function setSelectedTrailRoute(trail, options){
   const config = options || {};
   const route = Array.isArray(trail && trail.path) && trail.path.length > 1 ? trail.path : [];
   const visible = route.length > 1;
-  const routeColor = !trail ? '#4A7856'
-    : trail.score >= 85 ? '#4A7856'
-      : trail.score >= 65 ? '#C98A2E' : '#9C3A25';
+  const routeColor = window.ORMAMapStyle.matchColour(trail ? trail.score : null);
   trailMapInstance.getSource('trail-selected-route').setData({
     type:'FeatureCollection',
     features:visible ? [{

@@ -607,7 +607,11 @@ describe('trail page map controls', () => {
     expect(trail).toContain('ORMAMapStyle.quietBasemap(map)');
     expect(trail).not.toContain("'raster-saturation': -0.90");
     expect(trail).not.toContain("'raster-contrast': 0.38");
-    expect(trail).toContain("return score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25'");
+    // Guests are scored against the medium-dog profile rather than switching
+    // the line to the trail's intrinsic risk in a near-identical palette.
+    expect(trail).toContain('window.ORMAMapStyle.matchColour(score)');
+    expect(trail).toContain('applyDetailRouteColor(detailRouteColorForScore(guestMatchScore(t)))');
+    expect(trail).not.toContain('function safetyColor(');
     // The route contours the marked path instead of covering it: it goes in
     // BELOW the waymarked raster, so that raster draws down its middle.
     expect(trail).toContain("ORMAMapStyle.addRouteLine(map, {");

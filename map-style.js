@@ -138,6 +138,40 @@
     });
   }
 
+  // ── Match colour ────────────────────────────────────────────────────────
+  // Green / amber / red on an ORMA map means one thing and one thing only:
+  // how well this walk suits the dog. It never means how hard the trail is.
+  //
+  // Three near-identical green/amber/red palettes used to exist — the match
+  // tiers, trail.js's safetyColor() and collections' difficultyColour() — and
+  // two of them encoded the trail's intrinsic risk while looking exactly like
+  // a match tier. A guest on a trail page got one meaning, a signed-in owner
+  // another, from the same coloured line.
+  const MATCH_COLOURS = Object.freeze({ good: '#4A7856', fair: '#C98A2E', poor: '#9C3A25' });
+  const MATCH_GOOD = 85;
+  const MATCH_FAIR = 65;
+  // Shown when no score could be produced at all. Deliberately not a tier
+  // colour: an unknown fit must not read as a good or bad one.
+  const MATCH_UNKNOWN = '#6B7A6E';
+
+  function matchColour(score) {
+    const value = Number(score);
+    if (!Number.isFinite(value)) return MATCH_UNKNOWN;
+    if (value >= MATCH_GOOD) return MATCH_COLOURS.good;
+    return value >= MATCH_FAIR ? MATCH_COLOURS.fair : MATCH_COLOURS.poor;
+  }
+
+  /** The same tiers as a data-driven expression, for layers styled per feature. */
+  function matchColourExpression(property) {
+    return [
+      'step', ['coalesce', ['get', property || 'score'], -1],
+      MATCH_UNKNOWN,
+      0, MATCH_COLOURS.poor,
+      MATCH_FAIR, MATCH_COLOURS.fair,
+      MATCH_GOOD, MATCH_COLOURS.good,
+    ];
+  }
+
   function widthRamp(a, b, c, d, scale) {
     const factor = scale || 1;
     return [
@@ -231,6 +265,11 @@
     FONT_BOLD,
     FONT_REGULAR,
     firstLabelLayerId,
+    MATCH_COLOURS,
+    MATCH_GOOD,
+    MATCH_FAIR,
+    matchColour,
+    matchColourExpression,
     addWaymarkedHiking,
     setWaymarkedVisible,
     quietBasemap,
