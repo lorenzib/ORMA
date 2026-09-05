@@ -1,0 +1,321 @@
+{
+  "contractVersion": "1.0.0",
+  "updatedAt": "2026-09-03T10:00:05.787Z",
+  "reason": "safety-library-ui-review",
+  "packets": [
+    {
+      "packetFingerprint": "288ca02b5e96f3887a76a4cd2af8f9b9e0cf85c8f770963eca9ea38dfded5527",
+      "pausedAt": "2026-09-03T10:00:05.787Z",
+      "reason": "Safety Library UI review in progress",
+      "packet": {
+        "contractVersion": "1.0.0",
+        "generatedAt": "2026-08-19T11:43:36.093Z",
+        "mode": "draft-only",
+        "publicMutationAllowed": false,
+        "workstream": "website-editorial",
+        "selectionReason": "revision-requested",
+        "subject": {
+          "type": "guide",
+          "id": "heat-overheating",
+          "sourceRef": "guides/heat-overheating.html",
+          "updatedAt": "2026-08-19T11:43:36.093Z",
+          "safetyCritical": true,
+          "original": "Current published guide to recognizing and responding to overheating in dogs on alpine trails."
+        },
+        "outputs": [
+          {
+            "jobId": "guide-heat-overheating-copy-revision-2026-08-19T11-43-36-093Z",
+            "agentId": "copywriter",
+            "status": "ready-for-review",
+            "responseId": null,
+            "model": "codex",
+            "error": null,
+            "result": {
+              "title": "Make the overheating guide medically focused and address the 15-minute claim",
+              "summary": "Clarifies that 15 minutes is not a universal heatstroke threshold, while warning that dangerous overheating can develop within minutes under intense exposure or exercise. Adds clinically grounded symptoms, immediate cooling instructions, emergency veterinary guidance, complications and evidence-based risk factors.",
+              "changes": [
+                {
+                  "section": "Introduction and 15-minute warning",
+                  "before": "<p>Open alpine meadows and exposed ridgelines offer little shade even when the air temperature feels moderate. Sun exposure at altitude is more intense than it seems, and heat stress in dogs escalates faster than most owners expect.</p>",
+                  "after": "<p>There is no universal safe exposure time and no evidence-based rule that every dog develops heatstroke after exactly 15 minutes in the sun. However, dangerous overheating can develop within minutes when direct sun, exercise, humidity, poor airflow and the dog's individual risk factors combine. Heat-related illness has occurred in dogs at moderate recorded air temperatures, so do not use temperature or elapsed time alone to decide that a walk is safe.</p>",
+                  "reason": "Directly addresses the editor's 15-minute concern without presenting an unsupported universal cutoff. Veterinary epidemiology shows that exertion is a common trigger and that cases can occur at moderate ambient temperatures."
+                },
+                {
+                  "section": "Heat signs heading",
+                  "before": "<h2>Signs, in order</h2>",
+                  "after": "<h2>Clinical signs and emergency action</h2>",
+                  "reason": "Frames the section as health guidance and avoids implying that every dog develops signs in a predictable sequence."
+                },
+                {
+                  "section": "Heat signs, complications and first aid",
+                  "before": "<ul>\n    <li><strong>Early signs:</strong> heavier panting than the pace justifies, seeking shade unprompted, slowing down on flat ground.</li>\n    <li><strong>Escalating signs:</strong> bright red gums or tongue, unsteady gait, reluctance to keep moving. Stop immediately and cool the dog if you see these.</li>\n    <li><strong>Cooling on trail:</strong> wet the belly and paw pads with cool (not ice-cold) water, move to shade, and wait. Don't push on \"to get to the next rest point.\"</li>\n    <li><strong>Prevention beats treatment:</strong> pick routes with better shade coverage on hot days, and start early to avoid midday sun on exposed sections.</li>\n  </ul>",
+                  "after": "<ul>\n    <li><strong>Act at the first signs:</strong> excessive or laboured panting, drooling, seeking shade, unusual tiredness, changed behaviour or reluctance to continue. Stop exercise immediately, move the dog out of direct sun and begin cooling.</li>\n    <li><strong>Call a veterinarian urgently:</strong> vomiting, diarrhoea, weakness, confusion, poor coordination, collapse, seizures, loss of consciousness or blood in vomit or stool indicate moderate to severe heat-related illness. Do not wait for every sign or for a temperature reading.</li>\n    <li><strong>Cool first, then transport:</strong> pour or spray water cooler than the dog over the body, wetting through the coat to the skin, and add airflow if available. Do not cover the dog with wet towels because they can trap heat. Contact the nearest veterinary clinic and continue cooling during transport when practical.</li>\n    <li><strong>Heatstroke can injure multiple organs:</strong> prolonged hyperthermia can cause shock, abnormal clotting, kidney injury, respiratory injury, neurological damage and multiple-organ failure. Apparent improvement after cooling does not rule out internal injury, so veterinary assessment remains important.</li>\n    <li><strong>Prevent exposure:</strong> shorten or cancel strenuous walks in warm or humid conditions, use shaded routes, carry water and schedule activity for cooler hours. Turn back as soon as the dog struggles rather than aiming for the next rest point.</li>\n  </ul>",
+                  "reason": "Adds veterinary clinical signs, systemic complications and current pre-hospital guidance. Research supports immediate cooling before transport, whole-body water application with airflow, avoidance of heat-trapping wet towels and prompt veterinary assessment."
+                },
+                {
+                  "section": "Higher-risk dogs",
+                  "before": "<div class=\"gp-callout\"><strong>Flat-faced, heavy-coated and overweight dogs overheat first.</strong> ORMA match scores already weight heat sensitivity for the breeds most affected, but a score can't see today's weather. When your dog's profile and the day disagree, believe the day.</div>",
+                  "after": "<div class=\"gp-callout\"><strong>Any dog can develop heat-related illness, but risk is not equal.</strong> Flat-faced dogs, older dogs, very large dogs, overweight dogs and dogs with heart, respiratory or other underlying disease need particular caution. Poor heat acclimatisation, strenuous exercise, humidity and restricted access to shade, water or airflow add risk. ORMA match scores cannot account for today's weather or your dog's current health, so use the more cautious limit.</div>",
+                  "reason": "Replaces the unsupported claim that certain dogs always overheat first with risk factors reported in veterinary cohort studies and clinical reviews."
+                },
+                {
+                  "section": "Review footer",
+                  "before": "<p class=\"gp-src\" style=\"margin-top:30px;\">Last reviewed: July 2026. When this page and the mountain disagree, believe the mountain.</p>",
+                  "after": "<p class=\"gp-src\" style=\"margin-top:30px;\">Veterinary review updated: 19 August 2026. Suspected heatstroke is a life-threatening emergency: start cooling immediately and contact a veterinarian.</p>",
+                  "reason": "Records the health-focused review and leaves readers with an unambiguous emergency instruction."
+                }
+              ],
+              "sources": [
+                {
+                  "label": "Hall et al., Risk Factors for Severe and Fatal Heat-Related Illness in UK Dogs, Veterinary Sciences",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9144152/",
+                  "checkedAt": "2026-08-19",
+                  "supports": "Supports the absence of a single safe ambient-temperature threshold, the importance of exertion and confinement as triggers, and increased fatal risk in older and brachycephalic dogs."
+                },
+                {
+                  "label": "Hall et al., Incidence and risk factors for heat-related illness in UK dogs, Scientific Reports",
+                  "url": "https://pubmed.ncbi.nlm.nih.gov/32555323/",
+                  "checkedAt": "2026-08-19",
+                  "supports": "Supports the potentially fatal nature of canine heat-related illness and increased risk associated with brachycephaly, very high bodyweight, excess bodyweight and age."
+                },
+                {
+                  "label": "Hall et al., Cooling Methods Used to Manage Heat-Related Illness in Dogs, Animals",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10385239/",
+                  "checkedAt": "2026-08-19",
+                  "supports": "Supports cooling before transport, water-based cooling with airflow, and avoiding reliance on water-soaked towels, which can be less effective and may impede heat loss."
+                },
+                {
+                  "label": "Royal Veterinary College VetCompass Clinical Grading Tool for Heat-Related Illness in Dogs",
+                  "url": "https://www.rvc.ac.uk/Media/Default/VetCompass/Vet%20Compass%20Heat%20Stroke%20infographic.pdf",
+                  "checkedAt": "2026-08-19",
+                  "supports": "Supports the listed mild, moderate and severe clinical signs, immediate veterinary care for moderate illness, and the sharp decline in survival among severe cases."
+                },
+                {
+                  "label": "Caldas et al., Heat stroke in dogs: literature review, Veterinary Medicine",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11295878/",
+                  "checkedAt": "2026-08-19",
+                  "supports": "Supports heatstroke as an acute veterinary emergency, rapid cooling, major predisposing factors and the potential progression to systemic inflammation and multiple-organ dysfunction."
+                },
+                {
+                  "label": "Bruchim et al., Pathophysiology of heatstroke in dogs revisited",
+                  "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5800390/",
+                  "checkedAt": "2026-08-19",
+                  "supports": "Supports the risks from humidity, exercise, obesity, large body size, brachycephaly, airway disease and poor acclimatisation, plus complications including shock, kidney injury, respiratory distress and abnormal clotting."
+                },
+                {
+                  "label": "Cornell University College of Veterinary Medicine, Summer heat safety tips for dogs",
+                  "url": "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/summer-heat-safety-tips-dogs",
+                  "checkedAt": "2026-08-19",
+                  "supports": "Supports early warning signs, emergency symptoms, wetting through the coat to the skin, airflow, immediate hospital care and prevention through shade, water and reduced activity."
+                }
+              ],
+              "openQuestions": []
+            },
+            "revision": {
+              "requestedAt": "2026-08-19T11:43:36.093Z",
+              "instruction": "I have read somewhere that just 15 min of sun could induce heathstroke in dogs, so read through a lot of veterinarian journals and sources and make this part quite health-related."
+            }
+          }
+        ],
+        "summary": {
+          "readyForReview": 1,
+          "blocked": 0
+        }
+      }
+    },
+    {
+      "packetFingerprint": "7fc148d51639386c679824d297905c11c15b3e2c9a436f7c8db547e9add5e322",
+      "pausedAt": "2026-09-03T10:00:05.787Z",
+      "reason": "Safety Library UI review in progress",
+      "packet": {
+        "contractVersion": "1.0.0",
+        "generatedAt": "2026-08-19T11:58:20.054Z",
+        "mode": "draft-only",
+        "publicMutationAllowed": false,
+        "workstream": "website-editorial",
+        "selectionReason": "revision-requested",
+        "subject": {
+          "type": "guide",
+          "id": "water-for-dogs-on-trail",
+          "sourceRef": "guides/water-for-dogs-on-trail.html",
+          "updatedAt": "2026-08-19T11:58:20.054Z",
+          "safetyCritical": true,
+          "original": "Current published guide to hydration, dehydration signs and water planning for dogs on alpine trails."
+        },
+        "outputs": [
+          {
+            "jobId": "guide-water-for-dogs-on-trail-copy-revision-2026-08-19T11-58-20-054Z",
+            "agentId": "copywriter",
+            "status": "ready-for-review",
+            "responseId": null,
+            "model": "codex",
+            "error": null,
+            "result": {
+              "title": "Refocus the trail-water guide on canine health and veterinary care",
+              "summary": "Makes the hydration guidance more clinically cautious, adds visible citation links, gives veterinary advice clear precedence over ORMA guidance, and reserves two responsive image spaces.",
+              "changes": [
+                {
+                  "section": "Hero and image spaces",
+                  "before": "<div class=\"guide-hero section-page-head\">\n  <div class=\"eyebrow\">Guides · Dog safety in the mountains</div>\n  <h1 style=\"font-size:clamp(28px,5vw,38px);margin-top:14px;\">Water for dogs on alpine trails: how much, and where it actually is</h1>\n  <p class=\"sub section-page-subtitle\">Your dog can't tell you it's two litres short. Here's the arithmetic, the warning signs, and how to plan a route around real fountains instead of hope.</p>\n</div>",
+                  "after": "<div class=\"guide-hero section-page-head\">\n  <div class=\"eyebrow\">Guides · Dog health and safety in the mountains</div>\n  <h1 style=\"font-size:clamp(28px,5vw,38px);margin-top:14px;\">Water for dogs on alpine trails: hydration, warning signs and safer planning</h1>\n  <p class=\"sub section-page-subtitle\">Learn how hydration needs vary, which health warning signs need veterinary attention, and how to plan around reliable water points.</p>\n  <figure class=\"gp-image-slot\" data-image-slot=\"dog-trail-hydration\" style=\"min-height:260px;margin:24px 0;background:rgba(0,0,0,.04);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;\"><figcaption>Image space: dog drinking clean water during a mountain walk</figcaption></figure>\n  <figure class=\"gp-image-slot\" data-image-slot=\"dog-hydration-check\" style=\"min-height:220px;margin:24px 0;background:rgba(0,0,0,.04);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;\"><figcaption>Image space: owner checking a dog's gums and general condition</figcaption></figure>\n</div>",
+                  "reason": "Shifts the page framing toward canine health and creates two explicit, responsive spaces for editorial images."
+                },
+                {
+                  "section": "Hydration needs and citation",
+                  "before": "<p>The commonly cited veterinary baseline is roughly <strong>one ounce of water per pound of body weight per day</strong> (call it 60 ml per kilo). That's a resting figure. With sustained exercise, and especially with heat, the requirement can <strong>double to quadruple</strong>. Worked example: a 25 kg dog needs about 1.5 litres on a sofa day; on a hot, shadeless 4-hour hike, plan for something in the range of 3 to 6 litres, between what you carry and what the trail provides.</p>",
+                  "after": "<p>A general veterinary reference range for animals at rest in a comfortable temperature is about <strong>44–66 ml of water per kilo of body weight per day</strong>. This is only a starting point: diet, health, activity and environmental conditions can change an individual dog's needs substantially. Ask your veterinarian for a suitable hydration plan if your dog has a medical condition, takes medication, is very young or old, or is not accustomed to strenuous walks. <sup class=\"gp-citation\"><a href=\"https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals\" rel=\"noopener\" aria-label=\"Citation: Merck Veterinary Manual water requirements\">[1]</a></sup></p>",
+                  "reason": "Removes an unsupported exercise multiplier and replaces it with a current veterinary range, individual health caveats and an inline citation insertion pattern."
+                },
+                {
+                  "section": "Hydration sources",
+                  "before": "<p class=\"gp-src\">Sources: <a href=\"https://www.akc.org/expert-advice/health/warning-signs-dehydration-dogs/\" rel=\"noopener\">American Kennel Club: dehydration in dogs</a>; <a href=\"https://wms.org/magazine/magazine/1112/vet-medicine-canine-hydration/Default.aspx\" rel=\"noopener\">Wilderness Medical Society: canine hydration</a></p>",
+                  "after": "<p class=\"gp-src\">Sources and citations: <a href=\"https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals\" rel=\"noopener\">[1] Merck Veterinary Manual: water requirements</a>; <a href=\"https://wms.org/magazine/magazine/1112/vet-medicine-canine-hydration/Default.aspx\" rel=\"noopener\">[2] Wilderness Medical Society: canine hydration</a></p>",
+                  "reason": "Introduces a numbered citation format that can be extended on the page and prioritizes a peer-reviewed veterinary manual."
+                },
+                {
+                  "section": "Health checks",
+                  "before": "<table class=\"gp-table\">\n    <tr><th>Check</th><th>What you're looking for</th></tr>\n    <tr><td>Gums</td><td>Should be wet and slick. Dry or sticky gums are an early dehydration flag.</td></tr>\n    <tr><td>Skin tent</td><td>Gently lift the skin near the shoulder blades and release. It should snap back instantly; skin that settles slowly means fluid loss.</td></tr>\n    <tr><td>Eyes</td><td>Sunken eyes are a later, more serious sign.</td></tr>\n    <tr><td>Behaviour</td><td>Lethargy, slowing on flat ground, panting heavier than the pace justifies: the same early signals as heat stress, because the two arrive together.</td></tr>\n  </table>",
+                  "after": "<table class=\"gp-table\">\n    <tr><th>Health check</th><th>What may need attention</th></tr>\n    <tr><td>Gums</td><td>Dry or sticky gums can occur with dehydration. Gum colour and refill time are clinical assessments, so ask a veterinarian to show you how to check them correctly.</td></tr>\n    <tr><td>Skin</td><td>A slow return after gently lifting and releasing the skin near the shoulder blades can suggest fluid loss, but age and body condition can make this check misleading.</td></tr>\n    <tr><td>Eyes</td><td>Sunken eyes can accompany more substantial dehydration and warrant prompt veterinary advice.</td></tr>\n    <tr><td>Behaviour and movement</td><td>Weakness, confusion, loss of coordination, collapse, vomiting or panting that remains rapid after stopping can indicate a medical emergency.</td></tr>\n  </table>",
+                  "reason": "Makes the section more health focused, explains the limitations of home checks and identifies signs associated with urgent heat-related illness."
+                },
+                {
+                  "section": "Response to warning signs",
+                  "before": "<p>If you see these: shade, rest, and <strong>small amounts</strong> of water: a dehydrated dog that gulps a bowl can vomit it straight back, making things worse. If signs don't resolve quickly, it's a vet situation, not a wait-and-see situation.</p>",
+                  "after": "<p>If you notice possible dehydration or heat illness, stop the walk, move your dog out of the heat and contact a veterinarian promptly for instructions. Heat stroke is an emergency: vomiting, distress, uncoordinated movement, collapse or unconsciousness require immediate veterinary care. Any first-aid steps on this page are temporary support and must not delay professional treatment. <sup class=\"gp-citation\"><a href=\"https://www.merckvetmanual.com/special-pet-topics/emergencies/what-to-do-in-a-dog-or-cat-emergency\" rel=\"noopener\" aria-label=\"Citation: Merck Veterinary Manual emergency guidance\">[3]</a></sup></p>",
+                  "reason": "Prioritizes veterinary assessment, provides a clear emergency threshold and adds a current citation for the changed safety claims."
+                },
+                {
+                  "section": "Review footer and veterinary precedence",
+                  "before": "<p class=\"gp-src\" style=\"margin-top:30px;\">Last reviewed: July 2026. This guide is general information, not veterinary advice: if your dog shows persistent signs of dehydration or heat stress, get to a vet.</p>",
+                  "after": "<p class=\"gp-src\" style=\"margin-top:30px;\"><strong>Veterinary guidance comes first.</strong> This page provides general educational information and cannot account for your dog's health, medication, age or fitness. Advice from a veterinarian who knows or has assessed your dog always takes precedence over ORMA content. Contact a veterinarian promptly about possible dehydration or heat illness, and seek immediate care for emergency signs. Last reviewed: 19 August 2026.</p>",
+                  "reason": "States clearly and prominently that individualized veterinary advice always overrides the page while recording the substantive health review."
+                }
+              ],
+              "sources": [
+                {
+                  "label": "Merck Veterinary Manual: Nutritional Requirements of Small Animals",
+                  "url": "https://www.merckvetmanual.com/management-and-nutrition/nutrition-small-animals/nutritional-requirements-of-small-animals",
+                  "checkedAt": "2026-08-19",
+                  "supports": "Supports the approximate thermoneutral water range of 44–66 ml/kg and explains that diet, environment, activity and health affect individual requirements."
+                },
+                {
+                  "label": "Merck Veterinary Manual: The Fluid Resuscitation Plan in Animals",
+                  "url": "https://www.merckvetmanual.com/therapeutics/fluid-therapy/the-fluid-resuscitation-plan-in-animals",
+                  "checkedAt": "2026-08-19",
+                  "supports": "Supports assessing mucous membranes, skin turgor and eyes while recognizing that physical dehydration estimates are affected by factors including age and body condition."
+                },
+                {
+                  "label": "Merck Veterinary Manual: What to Do in a Dog or Cat Emergency",
+                  "url": "https://www.merckvetmanual.com/special-pet-topics/emergencies/what-to-do-in-a-dog-or-cat-emergency",
+                  "checkedAt": "2026-08-19",
+                  "supports": "Identifies heat stroke as an emergency and lists vomiting, rapid panting, distress, uncoordinated movement, collapse and unconsciousness among its signs."
+                }
+              ],
+              "openQuestions": []
+            },
+            "revision": {
+              "requestedAt": "2026-08-19T11:58:20.054Z",
+              "instruction": "make this way more health related - also make sure that we can insert citation on this page as well\nmake the claim that veterinary advice is always more important than what we say here (write it in a better way)\ninclude the space for images"
+            }
+          }
+        ],
+        "summary": {
+          "readyForReview": 1,
+          "blocked": 0
+        }
+      }
+    },
+    {
+      "packetFingerprint": "1fb98e19a934374bd391bd036935ff4c1cd883c95d6173f17162ab992ee9b44d",
+      "pausedAt": "2026-09-03T10:00:05.787Z",
+      "reason": "Safety Library UI review in progress",
+      "packet": {
+        "contractVersion": "1.0.0",
+        "generatedAt": "2026-08-19T10:02:46.000Z",
+        "mode": "draft-only",
+        "publicMutationAllowed": false,
+        "workstream": "website-editorial",
+        "selectionReason": "safety-critical",
+        "subject": {
+          "type": "page",
+          "id": "safety-guide",
+          "sourceRef": "safety-guide.html",
+          "updatedAt": "2026-08-18T21:27:47.000Z",
+          "safetyCritical": true,
+          "original": "Current published safety reference page and editorial-library index."
+        },
+        "outputs": [
+          {
+            "jobId": "page-safety-guide-copy-2026-08-19T10-02-46-000Z",
+            "agentId": "copywriter",
+            "status": "ready-for-review",
+            "responseId": null,
+            "model": "codex",
+            "error": null,
+            "result": {
+              "title": "Correct the main safety-page heat and water advice",
+              "summary": "Replaces clock-based heat advice and untreated-water recommendations with concise, source-backed actions and a clearer emergency threshold.",
+              "changes": [
+                {
+                  "section": "Heat and coats summary",
+                  "before": "<ul><li>A dense or double coat traps heat; heat load matters more than air temperature.</li><li>Start before 10am on warm days and turn back if panting stays heavy at rest.</li><li>Favour shaded, lakeside and forested routes when it is warm.</li></ul>",
+                  "after": "<ul><li>Any dog can overheat; flat-faced, overweight and older dogs, and dogs with thick coats or heart or breathing conditions, need extra caution.</li><li>Reduce pace and distance in warm or humid conditions, choose shade and avoid strenuous exposed sections during the hottest part of the day.</li><li>Heavy panting, drooling, weakness or confusion mean stop, start cooling with cool water and seek veterinary help.</li></ul>",
+                  "reason": "Replaces a fixed 10am rule with condition-based prevention and adds practical warning signs and first actions from current veterinary guidance."
+                },
+                {
+                  "section": "Water and hydration summary",
+                  "before": "<ul><li>Carry more water than you think, plus a collapsible bowl.</li><li>Prefer routes with lake or stream access for cooling and drinking.</li><li>Avoid still, algae-green water; it can make dogs sick.</li></ul>",
+                  "after": "<ul><li>Carry enough clean water for your dog, plus a margin for heat, delays and a longer return.</li><li>Do not rely on untreated lakes, streams or troughs for drinking water.</li><li>Keep dogs away from water that is discoloured, scummy, foamy or smells bad; harmful blooms can be toxic.</li></ul>",
+                  "reason": "Removes the recommendation to use lakes or streams for drinking and adds the observable harmful-bloom warnings used by public-health authorities."
+                },
+                {
+                  "section": "Heat guide library card",
+                  "before": "<p>The signs that come before panting, and what to do in the first five minutes.</p>",
+                  "after": "<p>How to spot overheating early, start cooling and know when it is an emergency.</p>",
+                  "reason": "The existing teaser inaccurately suggests that reliable warning signs precede panting; the replacement matches the reviewed guide."
+                },
+                {
+                  "section": "Safety disclaimer and review line",
+                  "before": "<p class=\"sg-disclaimer\">This guide is general information, not veterinary advice. If your dog shows signs of heat stress, injury or exhaustion on trail, get them to shade and water first, and to a vet if the symptoms do not resolve quickly.</p>",
+                  "after": "<p class=\"sg-disclaimer\">Last reviewed: 19 August 2026. This guide is general information, not veterinary advice. Start cooling a dog with heat-stress signs and contact a veterinarian promptly; difficulty breathing, vomiting, weakness, confusion, unsteady movement, seizures or collapse need urgent veterinary care.</p>",
+                  "reason": "Records the substantive source-backed review and removes a wait-for-resolution threshold that could delay emergency veterinary care."
+                }
+              ],
+              "sources": [
+                {
+                  "label": "Cornell University College of Veterinary Medicine: Summer heat safety tips for dogs",
+                  "url": "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/summer-heat-safety-tips-dogs",
+                  "checkedAt": "2026-08-19",
+                  "supports": "Supports heat-risk groups, early and emergency signs, cooling with cool water and airflow, and immediate veterinary care for heatstroke signs."
+                },
+                {
+                  "label": "Merck Veterinary Manual: What to Do in a Dog or Cat Emergency",
+                  "url": "https://www.merckvetmanual.com/special-pet-topics/emergencies/what-to-do-in-a-dog-or-cat-emergency",
+                  "checkedAt": "2026-08-19",
+                  "supports": "Identifies heatstroke as an emergency and supports cooling the head and body while taking the dog to a veterinarian."
+                },
+                {
+                  "label": "CDC: Preventing Pet and Livestock Illnesses Caused by Harmful Algal Blooms",
+                  "url": "https://www.cdc.gov/harmful-algal-blooms/prevention/preventing-pet-and-livestock-illnesses.html",
+                  "checkedAt": "2026-08-19",
+                  "supports": "Supports avoiding suspicious water and identifies discolouration, scum, foam and bad smells as reasons to keep pets away."
+                },
+                {
+                  "label": "CDC: Keep pets safe near lakes and rivers",
+                  "url": "https://www.cdc.gov/harmful-algal-blooms/media/pdfs/8.5x11_Keep-pets-safe-near-lakes-and-rivers.pdf",
+                  "checkedAt": "2026-08-19",
+                  "supports": "Advises bringing drinking water for pets and not allowing them to drink lake, river or stream water."
+                }
+              ],
+              "openQuestions": []
+            }
+          }
+        ],
+        "summary": {
+          "readyForReview": 1,
+          "blocked": 0
+        }
+      }
+    }
+  ]
+}

@@ -1,134 +1,90 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-08-20T10:00:02.312Z",
-  "issueCadence": "every-14-days",
-  "status": "ready-for-newsletter-agent",
+  "generatedAt": "2026-09-03T10:00:05.787Z",
+  "issueCadence": "every-14-days-after-launch",
+  "status": "parked-awaiting-content-readiness",
   "publicMutationAllowed": false,
   "newlyPublishedTrails": [],
-  "publishedEditorialChanges": [
-    {
-      "contentId": "guide-paw-protection",
-      "type": "guide",
-      "sourceRef": "guides/paw-protection.html",
-      "status": "published",
-      "contentFingerprint": "0ca58d10ce9d3fd72b0c1563ff8854d075eae4caec0a99d61f048e117fe02f13",
-      "sourcesFingerprint": "3f82e3fceb5a6057ee3bf73705a0fd08cfb7ae9b671d84e3049b1d8c01248e87",
-      "lastDecision": "approve",
-      "lastReviewedAt": "2026-08-18T20:10:22.000Z",
-      "lastPublishedAt": "2026-08-18T20:10:22.000Z",
-      "nextEligibleAt": "2026-09-29T20:10:22.000Z",
-      "activePacketFingerprint": null,
-      "revisionNote": null
-    },
-    {
-      "contentId": "guide-alpine-plants-for-dogs",
-      "type": "guide",
-      "sourceRef": "guides/alpine-plants-for-dogs.html",
-      "status": "published",
-      "contentFingerprint": "da035950ee524b9ca820238886e84815ee0a16ad73cc15e7bcc8bd86a89101df",
-      "sourcesFingerprint": "e576fb687b4b76b742c4c8c671382db62528527779a3a9f4e1807dd8082164af",
-      "lastDecision": "approve",
-      "lastReviewedAt": "2026-08-19T07:36:22.519Z",
-      "lastPublishedAt": "2026-08-19T07:36:22.519Z",
-      "nextEligibleAt": "2026-09-30T07:36:22.519Z",
-      "activePacketFingerprint": null,
-      "revisionNote": null
-    }
-  ],
+  "publishedEditorialChanges": [],
   "timelySafetySignals": [
-    {
-      "title": "Rain warning for Friuli Venezia Giulia",
-      "area": "Friuli Venezia Giulia",
-      "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/db23a5c2-55fa-4fe2-90b5-fcab076923c5",
-      "expiresAt": "2026-08-21T21:59:00+00:00",
-      "note": "Topic signal only; do not describe as a trail closure."
-    },
-    {
-      "title": "Rain warning for Trentino Alto Adige",
-      "area": "Trentino Alto Adige",
-      "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/781dd288-dfb3-40ed-8631-97857abe57ab",
-      "expiresAt": "2026-08-21T21:59:00+00:00",
-      "note": "Topic signal only; do not describe as a trail closure."
-    },
-    {
-      "title": "Rain warning for Veneto",
-      "area": "Veneto",
-      "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/8a53f03e-0b25-44ab-a036-8cfc372fc9ca",
-      "expiresAt": "2026-08-21T21:59:00+00:00",
-      "note": "Topic signal only; do not describe as a trail closure."
-    },
     {
       "title": "Thunderstorm warning for Friuli Venezia Giulia",
       "area": "Friuli Venezia Giulia",
       "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/7e5be577-07a1-4752-bc9d-130bedf677e8",
-      "expiresAt": "2026-08-21T21:59:00+00:00",
-      "note": "Topic signal only; do not describe as a trail closure."
-    },
-    {
-      "title": "Thunderstorm warning for Trentino Alto Adige",
-      "area": "Trentino Alto Adige",
-      "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/1ff8f39c-1aca-40bc-9dd6-70a9b5e42316",
-      "expiresAt": "2026-08-21T21:59:00+00:00",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/48f7a460-2a55-4c69-acdb-a2e77c4667b1",
+      "expiresAt": "2026-09-02T17:59:00+00:00",
       "note": "Topic signal only; do not describe as a trail closure."
     },
     {
       "title": "Thunderstorm warning for Veneto",
       "area": "Veneto",
       "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/a550b3d9-2036-4fe1-8160-48c454c628bd",
-      "expiresAt": "2026-08-21T21:59:00+00:00",
-      "note": "Topic signal only; do not describe as a trail closure."
-    },
-    {
-      "title": "rain-flood warning for Savoie",
-      "area": "Savoie",
-      "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/8646784f-93c7-4062-aefb-8f95dbbd242c",
-      "expiresAt": "2026-08-20T22:00:00+00:00",
-      "note": "Topic signal only; do not describe as a trail closure."
-    },
-    {
-      "title": "thunderstorm warning for Savoie",
-      "area": "Savoie",
-      "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/0afa8a3b-b019-43f5-92d0-14c81b684a44",
-      "expiresAt": "2026-08-20T22:00:00+00:00",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/c14b0576-8687-48ec-baf0-fc8035f6143b",
+      "expiresAt": "2026-09-02T17:59:00+00:00",
       "note": "Topic signal only; do not describe as a trail closure."
     }
   ],
   "currentEditorialSignals": [
     {
-      "id": "quiet-trails-dog-context",
+      "id": "dog-essential-poi-layer",
       "category": "editorial-gap",
-      "title": "Explain when a quiet trail is—and is not—better for dogs",
-      "signal": "AllTrails and Komoot now use community heatmaps to help people choose popular routes or quieter alternatives. The underlying framing is about traffic and discovery, not dog-specific consequences.",
-      "ormaOpportunity": "Develop an editorial and collection framework for “quieter with your dog” that separates human footfall from actual suitability. Explain that low traffic can reduce overstimulation but may coincide with livestock, guardian dogs, hunting activity, fewer witnesses, weak phone coverage, or poorly maintained paths. Link every recommendation back to reviewed route evidence.",
-      "whyNow": "Quietness is becoming a mainstream route-selection attribute, creating room for ORMA to define the dog-first interpretation before users equate “less popular” with “safer.”",
-      "impact": "medium",
+      "title": "Dog-Essential Points Along the Route",
+      "signal": "AllTrails added more than 500,000 mapped viewpoints, landmarks and trail amenities in 2025. Strava made POIs tappable, added contextual details and enabled routing directly to or through them.",
+      "ormaOpportunity": "Define a tightly governed dog-essential POI model: reliable water, shade or rest areas, livestock encounters, leash-transition points, gates, emergency exits, dog-permitted transport, nearby vets and places where water should not be assumed. Attach each item to its route position and evidence status.",
+      "whyNow": "Competitors are making POIs actionable, but generic amenity catalogues rarely explain their canine relevance or reliability.",
+      "impact": "high",
       "confidence": "high",
       "suggestedInvestigation": [
-        "Which available datasets can estimate human traffic without overstating precision?",
-        "Which counter-signals—livestock, hunting, remoteness, access evidence—must accompany quietness?",
-        "Would users value a quietness filter, editorial collection, or both?",
-        "What wording prevents quiet routes being presented as universally preferable?"
+        "Which POI types materially change a guardian’s decision?",
+        "Which require authoritative evidence versus editorial observation?",
+        "How should seasonal or unreliable water be represented?",
+        "Should POIs appear on the elevation profile as well as the map?",
+        "Which POIs belong in trail verification versus ongoing hazard monitoring?"
       ],
       "sources": [
         {
-          "label": "AllTrails Peak launch announcement",
+          "label": "AllTrails Peak announcement",
           "url": "https://www.alltrails.com/press/alltrails-expands-membership-offering-with-alltrails-peak",
-          "checkedAt": "2026-08-19",
-          "supports": "Documents Community Heatmap as a way to select popular trails or quieter alternatives."
+          "checkedAt": "2026-09-03",
+          "supports": "Documents the addition of more than 500,000 mapped landmarks, viewpoints and amenities."
         },
         {
-          "label": "Komoot 2026 seasonal update",
-          "url": "https://www.komoot.com/season-updates-2026",
-          "checkedAt": "2026-08-19",
-          "supports": "Documents global heatmaps being used to follow popular routes or seek quieter trails."
+          "label": "Strava 2025 subscriber-feature announcement",
+          "url": "https://press.strava.com/articles/strava-unveils-suite-of-new-subscriber-features",
+          "checkedAt": "2026-09-03",
+          "supports": "Documents tappable POIs, contextual details and route generation to or through a selected POI."
+        }
+      ],
+      "status": "awaiting-review"
+    },
+    {
+      "id": "decision-point-route-narrative",
+      "category": "editorial-gap",
+      "title": "Decision-Point Route Narrative",
+      "signal": "onX positions expert-built routes around explicit decision points and terrain insight, while Strava’s redesigned recording experience keeps the map and key statistics visible together instead of forcing screen switching.",
+      "ormaOpportunity": "Turn ORMA’s verified route-order and trail-number evidence into a concise, location-aware narrative: upcoming junction, outgoing and incoming trail reference, landmark, distance from start and dog-specific action. The same structured content could support the trail page, navigation and offline pack.",
+      "whyNow": "ORMA’s operating standard already requires unusually rigorous evidence for route direction and trail-number changes. Productizing that structure could create a defensible clarity advantage without generating new claims.",
+      "impact": "high",
+      "confidence": "high",
+      "suggestedInvestigation": [
+        "Can existing dossiers consistently produce structured decision points?",
+        "Which junctions deserve proactive guidance rather than passive map labels?",
+        "How should dog actions such as “lead on” be distinguished from navigation instructions?",
+        "What is the fallback when a sign, path or reference cannot be verified?",
+        "Can one editorial structure serve web, mobile and offline contexts without duplication?"
+      ],
+      "sources": [
+        {
+          "label": "onX Backcountry product documentation",
+          "url": "https://www.onxmaps.com/backcountry/support-your-forecast-sale-2025",
+          "checkedAt": "2026-09-03",
+          "supports": "Describes expert-built routes containing clear decision points and detailed terrain insights."
+        },
+        {
+          "label": "Strava redesigned Record announcement",
+          "url": "https://press.strava.com/pb/articles/strava-launches-redesigned-record-experience",
+          "checkedAt": "2026-09-03",
+          "supports": "Documents a field interface that presents the map and activity statistics together."
         }
       ],
       "status": "awaiting-review"
