@@ -9,6 +9,16 @@ function positiveInteger(value,fallback){
   return Number.isInteger(parsed)&&parsed>0?parsed:fallback;
 }
 
+// Named so a retired lane cannot leave a dangling read here: the worker's result
+// shape changed underneath this check once already, and an undefined lane threw
+// before the exit code could be set.
+const REVIEW_LANES = Object.freeze(['reviews', 'dossierReviews', 'imageReviews', 'publications']);
+
+function blockedLanes(result = {}){
+  return REVIEW_LANES.filter(lane => (result[lane] || []).some(item => item.status === 'blocked'))
+    .concat((result.communityHazards?.vetted || []).some(item => item.status === 'vetting-failed') ? ['communityHazards'] : []);
+}
+
 async function main(){
   if(!process.env.OPENAI_API_KEY) throw new Error('OPENAI_API_KEY is required');
   const workerId = `github-${process.env.GITHUB_RUN_ID || 'manual'}-${process.env.GITHUB_RUN_ATTEMPT || '1'}`;
@@ -21,15 +31,9 @@ async function main(){
     campaignLimit:positiveInteger(process.env.ORMA_CAMPAIGN_LIMIT,10),campaignCapacity:positiveInteger(process.env.ORMA_CAMPAIGN_CAPACITY,15),
     limit:5,specialistLimit,specialistCandidateId });
   console.log(JSON.stringify(result, null, 2));
-  if(result.reviews.some(item => item.status === 'blocked')
-    || result.dossierReviews.some(item => item.status === 'blocked')
-    || result.editorialReviews.some(item => item.status === 'blocked')
-    || result.imageReviews.some(item => item.status === 'blocked')
-    || result.newsletterReviews.some(item => item.status === 'blocked')
-    || result.analystReviews.some(item => item.status === 'blocked')
-    || result.publications.some(item => item.status === 'blocked')) process.exitCode = 1;
+  if(blockedLanes(result).length) process.exitCode = 1;
 }
 
 if(require.main === module) main().catch(error => { console.error(`[orma-live-worker] ${error.stack || error.message}`); process.exitCode = 1; });
 
-module.exports = { main,positiveInteger };
+module.exports = { main,positiveInteger,blockedLanes,REVIEW_LANES };
