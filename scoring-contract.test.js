@@ -11,7 +11,7 @@ function run(fixture){
 
 describe('SCORE-01 canonical recommendation contract', () => {
   test('the fixture set and calculator use the same immutable version', () => {
-    expect(scoring.VERSION).toBe('1.3.0');
+    expect(scoring.VERSION).toBe('1.4.0');
     expect(fixtures.scoringVersion).toBe(scoring.VERSION);
   });
 
@@ -269,6 +269,151 @@ describe('SCORE-01 canonical recommendation contract', () => {
 
     expect(reported.leashAdvisories).toEqual([]);
     expect(reported.cautions.some(entry => /kilometres/.test(entry.message))).toBe(false);
+  });
+
+  // ---- P0-1 the score explains itself ------------------------------------
+
+  test('every factor carries what it cost, and the costs add up to the score', () => {
+    const result = scoring.calculateRecommendation({
+      dog:{ ...steadyDog, conditions:['heat'], traits:{ heatSensitive:true } },
+      trail:{
+        ...idealPhysicalRoute,
+        metrics:{ distanceKm:12, ascentM:700, descentM:700 },
+        suitability:{ ...idealPhysicalRoute.suitability, terrainRank:2, exposure:true,
+          heatRisk:'high', shadePercent:15, surfaceHazards:['Loose scree'] },
+      },
+      currentConditions:{ status:'known', heatRisk:'high' },
+    });
+
+    // A breakdown whose numbers do not reach the number on the card is worse
+    // than no breakdown, so this is the property the whole story rests on.
+    const total = result.factors.reduce((sum, factor) => sum + factor.impact, 0);
+    expect(100 + total).toBe(result.score);
+    expect(result.factors.every(factor => Number.isFinite(factor.impact))).toBe(true);
+  });
+
+  test('the breakdown is ordered by impact, top negative first', () => {
+    const result = scoring.calculateRecommendation({
+      dog:{ ...steadyDog, conditions:['heat'], traits:{ heatSensitive:true } },
+      trail:{
+        ...idealPhysicalRoute,
+        metrics:{ distanceKm:12, ascentM:700, descentM:700 },
+        suitability:{ ...idealPhysicalRoute.suitability, terrainRank:2, exposure:true, heatRisk:'high' },
+      },
+    });
+    const impacts = result.factors.map(factor => factor.impact);
+
+    expect(impacts).toEqual([...impacts].sort((a, b) => a - b));
+    expect(impacts[0]).toBeLessThan(0);
+  });
+
+  test('no factor is a bare label or a bare number', () => {
+    const result = scoring.calculateRecommendation({
+      dog:steadyDog,
+      trail:{ ...idealPhysicalRoute, metrics:{ distanceKm:30, ascentM:100, descentM:100 } },
+    });
+
+    result.factors.forEach(factor => {
+      expect(typeof factor.message).toBe('string');
+      // A reason, not a label: a sentence with something to act on.
+      expect(factor.message.trim().split(/\s+/).length).toBeGreaterThan(3);
+      expect(factor.code).toEqual(expect.any(String));
+    });
+  });
+
+  test('a capped behaviour load is shared across its factors, not dumped on one', () => {
+    const hostile = {
+      suitability:{ livestockPresence:'likely', wildlifePresence:'high', sightlines:'restricted',
+        roadProximity:'alongside', crowding:'busy' },
+    };
+    const result = scoreWith(hostile, {
+      recall:'unreliable', reactivity:'strong', preyDrive:'high',
+      livestockComfort:'reactive', trafficComfort:'reactive', crowdComfort:'reactive',
+    });
+    const behaviour = result.factors.filter(factor => /livestock|wildlife|sightlines|road|crowding/.test(factor.code));
+    const charged = behaviour.reduce((sum, factor) => sum + factor.impact, 0);
+
+    // Uncapped the load far exceeds 45; every factor shrinks together so the
+    // recorded costs still match the 45 actually deducted.
+    expect(behaviour.length).toBeGreaterThan(3);
+    expect(behaviour.every(factor => factor.impact < 0)).toBe(true);
+    expect(Math.abs(charged)).toBe(45);
+  });
+
+  test('every ceiling on the score is recorded as a factor', () => {
+    // Regression: an earlier pass recorded the seasonal cap's cost but dropped
+    // the cap itself, so the score silently stopped being held at 84.
+    const seasonal = scoreWith({
+      suitability:{ dogAccess:{ status:'seasonal-restrictions' } },
+    }, undefined);
+    expect(seasonal.score).toBe(84);
+    expect(seasonal.factors.find(factor => factor.code === 'trail.dog-access.seasonal').impact).toBe(-16);
+
+    // Unreviewed safety evidence holds a route below a strong option, and that
+    // deduction has to be visible in the breakdown like any other.
+    const unreviewed = scoring.calculateRecommendation({
+      dog:steadyDog,
+      trail:{ ...idealPhysicalRoute, verification:{ tier:'imported', categories:{
+        route:'unreviewed', water:'unreviewed', heat:'unreviewed', exposure:'unreviewed',
+        livestock:'unreviewed', surfaceHazards:'unreviewed', access:'unreviewed',
+      } } },
+    });
+    expect(unreviewed.score).toBe(80);
+    expect(unreviewed.factors.find(factor => factor.code === 'evidence.critical.capped').impact).toBe(-20);
+  });
+
+  test('the breakdown reconciles and stays ordered across the whole input space', () => {
+    // The two properties the story depends on, checked by construction rather
+    // than by example: a breakdown that does not add up to the number on the
+    // card, or that is not sorted, is worse than showing nothing.
+    const pick = (list, seed) => list[seed % list.length];
+    let checked = 0;
+
+    for(let seed = 0; seed < 1500; seed += 1){
+      const result = scoring.calculateRecommendation({
+        dog:{
+          fitness:pick(['low', 'moderate', 'high', undefined], seed),
+          ageYears:pick([0.5, 4, 9, 12, null], seed >> 2),
+          weightKg:pick([4, 22, 50, null], seed >> 3),
+          conditions:pick([[], ['heat'], ['joints'], ['cardiac', 'overweight']], seed >> 4),
+          behaviour:{
+            recall:pick([undefined, 'reliable', 'unreliable'], seed >> 5),
+            preyDrive:pick([undefined, 'low', 'high'], seed >> 6),
+            livestockComfort:pick([undefined, 'confident', 'reactive'], seed >> 7),
+            crowdComfort:pick([undefined, 'reactive'], seed >> 8),
+            trafficComfort:pick([undefined, 'reactive'], seed >> 9),
+          },
+        },
+        trail:{
+          metrics:{ distanceKm:pick([2, 12, 25, null], seed), ascentM:pick([50, 900, null], seed >> 2),
+            descentM:pick([50, 500, null], seed >> 3), durationMinutes:pick([60, 200, null], seed >> 4) },
+          suitability:{
+            terrainRank:pick([0, 1, 3, null], seed >> 1), exposure:pick([true, false, null], seed >> 2),
+            heatRisk:pick(['low', 'high', 'unknown'], seed >> 3), shadePercent:pick([10, 70, null], seed >> 4),
+            surfaceHazards:pick([[], ['a'], ['a', 'b']], seed >> 5),
+            dogAccess:{ status:pick(['allowed', 'seasonal-restrictions', 'prohibited', 'unknown'], seed >> 6) },
+            livestockPresence:pick(['none', 'likely', 'unknown'], seed >> 7),
+            wildlifePresence:pick(['low', 'high', 'unknown'], seed >> 8),
+            sightlines:pick(['open', 'restricted', 'unknown'], seed >> 9),
+            roadProximity:pick(['none', 'alongside', 'unknown'], seed >> 10),
+            crowding:pick(['quiet', 'busy', 'unknown'], seed >> 11),
+          },
+          waypoints:[],
+          verification:{ tier:'field-verified', categories:Object.fromEntries(
+            ['route', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access']
+              .map((name, index) => [name, pick(['verified', 'unreviewed'], (seed >> index) + index)])) },
+        },
+        currentConditions:pick([{ status:'not-provided' }, { status:'known', heatRisk:'high' }], seed >> 12),
+      });
+
+      const total = result.factors.reduce((sum, factor) => sum + factor.impact, 0);
+      expect(100 + total).toBe(result.score);
+      const impacts = result.factors.map(factor => factor.impact);
+      expect(impacts).toEqual([...impacts].sort((a, b) => a - b));
+      checked += 1;
+    }
+
+    expect(checked).toBe(1500);
   });
 
   test('a declared robust heat tolerance never clears a medical heat risk', () => {

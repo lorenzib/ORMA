@@ -4,7 +4,7 @@ const recommendation = {
   score:72,
   category:'possible-with-cautions',
   confidence:'medium',
-  scoringVersion:'1.3.0',
+  scoringVersion:'1.4.0',
   evidenceTier:'route-audited',
   positiveReasons:[{ message:'Distance is within range.' }],
   cautions:[{ message:'Shade is limited.' }],
@@ -25,7 +25,7 @@ describe('canonical recommendation decision presentation', () => {
     expect(result.reasons).toEqual(['Distance is within range.']);
     expect(result.cautions).toEqual(['Shade is limited.']);
     expect(result.unknowns).toHaveLength(2);
-    expect(result.scoringVersion).toBe('1.3.0');
+    expect(result.scoringVersion).toBe('1.4.0');
   });
 
   test('the four shown reasons keep the ones specific to this dog', () => {
@@ -82,6 +82,30 @@ describe('canonical recommendation decision presentation', () => {
     }, { dogName:'Eddie' });
 
     expect(result.cautions[0]).toBe('Dogs are prohibited.');
+  });
+
+  test('the breakdown is headed in the dog\'s name and is not truncated', () => {
+    const factors = Array.from({ length: 9 }, (unused, index) => ({
+      code:`f${index}`, message:`Factor number ${index} moved the score.`, impact:-(9 - index),
+    }));
+
+    const owner = decision.present({ ...recommendation, factors }, { dogName:'Nina' });
+    expect(owner.breakdownFor).toBe('Nina');
+    // The card's summary lists cap at four; the breakdown must not, because
+    // the criterion is that it lists exactly the factors the score used.
+    expect(owner.breakdown).toHaveLength(9);
+    expect(owner.breakdown[0].impact).toBe(-9);
+    expect(owner.breakdown.every(entry => typeof entry.message === 'string')).toBe(true);
+  });
+
+  test('a guest sees the same breakdown headed for a medium dog', () => {
+    const guest = decision.present({
+      ...recommendation,
+      factors:[{ code:'f', message:'Distance is within range.', impact:0 }],
+    });
+
+    expect(guest.breakdownFor).toBe('a medium dog');
+    expect(guest.breakdown).toHaveLength(1);
   });
 
   test('labels guest output as unpersonalized', () => {

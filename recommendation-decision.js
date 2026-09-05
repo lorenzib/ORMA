@@ -90,6 +90,17 @@
       ['segment.', 'trail.livestock.', 'trail.wildlife.', 'trail.road.',
         'trail.sightlines.', 'trail.crowding.'],
     ];
+    const allFactors = (Array.isArray(recommendation.factors) ? recommendation.factors : [])
+      .filter(entry => entry && typeof entry.message === 'string');
+    const floorEntry = allFactors.find(entry => entry.code === 'score.floor') || null;
+    const breakdownFactors = allFactors
+      .filter(entry => entry !== floorEntry)
+      .map(entry => ({
+        impact:Number.isFinite(entry.impact) ? entry.impact : 0,
+        message:translatedMessage(entry, translate),
+        code:entry.code,
+      }));
+
     const rankedReasons = ordered(
       (Array.isArray(recommendation.positiveReasons) ? recommendation.positiveReasons : [])
         .filter(Boolean),
@@ -131,6 +142,15 @@
       dogName:dogName || null,
       reasons:reasons.slice(0, 4),
       cautions:cautions.slice(0, 4),
+      // P0-1: the full ordered breakdown, most negative first. Unlike the two
+      // summary lists above this is not truncated — the acceptance criterion
+      // is that it lists exactly the factors the score was computed from.
+      breakdownFor:dogName || 'a medium dog',
+      breakdown:breakdownFactors,
+      // The floor is not a factor the reader can act on, and rendering its
+      // positive impact alongside the costs reads as a bonus. It closes the
+      // list as a note instead, explaining why the total stops where it does.
+      breakdownNote:floorEntry ? translatedMessage(floorEntry, translate) : null,
       unknowns:unknowns.slice(0, 5),
       additionalUnknowns:Math.max(0, unknowns.length - 5),
       heroSummary:dogName
