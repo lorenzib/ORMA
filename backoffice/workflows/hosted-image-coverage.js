@@ -17,6 +17,7 @@ async function runImageSourcing(gap,job,options={}){
   const response=await runAgent({schemaName:'orma_image_coverage_source',schema:IMAGE_SOURCE_SCHEMA,webSearch:!ai,messages:[{role:'developer',content:[
     'You are the ORMA Visual Director. Work on one documented website image gap.',
     ai?'Prepare one precise AI image-generation brief. Do not claim an image exists; assetUrl must be null and status must be needs-generation.':'Find at most three genuinely reusable image candidates. Prefer authoritative first-party repositories such as Wikimedia Commons and verify creator, license, licence URL and direct asset URL. Mark uncertain rights as blocked.',
+    'An approved photo is copied into the ORMA repository, never hot-linked, so assetUrl must be an https link to a rendition under 2 MB in JPEG, PNG, WebP or AVIF. Prefer a sized rendition over a full-resolution original.',
     'Never place or publish an image. Every actual asset must return for visual and rights approval.',
   ].join('\n')},{role:'user',content:`Image gap:\n${JSON.stringify(gap,null,2)}\n\nCEO direction:\n${job.brief||''}`} ]},options.clientOptions||{});
   return {contractVersion:'1.0.0',slug:gap.slug,generatedAt:options.at||new Date().toISOString(),sourcePreference:job.sourcePreference,publicMutationAllowed:false,...response.data};

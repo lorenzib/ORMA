@@ -47,7 +47,6 @@
     "backoffice:content-ops": "node backoffice/cli/content-operations.js",
     "backoffice:run-content-ops": "node backoffice/cli/run-content-ops.js",
     "backoffice:image-coverage": "node backoffice/cli/image-coverage.js",
-    "backoffice:image-coverage:live": "node backoffice/cli/refresh-live-trail-image-coverage.js",
     "backoffice:hazard-watch": "node backoffice/cli/hazard-watch.js",
     "backoffice:hazard-watch:live": "node backoffice/cli/live-hazard-watch.js",
     "backoffice:new-trail-scouting": "node backoffice/cli/new-trail-scouting.js",

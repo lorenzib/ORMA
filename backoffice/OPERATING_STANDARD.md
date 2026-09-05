@@ -93,13 +93,20 @@ Owns trail-photo coverage only. The website-copy and Safety Library queues are
 retired: their agents, desks and scheduled runs are removed rather than gated,
 and any future copy work starts from a new explicit decision.
 
-Trail-photo coverage is a separate Editorial workflow. It audits every
-published trail, not guides or general pages, and ranks Dolomites gaps first.
-During the MVP phase it is an active throughput lane: the daily refresh keeps
-up to 15 trail-photo searches or exact asset reviews active, automatically
-queues correctly licensed and credited candidate scouting for the highest
-priority unfilled trails, and preserves the remaining coverage inventory
-without presenting every gap as simultaneous work.
+Trail-photo coverage is a finite backfill that runs inside the worker pass, not
+a standing audit on its own schedule. It scans every published trail, not guides
+or general pages, ranks Dolomites gaps first, keeps up to 15 searches or exact
+asset reviews active, and automatically queues correctly licensed and credited
+candidate scouting for the highest priority unfilled trails. When every
+published trail has a photo the lane reports complete and queues nothing.
+
+A published trail photo is final. Once a trail has a cover photo it leaves the
+gap list permanently, no further decision can be recorded against it, and a
+later approval is retired rather than allowed to replace the picture readers
+have already seen.
+
+A photo already published for one trail is never offered as a candidate for
+another; the library scan skips the published trail-photo directory.
 For each trail, the CEO can upload her own photograph in a protected backoffice
 space, choose an existing ORMA asset, request correctly licensed candidates,
 explicitly request an AI option, or park the gap. Uploads are not publicly
@@ -109,7 +116,10 @@ require a paid photo-storage bucket. The CEO previews the exact image and its
 creator, rights basis and alt text before approving it for a publication pull
 request. The worker copies an approved photo into GitHub, which is the permanent
 public asset store, and deletes the temporary Firestore copy after the reviewed
-pull request is merged and deployed.
+pull request is merged and deployed. A licensed photo is downloaded and
+committed the same way rather than hot-linked, so ORMA never depends on a
+third-party host staying available; its creator, licence, licence URL and source
+page travel with it.
 
 ## CEO review and shipping contract
 
@@ -152,9 +162,9 @@ pull request is merged and deployed.
   with daily ORMA Verified intake at 09:30 local time and 15-trail capacity.
   Hazard freshness does not depend on this cadence; the hazard watch runs on its
   own hourly schedule.
-- Trail-photo coverage and licensed candidate scouting: daily at 11:00 local
-  time, after New Trail scouting, with at most 15 active searches or reviews;
-  guide-wide image audits are not part of this queue.
+- Trail-photo coverage and licensed candidate scouting: inside every worker
+  pass, with at most 15 active searches or reviews; guide-wide image audits are
+  not part of this queue. The lane stops queueing once coverage is complete.
 - New Trail scouting: paused for the duration of the trail-photo and ORMA
   Verified backfills. Each newly admitted trail opens a new photo gap and a new
   verification gap faster than either backfill closes one, so intake stays
