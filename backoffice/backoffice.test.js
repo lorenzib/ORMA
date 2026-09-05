@@ -465,7 +465,7 @@ describe('ORMA backoffice MVP', () => {
       }),
     });
     expect(execution.publicMutationAllowed).toBe(false);
-    expect(execution.summary).toEqual({ attempted: 1, needsHuman: 1, failed: 0 });
+    expect(execution.summary).toEqual({ attempted: 1, needsHuman: 1, blocked: 0, failed: 0 });
     expect(execution.jobs[0]).toEqual(expect.objectContaining({
       status: 'needs-human', humanGate: 'geometry-approval',
     }));

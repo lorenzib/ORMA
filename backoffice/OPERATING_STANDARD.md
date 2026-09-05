@@ -87,6 +87,14 @@ route description instead. A statement that trail numbers are unavailable is
 not publishable route guidance; if neither numbered nor landmark directions can
 be established, the route-following claim remains unresolved.
 
+A recorded route source is a claim like any other, and the identity check is
+what tests it. When the reconstruction of a trail's recorded relation is not
+that trail — its length falls outside tolerance, or it does not close under a
+trail whose own route does — the trail needs a route source, exactly as if it
+had none. It is not queued for the same check again, and it is never presented
+as a route awaiting geometry approval. The verdict is recorded against the
+relation that was examined, so correcting the source retires it.
+
 ### 2. New Trails
 
 Owns discovery before catalogue admission. It prioritises:
