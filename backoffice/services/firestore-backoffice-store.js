@@ -124,6 +124,22 @@ class FirestoreBackofficeStore {
     this.queryCache.set(key,jobs);return jobs;
   }
 
+  // Reading every job in the collection to then filter by a known id list was the
+  // dominant Firestore read cost: it grew with every job ever created and ran twice
+  // per worker pass. Fetch only the referenced documents instead.
+  async getJobsByIds(ids = []){
+    const unique = [...new Set(ids.filter(Boolean).map(String))];
+    if(!unique.length) return [];
+    const collection = this.db.collection(COLLECTIONS.jobs);
+    const jobs = [];
+    for(let index = 0; index < unique.length; index += 300){
+      const refs = unique.slice(index, index + 300).map(id => collection.doc(id));
+      const snapshots = await this.db.getAll(...refs);
+      snapshots.forEach(snapshot => { if(snapshot.exists) jobs.push({ id: snapshot.id, ...snapshot.data() }); });
+    }
+    return jobs.sort((a, b) => String(a.createdAt || '').localeCompare(String(b.createdAt || '')));
+  }
+
   async recoverExpiredJobs(options = {}){
     const now = options.now || new Date();
     const snapshot = await this.db.collection(COLLECTIONS.jobs).where('status', '==', 'running').get();

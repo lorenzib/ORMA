@@ -81,7 +81,9 @@ describe('separate Firebase backoffice Hosting package',()=>{
 
   test('dashboard refreshes conservatively and pauses polling in hidden tabs',()=>{
     const script=fs.readFileSync(path.join(output,'backoffice-hosted-dashboard.js'),'utf8');
-    expect(script).toContain('const REFRESH_SECONDS=300');
+    expect(script).toContain('const REFRESH_SECONDS=900');
+    // Refocusing the tab must not re-read Firestore unless the view is already stale.
+    expect(script).toContain('if(age<REFRESH_SECONDS*1000)');
     expect(script).toContain("document.addEventListener('visibilitychange'");
     expect(script).toContain('if(loading||document.hidden)return');
   });

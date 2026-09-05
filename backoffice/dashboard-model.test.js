@@ -173,3 +173,36 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.summary.agentWork).toBe(0);
   });
 });
+
+describe('orchestration job reads',()=>{
+  const {orchestrationJobIds,orchestrationJobs}=require('./workflows/advance-trail-orchestration');
+
+  const state={trails:[
+    {candidateId:'a',jobIds:['job-1','job-2'],pendingRevisionJobId:'job-3',
+      claimResolution:{water:{attempts:[{jobId:'job-4'},{jobId:'job-2'}]}}},
+    {candidateId:'b',jobIds:['job-5']},
+  ]};
+
+  test('collects every job an orchestrated trail can reference, without duplicates',()=>{
+    expect(orchestrationJobIds(state).sort()).toEqual(['job-1','job-2','job-3','job-4','job-5']);
+  });
+
+  test('reads only the referenced jobs instead of scanning the collection',async()=>{
+    const scanned=[];const fetched=[];
+    const store={
+      listJobs:async statuses=>{scanned.push(statuses);return [];},
+      getJobsByIds:async ids=>{fetched.push(...ids);return ids.map(id=>({id}));},
+    };
+    const jobs=await orchestrationJobs(store,state);
+    expect(scanned).toEqual([]);
+    expect(fetched.sort()).toEqual(['job-1','job-2','job-3','job-4','job-5']);
+    expect(jobs).toHaveLength(5);
+  });
+
+  test('falls back to the status query for stores without id-based fetching',async()=>{
+    const scanned=[];
+    const store={listJobs:async statuses=>{scanned.push(statuses);return [{id:'job-1'}];}};
+    await orchestrationJobs(store,state);
+    expect(scanned[0]).toContain('completed');
+  });
+});
