@@ -125,11 +125,11 @@
   }
 
   function startPointLabel(trail, label) {
-    if (!categoryVerified(trail, 'access')) return `Suggested start, ${String(label || 'route start').replace(/^Start here\s*[—-]\s*/i, '')}. Check current access before travelling.`;
+    if (!categoryVerified(trail, 'access')) return `Suggested start, ${String(label || 'route start').replace(/^Start here\s*[,—-]\s*/i, '')}. Check current access before travelling.`;
     if (!imported(trail)) return label;
     const cleaned = String(label || 'Route start')
-      .replace(/^Start here\s*[—-]\s*/i, '')
-      .replace(/^Route start per OpenStreetMap\s*[—-]\s*/i, '')
+      .replace(/^Start here\s*[,—-]\s*/i, '')
+      .replace(/^Route start per OpenStreetMap\s*[,—-]\s*/i, '')
       .replace(/\s*\(OSM-verified access point\)/gi, '')
       .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
     return `Mapped start suggestion, ${cleaned}. Check current access before travelling.`;

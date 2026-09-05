@@ -1256,9 +1256,9 @@ const itin = { trail: null, items: [], cumKm: null };
 function trLabel(label){
   if(!label || (window.DoloPawsI18n && window.DoloPawsI18n.lang) !== 'it') return label;
   const RULES = [
-    [/^Start here — main parking area at (.+)$/, 'Parti qui — parcheggio principale a $1'],
-    [/^Start here — main lake access & parking, by (.+)$/, 'Parti qui — accesso principale al lago e parcheggio, presso $1'],
-    [/^Route start per OpenStreetMap — best parking\/access not yet verified$/, 'Inizio del percorso secondo OpenStreetMap — parcheggio/accesso migliore non ancora verificato'],
+    [/^Start here, main parking area at (.+)$/, 'Parti qui, parcheggio principale a $1'],
+    [/^Start here, main lake access & parking, by (.+)$/, 'Parti qui, accesso principale al lago e parcheggio, presso $1'],
+    [/^Route start per OpenStreetMap, best parking\/access not yet verified$/, 'Inizio del percorso secondo OpenStreetMap, parcheggio/accesso migliore non ancora verificato'],
     [/^Lakeside fountain$/, 'Fontana in riva al lago'],
     [/^Trailhead fountain$/, 'Fontana alla partenza'],
     [/^Village fountain$/, 'Fontana del paese'],

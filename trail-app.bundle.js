@@ -5460,11 +5460,11 @@ function effectiveOverrides(profile, adjustOverride){
   }
 
   function startPointLabel(trail, label) {
-    if (!categoryVerified(trail, 'access')) return `Suggested start, ${String(label || 'route start').replace(/^Start here\s*[—-]\s*/i, '')}. Check current access before travelling.`;
+    if (!categoryVerified(trail, 'access')) return `Suggested start, ${String(label || 'route start').replace(/^Start here\s*[,—-]\s*/i, '')}. Check current access before travelling.`;
     if (!imported(trail)) return label;
     const cleaned = String(label || 'Route start')
-      .replace(/^Start here\s*[—-]\s*/i, '')
-      .replace(/^Route start per OpenStreetMap\s*[—-]\s*/i, '')
+      .replace(/^Start here\s*[,—-]\s*/i, '')
+      .replace(/^Route start per OpenStreetMap\s*[,—-]\s*/i, '')
       .replace(/\s*\(OSM-verified access point\)/gi, '')
       .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
     return `Mapped start suggestion, ${cleaned}. Check current access before travelling.`;
@@ -13732,9 +13732,9 @@ const itin = { trail: null, items: [], cumKm: null };
 function trLabel(label){
   if(!label || (window.DoloPawsI18n && window.DoloPawsI18n.lang) !== 'it') return label;
   const RULES = [
-    [/^Start here — main parking area at (.+)$/, 'Parti qui — parcheggio principale a $1'],
-    [/^Start here — main lake access & parking, by (.+)$/, 'Parti qui — accesso principale al lago e parcheggio, presso $1'],
-    [/^Route start per OpenStreetMap — best parking\/access not yet verified$/, 'Inizio del percorso secondo OpenStreetMap — parcheggio/accesso migliore non ancora verificato'],
+    [/^Start here, main parking area at (.+)$/, 'Parti qui, parcheggio principale a $1'],
+    [/^Start here, main lake access & parking, by (.+)$/, 'Parti qui, accesso principale al lago e parcheggio, presso $1'],
+    [/^Route start per OpenStreetMap, best parking\/access not yet verified$/, 'Inizio del percorso secondo OpenStreetMap, parcheggio/accesso migliore non ancora verificato'],
     [/^Lakeside fountain$/, 'Fontana in riva al lago'],
     [/^Trailhead fountain$/, 'Fontana alla partenza'],
     [/^Village fountain$/, 'Fontana del paese'],
