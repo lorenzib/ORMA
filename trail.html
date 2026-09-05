@@ -827,12 +827,13 @@ body{background:#EFECE2;}
 .td2-workspace{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(340px,.85fr);gap:20px;align-items:start;}
 .td2-workspace{margin-top:22px;}
 .td2-content-column,.td2-sidebar-column{display:flex;flex-direction:column;gap:20px;min-width:0;}
+.td2-sidebar-column{position:sticky;top:88px;align-self:start;}
 .td2-map-stack{display:flex;flex-direction:column;gap:18px;min-width:0;}
 .td2-map-stack>.td2-elev[hidden]{display:none!important;}
 .td2-mapcard{margin:0;overflow:hidden;}
 .td2-mapcard .trail-map-box{height:clamp(560px,66vh,700px);}
 .td2-plan-stack,.td2-story,.td2-logistics{display:flex;flex-direction:column;gap:18px;min-width:0;}
-.td2-plan-stack{position:sticky;top:88px;height:auto;max-height:none;min-height:0;overflow:visible;}
+.td2-plan-stack{position:static;height:auto;max-height:none;min-height:0;overflow:visible;}
 .td2-fit-shell{height:auto;min-height:0;overflow:visible;}
 .td2-fit-shell .recommendation-decision{margin:0;padding:22px;border:0;border-left:5px solid #7A8A7D;border-radius:0;background:none;box-shadow:none;}
 .td2-fit-shell .recommendation-decision--strong{border-left-color:#4A7856;}
