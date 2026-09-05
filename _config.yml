@@ -2,6 +2,7 @@ include:
   - CNAME
 exclude:
   - experiments
+  - prototypes
   # Operator surface. These pages and their scripts are built and served from
   # backoffice.app-orma.com by scripts/build-backoffice-hosting.js, which reads
   # them straight from the repo root and is unaffected by this list. Keeping

@@ -99,6 +99,13 @@
     "testEnvironment": "jsdom",
     "testMatch": [
       "**/*.test.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/_site/"
+    ],
+    "modulePathIgnorePatterns": [
+      "/_site/"
     ]
   },
   "allowScripts": {
