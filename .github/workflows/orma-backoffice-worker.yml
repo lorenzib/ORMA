@@ -43,9 +43,6 @@ jobs:
       ORMA_SPECIALIST_LIMIT: ${{ github.event.inputs.specialist_limit || '10' }}
       ORMA_PUBLICATION_FORCE_RETRY: ${{ github.event.inputs.force_publication_retry || 'false' }}
       ORMA_CAMPAIGN_AUTOMATION_ENABLED: ${{ vars.ORMA_CAMPAIGN_AUTOMATION_ENABLED || 'false' }}
-      ORMA_NEWSLETTER_ENABLED: ${{ vars.ORMA_NEWSLETTER_ENABLED || 'false' }}
-      ORMA_EDITORIAL_ENABLED: 'false'
-      ORMA_ANALYST_ENABLED: 'false'
       ORMA_CAMPAIGN_LIMIT: '10'
       ORMA_CAMPAIGN_CAPACITY: '15'
     steps:
