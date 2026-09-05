@@ -750,4 +750,65 @@ describe('moderation queue and audit trail', () => {
     await assertFails(updateDoc(auditRef, { reason: 'Rewritten history.' }));
     await assertFails(deleteDoc(auditRef));
   });
+  // METRIC-01 product analytics. The collection takes unauthenticated writes,
+  // so the rules are the only thing standing between it and becoming a general
+  // write target: these cases pin the accepted shape and the refusals.
+  test("accepts a well formed product event from a guest and nothing else", async () => {
+    const guest = testEnv.unauthenticatedContext().firestore();
+    const validEvent = id => ({
+      schemaVersion: 1,
+      id,
+      clientId: "client-abc",
+      family: "discovery_search",
+      state: "results_viewed",
+      properties: { region: "dolomites", resultCount: 12 },
+      occurredHour: "2026-09-05T13:00:00.000Z",
+    });
+
+    const eventRef = doc(guest, "productEvents/event-1");
+    await assertSucceeds(setDoc(eventRef, validEvent("event-1")));
+
+    // Write-only: the queue is never read back by the site.
+    await assertFails(getDoc(eventRef));
+
+    // A retry after a lost acknowledgement rewrites the same document.
+    await assertSucceeds(setDoc(eventRef, validEvent("event-1")));
+    // But it may not be edited into something else.
+    await assertFails(updateDoc(eventRef, { state: "no_results" }));
+
+    // The document id has to be the event id, so retries cannot fan out.
+    await assertFails(setDoc(
+      doc(guest, "productEvents/event-2"),
+      { ...validEvent("mismatched-id") }
+    ));
+
+    // Only the eight METRIC-01 families are accepted.
+    await assertFails(setDoc(
+      doc(guest, "productEvents/event-3"),
+      { ...validEvent("event-3"), family: "arbitrary_family" }
+    ));
+
+    // No smuggling extra fields alongside a valid event.
+    await assertFails(setDoc(
+      doc(guest, "productEvents/event-4"),
+      { ...validEvent("event-4"), email: "person@example.com" }
+    ));
+    await assertFails(setDoc(
+      doc(guest, "productEvents/event-5"),
+      { ...validEvent("event-5"), latitude: 46.4, longitude: 11.5 }
+    ));
+
+    // A missing field is not a partial event, it is a rejected one.
+    const incomplete = validEvent("event-6");
+    delete incomplete.clientId;
+    await assertFails(setDoc(doc(guest, "productEvents/event-6"), incomplete));
+
+    // Schema version is pinned so a future shape cannot land silently.
+    await assertFails(setDoc(
+      doc(guest, "productEvents/event-7"),
+      { ...validEvent("event-7"), schemaVersion: 2 }
+    ));
+
+    await assertSucceeds(deleteDoc(doc(moderatorDb("moderator-1"), "productEvents/event-1")));
+  });
 });
