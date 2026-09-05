@@ -142,7 +142,11 @@ describe('PERF-02 asset and regional loading contract', () => {
     expect(homepage).toContain("function setSelectedTrailRoute(trail, options)");
     expect(homepage).toContain('setSelectedTrailRoute(t);');
     expect(homepage).toContain('setSelectedTrailRoute(null, { fit:false });');
-    expect(homepage).toContain("'trail-paths-mapped-casing','trail-paths-mapped-line','trail-paths-route-number'");
+    // The catalogue is now one cased corridor beneath the raster, so the two
+    // masking rails and the shield layer they made necessary are gone.
+    expect(homepage).toContain("'trail-paths-orma-line'].forEach(layerId =>");
+    expect(homepage).not.toContain("'trail-paths-mapped-casing'");
+    expect(homepage).not.toContain("id:'trail-paths-route-number'");
     expect(homepage).toContain("['!=', ['get','id'], trail.id]");
   });
 
