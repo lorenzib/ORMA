@@ -181,6 +181,37 @@ describe('shared map quality profile', () => {
     expect(read('collections.html')).toContain('firebase-init.js');
   });
 
+  test('no homepage guest map: the container was deleted in July 2026', () => {
+    // #guestPreviewMap left index.html in 784afd0b (2026-07-17) and was never
+    // replaced, so initGuestMap() returned on its first line and ~160 lines of
+    // map setup could not run. It was still being maintained — the cartography
+    // work restyled layers in there that nothing renders — so it is deleted.
+    // A signed-out visitor sees no map on the homepage at all.
+    // Comments explaining the removal legitimately name these symbols, so
+    // check the code with line comments stripped.
+    const code = read('script.js').split('\n')
+      .filter(line => !line.trim().startsWith('//')).join('\n');
+    ['guestPreviewMap', 'guestMapInstance', 'initGuestMap', 'scheduleGuestMap',
+      'guest-trail-paths', 'guest-gondolas'].forEach(symbol => {
+      expect({ symbol, inCode: code.includes(symbol) }).toEqual({ symbol, inCode: false });
+    });
+    // If a guest map is ever wanted again it needs a container first.
+    expect(read('index.html')).not.toContain('guestPreviewMap');
+  });
+
+  test('the guest scoring profile has exactly one definition', () => {
+    // Four copies of { terrain:'1', distance:'10', heatSensitive:false } were
+    // scattered through script.js — the same duplication that produced three
+    // rival colour palettes.
+    const script = read('script.js');
+    expect(script).toContain('function guestOverrides()');
+    expect(script).toContain('scoring.GUEST_SUBJECT');
+    // script.js is also evaluated without the scoring stack, so the accessor
+    // tolerates a missing engine rather than taking the homepage down.
+    expect(script).toMatch(/return \(scoring && scoring\.GUEST_SUBJECT\) \|\|/);
+    expect(read('scoring.js')).toContain("GUEST_SUBJECT = Object.freeze({ terrain:'1', distance:'10', heatSensitive:false })");
+  });
+
   test('browse maps start quiet, the navigating map does not', () => {
     // AllTrails shows no path network at browse zooms at all. Ours has to
     // appear eventually — Dolomites walkers follow the numbers on signposts —
