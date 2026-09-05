@@ -24,6 +24,28 @@
     return `<ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`;
   }
 
+  // P0-1: the breakdown sits directly under the Match %, headed in the dog's
+  // name, and lists every factor the score was computed from in descending
+  // order of impact. Each row carries both the points and the reason, so no
+  // factor ever reads as a bare label or a bare number.
+  function breakdown(view, tr){
+    if(!view.breakdown.length) return '';
+    const rows = view.breakdown.map(factor => {
+      const points = factor.impact === 0
+        ? tr('recommendation.breakdown.noCost', 'no cost')
+        : `${factor.impact > 0 ? '+' : '\u2212'}${Math.abs(factor.impact)}`;
+      const tone = factor.impact < 0 ? 'cost' : 'clear';
+      return `<li><span class="recommendation-factor-impact is-${tone}">${esc(points)}</span>` +
+        `<span class="recommendation-factor-reason">${esc(factor.message)}</span></li>`;
+    }).join('');
+    const note = view.breakdownNote
+      ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`
+      : '';
+    return `<section class="recommendation-breakdown">` +
+      `<h3>${esc(tr('recommendation.breakdown.title', 'Why this score for {name}', { name:view.breakdownFor }))}</h3>` +
+      `<ol class="recommendation-factors">${rows}</ol>${note}</section>`;
+  }
+
   function sections(entries){
     const rendered = entries
       .filter(([, items]) => items.length)
@@ -105,6 +127,7 @@
       // A heading over a line explaining that there is nothing to say is the
       // opposite of crisp. A section with nothing behind it is dropped; what
       // ORMA has not established stays in the unknowns disclosure below.
+      breakdown(view, tr) +
       sections([
         [tr('recommendation.reasons.title', 'Why it may fit'), view.reasons],
         [tr('recommendation.cautions.title', 'Cautions'), view.cautions],
