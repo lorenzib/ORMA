@@ -7,7 +7,7 @@ describe('hosted ORMA operating contract',()=>{
   test('all automated production invariants pass together',async()=>{
     const report=await auditOperationalContract(path.resolve(__dirname,'..'),{at:'2026-08-20T10:00:00Z'});
     expect(report.status).toBe('pass');
-    expect(report.summary).toEqual({passed:17,failed:0,total:17});
+    expect(report.summary).toEqual({passed:18,failed:0,total:18});
     expect(report.checks.every(item=>item.status==='pass')).toBe(true);
     expect(report.manualChecks.map(item=>item.id)).toEqual(['github-actions-pr-creation','moderator-access']);
   });

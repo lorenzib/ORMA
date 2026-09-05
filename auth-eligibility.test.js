@@ -28,8 +28,8 @@ describe('AUTH-02 verified contributor contract', () => {
   test('every contribution checks eligibility and starts pending', () => {
     // Reviews, photos, hazard reports, place dog-policy reports, and hazard
     // confirmation/dispute all require the same contributor decision.
-    expect(client.match(/await getContributionEligibility\(\)/g)).toHaveLength(5);
-    expect(client.match(/status: "pending"/g)).toHaveLength(4);
+    expect(client.match(/await getContributionEligibility\(\)/g)).toHaveLength(6);
+    expect(client.match(/status: "pending"/g)).toHaveLength(5);
     expect(client).toContain('permission-denied"))');
     expect(client).toContain('existing && existing.exists()');
     expect(rules).toContain('isOwner(resource.data.uid)');
@@ -42,7 +42,7 @@ describe('AUTH-02 verified contributor contract', () => {
     const reports = read('trail-reports.js');
     expect(reports).toContain('submitted for review');
     expect(reports).toContain('submitted for moderation');
-    expect(rules.match(/request\.resource\.data\.status == 'pending'/g)).toHaveLength(5);
+    expect(rules.match(/request\.resource\.data\.status == 'pending'/g)).toHaveLength(6);
   });
 
   test('recovery copy names a concrete verification action', () => {

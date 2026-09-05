@@ -15,6 +15,7 @@ const {DEFAULT_CAMPAIGN_LIMIT,DEFAULT_TRAIL_CAPACITY}=require('./start-live-trai
 const {applyNewTrailReview}=require('./plan-new-trail-scouting');
 const {admitNewTrailIntake}=require('./new-trail-intake');
 const {applyHazardReview}=require('./dynamic-hazards');
+const {runHazardVetting,applyHazardVetting,expireCommunityHazards}=require('./community-hazard-vetting');
 const {ingestImageReviews,processImageJobs,queuePriorityImageSourcing,DEFAULT_IMAGE_SOURCING_CAPACITY}=require('./hosted-image-coverage');
 const {auditImageCoverage}=require('./audit-image-coverage');
 const {validateContentExecution}=require('../contracts/content-result-v1');
@@ -286,6 +287,45 @@ async function refreshTrailPhotoBackfill(store,options={}){
   }
 }
 
+// Customer hazard reports never wait for a person. Each pending report is vetted
+// against independent sources by the Hazard Analyst, then published, published
+// under an explicit unverified label, or rejected. Published community hazards
+// re-check themselves and expire without asking.
+async function processCommunityHazardReports(store,options={}){
+  if(typeof store.listHazardReports!=='function')return {vetted:[],expired:0,revetted:0};
+  const at=options.at||new Date().toISOString();
+  const limit=options.hazardReportLimit||3;
+  const outcomes=[];
+  let publicData=await store.getArtifact('dynamic-hazards')||{contractVersion:'1.0.0',hazards:[]};
+
+  const lifecycle=expireCommunityHazards(publicData,{at});
+  publicData=lifecycle.publicData;
+
+  const pending=await store.listHazardReports('pending',limit);
+  const revet=lifecycle.dueForRevetting.slice(0,Math.max(0,limit-pending.length));
+  const reports=[...pending,...revet.map(hazard=>({id:hazard.reportId,trailId:hazard.trailIds?.[0],
+    trailName:hazard.trailNames?.[0],category:hazard.event,description:hazard.message,
+    area:hazard.area,createdAt:hazard.reportedAt,revetting:true}))];
+
+  for(const report of reports){
+    try{
+      const vetting=await runHazardVetting(report,{...options,at});
+      const applied=applyHazardVetting(publicData,report,vetting,{at});
+      publicData=applied.publicData;
+      await store.markHazardReport(report.id,applied.status,{verdict:vetting.verdict,
+        sourceCount:(vetting.sources||[]).length,hazardId:applied.hazard?.id||null});
+      outcomes.push({reportId:report.id,status:applied.status,verdict:vetting.verdict,revetting:!!report.revetting});
+    }catch(error){
+      outcomes.push({reportId:report.id,status:'vetting-failed',error:String(error.message||error).slice(0,2000)});
+    }
+  }
+
+  if(lifecycle.expired.length||outcomes.some(item=>item.status!=='vetting-failed')){
+    await store.setArtifact('dynamic-hazards',{...publicData,publicMutationAllowed:false},{lastCommunityVettingAt:at});
+  }
+  return {vetted:outcomes,expired:lifecycle.expired.length,revetted:revet.length};
+}
+
 async function runLiveBackofficeWorker(store, options = {}){
   const productionTrails=options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..'));
   const campaign=await runScheduledTrailCampaign(store,productionTrails,{enabled:options.campaignEnabled===true,
@@ -294,6 +334,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   const trailPhotoBackfill=await refreshTrailPhotoBackfill(store,{...options,productionTrails});
   const newTrailReviews=await ingestNewTrailReviews(store);
   const hazardReviews=await ingestHazardReviews(store);
+  const communityHazards=await processCommunityHazardReports(store,options);
   const imageReviews=await ingestImageReviews(store);
   const recoveredJobs = typeof store.recoverExpiredJobs === 'function'
     ? await store.recoverExpiredJobs(options)
@@ -307,7 +348,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   const jobs = await processRevisionJobs(store, options);
   const imageOperations=await processImageJobs(store,options);
   const publications = await ingestPublicationReviews(store);
-  return { workerId:options.workerId || null,campaign,trailPhotoBackfill,newTrailReviews,hazardReviews,imageReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,imageOperations,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,trailPhotoBackfill,newTrailReviews,hazardReviews,communityHazards,imageReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,imageOperations,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
-module.exports = { iso, refreshTrailPhotoBackfill, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestImageReviews,processImageJobs,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { iso, refreshTrailPhotoBackfill, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestImageReviews,processImageJobs,ingestPublicationReviews,runLiveBackofficeWorker };
