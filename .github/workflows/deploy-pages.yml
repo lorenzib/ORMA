@@ -1,0 +1,65 @@
+name: Deploy public site
+
+# The repository has a .nojekyll file, so GitHub Pages' built-in build serves
+# the repository root verbatim and never runs Jekyll. The `exclude:` list in
+# _config.yml was therefore never applied, and operator data (backoffice-data/,
+# the desk pages, the Node test suites, package.json) was published alongside
+# the customer site.
+#
+# This workflow replaces that built-in build. scripts/build-pages-site.js
+# assembles a _site/ directory from _config.yml's exclude list, and only that
+# directory is deployed.
+#
+# Requires the repository's Pages source to be set to "GitHub Actions".
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never cancel a running deploy; let it finish and queue the next one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Assemble the public site
+        run: node scripts/build-pages-site.js _site
+
+      # Fails the deploy rather than publishing operator data, and fails it
+      # again if the customer site came out incomplete.
+      - name: Verify what is being published
+        run: npx jest pages-site-build.test.js --runInBand
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

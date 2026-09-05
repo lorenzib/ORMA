@@ -11,3 +11,4 @@ firebase-adminsdk*.json
 .firebase/
 dist/
 backoffice-data/image-library-config.local.json
+_site/
