@@ -1,0 +1,33 @@
+name: ORMA verification state report
+
+# Read-only diagnostic, run by hand. The photo backfill stops queueing once the
+# number of occupied trails reaches capacity; this says which of the three
+# sources is holding the slots. It never writes to Firestore or the website.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orma-verification-state
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FIREBASE_PROJECT_ID: dolopaws
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Check worker credentials
+        run: test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
+      - run: npm ci
+      - name: Report verification state
+        run: npm run backoffice:verification-state
