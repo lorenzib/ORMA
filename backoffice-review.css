@@ -126,3 +126,29 @@ body.bo-shell{margin:0;background:var(--bo-bg);color:var(--bo-ink)}
 .bo-compact-details{margin-top:12px;border:1px solid var(--bo-line);border-radius:11px;background:#fff}.bo-compact-details>summary{padding:14px 16px;cursor:pointer;color:var(--bo-accent);font-size:12px;font-weight:800}.bo-compact-details[open]>summary{border-bottom:1px solid var(--bo-line)}.bo-compact-details .bo-activity-list{border:0;border-radius:0}.bo-parked-work{margin-top:30px;background:#f1f3ef}.bo-parked-work>p,.bo-automation-help>p{margin:0;padding:14px 16px;color:var(--bo-muted);font-size:12px;line-height:1.5}.bo-parked-work nav{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 16px}.bo-parked-work a{padding:6px 9px;border:1px solid var(--bo-line);border-radius:999px;background:#fff;color:var(--bo-muted);font-size:10px;font-weight:800;text-decoration:none}.bo-automation-help{margin-top:10px}
 @media(max-width:900px){.bo-compact-health,.bo-mvp-grid{grid-template-columns:1fr 1fr}.bo-dashboard-simple .bo-exec-title{align-items:flex-start}.bo-header>.bo-sign-out{margin-left:auto}}
 @media(max-width:620px){.bo-dashboard-simple{margin-top:24px}.bo-compact-health,.bo-mvp-grid{grid-template-columns:1fr}.bo-health-item{grid-template-columns:auto minmax(0,1fr)}.bo-health-item>a{grid-column:2}.bo-dashboard-simple .bo-exec-kpis{grid-template-columns:1fr 1fr}.bo-dashboard-simple .bo-exec-section-head{align-items:flex-start}.bo-mvp-grid article{min-height:170px}}
+
+/* Coverage grid — the inspection surface on the backoffice home. */
+.bo-coverage{margin:26px 0 30px}
+.bo-coverage-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 12px}
+.bo-coverage-search{flex:1 1 220px}
+.bo-coverage-search input{width:100%;padding:9px 12px;border:1px solid var(--bo-line,#d9d2c6);border-radius:9px;
+  background:var(--bo-surface,#fff);color:inherit;font:inherit}
+.bo-coverage-filters{display:flex;flex-wrap:wrap;gap:6px}
+.bo-coverage-filters button{padding:7px 13px;border:1px solid var(--bo-line,#d9d2c6);border-radius:999px;
+  background:var(--bo-surface,#fff);color:inherit;font:inherit;font-size:13px;cursor:pointer}
+.bo-coverage-filters button[aria-pressed="true"]{background:var(--bo-ink,#2f2a24);border-color:var(--bo-ink,#2f2a24);color:#fff;font-weight:700}
+.bo-coverage-scroll{overflow-x:auto;border:1px solid var(--bo-line,#d9d2c6);border-radius:12px}
+.bo-coverage-table{width:100%;border-collapse:collapse;font-size:13px;min-width:520px}
+.bo-coverage-table th,.bo-coverage-table td{padding:10px 13px;text-align:left;border-bottom:1px solid var(--bo-line,#eee6da);vertical-align:middle}
+.bo-coverage-table thead th{position:sticky;top:0;background:var(--bo-surface,#fff);font-size:12px;
+  text-transform:uppercase;letter-spacing:.04em;z-index:1}
+.bo-coverage-table tbody tr:last-child td{border-bottom:0}
+.bo-coverage-name strong{display:block;font-size:13px}
+.bo-coverage-name small{display:block;color:var(--bo-muted,#6b625a);font-size:11px;margin-top:2px}
+.bo-coverage-pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700;
+  border:1px solid transparent;white-space:nowrap}
+.bo-coverage-pill.is-ok{background:#e8f3ea;border-color:#bcd9c2;color:#25563a}
+.bo-coverage-pill.is-todo{background:#f4efe6;border-color:#ddd2bf;color:#6b5d45}
+.bo-coverage-pill.is-progress{background:#eef1f8;border-color:#c8d0e6;color:#374a76}
+.bo-coverage-pill.is-alert{background:#fdecea;border-color:#efc2bb;color:#8a2f24}
+@media (max-width:640px){.bo-coverage-table{font-size:12px}.bo-coverage-table th,.bo-coverage-table td{padding:8px 10px}}

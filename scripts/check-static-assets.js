@@ -21,8 +21,7 @@ const missing = [];
 // against the public site root.
 const BACKOFFICE_SOURCE_PAGES = new Set([
   'backoffice-hosted-review.html','backoffice-hosted-login.html','image-coverage-hosted.html',
-  'trail-dossier-desk.html','trail-content-desk.html','new-trail-scouting-desk.html',
-  'hazard-review-desk.html','community-moderation-desk.html',
+  'trail-dossier-desk.html','trail-content-desk.html','community-moderation-desk.html',
 ]);
 
 for(const file of htmlFiles){
