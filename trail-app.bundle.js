@@ -5476,16 +5476,15 @@ function effectiveOverrides(profile, adjustOverride){
       routeAudit: {
         photo: 'No licensed trail photo is currently used; no credit is due.',
         route: 'Full route geometry present and matched to Les Karellis route 09.',
+        routeNumbers: 'Les Karellis states the route follows green waymark no. 9 (\u201Csuivez le balisage vert n\u00B09\u201D) departing from the tourist office, which is the recommended start. The official description names no second number, so no numbered switch applies.',
         mapPoints: 'Mapped water points checked at their source GPS coordinates.',
         elevation: 'Profile present; headline ascent corrected to the official 249 m figure.'
       },
       graduation: {
-        status: 'in-progress',
+        status: 'verified',
         required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
-        completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
-        blockers: {
-          routeNumbers: 'Confirm from an authoritative route source that route 09 applies from the recommended start and that no numbered switch is required.'
-        }
+        completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
+        blockers: {}
       },
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
@@ -5612,15 +5611,15 @@ function effectiveOverrides(profile, adjustOverride){
       routeAudit: {
         photo: 'No reusable trail photograph is used; the official board image is retained only as a source, not copied.',
         route: 'Closed OSM relation checked against the official Laugen–Elvas overview board; the official board lists a 4.2 km circuit.',
+        routeNumbers: 'Bezirksgemeinschaft Eisacktal describes this circuit by name only, with no numbered waymark and no numbered switch, so the named-only statement stands in place of trail-number guidance.',
         mapPoints: 'Two water points and the suggested start were traced to exact source coordinates.',
         elevation: 'Profile present and scaled to 4.2 km; headline ascent corrected from the sampled 181 m to the official 100 m.'
       },
       graduation: {
         status: 'in-progress',
         required: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
-        completed: ['photo', 'route', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards'],
+        completed: ['photo', 'route', 'routeNumbers', 'mapPoints', 'elevation', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards'],
         blockers: {
-          routeNumbers: 'Verify the ordered trail-number guidance and every numbered switch, or an authoritative named-only/no-switch statement.',
           access: 'The official route crosses the protected Laugen biotope but the available route material does not state the dog-access or leash rule for this specific reserve.'
         }
       },

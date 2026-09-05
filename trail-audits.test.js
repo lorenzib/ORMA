@@ -23,12 +23,14 @@ describe('trail presentation audits', () => {
     }));
     expect(albanne.curated).toBe(true);
     expect(albanne.tier).toBe('route-audited');
-    expect(albanne.graduation.status).toBe('in-progress');
+    // Les Karellis states the route follows green waymark no. 9 from the
+    // tourist office, which is the recommended start, and names no second
+    // number. That satisfies the eleventh requirement bc1ed965 introduced.
+    expect(albanne.graduation.status).toBe('verified');
     expect(albanne.graduation.required).toHaveLength(11);
-    expect(albanne.graduation.completed).toHaveLength(10);
-    expect(albanne.graduation.blockers).toEqual({
-      routeNumbers: expect.stringMatching(/authoritative route source/i),
-    });
+    expect(albanne.graduation.completed).toHaveLength(11);
+    expect(albanne.graduation.blockers).toEqual({});
+    expect(albanne.routeAudit.routeNumbers).toMatch(/balisage vert n\u00B09/);
     expect(albanne.sourceLinks.length).toBeGreaterThanOrEqual(2);
     expect(albanne.path.length).toBeGreaterThan(100);
     expect(albanne.elevation).toBe(249);
@@ -47,7 +49,11 @@ describe('trail presentation audits', () => {
   });
 
   test.each([
-    ['osm-12731853', 4.2, 100, ['routeNumbers', 'access']],
+    // Laugen Elvas is documented by name only with no numbered waymark, which
+    // is the named-only alternative the requirement allows. Anello del Sole
+    // stays open: its municipal listing shows "5 - Anello del Sole" and no
+    // official source settles whether that 5 is a waymark or a list index.
+    ['osm-12731853', 4.2, 100, ['access']],
     ['osm-7548344', 3, 250, ['routeNumbers', 'livestock', 'access']],
   ])('%s records official figures and precise remaining blockers', (id, distance, elevation, blockers) => {
     const trail = loadTrails().find((candidate) => candidate.id === id);
