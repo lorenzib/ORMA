@@ -13,6 +13,7 @@
     "fetch:dolomites-trails": "node scripts/fetch-dolomites-trails.js",
     "validate:dolomites-trails": "node scripts/validate-dolomites-trails.js",
     "validate:trail-schema": "node scripts/validate-trail-schema.js",
+    "validate:operational-facts": "node scripts/validate-operational-facts.js",
     "validate:alpine-plants": "node scripts/validate-alpine-plants.js",
     "validate:production-trails": "node scripts/validate-production-trails.js --report data/generated/trail-validation-report.json",
     "validate:production-trails:check": "node scripts/validate-production-trails.js",

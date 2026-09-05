@@ -2646,6 +2646,17 @@ body.map-fs-open{overflow:hidden;}
 .hp-footer-appnote{margin:8px 0 0;font-size:12px;line-height:1.45;color:#D4DED3;}
 /* Revealed by mobile-nav.js only where the browser offers a real install
    prompt; the written instruction above stands on its own otherwise. */
+.td2-onroute{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:8px;}
+.td2-onroute li{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;padding:10px 12px;border:1px solid var(--paper-line);border-radius:10px;background:var(--bg);}
+.td2-onroute-name{font:700 13.5px var(--font-sans);color:var(--ink);}
+.td2-onroute-kind{font:700 10.5px var(--font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);}
+.td2-onroute-policy{font:600 13px var(--font-sans);color:var(--ink);}
+.td2-onroute-note{flex:1 1 100%;font:500 12px/1.5 var(--font-sans);color:var(--ink-soft);}
+.td2-onroute-stamp{flex:1 1 100%;font:600 11.5px var(--font-sans);color:var(--ink-soft);}
+/* Unverified is the honest default, so it reads as information rather than
+   a warning; a stale fact is the one that needs a second look. */
+.td2-onroute-stamp.is-verified{color:var(--success);}
+.td2-onroute-stamp.is-stale{color:var(--safety-caution);}
 .hp-footer-install{appearance:none;border:1.5px solid #6E8271;border-radius:999px;background:transparent;color:#EEF3EC;font:700 12.5px 'Inter',sans-serif;padding:9px 16px;min-height:40px;cursor:pointer;}
 .hp-footer-install:hover{background:#2E4034;border-color:#8FA392;}
 .hp-footer-base{width:100%;max-width:none;margin:28px 0 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;}
