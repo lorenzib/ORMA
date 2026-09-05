@@ -93,6 +93,10 @@ async function orchestrationJobs(store,state){
 
 
 const GATE_STATES=Object.freeze({'geometry-human-gate':'geometry-approval','dossier-human-gate':'dossier-approval'});
+// A review item embeds the full specialist evidence, and Firestore caps a document
+// at 1 MiB. Restoring every stranded trail at once overflowed it and failed the
+// whole worker pass, so restoration fills the remaining room and stops.
+const REVIEW_QUEUE_SAFE_BYTES=800000;
 
 // A review item is written once, at the moment a trail enters a gate. No branch
 // below matches a trail that is already parked at one, so if the item is ever
@@ -136,13 +140,16 @@ async function restoreMissingGateReviews(store,state,queue,at,jobs=[]){
         ?geometry?.result?.reviewState==='ready-for-human-review'&&!blockingReasons.length
         :!blockingReasons.length)
       :false;
-    queue.items=[...(queue.items||[]),{
+    const item={
       reviewId:`${gateType}-${trail.candidateId}-${jobId||'restored'}`,candidateId:trail.candidateId,
       trailId:trail.trailId,trailName:trail.trailName,gateType,state:'awaiting-human',openedAt:trail.gate?.openedAt||at,
       approvalAllowed,blockingReasons,sourceTrail:trail.sourceTrail,specialistOutputs:outputs,
       claimResolution:resolutionLedger(trail),restoredAt:at,
       allowedActions:gateType==='agent-failure'?['request-revision','reject']:['approve','request-revision','reject'],
-      publicMutationAllowed:false}];
+      publicMutationAllowed:false};
+    const next=[...(queue.items||[]),item];
+    if(Buffer.byteLength(JSON.stringify({...queue,items:next}),'utf8')>REVIEW_QUEUE_SAFE_BYTES)break;
+    queue.items=next;
     restored.push(trail.trailId);
   }
   return restored;
@@ -239,4 +246,4 @@ async function advanceTrailOrchestration(store,options={}){
   return {advanced,restored,queued:queued.map(job=>job.id)};
 }
 
-module.exports={GATE_STATES,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
+module.exports={GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
