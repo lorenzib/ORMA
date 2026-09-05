@@ -1,4 +1,4 @@
-/* Mobile app layout for the logged-in trail detail (≤700px) — ported from
+/* Mobile app layout for the logged-in trail detail (≤700px), ported from
    the Claude Design prototype "ORMA Trail Detail (Logged in) - Mobile".
 
    Same pattern as homepage-mobile.js: purely additive chrome on top of the

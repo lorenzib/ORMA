@@ -207,7 +207,7 @@
         'text-field':['get', 'routeRef'],
         // The tile server (openfreemap) serves Noto only. Asking for
         // "Open Sans Bold" 404s every glyph range and MapLibre silently
-        // rasterises a fallback locally — which is what made these shields
+        // rasterises a fallback locally, which is what made these shields
         // render as oversized, blurry clip-art boxes.
         'text-font':['Noto Sans Bold'],
         'text-size':['interpolate', ['linear'], ['zoom'], 12, 11.5, 16, 13, 19, 14],

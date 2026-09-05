@@ -16,8 +16,8 @@
    * Resolves the homepage view to display.
    *
    * Priority:
-   *   1. ?view= URL param — dev override (for testing without an account).
-   *   2. DoloPawsAuth.currentUser — logged in → 'returning', logged out → 'new'.
+   *   1. ?view= URL param, dev override (for testing without an account).
+   *   2. DoloPawsAuth.currentUser, logged in → 'returning', logged out → 'new'.
    *   3. Safe fallback: 'new' when auth is unavailable or state is unknown.
    */
   function resolveView(win){

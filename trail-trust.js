@@ -21,7 +21,7 @@
   //   - a fully graduated trail (10/10 checks) is route-audited;
   //   - a hand-curated real listing is route-audited (published, not walked);
   //   - anything imported or still in progress is under-review.
-  // No data migration is required — legacy `curated`-only trails resolve
+  // No data migration is required, legacy `curated`-only trails resolve
   // correctly, and a trail publishes at whatever tier this returns.
   const hasRoute = trail => !!trail && Array.isArray(trail.path) && trail.path.length >= 2;
 
@@ -43,7 +43,7 @@
     }
     // Invariant: the published ORMA tiers claim the *route* was audited or
     // walked, so they require a mapped route. A trail with no `path` (a
-    // viewpoint or place listing) has no route to audit — cap it at
+    // viewpoint or place listing) has no route to audit, cap it at
     // under-review no matter what its flags say.
     if ((tier === 'route-audited' || tier === 'dolopaws-walked') && !hasRoute(trail)) {
       return 'under-review';
@@ -51,7 +51,7 @@
     return tier;
   }
 
-  // Short tier badge text — the headline label a visitor sees on a card or
+  // Short tier badge text, the headline label a visitor sees on a card or
   // trail page. The fuller `provenanceLabel` (below) adds progress/date detail.
   function tierLabel(trail) {
     const tier = tierOf(trail);
@@ -117,7 +117,7 @@
   }
 
   function waterPointLabel(trail, label) {
-    if (!categoryVerified(trail, 'water')) return `${String(label || 'Potential water location')} — availability can change`;
+    if (!categoryVerified(trail, 'water')) return `${String(label || 'Potential water location')}, availability can change`;
     if (!imported(trail)) return label;
     return String(label || 'Water point')
       .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
@@ -125,14 +125,14 @@
   }
 
   function startPointLabel(trail, label) {
-    if (!categoryVerified(trail, 'access')) return `Suggested start — ${String(label || 'route start').replace(/^Start here\s*[—-]\s*/i, '')}. Check current access before travelling.`;
+    if (!categoryVerified(trail, 'access')) return `Suggested start, ${String(label || 'route start').replace(/^Start here\s*[—-]\s*/i, '')}. Check current access before travelling.`;
     if (!imported(trail)) return label;
     const cleaned = String(label || 'Route start')
       .replace(/^Start here\s*[—-]\s*/i, '')
       .replace(/^Route start per OpenStreetMap\s*[—-]\s*/i, '')
       .replace(/\s*\(OSM-verified access point\)/gi, '')
       .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
-    return `Mapped start suggestion — ${cleaned}. Check current access before travelling.`;
+    return `Mapped start suggestion, ${cleaned}. Check current access before travelling.`;
   }
 
   function waterAssessment(trail) {

@@ -39,7 +39,7 @@
     caution:'Caution terrain',
   })[value] || 'Difficulty not rated';
   // Route colour answers "how well does this walk suit the dog", never "how
-  // hard is this trail" — the same question, palette and thresholds as the
+  // hard is this trail", the same question, palette and thresholds as the
   // homepage and trail detail maps. This replaces a third near-identical
   // green/amber/red keyed on safetyLevel, which read as a match tier on a page
   // that showed no scores at all.
@@ -50,7 +50,7 @@
   // Scored against the signed-in dog when there is one, and the medium-dog
   // guest profile otherwise. Colouring everyone by the guest profile would
   // leave this map answering "does this suit a generic dog" while every other
-  // ORMA surface answers "does this suit yours" — the same defect, one layer
+  // ORMA surface answers "does this suit yours", the same defect, one layer
   // down, that this palette clean-up existed to remove.
   let matchSubject = null;                    // null until a dog profile resolves
   const repaintOnSubjectChange = new Set();
@@ -280,7 +280,7 @@
             // This map opens at zoom 9 to frame a whole collection, and has no
             // layers control. Holding the network back until you zoom in keeps
             // the browse view calm without hiding anything behind a control
-            // that does not exist here — zooming in is the affordance.
+            // that does not exist here, zooming in is the affordance.
             minzoom: NETWORK_MIN_ZOOM,
           }) : undefined;
         const mapMarkerElements = [];

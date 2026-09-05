@@ -28,7 +28,7 @@
   const MAX_ROUTE_DISTANCE_M = 30000;
 
   // Three shapes, matching how walks are actually planned. The router has
-  // always been able to do all three — only the UI insisted on a closed loop.
+  // always been able to do all three, only the UI insisted on a closed loop.
   //   loop          finish where you started
   //   point-to-point  A to B, one way
   //   out-and-back  walk out, return along the same line
@@ -131,7 +131,7 @@
   }
 
   function formatDistance(metres){
-    if(!Number.isFinite(metres)) return '—';
+    if(!Number.isFinite(metres)) return ', ';
     return metres < 1000 ? `${Math.round(metres / 10) * 10} m` : `${(metres / 1000).toFixed(1)} km`;
   }
 
@@ -200,7 +200,7 @@
     return 6371000 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   }
 
-  // Planar approximation — fine at the scale of one walking leg. Returns the
+  // Planar approximation, fine at the scale of one walking leg. Returns the
   // perpendicular offset in metres plus the unclamped projection factor, so
   // callers can tell "beside this leg" from "past the end of it".
   function projectOntoSegment(point, start, end){
@@ -238,7 +238,7 @@
     const label = firstLabelLayer();
     // The draft is a highlight under the marked network, not a line over it:
     // while you are drawing, the paths you are snapping to have to stay
-    // visible — including their numbers — or you are tracing blind.
+    // visible, including their numbers, or you are tracing blind.
     const under = map.getLayer('planner-waymarked-hiking-layer')
       ? 'planner-waymarked-hiking-layer' : (label && label.id);
     map.addSource('draft-route', { type:'geojson', data });
@@ -284,7 +284,7 @@
       type:'raster',
       tiles:['https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png'],
       tileSize:256,
-      attribution:'© Sarah Hoffmann (CC-BY-SA) — waymarkedtrails.org',
+      attribution:'© Sarah Hoffmann (CC-BY-SA), waymarkedtrails.org',
     });
     map.addLayer({
       id:'planner-waymarked-hiking-layer',
@@ -478,10 +478,10 @@
 
   function render(){
     const config = shapeConfig();
-    distance.textContent = preview ? formatDistance(preview.distanceM) : '—';
+    distance.textContent = preview ? formatDistance(preview.distanceM) : ', ';
     if(ascent){
       ascent.textContent = preview && Number.isFinite(preview.ascentM)
-        ? `${Math.round(preview.ascentM)} m` : '—';
+        ? `${Math.round(preview.ascentM)} m` : ', ';
     }
     pointCount.textContent = `${points.length} / ${MAX_POINTS}`;
     shapeButtons.forEach(button => {
@@ -587,7 +587,7 @@
           ? `${config.hint} Add another point.`
           : points.length < MAX_POINTS
             ? `Preview ready. Drag a point to adjust it, click the line to insert one, or press ${config.finishLabel.toLowerCase()}.`
-            : `${MAX_POINTS} points selected — press ${config.finishLabel.toLowerCase()} when the shape looks right.`)
+            : `${MAX_POINTS} points selected, press ${config.finishLabel.toLowerCase()} when the shape looks right.`)
       : failureMessage(routeFailure);
     render();
   }
@@ -655,7 +655,7 @@
 
   undoButton.addEventListener('click', () => {
     // Undo on a finished route reopens it for editing before it removes a
-    // point — otherwise finishing costs you the last leg you just placed.
+    // point, otherwise finishing costs you the last leg you just placed.
     if(finished){ finished = false; recalculate(false); return; }
     points.pop();
     selectedCoverage = points[0] ? coverageFor(points[0]) : null;

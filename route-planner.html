@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Draw a route | ORMA</title>
-<meta name="description" content="Draw a private draft route on mapped walking paths — loop, point to point or out and back — then review local access and conditions before walking.">
+<meta name="description" content="Draw a private draft route on mapped walking paths, loop, point to point or out and back, then review local access and conditions before walking.">
 <meta name="theme-color" content="#2E4034">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.css">
@@ -23,14 +23,14 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-ser
     <a class="planner-back" href="/">← Back to Explore</a>
     <div class="planner-kicker">Experimental route tool</div>
     <h1 id="plannerTitle">Draw a route</h1>
-    <p class="planner-intro">Click the map to drop must-pass points — ORMA connects them along mapped walking paths. <strong>Drag any point to move it, or click the drawn line to insert one.</strong></p>
+    <p class="planner-intro">Click the map to drop must-pass points, ORMA connects them along mapped walking paths. <strong>Drag any point to move it, or click the drawn line to insert one.</strong></p>
     <div class="planner-shapes" role="group" aria-label="Route shape">
       <button type="button" class="planner-shape on" data-planner-shape="loop" aria-pressed="true">Loop</button>
       <button type="button" class="planner-shape" data-planner-shape="point-to-point" aria-pressed="false">Point to point</button>
       <button type="button" class="planner-shape" data-planner-shape="out-and-back" aria-pressed="false">Out &amp; back</button>
     </div>
     <p id="plannerStatus" class="planner-status" role="status" aria-live="polite">Tap the map to choose your start.</p>
-    <div class="planner-summary"><span>Distance<strong id="plannerDistance">—</strong></span><span>Ascent<strong id="plannerAscent">—</strong></span><span>Points<strong id="plannerPointCount">0 / 25</strong></span></div>
+    <div class="planner-summary"><span>Distance<strong id="plannerDistance">, </strong></span><span>Ascent<strong id="plannerAscent">, </strong></span><span>Points<strong id="plannerPointCount">0 / 25</strong></span></div>
     <ol id="plannerPointList" class="planner-points" aria-label="Selected route points"></ol>
     <div class="planner-actions">
       <button id="plannerUndo" type="button" disabled>Undo</button><button id="plannerReset" type="button" disabled>Start again</button>
@@ -51,7 +51,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-ser
   </section>
 </main>
 <script src="https://unpkg.com/maplibre-gl@5.24.0/dist/maplibre-gl.js"></script>
-<script src="mobile-nav.js?v=20260905-2"></script>
+<script src="mobile-nav.js?v=20260905-3"></script>
 <script src="map-runtime.js?v=20260901-1"></script>
 <script src="map-style.js?v=20260904-1"></script>
 <script src="regions-runtime-manifest.js?v=20260825-1"></script>

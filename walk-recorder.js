@@ -1,7 +1,7 @@
 (function(global){
   'use strict';
 
-  // Record-anywhere walk engine. Pure state machine — the page feeds it
+  // Record-anywhere walk engine. Pure state machine, the page feeds it
   // geolocation fixes and a clock; it answers with distance, elapsed time
   // and a route. No DOM, no timers, no geolocation calls in here, so the
   // whole thing is unit-testable.
@@ -136,8 +136,7 @@
       state.distanceM = Number(snap.distanceM) || 0;
       state.startedAt = snap.startedAt || now;
       state.elapsedBeforeMs = Number(snap.elapsedBeforeMs) || 0;
-      // A recording that died mid-segment can't know how long the gap was —
-      // resume paused so the timer stays honest.
+      // A recording that died mid-segment can't know how long the gap was, // resume paused so the timer stays honest.
       if(snap.status === 'recording' && snap.segmentStartedAt != null){
         state.elapsedBeforeMs += Math.max(0, (snap.savedAt || snap.segmentStartedAt) - snap.segmentStartedAt);
       }
@@ -157,7 +156,7 @@
     };
   }
 
-  // A finished recording in the journal's own entry shape — recorded walks
+  // A finished recording in the journal's own entry shape, recorded walks
   // file next to hand-logged ones with no special casing in the journal.
   function buildJournalEntry(walkSummary, options){
     options = options || {};

@@ -32,7 +32,7 @@ describe('MOD-02 minimum moderation queue', () => {
     expect(navigation).not.toContain('summary.moderator === true');
     expect(homepage).not.toContain('liModeratorLink');
     expect(shell).toContain('href="community-moderation-desk.html" aria-current="page">Community</a>');
-    // No moderation surface survives on the customer site — not even a redirect.
+    // No moderation surface survives on the customer site, not even a redirect.
     expect(fs.existsSync(path.join(__dirname, 'moderation.html'))).toBe(false);
     expect(customerClient).not.toContain('DoloPawsModeration');
     expect(customerClient).not.toContain('getModerationQueue');

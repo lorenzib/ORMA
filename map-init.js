@@ -1,5 +1,5 @@
 (function(){
-  if(typeof L === 'undefined') return; // Leaflet failed to load — fail quietly, map area just stays blank
+  if(typeof L === 'undefined') return; // Leaflet failed to load, fail quietly, map area just stays blank
   if(typeof trails === 'undefined') return;
 
   const map = L.map('trailMap', { scrollWheelZoom:false }).setView([46.55, 12.05], 9);
@@ -37,7 +37,7 @@
   }
 
   function updateFloatingCard(topTrail){
-    // Floating summary card removed — the ranked trails list below shows full details.
+    // Floating summary card removed, the ranked trails list below shows full details.
     const box = document.getElementById('mapFloatingCard');
     if(box) box.remove();
   }

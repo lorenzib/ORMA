@@ -392,7 +392,7 @@ async function main() {
     for (const el of data.elements || []) {
       if (el.type !== 'relation') continue;
       if (!el.members || !el.members.length) {
-        console.warn(`[phase2] WARNING: relation ${el.id} returned no member geometry — skipped.`);
+        console.warn(`[phase2] WARNING: relation ${el.id} returned no member geometry, skipped.`);
         continue;
       }
       const match = batch.find((k) => k.tags.__id === el.id);

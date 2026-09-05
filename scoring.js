@@ -1,5 +1,5 @@
 /**
- * scoring.js — browser compatibility facade for canonical recommendation v1.
+ * scoring.js, browser compatibility facade for canonical recommendation v1.
  * Load after breeds-data.js, trust/evidence-v1.js, recommendation-v1.js, and
  * recommendation-adapters-v1.js.
  *
@@ -8,7 +8,7 @@
  */
 
 // ============================================================
-// FITNESS DEFAULTS — used both to derive the guest teaser scores
+// FITNESS DEFAULTS, used both to derive the guest teaser scores
 // and to score the real returning-user list against a saved profile.
 // ============================================================
 const FITNESS_DEFAULTS = {
@@ -51,7 +51,7 @@ const SAFETY_DOT = { 'low-risk': '#2C5C34', 'moderate': '#8A5A16', 'caution': '#
 
 // ---- Profile triage: breed traits + age + weight + health conditions ----
 // Turns the saved dog profile into effective scoring inputs. The exact
-// rules and numbers are documented in SCORING.md — keep the two in sync.
+// rules and numbers are documented in SCORING.md, keep the two in sync.
 
 const AGE_BAND_MID = { 'u1':0.5, '1-2':1.5, '3-4':3.5, '5-6':5.5, '7-8':7.5, '9-10':9.5, '11-12':11.5, '13plus':14 };
 const WEIGHT_BAND_MID = { 'u5':4, '5-10':7.5, '10-15':12.5, '15-20':17.5, '20-30':25, '30-40':35, '40-55':47.5, '55plus':60 };
@@ -83,10 +83,10 @@ function dogConditions(profile){
  * layering breedInsights() (breed-name based) with insights derived from
  * the SAME weight/age/condition fields and thresholds effectiveOverrides()
  * below already uses for the real match score. This is what makes the
- * homepage card work for "Mixed breed — small/medium/large" and
+ * homepage card work for "Mixed breed, small/medium/large" and
  * "Rescue / unknown mix" profiles too: even with no breed name, weight,
  * age and declared health conditions are real, structured facts about
- * THIS dog, and every one of them already governs the score — so they
+ * THIS dog, and every one of them already governs the score, so they
  * should govern the tailored text as well, not just named purebreds.
  */
 function profileInsights(profile){
@@ -100,48 +100,48 @@ function profileInsights(profile){
   const age = dogAgeYears(profile);
   const kg = dogWeightKg(profile);
 
-  // Weight-derived, breed-agnostic — same >=45kg / <5kg thresholds used
+  // Weight-derived, breed-agnostic, same >=45kg / <5kg thresholds used
   // below for giant/toy handling, so an unnamed or mixed-breed dog still
   // gets the physically correct caution based on its own declared weight.
   const heavyAlready = tr.giant
     || (typeof HEAVY_BUILD_BREEDS !== 'undefined' && HEAVY_BUILD_BREEDS.includes(breedName));
   if(kg != null && kg >= 45 && !heavyAlready){
     out.push({ icon:'mountain', title:'Weight adds up on descents',
-      sub:'At this weight, descents load joints hard on rock — favour gradual descents and a slow pace down.' });
+      sub:'At this weight, descents load joints hard on rock, favour gradual descents and a slow pace down.' });
   }
   const toyAlready = tr.shortLegged
     || (typeof TOY_BREEDS !== 'undefined' && TOY_BREEDS.includes(breedName));
   if(kg != null && kg < 5 && !toyAlready){
     out.push({ icon:'paw', title:'Small strides, long day',
-      sub:'At this weight, a normal route is far more steps — scale distance down and watch recovery closely.' });
+      sub:'At this weight, a normal route is far more steps, scale distance down and watch recovery closely.' });
     if(!alreadyHas('Loses heat fast when wet')){
       out.push({ icon:'cold', title:'Loses heat fast when wet',
-        sub:'A small body chills quickly after rain or a stream crossing — carry a dry layer.' });
+        sub:'A small body chills quickly after rain or a stream crossing, carry a dry layer.' });
     }
   }
 
-  // Life stage — same puppy / senior thresholds effectiveOverrides() uses.
+  // Life stage, same puppy / senior thresholds effectiveOverrides() uses.
   if(age != null && age < 1){
     out.push({ icon:'paw', title:'Still growing',
-      sub:'Growth plates are still closing — avoid long climbs and let a puppy set the pace, not the itinerary.' });
+      sub:'Growth plates are still closing, avoid long climbs and let a puppy set the pace, not the itinerary.' });
   } else if(age != null && age >= 8){
     out.push({ icon:'mountain', title:'Built for shorter days now',
-      sub:'Senior joints and stamina fade before the enthusiasm does — plan shorter routes with flat stretches and frequent rests.' });
+      sub:'Senior joints and stamina fade before the enthusiasm does, plan shorter routes with flat stretches and frequent rests.' });
   }
 
-  // Declared health conditions — already scored by effectiveOverrides()
+  // Declared health conditions, already scored by effectiveOverrides()
   // below, surfaced here in plain terms instead of only moving a number.
   if(conds.includes('joints') || conds.includes('back') || conds.includes('recovering')){
     out.push({ icon:'paw', title:'Go easy on the joints',
-      sub:'A declared joint, back or recovering condition means technical, uneven ground costs more — favour smoother, gentler trails.' });
+      sub:'A declared joint, back or recovering condition means technical, uneven ground costs more, favour smoother, gentler trails.' });
   }
   if((conds.includes('heat') || conds.includes('cardiac') || conds.includes('overweight')) && !tr.heatSensitive){
     out.push({ icon:'heat', title:'Extra care in the heat',
-      sub:'A declared heart, weight or heat-related condition means hot, exposed routes cost more — start early and prioritise shade.' });
+      sub:'A declared heart, weight or heat-related condition means hot, exposed routes cost more, start early and prioritise shade.' });
   }
   if(conds.includes('vision')){
     out.push({ icon:'mountain', title:'Extra care on exposed edges',
-      sub:'A vision condition raises the stakes on narrow ledges and drop-offs — favour wider, well-marked paths.' });
+      sub:'A vision condition raises the stakes on narrow ledges and drop-offs, favour wider, well-marked paths.' });
   }
 
   return out;

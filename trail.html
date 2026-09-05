@@ -273,10 +273,10 @@ h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;}
 }
 
 /* ============================================================
-   TRAIL DETAIL — Strava-style redesign (single scroll).
+   TRAIL DETAIL, Strava-style redesign (single scroll).
    New .td2-* layer; imported from the Alpenglow prototype
    "ORMA Trail Detail (Logged in)". Reuses the page's real
-   data — every JS-written id is preserved from the old markup.
+   data, every JS-written id is preserved from the old markup.
    ============================================================ */
 body{background:#EFECE2;}
 .td2 .num{font-family:'Inter',sans-serif;font-weight:900;letter-spacing:-.02em;font-variant-numeric:tabular-nums;}
@@ -433,7 +433,7 @@ body{background:#EFECE2;}
 }
 
 /* ============================================================
-   FIDELITY PASS — bring the reused inner components up to the
+   FIDELITY PASS, bring the reused inner components up to the
    Alpenglow prototype's visual language, scoped to .td2 so the
    shared site components are untouched elsewhere. Same token
    family as the logged-out homepage for a cohesive experience.
@@ -495,7 +495,7 @@ body{background:#EFECE2;}
 /* Hazards / read-before-you-go chips spacing */
 .td2 #trailGuideLinks{margin-top:14px;}
 
-/* ---- Hero actions — mockup layout: one button row + one quiet link row ---- */
+/* ---- Hero actions, mockup layout: one button row + one quiet link row ---- */
 .td2-hero-actions{flex-direction:column;align-items:flex-end;align-self:flex-end;max-width:none;gap:10px;padding-bottom:4px;}
 .td2-actrow{display:flex;gap:10px;align-items:stretch;justify-content:flex-end;}
 .td2-hero .td2-btn-g,.td2-hero .td2-btn-p{min-height:44px;box-sizing:border-box;}
@@ -1055,9 +1055,9 @@ body.trail-photo-viewer-open{overflow:hidden;}
                 <a class="td2-weather-source" href="https://open-meteo.com/" target="_blank" rel="noopener" aria-label="Weather data by Open-Meteo" title="Weather data by Open-Meteo">i</a>
               </div>
               <div class="td2-cond-facts">
-                <div class="td2-cond-row"><span>Temperature</span><b class="num" id="tdCondTemp">—</b></div>
-                <div class="td2-cond-row"><span>Paw comfort</span><span class="td2-badge" id="tdCondPaw">—</span></div>
-                <div class="td2-cond-row td2-cond-last"><span>Water sources</span><b id="tdCondWater">—</b></div>
+                <div class="td2-cond-row"><span>Temperature</span><b class="num" id="tdCondTemp">, </b></div>
+                <div class="td2-cond-row"><span>Paw comfort</span><span class="td2-badge" id="tdCondPaw">, </span></div>
+                <div class="td2-cond-row td2-cond-last"><span>Water sources</span><b id="tdCondWater">, </b></div>
               </div>
               <p class="td2-cond-window" id="sideCondWindow"></p>
             </div>
@@ -1206,7 +1206,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
     <!-- ============ BELOW-MAP CONTENT ============ -->
       <div class="td2-story">
 
-        <!-- ABOUT / THE ROUTE — slim: the human-readable description stays
+        <!-- ABOUT / THE ROUTE, slim: the human-readable description stays
              up here where it helps choose a trail; the technical data
              footnote lives at the very end of the page. -->
         <div class="td2-card td2-section td2-about" id="td2AboutCard">
@@ -1355,7 +1355,7 @@ body.trail-photo-viewer-open{overflow:hidden;}
 </footer>
 
 <script src="device-handoff.js?v=20260904-1"></script>
-<script src="mobile-nav.js?v=20260905-2"></script>
+<script src="mobile-nav.js?v=20260905-3"></script>
 <script src="i18n.js?v=20260904-3"></script>
 <script>
   // Account services are useful after the page is interactive, but loading

@@ -4,7 +4,7 @@
  * (Dolomites + Savoy) from the Overpass API and writes
  * huts-bars-all-regions.geojson at the repo root.
  *
- * This replaces the ad-hoc fetch that produced the original file — which
+ * This replaces the ad-hoc fetch that produced the original file, which
  * covered bars, cafés, pubs and huts but never included restaurants.
  *
  * Build-time tool only: runs locally (node scripts/fetch-huts-bars.js)
@@ -18,7 +18,7 @@ const REGIONS = {
 };
 
 // Everything a hiker with a dog might stop at. nwr = nodes + ways +
-// relations (restaurants mapped as building outlines are ways — a
+// relations (restaurants mapped as building outlines are ways, a
 // node-only query silently misses them). "out center tags" collapses
 // ways/relations to one representative point.
 const SELECTOR = `
@@ -27,7 +27,7 @@ const SELECTOR = `
   nwr["amenity"="shelter"]["shelter_type"!="public_transport"](BBOX);
 `;
 
-// Keep only the properties the site uses — dropping addr:* etc. roughly
+// Keep only the properties the site uses, dropping addr:* etc. roughly
 // halves the file size, which matters now that restaurants are included.
 const KEEP_TAGS = [
   'name', 'amenity', 'tourism', 'shelter_type', 'ele', 'cuisine',
@@ -55,7 +55,7 @@ async function overpass(query, attempt = 0){
   if (res.status === 429 || res.status === 502 || res.status === 504) {
     if (attempt >= 5) throw new Error(`Overpass gave ${res.status} after ${attempt + 1} tries`);
     const wait = Math.pow(2, attempt) * 5000;
-    console.log(`  ${res.status} from ${endpoint} — retrying in ${wait / 1000}s...`);
+    console.log(`  ${res.status} from ${endpoint}, retrying in ${wait / 1000}s...`);
     await new Promise(r => setTimeout(r, wait));
     return overpass(query, attempt + 1);
   }
@@ -104,7 +104,7 @@ function toFeatures(osm){
   // The existing file has 11,355 features; with restaurants added the total
   // should be well above this floor.
   if (all.length < 8000) throw new Error(
-    `Only ${all.length} features fetched — refusing to overwrite existing file.`);
+    `Only ${all.length} features fetched, refusing to overwrite existing file.`);
 
   const counts = {};
   for (const f of all){

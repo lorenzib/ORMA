@@ -8,8 +8,8 @@ function tForTests(key, params = {}){
   if(key === 'region.theDolomites') return 'the Dolomites';
   if(key === 'region.dolomites') return 'Dolomites';
   if(key === 'home.bubble') return 'Where are we heading today?';
-  if(key === 'home.pickArea') return `Pick a valley below — trails are ranked for ${params.name || 'your dog'}.`;
-  if(key === 'home.pickAreaNoName') return 'Pick a valley below — trails are ranked for your dog.';
+  if(key === 'home.pickArea') return `Pick a valley below, trails are ranked for ${params.name || 'your dog'}.`;
+  if(key === 'home.pickAreaNoName') return 'Pick a valley below, trails are ranked for your dog.';
   if(key === 'home.nTrails') return `${params.n} ${params.n === 1 ? 'trail' : 'trails'}`;
   if(key === 'home.nSaved') return `${params.n} saved trails`;
   if(key === 'home.nSaved1') return '1 saved trail';
@@ -415,7 +415,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-opacity': 0\.55[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).not.toContain("id: 'trail-paths-match-outline'");
     // The guest map is coloured by match score against the medium-dog profile,
-    // not by the trail's safety level — green/amber/red has one meaning now.
+    // not by the trail's safety level, green/amber/red has one meaning now.
     expect(script).not.toContain("trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id)");
     // The selected route is now a zoom-scaled cased pair from map-style.js.
     expect(trailScript).toContain('ORMAMapStyle.addRouteLine(map, {');

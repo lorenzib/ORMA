@@ -1,5 +1,5 @@
 /**
- * map-style.js — one shared cartographic treatment for every ORMA map.
+ * map-style.js, one shared cartographic treatment for every ORMA map.
  *
  * Before this file each map (trail detail, homepage, route planner,
  * collection) added the Waymarked Trails raster with its own hand-tuned
@@ -14,7 +14,7 @@
  * instead. The reference is AllTrails: a calm base, one unmistakable route
  * line, and the marked path network readable underneath it.
  *
- * Everything here is idempotent — calling twice on the same map is a no-op.
+ * Everything here is idempotent, calling twice on the same map is a no-op.
  */
 (function (global) {
   'use strict';
@@ -23,7 +23,7 @@
   // but with the route-relation rendering (numbered routes, waymark colours)
   // that a general-purpose basemap does not draw.
   const WAYMARKED_TILES = 'https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png';
-  const WAYMARKED_ATTRIBUTION = '© Sarah Hoffmann (CC-BY-SA) — waymarkedtrails.org';
+  const WAYMARKED_ATTRIBUTION = '© Sarah Hoffmann (CC-BY-SA), waymarkedtrails.org';
   const WAYMARKED_SOURCE = 'waymarked-hiking';
   const WAYMARKED_LAYER = 'waymarked-hiking-layer';
 
@@ -67,7 +67,7 @@
    * The opacity ramp is the only concession to legibility: at region zoom the
    * network is context and sits back; from trail zoom up it is the subject
    * and reads at nearly full strength. No desaturation, no contrast
-   * stretching — their shields are designed to be read.
+   * stretching, their shields are designed to be read.
    */
   function addWaymarkedHiking(map, options) {
     const config = options || {};
@@ -142,8 +142,8 @@
   // Green / amber / red on an ORMA map means one thing and one thing only:
   // how well this walk suits the dog. It never means how hard the trail is.
   //
-  // Three near-identical green/amber/red palettes used to exist — the match
-  // tiers, trail.js's safetyColor() and collections' difficultyColour() — and
+  // Three near-identical green/amber/red palettes used to exist, the match
+  // tiers, trail.js's safetyColor() and collections' difficultyColour(), and
   // two of them encoded the trail's intrinsic risk while looking exactly like
   // a match tier. A guest on a trail page got one meaning, a signed-in owner
   // another, from the same coloured line.
@@ -190,8 +190,8 @@
    * A solid match-colour line on top buries the very thing a walker follows:
    * Waymarked's own route line and its numbered shields end up hidden under
    * our paint, which is why we used to reprint the numbers ourselves in a
-   * second shield layer. Inverting the stack — a white casing, then a
-   * translucent match-colour corridor, with the raster on top — leaves the
+   * second shield layer. Inverting the stack, a white casing, then a
+   * translucent match-colour corridor, with the raster on top, leaves the
    * marked route and its real numbers legible down the middle of the
    * highlight, and the corridor still reads as "this is your route" at a
    * glance. Pass `beforeId` as the waymarked layer id to get this ordering.

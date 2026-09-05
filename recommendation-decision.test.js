@@ -63,12 +63,12 @@ describe('canonical recommendation decision presentation', () => {
         { code:'conditions.heat.moderate', message:'Moderate heat load today.' },
         { code:'trail.wildlife.chase-risk', message:'Wildlife is active here.' },
         { code:'segment.leash-recommended.livestock.2.1-3.4',
-          message:'Lead recommended between kilometres 2.1 and 3.4 — open grazing pasture.' },
+          message:'Lead recommended between kilometres 2.1 and 3.4, open grazing pasture.' },
       ],
     }, { dogName:'Eddie' });
 
     expect(result.cautions).toContain(
-      'Lead recommended between kilometres 2.1 and 3.4 — open grazing pasture.');
+      'Lead recommended between kilometres 2.1 and 3.4, open grazing pasture.');
     expect(result.cautions).toContain('Wildlife is active here.');
   });
 

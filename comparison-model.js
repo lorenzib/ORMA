@@ -33,7 +33,7 @@
     return { text, kind:kind || 'known', detail:detail || null };
   }
   function unknown(label){
-    return cell(`Not listed — ${label}`, 'unknown');
+    return cell(`Not listed, ${label}`, 'unknown');
   }
   function categoryVerified(parts, category){
     return parts.verification && parts.verification.categories
@@ -116,7 +116,7 @@
         water: categoryVerified(parts, 'water')
           ? cell(reviewedWater
             ? `${reviewedWater} reviewed water point${reviewedWater === 1 ? '' : 's'}`
-            : 'No usable water point confirmed — carry a full supply',
+            : 'No usable water point confirmed, carry a full supply',
           reviewedWater ? 'known' : 'caution')
           : unknown('water'),
         hazards: categoryVerified(parts, 'surfaceHazards')
