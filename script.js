@@ -237,9 +237,13 @@ function createMapOverlayControls(map, containerId, allLiftMarkers){
   // UI: one compact "Layers" button that expands into a chip panel —
   // replaces the old stack of full-width buttons that covered a third of
   // the map on mobile.
-  // Marked routes default ON — the waymarked network is how walkable
-  // ground stays visible; the Layers panel un-ticks it for a clean map.
-  const overlayStates = { routes: true, lifts: false, fountains: false, huts: false, barsCafes: false, veterinary: false, terrain: false };
+  // Marked routes default OFF here. This is a browse map: you are
+  // choosing which walk to do, not following one, and the full marked
+    // network buries the ORMA routes you are meant to be picking between.
+    // AllTrails draws no path network at all at these zooms. The Layers
+    // panel ticks it back on in one tap, and the trail detail map still
+    // shows it by default — that is where you actually read trail numbers.
+  const overlayStates = { routes: false, lifts: false, fountains: false, huts: false, barsCafes: false, veterinary: false, terrain: false };
   const layersBtn = document.createElement('button');
   layersBtn.type = 'button';
   layersBtn.textContent = t('map.layers');
@@ -650,7 +654,7 @@ function initGuestMap(){
     // base style is turned down instead.
     const guestFirstLabel = { id: window.ORMAMapStyle.firstLabelLayerId(guestMapInstance) };
     window.ORMAMapStyle.quietBasemap(guestMapInstance);
-    window.ORMAMapStyle.addWaymarkedHiking(guestMapInstance, { beforeId: guestFirstLabel.id });
+    window.ORMAMapStyle.addWaymarkedHiking(guestMapInstance, { beforeId: guestFirstLabel.id, visible: false });
     addBaseHillshade(guestMapInstance, 'waymarked-hiking-layer');
     increaseLabelDensity(guestMapInstance);
     preventTransitPoiDuplication(guestMapInstance);
@@ -870,7 +874,7 @@ function initTrailMap(){
     // than washed to grey. See map-style.js.
     const firstLabelLayer = { id: window.ORMAMapStyle.firstLabelLayerId(trailMapInstance) };
     window.ORMAMapStyle.quietBasemap(trailMapInstance);
-    window.ORMAMapStyle.addWaymarkedHiking(trailMapInstance, { beforeId: firstLabelLayer.id });
+    window.ORMAMapStyle.addWaymarkedHiking(trailMapInstance, { beforeId: firstLabelLayer.id, visible: false });
     addBaseHillshade(trailMapInstance, 'waymarked-hiking-layer');
     
     trailMapInstance.addSource('trail-paths', {

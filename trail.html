@@ -668,6 +668,17 @@ body{background:#EFECE2;}
 .trail-review-foot a{flex:none;color:#5F7465;font-weight:700;text-decoration:none;}
 .trail-review-foot a:hover{text-decoration:underline;}
 .recommendation-columns{display:grid;grid-template-columns:1fr;gap:16px;margin-top:20px;}
+.recommendation-breakdown{margin-top:18px;padding:16px 17px;border-radius:12px;background:#F7F5EE;}
+.recommendation-breakdown h3{margin:0 0 10px;font:800 12px 'Inter',sans-serif;color:#2E4034;}
+.recommendation-factors{list-style:none;margin:0;padding:0;display:grid;gap:7px;}
+.recommendation-factors li{display:flex;align-items:baseline;gap:10px;}
+/* Fixed column so the numbers line up and the reasons read as a column of
+   sentences rather than ragged text. */
+.recommendation-factor-impact{flex:0 0 46px;text-align:right;font:800 12px 'Inter',sans-serif;font-variant-numeric:tabular-nums;color:#8A6A1F;}
+.recommendation-factor-impact.is-clear{color:#6B7A6E;font-weight:700;}
+.recommendation-factor-reason{flex:1;color:#3E4A40;font:500 12.5px/1.5 'Inter',sans-serif;}
+.recommendation-breakdown-note{margin:10px 0 0;color:#6B7A6E;font:600 12px/1.5 'Inter',sans-serif;}
+
 .recommendation-columns section{padding:15px 16px;border-radius:12px;background:#F7F5EE;}
 .recommendation-columns h3{margin:0 0 9px;font:800 12px 'Inter',sans-serif;color:#2E4034;}
 .recommendation-columns ul,.recommendation-unknowns ul{margin:0;padding-left:18px;color:#3E4A40;font:500 12.5px/1.55 'Inter',sans-serif;}

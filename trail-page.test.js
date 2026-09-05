@@ -163,7 +163,11 @@ describe('trail page map controls', () => {
     expect(home).toContain('ORMAMapStyle.addWaymarkedHiking(trailMapInstance');
     expect(fs.readFileSync(path.join(__dirname, 'map-style.js'), 'utf8'))
       .toContain("visibility: config.visible === false ? 'none' : 'visible'");
-    expect(home).toContain('routes: true');
+    // The detail map keeps the network on — it is the navigating surface,
+    // where trail numbers are the point. The homepage is a browse map and
+    // now starts without it; its chip is what turns it back on.
+    expect(home).toContain('routes: false');
+    expect(home).toContain("routes:   ['waymarked-hiking-layer']");
     expect(trail).toContain("id: 'base-hillshade'");
     expect(home).toContain("id: 'base-hillshade'");
   });
