@@ -1,4 +1,7 @@
-node_modules/
+# No trailing slash: with one, this matches a directory only, so a symlinked
+# node_modules in a git worktree stays untracked-but-visible and can be swept
+# into a commit by a bare `git add -A`.
+node_modules
 firestore-debug.log
 firebase-debug.log
 ui-debug.log
