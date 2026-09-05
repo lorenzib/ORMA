@@ -164,5 +164,35 @@
     };
   }
 
-  return Object.freeze({ CATEGORY, present, translatedMessage });
+  // P0-3: what changed when the reader added their own dog. A move of two
+  // points or less is not a move — claiming one would be inventing drama the
+  // score does not support.
+  const SAME_SCORE_TOLERANCE = 2;
+
+  function firstRunCallout(before, after, translate){
+    if(!before || !after) return null;
+    if(!Number.isFinite(before.score) || !Number.isFinite(after.score)) return null;
+    if(!before.forName || !after.forName || before.forName === after.forName) return null;
+
+    const tr = (key, fallback, vars) => {
+      if(typeof translate === 'function'){
+        const value = translate(key, vars);
+        if(value && value !== key) return value;
+      }
+      let output = fallback;
+      for(const name of Object.keys(vars || {})) output = output.split(`{${name}}`).join(vars[name]);
+      return output;
+    };
+
+    if(Math.abs(after.score - before.score) <= SAME_SCORE_TOLERANCE){
+      return tr('recommendation.firstRun.same',
+        'Same score for {name} as for {before} on this trail.',
+        { name:after.forName, before:before.forName });
+    }
+    return tr('recommendation.firstRun.moved',
+      'Was {beforeScore}% for {before} · now {afterScore}% for {name}. See why below.',
+      { beforeScore:before.score, before:before.forName, afterScore:after.score, name:after.forName });
+  }
+
+  return Object.freeze({ CATEGORY, SAME_SCORE_TOLERANCE, present, translatedMessage, firstRunCallout });
 });
