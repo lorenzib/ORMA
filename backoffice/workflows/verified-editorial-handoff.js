@@ -24,7 +24,13 @@ function editorialItem(dossier,record,at){
     dossierArtifactRef:`firestore:verified-dossier-${dossier.candidateId}`,
     verifiedAt:record?.verifiedAt||dossier.ormaVerification.verifiedAt,
     verificationConditions:record?.conditions||dossier.ormaVerification.conditions||[],
-    lockedFacts:(dossier.claims||[]).map(claim=>({id:claim.id,label:claim.label,value:claim.proposedValue,sourceIds:claim.sourceIds||[]})),
+    // A locked fact keeps everything the claim was made of, not only its prose.
+    // An entity policy is a rifugio or lift name, a rule and the date its source
+    // was read; dropping those here left the operational facts table unreachable.
+    lockedFacts:(dossier.claims||[]).map(claim=>({id:claim.id,label:claim.label,value:claim.proposedValue,
+      sourceIds:claim.sourceIds||[],state:claim.state,claimId:claim.claimId||null,agentId:claim.agentId||null,
+      humanAcceptedFinding:claim.humanAcceptedFinding||null,
+      entityName:claim.entityName||null,rule:claim.rule||null,observedAt:claim.observedAt||null})),
     evidenceSources:dossier.sources||[],routeGeometry:dossier.routeGeometry||null,
     editorialBrief:{objective:'Produce concise premium ORMA trail copy using only the locked dossier facts.',
       requiredSections:['About the trail','Why it suits dogs','Important practical notes'],

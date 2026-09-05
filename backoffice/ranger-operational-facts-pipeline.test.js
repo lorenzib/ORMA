@@ -110,3 +110,94 @@ describe('a Ranger claim reaches the operational facts table', () => {
     expect(facts).toEqual([]);
   });
 });
+
+const { buildVerifiedEditorialHandoff } = require('./workflows/verified-editorial-handoff');
+const { buildPublicationStaging } = require('./workflows/build-publication-staging');
+const { materializeApprovedPublications } = require('./workflows/materialize-approved-publications');
+
+// The chain from an approved Ranger claim to a published row runs through five
+// modules. Each one passed its own tests while the chain produced nothing,
+// because two of them dropped the fields the last one needs. This test is the
+// chain, so a link cannot be removed without a failure.
+describe('the whole chain, from Ranger claim to published fact', () => {
+  // Tre Cime, the one candidate with both a website target and structured
+  // fields already mapped, so the staging item can actually reach publication.
+  const CANDIDATE = 'osm-relation-1484751';
+
+  function copyPayload(item){
+    return { title:'Tre Cime di Lavaredo Loop', summary:'Locked-fact first pass.',
+      changes:item.editorialBrief.requiredSections.map(section => ({ section, before:'None.',
+        after:`Verified ${section.toLowerCase()} copy.`, reason:'Uses locked facts.' })),
+      sources:[{ label:'Locked ORMA dossier', url:item.dossierRef, checkedAt:'2026-09-05', supports:'All statements' }],
+      openQuestions:[] };
+  }
+
+  const VISUAL = { searchSummary:'Licensed.', coverageGaps:[], candidates:[{ title:'Tre Cime',
+    sourcePageUrl:'https://example.test/photo', assetUrl:'https://example.test/photo.jpg', creator:'Creator',
+    license:'CC BY-SA 4.0', licenseUrl:'https://creativecommons.org/licenses/by-sa/4.0/', credit:'Creator',
+    matchEvidence:'Location.', altText:'Tre Cime.', status:'ready' }] };
+
+  async function publish(rangerClaims){
+    const trail = { candidateId:CANDIDATE, trailId:'tre-cime', trailName:'Tre Cime di Lavaredo Loop', sourceTrail:{} };
+    const review = { reviewId:'rev-tre-cime', approvalAllowed:true, specialistOutputs:[
+      await specialist('logistics', LOGISTICS, trail), await specialist('regulatoryRanger', rangerClaims, trail)] };
+    const dossier = compileVerifiedDossier(review, trail, { at:AT });
+    const handoff = buildVerifiedEditorialHandoff(dossier,
+      { candidateId:CANDIDATE, trailName:trail.trailName, verifiedAt:AT, conditions:[] }, null, { at:AT });
+    const staging = buildPublicationStaging(handoff.queue,
+      { outputs:[
+        { jobId:`verified-${CANDIDATE}-copy`, candidateId:CANDIDATE, agentId:'copywriter', result:copyPayload(handoff.item) },
+        { jobId:`verified-${CANDIDATE}-visual`, candidateId:CANDIDATE, agentId:'visualDirector', result:VISUAL }] },
+      { submissions:[{ submissionId:'sub-1', decisions:[
+        { jobId:`verified-${CANDIDATE}-copy`, action:'approve' },
+        { jobId:`verified-${CANDIDATE}-visual`, action:'approve' }] }] }, { at:AT });
+
+    return { staging, result:materializeApprovedPublications({
+      requests:{ requests:[{ id:'approval-1', candidateId:CANDIDATE, status:'approved-for-pr-creation',
+        approvedBy:'ORMA Regulatory Ranger' }] },
+      staging,
+      routesByCandidate:{ [CANDIDATE]:{ geometry:{ type:'LineString', coordinates:[[12.29,46.61],[12.30,46.62],[12.29,46.61]] } } },
+      overrides:{ contractVersion:'1.0.0', trails:[] },
+      operationalFacts:{ contractVersion:'1.0.0', updatedAt:null, facts:[] },
+      at:AT }) };
+  }
+
+  test('an approved rifugio policy lands in the table with its source and date', async () => {
+    const { staging, result } = await publish([
+      claim({ entityName:'Rifugio Auronzo', rule:'accepted-leashed',
+        proposedValue:'Dogs accepted on the terrace on a lead' }),
+      claim({ id:'lift-dog-policy', entityName:'Col de Varda chairlift', rule:'not-accepted',
+        proposedValue:'Dogs are not carried' }),
+    ]);
+
+    expect(staging.items[0].state).toBe('ready-for-publication-preview');
+    expect(result.operationalFactsChanged).toBe(2);
+    expect(result.operationalFacts.facts.map(fact => [fact.entity_name, fact.dog_policy, fact.verified_at])).toEqual([
+      ['Rifugio Auronzo','accepted_leashed','2026-09-02'],
+      ['Col de Varda chairlift','not_accepted','2026-09-02'],
+    ]);
+    expect(result.operationalFacts.facts[0]).toMatchObject({ trail_id:'tre-cime',
+      policy_notes:'Dogs accepted on the terrace on a lead', verified_source:'website' });
+  });
+
+  test('publishing a trail with no entity policy touches no facts', async () => {
+    const { result } = await publish([
+      claim({ id:'dog-access', proposedValue:'Dogs permitted on the loop',
+        entityName:null, rule:'not-applicable', observedAt:null }),
+    ]);
+
+    expect(result.materialized).toBe(1);
+    expect(result.operationalFactsChanged).toBe(0);
+    expect(result.operationalFacts.facts).toEqual([]);
+  });
+
+  test('an unresolved policy is published as a trail but never as a fact', async () => {
+    const { result } = await publish([
+      claim({ finding:'unresolved', entityName:'Rifugio Locatelli', rule:'contact-required',
+        proposedValue:'No dog rule published', blockers:['no published policy'] }),
+    ]);
+
+    expect(result.materialized).toBe(1);
+    expect(result.operationalFacts.facts).toEqual([]);
+  });
+});
