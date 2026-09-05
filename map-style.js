@@ -86,6 +86,12 @@
       id: WAYMARKED_LAYER,
       type: 'raster',
       source: WAYMARKED_SOURCE,
+      // `minzoom` holds the network back until it is navigational rather than
+      // decorative. AllTrails draws no path network at browse zooms at all;
+      // ours has to appear eventually because Dolomites walkers follow the
+      // numbers on the signposts, but it does not have to be there while you
+      // are still choosing a valley.
+      ...(Number.isFinite(config.minzoom) ? { minzoom: config.minzoom } : {}),
       layout: { visibility: config.visible === false ? 'none' : 'visible' },
       paint: {
         // Quiet at overview zooms, near-solid once a single valley fills the
