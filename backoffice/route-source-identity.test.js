@@ -20,7 +20,7 @@ function check(overrides = {}){
   return { externalRelationId:'relation/6528494', checkedAt:'2026-09-05T20:51:19.572Z',
     reviewState:'blocked', blockers:['not-closed-loop','official-distance-conflict'],
     closedLoop:false, reconstructedDistanceKm:8.81, officialDistanceKm:10.8,
-    distanceDeltaPercent:-18.4, ...overrides };
+    distanceDeltaPercent:-18.4, relationName:null, componentCount:1, ...overrides };
 }
 
 describe('a recorded relation that reconstructs a different route', () => {
@@ -65,6 +65,39 @@ describe('a recorded relation that reconstructs a different route', () => {
     expect(item.campaignState).toBe('identity-check-queued');
   });
 
+  test('a relation named as the trail is the trail, whatever its length says', () => {
+    // Measured against the catalogue this is the common case: 49 of 58 trails
+    // first flagged carried a relation named exactly as the trail. A length
+    // disagreement there is a metrics question for the geometry gate.
+    const item = campaignItem(trail(), { seceda:check({ relationName:'Seceda Ridge Trail' }) });
+
+    expect(item.identityCheck).toBeNull();
+    expect(item.campaignState).toBe('identity-check-queued');
+  });
+
+  test('the name match ignores case, accents and punctuation', () => {
+    const named = trail({ name:'Sassolungo–Sassopiatto Loop' });
+    const item = campaignItem(named, { seceda:check({ relationName:'sassolungo sassopiatto loop' }) });
+
+    expect(item.identityCheck).toBeNull();
+  });
+
+  test('a fragmented reconstruction cannot be compared on length', () => {
+    // A relation carrying variants and spurs comes back as several components
+    // whose lengths sum to far more than the walk. That total says nothing
+    // about which route the relation is.
+    const item = campaignItem(trail(), { seceda:check({ componentCount:4 }) });
+
+    expect(item.identityCheck).toBeNull();
+    expect(item.campaignState).toBe('identity-check-queued');
+  });
+
+  test('a check taken before components were counted condemns nobody', () => {
+    const item = campaignItem(trail(), { seceda:check({ componentCount:null }) });
+
+    expect(item.identityCheck).toBeNull();
+  });
+
   test('a missing official distance is a geometry question, not a wrong route', () => {
     // The cartographer blocks on it, but it says nothing about which route the
     // relation is. Treating every blocker as a contradiction would strand
@@ -100,7 +133,7 @@ describe('the batch reports what the reconstruction found', () => {
     const execution = await run({ candidateId:'seceda', reviewState:'blocked',
       blockers:['official-distance-conflict'], assessment:{ issues:['not-closed-loop'] },
       comparison:{ reconstructedDistanceKm:8.81, officialDistanceKm:10.8, distanceDeltaPercent:-18.4 },
-      source:{ externalId:'relation/6528494' }, generatedAt:'2026-09-05T20:01:00.000Z' });
+      components:[{}], source:{ externalId:'relation/6528494' }, generatedAt:'2026-09-05T20:01:00.000Z' });
 
     expect(execution.jobs[0].status).toBe('blocked');
     expect(execution.summary).toMatchObject({ attempted:1, needsHuman:0, blocked:1, failed:0 });
@@ -110,11 +143,11 @@ describe('the batch reports what the reconstruction found', () => {
     const execution = await run({ candidateId:'seceda', reviewState:'blocked',
       blockers:['official-distance-conflict'], assessment:{ issues:['not-closed-loop'] },
       comparison:{ reconstructedDistanceKm:8.81, officialDistanceKm:10.8, distanceDeltaPercent:-18.4 },
-      source:{ externalId:'relation/6528494' }, generatedAt:'2026-09-05T20:01:00.000Z' });
+      components:[{}], source:{ externalId:'relation/6528494' }, generatedAt:'2026-09-05T20:01:00.000Z' });
 
     expect(execution.identityChecks.seceda).toEqual({ externalRelationId:'relation/6528494',
       checkedAt:'2026-09-05T20:01:00.000Z', reviewState:'blocked',
-      blockers:['official-distance-conflict'], closedLoop:false,
+      blockers:['official-distance-conflict'], closedLoop:false, relationName:null, componentCount:1,
       reconstructedDistanceKm:8.81, officialDistanceKm:10.8, distanceDeltaPercent:-18.4 });
   });
 
@@ -122,7 +155,7 @@ describe('the batch reports what the reconstruction found', () => {
     const execution = await run({ candidateId:'seceda', reviewState:'ready-for-human-review',
       blockers:[], assessment:{ issues:[] },
       comparison:{ reconstructedDistanceKm:10.7, officialDistanceKm:10.8, distanceDeltaPercent:-0.9 },
-      source:{ externalId:'relation/6528494' }, generatedAt:'2026-09-05T20:01:00.000Z' });
+      components:[{}], source:{ externalId:'relation/6528494' }, generatedAt:'2026-09-05T20:01:00.000Z' });
 
     expect(execution.jobs[0].status).toBe('needs-human');
     expect(execution.identityChecks.seceda.closedLoop).toBe(true);

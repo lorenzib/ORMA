@@ -57,14 +57,20 @@ function pathIsClosedLoop(trail){
 
 // Does the last identity check say the recorded relation is a different route?
 //
-// Only two findings mean that. A length outside tolerance says the relation is
-// not this walk, and a relation that does not close under a trail whose own
-// path does says the same. Every other cartographer blocker — a gap, a
-// duplicate branch, an absent official distance — is a geometry-quality
-// question for the human gate, not evidence of the wrong route.
+// The relation's name settles it when there is one: a relation named as the
+// trail is the trail, and any disagreement about its length is then a metrics
+// question for the geometry gate, not evidence of the wrong route.
 //
-// A check is ignored unless it examined the relation the trail records now,
-// so correcting the source clears the blocker instead of freezing it.
+// Without that, two findings speak, and only for a reconstruction that came
+// back as one connected line. A relation carrying variants, spurs and
+// approaches reconstructs as several components whose lengths sum to far more
+// than the walk; comparing that total against the route's distance says
+// nothing about which route it is.
+function normalisedName(value){
+  return String(value || '').toLowerCase().normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '');
+}
+
 function identityCheckFor(trail, identityChecks){
   const check = identityChecks && identityChecks[trail && trail.id];
   if(!check || check.externalRelationId !== relationExternalId(trail)) return null;
@@ -74,17 +80,24 @@ function identityCheckFor(trail, identityChecks){
 function identityContradiction(trail, identityChecks){
   const check = identityCheckFor(trail, identityChecks);
   if(!check) return null;
+
+  const relationName = normalisedName(check.relationName);
+  if(relationName && relationName === normalisedName(trail && trail.name)) return null;
+
+  // `null` means the check predates component counting; treat it as unproven
+  // rather than as a single line, so an old verdict cannot condemn a trail.
+  if(check.componentCount !== 1) return null;
+
+  const detail = { checkedAt: check.checkedAt || null,
+    externalRelationId: check.externalRelationId,
+    relationName: check.relationName || null,
+    reconstructedDistanceKm: check.reconstructedDistanceKm ?? null,
+    officialDistanceKm: check.officialDistanceKm ?? null };
   if((check.blockers || []).includes('official-distance-conflict')){
-    return { reason: 'official-distance-conflict', checkedAt: check.checkedAt || null,
-      externalRelationId: check.externalRelationId,
-      reconstructedDistanceKm: check.reconstructedDistanceKm ?? null,
-      officialDistanceKm: check.officialDistanceKm ?? null };
+    return { reason: 'official-distance-conflict', ...detail };
   }
   if(pathIsClosedLoop(trail) && check.closedLoop === false){
-    return { reason: 'reconstruction-is-not-a-loop', checkedAt: check.checkedAt || null,
-      externalRelationId: check.externalRelationId,
-      reconstructedDistanceKm: check.reconstructedDistanceKm ?? null,
-      officialDistanceKm: check.officialDistanceKm ?? null };
+    return { reason: 'reconstruction-is-not-a-loop', ...detail };
   }
   return null;
 }
@@ -203,5 +216,5 @@ function planCatalogueCampaign(trails, options = {}){
 module.exports = {
   GRADUATION_CHECKS, hasFullGraduation, relationExternalId,
   baselineBlockers, campaignItem, jobForItem, planCatalogueCampaign,
-  pathIsClosedLoop, identityContradiction,
+  pathIsClosedLoop, identityContradiction, normalisedName,
 };
