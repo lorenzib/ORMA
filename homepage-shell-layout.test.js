@@ -35,6 +35,13 @@ describe('logged-in discovery workspace layout', () => {
     expect(editorialCss).toContain('.li-record{grid-area:auto;grid-column:9;grid-row:2;}');
   });
 
+  test('keeps the compact desktop fallback in a grid rather than full-width wrapped controls', () => {
+    expect(css).toContain('@media (min-width:1041px) and (max-width:1560px)');
+    expect(css).toContain('grid-template-columns:repeat(12,minmax(0,1fr));');
+    expect(css).toContain('#liQuickShade{grid-column:1/3;grid-row:3;}');
+    expect(css).not.toContain('.li-toolbar{display:flex;flex-wrap:wrap;padding:12px 20px;gap:10px 8px;}');
+  });
+
   test('contains the quick shade and water filters in white outlined controls', () => {
     const rule = css.match(/\.li-quick-filter\s*\{([^}]*)\}/s);
     expect(rule).not.toBeNull();
