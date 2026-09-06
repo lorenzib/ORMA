@@ -56,7 +56,9 @@ async function ingestTrailReviews(store, options = {}){
       const submission = { submissionId:review.id, submittedAt, status:'processed', decisions, outcomes:recorded, publicMutationAllowed:false };
       const nextReviewQueue = { contractVersion:'1.0.0', updatedAt:submittedAt,
         submissions:[...(reviewQueue?.submissions || []), submission] };
-      const staging = buildPublicationStaging(editorialQueue, execution, nextReviewQueue, { at:submittedAt });
+      const staging = buildPublicationStaging(editorialQueue, execution, nextReviewQueue,
+        { at:submittedAt,
+          productionTrails:options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..')) });
       await Promise.all([
         store.setArtifact('content-review-queue', nextReviewQueue), store.setArtifact('publication-staging', staging),
         store.markReview(review.id, 'processed', { outcomes:recorded, revisionJobIds:revisionJobs.map(job => job.id) }),
