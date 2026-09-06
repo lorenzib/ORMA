@@ -26,9 +26,9 @@ describe('shareable walk card helpers', () => {
     const named = card.shareText(
       { dist: '4.2', dur: '65', trail: 'Alpe di Siusi Meadow Loop' }, 'Eddie');
     expect(named).toBe(
-      'Eddie’s Trail Tale — 4.2 km in 1h 05 · Alpe di Siusi Meadow Loop. Made with ORMA 🐾 app-orma.com');
+      'Eddie’s Trail Tale, 4.2 km in 1h 05 · Alpe di Siusi Meadow Loop. Made with ORMA 🐾 app-orma.com');
     const anonymous = card.shareText({ dist: '1.0', dur: '30', trail: 'Recorded walk' }, '');
-    expect(anonymous).toBe('Our Trail Tale — 1.0 km in 30 min. Made with ORMA 🐾 app-orma.com');
+    expect(anonymous).toBe('Our Trail Tale, 1.0 km in 30 min. Made with ORMA 🐾 app-orma.com');
   });
 
   test('social actions use platform-ready aspect ratios without changing the chosen options', () => {

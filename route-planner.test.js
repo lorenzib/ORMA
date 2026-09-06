@@ -295,8 +295,7 @@ describe('drawing interactions', () => {
     await flush();
     click({ lngLat:{ lat:46.70, lng:11.60 }, point:{ x:3, y:3 } });
     await flush();
-    // This one sits between the first two, so it belongs at index 1 —
-    // not appended after the far end.
+    // This one sits between the first two, so it belongs at index 1, // not appended after the far end.
     click({ lngLat:{ lat:46.55, lng:11.60 }, point:{ x:4, y:4 } });
     await flush();
     const sent = planner.context.DoloPawsRoutePlannerRouting.route.mock.calls.at(-1)[0];

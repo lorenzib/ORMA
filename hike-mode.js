@@ -1,5 +1,5 @@
 /**
- * hike-mode.js — "Start hike" companion for the trail detail page.
+ * hike-mode.js, "Start hike" companion for the trail detail page.
  *
  * Turns the trail map into an on-trail companion: live position snapped to
  * the route, progress readout (km walked, next water / rifugio ahead),
@@ -7,7 +7,7 @@
  * mid-hike.
  *
  * Everything works from data already on the trail object (path, distance,
- * rifugi, waterSources) — no network calls, so the safety features keep
+ * rifugi, waterSources), no network calls, so the safety features keep
  * working even when the signal drops in a valley. Only the map tiles need
  * connectivity, and GPS itself is satellite-based and works offline.
  *
@@ -17,7 +17,7 @@
  */
 
 function initHikeMode(map, trail, options){
-  if (!('geolocation' in navigator)) return; // no GPS — don't show the button
+  if (!('geolocation' in navigator)) return; // no GPS, don't show the button
   if (!Array.isArray(trail.path) || trail.path.length < 2) return;
 
   const container = (options && options.container) || (map && map.getContainer());
@@ -111,9 +111,9 @@ function initHikeMode(map, trail, options){
   // ---- State ---------------------------------------------------------------
   let active = false;
   let watchId = null;
-  let lastTileError = 0;   // last failed tile/style fetch — signals the map may grey out
+  let lastTileError = 0;   // last failed tile/style fetch, signals the map may grey out
   let wakeLock = null;
-  let lastIdx = 0;          // last snapped path index — used for continuity
+  let lastIdx = 0;          // last snapped path index, used for continuity
   let offRouteStreak = 0;   // consecutive fixes far from the route
   let offRouteSince = null; // first fix in the current sustained off-route run
   let announcedOffRoute = false;
@@ -335,8 +335,7 @@ function initHikeMode(map, trail, options){
     }
   }
 
-  // Map tile fetches fail silently when the connection drops mid-hike —
-  // navigator.onLine often stays true on a weak mountain signal, so track
+  // Map tile fetches fail silently when the connection drops mid-hike, // navigator.onLine often stays true on a weak mountain signal, so track
   // actual failed fetches too.
   let mapErrorListenerBound = false;
   function attachMap(nextMap){
@@ -364,7 +363,7 @@ function initHikeMode(map, trail, options){
   async function acquireWakeLock(){
     try {
       if ('wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen');
-    } catch (e) { /* not supported or denied — hike mode still works */ }
+    } catch (e) { /* not supported or denied, hike mode still works */ }
   }
   document.addEventListener('visibilitychange', () => {
     // The lock is auto-released when the app backgrounds; re-acquire on return.
@@ -374,7 +373,7 @@ function initHikeMode(map, trail, options){
   // ---- Snap a GPS fix to the nearest point on the route --------------------
   // Continuity bias: when several path points are similarly close (common on
   // out-and-back or tightly-folded loops), prefer the one nearest to where
-  // we last were — stops the readout jumping between overlapping segments.
+  // we last were, stops the readout jumping between overlapping segments.
   function snapToPath(lat, lng){
     let minDist = Infinity;
     const dists = new Array(trail.path.length);
@@ -391,6 +390,43 @@ function initHikeMode(map, trail, options){
       }
     }
     return { idx: bestIdx, dist: dists[bestIdx], minDist };
+  }
+
+  // ---- Lead advisories (positioned segments from the canonical scorer) -----
+  // The rules for which advisories are usable live in recommendation-v1.js and
+  // are not repeated here: this reads the leashAdvisories it already returns,
+  // ordered by start distance. They do not depend on the dog, so an empty
+  // subject is enough.
+  let leashZones = [];
+  const announcedZones = Object.create(null);
+
+  function resolveLeashZones(activeTrail){
+    leashZones = [];
+    const scoring = window.DoloPawsScoring;
+    if(!scoring || typeof scoring.recommendTrail !== 'function') return;
+    try{
+      const result = scoring.recommendTrail(activeTrail, {});
+      if(result && Array.isArray(result.leashAdvisories)) leashZones = result.leashAdvisories;
+    }catch(error){
+      // A scorer failure must never stop a walk from being recorded.
+      leashZones = [];
+    }
+  }
+
+  // Returns the advisory to speak about right now: the one being walked
+  // through, else the next one close enough ahead to act on.
+  const LEAD_WARNING_KM = 0.3;
+
+  function leashZoneFor(currentKm){
+    if(!Number.isFinite(currentKm)) return null;
+    for(const zone of leashZones){
+      if(currentKm >= zone.fromKm && currentKm <= zone.toKm) return { zone, inside:true, ahead:0 };
+    }
+    for(const zone of leashZones){
+      const ahead = zone.fromKm - currentKm;
+      if(ahead > 0 && ahead <= LEAD_WARNING_KM) return { zone, inside:false, ahead };
+    }
+    return null;
   }
 
   // ---- Next POI ahead (from km-tagged rifugi / water sources) --------------
@@ -532,9 +568,27 @@ function initHikeMode(map, trail, options){
     if (hut) parts.push(window.t('hike.hutIn', {name: hut.label, d: hut.ahead.toFixed(1)}));
     const decision = isLoop ? null : nextAhead(trail.decisionPoints, currentRouteKm, 'instruction');
     if (decision && decision.ahead < 0.5) parts.push(window.t('hike.ahead', {what: decision.label}));
+
+    // Lead advisories are a range rather than a next-point search, so unlike
+    // the readouts above they stay meaningful on a loop.
+    const lead = assessment.usableForProgress ? leashZoneFor(currentRouteKm) : null;
+    if (lead) {
+      const detail = lead.zone.note || lead.zone.label;
+      const message = lead.inside
+        ? window.t('hike.leadOnNow', {what: detail})
+        : window.t('hike.leadOnAhead', {m: Math.round(lead.ahead * 1000), what: detail});
+      parts.push(message);
+      // Announce each zone once entering and once approaching, so the phone
+      // speaks up when it matters without repeating on every fix.
+      const key = `${lead.zone.fromKm}-${lead.zone.toKm}-${lead.inside ? 'in' : 'near'}`;
+      if (!announcedZones[key]) {
+        announcedZones[key] = true;
+        urgentAnnouncer.textContent = message;
+      }
+    }
     const validFixLabel = lastValidFixAt
       ? new Date(lastValidFixAt).toLocaleTimeString()
-      : '—';
+      : ', ';
     const reliabilityNote = assessment.freshness === 'stale'
       ? window.t('hike.gpsStale')
       : !assessment.reliableForWarning
@@ -550,7 +604,7 @@ function initHikeMode(map, trail, options){
         : 'hike.gpsNearTrail';
     panel.innerHTML = parts.join(' · ')
       + `<br><span style="font-weight:400;opacity:.85;">${window.t(gpsStatusKey, {
-        accuracy: Number.isFinite(accuracy) ? Math.round(accuracy) : '—',
+        accuracy: Number.isFinite(accuracy) ? Math.round(accuracy) : ', ',
         time: validFixLabel,
       })}${reliabilityNote ? `<br>${reliabilityNote}` : ''}</span>`
       + offlineNote();
@@ -622,7 +676,7 @@ function initHikeMode(map, trail, options){
           if (ok) localStorage.setItem(guardKey, '1');
         });
       }
-    } catch (e) { /* private browsing etc. — skip silently */ }
+    } catch (e) { /* private browsing etc., skip silently */ }
   }
 
   function startHike(){
@@ -642,6 +696,8 @@ function initHikeMode(map, trail, options){
     lastValidFixAt = null;
     offRouteStreak = 0;
     offRouteSince = null;
+    resolveLeashZones(trail);
+    for(const key of Object.keys(announcedZones)) delete announcedZones[key];
     beginDurableSession();
     updateRejoinControl();
     // A hiker needs a navigation screen, not an article: go fullscreen.
@@ -713,6 +769,10 @@ function initHikeMode(map, trail, options){
     lastValidFixAt = progress ? progress.recordedAt : null;
     offRouteStreak = 0;
     offRouteSince = null;
+    // A restored session re-resolves its advisories; it may have been stored
+    // before this build existed, or the trail record may have gained one since.
+    resolveLeashZones(trail);
+    for(const key of Object.keys(announcedZones)) delete announcedZones[key];
     persistSessionState('active');
     updateRejoinControl();
     if(window.DoloPawsMapFS) window.DoloPawsMapFS.enter();
@@ -795,10 +855,9 @@ function initHikeMode(map, trail, options){
   }
 
   // ---- Completion screen: save / discard, photos, share-to-trail flag ------
-  // Replaces the old "Hike ended — log this walk →" link with the design's
+  // Replaces the old "Hike ended, log this walk →" link with the design's
   // full-screen summary. Saving writes straight into the walk journal store
-  // (same schema journal.html reads), carrying { photos, shareToTrail } —
-  // the flag the trail page checks before surfacing a walk's photos.
+  // (same schema journal.html reads), carrying { photos, shareToTrail }, // the flag the trail page checks before surfacing a walk's photos.
   function esc(s){
     return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   }
@@ -827,11 +886,11 @@ function initHikeMode(map, trail, options){
     const dog = dogSummary();
     const dogName = dog.name || 'Your dog';
     const km = completion.distanceKm;
-    const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : '—';
+    const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : ', ';
     const SAFETY_LABEL = { 'low-risk': 'Low-risk', 'moderate': 'Moderate', 'caution': 'Caution' };
     const safetyClass = trail.safetyLevel === 'low-risk' ? 'safety-low'
       : trail.safetyLevel === 'caution' ? 'safety-caution' : 'safety-moderate';
-    // The trail page already computed the personal match — reuse its figure.
+    // The trail page already computed the personal match, reuse its figure.
     const scoreEl = document.querySelector('.personal-score b');
     const matchPct = scoreEl ? parseInt(scoreEl.textContent, 10) : NaN;
 
@@ -872,6 +931,45 @@ function initHikeMode(map, trail, options){
               <option value="more_than_listed">More water than listed</option>
               <option value="not_checked">I did not check</option>
             </select>
+            <label for="hkLivestock">Did you encounter livestock? <span>Optional</span></label>
+            <select id="hkLivestock">
+              <option value="">Prefer not to answer</option>
+              <option value="none">No livestock at all</option>
+              <option value="seen_at_distance">Seen, but at a distance</option>
+              <option value="close_encounter">Passed close to them</option>
+            </select>
+            <label for="hkOffLead">Were dogs off-lead on this route? <span>Optional</span></label>
+            <select id="hkOffLead">
+              <option value="">Prefer not to answer</option>
+              <option value="all_on_lead">Everyone kept dogs on the lead</option>
+              <option value="some_off_lead">Some dogs were off-lead</option>
+              <option value="mostly_off_lead">Most dogs were off-lead</option>
+            </select>
+            <label for="hkCrowding">How busy was it? <span>Optional</span></label>
+            <select id="hkCrowding">
+              <option value="">Prefer not to answer</option>
+              <option value="quiet">Quiet, room to give space</option>
+              <option value="moderate">Steady foot traffic</option>
+              <option value="busy">Busy throughout</option>
+            </select>
+            <label for="hkEnjoyment">Did ${esc(dogName)} enjoy it? <span>Optional</span></label>
+            <select id="hkEnjoyment">
+              <option value="">Prefer not to answer</option>
+              <option value="loved_it">Loved it</option>
+              <option value="fine">Took it in their stride</option>
+              <option value="struggled">Struggled with it</option>
+            </select>
+            <label for="hkReactiveFit">Would you recommend it for a reactive dog? <span>Optional</span></label>
+            <select id="hkReactiveFit">
+              <option value="">Prefer not to answer</option>
+              <option value="yes">Yes, there is room to pass</option>
+              <option value="with_care">Only with care</option>
+              <option value="no">No, too little space</option>
+            </select>
+            <label class="hk-outcome-check">
+              <input type="checkbox" id="hkMissingRestriction">
+              A posted restriction was missing from ORMA
+            </label>
             <fieldset>
               <legend>Any material hazard we should account for? <span>Optional</span></legend>
               <div class="hk-hazard-options">
@@ -920,9 +1018,9 @@ function initHikeMode(map, trail, options){
 
     function renderOutcome(){
       const labels = [
-        ['appropriate', 'Yes — appropriate'],
+        ['appropriate', 'Yes, appropriate'],
         ['appropriate_with_unexpected_cautions', 'Yes, with unexpected cautions'],
-        ['not_appropriate', 'No — not appropriate'],
+        ['not_appropriate', 'No, not appropriate'],
         ['did_not_complete', 'We turned back'],
         ['prefer_not_to_answer', 'Prefer not to answer'],
       ];
@@ -984,6 +1082,14 @@ function initHikeMode(map, trail, options){
       const result = window.DoloPawsPostHikeOutcomes.save(completion, {
         response:outcomeResponse,
         waterAccuracy:q('#hkWaterAccuracy').value || null,
+        // Empty stays null: an unanswered question is a gap in the evidence,
+        // not a quiet claim that the pleasant answer applies.
+        livestockEncountered:q('#hkLivestock').value || null,
+        offLeadObserved:q('#hkOffLead').value || null,
+        crowding:q('#hkCrowding').value || null,
+        dogEnjoyment:q('#hkEnjoyment').value || null,
+        reactiveDogFit:q('#hkReactiveFit').value || null,
+        missingRestriction:q('#hkMissingRestriction').checked ? true : null,
         hazards,
         offlinePackageUsed,
       }, user.uid);
@@ -1154,7 +1260,7 @@ function initHikeMode(map, trail, options){
         entries.sort((a, b) => new Date(b.date) - new Date(a.date));
         localStorage.setItem(key, JSON.stringify(entries));
         saved = true;
-      } catch (e) { /* storage full/blocked — still leave the page gracefully */ }
+      } catch (e) { /* storage full/blocked, still leave the page gracefully */ }
       if(saved && window.DoloPawsHikeCompletions){
         window.DoloPawsHikeCompletions.markFollowUp(
           completion.completionId,

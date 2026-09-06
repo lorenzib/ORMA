@@ -87,35 +87,13 @@ describe('editorial trail collections', () => {
     expect(controller).toContain('trail.html?id=');
   });
 
-  test('detail page supports photos and route-outline placeholders', () => {
-    const detail = fs.readFileSync(path.join(__dirname, 'collection-detail.js'), 'utf8');
-    expect(detail).toContain('DoloPawsTrailVisual');
-    expect(detail).toContain('visual.render(trail');
-    expect(detail).toContain('trail.html?id=');
-    expect(detail).toContain('collectionTrailMap');
-    expect(detail).toContain("map.addSource('collection-routes'");
-    expect(detail).toContain("map.addSource('collection-waymarked-hiking'");
-    // Full strength at trail zoom, eased back across a whole region so
-    // several collection routes stay distinguishable from each other.
-    expect(detail).toContain("'raster-opacity':['interpolate',['linear'],['zoom'],7,.45,10,.7,12,.88,14,1]");
-    expect(detail).toContain("ORMAMapStyle.quietBasemap(map)");
-    expect(detail).toContain("}, 'collection-waymarked-hiking-layer');");
-    expect(detail).toContain("addPoiLayers(map, 'rifugi'");
-    expect(detail).toContain("addPoiLayers(map, 'water'");
-    expect(detail).toContain("addPoiLayers(map, 'food'");
-    expect(detail).toContain('data-collection-layer="rifugi" aria-pressed="false"');
-    expect(detail).toContain('data-collection-layer="water" aria-pressed="false"');
-    expect(detail).toContain('data-collection-layer="food" aria-pressed="false"');
-    expect(detail).toContain('class="collection-trail-card__toggle" aria-expanded="false"');
-    expect(detail).toContain('class="collection-trail-card__details" id="${detailsId}" hidden');
-    expect(detail).toContain('data-collection-match-inline="${esc(trail.id)}"');
-    expect(detail).toContain('data-collection-match-score="${esc(trail.id)}"');
-    expect(detail).toContain('APPROX. MATCH FOR A MEDIUM DOG');
-    expect(detail).toContain('window.DoloPawsAuth.getDogProfile()');
-    expect(detail).not.toContain('<span class="simple-card__tier">${esc(safety)}</span>');
+  test('the old detail URL redirects instead of shipping a dead page', () => {
     const page = fs.readFileSync(path.join(__dirname, 'collection.html'), 'utf8');
     expect(page).toContain("window.location.replace(id ? 'collections.html?collection='");
-    expect(page).toContain('map-runtime.js');
-    expect(page.indexOf('scoring.js')).toBeLessThan(page.indexOf('collection-detail.js'));
+    // The redirect runs synchronously in <head>, so anything after it could
+    // never execute. Nothing may be re-added here without also un-redirecting.
+    expect(page).not.toContain('<script src=');
+    // Without JavaScript the redirect never fires; a real link must remain.
+    expect(page).toContain('href="collections.html"');
   });
 });

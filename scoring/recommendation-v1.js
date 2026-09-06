@@ -5,7 +5,7 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
-  const VERSION = '1.3.0';
+  const VERSION = '1.5.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
     moderate: { terrain: 1, distanceKm: 10, ascentM: 600 },
@@ -80,7 +80,7 @@
   ]);
 
   function item(code, message, vars, messageKey){
-    return { code, message, vars:vars || null, messageKey:messageKey || code };
+    return { code, message, vars:vars || null, messageKey:messageKey || code, impact:0 };
   }
 
   function unique(items){
@@ -258,13 +258,23 @@
     const conditions = input.currentConditions || { status: 'not-provided' };
     let score = 100;
 
+    // Every deduction is recorded on the entry that caused it. P0-1 ranks the
+    // breakdown by these numbers, so a penalty applied without one would show
+    // up as a factor that silently moved the score.
+    function penalise(points, entry, bucket){
+      const cost = Math.max(0, Math.round(points));
+      score -= cost;
+      entry.impact = -cost;
+      (bucket || cautions).push(entry);
+      return entry;
+    }
+
     const terrain = numberOrNull(suitability.terrainRank);
     if(terrain === null){
       unknowns.push(item('trail.terrain.unknown', 'Terrain difficulty is unknown.'));
     }else if(terrain > dog.terrain){
       const penalty = (terrain - dog.terrain) * 30;
-      score -= penalty;
-      cautions.push(item('trail.terrain.above-tolerance',
+      penalise(penalty, item('trail.terrain.above-tolerance',
         `Terrain is above this dog's effective tolerance (${terrain} versus ${dog.terrain}).`,
         { terrain, tolerance:dog.terrain }));
     }else{
@@ -276,8 +286,7 @@
     if(distance === null){
       unknowns.push(item('trail.distance.unknown', 'Route distance is unknown.'));
     }else if(distance > dog.distanceKm){
-      score -= Math.min(35, Math.round((distance - dog.distanceKm) * 5));
-      cautions.push(item('trail.distance.above-range',
+      penalise(Math.min(35, Math.round((distance - dog.distanceKm) * 5)), item('trail.distance.above-range',
         `The ${distance} km route exceeds this dog's effective ${dog.distanceKm} km range.`,
         { distance, range:dog.distanceKm }));
     }else{
@@ -289,8 +298,7 @@
     if(ascent === null){
       unknowns.push(item('trail.ascent.unknown', 'Total ascent is unknown.'));
     }else if(ascent > dog.ascentM){
-      score -= Math.min(20, Math.ceil((ascent - dog.ascentM) / 100) * 4);
-      cautions.push(item('trail.ascent.above-range',
+      penalise(Math.min(20, Math.ceil((ascent - dog.ascentM) / 100) * 4), item('trail.ascent.above-range',
         `The ${ascent} m climb exceeds this dog's effective ${dog.ascentM} m climbing range.`,
         { ascent, range:dog.ascentM }));
     }else{
@@ -302,30 +310,26 @@
     if(descent === null){
       unknowns.push(item('trail.descent.unknown', 'Total descent is unknown.'));
     }else if((dog.fragile || dog.giant) && descent > 400){
-      score -= Math.min(20, Math.ceil((descent - 400) / 100) * 4);
-      cautions.push(item('trail.descent.joint-load',
+      penalise(Math.min(20, Math.ceil((descent - 400) / 100) * 4), item('trail.descent.joint-load',
         'The sustained descent may place extra load on joints.'));
     }
 
     if(suitability.exposure === null || suitability.exposure === undefined){
       unknowns.push(item('trail.exposure.unknown', 'Exposure and drop-offs have not been established.'));
     }else if(suitability.exposure){
-      score -= 30 + ((dog.fragile || dog.impairedVision) ? 10 : 0);
-      cautions.push(item('trail.exposure.present',
+      penalise(30 + ((dog.fragile || dog.impairedVision) ? 10 : 0), item('trail.exposure.present',
         'The route includes exposed terrain or drop-offs.'));
     }else{
       positives.push(item('trail.exposure.none-known', 'No exposed section is recorded.'));
     }
 
     if(suitability.heatRisk === 'high'){
-      score -= dog.heatSensitive ? 25 : 12;
-      cautions.push(item('trail.heat.high', dog.heatSensitive
+      penalise(dog.heatSensitive ? 25 : 12, item('trail.heat.high', dog.heatSensitive
         ? 'The route has high heat risk and this dog is heat-sensitive.'
         : 'The route has high baseline heat risk.', null,
       dog.heatSensitive ? 'trail.heat.high.sensitive' : 'trail.heat.high'));
     }else if(suitability.heatRisk === 'moderate'){
-      score -= dog.heatSensitive ? 10 : 4;
-      cautions.push(item('trail.heat.moderate', dog.heatSensitive
+      penalise(dog.heatSensitive ? 10 : 4, item('trail.heat.moderate', dog.heatSensitive
         ? 'Moderate route heat risk matters more for this heat-sensitive dog.'
         : 'The route has moderate baseline heat risk.', null,
       dog.heatSensitive ? 'trail.heat.moderate.sensitive' : 'trail.heat.moderate'));
@@ -339,11 +343,9 @@
     if(shade === null){
       unknowns.push(item('trail.shade.unknown', 'Shade coverage is unknown.'));
     }else if(shade < 20){
-      score -= 10;
-      cautions.push(item('trail.shade.very-low', 'The route has very little shade.'));
+      penalise(10, item('trail.shade.very-low', 'The route has very little shade.'));
     }else if(shade < 40){
-      score -= 5;
-      cautions.push(item('trail.shade.low', 'Shade is limited on this route.'));
+      penalise(5, item('trail.shade.low', 'Shade is limited on this route.'));
     }else if(shade >= 60){
       positives.push(item('trail.shade.good', 'The route has substantial shade.'));
     }
@@ -354,12 +356,12 @@
       unknowns.push(item('trail.surface-hazards.unknown', 'Surface hazards are unknown.'));
     }else if(hazards.length){
       const multiplier = dog.fragile ? 1.5 : 1;
-      score -= Math.min(dog.fragile ? 30 : 20, Math.round(hazards.length * 8 * multiplier));
+      const hazardCost = Math.min(dog.fragile ? 30 : 20, Math.round(hazards.length * 8 * multiplier));
       const hazardSummary = hazards
         .map(hazard => String(hazard).trim().replace(/[.;]+$/, ''))
         .filter(Boolean)
         .join('; ');
-      cautions.push(item('trail.surface-hazards.present',
+      penalise(hazardCost, item('trail.surface-hazards.present',
         `Recorded route cautions: ${hazardSummary}.`,
         { count:hazards.length, hazards:hazardSummary },
         hazards.length === 1 ? 'trail.surface-hazards.present.one' : 'trail.surface-hazards.present.many'));
@@ -369,11 +371,17 @@
     }
 
     if(access.status === 'prohibited'){
-      hardStops.push(item('trail.dog-access.prohibited', 'Dogs are prohibited on this route.'));
+      const stop = item('trail.dog-access.prohibited', 'Dogs are prohibited on this route.');
+      // A prohibition is not a deduction, it is a ceiling. Recording the drop
+      // it actually caused keeps the breakdown's numbers adding up.
+      stop.impact = Math.min(0, 5 - score);
+      hardStops.push(stop);
       score = Math.min(score, 5);
     }else if(access.status === 'seasonal-restrictions'){
-      cautions.push(item('trail.dog-access.seasonal',
-        'Dog access has seasonal restrictions that must be checked for the hike date.'));
+      const seasonalEntry = item('trail.dog-access.seasonal',
+        'Dog access has seasonal restrictions that must be checked for the hike date.');
+      seasonalEntry.impact = Math.min(0, 84 - score);
+      cautions.push(seasonalEntry);
       score = Math.min(score, 84);
     }else if(access.status === 'leash-required'){
       positives.push(item('trail.dog-access.leash', 'Dogs are allowed when kept on a leash.'));
@@ -414,6 +422,17 @@
     const trafficComfort = behaviour.trafficComfort;
     const crowdComfort = behaviour.crowdComfort;
     let behaviourPenalty = 0;
+    // Behaviour charges are collected raw and settled after the cap, so each
+    // entry's recorded impact is its share of what was actually deducted.
+    const behaviourCharges = [];
+
+    function chargeBehaviour(points, entry){
+      const raw = Math.max(0, Math.round(points));
+      behaviourPenalty += raw;
+      behaviourCharges.push({ entry, raw });
+      cautions.push(entry);
+      return entry;
+    }
 
     const rank = value => (value === null ? 0 : value);
     const declaredAny = (...values) => values.some(value => value !== null);
@@ -439,9 +458,8 @@
         drivers.push(recall === 2 ? 'recall is unreliable' : 'recall is variable');
       }
       if(load > 0){
-        behaviourPenalty += Math.round(load * (seasonal ? 0.6 : 1));
         const summary = drivers.join(', ');
-        cautions.push(item('trail.livestock.behaviour-risk',
+        chargeBehaviour(Math.round(load * (seasonal ? 0.6 : 1)), item('trail.livestock.behaviour-risk',
           `${seasonal ? 'Livestock graze this route in season' : 'Grazing livestock is recorded on this route'}, and ${summary}.`,
           { presence:livestockPresence, drivers:summary },
           seasonal ? 'trail.livestock.behaviour-risk.seasonal' : 'trail.livestock.behaviour-risk'));
@@ -462,8 +480,7 @@
       if(rank(preyDrive) > 0) load += preyDrive * (high ? 6 : 3);
       if(rank(recall) > 0) load += recall * (high ? 4 : 2);
       if(load > 0){
-        behaviourPenalty += Math.round(load);
-        cautions.push(item('trail.wildlife.chase-risk',
+        chargeBehaviour(Math.round(load), item('trail.wildlife.chase-risk',
           high
             ? 'Wildlife is active on this route, which matters for a dog that chases.'
             : 'Some wildlife activity is recorded here, which matters for a dog that chases.',
@@ -480,8 +497,7 @@
         positives.push(item('trail.sightlines.open',
           'Open sightlines keep this dog visible on most sections.'));
       }else if(sightlines === 'restricted'){
-        behaviourPenalty += recall * 5;
-        cautions.push(item('trail.sightlines.restricted',
+        chargeBehaviour(recall * 5, item('trail.sightlines.restricted',
           'Enclosed, twisting ground makes it harder to keep this dog in view.'));
       }
     }
@@ -494,8 +510,7 @@
       if(rank(trafficComfort) > 0) load += trafficComfort * (alongside ? 7 : 4);
       if(rank(recall) > 0) load += recall * (alongside ? 4 : 2);
       if(load > 0){
-        behaviourPenalty += Math.round(load);
-        cautions.push(item('trail.road.traffic-risk',
+        chargeBehaviour(Math.round(load), item('trail.road.traffic-risk',
           alongside
             ? 'The route runs alongside a road, which matters for this dog around traffic.'
             : 'The route crosses a road, which matters for this dog around traffic.',
@@ -512,8 +527,7 @@
     if(crowding === 'busy' || crowding === 'moderate'){
       const busy = crowding === 'busy';
       if(socialRank > 0){
-        behaviourPenalty += Math.round(socialRank * (busy ? 8 : 4));
-        cautions.push(item('trail.crowding.social-risk',
+        chargeBehaviour(Math.round(socialRank * (busy ? 8 : 4)), item('trail.crowding.social-risk',
           busy
             ? 'This is a busy route, and this dog needs space from other people and dogs.'
             : 'This route sees steady foot traffic, and this dog needs space from other people and dogs.',
@@ -529,8 +543,7 @@
     const durationMinutes = numberOrNull(metrics.durationMinutes);
     if(preferredDurationMin !== null && durationMinutes !== null){
       if(durationMinutes > preferredDurationMin * 1.25){
-        behaviourPenalty += Math.min(10, Math.ceil((durationMinutes - preferredDurationMin) / 30) * 3);
-        cautions.push(item('trail.duration.above-preference',
+        chargeBehaviour(Math.min(10, Math.ceil((durationMinutes - preferredDurationMin) / 30) * 3), item('trail.duration.above-preference',
           `At about ${Math.round(durationMinutes)} minutes this route runs longer than the preferred ${preferredDurationMin} minutes.`,
           { durationMinutes:Math.round(durationMinutes), preferredDurationMin }));
       }else{
@@ -540,7 +553,28 @@
       }
     }
 
-    if(behaviourPenalty > 0) score -= Math.min(BEHAVIOUR_PENALTY_CAP, behaviourPenalty);
+    if(behaviourPenalty > 0){
+      const applied = Math.min(BEHAVIOUR_PENALTY_CAP, behaviourPenalty);
+      score -= applied;
+      // Share the applied total across the charges in proportion to their raw
+      // load. Uncapped this is exact; capped, every entry shrinks together
+      // rather than one arbitrarily absorbing the whole reduction.
+      // Largest-remainder allocation. Rounding each share independently can
+      // leave the recorded costs a point or two off what was deducted, which
+      // would break the one property the breakdown depends on.
+      const ratio = applied / behaviourPenalty;
+      const shares = behaviourCharges.map(charge => {
+        const exact = charge.raw * ratio;
+        const whole = Math.floor(exact);
+        return { charge, whole, remainder:exact - whole };
+      });
+      let allocated = shares.reduce((sum, share) => sum + share.whole, 0);
+      shares
+        .slice()
+        .sort((a, b) => b.remainder - a.remainder)
+        .forEach(share => { if(allocated < applied){ share.whole += 1; allocated += 1; } });
+      shares.forEach(share => { share.charge.entry.impact = -share.whole; });
+    }
 
     // ---- Route segments ---------------------------------------------------
     // Segments carry the "where" of an advisory. The aggregate rules above
@@ -569,8 +603,7 @@
           vars,
           required ? 'segment.leash-required' : 'segment.leash-recommended'));
       }else if(segment.advisory === 'avoid'){
-        score -= 20;
-        cautions.push(item(`segment.avoid.${vars.type}.${fromKm}-${toKm}`,
+        penalise(20, item(`segment.avoid.${vars.type}.${fromKm}-${toKm}`,
           `${where} Avoid this stretch.`, vars, 'segment.avoid'));
       }else if(segment.advisory === 'caution'){
         cautions.push(item(`segment.caution.${vars.type}.${fromKm}-${toKm}`,
@@ -583,15 +616,22 @@
 
     if(conditions.status === 'known'){
       if(conditions.heatRisk === 'high'){
-        score -= dog.heatSensitive ? 25 : 10;
-        cautions.push(item('conditions.heat.high', dog.heatSensitive
+        penalise(dog.heatSensitive ? 25 : 10, item('conditions.heat.high', dog.heatSensitive
           ? 'Current heat conditions are high-risk for this heat-sensitive dog.'
           : 'Current heat conditions add material risk.', null,
         dog.heatSensitive ? 'conditions.heat.high.sensitive' : 'conditions.heat.high'));
       }else if(conditions.heatRisk === 'moderate'){
-        score -= dog.heatSensitive ? 10 : 4;
-        cautions.push(item('conditions.heat.moderate',
-          'Current conditions add moderate heat load.'));
+        // "Moderate" on its own tells an owner nothing they can act on. When
+        // the forecast says when it turns hot, the hour is the advice.
+        const hotFrom = typeof conditions.hotFromLabel === 'string' && conditions.hotFromLabel
+          ? conditions.hotFromLabel
+          : null;
+        penalise(dog.heatSensitive ? 10 : 4, item('conditions.heat.moderate',
+          hotFrom
+            ? `Current conditions add moderate heat load, and it turns hot from ${hotFrom}.`
+            : 'Current conditions add moderate heat load.',
+          hotFrom ? { hotFrom } : null,
+          hotFrom ? 'conditions.heat.moderate.from' : 'conditions.heat.moderate'));
       }else if(conditions.heatRisk === 'low'){
         positives.push(item('conditions.heat.low', 'Current heat conditions are low-risk.'));
       }else{
@@ -622,9 +662,28 @@
       }
     }
 
-    if(criticalUnknown) score = Math.min(score, 80);
-    score = Math.max(5, Math.min(100, Math.round(score)));
+    if(criticalUnknown && score > 80){
+      const ceiling = item('evidence.critical.capped',
+        'Unreviewed safety evidence holds this recommendation below a strong option.');
+      ceiling.impact = 80 - score;
+      // This moved the score, so it belongs in the breakdown rather than in
+      // the unknowns disclosure, which factors deliberately does not include.
+      cautions.push(ceiling);
+      score = 80;
+    }
+    // The breakdown's numbers must add up to the number on the card. When the
+    // demands exceed everything the dog has, the floor is what the reader sees,
+    // so the floor is recorded rather than left as an unexplained gap.
+    const rawScore = Math.round(score);
+    score = Math.max(5, Math.min(100, rawScore));
+    if(rawScore < 5){
+      const floor = item('score.floor',
+        'The demands above already exceed what this dog can comfortably take, so the score rests at its floor.');
+      floor.impact = 5 - rawScore;
+      cautions.push(floor);
+    }
 
+    const shownPositives = unique(positives).filter(entry => reassuranceIsBacked(entry, categories));
     const confidencePoints = verifiedCount + dog.completeness;
     const confidence = confidencePoints >= 9
       ? 'high'
@@ -642,7 +701,13 @@
       category,
       confidence,
       evidenceTier: parts.verification.tier || 'unknown',
-      positiveReasons: unique(positives).filter(entry => reassuranceIsBacked(entry, categories)),
+      positiveReasons: shownPositives,
+      // Descending order of impact, top negative first. Ties keep the order the
+      // engine evaluated them in, so the list is stable between runs.
+      factors: [...unique(hardStops), ...unique(cautions), ...shownPositives]
+        .map((entry, index) => ({ ...entry, order:index }))
+        .sort((a, b) => a.impact - b.impact || a.order - b.order)
+        .map(({ order, ...entry }) => entry),
       cautions: unique(cautions),
       unknowns: unique(unknowns),
       hardStops: unique(hardStops),

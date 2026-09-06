@@ -139,8 +139,7 @@
     }).then(function(favorites){
       favorites = favorites || {};
       // Live Firestore content: hazard flags on saved trails (members) and
-      // operator notices (everyone). Both degrade to empty on any failure —
-      // the derived feed still renders.
+      // operator notices (everyone). Both degrade to empty on any failure, // the derived feed still renders.
       var flagsP = (auth && auth.currentUser && community && typeof community.getActiveFlagsForTrails === 'function')
         ? community.getActiveFlagsForTrails(Object.keys(favorites)).catch(function(){ return []; })
         : Promise.resolve([]);

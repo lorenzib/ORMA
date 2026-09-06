@@ -93,5 +93,71 @@
     return `${prefix} <strong>${start}</strong> · for this ${result.durationHours} h route, finish by <strong>${finish}</strong>, at least 1 hour before forecast sunset.`;
   }
 
-  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,minuteOfDay,formatTime,recommendation,markup};
+  // Heat thresholds already shipped on the trail page's conditions card, reused
+  // here so one number does not mean two different things in two places.
+  const WARM_C=22;
+  const HOT_C=28;
+
+  // The hour heat actually becomes a problem today, read off the forecast
+  // rather than asserted. Returns null when the forecast never crosses the
+  // threshold, so the caller can stay silent instead of inventing an hour.
+  function heatOnset(input){
+    const times=Array.isArray(input&&input.hourlyTimes)?input.hourlyTimes:[];
+    const temps=Array.isArray(input&&input.hourlyTemps)?input.hourlyTemps:[];
+    if(!times.length||times.length!==temps.length)return null;
+    const today=dayKey(input.currentTime);
+    const nowMinute=minuteOfDay(input.currentTime);
+    if(!today||nowMinute===null)return null;
+    const threshold=Number.isFinite(input.thresholdC)?input.thresholdC:HOT_C;
+
+    for(let index=0;index<times.length;index+=1){
+      if(dayKey(times[index])!==today)continue;
+      const minute=minuteOfDay(times[index]);
+      const temp=Number(temps[index]);
+      if(minute===null||!Number.isFinite(temp))continue;
+      if(minute<nowMinute)continue;
+      if(temp>=threshold)return {minutes:minute,label:formatTime(minute),temperatureC:Math.round(temp)};
+    }
+    return null;
+  }
+
+  // Today's heat, in the vocabulary the recommendation engine reads.
+  function currentConditions(input){
+    const temp=Number(input&&input.temperatureC);
+    if(!Number.isFinite(temp))return {status:'not-provided'};
+    const heatRisk=temp>=HOT_C?'high':temp>=WARM_C?'moderate':'low';
+    const onset=heatOnset(input);
+    return {
+      status:'known',
+      heatRisk,
+      // Only present when the forecast actually crosses the threshold later
+      // today. Absent means the engine says nothing about an hour.
+      hotFromLabel:onset&&heatRisk!=='high'?onset.label:null,
+      // SCORE-01 requires a conditions snapshot to carry its observation time
+      // and to stop being described as live once stale. Stamping it here means
+      // a caller cannot forget it; isFresh() below is the shared expiry rule.
+      capturedAt:Number.isFinite(Number(input&&input.capturedAt))?Number(input.capturedAt):Date.now(),
+    };
+  }
+
+  // Weather goes out of date faster than a page stays open. pre-hike-readiness
+  // already treats a forecast older than thirty minutes as unusable; the score
+  // uses the same rule so the two cannot disagree about what "now" means.
+  const CONDITIONS_MAX_AGE_MS=30*60*1000;
+
+  function isFresh(conditions,now){
+    if(!conditions||conditions.status!=='known')return false;
+    const captured=Number(conditions.capturedAt);
+    if(!Number.isFinite(captured))return false;
+    const at=Number.isFinite(Number(now))?Number(now):Date.now();
+    return at-captured<=CONDITIONS_MAX_AGE_MS&&at>=captured;
+  }
+
+  // What the engine should be handed: the snapshot while it is current, and an
+  // explicit omission once it is not. Never a stale snapshot presented as live.
+  function scoringConditions(conditions,now){
+    return isFresh(conditions,now)?conditions:{status:'not-provided'};
+  }
+
+  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,WARM_C,HOT_C,CONDITIONS_MAX_AGE_MS,minuteOfDay,formatTime,recommendation,markup,heatOnset,currentConditions,isFresh,scoringConditions};
 });

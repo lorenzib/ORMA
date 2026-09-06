@@ -75,6 +75,14 @@ service cloud.firestore {
       return value is string && value.size() > 0 && value.size() <= maximum;
     }
 
+    function isProductEventFamily(value) {
+      return value in [
+        'discovery_search', 'dog_profile', 'trail_decision', 'trail_saved',
+        'offline_package', 'hike_session', 'community_contribution',
+        'post_hike_outcome'
+      ];
+    }
+
     function isTrailId(value) {
       return isShortString(value, 80)
         && value.matches('^[A-Za-z0-9._-]+$');
@@ -279,6 +287,23 @@ service cloud.firestore {
         && validModerationMetadata(data);
     }
 
+    function validTrailHazardReport(data) {
+      return data.keys().hasOnly([
+          'trailId', 'trailName', 'area', 'category', 'description',
+          'observedOn', 'uid', 'status', 'createdAt',
+          'verdict', 'sourceCount', 'hazardId', 'vettedAt', 'updatedAt'
+        ])
+        && isShortString(data.trailId, 120)
+        && isShortString(data.trailName, 160)
+        && data.area is string && data.area.size() <= 160
+        && data.category in ['closure', 'route-damage', 'livestock', 'water', 'snow-or-ice', 'rockfall', 'other']
+        && data.description is string
+        && data.description.size() >= 10 && data.description.size() <= 600
+        && data.observedOn is string && data.observedOn.size() <= 10
+        && isShortString(data.uid, 128)
+        && data.createdAt is timestamp;
+    }
+
     function validPlaceDogReport(data) {
       return data.keys().hasOnly([
           'placeId', 'placeName', 'placeType', 'coordinates', 'uid',
@@ -318,14 +343,18 @@ service cloud.firestore {
       return data.keys().hasAll([
           'schemaVersion', 'outcomeId', 'completionId', 'trailId', 'response',
           'waterAccuracy', 'hazards', 'recordedHikePresent',
-          'offlinePackageUsed', 'createdAt'
+          'offlinePackageUsed', 'createdAt',
+          'offLeadObserved', 'livestockEncountered', 'crowding',
+          'dogEnjoyment', 'reactiveDogFit', 'missingRestriction'
         ])
         && data.keys().hasOnly([
           'schemaVersion', 'outcomeId', 'completionId', 'trailId', 'response',
           'waterAccuracy', 'hazards', 'recordedHikePresent',
-          'offlinePackageUsed', 'createdAt'
+          'offlinePackageUsed', 'createdAt',
+          'offLeadObserved', 'livestockEncountered', 'crowding',
+          'dogEnjoyment', 'reactiveDogFit', 'missingRestriction'
         ])
-        && data.schemaVersion == 1
+        && data.schemaVersion == 2
         && isShortString(data.outcomeId, 200)
         && data.outcomeId == outcomeId
         && isShortString(data.completionId, 180)
@@ -337,6 +366,16 @@ service cloud.firestore {
         && (data.waterAccuracy == null || data.waterAccuracy in [
           'accurate', 'less_than_listed', 'more_than_listed', 'not_checked'
         ])
+        && (data.offLeadObserved == null || data.offLeadObserved in [
+          'all_on_lead', 'some_off_lead', 'mostly_off_lead'
+        ])
+        && (data.livestockEncountered == null || data.livestockEncountered in [
+          'none', 'seen_at_distance', 'close_encounter'
+        ])
+        && (data.crowding == null || data.crowding in ['quiet', 'moderate', 'busy'])
+        && (data.dogEnjoyment == null || data.dogEnjoyment in ['loved_it', 'fine', 'struggled'])
+        && (data.reactiveDogFit == null || data.reactiveDogFit in ['yes', 'with_care', 'no'])
+        && (data.missingRestriction == null || data.missingRestriction is bool)
         && data.hazards is list
         && data.hazards.size() <= 6
         && data.hazards.hasOnly([
@@ -627,6 +666,38 @@ service cloud.firestore {
       allow delete: if isModerator();
     }
 
+    // METRIC-01 product analytics receiver.
+    //
+    // Consent is enforced in the browser: metrics.js refuses to create an
+    // identifier or an event until the customer opts in. These rules enforce
+    // the wire shape so the collection cannot become a general write target.
+    //
+    // The collection is write-only. Nothing in the site reads it back, and the
+    // document id is the client's own event id, so a delivery retried after a
+    // lost acknowledgement rewrites one document instead of duplicating it.
+    match /productEvents/{eventId} {
+      allow create: if isShortString(eventId, 64)
+        && request.resource.data.keys().hasOnly([
+             'schemaVersion', 'id', 'clientId', 'family', 'state',
+             'properties', 'occurredHour'
+           ])
+        && request.resource.data.keys().hasAll([
+             'schemaVersion', 'id', 'clientId', 'family', 'state',
+             'properties', 'occurredHour'
+           ])
+        && request.resource.data.schemaVersion == 1
+        && request.resource.data.id == eventId
+        && isShortString(request.resource.data.clientId, 64)
+        && isProductEventFamily(request.resource.data.family)
+        && isShortString(request.resource.data.state, 40)
+        && request.resource.data.properties is map
+        && request.resource.data.properties.size() <= 12
+        && isShortString(request.resource.data.occurredHour, 30);
+      allow update: if request.resource.data == resource.data;
+      allow read: if false;
+      allow delete: if isModerator();
+    }
+
     match /flags/{flagId} {
       allow get: if isModerator()
         || isOwner(resource.data.uid)
@@ -709,6 +780,21 @@ service cloud.firestore {
 
     // First-hand place observations remain pending until an ORMA moderator
     // reviews them. Only visible/reported records may power public badges.
+    // Customer hazard reports are vetted by the Hazard Analyst, never by a reader.
+    // A reporter may see their own submission; nobody else reads the raw report,
+    // because what the public sees is the vetted hazard, not the claim.
+    match /trailHazardReports/{reportId} {
+      allow get: if isModerator() || isOwner(resource.data.uid);
+      allow list: if isModerator();
+      allow create: if isContributor()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && request.resource.data.createdAt == request.time
+        && !request.resource.data.keys().hasAny(['verdict', 'sourceCount', 'hazardId', 'vettedAt'])
+        && validTrailHazardReport(request.resource.data);
+      allow update, delete: if isModerator();
+    }
+
     match /placeDogReports/{reportId} {
       allow get: if isModerator()
         || isOwner(resource.data.uid)

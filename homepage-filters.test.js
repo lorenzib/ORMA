@@ -8,8 +8,8 @@ function tForTests(key, params = {}){
   if(key === 'region.theDolomites') return 'the Dolomites';
   if(key === 'region.dolomites') return 'Dolomites';
   if(key === 'home.bubble') return 'Where are we heading today?';
-  if(key === 'home.pickArea') return `Pick a valley below — trails are ranked for ${params.name || 'your dog'}.`;
-  if(key === 'home.pickAreaNoName') return 'Pick a valley below — trails are ranked for your dog.';
+  if(key === 'home.pickArea') return `Pick a valley below, trails are ranked for ${params.name || 'your dog'}.`;
+  if(key === 'home.pickAreaNoName') return 'Pick a valley below, trails are ranked for your dog.';
   if(key === 'home.nTrails') return `${params.n} ${params.n === 1 ? 'trail' : 'trails'}`;
   if(key === 'home.nSaved') return `${params.n} saved trails`;
   if(key === 'home.nSaved1') return '1 saved trail';
@@ -94,7 +94,7 @@ function loadHomepageContext(testTrails){
     t: tForTests,
     scoreTrail: () => 80,
     recommendTrail: () => ({
-      scoringVersion: '1.3.0',
+      scoringVersion: '1.5.0',
       score: 80,
       category: 'possible-with-cautions',
       confidence: 'low',
@@ -329,9 +329,9 @@ describe('map-first returning homepage layout contract', () => {
     const markerLayerStart = script.indexOf("id: 'trail-unclustered'");
     const markerLayer = script.slice(markerLayerStart);
     expect(routeLayer).toContain("'line-color': '#858D88'");
-    expect(routeLayer).toContain("'step', ['coalesce', ['get', 'score'], 0]");
+    expect(routeLayer).toContain("matchColourExpression('score')");
     expect(routeLayer).not.toContain("['get', 'safetyLevel']");
-    expect(markerLayer).toContain("'step', ['coalesce', ['get', 'score'], 0]");
+    expect(markerLayer).toContain("matchColourExpression('score')");
     expect(script).toContain('Where are we going today, ${profile.name}?');
     expect(script).toContain('Trails ranked for ${profile.name}\\u2019s needs');
     expect(script).not.toContain('trails scored`');
@@ -409,22 +409,19 @@ describe('map-first returning homepage layout contract', () => {
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     const trailScript = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
     expect(script).toMatch(/id: 'trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script).toMatch(/id: 'guest-trail-paths-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).toMatch(/id: 'trail-paths-casing'[\s\S]*?minzoom: 7[\s\S]*?'line-width': \['interpolate'[\s\S]*?10, 8[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script).toMatch(/id: 'guest-trail-paths-casing'[\s\S]*?'line-width': \['interpolate'[\s\S]*?10, 7[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     // Halo is a white casing beneath the raster now, not a cream halo above it.
     expect(script).toMatch(/id: 'trail-paths-orma-halo'[\s\S]*?'line-color': '#FFFFFF'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-opacity': 0\.55[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).not.toContain("id: 'trail-paths-match-outline'");
-    expect(script).toMatch(/id: 'guest-trail-paths-orma-line'[\s\S]*?'line-color': \[[\s\S]*?'low-risk', '#4A7856'[\s\S]*?'moderate', '#C98A2E'[\s\S]*?'caution', '#9C3A25'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script).toContain("guestMapInstance.moveLayer('waymarked-hiking-layer', guestFirstLabel.id)");
+    // The guest map is coloured by match score against the medium-dog profile,
+    // not by the trail's safety level, green/amber/red has one meaning now.
     expect(script).not.toContain("trailMapInstance.moveLayer('waymarked-hiking-layer', firstLabelLayer.id)");
     // The selected route is now a zoom-scaled cased pair from map-style.js.
     expect(trailScript).toContain('ORMAMapStyle.addRouteLine(map, {');
     expect(trailScript).toMatch(/id: 'other-trails-line'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     // Both homepage maps now share one Waymarked treatment instead of two
     // hand-tuned desaturation blocks that greyed the network into mush.
-    expect(script).toContain('ORMAMapStyle.addWaymarkedHiking(guestMapInstance');
     expect(script).toContain('ORMAMapStyle.addWaymarkedHiking(trailMapInstance');
     expect(script).not.toContain("'raster-saturation': -1");
     expect(script).not.toContain("'raster-contrast': 0.20");
@@ -441,5 +438,79 @@ describe('map-first returning homepage layout contract', () => {
     expect(mapStyle).toContain("'raster-resampling': 'linear'");
     expect(mapStyle).toContain("'raster-saturation': 0");
     expect(mapStyle).toContain('14, 0.88');
+  });
+});
+
+// Every trail that carries a shade figure is unreviewed for the heat category:
+// 23 hold a value and none is curated. SCORING.md already rules on that case, so
+// the card follows it rather than inventing a second standard -- a caution is
+// stated in words, reassurance is not stated at all.
+describe('shade labels only speak where the evidence rule allows', () => {
+  const context = () => loadHomepageContext([]);
+
+  test('low shade becomes a caution in words', () => {
+    const ctx = context();
+    expect(ctx.liShadeLabel(5)).toBe('little shade');
+    expect(ctx.liShadeLabel(19)).toBe('little shade');
+    expect(ctx.liShadeLabel(20)).toBe('limited shade');
+    expect(ctx.liShadeLabel(35)).toBe('limited shade');
+  });
+
+  test('substantial shade is never promised on an unreviewed route', () => {
+    const ctx = context();
+    // 70% is the engine's "substantial shade" positive. Saying so on a route
+    // nobody reviewed reads as a promise, so the measurement stands alone.
+    expect(ctx.liShadeLabel(70)).toBe('70% shade');
+    expect(ctx.liShadeLabel(70)).not.toContain('shaded');
+  });
+
+  test('the bands are the engine’s own, so card and score agree', () => {
+    const ctx = context();
+    // trail.shade.very-low < 20, trail.shade.low < 40, trail.shade.good >= 60.
+    expect(ctx.liShadeLabel(19)).not.toBe(ctx.liShadeLabel(20));
+    expect(ctx.liShadeLabel(39)).not.toBe(ctx.liShadeLabel(40));
+  });
+
+  test('an unknown shade figure says nothing at all', () => {
+    const ctx = context();
+    expect(ctx.liShadeLabel(undefined)).toBeNull();
+    expect(ctx.liShadeLabel(null)).toBeNull();
+    expect(ctx.liRowMeta({ distance:5, elevation:200, hours:'2' })).not.toContain('shade');
+  });
+
+  test('the row carries the label alongside the measured facts', () => {
+    const ctx = context();
+    expect(ctx.liRowMeta({ distance:7.5, elevation:150, hours:'2', shadeCoverage:10 }))
+      .toBe('7.5 km · 150 m climb · 2 h · little shade');
+  });
+});
+
+// Exposure under the same rule as shade, and it is SCORING.md's own example:
+// "no exposed section is recorded" reads as a safety claim when it only means
+// nobody looked. Three trails carry exposure true and none is curated, but it
+// is the heaviest caution the engine has, so those three should say it.
+describe('exposure is named when present and never denied when absent', () => {
+  const context = () => loadHomepageContext([]);
+
+  test('an exposed route says so', () => {
+    expect(context().liExposureLabel(true)).toBe('exposed');
+  });
+
+  test('an unexposed route makes no claim about it', () => {
+    const ctx = context();
+    // trail.exposure.none-known is a positive, and the route is unreviewed.
+    expect(ctx.liExposureLabel(false)).toBeNull();
+    expect(ctx.liRowMeta({ distance:4, exposure:false })).not.toContain('expos');
+  });
+
+  test('unknown exposure says nothing rather than none', () => {
+    const ctx = context();
+    expect(ctx.liExposureLabel(undefined)).toBeNull();
+    expect(ctx.liExposureLabel(null)).toBeNull();
+  });
+
+  test('the gravest caution reads first when a row carries both', () => {
+    expect(context().liRowMeta({ distance:3.95, elevation:10, hours:'1', exposure:true, shadeCoverage:10 }))
+      .toBe('3.95 km · 10 m climb · 1 h · exposed · little shade');
   });
 });

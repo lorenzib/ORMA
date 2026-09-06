@@ -1,0 +1,249 @@
+{
+  "contractVersion": "1.0.0",
+  "valley": "Maurienne",
+  "trailCount": 18,
+  "categoriesNeeded": {
+    "water": 18,
+    "heat": 18,
+    "exposure": 18,
+    "livestock": 18,
+    "surfaceHazards": 18,
+    "access": 18
+  },
+  "canCloseHere": [
+    "livestock",
+    "access"
+  ],
+  "needsPerTrailEvidence": [
+    "water",
+    "heat",
+    "exposure",
+    "surfaceHazards"
+  ],
+  "trails": [
+    {
+      "id": "osm-10539302",
+      "name": "Sentier éco-sylve de Poingt-Ravier",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12118490",
+      "name": "B05 - Le Balcon des Plagnes",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12121346",
+      "name": "B08 - Le tour des hameaux de Montandré, Champessuit et Grenis",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12121548",
+      "name": "B02 - Le tour de l'Armélaz",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12121798",
+      "name": "EN02 - Le terroir de Serpolière",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12127424",
+      "name": "EN04 - Au fil de l'Arvan",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12745924",
+      "name": "Circuit des escaliers",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-14375158",
+      "name": "Crêt de la Parenche",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-14376573",
+      "name": "Crêt de Talière",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-14377007",
+      "name": "Route du Lac",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-14378946",
+      "name": "Lac de Pramol",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-14379010",
+      "name": "Croix de Pralognan",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-14379937",
+      "name": "Albannette petite boucle",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-14381584",
+      "name": "Beaumollard",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-14381788",
+      "name": "Marmottes",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-14381930",
+      "name": "La Plagne",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-16490407",
+      "name": "Circuit des Sallanches",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-19541366",
+      "name": "Lac Blanc",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "",
+      "url": "",
+      "categories": [],
+      "note": ""
+    }
+  ]
+}

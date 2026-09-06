@@ -1,0 +1,67 @@
+{
+  "contractVersion": "1.0.0",
+  "valley": "Val Gardena",
+  "trailCount": 3,
+  "categoriesNeeded": {
+    "water": 3,
+    "heat": 3,
+    "exposure": 3,
+    "surfaceHazards": 3,
+    "livestock": 2,
+    "access": 2
+  },
+  "canCloseHere": [
+    "livestock",
+    "access"
+  ],
+  "needsPerTrailEvidence": [
+    "water",
+    "heat",
+    "exposure",
+    "surfaceHazards"
+  ],
+  "trails": [
+    {
+      "id": "seceda",
+      "name": "Seceda Ridge Trail",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "surfaceHazards"
+      ]
+    },
+    {
+      "id": "sentiero-del-trenino",
+      "name": "Sentiero del Trenino",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11814834",
+      "name": "Geotrail Bula - Pufels - Bulla",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "",
+      "url": "",
+      "categories": [],
+      "note": ""
+    }
+  ]
+}

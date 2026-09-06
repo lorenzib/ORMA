@@ -1,5 +1,5 @@
 /**
- * homepage-search.js — controller for the redesigned logged-out homepage
+ * homepage-search.js, controller for the redesigned logged-out homepage
  * (search-first hero + live suggestions + consolidated filters + dog
  * mini-wizard), ported from the Claude Design prototype
  * "ORMA Homepage - final.dc.html" and wired to REAL data + scoring:
@@ -112,9 +112,54 @@
     return PRESETS[state.dog] || PRESETS.medium;
   }
 
+  // The list is ranked for right now when a forecast has arrived, and exactly
+  // as before when one has not: forTrail returns undefined, and the engine then
+  // reports conditions as not included -- the same answer the trail page gives,
+  // so the two screens cannot disagree about the same trail.
+  function conditionsFor(t) {
+    var area = window.DoloPawsHomeConditions;
+    return area && typeof area.forTrail === 'function' ? area.forTrail(t) : undefined;
+  }
+
   function scoreOf(t) {
-    try { return scoreTrail(t, effectiveOverrides(activeProfile(), null)); }
+    try { return scoreTrail(t, effectiveOverrides(activeProfile(), null), conditionsFor(t)); }
     catch (e) { return 0; }
+  }
+
+  function paintToday() {
+    var el = document.getElementById('liToday');
+    if (!el) return;
+    var area = window.DoloPawsHomeConditions;
+    var band = area && typeof area.band === 'function' ? area.band() : null;
+    if (!band) { el.hidden = true; return; }
+    var title = document.getElementById('liTodayTitle');
+    var detail = document.getElementById('liTodayDetail');
+    // A signed-in owner sees their own dog here. dogMeta() is the guest preview
+    // preset, which would greet Teo's owner as "Medium dog".
+    var signedIn = typeof currentProfileForAdjust !== 'undefined' && currentProfileForAdjust
+      ? currentProfileForAdjust.name : null;
+    var who = signedIn || (dogMeta() || {}).name;
+    if (title) title.textContent = who ? 'Best for ' + who + ', right now' : 'Best right now';
+    if (detail) detail.textContent = band.detail;
+    el.setAttribute('data-tone', band.tone);
+    el.hidden = false;
+  }
+
+  // One request for the middle of the loaded catalogue. Each trail's own
+  // altitude corrects it before it reaches a score.
+  function loadToday() {
+    var area = window.DoloPawsHomeConditions;
+    if (!area || typeof area.load !== 'function' || typeof trails === 'undefined' || !Array.isArray(trails)) return;
+    var lat = 0, lng = 0, seen = 0;
+    trails.forEach(function (t) {
+      if (typeof t.lat === 'number' && typeof t.lng === 'number') { lat += t.lat; lng += t.lng; seen += 1; }
+    });
+    if (!seen) return;
+    area.load(lat / seen, lng / seen).then(function (ok) {
+      if (!ok) return;
+      paintToday();
+      renderAll();
+    });
   }
 
   function tier(s) {
@@ -820,6 +865,7 @@
     setupStatic();
     bind();
     renderAll();
+    loadToday();
     // Deep link from the onboarding flow's final CTA: open the dog
     // mini-wizard straight away.
     if (new URLSearchParams(window.location.search).get('wizard') === '1') openWizard();

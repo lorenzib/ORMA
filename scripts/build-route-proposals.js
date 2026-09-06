@@ -11,7 +11,7 @@ const proposals = [
     input: 'tre-cime-official.gpx', output: 'tre-cime-classic.geojson',
     properties: {
       proposalId: 'tre-cime-classic-101-105',
-      name: 'Classic Tre Cime circuit — trails 101/105',
+      name: 'Classic Tre Cime circuit, trails 101/105',
       sourceUrl: 'https://www.trecimetrek.it/wp-content/uploads/geodata/gpx/tre_cim_di.gpx',
       sourceAuthority: 'official-destination-route-portal',
       retrievedAt: '2026-08-18',
@@ -21,7 +21,7 @@ const proposals = [
     input: 'tre-cime-monte-paterno-official.gpx', output: 'tre-cime-monte-paterno.geojson',
     properties: {
       proposalId: 'tre-cime-monte-paterno-101-104-105',
-      name: 'Extended Tre Cime and Monte Paterno circuit — trails 101/104/105',
+      name: 'Extended Tre Cime and Monte Paterno circuit, trails 101/104/105',
       sourceUrl: 'https://www.trecimetrek.it/wp-content/uploads/geodata/gpx/gir_del_tre.gpx',
       sourceAuthority: 'official-destination-route-portal',
       retrievedAt: '2026-08-18',

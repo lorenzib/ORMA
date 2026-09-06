@@ -254,3 +254,34 @@ describe('Lago di Carezza offline package', () => {
     expect(controller).toContain("tr('offlinePanel.remove.removing'");
   });
 });
+
+describe('OFF package revisions follow the packaged bytes', () => {
+  const builder = fs.readFileSync(path.join(__dirname, 'scripts', 'build-offline-manifest.js'), 'utf8');
+
+  test('a rebuild that changes no byte keeps the revision and the build stamp', () => {
+    // The physical device-test gates are tied to the revision, so a cosmetic
+    // bump silently invalidates QA evidence that is still valid. Twice today a
+    // scoringVersion stamp moved the revision without a single downloadable
+    // byte changing.
+    expect(builder).toContain('function sameBytes(');
+    expect(builder).toContain('version:unchanged ? previous.version : config.version');
+    expect(builder).toContain('generatedAt:unchanged && previous.generatedAt');
+  });
+
+  test('changed bytes under an unchanged revision are refused, not published', () => {
+    // The opposite failure is worse: replacing what people already downloaded
+    // while keeping the label they downloaded it under.
+    expect(builder).toContain('packaged bytes changed but the revision is still');
+    expect(builder).toContain('process.exit(1)');
+  });
+
+  test('both shipped manifests record a revision and a byte total', () => {
+    for(const id of ['lago-carezza', 'alpe-siusi']){
+      const manifest = JSON.parse(
+        fs.readFileSync(path.join(__dirname, 'offline', 'packages', id, 'manifest.json'), 'utf8'));
+      expect(manifest.version).toMatch(/^\d{4}\.\d{2}\.\d{2}-beta\.\d+$/);
+      expect(manifest.packageBytes).toBe(
+        manifest.resources.reduce((total, item) => total + item.bytes, 0));
+    }
+  });
+});

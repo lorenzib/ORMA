@@ -57,6 +57,18 @@
         "/Users/benedettalorenzi/Documents/GitHub/dolopaws/dist/app"
       ],
       "port": 4177
+    },
+    {
+      "name": "delcheck",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4183",
+        "--directory",
+        "/private/tmp/claude-502/-Users-benedettalorenzi-Documents-GitHub-dolopaws/21e8c0cd-cc45-443c-91a8-a2296c25bc24/scratchpad/wt-del"
+      ],
+      "port": 4183
     }
   ]
 }

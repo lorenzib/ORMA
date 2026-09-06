@@ -20,7 +20,7 @@
  * direction, dog-specific notes) are left out or honestly marked unverified.
  * Every entry carries curated:false and its Waymarked Trails link.
  *
- * Output: osm-trails-data.js — loaded AFTER trails-data.js, it appends to the
+ * Output: osm-trails-data.js, loaded AFTER trails-data.js, it appends to the
  * trails array. trails-data.js stays the hand-curated single source of truth
  * and is never touched by this script.
  *
@@ -187,13 +187,13 @@ function median3(values) {
 
 function computeGainAndGrade(samples, elevations) {
   // SUSTAINED grade, not point-max. The old point-max (any ~50 m segment
-  // ≥18%) rated two-thirds of the catalog Caution — one short ramp tarred
+  // ≥18%) rated two-thirds of the catalog Caution, one short ramp tarred
   // whole family loops. A safety rating should describe what the trail
   // sustains, so:
   //   1. median-3 smoothing (elevation-API spikes: real trails don't drop
   //      97 m and climb back in 300 m),
   //   2. grade measured over 0.25–0.8 km windows only,
-  //   3. windows must exceed a 30 m noise floor AND be credible — no
+  //   3. windows must exceed a 30 m noise floor AND be credible, no
   //      segment can rise/fall more than the whole trail does,
   //   4. backstop: the trail-wide average grade, so long uniform ramps
   //      (steep on average, never extreme in one window) still rate honestly.
@@ -356,14 +356,12 @@ function describeTerrain(surfaces, totalKm) {
   const grouped = {};
   let taggedKm = 0;
   for (const [key, km] of Object.entries(surfaces)) {
-    // Unknown values are mapper free-text ("una", typos, local slang) —
-    // bucket them honestly instead of parroting garbage into the UI.
+    // Unknown values are mapper free-text ("una", typos, local slang), // bucket them honestly instead of parroting garbage into the UI.
     const label = SURFACE_LABELS[key] || 'other surfaces';
     grouped[label] = (grouped[label] || 0) + km;
     taggedKm += km;
   }
-  // Surface tags with ~zero measured length would divide by zero ("NaN%") —
-  // treat them the same as having no usable surface data at all.
+  // Surface tags with ~zero measured length would divide by zero ("NaN%"), // treat them the same as having no usable surface data at all.
   if (taggedKm <= 0.01) return { text: 'Surface not yet field-verified', rocky: false, coverage: 0 };
   const sorted = Object.entries(grouped).sort((a, b) => b[1] - a[1]);
   const top = sorted.slice(0, 3).map(([label, km]) => `${label} (${Math.round((km / taggedKm) * 100)}%)`);
@@ -377,7 +375,7 @@ function describeTerrain(surfaces, totalKm) {
 }
 
 // For loops with elevation data: does the route climb more gently as-is or
-// reversed? Returns { reverse: bool, note: string } — computed, not opinion.
+// reversed? Returns { reverse: bool, note: string }, computed, not opinion.
 function pickGentlerDirection(samples, elevations) {
   const grade = (dir) => {
     let maxG = 0;
@@ -399,7 +397,7 @@ function pickGentlerDirection(samples, elevations) {
   if (fwd < rev * 0.85) {
     return { reverse: false, note: 'Direction shown climbs more gradually (computed from elevation data).' };
   }
-  return { reverse: false, note: null }; // symmetric — no recommendation
+  return { reverse: false, note: null }; // symmetric, no recommendation
 }
 
 async function main() {
@@ -412,7 +410,7 @@ async function main() {
     accessIndex = buildIndex(access.features);
     console.log(`[promote] ${access.features.length} access points loaded.`);
   } catch {
-    console.warn('[promote] No access-points.geojson — start points fall back to route geometry.');
+    console.warn('[promote] No access-points.geojson, start points fall back to route geometry.');
   }
 
   const waterIndex = buildIndex(water.features);
@@ -425,34 +423,33 @@ async function main() {
 
   // Relations excluded from import. Two reasons, marked per entry:
   // - verified: hand-verified and moved into trails-data.js (skip = no duplicate)
-  // - BANNED: dogs are not allowed on the ground (protected areas etc.) —
-  //   these must never appear on a dog-trail site, imported or otherwise.
+  // - BANNED: dogs are not allowed on the ground (protected areas etc.), //   these must never appear on a dog-trail site, imported or otherwise.
   const PROMOTED_RELATIONS = new Set([
-    3982382, // Circuit Béatrice de Savoie — verified 2026-07-14
-    6250300, // Boucle du Lac Vert (Passy) — verified 2026-07-14
-    9933643, // Le Lac Vert (La Plagne) — verified 2026-07-14
-    10116283, // Itinéraire de découverte historique (Plateau des Glières) — verified 2026-07-14
-    10116380, // Itinéraire découverte de la nature (Plateau des Glières) — verified 2026-07-14
-    20347406, // Sentier des Patriotes (Plateau des Glières) — verified 2026-07-14
-    11517208, // La Croix des Salles (Megève/Combloux) — verified 2026-07-14
-    14987412, // Sentier du Four (Arbusigny) — enriched import in trails-data.js, still curated:false
-    18055492, // Le Mont d'Arbois - Mont Joux (Megève) — verified 2026-07-14
-    14864704, // Boucle du Taillefer (Duingt) — verified 2026-07-14
-    20302682, // BANNED: Sentier découverte de Bellevaux (Bauges) — inside RNCFS des Bauges, dogs prohibited even on leash (removed 2026-07-14)
-    14095296, // Les Marais d'Albens (Entrelacs) — verified 2026-07-14
-    16322228, // Boucle du Marais des Chassettes (Challes-les-Eaux) — verified 2026-07-14
-    16363583, // Le Marais de Pré Lombard (La Motte-Servolex) — verified 2026-07-14, loop rebuilt
-    16395076, // Boucle du Lac de la Thuile — verified 2026-07-14
-    19153189, // Le Belvédère (Saint-Pierre-d'Albigny) — verified 2026-07-14
-    15591346, // Sentier des Buis (Montmélian) — verified 2026-07-14
-    16365005, // La Galoppaz par la Combe Servenne — enriched import, curated:false, loop rebuilt
-    16395059, // REMOVED: Colombier par la Fullie et la Cochette — fiches strongly advise against dogs even leashed (patous, exposed ridge); removed 2026-07-14
+    3982382, // Circuit Béatrice de Savoie, verified 2026-07-14
+    6250300, // Boucle du Lac Vert (Passy), verified 2026-07-14
+    9933643, // Le Lac Vert (La Plagne), verified 2026-07-14
+    10116283, // Itinéraire de découverte historique (Plateau des Glières), verified 2026-07-14
+    10116380, // Itinéraire découverte de la nature (Plateau des Glières), verified 2026-07-14
+    20347406, // Sentier des Patriotes (Plateau des Glières), verified 2026-07-14
+    11517208, // La Croix des Salles (Megève/Combloux), verified 2026-07-14
+    14987412, // Sentier du Four (Arbusigny), enriched import in trails-data.js, still curated:false
+    18055492, // Le Mont d'Arbois - Mont Joux (Megève), verified 2026-07-14
+    14864704, // Boucle du Taillefer (Duingt), verified 2026-07-14
+    20302682, // BANNED: Sentier découverte de Bellevaux (Bauges), inside RNCFS des Bauges, dogs prohibited even on leash (removed 2026-07-14)
+    14095296, // Les Marais d'Albens (Entrelacs), verified 2026-07-14
+    16322228, // Boucle du Marais des Chassettes (Challes-les-Eaux), verified 2026-07-14
+    16363583, // Le Marais de Pré Lombard (La Motte-Servolex), verified 2026-07-14, loop rebuilt
+    16395076, // Boucle du Lac de la Thuile, verified 2026-07-14
+    19153189, // Le Belvédère (Saint-Pierre-d'Albigny), verified 2026-07-14
+    15591346, // Sentier des Buis (Montmélian), verified 2026-07-14
+    16365005, // La Galoppaz par la Combe Servenne, enriched import, curated:false, loop rebuilt
+    16395059, // REMOVED: Colombier par la Fullie et la Cochette, fiches strongly advise against dogs even leashed (patous, exposed ridge); removed 2026-07-14
   ]);
 
   for (const [n, feature] of routes.features.entries()) {
     const p = feature.properties;
     if (PROMOTED_RELATIONS.has(Number(p.osm_relation))) {
-      console.log(`[promote] Skipping ${p.name} (${p.osm_relation}) — already verified in trails-data.js.`);
+      console.log(`[promote] Skipping ${p.name} (${p.osm_relation}), already verified in trails-data.js.`);
       continue;
     }
     const isLoop = p.loop === true || p.loop === 'true';
@@ -541,7 +538,7 @@ async function main() {
       rifugi,
       startPoint: { lat: pts[0][0], lng: pts[0][1], label: startLabel },
       desc: `${isLoop ? 'A' : 'An'} ${totalKm} km ${isLoop ? 'loop' : 'route'} near ${nearestLocality(pts[0][0], pts[0][1])}, imported from the OpenStreetMap hiking network${p.ref ? ` (trail ${p.ref})` : ''}. Passed automated dog-suitability screening: no via ferrata, ladders, or alpine-grade (T3+) sections on record.${directionNote ? ' ' + directionNote : ''}`,
-      tips: 'Imported route — elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.',
+      tips: 'Imported route, elevation, distance, mapped fountains and rifugi come from OpenStreetMap data. This trail has not been field reviewed by ORMA; exposure, shade, livestock and current conditions remain unknown. Check conditions locally.',
       ...(segments > 1 ? { osmGeometryGaps: segments - 1 } : {})
     };
     if (p.leash) entry.leash = p.leash;
@@ -549,7 +546,7 @@ async function main() {
     entries.push(entry);
   }
 
-  const banner = '// AUTO-GENERATED by scripts/promote-osm-trails.js — do not edit by hand.\n'
+  const banner = '// AUTO-GENERATED by scripts/promote-osm-trails.js, do not edit by hand.\n'
     + '// Curated trails live in trails-data.js; this file appends OSM-imported trails.\n'
     + '// Data: © OpenStreetMap contributors (ODbL); elevation: Open-Meteo (non-commercial).\n';
   const js = `${banner}(function () {\n`

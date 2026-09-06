@@ -99,14 +99,14 @@ Required repository variables:
 - `ORMA_WORKER_AUTOMATION_ENABLED=true`
 - `ORMA_CAMPAIGN_AUTOMATION_ENABLED=true`
 - `ORMA_HAZARD_AUTOMATION_ENABLED=true`
-- `ORMA_NEW_TRAIL_AUTOMATION_ENABLED=true`
-- `ORMA_IMAGE_AUTOMATION_ENABLED=true`
-- `ORMA_STRATEGY_AUTOMATION_ENABLED=true`
-- `ORMA_NEWSLETTER_ENABLED=false` while trail, collection and website content
-  is being brought up to standard. Change it to `true` only after the CEO
-  explicitly reopens the Newsletter workflow.
-- `ORMA_EDITORIAL_ENABLED=false` during the MVP catalogue-and-coverage phase.
-- `ORMA_ANALYST_ENABLED=false` during the MVP catalogue-and-coverage phase.
+- `ORMA_NEW_TRAIL_AUTOMATION_ENABLED=true`, kept inert by
+  `ORMA_NEW_TRAIL_INTAKE_RESUMED`, which stays unset while the trail-photo and
+  ORMA Verified backfills run.
+
+Trail-photo coverage no longer has an activation variable. It runs inside every
+worker pass and stops queueing on its own once every published trail has a
+photo, so `ORMA_IMAGE_AUTOMATION_ENABLED` is obsolete and can be deleted from
+the repository variables.
 
 Website copy review is parked during the MVP catalogue-and-coverage phase.
 Existing packets, including Safety Library packets, remain retained in their

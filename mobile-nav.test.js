@@ -221,7 +221,7 @@ describe('shared navigation hardening', () => {
     expect(pages.length).toBeGreaterThan(150);
     pages.forEach(file => {
       expect(fs.readFileSync(file, 'utf8')).toMatch(
-        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=(?:20260823-[12]|20260831-1|20260901-[245])"/
+        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=(?:20260823-[12]|20260831-1|20260901-[245]|20260905-[123])"/
       );
     });
   });
@@ -231,7 +231,7 @@ describe('shared navigation hardening', () => {
     footer.className = 'site-footer hp-footer';
     footer.innerHTML = `
       <div class="hp-footer-grid">
-        <div><p class="hp-footer-blurb">ORMA</p><div class="hp-footer-get"><div class="hp-footer-h">Get the app</div><div class="hp-footer-apps"><a href="about.html"><img src="app-store-badge.svg" alt="Download on the App Store"></a><a href="about.html"><img src="google-play-badge.svg" alt="Get it on Google Play"></a></div><p class="hp-footer-appnote">Coming soon</p></div></div>
+        <div><p class="hp-footer-blurb">ORMA</p><div class="hp-footer-get"><div class="hp-footer-h">Get the app</div><div class="hp-footer-apps"><button type="button" class="hp-footer-install" data-orma-install hidden>Add ORMA to your home screen</button></div><p class="hp-footer-appnote">Add ORMA to your home screen from your browser menu for a full-screen map.</p></div></div>
         <div><div class="hp-footer-h">Trails</div><div class="hp-footer-links"><a href="../browse-trails.html">Browse</a></div></div>
         <div><div class="hp-footer-h">Caring for your dog</div><div class="hp-footer-links"></div></div>
         <div><div class="hp-footer-h">Your walks</div><div class="hp-footer-links"></div></div>
@@ -244,14 +244,15 @@ describe('shared navigation hardening', () => {
 
     expect([...footer.querySelectorAll('.hp-footer-grid > div > .hp-footer-h')].map(item => item.textContent))
       .toEqual(['Explore','Dog care','Your walks','ORMA']);
-    expect(footer.querySelector('.hp-footer-appnote').textContent).toBe('iPhone and Android apps coming soon.');
-    expect(footer.querySelectorAll('.hp-footer-apps a')).toHaveLength(2);
-    expect([...footer.querySelectorAll('.hp-footer-apps a')].every(link =>
-      link.dataset.comingSoon === 'true' &&
-      link.getAttribute('aria-disabled') === 'true' &&
-      !link.hasAttribute('href')
-    )).toBe(true);
-    expect(footer.querySelector('.hp-footer-grid > div:last-child .hp-footer-newsletter')).not.toBeNull();
+    expect(footer.querySelector('.hp-footer-appnote').textContent).toMatch(/Add ORMA to your home screen/);
+    // No store listing exists, so there is nothing to link to. The install
+    // button stays hidden until a browser offers a real prompt.
+    expect(footer.querySelectorAll('.hp-footer-apps a')).toHaveLength(0);
+    const install = footer.querySelector('[data-orma-install]');
+    expect(install).not.toBeNull();
+    expect(install.hidden).toBe(true);
+    // The newsletter lane is parked, so the link pointed at About. It is gone.
+    expect(footer.querySelector('.hp-footer-newsletter')).toBeNull();
     expect([...footer.querySelectorAll('.hp-footer-legal a')].map(link => link.textContent)).toEqual(['Privacy','Terms']);
     expect(footer.querySelector('.hp-footer-base > .hp-footer-social-row')).not.toBeNull();
     expect(footer.querySelector('.hp-footer-connect')).toBeNull();

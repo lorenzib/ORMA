@@ -18,9 +18,6 @@ describe('shared website content canvas', () => {
     expect(document.querySelector('.collections-intro').classList.contains('content-canvas')).toBe(true);
     expect(document.querySelector('.collections-wrap').classList.contains('content-canvas')).toBe(true);
 
-    const detailScript = read('collection-detail.js');
-    expect(detailScript).toContain('collection-detail-hero__overlay content-canvas');
-    expect(detailScript).toContain('collection-detail-content content-canvas');
   });
 
   test.each([

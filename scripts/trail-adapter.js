@@ -67,7 +67,7 @@ function geometryStats(path){
 function parseDurationMinutes(value){
   if(finite(value) !== null) return Math.round(value * 60);
   if(typeof value !== 'string') return null;
-  const normalized = value.replace(/,/g, '.').replace(/[–—]/g, '-');
+  const normalized = value.replace(/,/g, '.').replace(/[–, ]/g, '-');
   const clock = normalized.match(/^\s*(\d{1,2}):(\d{2})\s*$/);
   if(clock) return Number(clock[1]) * 60 + Number(clock[2]);
   const numbers = normalized.match(/\d+(?:\.\d+)?/g);

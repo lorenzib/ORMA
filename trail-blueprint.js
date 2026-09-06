@@ -1,5 +1,5 @@
 /**
- * trail-blueprint.js — the "answer-first" layer of the trail page.
+ * trail-blueprint.js, the "answer-first" layer of the trail page.
  *
  * Fills the new blueprint sections WITHOUT touching trail.js logic:
  *   - Verified/Imported seal in the hero
@@ -117,7 +117,7 @@
   // older answer cards stay out of the visual flow.
   if (strip) strip.hidden = true;
 
-  // Card 1 — Right for your dog? Three honest states.
+  // Card 1, Right for your dog? Three honest states.
   function paintDogCard() {
     const title = $('qaDogTitle'), sub = $('qaDogSub');
     if (!title || !sub) return;
@@ -160,7 +160,7 @@
   }
   paintDogCard();
 
-  // Card 3 — Getting there. Start point label + directions link.
+  // Card 3, Getting there. Start point label + directions link.
   (function paintAccessCard() {
     const card = $('qaAccess'), title = $('qaAccessTitle'), sub = $('qaAccessSub');
     if (!card) return;
@@ -208,7 +208,7 @@
     if (seeAll && (t.valley || t.area)) seeAll.textContent = 'See all in ' + (t.valley || t.area) + ' \u2192';
 
     // Personalise: retitle the section and fill each pick's real match %
-    // chip — same scoreTrail() as everywhere else.
+    // chip, same scoreTrail() as everywhere else.
     function personalise() {
       if (typeof scoreTrail !== 'function' || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
       window.DoloPawsAuth.getDogProfile().then(profile => {
@@ -447,6 +447,16 @@
     const personalScore = $('personalScore');
     const fallbackPaw = svg('paw');
     if (avatar) avatar.innerHTML = fallbackPaw;
+    // The forecast is fetched separately and lands whenever it lands, so the
+    // score is painted either with today's conditions or explicitly without
+    // them -- never with a stale snapshot dressed up as live. scoringConditions
+    // applies the shared thirty-minute expiry.
+    function conditionsForScoring() {
+      const weather = window.DoloPawsWeatherWindow;
+      if (!weather || typeof weather.scoringConditions !== 'function') return undefined;
+      return weather.scoringConditions(window.DoloPawsCurrentConditions);
+    }
+
     function paintPersonalMatch() {
       if (typeof recommendTrail !== 'function' || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
       window.DoloPawsAuth.getDogProfile().then(profile => {
@@ -454,7 +464,8 @@
         const name = profile.name || 'your dog';
         const recommendation = recommendTrail(
           t,
-          typeof effectiveOverrides === 'function' ? effectiveOverrides(profile, null) : profile
+          typeof effectiveOverrides === 'function' ? effectiveOverrides(profile, null) : profile,
+          conditionsForScoring()
         );
         const score = recommendation.score;
         // Reference action card: 96px conic ring (#4a7c59 on #e6e0cf track),
@@ -491,6 +502,9 @@
     if (window.DoloPawsAuth) paintPersonalMatch();
     else window.addEventListener('dolopaws-auth-ready', paintPersonalMatch, { once: true });
     window.addEventListener('dolopaws-auth-changed', paintPersonalMatch);
+    // The forecast usually arrives after the first paint. Without this the card
+    // keeps a score calculated before the day was known.
+    window.addEventListener('dolopaws-conditions-ready', paintPersonalMatch);
 
     // Trail description inside the white box
     const descEl = $('matchDescription');
@@ -589,7 +603,7 @@
     box.innerHTML = rows.map(rowMarkup).join('');
   })();
 
-  /* ---- Getting there + getting around — keep travel to the trailhead
+  /* ---- Getting there + getting around, keep travel to the trailhead
      separate from the numbered waymarks used once the walk begins. ----- */
   (function parking() {
     const card = $('td2ParkingCard'), grid = $('td2ParkingGrid'), maps = $('td2MapsLink');
@@ -612,7 +626,8 @@
     const verifiedRouteGuidance = t.routeNumberGuidance && typeof t.routeNumberGuidance === 'object'
       ? t.routeNumberGuidance
       : null;
-    const routeOverview = cardCopy(String(t.desc || '').split(/\n\s*\n/)[0] || '');
+    const routeOverview = cardCopy(String(t.desc || '').split(/\n\s*\n/)[0] || '')
+      .replace(/^\s*route\s+overview\s*:\s*/i, '');
     const guidanceIsLandmarkLed = verifiedRouteGuidance && verifiedRouteGuidance.mode === 'landmarks';
     const routeBadges = routeRefs.length
       ? `<div class="td2-route-ref-list" aria-label="Trail numbers in order">${routeRefs.map((ref, index) =>
@@ -631,8 +646,9 @@
           <li>Stay on trail <b>${esc(routeSwitches[routeSwitches.length - 1].to)}</b> for the final section to the route finish.</li>
         </ol>`
       : '';
+    const noRouteNumbers = '<div class="s"><p><b>Trail numbers:</b> No verified numbered sequence is currently recorded for this route. Follow the mapped ORMA line and local destination signs.</p></div>';
     const routeRefMarkup = verifiedRouteGuidance
-      ? `<div class="s"><p><b>Start:</b> ${esc(verifiedRouteGuidance.start)}</p><p><b>${guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'}:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>${guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'}:</b> ${esc(verifiedRouteGuidance.switches)}</p></div>`
+      ? `${routeBadges}<div class="s"><p><b>Start:</b> ${esc(verifiedRouteGuidance.start)}</p><p><b>${guidanceIsLandmarkLed ? 'Route' : 'Trail numbers and route'}:</b> ${esc(verifiedRouteGuidance.sequence)}</p><p><b>${guidanceIsLandmarkLed ? 'Key turns' : 'Where to switch'}:</b> ${esc(verifiedRouteGuidance.switches)}</p></div>`
       : routeRefs.length
       ? `${routeBadges}${switchGuidance || `<div class="s">${hasSectionOnlyRefs
           ? `${routeRefs.length === 1 ? 'Trail' : 'Trails'} ${esc(routeSequence)} ${routeRefs.length === 1 ? 'is' : 'are'} marked only on the verified section${routeRefs.length === 1 ? '' : 's'} shown on the map. Follow the mapped ORMA line for the full route and confirm destination names at junctions.`
@@ -640,7 +656,7 @@
             ? `Follow waymarked trail <b>${esc(routeRefs[0])}</b> along the mapped hike. No change to another numbered trail is recorded in the current route source; confirm destination names at junctions.`
             : `This hike uses trails ${esc(routeSequence)}, but the exact numbered switch point${routeRefs.length > 2 ? 's are' : ' is'} still awaiting verification. Follow the mapped ORMA line and local destination signs; do not rely on the number sequence alone.`}</div>`}`
       : routeOverview
-        ? `<div class="s"><p><b>Route overview:</b> ${esc(routeOverview)}</p></div>`
+        ? `${noRouteNumbers}<div class="s"><p>${esc(routeOverview)}</p></div>`
         : '';
     const routeCard = {
       ic:'',
@@ -736,6 +752,20 @@
               hourlyTemps:d.hourly && d.hourly.temperature_2m,
             })
             : null;
+          // Today's heat, in the vocabulary the recommendation engine reads.
+          // Until now nothing supplied currentConditions, so the score never
+          // reflected the day it was being read on.
+          if (window.DoloPawsWeatherWindow) {
+            const conditions = window.DoloPawsWeatherWindow.currentConditions({
+              currentTime:d.current.time,
+              temperatureC:d.current.temperature_2m,
+              hourlyTimes:d.hourly && d.hourly.time,
+              hourlyTemps:d.hourly && d.hourly.temperature_2m,
+            });
+            window.DoloPawsCurrentConditions = conditions;
+            window.dispatchEvent(new CustomEvent('dolopaws-conditions-ready', { detail:conditions }));
+          }
+
           const winEl = $('sideCondWindow');
           if (winEl) winEl.innerHTML = window.DoloPawsWeatherWindow
             ? window.DoloPawsWeatherWindow.markup(win)

@@ -11,6 +11,8 @@ async function main(args = process.argv.slice(2)){
   const root = path.resolve(__dirname, '..', '..');
   const outputPath = path.resolve(option(args, '--output', path.join(root, 'backoffice-data', 'catalogue-campaign.json')));
   const statePath = path.join(root, 'backoffice-data', 'catalogue-campaign-state.json');
+  const identityPath = path.join(root, 'backoffice-data', 'route-source-identity.json');
+  const compositesPath = path.join(root, 'backoffice-data', 'route-composites.json');
   const jobLimit = Number(option(args, '--limit', '5'));
   if(!Number.isInteger(jobLimit) || jobLimit < 1 || jobLimit > 25){
     throw new Error('--limit must be an integer between 1 and 25');
@@ -18,8 +20,17 @@ async function main(args = process.argv.slice(2)){
   let ledger = { queuedTrailIds: [], batches: [] };
   try { ledger = JSON.parse(await fs.readFile(statePath, 'utf8')); }
   catch(error){ if(error.code !== 'ENOENT') throw error; }
+  let identity = { checks: {} };
+  try { identity = JSON.parse(await fs.readFile(identityPath, 'utf8')); }
+  catch(error){ if(error.code !== 'ENOENT') throw error; }
+  let composites = { composites: {} };
+  try { composites = JSON.parse(await fs.readFile(compositesPath, 'utf8')); }
+  catch(error){ if(error.code !== 'ENOENT') throw error; }
   const trails = loadProductionTrails(root);
-  const campaign = planCatalogueCampaign(trails, { jobLimit, excludedTrailIds: ledger.queuedTrailIds });
+  const campaign = planCatalogueCampaign(trails, {
+    jobLimit, excludedTrailIds: ledger.queuedTrailIds, identityChecks: identity.checks || {},
+    composites: composites.composites || {},
+  });
   ledger = {
     contractVersion: '1.0.0', updatedAt: campaign.generatedAt,
     queuedTrailIds: [...new Set([...ledger.queuedTrailIds, ...campaign.selectedTrailIds])],
@@ -38,6 +49,8 @@ async function main(args = process.argv.slice(2)){
   console.log(`[campaign] Modern graduation verified: ${campaign.summary.modernGraduationVerified}`);
   console.log(`[campaign] Trail-number guidance verified/outstanding: ${campaign.summary.routeNumberGuidanceVerified}/${campaign.summary.routeNumberGuidanceOutstanding}`);
   console.log(`[campaign] Identity check available: ${campaign.summary.identityCheckQueued}`);
+  console.log(`[campaign] Source identity contradicted: ${campaign.summary.sourceIdentityContradicted}`);
+  console.log(`[campaign] Sourced by an approved composite: ${campaign.summary.sourcedByComposite}`);
   console.log(`[campaign] Source identity required: ${campaign.summary.sourceIdentityRequired}`);
   console.log(`[campaign] Draft Cartographer jobs created: ${campaign.summary.jobsCreated}`);
   campaign.jobs.forEach(job => console.log(`[campaign] ${job.id} · ${job.candidateId} · ${job.action}`));

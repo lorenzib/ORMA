@@ -225,13 +225,7 @@
     for(const request of imagePrItems)decisions.push({id:`image-pr-${request.id}`,kind:'pull-request',stage:'Trail photos · Final website diff',title:request.title||request.trailId,
       description:'The approved trail photo and its rights metadata are in a tested website pull request.',next:'After you merge, the normal website deployment adds the photo to the trail.',
       href:request.publicationPrUrl,actionLabel:'Review photo PR',external:true});
-    if(newTrailItems.length)decisions.push({id:'new-trail-selection',kind:'new-trail',stage:'New Trails · Candidate selection',title:`${plural(newTrailItems.length,'candidate')} ready`,description:'Ranked loop candidates are waiting for selection, parking or rejection.',next:'A selected candidate enters Cartographer verification under the shared 15-trail capacity; it is not published.',href:'new-trail-scouting-desk.html',actionLabel:'Review New Trails'});
-    if(hazardItems.length)decisions.push({id:'hazard-resolution',kind:'hazard',stage:'Existing Trails · Groundskeeper',title:`${plural(hazardItems.length,'warning')} awaiting removal review`,description:'An authoritative warning expired, but ORMA has retained it until you confirm removal.',next:'Your decision updates the protected warning state. The public website remains unchanged until its release integration is approved.',href:'hazard-review-desk.html',actionLabel:'Review warnings'});
-    if(editorialItems.length)decisions.push({id:'editorial-copy',kind:'editorial',stage:'Editorial · Guide copy',title:`${plural(editorialItems.length,'copy packet')} ready`,description:'Compare current and proposed guide copy, edit it directly, then publish or request one revision.',next:'Approval validates and commits only the reviewed guide. A revision returns to the same desk.',href:'editorial-desk.html',actionLabel:'Review copy'});
     if(imageItems.length)decisions.push({id:'editorial-images',kind:'image',stage:'Editorial · Trail photos',title:`${plural(imageItems.length,'trail photo')} ${imageItems.length===1?'needs':'need'} routing`,description:'Upload your photo, choose an owned asset, request licensed sourcing or explicitly prepare an AI option.',next:'The Visual Director returns the exact asset for visual and rights approval before any publishing PR.',href:'image-coverage-desk.html',actionLabel:'Review trail photos'});
-    if(newsletterItem)decisions.push({id:'newsletter-issue',kind:'newsletter',stage:'Newsletter · Complete issue',title:newsletterItem.outputs?.find(output=>output.status==='ready-for-review')?.result?.issueTitle||'One issue ready',description:'Review the complete reader-facing issue, subject options and source links.',next:'Approval hands it to launch-gated Social and any future sending integration. No email is sent automatically.',href:'newsletter-desk.html',actionLabel:'Review issue'});
-    if(analystIdeaItems.length)decisions.push({id:'analyst-opportunities',kind:'analyst',stage:'Analyst · Evidence and opportunity',title:`${plural(analystIdeaItems.length,'opportunity')} needs direction`,description:'Review source-linked evidence separately from ORMA inference, then investigate, send to Designer, park or dismiss.',next:'Only “Send to Designer” authorises a mock-up. No implementation starts.',href:'product-ideas-desk.html',actionLabel:'Review opportunities'});
-    if(analystMockupItems.length)decisions.push({id:'analyst-mockups',kind:'analyst',stage:'Design · Visual prototype gate',title:`${plural(analystMockupItems.length,'prototype')} ready`,description:'Click through the actual proposed screens and inspect the interaction flow.',next:'Approval creates a protected Developer handoff; implementation and Release remain separately gated.',href:'designer-desk.html',actionLabel:'Review prototypes'});
 
     const blockedCandidates=new Set();
     for(const item of dossierItems)if(item.approvalAllowed===false)blockedCandidates.add(item.candidateId||item.reviewId);
@@ -280,5 +274,55 @@
       ],
     };
   }
-  return {buildDashboardModel,dateMs,deriveWorkerHealth,deriveCampaignHealth,latestPublicationState,activityMessage,candidateFromActivity,isPausedSafetyPacket};
+
+  // One row per published trail, across the three lanes that are actually running.
+  // The point is inspection: seeing where 165 trails stand without opening a desk.
+  function buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration}={}){
+    const covered=new Set((imageAudit?.pages||[]).filter(page=>page.coverageState==='covered').map(page=>page.trailId||page.slug));
+    const verified=new Set((verifiedRegistry?.verified||[]).map(item=>item.trailId||item.candidateId).filter(Boolean));
+    const inFlight=new Map();
+    for(const trail of orchestration?.trails||[]){
+      if(trail.trailId&&!verified.has(trail.trailId))inFlight.set(trail.trailId,trail.stage||trail.state||'in verification');
+    }
+    const hazardsByTrail=new Map();
+    for(const hazard of hazards?.hazards||[]){
+      for(const trailId of hazard.trailIds||[]){
+        const current=hazardsByTrail.get(trailId)||[];
+        current.push({title:hazard.title,severity:hazard.severity||'moderate',
+          verificationState:hazard.verificationState||(hazard.origin==='community'?'reported-unverified':'authoritative'),
+          origin:hazard.origin||'feed'});
+        hazardsByTrail.set(trailId,current);
+      }
+    }
+    const rows=(imageAudit?.pages||[]).map(page=>{
+      const id=page.trailId||page.slug;
+      const trailHazards=hazardsByTrail.get(id)||[];
+      return {
+        trailId:id,title:page.title,area:page.area||'',valley:page.valley||'',region:page.region||'',
+        photo:covered.has(id)?'covered':'missing',
+        verified:verified.has(id)?'verified':inFlight.has(id)?'in-progress':'not-started',
+        verificationStage:inFlight.get(id)||null,
+        hazards:trailHazards,
+        hazardState:trailHazards.length
+          ?(trailHazards.some(item=>item.verificationState!=='reported-unverified')?'active':'unconfirmed')
+          :'clear',
+        priority:page.priority||(page.region==='dolomites'?'high':'medium'),
+      };
+    }).sort((a,b)=>
+      (a.photo===b.photo?0:a.photo==='missing'?-1:1)
+      ||(a.region===b.region?0:a.region==='dolomites'?-1:1)
+      ||String(a.valley).localeCompare(String(b.valley))
+      ||String(a.title).localeCompare(String(b.title)));
+    const count=(field,value)=>rows.filter(row=>row[field]===value).length;
+    return {rows,summary:{
+      trails:rows.length,
+      photoCovered:count('photo','covered'),photoMissing:count('photo','missing'),
+      verified:count('verified','verified'),verificationInProgress:count('verified','in-progress'),
+      trailsWithHazards:rows.filter(row=>row.hazards.length).length,
+      unconfirmedHazards:count('hazardState','unconfirmed'),
+      complete:rows.filter(row=>row.photo==='covered'&&row.verified==='verified').length,
+    }};
+  }
+
+  return {buildDashboardModel,buildCoverageGrid,dateMs,deriveWorkerHealth,deriveCampaignHealth,latestPublicationState,activityMessage,candidateFromActivity,isPausedSafetyPacket};
 });

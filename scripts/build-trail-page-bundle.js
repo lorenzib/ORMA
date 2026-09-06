@@ -45,6 +45,7 @@ const SOURCES = [
   'trail-reports.js',
   'veterinary-care.js',
   'trail-route-refs.js',
+  'route-operational-facts.js',
   'trail.js',
   'trail-blueprint.js',
   'trail-detail-ui.js',

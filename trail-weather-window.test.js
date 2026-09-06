@@ -63,3 +63,58 @@ describe('route-aware walking window', () => {
     expect(weatherWindow.formatTime(390)).toBe('06:30');
   });
 });
+
+describe('heat onset and today\'s conditions', () => {
+  // A day that climbs past 28C at 11:00 and cools again in the evening.
+  function day(){
+    const hourlyTimes = [];
+    const hourlyTemps = [];
+    for(let hour = 0; hour < 24; hour += 1){
+      hourlyTimes.push(`2026-07-15T${String(hour).padStart(2, '0')}:00`);
+      hourlyTemps.push(hour < 11 ? 18 + hour * 0.8 : hour < 18 ? 29 : 20);
+    }
+    return { hourlyTimes, hourlyTemps };
+  }
+
+  test('reads the hour heat becomes a problem off the forecast', () => {
+    expect(weatherWindow.heatOnset({ currentTime:'2026-07-15T07:30', ...day() }))
+      .toEqual({ minutes:660, label:'11:00', temperatureC:29 });
+  });
+
+  test('never looks backwards: an hour already past is not a warning', () => {
+    // At 14:00 the 11:00 crossing is history; the next hot hour is now.
+    expect(weatherWindow.heatOnset({ currentTime:'2026-07-15T14:00', ...day() }).label)
+      .toBe('14:00');
+    // After it cools, there is nothing left to warn about today.
+    expect(weatherWindow.heatOnset({ currentTime:'2026-07-15T19:00', ...day() })).toBeNull();
+  });
+
+  test('says nothing rather than inventing an hour', () => {
+    const cool = { hourlyTimes:['2026-07-15T08:00', '2026-07-15T09:00'], hourlyTemps:[12, 14] };
+    expect(weatherWindow.heatOnset({ currentTime:'2026-07-15T07:30', ...cool })).toBeNull();
+    expect(weatherWindow.heatOnset({ currentTime:'2026-07-15T07:30' })).toBeNull();
+    // Mismatched arrays are unusable, not half-usable.
+    expect(weatherWindow.heatOnset({ currentTime:'2026-07-15T07:30', hourlyTimes:['a', 'b'], hourlyTemps:[30] })).toBeNull();
+  });
+
+  test('maps today onto the vocabulary the scorer reads', () => {
+    const forecastDay = day();
+    // Warm now, hot later: the hour is the advice.
+    expect(weatherWindow.currentConditions({ currentTime:'2026-07-15T07:30', temperatureC:23, ...forecastDay }))
+      .toEqual({ status:'known', heatRisk:'moderate', hotFromLabel:'11:00', capturedAt:expect.any(Number) });
+    // Already hot: an hour would be telling someone what they can feel.
+    expect(weatherWindow.currentConditions({ currentTime:'2026-07-15T13:00', temperatureC:30, ...forecastDay }))
+      .toEqual({ status:'known', heatRisk:'high', hotFromLabel:null, capturedAt:expect.any(Number) });
+    expect(weatherWindow.currentConditions({ currentTime:'2026-07-15T07:30', temperatureC:12, ...forecastDay }).heatRisk)
+      .toBe('low');
+    // No reading at all stays 'not-provided', which the engine already
+    // understands as "the score does not include today".
+    expect(weatherWindow.currentConditions({ currentTime:'2026-07-15T07:30' }))
+      .toEqual({ status:'not-provided' });
+  });
+
+  test('reuses the thresholds the conditions card already ships', () => {
+    expect(weatherWindow.WARM_C).toBe(22);
+    expect(weatherWindow.HOT_C).toBe(28);
+  });
+});

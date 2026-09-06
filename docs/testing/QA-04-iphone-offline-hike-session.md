@@ -14,8 +14,8 @@ route field review or Android matrix.
 - Device: iPhone 13 Pro
 - Browser: current Safari
 - Display modes: browser tab and Add to Home Screen
-- Carezza package: `2026.09.04-beta.17`
-- Alpe di Siusi package: `2026.09.04-beta.4`
+- Carezza package: `2026.09.05-beta.21`
+- Alpe di Siusi package: `2026.09.05-beta.8`
 
 Record the installed iOS and Safari versions at test time. Use a familiar,
 low-risk location and do not leave a safe marked path to manufacture an
@@ -69,7 +69,7 @@ direction and walked distance remains independent of route direction.
 | Tester |  |  |
 | iOS / Safari version |  |  |
 | Display mode | Safari tab | Add to Home Screen |
-| Package version | `2026.09.04-beta.17` | `2026.09.04-beta.4` |
+| Package version | `2026.09.05-beta.21` | `2026.09.05-beta.8` |
 | Displayed package size |  |  |
 | Ready offline + self-test | Pass / Fail | Pass / Fail |
 | Airplane open, refresh, close/reopen | Pass / Fail | Pass / Fail |

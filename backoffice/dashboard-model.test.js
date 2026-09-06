@@ -119,12 +119,7 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.campaignHealth).toEqual(expect.objectContaining({state:'healthy',runUrl:'https://github.com/orma/actions/runs/456',message:expect.stringContaining('admitted 2 trail(s)')}));
   });
 
-  test('surfaces New Trail selection and Groundskeeper removal on the CEO overview',()=>{
-    const model=buildDashboardModel({newTrailScouting:{candidates:[{id:'new-a',name:'New A'}]},newTrailReviews:[],hazards:{hazards:[{id:'hazard-a',title:'Snow warning',state:'resolution-review'}]},hazardQueue:{items:[{id:'hazard-a'}]},hazardReviews:[],jobs:[]});
-    expect(model.decisions.map(item=>item.kind)).toEqual(['new-trail','hazard']);
-    expect(model.newTrailProgress).toEqual(expect.objectContaining({candidates:1,waiting:1}));
-    expect(model.groundskeeperProgress).toEqual(expect.objectContaining({waiting:1}));
-  });
+
 
   test('counts autonomous resolution and first-pass editorial jobs as visible agent work',()=>{
     const model=buildDashboardModel({jobs:[
@@ -142,22 +137,7 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.editorialItems).toEqual([ordinary]);expect(model.editorialProgress).toEqual(expect.objectContaining({active:1,waiting:1,pausedSafetyLibrary:true}));
   });
 
-  test('surfaces Newsletter and Analyst gates without double-counting revised mock-ups',()=>{
-    const model=buildDashboardModel({
-      strategyStatus:{summary:{editorialStatus:'active',productStatus:'active'}},
-      newsletterPacket:{generatedAt:'2026-08-20T12:00:00Z',outputs:[{status:'ready-for-review',result:{issueTitle:'Mountain days'}}]},
-      newsletterReviews:[],approvedNewsletters:{issues:[]},
-      productIdeas:{ideas:[{id:'heat-map',title:'Dog heat map',impact:'high'}]},analystReviews:[],
-      productDesigns:{items:[
-        {ideaId:'heat-map',generatedAt:'2026-08-20T12:01:00Z',mockupTitle:'First mock-up'},
-        {ideaId:'heat-map',generatedAt:'2026-08-20T12:02:00Z',mockupTitle:'Revised mock-up'},
-      ]},jobs:[],
-    });
-    expect(model.decisions.map(item=>item.kind)).toEqual(['newsletter','analyst','analyst']);
-    expect(model.newsletterProgress).toEqual(expect.objectContaining({ready:1,approved:0}));
-    expect(model.analystProgress).toEqual(expect.objectContaining({ideas:1,waiting:1,mockups:1}));
-    expect(model.analystMockupItems).toEqual([expect.objectContaining({mockupTitle:'Revised mock-up'})]);
-  });
+
 
   test('keeps preserved Editorial and Analyst work out of the MVP decision queue',()=>{
     const model=buildDashboardModel({
@@ -191,5 +171,86 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.newsletterProgress).toEqual(expect.objectContaining({ready:0,status:'parked until content readiness'}));
     expect(model.newsletterProgress.inFlight).toBe(0);
     expect(model.summary.agentWork).toBe(0);
+  });
+});
+
+describe('orchestration job reads',()=>{
+  const {orchestrationJobIds,orchestrationJobs}=require('./workflows/advance-trail-orchestration');
+
+  const state={trails:[
+    {candidateId:'a',jobIds:['job-1','job-2'],pendingRevisionJobId:'job-3',
+      claimResolution:{water:{attempts:[{jobId:'job-4'},{jobId:'job-2'}]}}},
+    {candidateId:'b',jobIds:['job-5']},
+  ]};
+
+  test('collects every job an orchestrated trail can reference, without duplicates',()=>{
+    expect(orchestrationJobIds(state).sort()).toEqual(['job-1','job-2','job-3','job-4','job-5']);
+  });
+
+  test('reads only the referenced jobs instead of scanning the collection',async()=>{
+    const scanned=[];const fetched=[];
+    const store={
+      listJobs:async statuses=>{scanned.push(statuses);return [];},
+      getJobsByIds:async ids=>{fetched.push(...ids);return ids.map(id=>({id}));},
+    };
+    const jobs=await orchestrationJobs(store,state);
+    expect(scanned).toEqual([]);
+    expect(fetched.sort()).toEqual(['job-1','job-2','job-3','job-4','job-5']);
+    expect(jobs).toHaveLength(5);
+  });
+
+  test('falls back to the status query for stores without id-based fetching',async()=>{
+    const scanned=[];
+    const store={listJobs:async statuses=>{scanned.push(statuses);return [{id:'job-1'}];}};
+    await orchestrationJobs(store,state);
+    expect(scanned[0]).toContain('completed');
+  });
+});
+
+describe('trail coverage grid',()=>{
+  const {buildCoverageGrid}=require('./dashboard-model');
+
+  const imageAudit={pages:[
+    {trailId:'seceda',title:'Seceda Ridge',area:'Val Gardena',valley:'Val Gardena',region:'dolomites',coverageState:'covered'},
+    {trailId:'tre-cime',title:'Tre Cime circuit',area:'Alta Pusteria',valley:'Alta Pusteria – Tre Cime',region:'dolomites',coverageState:'missing'},
+    {trailId:'lac-vert',title:'Boucle du Lac Vert',area:'Haute-Savoie',valley:'',region:'savoy',coverageState:'missing'},
+  ]};
+  const hazards={hazards:[
+    {title:'Storm warning',severity:'severe',trailIds:['tre-cime']},
+    {title:'Unconfirmed: bridge out',origin:'community',verificationState:'reported-unverified',trailIds:['lac-vert']},
+  ]};
+  const verifiedRegistry={verified:[{trailId:'seceda'}]};
+  const orchestration={trails:[{trailId:'tre-cime',stage:'evidence-research'}]};
+
+  test('reports one row per published trail across the three running lanes',()=>{
+    const grid=buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration});
+    expect(grid.rows).toHaveLength(3);
+    const seceda=grid.rows.find(row=>row.trailId==='seceda');
+    expect(seceda).toEqual(expect.objectContaining({photo:'covered',verified:'verified',hazardState:'clear'}));
+    const treCime=grid.rows.find(row=>row.trailId==='tre-cime');
+    expect(treCime).toEqual(expect.objectContaining({photo:'missing',verified:'in-progress',
+      verificationStage:'evidence-research',hazardState:'active'}));
+  });
+
+  test('separates a confirmed hazard from an unconfirmed hiker report',()=>{
+    const grid=buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration});
+    expect(grid.rows.find(row=>row.trailId==='lac-vert').hazardState).toBe('unconfirmed');
+    expect(grid.summary.unconfirmedHazards).toBe(1);
+  });
+
+  test('puts the work first: missing photos before covered, Dolomites before the rest',()=>{
+    const grid=buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration});
+    expect(grid.rows.map(row=>row.trailId)).toEqual(['tre-cime','lac-vert','seceda']);
+  });
+
+  test('summarises the two backfills against the whole catalogue',()=>{
+    const grid=buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration});
+    expect(grid.summary).toEqual(expect.objectContaining({trails:3,photoCovered:1,photoMissing:2,
+      verified:1,verificationInProgress:1,trailsWithHazards:2,complete:1}));
+  });
+
+  test('survives an empty or absent artifact without throwing',()=>{
+    expect(buildCoverageGrid().rows).toEqual([]);
+    expect(buildCoverageGrid({imageAudit:{pages:[]}}).summary.trails).toBe(0);
   });
 });

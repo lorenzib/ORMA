@@ -18,6 +18,98 @@ const completion = {
 };
 const NOW = Date.UTC(2026, 6, 30, 10, 0, 0);
 
+describe('OUT-02 structured community observations', () => {
+  const answered = {
+    response:'appropriate',
+    offLeadObserved:'some_off_lead',
+    livestockEncountered:'seen_at_distance',
+    crowding:'busy',
+    dogEnjoyment:'loved_it',
+    reactiveDogFit:'with_care',
+    missingRestriction:true,
+  };
+
+  test('captures every observation the completion screen asks for', () => {
+    const result = outcomes.save(completion, answered, 'user-1', storage(), NOW);
+
+    expect(result.ok).toBe(true);
+    expect(result.record).toEqual(expect.objectContaining({
+      schemaVersion:2,
+      offLeadObserved:'some_off_lead',
+      livestockEncountered:'seen_at_distance',
+      crowding:'busy',
+      dogEnjoyment:'loved_it',
+      reactiveDogFit:'with_care',
+      missingRestriction:true,
+    }));
+  });
+
+  test('an unanswered question is stored as null, never as the easy answer', () => {
+    const result = outcomes.save(completion, { response:'appropriate' }, 'user-1', storage(), NOW);
+
+    for(const key of outcomes.OBSERVATION_KEYS){
+      expect(result.record[key]).toBeNull();
+    }
+    expect(result.record.missingRestriction).toBeNull();
+  });
+
+  test('an unrecognised answer is dropped rather than coerced', () => {
+    const result = outcomes.save(completion, {
+      response:'appropriate',
+      crowding:'heaving',
+      livestockEncountered:'',
+      missingRestriction:'yes',
+    }, 'user-1', storage(), NOW);
+
+    expect(result.record.crowding).toBeNull();
+    expect(result.record.livestockEncountered).toBeNull();
+    expect(result.record.missingRestriction).toBeNull();
+  });
+
+  test('the downloaded package keeps working without the new questions', () => {
+    // offline/offline-app.js sends only the schema-1 field set. Its records
+    // must stay valid rather than being rejected, so the offline package does
+    // not have to be republished for this change.
+    const result = outcomes.save(completion, {
+      response:'appropriate', waterAccuracy:'accurate', hazards:['water'], offlinePackageUsed:true,
+    }, 'user-1', storage(), NOW);
+
+    expect(result.ok).toBe(true);
+    expect(result.record.schemaVersion).toBe(2);
+    expect(result.record.offlinePackageUsed).toBe(true);
+  });
+
+  test('schema 1 check-ins are migrated, not discarded', () => {
+    const store = storage();
+    store.setItem('dolopaws-post-hike-outcomes-v1', JSON.stringify({
+      schemaVersion:1,
+      records:[{
+        schemaVersion:1, outcomeId:'outcome:old', completionId:'old', ownerId:'user-1',
+        trailId:'lago-carezza', response:'appropriate', waterAccuracy:null, hazards:[],
+        recordedHikePresent:true, offlinePackageUsed:false, createdAt:1,
+        syncStatus:'pending', syncedAt:null, lastError:null,
+      }],
+    }));
+
+    const result = outcomes.save(completion, answered, 'user-1', store, NOW);
+    const kept = outcomes.pending('user-1', store);
+
+    expect(result.ok).toBe(true);
+    // The old check-in survives with the new questions simply unanswered.
+    expect(kept).toHaveLength(2);
+    expect(kept.find(record => record.outcomeId === 'outcome:old').crowding).toBeNull();
+  });
+
+  test('the Firestore rule accepts exactly the fields the client writes', () => {
+    const rules = fs.readFileSync(path.join(__dirname, 'firestore.rules'), 'utf8');
+
+    expect(rules).toContain('data.schemaVersion == 2');
+    for(const key of [...outcomes.OBSERVATION_KEYS, 'missingRestriction']){
+      expect(rules).toContain(`'${key}'`);
+    }
+  });
+});
+
 describe('OUT-01 private post-hike outcomes', () => {
   test.each(outcomes.RESPONSES)('accepts structured response %s', response => {
     const store = storage();

@@ -1,8 +1,8 @@
 /**
- * regions-config.js — ORMA region & valley taxonomy.
+ * regions-config.js, ORMA region & valley taxonomy.
  *
  * Assigns every trail (curated AND imported, identically) a `region` and
- * `valley` at page load, from the nearest known locality — the same
+ * `valley` at page load, from the nearest known locality, the same
  * nearest-locality logic the import pipeline uses. trails-data.js is never
  * modified. Load AFTER all trail data files and BEFORE script.js.
  */
@@ -106,7 +106,7 @@
     let best = null;
     let bestD = Infinity;
     for (const [name, la, ln, valley, region, province] of LOCALITIES) {
-      // Squared equirectangular distance — plenty for nearest-of-56 lookups.
+      // Squared equirectangular distance, plenty for nearest-of-56 lookups.
       const dLat = lat - la;
       const dLng = (lng - ln) * Math.cos((lat * Math.PI) / 180);
       const d = dLat * dLat + dLng * dLng;

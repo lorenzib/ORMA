@@ -39,8 +39,10 @@ describe('UX-01 canonical discovery integration', () => {
     expect(collections).toContain('class="collections-grid"');
     expect(collections).toContain('collections-page.js');
     expect(collections).not.toContain('browse-trails.html?collection=');
-    expect(detail).toContain('id="collectionDetail"');
-    expect(detail).toContain('collection-detail.js');
+    // collection.html is a redirect stub now, collections render inline on
+    // collections.html, so the old detail shell and its script are gone.
+    expect(detail).toContain("window.location.replace(id ? 'collections.html?collection='");
+    expect(detail).not.toContain('<script src=');
     expect(homepage).toContain('catalogue.trailsFor(collection, trails)');
     expect(homepage).toContain('href="browse-trails.html">Browse more');
     expect(search).toContain('href="collections.html?collection=');

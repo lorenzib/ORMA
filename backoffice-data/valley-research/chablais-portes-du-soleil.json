@@ -1,0 +1,105 @@
+{
+  "contractVersion": "1.0.0",
+  "valley": "Chablais – Portes du Soleil",
+  "trailCount": 6,
+  "categoriesNeeded": {
+    "water": 6,
+    "heat": 6,
+    "exposure": 6,
+    "livestock": 6,
+    "surfaceHazards": 6,
+    "access": 6
+  },
+  "canCloseHere": [
+    "livestock",
+    "access"
+  ],
+  "needsPerTrailEvidence": [
+    "water",
+    "heat",
+    "exposure",
+    "surfaceHazards"
+  ],
+  "trails": [
+    {
+      "id": "osm-12211260",
+      "name": "Plateau des Moises",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-13337921",
+      "name": "Au pied du Roc d'Enfer",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-13338113",
+      "name": "Lac de Darbon",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-19064561",
+      "name": "Ombres sur l'Alpage",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-19095412",
+      "name": "Chalets de Salvadon",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-19095413",
+      "name": "Alpage de Commune",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "",
+      "url": "",
+      "categories": [],
+      "note": ""
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 /**
- * trail-detail-ui.js — small UI glue for the redesigned (single-scroll,
+ * trail-detail-ui.js, small UI glue for the redesigned (single-scroll,
  * Strava-style) trail detail page. Self-contained: it only reads state the
  * other modules already own and reflects it into the new markup. No data
  * layer of its own. Runs only on pages that use the `.td2` layout.
@@ -154,14 +154,14 @@
   syncCounts();
 
   // ---- 3. Personalise section headers with the dog's name ----------------
-  // (The sidebar dog card with its own match % is gone — the hero already
+  // (The sidebar dog card with its own match % is gone, the hero already
   // shows "N% match for <dog>", so repeating it below was redundant.)
   function syncDog() {
     let name = '';
     try {
       const s = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null');
       if (s && s.hasProfile) name = s.name || '';
-    } catch (e) { /* private mode — no summary */ }
+    } catch (e) { /* private mode, no summary */ }
 
     const safetyDog = document.getElementById('td2SafetyDog');
     if (safetyDog) safetyDog.textContent = name ? ' · ' + name : '';

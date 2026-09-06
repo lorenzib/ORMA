@@ -14,7 +14,7 @@ describe('shared map quality profile', () => {
   });
 
   test('applies the profile to the primary map experiences', () => {
-    ['script.js', 'trail.js', 'walk-page.js', 'collection-detail.js'].forEach(file => {
+    ['script.js', 'trail.js', 'walk-page.js'].forEach(file => {
       const source = read(file);
       expect(source).toContain('DoloPawsMapRuntime.mapOptions');
       expect(source).toContain('DoloPawsMapRuntime.enhance');
@@ -25,13 +25,12 @@ describe('shared map quality profile', () => {
     const pages = [
       ['index.html', 'script.js'],
       ['trail.html', 'trail.js'],
-      ['collection.html', 'collection-detail.js'],
       ['walk.html', 'walk-page.js'],
     ];
     pages.forEach(([page, mapScript]) => {
       const html = read(page);
       if(page === 'trail.html'){
-        expect(html).toContain('trail-app.bundle.js?v=20260904-3');
+        expect(html).toContain('trail-app.bundle.js?v=20260906-1');
         expect(html).not.toContain('<script src="map-runtime.js');
         return;
       }
@@ -87,7 +86,7 @@ describe('shared map quality profile', () => {
   test('the selected route highlights the marked path from underneath', () => {
     const style = read('map-style.js');
     // A solid line ON TOP buries Waymarked's own route line and its numbered
-    // shields — which is why we used to reprint the numbers ourselves. The
+    // shields, which is why we used to reprint the numbers ourselves. The
     // route goes below the raster as a translucent corridor instead.
     expect(style).toContain("'line-opacity': 0.55");
     expect(style).toContain('widthRamp(10, 16, 23, 33, scale)');
@@ -102,11 +101,11 @@ describe('shared map quality profile', () => {
     // Direction arrows stay above the raster but below place names.
     expect(trail).toMatch(/id: 'single-trail-direction-arrows'[\s\S]*?\}, firstLabelId\);/);
 
-    // Route planner draws its draft under the network too — you cannot trace
+    // Route planner draws its draft under the network too, you cannot trace
     // a path you have painted over.
     expect(read('route-planner.js')).toContain("? 'planner-waymarked-hiking-layer' : (label && label.id)");
-    // Collection routes already sat below their raster.
-    expect(read('collection-detail.js')).toContain("}, 'collection-waymarked-hiking-layer');");
+    // Collection routes sit below their raster on the live inline map.
+    expect(read('collections-page.js')).toContain('beneath);');
   });
 
   test('no map reprints route numbers that Waymarked already draws', () => {
@@ -124,15 +123,129 @@ describe('shared map quality profile', () => {
     expect(read('collections-page.js')).toContain('style.addWaymarkedHiking(map');
   });
 
+  test('green/amber/red means dog match on every map, and nothing else', () => {
+    // Three near-identical green/amber/red palettes used to coexist: the match
+    // tiers, trail.js safetyColor() and collections difficultyColour(). Two of
+    // them encoded the trail's intrinsic risk while looking exactly like a
+    // match tier, so a guest and a signed-in owner read the same coloured line
+    // as answering different questions.
+    const style = read('map-style.js');
+    expect(style).toContain("MATCH_COLOURS = Object.freeze({ good: '#4A7856', fair: '#C98A2E', poor: '#9C3A25' })");
+    expect(style).toContain('function matchColour(score)');
+    expect(style).toContain('function matchColourExpression(property)');
+    // An unknown fit must not read as a good or bad one.
+    expect(style).toContain("MATCH_UNKNOWN = '#6B7A6E'");
+
+    // The rival palettes are gone.
+    expect(read('trail.js')).not.toContain('function safetyColor(');
+    expect(read('collections-page.js')).not.toContain('difficultyColour(');
+
+    // Every map route colour now comes from the one definition.
+    ['script.js', 'trail.js', 'collections-page.js'].forEach(file => {
+      expect(read(file)).toMatch(/ORMAMapStyle\.matchColour(Expression)?\(/);
+    });
+    // No map re-inlines the thresholds.
+    ['script.js', 'trail.js', 'collections-page.js'].forEach(file => {
+      expect(read(file)).not.toContain("65, '#C98A2E', 85, '#4A7856'");
+    });
+
+    // Guests are scored against one shared profile rather than falling back to
+    // a different meaning. The site already tells them it is a medium dog.
+    expect(read('scoring.js')).toContain('GUEST_SUBJECT');
+    expect(read('script.js')).toContain('scoring.GUEST_SUBJECT');
+    expect(read('trail.js')).toContain('scoring.GUEST_SUBJECT');
+    expect(read('collections-page.js')).toContain('scoring.GUEST_SUBJECT');
+    // The collection page needs the engine loaded to score at all.
+    expect(read('collections.html')).toContain('scoring.js');
+  });
+
+  test('the collection map colours by the signed-in dog, not a generic one', () => {
+    // Scoring every visitor against the guest profile would leave this map
+    // answering "does this suit a generic dog" while every other ORMA surface
+    // answers "does this suit yours", the same defect the palette clean-up
+    // set out to remove, one layer down.
+    const page = read('collections-page.js');
+    expect(page).toContain('matchSubject || scoring.GUEST_SUBJECT');
+    expect(page).toContain('auth.getDogProfile()');
+    expect(page).toContain('effectiveOverrides(profile, null)');
+    // Auth resolves after first paint, so an already-drawn map must restyle.
+    expect(page).toContain('repaintOnSubjectChange');
+    expect(page).toContain('const repaintMatchColours');
+    expect(page).toContain("window.addEventListener('dolopaws-auth-changed', resolveMatchSubject)");
+    // Both the corridors and the start markers carry the colour.
+    expect(page).toContain("source.setData({");
+    expect(page).toContain("element.style.setProperty('--route-colour', matchColour(trail))");
+    // A destroyed map must not be reachable from a later profile change.
+    expect(page).toMatch(/activeMap = null;[\s\S]*?repaintOnSubjectChange\.clear\(\);/);
+    // The page needs auth loaded to resolve a profile at all.
+    expect(read('collections.html')).toContain('firebase-init.js');
+  });
+
+  test('no homepage guest map: the container was deleted in July 2026', () => {
+    // #guestPreviewMap left index.html in 784afd0b (2026-07-17) and was never
+    // replaced, so initGuestMap() returned on its first line and ~160 lines of
+    // map setup could not run. It was still being maintained, the cartography
+    // work restyled layers in there that nothing renders, so it is deleted.
+    // A signed-out visitor sees no map on the homepage at all.
+    // Comments explaining the removal legitimately name these symbols, so
+    // check the code with line comments stripped.
+    const code = read('script.js').split('\n')
+      .filter(line => !line.trim().startsWith('//')).join('\n');
+    ['guestPreviewMap', 'guestMapInstance', 'initGuestMap', 'scheduleGuestMap',
+      'guest-trail-paths', 'guest-gondolas'].forEach(symbol => {
+      expect({ symbol, inCode: code.includes(symbol) }).toEqual({ symbol, inCode: false });
+    });
+    // If a guest map is ever wanted again it needs a container first.
+    expect(read('index.html')).not.toContain('guestPreviewMap');
+  });
+
+  test('the guest scoring profile has exactly one definition', () => {
+    // Four copies of { terrain:'1', distance:'10', heatSensitive:false } were
+    // scattered through script.js, the same duplication that produced three
+    // rival colour palettes.
+    const script = read('script.js');
+    expect(script).toContain('function guestOverrides()');
+    expect(script).toContain('scoring.GUEST_SUBJECT');
+    // script.js is also evaluated without the scoring stack, so the accessor
+    // tolerates a missing engine rather than taking the homepage down.
+    expect(script).toMatch(/return \(scoring && scoring\.GUEST_SUBJECT\) \|\|/);
+    expect(read('scoring.js')).toContain("GUEST_SUBJECT = Object.freeze({ terrain:'1', distance:'10', heatSensitive:false })");
+  });
+
+  test('browse maps start quiet, the navigating map does not', () => {
+    // AllTrails shows no path network at browse zooms at all. Ours has to
+    // appear eventually, Dolomites walkers follow the numbers on signposts, // but not while you are still deciding which valley to drive to.
+    const homepage = read('script.js');
+    expect(homepage).toContain('const overlayStates = { routes: false, lifts: false');
+    expect(homepage).toContain('visible: false });');
+    // Nothing is removed without a way back: the Layers chip drives the layer.
+    expect(homepage).toContain("routes:   ['waymarked-hiking-layer']");
+
+    // The collection map opens at a fixed zoom 9 and has no layers control, so
+    // zoom is the affordance there instead of a chip.
+    const collections = read('collections-page.js');
+    expect(collections).toContain('const NETWORK_MIN_ZOOM = 13.5');
+    expect(collections).toContain('minzoom: NETWORK_MIN_ZOOM');
+
+    // The trail detail map keeps the network on and unthrottled. Its opening
+    // fitBounds lands anywhere from z10.7 to z17 across the catalogue, so a
+    // zoom threshold there would show the network on some trails and not
+    // others with no explanation, worse than either choice.
+    const trail = read('trail.js');
+    expect(trail).toContain('ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId })');
+    expect(trail).not.toContain('minzoom: NETWORK_MIN_ZOOM');
+  });
+
   test('every map draws the shared Waymarked treatment', () => {
-    ['trail.js', 'script.js', 'collection-detail.js'].forEach(file => {
+    ['trail.js', 'script.js', 'collections-page.js'].forEach(file => {
       const source = read(file);
       expect(source).toContain('ORMAMapStyle');
       expect(source).not.toContain("'raster-saturation': -0.90");
       expect(source).not.toContain("'raster-saturation': -1");
     });
     expect(read('route-planner.js')).toContain('ORMAMapStyle.quietBasemap(map)');
-    ['index.html', 'collection.html', 'collections.html', 'route-planner.html', 'walk.html']
+    // collection.html is a redirect stub and loads no scripts at all.
+    ['index.html', 'collections.html', 'route-planner.html', 'walk.html']
       .forEach(file => expect(read(file)).toContain('map-style.js'));
     expect(read('scripts/build-trail-page-bundle.js')).toContain("'map-style.js'");
   });

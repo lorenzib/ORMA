@@ -6,6 +6,9 @@ const rules = fs.readFileSync(path.join(root, 'firestore.rules'), 'utf8');
 const firebaseConfig = JSON.parse(fs.readFileSync(path.join(root, 'firebase.json'), 'utf8'));
 const indexes = JSON.parse(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8'));
 const client = fs.readFileSync(path.join(root, 'firebase-init.js'), 'utf8');
+// Moderation and backoffice review are private-interface only. They live in the
+// backoffice client; the customer client above must not carry them at all.
+const backofficeClient = fs.readFileSync(path.join(root, 'backoffice-firebase.js'), 'utf8');
 
 describe('SEC-01 Firestore configuration contract', () => {
   test('Firebase configuration versions the rules and index sources', () => {
@@ -77,8 +80,9 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain("request.resource.data.type == 'analyst-opportunity-review'");
     expect(rules).toContain("request.resource.data.action in ['approve', 'request-revision', 'reject']");
     expect(rules).toContain("request.resource.data.submittedBy == request.auth.uid");
-    expect(client).toContain('window.ORMABackoffice');
-    expect(client).toContain('submitDossierReview:submitBackofficeDossierReview');
+    expect(backofficeClient).toContain('window.ORMABackoffice');
+    expect(backofficeClient).toContain('submitDossierReview');
+    expect(client).not.toContain('ORMABackoffice');
   });
 
   test('private account documents are owner-only and cannot carry role grants', () => {
@@ -121,7 +125,7 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(block).toContain('allow create: if isModerator()');
     expect(block).toContain('allow update: if false;');
     expect(block).toContain('allow delete: if isModerator();');
-    // Links stay inside the site — absolute schemes (https:, javascript:)
+    // Links stay inside the site, absolute schemes (https:, javascript:)
     // are rejected so a notice can never smuggle an external redirect.
     expect(block).toContain("!request.resource.data.href.matches('^[a-zA-Z]+:.*$')");
   });
@@ -142,9 +146,9 @@ describe('SEC-01 Firestore configuration contract', () => {
   });
 
   test('client contribution states match the create rules', () => {
-    expect(client.match(/status: "pending"/g)).toHaveLength(4);
+    expect(client.match(/status: "pending"/g)).toHaveLength(5);
     expect(client).toContain('status: "open"');
-    expect(rules.match(/request\.resource\.data\.status == 'pending'/g)).toHaveLength(5);
+    expect(rules.match(/request\.resource\.data\.status == 'pending'/g)).toHaveLength(6);
     expect(rules).toContain("request.resource.data.status == 'open'");
   });
 
@@ -210,6 +214,26 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain('validModerationAudit(request.resource.data)');
     expect(rules).toContain('allow get, list: if isModerator()');
     expect(rules).toContain('allow update, delete: if false');
-    expect(client).toContain('window.DoloPawsModeration');
+    expect(backofficeClient).toContain('window.DoloPawsModeration');
+    expect(client).not.toContain('DoloPawsModeration');
+    expect(client).not.toContain('moderationAudit');
+  });
+  test("the product analytics receiver is write-only and shape-locked", () => {
+    const eventsBlock = rules.slice(rules.indexOf("match /productEvents"));
+    expect(eventsBlock).toContain("allow read: if false;");
+    expect(eventsBlock).toContain("allow delete: if isModerator();");
+    // The document id is the event id, so a retried delivery is idempotent
+    // rather than duplicating, and an event cannot be edited after the fact.
+    expect(eventsBlock).toContain("request.resource.data.id == eventId");
+    expect(eventsBlock).toContain("allow update: if request.resource.data == resource.data;");
+    // Only the eight METRIC-01 families, and no extra keys alongside them.
+    expect(rules).toContain("function isProductEventFamily(value)");
+    expect(eventsBlock).toContain("isProductEventFamily(request.resource.data.family)");
+    expect(eventsBlock).toContain("request.resource.data.schemaVersion == 1");
+    expect(eventsBlock).toContain("hasOnly([");
+    // Delivery is registered by the customer client, and consent stays upstream
+    // in metrics.js -- the transport only moves already-accepted events.
+    expect(client).toContain("metrics.setTransport");
+    expect(client).toContain("productEvents");
   });
 });

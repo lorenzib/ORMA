@@ -10,7 +10,7 @@
   const pathName=window.location.pathname;
   if(/\/trails\/[^/]+\.html$/.test(pathName)||/\/trail\.html$/.test(pathName)){
     const hazardScript=document.createElement('script');
-    hazardScript.src=pathName.includes('/trails/')?'../trail-hazards.js?v=20260819-1':'trail-hazards.js?v=20260819-1';
+    hazardScript.src=pathName.includes('/trails/')?'../trail-hazards.js?v=20260905-4':'trail-hazards.js?v=20260905-4';
     hazardScript.defer=true;document.head.appendChild(hazardScript);
   }
   function installSkipLink(){
@@ -205,28 +205,7 @@
         if(heading && groupTitles[index]) heading.textContent = groupTitles[index];
       });
 
-      const appNote = footer.querySelector('.hp-footer-appnote');
-      if(appNote) appNote.textContent = 'iPhone and Android apps coming soon.';
-
-      // Keep the familiar store affordances visible before launch without
-      // implying that a real listing exists. Once an actual store URL replaces
-      // the temporary About link, the button becomes a normal link automatically.
-      footer.querySelectorAll('.hp-footer-apps a').forEach(link => {
-        const href = link.getAttribute('href') || '';
-        if(!href.endsWith('about.html')) return;
-        link.dataset.comingSoon = 'true';
-        link.setAttribute('role', 'link');
-        link.setAttribute('aria-disabled', 'true');
-        link.setAttribute('title', 'Coming soon');
-        link.setAttribute('tabindex', '-1');
-        link.removeAttribute('href');
-      });
-
       const companyLinks = groups[4]?.querySelector('.hp-footer-links');
-      const newsletter = footer.querySelector('.hp-footer-newsletter');
-      if(companyLinks && newsletter && !companyLinks.querySelector('.hp-footer-newsletter')){
-        companyLinks.appendChild(newsletter);
-      }
 
       const base = footer.querySelector('.hp-footer-base');
       const socialRow = footer.querySelector('.hp-footer-social-row');
@@ -279,7 +258,7 @@
   // Every page ships the logged-out header statically (dark bar with a
   // "Log in" pill). When the cached auth summary written by firebase-init.js
   // says someone is signed in, the link row is rebuilt into the member
-  // header — same dark bar, same links (Browse all Trails · Collections ·
+  // header, same dark bar, same links (Browse all Trails · Collections ·
   // Safety guide · Settings), with the bell and the dog pill in place of
   // the login pill (2026-07 design revamp). The static trail/guide pages
   // carry no Firebase by design, so the localStorage summary is the only
@@ -346,7 +325,7 @@
   if(navEl && linksEl){
     const brand = navEl.querySelector('.brand');
     const brandHref = (brand && brand.getAttribute('href')) || '/';
-    // Root-absolute brand href (the 404 page — served at any URL depth)
+    // Root-absolute brand href (the 404 page, served at any URL depth)
     // makes every rebuilt link root-absolute too.
     const prefix = brandHref.startsWith('/') ? '/' : (brandHref.startsWith('../') ? '../' : '');
     const parts = window.location.pathname.split('/').filter(Boolean);
@@ -403,7 +382,7 @@
       btn.innerHTML = bellSvg();
       // Badge from the derived-feed count cached by notifications.js and the
       // logged-in homepage. No cache yet (first visit since the feed
-      // shipped) means no badge — never a made-up number.
+      // shipped) means no badge, never a made-up number.
       let unseen = 0;
       try {
         const cached = parseInt(localStorage.getItem('dolopaws-notif-unread'), 10);
@@ -442,7 +421,7 @@
       return avatar;
     }
 
-    // Dog pill — the shared switcher pattern (map, journal, safety guide,
+    // Dog pill, the shared switcher pattern (map, journal, safety guide,
     // collections and the profile page all use this same control): avatar +
     // name opens a "Switch dog" panel with the dog list and a manage link.
     // The cached account summary carries every dog plus the active id, so the
@@ -654,8 +633,8 @@
         setTimeout(() => placeBell(activeBell), 0);
       } else {
         // Login must open IN PLACE everywhere (desktop and mobile): pages
-        // without auth-ui — the static trail/guide pages, whose markup
-        // ships a plain homepage-login anchor — load the auth stack on
+        // without auth-ui, the static trail/guide pages, whose markup
+        // ships a plain homepage-login anchor, load the auth stack on
         // demand instead of navigating away.
         let authLoading = null;
         function lazyOpenLogin(control){
@@ -671,11 +650,11 @@
               document.body.appendChild(s);
             });
           }
-          // i18n first — auth-ui's modal copy calls window.t().
+          // i18n first, auth-ui's modal copy calls window.t().
           const script = loadScript('i18n.js?v=20260812-5')
             .then(() => loadScript('auth-ui.js?v=20260812-1'));
           // import() inside a classic script resolves against THIS script's
-          // URL (the site root), not the page — resolve explicitly against
+          // URL (the site root), not the page, resolve explicitly against
           // the document so ../ prefixes on trail pages work.
           const firebaseUrl = new URL((prefix || './') + 'firebase-init.js', document.baseURI).href;
           authLoading = Promise.all([import(firebaseUrl), script])
@@ -691,7 +670,7 @@
         }
         if(loginEl){
           linksEl.appendChild(loginEl);
-          // Reused static anchors would still bounce — intercept them.
+          // Reused static anchors would still bounce, intercept them.
           if(loginEl.tagName === 'A' && !loginEl.dataset.lazyLogin){
             loginEl.dataset.lazyLogin = '1';
             loginEl.addEventListener('click', (e) => {
@@ -783,3 +762,40 @@
     if(window.innerWidth > 700) setOpen(false);
   });
 })();
+
+// ---- Add to home screen ----------------------------------------------------
+// The footer states how to install ORMA without any script, so the advice is
+// always true. Where the browser offers a real install prompt, the button
+// upgrades that into one tap. Browsers that never fire the event (iOS Safari)
+// simply keep the written instruction.
+(function ormaInstallPrompt(){
+  var deferred = null;
+
+  function buttons(){
+    return Array.prototype.slice.call(document.querySelectorAll('[data-orma-install]'));
+  }
+
+  window.addEventListener('beforeinstallprompt', function (event) {
+    event.preventDefault();
+    deferred = event;
+    buttons().forEach(function (button) {
+      button.hidden = false;
+      button.addEventListener('click', function () {
+        if(!deferred) return;
+        deferred.prompt();
+        // The choice is the user's; either way the prompt is spent.
+        deferred.userChoice.finally(function () {
+          deferred = null;
+          buttons().forEach(function (item) { item.hidden = true; });
+        });
+      }, { once:true });
+    });
+  });
+
+  window.addEventListener('appinstalled', function () {
+    deferred = null;
+    buttons().forEach(function (button) { button.hidden = true; });
+  });
+})();
+
+

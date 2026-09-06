@@ -6,7 +6,7 @@
   'use strict';
 
   const STORAGE_KEY = 'dolopaws-post-hike-outcomes-v1';
-  const SCHEMA_VERSION = 1;
+  const SCHEMA_VERSION = 2;
   const RESPONSES = Object.freeze([
     'appropriate',
     'appropriate_with_unexpected_cautions',
@@ -28,6 +28,35 @@
     'access',
     'water',
   ]);
+  // Community observations. Each is optional and stored as null when the owner
+  // does not answer, matching waterAccuracy above: an unanswered question is a
+  // gap in the evidence, never a claim that the pleasant answer applies.
+  //
+  // These are the signals that populate the trail attributes SCORE-03 reads.
+  // livestockEncountered feeds livestockPresence, crowding feeds crowding, and
+  // offLeadObserved and missingRestriction inform access, which is why they are
+  // asked as bounded observations rather than free text.
+  const OFF_LEAD = Object.freeze([
+    'all_on_lead',
+    'some_off_lead',
+    'mostly_off_lead',
+  ]);
+  const LIVESTOCK_ENCOUNTER = Object.freeze([
+    'none',
+    'seen_at_distance',
+    'close_encounter',
+  ]);
+  const CROWDING = Object.freeze(['quiet', 'moderate', 'busy']);
+  const DOG_ENJOYMENT = Object.freeze(['loved_it', 'fine', 'struggled']);
+  const REACTIVE_DOG_FIT = Object.freeze(['yes', 'with_care', 'no']);
+  const OBSERVATIONS = Object.freeze({
+    offLeadObserved: OFF_LEAD,
+    livestockEncountered: LIVESTOCK_ENCOUNTER,
+    crowding: CROWDING,
+    dogEnjoyment: DOG_ENJOYMENT,
+    reactiveDogFit: REACTIVE_DOG_FIT,
+  });
+  const OBSERVATION_KEYS = Object.freeze(Object.keys(OBSERVATIONS));
   const SYNC_STATES = Object.freeze(['pending', 'synced']);
   const ID_PATTERN = /^[A-Za-z0-9:._-]{1,160}$/;
   const TRAIL_PATTERN = /^[A-Za-z0-9._-]{1,80}$/;
@@ -57,6 +86,9 @@
       Array.isArray(record.hazards) && record.hazards.length <= HAZARDS.length &&
       record.hazards.every(value => HAZARDS.includes(value)) &&
       new Set(record.hazards).size === record.hazards.length &&
+      OBSERVATION_KEYS.every(key =>
+        record[key] === null || OBSERVATIONS[key].includes(record[key])) &&
+      (record.missingRestriction === null || typeof record.missingRestriction === 'boolean') &&
       typeof record.recordedHikePresent === 'boolean' &&
       typeof record.offlinePackageUsed === 'boolean' &&
       finite(record.createdAt) && record.createdAt > 0 &&
@@ -77,6 +109,20 @@
     let value;
     try{ value = JSON.parse(raw); }
     catch(error){ return { status:'corrupt', store:null }; }
+    if(value && value.schemaVersion === 1 && Array.isArray(value.records)){
+      // Schema 1 predates the community observations. Those check-ins are still
+      // valid evidence for what they did record, so they are migrated with the
+      // new questions left unanswered rather than discarded.
+      value = {
+        schemaVersion:SCHEMA_VERSION,
+        records:value.records.map(record => ({
+          ...record,
+          schemaVersion:SCHEMA_VERSION,
+          ...Object.fromEntries(OBSERVATION_KEYS.map(key => [key, null])),
+          missingRestriction:null,
+        })),
+      };
+    }
     if(!value || value.schemaVersion !== SCHEMA_VERSION || !Array.isArray(value.records)){
       return {
         status:value && value.schemaVersion !== SCHEMA_VERSION ? 'incompatible' : 'corrupt',
@@ -98,6 +144,17 @@
     }catch(error){
       return { ok:false, error:'storage-write-failed' };
     }
+  }
+
+  // An unrecognised answer is dropped rather than coerced, so a stale client
+  // cannot write a value the aggregation would later misread.
+  function observations(input){
+    const out = {};
+    for(const key of OBSERVATION_KEYS){
+      const value = input && input[key];
+      out[key] = OBSERVATIONS[key].includes(value) ? value : null;
+    }
+    return out;
   }
 
   function createRecord(completion, input, ownerId, now){
@@ -124,6 +181,10 @@
       response:input.response,
       waterAccuracy,
       hazards,
+      ...observations(input),
+      missingRestriction:typeof input.missingRestriction === 'boolean'
+        ? input.missingRestriction
+        : null,
       recordedHikePresent:true,
       offlinePackageUsed:!!input.offlinePackageUsed,
       createdAt:finite(now) ? now : Date.now(),
@@ -231,6 +292,8 @@
     STORAGE_KEY,
     SCHEMA_VERSION,
     RESPONSES,
+    OBSERVATIONS,
+    OBSERVATION_KEYS,
     WATER_STATES,
     HAZARDS,
     validRecord,

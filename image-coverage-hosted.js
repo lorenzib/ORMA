@@ -68,7 +68,7 @@
 
   function uploadPanel(gap){
     const wrap=el('section','bo-trail-upload');wrap.append(el('h4','','Upload your photo'));
-    wrap.append(el('p','bo-upload-helper','JPG, PNG, WebP or AVIF. ORMA compresses it locally for the free protected review queue; the permanent copy moves to GitHub only after approval.'));
+    wrap.append(el('p','bo-upload-helper','JPG, PNG, WebP or AVIF. ORMA compresses it locally, then sends your photo straight to a publishing pull request — your own photos need no second approval here. Check the preview below before you upload.'));
     const picker=el('input','bo-trail-upload__file');picker.type='file';picker.accept='image/jpeg,image/png,image/webp,image/avif';
     const preview=el('img','bo-trail-upload__preview');preview.alt='Selected trail photo preview';preview.hidden=true;
     const creator=el('input');creator.type='text';creator.placeholder='Photographer / creator';creator.value='Benedetta Lorenzi';creator.maxLength=160;
@@ -77,7 +77,7 @@
     for(const [value,label] of [['orma-owned','I own this photo'],['permission-granted','I have permission from the creator']]){const option=el('option','',label);option.value=value;rightsBasis.append(option);}
     rightsKind.append(rightsKindLabel,rightsBasis);
     const rightsLabel=el('label','bo-trail-upload__rights');const rights=el('input');rights.type='checkbox';rightsLabel.append(rights,document.createTextNode(' I own this photo or have permission to publish it on ORMA.'));
-    const upload=el('button','bo-primary-action','Upload for preview');upload.type='button';upload.disabled=true;
+    const upload=el('button','bo-primary-action','Upload and send to publishing');upload.type='button';upload.disabled=true;
     let prepared=null;
     picker.addEventListener('change',async()=>{
       upload.disabled=true;prepared=null;preview.hidden=true;
@@ -91,7 +91,7 @@
       const response=await remote.uploadTrailImage({file:prepared.file,trailId:gap.trailId||gap.slug,creator:creator.value.trim(),rightsBasis:rightsBasis.value,
         altText:alt.value.trim()||`${gap.title} trail`,width:prepared.width,height:prepared.height});
       if(!response?.ok){message(`Upload failed: ${response?.error||'unknown error'}`,true);upload.disabled=false;picker.disabled=false;return;}
-      message('Photo uploaded. The agent is preparing the protected preview and rights record.');window.setTimeout(()=>window.location.reload(),1400);
+      message('Photo uploaded. It goes straight to a publishing pull request for you to merge.');window.setTimeout(()=>window.location.reload(),1400);
     });
     wrap.append(picker,preview,creator,alt,rightsKind,rightsLabel,upload);return wrap;
   }
@@ -101,11 +101,29 @@
     if(candidate.uploadRef){const response=await remote.getTrailImagePreview(candidate.uploadRef);if(response?.ok)image.src=response.url;else image.replaceWith(el('p','bo-no-match','Protected preview could not be loaded.'));}
   }
 
+  // A candidate is not required to carry an asset. The AI path deliberately
+  // returns assetUrl:null with status needs-generation, and blocked rights land
+  // the same way. Appending an <img> regardless left an empty picture frame with
+  // no explanation, which is why the desk looked broken rather than busy.
+  const NO_ASSET_COPY={
+    'needs-generation':'No image yet. This candidate is an AI brief, not an asset.',
+    'blocked':'No preview. Rights are blocked for this candidate.',
+  };
+
+  function candidatePreview(gap,candidate){
+    if(candidate.assetUrl||candidate.uploadRef){
+      const image=el('img');image.alt=candidate.altText||candidate.title||gap.title;
+      attachCandidatePreview(image,candidate).catch(()=>image.replaceWith(el('p','bo-no-match','Preview unavailable.')));
+      return image;
+    }
+    return el('p','bo-no-match',NO_ASSET_COPY[candidate.status]||'No image is attached to this candidate yet.');
+  }
+
   function resultBlock(gap,result,request){
     const block=el('section','bo-expanded-research');block.append(el('strong','',result.summary||result.status||'Image agent result'));
     for(const candidate of result.candidates||[]){
-      const item=el('article','bo-picture-candidate');const image=el('img');image.alt=candidate.altText||candidate.title||gap.title;
-      item.append(image);attachCandidatePreview(image,candidate).catch(()=>image.replaceWith(el('p','bo-no-match','Preview unavailable.')));
+      const item=el('article','bo-picture-candidate');
+      item.append(candidatePreview(gap,candidate));
       item.append(el('h4','',candidate.title||gap.title),el('p','',candidate.rightsEvidence||'Rights evidence still needs review.'),
         el('small','',`${candidate.creator||'Unknown creator'} · ${candidate.license||'Rights pending'} · ${String(candidate.status||'pending').replace(/-/g,' ')}`));
       if(candidate.sourcePageUrl){const source=el('a','bo-source-pill','Open source ↗');source.href=candidate.sourcePageUrl;source.target='_blank';source.rel='noopener';item.append(source);}

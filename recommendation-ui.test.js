@@ -16,7 +16,12 @@ describe('UX-04 canonical recommendation journey', () => {
     expectTrailBundleLoaded();
     expectBundled('recommendation-decision.js');
     expectBundled('trail-recommendation.js');
-    expect(controller).toContain('const recommendation = recommendTrail(trail, subjectFor(profile))');
+    // The card scores against today when the forecast has landed, and against
+    // the route alone before it has. Nothing else supplies currentConditions,
+    // so this is the only place the "today" in the pitch actually enters.
+    expect(controller).toContain('recommendTrail(trail, subjectFor(profile), conditions)');
+    expect(controller).toContain('window.DoloPawsCurrentConditions || undefined');
+    expect(controller).toContain("window.addEventListener('dolopaws-conditions-ready', renderCurrent)");
     expect(controller).toContain('root.dataset.scoringVersion = view.scoringVersion');
   });
 
@@ -34,6 +39,28 @@ describe('UX-04 canonical recommendation journey', () => {
     expect(controller).not.toContain('recommendationEvidenceMeta');
     expect(controller).toContain('hero.textContent = view.heroSummary');
     expect(controller).not.toContain('trail.safetyLevel');
+  });
+
+  test('P0-3 keeps a guest on the trail they were reading', () => {
+    const wizard = source('dog-wizard.js');
+
+    // The CTA opens the wizard in place. Navigating to onboarding.html is the
+    // thing this story exists to remove.
+    expect(controller).toContain('data-add-dog');
+    expect(controller).toContain("window.DoloPawsWizard.open(null, { returnToPage:true })");
+    expect(wizard).toContain('returnToPage = !!(options && options.returnToPage)');
+
+    // A guest's dog is kept for the session as soon as it is complete, so the
+    // next trail scores for their dog without an account.
+    expect(wizard).toContain("localStorage.setItem(PENDING_PROFILE_KEY, JSON.stringify(profile))");
+    expect(wizard).toContain("new CustomEvent('dolopaws-dog-profile-saved'");
+    expect(controller).toContain("window.localStorage.getItem('dolopaws-pending-dog-profile')");
+    expect(controller).toContain("window.addEventListener('dolopaws-dog-profile-saved', renderCurrent)");
+
+    // The score change is visible, once, and respects reduced motion.
+    expect(controller).toContain("classList.add('is-rescored')");
+    expect(html).toContain('@keyframes recommendation-rescore');
+    expect(html).toContain('prefers-reduced-motion:reduce');
   });
 
   test('the three distinct actions remain reachable without a data-detail link on the card', () => {
@@ -69,7 +96,7 @@ describe('UX-04 canonical recommendation journey', () => {
       score:64,
       category:'possible-with-cautions',
       confidence:'low',
-      scoringVersion:'1.3.0',
+      scoringVersion:'1.5.0',
       evidenceTier:'mapped',
       positiveReasons:[{ message:'Distance is within range.' }],
       cautions:[{ code:'trail.shade.low', message:'Shade is limited.' }],

@@ -1,0 +1,55 @@
+{
+  "contractVersion": "1.0.0",
+  "valley": "Val di Fassa",
+  "trailCount": 2,
+  "categoriesNeeded": {
+    "water": 2,
+    "heat": 2,
+    "exposure": 2,
+    "surfaceHazards": 2,
+    "livestock": 1,
+    "access": 1
+  },
+  "canCloseHere": [
+    "livestock",
+    "access"
+  ],
+  "needsPerTrailEvidence": [
+    "water",
+    "heat",
+    "exposure",
+    "surfaceHazards"
+  ],
+  "trails": [
+    {
+      "id": "sassolungo",
+      "name": "Sassolungo–Sassopiatto Loop",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "surfaceHazards"
+      ]
+    },
+    {
+      "id": "giro-del-sasso-lungo",
+      "name": "Giro del Sasso Lungo",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "",
+      "url": "",
+      "categories": [],
+      "note": ""
+    }
+  ]
+}

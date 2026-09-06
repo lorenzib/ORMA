@@ -147,7 +147,7 @@
     const ok=!!(event.detail&&event.detail.ok);
     profileSaveStatus.textContent=ok
       ? (event.detail.addMode?t('account.dogAddedSuccess','Dog added successfully.'):t('account.profileSaved','Profile saved.'))
-      : (event.detail&&event.detail.message)||t('account.saveError','Something went wrong — please try again.');
+      : (event.detail&&event.detail.message)||t('account.saveError','Something went wrong, please try again.');
     profileSaveStatus.style.color=ok?'#2C5C34':'#9C3A25';
     profileSaveStatus.hidden=false;
   });

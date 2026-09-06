@@ -89,7 +89,6 @@ function publicWarning(alert, trails, at){
 
 function reconcileHazards(previous = [], observations = [], sourceResults = [], trails = [], options = {}){
   const at = options.at || new Date().toISOString();
-  const expiryReviewMessage = 'The source warning has expired; ORMA is keeping this notice visible until a human confirms removal.';
   const successful = new Set(sourceResults.filter(source => source.ok).map(source => source.key));
   const complete = new Set(sourceResults.filter(source => source.ok && source.completeSnapshot === true).map(source => source.key));
   const failed = new Map(sourceResults.filter(source => !source.ok).map(source => [source.key, source.error || 'Source unavailable']));
@@ -97,6 +96,9 @@ function reconcileHazards(previous = [], observations = [], sourceResults = [], 
   observations.forEach(alert => { const warning = publicWarning(alert, trails, at); if(warning) observed.set(warning.id, warning); });
   const next = [];
   previous.forEach(old => {
+    // Community hazards have their own lifecycle: they are vetted, re-vetted and
+    // expired by the Hazard Analyst, never reconciled against the weather feeds.
+    if(old.origin === 'community'){ next.push(old); return; }
     const fresh = observed.get(old.id);
     if(fresh){
       next.push({ ...old, ...fresh, firstPublishedAt: old.firstPublishedAt || at, sourceStatus: 'available' });
@@ -110,15 +112,11 @@ function reconcileHazards(previous = [], observations = [], sourceResults = [], 
     // A complete successful feed is the authoritative snapshot of currently
     // active warnings. Absence here is upstream removal evidence, not outage.
     if(complete.has(old.sourceKey)) return;
+    // A warning whose own stated expiry has passed, on a source that answered
+    // successfully, is over. Removal is automatic; there is no human gate.
     const expired = old.expiresAt && new Date(old.expiresAt).getTime() <= new Date(at).getTime();
-    if(successful.has(old.sourceKey) && expired){
-      if(old.nextRemovalReviewAt && new Date(old.nextRemovalReviewAt).getTime() > new Date(at).getTime()){
-        next.push({ ...old, state:'active', lastCheckedAt:at, sourceStatus:'available' });
-        return;
-      }
-      next.push({ ...old, state: 'resolution-review', resolutionDetectedAt: old.resolutionDetectedAt || at, lastCheckedAt: at,
-        message: old.message.includes(expiryReviewMessage) ? old.message : `${old.message} ${expiryReviewMessage}` });
-    }else next.push({ ...old, lastCheckedAt: at });
+    if(successful.has(old.sourceKey) && expired) return;
+    next.push({ ...old, lastCheckedAt: at });
   });
   next.push(...observed.values());
   return next.sort((a, b) => String(b.severity).localeCompare(String(a.severity)) || a.title.localeCompare(b.title));
@@ -129,9 +127,10 @@ function buildHazardArtifacts(previousData, observations, sourceResults, trails,
   const hazards = reconcileHazards(previousData?.hazards || [], observations, sourceResults, trails, { at });
   const remainingIds = new Set(hazards.map(item => item.id));
   const completeSources = new Set(sourceResults.filter(source => source.ok && source.completeSnapshot === true).map(source => source.key));
-  const automaticallyRemoved = (previousData?.hazards || []).filter(item => completeSources.has(item.sourceKey) && !remainingIds.has(item.id)).map(item => ({
+  const automaticallyRemoved = (previousData?.hazards || []).filter(item => item.origin !== 'community' && !remainingIds.has(item.id)).map(item => ({
     hazardId:item.id, sourceKey:item.sourceKey, sourceLabel:item.sourceLabel || null,
-    title:item.title || null, removedAt:at, reason:'absent-from-complete-authoritative-snapshot',
+    title:item.title || null, removedAt:at,
+    reason:completeSources.has(item.sourceKey)?'absent-from-complete-authoritative-snapshot':'source-warning-expired',
   }));
   return {
     publicData: { contractVersion: '1.0.0', generatedAt: at, hazards },
@@ -141,7 +140,7 @@ function buildHazardArtifacts(previousData, observations, sourceResults, trails,
       summary: { active: hazards.filter(item => item.state === 'active').length, awaitingRemovalReview: hazards.filter(item => item.state === 'resolution-review').length, automaticallyRemoved: automaticallyRemoved.length, sourceFailures: sourceResults.filter(item => !item.ok).length },
       sources: sourceResults,
       automaticRemovals: automaticallyRemoved,
-      policy: 'Authoritative warnings may be added automatically. A warning absent from a complete successful authoritative snapshot is removed automatically. Source failure never means safe.',
+      policy: 'Authoritative warnings are added and removed automatically: a warning absent from a complete successful snapshot, or past its own stated expiry on a source that answered, is removed without human review. Source failure never means safe. Community reports follow the separate Hazard Analyst vetting lifecycle.',
     },
   };
 }

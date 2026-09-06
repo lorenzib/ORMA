@@ -126,3 +126,109 @@ body.bo-shell{margin:0;background:var(--bo-bg);color:var(--bo-ink)}
 .bo-compact-details{margin-top:12px;border:1px solid var(--bo-line);border-radius:11px;background:#fff}.bo-compact-details>summary{padding:14px 16px;cursor:pointer;color:var(--bo-accent);font-size:12px;font-weight:800}.bo-compact-details[open]>summary{border-bottom:1px solid var(--bo-line)}.bo-compact-details .bo-activity-list{border:0;border-radius:0}.bo-parked-work{margin-top:30px;background:#f1f3ef}.bo-parked-work>p,.bo-automation-help>p{margin:0;padding:14px 16px;color:var(--bo-muted);font-size:12px;line-height:1.5}.bo-parked-work nav{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 16px}.bo-parked-work a{padding:6px 9px;border:1px solid var(--bo-line);border-radius:999px;background:#fff;color:var(--bo-muted);font-size:10px;font-weight:800;text-decoration:none}.bo-automation-help{margin-top:10px}
 @media(max-width:900px){.bo-compact-health,.bo-mvp-grid{grid-template-columns:1fr 1fr}.bo-dashboard-simple .bo-exec-title{align-items:flex-start}.bo-header>.bo-sign-out{margin-left:auto}}
 @media(max-width:620px){.bo-dashboard-simple{margin-top:24px}.bo-compact-health,.bo-mvp-grid{grid-template-columns:1fr}.bo-health-item{grid-template-columns:auto minmax(0,1fr)}.bo-health-item>a{grid-column:2}.bo-dashboard-simple .bo-exec-kpis{grid-template-columns:1fr 1fr}.bo-dashboard-simple .bo-exec-section-head{align-items:flex-start}.bo-mvp-grid article{min-height:170px}}
+
+/* Coverage grid — the inspection surface on the backoffice home. */
+.bo-coverage{margin:26px 0 30px}
+.bo-coverage-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:14px 0 12px}
+.bo-coverage-search{flex:1 1 220px}
+.bo-coverage-search input{width:100%;padding:9px 12px;border:1px solid var(--bo-line,#d9d2c6);border-radius:9px;
+  background:var(--bo-surface,#fff);color:inherit;font:inherit}
+.bo-coverage-filters{display:flex;flex-wrap:wrap;gap:6px}
+.bo-coverage-filters button{padding:7px 13px;border:1px solid var(--bo-line,#d9d2c6);border-radius:999px;
+  background:var(--bo-surface,#fff);color:inherit;font:inherit;font-size:13px;cursor:pointer}
+.bo-coverage-filters button[aria-pressed="true"]{background:var(--bo-ink,#2f2a24);border-color:var(--bo-ink,#2f2a24);color:#fff;font-weight:700}
+.bo-coverage-scroll{overflow-x:auto;border:1px solid var(--bo-line,#d9d2c6);border-radius:12px}
+.bo-coverage-table{width:100%;border-collapse:collapse;font-size:13px;min-width:520px}
+.bo-coverage-table th,.bo-coverage-table td{padding:10px 13px;text-align:left;border-bottom:1px solid var(--bo-line,#eee6da);vertical-align:middle}
+.bo-coverage-table thead th{position:sticky;top:0;background:var(--bo-surface,#fff);font-size:12px;
+  text-transform:uppercase;letter-spacing:.04em;z-index:1}
+.bo-coverage-table tbody tr:last-child td{border-bottom:0}
+.bo-coverage-name strong{display:block;font-size:13px}
+.bo-coverage-name small{display:block;color:var(--bo-muted,#6b625a);font-size:11px;margin-top:2px}
+.bo-coverage-pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:700;
+  border:1px solid transparent;white-space:nowrap}
+.bo-coverage-pill.is-ok{background:#e8f3ea;border-color:#bcd9c2;color:#25563a}
+.bo-coverage-pill.is-todo{background:#f4efe6;border-color:#ddd2bf;color:#6b5d45}
+.bo-coverage-pill.is-progress{background:#eef1f8;border-color:#c8d0e6;color:#374a76}
+.bo-coverage-pill.is-alert{background:#fdecea;border-color:#efc2bb;color:#8a2f24}
+@media (max-width:640px){.bo-coverage-table{font-size:12px}.bo-coverage-table th,.bo-coverage-table td{padding:8px 10px}}
+
+/* ============ VERIFY TRAILS DESK ============
+   One queue of plain questions. The human check leads each card; the
+   machine's workings sit behind a disclosure so they cannot crowd it out. */
+.vd-main{max-width:820px;}
+.vd-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:6px;}
+.vd-head h1{margin:0;font-size:28px;}
+.vd-lede{margin:6px 0 0;color:var(--ink-soft);font-size:14px;max-width:52ch;}
+.vd-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:30px 0 12px;border-bottom:1px solid var(--paper-line);padding-bottom:8px;}
+.vd-section-head h2{margin:0;font-size:18px;}
+.vd-count{font-size:13px;color:var(--ink-soft);}
+.vd-queue{display:flex;flex-direction:column;gap:16px;}
+.vd-empty,.vd-working{color:var(--ink-soft);font-size:14px;}
+.vd-working{margin-top:14px;}
+
+.vd-card{border:1px solid var(--paper-line);border-radius:14px;background:var(--card);padding:20px 22px;}
+.vd-card.is-blocked{border-color:#C6A15B;}
+.vd-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.vd-card-head h2{margin:2px 0 0;font-size:20px;}
+.vd-gate{margin:0;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
+.vd-lock{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#8A5A16;background:#F6ECDB;border-radius:999px;padding:4px 10px;}
+.vd-question{margin:12px 0 0;font-size:16px;font-weight:600;color:var(--ink);}
+.vd-summary{margin:10px 0 0;font-size:14px;color:var(--ink-soft);}
+
+.vd-checklist-title{margin:18px 0 6px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);}
+.vd-checklist{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px;}
+.vd-checklist li{font-size:14.5px;line-height:1.5;}
+
+.vd-facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+.vd-facts>div{border:1px solid var(--paper-line);border-radius:10px;padding:8px 12px;min-width:104px;}
+.vd-facts small{display:block;font-size:11px;color:var(--ink-soft);}
+.vd-facts strong{display:block;font-size:15px;}
+
+.vd-blockers{margin-top:14px;border-left:3px solid #8A5A16;background:#F6ECDB;border-radius:0 10px 10px 0;padding:10px 14px;}
+.vd-blockers h3{margin:0 0 4px;font-size:13px;color:#5F4A2C;}
+.vd-blockers ul{margin:0;padding-left:18px;font-size:13.5px;color:#5F4A2C;}
+
+.vd-evidence{margin-top:16px;border-top:1px solid var(--paper-line);padding-top:12px;}
+.vd-evidence>summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--ink-soft);}
+.vd-evidence-panel{margin-top:12px;}
+.vd-evidence-panel h4{margin:0 0 6px;font-size:13px;}
+.vd-evidence-panel a{font-size:13px;color:var(--accent);}
+.vd-raw{margin-top:8px;}
+.vd-raw>summary{cursor:pointer;font-size:12px;color:var(--ink-soft);}
+.vd-raw pre{max-height:280px;overflow:auto;font-size:11px;background:var(--sage-dim);padding:10px;border-radius:8px;}
+.bo-route-svg{width:100%;height:auto;color:var(--ink);background:var(--sage-dim);border-radius:10px;}
+
+.vd-card textarea{width:100%;min-height:64px;margin-top:16px;padding:10px 12px;border:1.5px solid var(--paper-line);border-radius:10px;font:400 14px 'Inter',sans-serif;resize:vertical;}
+.vd-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+.vd-actions button{padding:10px 18px;border-radius:999px;border:1.5px solid var(--paper-line);background:var(--card);font:600 14px 'Inter',sans-serif;cursor:pointer;}
+.vd-actions button.is-approve{background:var(--ink);border-color:var(--ink);color:#F7F4EA;}
+.vd-actions button.is-reject{color:#9C3A25;border-color:#E3C4BB;}
+.vd-actions button:disabled{opacity:.45;cursor:not-allowed;}
+.vd-status{margin:10px 0 0;font-size:13px;color:var(--ink-soft);min-height:1em;}
+.vd-scope{margin:8px 0 0;font-size:12px;color:var(--ink-soft);}
+
+.vd-final{margin-top:8px;}
+.vd-pr{border:1px solid var(--paper-line);border-radius:12px;padding:14px 16px;margin-bottom:10px;background:var(--card);}
+.vd-pr h3{margin:0 0 6px;font-size:16px;}
+.vd-pr a{font-size:14px;font-weight:600;color:var(--accent);}
+@media (max-width:640px){
+  .vd-card{padding:16px;}
+  .vd-actions button{flex:1 1 auto;}
+}
+/* An empty status line should take no room at all. */
+.vd-main .bo-state:empty{display:none;}
+
+/* Coverage: the question the desk never answered — how far along are we. */
+.vd-coverage{margin-top:8px;}
+.vd-headline{margin:14px 0 10px;font:600 22px 'Bricolage Grotesque',serif;color:var(--ink);}
+.vd-bar{height:10px;border-radius:999px;background:var(--sage-dim);overflow:hidden;}
+.vd-bar span{display:block;height:100%;background:var(--ink);border-radius:999px;transition:width .3s ease;}
+.vd-split{margin:10px 0 0;font-size:14px;color:var(--ink-soft);}
+.vd-blocking{margin-top:22px;border:1px solid var(--paper-line);border-radius:14px;padding:16px 18px;background:var(--card);}
+.vd-blocking h3{margin:0;font-size:15px;}
+.vd-blocking-note{margin:4px 0 12px;font-size:13px;color:var(--ink-soft);max-width:56ch;}
+.vd-blocker-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;}
+.vd-blocker-list li{display:flex;align-items:baseline;gap:12px;font-size:14.5px;}
+.vd-blocker-list strong{min-width:44px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);}
+.vd-blocker-list span{color:var(--ink-soft);}

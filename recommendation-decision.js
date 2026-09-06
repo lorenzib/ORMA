@@ -26,7 +26,7 @@
   }
 
   // Calm framing: confidence describes data completeness, not danger.
-  // "low" must not read as a warning — missing data never lowers the score.
+  // "low" must not read as a warning, missing data never lowers the score.
   const CONFIDENCE_LABEL = Object.freeze({
     high: 'Based on detailed trail data',
     medium: 'Based on available trail data',
@@ -55,7 +55,7 @@
     // Only four reasons and four cautions reach the card, so what survives the
     // cut decides whether the explanation reads as specific to this dog or as
     // boilerplate. The engine emits in calculation order, which puts every
-    // behaviour and positioned advisory last — exactly the lines worth
+    // behaviour and positioned advisory last, exactly the lines worth
     // showing. Rank before slicing; ties keep the engine's own order.
     const rank = (tiers, fallback) => item => {
       const code = typeof item.code === 'string' ? item.code : '';
@@ -90,6 +90,17 @@
       ['segment.', 'trail.livestock.', 'trail.wildlife.', 'trail.road.',
         'trail.sightlines.', 'trail.crowding.'],
     ];
+    const allFactors = (Array.isArray(recommendation.factors) ? recommendation.factors : [])
+      .filter(entry => entry && typeof entry.message === 'string');
+    const floorEntry = allFactors.find(entry => entry.code === 'score.floor') || null;
+    const breakdownFactors = allFactors
+      .filter(entry => entry !== floorEntry)
+      .map(entry => ({
+        impact:Number.isFinite(entry.impact) ? entry.impact : 0,
+        message:translatedMessage(entry, translate),
+        code:entry.code,
+      }));
+
     const rankedReasons = ordered(
       (Array.isArray(recommendation.positiveReasons) ? recommendation.positiveReasons : [])
         .filter(Boolean),
@@ -131,6 +142,15 @@
       dogName:dogName || null,
       reasons:reasons.slice(0, 4),
       cautions:cautions.slice(0, 4),
+      // P0-1: the full ordered breakdown, most negative first. Unlike the two
+      // summary lists above this is not truncated, the acceptance criterion
+      // is that it lists exactly the factors the score was computed from.
+      breakdownFor:dogName || 'a medium dog',
+      breakdown:breakdownFactors,
+      // The floor is not a factor the reader can act on, and rendering its
+      // positive impact alongside the costs reads as a bonus. It closes the
+      // list as a note instead, explaining why the total stops where it does.
+      breakdownNote:floorEntry ? translatedMessage(floorEntry, translate) : null,
       unknowns:unknowns.slice(0, 5),
       additionalUnknowns:Math.max(0, unknowns.length - 5),
       heroSummary:dogName
@@ -144,5 +164,35 @@
     };
   }
 
-  return Object.freeze({ CATEGORY, present, translatedMessage });
+  // P0-3: what changed when the reader added their own dog. A move of two
+  // points or less is not a move, claiming one would be inventing drama the
+  // score does not support.
+  const SAME_SCORE_TOLERANCE = 2;
+
+  function firstRunCallout(before, after, translate){
+    if(!before || !after) return null;
+    if(!Number.isFinite(before.score) || !Number.isFinite(after.score)) return null;
+    if(!before.forName || !after.forName || before.forName === after.forName) return null;
+
+    const tr = (key, fallback, vars) => {
+      if(typeof translate === 'function'){
+        const value = translate(key, vars);
+        if(value && value !== key) return value;
+      }
+      let output = fallback;
+      for(const name of Object.keys(vars || {})) output = output.split(`{${name}}`).join(vars[name]);
+      return output;
+    };
+
+    if(Math.abs(after.score - before.score) <= SAME_SCORE_TOLERANCE){
+      return tr('recommendation.firstRun.same',
+        'Same score for {name} as for {before} on this trail.',
+        { name:after.forName, before:before.forName });
+    }
+    return tr('recommendation.firstRun.moved',
+      'Was {beforeScore}% for {before} · now {afterScore}% for {name}. See why below.',
+      { beforeScore:before.score, before:before.forName, afterScore:after.score, name:after.forName });
+  }
+
+  return Object.freeze({ CATEGORY, SAME_SCORE_TOLERANCE, present, translatedMessage, firstRunCallout });
 });

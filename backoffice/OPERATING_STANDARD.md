@@ -40,13 +40,32 @@ Owns trails that are already in ORMA and verifies:
 - parking, access, and how to get there; and
 - dynamic hazards that may affect a covered area.
 
-Dynamic hazards run hourly. A source-backed severe, extreme, or dog-critical
-warning may be added automatically. When a successfully fetched authoritative
-active-warning feed affirmatively stops listing a warning, the protected hazard
-is removed automatically and the watcher records that removal. Expiry without
-a complete successful source snapshot opens a resolution review; source failure
-or outage never removes the last known warning. Weather warnings are never
-presented as proof that a specific trail is closed.
+Dynamic hazards run hourly and are fully automatic in both directions. A
+source-backed severe, extreme, or dog-critical warning is added without review.
+A warning is removed without review when a successfully fetched authoritative
+feed stops listing it, or when its own stated expiry passes on a source that
+answered. There is no human removal gate. Source failure or outage never removes
+the last known warning, because an unreachable source is not evidence of safety.
+Weather warnings are never presented as proof that a specific trail is closed.
+
+Customer hazard reports are a separate, equally automatic lane. A signed-in
+contributor reports a hazard on one trail; the Hazard Analyst searches for
+independent corroboration in official notices, park and comune bulletins, alpine
+club updates and local news, and decides without a human:
+
+- corroborated by at least one retrieved source: published as a confirmed ORMA
+  hazard carrying its citations, for at most thirty days;
+- plausible but uncorroborated: published under an explicit "reported by a hiker
+  and not yet confirmed" label, at moderate severity, for seven days. Most
+  genuinely local hazards are never published online, so silence is not treated
+  as evidence against the reporter;
+- contradicted by a current authoritative source, spam, abuse, or not a hazard:
+  never published.
+
+A published community hazard re-checks itself daily and removes itself when its
+corroboration lapses or its life ends. Raw reports are never public; only the
+vetted hazard is. Community hazards follow this lifecycle alone and are never
+reconciled against the weather feeds.
 
 Existing Trails is the current throughput priority. Every day after the
 Firestore quota reset window, the protected
@@ -68,6 +87,32 @@ route description instead. A statement that trail numbers are unavailable is
 not publishable route guidance; if neither numbered nor landmark directions can
 be established, the route-following claim remains unresolved.
 
+A recorded route source is a claim like any other, and the identity check tests
+it by asking whether the trail's own route lies on that relation. A trail that
+walks part of a longer named route is properly sourced, and the difference in
+length is the point of the trail rather than a fault in its source. Neither the
+relation's name nor its length is evidence on its own: a relation may carry a
+trail's exact name and share a quarter of its path.
+
+A trail whose route leaves the recorded relation needs a route source that
+covers the whole walk, exactly as if it had none. It is not queued for the same
+check again, and it is never presented as a route awaiting geometry approval.
+The verdict is recorded against the relation that was examined, so correcting
+the source retires it.
+
+Not every walk is one relation. A loop may go up one numbered path and back
+another, and its source is then the ordered set of paths it follows. Those are
+proposed by measuring which documented routes carry the walk, and a proposal is
+evidence, never a decision: a composite becomes a route source only when a human
+approves it at the geometry gate, and only while it covers the walk. The paths
+are recorded in the order a reader meets them on the ground.
+
+A route source must be at the scale of the walk. A long-distance route running
+along a trail covers all of it at once, and reading guidance from it would send
+a walker after a week-long traverse for an afternoon. Paths the walk
+substantially occupies are proposed first, and a longer route through the area
+answers only where nothing at that scale explains the route.
+
 ### 2. New Trails
 
 Owns discovery before catalogue admission. It prioritises:
@@ -77,118 +122,60 @@ Owns discovery before catalogue admission. It prioritises:
 - candidates close to areas ORMA already covers; and
 - coherent geographic expansion before unrelated new regions.
 
-The active discovery phase is Dolomites-first. Scouting refreshes Monday
-through Saturday, ranks credible Dolomites candidates ahead of other regions,
-and preserves unresolved candidates between refreshes.
+The active discovery phase is Dolomites-first. Scouting is paused during the
+trail-photo and ORMA Verified backfills; existing candidates are preserved and
+nothing is deleted. When resumed it refreshes Monday through Saturday, ranks
+credible Dolomites candidates ahead of other regions, and preserves unresolved
+candidates between refreshes.
 
 CEO selection sends a candidate into the Existing Trails verification fleet.
 Selection is not publication. A New Trail becomes an Existing Trail only after
 the required evidence and human gates are complete.
 
-### 3. Editorial
+### 3. Trail photos
 
-Owns website copy and trail-photo coverage as two separate queues.
+Owns trail-photo coverage only. The website-copy and Safety Library queues are
+retired: their agents, desks and scheduled runs are removed rather than gated,
+and any future copy work starts from a new explicit decision.
 
-Website copy generation is parked during the MVP catalogue-and-coverage phase.
-Existing active and paused packets, ledgers, review decisions and publication
-receipts are preserved, but scheduled runs do not generate replacement copy
-packets or present copy as a current CEO priority. The copy lane can be reopened
-only by an explicit CEO decision.
+Trail-photo coverage is a finite backfill that runs inside the worker pass, not
+a standing audit on its own schedule. It scans every published trail, not guides
+or general pages, and ranks Dolomites gaps first.
 
-When reopened, the copy cycle:
+Photos are sourced directly rather than by an agent. Automated scouting is
+retired: an agent selects on licence metadata alone and never sees the picture,
+and in practice a third of metadata-clean candidates were winter scenes, close-up
+botany or industrial buildings — correctly licensed, correctly located, and wrong
+as covers for summer dog-walking routes. Every published photo is therefore
+looked at before it is committed. The worker cancels any outstanding automated
+scouting job; owner uploads and the CEO's own approvals are never cancelled.
 
-- reviews non-safety guides, editorial articles, and explicitly named
-  governance pages, not design;
-- pauses all Safety Library copy packets while the Safety Library UI is being
-  redesigned; existing packets move to a protected paused archive and are not
-  shown as CEO decisions;
-- prioritises immediate revision requests first, then the Privacy and Terms
-  pages during the current website-refinement cycle, then ordinary freshness
-  work outside the Safety Library;
-- excludes collections from automatic freshness review;
-- keeps exactly three copy packets active at a time;
-- shows the current page beside the proposed page;
-- allows the CEO to edit proposed copy before approval;
-- uses current, dated, authoritative sources for factual changes; and
-- adds or updates a visible `Last reviewed` date when the factual review is
-  complete.
+OpenAI remains in use for trail verification and for scouting additional trails.
 
-Privacy and Terms remain copy-only, human-gated reviews. Their visible
-`Last updated` date changes only when an approved edit materially changes the
-published policy or terms; the copy agent must flag legal or implementation
-uncertainty instead of inventing a commitment.
+A published trail photo is final. Once a trail has a cover photo it leaves the
+gap list permanently, no further decision can be recorded against it, and a
+later approval is retired rather than allowed to replace the picture readers
+have already seen.
 
-Approval applies only the reviewed changes, runs checks, commits only the
-approved source files, pushes to `main`, and reports the deployment result.
-
-Trail-photo coverage is a separate Editorial workflow. It audits every
-published trail, not guides or general pages, and ranks Dolomites gaps first.
-During the MVP phase it is an active throughput lane: the daily refresh keeps
-up to 15 trail-photo searches or exact asset reviews active, automatically
-queues correctly licensed and credited candidate scouting for the highest
-priority unfilled trails, and preserves the remaining coverage inventory
-without presenting every gap as simultaneous work.
+A photo already published for one trail is never offered as a candidate for
+another; the library scan skips the published trail-photo directory.
 For each trail, the CEO can upload her own photograph in a protected backoffice
 space, choose an existing ORMA asset, request correctly licensed candidates,
 explicitly request an AI option, or park the gap. Uploads are not publicly
 readable. The browser compresses an uploaded photo to a strict 560 KiB maximum
 and holds it temporarily in the protected Firestore review queue; ORMA does not
-require a paid photo-storage bucket. The CEO previews the exact image and its
-creator, rights basis and alt text before approving it for a publication pull
-request. The worker copies an approved photo into GitHub, which is the permanent
+require a paid photo-storage bucket. For a licensed, AI or ORMA-library candidate the CEO
+previews the exact image and its creator, rights basis and alt text before
+approving it for a publication pull request. An owner upload skips that second
+step: the uploader has already seen the photo in the upload preview and declared
+its creator, rights basis and alt text there, so it goes straight to the
+publishing lane. The publication pull request remains the human gate in both
+cases, and nothing reaches the website without a merge. The worker copies an approved photo into GitHub, which is the permanent
 public asset store, and deletes the temporary Firestore copy after the reviewed
-pull request is merged and deployed.
-
-### 4. Newsletter
-
-Remains parked until the CEO explicitly confirms that the trail catalogue,
-collections and website content are ready to support useful public links. No
-scheduled issue generation, revision job or downstream handoff runs while it
-is parked. Existing draft and review records are preserved.
-
-Once re-enabled, it runs every 14 days and assembles one complete issue from:
-
-- newly published trails;
-- material changes to published guides; and
-- useful, current, source-linked seasonal signals.
-
-It reuses approved upstream facts and never reopens their editorial decision.
-The CEO reviews one reader-facing issue, with subject options, source links,
-approval, and an immediate revision path. Approval hands the issue to Social
-and to any future sending integration. It must not claim an email was sent when
-no sending service is connected.
-
-### 5. Social Media
-
-Remains launch-gated until the channels and publishing credentials are
-explicitly enabled. Once active, it:
-
-- repurposes approved newsletter material for Instagram, Facebook, and TikTok;
-- adapts the format to each channel; and
-- regularly explains useful ORMA product features.
-
-Social consumes the approved newsletter packet. It does not publish or invent
-a second version of the underlying trail or safety facts.
-
-### 6. Analyst
-
-Is parked during the MVP catalogue-and-coverage phase. Existing ideas,
-investigations, prototypes and decisions are preserved, but no scheduled
-discovery, investigation, design or Developer handoff work is generated until
-the CEO explicitly reopens the lane.
-
-When reopened, Analyst runs as an independent product-discovery lane. It scouts
-competitor releases, feature patterns, UI improvements, and editorial gaps,
-with direct sources and clear evidence-versus-inference language.
-
-The required handoff is:
-
-`Analyst scouts -> CEO reviews -> Product Designer prepares visual prototype -> CEO reviews -> Developer implements -> Release`
-
-The Product Designer is a first-class fleet member with a dedicated prompt and
-a top-level Design desk. Analyst owns evidence and prioritisation; Design owns
-the full-width interactive screen prototype, usability rationale, revision
-requests and the CEO prototype gate. An investigation, priority decision or prototype never authorises development on its own.
+pull request is merged and deployed. A licensed photo is downloaded and
+committed the same way rather than hot-linked, so ORMA never depends on a
+third-party host staying available; its creator, licence, licence URL and source
+page travel with it.
 
 ## CEO review and shipping contract
 
@@ -223,30 +210,35 @@ requests and the CEO prototype gate. An investigation, priority decision or prot
 
 ## Current cadence
 
-- Dynamic hazard check: hourly at minute 7, Europe/Rome, clear of the
-  quarter-hour queue worker. Successfully fetched
-  authoritative feeds remove warnings that they affirmatively resolve; source
-  outages retain the last known warning.
-- Existing Trails queue: checked by the hosted worker every fifteen minutes,
+- Dynamic hazard check: hourly at minute 7, Europe/Rome, clear of the queue
+  worker. Successfully fetched authoritative feeds remove warnings that they
+  affirmatively resolve or that have passed their own expiry; source outages
+  retain the last known warning.
+- Customer hazard vetting: inside every worker pass, at most three reports or
+  re-checks per pass, published or rejected by the Hazard Analyst without a
+  human gate.
+- Existing Trails queue: checked by the hosted worker every thirty minutes,
   with daily ORMA Verified intake at 09:30 local time and 15-trail capacity.
-- Strategy cycle: parked during the MVP phase; manual recovery remains
-  available without generating Editorial or Analyst work by default.
-- Editorial copy: parked during the MVP phase. Existing review packets are
-  preserved; Safety Library copy remains in its protected paused archive.
-- Trail-photo coverage and licensed candidate scouting: daily at 11:00 local
-  time, after New Trail scouting, with at most 15 active searches or reviews;
-  guide-wide image audits are not part of this queue.
-- New Trail scouting: Monday through Saturday at 10:00 local time, Dolomites
+  Hazard freshness does not depend on this cadence; the hazard watch runs on its
+  own hourly schedule.
+- Trail-photo coverage and licensed candidate scouting: inside every worker
+  pass, with at most 15 active searches or reviews; guide-wide image audits are
+  not part of this queue. The lane stops queueing once coverage is complete.
+- New Trail scouting: paused for the duration of the trail-photo and ORMA
+  Verified backfills. Each newly admitted trail opens a new photo gap and a new
+  verification gap faster than either backfill closes one, so intake stays
+  paused until both lanes reach full coverage of the existing catalogue.
+  Cadence when resumed: Monday through Saturday at 10:00 local time, Dolomites
   first; admission remains CEO-gated.
-- Newsletter: parked until trail, collection and website content readiness is
-  explicitly confirmed.
-- Analyst discovery: parked during the MVP phase; existing work is preserved.
-- Social: parked until launch.
+The Newsletter, Social, Analyst, Product Design and website-copy lanes are
+retired. Their agents, desks, scheduled workflows and npm entry points are
+removed from the repository. Firestore review collections and existing artifacts
+are left untouched, so no decision history is lost, but nothing reads or writes
+them. Reopening any of these lanes is a new, explicit build.
 
-The local macOS background services keep these workflows available after login.
-Scheduled drafting uses the signed-in local Codex session when no API key is
-configured. Hosted production workers use server-side credentials and must
-preserve the same contracts.
+Hosted production workers use server-side credentials and must preserve these
+contracts. The duplicate local desk server is retired; the hosted backoffice is
+the single operator surface.
 
 ## Definition of done for future iterations
 

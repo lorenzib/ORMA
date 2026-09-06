@@ -1,0 +1,93 @@
+{
+  "contractVersion": "1.0.0",
+  "valley": "Val Badia",
+  "trailCount": 5,
+  "categoriesNeeded": {
+    "water": 5,
+    "heat": 5,
+    "exposure": 5,
+    "livestock": 5,
+    "surfaceHazards": 5,
+    "access": 5
+  },
+  "canCloseHere": [
+    "livestock",
+    "access"
+  ],
+  "needsPerTrailEvidence": [
+    "water",
+    "heat",
+    "exposure",
+    "surfaceHazards"
+  ],
+  "trails": [
+    {
+      "id": "osm-9493733",
+      "name": "Tru di Lëc",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-9511973",
+      "name": "Roda de Armentara",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-9511999",
+      "name": "Tru dles Viles",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11855879",
+      "name": "Roda de Cherz",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11860429",
+      "name": "Roda dles Viles",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "",
+      "url": "",
+      "categories": [],
+      "note": ""
+    }
+  ]
+}

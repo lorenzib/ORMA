@@ -86,8 +86,8 @@ describe('paw protection question-led guide', () => {
     expect(html).toContain('.paw2-detail-columns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0;}');
     expect(html).toContain('.paw2-detail-columns section{padding:12px 13px;border-radius:10px;background:var(--safety-safe-soft);}');
     expect(html).toContain('.paw2-detail-columns section:last-child{background:var(--safety-stop-soft);}');
-    expect(html).not.toContain('help—and');
-    expect(html).not.toContain('protect—and');
+    expect(html).not.toContain('help, and');
+    expect(html).not.toContain('protect, and');
     details.forEach(detail => expect(detail.open).toBe(true));
     document.getElementById('boots').open = false;
     document.querySelector('a[href="#boots"]').click();

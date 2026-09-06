@@ -188,7 +188,7 @@
     errorBox.hidden = true;
     const isReset = mode === 'reset';
     // Reset mode strips the dialog down to a single email field: no Google
-    // button, no password, no signup toggle — just "send reset link" and a
+    // button, no password, no signup toggle, just "send reset link" and a
     // way back to login (matches the LoginScreen design reference).
     if(googleBtn) googleBtn.hidden = isReset;
     if(dividerEl) dividerEl.hidden = isReset;
@@ -261,7 +261,7 @@
   });
   toggleBtn.addEventListener('click', () => setMode(mode === 'login' ? 'signup' : 'login'));
 
-  // "Keep browsing as a guest" — just dismiss the modal, no account needed.
+  // "Keep browsing as a guest", just dismiss the modal, no account needed.
   const guestBtn = document.getElementById('authGuestBtn');
   if(guestBtn) guestBtn.addEventListener('click', closeModal);
 

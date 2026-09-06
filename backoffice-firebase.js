@@ -79,11 +79,15 @@ async function getContentReviews(){
   }catch(error){console.error('getContentReviews failed:',error);return {ok:false,error:'content-review-read-failed',reviews:[]};}
 }
 
+// Only thirty receipts are ever rendered, so reading twenty per stream was buying
+// rows that are discarded immediately.
+const DECISION_HISTORY_PER_SOURCE=6;
+
 async function getDecisionHistory(){
   if(!await moderatorIdentity())return {ok:false,error:'moderator-required',decisions:[]};
   try{
     const sources=[['backofficeDossierReviews','dossier'],['backofficeReviews','content'],['backofficePublicationReviews','publication'],['backofficeNewTrailReviews','new-trail'],['backofficeHazardReviews','hazard'],['backofficeEditorialReviews','editorial'],['backofficeImageReviews','image'],['backofficeNewsletterReviews','newsletter'],['backofficeAnalystReviews','analyst']];
-    const snapshots=await Promise.all(sources.map(([name])=>getDocs(query(collection(db,name),orderBy('submittedAt','desc'),limit(20)))));
+    const snapshots=await Promise.all(sources.map(([name])=>getDocs(query(collection(db,name),orderBy('submittedAt','desc'),limit(DECISION_HISTORY_PER_SOURCE)))));
     const decisions=snapshots.flatMap((snapshot,index)=>snapshot.docs.map(item=>({id:item.id,stream:sources[index][1],...item.data()})))
       .sort((a,b)=>(b.submittedAt?.seconds||0)-(a.submittedAt?.seconds||0)).slice(0,30);
     return {ok:true,decisions};
@@ -254,6 +258,10 @@ async function submitDossierReview(input){
 }
 
 const MODERATION_COLLECTIONS={flag:'flags',review:'reviews',photo:'trailPhotos',placeDog:'placeDogReports'};
+// The moderation desk is a working queue, not an exhaustive export. Reading every
+// visible flag on every refresh grew without bound and exhausted the daily Firestore
+// read quota, which starved the hazard watch.
+const MODERATION_QUEUE_LIMIT=200;
 
 function moderationItem(type,snapshot,reportReasons=[],reportIds=[]){
   const data=snapshot.data();
@@ -273,11 +281,11 @@ async function getModerationQueue(){
     const [contentResults,reportResult]=await Promise.all([
       Promise.all(types.map(async type=>{
         const queueStates=type==='flag'?['pending','visible','reported','hidden','removed']:['pending','reported','hidden','removed'];
-        const snapshot=await getDocs(query(collection(db,MODERATION_COLLECTIONS[type]),where('status','in',queueStates)));
+        const snapshot=await getDocs(query(collection(db,MODERATION_COLLECTIONS[type]),where('status','in',queueStates),limit(MODERATION_QUEUE_LIMIT)));
         return snapshot.docs.map(item=>moderationItem(type,item)).filter(item=>type!=='flag'||item.status!=='visible'||
           !item.content.lifecyclePresent||!item.content.expiresAt||item.content.expiresAt.toMillis()<=Date.now());
       })),
-      getDocs(query(collection(db,'reports'),where('status','==','open'))),
+      getDocs(query(collection(db,'reports'),where('status','==','open'),limit(MODERATION_QUEUE_LIMIT))),
     ]);
     const openReports=reportResult.docs.map(item=>({id:item.id,...item.data()}));
     const byTarget=new Map();

@@ -7,16 +7,25 @@ function trailSafetyLabel(trail){
   const base = safetyLabel(trail.safetyLevel);
   return window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.riskLabel(trail, base) : base;
 }
-function safetyColor(level){
-  if(level === 'low-risk') return '#2C5C34';
-  if(level === 'moderate') return '#8A5A16';
-  return '#9C3A25';
+// Green/amber/red on the map means how well the walk suits the dog, never
+// how hard the trail is. One palette, defined once in map-style.js, so opening
+// a trail never changes the map's meaning. (This replaces safetyColor(), which
+// coloured the same line by the trail's intrinsic risk in a near-identical
+// palette, so a guest and a signed-in owner read the same line differently.)
+function detailRouteColorForScore(score){
+  return window.ORMAMapStyle
+    ? window.ORMAMapStyle.matchColour(score)
+    : (score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25');
 }
 
-// The logged-in homepage colours routes by the dog's match score. Reuse its
-// exact thresholds here so opening a trail never changes the map's meaning.
-function detailRouteColorForScore(score){
-  return score >= 85 ? '#4A7856' : score >= 65 ? '#C98A2E' : '#9C3A25';
+// A visitor with no dog yet is scored against the medium-dog profile the site
+// already tells them about, so the map still answers "does this suit a dog?"
+// instead of quietly switching to a different question.
+function guestMatchScore(trail){
+  const scoring = window.DoloPawsScoring;
+  if(!scoring || typeof scoring.scoreTrail !== 'function') return null;
+  try{ return scoring.scoreTrail(trail, scoring.GUEST_SUBJECT); }
+  catch(error){ return null; }
 }
 function applyDetailRouteColor(color){
   window._dolopawsTrailRouteColor = color;
@@ -48,20 +57,76 @@ function trustedStartLabel(trail, label){
   return window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.startPointLabel(trail, label) : label;
 }
 
+// ---- On this route --------------------------------------------------------
+// Operational facts (rifugio dog policy, lift muzzle rules) come from the
+// route_operational_fact table, which starts empty and is filled by the
+// editorial process. Until a fact exists the block still names the places on
+// the route and says plainly that nobody has checked, which is the difference
+// between "we have not asked" and "there is nothing here".
+function renderOnThisRoute(t, table){
+  const api = window.DoloPawsOperationalFacts;
+  if(!api) return '';
+  const rows = api.rowsFor(t, table);
+  if(!rows.length) return '';
+
+  const items = rows.map(row => {
+    const where = row.km !== null ? `Km ${row.km}, ` : '';
+    const kind = api.ENTITY_LABEL[row.entityType] || '';
+    // No verified fact means no policy line at all. Never a guess, never blank.
+    const policy = row.policyLabel
+      ? `<span class="td2-onroute-policy">${escapeLiftPopupText(row.policyLabel)}</span>`
+      : '';
+    const notes = row.notes ? `<span class="td2-onroute-note">${escapeLiftPopupText(row.notes)}</span>` : '';
+    const stamp = `<span class="td2-onroute-stamp is-${escapeLiftPopupText(row.state)}">${escapeLiftPopupText(row.label)}</span>`;
+    return `<li><span class="td2-onroute-name">${escapeLiftPopupText(where)}${escapeLiftPopupText(row.entityName)}</span>` +
+      `<span class="td2-onroute-kind">${escapeLiftPopupText(kind)}</span>${policy}${notes}${stamp}</li>`;
+  }).join('');
+
+  return `
+    <div style="margin-bottom:14px;" id="td2OnRoute">
+      <div class="dp-inline-status" style="font-weight:700;color:var(--ink);margin-bottom:4px;">${trailProductIcon('hut')}<span>On this route</span></div>
+      <ul class="td2-onroute">${items}</ul>
+    </div>`;
+}
+
+// The table is small and rarely changes, so it is fetched once and the block
+// is re-rendered in place if any fact applies. A failed fetch leaves the
+// honest unverified block exactly as it is.
+function hydrateOnThisRoute(t){
+  const api = window.DoloPawsOperationalFacts;
+  if(!api || !document.getElementById('td2OnRoute')) return;
+  const prefix = location.pathname.includes('/trails/') ? '../' : '';
+  fetch(`${prefix}data/route-operational-facts.json`, { cache:'no-store' })
+    .then(response => response.ok ? response.json() : null)
+    .then(table => {
+      if(!table || !api.factsFor(t.id, table).length) return;
+      const host = document.getElementById('td2OnRoute');
+      if(!host) return;
+      const replacement = document.createElement('div');
+      replacement.innerHTML = renderOnThisRoute(t, table);
+      const next = replacement.firstElementChild;
+      if(next) host.replaceWith(next);
+    })
+    .catch(() => {});
+}
+
 function renderTrailDetailContent(t){
   const rifugi = Array.isArray(t.rifugi) ? t.rifugi : [];
   const water = Array.isArray(t.waterSources) ? t.waterSources : [];
 
   const rifugiHtml = rifugi.length > 0
-    ? `<ul style="margin:0 0 14px;padding-left:18px;">${rifugi.map(r => `<li>Km ${r.km} — ${r.name}</li>`).join('')}</ul>`
+    ? `<ul style="margin:0 0 14px;padding-left:18px;">${rifugi.map(r => `<li>Km ${r.km}, ${r.name}</li>`).join('')}</ul>`
     : `<p style="margin:0 0 14px;">${window.t('trail.noRifugi')}</p>`;
 
   const waterHtml = water.length > 0
-    ? `<ul style="margin:0 0 8px;padding-left:18px;">${water.map(w => `<li>Km ${w.km} — ${trustedWaterLabel(t, w.label)}</li>`).join('')}</ul>` +
+    ? `<ul style="margin:0 0 8px;padding-left:18px;">${water.map(w => `<li>Km ${w.km}, ${trustedWaterLabel(t, w.label)}</li>`).join('')}</ul>` +
       (t.curated === false ? '<p style="margin:0 0 14px;font-size:12px;color:var(--ink-soft);">Availability can change. Carry a backup supply.</p>' : '')
     : `<p style="margin:0 0 14px;">${window.t('trail.noWater')}</p>`;
 
+  setTimeout(() => hydrateOnThisRoute(t), 0);
+
   return `
+    ${renderOnThisRoute(t, null)}
     <div style="margin-bottom:14px;">
       <div class="dp-inline-status" style="font-weight:700;color:var(--ink);margin-bottom:4px;">${trailProductIcon('hut')}<span>${withoutLeadingSymbol(window.t('trail.rifugiHead'))}</span></div>
       ${rifugiHtml}
@@ -221,7 +286,7 @@ function initLoopComposer(map, t){
     openButton.setAttribute('aria-pressed', String(active));
     if(mapBox) mapBox.classList.toggle('loop-composer-active', active);
     panel.dataset.state = closed ? 'closed' : 'open';
-    distance.textContent = preview ? formatApproachDistance(preview.distanceM / 1000) : '—';
+    distance.textContent = preview ? formatApproachDistance(preview.distanceM / 1000) : ', ';
     pointCount.textContent = `${points.length} / ${MAX_POINTS}`;
     addCentreButton.disabled = busy || closed || points.length >= MAX_POINTS;
     undoButton.disabled = busy || !points.length;
@@ -732,7 +797,7 @@ function pointAtFraction(path, fraction){
 // Elevation profile chart with two-way hover sync: hovering the chart moves
 // a cursor dot on the map; hovering near the route on the map highlights
 // the matching point on the chart. Honest note on data granularity: this
-// draws whatever is in t.elevationProfile — currently a sparse 5-6 point
+// draws whatever is in t.elevationProfile, currently a sparse 5-6 point
 // sample for hand-built trails, but it'll render just as correctly (and
 // more smoothly) once a trail has real per-vertex elevation from the
 // build-trail.mjs/build-route.mjs pipeline. The chart code doesn't care
@@ -926,17 +991,17 @@ function increaseLabelDensity(map){
     // clearing their minzoom makes them appear even when zoomed far out,
     // which is the effect that was actually wanted. Everything else (POI
     // icons, road names, house numbers) keeps the style's own collision
-    // rules — forcing those all visible at once made town centers like
+    // rules, forcing those all visible at once made town centers like
     // Canazei unreadably dense.
     if(sl !== 'place' && sl !== 'mountain_peak') return;
     try {
       map.setLayerZoomRange(layer.id, 0, 24);
       map.setLayoutProperty(layer.id, 'text-optional', true);
       // NOTE: deliberately NOT setting text-allow-overlap/icon-allow-overlap
-      // anymore — that disabled collision detection entirely and was the
+      // anymore, that disabled collision detection entirely and was the
       // root cause of the overcrowded map. MapLibre's collision logic now
       // prunes overlapping labels automatically at every zoom.
-    } catch(e) { /* some layers may not support one of these props — skip silently */ }
+    } catch(e) { /* some layers may not support one of these props, skip silently */ }
   });
 }
 
@@ -975,7 +1040,7 @@ function addBaseHillshade(map, beforeId){
   }, beforeId && map.getLayer(beforeId) ? beforeId : undefined);
 }
 
-// Lifts on the trail detail map — ALL of them, same data as the homepage
+// Lifts on the trail detail map, ALL of them, same data as the homepage
 // (the global `gondolas` array from trails-data.js). Lines and stations are
 // GeoJSON layers rather than DOM markers, so rendering all ~700 lifts and
 // ~1,400 stations costs nothing.
@@ -1063,14 +1128,13 @@ function renderAllLifts(map, options){
 }
 
 // ============================================================
-// IMPORTED CIRCUITS — start where you can actually park.
+// IMPORTED CIRCUITS, start where you can actually park.
 // OSM route relations have no official start point: the import stitches
 // their segments into one line and begins wherever stitching happened to
 // start, so a loop's km 0 can land mid-slope, far from any access.
 // Before rendering, look up real amenity=parking spots around the route
 // (Overpass, cached locally for 30 days) and rotate the loop so km 0
-// sits at the path point nearest a parking area. Everything downstream —
-// 🚩 flag, directions, arrows, weather anchor, hike mode — follows the
+// sits at the path point nearest a parking area. Everything downstream, // 🚩 flag, directions, arrows, weather anchor, hike mode, follows the
 // rotated order automatically. Falls back silently to the imported order
 // when no parking is close enough or the lookup fails or times out.
 // ============================================================
@@ -1150,7 +1214,7 @@ function improveLoopStart(trail, options){
       if(cached.rot) applyLoopRotation(trail, cached.rot);
       return Promise.resolve();
     }
-  } catch (e) { /* unreadable cache — just refetch */ }
+  } catch (e) { /* unreadable cache, just refetch */ }
 
   const lookup = fetchNearbyParking(trail.path).then(parkings => {
     let best = null;
@@ -1179,7 +1243,7 @@ function improveLoopStart(trail, options){
 
 
 // ============================================================
-// "FROM PARKING TO PAWS" — one named, km-ordered itinerary that
+// "FROM PARKING TO PAWS", one named, km-ordered itinerary that
 // replaces the separate directions/rifugi/water lists. Base steps
 // (parking, start, decision points, finish) render immediately;
 // named amenities from the OSM files arrive asynchronously via
@@ -1192,9 +1256,9 @@ const itin = { trail: null, items: [], cumKm: null };
 function trLabel(label){
   if(!label || (window.DoloPawsI18n && window.DoloPawsI18n.lang) !== 'it') return label;
   const RULES = [
-    [/^Start here — main parking area at (.+)$/, 'Parti qui — parcheggio principale a $1'],
-    [/^Start here — main lake access & parking, by (.+)$/, 'Parti qui — accesso principale al lago e parcheggio, presso $1'],
-    [/^Route start per OpenStreetMap — best parking\/access not yet verified$/, 'Inizio del percorso secondo OpenStreetMap — parcheggio/accesso migliore non ancora verificato'],
+    [/^Start here, main parking area at (.+)$/, 'Parti qui, parcheggio principale a $1'],
+    [/^Start here, main lake access & parking, by (.+)$/, 'Parti qui, accesso principale al lago e parcheggio, presso $1'],
+    [/^Route start per OpenStreetMap, best parking\/access not yet verified$/, 'Inizio del percorso secondo OpenStreetMap, parcheggio/accesso migliore non ancora verificato'],
     [/^Lakeside fountain$/, 'Fontana in riva al lago'],
     [/^Trailhead fountain$/, 'Fontana alla partenza'],
     [/^Village fountain$/, 'Fontana del paese'],
@@ -1255,7 +1319,7 @@ function buildItinerary(t){
   const isLoop = Array.isArray(t.path) && t.path.length > 1
     && distMeters(t.path[0], t.path[t.path.length-1]) < 200;
 
-  // 1. Parking / access — the named startPoint label plus a directions
+  // 1. Parking / access, the named startPoint label plus a directions
   // link into whatever navigation app this device prefers: Apple Maps on
   // iOS/macOS, Google Maps elsewhere. Neutral label, destination pre-filled.
   const sp = t.startPoint || { lat: t.lat, lng: t.lng, label: '' };
@@ -1271,15 +1335,15 @@ function buildItinerary(t){
 
   // 3. Curated rifugi and water points (they carry real names + km).
   (Array.isArray(t.rifugi) ? t.rifugi : []).forEach(r => {
-    if(r.km > 0) itinAdd('hut', r.km, `${itinKmLabel(r.km)} — ${itinEsc(r.name)}`);
+    if(r.km > 0) itinAdd('hut', r.km, `${itinKmLabel(r.km)}, ${itinEsc(r.name)}`);
   });
   (Array.isArray(t.waterSources) ? t.waterSources : []).forEach(w => {
-    if(w.km > 0) itinAdd('water', w.km, `${itinKmLabel(w.km)} — ${itinEsc(trLabel(trustedWaterLabel(t, w.label)))}`);
+    if(w.km > 0) itinAdd('water', w.km, `${itinKmLabel(w.km)}, ${itinEsc(trLabel(trustedWaterLabel(t, w.label)))}`);
   });
 
-  // 4. Decision points — where the route switches numbered trails.
+  // 4. Decision points, where the route switches numbered trails.
   (Array.isArray(t.decisionPoints) ? t.decisionPoints : []).forEach(d => {
-    itinAdd('switch', d.km, `${itinKmLabel(d.km)} — ${itinEsc(d.instruction)}`);
+    itinAdd('switch', d.km, `${itinKmLabel(d.km)}, ${itinEsc(d.instruction)}`);
   });
 
   // 5. Closing step.
@@ -1315,7 +1379,7 @@ function buildItinerary(t){
       const nameKey = p.name.toLowerCase();
       if([...seen].some(h => h.includes(nameKey))) return;
       const isHut = p.tourism === 'alpine_hut' || p.tourism === 'wilderness_hut' || p.amenity === 'shelter';
-      itinAdd(isHut ? 'hut' : 'food', hit.km, `${itinKmLabel(Math.round(hit.km*10)/10)} — ${itinEsc(p.name)}`);
+      itinAdd(isHut ? 'hut' : 'food', hit.km, `${itinKmLabel(Math.round(hit.km*10)/10)}, ${itinEsc(p.name)}`);
       seen.add(nameKey);
       added++;
     });
@@ -1332,14 +1396,14 @@ function buildItinerary(t){
       const hit = kmOnPath(lat, lng);
       if(!hit || hit.km <= 0.05) return;
       const label = (f.properties && f.properties.name) ? f.properties.name : window.t('legend.water');
-      itinAdd('water', hit.km, `${itinKmLabel(Math.round(hit.km*10)/10)} — ${itinEsc(label)}`);
+      itinAdd('water', hit.km, `${itinKmLabel(Math.round(hit.km*10)/10)}, ${itinEsc(label)}`);
       added++;
     });
     if(added) itinRender();
   };
 
   // Viewpoints, picnic spots and named sights from the trail-corridor
-  // amenity sweep — a couple of each, placed at their km on the route.
+  // amenity sweep, a couple of each, placed at their km on the route.
   window.onDetailPlacesReady = (features) => {
     const plainT = (key, fb) => {
       if(!window.t) return fb;
@@ -1362,7 +1426,7 @@ function buildItinerary(t){
       const nameKey = label.toLowerCase();
       if([...seen].some(h => h.includes(nameKey))) return;
       const icon = kind === 'viewpoint' ? 'view' : (kind === 'picnic' ? 'picnic' : 'sight');
-      itinAdd(icon, hit.km, `${itinKmLabel(Math.round(hit.km*10)/10)} — ${itinEsc(label)}`);
+      itinAdd(icon, hit.km, `${itinKmLabel(Math.round(hit.km*10)/10)}, ${itinEsc(label)}`);
       seen.add(nameKey);
       added[kind]++;
       any++;
@@ -1560,11 +1624,26 @@ function renderTrail(t){
       if(creditEl && creditText && credit){
         creditEl.open=false;
         creditText.replaceChildren();
+        // Creative Commons requires the creator and the licence, not just a link to
+        // the source. The static generator already renders both; a trail served
+        // only by this dynamic page must not be credited more thinly.
         if(credit.url){
           const link=document.createElement('a');
           link.href=credit.url;link.target='_blank';link.rel='noopener nofollow';link.textContent=credit.label;
           creditText.appendChild(link);
-        }else creditText.textContent=credit.label;
+        }else creditText.appendChild(document.createTextNode(credit.label));
+        if(t.imageCreator){
+          creditText.appendChild(document.createTextNode(` by ${t.imageCreator}`));
+        }
+        if(t.imageLicence){
+          creditText.appendChild(document.createTextNode(' · '));
+          if(t.imageLicenceUrl){
+            const licence=document.createElement('a');
+            licence.href=t.imageLicenceUrl;licence.rel='license noopener';licence.target='_blank';
+            licence.textContent=t.imageLicence;
+            creditText.appendChild(licence);
+          }else creditText.appendChild(document.createTextNode(t.imageLicence));
+        }
         creditEl.hidden=false;
       }
     }
@@ -1587,7 +1666,7 @@ function renderTrail(t){
   document.getElementById('trailDesc').textContent = conciseDescription;
   document.getElementById('trailTips').textContent = t.tips ? window.t('trail.tip', {tip: trField(t, 'tips')}) : '';
 
-  // Community v0: "N dogs hiked this trail this week" — anonymous counts
+  // Community v0: "N dogs hiked this trail this week", anonymous counts
   // from hike-mode starts. Deliberately renders NOTHING at zero: an empty
   // trail should look quiet, not dead.
   function showWeeklyHikes(){
@@ -1623,7 +1702,7 @@ function renderTrail(t){
     box.innerHTML = provenanceIcon + '<strong>Trail planning information.</strong> Based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.';
     descEl.parentNode.insertBefore(box, descEl);
 
-    // Trail hazards — surfaceHazards used to feed only the match scoring;
+    // Trail hazards, surfaceHazards used to feed only the match scoring;
     // surface them to the reader too, right under the provenance banner.
     const surfaceVerified = !trust || !trust.categoryVerified || trust.categoryVerified(t, 'surfaceHazards');
     if (surfaceVerified && Array.isArray(t.surfaceHazards) && t.surfaceHazards.length && !document.getElementById('trailHazards')) {
@@ -1638,16 +1717,15 @@ function renderTrail(t){
     }
   })();
 
-  // Quick facts — ascent/descent, highest/lowest point.
+  // Quick facts, ascent/descent, highest/lowest point.
   // Note: summing the sparse elevationProfile points (usually just 5-6
   // samples) systematically UNDERSTATES real ascent, since it misses the
-  // smaller ups and downs between samples — confirmed by comparing against
+  // smaller ups and downs between samples, confirmed by comparing against
   // Tre Cime's already-researched 430m gain figure, which came out much
   // higher than summing its profile points did. Using the existing
   // `elevation` field for ascent is more trustworthy, and since every trail
-  // here is a loop (same start/end point), descent is the same figure —
-  // net elevation change over a full loop is ~0 by definition.
-  // Facts live inside the dark hero now — one place, no duplicates.
+  // here is a loop (same start/end point), descent is the same figure, // net elevation change over a full loop is ~0 by definition.
+  // Facts live inside the dark hero now, one place, no duplicates.
   (function(){
     const factsEl = document.getElementById('trailFacts');
     if(!factsEl) return;
@@ -1659,7 +1737,7 @@ function renderTrail(t){
     if(Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1){
       facts.splice(2, 0, [`${Math.max(...t.elevationProfile.map(p => p.elev))} m`, window.t('trail.fact.high')]);
     }
-    // Difficulty cell — mirrors the homepage's derivation from real fields so
+    // Difficulty cell, mirrors the homepage's derivation from real fields so
     // the hero stat strip matches the design's five-cell layout.
     (function(){
       const asc = Number(t.elevation) || 0;
@@ -1682,10 +1760,10 @@ function renderTrail(t){
     const statMatchVal = document.getElementById('statMatchVal');
     const statMatchSub = document.getElementById('statMatchSub');
 
-    // Personal match — needs a logged-in profile. Guests see the facts
+    // Personal match, needs a logged-in profile. Guests see the facts
     // plus an honest invitation: the score exists, it just isn't theirs yet.
     function paintMatchTeaser(){
-      applyDetailRouteColor(safetyColor(t.safetyLevel));
+      applyDetailRouteColor(detailRouteColorForScore(guestMatchScore(t)));
       const actions = document.querySelector('.td-actions');
       if(actions) actions.classList.add('guest-actions');
       if(statMatch){
@@ -1743,7 +1821,7 @@ function renderTrail(t){
 
   document.getElementById('trailDetailContent').innerHTML = renderTrailDetailContent(t);
 
-  // "Good to know" — curated insights (history, geology, best practice)
+  // "Good to know", curated insights (history, geology, best practice)
   // with cited sources, for trails that have them in trails-data.js.
   if (Array.isArray(t.insights) && t.insights.length){
     const lang = (window.DoloPawsI18n && window.DoloPawsI18n.lang) || 'en';
@@ -1765,7 +1843,7 @@ function renderTrail(t){
       if (detail) detail.appendChild(box);
     }
   } else {
-    // No hand-researched notes yet — fill the card with honest facts
+    // No hand-researched notes yet, fill the card with honest facts
     // derived from the route data itself, clearly labelled as such.
     const gtk = document.getElementById('goodToKnowBox');
     if (gtk){
@@ -1838,7 +1916,7 @@ function renderTrail(t){
       style: 'https://tiles.openfreemap.org/styles/liberty',
       center: [t.lng, t.lat],
       zoom: 14,
-      pitch: 0, // clean, flat, label-first by default — 3D is opt-in via the toggle
+      pitch: 0, // clean, flat, label-first by default, 3D is opt-in via the toggle
       attributionControl: { compact: true },
     };
     const map = new maplibregl.Map(window.DoloPawsMapRuntime
@@ -1847,7 +1925,7 @@ function renderTrail(t){
     window._dolopawsTrailMap = map; // debug/test handle
     initNearestTrailDirections(map, t);
 
-    // Fullscreen map — manual ⤢ toggle, and automatic during hike mode.
+    // Fullscreen map, manual ⤢ toggle, and automatic during hike mode.
     const mapBox = document.getElementById('trailMapBox');
     const expandBtn = document.getElementById('mapExpandBtn');
     const elevationPanel = document.getElementById('tdElevationPanel');
@@ -1872,7 +1950,7 @@ function renderTrail(t){
     document.addEventListener('keydown', event => {
       if(event.key === 'Escape' && mapBox && mapBox.classList.contains('map-fs')) setMapFS(false);
     });
-    // Live blue-dot location control — tap to see yourself on the map,
+    // Live blue-dot location control, tap to see yourself on the map,
     // with heading arrow and follow-me tracking (Google Maps-style).
     map.addControl(new maplibregl.GeolocateControl({
       positionOptions: { enableHighAccuracy: true },
@@ -1914,14 +1992,14 @@ function renderTrail(t){
         const sat = btn.getAttribute('data-maplayer') === 'satellite';
         map.setLayoutProperty('satellite-layer', 'visibility', sat ? 'visible' : 'none');
         // The vector style's building fills sit above the raster and would
-        // paint every roof grey over the photo imagery — hide them on
+        // paint every roof grey over the photo imagery, hide them on
         // satellite.
         map.getStyle().layers.forEach(layer => {
           if(layer['source-layer'] === 'building' || /building/i.test(layer.id)){
             try { map.setLayoutProperty(layer.id, 'visibility', sat ? 'none' : 'visible'); } catch(err){}
           }
         });
-        // Base buttons only — the 3D toggle keeps its own pressed state.
+        // Base buttons only, the 3D toggle keeps its own pressed state.
         layerSwitch.querySelectorAll('[data-maplayer]').forEach(b => {
           const on = b === btn;
           b.classList.toggle('on', on);
@@ -2010,7 +2088,7 @@ function renderTrail(t){
         });
       }
       // Water / huts / food / places each get their own chip so nothing that
-      // used to be visible is merely gone — it moved behind a control.
+      // used to be visible is merely gone, it moved behind a control.
       const POI_CHIPS = [
         { id:'fountainsToggle', group:'fountains', icon:'water', label:'Drinking water' },
         { id:'hutsToggle', group:'huts', icon:'hut', label:'Huts & shelters' },
@@ -2110,14 +2188,14 @@ function renderTrail(t){
       }
 
 
-      // Waymarked Trails' own public hiking overlay — same underlying OSM
+      // Waymarked Trails' own public hiking overlay, same underlying OSM
       // data as our base map, but with their dedicated trail-route styling
       // (numbered routes, waymarking) that a general basemap doesn't draw.
       //
       // Drawn in Waymarked's own colours by map-style.js. The previous
       // treatment desaturated it by -0.90 and pushed contrast, which turned
       // their red route lines and route-number shields into unreadable grey
-      // smudges — the "illegible signs" complaint. Inserting before the first
+      // smudges, the "illegible signs" complaint. Inserting before the first
       // label layer keeps it above roads and fills but below every place name.
       const firstLabelId = window.ORMAMapStyle.firstLabelLayerId(map);
       window.ORMAMapStyle.quietBasemap(map);
@@ -2136,7 +2214,7 @@ function renderTrail(t){
         });
       }
 
-      // ---- Other trails' routes — browse and switch without going back ----
+      // ---- Other trails' routes, browse and switch without going back ----
       // Every other trail with a real GPS route renders as a secondary line;
       // clicking one pops up its name and a link straight to its page. Added
       // BEFORE the main route's layers so the current trail always draws on
@@ -2235,7 +2313,7 @@ function renderTrail(t){
         const escName = s => String(s == null ? '' : s).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
         const openNearbyPopup = (e) => {
           // If this click also lands on the current trail's own route,
-          // let the main route win — no neighbour popup on top of it.
+          // let the main route win, no neighbour popup on top of it.
           if(e.type === 'click' && e.features && e.features[0] && e.features[0].geometry.type === 'LineString' && map.getLayer('single-trail-path-line')){
             const onMain = map.queryRenderedFeatures(e.point, { layers: ['single-trail-path-line'] });
             if(onMain.length) return;
@@ -2283,7 +2361,7 @@ function renderTrail(t){
       }
 
       if(Array.isArray(t.path) && t.path.length > 1){
-        const selectedRouteColor = window._dolopawsTrailRouteColor || safetyColor(t.safetyLevel);
+        const selectedRouteColor = window._dolopawsTrailRouteColor || detailRouteColorForScore(guestMatchScore(t));
         map.addSource('single-trail-path', {
           type: 'geojson',
           data: {
@@ -2346,14 +2424,14 @@ function renderTrail(t){
         setupElevationProfile(map, t);
 
         // NOTE: curated rifugi/water emoji markers used to be placed here
-        // from the trail's km data — removed: they duplicated the real OSM
+        // from the trail's km data, removed: they duplicated the real OSM
         // amenity dots (detail-pois.js), showing two markers for the same
         // rifugio. The OSM dot layers are now the single amenity language
         // on every map; the curated km list still renders as text in the
         // "Trail details" column. Emoji markers remain only for things OSM
         // can't know: recommended start, decision points, community flags.
 
-        // Decision points — where a hiker needs to switch from one numbered
+        // Decision points, where a hiker needs to switch from one numbered
         // route onto another. Always real, verified coordinates (these come
         // from actual confirmed junctions between two GPX tracks, never
         // interpolated) so no fallback branch is needed here.
@@ -2385,7 +2463,7 @@ function renderTrail(t){
           });
         }
 
-        // Recommended starting point — a loop can technically be walked
+        // Recommended starting point, a loop can technically be walked
         // from anywhere on it, but a real, well-marked access/parking point
         // is worth calling out explicitly rather than leaving people to
         // guess where to begin.
@@ -2401,7 +2479,7 @@ function renderTrail(t){
 
       if (typeof makeBasemapPoisClickable === 'function') makeBasemapPoisClickable(map);
 
-      // Community dog-safety flags — list, map markers, report modal.
+      // Community dog-safety flags, list, map markers, report modal.
       if (typeof initTrailReports === 'function') initTrailReports(map, t);
     });
   }
@@ -2464,7 +2542,7 @@ function renderTrail(t){
     initDetailMap();
   }
 
-  // Save button — reflects and updates real account state, same pattern as the trail cards.
+  // Save button, reflects and updates real account state, same pattern as the trail cards.
   const saveBtn = document.getElementById('detailSaveBtn');
   let saveStatusTimer = null;
   function showSaveStatus(message){
@@ -2562,7 +2640,7 @@ function renderTrail(t){
       }
       try {
         window.DoloPawsGpxExport.download(t);
-        showExportStatus('GPX downloaded. It contains the route only — check ORMA for safety context.');
+        showExportStatus('GPX downloaded. It contains the route only, check ORMA for safety context.');
         return true;
       } catch(error){
         showExportStatus(error && error.message

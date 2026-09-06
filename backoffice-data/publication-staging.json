@@ -47,7 +47,7 @@
         "tips": "Start and finish at Rifugio Auronzo. The seasonal toll road and parking are weather-dependent and normally require advance booking; roadside parking is prohibited. Carry sufficient water. A fountain is identified at Malga LangAlm, but its seasonal availability and potability are not guaranteed.",
         "routeRef": "backoffice-data/route-proposals/tre-cime-classic.geojson",
         "imageIcon": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
-        "imageCredit": "Tre Cime di Lavaredo, Sentiero per il Rifugio Locatelli — Simone A. Bertinotti — CC BY-SA 4.0 — via Wikimedia Commons",
+        "imageCredit": "Tre Cime di Lavaredo, Sentiero per il Rifugio Locatelli, Simone A. Bertinotti, CC BY-SA 4.0, via Wikimedia Commons",
         "heroImage": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Tre_Cime_di_Lavaredo,_Sentiero_per_il_Rifugio_Locatelli.jpg",
         "imageCreator": "Simone A. Bertinotti",
@@ -70,7 +70,7 @@
         "startPoint": {
           "lat": 46.612849,
           "lng": 12.292858,
-          "label": "Parcheggio Rifugio Auronzo (P1) — approved parking pin"
+          "label": "Parcheggio Rifugio Auronzo (P1), approved parking pin"
         },
         "reviewedAt": "2026-08-18",
         "reviewedBy": "ORMA verified-trail workflow",
@@ -286,7 +286,7 @@
         "tips": "This itinerary depends on the 5 Torri chairlift operating. The published 2026 season is 6 June to 11 October, subject to weather and snow. Use the approved Bai de Dones parking pin. Carry water: the three refuges are possible service stops, but no freely accessible potable dog-water point has been verified.",
         "routeRef": "backoffice-data/route-proposals/cinque-torri-three-refuges-assisted.geojson",
         "imageIcon": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cinque_Torri_01.jpg",
-        "imageCredit": "Cinque Torri 01 — Clemens Stockner — CC BY-SA 4.0 — via Wikimedia Commons",
+        "imageCredit": "Cinque Torri 01, Clemens Stockner, CC BY-SA 4.0, via Wikimedia Commons",
         "heroImage": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cinque_Torri_01.jpg",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cinque_Torri_01.jpg",
         "imageCreator": "Clemens Stockner",
@@ -309,7 +309,7 @@
         "startPoint": {
           "lat": 46.518917,
           "lng": 12.037604,
-          "label": "Bai de Dones — approved parking pin"
+          "label": "Bai de Dones, approved parking pin"
         },
         "reviewedAt": "2026-08-18",
         "reviewedBy": "ORMA verified-trail workflow",
@@ -512,7 +512,7 @@
         "tips": "Use the approved official P1, P2, P3 and P4 parking set. From 1 July to 15 September 2026, between 09:00 and 16:00, valley access is controlled and requires public transport, walking, cycling, or the relevant parking reservation or transit permit. Carry and use a muzzle on public transport.",
         "routeRef": "backoffice-data/route-proposals/lago-braies-circuit.geojson",
         "imageIcon": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lago_di_Braies_South_Tyrol_5.jpg",
-        "imageCredit": "Lago di Braies South Tyrol 5 — kallerna — CC BY-SA 4.0 — via Wikimedia Commons",
+        "imageCredit": "Lago di Braies South Tyrol 5, kallerna, CC BY-SA 4.0, via Wikimedia Commons",
         "heroImage": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lago_di_Braies_South_Tyrol_5.jpg",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_5.jpg",
         "imageCreator": "kallerna",
@@ -535,7 +535,7 @@
         "startPoint": {
           "lat": 46.699015,
           "lng": 12.085296,
-          "label": "Lago di Braies access — use the approved official P1–P4 parking set"
+          "label": "Lago di Braies access, use the approved official P1–P4 parking set"
         },
         "reviewedAt": "2026-08-18",
         "reviewedBy": "ORMA verified-trail workflow",

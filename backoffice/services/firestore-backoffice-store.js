@@ -2,6 +2,7 @@
 
 const { getApps, initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 const { getFirestore, FieldValue, Timestamp } = require('firebase-admin/firestore');
+const { providerOutage } = require('./provider-outage');
 
 const COLLECTIONS = Object.freeze({
   artifacts: 'backofficeArtifacts',
@@ -14,6 +15,7 @@ const COLLECTIONS = Object.freeze({
   editorialReviews:'backofficeEditorialReviews',
   imageReviews:'backofficeImageReviews',
   imageUploads:'backofficeImageUploads',
+  hazardReports:'trailHazardReports',
   newsletterReviews:'backofficeNewsletterReviews',
   analystReviews:'backofficeAnalystReviews',
 });
@@ -124,6 +126,33 @@ class FirestoreBackofficeStore {
     this.queryCache.set(key,jobs);return jobs;
   }
 
+  // Reading every job in the collection to then filter by a known id list was the
+  // dominant Firestore read cost: it grew with every job ever created and ran twice
+  // per worker pass. Fetch only the referenced documents instead.
+  async listHazardReports(status='pending',limit=25){
+    const snapshot=await this.db.collection(COLLECTIONS.hazardReports).where('status','==',status).limit(limit).get();
+    return snapshot.docs.map(doc=>({id:doc.id,...doc.data()}));
+  }
+
+  async markHazardReport(id,status,fields={}){
+    await this.db.collection(COLLECTIONS.hazardReports).doc(id).set({
+      ...fields,status,vettedAt:FieldValue.serverTimestamp(),updatedAt:FieldValue.serverTimestamp(),
+    },{merge:true});
+  }
+
+  async getJobsByIds(ids = []){
+    const unique = [...new Set(ids.filter(Boolean).map(String))];
+    if(!unique.length) return [];
+    const collection = this.db.collection(COLLECTIONS.jobs);
+    const jobs = [];
+    for(let index = 0; index < unique.length; index += 300){
+      const refs = unique.slice(index, index + 300).map(id => collection.doc(id));
+      const snapshots = await this.db.getAll(...refs);
+      snapshots.forEach(snapshot => { if(snapshot.exists) jobs.push({ id: snapshot.id, ...snapshot.data() }); });
+    }
+    return jobs.sort((a, b) => String(a.createdAt || '').localeCompare(String(b.createdAt || '')));
+  }
+
   async recoverExpiredJobs(options = {}){
     const now = options.now || new Date();
     const snapshot = await this.db.collection(COLLECTIONS.jobs).where('status', '==', 'running').get();
@@ -191,12 +220,21 @@ class FirestoreBackofficeStore {
     const ref = this.db.collection(COLLECTIONS.jobs).doc(id);
     await this.db.runTransaction(async transaction => {
       const snapshot = await transaction.get(ref); if(!snapshot.exists) return;
-      const job = snapshot.data(); const failures = Number(job.systemFailures || 0) + 1;
-      const maximum = options.maximumFailures || 3; const blocked = failures >= maximum;
-      const delayMs = (options.retryDelaysMs || [60_000, 360_000, 1_440_000])[Math.min(failures - 1, 2)];
+      const job = snapshot.data();
+      // A provider outage says nothing about the job, so it never counts towards
+      // the failure budget and never blocks. It waits longer instead, because
+      // retrying hard against an exhausted quota helps nobody.
+      const outage = providerOutage(error);
+      const failures = outage ? Number(job.systemFailures || 0) : Number(job.systemFailures || 0) + 1;
+      const maximum = options.maximumFailures || 3;
+      const blocked = !outage && failures >= maximum;
+      const delayMs = outage
+        ? (options.outageDelayMs || 1_800_000)
+        : (options.retryDelaysMs || [60_000, 360_000, 1_440_000])[Math.min(failures - 1, 2)];
       transaction.update(ref, {
         status: blocked ? 'blocked' : 'queued', systemFailures: failures,
         lastError: String(error?.message || error).slice(0, 2000),
+        ...(outage ? { providerOutages: Number(job.providerOutages || 0) + 1, lastOutageAt: FieldValue.serverTimestamp() } : {}),
         notBefore: blocked ? FieldValue.delete() : Timestamp.fromMillis(Date.now() + delayMs),
         leaseExpiresAt: FieldValue.delete(), updatedAt: FieldValue.serverTimestamp(),
       });
