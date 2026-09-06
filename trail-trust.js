@@ -68,7 +68,11 @@
   const REVIEW_CATEGORIES = Object.freeze(['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access']);
   const GRADUATION_CATEGORIES = Object.freeze(['photo', 'route', 'mapPoints', 'elevation', ...REVIEW_CATEGORIES]);
   const hasSourceReview = trail => !!(trail && trail.verified && Array.isArray(trail.verified.categories));
-  const categoryVerified = (trail, category) => !hasSourceReview(trail) || trail.verified.categories.includes(category);
+  // An absent `verified` field means no category review is recorded, so no
+  // category is verified. Defaulting the other way let an unreviewed trail
+  // skip every caveat and describe its water as reviewed, which VERIFICATION.md
+  // explicitly forbids: only a full six-category record may be called verified.
+  const categoryVerified = (trail, category) => hasSourceReview(trail) && trail.verified.categories.includes(category);
 
   function reviewProgress(trail) {
     if (!hasSourceReview(trail)) return null;
@@ -117,15 +121,19 @@
   }
 
   function waterPointLabel(trail, label) {
-    if (!categoryVerified(trail, 'water')) return `${String(label || 'Potential water location')}, availability can change`;
-    if (!imported(trail)) return label;
-    return String(label || 'Water point')
-      .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
-      .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
+    const base = imported(trail)
+      ? String(label || 'Water point')
+        .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
+        .replace(/OSM-verified/gi, 'mapped in OpenStreetMap')
+      : label;
+    if (!categoryVerified(trail, 'water')) return `${String(base || 'Potential water location')}, availability can change`;
+    return base;
   }
 
   function startPointLabel(trail, label) {
-    if (!categoryVerified(trail, 'access')) return `Suggested start, ${String(label || 'route start').replace(/^Start here\s*[,—-]\s*/i, '')}. Check current access before travelling.`;
+    if (!categoryVerified(trail, 'access') && !imported(trail)) {
+      return `Suggested start, ${String(label || 'route start').replace(/^Start here\s*[,—-]\s*/i, '')}. Check current access before travelling.`;
+    }
     if (!imported(trail)) return label;
     const cleaned = String(label || 'Route start')
       .replace(/^Start here\s*[,—-]\s*/i, '')

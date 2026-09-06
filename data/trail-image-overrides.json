@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T14:27:06.592Z",
+  "updatedAt": "2026-09-06T14:42:29.290Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -815,6 +815,57 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:I11_268_St._Magdalena.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-3202880",
+      "approvedReviewId": "commons-osm-3202880",
+      "approvedAt": "2026-09-06T14:42:29.290Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-3202880-montiggl.jpg",
+        "heroImage": "images/trails/osm-3202880-montiggl.jpg",
+        "imageAlt": "A shoreline path under oaks beside the blue water of the larger Monticolo lake.",
+        "imageCredit": "Lago di Monticolo, Lago Grande",
+        "imageCreditText": "Lago di Monticolo, Lago Grande by Giovanni Ussi",
+        "imageCreator": "Giovanni Ussi",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Monticolo_-_Photo_by_Giovanni_Ussi_-_Lago_Grande_1.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12190657",
+      "approvedReviewId": "commons-osm-12190657",
+      "approvedAt": "2026-09-06T14:42:29.290Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12190657-salten.jpg",
+        "heroImage": "images/trails/osm-12190657-salten.jpg",
+        "imageAlt": "Mown meadow and scattered larches on the Salten plateau, with the Dolomites along the horizon.",
+        "imageCredit": "The Salten plateau below Jenesien",
+        "imageCreditText": "The Salten plateau below Jenesien by Zintosch7",
+        "imageCreator": "Zintosch7",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:The_Salten_plateau_below_Jenesien_(Bozen-Bolzano).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-6410700",
+      "approvedReviewId": "commons-osm-6410700",
+      "approvedAt": "2026-09-06T14:42:29.290Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-6410700-olang.jpg",
+        "heroImage": "images/trails/osm-6410700-olang.jpg",
+        "imageAlt": "Fields and villages on the floor of the Puster valley at Olang, below wooded slopes and a rocky summit.",
+        "imageCredit": "Olang, Valdaora in the Pustertal",
+        "imageCreditText": "Olang, Valdaora in the Pustertal by TVOlang",
+        "imageCreator": "TVOlang",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Olang_von_goste.jpg",
         "imageSourceType": "licensed-source"
       }
     }
