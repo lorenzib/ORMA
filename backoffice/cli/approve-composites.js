@@ -14,7 +14,7 @@ const { ON_ROUTE_PERCENT } = require('../workflows/plan-catalogue-campaign');
 // An approval re-measures rather than trusting the proposal. A stored number
 // says what was true when discovery ran; approving is the moment the claim
 // becomes a route source, and it should rest on what OSM holds now. If the
-// coverage cannot be measured, nothing is approved — an unverifiable claim is
+// coverage cannot be measured, nothing is approved: an unverifiable claim is
 // not an approved one.
 
 const PACE_MS = 2000;

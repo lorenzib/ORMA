@@ -5,7 +5,7 @@ const { ON_ROUTE_METRES } = require('./run-catalogue-batch');
 // Which documented waymarked paths does this walk follow?
 //
 // Many ORMA routes are not one OSM relation. A walker's loop is stitched from
-// numbered paths — up the 1, back the 1A — and a check that can only read a
+// numbered paths, up the 1 and back the 1A, and a check that can only read a
 // single relation calls every one of them unsourced. This proposes the set of
 // relations the walk actually follows, so the route has a source that covers
 // it and the reader gets the numbers they will see on the signs.
@@ -108,7 +108,7 @@ function discoverRouteComposite(trail, payload, options = {}){
 // number the proposal stored: that said what was true when discovery ran, and
 // approving is the moment the claim becomes a route source. A measurement that
 // could not be taken, or one that no longer covers the walk, leaves the
-// proposal exactly as it was — holding is not rejecting.
+// proposal exactly as it was. Holding is not rejecting.
 function ruleOnComposite(composite, measured, options = {}){
   const at = options.at || new Date().toISOString();
   const by = options.approvedBy || 'human-moderator';
