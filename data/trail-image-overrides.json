@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T12:33:16.634Z",
+  "updatedAt": "2026-09-06T13:11:45.902Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -679,6 +679,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kiens,_de_Rienz_IMG_1121_2019-08-03_20.37.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-16180587",
+      "approvedReviewId": "commons-osm-16180587",
+      "approvedAt": "2026-09-06T13:11:45.902Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-16180587-commons.jpg",
+        "heroImage": "images/trails/osm-16180587-commons.jpg",
+        "imageAlt": "The Lac Vert at Passy with Mont Blanc behind",
+        "imageCredit": "Lac vert de passy (2)",
+        "imageCreditText": "Lac vert de passy (2) by Mangatome",
+        "imageCreator": "Mangatome",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lac_vert_de_passy_(2).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-14379937",
+      "approvedReviewId": "commons-osm-14379937",
+      "approvedAt": "2026-09-06T13:11:45.902Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14379937-commons.jpg",
+        "heroImage": "images/trails/osm-14379937-commons.jpg",
+        "imageAlt": "Willowherb in flower above Valloire",
+        "imageCredit": "Épilobe devant les montagnes",
+        "imageCreditText": "Épilobe devant les montagnes by Wikisquack",
+        "imageCreator": "Wikisquack",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:%C3%89pilobe_devant_les_montagnes.jpg",
         "imageSourceType": "licensed-source"
       }
     }
