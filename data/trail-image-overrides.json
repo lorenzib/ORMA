@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-05T21:14:34.033Z",
+  "updatedAt": "2026-09-06T08:52:09.690Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -305,6 +305,108 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Piancavallo_d%27estate.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11774783",
+      "approvedReviewId": "commons-osm-11774783",
+      "approvedAt": "2026-09-06T08:52:09.690Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11774783-commons.jpg",
+        "heroImage": "images/trails/osm-11774783-commons.jpg",
+        "imageAlt": "Santa Maddalena in Val di Funes below the Odle peaks",
+        "imageCredit": "Villnoess St Magdalena 1",
+        "imageCreditText": "Villnoess St Magdalena 1 by Böhringer",
+        "imageCreator": "Böhringer",
+        "imageLicence": "CC BY-SA 3.0 at",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/at/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Villnoess_St_Magdalena_1.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-13491868",
+      "approvedReviewId": "commons-osm-13491868",
+      "approvedAt": "2026-09-06T08:52:09.690Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-13491868-commons.jpg",
+        "heroImage": "images/trails/osm-13491868-commons.jpg",
+        "imageAlt": "Val di Funes looking west across the valley",
+        "imageCredit": "Villnöß looking west",
+        "imageCreditText": "Villnöß looking west by Howwi",
+        "imageCreator": "Howwi",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Villn%C3%B6%C3%9F_looking_west.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-7547653",
+      "approvedReviewId": "commons-osm-7547653",
+      "approvedAt": "2026-09-06T08:52:09.690Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7547653-commons.jpg",
+        "heroImage": "images/trails/osm-7547653-commons.jpg",
+        "imageAlt": "Mountains above Auronzo di Cadore",
+        "imageCredit": "Auronzo di Cadore - mountain",
+        "imageCreditText": "Auronzo di Cadore - mountain by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Auronzo_di_Cadore_-_mountain.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-7548344",
+      "approvedReviewId": "commons-osm-7548344",
+      "approvedAt": "2026-09-06T08:52:09.690Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7548344-commons.jpg",
+        "heroImage": "images/trails/osm-7548344-commons.jpg",
+        "imageAlt": "Auronzo di Cadore in the Cadore valley",
+        "imageCredit": "2019 Auronzo di Cadore",
+        "imageCreditText": "2019 Auronzo di Cadore by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:2019_Auronzo_di_Cadore.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-7549783",
+      "approvedReviewId": "commons-osm-7549783",
+      "approvedAt": "2026-09-06T08:52:09.690Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7549783-commons.jpg",
+        "heroImage": "images/trails/osm-7549783-commons.jpg",
+        "imageAlt": "A waymarked footpath above Auronzo di Cadore",
+        "imageCredit": "Auronzo di Cadore - trail 123",
+        "imageCreditText": "Auronzo di Cadore - trail 123 by Tiia Monto",
+        "imageCreator": "Tiia Monto",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Auronzo_di_Cadore_-_trail_123.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-7548201",
+      "approvedReviewId": "commons-osm-7548201",
+      "approvedAt": "2026-09-06T08:52:09.690Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7548201-commons.jpg",
+        "heroImage": "images/trails/osm-7548201-commons.jpg",
+        "imageAlt": "Auronzo di Cadore seen from the Tre Cime",
+        "imageCredit": "Auronzo di Cadore dalle Tre Cime",
+        "imageCreditText": "Auronzo di Cadore dalle Tre Cime by Davide Mauro",
+        "imageCreator": "Davide Mauro",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Auronzo_di_Cadore_dalle_Tre_Cime.jpg",
         "imageSourceType": "licensed-source"
       }
     }
