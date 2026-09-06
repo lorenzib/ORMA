@@ -1,10 +1,11 @@
 {
   "contractVersion": "1.0.0",
-  "updatedAt": "2026-09-05T21:39:07.042Z",
+  "updatedAt": "2026-09-06T09:28:00.675Z",
   "checks": {
     "seceda": {
+      "pathContainmentPercent": 56,
       "externalRelationId": "relation/6528494",
-      "checkedAt": "2026-09-05T21:10:44.917Z",
+      "checkedAt": "2026-09-06T09:24:26.521Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -15,12 +16,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 8.81,
       "officialDistanceKm": 10.8,
-      "distanceDeltaPercent": -18.4,
-      "pathContainmentPercent": 56
+      "distanceDeltaPercent": -18.4
     },
     "santa-maddalena": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11817704",
-      "checkedAt": "2026-09-05T21:10:46.258Z",
+      "checkedAt": "2026-09-06T09:24:27.853Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -28,12 +29,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.64,
       "officialDistanceKm": 1.6,
-      "distanceDeltaPercent": 2.5,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 2.5
     },
     "cadini": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/1067616",
-      "checkedAt": "2026-09-05T21:10:47.589Z",
+      "checkedAt": "2026-09-06T09:24:29.278Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -44,12 +45,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.24,
       "officialDistanceKm": 3.4,
-      "distanceDeltaPercent": 112.9,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 112.9
     },
     "prato-piazza": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/1155859",
-      "checkedAt": "2026-09-05T21:10:49.012Z",
+      "checkedAt": "2026-09-06T09:24:30.687Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -61,12 +62,12 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 14.63,
       "officialDistanceKm": 4.6,
-      "distanceDeltaPercent": 218,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 218
     },
     "nuvolau": {
+      "pathContainmentPercent": 38,
       "externalRelationId": "relation/3197403",
-      "checkedAt": "2026-09-05T21:10:50.334Z",
+      "checkedAt": "2026-09-06T09:24:32.011Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -77,12 +78,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.22,
       "officialDistanceKm": 5.5,
-      "distanceDeltaPercent": -41.5,
-      "pathContainmentPercent": 38
+      "distanceDeltaPercent": -41.5
     },
     "sassolungo": {
+      "pathContainmentPercent": 40,
       "externalRelationId": "relation/5412043",
-      "checkedAt": "2026-09-05T21:10:52.072Z",
+      "checkedAt": "2026-09-06T09:24:33.472Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -93,12 +94,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.72,
       "officialDistanceKm": 17,
-      "distanceDeltaPercent": -60.5,
-      "pathContainmentPercent": 40
+      "distanceDeltaPercent": -60.5
     },
     "lago-sorapis": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/3985745",
-      "checkedAt": "2026-09-05T21:10:54.119Z",
+      "checkedAt": "2026-09-06T09:24:34.851Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -108,12 +109,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 11.05,
       "officialDistanceKm": 10.8,
-      "distanceDeltaPercent": 2.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 2.3
     },
     "valley-view": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11817269",
-      "checkedAt": "2026-09-05T21:10:55.936Z",
+      "checkedAt": "2026-09-06T09:24:36.179Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -124,12 +125,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 2.8,
       "officialDistanceKm": 2.8,
-      "distanceDeltaPercent": 0,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0
     },
     "piancavallo": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/3508653",
-      "checkedAt": "2026-09-05T21:10:57.975Z",
+      "checkedAt": "2026-09-06T09:24:37.611Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -139,12 +140,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.06,
       "officialDistanceKm": 7.1,
-      "distanceDeltaPercent": -0.6,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.6
     },
     "giro-del-bulacia": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/9483250",
-      "checkedAt": "2026-09-05T21:10:59.388Z",
+      "checkedAt": "2026-09-06T09:24:39.046Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -152,12 +153,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.76,
       "officialDistanceKm": 6.64,
-      "distanceDeltaPercent": 1.8,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.8
     },
     "osm-3982382": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/3982382",
-      "checkedAt": "2026-09-05T21:11:00.705Z",
+      "checkedAt": "2026-09-06T09:24:40.411Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components"
@@ -167,12 +168,12 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 4.23,
       "officialDistanceKm": 4.5,
-      "distanceDeltaPercent": -6,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -6
     },
     "osm-6250300": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/6250300",
-      "checkedAt": "2026-09-05T21:11:02.018Z",
+      "checkedAt": "2026-09-06T09:24:41.783Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -180,12 +181,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.65,
       "officialDistanceKm": 3.6,
-      "distanceDeltaPercent": 1.4,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.4
     },
     "osm-9933643": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/9933643",
-      "checkedAt": "2026-09-05T21:11:03.391Z",
+      "checkedAt": "2026-09-06T09:24:43.126Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -193,12 +194,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.56,
       "officialDistanceKm": 4.5,
-      "distanceDeltaPercent": 1.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.3
     },
     "osm-10116283": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/10116283",
-      "checkedAt": "2026-09-05T21:11:04.718Z",
+      "checkedAt": "2026-09-06T09:24:44.471Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -208,12 +209,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.59,
       "officialDistanceKm": 2.7,
-      "distanceDeltaPercent": -4.1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -4.1
     },
     "osm-10116380": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/10116380",
-      "checkedAt": "2026-09-05T21:11:06.022Z",
+      "checkedAt": "2026-09-06T09:24:45.862Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -225,12 +226,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 2.21,
       "officialDistanceKm": 4.2,
-      "distanceDeltaPercent": -47.4,
-      "pathContainmentPercent": 74
+      "distanceDeltaPercent": -47.4
     },
     "osm-20347406": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/20347406",
-      "checkedAt": "2026-09-05T21:11:07.378Z",
+      "checkedAt": "2026-09-06T09:24:47.293Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -240,12 +241,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 9,
       "officialDistanceKm": 8.9,
-      "distanceDeltaPercent": 1.1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.1
     },
     "osm-11517208": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11517208",
-      "checkedAt": "2026-09-05T21:11:08.740Z",
+      "checkedAt": "2026-09-06T09:24:48.630Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -253,12 +254,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.64,
       "officialDistanceKm": 7.6,
-      "distanceDeltaPercent": 0.5,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0.5
     },
     "osm-14987412": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/14987412",
-      "checkedAt": "2026-09-05T21:11:10.095Z",
+      "checkedAt": "2026-09-06T09:24:50.015Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components"
@@ -268,12 +269,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 7.89,
       "officialDistanceKm": 8.3,
-      "distanceDeltaPercent": -4.9,
-      "pathContainmentPercent": 97
+      "distanceDeltaPercent": -4.9
     },
     "osm-18055492": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/18055492",
-      "checkedAt": "2026-09-05T21:11:11.465Z",
+      "checkedAt": "2026-09-06T09:24:51.496Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -281,12 +282,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 11.76,
       "officialDistanceKm": 11.6,
-      "distanceDeltaPercent": 1.4,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.4
     },
     "osm-14864704": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/14864704",
-      "checkedAt": "2026-09-05T21:11:13.146Z",
+      "checkedAt": "2026-09-06T09:24:52.978Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -294,12 +295,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.82,
       "officialDistanceKm": 6.7,
-      "distanceDeltaPercent": 1.8,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.8
     },
     "osm-14095296": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/14095296",
-      "checkedAt": "2026-09-05T21:11:15.014Z",
+      "checkedAt": "2026-09-06T09:24:54.334Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -307,12 +308,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.64,
       "officialDistanceKm": 6.6,
-      "distanceDeltaPercent": 0.6,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0.6
     },
     "osm-16322228": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/16322228",
-      "checkedAt": "2026-09-05T21:11:16.971Z",
+      "checkedAt": "2026-09-06T09:24:55.728Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -320,12 +321,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.4,
       "officialDistanceKm": 3.3,
-      "distanceDeltaPercent": 3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 3
     },
     "osm-16363583": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/16363583",
-      "checkedAt": "2026-09-05T21:11:18.935Z",
+      "checkedAt": "2026-09-06T09:24:57.139Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -333,12 +334,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.27,
       "officialDistanceKm": 7.2,
-      "distanceDeltaPercent": 1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1
     },
     "osm-16395076": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/16395076",
-      "checkedAt": "2026-09-05T21:11:20.252Z",
+      "checkedAt": "2026-09-06T09:24:58.490Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -346,12 +347,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.01,
       "officialDistanceKm": 2,
-      "distanceDeltaPercent": 0.5,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0.5
     },
     "osm-19153189": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/19153189",
-      "checkedAt": "2026-09-05T21:11:21.624Z",
+      "checkedAt": "2026-09-06T09:24:59.922Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -359,12 +360,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.06,
       "officialDistanceKm": 4,
-      "distanceDeltaPercent": 1.5,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.5
     },
     "osm-15591346": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/15591346",
-      "checkedAt": "2026-09-05T21:11:22.988Z",
+      "checkedAt": "2026-09-06T09:25:01.379Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -374,12 +375,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 9.66,
       "officialDistanceKm": 9.7,
-      "distanceDeltaPercent": -0.4,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.4
     },
     "osm-16365005": {
+      "pathContainmentPercent": 98,
       "externalRelationId": "relation/16365005",
-      "checkedAt": "2026-09-05T21:11:24.346Z",
+      "checkedAt": "2026-09-06T09:25:02.736Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -390,12 +391,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 8.1,
       "officialDistanceKm": 8.1,
-      "distanceDeltaPercent": 0,
-      "pathContainmentPercent": 97
+      "distanceDeltaPercent": 0
     },
     "osm-123162": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/123162",
-      "checkedAt": "2026-09-05T21:11:25.685Z",
+      "checkedAt": "2026-09-06T09:25:04.121Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components"
@@ -405,12 +406,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 8.96,
       "officialDistanceKm": 9.5,
-      "distanceDeltaPercent": -5.7,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -5.7
     },
     "osm-1116675": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/1116675",
-      "checkedAt": "2026-09-05T21:11:26.976Z",
+      "checkedAt": "2026-09-06T09:25:05.506Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -418,12 +419,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.3,
       "officialDistanceKm": 2.3,
-      "distanceDeltaPercent": 0,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0
     },
     "osm-1116680": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/1116680",
-      "checkedAt": "2026-09-05T21:11:28.342Z",
+      "checkedAt": "2026-09-06T09:25:06.900Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -431,12 +432,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 11.13,
       "officialDistanceKm": 11.1,
-      "distanceDeltaPercent": 0.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0.3
     },
     "osm-1780768": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/1780768",
-      "checkedAt": "2026-09-05T21:11:29.862Z",
+      "checkedAt": "2026-09-06T09:25:08.437Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -448,12 +449,12 @@
       "componentCount": 5,
       "reconstructedDistanceKm": 30.49,
       "officialDistanceKm": 77.4,
-      "distanceDeltaPercent": -60.6,
-      "pathContainmentPercent": 77
+      "distanceDeltaPercent": -60.6
     },
     "osm-2179746": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/2179746",
-      "checkedAt": "2026-09-05T21:11:31.896Z",
+      "checkedAt": "2026-09-06T09:25:09.883Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -461,12 +462,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.32,
       "officialDistanceKm": 2.3,
-      "distanceDeltaPercent": 0.9,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0.9
     },
     "osm-3202880": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/3202880",
-      "checkedAt": "2026-09-05T21:11:33.551Z",
+      "checkedAt": "2026-09-06T09:25:11.207Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components"
@@ -476,12 +477,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 4.27,
       "officialDistanceKm": 4.4,
-      "distanceDeltaPercent": -3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -3
     },
     "osm-3885162": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/3885162",
-      "checkedAt": "2026-09-05T21:11:35.517Z",
+      "checkedAt": "2026-09-06T09:25:12.756Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -492,12 +493,12 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 8.4,
       "officialDistanceKm": 6.8,
-      "distanceDeltaPercent": 23.5,
-      "pathContainmentPercent": 14
+      "distanceDeltaPercent": 23.5
     },
     "osm-5512443": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/5512443",
-      "checkedAt": "2026-09-05T21:11:36.904Z",
+      "checkedAt": "2026-09-06T09:25:14.088Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -507,12 +508,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.72,
       "officialDistanceKm": 3.7,
-      "distanceDeltaPercent": 0.5,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0.5
     },
     "osm-6244965": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/6244965",
-      "checkedAt": "2026-09-05T21:11:38.345Z",
+      "checkedAt": "2026-09-06T09:25:15.456Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -523,12 +524,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 12.75,
       "officialDistanceKm": 2.5,
-      "distanceDeltaPercent": 410,
-      "pathContainmentPercent": 24
+      "distanceDeltaPercent": 410
     },
     "osm-6404258": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/6404258",
-      "checkedAt": "2026-09-05T21:11:39.683Z",
+      "checkedAt": "2026-09-06T09:25:16.844Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components"
@@ -538,12 +539,12 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 9.75,
       "officialDistanceKm": 10.5,
-      "distanceDeltaPercent": -7.1,
-      "pathContainmentPercent": 95
+      "distanceDeltaPercent": -7.1
     },
     "osm-6404633": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/6404633",
-      "checkedAt": "2026-09-05T21:11:40.988Z",
+      "checkedAt": "2026-09-06T09:25:18.174Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -555,12 +556,12 @@
       "componentCount": 5,
       "reconstructedDistanceKm": 1.91,
       "officialDistanceKm": 3.5,
-      "distanceDeltaPercent": -45.4,
-      "pathContainmentPercent": 61
+      "distanceDeltaPercent": -45.4
     },
     "osm-6404634": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/6404634",
-      "checkedAt": "2026-09-05T21:11:42.265Z",
+      "checkedAt": "2026-09-06T09:25:19.462Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -570,12 +571,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 0.75,
       "officialDistanceKm": 0.7,
-      "distanceDeltaPercent": 7.1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 7.1
     },
     "osm-6410700": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/6410700",
-      "checkedAt": "2026-09-05T21:11:43.587Z",
+      "checkedAt": "2026-09-06T09:25:20.784Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -585,12 +586,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.39,
       "officialDistanceKm": 7.3,
-      "distanceDeltaPercent": 1.2,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.2
     },
     "osm-6529356": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/6529356",
-      "checkedAt": "2026-09-05T21:11:45.346Z",
+      "checkedAt": "2026-09-06T09:25:22.188Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -601,12 +602,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 16.32,
       "officialDistanceKm": 19,
-      "distanceDeltaPercent": -14.1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -14.1
     },
     "osm-6823031": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/6823031",
-      "checkedAt": "2026-09-05T21:11:47.232Z",
+      "checkedAt": "2026-09-06T09:25:23.540Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -617,12 +618,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 3.55,
       "officialDistanceKm": 5.4,
-      "distanceDeltaPercent": -34.3,
-      "pathContainmentPercent": 67
+      "distanceDeltaPercent": -34.3
     },
     "osm-7045225": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/7045225",
-      "checkedAt": "2026-09-05T21:11:49.195Z",
+      "checkedAt": "2026-09-06T09:25:25.105Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -632,12 +633,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.5,
       "officialDistanceKm": 7.4,
-      "distanceDeltaPercent": 1.4,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.4
     },
     "osm-7086961": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/7086961",
-      "checkedAt": "2026-09-05T21:11:50.773Z",
+      "checkedAt": "2026-09-06T09:25:26.417Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -647,12 +648,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.06,
       "officialDistanceKm": 3,
-      "distanceDeltaPercent": 2,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 2
     },
     "osm-7277805": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/7277805",
-      "checkedAt": "2026-09-05T21:11:52.190Z",
+      "checkedAt": "2026-09-06T09:25:27.892Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -664,12 +665,12 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 15.52,
       "officialDistanceKm": 22.5,
-      "distanceDeltaPercent": -31,
-      "pathContainmentPercent": 94
+      "distanceDeltaPercent": -31
     },
     "osm-7388748": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/7388748",
-      "checkedAt": "2026-09-05T21:11:53.492Z",
+      "checkedAt": "2026-09-06T09:25:29.284Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -681,12 +682,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 4.18,
       "officialDistanceKm": 5.3,
-      "distanceDeltaPercent": -21.1,
-      "pathContainmentPercent": 85
+      "distanceDeltaPercent": -21.1
     },
     "osm-7446701": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/7446701",
-      "checkedAt": "2026-09-05T21:11:54.826Z",
+      "checkedAt": "2026-09-06T09:25:30.614Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -698,12 +699,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 2.52,
       "officialDistanceKm": 4.8,
-      "distanceDeltaPercent": -47.5,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -47.5
     },
     "osm-7546708": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/7546708",
-      "checkedAt": "2026-09-05T21:11:56.176Z",
+      "checkedAt": "2026-09-06T09:25:32.010Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -711,12 +712,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.37,
       "officialDistanceKm": 3.4,
-      "distanceDeltaPercent": -0.9,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.9
     },
     "osm-7547653": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/7547653",
-      "checkedAt": "2026-09-05T21:11:57.541Z",
+      "checkedAt": "2026-09-06T09:25:33.366Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -726,12 +727,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.03,
       "officialDistanceKm": 3,
-      "distanceDeltaPercent": 1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1
     },
     "osm-7547983": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/7547983",
-      "checkedAt": "2026-09-05T21:11:58.885Z",
+      "checkedAt": "2026-09-06T09:25:34.728Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -741,12 +742,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.3,
       "officialDistanceKm": 4.2,
-      "distanceDeltaPercent": 2.4,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 2.4
     },
     "osm-7548201": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/7548201",
-      "checkedAt": "2026-09-05T21:12:00.263Z",
+      "checkedAt": "2026-09-06T09:25:36.090Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -756,12 +757,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.22,
       "officialDistanceKm": 7.1,
-      "distanceDeltaPercent": 1.7,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.7
     },
     "osm-7548344": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/7548344",
-      "checkedAt": "2026-09-05T21:12:01.618Z",
+      "checkedAt": "2026-09-06T09:25:37.395Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -769,12 +770,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.12,
       "officialDistanceKm": 3,
-      "distanceDeltaPercent": 4,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 4
     },
     "osm-7548489": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/7548489",
-      "checkedAt": "2026-09-05T21:12:02.930Z",
+      "checkedAt": "2026-09-06T09:25:38.732Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -782,12 +783,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.86,
       "officialDistanceKm": 5.8,
-      "distanceDeltaPercent": 1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1
     },
     "osm-7549783": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/7549783",
-      "checkedAt": "2026-09-05T21:12:04.721Z",
+      "checkedAt": "2026-09-06T09:25:40.039Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -797,12 +798,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.69,
       "officialDistanceKm": 3.7,
-      "distanceDeltaPercent": -0.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.3
     },
     "osm-8510456": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/8510456",
-      "checkedAt": "2026-09-05T21:12:06.649Z",
+      "checkedAt": "2026-09-06T09:25:41.377Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -810,12 +811,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.87,
       "officialDistanceKm": 3.9,
-      "distanceDeltaPercent": -0.8,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.8
     },
     "osm-9487078": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/9487078",
-      "checkedAt": "2026-09-05T21:12:07.951Z",
+      "checkedAt": "2026-09-06T09:25:42.783Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -827,12 +828,12 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 2.01,
       "officialDistanceKm": 4.5,
-      "distanceDeltaPercent": -55.3,
-      "pathContainmentPercent": 65
+      "distanceDeltaPercent": -55.3
     },
     "osm-9492594": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/9492594",
-      "checkedAt": "2026-09-05T21:12:09.965Z",
+      "checkedAt": "2026-09-06T09:25:44.178Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -840,12 +841,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.3,
       "officialDistanceKm": 7.2,
-      "distanceDeltaPercent": 1.4,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.4
     },
     "osm-9493733": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/9493733",
-      "checkedAt": "2026-09-05T21:12:11.452Z",
+      "checkedAt": "2026-09-06T09:25:45.540Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -857,12 +858,12 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 4.49,
       "officialDistanceKm": 9.2,
-      "distanceDeltaPercent": -51.2,
-      "pathContainmentPercent": 66
+      "distanceDeltaPercent": -51.2
     },
     "osm-9511973": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/9511973",
-      "checkedAt": "2026-09-05T21:12:12.831Z",
+      "checkedAt": "2026-09-06T09:25:46.980Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -870,12 +871,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 14.45,
       "officialDistanceKm": 15.2,
-      "distanceDeltaPercent": -4.9,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -4.9
     },
     "osm-9511999": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/9511999",
-      "checkedAt": "2026-09-05T21:12:14.193Z",
+      "checkedAt": "2026-09-06T09:25:48.373Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -887,12 +888,12 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 5.37,
       "officialDistanceKm": 10.1,
-      "distanceDeltaPercent": -46.8,
-      "pathContainmentPercent": 62
+      "distanceDeltaPercent": -46.8
     },
     "osm-9651462": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/9651462",
-      "checkedAt": "2026-09-05T21:12:15.533Z",
+      "checkedAt": "2026-09-06T09:25:49.732Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -903,12 +904,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 3.01,
       "officialDistanceKm": 1.1,
-      "distanceDeltaPercent": 173.6,
-      "pathContainmentPercent": 21
+      "distanceDeltaPercent": 173.6
     },
     "osm-9675994": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/9675994",
-      "checkedAt": "2026-09-05T21:12:16.848Z",
+      "checkedAt": "2026-09-06T09:25:51.049Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -916,12 +917,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.52,
       "officialDistanceKm": 1.5,
-      "distanceDeltaPercent": 1.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.3
     },
     "osm-11764094": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11764094",
-      "checkedAt": "2026-09-05T21:12:18.218Z",
+      "checkedAt": "2026-09-06T09:25:52.423Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -932,12 +933,12 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 12.13,
       "officialDistanceKm": 4.1,
-      "distanceDeltaPercent": 195.9,
-      "pathContainmentPercent": 54
+      "distanceDeltaPercent": 195.9
     },
     "osm-11774783": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11774783",
-      "checkedAt": "2026-09-05T21:12:19.538Z",
+      "checkedAt": "2026-09-06T09:25:53.769Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -945,12 +946,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.77,
       "officialDistanceKm": 1.7,
-      "distanceDeltaPercent": 4.1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 4.1
     },
     "osm-11775760": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11775760",
-      "checkedAt": "2026-09-05T21:12:20.884Z",
+      "checkedAt": "2026-09-06T09:25:55.135Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -958,12 +959,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.02,
       "officialDistanceKm": 3,
-      "distanceDeltaPercent": 0.7,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0.7
     },
     "osm-11780502": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11780502",
-      "checkedAt": "2026-09-05T21:12:22.262Z",
+      "checkedAt": "2026-09-06T09:25:56.487Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -975,12 +976,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 3.12,
       "officialDistanceKm": 4.1,
-      "distanceDeltaPercent": -23.9,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -23.9
     },
     "osm-11790553": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11790553",
-      "checkedAt": "2026-09-05T21:12:23.566Z",
+      "checkedAt": "2026-09-06T09:25:57.790Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -990,12 +991,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.1,
       "officialDistanceKm": 2.1,
-      "distanceDeltaPercent": 0,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0
     },
     "osm-11792795": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11792795",
-      "checkedAt": "2026-09-05T21:12:24.867Z",
+      "checkedAt": "2026-09-06T09:25:59.127Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -1005,12 +1006,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 0.75,
       "officialDistanceKm": 0.7,
-      "distanceDeltaPercent": 7.1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 7.1
     },
     "osm-11795103": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11795103",
-      "checkedAt": "2026-09-05T21:12:26.737Z",
+      "checkedAt": "2026-09-06T09:26:00.502Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -1020,12 +1021,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.36,
       "officialDistanceKm": 5.3,
-      "distanceDeltaPercent": 1.1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.1
     },
     "osm-11795251": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11795251",
-      "checkedAt": "2026-09-05T21:12:28.187Z",
+      "checkedAt": "2026-09-06T09:26:01.917Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1036,12 +1037,12 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 9.66,
       "officialDistanceKm": 13.2,
-      "distanceDeltaPercent": -26.8,
-      "pathContainmentPercent": 94
+      "distanceDeltaPercent": -26.8
     },
     "osm-11814834": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11814834",
-      "checkedAt": "2026-09-05T21:12:29.555Z",
+      "checkedAt": "2026-09-06T09:26:03.282Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1049,12 +1050,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.09,
       "officialDistanceKm": 7,
-      "distanceDeltaPercent": 1.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.3
     },
     "osm-11814895": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11814895",
-      "checkedAt": "2026-09-05T21:12:30.894Z",
+      "checkedAt": "2026-09-06T09:26:04.647Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1062,12 +1063,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 0.51,
       "officialDistanceKm": 0.5,
-      "distanceDeltaPercent": 2,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 2
     },
     "osm-11815025": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11815025",
-      "checkedAt": "2026-09-05T21:12:32.223Z",
+      "checkedAt": "2026-09-06T09:26:06.009Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1078,12 +1079,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 3.31,
       "officialDistanceKm": 3.9,
-      "distanceDeltaPercent": -15.1,
-      "pathContainmentPercent": 96
+      "distanceDeltaPercent": -15.1
     },
     "osm-11816373": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11816373",
-      "checkedAt": "2026-09-05T21:12:33.558Z",
+      "checkedAt": "2026-09-06T09:26:07.424Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components"
@@ -1093,12 +1094,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 3.48,
       "officialDistanceKm": 3.5,
-      "distanceDeltaPercent": -0.6,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.6
     },
     "osm-11828233": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11828233",
-      "checkedAt": "2026-09-05T21:12:34.884Z",
+      "checkedAt": "2026-09-06T09:26:08.809Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -1110,12 +1111,12 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 3.21,
       "officialDistanceKm": 5.6,
-      "distanceDeltaPercent": -42.7,
-      "pathContainmentPercent": 60
+      "distanceDeltaPercent": -42.7
     },
     "osm-11832013": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11832013",
-      "checkedAt": "2026-09-05T21:12:36.180Z",
+      "checkedAt": "2026-09-06T09:26:10.166Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1123,12 +1124,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.49,
       "officialDistanceKm": 2.5,
-      "distanceDeltaPercent": -0.4,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.4
     },
     "osm-11839597": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11839597",
-      "checkedAt": "2026-09-05T21:12:37.483Z",
+      "checkedAt": "2026-09-06T09:26:11.619Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1139,12 +1140,12 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 2.28,
       "officialDistanceKm": 3.9,
-      "distanceDeltaPercent": -41.5,
-      "pathContainmentPercent": 90
+      "distanceDeltaPercent": -41.5
     },
     "osm-11855879": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11855879",
-      "checkedAt": "2026-09-05T21:12:38.853Z",
+      "checkedAt": "2026-09-06T09:26:12.969Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1152,12 +1153,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.76,
       "officialDistanceKm": 2.7,
-      "distanceDeltaPercent": 2.2,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 2.2
     },
     "osm-11860429": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11860429",
-      "checkedAt": "2026-09-05T21:12:40.219Z",
+      "checkedAt": "2026-09-06T09:26:14.793Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -1169,12 +1170,12 @@
       "componentCount": 6,
       "reconstructedDistanceKm": 5.07,
       "officialDistanceKm": 6.2,
-      "distanceDeltaPercent": -18.2,
-      "pathContainmentPercent": 38
+      "distanceDeltaPercent": -18.2
     },
     "osm-11891581": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/11891581",
-      "checkedAt": "2026-09-05T21:12:42.151Z",
+      "checkedAt": "2026-09-06T09:26:16.528Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components"
@@ -1184,12 +1185,12 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 71.5,
       "officialDistanceKm": 71.2,
-      "distanceDeltaPercent": 0.4,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0.4
     },
     "osm-12018939": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12018939",
-      "checkedAt": "2026-09-05T21:12:44.120Z",
+      "checkedAt": "2026-09-06T09:26:18.016Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1197,12 +1198,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 12.43,
       "officialDistanceKm": 13.2,
-      "distanceDeltaPercent": -5.8,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -5.8
     },
     "osm-12027153": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12027153",
-      "checkedAt": "2026-09-05T21:12:45.974Z",
+      "checkedAt": "2026-09-06T09:26:19.348Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -1213,12 +1214,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 6.57,
       "officialDistanceKm": 7.3,
-      "distanceDeltaPercent": -10,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -10
     },
     "osm-12039246": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12039246",
-      "checkedAt": "2026-09-05T21:12:47.844Z",
+      "checkedAt": "2026-09-06T09:26:20.650Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -1228,12 +1229,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 0.93,
       "officialDistanceKm": 0.9,
-      "distanceDeltaPercent": 3.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 3.3
     },
     "osm-12044077": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12044077",
-      "checkedAt": "2026-09-05T21:12:49.279Z",
+      "checkedAt": "2026-09-06T09:26:22.014Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -1243,12 +1244,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.32,
       "officialDistanceKm": 1.3,
-      "distanceDeltaPercent": 1.5,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.5
     },
     "osm-12047303": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12047303",
-      "checkedAt": "2026-09-05T21:12:51.824Z",
+      "checkedAt": "2026-09-06T09:26:23.370Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1259,12 +1260,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 2.86,
       "officialDistanceKm": 4.2,
-      "distanceDeltaPercent": -31.9,
-      "pathContainmentPercent": 90
+      "distanceDeltaPercent": -31.9
     },
     "osm-12079333": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12079333",
-      "checkedAt": "2026-09-05T21:12:54.566Z",
+      "checkedAt": "2026-09-06T09:26:24.735Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -1274,12 +1275,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.14,
       "officialDistanceKm": 6.3,
-      "distanceDeltaPercent": -2.5,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -2.5
     },
     "osm-12132169": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12132169",
-      "checkedAt": "2026-09-05T21:12:56.654Z",
+      "checkedAt": "2026-09-06T09:26:26.172Z",
       "reviewState": "blocked",
       "blockers": [
         "official-distance-conflict"
@@ -1289,12 +1290,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 27.47,
       "officialDistanceKm": 34.4,
-      "distanceDeltaPercent": -20.1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -20.1
     },
     "osm-12142337": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12142337",
-      "checkedAt": "2026-09-05T21:12:58.719Z",
+      "checkedAt": "2026-09-06T09:26:27.624Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -1304,12 +1305,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 11.95,
       "officialDistanceKm": 11.8,
-      "distanceDeltaPercent": 1.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.3
     },
     "osm-12150790": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12150790",
-      "checkedAt": "2026-09-05T21:13:00.569Z",
+      "checkedAt": "2026-09-06T09:26:28.986Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -1319,12 +1320,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.56,
       "officialDistanceKm": 2.8,
-      "distanceDeltaPercent": -8.6,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -8.6
     },
     "osm-12164395": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12164395",
-      "checkedAt": "2026-09-05T21:13:02.602Z",
+      "checkedAt": "2026-09-06T09:26:30.417Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1335,12 +1336,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 6.3,
       "officialDistanceKm": 9.1,
-      "distanceDeltaPercent": -30.8,
-      "pathContainmentPercent": 98
+      "distanceDeltaPercent": -30.8
     },
     "osm-12165590": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12165590",
-      "checkedAt": "2026-09-05T21:13:03.956Z",
+      "checkedAt": "2026-09-06T09:26:31.780Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components"
@@ -1350,12 +1351,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 7.74,
       "officialDistanceKm": 8.6,
-      "distanceDeltaPercent": -10,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -10
     },
     "osm-12172440": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12172440",
-      "checkedAt": "2026-09-05T21:13:05.306Z",
+      "checkedAt": "2026-09-06T09:26:33.141Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1366,12 +1367,12 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 6.45,
       "officialDistanceKm": 9.1,
-      "distanceDeltaPercent": -29.1,
-      "pathContainmentPercent": 96
+      "distanceDeltaPercent": -29.1
     },
     "osm-12173965": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12173965",
-      "checkedAt": "2026-09-05T21:13:06.634Z",
+      "checkedAt": "2026-09-06T09:26:34.556Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1379,12 +1380,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.88,
       "officialDistanceKm": 1.9,
-      "distanceDeltaPercent": -1.1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -1.1
     },
     "osm-12173984": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12173984",
-      "checkedAt": "2026-09-05T21:13:07.925Z",
+      "checkedAt": "2026-09-06T09:26:35.929Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1395,12 +1396,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 5.52,
       "officialDistanceKm": 8,
-      "distanceDeltaPercent": -31,
-      "pathContainmentPercent": 98
+      "distanceDeltaPercent": -31
     },
     "osm-12174210": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12174210",
-      "checkedAt": "2026-09-05T21:13:09.929Z",
+      "checkedAt": "2026-09-06T09:26:37.310Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1411,12 +1412,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 9.38,
       "officialDistanceKm": 1.6,
-      "distanceDeltaPercent": 486.3,
-      "pathContainmentPercent": 25
+      "distanceDeltaPercent": 486.3
     },
     "osm-12182516": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12182516",
-      "checkedAt": "2026-09-05T21:13:11.661Z",
+      "checkedAt": "2026-09-06T09:26:38.656Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -1426,12 +1427,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.18,
       "officialDistanceKm": 1.2,
-      "distanceDeltaPercent": -1.7,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -1.7
     },
     "osm-12182895": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12182895",
-      "checkedAt": "2026-09-05T21:13:13.564Z",
+      "checkedAt": "2026-09-06T09:26:40.106Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1442,12 +1443,12 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 15.69,
       "officialDistanceKm": 22.3,
-      "distanceDeltaPercent": -29.6,
-      "pathContainmentPercent": 95
+      "distanceDeltaPercent": -29.6
     },
     "osm-12182936": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12182936",
-      "checkedAt": "2026-09-05T21:13:15.323Z",
+      "checkedAt": "2026-09-06T09:26:41.534Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -1459,12 +1460,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 4.01,
       "officialDistanceKm": 6.4,
-      "distanceDeltaPercent": -37.3,
-      "pathContainmentPercent": 92
+      "distanceDeltaPercent": -37.3
     },
     "osm-12189165": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12189165",
-      "checkedAt": "2026-09-05T21:13:16.642Z",
+      "checkedAt": "2026-09-06T09:26:42.947Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -1474,12 +1475,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 10.73,
       "officialDistanceKm": 10.6,
-      "distanceDeltaPercent": 1.2,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.2
     },
     "osm-12190538": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12190538",
-      "checkedAt": "2026-09-05T21:13:17.943Z",
+      "checkedAt": "2026-09-06T09:26:44.327Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1487,12 +1488,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.09,
       "officialDistanceKm": 5.1,
-      "distanceDeltaPercent": -0.2,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.2
     },
     "osm-12190657": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12190657",
-      "checkedAt": "2026-09-05T21:13:19.312Z",
+      "checkedAt": "2026-09-06T09:26:45.694Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1500,12 +1501,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.58,
       "officialDistanceKm": 4.6,
-      "distanceDeltaPercent": -0.4,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.4
     },
     "osm-12302191": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12302191",
-      "checkedAt": "2026-09-05T21:13:20.805Z",
+      "checkedAt": "2026-09-06T09:26:47.138Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -1517,12 +1518,12 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 7.98,
       "officialDistanceKm": 11.8,
-      "distanceDeltaPercent": -32.4,
-      "pathContainmentPercent": 92
+      "distanceDeltaPercent": -32.4
     },
     "osm-12363235": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12363235",
-      "checkedAt": "2026-09-05T21:13:22.845Z",
+      "checkedAt": "2026-09-06T09:26:48.567Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -1534,12 +1535,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 2.75,
       "officialDistanceKm": 4,
-      "distanceDeltaPercent": -31.2,
-      "pathContainmentPercent": 96
+      "distanceDeltaPercent": -31.2
     },
     "osm-12371666": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12371666",
-      "checkedAt": "2026-09-05T21:13:24.872Z",
+      "checkedAt": "2026-09-06T09:26:49.901Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1547,12 +1548,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.3,
       "officialDistanceKm": 1.3,
-      "distanceDeltaPercent": 0,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0
     },
     "osm-12371689": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12371689",
-      "checkedAt": "2026-09-05T21:13:26.848Z",
+      "checkedAt": "2026-09-06T09:26:51.294Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -1563,12 +1564,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.34,
       "officialDistanceKm": 1.5,
-      "distanceDeltaPercent": -10.7,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -10.7
     },
     "osm-12731853": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12731853",
-      "checkedAt": "2026-09-05T21:13:28.359Z",
+      "checkedAt": "2026-09-06T09:26:52.629Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1576,12 +1577,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.18,
       "officialDistanceKm": 4.2,
-      "distanceDeltaPercent": -0.5,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.5
     },
     "osm-12736753": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12736753",
-      "checkedAt": "2026-09-05T21:13:29.761Z",
+      "checkedAt": "2026-09-06T09:26:54.105Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1592,12 +1593,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 11.64,
       "officialDistanceKm": 4.1,
-      "distanceDeltaPercent": 183.9,
-      "pathContainmentPercent": 7
+      "distanceDeltaPercent": 183.9
     },
     "osm-12953352": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12953352",
-      "checkedAt": "2026-09-05T21:13:31.165Z",
+      "checkedAt": "2026-09-06T09:26:55.529Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1608,12 +1609,12 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 7.74,
       "officialDistanceKm": 2.3,
-      "distanceDeltaPercent": 236.5,
-      "pathContainmentPercent": 92
+      "distanceDeltaPercent": 236.5
     },
     "osm-13491868": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/13491868",
-      "checkedAt": "2026-09-05T21:13:32.495Z",
+      "checkedAt": "2026-09-06T09:26:56.969Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1624,12 +1625,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 3.36,
       "officialDistanceKm": 0.6,
-      "distanceDeltaPercent": 460,
-      "pathContainmentPercent": 50
+      "distanceDeltaPercent": 460
     },
     "osm-13528390": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/13528390",
-      "checkedAt": "2026-09-05T21:13:34.154Z",
+      "checkedAt": "2026-09-06T09:26:58.308Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1637,12 +1638,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.76,
       "officialDistanceKm": 4.7,
-      "distanceDeltaPercent": 1.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.3
     },
     "osm-14058492": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/14058492",
-      "checkedAt": "2026-09-05T21:13:35.638Z",
+      "checkedAt": "2026-09-06T09:26:59.788Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1650,12 +1651,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.36,
       "officialDistanceKm": 2.4,
-      "distanceDeltaPercent": -1.7,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -1.7
     },
     "osm-14058632": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/14058632",
-      "checkedAt": "2026-09-05T21:13:37.157Z",
+      "checkedAt": "2026-09-06T09:27:01.164Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -1666,12 +1667,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.36,
       "officialDistanceKm": 2.7,
-      "distanceDeltaPercent": -12.6,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -12.6
     },
     "osm-15662134": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/15662134",
-      "checkedAt": "2026-09-05T21:13:38.877Z",
+      "checkedAt": "2026-09-06T09:27:02.578Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -1683,12 +1684,12 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 2.15,
       "officialDistanceKm": 4.8,
-      "distanceDeltaPercent": -55.2,
-      "pathContainmentPercent": 58
+      "distanceDeltaPercent": -55.2
     },
     "osm-15791408": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/15791408",
-      "checkedAt": "2026-09-05T21:13:40.173Z",
+      "checkedAt": "2026-09-06T09:27:03.930Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1696,12 +1697,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.17,
       "officialDistanceKm": 3.1,
-      "distanceDeltaPercent": 2.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 2.3
     },
     "osm-19330972": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/19330972",
-      "checkedAt": "2026-09-05T21:13:41.456Z",
+      "checkedAt": "2026-09-06T09:27:05.357Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -1711,12 +1712,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.01,
       "officialDistanceKm": 1.1,
-      "distanceDeltaPercent": -8.2,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -8.2
     },
     "osm-19697977": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/19697977",
-      "checkedAt": "2026-09-05T21:13:42.784Z",
+      "checkedAt": "2026-09-06T09:27:06.734Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -1726,12 +1727,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 9.93,
       "officialDistanceKm": 9.8,
-      "distanceDeltaPercent": 1.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.3
     },
     "osm-19703479": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/19703479",
-      "checkedAt": "2026-09-05T21:13:44.192Z",
+      "checkedAt": "2026-09-06T09:27:08.176Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -1743,12 +1744,12 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 1.43,
       "officialDistanceKm": 4.2,
-      "distanceDeltaPercent": -66,
-      "pathContainmentPercent": 56
+      "distanceDeltaPercent": -66
     },
     "osm-19974724": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/19974724",
-      "checkedAt": "2026-09-05T21:13:46.109Z",
+      "checkedAt": "2026-09-06T09:27:09.554Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -1758,12 +1759,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.08,
       "officialDistanceKm": 3,
-      "distanceDeltaPercent": 2.7,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 2.7
     },
     "osm-19974725": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/19974725",
-      "checkedAt": "2026-09-05T21:13:47.593Z",
+      "checkedAt": "2026-09-06T09:27:10.890Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1774,12 +1775,12 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 3.83,
       "officialDistanceKm": 4.3,
-      "distanceDeltaPercent": -10.9,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -10.9
     },
     "osm-5479112": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/5479112",
-      "checkedAt": "2026-09-05T21:13:49.130Z",
+      "checkedAt": "2026-09-06T09:27:12.409Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1787,12 +1788,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 11.63,
       "officialDistanceKm": 11.5,
-      "distanceDeltaPercent": 1.1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.1
     },
     "osm-9937537": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/9937537",
-      "checkedAt": "2026-09-05T21:13:50.661Z",
+      "checkedAt": "2026-09-06T09:27:13.860Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1800,12 +1801,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 11.17,
       "officialDistanceKm": 11,
-      "distanceDeltaPercent": 1.5,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.5
     },
     "osm-10539302": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/10539302",
-      "checkedAt": "2026-09-05T21:13:52.189Z",
+      "checkedAt": "2026-09-06T09:27:15.210Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1813,12 +1814,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.99,
       "officialDistanceKm": 3.9,
-      "distanceDeltaPercent": 2.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 2.3
     },
     "osm-12118490": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12118490",
-      "checkedAt": "2026-09-05T21:13:53.501Z",
+      "checkedAt": "2026-09-06T09:27:16.584Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1826,12 +1827,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.75,
       "officialDistanceKm": 4.7,
-      "distanceDeltaPercent": 1.1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.1
     },
     "osm-12121346": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12121346",
-      "checkedAt": "2026-09-05T21:13:54.816Z",
+      "checkedAt": "2026-09-06T09:27:17.941Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1839,12 +1840,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.15,
       "officialDistanceKm": 5.1,
-      "distanceDeltaPercent": 1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1
     },
     "osm-12121548": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12121548",
-      "checkedAt": "2026-09-05T21:13:56.186Z",
+      "checkedAt": "2026-09-06T09:27:19.381Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1852,12 +1853,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 11.58,
       "officialDistanceKm": 11.4,
-      "distanceDeltaPercent": 1.6,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.6
     },
     "osm-12121798": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12121798",
-      "checkedAt": "2026-09-05T21:13:57.483Z",
+      "checkedAt": "2026-09-06T09:27:20.686Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -1867,12 +1868,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.52,
       "officialDistanceKm": 1.5,
-      "distanceDeltaPercent": 1.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.3
     },
     "osm-12127424": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12127424",
-      "checkedAt": "2026-09-05T21:13:58.918Z",
+      "checkedAt": "2026-09-06T09:27:22.103Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1883,12 +1884,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 1.74,
       "officialDistanceKm": 2.8,
-      "distanceDeltaPercent": -37.9,
-      "pathContainmentPercent": 60
+      "distanceDeltaPercent": -37.9
     },
     "osm-12211260": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12211260",
-      "checkedAt": "2026-09-05T21:14:00.945Z",
+      "checkedAt": "2026-09-06T09:27:23.456Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -1900,12 +1901,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 2.02,
       "officialDistanceKm": 4.2,
-      "distanceDeltaPercent": -51.9,
-      "pathContainmentPercent": 60
+      "distanceDeltaPercent": -51.9
     },
     "osm-12745924": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/12745924",
-      "checkedAt": "2026-09-05T21:14:02.811Z",
+      "checkedAt": "2026-09-06T09:27:24.822Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1913,12 +1914,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.68,
       "officialDistanceKm": 4.6,
-      "distanceDeltaPercent": 1.7,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.7
     },
     "osm-13337921": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/13337921",
-      "checkedAt": "2026-09-05T21:14:04.688Z",
+      "checkedAt": "2026-09-06T09:27:26.265Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -1929,12 +1930,12 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 11.98,
       "officialDistanceKm": 4.1,
-      "distanceDeltaPercent": 192.2,
-      "pathContainmentPercent": 28
+      "distanceDeltaPercent": 192.2
     },
     "osm-13338113": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/13338113",
-      "checkedAt": "2026-09-05T21:14:06.024Z",
+      "checkedAt": "2026-09-06T09:27:27.698Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -1944,12 +1945,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.87,
       "officialDistanceKm": 6.7,
-      "distanceDeltaPercent": 2.5,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 2.5
     },
     "osm-14375158": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/14375158",
-      "checkedAt": "2026-09-05T21:14:07.377Z",
+      "checkedAt": "2026-09-06T09:27:29.072Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1957,12 +1958,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 9.04,
       "officialDistanceKm": 9,
-      "distanceDeltaPercent": 0.4,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0.4
     },
     "osm-14376573": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/14376573",
-      "checkedAt": "2026-09-05T21:14:08.676Z",
+      "checkedAt": "2026-09-06T09:27:30.410Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1970,12 +1971,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.17,
       "officialDistanceKm": 4.1,
-      "distanceDeltaPercent": 1.7,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.7
     },
     "osm-14377007": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/14377007",
-      "checkedAt": "2026-09-05T21:14:10.307Z",
+      "checkedAt": "2026-09-06T09:27:31.775Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1983,12 +1984,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.92,
       "officialDistanceKm": 4,
-      "distanceDeltaPercent": -2,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -2
     },
     "osm-14378946": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/14378946",
-      "checkedAt": "2026-09-05T21:14:12.059Z",
+      "checkedAt": "2026-09-06T09:27:33.152Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -1996,12 +1997,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.37,
       "officialDistanceKm": 5.4,
-      "distanceDeltaPercent": -0.6,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.6
     },
     "osm-14379010": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/14379010",
-      "checkedAt": "2026-09-05T21:14:13.453Z",
+      "checkedAt": "2026-09-06T09:27:34.498Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -2009,12 +2010,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 8.19,
       "officialDistanceKm": 8.1,
-      "distanceDeltaPercent": 1.1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.1
     },
     "osm-14379937": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/14379937",
-      "checkedAt": "2026-09-05T21:14:14.846Z",
+      "checkedAt": "2026-09-06T09:27:35.851Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -2026,12 +2027,12 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 2.06,
       "officialDistanceKm": 5,
-      "distanceDeltaPercent": -58.8,
-      "pathContainmentPercent": 63
+      "distanceDeltaPercent": -58.8
     },
     "osm-14381584": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/14381584",
-      "checkedAt": "2026-09-05T21:14:16.245Z",
+      "checkedAt": "2026-09-06T09:27:37.207Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -2039,12 +2040,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.87,
       "officialDistanceKm": 6.9,
-      "distanceDeltaPercent": -0.4,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.4
     },
     "osm-14381788": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/14381788",
-      "checkedAt": "2026-09-05T21:14:17.684Z",
+      "checkedAt": "2026-09-06T09:27:38.577Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -2052,12 +2053,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.17,
       "officialDistanceKm": 3.2,
-      "distanceDeltaPercent": -0.9,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.9
     },
     "osm-14381930": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/14381930",
-      "checkedAt": "2026-09-05T21:14:19.604Z",
+      "checkedAt": "2026-09-06T09:27:39.933Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -2065,12 +2066,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 8.44,
       "officialDistanceKm": 8.4,
-      "distanceDeltaPercent": 0.5,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0.5
     },
     "osm-15321049": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/15321049",
-      "checkedAt": "2026-09-05T21:14:20.921Z",
+      "checkedAt": "2026-09-06T09:27:41.289Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -2080,12 +2081,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.89,
       "officialDistanceKm": 5.9,
-      "distanceDeltaPercent": -0.2,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.2
     },
     "osm-15321786": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/15321786",
-      "checkedAt": "2026-09-05T21:14:22.284Z",
+      "checkedAt": "2026-09-06T09:27:42.653Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -2095,12 +2096,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.13,
       "officialDistanceKm": 5,
-      "distanceDeltaPercent": 2.6,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 2.6
     },
     "osm-15535697": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/15535697",
-      "checkedAt": "2026-09-05T21:14:23.584Z",
+      "checkedAt": "2026-09-06T09:27:44.028Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -2108,12 +2109,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.49,
       "officialDistanceKm": 5.4,
-      "distanceDeltaPercent": 1.7,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.7
     },
     "osm-16180587": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/16180587",
-      "checkedAt": "2026-09-05T21:14:24.904Z",
+      "checkedAt": "2026-09-06T09:27:45.370Z",
       "reviewState": "blocked",
       "blockers": [
         "official-distance-conflict"
@@ -2123,12 +2124,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 8.6,
       "officialDistanceKm": 9.7,
-      "distanceDeltaPercent": -11.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -11.3
     },
     "osm-16218739": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/16218739",
-      "checkedAt": "2026-09-05T21:14:26.262Z",
+      "checkedAt": "2026-09-06T09:27:46.826Z",
       "reviewState": "blocked",
       "blockers": [
         "disconnected-components",
@@ -2139,12 +2140,12 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 4.41,
       "officialDistanceKm": 9.7,
-      "distanceDeltaPercent": -54.5,
-      "pathContainmentPercent": 52
+      "distanceDeltaPercent": -54.5
     },
     "osm-16490407": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/16490407",
-      "checkedAt": "2026-09-05T21:14:27.631Z",
+      "checkedAt": "2026-09-06T09:27:48.256Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -2152,12 +2153,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 8.08,
       "officialDistanceKm": 7.9,
-      "distanceDeltaPercent": 2.3,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 2.3
     },
     "osm-19064561": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/19064561",
-      "checkedAt": "2026-09-05T21:14:28.983Z",
+      "checkedAt": "2026-09-06T09:27:49.624Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -2167,12 +2168,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.54,
       "officialDistanceKm": 4.5,
-      "distanceDeltaPercent": 0.9,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 0.9
     },
     "osm-19095412": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/19095412",
-      "checkedAt": "2026-09-05T21:14:30.336Z",
+      "checkedAt": "2026-09-06T09:27:50.969Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -2182,12 +2183,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.46,
       "officialDistanceKm": 5.4,
-      "distanceDeltaPercent": 1.1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.1
     },
     "osm-19095413": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/19095413",
-      "checkedAt": "2026-09-05T21:14:31.656Z",
+      "checkedAt": "2026-09-06T09:27:52.416Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -2197,12 +2198,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.61,
       "officialDistanceKm": 5.5,
-      "distanceDeltaPercent": 2,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 2
     },
     "osm-19531872": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/19531872",
-      "checkedAt": "2026-09-05T21:14:32.955Z",
+      "checkedAt": "2026-09-06T09:27:53.767Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -2210,12 +2211,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.94,
       "officialDistanceKm": 3.9,
-      "distanceDeltaPercent": 1,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1
     },
     "osm-19541366": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/19541366",
-      "checkedAt": "2026-09-05T21:14:34.296Z",
+      "checkedAt": "2026-09-06T09:27:55.139Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -2225,12 +2226,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.31,
       "officialDistanceKm": 6.4,
-      "distanceDeltaPercent": -1.4,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -1.4
     },
     "osm-19661726": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/19661726",
-      "checkedAt": "2026-09-05T21:14:35.734Z",
+      "checkedAt": "2026-09-06T09:27:56.482Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop"
@@ -2240,12 +2241,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 0.78,
       "officialDistanceKm": 0.8,
-      "distanceDeltaPercent": -2.5,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -2.5
     },
     "osm-19760372": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/19760372",
-      "checkedAt": "2026-09-05T21:14:37.802Z",
+      "checkedAt": "2026-09-06T09:27:57.866Z",
       "reviewState": "ready-for-human-review",
       "blockers": [],
       "closedLoop": true,
@@ -2253,12 +2254,12 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.49,
       "officialDistanceKm": 5.5,
-      "distanceDeltaPercent": -0.2,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": -0.2
     },
     "osm-19855818": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/19855818",
-      "checkedAt": "2026-09-05T21:14:39.691Z",
+      "checkedAt": "2026-09-06T09:27:59.304Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -2269,12 +2270,12 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 7.22,
       "officialDistanceKm": 7.1,
-      "distanceDeltaPercent": 1.7,
-      "pathContainmentPercent": 100
+      "distanceDeltaPercent": 1.7
     },
     "osm-21021130": {
+      "pathContainmentPercent": 100,
       "externalRelationId": "relation/21021130",
-      "checkedAt": "2026-09-05T21:14:41.503Z",
+      "checkedAt": "2026-09-06T09:28:00.670Z",
       "reviewState": "blocked",
       "blockers": [
         "not-closed-loop",
@@ -2286,8 +2287,7 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 3.65,
       "officialDistanceKm": 7.8,
-      "distanceDeltaPercent": -53.2,
-      "pathContainmentPercent": 54
+      "distanceDeltaPercent": -53.2
     }
   }
 }

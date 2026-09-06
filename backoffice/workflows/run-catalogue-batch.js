@@ -45,7 +45,14 @@ const ON_ROUTE_METRES = 60;
 
 function pathContainmentPercent(trail, result){
   const walked = Array.isArray(trail && trail.path) ? trail.path : [];
-  const relation = (result.geometry?.coordinates || []).map(point => [point[1], point[0]]);
+  // Every component, not just the geometry. A reconstruction returns its
+  // largest connected component as the route line, so a relation that comes
+  // back in pieces would otherwise be measured on one piece — and a walk that
+  // lies in a smaller piece would read as barely covered.
+  const relation = [
+    ...(result.geometry?.coordinates || []).map(point => [point[1], point[0]]),
+    ...(result.components || []).flatMap(component => component.coordinates || []).map(point => [point[1], point[0]]),
+  ];
   if(!walked.length || !relation.length) return null;
   let on = 0;
   for(const point of walked){
