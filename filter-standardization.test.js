@@ -24,13 +24,17 @@ describe('shared trail-filter experience', () => {
     expect(styles).toMatch(/\.hp-fpanel\.discovery-filter-panel\{position:fixed;top:auto;bottom:max\(8px,env\(safe-area-inset-bottom,0px\)\);/);
   });
 
-  test('uses one geographic filter treatment on homepage, browse and collections', () => {
+  test('uses one geographic filter treatment on browse and collections', () => {
     const homepage = read('index.html');
     const browse = read('browse-trails.html');
     const collections = read('collections.html');
     const geoStyles = read('geo-filters.css');
 
-    [homepage, browse, collections].forEach(html => {
+    // The logged-in homepage no longer uses dropdown geography controls: the
+    // unified search and the map are its geography. Browse and Collections keep
+    // the shared geo-filter treatment.
+    expect((homepage.match(/geo-filter-control/g) || [])).toHaveLength(0);
+    [browse, collections].forEach(html => {
       expect(html).toContain('geo-filters.css?v=20260904-1');
       expect((html.match(/geo-filter-control/g) || [])).toHaveLength(3);
     });
@@ -43,28 +47,22 @@ describe('shared trail-filter experience', () => {
     expect(geoStyles).toContain('.geo-filter-control:last-child .area-select-menu');
   });
 
-  test('keeps all three collection filters in one mobile row and aligns homepage menus', () => {
+  test('keeps all three collection filters in one mobile row', () => {
     const styles = read('styles.css');
-    const mobile = read('homepage-mobile.css');
 
     expect(styles).toContain('.collection-area-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;gap:7px;}');
     expect(styles).toContain('.collection-area-filters .collection-area-filter:last-child{grid-column:auto;}');
-    expect(mobile).toContain('body.mhome-active .li-menuwrap{position:relative;}');
-    expect(mobile).toContain('body.mhome-active .li-region-wrap .li-menu{left:50%;transform:translateX(-50%);}');
-    expect(mobile).toContain('body.mhome-active .li-valley-wrap .li-menu{left:auto;right:0;transform:none;}');
-    expect(mobile).toContain("font:650 13px 'Inter',sans-serif;");
-    expect(mobile).toContain('font-weight:800;');
   });
 
-  test('keeps homepage geography at the Collections width without overlapping actions', () => {
+  test('gives the homepage a unified search and "+ New" toolbar, not geography pills', () => {
     const styles = read('styles.css');
-    const geoStyles = read('geo-filters.css');
 
-    expect(styles).toMatch(/\.li-toolbar\{[\s\S]*?display:grid;[\s\S]*?grid-template-columns:minmax\(260px,1fr\) auto auto auto auto auto auto auto auto;/);
-    expect(styles).toContain('"search country region valley filters quick saved plan record";');
+    expect(styles).toMatch(/\.li-toolbar\{[\s\S]*?display:grid;[\s\S]*?grid-template-columns:minmax\(260px,1fr\) auto;/);
+    expect(styles).toContain('"search new";');
+    expect(styles).not.toContain('"search country region valley filters quick saved plan record";');
     expect(styles).toContain('.li-mobile-actions{display:contents;}');
-    expect(geoStyles).toMatch(/\.li-toolbar \.geo-filter-control\{[\s\S]*?width:205px;[\s\S]*?flex:0 0 205px;/);
-    expect(geoStyles).toMatch(/@media\(max-width:760px\)\{[\s\S]*?\.li-toolbar \.geo-filter-control\{[\s\S]*?width:100%;[\s\S]*?min-width:0;/);
+    // The slim refine bar carries the decision filters on desktop.
+    expect(styles).toContain('.li-chiprow{display:flex;');
   });
 
   test.each(vocabulary)('keeps “%s” consistent across guest, browse and logged-in filters', label => {

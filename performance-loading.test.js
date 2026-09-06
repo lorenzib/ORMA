@@ -59,7 +59,9 @@ describe('PERF-02 asset and regional loading contract', () => {
   });
 
   test('trail loaders keep default and requested regions explicit', () => {
-    expect(read('index.html')).toContain('data-default-region="dolomites"');
+    // The logged-in homepage removed its region dropdown, so the unified search
+    // and map must be able to reach every region: it loads them all up front.
+    expect(read('index.html')).toContain('data-default-region="all"');
     expect(read('trail.html')).toContain('data-default-region="trail"');
     const loader = read('regional-trails-loader.js');
     const homepage = read('script.js');
