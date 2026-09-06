@@ -71,6 +71,23 @@
       '</div>';
   }
 
+  // Compare was the last surface still scoring without today: the same trail
+  // could read one way here and another on the trail page or the homepage.
+  let todayByTrail = new Map();
+
+  function conditionsFor(trail){
+    return todayByTrail.get(trail && trail.id);
+  }
+
+  async function loadToday(selected){
+    const area = window.DoloPawsHomeConditions;
+    if(!area || typeof area.loadTrails !== 'function') return;
+    const found = await area.loadTrails(selected);
+    if(!found || !found.size) return;
+    todayByTrail = found;
+    render();
+  }
+
   function render(focusComparison){
     const root = document.getElementById('compareRoot');
     const back = document.getElementById('compareBack');
@@ -103,7 +120,7 @@
       : activeProfile || {};
     const entries = selected.map(trail => model.build(trail, {
       subject,
-      recommendation:recommendTrail(trail, subject),
+      recommendation:recommendTrail(trail, subject, conditionsFor(trail)),
       normalizeTrail:window.DoloPawsRecommendationAdaptersV1.normalizeTrail,
     }));
     const compareReturn = currentHref();
@@ -152,6 +169,7 @@
 
   syncUrl();
   render();
+  loadToday(selectedIds.map(id => trails.find(trail => trail.id === id)).filter(Boolean));
   if(window.DoloPawsAuthReady) useAccountProfile();
   else window.addEventListener('dolopaws-auth-ready', useAccountProfile, { once:true });
 })();

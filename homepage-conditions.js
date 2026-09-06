@@ -119,9 +119,47 @@
       return { tone:'low', detail:'Cool enough today across this area.' };
     }
 
+    // Compare holds at most three trails and they can sit in different regions,
+    // where one area reading would be meaningless. Three requests is affordable
+    // where a hundred is not, so each trail gets its own -- still corrected from
+    // that forecast's own grid elevation to the trail's summit.
+    async function loadTrails(list, options){
+      const settings = options || {};
+      const request = typeof settings.fetch === 'function' ? settings.fetch : root.fetch;
+      const api = weather();
+      const found = new Map();
+      if(typeof request !== 'function' || !api || !Array.isArray(list)) return found;
+      await Promise.all(list.slice(0, 3).map(async trail => {
+        if(!trail || !Number.isFinite(Number(trail.lat)) || !Number.isFinite(Number(trail.lng))) return;
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${trail.lat}&longitude=${trail.lng}`
+          + '&current=temperature_2m&hourly=temperature_2m&forecast_days=1&timezone=auto';
+        try{
+          const response = await request(url);
+          if(!response || !response.ok) return;
+          const payload = await response.json();
+          const current = payload && payload.current;
+          if(!current || !Number.isFinite(Number(current.temperature_2m))) return;
+          const base = Number.isFinite(Number(payload.elevation)) ? Number(payload.elevation) : null;
+          const summit = highestPoint(trail);
+          const delta = (summit === null || base === null) ? 0 : ((summit - base) / 1000) * LAPSE_C_PER_1000M;
+          const snapshotAt = Number.isFinite(Number(settings.at)) ? Number(settings.at) : Date.now();
+          const conditions = api.currentConditions({
+            currentTime: current.time,
+            temperatureC: Number(current.temperature_2m) - delta,
+            hourlyTimes: (payload.hourly && payload.hourly.time) || null,
+            hourlyTemps: shiftAll((payload.hourly && payload.hourly.temperature_2m) || null, delta),
+            capturedAt: snapshotAt,
+          });
+          found.set(trail.id, typeof api.scoringConditions === 'function'
+            ? api.scoringConditions(conditions) : conditions);
+        }catch(error){ /* one trail without a forecast is scored without one */ }
+      }));
+      return found;
+    }
+
     function snapshot(){ return area; }
 
-    return { load, forTrail, band, snapshot };
+    return { load, loadTrails, forTrail, band, snapshot };
   }
 
   return { create, highestPoint, LAPSE_C_PER_1000M };
