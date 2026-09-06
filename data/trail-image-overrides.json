@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T10:40:40.582Z",
+  "updatedAt": "2026-09-06T10:50:15.084Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -458,6 +458,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Dal_Seceda_vista_sulle_Odle.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-9511973",
+      "approvedReviewId": "commons-osm-9511973",
+      "approvedAt": "2026-09-06T10:50:15.084Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-9511973-commons.jpg",
+        "heroImage": "images/trails/osm-9511973-commons.jpg",
+        "imageAlt": "Walkers crossing the Armentara meadows in Alta Badia",
+        "imageCredit": "Escursioni nei prati",
+        "imageCreditText": "Escursioni nei prati by MartiSorg",
+        "imageCreator": "MartiSorg",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Escursioni_nei_prati.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "geotrail-bulla",
+      "approvedReviewId": "commons-geotrail-bulla",
+      "approvedAt": "2026-09-06T10:50:15.084Z",
+      "fields": {
+        "imageIcon": "images/trails/geotrail-bulla-commons.jpg",
+        "heroImage": "images/trails/geotrail-bulla-commons.jpg",
+        "imageAlt": "The Bulacia mountain above the village of Bula in Val Gardena",
+        "imageCredit": "Bula y Bulacia te Gherdëina",
+        "imageCreditText": "Bula y Bulacia te Gherdëina by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bula_y_Bulacia_te_Gherd%C3%ABina.jpg",
         "imageSourceType": "licensed-source"
       }
     }
