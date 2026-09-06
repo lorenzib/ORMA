@@ -35,6 +35,7 @@
 
   let dossier={items:[]},orchestration={trails:[],summary:{}},editorial={outputs:[]},staging={items:[]},publication={requests:[]};
   let catalogue={items:[]},registry={verified:[]};
+  let coverageError='';
   let drafts=stored(DRAFT_KEY),receipts=stored(RECEIPT_KEY);
 
   function stored(key){try{return JSON.parse(localStorage.getItem(key)||'{}');}catch(error){return {};}}
@@ -225,6 +226,30 @@
     split:document.getElementById('verifySplit'),
     blockers:document.getElementById('verifyBlockers'),
     age:document.getElementById('verifyCoverageAge'),
+    checks:document.getElementById('verifyChecks'),
+    why:document.getElementById('verifyWhy'),
+    stages:document.getElementById('verifyStages'),
+    guidance:document.getElementById('verifyGuidance'),
+  };
+
+  // The eleven checks a trail must complete. Spelled out because the desk kept
+  // being asked why the count was zero, and the answer is not guessable from a
+  // number: the safety *values* (shade cover, heat risk, exposure) feed the
+  // match score and the blockers, and are not checks at all.
+  const GRADUATION_CHECKS=[
+    ['photo','Photo'],['route','Route'],['routeNumbers','Route numbers'],
+    ['mapPoints','Map points'],['elevation','Elevation'],['water','Water'],
+    ['heat','Heat'],['exposure','Exposure'],['livestock','Livestock'],
+    ['surfaceHazards','Surface hazards'],['access','Access'],
+  ];
+
+  // campaignState is where a trail actually sits. Machine names read as
+  // jargon, so each one says what it means for the person reading.
+  const STAGE_LABELS={
+    'verified-monitoring':'Verified, now monitored',
+    'identity-check-queued':'Waiting for a route identity check',
+    'source-identity-required':'Needs a route source before it can start',
+    'agent-execution-failure':'Stuck: the agent run failed',
   };
 
   /**
@@ -240,13 +265,20 @@
   function renderCoverage(){
     const items=catalogue.items||[];
     if(!items.length){
-      coverageNodes.headline.textContent='Catalogue figures are not available yet.';
+      // Never render "0 verified" when the figures simply could not be read:
+      // a daily Firestore quota is a real and recurring cause here, and a
+      // silent zero reads exactly like genuine bad news.
+      coverageNodes.headline.textContent=coverageError
+        ? 'Could not read the catalogue figures, so this is not a count of zero.'
+        : 'Catalogue figures are not available yet.';
+      if(coverageError)coverageNodes.split.textContent=coverageError;
       return;
     }
     // The registry is the record of what actually shipped as verified; the
     // catalogue flag can lag behind it, so trust whichever knows about more.
     const flagged=items.filter(item=>item.modernGraduationVerified===true).length;
-    const verified=Math.max(flagged,(registry.verified||[]).length);
+    const registryCount=(registry.verified||[]).length;
+    const verified=Math.max(flagged,registryCount);
     const total=items.length;
     const remaining=Math.max(total-verified,0);
     const imported=items.filter(item=>item.origin==='imported').length;
@@ -259,6 +291,46 @@
       const when=new Date(catalogue.generatedAt);
       if(!Number.isNaN(when.valueOf()))coverageNodes.age.textContent=`Counted ${when.toLocaleDateString()}`;
     }
+
+    // The eleven checks, listed so "verified" is not a word of unknown meaning.
+    coverageNodes.checks.replaceChildren();
+    GRADUATION_CHECKS.forEach(([, label])=>coverageNodes.checks.append(el('li','',label)));
+
+    // Why the number is low. Deliberately no invented "entered" metric: a
+    // trail waiting on a route source has not started either, so counting it
+    // as progress would overstate exactly what this panel exists to explain.
+    const why=[`${plural(flagged,'trail')} of ${total} ${flagged===1?'has':'have'} completed all eleven checks. `
+      + 'The rest are not failing them, they are waiting earlier in the process:'];
+    // The registry and the catalogue flag can disagree, and showing the larger
+    // number beside a smaller stage count reads as a contradiction. Say it.
+    if(registryCount!==flagged){
+      why.push(`The verified registry lists ${registryCount}, while the catalogue flags ${flagged}. `
+        + 'They disagree, which usually means the catalogue was counted before the most recent verification.');
+    }
+    coverageNodes.why.textContent=why.join(' ');
+
+    const stages=new Map();
+    items.forEach(item=>{
+      const state=item.campaignState||'unknown';
+      stages.set(state,(stages.get(state)||0)+1);
+    });
+    coverageNodes.stages.replaceChildren();
+    [...stages.entries()].sort((a,b)=>b[1]-a[1]).forEach(([state,count])=>{
+      const row=el('li');
+      row.append(el('strong','',String(count)),el('span','',STAGE_LABELS[state]||state.replace(/-/g,' ')));
+      row.title=state;
+      coverageNodes.stages.append(row);
+    });
+
+    // The route-guidance gate is the actual ceiling: a trail nobody can number
+    // can never complete the routeNumbers check, however much else is done.
+    const summary=catalogue.summary||{};
+    const outstanding=Number(summary.routeNumberGuidanceOutstanding);
+    coverageNodes.guidance.textContent=Number.isFinite(outstanding)&&outstanding
+      ? `Route guidance is the requirement that stops most trails: ${plural(outstanding,'trail')} still cannot show an authoritative `
+        + `start point and direction, and cannot complete the route numbers check until they can.`
+      : 'Every admitted trail must show authoritative route guidance: a start point '
+        + 'and direction, or an ordered landmark sequence.';
 
     // Ranked, because the same handful of gaps blocks almost every trail:
     // closing one of them advances a hundred trails, reviewing one advances one.
@@ -408,12 +480,17 @@
         artifact('catalogue-campaign',URLS.catalogue,{items:[]}),
         artifact('orma-verified-registry-live',URLS.registry,{verified:[]}),
       ]);
+      coverageError='';
       stateNode.textContent='';
       stateNode.classList.remove('is-error');
       render();
     }catch(error){
+      coverageError=error.message;
       stateNode.classList.add('is-error');
-      stateNode.textContent=error.message;
+      stateNode.textContent=/quota/i.test(error.message)
+        ? `${error.message} The daily Firestore quota resets after midnight Pacific; the figures are stale, not zero.`
+        : error.message;
+      renderCoverage();
     }finally{
       refreshBtn.disabled=false;
     }

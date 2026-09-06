@@ -88,7 +88,8 @@ describe('trail verification desk', () => {
 
   test('trusts the registry when the catalogue flag lags behind it', () => {
     const coverage = script.slice(script.indexOf('function renderCoverage'));
-    expect(coverage).toMatch(/Math\.max\(flagged,\(registry\.verified\|\|\[\]\)\.length\)/);
+    expect(coverage).toMatch(/registryCount=\(registry\.verified\|\|\[\]\)\.length/);
+    expect(coverage).toMatch(/Math\.max\(flagged,registryCount\)/);
   });
 
   test('ranks the shared blockers instead of listing trails one by one', () => {
@@ -103,5 +104,36 @@ describe('trail verification desk', () => {
     expect(label('shadeCoverage-unknown')).toBe('Shade coverage unknown');
     expect(label('review-date-missing')).toBe('Review date missing');
     expect(label('claim-sources-missing')).toBe('Claim sources missing');
+  });
+
+  test('spells out what verified means, including what does not count', () => {
+    // "Is it zero because we added shading to the match score?" is the question
+    // this panel exists to answer, so the answer is on the page.
+    expect(html).toContain('What &quot;verified&quot; means'.replace('&quot;', '"').replace('&quot;', '"'));
+    expect(script).toMatch(/routeNumbers','Route numbers'/);
+    expect(html).toMatch(/Shade cover, heat risk and exposure <em>values<\/em>/);
+    expect(html).toMatch(/not verification checks/);
+  });
+
+  test('explains why the count is low instead of only showing it', () => {
+    const coverage = script.slice(script.indexOf('function renderCoverage'));
+    expect(coverage).toMatch(/completed all eleven checks/);
+    expect(coverage).toMatch(/waiting earlier in the process/);
+    // Trails that cannot start must not be counted as progress.
+    expect(coverage).not.toMatch(/have entered verification/);
+  });
+
+  test('states it when the registry and the catalogue disagree', () => {
+    const coverage = script.slice(script.indexOf('function renderCoverage'));
+    expect(coverage).toMatch(/registryCount!==flagged/);
+    expect(coverage).toMatch(/They disagree/);
+  });
+
+  test('never reports an unreadable catalogue as a count of zero', () => {
+    // A daily Firestore quota is a recurring cause here, and a silent zero
+    // reads exactly like genuine bad news.
+    const coverage = script.slice(script.indexOf('function renderCoverage'));
+    expect(coverage).toMatch(/not a count of zero/);
+    expect(script).toMatch(/quota/i);
   });
 });
