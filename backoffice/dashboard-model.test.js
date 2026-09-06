@@ -34,6 +34,26 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.blockerCount).toBe(1);
   });
 
+  test('route-review choices surface as the first gate and only when a human is required',()=>{
+    const model=buildDashboardModel({
+      orchestration:{trails:[{candidateId:'tre-cime',trailName:'Tre Cime Loop',blockers:[]}]},
+      dossiers:{items:[]},publication:{items:[]},jobs:[],history:[],
+      routeReview:{items:[
+        {candidateId:'tre-cime',title:'Choose the intended Tre Cime loop',reviewState:'ready-for-human-route-choice'},
+        {candidateId:'monte-pelmo',reviewState:'source-exhausted-direct-confirmation'},
+        {candidateId:'braies-auto',reviewState:'parking-and-assisted-route-approved-enrichment-pending'},
+      ]},
+    });
+    const routeDecisions=model.decisions.filter(item=>item.kind==='route');
+    // Two human-gated states surface; the automated "enrichment-pending" one does not.
+    expect(routeDecisions.map(item=>item.id)).toEqual(['route-tre-cime','route-monte-pelmo']);
+    // Route choices lead the queue (stage 0) ahead of the evidence gate.
+    expect(model.decisions[0]).toEqual(expect.objectContaining({kind:'route',stage:'0 · Route choice',title:'Choose the intended Tre Cime loop',href:'trail-dossier-desk.html'}));
+    // A candidate id falls back to the orchestration name when the item has no title.
+    expect(routeDecisions[1]).toEqual(expect.objectContaining({title:'monte-pelmo',actionLabel:'Review route'}));
+    expect(model.summary.needsYou).toBe(2);
+  });
+
   test('a just-submitted decision leaves the CEO queue immediately while its receipt remains visible',()=>{
     const model=buildDashboardModel({
       orchestration:{trails:[{candidateId:'trail-a',trailName:'Trail A',blockers:[]}]},
