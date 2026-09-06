@@ -139,6 +139,39 @@ function baselineBlockers(trail, identityChecks, composites){
   return blockers;
 }
 
+// Every admitted trail meets the same gate: supported authoritative route
+// guidance, meaning a start point and direction from an authoritative source or
+// an ordered landmark sequence. routeNumberStatus says whether a trail can
+// produce any, so it decides whether a verification slot can ever pay off.
+//
+// This is a tier rather than a bonus. A trail that cannot clear the gate ranks
+// below every trail that can, and below every trail whose status is still
+// unknown, whatever else it has going for it. The weights are spaced wider than
+// the rest of the score can reach so the ordering states an intent instead of
+// depending on arithmetic between magic numbers.
+const GATE_CLEARABLE = new Set([
+  'mapped-relation-ref', 'official-numbered-route', 'official-landmark-route', 'documented',
+]);
+// "Not listed in the mapped source" is a finding: nobody can number this route.
+// "Pending" is the absence of one: nobody has looked. They should not rank alike.
+const GATE_UNKNOWN = new Set(['verification-pending']);
+const GATE_CLEARABLE_WEIGHT = 500;
+const GATE_UNKNOWN_WEIGHT = 250;
+
+function routeGuidanceOutlook(trail){
+  const status = trail && trail.routeNumberStatus;
+  if(GATE_CLEARABLE.has(status)) return 'clearable';
+  if(GATE_UNKNOWN.has(status) || !status) return 'unknown';
+  return 'unobtainable';
+}
+
+function gateWeight(trail){
+  const outlook = routeGuidanceOutlook(trail);
+  if(outlook === 'clearable') return GATE_CLEARABLE_WEIGHT;
+  if(outlook === 'unknown') return GATE_UNKNOWN_WEIGHT;
+  return 0;
+}
+
 function priorityFor(trail, verified, blockers, identityChecks, composites){
   let score = trail.curated === false ? 200 : 300;
   if(verified) score = 50;
@@ -148,6 +181,11 @@ function priorityFor(trail, verified, blockers, identityChecks, composites){
     || (relationExternalId(trail) && !identityContradiction(trail, identityChecks, composites));
   if(sourced) score += 15;
   if(Array.isArray(trail.sourceLinks) && trail.sourceLinks.length) score += 10;
+  score += gateWeight(trail);
+  // Kept as it was, but it now orders trails within a tier rather than across
+  // all of them. Preferring the emptiest trail is reasonable among routes that
+  // can finish; it was not reasonable when it pulled routes that cannot finish
+  // to the front of the queue.
   score += Math.min(blockers.length, 20);
   return score;
 }
@@ -248,5 +286,6 @@ function planCatalogueCampaign(trails, options = {}){
 module.exports = {
   GRADUATION_CHECKS, hasFullGraduation, relationExternalId,
   baselineBlockers, campaignItem, jobForItem, planCatalogueCampaign,
+  routeGuidanceOutlook, GATE_CLEARABLE, GATE_CLEARABLE_WEIGHT, GATE_UNKNOWN_WEIGHT,
   pathIsClosedLoop, identityContradiction, approvedComposite, ON_ROUTE_PERCENT,
 };
