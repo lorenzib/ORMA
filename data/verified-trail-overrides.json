@@ -12,7 +12,7 @@
         "desc": "This chairlift-assisted circuit begins at Bai de Dones, rises on the 5 Torri lift and returns on foot through the Cinque Torri open-air museum, refuge area and forest. The approved track contains 1.37 km of lift transport followed by approximately 3.95 km of predominantly downhill walking, with about two hours allowed for the itinerary.\n\nDogs of any size may use the 5 Torri lift free of charge, but both leash and muzzle are required. The upper museum and refuge area is open alpine terrain, while the lower return enters forest. Seasonal sheep grazing is documented in the wider area, so keep dogs close even though an encounter on the exact circuit is variable.",
         "tips": "This itinerary depends on the 5 Torri chairlift operating. The published 2026 season is 6 June to 11 October, subject to weather and snow. Use the approved Bai de Dones parking pin. Carry water: the three refuges are possible service stops, but no freely accessible potable dog-water point has been verified.",
         "imageIcon": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cinque_Torri_01.jpg",
-        "imageCredit": "Cinque Torri 01 — Clemens Stockner — CC BY-SA 4.0 — via Wikimedia Commons",
+        "imageCredit": "Cinque Torri 01, Clemens Stockner, CC BY-SA 4.0, via Wikimedia Commons",
         "heroImage": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Cinque_Torri_01.jpg",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cinque_Torri_01.jpg",
         "imageCreator": "Clemens Stockner",
@@ -35,7 +35,7 @@
         "startPoint": {
           "lat": 46.518917,
           "lng": 12.037604,
-          "label": "Bai de Dones — approved parking pin"
+          "label": "Bai de Dones, approved parking pin"
         },
         "routeNumberStatus": "official-landmark-route",
         "routeNumberGuidance": {
@@ -940,7 +940,7 @@
         "heroImage": "images/tre-cime-hero.jpg",
         "imageSourcePage": null,
         "imageCreator": "Benedetta Lorenzi",
-        "imageLicence": "All rights reserved — owner-supplied ORMA original",
+        "imageLicence": "All rights reserved, owner-supplied ORMA original",
         "imageLicenceUrl": null,
         "imageAlt": "Tre Cime di Lavaredo rock towers in warm morning light beneath a blue sky.",
         "editorialPhotos": [
@@ -972,7 +972,7 @@
         "startPoint": {
           "lat": 46.612849,
           "lng": 12.292858,
-          "label": "Parcheggio Rifugio Auronzo (P1) — approved parking pin"
+          "label": "Parcheggio Rifugio Auronzo (P1), approved parking pin"
         },
         "routeRefs": [
           "101",
@@ -9373,7 +9373,7 @@
         "desc": "A complete 3.6 km circuit around Lago di Braies, starting and finishing near the lake hotel and tavern area. Allow about one hour and 39 m of ascent and descent. The path alternates between broad forest and lakeshore sections, narrower rooted ground, uphill steps and a section beside a vertical rock wall.\n\nThe route is dog-friendly, but dogs must remain on lead inside the nature park. No livestock is expected around this exact lakeshore circuit based on the editor’s direct local knowledge; the lead rule still applies because wildlife disturbance remains relevant. Bring enough water for your dog: no potable source has been verified on the circuit, and the protected lake should not be treated as one.",
         "tips": "Use the approved official P1, P2, P3 and P4 parking set. From 1 July to 15 September 2026, between 09:00 and 16:00, valley access is controlled and requires public transport, walking, cycling, or the relevant parking reservation or transit permit. Carry and use a muzzle on public transport.",
         "imageIcon": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lago_di_Braies_South_Tyrol_5.jpg",
-        "imageCredit": "Lago di Braies South Tyrol 5 — kallerna — CC BY-SA 4.0 — via Wikimedia Commons",
+        "imageCredit": "Lago di Braies South Tyrol 5, kallerna, CC BY-SA 4.0, via Wikimedia Commons",
         "heroImage": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Lago_di_Braies_South_Tyrol_5.jpg",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Braies_South_Tyrol_5.jpg",
         "imageCreator": "kallerna",
@@ -9396,7 +9396,7 @@
         "startPoint": {
           "lat": 46.699015,
           "lng": 12.085296,
-          "label": "Lago di Braies access — use the approved official P1–P4 parking set"
+          "label": "Lago di Braies access, use the approved official P1–P4 parking set"
         },
         "routeNumberGuidance": {
           "mode": "numbered",

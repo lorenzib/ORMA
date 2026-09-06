@@ -89,8 +89,8 @@ function displayWaterLabel(t, label) {
 function displayStartLabel(t, label) {
   if (t.curated !== false) return label;
   const cleaned = String(label || 'Route start')
-    .replace(/^Start here\s*[—-]\s*/i, '')
-    .replace(/^Route start per OpenStreetMap\s*[—-]\s*/i, '')
+    .replace(/^Start here\s*[,—-]\s*/i, '')
+    .replace(/^Route start per OpenStreetMap\s*[,—-]\s*/i, '')
     .replace(/\s*\(OSM-verified access point\)/gi, '')
     .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
   return `Mapped start suggestion, ${cleaned}. Check current access before travelling.`;
@@ -204,7 +204,7 @@ function photoCreditHtml(t){
   const label=escapeHtml(credit.label);
   let content=credit.url?`<a href="${escapeHtml(credit.url)}" rel="noopener nofollow">${label}</a>`:label;
   if(credit.url&&t.imageCreator&&t.imageLicence){
-    const title=String(typeof t.imageCredit==='string'?t.imageCredit:t.name).split(/\s+[—·]\s+/)[0].trim();
+    const title=String(typeof t.imageCredit==='string'?t.imageCredit:t.name).split(/\s+[—·]\s+|,\s+/)[0].trim();
     const licence=t.imageLicenceUrl
       ?`<a href="${escapeHtml(t.imageLicenceUrl)}" rel="license noopener">${escapeHtml(t.imageLicence)}</a>`
       :escapeHtml(t.imageLicence);
