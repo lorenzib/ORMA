@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T09:58:55.741Z",
+  "updatedAt": "2026-09-06T10:40:40.582Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -441,6 +441,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Prossliner_Schwaige_mit_Schlern_Seiser_Alm.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "seceda",
+      "approvedReviewId": "commons-seceda",
+      "approvedAt": "2026-09-06T10:40:40.582Z",
+      "fields": {
+        "imageIcon": "images/trails/seceda-commons.jpg",
+        "heroImage": "images/trails/seceda-commons.jpg",
+        "imageAlt": "The Seceda ridgeline with the Odle peaks above Val Gardena",
+        "imageCredit": "Dal Seceda vista sulle Odle",
+        "imageCreditText": "Dal Seceda vista sulle Odle by Fede021",
+        "imageCreator": "Fede021",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Dal_Seceda_vista_sulle_Odle.jpg",
         "imageSourceType": "licensed-source"
       }
     }
