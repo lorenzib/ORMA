@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T13:17:44.658Z",
+  "updatedAt": "2026-09-06T13:25:25.857Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -730,6 +730,40 @@
         "imageLicence": "CC BY-SA 3.0 Unported",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Castel_Salern78.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-15321786",
+      "approvedReviewId": "commons-osm-15321786",
+      "approvedAt": "2026-09-06T13:25:25.857Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-15321786-commons.jpg",
+        "heroImage": "images/trails/osm-15321786-commons.jpg",
+        "imageAlt": "Bourg-Saint-Maurice seen from the descent of the Petit-Saint-Bernard pass",
+        "imageCredit": "Bourg-Saint-Maurice (Août 2025) - Vue depuis la descente du col du Petit-Saint-Bernard",
+        "imageCreditText": "Bourg-Saint-Maurice (Août 2025) - Vue depuis la descente du col du Petit-Saint-Bernard by Mathieu BROSSAIS",
+        "imageCreator": "Mathieu BROSSAIS",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bourg-Saint-Maurice_(Ao%C3%BBt_2025)_-_Vue_depuis_la_descente_du_col_du_Petit-Saint-Bernard.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-13337921",
+      "approvedReviewId": "commons-osm-13337921",
+      "approvedAt": "2026-09-06T13:25:25.857Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-13337921-commons.jpg",
+        "heroImage": "images/trails/osm-13337921-commons.jpg",
+        "imageAlt": "La Chèvrerie below the Roc d'Enfer",
+        "imageCredit": "Pano Chèvrerie",
+        "imageCreditText": "Pano Chèvrerie by Benoit Kornmann",
+        "imageCreator": "Benoit Kornmann",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pano_Ch%C3%A8vrerie.jpg",
         "imageSourceType": "licensed-source"
       }
     }
