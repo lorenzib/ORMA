@@ -7,40 +7,46 @@ describe('logged-in discovery workspace layout', () => {
   test('uses a dedicated greeting row above the discovery controls', () => {
     expect(html).toContain('class="li-toolbar-greet"');
     expect(html).not.toContain('id="liToolbarSummary"');
-    expect(css).toMatch(/grid-template-areas:\s*"greet greet greet greet greet greet greet greet greet"\s*"search country region valley filters quick saved plan record"/);
+    // Geography moved into the search box and the map, so the toolbar's second
+    // row is just the unified search and the "+ New" create menu.
+    expect(css).toMatch(/grid-template-areas:\s*"greet greet"\s*"search new"/);
     expect(css).toMatch(/\.li-toolbar-greet\s*\{[^}]*display:flex;/s);
   });
 
-  test('keeps the core filters and actions directly after the location controls', () => {
+  test('replaces the geo dropdowns with unified search and moves create behind "+ New"', () => {
     expect(html).toContain('class="li-quick-filters"');
     expect(html).not.toContain('id="liQuickLeash"');
     expect(html).toContain('id="liQuickShade"');
     expect(html).toContain('id="liQuickWater"');
-    expect(html.indexOf('id="liValleyWrap"')).toBeLessThan(html.indexOf('id="liFiltersWrap"'));
-    expect(html.indexOf('id="liFiltersWrap"')).toBeLessThan(html.indexOf('id="liQuickShade"'));
-    expect(html.indexOf('id="liSavedOnlyBtn"')).toBeLessThan(html.indexOf('class="li-plan-route"'));
-    expect(html.indexOf('class="li-plan-route"')).toBeLessThan(html.indexOf('id="liRecordBtn"'));
-    expect(html.indexOf('id="liQuickWater"')).toBeLessThan(html.indexOf('id="liSavedOnlyBtn"'));
+    // The three geography dropdowns and the toolbar Saved button are gone.
+    expect(html).not.toContain('id="liCountryWrap"');
+    expect(html).not.toContain('id="liRegionWrap"');
+    expect(html).not.toContain('id="liValleyWrap"');
+    expect(html).not.toContain('id="liSavedOnlyBtn"');
+    // Both create actions live inside the "+ New" menu, plan before record.
+    expect(html.indexOf('id="liSearchSuggest"')).toBeLessThan(html.indexOf('id="liNewBtn"'));
+    expect(html.indexOf('class="li-menu-item li-plan-route"')).toBeLessThan(html.indexOf('id="liRecordBtn"'));
+    // Saved becomes a view tab beside Sort in the list head.
+    expect(html.indexOf('id="liViewSaved"')).toBeLessThan(html.indexOf('id="companionSortGroup"'));
     const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
     expect(editorialCss).toContain('#liFiltersWrap{display:none;}');
   });
 
-  test('uses the same one-line desktop control rhythm as Browse All Trails', () => {
+  test('uses a two-control desktop toolbar rhythm: search then create', () => {
     const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
-    expect(editorialCss).toContain('grid-template-columns:minmax(210px,2fr)');
-    expect(editorialCss).toContain('@media (min-width:1101px)');
-    expect(editorialCss).toContain('.li-mobile-actions,.li-quick-filters{display:contents;}');
-    expect(editorialCss).toContain('#liQuickShade{grid-column:5;grid-row:2;}');
-    expect(editorialCss).toContain('.li-plan-route{grid-area:auto;grid-column:8;grid-row:2;}');
-    expect(editorialCss).toContain('.li-record{grid-area:auto;grid-column:9;grid-row:2;}');
+    expect(editorialCss).toContain('grid-template-columns:minmax(240px,1fr) auto;');
+    expect(editorialCss).toContain('@media (min-width:701px) and (max-width:1100px)');
+    expect(editorialCss).toContain('.li-mobile-actions{display:contents;}');
+    expect(editorialCss).toContain('.li-new-wrap{grid-area:auto;grid-column:2;grid-row:2;justify-self:end;}');
+    // The slim refine bar (Distance/Difficulty/Shade/Water/More) shows on desktop.
+    expect(css).toContain('.li-chiprow{display:flex;');
   });
 
-  test('keeps the desktop control sequence in one rail instead of moving filters between rows', () => {
+  test('keeps the mid-desktop toolbar to the same two-control layout', () => {
     expect(css).toContain('@media (min-width:1041px) and (max-width:1560px)');
-    expect(css).toContain('"search country region valley filters quick saved plan record"');
-    expect(css).toContain('overflow-x:auto;');
-    expect(css).toContain('#liQuickShade{grid-column:6;grid-row:2;}');
-    expect(css).not.toContain('.li-toolbar{display:flex;flex-wrap:wrap;padding:12px 20px;gap:10px 8px;}');
+    expect(css).toMatch(/grid-template-areas:\s*"greet greet"\s*"search new"/);
+    expect(css).toContain('.li-new-wrap{grid-column:2;grid-row:2;justify-self:end;}');
+    expect(css).not.toContain('"search country region valley filters quick saved plan record"');
   });
 
   test('contains the quick shade and water filters in white outlined controls', () => {

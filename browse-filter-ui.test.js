@@ -204,14 +204,14 @@ describe('Browse filter UI', () => {
     expect(dropdown).toContain("const controlKicker = select.dataset.controlKicker;");
   });
 
-  test('reserves the same readable geography widths as the logged-in map toolbar', () => {
+  test('reserves readable geography widths in the browse toolbar', () => {
     const html = source('browse-trails.html');
-    const editorialCss = source('homepage-editorial.css');
 
+    // Browse keeps its geography dropdowns (the homepage moved to search + map),
+    // so these widths now stand on their own rather than mirroring the homepage.
     expect(html).toContain('.browse-geo-group{display:block;flex:0 0 196px;width:196px;');
     expect(html).toContain('.browse-geo-group--valley{flex-basis:178px;width:178px;}');
     expect(html).toContain('max-width:360px;min-width:180px;');
-    expect(editorialCss).toContain('grid-template-columns:minmax(210px,2fr)');
     expect(html).toContain('@media(min-width:761px) and (max-width:1100px)');
     expect(html).toContain('grid-template-columns:minmax(260px,360px) 196px 196px 178px;');
     expect(html).toContain('.browse-geo-group .area-select-trigger--kicker-until-selected:not(.area-select-trigger--has-selection) .area-select-trigger__label{display:none;}');

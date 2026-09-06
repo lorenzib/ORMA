@@ -141,11 +141,13 @@ describe('DATA-03 regional runtime boundaries', () => {
     }));
   });
 
-  test('homepage and detail page load one region while catalog surfaces may request all', () => {
-    expect(read('index.html')).toContain('data-default-region="dolomites"');
+  test('discovery surfaces request all regions; the detail page loads one', () => {
+    // The homepage's unified search and map replaced its region dropdown, so it
+    // now loads every region like the browse catalogue. Only the detail page
+    // still primes a single trail's region for a fast first paint.
+    expect(read('index.html')).toContain('data-default-region="all"');
     expect(read('trail.html')).toContain('data-default-region="trail"');
     expect(read('browse-trails.html')).toContain('data-default-region="all"');
-    expect(read('index.html')).not.toContain('osm-trails-savoy-data.js');
     expect(read('trail.html')).not.toContain('osm-trails-savoy-data.js');
   });
 

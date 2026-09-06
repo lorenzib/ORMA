@@ -292,24 +292,6 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <kbd class="li-search-shortcut" aria-hidden="true">⌘K</kbd>
       <div class="li-search-suggest" id="liSearchSuggest" role="listbox" aria-label="Recommended routes" hidden></div>
     </div>
-    <div class="li-menuwrap li-country-wrap li-mobile-default-label geo-filter-control" id="liCountryWrap">
-      <button type="button" id="liCountryBtn" class="li-region-btn li-country-btn" aria-haspopup="true" aria-expanded="false">
-        <span class="li-geo-copy"><span class="li-control-kicker">Country</span><span id="liCountryLabel">Italy</span></span><span class="li-caret">▾</span>
-      </button>
-      <div class="li-menu li-country-menu" id="liCountryMenu" hidden></div>
-    </div>
-    <div class="li-menuwrap li-region-wrap li-mobile-default-label geo-filter-control" id="liRegionWrap">
-      <button type="button" id="liRegionBtn" class="li-region-btn" aria-haspopup="true" aria-expanded="false">
-        <span class="li-geo-copy"><span class="li-control-kicker">Region</span><span id="liRegionLabel">Dolomites</span></span><span class="li-caret">▾</span>
-      </button>
-      <div class="li-menu li-region-menu" id="liRegionMenu" hidden></div>
-    </div>
-    <div class="li-menuwrap li-valley-wrap li-mobile-default-label geo-filter-control" id="liValleyWrap">
-      <button type="button" id="liValleyBtn" class="li-region-btn li-valley-btn" aria-haspopup="true" aria-expanded="false">
-        <span class="li-geo-copy"><span class="li-control-kicker">Valley</span><span id="liValleyLabel">All valleys</span></span><span class="li-caret">▾</span>
-      </button>
-      <div class="li-menu li-valley-menu" id="liValleyMenu" hidden></div>
-    </div>
     <div class="li-mobile-actions" aria-label="Trail actions">
     <div class="li-menuwrap" id="liFiltersWrap">
       <button type="button" id="liFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false">
@@ -336,11 +318,18 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <button type="button" class="li-quick-filter" id="liQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="20" aria-hidden="true"></span><span>High shade</span></button>
       <button type="button" class="li-quick-filter" id="liQuickWater" aria-pressed="false"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span>Water</span></button>
     </div>
-    <button type="button" id="liSavedOnlyBtn" class="li-saved-only" aria-pressed="false">
-      <span class="orma-saved-heart" aria-hidden="true">♥</span><span>Saved</span><span class="li-saved-count" id="liSavedOnlyCount">0</span>
-    </button>
-    <a class="li-plan-route" href="route-planner.html">Draft a loop</a>
-    <a id="liRecordBtn" class="li-record" href="walk.html"><span class="li-record-dot" aria-hidden="true"></span><span class="li-record-label">Record walk</span></a>
+    <!-- Create actions are not filters, so they live behind one "+ New"
+         control out of the refine zone: draft a route, or record a walk. -->
+    <div class="li-menuwrap li-new-wrap" id="liNewWrap">
+      <button type="button" id="liNewBtn" class="li-new" aria-haspopup="true" aria-expanded="false">
+        <span class="li-new-plus" aria-hidden="true">+</span><span class="li-new-label">New</span><span class="li-caret">▾</span>
+      </button>
+      <div class="li-menu li-new-menu" id="liNewMenu" hidden>
+        <div class="li-menu-kick">Create</div>
+        <a class="li-menu-item li-plan-route" href="route-planner.html">Draft a loop<small>Plan your own route on the map</small></a>
+        <a class="li-menu-item li-record" id="liRecordBtn" href="walk.html">Record a walk<small>Track a walk as you do it</small></a>
+      </div>
+    </div>
     </div>
     <!-- Kept as a rendering target for the controller. Detailed discovery
          filters live on Browse All Trails; this toolbar keeps the core actions. -->
@@ -352,6 +341,9 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 
     <div class="li-map" id="trailMapWrap">
       <div id="trailMap" role="region" aria-label="Trail map with individual match-coloured trail markers."></div>
+      <!-- The map doubles as the geography control: pan/zoom, then refilter the
+           list to the visible area. Hidden until the view actually moves. -->
+      <button id="liSearchThisArea" type="button" class="li-search-area" hidden>Search this area</button>
       <button id="homeMapExpandBtn" type="button" class="map-expand-btn li-map-expand" aria-label="Expand map" aria-expanded="false"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span></button>
       <!-- Dog conditions card, real profile-derived readings, no invented weather -->
       <div class="li-cond" id="liConditionsCard" hidden>
@@ -404,13 +396,21 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
             <div class="li-list-title" id="companionListTitle">Top trails</div>
           </div>
         </div>
-        <div class="li-sort">
-          <span class="li-sort-label">Sort</span>
-          <div class="companion-sort-group" id="companionSortGroup">
-            <button type="button" data-sort="match" class="active">Match %</button>
-            <button type="button" data-sort="distance">Shortest</button>
-            <button type="button" data-sort="effort">Climb</button>
-            <button type="button" data-sort="today">For today</button>
+        <div class="li-listbar">
+          <!-- Saved is a view of the ranked list, not a filter, so it sits with
+               Sort as a tab rather than in the refine bar. -->
+          <div class="li-views" role="tablist" aria-label="Trail view">
+            <button type="button" id="liViewAll" class="li-view active" role="tab" aria-selected="true">All trails</button>
+            <button type="button" id="liViewSaved" class="li-view" role="tab" aria-selected="false"><span class="orma-saved-heart" aria-hidden="true">♥</span>Saved<span class="li-saved-count" id="liSavedOnlyCount">0</span></button>
+          </div>
+          <div class="li-sort">
+            <span class="li-sort-label">Sort</span>
+            <div class="companion-sort-group" id="companionSortGroup">
+              <button type="button" data-sort="match" class="active">Match %</button>
+              <button type="button" data-sort="distance">Shortest</button>
+              <button type="button" data-sort="effort">Climb</button>
+              <button type="button" data-sort="today">For today</button>
+            </div>
           </div>
         </div>
       </div>
@@ -534,7 +534,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="scoring.js?v=20260815-4" defer></script>
 <script src="trail-trust.js?v=20260819-5" defer></script>
 <script src="regions-runtime-manifest.js?v=20260903-1"></script>
-<script src="regional-trails-loader.js?v=20260902-1" data-default-region="dolomites"></script>
+<script src="regional-trails-loader.js?v=20260902-1" data-default-region="all"></script>
 <script src="notifications-feed.js?v=20260815-4" defer></script>
 <script src="trail-audits.js?v=20260815-4" defer></script>
 <script src="regions-config.js?v=20260816-1" defer></script>

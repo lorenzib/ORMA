@@ -41,16 +41,15 @@ function tForTests(key, params = {}){
 
 function loadHomepageContext(testTrails){
   document.body.innerHTML = `
-    <div id="liRegionWrap"><button id="liRegionBtn"></button>
-    <span id="liRegionLabel"></span></div>
-    <div id="liRegionMenu"></div>
-    <div id="liCountryWrap"><button id="liCountryBtn"></button>
-    <span id="liCountryLabel"></span></div>
-    <div id="liCountryMenu"></div>
-    <div id="liValleyWrap"><button id="liValleyBtn"></button>
-    <span id="liValleyLabel"></span></div>
-    <div id="liValleyMenu"></div>
-    <button id="liSavedOnlyBtn"><span id="liSavedOnlyCount"></span></button>
+    <div class="li-search"><input id="liSearch"><div id="liSearchSuggest" hidden></div></div>
+    <div id="liChips"></div>
+    <div class="li-new-wrap"><button id="liNewBtn"></button>
+      <div id="liNewMenu" hidden>
+        <a class="li-plan-route" href="route-planner.html">Draft a loop</a>
+        <a class="li-record" id="liRecordBtn" href="walk.html">Record a walk</a>
+      </div></div>
+    <button id="liViewAll" class="active"></button>
+    <button id="liViewSaved"><span id="liSavedOnlyCount"></span></button>
     <span id="liDogCtxName"></span>
     <span id="liDogCtxBreedSep" hidden></span>
     <a id="liDogCtxBreed" href="guides/breed-group-caveats.html" hidden></a>
@@ -144,53 +143,42 @@ describe('returning homepage region + valley filters', () => {
     expect(html).not.toContain('Under review');
   });
 
-  test('renders country choices from regional metadata', () => {
+  test('the search box narrows the ranked list by trail name', async () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeCountry = "IT"; activeRegion = "dolomites"; renderLiCountryControl(null);', context);
-
-    const all = document.querySelector('[data-country="all"]');
-    const italy = document.querySelector('[data-country="IT"]');
-    const france = document.querySelector('[data-country="FR"]');
-    expect(all).not.toBeNull();
-    expect(italy).not.toBeNull();
-    expect(france).not.toBeNull();
-    expect(italy.textContent).toContain('Italy');
-    expect(france.textContent).toContain('France');
-    expect(italy.getAttribute('aria-pressed')).toBe('true');
+    vm.runInContext('activeCountry = "all"; activeRegion = "all"; activeValley = "all"; liQuery = "chamonix";', context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
+    expect(document.querySelector('#returningTrailList .li-row-name').textContent).toBe('Chamonix Trail');
   });
 
-  test('country choice selects that country, resets region and valley', async () => {
+  test('typing a region or country name filters the list like the old dropdown', async () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeCountry = "IT"; activeRegion = "dolomites"; activeValley = "Val Gardena"; renderLiCountryControl(null);', context);
-
-    document.querySelector('[data-country="FR"]').click();
-    await Promise.resolve();
-    await Promise.resolve();
-
-    expect(vm.runInContext('activeCountry', context)).toBe('FR');
-    expect(vm.runInContext('activeRegion', context)).toBe('all');
-    expect(vm.runInContext('activeValley', context)).toBe('all');
+    vm.runInContext('activeCountry = "all"; activeRegion = "all"; activeValley = "all"; liQuery = "savoy";', context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    // The three Savoy trails match on their region label alone.
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
+    vm.runInContext('liQuery = "italy";', context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
   });
 
-  test('All country and region return to the same neutral UI as All valleys', () => {
+  test('the Saved view tab reflects and filters saved trails', async () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeCountry = "all"; activeRegion = "all"; activeValley = "all"; renderLiCountryControl(null); renderLiRegionControl(null); renderLiValleyControl(null);', context);
-
-    expect(document.getElementById('liCountryLabel').textContent).toBe('All countries');
-    expect(document.getElementById('liRegionLabel').textContent).toBe('All regions');
-    expect(document.getElementById('liValleyLabel').textContent).toBe('All valleys');
-    expect(document.getElementById('liCountryWrap').classList.contains('li-has-selection')).toBe(false);
-    expect(document.getElementById('liRegionWrap').classList.contains('li-has-selection')).toBe(false);
-    expect(document.getElementById('liValleyWrap').classList.contains('li-has-selection')).toBe(false);
-  });
-
-  test('saved-only toolbar control reflects and filters saved trails', async () => {
-    const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('currentFavorites = { vag: true }; showingSavedOnly = true; activeRegion = "dolomites"; renderLiSavedControl();', context);
-    expect(document.getElementById('liSavedOnlyBtn').getAttribute('aria-pressed')).toBe('true');
+    vm.runInContext('currentFavorites = { vag: true }; showingSavedOnly = true; activeRegion = "all"; renderLiSavedControl();', context);
+    expect(document.getElementById('liViewSaved').getAttribute('aria-selected')).toBe('true');
+    expect(document.getElementById('liViewAll').getAttribute('aria-selected')).toBe('false');
     expect(document.getElementById('liSavedOnlyCount').textContent).toBe('1');
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
+  });
+
+  test('the map viewport ("Search this area") narrows the list to its bounds', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    // A bounds box around the Dolomites sample only; contains() is the real test.
+    vm.runInContext(`activeCountry = "all"; activeRegion = "all"; activeValley = "all";
+      liMapBounds = { contains: ([lng, lat]) => lat > 46 && lng > 11 };`, context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
   });
 
   test('turns the active dog into useful greeting and ranking context', () => {
@@ -231,51 +219,16 @@ describe('returning homepage region + valley filters', () => {
     expect(context.location.href).toBe('account.html?dog=teo&next=%2F');
   });
 
-  test('switching the separate region control resets the valley', async () => {
+  test('a ?region deep link still scopes the list to that region', async () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeCountry = "all"; activeRegion = "savoy"; activeValley = "Maurienne"; renderLiRegionControl(null);', context);
-
-    const dolomitesTab = Array.from(document.querySelectorAll('.li-region-option'))
-      .find(button => button.textContent.includes('Dolomites'));
-    expect(dolomitesTab).not.toBeNull();
-    dolomitesTab.click();
-    await Promise.resolve();
-
-    expect(vm.runInContext('activeRegion', context)).toBe('dolomites');
-    expect(vm.runInContext('activeCountry', context)).toBe('IT');
-    expect(vm.runInContext('activeValley', context)).toBe('all');
-  });
-
-  test('the visible valley dropdown follows the active region and updates activeValley', () => {
-    const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeCountry = "FR"; activeRegion = "savoy"; activeValley = "all"; renderLiValleyControl(null);', context);
-
-    const maurienneOption = document.querySelector('[data-valley="Maurienne"]');
-    expect(document.getElementById('liValleyLabel').textContent).toBe('All valleys');
-    expect(document.getElementById('liValleyWrap').classList.contains('li-has-selection')).toBe(false);
-    expect(maurienneOption).not.toBeNull();
-    maurienneOption.click();
-
-    expect(vm.runInContext('activeValley', context)).toBe('Maurienne');
-    expect(document.getElementById('liValleyLabel').textContent).toBe('Maurienne');
-    expect(document.getElementById('liValleyWrap').classList.contains('li-has-selection')).toBe(true);
-  });
-
-  test('result list reflects region filter', async () => {
-    const context = loadHomepageContext(sampleTrails);
+    // The dropdown is gone, but the underlying region state (set from a deep
+    // link) still filters, so /?region=savoy opens on the Savoy trails.
     vm.runInContext('activeCountry = "FR"; activeRegion = "savoy"; activeValley = "all"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
   });
 
-  test('result list reflects valley filter', async () => {
-    const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('activeCountry = "FR"; activeRegion = "savoy"; activeValley = "Maurienne"; showingSavedOnly = false;', context);
-    await vm.runInContext('renderReturningHomepage(null);', context);
-    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
-  });
-
-  test('All countries returns the full loaded catalogue', async () => {
+  test('the default "all" scope returns the full loaded catalogue', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeCountry = "all"; activeRegion = "all"; activeValley = "all"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
@@ -294,10 +247,14 @@ describe('map-first returning homepage layout contract', () => {
     expect(html).toContain('class="li-toolbar-greet"');
     expect(html).toContain('id="liToolbarDogContext"');
     expect(html).toContain('id="liFiltersWrap"');
-    expect(html).toContain('id="liCountryWrap"');
-    expect(html).toContain('id="liSavedOnlyBtn"');
-    expect(html).toContain('id="liRegionWrap"');
-    expect(html).toContain('id="liValleyWrap"');
+    // The three geography dropdowns are replaced by the unified search box and
+    // the map. Saved moves from the toolbar to a view tab beside Sort.
+    expect(html).toContain('id="liNewBtn"');
+    expect(html).toContain('id="liViewSaved"');
+    expect(html).not.toContain('id="liCountryWrap"');
+    expect(html).not.toContain('id="liRegionWrap"');
+    expect(html).not.toContain('id="liValleyWrap"');
+    expect(html).not.toContain('id="liSavedOnlyBtn"');
     expect(html).not.toContain('id="liShadeSeg"');
     expect(html).not.toContain('id="hpShadeSeg"');
     expect(html).toContain('id="liCollapseTrailsBtn"');
@@ -358,16 +315,13 @@ describe('map-first returning homepage layout contract', () => {
     expect(mobileCss).toContain('body.mhome-active .li-toolbar-greet-copy{display:flex;min-width:0;flex-direction:column;');
     expect(mobileCss).toContain('body.mhome-active .li-search{grid-column:1/5;grid-row:2;');
     expect(mobileCss).toContain('body.mhome-active .li-mobile-actions{display:contents;}');
-    expect(mobileCss).toContain('body.mhome-active .li-quick-filters{display:none;}');
-    expect(mobileCss).toContain('body.mhome-active #liFiltersWrap,');
-    expect(mobileCss).toContain('body.mhome-active .li-saved-only{grid-column:5/7;grid-row:2;');
-    expect(mobileCss).toContain('body.mhome-active .li-plan-route{grid-column:1/4;grid-row:4;display:inline-flex;');
-    expect(mobileCss).toContain('body.mhome-active .li-record{grid-column:4/7;grid-row:4;display:inline-flex!important;');
-    expect(mobileCss).toContain('body.mhome-active .li-menuwrap.li-mobile-default-label .li-geo-copy .li-control-kicker{display:inline;}');
-    expect(mobileCss).toContain('body.mhome-active #liValleyWrap.li-mobile-default-label #liValleyLabel{display:none;}');
-    expect(html).toContain('class="li-menuwrap li-country-wrap li-mobile-default-label geo-filter-control"');
-    expect(html).toContain('class="li-menuwrap li-region-wrap li-mobile-default-label geo-filter-control"');
-    expect(html).toContain('class="li-menuwrap li-valley-wrap li-mobile-default-label geo-filter-control"');
+    // Row 2: search + "+ New". Row 3: quick shade/water + the Filters button.
+    expect(mobileCss).toContain('body.mhome-active .li-new-wrap{grid-column:5/7;grid-row:2;');
+    expect(mobileCss).toContain('body.mhome-active .li-quick-filters{grid-column:1/5;grid-row:3;');
+    expect(mobileCss).toContain('body.mhome-active #liFiltersWrap{grid-column:5/7;grid-row:3;');
+    // The three geography dropdowns are gone from the markup entirely.
+    expect(html).not.toContain('geo-filter-control');
+    expect(html).not.toContain('id="liValleyWrap"');
     expect(mobileCss).toContain('body.mhome-active .li-saved-count{display:grid;');
     expect(mobileCss).toContain('.li-map.map-layers-open{z-index:47;}');
     expect(mobileCss).toContain('#trailMap .map-btn{height:32px;padding:0 11px;font-size:11.5px;');

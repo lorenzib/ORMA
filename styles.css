@@ -2858,18 +2858,20 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 }
 .li-greetbar .li-dog-row{flex:1;min-width:0;}
 
-/* ---------- toolbar (dog context · search · country · region · valley · filters · quick filters · saved) ----------
-   Desktop: one compact, consistently sized contextual control row.
-   The greeting block is a phone-only element; desktop context lives in
-   the static "Tailored to" label. */
+/* ---------- toolbar (dog context · unified search · "+ New") ----------
+   Desktop: greeting row, then one row of the unified search and the create
+   menu. Geography is the search box and the map; the slim refine bar
+   (Distance/Difficulty/Shade/Water/More) is the .li-chiprow beneath. The
+   greeting block is a phone-only element; desktop context lives in the
+   static "Tailored to" label. */
 .li-toolbar{
   display:grid;
-  grid-template-columns:minmax(260px,1fr) auto auto auto auto auto auto auto auto;
+  grid-template-columns:minmax(260px,1fr) auto;
   grid-template-areas:
-    "greet greet greet greet greet greet greet greet greet"
-    "search country region valley filters quick saved plan record";
+    "greet greet"
+    "search new";
   align-items:center;
-  gap:14px 8px;
+  gap:14px 12px;
   padding:16px 24px 18px;
   background:var(--bg);
   border-bottom:1px solid var(--paper-line);
@@ -2877,6 +2879,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   position:relative;
   z-index:45;
 }
+.li-new-wrap{grid-area:new;justify-self:end;}
 .li-toolbar-greet{
   grid-area:greet;
   display:flex;
@@ -3014,6 +3017,49 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-chip.on{background:#EAF3EC;border-color:#9FC4B0;font-weight:700;}
 .li-chipmenu{left:0;right:auto;min-width:190px;max-height:min(420px,60vh);overflow-y:auto;}
 .li-chip-selected{background:#F0EDE1;font-weight:700;}
+/* The slim refine bar sits below the toolbar on desktop: Distance, Difficulty,
+   Shade, Water and a single More filters popover. Hidden on phones, where the
+   Filters button carries the same controls. */
+@media(min-width:701px){
+  .li-chiprow{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:0 0 4px;}
+  .li-chipwrap-more{margin-left:auto;}
+}
+/* "+ New" create menu — one control for the two make actions. */
+.li-new-wrap{position:relative;}
+.li-new{
+  display:inline-flex;align-items:center;gap:8px;height:42px;box-sizing:border-box;
+  padding:0 16px;border:0;border-radius:var(--radius-pill);background:var(--accent);
+  color:#fff;font:800 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;
+  box-shadow:0 6px 16px -10px rgba(23,42,28,.55);
+}
+.li-new:hover{filter:brightness(1.05);}
+.li-new-plus{font-size:17px;line-height:1;font-weight:700;}
+.li-new .li-caret{opacity:.85;font-size:11px;}
+.li-new-menu{left:auto;right:0;top:calc(100% + 8px);width:250px;}
+/* The two create links keep their identity as menu rows, not their old toolbar
+   pills, so reset the inherited plan/record button styling. */
+.li-new-menu .li-menu-item{display:flex;flex-direction:column;align-items:flex-start;gap:2px;height:auto;margin:0;padding:10px 12px;background:none;box-shadow:none;text-decoration:none;color:var(--ink);font:800 13px 'Inter',sans-serif;border-radius:11px;white-space:normal;}
+.li-new-menu .li-menu-item small{color:var(--ink-soft);font:600 11px 'Inter',sans-serif;}
+.li-new-menu .li-menu-item:hover{background:#EEF3EC;}
+/* Saved / All as tabs beside Sort in the list head. */
+.li-listbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:8px;}
+.li-views{display:inline-flex;gap:4px;background:var(--sage-dim);padding:4px;border-radius:11px;}
+.li-view{display:inline-flex;align-items:center;gap:6px;border:none;background:none;border-radius:8px;padding:6px 12px;font:600 12px 'Inter',sans-serif;color:#5B6B5E;cursor:pointer;}
+.li-view.active{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.1);}
+.li-view .orma-saved-heart{font-family:Arial,sans-serif;font-size:14px;color:#9C3A25;}
+.li-view .li-saved-count{display:grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:#EEF1E9;color:var(--ink-soft);font-size:10px;}
+.li-view.active .li-saved-count{background:#9C3A25;color:#fff;}
+.li-listbar .li-sort{margin-top:0;}
+/* "Search this area" — the map's own geography control. */
+.li-search-area{
+  position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:8;
+  display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 15px;
+  border:1px solid var(--paper-line);border-radius:999px;background:#fff;color:var(--ink);
+  font:800 12px 'Inter',sans-serif;cursor:pointer;box-shadow:0 4px 14px -4px rgba(23,42,28,.4);
+}
+.li-search-area:hover{border-color:var(--accent);}
+.li-search-area.is-clear{background:#F1EDE1;border-color:#C9BE9A;color:#6E5D2F;}
+.li-search-area[hidden]{display:none;}
 /* Discovery uses one consolidated filters panel at every viewport size. */
 /* The design's app home has no conditions card on the map (desktop);
    phones keep it as the dog-identity pill. */
@@ -3654,37 +3700,18 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 @media (min-width:1041px) and (max-width:1560px){
   body[data-homepage-view="returning"] #returningCustomerHomepage > .li-toolbar{
     display:grid;
-    grid-template-columns:minmax(250px,1.75fr) repeat(3,minmax(132px,1fr)) minmax(112px,.8fr) minmax(85px,.7fr) minmax(102px,.8fr) minmax(120px,.9fr) repeat(2,minmax(122px,.9fr));
+    grid-template-columns:minmax(250px,1fr) auto;
     grid-template-areas:
-      "greet greet greet greet greet greet greet greet greet greet"
-      "search country region valley filters quick saved plan record";
+      "greet greet"
+      "search new";
     align-items:center;
-    gap:14px 9px;
+    gap:14px 12px;
     padding:12px 0 18px;
-    overflow-x:auto;
-    overscroll-behavior-inline:contain;
-    scrollbar-width:thin;
   }
   body[data-homepage-view="returning"] #returningCustomerHomepage .li-toolbar-greet{grid-column:1/-1;grid-row:1;}
   body[data-homepage-view="returning"] #returningCustomerHomepage .li-search{grid-column:1;grid-row:2;width:100%;max-width:none;min-width:0;}
-  body[data-homepage-view="returning"] #returningCustomerHomepage .li-country-wrap{grid-column:2;grid-row:2;}
-  body[data-homepage-view="returning"] #returningCustomerHomepage .li-region-wrap{grid-column:3;grid-row:2;}
-  body[data-homepage-view="returning"] #returningCustomerHomepage .li-valley-wrap{grid-column:4;grid-row:2;}
-  body[data-homepage-view="returning"] #returningCustomerHomepage #liFiltersWrap{display:block;grid-column:5;grid-row:2;width:100%;}
-  body[data-homepage-view="returning"] #returningCustomerHomepage .li-mobile-actions,
-  body[data-homepage-view="returning"] #returningCustomerHomepage .li-quick-filters{display:contents;}
-  body[data-homepage-view="returning"] #returningCustomerHomepage #liQuickShade{grid-column:6;grid-row:2;}
-  body[data-homepage-view="returning"] #returningCustomerHomepage #liQuickWater{grid-column:7;grid-row:2;}
-  body[data-homepage-view="returning"] #returningCustomerHomepage .li-saved-only{grid-column:8;grid-row:2;}
-  body[data-homepage-view="returning"] #returningCustomerHomepage .li-plan-route{grid-column:9;grid-row:2;}
-  body[data-homepage-view="returning"] #returningCustomerHomepage .li-record{grid-column:10;grid-row:2;}
-  body[data-homepage-view="returning"] #returningCustomerHomepage .geo-filter-control,
-  body[data-homepage-view="returning"] #returningCustomerHomepage .li-quick-filter,
-  body[data-homepage-view="returning"] #returningCustomerHomepage .li-saved-only,
-  body[data-homepage-view="returning"] #returningCustomerHomepage .li-plan-route,
-  body[data-homepage-view="returning"] #returningCustomerHomepage .li-record{
-    width:100%;min-width:0;margin-left:0;box-sizing:border-box;
-  }
+  body[data-homepage-view="returning"] #returningCustomerHomepage .li-mobile-actions{display:contents;}
+  body[data-homepage-view="returning"] #returningCustomerHomepage .li-new-wrap{grid-column:2;grid-row:2;justify-self:end;}
 }
 
 @media (min-width:701px) and (max-width:1040px){
