@@ -17,11 +17,17 @@ describe('every licensed trail photo is credited on its page',()=>{
     expect(licensed.length).toBeGreaterThan(0);
   });
 
+  // A Creative Commons licence requires the creator and a link to its terms.
+  // A public-domain work requires neither, so demanding a licence URL there would
+  // reject usable photographs for a condition the licence does not impose.
+  const attributionRequired=entry=>/^CC BY/i.test(String(entry.fields.imageLicence||''));
+
   test.each(licensed.map(entry=>[entry.id,entry]))('%s records a complete rights set',(id,entry)=>{
     const f=entry.fields;
     expect(f.imageCreator).toBeTruthy();
     expect(f.imageLicence).toBeTruthy();
-    expect(f.imageLicenceUrl).toMatch(/^https:\/\//);
+    if(attributionRequired(entry))expect(f.imageLicenceUrl).toMatch(/^https:\/\//);
+    else if(f.imageLicenceUrl)expect(f.imageLicenceUrl).toMatch(/^https:\/\//);
     expect(f.imageSourcePage).toMatch(/^https:\/\//);
     expect(f.imageAlt).toBeTruthy();
     // The alt text describes the photograph; it must not be a bare trail name.
@@ -43,7 +49,7 @@ describe('every licensed trail photo is credited on its page',()=>{
     expect(body).toBeDefined();
     expect(body).toContain(escapeHtml(f.imageCreator));
     expect(body).toContain(escapeHtml(f.imageLicence));
-    expect(body).toContain(f.imageLicenceUrl);
+    if(f.imageLicenceUrl)expect(body).toContain(f.imageLicenceUrl);
     expect(body).toContain(f.imageSourcePage);
   });
 
