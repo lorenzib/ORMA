@@ -73,6 +73,7 @@
     "backoffice:orchestration:build": "node backoffice/cli/build-live-orchestration.js",
     "backoffice:campaign:live": "node backoffice/cli/start-live-trail-campaign.js",
     "backoffice:audit": "node backoffice/cli/audit-operations.js",
+    "backoffice:status": "node scripts/backoffice-status.js",
     "build:backoffice-hosting": "node scripts/build-backoffice-hosting.js",
     "build:app": "node scripts/build-app.js",
     "app:sync": "npm run build:app && npx cap sync ios",
