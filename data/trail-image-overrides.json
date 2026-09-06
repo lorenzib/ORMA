@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T11:51:13.811Z",
+  "updatedAt": "2026-09-06T12:22:30.979Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -611,6 +611,57 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Eisack_valley_and_Gr%C3%B6den_seen_from_Dreikirchen.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cadini",
+      "approvedReviewId": "commons-cadini",
+      "approvedAt": "2026-09-06T12:22:30.979Z",
+      "fields": {
+        "imageIcon": "images/trails/cadini-commons.jpg",
+        "heroImage": "images/trails/cadini-commons.jpg",
+        "imageAlt": "Lake Misurina with the Cadini peaks behind",
+        "imageCredit": "Lagomisurinacadini",
+        "imageCreditText": "Lagomisurinacadini by Llorenzi",
+        "imageCreator": "Llorenzi",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lagomisurinacadini.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11795251",
+      "approvedReviewId": "commons-osm-11795251",
+      "approvedAt": "2026-09-06T12:22:30.979Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11795251-commons.jpg",
+        "heroImage": "images/trails/osm-11795251-commons.jpg",
+        "imageAlt": "The Pfunders valley basin in the Vintl municipality",
+        "imageCredit": "Talkessel von Pfunders",
+        "imageCreditText": "Talkessel von Pfunders by Hegedex",
+        "imageCreator": "Hegedex",
+        "imageLicence": "Public domain",
+        "imageLicenceUrl": null,
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Talkessel_von_Pfunders.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-6404634",
+      "approvedReviewId": "commons-osm-6404634",
+      "approvedAt": "2026-09-06T12:22:30.979Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-6404634-commons.jpg",
+        "heroImage": "images/trails/osm-6404634-commons.jpg",
+        "imageAlt": "Mixed woodland in Val Canali in the Paneveggio nature park",
+        "imageCredit": "Bosco misto in Val Canali ph Carlo A.Turra",
+        "imageCreditText": "Bosco misto in Val Canali ph Carlo A.Turra by Viducoli",
+        "imageCreator": "Viducoli",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bosco_misto_in_Val_Canali_ph_Carlo_A.Turra.jpg",
         "imageSourceType": "licensed-source"
       }
     }
