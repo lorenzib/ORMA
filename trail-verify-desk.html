@@ -40,6 +40,21 @@
       <p id="verifyHeadline" class="vd-headline"></p>
       <div class="vd-bar"><span id="verifyBarFill"></span></div>
       <p id="verifySplit" class="vd-split"></p>
+      <div class="vd-explain">
+        <h3>What "verified" means</h3>
+        <p>A trail counts as verified once all eleven checks are complete:</p>
+        <ul id="verifyChecks" class="vd-checks"></ul>
+        <p class="vd-aside">Shade cover, heat risk and exposure <em>values</em> feed the match score and the
+        blocker list below. They are not verification checks, so changing them cannot change this number.</p>
+      </div>
+
+      <div class="vd-explain">
+        <h3>Why the number is low</h3>
+        <p id="verifyWhy" class="vd-why"></p>
+        <ul id="verifyStages" class="vd-stages"></ul>
+        <p id="verifyGuidance" class="vd-aside"></p>
+      </div>
+
       <div class="vd-blocking">
         <h3>What is holding the rest back</h3>
         <p class="vd-blocking-note">Most trails wait on the same few things, so closing one gap moves many trails at once.</p>
@@ -68,6 +83,6 @@
   <script type="module" src="backoffice-firebase.js"></script>
   <script src="backoffice-auth-guard.js?v=20260819-1"></script>
   <script src="backoffice-session.js?v=20260819-1"></script>
-  <script src="trail-verify-desk.js?v=20260906-7"></script>
+  <script src="trail-verify-desk.js?v=20260906-8"></script>
 </body>
 </html>

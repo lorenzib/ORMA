@@ -233,3 +233,17 @@ body.bo-shell{margin:0;background:var(--bo-bg);color:var(--bo-ink)}
 .vd-blocker-list li{display:flex;align-items:baseline;gap:12px;font-size:14.5px;}
 .vd-blocker-list strong{min-width:44px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);}
 .vd-blocker-list span{color:var(--ink-soft);}
+
+/* Why the verified count is what it is. The number alone kept prompting the
+   same question, so the desk now answers it in place. */
+.vd-explain{margin-top:20px;border:1px solid var(--paper-line);border-radius:14px;padding:16px 18px;background:var(--card);}
+.vd-explain h3{margin:0 0 6px;font-size:15px;}
+.vd-explain p{margin:0 0 10px;font-size:14px;color:var(--ink-soft);max-width:60ch;}
+.vd-aside{margin:10px 0 0 !important;font-size:13px !important;}
+.vd-checks{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;}
+.vd-checks li{font-size:12.5px;background:var(--sage-dim);border-radius:999px;padding:4px 11px;color:var(--ink);}
+.vd-why{color:var(--ink) !important;font-weight:500;}
+.vd-stages{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
+.vd-stages li{display:flex;align-items:baseline;gap:12px;font-size:14px;}
+.vd-stages strong{min-width:44px;text-align:right;font-variant-numeric:tabular-nums;}
+.vd-stages span{color:var(--ink-soft);}
