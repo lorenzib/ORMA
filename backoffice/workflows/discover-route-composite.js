@@ -104,4 +104,37 @@ function discoverRouteComposite(trail, payload, options = {}){
   };
 }
 
-module.exports = { MAX_RELATIONS, discoverRouteComposite, relationsFromPayload, metresBetween };
+// Ruling on a proposal. An approval rests on a fresh measurement, never on the
+// number the proposal stored: that said what was true when discovery ran, and
+// approving is the moment the claim becomes a route source. A measurement that
+// could not be taken, or one that no longer covers the walk, leaves the
+// proposal exactly as it was — holding is not rejecting.
+function ruleOnComposite(composite, measured, options = {}){
+  const at = options.at || new Date().toISOString();
+  const by = options.approvedBy || 'human-moderator';
+  const threshold = Number.isFinite(options.minimumCoveragePercent) ? options.minimumCoveragePercent : 90;
+  if(!composite || composite.state !== 'proposed'){
+    return { outcome:'left-alone', composite };
+  }
+  if(!measured || !Number.isFinite(measured.coveragePercent)){
+    return { outcome:'held', reason:'coverage could not be measured', composite };
+  }
+  if(measured.coveragePercent < threshold){
+    return { outcome:'held', reason:`covers ${measured.coveragePercent}% today`, composite };
+  }
+  const before = (composite.relations || []).map(entry => entry.externalRelationId).sort().join(',');
+  const after = (measured.relations || []).map(entry => entry.externalRelationId).sort().join(',');
+  return { outcome:'approved', composite:{ ...composite, state:'approved', approvedAt:at, approvedBy:by,
+    coveragePercent:measured.coveragePercent, relations:measured.relations,
+    relationsUnchangedSinceProposal:before === after } };
+}
+
+function rejectComposite(composite, options = {}){
+  if(!composite || composite.state !== 'proposed') return { outcome:'left-alone', composite };
+  return { outcome:'rejected', composite:{ ...composite, state:'rejected',
+    rejectedAt:options.at || new Date().toISOString(),
+    rejectedBy:options.approvedBy || 'human-moderator' } };
+}
+
+module.exports = { MAX_RELATIONS, discoverRouteComposite, relationsFromPayload, metresBetween,
+  ruleOnComposite, rejectComposite };
