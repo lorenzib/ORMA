@@ -1,8 +1,13 @@
 name: ORMA verification state report
 
-# Read-only diagnostic, run by hand. The photo backfill stops queueing once the
-# number of occupied trails reaches capacity; this says which of the three
-# sources is holding the slots. It never writes to Firestore or the website.
+# Read-only diagnostic, run by hand. Three of 165 trails are ORMA Verified, and
+# that has two opposite explanations: either the human gates are the constraint,
+# or few trails ever reach one. backoffice/cli/report-verification-state.js
+# measures which, and its own header says to measure before changing anything.
+#
+# The state lives in Firestore, so it cannot be read from a checkout. Running it
+# here keeps the credential in Actions instead of on anyone's machine, and the
+# reporter never writes to Firestore or the website.
 on:
   workflow_dispatch: {}
 
