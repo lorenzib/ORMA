@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T11:00:14.571Z",
+  "updatedAt": "2026-09-06T11:51:13.811Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -543,6 +543,74 @@
         "imageLicence": "CC BY 2.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:20150726-SRA_7093-7101_(20039153901).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11764094",
+      "approvedReviewId": "commons-osm-11764094",
+      "approvedAt": "2026-09-06T11:51:13.811Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11764094-commons.jpg",
+        "heroImage": "images/trails/osm-11764094-commons.jpg",
+        "imageAlt": "The villages of Natz, Raas and Viums on the Brixen basin below the Lüsental",
+        "imageCredit": "Blick auf den nördlichen Brixner Talkessel und Eingang des Lüsentals von der Karspitze 2",
+        "imageCreditText": "Blick auf den nördlichen Brixner Talkessel und Eingang des Lüsentals von der Karspitze 2 by Plentn",
+        "imageCreator": "Plentn",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Blick_auf_den_n%C3%B6rdlichen_Brixner_Talkessel_und_Eingang_des_L%C3%BCsentals_von_der_Karspitze_2.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12302191",
+      "approvedReviewId": "commons-osm-12302191",
+      "approvedAt": "2026-09-06T11:51:13.811Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12302191-commons.jpg",
+        "heroImage": "images/trails/osm-12302191-commons.jpg",
+        "imageAlt": "The Anterselva valley with Rasun di Sotto in the foreground",
+        "imageCredit": "Panorama della valle di anterselva",
+        "imageCreditText": "Panorama della valle di anterselva by Llorenzi",
+        "imageCreator": "Llorenzi",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Panorama_della_valle_di_anterselva.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-14058492",
+      "approvedReviewId": "commons-osm-14058492",
+      "approvedAt": "2026-09-06T11:51:13.811Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14058492-commons.jpg",
+        "heroImage": "images/trails/osm-14058492-commons.jpg",
+        "imageAlt": "Dawn over the Isarco valley",
+        "imageCredit": "Alba sulla valle Isarco",
+        "imageCreditText": "Alba sulla valle Isarco by Llorenzi",
+        "imageCreator": "Llorenzi",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Alba_sulla_valle_Isarco.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12736753",
+      "approvedReviewId": "commons-osm-12736753",
+      "approvedAt": "2026-09-06T11:51:13.811Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12736753-commons.jpg",
+        "heroImage": "images/trails/osm-12736753-commons.jpg",
+        "imageAlt": "The Isarco valley and Val Gardena seen from Dreikirchen",
+        "imageCredit": "Eisack valley and Gröden seen from Dreikirchen",
+        "imageCreditText": "Eisack valley and Gröden seen from Dreikirchen by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Eisack_valley_and_Gr%C3%B6den_seen_from_Dreikirchen.jpg",
         "imageSourceType": "licensed-source"
       }
     }
