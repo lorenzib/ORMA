@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T14:59:12.500Z",
+  "updatedAt": "2026-09-06T15:21:27.825Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -934,6 +934,40 @@
         "imageLicence": "CC BY 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vall%C3%A9e_de_l%27Arvan.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11860429",
+      "approvedReviewId": "commons-osm-11860429",
+      "approvedAt": "2026-09-06T15:21:27.825Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11860429-armentara.jpg",
+        "heroImage": "images/trails/osm-11860429-armentara.jpg",
+        "imageAlt": "A wooden fence along the Armentara meadows, with spruce and the pale walls of the Dolomites beyond.",
+        "imageCredit": "Prati dell Armentara",
+        "imageCreditText": "Prati dell Armentara by MartiSorg",
+        "imageCreator": "MartiSorg",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Escursioni_nei_prati.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12018939",
+      "approvedReviewId": "commons-osm-12018939",
+      "approvedAt": "2026-09-06T15:21:27.825Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12018939-steinegg.jpg",
+        "heroImage": "images/trails/osm-12018939-steinegg.jpg",
+        "imageAlt": "The village of Steinegg on its wooded ridge above forested slopes and meadows.",
+        "imageCredit": "Steinegg seen from the castle ruin",
+        "imageCreditText": "Steinegg seen from the castle ruin by Plentn",
+        "imageCreator": "Plentn",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Steinegg.jpg",
         "imageSourceType": "licensed-source"
       }
     }
