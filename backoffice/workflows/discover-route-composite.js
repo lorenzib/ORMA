@@ -14,6 +14,14 @@ const { ON_ROUTE_METRES } = require('./run-catalogue-batch');
 
 const MAX_RELATIONS = 6;
 
+// A route source should be at the scale of the walk. A long-distance traverse
+// that happens to run along it covers everything in one relation, which is
+// exactly what a set cover rewards, and it is a poor source: guidance drawn
+// from it would tell a reader to follow a week-long route for five kilometres.
+// Such a relation is used only when nothing at the walk's own scale explains
+// the route.
+const MINIMUM_WALK_SHARE = 0.1;
+
 function metresBetween(a, b){
   const radians = Math.PI / 180;
   const dLat = (b[0] - a[0]) * radians;
@@ -46,6 +54,17 @@ function relationsFromPayload(payload){
   return relations;
 }
 
+// Length of a line, ignoring jumps between disjoint pieces so a relation that
+// comes back in fragments is not credited with the gaps between them.
+function lineKilometres(points){
+  let total = 0;
+  for(let index = 1; index < points.length; index += 1){
+    const step = metresBetween(points[index - 1], points[index]) / 1000;
+    if(step < 1) total += step;
+  }
+  return total;
+}
+
 function coveredIndices(walked, relation, radiusMetres){
   const covered = new Set();
   walked.forEach((point, index) => {
@@ -67,21 +86,33 @@ function discoverRouteComposite(trail, payload, options = {}){
 
   const relations = relationsFromPayload(payload);
   const coverage = new Map(relations.map(relation => [relation.id, coveredIndices(walked, relation, radiusMetres)]));
+  const walkKm = lineKilometres(walked);
+  const share = new Map(relations.map(relation => {
+    const relationKm = lineKilometres(relation.points);
+    return [relation.id, relationKm > 0 ? walkKm / relationKm : 0];
+  }));
+  const atScale = relation => share.get(relation.id) >= MINIMUM_WALK_SHARE;
+
   const outstanding = new Set(walked.map((_, index) => index));
   const chosen = [];
 
-  while(outstanding.size && chosen.length < maximumRelations){
-    let best = null;
-    let bestGain = 0;
-    for(const relation of relations){
-      if(chosen.some(entry => entry.id === relation.id)) continue;
-      let gain = 0;
-      for(const index of coverage.get(relation.id)) if(outstanding.has(index)) gain += 1;
-      if(gain > bestGain){ bestGain = gain; best = relation; }
+  // Paths at the walk's own scale first. Only if they leave the route
+  // unexplained does a longer route through it get to answer.
+  for(const eligible of [atScale, () => true]){
+    while(outstanding.size && chosen.length < maximumRelations){
+      let best = null;
+      let bestGain = 0;
+      for(const relation of relations){
+        if(!eligible(relation)) continue;
+        if(chosen.some(entry => entry.id === relation.id)) continue;
+        let gain = 0;
+        for(const index of coverage.get(relation.id)) if(outstanding.has(index)) gain += 1;
+        if(gain > bestGain){ bestGain = gain; best = relation; }
+      }
+      if(!best) break;
+      chosen.push(best);
+      for(const index of coverage.get(best.id)) outstanding.delete(index);
     }
-    if(!best) break;
-    chosen.push(best);
-    for(const index of coverage.get(best.id)) outstanding.delete(index);
   }
 
   const covered = walked.length - outstanding.size;
@@ -98,6 +129,7 @@ function discoverRouteComposite(trail, payload, options = {}){
         name: relation.tags.name || null,
         network: relation.tags.network || null,
         coveragePercent: Math.round((coverage.get(relation.id).size / walked.length) * 100),
+        walkSharePercent: Math.min(100, Math.round(share.get(relation.id) * 100)),
         firstCoveredIndex: Math.min(...coverage.get(relation.id)),
       }))
       .sort((a, b) => a.firstCoveredIndex - b.firstCoveredIndex),
@@ -136,5 +168,5 @@ function rejectComposite(composite, options = {}){
     rejectedBy:options.approvedBy || 'human-moderator' } };
 }
 
-module.exports = { MAX_RELATIONS, discoverRouteComposite, relationsFromPayload, metresBetween,
+module.exports = { MAX_RELATIONS, MINIMUM_WALK_SHARE, lineKilometres, discoverRouteComposite, relationsFromPayload, metresBetween,
   ruleOnComposite, rejectComposite };

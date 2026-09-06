@@ -107,6 +107,12 @@ evidence, never a decision: a composite becomes a route source only when a human
 approves it at the geometry gate, and only while it covers the walk. The paths
 are recorded in the order a reader meets them on the ground.
 
+A route source must be at the scale of the walk. A long-distance route running
+along a trail covers all of it at once, and reading guidance from it would send
+a walker after a week-long traverse for an afternoon. Paths the walk
+substantially occupies are proposed first, and a longer route through the area
+answers only where nothing at that scale explains the route.
+
 ### 2. New Trails
 
 Owns discovery before catalogue admission. It prioritises:

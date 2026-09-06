@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "updatedAt": "2026-09-06T10:03:33.868Z",
+  "updatedAt": "2026-09-06T13:07:10.117Z",
   "composites": {
     "alpe-siusi": {
       "state": "approved",
@@ -69,7 +69,7 @@
       "relationsUnchangedSinceProposal": true
     },
     "nuvolau": {
-      "state": "proposed",
+      "state": "approved",
       "proposedAt": "2026-09-06T09:28:45.114Z",
       "trailName": "Passo Giau to Rifugio Nuvolau",
       "coveragePercent": 100,
@@ -77,14 +77,27 @@
       "candidateRelationCount": 7,
       "relations": [
         {
-          "externalRelationId": "relation/177743",
-          "ref": "AV1",
-          "name": "Alta via n. 1 delle Dolomiti - Dolomiten-Höhenweg Nr. 1",
-          "network": "rwn",
-          "coveragePercent": 100,
+          "externalRelationId": "relation/3197403",
+          "ref": "443",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 38,
+          "walkSharePercent": 70,
           "firstCoveredIndex": 0
+        },
+        {
+          "externalRelationId": "relation/2261098",
+          "ref": "438",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 67,
+          "walkSharePercent": 100,
+          "firstCoveredIndex": 15
         }
-      ]
+      ],
+      "approvedAt": "2026-09-06T13:07:08.114Z",
+      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "relationsUnchangedSinceProposal": false
     },
     "sassolungo": {
       "state": "approved",
