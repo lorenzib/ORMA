@@ -928,6 +928,28 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    match /backofficeRouteReviews/{reviewId} {
+      allow get, list: if isModerator();
+      allow create: if isModerator()
+        && request.resource.data.keys().hasOnly([
+          'contractVersion', 'type', 'status', 'candidateId', 'action',
+          'proposalIds', 'note', 'submittedAt', 'submittedBy', 'publicMutationAllowed'
+        ])
+        && request.resource.data.contractVersion == '1.0.0'
+        && request.resource.data.type == 'route-choice-review'
+        && request.resource.data.status == 'queued'
+        && isShortString(request.resource.data.candidateId, 160)
+        && request.resource.data.action in ['approve-route', 'approve-route-variants', 'request-route-research', 'reject-route-source', 'route-unresolved']
+        && request.resource.data.proposalIds is list
+        && request.resource.data.proposalIds.size() <= 6
+        && request.resource.data.note is string
+        && request.resource.data.note.size() <= 1500
+        && request.resource.data.submittedAt == request.time
+        && request.resource.data.submittedBy == request.auth.uid
+        && request.resource.data.publicMutationAllowed == false;
+      allow update, delete: if false;
+    }
+
     match /backofficeNewTrailReviews/{reviewId} {
       allow get, list: if isModerator();
       allow create: if isModerator()

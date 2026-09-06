@@ -7,7 +7,7 @@
   <title>Trail Verification Desk | ORMA</title>
   <link rel="icon" href="favicon-32.png" sizes="32x32">
   <link rel="stylesheet" href="styles.css?v=20260821-5">
-  <link rel="stylesheet" href="backoffice-review.css?v=20260905-2">
+  <link rel="stylesheet" href="backoffice-review.css?v=20260906-3">
   <script>document.documentElement.classList.add('bo-auth-pending')</script>
 </head>
 <body class="bo-shell">
@@ -30,6 +30,10 @@
       <div id="fleetSummary" class="bo-campaign-metrics"></div>
       <ol id="agentActivity" class="bo-revision-jobs"></ol>
     </section>
+    <section id="routeSection" aria-labelledby="routeTitle" hidden>
+      <div class="bo-content-head"><div><p class="eyebrow">Stage 0 · Route choice</p><h2 id="routeTitle">Which official route becomes an ORMA trail?</h2><p>Automated sources are reconciled; choose the intended route variant(s) before evidence and geometry gates run. Recording a choice queues it for ORMA automation and never changes the public website.</p></div></div>
+      <div id="routeQueue" class="bo-queue"></div>
+    </section>
     <section aria-labelledby="queueTitle">
       <div class="bo-content-head"><div><p class="eyebrow">Human review required</p><h2 id="queueTitle">Evidence dossiers</h2><p>Blocked dossiers can only be revised or rejected. A complete dossier must pass provenance and red-team checks before approval becomes available.</p></div></div>
       <div id="dossierQueue" class="bo-queue"></div>
@@ -38,6 +42,6 @@
   <script type="module" src="backoffice-firebase.js"></script>
   <script src="backoffice-auth-guard.js?v=20260819-1"></script>
   <script src="backoffice-session.js?v=20260819-1"></script>
-  <script src="trail-dossier-desk.js?v=20260820-5"></script>
+  <script src="trail-dossier-desk.js?v=20260906-6"></script>
 </body>
 </html>
