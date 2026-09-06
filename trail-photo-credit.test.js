@@ -110,3 +110,24 @@ describe('the photo ledger stays in trail-id order',()=>{
     expect(entries.map(entry=>entry.id)).toEqual(['b','a']);
   });
 });
+
+// A photograph is only worth sourcing if a reader sees it. Static pages read the
+// overrides through load-production-trails, but the runtime data did not, so a
+// trail served dynamically showed its route outline however carefully its photo
+// was credited in the ledger. Eight trails were in that state, seven of them
+// carrying licensed Commons photographs nobody could see.
+describe('every override reaches the data the site actually serves',()=>{
+  const entries=(overrides.trails||[]).filter(entry=>entry.fields?.heroImage);
+
+  test.each(entries.map(entry=>[entry.id,entry.fields.heroImage]))(
+    '%s carries its photo into the runtime detail file',(id,heroImage)=>{
+      const detail=path.join(root,'data','trail-details',`${id}.js`);
+
+      expect(fs.existsSync(detail)).toBe(true);
+      expect(fs.readFileSync(detail,'utf8')).toContain(heroImage);
+    });
+
+  test('the ledger is not empty, so the check above means something',()=>{
+    expect(entries.length).toBeGreaterThan(20);
+  });
+});
