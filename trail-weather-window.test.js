@@ -101,10 +101,10 @@ describe('heat onset and today\'s conditions', () => {
     const forecastDay = day();
     // Warm now, hot later: the hour is the advice.
     expect(weatherWindow.currentConditions({ currentTime:'2026-07-15T07:30', temperatureC:23, ...forecastDay }))
-      .toEqual({ status:'known', heatRisk:'moderate', hotFromLabel:'11:00' });
+      .toEqual({ status:'known', heatRisk:'moderate', hotFromLabel:'11:00', capturedAt:expect.any(Number) });
     // Already hot: an hour would be telling someone what they can feel.
     expect(weatherWindow.currentConditions({ currentTime:'2026-07-15T13:00', temperatureC:30, ...forecastDay }))
-      .toEqual({ status:'known', heatRisk:'high', hotFromLabel:null });
+      .toEqual({ status:'known', heatRisk:'high', hotFromLabel:null, capturedAt:expect.any(Number) });
     expect(weatherWindow.currentConditions({ currentTime:'2026-07-15T07:30', temperatureC:12, ...forecastDay }).heatRisk)
       .toBe('low');
     // No reading at all stays 'not-provided', which the engine already
