@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T08:52:09.690Z",
+  "updatedAt": "2026-09-06T09:58:55.741Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -407,6 +407,40 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Auronzo_di_Cadore_dalle_Tre_Cime.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-123162",
+      "approvedReviewId": "commons-osm-123162",
+      "approvedAt": "2026-09-06T09:58:55.741Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-123162-commons.jpg",
+        "heroImage": "images/trails/osm-123162-commons.jpg",
+        "imageAlt": "The Latemar above Lake Carezza near Nova Levante",
+        "imageCredit": "Welschnofen Latemar & Karersee 1",
+        "imageCreditText": "Welschnofen Latemar & Karersee 1 by Zairon",
+        "imageCreator": "Zairon",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Welschnofen_Latemar_%26_Karersee_1.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11839597",
+      "approvedReviewId": "commons-osm-11839597",
+      "approvedAt": "2026-09-06T09:58:55.741Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11839597-commons.jpg",
+        "heroImage": "images/trails/osm-11839597-commons.jpg",
+        "imageAlt": "An alpine hut on the Alpe di Siusi below the Sciliar",
+        "imageCredit": "Prossliner Schwaige mit Schlern Seiser Alm",
+        "imageCreditText": "Prossliner Schwaige mit Schlern Seiser Alm by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Prossliner_Schwaige_mit_Schlern_Seiser_Alm.jpg",
         "imageSourceType": "licensed-source"
       }
     }
