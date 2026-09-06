@@ -2386,11 +2386,24 @@ function liShadeLabel(shade){
   return `${shade}% shade`;
 }
 
+// Exposure under the same rule as shade, and it is the doc's own example:
+// "no exposed section is recorded" reads as a safety claim when it only means
+// nobody looked. So true is stated and false is not. Only 3 trails carry true
+// and none is curated, but exposure is the heaviest caution the engine has --
+// 30 points, 40 for a fragile or vision-impaired dog -- so those 3 are exactly
+// the cards that should say it.
+function liExposureLabel(exposure){
+  return exposure === true ? 'exposed' : null;
+}
+
 // Row meta per the design TrailRow: "7.5 km · 150 m climb · 2–2.5 h · little shade"
+// Cautions follow the measured facts, gravest first.
 function liRowMeta(t){
   const parts = [`${t.distance} km`];
   if(Number.isFinite(t.elevation)) parts.push(`${t.elevation} m climb`);
   if(t.hours) parts.push(`${t.hours} h`);
+  const exposure = liExposureLabel(t.exposure);
+  if(exposure) parts.push(exposure);
   const shade = liShadeLabel(t.shadeCoverage);
   if(shade) parts.push(shade);
   return parts.join(' · ');
