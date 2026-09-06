@@ -17,7 +17,10 @@ on:
         required: false
         default: false
   schedule:
-    - cron: '*/30 * * * *'
+    # Every three hours (offset from the hazard watch). The verification
+    # pipeline advances on its own on this cadence; a solo operator does not
+    # need 30-minute batches, and this keeps Firestore within its daily quota.
+    - cron: '20 */3 * * *'
 
 concurrency:
   group: orma-backoffice-worker

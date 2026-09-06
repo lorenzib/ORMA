@@ -210,17 +210,20 @@ page travel with it.
 
 ## Current cadence
 
-- Dynamic hazard check: hourly at minute 7, Europe/Rome, clear of the queue
-  worker. Successfully fetched authoritative feeds remove warnings that they
+- Dynamic hazard check: every three hours at minute 7, Europe/Rome, clear of the
+  queue worker. Successfully fetched authoritative feeds remove warnings that they
   affirmatively resolve or that have passed their own expiry; source outages
-  retain the last known warning.
+  retain the last known warning. Hazard conditions change slowly, so a three-hour
+  cadence keeps the backoffice within the Firestore daily quota.
 - Customer hazard vetting: inside every worker pass, at most three reports or
   re-checks per pass, published or rejected by the Hazard Analyst without a
   human gate.
-- Existing Trails queue: checked by the hosted worker every thirty minutes,
+- Existing Trails queue: checked by the hosted worker every three hours,
   with daily ORMA Verified intake at 09:30 local time and 15-trail capacity.
-  Hazard freshness does not depend on this cadence; the hazard watch runs on its
-  own hourly schedule.
+  The verification pipeline advances on this cadence without a per-batch prompt;
+  a solo operator does not need quarter-hour batches, and the wider spacing keeps
+  Firestore within its daily quota. Hazard freshness does not depend on this
+  cadence; the hazard watch runs on its own three-hour schedule.
 - Trail-photo coverage and licensed candidate scouting: inside every worker
   pass, with at most 15 active searches or reviews; guide-wide image audits are
   not part of this queue. The lane stops queueing once coverage is complete.

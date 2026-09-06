@@ -1,9 +1,11 @@
-name: ORMA hourly hazard watch
+name: ORMA hazard watch
 
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '7 * * * *'
+    # Every three hours. Hazard conditions change slowly, and this keeps the
+    # backoffice within the Firestore daily quota (was hourly).
+    - cron: '7 */3 * * *'
       timezone: Europe/Rome
 
 permissions:
