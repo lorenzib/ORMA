@@ -75,3 +75,38 @@ describe('every licensed trail photo is credited on its page',()=>{
     expect(new Set(refs).size).toBe(refs.length);
   });
 });
+
+const {orderedByTrailId}=require('./backoffice/workflows/materialize-approved-trail-images');
+
+// The ledger is one array that every photo batch writes to. Appending put each
+// new entry on the same lines, so two batches prepared side by side collided
+// even when their photographs were for different trails and nothing about them
+// disagreed. Keeping the file in trail-id order sends them to different parts of
+// it, which git can merge on its own.
+describe('the photo ledger stays in trail-id order',()=>{
+  test('the committed file is ordered',()=>{
+    const ids=(overrides.trails||[]).map(entry=>entry.id);
+
+    expect(ids).toEqual([...ids].sort((a,b)=>String(a).localeCompare(String(b))));
+  });
+
+  test('a trail appears once',()=>{
+    const ids=(overrides.trails||[]).map(entry=>entry.id);
+
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  test('the writer orders what it is given',()=>{
+    const written=orderedByTrailId([{id:'osm-9'},{id:'alpe-siusi'},{id:'osm-1'}]);
+
+    expect(written.map(entry=>entry.id)).toEqual(['alpe-siusi','osm-1','osm-9']);
+  });
+
+  test('ordering does not disturb the entries themselves',()=>{
+    const entries=[{id:'b',fields:{heroImage:'b.jpg'}},{id:'a',fields:{heroImage:'a.jpg'}}];
+    const written=orderedByTrailId(entries);
+
+    expect(written[0]).toEqual(entries[1]);
+    expect(entries.map(entry=>entry.id)).toEqual(['b','a']);
+  });
+});
