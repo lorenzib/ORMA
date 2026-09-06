@@ -6,6 +6,7 @@ const path = require('path');
 const vm = require('vm');
 const crypto = require('crypto');
 const { applyVerifiedTrailOverrides } = require('./verified-trail-overrides');
+const { normaliseRouteRef, applyRouteNumberEvidence } = require('./route-number-evidence');
 
 const root = path.resolve(__dirname, '..');
 const outDir = path.join(root, 'data', 'regions');
@@ -26,52 +27,7 @@ function loadTrails() {
     .forEach(file => vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context, { filename: file }));
   const trails = JSON.parse(vm.runInContext('window.DoloPawsRegions.assign(trails); JSON.stringify(trails)', context));
   const overrides = JSON.parse(fs.readFileSync(path.join(root, 'data', 'verified-trail-overrides.json'), 'utf8'));
-  return applyRouteNumberEvidence(applyVerifiedTrailOverrides(trails, overrides));
-}
-
-function normaliseRouteRef(value) {
-  const ref = String(value == null ? '' : value).trim().toUpperCase().replace(/\s+/g, '');
-  return /^(?:[A-Z]{1,4}-?)?\d{1,4}[A-Z]?$/.test(ref) ? ref : null;
-}
-
-function mappedRouteEvidence() {
-  const byRelation = new Map();
-  ['dog-friendly-routes.geojson', 'dog-friendly-routes-savoy.geojson'].forEach(file => {
-    const collection = JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
-    (collection.features || []).forEach(feature => {
-      const properties = feature.properties || {};
-      if (properties.osm_relation == null) return;
-      byRelation.set(String(properties.osm_relation), {
-        ref:normaliseRouteRef(properties.ref),
-        name:properties.name || null,
-        url:properties.waymarkedtrails || `https://www.openstreetmap.org/relation/${properties.osm_relation}`,
-      });
-    });
-  });
-  return byRelation;
-}
-
-function applyRouteNumberEvidence(trails) {
-  const evidence = mappedRouteEvidence();
-  return trails.map(trail => {
-    if (trail.routeNumberStatus) return trail;
-    if (Array.isArray(trail.routeRefs) && trail.routeRefs.length) {
-      return { ...trail, routeNumberStatus:'documented' };
-    }
-    const mapped = evidence.get(String(trail.osmRelation));
-    if (mapped && mapped.ref) return {
-      ...trail,
-      routeRefs:[mapped.ref],
-      routeNumberStatus:'mapped-relation-ref',
-      routeNumberSource:{ provider:'Waymarked Trails / OpenStreetMap', name:mapped.name, url:mapped.url },
-    };
-    if (mapped) return {
-      ...trail,
-      routeNumberStatus:'not-listed-in-mapped-source',
-      routeNumberSource:{ provider:'Waymarked Trails / OpenStreetMap', name:mapped.name, url:mapped.url },
-    };
-    return { ...trail, routeNumberStatus:'verification-pending' };
-  });
+  return applyRouteNumberEvidence(applyVerifiedTrailOverrides(trails, overrides), root);
 }
 
 function loadGondolas() {
