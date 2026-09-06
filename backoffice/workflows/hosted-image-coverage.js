@@ -67,6 +67,29 @@ async function queuePriorityImageSourcing(store,audit,options={}){
   return {capacity,active:occupied.size,queued:queued.length,jobIds:queued};
 }
 
+
+// Trail photos are now sourced by hand from Wikimedia Commons, where the picture
+// can actually be looked at before it is published — a third of metadata-clean
+// candidates turned out to be winter scenes or close-ups. The automated lane is
+// retired, so its outstanding work is cancelled rather than left to spend credits
+// producing candidates for trails that are already being covered.
+const RETIRED_SOURCE_PREFERENCES=Object.freeze(['find-licensed','generate-ai']);
+
+async function retireAutomatedImageSourcing(store,options={}){
+  const at=options.at||new Date().toISOString();
+  const jobs=await store.listJobs(['queued','running']);
+  const retired=[];
+  for(const job of jobs){
+    if(job.jobType!=='hosted-image-sourcing')continue;
+    if(!RETIRED_SOURCE_PREFERENCES.includes(job.sourcePreference))continue;
+    // An owner upload or an approval the CEO made is real work and is never touched.
+    await store.putJob({...job,status:'cancelled',cancelledAt:at,
+      cancelledReason:'Automated photo scouting is retired; photos are sourced and reviewed directly.'});
+    retired.push(job.id);
+  }
+  return {retired};
+}
+
 async function ingestImageReviews(store){
   if(typeof store.listImageReviews!=='function')return [];
   const reviews=await store.listImageReviews('queued');const outcomes=[];const effective=latestBySlug(reviews);let queue=await store.getArtifact('image-coverage-review')||{contractVersion:'1.0.0',decisions:[],jobs:[]};
@@ -219,4 +242,4 @@ async function processImageJobs(store,options={}){
   return outcomes;
 }
 
-module.exports={IMAGE_SOURCE_SCHEMA,recordUploadPublicationRequest,promotePendingOwnerUploads,DEFAULT_IMAGE_SOURCING_CAPACITY,runImageSourcing,latestBySlug,compactImageResults,queuePriorityImageSourcing,ingestImageReviews,processImageJobs};
+module.exports={IMAGE_SOURCE_SCHEMA,RETIRED_SOURCE_PREFERENCES,retireAutomatedImageSourcing,recordUploadPublicationRequest,promotePendingOwnerUploads,DEFAULT_IMAGE_SOURCING_CAPACITY,runImageSourcing,latestBySlug,compactImageResults,queuePriorityImageSourcing,ingestImageReviews,processImageJobs};

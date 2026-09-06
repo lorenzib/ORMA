@@ -88,12 +88,18 @@ not publishable route guidance; if neither numbered nor landmark directions can
 be established, the route-following claim remains unresolved.
 
 A recorded route source is a claim like any other, and the identity check is
-what tests it. When the reconstruction of a trail's recorded relation is not
-that trail — its length falls outside tolerance, or it does not close under a
-trail whose own route does — the trail needs a route source, exactly as if it
-had none. It is not queued for the same check again, and it is never presented
-as a route awaiting geometry approval. The verdict is recorded against the
-relation that was examined, so correcting the source retires it.
+what tests it. A relation named as the trail is the trail, and any disagreement
+about its length is then a metrics question for the geometry gate. Where the
+relation carries no name, a reconstruction that came back as one connected line
+may still contradict the record, by falling outside the distance tolerance or by
+not closing under a trail whose own route does. A relation carrying variants and
+spurs reconstructs as several components whose lengths sum to far more than the
+walk, and that total is never read as evidence about which route it is.
+
+A trail whose source is contradicted needs a route source, exactly as if it had
+none. It is not queued for the same check again, and it is never presented as a
+route awaiting geometry approval. The verdict is recorded against the relation
+that was examined, so correcting the source retires it.
 
 ### 2. New Trails
 
@@ -122,10 +128,17 @@ and any future copy work starts from a new explicit decision.
 
 Trail-photo coverage is a finite backfill that runs inside the worker pass, not
 a standing audit on its own schedule. It scans every published trail, not guides
-or general pages, ranks Dolomites gaps first, keeps up to 15 searches or exact
-asset reviews active, and automatically queues correctly licensed and credited
-candidate scouting for the highest priority unfilled trails. When every
-published trail has a photo the lane reports complete and queues nothing.
+or general pages, and ranks Dolomites gaps first.
+
+Photos are sourced directly rather than by an agent. Automated scouting is
+retired: an agent selects on licence metadata alone and never sees the picture,
+and in practice a third of metadata-clean candidates were winter scenes, close-up
+botany or industrial buildings — correctly licensed, correctly located, and wrong
+as covers for summer dog-walking routes. Every published photo is therefore
+looked at before it is committed. The worker cancels any outstanding automated
+scouting job; owner uploads and the CEO's own approvals are never cancelled.
+
+OpenAI remains in use for trail verification and for scouting additional trails.
 
 A published trail photo is final. Once a trail has a cover photo it leaves the
 gap list permanently, no further decision can be recorded against it, and a
