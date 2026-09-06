@@ -209,3 +209,58 @@ describe('ruling on a proposal', () => {
     expect(ruled.composite.approvedAt).toBeUndefined();
   });
 });
+
+const { lineKilometres } = require('./workflows/discover-route-composite');
+
+// A long-distance route running along a walk covers all of it in one relation,
+// which is exactly what a set cover rewards. Alta Via 1 was proposed as the
+// source for nuvolau on that basis: 100% coverage of a 5.5 km walk that is 1%
+// of a 226 km traverse. Guidance drawn from it would tell a reader to follow a
+// week-long route.
+describe('a route source at the scale of the walk', () => {
+  const WALK = Array.from({ length:20 }, (_, index) => [46.600 + index * 0.0005, 11.700]);
+  // A traverse running along the walk and far beyond it in both directions.
+  const TRAVERSE = Array.from({ length:2000 }, (_, index) => [46.500 + index * 0.0005, 11.700]);
+
+  function payload(extra = []){
+    return { elements:[
+      { type:'way', id:201, geometry:WALK.map(([lat, lon]) => ({ lat, lon })) },
+      { type:'relation', id:11, tags:{ type:'route', route:'hiking', ref:'438' },
+        members:[{ type:'way', ref:201, role:'' }] },
+      { type:'way', id:202, geometry:TRAVERSE.map(([lat, lon]) => ({ lat, lon })) },
+      { type:'relation', id:12, tags:{ type:'route', route:'hiking', ref:'AV1', name:'Alta via n. 1' },
+        members:[{ type:'way', ref:202, role:'' }] },
+      ...extra,
+    ] };
+  }
+
+  const trail = { id:'nuvolau', name:'Passo Giau to Rifugio Nuvolau', path:WALK, distance:5.5 };
+
+  test('a local path is preferred over a traverse that also covers the walk', () => {
+    const found = discoverRouteComposite(trail, payload());
+
+    expect(found.coveragePercent).toBe(100);
+    expect(found.relations.map(entry => entry.ref)).toEqual(['438']);
+  });
+
+  test('the traverse still answers when nothing at scale explains the route', () => {
+    // The only path at the walk's scale now covers a different hillside.
+    const away = { ...trail, path:TRAVERSE.slice(500, 520) };
+    const found = discoverRouteComposite(away, payload());
+
+    expect(found.relations.map(entry => entry.ref)).toEqual(['AV1']);
+    expect(found.coveragePercent).toBe(100);
+  });
+
+  test('each path records how much of it the walk uses', () => {
+    const found = discoverRouteComposite(trail, payload());
+
+    expect(found.relations[0].walkSharePercent).toBe(100);
+  });
+
+  test('length ignores the jump between disjoint pieces', () => {
+    // Two short legs a long way apart must not be credited with the gap.
+    const split = [[46.6, 11.7], [46.601, 11.7], [47.5, 12.9], [47.501, 12.9]];
+    expect(lineKilometres(split)).toBeLessThan(1);
+  });
+});
