@@ -60,7 +60,7 @@ function pathIsClosedLoop(trail){
 // Measured across the catalogue, this is the only question that separates the
 // cases. 127 of 155 trails lie almost entirely on their relation; the other 28
 // wander off it, and their relations reconstruct to a median 59% of the trail's
-// length — they are one leg of a route stitched from several.
+// length: they are one leg of a route stitched from several.
 //
 // Earlier versions asked about length, loop shape and the relation's name.
 // Each was a proxy and each was wrong. A trail may walk 3.4 km of a 7.2 km
