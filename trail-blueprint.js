@@ -447,6 +447,16 @@
     const personalScore = $('personalScore');
     const fallbackPaw = svg('paw');
     if (avatar) avatar.innerHTML = fallbackPaw;
+    // The forecast is fetched separately and lands whenever it lands, so the
+    // score is painted either with today's conditions or explicitly without
+    // them -- never with a stale snapshot dressed up as live. scoringConditions
+    // applies the shared thirty-minute expiry.
+    function conditionsForScoring() {
+      const weather = window.DoloPawsWeatherWindow;
+      if (!weather || typeof weather.scoringConditions !== 'function') return undefined;
+      return weather.scoringConditions(window.DoloPawsCurrentConditions);
+    }
+
     function paintPersonalMatch() {
       if (typeof recommendTrail !== 'function' || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
       window.DoloPawsAuth.getDogProfile().then(profile => {
@@ -454,7 +464,8 @@
         const name = profile.name || 'your dog';
         const recommendation = recommendTrail(
           t,
-          typeof effectiveOverrides === 'function' ? effectiveOverrides(profile, null) : profile
+          typeof effectiveOverrides === 'function' ? effectiveOverrides(profile, null) : profile,
+          conditionsForScoring()
         );
         const score = recommendation.score;
         // Reference action card: 96px conic ring (#4a7c59 on #e6e0cf track),
@@ -491,6 +502,9 @@
     if (window.DoloPawsAuth) paintPersonalMatch();
     else window.addEventListener('dolopaws-auth-ready', paintPersonalMatch, { once: true });
     window.addEventListener('dolopaws-auth-changed', paintPersonalMatch);
+    // The forecast usually arrives after the first paint. Without this the card
+    // keeps a score calculated before the day was known.
+    window.addEventListener('dolopaws-conditions-ready', paintPersonalMatch);
 
     // Trail description inside the white box
     const descEl = $('matchDescription');

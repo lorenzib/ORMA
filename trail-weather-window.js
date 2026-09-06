@@ -133,8 +133,31 @@
       // Only present when the forecast actually crosses the threshold later
       // today. Absent means the engine says nothing about an hour.
       hotFromLabel:onset&&heatRisk!=='high'?onset.label:null,
+      // SCORE-01 requires a conditions snapshot to carry its observation time
+      // and to stop being described as live once stale. Stamping it here means
+      // a caller cannot forget it; isFresh() below is the shared expiry rule.
+      capturedAt:Number.isFinite(Number(input&&input.capturedAt))?Number(input.capturedAt):Date.now(),
     };
   }
 
-  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,WARM_C,HOT_C,minuteOfDay,formatTime,recommendation,markup,heatOnset,currentConditions};
+  // Weather goes out of date faster than a page stays open. pre-hike-readiness
+  // already treats a forecast older than thirty minutes as unusable; the score
+  // uses the same rule so the two cannot disagree about what "now" means.
+  const CONDITIONS_MAX_AGE_MS=30*60*1000;
+
+  function isFresh(conditions,now){
+    if(!conditions||conditions.status!=='known')return false;
+    const captured=Number(conditions.capturedAt);
+    if(!Number.isFinite(captured))return false;
+    const at=Number.isFinite(Number(now))?Number(now):Date.now();
+    return at-captured<=CONDITIONS_MAX_AGE_MS&&at>=captured;
+  }
+
+  // What the engine should be handed: the snapshot while it is current, and an
+  // explicit omission once it is not. Never a stale snapshot presented as live.
+  function scoringConditions(conditions,now){
+    return isFresh(conditions,now)?conditions:{status:'not-provided'};
+  }
+
+  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,WARM_C,HOT_C,CONDITIONS_MAX_AGE_MS,minuteOfDay,formatTime,recommendation,markup,heatOnset,currentConditions,isFresh,scoringConditions};
 });

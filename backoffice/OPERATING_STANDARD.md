@@ -87,19 +87,18 @@ route description instead. A statement that trail numbers are unavailable is
 not publishable route guidance; if neither numbered nor landmark directions can
 be established, the route-following claim remains unresolved.
 
-A recorded route source is a claim like any other, and the identity check is
-what tests it. A relation named as the trail is the trail, and any disagreement
-about its length is then a metrics question for the geometry gate. Where the
-relation carries no name, a reconstruction that came back as one connected line
-may still contradict the record, by falling outside the distance tolerance or by
-not closing under a trail whose own route does. A relation carrying variants and
-spurs reconstructs as several components whose lengths sum to far more than the
-walk, and that total is never read as evidence about which route it is.
+A recorded route source is a claim like any other, and the identity check tests
+it by asking whether the trail's own route lies on that relation. A trail that
+walks part of a longer named route is properly sourced, and the difference in
+length is the point of the trail rather than a fault in its source. Neither the
+relation's name nor its length is evidence on its own: a relation may carry a
+trail's exact name and share a quarter of its path.
 
-A trail whose source is contradicted needs a route source, exactly as if it had
-none. It is not queued for the same check again, and it is never presented as a
-route awaiting geometry approval. The verdict is recorded against the relation
-that was examined, so correcting the source retires it.
+A trail whose route leaves the recorded relation needs a route source that
+covers the whole walk, exactly as if it had none. It is not queued for the same
+check again, and it is never presented as a route awaiting geometry approval.
+The verdict is recorded against the relation that was examined, so correcting
+the source retires it.
 
 ### 2. New Trails
 

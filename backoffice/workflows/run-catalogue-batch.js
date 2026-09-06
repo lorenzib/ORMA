@@ -28,11 +28,40 @@ function referenceFromProductionTrail(trail){
   };
 }
 
+function metresBetween(a, b){
+  const radians = Math.PI / 180;
+  const dLat = (b[0] - a[0]) * radians;
+  const dLng = (b[1] - a[1]) * radians;
+  const chord = Math.sin(dLat / 2) ** 2
+    + Math.cos(a[0] * radians) * Math.cos(b[0] * radians) * Math.sin(dLng / 2) ** 2;
+  return 2 * 6371000 * Math.asin(Math.sqrt(chord));
+}
+
+// How much of the trail's own route lies on the reconstructed relation. This is
+// the question the identity check is really asking, and the only one that
+// separates a trail that walks part of a longer route from a trail whose
+// relation is not its route at all.
+const ON_ROUTE_METRES = 60;
+
+function pathContainmentPercent(trail, result){
+  const walked = Array.isArray(trail && trail.path) ? trail.path : [];
+  const relation = (result.geometry?.coordinates || []).map(point => [point[1], point[0]]);
+  if(!walked.length || !relation.length) return null;
+  let on = 0;
+  for(const point of walked){
+    for(const vertex of relation){
+      if(metresBetween(point, vertex) <= ON_ROUTE_METRES){ on += 1; break; }
+    }
+  }
+  return Math.round((on / walked.length) * 100);
+}
+
 // What the reconstruction found, in the form the campaign planner reads back.
 // It is keyed to the relation that was examined, so correcting a trail's source
 // retires the verdict rather than freezing the trail out.
-function identityCheckFrom(result, at){
+function identityCheckFrom(result, at, trail){
   return {
+    pathContainmentPercent: trail ? pathContainmentPercent(trail, result) : null,
     externalRelationId: result.source?.externalId || null,
     checkedAt: result.generatedAt || at,
     reviewState: result.reviewState,
@@ -69,7 +98,7 @@ async function runCatalogueBatch(campaign, trails, options = {}){
       );
       const outputRef = `backoffice-data/cartographer/${trail.id}.json`;
       outputs.push({ outputRef, result });
-      identityChecks[trail.id] = identityCheckFrom(result, at);
+      identityChecks[trail.id] = identityCheckFrom(result, at, trail);
       jobs.push({
         // A reconstruction that contradicted the record is not a route waiting
         // for a geometry review. Reporting both as `needs-human` told the
@@ -99,4 +128,4 @@ async function runCatalogueBatch(campaign, trails, options = {}){
   };
 }
 
-module.exports = { candidateFromProductionTrail, referenceFromProductionTrail, identityCheckFrom, runCatalogueBatch };
+module.exports = { candidateFromProductionTrail, referenceFromProductionTrail, identityCheckFrom, pathContainmentPercent, ON_ROUTE_METRES, runCatalogueBatch };

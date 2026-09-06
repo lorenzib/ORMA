@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "updatedAt": "2026-09-05T21:14:41.504Z",
+  "updatedAt": "2026-09-05T21:39:07.042Z",
   "checks": {
     "seceda": {
       "externalRelationId": "relation/6528494",
@@ -15,7 +15,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 8.81,
       "officialDistanceKm": 10.8,
-      "distanceDeltaPercent": -18.4
+      "distanceDeltaPercent": -18.4,
+      "pathContainmentPercent": 56
     },
     "santa-maddalena": {
       "externalRelationId": "relation/11817704",
@@ -27,7 +28,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.64,
       "officialDistanceKm": 1.6,
-      "distanceDeltaPercent": 2.5
+      "distanceDeltaPercent": 2.5,
+      "pathContainmentPercent": 100
     },
     "cadini": {
       "externalRelationId": "relation/1067616",
@@ -42,7 +44,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.24,
       "officialDistanceKm": 3.4,
-      "distanceDeltaPercent": 112.9
+      "distanceDeltaPercent": 112.9,
+      "pathContainmentPercent": 100
     },
     "prato-piazza": {
       "externalRelationId": "relation/1155859",
@@ -58,7 +61,8 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 14.63,
       "officialDistanceKm": 4.6,
-      "distanceDeltaPercent": 218
+      "distanceDeltaPercent": 218,
+      "pathContainmentPercent": 100
     },
     "nuvolau": {
       "externalRelationId": "relation/3197403",
@@ -73,7 +77,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.22,
       "officialDistanceKm": 5.5,
-      "distanceDeltaPercent": -41.5
+      "distanceDeltaPercent": -41.5,
+      "pathContainmentPercent": 38
     },
     "sassolungo": {
       "externalRelationId": "relation/5412043",
@@ -88,7 +93,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.72,
       "officialDistanceKm": 17,
-      "distanceDeltaPercent": -60.5
+      "distanceDeltaPercent": -60.5,
+      "pathContainmentPercent": 40
     },
     "lago-sorapis": {
       "externalRelationId": "relation/3985745",
@@ -102,7 +108,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 11.05,
       "officialDistanceKm": 10.8,
-      "distanceDeltaPercent": 2.3
+      "distanceDeltaPercent": 2.3,
+      "pathContainmentPercent": 100
     },
     "valley-view": {
       "externalRelationId": "relation/11817269",
@@ -117,7 +124,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 2.8,
       "officialDistanceKm": 2.8,
-      "distanceDeltaPercent": 0
+      "distanceDeltaPercent": 0,
+      "pathContainmentPercent": 100
     },
     "piancavallo": {
       "externalRelationId": "relation/3508653",
@@ -131,7 +139,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.06,
       "officialDistanceKm": 7.1,
-      "distanceDeltaPercent": -0.6
+      "distanceDeltaPercent": -0.6,
+      "pathContainmentPercent": 100
     },
     "giro-del-bulacia": {
       "externalRelationId": "relation/9483250",
@@ -143,7 +152,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.76,
       "officialDistanceKm": 6.64,
-      "distanceDeltaPercent": 1.8
+      "distanceDeltaPercent": 1.8,
+      "pathContainmentPercent": 100
     },
     "osm-3982382": {
       "externalRelationId": "relation/3982382",
@@ -157,7 +167,8 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 4.23,
       "officialDistanceKm": 4.5,
-      "distanceDeltaPercent": -6
+      "distanceDeltaPercent": -6,
+      "pathContainmentPercent": 100
     },
     "osm-6250300": {
       "externalRelationId": "relation/6250300",
@@ -169,7 +180,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.65,
       "officialDistanceKm": 3.6,
-      "distanceDeltaPercent": 1.4
+      "distanceDeltaPercent": 1.4,
+      "pathContainmentPercent": 100
     },
     "osm-9933643": {
       "externalRelationId": "relation/9933643",
@@ -181,7 +193,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.56,
       "officialDistanceKm": 4.5,
-      "distanceDeltaPercent": 1.3
+      "distanceDeltaPercent": 1.3,
+      "pathContainmentPercent": 100
     },
     "osm-10116283": {
       "externalRelationId": "relation/10116283",
@@ -195,7 +208,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.59,
       "officialDistanceKm": 2.7,
-      "distanceDeltaPercent": -4.1
+      "distanceDeltaPercent": -4.1,
+      "pathContainmentPercent": 100
     },
     "osm-10116380": {
       "externalRelationId": "relation/10116380",
@@ -211,7 +225,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 2.21,
       "officialDistanceKm": 4.2,
-      "distanceDeltaPercent": -47.4
+      "distanceDeltaPercent": -47.4,
+      "pathContainmentPercent": 74
     },
     "osm-20347406": {
       "externalRelationId": "relation/20347406",
@@ -225,7 +240,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 9,
       "officialDistanceKm": 8.9,
-      "distanceDeltaPercent": 1.1
+      "distanceDeltaPercent": 1.1,
+      "pathContainmentPercent": 100
     },
     "osm-11517208": {
       "externalRelationId": "relation/11517208",
@@ -237,7 +253,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.64,
       "officialDistanceKm": 7.6,
-      "distanceDeltaPercent": 0.5
+      "distanceDeltaPercent": 0.5,
+      "pathContainmentPercent": 100
     },
     "osm-14987412": {
       "externalRelationId": "relation/14987412",
@@ -251,7 +268,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 7.89,
       "officialDistanceKm": 8.3,
-      "distanceDeltaPercent": -4.9
+      "distanceDeltaPercent": -4.9,
+      "pathContainmentPercent": 97
     },
     "osm-18055492": {
       "externalRelationId": "relation/18055492",
@@ -263,7 +281,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 11.76,
       "officialDistanceKm": 11.6,
-      "distanceDeltaPercent": 1.4
+      "distanceDeltaPercent": 1.4,
+      "pathContainmentPercent": 100
     },
     "osm-14864704": {
       "externalRelationId": "relation/14864704",
@@ -275,7 +294,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.82,
       "officialDistanceKm": 6.7,
-      "distanceDeltaPercent": 1.8
+      "distanceDeltaPercent": 1.8,
+      "pathContainmentPercent": 100
     },
     "osm-14095296": {
       "externalRelationId": "relation/14095296",
@@ -287,7 +307,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.64,
       "officialDistanceKm": 6.6,
-      "distanceDeltaPercent": 0.6
+      "distanceDeltaPercent": 0.6,
+      "pathContainmentPercent": 100
     },
     "osm-16322228": {
       "externalRelationId": "relation/16322228",
@@ -299,7 +320,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.4,
       "officialDistanceKm": 3.3,
-      "distanceDeltaPercent": 3
+      "distanceDeltaPercent": 3,
+      "pathContainmentPercent": 100
     },
     "osm-16363583": {
       "externalRelationId": "relation/16363583",
@@ -311,7 +333,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.27,
       "officialDistanceKm": 7.2,
-      "distanceDeltaPercent": 1
+      "distanceDeltaPercent": 1,
+      "pathContainmentPercent": 100
     },
     "osm-16395076": {
       "externalRelationId": "relation/16395076",
@@ -323,7 +346,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.01,
       "officialDistanceKm": 2,
-      "distanceDeltaPercent": 0.5
+      "distanceDeltaPercent": 0.5,
+      "pathContainmentPercent": 100
     },
     "osm-19153189": {
       "externalRelationId": "relation/19153189",
@@ -335,7 +359,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.06,
       "officialDistanceKm": 4,
-      "distanceDeltaPercent": 1.5
+      "distanceDeltaPercent": 1.5,
+      "pathContainmentPercent": 100
     },
     "osm-15591346": {
       "externalRelationId": "relation/15591346",
@@ -349,7 +374,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 9.66,
       "officialDistanceKm": 9.7,
-      "distanceDeltaPercent": -0.4
+      "distanceDeltaPercent": -0.4,
+      "pathContainmentPercent": 100
     },
     "osm-16365005": {
       "externalRelationId": "relation/16365005",
@@ -364,7 +390,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 8.1,
       "officialDistanceKm": 8.1,
-      "distanceDeltaPercent": 0
+      "distanceDeltaPercent": 0,
+      "pathContainmentPercent": 97
     },
     "osm-123162": {
       "externalRelationId": "relation/123162",
@@ -378,7 +405,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 8.96,
       "officialDistanceKm": 9.5,
-      "distanceDeltaPercent": -5.7
+      "distanceDeltaPercent": -5.7,
+      "pathContainmentPercent": 100
     },
     "osm-1116675": {
       "externalRelationId": "relation/1116675",
@@ -390,7 +418,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.3,
       "officialDistanceKm": 2.3,
-      "distanceDeltaPercent": 0
+      "distanceDeltaPercent": 0,
+      "pathContainmentPercent": 100
     },
     "osm-1116680": {
       "externalRelationId": "relation/1116680",
@@ -402,7 +431,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 11.13,
       "officialDistanceKm": 11.1,
-      "distanceDeltaPercent": 0.3
+      "distanceDeltaPercent": 0.3,
+      "pathContainmentPercent": 100
     },
     "osm-1780768": {
       "externalRelationId": "relation/1780768",
@@ -418,7 +448,8 @@
       "componentCount": 5,
       "reconstructedDistanceKm": 30.49,
       "officialDistanceKm": 77.4,
-      "distanceDeltaPercent": -60.6
+      "distanceDeltaPercent": -60.6,
+      "pathContainmentPercent": 77
     },
     "osm-2179746": {
       "externalRelationId": "relation/2179746",
@@ -430,7 +461,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.32,
       "officialDistanceKm": 2.3,
-      "distanceDeltaPercent": 0.9
+      "distanceDeltaPercent": 0.9,
+      "pathContainmentPercent": 100
     },
     "osm-3202880": {
       "externalRelationId": "relation/3202880",
@@ -444,7 +476,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 4.27,
       "officialDistanceKm": 4.4,
-      "distanceDeltaPercent": -3
+      "distanceDeltaPercent": -3,
+      "pathContainmentPercent": 100
     },
     "osm-3885162": {
       "externalRelationId": "relation/3885162",
@@ -459,7 +492,8 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 8.4,
       "officialDistanceKm": 6.8,
-      "distanceDeltaPercent": 23.5
+      "distanceDeltaPercent": 23.5,
+      "pathContainmentPercent": 14
     },
     "osm-5512443": {
       "externalRelationId": "relation/5512443",
@@ -473,7 +507,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.72,
       "officialDistanceKm": 3.7,
-      "distanceDeltaPercent": 0.5
+      "distanceDeltaPercent": 0.5,
+      "pathContainmentPercent": 100
     },
     "osm-6244965": {
       "externalRelationId": "relation/6244965",
@@ -488,7 +523,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 12.75,
       "officialDistanceKm": 2.5,
-      "distanceDeltaPercent": 410
+      "distanceDeltaPercent": 410,
+      "pathContainmentPercent": 24
     },
     "osm-6404258": {
       "externalRelationId": "relation/6404258",
@@ -502,7 +538,8 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 9.75,
       "officialDistanceKm": 10.5,
-      "distanceDeltaPercent": -7.1
+      "distanceDeltaPercent": -7.1,
+      "pathContainmentPercent": 95
     },
     "osm-6404633": {
       "externalRelationId": "relation/6404633",
@@ -518,7 +555,8 @@
       "componentCount": 5,
       "reconstructedDistanceKm": 1.91,
       "officialDistanceKm": 3.5,
-      "distanceDeltaPercent": -45.4
+      "distanceDeltaPercent": -45.4,
+      "pathContainmentPercent": 61
     },
     "osm-6404634": {
       "externalRelationId": "relation/6404634",
@@ -532,7 +570,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 0.75,
       "officialDistanceKm": 0.7,
-      "distanceDeltaPercent": 7.1
+      "distanceDeltaPercent": 7.1,
+      "pathContainmentPercent": 100
     },
     "osm-6410700": {
       "externalRelationId": "relation/6410700",
@@ -546,7 +585,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.39,
       "officialDistanceKm": 7.3,
-      "distanceDeltaPercent": 1.2
+      "distanceDeltaPercent": 1.2,
+      "pathContainmentPercent": 100
     },
     "osm-6529356": {
       "externalRelationId": "relation/6529356",
@@ -561,7 +601,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 16.32,
       "officialDistanceKm": 19,
-      "distanceDeltaPercent": -14.1
+      "distanceDeltaPercent": -14.1,
+      "pathContainmentPercent": 100
     },
     "osm-6823031": {
       "externalRelationId": "relation/6823031",
@@ -576,7 +617,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 3.55,
       "officialDistanceKm": 5.4,
-      "distanceDeltaPercent": -34.3
+      "distanceDeltaPercent": -34.3,
+      "pathContainmentPercent": 67
     },
     "osm-7045225": {
       "externalRelationId": "relation/7045225",
@@ -590,7 +632,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.5,
       "officialDistanceKm": 7.4,
-      "distanceDeltaPercent": 1.4
+      "distanceDeltaPercent": 1.4,
+      "pathContainmentPercent": 100
     },
     "osm-7086961": {
       "externalRelationId": "relation/7086961",
@@ -604,7 +647,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.06,
       "officialDistanceKm": 3,
-      "distanceDeltaPercent": 2
+      "distanceDeltaPercent": 2,
+      "pathContainmentPercent": 100
     },
     "osm-7277805": {
       "externalRelationId": "relation/7277805",
@@ -620,7 +664,8 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 15.52,
       "officialDistanceKm": 22.5,
-      "distanceDeltaPercent": -31
+      "distanceDeltaPercent": -31,
+      "pathContainmentPercent": 94
     },
     "osm-7388748": {
       "externalRelationId": "relation/7388748",
@@ -636,7 +681,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 4.18,
       "officialDistanceKm": 5.3,
-      "distanceDeltaPercent": -21.1
+      "distanceDeltaPercent": -21.1,
+      "pathContainmentPercent": 85
     },
     "osm-7446701": {
       "externalRelationId": "relation/7446701",
@@ -652,7 +698,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 2.52,
       "officialDistanceKm": 4.8,
-      "distanceDeltaPercent": -47.5
+      "distanceDeltaPercent": -47.5,
+      "pathContainmentPercent": 100
     },
     "osm-7546708": {
       "externalRelationId": "relation/7546708",
@@ -664,7 +711,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.37,
       "officialDistanceKm": 3.4,
-      "distanceDeltaPercent": -0.9
+      "distanceDeltaPercent": -0.9,
+      "pathContainmentPercent": 100
     },
     "osm-7547653": {
       "externalRelationId": "relation/7547653",
@@ -678,7 +726,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.03,
       "officialDistanceKm": 3,
-      "distanceDeltaPercent": 1
+      "distanceDeltaPercent": 1,
+      "pathContainmentPercent": 100
     },
     "osm-7547983": {
       "externalRelationId": "relation/7547983",
@@ -692,7 +741,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.3,
       "officialDistanceKm": 4.2,
-      "distanceDeltaPercent": 2.4
+      "distanceDeltaPercent": 2.4,
+      "pathContainmentPercent": 100
     },
     "osm-7548201": {
       "externalRelationId": "relation/7548201",
@@ -706,7 +756,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.22,
       "officialDistanceKm": 7.1,
-      "distanceDeltaPercent": 1.7
+      "distanceDeltaPercent": 1.7,
+      "pathContainmentPercent": 100
     },
     "osm-7548344": {
       "externalRelationId": "relation/7548344",
@@ -718,7 +769,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.12,
       "officialDistanceKm": 3,
-      "distanceDeltaPercent": 4
+      "distanceDeltaPercent": 4,
+      "pathContainmentPercent": 100
     },
     "osm-7548489": {
       "externalRelationId": "relation/7548489",
@@ -730,7 +782,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.86,
       "officialDistanceKm": 5.8,
-      "distanceDeltaPercent": 1
+      "distanceDeltaPercent": 1,
+      "pathContainmentPercent": 100
     },
     "osm-7549783": {
       "externalRelationId": "relation/7549783",
@@ -744,7 +797,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.69,
       "officialDistanceKm": 3.7,
-      "distanceDeltaPercent": -0.3
+      "distanceDeltaPercent": -0.3,
+      "pathContainmentPercent": 100
     },
     "osm-8510456": {
       "externalRelationId": "relation/8510456",
@@ -756,7 +810,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.87,
       "officialDistanceKm": 3.9,
-      "distanceDeltaPercent": -0.8
+      "distanceDeltaPercent": -0.8,
+      "pathContainmentPercent": 100
     },
     "osm-9487078": {
       "externalRelationId": "relation/9487078",
@@ -772,7 +827,8 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 2.01,
       "officialDistanceKm": 4.5,
-      "distanceDeltaPercent": -55.3
+      "distanceDeltaPercent": -55.3,
+      "pathContainmentPercent": 65
     },
     "osm-9492594": {
       "externalRelationId": "relation/9492594",
@@ -784,7 +840,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.3,
       "officialDistanceKm": 7.2,
-      "distanceDeltaPercent": 1.4
+      "distanceDeltaPercent": 1.4,
+      "pathContainmentPercent": 100
     },
     "osm-9493733": {
       "externalRelationId": "relation/9493733",
@@ -800,7 +857,8 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 4.49,
       "officialDistanceKm": 9.2,
-      "distanceDeltaPercent": -51.2
+      "distanceDeltaPercent": -51.2,
+      "pathContainmentPercent": 66
     },
     "osm-9511973": {
       "externalRelationId": "relation/9511973",
@@ -812,7 +870,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 14.45,
       "officialDistanceKm": 15.2,
-      "distanceDeltaPercent": -4.9
+      "distanceDeltaPercent": -4.9,
+      "pathContainmentPercent": 100
     },
     "osm-9511999": {
       "externalRelationId": "relation/9511999",
@@ -828,7 +887,8 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 5.37,
       "officialDistanceKm": 10.1,
-      "distanceDeltaPercent": -46.8
+      "distanceDeltaPercent": -46.8,
+      "pathContainmentPercent": 62
     },
     "osm-9651462": {
       "externalRelationId": "relation/9651462",
@@ -843,7 +903,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 3.01,
       "officialDistanceKm": 1.1,
-      "distanceDeltaPercent": 173.6
+      "distanceDeltaPercent": 173.6,
+      "pathContainmentPercent": 21
     },
     "osm-9675994": {
       "externalRelationId": "relation/9675994",
@@ -855,7 +916,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.52,
       "officialDistanceKm": 1.5,
-      "distanceDeltaPercent": 1.3
+      "distanceDeltaPercent": 1.3,
+      "pathContainmentPercent": 100
     },
     "osm-11764094": {
       "externalRelationId": "relation/11764094",
@@ -870,7 +932,8 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 12.13,
       "officialDistanceKm": 4.1,
-      "distanceDeltaPercent": 195.9
+      "distanceDeltaPercent": 195.9,
+      "pathContainmentPercent": 54
     },
     "osm-11774783": {
       "externalRelationId": "relation/11774783",
@@ -882,7 +945,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.77,
       "officialDistanceKm": 1.7,
-      "distanceDeltaPercent": 4.1
+      "distanceDeltaPercent": 4.1,
+      "pathContainmentPercent": 100
     },
     "osm-11775760": {
       "externalRelationId": "relation/11775760",
@@ -894,7 +958,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.02,
       "officialDistanceKm": 3,
-      "distanceDeltaPercent": 0.7
+      "distanceDeltaPercent": 0.7,
+      "pathContainmentPercent": 100
     },
     "osm-11780502": {
       "externalRelationId": "relation/11780502",
@@ -910,7 +975,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 3.12,
       "officialDistanceKm": 4.1,
-      "distanceDeltaPercent": -23.9
+      "distanceDeltaPercent": -23.9,
+      "pathContainmentPercent": 100
     },
     "osm-11790553": {
       "externalRelationId": "relation/11790553",
@@ -924,7 +990,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.1,
       "officialDistanceKm": 2.1,
-      "distanceDeltaPercent": 0
+      "distanceDeltaPercent": 0,
+      "pathContainmentPercent": 100
     },
     "osm-11792795": {
       "externalRelationId": "relation/11792795",
@@ -938,7 +1005,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 0.75,
       "officialDistanceKm": 0.7,
-      "distanceDeltaPercent": 7.1
+      "distanceDeltaPercent": 7.1,
+      "pathContainmentPercent": 100
     },
     "osm-11795103": {
       "externalRelationId": "relation/11795103",
@@ -952,7 +1020,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.36,
       "officialDistanceKm": 5.3,
-      "distanceDeltaPercent": 1.1
+      "distanceDeltaPercent": 1.1,
+      "pathContainmentPercent": 100
     },
     "osm-11795251": {
       "externalRelationId": "relation/11795251",
@@ -967,7 +1036,8 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 9.66,
       "officialDistanceKm": 13.2,
-      "distanceDeltaPercent": -26.8
+      "distanceDeltaPercent": -26.8,
+      "pathContainmentPercent": 94
     },
     "osm-11814834": {
       "externalRelationId": "relation/11814834",
@@ -979,7 +1049,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 7.09,
       "officialDistanceKm": 7,
-      "distanceDeltaPercent": 1.3
+      "distanceDeltaPercent": 1.3,
+      "pathContainmentPercent": 100
     },
     "osm-11814895": {
       "externalRelationId": "relation/11814895",
@@ -991,7 +1062,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 0.51,
       "officialDistanceKm": 0.5,
-      "distanceDeltaPercent": 2
+      "distanceDeltaPercent": 2,
+      "pathContainmentPercent": 100
     },
     "osm-11815025": {
       "externalRelationId": "relation/11815025",
@@ -1006,7 +1078,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 3.31,
       "officialDistanceKm": 3.9,
-      "distanceDeltaPercent": -15.1
+      "distanceDeltaPercent": -15.1,
+      "pathContainmentPercent": 96
     },
     "osm-11816373": {
       "externalRelationId": "relation/11816373",
@@ -1020,7 +1093,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 3.48,
       "officialDistanceKm": 3.5,
-      "distanceDeltaPercent": -0.6
+      "distanceDeltaPercent": -0.6,
+      "pathContainmentPercent": 100
     },
     "osm-11828233": {
       "externalRelationId": "relation/11828233",
@@ -1036,7 +1110,8 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 3.21,
       "officialDistanceKm": 5.6,
-      "distanceDeltaPercent": -42.7
+      "distanceDeltaPercent": -42.7,
+      "pathContainmentPercent": 60
     },
     "osm-11832013": {
       "externalRelationId": "relation/11832013",
@@ -1048,7 +1123,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.49,
       "officialDistanceKm": 2.5,
-      "distanceDeltaPercent": -0.4
+      "distanceDeltaPercent": -0.4,
+      "pathContainmentPercent": 100
     },
     "osm-11839597": {
       "externalRelationId": "relation/11839597",
@@ -1063,7 +1139,8 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 2.28,
       "officialDistanceKm": 3.9,
-      "distanceDeltaPercent": -41.5
+      "distanceDeltaPercent": -41.5,
+      "pathContainmentPercent": 90
     },
     "osm-11855879": {
       "externalRelationId": "relation/11855879",
@@ -1075,7 +1152,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.76,
       "officialDistanceKm": 2.7,
-      "distanceDeltaPercent": 2.2
+      "distanceDeltaPercent": 2.2,
+      "pathContainmentPercent": 100
     },
     "osm-11860429": {
       "externalRelationId": "relation/11860429",
@@ -1091,7 +1169,8 @@
       "componentCount": 6,
       "reconstructedDistanceKm": 5.07,
       "officialDistanceKm": 6.2,
-      "distanceDeltaPercent": -18.2
+      "distanceDeltaPercent": -18.2,
+      "pathContainmentPercent": 38
     },
     "osm-11891581": {
       "externalRelationId": "relation/11891581",
@@ -1105,7 +1184,8 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 71.5,
       "officialDistanceKm": 71.2,
-      "distanceDeltaPercent": 0.4
+      "distanceDeltaPercent": 0.4,
+      "pathContainmentPercent": 100
     },
     "osm-12018939": {
       "externalRelationId": "relation/12018939",
@@ -1117,7 +1197,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 12.43,
       "officialDistanceKm": 13.2,
-      "distanceDeltaPercent": -5.8
+      "distanceDeltaPercent": -5.8,
+      "pathContainmentPercent": 100
     },
     "osm-12027153": {
       "externalRelationId": "relation/12027153",
@@ -1132,7 +1213,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 6.57,
       "officialDistanceKm": 7.3,
-      "distanceDeltaPercent": -10
+      "distanceDeltaPercent": -10,
+      "pathContainmentPercent": 100
     },
     "osm-12039246": {
       "externalRelationId": "relation/12039246",
@@ -1146,7 +1228,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 0.93,
       "officialDistanceKm": 0.9,
-      "distanceDeltaPercent": 3.3
+      "distanceDeltaPercent": 3.3,
+      "pathContainmentPercent": 100
     },
     "osm-12044077": {
       "externalRelationId": "relation/12044077",
@@ -1160,7 +1243,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.32,
       "officialDistanceKm": 1.3,
-      "distanceDeltaPercent": 1.5
+      "distanceDeltaPercent": 1.5,
+      "pathContainmentPercent": 100
     },
     "osm-12047303": {
       "externalRelationId": "relation/12047303",
@@ -1175,7 +1259,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 2.86,
       "officialDistanceKm": 4.2,
-      "distanceDeltaPercent": -31.9
+      "distanceDeltaPercent": -31.9,
+      "pathContainmentPercent": 90
     },
     "osm-12079333": {
       "externalRelationId": "relation/12079333",
@@ -1189,7 +1274,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.14,
       "officialDistanceKm": 6.3,
-      "distanceDeltaPercent": -2.5
+      "distanceDeltaPercent": -2.5,
+      "pathContainmentPercent": 100
     },
     "osm-12132169": {
       "externalRelationId": "relation/12132169",
@@ -1203,7 +1289,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 27.47,
       "officialDistanceKm": 34.4,
-      "distanceDeltaPercent": -20.1
+      "distanceDeltaPercent": -20.1,
+      "pathContainmentPercent": 100
     },
     "osm-12142337": {
       "externalRelationId": "relation/12142337",
@@ -1217,7 +1304,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 11.95,
       "officialDistanceKm": 11.8,
-      "distanceDeltaPercent": 1.3
+      "distanceDeltaPercent": 1.3,
+      "pathContainmentPercent": 100
     },
     "osm-12150790": {
       "externalRelationId": "relation/12150790",
@@ -1231,7 +1319,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.56,
       "officialDistanceKm": 2.8,
-      "distanceDeltaPercent": -8.6
+      "distanceDeltaPercent": -8.6,
+      "pathContainmentPercent": 100
     },
     "osm-12164395": {
       "externalRelationId": "relation/12164395",
@@ -1246,7 +1335,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 6.3,
       "officialDistanceKm": 9.1,
-      "distanceDeltaPercent": -30.8
+      "distanceDeltaPercent": -30.8,
+      "pathContainmentPercent": 98
     },
     "osm-12165590": {
       "externalRelationId": "relation/12165590",
@@ -1260,7 +1350,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 7.74,
       "officialDistanceKm": 8.6,
-      "distanceDeltaPercent": -10
+      "distanceDeltaPercent": -10,
+      "pathContainmentPercent": 100
     },
     "osm-12172440": {
       "externalRelationId": "relation/12172440",
@@ -1275,7 +1366,8 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 6.45,
       "officialDistanceKm": 9.1,
-      "distanceDeltaPercent": -29.1
+      "distanceDeltaPercent": -29.1,
+      "pathContainmentPercent": 96
     },
     "osm-12173965": {
       "externalRelationId": "relation/12173965",
@@ -1287,7 +1379,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.88,
       "officialDistanceKm": 1.9,
-      "distanceDeltaPercent": -1.1
+      "distanceDeltaPercent": -1.1,
+      "pathContainmentPercent": 100
     },
     "osm-12173984": {
       "externalRelationId": "relation/12173984",
@@ -1302,7 +1395,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 5.52,
       "officialDistanceKm": 8,
-      "distanceDeltaPercent": -31
+      "distanceDeltaPercent": -31,
+      "pathContainmentPercent": 98
     },
     "osm-12174210": {
       "externalRelationId": "relation/12174210",
@@ -1317,7 +1411,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 9.38,
       "officialDistanceKm": 1.6,
-      "distanceDeltaPercent": 486.3
+      "distanceDeltaPercent": 486.3,
+      "pathContainmentPercent": 25
     },
     "osm-12182516": {
       "externalRelationId": "relation/12182516",
@@ -1331,7 +1426,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.18,
       "officialDistanceKm": 1.2,
-      "distanceDeltaPercent": -1.7
+      "distanceDeltaPercent": -1.7,
+      "pathContainmentPercent": 100
     },
     "osm-12182895": {
       "externalRelationId": "relation/12182895",
@@ -1346,7 +1442,8 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 15.69,
       "officialDistanceKm": 22.3,
-      "distanceDeltaPercent": -29.6
+      "distanceDeltaPercent": -29.6,
+      "pathContainmentPercent": 95
     },
     "osm-12182936": {
       "externalRelationId": "relation/12182936",
@@ -1362,7 +1459,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 4.01,
       "officialDistanceKm": 6.4,
-      "distanceDeltaPercent": -37.3
+      "distanceDeltaPercent": -37.3,
+      "pathContainmentPercent": 92
     },
     "osm-12189165": {
       "externalRelationId": "relation/12189165",
@@ -1376,7 +1474,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 10.73,
       "officialDistanceKm": 10.6,
-      "distanceDeltaPercent": 1.2
+      "distanceDeltaPercent": 1.2,
+      "pathContainmentPercent": 100
     },
     "osm-12190538": {
       "externalRelationId": "relation/12190538",
@@ -1388,7 +1487,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.09,
       "officialDistanceKm": 5.1,
-      "distanceDeltaPercent": -0.2
+      "distanceDeltaPercent": -0.2,
+      "pathContainmentPercent": 100
     },
     "osm-12190657": {
       "externalRelationId": "relation/12190657",
@@ -1400,7 +1500,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.58,
       "officialDistanceKm": 4.6,
-      "distanceDeltaPercent": -0.4
+      "distanceDeltaPercent": -0.4,
+      "pathContainmentPercent": 100
     },
     "osm-12302191": {
       "externalRelationId": "relation/12302191",
@@ -1416,7 +1517,8 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 7.98,
       "officialDistanceKm": 11.8,
-      "distanceDeltaPercent": -32.4
+      "distanceDeltaPercent": -32.4,
+      "pathContainmentPercent": 92
     },
     "osm-12363235": {
       "externalRelationId": "relation/12363235",
@@ -1432,7 +1534,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 2.75,
       "officialDistanceKm": 4,
-      "distanceDeltaPercent": -31.2
+      "distanceDeltaPercent": -31.2,
+      "pathContainmentPercent": 96
     },
     "osm-12371666": {
       "externalRelationId": "relation/12371666",
@@ -1444,7 +1547,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.3,
       "officialDistanceKm": 1.3,
-      "distanceDeltaPercent": 0
+      "distanceDeltaPercent": 0,
+      "pathContainmentPercent": 100
     },
     "osm-12371689": {
       "externalRelationId": "relation/12371689",
@@ -1459,7 +1563,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.34,
       "officialDistanceKm": 1.5,
-      "distanceDeltaPercent": -10.7
+      "distanceDeltaPercent": -10.7,
+      "pathContainmentPercent": 100
     },
     "osm-12731853": {
       "externalRelationId": "relation/12731853",
@@ -1471,7 +1576,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.18,
       "officialDistanceKm": 4.2,
-      "distanceDeltaPercent": -0.5
+      "distanceDeltaPercent": -0.5,
+      "pathContainmentPercent": 100
     },
     "osm-12736753": {
       "externalRelationId": "relation/12736753",
@@ -1486,7 +1592,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 11.64,
       "officialDistanceKm": 4.1,
-      "distanceDeltaPercent": 183.9
+      "distanceDeltaPercent": 183.9,
+      "pathContainmentPercent": 7
     },
     "osm-12953352": {
       "externalRelationId": "relation/12953352",
@@ -1501,7 +1608,8 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 7.74,
       "officialDistanceKm": 2.3,
-      "distanceDeltaPercent": 236.5
+      "distanceDeltaPercent": 236.5,
+      "pathContainmentPercent": 92
     },
     "osm-13491868": {
       "externalRelationId": "relation/13491868",
@@ -1516,7 +1624,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 3.36,
       "officialDistanceKm": 0.6,
-      "distanceDeltaPercent": 460
+      "distanceDeltaPercent": 460,
+      "pathContainmentPercent": 50
     },
     "osm-13528390": {
       "externalRelationId": "relation/13528390",
@@ -1528,7 +1637,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.76,
       "officialDistanceKm": 4.7,
-      "distanceDeltaPercent": 1.3
+      "distanceDeltaPercent": 1.3,
+      "pathContainmentPercent": 100
     },
     "osm-14058492": {
       "externalRelationId": "relation/14058492",
@@ -1540,7 +1650,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.36,
       "officialDistanceKm": 2.4,
-      "distanceDeltaPercent": -1.7
+      "distanceDeltaPercent": -1.7,
+      "pathContainmentPercent": 100
     },
     "osm-14058632": {
       "externalRelationId": "relation/14058632",
@@ -1555,7 +1666,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 2.36,
       "officialDistanceKm": 2.7,
-      "distanceDeltaPercent": -12.6
+      "distanceDeltaPercent": -12.6,
+      "pathContainmentPercent": 100
     },
     "osm-15662134": {
       "externalRelationId": "relation/15662134",
@@ -1571,7 +1683,8 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 2.15,
       "officialDistanceKm": 4.8,
-      "distanceDeltaPercent": -55.2
+      "distanceDeltaPercent": -55.2,
+      "pathContainmentPercent": 58
     },
     "osm-15791408": {
       "externalRelationId": "relation/15791408",
@@ -1583,7 +1696,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.17,
       "officialDistanceKm": 3.1,
-      "distanceDeltaPercent": 2.3
+      "distanceDeltaPercent": 2.3,
+      "pathContainmentPercent": 100
     },
     "osm-19330972": {
       "externalRelationId": "relation/19330972",
@@ -1597,7 +1711,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.01,
       "officialDistanceKm": 1.1,
-      "distanceDeltaPercent": -8.2
+      "distanceDeltaPercent": -8.2,
+      "pathContainmentPercent": 100
     },
     "osm-19697977": {
       "externalRelationId": "relation/19697977",
@@ -1611,7 +1726,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 9.93,
       "officialDistanceKm": 9.8,
-      "distanceDeltaPercent": 1.3
+      "distanceDeltaPercent": 1.3,
+      "pathContainmentPercent": 100
     },
     "osm-19703479": {
       "externalRelationId": "relation/19703479",
@@ -1627,7 +1743,8 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 1.43,
       "officialDistanceKm": 4.2,
-      "distanceDeltaPercent": -66
+      "distanceDeltaPercent": -66,
+      "pathContainmentPercent": 56
     },
     "osm-19974724": {
       "externalRelationId": "relation/19974724",
@@ -1641,7 +1758,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.08,
       "officialDistanceKm": 3,
-      "distanceDeltaPercent": 2.7
+      "distanceDeltaPercent": 2.7,
+      "pathContainmentPercent": 100
     },
     "osm-19974725": {
       "externalRelationId": "relation/19974725",
@@ -1656,7 +1774,8 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 3.83,
       "officialDistanceKm": 4.3,
-      "distanceDeltaPercent": -10.9
+      "distanceDeltaPercent": -10.9,
+      "pathContainmentPercent": 100
     },
     "osm-5479112": {
       "externalRelationId": "relation/5479112",
@@ -1668,7 +1787,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 11.63,
       "officialDistanceKm": 11.5,
-      "distanceDeltaPercent": 1.1
+      "distanceDeltaPercent": 1.1,
+      "pathContainmentPercent": 100
     },
     "osm-9937537": {
       "externalRelationId": "relation/9937537",
@@ -1680,7 +1800,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 11.17,
       "officialDistanceKm": 11,
-      "distanceDeltaPercent": 1.5
+      "distanceDeltaPercent": 1.5,
+      "pathContainmentPercent": 100
     },
     "osm-10539302": {
       "externalRelationId": "relation/10539302",
@@ -1692,7 +1813,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.99,
       "officialDistanceKm": 3.9,
-      "distanceDeltaPercent": 2.3
+      "distanceDeltaPercent": 2.3,
+      "pathContainmentPercent": 100
     },
     "osm-12118490": {
       "externalRelationId": "relation/12118490",
@@ -1704,7 +1826,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.75,
       "officialDistanceKm": 4.7,
-      "distanceDeltaPercent": 1.1
+      "distanceDeltaPercent": 1.1,
+      "pathContainmentPercent": 100
     },
     "osm-12121346": {
       "externalRelationId": "relation/12121346",
@@ -1716,7 +1839,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.15,
       "officialDistanceKm": 5.1,
-      "distanceDeltaPercent": 1
+      "distanceDeltaPercent": 1,
+      "pathContainmentPercent": 100
     },
     "osm-12121548": {
       "externalRelationId": "relation/12121548",
@@ -1728,7 +1852,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 11.58,
       "officialDistanceKm": 11.4,
-      "distanceDeltaPercent": 1.6
+      "distanceDeltaPercent": 1.6,
+      "pathContainmentPercent": 100
     },
     "osm-12121798": {
       "externalRelationId": "relation/12121798",
@@ -1742,7 +1867,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 1.52,
       "officialDistanceKm": 1.5,
-      "distanceDeltaPercent": 1.3
+      "distanceDeltaPercent": 1.3,
+      "pathContainmentPercent": 100
     },
     "osm-12127424": {
       "externalRelationId": "relation/12127424",
@@ -1757,7 +1883,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 1.74,
       "officialDistanceKm": 2.8,
-      "distanceDeltaPercent": -37.9
+      "distanceDeltaPercent": -37.9,
+      "pathContainmentPercent": 60
     },
     "osm-12211260": {
       "externalRelationId": "relation/12211260",
@@ -1773,7 +1900,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 2.02,
       "officialDistanceKm": 4.2,
-      "distanceDeltaPercent": -51.9
+      "distanceDeltaPercent": -51.9,
+      "pathContainmentPercent": 60
     },
     "osm-12745924": {
       "externalRelationId": "relation/12745924",
@@ -1785,7 +1913,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.68,
       "officialDistanceKm": 4.6,
-      "distanceDeltaPercent": 1.7
+      "distanceDeltaPercent": 1.7,
+      "pathContainmentPercent": 100
     },
     "osm-13337921": {
       "externalRelationId": "relation/13337921",
@@ -1800,7 +1929,8 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 11.98,
       "officialDistanceKm": 4.1,
-      "distanceDeltaPercent": 192.2
+      "distanceDeltaPercent": 192.2,
+      "pathContainmentPercent": 28
     },
     "osm-13338113": {
       "externalRelationId": "relation/13338113",
@@ -1814,7 +1944,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.87,
       "officialDistanceKm": 6.7,
-      "distanceDeltaPercent": 2.5
+      "distanceDeltaPercent": 2.5,
+      "pathContainmentPercent": 100
     },
     "osm-14375158": {
       "externalRelationId": "relation/14375158",
@@ -1826,7 +1957,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 9.04,
       "officialDistanceKm": 9,
-      "distanceDeltaPercent": 0.4
+      "distanceDeltaPercent": 0.4,
+      "pathContainmentPercent": 100
     },
     "osm-14376573": {
       "externalRelationId": "relation/14376573",
@@ -1838,7 +1970,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.17,
       "officialDistanceKm": 4.1,
-      "distanceDeltaPercent": 1.7
+      "distanceDeltaPercent": 1.7,
+      "pathContainmentPercent": 100
     },
     "osm-14377007": {
       "externalRelationId": "relation/14377007",
@@ -1850,7 +1983,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.92,
       "officialDistanceKm": 4,
-      "distanceDeltaPercent": -2
+      "distanceDeltaPercent": -2,
+      "pathContainmentPercent": 100
     },
     "osm-14378946": {
       "externalRelationId": "relation/14378946",
@@ -1862,7 +1996,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.37,
       "officialDistanceKm": 5.4,
-      "distanceDeltaPercent": -0.6
+      "distanceDeltaPercent": -0.6,
+      "pathContainmentPercent": 100
     },
     "osm-14379010": {
       "externalRelationId": "relation/14379010",
@@ -1874,7 +2009,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 8.19,
       "officialDistanceKm": 8.1,
-      "distanceDeltaPercent": 1.1
+      "distanceDeltaPercent": 1.1,
+      "pathContainmentPercent": 100
     },
     "osm-14379937": {
       "externalRelationId": "relation/14379937",
@@ -1890,7 +2026,8 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 2.06,
       "officialDistanceKm": 5,
-      "distanceDeltaPercent": -58.8
+      "distanceDeltaPercent": -58.8,
+      "pathContainmentPercent": 63
     },
     "osm-14381584": {
       "externalRelationId": "relation/14381584",
@@ -1902,7 +2039,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.87,
       "officialDistanceKm": 6.9,
-      "distanceDeltaPercent": -0.4
+      "distanceDeltaPercent": -0.4,
+      "pathContainmentPercent": 100
     },
     "osm-14381788": {
       "externalRelationId": "relation/14381788",
@@ -1914,7 +2052,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.17,
       "officialDistanceKm": 3.2,
-      "distanceDeltaPercent": -0.9
+      "distanceDeltaPercent": -0.9,
+      "pathContainmentPercent": 100
     },
     "osm-14381930": {
       "externalRelationId": "relation/14381930",
@@ -1926,7 +2065,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 8.44,
       "officialDistanceKm": 8.4,
-      "distanceDeltaPercent": 0.5
+      "distanceDeltaPercent": 0.5,
+      "pathContainmentPercent": 100
     },
     "osm-15321049": {
       "externalRelationId": "relation/15321049",
@@ -1940,7 +2080,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.89,
       "officialDistanceKm": 5.9,
-      "distanceDeltaPercent": -0.2
+      "distanceDeltaPercent": -0.2,
+      "pathContainmentPercent": 100
     },
     "osm-15321786": {
       "externalRelationId": "relation/15321786",
@@ -1954,7 +2095,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.13,
       "officialDistanceKm": 5,
-      "distanceDeltaPercent": 2.6
+      "distanceDeltaPercent": 2.6,
+      "pathContainmentPercent": 100
     },
     "osm-15535697": {
       "externalRelationId": "relation/15535697",
@@ -1966,7 +2108,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.49,
       "officialDistanceKm": 5.4,
-      "distanceDeltaPercent": 1.7
+      "distanceDeltaPercent": 1.7,
+      "pathContainmentPercent": 100
     },
     "osm-16180587": {
       "externalRelationId": "relation/16180587",
@@ -1980,7 +2123,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 8.6,
       "officialDistanceKm": 9.7,
-      "distanceDeltaPercent": -11.3
+      "distanceDeltaPercent": -11.3,
+      "pathContainmentPercent": 100
     },
     "osm-16218739": {
       "externalRelationId": "relation/16218739",
@@ -1995,7 +2139,8 @@
       "componentCount": 2,
       "reconstructedDistanceKm": 4.41,
       "officialDistanceKm": 9.7,
-      "distanceDeltaPercent": -54.5
+      "distanceDeltaPercent": -54.5,
+      "pathContainmentPercent": 52
     },
     "osm-16490407": {
       "externalRelationId": "relation/16490407",
@@ -2007,7 +2152,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 8.08,
       "officialDistanceKm": 7.9,
-      "distanceDeltaPercent": 2.3
+      "distanceDeltaPercent": 2.3,
+      "pathContainmentPercent": 100
     },
     "osm-19064561": {
       "externalRelationId": "relation/19064561",
@@ -2021,7 +2167,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 4.54,
       "officialDistanceKm": 4.5,
-      "distanceDeltaPercent": 0.9
+      "distanceDeltaPercent": 0.9,
+      "pathContainmentPercent": 100
     },
     "osm-19095412": {
       "externalRelationId": "relation/19095412",
@@ -2035,7 +2182,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.46,
       "officialDistanceKm": 5.4,
-      "distanceDeltaPercent": 1.1
+      "distanceDeltaPercent": 1.1,
+      "pathContainmentPercent": 100
     },
     "osm-19095413": {
       "externalRelationId": "relation/19095413",
@@ -2049,7 +2197,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.61,
       "officialDistanceKm": 5.5,
-      "distanceDeltaPercent": 2
+      "distanceDeltaPercent": 2,
+      "pathContainmentPercent": 100
     },
     "osm-19531872": {
       "externalRelationId": "relation/19531872",
@@ -2061,7 +2210,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 3.94,
       "officialDistanceKm": 3.9,
-      "distanceDeltaPercent": 1
+      "distanceDeltaPercent": 1,
+      "pathContainmentPercent": 100
     },
     "osm-19541366": {
       "externalRelationId": "relation/19541366",
@@ -2075,7 +2225,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 6.31,
       "officialDistanceKm": 6.4,
-      "distanceDeltaPercent": -1.4
+      "distanceDeltaPercent": -1.4,
+      "pathContainmentPercent": 100
     },
     "osm-19661726": {
       "externalRelationId": "relation/19661726",
@@ -2089,7 +2240,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 0.78,
       "officialDistanceKm": 0.8,
-      "distanceDeltaPercent": -2.5
+      "distanceDeltaPercent": -2.5,
+      "pathContainmentPercent": 100
     },
     "osm-19760372": {
       "externalRelationId": "relation/19760372",
@@ -2101,7 +2253,8 @@
       "componentCount": 1,
       "reconstructedDistanceKm": 5.49,
       "officialDistanceKm": 5.5,
-      "distanceDeltaPercent": -0.2
+      "distanceDeltaPercent": -0.2,
+      "pathContainmentPercent": 100
     },
     "osm-19855818": {
       "externalRelationId": "relation/19855818",
@@ -2116,7 +2269,8 @@
       "componentCount": 4,
       "reconstructedDistanceKm": 7.22,
       "officialDistanceKm": 7.1,
-      "distanceDeltaPercent": 1.7
+      "distanceDeltaPercent": 1.7,
+      "pathContainmentPercent": 100
     },
     "osm-21021130": {
       "externalRelationId": "relation/21021130",
@@ -2132,7 +2286,8 @@
       "componentCount": 3,
       "reconstructedDistanceKm": 3.65,
       "officialDistanceKm": 7.8,
-      "distanceDeltaPercent": -53.2
+      "distanceDeltaPercent": -53.2,
+      "pathContainmentPercent": 54
     }
   }
 }
