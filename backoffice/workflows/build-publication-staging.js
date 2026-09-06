@@ -62,13 +62,48 @@ function operationalClaims(item){
     }));
 }
 
+// The structured fields a published trail carries: its measurements, terrain and
+// start. Verification does not produce them as typed values, so they were typed
+// in by hand, one hardcoded entry per candidate. Three existed, which meant any
+// fourth trail that cleared verification stalled at the mapping gate until
+// somebody edited this file.
+//
+// A trail already in the catalogue already carries all thirteen. An update
+// publishes copy, photograph and verification status; the measurements carry
+// forward from the record unless the table overrides them, and the operator sees
+// the whole field set in the preview before approving it.
+const STRUCTURED_FIELDS = Object.freeze([
+  'area', 'distance', 'elevation', 'hours', 'paid', 'terrainType', 'terrainRank',
+  'shadeCoverage', 'heatRisk', 'safetyLevel', 'exposure', 'waterSources', 'startPoint',
+]);
+
+function structuredFieldsFromTrail(trail){
+  if(!trail) return null;
+  const fields = {};
+  for(const key of STRUCTURED_FIELDS){
+    if(trail[key] === undefined) return null;
+    fields[key] = trail[key];
+  }
+  return fields;
+}
+
+function verifiedFieldsFor(item, target, trailsById){
+  const tabled = VERIFIED_FIELDS[item.candidateId];
+  if(tabled) return tabled;
+  // A new trail has no record to carry forward, so it still needs its fields
+  // supplied before it can be mapped.
+  if(!target || target.operation !== 'update-existing') return null;
+  return structuredFieldsFromTrail(trailsById.get(target.trailId));
+}
+
 function buildPublicationStaging(editorialQueue, execution, reviewQueue, options = {}){
   const at = options.at || new Date().toISOString();
   const decisions = latestDecisions(reviewQueue);
+  const trailsById = new Map((options.productionTrails || []).map(trail => [trail.id, trail]));
   const outputs = new Map((execution?.outputs || []).map(output => [output.jobId, output]));
   const items = editorialQueue.items.map(item => {
     const target = TARGETS[item.candidateId]||(item.targetTrailId?{trailId:item.targetTrailId,operation:'update-existing',routeRef:null}:null);
-    const verifiedFields=VERIFIED_FIELDS[item.candidateId]||null;
+    const verifiedFields=verifiedFieldsFor(item, target, trailsById);
     const copyJobId = `verified-${item.candidateId}-copy`;
     const visualJobId = `verified-${item.candidateId}-visual`;
     const copyDecision = decisions.get(copyJobId) || null;
@@ -134,4 +169,4 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
   };
 }
 
-module.exports = { TARGETS, VERIFIED_FIELDS, latestDecisions, routeNumberGuidance, buildPublicationStaging };
+module.exports = { TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };
