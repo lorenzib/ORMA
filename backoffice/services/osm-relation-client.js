@@ -25,6 +25,63 @@ function buildRelationQuery(externalId){
   ].join('\n');
 }
 
+// Route relations running near a drawn path, with the geometry of their member
+// ways, so a composite can be measured without a fetch per candidate. The path
+// is sampled because Overpass takes the corridor as a polyline and a long trail
+// carries more points than the query needs.
+const ROUTE_SAMPLE_POINTS = 60;
+
+function samplePath(path, maximum = ROUTE_SAMPLE_POINTS){
+  const points = Array.isArray(path) ? path.filter(point => Array.isArray(point) && point.length >= 2) : [];
+  if(points.length <= maximum) return points;
+  const sampled = [];
+  for(let index = 0; index < maximum; index += 1){
+    sampled.push(points[Math.round(index * (points.length - 1) / (maximum - 1))]);
+  }
+  return sampled;
+}
+
+function buildRoutesNearPathQuery(path, radiusMetres = 60){
+  const corridor = samplePath(path).map(point => `${point[0]},${point[1]}`).join(',');
+  if(!corridor) throw new Error('A drawn path is required to look for route relations');
+  return [
+    '[out:json][timeout:180];',
+    `rel(around:${radiusMetres},${corridor})["type"="route"]["route"~"hiking|foot"]->.routes;`,
+    '.routes out body;',
+    'way(r.routes);',
+    'out geom;',
+  ].join('\n');
+}
+
+async function fetchRoutesNearPath(path, options = {}){
+  const endpoints = options.endpoints || DEFAULT_ENDPOINTS;
+  const fetchImpl = options.fetchImpl || fetch;
+  const query = buildRoutesNearPathQuery(path, options.radiusMetres);
+  let lastError = null;
+  for(const endpoint of endpoints){
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), options.timeoutMs || 180000);
+    try{
+      const response = await fetchImpl(endpoint, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+          'user-agent': USER_AGENT,
+        },
+        body: `data=${encodeURIComponent(query)}`,
+        signal: controller.signal,
+      });
+      if(!response.ok) throw new Error(`Overpass returned HTTP ${response.status}`);
+      return { endpoint, query, payload: await response.json() };
+    }catch(error){
+      lastError = error;
+    }finally{
+      clearTimeout(timeout);
+    }
+  }
+  throw new Error(`Unable to look for route relations: ${lastError ? lastError.message : 'no endpoint available'}`);
+}
+
 async function fetchRelation(externalId, options = {}){
   const endpoints = options.endpoints || DEFAULT_ENDPOINTS;
   const fetchImpl = options.fetchImpl || fetch;
@@ -71,4 +128,5 @@ async function fetchRelation(externalId, options = {}){
   throw new Error(`Unable to fetch OSM relation: ${lastError ? lastError.message : 'no endpoint available'}`);
 }
 
-module.exports = { DEFAULT_ENDPOINTS, USER_AGENT, numericRelationId, buildRelationQuery, fetchRelation };
+module.exports = { DEFAULT_ENDPOINTS, USER_AGENT, ROUTE_SAMPLE_POINTS, numericRelationId, buildRelationQuery,
+  samplePath, buildRoutesNearPathQuery, fetchRoutesNearPath, fetchRelation };

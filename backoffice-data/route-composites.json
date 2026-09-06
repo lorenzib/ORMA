@@ -1,0 +1,224 @@
+{
+  "contractVersion": "1.0.0",
+  "updatedAt": "2026-09-06T09:29:27.331Z",
+  "composites": {
+    "alpe-siusi": {
+      "state": "proposed",
+      "proposedAt": "2026-09-06T09:28:35.793Z",
+      "trailName": "Alpe di Siusi Meadow Loop",
+      "coveragePercent": 100,
+      "radiusMetres": 60,
+      "candidateRelationCount": 11,
+      "relations": [
+        {
+          "externalRelationId": "relation/9437572",
+          "ref": "30",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 46,
+          "firstCoveredIndex": 0
+        },
+        {
+          "externalRelationId": "relation/6865448",
+          "ref": "7",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 42,
+          "firstCoveredIndex": 0
+        },
+        {
+          "externalRelationId": "relation/9447554",
+          "ref": "6",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 25,
+          "firstCoveredIndex": 26
+        }
+      ]
+    },
+    "seceda": {
+      "state": "proposed",
+      "proposedAt": "2026-09-06T09:28:42.140Z",
+      "trailName": "Seceda Ridge Trail",
+      "coveragePercent": 100,
+      "radiusMetres": 60,
+      "candidateRelationCount": 13,
+      "relations": [
+        {
+          "externalRelationId": "relation/6528494",
+          "ref": "1",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 56,
+          "firstCoveredIndex": 0
+        },
+        {
+          "externalRelationId": "relation/9430475",
+          "ref": "1A",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 51,
+          "firstCoveredIndex": 0
+        }
+      ]
+    },
+    "nuvolau": {
+      "state": "proposed",
+      "proposedAt": "2026-09-06T09:28:45.114Z",
+      "trailName": "Passo Giau to Rifugio Nuvolau",
+      "coveragePercent": 100,
+      "radiusMetres": 60,
+      "candidateRelationCount": 7,
+      "relations": [
+        {
+          "externalRelationId": "relation/177743",
+          "ref": "AV1",
+          "name": "Alta via n. 1 delle Dolomiti - Dolomiten-Höhenweg Nr. 1",
+          "network": "rwn",
+          "coveragePercent": 100,
+          "firstCoveredIndex": 0
+        }
+      ]
+    },
+    "sassolungo": {
+      "state": "proposed",
+      "proposedAt": "2026-09-06T09:28:52.180Z",
+      "trailName": "Sassolungo–Sassopiatto Loop",
+      "coveragePercent": 100,
+      "radiusMetres": 60,
+      "candidateRelationCount": 22,
+      "relations": [
+        {
+          "externalRelationId": "relation/5412043",
+          "ref": "557",
+          "name": "Sentiero \"Friedrich August\" - Friedrich-August-Weg",
+          "network": "lwn",
+          "coveragePercent": 40,
+          "firstCoveredIndex": 0
+        },
+        {
+          "externalRelationId": "relation/11627974",
+          "ref": "SI",
+          "name": null,
+          "network": "nwn",
+          "coveragePercent": 49,
+          "firstCoveredIndex": 71
+        },
+        {
+          "externalRelationId": "relation/9435720",
+          "ref": "526",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 33,
+          "firstCoveredIndex": 121
+        }
+      ]
+    },
+    "lago-carezza": {
+      "state": "proposed",
+      "proposedAt": "2026-09-06T09:28:56.095Z",
+      "trailName": "Lago di Carezza Loop",
+      "coveragePercent": 100,
+      "radiusMetres": 60,
+      "candidateRelationCount": 12,
+      "relations": [
+        {
+          "externalRelationId": "relation/12151564",
+          "ref": null,
+          "name": "Rundweg am Karer See",
+          "network": "lwn",
+          "coveragePercent": 100,
+          "firstCoveredIndex": 0
+        }
+      ]
+    },
+    "geotrail-bulla": {
+      "state": "proposed",
+      "proposedAt": "2026-09-06T09:28:59.055Z",
+      "trailName": "Geotrail Bula / Pufels / Bulla",
+      "coveragePercent": 100,
+      "radiusMetres": 60,
+      "candidateRelationCount": 7,
+      "relations": [
+        {
+          "externalRelationId": "relation/11814834",
+          "ref": null,
+          "name": "Geotrail Bula - Pufels - Bulla",
+          "network": "lwn",
+          "coveragePercent": 100,
+          "firstCoveredIndex": 0
+        }
+      ]
+    },
+    "sentiero-hans-e-paula-steger": {
+      "state": "proposed",
+      "proposedAt": "2026-09-06T09:29:02.780Z",
+      "trailName": "Sentiero Hans e Paula Steger",
+      "coveragePercent": 100,
+      "radiusMetres": 60,
+      "candidateRelationCount": 16,
+      "relations": [
+        {
+          "externalRelationId": "relation/10399914",
+          "ref": null,
+          "name": "Hans und Paula Steger Weg - Sentiero Hans e Paula Steger",
+          "network": "lwn",
+          "coveragePercent": 100,
+          "firstCoveredIndex": 0
+        }
+      ]
+    },
+    "sentiero-del-trenino": {
+      "state": "proposed",
+      "proposedAt": "2026-09-06T09:29:11.750Z",
+      "trailName": "Sentiero del Trenino",
+      "coveragePercent": 100,
+      "radiusMetres": 60,
+      "candidateRelationCount": 38,
+      "relations": [
+        {
+          "externalRelationId": "relation/9445694",
+          "ref": null,
+          "name": "La Ferata",
+          "network": "lwn",
+          "coveragePercent": 100,
+          "firstCoveredIndex": 0
+        }
+      ]
+    },
+    "giro-del-sasso-lungo": {
+      "state": "proposed",
+      "proposedAt": "2026-09-06T09:29:25.329Z",
+      "trailName": "Giro del Sasso Lungo",
+      "coveragePercent": 100,
+      "radiusMetres": 60,
+      "candidateRelationCount": 26,
+      "relations": [
+        {
+          "externalRelationId": "relation/9435720",
+          "ref": "526",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 31,
+          "firstCoveredIndex": 0
+        },
+        {
+          "externalRelationId": "relation/1640019",
+          "ref": "527",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 42,
+          "firstCoveredIndex": 81
+        },
+        {
+          "externalRelationId": "relation/5412043",
+          "ref": "557",
+          "name": "Sentiero \"Friedrich August\" - Friedrich-August-Weg",
+          "network": "lwn",
+          "coveragePercent": 29,
+          "firstCoveredIndex": 142
+        }
+      ]
+    }
+  }
+}

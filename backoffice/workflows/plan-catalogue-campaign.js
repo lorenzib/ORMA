@@ -76,7 +76,18 @@ function identityCheckFor(trail, identityChecks){
   return check;
 }
 
-function identityContradiction(trail, identityChecks){
+// A composite route source: the ordered waymarked paths a walk follows, when no
+// single relation covers it. It counts only once a human has approved it at the
+// geometry gate, which is where route identity has always been settled.
+function approvedComposite(trail, composites){
+  const composite = composites && composites[trail && trail.id];
+  if(!composite || composite.state !== 'approved') return null;
+  return Number.isFinite(composite.coveragePercent) && composite.coveragePercent >= ON_ROUTE_PERCENT
+    ? composite : null;
+}
+
+function identityContradiction(trail, identityChecks, composites){
+  if(approvedComposite(trail, composites)) return null;
   const check = identityCheckFor(trail, identityChecks);
   if(!check) return null;
   const containment = check.pathContainmentPercent;
@@ -93,10 +104,13 @@ function identityContradiction(trail, identityChecks){
   };
 }
 
-function baselineBlockers(trail, identityChecks){
+function baselineBlockers(trail, identityChecks, composites){
   const blockers = [];
-  if(!relationExternalId(trail)) blockers.push('route-source-identity-unresolved');
-  else if(identityContradiction(trail, identityChecks)) blockers.push('route-source-identity-contradicted');
+  if(!relationExternalId(trail) && !approvedComposite(trail, composites)){
+    blockers.push('route-source-identity-unresolved');
+  }else if(identityContradiction(trail, identityChecks, composites)){
+    blockers.push('route-source-identity-contradicted');
+  }
   if(!Array.isArray(trail.path) || trail.path.length < 2) blockers.push('usable-geometry-missing');
   if(!trail.reviewedAt) blockers.push('review-date-missing');
   if(!Array.isArray(trail.sourceLinks) || !trail.sourceLinks.length) blockers.push('claim-sources-missing');
@@ -108,22 +122,25 @@ function baselineBlockers(trail, identityChecks){
   return blockers;
 }
 
-function priorityFor(trail, verified, blockers, identityChecks){
+function priorityFor(trail, verified, blockers, identityChecks, composites){
   let score = trail.curated === false ? 200 : 300;
   if(verified) score = 50;
-  // A relation that reconstructs a different route is not a usable identity,
-  // so it does not earn the bonus for having one.
-  if(relationExternalId(trail) && !identityContradiction(trail, identityChecks)) score += 15;
+  // A relation that does not cover the walk is not a usable identity, so it
+  // does not earn the bonus for having one. An approved composite does.
+  const sourced = approvedComposite(trail, composites)
+    || (relationExternalId(trail) && !identityContradiction(trail, identityChecks, composites));
+  if(sourced) score += 15;
   if(Array.isArray(trail.sourceLinks) && trail.sourceLinks.length) score += 10;
   score += Math.min(blockers.length, 20);
   return score;
 }
 
-function campaignItem(trail, identityChecks){
+function campaignItem(trail, identityChecks, composites){
   const verified = hasFullGraduation(trail);
   const externalId = relationExternalId(trail);
-  const blockers = verified ? [] : baselineBlockers(trail, identityChecks);
-  const contradiction = verified ? null : identityContradiction(trail, identityChecks);
+  const blockers = verified ? [] : baselineBlockers(trail, identityChecks, composites);
+  const contradiction = verified ? null : identityContradiction(trail, identityChecks, composites);
+  const composite = verified ? null : approvedComposite(trail, composites);
   return {
     trailId: trail.id,
     name: trail.name,
@@ -136,10 +153,15 @@ function campaignItem(trail, identityChecks){
       // A recorded relation that turned out to be a different route leaves the
       // trail needing a source, exactly like having none. Queueing the same
       // check again would only fail again.
+      : composite ? 'identity-check-queued'
       : externalId && !contradiction ? 'identity-check-queued' : 'source-identity-required',
-    priorityScore: priorityFor(trail, verified, blockers, identityChecks),
+    priorityScore: priorityFor(trail, verified, blockers, identityChecks, composites),
     baselineBlockers: blockers,
     identityCheck: contradiction,
+    routeComposite: composite
+      ? { coveragePercent:composite.coveragePercent,
+          relations:(composite.relations || []).map(entry => entry.externalRelationId) }
+      : null,
     existing: {
       reviewedAt: trail.reviewedAt || null,
       sourceCount: Array.isArray(trail.sourceLinks) ? trail.sourceLinks.length : 0,
@@ -168,7 +190,8 @@ function planCatalogueCampaign(trails, options = {}){
   const jobLimit = Number.isInteger(options.jobLimit) && options.jobLimit > 0 ? options.jobLimit : 5;
   const excludedTrailIds = new Set(Array.isArray(options.excludedTrailIds) ? options.excludedTrailIds : []);
   const identityChecks = options.identityChecks || {};
-  const items = trails.map(trail => campaignItem(trail, identityChecks)).sort((a, b) =>
+  const composites = options.composites || {};
+  const items = trails.map(trail => campaignItem(trail, identityChecks, composites)).sort((a, b) =>
     b.priorityScore - a.priorityScore || a.name.localeCompare(b.name) || a.trailId.localeCompare(b.trailId));
   const queueable = items.filter(item => !item.modernGraduationVerified
     && item.campaignState !== 'rejected'
@@ -191,6 +214,7 @@ function planCatalogueCampaign(trails, options = {}){
       identityCheckQueued: items.filter(item => item.campaignState === 'identity-check-queued').length,
       sourceIdentityRequired: items.filter(item => item.campaignState === 'source-identity-required').length,
       sourceIdentityContradicted: items.filter(item => item.identityCheck).length,
+      sourcedByComposite: items.filter(item => item.routeComposite).length,
       previouslyQueued: excludedTrailIds.size,
       remainingQueueable: queueable.length - selected.length,
       jobsCreated: jobs.length,
@@ -207,5 +231,5 @@ function planCatalogueCampaign(trails, options = {}){
 module.exports = {
   GRADUATION_CHECKS, hasFullGraduation, relationExternalId,
   baselineBlockers, campaignItem, jobForItem, planCatalogueCampaign,
-  pathIsClosedLoop, identityContradiction, ON_ROUTE_PERCENT,
+  pathIsClosedLoop, identityContradiction, approvedComposite, ON_ROUTE_PERCENT,
 };

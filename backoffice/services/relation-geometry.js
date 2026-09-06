@@ -95,7 +95,11 @@ function reconstructRelation(payload, externalId, options = {}){
       memberWayCount: extracted.ways.length + extracted.missingWayIds.length,
     },
     geometry: { type: 'LineString', coordinates: primary.coordinates },
-    components: components.map(component => ({ wayIds: component.wayIds, pointCount: component.coordinates.length })),
+    // Every component keeps its line. The route line is the largest one, but a
+    // relation that comes back in pieces still holds route geometry in the
+    // rest, and a reader measuring coverage needs all of it.
+    components: components.map(component => ({ wayIds: component.wayIds,
+      pointCount: component.coordinates.length, coordinates: component.coordinates })),
     missingWayIds: extracted.missingWayIds,
     assessment: { ...assessment, issues, status: issues.length ? 'needs-review' : 'passed' },
   };
