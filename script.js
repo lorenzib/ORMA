@@ -182,6 +182,14 @@ let liNewMatchIds = new Set();
 let liNewMatchSyncKey = '';
 let liNewMatchSyncInFlight = null;
 
+// Today, for this area, corrected for each trail's altitude. Undefined until a
+// forecast arrives, which makes the engine report conditions as not included --
+// the same answer the trail page gives for the same trail.
+function liConditionsFor(trail){
+  const area = window.DoloPawsHomeConditions;
+  return area && typeof area.forTrail === 'function' ? area.forTrail(trail) : undefined;
+}
+
 function filterTrailsForReturningView(list){
   let displayList = showingSavedOnly ? list.filter(x => currentFavorites[x.id]) : list;
   if(activeCountry !== 'all'){
@@ -235,7 +243,7 @@ function filterTrailsForReturningView(list){
 function matchReason(t, overrides){
   const isImported = t.curated === false;
   try{
-    const recommendation = recommendTrail(t, overrides);
+    const recommendation = recommendTrail(t, overrides, liConditionsFor(t));
     const reasons = recommendation.positiveReasons.slice(0, 2);
     if(reasons.length < 2) reasons.push(...recommendation.cautions.slice(0, 2 - reasons.length));
     if(reasons.length) return reasons.map(reason => reason.message).join(' ');
@@ -1828,8 +1836,15 @@ function renderLiToolbarContext(profile){
     : 'Where are we going today?';
   const toolbarContext = document.getElementById('liToolbarDogContext');
   if(!toolbarContext) return;
+  // "Right now" is a claim about today, so it is only made once a forecast
+  // has actually landed. Otherwise the subtitle promises less and stays true.
+  const dayKnown = !!(window.DoloPawsHomeConditions
+    && typeof window.DoloPawsHomeConditions.band === 'function'
+    && window.DoloPawsHomeConditions.band());
   toolbarContext.textContent = profile && profile.name
-    ? `Trails ranked for ${profile.name}\u2019s needs and your current choices.`
+    ? (dayKnown
+      ? `Ranked for ${profile.name}, right now. Adjust only if you want to.`
+      : `Trails ranked for ${profile.name}\u2019s needs and your current choices.`)
     : 'Trails ranked for your dog\u2019s needs and your current choices.';
 }
 
@@ -2021,9 +2036,18 @@ function renderLiConditionsCard(profile, displayList){
 
   const great = (displayList || []).filter(x => x.score >= 85).length;
   const tiles = [
-    overrides.heatSensitive
-      ? { v: 'Watch', c: '#8A5A16', l: 'Heat' }
-      : { v: 'Good', c: '#2C5C34', l: 'Heat' },
+    // The band above states the day. A tile reading "Good" underneath it while
+    // heat is rising would contradict it on the same screen, so today's area
+    // reading is folded in alongside the dog's own sensitivity.
+    (function(){
+      const today = window.DoloPawsHomeConditions && typeof window.DoloPawsHomeConditions.band === 'function'
+        ? window.DoloPawsHomeConditions.band() : null;
+      const hot = today && today.tone === 'high';
+      const warm = today && today.tone === 'moderate';
+      return (hot || (warm && overrides.heatSensitive) || overrides.heatSensitive)
+        ? { v: 'Watch', c: '#8A5A16', l: 'Heat' }
+        : { v: 'Good', c: '#2C5C34', l: 'Heat' };
+    })(),
     overrides.terrain === '0'
       ? { v: 'Tender', c: '#8A5A16', l: 'Paws' }
       : { v: 'Good', c: '#2C5C34', l: 'Paws' },
@@ -2299,7 +2323,7 @@ function renderLiSearchSuggestions(profile){
   const matches = trails
     .filter(trail => liTrailIsInSelectedGeography(trail, true))
     .filter(trail => [trail.name, trail.area, trail.valley].some(value => String(value || '').toLowerCase().includes(query)))
-    .map(trail => ({ ...trail, score:recommendTrail(trail, overrides).score }))
+    .map(trail => ({ ...trail, score:recommendTrail(trail, overrides, liConditionsFor(trail)).score }))
     .sort((a, b) => b.score - a.score || a.distance - b.distance)
     .slice(0, 6);
 
@@ -2402,6 +2426,14 @@ function liScheduleNewMatchSync(scored, profile){
     });
 }
 
+// The forecast lands after the first paint. Without this the list keeps the
+// order and the scores it had before the day was known.
+if(typeof window !== 'undefined'){
+  window.addEventListener('dolopaws-area-conditions-ready', () => {
+    if(typeof currentProfileForAdjust !== 'undefined' && currentProfileForAdjust) renderReturningHomepage(currentProfileForAdjust);
+  });
+}
+
 async function renderReturningHomepage(profile, options = {}){
   profile = liResolveActiveProfile(profile);
   const heading = document.getElementById('returningHeading');
@@ -2427,7 +2459,7 @@ async function renderReturningHomepage(profile, options = {}){
     : (profile && profile.name ? `Ranked for ${profile.name}` : 'Ranked for your dog');
 
   const scored = trails.map(t => {
-    const recommendation = recommendTrail(t, overrides);
+    const recommendation = recommendTrail(t, overrides, liConditionsFor(t));
     return {...t, score: recommendation.score, recommendation};
   }).sort((a,b) => b.score - a.score);
   if(listEl && window.DoloPawsScoring){

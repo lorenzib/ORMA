@@ -74,6 +74,7 @@
     "hike-gps-policy.js",
     "hike-mode.js",
     "hike-session.js",
+    "homepage-conditions.js",
     "homepage-editorial.css",
     "homepage-mobile.css",
     "homepage-mobile.js",
