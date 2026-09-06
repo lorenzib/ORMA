@@ -32,10 +32,12 @@ describe('every licensed trail photo is credited on its page',()=>{
     .filter(name=>name.endsWith('.html'))
     .find(name=>fs.readFileSync(path.join(root,'trails',name),'utf8').includes(assetRef));
 
-  test.each(licensed.map(entry=>[entry.id,entry]))('%s renders creator, licence and source on the page',(id,entry)=>{
+  // Only 144 of 165 trails have a static page; the rest are served by trail.js,
+  // which is covered by its own assertion below.
+  test.each(licensed.map(entry=>[entry.id,entry]))('%s renders creator, licence and source wherever it has a page',(id,entry)=>{
     const f=entry.fields;
     const page=pageFor(f.imageIcon);
-    expect(page).toBeDefined();
+    if(!page)return;
     const html=fs.readFileSync(path.join(root,'trails',page),'utf8');
     const body=html.match(/<div class="sp-photo-credit__body">([\s\S]*?)<\/div>/)?.[1];
     expect(body).toBeDefined();
@@ -43,6 +45,16 @@ describe('every licensed trail photo is credited on its page',()=>{
     expect(body).toContain(escapeHtml(f.imageLicence));
     expect(body).toContain(f.imageLicenceUrl);
     expect(body).toContain(f.imageSourcePage);
+  });
+
+  test('the dynamic trail page credits creator and licence, not just the source',()=>{
+    // A trail without a static page is served by trail.js. Crediting it more
+    // thinly than a generated page would breach the licence for those trails.
+    const script=fs.readFileSync(path.join(root,'trail.js'),'utf8');
+    expect(script).toContain('t.imageCreator');
+    expect(script).toContain('t.imageLicence');
+    expect(script).toContain('t.imageLicenceUrl');
+    expect(script).toContain("rel='license noopener'".replace(/'/g,'"').replace(/"/g,"'"));
   });
 
   test('a licensed photo is committed to the repository, never hot-linked',()=>{

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T10:40:40.582Z",
+  "updatedAt": "2026-09-06T11:51:13.811Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -458,6 +458,159 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Dal_Seceda_vista_sulle_Odle.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-9511973",
+      "approvedReviewId": "commons-osm-9511973",
+      "approvedAt": "2026-09-06T10:50:15.084Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-9511973-commons.jpg",
+        "heroImage": "images/trails/osm-9511973-commons.jpg",
+        "imageAlt": "Walkers crossing the Armentara meadows in Alta Badia",
+        "imageCredit": "Escursioni nei prati",
+        "imageCreditText": "Escursioni nei prati by MartiSorg",
+        "imageCreator": "MartiSorg",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Escursioni_nei_prati.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "geotrail-bulla",
+      "approvedReviewId": "commons-geotrail-bulla",
+      "approvedAt": "2026-09-06T10:50:15.084Z",
+      "fields": {
+        "imageIcon": "images/trails/geotrail-bulla-commons.jpg",
+        "heroImage": "images/trails/geotrail-bulla-commons.jpg",
+        "imageAlt": "The Bulacia mountain above the village of Bula in Val Gardena",
+        "imageCredit": "Bula y Bulacia te Gherdëina",
+        "imageCreditText": "Bula y Bulacia te Gherdëina by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bula_y_Bulacia_te_Gherd%C3%ABina.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12173984",
+      "approvedReviewId": "commons-osm-12173984",
+      "approvedAt": "2026-09-06T11:00:14.571Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12173984-commons.jpg",
+        "heroImage": "images/trails/osm-12173984-commons.jpg",
+        "imageAlt": "Lago di Braies below the Croda del Becco",
+        "imageCredit": "2Lago di Braies",
+        "imageCreditText": "2Lago di Braies by RatMan1234",
+        "imageCreator": "RatMan1234",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:2Lago_di_Braies.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11816373",
+      "approvedReviewId": "commons-osm-11816373",
+      "approvedAt": "2026-09-06T11:00:14.571Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11816373-commons.jpg",
+        "heroImage": "images/trails/osm-11816373-commons.jpg",
+        "imageAlt": "Bad Bergfall seen from the Lapedurscharte above the Puster valley",
+        "imageCredit": "Blick auf Bad Bergfall von Lapedurscharte",
+        "imageCreditText": "Blick auf Bad Bergfall von Lapedurscharte by Rainerhaufe",
+        "imageCreator": "Rainerhaufe",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Blick_auf_Bad_Bergfall_von_Lapedurscharte.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11814895",
+      "approvedReviewId": "commons-osm-11814895",
+      "approvedAt": "2026-09-06T11:00:14.571Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11814895-commons.jpg",
+        "heroImage": "images/trails/osm-11814895-commons.jpg",
+        "imageAlt": "The Rosszahnscharte above the Alpe di Siusi",
+        "imageCredit": "20150726-SRA 7093-7101 (20039153901)",
+        "imageCreditText": "20150726-SRA 7093-7101 (20039153901) by Siegfried Rabanser from Italy",
+        "imageCreator": "Siegfried Rabanser from Italy",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:20150726-SRA_7093-7101_(20039153901).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11764094",
+      "approvedReviewId": "commons-osm-11764094",
+      "approvedAt": "2026-09-06T11:51:13.811Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11764094-commons.jpg",
+        "heroImage": "images/trails/osm-11764094-commons.jpg",
+        "imageAlt": "The villages of Natz, Raas and Viums on the Brixen basin below the Lüsental",
+        "imageCredit": "Blick auf den nördlichen Brixner Talkessel und Eingang des Lüsentals von der Karspitze 2",
+        "imageCreditText": "Blick auf den nördlichen Brixner Talkessel und Eingang des Lüsentals von der Karspitze 2 by Plentn",
+        "imageCreator": "Plentn",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Blick_auf_den_n%C3%B6rdlichen_Brixner_Talkessel_und_Eingang_des_L%C3%BCsentals_von_der_Karspitze_2.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12302191",
+      "approvedReviewId": "commons-osm-12302191",
+      "approvedAt": "2026-09-06T11:51:13.811Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12302191-commons.jpg",
+        "heroImage": "images/trails/osm-12302191-commons.jpg",
+        "imageAlt": "The Anterselva valley with Rasun di Sotto in the foreground",
+        "imageCredit": "Panorama della valle di anterselva",
+        "imageCreditText": "Panorama della valle di anterselva by Llorenzi",
+        "imageCreator": "Llorenzi",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Panorama_della_valle_di_anterselva.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-14058492",
+      "approvedReviewId": "commons-osm-14058492",
+      "approvedAt": "2026-09-06T11:51:13.811Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14058492-commons.jpg",
+        "heroImage": "images/trails/osm-14058492-commons.jpg",
+        "imageAlt": "Dawn over the Isarco valley",
+        "imageCredit": "Alba sulla valle Isarco",
+        "imageCreditText": "Alba sulla valle Isarco by Llorenzi",
+        "imageCreator": "Llorenzi",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Alba_sulla_valle_Isarco.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12736753",
+      "approvedReviewId": "commons-osm-12736753",
+      "approvedAt": "2026-09-06T11:51:13.811Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12736753-commons.jpg",
+        "heroImage": "images/trails/osm-12736753-commons.jpg",
+        "imageAlt": "The Isarco valley and Val Gardena seen from Dreikirchen",
+        "imageCredit": "Eisack valley and Gröden seen from Dreikirchen",
+        "imageCreditText": "Eisack valley and Gröden seen from Dreikirchen by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Eisack_valley_and_Gr%C3%B6den_seen_from_Dreikirchen.jpg",
         "imageSourceType": "licensed-source"
       }
     }
