@@ -1,0 +1,119 @@
+{
+  "contractVersion": "1.0.0",
+  "valley": "Chambéry – Bauges",
+  "trailCount": 8,
+  "categoriesNeeded": {
+    "water": 8,
+    "heat": 8,
+    "exposure": 8,
+    "livestock": 8,
+    "surfaceHazards": 8,
+    "access": 8
+  },
+  "trails": [
+    {
+      "id": "osm-3982382",
+      "name": "Circuit Béatrice de Savoie",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-14095296",
+      "name": "Les Marais d'Albens",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-16322228",
+      "name": "Boucle du Marais des Chassettes",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-16363583",
+      "name": "Le Marais de Pré Lombard",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-16395076",
+      "name": "Boucle du Lac de la Thuile",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-19153189",
+      "name": "Le Belvédère (Saint-Pierre-d'Albigny)",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-15591346",
+      "name": "Sentier des Buis",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-16365005",
+      "name": "La Galoppaz par la Combe Servenne",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "",
+      "url": "",
+      "categories": [],
+      "note": ""
+    }
+  ]
+}

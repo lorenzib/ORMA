@@ -1,0 +1,47 @@
+{
+  "contractVersion": "1.0.0",
+  "valley": "Primiero – Pale",
+  "trailCount": 2,
+  "categoriesNeeded": {
+    "water": 2,
+    "heat": 2,
+    "exposure": 2,
+    "livestock": 2,
+    "surfaceHazards": 2,
+    "access": 2
+  },
+  "trails": [
+    {
+      "id": "osm-6404633",
+      "name": "Anello dei Pradi",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-6404634",
+      "name": "Anello del Bosco",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "",
+      "url": "",
+      "categories": [],
+      "note": ""
+    }
+  ]
+}

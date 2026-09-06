@@ -1,0 +1,143 @@
+{
+  "contractVersion": "1.0.0",
+  "valley": "Tarentaise – Vanoise",
+  "trailCount": 10,
+  "categoriesNeeded": {
+    "water": 10,
+    "heat": 10,
+    "exposure": 10,
+    "livestock": 10,
+    "surfaceHazards": 10,
+    "access": 10
+  },
+  "trails": [
+    {
+      "id": "osm-9933643",
+      "name": "Le Lac Vert",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-9937537",
+      "name": "Le Mont Jovet",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-15321049",
+      "name": "Sentier des Écureuils",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-15321786",
+      "name": "Circuit de la Comtesse Cécile",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-15535697",
+      "name": "La Maïtaz",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-16218739",
+      "name": "Circuit du Ragairon",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-19531872",
+      "name": "Circuit des Demoiselles Coiffées",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-19760372",
+      "name": "Boucle du Moulin de Cornet",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-19855818",
+      "name": "Boucle des cascades",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-21021130",
+      "name": "PARCOURS N°11 | LACS DU CHARDONNET",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "",
+      "url": "",
+      "categories": [],
+      "note": ""
+    }
+  ]
+}
