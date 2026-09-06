@@ -2369,12 +2369,30 @@ function liRevealMapPane(){
 
 // Match column shared by list rows and the map preview card. Tier steps
 // mirror the map pins (85 great / 65 good) and the map legend's colours.
-// Row meta per the design TrailRow: "7.5 km · 150 m climb · 2–2.5 h · 35% shade"
+// Shade in the words the design asks for, but only where those words are a
+// caution. Every trail carrying a shade figure is unreviewed for the heat
+// category: 23 hold a value and none is curated. SCORING.md settles that case
+// already, and this follows it rather than inventing a second rule. A warning
+// still shows, because suppressing one for want of a review hides a real
+// hazard. Reassurance does not, because "substantial shade" on a route nobody
+// has reviewed reads as a promise when it only means nobody looked.
+//
+// Bands are the engine's own (trail.shade.very-low, .low, .good), so a card and
+// a score cannot describe the same route differently.
+function liShadeLabel(shade){
+  if(!Number.isFinite(shade)) return null;
+  if(shade < 20) return 'little shade';
+  if(shade < 40) return 'limited shade';
+  return `${shade}% shade`;
+}
+
+// Row meta per the design TrailRow: "7.5 km · 150 m climb · 2–2.5 h · little shade"
 function liRowMeta(t){
   const parts = [`${t.distance} km`];
   if(Number.isFinite(t.elevation)) parts.push(`${t.elevation} m climb`);
   if(t.hours) parts.push(`${t.hours} h`);
-  if(Number.isFinite(t.shadeCoverage)) parts.push(`${t.shadeCoverage}% shade`);
+  const shade = liShadeLabel(t.shadeCoverage);
+  if(shade) parts.push(shade);
   return parts.join(' · ');
 }
 
