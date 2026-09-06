@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T19:13:57.327Z",
+  "updatedAt": "2026-09-06T19:29:10.688Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -611,6 +611,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lac_vert_de_passy_(2).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-1780768",
+      "approvedReviewId": "commons-osm-1780768",
+      "approvedAt": "2026-09-06T19:29:10.682Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-1780768-gsiesertal.jpg",
+        "heroImage": "images/trails/osm-1780768-gsiesertal.jpg",
+        "imageAlt": "Cattle grazing on green meadows below farmhouses in the Gsies valley, with forested slopes rising to bare summits at its head.",
+        "imageCredit": "Gsiesertal, Pustertal",
+        "imageCreditText": "Gsiesertal, Pustertal by Erwin Oberkofler",
+        "imageCreator": "Erwin Oberkofler",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gsiesertal_DxO.jpg",
         "imageSourceType": "licensed-source"
       }
     },
