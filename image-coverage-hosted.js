@@ -101,11 +101,29 @@
     if(candidate.uploadRef){const response=await remote.getTrailImagePreview(candidate.uploadRef);if(response?.ok)image.src=response.url;else image.replaceWith(el('p','bo-no-match','Protected preview could not be loaded.'));}
   }
 
+  // A candidate is not required to carry an asset. The AI path deliberately
+  // returns assetUrl:null with status needs-generation, and blocked rights land
+  // the same way. Appending an <img> regardless left an empty picture frame with
+  // no explanation, which is why the desk looked broken rather than busy.
+  const NO_ASSET_COPY={
+    'needs-generation':'No image yet. This candidate is an AI brief, not an asset.',
+    'blocked':'No preview. Rights are blocked for this candidate.',
+  };
+
+  function candidatePreview(gap,candidate){
+    if(candidate.assetUrl||candidate.uploadRef){
+      const image=el('img');image.alt=candidate.altText||candidate.title||gap.title;
+      attachCandidatePreview(image,candidate).catch(()=>image.replaceWith(el('p','bo-no-match','Preview unavailable.')));
+      return image;
+    }
+    return el('p','bo-no-match',NO_ASSET_COPY[candidate.status]||'No image is attached to this candidate yet.');
+  }
+
   function resultBlock(gap,result,request){
     const block=el('section','bo-expanded-research');block.append(el('strong','',result.summary||result.status||'Image agent result'));
     for(const candidate of result.candidates||[]){
-      const item=el('article','bo-picture-candidate');const image=el('img');image.alt=candidate.altText||candidate.title||gap.title;
-      item.append(image);attachCandidatePreview(image,candidate).catch(()=>image.replaceWith(el('p','bo-no-match','Preview unavailable.')));
+      const item=el('article','bo-picture-candidate');
+      item.append(candidatePreview(gap,candidate));
       item.append(el('h4','',candidate.title||gap.title),el('p','',candidate.rightsEvidence||'Rights evidence still needs review.'),
         el('small','',`${candidate.creator||'Unknown creator'} · ${candidate.license||'Rights pending'} · ${String(candidate.status||'pending').replace(/-/g,' ')}`));
       if(candidate.sourcePageUrl){const source=el('a','bo-source-pill','Open source ↗');source.href=candidate.sourcePageUrl;source.target='_blank';source.rel='noopener';item.append(source);}
