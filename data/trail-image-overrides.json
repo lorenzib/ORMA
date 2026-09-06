@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T15:21:27.825Z",
+  "updatedAt": "2026-09-06T17:09:54.175Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -646,6 +646,23 @@
         "imageLicenceUrl": null,
         "imageSourcePage": null,
         "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "osm-2179746",
+      "approvedReviewId": "commons-osm-2179746",
+      "approvedAt": "2026-09-06T17:09:54.169Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-2179746-castelfeder.jpg",
+        "heroImage": "images/trails/osm-2179746-castelfeder.jpg",
+        "imageAlt": "The smooth Heidenrutsche rock and dry grass on the Castelfeder hill, with ruin walls above and wooded slopes beyond.",
+        "imageCredit": "Castelfeder, Auer",
+        "imageCreditText": "Castelfeder, Auer by DKrieger",
+        "imageCreator": "DKrieger",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Castelfeder_3294.jpg",
+        "imageSourceType": "licensed-source"
       }
     },
     {
