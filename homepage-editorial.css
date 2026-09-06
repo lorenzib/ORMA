@@ -193,3 +193,14 @@
   .hp-feat-h2{font-size:23px;}
   .hp-coll-rank-row{align-items:flex-start;flex-direction:column;}
 }
+
+/* Today's conditions for the area on screen. Sits under the greeting because
+   it qualifies the ranking beneath it: the list is ordered for right now, not
+   in the abstract. Tones stay close to the existing match tiers so a warm day
+   reads as caution rather than as an error. */
+.li-today{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:10px 0 0;padding:10px 14px;border-radius:12px;background:#E7EFF7;color:#243B52;font-size:13px;line-height:1.45;}
+.li-today[hidden]{display:none;}
+.li-today strong{font-weight:800;}
+.li-today[data-tone="moderate"]{background:#F7EEDC;color:#6E4E14;}
+.li-today[data-tone="high"]{background:#F7E2DB;color:#8C3A28;}
+@media (max-width:700px){.li-today{margin:8px 0 0;padding:9px 12px;font-size:12.5px;}}
