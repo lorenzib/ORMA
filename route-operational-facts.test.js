@@ -50,7 +50,7 @@ describe('P0-2 route operational facts', () => {
     // The acceptance criterion is explicit: never a guessed or empty policy.
     expect(row.policy).toBeNull();
     expect(row.policyLabel).toBeNull();
-    expect(row.label).toBe('Not yet verified — check before you go');
+    expect(row.label).toBe('Not yet verified, check before you go');
   });
 
   // Scenario: verification age is visible
@@ -59,7 +59,7 @@ describe('P0-2 route operational facts', () => {
     const [row] = facts.rowsFor({ id:'tre-cime' }, table([stale]), '2026-09-05');
 
     expect(row.state).toBe('stale');
-    expect(row.label).toBe('Last verified Jul 2025 — may have changed');
+    expect(row.label).toBe('Last verified Jul 2025, may have changed');
     // The policy is still shown: it was checked, just a while ago.
     expect(row.policyLabel).toBe('dogs accepted, leashed');
   });

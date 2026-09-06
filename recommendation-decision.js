@@ -26,7 +26,7 @@
   }
 
   // Calm framing: confidence describes data completeness, not danger.
-  // "low" must not read as a warning — missing data never lowers the score.
+  // "low" must not read as a warning, missing data never lowers the score.
   const CONFIDENCE_LABEL = Object.freeze({
     high: 'Based on detailed trail data',
     medium: 'Based on available trail data',
@@ -55,7 +55,7 @@
     // Only four reasons and four cautions reach the card, so what survives the
     // cut decides whether the explanation reads as specific to this dog or as
     // boilerplate. The engine emits in calculation order, which puts every
-    // behaviour and positioned advisory last — exactly the lines worth
+    // behaviour and positioned advisory last, exactly the lines worth
     // showing. Rank before slicing; ties keep the engine's own order.
     const rank = (tiers, fallback) => item => {
       const code = typeof item.code === 'string' ? item.code : '';
@@ -143,7 +143,7 @@
       reasons:reasons.slice(0, 4),
       cautions:cautions.slice(0, 4),
       // P0-1: the full ordered breakdown, most negative first. Unlike the two
-      // summary lists above this is not truncated — the acceptance criterion
+      // summary lists above this is not truncated, the acceptance criterion
       // is that it lists exactly the factors the score was computed from.
       breakdownFor:dogName || 'a medium dog',
       breakdown:breakdownFactors,
@@ -165,7 +165,7 @@
   }
 
   // P0-3: what changed when the reader added their own dog. A move of two
-  // points or less is not a move — claiming one would be inventing drama the
+  // points or less is not a move, claiming one would be inventing drama the
   // score does not support.
   const SAME_SCORE_TOLERANCE = 2;
 

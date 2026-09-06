@@ -108,7 +108,7 @@
 
   function shareText(entry, dogName, tags, profileUrl){
     var bits = [];
-    bits.push((dogName ? dogName + '’s Trail Tale' : 'Our Trail Tale') + ' — ' + (entry.dist || '?') + ' km in ' + fmtDuration(entry.dur));
+    bits.push((dogName ? dogName + '’s Trail Tale' : 'Our Trail Tale') + ', ' + (entry.dist || '?') + ' km in ' + fmtDuration(entry.dur));
     if(entry.trail && entry.trail !== 'Recorded walk') bits.push(entry.trail);
     var verdict = taleSentence(entry, dogName);
     var tagLine = (tags || []).filter(Boolean).map(function(tag){ return '@' + String(tag).replace(/^@/, '').replace(/\s+/g, ''); }).join(' ');

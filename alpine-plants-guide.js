@@ -209,7 +209,7 @@
           const status = PRESENTATION[safety];
           return `<section class="apg-group apg-group--${status.tone}" aria-labelledby="plant-group-${status.tone}"><header><div class="apg-badge apg-badge--${status.tone}">${icon(status.icon)}<span>${status.label}</span></div><h2 id="plant-group-${status.tone}">${status.groupTitle}</h2><p>${status.meaning}</p></header><div class="apg-grid">${group.map(plantCard).join('')}</div></section>`;
         }).join('')
-        : '<div class="apg-empty"><h2>No plants match these filters</h2><p>Clear filters—and treat any unknown plant cautiously.</p><button type="button" data-clear-plants>Clear all filters</button></div>';
+        : '<div class="apg-empty"><h2>No plants match these filters</h2><p>Clear filters, and treat any unknown plant cautiously.</p><button type="button" data-clear-plants>Clear all filters</button></div>';
       const emptyClear = controls.results.querySelector('[data-clear-plants]');
       if(emptyClear) emptyClear.addEventListener('click', clearAll);
       controls.results.setAttribute('aria-busy', 'false');

@@ -291,7 +291,7 @@
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260905-2"></script>
+<script src="mobile-nav.js?v=20260905-3"></script>
 <script src="i18n.js"></script>
 <script type="module" src="firebase-init.js?v=20260901-1"></script>
 <script src="icon-system.js?v=20260815-4" defer></script>
@@ -342,12 +342,12 @@
 
     if(ready === 5){
       result.dataset.level = 'ready';
-      resultTitle.textContent = 'Ready — with a final trailhead check';
+      resultTitle.textContent = 'Ready, with a final trailhead check';
       resultSummary.textContent = 'You answered Yes to all five checks. You have covered the essentials, but mountain conditions can still change.';
       missing.push('Recheck the weather and your dog at the trailhead, keep a turnaround margin and adjust the plan if either has changed.');
     }else if(ready >= 3){
       result.dataset.level = 'caution';
-      resultTitle.textContent = 'Almost ready — resolve these items first';
+      resultTitle.textContent = 'Almost ready, resolve these items first';
       resultSummary.textContent = `${ready} of 5 checks are complete. Deal with the remaining ${missing.length === 1 ? 'item' : 'items'} before committing to the route.`;
     }else{
       result.dataset.level = 'stop';

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-05T14:58:33.051Z",
+  "updatedAt": "2026-09-05T21:14:34.033Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -170,6 +170,142 @@
         "imageLicenceUrl": null,
         "imageSourcePage": null,
         "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "giro-del-sasso-lungo",
+      "approvedReviewId": "commons-giro-del-sasso-lungo",
+      "approvedAt": "2026-09-05T20:54:58.988Z",
+      "fields": {
+        "imageIcon": "images/trails/giro-del-sasso-lungo-commons.jpg",
+        "heroImage": "images/trails/giro-del-sasso-lungo-commons.jpg",
+        "imageAlt": "The Sassolungo peak above Val Gardena",
+        "imageCredit": "Saslong udu da Sacun ora",
+        "imageCreditText": "Saslong udu da Sacun ora by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Saslong_udu_da_Sacun_ora.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "sentiero-del-trenino",
+      "approvedReviewId": "commons-sentiero-del-trenino",
+      "approvedAt": "2026-09-05T20:54:58.988Z",
+      "fields": {
+        "imageIcon": "images/trails/sentiero-del-trenino-commons.jpg",
+        "heroImage": "images/trails/sentiero-del-trenino-commons.jpg",
+        "imageAlt": "Val Gardena below the Sassolungo and Sella groups, seen from Resciesa",
+        "imageCredit": "Val Gardena with Sella and Saslonch from Resciesa",
+        "imageCreditText": "Val Gardena with Sella and Saslonch from Resciesa by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Val_Gardena_with_Sella_and_Saslonch_from_Resciesa.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-7548489",
+      "approvedReviewId": "commons-osm-7548489",
+      "approvedAt": "2026-09-05T20:54:58.988Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7548489-commons.jpg",
+        "heroImage": "images/trails/osm-7548489-commons.jpg",
+        "imageAlt": "Autumn beside the lake at Auronzo di Cadore",
+        "imageCredit": "Auronzo cadore lago autunno",
+        "imageCreditText": "Auronzo cadore lago autunno by Kufoleto Antonio De Lorenzo & Marina Ventayol",
+        "imageCreator": "Kufoleto Antonio De Lorenzo & Marina Ventayol",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Auronzo_cadore_lago_autunno.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-6404633",
+      "approvedReviewId": "commons-osm-6404633",
+      "approvedAt": "2026-09-05T20:54:58.988Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-6404633-commons.jpg",
+        "heroImage": "images/trails/osm-6404633-commons.jpg",
+        "imageAlt": "The Pale di San Martino group in summer",
+        "imageCredit": "Gruppo delle Pale in estate",
+        "imageCreditText": "Gruppo delle Pale in estate by Alchenick",
+        "imageCreator": "Alchenick",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gruppo_delle_Pale_in_estate.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "nuvolau",
+      "approvedReviewId": "commons-nuvolau",
+      "approvedAt": "2026-09-05T21:14:34.033Z",
+      "fields": {
+        "imageIcon": "images/trails/nuvolau-commons.jpg",
+        "heroImage": "images/trails/nuvolau-commons.jpg",
+        "imageAlt": "Passo Giau with the Gusela and Monte Nuvolau behind",
+        "imageCredit": "Passo di Giau",
+        "imageCreditText": "Passo di Giau by Frisia Orientalis",
+        "imageCreator": "Frisia Orientalis",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Passo_di_Giau.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "sassolungo",
+      "approvedReviewId": "commons-sassolungo",
+      "approvedAt": "2026-09-05T21:14:34.033Z",
+      "fields": {
+        "imageIcon": "images/trails/sassolungo-commons.jpg",
+        "heroImage": "images/trails/sassolungo-commons.jpg",
+        "imageAlt": "The Sassopiatto in the Dolomites at evening",
+        "imageCredit": "Plattkofel Abends",
+        "imageCreditText": "Plattkofel Abends by Fafner",
+        "imageCreator": "Fafner",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Plattkofel_Abends.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12027153",
+      "approvedReviewId": "commons-osm-12027153",
+      "approvedAt": "2026-09-05T21:14:34.033Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12027153-commons.jpg",
+        "heroImage": "images/trails/osm-12027153-commons.jpg",
+        "imageAlt": "The Latemar massif seen from San Floriano",
+        "imageCredit": "Latemar uit San Floriano",
+        "imageCreditText": "Latemar uit San Floriano by Cars en travel at Dutch Wikipedia",
+        "imageCreator": "Cars en travel at Dutch Wikipedia",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Latemar_uit_San_Floriano.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "piancavallo",
+      "approvedReviewId": "commons-piancavallo",
+      "approvedAt": "2026-09-05T21:14:34.033Z",
+      "fields": {
+        "imageIcon": "images/trails/piancavallo-commons.jpg",
+        "heroImage": "images/trails/piancavallo-commons.jpg",
+        "imageAlt": "Piancavallo in summer",
+        "imageCredit": "Piancavallo d'estate",
+        "imageCreditText": "Piancavallo d'estate by Croberto68",
+        "imageCreator": "Croberto68",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Piancavallo_d%27estate.jpg",
+        "imageSourceType": "licensed-source"
       }
     }
   ]

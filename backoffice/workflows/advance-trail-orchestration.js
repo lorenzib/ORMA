@@ -97,6 +97,20 @@ const GATE_STATES=Object.freeze({'geometry-human-gate':'geometry-approval','doss
 // at 1 MiB. Restoring every stranded trail at once overflowed it and failed the
 // whole worker pass, so restoration fills the remaining room and stops.
 const REVIEW_QUEUE_SAFE_BYTES=800000;
+const RESOLVED_REVIEWS_KEPT=25;
+
+// Resolved review items were never removed, so the queue grew without bound until
+// it filled its 1 MiB document and left no room for the trails still waiting. The
+// durable receipt of a decision lives in backofficeDossierReviews, not here; this
+// queue only needs the open work plus recent context.
+function pruneResolvedReviews(queue,keep=RESOLVED_REVIEWS_KEPT){
+  const items=queue.items||[];
+  const open=items.filter(item=>item.state==='awaiting-human');
+  const resolved=items.filter(item=>item.state!=='awaiting-human')
+    .sort((a,b)=>String(a.openedAt||'').localeCompare(String(b.openedAt||'')));
+  const dropped=Math.max(0,resolved.length-keep);
+  return {items:[...resolved.slice(dropped),...open],dropped};
+}
 
 // A review item is written once, at the moment a trail enters a gate. No branch
 // below matches a trail that is already parked at one, so if the item is ever
@@ -104,6 +118,10 @@ const REVIEW_QUEUE_SAFE_BYTES=800000;
 // "awaiting a decision" while the desk shows nothing to decide. This rebuilds the
 // missing item from the trail's own record so a parked trail is always visible.
 async function restoreMissingGateReviews(store,state,queue,at,jobs=[]){
+  // Reclaim room before deciding what fits: a queue full of decided history would
+  // otherwise leave none for the trails still waiting.
+  const pruned=pruneResolvedReviews(queue);
+  queue.items=pruned.items;
   const live=new Set((queue.items||[]).filter(item=>item.state==='awaiting-human')
     .map(item=>String(item.trailId||item.candidateId)));
   const restored=[];
@@ -246,4 +264,4 @@ async function advanceTrailOrchestration(store,options={}){
   return {advanced,restored,queued:queued.map(job=>job.id)};
 }
 
-module.exports={GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
+module.exports={GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,RESOLVED_REVIEWS_KEPT,pruneResolvedReviews,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};

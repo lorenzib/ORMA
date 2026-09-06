@@ -154,7 +154,7 @@
     }
     closeComposer();
     if(result.queued){
-      status.textContent = result.message || 'Review saved on this device — waiting to sync when you reconnect.';
+      status.textContent = result.message || 'Review saved on this device, waiting to sync when you reconnect.';
       status.hidden = false;
       return;
     }

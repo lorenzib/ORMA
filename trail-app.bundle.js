@@ -183,7 +183,7 @@
 
 // ---- map-style.js ----
 /**
- * map-style.js — one shared cartographic treatment for every ORMA map.
+ * map-style.js, one shared cartographic treatment for every ORMA map.
  *
  * Before this file each map (trail detail, homepage, route planner,
  * collection) added the Waymarked Trails raster with its own hand-tuned
@@ -198,7 +198,7 @@
  * instead. The reference is AllTrails: a calm base, one unmistakable route
  * line, and the marked path network readable underneath it.
  *
- * Everything here is idempotent — calling twice on the same map is a no-op.
+ * Everything here is idempotent, calling twice on the same map is a no-op.
  */
 (function (global) {
   'use strict';
@@ -207,7 +207,7 @@
   // but with the route-relation rendering (numbered routes, waymark colours)
   // that a general-purpose basemap does not draw.
   const WAYMARKED_TILES = 'https://tile.waymarkedtrails.org/hiking/{z}/{x}/{y}.png';
-  const WAYMARKED_ATTRIBUTION = '© Sarah Hoffmann (CC-BY-SA) — waymarkedtrails.org';
+  const WAYMARKED_ATTRIBUTION = '© Sarah Hoffmann (CC-BY-SA), waymarkedtrails.org';
   const WAYMARKED_SOURCE = 'waymarked-hiking';
   const WAYMARKED_LAYER = 'waymarked-hiking-layer';
 
@@ -251,7 +251,7 @@
    * The opacity ramp is the only concession to legibility: at region zoom the
    * network is context and sits back; from trail zoom up it is the subject
    * and reads at nearly full strength. No desaturation, no contrast
-   * stretching — their shields are designed to be read.
+   * stretching, their shields are designed to be read.
    */
   function addWaymarkedHiking(map, options) {
     const config = options || {};
@@ -326,8 +326,8 @@
   // Green / amber / red on an ORMA map means one thing and one thing only:
   // how well this walk suits the dog. It never means how hard the trail is.
   //
-  // Three near-identical green/amber/red palettes used to exist — the match
-  // tiers, trail.js's safetyColor() and collections' difficultyColour() — and
+  // Three near-identical green/amber/red palettes used to exist, the match
+  // tiers, trail.js's safetyColor() and collections' difficultyColour(), and
   // two of them encoded the trail's intrinsic risk while looking exactly like
   // a match tier. A guest on a trail page got one meaning, a signed-in owner
   // another, from the same coloured line.
@@ -374,8 +374,8 @@
    * A solid match-colour line on top buries the very thing a walker follows:
    * Waymarked's own route line and its numbered shields end up hidden under
    * our paint, which is why we used to reprint the numbers ourselves in a
-   * second shield layer. Inverting the stack — a white casing, then a
-   * translucent match-colour corridor, with the raster on top — leaves the
+   * second shield layer. Inverting the stack, a white casing, then a
+   * translucent match-colour corridor, with the raster on top, leaves the
    * marked route and its real numbers legible down the middle of the
    * highlight, and the corridor still reads as "this is your route" at a
    * glance. Pass `beforeId` as the waymarked layer id to get this ordering.
@@ -1012,6 +1012,20 @@
       <path d="m4 18 5.2-8 2.2 3.1L14.6 7 20 18z"></path>
       <path d="m7.8 12.2 1.4-2.2 1.4 2"></path>
     `,
+    distance: `
+      <path d="M4 12h16"></path>
+      <path d="m7 9-3 3 3 3"></path>
+      <path d="m17 9 3 3-3 3"></path>
+    `,
+    difficulty: `
+      <path d="M4 20h16"></path>
+      <path d="M7 20v-4"></path>
+      <path d="M12 20v-8"></path>
+      <path d="M17 20v-12"></path>
+    `,
+    saved: `
+      <path d="M12 19.5 4.9 12.4a4.2 4.2 0 0 1 6-6l1.1 1.1 1.1-1.1a4.2 4.2 0 0 1 6 6z"></path>
+    `,
     camera: `
       <path d="M5 8h3l1.2-2h5.6L16 8h3v10H5z"></path>
       <circle cx="12" cy="13" r="3"></circle>
@@ -1065,7 +1079,7 @@
       <path d="M12 17h.01"></path>
     `,
   };
-  // Multicolor glyphs — the same drawings used in the trail itinerary, so
+  // Multicolor glyphs, the same drawings used in the trail itinerary, so
   // the map bubbles, the Layers chips and the legend all speak one language.
   const COLOR_GLYPHS = {
     water: '<path d="M12 4c2.9 3.4 4.6 6 4.6 8.4a4.6 4.6 0 11-9.2 0C7.4 10 9.1 7.4 12 4z" fill="#378ADD"/>',
@@ -1084,6 +1098,9 @@
     veterinary: '<circle cx="12" cy="12" r="9" fill="#B44435"/><path d="M12 7v10M7 12h10" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>',
     nearby: '<path d="M7.5 19c-2.3-2.9-3.5-5.2-3.5-7a3.5 3.5 0 017 0c0 1.8-1.2 4.1-3.5 7z" fill="#4E90A8"/><circle cx="7.5" cy="12" r="1.2" fill="#fff"/><path d="M16.5 19c-2.3-2.9-3.5-5.2-3.5-7a3.5 3.5 0 017 0c0 1.8-1.2 4.1-3.5 7z" fill="#2C5C34"/><circle cx="16.5" cy="12" r="1.2" fill="#fff"/>',
     information: '<circle cx="12" cy="12" r="9" fill="#28736B"/><path d="M12 10.5v6" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.5" r="1.2" fill="#fff"/>',
+    distance: '<path d="M5 12h14" stroke="#2C5C34" stroke-width="1.9" stroke-linecap="round"/><path d="M5 12l3.4-2.4v4.8z" fill="#D6A038"/><path d="M19 12l-3.4-2.4v4.8z" fill="#D6A038"/>',
+    difficulty: '<rect x="4.5" y="14" width="3.4" height="5.5" rx="0.9" fill="#5DCAA5"/><rect x="10.3" y="9.6" width="3.4" height="9.9" rx="0.9" fill="#D6A038"/><rect x="16.1" y="5.4" width="3.4" height="14.1" rx="0.9" fill="#E24B4A"/>',
+    saved: '<path d="M12 19.6 4.9 12.5a4.2 4.2 0 0 1 6-6l1.1 1.1 1.1-1.1a4.2 4.2 0 0 1 6 6z" fill="#E24B4A"/>',
   };
 
   const VALID_MODES = new Set(['inline', 'legend', 'marker', 'map']);
@@ -1143,7 +1160,7 @@
     const badge = mode === 'legend' || mode === 'marker' || mode === 'map';
 
     // Multicolor drawings: colorful glyph on a soft white bubble (badges)
-    // or bare (inline chips) — matches the itinerary icons exactly.
+    // or bare (inline chips), matches the itinerary icons exactly.
     if(COLOR_GLYPHS[normalizedKey]){
       const bubble = badge
         ? '<circle cx="12" cy="12" r="10.2" fill="#ffffff" stroke="#D8D5C8" stroke-width="1"></circle>'
@@ -1326,12 +1343,12 @@
    * Rasterize an SVG string to ImageData via <img> + canvas.
    *
    * Why not map.loadImage(): MapLibre GL v4+ made loadImage Promise-based
-   * (the old callback form is silently ignored — awaiting a wrapper around
+   * (the old callback form is silently ignored, awaiting a wrapper around
    * it hangs forever and killed everything queued after it: layer setup,
    * the Layers filter panel, POI clicks). And even the Promise form can't
    * decode SVG data URIs in Chromium (createImageBitmap limitation).
    * An HTMLImageElement decodes SVG data URIs everywhere.
-   * Always resolves (with null on failure) — never blocks map setup.
+   * Always resolves (with null on failure), never blocks map setup.
    */
   function rasterizeSvg(svgMarkup, pixelSize){
     return new Promise((resolve) => {
@@ -1943,7 +1960,7 @@
     errorBox.hidden = true;
     const isReset = mode === 'reset';
     // Reset mode strips the dialog down to a single email field: no Google
-    // button, no password, no signup toggle — just "send reset link" and a
+    // button, no password, no signup toggle, just "send reset link" and a
     // way back to login (matches the LoginScreen design reference).
     if(googleBtn) googleBtn.hidden = isReset;
     if(dividerEl) dividerEl.hidden = isReset;
@@ -2016,7 +2033,7 @@
   });
   toggleBtn.addEventListener('click', () => setMode(mode === 'login' ? 'signup' : 'login'));
 
-  // "Keep browsing as a guest" — just dismiss the modal, no account needed.
+  // "Keep browsing as a guest", just dismiss the modal, no account needed.
   const guestBtn = document.getElementById('authGuestBtn');
   if(guestBtn) guestBtn.addEventListener('click', closeModal);
 
@@ -3284,7 +3301,7 @@ ${points}
 
 // ---- breeds-data.js ----
 /**
- * breeds-data.js — ORMA breed catalogue + physical trait sets.
+ * breeds-data.js, ORMA breed catalogue + physical trait sets.
  *
  * The breed list mirrors the FCI Breeds Nomenclature (fci.be/en/nomenclature),
  * groups 1–10, including breeds recognised on a provisional basis, checked
@@ -3293,7 +3310,7 @@ ${points}
  * original name in parentheses where it is better known.
  *
  * On top of the FCI list we add a short "not in the FCI list" section for
- * common breeds/types the FCI doesn't register (e.g. Podenco Andaluz — an
+ * common breeds/types the FCI doesn't register (e.g. Podenco Andaluz, an
  * RSCE-recognised Spanish breed) and mixed/rescue options, because real dogs
  * on real trails are not all pedigree dogs.
  *
@@ -3305,7 +3322,7 @@ ${points}
 const FCI_BREED_GROUPS = [
   {
     id: 'g1',
-    label: 'FCI Group 1 — Sheepdogs & Cattledogs',
+    label: 'FCI Group 1, Sheepdogs & Cattledogs',
     breeds: [
       'Australian Cattle Dog', 'Australian Kelpie', 'Australian Shepherd',
       'Australian Stumpy Tail Cattle Dog', 'Bearded Collie',
@@ -3328,7 +3345,7 @@ const FCI_BREED_GROUPS = [
   },
   {
     id: 'g2',
-    label: 'FCI Group 2 — Pinscher, Schnauzer, Molossoid & Swiss Mountain Dogs',
+    label: 'FCI Group 2, Pinscher, Schnauzer, Molossoid & Swiss Mountain Dogs',
     breeds: [
       'Affenpinscher', 'Aidi (Atlas Mountain Dog)', 'Appenzell Cattle Dog',
       'Austrian Pinscher', 'Bernese Mountain Dog', 'Boxer',
@@ -3354,7 +3371,7 @@ const FCI_BREED_GROUPS = [
   },
   {
     id: 'g3',
-    label: 'FCI Group 3 — Terriers',
+    label: 'FCI Group 3, Terriers',
     breeds: [
       'Airedale Terrier', 'American Staffordshire Terrier',
       'Andalusian Terrier (Ratonero Bodeguero Andaluz)', 'Australian Silky Terrier',
@@ -3374,14 +3391,14 @@ const FCI_BREED_GROUPS = [
   },
   {
     id: 'g4',
-    label: 'FCI Group 4 — Dachshunds',
+    label: 'FCI Group 4, Dachshunds',
     breeds: [
       'Dachshund (Standard, Miniature or Rabbit)',
     ],
   },
   {
     id: 'g5',
-    label: 'FCI Group 5 — Spitz & Primitive Types',
+    label: 'FCI Group 5, Spitz & Primitive Types',
     breeds: [
       'Akita', 'Alaskan Malamute', 'American Akita', 'Basenji', 'Canaan Dog',
       'Canadian Eskimo Dog', 'Chow Chow', "Cirneco dell'Etna",
@@ -3401,7 +3418,7 @@ const FCI_BREED_GROUPS = [
   },
   {
     id: 'g6',
-    label: 'FCI Group 6 — Scent Hounds & Related Breeds',
+    label: 'FCI Group 6, Scent Hounds & Related Breeds',
     breeds: [
       'Alpine Dachsbracke', 'American Foxhound',
       "Appennine Hound (Segugio dell'Appennino)", 'Ariegeois', 'Artois Hound',
@@ -3435,7 +3452,7 @@ const FCI_BREED_GROUPS = [
   },
   {
     id: 'g7',
-    label: 'FCI Group 7 — Pointing Dogs',
+    label: 'FCI Group 7, Pointing Dogs',
     breeds: [
       'Ariege Pointing Dog', 'Auvergne Pointer', 'Blue Picardy Spaniel',
       'Bohemian Wire-haired Pointing Griffon (Český Fousek)',
@@ -3457,7 +3474,7 @@ const FCI_BREED_GROUPS = [
   },
   {
     id: 'g8',
-    label: 'FCI Group 8 — Retrievers, Flushing Dogs & Water Dogs',
+    label: 'FCI Group 8, Retrievers, Flushing Dogs & Water Dogs',
     breeds: [
       'American Cocker Spaniel', 'American Water Spaniel',
       'Barbet (French Water Dog)', 'Chesapeake Bay Retriever', 'Clumber Spaniel',
@@ -3472,7 +3489,7 @@ const FCI_BREED_GROUPS = [
   },
   {
     id: 'g9',
-    label: 'FCI Group 9 — Companion & Toy Dogs',
+    label: 'FCI Group 9, Companion & Toy Dogs',
     breeds: [
       'Bichon Frise', 'Bolognese', 'Boston Terrier',
       'Cavalier King Charles Spaniel', 'Chihuahua', 'Chinese Crested Dog',
@@ -3486,7 +3503,7 @@ const FCI_BREED_GROUPS = [
   },
   {
     id: 'g10',
-    label: 'FCI Group 10 — Sighthounds',
+    label: 'FCI Group 10, Sighthounds',
     breeds: [
       'Afghan Hound', 'Azawakh', 'Borzoi', 'Deerhound', 'Greyhound',
       'Hungarian Greyhound (Magyar Agár)', 'Irish Wolfhound',
@@ -3507,13 +3524,13 @@ const FCI_BREED_GROUPS = [
     id: 'mixed',
     label: 'Mixed & rescue',
     breeds: [
-      'Mixed breed — small (under 10 kg)', 'Mixed breed — medium (10–25 kg)',
-      'Mixed breed — large (over 25 kg)', 'Rescue / unknown mix',
+      'Mixed breed, small (under 10 kg)', 'Mixed breed, medium (10–25 kg)',
+      'Mixed breed, large (over 25 kg)', 'Rescue / unknown mix',
     ],
   },
 ];
 
-// Flat list — kept for backwards compatibility with older scripts.
+// Flat list, kept for backwards compatibility with older scripts.
 // One flat, ALPHABETICAL list for every breed picker. The FCI groups above
 // stay in registry order for maintenance against fci.be; pickers must not
 // expose that grouping, which reads as random once concatenated.
@@ -3537,7 +3554,7 @@ function breedParts(value) {
 }
 
 // ============================================================
-// TRAIT SETS — physical characteristics with a real, documented
+// TRAIT SETS, physical characteristics with a real, documented
 // effect on mountain-trail safety. Names must match the list above.
 // See SCORING.md for exactly how each trait changes the match score.
 // ============================================================
@@ -3576,8 +3593,7 @@ const THICK_COAT_BREEDS = [
   'Maremma and Abruzzes Sheepdog',
 ];
 
-// Giant breeds: joint loading on long descents, and a practical limit —
-// many Dolomites lifts refuse or struggle with dogs over ~40 kg.
+// Giant breeds: joint loading on long descents, and a practical limit, // many Dolomites lifts refuse or struggle with dogs over ~40 kg.
 const GIANT_BREEDS = [
   'Great Dane', 'Irish Wolfhound', 'Saint Bernard', 'Mastiff (English Mastiff)',
   'Neapolitan Mastiff', 'Spanish Mastiff', 'Pyrenean Mastiff', 'Tibetan Mastiff',
@@ -3637,11 +3653,11 @@ function breedTraits(name){
  * breedInsights(name) → array of { icon, title, sub } insight lines for a
  * breed, derived ONLY from documented physical traits (and FCI Group 1 for
  * the livestock/leash line). Never temperament. Unknown or free-text breeds
- * return [] — the caller then shows the health-profile fallback instead of
+ * return [], the caller then shows the health-profile fallback instead of
  * generic filler. Keep wording in sync with the safety guide.
  */
 // Working stockdogs outside the FCI list under this exact name but with the
-// identical documented function as FCI Group 1 — added by name rather than
+// identical documented function as FCI Group 1, added by name rather than
 // by editing FCI_BREED_GROUPS so the breed picker's grouping is untouched.
 const EXTRA_HERDING_BREEDS = ['Working Kelpie'];
 
@@ -3654,7 +3670,7 @@ function breedIsHerding(name){
 }
 
 // Groups below share a documented WORKING FUNCTION (the reason FCI grouped
-// them together in the first place), not a personality trait — same basis
+// them together in the first place), not a personality trait, same basis
 // as the herding/leash line above. Each maps to one concrete trail action.
 function breedIsScentHound(name){
   const b = name || '';
@@ -3669,7 +3685,7 @@ function breedIsPointingDog(name){
   return !!(g7 && g7.breeds.includes(b));
 }
 // Poodle-retriever crosses with a documented water-retrieving parent breed
-// on one side (Labrador / Golden Retriever) — same instinct, added by name.
+// on one side (Labrador / Golden Retriever), same instinct, added by name.
 const EXTRA_RETRIEVER_WATER_BREEDS = ['Labradoodle', 'Goldendoodle'];
 
 function breedIsRetrieverWaterDog(name){
@@ -3682,14 +3698,14 @@ function breedIsRetrieverWaterDog(name){
 
 /* ---------------------------------------------------------------------
  * INSIGHT-ONLY breed lists below. These do NOT feed scoreTrail() or
- * breedTraits() — they exist purely to enrich breedInsights() text for
+ * breedTraits(), they exist purely to enrich breedInsights() text for
  * breeds outside the five scored trait categories above. Keeping them
  * separate means expanding the insight card can never silently change a
  * dog's match percentage. If a breed should also affect scoring, that is
  * a deliberate, separate change to breedTraits() + scoring.js, not this.
  * --------------------------------------------------------------------- */
 
-// FCI Group 10 — built for speed, not endurance in the cold: minimal body
+// FCI Group 10, built for speed, not endurance in the cold: minimal body
 // fat, thin single coats, thin skin. Already described in the safety guide;
 // surfaced here per-breed instead of only in prose.
 function breedIsSighthound(name){
@@ -3699,7 +3715,7 @@ function breedIsSighthound(name){
   return !!(g10 && g10.breeds.includes(b));
 }
 
-// FCI Group 3 — terriers bred to go to ground after prey. The genuine trail
+// FCI Group 3, terriers bred to go to ground after prey. The genuine trail
 // hazard is investigating marmot burrows, scree gaps and crevices, not
 // temperament.
 // Working terriers bred for underground fox/badger work under a name that
@@ -3715,8 +3731,7 @@ function breedIsEarthTerrier(name){
 }
 
 // Toy-sized companion breeds (roughly under 6 kg per breed standard) that
-// are NOT already covered by SHORT_LEGGED_BREEDS above. Curated by hand —
-// deliberately excludes compound/ambiguous entries (e.g. breed standards
+// are NOT already covered by SHORT_LEGGED_BREEDS above. Curated by hand, // deliberately excludes compound/ambiguous entries (e.g. breed standards
 // spanning both toy and non-toy varieties) and breeds already flagged
 // elsewhere (Pug and Cavalier King Charles Spaniel already surface a heat
 // warning via BRACHY_BREEDS).
@@ -3742,7 +3757,7 @@ const HEAVY_BUILD_BREEDS = [
 // physical profile (minimal body fat, thin or absent coat) but sit outside
 // FCI Group 10 in this classification (mostly filed under Group 5 with the
 // thick-coated Nordic spitz breeds, which are the OPPOSITE build and are
-// deliberately excluded here). Hairless breeds are included — they carry
+// deliberately excluded here). Hairless breeds are included, they carry
 // the same cold and skin-abrasion exposure, plus sunburn risk.
 const LEAN_PRIMITIVE_BREEDS = [
   'Basenji', "Cirneco dell'Etna", 'Ibizan Podenco (Podenco Ibicenco)',
@@ -3752,7 +3767,7 @@ const LEAN_PRIMITIVE_BREEDS = [
 ];
 
 // FCI Group 2 breeds with a documented livestock- or property-guarding
-// function (as opposed to the herding function of Group 1) — bred to stay
+// function (as opposed to the herding function of Group 1), bred to stay
 // with stock or a farm and deter strangers, not to round animals up. Same
 // "read the breed's job, not its mood" basis as the herding line.
 const LIVESTOCK_GUARDIAN_BREEDS = [
@@ -3763,7 +3778,7 @@ const LIVESTOCK_GUARDIAN_BREEDS = [
 ];
 
 // Wire-coated ratting/all-purpose farm breeds (Pinscher-Schnauzer branch of
-// Group 2) — coat catches burrs and seed heads on brushy trail sections.
+// Group 2), coat catches burrs and seed heads on brushy trail sections.
 // Purely a coat-texture note, not a heat or build claim.
 const WIRY_COAT_BREEDS = [
   'Austrian Pinscher', 'German Pinscher', 'Giant Schnauzer',
@@ -3771,8 +3786,7 @@ const WIRY_COAT_BREEDS = [
 ];
 
 // Independent hunting, alarm, or all-purpose spitz breeds (mostly Group 5)
-// bred to work at a distance from their handler and think for themselves —
-// documented in their breed standards as historically off-lead hunting or
+// bred to work at a distance from their handler and think for themselves, // documented in their breed standards as historically off-lead hunting or
 // guard dogs, not companion-bred for constant check-in.
 const INDEPENDENT_SPITZ_BREEDS = [
   'Canaan Dog', 'Finnish Spitz', 'Hokkaido', 'Iceland Sheepdog',
@@ -3782,7 +3796,7 @@ const INDEPENDENT_SPITZ_BREEDS = [
 ];
 
 // Curly or dense wavy non-shedding coats (Poodle-type) that mat and collect
-// burrs on rough terrain regardless of body size — a grooming/coat-care
+// burrs on rough terrain regardless of body size, a grooming/coat-care
 // note, independent of the toy/short-legged/giant scored traits above.
 const CURLY_COAT_BREEDS = [
   'Poodle (Toy, Miniature, Medium or Standard)', 'Tibetan Terrier',
@@ -3809,7 +3823,7 @@ function breedInsights(name){
 
   if(tr.brachy){
     out.push({ icon:'heat', title:'Breathing is the limit',
-      sub:'A short muzzle makes panting less effective — hot, exposed climbs cost far more. Start early and favour shade.' });
+      sub:'A short muzzle makes panting less effective, hot, exposed climbs cost far more. Start early and favour shade.' });
   } else if(tr.thickCoat){
     out.push({ icon:'heat', title:'Heat is the real limit',
       sub:'A heavy double coat makes hot, exposed routes costly even on days you find mild. Start early.' });
@@ -3817,88 +3831,88 @@ function breedInsights(name){
 
   if(tr.giant){
     out.push({ icon:'mountain', title:'Descents load joints',
-      sub:'Weight multiplies impact downhill on hard rock — favour gradual descents and a slow pace down.' });
+      sub:'Weight multiplies impact downhill on hard rock, favour gradual descents and a slow pace down.' });
     out.push({ icon:'loop', title:'Lifts may have size limits',
-      sub:'Some gondolas cap dog size or require a muzzle — check the specific lift before building a route around it.' });
+      sub:'Some gondolas cap dog size or require a muzzle, check the specific lift before building a route around it.' });
   }
 
   if(tr.shortLegged){
     out.push({ icon:'paw', title:'Short legs, longer day',
-      sub:'Scree and rock steps are far more effort than for a tall dog — halve your usual distance at first.' });
+      sub:'Scree and rock steps are far more effort than for a tall dog, halve your usual distance at first.' });
   }
 
   if(tr.backRisk){
     out.push({ icon:'shade', title:'Protect the spine',
-      sub:'Repeated jumping down from rocks loads a long back — pick low-step routes and lift over big drops.' });
+      sub:'Repeated jumping down from rocks loads a long back, pick low-step routes and lift over big drops.' });
   }
 
   if(breedIsHerding(name)){
     out.push({ icon:'crowd', title:'Leash through pastures',
-      sub:'Grazing livestock and guardian dogs will not tolerate being herded — keep the leash on across any alpage.' });
+      sub:'Grazing livestock and guardian dogs will not tolerate being herded, keep the leash on across any alpage.' });
   }
 
   if(breedIsSighthound(name) || LEAN_PRIMITIVE_BREEDS.includes(name || '')){
     out.push({ icon:'cold', title:'Cold at rest',
-      sub:'Minimal body fat and a thin (or absent) coat mean the summit break is a shiver session — pack a light coat for stops.' });
+      sub:'Minimal body fat and a thin (or absent) coat mean the summit break is a shiver session, pack a light coat for stops.' });
     out.push({ icon:'paw', title:'Thin skin tears easily',
-      sub:'Sharp limestone and dense scrub can nick thin skin — check legs and flanks at breaks, not just pads.' });
+      sub:'Sharp limestone and dense scrub can nick thin skin, check legs and flanks at breaks, not just pads.' });
   }
 
   if(breedIsEarthTerrier(name)){
     out.push({ icon:'paw', title:'Bred to investigate burrows',
-      sub:'Marmot holes and gaps in scree are a strong pull for earth-dog breeds — keep an eye near any burrow.' });
+      sub:'Marmot holes and gaps in scree are a strong pull for earth-dog breeds, keep an eye near any burrow.' });
   }
 
   if(TOY_BREEDS.includes(name || '') && !tr.shortLegged){
     out.push({ icon:'paw', title:'Small strides, long day',
-      sub:'A 10 km route is far more steps for a toy breed — scale distance down and watch recovery closely.' });
+      sub:'A 10 km route is far more steps for a toy breed, scale distance down and watch recovery closely.' });
     out.push({ icon:'cold', title:'Loses heat fast when wet',
-      sub:'A small body chills quickly after rain or a stream crossing — carry a dry layer.' });
+      sub:'A small body chills quickly after rain or a stream crossing, carry a dry layer.' });
   }
 
   if(HEAVY_BUILD_BREEDS.includes(name || '') && !tr.giant){
     out.push({ icon:'mountain', title:'Weight adds up on descents',
-      sub:'A heavy, muscular build loads joints on the way down — favour gradual descents and a slow pace.' });
+      sub:'A heavy, muscular build loads joints on the way down, favour gradual descents and a slow pace.' });
   }
 
   if(breedIsScentHound(name)){
     out.push({ icon:'paw', title:'Nose over recall',
-      sub:'Bred to follow ground scent independently at a distance — once locked onto a trail, recall can lag. Leash or long-line on exposed or unmarked ground.' });
+      sub:'Bred to follow ground scent independently at a distance, once locked onto a trail, recall can lag. Leash or long-line on exposed or unmarked ground.' });
   }
 
   if(breedIsPointingDog(name)){
     out.push({ icon:'paw', title:'Built to range and chase',
-      sub:'Bred to quarter ground fast and point or flush game — a marmot or chamois can trigger the same drive. Leash where wildlife is active.' });
+      sub:'Bred to quarter ground fast and point or flush game, a marmot or chamois can trigger the same drive. Leash where wildlife is active.' });
   }
 
   if(breedIsRetrieverWaterDog(name)){
     out.push({ icon:'water', title:'Drawn to water',
-      sub:'Bred to enter water eagerly — alpine lakes run glacially cold and some restrict swimming to protect water quality. Check signage before letting your dog in.' });
+      sub:'Bred to enter water eagerly, alpine lakes run glacially cold and some restrict swimming to protect water quality. Check signage before letting your dog in.' });
   }
 
   if(LIVESTOCK_GUARDIAN_BREEDS.includes(name || '')){
     out.push({ icon:'crowd', title:'Bred to guard, not herd',
-      sub:'Livestock and farm-guardian breeds are wired to stay close to stock and be wary of strangers passing near it — give grazing animals and their guardian dogs a wide berth.' });
+      sub:'Livestock and farm-guardian breeds are wired to stay close to stock and be wary of strangers passing near it, give grazing animals and their guardian dogs a wide berth.' });
   }
 
   if(WIRY_COAT_BREEDS.includes(name || '')){
     out.push({ icon:'paw', title:'Wiry coat catches debris',
-      sub:'A dense, wire coat picks up burrs and seed heads on brushy sections — plan a coat check after any scrub or hedgerow stretch.' });
+      sub:'A dense, wire coat picks up burrs and seed heads on brushy sections, plan a coat check after any scrub or hedgerow stretch.' });
   }
 
   if(INDEPENDENT_SPITZ_BREEDS.includes(name || '')){
     out.push({ icon:'paw', title:'Bred to work at a distance',
-      sub:'These breeds have a history as independent hunting or alarm dogs, working out of sight of their handler — recall can lag behind an obedience-bred dog off-leash near wildlife.' });
+      sub:'These breeds have a history as independent hunting or alarm dogs, working out of sight of their handler, recall can lag behind an obedience-bred dog off-leash near wildlife.' });
   }
 
   if(CURLY_COAT_BREEDS.includes(name || '')){
     out.push({ icon:'paw', title:'Curly coat mats easily',
-      sub:'Non-shedding, curly or dense wavy coats trap burrs and tangle on rough trail — a comb-through (and a shorter trim in summer) saves a lot of post-hike work.' });
+      sub:'Non-shedding, curly or dense wavy coats trap burrs and tangle on rough trail, a comb-through (and a shorter trim in summer) saves a lot of post-hike work.' });
   }
 
   if(ENDURANCE_WORKING_BREEDS.includes(name || '')){
     out.push({ icon:'mountain', title:'Built to keep going',
-      sub:'Bred for sustained pulling over long distances, this build tends not to self-limit — watch for fatigue signs yourself rather than trusting your dog to slow down.' });
+      sub:'Bred for sustained pulling over long distances, this build tends not to self-limit, watch for fatigue signs yourself rather than trusting your dog to slow down.' });
   }
 
   return out;
@@ -5114,7 +5128,7 @@ function breedInsights(name){
 
 // ---- scoring.js ----
 /**
- * scoring.js — browser compatibility facade for canonical recommendation v1.
+ * scoring.js, browser compatibility facade for canonical recommendation v1.
  * Load after breeds-data.js, trust/evidence-v1.js, recommendation-v1.js, and
  * recommendation-adapters-v1.js.
  *
@@ -5123,7 +5137,7 @@ function breedInsights(name){
  */
 
 // ============================================================
-// FITNESS DEFAULTS — used both to derive the guest teaser scores
+// FITNESS DEFAULTS, used both to derive the guest teaser scores
 // and to score the real returning-user list against a saved profile.
 // ============================================================
 const FITNESS_DEFAULTS = {
@@ -5166,7 +5180,7 @@ const SAFETY_DOT = { 'low-risk': '#2C5C34', 'moderate': '#8A5A16', 'caution': '#
 
 // ---- Profile triage: breed traits + age + weight + health conditions ----
 // Turns the saved dog profile into effective scoring inputs. The exact
-// rules and numbers are documented in SCORING.md — keep the two in sync.
+// rules and numbers are documented in SCORING.md, keep the two in sync.
 
 const AGE_BAND_MID = { 'u1':0.5, '1-2':1.5, '3-4':3.5, '5-6':5.5, '7-8':7.5, '9-10':9.5, '11-12':11.5, '13plus':14 };
 const WEIGHT_BAND_MID = { 'u5':4, '5-10':7.5, '10-15':12.5, '15-20':17.5, '20-30':25, '30-40':35, '40-55':47.5, '55plus':60 };
@@ -5198,10 +5212,10 @@ function dogConditions(profile){
  * layering breedInsights() (breed-name based) with insights derived from
  * the SAME weight/age/condition fields and thresholds effectiveOverrides()
  * below already uses for the real match score. This is what makes the
- * homepage card work for "Mixed breed — small/medium/large" and
+ * homepage card work for "Mixed breed, small/medium/large" and
  * "Rescue / unknown mix" profiles too: even with no breed name, weight,
  * age and declared health conditions are real, structured facts about
- * THIS dog, and every one of them already governs the score — so they
+ * THIS dog, and every one of them already governs the score, so they
  * should govern the tailored text as well, not just named purebreds.
  */
 function profileInsights(profile){
@@ -5215,48 +5229,48 @@ function profileInsights(profile){
   const age = dogAgeYears(profile);
   const kg = dogWeightKg(profile);
 
-  // Weight-derived, breed-agnostic — same >=45kg / <5kg thresholds used
+  // Weight-derived, breed-agnostic, same >=45kg / <5kg thresholds used
   // below for giant/toy handling, so an unnamed or mixed-breed dog still
   // gets the physically correct caution based on its own declared weight.
   const heavyAlready = tr.giant
     || (typeof HEAVY_BUILD_BREEDS !== 'undefined' && HEAVY_BUILD_BREEDS.includes(breedName));
   if(kg != null && kg >= 45 && !heavyAlready){
     out.push({ icon:'mountain', title:'Weight adds up on descents',
-      sub:'At this weight, descents load joints hard on rock — favour gradual descents and a slow pace down.' });
+      sub:'At this weight, descents load joints hard on rock, favour gradual descents and a slow pace down.' });
   }
   const toyAlready = tr.shortLegged
     || (typeof TOY_BREEDS !== 'undefined' && TOY_BREEDS.includes(breedName));
   if(kg != null && kg < 5 && !toyAlready){
     out.push({ icon:'paw', title:'Small strides, long day',
-      sub:'At this weight, a normal route is far more steps — scale distance down and watch recovery closely.' });
+      sub:'At this weight, a normal route is far more steps, scale distance down and watch recovery closely.' });
     if(!alreadyHas('Loses heat fast when wet')){
       out.push({ icon:'cold', title:'Loses heat fast when wet',
-        sub:'A small body chills quickly after rain or a stream crossing — carry a dry layer.' });
+        sub:'A small body chills quickly after rain or a stream crossing, carry a dry layer.' });
     }
   }
 
-  // Life stage — same puppy / senior thresholds effectiveOverrides() uses.
+  // Life stage, same puppy / senior thresholds effectiveOverrides() uses.
   if(age != null && age < 1){
     out.push({ icon:'paw', title:'Still growing',
-      sub:'Growth plates are still closing — avoid long climbs and let a puppy set the pace, not the itinerary.' });
+      sub:'Growth plates are still closing, avoid long climbs and let a puppy set the pace, not the itinerary.' });
   } else if(age != null && age >= 8){
     out.push({ icon:'mountain', title:'Built for shorter days now',
-      sub:'Senior joints and stamina fade before the enthusiasm does — plan shorter routes with flat stretches and frequent rests.' });
+      sub:'Senior joints and stamina fade before the enthusiasm does, plan shorter routes with flat stretches and frequent rests.' });
   }
 
-  // Declared health conditions — already scored by effectiveOverrides()
+  // Declared health conditions, already scored by effectiveOverrides()
   // below, surfaced here in plain terms instead of only moving a number.
   if(conds.includes('joints') || conds.includes('back') || conds.includes('recovering')){
     out.push({ icon:'paw', title:'Go easy on the joints',
-      sub:'A declared joint, back or recovering condition means technical, uneven ground costs more — favour smoother, gentler trails.' });
+      sub:'A declared joint, back or recovering condition means technical, uneven ground costs more, favour smoother, gentler trails.' });
   }
   if((conds.includes('heat') || conds.includes('cardiac') || conds.includes('overweight')) && !tr.heatSensitive){
     out.push({ icon:'heat', title:'Extra care in the heat',
-      sub:'A declared heart, weight or heat-related condition means hot, exposed routes cost more — start early and prioritise shade.' });
+      sub:'A declared heart, weight or heat-related condition means hot, exposed routes cost more, start early and prioritise shade.' });
   }
   if(conds.includes('vision')){
     out.push({ icon:'mountain', title:'Extra care on exposed edges',
-      sub:'A vision condition raises the stakes on narrow ledges and drop-offs — favour wider, well-marked paths.' });
+      sub:'A vision condition raises the stakes on narrow ledges and drop-offs, favour wider, well-marked paths.' });
   }
 
   return out;
@@ -5342,7 +5356,7 @@ function effectiveOverrides(profile, adjustOverride){
   //   - a fully graduated trail (10/10 checks) is route-audited;
   //   - a hand-curated real listing is route-audited (published, not walked);
   //   - anything imported or still in progress is under-review.
-  // No data migration is required — legacy `curated`-only trails resolve
+  // No data migration is required, legacy `curated`-only trails resolve
   // correctly, and a trail publishes at whatever tier this returns.
   const hasRoute = trail => !!trail && Array.isArray(trail.path) && trail.path.length >= 2;
 
@@ -5364,7 +5378,7 @@ function effectiveOverrides(profile, adjustOverride){
     }
     // Invariant: the published ORMA tiers claim the *route* was audited or
     // walked, so they require a mapped route. A trail with no `path` (a
-    // viewpoint or place listing) has no route to audit — cap it at
+    // viewpoint or place listing) has no route to audit, cap it at
     // under-review no matter what its flags say.
     if ((tier === 'route-audited' || tier === 'dolopaws-walked') && !hasRoute(trail)) {
       return 'under-review';
@@ -5372,7 +5386,7 @@ function effectiveOverrides(profile, adjustOverride){
     return tier;
   }
 
-  // Short tier badge text — the headline label a visitor sees on a card or
+  // Short tier badge text, the headline label a visitor sees on a card or
   // trail page. The fuller `provenanceLabel` (below) adds progress/date detail.
   function tierLabel(trail) {
     const tier = tierOf(trail);
@@ -5438,7 +5452,7 @@ function effectiveOverrides(profile, adjustOverride){
   }
 
   function waterPointLabel(trail, label) {
-    if (!categoryVerified(trail, 'water')) return `${String(label || 'Potential water location')} — availability can change`;
+    if (!categoryVerified(trail, 'water')) return `${String(label || 'Potential water location')}, availability can change`;
     if (!imported(trail)) return label;
     return String(label || 'Water point')
       .replace(/Drinking water\s*\(OSM-verified location\)/i, 'Water point mapped in OpenStreetMap')
@@ -5446,14 +5460,14 @@ function effectiveOverrides(profile, adjustOverride){
   }
 
   function startPointLabel(trail, label) {
-    if (!categoryVerified(trail, 'access')) return `Suggested start — ${String(label || 'route start').replace(/^Start here\s*[—-]\s*/i, '')}. Check current access before travelling.`;
+    if (!categoryVerified(trail, 'access')) return `Suggested start, ${String(label || 'route start').replace(/^Start here\s*[—-]\s*/i, '')}. Check current access before travelling.`;
     if (!imported(trail)) return label;
     const cleaned = String(label || 'Route start')
       .replace(/^Start here\s*[—-]\s*/i, '')
       .replace(/^Route start per OpenStreetMap\s*[—-]\s*/i, '')
       .replace(/\s*\(OSM-verified access point\)/gi, '')
       .replace(/OSM-verified/gi, 'mapped in OpenStreetMap');
-    return `Mapped start suggestion — ${cleaned}. Check current access before travelling.`;
+    return `Mapped start suggestion, ${cleaned}. Check current access before travelling.`;
   }
 
   function waterAssessment(trail) {
@@ -5605,9 +5619,9 @@ function effectiveOverrides(profile, adjustOverride){
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
-          'Les Karellis — Randonnée vers Albanne',
-          'AllTrails — Les Karellis–Albanne',
-          'Service Public France — dogs in forests',
+          'Les Karellis, Randonnée vers Albanne',
+          'AllTrails, Les Karellis–Albanne',
+          'Service Public France, dogs in forests',
           'OpenStreetMap relation 14381570 and mapped water nodes'
         ],
         date: '2026-07-26'
@@ -5623,22 +5637,22 @@ function effectiveOverrides(profile, adjustOverride){
       tips: 'Start at the Les Karellis tourist office and follow green route 09 toward Albanne. The route alternates shaded forest with open alpage; carry water even though mapped taps and springs appear near Albanne and Les Karellis.',
       sourceLinks: [
         {
-          label: 'Les Karellis — Randonnée vers Albanne (official route 09)',
+          label: 'Les Karellis, Randonnée vers Albanne (official route 09)',
           url: 'https://www.karellis.com/activites-hiver/randonnee-vers-albanne/',
           categories: ['heat']
         },
         {
-          label: 'AllTrails — Les Karellis–Albanne',
+          label: 'AllTrails, Les Karellis–Albanne',
           url: 'https://www.alltrails.com/trail/france/savoie/les-karellis-albanne',
           categories: ['access']
         },
         {
-          label: 'Service Public France — seasonal forest leash rule',
+          label: 'Service Public France, seasonal forest leash rule',
           url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343',
           categories: ['access']
         },
         {
-          label: 'Waymarked Trails — Albanne, OSM relation 14381570',
+          label: 'Waymarked Trails, Albanne, OSM relation 14381570',
           url: 'https://hiking.waymarkedtrails.org/#route?id=14381570'
         },
         {
@@ -5742,9 +5756,9 @@ function effectiveOverrides(profile, adjustOverride){
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards'],
         sources: [
-          'Bezirksgemeinschaft Eisacktal — Rundweg Laugen Elvas',
+          'Bezirksgemeinschaft Eisacktal, Rundweg Laugen Elvas',
           'Official Laugen–Elvas overview board',
-          'South Tyrol nature portal — protected biotopes',
+          'South Tyrol nature portal, protected biotopes',
           'OpenStreetMap relation 12731853 and mapped water nodes'
         ],
         date: '2026-07-26'
@@ -5760,7 +5774,7 @@ function effectiveOverrides(profile, adjustOverride){
       tips: 'The official circuit starts in Elvas and visits the Laugen wetland and its information stations. The route is 4.2 km with about 100 m ascent and takes roughly 1½ hours.',
       sourceLinks: [
         {
-          label: 'Bezirksgemeinschaft Eisacktal — Rundweg Laugen Elvas',
+          label: 'Bezirksgemeinschaft Eisacktal, Rundweg Laugen Elvas',
           url: 'https://www.bzgeisacktal.it/de/Rundweg_Laugen_Elvas'
         },
         {
@@ -5768,11 +5782,11 @@ function effectiveOverrides(profile, adjustOverride){
           url: 'https://www.bzgeisacktal.it/system/web/GetDocument.ashx?cts=1535713140&fileId=1000136'
         },
         {
-          label: 'South Tyrol nature portal — protected biotopes',
+          label: 'South Tyrol nature portal, protected biotopes',
           url: 'https://natur-raum.provinz.bz.it/de/biotope'
         },
         {
-          label: 'Waymarked Trails — OSM relation 12731853',
+          label: 'Waymarked Trails, OSM relation 12731853',
           url: 'https://hiking.waymarkedtrails.org/#route?id=12731853'
         },
         {
@@ -5847,8 +5861,8 @@ function effectiveOverrides(profile, adjustOverride){
       verified: {
         categories: ['water', 'heat', 'exposure', 'surfaceHazards'],
         sources: [
-          'CAI Lozzo di Cadore — Anelli e Vie route descriptions',
-          'Lozzo di Cadore — Anello del Sole route page and map',
+          'CAI Lozzo di Cadore, Anelli e Vie route descriptions',
+          'Lozzo di Cadore, Anello del Sole route page and map',
           'OpenStreetMap relation 7548344'
         ],
         date: '2026-07-26'
@@ -5864,19 +5878,19 @@ function effectiveOverrides(profile, adjustOverride){
       tips: 'Start at Niante Aze outside Lozzo and follow route 5 toward Lago d’Aosto. The official route is about 3 km with 250 m ascent; carry all water you need.',
       sourceLinks: [
         {
-          label: 'Lozzo di Cadore — Anello del Sole',
+          label: 'Lozzo di Cadore, Anello del Sole',
           url: 'https://www.lozzodicadore.eu/sito/node/183'
         },
         {
-          label: 'CAI Lozzo di Cadore — Anelli e Vie route descriptions',
+          label: 'CAI Lozzo di Cadore, Anelli e Vie route descriptions',
           url: 'https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-descrizione.pdf'
         },
         {
-          label: 'Lozzo di Cadore — route map',
+          label: 'Lozzo di Cadore, route map',
           url: 'https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-carta-25000.pdf'
         },
         {
-          label: 'Waymarked Trails — OSM relation 7548344',
+          label: 'Waymarked Trails, OSM relation 7548344',
           url: 'https://hiking.waymarkedtrails.org/#route?id=7548344'
         },
         {
@@ -5903,10 +5917,10 @@ function effectiveOverrides(profile, adjustOverride){
 
 // ---- regions-config.js ----
 /**
- * regions-config.js — ORMA region & valley taxonomy.
+ * regions-config.js, ORMA region & valley taxonomy.
  *
  * Assigns every trail (curated AND imported, identically) a `region` and
- * `valley` at page load, from the nearest known locality — the same
+ * `valley` at page load, from the nearest known locality, the same
  * nearest-locality logic the import pipeline uses. trails-data.js is never
  * modified. Load AFTER all trail data files and BEFORE script.js.
  */
@@ -6010,7 +6024,7 @@ function effectiveOverrides(profile, adjustOverride){
     let best = null;
     let bestD = Infinity;
     for (const [name, la, ln, valley, region, province] of LOCALITIES) {
-      // Squared equirectangular distance — plenty for nearest-of-56 lookups.
+      // Squared equirectangular distance, plenty for nearest-of-56 lookups.
       const dLat = lat - la;
       const dLng = (lng - ln) * Math.cos((lat * Math.PI) / 180);
       const d = dLat * dLat + dLng * dLng;
@@ -6076,7 +6090,7 @@ function effectiveOverrides(profile, adjustOverride){
  * basemap-poi-click.js
  * Makes the base map's own POI icons (drawn by the OpenFreeMap "liberty"
  * style) clickable, Google Maps-style. ORMA' own layers already have
- * click handlers — this handler detects those and stays out of their way.
+ * click handlers, this handler detects those and stays out of their way.
  *
  * Popup tiers:
  *   1. Generic: name + human-readable type (from the vector tile's
@@ -6087,8 +6101,8 @@ function effectiveOverrides(profile, adjustOverride){
  *      dogs-welcome instantly.
  *   2b. Enriched live from OSM: when there's no local match, a small
  *      Overpass query (40 m around the icon, sent from the visitor's own
- *      browser) fetches the place's full OSM tags — website, phone, hours,
- *      cuisine, dog policy, Wikipedia — and the open popup updates in
+ *      browser) fetches the place's full OSM tags, website, phone, hours,
+ *      cuisine, dog policy, Wikipedia, and the open popup updates in
  *      place. Fails silently (e.g. offline), leaving the Tier-1 popup.
  *   3. Escape hatch: every popup ends with a "more info" OpenStreetMap
  *      link, so no click ever dead-ends.
@@ -6108,7 +6122,7 @@ const DOLOPAWS_INTERACTIVE_LAYERS = [
 ];
 
 // Base-style source layers whose features should be clickable. 'place'
-// (town/village name labels) is deliberately excluded — popping up on every
+// (town/village name labels) is deliberately excluded, popping up on every
 // pan-click near a label would make the map feel broken, not richer.
 const POI_SOURCE_LAYERS = ['poi', 'mountain_peak', 'poi_transit'];
 
@@ -6151,7 +6165,7 @@ function poiLabel(props){
   return '📍 ' + pretty.charAt(0).toUpperCase() + pretty.slice(1);
 }
 
-// OSM data can contain anything — never inject it into popups as raw HTML.
+// OSM data can contain anything, never inject it into popups as raw HTML.
 function escHtml(s){
   return String(s).replace(/[&<>"']/g,
     c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -6184,13 +6198,12 @@ function buildDetailLines(tags){
 
 function makeBasemapPoisClickable(map){
   map.on('click', (e) => {
-    // 1) If the click landed on a ORMA layer, its own handler owns it —
-    //    without this bail-out, users would get two stacked popups.
+    // 1) If the click landed on a ORMA layer, its own handler owns it, //    without this bail-out, users would get two stacked popups.
     const ownLayers = DOLOPAWS_INTERACTIVE_LAYERS.filter(id => map.getLayer(id));
     if (ownLayers.length &&
         map.queryRenderedFeatures(e.point, { layers: ownLayers }).length) return;
 
-    // 2) Query with a small tolerance box — bare-point hits miss small
+    // 2) Query with a small tolerance box, bare-point hits miss small
     //    icons about half the time, especially on mobile.
     const box = [[e.point.x - 6, e.point.y - 6], [e.point.x + 6, e.point.y + 6]];
     const hits = map.queryRenderedFeatures(box);
@@ -6214,7 +6227,7 @@ function makeBasemapPoisClickable(map){
     if (p.ele) baseHtml += `<br>⛰️ ${escHtml(p.ele)} m`;
 
     // No per-POI source link: an osm.org object page is a mappers' database
-    // view, not visitor information — and the map corner already carries the
+    // view, not visitor information, and the map corner already carries the
     // OpenStreetMap attribution. Real details (website, phone, hours) render
     // above when the data has them.
     const footer = '';
@@ -6237,13 +6250,13 @@ function makeBasemapPoisClickable(map){
       + footer);
 
     fetchOsmDetails(name, lng, lat).then(tags => {
-      if (!popup.isOpen()) return; // user already closed it — don't reopen
+      if (!popup.isOpen()) return; // user already closed it, don't reopen
       const details = buildDetailLines(tags);
       popup.setHTML(baseHtml + details + footer);
     });
   });
 
-  // Pointer cursor over base-map POIs — throttled via requestAnimationFrame
+  // Pointer cursor over base-map POIs, throttled via requestAnimationFrame
   // so panning stays smooth (queryRenderedFeatures on every raw mousemove
   // event stutters on low-end phones).
   let rafPending = false;
@@ -6272,7 +6285,7 @@ function makeBasemapPoisClickable(map){
 // One tiny query per clicked landmark, sent from the visitor's own browser
 // (so the rate-limit issues the build pipeline had with shared GitHub IPs
 // don't apply). Results are cached for the session so re-clicking the same
-// icon is free. Any failure — offline, timeout, 429 — resolves to null and
+// icon is free. Any failure, offline, timeout, 429, resolves to null and
 // the popup simply keeps its basic content.
 const _osmDetailCache = new Map();
 
@@ -9034,7 +9047,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
 
 // ---- hike-mode.js ----
 /**
- * hike-mode.js — "Start hike" companion for the trail detail page.
+ * hike-mode.js, "Start hike" companion for the trail detail page.
  *
  * Turns the trail map into an on-trail companion: live position snapped to
  * the route, progress readout (km walked, next water / rifugio ahead),
@@ -9042,7 +9055,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
  * mid-hike.
  *
  * Everything works from data already on the trail object (path, distance,
- * rifugi, waterSources) — no network calls, so the safety features keep
+ * rifugi, waterSources), no network calls, so the safety features keep
  * working even when the signal drops in a valley. Only the map tiles need
  * connectivity, and GPS itself is satellite-based and works offline.
  *
@@ -9052,7 +9065,7 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
  */
 
 function initHikeMode(map, trail, options){
-  if (!('geolocation' in navigator)) return; // no GPS — don't show the button
+  if (!('geolocation' in navigator)) return; // no GPS, don't show the button
   if (!Array.isArray(trail.path) || trail.path.length < 2) return;
 
   const container = (options && options.container) || (map && map.getContainer());
@@ -9146,9 +9159,9 @@ function initHikeMode(map, trail, options){
   // ---- State ---------------------------------------------------------------
   let active = false;
   let watchId = null;
-  let lastTileError = 0;   // last failed tile/style fetch — signals the map may grey out
+  let lastTileError = 0;   // last failed tile/style fetch, signals the map may grey out
   let wakeLock = null;
-  let lastIdx = 0;          // last snapped path index — used for continuity
+  let lastIdx = 0;          // last snapped path index, used for continuity
   let offRouteStreak = 0;   // consecutive fixes far from the route
   let offRouteSince = null; // first fix in the current sustained off-route run
   let announcedOffRoute = false;
@@ -9370,8 +9383,7 @@ function initHikeMode(map, trail, options){
     }
   }
 
-  // Map tile fetches fail silently when the connection drops mid-hike —
-  // navigator.onLine often stays true on a weak mountain signal, so track
+  // Map tile fetches fail silently when the connection drops mid-hike, // navigator.onLine often stays true on a weak mountain signal, so track
   // actual failed fetches too.
   let mapErrorListenerBound = false;
   function attachMap(nextMap){
@@ -9399,7 +9411,7 @@ function initHikeMode(map, trail, options){
   async function acquireWakeLock(){
     try {
       if ('wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen');
-    } catch (e) { /* not supported or denied — hike mode still works */ }
+    } catch (e) { /* not supported or denied, hike mode still works */ }
   }
   document.addEventListener('visibilitychange', () => {
     // The lock is auto-released when the app backgrounds; re-acquire on return.
@@ -9409,7 +9421,7 @@ function initHikeMode(map, trail, options){
   // ---- Snap a GPS fix to the nearest point on the route --------------------
   // Continuity bias: when several path points are similarly close (common on
   // out-and-back or tightly-folded loops), prefer the one nearest to where
-  // we last were — stops the readout jumping between overlapping segments.
+  // we last were, stops the readout jumping between overlapping segments.
   function snapToPath(lat, lng){
     let minDist = Infinity;
     const dists = new Array(trail.path.length);
@@ -9624,7 +9636,7 @@ function initHikeMode(map, trail, options){
     }
     const validFixLabel = lastValidFixAt
       ? new Date(lastValidFixAt).toLocaleTimeString()
-      : '—';
+      : ', ';
     const reliabilityNote = assessment.freshness === 'stale'
       ? window.t('hike.gpsStale')
       : !assessment.reliableForWarning
@@ -9640,7 +9652,7 @@ function initHikeMode(map, trail, options){
         : 'hike.gpsNearTrail';
     panel.innerHTML = parts.join(' · ')
       + `<br><span style="font-weight:400;opacity:.85;">${window.t(gpsStatusKey, {
-        accuracy: Number.isFinite(accuracy) ? Math.round(accuracy) : '—',
+        accuracy: Number.isFinite(accuracy) ? Math.round(accuracy) : ', ',
         time: validFixLabel,
       })}${reliabilityNote ? `<br>${reliabilityNote}` : ''}</span>`
       + offlineNote();
@@ -9712,7 +9724,7 @@ function initHikeMode(map, trail, options){
           if (ok) localStorage.setItem(guardKey, '1');
         });
       }
-    } catch (e) { /* private browsing etc. — skip silently */ }
+    } catch (e) { /* private browsing etc., skip silently */ }
   }
 
   function startHike(){
@@ -9891,10 +9903,9 @@ function initHikeMode(map, trail, options){
   }
 
   // ---- Completion screen: save / discard, photos, share-to-trail flag ------
-  // Replaces the old "Hike ended — log this walk →" link with the design's
+  // Replaces the old "Hike ended, log this walk →" link with the design's
   // full-screen summary. Saving writes straight into the walk journal store
-  // (same schema journal.html reads), carrying { photos, shareToTrail } —
-  // the flag the trail page checks before surfacing a walk's photos.
+  // (same schema journal.html reads), carrying { photos, shareToTrail }, // the flag the trail page checks before surfacing a walk's photos.
   function esc(s){
     return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   }
@@ -9923,11 +9934,11 @@ function initHikeMode(map, trail, options){
     const dog = dogSummary();
     const dogName = dog.name || 'Your dog';
     const km = completion.distanceKm;
-    const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : '—';
+    const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : ', ';
     const SAFETY_LABEL = { 'low-risk': 'Low-risk', 'moderate': 'Moderate', 'caution': 'Caution' };
     const safetyClass = trail.safetyLevel === 'low-risk' ? 'safety-low'
       : trail.safetyLevel === 'caution' ? 'safety-caution' : 'safety-moderate';
-    // The trail page already computed the personal match — reuse its figure.
+    // The trail page already computed the personal match, reuse its figure.
     const scoreEl = document.querySelector('.personal-score b');
     const matchPct = scoreEl ? parseInt(scoreEl.textContent, 10) : NaN;
 
@@ -10055,9 +10066,9 @@ function initHikeMode(map, trail, options){
 
     function renderOutcome(){
       const labels = [
-        ['appropriate', 'Yes — appropriate'],
+        ['appropriate', 'Yes, appropriate'],
         ['appropriate_with_unexpected_cautions', 'Yes, with unexpected cautions'],
-        ['not_appropriate', 'No — not appropriate'],
+        ['not_appropriate', 'No, not appropriate'],
         ['did_not_complete', 'We turned back'],
         ['prefer_not_to_answer', 'Prefer not to answer'],
       ];
@@ -10297,7 +10308,7 @@ function initHikeMode(map, trail, options){
         entries.sort((a, b) => new Date(b.date) - new Date(a.date));
         localStorage.setItem(key, JSON.stringify(entries));
         saved = true;
-      } catch (e) { /* storage full/blocked — still leave the page gracefully */ }
+      } catch (e) { /* storage full/blocked, still leave the page gracefully */ }
       if(saved && window.DoloPawsHikeCompletions){
         window.DoloPawsHikeCompletions.markFollowUp(
           completion.completionId,
@@ -10490,15 +10501,14 @@ function initHikeMode(map, trail, options){
 
 // ---- detail-pois.js ----
 /**
- * detail-pois.js — real nearby POIs on the trail detail map.
+ * detail-pois.js, real nearby POIs on the trail detail map.
  *
  * The homepage map loads the full OSM POI datasets (huts, bars & cafés,
  * drinking water); the trail detail map used to show only the few
- * hand-curated markers stored on the trail itself — so places visible on
+ * hand-curated markers stored on the trail itself, so places visible on
  * the homepage "disappeared" when opening a trail. This file loads the
  * same two GeoJSON files, filters them to the trail's surroundings
- * (~2 km beyond the route's bounding box), and shows them by default —
- * on a single-trail page, "what's nearby" shouldn't hide behind a toggle.
+ * (~2 km beyond the route's bounding box), and shows them by default, * on a single-trail page, "what's nearby" shouldn't hide behind a toggle.
  *
  * Also registers the filtered features with basemap-poi-click.js, so
  * clicking the base map's own icons gets the enriched popup here too.
@@ -10544,7 +10554,7 @@ function initDetailPois(map, trail){
   const esc = (typeof trEsc === 'function') ? trEsc
     : s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-  // Every popup states IN WORDS what the place is — an icon plus an
+  // Every popup states IN WORDS what the place is, an icon plus an
   // elevation is a riddle, not information.
   function tt(key, fallback){
     if(!window.t) return fallback;
@@ -10553,7 +10563,7 @@ function initDetailPois(map, trail){
   }
   function poiPopupHtml(props){
     // Place type: icon-system SVG (same visual language as the page chrome)
-    // plus a plain-text label — no emoji.
+    // plus a plain-text label, no emoji.
     let typeLabel = tt('poi.place', 'Point of interest'), iconKey = null;
     if (props.tourism === 'alpine_hut') { typeLabel = tt('legend.hut', 'Mountain hut'); iconKey = 'hut'; }
     else if (props.tourism === 'wilderness_hut') { typeLabel = tt('poi.wildhut', 'Wilderness hut'); iconKey = 'hut'; }
@@ -10687,7 +10697,7 @@ function initDetailPois(map, trail){
         try { window.onDetailPoisReady(near); } catch (e) {}
       }
     })
-    .catch(() => { /* nearby POIs are a bonus — never break the page */ });
+    .catch(() => { /* nearby POIs are a bonus, never break the page */ });
 
   // Drinking water
   const waterLoad = fetch(regionalPoiUrl('water'))
@@ -10914,7 +10924,7 @@ function initDetailPois(map, trail){
 
 // ---- trail-reports.js ----
 /**
- * trail-reports.js — community dog-safety flags on the trail detail page.
+ * trail-reports.js, community dog-safety flags on the trail detail page.
  *
  * Renders active flags as banners in a "Trail reports" section, places
  * km-tagged flags as ⚠️ markers on the route map, and provides the
@@ -10922,7 +10932,7 @@ function initDetailPois(map, trail){
  * slider, short note).
  *
  * Product rule this file enforces: community flags display ALONGSIDE the
- * ORMA verified safety score — they never alter it. Type-specific expiry
+ * ORMA verified safety score, they never alter it. Type-specific expiry
  * removes stale flags from the active safety view without deleting history.
  *
  * Usage: initTrailReports(map, trail) inside trail.js's map 'load'
@@ -10944,8 +10954,7 @@ function trEsc(s){
     c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
-// One star glyph for every rating UI on the page (rows, average, picker) —
-// filled or outlined, sized per context. Replaces the mixed ★/☆ text chars.
+// One star glyph for every rating UI on the page (rows, average, picker), // filled or outlined, sized per context. Replaces the mixed ★/☆ text chars.
 function starSvgIcon(filled, size){
   const s = size || 13;
   return filled
@@ -11493,8 +11502,8 @@ function initTrailReports(map, trail){
           showActionStatus('Photo submitted for review. It will appear after approval.');
           return;
         }
-        error.textContent = result.message || 'Could not add this photo — please try again.';
-      } catch (e) { error.textContent = 'Could not prepare this photo — please try another image.'; }
+        error.textContent = result.message || 'Could not add this photo, please try again.';
+      } catch (e) { error.textContent = 'Could not prepare this photo, please try another image.'; }
       error.hidden = false;
       submit.disabled = false;
       submit.textContent = 'Add photo';
@@ -11582,9 +11591,9 @@ function initTrailReports(map, trail){
           showActionStatus('Review submitted for moderation. It will appear after approval.');
           return;
         }
-        error.textContent = result.message || 'Could not post your review — please try again.';
+        error.textContent = result.message || 'Could not post your review, please try again.';
       } catch (e) {
-        error.textContent = 'Could not post your review — please try again.';
+        error.textContent = 'Could not post your review, please try again.';
       }
       error.hidden = false;
       submit.disabled = false;
@@ -12239,7 +12248,7 @@ function initTrailReports(map, trail){
         'text-field':['get', 'routeRef'],
         // The tile server (openfreemap) serves Noto only. Asking for
         // "Open Sans Bold" 404s every glyph range and MapLibre silently
-        // rasterises a fallback locally — which is what made these shields
+        // rasterises a fallback locally, which is what made these shields
         // render as oversized, blurry clip-art boxes.
         'text-font':['Noto Sans Bold'],
         'text-size':['interpolate', ['linear'], ['zoom'], 12, 11.5, 16, 13, 19, 14],
@@ -12307,7 +12316,7 @@ function initTrailReports(map, trail){
     'protected-area': 'Protected area',
   });
 
-  const UNVERIFIED_NOTE = 'Not yet verified — check before you go';
+  const UNVERIFIED_NOTE = 'Not yet verified, check before you go';
   // A year is the point past which an opening-hours or dog rule is likely to
   // have moved without anyone telling us.
   const STALE_AFTER_MONTHS = 12;
@@ -12389,7 +12398,7 @@ function initTrailReports(map, trail){
     const label = monthLabel(fact.verified_at);
     const asOf = isDate(asOfDate) ? asOfDate : new Date().toISOString().slice(0, 10);
     if(monthsBetween(fact.verified_at, asOf) >= STALE_AFTER_MONTHS){
-      return { state:'stale', label:`Last verified ${label} — may have changed`, verifiedLabel:label };
+      return { state:'stale', label:`Last verified ${label}, may have changed`, verifiedLabel:label };
     }
     return { state:'verified', label:`Verified ${label}`, verifiedLabel:label };
   }
@@ -12474,7 +12483,7 @@ function trailSafetyLabel(trail){
   const base = safetyLabel(trail.safetyLevel);
   return window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.riskLabel(trail, base) : base;
 }
-// Green/amber/red on the map means how well the walk suits the dog — never
+// Green/amber/red on the map means how well the walk suits the dog, never
 // how hard the trail is. One palette, defined once in map-style.js, so opening
 // a trail never changes the map's meaning. (This replaces safetyColor(), which
 // coloured the same line by the trail's intrinsic risk in a near-identical
@@ -12537,7 +12546,7 @@ function renderOnThisRoute(t, table){
   if(!rows.length) return '';
 
   const items = rows.map(row => {
-    const where = row.km !== null ? `Km ${row.km} — ` : '';
+    const where = row.km !== null ? `Km ${row.km}, ` : '';
     const kind = api.ENTITY_LABEL[row.entityType] || '';
     // No verified fact means no policy line at all. Never a guess, never blank.
     const policy = row.policyLabel
@@ -12582,11 +12591,11 @@ function renderTrailDetailContent(t){
   const water = Array.isArray(t.waterSources) ? t.waterSources : [];
 
   const rifugiHtml = rifugi.length > 0
-    ? `<ul style="margin:0 0 14px;padding-left:18px;">${rifugi.map(r => `<li>Km ${r.km} — ${r.name}</li>`).join('')}</ul>`
+    ? `<ul style="margin:0 0 14px;padding-left:18px;">${rifugi.map(r => `<li>Km ${r.km}, ${r.name}</li>`).join('')}</ul>`
     : `<p style="margin:0 0 14px;">${window.t('trail.noRifugi')}</p>`;
 
   const waterHtml = water.length > 0
-    ? `<ul style="margin:0 0 8px;padding-left:18px;">${water.map(w => `<li>Km ${w.km} — ${trustedWaterLabel(t, w.label)}</li>`).join('')}</ul>` +
+    ? `<ul style="margin:0 0 8px;padding-left:18px;">${water.map(w => `<li>Km ${w.km}, ${trustedWaterLabel(t, w.label)}</li>`).join('')}</ul>` +
       (t.curated === false ? '<p style="margin:0 0 14px;font-size:12px;color:var(--ink-soft);">Availability can change. Carry a backup supply.</p>' : '')
     : `<p style="margin:0 0 14px;">${window.t('trail.noWater')}</p>`;
 
@@ -12753,7 +12762,7 @@ function initLoopComposer(map, t){
     openButton.setAttribute('aria-pressed', String(active));
     if(mapBox) mapBox.classList.toggle('loop-composer-active', active);
     panel.dataset.state = closed ? 'closed' : 'open';
-    distance.textContent = preview ? formatApproachDistance(preview.distanceM / 1000) : '—';
+    distance.textContent = preview ? formatApproachDistance(preview.distanceM / 1000) : ', ';
     pointCount.textContent = `${points.length} / ${MAX_POINTS}`;
     addCentreButton.disabled = busy || closed || points.length >= MAX_POINTS;
     undoButton.disabled = busy || !points.length;
@@ -13264,7 +13273,7 @@ function pointAtFraction(path, fraction){
 // Elevation profile chart with two-way hover sync: hovering the chart moves
 // a cursor dot on the map; hovering near the route on the map highlights
 // the matching point on the chart. Honest note on data granularity: this
-// draws whatever is in t.elevationProfile — currently a sparse 5-6 point
+// draws whatever is in t.elevationProfile, currently a sparse 5-6 point
 // sample for hand-built trails, but it'll render just as correctly (and
 // more smoothly) once a trail has real per-vertex elevation from the
 // build-trail.mjs/build-route.mjs pipeline. The chart code doesn't care
@@ -13458,17 +13467,17 @@ function increaseLabelDensity(map){
     // clearing their minzoom makes them appear even when zoomed far out,
     // which is the effect that was actually wanted. Everything else (POI
     // icons, road names, house numbers) keeps the style's own collision
-    // rules — forcing those all visible at once made town centers like
+    // rules, forcing those all visible at once made town centers like
     // Canazei unreadably dense.
     if(sl !== 'place' && sl !== 'mountain_peak') return;
     try {
       map.setLayerZoomRange(layer.id, 0, 24);
       map.setLayoutProperty(layer.id, 'text-optional', true);
       // NOTE: deliberately NOT setting text-allow-overlap/icon-allow-overlap
-      // anymore — that disabled collision detection entirely and was the
+      // anymore, that disabled collision detection entirely and was the
       // root cause of the overcrowded map. MapLibre's collision logic now
       // prunes overlapping labels automatically at every zoom.
-    } catch(e) { /* some layers may not support one of these props — skip silently */ }
+    } catch(e) { /* some layers may not support one of these props, skip silently */ }
   });
 }
 
@@ -13507,7 +13516,7 @@ function addBaseHillshade(map, beforeId){
   }, beforeId && map.getLayer(beforeId) ? beforeId : undefined);
 }
 
-// Lifts on the trail detail map — ALL of them, same data as the homepage
+// Lifts on the trail detail map, ALL of them, same data as the homepage
 // (the global `gondolas` array from trails-data.js). Lines and stations are
 // GeoJSON layers rather than DOM markers, so rendering all ~700 lifts and
 // ~1,400 stations costs nothing.
@@ -13595,14 +13604,13 @@ function renderAllLifts(map, options){
 }
 
 // ============================================================
-// IMPORTED CIRCUITS — start where you can actually park.
+// IMPORTED CIRCUITS, start where you can actually park.
 // OSM route relations have no official start point: the import stitches
 // their segments into one line and begins wherever stitching happened to
 // start, so a loop's km 0 can land mid-slope, far from any access.
 // Before rendering, look up real amenity=parking spots around the route
 // (Overpass, cached locally for 30 days) and rotate the loop so km 0
-// sits at the path point nearest a parking area. Everything downstream —
-// 🚩 flag, directions, arrows, weather anchor, hike mode — follows the
+// sits at the path point nearest a parking area. Everything downstream, // 🚩 flag, directions, arrows, weather anchor, hike mode, follows the
 // rotated order automatically. Falls back silently to the imported order
 // when no parking is close enough or the lookup fails or times out.
 // ============================================================
@@ -13682,7 +13690,7 @@ function improveLoopStart(trail, options){
       if(cached.rot) applyLoopRotation(trail, cached.rot);
       return Promise.resolve();
     }
-  } catch (e) { /* unreadable cache — just refetch */ }
+  } catch (e) { /* unreadable cache, just refetch */ }
 
   const lookup = fetchNearbyParking(trail.path).then(parkings => {
     let best = null;
@@ -13711,7 +13719,7 @@ function improveLoopStart(trail, options){
 
 
 // ============================================================
-// "FROM PARKING TO PAWS" — one named, km-ordered itinerary that
+// "FROM PARKING TO PAWS", one named, km-ordered itinerary that
 // replaces the separate directions/rifugi/water lists. Base steps
 // (parking, start, decision points, finish) render immediately;
 // named amenities from the OSM files arrive asynchronously via
@@ -13787,7 +13795,7 @@ function buildItinerary(t){
   const isLoop = Array.isArray(t.path) && t.path.length > 1
     && distMeters(t.path[0], t.path[t.path.length-1]) < 200;
 
-  // 1. Parking / access — the named startPoint label plus a directions
+  // 1. Parking / access, the named startPoint label plus a directions
   // link into whatever navigation app this device prefers: Apple Maps on
   // iOS/macOS, Google Maps elsewhere. Neutral label, destination pre-filled.
   const sp = t.startPoint || { lat: t.lat, lng: t.lng, label: '' };
@@ -13803,15 +13811,15 @@ function buildItinerary(t){
 
   // 3. Curated rifugi and water points (they carry real names + km).
   (Array.isArray(t.rifugi) ? t.rifugi : []).forEach(r => {
-    if(r.km > 0) itinAdd('hut', r.km, `${itinKmLabel(r.km)} — ${itinEsc(r.name)}`);
+    if(r.km > 0) itinAdd('hut', r.km, `${itinKmLabel(r.km)}, ${itinEsc(r.name)}`);
   });
   (Array.isArray(t.waterSources) ? t.waterSources : []).forEach(w => {
-    if(w.km > 0) itinAdd('water', w.km, `${itinKmLabel(w.km)} — ${itinEsc(trLabel(trustedWaterLabel(t, w.label)))}`);
+    if(w.km > 0) itinAdd('water', w.km, `${itinKmLabel(w.km)}, ${itinEsc(trLabel(trustedWaterLabel(t, w.label)))}`);
   });
 
-  // 4. Decision points — where the route switches numbered trails.
+  // 4. Decision points, where the route switches numbered trails.
   (Array.isArray(t.decisionPoints) ? t.decisionPoints : []).forEach(d => {
-    itinAdd('switch', d.km, `${itinKmLabel(d.km)} — ${itinEsc(d.instruction)}`);
+    itinAdd('switch', d.km, `${itinKmLabel(d.km)}, ${itinEsc(d.instruction)}`);
   });
 
   // 5. Closing step.
@@ -13847,7 +13855,7 @@ function buildItinerary(t){
       const nameKey = p.name.toLowerCase();
       if([...seen].some(h => h.includes(nameKey))) return;
       const isHut = p.tourism === 'alpine_hut' || p.tourism === 'wilderness_hut' || p.amenity === 'shelter';
-      itinAdd(isHut ? 'hut' : 'food', hit.km, `${itinKmLabel(Math.round(hit.km*10)/10)} — ${itinEsc(p.name)}`);
+      itinAdd(isHut ? 'hut' : 'food', hit.km, `${itinKmLabel(Math.round(hit.km*10)/10)}, ${itinEsc(p.name)}`);
       seen.add(nameKey);
       added++;
     });
@@ -13864,14 +13872,14 @@ function buildItinerary(t){
       const hit = kmOnPath(lat, lng);
       if(!hit || hit.km <= 0.05) return;
       const label = (f.properties && f.properties.name) ? f.properties.name : window.t('legend.water');
-      itinAdd('water', hit.km, `${itinKmLabel(Math.round(hit.km*10)/10)} — ${itinEsc(label)}`);
+      itinAdd('water', hit.km, `${itinKmLabel(Math.round(hit.km*10)/10)}, ${itinEsc(label)}`);
       added++;
     });
     if(added) itinRender();
   };
 
   // Viewpoints, picnic spots and named sights from the trail-corridor
-  // amenity sweep — a couple of each, placed at their km on the route.
+  // amenity sweep, a couple of each, placed at their km on the route.
   window.onDetailPlacesReady = (features) => {
     const plainT = (key, fb) => {
       if(!window.t) return fb;
@@ -13894,7 +13902,7 @@ function buildItinerary(t){
       const nameKey = label.toLowerCase();
       if([...seen].some(h => h.includes(nameKey))) return;
       const icon = kind === 'viewpoint' ? 'view' : (kind === 'picnic' ? 'picnic' : 'sight');
-      itinAdd(icon, hit.km, `${itinKmLabel(Math.round(hit.km*10)/10)} — ${itinEsc(label)}`);
+      itinAdd(icon, hit.km, `${itinKmLabel(Math.round(hit.km*10)/10)}, ${itinEsc(label)}`);
       seen.add(nameKey);
       added[kind]++;
       any++;
@@ -14119,7 +14127,7 @@ function renderTrail(t){
   document.getElementById('trailDesc').textContent = conciseDescription;
   document.getElementById('trailTips').textContent = t.tips ? window.t('trail.tip', {tip: trField(t, 'tips')}) : '';
 
-  // Community v0: "N dogs hiked this trail this week" — anonymous counts
+  // Community v0: "N dogs hiked this trail this week", anonymous counts
   // from hike-mode starts. Deliberately renders NOTHING at zero: an empty
   // trail should look quiet, not dead.
   function showWeeklyHikes(){
@@ -14155,7 +14163,7 @@ function renderTrail(t){
     box.innerHTML = provenanceIcon + '<strong>Trail planning information.</strong> Based on mapped route data and available ORMA sources. Conditions can change, so check locally before setting out.';
     descEl.parentNode.insertBefore(box, descEl);
 
-    // Trail hazards — surfaceHazards used to feed only the match scoring;
+    // Trail hazards, surfaceHazards used to feed only the match scoring;
     // surface them to the reader too, right under the provenance banner.
     const surfaceVerified = !trust || !trust.categoryVerified || trust.categoryVerified(t, 'surfaceHazards');
     if (surfaceVerified && Array.isArray(t.surfaceHazards) && t.surfaceHazards.length && !document.getElementById('trailHazards')) {
@@ -14170,16 +14178,15 @@ function renderTrail(t){
     }
   })();
 
-  // Quick facts — ascent/descent, highest/lowest point.
+  // Quick facts, ascent/descent, highest/lowest point.
   // Note: summing the sparse elevationProfile points (usually just 5-6
   // samples) systematically UNDERSTATES real ascent, since it misses the
-  // smaller ups and downs between samples — confirmed by comparing against
+  // smaller ups and downs between samples, confirmed by comparing against
   // Tre Cime's already-researched 430m gain figure, which came out much
   // higher than summing its profile points did. Using the existing
   // `elevation` field for ascent is more trustworthy, and since every trail
-  // here is a loop (same start/end point), descent is the same figure —
-  // net elevation change over a full loop is ~0 by definition.
-  // Facts live inside the dark hero now — one place, no duplicates.
+  // here is a loop (same start/end point), descent is the same figure, // net elevation change over a full loop is ~0 by definition.
+  // Facts live inside the dark hero now, one place, no duplicates.
   (function(){
     const factsEl = document.getElementById('trailFacts');
     if(!factsEl) return;
@@ -14191,7 +14198,7 @@ function renderTrail(t){
     if(Array.isArray(t.elevationProfile) && t.elevationProfile.length > 1){
       facts.splice(2, 0, [`${Math.max(...t.elevationProfile.map(p => p.elev))} m`, window.t('trail.fact.high')]);
     }
-    // Difficulty cell — mirrors the homepage's derivation from real fields so
+    // Difficulty cell, mirrors the homepage's derivation from real fields so
     // the hero stat strip matches the design's five-cell layout.
     (function(){
       const asc = Number(t.elevation) || 0;
@@ -14214,7 +14221,7 @@ function renderTrail(t){
     const statMatchVal = document.getElementById('statMatchVal');
     const statMatchSub = document.getElementById('statMatchSub');
 
-    // Personal match — needs a logged-in profile. Guests see the facts
+    // Personal match, needs a logged-in profile. Guests see the facts
     // plus an honest invitation: the score exists, it just isn't theirs yet.
     function paintMatchTeaser(){
       applyDetailRouteColor(detailRouteColorForScore(guestMatchScore(t)));
@@ -14275,7 +14282,7 @@ function renderTrail(t){
 
   document.getElementById('trailDetailContent').innerHTML = renderTrailDetailContent(t);
 
-  // "Good to know" — curated insights (history, geology, best practice)
+  // "Good to know", curated insights (history, geology, best practice)
   // with cited sources, for trails that have them in trails-data.js.
   if (Array.isArray(t.insights) && t.insights.length){
     const lang = (window.DoloPawsI18n && window.DoloPawsI18n.lang) || 'en';
@@ -14297,7 +14304,7 @@ function renderTrail(t){
       if (detail) detail.appendChild(box);
     }
   } else {
-    // No hand-researched notes yet — fill the card with honest facts
+    // No hand-researched notes yet, fill the card with honest facts
     // derived from the route data itself, clearly labelled as such.
     const gtk = document.getElementById('goodToKnowBox');
     if (gtk){
@@ -14370,7 +14377,7 @@ function renderTrail(t){
       style: 'https://tiles.openfreemap.org/styles/liberty',
       center: [t.lng, t.lat],
       zoom: 14,
-      pitch: 0, // clean, flat, label-first by default — 3D is opt-in via the toggle
+      pitch: 0, // clean, flat, label-first by default, 3D is opt-in via the toggle
       attributionControl: { compact: true },
     };
     const map = new maplibregl.Map(window.DoloPawsMapRuntime
@@ -14379,7 +14386,7 @@ function renderTrail(t){
     window._dolopawsTrailMap = map; // debug/test handle
     initNearestTrailDirections(map, t);
 
-    // Fullscreen map — manual ⤢ toggle, and automatic during hike mode.
+    // Fullscreen map, manual ⤢ toggle, and automatic during hike mode.
     const mapBox = document.getElementById('trailMapBox');
     const expandBtn = document.getElementById('mapExpandBtn');
     const elevationPanel = document.getElementById('tdElevationPanel');
@@ -14404,7 +14411,7 @@ function renderTrail(t){
     document.addEventListener('keydown', event => {
       if(event.key === 'Escape' && mapBox && mapBox.classList.contains('map-fs')) setMapFS(false);
     });
-    // Live blue-dot location control — tap to see yourself on the map,
+    // Live blue-dot location control, tap to see yourself on the map,
     // with heading arrow and follow-me tracking (Google Maps-style).
     map.addControl(new maplibregl.GeolocateControl({
       positionOptions: { enableHighAccuracy: true },
@@ -14446,14 +14453,14 @@ function renderTrail(t){
         const sat = btn.getAttribute('data-maplayer') === 'satellite';
         map.setLayoutProperty('satellite-layer', 'visibility', sat ? 'visible' : 'none');
         // The vector style's building fills sit above the raster and would
-        // paint every roof grey over the photo imagery — hide them on
+        // paint every roof grey over the photo imagery, hide them on
         // satellite.
         map.getStyle().layers.forEach(layer => {
           if(layer['source-layer'] === 'building' || /building/i.test(layer.id)){
             try { map.setLayoutProperty(layer.id, 'visibility', sat ? 'none' : 'visible'); } catch(err){}
           }
         });
-        // Base buttons only — the 3D toggle keeps its own pressed state.
+        // Base buttons only, the 3D toggle keeps its own pressed state.
         layerSwitch.querySelectorAll('[data-maplayer]').forEach(b => {
           const on = b === btn;
           b.classList.toggle('on', on);
@@ -14542,7 +14549,7 @@ function renderTrail(t){
         });
       }
       // Water / huts / food / places each get their own chip so nothing that
-      // used to be visible is merely gone — it moved behind a control.
+      // used to be visible is merely gone, it moved behind a control.
       const POI_CHIPS = [
         { id:'fountainsToggle', group:'fountains', icon:'water', label:'Drinking water' },
         { id:'hutsToggle', group:'huts', icon:'hut', label:'Huts & shelters' },
@@ -14642,14 +14649,14 @@ function renderTrail(t){
       }
 
 
-      // Waymarked Trails' own public hiking overlay — same underlying OSM
+      // Waymarked Trails' own public hiking overlay, same underlying OSM
       // data as our base map, but with their dedicated trail-route styling
       // (numbered routes, waymarking) that a general basemap doesn't draw.
       //
       // Drawn in Waymarked's own colours by map-style.js. The previous
       // treatment desaturated it by -0.90 and pushed contrast, which turned
       // their red route lines and route-number shields into unreadable grey
-      // smudges — the "illegible signs" complaint. Inserting before the first
+      // smudges, the "illegible signs" complaint. Inserting before the first
       // label layer keeps it above roads and fills but below every place name.
       const firstLabelId = window.ORMAMapStyle.firstLabelLayerId(map);
       window.ORMAMapStyle.quietBasemap(map);
@@ -14668,7 +14675,7 @@ function renderTrail(t){
         });
       }
 
-      // ---- Other trails' routes — browse and switch without going back ----
+      // ---- Other trails' routes, browse and switch without going back ----
       // Every other trail with a real GPS route renders as a secondary line;
       // clicking one pops up its name and a link straight to its page. Added
       // BEFORE the main route's layers so the current trail always draws on
@@ -14767,7 +14774,7 @@ function renderTrail(t){
         const escName = s => String(s == null ? '' : s).replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
         const openNearbyPopup = (e) => {
           // If this click also lands on the current trail's own route,
-          // let the main route win — no neighbour popup on top of it.
+          // let the main route win, no neighbour popup on top of it.
           if(e.type === 'click' && e.features && e.features[0] && e.features[0].geometry.type === 'LineString' && map.getLayer('single-trail-path-line')){
             const onMain = map.queryRenderedFeatures(e.point, { layers: ['single-trail-path-line'] });
             if(onMain.length) return;
@@ -14878,14 +14885,14 @@ function renderTrail(t){
         setupElevationProfile(map, t);
 
         // NOTE: curated rifugi/water emoji markers used to be placed here
-        // from the trail's km data — removed: they duplicated the real OSM
+        // from the trail's km data, removed: they duplicated the real OSM
         // amenity dots (detail-pois.js), showing two markers for the same
         // rifugio. The OSM dot layers are now the single amenity language
         // on every map; the curated km list still renders as text in the
         // "Trail details" column. Emoji markers remain only for things OSM
         // can't know: recommended start, decision points, community flags.
 
-        // Decision points — where a hiker needs to switch from one numbered
+        // Decision points, where a hiker needs to switch from one numbered
         // route onto another. Always real, verified coordinates (these come
         // from actual confirmed junctions between two GPX tracks, never
         // interpolated) so no fallback branch is needed here.
@@ -14917,7 +14924,7 @@ function renderTrail(t){
           });
         }
 
-        // Recommended starting point — a loop can technically be walked
+        // Recommended starting point, a loop can technically be walked
         // from anywhere on it, but a real, well-marked access/parking point
         // is worth calling out explicitly rather than leaving people to
         // guess where to begin.
@@ -14933,7 +14940,7 @@ function renderTrail(t){
 
       if (typeof makeBasemapPoisClickable === 'function') makeBasemapPoisClickable(map);
 
-      // Community dog-safety flags — list, map markers, report modal.
+      // Community dog-safety flags, list, map markers, report modal.
       if (typeof initTrailReports === 'function') initTrailReports(map, t);
     });
   }
@@ -14996,7 +15003,7 @@ function renderTrail(t){
     initDetailMap();
   }
 
-  // Save button — reflects and updates real account state, same pattern as the trail cards.
+  // Save button, reflects and updates real account state, same pattern as the trail cards.
   const saveBtn = document.getElementById('detailSaveBtn');
   let saveStatusTimer = null;
   function showSaveStatus(message){
@@ -15094,7 +15101,7 @@ function renderTrail(t){
       }
       try {
         window.DoloPawsGpxExport.download(t);
-        showExportStatus('GPX downloaded. It contains the route only — check ORMA for safety context.');
+        showExportStatus('GPX downloaded. It contains the route only, check ORMA for safety context.');
         return true;
       } catch(error){
         showExportStatus(error && error.message
@@ -15133,7 +15140,7 @@ if(document.querySelector('.td2')){
 
 // ---- trail-blueprint.js ----
 /**
- * trail-blueprint.js — the "answer-first" layer of the trail page.
+ * trail-blueprint.js, the "answer-first" layer of the trail page.
  *
  * Fills the new blueprint sections WITHOUT touching trail.js logic:
  *   - Verified/Imported seal in the hero
@@ -15251,7 +15258,7 @@ if(document.querySelector('.td2')){
   // older answer cards stay out of the visual flow.
   if (strip) strip.hidden = true;
 
-  // Card 1 — Right for your dog? Three honest states.
+  // Card 1, Right for your dog? Three honest states.
   function paintDogCard() {
     const title = $('qaDogTitle'), sub = $('qaDogSub');
     if (!title || !sub) return;
@@ -15294,7 +15301,7 @@ if(document.querySelector('.td2')){
   }
   paintDogCard();
 
-  // Card 3 — Getting there. Start point label + directions link.
+  // Card 3, Getting there. Start point label + directions link.
   (function paintAccessCard() {
     const card = $('qaAccess'), title = $('qaAccessTitle'), sub = $('qaAccessSub');
     if (!card) return;
@@ -15342,7 +15349,7 @@ if(document.querySelector('.td2')){
     if (seeAll && (t.valley || t.area)) seeAll.textContent = 'See all in ' + (t.valley || t.area) + ' \u2192';
 
     // Personalise: retitle the section and fill each pick's real match %
-    // chip — same scoreTrail() as everywhere else.
+    // chip, same scoreTrail() as everywhere else.
     function personalise() {
       if (typeof scoreTrail !== 'function' || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
       window.DoloPawsAuth.getDogProfile().then(profile => {
@@ -15723,7 +15730,7 @@ if(document.querySelector('.td2')){
     box.innerHTML = rows.map(rowMarkup).join('');
   })();
 
-  /* ---- Getting there + getting around — keep travel to the trailhead
+  /* ---- Getting there + getting around, keep travel to the trailhead
      separate from the numbered waymarks used once the walk begins. ----- */
   (function parking() {
     const card = $('td2ParkingCard'), grid = $('td2ParkingGrid'), maps = $('td2MapsLink');
@@ -15927,7 +15934,7 @@ if(document.querySelector('.td2')){
 
 // ---- trail-detail-ui.js ----
 /**
- * trail-detail-ui.js — small UI glue for the redesigned (single-scroll,
+ * trail-detail-ui.js, small UI glue for the redesigned (single-scroll,
  * Strava-style) trail detail page. Self-contained: it only reads state the
  * other modules already own and reflects it into the new markup. No data
  * layer of its own. Runs only on pages that use the `.td2` layout.
@@ -16082,14 +16089,14 @@ if(document.querySelector('.td2')){
   syncCounts();
 
   // ---- 3. Personalise section headers with the dog's name ----------------
-  // (The sidebar dog card with its own match % is gone — the hero already
+  // (The sidebar dog card with its own match % is gone, the hero already
   // shows "N% match for <dog>", so repeating it below was redundant.)
   function syncDog() {
     let name = '';
     try {
       const s = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null');
       if (s && s.hasProfile) name = s.name || '';
-    } catch (e) { /* private mode — no summary */ }
+    } catch (e) { /* private mode, no summary */ }
 
     const safetyDog = document.getElementById('td2SafetyDog');
     if (safetyDog) safetyDog.textContent = name ? ' · ' + name : '';
@@ -16104,7 +16111,7 @@ if(document.querySelector('.td2')){
 ;
 
 // ---- trail-mobile.js ----
-/* Mobile app layout for the logged-in trail detail (≤700px) — ported from
+/* Mobile app layout for the logged-in trail detail (≤700px), ported from
    the Claude Design prototype "ORMA Trail Detail (Logged in) - Mobile".
 
    Same pattern as homepage-mobile.js: purely additive chrome on top of the
@@ -16301,7 +16308,7 @@ if(document.querySelector('.td2')){
   }
 
   // Calm framing: confidence describes data completeness, not danger.
-  // "low" must not read as a warning — missing data never lowers the score.
+  // "low" must not read as a warning, missing data never lowers the score.
   const CONFIDENCE_LABEL = Object.freeze({
     high: 'Based on detailed trail data',
     medium: 'Based on available trail data',
@@ -16330,7 +16337,7 @@ if(document.querySelector('.td2')){
     // Only four reasons and four cautions reach the card, so what survives the
     // cut decides whether the explanation reads as specific to this dog or as
     // boilerplate. The engine emits in calculation order, which puts every
-    // behaviour and positioned advisory last — exactly the lines worth
+    // behaviour and positioned advisory last, exactly the lines worth
     // showing. Rank before slicing; ties keep the engine's own order.
     const rank = (tiers, fallback) => item => {
       const code = typeof item.code === 'string' ? item.code : '';
@@ -16418,7 +16425,7 @@ if(document.querySelector('.td2')){
       reasons:reasons.slice(0, 4),
       cautions:cautions.slice(0, 4),
       // P0-1: the full ordered breakdown, most negative first. Unlike the two
-      // summary lists above this is not truncated — the acceptance criterion
+      // summary lists above this is not truncated, the acceptance criterion
       // is that it lists exactly the factors the score was computed from.
       breakdownFor:dogName || 'a medium dog',
       breakdown:breakdownFactors,
@@ -16440,7 +16447,7 @@ if(document.querySelector('.td2')){
   }
 
   // P0-3: what changed when the reader added their own dog. A move of two
-  // points or less is not a move — claiming one would be inventing drama the
+  // points or less is not a move, claiming one would be inventing drama the
   // score does not support.
   const SAME_SCORE_TOLERANCE = 2;
 
@@ -16690,7 +16697,7 @@ if(document.querySelector('.td2')){
     const chip = view.confidenceLabel
       ? `<span class="recommendation-confidence recommendation-confidence--${esc(view.confidence)}">${esc(view.confidenceLabel)}</span>`
       : '';
-    // Dog-side gaps are the one thing the reader can fix right now — the
+    // Dog-side gaps are the one thing the reader can fix right now, the
     // card face turns them into a profile CTA instead of a caveat.
     const canOpenWizard = !!(window.DoloPawsWizard && typeof window.DoloPawsWizard.open === 'function');
     const gapCta = !view.dogName

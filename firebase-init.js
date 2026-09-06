@@ -29,7 +29,7 @@ const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
 // Apple sign-in is wired but stays hidden until the provider is configured
-// in Firebase with the Apple Developer Services ID — flip this to true then.
+// in Firebase with the Apple Developer Services ID, flip this to true then.
 const APPLE_SIGNIN_READY = false;
 const appleProvider = new OAuthProvider('apple.com');
 appleProvider.addScope('email');
@@ -95,7 +95,7 @@ async function syncProfileSummary(user) {
       })),
       saved,
     });
-  } catch (e) { /* cache only — never break auth over it */ }
+  } catch (e) { /* cache only, never break auth over it */ }
 }
 
 async function getFavorites() {
@@ -335,7 +335,7 @@ function cacheCommittedDogSummary(user, committed) {
       })),
       saved:sameUser && typeof sameUser.saved === 'number' ? sameUser.saved : null,
     });
-  } catch (e) { /* cache only — the committed save still succeeded */ }
+  } catch (e) { /* cache only, the committed save still succeeded */ }
 }
 
 // Every dog mutation is transactional. Photo uploads, profile switches and
@@ -558,7 +558,7 @@ async function saveHikeOutcome(record) {
 
 function friendlyError(code) {
   const map = {
-    "auth/email-already-in-use": "That email already has an account — try logging in instead.",
+    "auth/email-already-in-use": "That email already has an account, try logging in instead.",
     "auth/invalid-email": "That email address doesn't look right.",
     "auth/weak-password": "Password should be at least 6 characters.",
     "auth/user-not-found": "No account found with that email.",
@@ -568,7 +568,7 @@ function friendlyError(code) {
     "auth/requires-recent-login": "For security, please confirm your identity again before this action.",
     "auth/too-many-requests": "Too many attempts. Wait a moment, then try again.",
   };
-  return map[code] || "Something went wrong — please try again.";
+  return map[code] || "Something went wrong, please try again.";
 }
 
 async function deleteAccount(password) {
@@ -810,7 +810,7 @@ function queueOfflineContribution(type, payload, options) {
     ok: true,
     queued: true,
     queueId: result.record.id,
-    message: "Saved on this device — waiting to sync when you reconnect.",
+    message: "Saved on this device, waiting to sync when you reconnect.",
   } : {
     ok: false,
     state: "queue-unavailable",
@@ -945,7 +945,7 @@ window.DoloPawsAuth = {
 };
 
 // ============================================================
-// COMMUNITY v0 — anonymous "dogs hiked this week" counter.
+// COMMUNITY v0, anonymous "dogs hiked this week" counter.
 // One event per hike start: trail id + server timestamp, nothing else.
 // No identity, no location. Subcollection-per-trail layout means the
 // weekly count query only needs a single-field index (no composite
@@ -958,7 +958,7 @@ async function recordHikeStart(trailId) {
     });
     return true;
   } catch (e) {
-    return false; // counter is a nice-to-have — never break hike mode over it
+    return false; // counter is a nice-to-have, never break hike mode over it
   }
 }
 
@@ -977,7 +977,7 @@ async function getWeeklyHikeCount(trailId) {
 }
 
 // ============================================================
-// COMMUNITY — dog-safety flags, reviews, abuse reports.
+// COMMUNITY, dog-safety flags, reviews, abuse reports.
 // Security is enforced by Firestore rules; these functions just write
 // well-formed documents and never break the page on failure.
 // ============================================================
@@ -1031,7 +1031,7 @@ async function addFlag(trailId, type, km, text, options) {
       });
       if (queued) return queued;
     }
-    return contributionWriteError(e, "Could not save your report — please try again.");
+    return contributionWriteError(e, "Could not save your report, please try again.");
   }
 }
 
@@ -1083,10 +1083,10 @@ async function reportTrailHazard(trail, category, description, observedOn) {
       status: "pending",
       createdAt: serverTimestamp(),
     });
-    return { ok: true, message: "Thanks — ORMA is checking this against official sources now." };
+    return { ok: true, message: "Thanks, ORMA is checking this against official sources now." };
   } catch (error) {
     console.error("reportTrailHazard failed:", error);
-    return contributionWriteError(error, "Could not send your report — please try again.");
+    return contributionWriteError(error, "Could not send your report, please try again.");
   }
 }
 
@@ -1116,10 +1116,10 @@ async function submitPlaceDogFriendliness(place, policy, evidence, note) {
       status: "pending",
       createdAt: serverTimestamp(),
     });
-    return { ok: true, message: "Thanks — your report is awaiting ORMA review." };
+    return { ok: true, message: "Thanks, your report is awaiting ORMA review." };
   } catch (error) {
     console.error("submitPlaceDogFriendliness failed:", error);
-    return contributionWriteError(error, "Could not send your report — please try again.");
+    return contributionWriteError(error, "Could not send your report, please try again.");
   }
 }
 
@@ -1253,7 +1253,7 @@ async function setReview(trailId, rating, text, hikedOn, options) {
       const queued = queueOfflineContribution("review", queuePayload, options);
       if (queued) return queued;
     }
-    return contributionWriteError(e, "Could not save your review — please try again.");
+    return contributionWriteError(e, "Could not save your review, please try again.");
   }
 }
 
@@ -1290,7 +1290,7 @@ async function addTrailPhoto(trailId, image, caption, options) {
   }
   const imageData = String(image || '');
   if (!imageData.startsWith('data:image/') || imageData.length > 700000) {
-    return { ok: false, message: "This photo is too large — please try another image." };
+    return { ok: false, message: "This photo is too large, please try another image." };
   }
   try {
     const dog = await getDogProfile();
@@ -1320,7 +1320,7 @@ async function addTrailPhoto(trailId, image, caption, options) {
       });
       if (queued) return queued;
     }
-    return contributionWriteError(e, "Could not add this photo — please try again.");
+    return contributionWriteError(e, "Could not add this photo, please try again.");
   }
 }
 

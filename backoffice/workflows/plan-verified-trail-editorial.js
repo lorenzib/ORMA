@@ -6,6 +6,7 @@ const LOCKED_FACT_FIELDS = Object.freeze([
   'route geometry', 'distance and elevation', 'parking coordinates', 'dog access rules',
   'surface and exposure', 'water guidance', 'livestock guidance', 'seasonal access',
   'recommended route start', 'trail-number sequence', 'trail-number switches',
+  'rifugio and lift dog policies',
 ]);
 
 const DOSSIER_SLUGS = Object.freeze({

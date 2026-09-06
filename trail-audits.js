@@ -57,9 +57,9 @@
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'],
         sources: [
-          'Les Karellis — Randonnée vers Albanne',
-          'AllTrails — Les Karellis–Albanne',
-          'Service Public France — dogs in forests',
+          'Les Karellis, Randonnée vers Albanne',
+          'AllTrails, Les Karellis–Albanne',
+          'Service Public France, dogs in forests',
           'OpenStreetMap relation 14381570 and mapped water nodes'
         ],
         date: '2026-07-26'
@@ -75,22 +75,22 @@
       tips: 'Start at the Les Karellis tourist office and follow green route 09 toward Albanne. The route alternates shaded forest with open alpage; carry water even though mapped taps and springs appear near Albanne and Les Karellis.',
       sourceLinks: [
         {
-          label: 'Les Karellis — Randonnée vers Albanne (official route 09)',
+          label: 'Les Karellis, Randonnée vers Albanne (official route 09)',
           url: 'https://www.karellis.com/activites-hiver/randonnee-vers-albanne/',
           categories: ['heat']
         },
         {
-          label: 'AllTrails — Les Karellis–Albanne',
+          label: 'AllTrails, Les Karellis–Albanne',
           url: 'https://www.alltrails.com/trail/france/savoie/les-karellis-albanne',
           categories: ['access']
         },
         {
-          label: 'Service Public France — seasonal forest leash rule',
+          label: 'Service Public France, seasonal forest leash rule',
           url: 'https://www.service-public.gouv.fr/particuliers/actualites/A17343',
           categories: ['access']
         },
         {
-          label: 'Waymarked Trails — Albanne, OSM relation 14381570',
+          label: 'Waymarked Trails, Albanne, OSM relation 14381570',
           url: 'https://hiking.waymarkedtrails.org/#route?id=14381570'
         },
         {
@@ -194,9 +194,9 @@
       verified: {
         categories: ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards'],
         sources: [
-          'Bezirksgemeinschaft Eisacktal — Rundweg Laugen Elvas',
+          'Bezirksgemeinschaft Eisacktal, Rundweg Laugen Elvas',
           'Official Laugen–Elvas overview board',
-          'South Tyrol nature portal — protected biotopes',
+          'South Tyrol nature portal, protected biotopes',
           'OpenStreetMap relation 12731853 and mapped water nodes'
         ],
         date: '2026-07-26'
@@ -212,7 +212,7 @@
       tips: 'The official circuit starts in Elvas and visits the Laugen wetland and its information stations. The route is 4.2 km with about 100 m ascent and takes roughly 1½ hours.',
       sourceLinks: [
         {
-          label: 'Bezirksgemeinschaft Eisacktal — Rundweg Laugen Elvas',
+          label: 'Bezirksgemeinschaft Eisacktal, Rundweg Laugen Elvas',
           url: 'https://www.bzgeisacktal.it/de/Rundweg_Laugen_Elvas'
         },
         {
@@ -220,11 +220,11 @@
           url: 'https://www.bzgeisacktal.it/system/web/GetDocument.ashx?cts=1535713140&fileId=1000136'
         },
         {
-          label: 'South Tyrol nature portal — protected biotopes',
+          label: 'South Tyrol nature portal, protected biotopes',
           url: 'https://natur-raum.provinz.bz.it/de/biotope'
         },
         {
-          label: 'Waymarked Trails — OSM relation 12731853',
+          label: 'Waymarked Trails, OSM relation 12731853',
           url: 'https://hiking.waymarkedtrails.org/#route?id=12731853'
         },
         {
@@ -299,8 +299,8 @@
       verified: {
         categories: ['water', 'heat', 'exposure', 'surfaceHazards'],
         sources: [
-          'CAI Lozzo di Cadore — Anelli e Vie route descriptions',
-          'Lozzo di Cadore — Anello del Sole route page and map',
+          'CAI Lozzo di Cadore, Anelli e Vie route descriptions',
+          'Lozzo di Cadore, Anello del Sole route page and map',
           'OpenStreetMap relation 7548344'
         ],
         date: '2026-07-26'
@@ -316,19 +316,19 @@
       tips: 'Start at Niante Aze outside Lozzo and follow route 5 toward Lago d’Aosto. The official route is about 3 km with 250 m ascent; carry all water you need.',
       sourceLinks: [
         {
-          label: 'Lozzo di Cadore — Anello del Sole',
+          label: 'Lozzo di Cadore, Anello del Sole',
           url: 'https://www.lozzodicadore.eu/sito/node/183'
         },
         {
-          label: 'CAI Lozzo di Cadore — Anelli e Vie route descriptions',
+          label: 'CAI Lozzo di Cadore, Anelli e Vie route descriptions',
           url: 'https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-descrizione.pdf'
         },
         {
-          label: 'Lozzo di Cadore — route map',
+          label: 'Lozzo di Cadore, route map',
           url: 'https://www.lozzodicadore.eu/doc/pieghevoli/anelli-di-lozzo-di-cadore-carta-25000.pdf'
         },
         {
-          label: 'Waymarked Trails — OSM relation 7548344',
+          label: 'Waymarked Trails, OSM relation 7548344',
           url: 'https://hiking.waymarkedtrails.org/#route?id=7548344'
         },
         {

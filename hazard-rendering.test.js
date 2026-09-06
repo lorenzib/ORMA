@@ -82,3 +82,58 @@ describe('official area warnings reach the page', () => {
     expect(stack).toBeNull();
   });
 });
+
+// The report control lives in the same script and shares its anchor, but it has
+// a second dependency: window.DoloPawsCommunity, assigned near the end of
+// firebase-init.js. This file is injected dynamically, so it usually runs
+// first -- and used to skip the control silently on every trail page.
+describe("the hazard report control survives the module load order", () => {
+  const stubCommunity = () => {
+    window.DoloPawsCommunity = { reportTrailHazard: async () => ({ ok:true }) };
+  };
+  const clearCommunity = () => {
+    delete window.DoloPawsCommunity;
+    delete window.DoloPawsAuthReady;
+  };
+
+  async function boot(){
+    jest.resetModules();
+    window.history.replaceState({}, "", "/trail.html?id=piancavallo");
+    document.body.innerHTML = bodyOf("trail.html");
+    document.head.innerHTML = "";
+    global.fetch = jest.fn(() => Promise.resolve({ ok:true, json:() => Promise.resolve({ hazards:[HAZARD] }) }));
+    require(path.join(root, "trail-hazards.js"));
+    await new Promise(resolve => setTimeout(resolve, 0));
+  }
+
+  afterEach(clearCommunity);
+
+  test("installs when the community module is already available", async () => {
+    stubCommunity();
+    window.DoloPawsAuthReady = true;
+    await boot();
+    expect(document.querySelector(".orma-hazard-report")).not.toBeNull();
+  });
+
+  // The regression: firebase-init.js finishes after this script has run.
+  test("installs when the community module arrives late", async () => {
+    clearCommunity();
+    await boot();
+    expect(document.querySelector(".orma-hazard-report")).toBeNull();
+
+    stubCommunity();
+    window.DoloPawsAuthReady = true;
+    window.dispatchEvent(new window.CustomEvent("dolopaws-auth-ready"));
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    expect(document.querySelector(".orma-hazard-report")).not.toBeNull();
+  });
+
+  test("stays absent when the community module never appears", async () => {
+    clearCommunity();
+    await boot();
+    window.dispatchEvent(new window.CustomEvent("dolopaws-auth-ready"));
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(document.querySelector(".orma-hazard-report")).toBeNull();
+  });
+});

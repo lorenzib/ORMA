@@ -36,9 +36,67 @@ function relationExternalId(trail){
   return null;
 }
 
-function baselineBlockers(trail){
+// Two points count as the same place when they are within 50 m; a hand-drawn
+// loop rarely closes on the exact metre.
+const CLOSED_LOOP_METRES = 50;
+
+function metresBetween(a, b){
+  const radians = Math.PI / 180;
+  const dLat = (b[0] - a[0]) * radians;
+  const dLng = (b[1] - a[1]) * radians;
+  const chord = Math.sin(dLat / 2) ** 2
+    + Math.cos(a[0] * radians) * Math.cos(b[0] * radians) * Math.sin(dLng / 2) ** 2;
+  return 2 * 6371000 * Math.asin(Math.sqrt(chord));
+}
+
+function pathIsClosedLoop(trail){
+  const path = Array.isArray(trail && trail.path) ? trail.path : [];
+  if(path.length < 3) return false;
+  return metresBetween(path[0], path[path.length - 1]) <= CLOSED_LOOP_METRES;
+}
+
+// Does the recorded relation actually cover this walk?
+//
+// Measured across the catalogue, this is the only question that separates the
+// cases. 127 of 155 trails lie almost entirely on their relation; the other 28
+// wander off it, and their relations reconstruct to a median 59% of the trail's
+// length — they are one leg of a route stitched from several.
+//
+// Earlier versions asked about length, loop shape and the relation's name.
+// Each was a proxy and each was wrong. A trail may walk 3.4 km of a 7.2 km
+// named route and be perfectly sourced, and a relation may carry the trail's
+// exact name while sharing a quarter of its path.
+const ON_ROUTE_PERCENT = 90;
+
+function identityCheckFor(trail, identityChecks){
+  const check = identityChecks && identityChecks[trail && trail.id];
+  // A check of a relation the trail no longer records answers a question
+  // nobody is asking, so correcting a source retires its verdict.
+  if(!check || check.externalRelationId !== relationExternalId(trail)) return null;
+  return check;
+}
+
+function identityContradiction(trail, identityChecks){
+  const check = identityCheckFor(trail, identityChecks);
+  if(!check) return null;
+  const containment = check.pathContainmentPercent;
+  // A check taken before containment was measured condemns nobody.
+  if(!Number.isFinite(containment) || containment >= ON_ROUTE_PERCENT) return null;
+  return {
+    reason: 'relation-covers-part-of-the-route',
+    pathContainmentPercent: containment,
+    checkedAt: check.checkedAt || null,
+    externalRelationId: check.externalRelationId,
+    relationName: check.relationName || null,
+    reconstructedDistanceKm: check.reconstructedDistanceKm ?? null,
+    officialDistanceKm: check.officialDistanceKm ?? null,
+  };
+}
+
+function baselineBlockers(trail, identityChecks){
   const blockers = [];
   if(!relationExternalId(trail)) blockers.push('route-source-identity-unresolved');
+  else if(identityContradiction(trail, identityChecks)) blockers.push('route-source-identity-contradicted');
   if(!Array.isArray(trail.path) || trail.path.length < 2) blockers.push('usable-geometry-missing');
   if(!trail.reviewedAt) blockers.push('review-date-missing');
   if(!Array.isArray(trail.sourceLinks) || !trail.sourceLinks.length) blockers.push('claim-sources-missing');
@@ -50,19 +108,22 @@ function baselineBlockers(trail){
   return blockers;
 }
 
-function priorityFor(trail, verified, blockers){
+function priorityFor(trail, verified, blockers, identityChecks){
   let score = trail.curated === false ? 200 : 300;
   if(verified) score = 50;
-  if(relationExternalId(trail)) score += 15;
+  // A relation that reconstructs a different route is not a usable identity,
+  // so it does not earn the bonus for having one.
+  if(relationExternalId(trail) && !identityContradiction(trail, identityChecks)) score += 15;
   if(Array.isArray(trail.sourceLinks) && trail.sourceLinks.length) score += 10;
   score += Math.min(blockers.length, 20);
   return score;
 }
 
-function campaignItem(trail){
+function campaignItem(trail, identityChecks){
   const verified = hasFullGraduation(trail);
   const externalId = relationExternalId(trail);
-  const blockers = verified ? [] : baselineBlockers(trail);
+  const blockers = verified ? [] : baselineBlockers(trail, identityChecks);
+  const contradiction = verified ? null : identityContradiction(trail, identityChecks);
   return {
     trailId: trail.id,
     name: trail.name,
@@ -72,9 +133,13 @@ function campaignItem(trail){
     externalRelationId: externalId,
     campaignState: verified
       ? 'verified-monitoring'
-      : externalId ? 'identity-check-queued' : 'source-identity-required',
-    priorityScore: priorityFor(trail, verified, blockers),
+      // A recorded relation that turned out to be a different route leaves the
+      // trail needing a source, exactly like having none. Queueing the same
+      // check again would only fail again.
+      : externalId && !contradiction ? 'identity-check-queued' : 'source-identity-required',
+    priorityScore: priorityFor(trail, verified, blockers, identityChecks),
     baselineBlockers: blockers,
+    identityCheck: contradiction,
     existing: {
       reviewedAt: trail.reviewedAt || null,
       sourceCount: Array.isArray(trail.sourceLinks) ? trail.sourceLinks.length : 0,
@@ -102,7 +167,8 @@ function planCatalogueCampaign(trails, options = {}){
   const at = options.at || new Date().toISOString();
   const jobLimit = Number.isInteger(options.jobLimit) && options.jobLimit > 0 ? options.jobLimit : 5;
   const excludedTrailIds = new Set(Array.isArray(options.excludedTrailIds) ? options.excludedTrailIds : []);
-  const items = trails.map(campaignItem).sort((a, b) =>
+  const identityChecks = options.identityChecks || {};
+  const items = trails.map(trail => campaignItem(trail, identityChecks)).sort((a, b) =>
     b.priorityScore - a.priorityScore || a.name.localeCompare(b.name) || a.trailId.localeCompare(b.trailId));
   const queueable = items.filter(item => !item.modernGraduationVerified
     && item.campaignState !== 'rejected'
@@ -124,6 +190,7 @@ function planCatalogueCampaign(trails, options = {}){
       routeNumberGuidanceOutstanding: trails.filter(trail=>!trail.graduation?.completed?.includes('routeNumbers')).length,
       identityCheckQueued: items.filter(item => item.campaignState === 'identity-check-queued').length,
       sourceIdentityRequired: items.filter(item => item.campaignState === 'source-identity-required').length,
+      sourceIdentityContradicted: items.filter(item => item.identityCheck).length,
       previouslyQueued: excludedTrailIds.size,
       remainingQueueable: queueable.length - selected.length,
       jobsCreated: jobs.length,
@@ -139,5 +206,6 @@ function planCatalogueCampaign(trails, options = {}){
 
 module.exports = {
   GRADUATION_CHECKS, hasFullGraduation, relationExternalId,
-  baselineBlockers, campaignItem, planCatalogueCampaign,
+  baselineBlockers, campaignItem, jobForItem, planCatalogueCampaign,
+  pathIsClosedLoop, identityContradiction, ON_ROUTE_PERCENT,
 };

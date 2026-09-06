@@ -15,7 +15,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css?v=20260905-1">
 <style>
-  /* Edit-profile screen — tabbed rail + panel layout */
+  /* Edit-profile screen, tabbed rail + panel layout */
   .acct-wrap{max-width:1000px;margin:0 auto;padding:30px 34px 60px;}
   .acct-card{background:var(--card);border:1px solid var(--paper-line);border-radius:16px;}
   .acct-grid{display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:start;}
@@ -47,7 +47,7 @@
   .sensbtn.on .ico{background:#DCEBE0;}
   .sensbtn .chk{flex:none;width:20px;height:20px;border-radius:6px;border:1.5px solid #C5C3B4;background:#fff;color:#fff;display:grid;place-items:center;font-size:12px;}
   .sensbtn.on .chk{border-color:var(--accent);background:var(--accent);}
-  /* Settings table of contents — desktop: sticky sub-links under the
+  /* Settings table of contents, desktop: sticky sub-links under the
      Settings tab in the rail; phones get a "Jump to" dropdown instead
      (anchor-jump pills didn't read well at that width). */
   .settings-toc{display:flex;flex-direction:column;gap:2px;margin:2px 0 4px;padding-left:12px;}
@@ -96,7 +96,7 @@
     .size-grid{grid-template-columns:1fr 1fr !important;}
   }
 
-  /* Phone: app-style edit screen — sticky top bar (back · Edit profile ·
+  /* Phone: app-style edit screen, sticky top bar (back · Edit profile ·
      Save), segmented tab bar, flat panels on the page background, and a
      fixed Cancel / Save footer (ORMA Edit Profile mobile design). */
   .ep-mbar,.ep-mfooter{display:none;}
@@ -223,7 +223,7 @@
       <button id="accountTabHealth" class="railbtn" role="tab" data-tab="health" aria-selected="false" aria-controls="tab-health" tabindex="-1"><span class="railico" aria-hidden="true">🩺</span> <span data-i18n="account.tab.vet">Vet</span></button>
       <button id="accountTabPublic" class="railbtn" role="tab" data-tab="public" aria-selected="false" aria-controls="tab-public" tabindex="-1"><span class="railico" aria-hidden="true">🐾</span> <span>Public profile</span></button>
       <button id="accountTabAccount" class="railbtn" role="tab" data-tab="account" aria-selected="false" aria-controls="tab-account" tabindex="-1"><span class="railico" aria-hidden="true">⚙️</span> <span data-i18n="account.tab.settings">Settings</span></button>
-      <!-- Settings sub-sections — shown while the Settings tab is active -->
+      <!-- Settings sub-sections, shown while the Settings tab is active -->
       <nav id="settingsToc" class="settings-toc" aria-label="Settings sections" hidden>
         <a href="#secDetails" data-sec="secDetails" class="on" data-i18n="account.settings.details">Account details</a>
         <a href="#passwordSection" data-sec="passwordSection" data-i18n="account.settings.password">Password</a>
@@ -259,12 +259,12 @@
           <div><label class="lbl" for="dogName" data-i18n="account.profile.name">Name</label><input class="fld" id="dogName" placeholder="e.g. Rufus" autocomplete="off"></div>
           <div style="position:relative;">
             <label class="lbl" for="dogBreed" data-i18n="account.profile.breed">Breed</label>
-            <input class="fld" id="dogBreed" placeholder="Start typing — e.g. Lab…" data-i18n-ph="account.breedPlaceholder" autocomplete="off" spellcheck="false">
+            <input class="fld" id="dogBreed" placeholder="Start typing, e.g. Lab…" data-i18n-ph="account.breedPlaceholder" autocomplete="off" spellcheck="false">
             <div id="breedList" hidden style="position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:20;background:#fff;border:1px solid var(--paper-line);border-radius:12px;box-shadow:0 14px 34px -12px rgba(23,42,28,.4);padding:5px;max-height:240px;overflow-y:auto;"></div>
             <div class="hint" id="breedHint">Search breeds</div>
           </div>
           <div><label class="lbl" for="dogDob" data-i18n="account.birthday">Birthday</label><input class="fld" type="date" id="dogDob"><div class="hint" id="ageHint">Add a birthday to estimate age</div></div>
-          <div><label class="lbl" for="dogWeight"><span data-i18n="account.weight">Weight</span> — <span style="color:var(--accent);font-weight:800;" id="weightLabel">20 kg</span></label><input type="range" class="wt" id="dogWeight" min="2" max="60" step="1" value="20" style="margin-top:14px;"></div>
+          <div><label class="lbl" for="dogWeight"><span data-i18n="account.weight">Weight</span>, <span style="color:var(--accent);font-weight:800;" id="weightLabel">20 kg</span></label><input type="range" class="wt" id="dogWeight" min="2" max="60" step="1" value="20" style="margin-top:14px;"></div>
         </div>
 
         <label class="lbl" data-i18n="account.size">Size</label>
@@ -281,7 +281,7 @@
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;border-top:1px solid #EDE9DD;padding-top:20px;">
           <div id="removeDogBlock" style="max-width:52%;min-width:220px;">
             <button type="button" id="removeDogBtn" class="btn-g" style="border-color:#E4B9A8;color:#9C3A25;">Remove this dog</button>
-            <p id="removeDogHelp" class="hint" style="margin:8px 2px 0;">Permanently deletes this dog's profile and all its data — photo, health, vet and emergency details. You can add a dog again later.</p>
+            <p id="removeDogHelp" class="hint" style="margin:8px 2px 0;">Permanently deletes this dog's profile and all its data, photo, health, vet and emergency details. You can add a dog again later.</p>
           </div>
           <div class="panel-save" style="flex:none;">
             <div style="display:flex;gap:10px;justify-content:flex-end;"><button type="button" class="btn-g cancelBtn" data-i18n="account.cancel">Cancel</button><button type="button" class="btn-p saveBtn" disabled data-i18n="account.saveChanges">Save changes</button></div>
@@ -327,14 +327,14 @@
           <div style="border-radius:16px;overflow:hidden;border:1px solid var(--paper-line);box-shadow:0 8px 24px -14px rgba(23,42,28,.4);">
             <div style="background:var(--ink);color:#EAF1E8;padding:13px 16px;display:flex;align-items:center;gap:11px;">
               <div id="cardPhoto" style="width:42px;height:42px;border-radius:12px;background-color:var(--accent);background-size:cover;background-position:center;display:grid;place-items:center;color:#fff;font:800 17px 'Inter',sans-serif;flex:none;"></div>
-              <div style="flex:1;min-width:0;"><div id="cardName" style="font:700 15px 'Bricolage Grotesque',sans-serif;color:#fff;">Your dog</div><div style="font-size:11px;color:#9FC7B0;"><span data-i18n="account.card.label">Emergency card</span> · <span id="cardBreed">—</span></div></div>
+              <div style="flex:1;min-width:0;"><div id="cardName" style="font:700 15px 'Bricolage Grotesque',sans-serif;color:#fff;">Your dog</div><div style="font-size:11px;color:#9FC7B0;"><span data-i18n="account.card.label">Emergency card</span> · <span id="cardBreed">, </span></div></div>
               <span style="flex:none;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#9FE1CB;background:rgba(159,225,203,.16);border-radius:6px;padding:4px 8px;">ORMA</span>
             </div>
             <div style="background:#fff;padding:13px 16px;display:flex;flex-direction:column;gap:9px;">
               <div class="cardrow"><span class="k" data-i18n="account.card.microchipLabel">Microchip</span><span class="v" id="cardChip">Not recorded</span></div>
               <div class="cardrow"><span class="k" data-i18n="account.card.medicalLabel">Medical</span><span class="v" id="cardMedical" style="font-weight:400;">None noted</span></div>
               <div style="height:1px;background:#EDE9DD;"></div>
-              <div class="cardrow"><span class="k" data-i18n="account.card.ownerLabel">Owner</span><span class="v" id="cardOwner">—</span></div>
+              <div class="cardrow"><span class="k" data-i18n="account.card.ownerLabel">Owner</span><span class="v" id="cardOwner">, </span></div>
               <div class="cardrow"><span class="k" data-i18n="account.card.emergencyLabel">Emergency</span><span class="v" id="cardEmergency">Not set</span></div>
               <div class="cardrow"><span class="k" data-i18n="account.card.vetLabel">Vet</span><span class="v" id="cardVet">Not recorded</span></div>
             </div>
@@ -557,7 +557,7 @@
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260905-2"></script>
+<script src="mobile-nav.js?v=20260905-3"></script>
 <script src="i18n.js?v=20260815-4"></script>
 <script src="offline-packages.js"></script>
 <script src="local-data.js?v=20260815-4"></script>

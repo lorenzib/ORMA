@@ -1,0 +1,2293 @@
+{
+  "contractVersion": "1.0.0",
+  "updatedAt": "2026-09-05T21:39:07.042Z",
+  "checks": {
+    "seceda": {
+      "externalRelationId": "relation/6528494",
+      "checkedAt": "2026-09-05T21:10:44.917Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": null,
+      "componentCount": 1,
+      "reconstructedDistanceKm": 8.81,
+      "officialDistanceKm": 10.8,
+      "distanceDeltaPercent": -18.4,
+      "pathContainmentPercent": 56
+    },
+    "santa-maddalena": {
+      "externalRelationId": "relation/11817704",
+      "checkedAt": "2026-09-05T21:10:46.258Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Rundweg St. Magdalena",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 1.64,
+      "officialDistanceKm": 1.6,
+      "distanceDeltaPercent": 2.5,
+      "pathContainmentPercent": 100
+    },
+    "cadini": {
+      "externalRelationId": "relation/1067616",
+      "checkedAt": "2026-09-05T21:10:47.589Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Sentiero Bonacossa",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 7.24,
+      "officialDistanceKm": 3.4,
+      "distanceDeltaPercent": 112.9,
+      "pathContainmentPercent": 100
+    },
+    "prato-piazza": {
+      "externalRelationId": "relation/1155859",
+      "checkedAt": "2026-09-05T21:10:49.012Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": null,
+      "componentCount": 4,
+      "reconstructedDistanceKm": 14.63,
+      "officialDistanceKm": 4.6,
+      "distanceDeltaPercent": 218,
+      "pathContainmentPercent": 100
+    },
+    "nuvolau": {
+      "externalRelationId": "relation/3197403",
+      "checkedAt": "2026-09-05T21:10:50.334Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": null,
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.22,
+      "officialDistanceKm": 5.5,
+      "distanceDeltaPercent": -41.5,
+      "pathContainmentPercent": 38
+    },
+    "sassolungo": {
+      "externalRelationId": "relation/5412043",
+      "checkedAt": "2026-09-05T21:10:52.072Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Sentiero \"Friedrich August\" - Friedrich-August-Weg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 6.72,
+      "officialDistanceKm": 17,
+      "distanceDeltaPercent": -60.5,
+      "pathContainmentPercent": 40
+    },
+    "lago-sorapis": {
+      "externalRelationId": "relation/3985745",
+      "checkedAt": "2026-09-05T21:10:54.119Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": null,
+      "componentCount": 1,
+      "reconstructedDistanceKm": 11.05,
+      "officialDistanceKm": 10.8,
+      "distanceDeltaPercent": 2.3,
+      "pathContainmentPercent": 100
+    },
+    "valley-view": {
+      "externalRelationId": "relation/11817269",
+      "checkedAt": "2026-09-05T21:10:55.936Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components"
+      ],
+      "closedLoop": false,
+      "relationName": "Panoramaweg (Villnöß) - Sentiero Panorama (Funes)",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 2.8,
+      "officialDistanceKm": 2.8,
+      "distanceDeltaPercent": 0,
+      "pathContainmentPercent": 100
+    },
+    "piancavallo": {
+      "externalRelationId": "relation/3508653",
+      "checkedAt": "2026-09-05T21:10:57.975Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Passeggiata delle Malghe",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 7.06,
+      "officialDistanceKm": 7.1,
+      "distanceDeltaPercent": -0.6,
+      "pathContainmentPercent": 100
+    },
+    "giro-del-bulacia": {
+      "externalRelationId": "relation/9483250",
+      "checkedAt": "2026-09-05T21:10:59.388Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Puflatschumrundung - Giro del Bulacia",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 6.76,
+      "officialDistanceKm": 6.64,
+      "distanceDeltaPercent": 1.8,
+      "pathContainmentPercent": 100
+    },
+    "osm-3982382": {
+      "externalRelationId": "relation/3982382",
+      "checkedAt": "2026-09-05T21:11:00.705Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components"
+      ],
+      "closedLoop": true,
+      "relationName": "Circuit Béatrice de Savoie",
+      "componentCount": 3,
+      "reconstructedDistanceKm": 4.23,
+      "officialDistanceKm": 4.5,
+      "distanceDeltaPercent": -6,
+      "pathContainmentPercent": 100
+    },
+    "osm-6250300": {
+      "externalRelationId": "relation/6250300",
+      "checkedAt": "2026-09-05T21:11:02.018Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Boucle du Lac Vert",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.65,
+      "officialDistanceKm": 3.6,
+      "distanceDeltaPercent": 1.4,
+      "pathContainmentPercent": 100
+    },
+    "osm-9933643": {
+      "externalRelationId": "relation/9933643",
+      "checkedAt": "2026-09-05T21:11:03.391Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Le Lac Vert",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 4.56,
+      "officialDistanceKm": 4.5,
+      "distanceDeltaPercent": 1.3,
+      "pathContainmentPercent": 100
+    },
+    "osm-10116283": {
+      "externalRelationId": "relation/10116283",
+      "checkedAt": "2026-09-05T21:11:04.718Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Itinéraire de découverte historique",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 2.59,
+      "officialDistanceKm": 2.7,
+      "distanceDeltaPercent": -4.1,
+      "pathContainmentPercent": 100
+    },
+    "osm-10116380": {
+      "externalRelationId": "relation/10116380",
+      "checkedAt": "2026-09-05T21:11:06.022Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Itinéraire découverte de la nature",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 2.21,
+      "officialDistanceKm": 4.2,
+      "distanceDeltaPercent": -47.4,
+      "pathContainmentPercent": 74
+    },
+    "osm-20347406": {
+      "externalRelationId": "relation/20347406",
+      "checkedAt": "2026-09-05T21:11:07.378Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Sentier des Patriotes",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 9,
+      "officialDistanceKm": 8.9,
+      "distanceDeltaPercent": 1.1,
+      "pathContainmentPercent": 100
+    },
+    "osm-11517208": {
+      "externalRelationId": "relation/11517208",
+      "checkedAt": "2026-09-05T21:11:08.740Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "La Croix des Salles",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 7.64,
+      "officialDistanceKm": 7.6,
+      "distanceDeltaPercent": 0.5,
+      "pathContainmentPercent": 100
+    },
+    "osm-14987412": {
+      "externalRelationId": "relation/14987412",
+      "checkedAt": "2026-09-05T21:11:10.095Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components"
+      ],
+      "closedLoop": true,
+      "relationName": "Sentier du Four",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 7.89,
+      "officialDistanceKm": 8.3,
+      "distanceDeltaPercent": -4.9,
+      "pathContainmentPercent": 97
+    },
+    "osm-18055492": {
+      "externalRelationId": "relation/18055492",
+      "checkedAt": "2026-09-05T21:11:11.465Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Le Mont d'Arbois - Mont Joux",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 11.76,
+      "officialDistanceKm": 11.6,
+      "distanceDeltaPercent": 1.4,
+      "pathContainmentPercent": 100
+    },
+    "osm-14864704": {
+      "externalRelationId": "relation/14864704",
+      "checkedAt": "2026-09-05T21:11:13.146Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Boucle du Taillefer",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 6.82,
+      "officialDistanceKm": 6.7,
+      "distanceDeltaPercent": 1.8,
+      "pathContainmentPercent": 100
+    },
+    "osm-14095296": {
+      "externalRelationId": "relation/14095296",
+      "checkedAt": "2026-09-05T21:11:15.014Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Les Marais d’Albens",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 6.64,
+      "officialDistanceKm": 6.6,
+      "distanceDeltaPercent": 0.6,
+      "pathContainmentPercent": 100
+    },
+    "osm-16322228": {
+      "externalRelationId": "relation/16322228",
+      "checkedAt": "2026-09-05T21:11:16.971Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Boucle du Marais des Chassettes",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.4,
+      "officialDistanceKm": 3.3,
+      "distanceDeltaPercent": 3,
+      "pathContainmentPercent": 100
+    },
+    "osm-16363583": {
+      "externalRelationId": "relation/16363583",
+      "checkedAt": "2026-09-05T21:11:18.935Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Le Marais de Pré Lombard",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 7.27,
+      "officialDistanceKm": 7.2,
+      "distanceDeltaPercent": 1,
+      "pathContainmentPercent": 100
+    },
+    "osm-16395076": {
+      "externalRelationId": "relation/16395076",
+      "checkedAt": "2026-09-05T21:11:20.252Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Boucle du Lac de la Thuile",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 2.01,
+      "officialDistanceKm": 2,
+      "distanceDeltaPercent": 0.5,
+      "pathContainmentPercent": 100
+    },
+    "osm-19153189": {
+      "externalRelationId": "relation/19153189",
+      "checkedAt": "2026-09-05T21:11:21.624Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Le Belvédère",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 4.06,
+      "officialDistanceKm": 4,
+      "distanceDeltaPercent": 1.5,
+      "pathContainmentPercent": 100
+    },
+    "osm-15591346": {
+      "externalRelationId": "relation/15591346",
+      "checkedAt": "2026-09-05T21:11:22.988Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Sentier des Buis",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 9.66,
+      "officialDistanceKm": 9.7,
+      "distanceDeltaPercent": -0.4,
+      "pathContainmentPercent": 100
+    },
+    "osm-16365005": {
+      "externalRelationId": "relation/16365005",
+      "checkedAt": "2026-09-05T21:11:24.346Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components"
+      ],
+      "closedLoop": false,
+      "relationName": "La Galoppaz par la Combe Servenne",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 8.1,
+      "officialDistanceKm": 8.1,
+      "distanceDeltaPercent": 0,
+      "pathContainmentPercent": 97
+    },
+    "osm-123162": {
+      "externalRelationId": "relation/123162",
+      "checkedAt": "2026-09-05T21:11:25.685Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components"
+      ],
+      "closedLoop": true,
+      "relationName": "Planetenweg - Sentiero dei pianeti",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 8.96,
+      "officialDistanceKm": 9.5,
+      "distanceDeltaPercent": -5.7,
+      "pathContainmentPercent": 100
+    },
+    "osm-1116675": {
+      "externalRelationId": "relation/1116675",
+      "checkedAt": "2026-09-05T21:11:26.976Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Familienrundweg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 2.3,
+      "officialDistanceKm": 2.3,
+      "distanceDeltaPercent": 0,
+      "pathContainmentPercent": 100
+    },
+    "osm-1116680": {
+      "externalRelationId": "relation/1116680",
+      "checkedAt": "2026-09-05T21:11:28.342Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Sextener Rundweg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 11.13,
+      "officialDistanceKm": 11.1,
+      "distanceDeltaPercent": 0.3,
+      "pathContainmentPercent": 100
+    },
+    "osm-1780768": {
+      "externalRelationId": "relation/1780768",
+      "checkedAt": "2026-09-05T21:11:29.862Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Gsieser Talblickweg",
+      "componentCount": 5,
+      "reconstructedDistanceKm": 30.49,
+      "officialDistanceKm": 77.4,
+      "distanceDeltaPercent": -60.6,
+      "pathContainmentPercent": 77
+    },
+    "osm-2179746": {
+      "externalRelationId": "relation/2179746",
+      "checkedAt": "2026-09-05T21:11:31.896Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Ruine Castelfeder - Rovine Castelfeder",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 2.32,
+      "officialDistanceKm": 2.3,
+      "distanceDeltaPercent": 0.9,
+      "pathContainmentPercent": 100
+    },
+    "osm-3202880": {
+      "externalRelationId": "relation/3202880",
+      "checkedAt": "2026-09-05T21:11:33.551Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components"
+      ],
+      "closedLoop": true,
+      "relationName": "Rundweg Montiggler Seen",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 4.27,
+      "officialDistanceKm": 4.4,
+      "distanceDeltaPercent": -3,
+      "pathContainmentPercent": 100
+    },
+    "osm-3885162": {
+      "externalRelationId": "relation/3885162",
+      "checkedAt": "2026-09-05T21:11:35.517Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Seeweg",
+      "componentCount": 3,
+      "reconstructedDistanceKm": 8.4,
+      "officialDistanceKm": 6.8,
+      "distanceDeltaPercent": 23.5,
+      "pathContainmentPercent": 14
+    },
+    "osm-5512443": {
+      "externalRelationId": "relation/5512443",
+      "checkedAt": "2026-09-05T21:11:36.904Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Wallburgweg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.72,
+      "officialDistanceKm": 3.7,
+      "distanceDeltaPercent": 0.5,
+      "pathContainmentPercent": 100
+    },
+    "osm-6244965": {
+      "externalRelationId": "relation/6244965",
+      "checkedAt": "2026-09-05T21:11:38.345Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Steine erzählen",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 12.75,
+      "officialDistanceKm": 2.5,
+      "distanceDeltaPercent": 410,
+      "pathContainmentPercent": 24
+    },
+    "osm-6404258": {
+      "externalRelationId": "relation/6404258",
+      "checkedAt": "2026-09-05T21:11:39.683Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components"
+      ],
+      "closedLoop": true,
+      "relationName": "Rundweg Salla",
+      "componentCount": 3,
+      "reconstructedDistanceKm": 9.75,
+      "officialDistanceKm": 10.5,
+      "distanceDeltaPercent": -7.1,
+      "pathContainmentPercent": 95
+    },
+    "osm-6404633": {
+      "externalRelationId": "relation/6404633",
+      "checkedAt": "2026-09-05T21:11:40.988Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Anello dei Pradi",
+      "componentCount": 5,
+      "reconstructedDistanceKm": 1.91,
+      "officialDistanceKm": 3.5,
+      "distanceDeltaPercent": -45.4,
+      "pathContainmentPercent": 61
+    },
+    "osm-6404634": {
+      "externalRelationId": "relation/6404634",
+      "checkedAt": "2026-09-05T21:11:42.265Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Anello del Bosco",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 0.75,
+      "officialDistanceKm": 0.7,
+      "distanceDeltaPercent": 7.1,
+      "pathContainmentPercent": 100
+    },
+    "osm-6410700": {
+      "externalRelationId": "relation/6410700",
+      "checkedAt": "2026-09-05T21:11:43.587Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Dolomitenblickrunde",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 7.39,
+      "officialDistanceKm": 7.3,
+      "distanceDeltaPercent": 1.2,
+      "pathContainmentPercent": 100
+    },
+    "osm-6529356": {
+      "externalRelationId": "relation/6529356",
+      "checkedAt": "2026-09-05T21:11:45.346Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Anton Schwingshackl Weg",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 16.32,
+      "officialDistanceKm": 19,
+      "distanceDeltaPercent": -14.1,
+      "pathContainmentPercent": 100
+    },
+    "osm-6823031": {
+      "externalRelationId": "relation/6823031",
+      "checkedAt": "2026-09-05T21:11:47.232Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Naturlehrpfad",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 3.55,
+      "officialDistanceKm": 5.4,
+      "distanceDeltaPercent": -34.3,
+      "pathContainmentPercent": 67
+    },
+    "osm-7045225": {
+      "externalRelationId": "relation/7045225",
+      "checkedAt": "2026-09-05T21:11:49.195Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Giro del Fausior",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 7.5,
+      "officialDistanceKm": 7.4,
+      "distanceDeltaPercent": 1.4,
+      "pathContainmentPercent": 100
+    },
+    "osm-7086961": {
+      "externalRelationId": "relation/7086961",
+      "checkedAt": "2026-09-05T21:11:50.773Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Giro del Zimon",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.06,
+      "officialDistanceKm": 3,
+      "distanceDeltaPercent": 2,
+      "pathContainmentPercent": 100
+    },
+    "osm-7277805": {
+      "externalRelationId": "relation/7277805",
+      "checkedAt": "2026-09-05T21:11:52.190Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Waltner Rundweg - 12 - Sentiero circolare di Valtina - 12",
+      "componentCount": 3,
+      "reconstructedDistanceKm": 15.52,
+      "officialDistanceKm": 22.5,
+      "distanceDeltaPercent": -31,
+      "pathContainmentPercent": 94
+    },
+    "osm-7388748": {
+      "externalRelationId": "relation/7388748",
+      "checkedAt": "2026-09-05T21:11:53.492Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Anello dei Colli",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 4.18,
+      "officialDistanceKm": 5.3,
+      "distanceDeltaPercent": -21.1,
+      "pathContainmentPercent": 85
+    },
+    "osm-7446701": {
+      "externalRelationId": "relation/7446701",
+      "checkedAt": "2026-09-05T21:11:54.826Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Waltner Rundweg 18",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 2.52,
+      "officialDistanceKm": 4.8,
+      "distanceDeltaPercent": -47.5,
+      "pathContainmentPercent": 100
+    },
+    "osm-7546708": {
+      "externalRelationId": "relation/7546708",
+      "checkedAt": "2026-09-05T21:11:56.176Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Anello di Soracrode",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.37,
+      "officialDistanceKm": 3.4,
+      "distanceDeltaPercent": -0.9,
+      "pathContainmentPercent": 100
+    },
+    "osm-7547653": {
+      "externalRelationId": "relation/7547653",
+      "checkedAt": "2026-09-05T21:11:57.541Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Anello dei Forti",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.03,
+      "officialDistanceKm": 3,
+      "distanceDeltaPercent": 1,
+      "pathContainmentPercent": 100
+    },
+    "osm-7547983": {
+      "externalRelationId": "relation/7547983",
+      "checkedAt": "2026-09-05T21:11:58.885Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Anello di Valzalina",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 4.3,
+      "officialDistanceKm": 4.2,
+      "distanceDeltaPercent": 2.4,
+      "pathContainmentPercent": 100
+    },
+    "osm-7548201": {
+      "externalRelationId": "relation/7548201",
+      "checkedAt": "2026-09-05T21:12:00.263Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Anello di Ciampeviei",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 7.22,
+      "officialDistanceKm": 7.1,
+      "distanceDeltaPercent": 1.7,
+      "pathContainmentPercent": 100
+    },
+    "osm-7548344": {
+      "externalRelationId": "relation/7548344",
+      "checkedAt": "2026-09-05T21:12:01.618Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Anello del Sole",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.12,
+      "officialDistanceKm": 3,
+      "distanceDeltaPercent": 4,
+      "pathContainmentPercent": 100
+    },
+    "osm-7548489": {
+      "externalRelationId": "relation/7548489",
+      "checkedAt": "2026-09-05T21:12:02.930Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Anello dei Faggi",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 5.86,
+      "officialDistanceKm": 5.8,
+      "distanceDeltaPercent": 1,
+      "pathContainmentPercent": 100
+    },
+    "osm-7549783": {
+      "externalRelationId": "relation/7549783",
+      "checkedAt": "2026-09-05T21:12:04.721Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Anello del Troi de le Ciaure",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.69,
+      "officialDistanceKm": 3.7,
+      "distanceDeltaPercent": -0.3,
+      "pathContainmentPercent": 100
+    },
+    "osm-8510456": {
+      "externalRelationId": "relation/8510456",
+      "checkedAt": "2026-09-05T21:12:06.649Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Dorfrundweg St. Sigmund",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.87,
+      "officialDistanceKm": 3.9,
+      "distanceDeltaPercent": -0.8,
+      "pathContainmentPercent": 100
+    },
+    "osm-9487078": {
+      "externalRelationId": "relation/9487078",
+      "checkedAt": "2026-09-05T21:12:07.951Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Oswald-von-Wolkenstein-Weg",
+      "componentCount": 4,
+      "reconstructedDistanceKm": 2.01,
+      "officialDistanceKm": 4.5,
+      "distanceDeltaPercent": -55.3,
+      "pathContainmentPercent": 65
+    },
+    "osm-9492594": {
+      "externalRelationId": "relation/9492594",
+      "checkedAt": "2026-09-05T21:12:09.965Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Vogelweider Rundweg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 7.3,
+      "officialDistanceKm": 7.2,
+      "distanceDeltaPercent": 1.4,
+      "pathContainmentPercent": 100
+    },
+    "osm-9493733": {
+      "externalRelationId": "relation/9493733",
+      "checkedAt": "2026-09-05T21:12:11.452Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Tru di Lëc",
+      "componentCount": 3,
+      "reconstructedDistanceKm": 4.49,
+      "officialDistanceKm": 9.2,
+      "distanceDeltaPercent": -51.2,
+      "pathContainmentPercent": 66
+    },
+    "osm-9511973": {
+      "externalRelationId": "relation/9511973",
+      "checkedAt": "2026-09-05T21:12:12.831Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Roda de Armentara",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 14.45,
+      "officialDistanceKm": 15.2,
+      "distanceDeltaPercent": -4.9,
+      "pathContainmentPercent": 100
+    },
+    "osm-9511999": {
+      "externalRelationId": "relation/9511999",
+      "checkedAt": "2026-09-05T21:12:14.193Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Tru dles Viles",
+      "componentCount": 3,
+      "reconstructedDistanceKm": 5.37,
+      "officialDistanceKm": 10.1,
+      "distanceDeltaPercent": -46.8,
+      "pathContainmentPercent": 62
+    },
+    "osm-9651462": {
+      "externalRelationId": "relation/9651462",
+      "checkedAt": "2026-09-05T21:12:15.533Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Sagenweg - Sentiero delle leggende",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 3.01,
+      "officialDistanceKm": 1.1,
+      "distanceDeltaPercent": 173.6,
+      "pathContainmentPercent": 21
+    },
+    "osm-9675994": {
+      "externalRelationId": "relation/9675994",
+      "checkedAt": "2026-09-05T21:12:16.848Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "St. Agatha Rundweg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 1.52,
+      "officialDistanceKm": 1.5,
+      "distanceDeltaPercent": 1.3,
+      "pathContainmentPercent": 100
+    },
+    "osm-11764094": {
+      "externalRelationId": "relation/11764094",
+      "checkedAt": "2026-09-05T21:12:18.218Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Dörferrunde (Natz => Raas => Schabs => Viums)",
+      "componentCount": 3,
+      "reconstructedDistanceKm": 12.13,
+      "officialDistanceKm": 4.1,
+      "distanceDeltaPercent": 195.9,
+      "pathContainmentPercent": 54
+    },
+    "osm-11774783": {
+      "externalRelationId": "relation/11774783",
+      "checkedAt": "2026-09-05T21:12:19.538Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "1 - Rafeil-Rundweg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 1.77,
+      "officialDistanceKm": 1.7,
+      "distanceDeltaPercent": 4.1,
+      "pathContainmentPercent": 100
+    },
+    "osm-11775760": {
+      "externalRelationId": "relation/11775760",
+      "checkedAt": "2026-09-05T21:12:20.884Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Carl-Toldt-Weg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.02,
+      "officialDistanceKm": 3,
+      "distanceDeltaPercent": 0.7,
+      "pathContainmentPercent": 100
+    },
+    "osm-11780502": {
+      "externalRelationId": "relation/11780502",
+      "checkedAt": "2026-09-05T21:12:22.262Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Naturerlebnispfad Zans",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 3.12,
+      "officialDistanceKm": 4.1,
+      "distanceDeltaPercent": -23.9,
+      "pathContainmentPercent": 100
+    },
+    "osm-11790553": {
+      "externalRelationId": "relation/11790553",
+      "checkedAt": "2026-09-05T21:12:23.566Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Steger-Bühel-Runde",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 2.1,
+      "officialDistanceKm": 2.1,
+      "distanceDeltaPercent": 0,
+      "pathContainmentPercent": 100
+    },
+    "osm-11792795": {
+      "externalRelationId": "relation/11792795",
+      "checkedAt": "2026-09-05T21:12:24.867Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Rundweg Ölberg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 0.75,
+      "officialDistanceKm": 0.7,
+      "distanceDeltaPercent": 7.1,
+      "pathContainmentPercent": 100
+    },
+    "osm-11795103": {
+      "externalRelationId": "relation/11795103",
+      "checkedAt": "2026-09-05T21:12:26.737Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Kranterrunde",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 5.36,
+      "officialDistanceKm": 5.3,
+      "distanceDeltaPercent": 1.1,
+      "pathContainmentPercent": 100
+    },
+    "osm-11795251": {
+      "externalRelationId": "relation/11795251",
+      "checkedAt": "2026-09-05T21:12:28.187Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "1 - Dörferrundweg (Vintl)",
+      "componentCount": 3,
+      "reconstructedDistanceKm": 9.66,
+      "officialDistanceKm": 13.2,
+      "distanceDeltaPercent": -26.8,
+      "pathContainmentPercent": 94
+    },
+    "osm-11814834": {
+      "externalRelationId": "relation/11814834",
+      "checkedAt": "2026-09-05T21:12:29.555Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Geotrail Bula - Pufels - Bulla",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 7.09,
+      "officialDistanceKm": 7,
+      "distanceDeltaPercent": 1.3,
+      "pathContainmentPercent": 100
+    },
+    "osm-11814895": {
+      "externalRelationId": "relation/11814895",
+      "checkedAt": "2026-09-05T21:12:30.894Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Kofelrunde",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 0.51,
+      "officialDistanceKm": 0.5,
+      "distanceDeltaPercent": 2,
+      "pathContainmentPercent": 100
+    },
+    "osm-11815025": {
+      "externalRelationId": "relation/11815025",
+      "checkedAt": "2026-09-05T21:12:32.223Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Rundweg Kasserol",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 3.31,
+      "officialDistanceKm": 3.9,
+      "distanceDeltaPercent": -15.1,
+      "pathContainmentPercent": 96
+    },
+    "osm-11816373": {
+      "externalRelationId": "relation/11816373",
+      "checkedAt": "2026-09-05T21:12:33.558Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components"
+      ],
+      "closedLoop": true,
+      "relationName": "Bunkerweg",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 3.48,
+      "officialDistanceKm": 3.5,
+      "distanceDeltaPercent": -0.6,
+      "pathContainmentPercent": 100
+    },
+    "osm-11828233": {
+      "externalRelationId": "relation/11828233",
+      "checkedAt": "2026-09-05T21:12:34.884Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Valser Rundweg",
+      "componentCount": 3,
+      "reconstructedDistanceKm": 3.21,
+      "officialDistanceKm": 5.6,
+      "distanceDeltaPercent": -42.7,
+      "pathContainmentPercent": 60
+    },
+    "osm-11832013": {
+      "externalRelationId": "relation/11832013",
+      "checkedAt": "2026-09-05T21:12:36.180Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Seerundweg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 2.49,
+      "officialDistanceKm": 2.5,
+      "distanceDeltaPercent": -0.4,
+      "pathContainmentPercent": 100
+    },
+    "osm-11839597": {
+      "externalRelationId": "relation/11839597",
+      "checkedAt": "2026-09-05T21:12:37.483Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Fenn Promenade",
+      "componentCount": 3,
+      "reconstructedDistanceKm": 2.28,
+      "officialDistanceKm": 3.9,
+      "distanceDeltaPercent": -41.5,
+      "pathContainmentPercent": 90
+    },
+    "osm-11855879": {
+      "externalRelationId": "relation/11855879",
+      "checkedAt": "2026-09-05T21:12:38.853Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Roda de Cherz",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 2.76,
+      "officialDistanceKm": 2.7,
+      "distanceDeltaPercent": 2.2,
+      "pathContainmentPercent": 100
+    },
+    "osm-11860429": {
+      "externalRelationId": "relation/11860429",
+      "checkedAt": "2026-09-05T21:12:40.219Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Roda dles Viles",
+      "componentCount": 6,
+      "reconstructedDistanceKm": 5.07,
+      "officialDistanceKm": 6.2,
+      "distanceDeltaPercent": -18.2,
+      "pathContainmentPercent": 38
+    },
+    "osm-11891581": {
+      "externalRelationId": "relation/11891581",
+      "checkedAt": "2026-09-05T21:12:42.151Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components"
+      ],
+      "closedLoop": true,
+      "relationName": "Sentiero Alpago Natura",
+      "componentCount": 3,
+      "reconstructedDistanceKm": 71.5,
+      "officialDistanceKm": 71.2,
+      "distanceDeltaPercent": 0.4,
+      "pathContainmentPercent": 100
+    },
+    "osm-12018939": {
+      "externalRelationId": "relation/12018939",
+      "checkedAt": "2026-09-05T21:12:44.120Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Steinegger Höhenweg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 12.43,
+      "officialDistanceKm": 13.2,
+      "distanceDeltaPercent": -5.8,
+      "pathContainmentPercent": 100
+    },
+    "osm-12027153": {
+      "externalRelationId": "relation/12027153",
+      "checkedAt": "2026-09-05T21:12:45.974Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components"
+      ],
+      "closedLoop": false,
+      "relationName": "GEOWeg - Sentiero GEOlogico",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 6.57,
+      "officialDistanceKm": 7.3,
+      "distanceDeltaPercent": -10,
+      "pathContainmentPercent": 100
+    },
+    "osm-12039246": {
+      "externalRelationId": "relation/12039246",
+      "checkedAt": "2026-09-05T21:12:47.844Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Rundweg Rotwand",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 0.93,
+      "officialDistanceKm": 0.9,
+      "distanceDeltaPercent": 3.3,
+      "pathContainmentPercent": 100
+    },
+    "osm-12044077": {
+      "externalRelationId": "relation/12044077",
+      "checkedAt": "2026-09-05T21:12:49.279Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Rundweg Schmieden",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 1.32,
+      "officialDistanceKm": 1.3,
+      "distanceDeltaPercent": 1.5,
+      "pathContainmentPercent": 100
+    },
+    "osm-12047303": {
+      "externalRelationId": "relation/12047303",
+      "checkedAt": "2026-09-05T21:12:51.824Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Lang-Erl-Weg",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 2.86,
+      "officialDistanceKm": 4.2,
+      "distanceDeltaPercent": -31.9,
+      "pathContainmentPercent": 90
+    },
+    "osm-12079333": {
+      "externalRelationId": "relation/12079333",
+      "checkedAt": "2026-09-05T21:12:54.566Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Giro dei Masi",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 6.14,
+      "officialDistanceKm": 6.3,
+      "distanceDeltaPercent": -2.5,
+      "pathContainmentPercent": 100
+    },
+    "osm-12132169": {
+      "externalRelationId": "relation/12132169",
+      "checkedAt": "2026-09-05T21:12:56.654Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Toblacher Höhenweg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 27.47,
+      "officialDistanceKm": 34.4,
+      "distanceDeltaPercent": -20.1,
+      "pathContainmentPercent": 100
+    },
+    "osm-12142337": {
+      "externalRelationId": "relation/12142337",
+      "checkedAt": "2026-09-05T21:12:58.719Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Rundweg Peitlerkofel",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 11.95,
+      "officialDistanceKm": 11.8,
+      "distanceDeltaPercent": 1.3,
+      "pathContainmentPercent": 100
+    },
+    "osm-12150790": {
+      "externalRelationId": "relation/12150790",
+      "checkedAt": "2026-09-05T21:13:00.569Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Giro dei Capitelli - Kapellenrunde",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 2.56,
+      "officialDistanceKm": 2.8,
+      "distanceDeltaPercent": -8.6,
+      "pathContainmentPercent": 100
+    },
+    "osm-12164395": {
+      "externalRelationId": "relation/12164395",
+      "checkedAt": "2026-09-05T21:13:02.602Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Dörferrundweg",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 6.3,
+      "officialDistanceKm": 9.1,
+      "distanceDeltaPercent": -30.8,
+      "pathContainmentPercent": 98
+    },
+    "osm-12165590": {
+      "externalRelationId": "relation/12165590",
+      "checkedAt": "2026-09-05T21:13:03.956Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components"
+      ],
+      "closedLoop": true,
+      "relationName": "Schwalbenwandrunde",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 7.74,
+      "officialDistanceKm": 8.6,
+      "distanceDeltaPercent": -10,
+      "pathContainmentPercent": 100
+    },
+    "osm-12172440": {
+      "externalRelationId": "relation/12172440",
+      "checkedAt": "2026-09-05T21:13:05.306Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Natur- und Kulturweg",
+      "componentCount": 4,
+      "reconstructedDistanceKm": 6.45,
+      "officialDistanceKm": 9.1,
+      "distanceDeltaPercent": -29.1,
+      "pathContainmentPercent": 96
+    },
+    "osm-12173965": {
+      "externalRelationId": "relation/12173965",
+      "checkedAt": "2026-09-05T21:13:06.634Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Kleine Schlossrunde",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 1.88,
+      "officialDistanceKm": 1.9,
+      "distanceDeltaPercent": -1.1,
+      "pathContainmentPercent": 100
+    },
+    "osm-12173984": {
+      "externalRelationId": "relation/12173984",
+      "checkedAt": "2026-09-05T21:13:07.925Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Große Schlossrunde",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 5.52,
+      "officialDistanceKm": 8,
+      "distanceDeltaPercent": -31,
+      "pathContainmentPercent": 98
+    },
+    "osm-12174210": {
+      "externalRelationId": "relation/12174210",
+      "checkedAt": "2026-09-05T21:13:09.929Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Rundweg Reischach",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 9.38,
+      "officialDistanceKm": 1.6,
+      "distanceDeltaPercent": 486.3,
+      "pathContainmentPercent": 25
+    },
+    "osm-12182516": {
+      "externalRelationId": "relation/12182516",
+      "checkedAt": "2026-09-05T21:13:11.661Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Timpfler Rundweg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 1.18,
+      "officialDistanceKm": 1.2,
+      "distanceDeltaPercent": -1.7,
+      "pathContainmentPercent": 100
+    },
+    "osm-12182895": {
+      "externalRelationId": "relation/12182895",
+      "checkedAt": "2026-09-05T21:13:13.564Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Talrundweg",
+      "componentCount": 3,
+      "reconstructedDistanceKm": 15.69,
+      "officialDistanceKm": 22.3,
+      "distanceDeltaPercent": -29.6,
+      "pathContainmentPercent": 95
+    },
+    "osm-12182936": {
+      "externalRelationId": "relation/12182936",
+      "checkedAt": "2026-09-05T21:13:15.323Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Schörgaurunde",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 4.01,
+      "officialDistanceKm": 6.4,
+      "distanceDeltaPercent": -37.3,
+      "pathContainmentPercent": 92
+    },
+    "osm-12189165": {
+      "externalRelationId": "relation/12189165",
+      "checkedAt": "2026-09-05T21:13:16.642Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Rundweg Schwarzegg - Sentiero circolare Dosso Nero",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 10.73,
+      "officialDistanceKm": 10.6,
+      "distanceDeltaPercent": 1.2,
+      "pathContainmentPercent": 100
+    },
+    "osm-12190538": {
+      "externalRelationId": "relation/12190538",
+      "checkedAt": "2026-09-05T21:13:17.943Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Flaaser Rundweg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 5.09,
+      "officialDistanceKm": 5.1,
+      "distanceDeltaPercent": -0.2,
+      "pathContainmentPercent": 100
+    },
+    "osm-12190657": {
+      "externalRelationId": "relation/12190657",
+      "checkedAt": "2026-09-05T21:13:19.312Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Rundweg Langfenn",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 4.58,
+      "officialDistanceKm": 4.6,
+      "distanceDeltaPercent": -0.4,
+      "pathContainmentPercent": 100
+    },
+    "osm-12302191": {
+      "externalRelationId": "relation/12302191",
+      "checkedAt": "2026-09-05T21:13:20.805Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Dorfrundweg Rasen",
+      "componentCount": 4,
+      "reconstructedDistanceKm": 7.98,
+      "officialDistanceKm": 11.8,
+      "distanceDeltaPercent": -32.4,
+      "pathContainmentPercent": 92
+    },
+    "osm-12363235": {
+      "externalRelationId": "relation/12363235",
+      "checkedAt": "2026-09-05T21:13:22.845Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Panoramaweg",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 2.75,
+      "officialDistanceKm": 4,
+      "distanceDeltaPercent": -31.2,
+      "pathContainmentPercent": 96
+    },
+    "osm-12371666": {
+      "externalRelationId": "relation/12371666",
+      "checkedAt": "2026-09-05T21:13:24.872Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Kastelaz Promenade",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 1.3,
+      "officialDistanceKm": 1.3,
+      "distanceDeltaPercent": 0,
+      "pathContainmentPercent": 100
+    },
+    "osm-12371689": {
+      "externalRelationId": "relation/12371689",
+      "checkedAt": "2026-09-05T21:13:26.848Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Kirchensteig",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 1.34,
+      "officialDistanceKm": 1.5,
+      "distanceDeltaPercent": -10.7,
+      "pathContainmentPercent": 100
+    },
+    "osm-12731853": {
+      "externalRelationId": "relation/12731853",
+      "checkedAt": "2026-09-05T21:13:28.359Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Rundweg Laugen Elvas",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 4.18,
+      "officialDistanceKm": 4.2,
+      "distanceDeltaPercent": -0.5,
+      "pathContainmentPercent": 100
+    },
+    "osm-12736753": {
+      "externalRelationId": "relation/12736753",
+      "checkedAt": "2026-09-05T21:13:29.761Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Albeins-Klerant-Milland - Albes-Cleran-Millan",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 11.64,
+      "officialDistanceKm": 4.1,
+      "distanceDeltaPercent": 183.9,
+      "pathContainmentPercent": 7
+    },
+    "osm-12953352": {
+      "externalRelationId": "relation/12953352",
+      "checkedAt": "2026-09-05T21:13:31.165Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "archeo",
+      "componentCount": 4,
+      "reconstructedDistanceKm": 7.74,
+      "officialDistanceKm": 2.3,
+      "distanceDeltaPercent": 236.5,
+      "pathContainmentPercent": 92
+    },
+    "osm-13491868": {
+      "externalRelationId": "relation/13491868",
+      "checkedAt": "2026-09-05T21:13:32.495Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Birmehlweg - Sentiero Birmehl",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 3.36,
+      "officialDistanceKm": 0.6,
+      "distanceDeltaPercent": 460,
+      "pathContainmentPercent": 50
+    },
+    "osm-13528390": {
+      "externalRelationId": "relation/13528390",
+      "checkedAt": "2026-09-05T21:13:34.154Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Sentiero del Sabadalt",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 4.76,
+      "officialDistanceKm": 4.7,
+      "distanceDeltaPercent": 1.3,
+      "pathContainmentPercent": 100
+    },
+    "osm-14058492": {
+      "externalRelationId": "relation/14058492",
+      "checkedAt": "2026-09-05T21:13:35.638Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Herrnsteig",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 2.36,
+      "officialDistanceKm": 2.4,
+      "distanceDeltaPercent": -1.7,
+      "pathContainmentPercent": 100
+    },
+    "osm-14058632": {
+      "externalRelationId": "relation/14058632",
+      "checkedAt": "2026-09-05T21:13:37.157Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Nössingbühel",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 2.36,
+      "officialDistanceKm": 2.7,
+      "distanceDeltaPercent": -12.6,
+      "pathContainmentPercent": 100
+    },
+    "osm-15662134": {
+      "externalRelationId": "relation/15662134",
+      "checkedAt": "2026-09-05T21:13:38.877Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Sagenweg Laurein",
+      "componentCount": 4,
+      "reconstructedDistanceKm": 2.15,
+      "officialDistanceKm": 4.8,
+      "distanceDeltaPercent": -55.2,
+      "pathContainmentPercent": 58
+    },
+    "osm-15791408": {
+      "externalRelationId": "relation/15791408",
+      "checkedAt": "2026-09-05T21:13:40.173Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Giro di Bedolpian",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.17,
+      "officialDistanceKm": 3.1,
+      "distanceDeltaPercent": 2.3,
+      "pathContainmentPercent": 100
+    },
+    "osm-19330972": {
+      "externalRelationId": "relation/19330972",
+      "checkedAt": "2026-09-05T21:13:41.456Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Dorfrundweg - Giro del Paese",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 1.01,
+      "officialDistanceKm": 1.1,
+      "distanceDeltaPercent": -8.2,
+      "pathContainmentPercent": 100
+    },
+    "osm-19697977": {
+      "externalRelationId": "relation/19697977",
+      "checkedAt": "2026-09-05T21:13:42.784Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Panoramaweg",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 9.93,
+      "officialDistanceKm": 9.8,
+      "distanceDeltaPercent": 1.3,
+      "pathContainmentPercent": 100
+    },
+    "osm-19703479": {
+      "externalRelationId": "relation/19703479",
+      "checkedAt": "2026-09-05T21:13:44.192Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Rundweg Beimsteinkogel",
+      "componentCount": 3,
+      "reconstructedDistanceKm": 1.43,
+      "officialDistanceKm": 4.2,
+      "distanceDeltaPercent": -66,
+      "pathContainmentPercent": 56
+    },
+    "osm-19974724": {
+      "externalRelationId": "relation/19974724",
+      "checkedAt": "2026-09-05T21:13:46.109Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Mittlerer Rundweg am Karer See",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.08,
+      "officialDistanceKm": 3,
+      "distanceDeltaPercent": 2.7,
+      "pathContainmentPercent": 100
+    },
+    "osm-19974725": {
+      "externalRelationId": "relation/19974725",
+      "checkedAt": "2026-09-05T21:13:47.593Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Langer Rundweg am Karer See",
+      "componentCount": 4,
+      "reconstructedDistanceKm": 3.83,
+      "officialDistanceKm": 4.3,
+      "distanceDeltaPercent": -10.9,
+      "pathContainmentPercent": 100
+    },
+    "osm-5479112": {
+      "externalRelationId": "relation/5479112",
+      "checkedAt": "2026-09-05T21:13:49.130Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Chemin des Diligences",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 11.63,
+      "officialDistanceKm": 11.5,
+      "distanceDeltaPercent": 1.1,
+      "pathContainmentPercent": 100
+    },
+    "osm-9937537": {
+      "externalRelationId": "relation/9937537",
+      "checkedAt": "2026-09-05T21:13:50.661Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Le Mont Jovet",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 11.17,
+      "officialDistanceKm": 11,
+      "distanceDeltaPercent": 1.5,
+      "pathContainmentPercent": 100
+    },
+    "osm-10539302": {
+      "externalRelationId": "relation/10539302",
+      "checkedAt": "2026-09-05T21:13:52.189Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Sentier éco-sylve de Poingt-Ravier",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.99,
+      "officialDistanceKm": 3.9,
+      "distanceDeltaPercent": 2.3,
+      "pathContainmentPercent": 100
+    },
+    "osm-12118490": {
+      "externalRelationId": "relation/12118490",
+      "checkedAt": "2026-09-05T21:13:53.501Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "B05 - Le Balcon des Plagnes",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 4.75,
+      "officialDistanceKm": 4.7,
+      "distanceDeltaPercent": 1.1,
+      "pathContainmentPercent": 100
+    },
+    "osm-12121346": {
+      "externalRelationId": "relation/12121346",
+      "checkedAt": "2026-09-05T21:13:54.816Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "B08 - Le tour des hameaux de Montandré, Champessuit et Grenis",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 5.15,
+      "officialDistanceKm": 5.1,
+      "distanceDeltaPercent": 1,
+      "pathContainmentPercent": 100
+    },
+    "osm-12121548": {
+      "externalRelationId": "relation/12121548",
+      "checkedAt": "2026-09-05T21:13:56.186Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "B02 - Le tour de l'Armélaz",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 11.58,
+      "officialDistanceKm": 11.4,
+      "distanceDeltaPercent": 1.6,
+      "pathContainmentPercent": 100
+    },
+    "osm-12121798": {
+      "externalRelationId": "relation/12121798",
+      "checkedAt": "2026-09-05T21:13:57.483Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "EN02 - Le terroir de Serpolière",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 1.52,
+      "officialDistanceKm": 1.5,
+      "distanceDeltaPercent": 1.3,
+      "pathContainmentPercent": 100
+    },
+    "osm-12127424": {
+      "externalRelationId": "relation/12127424",
+      "checkedAt": "2026-09-05T21:13:58.918Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "EN04 - Au fil de l'Arvan",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 1.74,
+      "officialDistanceKm": 2.8,
+      "distanceDeltaPercent": -37.9,
+      "pathContainmentPercent": 60
+    },
+    "osm-12211260": {
+      "externalRelationId": "relation/12211260",
+      "checkedAt": "2026-09-05T21:14:00.945Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Plateau des Moises",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 2.02,
+      "officialDistanceKm": 4.2,
+      "distanceDeltaPercent": -51.9,
+      "pathContainmentPercent": 60
+    },
+    "osm-12745924": {
+      "externalRelationId": "relation/12745924",
+      "checkedAt": "2026-09-05T21:14:02.811Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Circuit des escaliers",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 4.68,
+      "officialDistanceKm": 4.6,
+      "distanceDeltaPercent": 1.7,
+      "pathContainmentPercent": 100
+    },
+    "osm-13337921": {
+      "externalRelationId": "relation/13337921",
+      "checkedAt": "2026-09-05T21:14:04.688Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Au pied du Roc d'Enfer",
+      "componentCount": 4,
+      "reconstructedDistanceKm": 11.98,
+      "officialDistanceKm": 4.1,
+      "distanceDeltaPercent": 192.2,
+      "pathContainmentPercent": 28
+    },
+    "osm-13338113": {
+      "externalRelationId": "relation/13338113",
+      "checkedAt": "2026-09-05T21:14:06.024Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Lac de Darbon",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 6.87,
+      "officialDistanceKm": 6.7,
+      "distanceDeltaPercent": 2.5,
+      "pathContainmentPercent": 100
+    },
+    "osm-14375158": {
+      "externalRelationId": "relation/14375158",
+      "checkedAt": "2026-09-05T21:14:07.377Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Crêt de la Parenche",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 9.04,
+      "officialDistanceKm": 9,
+      "distanceDeltaPercent": 0.4,
+      "pathContainmentPercent": 100
+    },
+    "osm-14376573": {
+      "externalRelationId": "relation/14376573",
+      "checkedAt": "2026-09-05T21:14:08.676Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Crêt de Talière",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 4.17,
+      "officialDistanceKm": 4.1,
+      "distanceDeltaPercent": 1.7,
+      "pathContainmentPercent": 100
+    },
+    "osm-14377007": {
+      "externalRelationId": "relation/14377007",
+      "checkedAt": "2026-09-05T21:14:10.307Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Route du Lac",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.92,
+      "officialDistanceKm": 4,
+      "distanceDeltaPercent": -2,
+      "pathContainmentPercent": 100
+    },
+    "osm-14378946": {
+      "externalRelationId": "relation/14378946",
+      "checkedAt": "2026-09-05T21:14:12.059Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Lac de Pramol",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 5.37,
+      "officialDistanceKm": 5.4,
+      "distanceDeltaPercent": -0.6,
+      "pathContainmentPercent": 100
+    },
+    "osm-14379010": {
+      "externalRelationId": "relation/14379010",
+      "checkedAt": "2026-09-05T21:14:13.453Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Croix de Pralognan",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 8.19,
+      "officialDistanceKm": 8.1,
+      "distanceDeltaPercent": 1.1,
+      "pathContainmentPercent": 100
+    },
+    "osm-14379937": {
+      "externalRelationId": "relation/14379937",
+      "checkedAt": "2026-09-05T21:14:14.846Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "Albannette petite boucle",
+      "componentCount": 4,
+      "reconstructedDistanceKm": 2.06,
+      "officialDistanceKm": 5,
+      "distanceDeltaPercent": -58.8,
+      "pathContainmentPercent": 63
+    },
+    "osm-14381584": {
+      "externalRelationId": "relation/14381584",
+      "checkedAt": "2026-09-05T21:14:16.245Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Beaumollard",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 6.87,
+      "officialDistanceKm": 6.9,
+      "distanceDeltaPercent": -0.4,
+      "pathContainmentPercent": 100
+    },
+    "osm-14381788": {
+      "externalRelationId": "relation/14381788",
+      "checkedAt": "2026-09-05T21:14:17.684Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Marmottes",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.17,
+      "officialDistanceKm": 3.2,
+      "distanceDeltaPercent": -0.9,
+      "pathContainmentPercent": 100
+    },
+    "osm-14381930": {
+      "externalRelationId": "relation/14381930",
+      "checkedAt": "2026-09-05T21:14:19.604Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "La Plagne",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 8.44,
+      "officialDistanceKm": 8.4,
+      "distanceDeltaPercent": 0.5,
+      "pathContainmentPercent": 100
+    },
+    "osm-15321049": {
+      "externalRelationId": "relation/15321049",
+      "checkedAt": "2026-09-05T21:14:20.921Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Sentier des Écureuils",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 5.89,
+      "officialDistanceKm": 5.9,
+      "distanceDeltaPercent": -0.2,
+      "pathContainmentPercent": 100
+    },
+    "osm-15321786": {
+      "externalRelationId": "relation/15321786",
+      "checkedAt": "2026-09-05T21:14:22.284Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Circuit de la Comtesse Cécile",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 5.13,
+      "officialDistanceKm": 5,
+      "distanceDeltaPercent": 2.6,
+      "pathContainmentPercent": 100
+    },
+    "osm-15535697": {
+      "externalRelationId": "relation/15535697",
+      "checkedAt": "2026-09-05T21:14:23.584Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "La Maïtaz",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 5.49,
+      "officialDistanceKm": 5.4,
+      "distanceDeltaPercent": 1.7,
+      "pathContainmentPercent": 100
+    },
+    "osm-16180587": {
+      "externalRelationId": "relation/16180587",
+      "checkedAt": "2026-09-05T21:14:24.904Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Balade du Plateau d'Assy au Lac Vert",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 8.6,
+      "officialDistanceKm": 9.7,
+      "distanceDeltaPercent": -11.3,
+      "pathContainmentPercent": 100
+    },
+    "osm-16218739": {
+      "externalRelationId": "relation/16218739",
+      "checkedAt": "2026-09-05T21:14:26.262Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": true,
+      "relationName": "Circuit du Ragairon",
+      "componentCount": 2,
+      "reconstructedDistanceKm": 4.41,
+      "officialDistanceKm": 9.7,
+      "distanceDeltaPercent": -54.5,
+      "pathContainmentPercent": 52
+    },
+    "osm-16490407": {
+      "externalRelationId": "relation/16490407",
+      "checkedAt": "2026-09-05T21:14:27.631Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Circuit des Sallanches",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 8.08,
+      "officialDistanceKm": 7.9,
+      "distanceDeltaPercent": 2.3,
+      "pathContainmentPercent": 100
+    },
+    "osm-19064561": {
+      "externalRelationId": "relation/19064561",
+      "checkedAt": "2026-09-05T21:14:28.983Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Ombres sur l'Alpage",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 4.54,
+      "officialDistanceKm": 4.5,
+      "distanceDeltaPercent": 0.9,
+      "pathContainmentPercent": 100
+    },
+    "osm-19095412": {
+      "externalRelationId": "relation/19095412",
+      "checkedAt": "2026-09-05T21:14:30.336Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Chalets de Salvadon",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 5.46,
+      "officialDistanceKm": 5.4,
+      "distanceDeltaPercent": 1.1,
+      "pathContainmentPercent": 100
+    },
+    "osm-19095413": {
+      "externalRelationId": "relation/19095413",
+      "checkedAt": "2026-09-05T21:14:31.656Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Alpage de Commune",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 5.61,
+      "officialDistanceKm": 5.5,
+      "distanceDeltaPercent": 2,
+      "pathContainmentPercent": 100
+    },
+    "osm-19531872": {
+      "externalRelationId": "relation/19531872",
+      "checkedAt": "2026-09-05T21:14:32.955Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Circuit des Demoiselles Coiffées",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 3.94,
+      "officialDistanceKm": 3.9,
+      "distanceDeltaPercent": 1,
+      "pathContainmentPercent": 100
+    },
+    "osm-19541366": {
+      "externalRelationId": "relation/19541366",
+      "checkedAt": "2026-09-05T21:14:34.296Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Lac Blanc",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 6.31,
+      "officialDistanceKm": 6.4,
+      "distanceDeltaPercent": -1.4,
+      "pathContainmentPercent": 100
+    },
+    "osm-19661726": {
+      "externalRelationId": "relation/19661726",
+      "checkedAt": "2026-09-05T21:14:35.734Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop"
+      ],
+      "closedLoop": false,
+      "relationName": "Sentier pédestre des Graniteurs",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 0.78,
+      "officialDistanceKm": 0.8,
+      "distanceDeltaPercent": -2.5,
+      "pathContainmentPercent": 100
+    },
+    "osm-19760372": {
+      "externalRelationId": "relation/19760372",
+      "checkedAt": "2026-09-05T21:14:37.802Z",
+      "reviewState": "ready-for-human-review",
+      "blockers": [],
+      "closedLoop": true,
+      "relationName": "Boucle du Moulin de Cornet",
+      "componentCount": 1,
+      "reconstructedDistanceKm": 5.49,
+      "officialDistanceKm": 5.5,
+      "distanceDeltaPercent": -0.2,
+      "pathContainmentPercent": 100
+    },
+    "osm-19855818": {
+      "externalRelationId": "relation/19855818",
+      "checkedAt": "2026-09-05T21:14:39.691Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components"
+      ],
+      "closedLoop": false,
+      "relationName": "Boucle des cascades",
+      "componentCount": 4,
+      "reconstructedDistanceKm": 7.22,
+      "officialDistanceKm": 7.1,
+      "distanceDeltaPercent": 1.7,
+      "pathContainmentPercent": 100
+    },
+    "osm-21021130": {
+      "externalRelationId": "relation/21021130",
+      "checkedAt": "2026-09-05T21:14:41.503Z",
+      "reviewState": "blocked",
+      "blockers": [
+        "not-closed-loop",
+        "disconnected-components",
+        "official-distance-conflict"
+      ],
+      "closedLoop": false,
+      "relationName": "PARCOURS N°11 | LACS DU CHARDONNET",
+      "componentCount": 3,
+      "reconstructedDistanceKm": 3.65,
+      "officialDistanceKm": 7.8,
+      "distanceDeltaPercent": -53.2,
+      "pathContainmentPercent": 54
+    }
+  }
+}

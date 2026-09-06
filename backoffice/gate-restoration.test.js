@@ -133,3 +133,34 @@ describe('the review queue cannot outgrow its Firestore document',()=>{
     expect(queue.items.map(item=>item.trailId)).toEqual(['a','b']);
   });
 });
+
+describe('the queue keeps open work, not decided history',()=>{
+  const {pruneResolvedReviews,RESOLVED_REVIEWS_KEPT,restoreMissingGateReviews}=require('./workflows/advance-trail-orchestration');
+
+  test('every awaiting item survives, however many are resolved',()=>{
+    const items=[...Array.from({length:200},(_,i)=>({reviewId:`r${i}`,state:'resolved',openedAt:`2026-08-${String(i%28+1).padStart(2,'0')}`})),
+      {reviewId:'open-1',state:'awaiting-human'},{reviewId:'open-2',state:'awaiting-human'}];
+    const result=pruneResolvedReviews({items});
+    expect(result.items.filter(item=>item.state==='awaiting-human')).toHaveLength(2);
+    expect(result.items.filter(item=>item.state!=='awaiting-human')).toHaveLength(RESOLVED_REVIEWS_KEPT);
+    expect(result.dropped).toBe(175);
+  });
+
+  test('keeps the most recent resolved items for context',()=>{
+    const items=[{reviewId:'old',state:'resolved',openedAt:'2026-01-01'},
+      {reviewId:'new',state:'resolved',openedAt:'2026-09-01'}];
+    expect(pruneResolvedReviews({items},1).items.map(item=>item.reviewId)).toEqual(['new']);
+  });
+
+  test('a queue full of decided history no longer starves a waiting trail',async()=>{
+    const heavy=Array.from({length:40},(_,i)=>({reviewId:`old-${i}`,state:'resolved',openedAt:'2026-08-01',
+      specialistOutputs:[{agentId:'redTeam',result:{evidence:'x'.repeat(20000)}}]}));
+    const queue={items:heavy};
+    expect(Buffer.byteLength(JSON.stringify(queue),'utf8')).toBeGreaterThan(800000);
+    const trails=[{candidateId:'c1',trailId:'seceda',state:'dossier-human-gate',currentJobId:'job-9',
+      jobIds:['job-9'],attempts:{},blockers:[],gate:{id:'dossier-approval'}}];
+    const restored=await restoreMissingGateReviews(store(),{trails},queue,AT,[]);
+    expect(restored).toEqual(['seceda']);
+    expect(queue.items.some(item=>item.trailId==='seceda')).toBe(true);
+  });
+});

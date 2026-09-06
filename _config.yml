@@ -57,6 +57,8 @@ exclude:
   - firestore.indexes.json
   - firestore-emulator.spec.cjs
   - firebase.json
+  - firestore-debug.log
+  - firebase-debug.log
   # Internal documentation and build configuration. SCORING.md and
   # VERIFICATION.md stay: public pages link to them.
   - AGENTS.md

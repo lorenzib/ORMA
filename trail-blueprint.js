@@ -1,5 +1,5 @@
 /**
- * trail-blueprint.js — the "answer-first" layer of the trail page.
+ * trail-blueprint.js, the "answer-first" layer of the trail page.
  *
  * Fills the new blueprint sections WITHOUT touching trail.js logic:
  *   - Verified/Imported seal in the hero
@@ -117,7 +117,7 @@
   // older answer cards stay out of the visual flow.
   if (strip) strip.hidden = true;
 
-  // Card 1 — Right for your dog? Three honest states.
+  // Card 1, Right for your dog? Three honest states.
   function paintDogCard() {
     const title = $('qaDogTitle'), sub = $('qaDogSub');
     if (!title || !sub) return;
@@ -160,7 +160,7 @@
   }
   paintDogCard();
 
-  // Card 3 — Getting there. Start point label + directions link.
+  // Card 3, Getting there. Start point label + directions link.
   (function paintAccessCard() {
     const card = $('qaAccess'), title = $('qaAccessTitle'), sub = $('qaAccessSub');
     if (!card) return;
@@ -208,7 +208,7 @@
     if (seeAll && (t.valley || t.area)) seeAll.textContent = 'See all in ' + (t.valley || t.area) + ' \u2192';
 
     // Personalise: retitle the section and fill each pick's real match %
-    // chip — same scoreTrail() as everywhere else.
+    // chip, same scoreTrail() as everywhere else.
     function personalise() {
       if (typeof scoreTrail !== 'function' || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) return;
       window.DoloPawsAuth.getDogProfile().then(profile => {
@@ -589,7 +589,7 @@
     box.innerHTML = rows.map(rowMarkup).join('');
   })();
 
-  /* ---- Getting there + getting around — keep travel to the trailhead
+  /* ---- Getting there + getting around, keep travel to the trailhead
      separate from the numbered waymarks used once the walk begins. ----- */
   (function parking() {
     const card = $('td2ParkingCard'), grid = $('td2ParkingGrid'), maps = $('td2MapsLink');

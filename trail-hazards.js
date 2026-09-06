@@ -56,11 +56,11 @@
       try{
         const result=await community.reportTrailHazard({id:trail.id,name:trail.name,area:trail.area},
           kind.value,text.value,observedOn.value);
-        status.textContent=result&&result.message?result.message:'Thanks — ORMA is checking this now.';
+        status.textContent=result&&result.message?result.message:'Thanks, ORMA is checking this now.';
         if(result&&result.ok){form.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.textContent='Report sent';}
         else{status.classList.add('is-error');submit.disabled=false;}
       }catch(error){
-        status.classList.add('is-error');status.textContent='Could not send your report — please try again.';submit.disabled=false;
+        status.classList.add('is-error');status.textContent='Could not send your report, please try again.';submit.disabled=false;
       }
     });
     anchor.insertAdjacentElement('afterend',wrap);
@@ -76,8 +76,18 @@
     // stack and the report control silently vanished there. #ormaHazardMount is
     // the explicit anchor that page provides.
     const anchorFor=()=>document.getElementById('ormaHazardMount')||document.querySelector('.sp-badges')||document.querySelector('main h1')||document.querySelector('main');
+    // window.DoloPawsCommunity is assigned near the end of firebase-init.js, an
+    // ES module, while this file is injected dynamically by mobile-nav.js. A
+    // dynamically created script ignores defer and runs as soon as it loads, so
+    // it wins that race and used to sample the module before it existed --
+    // silently skipping the report control on every trail page. Wait for the
+    // ready signal firebase-init.js already dispatches.
     const reportAnchor=anchorFor();
-    if(reportAnchor&&reportAnchor.parentNode)installReportControl(trail,reportAnchor);
+    if(reportAnchor&&reportAnchor.parentNode){
+      const install=()=>installReportControl(trail,reportAnchor);
+      if(window.DoloPawsAuthReady) install();
+      else window.addEventListener('dolopaws-auth-ready', install, { once:true });
+    }
     const response=await fetch(`${prefix}data/dynamic-hazards.json`,{cache:'no-store'});if(!response.ok)return;
     const data=await response.json();const hazards=(data.hazards||[]).filter(item=>(item.trailIds||[]).includes(identity.id)||(item.trailSlugs||[]).includes(identity.slug)).sort((a,b)=>severityRank(b.severity)-severityRank(a.severity));
     if(!hazards.length)return;installStyles();

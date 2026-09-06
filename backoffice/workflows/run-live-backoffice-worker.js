@@ -16,7 +16,7 @@ const {applyNewTrailReview}=require('./plan-new-trail-scouting');
 const {admitNewTrailIntake}=require('./new-trail-intake');
 const {applyHazardReview}=require('./dynamic-hazards');
 const {runHazardVetting,applyHazardVetting,expireCommunityHazards}=require('./community-hazard-vetting');
-const {ingestImageReviews,processImageJobs,queuePriorityImageSourcing,promotePendingOwnerUploads,DEFAULT_IMAGE_SOURCING_CAPACITY}=require('./hosted-image-coverage');
+const {ingestImageReviews,processImageJobs,promotePendingOwnerUploads,retireAutomatedImageSourcing}=require('./hosted-image-coverage');
 const {auditImageCoverage}=require('./audit-image-coverage');
 const {validateContentExecution}=require('../contracts/content-result-v1');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
@@ -276,12 +276,11 @@ async function refreshTrailPhotoBackfill(store,options={}){
     const audit=await auditImageCoverage(root,{at,trails:options.productionTrails});
     if(!audit.gaps.length){
       await store.setArtifact('image-coverage',audit,{mode:audit.mode,publicMutationAllowed:false});
-      return {status:'complete',...audit.summary,queued:0};
+      return {status:'complete',...audit.summary};
     }
-    const sourcing=await queuePriorityImageSourcing(store,audit,{at,
-      capacity:options.imageSourcingCapacity||DEFAULT_IMAGE_SOURCING_CAPACITY});
+    const {retired}=await retireAutomatedImageSourcing(store,{at});
     await store.setArtifact('image-coverage',audit,{mode:audit.mode,publicMutationAllowed:false});
-    return {status:'running',...audit.summary,queued:sourcing.queued,active:sourcing.active,capacity:sourcing.capacity};
+    return {status:'running',...audit.summary,retiredSourcingJobs:retired.length};
   }catch(error){
     return {status:'failed',error:String(error.message||error).slice(0,2000)};
   }
