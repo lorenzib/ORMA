@@ -10,6 +10,16 @@
     "surfaceHazards": 10,
     "access": 10
   },
+  "canCloseHere": [
+    "livestock",
+    "access"
+  ],
+  "needsPerTrailEvidence": [
+    "water",
+    "heat",
+    "exposure",
+    "surfaceHazards"
+  ],
   "trails": [
     {
       "id": "osm-9933643",

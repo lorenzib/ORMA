@@ -22,6 +22,26 @@
 // REVIEW_CATEGORIES the page generator and the campaign planner use.
 const REVIEW_CATEGORIES = ['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access'];
 
+/**
+ * Which categories a valley-wide document can actually establish.
+ *
+ * VERIFICATION.md: a regional portal is citable for "any fact the source
+ * states explicitly and specifically", and never sufficient for "anything the
+ * source doesn't mention — silence isn't clearance". A comune's leash rule and
+ * a park's grazing season are stated explicitly and apply to the whole area.
+ * Whether one route has water, shade, drop-offs or scree is a fact about that
+ * route, which the same document says nothing about; for shade and exposure it
+ * says only a field visit can confirm what no document states.
+ *
+ * Recording those four from a valley source would set verified.categories,
+ * which flips categoryVerified, which makes the page say "a reviewed water
+ * point is listed on this route" — the overclaim removed in the unreviewed-
+ * is-not-verified fix. So the tool refuses them rather than trusting whoever
+ * fills the worksheet to know the difference.
+ */
+const VALLEY_SCOPE = ['livestock', 'access'];
+const TRAIL_SCOPE = REVIEW_CATEGORIES.filter(category => !VALLEY_SCOPE.includes(category));
+
 const PLACEHOLDER_HOSTS = ['example.com', 'example.org', 'localhost', 'todo', 'tbd'];
 
 function isVerified(trail) {
@@ -85,6 +105,11 @@ function worksheetFor(group) {
     valley: group.valley,
     trailCount: group.trailCount,
     categoriesNeeded: group.categoriesNeeded,
+    // A valley document can only close these two.
+    canCloseHere: VALLEY_SCOPE,
+    // These are facts about one route. They need per-trail evidence, and this
+    // worksheet will refuse them.
+    needsPerTrailEvidence: TRAIL_SCOPE,
     trails: group.trails,
     // Fill these in. Each source states which categories it actually covers;
     // nothing is marked reviewed beyond what a source here supports.
@@ -118,8 +143,15 @@ function validateWorksheet(worksheet) {
     }
     const categories = Array.isArray(source.categories) ? source.categories : [];
     if (!categories.length) errors.push(`${at}: state which categories it covers (${REVIEW_CATEGORIES.join(', ')}).`);
-    categories.filter(category => !REVIEW_CATEGORIES.includes(category))
-      .forEach(category => errors.push(`${at}: "${category}" is not a review category.`));
+    categories.forEach(category => {
+      if (!REVIEW_CATEGORIES.includes(category)) {
+        errors.push(`${at}: "${category}" is not a review category.`);
+      } else if (!VALLEY_SCOPE.includes(category)) {
+        errors.push(`${at}: "${category}" cannot be established by a valley-wide source. `
+          + `${TRAIL_SCOPE.join(', ')} are facts about one route, so they need evidence recorded `
+          + `against that trail. This worksheet can only close ${VALLEY_SCOPE.join(' and ')}.`);
+      }
+    });
   });
 
   return errors;
@@ -130,7 +162,8 @@ function coverage(worksheet) {
   const covered = new Map();
   (worksheet.sources || []).forEach(source => {
     (source.categories || []).forEach(category => {
-      if (!REVIEW_CATEGORIES.includes(category)) return;
+      // Not just the known categories: only the ones a valley source can carry.
+      if (!VALLEY_SCOPE.includes(category)) return;
       if (!covered.has(category)) covered.set(category, []);
       covered.get(category).push(source);
     });
@@ -193,6 +226,8 @@ function planApply(worksheet, trails, reviewedOn) {
 
 module.exports = {
   REVIEW_CATEGORIES,
+  VALLEY_SCOPE,
+  TRAIL_SCOPE,
   isVerified,
   categoriesNeeded,
   valleyOf,
