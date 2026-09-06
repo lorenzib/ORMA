@@ -23,14 +23,14 @@ describe('separate Firebase backoffice Hosting package',()=>{
 
   test('hosted dossier desk requests the current revision-control asset',()=>{
     const html=fs.readFileSync(path.join(output,'trail-dossier-desk.html'),'utf8');
-    expect(html).toContain('trail-dossier-desk.js?v=20260906-6');
+    expect(html).toContain('trail-dossier-desk.js?v=20260906-7');
   });
 
   test('hosted trail content desk requests the durable publication receipt asset',()=>{
     const html=fs.readFileSync(path.join(output,'trail-content-desk.html'),'utf8');
     const script=fs.readFileSync(path.join(output,'trail-content-desk.js'),'utf8');
     expect(html).toContain('backoffice/content-receipt-model.js?v=20260820-4');
-    expect(html).toContain('trail-content-desk.js?v=20260820-9');
+    expect(html).toContain('trail-content-desk.js?v=20260906-7');
     expect(script).toContain("job.jobType==='verified-trail-editorial-first-pass'");
     expect(script).toContain("Exactly one fully licensed ready image is required before approval");
   });

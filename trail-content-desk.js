@@ -164,5 +164,10 @@
     finally{refreshRevisions.disabled=false;}
   }
   refreshRevisions.addEventListener('click',refreshRevisionState);
-  Promise.all([loadArtifact('verified-trail-editorial-queue',URLS.queue),loadArtifact('verified-trail-editorial-execution',URLS.execution),loadArtifact('publication-staging',URLS.staging),loadRevisionJobs(),loadPublicationRequests(),loadPublicationReviews(),loadContentReviews()]).then(values=>{[queue,execution,staging,revisions,publicationRequests,publicationReviews,contentReviews]=values;renderPackets();renderStaging(staging);state.textContent=revisionStateText();window.setInterval(refreshRevisionState,10000);}).catch(error=>{state.classList.add('is-error');state.textContent=error.message;});
+  Promise.all([loadArtifact('verified-trail-editorial-queue',URLS.queue),loadArtifact('verified-trail-editorial-execution',URLS.execution),loadArtifact('publication-staging',URLS.staging),loadRevisionJobs(),loadPublicationRequests(),loadPublicationReviews(),loadContentReviews()]).then(values=>{[queue,execution,staging,revisions,publicationRequests,publicationReviews,contentReviews]=values;renderPackets();renderStaging(staging);state.textContent=revisionStateText();
+    // Poll once a minute, visible tabs only. This desk re-read six Firestore
+    // sources every 10s regardless of focus, which alone could exhaust the
+    // project's daily quota when a tab was left open.
+    window.setInterval(()=>{if(!document.hidden)refreshRevisionState();},60000);
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshRevisionState();});}).catch(error=>{state.classList.add('is-error');state.textContent=error.message;});
 })();

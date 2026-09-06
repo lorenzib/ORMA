@@ -421,5 +421,8 @@
 
   refreshBtn.addEventListener('click',load);
   load();
-  window.setInterval(load,30000);
+  // Poll once a minute, and only while the tab is visible, so a backgrounded
+  // desk cannot drain the Firestore daily quota.
+  window.setInterval(()=>{if(!document.hidden)load();},60000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)load();});
 })();
