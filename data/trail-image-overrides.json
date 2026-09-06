@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T14:47:45.542Z",
+  "updatedAt": "2026-09-06T14:59:12.500Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -917,6 +917,23 @@
         "imageLicence": "CC0",
         "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rienz_bei_Kiens.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12127424",
+      "approvedReviewId": "commons-osm-12127424",
+      "approvedAt": "2026-09-06T14:59:12.500Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12127424-arvan.jpg",
+        "heroImage": "images/trails/osm-12127424-arvan.jpg",
+        "imageAlt": "The Arvan valley in summer seen from the Croix-de-Fer road, with a tarn on alpine pasture and the Aiguilles d Arves on the skyline.",
+        "imageCredit": "Vallee de l Arvan",
+        "imageCreditText": "Vallee de l Arvan by Nouill",
+        "imageCreator": "Nouill",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vall%C3%A9e_de_l%27Arvan.jpg",
         "imageSourceType": "licensed-source"
       }
     }
