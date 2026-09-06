@@ -100,6 +100,13 @@ check again, and it is never presented as a route awaiting geometry approval.
 The verdict is recorded against the relation that was examined, so correcting
 the source retires it.
 
+Not every walk is one relation. A loop may go up one numbered path and back
+another, and its source is then the ordered set of paths it follows. Those are
+proposed by measuring which documented routes carry the walk, and a proposal is
+evidence, never a decision: a composite becomes a route source only when a human
+approves it at the geometry gate, and only while it covers the walk. The paths
+are recorded in the order a reader meets them on the ground.
+
 ### 2. New Trails
 
 Owns discovery before catalogue admission. It prioritises:
