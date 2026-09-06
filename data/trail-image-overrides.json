@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T14:42:29.290Z",
+  "updatedAt": "2026-09-06T14:47:45.542Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -866,6 +866,57 @@
         "imageLicence": "CC BY 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Olang_von_goste.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12172440",
+      "approvedReviewId": "commons-osm-12172440",
+      "approvedAt": "2026-09-06T14:47:45.542Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12172440-terenten.jpg",
+        "heroImage": "images/trails/osm-12172440-terenten.jpg",
+        "imageAlt": "A track curving across mown meadow towards the village of Terenten, with wooded slopes rising behind it.",
+        "imageCredit": "Terento from the panoramic path",
+        "imageCreditText": "Terento from the panoramic path by M-Car",
+        "imageCreator": "M-Car",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Terento_dal_sentiero_panoramico.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12165590",
+      "approvedReviewId": "commons-osm-12165590",
+      "approvedAt": "2026-09-06T14:47:45.542Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12165590-luesner-alm.jpg",
+        "heroImage": "images/trails/osm-12165590-luesner-alm.jpg",
+        "imageAlt": "Open pasture and spruce on the Luesner Alm, looking across forested slopes to snow on the far range.",
+        "imageCredit": "Luesner Alm and Rodenecker Alm",
+        "imageCreditText": "Luesner Alm and Rodenecker Alm by LuesenTV01",
+        "imageCreator": "LuesenTV01",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Hf_L%C3%BCsner_Alm_Panorama%C3%BCbersicht_(9).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-6823031",
+      "approvedReviewId": "commons-osm-6823031",
+      "approvedAt": "2026-09-06T14:47:45.542Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-6823031-rienz-kiens.jpg",
+        "heroImage": "images/trails/osm-6823031-rienz-kiens.jpg",
+        "imageAlt": "The green water of the Rienz running between wooded banks below houses at Kiens.",
+        "imageCredit": "Rienz bei Kiens",
+        "imageCreditText": "Rienz bei Kiens by mAyo",
+        "imageCreator": "mAyo",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rienz_bei_Kiens.JPG",
         "imageSourceType": "licensed-source"
       }
     }
