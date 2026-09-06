@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T08:52:09.690Z",
+  "updatedAt": "2026-09-06T13:25:25.857Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -407,6 +407,363 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Auronzo_di_Cadore_dalle_Tre_Cime.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-123162",
+      "approvedReviewId": "commons-osm-123162",
+      "approvedAt": "2026-09-06T09:58:55.741Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-123162-commons.jpg",
+        "heroImage": "images/trails/osm-123162-commons.jpg",
+        "imageAlt": "The Latemar above Lake Carezza near Nova Levante",
+        "imageCredit": "Welschnofen Latemar & Karersee 1",
+        "imageCreditText": "Welschnofen Latemar & Karersee 1 by Zairon",
+        "imageCreator": "Zairon",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Welschnofen_Latemar_%26_Karersee_1.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11839597",
+      "approvedReviewId": "commons-osm-11839597",
+      "approvedAt": "2026-09-06T09:58:55.741Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11839597-commons.jpg",
+        "heroImage": "images/trails/osm-11839597-commons.jpg",
+        "imageAlt": "An alpine hut on the Alpe di Siusi below the Sciliar",
+        "imageCredit": "Prossliner Schwaige mit Schlern Seiser Alm",
+        "imageCreditText": "Prossliner Schwaige mit Schlern Seiser Alm by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Prossliner_Schwaige_mit_Schlern_Seiser_Alm.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "seceda",
+      "approvedReviewId": "commons-seceda",
+      "approvedAt": "2026-09-06T10:40:40.582Z",
+      "fields": {
+        "imageIcon": "images/trails/seceda-commons.jpg",
+        "heroImage": "images/trails/seceda-commons.jpg",
+        "imageAlt": "The Seceda ridgeline with the Odle peaks above Val Gardena",
+        "imageCredit": "Dal Seceda vista sulle Odle",
+        "imageCreditText": "Dal Seceda vista sulle Odle by Fede021",
+        "imageCreator": "Fede021",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Dal_Seceda_vista_sulle_Odle.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-9511973",
+      "approvedReviewId": "commons-osm-9511973",
+      "approvedAt": "2026-09-06T10:50:15.084Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-9511973-commons.jpg",
+        "heroImage": "images/trails/osm-9511973-commons.jpg",
+        "imageAlt": "Walkers crossing the Armentara meadows in Alta Badia",
+        "imageCredit": "Escursioni nei prati",
+        "imageCreditText": "Escursioni nei prati by MartiSorg",
+        "imageCreator": "MartiSorg",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Escursioni_nei_prati.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "geotrail-bulla",
+      "approvedReviewId": "commons-geotrail-bulla",
+      "approvedAt": "2026-09-06T10:50:15.084Z",
+      "fields": {
+        "imageIcon": "images/trails/geotrail-bulla-commons.jpg",
+        "heroImage": "images/trails/geotrail-bulla-commons.jpg",
+        "imageAlt": "The Bulacia mountain above the village of Bula in Val Gardena",
+        "imageCredit": "Bula y Bulacia te Gherdëina",
+        "imageCreditText": "Bula y Bulacia te Gherdëina by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bula_y_Bulacia_te_Gherd%C3%ABina.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12173984",
+      "approvedReviewId": "commons-osm-12173984",
+      "approvedAt": "2026-09-06T11:00:14.571Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12173984-commons.jpg",
+        "heroImage": "images/trails/osm-12173984-commons.jpg",
+        "imageAlt": "Lago di Braies below the Croda del Becco",
+        "imageCredit": "2Lago di Braies",
+        "imageCreditText": "2Lago di Braies by RatMan1234",
+        "imageCreator": "RatMan1234",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:2Lago_di_Braies.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11816373",
+      "approvedReviewId": "commons-osm-11816373",
+      "approvedAt": "2026-09-06T11:00:14.571Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11816373-commons.jpg",
+        "heroImage": "images/trails/osm-11816373-commons.jpg",
+        "imageAlt": "Bad Bergfall seen from the Lapedurscharte above the Puster valley",
+        "imageCredit": "Blick auf Bad Bergfall von Lapedurscharte",
+        "imageCreditText": "Blick auf Bad Bergfall von Lapedurscharte by Rainerhaufe",
+        "imageCreator": "Rainerhaufe",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Blick_auf_Bad_Bergfall_von_Lapedurscharte.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11814895",
+      "approvedReviewId": "commons-osm-11814895",
+      "approvedAt": "2026-09-06T11:00:14.571Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11814895-commons.jpg",
+        "heroImage": "images/trails/osm-11814895-commons.jpg",
+        "imageAlt": "The Rosszahnscharte above the Alpe di Siusi",
+        "imageCredit": "20150726-SRA 7093-7101 (20039153901)",
+        "imageCreditText": "20150726-SRA 7093-7101 (20039153901) by Siegfried Rabanser from Italy",
+        "imageCreator": "Siegfried Rabanser from Italy",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:20150726-SRA_7093-7101_(20039153901).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11764094",
+      "approvedReviewId": "commons-osm-11764094",
+      "approvedAt": "2026-09-06T11:51:13.811Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11764094-commons.jpg",
+        "heroImage": "images/trails/osm-11764094-commons.jpg",
+        "imageAlt": "The villages of Natz, Raas and Viums on the Brixen basin below the Lüsental",
+        "imageCredit": "Blick auf den nördlichen Brixner Talkessel und Eingang des Lüsentals von der Karspitze 2",
+        "imageCreditText": "Blick auf den nördlichen Brixner Talkessel und Eingang des Lüsentals von der Karspitze 2 by Plentn",
+        "imageCreator": "Plentn",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Blick_auf_den_n%C3%B6rdlichen_Brixner_Talkessel_und_Eingang_des_L%C3%BCsentals_von_der_Karspitze_2.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12302191",
+      "approvedReviewId": "commons-osm-12302191",
+      "approvedAt": "2026-09-06T11:51:13.811Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12302191-commons.jpg",
+        "heroImage": "images/trails/osm-12302191-commons.jpg",
+        "imageAlt": "The Anterselva valley with Rasun di Sotto in the foreground",
+        "imageCredit": "Panorama della valle di anterselva",
+        "imageCreditText": "Panorama della valle di anterselva by Llorenzi",
+        "imageCreator": "Llorenzi",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Panorama_della_valle_di_anterselva.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-14058492",
+      "approvedReviewId": "commons-osm-14058492",
+      "approvedAt": "2026-09-06T11:51:13.811Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14058492-commons.jpg",
+        "heroImage": "images/trails/osm-14058492-commons.jpg",
+        "imageAlt": "Dawn over the Isarco valley",
+        "imageCredit": "Alba sulla valle Isarco",
+        "imageCreditText": "Alba sulla valle Isarco by Llorenzi",
+        "imageCreator": "Llorenzi",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Alba_sulla_valle_Isarco.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12736753",
+      "approvedReviewId": "commons-osm-12736753",
+      "approvedAt": "2026-09-06T11:51:13.811Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12736753-commons.jpg",
+        "heroImage": "images/trails/osm-12736753-commons.jpg",
+        "imageAlt": "The Isarco valley and Val Gardena seen from Dreikirchen",
+        "imageCredit": "Eisack valley and Gröden seen from Dreikirchen",
+        "imageCreditText": "Eisack valley and Gröden seen from Dreikirchen by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Eisack_valley_and_Gr%C3%B6den_seen_from_Dreikirchen.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "cadini",
+      "approvedReviewId": "commons-cadini",
+      "approvedAt": "2026-09-06T12:22:30.979Z",
+      "fields": {
+        "imageIcon": "images/trails/cadini-commons.jpg",
+        "heroImage": "images/trails/cadini-commons.jpg",
+        "imageAlt": "Lake Misurina with the Cadini peaks behind",
+        "imageCredit": "Lagomisurinacadini",
+        "imageCreditText": "Lagomisurinacadini by Llorenzi",
+        "imageCreator": "Llorenzi",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lagomisurinacadini.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11795251",
+      "approvedReviewId": "commons-osm-11795251",
+      "approvedAt": "2026-09-06T12:22:30.979Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11795251-commons.jpg",
+        "heroImage": "images/trails/osm-11795251-commons.jpg",
+        "imageAlt": "The Pfunders valley basin in the Vintl municipality",
+        "imageCredit": "Talkessel von Pfunders",
+        "imageCreditText": "Talkessel von Pfunders by Hegedex",
+        "imageCreator": "Hegedex",
+        "imageLicence": "Public domain",
+        "imageLicenceUrl": null,
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Talkessel_von_Pfunders.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-6404634",
+      "approvedReviewId": "commons-osm-6404634",
+      "approvedAt": "2026-09-06T12:22:30.979Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-6404634-commons.jpg",
+        "heroImage": "images/trails/osm-6404634-commons.jpg",
+        "imageAlt": "Mixed woodland in Val Canali in the Paneveggio nature park",
+        "imageCredit": "Bosco misto in Val Canali ph Carlo A.Turra",
+        "imageCreditText": "Bosco misto in Val Canali ph Carlo A.Turra by Viducoli",
+        "imageCreator": "Viducoli",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bosco_misto_in_Val_Canali_ph_Carlo_A.Turra.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-8510456",
+      "approvedReviewId": "commons-osm-8510456",
+      "approvedAt": "2026-09-06T12:33:16.634Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-8510456-commons.jpg",
+        "heroImage": "images/trails/osm-8510456-commons.jpg",
+        "imageAlt": "The river Rienz at Kiens in the Puster valley",
+        "imageCredit": "Kiens, de Rienz IMG 1121 2019-08-03 20.37",
+        "imageCreditText": "Kiens, de Rienz IMG 1121 2019-08-03 20.37 by Michielverbeek",
+        "imageCreator": "Michielverbeek",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kiens,_de_Rienz_IMG_1121_2019-08-03_20.37.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-16180587",
+      "approvedReviewId": "commons-osm-16180587",
+      "approvedAt": "2026-09-06T13:11:45.902Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-16180587-commons.jpg",
+        "heroImage": "images/trails/osm-16180587-commons.jpg",
+        "imageAlt": "The Lac Vert at Passy with Mont Blanc behind",
+        "imageCredit": "Lac vert de passy (2)",
+        "imageCreditText": "Lac vert de passy (2) by Mangatome",
+        "imageCreator": "Mangatome",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lac_vert_de_passy_(2).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-14379937",
+      "approvedReviewId": "commons-osm-14379937",
+      "approvedAt": "2026-09-06T13:11:45.902Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14379937-commons.jpg",
+        "heroImage": "images/trails/osm-14379937-commons.jpg",
+        "imageAlt": "Willowherb in flower above Valloire",
+        "imageCredit": "Épilobe devant les montagnes",
+        "imageCreditText": "Épilobe devant les montagnes by Wikisquack",
+        "imageCreator": "Wikisquack",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:%C3%89pilobe_devant_les_montagnes.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11775760",
+      "approvedReviewId": "v2u6F4D3e7688HR2yDCd",
+      "approvedAt": "2026-09-06T07:10:01.159Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11775760-v2u6f4d3e7688hr2ydcd.jpg",
+        "heroImage": "images/trails/osm-11775760-v2u6f4d3e7688hr2ydcd.jpg",
+        "imageAlt": "Close view of a weathered stone wall at Salern Castle ruins, with a mountain valley beyond.",
+        "imageCredit": "Photo by Luca Lorenzi (Wikimedia Commons user Llorenzi)",
+        "imageCreditText": "Photo by Luca Lorenzi (Wikimedia Commons user Llorenzi)",
+        "imageCreator": "Luca Lorenzi (Wikimedia Commons user Llorenzi)",
+        "imageLicence": "CC BY-SA 3.0 Unported",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Castel_Salern78.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-15321786",
+      "approvedReviewId": "commons-osm-15321786",
+      "approvedAt": "2026-09-06T13:25:25.857Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-15321786-commons.jpg",
+        "heroImage": "images/trails/osm-15321786-commons.jpg",
+        "imageAlt": "Bourg-Saint-Maurice seen from the descent of the Petit-Saint-Bernard pass",
+        "imageCredit": "Bourg-Saint-Maurice (Août 2025) - Vue depuis la descente du col du Petit-Saint-Bernard",
+        "imageCreditText": "Bourg-Saint-Maurice (Août 2025) - Vue depuis la descente du col du Petit-Saint-Bernard by Mathieu BROSSAIS",
+        "imageCreator": "Mathieu BROSSAIS",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bourg-Saint-Maurice_(Ao%C3%BBt_2025)_-_Vue_depuis_la_descente_du_col_du_Petit-Saint-Bernard.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-13337921",
+      "approvedReviewId": "commons-osm-13337921",
+      "approvedAt": "2026-09-06T13:25:25.857Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-13337921-commons.jpg",
+        "heroImage": "images/trails/osm-13337921-commons.jpg",
+        "imageAlt": "La Chèvrerie below the Roc d'Enfer",
+        "imageCredit": "Pano Chèvrerie",
+        "imageCreditText": "Pano Chèvrerie by Benoit Kornmann",
+        "imageCreator": "Benoit Kornmann",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pano_Ch%C3%A8vrerie.jpg",
         "imageSourceType": "licensed-source"
       }
     }

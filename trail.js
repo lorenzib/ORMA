@@ -1624,11 +1624,26 @@ function renderTrail(t){
       if(creditEl && creditText && credit){
         creditEl.open=false;
         creditText.replaceChildren();
+        // Creative Commons requires the creator and the licence, not just a link to
+        // the source. The static generator already renders both; a trail served
+        // only by this dynamic page must not be credited more thinly.
         if(credit.url){
           const link=document.createElement('a');
           link.href=credit.url;link.target='_blank';link.rel='noopener nofollow';link.textContent=credit.label;
           creditText.appendChild(link);
-        }else creditText.textContent=credit.label;
+        }else creditText.appendChild(document.createTextNode(credit.label));
+        if(t.imageCreator){
+          creditText.appendChild(document.createTextNode(` by ${t.imageCreator}`));
+        }
+        if(t.imageLicence){
+          creditText.appendChild(document.createTextNode(' · '));
+          if(t.imageLicenceUrl){
+            const licence=document.createElement('a');
+            licence.href=t.imageLicenceUrl;licence.rel='license noopener';licence.target='_blank';
+            licence.textContent=t.imageLicence;
+            creditText.appendChild(licence);
+          }else creditText.appendChild(document.createTextNode(t.imageLicence));
+        }
         creditEl.hidden=false;
       }
     }

@@ -145,3 +145,122 @@ describe('looking for the paths near a walk', () => {
     expect(() => buildRoutesNearPathQuery([])).toThrow('drawn path is required');
   });
 });
+
+const { ruleOnComposite, rejectComposite } = require('./workflows/discover-route-composite');
+
+// Approving is the moment a proposal becomes a route source, so it rests on a
+// fresh measurement rather than on the number discovery happened to store.
+describe('ruling on a proposal', () => {
+  const proposal = () => ({ state:'proposed', trailName:'Seceda Ridge Trail', coveragePercent:100,
+    relations:[{ externalRelationId:'relation/1', ref:'1' }, { externalRelationId:'relation/2', ref:'1A' }] });
+  const measured = (overrides = {}) => ({ coveragePercent:100,
+    relations:[{ externalRelationId:'relation/1', ref:'1' }, { externalRelationId:'relation/2', ref:'1A' }],
+    ...overrides });
+
+  test('a fresh measurement that covers the walk opens the gate', () => {
+    const ruled = ruleOnComposite(proposal(), measured(), { approvedBy:'human-moderator', at:'2026-09-06T04:00:00.000Z' });
+
+    expect(ruled.outcome).toBe('approved');
+    expect(ruled.composite).toMatchObject({ state:'approved', approvedBy:'human-moderator',
+      approvedAt:'2026-09-06T04:00:00.000Z', coveragePercent:100, relationsUnchangedSinceProposal:true });
+  });
+
+  test('the approved paths are the ones just measured, not the ones proposed', () => {
+    // OSM may have moved between proposal and approval. What gets approved is
+    // what is there now, and the record says the two disagreed.
+    const ruled = ruleOnComposite(proposal(), measured({
+      relations:[{ externalRelationId:'relation/1', ref:'1' }, { externalRelationId:'relation/77', ref:'1B' }] }));
+
+    expect(ruled.composite.relations.map(entry => entry.ref)).toEqual(['1', '1B']);
+    expect(ruled.composite.relationsUnchangedSinceProposal).toBe(false);
+  });
+
+  test('a proposal that no longer covers the walk is held, not approved', () => {
+    const ruled = ruleOnComposite(proposal(), measured({ coveragePercent:71 }));
+
+    expect(ruled.outcome).toBe('held');
+    expect(ruled.reason).toBe('covers 71% today');
+    expect(ruled.composite.state).toBe('proposed');
+  });
+
+  test('a coverage that could not be measured approves nothing', () => {
+    expect(ruleOnComposite(proposal(), null).outcome).toBe('held');
+    expect(ruleOnComposite(proposal(), null).composite.state).toBe('proposed');
+  });
+
+  test('holding leaves the proposal exactly as it was', () => {
+    const before = proposal();
+    const ruled = ruleOnComposite(before, measured({ coveragePercent:10 }));
+
+    expect(ruled.composite).toEqual(before);
+  });
+
+  test('a composite already ruled on is never re-ruled', () => {
+    const approved = { ...proposal(), state:'approved' };
+    expect(ruleOnComposite(approved, measured()).outcome).toBe('left-alone');
+    expect(rejectComposite(approved).outcome).toBe('left-alone');
+  });
+
+  test('rejecting records who and when, and is not an approval', () => {
+    const ruled = rejectComposite(proposal(), { approvedBy:'human-moderator', at:'2026-09-06T04:00:00.000Z' });
+
+    expect(ruled.composite).toMatchObject({ state:'rejected', rejectedBy:'human-moderator',
+      rejectedAt:'2026-09-06T04:00:00.000Z' });
+    expect(ruled.composite.approvedAt).toBeUndefined();
+  });
+});
+
+const { lineKilometres } = require('./workflows/discover-route-composite');
+
+// A long-distance route running along a walk covers all of it in one relation,
+// which is exactly what a set cover rewards. Alta Via 1 was proposed as the
+// source for nuvolau on that basis: 100% coverage of a 5.5 km walk that is 1%
+// of a 226 km traverse. Guidance drawn from it would tell a reader to follow a
+// week-long route.
+describe('a route source at the scale of the walk', () => {
+  const WALK = Array.from({ length:20 }, (_, index) => [46.600 + index * 0.0005, 11.700]);
+  // A traverse running along the walk and far beyond it in both directions.
+  const TRAVERSE = Array.from({ length:2000 }, (_, index) => [46.500 + index * 0.0005, 11.700]);
+
+  function payload(extra = []){
+    return { elements:[
+      { type:'way', id:201, geometry:WALK.map(([lat, lon]) => ({ lat, lon })) },
+      { type:'relation', id:11, tags:{ type:'route', route:'hiking', ref:'438' },
+        members:[{ type:'way', ref:201, role:'' }] },
+      { type:'way', id:202, geometry:TRAVERSE.map(([lat, lon]) => ({ lat, lon })) },
+      { type:'relation', id:12, tags:{ type:'route', route:'hiking', ref:'AV1', name:'Alta via n. 1' },
+        members:[{ type:'way', ref:202, role:'' }] },
+      ...extra,
+    ] };
+  }
+
+  const trail = { id:'nuvolau', name:'Passo Giau to Rifugio Nuvolau', path:WALK, distance:5.5 };
+
+  test('a local path is preferred over a traverse that also covers the walk', () => {
+    const found = discoverRouteComposite(trail, payload());
+
+    expect(found.coveragePercent).toBe(100);
+    expect(found.relations.map(entry => entry.ref)).toEqual(['438']);
+  });
+
+  test('the traverse still answers when nothing at scale explains the route', () => {
+    // The only path at the walk's scale now covers a different hillside.
+    const away = { ...trail, path:TRAVERSE.slice(500, 520) };
+    const found = discoverRouteComposite(away, payload());
+
+    expect(found.relations.map(entry => entry.ref)).toEqual(['AV1']);
+    expect(found.coveragePercent).toBe(100);
+  });
+
+  test('each path records how much of it the walk uses', () => {
+    const found = discoverRouteComposite(trail, payload());
+
+    expect(found.relations[0].walkSharePercent).toBe(100);
+  });
+
+  test('length ignores the jump between disjoint pieces', () => {
+    // Two short legs a long way apart must not be credited with the gap.
+    const split = [[46.6, 11.7], [46.601, 11.7], [47.5, 12.9], [47.501, 12.9]];
+    expect(lineKilometres(split)).toBeLessThan(1);
+  });
+});

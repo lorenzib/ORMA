@@ -182,6 +182,14 @@ let liNewMatchIds = new Set();
 let liNewMatchSyncKey = '';
 let liNewMatchSyncInFlight = null;
 
+// Today, for this area, corrected for each trail's altitude. Undefined until a
+// forecast arrives, which makes the engine report conditions as not included --
+// the same answer the trail page gives for the same trail.
+function liConditionsFor(trail){
+  const area = window.DoloPawsHomeConditions;
+  return area && typeof area.forTrail === 'function' ? area.forTrail(trail) : undefined;
+}
+
 function filterTrailsForReturningView(list){
   let displayList = showingSavedOnly ? list.filter(x => currentFavorites[x.id]) : list;
   if(activeCountry !== 'all'){
@@ -235,7 +243,7 @@ function filterTrailsForReturningView(list){
 function matchReason(t, overrides){
   const isImported = t.curated === false;
   try{
-    const recommendation = recommendTrail(t, overrides);
+    const recommendation = recommendTrail(t, overrides, liConditionsFor(t));
     const reasons = recommendation.positiveReasons.slice(0, 2);
     if(reasons.length < 2) reasons.push(...recommendation.cautions.slice(0, 2 - reasons.length));
     if(reasons.length) return reasons.map(reason => reason.message).join(' ');
@@ -1828,8 +1836,15 @@ function renderLiToolbarContext(profile){
     : 'Where are we going today?';
   const toolbarContext = document.getElementById('liToolbarDogContext');
   if(!toolbarContext) return;
+  // "Right now" is a claim about today, so it is only made once a forecast
+  // has actually landed. Otherwise the subtitle promises less and stays true.
+  const dayKnown = !!(window.DoloPawsHomeConditions
+    && typeof window.DoloPawsHomeConditions.band === 'function'
+    && window.DoloPawsHomeConditions.band());
   toolbarContext.textContent = profile && profile.name
-    ? `Trails ranked for ${profile.name}\u2019s needs and your current choices.`
+    ? (dayKnown
+      ? `Ranked for ${profile.name}, right now. Adjust only if you want to.`
+      : `Trails ranked for ${profile.name}\u2019s needs and your current choices.`)
     : 'Trails ranked for your dog\u2019s needs and your current choices.';
 }
 
@@ -2021,9 +2036,18 @@ function renderLiConditionsCard(profile, displayList){
 
   const great = (displayList || []).filter(x => x.score >= 85).length;
   const tiles = [
-    overrides.heatSensitive
-      ? { v: 'Watch', c: '#8A5A16', l: 'Heat' }
-      : { v: 'Good', c: '#2C5C34', l: 'Heat' },
+    // The band above states the day. A tile reading "Good" underneath it while
+    // heat is rising would contradict it on the same screen, so today's area
+    // reading is folded in alongside the dog's own sensitivity.
+    (function(){
+      const today = window.DoloPawsHomeConditions && typeof window.DoloPawsHomeConditions.band === 'function'
+        ? window.DoloPawsHomeConditions.band() : null;
+      const hot = today && today.tone === 'high';
+      const warm = today && today.tone === 'moderate';
+      return (hot || (warm && overrides.heatSensitive) || overrides.heatSensitive)
+        ? { v: 'Watch', c: '#8A5A16', l: 'Heat' }
+        : { v: 'Good', c: '#2C5C34', l: 'Heat' };
+    })(),
     overrides.terrain === '0'
       ? { v: 'Tender', c: '#8A5A16', l: 'Paws' }
       : { v: 'Good', c: '#2C5C34', l: 'Paws' },
@@ -2299,7 +2323,7 @@ function renderLiSearchSuggestions(profile){
   const matches = trails
     .filter(trail => liTrailIsInSelectedGeography(trail, true))
     .filter(trail => [trail.name, trail.area, trail.valley].some(value => String(value || '').toLowerCase().includes(query)))
-    .map(trail => ({ ...trail, score:recommendTrail(trail, overrides).score }))
+    .map(trail => ({ ...trail, score:recommendTrail(trail, overrides, liConditionsFor(trail)).score }))
     .sort((a, b) => b.score - a.score || a.distance - b.distance)
     .slice(0, 6);
 
@@ -2345,12 +2369,43 @@ function liRevealMapPane(){
 
 // Match column shared by list rows and the map preview card. Tier steps
 // mirror the map pins (85 great / 65 good) and the map legend's colours.
-// Row meta per the design TrailRow: "7.5 km · 150 m climb · 2–2.5 h · 35% shade"
+// Shade in the words the design asks for, but only where those words are a
+// caution. Every trail carrying a shade figure is unreviewed for the heat
+// category: 23 hold a value and none is curated. SCORING.md settles that case
+// already, and this follows it rather than inventing a second rule. A warning
+// still shows, because suppressing one for want of a review hides a real
+// hazard. Reassurance does not, because "substantial shade" on a route nobody
+// has reviewed reads as a promise when it only means nobody looked.
+//
+// Bands are the engine's own (trail.shade.very-low, .low, .good), so a card and
+// a score cannot describe the same route differently.
+function liShadeLabel(shade){
+  if(!Number.isFinite(shade)) return null;
+  if(shade < 20) return 'little shade';
+  if(shade < 40) return 'limited shade';
+  return `${shade}% shade`;
+}
+
+// Exposure under the same rule as shade, and it is the doc's own example:
+// "no exposed section is recorded" reads as a safety claim when it only means
+// nobody looked. So true is stated and false is not. Only 3 trails carry true
+// and none is curated, but exposure is the heaviest caution the engine has --
+// 30 points, 40 for a fragile or vision-impaired dog -- so those 3 are exactly
+// the cards that should say it.
+function liExposureLabel(exposure){
+  return exposure === true ? 'exposed' : null;
+}
+
+// Row meta per the design TrailRow: "7.5 km · 150 m climb · 2–2.5 h · little shade"
+// Cautions follow the measured facts, gravest first.
 function liRowMeta(t){
   const parts = [`${t.distance} km`];
   if(Number.isFinite(t.elevation)) parts.push(`${t.elevation} m climb`);
   if(t.hours) parts.push(`${t.hours} h`);
-  if(Number.isFinite(t.shadeCoverage)) parts.push(`${t.shadeCoverage}% shade`);
+  const exposure = liExposureLabel(t.exposure);
+  if(exposure) parts.push(exposure);
+  const shade = liShadeLabel(t.shadeCoverage);
+  if(shade) parts.push(shade);
   return parts.join(' · ');
 }
 
@@ -2402,6 +2457,14 @@ function liScheduleNewMatchSync(scored, profile){
     });
 }
 
+// The forecast lands after the first paint. Without this the list keeps the
+// order and the scores it had before the day was known.
+if(typeof window !== 'undefined'){
+  window.addEventListener('dolopaws-area-conditions-ready', () => {
+    if(typeof currentProfileForAdjust !== 'undefined' && currentProfileForAdjust) renderReturningHomepage(currentProfileForAdjust);
+  });
+}
+
 async function renderReturningHomepage(profile, options = {}){
   profile = liResolveActiveProfile(profile);
   const heading = document.getElementById('returningHeading');
@@ -2427,7 +2490,7 @@ async function renderReturningHomepage(profile, options = {}){
     : (profile && profile.name ? `Ranked for ${profile.name}` : 'Ranked for your dog');
 
   const scored = trails.map(t => {
-    const recommendation = recommendTrail(t, overrides);
+    const recommendation = recommendTrail(t, overrides, liConditionsFor(t));
     return {...t, score: recommendation.score, recommendation};
   }).sort((a,b) => b.score - a.score);
   if(listEl && window.DoloPawsScoring){

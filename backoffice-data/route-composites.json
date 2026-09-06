@@ -1,9 +1,9 @@
 {
   "contractVersion": "1.0.0",
-  "updatedAt": "2026-09-06T09:29:27.331Z",
+  "updatedAt": "2026-09-06T13:07:10.117Z",
   "composites": {
     "alpe-siusi": {
-      "state": "proposed",
+      "state": "approved",
       "proposedAt": "2026-09-06T09:28:35.793Z",
       "trailName": "Alpe di Siusi Meadow Loop",
       "coveragePercent": 100,
@@ -34,10 +34,13 @@
           "coveragePercent": 25,
           "firstCoveredIndex": 26
         }
-      ]
+      ],
+      "approvedAt": "2026-09-06T09:59:37.348Z",
+      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "relationsUnchangedSinceProposal": true
     },
     "seceda": {
-      "state": "proposed",
+      "state": "approved",
       "proposedAt": "2026-09-06T09:28:42.140Z",
       "trailName": "Seceda Ridge Trail",
       "coveragePercent": 100,
@@ -60,10 +63,13 @@
           "coveragePercent": 51,
           "firstCoveredIndex": 0
         }
-      ]
+      ],
+      "approvedAt": "2026-09-06T09:59:51.334Z",
+      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "relationsUnchangedSinceProposal": true
     },
     "nuvolau": {
-      "state": "proposed",
+      "state": "approved",
       "proposedAt": "2026-09-06T09:28:45.114Z",
       "trailName": "Passo Giau to Rifugio Nuvolau",
       "coveragePercent": 100,
@@ -71,17 +77,30 @@
       "candidateRelationCount": 7,
       "relations": [
         {
-          "externalRelationId": "relation/177743",
-          "ref": "AV1",
-          "name": "Alta via n. 1 delle Dolomiti - Dolomiten-Höhenweg Nr. 1",
-          "network": "rwn",
-          "coveragePercent": 100,
+          "externalRelationId": "relation/3197403",
+          "ref": "443",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 38,
+          "walkSharePercent": 70,
           "firstCoveredIndex": 0
+        },
+        {
+          "externalRelationId": "relation/2261098",
+          "ref": "438",
+          "name": null,
+          "network": "lwn",
+          "coveragePercent": 67,
+          "walkSharePercent": 100,
+          "firstCoveredIndex": 15
         }
-      ]
+      ],
+      "approvedAt": "2026-09-06T13:07:08.114Z",
+      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "relationsUnchangedSinceProposal": false
     },
     "sassolungo": {
-      "state": "proposed",
+      "state": "approved",
       "proposedAt": "2026-09-06T09:28:52.180Z",
       "trailName": "Sassolungo–Sassopiatto Loop",
       "coveragePercent": 100,
@@ -112,10 +131,13 @@
           "coveragePercent": 33,
           "firstCoveredIndex": 121
         }
-      ]
+      ],
+      "approvedAt": "2026-09-06T10:00:00.826Z",
+      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "relationsUnchangedSinceProposal": true
     },
     "lago-carezza": {
-      "state": "proposed",
+      "state": "approved",
       "proposedAt": "2026-09-06T09:28:56.095Z",
       "trailName": "Lago di Carezza Loop",
       "coveragePercent": 100,
@@ -130,10 +152,13 @@
           "coveragePercent": 100,
           "firstCoveredIndex": 0
         }
-      ]
+      ],
+      "approvedAt": "2026-09-06T10:02:10.257Z",
+      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "relationsUnchangedSinceProposal": true
     },
     "geotrail-bulla": {
-      "state": "proposed",
+      "state": "approved",
       "proposedAt": "2026-09-06T09:28:59.055Z",
       "trailName": "Geotrail Bula / Pufels / Bulla",
       "coveragePercent": 100,
@@ -148,10 +173,13 @@
           "coveragePercent": 100,
           "firstCoveredIndex": 0
         }
-      ]
+      ],
+      "approvedAt": "2026-09-06T10:02:14.712Z",
+      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "relationsUnchangedSinceProposal": true
     },
     "sentiero-hans-e-paula-steger": {
-      "state": "proposed",
+      "state": "approved",
       "proposedAt": "2026-09-06T09:29:02.780Z",
       "trailName": "Sentiero Hans e Paula Steger",
       "coveragePercent": 100,
@@ -166,10 +194,13 @@
           "coveragePercent": 100,
           "firstCoveredIndex": 0
         }
-      ]
+      ],
+      "approvedAt": "2026-09-06T10:02:22.278Z",
+      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "relationsUnchangedSinceProposal": true
     },
     "sentiero-del-trenino": {
-      "state": "proposed",
+      "state": "approved",
       "proposedAt": "2026-09-06T09:29:11.750Z",
       "trailName": "Sentiero del Trenino",
       "coveragePercent": 100,
@@ -184,10 +215,13 @@
           "coveragePercent": 100,
           "firstCoveredIndex": 0
         }
-      ]
+      ],
+      "approvedAt": "2026-09-06T10:03:23.341Z",
+      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "relationsUnchangedSinceProposal": true
     },
     "giro-del-sasso-lungo": {
-      "state": "proposed",
+      "state": "approved",
       "proposedAt": "2026-09-06T09:29:25.329Z",
       "trailName": "Giro del Sasso Lungo",
       "coveragePercent": 100,
@@ -218,7 +252,10 @@
           "coveragePercent": 29,
           "firstCoveredIndex": 142
         }
-      ]
+      ],
+      "approvedAt": "2026-09-06T10:03:31.867Z",
+      "approvedBy": "Benedetta Lorenzi (ORMA owner)",
+      "relationsUnchangedSinceProposal": true
     }
   }
 }

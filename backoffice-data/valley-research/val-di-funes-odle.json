@@ -1,0 +1,294 @@
+{
+  "contractVersion": "1.0.0",
+  "valley": "Val di Funes – Odle",
+  "trailCount": 23,
+  "categoriesNeeded": {
+    "water": 22,
+    "heat": 22,
+    "exposure": 22,
+    "livestock": 22,
+    "surfaceHazards": 22,
+    "access": 23
+  },
+  "trails": [
+    {
+      "id": "santa-maddalena",
+      "name": "Rundweg St. Magdalena",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "valley-view",
+      "name": "Val di Funes Panorama Trail",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-7277805",
+      "name": "Waltner Rundweg - 12 - Sentiero circolare di Valtina - 12",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-7446701",
+      "name": "Waltner Rundweg 18",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11764094",
+      "name": "Dörferrunde (Natz => Raas => Schabs => Viums)",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11774783",
+      "name": "1 - Rafeil-Rundweg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11775760",
+      "name": "Carl-Toldt-Weg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11780502",
+      "name": "Naturerlebnispfad Zans",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11790553",
+      "name": "Steger-Bühel-Runde",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11792795",
+      "name": "Rundweg Ölberg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11795103",
+      "name": "Kranterrunde",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11795251",
+      "name": "1 - Dörferrundweg (Vintl)",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11828233",
+      "name": "Valser Rundweg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11832013",
+      "name": "Seerundweg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12142337",
+      "name": "Rundweg Peitlerkofel",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12164395",
+      "name": "Dörferrundweg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12165590",
+      "name": "Schwalbenwandrunde",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12731853",
+      "name": "Rundweg Laugen Elvas",
+      "needs": [
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12736753",
+      "name": "Albeins-Klerant-Milland - Albes-Cleran-Millan",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12953352",
+      "name": "archeo",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-13491868",
+      "name": "Birmehlweg - Sentiero Birmehl",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-14058492",
+      "name": "Herrnsteig",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-14058632",
+      "name": "Nössingbühel",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "",
+      "url": "",
+      "categories": [],
+      "note": ""
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "contractVersion": "1.0.0",
+  "valley": "Chamonix – Mont Blanc",
+  "trailCount": 4,
+  "categoriesNeeded": {
+    "water": 4,
+    "heat": 4,
+    "exposure": 4,
+    "livestock": 4,
+    "surfaceHazards": 4,
+    "access": 4
+  },
+  "trails": [
+    {
+      "id": "osm-6250300",
+      "name": "Boucle du Lac Vert",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-5479112",
+      "name": "Chemin des Diligences",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-16180587",
+      "name": "Balade du Plateau d'Assy au Lac Vert",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-19661726",
+      "name": "Sentier pédestre des Graniteurs",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "",
+      "url": "",
+      "categories": [],
+      "note": ""
+    }
+  ]
+}
