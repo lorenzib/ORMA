@@ -28,6 +28,8 @@ exclude:
   - trail-content-desk.html
   - trail-content-desk.js
   - trail-dossier-desk.html
+  - trail-verify-desk.html
+  - trail-verify-desk.js
   - trail-dossier-desk.js
 
   # Operator data and repository tooling. PR #151 excluded the desk pages and

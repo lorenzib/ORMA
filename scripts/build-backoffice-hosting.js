@@ -8,7 +8,7 @@ const output=path.join(root,'dist','backoffice');
 
 const files=[
   'backoffice-firebase.js','backoffice-login.js','backoffice-auth-guard.js','backoffice-session.js',
-  'backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','backoffice/dashboard-model.js',
+  'backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','trail-verify-desk.js','backoffice/dashboard-model.js',
   'image-coverage-hosted.js',
   'moderation-page.js','moderation.css','community-content-states.js',
   'backoffice-review.css','styles.css','favicon-32.png','logo.svg','backoffice/content-review-decisions.js','backoffice/content-receipt-model.js',
@@ -38,6 +38,7 @@ async function build(){
   await fs.rm(output,{recursive:true,force:true});await fs.mkdir(output,{recursive:true});
   await Promise.all(files.map(copy));
   await hostedPage('backoffice-hosted-login.html','backoffice-login.html');
+  await hostedPage('trail-verify-desk.html');
   await hostedPage('trail-dossier-desk.html');
   await hostedPage('trail-content-desk.html');
   await hostedPage('image-coverage-hosted.html','image-coverage-desk.html');
