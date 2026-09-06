@@ -76,4 +76,32 @@ describe('trail verification desk', () => {
     const decide = script.slice(script.indexOf('async function decide'));
     expect(decide).toMatch(/action!=='approve'&&!note\.value\.trim\(\)/);
   });
+
+  test('answers how many trails are verified and how many remain', () => {
+    // The desk previously showed only the queue, which is usually empty, so it
+    // never said where the catalogue actually stood.
+    expect(html).toContain('id="verifyHeadline"');
+    expect(script).toMatch(/trails verified · \$\{remaining\} to go/);
+    expect(script).toMatch(/written by hand/);
+    expect(script).toMatch(/imported from OpenStreetMap/);
+  });
+
+  test('trusts the registry when the catalogue flag lags behind it', () => {
+    const coverage = script.slice(script.indexOf('function renderCoverage'));
+    expect(coverage).toMatch(/Math\.max\(flagged,\(registry\.verified\|\|\[\]\)\.length\)/);
+  });
+
+  test('ranks the shared blockers instead of listing trails one by one', () => {
+    const coverage = script.slice(script.indexOf('function renderCoverage'));
+    expect(coverage).toMatch(/sort\(\(a,b\)=>b\[1\]-a\[1\]\)/);
+    // Verified trails must not contribute to the blocker tally.
+    expect(coverage).toMatch(/modernGraduationVerified===true\)return/);
+  });
+
+  test('turns machine blocker ids into words', () => {
+    const label = new Function(`${script.slice(script.indexOf('function blockerLabel'), script.indexOf('function renderCoverage'))}; return blockerLabel;`)();
+    expect(label('shadeCoverage-unknown')).toBe('Shade coverage unknown');
+    expect(label('review-date-missing')).toBe('Review date missing');
+    expect(label('claim-sources-missing')).toBe('Claim sources missing');
+  });
 });

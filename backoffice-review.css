@@ -218,3 +218,17 @@ body.bo-shell{margin:0;background:var(--bo-bg);color:var(--bo-ink)}
 }
 /* An empty status line should take no room at all. */
 .vd-main .bo-state:empty{display:none;}
+
+/* Coverage: the question the desk never answered — how far along are we. */
+.vd-coverage{margin-top:8px;}
+.vd-headline{margin:14px 0 10px;font:600 22px 'Bricolage Grotesque',serif;color:var(--ink);}
+.vd-bar{height:10px;border-radius:999px;background:var(--sage-dim);overflow:hidden;}
+.vd-bar span{display:block;height:100%;background:var(--ink);border-radius:999px;transition:width .3s ease;}
+.vd-split{margin:10px 0 0;font-size:14px;color:var(--ink-soft);}
+.vd-blocking{margin-top:22px;border:1px solid var(--paper-line);border-radius:14px;padding:16px 18px;background:var(--card);}
+.vd-blocking h3{margin:0;font-size:15px;}
+.vd-blocking-note{margin:4px 0 12px;font-size:13px;color:var(--ink-soft);max-width:56ch;}
+.vd-blocker-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;}
+.vd-blocker-list li{display:flex;align-items:baseline;gap:12px;font-size:14.5px;}
+.vd-blocker-list strong{min-width:44px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);}
+.vd-blocker-list span{color:var(--ink-soft);}
