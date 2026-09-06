@@ -55,24 +55,23 @@ function pathIsClosedLoop(trail){
   return metresBetween(path[0], path[path.length - 1]) <= CLOSED_LOOP_METRES;
 }
 
-// Does the last identity check say the recorded relation is a different route?
+// Does the recorded relation actually cover this walk?
 //
-// The relation's name settles it when there is one: a relation named as the
-// trail is the trail, and any disagreement about its length is then a metrics
-// question for the geometry gate, not evidence of the wrong route.
+// Measured across the catalogue, this is the only question that separates the
+// cases. 127 of 155 trails lie almost entirely on their relation; the other 28
+// wander off it, and their relations reconstruct to a median 59% of the trail's
+// length — they are one leg of a route stitched from several.
 //
-// Without that, two findings speak, and only for a reconstruction that came
-// back as one connected line. A relation carrying variants, spurs and
-// approaches reconstructs as several components whose lengths sum to far more
-// than the walk; comparing that total against the route's distance says
-// nothing about which route it is.
-function normalisedName(value){
-  return String(value || '').toLowerCase().normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '');
-}
+// Earlier versions asked about length, loop shape and the relation's name.
+// Each was a proxy and each was wrong. A trail may walk 3.4 km of a 7.2 km
+// named route and be perfectly sourced, and a relation may carry the trail's
+// exact name while sharing a quarter of its path.
+const ON_ROUTE_PERCENT = 90;
 
 function identityCheckFor(trail, identityChecks){
   const check = identityChecks && identityChecks[trail && trail.id];
+  // A check of a relation the trail no longer records answers a question
+  // nobody is asking, so correcting a source retires its verdict.
   if(!check || check.externalRelationId !== relationExternalId(trail)) return null;
   return check;
 }
@@ -80,26 +79,18 @@ function identityCheckFor(trail, identityChecks){
 function identityContradiction(trail, identityChecks){
   const check = identityCheckFor(trail, identityChecks);
   if(!check) return null;
-
-  const relationName = normalisedName(check.relationName);
-  if(relationName && relationName === normalisedName(trail && trail.name)) return null;
-
-  // `null` means the check predates component counting; treat it as unproven
-  // rather than as a single line, so an old verdict cannot condemn a trail.
-  if(check.componentCount !== 1) return null;
-
-  const detail = { checkedAt: check.checkedAt || null,
+  const containment = check.pathContainmentPercent;
+  // A check taken before containment was measured condemns nobody.
+  if(!Number.isFinite(containment) || containment >= ON_ROUTE_PERCENT) return null;
+  return {
+    reason: 'relation-covers-part-of-the-route',
+    pathContainmentPercent: containment,
+    checkedAt: check.checkedAt || null,
     externalRelationId: check.externalRelationId,
     relationName: check.relationName || null,
     reconstructedDistanceKm: check.reconstructedDistanceKm ?? null,
-    officialDistanceKm: check.officialDistanceKm ?? null };
-  if((check.blockers || []).includes('official-distance-conflict')){
-    return { reason: 'official-distance-conflict', ...detail };
-  }
-  if(pathIsClosedLoop(trail) && check.closedLoop === false){
-    return { reason: 'reconstruction-is-not-a-loop', ...detail };
-  }
-  return null;
+    officialDistanceKm: check.officialDistanceKm ?? null,
+  };
 }
 
 function baselineBlockers(trail, identityChecks){
@@ -216,5 +207,5 @@ function planCatalogueCampaign(trails, options = {}){
 module.exports = {
   GRADUATION_CHECKS, hasFullGraduation, relationExternalId,
   baselineBlockers, campaignItem, jobForItem, planCatalogueCampaign,
-  pathIsClosedLoop, identityContradiction, normalisedName,
+  pathIsClosedLoop, identityContradiction, ON_ROUTE_PERCENT,
 };
