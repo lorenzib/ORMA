@@ -484,3 +484,33 @@ describe('shade labels only speak where the evidence rule allows', () => {
       .toBe('7.5 km · 150 m climb · 2 h · little shade');
   });
 });
+
+// Exposure under the same rule as shade, and it is SCORING.md's own example:
+// "no exposed section is recorded" reads as a safety claim when it only means
+// nobody looked. Three trails carry exposure true and none is curated, but it
+// is the heaviest caution the engine has, so those three should say it.
+describe('exposure is named when present and never denied when absent', () => {
+  const context = () => loadHomepageContext([]);
+
+  test('an exposed route says so', () => {
+    expect(context().liExposureLabel(true)).toBe('exposed');
+  });
+
+  test('an unexposed route makes no claim about it', () => {
+    const ctx = context();
+    // trail.exposure.none-known is a positive, and the route is unreviewed.
+    expect(ctx.liExposureLabel(false)).toBeNull();
+    expect(ctx.liRowMeta({ distance:4, exposure:false })).not.toContain('expos');
+  });
+
+  test('unknown exposure says nothing rather than none', () => {
+    const ctx = context();
+    expect(ctx.liExposureLabel(undefined)).toBeNull();
+    expect(ctx.liExposureLabel(null)).toBeNull();
+  });
+
+  test('the gravest caution reads first when a row carries both', () => {
+    expect(context().liRowMeta({ distance:3.95, elevation:10, hours:'1', exposure:true, shadeCoverage:10 }))
+      .toBe('3.95 km · 10 m climb · 1 h · exposed · little shade');
+  });
+});
