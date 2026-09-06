@@ -105,6 +105,7 @@
 
   function buildDashboardModel(input={}){
     const orchestration=input.orchestration||{};const dossiers=input.dossiers||{};const execution=input.execution||{};
+    const routeReview=input.routeReview||{items:[]};
     const publication=input.publication||{};const publicationRequests=input.publicationRequests||{requests:[]};
     const newTrailScouting=input.newTrailScouting||{candidates:[],summary:{}};const newTrailReviews=input.newTrailReviews||[];const newTrailStatus=input.newTrailStatus||{};
     const hazards=input.hazards||{hazards:[]};const hazardQueue=input.hazardQueue||{items:[]};const hazardReviews=input.hazardReviews||[];const hazardStatus=input.hazardStatus||{};
@@ -183,6 +184,21 @@
     const analystHandoffs=analystParked?0:analystReviews.filter(review=>['queued','processing'].includes(review.status)).length;
 
     const decisions=[];
+    // Route choices / geometry confirmations awaiting a human. These live in the
+    // route-review artifact (separate from the dossier queue), so surface them
+    // first — they are the earliest gate and were previously invisible here.
+    const routeItems=(routeReview.items||[]).filter(item=>/human|direct-confirmation/i.test(item.reviewState||''));
+    for(const item of routeItems)decisions.push({
+      id:`route-${item.candidateId}`,kind:'route',stage:'0 · Route choice',
+      title:item.title||names.get(item.candidateId)||item.candidateId,
+      description:item.reviewState==='ready-for-human-route-choice'
+        ?'Choose which official route variant(s) to keep as ORMA trails.'
+        :item.reviewState==='source-exhausted-direct-confirmation'
+          ?'Automated sources are exhausted; this route needs your direct confirmation before it can advance.'
+          :'A reconstructed route is ready for your review.',
+      next:'After your choice, the selected route enters the evidence and geometry gates.',
+      href:'trail-dossier-desk.html',actionLabel:'Review route',
+    });
     for(const item of dossierItems)decisions.push({
       id:`evidence-${item.candidateId}`,kind:'evidence',stage:'1 · Evidence',title:names.get(item.candidateId)||item.trailName||item.candidateId,
       description:item.approvalAllowed===false?'Evidence findings prevent approval. Request a targeted revision or reject the candidate.':'The evidence packet is ready for your verification decision.',

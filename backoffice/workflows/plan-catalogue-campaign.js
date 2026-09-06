@@ -104,6 +104,20 @@ function identityContradiction(trail, identityChecks, composites){
   };
 }
 
+/**
+ * True when the trail carries sources, and every category it claims to have
+ * reviewed is backed by a source that says it covers that category.
+ */
+function claimsAreSourced(trail){
+  const links = Array.isArray(trail.sourceLinks) ? trail.sourceLinks : [];
+  if(!links.length) return false;
+  const reviewed = (trail.verified && Array.isArray(trail.verified.categories)) ? trail.verified.categories : [];
+  if(!reviewed.length) return false;
+  const sourced = new Set();
+  links.forEach(link => (Array.isArray(link.categories) ? link.categories : []).forEach(category => sourced.add(category)));
+  return reviewed.every(category => sourced.has(category));
+}
+
 function baselineBlockers(trail, identityChecks, composites){
   const blockers = [];
   if(!relationExternalId(trail) && !approvedComposite(trail, composites)){
@@ -113,7 +127,10 @@ function baselineBlockers(trail, identityChecks, composites){
   }
   if(!Array.isArray(trail.path) || trail.path.length < 2) blockers.push('usable-geometry-missing');
   if(!trail.reviewedAt) blockers.push('review-date-missing');
-  if(!Array.isArray(trail.sourceLinks) || !trail.sourceLinks.length) blockers.push('claim-sources-missing');
+  // A trail used to clear this by carrying any one link at all, so a single
+  // OpenStreetMap URL would have cleared it for 156 trails while sourcing
+  // nothing. Every category claimed as reviewed must name a source covering it.
+  if(!claimsAreSourced(trail)) blockers.push('claim-sources-missing');
   SAFETY_FIELDS.forEach(field => {
     if(trail[field] === undefined || trail[field] === null) blockers.push(`${field}-unknown`);
   });

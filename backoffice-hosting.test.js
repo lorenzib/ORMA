@@ -23,7 +23,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
 
   test('hosted dossier desk requests the current revision-control asset',()=>{
     const html=fs.readFileSync(path.join(output,'trail-dossier-desk.html'),'utf8');
-    expect(html).toContain('trail-dossier-desk.js?v=20260820-5');
+    expect(html).toContain('trail-dossier-desk.js?v=20260906-6');
   });
 
   test('hosted trail content desk requests the durable publication receipt asset',()=>{

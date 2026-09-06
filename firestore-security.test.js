@@ -48,6 +48,7 @@ describe('SEC-01 Firestore configuration contract', () => {
       'backofficeReviews',
       'backofficePublicationReviews',
       'backofficeDossierReviews',
+      'backofficeRouteReviews',
       'backofficeNewTrailReviews',
       'backofficeHazardReviews',
       'backofficeEditorialReviews',
@@ -72,6 +73,7 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(jobBlock).toContain('allow create, update, delete: if false;');
     expect(rules).toContain("request.resource.data.type == 'verified-trail-content-review'");
     expect(rules).toContain("request.resource.data.type == 'trail-dossier-review'");
+    expect(rules).toContain("request.resource.data.type == 'route-choice-review'");
     expect(rules).toContain("request.resource.data.type == 'new-trail-selection'");
     expect(rules).toContain("request.resource.data.type == 'hazard-resolution-review'");
     expect(rules).toContain("request.resource.data.type == 'website-editorial-review'");

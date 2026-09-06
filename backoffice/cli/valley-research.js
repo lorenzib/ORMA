@@ -16,7 +16,7 @@ const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
 const {
-  REVIEW_CATEGORIES, groupByValley, worksheetFor, validateWorksheet, planApply,
+  VALLEY_SCOPE, TRAIL_SCOPE, groupByValley, worksheetFor, validateWorksheet, planApply,
 } = require('../workflows/valley-research');
 
 const root = path.resolve(__dirname, '../..');
@@ -52,6 +52,7 @@ function writeWorksheets(trails) {
   });
   const total = groups.reduce((sum, group) => sum + group.trailCount, 0);
   console.log(`\n${total} unverified trails across ${groups.length} valleys.`);
+  console.log(`A valley source can close ${VALLEY_SCOPE.join(' and ')}; ${TRAIL_SCOPE.join(', ')} need per-trail evidence.`);
   console.log(`Worksheets in backoffice-data/valley-research/. Fill in the sources, then:`);
   console.log(`  npm run backoffice:valley-research -- check backoffice-data/valley-research/<file>.json`);
 }
@@ -167,7 +168,8 @@ function main() {
   if (errors.length) {
     console.error(`\n${worksheet.valley || file} is not ready:\n`);
     errors.forEach(error => console.error(`  - ${error}`));
-    console.error(`\nReview categories: ${REVIEW_CATEGORIES.join(', ')}`);
+    console.error(`\nThis worksheet closes: ${VALLEY_SCOPE.join(', ')}.`);
+    console.error(`Needs per-trail evidence instead: ${TRAIL_SCOPE.join(', ')}.`);
     process.exitCode = 1;
     return;
   }

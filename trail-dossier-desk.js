@@ -1,14 +1,17 @@
 (function(){
   'use strict';
-  const URLS={queue:'backoffice-data/dossier-review-queue.json',orchestration:'backoffice-data/trail-orchestration.json',jobs:'backoffice-data/trail-specialist-job-queue.json'};
+  const URLS={queue:'backoffice-data/dossier-review-queue.json',orchestration:'backoffice-data/trail-orchestration.json',jobs:'backoffice-data/trail-specialist-job-queue.json',routeReview:'backoffice-data/route-review.json'};
   const LOCAL_MODE=['localhost','127.0.0.1'].includes(location.hostname);
   const state=document.getElementById('dossierState');const queueNode=document.getElementById('dossierQueue');
   const summaryNode=document.getElementById('fleetSummary');const activityNode=document.getElementById('agentActivity');const refresh=document.getElementById('refreshDossiers');
   const DRAFT_KEY='orma-dossier-review-drafts-v1';const RECEIPT_KEY='orma-dossier-review-receipts-v1';
+  const ROUTE_RECEIPT_KEY='orma-route-review-receipts-v1';
+  const routeSection=document.getElementById('routeSection');const routeQueueNode=document.getElementById('routeQueue');
   let queue={items:[]};let orchestration={trails:[],summary:{}};let jobs=[];
+  let routeReview={items:[]};let routeReviews=[];
   function stored(key){try{return JSON.parse(localStorage.getItem(key)||'{}');}catch(error){return {};}}
   function persist(key,value){try{localStorage.setItem(key,JSON.stringify(value));}catch(error){/* browser storage is a convenience, not the source of truth */}}
-  let drafts=stored(DRAFT_KEY);let receipts=stored(RECEIPT_KEY);
+  let drafts=stored(DRAFT_KEY);let receipts=stored(RECEIPT_KEY);let routeReceipts=stored(ROUTE_RECEIPT_KEY);
   function agentLabel(value){const text=String(value||'agent').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/[-_]/g,' ');return text.charAt(0).toUpperCase()+text.slice(1);}
   function updateDraft(reviewId,targetAgent,note){drafts[reviewId]={targetAgent,note};persist(DRAFT_KEY,drafts);}
   function clearDraft(reviewId){delete drafts[reviewId];persist(DRAFT_KEY,drafts);}
@@ -54,7 +57,74 @@
       if(item.blockingReasons?.length)card.append(textList('Mandatory blockers',item.blockingReasons,'bo-dossier-blockers'));if(item.claimResolution?.length)card.append(resolutionHistory(item.claimResolution));
       const outputs=element('div','bo-specialist-stack');(item.specialistOutputs||[]).forEach(output=>outputs.append(specialist(output)));card.append(outputs,controls(item));queueNode.append(card);});}
   function renderFleet(){summaryNode.replaceChildren();const states=orchestration.summary?.states||{};summaryNode.append(element('span','',`Trails: ${orchestration.summary?.trails||0}`),element('span','',`Awaiting you: ${orchestration.summary?.awaitingHuman||0}`),element('span','',`Agents working: ${orchestration.summary?.running||0}`));Object.entries(states).forEach(([key,value])=>summaryNode.append(element('span','',`${key.replace(/-/g,' ')}: ${value}`)));activityNode.replaceChildren();const active=jobs.slice().sort((a,b)=>String(b.createdAt||'').localeCompare(String(a.createdAt||''))).slice(0,20);if(!active.length){activityNode.append(element('li','bo-revision-job','No queued specialist work. The current campaign is waiting at the geometry gate.'));return;}active.forEach(job=>{const item=element('li',`bo-revision-job is-${job.status}`);const head=element('div','bo-revision-job-head');head.append(element('strong','',`${job.candidateId} · ${job.agentId}`),element('span','bo-content-status',fmt(job.status).replace(/-/g,' ')));const eligibility=job.notBefore?` · eligible ${dateText(job.notBefore)}`:'';item.append(head,element('p','',job.resolutionStrategyLabel||job.instruction||job.action||'Specialist task'),element('small','',`Execution attempt ${job.attempt||1}${job.resolutionAttempt?` · resolution attempt ${job.resolutionAttempt} of 5`:''} · created ${dateText(job.createdAt)}${eligibility}`));activityNode.append(item);});}
+  function routeNeedsHuman(item){return /human|direct-confirmation/i.test(item.reviewState||'');}
+  function proposalPanel(proposal,multiple,candidateId){
+    const panel=element('label','bo-route-proposal');const input=element('input');input.type=multiple?'checkbox':'radio';input.name=`route-${candidateId}`;input.value=proposal.id;input.dataset.proposalId=proposal.id;if(proposal.recommended)input.checked=true;
+    const body=element('div','bo-route-proposal-body');const head=element('div','bo-route-proposal-head');head.append(element('strong','',proposal.label||proposal.id));if(proposal.recommended)head.append(element('span','bo-chip','Recommended'));body.append(head);
+    if(proposal.summary)body.append(element('p','',proposal.summary));
+    const m=proposal.metrics||{};const metrics=element('div','bo-route-metrics');metrics.append(metric('Distance',m.computedDistanceKm!=null?`${m.computedDistanceKm} km`:'Not supplied'),metric('Official',m.officialDistanceKm!=null?`${m.officialDistanceKm} km`:'Not published'),metric('Ascent',m.officialAscentM!=null?`${m.officialAscentM} m`:'Not published'),metric('Points',fmt(m.pointCount)),metric('Closure gap',m.closureDistanceM!=null?`${m.closureDistanceM} m`:'Not supplied'));body.append(metrics);
+    if(proposal.warnings&&proposal.warnings.length)body.append(textList('Before it publishes',proposal.warnings,'bo-route-blockers'));
+    panel.append(input,body);return panel;
+  }
+  function routeControls(item){
+    const box=element('div','bo-dossier-controls bo-route-controls');box.dataset.candidateId=item.candidateId;
+    const multiple=item.selectionMode==='one-or-more';
+    const grid=element('div','bo-route-proposals');(item.proposals||[]).forEach(proposal=>grid.append(proposalPanel(proposal,multiple,item.candidateId)));box.append(grid);
+    const note=element('textarea');note.placeholder='Optional: note why you kept, rejected or sent this route back for research…';
+    const status=element('p','bo-decision','No route choice recorded yet.');
+    const actions=element('div','bo-actions');
+    const chosen=()=>Array.from(box.querySelectorAll('input[data-proposal-id]:checked')).map(input=>input.value);
+    [['approve',multiple?'Keep selected route(s)':'Keep this route'],['request-route-research','Send for more research'],['reject-route-source','Reject source']].forEach(([action,label])=>{
+      const button=element('button','',label);button.type='button';button.dataset.action=action;
+      button.addEventListener('click',()=>submitRouteChoice(item,action,chosen(),note.value,box,status));
+      actions.append(button);
+    });
+    box.append(note,actions,status,element('small','','Safety boundary: recording a route choice queues it for ORMA automation and never changes the public website.'));
+    return box;
+  }
+  function renderRouteQueue(){
+    if(!routeQueueNode)return;
+    const queuedRemote=new Set((routeReviews||[]).filter(review=>['queued','processing'].includes(review.status)).map(review=>review.candidateId));
+    const items=(routeReview.items||[]).filter(routeNeedsHuman);
+    if(routeSection)routeSection.hidden=items.length===0;
+    const active=document.activeElement;const editing=routeQueueNode.contains(active)&&['TEXTAREA','INPUT'].includes(active?.tagName);if(editing)return;
+    routeQueueNode.replaceChildren();
+    items.forEach(item=>{
+      const receipt=routeReceipts[item.candidateId]||(queuedRemote.has(item.candidateId)?{remote:true}:null);
+      const card=element('article','bo-card bo-route-choice is-ready');card.id=`route-${item.candidateId}`;
+      const head=element('div','bo-card-head');const title=element('div');title.append(element('p','eyebrow','Route choice'),element('h2','',item.title||item.candidateId));const badges=element('div','bo-meta');badges.append(element('span','bo-chip',item.candidateId),element('span','bo-gate bo-gate-ready',item.selectionMode==='one-or-more'?'Keep one or more variants':'Choose one route'));head.append(title,badges);card.append(head);
+      if(item.routeIdentity)card.append(element('p','bo-route-identity',item.routeIdentity));
+      if(item.findings&&item.findings.length)card.append(textList('What the sources found',item.findings,'bo-route-findings'));
+      if(receipt){
+        const done=element('p','bo-decision is-queued',receipt.remote?'A route choice for this candidate is already queued in Firestore. ORMA automation will collect it on its next successful run.':`Route choice saved · receipt ${receipt.submissionId}. ORMA automation will collect it on its next successful run.`);
+        card.append(done);
+      } else {
+        card.append(routeControls(item));
+      }
+      routeQueueNode.append(card);
+    });
+  }
+  async function submitRouteChoice(item,action,proposalIds,note,box,status){
+    if(action==='approve'&&!proposalIds.length){status.textContent='Select at least one route variant to keep.';return;}
+    const realAction=action==='approve'?(proposalIds.length>1?'approve-route-variants':'approve-route'):action;
+    const buttons=box.querySelectorAll('button');buttons.forEach(button=>button.disabled=true);
+    state.classList.remove('is-error');state.textContent='Recording route choice…';
+    try{
+      const payload={candidateId:item.candidateId,action:realAction,proposalIds,note:String(note||'').trim()};
+      let result;
+      if(LOCAL_MODE){const response=await fetch('/api/route-reviews/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});result=await response.json();if(!response.ok)throw new Error(result.error||`Server returned ${response.status}`);}
+      else{result=await (await waitForRemote()).submitRouteReview(payload);if(!result.ok)throw new Error(result.error);}
+      const queuedAt=new Date().toISOString();
+      routeReceipts[item.candidateId]={action:realAction,proposalIds,note:String(note||'').trim(),submissionId:result.reviewId||'local',queuedAt};persist(ROUTE_RECEIPT_KEY,routeReceipts);
+      status.classList.add('is-queued');status.textContent=`Route choice saved at ${new Date(queuedAt).toLocaleTimeString()} · receipt ${result.reviewId||'local'}`;
+      box.querySelectorAll('textarea,input,button').forEach(field=>field.disabled=true);
+      state.textContent=LOCAL_MODE?(result.message||'Route choice recorded.'):'Route choice saved in Firestore. ORMA automation will collect it on its next successful run. Backoffice Home shows live health; you may close this page.';
+      window.setTimeout(load,1200);
+    }catch(error){state.classList.add('is-error');state.textContent=`Could not record route choice: ${error.message}`;buttons.forEach(button=>button.disabled=false);}
+  }
+  async function loadRouteReview(){try{return await artifact('route-review',URLS.routeReview);}catch(error){return {items:[]};}}
+  async function loadRouteReviews(){if(LOCAL_MODE)return [];try{const result=await (await waitForRemote()).getRouteReviews();return result&&result.ok?(result.reviews||[]):[];}catch(error){return [];}}
   async function submitDecision(item,action,targetAgent,note,controls,status){if(action==='request-revision'&&!note.trim()){status.textContent=`Add a precise instruction for ${agentLabel(targetAgent)} before sending the revision.`;controls.querySelector('textarea').focus();return;}const buttons=controls.querySelectorAll('button');buttons.forEach(button=>button.disabled=true);state.classList.remove('is-error');state.textContent=action==='request-revision'?`Sending revision to ${agentLabel(targetAgent)}…`:'Recording dossier decision…';try{const payload={reviewId:item.reviewId,candidateId:item.candidateId,action,targetAgent,note:note.trim()};let result;if(LOCAL_MODE){const response=await fetch('/api/dossier-reviews/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});result=await response.json();if(!response.ok)throw new Error(result.error||`Server returned ${response.status}`);}else{result=await (await waitForRemote()).submitDossierReview(payload);if(!result.ok)throw new Error(result.error);}const queuedAt=new Date().toISOString();clearDraft(item.reviewId);recordReceipt(item.reviewId,{action,targetAgent,note:note.trim(),submissionId:result.reviewId||'local',queuedAt});status.classList.add('is-queued');status.textContent=action==='request-revision'?`Revision saved for ${agentLabel(targetAgent)} at ${new Date(queuedAt).toLocaleTimeString()} · receipt ${result.reviewId||'local'}`:`Decision saved at ${new Date(queuedAt).toLocaleTimeString()} · receipt ${result.reviewId||'local'}`;controls.querySelectorAll('textarea,select').forEach(field=>field.disabled=true);state.textContent=LOCAL_MODE?(result.message||'Decision recorded.'):(action==='request-revision'?`Revision request saved in Firestore. ORMA automation will route it to ${agentLabel(targetAgent)} on its next successful run. Backoffice Home shows live health; you may close this page.`:'Decision saved in Firestore. ORMA automation will collect it on its next successful run. Backoffice Home shows live health; you may close this page.');window.setTimeout(load,1200);}catch(error){state.classList.add('is-error');state.textContent=`Could not record decision: ${error.message}`;buttons.forEach(button=>{if(button.dataset.action!=='approve'||item.approvalAllowed)button.disabled=false;});}}
-  async function load(){refresh.disabled=true;try{[queue,orchestration,jobs]=await Promise.all([artifact('dossier-review-queue',URLS.queue),artifact('trail-orchestration',URLS.orchestration),loadJobs()]);renderFleet();renderQueue();state.classList.remove('is-error');const waitingItems=(queue.items||[]).filter(item=>item.state==='awaiting-human');const waiting=waitingItems.length;const queued=waitingItems.filter(item=>receipts[item.reviewId]).length;const pending=jobs.filter(job=>['queued','running'].includes(job.status)).length;state.textContent=queued?`${queued} dossier decision${queued===1?' is':'s are'} safely saved in Firestore. ORMA automation will collect them on its next successful run; Backoffice Home shows live health. Do not submit them again.`:waiting?`${waiting} evidence dossier${waiting===1?' is':'s are'} waiting for your decision. Nothing on this page publishes directly.`:LOCAL_MODE&&pending?`${pending} agent job${pending===1?' is':'s are'} queued locally. Localhost does not execute agents; start the local automation runner to continue.`:'No human gate is waiting. ORMA automation or the agents own the current work; this page will refresh when another decision needs you.';}catch(error){state.classList.add('is-error');state.textContent=error.message;}finally{refresh.disabled=false;}}
+  async function load(){refresh.disabled=true;try{[queue,orchestration,jobs,routeReview,routeReviews]=await Promise.all([artifact('dossier-review-queue',URLS.queue),artifact('trail-orchestration',URLS.orchestration),loadJobs(),loadRouteReview(),loadRouteReviews()]);renderFleet();renderRouteQueue();renderQueue();state.classList.remove('is-error');const waitingItems=(queue.items||[]).filter(item=>item.state==='awaiting-human');const waiting=waitingItems.length;const queued=waitingItems.filter(item=>receipts[item.reviewId]).length;const pending=jobs.filter(job=>['queued','running'].includes(job.status)).length;state.textContent=queued?`${queued} dossier decision${queued===1?' is':'s are'} safely saved in Firestore. ORMA automation will collect them on its next successful run; Backoffice Home shows live health. Do not submit them again.`:waiting?`${waiting} evidence dossier${waiting===1?' is':'s are'} waiting for your decision. Nothing on this page publishes directly.`:LOCAL_MODE&&pending?`${pending} agent job${pending===1?' is':'s are'} queued locally. Localhost does not execute agents; start the local automation runner to continue.`:'No human gate is waiting. ORMA automation or the agents own the current work; this page will refresh when another decision needs you.';}catch(error){state.classList.add('is-error');state.textContent=error.message;}finally{refresh.disabled=false;}}
   refresh.addEventListener('click',load);load();window.setInterval(load,15000);
 })();

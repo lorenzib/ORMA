@@ -30,7 +30,12 @@ function loadScoring(){
 
 describe('trail data trust states', () => {
   const imported = { curated:false, safetyLevel:'low-risk', waterSources:[] };
-  const reviewed = { path:[[46.5,11.6],[46.51,11.61]], safetyLevel:'low-risk', waterSources:[{ km:1, label:'Fountain' }], heatRisk:'low', shadeCoverage:60, exposure:false };
+  const reviewed = {
+    path:[[46.5,11.6],[46.51,11.61]], safetyLevel:'low-risk', waterSources:[{ km:1, label:'Fountain' }],
+    heatRisk:'low', shadeCoverage:60, exposure:false,
+    // A trail only earns reviewed wording by carrying the review record.
+    verified:{ categories:['water','heat','exposure','livestock','surfaceHazards','access'], sources:['Comune'], date:'2026-07-17' },
+  };
 
   test('public rating labels stay simple while evidence remains internal', () => {
     const trust = loadTrust();
@@ -47,7 +52,10 @@ describe('trail data trust states', () => {
     expect(trust.livestockAssessment(imported, '')).toBeNull();
     expect(trust.assessmentNote(imported)).toMatch(/trail planning information/i);
     expect(trust.assessmentNote(imported)).not.toMatch(/unverified|checks|estimated/i);
-    expect(trust.waterPointLabel(imported, 'Drinking water (OSM-verified location)')).toBe('Water point mapped in OpenStreetMap');
+    // Imported and unreviewed: the OSM-verified wording is replaced *and* the
+    // caveat added, matching how the start point has always read.
+    expect(trust.waterPointLabel(imported, 'Drinking water (OSM-verified location)'))
+      .toBe('Water point mapped in OpenStreetMap, availability can change');
     expect(trust.startPointLabel(imported, 'Start here — Bus stop (OSM-verified access point)')).toMatch(/Mapped start suggestion.*check current access/i);
   });
 
@@ -210,5 +218,34 @@ describe('trail data trust states', () => {
     (reviewedSource.sourceLinks || []).forEach(source => {
       expect(reviewedPage).not.toContain(source.url);
     });
+  });
+
+  // VERIFICATION.md: "Absent `verified` field = no category-by-category source
+  // review is recorded." The code used to default the opposite way, so a
+  // curated trail nobody had reviewed skipped every caveat and described its
+  // water as reviewed. 23 trails were in that state, 12 of them with water.
+  test('a trail with no review record verifies no category', () => {
+    const trust = loadTrust();
+    const unreviewed = { safetyLevel:'low-risk', waterSources:[{ km:1, label:'Fountain' }], heatRisk:'low', shadeCoverage:60 };
+    ['water','heat','exposure','livestock','surfaceHazards','access']
+      .forEach(category => expect(trust.categoryVerified(unreviewed, category)).toBe(false));
+    expect(trust.waterAssessment(unreviewed).ok).toBe(false);
+    expect(trust.waterAssessment(unreviewed).detail).toMatch(/carry enough/i);
+    expect(trust.heatAssessment(unreviewed).ok).toBe(false);
+  });
+
+  test('a partly reviewed trail is verified only where it was reviewed', () => {
+    const trust = loadTrust();
+    const partial = { safetyLevel:'low-risk', waterSources:[], verified:{ categories:['access'], sources:['Comune'], date:'2026-09-06' } };
+    expect(trust.categoryVerified(partial, 'access')).toBe(true);
+    expect(trust.categoryVerified(partial, 'water')).toBe(false);
+    expect(trust.categoryVerified(partial, 'heat')).toBe(false);
+  });
+
+  test('never presents an unreviewed water point as OSM-verified', () => {
+    const trust = loadTrust();
+    const label = trust.waterPointLabel({ curated:false }, 'Drinking water (OSM-verified location)');
+    expect(label).not.toMatch(/OSM-verified/i);
+    expect(label).toMatch(/availability can change/i);
   });
 });
