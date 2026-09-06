@@ -10,6 +10,16 @@
     "surfaceHazards": 3,
     "access": 3
   },
+  "canCloseHere": [
+    "livestock",
+    "access"
+  ],
+  "needsPerTrailEvidence": [
+    "water",
+    "heat",
+    "exposure",
+    "surfaceHazards"
+  ],
   "trails": [
     {
       "id": "piancavallo",

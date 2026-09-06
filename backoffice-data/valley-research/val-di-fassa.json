@@ -10,6 +10,16 @@
     "livestock": 1,
     "access": 1
   },
+  "canCloseHere": [
+    "livestock",
+    "access"
+  ],
+  "needsPerTrailEvidence": [
+    "water",
+    "heat",
+    "exposure",
+    "surfaceHazards"
+  ],
   "trails": [
     {
       "id": "sassolungo",

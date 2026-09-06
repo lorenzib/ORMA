@@ -1,6 +1,6 @@
 const {
-  REVIEW_CATEGORIES, categoriesNeeded, groupByValley, worksheetFor,
-  validateWorksheet, planApply,
+  REVIEW_CATEGORIES, VALLEY_SCOPE, TRAIL_SCOPE, categoriesNeeded, groupByValley,
+  worksheetFor, validateWorksheet, planApply,
 } = require('./backoffice/workflows/valley-research');
 const { renderEntry } = require('./backoffice/cli/valley-research');
 
@@ -111,5 +111,47 @@ describe('valley research', () => {
 
   test('categoriesNeeded never invents a category', () => {
     expect(categoriesNeeded({ verified: { categories: ['access'] } }).every(c => REVIEW_CATEGORIES.includes(c))).toBe(true);
+  });
+
+  // A valley document states leash rules and grazing seasons explicitly, and
+  // says nothing about one route's water, shade, drop-offs or scree. Recording
+  // those from it would make the page claim a review nobody did.
+  describe('what a valley source may close', () => {
+    test('accepts the two categories a comune or park actually states', () => {
+      expect(VALLEY_SCOPE).toEqual(['livestock', 'access']);
+      expect(validateWorksheet({ valley: 'V', sources: [source('Comune', ['livestock', 'access'])] })).toEqual([]);
+    });
+
+    test('refuses the four that are facts about one route', () => {
+      TRAIL_SCOPE.forEach(category => {
+        const errors = validateWorksheet({ valley: 'V', sources: [source('Comune', [category])] });
+        expect(errors.join(' ')).toContain(`"${category}" cannot be established by a valley-wide source`);
+      });
+      expect(TRAIL_SCOPE).toEqual(['water', 'heat', 'exposure', 'surfaceHazards']);
+    });
+
+    test('refuses a mixed source rather than silently taking the good half', () => {
+      const errors = validateWorksheet({ valley: 'V', sources: [source('Comune', ['access', 'water'])] });
+      expect(errors).toHaveLength(1);
+      expect(errors[0]).toContain('"water" cannot be established');
+    });
+
+    // Defence in depth: validation writes the message, coverage is the gate.
+    test('a hand-edited worksheet still cannot write a per-trail category', () => {
+      const trails = [trail('a', 'Val Test')];
+      const sneaky = worksheet([source('Comune', ['access', 'water', 'exposure'])], trails);
+      const { plans } = planApply(sneaky, trails, '2026-09-06');
+      expect(plans[0].categories).toEqual(['access']);
+      expect(plans[0].verified.categories).toEqual(['access']);
+      expect(plans[0].stillMissing).toEqual(['water', 'heat', 'exposure', 'livestock', 'surfaceHazards']);
+      // The recorded link declares only what it was allowed to carry.
+      expect(plans[0].sourceLinks[0].categories).toEqual(['access']);
+    });
+
+    test('the worksheet says which categories it cannot close', () => {
+      const sheet = worksheetFor(groupByValley([trail('a', 'V')])[0]);
+      expect(sheet.canCloseHere).toEqual(VALLEY_SCOPE);
+      expect(sheet.needsPerTrailEvidence).toEqual(TRAIL_SCOPE);
+    });
   });
 });
