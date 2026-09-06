@@ -257,6 +257,27 @@ async function submitDossierReview(input){
   }catch(error){console.error('submitDossierReview failed:',error);return {ok:false,error:'dossier-review-submit-failed'};}
 }
 
+async function getRouteReviews(){
+  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',reviews:[]};
+  try{const snapshot=await getDocs(query(collection(db,'backofficeRouteReviews'),orderBy('submittedAt','desc'),limit(100)));return {ok:true,reviews:snapshot.docs.map(item=>({id:item.id,...item.data()}))};}
+  catch(error){console.error('getRouteReviews failed:',error);return {ok:false,error:'route-review-read-failed',reviews:[]};}
+}
+
+async function submitRouteReview(input){
+  const moderator=await moderatorIdentity();
+  if(!moderator)return {ok:false,error:'moderator-required'};
+  try{
+    const review=await addDoc(collection(db,'backofficeRouteReviews'),{
+      contractVersion:'1.0.0',type:'route-choice-review',status:'queued',
+      candidateId:String(input.candidateId||''),action:String(input.action||''),
+      proposalIds:Array.isArray(input.proposalIds)?input.proposalIds.map(id=>String(id)).slice(0,6):[],
+      note:String(input.note||'').trim().slice(0,1500),submittedAt:serverTimestamp(),
+      submittedBy:moderator.uid,publicMutationAllowed:false,
+    });
+    return {ok:true,reviewId:review.id,status:'queued'};
+  }catch(error){console.error('submitRouteReview failed:',error);return {ok:false,error:'route-review-submit-failed'};}
+}
+
 const MODERATION_COLLECTIONS={flag:'flags',review:'reviews',photo:'trailPhotos',placeDog:'placeDogReports'};
 // The moderation desk is a working queue, not an exhaustive export. Reading every
 // visible flag on every refresh grew without bound and exhausted the daily Firestore
@@ -370,7 +391,7 @@ window.DoloPawsAuth={
   async logOut(){await signOut(auth);currentUser=null;},
 };
 window.DoloPawsModeration={getModeratorStatus:async()=>({ok:!!await moderatorIdentity()}),getQueue:getModerationQueue,decide:moderateContent,getSiteNotices,addSiteNotice,deleteSiteNotice};
-window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getImageReviews,getNewsletterReviews,getAnalystReviews,getModerationQueue,moderateContent,submitTrailReview,submitPublicationReview,submitDossierReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitImageReview,uploadTrailImage,getTrailImagePreview,submitNewsletterReview,submitAnalystReview};
+window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getImageReviews,getNewsletterReviews,getAnalystReviews,getModerationQueue,moderateContent,submitTrailReview,submitPublicationReview,submitDossierReview,getRouteReviews,submitRouteReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitImageReview,uploadTrailImage,getTrailImagePreview,submitNewsletterReview,submitAnalystReview};
 
 onAuthStateChanged(auth,user=>{
   currentUser=user;

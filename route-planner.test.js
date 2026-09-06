@@ -13,8 +13,10 @@ const savedHtml = fs.readFileSync(path.join(root, 'saved.html'), 'utf8');
 
 describe('standalone draft route planner', () => {
   test('is entered from Explore and absent from trail detail', () => {
-    expect(homeHtml).toContain('href="route-planner.html">Draft a loop</a>');
-    expect(homeHtml.indexOf('class="li-plan-route"')).toBeLessThan(homeHtml.indexOf('class="li-body"'));
+    // "Draft a loop" now lives inside the "+ New" create menu in the toolbar.
+    expect(homeHtml).toContain('href="route-planner.html">Draft a loop');
+    expect(homeHtml).toContain('li-plan-route');
+    expect(homeHtml.indexOf('li-plan-route')).toBeLessThan(homeHtml.indexOf('class="li-body"'));
     expect(detailHtml).not.toContain('id="mapLoopComposerBtn"');
     expect(detailHtml).not.toContain('id="mapLoopComposerPanel"');
     expect(detailSource).not.toContain('    initLoopComposer(map, t);');

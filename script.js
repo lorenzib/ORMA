@@ -158,14 +158,25 @@ let activeArea = 'all';
 const TRAILS_PER_PAGE = 15;
 let currentPage = 1;
 let lastFilterKey = '';            // legacy, kept for safety
+// Geography is no longer a set of dropdowns: the unified search and the map
+// are the geography controls, so the homepage loads every region and defaults
+// to "all". A ?region= deep link still narrows the initial view.
 let activeRegion = (() => {
   try {
     const requested = new URLSearchParams(window.location.search).get('region');
-    return requested === 'savoy' ? 'savoy' : 'dolomites';
-  } catch(e) { return 'dolomites'; }
+    if(requested === 'savoy' || requested === 'dolomites') return requested;
+    return 'all';
+  } catch(e) { return 'all'; }
 })();
-let activeCountry = activeRegion === 'savoy' ? 'FR' : 'IT';
+let activeCountry = activeRegion === 'savoy' ? 'FR' : activeRegion === 'dolomites' ? 'IT' : 'all';
 let activeValley = 'all';
+// "Search this area": a LngLatBounds captured from the map that further narrows
+// the list to the visible viewport. Null when the map is not driving the filter.
+let liMapBounds = null;
+// True while the code is programmatically reframing the map (fitBounds). Map
+// movement during that window is ours, not the user's, so it must not offer
+// "Search this area".
+let liMapAutoFraming = false;
 let sortKey = 'match';             // 'match' | 'distance' | 'effort', Companion sort control
 let selectedTrailId = null;        // map pin / card selection (Companion layout)
 
@@ -206,10 +217,13 @@ function filterTrailsForReturningView(list){
   // Logged-in shell: header search + filter-panel refinements. All of these
   // read real trail fields; items arrive already scored (t.score).
   const q = liQuery.trim().toLowerCase();
-  if(q) displayList = displayList.filter(x =>
-    String(x.name || '').toLowerCase().includes(q) ||
-    String(x.area || '').toLowerCase().includes(q) ||
-    String(x.valley || '').toLowerCase().includes(q));
+  if(q) displayList = displayList.filter(x => liTrailSearchText(x).includes(q));
+  // "Search this area": keep only trails whose map marker sits in the viewport
+  // the user framed. Geography-by-map, the counterpart to geography-by-typing.
+  if(liMapBounds) displayList = displayList.filter(x => {
+    const point = liTrailLngLat(x);
+    return point && liMapBounds.contains(point);
+  });
   if(liFilters.dist === 'u5') displayList = displayList.filter(x => x.distance < 5);
   else if(liFilters.dist === '5to10') displayList = displayList.filter(x => x.distance >= 5 && x.distance <= 10);
   else if(liFilters.dist === '10p') displayList = displayList.filter(x => x.distance > 10);
@@ -236,6 +250,26 @@ function filterTrailsForReturningView(list){
   }
 
   return displayList;
+}
+
+// The searchable text for a trail: its own name/area/valley plus the region and
+// country labels, so typing "Savoy" or "France" narrows the list just like the
+// old region dropdown did — geography-by-typing.
+function liTrailSearchText(trail){
+  const configs = liRegionConfigs();
+  const region = configs[trail.region];
+  return [trail.name, trail.area, trail.valley, region && region.label, region && region.country]
+    .map(value => String(value || '').toLowerCase())
+    .join(' ');
+}
+
+// The [lng, lat] a trail is pinned at on the map, matching updateMapMarkers:
+// the verified trailhead, else the route start, else the area coordinate.
+function liTrailLngLat(trail){
+  if(trail.startPoint && typeof trail.startPoint.lat === 'number') return [trail.startPoint.lng, trail.startPoint.lat];
+  if(Array.isArray(trail.path) && trail.path.length > 0) return [trail.path[0][1], trail.path[0][0]];
+  if(typeof trail.lat === 'number' && typeof trail.lng === 'number') return [trail.lng, trail.lat];
+  return null;
 }
 
 // Short, honest "why this fits" line for a trail card. The canonical
@@ -709,6 +743,32 @@ function initTrailMap(){
     enter:() => setMapFullscreen(true),
     exit:() => setMapFullscreen(false),
   };
+
+  // "Search this area": the map is a geography control. When the user pans or
+  // zooms, offer to refilter the list to the visible viewport; applying it
+  // pins the filter, and the button flips to a one-tap clear.
+  const areaButton = document.getElementById('liSearchThisArea');
+  if(areaButton){
+    trailMapInstance.on('moveend', () => {
+      // Our own reframing (fitBounds) ends here too — ignore it.
+      if(liMapAutoFraming){ liMapAutoFraming = false; return; }
+      if(liMapBounds) return; // already filtering by area; keep the clear action
+      areaButton.hidden = false;
+      areaButton.classList.remove('is-clear');
+      areaButton.textContent = 'Search this area';
+    });
+    areaButton.addEventListener('click', () => {
+      if(liMapBounds){
+        liClearMapAreaFilter();
+        renderReturningHomepage(currentProfileForAdjust);
+        return;
+      }
+      liMapBounds = trailMapInstance.getBounds();
+      areaButton.classList.add('is-clear');
+      areaButton.textContent = 'Clear map area';
+      renderReturningHomepage(currentProfileForAdjust);
+    });
+  }
 
   trailMapInstance.on('load', async () => {
     if(window.DoloPawsMapRuntime) window.DoloPawsMapRuntime.enhance(trailMapInstance);
@@ -1269,8 +1329,10 @@ function updateMapMarkers(list){
 
   // Fit the view to whatever's currently visible, so filtering the list
   // also re-frames the map instead of leaving it zoomed to the wrong area.
+  // Exception: when the map itself is the filter ("Search this area"),
+  // reframing would fight the viewport the user just chose, so leave it.
   const validList = list.filter(t => typeof t.lat === 'number' && typeof t.lng === 'number');
-  if(validList.length > 0){
+  if(validList.length > 0 && !liMapBounds){
     const bounds = new maplibregl.LngLatBounds();
     validList.forEach(t => {
       if(Array.isArray(t.path) && t.path.length > 1){
@@ -1279,6 +1341,7 @@ function updateMapMarkers(list){
         bounds.extend([t.lng, t.lat]);
       }
     });
+    liMapAutoFraming = true;
     trailMapInstance.fitBounds(bounds, { padding: 40, maxZoom: 12 });
   }
 }
@@ -1373,134 +1436,22 @@ async function activateReturningGeography(country, region, profile){
   }
 }
 
-// Country is intentionally separate from Region: people often know the
-// country before they know the local mountain area. Selecting one leaves the
-// region open, which keeps this cascade useful as more regions are added.
-function renderLiCountryControl(profile){
-  const label = document.getElementById('liCountryLabel');
-  const menu = document.getElementById('liCountryMenu');
-  if(!label || !menu || typeof trails === 'undefined') return;
-  const configs = liRegionConfigs();
-  const countries = new Map();
-  Object.entries(configs).forEach(([region, config]) => {
-    if(!countries.has(config.countryCode)) countries.set(config.countryCode, { name:config.country, regions:[] });
-    countries.get(config.countryCode).regions.push(region);
-  });
-  const activeConfig = countries.get(activeCountry);
-  label.textContent = activeConfig ? activeConfig.name : 'All countries';
-  const countryWrap = document.getElementById('liCountryWrap');
-  if(countryWrap) countryWrap.classList.toggle('li-has-selection', activeCountry !== 'all');
-  menu.innerHTML = '<div class="li-menu-kick">Country</div>';
-  const totalCount = Object.keys(configs).reduce((sum, region) => sum + (window.DoloPawsRegionalData
-    ? window.DoloPawsRegionalData.trailCount(region)
-    : trails.filter(trail => trail.region === region).length), 0);
-  [['all', { name:'All countries', regions:Object.keys(configs) }], ...countries.entries()].forEach(([countryCode, config]) => {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'li-menu-item li-region-option' + (countryCode === activeCountry ? ' on' : '');
-    button.dataset.country = countryCode;
-    button.setAttribute('aria-pressed', String(countryCode === activeCountry));
-    const count = countryCode === 'all' ? totalCount : config.regions.reduce((sum, region) => sum + (window.DoloPawsRegionalData
-      ? window.DoloPawsRegionalData.trailCount(region)
-      : trails.filter(trail => trail.region === region).length), 0);
-    button.innerHTML = `<span>${config.name}</span><small>${count} trails</small>`;
-    button.addEventListener('click', async () => {
-      countryWrap?.classList.remove('li-mobile-default-label');
-      if(countryCode === activeCountry){ liCloseMenus(); return; }
-      button.disabled = true;
-      const changed = await activateReturningGeography(countryCode, 'all', profile);
-      button.disabled = false;
-      if(changed) liCloseMenus();
-    });
-    menu.appendChild(button);
-  });
-}
-
+// "Saved" is a view of the ranked list, shown as a tab beside Sort rather than
+// as a filter chip. Paint both tabs from showingSavedOnly and the saved count.
 function renderLiSavedControl(){
-  const button = document.getElementById('liSavedOnlyBtn');
-  if(!button) return;
   const count = Object.keys(currentFavorites || {}).length;
-  button.setAttribute('aria-pressed', String(showingSavedOnly));
-  button.classList.toggle('on', showingSavedOnly);
-  button.setAttribute('aria-label', showingSavedOnly ? 'Show all trails' : `Show saved trails only (${count})`);
   const countEl = document.getElementById('liSavedOnlyCount');
   if(countEl) countEl.textContent = String(count);
-}
-
-// The region is a first-order map choice, not an advanced refinement. Keep it
-// visible beside search and leave the Filters panel for the more detailed
-// source, valley, distance, terrain, shade, match and water controls.
-function renderLiRegionControl(profile){
-  const label = document.getElementById('liRegionLabel');
-  const menu = document.getElementById('liRegionMenu');
-  if(!label || !menu || typeof trails === 'undefined') return;
-  const configs = liRegionConfigs();
-  label.textContent = activeRegion === 'all' ? 'All regions' : ((configs[activeRegion] && configs[activeRegion].label) || 'Region');
-  const regionWrap = document.getElementById('liRegionWrap');
-  if(regionWrap) regionWrap.classList.toggle('li-has-selection', activeRegion !== 'all');
-  menu.innerHTML = '<div class="li-menu-kick">Region</div>';
-  const availableRegions = liRegionIdsForCountry(activeCountry);
-  const allCount = availableRegions.reduce((sum, region) => sum + (window.DoloPawsRegionalData
-    ? window.DoloPawsRegionalData.trailCount(region)
-    : trails.filter(trail => trail.region === region).length), 0);
-  [['all', 'All regions', allCount], ...availableRegions.map(region => [
-    region,
-    (configs[region] && configs[region].label) || region,
-    window.DoloPawsRegionalData ? window.DoloPawsRegionalData.trailCount(region) : trails.filter(trail => trail.region === region).length
-  ])].forEach(([region, name, count]) => {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'li-menu-item li-region-option' + (region === activeRegion ? ' on' : '');
-    button.setAttribute('aria-pressed', String(region === activeRegion));
-    button.innerHTML = `<span>${name}</span><small>${count} trails</small>`;
-    button.addEventListener('click', async () => {
-      regionWrap?.classList.remove('li-mobile-default-label');
-      if(region === activeRegion){ liCloseMenus(); return; }
-      button.disabled = true;
-      const country = region === 'all' ? activeCountry : configs[region].countryCode;
-      const changed = await activateReturningGeography(country, region, profile);
-      button.disabled = false;
-      if(changed) liCloseMenus();
-    });
-    menu.appendChild(button);
-  });
-}
-
-// Valley is the third visible geographic level. Its options are rebuilt from
-// the active country/region selection, so an "All" reset cannot leave a stale
-// valley selected.
-function renderLiValleyControl(profile){
-  const label = document.getElementById('liValleyLabel');
-  const menu = document.getElementById('liValleyMenu');
-  if(!label || !menu || typeof trails === 'undefined') return;
-  if(window.DoloPawsRegions) window.DoloPawsRegions.assign(trails);
-  const valleyCounts = new Map();
-  trails.filter(trail => liTrailIsInSelectedGeography(trail, false)).forEach(trail => {
-    valleyCounts.set(trail.valley, (valleyCounts.get(trail.valley) || 0) + 1);
-  });
-  const valleys = [...valleyCounts.entries()].sort((a, b) => b[1] - a[1]);
-  if(activeValley !== 'all' && !valleys.some(([valley]) => valley === activeValley)) activeValley = 'all';
-  label.textContent = activeValley === 'all' ? 'All valleys' : activeValley;
-  const valleyWrap = document.getElementById('liValleyWrap');
-  if(valleyWrap) valleyWrap.classList.toggle('li-has-selection', activeValley !== 'all');
-  menu.innerHTML = '<div class="li-menu-kick">Valley</div>';
-  const regionCount = trails.filter(trail => liTrailIsInSelectedGeography(trail, false)).length;
-  [['all', 'All valleys', regionCount], ...valleys.map(([valley, count]) => [valley, valley, count])]
-    .forEach(([value, name, count]) => {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'li-menu-item li-region-option' + (value === activeValley ? ' on' : '');
-      button.dataset.valley = value;
-      button.setAttribute('aria-pressed', String(value === activeValley));
-      button.innerHTML = `<span>${name}</span><small>${count} trails</small>`;
-      button.addEventListener('click', () => {
-        valleyWrap?.classList.remove('li-mobile-default-label');
-        activeValley = value;
-        liCloseMenus();
-        renderReturningHomepage(profile);
-      });
-      menu.appendChild(button);
-    });
+  const allTab = document.getElementById('liViewAll');
+  const savedTab = document.getElementById('liViewSaved');
+  if(allTab){
+    allTab.classList.toggle('active', !showingSavedOnly);
+    allTab.setAttribute('aria-selected', String(!showingSavedOnly));
+  }
+  if(savedTab){
+    savedTab.classList.toggle('active', showingSavedOnly);
+    savedTab.setAttribute('aria-selected', String(showingSavedOnly));
+  }
 }
 
 // Companion sidebar, dog profile card. Avatar, breed/age line, and up to
@@ -1663,7 +1614,7 @@ function liActiveFilterCount(){
     liFilters.minMatch > 0,
     liFilters.water,
     showingSavedOnly,
-    activeValley !== 'all',
+    !!liMapBounds,
   ].filter(Boolean).length;
 }
 
@@ -1672,20 +1623,33 @@ function liResetAllFilters(){
   liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false };
   showingSavedOnly = false;
   activeValley = 'all';
+  liClearMapAreaFilter();
   const search = document.getElementById('liSearch');
   if(search) search.value = '';
   renderReturningHomepage(currentProfileForAdjust);
 }
 
 function liCloseMenus(){
-  ['liFiltersMenu', 'liCountryMenu', 'liRegionMenu', 'liValleyMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
+  ['liFiltersMenu', 'liNewMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
     const menu = document.getElementById(id);
     if(menu) menu.hidden = true;
   });
-  ['liFiltersBtn', 'liCountryBtn', 'liRegionBtn', 'liValleyBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
+  ['liFiltersBtn', 'liNewBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
     const btn = document.getElementById(id);
     if(btn) btn.setAttribute('aria-expanded', 'false');
   });
+}
+
+// Clear the "Search this area" viewport filter and reset its button to the
+// idle state, without triggering a re-render (callers decide when to repaint).
+function liClearMapAreaFilter(){
+  liMapBounds = null;
+  const button = document.getElementById('liSearchThisArea');
+  if(button){
+    button.hidden = true;
+    button.classList.remove('is-clear');
+    button.textContent = 'Search this area';
+  }
 }
 
 // Dog photo resolution shared by the account pill and the conditions card:
@@ -1906,32 +1870,23 @@ function renderLiChips(){
   const wrap = document.getElementById('liChips');
   if(!wrap || typeof trails === 'undefined') return;
 
-  const valleyCounts = new Map();
-  trails.filter(trail => liTrailIsInSelectedGeography(trail, false)).forEach(trail => {
-    valleyCounts.set(trail.valley, (valleyCounts.get(trail.valley) || 0) + 1);
-  });
-  const valleys = [...valleyCounts.entries()].sort((a, b) => b[1] - a[1]);
-  const areaOptions = [
-    { label: 'Any area', pick(){ activeValley = 'all'; } },
-    ...valleys.map(([v, n]) => ({ label: `${v} (${n})`, value: v, pick(){ activeValley = v; } })),
-  ];
-
   const DIST_OPTS = [['any','Any'], ['u5','Under 5 km'], ['5to10','5–10 km'], ['10p','10 km+']];
   const TERRAIN_OPTS = [['any','Any'], ['soft','Gentle only'], ['mixed','Up to mixed'], ['rocky','Rocky is okay']];
   const SHADE_OPTS = [['any','Any'], ['40','Over 40%'], ['60','Over 60%']];
+  const RISK_OPTS = [['any','Any'], ['low-risk','Low risk'], ['moderate','Moderate'], ['caution','Caution']];
+  const MATCH_OPTS = [[0,'Any'], [60,'60%+'], [75,'75%+'], [85,'85%+']];
   const label = (opts, v) => (opts.find(([k]) => k === v) || opts[0])[1];
 
+  // The slim refine bar: only the four filters that change a walking decision.
+  // Everything else (trail rating, minimum match) lives behind "More filters".
+  const moreCount = (liFilters.risk !== 'any' ? 1 : 0) + (liFilters.minMatch > 0 ? 1 : 0);
   const chips = [
-    { key: 'area', title: 'Area',
-      display: activeValley !== 'all' ? activeValley : 'Any area',
-      on: activeValley !== 'all',
-      options: areaOptions.map(o => ({ label: o.label, selected: o.value ? o.value === activeValley : activeValley === 'all', pick: o.pick })) },
     { key: 'dist', title: 'Distance',
       display: liFilters.dist === 'any' ? 'Distance' : label(DIST_OPTS, liFilters.dist),
       on: liFilters.dist !== 'any',
       options: DIST_OPTS.map(([k, l]) => ({ label: l, selected: liFilters.dist === k, pick(){ liFilters.dist = k; } })) },
-    { key: 'terrain', title: 'Terrain',
-      display: liFilters.terrain === 'any' ? 'Terrain' : label(TERRAIN_OPTS, liFilters.terrain),
+    { key: 'terrain', title: 'Difficulty',
+      display: liFilters.terrain === 'any' ? 'Difficulty' : label(TERRAIN_OPTS, liFilters.terrain),
       on: liFilters.terrain !== 'any',
       options: TERRAIN_OPTS.map(([k, l]) => ({ label: l, selected: liFilters.terrain === k, pick(){ liFilters.terrain = k; } })) },
     { key: 'shade', title: 'Shade',
@@ -1945,12 +1900,19 @@ function renderLiChips(){
         { label: 'Any', selected: !liFilters.water, pick(){ liFilters.water = false; } },
         { label: 'Water on route', selected: liFilters.water, pick(){ liFilters.water = true; } },
       ] },
+    { key: 'more', title: 'More filters',
+      display: moreCount > 0 ? `More filters (${moreCount})` : 'More filters',
+      on: moreCount > 0,
+      groups: [
+        { title: 'Trail rating', options: RISK_OPTS.map(([k, l]) => ({ label: l, selected: liFilters.risk === k, pick(){ liFilters.risk = k; } })) },
+        { title: 'Minimum match', options: MATCH_OPTS.map(([k, l]) => ({ label: l, selected: liFilters.minMatch === k, pick(){ liFilters.minMatch = k; } })) },
+      ] },
   ];
 
   wrap.innerHTML = '';
   chips.forEach(chip => {
     const holder = document.createElement('div');
-    holder.className = 'li-menuwrap li-chipwrap';
+    holder.className = 'li-menuwrap li-chipwrap' + (chip.key === 'more' ? ' li-chipwrap-more' : '');
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'li-chip' + (chip.on ? ' on' : '');
@@ -1967,11 +1929,7 @@ function renderLiChips(){
     if(liOpenChipKey === chip.key){
       const menu = document.createElement('div');
       menu.className = 'li-menu li-chipmenu';
-      const kick = document.createElement('div');
-      kick.className = 'li-menu-kick';
-      kick.textContent = chip.title;
-      menu.appendChild(kick);
-      chip.options.forEach(o => {
+      const appendOption = (o) => {
         const item = document.createElement('button');
         item.type = 'button';
         item.className = 'li-menu-item' + (o.selected ? ' li-chip-selected' : '');
@@ -1983,13 +1941,28 @@ function renderLiChips(){
             liOpenChipKey = null;
             renderReturningHomepage(currentProfileForAdjust);
           } catch(e) {
-            showHomeActionStatus('That region could not be loaded. Check your connection and try again.');
+            showHomeActionStatus('That filter could not be applied. Check your connection and try again.');
           } finally {
             item.disabled = false;
           }
         });
         menu.appendChild(item);
-      });
+      };
+      if(chip.groups){
+        chip.groups.forEach(group => {
+          const kick = document.createElement('div');
+          kick.className = 'li-menu-kick';
+          kick.textContent = group.title;
+          menu.appendChild(kick);
+          group.options.forEach(appendOption);
+        });
+      } else {
+        const kick = document.createElement('div');
+        kick.className = 'li-menu-kick';
+        kick.textContent = chip.title;
+        menu.appendChild(kick);
+        chip.options.forEach(appendOption);
+      }
       holder.appendChild(menu);
     }
     wrap.appendChild(holder);
@@ -2160,16 +2133,21 @@ function initLoggedInShell(){
     menu.addEventListener('click', e => e.stopPropagation());
   };
   wireMenu(filtersBtn, document.getElementById('liFiltersMenu'));
-  wireMenu(document.getElementById('liCountryBtn'), document.getElementById('liCountryMenu'));
-  wireMenu(document.getElementById('liRegionBtn'), document.getElementById('liRegionMenu'));
-  wireMenu(document.getElementById('liValleyBtn'), document.getElementById('liValleyMenu'));
+  const newBtn = document.getElementById('liNewBtn');
+  const newMenu = document.getElementById('liNewMenu');
+  if(newBtn && newMenu) wireMenu(newBtn, newMenu);
   wireMenu(document.getElementById('liAccountBtn'), document.getElementById('liAccountMenu'));
 
-  const savedOnlyBtn = document.getElementById('liSavedOnlyBtn');
-  if(savedOnlyBtn) savedOnlyBtn.addEventListener('click', () => {
-    showingSavedOnly = !showingSavedOnly;
+  // Saved / All are views of the ranked list, wired as tabs beside Sort.
+  const setSavedView = (saved) => {
+    if(showingSavedOnly === saved) return;
+    showingSavedOnly = saved;
     renderReturningHomepage(currentProfileForAdjust);
-  });
+  };
+  const viewAll = document.getElementById('liViewAll');
+  const viewSaved = document.getElementById('liViewSaved');
+  if(viewAll) viewAll.addEventListener('click', () => setSavedView(false));
+  if(viewSaved) viewSaved.addEventListener('click', () => setSavedView(true));
 
   const wireQuickFilter = (id, toggle) => {
     const button = document.getElementById(id);
@@ -2253,25 +2231,47 @@ function initLoggedInShell(){
   const search = document.getElementById('liSearch');
   const suggestions = document.getElementById('liSearchSuggest');
   if(search){
+    // The search box is the geography control now: typing narrows the ranked
+    // list itself (liQuery), not just the typeahead popover. Debounce the list
+    // repaint so every keystroke stays cheap; suggestions update immediately.
+    let searchTimer = null;
     search.addEventListener('input', () => {
       renderLiSearchSuggestions(currentProfileForAdjust);
+      const value = search.value.trim();
+      if(searchTimer) clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        if(value === liQuery.trim()) return;
+        liQuery = search.value;
+        renderReturningHomepage(currentProfileForAdjust);
+      }, 160);
     });
     search.addEventListener('focus', () => renderLiSearchSuggestions(currentProfileForAdjust));
     search.addEventListener('keydown', (event) => {
+      if(event.key === 'Enter'){
+        // Enter on an arrowed-into suggestion opens that trail; a plain Enter
+        // just commits the text as a list filter and dismisses the popover.
+        const options = suggestions && !suggestions.hidden
+          ? Array.from(suggestions.querySelectorAll('[role="option"]')) : [];
+        const active = options.findIndex(option => option.classList.contains('active-nav'));
+        event.preventDefault();
+        if(active >= 0){ options[active].click(); return; }
+        if(searchTimer) clearTimeout(searchTimer);
+        liQuery = search.value;
+        hideLiSearchSuggestions();
+        renderReturningHomepage(currentProfileForAdjust);
+        return;
+      }
       if(!suggestions || suggestions.hidden) return;
       const options = Array.from(suggestions.querySelectorAll('[role="option"]'));
       if(!options.length) return;
-      let active = options.findIndex(option => option.classList.contains('active'));
+      let active = options.findIndex(option => option.classList.contains('active-nav'));
       if(event.key === 'ArrowDown' || event.key === 'ArrowUp'){
         event.preventDefault();
         active = event.key === 'ArrowDown'
           ? (active + 1) % options.length
           : (active <= 0 ? options.length - 1 : active - 1);
-        options.forEach((option, index) => option.classList.toggle('active', index === active));
+        options.forEach((option, index) => option.classList.toggle('active-nav', index === active));
         options[active].scrollIntoView({ block:'nearest' });
-      } else if(event.key === 'Enter'){
-        event.preventDefault();
-        (options[active >= 0 ? active : 0]).click();
       } else if(event.key === 'Escape'){
         hideLiSearchSuggestions();
       }
@@ -2322,7 +2322,7 @@ function renderLiSearchSuggestions(profile){
   const overrides = profile ? effectiveOverrides(profile, adjustOverride) : guestOverrides();
   const matches = trails
     .filter(trail => liTrailIsInSelectedGeography(trail, true))
-    .filter(trail => [trail.name, trail.area, trail.valley].some(value => String(value || '').toLowerCase().includes(query)))
+    .filter(trail => liTrailSearchText(trail).includes(query))
     .map(trail => ({ ...trail, score:recommendTrail(trail, overrides, liConditionsFor(trail)).score }))
     .sort((a, b) => b.score - a.score || a.distance - b.distance)
     .slice(0, 6);
@@ -2472,9 +2472,6 @@ async function renderReturningHomepage(profile, options = {}){
   const listEl = document.getElementById('returningTrailList');
   if(!heading || typeof trails === 'undefined') return;
 
-  renderLiCountryControl(profile);
-  renderLiRegionControl(profile);
-  renderLiValleyControl(profile);
   renderLiSavedControl();
   renderDogProfileCard(profile);
   renderLiHeader(profile);
@@ -2561,18 +2558,13 @@ async function renderReturningHomepage(profile, options = {}){
   }
 
   if(displayList.length === 0){
-    const label = activeValley !== 'all'
-      ? activeValley
-      : activeProvince !== 'all'
-        ? provinceLabel(activeProvince)
-        : liSelectedGeographyLabel();
-    const msg = showingSavedOnly && activeValley !== 'all'
-      ? t('home.noSavedValley', {label})
-      : showingSavedOnly
-        ? t('home.noSaved')
-        : (liQuery.trim() || liActiveFilterCount() > 0)
-          ? 'Try widening your filters.'
-          : t('home.noTrailsValley', {label});
+    // Geography is now search/map, so the label is simply the current scope.
+    const label = liSelectedGeographyLabel();
+    const msg = showingSavedOnly
+      ? t('home.noSaved')
+      : (liQuery.trim() || liActiveFilterCount() > 0)
+        ? 'Try widening your search or filters.'
+        : t('home.noTrailsValley', {label});
     listEl.innerHTML = `
       <div class="li-empty">
         <div class="li-empty-title">No trails match</div>
@@ -2626,6 +2618,10 @@ async function renderReturningHomepage(profile, options = {}){
       warmTrailDetail(trails.find(trail => trail.id === row.dataset.id));
       window.location.href = 'trail.html?id=' + row.dataset.id;
     });
+    // Hovering a card highlights its pin on the map, and leaving restores the
+    // selected trail's pin. Pointer-only, so it never fires on touch.
+    row.addEventListener('mouseenter', () => setSelectedTrailPoint(row.dataset.id));
+    row.addEventListener('mouseleave', () => setSelectedTrailPoint(selectedTrailId));
   });
 
   listEl.querySelectorAll('.li-row-name').forEach(link => {

@@ -10,6 +10,16 @@
     "surfaceHazards": 22,
     "access": 23
   },
+  "canCloseHere": [
+    "livestock",
+    "access"
+  ],
+  "needsPerTrailEvidence": [
+    "water",
+    "heat",
+    "exposure",
+    "surfaceHazards"
+  ],
   "trails": [
     {
       "id": "santa-maddalena",

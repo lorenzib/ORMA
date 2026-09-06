@@ -27,6 +27,16 @@ async function downloadLicensedImage(url,{fetchImpl}={}){
 
 function safeSegment(value){return String(value||'').toLowerCase().replace(/[^a-z0-9_-]+/g,'-').replace(/^-+|-+$/g,'').slice(0,100);}
 
+// Photo overrides are kept in trail-id order rather than added at the end.
+//
+// Appending put every new entry on the same lines, so two batches prepared side
+// by side collided on principle rather than on content: the photographs were
+// for different trails and could not both be written without a hand merge.
+// Ordering by id sends them to different parts of the file, and git merges them.
+function orderedByTrailId(entries){
+  return [...entries].sort((a, b) => String(a.id).localeCompare(String(b.id)));
+}
+
 async function materializeApprovedTrailImages({root,store,at=new Date().toISOString(),fetchImpl}){
   const artifact=await store.getArtifact('trail-image-publication-requests')||{contractVersion:'1.0.0',requests:[]};
   const approved=(artifact.requests||[]).filter(request=>['approved-for-pr-creation','pr-materialized'].includes(request.status));
@@ -79,7 +89,7 @@ async function materializeApprovedTrailImages({root,store,at=new Date().toISOStr
       imageLicenceUrl:request.licenseUrl||null,imageSourcePage:request.sourcePageUrl||null,imageSourceType:request.sourceType||(request.uploadRef?'moderator-upload':'licensed-source'),
     };
     const entry={id:request.trailId,approvedReviewId:request.id,approvedAt:request.approvedAt||at,fields};
-    overrides.trails=[...(overrides.trails||[]).filter(item=>item.id!==request.trailId),entry];
+    overrides.trails=orderedByTrailId([...(overrides.trails||[]).filter(item=>item.id!==request.trailId),entry]);
     const index=nextRequests.findIndex(item=>item.id===request.id);
     nextRequests[index]={...request,status:'pr-materialized',materializedAt:at,publicAssetRef:relativeRef,publicMutationAllowed:false};
   }
@@ -89,4 +99,4 @@ async function materializeApprovedTrailImages({root,store,at=new Date().toISOStr
   return {materialized:approved.length,assetRefs,requests,overrides};
 }
 
-module.exports={MIME_EXTENSIONS,MAXIMUM_REMOTE_IMAGE_BYTES,downloadLicensedImage,safeSegment,materializeApprovedTrailImages};
+module.exports={orderedByTrailId,MIME_EXTENSIONS,MAXIMUM_REMOTE_IMAGE_BYTES,downloadLicensedImage,safeSegment,materializeApprovedTrailImages};

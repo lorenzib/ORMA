@@ -12,6 +12,10 @@ const FILES = Object.freeze({
   'publication-staging':'publication-staging.json',
   'trail-orchestration':'trail-orchestration.json',
   'dossier-review-queue':'dossier-review-queue.json',
+  // The route-choice queue the Backoffice Home surfaces and the Trail
+  // Verification Desk reviews. Without this seed the artifact never reaches
+  // Firestore, so the "Choose the intended route" cards never appear live.
+  'route-review':'route-review.json',
 });
 const ROUTES = Object.freeze({
   'osm-relation-1484751':'tre-cime-classic.geojson',
