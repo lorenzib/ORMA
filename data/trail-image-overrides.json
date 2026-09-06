@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T13:25:25.857Z",
+  "updatedAt": "2026-09-06T14:27:06.592Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -85,23 +85,6 @@
         "imageLicenceUrl": null,
         "imageSourcePage": null,
         "imageSourceType": "moderator-upload"
-      }
-    },
-    {
-      "id": "osm-7388748",
-      "approvedReviewId": "csHNw6X7gK7axjDXClqa",
-      "approvedAt": "2026-09-04T20:15:25.268Z",
-      "fields": {
-        "imageIcon": "images/tre-cime-gallery-01.jpg",
-        "heroImage": "images/tre-cime-gallery-01.jpg",
-        "imageAlt": "Anello dei Colli",
-        "imageCredit": "Photo by ORMA",
-        "imageCreditText": "Photo by ORMA",
-        "imageCreator": "ORMA",
-        "imageLicence": "ORMA-owned",
-        "imageLicenceUrl": null,
-        "imageSourcePage": null,
-        "imageSourceType": "orma-library"
       }
     },
     {
@@ -764,6 +747,74 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pano_Ch%C3%A8vrerie.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12044077",
+      "approvedReviewId": "commons-osm-12044077",
+      "approvedAt": "2026-09-06T14:27:06.592Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12044077-schmieden.jpg",
+        "heroImage": "images/trails/osm-12044077-schmieden.jpg",
+        "imageAlt": "The hamlet of Schmieden in the Prags valley below wooded slopes and pale Dolomite peaks.",
+        "imageCredit": "Prags (Schmieden, Ferrara)",
+        "imageCreditText": "Prags (Schmieden, Ferrara) by High Contrast",
+        "imageCreator": "High Contrast",
+        "imageLicence": "CC BY-SA 2.0 de",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Prags_(Schmieden%2C_Ferrara).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-1116680",
+      "approvedReviewId": "commons-osm-1116680",
+      "approvedAt": "2026-09-06T14:27:06.592Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-1116680-sexten.jpg",
+        "heroImage": "images/trails/osm-1116680-sexten.jpg",
+        "imageAlt": "Mown meadows and hay barns below the village of Sexten, with cloud drifting across forested slopes.",
+        "imageCredit": "Sexten/Sesto",
+        "imageCreditText": "Sexten/Sesto by Fantasy",
+        "imageCreator": "Fantasy",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sexten-Sesto.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11780502",
+      "approvedReviewId": "commons-osm-11780502",
+      "approvedAt": "2026-09-06T14:27:06.592Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11780502-villnoess.jpg",
+        "heroImage": "images/trails/osm-11780502-villnoess.jpg",
+        "imageAlt": "The Villnoess valley seen from the Zans road, with scattered farmsteads on green pasture and snow on the far ridge.",
+        "imageCredit": "Villnoesser Tal from the Zanser Strasse",
+        "imageCreditText": "Villnoesser Tal from the Zanser Strasse by Falk2",
+        "imageCreator": "Falk2",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:I11_269_Villn%C3%B6%C3%9Fer_Tal.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "santa-maddalena",
+      "approvedReviewId": "commons-santa-maddalena",
+      "approvedAt": "2026-09-06T14:27:06.592Z",
+      "fields": {
+        "imageIcon": "images/trails/santa-maddalena-villnoess.jpg",
+        "heroImage": "images/trails/santa-maddalena-villnoess.jpg",
+        "imageAlt": "A meadow of yellow flowers above St. Magdalena, with farmhouses scattered across the valley slopes.",
+        "imageCredit": "St. Magdalena from the Zanser Strasse",
+        "imageCreditText": "St. Magdalena from the Zanser Strasse by Falk2",
+        "imageCreator": "Falk2",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:I11_268_St._Magdalena.jpg",
         "imageSourceType": "licensed-source"
       }
     }
