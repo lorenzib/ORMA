@@ -440,3 +440,47 @@ describe('map-first returning homepage layout contract', () => {
     expect(mapStyle).toContain('14, 0.88');
   });
 });
+
+// Every trail that carries a shade figure is unreviewed for the heat category:
+// 23 hold a value and none is curated. SCORING.md already rules on that case, so
+// the card follows it rather than inventing a second standard -- a caution is
+// stated in words, reassurance is not stated at all.
+describe('shade labels only speak where the evidence rule allows', () => {
+  const context = () => loadHomepageContext([]);
+
+  test('low shade becomes a caution in words', () => {
+    const ctx = context();
+    expect(ctx.liShadeLabel(5)).toBe('little shade');
+    expect(ctx.liShadeLabel(19)).toBe('little shade');
+    expect(ctx.liShadeLabel(20)).toBe('limited shade');
+    expect(ctx.liShadeLabel(35)).toBe('limited shade');
+  });
+
+  test('substantial shade is never promised on an unreviewed route', () => {
+    const ctx = context();
+    // 70% is the engine's "substantial shade" positive. Saying so on a route
+    // nobody reviewed reads as a promise, so the measurement stands alone.
+    expect(ctx.liShadeLabel(70)).toBe('70% shade');
+    expect(ctx.liShadeLabel(70)).not.toContain('shaded');
+  });
+
+  test('the bands are the engine’s own, so card and score agree', () => {
+    const ctx = context();
+    // trail.shade.very-low < 20, trail.shade.low < 40, trail.shade.good >= 60.
+    expect(ctx.liShadeLabel(19)).not.toBe(ctx.liShadeLabel(20));
+    expect(ctx.liShadeLabel(39)).not.toBe(ctx.liShadeLabel(40));
+  });
+
+  test('an unknown shade figure says nothing at all', () => {
+    const ctx = context();
+    expect(ctx.liShadeLabel(undefined)).toBeNull();
+    expect(ctx.liShadeLabel(null)).toBeNull();
+    expect(ctx.liRowMeta({ distance:5, elevation:200, hours:'2' })).not.toContain('shade');
+  });
+
+  test('the row carries the label alongside the measured facts', () => {
+    const ctx = context();
+    expect(ctx.liRowMeta({ distance:7.5, elevation:150, hours:'2', shadeCoverage:10 }))
+      .toBe('7.5 km · 150 m climb · 2 h · little shade');
+  });
+});
