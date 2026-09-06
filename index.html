@@ -27,7 +27,7 @@ if(location.protocol !== 'file:' && location.pathname === '/index.html'){
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
 <link rel="stylesheet" href="styles.css?v=20260905-3">
 <link rel="stylesheet" href="homepage-mobile.css?v=20260903-2">
-  <link rel="stylesheet" href="homepage-editorial.css?v=20260901-4">
+  <link rel="stylesheet" href="homepage-editorial.css?v=20260906-1">
 <link rel="stylesheet" href="geo-filters.css?v=20260904-1">
 </head>
 <body>
@@ -279,6 +279,12 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <strong id="liToolbarGreeting">Where are we going today?</strong>
         <small id="liToolbarDogContext">Trails ranked for your dog’s needs and your current choices.</small>
       </span>
+    </div>
+    <!-- Today, for this area. Hidden until a forecast actually arrives: an
+         empty band is better than a confident one with nothing behind it. -->
+    <div class="li-today" id="liToday" hidden>
+      <strong id="liTodayTitle"></strong>
+      <span id="liTodayDetail"></span>
     </div>
     <div class="li-search">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
@@ -546,7 +552,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="script.js?v=20260903-1" defer></script>
 <script src="dog-wizard.js?v=20260901-2" defer></script>
 <script src="collections-data.js?v=20260815-4" defer></script>
-<script src="homepage-search.js?v=20260825-1" defer></script>
+<script src="trail-weather-window.js?v=20260906-1"></script><script src="homepage-conditions.js?v=20260906-1"></script><script src="homepage-search.js?v=20260825-1" defer></script>
 <script src="homepage-mobile.js?v=20260816-1" defer></script>
 </body>
 </html>

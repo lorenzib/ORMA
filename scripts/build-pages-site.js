@@ -23,7 +23,12 @@ const path = require('path');
 const yaml = require('js-yaml');
 
 const ROOT = path.resolve(__dirname, '..');
-const OUT = path.resolve(ROOT, process.argv[2] || '_site');
+// argv[2] is an output directory, but the documented regeneration command is
+// 'node scripts/build-pages-site.js --write-manifest'. Without this guard that
+// flag is read as the destination and the build lands in a directory literally
+// named --write-manifest, which then fails the allowlist test it was meant to fix.
+const OUTPUT_ARG = process.argv.slice(2).find(value => !value.startsWith('--'));
+const OUT = path.resolve(ROOT, OUTPUT_ARG || '_site');
 
 // Never publishable, and never worth walking into.
 const ALWAYS_SKIP = new Set(['.git', 'node_modules', '_site', '.github', 'dist']);
