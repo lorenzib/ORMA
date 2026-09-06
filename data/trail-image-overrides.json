@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T13:11:45.902Z",
+  "updatedAt": "2026-09-06T13:17:44.658Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -713,6 +713,23 @@
         "imageLicence": "CC BY 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:%C3%89pilobe_devant_les_montagnes.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11775760",
+      "approvedReviewId": "v2u6F4D3e7688HR2yDCd",
+      "approvedAt": "2026-09-06T07:10:01.159Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11775760-v2u6f4d3e7688hr2ydcd.jpg",
+        "heroImage": "images/trails/osm-11775760-v2u6f4d3e7688hr2ydcd.jpg",
+        "imageAlt": "Close view of a weathered stone wall at Salern Castle ruins, with a mountain valley beyond.",
+        "imageCredit": "Photo by Luca Lorenzi (Wikimedia Commons user Llorenzi)",
+        "imageCreditText": "Photo by Luca Lorenzi (Wikimedia Commons user Llorenzi)",
+        "imageCreator": "Luca Lorenzi (Wikimedia Commons user Llorenzi)",
+        "imageLicence": "CC BY-SA 3.0 Unported",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Castel_Salern78.JPG",
         "imageSourceType": "licensed-source"
       }
     }
