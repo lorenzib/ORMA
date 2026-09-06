@@ -121,7 +121,8 @@ function graduationProgress(t) {
 
 function categoryVerified(t, category) {
   const progress = reviewProgress(t);
-  return progress === null || progress.includes(category);
+  // No recorded review means nothing is verified. See trail-trust.js.
+  return progress !== null && progress.includes(category);
 }
 
 function formatReviewDate(value) {
