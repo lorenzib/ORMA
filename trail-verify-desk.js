@@ -18,6 +18,8 @@
     orchestration:'backoffice-data/trail-orchestration.json',
     editorial:'backoffice-data/verified-trail-editorial-execution.json',
     staging:'backoffice-data/publication-staging.json',
+    catalogue:'backoffice-data/catalogue-campaign.json',
+    registry:'backoffice-data/orma-verified-registry.json',
   };
   const LOCAL_MODE=['localhost','127.0.0.1'].includes(location.hostname);
   const DRAFT_KEY='orma-verify-notes-v1';
@@ -32,6 +34,7 @@
   const refreshBtn=document.getElementById('verifyRefresh');
 
   let dossier={items:[]},orchestration={trails:[],summary:{}},editorial={outputs:[]},staging={items:[]},publication={requests:[]};
+  let catalogue={items:[]},registry={verified:[]};
   let drafts=stored(DRAFT_KEY),receipts=stored(RECEIPT_KEY);
 
   function stored(key){try{return JSON.parse(localStorage.getItem(key)||'{}');}catch(error){return {};}}
@@ -213,6 +216,71 @@
     return api.submitTrailReview({gate:'content-review',decisions:[payload]});
   }
 
+
+  // ---- coverage: how much of the catalogue is actually verified ----
+
+  const coverageNodes={
+    headline:document.getElementById('verifyHeadline'),
+    bar:document.getElementById('verifyBarFill'),
+    split:document.getElementById('verifySplit'),
+    blockers:document.getElementById('verifyBlockers'),
+    age:document.getElementById('verifyCoverageAge'),
+  };
+
+  /**
+   * Blocker ids are written for machines ("shadeCoverage-unknown"). Split the
+   * camelCase and the dashes back into words rather than keeping a hand-built
+   * dictionary that would silently miss every new blocker.
+   */
+  function blockerLabel(id){
+    const words=String(id||'').replace(/([a-z0-9])([A-Z])/g,'$1 $2').replace(/[-_]/g,' ').trim().toLowerCase();
+    return words.charAt(0).toUpperCase()+words.slice(1);
+  }
+
+  function renderCoverage(){
+    const items=catalogue.items||[];
+    if(!items.length){
+      coverageNodes.headline.textContent='Catalogue figures are not available yet.';
+      return;
+    }
+    // The registry is the record of what actually shipped as verified; the
+    // catalogue flag can lag behind it, so trust whichever knows about more.
+    const flagged=items.filter(item=>item.modernGraduationVerified===true).length;
+    const verified=Math.max(flagged,(registry.verified||[]).length);
+    const total=items.length;
+    const remaining=Math.max(total-verified,0);
+    const imported=items.filter(item=>item.origin==='imported').length;
+    const curated=total-imported;
+
+    coverageNodes.headline.textContent=`${verified} of ${total} trails verified · ${remaining} to go`;
+    coverageNodes.bar.style.width=`${Math.max((verified/total)*100,verified?1.5:0)}%`;
+    coverageNodes.split.textContent=`${curated} written by hand · ${imported} imported from OpenStreetMap`;
+    if(catalogue.generatedAt){
+      const when=new Date(catalogue.generatedAt);
+      if(!Number.isNaN(when.valueOf()))coverageNodes.age.textContent=`Counted ${when.toLocaleDateString()}`;
+    }
+
+    // Ranked, because the same handful of gaps blocks almost every trail:
+    // closing one of them advances a hundred trails, reviewing one advances one.
+    const counts=new Map();
+    items.forEach(item=>{
+      if(item.modernGraduationVerified===true)return;
+      (item.baselineBlockers||[]).forEach(id=>counts.set(id,(counts.get(id)||0)+1));
+    });
+    const ranked=[...counts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,6);
+    coverageNodes.blockers.replaceChildren();
+    if(!ranked.length){
+      coverageNodes.blockers.append(el('li','','Nothing is recorded as blocking.'));
+      return;
+    }
+    ranked.forEach(([id,count])=>{
+      const row=el('li');
+      row.append(el('strong','',String(count)),el('span','',blockerLabel(id)));
+      row.title=id;
+      coverageNodes.blockers.append(row);
+    });
+  }
+
   // ---- rendering ----
 
   function card(decision){
@@ -324,18 +392,21 @@
     const summary=orchestration.summary||{};
     const running=Number(summary.running||0);
     workingNode.textContent=running?`The system is working on ${plural(running,'trail')}.`:'The system has no trails in progress.';
+    renderCoverage();
     renderPullRequests();
   }
 
   async function load(){
     refreshBtn.disabled=true;
     try{
-      [dossier,orchestration,editorial,staging,publication]=await Promise.all([
+      [dossier,orchestration,editorial,staging,publication,catalogue,registry]=await Promise.all([
         artifact('dossier-review-queue',URLS.dossier,{items:[]}),
         artifact('trail-orchestration',URLS.orchestration,{trails:[],summary:{}}),
         artifact('verified-trail-editorial-execution',URLS.editorial,{outputs:[]}),
         artifact('publication-staging',URLS.staging,{items:[]}),
         artifact('publication-requests',null,{requests:[]}),
+        artifact('catalogue-campaign',URLS.catalogue,{items:[]}),
+        artifact('orma-verified-registry-live',URLS.registry,{verified:[]}),
       ]);
       stateNode.textContent='';
       stateNode.classList.remove('is-error');
