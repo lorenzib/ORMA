@@ -1,0 +1,386 @@
+{
+  "contractVersion": "1.0.0",
+  "valley": "Alta Pusteria – Tre Cime",
+  "trailCount": 31,
+  "categoriesNeeded": {
+    "water": 30,
+    "heat": 30,
+    "exposure": 29,
+    "livestock": 31,
+    "surfaceHazards": 28,
+    "access": 29
+  },
+  "trails": [
+    {
+      "id": "tre-cime",
+      "name": "Tre Cime di Lavaredo Loop",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock"
+      ]
+    },
+    {
+      "id": "cadini",
+      "name": "Cadini di Misurina Viewpoint",
+      "needs": [
+        "water",
+        "heat",
+        "livestock"
+      ]
+    },
+    {
+      "id": "prato-piazza",
+      "name": "Prato Piazza (Plätzwiese)",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "lago-braies",
+      "name": "Lago di Braies Loop",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-1116675",
+      "name": "Familienrundweg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-1116680",
+      "name": "Sextener Rundweg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-1780768",
+      "name": "Gsieser Talblickweg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-6244965",
+      "name": "Steine erzählen",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-6404258",
+      "name": "Rundweg Salla",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-6410700",
+      "name": "Dolomitenblickrunde",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-6529356",
+      "name": "Anton Schwingshackl Weg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-6823031",
+      "name": "Naturlehrpfad",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-7388748",
+      "name": "Anello dei Colli",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-7546708",
+      "name": "Anello di Soracrode",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-7547653",
+      "name": "Anello dei Forti",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-7547983",
+      "name": "Anello di Valzalina",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-7548201",
+      "name": "Anello di Ciampeviei",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-7548344",
+      "name": "Anello del Sole",
+      "needs": [
+        "livestock",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-7548489",
+      "name": "Anello dei Faggi",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-7549783",
+      "name": "Anello del Troi de le Ciaure",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-8510456",
+      "name": "Dorfrundweg St. Sigmund",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-9651462",
+      "name": "Sagenweg - Sentiero delle leggende",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11816373",
+      "name": "Bunkerweg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12044077",
+      "name": "Rundweg Schmieden",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12047303",
+      "name": "Lang-Erl-Weg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12132169",
+      "name": "Toblacher Höhenweg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12172440",
+      "name": "Natur- und Kulturweg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12173965",
+      "name": "Kleine Schlossrunde",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12173984",
+      "name": "Große Schlossrunde",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12174210",
+      "name": "Rundweg Reischach",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12302191",
+      "name": "Dorfrundweg Rasen",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "",
+      "url": "",
+      "categories": [],
+      "note": ""
+    }
+  ]
+}

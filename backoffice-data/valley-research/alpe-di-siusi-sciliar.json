@@ -1,0 +1,143 @@
+{
+  "contractVersion": "1.0.0",
+  "valley": "Alpe di Siusi – Sciliar",
+  "trailCount": 10,
+  "categoriesNeeded": {
+    "water": 10,
+    "heat": 10,
+    "exposure": 10,
+    "livestock": 10,
+    "surfaceHazards": 10,
+    "access": 10
+  },
+  "trails": [
+    {
+      "id": "alpe-siusi",
+      "name": "Alpe di Siusi Meadow Loop",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "geotrail-bulla",
+      "name": "Geotrail Bula / Pufels / Bulla",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "giro-del-bulacia",
+      "name": "Giro della Bullaccia",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "sentiero-hans-e-paula-steger",
+      "name": "Sentiero Hans e Paula Steger",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-9487078",
+      "name": "Oswald-von-Wolkenstein-Weg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-9492594",
+      "name": "Vogelweider Rundweg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11814895",
+      "name": "Kofelrunde",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11815025",
+      "name": "Rundweg Kasserol",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11839597",
+      "name": "Fenn Promenade",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-12182516",
+      "name": "Timpfler Rundweg",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "",
+      "url": "",
+      "categories": [],
+      "note": ""
+    }
+  ]
+}

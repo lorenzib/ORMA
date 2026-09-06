@@ -1,0 +1,59 @@
+{
+  "contractVersion": "1.0.0",
+  "valley": "Belluno – Agordino",
+  "trailCount": 3,
+  "categoriesNeeded": {
+    "water": 3,
+    "heat": 3,
+    "exposure": 3,
+    "livestock": 3,
+    "surfaceHazards": 3,
+    "access": 3
+  },
+  "trails": [
+    {
+      "id": "piancavallo",
+      "name": "Piancavallo Malghe Loop",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11891581",
+      "name": "Sentiero Alpago Natura",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-13528390",
+      "name": "Sentiero del Sabadalt",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "",
+      "url": "",
+      "categories": [],
+      "note": ""
+    }
+  ]
+}

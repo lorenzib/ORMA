@@ -1,0 +1,107 @@
+{
+  "contractVersion": "1.0.0",
+  "valley": "Aravis – Annecy",
+  "trailCount": 7,
+  "categoriesNeeded": {
+    "water": 7,
+    "heat": 7,
+    "exposure": 7,
+    "livestock": 7,
+    "surfaceHazards": 7,
+    "access": 7
+  },
+  "trails": [
+    {
+      "id": "osm-10116283",
+      "name": "Itinéraire de découverte historique",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-10116380",
+      "name": "Itinéraire découverte de la nature",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-20347406",
+      "name": "Sentier des Patriotes",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-11517208",
+      "name": "La Croix des Salles",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-14987412",
+      "name": "Sentier du Four",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-18055492",
+      "name": "Le Mont d'Arbois - Mont Joux",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    },
+    {
+      "id": "osm-14864704",
+      "name": "Boucle du Taillefer",
+      "needs": [
+        "water",
+        "heat",
+        "exposure",
+        "livestock",
+        "surfaceHazards",
+        "access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "label": "",
+      "url": "",
+      "categories": [],
+      "note": ""
+    }
+  ]
+}
