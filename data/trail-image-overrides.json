@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T11:16:05.003Z",
+  "updatedAt": "2026-09-07T15:43:53.759Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -717,6 +717,40 @@
       }
     },
     {
+      "id": "osm-19095412",
+      "approvedReviewId": "commons-osm-19095412",
+      "approvedAt": "2026-09-07T15:32:21.875Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19095412-fer-a-cheval.jpg",
+        "heroImage": "images/trails/osm-19095412-fer-a-cheval.jpg",
+        "imageAlt": "A flowering summer meadow below the limestone walls of the Cirque du Fer-a-Cheval, with waterfalls falling from the rim.",
+        "imageCredit": "Cirque du Fer-a-Cheval",
+        "imageCreditText": "Cirque du Fer-a-Cheval by Frank Miramand",
+        "imageCreator": "Frank Miramand",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cirque_du_Fer-%C3%A0-Cheval_-_Paysage.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-19095413",
+      "approvedReviewId": "commons-osm-19095413",
+      "approvedAt": "2026-09-07T15:32:21.875Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19095413-sixt-passy.jpg",
+        "heroImage": "images/trails/osm-19095413-sixt-passy.jpg",
+        "imageAlt": "A green valley running between limestone walls in the Sixt-Passy reserve, with an alpage on the shelf above it.",
+        "imageCredit": "Sixt-Passy national nature reserve",
+        "imageCreditText": "Sixt-Passy national nature reserve by 0x010C",
+        "imageCreator": "0x010C",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:2018-06_R%C3%A9serve_naturelle_nationale_de_Sixt-Passy_32.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-19697977",
       "approvedReviewId": "hTq57tVg3snv1E5D6TkV",
       "approvedAt": "2026-09-04T20:28:24.015Z",
@@ -747,6 +781,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Picco_Ivigna_nelle_Alpi_Sarentine_visto_da_Verano%2C_BZ.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-19855818",
+      "approvedReviewId": "commons-osm-19855818",
+      "approvedAt": "2026-09-07T15:43:53.753Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19855818-col-du-gollet.jpg",
+        "heroImage": "images/trails/osm-19855818-col-du-gollet.jpg",
+        "imageAlt": "High summer pasture above Valmorel with a track winding down towards the Col du Gollet and rock peaks along the skyline.",
+        "imageCredit": "Col du Gollet towards the Col de la Madeleine",
+        "imageCreditText": "Col du Gollet towards the Col de la Madeleine by Florian Pepellin",
+        "imageCreator": "Florian Pepellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Col_du_Gollet_en_direction_du_Col_de_la_Madeleine_(ao%C3%BBt_2025).JPG",
         "imageSourceType": "licensed-source"
       }
     },
