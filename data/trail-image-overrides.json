@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T19:39:19.761Z",
+  "updatedAt": "2026-09-07T19:47:04.641Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -1002,6 +1002,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Monticolo_-_Photo_by_Giovanni_Ussi_-_Lago_Grande_1.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-5479112",
+      "approvedReviewId": "commons-osm-5479112",
+      "approvedAt": "2026-09-07T19:47:04.641Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-5479112-col-des-montets.jpg",
+        "heroImage": "images/trails/osm-5479112-col-des-montets.jpg",
+        "imageAlt": "The stony footpath at the Col des Montets above Vallorcine, alpine scrub and larch on either side and a rock ridge across the valley.",
+        "imageCredit": "Sentier au col des Montets",
+        "imageCreditText": "Sentier au col des Montets by Rémih",
+        "imageCreator": "Rémih",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sentier_%40_Col_des_Montets_02.jpg",
         "imageSourceType": "licensed-source"
       }
     },
