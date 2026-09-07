@@ -4,7 +4,7 @@
   "regions": {
     "dolomites": {
       "trailCount": 111,
-      "trails": "data/regions/dolomites-trails.js?v=78ca628ef052",
+      "trails": "data/regions/dolomites-trails.js?v=26024779d5fd",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=3416ad1a6164",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -17,7 +17,7 @@
         "lago-braies": "data/trail-details/lago-braies.js?v=379150dec846",
         "lago-carezza": "data/trail-details/lago-carezza.js?v=58bb650692c5",
         "lago-sorapis": "data/trail-details/lago-sorapis.js?v=28b3493feeca",
-        "valley-view": "data/trail-details/valley-view.js?v=b3e370199ab7",
+        "valley-view": "data/trail-details/valley-view.js?v=39eedcd80b3a",
         "piancavallo": "data/trail-details/piancavallo.js?v=85c4ce6b78b1",
         "geotrail-bulla": "data/trail-details/geotrail-bulla.js?v=e510d4659556",
         "giro-del-bulacia": "data/trail-details/giro-del-bulacia.js?v=4da2056778f8",
