@@ -102,6 +102,43 @@
     },
   };
 
+
+  /**
+   * Blockers arrive as one machine string per failed claim, so a single
+   * missing thing can appear three times:
+   *
+   *   logistics/recommended-start:    supported authoritative route guidance is required
+   *   logistics/route-number-status:  supported authoritative route guidance is required
+   *   logistics/route-number-sequence:supported authoritative route guidance is required
+   *
+   * That is one problem, not three. Each group states the problem once, in the
+   * words of the thing a walker would miss, and says what would clear it.
+   */
+  const BLOCKER_GROUPS=[
+    {
+      match:/^logistics\/(recommended-start|route-number-)/,
+      title:'No start point or directions',
+      detail:'ORMA cannot say where this walk begins or which way to go. No authoritative source '
+        + 'was found giving a start point, and no numbered or landmark sequence to follow.',
+      remedy:'Find the official route sheet for this trail, a comune or department fiche giving the '
+        + 'start and the order of the route. Without one the trail cannot be verified.',
+    },
+  ];
+
+  /** One entry per distinct problem, with the raw ids kept for hovering. */
+  function groupBlockers(reasons){
+    const groups=[],loose=[];
+    (reasons||[]).forEach(reason=>{
+      const text=String(reason);
+      const group=BLOCKER_GROUPS.find(candidate=>candidate.match.test(text));
+      if(!group){loose.push(text);return;}
+      let existing=groups.find(entry=>entry.group===group);
+      if(!existing){existing={group,raw:[]};groups.push(existing);}
+      existing.raw.push(text);
+    });
+    return {groups,loose};
+  }
+
   function geometryFacts(result){
     const comparison=result.comparison||{},assessment=result.assessment||{};
     return [
@@ -362,28 +399,45 @@
     heading.append(el('p','vd-gate',decision.gate.label),el('h2','',decision.trailName));
     head.append(heading);
     if(!decision.ready)head.append(el('span','vd-lock','Blocked'));
-    article.append(head,el('p','vd-question',decision.gate.question));
+    article.append(head);
+    // The question and its checklist are for deciding an approvable trail.
+    // On a blocked one they are noise above the reason it is blocked.
+    if(decision.ready)article.append(el('p','vd-question',decision.gate.question));
 
+    // A blocked trail cannot be approved, so the reason is the story: it goes
+    // directly under the name, before the question and the approval checklist.
     if(decision.blockers.length){
-      const blockers=el('div','vd-blockers');
-      blockers.append(el('h3','','Fix before approving'));
-      const list=el('ul');decision.blockers.forEach(reason=>list.append(el('li','',String(reason))));
-      blockers.append(list);article.append(blockers);
+      const {groups,loose}=groupBlockers(decision.blockers);
+      const box=el('div','vd-blockers');
+      box.append(el('h3','','Cannot be approved yet'));
+      groups.forEach(({group,raw})=>{
+        const item=el('div','vd-blocker');
+        item.append(el('strong','',group.title),el('p','',group.detail),el('p','vd-remedy',group.remedy));
+        // The machine ids stay reachable without taking up the card.
+        item.title=raw.join('\n');
+        box.append(item);
+      });
+      loose.forEach(reason=>{
+        const item=el('div','vd-blocker');
+        item.append(el('strong','',blockerLabel(String(reason).split(':')[0])),el('p','',String(reason)));
+        box.append(item);
+      });
+      article.append(box);
     }
 
     if(decision.summary)article.append(el('p','vd-summary',decision.summary));
 
     // The checklist is the job. It used to be one sentence at the bottom of
     // the cartographer panel; here it is the first thing on the card.
-    const checks=decision.gate.checklist.slice();
-    decision.claims.forEach(claim=>checks.push(`${claim.category}: ${claim.proposedValue}`));
+    const checks=decision.ready?decision.gate.checklist.slice():[];
+    if(decision.ready)decision.claims.forEach(claim=>checks.push(`${claim.category}: ${claim.proposedValue}`));
     if(checks.length){
       const list=el('ul','vd-checklist');
       checks.forEach(text=>list.append(el('li','',text)));
       article.append(el('h3','vd-checklist-title','What to check'),list);
     }
 
-    if(decision.facts.length){
+    if(decision.ready&&decision.facts.length){
       const facts=el('div','vd-facts');
       decision.facts.forEach(([label,value])=>{const box=el('div');box.append(el('small','',label),el('strong','',value));facts.append(box);});
       article.append(facts);
