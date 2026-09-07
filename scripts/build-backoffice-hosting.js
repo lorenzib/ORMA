@@ -9,7 +9,6 @@ const output=path.join(root,'dist','backoffice');
 const files=[
   'backoffice-firebase.js','backoffice-login.js','backoffice-auth-guard.js','backoffice-session.js',
   'backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','trail-verify-desk.js','backoffice/dashboard-model.js',
-  'image-coverage-hosted.js',
   'moderation-page.js','moderation.css','community-content-states.js',
   'backoffice-review.css','styles.css','favicon-32.png','logo.svg','backoffice/content-review-decisions.js','backoffice/content-receipt-model.js',
 ];
@@ -41,7 +40,6 @@ async function build(){
   await hostedPage('trail-verify-desk.html');
   await hostedPage('trail-dossier-desk.html');
   await hostedPage('trail-content-desk.html');
-  await hostedPage('image-coverage-hosted.html','image-coverage-desk.html');
   await hostedPage('community-moderation-desk.html');
   await hostedPage('backoffice-hosted-review.html','backoffice-review.html');
   await fs.writeFile(path.join(output,'robots.txt'),'User-agent: *\nDisallow: /\n','utf8');

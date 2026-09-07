@@ -152,12 +152,13 @@ describe('CEO dashboard workflow model',()=>{
     expect(model.summary.agentWork).toBe(0);
   });
 
-  test('keeps the executive trail-photo queue bounded while prioritising ready previews',()=>{
-    const gaps=Array.from({length:20},(_,index)=>({slug:`trail-${index}`,trailId:`trail-${index}`,title:`Trail ${index}`}));
-    const model=buildDashboardModel({imageAudit:{gaps,summary:{missing:20}},imageResults:{items:[{slug:'trail-19',candidates:[{status:'ready-for-asset-review'}]}]},jobs:[]});
-    expect(model.imageItems).toHaveLength(15);
-    expect(model.imageItems[0].slug).toBe('trail-19');
-    expect(model.decisions.find(item=>item.kind==='image').title).toBe('15 trail photos need routing');
+  test('the trail-photo lane is gone: no image decision, no image model keys',()=>{
+    // Photos are sourced by hand outside the backoffice, so the model never
+    // produces a photo-routing card or image state, even if passed image inputs.
+    const model=buildDashboardModel({imageAudit:{gaps:[{slug:'x',trailId:'x',title:'X'}]},imageReviews:[{slug:'x',status:'blocked'}],jobs:[]});
+    expect(model.decisions.some(item=>item.kind==='image')).toBe(false);
+    expect(model.imageItems).toBeUndefined();
+    expect('imageGaps' in model.editorialProgress).toBe(false);
   });
 
   test('keeps preserved Newsletter packets out of the decision queue while parked',()=>{
@@ -210,47 +211,47 @@ describe('orchestration job reads',()=>{
 describe('trail coverage grid',()=>{
   const {buildCoverageGrid}=require('./dashboard-model');
 
-  const imageAudit={pages:[
-    {trailId:'seceda',title:'Seceda Ridge',area:'Val Gardena',valley:'Val Gardena',region:'dolomites',coverageState:'covered'},
-    {trailId:'tre-cime',title:'Tre Cime circuit',area:'Alta Pusteria',valley:'Alta Pusteria – Tre Cime',region:'dolomites',coverageState:'missing'},
-    {trailId:'lac-vert',title:'Boucle du Lac Vert',area:'Haute-Savoie',valley:'',region:'savoy',coverageState:'missing'},
-  ]};
+  // Photos are sourced by hand, so the grid tracks only verification and hazards,
+  // sourced from the verified registry, the orchestration and the hazard layer.
   const hazards={hazards:[
     {title:'Storm warning',severity:'severe',trailIds:['tre-cime']},
     {title:'Unconfirmed: bridge out',origin:'community',verificationState:'reported-unverified',trailIds:['lac-vert']},
   ]};
-  const verifiedRegistry={verified:[{trailId:'seceda'}]};
-  const orchestration={trails:[{trailId:'tre-cime',stage:'evidence-research'}]};
+  const verifiedRegistry={verified:[{trailId:'seceda',trailName:'Seceda Ridge',region:'dolomites',valley:'Val Gardena'}]};
+  const orchestration={trails:[{trailId:'tre-cime',trailName:'Tre Cime circuit',region:'dolomites',valley:'Alta Pusteria – Tre Cime',stage:'evidence-research'}]};
 
-  test('reports one row per published trail across the three running lanes',()=>{
-    const grid=buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration});
+  test('reports one row per pipeline trail, with no photo tracking',()=>{
+    const grid=buildCoverageGrid({hazards,verifiedRegistry,orchestration});
     expect(grid.rows).toHaveLength(3);
     const seceda=grid.rows.find(row=>row.trailId==='seceda');
-    expect(seceda).toEqual(expect.objectContaining({photo:'covered',verified:'verified',hazardState:'clear'}));
+    expect(seceda).toEqual(expect.objectContaining({title:'Seceda Ridge',verified:'verified',hazardState:'clear'}));
+    expect('photo' in seceda).toBe(false);
     const treCime=grid.rows.find(row=>row.trailId==='tre-cime');
-    expect(treCime).toEqual(expect.objectContaining({photo:'missing',verified:'in-progress',
+    expect(treCime).toEqual(expect.objectContaining({verified:'in-progress',
       verificationStage:'evidence-research',hazardState:'active'}));
   });
 
-  test('separates a confirmed hazard from an unconfirmed hiker report',()=>{
-    const grid=buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration});
-    expect(grid.rows.find(row=>row.trailId==='lac-vert').hazardState).toBe('unconfirmed');
+  test('a trail known only from a hazard still gets a row',()=>{
+    const grid=buildCoverageGrid({hazards,verifiedRegistry,orchestration});
+    const lacVert=grid.rows.find(row=>row.trailId==='lac-vert');
+    expect(lacVert).toEqual(expect.objectContaining({verified:'not-started',hazardState:'unconfirmed'}));
     expect(grid.summary.unconfirmedHazards).toBe(1);
   });
 
-  test('puts the work first: missing photos before covered, Dolomites before the rest',()=>{
-    const grid=buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration});
+  test('puts unverified trails first, Dolomites before the rest',()=>{
+    const grid=buildCoverageGrid({hazards,verifiedRegistry,orchestration});
     expect(grid.rows.map(row=>row.trailId)).toEqual(['tre-cime','lac-vert','seceda']);
   });
 
-  test('summarises the two backfills against the whole catalogue',()=>{
-    const grid=buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration});
-    expect(grid.summary).toEqual(expect.objectContaining({trails:3,photoCovered:1,photoMissing:2,
+  test('summarises verification and hazards',()=>{
+    const grid=buildCoverageGrid({hazards,verifiedRegistry,orchestration});
+    expect(grid.summary).toEqual(expect.objectContaining({trails:3,
       verified:1,verificationInProgress:1,trailsWithHazards:2,complete:1}));
+    expect('photoCovered' in grid.summary).toBe(false);
   });
 
-  test('survives an empty or absent artifact without throwing',()=>{
+  test('survives empty or absent inputs without throwing',()=>{
     expect(buildCoverageGrid().rows).toEqual([]);
-    expect(buildCoverageGrid({imageAudit:{pages:[]}}).summary.trails).toBe(0);
+    expect(buildCoverageGrid({orchestration:{trails:[]}}).summary.trails).toBe(0);
   });
 });

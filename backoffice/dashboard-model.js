@@ -76,8 +76,6 @@
     if(status==='blocked')return 'ORMA automation could not complete this handoff; it needs attention.';
     if(status==='publication-failed')return `Publication stopped at ${(item.failureStage||'automation').replace(/-/g,' ')}. Your approval is retained and the failure receipt is linked.${item.retryMode==='manual'?' Automatic retries are paused until the external setting is corrected and a forced manual run is started.':item.retryAfter?` Automatic retry paused until ${new Date(item.retryAfter).toLocaleString()}.`:''}`;
     if(status==='pull-request-opened')return 'The tested website diff is ready for your final GitHub review.';
-    if(status==='awaiting-pr-merge')return 'The tested trail-photo diff is ready for your final GitHub review.';
-    if(status==='pr-materialized')return 'The approved trail photo has been materialized and the publishing worker is preparing its pull request.';
     if(status==='published')return `Published on the ORMA website from commit ${String(item.publicationCommit||'unknown').slice(0,7)}. The successful deployment receipt and live trail link are saved.`;
     if(status==='approved-for-pr-creation')return 'Approval consumed. ORMA automation is preparing the website pull request.';
     if(item.stream==='dossier'&&item.action==='request-revision')return 'Revision handed to the selected trail specialist.';
@@ -85,7 +83,6 @@
     if(item.stream==='new-trail')return item.action==='send-to-verification'?'Selection consumed; the candidate is entering the capacity-limited Existing Trails verification fleet.':'New Trail decision consumed and retained in the scouting audit trail.';
     if(item.stream==='hazard')return 'Groundskeeper decision consumed in the protected warning layer; the public website has not been changed.';
     if(item.stream==='editorial')return item.action==='approve'?'Editorial approval consumed; validation and publication have a separate durable receipt.':'Copywriter revision handed off; the revised comparison returns to Editorial.';
-    if(item.stream==='image')return 'Image sourcing route consumed. Actual asset and rights approval remain a separate human gate.';
     if(item.stream==='newsletter')return item.action==='approve'?'Newsletter approved for launch-gated handoff. No email was sent.':'Newsletter revision handed to the agent; the complete issue returns to the same desk.';
     if(item.stream==='analyst')return 'Analyst decision consumed. Design, implementation and Release retain their named human gates.';
     if(item.stream==='publication')return 'Publication decision consumed by ORMA automation.';
@@ -110,8 +107,6 @@
     const newTrailScouting=input.newTrailScouting||{candidates:[],summary:{}};const newTrailReviews=input.newTrailReviews||[];const newTrailStatus=input.newTrailStatus||{};
     const hazards=input.hazards||{hazards:[]};const hazardQueue=input.hazardQueue||{items:[]};const hazardReviews=input.hazardReviews||[];const hazardStatus=input.hazardStatus||{};
     const editorialPackets=(input.editorialPackets||[]).filter(packet=>!isPausedSafetyPacket(packet));const editorialReviews=input.editorialReviews||[];const editorialReceipts=input.editorialReceipts||{receipts:[]};const strategyStatus=input.strategyStatus||{};
-    const imageAudit=input.imageAudit||{gaps:[],summary:{}};const imageReviews=input.imageReviews||[];const imageResults=input.imageResults||{items:[]};
-    const imagePublicationRequests=input.imagePublicationRequests||{requests:[]};const imageStatus=input.imageStatus||{};
     const newsletterPacket=input.newsletterPacket||null;const newsletterReviews=input.newsletterReviews||[];const approvedNewsletters=input.approvedNewsletters||{issues:[]};
     const productIdeas=input.productIdeas||{ideas:[]};const analystReviews=input.analystReviews||[];const productInvestigations=input.productInvestigations||{items:[]};const productDesigns=input.productDesigns||{items:[]};
     const history=input.history||[];const allJobs=input.jobs||[];const timing=input.nowMs==null?{}:{nowMs:input.nowMs};const workerHealth=deriveWorkerHealth(input.workerHealth,timing);const campaignHealth=deriveCampaignHealth(input.campaignHealth,timing);
@@ -119,7 +114,7 @@
     const editorialParked=!strategyStatus.summary?.editorialStatus||String(strategyStatus.summary.editorialStatus).startsWith('parked');
     const analystParked=!strategyStatus.summary?.productStatus||String(strategyStatus.summary.productStatus).startsWith('parked');
     const trailJobs=allJobs.filter(job=>['trail-verification-specialist','trail-claim-resolution','verified-trail-editorial-first-pass','verified-trail-editorial-revision'].includes(job.jobType)||String(job.id||'').startsWith('trail-revision-'));
-    const hostedTeamJobs=allJobs.filter(job=>['hosted-editorial-revision','hosted-editorial-publication','hosted-image-sourcing','hosted-newsletter-revision','hosted-product-investigation','hosted-product-design','product-development-handoff'].includes(job.jobType)
+    const hostedTeamJobs=allJobs.filter(job=>['hosted-editorial-revision','hosted-editorial-publication','hosted-newsletter-revision','hosted-product-investigation','hosted-product-design','product-development-handoff'].includes(job.jobType)
       &&(!newsletterParked||job.jobType!=='hosted-newsletter-revision')
       &&(!editorialParked||!['hosted-editorial-revision','hosted-editorial-publication'].includes(job.jobType))
       &&(!analystParked||!['hosted-product-investigation','hosted-product-design','product-development-handoff'].includes(job.jobType)));
@@ -163,15 +158,7 @@
     const hazardHandoffs=hazardReviews.filter(review=>review.status==='queued').length;
     const latestEditorialReviews=new Map();for(const review of editorialReviews){const key=`${review.packetGeneratedAt}:${review.sourceRef}`;const current=latestEditorialReviews.get(key);if(!current||dateMs(review.processedAt||review.submittedAt)>=dateMs(current.processedAt||current.submittedAt))latestEditorialReviews.set(key,review);}
     const editorialItems=editorialParked?[]:editorialPackets.filter(packet=>{const review=latestEditorialReviews.get(`${packet.generatedAt}:${packet.subject?.sourceRef}`);return !review||['blocked','superseded'].includes(review.status);});
-    const latestImageReviews=latestReviewBy(imageReviews,'slug');const imageResultBySlug=new Map((imageResults.items||[]).map(item=>[item.slug,item]));
-    const imageRequestByTrail=new Map((imagePublicationRequests.requests||[]).map(item=>[item.trailId,item]));
-    const imageItems=(imageAudit.gaps||[]).filter(gap=>{const review=latestImageReviews.get(gap.slug);const result=imageResultBySlug.get(gap.slug);const request=imageRequestByTrail.get(gap.trailId||gap.slug);
-      const previewReady=(result?.candidates||[]).some(candidate=>candidate.status==='ready-for-asset-review');return !request&&(!review||['blocked','superseded'].includes(review.status)||previewReady);})
-      .sort((a,b)=>Number((imageResultBySlug.get(b.slug)?.candidates||[]).some(candidate=>candidate.status==='ready-for-asset-review'))-Number((imageResultBySlug.get(a.slug)?.candidates||[]).some(candidate=>candidate.status==='ready-for-asset-review')))
-      .slice(0,15);
     const editorialHandoffs=editorialParked?0:editorialReviews.filter(review=>['queued','processing'].includes(review.status)).length;
-    const imageHandoffs=imageReviews.filter(review=>['queued','processing'].includes(review.status)).length+(imagePublicationRequests.requests||[]).filter(request=>['approved-for-pr-creation','pr-materialized'].includes(request.status)).length;
-    const imagePrItems=(imagePublicationRequests.requests||[]).filter(request=>request.status==='awaiting-pr-merge'&&request.publicationPrUrl);
     const latestNewsletter=(newsletterReviews||[]).filter(review=>review.packetGeneratedAt===newsletterPacket?.generatedAt).sort((a,b)=>dateMs(b.processedAt||b.submittedAt)-dateMs(a.processedAt||a.submittedAt))[0];
     const newsletterItem=!newsletterParked&&newsletterPacket&&(newsletterPacket.outputs||[]).some(output=>output.status==='ready-for-review')&&(!latestNewsletter||['blocked','superseded'].includes(latestNewsletter.status))?newsletterPacket:null;
     const analystIdeaReviews=latestReviewBy((analystReviews||[]).filter(review=>(review.subjectType||'idea')==='idea'),'ideaId');
@@ -222,10 +209,6 @@
       description:'ORMA automation generated and tested the website change. This pull request is the final public-mutation gate.',
       next:'After you merge: the normal website deployment publishes the approved trail change.',href:request.pullRequestUrl,actionLabel:'Review GitHub PR',external:true,
     });
-    for(const request of imagePrItems)decisions.push({id:`image-pr-${request.id}`,kind:'pull-request',stage:'Trail photos · Final website diff',title:request.title||request.trailId,
-      description:'The approved trail photo and its rights metadata are in a tested website pull request.',next:'After you merge, the normal website deployment adds the photo to the trail.',
-      href:request.publicationPrUrl,actionLabel:'Review photo PR',external:true});
-    if(imageItems.length)decisions.push({id:'editorial-images',kind:'image',stage:'Editorial · Trail photos',title:`${plural(imageItems.length,'trail photo')} ${imageItems.length===1?'needs':'need'} routing`,description:'Upload your photo, choose an owned asset, request licensed sourcing or explicitly prepare an AI option.',next:'The Visual Director returns the exact asset for visual and rights approval before any publishing PR.',href:'image-coverage-desk.html',actionLabel:'Review trail photos'});
 
     const blockedCandidates=new Set();
     for(const item of dossierItems)if(item.approvalAllowed===false)blockedCandidates.add(item.candidateId||item.reviewId);
@@ -235,7 +218,6 @@
     if(newTrailStatus.status==='failed')blockedCandidates.add('new-trail-scouting');
     if(hazardStatus.status==='failed'||Number(hazardStatus.summary?.sourceFailures||0)>0)blockedCandidates.add('groundskeeper');
     if(strategyStatus.status==='failed')blockedCandidates.add('strategy-cycle');
-    if(imageStatus.status==='failed')blockedCandidates.add('trail-photo-coverage');
     if(String(strategyStatus.summary?.productStatus||'').startsWith('blocked:'))blockedCandidates.add('analyst-refresh');
 
     const activityById=new Map();
@@ -245,44 +227,51 @@
         :item.stream==='analyst'?productNames.get(item.ideaId)||item.ideaId
           :item.stream==='newsletter'?item.issueId||'Newsletter issue'
             :item.stream==='editorial'?item.sourceRef||'Guide copy'
-              :item.stream==='image'?item.slug||'Image coverage'
-                :names.get(candidateId)||item.trailName||candidateId;
+              :names.get(candidateId)||item.trailName||candidateId;
       activityById.set(`${item.stream}:${item.id}`,{...item,candidateId,title:title||'Trail workflow',at:dateMs(item.processedAt||item.submittedAt)});
     }
     for(const request of publicationRequests.requests||[]){
       activityById.set(`publication:${request.id}`,{...request,stream:'publication',title:names.get(request.candidateId)||request.targetTrailId||'Trail release',at:dateMs(request.deployedAt||request.publishedAt||request.acknowledgedAt||request.failedAt||request.reviewedAt)});
     }
-    for(const request of imagePublicationRequests.requests||[]){
-      activityById.set(`image-publication:${request.id}`,{...request,stream:'image-publication',pullRequestUrl:request.publicationPrUrl,title:request.title||request.trailId||'Trail photo',at:dateMs(request.deployedAt||request.publishedAt||request.prCreatedAt||request.approvedAt)});
-    }
     const activity=[...activityById.values()].sort((a,b)=>b.at-a.at).slice(0,8).map(item=>({...item,message:activityMessage(item)}));
     return {
-      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,imagePrItems,newTrailItems,hazardItems,editorialItems,imageItems,newsletterItem,analystIdeaItems,analystMockupItems,publicationInFlight,handoffsInFlight:handoffsInFlight+newTrailHandoffs+hazardHandoffs+editorialHandoffs+imageHandoffs+newsletterHandoffs+analystHandoffs,automationFailures,workerHealth,campaignHealth,
+      decisions,activity,activeJobs,dossierItems,contentItems,releaseItems,prItems,newTrailItems,hazardItems,editorialItems,newsletterItem,analystIdeaItems,analystMockupItems,publicationInFlight,handoffsInFlight:handoffsInFlight+newTrailHandoffs+hazardHandoffs+editorialHandoffs+newsletterHandoffs+analystHandoffs,automationFailures,workerHealth,campaignHealth,
       blockerCount:blockedCandidates.size,trackedTrails:orchestration.summary?.trails||(orchestration.trails||[]).length,
       newTrailProgress:{candidates:(newTrailScouting.candidates||[]).length,waiting:newTrailItems.length,inFlight:newTrailHandoffs,status:newTrailStatus.status||'not-run'},
       groundskeeperProgress:{active:(hazards.hazards||[]).filter(item=>item.state==='active').length,waiting:hazardItems.length,sourceFailures:Number(hazardStatus.summary?.sourceFailures||0),status:hazardStatus.status||'not-run'},
-      editorialProgress:{active:editorialParked?0:editorialPackets.length,waiting:editorialItems.length,inFlight:editorialHandoffs,imageGaps:imageItems.length,published:(editorialReceipts.receipts||[]).filter(item=>item.status==='published').length,pausedSafetyLibrary:true,status:strategyStatus.summary?.editorialStatus||'parked for MVP'},
+      editorialProgress:{active:editorialParked?0:editorialPackets.length,waiting:editorialItems.length,inFlight:editorialHandoffs,published:(editorialReceipts.receipts||[]).filter(item=>item.status==='published').length,pausedSafetyLibrary:true,status:strategyStatus.summary?.editorialStatus||'parked for MVP'},
       newsletterProgress:{ready:newsletterItem?1:0,inFlight:newsletterHandoffs,approved:(approvedNewsletters.issues||[]).length,status:strategyStatus.summary?.newsletterStatus||'not-run'},
       analystProgress:{ideas:analystParked?0:(productIdeas.ideas||[]).length,waiting:analystIdeaItems.length,mockups:analystMockupItems.length,inFlight:analystHandoffs,developerHandoffs:analystParked?0:allJobs.filter(job=>job.jobType==='product-development-handoff'&&job.status==='ready-for-review').length,status:strategyStatus.summary?.productStatus||'parked for MVP'},
-      summary:{needsYou:decisions.length,agentWork:activeJobs.length,blockers:blockedCandidates.size,prsReady:prItems.length+imagePrItems.length},
+      summary:{needsYou:decisions.length,agentWork:activeJobs.length,blockers:blockedCandidates.size,prsReady:prItems.length},
       pipeline:[
         {number:1,title:'Evidence',owner:dossierItems.length?'You':queuedDossierReviews.length?'System':activeTrailJobs.length?'Agents':'System',status:dossierItems.length?`${plural(dossierItems.length,'decision')} waiting`:queuedDossierReviews.length?`${plural(queuedDossierReviews.length,'decision')} being handed off`:activeTrailJobs.length?`${plural(activeTrailJobs.length,'job')} in progress`:'No decision waiting'},
         {number:2,title:'Agent resolution',owner:'Agents',status:activeTrailJobs.length?`${plural(activeTrailJobs.length,'job')} running or queued`:'No agent work queued'},
         {number:3,title:'Trail content',owner:contentItems.length?'You':queuedContentReviews.length?'System':'System',status:contentItems.length?`${plural(contentItems.length,'trail')} needs review`:queuedContentReviews.length?`${plural(queuedContentReviews.length,'decision')} being handed off`:'No content decision waiting'},
         {number:4,title:'Release mapping',owner:releaseItems.length?'You':automationFailures.length?'System':publicationInFlight?'System':'System',status:releaseItems.length?`${plural(releaseItems.length,'trail')} needs approval`:automationFailures.length?`${plural(automationFailures.length,'release')} blocked with a saved failure receipt`:publicationInFlight?`${plural(publicationInFlight,'approval')} being processed`:'No release approval waiting'},
-        {number:5,title:'Final PR',owner:prItems.length+imagePrItems.length?'You':'System',status:prItems.length+imagePrItems.length?`${plural(prItems.length+imagePrItems.length,'PR')} ready`:automationFailures.length?'PR creation is blocked until automation recovers':'No final PR waiting'},
+        {number:5,title:'Final PR',owner:prItems.length?'You':'System',status:prItems.length?`${plural(prItems.length,'PR')} ready`:automationFailures.length?'PR creation is blocked until automation recovers':'No final PR waiting'},
       ],
     };
   }
 
-  // One row per published trail, across the three lanes that are actually running.
-  // The point is inspection: seeing where 165 trails stand without opening a desk.
-  function buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration}={}){
-    const covered=new Set((imageAudit?.pages||[]).filter(page=>page.coverageState==='covered').map(page=>page.trailId||page.slug));
+  // One row per trail in the verification pipeline (verified or in-flight),
+  // annotated with any active or reported hazards. The point is inspection:
+  // seeing where trails stand and which carry a warning without opening a desk.
+  // Photos are sourced by hand outside the backoffice, so they are not tracked.
+  function buildCoverageGrid({hazards,verifiedRegistry,orchestration}={}){
     const verified=new Set((verifiedRegistry?.verified||[]).map(item=>item.trailId||item.candidateId).filter(Boolean));
+    const meta=new Map();
+    const remember=(id,source)=>{
+      if(!id)return;const existing=meta.get(id)||{};
+      meta.set(id,{
+        title:existing.title||source.title||source.trailName||source.name||id,
+        area:existing.area||source.area||'',valley:existing.valley||source.valley||'',region:existing.region||source.region||'',
+      });
+    };
+    for(const item of verifiedRegistry?.verified||[])remember(item.trailId||item.candidateId,item);
     const inFlight=new Map();
     for(const trail of orchestration?.trails||[]){
-      if(trail.trailId&&!verified.has(trail.trailId))inFlight.set(trail.trailId,trail.stage||trail.state||'in verification');
+      const id=trail.trailId;if(!id)continue;remember(id,trail);
+      if(!verified.has(id))inFlight.set(id,trail.stage||trail.state||'in verification');
     }
     const hazardsByTrail=new Map();
     for(const hazard of hazards?.hazards||[]){
@@ -292,35 +281,32 @@
           verificationState:hazard.verificationState||(hazard.origin==='community'?'reported-unverified':'authoritative'),
           origin:hazard.origin||'feed'});
         hazardsByTrail.set(trailId,current);
+        remember(trailId,{});
       }
     }
-    const rows=(imageAudit?.pages||[]).map(page=>{
-      const id=page.trailId||page.slug;
-      const trailHazards=hazardsByTrail.get(id)||[];
+    const rows=[...meta.keys()].map(id=>{
+      const info=meta.get(id);const trailHazards=hazardsByTrail.get(id)||[];
       return {
-        trailId:id,title:page.title,area:page.area||'',valley:page.valley||'',region:page.region||'',
-        photo:covered.has(id)?'covered':'missing',
+        trailId:id,title:info.title,area:info.area,valley:info.valley,region:info.region,
         verified:verified.has(id)?'verified':inFlight.has(id)?'in-progress':'not-started',
         verificationStage:inFlight.get(id)||null,
         hazards:trailHazards,
         hazardState:trailHazards.length
           ?(trailHazards.some(item=>item.verificationState!=='reported-unverified')?'active':'unconfirmed')
           :'clear',
-        priority:page.priority||(page.region==='dolomites'?'high':'medium'),
       };
     }).sort((a,b)=>
-      (a.photo===b.photo?0:a.photo==='missing'?-1:1)
+      (Number(a.verified==='verified')-Number(b.verified==='verified'))
       ||(a.region===b.region?0:a.region==='dolomites'?-1:1)
       ||String(a.valley).localeCompare(String(b.valley))
       ||String(a.title).localeCompare(String(b.title)));
     const count=(field,value)=>rows.filter(row=>row[field]===value).length;
     return {rows,summary:{
       trails:rows.length,
-      photoCovered:count('photo','covered'),photoMissing:count('photo','missing'),
       verified:count('verified','verified'),verificationInProgress:count('verified','in-progress'),
       trailsWithHazards:rows.filter(row=>row.hazards.length).length,
       unconfirmedHazards:count('hazardState','unconfirmed'),
-      complete:rows.filter(row=>row.photo==='covered'&&row.verified==='verified').length,
+      complete:count('verified','verified'),
     }};
   }
 

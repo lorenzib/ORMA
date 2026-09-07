@@ -68,7 +68,7 @@
 
   function activityTitle(item){
     const action=item.action||(item.decisions||[]).map(decision=>decision.action).filter(Boolean).join(', ');
-    const stream={dossier:'Evidence',content:'Trail content',publication:'Release','image-publication':'Trail photo','new-trail':'New Trail',hazard:'Hazard',image:'Trail photo'}[item.stream]||'Workflow';
+    const stream={dossier:'Evidence',content:'Trail content',publication:'Release','new-trail':'New Trail',hazard:'Hazard'}[item.stream]||'Workflow';
     return `${stream}${action?` · ${action.replace(/-/g,' ')}`:''}`;
   }
 
@@ -111,7 +111,6 @@
     set('publishedCount',model.summary.prsReady);
     set('existingCatalogueProgress',`${model.trackedTrails} tracked · ${model.summary.agentWork} jobs active · ${model.summary.blockers} blocked`);
     set('newTrailProgress',`${model.newTrailProgress.candidates} candidates · ${model.newTrailProgress.waiting} need you`);
-    set('photoProgress',`${model.editorialProgress.imageGaps} priority reviews active`);
     set('groundskeeperProgress',`${model.groundskeeperProgress.active} warnings · ${model.groundskeeperProgress.waiting} need review`);
     set('communityProgress',community.items.length?`${community.items.length} submissions need you`:'Queue clear');
     const workerMeta=model.workerHealth.state==='blocked'
@@ -135,10 +134,9 @@
   const HAZARD_LABEL={active:'Live',unconfirmed:'Unconfirmed',clear:'Clear'};
 
   function coverageMatches(row){
-    if(coverageFilter==='no-photo'&&row.photo!=='missing')return false;
     if(coverageFilter==='not-verified'&&row.verified==='verified')return false;
     if(coverageFilter==='hazard'&&!row.hazards.length)return false;
-    if(coverageFilter==='done'&&!(row.photo==='covered'&&row.verified==='verified'))return false;
+    if(coverageFilter==='done'&&row.verified!=='verified')return false;
     if(!coverageQuery)return true;
     return `${row.title} ${row.area} ${row.valley} ${row.trailId}`.toLowerCase().includes(coverageQuery);
   }
@@ -154,7 +152,6 @@
     const where=[row.valley||row.area,row.region==='dolomites'?'Dolomites':''].filter(Boolean).join(' · ');
     if(where)name.append(element('small','',where));
     tr.append(name);
-    tr.append(coverageCell(row.photo==='covered'?'ok':'todo',row.photo==='covered'?'Has one':'Needed'));
     tr.append(coverageCell(row.verified==='verified'?'ok':row.verified==='in-progress'?'progress':'todo',
       row.verified==='verified'?'Verified':row.verified==='in-progress'?(row.verificationStage||'In progress'):'Not started'));
     const hazard=coverageCell(row.hazardState==='active'?'alert':row.hazardState==='unconfirmed'?'progress':'ok',
@@ -174,8 +171,6 @@
     const caption=document.getElementById('coverageCaption');
     if(caption)caption.textContent=`${visible.length} of ${coverage.rows.length} trails`;
     const summary=coverage.summary||{};
-    set('coverageComplete',`${summary.complete||0}/${summary.trails||0}`);
-    set('coveragePhoto',`${summary.photoCovered||0}/${summary.trails||0}`);
     set('coverageVerified',`${summary.verified||0}/${summary.trails||0}`);
     set('coverageHazards',String(summary.trailsWithHazards||0));
   }
@@ -201,7 +196,7 @@
     set('dashboardUpdated','Refreshing protected Firestore…');
     try{
       const remote=await api();
-      const [orchestration,dossiers,execution,routeReview,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviewResult,hazards,hazardQueue,hazardStatus,hazardReviewResult,imageAudit,imageResults,imagePublicationRequests,imageStatus,imageReviewResult,jobResult,historyResult,communityResult,verifiedRegistry]=await Promise.all([
+      const [orchestration,dossiers,execution,routeReview,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviewResult,hazards,hazardQueue,hazardStatus,hazardReviewResult,jobResult,historyResult,communityResult,verifiedRegistry]=await Promise.all([
         required(remote,'trail-orchestration'),
         required(remote,'dossier-review-queue'),
         required(remote,'verified-trail-editorial-execution'),
@@ -217,11 +212,6 @@
         optional(remote,'hazard-review-queue',{items:[]}),
         optional(remote,'hazard-watch-status',{}),
         remote.getHazardReviews(),
-        optional(remote,'image-coverage',{gaps:[],summary:{}}),
-        optional(remote,'image-coverage-results',{items:[]}),
-        optional(remote,'trail-image-publication-requests',{requests:[]}),
-        optional(remote,'trail-image-coverage-status',{}),
-        remote.getImageReviews(),
         remote.getRevisionJobs(),
         remote.getDecisionHistory(),
         remote.getModerationQueue(),
@@ -231,13 +221,12 @@
       if(!historyResult?.ok)throw new Error(`Could not load decision receipts: ${historyResult?.error||'unknown error'}`);
       if(!newTrailReviewResult?.ok)throw new Error(`Could not load New Trail decisions: ${newTrailReviewResult?.error||'unknown error'}`);
       if(!hazardReviewResult?.ok)throw new Error(`Could not load hazard decisions: ${hazardReviewResult?.error||'unknown error'}`);
-      if(!imageReviewResult?.ok)throw new Error(`Could not load image decisions: ${imageReviewResult?.error||'unknown error'}`);
       if(!communityResult?.ok)throw new Error(`Could not load community moderation: ${communityResult?.error||'unknown error'}`);
 
       const strategyStatus={summary:{editorialStatus:'parked for MVP',newsletterStatus:'parked for MVP',productStatus:'parked for MVP'}};
-      const model=window.ORMADashboardModel.buildDashboardModel({orchestration,dossiers,execution,routeReview,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviews:newTrailReviewResult.reviews||[],hazards,hazardQueue,hazardStatus,hazardReviews:hazardReviewResult.reviews||[],strategyStatus,imageAudit,imageResults,imagePublicationRequests,imageStatus,imageReviews:imageReviewResult.reviews||[],jobs:jobResult.jobs||[],history:historyResult.decisions||[]});
+      const model=window.ORMADashboardModel.buildDashboardModel({orchestration,dossiers,execution,routeReview,publication,publicationRequests,workerHealth,campaignHealth,newTrailScouting,newTrailStatus,newTrailReviews:newTrailReviewResult.reviews||[],hazards,hazardQueue,hazardStatus,hazardReviews:hazardReviewResult.reviews||[],strategyStatus,jobs:jobResult.jobs||[],history:historyResult.decisions||[]});
       document.getElementById('executiveDecisionQueue').classList.remove('is-error');
-      coverage=window.ORMADashboardModel.buildCoverageGrid({imageAudit,hazards,verifiedRegistry,orchestration});
+      coverage=window.ORMADashboardModel.buildCoverageGrid({hazards,verifiedRegistry,orchestration});
       renderCoverage();
       render(model,communityResult);
       seconds=REFRESH_SECONDS;

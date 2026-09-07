@@ -12,8 +12,6 @@ on:
       - trail-content-desk.js
       - editorial-desk.html
       - editorial-desk.js
-      - image-coverage-hosted.html
-      - image-coverage-hosted.js
       - newsletter-hosted.html
       - newsletter-hosted.js
       - analyst-hosted.html
@@ -42,8 +40,6 @@ on:
       - trail-content-desk.js
       - editorial-desk.html
       - editorial-desk.js
-      - image-coverage-hosted.html
-      - image-coverage-hosted.js
       - newsletter-hosted.html
       - newsletter-hosted.js
       - analyst-hosted.html

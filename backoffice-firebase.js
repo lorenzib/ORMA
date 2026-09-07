@@ -86,7 +86,7 @@ const DECISION_HISTORY_PER_SOURCE=6;
 async function getDecisionHistory(){
   if(!await moderatorIdentity())return {ok:false,error:'moderator-required',decisions:[]};
   try{
-    const sources=[['backofficeDossierReviews','dossier'],['backofficeReviews','content'],['backofficePublicationReviews','publication'],['backofficeNewTrailReviews','new-trail'],['backofficeHazardReviews','hazard'],['backofficeEditorialReviews','editorial'],['backofficeImageReviews','image'],['backofficeNewsletterReviews','newsletter'],['backofficeAnalystReviews','analyst']];
+    const sources=[['backofficeDossierReviews','dossier'],['backofficeReviews','content'],['backofficePublicationReviews','publication'],['backofficeNewTrailReviews','new-trail'],['backofficeHazardReviews','hazard'],['backofficeEditorialReviews','editorial'],['backofficeNewsletterReviews','newsletter'],['backofficeAnalystReviews','analyst']];
     const snapshots=await Promise.all(sources.map(([name])=>getDocs(query(collection(db,name),orderBy('submittedAt','desc'),limit(DECISION_HISTORY_PER_SOURCE)))));
     const decisions=snapshots.flatMap((snapshot,index)=>snapshot.docs.map(item=>({id:item.id,stream:sources[index][1],...item.data()})))
       .sort((a,b)=>(b.submittedAt?.seconds||0)-(a.submittedAt?.seconds||0)).slice(0,30);
@@ -143,65 +143,6 @@ async function submitEditorialReview(input){
   const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
   try{const review=await addDoc(collection(db,'backofficeEditorialReviews'),{contractVersion:'1.0.0',type:'website-editorial-review',status:'queued',packetGeneratedAt:String(input.packetGeneratedAt||''),sourceRef:String(input.sourceRef||''),action:String(input.action||''),note:String(input.note||'').trim().slice(0,1500),edits:Array.isArray(input.edits)?input.edits.slice(0,20):[],submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false});return {ok:true,reviewId:review.id,status:'queued'};}
   catch(error){console.error('submitEditorialReview failed:',error);return {ok:false,error:'editorial-review-submit-failed'};}
-}
-
-async function getImageReviews(){
-  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',reviews:[]};
-  try{const snapshot=await getDocs(query(collection(db,'backofficeImageReviews'),orderBy('submittedAt','desc'),limit(500)));return {ok:true,reviews:snapshot.docs.map(item=>({id:item.id,...item.data()}))};}
-  catch(error){console.error('getImageReviews failed:',error);return {ok:false,error:'image-review-read-failed',reviews:[]};}
-}
-
-async function submitImageReview(input){
-  const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
-  try{const review=await addDoc(collection(db,'backofficeImageReviews'),{
-    contractVersion:'2.1.0',type:'image-coverage-review',status:'queued',slug:String(input.slug||''),
-    trailId:String(input.trailId||input.slug||''),action:String(input.action||''),
-    note:String(input.note||'').trim().slice(0,1500),assetRef:String(input.assetRef||'').slice(0,1000),
-    uploadRef:String(input.uploadRef||'').slice(0,1000),fileName:String(input.fileName||'').slice(0,240),
-    mimeType:String(input.mimeType||'').slice(0,120),fileSize:Number(input.fileSize||0),
-    width:Number(input.width||0),height:Number(input.height||0),creator:String(input.creator||'').trim().slice(0,160),
-    rightsBasis:String(input.rightsBasis||'').slice(0,80),altText:String(input.altText||'').trim().slice(0,500),
-    sourcePageUrl:String(input.sourcePageUrl||'').slice(0,1000),license:String(input.license||'').slice(0,160),
-    licenseUrl:String(input.licenseUrl||'').slice(0,1000),sourceType:String(input.sourceType||'').slice(0,80),
-    submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false,
-  });return {ok:true,reviewId:review.id,status:'queued'};}
-  catch(error){console.error('submitImageReview failed:',error);return {ok:false,error:'image-review-submit-failed'};}
-}
-
-function safeTrailId(value){return String(value||'').toLowerCase().replace(/[^a-z0-9_-]+/g,'-').replace(/^-+|-+$/g,'').slice(0,100);}
-function safeFileName(value){const cleaned=String(value||'trail-photo.jpg').replace(/[^a-zA-Z0-9._-]+/g,'-').replace(/^-+|-+$/g,'');return cleaned.slice(-180)||'trail-photo.jpg';}
-function fileDataUrl(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result||''));reader.onerror=()=>reject(new Error('Could not prepare this photo.'));reader.readAsDataURL(file);});}
-
-async function uploadTrailImage(input){
-  const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
-  const file=input?.file;const trailId=safeTrailId(input?.trailId);
-  if(!trailId||!file)return {ok:false,error:'trail-and-file-required'};
-  if(!/^image\/(?:jpeg|png|webp)$/i.test(file.type||''))return {ok:false,error:'unsupported-image-type'};
-  if(file.size<=0||file.size>560*1024)return {ok:false,error:'image-size-invalid'};
-  if(input.rightsBasis!=='orma-owned'&&input.rightsBasis!=='permission-granted')return {ok:false,error:'image-rights-required'};
-  const uploadDocument=doc(collection(db,'backofficeImageUploads'));const uploadRef=`backofficeImageUploads/${uploadDocument.id}`;
-  try{
-    const uploadData=await fileDataUrl(file);
-    await setDoc(uploadDocument,{contractVersion:'1.0.0',type:'trail-image-upload',trailId,fileName:safeFileName(file.name),mimeType:file.type,
-      fileSize:file.size,width:Number(input.width||0),height:Number(input.height||0),uploadData,uploadedAt:serverTimestamp(),
-      uploadedBy:moderator.uid,publicMutationAllowed:false});
-    const review=await submitImageReview({...input,slug:trailId,trailId,action:'upload-owner-photo',assetRef:uploadRef,uploadRef,
-      fileName:file.name,mimeType:file.type,fileSize:file.size});
-    if(!review.ok){await deleteDoc(uploadDocument).catch(()=>{});return review;}
-    return {...review,uploadRef};
-  }catch(error){console.error('uploadTrailImage failed:',error);return {ok:false,error:error.code||'trail-image-upload-failed'};}
-}
-
-async function getTrailImagePreview(uploadRef){
-  if(!await moderatorIdentity())return {ok:false,error:'moderator-required'};
-  const path=String(uploadRef||'');const match=path.match(/^backofficeImageUploads\/([A-Za-z0-9_-]+)$/);
-  if(!match)return {ok:false,error:'invalid-upload-reference'};
-  try{
-    const snapshot=await getDoc(doc(db,'backofficeImageUploads',match[1]));if(!snapshot.exists())return {ok:false,error:'upload-not-found'};
-    const data=snapshot.data();if(!String(data.uploadData||'').startsWith('data:image/'))return {ok:false,error:'invalid-upload-data'};
-    return {ok:true,url:data.uploadData};
-  }
-  catch(error){return {ok:false,error:error.code||'trail-image-preview-failed'};}
 }
 
 async function getNewsletterReviews(){
@@ -391,7 +332,7 @@ window.DoloPawsAuth={
   async logOut(){await signOut(auth);currentUser=null;},
 };
 window.DoloPawsModeration={getModeratorStatus:async()=>({ok:!!await moderatorIdentity()}),getQueue:getModerationQueue,decide:moderateContent,getSiteNotices,addSiteNotice,deleteSiteNotice};
-window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getImageReviews,getNewsletterReviews,getAnalystReviews,getModerationQueue,moderateContent,submitTrailReview,submitPublicationReview,submitDossierReview,getRouteReviews,submitRouteReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitImageReview,uploadTrailImage,getTrailImagePreview,submitNewsletterReview,submitAnalystReview};
+window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getNewsletterReviews,getAnalystReviews,getModerationQueue,moderateContent,submitTrailReview,submitPublicationReview,submitDossierReview,getRouteReviews,submitRouteReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitNewsletterReview,submitAnalystReview};
 
 onAuthStateChanged(auth,user=>{
   currentUser=user;

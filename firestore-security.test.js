@@ -20,16 +20,13 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(firebaseConfig.storage).toBeUndefined();
   });
 
-  test('trail-photo uploads use a bounded private Firestore staging queue',()=>{
-    const uploadBlock=rules.slice(rules.indexOf('match /backofficeImageUploads'),rules.indexOf('match /backofficeNewsletterReviews'));
-    expect(uploadBlock).toContain('allow get: if isModerator();');
-    expect(uploadBlock).toContain('allow list: if false;');
-    expect(uploadBlock).toContain('request.resource.data.fileSize <= 573440');
-    expect(uploadBlock).toContain('request.resource.data.uploadData.size() <= 800000');
-    expect(uploadBlock).toContain("request.resource.data.mimeType in ['image/jpeg', 'image/png', 'image/webp']");
-    expect(uploadBlock).toContain('allow update: if false;');
-    expect(rules).toContain("'upload-owner-photo', 'approve-uploaded-photo', 'approve-image-candidate'");
-    expect(rules).toContain("request.resource.data.uploadRef.matches('^backofficeImageUploads/[A-Za-z0-9_-]+$')");
+  test('the trail-photo staging and review collections are gone',()=>{
+    // Trail photos are sourced by hand outside the backoffice, so their Firestore
+    // upload and review collections no longer exist in the rules.
+    expect(rules).not.toContain('match /backofficeImageUploads');
+    expect(rules).not.toContain('match /backofficeImageReviews');
+    expect(rules).not.toContain("'upload-owner-photo'");
+    expect(rules).not.toContain("request.resource.data.type == 'image-coverage-review'");
   });
 
   test('every client-side collection has an explicit rule boundary', () => {
@@ -52,8 +49,6 @@ describe('SEC-01 Firestore configuration contract', () => {
       'backofficeNewTrailReviews',
       'backofficeHazardReviews',
       'backofficeEditorialReviews',
-      'backofficeImageReviews',
-      'backofficeImageUploads',
       'backofficeNewsletterReviews',
       'backofficeAnalystReviews',
     ];
@@ -77,7 +72,6 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain("request.resource.data.type == 'new-trail-selection'");
     expect(rules).toContain("request.resource.data.type == 'hazard-resolution-review'");
     expect(rules).toContain("request.resource.data.type == 'website-editorial-review'");
-    expect(rules).toContain("request.resource.data.type == 'image-coverage-review'");
     expect(rules).toContain("request.resource.data.type == 'newsletter-issue-review'");
     expect(rules).toContain("request.resource.data.type == 'analyst-opportunity-review'");
     expect(rules).toContain("request.resource.data.action in ['approve', 'request-revision', 'reject']");

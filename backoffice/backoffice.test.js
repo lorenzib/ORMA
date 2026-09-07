@@ -118,8 +118,6 @@ function unresolvedRouteGuidanceClaims(){
     rationale:'No authoritative source located.',sources:[],blockers:[`${id}-unresolved`],
   }));
 }
-const { imageSignals, auditImageCoverage } = require('./workflows/audit-image-coverage');
-const { applyImageCoverageReview } = require('./workflows/image-coverage-review');
 const { parseAtomFeed, buildHazardArtifacts, applyHazardReview } = require('./workflows/dynamic-hazards');
 const { planNewTrailScouting } = require('./workflows/plan-new-trail-scouting');
 const { candidateToTrail, selectedNewTrails, admitNewTrailIntake } = require('./workflows/new-trail-intake');
@@ -1477,29 +1475,6 @@ describe('ORMA backoffice MVP', () => {
 
 
 
-
-  test('trail-photo coverage audits every production trail and ranks Dolomites gaps first', async () => {
-    expect(imageSignals('<img src="../images/editorial/paw.jpg" alt="Paw">').editorialImages).toEqual(['../images/editorial/paw.jpg']);
-    const root=require('path').resolve(__dirname,'..');const production=require('../scripts/load-production-trails').loadProductionTrails(root);
-    const audit=await auditImageCoverage(root,{at:'2026-08-19T10:00:00.000Z'});
-    expect(audit.mode).toBe('trail-photo-coverage-audit');
-    expect(audit.summary.trailsScanned).toBe(production.length);
-    expect(audit.summary.missing).toBe(production.filter(trail=>!trail.imageIcon&&!trail.heroImage).length);
-    expect(audit.summary.dolomitesMissing).toBe(production.filter(trail=>trail.region==='dolomites'&&!trail.imageIcon&&!trail.heroImage).length);
-    expect(audit.gaps[0].region).toBe('dolomites');
-    expect(audit.gaps.map(gap=>gap.slug)).not.toContain('tre-cime');
-    expect(audit.pages.find(page=>page.slug==='tre-cime').coverageState).toBe('covered');
-    expect(audit.pages.find(page=>page.slug==='tre-cime').existingAssets).toContain('images/tre-cime-hero.jpg');
-    const expectedDolomitesGap=production.find(trail=>trail.region==='dolomites'&&!trail.imageIcon&&!trail.heroImage);
-    expect(expectedDolomitesGap).toBeDefined();
-    expect(audit.pages.find(page=>page.slug===expectedDolomitesGap.id)).toEqual(expect.objectContaining({coverageState:'missing',sourceRef:`trail.html?id=${expectedDolomitesGap.id}`,priority:'high'}));
-  });
-
-  test('image sourcing stays queued behind asset approval', () => {
-    const audit={gaps:[{slug:'seceda',trailId:'seceda',sourceRef:'trail.html?id=seceda',reasons:['Missing cover photo'],libraryMatches:[]}]};
-    const review=applyImageCoverageReview(audit,{decisions:[],jobs:[]},{slug:'seceda',action:'find-licensed',note:'Look for a correctly licensed summer view.'},'2026-08-19T10:00:00.000Z');
-    expect(review.jobs[0]).toEqual(expect.objectContaining({agentId:'visualDirector',status:'queued',requiresAssetApproval:true,publicMutationAllowed:false}));
-  });
 
   test('authoritative severe-weather alerts map to affected ORMA trails without claiming closure', () => {
     const xml=`<feed xmlns="http://www.w3.org/2005/Atom" xmlns:cap="urn:oasis:names:tc:emergency:cap:1.2"><entry><id>alert-1</id><title>Orange wind warning</title><updated>2026-08-19T05:00:00Z</updated><link href="https://example.test/cap" type="application/cap+xml"/><cap:identifier>official-1</cap:identifier><cap:event>Wind</cap:event><cap:areaDesc>Veneto</cap:areaDesc><cap:severity>Severe</cap:severity><cap:certainty>Likely</cap:certainty><cap:expires>2026-08-20T05:00:00Z</cap:expires></entry></feed>`;

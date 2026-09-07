@@ -13,8 +13,6 @@ const COLLECTIONS = Object.freeze({
   newTrailReviews:'backofficeNewTrailReviews',
   hazardReviews:'backofficeHazardReviews',
   editorialReviews:'backofficeEditorialReviews',
-  imageReviews:'backofficeImageReviews',
-  imageUploads:'backofficeImageUploads',
   hazardReports:'trailHazardReports',
   newsletterReviews:'backofficeNewsletterReviews',
   analystReviews:'backofficeAnalystReviews',
@@ -89,19 +87,6 @@ class FirestoreBackofficeStore {
     });
     if(created)this.artifactCache.set(id,data);else this.artifactCache.delete(id);
     return created;
-  }
-
-  async getImageUpload(reference){
-    const match=String(reference||'').match(/^backofficeImageUploads\/([A-Za-z0-9_-]+)$/);
-    if(!match)throw new Error('Invalid temporary trail image reference');
-    const snapshot=await this.db.collection(COLLECTIONS.imageUploads).doc(match[1]).get();
-    return snapshot.exists?{id:snapshot.id,...snapshot.data()}:null;
-  }
-
-  async deleteImageUpload(reference){
-    const match=String(reference||'').match(/^backofficeImageUploads\/([A-Za-z0-9_-]+)$/);
-    if(!match)throw new Error('Invalid temporary trail image reference');
-    await this.db.collection(COLLECTIONS.imageUploads).doc(match[1]).delete();
   }
 
   async putJob(job){
@@ -344,14 +329,6 @@ class FirestoreBackofficeStore {
 
   async markEditorialReview(id,status,fields={}){
     return this.markReviewCollection(COLLECTIONS.editorialReviews,id,status,fields);
-  }
-
-  async listImageReviews(status='queued'){
-    return this.listReviewCollection(COLLECTIONS.imageReviews,status);
-  }
-
-  async markImageReview(id,status,fields={}){
-    return this.markReviewCollection(COLLECTIONS.imageReviews,id,status,fields);
   }
 
   async listNewsletterReviews(status='queued'){

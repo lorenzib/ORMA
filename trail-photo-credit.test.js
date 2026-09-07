@@ -76,13 +76,12 @@ describe('every licensed trail photo is credited on its page',()=>{
   });
 });
 
-const {orderedByTrailId}=require('./backoffice/workflows/materialize-approved-trail-images');
+// Photos are committed by hand now (the backoffice no longer materialises them),
+// so this is the ordering rule those manual edits must follow. Keeping the ledger
+// in trail-id order sends batches prepared side by side to different parts of the
+// file, which git can merge on its own.
+const orderedByTrailId=entries=>[...entries].sort((a,b)=>String(a.id).localeCompare(String(b.id)));
 
-// The ledger is one array that every photo batch writes to. Appending put each
-// new entry on the same lines, so two batches prepared side by side collided
-// even when their photographs were for different trails and nothing about them
-// disagreed. Keeping the file in trail-id order sends them to different parts of
-// it, which git can merge on its own.
 describe('the photo ledger stays in trail-id order',()=>{
   test('the committed file is ordered',()=>{
     const ids=(overrides.trails||[]).map(entry=>entry.id);
