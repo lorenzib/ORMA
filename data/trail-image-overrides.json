@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T16:56:37.540Z",
+  "updatedAt": "2026-09-07T19:18:11.944Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -373,6 +373,23 @@
         "imageLicence": "CC BY-SA 2.0 de",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/de/deed.en",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Prags_(Schmieden%2C_Ferrara).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12047303",
+      "approvedReviewId": "commons-osm-12047303",
+      "approvedAt": "2026-09-07T19:18:11.924Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12047303-toblacher-see.jpg",
+        "heroImage": "images/trails/osm-12047303-toblacher-see.jpg",
+        "imageAlt": "Orchids in a wet meadow along the green water of the Toblach lake, with walkers on the shore path and Dolomite towers above the forest.",
+        "imageCredit": "Lago di Dobbiaco",
+        "imageCreditText": "Lago di Dobbiaco by Samuel Boatto",
+        "imageCreator": "Samuel Boatto",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Dobbiaco_(10).jpg",
         "imageSourceType": "licensed-source"
       }
     },
