@@ -21,10 +21,17 @@ describe('reliable catalogue campaign scheduling',()=>{
     expect(campaignEligibility(previous,{at,force:true}).due).toBe(true);
   });
 
+  // Eligibility lands on the next campaign window (09:30 Europe/Rome), not 24
+  // hours after completion. A rolling interval let a run at an odd hour push the
+  // next one past the cron: a success at 12:12 made the 09:30 cron four hours
+  // early, and the day was skipped. Here the run completes at 08:16 Rome, before
+  // that morning's window, so it becomes eligible at 09:30 the same day rather
+  // than at 08:16 tomorrow -- a run before the quota reset must not consume the
+  // day it never got to use.
   test('records running and healthy receipts and creates an idempotent admission job',async()=>{
     const store=memoryStore();
     const result=await runScheduledTrailCampaign(store,trails,{enabled:true,at,completedAt:'2026-08-20T06:16:00.000Z',runId:'123',workflowRunUrl:'https://github.com/lorenzib/ORMA/actions/runs/123'});
-    expect(result).toEqual(expect.objectContaining({status:'completed',jobIds:['trail-verification-trail-a-cartographer-1'],nextEligibleAt:'2026-08-21T06:16:00.000Z'}));
+    expect(result).toEqual(expect.objectContaining({status:'completed',jobIds:['trail-verification-trail-a-cartographer-1'],nextEligibleAt:'2026-08-20T07:30:00.000Z'}));
     expect([...store.jobs]).toHaveLength(1);
     expect(store.writes.filter(write=>write.id==='trail-campaign-health').map(write=>write.value.status)).toEqual(['running','healthy']);
     expect(store.artifacts['trail-campaign-health']).toEqual(expect.objectContaining({status:'healthy',lastResult:expect.objectContaining({admitted:1,remainingQueueable:0})}));

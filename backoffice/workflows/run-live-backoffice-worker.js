@@ -340,6 +340,13 @@ async function runLiveBackofficeWorker(store, options = {}){
   const recoveredJobs = typeof store.recoverExpiredJobs === 'function'
     ? await store.recoverExpiredJobs(options)
     : [];
+  // Work retired by a provider outage before the outage guard existed. Blocked
+  // is terminal and putJobIfAbsent will not recreate an existing job, so this is
+  // the only way those trails re-enter the queue. Bounded per pass so a backlog
+  // drains steadily instead of arriving all at once.
+  const requeuedAfterOutage = typeof store.requeueOutageBlockedJobs === 'function'
+    ? await store.requeueOutageBlockedJobs({ ...options, limit: options.outageRequeueLimit })
+    : [];
   const dossierReviews=await ingestDossierReviews(store);
   const advancementBefore=await advanceTrailOrchestration(store,options);
   const reviews = await ingestTrailReviews(store, options);
@@ -350,7 +357,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   const imageOperations=await processImageJobs(store,options);
   const promotedUploads=await promotePendingOwnerUploads(store,options).catch(error=>({promoted:[],error:String(error.message||error).slice(0,500)}));
   const publications = await ingestPublicationReviews(store);
-  return { workerId:options.workerId || null,campaign,trailPhotoBackfill,newTrailReviews,hazardReviews,communityHazards,imageReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,imageOperations,promotedUploads,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,trailPhotoBackfill,newTrailReviews,hazardReviews,communityHazards,imageReviews,recoveredJobs,requeuedAfterOutage, dossierReviews, advancementBefore,reviews,editorialFirstPass,imageOperations,promotedUploads,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
 module.exports = { iso, refreshTrailPhotoBackfill, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestImageReviews,processImageJobs,ingestPublicationReviews,runLiveBackofficeWorker };
