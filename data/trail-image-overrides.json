@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T19:47:04.641Z",
+  "updatedAt": "2026-09-07T19:55:05.873Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -411,6 +411,40 @@
       }
     },
     {
+      "id": "osm-12118490",
+      "approvedReviewId": "commons-osm-12118490",
+      "approvedAt": "2026-09-07T19:55:05.873Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12118490-montvernier.jpg",
+        "heroImage": "images/trails/osm-12118490-montvernier.jpg",
+        "imageAlt": "The village of Montvernier on its wooded shelf above the Maurienne, hay meadows below it and mixed woodland running up the slope behind.",
+        "imageCredit": "Montvernier, panoramique",
+        "imageCreditText": "Montvernier, panoramique by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Montvernier%2C_panoramique_(2015).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12121548",
+      "approvedReviewId": "commons-osm-12121548",
+      "approvedAt": "2026-09-07T19:55:05.873Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12121548-massif-lauziere.jpg",
+        "heroImage": "images/trails/osm-12121548-massif-lauziere.jpg",
+        "imageAlt": "Autumn pasture and turning larch above Montpascal, with the Lauzière massif across the valley under a clear sky.",
+        "imageCredit": "Massif de la Lauzière",
+        "imageCreditText": "Massif de la Lauzière by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Massif_de_la_Lauzi%C3%A8re%2C_panoramique.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-12127424",
       "approvedReviewId": "commons-osm-12127424",
       "approvedAt": "2026-09-06T14:59:12.500Z",
@@ -717,6 +751,40 @@
       }
     },
     {
+      "id": "osm-14376573",
+      "approvedReviewId": "commons-osm-14376573",
+      "approvedAt": "2026-09-07T19:55:05.873Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14376573-cairn-pointe-emy.jpg",
+        "heroImage": "images/trails/osm-14376573-cairn-pointe-emy.jpg",
+        "imageAlt": "The dry-stone cairn on the pointe d’Émy, built up on a stony ridge above a sea of cloud filling the Maurienne.",
+        "imageCredit": "Cairn de la pointe d’Émy",
+        "imageCreditText": "Cairn de la pointe d’Émy by Patrick OTER",
+        "imageCreator": "Patrick OTER",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cairn_de_la_pointe_d%27%C3%89my_02.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-14378946",
+      "approvedReviewId": "commons-osm-14378946",
+      "approvedAt": "2026-09-07T19:55:05.873Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14378946-lac-de-pramol.jpg",
+        "heroImage": "images/trails/osm-14378946-lac-de-pramol.jpg",
+        "imageAlt": "The Lac de Pramol in August, dark green under a wooded slope, with the shore path and a walker on the far bank.",
+        "imageCredit": "Lac de Pramol",
+        "imageCreditText": "Lac de Pramol by Patrick OTER",
+        "imageCreator": "Patrick OTER",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lac_de_Pramol.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-14379937",
       "approvedReviewId": "commons-osm-14379937",
       "approvedAt": "2026-09-06T13:11:45.902Z",
@@ -730,6 +798,23 @@
         "imageLicence": "CC BY 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:%C3%89pilobe_devant_les_montagnes.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-15321049",
+      "approvedReviewId": "commons-osm-15321049",
+      "approvedAt": "2026-09-07T19:55:05.873Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-15321049-isere-seez.jpg",
+        "heroImage": "images/trails/osm-15321049-isere-seez.jpg",
+        "imageAlt": "The Isère running white over rocks through riverside woodland at Séez, alder and ash closing in on both banks.",
+        "imageCredit": "Isère à Séez",
+        "imageCreditText": "Isère à Séez by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Is%C3%A8re_%C3%A0_S%C3%A9ez_en_direction_de_Sainte-Foy-Tarentaise_(juin_2026).JPG",
         "imageSourceType": "licensed-source"
       }
     },
@@ -764,6 +849,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lac_vert_de_passy_(2).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-16218739",
+      "approvedReviewId": "commons-osm-16218739",
+      "approvedAt": "2026-09-07T19:55:05.873Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-16218739-tarentaise-beaufortain.jpg",
+        "heroImage": "images/trails/osm-16218739-tarentaise-beaufortain.jpg",
+        "imageAlt": "A summer morning over the Tarentaise valley from Vallandry, meadow in the foreground and the Beaufortain ridge beyond the forested slopes.",
+        "imageCredit": "Moyenne Tarentaise et Beaufortain",
+        "imageCreditText": "Moyenne Tarentaise et Beaufortain by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Moyenne_Tarentaise_et_Beaufortain_c%C3%B4t%C3%A9_Aime_(ao%C3%BBt_2024).JPG",
         "imageSourceType": "licensed-source"
       }
     },
@@ -900,6 +1002,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Picco_Ivigna_nelle_Alpi_Sarentine_visto_da_Verano%2C_BZ.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-19760372",
+      "approvedReviewId": "commons-osm-19760372",
+      "approvedAt": "2026-09-07T19:55:05.873Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19760372-le-morel.jpg",
+        "heroImage": "images/trails/osm-19760372-le-morel.jpg",
+        "imageAlt": "The Morel river stepping over its weirs into clear green pools, spruce woods on both banks and a track along the near side.",
+        "imageCredit": "Le Morel et ses seuils",
+        "imageCreditText": "Le Morel et ses seuils by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Le_Morel_et_ses_seuils_au_matin_(ao%C3%BBt_2025).JPG",
         "imageSourceType": "licensed-source"
       }
     },
