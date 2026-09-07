@@ -16,8 +16,6 @@ const {applyNewTrailReview}=require('./plan-new-trail-scouting');
 const {admitNewTrailIntake}=require('./new-trail-intake');
 const {applyHazardReview}=require('./dynamic-hazards');
 const {runHazardVetting,applyHazardVetting,expireCommunityHazards}=require('./community-hazard-vetting');
-const {ingestImageReviews,processImageJobs,promotePendingOwnerUploads,retireAutomatedImageSourcing}=require('./hosted-image-coverage');
-const {auditImageCoverage}=require('./audit-image-coverage');
 const {validateContentExecution}=require('../contracts/content-result-v1');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
 const path=require('path');
@@ -265,27 +263,6 @@ async function ingestHazardReviews(store){
   return outcomes;
 }
 
-// Trail-photo coverage is a finite backfill, not a standing audit. It rides the
-// worker pass instead of a scheduled workflow: the scan is a local filesystem read,
-// so the only Firestore cost is one artifact write, and it stops on its own once
-// every published trail has a photo.
-async function refreshTrailPhotoBackfill(store,options={}){
-  const root=options.root||path.resolve(__dirname,'../..');
-  const at=options.at||new Date().toISOString();
-  try{
-    const audit=await auditImageCoverage(root,{at,trails:options.productionTrails});
-    if(!audit.gaps.length){
-      await store.setArtifact('image-coverage',audit,{mode:audit.mode,publicMutationAllowed:false});
-      return {status:'complete',...audit.summary};
-    }
-    const {retired}=await retireAutomatedImageSourcing(store,{at});
-    await store.setArtifact('image-coverage',audit,{mode:audit.mode,publicMutationAllowed:false});
-    return {status:'running',...audit.summary,retiredSourcingJobs:retired.length};
-  }catch(error){
-    return {status:'failed',error:String(error.message||error).slice(0,2000)};
-  }
-}
-
 // Customer hazard reports never wait for a person. Each pending report is vetted
 // against independent sources by the Hazard Analyst, then published, published
 // under an explicit unverified label, or rejected. Published community hazards
@@ -330,11 +307,9 @@ async function runLiveBackofficeWorker(store, options = {}){
   const campaign=await runScheduledTrailCampaign(store,productionTrails,{enabled:options.campaignEnabled===true,
     at:options.at,limit:options.campaignLimit||DEFAULT_CAMPAIGN_LIMIT,capacity:options.campaignCapacity||DEFAULT_TRAIL_CAPACITY,trigger:options.campaignTrigger,
     workflowRunUrl:options.workflowRunUrl,runId:options.runId});
-  const trailPhotoBackfill=await refreshTrailPhotoBackfill(store,{...options,productionTrails});
   const newTrailReviews=await ingestNewTrailReviews(store);
   const hazardReviews=await ingestHazardReviews(store);
   const communityHazards=await processCommunityHazardReports(store,options);
-  const imageReviews=await ingestImageReviews(store);
   const recoveredJobs = typeof store.recoverExpiredJobs === 'function'
     ? await store.recoverExpiredJobs(options)
     : [];
@@ -345,10 +320,8 @@ async function runLiveBackofficeWorker(store, options = {}){
   const advancementAfter=await advanceTrailOrchestration(store,options);
   const editorialFirstPass=await processEditorialFirstPassJobs(store,options);
   const jobs = await processRevisionJobs(store, options);
-  const imageOperations=await processImageJobs(store,options);
-  const promotedUploads=await promotePendingOwnerUploads(store,options).catch(error=>({promoted:[],error:String(error.message||error).slice(0,500)}));
   const publications = await ingestPublicationReviews(store);
-  return { workerId:options.workerId || null,campaign,trailPhotoBackfill,newTrailReviews,hazardReviews,communityHazards,imageReviews,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,imageOperations,promotedUploads,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,newTrailReviews,hazardReviews,communityHazards,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
-module.exports = { iso, refreshTrailPhotoBackfill, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestImageReviews,processImageJobs,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };

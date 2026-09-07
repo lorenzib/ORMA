@@ -15,7 +15,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(files.some(file=>file.startsWith('data/'))).toBe(false);
   });
 
-  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html','image-coverage-desk.html','community-moderation-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
+  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html','community-moderation-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toMatch(/src="backoffice-firebase\.js\?v=[0-9-]+"/);
     expect(html).not.toContain('src="firebase-init.js');
@@ -47,9 +47,10 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('backoffice/dashboard-model.js?v=20260905-2');
     expect(html).toContain('backoffice-hosted-dashboard.js?v=20260905-2');
     expect(html).toContain('href="trail-dossier-desk.html"');
-    expect(html).toContain('href="image-coverage-desk.html"');
     expect(html).toContain('href="community-moderation-desk.html"');
-    // The retired lanes must be gone from the shell, not merely unlinked.
+    // The retired lanes must be gone from the shell, not merely unlinked. Trail
+    // photos are sourced by hand now, so the photo desk is gone too.
+    expect(html).not.toContain('href="image-coverage-desk.html"');
     expect(html).not.toMatch(/href="(?:editorial|newsletter|product-ideas|designer|social|content)-desk\.html"/);
     expect(html).not.toContain('One linear trail workflow');
     expect(html).not.toContain('View all six ORMA teams');
@@ -61,17 +62,19 @@ describe('separate Firebase backoffice Hosting package',()=>{
     const nav=html.match(/<nav class="bo-primary-nav"[\s\S]*?<\/nav>/)?.[0]||'';
     expect(nav).toContain('>Home</a>');
     expect(nav).toContain('>Existing Trails</a>');
-    expect(nav).toContain('>Trail photos</a>');
     expect(nav).toContain('>Community</a>');
     // Hazards and New Trails have no human gate any more: hazards are fully
-    // automatic and intake is paused, so neither keeps a desk.
-    expect(nav).not.toMatch(/Editorial|Newsletter|Analyst|Design|Hazards|New Trails/);
+    // automatic and intake is paused, so neither keeps a desk. Trail photos are
+    // sourced by hand, so that desk is gone too.
+    expect(nav).not.toMatch(/Editorial|Newsletter|Analyst|Design|Hazards|New Trails|Trail photos/);
   });
 
   test('dashboard does not fetch parked workstream artifacts',()=>{
     const script=fs.readFileSync(path.join(output,'backoffice-hosted-dashboard.js'),'utf8');
     expect(script).not.toMatch(/editorial-review-packet|strategy-cycle-status|newsletter-review-packet|approved-newsletters|product-ideas|product-investigation-results|product-design-results/);
-    expect(script).toContain("optional(remote,'image-coverage'");
+    // Trail-photo gathering is removed, so the dashboard no longer reads any of
+    // its artifacts or the image-review collection.
+    expect(script).not.toMatch(/optional\(remote,'image-coverage|getImageReviews|trail-image-publication-requests/);
     expect(script).toContain("optional(remote,'new-trail-scouting'");
     expect(script).toContain("optional(remote,'hazard-review-queue'");
   });
@@ -88,7 +91,6 @@ describe('separate Firebase backoffice Hosting package',()=>{
   test.each([
     ['trail-dossier-desk.html','Trail evidence'],
     ['trail-content-desk.html','Content &amp; release'],
-    ['image-coverage-desk.html','Trail photos'],
     ['community-moderation-desk.html','Community'],
   ])('%s has persistent navigation and a clear current location',(page,current)=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
@@ -101,7 +103,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
   });
 
   test('moderator-facing trail pages explain automation without vague worker language',()=>{
-    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','image-coverage-desk.html','community-moderation-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','image-coverage-hosted.js','moderation-page.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
+    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','community-moderation-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','moderation-page.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
     const text=files.map(file=>fs.readFileSync(path.join(output,file),'utf8')).join('\n');
     expect(text).toContain('ORMA automation');
     expect(text).not.toMatch(/waiting for the worker|the worker will|worker processed|independent worker/i);
@@ -148,7 +150,8 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(workflow).toContain('name: Check website publication gate');
     expect(workflow).toContain('npm run backoffice:publication-gate');
     expect(workflow).toMatch(/name: Materialize approved trail publications[\s\S]*?if: steps\.website_gate\.outputs\.publication_allowed == 'true'/);
-    expect(workflow).toMatch(/name: Materialize approved trail photos[\s\S]*?if: steps\.website_gate\.outputs\.publication_allowed == 'true'/);
+    // Photos are committed by hand, so the worker no longer materialises them.
+    expect(workflow).not.toContain('Materialize approved trail photos');
     expect(workflow).toContain('outcome="blocked"');
     expect(workflow).toContain('ORMA_WORKER_VALIDATION_RUN_URL="$validation_url"');
   });

@@ -15,12 +15,11 @@ const htmlFiles = walk(root).filter(file => file.endsWith('.html'));
 const missing = [];
 
 // The hosted backoffice pages are sources, not published pages: the hosting build
-// renames them (backoffice-hosted-review.html -> backoffice-review.html,
-// image-coverage-hosted.html -> image-coverage-desk.html), so their links only
-// resolve inside dist/backoffice. Validate them there, via the hosting build, not
-// against the public site root.
+// renames them (backoffice-hosted-review.html -> backoffice-review.html), so their
+// links only resolve inside dist/backoffice. Validate them there, via the hosting
+// build, not against the public site root.
 const BACKOFFICE_SOURCE_PAGES = new Set([
-  'backoffice-hosted-review.html','backoffice-hosted-login.html','image-coverage-hosted.html',
+  'backoffice-hosted-review.html','backoffice-hosted-login.html',
   'trail-verify-desk.html','trail-dossier-desk.html','trail-content-desk.html','community-moderation-desk.html',
 ]);
 

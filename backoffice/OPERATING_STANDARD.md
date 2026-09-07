@@ -71,7 +71,7 @@ Existing Trails is the current throughput priority. Every day after the
 Firestore quota reset window, the protected
 catalogue campaign admits the next eligible candidates for ORMA Verified
 review, subject to the shared capacity limit. The hosted worker checks
-its durable specialist queue before general editorial, image, newsletter and
+its durable specialist queue before general editorial, newsletter and
 Analyst generation work. It may keep up to 15 trails in verification and run
 up to ten specialist jobs per worker pass. This changes working capacity only:
 all geometry, evidence, dossier, editorial and release gates remain required.
@@ -123,7 +123,7 @@ Owns discovery before catalogue admission. It prioritises:
 - coherent geographic expansion before unrelated new regions.
 
 The active discovery phase is Dolomites-first. Scouting is paused during the
-trail-photo and ORMA Verified backfills; existing candidates are preserved and
+ORMA Verified backfill; existing candidates are preserved and
 nothing is deleted. When resumed it refreshes Monday through Saturday, ranks
 credible Dolomites candidates ahead of other regions, and preserves unresolved
 candidates between refreshes.
@@ -134,48 +134,14 @@ the required evidence and human gates are complete.
 
 ### 3. Trail photos
 
-Owns trail-photo coverage only. The website-copy and Safety Library queues are
-retired: their agents, desks and scheduled runs are removed rather than gated,
-and any future copy work starts from a new explicit decision.
-
-Trail-photo coverage is a finite backfill that runs inside the worker pass, not
-a standing audit on its own schedule. It scans every published trail, not guides
-or general pages, and ranks Dolomites gaps first.
-
-Photos are sourced directly rather than by an agent. Automated scouting is
-retired: an agent selects on licence metadata alone and never sees the picture,
-and in practice a third of metadata-clean candidates were winter scenes, close-up
-botany or industrial buildings — correctly licensed, correctly located, and wrong
-as covers for summer dog-walking routes. Every published photo is therefore
-looked at before it is committed. The worker cancels any outstanding automated
-scouting job; owner uploads and the CEO's own approvals are never cancelled.
+Trail photos are sourced by hand, outside the backoffice, and committed directly
+to the repository (`images/trails/` plus `data/trail-image-overrides.json`, whose
+`imageCredit*` fields carry each picture's creator, licence and source). The
+backoffice has no photo lane: there is no coverage audit, no candidate sourcing,
+no owner-upload desk and no image review queue. The publication pipeline still
+renders whatever photo the overrides name; it never gathers or replaces one.
 
 OpenAI remains in use for trail verification and for scouting additional trails.
-
-A published trail photo is final. Once a trail has a cover photo it leaves the
-gap list permanently, no further decision can be recorded against it, and a
-later approval is retired rather than allowed to replace the picture readers
-have already seen.
-
-A photo already published for one trail is never offered as a candidate for
-another; the library scan skips the published trail-photo directory.
-For each trail, the CEO can upload her own photograph in a protected backoffice
-space, choose an existing ORMA asset, request correctly licensed candidates,
-explicitly request an AI option, or park the gap. Uploads are not publicly
-readable. The browser compresses an uploaded photo to a strict 560 KiB maximum
-and holds it temporarily in the protected Firestore review queue; ORMA does not
-require a paid photo-storage bucket. For a licensed, AI or ORMA-library candidate the CEO
-previews the exact image and its creator, rights basis and alt text before
-approving it for a publication pull request. An owner upload skips that second
-step: the uploader has already seen the photo in the upload preview and declared
-its creator, rights basis and alt text there, so it goes straight to the
-publishing lane. The publication pull request remains the human gate in both
-cases, and nothing reaches the website without a merge. The worker copies an approved photo into GitHub, which is the permanent
-public asset store, and deletes the temporary Firestore copy after the reviewed
-pull request is merged and deployed. A licensed photo is downloaded and
-committed the same way rather than hot-linked, so ORMA never depends on a
-third-party host staying available; its creator, licence, licence URL and source
-page travel with it.
 
 ## CEO review and shipping contract
 
@@ -200,7 +166,7 @@ page travel with it.
 - No unrelated dirty workspace files may be included in an automated commit.
 - Agent output must not bypass tests, source/licensing checks, or a required
   human gate.
-- Before consuming an approved trail or trail-photo publication, the hosted
+- Before consuming an approved trail publication, the hosted
   worker checks the latest completed `Validate ORMA` run for its exact commit.
   A failed, cancelled, or missing result pauses only materialization and pull
   request creation. The approval stays saved, specialist queues continue, and
@@ -224,15 +190,11 @@ page travel with it.
   a solo operator does not need quarter-hour batches, and the wider spacing keeps
   Firestore within its daily quota. Hazard freshness does not depend on this
   cadence; the hazard watch runs on its own three-hour schedule.
-- Trail-photo coverage and licensed candidate scouting: inside every worker
-  pass, with at most 15 active searches or reviews; guide-wide image audits are
-  not part of this queue. The lane stops queueing once coverage is complete.
-- New Trail scouting: paused for the duration of the trail-photo and ORMA
-  Verified backfills. Each newly admitted trail opens a new photo gap and a new
-  verification gap faster than either backfill closes one, so intake stays
-  paused until both lanes reach full coverage of the existing catalogue.
-  Cadence when resumed: Monday through Saturday at 10:00 local time, Dolomites
-  first; admission remains CEO-gated.
+- New Trail scouting: paused for the duration of the ORMA Verified backfill.
+  Each newly admitted trail opens a new verification gap faster than the backfill
+  closes one, so intake stays paused until the lane reaches full coverage of the
+  existing catalogue. Cadence when resumed: Monday through Saturday at 10:00 local
+  time, Dolomites first; admission remains CEO-gated.
 The Newsletter, Social, Analyst, Product Design and website-copy lanes are
 retired. Their agents, desks, scheduled workflows and npm entry points are
 removed from the repository. Firestore review collections and existing artifacts

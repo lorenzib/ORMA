@@ -13,7 +13,7 @@ function positiveInteger(value,fallback){
 // Named so a retired lane cannot leave a dangling read here: the worker's result
 // shape changed underneath this check once already, and an undefined lane threw
 // before the exit code could be set.
-const REVIEW_LANES = Object.freeze(['reviews', 'dossierReviews', 'imageReviews', 'publications']);
+const REVIEW_LANES = Object.freeze(['reviews', 'dossierReviews', 'publications']);
 
 function blockedLanes(result = {}){
   return REVIEW_LANES.filter(lane => (result[lane] || []).some(item => item.status === 'blocked'))

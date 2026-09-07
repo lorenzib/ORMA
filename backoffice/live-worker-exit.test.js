@@ -29,6 +29,6 @@ describe('live worker exit code',()=>{
 
   test('the worker still exports the lanes the exit check names',()=>{
     expect(typeof worker.runLiveBackofficeWorker).toBe('function');
-    expect(REVIEW_LANES).toEqual(['reviews','dossierReviews','imageReviews','publications']);
+    expect(REVIEW_LANES).toEqual(['reviews','dossierReviews','publications']);
   });
 });
