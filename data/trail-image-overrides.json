@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T16:37:15.696Z",
+  "updatedAt": "2026-09-07T16:47:37.533Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -900,6 +900,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Monticolo_-_Photo_by_Giovanni_Ussi_-_Lago_Grande_1.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-6244965",
+      "approvedReviewId": "commons-osm-6244965",
+      "approvedAt": "2026-09-07T16:47:37.527Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-6244965-plattner.jpg",
+        "heroImage": "images/trails/osm-6244965-plattner.jpg",
+        "imageAlt": "A small tarn among lichen-covered boulders and alpine grass above the Plattner Alm, with a rocky ridge behind it.",
+        "imageCredit": "A lake above the Plattner Alm",
+        "imageCreditText": "A lake above the Plattner Alm by Alletto",
+        "imageCreator": "Alletto",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:See_oberhalb_der_Plattner_Alm_01.jpg",
         "imageSourceType": "licensed-source"
       }
     },
