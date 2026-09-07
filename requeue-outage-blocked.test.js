@@ -156,3 +156,56 @@ describe('the requeue only touches lanes that still run', () => {
     expect(await store.requeueOutageBlockedJobs({})).toEqual(['image-1']);
   });
 });
+
+// Releasing the whole backlog re-runs every job a provider outage killed. If
+// they fail again for reasons of their own, that is the credit budget spent to
+// find out. Scoping to one candidate answers the same question for the price of
+// one trail, and uses the same filter the specialist pass already takes.
+describe('the requeue can be scoped to a single trail', () => {
+  const { FirestoreBackofficeStore } = require('./backoffice/services/firestore-backoffice-store');
+  const { PROCESSABLE_JOB_TYPES } = require('./backoffice/workflows/run-live-backoffice-worker');
+
+  function storeWith(docs){
+    const updates = [];
+    const batch = { update:(ref, data) => updates.push({ id:ref.id, data }), commit: async () => {} };
+    const store = Object.create(FirestoreBackofficeStore.prototype);
+    store.db = { batch: () => batch, collection: () => ({ where: () => ({ limit: () => ({
+      get: async () => ({ docs: docs.map(d => ({ id:d.id, ref:{ id:d.id }, data: () => d })) }),
+    }) }) }) };
+    store.queryCache = new Map(); store.artifactCache = new Map();
+    return { store, updates };
+  }
+
+  const outage = 'OpenAI request failed (429): You have no credits remaining';
+  const job = (id, candidateId) =>
+    ({ id, candidateId, status:'blocked', jobType:'trail-claim-resolution', lastError:outage });
+
+  test('only the named trail is released', async () => {
+    const { store } = storeWith([
+      job('a', 'osm-16363583'), job('b', 'osm-16322228'), job('c', 'osm-16363583'),
+    ]);
+    const released = await store.requeueOutageBlockedJobs({
+      jobTypes: PROCESSABLE_JOB_TYPES, specialistCandidateId: 'osm-16363583' });
+    expect(released.sort()).toEqual(['a', 'c']);
+  });
+
+  test('it takes the same option name the specialist pass uses', async () => {
+    // live-worker.js reads ORMA_SPECIALIST_CANDIDATE_ID into specialistCandidateId,
+    // so one dispatch input scopes the release and the run together.
+    const { store } = storeWith([job('a', 'trail-x'), job('b', 'trail-y')]);
+    expect(await store.requeueOutageBlockedJobs({ specialistCandidateId:'trail-y' })).toEqual(['b']);
+    const { store: viaAlias } = storeWith([job('a', 'trail-x'), job('b', 'trail-y')]);
+    expect(await viaAlias.requeueOutageBlockedJobs({ candidateId:'trail-x' })).toEqual(['a']);
+  });
+
+  test('no candidate given still releases the backlog', async () => {
+    const { store } = storeWith([job('a', 'trail-x'), job('b', 'trail-y')]);
+    expect(await store.requeueOutageBlockedJobs({})).toEqual(['a', 'b']);
+  });
+
+  test('an unknown candidate releases nothing rather than everything', async () => {
+    const { store, updates } = storeWith([job('a', 'trail-x')]);
+    expect(await store.requeueOutageBlockedJobs({ specialistCandidateId:'no-such-trail' })).toEqual([]);
+    expect(updates).toEqual([]);
+  });
+});
