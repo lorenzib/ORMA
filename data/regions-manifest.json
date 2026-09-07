@@ -125,7 +125,7 @@
     },
     "savoy": {
       "trailCount": 54,
-      "trails": "data/regions/savoy-trails.js?v=9a822c302205",
+      "trails": "data/regions/savoy-trails.js?v=920818346d90",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=8195861c91e5",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=194b0ba277c2",
@@ -144,7 +144,7 @@
         "osm-19153189": "data/trail-details/osm-19153189.js?v=a0cba1509459",
         "osm-15591346": "data/trail-details/osm-15591346.js?v=ef78e503d526",
         "osm-16365005": "data/trail-details/osm-16365005.js?v=f91a57869c67",
-        "osm-5479112": "data/trail-details/osm-5479112.js?v=fc3b9e4c48d3",
+        "osm-5479112": "data/trail-details/osm-5479112.js?v=46c07b699835",
         "osm-9937537": "data/trail-details/osm-9937537.js?v=bb13a6036c43",
         "osm-10539302": "data/trail-details/osm-10539302.js?v=4b6feaee45a4",
         "osm-12118490": "data/trail-details/osm-12118490.js?v=498e82b01ba7",
