@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T16:47:37.533Z",
+  "updatedAt": "2026-09-07T16:56:37.540Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -985,6 +985,40 @@
         "imageLicence": "CC0",
         "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rienz_bei_Kiens.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-7277805",
+      "approvedReviewId": "commons-osm-7277805",
+      "approvedAt": "2026-09-07T16:56:37.540Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7277805-stuls.jpg",
+        "heroImage": "images/trails/osm-7277805-stuls.jpg",
+        "imageAlt": "A lane climbing past farmhouses through a dandelion meadow at Stuls, with the snow-capped Texel range across the valley.",
+        "imageCredit": "Stuls above Moos in Passeier",
+        "imageCreditText": "Stuls above Moos in Passeier by Uwelino",
+        "imageCreator": "Uwelino",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Blick_nach_Stuls_Moos_in_Passeier.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-7446701",
+      "approvedReviewId": "commons-osm-7446701",
+      "approvedAt": "2026-09-07T16:56:37.540Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7446701-fleckner.jpg",
+        "heroImage": "images/trails/osm-7446701-fleckner.jpg",
+        "imageAlt": "The shingled Fleckner hut on flowering alpine grass at 2100 m, with the Passeier valley falling away behind it.",
+        "imageCredit": "The Fleckner hut on the Passeier high route",
+        "imageCreditText": "The Fleckner hut on the Passeier high route by Uwelino",
+        "imageCreator": "Uwelino",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Die_Fleckner_H%C3%BCtte.jpg",
         "imageSourceType": "licensed-source"
       }
     },
