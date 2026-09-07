@@ -1,8 +1,8 @@
 {
   "contractVersion": "1.0.0",
-  "checkedAt": "2026-09-05T10:07:04.035Z",
+  "checkedAt": "2026-09-07T16:07:05.743Z",
   "summary": {
-    "active": 1,
+    "active": 4,
     "awaitingRemovalReview": 0,
     "automaticallyRemoved": 0,
     "sourceFailures": 0
@@ -14,7 +14,7 @@
       "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-italy",
       "ok": true,
       "completeSnapshot": true,
-      "alertsRead": 22
+      "alertsRead": 23
     },
     {
       "key": "meteoalarm-france",
@@ -22,9 +22,9 @@
       "url": "https://feeds.meteoalarm.org/feeds/meteoalarm-legacy-atom-france",
       "ok": true,
       "completeSnapshot": true,
-      "alertsRead": 52
+      "alertsRead": 93
     }
   ],
   "automaticRemovals": [],
-  "policy": "Authoritative warnings may be added automatically. A warning absent from a complete successful authoritative snapshot is removed automatically. Source failure never means safe."
+  "policy": "Authoritative warnings are added and removed automatically: a warning absent from a complete successful snapshot, or past its own stated expiry on a source that answered, is removed without human review. Source failure never means safe. Community reports follow the separate Hazard Analyst vetting lifecycle."
 }
