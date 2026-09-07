@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T20:09:33.359Z",
+  "updatedAt": "2026-09-07T20:21:10.885Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -237,6 +237,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:I11_269_Villn%C3%B6%C3%9Fer_Tal.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11790553",
+      "approvedReviewId": "commons-osm-11790553",
+      "approvedAt": "2026-09-07T20:21:10.885Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11790553-rodeneck.jpg",
+        "heroImage": "images/trails/osm-11790553-rodeneck.jpg",
+        "imageAlt": "Hay meadows, mixed woodland and scattered farms on the shelf at Rodeneck, the village church spire among them, under a grey summer sky.",
+        "imageCredit": "Rodeneck",
+        "imageCreditText": "Rodeneck by Michielverbeek",
+        "imageCreator": "Michielverbeek",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Rodeneck%2C_panorama_ten_noordoosten_van_het_dorp_IMG_1055_2019-08-03_15.09.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -734,6 +751,57 @@
       }
     },
     {
+      "id": "osm-12371666",
+      "approvedReviewId": "commons-osm-12371666",
+      "approvedAt": "2026-09-07T20:21:10.885Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12371666-kalterer-see.jpg",
+        "heroImage": "images/trails/osm-12371666-kalterer-see.jpg",
+        "imageAlt": "A walled vineyard lane running down towards the Kalterer See, vine rows on both sides and wooded ridges across the valley in summer haze.",
+        "imageCredit": "Kalterer See",
+        "imageCreditText": "Kalterer See by qwesy qwesy",
+        "imageCreator": "qwesy qwesy",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kalterer_See%2C_Lago_di_Caldaro_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12371689",
+      "approvedReviewId": "commons-osm-12371689",
+      "approvedAt": "2026-09-07T20:21:10.885Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12371689-tramin-pergola.jpg",
+        "heroImage": "images/trails/osm-12371689-tramin-pergola.jpg",
+        "imageAlt": "Inside a pergola vineyard at Tramin, old vine trunks and green grapes overhead, grass between the rows.",
+        "imageCredit": "Wein",
+        "imageCreditText": "Wein by qwesy qwesy",
+        "imageCreator": "qwesy qwesy",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Wein_-_panoramio_(2).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12731853",
+      "approvedReviewId": "commons-osm-12731853",
+      "approvedAt": "2026-09-07T20:21:10.885Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12731853-laugensee.jpg",
+        "heroImage": "images/trails/osm-12731853-laugensee.jpg",
+        "imageAlt": "The Laugensee in autumn, reeds and lily pads on still water reflecting the mountain, poplars turning gold along the far bank.",
+        "imageCredit": "Laugen, Natz-Schabs",
+        "imageCreditText": "Laugen, Natz-Schabs by Plentn",
+        "imageCreator": "Plentn",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Laugen_Natz-Schabs_2.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-12736753",
       "approvedReviewId": "commons-osm-12736753",
       "approvedAt": "2026-09-06T11:51:13.811Z",
@@ -904,6 +972,23 @@
       }
     },
     {
+      "id": "osm-15791408",
+      "approvedReviewId": "commons-osm-15791408",
+      "approvedAt": "2026-09-07T20:21:10.885Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-15791408-lago-di-lases.jpg",
+        "heroImage": "images/trails/osm-15791408-lago-di-lases.jpg",
+        "imageAlt": "The lake at Lases seen across a grass shore under spruce and poplar, wooded slopes and pale quarry faces on the far side.",
+        "imageCredit": "Lago di Lases",
+        "imageCreditText": "Lago di Lases by Matteo Ianeselli",
+        "imageCreator": "Matteo Ianeselli",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lases-lake_Lases_from_north.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-16180587",
       "approvedReviewId": "commons-osm-16180587",
       "approvedAt": "2026-09-06T13:11:45.902Z",
@@ -1002,6 +1087,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:2018-06_R%C3%A9serve_naturelle_nationale_de_Sixt-Passy_32.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-19330972",
+      "approvedReviewId": "commons-osm-19330972",
+      "approvedAt": "2026-09-07T20:21:10.885Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19330972-anterivo.jpg",
+        "heroImage": "images/trails/osm-19330972-anterivo.jpg",
+        "imageAlt": "A gravel track behind a timber rail fence running towards Anterivo and its church tower, forested slopes hazy behind.",
+        "imageCredit": "Anterivo-Altrei",
+        "imageCreditText": "Anterivo-Altrei by Mario Penner",
+        "imageCreator": "Mario Penner",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Anterivo-Altrei_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1223,6 +1325,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sentier_%40_Col_des_Montets_02.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-5512443",
+      "approvedReviewId": "commons-osm-5512443",
+      "approvedAt": "2026-09-07T20:21:10.885Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-5512443-wallburgweg-naturns.jpg",
+        "heroImage": "images/trails/osm-5512443-wallburgweg-naturns.jpg",
+        "imageAlt": "A stony sunken path above Naturns between a dry-stone wall and a rustic timber fence, chestnut trees overhead and a red-and-white waymark on the rock.",
+        "imageCredit": "Hiking in Naturns",
+        "imageCreditText": "Hiking in Naturns by Lord Koxinga",
+        "imageCreator": "Lord Koxinga",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:2008_0707_80390_Hiking_in_South_Tyrol_Naturns_R0582.jpg",
         "imageSourceType": "licensed-source"
       }
     },
