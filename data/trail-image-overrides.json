@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T19:55:05.873Z",
+  "updatedAt": "2026-09-07T20:09:33.359Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -135,6 +135,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Basse_vall%C3%A9e_de_la_Valloirette%2C_automne_2015.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-1116675",
+      "approvedReviewId": "commons-osm-1116675",
+      "approvedAt": "2026-09-07T20:09:33.359Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-1116675-altensteiner-tal.jpg",
+        "heroImage": "images/trails/osm-1116675-altensteiner-tal.jpg",
+        "imageAlt": "Pale limestone walls above the Fischleintal, spruce and larch on the slopes below, and the Dreizinnenhütte small on the green shoulder between them.",
+        "imageCredit": "Altensteiner Tal",
+        "imageCreditText": "Altensteiner Tal by FkMohr",
+        "imageCreator": "FkMohr",
+        "imageLicence": "CC BY-SA 3.0 de",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:AltensteinerTal.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -275,6 +292,23 @@
       }
     },
     {
+      "id": "osm-11815025",
+      "approvedReviewId": "commons-osm-11815025",
+      "approvedAt": "2026-09-07T20:09:33.359Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11815025-lajen-eisacktal.jpg",
+        "heroImage": "images/trails/osm-11815025-lajen-eisacktal.jpg",
+        "imageAlt": "Pasture, scattered farms and spruce forest on the slope above the Eisack valley at Lajen, with the Sarntal ridge behind.",
+        "imageCredit": "Lajen über das Eisacktal",
+        "imageCreditText": "Lajen über das Eisacktal by FkMohr",
+        "imageCreator": "FkMohr",
+        "imageLicence": "CC BY-SA 3.0 de",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:1097-Lajen-NW.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-11816373",
       "approvedReviewId": "commons-osm-11816373",
       "approvedAt": "2026-09-06T11:00:14.571Z",
@@ -288,6 +322,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Blick_auf_Bad_Bergfall_von_Lapedurscharte.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11828233",
+      "approvedReviewId": "commons-osm-11828233",
+      "approvedAt": "2026-09-07T20:09:33.359Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11828233-wurmaulspitze.jpg",
+        "heroImage": "images/trails/osm-11828233-wurmaulspitze.jpg",
+        "imageAlt": "The footpath crossing a broad alpine basin of turf and scattered boulders below the Wurmaulspitze, a waymark painted on a rock beside it.",
+        "imageCredit": "Wurmaulspitze",
+        "imageCreditText": "Wurmaulspitze by Plentn",
+        "imageCreator": "Plentn",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Wurmaulspitze_2.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -577,6 +628,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Astfeld-004.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12182936",
+      "approvedReviewId": "commons-osm-12182936",
+      "approvedAt": "2026-09-07T20:09:33.359Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12182936-talfer-sarnthein.jpg",
+        "heroImage": "images/trails/osm-12182936-talfer-sarnthein.jpg",
+        "imageAlt": "The Talfer running milky under a covered wooden bridge at Sarnthein, geraniums on the rail and the wooded valley side beyond.",
+        "imageCredit": "Talfer bei Sarnthein",
+        "imageCreditText": "Talfer bei Sarnthein by Hubert Berberich (HubiB)",
+        "imageCreator": "Hubert Berberich (HubiB)",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:TalferSarnthein.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1125,6 +1193,23 @@
       }
     },
     {
+      "id": "osm-3885162",
+      "approvedReviewId": "commons-osm-3885162",
+      "approvedAt": "2026-09-07T20:09:33.359Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-3885162-zoggler-stausee.jpg",
+        "heroImage": "images/trails/osm-3885162-zoggler-stausee.jpg",
+        "imageAlt": "The Zoggler reservoir in the Ultental in autumn, larch turning gold on both slopes and snow on the peaks at the head of the valley.",
+        "imageCredit": "Zoggler Stausee",
+        "imageCreditText": "Zoggler Stausee by Memorino",
+        "imageCreator": "Memorino",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Zoggler_Stausee.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-5479112",
       "approvedReviewId": "commons-osm-5479112",
       "approvedAt": "2026-09-07T19:47:04.641Z",
@@ -1155,6 +1240,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:See_oberhalb_der_Plattner_Alm_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-6404258",
+      "approvedReviewId": "commons-osm-6404258",
+      "approvedAt": "2026-09-07T20:09:33.359Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-6404258-lago-di-valdaora.jpg",
+        "heroImage": "images/trails/osm-6404258-lago-di-valdaora.jpg",
+        "imageAlt": "The Olang lake held between wooded slopes, meadows and farms above the far shore and distant peaks beyond.",
+        "imageCredit": "Lago di Valdaora",
+        "imageCreditText": "Lago di Valdaora by corinasdavide",
+        "imageCreator": "corinasdavide",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_valdaora_(DC)_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1278,6 +1380,23 @@
       }
     },
     {
+      "id": "osm-7547983",
+      "approvedReviewId": "commons-osm-7547983",
+      "approvedAt": "2026-09-07T20:09:33.359Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7547983-montanel-spalti-di-toro.jpg",
+        "heroImage": "images/trails/osm-7547983-montanel-spalti-di-toro.jpg",
+        "imageAlt": "Spruce forest in silhouette above Auronzo with the Montanel and the Spalti di Toro catching low sunlight behind.",
+        "imageCredit": "Il Montanel e gli spalti di Toro",
+        "imageCreditText": "Il Montanel e gli spalti di Toro by ildirettore",
+        "imageCreator": "ildirettore",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Il_Montanel_e_gli_spalti_di_Toro_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-7548201",
       "approvedReviewId": "commons-osm-7548201",
       "approvedAt": "2026-09-06T08:52:09.690Z",
@@ -1376,6 +1495,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lajen_aus_Tagusens.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-9493733",
+      "approvedReviewId": "commons-osm-9493733",
+      "approvedAt": "2026-09-07T20:09:33.359Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-9493733-piz-lavarela.jpg",
+        "heroImage": "images/trails/osm-9493733-piz-lavarela.jpg",
+        "imageAlt": "The banded limestone wall of Piz Lavarela above Alta Badia in evening light, forest along the foot of the cliffs.",
+        "imageCredit": "Piz Lavarela",
+        "imageCreditText": "Piz Lavarela by 2015 Michael 2015",
+        "imageCreator": "2015 Michael 2015",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lavarella%2C_3055m.jpg",
         "imageSourceType": "licensed-source"
       }
     },
