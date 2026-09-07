@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T16:02:46.721Z",
+  "updatedAt": "2026-09-07T16:37:15.696Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -1224,6 +1224,23 @@
         "imageLicenceUrl": null,
         "imageSourcePage": null,
         "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "valley-view",
+      "approvedReviewId": "commons-valley-view",
+      "approvedAt": "2026-09-07T16:37:15.690Z",
+      "fields": {
+        "imageIcon": "images/trails/valley-view-villnoess.jpg",
+        "heroImage": "images/trails/valley-view-villnoess.jpg",
+        "imageAlt": "Terraced green meadows and scattered farmsteads on the north side of the Villnoess valley, with a church spire among the spruce below.",
+        "imageCredit": "The Villnoess valley looking west",
+        "imageCreditText": "The Villnoess valley looking west by Howwi",
+        "imageCreator": "Howwi",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Villn%C3%B6%C3%9F_looking_west.jpg",
+        "imageSourceType": "licensed-source"
       }
     }
   ]
