@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T19:29:10.688Z",
+  "updatedAt": "2026-09-07T07:35:18.977Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -203,6 +203,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:I11_269_Villn%C3%B6%C3%9Fer_Tal.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11792795",
+      "approvedReviewId": "commons-osm-11792795",
+      "approvedAt": "2026-09-07T07:35:18.956Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11792795-natz.jpg",
+        "heroImage": "images/trails/osm-11792795-natz.jpg",
+        "imageAlt": "The villages of Natz and Raas among orchards and meadows on their plateau, with wooded slopes and the Luesen valley beyond.",
+        "imageCredit": "Natz and Raas seen from Spiluck",
+        "imageCreditText": "Natz and Raas seen from Spiluck by Oliver Abels",
+        "imageCreator": "Oliver Abels",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vahrn-Siedlung_Spiluck_Blick_nach_Raas_und_Natz_(1_05-2015).jpg",
         "imageSourceType": "licensed-source"
       }
     },
