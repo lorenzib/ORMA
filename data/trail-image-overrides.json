@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T19:18:11.944Z",
+  "updatedAt": "2026-09-07T19:39:19.761Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -118,6 +118,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Passo_di_Giau.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-10539302",
+      "approvedReviewId": "commons-osm-10539302",
+      "approvedAt": "2026-09-07T19:39:19.761Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-10539302-valloirette.jpg",
+        "heroImage": "images/trails/osm-10539302-valloirette.jpg",
+        "imageAlt": "Autumn woodland on both sides of the Valloirette valley below Poingt-Ravier, with pasture, hamlets and the Maurienne mountains beyond.",
+        "imageCredit": "Basse vallée de la Valloirette, automne 2015",
+        "imageCreditText": "Basse vallée de la Valloirette, automne 2015 by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Basse_vall%C3%A9e_de_la_Valloirette%2C_automne_2015.JPG",
         "imageSourceType": "licensed-source"
       }
     },
@@ -547,6 +564,23 @@
       }
     },
     {
+      "id": "osm-12211260",
+      "approvedReviewId": "commons-osm-12211260",
+      "approvedAt": "2026-09-07T19:39:19.761Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12211260-plateau-des-moises.jpg",
+        "heroImage": "images/trails/osm-12211260-plateau-des-moises.jpg",
+        "imageAlt": "The open grass and wildflower plateau of the Moises, spruce woods along its edges, under a flat overcast sky.",
+        "imageCredit": "Le plateau des Moises",
+        "imageCreditText": "Le plateau des Moises by Claude PIARD",
+        "imageCreator": "Claude PIARD",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Moises01.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-12302191",
       "approvedReviewId": "commons-osm-12302191",
       "approvedAt": "2026-09-06T11:51:13.811Z",
@@ -734,6 +768,23 @@
       }
     },
     {
+      "id": "osm-16490407",
+      "approvedReviewId": "commons-osm-16490407",
+      "approvedAt": "2026-09-07T19:39:19.761Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-16490407-grande-chible.jpg",
+        "heroImage": "images/trails/osm-16490407-grande-chible.jpg",
+        "imageAlt": "The dark schist ridge of the Grande Chible above Montricher-Albanne, a path traced along its alpine grass shoulder under building cloud.",
+        "imageCredit": "La grande Chible",
+        "imageCreditText": "La grande Chible by Patrick OTER",
+        "imageCreator": "Patrick OTER",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:La_grande_Chible.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-1780768",
       "approvedReviewId": "commons-osm-1780768",
       "approvedAt": "2026-09-06T19:29:10.682Z",
@@ -781,6 +832,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:2018-06_R%C3%A9serve_naturelle_nationale_de_Sixt-Passy_32.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-19541366",
+      "approvedReviewId": "commons-osm-19541366",
+      "approvedAt": "2026-09-07T19:39:19.761Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19541366-lac-blanc.jpg",
+        "heroImage": "images/trails/osm-19541366-lac-blanc.jpg",
+        "imageAlt": "The turquoise water of the Lac Blanc above Val Thorens, clear to the stones, with summer snow patches on the peak above.",
+        "imageCredit": "Lac Blanc Les Belleville",
+        "imageCreditText": "Lac Blanc Les Belleville by Rémih",
+        "imageCreator": "Rémih",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lac_Blanc_Les_Belleville_01.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -884,6 +952,23 @@
         "imageLicenceUrl": null,
         "imageSourcePage": null,
         "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "osm-21021130",
+      "approvedReviewId": "commons-osm-21021130",
+      "approvedAt": "2026-09-07T19:39:19.761Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-21021130-lac-chardonnet.jpg",
+        "heroImage": "images/trails/osm-21021130-lac-chardonnet.jpg",
+        "imageAlt": "The green water of the north Chardonnet lake at Tignes in July, wildflowers in the grass on the near shore and scree slopes behind.",
+        "imageCredit": "Lac nord du Chardonnet à Tignes en été",
+        "imageCreditText": "Lac nord du Chardonnet à Tignes en été by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lac_nord_du_Chardonnet_%C3%A0_Tignes_en_%C3%A9t%C3%A9_(juillet_2022).JPG",
+        "imageSourceType": "licensed-source"
       }
     },
     {

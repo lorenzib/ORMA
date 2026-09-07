@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-07T15:42:11.323Z",
+  "generatedAt": "2026-09-06T15:03:38.257Z",
   "regions": {
     "dolomites": {
       "trailCount": 111,
@@ -125,7 +125,7 @@
     },
     "savoy": {
       "trailCount": 54,
-      "trails": "data/regions/savoy-trails.js?v=1666726f69ac",
+      "trails": "data/regions/savoy-trails.js?v=9a822c302205",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=8195861c91e5",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=194b0ba277c2",
@@ -146,13 +146,13 @@
         "osm-16365005": "data/trail-details/osm-16365005.js?v=f91a57869c67",
         "osm-5479112": "data/trail-details/osm-5479112.js?v=fc3b9e4c48d3",
         "osm-9937537": "data/trail-details/osm-9937537.js?v=bb13a6036c43",
-        "osm-10539302": "data/trail-details/osm-10539302.js?v=1a2dba69e803",
+        "osm-10539302": "data/trail-details/osm-10539302.js?v=4b6feaee45a4",
         "osm-12118490": "data/trail-details/osm-12118490.js?v=498e82b01ba7",
         "osm-12121346": "data/trail-details/osm-12121346.js?v=7d8098729aae",
         "osm-12121548": "data/trail-details/osm-12121548.js?v=995c6d30d5a9",
         "osm-12121798": "data/trail-details/osm-12121798.js?v=6302b3da1ca7",
         "osm-12127424": "data/trail-details/osm-12127424.js?v=5818c0f2cda5",
-        "osm-12211260": "data/trail-details/osm-12211260.js?v=fd643d5d77a7",
+        "osm-12211260": "data/trail-details/osm-12211260.js?v=794d0f18a368",
         "osm-12745924": "data/trail-details/osm-12745924.js?v=5431dcdb0c03",
         "osm-13337921": "data/trail-details/osm-13337921.js?v=b8c17b7d3a3c",
         "osm-13338113": "data/trail-details/osm-13338113.js?v=c77bd6dc699e",
@@ -171,16 +171,16 @@
         "osm-15535697": "data/trail-details/osm-15535697.js?v=b653bd56e872",
         "osm-16180587": "data/trail-details/osm-16180587.js?v=9c3d4ef2fed6",
         "osm-16218739": "data/trail-details/osm-16218739.js?v=524184b2d700",
-        "osm-16490407": "data/trail-details/osm-16490407.js?v=27d913af2eba",
+        "osm-16490407": "data/trail-details/osm-16490407.js?v=09f5b3f067aa",
         "osm-19064561": "data/trail-details/osm-19064561.js?v=847b29c6abca",
         "osm-19095412": "data/trail-details/osm-19095412.js?v=0df33f658d2f",
         "osm-19095413": "data/trail-details/osm-19095413.js?v=807ac2ade43f",
         "osm-19531872": "data/trail-details/osm-19531872.js?v=babd593d1281",
-        "osm-19541366": "data/trail-details/osm-19541366.js?v=3ae3b9da5195",
+        "osm-19541366": "data/trail-details/osm-19541366.js?v=283e826777bf",
         "osm-19661726": "data/trail-details/osm-19661726.js?v=4abc8c740d5c",
         "osm-19760372": "data/trail-details/osm-19760372.js?v=a6b653868b83",
         "osm-19855818": "data/trail-details/osm-19855818.js?v=ee64af281dc4",
-        "osm-21021130": "data/trail-details/osm-21021130.js?v=9080de4eeac7"
+        "osm-21021130": "data/trail-details/osm-21021130.js?v=9b786c8c721b"
       },
       "water": "data/regions/savoy-water.geojson",
       "hutsBars": "data/regions/savoy-huts-bars.geojson",
