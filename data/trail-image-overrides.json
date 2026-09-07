@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T15:43:53.759Z",
+  "updatedAt": "2026-09-07T15:55:57.166Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -458,6 +458,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Terento_dal_sentiero_panoramico.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12173965",
+      "approvedReviewId": "commons-osm-12173965",
+      "approvedAt": "2026-09-07T15:55:57.160Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12173965-welsberg.jpg",
+        "heroImage": "images/trails/osm-12173965-welsberg.jpg",
+        "imageAlt": "Welsberg and Tesido spread along the Puster valley floor, with mown meadows and field tracks climbing the wooded slopes above.",
+        "imageCredit": "Monguelfo-Tesido from Monte Serla",
+        "imageCreditText": "Monguelfo-Tesido from Monte Serla by Llorenzi",
+        "imageCreator": "Llorenzi",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Monguelfo22.JPG",
         "imageSourceType": "licensed-source"
       }
     },
