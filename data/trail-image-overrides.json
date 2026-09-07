@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-06T17:09:54.175Z",
+  "updatedAt": "2026-09-07T16:02:46.721Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -207,6 +207,23 @@
       }
     },
     {
+      "id": "osm-11792795",
+      "approvedReviewId": "commons-osm-11792795",
+      "approvedAt": "2026-09-07T07:35:18.956Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11792795-natz.jpg",
+        "heroImage": "images/trails/osm-11792795-natz.jpg",
+        "imageAlt": "The villages of Natz and Raas among orchards and meadows on their plateau, with wooded slopes and the Luesen valley beyond.",
+        "imageCredit": "Natz and Raas seen from Spiluck",
+        "imageCreditText": "Natz and Raas seen from Spiluck by Oliver Abels",
+        "imageCreator": "Oliver Abels",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vahrn-Siedlung_Spiluck_Blick_nach_Raas_und_Natz_(1_05-2015).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-11795251",
       "approvedReviewId": "commons-osm-11795251",
       "approvedAt": "2026-09-06T12:22:30.979Z",
@@ -254,6 +271,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Blick_auf_Bad_Bergfall_von_Lapedurscharte.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11832013",
+      "approvedReviewId": "commons-osm-11832013",
+      "approvedAt": "2026-09-06T19:13:57.327Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11832013-durnholzer-hoehenweg.jpg",
+        "heroImage": "images/trails/osm-11832013-durnholzer-hoehenweg.jpg",
+        "imageAlt": "A stony path crossing open alpine grass and dwarf pine on the Durnholz high route, under a clear sky.",
+        "imageCredit": "Durnholzer Hoehenweg towards the Tellerjoch",
+        "imageCreditText": "Durnholzer Hoehenweg towards the Tellerjoch by Jkue",
+        "imageCreator": "Jkue",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Durnholzer_H%C3%B6henweg_1.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -360,6 +394,40 @@
       }
     },
     {
+      "id": "osm-12142337",
+      "approvedReviewId": "commons-osm-12142337",
+      "approvedAt": "2026-09-07T09:38:00.461Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12142337-peitlerkofel.jpg",
+        "heroImage": "images/trails/osm-12142337-peitlerkofel.jpg",
+        "imageAlt": "The rock tower of the Peitlerkofel above wooded ridges, seen across a hand-harvested corn field with stooks drying on the slope.",
+        "imageCredit": "The Peitlerkofel seen from La Valle",
+        "imageCreditText": "The Peitlerkofel seen from La Valle by Alex1011",
+        "imageCreator": "Alex1011",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:PeitlerKorn.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12150790",
+      "approvedReviewId": "commons-osm-12150790",
+      "approvedAt": "2026-09-07T10:08:30.618Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12150790-buchholz.jpg",
+        "heroImage": "images/trails/osm-12150790-buchholz.jpg",
+        "imageAlt": "The village of Buchholz among vineyards and orchards on a wooded slope, its church tower standing above the terraces.",
+        "imageCredit": "Buchholz, Salurn",
+        "imageCreditText": "Buchholz, Salurn by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pochi.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-12165590",
       "approvedReviewId": "commons-osm-12165590",
       "approvedAt": "2026-09-06T14:47:45.542Z",
@@ -394,6 +462,23 @@
       }
     },
     {
+      "id": "osm-12173965",
+      "approvedReviewId": "commons-osm-12173965",
+      "approvedAt": "2026-09-07T15:55:57.160Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12173965-welsberg.jpg",
+        "heroImage": "images/trails/osm-12173965-welsberg.jpg",
+        "imageAlt": "Welsberg and Tesido spread along the Puster valley floor, with mown meadows and field tracks climbing the wooded slopes above.",
+        "imageCredit": "Monguelfo-Tesido from Monte Serla",
+        "imageCreditText": "Monguelfo-Tesido from Monte Serla by Llorenzi",
+        "imageCreator": "Llorenzi",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Monguelfo22.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-12173984",
       "approvedReviewId": "commons-osm-12173984",
       "approvedAt": "2026-09-06T11:00:14.571Z",
@@ -407,6 +492,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:2Lago_di_Braies.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12182516",
+      "approvedReviewId": "commons-osm-12182516",
+      "approvedAt": "2026-09-07T10:08:30.618Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12182516-astfeld.jpg",
+        "heroImage": "images/trails/osm-12182516-astfeld.jpg",
+        "imageAlt": "A weathered timber hay barn among birches on a grassy slope above the wooded Sarn valley.",
+        "imageCredit": "Countryside near Astfeld, Campolasta",
+        "imageCreditText": "Countryside near Astfeld, Campolasta by Josef F. Stuefer",
+        "imageCreator": "Josef F. Stuefer",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Astfeld-004.JPG",
         "imageSourceType": "licensed-source"
       }
     },
@@ -513,6 +615,23 @@
       }
     },
     {
+      "id": "osm-13338113",
+      "approvedReviewId": "commons-osm-13338113",
+      "approvedAt": "2026-09-07T11:16:05.003Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-13338113-la-chapelle.jpg",
+        "heroImage": "images/trails/osm-13338113-la-chapelle.jpg",
+        "imageAlt": "The Abondance valley on an autumn morning, its village on the floor and a path running along the grassy slope above.",
+        "imageCredit": "La Chapelle-d Abondance and its valley",
+        "imageCreditText": "La Chapelle-d Abondance and its valley by Florian Pepellin",
+        "imageCreator": "Florian Pepellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:La_Chapelle-d%27Abondance_et_sa_vall%C3%A9e_au_matin_(octobre_2021).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-13491868",
       "approvedReviewId": "commons-osm-13491868",
       "approvedAt": "2026-09-06T08:52:09.690Z",
@@ -598,6 +717,74 @@
       }
     },
     {
+      "id": "osm-1780768",
+      "approvedReviewId": "commons-osm-1780768",
+      "approvedAt": "2026-09-06T19:29:10.682Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-1780768-gsiesertal.jpg",
+        "heroImage": "images/trails/osm-1780768-gsiesertal.jpg",
+        "imageAlt": "Cattle grazing on green meadows below farmhouses in the Gsies valley, with forested slopes rising to bare summits at its head.",
+        "imageCredit": "Gsiesertal, Pustertal",
+        "imageCreditText": "Gsiesertal, Pustertal by Erwin Oberkofler",
+        "imageCreator": "Erwin Oberkofler",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gsiesertal_DxO.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-19095412",
+      "approvedReviewId": "commons-osm-19095412",
+      "approvedAt": "2026-09-07T15:32:21.875Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19095412-fer-a-cheval.jpg",
+        "heroImage": "images/trails/osm-19095412-fer-a-cheval.jpg",
+        "imageAlt": "A flowering summer meadow below the limestone walls of the Cirque du Fer-a-Cheval, with waterfalls falling from the rim.",
+        "imageCredit": "Cirque du Fer-a-Cheval",
+        "imageCreditText": "Cirque du Fer-a-Cheval by Frank Miramand",
+        "imageCreator": "Frank Miramand",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cirque_du_Fer-%C3%A0-Cheval_-_Paysage.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-19095413",
+      "approvedReviewId": "commons-osm-19095413",
+      "approvedAt": "2026-09-07T15:32:21.875Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19095413-sixt-passy.jpg",
+        "heroImage": "images/trails/osm-19095413-sixt-passy.jpg",
+        "imageAlt": "A green valley running between limestone walls in the Sixt-Passy reserve, with an alpage on the shelf above it.",
+        "imageCredit": "Sixt-Passy national nature reserve",
+        "imageCreditText": "Sixt-Passy national nature reserve by 0x010C",
+        "imageCreator": "0x010C",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:2018-06_R%C3%A9serve_naturelle_nationale_de_Sixt-Passy_32.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-19661726",
+      "approvedReviewId": "commons-osm-19661726",
+      "approvedAt": "2026-09-07T16:02:46.715Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19661726-combloux.jpg",
+        "heroImage": "images/trails/osm-19661726-combloux.jpg",
+        "imageAlt": "A summer meadow of daisies, clover and cow parsley on the slopes above Combloux, with spruce and wooded hills beyond.",
+        "imageCredit": "The Combloux slopes in summer",
+        "imageCreditText": "The Combloux slopes in summer by Geoff Gallice",
+        "imageCreator": "Geoff Gallice",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Flickr_-_ggallice_-_Les_Pistes_de_Combloux%2C_%C3%A0_l'%C3%A9t%C3%A9.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-19697977",
       "approvedReviewId": "hTq57tVg3snv1E5D6TkV",
       "approvedAt": "2026-09-04T20:28:24.015Z",
@@ -612,6 +799,40 @@
         "imageLicenceUrl": null,
         "imageSourcePage": null,
         "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "osm-19703479",
+      "approvedReviewId": "commons-osm-19703479",
+      "approvedAt": "2026-09-07T11:16:05.003Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19703479-voeran.jpg",
+        "heroImage": "images/trails/osm-19703479-voeran.jpg",
+        "imageAlt": "Green meadows and scattered farmhouses on the Voeran terrace, with the rock summit of the Ifinger rising behind the forest.",
+        "imageCredit": "The Ifinger seen from Voeran",
+        "imageCreditText": "The Ifinger seen from Voeran by Alis901",
+        "imageCreator": "Alis901",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Picco_Ivigna_nelle_Alpi_Sarentine_visto_da_Verano%2C_BZ.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-19855818",
+      "approvedReviewId": "commons-osm-19855818",
+      "approvedAt": "2026-09-07T15:43:53.753Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19855818-col-du-gollet.jpg",
+        "heroImage": "images/trails/osm-19855818-col-du-gollet.jpg",
+        "imageAlt": "High summer pasture above Valmorel with a track winding down towards the Col du Gollet and rock peaks along the skyline.",
+        "imageCredit": "Col du Gollet towards the Col de la Madeleine",
+        "imageCreditText": "Col du Gollet towards the Col de la Madeleine by Florian Pepellin",
+        "imageCreator": "Florian Pepellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Col_du_Gollet_en_direction_du_Col_de_la_Madeleine_(ao%C3%BBt_2025).JPG",
+        "imageSourceType": "licensed-source"
       }
     },
     {
@@ -849,6 +1070,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Kiens,_de_Rienz_IMG_1121_2019-08-03_20.37.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-9492594",
+      "approvedReviewId": "commons-osm-9492594",
+      "approvedAt": "2026-09-06T19:13:57.327Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-9492594-lajen.jpg",
+        "heroImage": "images/trails/osm-9492594-lajen.jpg",
+        "imageAlt": "The village of Lajen on its terrace above green meadows crossed by field paths, with snow on the far range.",
+        "imageCredit": "Lajen seen from Tagusens",
+        "imageCreditText": "Lajen seen from Tagusens by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lajen_aus_Tagusens.JPG",
         "imageSourceType": "licensed-source"
       }
     },

@@ -88,7 +88,8 @@ describe('trail verification desk', () => {
 
   test('trusts the registry when the catalogue flag lags behind it', () => {
     const coverage = script.slice(script.indexOf('function renderCoverage'));
-    expect(coverage).toMatch(/Math\.max\(flagged,\(registry\.verified\|\|\[\]\)\.length\)/);
+    expect(coverage).toMatch(/registryCount=\(registry\.verified\|\|\[\]\)\.length/);
+    expect(coverage).toMatch(/Math\.max\(flagged,registryCount\)/);
   });
 
   test('ranks the shared blockers instead of listing trails one by one', () => {
@@ -103,5 +104,78 @@ describe('trail verification desk', () => {
     expect(label('shadeCoverage-unknown')).toBe('Shade coverage unknown');
     expect(label('review-date-missing')).toBe('Review date missing');
     expect(label('claim-sources-missing')).toBe('Claim sources missing');
+  });
+
+  test('spells out what verified means, including what does not count', () => {
+    // "Is it zero because we added shading to the match score?" is the question
+    // this panel exists to answer, so the answer is on the page.
+    expect(html).toContain('What &quot;verified&quot; means'.replace('&quot;', '"').replace('&quot;', '"'));
+    expect(script).toMatch(/routeNumbers','Route numbers'/);
+    expect(html).toMatch(/Shade cover, heat risk and exposure <em>values<\/em>/);
+    expect(html).toMatch(/not verification checks/);
+  });
+
+  test('explains why the count is low instead of only showing it', () => {
+    const coverage = script.slice(script.indexOf('function renderCoverage'));
+    expect(coverage).toMatch(/completed all eleven checks/);
+    expect(coverage).toMatch(/waiting earlier in the process/);
+    // Trails that cannot start must not be counted as progress.
+    expect(coverage).not.toMatch(/have entered verification/);
+  });
+
+  test('states it when the registry and the catalogue disagree', () => {
+    const coverage = script.slice(script.indexOf('function renderCoverage'));
+    expect(coverage).toMatch(/registryCount!==flagged/);
+    expect(coverage).toMatch(/They disagree/);
+  });
+
+  test('never reports an unreadable catalogue as a count of zero', () => {
+    // A daily Firestore quota is a recurring cause here, and a silent zero
+    // reads exactly like genuine bad news.
+    const coverage = script.slice(script.indexOf('function renderCoverage'));
+    expect(coverage).toMatch(/not a count of zero/);
+    expect(script).toMatch(/quota/i);
+  });
+
+  test('states one problem once, however many claims reported it', () => {
+    // Three logistics claims fail with the same sentence; that is one problem.
+    const group = new Function(`${script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('function geometryFacts'))}; return groupBlockers;`)();
+    const { groups, loose } = group([
+      'logistics/recommended-start: supported authoritative route guidance is required',
+      'logistics/route-number-status: supported authoritative route guidance is required',
+      'logistics/route-number-sequence: supported authoritative route guidance is required',
+    ]);
+    expect(groups).toHaveLength(1);
+    expect(groups[0].group.title).toBe('No start point or directions');
+    expect(groups[0].raw).toHaveLength(3); // kept, for hovering
+    expect(loose).toEqual([]);
+  });
+
+  test('every grouped blocker says what would clear it', () => {
+    const groups = new Function(`${script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('/** One entry'))}; return BLOCKER_GROUPS;`)();
+    groups.forEach(group => {
+      expect(group.title).toBeTruthy();
+      expect(group.remedy).toBeTruthy();
+      // No machine vocabulary in what the operator reads.
+      expect(`${group.title} ${group.detail} ${group.remedy}`).not.toMatch(/logistics\/|claim|dossier/i);
+    });
+  });
+
+  test('an unrecognised blocker is still shown, not swallowed', () => {
+    const group = new Function(`${script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('function geometryFacts'))}; return groupBlockers;`)();
+    const { groups, loose } = group(['something/new: a reason nobody has grouped yet']);
+    expect(groups).toEqual([]);
+    expect(loose).toEqual(['something/new: a reason nobody has grouped yet']);
+  });
+
+  test('a blocked card drops the approval checklist and facts', () => {
+    // They exist to help say yes. On a trail that cannot be approved they are
+    // noise sitting above the reason it cannot.
+    const card = script.slice(script.indexOf('function card('), script.indexOf('async function decide'));
+    expect(card).toMatch(/if\(decision\.ready\)article\.append\(el\('p','vd-question'/);
+    expect(card).toMatch(/const checks=decision\.ready\?decision\.gate\.checklist\.slice\(\):\[\]/);
+    expect(card).toMatch(/if\(decision\.ready&&decision\.facts\.length\)/);
+    // And the reason comes before the evidence disclosure.
+    expect(card.indexOf('vd-blockers')).toBeLessThan(card.indexOf('decision.evidence()'));
   });
 });

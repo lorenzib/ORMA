@@ -6,6 +6,7 @@ const path = require('path');
 const vm = require('vm');
 const crypto = require('crypto');
 const { applyVerifiedTrailOverrides } = require('./verified-trail-overrides');
+const { applyTrailImageOverrides } = require('./trail-image-overrides');
 const { normaliseRouteRef, applyRouteNumberEvidence } = require('./route-number-evidence');
 
 const root = path.resolve(__dirname, '..');
@@ -27,7 +28,13 @@ function loadTrails() {
     .forEach(file => vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context, { filename: file }));
   const trails = JSON.parse(vm.runInContext('window.DoloPawsRegions.assign(trails); JSON.stringify(trails)', context));
   const overrides = JSON.parse(fs.readFileSync(path.join(root, 'data', 'verified-trail-overrides.json'), 'utf8'));
-  return applyRouteNumberEvidence(applyVerifiedTrailOverrides(trails, overrides), root);
+  // Photo overrides belong here too. The static page generator reads them
+  // through load-production-trails, but the runtime data did not, so a trail
+  // served dynamically showed no photograph however well it was credited in the
+  // ledger. Eight trails were in that state.
+  const images = JSON.parse(fs.readFileSync(path.join(root, 'data', 'trail-image-overrides.json'), 'utf8'));
+  const withOverrides = applyTrailImageOverrides(applyVerifiedTrailOverrides(trails, overrides), images);
+  return applyRouteNumberEvidence(withOverrides, root);
 }
 
 function loadGondolas() {

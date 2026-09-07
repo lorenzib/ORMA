@@ -35,6 +35,7 @@
 
   let dossier={items:[]},orchestration={trails:[],summary:{}},editorial={outputs:[]},staging={items:[]},publication={requests:[]};
   let catalogue={items:[]},registry={verified:[]};
+  let coverageError='';
   let drafts=stored(DRAFT_KEY),receipts=stored(RECEIPT_KEY);
 
   function stored(key){try{return JSON.parse(localStorage.getItem(key)||'{}');}catch(error){return {};}}
@@ -100,6 +101,43 @@
       approve:'Prepare for publishing',
     },
   };
+
+
+  /**
+   * Blockers arrive as one machine string per failed claim, so a single
+   * missing thing can appear three times:
+   *
+   *   logistics/recommended-start:    supported authoritative route guidance is required
+   *   logistics/route-number-status:  supported authoritative route guidance is required
+   *   logistics/route-number-sequence:supported authoritative route guidance is required
+   *
+   * That is one problem, not three. Each group states the problem once, in the
+   * words of the thing a walker would miss, and says what would clear it.
+   */
+  const BLOCKER_GROUPS=[
+    {
+      match:/^logistics\/(recommended-start|route-number-)/,
+      title:'No start point or directions',
+      detail:'ORMA cannot say where this walk begins or which way to go. No authoritative source '
+        + 'was found giving a start point, and no numbered or landmark sequence to follow.',
+      remedy:'Find the official route sheet for this trail, a comune or department fiche giving the '
+        + 'start and the order of the route. Without one the trail cannot be verified.',
+    },
+  ];
+
+  /** One entry per distinct problem, with the raw ids kept for hovering. */
+  function groupBlockers(reasons){
+    const groups=[],loose=[];
+    (reasons||[]).forEach(reason=>{
+      const text=String(reason);
+      const group=BLOCKER_GROUPS.find(candidate=>candidate.match.test(text));
+      if(!group){loose.push(text);return;}
+      let existing=groups.find(entry=>entry.group===group);
+      if(!existing){existing={group,raw:[]};groups.push(existing);}
+      existing.raw.push(text);
+    });
+    return {groups,loose};
+  }
 
   function geometryFacts(result){
     const comparison=result.comparison||{},assessment=result.assessment||{};
@@ -225,6 +263,30 @@
     split:document.getElementById('verifySplit'),
     blockers:document.getElementById('verifyBlockers'),
     age:document.getElementById('verifyCoverageAge'),
+    checks:document.getElementById('verifyChecks'),
+    why:document.getElementById('verifyWhy'),
+    stages:document.getElementById('verifyStages'),
+    guidance:document.getElementById('verifyGuidance'),
+  };
+
+  // The eleven checks a trail must complete. Spelled out because the desk kept
+  // being asked why the count was zero, and the answer is not guessable from a
+  // number: the safety *values* (shade cover, heat risk, exposure) feed the
+  // match score and the blockers, and are not checks at all.
+  const GRADUATION_CHECKS=[
+    ['photo','Photo'],['route','Route'],['routeNumbers','Route numbers'],
+    ['mapPoints','Map points'],['elevation','Elevation'],['water','Water'],
+    ['heat','Heat'],['exposure','Exposure'],['livestock','Livestock'],
+    ['surfaceHazards','Surface hazards'],['access','Access'],
+  ];
+
+  // campaignState is where a trail actually sits. Machine names read as
+  // jargon, so each one says what it means for the person reading.
+  const STAGE_LABELS={
+    'verified-monitoring':'Verified, now monitored',
+    'identity-check-queued':'Waiting for a route identity check',
+    'source-identity-required':'Needs a route source before it can start',
+    'agent-execution-failure':'Stuck: the agent run failed',
   };
 
   /**
@@ -240,13 +302,20 @@
   function renderCoverage(){
     const items=catalogue.items||[];
     if(!items.length){
-      coverageNodes.headline.textContent='Catalogue figures are not available yet.';
+      // Never render "0 verified" when the figures simply could not be read:
+      // a daily Firestore quota is a real and recurring cause here, and a
+      // silent zero reads exactly like genuine bad news.
+      coverageNodes.headline.textContent=coverageError
+        ? 'Could not read the catalogue figures, so this is not a count of zero.'
+        : 'Catalogue figures are not available yet.';
+      if(coverageError)coverageNodes.split.textContent=coverageError;
       return;
     }
     // The registry is the record of what actually shipped as verified; the
     // catalogue flag can lag behind it, so trust whichever knows about more.
     const flagged=items.filter(item=>item.modernGraduationVerified===true).length;
-    const verified=Math.max(flagged,(registry.verified||[]).length);
+    const registryCount=(registry.verified||[]).length;
+    const verified=Math.max(flagged,registryCount);
     const total=items.length;
     const remaining=Math.max(total-verified,0);
     const imported=items.filter(item=>item.origin==='imported').length;
@@ -259,6 +328,46 @@
       const when=new Date(catalogue.generatedAt);
       if(!Number.isNaN(when.valueOf()))coverageNodes.age.textContent=`Counted ${when.toLocaleDateString()}`;
     }
+
+    // The eleven checks, listed so "verified" is not a word of unknown meaning.
+    coverageNodes.checks.replaceChildren();
+    GRADUATION_CHECKS.forEach(([, label])=>coverageNodes.checks.append(el('li','',label)));
+
+    // Why the number is low. Deliberately no invented "entered" metric: a
+    // trail waiting on a route source has not started either, so counting it
+    // as progress would overstate exactly what this panel exists to explain.
+    const why=[`${plural(flagged,'trail')} of ${total} ${flagged===1?'has':'have'} completed all eleven checks. `
+      + 'The rest are not failing them, they are waiting earlier in the process:'];
+    // The registry and the catalogue flag can disagree, and showing the larger
+    // number beside a smaller stage count reads as a contradiction. Say it.
+    if(registryCount!==flagged){
+      why.push(`The verified registry lists ${registryCount}, while the catalogue flags ${flagged}. `
+        + 'They disagree, which usually means the catalogue was counted before the most recent verification.');
+    }
+    coverageNodes.why.textContent=why.join(' ');
+
+    const stages=new Map();
+    items.forEach(item=>{
+      const state=item.campaignState||'unknown';
+      stages.set(state,(stages.get(state)||0)+1);
+    });
+    coverageNodes.stages.replaceChildren();
+    [...stages.entries()].sort((a,b)=>b[1]-a[1]).forEach(([state,count])=>{
+      const row=el('li');
+      row.append(el('strong','',String(count)),el('span','',STAGE_LABELS[state]||state.replace(/-/g,' ')));
+      row.title=state;
+      coverageNodes.stages.append(row);
+    });
+
+    // The route-guidance gate is the actual ceiling: a trail nobody can number
+    // can never complete the routeNumbers check, however much else is done.
+    const summary=catalogue.summary||{};
+    const outstanding=Number(summary.routeNumberGuidanceOutstanding);
+    coverageNodes.guidance.textContent=Number.isFinite(outstanding)&&outstanding
+      ? `Route guidance is the requirement that stops most trails: ${plural(outstanding,'trail')} still cannot show an authoritative `
+        + `start point and direction, and cannot complete the route numbers check until they can.`
+      : 'Every admitted trail must show authoritative route guidance: a start point '
+        + 'and direction, or an ordered landmark sequence.';
 
     // Ranked, because the same handful of gaps blocks almost every trail:
     // closing one of them advances a hundred trails, reviewing one advances one.
@@ -290,28 +399,45 @@
     heading.append(el('p','vd-gate',decision.gate.label),el('h2','',decision.trailName));
     head.append(heading);
     if(!decision.ready)head.append(el('span','vd-lock','Blocked'));
-    article.append(head,el('p','vd-question',decision.gate.question));
+    article.append(head);
+    // The question and its checklist are for deciding an approvable trail.
+    // On a blocked one they are noise above the reason it is blocked.
+    if(decision.ready)article.append(el('p','vd-question',decision.gate.question));
 
+    // A blocked trail cannot be approved, so the reason is the story: it goes
+    // directly under the name, before the question and the approval checklist.
     if(decision.blockers.length){
-      const blockers=el('div','vd-blockers');
-      blockers.append(el('h3','','Fix before approving'));
-      const list=el('ul');decision.blockers.forEach(reason=>list.append(el('li','',String(reason))));
-      blockers.append(list);article.append(blockers);
+      const {groups,loose}=groupBlockers(decision.blockers);
+      const box=el('div','vd-blockers');
+      box.append(el('h3','','Cannot be approved yet'));
+      groups.forEach(({group,raw})=>{
+        const item=el('div','vd-blocker');
+        item.append(el('strong','',group.title),el('p','',group.detail),el('p','vd-remedy',group.remedy));
+        // The machine ids stay reachable without taking up the card.
+        item.title=raw.join('\n');
+        box.append(item);
+      });
+      loose.forEach(reason=>{
+        const item=el('div','vd-blocker');
+        item.append(el('strong','',blockerLabel(String(reason).split(':')[0])),el('p','',String(reason)));
+        box.append(item);
+      });
+      article.append(box);
     }
 
     if(decision.summary)article.append(el('p','vd-summary',decision.summary));
 
     // The checklist is the job. It used to be one sentence at the bottom of
     // the cartographer panel; here it is the first thing on the card.
-    const checks=decision.gate.checklist.slice();
-    decision.claims.forEach(claim=>checks.push(`${claim.category}: ${claim.proposedValue}`));
+    const checks=decision.ready?decision.gate.checklist.slice():[];
+    if(decision.ready)decision.claims.forEach(claim=>checks.push(`${claim.category}: ${claim.proposedValue}`));
     if(checks.length){
       const list=el('ul','vd-checklist');
       checks.forEach(text=>list.append(el('li','',text)));
       article.append(el('h3','vd-checklist-title','What to check'),list);
     }
 
-    if(decision.facts.length){
+    if(decision.ready&&decision.facts.length){
       const facts=el('div','vd-facts');
       decision.facts.forEach(([label,value])=>{const box=el('div');box.append(el('small','',label),el('strong','',value));facts.append(box);});
       article.append(facts);
@@ -408,12 +534,17 @@
         artifact('catalogue-campaign',URLS.catalogue,{items:[]}),
         artifact('orma-verified-registry-live',URLS.registry,{verified:[]}),
       ]);
+      coverageError='';
       stateNode.textContent='';
       stateNode.classList.remove('is-error');
       render();
     }catch(error){
+      coverageError=error.message;
       stateNode.classList.add('is-error');
-      stateNode.textContent=error.message;
+      stateNode.textContent=/quota/i.test(error.message)
+        ? `${error.message} The daily Firestore quota resets after midnight Pacific; the figures are stale, not zero.`
+        : error.message;
+      renderCoverage();
     }finally{
       refreshBtn.disabled=false;
     }

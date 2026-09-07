@@ -54,7 +54,9 @@ async function ingestTrailReviews(store, options = {}){
       const submission = { submissionId:review.id, submittedAt, status:'processed', decisions, outcomes:recorded, publicMutationAllowed:false };
       const nextReviewQueue = { contractVersion:'1.0.0', updatedAt:submittedAt,
         submissions:[...(reviewQueue?.submissions || []), submission] };
-      const staging = buildPublicationStaging(editorialQueue, execution, nextReviewQueue, { at:submittedAt });
+      const staging = buildPublicationStaging(editorialQueue, execution, nextReviewQueue,
+        { at:submittedAt,
+          productionTrails:options.productionTrails||loadProductionTrails(path.resolve(__dirname,'../..')) });
       await Promise.all([
         store.setArtifact('content-review-queue', nextReviewQueue), store.setArtifact('publication-staging', staging),
         store.markReview(review.id, 'processed', { outcomes:recorded, revisionJobIds:revisionJobs.map(job => job.id) }),
@@ -313,6 +315,13 @@ async function runLiveBackofficeWorker(store, options = {}){
   const recoveredJobs = typeof store.recoverExpiredJobs === 'function'
     ? await store.recoverExpiredJobs(options)
     : [];
+  // Work retired by a provider outage before the outage guard existed. Blocked
+  // is terminal and putJobIfAbsent will not recreate an existing job, so this is
+  // the only way those trails re-enter the queue. Bounded per pass so a backlog
+  // drains steadily instead of arriving all at once.
+  const requeuedAfterOutage = typeof store.requeueOutageBlockedJobs === 'function'
+    ? await store.requeueOutageBlockedJobs({ ...options, limit: options.outageRequeueLimit })
+    : [];
   const dossierReviews=await ingestDossierReviews(store);
   const advancementBefore=await advanceTrailOrchestration(store,options);
   const reviews = await ingestTrailReviews(store, options);
@@ -321,7 +330,7 @@ async function runLiveBackofficeWorker(store, options = {}){
   const editorialFirstPass=await processEditorialFirstPassJobs(store,options);
   const jobs = await processRevisionJobs(store, options);
   const publications = await ingestPublicationReviews(store);
-  return { workerId:options.workerId || null,campaign,newTrailReviews,hazardReviews,communityHazards,recoveredJobs, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  return { workerId:options.workerId || null,campaign,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
 module.exports = { iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };

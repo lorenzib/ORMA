@@ -13,6 +13,50 @@ function dateMs(value){
 }
 
 function nextAt(at,hours){return new Date(dateMs(at)+hours*60*60*1000).toISOString();}
+
+// The campaign is meant to run once a day, shortly after the Firestore quota
+// resets, which is why its cron sits at 09:30 Europe/Rome. Setting the next
+// eligibility to "24 hours from now" broke that: a run at 12:12 pushed the next
+// one to 12:12, so the 09:30 cron was four hours early and skipped the day
+// entirely. Two paths can run the campaign -- the cron and the worker -- so
+// whenever the worker won, the following morning was lost.
+//
+// Eligibility therefore lands on the next campaign window rather than a rolling
+// interval, so a fixed daily cron always finds it due no matter who ran it last.
+const CAMPAIGN_TIME_ZONE='Europe/Rome';
+const CAMPAIGN_HOUR=9;
+const CAMPAIGN_MINUTE=30;
+
+function zoneOffsetMs(ms,timeZone){
+  const parts={};
+  for(const part of new Intl.DateTimeFormat('en-US',{timeZone,hour12:false,
+    year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'})
+    .formatToParts(new Date(ms))) if(part.type!=='literal') parts[part.type]=part.value;
+  return Date.UTC(Number(parts.year),Number(parts.month)-1,Number(parts.day),
+    Number(parts.hour)%24,Number(parts.minute),Number(parts.second))-ms;
+}
+
+// The instant of a wall-clock time in a zone, corrected once for that zone's
+// offset at the guessed instant. Good across DST changes for a 09:30 target.
+function instantAt(year,month,day,hour,minute,timeZone){
+  const guess=Date.UTC(year,month-1,day,hour,minute,0);
+  return guess-zoneOffsetMs(guess,timeZone);
+}
+
+function nextCampaignWindow(at,options={}){
+  const timeZone=options.timeZone||CAMPAIGN_TIME_ZONE;
+  const hour=Number.isInteger(options.hour)?options.hour:CAMPAIGN_HOUR;
+  const minute=Number.isInteger(options.minute)?options.minute:CAMPAIGN_MINUTE;
+  const from=dateMs(at)||Date.now();
+  const parts={};
+  for(const part of new Intl.DateTimeFormat('en-CA',{timeZone,year:'numeric',month:'2-digit',day:'2-digit'})
+    .formatToParts(new Date(from))) if(part.type!=='literal') parts[part.type]=part.value;
+  let candidate=instantAt(Number(parts.year),Number(parts.month),Number(parts.day),hour,minute,timeZone);
+  // Strictly after the run that just finished, so a campaign completing during
+  // its own window does not immediately become eligible again.
+  if(candidate<=from) candidate=instantAt(Number(parts.year),Number(parts.month),Number(parts.day)+1,hour,minute,timeZone);
+  return new Date(candidate).toISOString();
+}
 function retryAt(at,minutes){return new Date(dateMs(at)+minutes*60*1000).toISOString();}
 
 function campaignEligibility(previous,options={}){
@@ -44,7 +88,7 @@ async function runScheduledTrailCampaign(store,trails,options={}){
       routeNumberGuidanceVerified:result.campaign.summary.routeNumberGuidanceVerified,
       routeNumberGuidanceOutstanding:result.campaign.summary.routeNumberGuidanceOutstanding,...runIdentity};
     const health={...started,status:'healthy',completedAt,lastSuccessfulAt:completedAt,
-      nextEligibleAt:nextAt(completedAt,Number(options.intervalHours||DEFAULT_INTERVAL_HOURS)),lastResult:receipt,
+      nextEligibleAt:nextCampaignWindow(completedAt,options),lastResult:receipt,
       recentRuns:[...started.recentRuns,receipt].slice(-20)};
     await store.setArtifact('trail-campaign-health',health,{status:'healthy',runId:runIdentity.runId});
     return {status:'completed',due:true,jobIds:result.jobIds,summary:result.summary,campaign:result.campaign,nextEligibleAt:health.nextEligibleAt};
@@ -58,4 +102,4 @@ async function runScheduledTrailCampaign(store,trails,options={}){
   }
 }
 
-module.exports={DEFAULT_INTERVAL_HOURS,DEFAULT_RETRY_MINUTES,dateMs,campaignEligibility,runScheduledTrailCampaign};
+module.exports={nextCampaignWindow,CAMPAIGN_TIME_ZONE,CAMPAIGN_HOUR,CAMPAIGN_MINUTE,DEFAULT_INTERVAL_HOURS,DEFAULT_RETRY_MINUTES,dateMs,campaignEligibility,runScheduledTrailCampaign};

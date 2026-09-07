@@ -158,6 +158,50 @@ class FirestoreBackofficeStore {
     return expired.map(doc => doc.id);
   }
 
+  // Jobs blocked by a provider outage before providerOutage() learned to spare
+  // them. The rule is already written down in backoffice/services/provider-outage.js:
+  // an outage says nothing about the job, so it must not spend the failure
+  // budget. That guard only protects jobs failing from now on, and 'blocked' is
+  // terminal — putJobIfAbsent will not recreate a job that already exists — so
+  // work retired by a past outage stays retired forever unless something puts
+  // it back.
+  //
+  // This applies the same rule retroactively: a blocked job whose recorded error
+  // still reads as an outage is requeued with a fresh budget, because by current
+  // policy it should never have been blocked at all. Jobs blocked for reasons of
+  // their own are left exactly where they are.
+  //
+  // Bounded per pass on purpose. Releasing a large backlog at once would hit the
+  // provider and the Firestore quota in the same breath, which is close to how
+  // the backlog was created.
+  async requeueOutageBlockedJobs(options = {}){
+    const now = options.now || new Date();
+    const limit = Number.isInteger(options.limit) && options.limit > 0 ? options.limit : 10;
+    const snapshot = await this.db.collection(COLLECTIONS.jobs)
+      .where('status', '==', 'blocked').limit(200).get();
+    const releasable = snapshot.docs
+      .filter(doc => providerOutage(doc.data().lastError))
+      .slice(0, limit);
+    if(!releasable.length) return [];
+    const batch = this.db.batch();
+    releasable.forEach(doc => batch.update(doc.ref, {
+      status:'queued',
+      // A fresh budget: the previous failures were the provider's, not the job's.
+      systemFailures: 0,
+      // lastError is kept. It is the only record of why the job stalled, and
+      // the report groups by it.
+      requeuedAfterOutageAt: Timestamp.fromDate(now),
+      notBefore: FieldValue.delete(),
+      workerId: FieldValue.delete(),
+      startedAt: FieldValue.delete(),
+      leaseExpiresAt: FieldValue.delete(),
+      updatedAt: FieldValue.serverTimestamp(),
+    }));
+    await batch.commit();
+    this.invalidate('jobs:');
+    return releasable.map(doc => doc.id);
+  }
+
   async claimJob(id, workerId, options = {}){
     const now = options.now || new Date();
     const leaseMs = options.leaseMs || 15 * 60 * 1000;
