@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T07:35:18.977Z",
+  "updatedAt": "2026-09-07T09:38:00.484Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -390,6 +390,23 @@
         "imageLicence": "CC BY 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vall%C3%A9e_de_l%27Arvan.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12142337",
+      "approvedReviewId": "commons-osm-12142337",
+      "approvedAt": "2026-09-07T09:38:00.461Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12142337-peitlerkofel.jpg",
+        "heroImage": "images/trails/osm-12142337-peitlerkofel.jpg",
+        "imageAlt": "The rock tower of the Peitlerkofel above wooded ridges, seen across a hand-harvested corn field with stooks drying on the slope.",
+        "imageCredit": "The Peitlerkofel seen from La Valle",
+        "imageCreditText": "The Peitlerkofel seen from La Valle by Alex1011",
+        "imageCreator": "Alex1011",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:PeitlerKorn.jpg",
         "imageSourceType": "licensed-source"
       }
     },
