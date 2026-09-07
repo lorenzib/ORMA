@@ -5952,7 +5952,7 @@ function effectiveOverrides(profile, adjustOverride){
     ['Alpe di Siusi / Seiser Alm', 46.5402, 11.6181, 'Alpe di Siusi – Sciliar', 'dolomites', 'alto-adige'],
     ['Castelrotto / Kastelruth', 46.5670, 11.5599, 'Alpe di Siusi – Sciliar', 'dolomites', 'alto-adige'],
     ['Val di Funes / Villnöss', 46.6440, 11.6810, 'Val di Funes – Odle', 'dolomites', 'alto-adige'],
-    ['Bressanone / Brixen', 46.7151, 11.6570, 'Val di Funes – Odle', 'dolomites', 'alto-adige'],
+    ['Bressanone / Brixen', 46.7151, 11.6570, 'Valle Isarco – Eisacktal', 'dolomites', 'alto-adige'],
     ['Nova Levante / Carezza', 46.4300, 11.5380, 'Val di Fiemme – Latemar', 'dolomites', 'alto-adige'],
     ['Predazzo / Val di Fiemme', 46.3110, 11.6010, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
     ['Cavalese', 46.2910, 11.4600, 'Val di Fiemme – Latemar', 'dolomites', 'trentino'],
@@ -5964,10 +5964,44 @@ function effectiveOverrides(profile, adjustOverride){
     ['Agordo', 46.2820, 12.0330, 'Belluno – Agordino', 'dolomites', 'belluno'],
     ['Belluno', 46.1420, 12.2167, 'Belluno – Agordino', 'dolomites', 'belluno'],
     ['Pieve di Cadore', 46.4276, 12.3730, 'Belluno – Agordino', 'dolomites', 'belluno'],
-    ['Bolzano / Bozen', 46.4983, 11.3548, 'Val di Fiemme – Latemar', 'dolomites', 'alto-adige'],
+    // Bolzano sat in 'Val di Fiemme – Latemar' and Vipiteno in 'Val di Funes –
+    // Odle'; neither city is in the valley it named. Because both are big
+    // enough to be the nearest entry for a wide area, they handed that wrong
+    // valley to every trail that fell through to them.
+    ['Bolzano / Bozen', 46.4983, 11.3548, 'Conca di Bolzano', 'dolomites', 'alto-adige'],
     ['Brunico / Bruneck', 46.7966, 11.9376, 'Alta Pusteria – Tre Cime', 'dolomites', 'alto-adige'],
-    ['Vipiteno / Sterzing', 46.8977, 11.4331, 'Val di Funes – Odle', 'dolomites', 'alto-adige'],
+    ['Vipiteno / Sterzing', 46.8977, 11.4331, 'Valle Isarco – Eisacktal', 'dolomites', 'alto-adige'],
     ['Madonna di Campiglio', 46.2295, 10.8269, 'Brenta', 'dolomites', 'trentino'],
+
+    // Valleys the OSM import reached that the original 56-entry list did not
+    // cover. Without them every trail here fell through to the nearest big
+    // town, up to 31 km away.
+    ['Naturno / Naturns', 46.6499, 11.0042, 'Val Venosta – Vinschgau', 'dolomites', 'alto-adige'],
+    ['Ultimo / Ulten', 46.5486, 11.0042, 'Val d\'Ultimo – Ultental', 'dolomites', 'alto-adige'],
+    ['Merano / Meran', 46.6714, 11.1646, 'Burgraviato – Merano', 'dolomites', 'alto-adige'],
+    ['Avelengo / Hafling', 46.6626, 11.2542, 'Burgraviato – Merano', 'dolomites', 'alto-adige'],
+    ['Verano / Vöran', 46.6224, 11.2444, 'Burgraviato – Merano', 'dolomites', 'alto-adige'],
+    ['San Leonardo in Passiria / St. Leonhard', 46.7877, 11.2751, 'Val Passiria – Passeier', 'dolomites', 'alto-adige'],
+    ['Sarentino / Sarnthein', 46.6430, 11.3566, 'Val Sarentino – Sarntal', 'dolomites', 'alto-adige'],
+    ['Valdurna / Durnholz', 46.7397, 11.4392, 'Val Sarentino – Sarntal', 'dolomites', 'alto-adige'],
+    ['Meltina / Mölten', 46.5930, 11.2503, 'Salto – Tschögglberg', 'dolomites', 'alto-adige'],
+    ['San Genesio / Jenesien', 46.5671, 11.3280, 'Salto – Tschögglberg', 'dolomites', 'alto-adige'],
+    ['Caldaro / Kaltern', 46.4135, 11.2469, 'Oltradige – Bassa Atesina', 'dolomites', 'alto-adige'],
+    ['Termeno / Tramin', 46.3415, 11.2423, 'Oltradige – Bassa Atesina', 'dolomites', 'alto-adige'],
+    ['Montagna / Montan', 46.3308, 11.3046, 'Oltradige – Bassa Atesina', 'dolomites', 'alto-adige'],
+    ['Salorno / Salurn', 46.2457, 11.2029, 'Oltradige – Bassa Atesina', 'dolomites', 'alto-adige'],
+    ['Lauregno / Laurein', 46.4795, 11.0465, 'Val di Non – Nonsberg', 'dolomites', 'alto-adige'],
+    ['Vandoies / Vintl', 46.8758, 11.7209, 'Val Pusteria – Pustertal', 'dolomites', 'alto-adige'],
+    ['Terento / Terenten', 46.8515, 11.7820, 'Val Pusteria – Pustertal', 'dolomites', 'alto-adige'],
+    ['Chienes / Kiens', 46.8226, 11.8326, 'Val Pusteria – Pustertal', 'dolomites', 'alto-adige'],
+    ['Valle di Casies / Gsies', 46.8241, 12.2325, 'Val Pusteria – Pustertal', 'dolomites', 'alto-adige'],
+    ['Valles / Vals', 46.8698, 11.6202, 'Valle Isarco – Eisacktal', 'dolomites', 'alto-adige'],
+    ['San Martino in Badia / St. Martin', 46.6509, 11.8417, 'Val Badia', 'dolomites', 'alto-adige'],
+    ['Andalo', 46.1617, 11.0076, 'Paganella', 'dolomites', 'trentino'],
+    ['Fai della Paganella', 46.1793, 11.0689, 'Paganella', 'dolomites', 'trentino'],
+    ['Baselga di Piné', 46.1313, 11.2568, 'Valsugana', 'dolomites', 'trentino'],
+    ['Pieve Tesino', 46.1986, 11.5441, 'Valsugana', 'dolomites', 'trentino'],
+    ['Tambre / Alpago', 46.0973, 12.4389, 'Alpago', 'dolomites', 'belluno'],
 
     // ---- Savoy ----
     ['Chamonix-Mont-Blanc', 45.9237, 6.8694, 'Chamonix – Mont Blanc', 'savoy', 'haute-savoie'],
@@ -6000,7 +6034,14 @@ function effectiveOverrides(profile, adjustOverride){
     ['Pralognan-la-Vanoise', 45.3810, 6.7220, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
     ['Modane / Maurienne', 45.2016, 6.6580, 'Maurienne', 'savoy', 'savoie'],
     ['Valloire', 45.1650, 6.4300, 'Maurienne', 'savoy', 'savoie'],
-    ['Saint-Jean-de-Maurienne', 45.2760, 6.3460, 'Maurienne', 'savoy', 'savoie']
+    ['Saint-Jean-de-Maurienne', 45.2760, 6.3460, 'Maurienne', 'savoy', 'savoie'],
+    ['Vallorcine', 46.0340, 6.9325, 'Chamonix – Mont Blanc', 'savoy', 'haute-savoie'],
+    ['La Chapelle-d\'Abondance', 46.2957, 6.7883, 'Chablais – Portes du Soleil', 'savoy', 'haute-savoie'],
+    ['Habère-Poche', 46.2486, 6.4735, 'Chablais – Portes du Soleil', 'savoy', 'haute-savoie'],
+    ['Valmorel / Les Avanchers', 45.4782, 6.4562, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
+    ['Saint-Martin-de-Belleville', 45.3798, 6.5046, 'Tarentaise – Vanoise', 'savoy', 'savoie'],
+    ['Les Échelles / Chartreuse', 45.4359, 5.7546, 'Chambéry – Bauges', 'savoy', 'savoie'],
+    ['Val Thorens', 45.2979, 6.5823, 'Tarentaise – Vanoise', 'savoy', 'savoie']
   ];
 
   const REGIONS = {
@@ -6028,17 +6069,36 @@ function effectiveOverrides(profile, adjustOverride){
     return VALLEY_PROVINCE.get(trail.valley) || null;
   }
 
-  function nearest(lat, lng) {
+  function kmBetween(lat1, lng1, lat2, lng2) {
+    const R = 6371;
+    const toRad = (d) => (d * Math.PI) / 180;
+    const dLat = toRad(lat2 - lat1);
+    const dLng = toRad(lng2 - lng1);
+    const s = Math.sin(dLat / 2) ** 2 +
+      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(s));
+  }
+
+  // Returns the nearest locality AND how far away it is. The distance is the
+  // part that matters: this lookup has no cap, so when the table does not cover
+  // a valley it still answers, with whatever town happens to be closest. That
+  // is how a trail at Naturns came to be labelled Bolzano, 31 km away.
+  // locality-coverage.test.js asserts the distance stays small.
+  function nearestLocality(lat, lng) {
     let best = null;
     let bestD = Infinity;
     for (const [name, la, ln, valley, region, province] of LOCALITIES) {
-      // Squared equirectangular distance, plenty for nearest-of-56 lookups.
-      const dLat = lat - la;
-      const dLng = (lng - ln) * Math.cos((lat * Math.PI) / 180);
-      const d = dLat * dLat + dLng * dLng;
-      if (d < bestD) { bestD = d; best = { name, valley, region, province: province || null }; }
+      const d = kmBetween(lat, lng, la, ln);
+      if (d < bestD) {
+        bestD = d;
+        best = { name, valley, region, province: province || null, km: d };
+      }
     }
     return best;
+  }
+
+  function nearest(lat, lng) {
+    return nearestLocality(lat, lng);
   }
 
   function assign(list) {
@@ -6084,6 +6144,11 @@ function effectiveOverrides(profile, adjustOverride){
 
   window.DoloPawsRegions = {
     REGIONS,
+    // The import pipeline used to carry its own copy of this table. The two
+    // drifted, so a trail could be given an `area` from one list and a `valley`
+    // from the other, naming different places. This is now the only copy.
+    LOCALITIES,
+    nearestLocality,
     assign,
     valleysFor,
     provincesFor,

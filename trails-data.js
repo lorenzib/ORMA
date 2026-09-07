@@ -303,7 +303,7 @@ const trails = [
   {
     "id": "osm-3982382",
     "name": "Circuit Béatrice de Savoie",
-    "area": "Chambéry",
+    "area": "Les Échelles / Chartreuse",
     "lat": 45.43627,
     "lng": 5.75366,
     "osmRelation": 3982382,

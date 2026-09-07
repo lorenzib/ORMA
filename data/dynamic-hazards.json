@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-07T16:07:05.743Z",
+  "generatedAt": "2026-09-07T21:07:02.305Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:2.49.0.0.380.3.IT.260907113531.056",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-09-07T12:00:00+00:00",
       "expiresAt": "2026-09-07T23:59:00+00:00",
       "firstPublishedAt": "2026-09-07T10:07:05.659Z",
-      "lastSeenAt": "2026-09-07T16:07:05.743Z",
+      "lastSeenAt": "2026-09-07T21:07:02.305Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -42,7 +42,7 @@
       "effectiveAt": "2026-09-07T22:00:00+00:00",
       "expiresAt": "2026-09-08T22:00:00+00:00",
       "firstPublishedAt": "2026-09-07T15:07:01.875Z",
-      "lastSeenAt": "2026-09-07T16:07:05.743Z",
+      "lastSeenAt": "2026-09-07T21:07:02.305Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -139,7 +139,7 @@
       "effectiveAt": "2026-09-07T12:00:00+00:00",
       "expiresAt": "2026-09-07T23:59:00+00:00",
       "firstPublishedAt": "2026-09-07T10:07:05.659Z",
-      "lastSeenAt": "2026-09-07T16:07:05.743Z",
+      "lastSeenAt": "2026-09-07T21:07:02.305Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -354,7 +354,7 @@
       "effectiveAt": "2026-09-08T18:00:00+00:00",
       "expiresAt": "2026-09-08T23:59:00+00:00",
       "firstPublishedAt": "2026-09-07T10:07:05.659Z",
-      "lastSeenAt": "2026-09-07T16:07:05.743Z",
+      "lastSeenAt": "2026-09-07T21:07:02.305Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
