@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T15:55:57.166Z",
+  "updatedAt": "2026-09-07T16:02:46.721Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -764,6 +764,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:2018-06_R%C3%A9serve_naturelle_nationale_de_Sixt-Passy_32.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-19661726",
+      "approvedReviewId": "commons-osm-19661726",
+      "approvedAt": "2026-09-07T16:02:46.715Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19661726-combloux.jpg",
+        "heroImage": "images/trails/osm-19661726-combloux.jpg",
+        "imageAlt": "A summer meadow of daisies, clover and cow parsley on the slopes above Combloux, with spruce and wooded hills beyond.",
+        "imageCredit": "The Combloux slopes in summer",
+        "imageCreditText": "The Combloux slopes in summer by Geoff Gallice",
+        "imageCreator": "Geoff Gallice",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Flickr_-_ggallice_-_Les_Pistes_de_Combloux%2C_%C3%A0_l'%C3%A9t%C3%A9.jpg",
         "imageSourceType": "licensed-source"
       }
     },
