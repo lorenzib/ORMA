@@ -4,7 +4,7 @@
   "regions": {
     "dolomites": {
       "trailCount": 111,
-      "trails": "data/regions/dolomites-trails.js?v=26024779d5fd",
+      "trails": "data/regions/dolomites-trails.js?v=b0f2ff52c27e",
       "details": {
         "alpe-siusi": "data/trail-details/alpe-siusi.js?v=3416ad1a6164",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
@@ -32,7 +32,7 @@
         "osm-3202880": "data/trail-details/osm-3202880.js?v=97c4dd3fff8c",
         "osm-3885162": "data/trail-details/osm-3885162.js?v=2f03ec1a9fdf",
         "osm-5512443": "data/trail-details/osm-5512443.js?v=6a2e6b1e86ef",
-        "osm-6244965": "data/trail-details/osm-6244965.js?v=68be633ff686",
+        "osm-6244965": "data/trail-details/osm-6244965.js?v=0e6ec5662ad8",
         "osm-6404258": "data/trail-details/osm-6404258.js?v=8422955e3bdf",
         "osm-6404633": "data/trail-details/osm-6404633.js?v=bd4361fa8b7d",
         "osm-6404634": "data/trail-details/osm-6404634.js?v=e0d912dba1d1",
