@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T10:08:30.618Z",
+  "updatedAt": "2026-09-07T11:16:05.003Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -598,6 +598,23 @@
       }
     },
     {
+      "id": "osm-13338113",
+      "approvedReviewId": "commons-osm-13338113",
+      "approvedAt": "2026-09-07T11:16:05.003Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-13338113-la-chapelle.jpg",
+        "heroImage": "images/trails/osm-13338113-la-chapelle.jpg",
+        "imageAlt": "The Abondance valley on an autumn morning, its village on the floor and a path running along the grassy slope above.",
+        "imageCredit": "La Chapelle-d Abondance and its valley",
+        "imageCreditText": "La Chapelle-d Abondance and its valley by Florian Pepellin",
+        "imageCreator": "Florian Pepellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:La_Chapelle-d%27Abondance_et_sa_vall%C3%A9e_au_matin_(octobre_2021).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-13491868",
       "approvedReviewId": "commons-osm-13491868",
       "approvedAt": "2026-09-06T08:52:09.690Z",
@@ -714,6 +731,23 @@
         "imageLicenceUrl": null,
         "imageSourcePage": null,
         "imageSourceType": "moderator-upload"
+      }
+    },
+    {
+      "id": "osm-19703479",
+      "approvedReviewId": "commons-osm-19703479",
+      "approvedAt": "2026-09-07T11:16:05.003Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19703479-voeran.jpg",
+        "heroImage": "images/trails/osm-19703479-voeran.jpg",
+        "imageAlt": "Green meadows and scattered farmhouses on the Voeran terrace, with the rock summit of the Ifinger rising behind the forest.",
+        "imageCredit": "The Ifinger seen from Voeran",
+        "imageCreditText": "The Ifinger seen from Voeran by Alis901",
+        "imageCreator": "Alis901",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Picco_Ivigna_nelle_Alpi_Sarentine_visto_da_Verano%2C_BZ.jpg",
+        "imageSourceType": "licensed-source"
       }
     },
     {
