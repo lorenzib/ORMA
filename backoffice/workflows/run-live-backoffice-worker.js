@@ -124,6 +124,14 @@ async function processEditorialFirstPassJobs(store,options={}){
   return outcomes;
 }
 
+// The job types this worker still has a processor for. Releasing a job outside
+// this set puts it back in a queue nothing reads, so the requeue is scoped to it
+// and follows automatically when a lane is added or retired.
+const PROCESSABLE_JOB_TYPES = Object.freeze([
+  'trail-verification-specialist', 'trail-claim-resolution',
+  'verified-trail-editorial-first-pass', 'verified-trail-editorial-revision',
+]);
+
 async function processTrailSpecialistJobs(store,options={}){
   const workerId=options.workerId||`orma-worker-${randomUUID()}`;
   let queued=(await store.listJobs(['queued'])).filter(job=>['trail-verification-specialist','trail-claim-resolution'].includes(job.jobType));const outcomes=[];
@@ -320,7 +328,8 @@ async function runLiveBackofficeWorker(store, options = {}){
   // the only way those trails re-enter the queue. Bounded per pass so a backlog
   // drains steadily instead of arriving all at once.
   const requeuedAfterOutage = typeof store.requeueOutageBlockedJobs === 'function'
-    ? await store.requeueOutageBlockedJobs({ ...options, limit: options.outageRequeueLimit })
+    ? await store.requeueOutageBlockedJobs({ ...options, limit: options.outageRequeueLimit,
+        jobTypes: PROCESSABLE_JOB_TYPES })
     : [];
   const dossierReviews=await ingestDossierReviews(store);
   const advancementBefore=await advanceTrailOrchestration(store,options);
@@ -333,4 +342,4 @@ async function runLiveBackofficeWorker(store, options = {}){
   return { workerId:options.workerId || null,campaign,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
-module.exports = { iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+module.exports = { PROCESSABLE_JOB_TYPES, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };

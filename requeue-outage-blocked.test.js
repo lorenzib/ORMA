@@ -102,3 +102,57 @@ describe('requeueOutageBlockedJobs', () => {
     expect(updates).toEqual([]);
   });
 });
+
+// The first pass after the requeue shipped released ten image-coverage jobs --
+// a lane retired the same day -- while the verification jobs behind them stayed
+// blocked. A job whose processor has been removed goes back to 'queued' and sits
+// there, so releasing it wastes the budget that live work needs.
+describe('the requeue only touches lanes that still run', () => {
+  const { FirestoreBackofficeStore } = require('./backoffice/services/firestore-backoffice-store');
+  const { PROCESSABLE_JOB_TYPES } = require('./backoffice/workflows/run-live-backoffice-worker');
+
+  function storeWith(docs){
+    const updates = [];
+    const batch = { update:(ref, data) => updates.push({ id:ref.id, data }), commit: async () => {} };
+    const store = Object.create(FirestoreBackofficeStore.prototype);
+    store.db = { batch: () => batch, collection: () => ({ where: () => ({ limit: () => ({
+      get: async () => ({ docs: docs.map(d => ({ id:d.id, ref:{ id:d.id }, data: () => d })) }),
+    }) }) }) };
+    store.queryCache = new Map(); store.artifactCache = new Map();
+    return { store, updates };
+  }
+
+  const outage = 'OpenAI request failed (429): You have no credits remaining';
+
+  test('a retired lane is left blocked even though its error is an outage', async () => {
+    const { store } = storeWith([
+      { id:'image-coverage-cadini', status:'blocked', jobType:'image-coverage', lastError:outage },
+      { id:'claim-1', status:'blocked', jobType:'trail-claim-resolution', lastError:outage },
+    ]);
+    const released = await store.requeueOutageBlockedJobs({ jobTypes: PROCESSABLE_JOB_TYPES });
+    expect(released).toEqual(['claim-1']);
+  });
+
+  test('retired jobs do not consume the release budget', async () => {
+    // Fifty image jobs ahead of the verification work is the real ordering:
+    // without the filter the whole budget went to them for days.
+    const docs = [
+      ...Array.from({ length:50 }, (_, i) => ({ id:`image-${i}`, status:'blocked', jobType:'image-coverage', lastError:outage })),
+      { id:'specialist-1', status:'blocked', jobType:'trail-verification-specialist', lastError:outage },
+    ];
+    const { store } = storeWith(docs);
+    expect(await store.requeueOutageBlockedJobs({ jobTypes: PROCESSABLE_JOB_TYPES, limit:10 }))
+      .toEqual(['specialist-1']);
+  });
+
+  test('the lane list matches what the worker actually processes', () => {
+    expect(PROCESSABLE_JOB_TYPES).toContain('trail-claim-resolution');
+    expect(PROCESSABLE_JOB_TYPES).toContain('trail-verification-specialist');
+    expect(PROCESSABLE_JOB_TYPES).not.toContain('image-coverage');
+  });
+
+  test('no lane list given releases anything, for callers that want that', async () => {
+    const { store } = storeWith([{ id:'image-1', status:'blocked', jobType:'image-coverage', lastError:outage }]);
+    expect(await store.requeueOutageBlockedJobs({})).toEqual(['image-1']);
+  });
+});

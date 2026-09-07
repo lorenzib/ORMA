@@ -179,8 +179,16 @@ class FirestoreBackofficeStore {
     const limit = Number.isInteger(options.limit) && options.limit > 0 ? options.limit : 10;
     const snapshot = await this.db.collection(COLLECTIONS.jobs)
       .where('status', '==', 'blocked').limit(200).get();
+    // Only lanes the caller still runs. A requeued job whose processor has been
+    // removed goes back to 'queued' and stays there, and it spends the release
+    // budget that live work needs: the first pass after this shipped released
+    // ten image-coverage jobs, a lane retired the same day, while the
+    // verification jobs behind them stayed blocked.
+    const jobTypes = Array.isArray(options.jobTypes) && options.jobTypes.length
+      ? new Set(options.jobTypes) : null;
     const releasable = snapshot.docs
       .filter(doc => providerOutage(doc.data().lastError))
+      .filter(doc => !jobTypes || jobTypes.has(doc.data().jobType))
       .slice(0, limit);
     if(!releasable.length) return [];
     const batch = this.db.batch();
