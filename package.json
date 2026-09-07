@@ -73,7 +73,8 @@
     "build:app": "node scripts/build-app.js",
     "app:sync": "npm run build:app && npx cap sync ios",
     "app:open": "npx cap open ios",
-    "backoffice:valley-research": "node backoffice/cli/valley-research.js"
+    "backoffice:valley-research": "node backoffice/cli/valley-research.js",
+    "backoffice:retire-blocked-jobs": "node backoffice/cli/retire-blocked-jobs.js"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.6.8",

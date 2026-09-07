@@ -8,6 +8,19 @@
 const path=require('path');
 const {FirestoreBackofficeStore}=require('../services/firestore-backoffice-store');
 
+/** Oldest and newest of a set of timestamps, as plain ISO days. */
+function jobAge(values){
+  const times=values.map(value=>{
+    if(!value) return null;
+    if(typeof value.toDate==='function') return value.toDate();
+    if(value.seconds) return new Date(value.seconds*1000);
+    const parsed=new Date(value);
+    return Number.isNaN(parsed.valueOf())?null:parsed;
+  }).filter(Boolean).sort((a,b)=>a-b);
+  if(!times.length) return {oldest:null,newest:null};
+  return {oldest:times[0].toISOString().slice(0,10),newest:times[times.length-1].toISOString().slice(0,10)};
+}
+
 function tally(list,pick){
   const counts=new Map();
   for(const item of list){const key=pick(item)||'(none)';counts.set(key,(counts.get(key)||0)+1);}
@@ -62,12 +75,20 @@ async function buildVerificationReport({store}){
       // One recurring error is a bug to fix. Many different ones are a fragile
       // integration. The shape of this list is the finding.
       byError:tally(blockedJobs,job=>errorText(job).slice(0,120)).slice(0,10),
+      // Which lane a failure belongs to. An error from a lane that has since
+      // been parked or removed is a job to retire, not a bug to chase.
+      byJobType:tally(blockedJobs,job=>job.jobType||'(unknown)'),
+      // Age separates a live fault from a graveyard. Without it, a failure
+      // from a deleted code path reads exactly like one from this morning.
+      oldest:jobAge(blockedJobs.map(job=>job.createdAt).filter(Boolean)).oldest,
+      newest:jobAge(blockedJobs.map(job=>job.createdAt).filter(Boolean)).newest,
       // A blocked job should carry the full failure budget. Anything less means
       // it reached 'blocked' by some path failJob does not describe.
       bySystemFailures:tally(blockedJobs,job=>String(job.systemFailures ?? '(unset)')),
       everSawOutage:blockedJobs.filter(job=>Number(job.providerOutages||0)>0).length,
     },
     sampleAgentFailures:blockedJobs.slice(0,8).map(job=>({
+      createdAt:jobAge([job.createdAt]).oldest,
       jobId:job.id,agentId:job.agentId||null,jobType:job.jobType||null,
       candidateId:job.candidateId||null,systemFailures:job.systemFailures??null,
       lastError:errorText(job).slice(0,200),
