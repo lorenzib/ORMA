@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T15:32:21.875Z",
+  "updatedAt": "2026-09-07T15:43:53.759Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -781,6 +781,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Picco_Ivigna_nelle_Alpi_Sarentine_visto_da_Verano%2C_BZ.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-19855818",
+      "approvedReviewId": "commons-osm-19855818",
+      "approvedAt": "2026-09-07T15:43:53.753Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19855818-col-du-gollet.jpg",
+        "heroImage": "images/trails/osm-19855818-col-du-gollet.jpg",
+        "imageAlt": "High summer pasture above Valmorel with a track winding down towards the Col du Gollet and rock peaks along the skyline.",
+        "imageCredit": "Col du Gollet towards the Col de la Madeleine",
+        "imageCreditText": "Col du Gollet towards the Col de la Madeleine by Florian Pepellin",
+        "imageCreator": "Florian Pepellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Col_du_Gollet_en_direction_du_Col_de_la_Madeleine_(ao%C3%BBt_2025).JPG",
         "imageSourceType": "licensed-source"
       }
     },
