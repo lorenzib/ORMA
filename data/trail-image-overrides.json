@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T09:38:00.484Z",
+  "updatedAt": "2026-09-07T10:08:30.618Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -411,6 +411,23 @@
       }
     },
     {
+      "id": "osm-12150790",
+      "approvedReviewId": "commons-osm-12150790",
+      "approvedAt": "2026-09-07T10:08:30.618Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12150790-buchholz.jpg",
+        "heroImage": "images/trails/osm-12150790-buchholz.jpg",
+        "imageAlt": "The village of Buchholz among vineyards and orchards on a wooded slope, its church tower standing above the terraces.",
+        "imageCredit": "Buchholz, Salurn",
+        "imageCreditText": "Buchholz, Salurn by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pochi.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-12165590",
       "approvedReviewId": "commons-osm-12165590",
       "approvedAt": "2026-09-06T14:47:45.542Z",
@@ -458,6 +475,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:2Lago_di_Braies.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12182516",
+      "approvedReviewId": "commons-osm-12182516",
+      "approvedAt": "2026-09-07T10:08:30.618Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12182516-astfeld.jpg",
+        "heroImage": "images/trails/osm-12182516-astfeld.jpg",
+        "imageAlt": "A weathered timber hay barn among birches on a grassy slope above the wooded Sarn valley.",
+        "imageCredit": "Countryside near Astfeld, Campolasta",
+        "imageCreditText": "Countryside near Astfeld, Campolasta by Josef F. Stuefer",
+        "imageCreator": "Josef F. Stuefer",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Astfeld-004.JPG",
         "imageSourceType": "licensed-source"
       }
     },
