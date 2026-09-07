@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T20:21:10.885Z",
+  "updatedAt": "2026-09-07T20:33:09.392Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -662,6 +662,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:TalferSarnthein.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12190538",
+      "approvedReviewId": "commons-osm-12190538",
+      "approvedAt": "2026-09-07T20:33:09.392Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12190538-flaas.jpg",
+        "heroImage": "images/trails/osm-12190538-flaas.jpg",
+        "imageAlt": "The hamlet of Flaas in October, fenced pasture and turning larch around it, spruce forest above and distant snowy peaks beyond.",
+        "imageCredit": "Flaas",
+        "imageCreditText": "Flaas by Ottomuc",
+        "imageCreator": "Ottomuc",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Flaas01.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1448,6 +1465,23 @@
       }
     },
     {
+      "id": "osm-7045225",
+      "approvedReviewId": "commons-osm-7045225",
+      "approvedAt": "2026-09-07T20:33:09.392Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7045225-paganella.jpg",
+        "heroImage": "images/trails/osm-7045225-paganella.jpg",
+        "imageAlt": "A meadow and track on the wooded terrace at Fai della Paganella, the limestone escarpment of the Paganella rising to the right under cumulus.",
+        "imageCredit": "Paganella",
+        "imageCreditText": "Paganella by Anil Öztas",
+        "imageCreator": "Anil Öztas",
+        "imageLicence": "CC BY 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Fai_della_Paganella_(IT)%2C_Paganella_--_2024_--_0140.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-7277805",
       "approvedReviewId": "commons-osm-7277805",
       "approvedAt": "2026-09-07T16:56:37.540Z",
@@ -1478,6 +1512,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Die_Fleckner_H%C3%BCtte.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-7546708",
+      "approvedReviewId": "commons-osm-7546708",
+      "approvedAt": "2026-09-07T20:33:09.392Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7546708-somacros.jpg",
+        "heroImage": "images/trails/osm-7546708-somacros.jpg",
+        "imageAlt": "A grass track through the hay meadows at Somacros above Domegge, an old timber hay barn beside it and spruce forest closing the valley.",
+        "imageCredit": "Prati a Somacros",
+        "imageCreditText": "Prati a Somacros by Antonio De Lorenzo",
+        "imageCreator": "Antonio De Lorenzo",
+        "imageLicence": "CC BY 2.5",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.5",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Domegge_somacros_prati.JPG",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1648,6 +1699,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Escursioni_nei_prati.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-9675994",
+      "approvedReviewId": "commons-osm-9675994",
+      "approvedAt": "2026-09-07T20:33:09.392Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-9675994-catinaccio.jpg",
+        "heroImage": "images/trails/osm-9675994-catinaccio.jpg",
+        "imageAlt": "The Catinaccio group above autumn larch and spruce, framed by pine branches, under a clear blue sky.",
+        "imageCredit": "Gruppo del Catinaccio",
+        "imageCreditText": "Gruppo del Catinaccio by giovanni bidi",
+        "imageCreator": "giovanni bidi",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Il_%22Gruppo_del_Catinaccio%22_visto_dalla_Torbiera_Woelfl_(BZ)_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },
