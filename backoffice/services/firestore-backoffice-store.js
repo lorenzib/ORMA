@@ -186,9 +186,16 @@ class FirestoreBackofficeStore {
     // verification jobs behind them stayed blocked.
     const jobTypes = Array.isArray(options.jobTypes) && options.jobTypes.length
       ? new Set(options.jobTypes) : null;
+    // One trail at a time when the caller asks for it. Releasing the whole
+    // backlog means re-running every job that a provider outage killed, and if
+    // they fail again for a reason of their own that is the credit budget spent
+    // to learn it. Scoping to a single candidate answers the same question for
+    // the price of one trail, using the same filter the specialist pass uses.
+    const candidateId = String(options.specialistCandidateId || options.candidateId || '').trim() || null;
     const releasable = snapshot.docs
       .filter(doc => providerOutage(doc.data().lastError))
       .filter(doc => !jobTypes || jobTypes.has(doc.data().jobType))
+      .filter(doc => !candidateId || doc.data().candidateId === candidateId)
       .slice(0, limit);
     if(!releasable.length) return [];
     const batch = this.db.batch();
