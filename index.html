@@ -149,7 +149,9 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
                 <span class="hp-fpanel-title">Filter trails</span>
                 <button type="button" id="hpFiltersReset">Reset all</button>
               </div>
-              <div class="hp-fsec first">Distance</div>
+              <div class="hp-fsec first">Duration</div>
+              <div class="hp-seg" id="hpDurationSeg"></div>
+              <div class="hp-fsec">Distance</div>
               <div class="hp-seg" id="hpDistSeg"></div>
               <div class="hp-fsec">Trail rating</div>
               <div class="hp-seg" id="hpDiffSeg"></div>
@@ -579,6 +581,9 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="scoring/recommendation-adapters-v1.js?v=20260815-4" defer></script>
 <script src="scoring.js?v=20260815-4" defer></script>
 <script src="trail-trust.js?v=20260819-5" defer></script>
+<!-- Shared discovery filter, so the guest homepage filters through the same
+     logic and thresholds as Browse and the logged-in map. -->
+<script src="discovery-filters.js?v=20260908-2" defer></script>
 <script src="regions-runtime-manifest.js?v=20260903-1"></script>
 <script src="regional-trails-loader.js?v=20260902-1" data-default-region="all"></script>
 <script src="notifications-feed.js?v=20260815-4" defer></script>
