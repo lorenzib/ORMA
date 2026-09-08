@@ -205,6 +205,21 @@ Hosted production workers use server-side credentials and must preserve these
 contracts. The duplicate local desk server is retired; the hosted backoffice is
 the single operator surface.
 
+Trail review is consolidated into one desk. `trail-verify-desk.html` presents
+every trail waiting on a human together with the question it is waiting on, and
+carries the route, findings, description and publication decisions that the
+Trail Verification Desk and the Verified Trail Content Desk carried separately.
+Those two desks are retired: a trail's journey no longer spans several pages,
+which is what "every queue has one clear purpose and one clearly named desk"
+asks for. Their Firestore collections are left untouched, so no decision history
+is lost.
+
+The route-choice review is retired with them. Its queue artifact was written
+only by seeding and reporting, its decisions were read by nothing outside the
+browser client, and the module that would have applied them had tests and no
+caller. The geometry gate the pipeline actually opens is `geometry-approval`,
+which reaches the moderator through the dossier review queue.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:

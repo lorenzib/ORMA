@@ -20,7 +20,7 @@ function editorialItem(dossier,record,at){
   const requiredStartFact=(dossier.claims||[]).find(claim=>claim.id==='logistics-recommended-start');
   return {
     candidateId:dossier.candidateId,trailName:dossier.trailName,targetTrailId:dossier.trailId,
-    dossierRef:`trail-dossier-desk.html#verified-${dossier.candidateId}`,
+    dossierRef:`trail-verify-desk.html#verified-${dossier.candidateId}`,
     dossierArtifactRef:`firestore:verified-dossier-${dossier.candidateId}`,
     verifiedAt:record?.verifiedAt||dossier.ormaVerification.verifiedAt,
     verificationConditions:record?.conditions||dossier.ormaVerification.conditions||[],

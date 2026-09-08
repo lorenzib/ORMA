@@ -3,10 +3,10 @@
 
   const HOSTED=/\.web\.app$/i.test(root.location.hostname)||root.location.hostname==='backoffice.app-orma.com';
   const ALL_DESTINATIONS=new Set([
-    'backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html',
+    'backoffice-review.html',
     'community-moderation-desk.html',
   ]);
-  const ALLOWED_DESTINATIONS=HOSTED?new Set(['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','community-moderation-desk.html']):ALL_DESTINATIONS;
+  const ALLOWED_DESTINATIONS=HOSTED?new Set(['backoffice-review.html','community-moderation-desk.html']):ALL_DESTINATIONS;
   const params=new URLSearchParams(root.location.search);
   const requested=params.get('next');
   const destination=ALLOWED_DESTINATIONS.has(requested)?requested:'backoffice-review.html';
