@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-08T13:16:53.549Z",
+  "updatedAt": "2026-09-08T13:56:49.168Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -972,6 +972,23 @@
       }
     },
     {
+      "id": "osm-12953352",
+      "approvedReviewId": "commons-osm-12953352",
+      "approvedAt": "2026-09-08T13:56:49.168Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12953352-eisack-brixen.jpg",
+        "heroImage": "images/trails/osm-12953352-eisack-brixen.jpg",
+        "imageAlt": "The Eisack running past a stone embankment walk at Brixen in October, beech and maple turning gold and copper along the bank, terraced meadows on the wooded valley side beyond.",
+        "imageCredit": "Brixen Eisack",
+        "imageCreditText": "Brixen Eisack by Uoaei1",
+        "imageCreator": "Uoaei1",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Brixen_Eisack_02.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-13337921",
       "approvedReviewId": "commons-osm-13337921",
       "approvedAt": "2026-09-06T13:25:25.857Z",
@@ -1053,6 +1070,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Alba_sulla_valle_Isarco.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-14375158",
+      "approvedReviewId": "commons-osm-14375158",
+      "approvedAt": "2026-09-08T13:56:49.168Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14375158-croix-des-tetes.jpg",
+        "heroImage": "images/trails/osm-14375158-croix-des-tetes.jpg",
+        "imageAlt": "The Croix des Têtes across the Maurienne under a June storm sky, wooded crests in the foreground and the valley floor with its town far below.",
+        "imageCredit": "Vallée Valloirette et Maurienne depuis Télégraphe",
+        "imageCreditText": "Vallée Valloirette et Maurienne depuis Télégraphe by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vall%C3%A9e_Valloirette_et_Maurienne_depuis_T%C3%A9l%C3%A9graphe_(juin_2026).JPG",
         "imageSourceType": "licensed-source"
       }
     },
