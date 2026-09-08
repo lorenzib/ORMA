@@ -657,4 +657,12 @@ describe('trail page map controls', () => {
     expect(source).toContain("setButtonLabel('Calculating directions…')");
     expect(source).toContain("setButtonLabel('Try again')");
   });
+
+  test('trail photos form a compact responsive rail without default figure spacing', () => {
+    const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
+    expect(html).toContain('grid-auto-columns:calc((100% - 24px)/4);gap:8px;');
+    expect(html).toContain('.community-photo{margin:0;border:0;background:transparent;scroll-snap-align:start;}');
+    expect(html).toContain('grid-auto-columns:calc((100% - 8px)/2);');
+    expect(html).toContain('grid-auto-columns:82%;');
+  });
 });
