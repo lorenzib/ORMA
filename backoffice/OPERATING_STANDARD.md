@@ -87,7 +87,10 @@ goes through, so a scouted km and a tapped km mean the same thing and neither is
 an agent's arithmetic.
 
 A coordinate that does not sit on the route is not a position on it: it is
-discarded, and the claim keeps a blocker recording that it was. An agent is told
+discarded, and the claim records that it was, without blocking. A position is
+decoration on a claim, and the dossier gate treats every claim blocker as
+grounds to refuse verification; one stray coordinate must never veto a trail
+whose evidence is otherwise sound. An agent is told
 to return no position rather than infer one from the middle of a route, from the
 trail head, or from the fact that the hazard is somewhere on the walk. A reporter
 who placed their own pin outranks an agent's reading of their description.

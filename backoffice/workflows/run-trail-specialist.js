@@ -90,7 +90,13 @@ function locateClaims(result,trail){
     if(!claim.location)continue;
     const located=locateOnRoute(claim.location,path);
     if(!located||!located.onRoute){
-      claim.blockers=[...(claim.blockers||[]),'claim-location-off-route'];
+      // Recorded, not blocked. dossierBlockingReasons treats every claim blocker
+      // as gate-blocking, so putting this there would let a stray coordinate on
+      // a decorative field veto the verification of an otherwise sound trail.
+      // The position is dropped and the rejection kept where a moderator can see
+      // it, because an agent placing hazards off the route is worth knowing.
+      claim.locationRejected={reason:located?'off-route':'unmeasurable',
+        offRouteM:located?located.offRouteM:null};
       claim.location=null;
       continue;
     }
