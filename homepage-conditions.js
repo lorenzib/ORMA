@@ -65,17 +65,30 @@
       return typeof api.scoringConditions === 'function' ? api.scoringConditions(snapshot) : snapshot;
     }
 
-    function adopt(payload, at){
-      const current = payload && payload.current;
+    function adopt(payload, at, targetDate){
+      let current = payload && payload.current;
       const hourly = payload && payload.hourly;
+      let hourlyTimes = (hourly && hourly.time) || null;
+      let hourlyTemps = (hourly && hourly.temperature_2m) || null;
+      if(targetDate && Array.isArray(hourlyTimes) && Array.isArray(hourlyTemps)){
+        const day = hourlyTimes.map((time, index) => ({ time, temperature_2m:Number(hourlyTemps[index]) }))
+          .filter(point => String(point.time).startsWith(`${targetDate}T`) && Number.isFinite(point.temperature_2m));
+        if(day.length){
+          current = day.find(point => String(point.time).slice(11, 16) === '09:00') || day[0];
+          hourlyTimes = day.map(point => point.time);
+          hourlyTemps = day.map(point => point.temperature_2m);
+        }
+      }
       if(!current || !Number.isFinite(Number(current.temperature_2m))) return false;
       area = {
         baseAltitude: Number.isFinite(Number(payload.elevation)) ? Number(payload.elevation) : null,
         currentTime: current.time,
         temperatureC: Number(current.temperature_2m),
-        hourlyTimes: (hourly && hourly.time) || null,
-        hourlyTemps: (hourly && hourly.temperature_2m) || null,
+        hourlyTimes,
+        hourlyTemps,
         capturedAt: Number.isFinite(Number(at)) ? Number(at) : Date.now(),
+        date:targetDate || String(current.time).slice(0, 10),
+        future:!!targetDate,
       };
       return true;
     }
@@ -84,15 +97,21 @@
       const settings = options || {};
       const request = typeof settings.fetch === 'function' ? settings.fetch : root.fetch;
       if(typeof request !== 'function' || !Number.isFinite(Number(lat)) || !Number.isFinite(Number(lng))) return false;
+      const targetDate = /^\d{4}-\d{2}-\d{2}$/.test(settings.date || '') ? settings.date : '';
+      const now = new Date();
+      const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+      const futureDate = targetDate && targetDate !== today ? targetDate : '';
       const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}`
-        + '&current=temperature_2m&hourly=temperature_2m&forecast_days=1&timezone=auto';
+        + (futureDate
+          ? `&hourly=temperature_2m&start_date=${futureDate}&end_date=${futureDate}&timezone=auto`
+          : '&current=temperature_2m&hourly=temperature_2m&forecast_days=1&timezone=auto');
       const requestVersion = loadVersion;
       try{
         const response = await request(url);
         if(!response || !response.ok) return false;
         const payload = await response.json();
         if(requestVersion !== loadVersion) return false;
-        const accepted = adopt(payload, settings.at);
+        const accepted = adopt(payload, settings.at, futureDate);
         // Two independent renderers draw this page. Announcing the forecast lets
         // each repaint itself rather than one reaching into the other.
         if(accepted && root.dispatchEvent && typeof root.CustomEvent === 'function'){
@@ -114,13 +133,16 @@
     function band(){
       const conditions = conditionsAt(0);
       if(!conditions || conditions.status !== 'known') return null;
-      if(conditions.heatRisk === 'high') return { tone:'high', detail:'Hot now. Prefer shade and water, or wait for the evening.' };
+      const future = !!area.future;
+      if(conditions.heatRisk === 'high') return { tone:'high', detail:future
+        ? 'Hot in the selected morning window. Prefer shade and water, or choose another day.'
+        : 'Hot now. Prefer shade and water, or wait for the evening.' };
       if(conditions.heatRisk === 'moderate'){
         return { tone:'moderate', detail: conditions.hotFromLabel
-          ? `Cooler now, heat rising from ${conditions.hotFromLabel}.`
+          ? `${future ? 'Cooler early' : 'Cooler now'}, heat rising from ${conditions.hotFromLabel}.`
           : 'Warm enough to plan around. Prefer shade and water.' };
       }
-      return { tone:'low', detail:'Cool enough today across this area.' };
+      return { tone:'low', detail:future ? 'Cool enough in the selected morning window.' : 'Cool enough today across this area.' };
     }
 
     // Compare holds at most three trails and they can sit in different regions,

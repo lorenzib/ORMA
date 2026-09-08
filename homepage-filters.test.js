@@ -44,9 +44,18 @@ function loadHomepageContext(testTrails){
     <section id="liLocationGate"><span id="liLocationDogName"></span><p id="liLocationStatus"></p>
       <button id="liUseLocationBtn"><span>Use my location</span></button>
       <button id="liChooseAreaBtn"></button>
-      <form id="liAreaPicker"><select id="liAreaSelect"><option value="">Choose a valley</option></select></form>
+      <form id="liAreaPicker">
+        <input id="liAreaSearch" list="liAreaSuggestions"><datalist id="liAreaSuggestions"></datalist>
+        <select id="liAreaCountry"><option value="">Choose country</option></select>
+        <select id="liAreaRegion"><option value="">Choose region</option></select>
+        <select id="liAreaSelect"><option value="">Choose valley</option></select>
+        <input id="liWalkDate" type="date"><button id="liAreaSubmit" type="submit"></button>
+      </form>
     </section>
-    <div id="liToolbar"><span id="liLocationSummary"><strong id="liLocationSummaryLabel"></strong><button id="liChangeLocationBtn"></button></span></div>
+    <div id="liToolbar"><span id="liLocationSummary"><strong id="liLocationSummaryLabel"></strong><button id="liChangeLocationBtn"></button></span>
+      <input id="liRecommendationDate" type="date"><button id="liAdjustRecommendationBtn"></button>
+      <strong id="liTodayTitle"></strong><span id="liTodayDetail"></span><div id="liToday" hidden></div>
+    </div>
     <div class="li-body"></div>
     <div class="li-search"><input id="liSearch"><div id="liSearchSuggest" hidden></div></div>
     <div id="liChips"></div>
@@ -73,6 +82,7 @@ function loadHomepageContext(testTrails){
     <a id="liManageLink"></a>
     <a id="liGreetManageLink"></a>
     <h1 id="returningHeading"></h1>
+    <span id="companionKicker"></span><div id="companionListTitle"></div>
     <p id="returningSubline"></p>
     <div id="returningTrailList"></div>
     <button id="savedTrailsBtn"></button>
@@ -308,6 +318,48 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('Maurienne');
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
     expect(document.querySelector('#returningTrailList .li-row-name').textContent).toBe('Maurienne Trail');
+  });
+
+  test('searching for a destination sets a complete recommendation scope', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('liLocationContext = null; liRenderLocationContext(null); initLoggedInShell();', context);
+    const search = document.getElementById('liAreaSearch');
+    search.value = 'Savoy';
+    search.dispatchEvent(new Event('input', { bubbles:true }));
+    expect(document.getElementById('liAreaSubmit').disabled).toBe(false);
+
+    document.getElementById('liAreaPicker').dispatchEvent(new Event('submit', { bubbles:true, cancelable:true }));
+    await Promise.resolve();
+    expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('Savoy');
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
+  });
+
+  test('leads with one explained recommendation and names alternatives second', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    context.recommendTrail.mockImplementation(() => ({
+      scoringVersion:'1.5.0', score:86, category:'recommended', confidence:'high',
+      positiveReasons:[{ message:'The distance suits Teo’s normal range.' }],
+      cautions:[{ message:'Bring water for the exposed middle section.' }],
+      hardStops:[], unknowns:[],
+    }));
+    vm.runInContext('liLocationContext = { kind:"area", country:"IT", region:"dolomites", valley:"all", label:"Dolomites" };', context);
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+
+    expect(document.getElementById('returningHeading').textContent).toMatch(/^Best walk for Teo in Dolomites /);
+    expect(document.querySelector('#returningTrailList .li-row').classList.contains('li-row--answer')).toBe(true);
+    expect(document.querySelector('.li-answer-explanation').textContent).toContain('Why it fits Teo');
+    expect(document.querySelector('.li-answer-explanation').textContent).toContain('What to know today');
+    expect(document.querySelector('.li-alternatives-heading').textContent).toContain('Other good fits');
+  });
+
+  test('a future date is reflected in the recommendation instead of being labelled today', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; liSetWalkDate(liDateOffsetIso(1));', context);
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+
+    expect(document.getElementById('returningHeading').textContent).toMatch(/^Best walk for Teo in Savoy /);
+    expect(document.getElementById('returningHeading').textContent).not.toContain(' today');
+    expect(document.getElementById('liRecommendationDate').value).toBe(vm.runInContext('liDateOffsetIso(1)', context));
   });
 
   test('requests browser location only after a click and opens the area fallback when denied', () => {

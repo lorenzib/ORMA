@@ -1,22 +1,38 @@
 /* Guest homepage narrative: mission, method, and the weekly catalogue edit. */
 .hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}
 
-/* The logged-in discovery hierarchy reads greeting -> one search -> create.
-   Geography moved into the search box and the map, and the slim refine bar
-   (Distance / Difficulty / Shade / Water / More) lives in .li-chiprow below.
-   So the toolbar's second row is just the search and the "+ New" menu. */
+/* The member homepage leads with one answer. Search and catalogue controls are
+   revealed only when the owner chooses to adjust the recommendation. */
 .li-toolbar{
-  grid-template-columns:minmax(240px,1fr) auto;
+  grid-template-columns:minmax(240px,1fr) auto auto auto;
   grid-template-areas:none;
-  gap:14px 12px;
+  gap:8px 12px;
 }
 .li-toolbar-greet{grid-column:1/-1;grid-row:1;}
-.li-search{grid-area:auto;grid-column:1;grid-row:2;width:100%;max-width:none;min-width:0;}
-.li-new-wrap{grid-area:auto;grid-column:2;grid-row:2;justify-self:end;}
-/* Desktop refines through the chip bar, so the mobile-only Filters button and
-   quick shade/water pills stay hidden here. */
-#liFiltersWrap{display:none;}
-.li-quick-filters{display:none;}
+.li-toolbar .li-search,.li-toolbar .li-mobile-actions,.li-toolbar .li-chiprow{display:none;}
+.li-toolbar .li-today{grid-column:1/-1;grid-row:2;}
+.li-toolbar.li-refine-open .li-search{display:flex;grid-area:auto;grid-column:1;grid-row:3;width:100%;max-width:none;min-width:0;}
+.li-toolbar.li-refine-open .li-mobile-actions{display:contents;}
+.li-toolbar.li-refine-open .li-quick-filters{display:flex;grid-column:2;grid-row:3;}
+.li-toolbar.li-refine-open #liFiltersWrap{display:block;grid-column:3;grid-row:3;}
+.li-toolbar.li-refine-open .li-new-wrap{grid-area:auto;grid-column:4;grid-row:3;justify-self:end;}
+
+@media (min-width:1041px){
+  body[data-homepage-view="returning"] #returningCustomerHomepage > .li-toolbar{
+    grid-template-columns:minmax(240px,1fr) auto auto auto;
+    grid-template-areas:none;
+    gap:8px 12px;
+    padding-top:16px;
+  }
+  body[data-homepage-view="returning"] #returningCustomerHomepage .li-toolbar-greet{grid-column:1/-1;grid-row:1;}
+  body[data-homepage-view="returning"] #returningCustomerHomepage .li-toolbar:not(.li-refine-open) .li-search,
+  body[data-homepage-view="returning"] #returningCustomerHomepage .li-toolbar:not(.li-refine-open) .li-mobile-actions{display:none;}
+  body[data-homepage-view="returning"] #returningCustomerHomepage .li-toolbar.li-refine-open .li-search{display:flex;grid-column:1;grid-row:3;}
+  body[data-homepage-view="returning"] #returningCustomerHomepage .li-toolbar.li-refine-open .li-mobile-actions{display:contents;}
+  body[data-homepage-view="returning"] #returningCustomerHomepage .li-toolbar.li-refine-open .li-quick-filters{display:flex;grid-column:2;grid-row:3;}
+  body[data-homepage-view="returning"] #returningCustomerHomepage .li-toolbar.li-refine-open #liFiltersWrap{display:block;grid-column:3;grid-row:3;}
+  body[data-homepage-view="returning"] #returningCustomerHomepage .li-toolbar.li-refine-open .li-new-wrap{grid-column:4;grid-row:3;}
+}
 
 @media (min-width:701px) and (max-width:1100px){
   .li-toolbar{
@@ -26,9 +42,27 @@
     gap:9px 12px;
   }
   .li-toolbar-greet{grid-column:1/-1;grid-row:1;}
-  .li-search{grid-column:1;grid-row:2;}
-  .li-new-wrap{grid-column:2;grid-row:2;justify-self:end;}
-  .li-mobile-actions{display:contents;}
+  .li-toolbar.li-refine-open .li-search{grid-column:1;grid-row:3;}
+  .li-toolbar.li-refine-open .li-new-wrap{grid-column:2;grid-row:3;justify-self:end;}
+  .li-toolbar.li-refine-open .li-quick-filters{display:none;}
+  .li-toolbar.li-refine-open #liFiltersWrap{grid-column:2;grid-row:4;}
+}
+
+@media (max-width:700px){
+  body.mhome-active .li-greet-avatar{display:none;}
+  body.mhome-active .li-toolbar-greet{
+    display:grid;grid-template-columns:minmax(0,1fr) 126px;gap:6px;
+  }
+  body.mhome-active .li-location-summary{grid-column:1;grid-row:1;}
+  body.mhome-active .li-date-summary{grid-column:2;grid-row:1;min-width:0;padding:6px 9px;}
+  body.mhome-active .li-adjust-recommendation{grid-column:1/-1;grid-row:2;min-height:36px;}
+  body.mhome-active .li-toolbar:not(.li-refine-open) .li-search,
+  body.mhome-active .li-toolbar:not(.li-refine-open) .li-mobile-actions{display:none;}
+  body.mhome-active .li-toolbar.li-refine-open .li-search{display:flex;grid-column:1/5;grid-row:3;}
+  body.mhome-active .li-toolbar.li-refine-open .li-mobile-actions{display:contents;}
+  body.mhome-active .li-toolbar.li-refine-open .li-new-wrap{grid-column:5/7;grid-row:3;}
+  body.mhome-active .li-toolbar.li-refine-open .li-quick-filters{display:flex;grid-column:1/5;grid-row:4;}
+  body.mhome-active .li-toolbar.li-refine-open #liFiltersWrap{display:block;grid-column:5/7;grid-row:4;}
 }
 
 /* The guest prompt is the single homepage profile invitation. Its image and
