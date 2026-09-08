@@ -16,8 +16,18 @@ function distanceMeters(a, b){
   return 2 * EARTH_RADIUS_M * Math.asin(Math.min(1, Math.sqrt(h)));
 }
 
+// Not every walk returns to where it started. An out-and-back retraces its
+// outward leg and a point-to-point ends somewhere else entirely, and both are
+// ordinary ways for a trail to exist. Treating an open route as broken geometry
+// froze real trails out of verification for having the wrong shape.
+//
+// The shape defaults to 'loop', so nothing changes for a trail that has not
+// been declared: only a trail whose shape a human has stated is judged by it.
+const ROUTE_SHAPES = Object.freeze(['loop', 'out-and-back', 'point-to-point']);
+
 function assessGeometry(coordinates, options = {}){
   const closureThresholdM = options.closureThresholdM || 100;
+  const routeShape = ROUTE_SHAPES.includes(options.routeShape) ? options.routeShape : 'loop';
   const issues = [];
   if(!Array.isArray(coordinates) || coordinates.length < 2){
     return {
@@ -43,13 +53,15 @@ function assessGeometry(coordinates, options = {}){
   const maxSegmentM = Math.max(...segments);
   const closureDistanceM = distanceMeters(coordinates[0], coordinates[coordinates.length - 1]);
   const isClosed = closureDistanceM <= closureThresholdM;
-  if(!isClosed) issues.push('not-closed-loop');
+  // Only a route that is meant to close is faulted for not closing.
+  if(!isClosed && routeShape === 'loop') issues.push('not-closed-loop');
   if(totalM < 250) issues.push('implausibly-short');
   if(maxSegmentM > Math.max(5000, totalM * 0.45)) issues.push('suspicious-coordinate-jump');
 
   return {
     version: 'geometry-v1',
     status: issues.length ? 'rejected' : 'passed',
+    routeShape,
     isClosed,
     closureDistanceM: Math.round(closureDistanceM),
     distanceKm: Math.round(totalM / 10) / 100,
@@ -59,4 +71,4 @@ function assessGeometry(coordinates, options = {}){
   };
 }
 
-module.exports = { assessGeometry, distanceMeters };
+module.exports = { ROUTE_SHAPES, assessGeometry, distanceMeters };
