@@ -150,6 +150,12 @@
   function loadToday() {
     var area = window.DoloPawsHomeConditions;
     if (!area || typeof area.load !== 'function' || typeof trails === 'undefined' || !Array.isArray(trails)) return;
+    // The member homepage establishes its own geographic context. A forecast
+    // for the centre of the entire catalogue would mislabel and mis-rank that
+    // local workspace, so leave conditions unknown here until a dedicated,
+    // privacy-reviewed location forecast is introduced.
+    var returning = document.getElementById('returningCustomerHomepage');
+    if(returning && !returning.hidden){ paintToday(); return; }
     var lat = 0, lng = 0, seen = 0;
     trails.forEach(function (t) {
       if (typeof t.lat === 'number' && typeof t.lng === 'number') { lat += t.lat; lng += t.lng; seen += 1; }

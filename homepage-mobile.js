@@ -191,6 +191,18 @@
     setTimeout(update, 0);
   });
 
+  // The location gate hides the toolbar until a context is chosen. Re-measure
+  // as that workspace appears so the map and bottom-sheet snap points start
+  // below the toolbar rather than underneath it.
+  window.addEventListener('dolopaws-home-location-context-changed', function(){
+    setTimeout(function(){
+      update();
+      if(!active) return;
+      measure();
+      setSheet(sheetPct);
+    }, 0);
+  });
+
   window.addEventListener('resize', function(){
     // Some environments never fire MediaQueryList 'change' on viewport
     // resize, so re-evaluate activation here as well.

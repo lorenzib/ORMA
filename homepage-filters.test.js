@@ -41,6 +41,13 @@ function tForTests(key, params = {}){
 
 function loadHomepageContext(testTrails){
   document.body.innerHTML = `
+    <section id="liLocationGate"><span id="liLocationDogName"></span><p id="liLocationStatus"></p>
+      <button id="liUseLocationBtn"><span>Use my location</span></button>
+      <button id="liChooseAreaBtn"></button>
+      <form id="liAreaPicker"><select id="liAreaSelect"><option value="">Choose a valley</option></select></form>
+    </section>
+    <div id="liToolbar"><span id="liLocationSummary"><strong id="liLocationSummaryLabel"></strong><button id="liChangeLocationBtn"></button></span></div>
+    <div class="li-body"></div>
     <div class="li-search"><input id="liSearch"><div id="liSearchSuggest" hidden></div></div>
     <div id="liChips"></div>
     <div class="li-new-wrap"><button id="liNewBtn"></button>
@@ -48,6 +55,8 @@ function loadHomepageContext(testTrails){
         <a class="li-plan-route" href="route-planner.html">Draft a loop</a>
         <a class="li-record" id="liRecordBtn" href="walk.html">Record a walk</a>
       </div></div>
+    <button id="liFiltersBtn"></button><div id="liFiltersMenu" hidden></div>
+    <button id="liAccountBtn"></button><div id="liAccountMenu" hidden></div>
     <button id="liViewAll" class="active"></button>
     <button id="liViewSaved"><span id="liSavedOnlyCount"></span></button>
     <span id="liDogCtxName"></span>
@@ -85,6 +94,11 @@ function loadHomepageContext(testTrails){
       setItem: () => {},
       removeItem: () => {},
     },
+    sessionStorage: {
+      getItem: () => null,
+      setItem: () => {},
+      removeItem: () => {},
+    },
     navigator: { userAgent: 'jest' },
     location: { search: '' },
     document,
@@ -92,14 +106,14 @@ function loadHomepageContext(testTrails){
     trails: testTrails,
     t: tForTests,
     scoreTrail: () => 80,
-    recommendTrail: () => ({
+    recommendTrail: jest.fn(() => ({
       scoringVersion: '1.5.0',
       score: 80,
       category: 'possible-with-cautions',
       confidence: 'low',
       positiveReasons: [],
       cautions: [],
-    }),
+    })),
     effectiveOverrides: () => ({ terrain: '1', distance: '10', heatSensitive: false }),
     pathThumbnailSvg: () => '',
     matchColor: () => '#2E4034',
@@ -121,6 +135,10 @@ function loadHomepageContext(testTrails){
   vm.createContext(context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'regions-config.js'), 'utf8'), context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8'), context);
+  // Existing filter tests exercise catalogue refinements in isolation. The
+  // real product never creates this synthetic context; it prevents these
+  // unit tests from accidentally depending on a particular mountain area.
+  vm.runInContext('liLocationContext = { kind:"catalogue" };', context);
   return context;
 }
 
@@ -228,11 +246,60 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
   });
 
-  test('the default "all" scope returns the full loaded catalogue', async () => {
+  test('an explicit catalogue test scope returns the full loaded catalogue', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('activeCountry = "all"; activeRegion = "all"; activeValley = "all"; showingSavedOnly = false;', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
+  });
+
+  test('does not score or show global recommendations before geography is explicit', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    context.recommendTrail.mockClear();
+    vm.runInContext('liLocationContext = null;', context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+
+    expect(document.getElementById('liLocationGate').hidden).toBe(false);
+    expect(document.getElementById('liToolbar').hidden).toBe(true);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(0);
+    expect(context.recommendTrail).not.toHaveBeenCalled();
+  });
+
+  test('current location limits recommendations to trails within 25 km', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('liLocationContext = { kind:"current", lat:46.57, lng:11.67, radiusKm:25 }; activeCountry="all"; activeRegion="all"; activeValley="all";', context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+
+    expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('Your location · within 25 km');
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
+    expect(document.querySelector('#returningTrailList .li-row-name').textContent).toBe('Val Gardena Trail');
+  });
+
+  test('a manually chosen valley becomes the geographic recommendation scope', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('liLocationContext = { kind:"area", region:"savoy", valley:"Maurienne", label:"Maurienne" }; activeCountry="FR"; activeRegion="savoy"; activeValley="Maurienne";', context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+
+    expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('Maurienne');
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
+    expect(document.querySelector('#returningTrailList .li-row-name').textContent).toBe('Maurienne Trail');
+  });
+
+  test('requests browser location only after a click and opens the area fallback when denied', () => {
+    const context = loadHomepageContext(sampleTrails);
+    const getCurrentPosition = jest.fn();
+    context.navigator.geolocation = { getCurrentPosition };
+    vm.runInContext('liLocationContext = null; initLoggedInShell();', context);
+
+    expect(getCurrentPosition).not.toHaveBeenCalled();
+    document.getElementById('liUseLocationBtn').click();
+    expect(getCurrentPosition).toHaveBeenCalledTimes(1);
+
+    const onError = getCurrentPosition.mock.calls[0][1];
+    onError({ code:1 });
+    expect(document.getElementById('liLocationStatus').textContent).toContain('Location access is off');
+    expect(document.getElementById('liAreaPicker').hidden).toBe(false);
+    expect(document.getElementById('liChooseAreaBtn').getAttribute('aria-expanded')).toBe('true');
   });
 
 });
@@ -312,13 +379,16 @@ describe('map-first returning homepage layout contract', () => {
 
   test('uses a deliberate mobile filter row and compact map controls', () => {
     expect(html).toContain('<div class="li-mobile-actions" aria-label="Trail actions">');
-    expect(mobileCss).toContain('body.mhome-active .li-toolbar-greet-copy{display:flex;min-width:0;flex-direction:column;');
-    expect(mobileCss).toContain('body.mhome-active .li-search{grid-column:1/5;grid-row:2;');
+    expect(mobileCss).toContain('body.mhome-active .li-toolbar-greet-copy{display:none;}');
+    expect(mobileCss).toContain('body.mhome-active .li-location-summary{flex:1;width:auto;');
+    expect(mobileCss).toContain('body.mhome-active .li-today{grid-column:1/-1;grid-row:2;');
+    expect(mobileCss).toContain('body.mhome-active .li-search{grid-column:1/5;grid-row:3;');
     expect(mobileCss).toContain('body.mhome-active .li-mobile-actions{display:contents;}');
-    // Row 2: search + "+ New". Row 3: quick shade/water + the Filters button.
-    expect(mobileCss).toContain('body.mhome-active .li-new-wrap{grid-column:5/7;grid-row:2;');
-    expect(mobileCss).toContain('body.mhome-active .li-quick-filters{grid-column:1/5;grid-row:3;');
-    expect(mobileCss).toContain('body.mhome-active #liFiltersWrap{grid-column:5/7;grid-row:3;');
+    // Row 2 is the optional conditions band. Search/create and quick filters
+    // get their own rows so neither can collapse when conditions arrive.
+    expect(mobileCss).toContain('body.mhome-active .li-new-wrap{grid-column:5/7;grid-row:3;');
+    expect(mobileCss).toContain('body.mhome-active .li-quick-filters{grid-column:1/5;grid-row:4;');
+    expect(mobileCss).toContain('body.mhome-active #liFiltersWrap{grid-column:5/7;grid-row:4;');
     // The three geography dropdowns are gone from the markup entirely.
     expect(html).not.toContain('geo-filter-control');
     expect(html).not.toContain('id="liValleyWrap"');
