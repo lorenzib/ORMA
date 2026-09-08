@@ -28,7 +28,8 @@ async function runCartographer(candidate, dossier, options = {}){
     throw new Error('Cartographer relation reconstruction currently supports OSM relations only');
   }
   const fetched = await (options.fetchRelation || fetchRelation)(candidate.source.externalId, options);
-  const reconstructed = reconstructRelation(fetched.payload, candidate.source.externalId);
+  const reconstructed = reconstructRelation(fetched.payload, candidate.source.externalId,
+    { routeShape: candidate.routeShape || undefined });
   const comparison = compareMetrics(candidate.geometryAssessment, reconstructed, dossier && dossier.referenceMetrics);
   const blockers = [...reconstructed.assessment.issues];
   if(comparison.withinOfficialDistanceTolerance === false) blockers.push('official-distance-conflict');
