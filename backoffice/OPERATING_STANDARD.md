@@ -78,6 +78,21 @@ Vetting decides whether a hazard is real, never where it was seen: the position
 is carried from the report to the published hazard verbatim, and a partial or
 out-of-range one is dropped rather than repaired into a plausible-looking point.
 
+Where a report carries no position, the Hazard Analyst may establish one from the
+report or from a source it retrieved, and the Terrain & POI Analyst locates the
+hazards it verifies on a route. An agent supplies only the evidence for a
+position -- a coordinate and the landmark that is there. The distance along the
+route is measured from the trail's own path by the same projection a reader's tap
+goes through, so a scouted km and a tapped km mean the same thing and neither is
+an agent's arithmetic.
+
+A coordinate that does not sit on the route is not a position on it: it is
+discarded, and the claim keeps a blocker recording that it was. An agent is told
+to return no position rather than infer one from the middle of a route, from the
+trail head, or from the fact that the hazard is somewhere on the walk. A reporter
+who placed their own pin outranks an agent's reading of their description.
+Re-checking a published hazard never removes the position it already carries.
+
 Existing Trails is the current throughput priority. Every day after the
 Firestore quota reset window, the protected
 catalogue campaign admits the next eligible candidates for ORMA Verified

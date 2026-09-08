@@ -5,6 +5,7 @@ const {runCartographer}=require('./run-cartographer');
 const {candidateFromProductionTrail,referenceFromProductionTrail}=require('./run-catalogue-batch');
 const {mergeClaimResolutionResult}=require('./claim-resolution');
 const {CLAIM_ENTITY_TYPE,POLICY_BY_RULE}=require('./compile-operational-facts');
+const {locateOnRoute}=require('../../hazard-location');
 
 // A claim that names one rifugio, lift or protected area rather than the whole
 // route. These are the only claim ids that compile into operational facts, so
@@ -27,7 +28,13 @@ const SPECIALIST_SCHEMA={type:'object',additionalProperties:false,properties:{
     entityName:{type:['string','null'],description:'For an entity policy claim, the single rifugio, lift or protected area this claim is about. Null otherwise.'},
     rule:{type:'string',enum:[...ENTITY_POLICY_RULES,'not-applicable'],description:'For an entity policy claim, the published rule in controlled form; not-applicable for any claim that is not about a single rifugio, lift or protected area.'},
     observedAt:{type:['string','null'],description:'For an entity policy claim, the ISO date the source was read. Null otherwise.'},
-  },required:['id','category','proposedValue','finding','confidence','rationale','sources','blockers','entityName','rule','observedAt']}},
+    location:{type:['object','null'],additionalProperties:false,properties:{
+      lat:{type:'number',description:'Latitude in decimal degrees.'},
+      lng:{type:'number',description:'Longitude in decimal degrees.'},
+      landmark:{type:'string',description:'What is at this point, named the way a walker would recognise it: the gate, the ford, the pasture crossing.'},
+    },required:['lat','lng','landmark'],
+    description:'For a claim about something at one identifiable place on the route -- a hazard, a gate, a crossing, a pasture, a spring -- the coordinate of that place. Give a coordinate only where a source establishes one; never infer it from the middle of the route or from the trail head. Null for anything that is true of the route as a whole.'},
+  },required:['id','category','proposedValue','finding','confidence','rationale','sources','blockers','entityName','rule','observedAt','location']}},
   openQuestions:{type:'array',items:{type:'string'}},
   recommendation:{type:'string',enum:['advance','needs-resolution','block']},
 },required:['summary','claims','openQuestions','recommendation']};
@@ -35,7 +42,7 @@ const SPECIALIST_SCHEMA={type:'object',additionalProperties:false,properties:{
 const PROMPTS={
   logistics:'You are ORMA Logistics Agent. Verify exact parking, road access, public transport and the pedestrian connection to the approved route. For every route, return a distinct recommended-start claim with the authoritative start label and coordinates; a nearby parking pin is not a route start. Add recommended-direction when the authority specifies one. Always return three distinct route-following claims using the existing IDs: route-number-status identifies whether navigation is numbered or landmark-led; route-number-sequence gives the complete reader-facing order from the recommended start; and route-number-switches gives every decision point. For a numbered route, name the first reference and every later reference; locate each switch with its outgoing reference, incoming reference, mapped coordinate and distance-from-start or an unambiguous landmark. For a genuinely unnumbered route, do not answer merely that no number or switch applies: use the official route description to provide an ordered landmark sequence and useful turn instructions instead. The combined claims must be publishable as concise start/then-turn directions. If the authoritative source does not establish enough information to guide the reader, return the affected claim as unresolved. Prefer official operators and current authoritative sources. Never infer a route start, number, landmark order or turn from proximity or map appearance alone. Return proposals, citations, conflicts and unresolved questions; you cannot approve a claim.',
   regulatoryRanger:'You are ORMA Regulatory Ranger. Verify dog access, leash rules, protected-area rules and seasonal restrictions for this exact route and jurisdiction. Also verify the dog policy of each rifugio, mountain hut and lift on or serving the route, one claim per entity: return a rifugio-dog-policy claim for every hut and a lift-dog-policy claim for every cable car, chairlift or funicular a walker would use. For every entity policy claim set entityName to that single entity as the operator names it, observedAt to the ISO date you read the source, and rule to exactly one of: accepted, accepted-leashed, accepted-muzzled, not-accepted, contact-required, unknown. Set rule to not-applicable on every claim that is not about a single entity. Use accepted-muzzled only where a muzzle is actually required, contact-required where the operator publishes no rule and a walker must ask, and unknown where you could not establish anything. Never merge two entities into one claim and never infer an entity policy from a neighbouring operator, a regional norm or a review site. Prefer current official authorities. Separate rules from advice and never generalize a regional rule without applicability evidence. You cannot approve a claim.',
-  terrainPoi:'You are ORMA Terrain & POI Analyst. Verify elevation, shade, surface, exposure, water, POIs and livestock indicators for this exact route. Distinguish mapped presence from potable or currently available water. Do not infer absence from lack of web mentions. You cannot approve a claim.',
+  terrainPoi:'You are ORMA Terrain & POI Analyst. Verify elevation, shade, surface, exposure, water, POIs and livestock indicators for this exact route. Distinguish mapped presence from potable or currently available water. Do not infer absence from lack of web mentions. Anything a walker meets at one identifiable place -- a gate, a ford, an exposed traverse, a pasture crossing, a spring, a rockfall section -- must carry the coordinate of that place in location, with a landmark naming what is there. Give a coordinate only where a source establishes one: an official route description, a mapped feature, or a report precise enough to identify the spot. Never infer a position from the middle of the route, from the trail head, or from the fact that the hazard is somewhere on this walk; return location null instead and say in the rationale that the position is unestablished. A hazard that is true of the whole route, such as a surface type, has no location. You cannot approve a claim.',
   evidenceLibrarian:'You are ORMA Evidence Librarian. Audit the supplied specialist outputs for source authority, freshness, duplication, applicability and claim-to-source traceability. Identify missing provenance and conflicts. You cannot approve the dossier.',
   redTeam:'You are ORMA Red Team. Challenge the supplied route dossier. Search for counter-evidence, variant mismatch, unsupported inference, stale rules and safety claims that are stronger than their sources. Return objections or a bounded advance recommendation. You cannot approve the dossier.',
   auditor:'You are ORMA Auditor. Resolve only the human-requested dossier issue using current authoritative sources. Preserve supported facts, expose conflicts and keep unresolved claims unresolved. You cannot approve the dossier.',
@@ -68,6 +75,31 @@ function validateSpecialistResult(result,agentId){
   }
 }
 
+
+// An agent supplies the evidence for where something is; it never supplies the
+// measurement. The coordinate it found is projected onto the trail's own path
+// here, so the km a claim carries is computed the same way as the km a reader
+// gets by tapping the map, and cannot be an agent's arithmetic.
+//
+// A coordinate that does not sit on this route is not a position on it: the
+// position is dropped and the claim keeps a blocker saying so, rather than
+// planting a hazard on a stretch no source placed it.
+function locateClaims(result,trail){
+  const path=trail&&trail.path;
+  for(const claim of result.claims||[]){
+    if(!claim.location)continue;
+    const located=locateOnRoute(claim.location,path);
+    if(!located||!located.onRoute){
+      claim.blockers=[...(claim.blockers||[]),'claim-location-off-route'];
+      claim.location=null;
+      continue;
+    }
+    claim.location={...claim.location,lat:located.lat,lng:located.lng,
+      km:located.km,offRouteM:located.offRouteM};
+  }
+  return result;
+}
+
 async function runTrailSpecialist({job,trail,context},options={}){
   if(job.agentId==='cartographer'){
     const result=await runCartographer(candidateFromProductionTrail(trail),referenceFromProductionTrail(trail),options);
@@ -80,6 +112,7 @@ async function runTrailSpecialist({job,trail,context},options={}){
   const response=await runAgent({schemaName:`orma_${job.agentId}_trail_findings`,schema:SPECIALIST_SCHEMA,webSearch:true,
     messages:[{role:'developer',content:prompt+resolutionPrompt},{role:'user',content:JSON.stringify({job,trail,context})}]},clientOptions);
   validateSpecialistResult(response.data,job.agentId);
+  locateClaims(response.data,trail);
   const at=options.at||new Date().toISOString();
   const previous=context.slice().reverse().find(item=>item?.agentId===job.agentId&&Array.isArray(item.claims));
   const current={contractVersion:'1.0.0',candidateId:job.candidateId,
@@ -88,4 +121,4 @@ async function runTrailSpecialist({job,trail,context},options={}){
   return {responseId:response.responseId,model:response.model,result};
 }
 
-module.exports={CATEGORIES,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
+module.exports={CATEGORIES,locateClaims,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
