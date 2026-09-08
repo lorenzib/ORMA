@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-08T17:23:42.372Z",
+  "updatedAt": "2026-09-08T17:56:09.660Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -764,6 +764,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Astfeld-004.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12182895",
+      "approvedReviewId": "commons-osm-12182895",
+      "approvedAt": "2026-09-08T17:56:09.659Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12182895-reinegg.jpg",
+        "heroImage": "images/trails/osm-12182895-reinegg.jpg",
+        "imageAlt": "Mown hay meadow rising to Schloss Reinegg on its wooded spur above the Sarn valley",
+        "imageCredit": "Schloss Reinegg above the Sarn valley",
+        "imageCreditText": "Schloss Reinegg above the Sarn valley by Plentn",
+        "imageCreator": "Plentn",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Reinegg.png",
         "imageSourceType": "licensed-source"
       }
     },
