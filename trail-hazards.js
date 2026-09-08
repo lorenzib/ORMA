@@ -59,11 +59,21 @@
       .orma-hazard-pending small,.orma-reported-hazard small{display:block;margin-top:4px;color:#8a9689;font-size:10.5px;line-height:1.4}
       .orma-reported-hazard.is-unverified{border-style:dashed}
       .orma-reported-hazard__where{display:block;margin:2px 0 4px;color:#8a3f1f;font-size:11px;font-weight:750}
-      .orma-hazard{padding:15px 17px;border:1px solid #d6934d;border-left:6px solid #b9582e;border-radius:10px;background:#fff6e8;color:#352a22}
+      .orma-hazard{overflow:hidden;border:1px solid #d6934d;border-left:6px solid #b9582e;border-radius:10px;background:#fff6e8;color:#352a22}
       .orma-hazard.is-extreme{border-left-color:#91352d;background:#fff0ed}
-      .orma-hazard strong{display:block;margin-bottom:6px;font-size:15px}
-      .orma-hazard p{margin:0 0 8px;font-size:13px;line-height:1.5}
-      .orma-hazard small{display:block;color:#6b625a;font-size:11px;line-height:1.4}
+      .orma-hazard summary{display:grid;grid-template-columns:minmax(0,1fr) 28px;gap:12px;align-items:center;padding:14px 16px;cursor:pointer;list-style:none}
+      .orma-hazard summary::-webkit-details-marker{display:none}
+      .orma-hazard__summary-copy{min-width:0}
+      .orma-hazard__title,.orma-hazard__summary{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+      .orma-hazard__title{font-size:15px}
+      .orma-hazard__summary{margin-top:4px;color:#5f574f;font-size:12.5px;line-height:1.45}
+      .orma-hazard[open] .orma-hazard__title,.orma-hazard[open] .orma-hazard__summary{white-space:normal}
+      .orma-hazard__toggle{display:grid;place-items:center;width:28px;height:28px;border:1px solid rgba(107,98,90,.25);border-radius:50%;color:#6b625a;font:800 17px/1 Inter,sans-serif}
+      .orma-hazard__toggle::before{content:"+"}
+      .orma-hazard[open] .orma-hazard__toggle::before{content:"−"}
+      .orma-hazard__detail{padding:0 16px 14px;border-top:1px solid rgba(107,98,90,.16)}
+      .orma-hazard__detail p{margin:10px 0 8px;color:#5f574f;font-size:12.5px;line-height:1.45}
+      .orma-hazard__detail small{display:flex;gap:5px 9px;align-items:baseline;flex-wrap:wrap;color:#6b625a;font-size:11px;line-height:1.4}
       .orma-hazard a,.orma-reported-hazard a{color:inherit;font-weight:800}
       @media(max-width:700px){
         .map-hazard-report-btn{right:12px;bottom:60px;min-height:38px;padding:8px 11px}
@@ -330,6 +340,21 @@
   };
   window.OrmaHazardReporter = reporterApi;
 
+  function officialWarningSummary(item){
+    const message = String(item && item.message || '').trim();
+    if(!/official\s+.+\s+warning applies to this area/i.test(message)) return message;
+    const severity = String(item.severity || '').trim();
+    const label = severity ? `${severity.charAt(0).toUpperCase()}${severity.slice(1)} ` : '';
+    return `${label}official warning. Check the source and local conditions before setting out.`;
+  }
+
+  function expiryLabel(value){
+    if(!value) return '';
+    const date = new Date(value);
+    if(Number.isNaN(date.getTime())) return '';
+    return date.toLocaleString(undefined, { dateStyle:'medium', timeStyle:'short' });
+  }
+
   function hazardCard(item, reported){
     const spoken = window.OrmaHazardLocation && window.OrmaHazardLocation.describeLocation(item.at);
     const verification = item.verificationState === 'reported-unverified'
@@ -342,30 +367,51 @@
         <p>${escapeHtml(item.message)}</p><small>${escapeHtml(verification)}${item.expiresAt ? ` · expires ${new Date(item.expiresAt).toLocaleDateString()}` : ''}</small></div>
       </article>`;
     }
-    const card = document.createElement('article');
+    const card = document.createElement('details');
     card.className = `orma-hazard is-${item.severity}`;
+    const summary = document.createElement('summary');
+    const summaryCopy = document.createElement('span');
+    summaryCopy.className = 'orma-hazard__summary-copy';
     const title = document.createElement('strong');
+    title.className = 'orma-hazard__title';
     title.textContent = item.title;
-    card.append(title);
+    summaryCopy.append(title);
     if(spoken){
       const at = document.createElement('b');
       at.className = 'orma-hazard__where';
       at.textContent = spoken;
-      card.append(at);
+      summaryCopy.append(at);
     }
     const copy = document.createElement('p');
-    copy.textContent = item.message;
+    copy.className = 'orma-hazard__summary';
+    copy.textContent = officialWarningSummary(item);
+    summaryCopy.append(copy);
+    const toggle = document.createElement('span');
+    toggle.className = 'orma-hazard__toggle';
+    toggle.setAttribute('aria-hidden', 'true');
+    summary.append(summaryCopy, toggle);
+    const expanded = document.createElement('div');
+    expanded.className = 'orma-hazard__detail';
+    const clarification = document.createElement('p');
+    clarification.textContent = 'This warning applies to the wider area; it does not confirm that this trail is closed.';
     const detail = document.createElement('small');
     if(item.sourceUrl){
       const source = document.createElement('a');
       source.href = item.sourceUrl;
       source.target = '_blank';
       source.rel = 'noopener';
-      source.textContent = `Check ${item.sourceLabel} ↗`;
+      source.textContent = `View ${item.sourceLabel || 'official source'} ↗`;
       detail.append(source);
     } else detail.append(document.createTextNode(item.sourceLabel || 'Official warning'));
-    if(item.expiresAt) detail.append(document.createTextNode(` · source expiry ${new Date(item.expiresAt).toLocaleString()}`));
-    card.append(copy, detail);
+    const validUntil = expiryLabel(item.expiresAt);
+    if(validUntil){
+      const time = document.createElement('time');
+      time.dateTime = item.expiresAt;
+      time.textContent = `Valid until ${validUntil}`;
+      detail.append(time);
+    }
+    expanded.append(clarification, detail);
+    card.append(summary, expanded);
     return card;
   }
 

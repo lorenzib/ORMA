@@ -23,7 +23,7 @@ const bodyOf = file => {
 const HAZARD = {
   id: 'test-hazard-1', state: 'active', severity: 'moderate',
   title: 'Thunderstorm warning for the test area',
-  message: 'An official moderate thunderstorm warning applies to this area.',
+  message: 'An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.',
   sourceLabel: 'MeteoAlarm Italy', sourceUrl: 'https://example.invalid/warning',
   expiresAt: '2026-09-05T17:59:00+00:00', trailIds: ['piancavallo'], trailSlugs: ['1-rafeil-rundweg'],
 };
@@ -48,6 +48,17 @@ describe('official area warnings reach the page', () => {
     expect(stack).not.toBeNull();
     expect(document.body.contains(stack)).toBe(true);
     expect(stack.textContent).toContain('Thunderstorm warning for the test area');
+    const warning = stack.querySelector('.orma-hazard');
+    expect(warning.tagName).toBe('DETAILS');
+    expect(warning.open).toBe(false);
+    expect(warning.querySelector('.orma-hazard__title').textContent).toBe('Thunderstorm warning for the test area');
+    expect(warning.querySelector('.orma-hazard__summary').textContent).toBe('Moderate official warning. Check the source and local conditions before setting out.');
+    expect(warning.querySelector('.orma-hazard__detail').textContent).toContain('does not confirm that this trail is closed');
+    expect(warning.querySelector('.orma-hazard__detail a').textContent).toBe('View MeteoAlarm Italy ↗');
+    expect(warning.querySelector('.orma-hazard__detail time').textContent).toMatch(/^Valid until /);
+    expect(warning.textContent).not.toContain('source expiry');
+    warning.open = true;
+    expect(warning.open).toBe(true);
     // Placement matters as much as presence: a warning pushed to the top of the
     // document (the no-anchor fallback) or to the page foot is a degradation,
     // so pin it inside the trail content column.
