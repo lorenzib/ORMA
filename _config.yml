@@ -23,12 +23,8 @@ exclude:
   - backoffice-hosted-dashboard.js
   - newsletter-desk.js
   - social-desk.js
-  - trail-content-desk.html
-  - trail-content-desk.js
-  - trail-dossier-desk.html
   - trail-verify-desk.html
   - trail-verify-desk.js
-  - trail-dossier-desk.js
 
   # Operator data and repository tooling. PR #151 excluded the desk pages and
   # their scripts but left the data they read, so backoffice-data/*.json was

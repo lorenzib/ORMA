@@ -15,24 +15,20 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(files.some(file=>file.startsWith('data/'))).toBe(false);
   });
 
-  test.each(['backoffice-login.html','trail-dossier-desk.html','trail-content-desk.html','community-moderation-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
+  test.each(['backoffice-login.html','trail-verify-desk.html','community-moderation-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toMatch(/src="backoffice-firebase\.js\?v=[0-9-]+"/);
     expect(html).not.toContain('src="firebase-init.js');
   });
 
-  test('hosted dossier desk requests the current revision-control asset',()=>{
-    const html=fs.readFileSync(path.join(output,'trail-dossier-desk.html'),'utf8');
-    expect(html).toContain('trail-dossier-desk.js?v=20260906-7');
-  });
-
-  test('hosted trail content desk requests the durable publication receipt asset',()=>{
-    const html=fs.readFileSync(path.join(output,'trail-content-desk.html'),'utf8');
-    const script=fs.readFileSync(path.join(output,'trail-content-desk.js'),'utf8');
-    expect(html).toContain('backoffice/content-receipt-model.js?v=20260820-4');
-    expect(html).toContain('trail-content-desk.js?v=20260906-7');
-    expect(script).toContain("job.jobType==='verified-trail-editorial-first-pass'");
-    expect(script).toContain("Exactly one fully licensed ready image is required before approval");
+  test('the hosted verify desk carries the review work both retired desks did',()=>{
+    const html=fs.readFileSync(path.join(output,'trail-verify-desk.html'),'utf8');
+    const script=fs.readFileSync(path.join(output,'trail-verify-desk.js'),'utf8');
+    expect(html).toContain('trail-verify-desk.js');
+    // Route, findings, description and publication now live on one desk.
+    expect(script).toContain('submitDossierReview');
+    expect(script).toContain('submitPublicationReview');
+    expect(script).toContain('submitTrailReview');
   });
 
   test('hosted dashboard keeps the MVP trail lanes prominent and parks the rest',()=>{
@@ -46,7 +42,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('id="campaignHealth"');
     expect(html).toContain('backoffice/dashboard-model.js?v=20260905-2');
     expect(html).toContain('backoffice-hosted-dashboard.js?v=20260905-2');
-    expect(html).toContain('href="trail-dossier-desk.html"');
+    expect(html).toContain('href="trail-verify-desk.html"');
     expect(html).toContain('href="community-moderation-desk.html"');
     // The retired lanes must be gone from the shell, not merely unlinked. Trail
     // photos are sourced by hand now, so the photo desk is gone too.
@@ -89,21 +85,19 @@ describe('separate Firebase backoffice Hosting package',()=>{
   });
 
   test.each([
-    ['trail-dossier-desk.html','Trail evidence'],
-    ['trail-content-desk.html','Content &amp; release'],
+    ['trail-verify-desk.html','Existing Trails'],
     ['community-moderation-desk.html','Community'],
   ])('%s has persistent navigation and a clear current location',(page,current)=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
     expect(html).toContain('aria-label="Backoffice navigation"');
     expect(html).toContain('href="backoffice-review.html"');
-    expect(html).toContain('href="trail-dossier-desk.html"');
-    expect(html).toContain('href="trail-content-desk.html"');
+    expect(html).toContain('href="trail-verify-desk.html"');
     expect(html).toContain('href="community-moderation-desk.html"');
     expect(html).toContain(`aria-current="page">${current}</a>`);
   });
 
   test('moderator-facing trail pages explain automation without vague worker language',()=>{
-    const files=['backoffice-review.html','trail-dossier-desk.html','trail-content-desk.html','community-moderation-desk.html','backoffice-hosted-dashboard.js','trail-dossier-desk.js','trail-content-desk.js','moderation-page.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
+    const files=['backoffice-review.html','trail-verify-desk.html','community-moderation-desk.html','backoffice-hosted-dashboard.js','trail-verify-desk.js','moderation-page.js','backoffice/dashboard-model.js','backoffice/content-receipt-model.js'];
     const text=files.map(file=>fs.readFileSync(path.join(output,file),'utf8')).join('\n');
     expect(text).toContain('ORMA automation');
     expect(text).not.toMatch(/waiting for the worker|the worker will|worker processed|independent worker/i);

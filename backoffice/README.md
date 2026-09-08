@@ -263,8 +263,9 @@ the JSON/server adapter for development and contract testing.
    reached the expected human gate. Enable the separate campaign variable only
    when automatic catalogue admission is also approved.
 
-The moderator reviews verification work at `/trail-dossier-desk.html`, then
-reviews copy and pictures at `/trail-content-desk.html` only after a dossier is
+The moderator reviews every trail at `/trail-verify-desk.html`, which shows
+each trail waiting on a human together with the question it is waiting on: the
+route, the findings, the description, and finally publication once a dossier is
 ORMA Verified. **Agent activity** shows queued, running, retrying, blocked, and ready-for-review jobs.
 A revision remains visible until the moderator approves, rejects, or requests
 another pass. **Approve for PR creation** is a second, separate human gate.
@@ -325,7 +326,7 @@ only trails not already represented in durable orchestration state. The main
 worker then performs this sequence:
 
 1. Cartographer reconstructs the current OSM relation and opens the geometry
-   human gate in `/trail-dossier-desk.html`.
+   human gate in `/trail-verify-desk.html`.
 2. A human geometry approval queues Logistics, Regulatory Ranger and Terrain &
    POI in parallel.
 3. Evidence Librarian audits provenance; Red Team searches for counter-evidence.
