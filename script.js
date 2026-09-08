@@ -405,6 +405,39 @@ function liConditionsFor(trail){
   return area && typeof area.forTrail === 'function' ? area.forTrail(trail) : undefined;
 }
 
+// Map the refine bar's state onto the shared discovery-filter vocabulary and
+// let DoloPawsDiscoveryFilters.matches be the single source of truth for the
+// decision filters. Water stays a separate looser toggle and match% is scored,
+// so both are handled by the caller; geography/search/map are handled there too.
+function liRefineState(){
+  return {
+    duration: liFilters.duration,
+    distance: liFilters.dist === 'any' ? '' : liFilters.dist,
+    risk: liFilters.risk === 'any' ? '' : liFilters.risk,
+    terrain: liFilters.terrain === 'any' ? '' : liFilters.terrain,
+    heat: liFilters.shade === '40' ? 'shade-40' : liFilters.shade === '60' ? 'shade-60' : '',
+  };
+}
+
+function liMatchesRefineFilters(x){
+  const filters = window.DoloPawsDiscoveryFilters;
+  if(filters) return filters.matches(x, liRefineState());
+  // Fallback if the shared filter has not loaded: the same thresholds inline.
+  const multiDay = window.DoloPawsTrailTrust
+    ? window.DoloPawsTrailTrust.isMultiDay(x) : Number(x.distance) > 25;
+  if(liFilters.duration === 'multi' ? !multiDay : multiDay) return false;
+  if(liFilters.dist === 'u5' && !(x.distance < 5)) return false;
+  if(liFilters.dist === '5to10' && !(x.distance >= 5 && x.distance <= 10)) return false;
+  if(liFilters.dist === '10p' && !(x.distance > 10)) return false;
+  if(liFilters.risk !== 'any' && x.safetyLevel !== liFilters.risk) return false;
+  if(liFilters.terrain === 'soft' && !(Number(x.terrainRank) <= 0)) return false;
+  if(liFilters.terrain === 'mixed' && !(Number(x.terrainRank) <= 1)) return false;
+  if(liFilters.terrain === 'rocky' && !(Number(x.terrainRank) <= 2)) return false;
+  if(liFilters.shade === '40' && !((x.shadeCoverage || 0) >= 40)) return false;
+  if(liFilters.shade === '60' && !((x.shadeCoverage || 0) >= 60)) return false;
+  return true;
+}
+
 function filterTrailsForReturningView(list){
   let displayList = filterTrailsForLocationContext(list);
   if(showingSavedOnly) displayList = displayList.filter(x => currentFavorites[x.id]);
@@ -429,20 +462,12 @@ function filterTrailsForReturningView(list){
     const point = liTrailLngLat(x);
     return point && liMapBounds.contains(point);
   });
-  // Day hikes lead; a long multi-day itinerary only appears when explicitly asked
-  // for via the Duration filter, so the default list is not dominated by 70 km
-  // network routes most visitors will never walk in a day.
-  const liMultiDay = x => window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.isMultiDay(x) : Number(x.distance) > 25;
-  displayList = displayList.filter(x => liFilters.duration === 'multi' ? liMultiDay(x) : !liMultiDay(x));
-  if(liFilters.dist === 'u5') displayList = displayList.filter(x => x.distance < 5);
-  else if(liFilters.dist === '5to10') displayList = displayList.filter(x => x.distance >= 5 && x.distance <= 10);
-  else if(liFilters.dist === '10p') displayList = displayList.filter(x => x.distance > 10);
-  if(liFilters.risk !== 'any') displayList = displayList.filter(x => x.safetyLevel === liFilters.risk);
-  if(liFilters.terrain === 'soft') displayList = displayList.filter(x => Number(x.terrainRank) <= 0);
-  else if(liFilters.terrain === 'mixed') displayList = displayList.filter(x => Number(x.terrainRank) <= 1);
-  else if(liFilters.terrain === 'rocky') displayList = displayList.filter(x => Number(x.terrainRank) <= 2);
-  if(liFilters.shade === '40') displayList = displayList.filter(x => (x.shadeCoverage || 0) >= 40);
-  else if(liFilters.shade === '60') displayList = displayList.filter(x => (x.shadeCoverage || 0) >= 60);
+  // The decision filters (duration, distance, trail rating, terrain, shade) run
+  // through the one shared discovery filter, so "Under 5 km" or "Multi-day" means
+  // exactly the same thing here as on Browse and the guest homepage. Geography,
+  // search, map bounds, match% and water stay local: they are either richer here
+  // (region/country labels in search) or scored/looser on this runtime catalogue.
+  displayList = displayList.filter(x => liMatchesRefineFilters(x));
   if(liFilters.minMatch > 0) displayList = displayList.filter(x => x.score >= liFilters.minMatch);
   if(liFilters.water) displayList = displayList.filter(x => Array.isArray(x.waterSources) && x.waterSources.length > 0);
 

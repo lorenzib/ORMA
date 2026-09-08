@@ -158,4 +158,17 @@ describe('shared trail-filter experience', () => {
     expect(F.matches(longRoute, { duration: 'day' })).toBe(false);
     expect(F.matches(longRoute, { duration: 'multi' })).toBe(true);
   });
+
+  test('routes the logged-in homepage decision filters through the same shared filter', () => {
+    const script = read('script.js');
+    // The refine bar's duration/distance/rating/terrain/shade now defer to
+    // DoloPawsDiscoveryFilters.matches instead of a fourth hand-rolled predicate.
+    expect(script).toContain('window.DoloPawsDiscoveryFilters');
+    expect(script).toContain('filters.matches(x, liRefineState())');
+    expect(script).toContain('displayList = displayList.filter(x => liMatchesRefineFilters(x));');
+    // Match% stays scored and water stays a looser local toggle on this runtime
+    // catalogue, applied after the shared filter.
+    expect(script).toContain('if(liFilters.minMatch > 0) displayList = displayList.filter(x => x.score >= liFilters.minMatch);');
+    expect(script).toContain('if(liFilters.water) displayList = displayList.filter(x => Array.isArray(x.waterSources) && x.waterSources.length > 0);');
+  });
 });
