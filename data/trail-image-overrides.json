@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-07T20:33:09.392Z",
+  "updatedAt": "2026-09-08T09:19:47.259Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -411,6 +411,23 @@
       }
     },
     {
+      "id": "osm-11891581",
+      "approvedReviewId": "commons-osm-11891581",
+      "approvedAt": "2026-09-08T09:19:47.259Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11891581-altopiano-cansiglio.jpg",
+        "heroImage": "images/trails/osm-11891581-altopiano-cansiglio.jpg",
+        "imageAlt": "The open pasture of the Cansiglio plateau, spruce clumps standing in it and a forested ridge closing the far side under a clear sky.",
+        "imageCredit": "Altopiano del Cansiglio",
+        "imageCreditText": "Altopiano del Cansiglio by Wikilorenz03",
+        "imageCreator": "Wikilorenz03",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Altopiano_del_Cansiglio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-12018939",
       "approvedReviewId": "commons-osm-12018939",
       "approvedAt": "2026-09-06T15:21:27.825Z",
@@ -666,6 +683,23 @@
       }
     },
     {
+      "id": "osm-12189165",
+      "approvedReviewId": "commons-osm-12189165",
+      "approvedAt": "2026-09-08T09:19:47.259Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12189165-val-sarentina.jpg",
+        "heroImage": "images/trails/osm-12189165-val-sarentina.jpg",
+        "imageAlt": "A hay meadow on the valley side above Sarnthein, the Sarntal opening below between forested slopes with farms scattered on the far side.",
+        "imageCredit": "Val Sarentina",
+        "imageCreditText": "Val Sarentina by Alessandro Gigliotti",
+        "imageCreator": "Alessandro Gigliotti",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Val_Sarentina_con_Forcella_Sarentina_e_Cima_Rodella_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-12190538",
       "approvedReviewId": "commons-osm-12190538",
       "approvedAt": "2026-09-07T20:33:09.392Z",
@@ -887,6 +921,23 @@
       }
     },
     {
+      "id": "osm-13528390",
+      "approvedReviewId": "commons-osm-13528390",
+      "approvedAt": "2026-09-08T09:19:47.259Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-13528390-monte-guslon.jpg",
+        "heroImage": "images/trails/osm-13528390-monte-guslon.jpg",
+        "imageAlt": "Tambre on its shelf in the Alpago with pasture and forest above it, Monte Guslon behind still carrying snow in the gullies.",
+        "imageCredit": "Tambre e il Monte Guslon",
+        "imageCreditText": "Tambre e il Monte Guslon by AndreaFullinSalamon",
+        "imageCreator": "AndreaFullinSalamon",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Monte_Guslon.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-14058492",
       "approvedReviewId": "commons-osm-14058492",
       "approvedAt": "2026-09-06T11:51:13.811Z",
@@ -955,6 +1006,23 @@
       }
     },
     {
+      "id": "osm-14381570",
+      "approvedReviewId": "commons-osm-14381570",
+      "approvedAt": "2026-09-08T09:19:47.259Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14381570-albanne.jpg",
+        "heroImage": "images/trails/osm-14381570-albanne.jpg",
+        "imageAlt": "The hamlet of Albanne on its wooded shelf above the Maurienne in September, pasture and spruce running up the slope behind it.",
+        "imageCredit": "Hameau d’Albanne",
+        "imageCreditText": "Hameau d’Albanne by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Hameau_d%27Albanne_depuis_Col_du_T%C3%A9l%C3%A9graphe_(septembre_2024).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-15321049",
       "approvedReviewId": "commons-osm-15321049",
       "approvedAt": "2026-09-07T19:55:05.873Z",
@@ -985,6 +1053,23 @@
         "imageLicence": "CC BY 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bourg-Saint-Maurice_(Ao%C3%BBt_2025)_-_Vue_depuis_la_descente_du_col_du_Petit-Saint-Bernard.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-15662134",
+      "approvedReviewId": "commons-osm-15662134",
+      "approvedAt": "2026-09-08T09:19:47.259Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-15662134-laurein.jpg",
+        "heroImage": "images/trails/osm-15662134-laurein.jpg",
+        "imageAlt": "Laurein on the Nonsberg in October, mown pasture and fruit trees below the village, turning larch on the ridge behind.",
+        "imageCredit": "Laurein",
+        "imageCreditText": "Laurein by Mai-Sachme",
+        "imageCreator": "Mai-Sachme",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Laurein.JPG",
         "imageSourceType": "licensed-source"
       }
     },
