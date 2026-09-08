@@ -225,8 +225,8 @@
   .browse-search-submit:hover{background:#32697E;}
   .browse-location-breadcrumb{display:flex;align-items:center;justify-content:flex-end;min-height:22px;margin:-6px 0 8px;color:#66766B;font:650 12px/1.4 'Inter',sans-serif;}
   .browse-location-breadcrumb:empty{visibility:hidden;}
-  .browse-explorer{display:grid;grid-template-columns:minmax(420px,.78fr) minmax(540px,1.22fr);height:min(720px,calc(100vh - 170px));min-height:590px;border:1px solid var(--paper-line);border-radius:22px;background:#fff;overflow:hidden;box-shadow:0 16px 42px rgba(34,50,38,.08);}
-  .browse-list-pane{min-width:0;overflow-y:auto;overscroll-behavior:contain;padding:18px 16px 22px;background:#FBFAF5;border-right:1px solid var(--paper-line);scrollbar-gutter:stable;}
+  .browse-explorer{display:grid;grid-template-columns:minmax(540px,1.22fr) minmax(420px,.78fr);height:min(720px,calc(100vh - 170px));min-height:590px;border:1px solid var(--paper-line);border-radius:22px;background:#fff;overflow:hidden;box-shadow:0 16px 42px rgba(34,50,38,.08);}
+  .browse-list-pane{min-width:0;overflow-y:auto;overscroll-behavior:contain;padding:18px 16px 22px;background:#FBFAF5;border-left:1px solid var(--paper-line);scrollbar-gutter:stable;}
   .browse-list-pane .browse-compare-note{margin-bottom:14px;}
   .browse-list-pane .browse-results-meta{position:sticky;top:-18px;z-index:4;margin:0 -16px 12px;padding:14px 16px 10px;background:rgba(251,250,245,.96);backdrop-filter:blur(8px);}
   .browse-list-pane .simple-card{grid-template-columns:112px minmax(0,1fr);grid-template-rows:auto auto auto;gap:9px 13px;padding:12px;}
@@ -260,10 +260,10 @@
   }
   @media(min-width:761px) and (max-width:1100px){
     .browse-primary-controls .browse-search-group{grid-column:1;grid-row:1;}
-    .browse-explorer{grid-template-columns:minmax(360px,.85fr) minmax(430px,1.15fr);}
+    .browse-explorer{grid-template-columns:minmax(430px,1.15fr) minmax(360px,.85fr);}
   }
   @media(max-width:900px){
-    .browse-explorer{grid-template-columns:minmax(330px,.9fr) minmax(400px,1.1fr);}
+    .browse-explorer{grid-template-columns:minmax(400px,1.1fr) minmax(330px,.9fr);}
     .browse-list-pane .simple-card__match small{display:none;}
   }
   @media(max-width:760px){
@@ -275,7 +275,7 @@
     .browse-view-toggle button{min-height:40px;border:0;border-radius:9px;background:transparent;color:#53675A;font:750 13px 'Inter',sans-serif;cursor:pointer;}
     .browse-view-toggle button.on{background:#fff;color:#2E4034;box-shadow:0 2px 7px rgba(35,53,40,.1);}
     .browse-explorer{display:block;height:auto;min-height:0;border-radius:18px;}
-    .browse-list-pane{height:auto;max-height:none;overflow:visible;border-right:0;padding:14px 12px 18px;}
+    .browse-list-pane{height:auto;max-height:none;overflow:visible;border-left:0;padding:14px 12px 18px;}
     .browse-list-pane .browse-results-meta{position:static;margin:0 0 12px;padding:0;background:transparent;backdrop-filter:none;}
     .browse-map-pane{height:62dvh;min-height:430px;}
     .browse-explorer[data-mobile-view="list"] .browse-map-pane{display:none;}
@@ -436,18 +436,6 @@
     <button type="button" data-browse-view="map" aria-pressed="false">Map</button>
   </div>
   <section id="browseExplorer" class="browse-explorer" data-mobile-view="list" aria-label="Trail catalogue and map">
-    <div class="browse-list-pane">
-      <!-- What Compare does, feeds the tray at the bottom + compare.html -->
-      <aside class="browse-compare-note">
-        <b>Deciding between trails?</b> Pick <em>Compare</em> on two or three and we'll put distance, terrain, shade, water and dog fit side by side.
-      </aside>
-      <div class="browse-results-meta">
-        <span id="browseResultCount" aria-live="polite"></span>
-        <span class="browse-result-accessible" data-i18n="browse.trustNote">Trail information combines mapped route data and available ORMA sources.</span>
-        <button type="button" id="browseClear" class="browse-clear" hidden>Clear filters</button>
-      </div>
-      <div class="simple-grid" id="simpleTrailsList"></div>
-    </div>
     <div class="browse-map-pane" aria-label="Map of matching trails">
       <div id="browseMap">
         <div class="browse-map-placeholder"><strong>Loading the trail map…</strong><span>You can keep browsing the catalogue while the map loads.</span></div>
@@ -460,6 +448,18 @@
         <button type="button" class="on" data-browse-map-style="map" aria-pressed="true">Map</button>
         <button type="button" data-browse-map-style="terrain" aria-pressed="false">Terrain</button>
       </div>
+    </div>
+    <div class="browse-list-pane">
+      <!-- What Compare does, feeds the tray at the bottom + compare.html -->
+      <aside class="browse-compare-note">
+        <b>Deciding between trails?</b> Pick <em>Compare</em> on two or three and we'll put distance, terrain, shade, water and dog fit side by side.
+      </aside>
+      <div class="browse-results-meta">
+        <span id="browseResultCount" aria-live="polite"></span>
+        <span class="browse-result-accessible" data-i18n="browse.trustNote">Trail information combines mapped route data and available ORMA sources.</span>
+        <button type="button" id="browseClear" class="browse-clear" hidden>Clear filters</button>
+      </div>
+      <div class="simple-grid" id="simpleTrailsList"></div>
     </div>
   </section>
 

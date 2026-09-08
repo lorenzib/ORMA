@@ -35,4 +35,15 @@ describe('Explore trail map', () => {
     expect(html).toContain('data-browse-view="map"');
     expect(html).toContain('src="browse-map.js?v=20260908-1"');
   });
+
+  test('uses the same map-left, results-right desktop order as the logged-in homepage', () => {
+    const explore=fs.readFileSync('browse-trails.html','utf8');
+    const homepage=fs.readFileSync('index.html','utf8');
+    expect(explore.indexOf('<div class="browse-map-pane"')).toBeLessThan(
+      explore.indexOf('<div class="browse-list-pane"')
+    );
+    expect(homepage.indexOf('<div class="li-map"')).toBeLessThan(
+      homepage.indexOf('<aside class="li-list"')
+    );
+  });
 });
