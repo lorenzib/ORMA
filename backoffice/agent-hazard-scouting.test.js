@@ -50,7 +50,7 @@ describe('the measurement is not the agent’s', () => {
     const result=locateClaims({claims:[claim({location:{lat:46.9,lng:12.2,landmark:'Somewhere else'}})]},TRAIL);
     const [refused]=result.claims;
     expect(refused.location).toBeNull();
-    expect(refused.blockers).toContain('claim-location-off-route');
+    expect(refused.locationRejected).toEqual({reason:'off-route',offRouteM:expect.any(Number)});
   });
 
   test('a claim with no position is left exactly as it is', () => {
@@ -63,7 +63,21 @@ describe('the measurement is not the agent’s', () => {
   test('a position cannot survive a trail with no path to measure against', () => {
     const result=locateClaims({claims:[claim({location:{lat:ON_ROUTE[0],lng:ON_ROUTE[1],landmark:'The gate'}})]},{path:[]});
     expect(result.claims[0].location).toBeNull();
-    expect(result.claims[0].blockers).toContain('claim-location-off-route');
+    expect(result.claims[0].locationRejected.reason).toBe('unmeasurable');
+  });
+
+  // A hazard position is decoration on a claim. dossierBlockingReasons treats
+  // every claim blocker as gate-blocking, so recording the rejection there would
+  // have let one stray coordinate veto a whole trail's verification.
+  test('a rejected position does not block the trail from being verified', () => {
+    const {dossierBlockingReasons}=require('../backoffice/workflows/advance-trail-orchestration.js');
+    const result=locateClaims({claims:[
+      claim({location:{lat:46.9,lng:12.2,landmark:'Somewhere else'}}),
+    ]},TRAIL);
+    const outputs=[{agentId:'terrainPoi',jobId:'j1',result:{...result,recommendation:'advance',openQuestions:[]}}];
+    const reasons=dossierBlockingReasons(outputs)
+      .filter(reason=>!reason.startsWith('logistics/'));
+    expect(reasons).toEqual([]);
   });
 
   test('the specialist run measures what the agent returned', async () => {
