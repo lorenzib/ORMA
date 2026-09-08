@@ -178,11 +178,40 @@ async function advanceTrailOrchestration(store,options={}){
   if(!state)return {advanced:[],queued:[]};
   const jobs=await orchestrationJobs(store,state);
   const reviewQueue=await store.getArtifact('dossier-review-queue')||{contractVersion:'1.0.0',items:[],publicMutationAllowed:false};
-  const next=JSON.parse(JSON.stringify(state)); const nextQueue=JSON.parse(JSON.stringify(reviewQueue)); const queued=[]; const advanced=[];
+  const next=JSON.parse(JSON.stringify(state)); const nextQueue=JSON.parse(JSON.stringify(reviewQueue)); const queued=[]; const advanced=[]; const releasedGates=[];
   for(const trail of next.trails){
     const latestTrailJobs=new Map();for(const job of jobs.filter(item=>trail.jobIds.includes(item.id))){
       const current=latestTrailJobs.get(job.agentId);if(!current||timeValue(job.createdAt)>timeValue(current.createdAt))latestTrailJobs.set(job.agentId,job);
     }
+    // A gate opened by an agent failure is not a decision anyone asked for: it is
+    // the system reporting that a job broke. When that job is no longer blocked
+    // -- a provider outage cleared and the job was put back -- the reason for the
+    // gate has gone with it, and leaving the trail parked keeps work waiting on a
+    // question nobody needs answered. Sixteen trails sat this way after a billing
+    // outage, with nothing to approve and nothing running.
+    //
+    // The trail returns to the state a revision would have put it in, so it
+    // rejoins the pipeline by the route that already exists rather than a new one.
+    // Gates opened by a real finding are untouched: only agent-failure gates whose
+    // job has actually recovered are released.
+    const parkedOn=(trail.blockers||[]).find(blocker=>String(blocker).startsWith('agent-job-blocked:'));
+    if(trail.gate?.id==='agent-failure'&&parkedOn){
+      const parkedAgent=String(parkedOn).slice('agent-job-blocked:'.length);
+      const recovered=latestTrailJobs.get(parkedAgent);
+      if(recovered&&recovered.status!=='blocked'){
+        trail.state=parkedAgent==='cartographer'?'geometry-audit':'evidence-research';
+        trail.stage=`${parkedAgent}-retry`;
+        trail.blockers=[];
+        trail.gate=null;
+        trail.updatedAt=at;
+        const key=String(trail.trailId||trail.candidateId);
+        nextQueue.items=(nextQueue.items||[]).filter(item=>
+          !(String(item.trailId||item.candidateId)===key&&item.gateType==='agent-failure'));
+        releasedGates.push(trail.trailId);
+        continue;
+      }
+    }
+
     const failed=[...latestTrailJobs.values()].filter(job=>job.status==='blocked')
       .sort((a,b)=>timeValue(b.createdAt)-timeValue(a.createdAt))[0];
     if(failed&&!trail.state.endsWith('human-gate')){
@@ -258,10 +287,10 @@ async function advanceTrailOrchestration(store,options={}){
   const restored=await restoreMissingGateReviews(store,next,nextQueue,at,jobs);
   // Persist whenever anything moved or was repaired. Gating the write on advanced
   // alone discarded queue repairs on any pass where no trail changed state.
-  if(advanced.length||restored.length){next.generatedAt=at;next.summary=summarize(next.trails);nextQueue.updatedAt=at;nextQueue.summary={awaitingHuman:nextQueue.items.filter(item=>item.state==='awaiting-human').length,
+  if(advanced.length||restored.length||releasedGates.length){next.generatedAt=at;next.summary=summarize(next.trails);nextQueue.updatedAt=at;nextQueue.summary={awaitingHuman:nextQueue.items.filter(item=>item.state==='awaiting-human').length,
     approvalAllowed:nextQueue.items.filter(item=>item.state==='awaiting-human'&&item.approvalAllowed).length,blocked:nextQueue.items.filter(item=>item.state==='awaiting-human'&&!item.approvalAllowed).length};
     await Promise.all([store.setArtifact('trail-orchestration',next),store.setArtifact('dossier-review-queue',nextQueue)]);}
-  return {advanced,restored,queued:queued.map(job=>job.id)};
+  return {advanced,restored,releasedGates,queued:queued.map(job=>job.id)};
 }
 
 module.exports={GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,RESOLVED_REVIEWS_KEPT,pruneResolvedReviews,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
