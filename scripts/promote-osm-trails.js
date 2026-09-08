@@ -29,6 +29,8 @@
  */
 
 const fs = require('fs/promises');
+const nodeFs = require('fs');
+const vm = require('vm');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -66,39 +68,22 @@ const ELEVATION_BATCH = 100;          // Open-Meteo max per request
 const ELEVATION_SAMPLES = 80;         // sampled points per route
 const ACCESS_PATH = path.join(ROOT, REGION.accessFile);
 
-// Real, well-known Dolomites localities used only to give each imported
-// trail a meaningful "area" label (nearest locality to the route start).
-const LOCALITIES = [
-  ['Cortina d\'Ampezzo', 46.5405, 12.1357], ['Ortisei / Val Gardena', 46.5747, 11.6717],
-  ['Selva di Val Gardena', 46.5551, 11.7605], ['Canazei / Val di Fassa', 46.4770, 11.7714],
-  ['Corvara / Alta Badia', 46.5504, 11.8746], ['San Cassiano / Alta Badia', 46.5687, 11.9312],
-  ['Dobbiaco / Toblach', 46.7357, 12.2210], ['San Candido / Innichen', 46.7327, 12.2800],
-  ['Sesto / Sexten', 46.7025, 12.3500], ['Braies / Prags', 46.7207, 12.1350],
-  ['Alpe di Siusi / Seiser Alm', 46.5402, 11.6181], ['Castelrotto / Kastelruth', 46.5670, 11.5599],
-  ['San Martino di Castrozza', 46.2612, 11.8022], ['Madonna di Campiglio', 46.2295, 10.8269],
-  ['Falcade / Val Biois', 46.3576, 11.8712], ['Arabba', 46.4977, 11.8747],
-  ['Alleghe', 46.4066, 12.0209], ['Auronzo di Cadore', 46.5527, 12.4419],
-  ['Val di Funes / Villnöss', 46.6440, 11.6810], ['Nova Levante / Carezza', 46.4300, 11.5380],
-  ['Predazzo / Val di Fiemme', 46.3110, 11.6010], ['Bolzano / Bozen', 46.4983, 11.3548],
-  ['Bressanone / Brixen', 46.7151, 11.6570], ['Vipiteno / Sterzing', 46.8977, 11.4331],
-  ['Brunico / Bruneck', 46.7966, 11.9376], ['Belluno', 46.1420, 12.2167],
-  ['Agordo', 46.2820, 12.0330], ['Pieve di Cadore', 46.4276, 12.3730],
-  ['Fiera di Primiero', 46.1770, 11.8290], ['Cavalese', 46.2910, 11.4600],
-  // Savoy / Haute-Savoie
-  ['Chamonix-Mont-Blanc', 45.9237, 6.8694], ['Les Houches', 45.8906, 6.7986],
-  ['Saint-Gervais-les-Bains', 45.8926, 6.7130], ['Megève', 45.8567, 6.6176],
-  ['Annecy', 45.8992, 6.1294], ['Talloires / Lac d\'Annecy', 45.8410, 6.2140],
-  ['La Clusaz', 45.9045, 6.4237], ['Le Grand-Bornand', 45.9410, 6.4280],
-  ['Morzine', 46.1791, 6.7090], ['Avoriaz', 46.1912, 6.7742],
-  ['Samoëns', 46.0826, 6.7266], ['Thonon-les-Bains', 46.3705, 6.4784],
-  ['Évian-les-Bains', 46.4009, 6.5877], ['Chambéry', 45.5646, 5.9178],
-  ['Aix-les-Bains', 45.6886, 5.9151], ['Albertville', 45.6754, 6.3925],
-  ['Beaufort / Beaufortain', 45.7192, 6.5735], ['Bourg-Saint-Maurice', 45.6180, 6.7690],
-  ['Val d\'Isère', 45.4489, 6.9797], ['Tignes', 45.4685, 6.9060],
-  ['Courchevel', 45.4154, 6.6340], ['Méribel', 45.3966, 6.5654],
-  ['Pralognan-la-Vanoise', 45.3810, 6.7220], ['Modane / Maurienne', 45.2016, 6.6580],
-  ['Valloire', 45.1650, 6.4300], ['Saint-Jean-de-Maurienne', 45.2760, 6.3460]
-];
+// The locality table lives in regions-config.js and is loaded from there. It
+// used to be duplicated here; the two copies drifted, so a trail could take its
+// `area` from one list and its `valley` from the other and end up naming two
+// different places.
+const REGIONS_CONFIG_PATH = path.join(ROOT, 'regions-config.js');
+let localityApi = null;
+function regions() {
+  if (!localityApi) {
+    const context = { window: {}, console };
+    vm.createContext(context);
+    vm.runInContext(nodeFs.readFileSync(REGIONS_CONFIG_PATH, 'utf8'), context,
+      { filename: 'regions-config.js' });
+    localityApi = context.window.DoloPawsRegions;
+  }
+  return localityApi;
+}
 
 function haversineMeters(lat1, lng1, lat2, lng2) {
   const R = 6371000;
@@ -291,13 +276,7 @@ function matchAlongPath(pts, cumKm, index, maxMeters, labelFn) {
 }
 
 function nearestLocality(lat, lng) {
-  let best = null;
-  let bestD = Infinity;
-  for (const [name, la, ln] of LOCALITIES) {
-    const d = haversineMeters(lat, lng, la, ln);
-    if (d < bestD) { bestD = d; best = name; }
-  }
-  return best;
+  return regions().nearestLocality(lat, lng).name;
 }
 
 /* ---------------- Verified start points, orientation, terrain, direction --- */
