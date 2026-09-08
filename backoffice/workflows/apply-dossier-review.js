@@ -5,7 +5,13 @@ const { summarize }=require('./build-live-orchestration');
 const {compileVerifiedDossier,verificationRecord}=require('./compile-verified-dossier');
 
 const BASE_SPECIALISTS=Object.freeze([
-  {agentId:'logistics',action:'verify-parking-and-access',claimIds:['parking','road-access','pedestrian-connection']},
+  // Route guidance is logistics' work too, and the output contract has demanded
+  // it since 2026-09-04. Asking only for parking while throwing the result away
+  // for lacking directions is why both trails at the dossier gate carry a
+  // parking-only dossier: the agent answered the question it was given.
+  {agentId:'logistics',action:'verify-access-and-route-guidance',
+    claimIds:['parking','road-access','pedestrian-connection',
+      'recommended-start','route-number-status','route-number-sequence','route-number-switches']},
   // The Ranger already establishes route-level dog rules from published
   // sources. Rifugio and lift policies are the same work at entity
   // granularity, so they belong to the same specialist and the same human
