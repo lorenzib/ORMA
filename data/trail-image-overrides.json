@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-08T20:03:41.539Z",
+  "updatedAt": "2026-09-08T21:29:18.068Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -2073,6 +2073,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Santa_Crusc_da_Pescol.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-9651462",
+      "approvedReviewId": "commons-osm-9651462",
+      "approvedAt": "2026-09-08T21:29:18.067Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-9651462-fronwies.jpg",
+        "heroImage": "images/trails/osm-9651462-fronwies.jpg",
+        "imageAlt": "The pink church of Heiligkreuz in Fronwies and its Widum house standing on mown meadow below a wooded hill near St. Lorenzen",
+        "imageCredit": "Heiligkreuz in Fronwies near St. Lorenzen",
+        "imageCreditText": "Heiligkreuz in Fronwies near St. Lorenzen by Michielverbeek",
+        "imageCreator": "Michielverbeek",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Sankt_Lorenzen,_Heiligkreuz_in_Fronwies_Dm17020_IMG_1144_2019-08-04_11.15.jpg",
         "imageSourceType": "licensed-source"
       }
     },
