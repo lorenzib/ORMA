@@ -31,6 +31,7 @@ async function main(){
   const result = await runLiveBackofficeWorker(new FirestoreBackofficeStore(), { workerId,runId:process.env.GITHUB_RUN_ID||null,
     workflowRunUrl,campaignTrigger:'worker-catch-up',campaignEnabled:process.env.ORMA_CAMPAIGN_AUTOMATION_ENABLED==='true',
     campaignLimit:positiveInteger(process.env.ORMA_CAMPAIGN_LIMIT,10),campaignCapacity:positiveInteger(process.env.ORMA_CAMPAIGN_CAPACITY,15),
+    campaignQueueCapacity:positiveInteger(process.env.ORMA_CAMPAIGN_QUEUE_CAPACITY,40),
     limit:5,specialistLimit,specialistCandidateId });
   console.log(JSON.stringify(result, null, 2));
   if(blockedLanes(result).length) process.exitCode = 1;

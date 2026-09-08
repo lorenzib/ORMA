@@ -82,7 +82,8 @@ async function runScheduledTrailCampaign(store,trails,options={}){
     recentRuns:[...(previous?.recentRuns||[])].slice(-19),publicMutationAllowed:false};
   await store.setArtifact('trail-campaign-health',started,{status:'running',runId:runIdentity.runId});
   try{
-    const result=await startLiveTrailCampaign(store,trails,{at:eligibility.at,limit:options.limit||5,capacity:options.capacity||5});
+    const result=await startLiveTrailCampaign(store,trails,
+      {at:eligibility.at,limit:options.limit||5,capacity:options.capacity||5,queueCapacity:options.queueCapacity});
     const completedAt=options.completedAt||new Date().toISOString();const receipt={outcome:'success',startedAt:eligibility.at,completedAt,
       admitted:result.jobIds.length,remainingQueueable:result.campaign.summary.remainingQueueable,
       routeNumberGuidanceVerified:result.campaign.summary.routeNumberGuidanceVerified,

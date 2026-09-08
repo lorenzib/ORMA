@@ -1461,9 +1461,13 @@ describe('ORMA backoffice MVP', () => {
     })]);
   });
 
-  test('the live campaign does not exceed fifteen in-flight trails', async () => {
+  // Capacity now means agent work, not trails in flight: a trail parked at a
+  // human gate costs no credits and no reads, and counting it here is what
+  // stalled intake with 145 trails unable to enter. See campaign-budgets.test.js
+  // for the gate budget that bounds the moderator's backlog separately.
+  test('the live campaign does not exceed fifteen trails under research', async () => {
     const active=Array.from({length:15},(_,index)=>({trailId:`trail-${index}`,candidateId:`trail-${index}`,trailName:`Trail ${index}`,
-      state:'geometry-human-gate',attempts:{cartographer:1},resolutionAttempts:{},jobIds:[],publicMutationAllowed:false}));
+      state:'evidence-resolution',attempts:{cartographer:1},resolutionAttempts:{},jobIds:[],publicMutationAllowed:false}));
     const artifacts={'trail-orchestration':{contractVersion:'1.0.0',publicMutationAllowed:false,trails:active}};const queued=[];
     const store={getArtifact:async id=>artifacts[id],setArtifact:async(id,value)=>{artifacts[id]=value;},putJob:async job=>queued.push(job)};
     const result=await startLiveTrailCampaign(store,[{id:'new-trail',name:'New',curated:true,osmRelation:99,path:[[1,1],[1,1]]}],{at:'2026-08-18T20:00:00.000Z',limit:10,capacity:15});

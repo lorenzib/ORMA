@@ -285,6 +285,27 @@ confirmed against, and a source that contradicts the record wins and says so.
 Parking and the route are separate questions, and an unresolved parking picture
 is never a reason to omit the directions.
 
+## Two campaign budgets, and where a stopped trail goes
+
+Admission to the pipeline is bounded by two separate budgets, because they
+protect different things. The agent budget bounds trails under research; those
+cost model credits and Firestore reads on every pass, and it is the one to keep
+tight. The gate budget bounds trails parked awaiting a moderator; holding one
+costs nothing, so it is far larger, and exists only so a backlog eventually
+stops intake rather than growing past what the review queue artifact can hold.
+
+Counting the two the same way stalled intake completely: on 2026-09-08 fifteen
+trails filled a capacity of fifteen, five of them needing nothing but a
+decision, while 145 trails could not enter. A state that neither list has met
+counts against the agent budget, so an unrecognised state restricts admission
+rather than silently freeing it.
+
+A trail that exhausts its attempts is blocked. That is terminal by design and
+frees its place immediately, which is what lets the rest of the queue keep
+moving. It is not silent: the Trail Verification Desk lists every blocked trail
+with the reason it stopped, below the queue, because a trail leaving the
+pipeline without anyone seeing it is indistinguishable from one that was lost.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:
