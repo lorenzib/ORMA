@@ -1,6 +1,65 @@
 'use strict';
 
 const DOG_CRITICAL_EVENTS = /avalanche|forest fire|wildfire|thunderstorm|snow|ice|extreme temperature|high temperature|heat|flood/i;
+const SEVERITY_RANK = { extreme: 4, severe: 3, moderate: 2, minor: 1, unknown: 0 };
+
+// The event family a warning belongs to, with its colour/severity prefix and the
+// trailing "warning" stripped: "Orange Thunderstorm Warning" -> "thunderstorm".
+function warningEventLabel(event){
+  return String(event || '')
+    .replace(/^(?:red|orange|yellow|moderate|severe|extreme)\s+/i, '')
+    .replace(/\s+warning$/i, '').trim().toLowerCase() || 'weather';
+}
+
+function warningSlug(value){
+  return String(value || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+// MeteoAlarm issues a separate CAP alert per validity window (and per severity
+// step) for one ongoing event, so the same warning arrives several times with
+// distinct identifiers. Keying a published hazard by source + event family +
+// area collapses those into a single card instead of stacking near-identical
+// duplicates that differ only by expiry.
+function canonicalWarningId(sourceKey, event, area){
+  return `${sourceKey || 'warning'}:${warningSlug(warningEventLabel(event))}:${warningSlug(area)}`;
+}
+
+// When alerts collapse onto the same card, keep the worst severity (its title and
+// message) and the latest expiry, and union the affected trails, so the card
+// shows the most serious currently-active version of the warning.
+function mergeWarnings(a, b){
+  const primary = (SEVERITY_RANK[b.severity] || 0) > (SEVERITY_RANK[a.severity] || 0) ? b : a;
+  const later = (x, y) => !x ? y : !y ? x : (new Date(x).getTime() >= new Date(y).getTime() ? x : y);
+  const earlier = (x, y) => !x ? y : !y ? x : (new Date(x).getTime() <= new Date(y).getTime() ? x : y);
+  const union = (x, y) => [...new Set([...(x || []), ...(y || [])])];
+  return {
+    ...a,
+    severity: primary.severity, event: primary.event, title: primary.title, message: primary.message,
+    identifier: primary.identifier, sourceUrl: primary.sourceUrl || a.sourceUrl,
+    expiresAt: later(a.expiresAt, b.expiresAt),
+    effectiveAt: earlier(a.effectiveAt, b.effectiveAt),
+    firstPublishedAt: earlier(a.firstPublishedAt, b.firstPublishedAt),
+    lastSeenAt: later(a.lastSeenAt, b.lastSeenAt),
+    trailIds: union(a.trailIds, b.trailIds),
+    trailNames: union(a.trailNames, b.trailNames),
+  };
+}
+
+// Collapse weather warnings that share a canonical (source + event + area) key
+// into one, re-keying them to that canonical id so legacy per-alert duplicates
+// heal on the next pass. Community hazards keep their own identity and lifecycle.
+function dedupeHazards(hazards = []){
+  const order = [];
+  const byKey = new Map();
+  for(const hazard of hazards){
+    if(hazard.origin === 'community'){ order.push({ community: hazard }); continue; }
+    const key = canonicalWarningId(hazard.sourceKey, hazard.event, hazard.area);
+    const normalized = { ...hazard, id: key };
+    if(byKey.has(key)) byKey.set(key, mergeWarnings(byKey.get(key), normalized));
+    else { byKey.set(key, normalized); order.push({ key }); }
+  }
+  return order.map(entry => entry.community ? entry.community : byKey.get(entry.key));
+}
 
 function decodeXml(value = ''){
   return String(value)
@@ -75,9 +134,9 @@ function shouldPublishAlert(alert){
 function publicWarning(alert, trails, at){
   const matched = trails.filter(trail => alertAppliesToTrail(alert, trail));
   if(!matched.length || !shouldPublishAlert(alert)) return null;
-  const eventLabel=alert.event.replace(/^(?:red|orange|yellow|moderate|severe|extreme)\s+/i,'').replace(/\s+warning$/i,'').trim()||'weather';
+  const eventLabel=warningEventLabel(alert.event);
   return {
-    id: alert.id, state: 'active', severity: alert.severity, event: alert.event, area: alert.area,
+    id: canonicalWarningId(alert.sourceKey, alert.event, alert.area), state: 'active', severity: alert.severity, event: alert.event, area: alert.area,
     title: `${eventLabel} warning for ${alert.area}`,
     message: `An official ${alert.severity} ${eventLabel.toLowerCase()} warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.`,
     sourceKey: alert.sourceKey, sourceLabel: alert.sourceLabel, sourceUrl: alert.sourceUrl,
@@ -93,7 +152,12 @@ function reconcileHazards(previous = [], observations = [], sourceResults = [], 
   const complete = new Set(sourceResults.filter(source => source.ok && source.completeSnapshot === true).map(source => source.key));
   const failed = new Map(sourceResults.filter(source => !source.ok).map(source => [source.key, source.error || 'Source unavailable']));
   const observed = new Map();
-  observations.forEach(alert => { const warning = publicWarning(alert, trails, at); if(warning) observed.set(warning.id, warning); });
+  observations.forEach(alert => {
+    const warning = publicWarning(alert, trails, at);
+    if(!warning) return;
+    const existing = observed.get(warning.id);
+    observed.set(warning.id, existing ? mergeWarnings(existing, warning) : warning);
+  });
   const next = [];
   previous.forEach(old => {
     // Community hazards have their own lifecycle: they are vetted, re-vetted and
@@ -119,15 +183,17 @@ function reconcileHazards(previous = [], observations = [], sourceResults = [], 
     next.push({ ...old, lastCheckedAt: at });
   });
   next.push(...observed.values());
-  return next.sort((a, b) => String(b.severity).localeCompare(String(a.severity)) || a.title.localeCompare(b.title));
+  return dedupeHazards(next).sort((a, b) => String(b.severity).localeCompare(String(a.severity)) || a.title.localeCompare(b.title));
 }
 
 function buildHazardArtifacts(previousData, observations, sourceResults, trails, options = {}){
   const at = options.at || new Date().toISOString();
   const hazards = reconcileHazards(previousData?.hazards || [], observations, sourceResults, trails, { at });
-  const remainingIds = new Set(hazards.map(item => item.id));
+  // Compare on the canonical key, not the raw id, so a warning that was merged or
+  // re-keyed (legacy per-alert id -> canonical id) is not misreported as removed.
+  const remainingKeys = new Set(hazards.map(item => canonicalWarningId(item.sourceKey, item.event, item.area)));
   const completeSources = new Set(sourceResults.filter(source => source.ok && source.completeSnapshot === true).map(source => source.key));
-  const automaticallyRemoved = (previousData?.hazards || []).filter(item => item.origin !== 'community' && !remainingIds.has(item.id)).map(item => ({
+  const automaticallyRemoved = (previousData?.hazards || []).filter(item => item.origin !== 'community' && !remainingKeys.has(canonicalWarningId(item.sourceKey, item.event, item.area))).map(item => ({
     hazardId:item.id, sourceKey:item.sourceKey, sourceLabel:item.sourceLabel || null,
     title:item.title || null, removedAt:at,
     reason:completeSources.has(item.sourceKey)?'absent-from-complete-authoritative-snapshot':'source-warning-expired',
@@ -163,4 +229,4 @@ function applyHazardReview(publicData, ledger, input, options = {}){
   };
 }
 
-module.exports = { parseAtomFeed, trailWarningArea, alertAppliesToTrail, shouldPublishAlert, reconcileHazards, buildHazardArtifacts, applyHazardReview };
+module.exports = { parseAtomFeed, trailWarningArea, alertAppliesToTrail, shouldPublishAlert, reconcileHazards, buildHazardArtifacts, applyHazardReview, canonicalWarningId, mergeWarnings, dedupeHazards };

@@ -1484,6 +1484,24 @@ describe('ORMA backoffice MVP', () => {
     expect(artifacts.publicData.hazards[0].message).toContain('not a trail-closure notice');
   });
 
+  test('warnings for the same area and event collapse into one card, keeping the worst severity and latest expiry', () => {
+    // MeteoAlarm issues one alert per validity window: the same thunderstorm for
+    // one area arrives twice (a yellow day and an orange day) with distinct CAP
+    // identifiers. They must not stack as two near-identical cards.
+    const entry=(id,colour,severity,expires)=>`<entry><id>${id}</id><title>${colour} Thunderstorm warning</title><updated>2026-08-19T05:00:00Z</updated><link href="https://example.test/cap" type="application/cap+xml"/><cap:identifier>${id}</cap:identifier><cap:event>${colour} Thunderstorm Warning</cap:event><cap:areaDesc>Trentino-Alto Adige</cap:areaDesc><cap:severity>${severity}</cap:severity><cap:certainty>Likely</cap:certainty><cap:expires>${expires}</cap:expires></entry>`;
+    const xml=`<feed xmlns="http://www.w3.org/2005/Atom" xmlns:cap="urn:oasis:names:tc:emergency:cap:1.2">${entry('a-yellow','Yellow','Moderate','2026-08-19T23:59:00Z')}${entry('b-orange','Orange','Severe','2026-08-20T23:59:00Z')}</feed>`;
+    const alerts=parseAtomFeed(xml,{key:'official-italy',label:'Official Italy',url:'https://example.test/feed'});
+    expect(alerts).toHaveLength(2);
+    const artifacts=buildHazardArtifacts({hazards:[]},alerts,[{key:'official-italy',ok:true,completeSnapshot:true,alertsRead:2}],[{id:'trail-t',name:'Trail T',region:'dolomites',province:'alto-adige'}],{at:'2026-08-19T06:00:00.000Z'});
+    expect(artifacts.publicData.hazards).toHaveLength(1);
+    const hazard=artifacts.publicData.hazards[0];
+    expect(hazard.title).toBe('thunderstorm warning for Trentino-Alto Adige');
+    expect(hazard.severity).toBe('severe');
+    expect(hazard.expiresAt).toBe('2026-08-20T23:59:00Z');
+    expect(hazard.message).toContain('severe');
+    expect(hazard.trailIds).toEqual(['trail-t']);
+  });
+
   test('an unavailable warning source never clears a previous warning', () => {
     const previous={hazards:[{id:'source:a',sourceKey:'source',state:'active',expiresAt:'2026-08-18T00:00:00.000Z',message:'Warning.',trailIds:['trail-a']}]};
     const artifacts=buildHazardArtifacts(previous,[],[{key:'source',ok:false,error:'timeout'}],[],{at:'2026-08-19T06:00:00.000Z'});
