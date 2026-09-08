@@ -87,7 +87,10 @@ goes through, so a scouted km and a tapped km mean the same thing and neither is
 an agent's arithmetic.
 
 A coordinate that does not sit on the route is not a position on it: it is
-discarded, and the claim keeps a blocker recording that it was. An agent is told
+discarded, and the claim records that it was, without blocking. A position is
+decoration on a claim, and the dossier gate treats every claim blocker as
+grounds to refuse verification; one stray coordinate must never veto a trail
+whose evidence is otherwise sound. An agent is told
 to return no position rather than infer one from the middle of a route, from the
 trail head, or from the fact that the hazard is somewhere on the walk. A reporter
 who placed their own pin outranks an agent's reading of their description.
@@ -264,6 +267,23 @@ and `backofficeReviews` accepts only content-review writes. Where a trail is
 faulted for not closing, the Trail Verification Desk therefore composes the
 command with the trail's id already filled in and offers it to be copied. It
 writes nothing; running the command is what records the decision.
+
+## Route guidance is asked for, not only demanded
+
+Every walk has a recommended direction, and the dossier gate refuses a trail
+without one. The Logistics Agent is therefore asked for route guidance in the
+same job that asks for parking and access, and its output is refused without it.
+Those two contracts must not drift apart: asking only for parking while throwing
+the result away for lacking directions produced parking-only dossiers on trails
+whose start and sequence had already been written down.
+
+The agent starts from what ORMA already recorded -- the stored start point, the
+description that usually names the sequence in order, and the sources those came
+from -- and confirms it against those sources rather than rediscovering the walk.
+The record is a lead, never an authority: a claim cites the source it was
+confirmed against, and a source that contradicts the record wins and says so.
+Parking and the route are separate questions, and an unresolved parking picture
+is never a reason to omit the directions.
 
 ## Definition of done for future iterations
 

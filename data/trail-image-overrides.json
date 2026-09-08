@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-08T14:40:21.781Z",
+  "updatedAt": "2026-09-08T17:56:09.660Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -768,6 +768,23 @@
       }
     },
     {
+      "id": "osm-12182895",
+      "approvedReviewId": "commons-osm-12182895",
+      "approvedAt": "2026-09-08T17:56:09.659Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12182895-reinegg.jpg",
+        "heroImage": "images/trails/osm-12182895-reinegg.jpg",
+        "imageAlt": "Mown hay meadow rising to Schloss Reinegg on its wooded spur above the Sarn valley",
+        "imageCredit": "Schloss Reinegg above the Sarn valley",
+        "imageCreditText": "Schloss Reinegg above the Sarn valley by Plentn",
+        "imageCreator": "Plentn",
+        "imageLicence": "CC0",
+        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Reinegg.png",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-12182936",
       "approvedReviewId": "commons-osm-12182936",
       "approvedAt": "2026-09-07T20:09:33.359Z",
@@ -1087,6 +1104,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Alba_sulla_valle_Isarco.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-14058632",
+      "approvedReviewId": "commons-osm-14058632",
+      "approvedAt": "2026-09-08T17:23:42.372Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14058632-neustift.jpg",
+        "heroImage": "images/trails/osm-14058632-neustift.jpg",
+        "imageAlt": "A gravel track running up through vineyards to Neustift Abbey with the Isarco valley hills behind",
+        "imageCredit": "Kloster Neustift from the vineyards",
+        "imageCreditText": "Kloster Neustift from the vineyards by Adrian Michael",
+        "imageCreator": "Adrian Michael",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Neustift_Ansicht.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1716,6 +1750,23 @@
         "imageLicence": "CC BY 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Fai_della_Paganella_(IT)%2C_Paganella_--_2024_--_0140.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-7086961",
+      "approvedReviewId": "commons-osm-7086961",
+      "approvedAt": "2026-09-08T17:23:42.369Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7086961-lago-negro.jpg",
+        "heroImage": "images/trails/osm-7086961-lago-negro.jpg",
+        "imageAlt": "The Lago Negro tarn in its granite cirque below Cima d'Asta with grass and scree on the slopes above",
+        "imageCredit": "Lago Negro di Cima d'Asta",
+        "imageCreditText": "Lago Negro di Cima d'Asta by EndlessPalca",
+        "imageCreator": "EndlessPalca",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_Negro_di_Cima_d%27Asta.jpg",
         "imageSourceType": "licensed-source"
       }
     },
