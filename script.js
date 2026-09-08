@@ -186,7 +186,7 @@ let liQuery = '';                  // header search box
 // Filter semantics follow the design's chip options (AppShell FilterBar):
 // dist 'any'|'u5'|'5to10'|'10p' · risk 'any'|'low-risk'|'moderate'|'caution'
 // · terrain 'any'|'soft'|'mixed'|'rocky' · shade 'any'|'40'|'60'.
-let liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false };
+let liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false, duration: 'day' };
 let liShellWired = false;          // header/menus are wired once per page load
 let liDevView = false;             // ?view=returning preview without an account
 let liNewMatchIds = new Set();
@@ -429,6 +429,11 @@ function filterTrailsForReturningView(list){
     const point = liTrailLngLat(x);
     return point && liMapBounds.contains(point);
   });
+  // Day hikes lead; a long multi-day itinerary only appears when explicitly asked
+  // for via the Duration filter, so the default list is not dominated by 70 km
+  // network routes most visitors will never walk in a day.
+  const liMultiDay = x => window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.isMultiDay(x) : Number(x.distance) > 25;
+  displayList = displayList.filter(x => liFilters.duration === 'multi' ? liMultiDay(x) : !liMultiDay(x));
   if(liFilters.dist === 'u5') displayList = displayList.filter(x => x.distance < 5);
   else if(liFilters.dist === '5to10') displayList = displayList.filter(x => x.distance >= 5 && x.distance <= 10);
   else if(liFilters.dist === '10p') displayList = displayList.filter(x => x.distance > 10);
@@ -1828,6 +1833,7 @@ function liActiveFilterCount(){
     liFilters.shade !== 'any',
     liFilters.minMatch > 0,
     liFilters.water,
+    liFilters.duration !== 'day',
     showingSavedOnly,
     !!liMapBounds,
   ].filter(Boolean).length;
@@ -1835,7 +1841,7 @@ function liActiveFilterCount(){
 
 function liResetAllFilters(){
   liQuery = '';
-  liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false };
+  liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false, duration: 'day' };
   showingSavedOnly = false;
   activeValley = 'all';
   liClearMapAreaFilter();
@@ -2096,6 +2102,13 @@ function renderLiChips(){
   // Everything else (trail rating, minimum match) lives behind "More filters".
   const moreCount = (liFilters.risk !== 'any' ? 1 : 0) + (liFilters.minMatch > 0 ? 1 : 0);
   const chips = [
+    { key: 'duration', title: 'Duration',
+      display: liFilters.duration === 'multi' ? 'Multi-day' : 'Day hikes',
+      on: liFilters.duration !== 'day',
+      options: [
+        { label: 'Day hikes', selected: liFilters.duration !== 'multi', pick(){ liFilters.duration = 'day'; } },
+        { label: 'Multi-day', selected: liFilters.duration === 'multi', pick(){ liFilters.duration = 'multi'; } },
+      ] },
     { key: 'dist', title: 'Distance',
       display: liFilters.dist === 'any' ? 'Distance' : label(DIST_OPTS, liFilters.dist),
       on: liFilters.dist !== 'any',

@@ -5345,6 +5345,12 @@ function effectiveOverrides(profile, adjustOverride){
   'use strict';
 
   const imported = trail => !!trail && trail.curated === false;
+  // A day hike tops out around here; beyond it a route is a multi-day itinerary
+  // (or a whole trail network imported as one line), which most visitors are not
+  // looking for. These are classified as multi-day and kept out of the default
+  // day-hike lists, reachable through the "Multi-day" filter.
+  const MULTI_DAY_MIN_KM = 25;
+  const isMultiDay = trail => !!trail && Number(trail.distance) > MULTI_DAY_MIN_KM;
   // The three public tiers a trail can sit in. See VERIFICATION.md ("Trail
   // tiers"). "under-review" is shown but not yet audited; "route-audited"
   // cleared the desk mechanism; "dolopaws-walked" means a human walked it.
@@ -5545,6 +5551,8 @@ function effectiveOverrides(profile, adjustOverride){
 
   root.DoloPawsTrailTrust = Object.freeze({
     imported,
+    MULTI_DAY_MIN_KM,
+    isMultiDay,
     TIERS,
     tierOf,
     tierLabel,
@@ -14323,8 +14331,13 @@ function renderTrail(t){
     // It's rendered here so it lives inside the same strip; paintMatch()
     // below fills it with the real score, or an honest create-profile
     // invitation for guests.
+    // A route too long for a day gets an explicit label, so a visitor who lands
+    // here from a search or link knows it is a multi-day itinerary, not a walk.
+    const multiDayCell = (window.DoloPawsTrailTrust && window.DoloPawsTrailTrust.isMultiDay(t))
+      ? '<span class="f f-multiday"><b>Multi-day</b><span>route</span></span>' : '';
     factsEl.innerHTML =
       '<span class="f match" id="statMatch" hidden><a class="td2-match-link" id="statMatchLink" href="how-scoring-works.html"><b id="statMatchVal"></b><span id="statMatchSub"></span></a></span>'
+      + multiDayCell
       + facts.map(([val, label]) =>
         `<span class="f"><b>${val}</b><span>${label}</span></span>`).join('');
     const statMatch = document.getElementById('statMatch');
