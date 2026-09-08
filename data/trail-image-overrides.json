@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-08T10:31:29.934Z",
+  "updatedAt": "2026-09-08T10:52:55.014Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -513,6 +513,23 @@
       }
     },
     {
+      "id": "osm-12079333",
+      "approvedReviewId": "commons-osm-12079333",
+      "approvedAt": "2026-09-08T10:52:55.014Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12079333-lago-di-andalo.jpg",
+        "heroImage": "images/trails/osm-12079333-lago-di-andalo.jpg",
+        "imageAlt": "A paved path curving along the shore of the Lago di Andalo past a bench, mixed woodland on one side and the lake and village on the other.",
+        "imageCredit": "Lago di Andalo",
+        "imageCreditText": "Lago di Andalo by Giorgio Galeotti",
+        "imageCreator": "Giorgio Galeotti",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Andalo_-_Andalo%2C_Trento%2C_Italia_-_30_Giugno_2024_01.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-12118490",
       "approvedReviewId": "commons-osm-12118490",
       "approvedAt": "2026-09-07T19:55:05.873Z",
@@ -560,6 +577,23 @@
         "imageLicence": "CC BY 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vall%C3%A9e_de_l%27Arvan.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12132169",
+      "approvedReviewId": "commons-osm-12132169",
+      "approvedAt": "2026-09-08T10:52:55.014Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12132169-toblacher-erdpyramiden.jpg",
+        "heroImage": "images/trails/osm-12132169-toblacher-erdpyramiden.jpg",
+        "imageAlt": "The earth pyramids at Toblach, pale eroded pinnacles standing below a spruce forest with green slopes and a ridge behind.",
+        "imageCredit": "Toblacher Erdpyramiden",
+        "imageCreditText": "Toblacher Erdpyramiden by Raphael Mair",
+        "imageCreator": "Raphael Mair",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Toblacher_Erdpyramiden_01.jpg",
         "imageSourceType": "licensed-source"
       }
     },
