@@ -256,3 +256,14 @@ body.bo-shell{margin:0;background:var(--bo-bg);color:var(--bo-ink)}
 .vd-blocker p{margin:4px 0 0;font-size:13.5px;line-height:1.5;color:#5F4A2C;max-width:62ch;}
 .vd-remedy{font-weight:500;}
 .vd-remedy::before{content:'To clear it: ';font-weight:700;}
+
+/* One-click reasons for a revision. A revision needs a precise note, and typing
+   one per trail is the slow part of a review; these write it and stay editable.
+   They sit above the buttons because the reason is what you decide first. */
+.vd-reasons{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:10px 0 4px;}
+.vd-reasons-label{width:100%;color:var(--bo-ink-soft,#5d6b60);font-size:11.5px;font-weight:700;letter-spacing:.02em;}
+.vd-reason{border:1px solid #cfd8d0;background:#fff;color:#2f3d33;border-radius:999px;padding:6px 12px;font:600 12.5px/1.3 inherit;cursor:pointer;text-align:left;}
+.vd-reason:hover{border-color:#8fa596;background:#f4f8f5;}
+.vd-reason.is-picked{border-color:#8a5a16;background:#f7eedc;color:#6e4e14;}
+.vd-reason:focus-visible{outline:2px solid #2e4034;outline-offset:2px;}
+@media (max-width:640px){.vd-reason{flex:1 1 100%;}}

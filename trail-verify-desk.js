@@ -73,6 +73,12 @@
         'The name and trail numbers match',
         'Branches and road crossings look right',
       ],
+      reasons:[
+        'The line does not follow the official route',
+        'The start point or direction is wrong',
+        'The name or trail numbers do not match',
+        'A branch or crossing is drawn wrongly',
+      ],
       scope:'This is about the route only. Parking and trail facts are checked separately.',
       approve:'Route looks right',
     },
@@ -80,6 +86,12 @@
       label:'Check the trail facts',
       question:'Are these findings about the trail correct?',
       checklist:[],
+      reasons:[
+        'A finding is not supported by its source',
+        'The evidence is too thin to verify',
+        'A finding contradicts what the source says',
+        'Something important about the trail is missing',
+      ],
       scope:'Approving marks the trail verified. It still does not change the website.',
       approve:'Mark verified',
     },
@@ -90,6 +102,11 @@
         'The summary matches what the route actually is',
         'Nothing claims a fact the evidence did not establish',
       ],
+      reasons:[
+        'The description claims more than the evidence shows',
+        'The summary does not match the route',
+        'The tone or wording is wrong for ORMA',
+      ],
       scope:'Approving releases the text for publishing. The website diff is still checked at the end.',
       approve:'Description is right',
     },
@@ -97,6 +114,11 @@
       label:'Approve for publishing',
       question:'Ready to prepare this trail for the website?',
       checklist:['The trail page maps to the right existing trail or a new one'],
+      reasons:[
+        'This maps to the wrong trail',
+        'It should be a new trail, not an update',
+        'Not ready to publish yet',
+      ],
       scope:'This prepares a pull request. You still review the website diff before anything goes live.',
       approve:'Prepare for publishing',
     },
@@ -443,13 +465,32 @@
       article.append(facts);
     }
 
-    article.append(decision.evidence());
-
     const receipt=receipts[decision.key];
     const note=el('textarea');
     note.placeholder='If it needs work, say exactly what is wrong.';
     note.value=(drafts[decision.key]||receipt?.note||'');
     note.addEventListener('input',()=>{drafts[decision.key]={note:note.value};persist(DRAFT_KEY,drafts);});
+
+    // A revision needs a precise note, and typing one for every trail is the
+    // slow part. The common reasons for this gate write the note in one click,
+    // and remain editable afterwards for anything they do not cover.
+    const reasons=decision.gate.reasons||[];
+    if(reasons.length&&!receipt){
+      const list=el('div','vd-reasons');
+      list.append(el('small','vd-reasons-label','Needs work because:'));
+      reasons.forEach(reason=>{
+        const chip=el('button','vd-reason',reason);chip.type='button';
+        chip.addEventListener('click',()=>{
+          const existing=note.value.trim();
+          note.value=existing&&existing!==reason?`${existing}\n${reason}`:reason;
+          drafts[decision.key]={note:note.value};persist(DRAFT_KEY,drafts);
+          chip.classList.add('is-picked');
+          note.dispatchEvent(new Event('input'));
+        });
+        list.append(chip);
+      });
+      article.append(list);
+    }
 
     const actions=el('div','vd-actions');
     const status=el('p','vd-status',receipt?`Saved ${new Date(receipt.at).toLocaleTimeString()}. The next automation run picks it up.`:'');
@@ -464,6 +505,7 @@
     });
     if(receipt){note.disabled=true;}
     article.append(note,actions,status,el('p','vd-scope',decision.gate.scope));
+    article.append(decision.evidence());
     return article;
   }
 
@@ -507,7 +549,11 @@
   }
 
   function render(){
-    const decisions=[...fromDossier(),...fromContent(),...fromPublish()];
+    // Trails that are clean by every automated check come first: they are one
+    // click each, and burying them under the ones needing thought is what makes
+    // a short queue feel long.
+    const decisions=[...fromDossier(),...fromContent(),...fromPublish()]
+      .sort((a,b)=>Number(b.ready===true)-Number(a.ready===true));
     countNode.textContent=decisions.length?plural(decisions.length,'trail'):'Nothing waiting';
     queueNode.replaceChildren();
     if(!decisions.length){
