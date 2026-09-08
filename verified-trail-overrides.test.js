@@ -17,7 +17,7 @@ describe('verified trail overrides', () => {
   test('rejects an unscoped partial override', () => {
     expect(() => applyVerifiedTrailOverrides([{ id:'trail-a' }], {
       trails:[{ id:'trail-a', fields:{ routeRefs:['15A'] } }],
-    })).toThrow(/full-trail, route-reference or route-guidance verification/);
+    })).toThrow(/full-trail, route-reference, route-guidance or route-shape verification/);
   });
 
   test('accepts scoped landmark guidance without marking the whole trail verified', () => {
