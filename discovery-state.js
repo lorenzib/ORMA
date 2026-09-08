@@ -10,6 +10,7 @@
     region: ['dolomites', 'savoy'],
     risk: ['low-risk', 'moderate', 'caution'],
     distance: ['3', '5', '6', '10', '20', 'u5', '5to10', '10p'],
+    duration: ['day', 'multi'],
     collection: ['shady', 'water', 'meadow', 'gentle'],
     dog: ['medium', 'rufus', 'bella', 'milo', 'custom'],
     difficulty: ['Easy', 'Moderate', 'Hard'],
@@ -42,6 +43,9 @@
       valley: text(read(source, 'valley'), 80),
       risk: allowed('risk', read(source, 'risk')),
       distance: allowed('distance', String(read(source, 'distance') || '')),
+      // Absent means the default day-hike view; only an explicit 'multi' opens
+      // the long, multi-day itineraries.
+      duration: allowed('duration', read(source, 'duration')) || 'day',
       water: read(source, 'water') === '1' || read(source, 'water') === true,
       collection: allowed('collection', read(source, 'collection')),
       dog: allowed('dog', read(source, 'dog')) || 'medium',
@@ -65,6 +69,7 @@
     if(state.valley) params.set('valley', state.valley);
     if(state.risk) params.set('risk', state.risk);
     if(state.distance) params.set('distance', state.distance);
+    if(state.duration === 'multi') params.set('duration', 'multi');
     if(state.water) params.set('water', '1');
     if(state.collection) params.set('collection', state.collection);
     if(state.dog !== 'medium') params.set('dog', state.dog);
@@ -92,6 +97,7 @@
   function hasFilters(source){
     const state = normalize(source);
     return Boolean(state.search || state.country || state.region || state.valley || state.risk || state.distance ||
+      state.duration === 'multi' ||
       state.water || state.collection || state.difficulty || state.terrain ||
       state.heat || state.exposure || state.access ||
       state.shade || state.minMatch);

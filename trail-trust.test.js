@@ -248,4 +248,18 @@ describe('trail data trust states', () => {
     expect(label).not.toMatch(/OSM-verified/i);
     expect(label).toMatch(/availability can change/i);
   });
+
+  test('classifies routes longer than the day-hike threshold as multi-day', () => {
+    const trust = loadTrust();
+    expect(trust.MULTI_DAY_MIN_KM).toBe(25);
+    // The long imported routes that prompted the split.
+    expect(trust.isMultiDay({ distance:71.2 })).toBe(true);
+    expect(trust.isMultiDay({ distance:34.4 })).toBe(true);
+    // A normal day hike, and the boundary itself, stay day hikes.
+    expect(trust.isMultiDay({ distance:12 })).toBe(false);
+    expect(trust.isMultiDay({ distance:25 })).toBe(false);
+    // Missing or unparseable distance never counts as multi-day.
+    expect(trust.isMultiDay({})).toBe(false);
+    expect(trust.isMultiDay(null)).toBe(false);
+  });
 });

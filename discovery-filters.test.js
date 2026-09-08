@@ -49,6 +49,26 @@ describe('dog-specific discovery filters', () => {
     })).toBe(true);
   });
 
+  test('duration splits day hikes from multi-day itineraries and defaults to all', () => {
+    const dayHike = trail({ distance:4, metrics:{ distanceKm:4 } });
+    const longRoute = trail({ distance:71.2, metrics:{ distanceKm:71.2 } });
+    // Unset duration leaves the list untouched, so existing callers see both.
+    expect(filters.matches(dayHike, {})).toBe(true);
+    expect(filters.matches(longRoute, {})).toBe(true);
+    // The default day view hides the long route; 'multi' shows only it.
+    expect(filters.matches(dayHike, { duration:'day' })).toBe(true);
+    expect(filters.matches(longRoute, { duration:'day' })).toBe(false);
+    expect(filters.matches(dayHike, { duration:'multi' })).toBe(false);
+    expect(filters.matches(longRoute, { duration:'multi' })).toBe(true);
+  });
+
+  test('the multi-day opt-in is the only duration value shown as a removable chip', () => {
+    expect(filters.active({ duration:'day' }).some(entry => entry.key === 'duration')).toBe(false);
+    const chip = filters.active({ duration:'multi' }).find(entry => entry.key === 'duration');
+    expect(chip).toBeTruthy();
+    expect(chip.label).toMatch(/multi-day/i);
+  });
+
   test('country and region remain independent geographic filters', () => {
     expect(filters.matches(trail(), { country:'italy', region:'dolomites' })).toBe(true);
     expect(filters.matches(trail(), { country:'france' })).toBe(false);

@@ -6,8 +6,12 @@
   'use strict';
 
   const DISTANCES = [3, 5, 6, 10, 20];
+  // Kept in step with trail-trust.js's MULTI_DAY_MIN_KM. Duplicated (not
+  // imported) so this module stays standalone for the browser globals build and
+  // the Node test harness alike.
+  const MULTI_DAY_MIN_KM = 25;
   const FILTER_ORDER = [
-    'search', 'country', 'region', 'valley', 'risk', 'distance', 'difficulty', 'terrain', 'water', 'heat',
+    'search', 'country', 'region', 'valley', 'risk', 'distance', 'duration', 'difficulty', 'terrain', 'water', 'heat',
     'exposure', 'access', 'collection', 'minMatch',
   ];
 
@@ -93,6 +97,16 @@
       else if(d > Number(state.distance)) return false;
     }
 
+    // Day hikes vs multi-day itineraries. A long imported route (or a whole
+    // network mapped as one line) is a multi-day trip most visitors are not
+    // looking for, so 'day' hides anything past the threshold and 'multi' keeps
+    // only those. Unset (or 'all') leaves the list untouched, so existing
+    // callers and tests that never set `duration` see every trail as before.
+    if(state.duration === 'day' || state.duration === 'multi'){
+      const long = Number(metrics.distanceKm) > MULTI_DAY_MIN_KM;
+      if(state.duration === 'day' ? long : !long) return false;
+    }
+
     if(state.difficulty){
       const gain = trail && Number.isFinite(trail.elevation) ? trail.elevation
         : Number.isFinite(metrics.ascentM) ? metrics.ascentM : null;
@@ -176,6 +190,7 @@
         : 'Shade listed',
       exposure: 'No reported exposure',
       access: state.access === 'allowed-reviewed' ? 'Dogs permitted' : 'Dogs allowed, leash is okay',
+      duration: 'Multi-day routes',
       collection: `${state.collection} collection`,
       minMatch: `${state.minMatch}%+ dog match`,
     };
@@ -186,11 +201,17 @@
     state = state || {};
     return FILTER_ORDER.filter(key => {
       const value = state[key];
+      // 'day' is the baseline view, not a filter the visitor added, so it never
+      // shows up as a removable chip; only the 'multi' opt-in counts.
+      if(key === 'duration') return value === 'multi';
       return value !== undefined && value !== null && value !== '' && value !== false && value !== 'all';
     }).map(key => ({ key, label: labelFor(key, state) }));
   }
 
   function without(state, key){
+    // Removing the multi-day chip returns to the default day-hike view, not to
+    // an unfiltered "show everything" state.
+    if(key === 'duration') return { ...state, duration: 'day' };
     return { ...state, [key]: key === 'water' ? false : '' };
   }
 
@@ -234,6 +255,6 @@
   }
 
   return Object.freeze({
-    DISTANCES, normalizedTrail, matches, filter, active, diagnoseZero, safeBroadenings,
+    DISTANCES, MULTI_DAY_MIN_KM, normalizedTrail, matches, filter, active, diagnoseZero, safeBroadenings,
   });
 });

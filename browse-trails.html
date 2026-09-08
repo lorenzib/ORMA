@@ -267,6 +267,7 @@
     <div class="browse-quick-filters" aria-label="Quick dog filters">
       <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26" aria-hidden="true"></span><span>High shade</span></button>
       <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span>Water</span></button>
+      <button type="button" class="browse-quick-filter" id="browseMultiDay" aria-pressed="false" data-audit-label="Multi-day routes" title="Show long multi-day itineraries (over 25 km)"><span aria-hidden="true">🏕️</span><span>Multi-day</span></button>
     </div>
     <div class="li-menuwrap" id="browseFiltersWrap">
       <button type="button" id="browseFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="browseFiltersMenu">
@@ -646,6 +647,7 @@
     const access = document.getElementById('browseAccess');
     const waterBtn = document.getElementById('browseWater');
     const shadeBtn = document.getElementById('browseQuickShade');
+    const multiDayBtn = document.getElementById('browseMultiDay');
     const savedOnlyBtn = document.getElementById('browseSavedOnly');
     const savedCount = document.getElementById('browseSavedCount');
     const filtersBtn = document.getElementById('browseFiltersBtn');
@@ -664,6 +666,7 @@
     let regionValue = 'all';
     let valleyValue = 'all';
     let waterOnly = false;
+    let durationValue = 'day';
     let difficultyValue = '';
     let minMatchValue = '';
     let dogValue = 'medium';
@@ -732,6 +735,7 @@
       if(regionValue === 'savoy') countryValue = 'france';
       risk.value = allowedRisks.includes(canonical.risk) ? canonical.risk : 'all';
       distance.value = allowedDistances.includes(canonical.distance) ? canonical.distance : 'all';
+      durationValue = canonical.duration === 'multi' ? 'multi' : 'day';
       waterOnly = canonical.water === true;
       collectionKey = COLLECTIONS[canonical.collection] ? canonical.collection : 'all';
       difficultyValue = canonical.difficulty || '';
@@ -753,6 +757,7 @@
         valley: valleyValue === 'all' ? '' : valleyValue,
         risk: risk.value === 'all' ? '' : risk.value,
         distance: distance.value === 'all' ? '' : distance.value,
+        duration: durationValue,
         water: waterOnly,
         collection: collectionKey === 'all' ? '' : collectionKey,
         difficulty: difficultyValue,
@@ -841,6 +846,7 @@
         valley: valleyValue === 'all' ? '' : valleyValue,
         risk: risk.value === 'all' ? '' : risk.value,
         distance: distance.value === 'all' ? '' : distance.value,
+        duration: durationValue,
         water: waterOnly,
         collection: collectionKey === 'all' ? '' : collectionKey,
         difficulty: difficultyValue,
@@ -943,6 +949,7 @@
     function syncFiltersChip(){
       if(waterBtn) waterBtn.setAttribute('aria-pressed', String(waterOnly));
       if(shadeBtn) shadeBtn.setAttribute('aria-pressed', String(heat.value === 'shade-60'));
+      if(multiDayBtn) multiDayBtn.setAttribute('aria-pressed', String(durationValue === 'multi'));
       if(savedOnlyBtn){
         savedOnlyBtn.setAttribute('aria-pressed', String(savedOnly));
         savedOnlyBtn.setAttribute('aria-label', savedOnly ? 'Show all trails' : 'Show saved trails only');
@@ -1277,6 +1284,12 @@
       page = 1;
       renderPage('push');
     });
+    if(multiDayBtn) multiDayBtn.addEventListener('click', () => {
+      durationValue = durationValue === 'multi' ? 'day' : 'multi';
+      multiDayBtn.setAttribute('aria-pressed', String(durationValue === 'multi'));
+      page = 1;
+      renderPage('push');
+    });
     if(savedOnlyBtn) savedOnlyBtn.addEventListener('click', () => {
       if(!window.DoloPawsAuth || !window.DoloPawsAuth.currentUser){
         window.location.href = 'saved.html';
@@ -1294,6 +1307,8 @@
       valleyValue = 'all';
       waterOnly = false;
       if(waterBtn) waterBtn.setAttribute('aria-pressed', 'false');
+      durationValue = 'day';
+      if(multiDayBtn) multiDayBtn.setAttribute('aria-pressed', 'false');
       collectionKey = 'all';
       difficultyValue = '';
       terrain.value = '';

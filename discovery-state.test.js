@@ -9,6 +9,7 @@ describe('canonical discovery state', () => {
       valley: 'Val di Fassa',
       risk: 'low-risk',
       distance: '6',
+      duration: 'day',
       water: true,
       collection: 'water',
       dog: 'rufus',
@@ -26,6 +27,17 @@ describe('canonical discovery state', () => {
     const restored = discovery.normalize(new URLSearchParams(href.split('?')[1]));
 
     expect(restored).toEqual({ ...input, search: 'Carezza' });
+  });
+
+  test('defaults duration to day and only serialises the multi-day opt-in', () => {
+    // Absent in the URL means the default day-hike view.
+    expect(discovery.normalize(new URLSearchParams('region=dolomites')).duration).toBe('day');
+    // 'day' is the baseline, so it is never written to the query string...
+    expect(discovery.browseHref({ duration: 'day' })).not.toContain('duration');
+    // ...but the multi-day opt-in survives a round-trip.
+    const href = discovery.browseHref({ duration: 'multi' });
+    expect(href).toContain('duration=multi');
+    expect(discovery.normalize(new URLSearchParams(href.split('?')[1])).duration).toBe('multi');
   });
 
   test('drops unsupported and unsafe values', () => {

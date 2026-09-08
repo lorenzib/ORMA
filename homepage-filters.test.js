@@ -199,6 +199,31 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
   });
 
+  test('hides multi-day itineraries by default and reveals them with the Duration filter', async () => {
+    const withLongRoute = sampleTrails.concat([
+      { id: 'alpago', name: 'Sentiero Alpago Natura', region: 'dolomites', valley: 'Val Gardena', area: 'Alpago', lat: 46.15, lng: 12.35, curated: false, distance: 71.2, elevation: 3200, hours: 22, terrainType: 'Rocky', safetyLevel: 'moderate' },
+    ]);
+    const context = loadHomepageContext(withLongRoute);
+    vm.runInContext('activeCountry = "all"; activeRegion = "all"; activeValley = "all"; liQuery = "";', context);
+    // Default day-hike view: the 71 km route is out, the five day hikes remain.
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
+    expect(document.body.textContent).not.toContain('Sentiero Alpago Natura');
+    // Switching Duration to multi-day shows only the long itinerary.
+    vm.runInContext('liFilters.duration = "multi";', context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
+    expect(document.querySelector('#returningTrailList .li-row-name').textContent).toBe('Sentiero Alpago Natura');
+  });
+
+  test('the Duration chip counts as active only when set to multi-day', () => {
+    const context = loadHomepageContext(sampleTrails);
+    expect(vm.runInContext('liFilters.duration', context)).toBe('day');
+    const baseCount = vm.runInContext('liActiveFilterCount()', context);
+    vm.runInContext('liFilters.duration = "multi";', context);
+    expect(vm.runInContext('liActiveFilterCount()', context)).toBe(baseCount + 1);
+  });
+
   test('turns the active dog into useful greeting and ranking context', () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('renderLiToolbarContext({ name: "Eddie", breed: "Podenco Andaluz" });', context);
