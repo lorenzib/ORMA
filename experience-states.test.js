@@ -46,7 +46,7 @@ describe('empty states and long-form navigation', () => {
     expect(browse).toContain('No trails match this combination');
     expect(reports).toContain('No trail photos yet');
     expect(reports).toContain('No reviews yet');
-    expect(reports).toContain('No recent hazard reports');
+    expect(trail).toContain('No recent hazard reports');
     expect(trail).toContain('No trail photos yet');
     expect(trail).toContain('No reviews yet');
   });

@@ -121,9 +121,12 @@
   }
   function syncHazards() {
     if (!flags) return;
-    const n = itemCount(flags);
-    if (hazardCard) hazardCard.classList.toggle('has-active', n > 0);
-    setCount('td2HazardCount', n);
+    const publicCount = flags.querySelectorAll('[data-hazard-item]').length;
+    const pendingCount = flags.querySelectorAll('[data-hazard-pending]').length;
+    const empty = document.getElementById('trailHazardsEmpty');
+    if (hazardCard) hazardCard.classList.toggle('has-active', publicCount > 0);
+    if (empty) empty.hidden = publicCount + pendingCount > 0;
+    setCount('td2HazardCount', publicCount);
   }
   function syncCounts() {
     const pc = itemCount(photos);
@@ -149,6 +152,7 @@
     }
   }
   if (flags) { new MutationObserver(syncHazards).observe(flags, { childList: true, subtree: true }); syncHazards(); }
+  window.addEventListener('orma-hazards-changed', syncHazards);
   if (photos) { new MutationObserver(syncCounts).observe(photos, { childList: true, subtree: true }); }
   if (reviews) { new MutationObserver(syncCounts).observe(reviews, { childList: true, subtree: true }); }
   syncCounts();

@@ -83,57 +83,43 @@ describe('official area warnings reach the page', () => {
   });
 });
 
-// The report control lives in the same script and shares its anchor, but it has
-// a second dependency: window.DoloPawsCommunity, assigned near the end of
-// firebase-init.js. This file is injected dynamically, so it usually runs
-// first -- and used to skip the control silently on every trail page.
-describe("the hazard report control survives the module load order", () => {
-  const stubCommunity = () => {
-    window.DoloPawsCommunity = { reportTrailHazard: async () => ({ ok:true }) };
-  };
-  const clearCommunity = () => {
+describe('community hazards and the map-first report control', () => {
+  afterEach(() => {
     delete window.DoloPawsCommunity;
-    delete window.DoloPawsAuthReady;
-  };
-
-  async function boot(){
-    jest.resetModules();
-    window.history.replaceState({}, "", "/trail.html?id=piancavallo");
-    document.body.innerHTML = bodyOf("trail.html");
-    document.head.innerHTML = "";
-    global.fetch = jest.fn(() => Promise.resolve({ ok:true, json:() => Promise.resolve({ hazards:[HAZARD] }) }));
-    require(path.join(root, "trail-hazards.js"));
-    await new Promise(resolve => setTimeout(resolve, 0));
-  }
-
-  afterEach(clearCommunity);
-
-  test("installs when the community module is already available", async () => {
-    stubCommunity();
-    window.DoloPawsAuthReady = true;
-    await boot();
-    expect(document.querySelector(".orma-hazard-report")).not.toBeNull();
+    delete window.DoloPawsTrailMapContext;
+    delete window.DoloPawsStartTrailMap;
+    delete window.OrmaHazardLocation;
   });
 
-  // The regression: firebase-init.js finishes after this script has run.
-  test("installs when the community module arrives late", async () => {
-    clearCommunity();
-    await boot();
-    expect(document.querySelector(".orma-hazard-report")).toBeNull();
-
-    stubCommunity();
-    window.DoloPawsAuthReady = true;
-    window.dispatchEvent(new window.CustomEvent("dolopaws-auth-ready"));
-    await new Promise(resolve => setTimeout(resolve, 0));
-
-    expect(document.querySelector(".orma-hazard-report")).not.toBeNull();
+  test('a vetted community report appears in Hazards reported, not the official warning stack', async () => {
+    const reported = {
+      ...HAZARD,
+      id:'reported-hazard-1',
+      origin:'community',
+      verificationState:'reported-unverified',
+      at:{ km:2.4, lat:46.54, lng:11.71, onRoute:true },
+    };
+    const stack = await render('trail.html', '/trail.html?id=piancavallo', [reported]);
+    expect(stack).toBeNull();
+    const item = document.querySelector('#trailPublishedHazards [data-hazard-item]');
+    expect(item).not.toBeNull();
+    expect(item.textContent).toContain('not yet confirmed');
   });
 
-  test("stays absent when the community module never appears", async () => {
-    clearCommunity();
-    await boot();
-    window.dispatchEvent(new window.CustomEvent("dolopaws-auth-ready"));
-    await new Promise(resolve => setTimeout(resolve, 0));
-    expect(document.querySelector(".orma-hazard-report")).toBeNull();
+  test('binds the map button without creating the old detached form', async () => {
+    await render('trail.html', '/trail.html?id=piancavallo');
+    const button = document.getElementById('addReportBtn');
+    expect(button.closest('#trailMapBox')).not.toBeNull();
+    expect(button.dataset.ormaHazardBound).toBe('true');
+    expect(document.querySelector('.orma-hazard-report')).toBeNull();
+  });
+
+  test('requests a lazy map when the map button is pressed', async () => {
+    const start = jest.fn();
+    window.DoloPawsStartTrailMap = start;
+    await render('trail.html', '/trail.html?id=piancavallo');
+    document.getElementById('addReportBtn').click();
+    expect(start).toHaveBeenCalledTimes(1);
+    expect(document.querySelector('.orma-hazard-report')).toBeNull();
   });
 });

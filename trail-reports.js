@@ -38,7 +38,7 @@ function starSvgIcon(filled, size){
 }
 
 function initTrailReports(map, trail){
-  const listEl = document.getElementById('trailFlagsList');
+  const listEl = document.getElementById('trailLegacyHazards') || document.getElementById('trailFlagsList');
   const addBtn = document.getElementById('addReportBtn');
   const reviewListEl = document.getElementById('trailReviewsList');
   const addReviewBtn = document.getElementById('addReviewBtn');
@@ -73,7 +73,7 @@ function initTrailReports(map, trail){
     }, 4200);
   }
   const addPhotoBtn = document.getElementById('addPhotoBtn');
-  if (!listEl || !addBtn) return;
+  if (!listEl) return;
 
   let flagMarkers = [];
 
@@ -350,10 +350,7 @@ function initTrailReports(map, trail){
       ? window.DoloPawsAuth.currentUser.uid : null;
 
     if (flags.length === 0){
-      listEl.innerHTML = `<div class="empty-state empty-state--compact">
-        <p class="empty-state__title">No recent hazard reports</p>
-        <p class="empty-state__copy">The community has not reported a current issue here. Conditions can still change, so report anything useful after your walk.</p>
-      </div>`;
+      listEl.innerHTML = '';
     } else {
       listEl.innerHTML = flags.map(f => {
         const t = FLAG_TYPES[f.type] || FLAG_TYPES.other;
@@ -377,7 +374,7 @@ function initTrailReports(map, trail){
           : { bg: '#F5E4C6', fg: '#8A5A16' };
         const flagSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 3v18h2v-7h5l1 2h6V6h-5l-1-2H5z"/></svg>';
         return `
-        <div style="display:flex;gap:12px;align-items:flex-start;background:#FAF8F1;border:1px solid #EDE9DD;border-radius:12px;padding:12px 14px;margin-bottom:10px;">
+        <div data-hazard-item style="display:flex;gap:12px;align-items:flex-start;background:#FAF8F1;border:1px solid #EDE9DD;border-radius:12px;padding:12px 14px;margin-bottom:10px;">
           <span style="flex:none;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:${tile.bg};color:${tile.fg};">${flagSvg}</span>
           <div style="flex:1;min-width:0;">
             <div style="font-weight:800;color:var(--ink);font-size:13px;">${window.t('flag.' + f.type)}${kmChip}</div>
@@ -389,6 +386,7 @@ function initTrailReports(map, trail){
         </div>`;
       }).join('');
     }
+    window.dispatchEvent(new CustomEvent('orma-hazards-changed'));
 
     // Remove / report links
     listEl.querySelectorAll('[data-remove]').forEach(a => {
@@ -678,6 +676,10 @@ function initTrailReports(map, trail){
 
   // ---- "Report something" modal --------------------------------------------
   function openReportModal(){
+    if(window.OrmaHazardReporter && typeof window.OrmaHazardReporter.open === 'function'){
+      window.OrmaHazardReporter.open();
+      return;
+    }
     if (!(window.DoloPawsAuth && window.DoloPawsAuth.currentUser)){
       if (window.DoloPawsTrailAction) window.DoloPawsTrailAction.request('report');
       return;
@@ -775,7 +777,8 @@ function initTrailReports(map, trail){
     });
   }
 
-  addBtn.addEventListener('click', openReportModal);
+  // The report action lives on the map and is owned by trail-hazards.js. Keep
+  // this function only for resuming the exact action after an auth detour.
   if (addReviewBtn) addReviewBtn.addEventListener('click', openReviewModal);
   if (addPhotoBtn) addPhotoBtn.addEventListener('click', openPhotoModal);
 

@@ -2534,6 +2534,9 @@ function renderTrail(t){
         triggers:[document.getElementById('mapExpandBtn')],
       });
     }
+    window.DoloPawsStartTrailMap = () => detailMapSchedule && detailMapSchedule.start
+      ? detailMapSchedule.start()
+      : Promise.resolve(window._dolopawsTrailMap || null);
     const expand = document.getElementById('mapExpandBtn');
     if(expand){
       expand.addEventListener('click', async event => {
@@ -2550,6 +2553,7 @@ function renderTrail(t){
       detailMapSchedule.start();
     }
   } else {
+    window.DoloPawsStartTrailMap = () => Promise.resolve(initDetailMap());
     initDetailMap();
   }
 
