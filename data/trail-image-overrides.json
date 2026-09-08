@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-08T13:56:49.168Z",
+  "updatedAt": "2026-09-08T14:40:21.781Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -271,6 +271,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Vahrn-Siedlung_Spiluck_Blick_nach_Raas_und_Natz_(1_05-2015).jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11795103",
+      "approvedReviewId": "commons-osm-11795103",
+      "approvedAt": "2026-09-08T14:40:21.781Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11795103-meransen.jpg",
+        "heroImage": "images/trails/osm-11795103-meransen.jpg",
+        "imageAlt": "Mown pasture and timber fencing above Meransen with a farm at the right, the Eisack valley below and the Dolomites along the horizon.",
+        "imageCredit": "Meransen",
+        "imageCreditText": "Meransen by Gianni Bassini",
+        "imageCreator": "Gianni Bassini",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Meransen_-_panoramio_(4).jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1988,6 +2005,23 @@
         "imageLicence": "CC BY 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Il_%22Gruppo_del_Catinaccio%22_visto_dalla_Torbiera_Woelfl_(BZ)_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-9933643",
+      "approvedReviewId": "commons-osm-9933643",
+      "approvedAt": "2026-09-08T14:40:21.781Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-9933643-belle-plagne.jpg",
+        "heroImage": "images/trails/osm-9933643-belle-plagne.jpg",
+        "imageAlt": "Alpenrose in full flower on a slope near Belle Plagne, spruce behind it and the green ridge of the Mont Saint-Jacques under summer cumulus.",
+        "imageCredit": "Near Belle Plagne",
+        "imageCreditText": "Near Belle Plagne by Henk Monster",
+        "imageCreator": "Henk Monster",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Near_Belle_Plagne_2050_m_you_can_enjoy_Alp_roses_and_Mont_St_Jacques_2407_m_-_panoramio.jpg",
         "imageSourceType": "licensed-source"
       }
     },
