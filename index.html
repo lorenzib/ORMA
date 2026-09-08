@@ -25,9 +25,9 @@ if(location.protocol !== 'file:' && location.pathname === '/index.html'){
    Firebase resolves. The homepage controller clears the class once real
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
-<link rel="stylesheet" href="styles.css?v=20260908-1">
+<link rel="stylesheet" href="styles.css?v=20260908-2">
 <link rel="stylesheet" href="homepage-mobile.css?v=20260908-1">
-  <link rel="stylesheet" href="homepage-editorial.css?v=20260906-1">
+  <link rel="stylesheet" href="homepage-editorial.css?v=20260908-2">
 <link rel="stylesheet" href="geo-filters.css?v=20260904-1">
 </head>
 <body>
@@ -239,38 +239,43 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
        fallback when location access is unavailable or unwanted. -->
   <section class="li-location-gate" id="liLocationGate" aria-labelledby="liLocationTitle">
     <div class="li-location-gate-copy">
-      <span class="li-location-kicker">Start with where you are</span>
-      <h1 id="liLocationTitle">Where should ORMA look for <span id="liLocationDogName">your dog</span>’s next trail?</h1>
-      <p>Set a location before we rank anything. That keeps a great match in another mountain range from becoming today’s recommendation.</p>
+      <span class="li-location-kicker">Find the right walk</span>
+      <h1 id="liLocationTitle">Where should <span id="liLocationDogName">your dog</span> walk?</h1>
+      <p>Tell us where you are—or where you’re going—and ORMA will choose the best-fitting trail for your dog.</p>
       <div class="li-location-actions">
         <button type="button" class="li-location-primary" id="liUseLocationBtn">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg>
           <span>Use my location</span>
         </button>
-        <button type="button" class="li-location-secondary" id="liChooseAreaBtn" aria-expanded="false" aria-controls="liAreaPicker">Choose an area</button>
+        <button type="button" class="li-location-secondary" id="liChooseAreaBtn" aria-expanded="false" aria-controls="liAreaPicker">Choose a destination</button>
       </div>
       <p class="li-location-privacy"><span aria-hidden="true">⌖</span> Your precise position stays in this browser session and is not added to your profile.</p>
       <p class="li-location-status" id="liLocationStatus" role="status" aria-live="polite"></p>
       <form class="li-area-picker" id="liAreaPicker" hidden>
-        <label for="liAreaSelect">Where are you planning to walk?</label>
-        <div class="li-area-picker-row">
-          <select id="liAreaSelect" required aria-describedby="liAreaPickerHelp">
-            <option value="">Choose a valley</option>
-          </select>
-          <button type="submit">Show recommendations</button>
+        <label for="liAreaSearch">Where are you going?</label>
+        <div class="li-area-search-row">
+          <span aria-hidden="true">⌕</span>
+          <input id="liAreaSearch" type="search" list="liAreaSuggestions" placeholder="Search country, region or valley" autocomplete="off" aria-describedby="liAreaPickerHelp">
+          <datalist id="liAreaSuggestions"></datalist>
         </div>
-        <small id="liAreaPickerHelp">You can change this at any time.</small>
+        <details class="li-area-browse">
+          <summary>Browse by country, region and valley</summary>
+          <div class="li-area-fields">
+            <label><span>Country</span><select id="liAreaCountry"><option value="">Choose country</option></select></label>
+            <label><span>Region</span><select id="liAreaRegion" disabled><option value="">Choose region</option></select></label>
+            <label><span>Valley</span><select id="liAreaSelect" disabled><option value="">Choose valley</option></select></label>
+          </div>
+        </details>
+        <div class="li-area-picker-row">
+          <label class="li-walk-date"><span>When</span><input id="liWalkDate" type="date" aria-describedby="liAreaPickerHelp"></label>
+          <button type="submit" id="liAreaSubmit" disabled>Find the best walk</button>
+        </div>
+        <small id="liAreaPickerHelp">Choose today or any day in the next two weeks. You can change this later.</small>
       </form>
     </div>
-    <div class="li-location-gate-visual" aria-hidden="true">
-      <svg viewBox="0 0 500 430" preserveAspectRatio="xMidYMid slice">
-        <path d="M-10 350C72 285 111 286 173 228S286 124 357 151s88 7 160-65"/>
-        <path d="M-24 405c91-81 151-55 214-116s116-67 164-44 95 9 169-47"/>
-        <path d="M30 145c60-43 105-40 149-79s109-33 151-4 89 32 150-7"/>
-        <path d="M27 281c38-29 88-35 124-12s56 16 88-24 76-68 127-49 67 4 105-25"/>
-      </svg>
-      <div class="li-location-compass"><span></span></div>
-      <span class="li-location-visual-label">Recommendations begin here</span>
+    <div class="li-location-gate-visual">
+      <img src="images/orma-location-hero.jpg" alt="Mountain landscape in the Dolomites">
+      <span class="li-location-visual-label"><small>Start with a place</small>ORMA will find the walk</span>
     </div>
   </section>
 
@@ -327,6 +332,8 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <span><small>Looking near</small><strong id="liLocationSummaryLabel"></strong></span>
         <button type="button" id="liChangeLocationBtn">Change</button>
       </span>
+      <label class="li-date-summary"><small>Walking</small><input id="liRecommendationDate" type="date" aria-label="Recommendation date"></label>
+      <button type="button" class="li-adjust-recommendation" id="liAdjustRecommendationBtn" aria-expanded="false">Adjust recommendation</button>
     </div>
     <!-- Today, for this area. Hidden until a forecast actually arrives: an
          empty band is better than a confident one with nothing behind it. -->
@@ -344,7 +351,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     <div class="li-menuwrap" id="liFiltersWrap">
       <button type="button" id="liFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
-        Filter trails<span id="liFiltersBadge"></span> <span class="li-caret">▾</span>
+        Refine<span id="liFiltersBadge"></span> <span class="li-caret">▾</span>
       </button>
       <div class="li-menu li-filters-menu discovery-filter-panel" id="liFiltersMenu" hidden>
         <div class="li-fhead">
@@ -435,16 +442,19 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     </div>
 
     <!-- ================= LIST ================= -->
-    <aside class="li-list" aria-label="Ranked trail list">
+    <aside class="li-list" aria-label="Personalised trail recommendation">
       <div class="li-list-head">
         <p class="li-newsline" id="returningSubline" hidden></p>
         <div class="li-list-title-row">
           <div>
-            <div class="li-kick" id="companionKicker">Ranked for your dog</div>
-            <div class="li-list-title" id="companionListTitle">Top trails</div>
+            <div class="li-kick" id="companionKicker">Your recommendation</div>
+            <div class="li-list-title" id="companionListTitle">Best walk</div>
           </div>
+          <a class="li-explore-all" href="browse-trails.html">Browse all trails →</a>
         </div>
-        <div class="li-listbar">
+        <details class="li-list-options">
+          <summary>Saved trails and ranking options</summary>
+          <div class="li-listbar">
           <!-- Saved is a view of the ranked list, not a filter, so it sits with
                Sort as a tab rather than in the refine bar. -->
           <div class="li-views" role="tablist" aria-label="Trail view">
@@ -460,7 +470,8 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
               <button type="button" data-sort="today">For today</button>
             </div>
           </div>
-        </div>
+          </div>
+        </details>
       </div>
       <div class="li-rows" id="returningTrailList"></div>
     </aside>
@@ -603,7 +614,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="script.js?v=20260908-2" defer></script>
 <script src="dog-wizard.js?v=20260901-2" defer></script>
 <script src="collections-data.js?v=20260815-4" defer></script>
-<script src="trail-weather-window.js?v=20260906-1"></script><script src="homepage-conditions.js?v=20260908-1"></script><script src="homepage-search.js?v=20260908-2" defer></script>
+<script src="trail-weather-window.js?v=20260906-1"></script><script src="homepage-conditions.js?v=20260908-2"></script><script src="homepage-search.js?v=20260908-2" defer></script>
 <script src="homepage-mobile.js?v=20260908-1" defer></script>
 </body>
 </html>

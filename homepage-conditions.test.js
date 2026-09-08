@@ -84,4 +84,25 @@ describe('area conditions are corrected for each trail altitude', () => {
     await cool.load(46.5, 11.6);
     expect(cool.band().tone).toBe('low');
   });
+
+  test('loads the selected future day and uses its morning forecast', async () => {
+    const targetDate = '2026-10-02';
+    const times = []; const temps = [];
+    for(let hour = 0; hour < 24; hour += 1){
+      times.push(`${targetDate}T${String(hour).padStart(2, '0')}:00`);
+      temps.push(hour === 9 ? 29 : 12);
+    }
+    const fetch = jest.fn(async () => ({
+      ok:true,
+      json:async () => ({ elevation:1000, hourly:{ time:times, temperature_2m:temps } }),
+    }));
+    const area = homeConditions.create({ DoloPawsWeatherWindow:weatherWindow, fetch });
+
+    expect(await area.load(46.5, 11.6, { date:targetDate })).toBe(true);
+    expect(fetch.mock.calls[0][0]).toContain(`start_date=${targetDate}&end_date=${targetDate}`);
+    expect(area.snapshot().currentTime).toBe(`${targetDate}T09:00`);
+    expect(area.snapshot().future).toBe(true);
+    expect(area.forTrail(trailAt(1000)).heatRisk).toBe('high');
+    expect(area.band().detail).toContain('selected morning window');
+  });
 });
