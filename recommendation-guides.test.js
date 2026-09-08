@@ -60,7 +60,7 @@ describe('breed-group guide navigation', () => {
     expect(sections).toHaveLength(13);
     expect(sections.every(section => !section.classList.contains('gp-section'))).toBe(true);
     expect(document.querySelector('.scan-grid')).not.toBeNull();
-    expect(document.querySelectorAll('[data-breed-filter]')).toHaveLength(13);
+    expect(document.querySelectorAll('[data-breed-trait]')).toHaveLength(13);
     expect(document.querySelectorAll('.breed-edge')).toHaveLength(13);
     expect(document.querySelector('.gp-toc')).toBeNull();
     expect(document.body.textContent).not.toContain('How ORMA uses this');
