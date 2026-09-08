@@ -220,6 +220,25 @@ browser client, and the module that would have applied them had tests and no
 caller. The geometry gate the pipeline actually opens is `geometry-approval`,
 which reaches the moderator through the dossier review queue.
 
+## Declaring a route's shape
+
+The geometry validator assumes a trail is a loop, so a route that legitimately
+does not return to its start — a there-and-back, or a point-to-point — is
+faulted `not-closed-loop` and cannot clear its gate. That judgement is a
+moderator's to make, not an agent's, so it is recorded as a verification
+override in `data/verified-trail-overrides.json` by
+
+    npm run backoffice:route-shape -- --trail <id> --shape <shape> --note "<why>"
+
+with a note of at least ten characters, which becomes the evidence for the
+declaration. Only a moderator's own observation belongs in that note.
+
+The desk cannot make this declaration itself: the override is a repository file,
+and `backofficeReviews` accepts only content-review writes. Where a trail is
+faulted for not closing, the Trail Verification Desk therefore composes the
+command with the trail's id already filled in and offers it to be copied. It
+writes nothing; running the command is what records the decision.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:

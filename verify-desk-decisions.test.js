@@ -56,3 +56,40 @@ describe('a revision can be given in one click', () => {
     expect(styles).toContain('.vd-reason:focus-visible');
   });
 });
+
+// A trail whose line does not close was faulted as broken geometry even when it
+// is simply a there-and-back. The fix is a declaration, made by CLI because the
+// override file lives in the repo — so the desk's job is to hand over the exact
+// command rather than to leave you assembling one from a trail id you can't see.
+describe('the desk hands over the route-shape command', () => {
+  test('it appears only where the route does not close', () => {
+    expect(source).toContain("assessment?.isClosed===false");
+    expect(source).toContain('if(decision.openRoute&&decision.candidateId)');
+  });
+
+  test('the command it composes is the one the CLI accepts', () => {
+    expect(source).toContain('npm run backoffice:route-shape -- --trail ${candidateId} --shape ${shape}');
+  });
+
+  test('only the two shapes that are not loops are offered', () => {
+    expect(source).toContain("['out-and-back','There and back']");
+    expect(source).toContain("['point-to-point','Point to point']");
+    expect(source).not.toContain("['loop',");
+  });
+
+  test('a command is not offered until the note would be accepted', () => {
+    // declare-route-shape rejects a note under ten characters, so a copyable
+    // line with a placeholder note would just fail in the terminal.
+    expect(source).toContain('const MIN_NOTE=10;');
+    expect(source).toContain('copy.disabled=!ready;');
+  });
+
+  test('a note carrying a quote does not break the command', () => {
+    expect(source).toContain(".replace(/\"/g,'\\\\\"')");
+  });
+
+  test('the control is styled', () => {
+    expect(styles).toContain('.vd-shape{');
+    expect(styles).toContain('.vd-shape-copy[disabled]');
+  });
+});
