@@ -161,6 +161,54 @@
     return {groups,loose};
   }
 
+  const MIN_NOTE=10;
+  const SHAPES=[['out-and-back','There and back'],['point-to-point','Point to point']];
+
+  function shapeHelper(candidateId){
+    const box=el('section','vd-shape');
+    box.append(el('strong','','This route does not return to its start'));
+    box.append(el('p','vd-shape-lede','If that is correct, declare its shape. The check then stops treating it as broken geometry. This composes the command; it does not save anything.'));
+
+    let shape='out-and-back';
+    const picker=el('div','vd-shape-picker');
+    const command=el('code','vd-shape-command');
+    const copy=el('button','vd-shape-copy','Copy command');copy.type='button';
+    const note=el('input');
+    note.type='text';
+    note.placeholder='Why is it this shape? Recorded with the declaration.';
+
+    // The CLI refuses a note under ten characters, so the desk must not hand out
+    // a line that will fail. Quotes are escaped or the shell would eat the note.
+    const render=()=>{
+      const reason=note.value.trim();
+      const ready=reason.length>=MIN_NOTE;
+      command.textContent=`npm run backoffice:route-shape -- --trail ${candidateId} --shape ${shape} --note "${(ready?reason:'why this shape').replace(/"/g,'\\"')}"`;
+      copy.disabled=!ready;
+      copy.title=ready?'':`Add a note of at least ${MIN_NOTE} characters first`;
+    };
+    SHAPES.forEach(([value,label])=>{
+      const chip=el('button','vd-shape-option',label);chip.type='button';
+      if(value===shape)chip.classList.add('is-picked');
+      chip.addEventListener('click',()=>{
+        shape=value;
+        [...picker.children].forEach(other=>other.classList.remove('is-picked'));
+        chip.classList.add('is-picked');render();
+      });
+      picker.append(chip);
+    });
+    note.addEventListener('input',render);
+
+    copy.addEventListener('click',async()=>{
+      try{await navigator.clipboard.writeText(command.textContent);copy.textContent='Copied';}
+      // A denied clipboard should not look like a failed declaration.
+      catch(error){copy.textContent='Select the line and copy it';}
+      setTimeout(()=>{copy.textContent='Copy command';},2500);
+    });
+    render();
+    box.append(picker,note,command,copy);
+    return box;
+  }
+
   function geometryFacts(result){
     const comparison=result.comparison||{},assessment=result.assessment||{};
     return [
@@ -228,6 +276,8 @@
       blockers:item.blockingReasons||[],
       ready:item.approvalAllowed!==false,
       facts:(()=>{const carto=(item.specialistOutputs||[]).find(output=>output.agentId==='cartographer');return carto?geometryFacts(carto.result||{}):[];})(),
+      openRoute:(()=>{const carto=(item.specialistOutputs||[]).find(output=>output.agentId==='cartographer');
+        return carto?.result?.assessment?.isClosed===false;})(),
       claims:claimLines(item),
       evidence:()=>evidenceBlock(item),
       // Revision goes back to whoever raised the finding, so there is no
@@ -505,6 +555,7 @@
     });
     if(receipt){note.disabled=true;}
     article.append(note,actions,status,el('p','vd-scope',decision.gate.scope));
+    if(decision.openRoute&&decision.candidateId)article.append(shapeHelper(decision.candidateId));
     article.append(decision.evidence());
     return article;
   }
