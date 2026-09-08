@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-08T09:19:47.259Z",
+  "updatedAt": "2026-09-08T09:31:42.848Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -1580,6 +1580,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Blick_nach_Stuls_Moos_in_Passeier.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-7388748",
+      "approvedReviewId": "commons-osm-7388748",
+      "approvedAt": "2026-09-08T09:31:42.848Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-7388748-pian-dei-buoi.jpg",
+        "heroImage": "images/trails/osm-7388748-pian-dei-buoi.jpg",
+        "imageAlt": "The Pian dei Buoi plateau in autumn, tracks crossing golden pasture between larch and spruce, the Marmarole wall standing behind under a clear sky.",
+        "imageCredit": "Pian dei Buoi panorama",
+        "imageCreditText": "Pian dei Buoi panorama by Davide borca",
+        "imageCreator": "Davide borca",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Pian_dei_Buoi_panorama.jpg",
         "imageSourceType": "licensed-source"
       }
     },
