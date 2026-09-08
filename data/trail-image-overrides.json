@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-08T12:41:30.241Z",
+  "updatedAt": "2026-09-08T13:16:53.549Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -1954,6 +1954,23 @@
         "imageLicence": "CC BY 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Il_%22Gruppo_del_Catinaccio%22_visto_dalla_Torbiera_Woelfl_(BZ)_-_panoramio.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-9937537",
+      "approvedReviewId": "commons-osm-9937537",
+      "approvedAt": "2026-09-08T13:16:53.549Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-9937537-mont-jovet.jpg",
+        "heroImage": "images/trails/osm-9937537-mont-jovet.jpg",
+        "imageAlt": "The stony summit of the Mont Jovet with its survey marker, dry grass on the shoulder and the Tarentaise valley below, Mont Blanc on the horizon.",
+        "imageCredit": "Mont Jovet Panorama",
+        "imageCreditText": "Mont Jovet Panorama by Jan Stępień",
+        "imageCreator": "Jan Stępień",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Mont_Jovet_Panorama.jpg",
         "imageSourceType": "licensed-source"
       }
     },
