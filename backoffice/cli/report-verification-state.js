@@ -27,6 +27,46 @@ function tally(list,pick){
   return [...counts.entries()].sort((a,b)=>b[1]-a[1]);
 }
 
+
+// Why the route-guidance gate is refusing, in the agent's own words. The gate
+// needs four logistics claims, each a supported-proposal with an https source
+// carrying a named authority; "supported authoritative route guidance is
+// required" says one is missing but never which part failed. Reading the claims
+// back is the difference between fixing the prompt, the evidence, or the gate.
+const ROUTE_GUIDANCE_CLAIMS=['recommended-start','route-number-status','route-number-sequence','route-number-switches'];
+
+function routeGuidanceDiagnosis(items){
+  return items.filter(item=>item.gateType==='dossier-approval').map(item=>{
+    const logistics=(item.specialistOutputs||[]).find(output=>output.agentId==='logistics');
+    const claims=logistics?.result?.claims||[];
+    return {
+      trailId:item.trailId,
+      logisticsRan:Boolean(logistics),
+      recommendation:logistics?.result?.recommendation||null,
+      openQuestions:(logistics?.result?.openQuestions||[]).slice(0,4),
+      claims:ROUTE_GUIDANCE_CLAIMS.map(id=>{
+        const claim=claims.find(entry=>entry.id===id);
+        if(!claim)return {id,present:false};
+        const sources=(claim.sources||[]).map(source=>({
+          authority:String(source.authority||'').trim()||null,
+          https:/^https:\/\//.test(source.url||''),
+          url:String(source.url||'').slice(0,90),
+        }));
+        return {
+          id,present:true,finding:claim.finding,
+          hasValue:Boolean(String(claim.proposedValue||'').trim()),
+          value:String(claim.proposedValue||'').slice(0,160),
+          // Exactly the three conditions supportedLogisticsClaim checks.
+          passes:claim.finding==='supported-proposal'&&Boolean(String(claim.proposedValue||'').trim())
+            &&sources.some(source=>source.https&&source.authority),
+          sources,
+          blockers:claim.blockers||[],
+        };
+      }),
+    };
+  });
+}
+
 async function buildVerificationReport({store}){
   const [orchestration,queue,registry,execution,staging]=await Promise.all([
     store.getArtifact('trail-orchestration'),
@@ -99,6 +139,7 @@ async function buildVerificationReport({store}){
       publicationStaging:(staging?.items||[]).length,
       publicationReady:(staging?.items||[]).filter(item=>item.state==='ready-for-publication-preview').length,
     },
+    routeGuidance:routeGuidanceDiagnosis(items),
     sampleReadyToApprove:clean.slice(0,10).map(item=>({trailId:item.trailId,gate:item.gateType})),
     sampleNeedsJudgement:blocked.slice(0,8).map(item=>({trailId:item.trailId,gate:item.gateType,
       reasons:(item.blockingReasons||[]).slice(0,3)})),
