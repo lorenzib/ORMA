@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-08T17:56:09.660Z",
+  "updatedAt": "2026-09-08T19:49:11.208Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -747,6 +747,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:2Lago_di_Braies.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12174210",
+      "approvedReviewId": "commons-osm-12174210",
+      "approvedAt": "2026-09-08T19:49:11.208Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12174210-reischach.jpg",
+        "heroImage": "images/trails/osm-12174210-reischach.jpg",
+        "imageAlt": "Mown meadow and a wooden hay barn on the Reischach terrace, with the Pustertal receding between wooded ridges",
+        "imageCredit": "Farmland above Reischach in the Pustertal",
+        "imageCreditText": "Farmland above Reischach in the Pustertal by Emanuela Meme Giudici",
+        "imageCreator": "Emanuela Meme Giudici",
+        "imageLicence": "CC BY 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Brunico_-_panoramio_(16).jpg",
         "imageSourceType": "licensed-source"
       }
     },
