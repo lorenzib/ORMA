@@ -287,10 +287,22 @@ service cloud.firestore {
         && validModerationMetadata(data);
     }
 
+    function validHazardLocation(data) {
+      return !data.keys().hasAny(['location'])
+        || (data.location is map
+          && data.location.keys().hasOnly(['lat', 'lng', 'km'])
+          && data.location.lat is number
+          && data.location.lat >= -90 && data.location.lat <= 90
+          && data.location.lng is number
+          && data.location.lng >= -180 && data.location.lng <= 180
+          && data.location.km is number
+          && data.location.km >= 0 && data.location.km <= 1000);
+    }
+
     function validTrailHazardReport(data) {
       return data.keys().hasOnly([
           'trailId', 'trailName', 'area', 'category', 'description',
-          'observedOn', 'uid', 'status', 'createdAt',
+          'observedOn', 'location', 'uid', 'status', 'createdAt',
           'verdict', 'sourceCount', 'hazardId', 'vettedAt', 'updatedAt'
         ])
         && isShortString(data.trailId, 120)
@@ -300,6 +312,7 @@ service cloud.firestore {
         && data.description is string
         && data.description.size() >= 10 && data.description.size() <= 600
         && data.observedOn is string && data.observedOn.size() <= 10
+        && validHazardLocation(data)
         && isShortString(data.uid, 128)
         && data.createdAt is timestamp;
     }

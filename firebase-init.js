@@ -1061,7 +1061,26 @@ const TRAIL_HAZARD_CATEGORIES = [
   "closure", "route-damage", "livestock", "water", "snow-or-ice", "rockfall", "other",
 ];
 
-async function reportTrailHazard(trail, category, description, observedOn) {
+// A position the reader placed on the trail. It is optional: a report without
+// one is still a report, and refusing it would lose the hazard entirely.
+// Only a point that actually sits on this route is accepted, so a stray tap
+// cannot put a warning on a stretch nobody reported.
+function hazardReportLocation(location) {
+  if (!location) return null;
+  const lat = Number(location.lat);
+  const lng = Number(location.lng);
+  const km = Number(location.km);
+  if (!isFinite(lat) || !isFinite(lng) || !isFinite(km)) return null;
+  if (lat < -90 || lat > 90 || lng < -180 || lng > 180 || km < 0 || km > 1000) return null;
+  if (location.onRoute === false) return null;
+  return {
+    lat: Math.round(lat * 1e6) / 1e6,
+    lng: Math.round(lng * 1e6) / 1e6,
+    km: Math.round(km * 100) / 100,
+  };
+}
+
+async function reportTrailHazard(trail, category, description, observedOn, location) {
   const eligibility = await getContributionEligibility();
   if (!eligibility.ok) return eligibility;
   if (!trail || !trail.id || !TRAIL_HAZARD_CATEGORIES.includes(category)) {
@@ -1071,18 +1090,30 @@ async function reportTrailHazard(trail, category, description, observedOn) {
   if (text.length < 10) {
     return { ok: false, message: "Describe what you saw in a sentence or two." };
   }
+  const placed = hazardReportLocation(location);
+  const report = withLocation => ({
+    trailId: String(trail.id).slice(0, 120),
+    trailName: String(trail.name || trail.id).slice(0, 160),
+    area: String(trail.area || "").slice(0, 160),
+    category,
+    description: text.slice(0, 600),
+    observedOn: String(observedOn || "").slice(0, 10),
+    ...(withLocation ? { location: placed } : {}),
+    uid: currentUser.uid,
+    status: "pending",
+    createdAt: serverTimestamp(),
+  });
   try {
-    await addDoc(collection(db, "trailHazardReports"), {
-      trailId: String(trail.id).slice(0, 120),
-      trailName: String(trail.name || trail.id).slice(0, 160),
-      area: String(trail.area || "").slice(0, 160),
-      category,
-      description: text.slice(0, 600),
-      observedOn: String(observedOn || "").slice(0, 10),
-      uid: currentUser.uid,
-      status: "pending",
-      createdAt: serverTimestamp(),
-    });
+    try {
+      await addDoc(collection(db, "trailHazardReports"), report(Boolean(placed)));
+    } catch (error) {
+      // Rules and the static site deploy as separate workflows, so a client that
+      // sends a position can briefly meet rules that do not yet admit one. The
+      // hazard matters more than the pin: send it again without the position
+      // rather than lose the report to a deploy window.
+      if (!placed || !String(error && error.code || "").includes("permission-denied")) throw error;
+      await addDoc(collection(db, "trailHazardReports"), report(false));
+    }
     return { ok: true, message: "Thanks, ORMA is checking this against official sources now." };
   } catch (error) {
     console.error("reportTrailHazard failed:", error);

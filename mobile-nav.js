@@ -9,8 +9,15 @@
   }
   const pathName=window.location.pathname;
   if(/\/trails\/[^/]+\.html$/.test(pathName)||/\/trail\.html$/.test(pathName)){
+    const prefix=pathName.includes('/trails/')?'../':'';
+    // The locator turns a tapped point into a km along the route, and both the
+    // report control and the warning cards need it. Deferred scripts run in the
+    // order they are added, so it is in place before trail-hazards.js asks.
+    const locationScript=document.createElement('script');
+    locationScript.src=`${prefix}hazard-location.js?v=20260908-1`;
+    locationScript.defer=true;document.head.appendChild(locationScript);
     const hazardScript=document.createElement('script');
-    hazardScript.src=pathName.includes('/trails/')?'../trail-hazards.js?v=20260905-4':'trail-hazards.js?v=20260905-4';
+    hazardScript.src=`${prefix}trail-hazards.js?v=20260908-1`;
     hazardScript.defer=true;document.head.appendChild(hazardScript);
   }
   function installSkipLink(){

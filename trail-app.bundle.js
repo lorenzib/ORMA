@@ -14495,6 +14495,12 @@ function renderTrail(t){
       ? window.DoloPawsMapRuntime.mapOptions(detailMapOptions) : detailMapOptions);
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
     window._dolopawsTrailMap = map; // debug/test handle
+    // trail-hazards.js is injected separately and has no way to reach either the
+    // map or the route it draws. Publishing both, with a ready signal for
+    // whoever arrives first, is what lets a reader place a hazard on the path
+    // rather than describing where it was in prose.
+    window.DoloPawsTrailMapContext = { map, trail: t };
+    window.dispatchEvent(new CustomEvent('dolopaws-trail-map-ready'));
     initNearestTrailDirections(map, t);
 
     // Fullscreen map, manual ⤢ toggle, and automatic during hike mode.
