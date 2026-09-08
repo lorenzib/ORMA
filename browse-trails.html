@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Browse all trails, ORMA</title>
+<title>Explore trails, ORMA</title>
 <meta name="description" content="Every dog-friendly trail in ORMA, Dolomites and Savoy, browsable without an account, each scored for paw safety, shade, water and terrain.">
 <meta name="theme-color" content="#2E4034">
 <link rel="manifest" href="manifest.json">
@@ -214,15 +214,90 @@
     .compare-tray__clear{display:none;}
     .compare-tray__go{padding-inline:11px;}
   }
+  /* Explore workspace: the list and map are two views of the same filtered
+     catalogue. The map is a working discovery surface, not a decoration. */
+  .browse-design-head{padding-top:clamp(28px,4vw,54px);padding-bottom:4px;}
+  .browse-design-head h1{font-size:clamp(38px,4.2vw,64px);line-height:.98;}
+  .browse-design-head .sub{max-width:720px;}
+  .browse-search-group{display:flex;align-items:center;gap:8px;min-width:0;}
+  .browse-search-group .browse-search-shell{width:100%;max-width:none;min-width:0;margin:0;}
+  .browse-search-submit{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 17px;border:0;border-radius:11px;background:#3E7A91;color:#fff;font:800 12.5px 'Inter',sans-serif;cursor:pointer;box-shadow:0 4px 12px rgba(62,122,145,.17);}
+  .browse-search-submit:hover{background:#32697E;}
+  .browse-location-breadcrumb{display:flex;align-items:center;justify-content:flex-end;min-height:22px;margin:-6px 0 8px;color:#66766B;font:650 12px/1.4 'Inter',sans-serif;}
+  .browse-location-breadcrumb:empty{visibility:hidden;}
+  .browse-explorer{display:grid;grid-template-columns:minmax(420px,.78fr) minmax(540px,1.22fr);height:min(720px,calc(100vh - 170px));min-height:590px;border:1px solid var(--paper-line);border-radius:22px;background:#fff;overflow:hidden;box-shadow:0 16px 42px rgba(34,50,38,.08);}
+  .browse-list-pane{min-width:0;overflow-y:auto;overscroll-behavior:contain;padding:18px 16px 22px;background:#FBFAF5;border-right:1px solid var(--paper-line);scrollbar-gutter:stable;}
+  .browse-list-pane .browse-compare-note{margin-bottom:14px;}
+  .browse-list-pane .browse-results-meta{position:sticky;top:-18px;z-index:4;margin:0 -16px 12px;padding:14px 16px 10px;background:rgba(251,250,245,.96);backdrop-filter:blur(8px);}
+  .browse-list-pane .simple-card{grid-template-columns:112px minmax(0,1fr);grid-template-rows:auto auto auto;gap:9px 13px;padding:12px;}
+  .browse-list-pane .simple-card .photo{grid-column:1;grid-row:1/3;width:112px;height:92px;align-self:start;}
+  .browse-list-pane .simple-card__main{grid-column:2;grid-row:1;align-self:end;}
+  .browse-list-pane .simple-card__facts{grid-column:1/-1;grid-row:3;}
+  .browse-list-pane .simple-card__match{grid-column:2;grid-row:2;min-width:0;flex-direction:row;align-items:center;justify-content:space-between;gap:8px;border:0;padding:0;}
+  .browse-list-pane .simple-card__score{flex-direction:row;align-items:baseline;gap:5px;}
+  .browse-list-pane .simple-card__score small{font-size:8.5px;}
+  .browse-list-pane .simple-card__match-actions{margin-left:auto;}
+  .browse-list-pane .simple-card.is-map-selected{border-color:#2E4034;box-shadow:0 0 0 1px #2E4034,0 9px 24px rgba(35,53,40,.12);transform:none;}
+  .browse-map-pane{position:relative;min-width:0;background:#DCE6D8;}
+  #browseMap{position:absolute;inset:0;}
+  .browse-map-placeholder{position:absolute;inset:0;display:grid;place-content:center;gap:8px;padding:24px;text-align:center;background:linear-gradient(145deg,#EEF1E7,#D7E4D7);color:#53675A;font:650 13px/1.45 'Inter',sans-serif;}
+  .browse-map-placeholder strong{color:#2E4034;font:700 18px 'Bricolage Grotesque',sans-serif;}
+  .browse-search-area{position:absolute;top:16px;left:50%;z-index:8;transform:translateX(-50%);display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:8px 16px;border:1px solid rgba(46,64,52,.15);border-radius:999px;background:rgba(255,255,255,.96);color:#32697E;box-shadow:0 6px 20px rgba(35,53,40,.18);font:800 12.5px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
+  .browse-search-area[hidden]{display:none;}
+  .browse-map-style{position:absolute;right:14px;bottom:14px;z-index:8;display:flex;gap:3px;padding:3px;border:1px solid rgba(46,64,52,.14);border-radius:11px;background:rgba(255,255,255,.94);box-shadow:0 4px 14px rgba(35,53,40,.15);}
+  .browse-map-style button{min-height:34px;padding:7px 12px;border:0;border-radius:8px;background:transparent;color:#2E4034;font:700 11.5px 'Inter',sans-serif;cursor:pointer;}
+  .browse-map-style button.on{background:#2E4034;color:#fff;}
+  .browse-view-toggle{display:none;}
+  .browse-map-popup{display:grid;gap:4px;padding:2px 14px 2px 0;color:#2E4034;}
+  .browse-map-popup strong{font:700 14px/1.25 'Bricolage Grotesque',sans-serif;}
+  .browse-map-popup span{color:#66766B;font-size:11.5px;}
+  .browse-map-popup b{color:#3E7A91;font-size:10.5px;}
+  .browse-map-popup a{color:#32697E;font-size:11.5px;font-weight:800;text-decoration:none;}
+  .browse-map-pane .maplibregl-popup-content{border:1px solid rgba(46,64,52,.12);border-radius:13px;padding:11px 12px;box-shadow:0 10px 30px rgba(35,53,40,.18);}
+  .browse-map-pane .maplibregl-ctrl-top-right{top:8px;right:8px;}
+  @media(min-width:1101px){
+    .browse-primary-controls .browse-search-group{grid-column:1;grid-row:1;}
+  }
+  @media(min-width:761px) and (max-width:1100px){
+    .browse-primary-controls .browse-search-group{grid-column:1;grid-row:1;}
+    .browse-explorer{grid-template-columns:minmax(360px,.85fr) minmax(430px,1.15fr);}
+  }
+  @media(max-width:900px){
+    .browse-explorer{grid-template-columns:minmax(330px,.9fr) minmax(400px,1.1fr);}
+    .browse-list-pane .simple-card__match small{display:none;}
+  }
+  @media(max-width:760px){
+    .browse-design-head{padding-top:24px;}
+    .browse-design-head h1{font-size:42px;}
+    .browse-primary-controls .browse-search-group{grid-column:1/-1;grid-row:1;}
+    .browse-location-breadcrumb{justify-content:flex-start;margin-top:2px;}
+    .browse-view-toggle{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:8px 0 12px;padding:4px;border:1px solid var(--paper-line);border-radius:12px;background:#F0EDE3;}
+    .browse-view-toggle button{min-height:40px;border:0;border-radius:9px;background:transparent;color:#53675A;font:750 13px 'Inter',sans-serif;cursor:pointer;}
+    .browse-view-toggle button.on{background:#fff;color:#2E4034;box-shadow:0 2px 7px rgba(35,53,40,.1);}
+    .browse-explorer{display:block;height:auto;min-height:0;border-radius:18px;}
+    .browse-list-pane{height:auto;max-height:none;overflow:visible;border-right:0;padding:14px 12px 18px;}
+    .browse-list-pane .browse-results-meta{position:static;margin:0 0 12px;padding:0;background:transparent;backdrop-filter:none;}
+    .browse-map-pane{height:62dvh;min-height:430px;}
+    .browse-explorer[data-mobile-view="list"] .browse-map-pane{display:none;}
+    .browse-explorer[data-mobile-view="map"] .browse-list-pane{display:none;}
+    .browse-map-style{bottom:10px;right:10px;}
+    .browse-search-area{top:12px;}
+  }
+  @media(max-width:430px){
+    .browse-search-group{gap:6px;}
+    .browse-search-submit{padding-inline:13px;}
+    .browse-list-pane .simple-card{grid-template-columns:88px minmax(0,1fr);}
+    .browse-list-pane .simple-card .photo{width:88px;height:78px;}
+  }
 </style>
 <link rel="stylesheet" href="geo-filters.css?v=20260904-1">
 </head>
 <body>
 
 <div class="topnav">
-  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Browse all Trails</span>
+  <a class="brand" href="/"><img src="logo.svg?v=5" alt="">ORMA</a><span class="topnav-page">Explore trails</span>
   <div class="links">
-    <a href="browse-trails.html" class="active">Browse all Trails</a>
+    <a href="browse-trails.html" class="active">Explore trails</a>
     <a href="collections.html">Collections</a>
     <a href="safety-guide.html">Safety guide</a>
     <a href="journal.html">My walk journal</a>
@@ -237,8 +312,8 @@
 </div>
 
 <header class="browse-design-head section-page-head">
-  <h1 id="trailCountHeading">All our trails</h1>
-  <p class="sub section-page-subtitle">Explore every trail without an account. Open any trail for safety, terrain, water, access and route details.</p>
+  <h1 id="trailCountHeading">Explore trails</h1>
+  <p class="sub section-page-subtitle">Browse every trail, or narrow the map to somewhere you want to walk.</p>
 </header>
 
 <main class="browse-design-wrap section-page-wrap">
@@ -246,10 +321,13 @@
 
   <div class="browse-primary-controls">
     <div class="browse-tools" id="browseTools" aria-label="Search and filter trails">
-    <label class="browse-search-shell">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
-      <input class="browse-search" id="browseSearch" type="search" placeholder="Search by trail, area or valley" aria-label="Search trails">
-    </label>
+    <div class="browse-search-group">
+      <label class="browse-search-shell">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+        <input class="browse-search" id="browseSearch" type="search" placeholder="Search trail, country, region or valley" aria-label="Search trails and destinations">
+      </label>
+      <button type="button" id="browseSearchBtn" class="browse-search-submit">Search</button>
+    </div>
     <div class="browse-area-controls" aria-label="Choose trail area">
       <label class="browse-geo-group geo-filter-control" for="browseCountrySelect">
         <span class="browse-geo-label">Country</span>
@@ -352,16 +430,38 @@
       </div>
     </div>
   </div>
-  <!-- What Compare does, feeds the tray at the bottom + compare.html -->
-  <aside class="browse-compare-note">
-    <b>Deciding between trails?</b> Pick <em>Compare</em> on two or three and we'll put them side by side: distance, terrain, shade, water and the match for your dog. Unknown stays unknown; we never guess a factor safe.
-  </aside>
-  <div class="browse-results-meta">
-    <span id="browseResultCount" aria-live="polite"></span>
-    <span class="browse-result-accessible" data-i18n="browse.trustNote">Trail information combines mapped route data and available ORMA sources.</span>
-    <button type="button" id="browseClear" class="browse-clear" hidden>Clear filters</button>
+  <div id="browseLocationBreadcrumb" class="browse-location-breadcrumb" aria-live="polite"></div>
+  <div class="browse-view-toggle" role="group" aria-label="Choose catalogue view">
+    <button type="button" class="on" data-browse-view="list" aria-pressed="true">List</button>
+    <button type="button" data-browse-view="map" aria-pressed="false">Map</button>
   </div>
-  <div class="simple-grid" id="simpleTrailsList"></div>
+  <section id="browseExplorer" class="browse-explorer" data-mobile-view="list" aria-label="Trail catalogue and map">
+    <div class="browse-list-pane">
+      <!-- What Compare does, feeds the tray at the bottom + compare.html -->
+      <aside class="browse-compare-note">
+        <b>Deciding between trails?</b> Pick <em>Compare</em> on two or three and we'll put distance, terrain, shade, water and dog fit side by side.
+      </aside>
+      <div class="browse-results-meta">
+        <span id="browseResultCount" aria-live="polite"></span>
+        <span class="browse-result-accessible" data-i18n="browse.trustNote">Trail information combines mapped route data and available ORMA sources.</span>
+        <button type="button" id="browseClear" class="browse-clear" hidden>Clear filters</button>
+      </div>
+      <div class="simple-grid" id="simpleTrailsList"></div>
+    </div>
+    <div class="browse-map-pane" aria-label="Map of matching trails">
+      <div id="browseMap">
+        <div class="browse-map-placeholder"><strong>Loading the trail map…</strong><span>You can keep browsing the catalogue while the map loads.</span></div>
+      </div>
+      <button type="button" id="browseSearchArea" class="browse-search-area" hidden>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="7"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg>
+        Search this area
+      </button>
+      <div class="browse-map-style" role="group" aria-label="Map appearance">
+        <button type="button" class="on" data-browse-map-style="map" aria-pressed="true">Map</button>
+        <button type="button" data-browse-map-style="terrain" aria-pressed="false">Terrain</button>
+      </div>
+    </div>
+  </section>
 
   <details hidden style="margin-top:34px;font-size:13.5px;color:var(--ink-soft);">
     <summary style="cursor:pointer;font-weight:700;color:var(--ink);">Full trail index (A–Z)</summary>
@@ -581,7 +681,7 @@
 </footer>
 
 <script src="mobile-nav.js?v=20260908-1"></script>
-<script src="i18n.js?v=20260822-1"></script>
+<script src="i18n.js?v=20260908-1"></script>
 <script src="trust/evidence-v1.js?v=20260815-4"></script>
 <script src="trail-trust.js?v=20260819-5"></script>
 <script src="scoring/recommendation-v1.js?v=20260815-4"></script>
@@ -602,6 +702,9 @@
 <script src="discovery-filters.js?v=20260822-1" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>
 <script src="area-dropdown.js?v=20260823-2"></script>
+<script src="map-runtime.js?v=20260908-2"></script>
+<script src="map-style.js?v=20260908-2"></script>
+<script src="browse-map.js?v=20260908-1"></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     // Guest bar mirrors the homepage: members never see it.
@@ -621,6 +724,10 @@
     const countrySelect = document.getElementById('browseCountrySelect');
     const regionSelect = document.getElementById('browseRegionSelect');
     const valleySelect = document.getElementById('browseValleySelect');
+    const searchButton = document.getElementById('browseSearchBtn');
+    const searchAreaButton = document.getElementById('browseSearchArea');
+    const explorer = document.getElementById('browseExplorer');
+    const breadcrumb = document.getElementById('browseLocationBreadcrumb');
     const countryDropdown = window.OrmaAreaDropdown.enhance(countrySelect);
     const regionDropdown = window.OrmaAreaDropdown.enhance(regionSelect);
 
@@ -672,6 +779,56 @@
     let dogValue = 'medium';
     let savedOnly = false;
     let currentFavorites = {};
+    let mapBoundsFilter = null;
+    let selectedTrailId = '';
+
+    const browseMap = window.DoloPawsBrowseMap && window.DoloPawsBrowseMap.create({
+      containerId:'browseMap',
+      searchAreaButtonId:'browseSearchArea',
+      onSelect(id){
+        selectedTrailId = String(id || '');
+        const pool = currentTrailPool();
+        const index = pool.findIndex(trail => String(trail.id) === selectedTrailId);
+        if(index >= 0) page = Math.floor(index / PER_PAGE) + 1;
+        renderPage(null, { fitMap:false });
+        requestAnimationFrame(() => {
+          const card = Array.from(list.querySelectorAll('[data-trail-id]'))
+            .find(item => item.dataset.trailId === selectedTrailId);
+          if(card) card.scrollIntoView({ behavior:'smooth', block:'center' });
+        });
+      },
+    });
+
+    document.querySelectorAll('[data-browse-view]').forEach(button => {
+      button.addEventListener('click', () => {
+        const view = button.dataset.browseView;
+        if(explorer) explorer.dataset.mobileView = view;
+        document.querySelectorAll('[data-browse-view]').forEach(item => {
+          const on = item === button;
+          item.classList.toggle('on', on);
+          item.setAttribute('aria-pressed', String(on));
+        });
+        if(view === 'map' && browseMap) requestAnimationFrame(() => browseMap.resize());
+      });
+    });
+
+    if(searchAreaButton) searchAreaButton.addEventListener('click', () => {
+      mapBoundsFilter = browseMap && browseMap.bounds();
+      page = 1;
+      searchAreaButton.hidden = true;
+      renderPage(null);
+    });
+
+    if(searchButton) searchButton.addEventListener('click', () => {
+      mapBoundsFilter = null;
+      page = 1;
+      renderPage('push');
+    });
+    search.addEventListener('keydown', event => {
+      if(event.key !== 'Enter') return;
+      event.preventDefault();
+      if(searchButton) searchButton.click();
+    });
 
     const SAFETY = {
       'low-risk': [window.t('legend.low'), '#E4EADF', '#2C5C34'],
@@ -874,6 +1031,16 @@
       return savedOnly ? filtered.filter(trail => currentFavorites[trail.id]) : filtered;
     }
 
+    function currentTrailPool(){
+      let pool = filteredTrails();
+      if(distance.value === '5') pool = pool.filter(trail => Number(trail.distance) < 5);
+      if(distance.value === '10') pool = pool.filter(trail => Number(trail.distance) >= 5);
+      if(mapBoundsFilter && window.DoloPawsBrowseMap){
+        pool = pool.filter(trail => window.DoloPawsBrowseMap.withinBounds(trail, mapBoundsFilter));
+      }
+      return pool;
+    }
+
     const COUNTRIES = [
       { value:'all', label:'All countries', match:() => true },
       { value:'italy', label:'Italy', match:t => t.region === 'dolomites' },
@@ -884,6 +1051,16 @@
       { value: 'dolomites', label: 'Dolomites', country:'italy', match: t => t.region === 'dolomites' },
       { value: 'savoy', label: 'Savoy', country:'france', match: t => t.region === 'savoy' },
     ];
+    function renderBreadcrumb(){
+      if(!breadcrumb) return;
+      const parts = [];
+      const country = COUNTRIES.find(item => item.value === countryValue);
+      const region = REGIONS.find(item => item.value === regionValue);
+      if(country && country.value !== 'all') parts.push(country.label);
+      if(region && region.value !== 'all') parts.push(region.label);
+      if(valleyValue !== 'all') parts.push(valleyValue);
+      breadcrumb.textContent = parts.join('  ›  ');
+    }
     function option(item, count){
       const el = document.createElement('option');
       el.value = item.value;
@@ -1047,7 +1224,7 @@
       });
     }
 
-    function renderPage(historyMode){
+    function renderPage(historyMode, renderOptions){
       const h1 = document.getElementById('trailCountHeading');
       const sub = document.querySelector('.browse-design-head .sub');
       if(h1) h1.innerHTML = window.t('browse.h1');
@@ -1056,13 +1233,12 @@
       renderCountrySelect();
       renderRegionSelect();
       renderValleySelect();
+      renderBreadcrumb();
       syncFiltersChip();
       renderCollections();
-      let pool = filteredTrails();
-      if(distance.value === '5') pool = pool.filter(trail => Number(trail.distance) < 5);
-      if(distance.value === '10') pool = pool.filter(trail => Number(trail.distance) >= 5);
+      let pool = currentTrailPool();
       const activeFilters = filterApi.active(currentFilterState());
-      const hasFilters = activeFilters.length > 0 || savedOnly;
+      const hasFilters = activeFilters.length > 0 || savedOnly || !!mapBoundsFilter;
       if(filtersApply) filtersApply.textContent = `Show ${pool.length} ${pool.length === 1 ? 'trail' : 'trails'}`;
       let profilePresent = false;
       try{ profilePresent = !!JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); }
@@ -1080,7 +1256,7 @@
           }
         );
       }
-      resultCount.innerHTML = `<span class="browse-result-accessible">${pool.length} trail${pool.length === 1 ? '' : 's'} found. </span>${pool.length} of ${trails.length} trails`;
+      resultCount.innerHTML = `<span class="browse-result-accessible">${pool.length} trail${pool.length === 1 ? '' : 's'} found. </span>${pool.length} of ${trails.length} trails${mapBoundsFilter ? ' in this map area' : ''}`;
       clear.hidden = !hasFilters;
       const totalPages = Math.max(1, Math.ceil(pool.length / PER_PAGE));
       if(page > totalPages) page = totalPages;
@@ -1145,7 +1321,7 @@
         const isCompared = compareIds.includes(t.id);
         const compareDisabled = !isCompared && compareIds.length >= compareApi.MAX_TRAILS;
         return `
-        <article class="simple-card">
+        <article class="simple-card${String(t.id) === selectedTrailId ? ' is-map-selected' : ''}" data-trail-id="${esc(t.id)}">
           ${thumb}
           <a class="simple-card__main" href="${openHref}">
             <div class="name">${t.name}</div>
@@ -1199,6 +1375,20 @@
           }
         });
       });
+      list.querySelectorAll('[data-trail-id]').forEach(card => {
+        const id = card.dataset.trailId;
+        card.addEventListener('pointerenter', () => {
+          if(browseMap) browseMap.select(id, { popup:false });
+        });
+        card.addEventListener('focusin', () => {
+          if(browseMap) browseMap.select(id, { popup:false });
+        });
+      });
+      if(selectedTrailId && !pool.some(trail => String(trail.id) === selectedTrailId)) selectedTrailId = '';
+      if(browseMap){
+        browseMap.update(pool, { fit:!mapBoundsFilter && (!renderOptions || renderOptions.fitMap !== false) });
+        if(selectedTrailId) browseMap.select(selectedTrailId, { popup:false });
+      }
       const applyRecoveryState = nextState => {
         const target = window.DoloPawsDiscoveryState.browseHref({ ...nextState, page:1 });
         window.history.pushState(null, '', target);
@@ -1257,6 +1447,7 @@
       const selectedRegion = REGIONS.find(item => item.value === regionValue);
       if(selectedRegion && selectedRegion.country !== 'all' && selectedRegion.country !== countryValue) regionValue = 'all';
       valleyValue = 'all';
+      mapBoundsFilter = null;
       page = 1;
       renderPage('push');
     });
@@ -1265,11 +1456,13 @@
       const selectedRegion = REGIONS.find(item => item.value === regionValue);
       if(selectedRegion && selectedRegion.country !== 'all') countryValue = selectedRegion.country;
       valleyValue = 'all';
+      mapBoundsFilter = null;
       page = 1;
       renderPage('push');
     });
     valleySelect.addEventListener('change', () => {
       valleyValue = valleySelect.value;
+      mapBoundsFilter = null;
       page = 1;
       renderPage('push');
     });
@@ -1317,6 +1510,9 @@
       access.value = '';
       minMatchValue = '';
       savedOnly = false;
+      mapBoundsFilter = null;
+      selectedTrailId = '';
+      if(searchAreaButton) searchAreaButton.hidden = true;
       page = 1;
       renderPage('push');
       search.focus();

@@ -4,9 +4,6 @@
  */
 const fs=require('fs');
 
-// Drive the real control against a stub map, because the wiring between a tap,
-// the projection and what gets submitted is exactly what a source-level test
-// cannot see.
 function stubMap(){
   const handlers={};
   return {
@@ -24,13 +21,20 @@ function loadTrail(id){
 
 describe('placing a hazard on the trail map', () => {
   let trail,map,sent;
+  const settle=()=>new Promise(resolve=>setTimeout(resolve,0));
 
-  beforeEach(() => {
+  beforeEach(async () => {
     jest.resetModules();
     trail=loadTrail('giro-del-bulacia');
     map=stubMap();
     sent=[];
-    document.body.innerHTML='<div id="ormaHazardMount"></div><div id="trailMapBox"></div>';
+    document.body.innerHTML=`
+      <div id="ormaHazardMount"></div>
+      <div id="trailMapBox"><button id="addReportBtn" type="button">Report a hazard</button></div>
+      <section id="td2Hazards"><div id="trailFlagsList">
+        <div id="trailPublishedHazards"></div><div id="trailLegacyHazards"></div>
+        <div id="trailHazardsPending"></div><div id="trailHazardsEmpty"></div>
+      </div></section>`;
 
     const markers=[];
     global.maplibregl={Marker:class{
@@ -49,27 +53,26 @@ describe('placing a hazard on the trail map', () => {
     window.DoloPawsCommunity={reportTrailHazard:(...args)=>{sent.push(args);return {ok:true,message:'ok'};}};
     global.fetch=()=>Promise.resolve({ok:true,json:()=>({hazards:[]})});
     require('./trail-hazards.js');
+    await settle();
+    document.getElementById('addReportBtn').click();
   });
 
-  const settle=()=>new Promise(resolve=>setTimeout(resolve,0));
-
-  test('a tap on the route is submitted as a km along it', async () => {
-    await settle();
-    const form=document.querySelector('.orma-hazard-report form');
-    expect(form).not.toBeNull();
-    const place=form.querySelector('.orma-hazard-report__place button');
-    expect(place.textContent).toBe('Point to it on the map');
-
-    place.click();
-    expect(place.textContent).toBe('Tap the map where you saw it');
+  test('a tap on the route is submitted as a km along it and shown as pending', async () => {
+    const panel=document.querySelector('.orma-hazard-report');
+    const form=panel.querySelector('form');
+    const place=panel.querySelector('[data-hazard-place]');
+    expect(panel.closest('#trailMapBox')).not.toBeNull();
+    expect(form.hidden).toBe(true);
+    expect(place.textContent).toBe('Tap the trail line now');
 
     const [lat,lng]=trail.path[10];
     map.fire('click',{lngLat:{lat,lng}});
 
-    const where=form.querySelector('.orma-hazard-report__where');
+    const where=panel.querySelector('[data-hazard-where]');
     expect(where.textContent).toContain('km along the route');
     expect(where.classList.contains('is-off')).toBe(false);
     expect(place.textContent).toBe('Move the pin');
+    expect(form.hidden).toBe(false);
 
     form.querySelector('textarea').value='Guardian dogs loose on the pasture crossing';
     form.dispatchEvent(new window.Event('submit'));
@@ -79,29 +82,31 @@ describe('placing a hazard on the trail map', () => {
     const location=sent[0][4];
     expect(location.km).toBeGreaterThan(0);
     expect(location.onRoute).toBe(true);
-    // Snapped onto the path, not left where the finger landed.
     expect(location.offRouteM).toBeLessThanOrEqual(1);
+    expect(document.querySelector('[data-hazard-pending]').textContent).toContain('being checked');
   });
 
-  test('a tap far from the trail is refused, and nothing is submitted for it', async () => {
-    await settle();
-    const form=document.querySelector('.orma-hazard-report form');
-    form.querySelector('.orma-hazard-report__place button').click();
+  test('a tap far from the trail is refused until the user skips location', async () => {
+    const panel=document.querySelector('.orma-hazard-report');
     map.fire('click',{lngLat:{lat:46.9,lng:12.2}});
 
-    const where=form.querySelector('.orma-hazard-report__where');
+    const where=panel.querySelector('[data-hazard-where]');
     expect(where.classList.contains('is-off')).toBe(true);
     expect(where.textContent).toContain('from this trail');
+    expect(panel.querySelector('form').hidden).toBe(true);
 
+    panel.querySelector('[data-hazard-skip]').click();
+    const form=panel.querySelector('form');
     form.querySelector('textarea').value='Guardian dogs loose on the pasture crossing';
     form.dispatchEvent(new window.Event('submit'));
     await settle();
     expect(sent[0][4]).toBeNull();
   });
 
-  test('a report sent without placing anything still goes', async () => {
-    await settle();
-    const form=document.querySelector('.orma-hazard-report form');
+  test('skipping map placement still sends the report without a position', async () => {
+    const panel=document.querySelector('.orma-hazard-report');
+    panel.querySelector('[data-hazard-skip]').click();
+    const form=panel.querySelector('form');
     form.querySelector('textarea').value='Bridge plank is broken near the ford';
     form.dispatchEvent(new window.Event('submit'));
     await settle();
@@ -111,24 +116,20 @@ describe('placing a hazard on the trail map', () => {
 });
 
 describe('where there is no map', () => {
-  test('the report control still works and nothing is placed', async () => {
+  test('the control requests the map and never renders a detached form', async () => {
     jest.resetModules();
-    document.body.innerHTML='<div id="ormaHazardMount"></div>';
-    const sent=[];
+    document.body.innerHTML='<button id="addReportBtn">Report a hazard</button><div id="ormaHazardMount"></div>';
     window.OrmaHazardLocation=require('./hazard-location.js');
     delete window.DoloPawsTrailMapContext;
-    window.DoloPawsAuthReady=true;
-    window.DoloPawsCommunity={reportTrailHazard:(...args)=>{sent.push(args);return {ok:true};}};
+    const start=jest.fn();
+    window.DoloPawsStartTrailMap=start;
     global.fetch=()=>Promise.resolve({ok:true,json:()=>({hazards:[]})});
     require('./trail-hazards.js');
     await new Promise(resolve=>setTimeout(resolve,0));
 
-    const form=document.querySelector('.orma-hazard-report form');
-    expect(form).not.toBeNull();
-    expect(form.querySelector('.orma-hazard-report__place')).toBeNull();
-    form.querySelector('textarea').value='Snow field across the path at the col';
-    form.dispatchEvent(new window.Event('submit'));
-    await new Promise(resolve=>setTimeout(resolve,0));
-    expect(sent[0][4]).toBeNull();
+    document.getElementById('addReportBtn').click();
+    expect(start).toHaveBeenCalledTimes(1);
+    expect(document.querySelector('.orma-hazard-report')).toBeNull();
+    expect(document.getElementById('addReportBtn').getAttribute('aria-busy')).toBe('true');
   });
 });
