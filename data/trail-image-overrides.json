@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-08T10:52:55.014Z",
+  "updatedAt": "2026-09-08T12:41:30.241Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -288,6 +288,23 @@
         "imageLicence": "Public domain",
         "imageLicenceUrl": null,
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Talkessel_von_Pfunders.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-11814834",
+      "approvedReviewId": "commons-osm-11814834",
+      "approvedAt": "2026-09-08T12:41:30.241Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-11814834-bulla.jpg",
+        "heroImage": "images/trails/osm-11814834-bulla.jpg",
+        "imageAlt": "The hamlet of Bulla above Ortisei, meadow and spruce falling to the valley with the Odle wall behind, an apartment chalet at the left edge of the frame.",
+        "imageCredit": "Ortisei visto da Bulla",
+        "imageCreditText": "Ortisei visto da Bulla by Asia",
+        "imageCreator": "Asia",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bulla01.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -632,6 +649,23 @@
       }
     },
     {
+      "id": "osm-12164395",
+      "approvedReviewId": "commons-osm-12164395",
+      "approvedAt": "2026-09-08T12:41:30.241Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12164395-muehlbacher-klause.jpg",
+        "heroImage": "images/trails/osm-12164395-muehlbacher-klause.jpg",
+        "imageAlt": "The Muehlbacher Klause, the medieval barrier wall and tower thrown across the valley, wooded slopes rising behind it under storm cloud.",
+        "imageCredit": "Mühlbacher Klause",
+        "imageCreditText": "Mühlbacher Klause by Michielverbeek",
+        "imageCreator": "Michielverbeek",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:M%C3%BChlbacher_Klause_2019.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-12165590",
       "approvedReviewId": "commons-osm-12165590",
       "approvedAt": "2026-09-06T14:47:45.542Z",
@@ -917,6 +951,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Eisack_valley_and_Gr%C3%B6den_seen_from_Dreikirchen.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12745924",
+      "approvedReviewId": "commons-osm-12745924",
+      "approvedAt": "2026-09-08T12:41:30.241Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12745924-villarodin.jpg",
+        "heroImage": "images/trails/osm-12745924-villarodin.jpg",
+        "imageAlt": "Villarodin in late afternoon, slate roofs and a church tower among kitchen gardens, a paved lane climbing between them and the Maurienne slopes behind.",
+        "imageCredit": "Villarodin en fin d’après-midi",
+        "imageCreditText": "Villarodin en fin d’après-midi by Florian Pépellin",
+        "imageCreator": "Florian Pépellin",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Villarodin_en_fin_d%27apr%C3%A8s-midi_en_Maurienne_(ao%C3%BBt_2026).JPG",
         "imageSourceType": "licensed-source"
       }
     },
