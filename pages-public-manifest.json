@@ -69,6 +69,7 @@
     "guest-context.js",
     "guest-session.js",
     "guide-navigation.js",
+    "hazard-location.js",
     "hike-completions.js",
     "hike-distance.js",
     "hike-gps-policy.js",

@@ -43,6 +43,16 @@ async function runHazardVetting(report,options={}){
     generatedAt:options.at||new Date().toISOString(),publicMutationAllowed:false,...response.data};
 }
 
+// A position is published only when it is complete and in range. A partial or
+// malformed one is dropped rather than rounded into a plausible-looking point.
+function hazardPosition(location){
+  if(!location)return null;
+  const lat=Number(location.lat),lng=Number(location.lng),km=Number(location.km);
+  if(![lat,lng,km].every(Number.isFinite))return null;
+  if(lat<-90||lat>90||lng<-180||lng>180||km<0)return null;
+  return {lat,lng,km:Math.round(km*100)/100};
+}
+
 // Publishing decision. Corroborated reports become ordinary ORMA hazards. Plausible
 // but uncorroborated ones publish under an explicit unverified label with a short
 // life, because a genuinely local hazard is usually the one nobody has published.
@@ -66,6 +76,11 @@ function hazardFromVetting(report,vetting,at){
     firstPublishedAt:at,lastSeenAt:at,lastVettedAt:at,
     nextVettingAt:hours(at,REVET_INTERVAL_HOURS),expiresAt:days(at,lifetime),
     removalRequiresHumanReview:false,
+    // Where on the trail it is, when the reporter placed it. A hazard that is
+    // somewhere in particular is one a walker can be warned about on approach;
+    // one that is merely "on this trail" is not. Carried verbatim from the
+    // report: vetting judges whether the hazard is real, not where it was seen.
+    at:hazardPosition(report.location),
     trailIds:[report.trailId],trailNames:[report.trailName||report.trailId],
   };
 }
@@ -100,5 +115,5 @@ function expireCommunityHazards(publicData,options={}){
   return {publicData:expired.length?{...publicData,generatedAt:at,hazards:kept}:publicData,expired,dueForRevetting};
 }
 
-module.exports={HAZARD_VETTING_SCHEMA,UNVERIFIED_NOTICE,UNVERIFIED_LIFETIME_DAYS,CORROBORATED_LIFETIME_DAYS,
+module.exports={HAZARD_VETTING_SCHEMA,hazardPosition,UNVERIFIED_NOTICE,UNVERIFIED_LIFETIME_DAYS,CORROBORATED_LIFETIME_DAYS,
   REVET_INTERVAL_HOURS,runHazardVetting,hazardFromVetting,applyHazardVetting,expireCommunityHazards};

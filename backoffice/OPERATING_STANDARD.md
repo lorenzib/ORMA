@@ -67,6 +67,17 @@ corroboration lapses or its life ends. Raw reports are never public; only the
 vetted hazard is. Community hazards follow this lifecycle alone and are never
 reconciled against the weather feeds.
 
+A report may carry where on the trail it was seen. The reader places it on the
+trail's own map; the tap is projected onto the route, and the distance along the
+route that it lands at is the position that is stored. A point further than 250 m
+from the route is not a position on it and is refused, and a report without a
+position is published exactly as before -- placing is optional, and losing the
+hazard would be worse than not knowing where it is.
+
+Vetting decides whether a hazard is real, never where it was seen: the position
+is carried from the report to the published hazard verbatim, and a partial or
+out-of-range one is dropped rather than repaired into a plausible-looking point.
+
 Existing Trails is the current throughput priority. Every day after the
 Firestore quota reset window, the protected
 catalogue campaign admits the next eligible candidates for ORMA Verified

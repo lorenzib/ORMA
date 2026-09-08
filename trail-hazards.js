@@ -11,13 +11,89 @@
   function installStyles(){
     if(document.getElementById('ormaHazardStyles'))return;
     const style=document.createElement('style');style.id='ormaHazardStyles';style.textContent=
-      '.orma-hazard-stack{display:grid;gap:10px;margin:14px 0 22px}.orma-hazard-report{margin:0 0 22px}.orma-hazard-report>button{padding:8px 14px;border:1px solid #c9bfae;border-radius:999px;background:#fff;color:#4a4136;font:inherit;font-size:13px;font-weight:700;cursor:pointer}.orma-hazard-report form{display:grid;gap:9px;margin-top:10px;padding:14px 15px;border:1px solid #d9d2c6;border-radius:11px;background:#fbf8f2}.orma-hazard-report label{display:grid;gap:4px;font-size:12px;font-weight:700;color:#4a4136}.orma-hazard-report select,.orma-hazard-report textarea,.orma-hazard-report input{padding:8px 10px;border:1px solid #cfc6b7;border-radius:8px;font:inherit;font-size:13px;background:#fff}.orma-hazard-report textarea{min-height:74px;resize:vertical}.orma-hazard-report .orma-hazard-report__note{margin:0;color:#6b625a;font-size:11px;line-height:1.45;font-weight:400}.orma-hazard-report__status{margin:0;font-size:12px;line-height:1.45}.orma-hazard-report__status.is-error{color:#8a2f24}.orma-hazard{padding:15px 17px;border:1px solid #d6934d;border-left:6px solid #b9582e;border-radius:10px;background:#fff6e8;color:#352a22}.orma-hazard.is-extreme{border-left-color:#91352d;background:#fff0ed}.orma-hazard.is-unverified{border-style:dashed;border-left-color:#8a7a63;background:#faf6ee}.orma-hazard strong{display:block;margin-bottom:6px;font-size:15px}.orma-hazard p{margin:0 0 8px;font-size:13px;line-height:1.5}.orma-hazard small{display:block;color:#6b625a;font-size:11px;line-height:1.4}.orma-hazard a{color:inherit;font-weight:800}';
+      '.orma-hazard-stack{display:grid;gap:10px;margin:14px 0 22px}.orma-hazard-report{margin:0 0 22px}.orma-hazard-report>button{padding:8px 14px;border:1px solid #c9bfae;border-radius:999px;background:#fff;color:#4a4136;font:inherit;font-size:13px;font-weight:700;cursor:pointer}.orma-hazard-report form{display:grid;gap:9px;margin-top:10px;padding:14px 15px;border:1px solid #d9d2c6;border-radius:11px;background:#fbf8f2}.orma-hazard-report label{display:grid;gap:4px;font-size:12px;font-weight:700;color:#4a4136}.orma-hazard-report select,.orma-hazard-report textarea,.orma-hazard-report input{padding:8px 10px;border:1px solid #cfc6b7;border-radius:8px;font:inherit;font-size:13px;background:#fff}.orma-hazard-report textarea{min-height:74px;resize:vertical}.orma-hazard-report .orma-hazard-report__note{margin:0;color:#6b625a;font-size:11px;line-height:1.45;font-weight:400}.orma-hazard-report__place{display:grid;gap:6px}.orma-hazard-report__place button{justify-self:start;padding:7px 13px;border:1px solid #c9bfae;border-radius:999px;background:#fff;color:#4a4136;font:inherit;font-size:12px;font-weight:700;cursor:pointer}.orma-hazard-report__place button.is-placing{border-color:#b9582e;background:#fff2e6;color:#8a3f1f}.orma-hazard-report__where{margin:0;font-size:11.5px;line-height:1.45;color:#6b625a;font-weight:400}.orma-hazard-report__where.is-off{color:#8a2f24}.orma-hazard-pin{width:22px;height:22px;border-radius:50%;border:2px solid #fff;background:#b9582e;box-shadow:0 2px 6px rgba(0,0,0,.35);cursor:grab}.orma-hazard__where{display:block;margin:0 0 8px;font-size:12.5px;font-weight:700;color:#8a3f1f}.orma-hazard-report__status{margin:0;font-size:12px;line-height:1.45}.orma-hazard-report__status.is-error{color:#8a2f24}.orma-hazard{padding:15px 17px;border:1px solid #d6934d;border-left:6px solid #b9582e;border-radius:10px;background:#fff6e8;color:#352a22}.orma-hazard.is-extreme{border-left-color:#91352d;background:#fff0ed}.orma-hazard.is-unverified{border-style:dashed;border-left-color:#8a7a63;background:#faf6ee}.orma-hazard strong{display:block;margin-bottom:6px;font-size:15px}.orma-hazard p{margin:0 0 8px;font-size:13px;line-height:1.5}.orma-hazard small{display:block;color:#6b625a;font-size:11px;line-height:1.4}.orma-hazard a{color:inherit;font-weight:800}';
     document.head.appendChild(style);
   }
 
   const HAZARD_KINDS=[['closure','Trail or path closed'],['route-damage','Damaged path, bridge or crossing'],
     ['livestock','Livestock or guardian dogs'],['water','Water crossing or missing water'],
     ['snow-or-ice','Snow or ice'],['rockfall','Rockfall or landslide'],['other','Something else']];
+
+
+  // Placing the hazard. The reader taps the map where they saw it; the tap is
+  // projected onto the route so the hazard lands on the path rather than beside
+  // it, and the km it lands at is what gets published. Placing is optional --
+  // a report without a position is still a report -- and the whole control is
+  // skipped where there is no map to tap, which is every generated trail page.
+  function installPlaceControl(form,anchorBefore){
+    const locator=window.OrmaHazardLocation;
+    const context=window.DoloPawsTrailMapContext;
+    const map=context&&context.map;
+    const path=context&&context.trail&&context.trail.path;
+    if(!locator||!map||!Array.isArray(path)||path.length<2)return ()=>null;
+
+    let placed=null,marker=null,placing=false;
+    const wrap=document.createElement('div');wrap.className='orma-hazard-report__place';
+    const button=document.createElement('button');button.type='button';
+    button.textContent='Point to it on the map';
+    const where=document.createElement('p');where.className='orma-hazard-report__where';
+    where.setAttribute('role','status');
+    const IDLE='Optional. Placing it lets ORMA warn walkers as they approach.';
+    where.textContent=IDLE;
+    wrap.append(button,where);
+    anchorBefore.parentNode.insertBefore(wrap,anchorBefore);
+
+    const setPlacing=on=>{
+      placing=on;
+      button.classList.toggle('is-placing',on);
+      button.textContent=on?'Tap the map where you saw it':(placed?'Move the pin':'Point to it on the map');
+      const canvas=map.getCanvas&&map.getCanvas();
+      if(canvas)canvas.style.cursor=on?'crosshair':'';
+    };
+
+    const show=located=>{
+      placed=located;
+      if(!located.onRoute){
+        where.classList.add('is-off');
+        where.textContent=`That point is about ${located.offRouteM} m from this trail. Place it on the path itself.`;
+        return;
+      }
+      where.classList.remove('is-off');
+      where.textContent=`${locator.describeLocation(located)}. Drag the pin to adjust.`;
+    };
+
+    const place=coordinate=>{
+      const located=locator.locateOnRoute(coordinate,path);
+      if(!located)return;
+      const point=located.onRoute?[located.lng,located.lat]:[coordinate.lng,coordinate.lat];
+      if(marker)marker.setLngLat(point);
+      else{
+        const element=document.createElement('div');element.className='orma-hazard-pin';
+        marker=new maplibregl.Marker({element,draggable:true}).setLngLat(point).addTo(map);
+        marker.on('dragend',()=>place(marker.getLngLat()));
+      }
+      show(located);
+      setPlacing(false);
+    };
+
+    button.addEventListener('click',()=>{
+      if(placing){setPlacing(false);return;}
+      setPlacing(true);
+      // Scroll the map into view, or the reader is asked to tap something they
+      // cannot see.
+      const box=document.getElementById('trailMapBox');
+      if(box&&box.scrollIntoView)box.scrollIntoView({behavior:'smooth',block:'center'});
+      map.once('click',event=>{if(placing)place(event.lngLat);});
+    });
+
+    form.addEventListener('orma-hazard-reset',()=>{
+      if(marker){marker.remove();marker=null;}
+      placed=null;setPlacing(false);
+      where.classList.remove('is-off');where.textContent=IDLE;
+    });
+
+    return ()=>placed&&placed.onRoute?placed:null;
+  }
 
   // Reporting is one control, not a page: the reader picks what they saw, describes it,
   // and the Hazard Analyst decides whether and how it is published. Nothing is shown
@@ -45,6 +121,7 @@
     const submit=document.createElement('button');submit.type='submit';submit.textContent='Send report';
     const status=document.createElement('p');status.className='orma-hazard-report__status';status.setAttribute('role','status');
     form.append(kindLabel,textLabel,dateLabel,note,submit,status);wrap.append(form);
+    const placedLocation=installPlaceControl(form,note);
 
     toggle.addEventListener('click',()=>{
       form.hidden=!form.hidden;toggle.setAttribute('aria-expanded',String(!form.hidden));
@@ -55,9 +132,10 @@
       status.textContent='Checking your report against official sources…';
       try{
         const result=await community.reportTrailHazard({id:trail.id,name:trail.name,area:trail.area},
-          kind.value,text.value,observedOn.value);
+          kind.value,text.value,observedOn.value,placedLocation());
         status.textContent=result&&result.message?result.message:'Thanks, ORMA is checking this now.';
-        if(result&&result.ok){form.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.textContent='Report sent';}
+        if(result&&result.ok){form.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.textContent='Report sent';
+          form.dispatchEvent(new CustomEvent('orma-hazard-reset'));}
         else{status.classList.add('is-error');submit.disabled=false;}
       }catch(error){
         status.classList.add('is-error');status.textContent='Could not send your report, please try again.';submit.disabled=false;
@@ -93,14 +171,18 @@
     if(!hazards.length)return;installStyles();
     const stack=document.createElement('section');stack.className='orma-hazard-stack';stack.setAttribute('aria-label','Current area warnings');
     hazards.forEach(item=>{const card=document.createElement('article');card.className=`orma-hazard is-${item.severity}`;
-      const title=document.createElement('strong');title.textContent=item.title;
+      const title=document.createElement('strong');title.textContent=item.title;card.append(title);
+      // Where it is, when it is known. A warning that names its km is one a
+      // walker can act on before reaching it.
+      const spoken=window.OrmaHazardLocation&&window.OrmaHazardLocation.describeLocation(item.at);
+      if(spoken){const at=document.createElement('b');at.className='orma-hazard__where';at.textContent=spoken;card.append(at);}
       const copy=document.createElement('p');copy.textContent=item.message;
       const detail=document.createElement('small');
       if(item.sourceUrl){const source=document.createElement('a');source.href=item.sourceUrl;source.target='_blank';source.rel='noopener';source.textContent=`Check ${item.sourceLabel} ↗`;detail.append(source);}
       else detail.append(document.createTextNode(item.sourceLabel||'Hiker report'));
       detail.append(document.createTextNode(`${item.expiresAt?` · source expiry ${new Date(item.expiresAt).toLocaleString()}`:''}`));
       if(item.verificationState==='reported-unverified')card.classList.add('is-unverified');
-      card.append(title,copy,detail);stack.append(card);});
+      card.append(copy,detail);stack.append(card);});
     // A safety warning must never be dropped for want of an anchor: fall back
     // to the top of the document rather than discarding the stack.
     const anchor=anchorFor();
