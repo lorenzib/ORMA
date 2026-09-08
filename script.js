@@ -192,6 +192,210 @@ let liDevView = false;             // ?view=returning preview without an account
 let liNewMatchIds = new Set();
 let liNewMatchSyncKey = '';
 let liNewMatchSyncInFlight = null;
+let liPendingLocationCenter = null;
+
+// A dog-fit score is not a useful homepage recommendation until it is scoped
+// to somewhere the owner can actually walk. Exact device coordinates live in
+// sessionStorage only; a manually chosen catalogue valley can be remembered
+// between visits. Neither is written to the user's cloud profile.
+const LI_LOCATION_RADIUS_KM = 25;
+const LI_LOCATION_SESSION_KEY = 'orma-home-current-location-v1';
+const LI_AREA_STORAGE_KEY = 'orma-home-selected-area-v1';
+let liLocationContext = liLoadLocationContext();
+
+function liStoredJson(storage, key){
+  try { return JSON.parse(storage.getItem(key) || 'null'); } catch(error){ return null; }
+}
+
+function liValidLocationContext(value){
+  if(!value || typeof value !== 'object') return null;
+  if(value.kind === 'current' && Number.isFinite(value.lat) && Number.isFinite(value.lng)){
+    return { kind:'current', lat:value.lat, lng:value.lng, radiusKm:LI_LOCATION_RADIUS_KM };
+  }
+  if(value.kind === 'area' && value.region && value.valley && value.label){
+    return { kind:'area', region:String(value.region), valley:String(value.valley), label:String(value.label) };
+  }
+  return null;
+}
+
+function liLoadLocationContext(){
+  // A region deep link is already an explicit geographic choice. Keep its
+  // scope broad because that is what the shared URL promises.
+  if(activeRegion !== 'all'){
+    return { kind:'area', region:activeRegion, valley:'all', label:activeRegion === 'savoy' ? 'Savoy' : 'The Dolomites', transient:true };
+  }
+  if(typeof sessionStorage !== 'undefined'){
+    const current = liValidLocationContext(liStoredJson(sessionStorage, LI_LOCATION_SESSION_KEY));
+    if(current) return current;
+  }
+  if(typeof localStorage !== 'undefined'){
+    const area = liValidLocationContext(liStoredJson(localStorage, LI_AREA_STORAGE_KEY));
+    if(area) return area;
+  }
+  return null;
+}
+
+function liRememberLocationContext(context){
+  try{
+    if(typeof sessionStorage !== 'undefined') sessionStorage.removeItem(LI_LOCATION_SESSION_KEY);
+    if(typeof localStorage !== 'undefined') localStorage.removeItem(LI_AREA_STORAGE_KEY);
+    if(context && context.kind === 'current' && typeof sessionStorage !== 'undefined'){
+      sessionStorage.setItem(LI_LOCATION_SESSION_KEY, JSON.stringify(context));
+    } else if(context && context.kind === 'area' && !context.transient && typeof localStorage !== 'undefined'){
+      localStorage.setItem(LI_AREA_STORAGE_KEY, JSON.stringify(context));
+    }
+  }catch(error){ /* Storage can be unavailable in private browsing. */ }
+}
+
+function liClearLocationConditions(){
+  if(window.DoloPawsHomeConditions && typeof window.DoloPawsHomeConditions.reset === 'function'){
+    window.DoloPawsHomeConditions.reset();
+  }
+  const today = document.getElementById('liToday');
+  if(today) today.hidden = true;
+}
+
+function liApplyLocationGeography(){
+  if(!liLocationContext) return;
+  liMapBounds = null;
+  if(liLocationContext.kind === 'area'){
+    activeRegion = liLocationContext.region || 'all';
+    activeCountry = activeRegion === 'savoy' ? 'FR' : activeRegion === 'dolomites' ? 'IT' : 'all';
+    activeValley = liLocationContext.valley || 'all';
+  } else {
+    activeCountry = 'all';
+    activeRegion = 'all';
+    activeValley = 'all';
+    liPendingLocationCenter = [liLocationContext.lng, liLocationContext.lat];
+  }
+}
+
+function liDistanceKm(originLat, originLng, targetLat, targetLng){
+  const toRadians = degrees => degrees * Math.PI / 180;
+  const dLat = toRadians(targetLat - originLat);
+  const dLng = toRadians(targetLng - originLng);
+  const a = Math.sin(dLat / 2) ** 2
+    + Math.cos(toRadians(originLat)) * Math.cos(toRadians(targetLat)) * Math.sin(dLng / 2) ** 2;
+  return 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+function filterTrailsForLocationContext(list){
+  if(!liLocationContext) return [];
+  if(liLocationContext.kind === 'current'){
+    return list.filter(trail => {
+      const point = liTrailLngLat(trail);
+      return point && liDistanceKm(liLocationContext.lat, liLocationContext.lng, point[1], point[0]) <= liLocationContext.radiusKm;
+    });
+  }
+  if(liLocationContext.kind === 'area'){
+    return list.filter(trail =>
+      (!liLocationContext.region || liLocationContext.region === 'all' || trail.region === liLocationContext.region)
+      && (!liLocationContext.valley || liLocationContext.valley === 'all' || trail.valley === liLocationContext.valley));
+  }
+  // Allows isolated controller tests to opt into a synthetic catalogue
+  // context without weakening any context created by the product UI.
+  return list;
+}
+
+function liLocationContextLabel(){
+  if(!liLocationContext) return '';
+  if(liLocationContext.kind === 'current') return `Your location · within ${liLocationContext.radiusKm} km`;
+  return liLocationContext.label;
+}
+
+function liPopulateAreaPicker(){
+  const select = document.getElementById('liAreaSelect');
+  if(!select || typeof trails === 'undefined' || select.dataset.ready === 'true') return;
+  const choices = new Map();
+  trails.forEach(trail => {
+    if(!trail.region || !trail.valley) return;
+    const key = `${trail.region}::${trail.valley}`;
+    if(!choices.has(key)) choices.set(key, { region:trail.region, valley:trail.valley });
+  });
+  Array.from(choices.values())
+    .sort((a, b) => a.valley.localeCompare(b.valley))
+    .forEach(choice => {
+      const option = document.createElement('option');
+      option.value = `${choice.region}::${choice.valley}`;
+      option.textContent = choice.valley;
+      select.appendChild(option);
+    });
+  select.dataset.ready = 'true';
+}
+
+function liRenderLocationContext(profile){
+  const gate = document.getElementById('liLocationGate');
+  const toolbar = document.getElementById('liToolbar');
+  const workspace = document.querySelector('#returningCustomerHomepage .li-body');
+  const summary = document.getElementById('liLocationSummary');
+  const summaryLabel = document.getElementById('liLocationSummaryLabel');
+  const gateDogName = document.getElementById('liLocationDogName');
+  const ready = !!liLocationContext;
+  if(gateDogName) gateDogName.textContent = profile && profile.name ? profile.name : 'your dog';
+  if(gate) gate.hidden = ready;
+  if(toolbar) toolbar.hidden = !ready;
+  if(workspace) workspace.hidden = !ready;
+  if(summary){
+    summary.hidden = !ready;
+    if(summaryLabel) summaryLabel.textContent = liLocationContextLabel();
+  }
+  if(document.body){
+    document.body.classList.toggle('li-location-needed', !ready);
+    document.body.classList.toggle('li-location-ready', ready);
+  }
+  if(!ready) liPopulateAreaPicker();
+}
+
+function liSetLocationContext(context){
+  liLocationContext = liValidLocationContext(context);
+  if(!liLocationContext) return;
+  liPendingLocationCenter = liLocationContext.kind === 'current'
+    ? [liLocationContext.lng, liLocationContext.lat]
+    : null;
+  liRememberLocationContext(liLocationContext);
+  liApplyLocationGeography();
+  liQuery = '';
+  const search = document.getElementById('liSearch');
+  if(search) search.value = '';
+  const status = document.getElementById('liLocationStatus');
+  if(status) status.textContent = '';
+  liClearLocationConditions();
+  renderReturningHomepage(currentProfileForAdjust);
+  if(typeof window.CustomEvent === 'function'){
+    window.dispatchEvent(new window.CustomEvent('dolopaws-home-location-context-changed', { detail:{ ready:true } }));
+  }
+  scheduleTrailMap();
+  startMobileTrailMap();
+  if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
+}
+
+function liResetLocationContext(){
+  liLocationContext = null;
+  liRememberLocationContext(null);
+  activeCountry = 'all';
+  activeRegion = 'all';
+  activeValley = 'all';
+  liMapBounds = null;
+  selectedTrailId = null;
+  liPendingLocationCenter = null;
+  liClearLocationConditions();
+  const picker = document.getElementById('liAreaPicker');
+  const choose = document.getElementById('liChooseAreaBtn');
+  if(picker) picker.hidden = true;
+  if(choose) choose.setAttribute('aria-expanded', 'false');
+  renderReturningHomepage(currentProfileForAdjust);
+  if(typeof window.CustomEvent === 'function'){
+    window.dispatchEvent(new window.CustomEvent('dolopaws-home-location-context-changed', { detail:{ ready:false } }));
+  }
+  const useLocation = document.getElementById('liUseLocationBtn');
+  if(useLocation) useLocation.focus();
+}
+
+liApplyLocationGeography();
+window.DoloPawsHomepageLocation = {
+  hasContext:() => !!liLocationContext,
+  filterTrails:filterTrailsForLocationContext,
+};
 
 // Today, for this area, corrected for each trail's altitude. Undefined until a
 // forecast arrives, which makes the engine report conditions as not included --
@@ -202,7 +406,8 @@ function liConditionsFor(trail){
 }
 
 function filterTrailsForReturningView(list){
-  let displayList = showingSavedOnly ? list.filter(x => currentFavorites[x.id]) : list;
+  let displayList = filterTrailsForLocationContext(list);
+  if(showingSavedOnly) displayList = displayList.filter(x => currentFavorites[x.id]);
   if(activeCountry !== 'all'){
     displayList = displayList.filter(x => {
       const country = window.DoloPawsRegions && window.DoloPawsRegions.countryForRegion
@@ -986,6 +1191,9 @@ function initTrailMap(){
     trailMapLoaded = true;
     if(pendingPathList) updatePathLayer(pendingPathList);
     if(pendingMarkerList) updateMapMarkers(pendingMarkerList);
+    if(liPendingLocationCenter && currentMapTrails.length === 0){
+      trailMapInstance.flyTo({ center:liPendingLocationCenter, zoom:10 });
+    }
     const selected = currentMapTrails.find(trail => trail.id === selectedTrailId);
     if(selected) setSelectedTrailRoute(selected, { fit:false });
   });
@@ -1296,7 +1504,14 @@ function updatePathLayer(list){
 }
 
 function updateMapMarkers(list){
-  if(!trailMapInstance) return;
+  // Recommendations can render before the deferred map is constructed. Keep
+  // their geographic scope so the first map paint opens on the same area as
+  // the list instead of flashing the map's catalogue default.
+  if(!trailMapInstance){
+    pendingMarkerList = list.slice();
+    pendingPathList = list.slice();
+    return;
+  }
   updatePathLayer(list);
   currentMapTrails = list.slice();
   if(!trailMapLoaded || !trailMapInstance.getSource('trail-points')){
@@ -2122,6 +2337,59 @@ function initLoggedInShell(){
   if(!filtersBtn) return;
   liShellWired = true;
 
+  const useLocation = document.getElementById('liUseLocationBtn');
+  const chooseArea = document.getElementById('liChooseAreaBtn');
+  const areaPicker = document.getElementById('liAreaPicker');
+  const areaSelect = document.getElementById('liAreaSelect');
+  const locationStatus = document.getElementById('liLocationStatus');
+  const changeLocation = document.getElementById('liChangeLocationBtn');
+  if(useLocation) useLocation.addEventListener('click', () => {
+    if(!navigator.geolocation){
+      if(locationStatus) locationStatus.textContent = 'Location is not available in this browser. Choose an area instead.';
+      if(areaPicker) areaPicker.hidden = false;
+      if(chooseArea) chooseArea.setAttribute('aria-expanded', 'true');
+      return;
+    }
+    useLocation.disabled = true;
+    useLocation.querySelector('span').textContent = 'Finding you…';
+    if(locationStatus) locationStatus.textContent = '';
+    navigator.geolocation.getCurrentPosition(position => {
+      useLocation.disabled = false;
+      useLocation.querySelector('span').textContent = 'Use my location';
+      liSetLocationContext({
+        kind:'current',
+        lat:Number(position.coords.latitude),
+        lng:Number(position.coords.longitude),
+        radiusKm:LI_LOCATION_RADIUS_KM,
+      });
+    }, error => {
+      useLocation.disabled = false;
+      useLocation.querySelector('span').textContent = 'Use my location';
+      const denied = error && error.code === 1;
+      if(locationStatus) locationStatus.textContent = denied
+        ? 'Location access is off. Choose an area to keep going.'
+        : 'We could not find your location. Choose an area to keep going.';
+      if(areaPicker) areaPicker.hidden = false;
+      if(chooseArea) chooseArea.setAttribute('aria-expanded', 'true');
+      if(areaSelect) areaSelect.focus();
+    }, { enableHighAccuracy:false, timeout:10000, maximumAge:300000 });
+  });
+  if(chooseArea) chooseArea.addEventListener('click', () => {
+    const open = areaPicker ? areaPicker.hidden : false;
+    if(areaPicker) areaPicker.hidden = !open;
+    chooseArea.setAttribute('aria-expanded', String(open));
+    if(open && areaSelect) areaSelect.focus();
+  });
+  if(areaPicker) areaPicker.addEventListener('submit', event => {
+    event.preventDefault();
+    if(!areaSelect || !areaSelect.value) return;
+    const splitAt = areaSelect.value.indexOf('::');
+    const region = areaSelect.value.slice(0, splitAt);
+    const valley = areaSelect.value.slice(splitAt + 2);
+    liSetLocationContext({ kind:'area', region, valley, label:valley });
+  });
+  if(changeLocation) changeLocation.addEventListener('click', liResetLocationContext);
+
   const wireMenu = (btn, menu) => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -2320,7 +2588,7 @@ function renderLiSearchSuggestions(profile){
   const query = search.value.trim().toLowerCase();
   if(!query){ hideLiSearchSuggestions(); return; }
   const overrides = profile ? effectiveOverrides(profile, adjustOverride) : guestOverrides();
-  const matches = trails
+  const matches = filterTrailsForLocationContext(trails)
     .filter(trail => liTrailIsInSelectedGeography(trail, true))
     .filter(trail => liTrailSearchText(trail).includes(query))
     .map(trail => ({ ...trail, score:recommendTrail(trail, overrides, liConditionsFor(trail)).score }))
@@ -2477,6 +2745,15 @@ async function renderReturningHomepage(profile, options = {}){
   renderLiHeader(profile);
   refreshLiBellBadge();
   renderLiControls();
+  liRenderLocationContext(profile);
+
+  // Do not calculate, display, map, or remember a personalised match until
+  // the owner has supplied an explicit geographic context.
+  if(!liLocationContext){
+    if(listEl) listEl.innerHTML = '';
+    updateMapMarkers([]);
+    return;
+  }
 
   const name = (profile && profile.name) ? profile.name : 'there';
   const overrides = profile ? effectiveOverrides(profile, adjustOverride) : guestOverrides();
@@ -2497,7 +2774,7 @@ async function renderReturningHomepage(profile, options = {}){
   // Paint first. Match-history comparison is useful but non-critical, so it
   // runs after the page is interactive instead of blocking every mobile load.
   const newIds = liNewMatchIds;
-  if(!options.skipNewMatchSync) liScheduleNewMatchSync(scored, profile);
+  if(!options.skipNewMatchSync) liScheduleNewMatchSync(filterTrailsForLocationContext(scored), profile);
 
   // The cloud is Eddie speaking, one line, no counts, true for any area.
   // When the owner has set "Adjust for today", the dog voices those declared
@@ -2539,7 +2816,7 @@ async function renderReturningHomepage(profile, options = {}){
   updateMapMarkers(displayList);
 
   // Reset to page 1 whenever the filters change; clamp if the list shrank.
-  const filterKey = `${activeCountry}|${activeRegion}|${activeValley}|${showingSavedOnly}|${liQuery}|${JSON.stringify(liFilters)}|${sortKey}`;
+  const filterKey = `${liLocationContextLabel()}|${activeCountry}|${activeRegion}|${activeValley}|${showingSavedOnly}|${liQuery}|${JSON.stringify(liFilters)}|${sortKey}`;
   if (filterKey !== lastFilterKey){ currentPage = 1; lastFilterKey = filterKey; }
   const collapsed = !showFullList && !showingSavedOnly && displayList.length > TOP_MATCHES + 2;
   const totalPages = collapsed ? 1 : Math.max(1, Math.ceil(displayList.length / TRAILS_PER_PAGE));
@@ -2564,15 +2841,17 @@ async function renderReturningHomepage(profile, options = {}){
       ? t('home.noSaved')
       : (liQuery.trim() || liActiveFilterCount() > 0)
         ? 'Try widening your search or filters.'
-        : t('home.noTrailsValley', {label});
+        : liLocationContext && liLocationContext.kind === 'current'
+          ? `No ORMA trails are mapped within ${liLocationContext.radiusKm} km yet.`
+          : t('home.noTrailsValley', {label});
     listEl.innerHTML = `
       <div class="li-empty">
         <div class="li-empty-title">No trails match</div>
         <p>${msg}</p>
-        <button type="button" id="liEmptyReset">Reset filters</button>
+        <button type="button" id="liEmptyReset">${liLocationContext && liLocationContext.kind === 'current' && !liQuery.trim() && liActiveFilterCount() === 0 ? 'Choose another area' : 'Reset filters'}</button>
       </div>`;
     const emptyReset = document.getElementById('liEmptyReset');
-    if(emptyReset) emptyReset.addEventListener('click', liResetAllFilters);
+    if(emptyReset) emptyReset.addEventListener('click', liLocationContext && liLocationContext.kind === 'current' && !liQuery.trim() && liActiveFilterCount() === 0 ? liResetLocationContext : liResetAllFilters);
     return;
   }
 
@@ -3018,8 +3297,13 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
     document.documentElement.classList.remove('early-member');
     document.body.dataset.homepageView = 'returning';
     adjustOverride = null;
-    scheduleTrailMap();
-    startMobileTrailMap();
+    // The guest homepage may already be fetching a catalogue-centroid
+    // forecast. It must not leak into a location-scoped member ranking.
+    liClearLocationConditions();
+    if(liLocationContext){
+      scheduleTrailMap();
+      startMobileTrailMap();
+    }
     // The map pane may have been hidden (or sized differently) when the map
     // was created, make sure MapLibre measures the now-visible container.
     if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
