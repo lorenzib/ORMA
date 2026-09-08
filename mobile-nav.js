@@ -17,7 +17,7 @@
     locationScript.src=`${prefix}hazard-location.js?v=20260908-1`;
     locationScript.defer=true;document.head.appendChild(locationScript);
     const hazardScript=document.createElement('script');
-    hazardScript.src=`${prefix}trail-hazards.js?v=20260908-1`;
+    hazardScript.src=`${prefix}trail-hazards.js?v=20260908-2`;
     hazardScript.defer=true;document.head.appendChild(hazardScript);
   }
   function installSkipLink(){
@@ -804,5 +804,4 @@
     buttons().forEach(function (button) { button.hidden = true; });
   });
 })();
-
 
