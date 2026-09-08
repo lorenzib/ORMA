@@ -13,6 +13,15 @@ describe('logged-in discovery workspace layout', () => {
     expect(css).toMatch(/\.li-toolbar-greet\s*\{[^}]*display:flex;/s);
   });
 
+  test('requires a geographic context before the recommendation workspace', () => {
+    expect(html.indexOf('id="liLocationGate"')).toBeLessThan(html.indexOf('id="liToolbar"'));
+    expect(html).toContain('id="liUseLocationBtn"');
+    expect(html).toContain('id="liChooseAreaBtn"');
+    expect(html).toContain('id="liChangeLocationBtn"');
+    expect(html).toContain('Your precise position stays in this browser session');
+    expect(css).toContain('.li-location-gate[hidden],.li-toolbar[hidden],.li-body[hidden]{display:none!important;}');
+  });
+
   test('replaces the geo dropdowns with unified search and moves create behind "+ New"', () => {
     expect(html).toContain('class="li-quick-filters"');
     expect(html).not.toContain('id="liQuickLeash"');
@@ -92,7 +101,7 @@ describe('logged-in discovery workspace layout', () => {
     expect(mobileCss).toContain('width:100vw;max-width:none;height:100dvh;min-height:0;overflow:hidden;');
     expect(mobileCss).toContain('grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:36px 36px;');
     expect(mobileCss).toContain('.li-toolbar-greet{display:none;}');
-    expect(html).toContain('homepage-mobile.css?v=20260903-2');
+    expect(html).toContain('homepage-mobile.css?v=20260908-1');
   });
 
   test('uses a dashed divider instead of a match box and keeps route facts legible', () => {

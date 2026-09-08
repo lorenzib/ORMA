@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-08T09:31:42.848Z",
+  "updatedAt": "2026-09-08T10:31:29.934Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -458,6 +458,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Latemar_uit_San_Floriano.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12039246",
+      "approvedReviewId": "commons-osm-12039246",
+      "approvedAt": "2026-09-08T10:23:15.166Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12039246-lago-di-stramentizzo.jpg",
+        "heroImage": "images/trails/osm-12039246-lago-di-stramentizzo.jpg",
+        "imageAlt": "The turquoise water of the Lago di Stramentizzo between wooded slopes, willows and flowering elder on the near bank.",
+        "imageCredit": "Lago di Stramentizzo",
+        "imageCreditText": "Lago di Stramentizzo by Syrio",
+        "imageCreator": "Syrio",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Stramentizzo_03.jpg",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1754,6 +1771,23 @@
       }
     },
     {
+      "id": "osm-9487078",
+      "approvedReviewId": "commons-osm-9487078",
+      "approvedAt": "2026-09-08T10:23:15.166Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-9487078-seis-am-schlern.jpg",
+        "heroImage": "images/trails/osm-9487078-seis-am-schlern.jpg",
+        "imageAlt": "Hay meadows above Seis am Schlern with the village and forested slopes below, the Schlern and the Santner Spitze rising behind under cumulus.",
+        "imageCredit": "Burgruinen in Seis am Schlern",
+        "imageCreditText": "Burgruinen in Seis am Schlern by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Burgruinen_in_Seis_am_Schlern.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
       "id": "osm-9492594",
       "approvedReviewId": "commons-osm-9492594",
       "approvedAt": "2026-09-06T19:13:57.327Z",
@@ -1801,6 +1835,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Escursioni_nei_prati.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-9511999",
+      "approvedReviewId": "commons-osm-9511999",
+      "approvedAt": "2026-09-08T10:31:29.934Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-9511999-santa-crusc-pescol.jpg",
+        "heroImage": "images/trails/osm-9511999-santa-crusc-pescol.jpg",
+        "imageAlt": "A flowering hay meadow at Pescol with an old Ladin farmhouse and timber fences, green terraces and scattered farms beyond, and the wall of the Sas dla Crusc behind.",
+        "imageCredit": "Santa Crusc da Pescol",
+        "imageCreditText": "Santa Crusc da Pescol by Wolfgang Moroder",
+        "imageCreator": "Wolfgang Moroder",
+        "imageLicence": "CC BY-SA 3.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Santa_Crusc_da_Pescol.jpg",
         "imageSourceType": "licensed-source"
       }
     },

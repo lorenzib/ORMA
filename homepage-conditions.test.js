@@ -53,6 +53,22 @@ describe('area conditions are corrected for each trail altitude', () => {
     expect(area.band()).toBeNull();
   });
 
+  test('reset clears a forecast and prevents an earlier request from repopulating it', async () => {
+    let resolveResponse;
+    const root = {
+      DoloPawsWeatherWindow: weatherWindow,
+      fetch: () => new Promise(resolve => { resolveResponse = resolve; }),
+    };
+    const area = homeConditions.create(root);
+    const pending = area.load(46.5, 11.6);
+    area.reset();
+    resolveResponse({ ok:true, json:async () => payload({ temperatureC:24 }) });
+
+    expect(await pending).toBe(false);
+    expect(area.snapshot()).toBeNull();
+    expect(area.band()).toBeNull();
+  });
+
   test('a stale snapshot stops being offered to the score', async () => {
     const area = makeArea({ temperatureC:28, elevation:1000 });
     await area.load(46.5, 11.6, { at: Date.now() - (31 * 60 * 1000) });

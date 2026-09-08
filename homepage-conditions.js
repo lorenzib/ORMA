@@ -36,6 +36,7 @@
 
   function create(root){
     let area = null;
+    let loadVersion = 0;
 
     function weather(){
       const api = root.DoloPawsWeatherWindow;
@@ -85,10 +86,13 @@
       if(typeof request !== 'function' || !Number.isFinite(Number(lat)) || !Number.isFinite(Number(lng))) return false;
       const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}`
         + '&current=temperature_2m&hourly=temperature_2m&forecast_days=1&timezone=auto';
+      const requestVersion = loadVersion;
       try{
         const response = await request(url);
         if(!response || !response.ok) return false;
-        const accepted = adopt(await response.json(), settings.at);
+        const payload = await response.json();
+        if(requestVersion !== loadVersion) return false;
+        const accepted = adopt(payload, settings.at);
         // Two independent renderers draw this page. Announcing the forecast lets
         // each repaint itself rather than one reaching into the other.
         if(accepted && root.dispatchEvent && typeof root.CustomEvent === 'function'){
@@ -159,7 +163,9 @@
 
     function snapshot(){ return area; }
 
-    return { load, loadTrails, forTrail, band, snapshot };
+    function reset(){ area = null; loadVersion += 1; }
+
+    return { load, loadTrails, forTrail, band, snapshot, reset };
   }
 
   return { create, highestPoint, LAPSE_C_PER_1000M };

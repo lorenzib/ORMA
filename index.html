@@ -25,8 +25,8 @@ if(location.protocol !== 'file:' && location.pathname === '/index.html'){
    Firebase resolves. The homepage controller clears the class once real
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
-<link rel="stylesheet" href="styles.css?v=20260905-3">
-<link rel="stylesheet" href="homepage-mobile.css?v=20260903-2">
+<link rel="stylesheet" href="styles.css?v=20260908-1">
+<link rel="stylesheet" href="homepage-mobile.css?v=20260908-1">
   <link rel="stylesheet" href="homepage-editorial.css?v=20260906-1">
 <link rel="stylesheet" href="geo-filters.css?v=20260904-1">
 </head>
@@ -231,6 +231,47 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     </div>
   </header>
 
+  <!-- A recommendation only becomes meaningful after the owner has chosen
+       where ORMA should look. Geolocation is requested from the primary
+       button (never on page load); choosing a catalogue area is the complete
+       fallback when location access is unavailable or unwanted. -->
+  <section class="li-location-gate" id="liLocationGate" aria-labelledby="liLocationTitle">
+    <div class="li-location-gate-copy">
+      <span class="li-location-kicker">Start with where you are</span>
+      <h1 id="liLocationTitle">Where should ORMA look for <span id="liLocationDogName">your dog</span>’s next trail?</h1>
+      <p>Set a location before we rank anything. That keeps a great match in another mountain range from becoming today’s recommendation.</p>
+      <div class="li-location-actions">
+        <button type="button" class="li-location-primary" id="liUseLocationBtn">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg>
+          <span>Use my location</span>
+        </button>
+        <button type="button" class="li-location-secondary" id="liChooseAreaBtn" aria-expanded="false" aria-controls="liAreaPicker">Choose an area</button>
+      </div>
+      <p class="li-location-privacy"><span aria-hidden="true">⌖</span> Your precise position stays in this browser session and is not added to your profile.</p>
+      <p class="li-location-status" id="liLocationStatus" role="status" aria-live="polite"></p>
+      <form class="li-area-picker" id="liAreaPicker" hidden>
+        <label for="liAreaSelect">Where are you planning to walk?</label>
+        <div class="li-area-picker-row">
+          <select id="liAreaSelect" required aria-describedby="liAreaPickerHelp">
+            <option value="">Choose a valley</option>
+          </select>
+          <button type="submit">Show recommendations</button>
+        </div>
+        <small id="liAreaPickerHelp">You can change this at any time.</small>
+      </form>
+    </div>
+    <div class="li-location-gate-visual" aria-hidden="true">
+      <svg viewBox="0 0 500 430" preserveAspectRatio="xMidYMid slice">
+        <path d="M-10 350C72 285 111 286 173 228S286 124 357 151s88 7 160-65"/>
+        <path d="M-24 405c91-81 151-55 214-116s116-67 164-44 95 9 169-47"/>
+        <path d="M30 145c60-43 105-40 149-79s109-33 151-4 89 32 150-7"/>
+        <path d="M27 281c38-29 88-35 124-12s56 16 88-24 76-68 127-49 67 4 105-25"/>
+      </svg>
+      <div class="li-location-compass"><span></span></div>
+      <span class="li-location-visual-label">Recommendations begin here</span>
+    </div>
+  </section>
+
   <!-- Dog-switching data remains available to the controller, while the
        visible greeting is integrated into the compact discovery toolbar. -->
   <div class="li-greetbar">
@@ -278,6 +319,11 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <span class="li-toolbar-greet-copy">
         <strong id="liToolbarGreeting">Where are we going today?</strong>
         <small id="liToolbarDogContext">Trails ranked for your dog’s needs and your current choices.</small>
+      </span>
+      <span class="li-location-summary" id="liLocationSummary" hidden>
+        <span class="li-location-summary-pin" aria-hidden="true">⌖</span>
+        <span><small>Looking near</small><strong id="liLocationSummaryLabel"></strong></span>
+        <button type="button" id="liChangeLocationBtn">Change</button>
       </span>
     </div>
     <!-- Today, for this area. Hidden until a forecast actually arrives: an
@@ -549,10 +595,10 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
 <script src="veterinary-care.js?v=20260901-1" defer></script>
 <script src="trail-route-refs.js?v=20260903-1" defer></script>
-<script src="script.js?v=20260903-1" defer></script>
+<script src="script.js?v=20260908-1" defer></script>
 <script src="dog-wizard.js?v=20260901-2" defer></script>
 <script src="collections-data.js?v=20260815-4" defer></script>
-<script src="trail-weather-window.js?v=20260906-1"></script><script src="homepage-conditions.js?v=20260906-2"></script><script src="homepage-search.js?v=20260825-1" defer></script>
-<script src="homepage-mobile.js?v=20260816-1" defer></script>
+<script src="trail-weather-window.js?v=20260906-1"></script><script src="homepage-conditions.js?v=20260908-1"></script><script src="homepage-search.js?v=20260908-1" defer></script>
+<script src="homepage-mobile.js?v=20260908-1" defer></script>
 </body>
 </html>
