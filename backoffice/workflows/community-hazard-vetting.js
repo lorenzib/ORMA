@@ -1,6 +1,7 @@
 'use strict';
 
 const {createStructuredResponse}=require('../services/openai-responses-client');
+const {locateOnRoute}=require('../../hazard-location');
 
 // A customer hazard report is data, not a decision. The Hazard Analyst searches for
 // independent corroboration and returns a verdict; only the verdict decides what,
@@ -13,10 +14,15 @@ const HAZARD_VETTING_SCHEMA={type:'object',additionalProperties:false,properties
   message:{type:'string'},
   reasoning:{type:'string'},
   expectedDurationDays:{type:['integer','null']},
+  location:{type:['object','null'],additionalProperties:false,properties:{
+    lat:{type:'number'},lng:{type:'number'},
+    landmark:{type:'string',description:'What is at this point, named the way a walker would recognise it.'},
+  },required:['lat','lng','landmark'],
+  description:'Where on this trail the hazard is, when the report or a source you found establishes it well enough to place. Null when it does not; never infer a position from the route as a whole.'},
   sources:{type:'array',maxItems:4,items:{type:'object',additionalProperties:false,properties:{
     url:{type:'string'},publisher:{type:'string'},publishedOn:{type:['string','null']},quote:{type:'string'},
   },required:['url','publisher','publishedOn','quote']}},
-},required:['verdict','plausible','severity','title','message','reasoning','expectedDurationDays','sources']};
+},required:['verdict','plausible','severity','title','message','reasoning','expectedDurationDays','sources','location']};
 
 const UNVERIFIED_NOTICE='Reported by a hiker and not yet confirmed by an official source. Treat it as a heads-up, not a verified closure.';
 const UNVERIFIED_LIFETIME_DAYS=7;
@@ -35,12 +41,18 @@ async function runHazardVetting(report,options={}){
       'Return verdict "corroborated" only when at least one independent source you actually found supports the report. Every source you cite must be one you retrieved, with a real URL and a short verbatim quote.',
       'Return "contradicted" when a current authoritative source says the opposite, and "not-a-hazard" for spam, abuse, jokes, or anything that is not a trail hazard.',
       'Otherwise return "uncorroborated" and judge plausibility: could a hiker have genuinely seen this on this trail, at this time of year? Most real local hazards are never published online, so absence of coverage is not evidence against the report.',
+      'If the report or a source you retrieved places the hazard somewhere identifiable on the route -- a named gate, ford, pasture crossing, col or junction -- return its coordinate in location with a landmark naming what is there. A walker warned before reaching a hazard can act on it; one told only that it is somewhere on the walk cannot. Return location null when nothing establishes a position: a guessed coordinate is worse than none, because it moves the warning to a place nobody reported.',
       'This is dog-walking safety guidance. Never overstate certainty and never invent a source.',
     ].join('\n')},
     {role:'user',content:`Trail: ${report.trailName||report.trailId}\nArea: ${report.area||'unknown'}\nCategory: ${report.category}\nObserved on: ${report.observedOn||'unstated'}\nReport: ${report.description||''}`},
   ]},options.clientOptions||{});
+  // The analyst supplies a coordinate; the km is measured here, off the trail's
+  // own path, exactly as a reader's tap is. A coordinate that is not on this
+  // route is discarded rather than published somewhere nobody reported.
+  const located=response.data.location?locateOnRoute(response.data.location,options.trailPath):null;
   return {contractVersion:'1.0.0',reportId:report.id,trailId:report.trailId,
-    generatedAt:options.at||new Date().toISOString(),publicMutationAllowed:false,...response.data};
+    generatedAt:options.at||new Date().toISOString(),publicMutationAllowed:false,...response.data,
+    locatedAt:located&&located.onRoute?{lat:located.lat,lng:located.lng,km:located.km}:null};
 }
 
 // A position is published only when it is complete and in range. A partial or
@@ -80,7 +92,7 @@ function hazardFromVetting(report,vetting,at){
     // somewhere in particular is one a walker can be warned about on approach;
     // one that is merely "on this trail" is not. Carried verbatim from the
     // report: vetting judges whether the hazard is real, not where it was seen.
-    at:hazardPosition(report.location),
+    at:hazardPosition(report.location)||hazardPosition(vetting.locatedAt),
     trailIds:[report.trailId],trailNames:[report.trailName||report.trailId],
   };
 }

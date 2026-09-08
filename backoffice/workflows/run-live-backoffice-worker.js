@@ -289,13 +289,24 @@ async function processCommunityHazardReports(store,options={}){
 
   const pending=await store.listHazardReports('pending',limit);
   const revet=lifecycle.dueForRevetting.slice(0,Math.max(0,limit-pending.length));
+  // A re-check must not cost a hazard its position. The hazard is rebuilt from
+  // the report it came from, so the position it already carries has to travel
+  // with it or every daily re-vetting would quietly unplace it.
   const reports=[...pending,...revet.map(hazard=>({id:hazard.reportId,trailId:hazard.trailIds?.[0],
     trailName:hazard.trailNames?.[0],category:hazard.event,description:hazard.message,
-    area:hazard.area,createdAt:hazard.reportedAt,revetting:true}))];
+    area:hazard.area,createdAt:hazard.reportedAt,location:hazard.at||null,revetting:true}))];
+
+  // The path the Analyst's coordinate is measured against. Without it a located
+  // hazard cannot be placed, so it is looked up once per report rather than
+  // left to the agent to assert.
+  const trailPathFor=id=>{
+    const trail=id&&typeof options.trailById?.get==='function'?options.trailById.get(id):null;
+    return Array.isArray(trail?.path)?trail.path:null;
+  };
 
   for(const report of reports){
     try{
-      const vetting=await runHazardVetting(report,{...options,at});
+      const vetting=await runHazardVetting(report,{...options,at,trailPath:trailPathFor(report.trailId)});
       const applied=applyHazardVetting(publicData,report,vetting,{at});
       publicData=applied.publicData;
       await store.markHazardReport(report.id,applied.status,{verdict:vetting.verdict,
@@ -319,7 +330,8 @@ async function runLiveBackofficeWorker(store, options = {}){
     workflowRunUrl:options.workflowRunUrl,runId:options.runId});
   const newTrailReviews=await ingestNewTrailReviews(store);
   const hazardReviews=await ingestHazardReviews(store);
-  const communityHazards=await processCommunityHazardReports(store,options);
+  const communityHazards=await processCommunityHazardReports(store,
+    {...options,trailById:new Map(productionTrails.map(trail=>[trail.id,trail]))});
   const recoveredJobs = typeof store.recoverExpiredJobs === 'function'
     ? await store.recoverExpiredJobs(options)
     : [];
