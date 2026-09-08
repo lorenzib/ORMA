@@ -16,6 +16,10 @@ function candidateFromProductionTrail(trail){
     geometryAssessment: {
       distanceKm: Number.isFinite(trail.distance) ? trail.distance : null,
     },
+    // A declared route shape is a verified fact about the trail, and the
+    // geometry check is the thing that needs it. Dropping it here is what let a
+    // declared out-and-back keep failing for not closing.
+    routeShape: trail.routeShape || null,
   };
 }
 

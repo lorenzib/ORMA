@@ -80,7 +80,8 @@ function reconstructRelation(payload, externalId, options = {}){
   const extracted = memberWays(payload, relationId);
   const components = stitchWays(extracted.ways, options);
   const primary = components[0] || { coordinates: [], wayIds: [] };
-  const assessment = assessGeometry(primary.coordinates, { closureThresholdM: options.closureThresholdM || 100 });
+  const assessment = assessGeometry(primary.coordinates,
+    { closureThresholdM: options.closureThresholdM || 100, routeShape: options.routeShape });
   const issues = [...assessment.issues];
   const tags = extracted.relation.tags || {};
   if(tags.type !== 'route' || !['hiking', 'foot'].includes(tags.route)) issues.push('relation-not-hiking-route');
