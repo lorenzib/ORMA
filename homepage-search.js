@@ -265,6 +265,7 @@
       risk: state.diff === 'any' ? '' : state.diff,
       terrain: state.terrain === 'any' ? '' : state.terrain,
       heat: state.shade === '40' ? 'shade-40' : state.shade === '60' ? 'shade-60' : '',
+      water: state.hasWater,
     };
   }
 
@@ -290,6 +291,7 @@
       if (fstate.terrain === 'rocky' && rank > 2) return false;
     }
     if (fstate.risk && difficulty(t).value !== fstate.risk) return false;
+    if (fstate.water && !hasWater(t)) return false;
     return true;
   }
 
@@ -298,7 +300,6 @@
     var fstate = discoveryState();
     return trails.filter(function (t) {
       if (filters ? !filters.matches(t, fstate) : !legacyMatch(t, fstate)) return false;
-      if (state.hasWater && !hasWater(t)) return false;
       return true;
     }).map(function (t) {
       return { t: t, score: scoreOf(t) };

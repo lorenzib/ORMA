@@ -166,9 +166,23 @@ describe('shared trail-filter experience', () => {
     expect(script).toContain('window.DoloPawsDiscoveryFilters');
     expect(script).toContain('filters.matches(x, liRefineState())');
     expect(script).toContain('displayList = displayList.filter(x => liMatchesRefineFilters(x));');
-    // Match% stays scored and water stays a looser local toggle on this runtime
-    // catalogue, applied after the shared filter.
+    // Water on route is part of the shared refine state now (a mapped-water
+    // presence filter), so it is no longer a separate local post-filter.
+    expect(script).toContain('water: liFilters.water,');
+    expect(script).not.toContain('if(liFilters.water) displayList = displayList.filter(');
+    // Only match% stays local, scored on this runtime catalogue.
     expect(script).toContain('if(liFilters.minMatch > 0) displayList = displayList.filter(x => x.score >= liFilters.minMatch);');
-    expect(script).toContain('if(liFilters.water) displayList = displayList.filter(x => Array.isArray(x.waterSources) && x.waterSources.length > 0);');
+  });
+
+  test('water on route is one mapped-water presence filter on every surface', () => {
+    // The reviewed-water gate is gone from the shared filter: "Water" means the
+    // same "a water point is mapped" test on Browse and both homepages.
+    const filters = read('discovery-filters.js');
+    expect(filters).not.toContain("!hasWater || !verified(parts, 'water')");
+    expect(filters).toContain("if(!hasWater) return false;");
+    // All three surfaces feed water into that shared filter, not a local check.
+    expect(read('script.js')).toContain('water: liFilters.water,');
+    expect(read('homepage-search.js')).toContain('water: state.hasWater,');
+    expect(read('browse-trails.html')).toContain('water: waterOnly,');
   });
 });
