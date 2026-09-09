@@ -358,7 +358,8 @@
       // Revision goes back to whoever raised the finding, so there is no
       // "revision owner" dropdown to think about.
       targetAgent:(item.specialistOutputs||[])[0]?.agentId||'auditor',
-      submit:(action,note)=>send('dossier',{reviewId:item.reviewId,candidateId:item.candidateId,action,targetAgent:(item.specialistOutputs||[])[0]?.agentId||'auditor',note}),
+      submit:(action,note,acceptedBlockers)=>send('dossier',{reviewId:item.reviewId,candidateId:item.candidateId,action,
+        targetAgent:(item.specialistOutputs||[])[0]?.agentId||'auditor',note,acceptedBlockers:acceptedBlockers||[]}),
     }));
   }
 
@@ -739,6 +740,59 @@
 
   // ---- rendering ----
 
+  const MIN_ACCEPT_REASON=10;
+  const ROUTE_GUIDANCE_BLOCKER=/supported authoritative route guidance is required$/;
+
+  // Ticking a blocker off. Five agents researching a trail always leave loose
+  // ends, and a gate that opens only when none remain never opens. Accepting one
+  // says this dossier can be verified; it never says the claim is true, so the
+  // reason is required and is kept with the verification.
+  //
+  // One row per raw blocker string, because that string is what the contract
+  // matches on. The grouped explanation above stays as it is: it is for reading,
+  // this is for deciding.
+  function acceptanceList(decision,onChange){
+    const waivable=decision.blockers.filter(reason=>!ROUTE_GUIDANCE_BLOCKER.test(String(reason)));
+    const supplied=decision.blockers.filter(reason=>ROUTE_GUIDANCE_BLOCKER.test(String(reason)));
+    const box=el('div','vd-accept');
+    const accepted=new Map();
+
+    if(supplied.length){
+      const note=el('p','vd-accept-blocked');
+      note.textContent=supplied.length===1
+        ?'Directions cannot be ticked off: a walker follows them, so they have to be supplied. Send it back to the agent.'
+        :`${supplied.length} route-guidance blockers cannot be ticked off: a walker follows them, so they have to be supplied. Send it back to the agent.`;
+      box.append(note);
+    }
+    if(!waivable.length)return {node:box,accepted,waivable};
+
+    box.append(el('p','vd-accept-lede',
+      'If you have looked at these and they do not stop the trail being verified, say why. Your reason is kept with the verification, and the claim itself stays exactly as the agent left it.'));
+
+    waivable.forEach((reason,index)=>{
+      const row=el('label','vd-accept-row');
+      const tick=el('input');tick.type='checkbox';
+      const text=el('span','vd-accept-text',looseText(String(reason)));
+      const why=el('input');why.type='text';why.className='vd-accept-why';
+      why.placeholder='Why does this not stop verification?';
+      why.disabled=true;
+      const update=()=>{
+        why.disabled=!tick.checked;
+        const value=why.value.trim();
+        if(tick.checked&&value.length>=MIN_ACCEPT_REASON)accepted.set(String(reason),value);
+        else accepted.delete(String(reason));
+        row.classList.toggle('is-accepted',accepted.has(String(reason)));
+        onChange();
+      };
+      tick.addEventListener('change',()=>{if(tick.checked)window.setTimeout(()=>why.focus(),0);update();});
+      why.addEventListener('input',update);
+      row.append(tick,text,why);
+      box.append(row);
+      if(index===0)row.classList.add('is-first');
+    });
+    return {node:box,accepted,waivable};
+  }
+
   function card(decision){
     const article=el('article',`vd-card${decision.ready?'':' is-blocked'}`);
     const head=el('div','vd-card-head');
@@ -789,6 +843,12 @@
       article.append(box);
     }
 
+    // Declared before the buttons so the gate can read it; filled in below.
+    let acceptance=null;
+    const approvable=()=>decision.ready
+      ||(acceptance&&acceptance.waivable.length===decision.blockers.length
+        &&acceptance.accepted.size===acceptance.waivable.length);
+
     if(decision.summary)article.append(el('p','vd-summary',decision.summary));
 
     // The checklist is the job. It used to be one sentence at the bottom of
@@ -836,15 +896,26 @@
 
     const actions=el('div','vd-actions');
     const status=el('p','vd-status',receipt?`Saved ${new Date(receipt.at).toLocaleTimeString()}. The next automation run picks it up.`:'');
+    let approveButton=null;
+    const syncApprove=()=>{
+      if(!approveButton||receipt)return;
+      const ok=approvable();
+      approveButton.disabled=!ok;
+      approveButton.title=ok?'':'Tick off every blocker with a reason, or send it back';
+    };
     [['approve',decision.gate.approve,'is-approve'],['request-revision','Needs work',''],['reject','Reject','is-reject']].forEach(([action,label,cls])=>{
       const button=el('button',cls,label);button.type='button';
-      if(receipt||(action==='approve'&&!decision.ready)){
-        button.disabled=true;
-        if(action==='approve'&&!decision.ready)button.title='Clear the blockers first';
-      }
-      button.addEventListener('click',()=>decide(decision,action,note,article,status));
+      if(action==='approve')approveButton=button;
+      if(receipt)button.disabled=true;
+      button.addEventListener('click',()=>decide(decision,action,note,article,status,
+        action==='approve'&&acceptance?[...acceptance.accepted].map(([blocker,reason])=>({blocker,reason})):[]));
       actions.append(button);
     });
+    if(!decision.ready&&decision.blockers.length){
+      acceptance=acceptanceList(decision,syncApprove);
+      article.append(acceptance.node);
+    }
+    syncApprove();
     if(receipt){note.disabled=true;}
     article.append(note,actions,status,el('p','vd-scope',decision.gate.scope));
     if(decision.openRoute&&decision.candidateId)article.append(shapeHelper(decision.candidateId));
@@ -852,7 +923,7 @@
     return article;
   }
 
-  async function decide(decision,action,note,article,status){
+  async function decide(decision,action,note,article,status,acceptedBlockers){
     if(action!=='approve'&&!note.value.trim()){
       status.textContent='Say what needs fixing before sending it back.';
       note.focus();return;
@@ -860,7 +931,7 @@
     article.querySelectorAll('button').forEach(button=>button.disabled=true);
     status.textContent='Saving…';
     try{
-      const result=await decision.submit(action,note.value.trim());
+      const result=await decision.submit(action,note.value.trim(),acceptedBlockers||[]);
       if(result&&result.ok===false)throw new Error(result.error||'submit-failed');
       receipts[decision.key]={action,note:note.value.trim(),at:new Date().toISOString()};persist(RECEIPT_KEY,receipts);
       delete drafts[decision.key];persist(DRAFT_KEY,drafts);

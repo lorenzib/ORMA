@@ -41,8 +41,52 @@ function routeGuidanceBlockingReasons(outputs){
   return missing.map(id=>`logistics/${id}: supported authoritative route guidance is required`);
 }
 
+
+// A moderator can accept a blocker rather than clear it, and the acceptance is
+// what makes a dossier approvable. Five agents researching a mountain trail
+// always leave loose ends, and demanding that every one resolve itself is why
+// nothing was ever verified.
+//
+// What an acceptance says is "this dossier can be verified", never "this claim
+// is true". The claim keeps the finding the specialist gave it, so an accepted
+// unresolved dog-access claim still publishes nothing about dog access:
+// factFromClaim refuses any claim whose humanAcceptedFinding is not a supported
+// proposal. Accepting is a judgement about the dossier, not about the world.
+const MIN_ACCEPTANCE_REASON=10;
+const ROUTE_GUIDANCE_BLOCKER=/supported authoritative route guidance is required$/;
+
+// Route guidance is the one blocker no reason can wave through. Every other
+// blocker is background research a human can judge sufficient; this one is
+// content printed on the trail page for a walker to follow, so waiving it means
+// publishing a walk with no directions. It is the agent's job, and #304 made it
+// one it can do.
+function waivableBlocker(reason){return !ROUTE_GUIDANCE_BLOCKER.test(String(reason));}
+
+function acceptedBlockerMap(acceptedBlockers){
+  const accepted=new Map();
+  for(const entry of acceptedBlockers||[]){
+    const blocker=String(entry?.blocker||'').trim();
+    const reason=String(entry?.reason||'').trim();
+    if(!blocker||reason.length<MIN_ACCEPTANCE_REASON)continue;
+    if(!waivableBlocker(blocker))continue;
+    accepted.set(blocker,reason);
+  }
+  return accepted;
+}
+
+/** Every blocker still standing: unaccepted, or accepted without a real reason. */
+function unacceptedBlockers(review,acceptedBlockers){
+  const accepted=acceptedBlockerMap(acceptedBlockers);
+  return (review?.blockingReasons||[]).filter(reason=>!accepted.has(String(reason)));
+}
+
 function compileVerifiedDossier(review,trail,options={}){
-  if(!review.approvalAllowed)throw new Error('A blocked dossier cannot be compiled as verified');
+  // Defence in depth: applyDossierReview checks this too, but nothing may compile
+  // a dossier whose blockers a human never addressed.
+  const standing=unacceptedBlockers(review,options.acceptedBlockers);
+  if(!review.approvalAllowed&&standing.length){
+    throw new Error(`A blocked dossier cannot be compiled as verified: ${standing.join('; ')}`);
+  }
   const routeReference=numberedRouteReference(review,trail);
   if(routeReference&&!authoritativeRecommendedStart(review)){
     throw new Error(`Numbered route ${routeReference} requires an authoritative recommended-start claim before verification`);
@@ -73,6 +117,10 @@ function compileVerifiedDossier(review,trail,options={}){
   const dossier={contractVersion:'1.0.0',candidateId:trail.candidateId,trailId:trail.trailId,trailName:trail.trailName,
     reviewState:'accepted',sources:[...sourceMap.values()],claims,routeGeometry:geometry,
     ormaVerification:{status:'verified',verifiedAt:at,verifiedBy:options.verifiedBy||'human-moderator',reviewId:review.reviewId,
+      // Kept with the verification, because a reader is entitled to know a
+      // trail was verified with caveats and what the moderator said about them.
+      acceptedBlockers:[...acceptedBlockerMap(options.acceptedBlockers)]
+        .map(([blocker,reason])=>({blocker,reason,acceptedBy:options.verifiedBy||'human-moderator',acceptedAt:at})),
       conditions:['Recheck time-sensitive access, restriction, parking and water claims on their scheduled maintenance cadence.']},
     specialistOutputRefs:(review.specialistOutputs||[]).map(output=>`firestore:trail-specialist-output-${output.jobId}`),
     publicMutationAllowed:false,publicationAuthorized:false};
@@ -85,4 +133,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,compileVerifiedDossier,verificationRecord};
+module.exports={MIN_ACCEPTANCE_REASON,waivableBlocker,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,compileVerifiedDossier,verificationRecord};
