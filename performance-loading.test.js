@@ -88,10 +88,11 @@ describe('PERF-02 asset and regional loading contract', () => {
   test('signed-in homepage paints from cache before cloud profile and match-history reads finish', () => {
     const html = read('index.html');
     const homepage = read('script.js');
+    const css = read('styles.css');
     expect(html).toContain('id="hpHeroImage" loading="lazy" fetchpriority="auto"');
     expect(html).toContain("!document.documentElement.classList.contains('early-member')");
     const authHandler = homepage.slice(
-      homepage.indexOf("window.addEventListener('dolopaws-auth-changed'"),
+      homepage.indexOf('async function applyHomepageAuthState'),
       homepage.indexOf('// Show the dog photo bubble')
     );
     expect(authHandler.indexOf('renderReturningHomepage(profile);'))
@@ -104,6 +105,9 @@ describe('PERF-02 asset and regional loading contract', () => {
     );
     expect(renderer).not.toContain('await window.DoloPawsAuth.getLastMatches()');
     expect(homepage).toContain('function liScheduleNewMatchSync(scored, profile)');
+    expect(css).toContain('html.early-member #returningCustomerHomepage[hidden]{display:flex !important;}');
+    expect(homepage).toContain('window.DoloPawsAuth && window.DoloPawsAuth.authResolved');
+    expect(homepage).toContain('applyHomepageAuthState({ detail:{ user:window.DoloPawsAuth.currentUser } });');
   });
 
   test('mobile trail navigation does not wait for Firebase, fonts or MapLibre', () => {

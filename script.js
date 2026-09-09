@@ -3594,7 +3594,7 @@ window.addEventListener('dolopaws-dog-profile-saved', (e) => {
   }
 });
 
-window.addEventListener('dolopaws-auth-changed', async (e) => {
+async function applyHomepageAuthState(e){
   const user = e.detail.user;
   const devReturning = !!(e.detail && e.detail.devView === 'returning');
   const newHome = document.getElementById('newCustomerHomepage');
@@ -3696,7 +3696,18 @@ window.addEventListener('dolopaws-auth-changed', async (e) => {
     if(dogBubble) dogBubble.hidden = true;
     // (No guest map to schedule: signed-out visitors get no homepage map.)
   }
-});
+}
+
+window.addEventListener('dolopaws-auth-changed', applyHomepageAuthState);
+
+// firebase-init.js exposes a replayable auth state, but auth-ui.js translates
+// it into a DOM event. On a fast cached sign-in that event can be dispatched
+// before this deferred homepage script attaches its listener. Re-apply the
+// already-resolved state once so the first navigation cannot remain stuck
+// between the guest and member homepages.
+if(window.DoloPawsAuth && window.DoloPawsAuth.authResolved){
+  applyHomepageAuthState({ detail:{ user:window.DoloPawsAuth.currentUser } });
+}
 /**
  * Water Sources Integration for ORMA
  * Adds 12,921 drinking water sources from Overpass API (OpenStreetMap)
