@@ -13,10 +13,10 @@ describe('altitude health and safety guide', () => {
     expect(document.querySelector('h1').textContent).toMatch(/altitude changes the effort/i);
     expect(document.querySelector('.alt-subtitle').textContent).toMatch(/altitude, exertion and heat can look alike/i);
     const hero = document.querySelector('.alt-hero.safety-photo-header .safety-photo-header__image');
-    expect(hero.getAttribute('src')).toBe('../images/editorial/safety-library/altitude-with-your-dog-v1.jpg');
+    expect(hero.getAttribute('src')).toBe('../images/editorial/safety-library/altitude-with-your-dog-v2.jpg');
     expect(hero.getAttribute('alt')).toBe('');
-    expect(hero.getAttribute('width')).toBe('1200');
-    expect(hero.getAttribute('height')).toBe('800');
+    expect(hero.getAttribute('width')).toBe('1536');
+    expect(hero.getAttribute('height')).toBe('1024');
     expect(document.querySelector('.alt-meta').textContent).toMatch(/2 min guide/i);
     expect(document.querySelector('.alt-meta').textContent).not.toMatch(/reviewed/i);
     expect(document.querySelector('.alt-jump')).toBeNull();

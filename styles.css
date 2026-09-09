@@ -321,6 +321,7 @@ img,svg{max-width:100%;height:auto;}
   max-width:none;
   object-fit:cover;
   object-position:var(--safety-photo-position);
+  filter:saturate(.82) contrast(1.045) brightness(.96);
 }
 .safety-photo-header.section-page-head > :not(.safety-photo-header__image){
   position:relative;
@@ -389,6 +390,7 @@ img,svg{max-width:100%;height:auto;}
   }
   .safety-photo-header.section-page-head h1{font-size:clamp(30px,9vw,42px)!important;}
   .safety-photo-header :is(.section-page-subtitle,.sub,.alt-subtitle){font-size:14px!important;line-height:1.45!important;}
+  .safety-photo-header__image{object-position:var(--safety-photo-position-mobile,var(--safety-photo-position));}
   .safety-back-link{min-height:40px;margin-bottom:14px;padding:8px 13px;font-size:11px;}
 }
 :where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{

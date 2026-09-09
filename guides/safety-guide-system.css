@@ -32,20 +32,22 @@
 
 .safety-guide-article .safety-photo-header.section-page-head::before{
   background:
-    linear-gradient(110deg,rgba(22,38,29,.88) 0%,rgba(22,38,29,.66) 44%,rgba(22,38,29,.12) 80%),
-    linear-gradient(180deg,rgba(22,38,29,.3) 0%,rgba(22,38,29,.08) 68%);
+    linear-gradient(106deg,rgba(22,38,29,.92) 0%,rgba(22,38,29,.70) 40%,rgba(22,38,29,.08) 66%,rgba(22,38,29,0) 82%),
+    linear-gradient(180deg,rgba(22,38,29,.12) 0%,rgba(22,38,29,.04) 58%,rgba(22,38,29,.34) 100%);
 }
 
 .safety-guide-article .safety-photo-header.section-page-head h1{
-  max-width:none;
+  max-width:min(760px,54vw);
   font-size:clamp(28px,3.25vw,52px)!important;
-  white-space:nowrap;
+  white-space:normal;
+  text-wrap:balance;
 }
 
 .safety-guide-article .safety-photo-header :is(.section-page-subtitle,.sub,.alt-subtitle){
-  max-width:none;
+  max-width:min(700px,51vw);
   font-size:clamp(12px,1.05vw,17px)!important;
-  white-space:nowrap;
+  white-space:normal;
+  text-wrap:pretty;
 }
 .safety-guide-article .safety-topic{
   margin:0 0 10px;
@@ -237,7 +239,7 @@
 @media(max-width:760px){
   .safety-guide-article{--safety-guide-gutter:18px;}
   .safety-guide-article .safety-photo-header.section-page-head{
-    min-height:350px;
+    min-height:430px;
     padding:28px 20px!important;
   }
   .safety-guide-article .safety-photo-header.section-page-head h1{font-size:clamp(30px,9vw,42px)!important;}

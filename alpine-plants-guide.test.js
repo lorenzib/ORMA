@@ -88,7 +88,7 @@ describe('Alpine plants guide', () => {
     expect(html.indexOf('id="plantFindHeading"')).toBeLessThan(html.indexOf('id="plantResults"'));
     expect(html).not.toContain('Editorial review draft');
     expect(html).toContain('class="apg-hero safety-photo-header section-page-head content-canvas"');
-    expect(html).toContain('images/editorial/safety-library/flowers-plants-dogs.jpg');
+    expect(html).toContain('images/editorial/safety-library/alpine-plants-dog-v2.jpg');
     expect(html).not.toContain('apg-hero-mosaic');
     expect(html).not.toContain('apg-emergency-mark');
     expect(html).toContain('class="area-select-shell"');

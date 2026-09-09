@@ -24,7 +24,7 @@ describe('shared Safety Library guide visual system', () => {
 
     const stylesheets = [...document.querySelectorAll('link[rel="stylesheet"]')];
     expect(document.body.classList.contains('safety-guide-article')).toBe(true);
-    expect(stylesheets.at(-1).getAttribute('href')).toBe('safety-guide-system.css?v=20260904-1');
+    expect(stylesheets.at(-1).getAttribute('href')).toBe('safety-guide-system.css?v=20260909-1');
     expect(document.querySelectorAll('.safety-continue')).toHaveLength(1);
     expect(document.querySelectorAll('.safety-sources')).toHaveLength(1);
     expect(document.querySelector('.safety-photo-header .safety-topic').textContent).toMatch(/^Safety library \/ /);
@@ -37,8 +37,9 @@ describe('shared Safety Library guide visual system', () => {
     expect(systemCss).toMatch(/\.safety-guide-article \.safety-photo-header\.section-page-head\{[^}]*justify-content:flex-end;[^}]*width:100%;[^}]*max-width:none;[^}]*margin:0;[^}]*border-radius:0;/s);
     expect(systemCss).toContain('--safety-guide-card-radius:15px');
     expect(systemCss).toContain('.safety-guide-article .safety-photo-header.section-page-head');
-    expect(systemCss).toMatch(/\.safety-photo-header\.section-page-head h1\{[^}]*white-space:nowrap/s);
-    expect(systemCss).toMatch(/\.section-page-subtitle[^}]*white-space:nowrap/s);
+    expect(systemCss).toMatch(/\.safety-photo-header\.section-page-head h1\{[^}]*max-width:min\(760px,54vw\);[^}]*white-space:normal/s);
+    expect(systemCss).toMatch(/\.section-page-subtitle[^}]*max-width:min\(700px,51vw\);[^}]*white-space:normal/s);
+    expect(systemCss).toMatch(/@media\(max-width:760px\)[\s\S]*\.safety-photo-header\.section-page-head\{[^}]*min-height:430px/s);
     expect(systemCss).toContain('.safety-continue__previous,.safety-continue__next');
     expect(systemCss).toContain('background:var(--ink)');
     expect(systemCss).not.toContain('.safety-continue__find');
@@ -73,7 +74,7 @@ describe('shared Safety Library guide visual system', () => {
     document.documentElement.innerHTML = html;
 
     expect(document.querySelector('.safety-photo-header .safety-back-link')).not.toBeNull();
-    expect(document.querySelector('.safety-photo-header__image').getAttribute('src')).toContain('dog-hydration-lake-unbranded-v1.jpg');
+    expect(document.querySelector('.safety-photo-header__image').getAttribute('src')).toContain('heat-hydration-dog-v2.jpg');
     expect(document.querySelector('main').classList.contains('water-guide-body')).toBe(true);
     expect(document.querySelectorAll('.water-card')).toHaveLength(3);
     expect(document.querySelectorAll('.water-card--info')).toHaveLength(1);

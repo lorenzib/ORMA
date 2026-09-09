@@ -83,27 +83,27 @@ describe('Safety library', () => {
     expect(html).toContain("form.addEventListener('change'");
   });
 
-  test('uses the dedicated photographic safety-library imagery', () => {
+  test('uses a coherent dog-first photographic set throughout the library', () => {
     const guideImages = [...document.querySelectorAll('.sg-guide-card img')];
     const sources = guideImages.map(image => image.getAttribute('src'));
     expect(sources).toEqual(expect.arrayContaining([
-      'images/editorial/safety-library/altitude-with-your-dog-v1.jpg',
-      'images/editorial/safety-library/breed-group-considerations-dogs-v3.jpg',
-      'images/editorial/safety-library/dogs-on-cable-cars-v6.jpg',
-      'images/editorial/safety-library/dog-hydration-lake-unbranded-v1.jpg',
-      'images/editorial/safety-library/paw-protection-forest-dog-v4.jpg',
-      'images/editorial/safety-library/flowers-plants-dogs.jpg',
-      'images/editorial/safety-library/livestock-guardian-dogs-v1.jpg',
-      'images/editorial/safety-library/dogs-at-rifugi.jpg'
+      'images/editorial/safety-library/altitude-with-your-dog-v2.jpg',
+      'images/editorial/safety-library/breed-group-considerations-dogs-v4.jpg',
+      'images/editorial/safety-library/dogs-on-cable-cars-v7.jpg',
+      'images/editorial/safety-library/heat-hydration-dog-v2.jpg',
+      'images/editorial/safety-library/paw-protection-dog-v5.jpg',
+      'images/editorial/safety-library/alpine-plants-dog-v2.jpg',
+      'images/editorial/safety-library/livestock-guardian-dogs-v2.jpg',
+      'images/editorial/safety-library/dogs-at-rifugi-v2.jpg'
     ]));
     expect(guideImages.every(image => image.getAttribute('alt').trim().length > 0)).toBe(true);
     expect(guideImages.every(image => image.hasAttribute('width') && image.hasAttribute('height'))).toBe(true);
     expect(guideImages.every(image => image.getAttribute('decoding') === 'async')).toBe(true);
     expect(guideImages.every(image => !image.hasAttribute('loading'))).toBe(true);
-    const pawImage = document.querySelector('a[href="guides/paw-protection.html"] img');
-    expect(pawImage.classList.contains('sg-guide-image-paw')).toBe(true);
-    expect(pawImage.getAttribute('alt')).toMatch(/dog.*leash-free.*forest trail/i);
-    expect(html).toContain('.sg-guide-card img.sg-guide-image-paw{object-position:center 72%;}');
+    expect(guideImages.every(image => image.getAttribute('width') === '1536')).toBe(true);
+    expect(guideImages.every(image => image.getAttribute('height') === '1024')).toBe(true);
+    expect(guideImages.every(image => /dog/i.test(image.getAttribute('alt')))).toBe(true);
+    expect(html).toMatch(/\.sg-guide-card img\{[^}]*object-position:76% 50%;[^}]*filter:saturate\(\.82\) contrast\(1\.045\) brightness\(\.96\)/s);
     expect(document.body.textContent).toContain('Flowers, plants and dogs');
   });
 
