@@ -1324,7 +1324,9 @@ describe('ORMA backoffice MVP', () => {
     const reviewQueue=buildDossierReviewQueue(orchestration,outputs,{at});
     expect(validateTrailOrchestration(orchestration)).toEqual([]);
     expect(reviewQueue.items[0]).toEqual(expect.objectContaining({approvalAllowed:false,blockingReasons:['not-closed-loop']}));
-    expect(()=>applyDossierReview(orchestration,reviewQueue,{reviewId:reviewQueue.items[0].reviewId,action:'approve'},{at})).toThrow('cannot be approved');
+    // Approving without addressing the blocker still throws; a moderator may now
+    // accept one with a reason instead, which dossier-adjudication.test.js covers.
+    expect(()=>applyDossierReview(orchestration,reviewQueue,{reviewId:reviewQueue.items[0].reviewId,action:'approve'},{at})).toThrow('were not addressed');
   });
 
   test('geometry approval queues the three independent evidence specialists', () => {
