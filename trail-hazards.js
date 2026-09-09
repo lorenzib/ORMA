@@ -67,6 +67,13 @@
       .orma-hazard__summary-copy{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;min-width:0}
       .orma-hazard__title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;line-height:1.3}
       .orma-hazard[open] .orma-hazard__title{white-space:normal}
+      /* One line is the right shape for a stack of collapsed warnings, but on a
+         narrow phone it cut the place off: "Thunderstorm warning for Trentino
+         Al...". Two lines keep both the hazard and where it applies, and the
+         row is still compact. */
+      @media (max-width:430px){
+        .orma-hazard__title{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+      }
       .orma-hazard__title::first-letter{text-transform:uppercase}
       .orma-hazard__severity{flex:none;padding:2px 7px;border-radius:999px;background:rgba(185,88,46,.14);color:#8f3827;font:800 9.5px/1.3 Inter,sans-serif;letter-spacing:.07em;text-transform:uppercase}
       .orma-hazard.is-extreme .orma-hazard__severity{background:rgba(145,53,45,.16);color:#91352d}
