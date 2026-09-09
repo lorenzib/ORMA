@@ -29,6 +29,7 @@
   const queueNode=document.getElementById('verifyQueue');
   const countNode=document.getElementById('verifyCount');
   const workingNode=document.getElementById('verifyWorking');
+  const blockedNode=document.getElementById('verifyBlocked');
   const prNode=document.getElementById('verifyPr');
   const prCountNode=document.getElementById('verifyPrCount');
   const refreshBtn=document.getElementById('verifyRefresh');
@@ -599,6 +600,43 @@
     });
   }
 
+  // Trails that gave up. A blocked trail has no gate, so it appears in no review
+  // queue and the desk showed it nowhere at all -- it simply vanished from the
+  // pipeline with no way to see that it had. It is terminal by design and frees
+  // capacity for other work, but silently losing a trail is not the same as
+  // deciding to stop on it.
+  function blockedTrails(){
+    return (orchestration.trails||[])
+      .filter(trail=>trail.state==='blocked')
+      .map(trail=>({
+        trailId:trail.trailId||trail.candidateId,
+        name:trail.trailName||trail.trailId||trail.candidateId,
+        reasons:(trail.blockers||[]).map(String),
+        stoppedAt:trail.updatedAt||null,
+      }));
+  }
+
+  function renderBlocked(){
+    if(!blockedNode)return;
+    const stopped=blockedTrails();
+    blockedNode.replaceChildren();
+    blockedNode.hidden=!stopped.length;
+    if(!stopped.length)return;
+    blockedNode.append(el('h2','vd-blocked-title',
+      `${plural(stopped.length,'trail')} stopped after every attempt`));
+    blockedNode.append(el('p','vd-blocked-lede',
+      'These are out of the queue and no longer hold a place, so other trails keep moving. They stay here until their evidence or their source changes.'));
+    stopped.forEach(trail=>{
+      const row=el('article','vd-blocked-row');
+      row.append(el('strong','',trail.name));
+      const {groups,loose}=groupBlockers(trail.reasons);
+      const said=[...groups.map(entry=>entry.group.title),...loose];
+      row.append(el('p','vd-blocked-why',said.length?said.join(' · '):'No reason was recorded.'));
+      if(trail.stoppedAt)row.append(el('small','',`Stopped ${new Date(trail.stoppedAt).toLocaleDateString()}`));
+      blockedNode.append(row);
+    });
+  }
+
   function render(){
     // Trails that are clean by every automated check come first: they are one
     // click each, and burying them under the ones needing thought is what makes
@@ -615,6 +653,7 @@
     const summary=orchestration.summary||{};
     const running=Number(summary.running||0);
     workingNode.textContent=running?`The system is working on ${plural(running,'trail')}.`:'The system has no trails in progress.';
+    renderBlocked();
     renderCoverage();
     renderPullRequests();
   }

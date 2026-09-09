@@ -282,3 +282,13 @@ body.bo-shell{margin:0;background:var(--bo-bg);color:var(--bo-ink)}
 .vd-shape-copy{border:1px solid #2e4034;background:#2e4034;color:#fff;border-radius:999px;padding:7px 15px;font:600 12.5px/1.3 inherit;cursor:pointer;}
 .vd-shape-copy[disabled]{opacity:.45;cursor:not-allowed;}
 @media (max-width:640px){.vd-shape-option{flex:1 1 100%;}}
+
+/* Trails that gave up: out of the queue, but not out of sight. */
+.vd-blocked{margin-top:22px;border-top:1px solid #dfe5e0;padding-top:16px;}
+.vd-blocked-title{margin:0;font-size:14px;font-weight:700;color:#5d6b60;}
+.vd-blocked-lede{margin:5px 0 12px;font-size:12.5px;line-height:1.5;color:var(--bo-ink-soft,#5d6b60);max-width:64ch;}
+.vd-blocked-row{padding:10px 13px;border:1px solid #e2e7e3;border-radius:10px;background:#fafbfa;}
+.vd-blocked-row+.vd-blocked-row{margin-top:8px;}
+.vd-blocked-row strong{display:block;font-size:14px;color:#2f3d33;}
+.vd-blocked-row p{margin:3px 0 0;font-size:12.5px;line-height:1.45;color:#6b7a6e;}
+.vd-blocked-row small{display:block;margin-top:4px;font-size:11px;color:#8a968c;}
