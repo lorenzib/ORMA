@@ -451,14 +451,41 @@
     window.dispatchEvent(new CustomEvent('orma-hazards-changed'));
   }
 
+  // trail.html moves the weather card below the map on phones, taking the
+  // warnings with it. This one-line pointer under the hero says they exist
+  // and jumps to them, opening the card if the reader had collapsed it.
+  function renderHazardPointer(hazards){
+    const pointer = document.getElementById('ormaHazardPointer');
+    if(!pointer || !hazards.length) return;
+    pointer.textContent = `${areaWarningsLabel(hazards)} · see trail weather`;
+    pointer.hidden = false;
+    pointer.addEventListener('click', event => {
+      const card = document.querySelector('.td2-hero-weather');
+      if(!card) return;
+      event.preventDefault();
+      card.classList.remove('is-mobile-collapsed');
+      const toggle = card.querySelector('.td2-mobile-card-toggle');
+      if(toggle) toggle.setAttribute('aria-expanded', 'true');
+      const stack = card.querySelector('.orma-hazard-stack') || card;
+      if(typeof stack.scrollIntoView !== 'function') return;
+      const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      stack.scrollIntoView({ behavior:reduced ? 'auto' : 'smooth', block:'center' });
+    });
+  }
+
+  function areaWarningsLabel(hazards){
+    return hazards.length === 1 ? 'Area warning' : `${hazards.length} area warnings`;
+  }
+
   function renderOfficialHazards(hazards){
     if(!hazards.length) return;
+    renderHazardPointer(hazards);
     const stack = document.createElement('section');
     stack.className = 'orma-hazard-stack';
     stack.setAttribute('aria-label', 'Current area warnings');
     const kick = document.createElement('span');
     kick.className = 'orma-hazard-stack__kick';
-    kick.textContent = hazards.length === 1 ? 'Area warning' : `${hazards.length} area warnings`;
+    kick.textContent = areaWarningsLabel(hazards);
     stack.append(kick);
     hazards.forEach(item => stack.append(hazardCard(item, false)));
     // trail.html mounts the stack inside its trail-weather card, beside the

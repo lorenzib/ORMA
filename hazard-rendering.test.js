@@ -68,6 +68,23 @@ describe('official area warnings reach the page', () => {
     expect(warning.querySelector('summary .orma-hazard__severity').textContent).toBe('moderate');
     expect(warning.querySelector('summary .orma-hazard__summary')).toBeNull();
     expect(warning.querySelector('.orma-hazard__detail .orma-hazard__summary')).not.toBeNull();
+    // Phones move the weather card below the map; the hero keeps a pointer.
+    const pointer = document.getElementById('ormaHazardPointer');
+    expect(pointer.hidden).toBe(false);
+    expect(pointer.textContent).toBe('Area warning · see trail weather');
+    expect(pointer.getAttribute('href')).toBe('#mobileWeatherSlot');
+    // Following it reopens a collapsed weather card and scrolls to the stack.
+    const card = document.querySelector('.td2-hero-weather');
+    card.classList.add('is-mobile-collapsed');
+    card.querySelector('.td2-mobile-card-toggle').setAttribute('aria-expanded', 'false');
+    const scrolled = jest.fn();
+    Element.prototype.scrollIntoView = scrolled;
+    pointer.click();
+    expect(card.classList.contains('is-mobile-collapsed')).toBe(false);
+    expect(card.querySelector('.td2-mobile-card-toggle').getAttribute('aria-expanded')).toBe('true');
+    expect(scrolled).toHaveBeenCalledTimes(1);
+    expect(scrolled.mock.instances[0]).toBe(stack);
+    delete Element.prototype.scrollIntoView;
     // The recommendation card reads the same warnings, so the two never disagree.
     expect(window.OrmaAreaWarnings).toEqual([{
       id:'test-hazard-1', event:'Thunderstorm warning for the test area',
@@ -101,6 +118,7 @@ describe('official area warnings reach the page', () => {
   test('a trail with no matching hazard renders nothing', async () => {
     const stack = await render('trail.html', '/trail.html?id=some-other-trail');
     expect(stack).toBeNull();
+    expect(document.getElementById('ormaHazardPointer').hidden).toBe(true);
   });
 });
 
