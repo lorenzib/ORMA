@@ -37,7 +37,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('MVP workstreams');
     expect(html).toContain('Trail coverage');
     expect(html).toContain('id="coverageRows"');
-    expect(html).toContain('backoffice-review.css?v=20260908-3');
+    expect(html).toContain('backoffice-review.css?v=20260909-1');
     expect(html).toContain('id="workerHealth"');
     expect(html).toContain('id="campaignHealth"');
     expect(html).toContain('backoffice/dashboard-model.js?v=20260905-2');
