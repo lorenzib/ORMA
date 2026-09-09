@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-08T21:29:18.068Z",
+  "updatedAt": "2026-09-09T08:41:33.800Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -1376,6 +1376,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Gsiesertal_DxO.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-19064561",
+      "approvedReviewId": "flickr-osm-19064561",
+      "approvedAt": "2026-09-09T08:41:33.795Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-19064561-forchat.jpg",
+        "heroImage": "images/trails/osm-19064561-forchat.jpg",
+        "imageAlt": "Two walkers on the grass path along the Mont Forchat ridge above the Chablais foothills with Lake Geneva beyond",
+        "imageCredit": "The ridge path on Mont Forchat above Lullin",
+        "imageCreditText": "The ridge path on Mont Forchat above Lullin by Guilhem Vellut",
+        "imageCreator": "Guilhem Vellut",
+        "imageLicence": "CC BY 2.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by/2.0/",
+        "imageSourcePage": "https://www.flickr.com/photos/22539273@N00/52084525416",
         "imageSourceType": "licensed-source"
       }
     },
