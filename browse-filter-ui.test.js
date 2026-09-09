@@ -187,9 +187,11 @@ describe('Browse filter UI', () => {
     expect(html).toMatch(/\.browse-primary-controls \.browse-search-shell\{[^}]*grid-column:1\/-1;[^}]*grid-row:1;[^}]*width:100%;[^}]*min-width:0;/);
     expect(html).toMatch(/\.browse-area-controls\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\);/);
     expect(html).toMatch(/\.browse-geo-group--valley\{grid-column:auto;/);
-    expect(html).toMatch(/\.browse-quick-filters\{grid-column:1\/-1;grid-row:4;[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\);[^}]*width:100%;/);
-    expect(html).toMatch(/\.browse-quick-filter:last-child\{grid-column:1\/-1;\}/);
-    expect(html).toMatch(/\.browse-saved-only\{grid-column:1\/-1;grid-row:5;[^}]*width:100%;/);
+    expect(html).toMatch(/\.browse-quick-filters\{display:contents;\}/);
+    expect(html).toMatch(/#browseQuickShade\{grid-column:1\/span 3;grid-row:4;\}/);
+    expect(html).toMatch(/#browseWater\{grid-column:4\/span 3;grid-row:4;\}/);
+    expect(html).toMatch(/#browseMultiDay\{grid-column:1\/span 3;grid-row:5;\}/);
+    expect(html).toMatch(/\.browse-saved-only\{grid-column:4\/span 3;grid-row:5;[^}]*width:100%;/);
     expect(html).toMatch(/#browseFiltersMenu\{[^}]*position:fixed;[^}]*bottom:max\(8px,env\(safe-area-inset-bottom\)\);[^}]*overflow-y:auto;/);
   });
 
