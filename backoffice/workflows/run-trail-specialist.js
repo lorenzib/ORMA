@@ -63,6 +63,18 @@ function validateSpecialistResult(result,agentId){
   }
   for(const claim of result.claims||[]){
     if(!ENTITY_POLICY_CLAIM_IDS.includes(claim.id)||claim.finding!=='supported-proposal')continue;
+    // "This route passes no rifugio" is an answer, and the only true one for 92
+    // of 165 trails. The schema offers not-applicable and the prompt asks for it,
+    // but this check refused it, leaving no valid reply: naming no entity threw,
+    // and answering unresolved instead blocked the dossier gate. A claim about
+    // nothing carries no entity and no reading date, so neither is required --
+    // but it must not name one either, or it is not about nothing.
+    if(claim.rule==='not-applicable'){
+      if(String(claim.entityName||'').trim()){
+        throw new Error(`Entity policy claim ${claim.id} is not-applicable but names ${claim.entityName}`);
+      }
+      continue;
+    }
     if(!String(claim.entityName||'').trim())throw new Error(`Entity policy claim ${claim.id} requires the entity it is about`);
     if(!(typeof claim.rule==='string'&&Object.hasOwn(POLICY_BY_RULE,claim.rule)))throw new Error(`Entity policy claim ${claim.id} requires a rule from the published vocabulary, got ${JSON.stringify(claim.rule)}`);
     if(!/^\d{4}-\d{2}-\d{2}/.test(String(claim.observedAt||'')))throw new Error(`Entity policy claim ${claim.id} requires the date its source was read`);
