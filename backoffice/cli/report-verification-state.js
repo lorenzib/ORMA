@@ -67,6 +67,27 @@ function routeGuidanceDiagnosis(items){
   });
 }
 
+
+// What the autonomous resolution lane is actually working on. A trail sits in
+// evidence-resolution while claims that came back unresolved are retried, up to
+// five times each, and every attempt is a model call. Which claims those are
+// decides whether that spend is worth making: the ledger is already on the
+// orchestration artifact, so naming them costs no extra reads.
+function claimsUnderResolution(trails){
+  return trails.filter(trail=>trail.state==='evidence-resolution').map(trail=>{
+    const ledger=Object.values(trail.claimResolution||{});
+    return {
+      trailId:trail.trailId,
+      claims:ledger.map(entry=>({
+        claim:`${entry.agentId}/${entry.claimId}`,
+        was:entry.originalFinding||null,
+        state:entry.state||null,
+        attempts:(entry.attempts||[]).length,
+      })).sort((a,b)=>a.claim.localeCompare(b.claim)),
+    };
+  });
+}
+
 async function buildVerificationReport({store}){
   const [orchestration,queue,registry,execution,staging]=await Promise.all([
     store.getArtifact('trail-orchestration'),
@@ -140,6 +161,7 @@ async function buildVerificationReport({store}){
       publicationReady:(staging?.items||[]).filter(item=>item.state==='ready-for-publication-preview').length,
     },
     routeGuidance:routeGuidanceDiagnosis(items),
+    underResolution:claimsUnderResolution(trails),
     sampleReadyToApprove:clean.slice(0,10).map(item=>({trailId:item.trailId,gate:item.gateType})),
     sampleNeedsJudgement:blocked.slice(0,8).map(item=>({trailId:item.trailId,gate:item.gateType,
       reasons:(item.blockingReasons||[]).slice(0,3)})),
