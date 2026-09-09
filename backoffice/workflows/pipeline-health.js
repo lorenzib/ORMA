@@ -18,6 +18,14 @@
  * decision and reporting it as a failure sends someone chasing a fault that
  * does not exist. A job blocked for a reason of its own never restarts by
  * itself. Those look identical in a count of "blocked".
+ *
+ * Two conditions, not one. requeueOutageBlockedJobs also filters on the lanes
+ * the worker still processes, so an outage-blocked job in a retired lane is
+ * never put back: the first live run of this summary reported 34 such jobs as
+ * "start again on their own once the cause clears" when the lane that ran them
+ * had been deleted, which is exactly the false reassurance the split exists to
+ * prevent. A lane with no processor is a lane to retire, whatever its error
+ * says.
  */
 
 const { providerOutage } = require('../services/provider-outage');
@@ -110,9 +118,17 @@ function summarisePipeline(jobs, options = {}) {
   const count = status => all.filter(job => job.status === status).length;
   const stopped = all.filter(job => job.status === 'blocked');
 
+  // The lanes the worker still runs. The caller passes its own list rather
+  // than this module importing it, because the worker imports this module and
+  // the cycle would be worse than the argument. Absent, no lane is claimed to
+  // be live: over-reporting work as retired is recoverable, promising a
+  // restart that never comes is not.
+  const live = new Set(Array.isArray(options.processableJobTypes) ? options.processableJobTypes.map(String) : []);
+  const laneRuns = jobType => live.has(String(jobType));
+
   // The worker's own rule, not a second opinion: requeueOutageBlockedJobs puts
-  // exactly these back, so the desk must classify them exactly as it does.
-  const resumes = job => providerOutage(job.lastError);
+  // back exactly the jobs that pass both of these, so the desk must too.
+  const resumes = job => providerOutage(job.lastError) && laneRuns(job.jobType);
 
   const byLane = new Map();
   all.forEach(job => {
@@ -136,6 +152,9 @@ function summarisePipeline(jobs, options = {}) {
         // Retiring one of these would drop a trail out of verification, so the
         // desk must not offer a stop button for it.
         carriesVerification: PROTECTED_JOB_TYPES.includes(jobType),
+        // No processor left. Its jobs cannot succeed, cannot be requeued, and
+        // are only counting themselves among the live failures.
+        laneRetired: !laneRuns(jobType),
         queued: laneJobs.filter(job => job.status === 'queued').length,
         running: laneJobs.filter(job => job.status === 'running').length,
         readyForReview: laneJobs.filter(job => job.status === 'ready-for-review').length,

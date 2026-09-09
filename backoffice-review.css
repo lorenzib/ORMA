@@ -358,3 +358,4 @@ details.vd-explain[open]>summary{margin-bottom:10px;}
 .vd-accept-why:disabled{background:#f2f4f2;color:#9aa69d;}
 .vd-accept-row input[type=checkbox]{margin-top:2px;width:16px;height:16px;accent-color:#2e4034;}
 @media (max-width:640px){.vd-accept-row{grid-template-columns:auto 1fr;}}
+.vd-lane-note.is-retired{color:#8A5A16;font-weight:600;}

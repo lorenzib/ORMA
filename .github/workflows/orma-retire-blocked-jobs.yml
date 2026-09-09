@@ -1,0 +1,77 @@
+name: ORMA retire blocked jobs
+
+# Clearing the leftovers of a lane that no longer runs. On 2026-09-09, 49 of 54
+# blocked jobs belonged to two lanes with no code behind them: the trail-photo
+# lane deleted in #263, and the editorial publication lane parked in #227. They
+# cannot succeed and cannot be requeued, so they only hid the five failures
+# that were real.
+#
+# Run by hand, and by hand on purpose: the tool refuses to decide which lane is
+# dead, so a person names it. It also refuses the two lanes that carry trail
+# verification even when they are named.
+#
+# Retiring marks a job completed with a recorded reason. Nothing is deleted, so
+# a mistake stays visible.
+#
+# The state lives in Firestore, so this cannot run from a checkout: the
+# credential stays in Actions instead of on anyone's machine.
+on:
+  workflow_dispatch:
+    inputs:
+      job_type:
+        description: 'Lane to clear (blank lists every blocked lane and changes nothing)'
+        required: false
+        default: ''
+      apply:
+        description: 'Actually clear them. Leave unchecked for a dry run.'
+        type: boolean
+        required: false
+        default: false
+      reason:
+        description: 'Recorded on every job it clears'
+        required: false
+        default: 'no longer part of the pipeline'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orma-retire-blocked-jobs
+  cancel-in-progress: false
+
+jobs:
+  retire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FIREBASE_PROJECT_ID: dolopaws
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Check worker credentials
+        run: test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
+      - run: npm ci
+      - name: Retire blocked jobs
+        env:
+          JOB_TYPE: ${{ inputs.job_type }}
+          REASON: ${{ inputs.reason }}
+          APPLY: ${{ inputs.apply }}
+        run: |
+          set -euo pipefail
+          # No lane named: list what is blocked and stop. This is the first
+          # thing to run, and it writes nothing.
+          if [ -z "$JOB_TYPE" ]; then
+            npm run backoffice:retire-blocked-jobs
+            exit 0
+          fi
+          args=(--job-type "$JOB_TYPE" --reason "$REASON")
+          if [ "$APPLY" = "true" ]; then
+            args+=(--apply)
+          else
+            echo "[retire] Dry run. Tick 'apply' to clear them."
+          fi
+          npm run backoffice:retire-blocked-jobs -- "${args[@]}"
