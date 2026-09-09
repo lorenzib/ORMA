@@ -688,6 +688,9 @@ body{background:#EFECE2;}
 .recommendation-factor-impact.is-clear{color:#6B7A6E;font-weight:700;}
 .recommendation-factor-reason{flex:1;color:#3E4A40;font:500 12.5px/1.5 'Inter',sans-serif;}
 .recommendation-breakdown-note{margin:10px 0 0;color:#6B7A6E;font:600 12px/1.5 'Inter',sans-serif;}
+.recommendation-fine{display:flex;gap:8px;align-items:baseline;margin:10px 0 0;color:#3E4A40;font:500 12.5px/1.5 'Inter',sans-serif;}
+.recommendation-fine::before{content:'✓';flex:none;color:#4A7856;font-weight:900;}
+.recommendation-factors+.recommendation-fine{padding-top:9px;border-top:1px solid #E5E2D8;}
 .recommendation-firstrun{margin:12px 0 0;padding:10px 13px;border-radius:10px;background:#EAF3F6;color:#2F6274;font:700 12.5px/1.5 'Inter',sans-serif;}
 .recommendation-add-dog{appearance:none;border:0;background:none;padding:0;cursor:pointer;color:#3E7A91;font:700 12.5px 'Inter',sans-serif;text-align:left;}
 .recommendation-add-dog:hover{text-decoration:underline;}
@@ -821,6 +824,21 @@ body{background:#EFECE2;}
 .td2-hero-weather .td2-cond-window strong{color:#fff;}
 .td2-hero-weather .td2-summary-action{color:#BCE0EE;}
 .td2-hero-weather .td2-fc6-body{border-color:rgba(255,255,255,.18);}
+/* Official area warnings, restyled for the dark weather card: one line each
+   when collapsed, the source and validity on demand. */
+.td2-hero-weather .orma-hazard-stack{margin:0;padding:9px 14px 10px;gap:5px;border-top:1px solid rgba(255,255,255,.18);}
+.td2-hero-weather .orma-hazard-stack__kick{color:#FFD9A8;}
+.td2-hero-weather .orma-hazard{border:0;border-left:3px solid #FFB35C;border-radius:7px;background:rgba(255,179,92,.16);color:#fff;}
+.td2-hero-weather .orma-hazard.is-extreme{border-left-color:#FF8A7A;background:rgba(255,122,107,.2);}
+.td2-hero-weather .orma-hazard summary{grid-template-columns:minmax(0,1fr) 20px;gap:8px;padding:6px 9px;}
+.td2-hero-weather .orma-hazard__title{font-size:12px;}
+.td2-hero-weather .orma-hazard__severity{background:rgba(255,255,255,.16);color:#FFE3C4;}
+.td2-hero-weather .orma-hazard__where{color:#FFD9A8;}
+.td2-hero-weather .orma-hazard__toggle{width:20px;height:20px;border-color:rgba(255,255,255,.35);color:#fff;font-size:13px;}
+.td2-hero-weather .orma-hazard__detail{padding:0 9px 8px;border-top-color:rgba(255,255,255,.16);}
+.td2-hero-weather .orma-hazard__detail p{margin:7px 0 5px;color:#EAF1E8;font-size:11px;}
+.td2-hero-weather .orma-hazard__detail small{color:#DCE6DE;font-size:10.5px;}
+.td2-hero-weather .orma-hazard a{color:#BCE0EE;}
 .td2-hero-weather .td2-fcday .d,.td2-hero-weather .td2-fcday .tp,.td2-hero-weather .td2-fc6-note{color:#EAF1E8;}
 
 /* One action shelf. Links are presented as real controls, and the offline
@@ -1070,6 +1088,13 @@ body.trail-photo-viewer-open{overflow:hidden;}
               </div>
               <p class="td2-cond-window" id="sideCondWindow"></p>
             </div>
+            <!-- trail-hazards.js renders official area warnings (MeteoAlarm
+                 rain, thunderstorm, ...) after this mount, so they sit with
+                 the forecast they qualify instead of as a banner of their own.
+                 Static trail pages anchor the same stack after their .sp-badges
+                 strip; trail.html has no badge strip, so the mount has to be
+                 explicit. Removing it silently hides every warning here. -->
+            <div id="ormaHazardMount"></div>
             <details class="td2-fc6" id="sideForecast" hidden>
               <summary><span class="td2-kick">6-day outlook</span><span class="td2-summary-action">View</span></summary>
               <div class="td2-fc6-body">
@@ -1138,14 +1163,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
       <span id="elevReadout" hidden></span><div id="elevationProfileWrap" hidden></div>
       <div id="communityRating" hidden></div>
     </div>
-
-    <!-- ============ AREA WARNINGS ============ -->
-    <!-- trail-hazards.js renders official area warnings into this mount.
-         Static trail pages anchor the same stack after their .sp-badges strip;
-         trail.html has no badge strip, so the mount has to be explicit. Keep it
-         first inside .td2-wrap: a safety warning belongs above the fold, and
-         removing this element silently hides every hazard on this page. -->
-    <div id="ormaHazardMount"></div>
 
     <!-- ============ LIVE RECORDING BANNER ============ -->
     <div class="td2-live" id="td2LiveBanner" hidden>
@@ -1372,8 +1389,8 @@ body.trail-photo-viewer-open{overflow:hidden;}
 </footer>
 
 <script src="device-handoff.js?v=20260904-1"></script>
-<script src="mobile-nav.js?v=20260908-1"></script>
-<script src="i18n.js?v=20260908-1"></script>
+<script src="mobile-nav.js?v=20260909-1"></script>
+<script src="i18n.js?v=20260909-1"></script>
 <script>
   // Account services are useful after the page is interactive, but loading
   // the Firebase app/auth/Firestore graph during navigation keeps mobile
@@ -1455,6 +1472,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
     if(window.performance && performance.mark) performance.mark('orma-trail-critical-render');
   })();
 </script>
-<script src="trail-app.bundle.js?v=20260908-1" defer></script>
+<script src="trail-app.bundle.js?v=20260909-1" defer></script>
 </body>
 </html>

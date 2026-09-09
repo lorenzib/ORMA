@@ -641,6 +641,22 @@
       unknowns.push(item('conditions.not-included',
         'Current weather and trail conditions are not included in this recommendation.'));
     }
+    // An official area warning (MeteoAlarm rain, thunderstorm, ...) is a
+    // caution the reader must weigh, not a penalty ORMA can size: the alert
+    // covers a region, not this route, and the source decides its severity.
+    // It costs nothing and moves no category, so the breakdown reads it as a
+    // note beside the heat line rather than contradicting the weather card.
+    const warnings = Array.isArray(conditions.warnings) ? conditions.warnings : [];
+    warnings.forEach((warning, index) => {
+      if(!warning || typeof warning !== 'object') return;
+      const event = String(warning.event || warning.title || '').trim();
+      if(!event) return;
+      const severity = String(warning.severity || '').trim();
+      const key = String(warning.id || index).replace(/[^A-Za-z0-9_-]+/g, '-');
+      cautions.push(item(`conditions.warning.${key}`,
+        `${event} in force for this area${severity ? ` (${severity})` : ''}. Check the weather card before setting out.`,
+        { event, severity }, 'conditions.warning'));
+    });
 
     let verifiedCount = 0;
     let criticalUnknown = false;

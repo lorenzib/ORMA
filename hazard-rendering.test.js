@@ -61,8 +61,18 @@ describe('official area warnings reach the page', () => {
     expect(warning.open).toBe(true);
     // Placement matters as much as presence: a warning pushed to the top of the
     // document (the no-anchor fallback) or to the page foot is a degradation,
-    // so pin it inside the trail content column.
-    expect(stack.closest('.td2-wrap')).not.toBeNull();
+    // so pin it inside the trail-weather card, beside the forecast it
+    // qualifies, and collapsed to its title and severity.
+    expect(stack.closest('.td2-hero-weather')).not.toBeNull();
+    expect(stack.querySelector('.orma-hazard-stack__kick').textContent).toBe('Area warning');
+    expect(warning.querySelector('summary .orma-hazard__severity').textContent).toBe('moderate');
+    expect(warning.querySelector('summary .orma-hazard__summary')).toBeNull();
+    expect(warning.querySelector('.orma-hazard__detail .orma-hazard__summary')).not.toBeNull();
+    // The recommendation card reads the same warnings, so the two never disagree.
+    expect(window.OrmaAreaWarnings).toEqual([{
+      id:'test-hazard-1', event:'Thunderstorm warning for the test area',
+      title:'Thunderstorm warning for the test area', severity:'moderate',
+    }]);
   });
 
   test('the dynamic trail page carries the anchor the renderer needs', () => {
