@@ -33,7 +33,11 @@
       .orma-hazard-report__close{width:32px;height:32px;border:0;border-radius:50%;background:#f2efe5;color:#2e4034;font:700 18px/1 Inter,sans-serif;cursor:pointer}
       .orma-hazard-report__intro{margin:0 0 12px;color:#66766b;font-size:12px;line-height:1.45}
       .orma-hazard-report__step{display:block;margin:12px 0 7px;color:#3e7a91;font-size:10px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
+      .orma-hazard-report__choices{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+      .orma-hazard-report__choice{min-height:44px;padding:9px 10px;border:1px solid #d8d4c8;border-radius:10px;background:#fff;color:#2e4034;font:700 11.5px/1.25 Inter,sans-serif;text-align:left;cursor:pointer}
+      .orma-hazard-report__choice[aria-pressed="true"]{border-color:#3e7a91;background:#eaf3f5;color:#285f73;box-shadow:inset 0 0 0 1px #3e7a91}
       .orma-hazard-report__place{display:grid;gap:8px;padding:11px;border:1px solid #e4e0d3;border-radius:12px;background:#faf8f1}
+      .orma-hazard-report__place summary{cursor:pointer;font-size:11.5px;font-weight:750}
       .orma-hazard-report__place-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
       .orma-hazard-report__place button{padding:8px 11px;border:1px solid #c9bfae;border-radius:9px;background:#fff;color:#2e4034;font:750 11.5px Inter,sans-serif;cursor:pointer}
       .orma-hazard-report__place button.is-placing{border-color:#b9582e;background:#fff2e6;color:#8a3f1f}
@@ -88,7 +92,8 @@
       @media(max-width:700px){
         .map-hazard-report-btn{right:12px;bottom:60px;min-height:38px;padding:8px 11px}
         .trail-map-box.hike-status-visible .map-hazard-report-btn{bottom:60px}
-        .orma-hazard-report{position:absolute;top:auto;right:8px;bottom:8px;left:8px;width:auto;max-height:68%;padding:14px;border-radius:16px}
+        .orma-hazard-report{position:fixed;top:auto;right:8px;bottom:max(8px,env(safe-area-inset-bottom));left:8px;width:auto;max-height:min(76vh,620px);padding:14px;border-radius:18px}
+        .orma-hazard-report__choices{grid-template-columns:1fr}
         .trail-map-box.map-fs .map-hazard-report-btn{right:max(12px,env(safe-area-inset-right));bottom:calc(max(12px,env(safe-area-inset-bottom)) + 48px)}
       }`;
     document.head.appendChild(style);
@@ -178,12 +183,6 @@
       });
     }
 
-    function revealForm(){
-      if(!panel) return;
-      panel.querySelector('form').hidden = false;
-      panel.querySelector('[data-hazard-detail-step]').hidden = false;
-    }
-
     function place(coordinate){
       const located = locator.locateOnRoute(coordinate, path);
       if(!located || !panel) return;
@@ -209,7 +208,6 @@
         marker.on('dragend', () => place(marker.getLngLat()));
       }
       setPlacing(false);
-      revealForm();
     }
 
     function skipLocation(){
@@ -218,7 +216,6 @@
       const where = panel.querySelector('[data-hazard-where]');
       where.classList.remove('is-off');
       where.textContent = 'No map position will be attached. You can still describe where it was below.';
-      revealForm();
     }
 
     function close(){
@@ -230,7 +227,7 @@
     }
 
     function open(){
-      if(panel){ panel.hidden = false; setPlacing(true); armMapTap(); return; }
+      if(panel){ panel.hidden = false; return; }
       const mapBox = document.getElementById('trailMapBox');
       if(!mapBox) return;
       panel = document.createElement('section');
@@ -240,16 +237,15 @@
       panel.setAttribute('aria-labelledby', 'ormaHazardReportTitle');
       panel.innerHTML = `
         <div class="orma-hazard-report__head"><strong id="ormaHazardReportTitle">Report a hazard</strong><button type="button" class="orma-hazard-report__close" data-hazard-close aria-label="Close hazard report">×</button></div>
-        <p class="orma-hazard-report__intro">Show the next walker where conditions changed. Your report is checked before anyone else sees it.</p>
-        <span class="orma-hazard-report__step">1 · Mark where you saw it</span>
-        <div class="orma-hazard-report__place">
-          <p class="orma-hazard-report__where" data-hazard-where>Tap the trail line on the map. The pin will snap to the route.</p>
-          <div class="orma-hazard-report__place-actions"><button type="button" data-hazard-place>Tap the trail line now</button><button type="button" class="orma-hazard-report__skip" data-hazard-skip>Skip location</button></div>
-        </div>
-        <span class="orma-hazard-report__step" data-hazard-detail-step hidden>2 · Tell us what changed</span>
-        <form hidden>
-          <label>What did you see?<select data-hazard-kind>${HAZARD_KINDS.map(([value,label]) => `<option value="${value}">${label}</option>`).join('')}</select></label>
-          <label>Describe it<textarea data-hazard-text minlength="10" maxlength="600" required placeholder="What makes this a problem for the next dog and owner?"></textarea></label>
+        <p class="orma-hazard-report__intro">A quick report helps the next walker. ORMA checks it before anyone else sees it.</p>
+        <form>
+          <label>What did you see?</label>
+          <div class="orma-hazard-report__choices" data-hazard-choices>${HAZARD_KINDS.map(([value,label]) => `<button type="button" class="orma-hazard-report__choice" data-hazard-kind="${value}" aria-pressed="false">${label}</button>`).join('')}</div>
+          <label>Describe it<textarea data-hazard-text minlength="10" maxlength="600" required placeholder="What should the next dog owner know?"></textarea></label>
+          <details class="orma-hazard-report__place"><summary>Add exact map position (optional)</summary>
+            <p class="orma-hazard-report__where" data-hazard-where>No exact position attached.</p>
+            <div class="orma-hazard-report__place-actions"><button type="button" data-hazard-place>Place on map</button><button type="button" class="orma-hazard-report__skip" data-hazard-skip>Remove position</button></div>
+          </details>
           <label>When did you see it?<input data-hazard-date type="date"></label>
           <p class="orma-hazard-report__note">ORMA checks this against official sources. Credible reports may appear clearly labelled as unconfirmed when no independent notice exists.</p>
           <button type="submit" class="orma-hazard-report__submit">Send report</button>
@@ -261,6 +257,12 @@
       observedOn.max = new Date().toISOString().slice(0, 10);
       observedOn.value = observedOn.max;
       panel.querySelector('[data-hazard-close]').addEventListener('click', close);
+      panel.querySelector('[data-hazard-choices]').addEventListener('click', event => {
+        const choice = event.target.closest('[data-hazard-kind]');
+        if(!choice) return;
+        panel.querySelectorAll('[data-hazard-kind]').forEach(button =>
+          button.setAttribute('aria-pressed', String(button === choice)));
+      });
       panel.querySelector('[data-hazard-place]').addEventListener('click', () => {
         setPlacing(!placing);
         if(placing) armMapTap();
@@ -271,7 +273,13 @@
         const community = window.DoloPawsCommunity;
         const submit = panel.querySelector('.orma-hazard-report__submit');
         const status = panel.querySelector('[data-hazard-status]');
+        const selectedKind = panel.querySelector('[data-hazard-kind][aria-pressed="true"]');
         const text = panel.querySelector('[data-hazard-text]').value.trim();
+        if(!selectedKind){
+          status.classList.add('is-error');
+          status.textContent = 'Choose what kind of hazard you saw.';
+          return;
+        }
         if(text.length < 10){
           status.classList.add('is-error');
           status.textContent = 'Describe what you saw in a sentence or two.';
@@ -289,7 +297,7 @@
           const submittedLocation = placed && placed.onRoute ? placed : null;
           const result = await community.reportTrailHazard(
             { id:trail.id, name:trail.name, area:trail.area },
-            panel.querySelector('[data-hazard-kind]').value,
+            selectedKind.dataset.hazardKind,
             text,
             observedOn.value,
             submittedLocation,
@@ -307,8 +315,6 @@
         }
         submit.disabled = false;
       });
-      setPlacing(true);
-      armMapTap();
     }
 
     return { open, close };

@@ -8062,22 +8062,25 @@ window.DoloPawsTrailRoutingCoverage=Object.freeze({"schemaVersion":1,"maxWalking
       ));
     }
 
-    const selfTest = input.selfTest || {};
-    const selfTestFresh = packageUsable && selfTest.passed &&
-      finite(selfTest.checkedAt) && now - selfTest.checkedAt <= SELF_TEST_MAX_AGE_MS;
-    items.push(item(
-      'self-test',
-      selfTestFresh ? 'ready' : 'advisory',
-      selfTestFresh
-        ? tr('readiness.selfTest.passed.title', 'Offline self-test passed')
-        : tr('readiness.selfTest.run.title', 'Run the airplane-mode self-test'),
-      selfTestFresh
-        ? tr('readiness.selfTest.passed.detail', 'Cached files were rechecked on this device.')
-        : packageUsable
-          ? tr('readiness.selfTest.run.detail', 'Verify cached files, then switch to airplane mode and open the offline map.')
-          : tr('readiness.selfTest.unavailable.detail', 'The self-test becomes available after a verified package is installed.'),
-      packageUsable ? 'self-test' : null
-    ));
+    // There is nothing to test until an offline package exists. Keeping the
+    // unavailable test out of the checklist prevents an optional safeguard
+    // from looking like a prerequisite for live tracking.
+    if(packageUsable){
+      const selfTest = input.selfTest || {};
+      const selfTestFresh = selfTest.passed && finite(selfTest.checkedAt) &&
+        now - selfTest.checkedAt <= SELF_TEST_MAX_AGE_MS;
+      items.push(item(
+        'self-test',
+        selfTestFresh ? 'ready' : 'advisory',
+        selfTestFresh
+          ? tr('readiness.selfTest.passed.title', 'Offline self-test passed')
+          : tr('readiness.selfTest.run.title', 'Test the downloaded map (optional)'),
+        selfTestFresh
+          ? tr('readiness.selfTest.passed.detail', 'Cached files were rechecked on this device.')
+          : tr('readiness.selfTest.run.detail', 'Checks that the downloaded map will open after you lose signal.'),
+        'self-test'
+      ));
+    }
 
     const gps = input.gps || {};
     if(!gps.supported){
