@@ -187,11 +187,12 @@ describe('Browse filter UI', () => {
     expect(html).toMatch(/\.browse-primary-controls \.browse-search-shell\{[^}]*grid-column:1\/-1;[^}]*grid-row:1;[^}]*width:100%;[^}]*min-width:0;/);
     expect(html).toMatch(/\.browse-area-controls\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\);/);
     expect(html).toMatch(/\.browse-geo-group--valley\{grid-column:auto;/);
+    expect(html).toMatch(/\.browse-refinement-controls\{grid-column:1\/-1;grid-row:3;display:grid;grid-template-columns:repeat\(6,minmax\(0,1fr\)\);/);
     expect(html).toMatch(/\.browse-quick-filters\{display:contents;\}/);
-    expect(html).toMatch(/#browseQuickShade\{grid-column:1\/span 3;grid-row:4;\}/);
-    expect(html).toMatch(/#browseWater\{grid-column:4\/span 3;grid-row:4;\}/);
-    expect(html).toMatch(/#browseMultiDay\{grid-column:1\/span 3;grid-row:5;\}/);
-    expect(html).toMatch(/\.browse-saved-only\{grid-column:4\/span 3;grid-row:5;[^}]*width:100%;/);
+    expect(html).toMatch(/#browseQuickShade\{grid-column:1\/span 3;grid-row:2;\}/);
+    expect(html).toMatch(/#browseWater\{grid-column:4\/span 3;grid-row:2;\}/);
+    expect(html).toMatch(/#browseMultiDay\{grid-column:1\/span 3;grid-row:3;\}/);
+    expect(html).toMatch(/\.browse-saved-only\{grid-column:4\/span 3;grid-row:3;[^}]*width:100%;/);
     expect(html).toMatch(/#browseFiltersMenu\{[^}]*position:fixed;[^}]*bottom:max\(8px,env\(safe-area-inset-bottom\)\);[^}]*overflow-y:auto;/);
   });
 
@@ -222,10 +223,10 @@ describe('Browse filter UI', () => {
     const html = source('browse-trails.html');
 
     expect(html).toContain('@media(min-width:1041px)');
-    expect(html).toMatch(/@media\(min-width:1041px\)[\s\S]*?\.browse-primary-controls \.browse-tools\{[^}]*display:grid;[^}]*grid-template-columns:minmax\(280px,\.72fr\) minmax\(0,1\.28fr\) auto;[^}]*grid-template-rows:auto auto;/);
-    expect(html).toContain('.browse-area-controls{grid-column:2/-1;grid-row:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}');
-    expect(html).toContain('#browseFiltersWrap{grid-column:1;grid-row:2;width:max-content;}');
-    expect(html).toContain('.browse-saved-only{grid-column:3;grid-row:2;width:max-content;min-width:0;}');
+    expect(html).toMatch(/@media\(min-width:1041px\)[\s\S]*?\.browse-primary-controls \.browse-tools\{[^}]*display:grid;[^}]*grid-template-columns:minmax\(340px,1\.15fr\) minmax\(0,2\.85fr\);[^}]*grid-template-rows:auto auto;/);
+    expect(html).toContain('.browse-area-controls{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}');
+    expect(html).toContain('.browse-refinement-controls{grid-column:1/-1;grid-row:2;display:flex;flex-wrap:wrap;justify-content:flex-start;}');
+    expect(html).toContain('.browse-saved-only{width:max-content;min-width:0;}');
   });
 
   test('matches the shared title scale and homepage workspace proportions', () => {
