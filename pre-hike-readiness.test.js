@@ -54,7 +54,7 @@ describe('UX-06 pre-hike readiness model', () => {
     const result = readiness.assess(input, NOW);
     expect(result.canStart).toBe(true);
     expect(result.items.find(entry => entry.id === 'package').level).toBe('advisory');
-    expect(result.items.find(entry => entry.id === 'self-test').level).toBe('advisory');
+    expect(result.items.find(entry => entry.id === 'self-test')).toBeUndefined();
   });
 
   test('blocks a broken package only when the device is already offline', () => {
@@ -78,7 +78,7 @@ describe('UX-06 pre-hike readiness model', () => {
     expect(result.canStart).toBe(true);
   });
 
-  test('requires a recent self-test and always exposes emergency preparation', () => {
+  test('keeps an expired self-test optional and always exposes emergency preparation', () => {
     const input = readyInput();
     input.selfTest.checkedAt = NOW - readiness.SELF_TEST_MAX_AGE_MS - 1;
     const result = readiness.assess(input, NOW);

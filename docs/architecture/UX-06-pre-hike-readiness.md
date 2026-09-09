@@ -36,8 +36,9 @@ A new hike cannot begin when:
 
 Missing offline coverage, a package not yet downloaded while online, stored
 information that needs a current-notice check, unavailable weather, a missing
-trailhead pin, and an unrun offline self-test are advisories. They remain
-visible without making every trail outside the first Carezza package unusable.
+trailhead pin, and an unrun offline self-test are advisories. The self-test is
+only shown when an offline package is installed, because it has nothing to test
+otherwise. These states do not make a trail unusable.
 
 The final Start button becomes available only when blocking checks pass.
 
