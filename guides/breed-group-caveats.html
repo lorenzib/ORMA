@@ -41,32 +41,41 @@
   .gp-toc a{display:block;padding:10px 11px;border-radius:9px;color:var(--ink);font-size:13px;font-weight:550;line-height:1.35;text-decoration:none;}
   .gp-toc a:hover,.gp-toc a.is-active{background:var(--safety-info-soft);color:var(--safety-info);font-weight:700;}
   .gp-mobile-toc{display:none;}
-  .breed-picker{margin:0 0 18px;padding:22px 24px;border:1px solid color-mix(in srgb,var(--safety-info) 28%,transparent);border-radius:16px;background:var(--safety-info-soft);}
-  .breed-picker__head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:14px;}
-  .breed-picker__head h2{margin:0;font-size:clamp(24px,2.35vw,32px);line-height:1.08;letter-spacing:-.025em;}
-  .breed-picker__instruction{margin:8px 0 0;color:var(--ink);font-size:.9rem;font-weight:700;line-height:1.45;}
-  .breed-picker__intro{max-width:860px;margin:5px 0 0;color:var(--ink-soft);font-size:.92rem;line-height:1.5;}
-  .breed-picker__reset{border:0;background:transparent;color:var(--safety-info);font:750 .72rem/1.2 "Inter",sans-serif;text-decoration:underline;cursor:pointer;}
-  .breed-picker__options{display:flex;flex-wrap:wrap;gap:8px;}
-  .breed-picker__options button{min-height:42px;padding:9px 13px;border:1px solid color-mix(in srgb,var(--safety-info) 30%,var(--paper-line));border-radius:999px;background:#fff;color:var(--ink);font:700 .73rem/1.25 "Inter",sans-serif;cursor:pointer;transition:background .15s ease,border-color .15s ease,color .15s ease,transform .15s ease;}
-  .breed-picker__options button:hover{border-color:var(--safety-info);transform:translateY(-1px);}
-  .breed-picker__options button[aria-pressed="true"]{border-color:var(--safety-info);background:var(--safety-info);color:#fff;box-shadow:0 7px 16px -11px rgba(24,65,81,.8);}
-  .breed-picker__options button:focus-visible,.breed-picker__reset:focus-visible,.breed-edge summary:focus-visible{outline:3px solid rgba(62,122,145,.3);outline-offset:3px;}
-  .breed-picker__status{margin:13px 0 0;color:#476975;font-size:.73rem;font-weight:700;}
   .breed-check-experience{display:grid;gap:22px;padding:26px;border:1px solid var(--paper-line);border-radius:18px;background:#fff;box-shadow:0 10px 30px rgba(30,48,36,.045);}
   .breed-check-experience .scan-intro{margin:0;}
-  .breed-check-experience .scan-intro-copy,.breed-check-experience .scan-priority,.breed-check-experience .breed-picker,.breed-check-experience .scan-card{background:#fff;}
+  .breed-check-experience .scan-intro-copy,.breed-check-experience .scan-priority,.breed-check-experience .scan-card{background:#fff;}
   .breed-check-experience .scan-priority{border-color:var(--paper-line);}
-  .breed-check-experience .scan-section{margin:0;padding-top:22px;border-top:1px solid var(--paper-line);}
+  .breed-check-experience .scan-section{margin:0;}
   .breed-emergency{margin:0;}
-  .breed-guide-card[hidden]{display:none;}
+  .breed-card-instruction{max-width:680px!important;margin:7px 0 0!important;color:var(--ink-soft)!important;font-size:.82rem!important;line-height:1.55!important;text-align:left!important;}
+  .breed-card-instruction strong{color:var(--ink);}
+  .breed-guide-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;}
+  .breed-guide-card{position:relative;padding:12px;cursor:pointer;transform-origin:center top;transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease;}
+  .breed-guide-card:hover{border-color:color-mix(in srgb,var(--safety-info) 42%,var(--paper-line));transform:translateY(-2px);box-shadow:0 13px 28px rgba(39,55,44,.08);}
+  .breed-guide-card.is-open{border-color:color-mix(in srgb,var(--safety-info) 58%,var(--paper-line));box-shadow:0 16px 34px rgba(39,55,44,.1);animation:breed-card-turn .28s ease both;}
+  .breed-card-summary{display:grid;grid-template-columns:100px minmax(0,1fr) 28px;gap:12px;align-items:center;min-height:92px;}
+  .breed-card-summary__copy{min-width:0;}
+  .breed-card-image{display:block;width:100px;height:92px;margin:0;border-radius:10px;background:#f3f1e8;object-fit:cover;object-position:center 42%;}
+  .breed-card-image--full{object-fit:cover;}
+  .breed-guide-card.is-enhanced .scan-card-label{margin-bottom:4px;font-size:.56rem;line-height:1.2;}
+  .breed-guide-card.is-enhanced h2{margin:0;font-size:.95rem;line-height:1.2;}
+  .breed-guide-card.is-enhanced .scan-examples{display:-webkit-box;min-height:0;margin:6px 0 0!important;overflow:hidden;color:#718077!important;font-size:.62rem!important;line-height:1.35!important;-webkit-box-orient:vertical;-webkit-line-clamp:2;}
+  .breed-card-toggle{display:grid;place-items:center;width:28px;height:28px;padding:0;border:0;border-radius:999px;background:var(--safety-info-soft);color:var(--safety-info);cursor:pointer;}
+  .breed-card-toggle__label{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  .breed-card-toggle__icon{display:grid;place-items:center;font-size:1.05rem;line-height:1;transition:transform .2s ease;}
+  .breed-guide-card.is-open .breed-card-toggle__icon{transform:rotate(45deg);}
+  .breed-card-content{margin-top:12px;padding:12px 3px 2px;border-top:1px solid var(--paper-line);animation:breed-card-reveal .24s ease both;}
+  .breed-card-content[hidden]{display:none;}
+  .breed-card-toggle:focus-visible,.breed-edge summary:focus-visible{outline:3px solid rgba(62,122,145,.3);outline-offset:3px;}
   .breed-edge{margin-top:13px;border-top:1px solid var(--paper-line);}
   .breed-edge summary{padding:11px 0 0;cursor:pointer;color:var(--safety-info);font-size:.7rem;font-weight:800;list-style:none;}
   .breed-edge summary::-webkit-details-marker{display:none;}
   .breed-edge summary::after{content:" +";}
   .breed-edge[open] summary::after{content:" −";}
   .breed-edge p{margin-top:8px!important;color:var(--ink-soft)!important;font-size:.72rem!important;line-height:1.5!important;}
-  .breed-empty{padding:18px;border:1px solid var(--paper-line);border-radius:14px;background:#fff;color:var(--ink-soft);font-size:.78rem;}
+  @keyframes breed-card-turn{0%{transform:perspective(800px) rotateY(0) scale(1);}45%{transform:perspective(800px) rotateY(-4deg) scale(.99);}100%{transform:perspective(800px) rotateY(0) scale(1);}}
+  @keyframes breed-card-reveal{from{opacity:0;transform:translateY(-5px);}to{opacity:1;transform:translateY(0);}}
+  @media(prefers-reduced-motion:reduce){.breed-guide-card,.breed-card-toggle__icon{transition:none;}.breed-guide-card.is-open,.breed-card-content{animation:none;}}
   @media(max-width:820px){
     .gp-hero-photo{width:calc(100% - 32px);margin-top:14px;}
     .gp-hero-photo img{height:220px;object-position:center 58%;}
@@ -83,13 +92,15 @@
     .gp-section{padding:21px 19px;border-radius:14px;scroll-margin-top:130px;}
     .gp-body h2{font-size:22px;}
     .breed-check-experience{gap:18px;padding:18px;border-radius:15px;}
-    .breed-picker{padding:19px 18px;}
+    .breed-guide-grid{grid-template-columns:1fr;}
   }
   @media(max-width:560px){
-    .breed-picker__head{display:block;}
-    .breed-picker__reset{margin-top:10px;padding:0;}
-    .breed-picker__options{display:grid;grid-template-columns:1fr 1fr;}
-    .breed-picker__options button{width:100%;border-radius:11px;text-align:left;}
+    .breed-guide-card:hover{transform:none;}
+    .breed-guide-card{padding:10px;}
+    .breed-card-summary{grid-template-columns:88px minmax(0,1fr) 27px;gap:10px;min-height:80px;}
+    .breed-card-image{width:88px;height:80px;}
+    .breed-guide-card.is-enhanced h2{font-size:.88rem;}
+    .breed-guide-card.is-enhanced .scan-examples{font-size:.59rem!important;}
   }
 </style>
 <link rel="stylesheet" href="safety-guide-system.css?v=20260904-1">
@@ -123,35 +134,13 @@
     <p>Collapse, blue or grey gums, struggling to breathe, repeated unproductive retching with a swollen abdomen, sudden spinal pain, weakness or a new wobbly gait are not “breed quirks”. Treat them as urgent.</p>
   </aside>
 
-  <section class="breed-picker" aria-labelledby="breedPickerTitle">
-    <div class="breed-picker__head">
-      <div><span class="scan-kicker">Build your trail check</span><h2 id="breedPickerTitle">What describes your dog?</h2><p class="breed-picker__instruction">Choose the most conservative adjustment when more than one card applies.</p><p class="breed-picker__intro">Select every visible trait or known condition that applies. Breed examples help you recognise a pattern; they do not predict the health, stamina or temperament of an individual dog.</p></div>
-      <button class="breed-picker__reset" type="button" data-breed-reset hidden>Clear selections</button>
-    </div>
-    <div class="breed-picker__options" role="group" aria-label="Dog traits">
-      <button type="button" data-breed-filter="airway" aria-pressed="false">Flat or short nose</button>
-      <button type="button" data-breed-filter="dense" aria-pressed="false">Dense or double coat</button>
-      <button type="button" data-breed-filter="giant" aria-pressed="false">Large, giant or heavy</button>
-      <button type="button" data-breed-filter="deep" aria-pressed="false">Deep chest</button>
-      <button type="button" data-breed-filter="spine" aria-pressed="false">Long back or short legs</button>
-      <button type="button" data-breed-filter="small" aria-pressed="false">Small or toy size</button>
-      <button type="button" data-breed-filter="thin" aria-pressed="false">Thin, short or pale coat</button>
-      <button type="button" data-breed-filter="drive" aria-pressed="false">High working drive</button>
-      <button type="button" data-breed-filter="prey" aria-pressed="false">Strong scent or prey drive</button>
-      <button type="button" data-breed-filter="guardian" aria-pressed="false">Guardian instinct</button>
-      <button type="button" data-breed-filter="collapse" aria-pressed="false">Collapse or noisy-breathing history</button>
-      <button type="button" data-breed-filter="coat" aria-pressed="false">Long coat or floppy ears</button>
-      <button type="button" data-breed-filter="individual" aria-pressed="false">Young, older or medical needs</button>
-    </div>
-    <p class="breed-picker__status" data-breed-status aria-live="polite">Showing all 13 trail checks.</p>
-  </section>
-
   <section class="scan-section" aria-labelledby="breedCardsTitle">
     <div class="scan-section-head">
-      <div><span class="scan-kicker">Your selected checks</span><h2 id="breedCardsTitle">Adjust the route, not the dog</h2></div>
+      <div><span class="scan-kicker">Build your trail check</span><h2 id="breedCardsTitle">What describes your dog?</h2><p class="breed-card-instruction"><strong>Choose the most conservative adjustment when more than one card applies.</strong> Open any row to reveal its trail guidance. Breed examples and AI-generated images help you recognise a pattern; they are illustrative, not diagnostic, and do not predict an individual dog.</p></div>
     </div>
     <div class="scan-grid breed-guide-grid" data-breed-grid>
       <article class="scan-card breed-guide-card" id="flat-faced" data-breed-trait="airway">
+        <img class="breed-card-image" src="../images/editorial/breed-traits/flat-short-nose.jpg" alt="" width="600" height="600" loading="lazy" decoding="async">
         <span class="scan-card-label">Airway &amp; cooling</span><h2>Flat or short nose</h2>
         <p class="scan-examples">Pug, French or English Bulldog, Boston Terrier, Boxer, Shih Tzu, Pekingese, Japanese Chin, Brussels Griffon, Dogue de Bordeaux</p>
         <div class="scan-rule"><strong>Choose:</strong> short, shaded, cool routes with water and an immediate exit.</div>
@@ -160,6 +149,7 @@
       </article>
 
       <article class="scan-card breed-guide-card" id="dense-coated" data-breed-trait="dense">
+        <img class="breed-card-image" src="../images/editorial/breed-traits/dense-double-coat.jpg" alt="" width="600" height="600" loading="lazy" decoding="async">
         <span class="scan-card-label">Coat &amp; heat</span><h2>Dense or double coat</h2>
         <p class="scan-examples">Chow Chow, Husky, Malamute, Akita, Samoyed, Keeshond, Newfoundland, Bernese Mountain Dog, German Spitz</p>
         <div class="scan-rule"><strong>Choose:</strong> the coolest part of the day, reliable shade and low-exertion escape options.</div>
@@ -168,6 +158,7 @@
       </article>
 
       <article class="scan-card breed-guide-card" id="giant-heavy" data-breed-trait="giant">
+        <img class="breed-card-image breed-card-image--full" src="../images/editorial/breed-traits/large-giant-heavy.jpg" alt="" width="600" height="600" loading="lazy" decoding="async">
         <span class="scan-card-label">Joint load &amp; rescue</span><h2>Large, giant or heavy</h2>
         <p class="scan-examples">Great Dane, Saint Bernard, Newfoundland, Bernese, Leonberger, Mastiff, Rottweiler, large livestock guardians</p>
         <div class="scan-rule"><strong>Choose:</strong> gradual descents, stable footing and a route from which you could evacuate a dog you cannot carry.</div>
@@ -176,6 +167,7 @@
       </article>
 
       <article class="scan-card breed-guide-card" id="deep-chested" data-breed-trait="deep">
+        <img class="breed-card-image breed-card-image--full" src="../images/editorial/breed-traits/deep-chest.jpg" alt="" width="600" height="600" loading="lazy" decoding="async">
         <span class="scan-card-label">Bloat / GDV awareness</span><h2>Deep chest</h2>
         <p class="scan-examples">Great Dane, Weimaraner, Irish or Gordon Setter, Standard Poodle, Doberman, German Shepherd, Saint Bernard</p>
         <div class="scan-rule"><strong>Plan:</strong> know the nearest emergency vet and follow your own vet’s feeding and prevention advice.</div>
@@ -184,6 +176,7 @@
       </article>
 
       <article class="scan-card breed-guide-card" id="long-backed" data-breed-trait="spine">
+        <img class="breed-card-image breed-card-image--full" src="../images/editorial/breed-traits/long-back-short-legs.jpg" alt="" width="600" height="600" loading="lazy" decoding="async">
         <span class="scan-card-label">Spine &amp; repeated drops</span><h2>Long back or short legs</h2>
         <p class="scan-examples">Dachshund, Corgi, Basset Hound, Pekingese, Beagle, Lhasa Apso, Shih Tzu and other chondrodystrophic dogs</p>
         <div class="scan-rule"><strong>Choose:</strong> smooth, ramp-like terrain with fewer jumps, ledges and body-height steps.</div>
@@ -192,6 +185,7 @@
       </article>
 
       <article class="scan-card breed-guide-card" id="small-toy" data-breed-trait="small">
+        <img class="breed-card-image" src="../images/editorial/breed-traits/small-toy-size.jpg" alt="" width="600" height="600" loading="lazy" decoding="async">
         <span class="scan-card-label">Stride, cold &amp; exposure</span><h2>Small or toy size</h2>
         <p class="scan-examples">Chihuahua, Yorkshire Terrier, Maltese, Papillon, Toy Poodle, Pomeranian, Miniature Pinscher and small crosses</p>
         <div class="scan-rule"><strong>Choose:</strong> shorter distances, low steps and sheltered rest points; carry a secure emergency carrier.</div>
@@ -200,6 +194,7 @@
       </article>
 
       <article class="scan-card breed-guide-card" id="thin-coated" data-breed-trait="thin">
+        <img class="breed-card-image breed-card-image--full" src="../images/editorial/breed-traits/thin-short-pale-coat.jpg" alt="" width="600" height="600" loading="lazy" decoding="async">
         <span class="scan-card-label">Cold, sun &amp; skin</span><h2>Thin, short, hairless or pale coat</h2>
         <p class="scan-examples">Greyhound, Whippet, Italian Greyhound, Vizsla, Pointer, Dalmatian, Chinese Crested, Xoloitzcuintli; dogs with pink noses or pale skin</p>
         <div class="scan-rule"><strong>Pack:</strong> a dry insulating layer and plan shade on high-UV, exposed routes.</div>
@@ -208,6 +203,7 @@
       </article>
 
       <article class="scan-card breed-guide-card" id="high-drive" data-breed-trait="drive">
+        <img class="breed-card-image breed-card-image--full" src="../images/editorial/breed-traits/high-working-drive.jpg" alt="" width="600" height="600" loading="lazy" decoding="async">
         <span class="scan-card-label">Drive &amp; self-pacing</span><h2>High working or sporting drive</h2>
         <p class="scan-examples">Border Collie, Australian Shepherd, Cattle Dog, Belgian Malinois, working Spaniels, Retrievers, Pointers and Setters</p>
         <div class="scan-rule"><strong>Plan:</strong> scheduled shaded rests and calm walking before the dog looks tired.</div>
@@ -216,6 +212,7 @@
       </article>
 
       <article class="scan-card breed-guide-card" id="hunting-scent" data-breed-trait="prey">
+        <img class="breed-card-image breed-card-image--full" src="../images/editorial/breed-traits/strong-scent-prey-drive.jpg" alt="" width="600" height="600" loading="lazy" decoding="async">
         <span class="scan-card-label">Recall &amp; wildlife</span><h2>Strong scent or prey drive</h2>
         <p class="scan-examples">Beagle, Bloodhound and scent hounds; Terriers; Pointers and Setters; Sighthounds; Nordic and primitive breeds; many crosses</p>
         <div class="scan-rule"><strong>Choose:</strong> a fixed leash or managed long line wherever wildlife, livestock, cliffs or roads raise the consequence of recall failure.</div>
@@ -224,6 +221,7 @@
       </article>
 
       <article class="scan-card breed-guide-card" id="guardian-farm" data-breed-trait="guardian">
+        <img class="breed-card-image breed-card-image--full" src="../images/editorial/breed-traits/guardian-territorial.jpg" alt="" width="600" height="600" loading="lazy" decoding="async">
         <span class="scan-card-label">Space &amp; guarding</span><h2>Guardian or territorial instinct</h2>
         <p class="scan-examples">Maremma, Great Pyrenees, Kuvasz, Kangal, Anatolian Shepherd, Tibetan Mastiff, Hovawart and guardian-type crosses</p>
         <div class="scan-rule"><strong>Choose:</strong> visible trails with room to create distance from dogs, people and livestock.</div>
@@ -232,6 +230,7 @@
       </article>
 
       <article class="scan-card breed-guide-card" id="collapse-airway" data-breed-trait="collapse">
+        <img class="breed-card-image" src="../images/editorial/breed-traits/veterinary-check.jpg" alt="" width="600" height="600" loading="lazy" decoding="async">
         <span class="scan-card-label">Known or suspected medical risk</span><h2>Collapse or noisy-breathing history</h2>
         <p class="scan-examples">Exercise-induced collapse is documented in Labradors and some related breeds; exercise-triggered collapse also occurs in Border Collies and related herding breeds. Laryngeal paralysis is commonest in older large dogs, especially Labradors.</p>
         <div class="scan-rule"><strong>Before hiking:</strong> get a diagnosis and an individual limit from your vet; do not “test” the dog on a remote trail.</div>
@@ -240,6 +239,7 @@
       </article>
 
       <article class="scan-card breed-guide-card" id="long-coated" data-breed-trait="coat">
+        <img class="breed-card-image" src="../images/editorial/breed-traits/long-coat-floppy-ears.jpg" alt="" width="600" height="600" loading="lazy" decoding="async">
         <span class="scan-card-label">Grass awns &amp; hidden skin</span><h2>Long coat, feathering or floppy ears</h2>
         <p class="scan-examples">Spaniels, Setters, long-coated Retrievers, Poodles and doodle-type coats, Bearded Collie, Briard, long-eared hounds</p>
         <div class="scan-rule"><strong>After grass or scrub:</strong> inspect ears, eyes, armpits, groin, coat and every space between the toes.</div>
@@ -248,6 +248,7 @@
       </article>
 
       <article class="scan-card breed-guide-card" id="individual-needs" data-breed-trait="individual">
+        <img class="breed-card-image breed-card-image--full" src="../images/editorial/breed-traits/young-older-medical-needs.jpg" alt="" width="600" height="600" loading="lazy" decoding="async">
         <span class="scan-card-label">Breed-independent limits</span><h2>Young, older or medically limited</h2>
         <p class="scan-examples">Puppies; seniors; overweight or under-conditioned dogs; pregnancy; recent illness or surgery; heart, lung, neurologic, joint or metabolic disease; sensory or mobility differences</p>
         <div class="scan-rule"><strong>Choose:</strong> a vet-approved distance with simple terrain, frequent reassessment and an evacuation plan.</div>
@@ -255,7 +256,6 @@
         <details class="breed-edge"><summary>Edge cases</summary><p>Blind, deaf and three-legged dogs can hike successfully when the route and handling match the individual. Familiar cues, secure footing and conservative exposure matter more than a generic breed rule.</p></details>
       </article>
     </div>
-    <p class="breed-empty" data-breed-empty hidden>No cards match that combination. Clear the selections and choose the traits you can see in your dog.</p>
   </section>
   </div>
 
