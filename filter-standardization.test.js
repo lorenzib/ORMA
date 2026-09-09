@@ -112,4 +112,77 @@ describe('shared trail-filter experience', () => {
     expect(browse).toContain('.browse-area-controls{grid-template-columns:repeat(3,minmax(0,1fr));}');
     expect(browse).toContain('overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;');
   });
+
+  test('routes the guest homepage through the one shared discovery filter', () => {
+    const homepage = read('index.html');
+    const search = read('homepage-search.js');
+
+    // The shared filter is now loaded on the homepage and used for the guest
+    // catalogue, instead of a second hand-rolled predicate.
+    expect(homepage).toContain('discovery-filters.js');
+    expect(search).toContain('window.DoloPawsDiscoveryFilters');
+    expect(search).toContain('filters.matches(t, fstate)');
+  });
+
+  test('gives the guest homepage the same Duration default as Browse and the map', () => {
+    const homepage = read('index.html');
+    const search = read('homepage-search.js');
+
+    // Duration control present and leading the panel, defaulting to day hikes.
+    expect(homepage).toContain('id="hpDurationSeg"');
+    expect(search).toContain("duration: 'day'");
+    expect(search).toContain("DURATION_SEG");
+    expect(search).toContain("{ label: 'Day hikes', v: 'day' }");
+    expect(search).toContain("{ label: 'Multi-day', v: 'multi' }");
+    // Reset returns to the day-hike default, and it counts as an active filter
+    // only when switched to multi-day.
+    expect(search).toContain("state.duration = 'day'");
+    expect(search).toContain("state.duration !== 'day'");
+  });
+
+  test('the shared filter hides multi-day routes from the default guest catalogue', () => {
+    const fs = require('fs');
+    const path = require('path');
+    const vm = require('vm');
+    const ctx = { console };
+    ctx.window = ctx; ctx.globalThis = ctx;
+    vm.createContext(ctx);
+    ['trust/evidence-v1.js', 'scoring/recommendation-v1.js',
+      'scoring/recommendation-adapters-v1.js', 'discovery-filters.js']
+      .forEach(f => vm.runInContext(fs.readFileSync(path.join(__dirname, f), 'utf8'), ctx));
+    const F = ctx.DoloPawsDiscoveryFilters;
+    // Runtime-shaped trails, exactly what the guest homepage bundle holds.
+    const dayHike = { id: 'd', name: 'Braies Loop', region: 'dolomites', distance: 4, terrainRank: 0, safetyLevel: 'low-risk', waterSources: [] };
+    const longRoute = { id: 'l', name: 'Sentiero Alpago Natura', region: 'dolomites', distance: 71.2, terrainRank: 2, safetyLevel: 'moderate', waterSources: [] };
+    expect(F.matches(dayHike, { duration: 'day' })).toBe(true);
+    expect(F.matches(longRoute, { duration: 'day' })).toBe(false);
+    expect(F.matches(longRoute, { duration: 'multi' })).toBe(true);
+  });
+
+  test('routes the logged-in homepage decision filters through the same shared filter', () => {
+    const script = read('script.js');
+    // The refine bar's duration/distance/rating/terrain/shade now defer to
+    // DoloPawsDiscoveryFilters.matches instead of a fourth hand-rolled predicate.
+    expect(script).toContain('window.DoloPawsDiscoveryFilters');
+    expect(script).toContain('filters.matches(x, liRefineState())');
+    expect(script).toContain('displayList = displayList.filter(x => liMatchesRefineFilters(x));');
+    // Water on route is part of the shared refine state now (a mapped-water
+    // presence filter), so it is no longer a separate local post-filter.
+    expect(script).toContain('water: liFilters.water,');
+    expect(script).not.toContain('if(liFilters.water) displayList = displayList.filter(');
+    // Only match% stays local, scored on this runtime catalogue.
+    expect(script).toContain('if(liFilters.minMatch > 0) displayList = displayList.filter(x => x.score >= liFilters.minMatch);');
+  });
+
+  test('water on route is one mapped-water presence filter on every surface', () => {
+    // The reviewed-water gate is gone from the shared filter: "Water" means the
+    // same "a water point is mapped" test on Browse and both homepages.
+    const filters = read('discovery-filters.js');
+    expect(filters).not.toContain("!hasWater || !verified(parts, 'water')");
+    expect(filters).toContain("if(!hasWater) return false;");
+    // All three surfaces feed water into that shared filter, not a local check.
+    expect(read('script.js')).toContain('water: liFilters.water,');
+    expect(read('homepage-search.js')).toContain('water: state.hasWater,');
+    expect(read('browse-trails.html')).toContain('water: waterOnly,');
+  });
 });

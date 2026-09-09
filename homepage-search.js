@@ -40,7 +40,7 @@
 
   var state = {
     query: '', dog: 'medium',
-    dist: 'any', diff: 'any', terrain: 'any', shade: 'any', minMatch: 0, hasWater: false,
+    duration: 'day', dist: 'any', diff: 'any', terrain: 'any', shade: 'any', minMatch: 0, hasWater: false,
     searched: false, focused: false, menu: null, custom: null, activeSuggest: -1,
     wizOpen: false, wizStep: 0,
     wiz: { name: '', size: 'medium', energy: 'medium', terrainTol: 'gravel', heat: false },
@@ -48,6 +48,9 @@
 
   // Shared discovery vocabulary: these labels and thresholds match Browse All
   // Trails and the logged-in map so a filter always means the same thing.
+  // Day hikes lead everywhere; the long multi-day itineraries are an opt-in, so
+  // the guest homepage hides them by default just like Browse and the map.
+  var DURATION_SEG = [{ label: 'Day hikes', v: 'day' }, { label: 'Multi-day', v: 'multi' }];
   var DIST_SEG = [{ label: 'Any', v: 'any' }, { label: 'Under 5 km', v: 'u5' }, { label: '5–10 km', v: '5to10' }, { label: '10 km+', v: '10p' }];
   var DIFF_SEG = [{ label: 'Any', v: 'any' }, { label: 'Low risk', v: 'low-risk' }, { label: 'Moderate', v: 'moderate' }, { label: 'Caution', v: 'caution' }];
   var TERRAIN_SEG = [{ label: 'Any', v: 'any' }, { label: 'Gentle only', v: 'soft' }, { label: 'Up to mixed', v: 'mixed' }, { label: 'Rocky is okay', v: 'rocky' }];
@@ -73,6 +76,7 @@
     filtersPanel: document.getElementById('hpFiltersPanel'),
     filtersReset: document.getElementById('hpFiltersReset'),
     filtersApply: document.getElementById('hpFiltersApply'),
+    durationSeg: document.getElementById('hpDurationSeg'),
     distSeg: document.getElementById('hpDistSeg'),
     diffSeg: document.getElementById('hpDiffSeg'),
     terrainSeg: document.getElementById('hpTerrainSeg'),
@@ -220,6 +224,7 @@
     return {
       search: state.query,
       distance: state.dist === 'any' ? '' : String(state.dist),
+      duration: state.duration,
       water: state.hasWater,
       dog: state.dog,
       risk: state.diff === 'any' ? '' : state.diff,
@@ -243,30 +248,58 @@
   function valleyOf(t) { return t.valley || t.area || ''; }
 
   function filterCount() {
-    return [state.dist !== 'any', state.diff !== 'any', state.terrain !== 'any',
+    return [state.duration !== 'day', state.dist !== 'any', state.diff !== 'any', state.terrain !== 'any',
       state.shade !== 'any', state.minMatch > 0, state.hasWater].filter(Boolean).length;
   }
 
+  // Map the panel's state onto the shared discovery-filter vocabulary. Water
+  // stays a local, looser toggle (any mapped source) rather than the shared
+  // reviewed-water gate, because the guest catalogue is the runtime bundle where
+  // most imported trails carry no category review yet; and match% is scored
+  // here, so both are applied as post-filters below.
+  function discoveryState() {
+    return {
+      search: state.query,
+      duration: state.duration,
+      distance: state.dist === 'any' ? '' : state.dist,
+      risk: state.diff === 'any' ? '' : state.diff,
+      terrain: state.terrain === 'any' ? '' : state.terrain,
+      heat: state.shade === '40' ? 'shade-40' : state.shade === '60' ? 'shade-60' : '',
+      water: state.hasWater,
+    };
+  }
+
+  // Fallback for the (rare) case discovery-filters.js has not loaded: a literal
+  // port of the shared thresholds so the guest homepage still filters sensibly.
+  function legacyMatch(t, fstate) {
+    var q = String(fstate.search || '').trim().toLowerCase();
+    if (q) {
+      var hay = (t.name + ' ' + (t.area || '') + ' ' + (t.valley || '') + ' ' + (t.region || '')).toLowerCase();
+      if (hay.indexOf(q) === -1) return false;
+    }
+    if (fstate.duration === 'day' && Number(t.distance) > 25) return false;
+    if (fstate.duration === 'multi' && !(Number(t.distance) > 25)) return false;
+    if (fstate.distance === 'u5' && t.distance >= 5) return false;
+    if (fstate.distance === '5to10' && (t.distance < 5 || t.distance > 10)) return false;
+    if (fstate.distance === '10p' && t.distance < 10) return false;
+    if (fstate.heat === 'shade-40' && (t.shadeCoverage || 0) < 40) return false;
+    if (fstate.heat === 'shade-60' && (t.shadeCoverage || 0) < 60) return false;
+    if (fstate.terrain) {
+      var rank = typeof t.terrainRank === 'number' ? t.terrainRank : 1;
+      if (fstate.terrain === 'soft' && rank > 0) return false;
+      if (fstate.terrain === 'mixed' && rank > 1) return false;
+      if (fstate.terrain === 'rocky' && rank > 2) return false;
+    }
+    if (fstate.risk && difficulty(t).value !== fstate.risk) return false;
+    if (fstate.water && !hasWater(t)) return false;
+    return true;
+  }
+
   function rankedList() {
-    var q = state.query.trim().toLowerCase();
+    var filters = window.DoloPawsDiscoveryFilters;
+    var fstate = discoveryState();
     return trails.filter(function (t) {
-      if (q) {
-        var hay = (t.name + ' ' + (t.area || '') + ' ' + (t.valley || '')).toLowerCase();
-        if (hay.indexOf(q) === -1) return false;
-      }
-      if (state.dist === 'u5' && t.distance >= 5) return false;
-      if (state.dist === '5to10' && (t.distance < 5 || t.distance > 10)) return false;
-      if (state.dist === '10p' && t.distance < 10) return false;
-      if (state.shade === '40' && (t.shadeCoverage || 0) < 40) return false;
-      if (state.shade === '60' && (t.shadeCoverage || 0) < 60) return false;
-      if (state.terrain !== 'any') {
-        var rank = typeof t.terrainRank === 'number' ? t.terrainRank : 1;
-        if (state.terrain === 'soft' && rank > 0) return false;
-        if (state.terrain === 'mixed' && rank > 1) return false;
-        if (state.terrain === 'rocky' && rank > 2) return false;
-      }
-      if (state.diff !== 'any' && difficulty(t).value !== state.diff) return false;
-      if (state.hasWater && !hasWater(t)) return false;
+      if (filters ? !filters.matches(t, fstate) : !legacyMatch(t, fstate)) return false;
       return true;
     }).map(function (t) {
       return { t: t, score: scoreOf(t) };
@@ -321,6 +354,7 @@
   }
 
   function renderFiltersPanel() {
+    el.durationSeg.innerHTML = segHtml(DURATION_SEG, state.duration, 'duration');
     el.distSeg.innerHTML = segHtml(DIST_SEG, state.dist, 'dist');
     el.diffSeg.innerHTML = segHtml(DIFF_SEG, state.diff, 'diff');
     el.terrainSeg.innerHTML = segHtml(TERRAIN_SEG, state.terrain, 'terrain');
@@ -572,6 +606,7 @@
   }
 
   function resetFilters() {
+    state.duration = 'day';
     state.dist = 'any'; state.diff = 'any'; state.terrain = 'any';
     state.shade = 'any'; state.minMatch = 0; state.hasWater = false;
   }

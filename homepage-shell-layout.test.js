@@ -4,12 +4,11 @@ describe('logged-in discovery workspace layout', () => {
   const html = fs.readFileSync('index.html', 'utf8');
   const css = fs.readFileSync('styles.css', 'utf8');
 
-  test('uses a dedicated greeting row above the discovery controls', () => {
+  test('uses a dedicated answer row above on-demand discovery controls', () => {
     expect(html).toContain('class="li-toolbar-greet"');
     expect(html).not.toContain('id="liToolbarSummary"');
-    // Geography moved into the search box and the map, so the toolbar's second
-    // row is just the unified search and the "+ New" create menu.
-    expect(css).toMatch(/grid-template-areas:\s*"greet greet"\s*"search new"/);
+    expect(html).toContain('id="liRecommendationDate"');
+    expect(html).toContain('id="liAdjustRecommendationBtn"');
     expect(css).toMatch(/\.li-toolbar-greet\s*\{[^}]*display:flex;/s);
   });
 
@@ -19,6 +18,12 @@ describe('logged-in discovery workspace layout', () => {
     expect(html).toContain('id="liChooseAreaBtn"');
     expect(html).toContain('id="liChangeLocationBtn"');
     expect(html).toContain('Your precise position stays in this browser session');
+    expect(html).toContain('src="images/orma-location-hero.jpg"');
+    expect(html).toContain('id="liAreaSearch"');
+    expect(html).toContain('id="liAreaCountry"');
+    expect(html).toContain('id="liAreaRegion"');
+    expect(html).toContain('id="liAreaSelect"');
+    expect(html).toContain('id="liWalkDate"');
     expect(css).toContain('.li-location-gate[hidden],.li-toolbar[hidden],.li-body[hidden]{display:none!important;}');
   });
 
@@ -37,25 +42,23 @@ describe('logged-in discovery workspace layout', () => {
     expect(html.indexOf('class="li-menu-item li-plan-route"')).toBeLessThan(html.indexOf('id="liRecordBtn"'));
     // Saved becomes a view tab beside Sort in the list head.
     expect(html.indexOf('id="liViewSaved"')).toBeLessThan(html.indexOf('id="companionSortGroup"'));
-    const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
-    expect(editorialCss).toContain('#liFiltersWrap{display:none;}');
+    expect(html).toContain('class="li-list-options"');
   });
 
-  test('uses a two-control desktop toolbar rhythm: search then create', () => {
+  test('keeps catalogue controls behind the recommendation adjustment action', () => {
     const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
-    expect(editorialCss).toContain('grid-template-columns:minmax(240px,1fr) auto;');
+    expect(editorialCss).toContain('.li-toolbar:not(.li-refine-open) .li-search');
+    expect(editorialCss).toContain('.li-toolbar.li-refine-open .li-search{display:flex;');
+    expect(editorialCss).toContain('.li-toolbar.li-refine-open #liFiltersWrap{display:block;');
     expect(editorialCss).toContain('@media (min-width:701px) and (max-width:1100px)');
-    expect(editorialCss).toContain('.li-mobile-actions{display:contents;}');
-    expect(editorialCss).toContain('.li-new-wrap{grid-area:auto;grid-column:2;grid-row:2;justify-self:end;}');
-    // The slim refine bar (Distance/Difficulty/Shade/Water/More) shows on desktop.
-    expect(css).toContain('.li-chiprow{display:flex;');
+    expect(html).toContain('Adjust recommendation');
   });
 
-  test('keeps the mid-desktop toolbar to the same two-control layout', () => {
-    expect(css).toContain('@media (min-width:1041px) and (max-width:1560px)');
-    expect(css).toMatch(/grid-template-areas:\s*"greet greet"\s*"search new"/);
-    expect(css).toContain('.li-new-wrap{grid-column:2;grid-row:2;justify-self:end;}');
-    expect(css).not.toContain('"search country region valley filters quick saved plan record"');
+  test('keeps the recommendation hierarchy at desktop widths', () => {
+    const editorialCss = fs.readFileSync('homepage-editorial.css', 'utf8');
+    expect(editorialCss).toContain('@media (min-width:1041px)');
+    expect(editorialCss).toContain('grid-template-columns:minmax(240px,1fr) auto auto auto;');
+    expect(editorialCss).toContain('.li-toolbar.li-refine-open .li-new-wrap{grid-column:4;grid-row:3;}');
   });
 
   test('contains the quick shade and water filters in white outlined controls', () => {
@@ -76,8 +79,10 @@ describe('logged-in discovery workspace layout', () => {
     expect(css).toContain('--ink:#2E4034;');
   });
 
-  test('balances a bounded map with a proportional results pane', () => {
-    expect(css).toMatch(/\.li-body\s*\{[^}]*grid-template-columns:minmax\(0,1\.65fr\) minmax\(380px,\.9fr\);[^}]*height:500px;/s);
+  test('gives the personalised answer more room beside the map', () => {
+    expect(css).toContain('.li-body{grid-template-columns:minmax(0,1.05fr) minmax(480px,.95fr);}');
+    expect(css).toContain('.li-row--answer{border-color:#9FC4B0;');
+    expect(css).toContain('.li-answer-explanation{display:grid;');
     const desktopShellRule = css.match(/#returningCustomerHomepage\s*\{([^}]*)\}/);
     expect(desktopShellRule).not.toBeNull();
     expect(desktopShellRule[1]).not.toContain('height:100dvh');

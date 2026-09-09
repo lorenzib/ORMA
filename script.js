@@ -201,7 +201,43 @@ let liPendingLocationCenter = null;
 const LI_LOCATION_RADIUS_KM = 25;
 const LI_LOCATION_SESSION_KEY = 'orma-home-current-location-v1';
 const LI_AREA_STORAGE_KEY = 'orma-home-selected-area-v1';
+const LI_WALK_DATE_SESSION_KEY = 'orma-home-walk-date-v1';
 let liLocationContext = liLoadLocationContext();
+let liAreaChoices = [];
+let liLocationForecastKey = '';
+
+function liLocalDateIso(date){
+  const value = date instanceof Date ? date : new Date(date);
+  const year = value.getFullYear();
+  const month = String(value.getMonth() + 1).padStart(2, '0');
+  const day = String(value.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function liDateOffsetIso(days){
+  const value = new Date();
+  value.setHours(12, 0, 0, 0);
+  value.setDate(value.getDate() + days);
+  return liLocalDateIso(value);
+}
+
+function liLoadWalkDate(){
+  const today = liDateOffsetIso(0);
+  const latest = liDateOffsetIso(14);
+  try{
+    const stored = sessionStorage.getItem(LI_WALK_DATE_SESSION_KEY);
+    if(/^\d{4}-\d{2}-\d{2}$/.test(stored || '') && stored >= today && stored <= latest) return stored;
+  }catch(error){}
+  return today;
+}
+
+let liWalkDate = liLoadWalkDate();
+
+function liWalkDateLabel(){
+  if(liWalkDate === liDateOffsetIso(0)) return 'today';
+  const value = new Date(`${liWalkDate}T12:00:00`);
+  return value.toLocaleDateString(undefined, { weekday:'long', month:'short', day:'numeric' });
+}
 
 function liStoredJson(storage, key){
   try { return JSON.parse(storage.getItem(key) || 'null'); } catch(error){ return null; }
@@ -212,8 +248,16 @@ function liValidLocationContext(value){
   if(value.kind === 'current' && Number.isFinite(value.lat) && Number.isFinite(value.lng)){
     return { kind:'current', lat:value.lat, lng:value.lng, radiusKm:LI_LOCATION_RADIUS_KM };
   }
-  if(value.kind === 'area' && value.region && value.valley && value.label){
-    return { kind:'area', region:String(value.region), valley:String(value.valley), label:String(value.label) };
+  if(value.kind === 'area' && value.label && (value.country || value.region || value.valley)){
+    const region = String(value.region || 'all');
+    const inferredCountry = region === 'savoy' ? 'FR' : region === 'dolomites' ? 'IT' : 'all';
+    return {
+      kind:'area',
+      country:String(value.country || inferredCountry),
+      region,
+      valley:String(value.valley || 'all'),
+      label:String(value.label),
+    };
   }
   return null;
 }
@@ -248,6 +292,7 @@ function liRememberLocationContext(context){
 }
 
 function liClearLocationConditions(){
+  liLocationForecastKey = '';
   if(window.DoloPawsHomeConditions && typeof window.DoloPawsHomeConditions.reset === 'function'){
     window.DoloPawsHomeConditions.reset();
   }
@@ -260,7 +305,7 @@ function liApplyLocationGeography(){
   liMapBounds = null;
   if(liLocationContext.kind === 'area'){
     activeRegion = liLocationContext.region || 'all';
-    activeCountry = activeRegion === 'savoy' ? 'FR' : activeRegion === 'dolomites' ? 'IT' : 'all';
+    activeCountry = liLocationContext.country || (activeRegion === 'savoy' ? 'FR' : activeRegion === 'dolomites' ? 'IT' : 'all');
     activeValley = liLocationContext.valley || 'all';
   } else {
     activeCountry = 'all';
@@ -289,6 +334,12 @@ function filterTrailsForLocationContext(list){
   }
   if(liLocationContext.kind === 'area'){
     return list.filter(trail =>
+      (!liLocationContext.country || liLocationContext.country === 'all' || (
+        window.DoloPawsRegions && typeof window.DoloPawsRegions.countryForRegion === 'function'
+          ? window.DoloPawsRegions.countryForRegion(trail.region) === liLocationContext.country
+          : (trail.region === 'savoy' ? 'FR' : 'IT') === liLocationContext.country
+      ))
+      &&
       (!liLocationContext.region || liLocationContext.region === 'all' || trail.region === liLocationContext.region)
       && (!liLocationContext.valley || liLocationContext.valley === 'all' || trail.valley === liLocationContext.valley));
   }
@@ -297,30 +348,185 @@ function filterTrailsForLocationContext(list){
   return list;
 }
 
+function liLocationForecastCenter(){
+  if(!liLocationContext || typeof trails === 'undefined') return null;
+  // Never send the owner's device coordinates to the forecast provider. The
+  // centre of the ORMA trails already matched locally is accurate enough for
+  // an area forecast and preserves the in-session location promise.
+  const scoped = filterTrailsForLocationContext(trails).filter(trail => Number.isFinite(trail.lat) && Number.isFinite(trail.lng));
+  if(!scoped.length) return null;
+  const total = scoped.reduce((sum, trail) => ({ lat:sum.lat + trail.lat, lng:sum.lng + trail.lng }), { lat:0, lng:0 });
+  return [total.lat / scoped.length, total.lng / scoped.length];
+}
+
+function liEnsureLocationConditions(){
+  const conditions = window.DoloPawsHomeConditions;
+  const center = liLocationForecastCenter();
+  if(!conditions || typeof conditions.load !== 'function' || !center) return;
+  const key = `${center[0].toFixed(4)}|${center[1].toFixed(4)}|${liWalkDate}`;
+  if(key === liLocationForecastKey) return;
+  liLocationForecastKey = key;
+  conditions.load(center[0], center[1], { date:liWalkDate }).then(ok => {
+    if(!ok && key === liLocationForecastKey) liLocationForecastKey = '';
+  });
+}
+
 function liLocationContextLabel(){
   if(!liLocationContext) return '';
   if(liLocationContext.kind === 'current') return `Your location · within ${liLocationContext.radiusKm} km`;
   return liLocationContext.label;
 }
 
+function liRecommendationLocationPhrase(){
+  if(!liLocationContext) return '';
+  return liLocationContext.kind === 'current' ? 'near you' : `in ${liLocationContext.label}`;
+}
+
 function liPopulateAreaPicker(){
   const select = document.getElementById('liAreaSelect');
+  const searchList = document.getElementById('liAreaSuggestions');
+  const countrySelect = document.getElementById('liAreaCountry');
   if(!select || typeof trails === 'undefined' || select.dataset.ready === 'true') return;
-  const choices = new Map();
+  const configs = liRegionConfigs();
+  const valleys = new Map();
   trails.forEach(trail => {
     if(!trail.region || !trail.valley) return;
     const key = `${trail.region}::${trail.valley}`;
-    if(!choices.has(key)) choices.set(key, { region:trail.region, valley:trail.valley });
-  });
-  Array.from(choices.values())
-    .sort((a, b) => a.valley.localeCompare(b.valley))
-    .forEach(choice => {
-      const option = document.createElement('option');
-      option.value = `${choice.region}::${choice.valley}`;
-      option.textContent = choice.valley;
-      select.appendChild(option);
+    if(!valleys.has(key)) valleys.set(key, {
+      kind:'area',
+      country:(configs[trail.region] && configs[trail.region].countryCode) || (trail.region === 'savoy' ? 'FR' : 'IT'),
+      region:trail.region,
+      valley:trail.valley,
+      label:trail.valley,
+      type:'Valley',
     });
+  });
+  const countries = new Map();
+  Object.entries(configs).forEach(([region, config]) => {
+    if(!config || !config.countryCode) return;
+    countries.set(config.countryCode, { kind:'area', country:config.countryCode, region:'all', valley:'all', label:config.country, type:'Country' });
+  });
+  const regions = Object.entries(configs).map(([region, config]) => ({
+    kind:'area', country:config.countryCode, region, valley:'all', label:config.label, type:'Region'
+  }));
+  liAreaChoices = [...countries.values(), ...regions, ...valleys.values()]
+    .sort((a, b) => a.label.localeCompare(b.label));
+  if(searchList){
+    searchList.innerHTML = '';
+    liAreaChoices.forEach(choice => {
+      const option = document.createElement('option');
+      option.value = choice.label;
+      option.label = `${choice.type} · ${choice.region !== 'all' && configs[choice.region] ? configs[choice.region].label : choice.label}`;
+      searchList.appendChild(option);
+    });
+  }
+  if(countrySelect){
+    Array.from(countries.values()).sort((a,b) => a.label.localeCompare(b.label)).forEach(choice => {
+      const option = document.createElement('option');
+      option.value = choice.country;
+      option.textContent = choice.label;
+      countrySelect.appendChild(option);
+    });
+  }
   select.dataset.ready = 'true';
+}
+
+function liAreaChoiceFromSearch(){
+  const input = document.getElementById('liAreaSearch');
+  const query = String(input && input.value || '').trim().toLowerCase();
+  return liAreaChoices.find(choice => choice.label.toLowerCase() === query) || null;
+}
+
+function liPopulateAreaRegions(country){
+  const regionSelect = document.getElementById('liAreaRegion');
+  const valleySelect = document.getElementById('liAreaSelect');
+  if(!regionSelect || !valleySelect) return;
+  const configs = liRegionConfigs();
+  regionSelect.innerHTML = '<option value="">All regions</option>';
+  Object.entries(configs).filter(([, config]) => config.countryCode === country).forEach(([region, config]) => {
+    const option = document.createElement('option');
+    option.value = region;
+    option.textContent = config.label;
+    regionSelect.appendChild(option);
+  });
+  regionSelect.disabled = !country;
+  valleySelect.innerHTML = '<option value="">All valleys</option>';
+  valleySelect.disabled = true;
+}
+
+function liPopulateAreaValleys(region){
+  const valleySelect = document.getElementById('liAreaSelect');
+  if(!valleySelect) return;
+  valleySelect.innerHTML = '<option value="">All valleys</option>';
+  liAreaChoices.filter(choice => choice.type === 'Valley' && choice.region === region).forEach(choice => {
+    const option = document.createElement('option');
+    option.value = choice.valley;
+    option.textContent = choice.label;
+    valleySelect.appendChild(option);
+  });
+  valleySelect.disabled = !region;
+}
+
+function liAreaChoiceFromBrowse(){
+  const country = document.getElementById('liAreaCountry');
+  const region = document.getElementById('liAreaRegion');
+  const valley = document.getElementById('liAreaSelect');
+  // Keep the small DOM harness used by older clients/tests working while the
+  // product UI moves from one valley dropdown to country → region → valley.
+  if(!country){
+    const legacy = valley && String(valley.value || '').split('::');
+    if(legacy && legacy.length === 2){
+      const [legacyRegion, legacyValley] = legacy;
+      const config = liRegionConfigs()[legacyRegion];
+      return {
+        kind:'area',
+        country:config ? config.countryCode : (legacyRegion === 'savoy' ? 'FR' : 'IT'),
+        region:legacyRegion,
+        valley:legacyValley,
+        label:legacyValley,
+      };
+    }
+    return null;
+  }
+  if(!country.value) return null;
+  const configs = liRegionConfigs();
+  if(valley && valley.value){
+    return liAreaChoices.find(choice => choice.type === 'Valley' && choice.region === region.value && choice.valley === valley.value) || null;
+  }
+  if(region && region.value){
+    const config = configs[region.value];
+    return { kind:'area', country:country.value, region:region.value, valley:'all', label:config ? config.label : region.value };
+  }
+  const countryChoice = liAreaChoices.find(choice => choice.type === 'Country' && choice.country === country.value);
+  return countryChoice || null;
+}
+
+function liUpdateAreaSubmit(){
+  const submit = document.getElementById('liAreaSubmit');
+  if(submit) submit.disabled = !(liAreaChoiceFromSearch() || liAreaChoiceFromBrowse());
+}
+
+function liSyncWalkDateInputs(){
+  const min = liDateOffsetIso(0);
+  const max = liDateOffsetIso(14);
+  ['liWalkDate','liRecommendationDate'].forEach(id => {
+    const input = document.getElementById(id);
+    if(!input) return;
+    input.min = min;
+    input.max = max;
+    input.value = liWalkDate;
+  });
+}
+
+function liSetWalkDate(value){
+  const min = liDateOffsetIso(0);
+  const max = liDateOffsetIso(14);
+  liWalkDate = /^\d{4}-\d{2}-\d{2}$/.test(value || '') && value >= min && value <= max ? value : min;
+  try{ sessionStorage.setItem(LI_WALK_DATE_SESSION_KEY, liWalkDate); }catch(error){}
+  liLocationForecastKey = '';
+  liClearLocationConditions();
+  liSyncWalkDateInputs();
+  renderReturningHomepage(currentProfileForAdjust);
 }
 
 function liRenderLocationContext(profile){
@@ -343,6 +549,7 @@ function liRenderLocationContext(profile){
     document.body.classList.toggle('li-location-needed', !ready);
     document.body.classList.toggle('li-location-ready', ready);
   }
+  liSyncWalkDateInputs();
   if(!ready) liPopulateAreaPicker();
 }
 
@@ -361,6 +568,7 @@ function liSetLocationContext(context){
   if(status) status.textContent = '';
   liClearLocationConditions();
   renderReturningHomepage(currentProfileForAdjust);
+  liEnsureLocationConditions();
   if(typeof window.CustomEvent === 'function'){
     window.dispatchEvent(new window.CustomEvent('dolopaws-home-location-context-changed', { detail:{ ready:true } }));
   }
@@ -405,6 +613,41 @@ function liConditionsFor(trail){
   return area && typeof area.forTrail === 'function' ? area.forTrail(trail) : undefined;
 }
 
+// Map the refine bar's state onto the shared discovery-filter vocabulary and
+// let DoloPawsDiscoveryFilters.matches be the single source of truth for the
+// decision filters. Water stays a separate looser toggle and match% is scored,
+// so both are handled by the caller; geography/search/map are handled there too.
+function liRefineState(){
+  return {
+    duration: liFilters.duration,
+    distance: liFilters.dist === 'any' ? '' : liFilters.dist,
+    risk: liFilters.risk === 'any' ? '' : liFilters.risk,
+    terrain: liFilters.terrain === 'any' ? '' : liFilters.terrain,
+    heat: liFilters.shade === '40' ? 'shade-40' : liFilters.shade === '60' ? 'shade-60' : '',
+    water: liFilters.water,
+  };
+}
+
+function liMatchesRefineFilters(x){
+  const filters = window.DoloPawsDiscoveryFilters;
+  if(filters) return filters.matches(x, liRefineState());
+  // Fallback if the shared filter has not loaded: the same thresholds inline.
+  const multiDay = window.DoloPawsTrailTrust
+    ? window.DoloPawsTrailTrust.isMultiDay(x) : Number(x.distance) > 25;
+  if(liFilters.duration === 'multi' ? !multiDay : multiDay) return false;
+  if(liFilters.dist === 'u5' && !(x.distance < 5)) return false;
+  if(liFilters.dist === '5to10' && !(x.distance >= 5 && x.distance <= 10)) return false;
+  if(liFilters.dist === '10p' && !(x.distance > 10)) return false;
+  if(liFilters.risk !== 'any' && x.safetyLevel !== liFilters.risk) return false;
+  if(liFilters.terrain === 'soft' && !(Number(x.terrainRank) <= 0)) return false;
+  if(liFilters.terrain === 'mixed' && !(Number(x.terrainRank) <= 1)) return false;
+  if(liFilters.terrain === 'rocky' && !(Number(x.terrainRank) <= 2)) return false;
+  if(liFilters.shade === '40' && !((x.shadeCoverage || 0) >= 40)) return false;
+  if(liFilters.shade === '60' && !((x.shadeCoverage || 0) >= 60)) return false;
+  if(liFilters.water && !(Array.isArray(x.waterSources) && x.waterSources.length > 0)) return false;
+  return true;
+}
+
 function filterTrailsForReturningView(list){
   let displayList = filterTrailsForLocationContext(list);
   if(showingSavedOnly) displayList = displayList.filter(x => currentFavorites[x.id]);
@@ -429,22 +672,14 @@ function filterTrailsForReturningView(list){
     const point = liTrailLngLat(x);
     return point && liMapBounds.contains(point);
   });
-  // Day hikes lead; a long multi-day itinerary only appears when explicitly asked
-  // for via the Duration filter, so the default list is not dominated by 70 km
-  // network routes most visitors will never walk in a day.
-  const liMultiDay = x => window.DoloPawsTrailTrust ? window.DoloPawsTrailTrust.isMultiDay(x) : Number(x.distance) > 25;
-  displayList = displayList.filter(x => liFilters.duration === 'multi' ? liMultiDay(x) : !liMultiDay(x));
-  if(liFilters.dist === 'u5') displayList = displayList.filter(x => x.distance < 5);
-  else if(liFilters.dist === '5to10') displayList = displayList.filter(x => x.distance >= 5 && x.distance <= 10);
-  else if(liFilters.dist === '10p') displayList = displayList.filter(x => x.distance > 10);
-  if(liFilters.risk !== 'any') displayList = displayList.filter(x => x.safetyLevel === liFilters.risk);
-  if(liFilters.terrain === 'soft') displayList = displayList.filter(x => Number(x.terrainRank) <= 0);
-  else if(liFilters.terrain === 'mixed') displayList = displayList.filter(x => Number(x.terrainRank) <= 1);
-  else if(liFilters.terrain === 'rocky') displayList = displayList.filter(x => Number(x.terrainRank) <= 2);
-  if(liFilters.shade === '40') displayList = displayList.filter(x => (x.shadeCoverage || 0) >= 40);
-  else if(liFilters.shade === '60') displayList = displayList.filter(x => (x.shadeCoverage || 0) >= 60);
+  // The decision filters (duration, distance, trail rating, terrain, shade) run
+  // through the one shared discovery filter, so "Under 5 km", "Multi-day" or
+  // "Water on route" means exactly the same thing here as on Browse and the
+  // guest homepage. Geography, search, map bounds and match% stay local: they
+  // are either richer here (region/country labels in search) or scored on this
+  // runtime catalogue.
+  displayList = displayList.filter(x => liMatchesRefineFilters(x));
   if(liFilters.minMatch > 0) displayList = displayList.filter(x => x.score >= liFilters.minMatch);
-  if(liFilters.water) displayList = displayList.filter(x => Array.isArray(x.waterSources) && x.waterSources.length > 0);
 
   // Sort is applied last so it always reflects the current filtered set.
   // 'match' just keeps the incoming order, the list is already sorted by
@@ -2354,6 +2589,12 @@ function initLoggedInShell(){
   const chooseArea = document.getElementById('liChooseAreaBtn');
   const areaPicker = document.getElementById('liAreaPicker');
   const areaSelect = document.getElementById('liAreaSelect');
+  const areaSearch = document.getElementById('liAreaSearch');
+  const areaCountry = document.getElementById('liAreaCountry');
+  const areaRegion = document.getElementById('liAreaRegion');
+  const walkDate = document.getElementById('liWalkDate');
+  const recommendationDate = document.getElementById('liRecommendationDate');
+  const adjustRecommendation = document.getElementById('liAdjustRecommendationBtn');
   const locationStatus = document.getElementById('liLocationStatus');
   const changeLocation = document.getElementById('liChangeLocationBtn');
   if(useLocation) useLocation.addEventListener('click', () => {
@@ -2384,22 +2625,48 @@ function initLoggedInShell(){
         : 'We could not find your location. Choose an area to keep going.';
       if(areaPicker) areaPicker.hidden = false;
       if(chooseArea) chooseArea.setAttribute('aria-expanded', 'true');
-      if(areaSelect) areaSelect.focus();
+      if(areaSearch) areaSearch.focus();
     }, { enableHighAccuracy:false, timeout:10000, maximumAge:300000 });
   });
   if(chooseArea) chooseArea.addEventListener('click', () => {
     const open = areaPicker ? areaPicker.hidden : false;
     if(areaPicker) areaPicker.hidden = !open;
     chooseArea.setAttribute('aria-expanded', String(open));
-    if(open && areaSelect) areaSelect.focus();
+    if(open && areaSearch) areaSearch.focus();
+  });
+  if(areaSearch) areaSearch.addEventListener('input', liUpdateAreaSubmit);
+  if(areaCountry) areaCountry.addEventListener('change', () => {
+    liPopulateAreaRegions(areaCountry.value);
+    liUpdateAreaSubmit();
+  });
+  if(areaRegion) areaRegion.addEventListener('change', () => {
+    liPopulateAreaValleys(areaRegion.value);
+    liUpdateAreaSubmit();
+  });
+  if(areaSelect) areaSelect.addEventListener('change', liUpdateAreaSubmit);
+  [walkDate, recommendationDate].forEach(input => {
+    if(input) input.addEventListener('change', () => liSetWalkDate(input.value));
+  });
+  if(adjustRecommendation) adjustRecommendation.addEventListener('click', () => {
+    const toolbar = document.getElementById('liToolbar');
+    const open = toolbar ? !toolbar.classList.contains('li-refine-open') : false;
+    if(toolbar) toolbar.classList.toggle('li-refine-open', open);
+    adjustRecommendation.setAttribute('aria-expanded', String(open));
+    adjustRecommendation.textContent = open ? 'Hide adjustments' : 'Adjust recommendation';
+    if(open){
+      const search = document.getElementById('liSearch');
+      if(search) search.focus();
+    }
   });
   if(areaPicker) areaPicker.addEventListener('submit', event => {
     event.preventDefault();
-    if(!areaSelect || !areaSelect.value) return;
-    const splitAt = areaSelect.value.indexOf('::');
-    const region = areaSelect.value.slice(0, splitAt);
-    const valley = areaSelect.value.slice(splitAt + 2);
-    liSetLocationContext({ kind:'area', region, valley, label:valley });
+    const choice = liAreaChoiceFromSearch() || liAreaChoiceFromBrowse();
+    if(!choice) return;
+    if(walkDate && walkDate.value){
+      liWalkDate = walkDate.value;
+      try{ sessionStorage.setItem(LI_WALK_DATE_SESSION_KEY, liWalkDate); }catch(error){}
+    }
+    liSetLocationContext(choice);
   });
   if(changeLocation) changeLocation.addEventListener('click', liResetLocationContext);
 
@@ -2713,6 +2980,29 @@ function liMatchColHtml(t, profile, overrides){
     </div>`;
 }
 
+function liRecommendationExplanationHtml(trail, profile){
+  const recommendation = trail && trail.recommendation;
+  if(!recommendation) return '';
+  const dogName = profile && profile.name ? profile.name : 'your dog';
+  const positives = (recommendation.positiveReasons || []).slice(0, 2);
+  const cautions = [
+    ...(recommendation.hardStops || []),
+    ...(recommendation.cautions || []),
+    ...(recommendation.unknowns || []),
+  ].slice(0, 2);
+  const items = entries => entries.map(entry => `<li>${liPersonalisationText(entry.message)}</li>`).join('');
+  const fit = positives.length
+    ? `<div><b>Why it fits ${liPersonalisationText(dogName)}</b><ul>${items(positives)}</ul></div>`
+    : '';
+  const know = cautions.length
+    ? `<div><b>What to know ${liWalkDate === liDateOffsetIso(0) ? 'today' : 'for this day'}</b><ul>${items(cautions)}</ul></div>`
+    : '';
+  return `<div class="li-answer-explanation">
+    ${fit}${know}
+    <a class="li-answer-open" href="trail.html?id=${encodeURIComponent(trail.id)}">Open this trail →</a>
+  </div>`;
+}
+
 function liScheduleNewMatchSync(scored, profile){
   const auth = window.DoloPawsAuth;
   const user = auth && auth.currentUser;
@@ -2767,14 +3057,15 @@ async function renderReturningHomepage(profile, options = {}){
     updateMapMarkers([]);
     return;
   }
+  liEnsureLocationConditions();
 
   const name = (profile && profile.name) ? profile.name : 'there';
   const overrides = profile ? effectiveOverrides(profile, adjustOverride) : guestOverrides();
 
   const kicker = document.getElementById('companionKicker');
-  if(kicker) kicker.textContent = liActiveFilterCount() > 0
-    ? 'Filtered · on the map'
-    : (profile && profile.name ? `Ranked for ${profile.name}` : 'Ranked for your dog');
+  if(kicker) kicker.textContent = showingSavedOnly
+    ? 'Saved for later'
+    : (profile && profile.name ? `Chosen for ${profile.name}` : 'Chosen for your dog');
 
   const scored = trails.map(t => {
     const recommendation = recommendTrail(t, overrides, liConditionsFor(t));
@@ -2789,20 +3080,16 @@ async function renderReturningHomepage(profile, options = {}){
   const newIds = liNewMatchIds;
   if(!options.skipNewMatchSync) liScheduleNewMatchSync(filterTrailsForLocationContext(scored), profile);
 
-  // The cloud is Eddie speaking, one line, no counts, true for any area.
-  // When the owner has set "Adjust for today", the dog voices those declared
-  // conditions (never guessed weather); otherwise it asks the usual question.
-  let bubbleLine = profile && profile.name
-    ? `Where are we going today, ${profile.name}?`
-    : t('home.bubble');
-  if(adjustOverride){
-    if(adjustOverride.energy === 'low') bubbleLine = "I'm on low battery, keep it short and easy today.";
-    else if(adjustOverride.distance === '5') bubbleLine = 'Something short and sweet today, please.';
-    else if(adjustOverride.terrain === '0') bubbleLine = 'Easy underfoot today, my paws say so.';
-    else if(adjustOverride.energy === 'high') bubbleLine = "I'm full of beans, let's go big today.";
-  }
-  // Plain heading, left-aligned, no speech-cloud quotes (2026-07 revamp).
-  heading.textContent = bubbleLine;
+  const dayLabel = liWalkDateLabel();
+  const locationPhrase = liRecommendationLocationPhrase();
+  const answerTitle = profile && profile.name
+    ? `Best walk for ${profile.name} ${locationPhrase} ${dayLabel}`
+    : `Best walk ${locationPhrase} ${dayLabel}`;
+  heading.textContent = answerTitle;
+  const toolbarHeading = document.getElementById('liToolbarGreeting');
+  if(toolbarHeading) toolbarHeading.textContent = answerTitle;
+  const toolbarContext = document.getElementById('liToolbarDogContext');
+  if(toolbarContext) toolbarContext.textContent = 'One recommendation first, with the reasons and cautions that matter.';
   // The old copy ("Pick a province or valley below... Edit profile") duplicated
   // what the sidebar now already shows (filters + the dog card's edit link),
   // so this line is now just the one thing the sidebar can't say: whether
@@ -2816,7 +3103,7 @@ async function renderReturningHomepage(profile, options = {}){
   renderBreedInsight(profile);
 
   const titleEl = document.getElementById('companionListTitle');
-  if(titleEl) titleEl.textContent = showingSavedOnly ? 'Saved trails' : 'Top trails';
+  if(titleEl) titleEl.textContent = showingSavedOnly ? 'Saved trails' : (profile && profile.name ? `Best for ${profile.name}` : 'Best walk');
 
   let displayList = filterTrailsForReturningView(scored);
 
@@ -2826,7 +3113,11 @@ async function renderReturningHomepage(profile, options = {}){
   const applyBtn = document.getElementById('liFiltersApply');
   if(applyBtn) applyBtn.textContent = `Show ${displayList.length} ${displayList.length === 1 ? 'trail' : 'trails'}`;
 
+  if(!showingSavedOnly && displayList.length && !displayList.some(trail => trail.id === selectedTrailId)){
+    selectedTrailId = displayList[0].id;
+  }
   updateMapMarkers(displayList);
+  if(!showingSavedOnly && displayList.length && trailMapLoaded) setSelectedTrailRoute(displayList[0], { fit:false });
 
   // Reset to page 1 whenever the filters change; clamp if the list shrank.
   const filterKey = `${liLocationContextLabel()}|${activeCountry}|${activeRegion}|${activeValley}|${showingSavedOnly}|${liQuery}|${JSON.stringify(liFilters)}|${sortKey}`;
@@ -2874,7 +3165,7 @@ async function renderReturningHomepage(profile, options = {}){
     ? `<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;margin-bottom:12px;background:var(--sage-dim);border-radius:12px;font-size:12.5px;font-weight:600;color:var(--ink);">${t('home.fitLine', {a: fitCount, b: displayList.length})}</div>`
     : '';
 
-  listEl.innerHTML = summaryBar + pageList.map(t => {
+  listEl.innerHTML = summaryBar + pageList.map((t, index) => {
     const isFav = !!currentFavorites[t.id];
     const isNew = newIds.has(t.id);
     const dim = adjustActive && t.score < 60;
@@ -2884,8 +3175,9 @@ async function renderReturningHomepage(profile, options = {}){
     const importedBadge = t.curated === false
       ? (window.DoloPawsIcons ? window.DoloPawsIcons.badgeHtml('imported', window.t('badge.importedS')) : `<span class="badge-pill badge-imported">${window.t('badge.importedS')}</span>`)
       : '';
-    return `
-    <div class="li-row${selected ? ' tc-selected' : ''}" id="trail-card-${t.id}" data-id="${t.id}"${dim ? ' style="opacity:.55;"' : ''}>
+    const isPrimary = !showingSavedOnly && index === 0;
+    return `${isPrimary ? '' : index === 1 && !showingSavedOnly ? '<div class="li-alternatives-heading"><span>Other good fits</span><a href="browse-trails.html">See the full catalogue →</a></div>' : ''}
+    <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}" id="trail-card-${t.id}" data-id="${t.id}"${dim ? ' style="opacity:.55;"' : ''}>
       ${thumb}
       <div class="li-row-body">
         <a href="trail.html?id=${t.id}" class="li-row-name">${t.name}</a>
@@ -2899,6 +3191,7 @@ async function renderReturningHomepage(profile, options = {}){
         <button type="button" class="li-bar-act locate-btn" data-id="${t.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>See on map</button>
         ${directionsBarHtml(t)}
       </div>
+      ${isPrimary ? liRecommendationExplanationHtml(t, profile) : ''}
     </div>`;
   }).join('');
 
