@@ -62,8 +62,11 @@ describe('placing a hazard on the trail map', () => {
     const form=panel.querySelector('form');
     const place=panel.querySelector('[data-hazard-place]');
     expect(panel.closest('#trailMapBox')).not.toBeNull();
-    expect(form.hidden).toBe(true);
-    expect(place.textContent).toBe('Tap the trail line now');
+    expect(form.hidden).toBe(false);
+    expect(place.textContent).toBe('Place on map');
+
+    form.querySelector('[data-hazard-kind="livestock"]').click();
+    place.click();
 
     const [lat,lng]=trail.path[10];
     map.fire('click',{lngLat:{lat,lng}});
@@ -72,7 +75,6 @@ describe('placing a hazard on the trail map', () => {
     expect(where.textContent).toContain('km along the route');
     expect(where.classList.contains('is-off')).toBe(false);
     expect(place.textContent).toBe('Move the pin');
-    expect(form.hidden).toBe(false);
 
     form.querySelector('textarea').value='Guardian dogs loose on the pasture crossing';
     form.dispatchEvent(new window.Event('submit'));
@@ -88,15 +90,17 @@ describe('placing a hazard on the trail map', () => {
 
   test('a tap far from the trail is refused until the user skips location', async () => {
     const panel=document.querySelector('.orma-hazard-report');
+    panel.querySelector('[data-hazard-place]').click();
     map.fire('click',{lngLat:{lat:46.9,lng:12.2}});
 
     const where=panel.querySelector('[data-hazard-where]');
     expect(where.classList.contains('is-off')).toBe(true);
     expect(where.textContent).toContain('from this trail');
-    expect(panel.querySelector('form').hidden).toBe(true);
+    expect(panel.querySelector('form').hidden).toBe(false);
 
     panel.querySelector('[data-hazard-skip]').click();
     const form=panel.querySelector('form');
+    form.querySelector('[data-hazard-kind="route-damage"]').click();
     form.querySelector('textarea').value='Guardian dogs loose on the pasture crossing';
     form.dispatchEvent(new window.Event('submit'));
     await settle();
@@ -107,6 +111,7 @@ describe('placing a hazard on the trail map', () => {
     const panel=document.querySelector('.orma-hazard-report');
     panel.querySelector('[data-hazard-skip]').click();
     const form=panel.querySelector('form');
+    form.querySelector('[data-hazard-kind="route-damage"]').click();
     form.querySelector('textarea').value='Bridge plank is broken near the ford';
     form.dispatchEvent(new window.Event('submit'));
     await settle();
