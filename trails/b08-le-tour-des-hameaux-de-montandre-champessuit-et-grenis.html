@@ -31,9 +31,12 @@
   .sp-fact-v{font-weight:600;margin-top:2px;}
   .sp-body h2{margin-top:28px;}
   .sp-src{font-size:.85rem;color:var(--ink-soft,#666);}
-  .sp-photo{position:relative;width:480px;max-width:100%;margin:6px 0 14px;}
-  .sp-photo picture{display:block;}
-  .sp-photo .sp-img{width:100%;margin:0;}
+  /* The photo is lazy-loaded and the credit toggle is pinned to the figure's
+     corner, so the figure reserves its height up front; otherwise the toggle
+     floats over whatever sits above until the image arrives. */
+  .sp-photo{position:relative;width:480px;max-width:100%;aspect-ratio:8/5;margin:6px 0 14px;overflow:hidden;border-radius:12px;}
+  .sp-photo picture{display:block;height:100%;}
+  .sp-photo .sp-img{width:100%;height:100%;max-height:none;margin:0;}
   .sp-photo-credit{position:absolute;right:10px;bottom:10px;z-index:2;color:#fff;}
   .sp-photo-credit summary{cursor:pointer;list-style:none;display:grid;place-items:center;width:28px;height:28px;margin-left:auto;border:1px solid rgba(255,255,255,.62);border-radius:50%;background:rgba(34,49,42,.88);color:#fff;box-shadow:0 3px 12px rgba(0,0,0,.2);font:800 12px/1 'Inter',sans-serif;backdrop-filter:blur(5px);}
   .sp-photo-credit summary::-webkit-details-marker{display:none;}
