@@ -11,6 +11,18 @@ const path = require('path');
 const html = fs.readFileSync(path.join(__dirname, 'trail-verify-desk.html'), 'utf8');
 const script = fs.readFileSync(path.join(__dirname, 'trail-verify-desk.js'), 'utf8');
 
+
+/**
+ * groupBlockers and the label it leans on, lifted out of the desk and run for
+ * real: these tests are about what the operator ends up reading, so evaluating
+ * the actual source beats restating it.
+ */
+function loadGrouping(){
+  const grouping = script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('const MIN_NOTE'));
+  const label = script.slice(script.indexOf('function blockerLabel'), script.indexOf('function renderCoverage'));
+  return new Function(`${grouping}\n${label}\nreturn groupBlockers;`)();
+}
+
 describe('trail verification desk', () => {
   test('asks a plain question for every gate it can present', () => {
     // Each gate must carry a question and the label on its approve button;
@@ -139,8 +151,7 @@ describe('trail verification desk', () => {
 
   test('states one problem once, however many claims reported it', () => {
     // Three logistics claims fail with the same sentence; that is one problem.
-    const group = new Function(`${script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('function geometryFacts'))}; return groupBlockers;`)();
-    const { groups, loose } = group([
+    const { groups, loose } = loadGrouping()([
       'logistics/recommended-start: supported authoritative route guidance is required',
       'logistics/route-number-status: supported authoritative route guidance is required',
       'logistics/route-number-sequence: supported authoritative route guidance is required',
@@ -152,7 +163,7 @@ describe('trail verification desk', () => {
   });
 
   test('every grouped blocker says what would clear it', () => {
-    const groups = new Function(`${script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('/** One entry'))}; return BLOCKER_GROUPS;`)();
+    const groups = new Function(`${script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('const MIN_NOTE'))}; return BLOCKER_GROUPS;`)();
     groups.forEach(group => {
       expect(group.title).toBeTruthy();
       expect(group.remedy).toBeTruthy();
@@ -162,10 +173,58 @@ describe('trail verification desk', () => {
   });
 
   test('an unrecognised blocker is still shown, not swallowed', () => {
-    const group = new Function(`${script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('function geometryFacts'))}; return groupBlockers;`)();
-    const { groups, loose } = group(['something/new: a reason nobody has grouped yet']);
+    const { groups, loose } = loadGrouping()(['something/new: a reason nobody has grouped yet']);
     expect(groups).toEqual([]);
-    expect(loose).toEqual(['something/new: a reason nobody has grouped yet']);
+    // The heading is the check that filed it; the claim stays in the text.
+    expect(loose).toEqual([{ heading:'Something', texts:['something/new: a reason nobody has grouped yet'] }]);
+  });
+
+  test('one heading per agent, however many reasons it filed', () => {
+    // Three reasons from logistics used to render as three full-width blocks
+    // all headed "Logistics", which reads as three problems.
+    const { loose } = loadGrouping()([
+      'logistics/parking: conflicted',
+      'logistics/access: unresolved',
+      'terrainPoi/surface: conflicted',
+    ]);
+    expect(loose.map(entry => entry.heading))
+      .toEqual(['Getting there and getting around', 'Terrain and what is on the route']);
+    expect(loose[0].texts).toHaveLength(2);
+  });
+
+  test('the line under a heading does not repeat the heading', () => {
+    // "Terrain poi" followed by "terrainPoi/surface: conflicted" says the same
+    // word twice and the machine's spelling of it once.
+    const grouping = script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('const MIN_NOTE'));
+    const label = script.slice(script.indexOf('function blockerLabel'), script.indexOf('function renderCoverage'));
+    const looseText = new Function(`${grouping}\n${label}\nreturn looseText;`)();
+    expect(looseText('terrainPoi/surface: conflicted')).toBe('Surface — conflicted');
+    expect(looseText('logistics: five automated resolution strategies exhausted'))
+      .toBe('five automated resolution strategies exhausted');
+  });
+
+  test('the agent thinking aloud is not a blocker', () => {
+    // advance-trail-orchestration pushes the agent's recommendation and every
+    // open question into the same flat list as the claim that actually failed.
+    // Only the last of those is a problem a person can act on.
+    const { groups, loose, working } = loadGrouping()([
+      'logistics/recommended-start: supported authoritative route guidance is required',
+      'logistics: recommendation is needs-resolution',
+      'logistics: open question — What is the exact legal vehicle entrance?',
+      'logistics: open question — Should the trailhead be a parking coordinate?',
+    ]);
+    expect(groups).toHaveLength(1);
+    expect(loose).toEqual([]);
+    expect(working).toHaveLength(3);
+  });
+
+  test('the working folds away only when something else names the problem', () => {
+    const card = script.slice(script.indexOf('function card('), script.indexOf('async function decide'));
+    // Kept, never dropped: a card whose only content is the agent's questions
+    // would otherwise say nothing at all about why it is blocked.
+    expect(card).toContain("const named=groups.length||loose.length;");
+    expect(card).toMatch(/named\?el\('details','vd-blocker-working'\):el\('div','vd-blocker'\)/);
+    expect(card).toMatch(/The check did not finish/);
   });
 
   test('a blocked card drops the approval checklist and facts', () => {
