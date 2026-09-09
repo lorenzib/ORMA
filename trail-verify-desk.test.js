@@ -11,6 +11,18 @@ const path = require('path');
 const html = fs.readFileSync(path.join(__dirname, 'trail-verify-desk.html'), 'utf8');
 const script = fs.readFileSync(path.join(__dirname, 'trail-verify-desk.js'), 'utf8');
 
+
+/**
+ * groupBlockers and the label it leans on, lifted out of the desk and run for
+ * real: these tests are about what the operator ends up reading, so evaluating
+ * the actual source beats restating it.
+ */
+function loadGrouping(){
+  const grouping = script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('const MIN_NOTE'));
+  const label = script.slice(script.indexOf('function blockerLabel'), script.indexOf('function renderCoverage'));
+  return new Function(`${grouping}\n${label}\nreturn groupBlockers;`)();
+}
+
 describe('trail verification desk', () => {
   test('asks a plain question for every gate it can present', () => {
     // Each gate must carry a question and the label on its approve button;
@@ -139,8 +151,7 @@ describe('trail verification desk', () => {
 
   test('states one problem once, however many claims reported it', () => {
     // Three logistics claims fail with the same sentence; that is one problem.
-    const group = new Function(`${script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('function geometryFacts'))}; return groupBlockers;`)();
-    const { groups, loose } = group([
+    const { groups, loose } = loadGrouping()([
       'logistics/recommended-start: supported authoritative route guidance is required',
       'logistics/route-number-status: supported authoritative route guidance is required',
       'logistics/route-number-sequence: supported authoritative route guidance is required',
@@ -152,7 +163,7 @@ describe('trail verification desk', () => {
   });
 
   test('every grouped blocker says what would clear it', () => {
-    const groups = new Function(`${script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('/** One entry'))}; return BLOCKER_GROUPS;`)();
+    const groups = new Function(`${script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('const MIN_NOTE'))}; return BLOCKER_GROUPS;`)();
     groups.forEach(group => {
       expect(group.title).toBeTruthy();
       expect(group.remedy).toBeTruthy();
@@ -162,10 +173,58 @@ describe('trail verification desk', () => {
   });
 
   test('an unrecognised blocker is still shown, not swallowed', () => {
-    const group = new Function(`${script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('function geometryFacts'))}; return groupBlockers;`)();
-    const { groups, loose } = group(['something/new: a reason nobody has grouped yet']);
+    const { groups, loose } = loadGrouping()(['something/new: a reason nobody has grouped yet']);
     expect(groups).toEqual([]);
-    expect(loose).toEqual(['something/new: a reason nobody has grouped yet']);
+    // The heading is the check that filed it; the claim stays in the text.
+    expect(loose).toEqual([{ heading:'Something', texts:['something/new: a reason nobody has grouped yet'] }]);
+  });
+
+  test('one heading per agent, however many reasons it filed', () => {
+    // Three reasons from logistics used to render as three full-width blocks
+    // all headed "Logistics", which reads as three problems.
+    const { loose } = loadGrouping()([
+      'logistics/parking: conflicted',
+      'logistics/access: unresolved',
+      'terrainPoi/surface: conflicted',
+    ]);
+    expect(loose.map(entry => entry.heading))
+      .toEqual(['Getting there and getting around', 'Terrain and what is on the route']);
+    expect(loose[0].texts).toHaveLength(2);
+  });
+
+  test('the line under a heading does not repeat the heading', () => {
+    // "Terrain poi" followed by "terrainPoi/surface: conflicted" says the same
+    // word twice and the machine's spelling of it once.
+    const grouping = script.slice(script.indexOf('const BLOCKER_GROUPS'), script.indexOf('const MIN_NOTE'));
+    const label = script.slice(script.indexOf('function blockerLabel'), script.indexOf('function renderCoverage'));
+    const looseText = new Function(`${grouping}\n${label}\nreturn looseText;`)();
+    expect(looseText('terrainPoi/surface: conflicted')).toBe('Surface — conflicted');
+    expect(looseText('logistics: five automated resolution strategies exhausted'))
+      .toBe('five automated resolution strategies exhausted');
+  });
+
+  test('the agent thinking aloud is not a blocker', () => {
+    // advance-trail-orchestration pushes the agent's recommendation and every
+    // open question into the same flat list as the claim that actually failed.
+    // Only the last of those is a problem a person can act on.
+    const { groups, loose, working } = loadGrouping()([
+      'logistics/recommended-start: supported authoritative route guidance is required',
+      'logistics: recommendation is needs-resolution',
+      'logistics: open question — What is the exact legal vehicle entrance?',
+      'logistics: open question — Should the trailhead be a parking coordinate?',
+    ]);
+    expect(groups).toHaveLength(1);
+    expect(loose).toEqual([]);
+    expect(working).toHaveLength(3);
+  });
+
+  test('the working folds away only when something else names the problem', () => {
+    const card = script.slice(script.indexOf('function card('), script.indexOf('async function decide'));
+    // Kept, never dropped: a card whose only content is the agent's questions
+    // would otherwise say nothing at all about why it is blocked.
+    expect(card).toContain("const named=groups.length||loose.length;");
+    expect(card).toMatch(/named\?el\('details','vd-blocker-working'\):el\('div','vd-blocker'\)/);
+    expect(card).toMatch(/The check did not finish/);
   });
 
   test('a blocked card drops the approval checklist and facts', () => {
@@ -177,5 +236,67 @@ describe('trail verification desk', () => {
     expect(card).toMatch(/if\(decision\.ready&&decision\.facts\.length\)/);
     // And the reason comes before the evidence disclosure.
     expect(card.indexOf('vd-blockers')).toBeLessThan(card.indexOf('decision.evidence()'));
+  });
+
+  // ---- what the machine is doing ----
+
+  test('reads the pipeline summary instead of listing jobs from the browser', () => {
+    // Listing backofficeJobs on a desk that polls once a minute is hundreds of
+    // document reads a minute against a 50K free-tier daily quota. The worker
+    // writes one summary; the desk reads one document.
+    expect(script).toContain("artifact('pipeline-health'");
+    expect(script).not.toContain('getRevisionJobs');
+  });
+
+  test('never reports stopped work as one undifferentiated number', () => {
+    // "88 blocked" reads as a broken pipeline when 68 of them are an unpaid
+    // bill that resumes by itself. The split is the finding.
+    const stuck = script.slice(script.indexOf('function renderStuck'));
+    expect(stuck).toContain('stopped.needsDecision');
+    expect(stuck).toContain('stopped.resumesItself');
+    expect(stuck).toMatch(/need a decision from you/);
+    expect(stuck).toMatch(/start again on their own/);
+  });
+
+  test('offers no way to stop a lane that carries verification', () => {
+    // Retiring one of those drops a trail out of verification with nobody
+    // deciding to. The CLI refuses it too; the desk must not even ask.
+    const stuck = script.slice(script.indexOf('function renderStuck'));
+    const guard = stuck.indexOf('lane.carriesVerification');
+    const stop = stuck.indexOf('retire-blocked-jobs');
+    expect(guard).toBeGreaterThan(-1);
+    expect(stop).toBeGreaterThan(guard);
+  });
+
+  test('hands over the stop command rather than pretending to run it', () => {
+    // Firestore refuses every browser write to backofficeJobs, on purpose. A
+    // button claiming to stop a lane would be a lie, so the desk copies the line.
+    expect(script).toContain('function commandBox');
+    expect(script).toContain('navigator.clipboard.writeText');
+    const scripts = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8')).scripts;
+    const command = script.match(/npm run (backoffice:[a-z-]+)[^`]*--job-type/);
+    expect(command).not.toBeNull();
+    // The desk must not hand out a command that does not exist.
+    expect(scripts[command[1]]).toBeTruthy();
+  });
+
+  test('says whether the automation is actually running', () => {
+    // A stopped pipeline and a healthy idle one look identical in a job count.
+    expect(script).toContain("artifact('worker-health'");
+    const state = script.slice(script.indexOf('function renderMachineState'), script.indexOf('function renderMachine('));
+    expect(state).toMatch(/behind or switched off/);
+    expect(state).toContain('delayAfterMinutes');
+  });
+
+  test('the human queue is above the coverage explanation', () => {
+    // The desk exists to be worked, not read. Counts and definitions come after
+    // the trails waiting on a decision.
+    expect(html.indexOf('verifyQueueTitle')).toBeLessThan(html.indexOf('verifyCoverageTitle'));
+  });
+
+  test('the coverage explanation is collapsed, and its summary still names it', () => {
+    // It was made visible because "0 of 165 verified" was unexplainable. It
+    // stays reachable and self-describing, but it is not the top of the page.
+    expect(html).toMatch(/<details class="vd-explain">\s*<summary>What "verified" means, and why the number is low<\/summary>/);
   });
 });

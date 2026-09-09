@@ -20,6 +20,8 @@
     staging:'backoffice-data/publication-staging.json',
     catalogue:'backoffice-data/catalogue-campaign.json',
     registry:'backoffice-data/orma-verified-registry.json',
+    pipeline:'backoffice-data/pipeline-health.json',
+    worker:'backoffice-data/worker-health.json',
   };
   const LOCAL_MODE=['localhost','127.0.0.1'].includes(location.hostname);
   const DRAFT_KEY='orma-verify-notes-v1';
@@ -28,7 +30,13 @@
   const stateNode=document.getElementById('verifyState');
   const queueNode=document.getElementById('verifyQueue');
   const countNode=document.getElementById('verifyCount');
-  const workingNode=document.getElementById('verifyWorking');
+  const machineNodes={
+    state:document.getElementById('verifyMachineState'),
+    work:document.getElementById('verifyMachineWork'),
+    controls:document.getElementById('verifyMachineControls'),
+    stuck:document.getElementById('verifyStuck'),
+    age:document.getElementById('verifyMachineAge'),
+  };
   const blockedNode=document.getElementById('verifyBlocked');
   const prNode=document.getElementById('verifyPr');
   const prCountNode=document.getElementById('verifyPrCount');
@@ -36,6 +44,7 @@
 
   let dossier={items:[]},orchestration={trails:[],summary:{}},editorial={outputs:[]},staging={items:[]},publication={requests:[]};
   let catalogue={items:[]},registry={verified:[]};
+  let pipeline=null,worker=null;
   let coverageError='';
   let drafts=stored(DRAFT_KEY),receipts=stored(RECEIPT_KEY);
 
@@ -148,18 +157,83 @@
     },
   ];
 
-  /** One entry per distinct problem, with the raw ids kept for hovering. */
+  /**
+   * Not every blocking reason is a problem to read.
+   *
+   * advance-trail-orchestration pushes three different kinds of string into one
+   * flat list: the claim that failed, the agent's overall recommendation, and
+   * every open question the agent wrote down. Only the first names something a
+   * person can act on. The other two are the agent thinking aloud, and a card
+   * showed all of them at equal weight, so one missing route sheet arrived as
+   * four full-width blocks under the same heading.
+   *
+   * They are the machine's working, so they go where the rest of the working
+   * already goes: behind a disclosure.
+   */
+  const WORKING_NOTES=[
+    // "recommendation is needs-resolution" restates that the check did not
+    // pass, which the word BLOCKED at the top of the card already said.
+    /:\s*recommendation is /,
+    /:\s*open question\s*[—-]/,
+  ];
+  const isWorkingNote=text=>WORKING_NOTES.some(pattern=>pattern.test(text));
+
+  /**
+   * The checks, by the thing they look at. There are five of them and they do
+   * not change often, so naming them beats "Terrain poi", which is the
+   * variable name with a space put in it.
+   */
+  const CHECK_LABELS={
+    logistics:'Getting there and getting around',
+    regulatoryRanger:'Rules and access',
+    terrainPoi:'Terrain and what is on the route',
+    cartographer:'The route itself',
+    evidenceLibrarian:'The sources behind the findings',
+  };
+  const checkLabel=agent=>CHECK_LABELS[agent]||blockerLabel(agent);
+
+  /**
+   * The heading already names the check that filed it, so repeating
+   * "terrainPoi/" in the line under it says nothing. Strip the prefix and open
+   * out what remains: "terrainPoi/surface: conflicted" becomes "Surface —
+   * conflicted" under a heading of "Terrain poi".
+   */
+  function looseText(text){
+    const stripped=String(text).replace(/^[A-Za-z][A-Za-z0-9]*[/:]\s*/,'');
+    const parts=stripped.split(': ');
+    if(parts.length<2)return stripped;
+    return `${blockerLabel(parts[0])} — ${parts.slice(1).join(': ')}`;
+  }
+
+  /**
+   * One entry per distinct problem, with the raw ids kept for hovering, plus
+   * the agent's working kept separately so the card can fold it away.
+   */
   function groupBlockers(reasons){
-    const groups=[],loose=[];
+    const groups=[],loose=[],working=[];
     (reasons||[]).forEach(reason=>{
       const text=String(reason);
       const group=BLOCKER_GROUPS.find(candidate=>candidate.match.test(text));
-      if(!group){loose.push(text);return;}
-      let existing=groups.find(entry=>entry.group===group);
-      if(!existing){existing={group,raw:[]};groups.push(existing);}
-      existing.raw.push(text);
+      if(group){
+        let existing=groups.find(entry=>entry.group===group);
+        if(!existing){existing={group,raw:[]};groups.push(existing);}
+        existing.raw.push(text);
+        return;
+      }
+      (isWorkingNote(text)?working:loose).push(text);
     });
-    return {groups,loose};
+    // Several reasons from one agent used to render as several full-width
+    // blocks, and "logistics/parking" and "logistics/access" made two of them
+    // even though they are one check reporting twice. Key on the agent, which
+    // is everything before the first slash or colon, so one check is one
+    // heading with its reasons listed under it.
+    const byHeading=new Map();
+    loose.forEach(text=>{
+      const heading=checkLabel(String(text).split(/[/:]/)[0]);
+      if(!byHeading.has(heading))byHeading.set(heading,[]);
+      byHeading.get(heading).push(text);
+    });
+    return {groups,loose:[...byHeading.entries()].map(([heading,texts])=>({heading,texts})),working};
   }
 
   const MIN_NOTE=10;
@@ -367,6 +441,25 @@
    * camelCase and the dashes back into words rather than keeping a hand-built
    * dictionary that would silently miss every new blocker.
    */
+  /**
+   * What would actually clear each of the counted blockers. The list kept being
+   * read as "add some links and 156 trails unblock", which is not what any of
+   * these say: a link is evidence, and only two of them are about evidence at
+   * all. Spelling out the remedy is cheaper than the wasted afternoon.
+   */
+  const BLOCKER_REMEDIES={
+    'review-date-missing':'No date is recorded on which anyone reviewed this trail\'s safety facts. Only doing the review sets it; a link cannot.',
+    'claim-sources-missing':'Every safety category claimed as reviewed must name a link covering it. Links help here, but only together with the review that cites them.',
+    'category-review-incomplete':'Fewer than all six safety categories have been reviewed: water, heat, exposure, livestock, surface hazards, access.',
+    'shadeCoverage-unknown':'No shade figure recorded. This feeds the match score, not verification.',
+    'heatRisk-unknown':'No heat rating recorded. This feeds the match score, not verification.',
+    'exposure-unknown':'No exposure rating recorded. This feeds the match score, not verification.',
+    'surfaceHazards-unknown':'No surface hazards recorded. This feeds the match score, not verification.',
+    'route-source-identity-unresolved':'No authoritative source names this route. An official route sheet is the one thing that clears it.',
+    'route-number-guidance-unverified':'No authoritative start point or route order. An official route sheet is the one thing that clears it.',
+    'usable-geometry-missing':'No usable line is stored for this route.',
+  };
+
   function blockerLabel(id){
     const words=String(id||'').replace(/([a-z0-9])([A-Z])/g,'$1 $2').replace(/[-_]/g,' ').trim().toLowerCase();
     return words.charAt(0).toUpperCase()+words.slice(1);
@@ -457,10 +550,180 @@
     }
     ranked.forEach(([id,count])=>{
       const row=el('li');
-      row.append(el('strong','',String(count)),el('span','',blockerLabel(id)));
+      const text=el('span','vd-blocker-text');
+      text.append(el('span','vd-blocker-name',blockerLabel(id)));
+      if(BLOCKER_REMEDIES[id])text.append(el('small','vd-blocker-remedy',BLOCKER_REMEDIES[id]));
+      row.append(el('strong','',String(count)),text);
       row.title=id;
       coverageNodes.blockers.append(row);
     });
+  }
+
+  // ---- what the machine is doing, and where it has stopped ----
+
+  const WORKER_RUN_URL='https://github.com/lorenzib/ORMA/actions/workflows/orma-backoffice-worker.yml';
+
+  // Lane ids are the job type as the code writes it. Naming the ones that exist
+  // beats a hand-built dictionary going stale, so unknown lanes fall back to the
+  // id with its dashes opened out rather than being hidden.
+  const LANE_LABELS={
+    'trail-verification-specialist':'Gathering evidence about a trail',
+    'trail-claim-resolution':'Re-checking findings that came back unresolved',
+    'verified-trail-revision':'Rewriting a trail page after a revision',
+    'hosted-editorial-publication':'Publishing written content',
+    'verified-trail-editorial-first-pass':'Writing a first draft',
+    'image-coverage':'Finding a photo for a trail',
+  };
+  function laneLabel(jobType){
+    if(LANE_LABELS[jobType])return LANE_LABELS[jobType];
+    const words=String(jobType||'').replace(/-/g,' ').trim();
+    return words.charAt(0).toUpperCase()+words.slice(1);
+  }
+
+  function ago(value){
+    const when=value?new Date(value):null;
+    if(!when||Number.isNaN(when.valueOf()))return null;
+    const hours=(Date.now()-when.valueOf())/3600000;
+    if(hours<1)return 'less than an hour ago';
+    if(hours<48)return `${Math.round(hours)} hours ago`;
+    return `${Math.round(hours/24)} days ago`;
+  }
+
+  /**
+   * A command with a copy button. The desk cannot run these itself: Firestore
+   * refuses every write to backofficeJobs from a browser, deliberately, so a
+   * button that claimed to stop a lane would be a lie. Handing over the exact
+   * line is the honest version of the same control.
+   */
+  function commandBox(label, command){
+    const box=el('div','vd-command');
+    const code=el('code','',command);
+    const copy=el('button','vd-command-copy',label);copy.type='button';
+    copy.addEventListener('click',async()=>{
+      try{await navigator.clipboard.writeText(command);copy.textContent='Copied';}
+      catch(error){copy.textContent='Select the line and copy it';}
+      window.setTimeout(()=>{copy.textContent=label;},2500);
+    });
+    box.append(code,copy);
+    return box;
+  }
+
+  /** Is it running at all, and did the last run work? */
+  function renderMachineState(){
+    const node=machineNodes.state;
+    node.classList.remove('is-bad','is-good');
+    if(!worker){
+      node.textContent='No record of the automation running. Either it has never run, or its figures could not be read.';
+      return;
+    }
+    const last=worker.completedAt||worker.lastSuccessfulAt||worker.startedAt;
+    const when=ago(last);
+    const overdueAfter=Number(worker.delayAfterMinutes)||45;
+    const minutesSince=last?(Date.now()-new Date(last).valueOf())/60000:null;
+    const overdue=minutesSince!==null&&minutesSince>overdueAfter;
+
+    if(worker.status==='running'){node.textContent=`A run is going on now, started ${ago(worker.startedAt)||'just now'}.`;return;}
+    if(worker.status==='failed'){
+      node.classList.add('is-bad');
+      node.textContent=`The last run failed ${when||'recently'}: ${worker.lastFailure?.message||'no reason was recorded'}`;
+      return;
+    }
+    if(worker.status==='blocked'){
+      node.classList.add('is-bad');
+      node.textContent=`The last run stopped before publishing ${when||'recently'}: ${worker.publicationGate?.message||'the website publication gate is closed'}`;
+      return;
+    }
+    // Healthy but stale is the case that matters: nothing is broken, nothing is
+    // running either, and a count of "0 failures" reads as if all were well.
+    if(overdue){
+      node.classList.add('is-bad');
+      node.textContent=`The last run worked, but it was ${when}. It expects to run every ${Math.round((Number(worker.expectedIntervalMinutes)||180)/60)||3} hours, so it is behind or switched off.`;
+      return;
+    }
+    node.classList.add('is-good');
+    node.textContent=`The last run worked, ${when||'recently'}.`;
+  }
+
+  function renderMachine(){
+    if(!machineNodes.state)return;
+    renderMachineState();
+
+    const work=pipeline&&pipeline.working?pipeline.working:null;
+    const trailsRunning=Number((orchestration.summary||{}).running||0);
+    const parts=[];
+    if(trailsRunning)parts.push(`${plural(trailsRunning,'trail')} in progress`);
+    if(work){
+      if(work.running)parts.push(`${plural(work.running,'task')} running`);
+      if(work.queued)parts.push(`${plural(work.queued,'task')} queued`);
+    }
+    machineNodes.work.textContent=parts.length?`${parts.join(' · ')}.`:'Nothing is in progress right now.';
+    if(pipeline&&pipeline.generatedAt){
+      const seen=ago(pipeline.generatedAt);
+      machineNodes.age.textContent=seen?`Last counted ${seen}`:'';
+    }
+
+    machineNodes.controls.replaceChildren();
+    const run=el('a','vd-run-now','Run it now');
+    run.href=WORKER_RUN_URL;run.target='_blank';run.rel='noopener';
+    machineNodes.controls.append(run);
+    machineNodes.controls.append(el('small','vd-run-note',
+      'Opens the automation on GitHub. "Run workflow" starts a pass immediately; it also runs itself every three hours.'));
+
+    renderStuck();
+  }
+
+  function renderStuck(){
+    const node=machineNodes.stuck;
+    node.replaceChildren();
+    if(!pipeline||!pipeline.stopped){
+      node.append(el('p','vd-empty','No record of stopped work yet. It is written by the automation at the end of each run.'));
+      return;
+    }
+    const stopped=pipeline.stopped;
+    if(!stopped.total){
+      node.append(el('p','vd-empty','Nothing has stopped. Every task is either running, queued or done.'));
+      return;
+    }
+
+    node.append(el('h3','vd-stuck-title',`${plural(stopped.total,'task')} stopped`));
+    // The distinction the whole panel exists for. A count of "88 blocked" reads
+    // as a broken pipeline when 68 of them are an unpaid bill that resumes on
+    // its own the moment it is paid.
+    const split=el('p','vd-stuck-split');
+    split.append(el('strong','',String(stopped.needsDecision)),el('span','',' need a decision from you · '),
+      el('strong','',String(stopped.resumesItself)),el('span','',' start again on their own once the cause clears'));
+    node.append(split);
+    if(stopped.oldest)node.append(el('p','vd-stuck-age',`The oldest stopped ${ago(stopped.oldest)}.`));
+
+    (pipeline.lanes||[]).filter(lane=>lane.stopped).forEach(lane=>{
+      const row=el('article','vd-lane');
+      const head=el('div','vd-lane-head');
+      head.append(el('h4','',laneLabel(lane.jobType)),el('span','vd-lane-count',plural(lane.stopped,'task')));
+      row.append(head);
+      row.title=lane.jobType;
+
+      (lane.causes||[]).forEach(cause=>{
+        const item=el('div','vd-cause');
+        item.append(el('strong','',`${cause.count}× ${cause.message}`));
+        item.append(el('p','vd-cause-remedy',cause.remedy));
+        row.append(item);
+      });
+
+      if(lane.resumesItself===lane.stopped){
+        row.append(el('p','vd-lane-note','Nothing to do here. The automation puts these back itself, ten per run, once the cause clears.'));
+      }else if(lane.carriesVerification){
+        // Retiring one of these would drop a trail out of verification without
+        // anyone deciding to, so the desk offers no way to do it.
+        row.append(el('p','vd-lane-note','This work carries trail verification, so it cannot be stopped from here. Fix the cause, or the trails waiting on it never finish.'));
+      }else{
+        row.append(el('p','vd-lane-note','If this kind of work no longer exists, stop it. That clears the stopped tasks; it does not delete any trail.'));
+        row.append(commandBox('Copy the stop command',
+          `npm run backoffice:retire-blocked-jobs -- --job-type ${lane.jobType} --apply --reason "no longer part of the pipeline"`));
+      }
+      node.append(row);
+    });
+
+    node.append(el('p','vd-lane-note','To list everything that can be stopped, without changing anything: npm run backoffice:retire-blocked-jobs'));
   }
 
   // ---- rendering ----
@@ -480,7 +743,7 @@
     // A blocked trail cannot be approved, so the reason is the story: it goes
     // directly under the name, before the question and the approval checklist.
     if(decision.blockers.length){
-      const {groups,loose}=groupBlockers(decision.blockers);
+      const {groups,loose,working}=groupBlockers(decision.blockers);
       const box=el('div','vd-blockers');
       box.append(el('h3','','Cannot be approved yet'));
       groups.forEach(({group,raw})=>{
@@ -490,11 +753,28 @@
         item.title=raw.join('\n');
         box.append(item);
       });
-      loose.forEach(reason=>{
+      loose.forEach(({heading,texts})=>{
         const item=el('div','vd-blocker');
-        item.append(el('strong','',blockerLabel(String(reason).split(':')[0])),el('p','',String(reason)));
+        item.append(el('strong','',heading));
+        texts.forEach(text=>item.append(el('p','',looseText(text))));
+        // The machine ids stay reachable without taking up the card.
+        item.title=texts.join('\n');
         box.append(item);
       });
+      // The agent's open questions and its own recommendation. If something
+      // above already named the problem they add nothing, so they fold away.
+      // If nothing did, they are all the card has and must stay visible.
+      if(working.length){
+        const named=groups.length||loose.length;
+        const host=named?el('details','vd-blocker-working'):el('div','vd-blocker');
+        if(named){
+          host.append(el('summary','',`What the check was still asking (${working.length})`));
+        }else{
+          host.append(el('strong','','The check did not finish'));
+        }
+        working.forEach(text=>host.append(el('p','',text)));
+        box.append(host);
+      }
       article.append(box);
     }
 
@@ -629,8 +909,10 @@
     stopped.forEach(trail=>{
       const row=el('article','vd-blocked-row');
       row.append(el('strong','',trail.name));
-      const {groups,loose}=groupBlockers(trail.reasons);
-      const said=[...groups.map(entry=>entry.group.title),...loose];
+      // One line per trail, so it names the problems and never the working.
+      const {groups,loose,working}=groupBlockers(trail.reasons);
+      const said=[...groups.map(entry=>entry.group.title),...loose.map(entry=>entry.heading)];
+      if(!said.length&&working.length)said.push('The check did not finish');
       row.append(el('p','vd-blocked-why',said.length?said.join(' · '):'No reason was recorded.'));
       if(trail.stoppedAt)row.append(el('small','',`Stopped ${new Date(trail.stoppedAt).toLocaleDateString()}`));
       blockedNode.append(row);
@@ -650,9 +932,7 @@
     }else{
       decisions.forEach(decision=>queueNode.append(card(decision)));
     }
-    const summary=orchestration.summary||{};
-    const running=Number(summary.running||0);
-    workingNode.textContent=running?`The system is working on ${plural(running,'trail')}.`:'The system has no trails in progress.';
+    renderMachine();
     renderBlocked();
     renderCoverage();
     renderPullRequests();
@@ -661,7 +941,7 @@
   async function load(){
     refreshBtn.disabled=true;
     try{
-      [dossier,orchestration,editorial,staging,publication,catalogue,registry]=await Promise.all([
+      [dossier,orchestration,editorial,staging,publication,catalogue,registry,pipeline,worker]=await Promise.all([
         artifact('dossier-review-queue',URLS.dossier,{items:[]}),
         artifact('trail-orchestration',URLS.orchestration,{trails:[],summary:{}}),
         artifact('verified-trail-editorial-execution',URLS.editorial,{outputs:[]}),
@@ -669,6 +949,8 @@
         artifact('publication-requests',null,{requests:[]}),
         artifact('catalogue-campaign',URLS.catalogue,{items:[]}),
         artifact('orma-verified-registry-live',URLS.registry,{verified:[]}),
+        artifact('pipeline-health',URLS.pipeline,null),
+        artifact('worker-health',URLS.worker,null),
       ]);
       coverageError='';
       stateNode.textContent='';

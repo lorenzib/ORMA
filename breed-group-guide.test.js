@@ -12,44 +12,65 @@ describe('interactive breed and build guide', () => {
     window.eval(controller);
   });
 
-  test('shows every concise trail check before a trait is selected', () => {
+  test('shows all 13 breed cards in their compact state', () => {
     const cards = [...document.querySelectorAll('[data-breed-trait]')];
     expect(cards).toHaveLength(13);
-    expect(cards.every(card => !card.hidden)).toBe(true);
-    expect(document.querySelector('[data-breed-status]').textContent).toBe('Showing all 13 trail checks.');
-    expect(document.querySelector('[data-breed-reset]').hidden).toBe(true);
+    expect(document.querySelectorAll('[data-breed-card-toggle]')).toHaveLength(13);
+    expect(document.querySelectorAll('.breed-card-summary')).toHaveLength(13);
+    expect(cards.every(card => card.classList.contains('is-enhanced'))).toBe(true);
+    expect(cards.every(card => card.querySelector('.breed-card-content').hidden)).toBe(true);
   });
 
-  test('keeps the emergency, selector and rendered cards in one white experience', () => {
+  test('keeps every trait title and breed example directly beside its image', () => {
+    const summaries = [...document.querySelectorAll('.breed-card-summary')];
+    expect(summaries).toHaveLength(13);
+    expect(summaries.every(summary => summary.children[0].matches('.breed-card-image'))).toBe(true);
+    expect(summaries.every(summary => summary.querySelector('.breed-card-summary__copy > h2'))).toBe(true);
+    expect(summaries.every(summary => summary.querySelector('.breed-card-summary__copy > .scan-examples'))).toBe(true);
+  });
+
+  test('gives every card a lightweight, non-diagnostic visual example', () => {
+    const images = [...document.querySelectorAll('.breed-card-image')];
+    expect(images).toHaveLength(13);
+    expect(images.every(image => image.getAttribute('loading') === 'lazy')).toBe(true);
+    expect(images.every(image => image.getAttribute('alt') === '')).toBe(true);
+    expect(images.every(image => fs.existsSync(path.resolve(__dirname, 'guides', image.getAttribute('src')))))
+      .toBe(true);
+  });
+
+  test('keeps the emergency and breed cards together without a separate selector', () => {
     const experience = document.querySelector('.breed-check-experience');
     expect(experience).not.toBeNull();
     expect(experience.firstElementChild.classList.contains('breed-emergency')).toBe(true);
-    expect(experience.querySelector('.breed-picker')).not.toBeNull();
+    expect(experience.querySelector('.breed-picker')).toBeNull();
     expect(experience.querySelector('[data-breed-grid]')).not.toBeNull();
-    expect(experience.querySelector('.breed-picker').compareDocumentPosition(
-      experience.querySelector('[data-breed-grid]')
-    ) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
   });
 
-  test('supports multiple trait selections and a clear action', () => {
-    const airway = document.querySelector('[data-breed-filter="airway"]');
-    const deepChest = document.querySelector('[data-breed-filter="deep"]');
-    const reset = document.querySelector('[data-breed-reset]');
+  test('turns multiple cards independently and exposes the guidance accessibly', () => {
+    const airway = document.querySelector('[data-breed-trait="airway"]');
+    const deepChest = document.querySelector('[data-breed-trait="deep"]');
+    const airwayToggle = airway.querySelector('[data-breed-card-toggle]');
+    const deepChestToggle = deepChest.querySelector('[data-breed-card-toggle]');
 
-    airway.click();
-    expect(airway.getAttribute('aria-pressed')).toBe('true');
-    expect(document.querySelectorAll('[data-breed-trait]:not([hidden])')).toHaveLength(1);
+    airwayToggle.click();
+    expect(airway.classList.contains('is-open')).toBe(true);
+    expect(airwayToggle.getAttribute('aria-expanded')).toBe('true');
+    expect(airwayToggle.getAttribute('aria-label')).toMatch(/Flat or short nose/);
+    expect(airway.querySelector('.breed-card-content').hidden).toBe(false);
 
-    deepChest.click();
-    expect(deepChest.getAttribute('aria-pressed')).toBe('true');
-    expect(document.querySelectorAll('[data-breed-trait]:not([hidden])')).toHaveLength(2);
-    expect(document.querySelector('[data-breed-status]').textContent).toMatch(/Showing 2 of 13/);
-    expect(reset.hidden).toBe(false);
+    deepChestToggle.click();
+    expect(deepChest.classList.contains('is-open')).toBe(true);
+    expect(airway.classList.contains('is-open')).toBe(true);
 
-    reset.click();
-    expect(document.querySelectorAll('[data-breed-trait]:not([hidden])')).toHaveLength(13);
-    expect([...document.querySelectorAll('[data-breed-filter]')]
-      .every(button => button.getAttribute('aria-pressed') === 'false')).toBe(true);
+    airwayToggle.click();
+    expect(airway.classList.contains('is-open')).toBe(false);
+    expect(airwayToggle.getAttribute('aria-expanded')).toBe('false');
+  });
+
+  test('turns a closed card when its visible front is clicked', () => {
+    const card = document.querySelector('[data-breed-trait="coat"]');
+    card.querySelector('h2').click();
+    expect(card.classList.contains('is-open')).toBe(true);
   });
 
   test('keeps the source-backed medical edge cases explicit', () => {
