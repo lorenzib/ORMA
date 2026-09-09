@@ -2,7 +2,7 @@
 
 const { createAgentJob }=require('../contracts/agent-job-v1');
 const { summarize }=require('./build-live-orchestration');
-const {compileVerifiedDossier,verificationRecord}=require('./compile-verified-dossier');
+const {compileVerifiedDossier,verificationRecord,unacceptedBlockers,waivableBlocker}=require('./compile-verified-dossier');
 
 const BASE_SPECIALISTS=Object.freeze([
   // Route guidance is logistics' work too, and the output contract has demanded
@@ -34,7 +34,18 @@ function applyDossierReview(orchestration,reviewQueue,decision,options={}){
   if(!['approve','request-revision','reject'].includes(decision.action)) throw new Error('Invalid dossier review action');
   const review=(reviewQueue.items||[]).find(item=>item.reviewId===decision.reviewId&&item.state==='awaiting-human');
   if(!review) throw new Error('Dossier review item is no longer awaiting a decision');
-  if(decision.action==='approve'&&!review.approvalAllowed) throw new Error('This dossier has blockers and cannot be approved');
+  // Approval no longer means "nothing to ask", which never happened. It means
+  // every blocker has been addressed: cleared by the agents, or accepted by the
+  // moderator with a reason that is kept with the verification.
+  if(decision.action==='approve'){
+    const standing=unacceptedBlockers(review,decision.acceptedBlockers);
+    if(standing.length){
+      const unwaivable=standing.filter(reason=>!waivableBlocker(reason));
+      throw new Error(unwaivable.length
+        ? `Route guidance cannot be accepted, only supplied: ${unwaivable.join('; ')}`
+        : `This dossier has blockers that were not addressed: ${standing.join('; ')}`);
+    }
+  }
   if(decision.action==='request-revision'&&!String(decision.note||'').trim()) throw new Error('A precise revision instruction is required');
   const trail=orchestration.trails.find(item=>item.candidateId===review.candidateId);
   if(!trail) throw new Error('Orchestration trail was not found');
@@ -50,7 +61,8 @@ function applyDossierReview(orchestration,reviewQueue,decision,options={}){
     nextTrail.state='ready-for-editorial'; nextTrail.stage='verified-dossier-approved';
     nextTrail.gate={...nextTrail.gate,status:'approved',reviewedAt:at};
     nextTrail.verificationStatus='orma-verified';nextTrail.verifiedAt=at;
-    verifiedDossier=compileVerifiedDossier(review,nextTrail,{at,verifiedBy:decision.submittedBy||decision.reviewedBy||'human-moderator'});
+    verifiedDossier=compileVerifiedDossier(review,nextTrail,{at,acceptedBlockers:decision.acceptedBlockers,
+      verifiedBy:decision.submittedBy||decision.reviewedBy||'human-moderator'});
     verifiedRecord=verificationRecord(verifiedDossier);
   }else{
     const agentId=decision.targetAgent||'cartographer';

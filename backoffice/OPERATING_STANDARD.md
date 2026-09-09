@@ -325,6 +325,28 @@ validation and retired the job, while answering `unresolved` instead blocked the
 dossier gate. A contract that no honest answer satisfies stops the pipeline just
 as surely as a missing agent.
 
+## Approval means every blocker was addressed, not that there were none
+
+Five agents researching a mountain trail always leave loose ends, and a gate
+that opens only when none remain never opens. A dossier is approvable when every
+blocker has been addressed: cleared by the agents, or accepted by the moderator
+with a reason of at least ten characters. The reason, the moderator and the
+moment are kept in the verification record, and a trail verified with accepted
+caveats says so.
+
+An acceptance says the dossier can be verified. It never says the claim is true.
+Each claim keeps the finding its specialist gave it in `humanAcceptedFinding`,
+and the operational facts compiler publishes nothing whose accepted finding is
+not a supported proposal. Accepting an unresolved dog-access claim accepts that
+it is unresolved; it does not tell a reader the rifugio takes dogs. Cautions and
+unknowns reach the reader unchanged, exactly as SCORING.md requires.
+
+Route guidance is the one blocker no reason can wave through. Every other
+blocker is background research a human can judge sufficient; route guidance is
+content printed on the trail page for a walker to follow, so waiving it would
+publish a walk with no directions. It is the agent's work, and it must be
+supplied rather than excused.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:
