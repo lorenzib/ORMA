@@ -129,4 +129,14 @@ describe('every override reaches the data the site actually serves',()=>{
   test('the ledger is not empty, so the check above means something',()=>{
     expect(entries.length).toBeGreaterThan(20);
   });
+
+  test('the photo figure reserves its height so the credit never floats over the content above', () => {
+    // The image is lazy-loaded and the credit toggle is pinned to the figure's
+    // corner. Without a reserved aspect ratio the figure is 0px tall until the
+    // image arrives, and the toggle sits on whatever precedes it (the area
+    // warnings, on a page that has them).
+    const generator = fs.readFileSync(path.join(__dirname, 'scripts/generate-trail-pages.js'), 'utf8');
+    expect(generator).toMatch(/\.sp-photo\{[^}]*aspect-ratio:8\/5[^}]*overflow:hidden[^}]*\}/);
+    expect(generator).toMatch(/\.sp-photo \.sp-img\{[^}]*height:100%[^}]*max-height:none[^}]*\}/);
+  });
 });

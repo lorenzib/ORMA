@@ -3567,7 +3567,10 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 /* Pre-auth boot (see the inline script in index.html's head): members
    see their shell immediately instead of a guest-homepage flash. */
 html.early-member #newCustomerHomepage{display:none;}
-html.early-member #returningCustomerHomepage[hidden]{display:block;}
+/* The base [hidden] rule above is !important, so the cached-member reveal
+   must deliberately win that cascade. Keep the shell's flex layout too. */
+html.early-member #returningCustomerHomepage[hidden]{display:flex !important;}
+html.early-member .topnav{display:none;}
 .li-cond-t-mobile{display:none;}
 .li-record{grid-area:record;display:inline-flex;flex:none;align-items:center;justify-content:center;gap:8px;height:46px;box-sizing:border-box;padding:0 18px;border-radius:999px;background:#C4652F;color:#fff;font:800 12.5px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;box-shadow:0 6px 16px -10px rgba(23,42,28,.55);}
 .li-record:hover{background:#A9541F;}
