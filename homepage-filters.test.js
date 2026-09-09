@@ -320,6 +320,25 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelector('#returningTrailList .li-row-name').textContent).toBe('Maurienne Trail');
   });
 
+  test('shows Alta Pusteria without the Tre Cime qualifier in homepage location copy', async () => {
+    const altaPusteriaTrail = {
+      ...sampleTrails[0],
+      id:'alta-pusteria',
+      name:'Alta Pusteria Trail',
+      valley:'Alta Pusteria – Tre Cime',
+    };
+    const context = loadHomepageContext([altaPusteriaTrail]);
+    vm.runInContext('liPopulateAreaPicker(); liLocationContext = { kind:"area", country:"IT", region:"dolomites", valley:"Alta Pusteria – Tre Cime", label:"Alta Pusteria – Tre Cime" }; activeCountry="IT"; activeRegion="dolomites"; activeValley="Alta Pusteria – Tre Cime";', context);
+    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
+
+    const areaLabels = [...document.querySelectorAll('#liAreaSuggestions option')].map(option => option.value);
+    expect(areaLabels).toContain('Alta Pusteria');
+    expect(areaLabels).not.toContain('Alta Pusteria – Tre Cime');
+    expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('Alta Pusteria');
+    expect(document.getElementById('returningHeading').textContent).toMatch(/^Best walk for Teo in Alta Pusteria /);
+    expect(document.getElementById('returningHeading').textContent).not.toContain('Tre Cime');
+  });
+
   test('searching for a destination sets a complete recommendation scope', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext('liLocationContext = null; liRenderLocationContext(null); initLoggedInShell();', context);
