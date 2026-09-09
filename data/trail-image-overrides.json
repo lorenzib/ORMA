@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-09T08:41:33.800Z",
+  "updatedAt": "2026-09-09T09:50:22.159Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -594,6 +594,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Montvernier%2C_panoramique_(2015).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12121346",
+      "approvedReviewId": "panoramax-ign-osm-12121346",
+      "approvedAt": "2026-09-09T09:50:22.158Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12121346-hameaux-track.jpg",
+        "heroImage": "images/trails/osm-12121346-hameaux-track.jpg",
+        "imageAlt": "A pale gravel track running away between grass verges and hazel under dappled September light above Montandré",
+        "imageCredit": "The track above Montandré in September",
+        "imageCreditText": "The track above Montandré in September by jérôme deschamps",
+        "imageCreator": "jérôme deschamps",
+        "imageLicence": "Licence Ouverte 2.0",
+        "imageLicenceUrl": "https://alliance.numerique.gouv.fr/licence-ouverte-open-licence/",
+        "imageSourcePage": "https://panoramax.ign.fr/api/collections/fd801ce9-f41e-4348-ad27-6f12805f8496/items/98d909f3-1df3-4eed-86bb-edf81b57ac3c",
         "imageSourceType": "licensed-source"
       }
     },
