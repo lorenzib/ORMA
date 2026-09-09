@@ -178,4 +178,66 @@ describe('trail verification desk', () => {
     // And the reason comes before the evidence disclosure.
     expect(card.indexOf('vd-blockers')).toBeLessThan(card.indexOf('decision.evidence()'));
   });
+
+  // ---- what the machine is doing ----
+
+  test('reads the pipeline summary instead of listing jobs from the browser', () => {
+    // Listing backofficeJobs on a desk that polls once a minute is hundreds of
+    // document reads a minute against a 50K free-tier daily quota. The worker
+    // writes one summary; the desk reads one document.
+    expect(script).toContain("artifact('pipeline-health'");
+    expect(script).not.toContain('getRevisionJobs');
+  });
+
+  test('never reports stopped work as one undifferentiated number', () => {
+    // "88 blocked" reads as a broken pipeline when 68 of them are an unpaid
+    // bill that resumes by itself. The split is the finding.
+    const stuck = script.slice(script.indexOf('function renderStuck'));
+    expect(stuck).toContain('stopped.needsDecision');
+    expect(stuck).toContain('stopped.resumesItself');
+    expect(stuck).toMatch(/need a decision from you/);
+    expect(stuck).toMatch(/start again on their own/);
+  });
+
+  test('offers no way to stop a lane that carries verification', () => {
+    // Retiring one of those drops a trail out of verification with nobody
+    // deciding to. The CLI refuses it too; the desk must not even ask.
+    const stuck = script.slice(script.indexOf('function renderStuck'));
+    const guard = stuck.indexOf('lane.carriesVerification');
+    const stop = stuck.indexOf('retire-blocked-jobs');
+    expect(guard).toBeGreaterThan(-1);
+    expect(stop).toBeGreaterThan(guard);
+  });
+
+  test('hands over the stop command rather than pretending to run it', () => {
+    // Firestore refuses every browser write to backofficeJobs, on purpose. A
+    // button claiming to stop a lane would be a lie, so the desk copies the line.
+    expect(script).toContain('function commandBox');
+    expect(script).toContain('navigator.clipboard.writeText');
+    const scripts = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json'), 'utf8')).scripts;
+    const command = script.match(/npm run (backoffice:[a-z-]+)[^`]*--job-type/);
+    expect(command).not.toBeNull();
+    // The desk must not hand out a command that does not exist.
+    expect(scripts[command[1]]).toBeTruthy();
+  });
+
+  test('says whether the automation is actually running', () => {
+    // A stopped pipeline and a healthy idle one look identical in a job count.
+    expect(script).toContain("artifact('worker-health'");
+    const state = script.slice(script.indexOf('function renderMachineState'), script.indexOf('function renderMachine('));
+    expect(state).toMatch(/behind or switched off/);
+    expect(state).toContain('delayAfterMinutes');
+  });
+
+  test('the human queue is above the coverage explanation', () => {
+    // The desk exists to be worked, not read. Counts and definitions come after
+    // the trails waiting on a decision.
+    expect(html.indexOf('verifyQueueTitle')).toBeLessThan(html.indexOf('verifyCoverageTitle'));
+  });
+
+  test('the coverage explanation is collapsed, and its summary still names it', () => {
+    // It was made visible because "0 of 165 verified" was unexplainable. It
+    // stays reachable and self-describing, but it is not the top of the page.
+    expect(html).toMatch(/<details class="vd-explain">\s*<summary>What "verified" means, and why the number is low<\/summary>/);
+  });
 });

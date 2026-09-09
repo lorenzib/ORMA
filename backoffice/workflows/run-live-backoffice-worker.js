@@ -15,6 +15,7 @@ const {DEFAULT_CAMPAIGN_LIMIT,DEFAULT_TRAIL_CAPACITY}=require('./start-live-trai
 const {applyNewTrailReview}=require('./plan-new-trail-scouting');
 const {admitNewTrailIntake}=require('./new-trail-intake');
 const {applyHazardReview}=require('./dynamic-hazards');
+const {summarisePipeline}=require('./pipeline-health');
 const {runHazardVetting,applyHazardVetting,expireCommunityHazards}=require('./community-hazard-vetting');
 const {validateContentExecution}=require('../contracts/content-result-v1');
 const { loadProductionTrails } = require('../../scripts/load-production-trails');
@@ -352,7 +353,27 @@ async function runLiveBackofficeWorker(store, options = {}){
   const editorialFirstPass=await processEditorialFirstPassJobs(store,options);
   const jobs = await processRevisionJobs(store, options);
   const publications = await ingestPublicationReviews(store);
-  return { workerId:options.workerId || null,campaign,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
+  // Last, so it describes the pipeline as this pass leaves it. The desk cannot
+  // afford to list jobs itself -- it polls once a minute against a free-tier
+  // quota -- so the one place already holding every job writes the summary down.
+  const pipeline = await recordPipelineHealth(store, options);
+  return { workerId:options.workerId || null,campaign,pipeline,newTrailReviews,hazardReviews,communityHazards,recoveredJobs,requeuedAfterOutage, dossierReviews, advancementBefore,reviews,editorialFirstPass,jobs,specialistJobs,advancementAfter,publications,completedAt:new Date().toISOString() };
 }
 
-module.exports = { PROCESSABLE_JOB_TYPES, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
+/**
+ * One artifact saying what is moving and what has stopped. Never fatal: a
+ * failure to describe the pass must not fail the pass that did the work.
+ */
+async function recordPipelineHealth(store, options = {}){
+  try{
+    if(typeof store.listJobs !== 'function' || typeof store.setArtifact !== 'function') return null;
+    const jobs = await store.listJobs(['queued','running','ready-for-review','blocked']);
+    const health = summarisePipeline(jobs, { at:options.at || new Date().toISOString() });
+    await store.setArtifact('pipeline-health', health, { stopped:health.stopped.total });
+    return health;
+  }catch(error){
+    return { error:String(error?.message || error).slice(0,200) };
+  }
+}
+
+module.exports = { PROCESSABLE_JOB_TYPES, recordPipelineHealth, iso, processCommunityHazardReports, ingestTrailReviews, processRevisionJobs,processEditorialFirstPassJobs,processTrailSpecialistJobs,ingestDossierReviews,ingestNewTrailReviews,ingestHazardReviews,ingestPublicationReviews,runLiveBackofficeWorker };
