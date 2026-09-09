@@ -191,7 +191,15 @@ async function submitDossierReview(input){
       contractVersion:'1.0.0',type:'trail-dossier-review',status:'queued',
       reviewId:String(input.reviewId||''),candidateId:String(input.candidateId||''),
       action:String(input.action||''),targetAgent:String(input.targetAgent||''),
-      note:String(input.note||'').trim().slice(0,1500),submittedAt:serverTimestamp(),
+      note:String(input.note||'').trim().slice(0,1500),
+      // Blockers the moderator judged not to stop verification, each with why.
+      // Bounded here so a malformed desk state cannot write an unbounded list.
+      acceptedBlockers:(Array.isArray(input.acceptedBlockers)?input.acceptedBlockers:[])
+        .slice(0,50)
+        .map(entry=>({blocker:String(entry?.blocker||'').slice(0,300),
+          reason:String(entry?.reason||'').trim().slice(0,300)}))
+        .filter(entry=>entry.blocker&&entry.reason),
+      submittedAt:serverTimestamp(),
       submittedBy:moderator.uid,publicMutationAllowed:false,
     });
     return {ok:true,reviewId:review.id,status:'queued'};
