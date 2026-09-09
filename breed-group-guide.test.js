@@ -73,13 +73,26 @@ describe('interactive breed and build guide', () => {
     expect(card.classList.contains('is-open')).toBe(true);
   });
 
-  test('keeps the source-backed medical edge cases explicit', () => {
+  test('keeps the medical edge cases explicit', () => {
     const text = document.querySelector('main').textContent;
-    expect(text).toMatch(/gastric dilatation-volvulus/i);
-    expect(text).toMatch(/intervertebral disc/i);
+    expect(text).toMatch(/gastric dilatation or volvulus/i);
+    expect(text).toMatch(/previous disc episode/i);
     expect(text).toMatch(/exercise-induced collapse/i);
     expect(text).toMatch(/laryngeal paralysis/i);
     expect(text).toMatch(/grass awns/i);
     expect(text).toMatch(/Last reviewed 25 August 2026/i);
+  });
+
+  test('keeps the card instruction concise and places the visual disclaimer with the medical caveat', () => {
+    const instruction = document.querySelector('.breed-card-instruction').textContent.trim();
+    const sourcesBody = document.querySelector('.safety-sources__body');
+    const caveat = sourcesBody.querySelector('.safety-sources__caveat').textContent.trim();
+
+    expect(instruction).toBe('Choose the most conservative adjustment when more than one card applies. Open any row to reveal its trail guidance.');
+    expect(instruction).not.toMatch(/AI-generated images/i);
+    expect(sourcesBody.querySelectorAll('p')).toHaveLength(1);
+    expect(caveat).toMatch(/^This is general information, not a diagnosis or a substitute for veterinary care\./);
+    expect(caveat).toMatch(/Breed examples and AI-generated images help you recognise a pattern/);
+    expect(caveat).not.toMatch(/Veterinary material checked/i);
   });
 });

@@ -47,7 +47,8 @@
   .breed-check-experience .scan-priority{border-color:var(--paper-line);}
   .breed-check-experience .scan-section{margin:0;}
   .breed-emergency{margin:0;}
-  .breed-card-instruction{max-width:680px!important;margin:7px 0 0!important;color:var(--ink-soft)!important;font-size:.82rem!important;line-height:1.55!important;text-align:left!important;}
+  .breed-check-experience .scan-section-head>div{width:100%;}
+  .breed-card-instruction{width:100%;max-width:none!important;margin:7px 0 0!important;color:var(--ink-soft)!important;font-size:.82rem!important;line-height:1.55!important;text-align:left!important;white-space:nowrap;}
   .breed-card-instruction strong{color:var(--ink);}
   .breed-guide-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;}
   .breed-guide-card{position:relative;padding:12px;cursor:pointer;transform-origin:center top;transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease;}
@@ -93,6 +94,7 @@
     .gp-body h2{font-size:22px;}
     .breed-check-experience{gap:18px;padding:18px;border-radius:15px;}
     .breed-guide-grid{grid-template-columns:1fr;}
+    .breed-card-instruction{white-space:normal;}
   }
   @media(max-width:560px){
     .breed-guide-card:hover{transform:none;}
@@ -136,7 +138,7 @@
 
   <section class="scan-section" aria-labelledby="breedCardsTitle">
     <div class="scan-section-head">
-      <div><span class="scan-kicker">Build your trail check</span><h2 id="breedCardsTitle">What describes your dog?</h2><p class="breed-card-instruction"><strong>Choose the most conservative adjustment when more than one card applies.</strong> Open any row to reveal its trail guidance. Breed examples and AI-generated images help you recognise a pattern; they are illustrative, not diagnostic, and do not predict an individual dog.</p></div>
+      <div><span class="scan-kicker">Build your trail check</span><h2 id="breedCardsTitle">What describes your dog?</h2><p class="breed-card-instruction"><strong>Choose the most conservative adjustment when more than one card applies.</strong> Open any row to reveal its trail guidance.</p></div>
     </div>
     <div class="scan-grid breed-guide-grid" data-breed-grid>
       <article class="scan-card breed-guide-card" id="flat-faced" data-breed-trait="airway">
@@ -266,8 +268,7 @@
   <details class="safety-sources">
     <summary><span class="safety-sources__heading"><strong>Sources and medical references</strong><span>Last reviewed 25 August 2026</span></span></summary>
     <div class="safety-sources__body">
-      <p>Veterinary material checked 25 August 2026: Royal Veterinary College guidance on brachycephaly and heat illness; American College of Veterinary Surgeons guidance on gastric dilatation-volvulus and intervertebral disc disease; Cornell University guidance on laryngeal paralysis and cold-weather tolerance; University of Minnesota research on exercise-induced and Border Collie collapse; and UC Davis guidance on grass awns. Breed examples are prompts, not diagnoses or predictions of temperament.</p>
-      <p class="safety-sources__caveat">This is general information, not a diagnosis or a substitute for veterinary care.</p>
+      <p class="safety-sources__caveat"><strong>This is general information, not a diagnosis or a substitute for veterinary care.</strong> Breed examples and AI-generated images help you recognise a pattern; they are illustrative, not diagnostic, and do not predict an individual dog.</p>
     </div>
   </details>
 </main>
