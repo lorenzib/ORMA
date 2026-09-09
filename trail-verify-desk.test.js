@@ -258,6 +258,17 @@ describe('trail verification desk', () => {
     expect(stuck).toMatch(/start again on their own/);
   });
 
+  test('a lane with no code left is named before its errors are', () => {
+    // Whatever those tasks failed on, nothing runs them any more: reporting
+    // "add credit and they resume" was false for 34 of them on the first
+    // live run.
+    const stuck = script.slice(script.indexOf('function renderStuck'));
+    expect(stuck).toContain('lane.laneRetired');
+    expect(stuck).toMatch(/Nothing runs this any more/);
+    // And it is checked before the self-clearing branch, or the wrong note wins.
+    expect(stuck.indexOf('lane.laneRetired')).toBeLessThan(stuck.indexOf('lane.resumesItself===lane.stopped'));
+  });
+
   test('offers no way to stop a lane that carries verification', () => {
     // Retiring one of those drops a trail out of verification with nobody
     // deciding to. The CLI refuses it too; the desk must not even ask.

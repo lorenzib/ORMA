@@ -368,7 +368,10 @@ async function recordPipelineHealth(store, options = {}){
   try{
     if(typeof store.listJobs !== 'function' || typeof store.setArtifact !== 'function') return null;
     const jobs = await store.listJobs(['queued','running','ready-for-review','blocked']);
-    const health = summarisePipeline(jobs, { at:options.at || new Date().toISOString() });
+    // The same list requeueOutageBlockedJobs filters on, so the desk cannot
+    // promise a restart this worker will not make.
+    const health = summarisePipeline(jobs, { at:options.at || new Date().toISOString(),
+      processableJobTypes:PROCESSABLE_JOB_TYPES });
     await store.setArtifact('pipeline-health', health, { stopped:health.stopped.total });
     return health;
   }catch(error){

@@ -7,9 +7,13 @@ function job(fields){
   return { id:fields.id||'j', jobType:'x', status:'blocked', createdAt:'2026-08-01T00:00:00.000Z', ...fields };
 }
 
+/** The lanes the worker still runs, for tests about anything else. */
+const LIVE = { processableJobTypes:['x','big-but-self-clearing','small-but-stuck','lane-0','trail-verification-specialist','trail-claim-resolution','hosted-editorial-publication','busy','old','new'] };
+function summarise(jobs, options){ return summarisePipeline(jobs, { ...LIVE, ...options }); }
+
 describe('pipeline health', () => {
   test('separates work that resumes itself from work that needs a decision', () => {
-    const health = summarisePipeline([
+    const health = summarise([
       job({ id:'a', lastError:'OpenAI error: no credits remaining' }),
       job({ id:'b', lastError:'OpenAI error: no credits remaining' }),
       job({ id:'c', lastError:'Unexpected workspace changes prevent editorial publication' }),
@@ -31,13 +35,13 @@ describe('pipeline health', () => {
       'spawn codex ENOENT', 'Unexpected workspace changes', 'route source unresolved',
     ];
     errors.forEach(error => {
-      const health = summarisePipeline([job({ lastError:error })]);
+      const health = summarise([job({ lastError:error })]);
       expect(health.stopped.resumesItself).toBe(providerOutage(error) ? 1 : 0);
     });
   });
 
   test('a lane that carries verification is marked so it cannot be offered a stop button', () => {
-    const health = summarisePipeline([
+    const health = summarise([
       job({ jobType:'trail-verification-specialist', lastError:'boom' }),
       job({ jobType:'hosted-editorial-publication', lastError:'boom' }),
     ]);
@@ -47,7 +51,7 @@ describe('pipeline health', () => {
   });
 
   test('dates the stoppage so a dead lane can be told from a live fault', () => {
-    const health = summarisePipeline([
+    const health = summarise([
       job({ id:'old', updatedAt:'2026-07-02T00:00:00.000Z', lastError:'boom' }),
       job({ id:'new', updatedAt:'2026-09-01T00:00:00.000Z', lastError:'boom' }),
     ]);
@@ -56,7 +60,7 @@ describe('pipeline health', () => {
   });
 
   test('counts what is still moving, not only what has stopped', () => {
-    const health = summarisePipeline([
+    const health = summarise([
       job({ status:'queued' }), job({ status:'queued' }),
       job({ status:'running' }), job({ status:'ready-for-review' }),
     ]);
@@ -82,21 +86,21 @@ describe('pipeline health', () => {
     for(let index=0; index<400; index+=1){
       many.push(job({ id:`j${index}`, jobType:`lane-${index % 30}`, lastError:`fault number ${index}` }));
     }
-    const health = summarisePipeline(many);
+    const health = summarise(many, { processableJobTypes:many.map(j=>j.jobType) });
     expect(health.lanes.length).toBeLessThanOrEqual(12);
     health.lanes.forEach(lane => expect(lane.causes.length).toBeLessThanOrEqual(3));
     expect(JSON.stringify(health).length).toBeLessThan(20000);
   });
 
   test('lanes with nothing in them are left out', () => {
-    const health = summarisePipeline([job({ jobType:'busy', status:'queued' })]);
+    const health = summarise([job({ jobType:'busy', status:'queued' })]);
     expect(health.lanes.map(lane => lane.jobType)).toEqual(['busy']);
   });
 
   test('work needing a decision is listed before work that clears itself', () => {
     // A lane of 65 that is only waiting on a bill is the biggest number and the
     // least useful thing to read first.
-    const health = summarisePipeline([
+    const health = summarise([
       ...Array.from({ length:60 }, (unused, index) => job({ id:`bill${index}`, jobType:'big-but-self-clearing', lastError:'no credits remaining' })),
       ...Array.from({ length:3 }, (unused, index) => job({ id:`fault${index}`, jobType:'small-but-stuck', lastError:'workspace is dirty' })),
     ]);
@@ -120,5 +124,32 @@ describe('pipeline health', () => {
     [...CAUSES.map(cause => cause.message), ...CAUSES.map(cause => cause.remedy)].forEach(text => {
       expect(text.toLowerCase()).not.toMatch(/\blane\b|\bworker\b|\bjob type\b/);
     });
+  });
+
+  test('a retired lane never claims its work will start again', () => {
+    // requeueOutageBlockedJobs filters on the lanes the worker still runs, so
+    // an outage-blocked job in a deleted lane is never put back. The first
+    // live run of this summary reported 34 of them as "start again on their
+    // own once the cause clears" -- the exact false reassurance this split
+    // exists to prevent. Adding credit would have released none of them.
+    const jobs = [
+      job({ id:'live', jobType:'trail-verification-specialist', lastError:'no credits remaining' }),
+      job({ id:'dead', jobType:'hosted-image-sourcing', lastError:'no credits remaining' }),
+    ];
+    const health = summarisePipeline(jobs, { processableJobTypes:['trail-verification-specialist'] });
+    expect(health.stopped.resumesItself).toBe(1);
+    expect(health.stopped.needsDecision).toBe(1);
+    const dead = health.lanes.find(lane => lane.jobType === 'hosted-image-sourcing');
+    expect(dead.laneRetired).toBe(true);
+    expect(dead.resumesItself).toBe(0);
+    expect(health.lanes.find(lane => lane.jobType === 'trail-verification-specialist').laneRetired).toBe(false);
+  });
+
+  test('with no lane list, nothing is promised a restart', () => {
+    // Over-reporting work as retired is recoverable. Promising a restart that
+    // never comes is what sent someone to top up an account for nothing.
+    const health = summarisePipeline([job({ lastError:'no credits remaining' })]);
+    expect(health.stopped.resumesItself).toBe(0);
+    expect(health.stopped.needsDecision).toBe(1);
   });
 });

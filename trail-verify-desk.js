@@ -709,6 +709,17 @@
         row.append(item);
       });
 
+      // A retired lane is the whole story: whatever its tasks failed on, no
+      // code is left to run them, so "add credit and they resume" would be
+      // false. Say that before anything about the errors themselves.
+      if(lane.laneRetired&&!lane.carriesVerification){
+        row.append(el('p','vd-lane-note is-retired',
+          'Nothing runs this any more. These tasks cannot succeed and will not restart, whatever their reason says — clearing them is all that is left.'));
+        row.append(commandBox('Copy the stop command',
+          `npm run backoffice:retire-blocked-jobs -- --job-type ${lane.jobType} --apply --reason "no longer part of the pipeline"`));
+        node.append(row);
+        return;
+      }
       if(lane.resumesItself===lane.stopped){
         row.append(el('p','vd-lane-note','Nothing to do here. The automation puts these back itself, ten per run, once the cause clears.'));
       }else if(lane.carriesVerification){
