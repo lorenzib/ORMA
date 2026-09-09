@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { coordinateFor, withinBounds } = require('./browse-map.js');
+const { coordinateFor, withinBounds, trailFeature } = require('./browse-map.js');
 
 describe('Explore trail map', () => {
   test('uses a declared trailhead before the legacy coordinate', () => {
@@ -24,6 +24,21 @@ describe('Explore trail map', () => {
     expect(withinBounds({ lat:0, lng:0 }, bounds)).toBe(false);
   });
 
+  test('keeps every trailhead individual and carries homepage marker state', () => {
+    expect(trailFeature({
+      id:'matched-loop', name:'Matched Loop', lat:46.6, lng:11.7,
+    }, { score:82, saved:true }).properties).toEqual(expect.objectContaining({
+      id:'matched-loop', score:82, saved:1,
+    }));
+
+    const source=fs.readFileSync('browse-map.js','utf8');
+    expect(source).not.toContain('cluster:true');
+    expect(source).not.toContain('point_count');
+    expect(source).not.toContain('getClusterExpansionZoom');
+    expect(source).toContain("id:'browse-trails-individual'");
+    expect(source).toContain("matchColourExpression('score')");
+  });
+
   test('the Explore page includes the linked catalogue and map controls', () => {
     const html=fs.readFileSync('browse-trails.html','utf8');
     expect(html).toContain('<title>Explore trails, ORMA</title>');
@@ -33,7 +48,9 @@ describe('Explore trail map', () => {
     expect(html).toContain('id="browseSearchArea"');
     expect(html).toContain('data-browse-view="list"');
     expect(html).toContain('data-browse-view="map"');
-    expect(html).toContain('src="browse-map.js?v=20260908-1"');
+    expect(html).toContain('src="browse-map.js?v=20260909-1"');
+    expect(html).toContain('scoreFor:matchScore');
+    expect(html).toContain('savedFor:trail => !!currentFavorites[trail.id]');
   });
 
   test('uses the same map-left, results-right desktop order as the logged-in homepage', () => {

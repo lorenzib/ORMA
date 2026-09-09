@@ -28,10 +28,9 @@
   .browse-design-wrap{padding-top:6px;}
   .browse-primary-controls{margin:10px 0 18px;}
   .browse-area-controls{display:flex;align-items:center;gap:9px;min-width:0;}
-  /* Match the signed-in map toolbar: Search is deliberately bounded so the
-     complete All countries / All regions labels never compete for space. */
-  .browse-geo-group{display:block;flex:0 0 196px;width:196px;min-width:0;}
-  .browse-geo-group--valley{flex-basis:178px;width:178px;}
+  /* Geography is allowed to share the available row instead of reserving
+     fixed widths that push the remaining filters outside the page canvas. */
+  .browse-geo-group,.browse-geo-group--valley{display:block;flex:1 1 0;width:auto;min-width:0;}
   .browse-geo-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);}
   .browse-geo-group .area-select-shell{width:100%;}
   .browse-geo-group .area-select-trigger{min-height:42px;padding:8px 10px 8px 12px;gap:6px;font-size:12.5px;}
@@ -43,7 +42,7 @@
   .browse-geo-group .area-select-trigger--kicker-until-selected:not(.area-select-trigger--has-selection) .area-select-trigger__label{display:none;}
   .browse-geo-group .area-select-trigger--kicker-until-selected.area-select-trigger--has-selection .area-select-trigger__kicker{display:none;}
   .browse-primary-controls .browse-tools{width:100%;min-width:0;margin:0;flex-wrap:nowrap;justify-content:flex-start;}
-  .browse-primary-controls .browse-search-shell{flex:1 1 300px;width:auto;max-width:360px;min-width:180px;}
+  .browse-primary-controls .browse-search-shell{flex:1 1 300px;width:auto;max-width:360px;min-width:0;}
   .browse-primary-controls .browse-filter-divider{display:none;}
   .simple-grid{display:flex;flex-direction:column;gap:12px;}
   .simple-card{display:grid;grid-template-columns:120px minmax(0,1fr) auto;grid-template-rows:auto auto;column-gap:16px;row-gap:9px;align-items:center;padding:14px;background:var(--card);border:1px solid var(--paper-line);border-radius:var(--radius-panel);transition:box-shadow .2s,border-color .2s,transform .2s;}
@@ -100,37 +99,36 @@
   .browse-filter-group__title{font:700 10px/1 'Inter',sans-serif;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
   #browseFiltersBtn.on{border-color:#9FC4B0;font-weight:700;}
   #browseFiltersMenu{left:auto;right:0;}
-  @media(min-width:1101px){
+  @media(min-width:1041px){
     .browse-primary-controls .browse-tools{
       display:grid;
-      grid-template-columns:minmax(210px,2fr) minmax(0,1.15fr) minmax(0,1.15fr) minmax(0,1.05fr) minmax(0,.85fr) minmax(0,.8fr) minmax(0,.65fr) minmax(0,.75fr);
-      gap:9px;
+      grid-template-columns:minmax(280px,.72fr) minmax(0,1.28fr) auto;
+      grid-template-rows:auto auto;
+      gap:10px 14px;
       align-items:center;
     }
-    .browse-primary-controls .browse-search-shell{grid-column:1;grid-row:1;width:100%;max-width:none;min-width:0;}
-    .browse-area-controls,.browse-quick-filters{display:contents;}
-    .browse-geo-group{width:100%;min-width:0;flex:none;}
-    .browse-geo-group:nth-child(1){grid-column:2;grid-row:1;}
-    .browse-geo-group:nth-child(2){grid-column:3;grid-row:1;}
-    .browse-geo-group:nth-child(3){grid-column:4;grid-row:1;}
-    #browseFiltersWrap{grid-column:5;grid-row:1;width:100%;}
-    #browseFiltersBtn{width:100%;justify-content:center;}
-    .browse-quick-filter{width:100%;min-width:0;}
-    #browseQuickShade{grid-column:6;grid-row:1;}
-    #browseWater{grid-column:7;grid-row:1;}
-    .browse-saved-only{grid-column:8;grid-row:1;width:100%;min-width:0;}
+    .browse-primary-controls .browse-search-group{grid-column:1;grid-row:1;width:100%;min-width:0;}
+    .browse-primary-controls .browse-search-shell{width:100%;max-width:none;min-width:0;}
+    .browse-area-controls{grid-column:2/-1;grid-row:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
+    .browse-geo-group,.browse-geo-group--valley{width:100%;min-width:0;flex:none;}
+    #browseFiltersWrap{grid-column:1;grid-row:2;width:max-content;}
+    .browse-quick-filters{grid-column:2;grid-row:2;display:flex;flex-wrap:wrap;min-width:0;}
+    .browse-quick-filter{min-width:0;}
+    .browse-saved-only{grid-column:3;grid-row:2;width:max-content;min-width:0;}
   }
-  @media(min-width:761px) and (max-width:1100px){
+  @media(min-width:761px) and (max-width:1040px){
     .browse-primary-controls .browse-tools{
       display:grid;
-      grid-template-columns:minmax(260px,360px) 196px 196px 178px;
+      grid-template-columns:auto minmax(0,1fr) auto;
       gap:9px;
     }
-    .browse-primary-controls .browse-search-shell{grid-column:1;grid-row:1;width:100%;max-width:none;min-width:0;}
-    .browse-area-controls{grid-column:2/-1;grid-row:1;}
-    #browseFiltersWrap{grid-column:1;grid-row:2;width:max-content;}
-    .browse-quick-filters{grid-column:2/span 2;grid-row:2;}
-    .browse-saved-only{grid-column:4;grid-row:2;width:max-content;}
+    .browse-primary-controls .browse-search-group{grid-column:1/-1;grid-row:1;width:100%;min-width:0;}
+    .browse-primary-controls .browse-search-shell{width:100%;max-width:none;min-width:0;}
+    .browse-area-controls{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
+    .browse-geo-group,.browse-geo-group--valley{width:100%;min-width:0;flex:none;}
+    #browseFiltersWrap{grid-column:1;grid-row:3;width:max-content;}
+    .browse-quick-filters{grid-column:2;grid-row:3;display:flex;flex-wrap:wrap;min-width:0;}
+    .browse-saved-only{grid-column:3;grid-row:3;width:max-content;}
   }
   @media(max-width:700px){
     #browseFiltersMenu{
@@ -155,14 +153,17 @@
     /* Search full-width, and the Distance / Trail rating / Water controls
        visible right under it, never hidden off-screen. */
     .browse-tools{flex-wrap:wrap;overflow-x:visible;padding-bottom:0;gap:9px;}
+    .browse-primary-controls .browse-search-group{grid-column:1/-1;grid-row:1;width:100%;min-width:0;}
     .browse-primary-controls .browse-search-shell{grid-column:1/-1;grid-row:1;width:100%;max-width:none;min-width:0;}
     .browse-area-controls{grid-column:1/-1;grid-row:2;}
-    .browse-quick-filters{grid-column:1/span 4;grid-row:4;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;overflow:visible;padding-bottom:0;}
+    .browse-quick-filters{display:contents;}
     .browse-quick-filter{width:100%;min-width:0;}
-    .browse-quick-filters::-webkit-scrollbar{display:none;}
+    #browseQuickShade{grid-column:1/span 3;grid-row:4;}
+    #browseWater{grid-column:4/span 3;grid-row:4;}
+    #browseMultiDay{grid-column:1/span 3;grid-row:5;}
     #browseFiltersWrap{grid-column:1/-1;grid-row:3;width:100%;order:initial;}
     #browseFiltersBtn{width:100%;justify-content:center;}
-    .browse-saved-only{grid-column:5/span 2;grid-row:4;width:100%;min-width:0;order:initial;padding-inline:7px;}
+    .browse-saved-only{grid-column:4/span 3;grid-row:5;width:100%;min-width:0;order:initial;padding-inline:7px;}
     .browse-filter-divider{display:none;}
     .browse-filter-controls{flex:1 1 100%;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:9px;padding-bottom:3px;scrollbar-width:none;}
     .browse-filter-controls::-webkit-scrollbar{display:none;}
@@ -180,7 +181,6 @@
     .browse-card-compare{min-height:32px;padding-inline:11px;}
   }
   @media(max-width:480px){
-    .browse-area-controls{grid-template-columns:repeat(3,minmax(0,1fr));}
     #browseFiltersWrap{grid-column:1/-1;}
   }
   @media(max-width:360px){
@@ -216,8 +216,7 @@
   }
   /* Explore workspace: the list and map are two views of the same filtered
      catalogue. The map is a working discovery surface, not a decoration. */
-  .browse-design-head{padding-top:clamp(28px,4vw,54px);padding-bottom:4px;}
-  .browse-design-head h1{font-size:clamp(38px,4.2vw,64px);line-height:.98;}
+  .browse-design-head{padding-bottom:4px;}
   .browse-design-head .sub{max-width:720px;}
   .browse-search-group{display:flex;align-items:center;gap:8px;min-width:0;}
   .browse-search-group .browse-search-shell{width:100%;max-width:none;min-width:0;margin:0;}
@@ -225,7 +224,7 @@
   .browse-search-submit:hover{background:#32697E;}
   .browse-location-breadcrumb{display:flex;align-items:center;justify-content:flex-end;min-height:22px;margin:-6px 0 8px;color:#66766B;font:650 12px/1.4 'Inter',sans-serif;}
   .browse-location-breadcrumb:empty{visibility:hidden;}
-  .browse-explorer{display:grid;grid-template-columns:minmax(540px,1.22fr) minmax(420px,.78fr);height:min(720px,calc(100vh - 170px));min-height:590px;border:1px solid var(--paper-line);border-radius:22px;background:#fff;overflow:hidden;box-shadow:0 16px 42px rgba(34,50,38,.08);}
+  .browse-explorer{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(480px,.95fr);height:clamp(520px,58vh,720px);min-height:520px;border:1px solid var(--paper-line);border-radius:18px;background:#fff;overflow:hidden;box-shadow:0 16px 42px rgba(34,50,38,.08);}
   .browse-list-pane{min-width:0;overflow-y:auto;overscroll-behavior:contain;padding:18px 16px 22px;background:#FBFAF5;border-left:1px solid var(--paper-line);scrollbar-gutter:stable;}
   .browse-list-pane .browse-compare-note{margin-bottom:14px;}
   .browse-list-pane .browse-results-meta{position:sticky;top:-18px;z-index:4;margin:0 -16px 12px;padding:14px 16px 10px;background:rgba(251,250,245,.96);backdrop-filter:blur(8px);}
@@ -255,21 +254,8 @@
   .browse-map-popup a{color:#32697E;font-size:11.5px;font-weight:800;text-decoration:none;}
   .browse-map-pane .maplibregl-popup-content{border:1px solid rgba(46,64,52,.12);border-radius:13px;padding:11px 12px;box-shadow:0 10px 30px rgba(35,53,40,.18);}
   .browse-map-pane .maplibregl-ctrl-top-right{top:8px;right:8px;}
-  @media(min-width:1101px){
-    .browse-primary-controls .browse-search-group{grid-column:1;grid-row:1;}
-  }
-  @media(min-width:761px) and (max-width:1100px){
-    .browse-primary-controls .browse-search-group{grid-column:1;grid-row:1;}
-    .browse-explorer{grid-template-columns:minmax(430px,1.15fr) minmax(360px,.85fr);}
-  }
-  @media(max-width:900px){
-    .browse-explorer{grid-template-columns:minmax(400px,1.1fr) minmax(330px,.9fr);}
+  @media(max-width:1040px){
     .browse-list-pane .simple-card__match small{display:none;}
-  }
-  @media(max-width:760px){
-    .browse-design-head{padding-top:24px;}
-    .browse-design-head h1{font-size:42px;}
-    .browse-primary-controls .browse-search-group{grid-column:1/-1;grid-row:1;}
     .browse-location-breadcrumb{justify-content:flex-start;margin-top:2px;}
     .browse-view-toggle{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:8px 0 12px;padding:4px;border:1px solid var(--paper-line);border-radius:12px;background:#F0EDE3;}
     .browse-view-toggle button{min-height:40px;border:0;border-radius:9px;background:transparent;color:#53675A;font:750 13px 'Inter',sans-serif;cursor:pointer;}
@@ -277,7 +263,7 @@
     .browse-explorer{display:block;height:auto;min-height:0;border-radius:18px;}
     .browse-list-pane{height:auto;max-height:none;overflow:visible;border-left:0;padding:14px 12px 18px;}
     .browse-list-pane .browse-results-meta{position:static;margin:0 0 12px;padding:0;background:transparent;backdrop-filter:none;}
-    .browse-map-pane{height:62dvh;min-height:430px;}
+    .browse-map-pane{height:clamp(430px,62dvh,680px);min-height:430px;}
     .browse-explorer[data-mobile-view="list"] .browse-map-pane{display:none;}
     .browse-explorer[data-mobile-view="map"] .browse-list-pane{display:none;}
     .browse-map-style{bottom:10px;right:10px;}
@@ -704,7 +690,7 @@
 <script src="area-dropdown.js?v=20260823-2"></script>
 <script src="map-runtime.js?v=20260908-2"></script>
 <script src="map-style.js?v=20260908-2"></script>
-<script src="browse-map.js?v=20260908-1"></script>
+<script src="browse-map.js?v=20260909-1"></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     // Guest bar mirrors the homepage: members never see it.
@@ -785,6 +771,8 @@
     const browseMap = window.DoloPawsBrowseMap && window.DoloPawsBrowseMap.create({
       containerId:'browseMap',
       searchAreaButtonId:'browseSearchArea',
+      scoreFor:matchScore,
+      savedFor:trail => !!currentFavorites[trail.id],
       onSelect(id){
         selectedTrailId = String(id || '');
         const pool = currentTrailPool();
