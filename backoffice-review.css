@@ -338,3 +338,9 @@ details.vd-explain[open]>summary{margin-bottom:10px;}
 .vd-blocker-text{display:flex;flex-direction:column;gap:2px;}
 .vd-blocker-name{color:var(--ink);font-weight:500;}
 .vd-blocker-remedy{font-size:12.5px;line-height:1.5;color:var(--ink-soft);max-width:64ch;}
+
+/* The agent's own questions and recommendation. They are its working, not a
+   problem to solve, so they sit closed under whatever did name the problem. */
+.vd-blocker-working{margin-top:12px;border-top:1px solid rgba(138,90,22,.2);padding-top:10px;}
+.vd-blocker-working>summary{cursor:pointer;font-size:12.5px;font-weight:600;color:#8A5A16;}
+.vd-blocker-working p{margin:8px 0 0;font-size:13px;line-height:1.5;color:#6B5636;max-width:62ch;}

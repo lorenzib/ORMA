@@ -157,18 +157,83 @@
     },
   ];
 
-  /** One entry per distinct problem, with the raw ids kept for hovering. */
+  /**
+   * Not every blocking reason is a problem to read.
+   *
+   * advance-trail-orchestration pushes three different kinds of string into one
+   * flat list: the claim that failed, the agent's overall recommendation, and
+   * every open question the agent wrote down. Only the first names something a
+   * person can act on. The other two are the agent thinking aloud, and a card
+   * showed all of them at equal weight, so one missing route sheet arrived as
+   * four full-width blocks under the same heading.
+   *
+   * They are the machine's working, so they go where the rest of the working
+   * already goes: behind a disclosure.
+   */
+  const WORKING_NOTES=[
+    // "recommendation is needs-resolution" restates that the check did not
+    // pass, which the word BLOCKED at the top of the card already said.
+    /:\s*recommendation is /,
+    /:\s*open question\s*[—-]/,
+  ];
+  const isWorkingNote=text=>WORKING_NOTES.some(pattern=>pattern.test(text));
+
+  /**
+   * The checks, by the thing they look at. There are five of them and they do
+   * not change often, so naming them beats "Terrain poi", which is the
+   * variable name with a space put in it.
+   */
+  const CHECK_LABELS={
+    logistics:'Getting there and getting around',
+    regulatoryRanger:'Rules and access',
+    terrainPoi:'Terrain and what is on the route',
+    cartographer:'The route itself',
+    evidenceLibrarian:'The sources behind the findings',
+  };
+  const checkLabel=agent=>CHECK_LABELS[agent]||blockerLabel(agent);
+
+  /**
+   * The heading already names the check that filed it, so repeating
+   * "terrainPoi/" in the line under it says nothing. Strip the prefix and open
+   * out what remains: "terrainPoi/surface: conflicted" becomes "Surface —
+   * conflicted" under a heading of "Terrain poi".
+   */
+  function looseText(text){
+    const stripped=String(text).replace(/^[A-Za-z][A-Za-z0-9]*[/:]\s*/,'');
+    const parts=stripped.split(': ');
+    if(parts.length<2)return stripped;
+    return `${blockerLabel(parts[0])} — ${parts.slice(1).join(': ')}`;
+  }
+
+  /**
+   * One entry per distinct problem, with the raw ids kept for hovering, plus
+   * the agent's working kept separately so the card can fold it away.
+   */
   function groupBlockers(reasons){
-    const groups=[],loose=[];
+    const groups=[],loose=[],working=[];
     (reasons||[]).forEach(reason=>{
       const text=String(reason);
       const group=BLOCKER_GROUPS.find(candidate=>candidate.match.test(text));
-      if(!group){loose.push(text);return;}
-      let existing=groups.find(entry=>entry.group===group);
-      if(!existing){existing={group,raw:[]};groups.push(existing);}
-      existing.raw.push(text);
+      if(group){
+        let existing=groups.find(entry=>entry.group===group);
+        if(!existing){existing={group,raw:[]};groups.push(existing);}
+        existing.raw.push(text);
+        return;
+      }
+      (isWorkingNote(text)?working:loose).push(text);
     });
-    return {groups,loose};
+    // Several reasons from one agent used to render as several full-width
+    // blocks, and "logistics/parking" and "logistics/access" made two of them
+    // even though they are one check reporting twice. Key on the agent, which
+    // is everything before the first slash or colon, so one check is one
+    // heading with its reasons listed under it.
+    const byHeading=new Map();
+    loose.forEach(text=>{
+      const heading=checkLabel(String(text).split(/[/:]/)[0]);
+      if(!byHeading.has(heading))byHeading.set(heading,[]);
+      byHeading.get(heading).push(text);
+    });
+    return {groups,loose:[...byHeading.entries()].map(([heading,texts])=>({heading,texts})),working};
   }
 
   const MIN_NOTE=10;
@@ -678,7 +743,7 @@
     // A blocked trail cannot be approved, so the reason is the story: it goes
     // directly under the name, before the question and the approval checklist.
     if(decision.blockers.length){
-      const {groups,loose}=groupBlockers(decision.blockers);
+      const {groups,loose,working}=groupBlockers(decision.blockers);
       const box=el('div','vd-blockers');
       box.append(el('h3','','Cannot be approved yet'));
       groups.forEach(({group,raw})=>{
@@ -688,11 +753,28 @@
         item.title=raw.join('\n');
         box.append(item);
       });
-      loose.forEach(reason=>{
+      loose.forEach(({heading,texts})=>{
         const item=el('div','vd-blocker');
-        item.append(el('strong','',blockerLabel(String(reason).split(':')[0])),el('p','',String(reason)));
+        item.append(el('strong','',heading));
+        texts.forEach(text=>item.append(el('p','',looseText(text))));
+        // The machine ids stay reachable without taking up the card.
+        item.title=texts.join('\n');
         box.append(item);
       });
+      // The agent's open questions and its own recommendation. If something
+      // above already named the problem they add nothing, so they fold away.
+      // If nothing did, they are all the card has and must stay visible.
+      if(working.length){
+        const named=groups.length||loose.length;
+        const host=named?el('details','vd-blocker-working'):el('div','vd-blocker');
+        if(named){
+          host.append(el('summary','',`What the check was still asking (${working.length})`));
+        }else{
+          host.append(el('strong','','The check did not finish'));
+        }
+        working.forEach(text=>host.append(el('p','',text)));
+        box.append(host);
+      }
       article.append(box);
     }
 
@@ -827,8 +909,10 @@
     stopped.forEach(trail=>{
       const row=el('article','vd-blocked-row');
       row.append(el('strong','',trail.name));
-      const {groups,loose}=groupBlockers(trail.reasons);
-      const said=[...groups.map(entry=>entry.group.title),...loose];
+      // One line per trail, so it names the problems and never the working.
+      const {groups,loose,working}=groupBlockers(trail.reasons);
+      const said=[...groups.map(entry=>entry.group.title),...loose.map(entry=>entry.heading)];
+      if(!said.length&&working.length)said.push('The check did not finish');
       row.append(el('p','vd-blocked-why',said.length?said.join(' · '):'No reason was recorded.'));
       if(trail.stoppedAt)row.append(el('small','',`Stopped ${new Date(trail.stoppedAt).toLocaleDateString()}`));
       blockedNode.append(row);
