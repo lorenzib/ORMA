@@ -18,8 +18,15 @@
   // (design prototype: 0.26 / 0.46 / 0.84). 0 is the fully-hidden state:
   // only the grab handle stays visible so the map gets the whole screen.
   var SNAPS = [0, 0.26, 0.46, 0.84];
-  var sheetPct = SNAPS[1];
-  var lastOpenPct = SNAPS[1];
+  // The sheet opens at the middle snap, not the lowest. The lowest gives the
+  // list about 50px, and the card at the top of it -- the recommendation this
+  // page exists to make -- is over 400px tall, so the page opened showing a
+  // sliver of its own answer above the fold. The middle snap shows the name,
+  // the distance and climb, the match, and the start of why it fits; the map
+  // still has most of the screen, and one drag reaches either neighbour.
+  var SHEET_INITIAL = SNAPS[2];
+  var sheetPct = SHEET_INITIAL;
+  var lastOpenPct = SHEET_INITIAL;
   var active = false;
 
   function listEl(){ return returning.querySelector('.li-list'); }

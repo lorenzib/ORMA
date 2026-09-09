@@ -462,15 +462,29 @@ describe('map-first returning homepage layout contract', () => {
     expect(html).not.toContain('class="li-pane-toggle"');
     expect(html).not.toContain('<details class="li-legend">');
     expect(html).not.toContain('Map key');
-    expect(mobileJs).toContain('var sheetPct = SNAPS[1];');
-    expect(mobileJs).toContain('var lastOpenPct = SNAPS[1];');
-    expect(mobileCss).toContain('height:26dvh');
+    // The sheet opens at the middle snap. It used to open at the lowest, which
+    // gives the list ~50px while the card at the top of it -- the whole point
+    // of the page -- is over 400px tall, so the recommendation arrived as a
+    // sliver. The map still has most of the screen and both neighbouring
+    // snaps are one drag away.
+    expect(mobileJs).toContain('var SHEET_INITIAL = SNAPS[2];');
+    expect(mobileJs).toContain('var sheetPct = SHEET_INITIAL;');
+    expect(mobileJs).toContain('var lastOpenPct = SHEET_INITIAL;');
+    // The CSS height is what renders before the script measures one, so a
+    // mismatch here is a visible jump on load.
+    expect(mobileCss).toContain('height:35dvh');
+    expect(mobileCss).not.toContain('26dvh');
   });
 
   test('uses a deliberate mobile filter row and compact map controls', () => {
     expect(html).toContain('<div class="li-mobile-actions" aria-label="Trail actions">');
     expect(mobileCss).toContain('body.mhome-active .li-toolbar-greet-copy{display:none;}');
-    expect(mobileCss).toContain('body.mhome-active .li-location-summary{flex:1;width:auto;');
+    // The location pill and the date share a row while both fit and take a
+    // line each below that. At 320px they used to fill the row exactly,
+    // leaving the area name 58px -- and an area is not guessable from its
+    // first six letters.
+    expect(mobileCss).toContain('body.mhome-active .li-location-summary{flex:1 1 190px;');
+    expect(mobileCss).toContain('body.mhome-active .li-toolbar-greet{flex-wrap:wrap;');
     expect(mobileCss).toContain('body.mhome-active .li-today{grid-column:1/-1;grid-row:2;');
     expect(mobileCss).toContain('body.mhome-active .li-search{grid-column:1/5;grid-row:3;');
     expect(mobileCss).toContain('body.mhome-active .li-mobile-actions{display:contents;}');
@@ -485,7 +499,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(mobileCss).toContain('body.mhome-active .li-saved-count{display:grid;');
     expect(mobileCss).toContain('.li-map.map-layers-open{z-index:47;}');
     expect(mobileCss).toContain('#trailMap .map-btn{height:32px;padding:0 11px;font-size:11.5px;');
-    expect(mobileCss).toContain('#trailMap .td-layer-switch{top:auto;right:auto;left:12px;bottom:calc(var(--mhome-sheet,26dvh) + env(safe-area-inset-bottom) + 12px);}');
+    expect(mobileCss).toContain('#trailMap .td-layer-switch{top:auto;right:auto;left:12px;bottom:calc(var(--mhome-sheet,35dvh) + env(safe-area-inset-bottom) + 12px);}');
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     expect(script).toContain("mapShell.classList.toggle('map-layers-open', open)");
     expect(script).toContain("layersBtn.setAttribute('aria-expanded', String(open))");
@@ -499,7 +513,18 @@ describe('map-first returning homepage layout contract', () => {
     expect(css).not.toContain('.li-match-reason');
     expect(css).toMatch(/\.li-heart\{grid-column:4;grid-row:1\/3;align-self:center;\}/);
     expect(css).toMatch(/\.li-row-bar\{[\s\S]*?grid-column:1\/3;[\s\S]*?grid-row:2;/);
-    expect(css).toMatch(/@media \(max-width:640px\)[\s\S]*?\.li-row\{display:flex;\}/);
+    // Phones get their own grid rather than the desktop fallback. As one flex
+    // line the fixed furniture -- thumbnail, match column, heart -- took 175px
+    // before any text, so at 320px the trail name had 59px and every row read
+    // "Lago di Braies ...". The name takes the free column and the match drops
+    // to its own line.
+    const phone = css.slice(css.indexOf('@media (max-width:640px){\n  .li-row{'));
+    expect(phone).toMatch(/\.li-row\{[\s\S]*?display:grid;[\s\S]*?grid-template-columns:56px minmax\(0,1fr\) 34px;/);
+    expect(phone).toMatch(/\.li-row-body\{grid-column:2;grid-row:1;\}/);
+    expect(phone).toMatch(/\.li-match\{[\s\S]*?grid-column:1\/-1;[\s\S]*?grid-row:2;/);
+    // The desktop heading reserves 142px beside it for a summary that wraps
+    // underneath on a phone; unreserved, it was taking 142 of 320 pixels.
+    expect(phone).toMatch(/\.li-list-title-row\{padding-right:0;\}/);
   });
 
   test('labels the main-map fountain layer as Water', () => {
