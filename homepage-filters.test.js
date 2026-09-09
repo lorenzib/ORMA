@@ -334,8 +334,15 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
   });
 
-  test('leads with one explained recommendation and names alternatives second', async () => {
-    const context = loadHomepageContext(sampleTrails);
+  test('leads with three explained top picks and names alternatives after them', async () => {
+    // Five in-scope trails so the top three picks and the "Other good fits"
+    // alternatives both render.
+    const dolomitesFive = Array.from({ length: 5 }, (_, i) => ({
+      id: `dol${i}`, name: `Dolomite Trail ${i}`, region: 'dolomites', valley: 'Val Gardena',
+      area: 'Ortisei', lat: 46.57 + i / 100, lng: 11.67, curated: true, distance: 6,
+      elevation: 320, hours: 3, terrainType: 'Mixed', safetyLevel: 'low-risk',
+    }));
+    const context = loadHomepageContext(dolomitesFive);
     context.recommendTrail.mockImplementation(() => ({
       scoringVersion:'1.5.0', score:86, category:'recommended', confidence:'high',
       positiveReasons:[{ message:'The distance suits Teo’s normal range.' }],
@@ -346,10 +353,16 @@ describe('returning homepage region + valley filters', () => {
     await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
 
     expect(document.getElementById('returningHeading').textContent).toMatch(/^Best walk for Teo in Dolomites /);
-    expect(document.querySelector('#returningTrailList .li-row').classList.contains('li-row--answer')).toBe(true);
+    // The first three cards are co-equal, fully explained answer cards.
+    const rows = document.querySelectorAll('#returningTrailList .li-row');
+    expect([...rows].slice(0, 3).every(row => row.classList.contains('li-row--answer'))).toBe(true);
+    expect(document.querySelectorAll('#returningTrailList .li-row--answer')).toHaveLength(3);
+    expect(document.querySelectorAll('.li-answer-explanation')).toHaveLength(3);
     expect(document.querySelector('.li-answer-explanation').textContent).toContain('Why it fits Teo');
     expect(document.querySelector('.li-answer-explanation').textContent).toContain('What to know today');
+    // The alternatives heading follows the three picks, before the fourth card.
     expect(document.querySelector('.li-alternatives-heading').textContent).toContain('Other good fits');
+    expect(rows[3].classList.contains('li-row--answer')).toBe(false);
   });
 
   test('a future date is reflected in the recommendation instead of being labelled today', async () => {
