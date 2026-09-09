@@ -395,11 +395,18 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
   <div class="li-body" data-pane="map">
 
     <div class="li-map" id="trailMapWrap">
-      <div id="trailMap" role="region" aria-label="Trail map with individual match-coloured trail markers."></div>
+      <div id="trailMap" role="region" aria-label="Trail map. Numbered markers correspond to the ranked shortlist; other trails are grey."></div>
       <!-- The map doubles as the geography control: pan/zoom, then refilter the
            list to the visible area. Hidden until the view actually moves. -->
       <button id="liSearchThisArea" type="button" class="li-search-area" hidden>Search this area</button>
       <button id="homeMapExpandBtn" type="button" class="map-expand-btn li-map-expand" aria-label="Expand map" aria-expanded="false"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span></button>
+      <div class="li-rank-map-key" aria-label="Map key">
+        <span><i class="is-ranked">1</i>Matches list</span>
+        <span><i class="is-strong"></i>Strong</span>
+        <span><i class="is-caution"></i>Cautions</span>
+        <span><i class="is-stop"></i>Not recommended</span>
+        <span><i class="is-other"></i>Other trails</span>
+      </div>
       <!-- Dog conditions card, real profile-derived readings, no invented weather -->
       <div class="li-cond" id="liConditionsCard" hidden>
         <div class="li-cond-head">
@@ -464,7 +471,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <div class="li-sort">
             <span class="li-sort-label">Sort</span>
             <div class="companion-sort-group" id="companionSortGroup">
-              <button type="button" data-sort="match" class="active">Match %</button>
+              <button type="button" data-sort="match" class="active">Best fit</button>
               <button type="button" data-sort="distance">Shortest</button>
               <button type="button" data-sort="effort">Climb</button>
               <button type="button" data-sort="today">For today</button>

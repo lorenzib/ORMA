@@ -81,8 +81,9 @@ describe('logged-in discovery workspace layout', () => {
 
   test('gives the personalised answer more room beside the map', () => {
     expect(css).toContain('.li-body{grid-template-columns:minmax(0,1.05fr) minmax(480px,.95fr);}');
-    expect(css).toContain('.li-row--answer{border-color:#9FC4B0;');
+    expect(css).toContain('.li-row--answer{border:2px solid #8FB89F;');
     expect(css).toContain('.li-answer-explanation{display:grid;');
+    expect(css).toContain('.li-answer-open{display:inline-flex;');
     const desktopShellRule = css.match(/#returningCustomerHomepage\s*\{([^}]*)\}/);
     expect(desktopShellRule).not.toBeNull();
     expect(desktopShellRule[1]).not.toContain('height:100dvh');
