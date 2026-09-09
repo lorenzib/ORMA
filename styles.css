@@ -2854,7 +2854,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-location-compass::before{width:1px;height:88px;}.li-location-compass::after{width:88px;height:1px;}
 .li-location-compass span{position:relative;z-index:1;width:34px;height:34px;border:10px solid var(--accent);border-radius:50%;background:#fff;box-shadow:0 0 0 8px rgba(62,122,145,.16);}
 .li-location-visual-label{position:absolute;left:50%;bottom:48px;transform:translateX(-50%);width:max-content;padding:8px 12px;border-radius:999px;background:rgba(255,253,248,.88);color:var(--ink);font:700 11px 'Inter',sans-serif;box-shadow:0 8px 24px -16px rgba(20,42,29,.5);}
-.li-location-summary{margin-left:auto;display:flex;align-items:center;gap:9px;min-width:0;padding:7px 8px 7px 11px;border:1px solid var(--paper-line);border-radius:999px;background:#fff;color:var(--ink);}
+.li-location-summary{margin-left:auto;flex:none;display:flex;align-items:center;gap:9px;min-width:0;padding:7px 8px 7px 11px;border:1px solid var(--paper-line);border-radius:999px;background:#fff;color:var(--ink);}
 .li-location-summary[hidden]{display:none;}
 .li-location-summary-pin{color:var(--accent);font-size:17px;}
 .li-location-summary>span:nth-child(2){display:flex;flex-direction:column;min-width:0;}
@@ -2938,8 +2938,8 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-toolbar-greet{
   grid-area:greet;
   display:flex;
-  align-items:center;
-  gap:9px;
+  align-items:flex-start;
+  gap:9px 12px;
   min-width:0;
   flex:none;
   color:var(--ink);
@@ -2958,8 +2958,11 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-dogctx-name>a{overflow:hidden;text-overflow:ellipsis;color:var(--ink);font-size:12.5px;text-decoration:underline;text-decoration-color:#AAB5AA;text-underline-offset:2px;}
 .li-dogctx-name>a:hover{color:var(--accent);text-decoration-color:currentColor;}
 .li-toolbar-greet .li-greet-avatar{width:40px;height:40px;}
-.li-toolbar-greet-copy{display:flex;flex-direction:column;min-width:0;}
-.li-toolbar-greet-copy strong{font:700 21px/1.12 'Bricolage Grotesque',sans-serif;white-space:nowrap;}
+.li-toolbar-greet-copy{display:flex;flex-direction:column;min-width:0;flex:1 1 auto;}
+/* The heading carries the dog + location + day, which can run long ("Best walk
+   for Teo in Alta Pusteria - Tre Cime di Lavaredo"). It must wrap inside its own
+   column rather than run nowrap under the right-hand controls. */
+.li-toolbar-greet-copy strong{font:700 21px/1.12 'Bricolage Grotesque',sans-serif;white-space:normal;overflow-wrap:anywhere;}
 .li-toolbar-greet-copy small{margin-top:2px;font:600 10.5px/1.2 'Inter',sans-serif;color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:none;}
 .li-toolbar-breed{color:inherit;text-decoration:underline;text-decoration-color:#AAB5AA;text-underline-offset:2px;}
 .li-toolbar-breed:hover{color:var(--accent);text-decoration-color:currentColor;}
@@ -4092,10 +4095,10 @@ html.early-member #returningCustomerHomepage[hidden]{display:block;}
 .li-location-visual-label{left:32px;bottom:30px;z-index:1;transform:none;width:auto;padding:0;background:none;box-shadow:none;color:#fff;font:750 18px/1.2 'Bricolage Grotesque',sans-serif;}
 .li-location-visual-label small{display:block;margin-bottom:5px;color:rgba(255,255,255,.82);font:800 9px 'Inter',sans-serif;letter-spacing:.13em;text-transform:uppercase;}
 
-.li-date-summary{display:flex;flex-direction:column;gap:3px;min-width:132px;padding:7px 11px;border:1px solid var(--paper-line);border-radius:12px;background:#fff;}
+.li-date-summary{flex:none;display:flex;flex-direction:column;gap:3px;min-width:132px;padding:7px 11px;border:1px solid var(--paper-line);border-radius:12px;background:#fff;}
 .li-date-summary small{color:var(--ink-soft);font:750 8px 'Inter',sans-serif;letter-spacing:.09em;text-transform:uppercase;}
 .li-date-summary input{border:0;outline:0;background:transparent;color:var(--ink);font:750 11.5px 'Inter',sans-serif;}
-.li-adjust-recommendation{min-height:42px;padding:0 15px;border:1.5px solid var(--accent);border-radius:999px;background:var(--accent);color:#fff;font:800 12px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
+.li-adjust-recommendation{flex:none;min-height:42px;padding:0 15px;border:1.5px solid var(--accent);border-radius:999px;background:var(--accent);color:#fff;font:800 12px 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
 .li-adjust-recommendation:hover{filter:brightness(1.04);}
 .li-explore-all{flex:none;color:var(--accent);font:750 11px 'Inter',sans-serif;text-decoration:none;white-space:nowrap;}
 .li-explore-all:hover{text-decoration:underline;}
