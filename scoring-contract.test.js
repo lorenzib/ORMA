@@ -292,6 +292,41 @@ describe('SCORE-01 canonical recommendation contract', () => {
     expect(result.factors.every(factor => Number.isFinite(factor.impact))).toBe(true);
   });
 
+  test('an official area warning is a note in the breakdown, never a cost', () => {
+    const input = {
+      dog:steadyDog,
+      trail:idealPhysicalRoute,
+      currentConditions:{ status:'known', heatRisk:'low' },
+    };
+    const quiet = scoring.calculateRecommendation(input);
+    const warned = scoring.calculateRecommendation({
+      ...input,
+      currentConditions:{ ...input.currentConditions, warnings:[
+        { id:'meteoalarm-1', event:'Orange Thunderstorm Warning', severity:'severe' },
+        { id:'meteoalarm-2', event:'Orange Rain Warning', severity:'severe' },
+        { id:'bad', event:'' },
+      ] },
+    });
+
+    // The alert covers a region, not this route: the score and category stay,
+    // the reader gets the fact.
+    expect(warned.score).toBe(quiet.score);
+    expect(warned.category).toBe(quiet.category);
+    const notes = warned.factors.filter(factor => factor.messageKey === 'conditions.warning');
+    expect(notes).toHaveLength(2);
+    expect(notes.every(factor => factor.impact === 0)).toBe(true);
+    expect(notes[0].message).toBe('Orange Thunderstorm Warning in force for this area (severe). Check the weather card before setting out.');
+    expect(notes[0].vars).toEqual({ event:'Orange Thunderstorm Warning', severity:'severe' });
+    expect(warned.cautions.map(entry => entry.code)).toEqual(
+      expect.arrayContaining(['conditions.warning.meteoalarm-1', 'conditions.warning.meteoalarm-2']));
+    // Warnings without a forecast still reach the reader.
+    const noWeather = scoring.calculateRecommendation({
+      ...input,
+      currentConditions:{ status:'not-provided', warnings:[{ id:'x', event:'Orange Rain Warning', severity:'severe' }] },
+    });
+    expect(noWeather.factors.some(factor => factor.messageKey === 'conditions.warning')).toBe(true);
+  });
+
   test('the breakdown is ordered by impact, top negative first', () => {
     const result = scoring.calculateRecommendation({
       dog:{ ...steadyDog, conditions:['heat'], traits:{ heatSensitive:true } },

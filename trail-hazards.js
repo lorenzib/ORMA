@@ -22,7 +22,7 @@
     const style = document.createElement('style');
     style.id = 'ormaHazardStyles';
     style.textContent = `
-      .orma-hazard-stack{display:grid;gap:10px;margin:14px 0 22px}
+      .orma-hazard-stack{display:grid;gap:6px;margin:12px 0 18px}
       .map-hazard-report-btn{position:absolute;right:14px;bottom:14px;z-index:9;display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:9px 14px;border:1px solid rgba(156,58,37,.22);border-radius:11px;background:rgba(255,255,255,.96);color:#8f3827;box-shadow:0 6px 18px rgba(35,53,40,.2);font:800 12px/1.2 Inter,sans-serif;cursor:pointer}
       .map-hazard-report-btn:hover{border-color:#9c3a25;background:#fff}
       .map-hazard-report-btn[aria-busy="true"]{cursor:wait;opacity:.72}
@@ -59,20 +59,23 @@
       .orma-hazard-pending small,.orma-reported-hazard small{display:block;margin-top:4px;color:#8a9689;font-size:10.5px;line-height:1.4}
       .orma-reported-hazard.is-unverified{border-style:dashed}
       .orma-reported-hazard__where{display:block;margin:2px 0 4px;color:#8a3f1f;font-size:11px;font-weight:750}
-      .orma-hazard{overflow:hidden;border:1px solid #d6934d;border-left:6px solid #b9582e;border-radius:10px;background:#fff6e8;color:#352a22}
+      .orma-hazard-stack__kick{margin:0 0 1px;color:#8a5a16;font:800 10px/1.2 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+      .orma-hazard{overflow:hidden;border:1px solid #e3c79f;border-left:4px solid #b9582e;border-radius:9px;background:#fff6e8;color:#352a22}
       .orma-hazard.is-extreme{border-left-color:#91352d;background:#fff0ed}
-      .orma-hazard summary{display:grid;grid-template-columns:minmax(0,1fr) 28px;gap:12px;align-items:center;padding:14px 16px;cursor:pointer;list-style:none}
+      .orma-hazard summary{display:grid;grid-template-columns:minmax(0,1fr) 22px;gap:10px;align-items:center;padding:8px 12px;cursor:pointer;list-style:none}
       .orma-hazard summary::-webkit-details-marker{display:none}
-      .orma-hazard__summary-copy{min-width:0}
-      .orma-hazard__title,.orma-hazard__summary{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-      .orma-hazard__title{font-size:15px}
-      .orma-hazard__summary{margin-top:4px;color:#5f574f;font-size:12.5px;line-height:1.45}
-      .orma-hazard[open] .orma-hazard__title,.orma-hazard[open] .orma-hazard__summary{white-space:normal}
-      .orma-hazard__toggle{display:grid;place-items:center;width:28px;height:28px;border:1px solid rgba(107,98,90,.25);border-radius:50%;color:#6b625a;font:800 17px/1 Inter,sans-serif}
+      .orma-hazard__summary-copy{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;min-width:0}
+      .orma-hazard__title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:13px;line-height:1.3}
+      .orma-hazard[open] .orma-hazard__title{white-space:normal}
+      .orma-hazard__title::first-letter{text-transform:uppercase}
+      .orma-hazard__severity{flex:none;padding:2px 7px;border-radius:999px;background:rgba(185,88,46,.14);color:#8f3827;font:800 9.5px/1.3 Inter,sans-serif;letter-spacing:.07em;text-transform:uppercase}
+      .orma-hazard.is-extreme .orma-hazard__severity{background:rgba(145,53,45,.16);color:#91352d}
+      .orma-hazard__where{flex:1 0 100%;color:#8a3f1f;font-size:11px;font-weight:750}
+      .orma-hazard__toggle{display:grid;place-items:center;width:22px;height:22px;border:1px solid rgba(107,98,90,.25);border-radius:50%;color:#6b625a;font:800 14px/1 Inter,sans-serif}
       .orma-hazard__toggle::before{content:"+"}
       .orma-hazard[open] .orma-hazard__toggle::before{content:"−"}
-      .orma-hazard__detail{padding:0 16px 14px;border-top:1px solid rgba(107,98,90,.16)}
-      .orma-hazard__detail p{margin:10px 0 8px;color:#5f574f;font-size:12.5px;line-height:1.45}
+      .orma-hazard__detail{padding:0 12px 10px;border-top:1px solid rgba(107,98,90,.16)}
+      .orma-hazard__detail p{margin:8px 0 6px;color:#5f574f;font-size:12px;line-height:1.45}
       .orma-hazard__detail small{display:flex;gap:5px 9px;align-items:baseline;flex-wrap:wrap;color:#6b625a;font-size:11px;line-height:1.4}
       .orma-hazard a,.orma-reported-hazard a{color:inherit;font-weight:800}
       @media(max-width:700px){
@@ -382,16 +385,24 @@
       at.textContent = spoken;
       summaryCopy.append(at);
     }
-    const copy = document.createElement('p');
-    copy.className = 'orma-hazard__summary';
-    copy.textContent = officialWarningSummary(item);
-    summaryCopy.append(copy);
+    // Collapsed, a warning is one line: title plus severity. The sentence
+    // about checking the source only earns its space once the card is open.
+    const severity = String(item.severity || '').trim();
+    if(severity){
+      const chip = document.createElement('b');
+      chip.className = 'orma-hazard__severity';
+      chip.textContent = severity;
+      summaryCopy.append(chip);
+    }
     const toggle = document.createElement('span');
     toggle.className = 'orma-hazard__toggle';
     toggle.setAttribute('aria-hidden', 'true');
     summary.append(summaryCopy, toggle);
     const expanded = document.createElement('div');
     expanded.className = 'orma-hazard__detail';
+    const copy = document.createElement('p');
+    copy.className = 'orma-hazard__summary';
+    copy.textContent = officialWarningSummary(item);
     const clarification = document.createElement('p');
     clarification.textContent = 'This warning applies to the wider area; it does not confirm that this trail is closed.';
     const detail = document.createElement('small');
@@ -410,7 +421,7 @@
       time.textContent = `Valid until ${validUntil}`;
       detail.append(time);
     }
-    expanded.append(clarification, detail);
+    expanded.append(copy, clarification, detail);
     card.append(summary, expanded);
     return card;
   }
@@ -440,12 +451,46 @@
     window.dispatchEvent(new CustomEvent('orma-hazards-changed'));
   }
 
+  // trail.html moves the weather card below the map on phones, taking the
+  // warnings with it. This one-line pointer under the hero says they exist
+  // and jumps to them, opening the card if the reader had collapsed it.
+  function renderHazardPointer(hazards){
+    const pointer = document.getElementById('ormaHazardPointer');
+    if(!pointer || !hazards.length) return;
+    pointer.textContent = `${areaWarningsLabel(hazards)} · see trail weather`;
+    pointer.hidden = false;
+    pointer.addEventListener('click', event => {
+      const card = document.querySelector('.td2-hero-weather');
+      if(!card) return;
+      event.preventDefault();
+      card.classList.remove('is-mobile-collapsed');
+      const toggle = card.querySelector('.td2-mobile-card-toggle');
+      if(toggle) toggle.setAttribute('aria-expanded', 'true');
+      const stack = card.querySelector('.orma-hazard-stack') || card;
+      if(typeof stack.scrollIntoView !== 'function') return;
+      const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      stack.scrollIntoView({ behavior:reduced ? 'auto' : 'smooth', block:'center' });
+    });
+  }
+
+  function areaWarningsLabel(hazards){
+    return hazards.length === 1 ? 'Area warning' : `${hazards.length} area warnings`;
+  }
+
   function renderOfficialHazards(hazards){
     if(!hazards.length) return;
+    renderHazardPointer(hazards);
     const stack = document.createElement('section');
     stack.className = 'orma-hazard-stack';
     stack.setAttribute('aria-label', 'Current area warnings');
+    const kick = document.createElement('span');
+    kick.className = 'orma-hazard-stack__kick';
+    kick.textContent = areaWarningsLabel(hazards);
+    stack.append(kick);
     hazards.forEach(item => stack.append(hazardCard(item, false)));
+    // trail.html mounts the stack inside its trail-weather card, beside the
+    // forecast the warnings qualify; generated pages anchor after the badge
+    // strip. The remaining fallbacks exist so a warning is never dropped.
     const anchor = document.getElementById('ormaHazardMount') || document.querySelector('.sp-badges') || document.querySelector('main h1') || document.querySelector('main');
     if(anchor && anchor.parentNode) anchor.insertAdjacentElement('afterend', stack);
     else if(document.body) document.body.prepend(stack);
@@ -477,7 +522,14 @@
       .sort((a,b) => severityRank(b.severity) - severityRank(a.severity));
     reportedHazards = hazards.filter(item => item.origin === 'community');
     renderReportedHazards();
-    renderOfficialHazards(hazards.filter(item => item.origin !== 'community'));
+    const official = hazards.filter(item => item.origin !== 'community');
+    renderOfficialHazards(official);
+    // The recommendation card scores against these as zero-cost cautions, so
+    // it stops calling the day low-risk while a storm warning sits above it.
+    window.OrmaAreaWarnings = official.map(item => ({
+      id:item.id, event:item.event || item.title, title:item.title, severity:item.severity,
+    }));
+    window.dispatchEvent(new CustomEvent('orma-area-warnings-ready', { detail:window.OrmaAreaWarnings }));
   }
 
   load().catch(() => {});

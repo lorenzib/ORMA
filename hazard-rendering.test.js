@@ -61,8 +61,35 @@ describe('official area warnings reach the page', () => {
     expect(warning.open).toBe(true);
     // Placement matters as much as presence: a warning pushed to the top of the
     // document (the no-anchor fallback) or to the page foot is a degradation,
-    // so pin it inside the trail content column.
-    expect(stack.closest('.td2-wrap')).not.toBeNull();
+    // so pin it inside the trail-weather card, beside the forecast it
+    // qualifies, and collapsed to its title and severity.
+    expect(stack.closest('.td2-hero-weather')).not.toBeNull();
+    expect(stack.querySelector('.orma-hazard-stack__kick').textContent).toBe('Area warning');
+    expect(warning.querySelector('summary .orma-hazard__severity').textContent).toBe('moderate');
+    expect(warning.querySelector('summary .orma-hazard__summary')).toBeNull();
+    expect(warning.querySelector('.orma-hazard__detail .orma-hazard__summary')).not.toBeNull();
+    // Phones move the weather card below the map; the hero keeps a pointer.
+    const pointer = document.getElementById('ormaHazardPointer');
+    expect(pointer.hidden).toBe(false);
+    expect(pointer.textContent).toBe('Area warning · see trail weather');
+    expect(pointer.getAttribute('href')).toBe('#mobileWeatherSlot');
+    // Following it reopens a collapsed weather card and scrolls to the stack.
+    const card = document.querySelector('.td2-hero-weather');
+    card.classList.add('is-mobile-collapsed');
+    card.querySelector('.td2-mobile-card-toggle').setAttribute('aria-expanded', 'false');
+    const scrolled = jest.fn();
+    Element.prototype.scrollIntoView = scrolled;
+    pointer.click();
+    expect(card.classList.contains('is-mobile-collapsed')).toBe(false);
+    expect(card.querySelector('.td2-mobile-card-toggle').getAttribute('aria-expanded')).toBe('true');
+    expect(scrolled).toHaveBeenCalledTimes(1);
+    expect(scrolled.mock.instances[0]).toBe(stack);
+    delete Element.prototype.scrollIntoView;
+    // The recommendation card reads the same warnings, so the two never disagree.
+    expect(window.OrmaAreaWarnings).toEqual([{
+      id:'test-hazard-1', event:'Thunderstorm warning for the test area',
+      title:'Thunderstorm warning for the test area', severity:'moderate',
+    }]);
   });
 
   test('the dynamic trail page carries the anchor the renderer needs', () => {
@@ -91,6 +118,7 @@ describe('official area warnings reach the page', () => {
   test('a trail with no matching hazard renders nothing', async () => {
     const stack = await render('trail.html', '/trail.html?id=some-other-trail');
     expect(stack).toBeNull();
+    expect(document.getElementById('ormaHazardPointer').hidden).toBe(true);
   });
 });
 
