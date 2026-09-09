@@ -690,7 +690,7 @@
 <script src="area-dropdown.js?v=20260823-2"></script>
 <script src="map-runtime.js?v=20260908-2"></script>
 <script src="map-style.js?v=20260908-2"></script>
-<script src="browse-map.js?v=20260908-1"></script>
+<script src="browse-map.js?v=20260909-1"></script>
 <script>
   window.addEventListener('DOMContentLoaded', () => {
     // Guest bar mirrors the homepage: members never see it.
@@ -771,6 +771,8 @@
     const browseMap = window.DoloPawsBrowseMap && window.DoloPawsBrowseMap.create({
       containerId:'browseMap',
       searchAreaButtonId:'browseSearchArea',
+      scoreFor:matchScore,
+      savedFor:trail => !!currentFavorites[trail.id],
       onSelect(id){
         selectedTrailId = String(id || '');
         const pool = currentTrailPool();

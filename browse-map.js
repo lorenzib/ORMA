@@ -30,9 +30,11 @@
     return withinLng && lat >= bounds.south && lat <= bounds.north;
   }
 
-  function trailFeature(trail){
+  function trailFeature(trail, presentation){
     const coordinate = coordinateFor(trail);
     if(!coordinate) return null;
+    const view = presentation || {};
+    const score = Number(view.score);
     return {
       type:'Feature',
       geometry:{ type:'Point', coordinates:coordinate },
@@ -43,6 +45,8 @@
         distance:Number(trail.distance) || 0,
         hours:Number(trail.hours) || 0,
         risk:String(trail.safetyLevel || 'moderate'),
+        score:Number.isFinite(score) ? score : 0,
+        saved:view.saved ? 1 : 0,
       },
     };
   }
@@ -66,7 +70,10 @@
     function data(){
       return {
         type:'FeatureCollection',
-        features:trails.map(trailFeature).filter(Boolean),
+        features:trails.map(trail => trailFeature(trail, {
+          score:typeof settings.scoreFor === 'function' ? settings.scoreFor(trail) : trail.score,
+          saved:typeof settings.savedFor === 'function' ? settings.savedFor(trail) : trail.saved,
+        })).filter(Boolean),
       };
     }
 
@@ -200,24 +207,19 @@
     }
 
     function installLayers(){
-      map.addSource('browse-trails', {
-        type:'geojson', data:data(), cluster:true, clusterRadius:48, clusterMaxZoom:13,
-      });
+      map.addSource('browse-trails', { type:'geojson', data:data() });
       map.addLayer({
-        id:'browse-trail-clusters', type:'circle', source:'browse-trails', filter:['has', 'point_count'],
+        id:'browse-trails-individual', type:'circle', source:'browse-trails',
         paint:{
-          'circle-color':'#f9f7ef', 'circle-radius':['step', ['get','point_count'], 19, 10, 23, 30, 27],
-          'circle-stroke-color':'#3e7a91', 'circle-stroke-width':2,
+          'circle-color':root.ORMAMapStyle
+            ? root.ORMAMapStyle.matchColourExpression('score')
+            : '#3e7a91',
+          'circle-radius':7,
+          'circle-stroke-width':2.5,
+          'circle-stroke-color':[
+            'case', ['==', ['coalesce', ['get', 'saved'], 0], 1], '#9C3A25', '#fff',
+          ],
         },
-      });
-      map.addLayer({
-        id:'browse-trail-cluster-count', type:'symbol', source:'browse-trails', filter:['has', 'point_count'],
-        layout:{ 'text-field':['get','point_count_abbreviated'], 'text-size':12 },
-        paint:{ 'text-color':'#2e4034' },
-      });
-      map.addLayer({
-        id:'browse-trails-unclustered', type:'circle', source:'browse-trails', filter:['!', ['has','point_count']],
-        paint:{ 'circle-color':'#3e7a91', 'circle-radius':7, 'circle-stroke-color':'#fff', 'circle-stroke-width':2.5 },
       });
       map.addLayer({
         id:'browse-trails-selected-halo', type:'circle', source:'browse-trails',
@@ -235,23 +237,14 @@
         paint:{ 'line-color':'#2e4034', 'line-width':4, 'line-opacity':0.9 },
       });
 
-      map.on('click', 'browse-trail-clusters', event => {
-        const feature = event.features && event.features[0];
-        if(!feature) return;
-        const source = map.getSource('browse-trails');
-        Promise.resolve(source.getClusterExpansionZoom(feature.properties.cluster_id)).then(zoom => {
-          ignoreNextMove = true;
-          map.easeTo({ center:feature.geometry.coordinates, zoom, duration:320 });
-        });
-      });
-      map.on('click', 'browse-trails-unclustered', event => {
+      map.on('click', 'browse-trails-individual', event => {
         const feature = event.features && event.features[0];
         if(!feature) return;
         const id = feature.properties.id;
         select(id, { popup:true });
         if(typeof settings.onSelect === 'function') settings.onSelect(id);
       });
-      ['browse-trail-clusters', 'browse-trails-unclustered'].forEach(layerId => {
+      ['browse-trails-individual'].forEach(layerId => {
         map.on('mouseenter', layerId, () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', layerId, () => { map.getCanvas().style.cursor = ''; });
       });
@@ -321,7 +314,7 @@
     };
   }
 
-  const api = { create, coordinateFor, withinBounds };
+  const api = { create, coordinateFor, withinBounds, trailFeature };
   if(typeof module !== 'undefined' && module.exports) module.exports = api;
   if(root) root.DoloPawsBrowseMap = api;
 })(typeof window !== 'undefined' ? window : null);
