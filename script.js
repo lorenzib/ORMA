@@ -109,6 +109,10 @@ const NEW_MATCH_THRESHOLD = 70; // trails scoring at/above this count as "a matc
 let adjustOverride = null; // session-only override, never saved to the profile
 let showFullList = false;  // homepage: top matches first, full catalog on demand
 const TOP_MATCHES = 6;
+// The recommendation view leads with this many co-equal, fully explained picks
+// before the compact "Other good fits" list, so a visitor sees a small shortlist
+// of best matches rather than a single answer.
+const TOP_PICKS = 3;
 let currentFavorites = {};
 let homeActionStatusTimer = null;
 
@@ -3089,7 +3093,7 @@ async function renderReturningHomepage(profile, options = {}){
   const toolbarHeading = document.getElementById('liToolbarGreeting');
   if(toolbarHeading) toolbarHeading.textContent = answerTitle;
   const toolbarContext = document.getElementById('liToolbarDogContext');
-  if(toolbarContext) toolbarContext.textContent = 'One recommendation first, with the reasons and cautions that matter.';
+  if(toolbarContext) toolbarContext.textContent = 'Your top matches first, with the reasons and cautions that matter.';
   // The old copy ("Pick a province or valley below... Edit profile") duplicated
   // what the sidebar now already shows (filters + the dog card's edit link),
   // so this line is now just the one thing the sidebar can't say: whether
@@ -3103,7 +3107,7 @@ async function renderReturningHomepage(profile, options = {}){
   renderBreedInsight(profile);
 
   const titleEl = document.getElementById('companionListTitle');
-  if(titleEl) titleEl.textContent = showingSavedOnly ? 'Saved trails' : (profile && profile.name ? `Best for ${profile.name}` : 'Best walk');
+  if(titleEl) titleEl.textContent = showingSavedOnly ? 'Saved trails' : (profile && profile.name ? `Best matches for ${profile.name}` : 'Best matches');
 
   let displayList = filterTrailsForReturningView(scored);
 
@@ -3175,8 +3179,8 @@ async function renderReturningHomepage(profile, options = {}){
     const importedBadge = t.curated === false
       ? (window.DoloPawsIcons ? window.DoloPawsIcons.badgeHtml('imported', window.t('badge.importedS')) : `<span class="badge-pill badge-imported">${window.t('badge.importedS')}</span>`)
       : '';
-    const isPrimary = !showingSavedOnly && index === 0;
-    return `${isPrimary ? '' : index === 1 && !showingSavedOnly ? '<div class="li-alternatives-heading"><span>Other good fits</span><a href="browse-trails.html">See the full catalogue →</a></div>' : ''}
+    const isPrimary = !showingSavedOnly && index < TOP_PICKS;
+    return `${isPrimary ? '' : index === TOP_PICKS && !showingSavedOnly ? '<div class="li-alternatives-heading"><span>Other good fits</span><a href="browse-trails.html">See the full catalogue →</a></div>' : ''}
     <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}" id="trail-card-${t.id}" data-id="${t.id}"${dim ? ' style="opacity:.55;"' : ''}>
       ${thumb}
       <div class="li-row-body">
