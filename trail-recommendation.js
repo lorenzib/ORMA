@@ -26,24 +26,38 @@
 
   // P0-1: the breakdown sits directly under the Match %, headed in the dog's
   // name, and lists every factor the score was computed from in descending
-  // order of impact. Each row carries both the points and the reason, so no
-  // factor ever reads as a bare label or a bare number.
+  // order of impact. Each cost row carries both the points and the reason, so
+  // no factor ever reads as a bare label or a bare number. What cost nothing
+  // is folded into one closing line rather than listed sentence by sentence.
   function breakdown(view, tr){
     if(!view.breakdown.length) return '';
-    const rows = view.breakdown.map(factor => {
-      const points = factor.impact === 0
-        ? tr('recommendation.breakdown.noCost', 'no cost')
-        : `${factor.impact > 0 ? '+' : '\u2212'}${Math.abs(factor.impact)}`;
-      const tone = factor.impact < 0 ? 'cost' : 'clear';
+    const rows = (view.breakdownRows || view.breakdown).map(factor => {
+      const points = factor.impact < 0
+        ? `\u2212${Math.abs(factor.impact)}`
+        : factor.impact > 0
+          ? `+${factor.impact}`
+          : factor.kind === 'stop'
+            ? tr('recommendation.breakdown.stop', 'stop')
+            : factor.kind === 'caution'
+              ? tr('recommendation.breakdown.note', 'note')
+              : tr('recommendation.breakdown.noCost', 'fine');
+      const tone = factor.impact < 0 || factor.kind === 'stop' ? 'cost' : 'clear';
       return `<li><span class="recommendation-factor-impact is-${tone}">${esc(points)}</span>` +
         `<span class="recommendation-factor-reason">${esc(factor.message)}</span></li>`;
     }).join('');
+    const fine = view.fineLine
+      ? `<p class="recommendation-fine">${esc(view.fineLine)}</p>`
+      : '';
     const note = view.breakdownNote
       ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`
       : '';
+    const title = view.score === null
+      ? tr('recommendation.breakdown.titleNoScore', 'Why this score for {name}', { name:view.breakdownFor })
+      : tr('recommendation.breakdown.title', 'Why {score}% for {name}', { score:view.score, name:view.breakdownFor });
     return `<section class="recommendation-breakdown">` +
-      `<h3>${esc(tr('recommendation.breakdown.title', 'Why this score for {name}', { name:view.breakdownFor }))}</h3>` +
-      `<ol class="recommendation-factors">${rows}</ol>${note}</section>`;
+      `<h3>${esc(title)}</h3>` +
+      (rows ? `<ol class="recommendation-factors">${rows}</ol>` : '') +
+      fine + note + `</section>`;
   }
 
   function sections(entries){
@@ -107,7 +121,12 @@
     // The weather arrives after the first paint, so the card scores without it
     // and re-scores when it lands. Absent conditions stay 'not-provided'
     // rather than being guessed at.
-    const conditions = window.DoloPawsCurrentConditions || undefined;
+    // Official area warnings arrive from trail-hazards.js on their own clock;
+    // they ride alongside the weather so the engine can note them at no cost.
+    const warnings = Array.isArray(window.OrmaAreaWarnings) ? window.OrmaAreaWarnings : [];
+    const conditions = window.DoloPawsCurrentConditions || warnings.length
+      ? { status:'not-provided', ...(window.DoloPawsCurrentConditions || {}), warnings }
+      : undefined;
     const recommendation = recommendTrail(trail, subjectFor(profile), conditions);
     const view = api.present(recommendation, {
       dogName:profile && profile.name,
@@ -157,10 +176,13 @@
         ? `<p class="recommendation-firstrun" role="status">${esc(pendingCallout)}</p>`
         : '') +
       breakdown(view, tr) +
-      sections([
+      // The breakdown already carries every reason and caution with its
+      // points; repeating them as two more lists doubled the card. The lists
+      // only appear when an engine gives no breakdown to show instead.
+      (view.breakdown.length ? '' : sections([
         [tr('recommendation.reasons.title', 'Why it may fit'), view.reasons],
         [tr('recommendation.cautions.title', 'Cautions'), view.cautions],
-      ]) +
+      ])) +
       '<div class="recommendation-actions" aria-label="Trail actions">' +
         `<button type="button" data-recommendation-save>${esc(tr('recommendation.action.save', 'Save trail'))}</button>` +
         `<button type="button" data-recommendation-compare>${esc(tr('recommendation.action.compare', 'Add to comparison'))}</button>` +
@@ -288,4 +310,5 @@
   window.addEventListener('dolopaws-auth-changed', renderCurrent);
   window.addEventListener('dolopaws-dog-profile-saved', renderCurrent);
   window.addEventListener('dolopaws-conditions-ready', renderCurrent);
+  window.addEventListener('orma-area-warnings-ready', renderCurrent);
 })();

@@ -688,6 +688,9 @@ body{background:#EFECE2;}
 .recommendation-factor-impact.is-clear{color:#6B7A6E;font-weight:700;}
 .recommendation-factor-reason{flex:1;color:#3E4A40;font:500 12.5px/1.5 'Inter',sans-serif;}
 .recommendation-breakdown-note{margin:10px 0 0;color:#6B7A6E;font:600 12px/1.5 'Inter',sans-serif;}
+.recommendation-fine{display:flex;gap:8px;align-items:baseline;margin:10px 0 0;color:#3E4A40;font:500 12.5px/1.5 'Inter',sans-serif;}
+.recommendation-fine::before{content:'✓';flex:none;color:#4A7856;font-weight:900;}
+.recommendation-factors+.recommendation-fine{padding-top:9px;border-top:1px solid #E5E2D8;}
 .recommendation-firstrun{margin:12px 0 0;padding:10px 13px;border-radius:10px;background:#EAF3F6;color:#2F6274;font:700 12.5px/1.5 'Inter',sans-serif;}
 .recommendation-add-dog{appearance:none;border:0;background:none;padding:0;cursor:pointer;color:#3E7A91;font:700 12.5px 'Inter',sans-serif;text-align:left;}
 .recommendation-add-dog:hover{text-decoration:underline;}
@@ -804,6 +807,7 @@ body{background:#EFECE2;}
 .td2-hero .td2-stat #statMatch{display:none!important;}
 
 /* One compact planning card: current essentials first, forecast on demand. */
+.td2-warnings-pointer{display:none;}
 .td2-hero-weather{grid-area:weather;display:block;margin:0;max-width:none;overflow:hidden;border:1px solid rgba(255,255,255,.28);border-radius:13px;background:rgba(63,88,70,.82);color:#fff;backdrop-filter:blur(10px);}
 .td2-hero-weather .td2-cond,.td2-hero-weather .td2-fc6{box-sizing:border-box;width:100%;border:0;border-radius:0;background:transparent;color:inherit;backdrop-filter:none;}
 .td2-hero-weather .td2-cond{padding:12px 14px 10px;}
@@ -821,6 +825,21 @@ body{background:#EFECE2;}
 .td2-hero-weather .td2-cond-window strong{color:#fff;}
 .td2-hero-weather .td2-summary-action{color:#BCE0EE;}
 .td2-hero-weather .td2-fc6-body{border-color:rgba(255,255,255,.18);}
+/* Official area warnings, restyled for the dark weather card: one line each
+   when collapsed, the source and validity on demand. */
+.td2-hero-weather .orma-hazard-stack{margin:0;padding:9px 14px 10px;gap:5px;border-top:1px solid rgba(255,255,255,.18);}
+.td2-hero-weather .orma-hazard-stack__kick{color:#FFD9A8;}
+.td2-hero-weather .orma-hazard{border:0;border-left:3px solid #FFB35C;border-radius:7px;background:rgba(255,179,92,.16);color:#fff;}
+.td2-hero-weather .orma-hazard.is-extreme{border-left-color:#FF8A7A;background:rgba(255,122,107,.2);}
+.td2-hero-weather .orma-hazard summary{grid-template-columns:minmax(0,1fr) 20px;gap:8px;padding:6px 9px;}
+.td2-hero-weather .orma-hazard__title{font-size:12px;}
+.td2-hero-weather .orma-hazard__severity{background:rgba(255,255,255,.16);color:#FFE3C4;}
+.td2-hero-weather .orma-hazard__where{color:#FFD9A8;}
+.td2-hero-weather .orma-hazard__toggle{width:20px;height:20px;border-color:rgba(255,255,255,.35);color:#fff;font-size:13px;}
+.td2-hero-weather .orma-hazard__detail{padding:0 9px 8px;border-top-color:rgba(255,255,255,.16);}
+.td2-hero-weather .orma-hazard__detail p{margin:7px 0 5px;color:#EAF1E8;font-size:11px;}
+.td2-hero-weather .orma-hazard__detail small{color:#DCE6DE;font-size:10.5px;}
+.td2-hero-weather .orma-hazard a{color:#BCE0EE;}
 .td2-hero-weather .td2-fcday .d,.td2-hero-weather .td2-fcday .tp,.td2-hero-weather .td2-fc6-note{color:#EAF1E8;}
 
 /* One action shelf. Links are presented as real controls, and the offline
@@ -955,6 +974,19 @@ body{background:#EFECE2;}
   #mobileWeatherSlot .td2-cond .td2-weather-head>.td2-kick{display:none;}
   #mobileWeatherSlot #sideFcValley{display:none;}
   #mobileWeatherSlot .td2-cond-facts{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+  #mobileWeatherSlot .orma-hazard-stack{border-top-color:#E4E0D3;}
+  #mobileWeatherSlot .orma-hazard-stack__kick{color:#8A5A16;}
+  #mobileWeatherSlot .orma-hazard{border:1px solid #E3C79F;border-left:3px solid #B9582E;background:#FFF6E8;color:#352A22;}
+  #mobileWeatherSlot .orma-hazard.is-extreme{border-left-color:#91352D;background:#FFF0ED;}
+  #mobileWeatherSlot .orma-hazard__severity{background:rgba(185,88,46,.14);color:#8F3827;}
+  #mobileWeatherSlot .orma-hazard__where{color:#8A3F1F;}
+  #mobileWeatherSlot .orma-hazard__toggle{border-color:rgba(107,98,90,.25);color:#6B625A;}
+  #mobileWeatherSlot .orma-hazard__detail{border-top-color:rgba(107,98,90,.16);}
+  #mobileWeatherSlot .orma-hazard__detail p{color:#5F574F;}
+  #mobileWeatherSlot .orma-hazard__detail small{color:#6B625A;}
+  #mobileWeatherSlot .orma-hazard a{color:#8F3827;}
+  .td2-warnings-pointer:not([hidden]){display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:7px 11px;border:1px solid rgba(255,179,92,.55);border-radius:999px;background:rgba(255,179,92,.18);color:#FFE3C4;font:800 11.5px 'Inter',sans-serif;text-decoration:none;}
+  .td2-warnings-pointer::before{content:'!';display:grid;place-items:center;width:16px;height:16px;border-radius:50%;background:#FFB35C;color:#3B2A14;font-size:11px;}
   #mobileWeatherSlot .td2-cond-row{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:4px;padding:0 8px 0 0;color:#6B7A6E;border:0;border-right:1px solid #E4E0D3;}
   #mobileWeatherSlot .td2-cond-row:last-child{padding-right:0;border-right:0;}
   #mobileWeatherSlot .td2-cond-row b{color:#2E4034;}
@@ -1049,6 +1081,11 @@ body.trail-photo-viewer-open{overflow:hidden;}
 
         <!-- Compact route facts sit directly below the title. -->
         <div id="trailFacts" class="td2-stat"></div>
+        <!-- On phones the weather card, and the area warnings inside it, move
+             below the map. trail-hazards.js fills this pointer so a warning is
+             still announced under the hero; it stays hidden on wider screens
+             where the card is right beside the title. -->
+        <a id="ormaHazardPointer" class="td2-warnings-pointer" href="#mobileWeatherSlot" hidden></a>
 
         <!-- Current weather belongs to the trail header; the week stays
              available on demand instead of occupying the planning column. -->
@@ -1070,6 +1107,13 @@ body.trail-photo-viewer-open{overflow:hidden;}
               </div>
               <p class="td2-cond-window" id="sideCondWindow"></p>
             </div>
+            <!-- trail-hazards.js renders official area warnings (MeteoAlarm
+                 rain, thunderstorm, ...) after this mount, so they sit with
+                 the forecast they qualify instead of as a banner of their own.
+                 Static trail pages anchor the same stack after their .sp-badges
+                 strip; trail.html has no badge strip, so the mount has to be
+                 explicit. Removing it silently hides every warning here. -->
+            <div id="ormaHazardMount"></div>
             <details class="td2-fc6" id="sideForecast" hidden>
               <summary><span class="td2-kick">6-day outlook</span><span class="td2-summary-action">View</span></summary>
               <div class="td2-fc6-body">
@@ -1138,14 +1182,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
       <span id="elevReadout" hidden></span><div id="elevationProfileWrap" hidden></div>
       <div id="communityRating" hidden></div>
     </div>
-
-    <!-- ============ AREA WARNINGS ============ -->
-    <!-- trail-hazards.js renders official area warnings into this mount.
-         Static trail pages anchor the same stack after their .sp-badges strip;
-         trail.html has no badge strip, so the mount has to be explicit. Keep it
-         first inside .td2-wrap: a safety warning belongs above the fold, and
-         removing this element silently hides every hazard on this page. -->
-    <div id="ormaHazardMount"></div>
 
     <!-- ============ LIVE RECORDING BANNER ============ -->
     <div class="td2-live" id="td2LiveBanner" hidden>
@@ -1372,8 +1408,8 @@ body.trail-photo-viewer-open{overflow:hidden;}
 </footer>
 
 <script src="device-handoff.js?v=20260904-1"></script>
-<script src="mobile-nav.js?v=20260908-1"></script>
-<script src="i18n.js?v=20260908-1"></script>
+<script src="mobile-nav.js?v=20260909-1"></script>
+<script src="i18n.js?v=20260909-1"></script>
 <script>
   // Account services are useful after the page is interactive, but loading
   // the Firebase app/auth/Firestore graph during navigation keeps mobile
@@ -1455,6 +1491,6 @@ body.trail-photo-viewer-open{overflow:hidden;}
     if(window.performance && performance.mark) performance.mark('orma-trail-critical-render');
   })();
 </script>
-<script src="trail-app.bundle.js?v=20260908-1" defer></script>
+<script src="trail-app.bundle.js?v=20260909-1" defer></script>
 </body>
 </html>
