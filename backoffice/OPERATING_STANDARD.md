@@ -285,6 +285,26 @@ confirmed against, and a source that contradicts the record wins and says so.
 Parking and the route are separate questions, and an unresolved parking picture
 is never a reason to omit the directions.
 
+## A route with no rifugio must be able to say so
+
+The Regulatory Ranger returns one entity policy claim per rifugio, lift and
+protected area on a route. Ninety-two of the catalogue's 165 trails pass none at
+all, and for those the only true answer is that there is nothing to report.
+
+That answer is `rule: not-applicable` with no entity named. It is what the
+schema offers and what the agent is asked for, and it requires neither an entity
+nor a date a source was read, because there is no entity and no source to read.
+It must not name an entity: a claim about nothing that names something is not
+about nothing. Every other entity policy claim is held to the full contract --
+a named entity, a rule from the published vocabulary, and the date its source
+was read -- and a claim about nothing publishes nothing, because the operational
+facts table has no entity to key it to.
+
+Refusing that answer left no valid reply at all: naming no entity failed
+validation and retired the job, while answering `unresolved` instead blocked the
+dossier gate. A contract that no honest answer satisfies stops the pipeline just
+as surely as a missing agent.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:
