@@ -19,14 +19,14 @@
     {
       id:'rifugio-days', title:'Dolomites rifugio days', subtitle:'Five walks with a mapped hut or mountain stop',
       description:'A Dolomites week built around routes where a rifugio or mountain stop is part of the day. Opening dates and dog rules can change, so confirm them directly before relying on a stop.',
-      coverImage:'images/lago-di-carezza.webp', chips:['Mapped mountain stops','Long-lunch potential','Check current opening'],
+      coverImage:'images/trails/nuvolau-commons.jpg', chips:['Mapped mountain stops','Long-lunch potential','Check current opening'],
       countryCode:'IT', country:'Italy', region:'dolomites', regionLabel:'Dolomites', tripLength:'5 days',
       trailIds:['tre-cime','lago-braies','geotrail-bulla','giro-del-bulacia','sentiero-hans-e-paula-steger'],
     },
     {
       id:'short-flat', title:'Gentler Dolomites week', subtitle:'A flexible week of shorter, lower-climb walks',
       description:'A Dolomites base for easier days: the selected routes are under 5 km, use gentle or mixed terrain and keep recorded ascent modest. Choose four to seven according to weather and recovery.',
-      coverImage:'images/lago-di-carezza.webp', chips:['Under 5 km','Up to 200 m climb','Gentle or mixed terrain'],
+      coverImage:'images/trails/alpe-siusi-awdy0ikcoo8dud0tseoi.jpg', chips:['Under 5 km','Up to 200 m climb','Gentle or mixed terrain'],
       countryCode:'IT', country:'Italy', region:'dolomites', regionLabel:'Dolomites', tripLength:'4–7 days',
       trailIds:['santa-maddalena','lago-braies','lago-carezza','valley-view','osm-3202880','osm-6244965','osm-6404633','osm-7546708'],
     },
@@ -40,7 +40,7 @@
     {
       id:'cable-car-days', title:'Lift-assisted Dolomites week', subtitle:'Seven high-level options with a lift near the start',
       description:'A Dolomites week of walks that can begin with a cable car, gondola or lift. Services and dog policies are seasonal, so use each trail’s access notes and verify the operator timetable.',
-      coverImage:'images/lago-di-braies.webp', chips:['Lift-assisted access','High-level starts','Verify dog policy'],
+      coverImage:'images/trails/giro-del-sasso-lungo-commons.jpg', chips:['Lift-assisted access','High-level starts','Verify dog policy'],
       countryCode:'IT', country:'Italy', region:'dolomites', regionLabel:'Dolomites', tripLength:'4–7 days',
       trailIds:['alpe-siusi','seceda','sentiero-hans-e-paula-steger','osm-1116675','osm-11828233','osm-11855879','osm-19697977'],
     },
