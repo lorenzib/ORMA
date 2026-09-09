@@ -206,9 +206,17 @@ const LI_LOCATION_RADIUS_KM = 25;
 const LI_LOCATION_SESSION_KEY = 'orma-home-current-location-v1';
 const LI_AREA_STORAGE_KEY = 'orma-home-selected-area-v1';
 const LI_WALK_DATE_SESSION_KEY = 'orma-home-walk-date-v1';
+const LI_LOCATION_LABEL_ALIASES = Object.freeze({
+  'Alta Pusteria – Tre Cime':'Alta Pusteria',
+});
 let liLocationContext = liLoadLocationContext();
 let liAreaChoices = [];
 let liLocationForecastKey = '';
+
+function liDisplayLocationLabel(label){
+  const value = String(label || '');
+  return LI_LOCATION_LABEL_ALIASES[value] || value;
+}
 
 function liLocalDateIso(date){
   const value = date instanceof Date ? date : new Date(date);
@@ -260,7 +268,7 @@ function liValidLocationContext(value){
       country:String(value.country || inferredCountry),
       region,
       valley:String(value.valley || 'all'),
-      label:String(value.label),
+      label:liDisplayLocationLabel(value.label),
     };
   }
   return null;
@@ -378,12 +386,12 @@ function liEnsureLocationConditions(){
 function liLocationContextLabel(){
   if(!liLocationContext) return '';
   if(liLocationContext.kind === 'current') return `Your location · within ${liLocationContext.radiusKm} km`;
-  return liLocationContext.label;
+  return liDisplayLocationLabel(liLocationContext.label);
 }
 
 function liRecommendationLocationPhrase(){
   if(!liLocationContext) return '';
-  return liLocationContext.kind === 'current' ? 'near you' : `in ${liLocationContext.label}`;
+  return liLocationContext.kind === 'current' ? 'near you' : `in ${liDisplayLocationLabel(liLocationContext.label)}`;
 }
 
 function liPopulateAreaPicker(){
@@ -401,7 +409,7 @@ function liPopulateAreaPicker(){
       country:(configs[trail.region] && configs[trail.region].countryCode) || (trail.region === 'savoy' ? 'FR' : 'IT'),
       region:trail.region,
       valley:trail.valley,
-      label:trail.valley,
+      label:liDisplayLocationLabel(trail.valley),
       type:'Valley',
     });
   });
