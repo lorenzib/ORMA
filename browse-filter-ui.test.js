@@ -183,11 +183,13 @@ describe('Browse filter UI', () => {
     const html = source('browse-trails.html');
 
     expect(html).toMatch(/@media\(max-width:760px\)[\s\S]*?\.browse-primary-controls \.browse-tools\{[^}]*display:grid;[^}]*grid-template-columns:repeat\(6,minmax\(0,1fr\)\);/);
+    expect(html).toMatch(/\.browse-primary-controls \.browse-search-group\{grid-column:1\/-1;grid-row:1;width:100%;min-width:0;\}/);
     expect(html).toMatch(/\.browse-primary-controls \.browse-search-shell\{[^}]*grid-column:1\/-1;[^}]*grid-row:1;[^}]*width:100%;[^}]*min-width:0;/);
     expect(html).toMatch(/\.browse-area-controls\{[^}]*grid-template-columns:repeat\(3,minmax\(0,1fr\)\);/);
     expect(html).toMatch(/\.browse-geo-group--valley\{grid-column:auto;/);
-    expect(html).toMatch(/\.browse-quick-filters\{grid-column:1\/span 4;grid-row:4;[^}]*width:100%;/);
-    expect(html).toMatch(/\.browse-saved-only\{grid-column:5\/span 2;grid-row:4;[^}]*width:100%;/);
+    expect(html).toMatch(/\.browse-quick-filters\{grid-column:1\/-1;grid-row:4;[^}]*grid-template-columns:repeat\(2,minmax\(0,1fr\)\);[^}]*width:100%;/);
+    expect(html).toMatch(/\.browse-quick-filter:last-child\{grid-column:1\/-1;\}/);
+    expect(html).toMatch(/\.browse-saved-only\{grid-column:1\/-1;grid-row:5;[^}]*width:100%;/);
     expect(html).toMatch(/#browseFiltersMenu\{[^}]*position:fixed;[^}]*bottom:max\(8px,env\(safe-area-inset-bottom\)\);[^}]*overflow-y:auto;/);
   });
 
@@ -207,24 +209,31 @@ describe('Browse filter UI', () => {
   test('reserves readable geography widths in the browse toolbar', () => {
     const html = source('browse-trails.html');
 
-    // Browse keeps its geography dropdowns (the homepage moved to search + map),
-    // so these widths now stand on their own rather than mirroring the homepage.
-    expect(html).toContain('.browse-geo-group{display:block;flex:0 0 196px;width:196px;');
-    expect(html).toContain('.browse-geo-group--valley{flex-basis:178px;width:178px;}');
-    expect(html).toContain('max-width:360px;min-width:180px;');
-    expect(html).toContain('@media(min-width:761px) and (max-width:1100px)');
-    expect(html).toContain('grid-template-columns:minmax(260px,360px) 196px 196px 178px;');
+    expect(html).toContain('.browse-geo-group,.browse-geo-group--valley{display:block;flex:1 1 0;width:auto;min-width:0;}');
+    expect(html).toContain('max-width:360px;min-width:0;');
+    expect(html).toContain('@media(min-width:761px) and (max-width:1040px)');
+    expect(html).toContain('grid-template-columns:repeat(3,minmax(0,1fr));');
     expect(html).toContain('.browse-geo-group .area-select-trigger--kicker-until-selected:not(.area-select-trigger--has-selection) .area-select-trigger__label{display:none;}');
   });
 
-  test('stretches the complete filter row across wide screens', () => {
+  test('uses intentional filter rows instead of squeezing controls together', () => {
     const html = source('browse-trails.html');
 
-    expect(html).toContain('@media(min-width:1101px)');
-    expect(html).toMatch(/@media\(min-width:1101px\)[\s\S]*?\.browse-primary-controls \.browse-tools\{[^}]*display:grid;[^}]*grid-template-columns:[^}]*minmax\(0,\.75fr\);/);
-    expect(html).toMatch(/@media\(min-width:1101px\)[\s\S]*?\.browse-area-controls,\.browse-quick-filters\{display:contents;\}/);
-    expect(html).toContain('#browseFiltersWrap{grid-column:5;grid-row:1;width:100%;}');
-    expect(html).toContain('.browse-saved-only{grid-column:8;grid-row:1;width:100%;min-width:0;}');
+    expect(html).toContain('@media(min-width:1041px)');
+    expect(html).toMatch(/@media\(min-width:1041px\)[\s\S]*?\.browse-primary-controls \.browse-tools\{[^}]*display:grid;[^}]*grid-template-columns:minmax\(280px,\.72fr\) minmax\(0,1\.28fr\) auto;[^}]*grid-template-rows:auto auto;/);
+    expect(html).toContain('.browse-area-controls{grid-column:2/-1;grid-row:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}');
+    expect(html).toContain('#browseFiltersWrap{grid-column:1;grid-row:2;width:max-content;}');
+    expect(html).toContain('.browse-saved-only{grid-column:3;grid-row:2;width:max-content;min-width:0;}');
+  });
+
+  test('matches the shared title scale and homepage workspace proportions', () => {
+    const html = source('browse-trails.html');
+
+    expect(html).not.toMatch(/\.browse-design-head h1\{/);
+    expect(html).toContain('grid-template-columns:minmax(0,1.05fr) minmax(480px,.95fr);');
+    expect(html).toContain('height:clamp(520px,58vh,720px);min-height:520px;');
+    expect(html).toMatch(/@media\(max-width:1040px\)[\s\S]*?\.browse-view-toggle\{display:grid;/);
+    expect(html).toMatch(/@media\(max-width:1040px\)[\s\S]*?\.browse-explorer\{display:block;height:auto;min-height:0;/);
   });
 
   test('selecting a trail opens the persistent comparison tray', () => {
