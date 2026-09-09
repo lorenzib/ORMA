@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-09T10:17:27.965Z",
+  "updatedAt": "2026-09-09T10:28:03.554Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -628,6 +628,23 @@
         "imageLicence": "CC BY-SA 3.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Massif_de_la_Lauzi%C3%A8re%2C_panoramique.JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-12121798",
+      "approvedReviewId": "panoramax-ign-osm-12121798",
+      "approvedAt": "2026-09-09T10:28:03.553Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-12121798-serpoliere-track.jpg",
+        "heroImage": "images/trails/osm-12121798-serpoliere-track.jpg",
+        "imageAlt": "A gravel track running away between hedgerow scrub above the Maurienne with a limestone cliff face and hazy ridges beyond",
+        "imageCredit": "The track at Serpolière above the Maurienne",
+        "imageCreditText": "The track at Serpolière above the Maurienne by IGN",
+        "imageCreator": "IGN",
+        "imageLicence": "Licence Ouverte 2.0",
+        "imageLicenceUrl": "https://alliance.numerique.gouv.fr/licence-ouverte-open-licence/",
+        "imageSourcePage": "https://panoramax.ign.fr/api/collections/f00c9126-d9e6-4b1f-a4d2-e61de375398c/items/4c06d0ea-1142-4e85-82ba-bfcdbd9b666d",
         "imageSourceType": "licensed-source"
       }
     },
