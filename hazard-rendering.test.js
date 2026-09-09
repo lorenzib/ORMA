@@ -47,27 +47,24 @@ describe('official area warnings reach the page', () => {
     const stack = await render('trail.html', '/trail.html?id=piancavallo');
     expect(stack).not.toBeNull();
     expect(document.body.contains(stack)).toBe(true);
-    expect(stack.textContent).toContain('Thunderstorm warning for the test area');
+    // Official warnings collapse to one static advisory strip — no expandable
+    // card, no boilerplate — that names the hazard, the caveat, expiry and source.
     const warning = stack.querySelector('.orma-hazard');
-    expect(warning.tagName).toBe('DETAILS');
-    expect(warning.open).toBe(false);
-    expect(warning.querySelector('.orma-hazard__title').textContent).toBe('Thunderstorm warning for the test area');
-    expect(warning.querySelector('.orma-hazard__summary').textContent).toBe('Moderate official warning. Check the source and local conditions before setting out.');
-    expect(warning.querySelector('.orma-hazard__detail').textContent).toContain('does not confirm that this trail is closed');
-    expect(warning.querySelector('.orma-hazard__detail a').textContent).toBe('View MeteoAlarm Italy ↗');
-    expect(warning.querySelector('.orma-hazard__detail time').textContent).toMatch(/^Valid until /);
-    expect(warning.textContent).not.toContain('source expiry');
-    warning.open = true;
-    expect(warning.open).toBe(true);
+    expect(warning.classList.contains('orma-hazard--advisory')).toBe(true);
+    expect(warning.tagName).not.toBe('DETAILS');
+    expect(warning.querySelector('.orma-hazard__toggle')).toBeNull();
+    expect(warning.querySelector('.orma-hazard__title').textContent).toBe('Moderate thunderstorm warning · the test area');
+    const detail = warning.querySelector('.orma-hazard__detail');
+    expect(detail.textContent).toContain('Wider-area, not a trail closure');
+    expect(detail.textContent).toMatch(/valid until /i);
+    expect(detail.querySelector('a').textContent).toBe('Check MeteoAlarm Italy ↗');
+    // The generic "official warning. Check the source…" boilerplate is gone.
+    expect(warning.textContent).not.toContain('Check the source and local conditions');
     // Placement matters as much as presence: a warning pushed to the top of the
-    // document (the no-anchor fallback) or to the page foot is a degradation,
-    // so pin it inside the trail-weather card, beside the forecast it
-    // qualifies, and collapsed to its title and severity.
+    // document (the no-anchor fallback) or to the page foot is a degradation, so
+    // pin it inside the trail-weather card, beside the forecast it qualifies.
     expect(stack.closest('.td2-hero-weather')).not.toBeNull();
     expect(stack.querySelector('.orma-hazard-stack__kick').textContent).toBe('Area warning');
-    expect(warning.querySelector('summary .orma-hazard__severity').textContent).toBe('moderate');
-    expect(warning.querySelector('summary .orma-hazard__summary')).toBeNull();
-    expect(warning.querySelector('.orma-hazard__detail .orma-hazard__summary')).not.toBeNull();
     // Phones move the weather card below the map; the hero keeps a pointer.
     const pointer = document.getElementById('ormaHazardPointer');
     expect(pointer.hidden).toBe(false);
