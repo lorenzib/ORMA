@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-09T09:50:22.159Z",
+  "updatedAt": "2026-09-09T10:17:27.965Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -1257,6 +1257,23 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Hameau_d%27Albanne_depuis_Col_du_T%C3%A9l%C3%A9graphe_(septembre_2024).JPG",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-14381584",
+      "approvedReviewId": "panoramax-ign-osm-14381584",
+      "approvedAt": "2026-09-09T10:17:27.964Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14381584-albanne-lane.jpg",
+        "heroImage": "images/trails/osm-14381584-albanne-lane.jpg",
+        "imageAlt": "A narrow cracked-asphalt lane curving away between banks of cow parsley and meadow grass under larch woodland above Albanne",
+        "imageCredit": "The lane above Albanne in late June",
+        "imageCreditText": "The lane above Albanne in late June by IGN",
+        "imageCreator": "IGN",
+        "imageLicence": "Licence Ouverte 2.0",
+        "imageLicenceUrl": "https://alliance.numerique.gouv.fr/licence-ouverte-open-licence/",
+        "imageSourcePage": "https://panoramax.ign.fr/api/collections/fe6debbe-c86e-4a0b-b204-82e4530c6952/items/6b6639fc-e3b4-4c5b-96fa-4bdb137aafdb",
         "imageSourceType": "licensed-source"
       }
     },
