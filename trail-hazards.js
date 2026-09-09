@@ -88,6 +88,13 @@
       .orma-hazard__detail{padding:0 12px 10px;border-top:1px solid rgba(107,98,90,.16)}
       .orma-hazard__detail p{margin:8px 0 6px;color:#5f574f;font-size:12px;line-height:1.45}
       .orma-hazard__detail small{display:flex;gap:5px 9px;align-items:baseline;flex-wrap:wrap;color:#6b625a;font-size:11px;line-height:1.4}
+      /* The collapsed advisory reuses the .orma-hazard shell (so it inherits the
+         light and dark treatments) but is a static strip, not an expandable card. */
+      .orma-hazard--advisory .orma-hazard__advisory-head{display:flex;align-items:center;flex-wrap:wrap;gap:5px 8px;padding:9px 12px}
+      .orma-hazard--advisory .orma-hazard__advisory-icon{flex:none;font-size:13px;line-height:1}
+      .orma-hazard--advisory .orma-hazard__title{white-space:normal;font-weight:750}
+      .orma-hazard--advisory .orma-hazard__detail{padding:0 12px 10px}
+      .orma-hazard--advisory .orma-hazard__detail p{margin:8px 0 0;display:block}
       .orma-hazard a,.orma-reported-hazard a{color:inherit;font-weight:800}
       @media(max-width:700px){
         .map-hazard-report-btn{right:12px;bottom:60px;min-height:38px;padding:8px 11px}
@@ -356,14 +363,6 @@
   };
   window.OrmaHazardReporter = reporterApi;
 
-  function officialWarningSummary(item){
-    const message = String(item && item.message || '').trim();
-    if(!/official\s+.+\s+warning applies to this area/i.test(message)) return message;
-    const severity = String(item.severity || '').trim();
-    const label = severity ? `${severity.charAt(0).toUpperCase()}${severity.slice(1)} ` : '';
-    return `${label}official warning. Check the source and local conditions before setting out.`;
-  }
-
   function expiryLabel(value){
     if(!value) return '';
     const date = new Date(value);
@@ -371,71 +370,102 @@
     return date.toLocaleString(undefined, { dateStyle:'medium', timeStyle:'short' });
   }
 
-  function hazardCard(item, reported){
+  function reportedHazardCard(item){
     const spoken = window.OrmaHazardLocation && window.OrmaHazardLocation.describeLocation(item.at);
     const verification = item.verificationState === 'reported-unverified'
       ? 'Reported by a hiker · not yet confirmed'
       : 'Confirmed by ORMA';
-    if(reported){
-      return `<article class="orma-reported-hazard${item.verificationState === 'reported-unverified' ? ' is-unverified' : ''}" data-hazard-item>
-        <span class="orma-reported-hazard__icon" aria-hidden="true">!</span>
-        <div><strong>${escapeHtml(item.title)}</strong>${spoken ? `<span class="orma-reported-hazard__where">${escapeHtml(spoken)}</span>` : ''}
-        <p>${escapeHtml(item.message)}</p><small>${escapeHtml(verification)}${item.expiresAt ? ` · expires ${new Date(item.expiresAt).toLocaleDateString()}` : ''}</small></div>
-      </article>`;
+    return `<article class="orma-reported-hazard${item.verificationState === 'reported-unverified' ? ' is-unverified' : ''}" data-hazard-item>
+      <span class="orma-reported-hazard__icon" aria-hidden="true">!</span>
+      <div><strong>${escapeHtml(item.title)}</strong>${spoken ? `<span class="orma-reported-hazard__where">${escapeHtml(spoken)}</span>` : ''}
+      <p>${escapeHtml(item.message)}</p><small>${escapeHtml(verification)}${item.expiresAt ? ` · expires ${new Date(item.expiresAt).toLocaleDateString()}` : ''}</small></div>
+    </article>`;
+  }
+
+  // Official area warnings all say the same thing — an official body has flagged
+  // the wider area, and it is not a trail-closure notice — so instead of one
+  // expandable card each (which grew the weather card and buried the caveat), a
+  // single advisory strip names the hazards, the caveat and the expiry, and
+  // links out to the source for the specifics.
+  function capitalise(value){
+    const text = String(value || '').trim();
+    return text ? text.charAt(0).toUpperCase() + text.slice(1) : '';
+  }
+  function eventNoun(item){
+    const stripped = String(item && item.event || '')
+      .replace(/\b(red|orange|yellow|green|amber)\b/ig, '')
+      .replace(/warnings?/ig, '').trim();
+    if(stripped) return stripped.toLowerCase();
+    const fromTitle = String(item && item.title || '').match(/^(.*?)\s+warning\b/i);
+    return fromTitle ? fromTitle[1].trim().toLowerCase() : 'weather';
+  }
+  function eventChipLabel(item){
+    const noun = eventNoun(item);
+    return /thunder/.test(noun) ? 'Storm' : capitalise(noun);
+  }
+  function warningArea(item){
+    if(item && item.area) return String(item.area).trim();
+    const match = String(item && item.title || '').match(/warning\s+for\s+(.+)$/i);
+    return match ? match[1].trim() : '';
+  }
+  function advisoryLead(hazards){
+    const worst = hazards[0];
+    const severity = String(worst.severity || 'severe').toLowerCase();
+    const areas = [...new Set(hazards.map(warningArea).filter(Boolean))];
+    const where = areas.length === 1 ? ` · ${areas[0]}` : ' nearby';
+    if(hazards.length === 1) return `${capitalise(severity)} ${eventNoun(worst)} warning${where}`;
+    return `${hazards.length} ${severity} warnings${where}`;
+  }
+  function latestExpiry(hazards){
+    return hazards.map(item => item.expiresAt).filter(Boolean).sort().pop();
+  }
+  function areaWarningsAdvisory(hazards){
+    const worst = hazards[0];
+    const card = document.createElement('div');
+    card.className = `orma-hazard is-${worst.severity} orma-hazard--advisory`;
+    const head = document.createElement('div');
+    head.className = 'orma-hazard__advisory-head';
+    const icon = document.createElement('span');
+    icon.className = 'orma-hazard__advisory-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    icon.textContent = '⚠';
+    const lead = document.createElement('strong');
+    lead.className = 'orma-hazard__title';
+    lead.textContent = advisoryLead(hazards);
+    head.append(icon, lead);
+    // Per-hazard chips earn their place only when several share the line; one
+    // warning already names its type in the lead.
+    if(hazards.length > 1){
+      const seen = new Set();
+      hazards.forEach(item => {
+        const label = eventChipLabel(item);
+        if(seen.has(label)) return;
+        seen.add(label);
+        const chip = document.createElement('b');
+        chip.className = 'orma-hazard__severity';
+        chip.textContent = label;
+        head.append(chip);
+      });
     }
-    const card = document.createElement('details');
-    card.className = `orma-hazard is-${item.severity}`;
-    const summary = document.createElement('summary');
-    const summaryCopy = document.createElement('span');
-    summaryCopy.className = 'orma-hazard__summary-copy';
-    const title = document.createElement('strong');
-    title.className = 'orma-hazard__title';
-    title.textContent = item.title;
-    summaryCopy.append(title);
-    if(spoken){
-      const at = document.createElement('b');
-      at.className = 'orma-hazard__where';
-      at.textContent = spoken;
-      summaryCopy.append(at);
-    }
-    // Collapsed, a warning is one line: title plus severity. The sentence
-    // about checking the source only earns its space once the card is open.
-    const severity = String(item.severity || '').trim();
-    if(severity){
-      const chip = document.createElement('b');
-      chip.className = 'orma-hazard__severity';
-      chip.textContent = severity;
-      summaryCopy.append(chip);
-    }
-    const toggle = document.createElement('span');
-    toggle.className = 'orma-hazard__toggle';
-    toggle.setAttribute('aria-hidden', 'true');
-    summary.append(summaryCopy, toggle);
-    const expanded = document.createElement('div');
-    expanded.className = 'orma-hazard__detail';
-    const copy = document.createElement('p');
-    copy.className = 'orma-hazard__summary';
-    copy.textContent = officialWarningSummary(item);
-    const clarification = document.createElement('p');
-    clarification.textContent = 'This warning applies to the wider area; it does not confirm that this trail is closed.';
-    const detail = document.createElement('small');
-    if(item.sourceUrl){
+    const detail = document.createElement('div');
+    detail.className = 'orma-hazard__detail';
+    const line = document.createElement('p');
+    line.append(document.createTextNode('Wider-area, not a trail closure'));
+    const until = expiryLabel(latestExpiry(hazards));
+    if(until) line.append(document.createTextNode(` · valid until ${until}`));
+    line.append(document.createTextNode('. '));
+    if(worst.sourceUrl){
       const source = document.createElement('a');
-      source.href = item.sourceUrl;
+      source.href = worst.sourceUrl;
       source.target = '_blank';
       source.rel = 'noopener';
-      source.textContent = `View ${item.sourceLabel || 'official source'} ↗`;
-      detail.append(source);
-    } else detail.append(document.createTextNode(item.sourceLabel || 'Official warning'));
-    const validUntil = expiryLabel(item.expiresAt);
-    if(validUntil){
-      const time = document.createElement('time');
-      time.dateTime = item.expiresAt;
-      time.textContent = `Valid until ${validUntil}`;
-      detail.append(time);
+      source.textContent = `Check ${worst.sourceLabel || 'the official source'} ↗`;
+      line.append(source);
+    } else if(worst.sourceLabel){
+      line.append(document.createTextNode(worst.sourceLabel));
     }
-    expanded.append(copy, clarification, detail);
-    card.append(summary, expanded);
+    detail.append(line);
+    card.append(head, detail);
     return card;
   }
 
@@ -459,7 +489,7 @@
 
   function renderReportedHazards(){
     const mount = document.getElementById('trailPublishedHazards');
-    if(mount) mount.innerHTML = reportedHazards.map(item => hazardCard(item, true)).join('');
+    if(mount) mount.innerHTML = reportedHazards.map(item => reportedHazardCard(item)).join('');
     renderReportedMarkers();
     window.dispatchEvent(new CustomEvent('orma-hazards-changed'));
   }
@@ -500,7 +530,7 @@
     kick.className = 'orma-hazard-stack__kick';
     kick.textContent = areaWarningsLabel(hazards);
     stack.append(kick);
-    hazards.forEach(item => stack.append(hazardCard(item, false)));
+    stack.append(areaWarningsAdvisory(hazards));
     // trail.html mounts the stack inside its trail-weather card, beside the
     // forecast the warnings qualify; generated pages anchor after the badge
     // strip. The remaining fallbacks exist so a warning is never dropped.
