@@ -80,15 +80,30 @@ describe('dog-specific discovery filters', () => {
     expect(filters.matches(trail(), { region:'dolomites', valley:'Val Gardena' })).toBe(false);
   });
 
+  // Heat, exposure and access are safety claims, so an unknown review never
+  // satisfies them. Water is a presence filter (see below), so it is not here.
   test.each([
     ['distance', { metrics:{ distanceKm:null } }, { distance:'5' }],
     ['terrain', { suitability:{ terrainRank:null } }, { terrain:'mixed' }],
-    ['water', { verification:{ tier:'route-audited', categories:{ water:'unknown' } } }, { water:true }],
     ['shade', { verification:{ tier:'route-audited', categories:{ heat:'unknown' } } }, { heat:'shade-reviewed' }],
     ['exposure', { verification:{ tier:'route-audited', categories:{ exposure:'unknown' } } }, { exposure:'none-reviewed' }],
     ['access', { verification:{ tier:'route-audited', categories:{ access:'unknown' } } }, { access:'leash-ok-reviewed' }],
   ])('unknown %s data never becomes a positive match', (_name, overrides, state) => {
     expect(filters.matches(trail(overrides), state)).toBe(false);
+  });
+
+  test('water is a presence filter: any mapped water point matches, reviewed or not', () => {
+    // A mapped-but-unreviewed water point still satisfies the discovery filter,
+    // so "Water on route" means the same thing on every surface. Reliability is
+    // caveated on the trail page, not enforced by hiding routes from the filter.
+    const mappedOnly = trail({
+      verification:{ tier:'route-audited', categories:{ water:'unknown' } },
+      waypoints:[{ id:'water-1', type:'water', status:'mapped' }],
+    });
+    expect(filters.matches(mappedOnly, { water:true })).toBe(true);
+    // But a route with no water point mapped at all is still excluded.
+    const noWater = trail({ waypoints:[], waterSources:[] });
+    expect(filters.matches(noWater, { water:true })).toBe(false);
   });
 
   test('access filter excludes reviewed prohibitions', () => {

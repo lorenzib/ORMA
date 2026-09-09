@@ -127,9 +127,17 @@
     }
 
     if(state.water){
+      // "Water on route" is a discovery aid: does the route have a water point
+      // mapped at all? It is a presence test, like distance or duration, not a
+      // reliability claim -- only a handful of trails carry a reviewed-water
+      // record, so gating this on review would return almost nothing and mean
+      // something different here than on the homepages. The reliability caveat
+      // lives on the trail page ("potential water location, availability can
+      // change"). Heat/exposure/access below stay reviewed-gated: those are
+      // safety claims, not presence filters.
       const hasWater = Array.isArray(parts.waypoints)
         && parts.waypoints.some(point => point && point.type === 'water');
-      if(!hasWater || !verified(parts, 'water')) return false;
+      if(!hasWater) return false;
     }
 
     if(state.heat === 'shade-40' || state.heat === 'shade-60'){

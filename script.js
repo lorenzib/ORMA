@@ -624,6 +624,7 @@ function liRefineState(){
     risk: liFilters.risk === 'any' ? '' : liFilters.risk,
     terrain: liFilters.terrain === 'any' ? '' : liFilters.terrain,
     heat: liFilters.shade === '40' ? 'shade-40' : liFilters.shade === '60' ? 'shade-60' : '',
+    water: liFilters.water,
   };
 }
 
@@ -643,6 +644,7 @@ function liMatchesRefineFilters(x){
   if(liFilters.terrain === 'rocky' && !(Number(x.terrainRank) <= 2)) return false;
   if(liFilters.shade === '40' && !((x.shadeCoverage || 0) >= 40)) return false;
   if(liFilters.shade === '60' && !((x.shadeCoverage || 0) >= 60)) return false;
+  if(liFilters.water && !(Array.isArray(x.waterSources) && x.waterSources.length > 0)) return false;
   return true;
 }
 
@@ -671,13 +673,13 @@ function filterTrailsForReturningView(list){
     return point && liMapBounds.contains(point);
   });
   // The decision filters (duration, distance, trail rating, terrain, shade) run
-  // through the one shared discovery filter, so "Under 5 km" or "Multi-day" means
-  // exactly the same thing here as on Browse and the guest homepage. Geography,
-  // search, map bounds, match% and water stay local: they are either richer here
-  // (region/country labels in search) or scored/looser on this runtime catalogue.
+  // through the one shared discovery filter, so "Under 5 km", "Multi-day" or
+  // "Water on route" means exactly the same thing here as on Browse and the
+  // guest homepage. Geography, search, map bounds and match% stay local: they
+  // are either richer here (region/country labels in search) or scored on this
+  // runtime catalogue.
   displayList = displayList.filter(x => liMatchesRefineFilters(x));
   if(liFilters.minMatch > 0) displayList = displayList.filter(x => x.score >= liFilters.minMatch);
-  if(liFilters.water) displayList = displayList.filter(x => Array.isArray(x.waterSources) && x.waterSources.length > 0);
 
   // Sort is applied last so it always reflects the current filtered set.
   // 'match' just keeps the incoming order, the list is already sorted by
