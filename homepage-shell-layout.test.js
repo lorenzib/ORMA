@@ -106,7 +106,7 @@ describe('logged-in discovery workspace layout', () => {
     expect(mobileCss).toContain('width:100vw;max-width:none;height:100dvh;min-height:0;overflow:hidden;');
     expect(mobileCss).toContain('grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:36px 36px;');
     expect(mobileCss).toContain('.li-toolbar-greet{display:none;}');
-    expect(html).toContain('homepage-mobile.css?v=20260908-1');
+    expect(html).toContain('homepage-mobile.css?v=20260909-1');
   });
 
   test('uses a dashed divider instead of a match box and keeps route facts legible', () => {
