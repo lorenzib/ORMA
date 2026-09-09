@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-09T10:28:03.554Z",
+  "updatedAt": "2026-09-09T12:52:59.403Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -1240,6 +1240,23 @@
         "imageLicence": "CC0",
         "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lac_de_Pramol.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-14379010",
+      "approvedReviewId": "panoramax-ign-osm-14379010",
+      "approvedAt": "2026-09-09T12:52:59.402Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14379010-pralognan-lane.jpg",
+        "heroImage": "images/trails/osm-14379010-pralognan-lane.jpg",
+        "imageAlt": "Two walkers on the mountain lane below the Croix de Pralognan, a flowery meadow bank on the right and larch and spruce above",
+        "imageCredit": "Walkers on the lane below the Croix de Pralognan",
+        "imageCreditText": "Walkers on the lane below the Croix de Pralognan by IGN",
+        "imageCreator": "IGN",
+        "imageLicence": "Licence Ouverte 2.0",
+        "imageLicenceUrl": "https://alliance.numerique.gouv.fr/licence-ouverte-open-licence/",
+        "imageSourcePage": "https://panoramax.ign.fr/api/collections/fe6debbe-c86e-4a0b-b204-82e4530c6952/items/d32f2c13-c961-431b-b303-9e734df561c1",
         "imageSourceType": "licensed-source"
       }
     },
