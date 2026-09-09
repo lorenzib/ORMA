@@ -4792,6 +4792,22 @@ function breedInsights(name){
       unknowns.push(item('conditions.not-included',
         'Current weather and trail conditions are not included in this recommendation.'));
     }
+    // An official area warning (MeteoAlarm rain, thunderstorm, ...) is a
+    // caution the reader must weigh, not a penalty ORMA can size: the alert
+    // covers a region, not this route, and the source decides its severity.
+    // It costs nothing and moves no category, so the breakdown reads it as a
+    // note beside the heat line rather than contradicting the weather card.
+    const warnings = Array.isArray(conditions.warnings) ? conditions.warnings : [];
+    warnings.forEach((warning, index) => {
+      if(!warning || typeof warning !== 'object') return;
+      const event = String(warning.event || warning.title || '').trim();
+      if(!event) return;
+      const severity = String(warning.severity || '').trim();
+      const key = String(warning.id || index).replace(/[^A-Za-z0-9_-]+/g, '-');
+      cautions.push(item(`conditions.warning.${key}`,
+        `${event} in force for this area${severity ? ` (${severity})` : ''}. Check the weather card before setting out.`,
+        { event, severity }, 'conditions.warning'));
+    });
 
     let verifiedCount = 0;
     let criticalUnknown = false;
@@ -16448,19 +16464,46 @@ if(document.querySelector('.td2')){
     'not-recommended': { label:'Not recommended', tone:'stop' },
   });
 
-  function translatedMessage(item, translate){
+  // `extra` carries what the engine does not know, such as the dog's name, so
+  // a translation can say "fine for Teo" where the engine said "this dog".
+  function translatedMessage(item, translate, extra){
     if(!(item && item.message)) return '';
     if(typeof translate !== 'function') return item.message;
     const key = `recommendation.reason.${item.messageKey || item.code}`;
-    const value = translate(key, item.vars || undefined);
+    const vars = extra || item.vars ? { ...(extra || {}), ...(item.vars || {}) } : undefined;
+    const value = translate(key, vars);
     return value && value !== key ? value : item.message;
   }
 
-  function messages(items, translate){
+  function messages(items, translate, extra){
     return (Array.isArray(items) ? items : [])
-      .map(item => translatedMessage(item, translate))
+      .map(item => translatedMessage(item, translate, extra))
       .filter(Boolean);
   }
+
+  // A positive that cost nothing is not worth a sentence of its own. These
+  // are the short forms that let the card say "Fine for Teo: the 7.5 km
+  // distance, the 150 m climb and today's temperatures." in one line. A
+  // positive without a short form keeps its own row.
+  const FINE_PHRASES = Object.freeze({
+    'trail.distance.within-range': 'the {distance} km distance',
+    'trail.ascent.within-range': 'the {ascent} m climb',
+    'trail.terrain.within-tolerance': 'the terrain',
+    'trail.duration.within-preference': 'the walking time',
+    'conditions.heat.low': 'today’s temperatures',
+    'trail.heat.low': 'heat exposure',
+    'trail.shade.good': 'shade',
+    'trail.exposure.none-known': 'no exposed sections',
+    'trail.surface-hazards.none-known': 'no recorded surface hazards',
+    'trail.water.reviewed': 'water on the route',
+    'trail.dog-access.allowed': 'dog access',
+    'trail.dog-access.leash': 'dog access on a leash',
+    'trail.livestock.none': 'no livestock recorded',
+    'trail.wildlife.low': 'low wildlife activity',
+    'trail.road.none': 'no road sections',
+    'trail.crowding.quiet': 'a quiet route',
+    'trail.sightlines.open': 'open sightlines',
+  });
 
   // Calm framing: confidence describes data completeness, not danger.
   // "low" must not read as a warning, missing data never lowers the score.
@@ -16527,6 +16570,18 @@ if(document.querySelector('.td2')){
       ['segment.', 'trail.livestock.', 'trail.wildlife.', 'trail.road.',
         'trail.sightlines.', 'trail.crowding.'],
     ];
+    const dogName = String(context.dogName || '').trim();
+    const subject = dogName || tr('recommendation.subject.guest', 'a medium dog');
+    const extra = { name:subject };
+
+    const codesOf = items => new Set((Array.isArray(items) ? items : [])
+      .filter(Boolean).map(item => item.code).filter(Boolean));
+    const positiveCodes = codesOf(recommendation.positiveReasons);
+    const stopCodes = codesOf(recommendation.hardStops);
+    const kindOf = entry => stopCodes.has(entry.code) ? 'stop'
+      : positiveCodes.has(entry.code) ? 'positive'
+      : 'caution';
+
     const allFactors = (Array.isArray(recommendation.factors) ? recommendation.factors : [])
       .filter(entry => entry && typeof entry.message === 'string');
     const floorEntry = allFactors.find(entry => entry.code === 'score.floor') || null;
@@ -16534,9 +16589,31 @@ if(document.querySelector('.td2')){
       .filter(entry => entry !== floorEntry)
       .map(entry => ({
         impact:Number.isFinite(entry.impact) ? entry.impact : 0,
-        message:translatedMessage(entry, translate),
+        message:translatedMessage(entry, translate, extra),
         code:entry.code,
+        kind:kindOf(entry),
       }));
+    // The rows the card lists one by one, and the positives it folds into a
+    // single "fine for" line. Cost rows keep their points; a positive stays a
+    // row only when it has no short form.
+    const finePhrase = entry => {
+      const fallback = FINE_PHRASES[entry.code];
+      if(!fallback) return null;
+      return tr(`recommendation.fine.${entry.code}`, fallback, { ...extra, ...(entry.vars || {}) });
+    };
+    const fine = [];
+    const rows = [];
+    for(const entry of breakdownFactors){
+      const phrase = entry.kind === 'positive' && entry.impact >= 0
+        ? finePhrase(allFactors.find(factor => factor.code === entry.code) || entry)
+        : null;
+      if(phrase) fine.push(phrase);
+      else rows.push(entry);
+    }
+    const joined = fine.length <= 1 ? fine.join('') : tr('recommendation.list.and', '{first} and {last}', {
+      first:fine.slice(0, -1).join(', '),
+      last:fine[fine.length - 1],
+    });
 
     const rankedReasons = ordered(
       (Array.isArray(recommendation.positiveReasons) ? recommendation.positiveReasons : [])
@@ -16546,20 +16623,19 @@ if(document.querySelector('.td2')){
       (Array.isArray(recommendation.cautions) ? recommendation.cautions : []).filter(Boolean),
       CAUTION_TIERS, CAUTION_TIERS.length);
 
-    const reasons = messages(rankedReasons, translate);
+    const reasons = messages(rankedReasons, translate, extra);
     // Hard stops always lead: nothing below them changes the decision.
-    const cautions = messages(recommendation.hardStops, translate)
-      .concat(messages(rankedCautions, translate));
+    const cautions = messages(recommendation.hardStops, translate, extra)
+      .concat(messages(rankedCautions, translate, extra));
     const rawUnknowns = (Array.isArray(recommendation.unknowns) ? recommendation.unknowns : [])
       .filter(Boolean);
-    const unknowns = messages(rawUnknowns, translate);
+    const unknowns = messages(rawUnknowns, translate, extra);
     // The unknown codes encode their owner: dog.* gaps are fixable by the
     // user right now (profile fields); everything else is trail data.
     const dogGapFields = rawUnknowns
       .filter(item => typeof item.code === 'string' && item.code.startsWith('dog.'))
       .map(item => item.code.split('.')[1])
       .filter(Boolean);
-    const dogName = String(context.dogName || '').trim();
 
     return {
       confidenceLabel:recommendation.confidence && CONFIDENCE_LABEL[recommendation.confidence]
@@ -16582,12 +16658,17 @@ if(document.querySelector('.td2')){
       // P0-1: the full ordered breakdown, most negative first. Unlike the two
       // summary lists above this is not truncated, the acceptance criterion
       // is that it lists exactly the factors the score was computed from.
-      breakdownFor:dogName || 'a medium dog',
+      breakdownFor:subject,
       breakdown:breakdownFactors,
+      breakdownRows:rows,
+      fine,
+      fineLine:fine.length
+        ? tr('recommendation.fine.line', 'Fine for {name}: {items}.', { name:subject, items:joined })
+        : null,
       // The floor is not a factor the reader can act on, and rendering its
       // positive impact alongside the costs reads as a bonus. It closes the
       // list as a note instead, explaining why the total stops where it does.
-      breakdownNote:floorEntry ? translatedMessage(floorEntry, translate) : null,
+      breakdownNote:floorEntry ? translatedMessage(floorEntry, translate, extra) : null,
       unknowns:unknowns.slice(0, 5),
       additionalUnknowns:Math.max(0, unknowns.length - 5),
       heroSummary:dogName
@@ -16758,24 +16839,38 @@ if(document.querySelector('.td2')){
 
   // P0-1: the breakdown sits directly under the Match %, headed in the dog's
   // name, and lists every factor the score was computed from in descending
-  // order of impact. Each row carries both the points and the reason, so no
-  // factor ever reads as a bare label or a bare number.
+  // order of impact. Each cost row carries both the points and the reason, so
+  // no factor ever reads as a bare label or a bare number. What cost nothing
+  // is folded into one closing line rather than listed sentence by sentence.
   function breakdown(view, tr){
     if(!view.breakdown.length) return '';
-    const rows = view.breakdown.map(factor => {
-      const points = factor.impact === 0
-        ? tr('recommendation.breakdown.noCost', 'no cost')
-        : `${factor.impact > 0 ? '+' : '\u2212'}${Math.abs(factor.impact)}`;
-      const tone = factor.impact < 0 ? 'cost' : 'clear';
+    const rows = (view.breakdownRows || view.breakdown).map(factor => {
+      const points = factor.impact < 0
+        ? `\u2212${Math.abs(factor.impact)}`
+        : factor.impact > 0
+          ? `+${factor.impact}`
+          : factor.kind === 'stop'
+            ? tr('recommendation.breakdown.stop', 'stop')
+            : factor.kind === 'caution'
+              ? tr('recommendation.breakdown.note', 'note')
+              : tr('recommendation.breakdown.noCost', 'fine');
+      const tone = factor.impact < 0 || factor.kind === 'stop' ? 'cost' : 'clear';
       return `<li><span class="recommendation-factor-impact is-${tone}">${esc(points)}</span>` +
         `<span class="recommendation-factor-reason">${esc(factor.message)}</span></li>`;
     }).join('');
+    const fine = view.fineLine
+      ? `<p class="recommendation-fine">${esc(view.fineLine)}</p>`
+      : '';
     const note = view.breakdownNote
       ? `<p class="recommendation-breakdown-note">${esc(view.breakdownNote)}</p>`
       : '';
+    const title = view.score === null
+      ? tr('recommendation.breakdown.titleNoScore', 'Why this score for {name}', { name:view.breakdownFor })
+      : tr('recommendation.breakdown.title', 'Why {score}% for {name}', { score:view.score, name:view.breakdownFor });
     return `<section class="recommendation-breakdown">` +
-      `<h3>${esc(tr('recommendation.breakdown.title', 'Why this score for {name}', { name:view.breakdownFor }))}</h3>` +
-      `<ol class="recommendation-factors">${rows}</ol>${note}</section>`;
+      `<h3>${esc(title)}</h3>` +
+      (rows ? `<ol class="recommendation-factors">${rows}</ol>` : '') +
+      fine + note + `</section>`;
   }
 
   function sections(entries){
@@ -16839,7 +16934,12 @@ if(document.querySelector('.td2')){
     // The weather arrives after the first paint, so the card scores without it
     // and re-scores when it lands. Absent conditions stay 'not-provided'
     // rather than being guessed at.
-    const conditions = window.DoloPawsCurrentConditions || undefined;
+    // Official area warnings arrive from trail-hazards.js on their own clock;
+    // they ride alongside the weather so the engine can note them at no cost.
+    const warnings = Array.isArray(window.OrmaAreaWarnings) ? window.OrmaAreaWarnings : [];
+    const conditions = window.DoloPawsCurrentConditions || warnings.length
+      ? { status:'not-provided', ...(window.DoloPawsCurrentConditions || {}), warnings }
+      : undefined;
     const recommendation = recommendTrail(trail, subjectFor(profile), conditions);
     const view = api.present(recommendation, {
       dogName:profile && profile.name,
@@ -16889,10 +16989,13 @@ if(document.querySelector('.td2')){
         ? `<p class="recommendation-firstrun" role="status">${esc(pendingCallout)}</p>`
         : '') +
       breakdown(view, tr) +
-      sections([
+      // The breakdown already carries every reason and caution with its
+      // points; repeating them as two more lists doubled the card. The lists
+      // only appear when an engine gives no breakdown to show instead.
+      (view.breakdown.length ? '' : sections([
         [tr('recommendation.reasons.title', 'Why it may fit'), view.reasons],
         [tr('recommendation.cautions.title', 'Cautions'), view.cautions],
-      ]) +
+      ])) +
       '<div class="recommendation-actions" aria-label="Trail actions">' +
         `<button type="button" data-recommendation-save>${esc(tr('recommendation.action.save', 'Save trail'))}</button>` +
         `<button type="button" data-recommendation-compare>${esc(tr('recommendation.action.compare', 'Add to comparison'))}</button>` +
@@ -17020,5 +17123,6 @@ if(document.querySelector('.td2')){
   window.addEventListener('dolopaws-auth-changed', renderCurrent);
   window.addEventListener('dolopaws-dog-profile-saved', renderCurrent);
   window.addEventListener('dolopaws-conditions-ready', renderCurrent);
+  window.addEventListener('orma-area-warnings-ready', renderCurrent);
 })();
 ;

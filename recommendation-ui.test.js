@@ -20,8 +20,13 @@ describe('UX-04 canonical recommendation journey', () => {
     // the route alone before it has. Nothing else supplies currentConditions,
     // so this is the only place the "today" in the pitch actually enters.
     expect(controller).toContain('recommendTrail(trail, subjectFor(profile), conditions)');
-    expect(controller).toContain('window.DoloPawsCurrentConditions || undefined');
+    // Absent weather and no warnings stay undefined rather than being guessed
+    // at; warnings ride alongside the weather when either exists.
+    expect(controller).toContain('window.DoloPawsCurrentConditions || warnings.length');
+    expect(controller).toContain("{ status:'not-provided', ...(window.DoloPawsCurrentConditions || {}), warnings }");
     expect(controller).toContain("window.addEventListener('dolopaws-conditions-ready', renderCurrent)");
+    expect(controller).toContain("window.addEventListener('orma-area-warnings-ready', renderCurrent)");
+    expect(controller).toContain('window.OrmaAreaWarnings');
     expect(controller).toContain('root.dataset.scoringVersion = view.scoringVersion');
   });
 
