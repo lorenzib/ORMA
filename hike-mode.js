@@ -643,30 +643,9 @@ function initHikeMode(map, trail, options){
   }
 
   // ---- Start / stop ---------------------------------------------------------
-  function recordConfirmedHikeStart(accuracy){
+  function recordConfirmedHikeStart(){
     if (hikeStartRecorded) return;
     hikeStartRecorded = true;
-    if(window.DoloPawsMetricFunnel){
-      const recordMetric = packagePresent => {
-        window.DoloPawsMetricFunnel.recordOnce(
-          'hike-started', trail.id, 'hike_session', 'started', {
-            trailId:trail.id,
-            connectivity:navigator.onLine === false ? 'offline' : 'online',
-            packagePresent,
-            gpsAccuracyBand:Number.isFinite(accuracy)
-              ? (accuracy <= 15 ? 'good' : accuracy <= 40 ? 'fair' : 'poor')
-              : 'unknown',
-          }
-        );
-      };
-      if(window.DoloPawsOffline && window.DoloPawsOffline.inspectPackage){
-        window.DoloPawsOffline.inspectPackage(trail.id)
-          .then(inspection => recordMetric(!!inspection.usable))
-          .catch(() => recordMetric(false));
-      }else{
-        recordMetric(false);
-      }
-    }
     // One anonymous count event per trail per device per day. A confirmed
     // GPS fix is required, so permission errors do not count as hikes.
     try {
@@ -820,22 +799,6 @@ function initHikeMode(map, trail, options){
       panel.textContent = window.t('hike.completionSaveFailed');
       announceStatus(panel.textContent);
       return false;
-    }
-    if(window.DoloPawsMetricFunnel){
-      const duration = Math.max(0, completedAt - durableSession.startedAt);
-      const completion = statedKm > 0 ? lastKnownKm / statedKm : 0;
-      window.DoloPawsMetricFunnel.recordOnce(
-        'hike-completed', trail.id, 'hike_session', 'completed', {
-          trailId:trail.id,
-          connectivity:navigator.onLine === false ? 'offline' : 'online',
-          durationBand:window.DoloPawsMetricFunnel.durationBand(duration),
-          distanceCompletionBand:completion >= 0.9
-            ? 'ninety_to_one_hundred_percent'
-            : completion >= 0.5
-              ? 'fifty_to_ninety_percent'
-              : 'under_fifty_percent',
-        }
-      );
     }
     // SOCIAL-01 stage 1: one anonymous tally per completed walk, tagged only
     // with the dog's coarse FCI group. Fire-and-forget; a finished hike must
@@ -1126,22 +1089,6 @@ function initHikeMode(map, trail, options){
       status.textContent = navigator.onLine
         ? 'Saved privately · syncing…'
         : 'Saved privately · pending sync until you reconnect.';
-      if(result.created && window.DoloPawsMetricFunnel){
-        const metricProperties = {
-          trailId:trail.id,
-          offlinePackageUsed,
-          recordedHikePresent:true,
-          conditionsDiffered:outcomeResponse === 'appropriate_with_unexpected_cautions',
-        };
-        if(hazards[0]) metricProperties.primaryMismatchCategory = hazards[0];
-        window.DoloPawsMetricFunnel.recordOnce(
-          'outcome',
-          trail.id,
-          'post_hike_outcome',
-          outcomeResponse,
-          metricProperties
-        );
-      }
       const sync = await window.DoloPawsPostHikeOutcomes.syncBrowser();
       status.textContent = sync.ok && sync.pending === 0
         ? 'Saved privately · synced to your account.'

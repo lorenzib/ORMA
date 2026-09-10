@@ -100,8 +100,6 @@
     "map-init.js",
     "map-runtime.js",
     "map-style.js",
-    "metric-funnel.js",
-    "metrics.js",
     "mobile-nav.js",
     "my-trails.html",
     "notifications-feed.js",

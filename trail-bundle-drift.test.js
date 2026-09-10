@@ -3,8 +3,8 @@ const path = require('path');
 
 const { OUTPUT, SOURCES, bundleSource } = require('./scripts/build-trail-page-bundle.js');
 
-// trail-app.bundle.js inlines about thirty source files -- metrics.js,
-// scoring.js, hike-mode.js, trail.js and the rest -- and trail.html loads the
+// trail-app.bundle.js inlines the trail runtime source files -- scoring.js,
+// hike-mode.js, trail.js and the rest -- and trail.html loads the
 // bundle rather than those files. So editing a source without rerunning
 // `npm run build:trail-page-bundle` leaves the trail page running the old copy,
 // with every other test still green because they read the sources directly.
