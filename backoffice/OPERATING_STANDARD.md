@@ -211,11 +211,12 @@ OpenAI remains in use for trail verification and for scouting additional trails.
   retain the last known warning. Hazard conditions change slowly, so a three-hour
   cadence keeps the backoffice within the Firestore daily quota. The public
   snapshot the website reads (`data/dynamic-hazards.json`) is refreshed by an
-  automatic pull request whenever the warning set changes: the run dispatches
-  the quality gate onto its branch, merges once it passes, and then dispatches
-  the website deploy itself, because nothing done with the workflow token
-  starts another workflow. The page also hides any warning past its own
-  expiry, so a missed refresh shows nothing rather than a stale warning.
+  automatic pull request whenever the warning set changes: the run approves
+  the pull request's own quality-gate run (the Actions bot never graduates
+  from the first-time-contributor approval policy), merges once it passes,
+  and then dispatches the website deploy itself, because nothing done with the
+  workflow token starts another workflow. The page also hides any warning past
+  its own expiry, so a missed refresh shows nothing rather than a stale warning.
 - Customer hazard vetting: inside every worker pass, at most three reports or
   re-checks per pass, published or rejected by the Hazard Analyst without a
   human gate.
