@@ -209,6 +209,23 @@
    * One entry per distinct problem, with the raw ids kept for hovering, plus
    * the agent's working kept separately so the card can fold it away.
    */
+  // Which agent a revision should go to. The desk used to send it to whichever
+  // specialist output happened to be first, so a trail blocked entirely on
+  // logistics route guidance could have its revision handed to terrainPoi, which
+  // cannot supply route guidance and would return the same dossier. Every
+  // blocking reason names the agent it belongs to -- "logistics/route-number-
+  // sequence: ..." or "logistics: open question ..." -- so when they all name
+  // the same one, that is who is being asked.
+  function agentFromBlockers(reasons){
+    const named=new Set();
+    for(const reason of reasons||[]){
+      const match=/^([A-Za-z][A-Za-z0-9]*)\s*[/:]/.exec(String(reason).trim());
+      if(!match)return null;
+      named.add(match[1]);
+    }
+    return named.size===1?[...named][0]:null;
+  }
+
   function groupBlockers(reasons){
     const groups=[],loose=[],working=[];
     (reasons||[]).forEach(reason=>{
@@ -396,9 +413,9 @@
       evidence:()=>evidenceBlock(item),
       // Revision goes back to whoever raised the finding, so there is no
       // "revision owner" dropdown to think about.
-      targetAgent:(item.specialistOutputs||[])[0]?.agentId||'auditor',
+      targetAgent:agentFromBlockers(item.blockingReasons)||(item.specialistOutputs||[])[0]?.agentId||'auditor',
       submit:(action,note,acceptedBlockers)=>send('dossier',{reviewId:item.reviewId,candidateId:item.candidateId,action,
-        targetAgent:(item.specialistOutputs||[])[0]?.agentId||'auditor',note,acceptedBlockers:acceptedBlockers||[]}),
+        targetAgent:agentFromBlockers(item.blockingReasons)||(item.specialistOutputs||[])[0]?.agentId||'auditor',note,acceptedBlockers:acceptedBlockers||[]}),
     }));
   }
 
