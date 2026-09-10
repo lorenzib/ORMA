@@ -63,7 +63,6 @@
       .orma-hazard-pending small,.orma-reported-hazard small{display:block;margin-top:4px;color:#8a9689;font-size:10.5px;line-height:1.4}
       .orma-reported-hazard.is-unverified{border-style:dashed}
       .orma-reported-hazard__where{display:block;margin:2px 0 4px;color:#8a3f1f;font-size:11px;font-weight:750}
-      .orma-hazard-stack__kick{margin:0 0 1px;color:#8a5a16;font:800 10px/1.2 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase}
       .orma-hazard{overflow:hidden;border:1px solid #e3c79f;border-left:4px solid #b9582e;border-radius:9px;background:#fff6e8;color:#352a22}
       .orma-hazard.is-extreme{border-left-color:#91352d;background:#fff0ed}
       .orma-hazard summary{display:grid;grid-template-columns:minmax(0,1fr) 22px;gap:10px;align-items:center;padding:8px 12px;cursor:pointer;list-style:none}
@@ -526,10 +525,8 @@
     const stack = document.createElement('section');
     stack.className = 'orma-hazard-stack';
     stack.setAttribute('aria-label', 'Current area warnings');
-    const kick = document.createElement('span');
-    kick.className = 'orma-hazard-stack__kick';
-    kick.textContent = areaWarningsLabel(hazards);
-    stack.append(kick);
+    // No kicker above the advisory: the advisory line already carries the
+    // count and the area, so a heading repeating the number reads twice.
     stack.append(areaWarningsAdvisory(hazards));
     // trail.html mounts the stack inside its trail-weather card, beside the
     // forecast the warnings qualify; generated pages anchor after the badge
