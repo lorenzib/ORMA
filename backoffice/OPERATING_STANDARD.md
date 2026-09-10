@@ -347,6 +347,30 @@ content printed on the trail page for a walker to follow, so waiving it would
 publish a walk with no directions. It is the agent's work, and it must be
 supplied rather than excused.
 
+## Some questions have no fixed answer
+
+Whether cattle are on a summer pasture depends on the day you walk, and no
+amount of research settles it in advance. A claim that says so is finished, not
+failed: its finding is `varies`, and it names what a walker must check on the
+day. It is not retried and it does not hold the trail at the dossier gate.
+
+It is deliberately hard to reach, because "it varies" must never become the
+easier way to say nothing was found:
+
+- only livestock and seasonal restrictions may use it. A route start and a
+  distance do not vary, and neither does tree cover or the existence of a
+  fountain; those are features of the route, and conditions on the day -- a
+  spring that is dry in August, snow on a col -- belong to the dynamic hazard
+  lane, which already reports things that change;
+- it cannot be given on the first pass. Only from the second resolution attempt,
+  so it is a conclusion drawn from having looked;
+- it must cite a source, and the source is evidence for the variability rather
+  than for a value.
+
+Verified means ORMA checked, not that everything is fixed. A trail may be
+verified with a claim recorded as varying, and the reader is told what changes
+and when to check rather than being given a false constant or an empty unknown.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:
