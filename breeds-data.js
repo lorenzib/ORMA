@@ -394,6 +394,20 @@ function breedIsRetrieverWaterDog(name){
   return !!(g8 && g8.breeds.includes(b));
 }
 
+// The FCI group a breed sits in ('g1'..'g10'), or 'unknown' for a mixed,
+// unlisted or blank breed. Used only for coarse, anonymous aggregation (how
+// many dogs of each group walked a trail) -- never a per-dog claim -- so a
+// cross's first recognised parent decides the group and unknowns are fine.
+function breedGroupId(name){
+  if(typeof FCI_BREED_GROUPS === 'undefined') return 'unknown';
+  const parts = breedParts(name);
+  for(const part of parts){
+    const group = FCI_BREED_GROUPS.find(g => Array.isArray(g.breeds) && g.breeds.includes(part));
+    if(group) return group.id;
+  }
+  return 'unknown';
+}
+
 /* ---------------------------------------------------------------------
  * INSIGHT-ONLY breed lists below. These do NOT feed scoreTrail() or
  * breedTraits(), they exist purely to enrich breedInsights() text for

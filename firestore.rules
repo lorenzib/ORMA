@@ -686,6 +686,20 @@ service cloud.firestore {
       allow delete: if isModerator();
     }
 
+    // SOCIAL-01 anonymous "which dogs walked this" tally. One event per
+    // completed walk: server time plus the dog's coarse FCI group. No identity,
+    // no breed string, no location. Same shape guarantees as hikeEvents.
+    match /trailWalks/{trailId}/walks/{walkId} {
+      allow create: if isTrailId(trailId)
+        && request.resource.data.keys().hasOnly(['at', 'group'])
+        && request.resource.data.at == request.time
+        && request.resource.data.group is string
+        && request.resource.data.group.size() <= 12;
+      allow read: if true;
+      allow update: if false;
+      allow delete: if isModerator();
+    }
+
     // METRIC-01 product analytics receiver.
     //
     // Consent is enforced in the browser: metrics.js refuses to create an
