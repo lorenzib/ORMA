@@ -23,6 +23,11 @@ function loadGrouping(){
   return new Function(`${grouping}\n${label}\nreturn groupBlockers;`)();
 }
 
+function loadAgentFromBlockers(){
+  const source = script.slice(script.indexOf('function agentFromBlockers'), script.indexOf('function groupBlockers'));
+  return new Function(`${source}\nreturn agentFromBlockers;`)();
+}
+
 describe('trail verification desk', () => {
   test('asks a plain question for every gate it can present', () => {
     // Each gate must carry a question and the label on its approve button;
@@ -219,6 +224,31 @@ describe('trail verification desk', () => {
     expect(groups).toHaveLength(1);
     expect(loose).toEqual([]);
     expect(working).toHaveLength(3);
+  });
+
+  test('a mandatory route-guidance revision always returns to Logistics', () => {
+    const agentFromBlockers = loadAgentFromBlockers();
+    expect(agentFromBlockers([
+      'logistics/recommended-start: supported authoritative route guidance is required',
+      'regulatoryRanger/dog-access: unresolved',
+      'terrainPoi/water: conflicted',
+    ])).toBe('logistics');
+    expect(agentFromBlockers([
+      'logistics/route-number-sequence: supported authoritative route guidance is required',
+      'logistics: recommendation is needs-resolution',
+    ])).toBe('logistics');
+  });
+
+  test('ordinary revisions keep the single-agent routing rule', () => {
+    const agentFromBlockers = loadAgentFromBlockers();
+    expect(agentFromBlockers([
+      'terrainPoi/water: unresolved',
+      'terrainPoi/livestock: unresolved',
+    ])).toBe('terrainPoi');
+    expect(agentFromBlockers([
+      'terrainPoi/water: unresolved',
+      'regulatoryRanger/dog-access: unresolved',
+    ])).toBeNull();
   });
 
   test('the working folds away only when something else names the problem', () => {
