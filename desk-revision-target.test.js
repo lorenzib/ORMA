@@ -6,7 +6,7 @@ const source=fs.readFileSync('./trail-verify-desk.js','utf8');
 // guidance; handing those to terrainPoi returns the same dossier and costs a
 // model call to learn nothing.
 function agentFromBlockers(){
-  const start=source.indexOf('  function agentFromBlockers(reasons){');
+  const start=source.indexOf('  function hasRouteGeometryConflict(reasons){');
   const end=source.indexOf('  function groupBlockers(reasons){');
   expect(start).toBeGreaterThan(-1);
   return new Function(`${source.slice(start,end)}\nreturn agentFromBlockers;`)();
@@ -37,6 +37,13 @@ describe('a revision goes to the agent its blockers name', () => {
   // the first revision even when later reviews also left other findings.
   test('mandatory route guidance takes priority in a mixed dossier', () => {
     expect(pick([ROUTE_GUIDANCE('recommended-start'),'terrainPoi/shade: conflicted'])).toBe('logistics');
+  });
+
+  test('a concrete official-route geometry conflict is resolved before directions', () => {
+    expect(pick([
+      ROUTE_GUIDANCE('recommended-start'),
+      'regulatoryRanger: open question — Does the 6.6 km supplied OSM geometry exactly correspond to the official 5.5 km loop?',
+    ])).toBe('cartographer');
   });
 
   test('anything it cannot read falls back rather than guess', () => {
