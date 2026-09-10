@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-10T13:21:23.987Z",
+  "generatedAt": "2026-09-10T16:23:00.008Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-09-10T08:00:00+00:00",
       "expiresAt": "2026-09-10T23:59:00+00:00",
       "firstPublishedAt": "2026-09-08T16:25:49.979Z",
-      "lastSeenAt": "2026-09-10T13:21:23.987Z",
+      "lastSeenAt": "2026-09-10T16:23:00.008Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -42,7 +42,7 @@
       "effectiveAt": "2026-09-10T08:00:00+00:00",
       "expiresAt": "2026-09-10T23:59:00+00:00",
       "firstPublishedAt": "2026-09-08T16:25:49.979Z",
-      "lastSeenAt": "2026-09-10T13:21:23.987Z",
+      "lastSeenAt": "2026-09-10T16:23:00.008Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -91,7 +91,7 @@
       "effectiveAt": "2026-09-10T08:00:00+00:00",
       "expiresAt": "2026-09-11T17:59:00+00:00",
       "firstPublishedAt": "2026-09-08T16:25:49.979Z",
-      "lastSeenAt": "2026-09-10T13:21:23.987Z",
+      "lastSeenAt": "2026-09-10T16:23:00.008Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -116,7 +116,7 @@
       "effectiveAt": "2026-09-10T08:00:00+00:00",
       "expiresAt": "2026-09-11T23:59:00+00:00",
       "firstPublishedAt": "2026-09-08T16:25:49.979Z",
-      "lastSeenAt": "2026-09-10T13:21:23.987Z",
+      "lastSeenAt": "2026-09-10T16:23:00.008Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -160,12 +160,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-france",
       "sourceLabel": "MeteoAlarm France",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/89135f62-fbce-4230-a381-556a5ee959b1",
-      "identifier": "2.49.0.0.250.0.FR.20260910060018.265023",
-      "effectiveAt": "2026-09-10T04:00:00+00:00",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-france/cff825fc-1f91-4113-bcb0-1f70c90380ab",
+      "identifier": "2.49.0.0.250.0.FR.20260910160022.235023",
+      "effectiveAt": "2026-09-10T14:00:00+00:00",
       "expiresAt": "2026-09-10T22:00:00+00:00",
       "firstPublishedAt": "2026-09-10T04:26:20.707Z",
-      "lastSeenAt": "2026-09-10T13:21:23.987Z",
+      "lastSeenAt": "2026-09-10T16:23:00.008Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -262,7 +262,7 @@
       "effectiveAt": "2026-09-10T08:00:00+00:00",
       "expiresAt": "2026-09-10T23:59:00+00:00",
       "firstPublishedAt": "2026-09-08T16:25:49.979Z",
-      "lastSeenAt": "2026-09-10T13:21:23.987Z",
+      "lastSeenAt": "2026-09-10T16:23:00.008Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
