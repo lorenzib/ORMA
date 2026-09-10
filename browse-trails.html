@@ -91,7 +91,9 @@
   #browseFiltersWrap{order:1;}
   .browse-quick-filters{order:2;}
   .browse-saved-only{order:3;}
-  .browse-quick-filter,.browse-saved-only{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:40px;padding:8px 13px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:var(--card);color:var(--ink);font:600 12.5px 'Inter',sans-serif;white-space:nowrap;cursor:pointer;}
+  .browse-quick-filter,.browse-saved-only{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:40px;min-height:40px;box-sizing:border-box;padding:0 13px;border-radius:var(--radius-pill);border:1.5px solid var(--paper-line);background:var(--card);color:var(--ink);font:600 12.5px/1 'Inter',sans-serif;white-space:nowrap;cursor:pointer;}
+  #browseWater .dp-icon-svg{transform:translateY(1px);}
+  #browseWater>span:last-child,.browse-saved-only>span:nth-child(2){display:inline-flex;align-items:center;min-height:21px;line-height:1;}
   .browse-quick-filter[aria-pressed="true"],.browse-saved-only[aria-pressed="true"]{background:#EAF3EC;border-color:#9FC4B0;color:#24462E;font-weight:700;}
   .browse-saved-count{display:inline-flex;align-items:center;justify-content:center;min-width:21px;height:21px;padding:0 6px;border-radius:999px;background:#EDF0E8;font-size:11px;}
   .browse-filter-controls{display:none!important;}
@@ -363,7 +365,7 @@
       </div>
       <div class="browse-quick-filters" aria-label="Quick dog filters">
         <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26" aria-hidden="true"></span><span>High shade</span></button>
-        <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="20" aria-hidden="true"></span><span>Water</span></button>
+        <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="22" aria-hidden="true"></span><span>Water</span></button>
         <button type="button" class="browse-quick-filter" id="browseMultiDay" aria-pressed="false" data-audit-label="Multi-day routes" title="Show long multi-day itineraries (over 25 km)"><span aria-hidden="true">🏕️</span><span>Multi-day</span></button>
       </div>
       <button type="button" id="browseSavedOnly" class="browse-saved-only" aria-pressed="false">
