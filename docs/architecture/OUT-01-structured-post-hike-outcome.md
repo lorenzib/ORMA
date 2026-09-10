@@ -41,9 +41,8 @@ use the same record contract. The downloaded page explicitly says that the
 record is stored privately and pending synchronization until reconnection.
 Saving a check-in never blocks or replaces the durable hike completion.
 
-The optional METRIC-01 event records only the same bounded categories and is
-still subject to the user's analytics consent. The private outcome itself does
-not depend on analytics consent.
+Saving an outcome does not emit a separate product-analytics event. The private
+outcome remains part of the signed-in product record only.
 
 ## Firestore boundary
 

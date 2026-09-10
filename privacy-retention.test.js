@@ -14,7 +14,6 @@ describe('PRIV-01 retention and deletion contract', () => {
       'Private post-hike outcomes',
       'Reviews, trail photos and hazard reports',
       'Abuse reports and moderation audit records',
-      'Optional product analytics',
       'Anonymous hike-start counters',
     ].forEach(label => expect(page).toContain(label));
   });
@@ -34,11 +33,9 @@ describe('PRIV-01 retention and deletion contract', () => {
 
   test('enforceable local lifetimes match the published values', () => {
     expect(read('hike-session.js')).toContain('36 * 60 * 60 * 1000');
-    const metrics = read('metrics.js');
-    expect(metrics).toContain('30 * 24 * 60 * 60 * 1000');
-    expect(metrics).toContain('const MAX_QUEUE = 200');
-    expect(read('firebase-init.js')).toContain('occurredAt + 30 * 24 * 60 * 60 * 1000');
-    expect(read('.github/workflows/prune-product-events.yml')).toContain('schedule:');
-    expect(read('.github/workflows/prune-product-events.yml')).toContain('backoffice:prune-product-events');
+    expect(read('firebase-init.js')).toContain("localStorage.removeItem('dolopaws-metrics-v1')");
+    expect(read('firebase-init.js')).toContain("key.startsWith('dolopaws-funnel-v1:')");
+    expect(fs.existsSync(path.join(__dirname, 'metrics.js'))).toBe(false);
+    expect(fs.existsSync(path.join(__dirname, 'metric-funnel.js'))).toBe(false);
   });
 });

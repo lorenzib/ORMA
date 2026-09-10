@@ -237,6 +237,15 @@ removed from the repository. Firestore review collections and existing artifacts
 are left untouched, so no decision history is lost, but nothing reads or writes
 them. Reopening any of these lanes is a new, explicit build.
 
+The first-party product analytics lane is also retired. Its customer event
+hooks, local queue, Firestore receiver, funnel desk and retention workflow are
+removed. Existing `productEvents` records are left untouched as historical
+data, but no customer or backoffice client can read or write that collection.
+The identity-free `hikeEvents` counter is not product analytics: it remains
+because it directly powers the public “dogs hiked this week” feature. Adding a
+hosted analytics provider later is a separate, explicit product and privacy
+decision.
+
 Hosted production workers use server-side credentials and must preserve these
 contracts. The duplicate local desk server is retired; the hosted backoffice is
 the single operator surface.

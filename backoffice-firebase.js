@@ -5,7 +5,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import {
   addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit,
-  orderBy, query, serverTimestamp, setDoc, Timestamp, where, writeBatch,
+  orderBy, query, serverTimestamp, Timestamp, where, writeBatch,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -61,36 +61,6 @@ async function getRevisionJobs(){
     const snapshot=await getDocs(query(collection(db,'backofficeJobs'),orderBy('createdAt','desc'),limit(100)));
     return {ok:true,jobs:snapshot.docs.map(item=>({id:item.id,...item.data()}))};
   }catch(error){console.error('getRevisionJobs failed:',error);return {ok:false,error:'job-read-failed',jobs:[]};}
-}
-
-const PRODUCT_EVENT_LIMIT=2000;
-
-async function getProductEvents(input){
-  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',events:[]};
-  const requestedDays=Number(input&&input.days);
-  const days=requestedDays===30?30:7;
-  const cutoff=new Date(Date.now()-days*864e5);
-  cutoff.setUTCMinutes(0,0,0);
-  const from=cutoff.toISOString();
-  try{
-    const snapshot=await getDocs(query(
-      collection(db,'productEvents'),
-      where('occurredHour','>=',from),
-      orderBy('occurredHour','desc'),
-      limit(PRODUCT_EVENT_LIMIT)
-    ));
-    return {
-      ok:true,
-      days,
-      from,
-      limit:PRODUCT_EVENT_LIMIT,
-      truncated:snapshot.size===PRODUCT_EVENT_LIMIT,
-      events:snapshot.docs.map(item=>({id:item.id,...item.data()})),
-    };
-  }catch(error){
-    console.error('getProductEvents failed:',error);
-    return {ok:false,error:'product-events-read-failed',events:[]};
-  }
 }
 
 async function getPublicationReviews(){
@@ -370,7 +340,7 @@ window.DoloPawsAuth={
   async logOut(){await signOut(auth);currentUser=null;},
 };
 window.DoloPawsModeration={getModeratorStatus:async()=>({ok:!!await moderatorIdentity()}),getQueue:getModerationQueue,decide:moderateContent,getSiteNotices,addSiteNotice,deleteSiteNotice};
-window.ORMABackoffice={getArtifact,getRevisionJobs,getProductEvents,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getNewsletterReviews,getAnalystReviews,getModerationQueue,moderateContent,submitTrailReview,submitPublicationReview,submitDossierReview,getRouteReviews,submitRouteReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitNewsletterReview,submitAnalystReview};
+window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getNewsletterReviews,getAnalystReviews,getModerationQueue,moderateContent,submitTrailReview,submitPublicationReview,submitDossierReview,getRouteReviews,submitRouteReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitNewsletterReview,submitAnalystReview};
 
 onAuthStateChanged(auth,user=>{
   currentUser=user;

@@ -23,7 +23,6 @@ retention rule, and deletion path. The public explanation is in
 | Reviews, trail photos and hazard reports | Community guidance and trail safety; owner-bound local queue before sync, then Firestore contribution collections | Locally until accepted or local cleanup; server-side while pending, published, or needed for contribution/safety history | Local cleanup removes unsynced items; owner or moderator removal handles accepted content; account cancellation does not cascade-delete accepted content |
 | Abuse reports | Investigating community abuse; private `reports` collection | Up to 24 months after resolution; longer only for an active safety dispute or legal hold | Moderator/operator retention review |
 | Moderation audit | Accountability for operator decisions; private immutable `moderationAudit` collection | Up to 24 months after the last action; longer only for an active dispute or legal hold | Privileged operator retention review; clients cannot alter audit history |
-| Optional product analytics | Funnel diagnostics; consented local queue | Maximum 200 queued events; records older than 30 days are pruned on analytics activity | Consent withdrawal or local cleanup immediately removes the queue and client id |
 | Anonymous hike-start counter | Seven-day public trail activity count; timestamp-only `hikeEvents` rows | Maximum 90 days | Monthly operator cleanup; only the most recent seven days are queried publicly |
 
 ## Moderation retention is separate from account deletion
@@ -53,8 +52,8 @@ the browser or Firebase performs automatic deletion.
 ## Implementation evidence
 
 - `hike-session.js` makes active hikes unrecoverable after 36 hours.
-- `metrics.js` caps the analytics queue at 200 and prunes events after 30 days;
-  withdrawing consent removes the queue and random identifier.
+- `firebase-init.js` removes the retired product-analytics queue and session
+  guards when a returning browser next opens ORMA.
 - `local-data.js` separates private local cleanup from optional public package
   removal and clears the owner-bound unsynced contribution queue.
 - `account-deletion.js` deletes private outcomes, then the account document,

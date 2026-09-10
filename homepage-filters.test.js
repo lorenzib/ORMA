@@ -113,7 +113,6 @@ function loadHomepageContext(testTrails){
     location: { search: '' },
     document,
     fetch: jest.fn(),
-    DoloPawsMetricFunnel: { recordOnce:jest.fn(() => ({ok:true})) },
     trails: testTrails,
     t: tForTests,
     scoreTrail: () => 80,
@@ -388,24 +387,6 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelector('.li-match-confidence').textContent).toBe('High confidence');
     expect(document.querySelector('.li-row-trust').textContent).toContain('ORMA route-audited');
     expect(document.querySelector('.li-row--answer').textContent).not.toContain('86%');
-  });
-
-  test('records the homepage recommendation and primary action without personal content', async () => {
-    const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('liLocationContext = { kind:"area", country:"IT", region:"dolomites", valley:"all", label:"Dolomites" };', context);
-    await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
-
-    expect(context.DoloPawsMetricFunnel.recordOnce).toHaveBeenCalledWith(
-      'homepage-results-viewed','recommendations','discovery_search','results_viewed',
-      expect.objectContaining({surface:'homepage',profilePresent:true,resultCount:2})
-    );
-    document.querySelector('.li-answer-open').dispatchEvent(new MouseEvent('click',{bubbles:true}));
-    expect(context.DoloPawsMetricFunnel.recordOnce).toHaveBeenCalledWith(
-      'homepage-selected-primary_cta',expect.any(String),'trail_decision','selected',
-      expect.objectContaining({surface:'homepage',selectionSource:'primary_cta'})
-    );
-    const payloads=context.DoloPawsMetricFunnel.recordOnce.mock.calls.map(call=>call[4]||{});
-    expect(payloads.some(payload=>'name' in payload||'query' in payload||'location' in payload)).toBe(false);
   });
 
   test('a future date is reflected in the recommendation instead of being labelled today', async () => {

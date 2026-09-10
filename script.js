@@ -115,7 +115,6 @@ const TOP_MATCHES = 6;
 const TOP_PICKS = 1;
 let currentFavorites = {};
 let homeActionStatusTimer = null;
-let liExplanationMetricObserver = null;
 
 function showHomeActionStatus(message){
   let status = document.getElementById('homeActionStatus');
@@ -1435,7 +1434,6 @@ function initTrailMap(){
       if(!feature) return;
       const selected = currentMapTrails.find(t => t.id === feature.properties.id);
       if(selected){
-        liRecordTrailSelection(selected, currentProfileForAdjust, 'map_marker');
         selectTrail(selected);
         jumpToCard(selected.id);
       }
@@ -1448,7 +1446,6 @@ function initTrailMap(){
       if(!feature) return;
       const selected = currentMapTrails.find(t => t.id === feature.properties.id);
       if(selected){
-        liRecordTrailSelection(selected, currentProfileForAdjust, 'route_line');
         selectTrail(selected);
         jumpToCard(selected.id);
       }
@@ -3018,76 +3015,6 @@ function liPersonalisationText(value){
   }[ch]));
 }
 
-// Homepage decision analytics deliberately contains only bounded categories.
-// Dog names, query text and exact location never enter the event payload.
-function liRecommendationMetricProperties(trail, profile, extra){
-  const recommendation = trail && trail.recommendation ? trail.recommendation : {};
-  const evidenceTier = recommendation.evidenceTier || (trail && trail.curated === false ? 'imported' : 'route-audited');
-  return Object.assign({
-    trailId:trail.id,
-    matchCategory:recommendation.category || 'unknown',
-    verificationStatus:evidenceTier,
-    warningCount:(recommendation.hardStops || []).length + (recommendation.cautions || []).length,
-    unknownCount:(recommendation.unknowns || []).length,
-    profilePresent:!!profile,
-    confidence:recommendation.confidence || 'unknown',
-    surface:'homepage',
-  }, extra || {});
-}
-
-function liRecordMetric(stage, scope, family, state, properties){
-  const funnel = window.DoloPawsMetricFunnel;
-  if(!funnel || typeof funnel.recordOnce !== 'function') return;
-  const result = funnel.recordOnce(stage, scope, family, state, properties);
-  if(result && result.ok && !result.duplicate && window.DoloPawsMetrics && typeof window.DoloPawsMetrics.flush === 'function'){
-    Promise.resolve(window.DoloPawsMetrics.flush()).catch(() => {});
-  }
-}
-
-function liRecordTrailSelection(trail, profile, source){
-  if(!trail) return;
-  liRecordMetric(
-    `homepage-selected-${source}`,
-    trail.id,
-    'trail_decision',
-    'selected',
-    liRecommendationMetricProperties(trail, profile, { selectionSource:source })
-  );
-}
-
-function liObserveRecommendationExplanations(listEl, displayList, profile){
-  if(liExplanationMetricObserver){
-    liExplanationMetricObserver.disconnect();
-    liExplanationMetricObserver = null;
-  }
-  const nodes = Array.from(listEl.querySelectorAll('[data-metric-explanation="true"]'));
-  if(!nodes.length) return;
-  const record = node => {
-    const trail = displayList.find(item => item.id === node.dataset.id);
-    if(trail){
-      liRecordMetric(
-        'homepage-explanation-viewed',
-        trail.id,
-        'trail_decision',
-        'explanation_viewed',
-        liRecommendationMetricProperties(trail, profile)
-      );
-    }
-  };
-  if(typeof IntersectionObserver !== 'function'){
-    nodes.forEach(record);
-    return;
-  }
-  liExplanationMetricObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(!entry.isIntersecting || entry.intersectionRatio < 0.45) return;
-      record(entry.target);
-      liExplanationMetricObserver.unobserve(entry.target);
-    });
-  }, { threshold:[0.45] });
-  nodes.forEach(node => liExplanationMetricObserver.observe(node));
-}
-
 function liRecommendationPresentation(trail, profile){
   const recommendation = trail && trail.recommendation ? trail.recommendation : {};
   const score = Number.isFinite(recommendation.score) ? recommendation.score
@@ -3274,24 +3201,6 @@ async function renderReturningHomepage(profile, options = {}){
 
   let displayList = filterTrailsForReturningView(scored);
 
-  const discoveryProperties = {
-    region:(String(activeRegion || 'all').toLowerCase().replace(/[^a-z0-9_-]+/g, '_').replace(/^_+|_+$/g, '').slice(0,80) || 'all'),
-    resultCount:Math.min(displayList.length, 9999),
-    profilePresent:!!profile,
-    activeFilterCount:Math.min(liActiveFilterCount() + (adjustOverride ? 1 : 0), 9999),
-    surface:'homepage',
-  };
-  liRecordMetric(
-    displayList.length ? 'homepage-results-viewed' : 'homepage-no-results',
-    'recommendations',
-    'discovery_search',
-    displayList.length ? 'results_viewed' : 'no_results',
-    discoveryProperties
-  );
-  if(liActiveFilterCount() > 0 || adjustOverride){
-    liRecordMetric('homepage-filters-changed', 'recommendations', 'discovery_search', 'filters_changed', discoveryProperties);
-  }
-
   renderLiConditionsCard(profile, displayList);
 
   // "Show N trails", the apply button doubles as the live result count.
@@ -3362,7 +3271,7 @@ async function renderReturningHomepage(profile, options = {}){
     const rank = resultRanks.get(t.id) || index + 1;
     const isPrimary = !showingSavedOnly && index < TOP_PICKS;
     return `${isPrimary ? '' : index === TOP_PICKS && !showingSavedOnly ? `<div class="li-alternatives-heading"><span>Other options for ${liPersonalisationText(profile && profile.name ? profile.name : 'your dog')}</span><a href="browse-trails.html">See the full catalogue →</a></div>` : ''}
-    <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}"${isPrimary ? ' data-metric-explanation="true"' : ''} aria-label="Rank ${rank}: ${liPersonalisationText(t.name)}"${dim ? ' style="opacity:.55;"' : ''}>
+    <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}" aria-label="Rank ${rank}: ${liPersonalisationText(t.name)}"${dim ? ' style="opacity:.55;"' : ''}>
       <span class="li-result-rank" aria-hidden="true" style="background:${liRecommendationPresentation(t, profile).color};">${rank}</span>
       ${thumb}
       <div class="li-row-body">
@@ -3388,7 +3297,6 @@ async function renderReturningHomepage(profile, options = {}){
     row.addEventListener('click', (e) => {
       if(e.target.closest('a, button, .photo')) return;
       const trail = trails.find(item => item.id === row.dataset.id);
-      liRecordTrailSelection(trail, profile, 'card');
       warmTrailDetail(trail);
       window.location.href = 'trail.html?id=' + row.dataset.id;
     });
@@ -3402,15 +3310,7 @@ async function renderReturningHomepage(profile, options = {}){
     link.addEventListener('click', () => {
       const row = link.closest('.li-row');
       const trail = trails.find(item => row && item.id === row.dataset.id);
-      liRecordTrailSelection(trail, profile, 'title_link');
       warmTrailDetail(trail);
-    });
-  });
-
-  listEl.querySelectorAll('.li-answer-open').forEach(link => {
-    link.addEventListener('click', () => {
-      const row = link.closest('.li-row');
-      liRecordTrailSelection(displayList.find(item => row && item.id === row.dataset.id), profile, 'primary_cta');
     });
   });
 
@@ -3438,19 +3338,15 @@ async function renderReturningHomepage(profile, options = {}){
 
   listEl.querySelectorAll('.photo[data-trail-id]').forEach(el => {
     el.addEventListener('click', () => {
-      liRecordTrailSelection(displayList.find(item => item.id === el.dataset.trailId), profile, 'list_map');
       focusMapOnTrail(el.dataset.trailId, displayList);
     });
   });
 
   listEl.querySelectorAll('.locate-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      liRecordTrailSelection(displayList.find(item => item.id === btn.dataset.id), profile, 'list_map');
       focusMapOnTrail(btn.dataset.id, displayList);
     });
   });
-
-  liObserveRecommendationExplanations(listEl, displayList, profile);
 
   // Apple-device chooser: Get directions opens a two-app menu.
   listEl.querySelectorAll('.li-dir-toggle').forEach(btn => {

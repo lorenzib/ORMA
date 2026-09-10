@@ -689,8 +689,6 @@
 <script src="regional-trails-loader.js?v=20260902-1" data-default-region="all"></script>
 <script src="trail-audits.js?v=20260815-4" defer></script>
 <script src="regions-config.js"></script>
-<script src="metrics.js?v=20260910-1" defer></script>
-<script src="metric-funnel.js?v=20260910-1" defer></script>
 <script src="guest-context.js?v=20260815-4" defer></script>
 <script src="auth-ui.js?v=20260821-1" defer></script>
 <script src="discovery-state.js?v=20260822-1" defer></script>
@@ -1237,22 +1235,6 @@
       const activeFilters = filterApi.active(currentFilterState());
       const hasFilters = activeFilters.length > 0 || savedOnly || !!mapBoundsFilter;
       if(filtersApply) filtersApply.textContent = `Show ${pool.length} ${pool.length === 1 ? 'trail' : 'trails'}`;
-      let profilePresent = false;
-      try{ profilePresent = !!JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null'); }
-      catch(error){}
-      if(window.DoloPawsMetricFunnel){
-        window.DoloPawsMetricFunnel.recordOnce(
-          'discovery-results',
-          'browse',
-          'discovery_search',
-          pool.length ? 'results_viewed' : 'no_results',
-          {
-            resultCount:pool.length,
-            activeFilterCount:activeFilters.length,
-            profilePresent,
-          }
-        );
-      }
       resultCount.innerHTML = `<span class="browse-result-accessible">${pool.length} trail${pool.length === 1 ? '' : 's'} found. </span>${pool.length} of ${trails.length} trails${mapBoundsFilter ? ' in this map area' : ''}`;
       clear.hidden = !hasFilters;
       const totalPages = Math.max(1, Math.ceil(pool.length / PER_PAGE));
@@ -1364,12 +1346,6 @@
       list.querySelectorAll('.simple-card__main,.browse-card-open').forEach(link => {
         link.addEventListener('click', () => {
           primeTrailLink(link);
-          const id = new URL(link.href, window.location.href).searchParams.get('id');
-          if(id && window.DoloPawsMetricFunnel){
-            window.DoloPawsMetricFunnel.recordOnce(
-              'trail-selected', id, 'trail_decision', 'selected', { trailId:id }
-            );
-          }
         });
       });
       list.querySelectorAll('[data-trail-id]').forEach(card => {

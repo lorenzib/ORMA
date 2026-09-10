@@ -251,7 +251,7 @@ an implementation snapshot.
 
 SCORE-02 is complete. The browser adapter normalizes saved and guest profiles,
 legacy trail objects, and bounded session adjustments. Homepage, saved trails,
-trail detail, generated pages, analytics-facing DOM metadata, and offline
+trail detail, generated pages, customer-facing DOM metadata, and offline
 packages now expose the same versioned contract. The obsolete `my-trails`
 implementation was removed after that route became a redirect to the canonical
 saved-trails experience.

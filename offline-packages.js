@@ -811,12 +811,6 @@
       }
       downloadButton.disabled = true;
       setStatus(tr('offlinePanel.download.preparing', 'Preparing a verified offline download…'), 'downloading');
-      const downloadStartedAt = Date.now();
-      if(window.DoloPawsMetricFunnel){
-        window.DoloPawsMetricFunnel.recordOnce(
-          'package-started', trailId, 'offline_package', 'started', { trailId }
-        );
-      }
       let failureMessage = null;
       try{
         const manifest = await installPackage(
@@ -834,36 +828,8 @@
           }),
           'ready'
         );
-        if(window.DoloPawsMetricFunnel){
-          window.DoloPawsMetricFunnel.recordOnce(
-            'package-ready', trailId, 'offline_package', 'ready', {
-              trailId,
-              packageSizeBand:window.DoloPawsMetricFunnel.packageSizeBand
-                ? window.DoloPawsMetricFunnel.packageSizeBand(manifest.packageBytes)
-                : 'unknown',
-              durationBand:window.DoloPawsMetricFunnel.durationBand
-                ? window.DoloPawsMetricFunnel.durationBand(Date.now() - downloadStartedAt)
-                : 'unknown',
-              packageVersion:manifest.version,
-            }
-          );
-        }
       }catch(error){
         failureMessage = error.message || tr('offlinePanel.download.failed', 'The package could not be downloaded.');
-        if(window.DoloPawsMetricFunnel){
-          const category = window.DoloPawsMetricFunnel.failureCategory
-            ? window.DoloPawsMetricFunnel.failureCategory(error)
-            : 'unknown';
-          window.DoloPawsMetricFunnel.recordOnce(
-            `package-failed-${category}`, trailId, 'offline_package', 'failed', {
-              trailId,
-              failureCategory:category,
-              durationBand:window.DoloPawsMetricFunnel.durationBand
-                ? window.DoloPawsMetricFunnel.durationBand(Date.now() - downloadStartedAt)
-                : 'unknown',
-            }
-          );
-        }
       }finally{
         downloadButton.disabled = false;
         await refresh(failureMessage ? { failureMessage } : null);

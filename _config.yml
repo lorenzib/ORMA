@@ -21,8 +21,6 @@ exclude:
   - backoffice-hosted-login.html
   - backoffice-hosted-review.html
   - backoffice-hosted-dashboard.js
-  - backoffice-hosted-product-funnel.html
-  - backoffice-product-funnel.js
   - newsletter-desk.js
   - social-desk.js
   - trail-verify-desk.html
