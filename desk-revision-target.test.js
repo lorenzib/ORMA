@@ -33,21 +33,22 @@ describe('a revision goes to the agent its blockers name', () => {
       'terrainPoi/shade: conflicted'])).toBe('terrainPoi');
   });
 
-  // Two agents disagreeing is not one agent's revision to make.
-  test('blockers spanning agents fall back rather than guess', () => {
-    expect(pick([ROUTE_GUIDANCE('recommended-start'),'terrainPoi/shade: conflicted'])).toBeNull();
+  // Route guidance cannot be waived and only Logistics can supply it, so it is
+  // the first revision even when later reviews also left other findings.
+  test('mandatory route guidance takes priority in a mixed dossier', () => {
+    expect(pick([ROUTE_GUIDANCE('recommended-start'),'terrainPoi/shade: conflicted'])).toBe('logistics');
   });
 
   test('anything it cannot read falls back rather than guess', () => {
     expect(pick(['not-closed-loop'])).toBeNull();
     expect(pick([])).toBeNull();
     expect(pick(undefined)).toBeNull();
-    expect(pick([ROUTE_GUIDANCE('recommended-start'),'not-closed-loop'])).toBeNull();
+    expect(pick([ROUTE_GUIDANCE('recommended-start'),'not-closed-loop'])).toBe('logistics');
   });
 });
 
 describe('the fallback is still there', () => {
-  test('it only overrides the first output when the blockers agree', () => {
+  test('it still supplies the first output when no blocker determines an agent', () => {
     expect(source).toContain("agentFromBlockers(item.blockingReasons)||(item.specialistOutputs||[])[0]?.agentId||'auditor'");
   });
 
