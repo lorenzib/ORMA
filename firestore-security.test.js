@@ -183,9 +183,7 @@ describe('SEC-01 Firestore configuration contract', () => {
       { collectionGroup: 'trailPhotos', fields: ['trailId', 'status'] },
       { collectionGroup: 'reports', fields: ['status', 'createdAt'] },
     ]));
-    expect(indexes.fieldOverrides).toEqual([
-      expect.objectContaining({collectionGroup:'productEvents',fieldPath:'expiresAt',ttl:true}),
-    ]);
+    expect(indexes.fieldOverrides).toEqual([]);
   });
 
   test('anonymous hike events cannot contain identity or location', () => {
@@ -235,5 +233,7 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(client).toContain("metrics.setTransport");
     expect(client).toContain("productEvents");
     expect(client).toContain("expiresAt = Timestamp.fromMillis");
+    expect(fs.readFileSync(path.join(__dirname,'.github/workflows/prune-product-events.yml'),'utf8'))
+      .toContain('npm run backoffice:prune-product-events');
   });
 });

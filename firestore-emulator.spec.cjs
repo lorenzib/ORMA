@@ -769,6 +769,12 @@ describe('moderation queue and audit trail', () => {
     const eventRef = doc(guest, "productEvents/event-1");
     await assertSucceeds(setDoc(eventRef, validEvent("event-1")));
 
+    // Cached clients from before expiry metadata was added remain compatible;
+    // the scheduled cleanup keys off occurredHour for both shapes.
+    const cachedEvent = validEvent("event-cached");
+    delete cachedEvent.expiresAt;
+    await assertSucceeds(setDoc(doc(guest,"productEvents/event-cached"),cachedEvent));
+
     // Write-only to the public product; only the protected moderator surface
     // can inspect the source records used for aggregate reporting.
     await assertFails(getDoc(eventRef));
@@ -819,5 +825,6 @@ describe('moderation queue and audit trail', () => {
     ));
 
     await assertSucceeds(deleteDoc(doc(moderatorDb("moderator-1"), "productEvents/event-1")));
+    await assertSucceeds(deleteDoc(doc(moderatorDb("moderator-1"), "productEvents/event-cached")));
   });
 });

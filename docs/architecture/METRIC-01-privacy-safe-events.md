@@ -56,8 +56,8 @@ delivery removes the event before the next one is attempted.
 
 METRIC-01 does not install an advertising or third-party analytics SDK.
 Consented events are delivered to the first-party `productEvents` Firestore
-collection. Firestore TTL removes each record 30 days after its coarse event
-hour. The customer product cannot read the collection; authenticated
+collection. A daily authenticated retention job removes records 30 days after
+their coarse event hour; this does not require a paid Firebase TTL policy. The customer product cannot read the collection; authenticated
 moderators can read it only through the separately hosted backoffice.
 
 ## Separation from operational state
