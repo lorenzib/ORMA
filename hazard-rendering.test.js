@@ -64,7 +64,8 @@ describe('official area warnings reach the page', () => {
     // document (the no-anchor fallback) or to the page foot is a degradation, so
     // pin it inside the trail-weather card, beside the forecast it qualifies.
     expect(stack.closest('.td2-hero-weather')).not.toBeNull();
-    expect(stack.querySelector('.orma-hazard-stack__kick').textContent).toBe('Area warning');
+    // The advisory line carries the count; no kicker repeats it above.
+    expect(stack.querySelector('.orma-hazard-stack__kick')).toBeNull();
     // Phones move the weather card below the map; the hero keeps a pointer.
     const pointer = document.getElementById('ormaHazardPointer');
     expect(pointer.hidden).toBe(false);

@@ -61,7 +61,7 @@
 
   <article class="legal-document">
     <div class="legal-updated">
-      <span>Last updated 10 August 2026</span>
+      <span>Last updated 10 September 2026</span>
       <a href="terms.html">Read the terms of use →</a>
     </div>
 
@@ -94,7 +94,7 @@
       <li><strong>Public trail profile and follows:</strong> kept until you remove the profile, unfollow, decline a request or cancel your account.</li>
       <li><strong>Reviews, trail photos and hazard reports:</strong> kept while published, pending moderation or needed to preserve the safety history. The author or a moderator can remove a contribution. Cancelling an account does not automatically remove these records.</li>
       <li><strong>Abuse reports and moderation audit records:</strong> normally kept for up to 24 months after resolution or the last moderation action. They may be kept longer only while an active safety dispute or legal obligation requires it.</li>
-      <li><strong>Optional product analytics:</strong> queued in this browser for no more than 30 days and capped at 200 events. Turning analytics off removes the queue and random browser identifier immediately.</li>
+      <li><strong>Optional product analytics:</strong> queued in this browser for no more than 30 days and capped at 200 events. Consented events sent to our Firebase database are also deleted after 30 days. Turning analytics off removes the unsent queue and random browser identifier immediately; previously delivered events expire on that schedule.</li>
       <li><strong>Anonymous hike-start counters:</strong> timestamp-only rows are kept for no more than 90 days. Only the last seven days are used for the public “dogs hiked this week” count.</li>
     </ul>
     <p>The 90-day counter cleanup and 24-month moderation cleanup are operator retention checks rather than client-side deletion. Records subject to an active safety or legal hold are reviewed when that hold ends.</p>
@@ -108,7 +108,7 @@
   <section class="legal-section" id="analytics">
     <h2 data-index="04">Anonymous counters</h2>
     <p>When someone starts hike mode on a trail, we count it, trail id and timestamp, nothing else. No account, no location, no device identifiers. It powers the “dogs hiked this week” number.</p>
-    <p>Anonymous product usage is separate and optional. It is off until you enable <strong>Share anonymous product usage</strong> in Settings. Allowed events use a random browser identifier, hour-level timestamps and predefined categories; they reject names, email addresses, search text, reviews, health notes, exact coordinates and GPS history. Events waiting offline are discarded after 30 days. Switching the setting off deletes that queue and its identifier immediately.</p>
+    <p>Anonymous product usage is separate and optional. It is off until you enable <strong>Share anonymous product usage</strong> in Settings. Allowed events use a random browser identifier, hour-level timestamps and predefined categories; they reject names, email addresses, search text, reviews, health notes, exact coordinates and GPS history. Consented events are sent to ORMA's Firebase database and deleted after 30 days; events waiting offline are discarded on the same schedule. Switching the setting off deletes the unsent queue and its identifier immediately. Events already delivered cannot identify an account and expire within 30 days.</p>
   </section>
 
   <section class="legal-section" id="third-parties">
@@ -197,7 +197,7 @@
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260909-1"></script>
+<script src="mobile-nav.js?v=20260910-1"></script>
 <script src="i18n.js"></script>
 <script type="module" src="firebase-init.js"></script>
 <script src="auth-ui.js?v=20260821-1" defer></script>

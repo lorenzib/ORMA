@@ -83,7 +83,7 @@ describe('Safety library', () => {
     expect(html).toContain("form.addEventListener('change'");
   });
 
-  test('uses the dedicated photographic safety-library imagery', () => {
+  test('uses the original photographic safety-library imagery with a coherent UI treatment', () => {
     const guideImages = [...document.querySelectorAll('.sg-guide-card img')];
     const sources = guideImages.map(image => image.getAttribute('src'));
     expect(sources).toEqual(expect.arrayContaining([
@@ -103,6 +103,7 @@ describe('Safety library', () => {
     const pawImage = document.querySelector('a[href="guides/paw-protection.html"] img');
     expect(pawImage.classList.contains('sg-guide-image-paw')).toBe(true);
     expect(pawImage.getAttribute('alt')).toMatch(/dog.*leash-free.*forest trail/i);
+    expect(html).toMatch(/\.sg-guide-card img\{[^}]*filter:saturate\(1\.12\) contrast\(1\.04\) brightness\(1\.01\)/s);
     expect(html).toContain('.sg-guide-card img.sg-guide-image-paw{object-position:center 72%;}');
     expect(document.body.textContent).toContain('Flowers, plants and dogs');
   });
