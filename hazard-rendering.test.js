@@ -113,6 +113,22 @@ describe('official area warnings reach the page', () => {
     expect(document.querySelector('.orma-hazard-stack')).not.toBeNull();
   });
 
+  test('a feed that names events by severity does not get the word twice', async () => {
+    // MeteoAlarm France: "Moderate thunderstorm warning"; Italy names by colour.
+    const french = (id, event, title) => ({ ...HAZARD, id, severity:'moderate', event, title, sourceLabel:'MeteoAlarm France' });
+    const one = await render('trail.html', '/trail.html?id=piancavallo', [
+      french('fr-storm', 'Moderate thunderstorm warning', 'thunderstorm warning for Savoie'),
+    ]);
+    expect(one.querySelector('.orma-hazard__title').textContent).toBe('Moderate thunderstorm warning · Savoie');
+    const two = await render('trail.html', '/trail.html?id=piancavallo', [
+      french('fr-rain', 'Moderate rain-flood warning', 'rain-flood warning for Savoie'),
+      french('fr-storm', 'Moderate thunderstorm warning', 'thunderstorm warning for Savoie'),
+    ]);
+    expect(two.textContent).toContain('2 moderate warnings · Savoie');
+    expect(two.textContent).toContain('Rain-flood');
+    expect(two.textContent).not.toMatch(/moderate rain-flood/i);
+  });
+
   test('a warning past its own expiry renders nothing, however stale the snapshot', async () => {
     const expired = { ...HAZARD, id:'test-hazard-expired', expiresAt:new Date(Date.now() - 60 * 1000).toISOString() };
     const stack = await render('trail.html', '/trail.html?id=piancavallo', [expired]);

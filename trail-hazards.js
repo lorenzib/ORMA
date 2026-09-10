@@ -400,9 +400,13 @@
     const text = String(value || '').trim();
     return text ? text.charAt(0).toUpperCase() + text.slice(1) : '';
   }
+  // Feeds name events differently: Italy by colour ("Yellow Thunderstorm
+  // Warning"), France by severity ("Moderate thunderstorm warning"). The
+  // advisory lead adds the severity word itself, so both are stripped here
+  // or the French form reads "Moderate moderate thunderstorm warning".
   function eventNoun(item){
     const stripped = String(item && item.event || '')
-      .replace(/\b(red|orange|yellow|green|amber)\b/ig, '')
+      .replace(/\b(red|orange|yellow|green|amber|minor|moderate|severe|extreme)\b/ig, '')
       .replace(/warnings?/ig, '').trim();
     if(stripped) return stripped.toLowerCase();
     const fromTitle = String(item && item.title || '').match(/^(.*?)\s+warning\b/i);
