@@ -367,3 +367,4 @@ details.vd-explain[open]>summary{margin-bottom:10px;}
 .vd-accept-row input[type=checkbox]{margin-top:2px;width:16px;height:16px;accent-color:#2e4034;}
 @media (max-width:640px){.vd-accept-row{grid-template-columns:auto 1fr;}}
 .vd-lane-note.is-retired{color:#8A5A16;font-weight:600;}
+.vd-evidence-withheld{margin:10px 0 0;font-size:13px;line-height:1.5;color:var(--ink-soft);max-width:62ch;}

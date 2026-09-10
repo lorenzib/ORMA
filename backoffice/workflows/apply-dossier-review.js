@@ -2,7 +2,7 @@
 
 const { createAgentJob }=require('../contracts/agent-job-v1');
 const { summarize }=require('./build-live-orchestration');
-const {compactReviewQueue}=require('./review-queue-compaction');
+const {fitReviewQueue}=require('./review-queue-compaction');
 const {compileVerifiedDossier,verificationRecord,unacceptedBlockers,waivableBlocker}=require('./compile-verified-dossier');
 
 const BASE_SPECIALISTS=Object.freeze([
@@ -85,7 +85,7 @@ function applyDossierReview(orchestration,reviewQueue,decision,options={}){
   nextTrail.updatedAt=at; next.generatedAt=at; next.summary=summarize(next.trails);
   // compileVerifiedDossier above read the full review, so the evidence has
   // already done its work by the time the decided item gives it up.
-  const nextQueue=compactReviewQueue({...reviewQueue,updatedAt:at,items:reviewQueue.items.map(item=>item.reviewId===review.reviewId
+  const nextQueue=fitReviewQueue({...reviewQueue,updatedAt:at,items:reviewQueue.items.map(item=>item.reviewId===review.reviewId
     ?{...item,state:'processed',decision:{...decision,reviewedAt:at},publicMutationAllowed:false}:item)});
   return {orchestration:next,reviewQueue:nextQueue,jobs,verifiedDossier,verifiedRecord};
 }

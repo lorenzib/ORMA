@@ -39,9 +39,12 @@ describe('trail verification desk', () => {
     // opens on the checklist rather than on a wall of JSON.
     expect(script).toContain("el('details','vd-evidence')");
     expect(script).toContain("el('summary','','Show the evidence')");
-    const evidence = script.slice(script.indexOf('function evidenceBlock'), script.indexOf('function claimLines'));
+    // The raw dump moved into machineOutput, which fetches it on open: the
+    // queue now carries a summary, and the record stays in its own document.
+    const evidence = script.slice(script.indexOf('function machineOutput'), script.indexOf('function claimLines'));
     expect(evidence).toContain('JSON.stringify');
     expect(evidence).toContain("el('details','vd-raw')");
+    expect(evidence).toContain('function evidenceBlock');
     // No open-by-default disclosure: the old desk shipped details.open = true.
     expect(script).not.toMatch(/vd-(evidence|raw)'\);[\s\S]{0,80}\.open\s*=\s*true/);
   });
