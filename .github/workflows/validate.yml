@@ -4,6 +4,9 @@ on:
   pull_request: {}
   push:
     branches: [main]
+  # The hazard watch dispatches this onto its snapshot branch: a push made with
+  # the workflow token starts no runs by itself, and main requires this gate.
+  workflow_dispatch: {}
 
 permissions:
   contents: read

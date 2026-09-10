@@ -209,7 +209,11 @@ OpenAI remains in use for trail verification and for scouting additional trails.
   queue worker. Successfully fetched authoritative feeds remove warnings that they
   affirmatively resolve or that have passed their own expiry; source outages
   retain the last known warning. Hazard conditions change slowly, so a three-hour
-  cadence keeps the backoffice within the Firestore daily quota.
+  cadence keeps the backoffice within the Firestore daily quota. The public
+  snapshot the website reads (`data/dynamic-hazards.json`) is refreshed by an
+  automatic pull request whenever the warning set changes, merged once the
+  quality gate passes; the page also hides any warning past its own expiry, so
+  a missed refresh shows nothing rather than a stale warning.
 - Customer hazard vetting: inside every worker pass, at most three reports or
   re-checks per pass, published or rejected by the Hazard Analyst without a
   human gate.
