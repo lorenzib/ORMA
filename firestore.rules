@@ -692,18 +692,19 @@ service cloud.firestore {
     // identifier or an event until the customer opts in. These rules enforce
     // the wire shape so the collection cannot become a general write target.
     //
-    // The collection is write-only. Nothing in the site reads it back, and the
-    // document id is the client's own event id, so a delivery retried after a
-    // lost acknowledgement rewrites one document instead of duplicating it.
+    // The public product is write-only. Moderators may read aggregate source
+    // data through the separately hosted, authenticated backoffice monitor.
+    // The document id is the client's own event id, so a delivery retried after
+    // a lost acknowledgement rewrites one document instead of duplicating it.
     match /productEvents/{eventId} {
       allow create: if isShortString(eventId, 64)
         && request.resource.data.keys().hasOnly([
              'schemaVersion', 'id', 'clientId', 'family', 'state',
-             'properties', 'occurredHour'
+             'properties', 'occurredHour', 'expiresAt'
            ])
         && request.resource.data.keys().hasAll([
              'schemaVersion', 'id', 'clientId', 'family', 'state',
-             'properties', 'occurredHour'
+             'properties', 'occurredHour', 'expiresAt'
            ])
         && request.resource.data.schemaVersion == 1
         && request.resource.data.id == eventId
@@ -712,9 +713,11 @@ service cloud.firestore {
         && isShortString(request.resource.data.state, 40)
         && request.resource.data.properties is map
         && request.resource.data.properties.size() <= 12
-        && isShortString(request.resource.data.occurredHour, 30);
+        && isShortString(request.resource.data.occurredHour, 30)
+        && request.resource.data.expiresAt is timestamp
+        && request.resource.data.expiresAt <= request.time + duration.value(31, 'd');
       allow update: if request.resource.data == resource.data;
-      allow read: if false;
+      allow read: if isModerator();
       allow delete: if isModerator();
     }
 

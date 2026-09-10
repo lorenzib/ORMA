@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <title>Product funnel | ORMA Backoffice</title>
+  <link rel="icon" href="favicon-32.png" sizes="32x32">
+  <link rel="stylesheet" href="styles.css?v=20260821-5">
+  <link rel="stylesheet" href="backoffice-review.css?v=20260910-1">
+  <script>document.documentElement.classList.add('bo-auth-pending')</script>
+</head>
+<body class="bo-shell">
+  <header class="bo-header">
+    <a href="backoffice-review.html" class="bo-brand"><span aria-hidden="true">🐾</span><span><strong>ORMA</strong><small>Backoffice</small></span></a>
+    <nav class="bo-primary-nav" aria-label="Backoffice navigation">
+      <a href="backoffice-review.html">Home</a>
+      <a href="trail-verify-desk.html">Existing Trails</a>
+      <a href="community-moderation-desk.html">Community</a>
+      <a href="product-funnel.html" aria-current="page">Product funnel</a>
+    </nav>
+    <button class="bo-sign-out" type="button" data-backoffice-sign-out>Sign out</button>
+  </header>
+
+  <main class="bo-main bo-executive bo-funnel-page">
+    <div class="bo-exec-title">
+      <div>
+        <p class="eyebrow">Customer decision journey</p>
+        <h1>Product funnel</h1>
+        <p class="bo-intro">See where dog owners move from a personalised recommendation to preparing and starting a walk.</p>
+      </div>
+      <div class="bo-funnel-controls" aria-label="Reporting period">
+        <div role="group" aria-label="Date range">
+          <button type="button" data-funnel-days="7" aria-pressed="true">7 days</button>
+          <button type="button" data-funnel-days="30" aria-pressed="false">30 days</button>
+        </div>
+        <button id="refreshFunnel" type="button">Refresh</button>
+      </div>
+    </div>
+
+    <p id="funnelStatus" class="bo-state" role="status">Loading consented product events…</p>
+
+    <section class="bo-funnel-kpis" aria-label="Funnel summary">
+      <article><strong id="funnelBrowsers">—</strong><span>Consented browsers</span><small>All product events in this period</small></article>
+      <article><strong id="funnelPrimary">—</strong><span>Primary action</span><small>Chose “View trail details”</small></article>
+      <article><strong id="funnelMap">—</strong><span>Map exploration</span><small>Selected a numbered map or list route</small></article>
+      <article><strong id="funnelAdjusted">—</strong><span>Adjusted results</span><small>Changed filters or dog-fit assumptions</small></article>
+      <article><strong id="funnelNoResults">—</strong><span>No results</span><small>Discovery visits without a match</small></article>
+    </section>
+
+    <section class="bo-funnel-panel" aria-labelledby="funnelJourneyTitle">
+      <div class="bo-exec-section-head">
+        <div><p class="eyebrow">From recommendation to walk</p><h2 id="funnelJourneyTitle">Journey reach</h2></div>
+        <p>Each rate is the share of the same consented-browser cohort that was shown a homepage recommendation in this reporting period.</p>
+      </div>
+      <div class="bo-funnel-table-wrap">
+        <table class="bo-funnel-table">
+          <thead><tr><th scope="col">Step</th><th scope="col">Browsers</th><th scope="col">Cohort reach</th><th scope="col">Recorded events</th></tr></thead>
+          <tbody id="funnelRows"><tr><td colspan="4">Loading…</td></tr></tbody>
+        </table>
+      </div>
+      <p id="funnelSample" class="bo-funnel-note"></p>
+    </section>
+
+    <aside class="bo-funnel-privacy" aria-labelledby="funnelPrivacyTitle">
+      <div><p class="eyebrow">Measurement boundary</p><h2 id="funnelPrivacyTitle">Useful without becoming invasive</h2></div>
+      <p>Only customers who explicitly enable anonymous product usage are counted. ORMA stores coarse hourly timestamps and bounded categories—not dog names, searches, precise locations, health notes, photos, or raw GPS traces. This page shows aggregates and never exposes browser identifiers.</p>
+    </aside>
+  </main>
+
+  <script type="module" src="backoffice-firebase.js"></script>
+  <script src="backoffice-auth-guard.js?v=20260819-1"></script>
+  <script src="backoffice-session.js?v=20260819-1"></script>
+  <script src="backoffice/product-funnel-model.js?v=20260910-1"></script>
+  <script src="backoffice-product-funnel.js?v=20260910-1"></script>
+</body>
+</html>

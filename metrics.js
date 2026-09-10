@@ -22,6 +22,7 @@
         resultCount:'count',
         profilePresent:'boolean',
         activeFilterCount:'count',
+        surface:'slug',
       },
     },
     dog_profile:{
@@ -40,6 +41,9 @@
         warningCount:'count',
         unknownCount:'count',
         profilePresent:'boolean',
+        surface:'slug',
+        selectionSource:'slug',
+        confidence:'slug',
       },
     },
     trail_saved:{

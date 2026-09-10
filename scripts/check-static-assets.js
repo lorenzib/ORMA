@@ -20,7 +20,7 @@ const missing = [];
 // build, not against the public site root.
 const BACKOFFICE_SOURCE_PAGES = new Set([
   'backoffice-hosted-review.html','backoffice-hosted-login.html',
-  'trail-verify-desk.html','community-moderation-desk.html',
+  'backoffice-hosted-product-funnel.html','trail-verify-desk.html','community-moderation-desk.html',
 ]);
 
 for(const file of htmlFiles){

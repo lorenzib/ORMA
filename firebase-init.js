@@ -1419,7 +1419,12 @@ function registerMetricsTransport(){
   const metrics = window.DoloPawsMetrics;
   if(!metrics || typeof metrics.setTransport !== 'function') return;
   metricsTransportRegistered = metrics.setTransport(async (event) => {
-    await setDoc(doc(db, 'productEvents', event.id), event);
+    // The expiry is derived from the already-coarse event hour, so retries
+    // write an identical document and Firestore TTL can enforce the same
+    // 30-day lifetime as the local queue.
+    const occurredAt = new Date(event.occurredHour).getTime();
+    const expiresAt = Timestamp.fromMillis(occurredAt + 30 * 24 * 60 * 60 * 1000);
+    await setDoc(doc(db, 'productEvents', event.id), { ...event, expiresAt });
     return true;
   });
   if(metricsTransportRegistered) Promise.resolve(metrics.flush()).catch(() => {});

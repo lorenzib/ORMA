@@ -763,13 +763,16 @@ describe('moderation queue and audit trail', () => {
       state: "results_viewed",
       properties: { region: "dolomites", resultCount: 12 },
       occurredHour: "2026-09-05T13:00:00.000Z",
+      expiresAt: Timestamp.fromMillis(Date.parse("2026-10-05T13:00:00.000Z")),
     });
 
     const eventRef = doc(guest, "productEvents/event-1");
     await assertSucceeds(setDoc(eventRef, validEvent("event-1")));
 
-    // Write-only: the queue is never read back by the site.
+    // Write-only to the public product; only the protected moderator surface
+    // can inspect the source records used for aggregate reporting.
     await assertFails(getDoc(eventRef));
+    await assertSucceeds(getDoc(doc(moderatorDb("moderator-1"), "productEvents/event-1")));
 
     // A retry after a lost acknowledgement rewrites the same document.
     await assertSucceeds(setDoc(eventRef, validEvent("event-1")));
@@ -807,6 +810,12 @@ describe('moderation queue and audit trail', () => {
     await assertFails(setDoc(
       doc(guest, "productEvents/event-7"),
       { ...validEvent("event-7"), schemaVersion: 2 }
+    ));
+
+    // A public client cannot bypass the 30-day retention boundary.
+    await assertFails(setDoc(
+      doc(guest, "productEvents/event-8"),
+      { ...validEvent("event-8"), expiresAt:Timestamp.fromMillis(Date.now()+40*24*3600*1000) }
     ));
 
     await assertSucceeds(deleteDoc(doc(moderatorDb("moderator-1"), "productEvents/event-1")));

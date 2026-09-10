@@ -1,6 +1,6 @@
 # METRIC-01 — Privacy-safe event API
 
-Status: Complete in code (2026-07-30)
+Status: Complete in code and connected to the first-party receiver (2026-09-10)
 
 ## Consent first
 
@@ -54,10 +54,11 @@ Offline events remain queued. A delivery failure retains the same event ID for
 retry, allowing the eventual receiver to enforce idempotency. Successful
 delivery removes the event before the next one is attempted.
 
-METRIC-01 deliberately does not install an advertising or third-party
-analytics SDK and does not invent a production receiver. METRIC-02 connects
-the core funnel to this API; production delivery still requires an approved
-first-party receiver.
+METRIC-01 does not install an advertising or third-party analytics SDK.
+Consented events are delivered to the first-party `productEvents` Firestore
+collection. Firestore TTL removes each record 30 days after its coarse event
+hour. The customer product cannot read the collection; authenticated
+moderators can read it only through the separately hosted backoffice.
 
 ## Separation from operational state
 
