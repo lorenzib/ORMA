@@ -47,6 +47,18 @@ const proposals = [
       retrievedAt: '2026-08-18',
     },
   },
+  {
+    input: 'beatrice-de-savoie-official.gpx', output: 'beatrice-de-savoie-official.geojson',
+    properties: {
+      proposalId: 'circuit-beatrice-de-savoie-official',
+      candidateId: 'osm-3982382',
+      name: 'Circuit Béatrice de Savoie',
+      sourceUrl: 'https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/71/97/21193031/beatrice-de-savoie-9fev24.gpx',
+      sourcePageUrl: 'https://www.chartreuse-tourisme.com/offres/sur-les-pas-de-beatrice-de-savoie-les-echelles-fr-2777404/',
+      sourceAuthority: 'official-destination-route-portal',
+      retrievedAt: '2026-09-10',
+    },
+  },
 ];
 
 fs.mkdirSync(outputDirectory, { recursive: true });
