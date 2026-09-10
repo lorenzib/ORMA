@@ -4,14 +4,14 @@ const fs = require('fs');
 const path = require('path');
 
 const pages = [
-  ['altitude-with-your-dog.html', 'altitude-with-your-dog-v2.jpg'],
-  ['breed-group-caveats.html', 'breed-group-considerations-dogs-v4.jpg'],
-  ['dogs-on-cable-cars.html', 'dogs-on-cable-cars-v7.jpg'],
-  ['heat-overheating.html', 'heat-hydration-dog-v2.jpg'],
-  ['paw-protection.html', 'paw-protection-dog-v5.jpg'],
-  ['livestock-guard-dogs.html', 'livestock-guardian-dogs-v2.jpg'],
-  ['dogs-at-rifugi.html', 'dogs-at-rifugi-v2.jpg'],
-  ['water-for-dogs-on-trail.html', 'heat-hydration-dog-v2.jpg'],
+  ['altitude-with-your-dog.html', 'altitude-with-your-dog-v1.jpg'],
+  ['breed-group-caveats.html', 'breed-group-considerations-dogs-v3.jpg'],
+  ['dogs-on-cable-cars.html', 'dogs-on-cable-cars-hero-v6.jpg'],
+  ['heat-overheating.html', 'dog-hydration-lake-unbranded-v1.jpg'],
+  ['paw-protection.html', 'paw-protection-forest-dog-v4.jpg'],
+  ['livestock-guard-dogs.html', 'livestock-guardian-dogs-v1.jpg'],
+  ['dogs-at-rifugi.html', 'dogs-at-rifugi.jpg'],
+  ['water-for-dogs-on-trail.html', 'dog-hydration-lake-unbranded-v1.jpg'],
 ];
 
 const safetyArticles = [
@@ -42,7 +42,7 @@ describe('Safety Library article headers', () => {
 
     expect(css).toMatch(/\.safety-photo-header\.section-page-head\{[^}]*position:relative;[^}]*min-height:clamp\(330px,36vw,470px\)[^}]*width:100%;[^}]*max-width:none;[^}]*border-radius:0/s);
     expect(css).toMatch(/\.safety-photo-header\.section-page-head::before\{[^}]*linear-gradient/s);
-    expect(css).toMatch(/\.safety-photo-header__image\{[^}]*object-fit:cover;[^}]*object-position:var\(--safety-photo-position\);[^}]*filter:saturate\(\.82\) contrast\(1\.045\) brightness\(\.96\)/s);
+    expect(css).toMatch(/\.safety-photo-header__image\{[^}]*object-fit:cover;[^}]*object-position:var\(--safety-photo-position\);[^}]*filter:saturate\(1\.12\) contrast\(1\.04\) brightness\(1\.01\)/s);
     expect(css).toMatch(/@media\(max-width:760px\)[\s\S]*\.safety-photo-header\.section-page-head\{[^}]*min-height:350px/s);
     expect(css).toMatch(/@media\(max-width:760px\)[\s\S]*\.safety-photo-header__image\{object-position:var\(--safety-photo-position-mobile,var\(--safety-photo-position\)\)/s);
     expect(css).toMatch(/\.safety-back-link\{[^}]*display:inline-flex/s);
@@ -57,14 +57,14 @@ describe('Safety Library article headers', () => {
     expect(links[0].textContent.replace(/\s+/g, ' ').trim()).toBe('← Back to Safety Library');
   });
 
-  test('the cable-car header keeps its dog-first focal point across breakpoints', () => {
+  test('the cable-car header keeps its original dog-centred focal point across breakpoints', () => {
     document.documentElement.innerHTML = fs.readFileSync(path.join(__dirname, 'guides', 'dogs-on-cable-cars.html'), 'utf8');
     const header = document.querySelector('.safety-photo-header');
     const image = header.querySelector('.safety-photo-header__image');
     const pageCss = document.querySelector('style').textContent;
 
-    expect(pageCss).toMatch(/\.cg-hero\{--safety-photo-position:74% 28%;--safety-photo-position-mobile:74% 50%/);
-    expect(pageCss).toMatch(/@media\(max-width:620px\)[\s\S]*\.cg-hero\{--safety-photo-position:74% 28%;--safety-photo-position-mobile:74% 50%/);
+    expect(pageCss).toMatch(/\.cg-hero\{--safety-photo-position:62% center/);
+    expect(pageCss).toMatch(/@media\(max-width:620px\)[\s\S]*\.cg-hero\{--safety-photo-position:62% center/);
     expect(image.hasAttribute('style')).toBe(false);
   });
 
@@ -79,7 +79,7 @@ describe('Safety Library article headers', () => {
     expect(header.querySelector('.section-page-subtitle')).not.toBeNull();
     const image = header.querySelector('.safety-photo-header__image');
     expect(image).not.toBeNull();
-    expect(image.getAttribute('src')).toBe('../images/editorial/safety-library/alpine-plants-dog-v2.jpg');
+    expect(image.getAttribute('src')).toBe('../images/editorial/safety-library/flowers-plants-dogs.jpg');
     expect(header.querySelector('.apg-hero-mosaic')).toBeNull();
     expect(css).toMatch(/\.apg-hero\.section-page-head\{[^}]*width:100%;[^}]*max-width:none;[^}]*margin:0/s);
   });

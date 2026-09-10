@@ -47,10 +47,10 @@ describe('breed-group guide navigation', () => {
     const image = document.querySelector('.guide-hero.safety-photo-header .safety-photo-header__image');
 
     expect(image).not.toBeNull();
-    expect(image.getAttribute('src')).toBe('../images/editorial/safety-library/breed-group-considerations-dogs-v4.jpg');
+    expect(image.getAttribute('src')).toBe('../images/editorial/safety-library/breed-group-considerations-dogs-v3.jpg');
     expect(image.getAttribute('alt')).toBe('');
-    expect(image.getAttribute('width')).toBe('1536');
-    expect(image.getAttribute('height')).toBe('1024');
+    expect(image.getAttribute('width')).toBe('1500');
+    expect(image.getAttribute('height')).toBe('800');
   });
 
   test('uses exhaustive filterable trait cards instead of a long contents rail', () => {

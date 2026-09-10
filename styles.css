@@ -321,7 +321,7 @@ img,svg{max-width:100%;height:auto;}
   max-width:none;
   object-fit:cover;
   object-position:var(--safety-photo-position);
-  filter:saturate(.82) contrast(1.045) brightness(.96);
+  filter:saturate(1.12) contrast(1.04) brightness(1.01);
 }
 .safety-photo-header.section-page-head > :not(.safety-photo-header__image){
   position:relative;

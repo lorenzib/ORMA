@@ -32,8 +32,8 @@
 
 .safety-guide-article .safety-photo-header.section-page-head::before{
   background:
-    linear-gradient(106deg,rgba(22,38,29,.92) 0%,rgba(22,38,29,.70) 40%,rgba(22,38,29,.08) 66%,rgba(22,38,29,0) 82%),
-    linear-gradient(180deg,rgba(22,38,29,.12) 0%,rgba(22,38,29,.04) 58%,rgba(22,38,29,.34) 100%);
+    linear-gradient(106deg,rgba(22,38,29,.88) 0%,rgba(22,38,29,.62) 40%,rgba(22,38,29,.04) 66%,rgba(22,38,29,0) 82%),
+    linear-gradient(180deg,rgba(22,38,29,.08) 0%,rgba(22,38,29,0) 58%,rgba(22,38,29,.28) 100%);
 }
 
 .safety-guide-article .safety-photo-header.section-page-head h1{
