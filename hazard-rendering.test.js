@@ -25,7 +25,7 @@ const HAZARD = {
   title: 'Thunderstorm warning for the test area',
   message: 'An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.',
   sourceLabel: 'MeteoAlarm Italy', sourceUrl: 'https://example.invalid/warning',
-  expiresAt: '2026-09-05T17:59:00+00:00', trailIds: ['piancavallo'], trailSlugs: ['1-rafeil-rundweg'],
+  expiresAt: new Date(Date.now() + 36 * 60 * 60 * 1000).toISOString(), trailIds: ['piancavallo'], trailSlugs: ['1-rafeil-rundweg'],
 };
 
 // Runs trail-hazards.js against one real page and returns the resulting DOM.
@@ -111,6 +111,17 @@ describe('official area warnings reach the page', () => {
     require(path.join(root, 'trail-hazards.js'));
     await new Promise(resolve => setTimeout(resolve, 0));
     expect(document.querySelector('.orma-hazard-stack')).not.toBeNull();
+  });
+
+  test('a warning past its own expiry renders nothing, however stale the snapshot', async () => {
+    const expired = { ...HAZARD, id:'test-hazard-expired', expiresAt:new Date(Date.now() - 60 * 1000).toISOString() };
+    const stack = await render('trail.html', '/trail.html?id=piancavallo', [expired]);
+    expect(stack).toBeNull();
+    expect(document.getElementById('ormaHazardPointer').hidden).toBe(true);
+    expect(window.OrmaAreaWarnings).toEqual([]);
+    // An unreadable expiry is not evidence of safety: the warning stays.
+    const odd = await render('trail.html', '/trail.html?id=piancavallo', [{ ...HAZARD, expiresAt:'when the rain stops' }]);
+    expect(odd).not.toBeNull();
   });
 
   test('a trail with no matching hazard renders nothing', async () => {
