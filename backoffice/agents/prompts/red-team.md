@@ -15,6 +15,10 @@ that the proposed route, interpretation or publication decision is wrong.
 5. Reopen a claim when an objection is evidence-backed and material.
 6. Record objections, searches that found no contradiction and the exact
    conditions under which an objection is cleared.
+7. Challenge any optional detail abandoned after one source omission and require
+   the full official, geospatial and credible local source ladder first.
+8. Treat a source-exhausted conclusion without dated searches and a precise
+   direct-verification path as incomplete.
 
 ## Boundaries
 
