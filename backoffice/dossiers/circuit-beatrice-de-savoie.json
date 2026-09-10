@@ -1,0 +1,139 @@
+{
+  "contractVersion": "1.0.0",
+  "candidateId": "osm-3982382",
+  "title": "Circuit Béatrice de Savoie — official GPX reconciliation",
+  "reviewState": "accepted",
+  "researchedAt": "2026-09-10",
+  "researchMethod": "ORMA desk reconciliation against the current Chartreuse Tourisme route page and its downloadable Apidae GPX. The previous OpenStreetMap relation assessment is retained as superseded evidence.",
+  "referenceMetrics": {
+    "distanceKm": 4.9,
+    "computedDistanceKm": 4.88,
+    "ascentM": 173,
+    "durationMinutes": 90,
+    "minimumElevationM": 390,
+    "maximumElevationM": 546,
+    "sourceId": "chartreuse-beatrice-route"
+  },
+  "editorialSummary": "The official 435-point GPX is a continuous 4.88 km loop whose endpoints are 2 m apart. It replaces the incomplete 74-point public line reconstructed from OSM relation 3982382. The published copy no longer warns walkers about map gaps. This dossier approves route reconciliation only and does not claim full ORMA verification or authorize publication outside the normal pull-request gate.",
+  "promotionGate": {
+    "canApproveParking": false,
+    "canApproveRoute": true,
+    "canPublish": false,
+    "blockers": []
+  },
+  "geometryApproval": {
+    "state": "accepted",
+    "gate": "geometry-approval",
+    "approvedAt": "2026-09-10",
+    "approvedBy": "product-owner-request",
+    "proposalRef": "backoffice-data/route-proposals/beatrice-de-savoie-official.geojson",
+    "normalization": "The final GPX point is 2 m from the first. The public route preserves all 435 source points and normalizes only that final coordinate to the first so the catalogue encodes an exactly closed loop.",
+    "publicationAuthorized": false,
+    "publicMutationAllowed": false
+  },
+  "sources": [
+    {
+      "id": "chartreuse-beatrice-route",
+      "label": "Chartreuse Tourisme — Sur les pas de Béatrice de Savoie",
+      "url": "https://www.chartreuse-tourisme.com/offres/sur-les-pas-de-beatrice-de-savoie-les-echelles-fr-2777404/",
+      "authority": "official-destination-route-portal",
+      "retrievedAt": "2026-09-10",
+      "freshness": "current-2026",
+      "supports": [
+        "routeIdentity",
+        "routeMetrics",
+        "recommendedStart",
+        "direction"
+      ]
+    },
+    {
+      "id": "chartreuse-beatrice-gpx",
+      "label": "Chartreuse Tourisme / Apidae — official GPX",
+      "url": "https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/71/97/21193031/beatrice-de-savoie-9fev24.gpx",
+      "authority": "official-destination-route-portal-and-human-geometry-gate",
+      "retrievedAt": "2026-09-10",
+      "freshness": "approved-2026-09-10",
+      "supports": [
+        "routeGeometry",
+        "computedDistance",
+        "rawElevation"
+      ]
+    },
+    {
+      "id": "osm-relation-3982382",
+      "label": "OpenStreetMap relation 3982382 — superseded geometry reference",
+      "url": "https://www.openstreetmap.org/relation/3982382",
+      "authority": "community-map-secondary-reference",
+      "retrievedAt": "2026-09-06",
+      "freshness": "superseded-2026-09-10",
+      "supports": [
+        "historicalRouteIdentity",
+        "supersededGeometryDiagnosis"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "route-identity",
+      "category": "route",
+      "label": "Official named circuit",
+      "proposedValue": "Sur les pas de Béatrice de Savoie is the official circuit beginning at the Rivièr'Alp leisure base in Les Échelles.",
+      "state": "supported",
+      "confidence": 0.99,
+      "sourceIds": [
+        "chartreuse-beatrice-route",
+        "chartreuse-beatrice-gpx"
+      ],
+      "evidenceSummary": "The destination page and attached GPX use the same route name and start area.",
+      "humanChecks": [
+        "Keep the nearby OSM relation as secondary provenance only."
+      ]
+    },
+    {
+      "id": "route-geometry",
+      "category": "route",
+      "label": "Continuous official route geometry",
+      "proposedValue": "Use the complete 435-point official GPX, normalized by 2 m at the closing point.",
+      "state": "supported",
+      "confidence": 0.99,
+      "sourceIds": [
+        "chartreuse-beatrice-gpx"
+      ],
+      "evidenceSummary": "The GPX passes deterministic geometry assessment as one 4.88 km loop with no gaps; its maximum point-to-point segment is 70 m.",
+      "humanChecks": [
+        "Do not restore the earlier 74-point OSM reconstruction or its map-gap copy."
+      ]
+    },
+    {
+      "id": "route-metrics",
+      "category": "elevation",
+      "label": "Official effort metrics",
+      "proposedValue": "4.9 km, 173 m ascent and 1 hour 30 minutes.",
+      "state": "supported",
+      "confidence": 0.98,
+      "sourceIds": [
+        "chartreuse-beatrice-route"
+      ],
+      "evidenceSummary": "The official page publishes the distance, ascent and duration together. The GPX's raw 207 m ascent is retained as raw evidence but is not used as the headline figure.",
+      "humanChecks": [
+        "Continue using the official 173 m ascent rather than unsmoothed raw GPX gain."
+      ]
+    },
+    {
+      "id": "recommended-start",
+      "category": "access",
+      "label": "Official route start",
+      "proposedValue": "Start at Rivièr'Alp leisure base beside the ecological swimming area, at the first point of the official GPX.",
+      "state": "supported",
+      "confidence": 0.97,
+      "sourceIds": [
+        "chartreuse-beatrice-route",
+        "chartreuse-beatrice-gpx"
+      ],
+      "evidenceSummary": "The itinerary starts from the leisure base and the GPX begins at 45.43596, 5.75551.",
+      "humanChecks": [
+        "Do not substitute a nearby parking pin for the official route start."
+      ]
+    }
+  ]
+}
