@@ -2703,6 +2703,7 @@ body.map-fs-open{overflow:hidden;}
 .auth-modal-redesign .auth-hero h2{font-family:'Bricolage Grotesque',sans-serif;font-size:22px;margin:0;color:#fff;}
 .auth-modal-redesign .auth-hero .hint{font-size:12.5px;color:#D6E1D8;margin:6px 0 0;line-height:1.5;}
 .auth-body{padding:24px 28px 26px;}
+.auth-modal-redesign [hidden]{display:none !important;}
 .auth-modal-redesign .google-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px;border-radius:var(--radius-sm);}
 .auth-modal-redesign .auth-submit{border-radius:var(--radius-sm);padding:13px;background:var(--accent);}
 .auth-modal-redesign .auth-submit:hover{background:var(--accent-hover);opacity:1;}
