@@ -3696,6 +3696,20 @@ function breedIsRetrieverWaterDog(name){
   return !!(g8 && g8.breeds.includes(b));
 }
 
+// The FCI group a breed sits in ('g1'..'g10'), or 'unknown' for a mixed,
+// unlisted or blank breed. Used only for coarse, anonymous aggregation (how
+// many dogs of each group walked a trail) -- never a per-dog claim -- so a
+// cross's first recognised parent decides the group and unknowns are fine.
+function breedGroupId(name){
+  if(typeof FCI_BREED_GROUPS === 'undefined') return 'unknown';
+  const parts = breedParts(name);
+  for(const part of parts){
+    const group = FCI_BREED_GROUPS.find(g => Array.isArray(g.breeds) && g.breeds.includes(part));
+    if(group) return group.id;
+  }
+  return 'unknown';
+}
+
 /* ---------------------------------------------------------------------
  * INSIGHT-ONLY breed lists below. These do NOT feed scoreTrail() or
  * breedTraits(), they exist purely to enrich breedInsights() text for
@@ -9989,11 +10003,33 @@ function initHikeMode(map, trail, options){
         }
       );
     }
+    // SOCIAL-01 stage 1: one anonymous tally per completed walk, tagged only
+    // with the dog's coarse FCI group. Fire-and-forget; a finished hike must
+    // never depend on it.
+    if(window.DoloPawsCommunity && typeof window.DoloPawsCommunity.recordTrailWalk === 'function'){
+      window.DoloPawsCommunity.recordTrailWalk(trail.id, activeDogGroup());
+    }
     completionRetry = null;
     clearDurableSession();
     stopHike(false);
     showCompletionScreen(result.record);
     return true;
+  }
+
+  // The active dog's FCI group for the anonymous walk tally, or 'unknown'.
+  // breedGroupId comes from breeds-data.js (same trail bundle); guarded so a
+  // context without it degrades to 'unknown' rather than throwing.
+  function activeDogGroup(){
+    try {
+      const raw = JSON.parse(localStorage.getItem('dolopaws-profile-summary') || 'null');
+      const active = raw && Array.isArray(raw.dogs)
+        ? raw.dogs.find(dog => dog.id === raw.activeDogId) || raw.dogs[0]
+        : null;
+      const breed = (active && active.breed) || (raw && raw.breed) || '';
+      return typeof breedGroupId === 'function' ? breedGroupId(breed) : 'unknown';
+    } catch (e) {
+      return 'unknown';
+    }
   }
 
   function finishHike(){
