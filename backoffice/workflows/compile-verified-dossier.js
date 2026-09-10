@@ -112,7 +112,10 @@ function compileVerifiedDossier(review,trail,options={}){
       // is kept alongside it: downstream compilers match on what the agent said,
       // not on how this function chose to prefix it.
       agentId:output.agentId,claimId:claim.id,
-      entityName:claim.entityName||null,rule:claim.rule||null,observedAt:claim.observedAt||null});}
+      entityName:claim.entityName||null,rule:claim.rule||null,observedAt:claim.observedAt||null,
+      // What a claim answered "varies" depends on. Dropping it here would leave
+      // the reader with "unknown" for something the agent actually established.
+      variesWith:claim.variesWith||null});}
   }
   const dossier={contractVersion:'1.0.0',candidateId:trail.candidateId,trailId:trail.trailId,trailName:trail.trailName,
     reviewState:'accepted',sources:[...sourceMap.values()],claims,routeGeometry:geometry,

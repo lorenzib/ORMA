@@ -377,6 +377,20 @@ Verified means ORMA checked, not that everything is fixed. A trail may be
 verified with a claim recorded as varying, and the reader is told what changes
 and when to check rather than being given a false constant or an empty unknown.
 
+A livestock claim answered `varies` is published as `livestockPresence:
+'seasonal'`, the value the trail schema and the scoring engine already carry.
+The reader is then told "Livestock graze this route in season" instead of
+"whether livestock graze this route is unknown", and the penalty is applied at
+the lighter seasonal weight rather than as though stock were there every day.
+Without that mapping a verified trail declares livestock a reviewed category
+while telling the reader it is unknown, and those cannot both be true.
+
+Only `varies` is mapped. Turning a supported sentence into `likely` or `none`
+would mean reading free text for a safety value, which is exactly how a
+description that mentions cattle becomes a claim about grazing on the day
+someone walks. What a claim varies with travels with it to the editorial
+handoff, so the copy may say which months without any of it being inferred.
+
 ## Definition of done for future iterations
 
 A backoffice change is not complete until:
