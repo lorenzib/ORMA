@@ -37,5 +37,8 @@ describe('PRIV-01 retention and deletion contract', () => {
     const metrics = read('metrics.js');
     expect(metrics).toContain('30 * 24 * 60 * 60 * 1000');
     expect(metrics).toContain('const MAX_QUEUE = 200');
+    expect(read('firebase-init.js')).toContain('occurredAt + 30 * 24 * 60 * 60 * 1000');
+    expect(read('firestore.indexes.json')).toContain('"collectionGroup": "productEvents"');
+    expect(read('firestore.indexes.json')).toContain('"ttl": true');
   });
 });

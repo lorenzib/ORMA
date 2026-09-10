@@ -201,7 +201,7 @@ describe('METRIC-01 privacy-safe event API', () => {
       settings.indexOf("document.addEventListener('DOMContentLoaded'")
     );
     expect(privacy).toContain('It is off until you enable');
-    expect(privacy).toContain('Switching the setting off deletes that queue');
+    expect(privacy).toContain('Switching the setting off deletes the unsent queue');
     expect(privacy).toContain('no advertising or third-party tracking scripts');
   });
 

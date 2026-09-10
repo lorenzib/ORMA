@@ -81,7 +81,7 @@ describe('trail page map controls', () => {
   test('renders without waiting for authentication-delayed DOMContentLoaded', () => {
     const html = fs.readFileSync(path.join(__dirname, 'trail.html'), 'utf8');
     const trail = fs.readFileSync(path.join(__dirname, 'trail.js'), 'utf8');
-    expect(html).toContain("firebase.src = 'firebase-init.js?v=20260902-1'");
+    expect(html).toContain("firebase.src = 'firebase-init.js?v=20260910-1'");
     expect(html).toContain("window.addEventListener('load', scheduleTrailFirebase");
     expect(trail).toContain("if(document.querySelector('.td2')){");
     expect(trail).toContain('if(trailInitStarted) return;');

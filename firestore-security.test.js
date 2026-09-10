@@ -183,7 +183,9 @@ describe('SEC-01 Firestore configuration contract', () => {
       { collectionGroup: 'trailPhotos', fields: ['trailId', 'status'] },
       { collectionGroup: 'reports', fields: ['status', 'createdAt'] },
     ]));
-    expect(indexes.fieldOverrides).toEqual([]);
+    expect(indexes.fieldOverrides).toEqual([
+      expect.objectContaining({collectionGroup:'productEvents',fieldPath:'expiresAt',ttl:true}),
+    ]);
   });
 
   test('anonymous hike events cannot contain identity or location', () => {
@@ -214,9 +216,9 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(client).not.toContain('DoloPawsModeration');
     expect(client).not.toContain('moderationAudit');
   });
-  test("the product analytics receiver is write-only and shape-locked", () => {
+  test("the product analytics receiver is public-write-only, moderator-readable, and shape-locked", () => {
     const eventsBlock = rules.slice(rules.indexOf("match /productEvents"));
-    expect(eventsBlock).toContain("allow read: if false;");
+    expect(eventsBlock).toContain("allow read: if isModerator();");
     expect(eventsBlock).toContain("allow delete: if isModerator();");
     // The document id is the event id, so a retried delivery is idempotent
     // rather than duplicating, and an event cannot be edited after the fact.
@@ -226,10 +228,12 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(rules).toContain("function isProductEventFamily(value)");
     expect(eventsBlock).toContain("isProductEventFamily(request.resource.data.family)");
     expect(eventsBlock).toContain("request.resource.data.schemaVersion == 1");
+    expect(eventsBlock).toContain("request.resource.data.expiresAt is timestamp");
     expect(eventsBlock).toContain("hasOnly([");
     // Delivery is registered by the customer client, and consent stays upstream
     // in metrics.js -- the transport only moves already-accepted events.
     expect(client).toContain("metrics.setTransport");
     expect(client).toContain("productEvents");
+    expect(client).toContain("expiresAt = Timestamp.fromMillis");
   });
 });

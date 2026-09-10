@@ -1,6 +1,6 @@
 # METRIC-02 — Core journey funnel
 
-Status: Complete in code (2026-08-04)
+Status: Complete in code, first-party delivery and protected reporting (2026-09-10)
 
 ## Journey milestones
 
@@ -40,6 +40,10 @@ consent-off attempts do not create guards, withdrawal begins a fresh consent
 generation, and raw failure messages are converted only to allowlisted
 categories.
 
-This work instruments and locally queues the funnel. Sending the queue outside
-the browser remains disabled until ORMA provisions and approves a
-first-party metrics receiver.
+The homepage recommendation surface now records recommendation results, the
+visible top-match explanation, primary-detail selection, map/list selection,
+and recommendation adjustments. Existing trail detail, offline-package, hike,
+and outcome milestones complete the path. Consented events are delivered to
+the first-party Firestore receiver and aggregated by distinct browser in the
+protected Product funnel backoffice desk. Raw browser identifiers are never
+rendered there.

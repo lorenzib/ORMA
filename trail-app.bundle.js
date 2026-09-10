@@ -6471,6 +6471,7 @@ function findOwnPoiMatch(name, lng, lat){
         resultCount:'count',
         profilePresent:'boolean',
         activeFilterCount:'count',
+        surface:'slug',
       },
     },
     dog_profile:{
@@ -6489,6 +6490,9 @@ function findOwnPoiMatch(name, lng, lat){
         warningCount:'count',
         unknownCount:'count',
         profilePresent:'boolean',
+        surface:'slug',
+        selectionSource:'slug',
+        confidence:'slug',
       },
     },
     trail_saved:{
