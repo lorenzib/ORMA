@@ -292,6 +292,34 @@ confirmed against, and a source that contradicts the record wins and says so.
 Parking and the route are separate questions, and an unresolved parking picture
 is never a reason to omit the directions.
 
+## Optional evidence is exhausted, not merely absent
+
+An optional detail is non-blocking at the final human gate; it is not optional
+research. Every verification specialist actively scouts every claim it owns,
+including parking operation, public transport, water, shade, surface, livestock,
+temporary access and entity policies. The absence of a detail from the first
+route page is never enough to call it unsubstantiated.
+
+The initial pass and each automated resolution attempt follow the available
+source ladder: reopen ORMA's recorded sources; search the current route operator,
+municipality, park, regulator, transport or facility owner; inspect their linked
+PDFs, GPX files, maps, geoportals and current notices; triangulate mapped
+infrastructure and topographic data; then use credible local or specialist
+secondary sources as leads or corroboration. Searches use the local-language
+route and entity names, known variants and the exact claim being tested.
+
+Only after the materially different resolution strategies are exhausted may a
+claim be reported as source-exhausted. The result then records what was checked,
+when it was checked, the strategies or queries that failed, any conflicting or
+inapplicable evidence, and the exact authority contact, field observation or
+measurement that could settle it. A current operational fact is dated; silence
+is never converted into absence, permission or safety.
+
+This persistence does not lower the evidence threshold. Agents never invent a
+detail to complete a dossier, and the moderator may still accept a genuinely
+unresolved optional claim as non-blocking with a recorded reason. The claim
+remains unresolved and publishes no unsupported fact.
+
 ## Two campaign budgets, and where a stopped trail goes
 
 Admission to the pipeline is bounded by two separate budgets, because they
