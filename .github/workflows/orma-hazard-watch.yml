@@ -39,12 +39,32 @@ jobs:
         run: npm run backoffice:hazard-watch:live
       - name: Collect moderator removal decisions
         run: npm run backoffice:worker:hazards
+      # Nothing this workflow does with the repository token starts another
+      # workflow run: not the snapshot push, not the merge. So the website
+      # deploy for a snapshot merged by an earlier run is dispatched here if it
+      # never happened, before this run's own work.
+      - name: Deploy the website if the last snapshot merge was never deployed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -o pipefail
+          head="$(git rev-parse HEAD)"
+          if gh run list --workflow deploy-pages.yml --limit 30 --json headSha --jq '.[].headSha' | grep -qx "$head"; then
+            echo "main ($head) already has a website deploy run."
+          else
+            echo "main ($head) has no website deploy run; dispatching one."
+            gh workflow run deploy-pages.yml --ref main
+          fi
       # main is protected (required quality gate, enforced for admins), so the
       # refreshed snapshot travels as a pull request. One fixed branch, force-
       # pushed, so a warning set that changes three times a day is one PR that
       # updates, not three. A push made with the workflow token starts no
       # workflow runs of its own, so the quality gate is dispatched explicitly
-      # onto the branch, and auto-merge lands the PR once it passes.
+      # onto the branch. The run then waits for the gate and merges the PR
+      # itself, updating the branch if main moved meanwhile, and dispatches the
+      # website deploy, which the merge alone would not start. Auto-merge stays
+      # armed as the fallback if the gate outlasts the wait.
       - name: Publish the public warning snapshot
         env:
           GH_TOKEN: ${{ github.token }}
@@ -76,3 +96,22 @@ jobs:
           fi
           gh workflow run validate.yml --ref "$branch"
           gh pr merge "$pr" --auto --squash
+          for attempt in $(seq 1 24); do
+            sleep 15
+            state="$(gh pr view "$pr" --json state,mergeStateStatus --jq '"\(.state) \(.mergeStateStatus)"')"
+            echo "[$attempt] $state"
+            case "$state" in
+              MERGED*) break ;;
+              "OPEN CLEAN") gh pr merge "$pr" --squash || true ;;
+              "OPEN BEHIND")
+                gh pr update-branch "$pr" || true
+                sleep 5
+                gh workflow run validate.yml --ref "$branch" || true ;;
+            esac
+          done
+          if [ "$(gh pr view "$pr" --json state --jq .state)" = "MERGED" ]; then
+            echo "Snapshot merged; dispatching the website deploy."
+            gh workflow run deploy-pages.yml --ref main
+          else
+            echo "The quality gate outlasted the wait; auto-merge stays armed and the next run deploys."
+          fi
