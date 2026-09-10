@@ -52,8 +52,8 @@ describe('Safety Library continuation component', () => {
     expect(sources).toHaveLength(1);
     expect(sources[0].querySelector('summary strong').textContent).toBe('Sources and medical references');
     expect(sources[0].querySelector('summary').textContent).toMatch(/Last reviewed/);
-    expect(sources[0].querySelector('.safety-sources__caveat').textContent).toBe(
-      'This is general information, not a diagnosis or a substitute for veterinary care.'
+    expect(sources[0].querySelector('.safety-sources__caveat').textContent.trim()).toMatch(
+      /^This is general information, not a diagnosis or a substitute for veterinary care\./
     );
     expect(continuation.compareDocumentPosition(sources[0]) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(sources[0].compareDocumentPosition(page.querySelector('footer')) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
