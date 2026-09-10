@@ -51,6 +51,23 @@ function routeNumberGuidance(item){
 // The locked facts that name one rifugio, lift or protected area. These ride the
 // publication approval so a policy reaches the operational facts table through
 // the same human gate that approved the dossier carrying it, and no other way.
+
+// A livestock claim the agent answered "varies" is the answer, and the trail
+// record has a value for exactly that: livestockPresence 'seasonal'. Without
+// this the field stays 'unknown', so the scoring engine tells a reader
+// "whether livestock graze this route is unknown" for something ORMA did
+// establish -- while the publication simultaneously declares livestock a
+// reviewed category. Those two cannot both be right.
+//
+// Only 'varies' is mapped. Turning a supported sentence into 'likely' or 'none'
+// means reading free text for a safety value, which is how a description that
+// mentions cattle becomes a claim about grazing on the day someone walks.
+function seasonalSuitabilityFrom(item){
+  const livestock=(item?.lockedFacts||[]).find(fact=>fact.claimId==='livestock');
+  if(!livestock||livestock.humanAcceptedFinding!=='varies')return null;
+  return {livestockPresence:'seasonal'};
+}
+
 function operationalClaims(item){
   return (item?.lockedFacts||[])
     .filter(fact=>typeof fact.claimId==='string'&&Object.hasOwn(CLAIM_ENTITY_TYPE,fact.claimId))
@@ -142,6 +159,9 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
         ormaVerified: true,
         routeNumberGuidance:routeGuidance,
         ...verifiedFields,
+        // After verifiedFields, which carry the previous record forward: what the
+        // dossier established outranks what the trail used to say.
+        ...(seasonalSuitabilityFrom(item)||{}),
         reviewedAt: item.verifiedAt.slice(0,10), reviewedBy:'ORMA verified-trail workflow',
         verified:{ categories:['water','heat','exposure','livestock','surfaceHazards','access'], sources:['Locked ORMA evidence dossier'], date:item.verifiedAt.slice(0,10) },
         graduation:{ status:'verified', required:['photo','route','routeNumbers','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'], completed:['photo','route','routeNumbers','mapPoints','elevation','water','heat','exposure','livestock','surfaceHazards','access'] },
@@ -169,4 +189,4 @@ function buildPublicationStaging(editorialQueue, execution, reviewQueue, options
   };
 }
 
-module.exports = { TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };
+module.exports = {seasonalSuitabilityFrom, TARGETS, VERIFIED_FIELDS, STRUCTURED_FIELDS, structuredFieldsFromTrail, verifiedFieldsFor, latestDecisions, routeNumberGuidance, buildPublicationStaging };
