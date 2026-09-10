@@ -6,7 +6,7 @@ const {summarize}=require('./build-live-orchestration');
 const {routeGuidanceBlockingReasons}=require('./compile-verified-dossier');
 const {
   MAX_AUTOMATED_ATTEMPTS,resolutionCandidates,ensureResolutionEntries,pendingAttempt,
-  completedAttempts,reconcileCompletedAttempt,addQueuedAttempt,
+  completedAttempts,reconcileCompletedAttempt,addQueuedAttempt,attemptStrategyText,
 }=require('./claim-resolution');
 
 const BASE_AGENTS=Object.freeze(['logistics','regulatoryRanger','terrainPoi']);
@@ -51,8 +51,10 @@ function queueClaimResolution(trail,entry,jobs,queued,at){
   const attempt=addQueuedAttempt(entry,job,at);
   job.jobType='trail-claim-resolution';job.resolutionAttempt=attempt.attemptNumber;
   job.maximumResolutionAttempts=MAX_AUTOMATED_ATTEMPTS;job.resolutionKey=entry.key;
-  job.resolutionStrategy=attempt.strategy;job.resolutionStrategyLabel=attempt.strategyLabel;
-  job.resolutionInstruction=attempt.instruction;job.notBefore=attempt.notBefore;
+  // The wording comes from the strategy table, not from the stored attempt.
+  const wording=attemptStrategyText(attempt);
+  job.resolutionStrategy=attempt.strategy;job.resolutionStrategyLabel=wording.label;
+  job.resolutionInstruction=wording.instruction;job.notBefore=attempt.notBefore;
   job.inputRefs=[...new Set([...(job.inputRefs||[]),entry.latestOutputRef].filter(Boolean))];
   queued.push(job);trail.jobIds.push(job.id);return job;
 }
@@ -174,6 +176,34 @@ async function restoreMissingGateReviews(store,state,queue,at,jobs=[]){
   return restored;
 }
 
+/**
+ * The strategy wording, dropped from attempts written before the lookup
+ * existed. Applied on the way out so the 240 KB already stored compacts on the
+ * first pass, rather than waiting for a migration nobody would run.
+ */
+function compactOrchestration(state){
+  if(!state||!Array.isArray(state.trails))return state;
+  return {...state,trails:state.trails.map(trail=>{
+    const ledger=trail&&trail.claimResolution;
+    if(!ledger||typeof ledger!=='object')return trail;
+    let changed=false;
+    const entries=Object.entries(ledger).map(([key,entry])=>{
+      if(!entry||!Array.isArray(entry.attempts))return [key,entry];
+      const attempts=entry.attempts.map(attempt=>{
+        if(!attempt||(attempt.instruction===undefined&&attempt.strategyLabel===undefined))return attempt;
+        // Only where the table can supply it again: an attempt whose strategy
+        // is no longer in STRATEGIES keeps its own words.
+        if(!attemptStrategyText({strategy:attempt.strategy}).instruction)return attempt;
+        changed=true;
+        const {instruction,strategyLabel,...kept}=attempt;
+        return kept;
+      });
+      return [key,changed?{...entry,attempts}:entry];
+    });
+    return changed?{...trail,claimResolution:Object.fromEntries(entries)}:trail;
+  })};
+}
+
 async function advanceTrailOrchestration(store,options={}){
   const at=options.at||new Date().toISOString(); const state=await store.getArtifact('trail-orchestration');
   if(!state)return {advanced:[],queued:[]};
@@ -292,8 +322,8 @@ async function advanceTrailOrchestration(store,options={}){
     approvalAllowed:nextQueue.items.filter(item=>item.state==='awaiting-human'&&item.approvalAllowed).length,blocked:nextQueue.items.filter(item=>item.state==='awaiting-human'&&!item.approvalAllowed).length};
     // Applied on the way out, so a queue that has already grown past the limit
     // compacts itself on the first pass instead of failing on every one.
-    await Promise.all([store.setArtifact('trail-orchestration',next),store.setArtifact('dossier-review-queue',fitReviewQueue(nextQueue))]);}
+    await Promise.all([store.setArtifact('trail-orchestration',compactOrchestration(next)),store.setArtifact('dossier-review-queue',fitReviewQueue(nextQueue))]);}
   return {advanced,restored,releasedGates,queued:queued.map(job=>job.id)};
 }
 
-module.exports={GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,RESOLVED_REVIEWS_KEPT,pruneResolvedReviews,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};
+module.exports={compactOrchestration,GATE_STATES,REVIEW_QUEUE_SAFE_BYTES,RESOLVED_REVIEWS_KEPT,pruneResolvedReviews,restoreMissingGateReviews,orchestrationJobIds,orchestrationJobs,timeValue,latest,dossierBlockingReasons,advanceTrailOrchestration};

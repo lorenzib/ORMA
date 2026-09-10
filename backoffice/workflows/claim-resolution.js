@@ -105,11 +105,31 @@ function reconcileCompletedAttempt(entry,job,result,at){
   return true;
 }
 
+/**
+ * The label and the instruction belong to the strategy, and the strategies are
+ * a frozen table in this file. Copying two of its columns onto every attempt,
+ * of every claim, of every trail duplicated a constant hundreds of times: they
+ * were 84% of trail-orchestration by the time it reached 287 KB. The id is
+ * enough, and the table is where it always was.
+ */
+function strategyById(id){
+  return STRATEGIES.find(strategy=>strategy.id===id)||null;
+}
+
+/** An attempt's wording, from the attempt if it predates the lookup, else the table. */
+function attemptStrategyText(attempt){
+  const strategy=strategyById(attempt&&attempt.strategy);
+  return {
+    label:(attempt&&attempt.strategyLabel)||(strategy&&strategy.label)||null,
+    instruction:(attempt&&attempt.instruction)||(strategy&&strategy.instruction)||null,
+  };
+}
+
 function addQueuedAttempt(entry,job,at){
   const strategy=strategyFor(entry);
   const notBefore=notBeforeFor(at,strategy.attemptNumber);
-  const attempt={attemptNumber:strategy.attemptNumber,strategy:strategy.id,strategyLabel:strategy.label,
-    instruction:strategy.instruction,status:'queued',jobId:job.id,scheduledAt:at,notBefore};
+  const attempt={attemptNumber:strategy.attemptNumber,strategy:strategy.id,
+    status:'queued',jobId:job.id,scheduledAt:at,notBefore};
   entry.attempts=[...(entry.attempts||[]),attempt];
   entry.state='researchable';entry.updatedAt=at;
   return attempt;
@@ -148,6 +168,6 @@ function mergeClaimResolutionResult(previous,next,job,at){
     strategy:job.resolutionStrategy,strategyLabel:job.resolutionStrategyLabel,completedAt:at}};
 }
 
-module.exports={MAX_AUTOMATED_ATTEMPTS,RESOLVABLE_FINDINGS,STRATEGIES,keyFor,strategyFor,notBeforeFor,
+module.exports={MAX_AUTOMATED_ATTEMPTS,RESOLVABLE_FINDINGS,STRATEGIES,strategyById,attemptStrategyText,keyFor,strategyFor,notBeforeFor,
   resolutionCandidates,ensureResolutionEntries,pendingAttempt,completedAttempts,resolutionStateFor,
   reconcileCompletedAttempt,addQueuedAttempt,annotateResolvedClaim,mergeClaimResolutionResult};
