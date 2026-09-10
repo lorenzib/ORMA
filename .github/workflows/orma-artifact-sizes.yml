@@ -1,0 +1,51 @@
+name: ORMA artifact sizes
+
+# Read-only. Backoffice artifacts are stored as one JSON string per document,
+# and Firestore refuses any property over 1,048,487 bytes. On 2026-09-10 the
+# worker began failing every pass on exactly that, with an error naming the
+# property and nothing else -- not the artifact, and not the part of it that
+# grew.
+#
+# This names both, and says whether the fix is to trim a field on every entry
+# or to keep fewer entries. It writes nothing.
+on:
+  workflow_dispatch:
+    inputs:
+      artifact:
+        description: 'Break down this artifact (blank uses the largest)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+concurrency:
+  group: orma-artifact-sizes
+  cancel-in-progress: false
+
+jobs:
+  sizes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FIREBASE_PROJECT_ID: dolopaws
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Check worker credentials
+        run: test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
+      - run: npm ci
+      - name: Report artifact sizes
+        env:
+          ARTIFACT: ${{ inputs.artifact }}
+        run: |
+          set -euo pipefail
+          if [ -n "$ARTIFACT" ]; then
+            npm run backoffice:artifact-sizes -- --artifact "$ARTIFACT"
+          else
+            npm run backoffice:artifact-sizes
+          fi
