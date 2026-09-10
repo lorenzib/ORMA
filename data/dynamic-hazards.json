@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-10T16:23:00.008Z",
+  "generatedAt": "2026-09-10T19:16:52.247Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-09-10T08:00:00+00:00",
       "expiresAt": "2026-09-10T23:59:00+00:00",
       "firstPublishedAt": "2026-09-08T16:25:49.979Z",
-      "lastSeenAt": "2026-09-10T16:23:00.008Z",
+      "lastSeenAt": "2026-09-10T19:16:52.247Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -42,7 +42,7 @@
       "effectiveAt": "2026-09-10T08:00:00+00:00",
       "expiresAt": "2026-09-10T23:59:00+00:00",
       "firstPublishedAt": "2026-09-08T16:25:49.979Z",
-      "lastSeenAt": "2026-09-10T16:23:00.008Z",
+      "lastSeenAt": "2026-09-10T19:16:52.247Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -91,7 +91,7 @@
       "effectiveAt": "2026-09-10T08:00:00+00:00",
       "expiresAt": "2026-09-11T17:59:00+00:00",
       "firstPublishedAt": "2026-09-08T16:25:49.979Z",
-      "lastSeenAt": "2026-09-10T16:23:00.008Z",
+      "lastSeenAt": "2026-09-10T19:16:52.247Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -116,7 +116,7 @@
       "effectiveAt": "2026-09-10T08:00:00+00:00",
       "expiresAt": "2026-09-11T23:59:00+00:00",
       "firstPublishedAt": "2026-09-08T16:25:49.979Z",
-      "lastSeenAt": "2026-09-10T16:23:00.008Z",
+      "lastSeenAt": "2026-09-10T19:16:52.247Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -165,7 +165,7 @@
       "effectiveAt": "2026-09-10T14:00:00+00:00",
       "expiresAt": "2026-09-10T22:00:00+00:00",
       "firstPublishedAt": "2026-09-10T04:26:20.707Z",
-      "lastSeenAt": "2026-09-10T16:23:00.008Z",
+      "lastSeenAt": "2026-09-10T19:16:52.247Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "osm-3982382",
@@ -262,7 +262,7 @@
       "effectiveAt": "2026-09-10T08:00:00+00:00",
       "expiresAt": "2026-09-10T23:59:00+00:00",
       "firstPublishedAt": "2026-09-08T16:25:49.979Z",
-      "lastSeenAt": "2026-09-10T16:23:00.008Z",
+      "lastSeenAt": "2026-09-10T19:16:52.247Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
