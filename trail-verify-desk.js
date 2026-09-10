@@ -216,7 +216,13 @@
   // blocking reason names the agent it belongs to -- "logistics/route-number-
   // sequence: ..." or "logistics: open question ..." -- so when they all name
   // the same one, that is who is being asked.
+  // Route guidance is mandatory and only Logistics can supply it. A dossier can
+  // also carry Ranger or Terrain findings, so the generic "all reasons name the
+  // same agent" rule below would otherwise fall back to the first output --
+  // usually the Cartographer -- and send the revision to somebody who cannot
+  // clear the gate.
   function agentFromBlockers(reasons){
+    if((reasons||[]).some(reason=>/^logistics\/(recommended-start|route-number-(status|sequence|switches))\s*:/.test(String(reason).trim())))return 'logistics';
     const named=new Set();
     for(const reason of reasons||[]){
       const match=/^([A-Za-z][A-Za-z0-9]*)\s*[/:]/.exec(String(reason).trim());
