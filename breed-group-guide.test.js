@@ -36,6 +36,7 @@ describe('interactive breed and build guide', () => {
     expect(images.every(image => image.getAttribute('alt') === '')).toBe(true);
     expect(images.every(image => fs.existsSync(path.resolve(__dirname, 'guides', image.getAttribute('src')))))
       .toBe(true);
+    expect(html).toMatch(/\.breed-card-image\{[^}]*object-position:center 42%;[^}]*filter:saturate\(1\.1\) contrast\(1\.035\) brightness\(1\.01\)/s);
   });
 
   test('keeps the emergency and breed cards together without a separate selector', () => {
