@@ -254,7 +254,7 @@ describe('returning homepage region + valley filters', () => {
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(document.getElementById('liAccountName').textContent).toBe('Teo');
     expect(document.getElementById('liDogCtxName').textContent).toBe('Teo');
-    expect(document.querySelector('.li-match-lbl').textContent).toBe('Match for Teo');
+    expect(document.querySelector('.li-match-lbl').textContent).toBe('For Teo');
     expect(document.querySelector('.li-match').getAttribute('title').length).toBeGreaterThan(10);
     expect(document.querySelector('.li-match-reason')).toBeNull();
   });
@@ -353,9 +353,9 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
   });
 
-  test('leads with three explained top picks and names alternatives after them', async () => {
-    // Five in-scope trails so the top three picks and the "Other good fits"
-    // alternatives both render.
+  test('leads with one explained recommendation and keeps alternatives compact', async () => {
+    // Five in-scope trails so the first recommendation and compact alternatives
+    // both render.
     const dolomitesFive = Array.from({ length: 5 }, (_, i) => ({
       id: `dol${i}`, name: `Dolomite Trail ${i}`, region: 'dolomites', valley: 'Val Gardena',
       area: 'Ortisei', lat: 46.57 + i / 100, lng: 11.67, curated: true, distance: 6,
@@ -372,16 +372,21 @@ describe('returning homepage region + valley filters', () => {
     await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
 
     expect(document.getElementById('returningHeading').textContent).toMatch(/^Best walk for Teo in Dolomites /);
-    // The first three cards are co-equal, fully explained answer cards.
     const rows = document.querySelectorAll('#returningTrailList .li-row');
-    expect([...rows].slice(0, 3).every(row => row.classList.contains('li-row--answer'))).toBe(true);
-    expect(document.querySelectorAll('#returningTrailList .li-row--answer')).toHaveLength(3);
-    expect(document.querySelectorAll('.li-answer-explanation')).toHaveLength(3);
+    expect(rows[0].classList.contains('li-row--answer')).toBe(true);
+    expect(document.querySelectorAll('#returningTrailList .li-row--answer')).toHaveLength(1);
+    expect(document.querySelectorAll('.li-answer-explanation')).toHaveLength(1);
     expect(document.querySelector('.li-answer-explanation').textContent).toContain('Why it fits Teo');
     expect(document.querySelector('.li-answer-explanation').textContent).toContain('What to know today');
-    // The alternatives heading follows the three picks, before the fourth card.
-    expect(document.querySelector('.li-alternatives-heading').textContent).toContain('Other good fits');
-    expect(rows[3].classList.contains('li-row--answer')).toBe(false);
+    expect(document.querySelector('.li-answer-open').textContent).toBe('View trail details');
+    expect(document.querySelector('.li-answer-map').textContent).toBe('Show on map');
+    expect(document.querySelector('.li-alternatives-heading').textContent).toContain('Other options for Teo');
+    expect(rows[1].classList.contains('li-row--answer')).toBe(false);
+    expect([...rows].map(row => row.dataset.rank)).toEqual(['1', '2', '3', '4', '5']);
+    expect(document.querySelector('.li-match b').textContent).toBe('Strong option');
+    expect(document.querySelector('.li-match-confidence').textContent).toBe('High confidence');
+    expect(document.querySelector('.li-row-trust').textContent).toContain('ORMA route-audited');
+    expect(document.querySelector('.li-row--answer').textContent).not.toContain('86%');
   });
 
   test('a future date is reflected in the recommendation instead of being labelled today', async () => {
@@ -465,6 +470,10 @@ describe('map-first returning homepage layout contract', () => {
     expect(routeLayer).toContain("matchColourExpression('score')");
     expect(routeLayer).not.toContain("['get', 'safetyLevel']");
     expect(markerLayer).toContain("matchColourExpression('score')");
+    expect(markerLayer).toContain("id: 'trail-rank-labels'");
+    expect(markerLayer).toContain("'text-field': ['to-string', ['get', 'rank']]");
+    expect(markerLayer).toContain("'text-font': window.ORMAMapStyle.FONT_BOLD");
+    expect(markerLayer).toContain("'#9AA19C'");
     expect(script).toContain('Where are we going today, ${profile.name}?');
     expect(script).toContain('Trails ranked for ${profile.name}\\u2019s needs');
     expect(script).not.toContain('trails scored`');
@@ -480,7 +489,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(html).not.toContain('id="liRecordFab"');
     expect(html).not.toContain('class="li-pane-toggle"');
     expect(html).not.toContain('<details class="li-legend">');
-    expect(html).not.toContain('Map key');
+    expect(html).toContain('class="li-rank-map-key" aria-label="Map key"');
     // The sheet opens at the middle snap. It used to open at the lowest, which
     // gives the list ~50px while the card at the top of it -- the whole point
     // of the page -- is over 400px tall, so the recommendation arrived as a
@@ -570,7 +579,7 @@ describe('map-first returning homepage layout contract', () => {
     expect(script).toMatch(/id: 'trail-paths-casing'[\s\S]*?minzoom: 7[\s\S]*?'line-width': \['interpolate'[\s\S]*?10, 8[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     // Halo is a white casing beneath the raster now, not a cream halo above it.
     expect(script).toMatch(/id: 'trail-paths-orma-halo'[\s\S]*?'line-color': '#FFFFFF'[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
-    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-opacity': 0\.55[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
+    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-opacity': \[[\s\S]*?0\.5, 0\.12[\s\S]*?\}, 'waymarked-hiking-layer'\);/);
     expect(script).not.toContain("id: 'trail-paths-match-outline'");
     // The guest map is coloured by match score against the medium-dog profile,
     // not by the trail's safety level, green/amber/red has one meaning now.

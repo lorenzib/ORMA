@@ -2245,10 +2245,9 @@ body.map-fs-open{overflow:hidden;}
   text-align:center;background:transparent;border:0;border-left:1px dashed var(--paper-line);border-radius:0;
   padding:8px;
 }
-.map-callout .li-match b{font-size:21px;line-height:1;}
-.map-callout .li-match b span{font-size:12px;}
+.map-callout .li-match b{font-size:14px;line-height:1.15;}
 .map-callout .li-match-lbl{font-size:8px;letter-spacing:.09em;}
-.map-callout .li-match-tier{font-size:10px;padding:3px 9px;}
+.map-callout .li-match-confidence{font-size:9px;padding:4px 8px;}
 .map-callout .close{cursor:pointer;color:var(--ink-soft);font-size:16px;line-height:1;padding-left:2px;align-self:flex-start;}
 
 @media(max-width:700px){
@@ -2258,7 +2257,7 @@ body.map-fs-open{overflow:hidden;}
   .map-callout .close{grid-column:3;grid-row:1;}
   .map-callout #mapCalloutMatch{grid-column:2 / span 2;grid-row:2;}
   .map-callout .li-match{min-height:0;width:100%;flex-direction:row;justify-content:flex-start;gap:8px;padding:8px 10px;border-left:0;border-top:1px dashed var(--paper-line);}
-  .map-callout .li-match b{font-size:17px;}
+  .map-callout .li-match b{font-size:13px;}
   .map-callout .li-match-lbl{display:inline;}
   .map-callout-actions{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;max-width:none;}
   .map-callout-open,.map-callout-save,.map-callout-directions{min-height:38px;padding:7px 5px;font-size:10.5px;}
@@ -3513,6 +3512,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-rows{padding:8px 12px 20px;display:flex;flex-direction:column;gap:8px;}
 .li-row{
   display:flex;
+  position:relative;
   gap:12px;
   align-items:center;
   padding:12px;
@@ -3520,6 +3520,13 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   background:#fff;
   border:1px solid var(--paper-line);
   cursor:pointer;
+}
+.li-result-rank{
+  position:absolute;top:-7px;left:-7px;z-index:2;
+  display:grid;place-items:center;width:24px;height:24px;
+  box-sizing:border-box;border:2px solid #fff;border-radius:50%;
+  color:#fff;font:800 10px/1 'Inter',sans-serif;
+  box-shadow:0 2px 7px rgba(27,31,25,.24);
 }
 .li-row:hover{background:#FAF8F1;}
 .li-row.tc-selected{background:#EAF3EC;border-color:#9FC4B0;}
@@ -3563,6 +3570,9 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
   text-overflow:ellipsis;
 }
 .li-row-badges{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;}
+.li-row-trust{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:6px;color:#748078;font:600 9.5px/1.3 'Inter',sans-serif;}
+.li-row-trust strong{color:var(--accent);font-weight:750;}
+.li-row-trust strong+span::before{content:"·";margin-right:5px;color:#A0A8A1;}
 /* "Trail rating · Low-risk" row (design TrailRow) */
 /* Pre-auth boot (see the inline script in index.html's head): members
    see their shell immediately instead of a guest-homepage flash. */
@@ -3622,10 +3632,9 @@ html.early-member .topnav{display:none;}
   border-left:1px dashed var(--paper-line);
   padding-left:10px;
 }
-.li-match b{font:800 15px/1 'Inter',sans-serif;}
-.li-match b span{font-size:9px;}
+.li-match b{max-width:132px;text-align:center;font:800 12px/1.15 'Inter',sans-serif;}
 .li-match-lbl{font:700 7.5px 'Inter',sans-serif;letter-spacing:.03em;color:var(--ink-soft);white-space:nowrap;text-transform:uppercase;}
-.li-match-tier{font-size:9px;font-weight:700;padding:2px 6px;border-radius:var(--radius-pill);white-space:nowrap;}
+.li-match-confidence{padding:3px 7px;border-radius:var(--radius-pill);background:#F0F2ED;color:#5E6C62;font:700 8.5px/1 'Inter',sans-serif;white-space:nowrap;}
 /* In the desktop results pane, quick actions belong together on the left.
    The match panel spans both card rows on the right, giving the personalised
    result enough space to read as the card's primary decision aid. */
@@ -3645,10 +3654,9 @@ html.early-member .topnav{display:none;}
     min-width:0;
     padding:8px 12px;
   }
-  .li-match b{font-size:20px;}
-  .li-match b span{font-size:11px;}
+  .li-match b{font-size:13.5px;}
   .li-match-lbl{font-size:8.5px;letter-spacing:.055em;}
-  .li-match-tier{font-size:10px;padding:3px 8px;}
+  .li-match-confidence{font-size:9px;padding:4px 8px;}
   .li-heart{grid-column:4;grid-row:1/3;align-self:center;}
   .li-row-bar{
     grid-column:1/3;
@@ -3701,6 +3709,7 @@ html.early-member .topnav{display:none;}
     border-top:1px dashed var(--paper-line);
     padding:7px 0 0;
   }
+  .li-result-rank{top:6px;left:6px;}
   .li-match-lbl{display:none;}
   .li-row-badges,
   .li-answer-explanation{grid-column:1/-1;}
@@ -3753,6 +3762,23 @@ html.early-member .topnav{display:none;}
 /* Layers chip lives in the map's top-left corner; its panel opens below */
 .li-map .map-btn{top:10px;left:10px;bottom:auto;}
 .li-map .map-panel{top:52px;left:10px;bottom:auto;}
+.li-rank-map-key{
+  position:absolute;left:12px;bottom:54px;z-index:7;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  max-width:calc(100% - 24px);box-sizing:border-box;padding:7px 9px;
+  border:1px solid rgba(46,64,52,.16);border-radius:10px;
+  background:rgba(255,255,255,.94);box-shadow:0 5px 16px -10px rgba(27,31,25,.45);
+  color:var(--ink);font:700 9px/1 'Inter',sans-serif;
+  pointer-events:none;
+}
+.li-rank-map-key span{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
+.li-rank-map-key i{display:grid;place-items:center;width:16px;height:16px;border-radius:50%;color:#fff;font:800 8px/1 'Inter',sans-serif;font-style:normal;}
+.li-rank-map-key .is-ranked{background:#34483B;}
+.li-rank-map-key .is-strong,.li-rank-map-key .is-caution,.li-rank-map-key .is-stop{width:8px;height:8px;margin:0 4px;}
+.li-rank-map-key .is-strong{background:#4A7856;}
+.li-rank-map-key .is-caution{background:#A96F1D;}
+.li-rank-map-key .is-stop{background:#9C3A25;}
+.li-rank-map-key .is-other{width:8px;height:8px;margin:0 4px;background:#9AA19C;opacity:.55;}
 .li-map .li-map-expand{top:10px;right:10px;bottom:auto;width:auto;height:36px;min-height:36px;}
 /* Expand owns the first slot in the right-hand stack; MapLibre's zoom and
    locate controls begin underneath it, so the two groups cannot overlap. */
@@ -4156,22 +4182,24 @@ html.early-member .topnav{display:none;}
 .li-list-options>summary{width:max-content;color:var(--ink-soft);font:700 10.5px 'Inter',sans-serif;cursor:pointer;}
 .li-body{grid-template-columns:minmax(0,1.05fr) minmax(480px,.95fr);}
 .li-list-title-row{padding-right:142px;}
-.li-row--answer{border-color:#9FC4B0;background:#fff;box-shadow:0 10px 26px -20px rgba(32,55,40,.55);cursor:default;}
-.li-answer-explanation{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 18px;padding:14px 15px;border-radius:12px;background:#EEF3EC;color:var(--ink);}
+.li-row--answer{border:2px solid #8FB89F;background:#fff;box-shadow:0 14px 30px -20px rgba(32,55,40,.6);cursor:default;}
+.li-answer-explanation{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 20px;padding:15px 16px;border-radius:12px;background:#EEF3EC;color:var(--ink);}
 .li-answer-explanation b{font:800 11px 'Inter',sans-serif;letter-spacing:.02em;}
 .li-answer-explanation ul{margin:7px 0 0;padding-left:17px;color:var(--ink-soft);font:600 11px/1.45 'Inter',sans-serif;}
 .li-answer-explanation li+li{margin-top:4px;}
-.li-answer-open{grid-column:1/-1;width:max-content;color:var(--accent);font:800 12px 'Inter',sans-serif;text-decoration:none;}
-.li-answer-open:hover{text-decoration:underline;}
+.li-answer-actions{grid-column:1/-1;display:flex;align-items:center;gap:10px;}
+.li-answer-open{display:inline-flex;align-items:center;justify-content:center;min-height:40px;box-sizing:border-box;padding:0 16px;border-radius:10px;background:var(--accent);color:#fff;font:800 12px 'Inter',sans-serif;text-decoration:none;}
+.li-answer-open:hover{background:var(--accent-hover);color:#fff;}
+.li-answer-map{min-height:40px;padding:0 12px;border:0;background:transparent;color:var(--accent);font:750 11.5px 'Inter',sans-serif;cursor:pointer;}
+.li-answer-map:hover{text-decoration:underline;}
 .li-alternatives-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 4px 1px;color:var(--ink-soft);font:800 10px 'Inter',sans-serif;letter-spacing:.09em;text-transform:uppercase;}
 .li-alternatives-heading a{color:var(--accent);font-size:9.5px;text-decoration:none;}
 @media (min-width:641px){
-  .li-row--answer{grid-template-columns:104px minmax(0,1fr) minmax(118px,142px) 34px;grid-template-rows:auto auto auto;padding:14px;}
+  .li-row--answer{grid-template-columns:104px minmax(0,1fr) minmax(128px,148px) 34px;grid-template-rows:auto auto;padding:14px;}
   .li-row--answer .li-thumb{width:104px;height:96px;grid-row:1;}
   .li-row--answer .li-match{grid-row:1;}
   .li-row--answer .li-heart{grid-row:1;}
   .li-row--answer .li-answer-explanation{grid-column:1/-1;grid-row:2;}
-  .li-row--answer .li-row-bar{grid-column:1/-1;grid-row:3;margin:0 -14px -14px;}
 }
 @media (max-width:700px){
   .li-location-gate{width:calc(100% - 28px);min-height:0;grid-template-columns:1fr;}
@@ -4180,5 +4208,7 @@ html.early-member .topnav{display:none;}
   .li-location-visual-label{left:22px;bottom:20px;font-size:16px;}
   .li-area-fields{grid-template-columns:1fr;}
   .li-answer-explanation{width:100%;box-sizing:border-box;grid-template-columns:1fr;}
-  .li-answer-open{grid-column:1;}
+  .li-answer-actions{grid-column:1;}
+  .li-answer-open{flex:1;}
+  .li-rank-map-key{right:10px;left:10px;bottom:96px;gap:6px;justify-content:center;padding:6px 8px;font-size:8px;}
 }

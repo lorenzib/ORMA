@@ -12,7 +12,7 @@ describe('logged-in homepage mapped-route hierarchy', () => {
     expect(html.indexOf('trail-route-refs.js')).toBeLessThan(html.indexOf('script.js?v='));
   });
 
-  test('the catalogue corridor carries the active dog match colour', () => {
+  test('the shortlist carries match colours while other routes recede', () => {
     // Four stacked rails (halo, line, mapped-casing, mapped-line) collapsed
     // into one cased corridor once masking the raster stopped being the goal.
     // What must survive is the personalised colour, not the layer count.
@@ -20,7 +20,8 @@ describe('logged-in homepage mapped-route hierarchy', () => {
     expect(script).toContain("const catalogueMatchColour = window.ORMAMapStyle.matchColourExpression('score');");
     expect(fs.readFileSync(path.join(root, 'map-style.js'), 'utf8'))
       .toContain("MATCH_COLOURS = Object.freeze({ good: '#4A7856', fair: '#C98A2E', poor: '#9C3A25' })");
-    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-color': catalogueMatchColour/);
+    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-color': \[[\s\S]*?catalogueMatchColour, '#9AA19C'/);
+    expect(script).toMatch(/id: 'trail-paths-orma-line'[\s\S]*?'line-opacity': \[[\s\S]*?0\.5, 0\.12/);
     expect(script).not.toContain("id: 'trail-paths-mapped-casing'");
     expect(script).not.toContain("id: 'trail-paths-mapped-line'");
     expect(script).toContain("13, 20, 16, 26");

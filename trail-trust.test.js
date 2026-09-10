@@ -191,10 +191,11 @@ describe('trail data trust states', () => {
     expect(browse).toContain('trust.riskLabel(t, s[0])');
     expect(detail).toContain('trust.exposureAssessment(t)');
     expect(detail).toContain('trust.livestockAssessment(t, text)');
-    // The logged-in homepage rows no longer show a heat badge; honesty about
-    // data confidence now lives in the ≈ prefix on estimated (imported)
-    // trails' match scores and the shared trailSafetyLabel() wording.
-    expect(home).toContain("isEst ? '≈' : ''");
+    // The logged-in homepage now states confidence and provenance directly
+    // instead of asking owners to infer uncertainty from an approximate score.
+    expect(home).toContain('function liRecommendationPresentation');
+    expect(home).toContain('window.DoloPawsEvidenceV1.tierLabel');
+    expect(home).toContain('function liProvenanceHtml');
     expect(home).toContain('trailSafetyLabel(t)');
     expect(detail).not.toContain('No livestock noted in our field data');
 

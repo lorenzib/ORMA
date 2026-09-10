@@ -109,10 +109,10 @@ const NEW_MATCH_THRESHOLD = 70; // trails scoring at/above this count as "a matc
 let adjustOverride = null; // session-only override, never saved to the profile
 let showFullList = false;  // homepage: top matches first, full catalog on demand
 const TOP_MATCHES = 6;
-// The recommendation view leads with this many co-equal, fully explained picks
-// before the compact "Other good fits" list, so a visitor sees a small shortlist
-// of best matches rather than a single answer.
-const TOP_PICKS = 3;
+// One recommendation receives the full explanation and primary action. The
+// remaining ranked trails stay compact alternatives rather than competing
+// with the decision ORMA is helping the owner make.
+const TOP_PICKS = 1;
 let currentFavorites = {};
 let homeActionStatusTimer = null;
 
@@ -1304,9 +1304,14 @@ function initTrailMap(){
       minzoom: 7,
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: {
-        'line-color': catalogueMatchColour,
+        'line-color': [
+          'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES],
+          catalogueMatchColour, '#9AA19C',
+        ],
         'line-width': ['interpolate', ['linear'], ['zoom'], 7, 5, 10, 10, 13, 15, 16, 20],
-        'line-opacity': 0.55,
+        'line-opacity': [
+          'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES], 0.5, 0.12,
+        ],
       },
     }, 'waymarked-hiking-layer');
     // Once a visitor chooses a trail, give it the same clear, route-first
@@ -1320,8 +1325,8 @@ function initTrailMap(){
     // with the waymarked raster drawing on top. Waymarked's own line and its
     // numbered shields then run down the middle, so the numbers a walker
     // actually follows stay readable instead of being covered and reprinted.
-    // (The catalogue rails above deliberately mask the raster and keep their
-    // own shields, they are "which trails exist", not "this is your route".)
+    // The catalogue rails above remain subdued; the selected route is the
+    // only corridor that should read as the walk the owner has chosen.
     trailMapInstance.addLayer({
       id:'trail-selected-route-casing', type:'line', source:'trail-selected-route',
       layout:{ 'line-join':'round', 'line-cap':'round', visibility:'none' },
@@ -1362,25 +1367,53 @@ function initTrailMap(){
       paint: { 'line-color': '#000', 'line-width': 18, 'line-opacity': 0.01 },
     }, 'waymarked-hiking-layer');
 
-    // Every trailhead remains individually visible at every zoom. Aggregate
-    // numbers hide the match colour and make it harder to scan actual trails.
+    // Keep the six decision candidates prominent and numbered. The rest of
+    // the catalogue remains available as quiet geographic context instead of
+    // competing with the ranked shortlist.
     trailMapInstance.addSource('trail-points', {
       type: 'geojson',
       data: { type: 'FeatureCollection', features: [] },
     });
-    // Pin colour = match tier for THIS dog (mirrors the on-map legend and
-    // the % badges in the list); a red ring marks saved trails.
+    // Pin colour = match category for THIS dog; a red ring marks saved trails.
     trailMapInstance.addLayer({
       id: 'trail-unclustered',
       type: 'circle',
       source: 'trail-points',
       paint: {
-        'circle-color': window.ORMAMapStyle.matchColourExpression('score'),
-        'circle-radius': 7,
-        'circle-stroke-width': 2.5,
+        'circle-color': [
+          'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES],
+          window.ORMAMapStyle.matchColourExpression('score'), '#9AA19C',
+        ],
+        'circle-radius': [
+          'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES], 11, 4,
+        ],
+        'circle-opacity': [
+          'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES], 1, 0.42,
+        ],
+        'circle-stroke-width': [
+          'case', ['<=', ['coalesce', ['get', 'rank'], 999], TOP_MATCHES], 2.5, 1,
+        ],
         'circle-stroke-color': [
           'case', ['==', ['coalesce', ['get', 'saved'], 0], 1], '#9C3A25', '#fff',
         ],
+      },
+    });
+    trailMapInstance.addLayer({
+      id: 'trail-rank-labels',
+      type: 'symbol',
+      source: 'trail-points',
+      filter: ['<=', ['get', 'rank'], TOP_MATCHES],
+      layout: {
+        'text-field': ['to-string', ['get', 'rank']],
+        'text-font': window.ORMAMapStyle.FONT_BOLD,
+        'text-size': 11,
+        'text-allow-overlap': true,
+        'text-ignore-placement': true,
+      },
+      paint: {
+        'text-color': '#FFFFFF',
+        'text-halo-color': 'rgba(46,64,52,.45)',
+        'text-halo-width': 0.7,
       },
     });
     trailMapInstance.addLayer({
@@ -1390,7 +1423,7 @@ function initTrailMap(){
       filter: ['==', ['get', 'id'], '__none__'],
       paint: {
         'circle-color': 'rgba(0,0,0,0)',
-        'circle-radius': 12,
+        'circle-radius': 15,
         'circle-stroke-width': 4,
         'circle-stroke-color': '#fff',
       },
@@ -1740,11 +1773,12 @@ function updatePathLayer(list){
   }
   const features = list
     .filter(t => Array.isArray(t.path) && t.path.length > 1)
-    .map(t => ({
+    .map((t, index) => ({
       type: 'Feature',
       properties: {
         id: t.id, name: t.name, safetyLevel: t.safetyLevel,
         score: typeof t.score === 'number' ? t.score : 0,
+        rank: index + 1,
       },
       geometry: { type: 'LineString', coordinates: t.path.map(([lat, lng]) => [lng, lat]) },
     }));
@@ -1771,7 +1805,7 @@ function updateMapMarkers(list){
     return;
   }
 
-  const features = list.map(t => {
+  const features = list.map((t, index) => {
     if(typeof t.lat !== 'number' || typeof t.lng !== 'number') return null;
     // Prefer the verified trailhead over an approximate area coordinate.
     let markerLat = t.lat, markerLng = t.lng;
@@ -1785,6 +1819,7 @@ function updateMapMarkers(list){
       properties: {
         id: t.id, name: t.name, safetyLevel: t.safetyLevel,
         score: typeof t.score === 'number' ? t.score : 0,
+        rank: index + 1,
         saved: currentFavorites[t.id] ? 1 : 0,
       },
       geometry: { type: 'Point', coordinates: [markerLng, markerLat] },
@@ -2979,17 +3014,60 @@ function liPersonalisationText(value){
     '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
   }[ch]));
 }
+function liRecommendationPresentation(trail, profile){
+  const recommendation = trail && trail.recommendation ? trail.recommendation : {};
+  const score = Number.isFinite(recommendation.score) ? recommendation.score
+    : Number.isFinite(trail && trail.score) ? trail.score : 0;
+  const categories = {
+    'strong-option': { label:'Strong option', color:'#4A7856' },
+    recommended: { label:'Strong option', color:'#4A7856' },
+    'possible-with-cautions': { label:'Possible with cautions', color:'#A96F1D' },
+    'not-recommended': { label:'Not recommended', color:'#9C3A25' },
+  };
+  const category = categories[recommendation.category] || (score >= 85
+    ? categories['strong-option']
+    : score >= 60 ? categories['possible-with-cautions'] : categories['not-recommended']);
+  const confidence = {
+    high:'High confidence',
+    medium:'Moderate confidence',
+    low:'Limited data',
+  }[recommendation.confidence] || 'Confidence unavailable';
+  const evidenceTier = recommendation.evidenceTier || (trail && trail.curated === false ? 'imported' : 'route-audited');
+  const provenance = window.DoloPawsEvidenceV1 && typeof window.DoloPawsEvidenceV1.tierLabel === 'function'
+    ? window.DoloPawsEvidenceV1.tierLabel(evidenceTier)
+    : ({
+      'field-verified':'ORMA field-verified',
+      'route-audited':'ORMA route-audited',
+      mapped:'Mapped route',
+      imported:'Imported map data',
+    }[evidenceTier] || 'Evidence status unavailable');
+  const checkedAt = trail && (trail.reviewedAt || (trail.verified && trail.verified.date));
+  let checkedLabel = '';
+  if(/^\d{4}-\d{2}-\d{2}$/.test(String(checkedAt || ''))){
+    const checkedDate = new Date(`${checkedAt}T00:00:00Z`);
+    if(!Number.isNaN(checkedDate.getTime())){
+      checkedLabel = `Checked ${checkedDate.toLocaleDateString(undefined, {
+        day:'numeric', month:'short', year:'numeric', timeZone:'UTC',
+      })}`;
+    }
+  }
+  const dogName = profile && profile.name ? profile.name : 'your dog';
+  return { ...category, confidence, provenance, checkedLabel, dogName };
+}
 function liMatchColHtml(t, profile, overrides){
-  const tier = liMatchTier(t.score);
-  const isEst = t.curated === false;
-  const dogName = profile && profile.name ? profile.name : '';
-  const matchLabel = dogName ? `Match for ${dogName}` : 'Match for your dog';
+  const presentation = liRecommendationPresentation(t, profile);
   const reason = matchReason(t, overrides);
-  return `<div class="li-match" aria-label="${t.score}% match${isEst ? ' (estimated)' : ''}" title="${liPersonalisationText(reason)}">
-      <b style="color:${tier.color};">${isEst ? '≈' : ''}${t.score}<span>%</span></b>
-      <span class="li-match-lbl">${liPersonalisationText(matchLabel)}</span>
-      <span class="li-match-tier" style="background:${tier.color}1f;color:${tier.color};">${tier.label}</span>
+  return `<div class="li-match" aria-label="${liPersonalisationText(`${presentation.label} for ${presentation.dogName}. ${presentation.confidence}.`)}" title="${liPersonalisationText(reason)}">
+      <b style="color:${presentation.color};">${presentation.label}</b>
+      <span class="li-match-lbl">For ${liPersonalisationText(presentation.dogName)}</span>
+      <span class="li-match-confidence">${presentation.confidence}</span>
     </div>`;
+}
+
+function liProvenanceHtml(trail, profile){
+  const presentation = liRecommendationPresentation(trail, profile);
+  const detail = presentation.checkedLabel ? `<span>${liPersonalisationText(presentation.checkedLabel)}</span>` : '';
+  return `<div class="li-row-trust"><strong>${liPersonalisationText(presentation.provenance)}</strong>${detail}</div>`;
 }
 
 function liRecommendationExplanationHtml(trail, profile){
@@ -3011,7 +3089,10 @@ function liRecommendationExplanationHtml(trail, profile){
     : '';
   return `<div class="li-answer-explanation">
     ${fit}${know}
-    <a class="li-answer-open" href="trail.html?id=${encodeURIComponent(trail.id)}">Open this trail →</a>
+    <div class="li-answer-actions">
+      <a class="li-answer-open" href="trail.html?id=${encodeURIComponent(trail.id)}">View trail details</a>
+      <button type="button" class="li-answer-map locate-btn" data-id="${liPersonalisationText(trail.id)}">Show on map</button>
+    </div>
   </div>`;
 }
 
@@ -3177,6 +3258,8 @@ async function renderReturningHomepage(profile, options = {}){
     ? `<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 14px;margin-bottom:12px;background:var(--sage-dim);border-radius:12px;font-size:12.5px;font-weight:600;color:var(--ink);">${t('home.fitLine', {a: fitCount, b: displayList.length})}</div>`
     : '';
 
+  const resultRanks = new Map(displayList.map((trail, index) => [trail.id, index + 1]));
+
   listEl.innerHTML = summaryBar + pageList.map((t, index) => {
     const isFav = !!currentFavorites[t.id];
     const isNew = newIds.has(t.id);
@@ -3184,25 +3267,25 @@ async function renderReturningHomepage(profile, options = {}){
     const thumb = trailCardVisual(t, { className:'li-thumb photo', dataTrailId:t.id, clickable:true });
     const selected = t.id === selectedTrailId;
     const newBadge = isNew ? productBadge('new', window.t('badge.new')) : '';
-    const importedBadge = t.curated === false
-      ? (window.DoloPawsIcons ? window.DoloPawsIcons.badgeHtml('imported', window.t('badge.importedS')) : `<span class="badge-pill badge-imported">${window.t('badge.importedS')}</span>`)
-      : '';
+    const rank = resultRanks.get(t.id) || index + 1;
     const isPrimary = !showingSavedOnly && index < TOP_PICKS;
-    return `${isPrimary ? '' : index === TOP_PICKS && !showingSavedOnly ? '<div class="li-alternatives-heading"><span>Other good fits</span><a href="browse-trails.html">See the full catalogue →</a></div>' : ''}
-    <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}" id="trail-card-${t.id}" data-id="${t.id}"${dim ? ' style="opacity:.55;"' : ''}>
+    return `${isPrimary ? '' : index === TOP_PICKS && !showingSavedOnly ? `<div class="li-alternatives-heading"><span>Other options for ${liPersonalisationText(profile && profile.name ? profile.name : 'your dog')}</span><a href="browse-trails.html">See the full catalogue →</a></div>` : ''}
+    <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}" aria-label="Rank ${rank}: ${liPersonalisationText(t.name)}"${dim ? ' style="opacity:.55;"' : ''}>
+      <span class="li-result-rank" aria-hidden="true" style="background:${liRecommendationPresentation(t, profile).color};">${rank}</span>
       ${thumb}
       <div class="li-row-body">
         <a href="trail.html?id=${t.id}" class="li-row-name">${t.name}</a>
         <div class="li-row-meta" title="${matchReason(t, overrides)}">${liRowMeta(t)}</div>
-        ${newBadge || importedBadge ? `<div class="li-row-badges">${newBadge}${importedBadge}</div>` : ''}
+        ${newBadge ? `<div class="li-row-badges">${newBadge}</div>` : ''}
+        ${liProvenanceHtml(t, profile)}
         <div class="li-rating-row"><span class="li-rating-kick">Trail rating</span><span class="safety-badge ${safetyClass(t.safetyLevel)}">${trailSafetyLabel(t)}</span></div>
       </div>
       ${liMatchColHtml(t, profile, overrides)}
       <button type="button" class="li-heart save-btn" data-id="${t.id}" aria-pressed="${isFav}" aria-label="${isFav ? 'Remove ' + t.name + ' from saved trails' : 'Save ' + t.name}">${isFav ? '♥' : '♡'}</button>
-      <div class="li-row-bar">
+      ${isPrimary ? '' : `<div class="li-row-bar">
         <button type="button" class="li-bar-act locate-btn" data-id="${t.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>See on map</button>
         ${directionsBarHtml(t)}
-      </div>
+      </div>`}
       ${isPrimary ? liRecommendationExplanationHtml(t, profile) : ''}
     </div>`;
   }).join('');
