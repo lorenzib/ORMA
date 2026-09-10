@@ -1,6 +1,7 @@
 'use strict';
 
 const {specialistJob}=require('./apply-dossier-review');
+const {compactReviewQueue}=require('./review-queue-compaction');
 const {summarize}=require('./build-live-orchestration');
 const {routeGuidanceBlockingReasons}=require('./compile-verified-dossier');
 const {
@@ -289,7 +290,9 @@ async function advanceTrailOrchestration(store,options={}){
   // alone discarded queue repairs on any pass where no trail changed state.
   if(advanced.length||restored.length||releasedGates.length){next.generatedAt=at;next.summary=summarize(next.trails);nextQueue.updatedAt=at;nextQueue.summary={awaitingHuman:nextQueue.items.filter(item=>item.state==='awaiting-human').length,
     approvalAllowed:nextQueue.items.filter(item=>item.state==='awaiting-human'&&item.approvalAllowed).length,blocked:nextQueue.items.filter(item=>item.state==='awaiting-human'&&!item.approvalAllowed).length};
-    await Promise.all([store.setArtifact('trail-orchestration',next),store.setArtifact('dossier-review-queue',nextQueue)]);}
+    // Applied on the way out, so a queue that has already grown past the limit
+    // compacts itself on the first pass instead of failing on every one.
+    await Promise.all([store.setArtifact('trail-orchestration',next),store.setArtifact('dossier-review-queue',compactReviewQueue(nextQueue))]);}
   return {advanced,restored,releasedGates,queued:queued.map(job=>job.id)};
 }
 
