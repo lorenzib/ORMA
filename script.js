@@ -109,10 +109,10 @@ const NEW_MATCH_THRESHOLD = 70; // trails scoring at/above this count as "a matc
 let adjustOverride = null; // session-only override, never saved to the profile
 let showFullList = false;  // homepage: top matches first, full catalog on demand
 const TOP_MATCHES = 6;
-// One recommendation receives the full explanation and primary action. The
-// remaining ranked trails stay compact alternatives rather than competing
-// with the decision ORMA is helping the owner make.
-const TOP_PICKS = 1;
+// The top few recommendations each receive the full explanation and primary
+// action, presented as co-equal picks; the remaining ranked trails stay compact
+// alternatives below them.
+const TOP_PICKS = 3;
 let currentFavorites = {};
 let homeActionStatusTimer = null;
 let liExplanationMetricObserver = null;
