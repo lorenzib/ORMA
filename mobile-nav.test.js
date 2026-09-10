@@ -221,7 +221,7 @@ describe('shared navigation hardening', () => {
     expect(pages.length).toBeGreaterThan(150);
     pages.forEach(file => {
       expect(fs.readFileSync(file, 'utf8')).toMatch(
-        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=(?:20260823-[12]|20260831-1|20260901-[245]|20260905-[123]|20260908-1|20260909-1|20260910-1)"/
+        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=(?:20260823-[12]|20260831-1|20260901-[245]|20260905-[123]|20260908-1|20260909-1|20260910-[12])"/
       );
     });
   });

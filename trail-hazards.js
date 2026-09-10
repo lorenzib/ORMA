@@ -11,6 +11,16 @@
 
   function severityRank(value){ return { extreme:3, severe:2, moderate:1 }[value] || 0; }
 
+  // A warning past its own stated expiry is not shown, whatever the snapshot
+  // says: the snapshot is published on a cadence, and a missed refresh should
+  // degrade to no warning, never to yesterday's. An unreadable expiry keeps
+  // the warning, because a parsing quirk is not evidence of safety.
+  function isCurrent(item, now){
+    if(!item || !item.expiresAt) return true;
+    const expires = Date.parse(item.expiresAt);
+    return Number.isNaN(expires) || expires > now;
+  }
+
   function escapeHtml(value){
     return String(value == null ? '' : value).replace(/[&<>"']/g, character => ({
       '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;',
@@ -557,8 +567,10 @@
     const response = await fetch(`${prefix}data/dynamic-hazards.json`, { cache:'no-store' });
     if(!response.ok) return;
     const data = await response.json();
+    const now = Date.now();
     const hazards = (data.hazards || [])
       .filter(item => (item.trailIds || []).includes(identity.id) || (item.trailSlugs || []).includes(identity.slug))
+      .filter(item => isCurrent(item, now))
       .sort((a,b) => severityRank(b.severity) - severityRank(a.severity));
     reportedHazards = hazards.filter(item => item.origin === 'community');
     renderReportedHazards();
