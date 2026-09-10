@@ -309,9 +309,50 @@
     svg.append(line);return svg;
   }
 
+  /**
+   * The queue carries a summary of each agent output, not the record: the
+   * record is its own document, and copying every one of them into the queue
+   * is what pushed that artifact past what Firestore will store. So the full
+   * output is fetched when someone actually opens it, which is the only time
+   * it is read.
+   */
+  function machineOutput(output){
+    const raw=el('details','vd-raw');
+    const summary=el('summary','','Machine output');
+    raw.append(summary);
+    const body=el('pre','','');
+    raw.append(body);
+    let loaded=false;
+    raw.addEventListener('toggle',async()=>{
+      if(!raw.open||loaded)return;
+      loaded=true;
+      if(!output.resultRef){body.textContent=JSON.stringify(output.result||{},null,2);return;}
+      const id=String(output.resultRef).replace(/^firestore:/,'');
+      body.textContent='Loading…';
+      try{
+        const full=await artifact(id,`backoffice-data/${id}.json`,null);
+        body.textContent=full?JSON.stringify(full,null,2)
+          :'That agent output is no longer stored. The summary above is what the queue kept.';
+      }catch(error){
+        // A failed fetch must not read as an agent that found nothing.
+        loaded=false;
+        body.textContent=`Could not load the full output: ${error.message}`;
+      }
+    });
+    return raw;
+  }
+
   function evidenceBlock(item){
     const details=el('details','vd-evidence');
     details.append(el('summary','','Show the evidence'));
+    // A card whose detail the queue could not afford to carry says so, rather
+    // than looking like an agent that reported nothing.
+    if(item.detailWithheld&&!(item.specialistOutputs||[]).length){
+      const note=el('p','vd-evidence-withheld',
+        'The queue was too full to keep this review’s detail. Nothing is lost: each agent output is stored separately, listed below.');
+      details.append(note);
+      (item.specialistOutputRefs||[]).forEach(ref=>details.append(el('p','vd-raw',String(ref).replace(/^firestore:/,''))));
+    }
     (item.specialistOutputs||[]).forEach(output=>{
       const result=output.result||{};
       const panel=el('div','vd-evidence-panel');
@@ -322,9 +363,7 @@
         link.href=result.source.url;link.target='_blank';link.rel='noopener';
         panel.append(link);
       }
-      const raw=el('details','vd-raw');
-      raw.append(el('summary','','Machine output'),el('pre','',JSON.stringify(result,null,2)));
-      panel.append(raw);
+      panel.append(machineOutput(output));
       details.append(panel);
     });
     if(item.claimResolution&&item.claimResolution.length){

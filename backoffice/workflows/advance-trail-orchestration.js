@@ -1,7 +1,7 @@
 'use strict';
 
 const {specialistJob}=require('./apply-dossier-review');
-const {compactReviewQueue}=require('./review-queue-compaction');
+const {fitReviewQueue}=require('./review-queue-compaction');
 const {summarize}=require('./build-live-orchestration');
 const {routeGuidanceBlockingReasons}=require('./compile-verified-dossier');
 const {
@@ -292,7 +292,7 @@ async function advanceTrailOrchestration(store,options={}){
     approvalAllowed:nextQueue.items.filter(item=>item.state==='awaiting-human'&&item.approvalAllowed).length,blocked:nextQueue.items.filter(item=>item.state==='awaiting-human'&&!item.approvalAllowed).length};
     // Applied on the way out, so a queue that has already grown past the limit
     // compacts itself on the first pass instead of failing on every one.
-    await Promise.all([store.setArtifact('trail-orchestration',next),store.setArtifact('dossier-review-queue',compactReviewQueue(nextQueue))]);}
+    await Promise.all([store.setArtifact('trail-orchestration',next),store.setArtifact('dossier-review-queue',fitReviewQueue(nextQueue))]);}
   return {advanced,restored,releasedGates,queued:queued.map(job=>job.id)};
 }
 
