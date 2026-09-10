@@ -42,8 +42,9 @@ describe('Safety Library article headers', () => {
 
     expect(css).toMatch(/\.safety-photo-header\.section-page-head\{[^}]*position:relative;[^}]*min-height:clamp\(330px,36vw,470px\)[^}]*width:100%;[^}]*max-width:none;[^}]*border-radius:0/s);
     expect(css).toMatch(/\.safety-photo-header\.section-page-head::before\{[^}]*linear-gradient/s);
-    expect(css).toMatch(/\.safety-photo-header__image\{[^}]*object-fit:cover;[^}]*object-position:var\(--safety-photo-position\)/s);
+    expect(css).toMatch(/\.safety-photo-header__image\{[^}]*object-fit:cover;[^}]*object-position:var\(--safety-photo-position\);[^}]*filter:saturate\(1\.12\) contrast\(1\.04\) brightness\(1\.01\)/s);
     expect(css).toMatch(/@media\(max-width:760px\)[\s\S]*\.safety-photo-header\.section-page-head\{[^}]*min-height:350px/s);
+    expect(css).toMatch(/@media\(max-width:760px\)[\s\S]*\.safety-photo-header__image\{object-position:var\(--safety-photo-position-mobile,var\(--safety-photo-position\)\)/s);
     expect(css).toMatch(/\.safety-back-link\{[^}]*display:inline-flex/s);
     expect(systemCss).toMatch(/\.safety-guide-article \.safety-back-link\{[^}]*background:transparent;[^}]*color:#BCE0EE!important/s);
   });
@@ -56,7 +57,7 @@ describe('Safety Library article headers', () => {
     expect(links[0].textContent.replace(/\s+/g, ' ').trim()).toBe('← Back to Safety Library');
   });
 
-  test('the cable-car header applies a dog-centred focal zoom', () => {
+  test('the cable-car header keeps its original dog-centred focal point across breakpoints', () => {
     document.documentElement.innerHTML = fs.readFileSync(path.join(__dirname, 'guides', 'dogs-on-cable-cars.html'), 'utf8');
     const header = document.querySelector('.safety-photo-header');
     const image = header.querySelector('.safety-photo-header__image');
