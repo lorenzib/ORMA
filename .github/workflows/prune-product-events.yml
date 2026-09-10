@@ -1,0 +1,35 @@
+name: Prune product analytics
+
+# Firebase TTL policies require billing on this project. This small retention
+# job enforces the same 30-day boundary without expanding the product's data
+# footprint or exposing analytics to the customer site.
+on:
+  schedule:
+    - cron: '43 2 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prune-product-analytics
+  cancel-in-progress: false
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      FIREBASE_PROJECT_ID: dolopaws
+      FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - name: Check retention credentials
+        run: test -n "$FIREBASE_SERVICE_ACCOUNT_JSON" || { echo "Missing FIREBASE_SERVICE_ACCOUNT"; exit 1; }
+      - run: npm ci
+      - name: Remove product events older than 30 days
+        run: npm run backoffice:prune-product-events
