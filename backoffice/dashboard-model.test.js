@@ -238,6 +238,17 @@ describe('trail coverage grid',()=>{
     expect(grid.summary.unconfirmedHazards).toBe(1);
   });
 
+  test('uses the catalogue name when a sparse registry record is read first',()=>{
+    const grid=buildCoverageGrid({
+      hazards:{hazards:[]},
+      verifiedRegistry:{verified:[{candidateId:'osm-14058632'}]},
+      orchestration:{trails:[{trailId:'osm-14058632',trailName:'Nössingbühel',region:'dolomites',valley:'Eisacktal'}]},
+    });
+    expect(grid.rows[0]).toEqual(expect.objectContaining({
+      trailId:'osm-14058632',title:'Nössingbühel',valley:'Eisacktal',verified:'verified',
+    }));
+  });
+
   test('puts unverified trails first, Dolomites before the rest',()=>{
     const grid=buildCoverageGrid({hazards,verifiedRegistry,orchestration});
     expect(grid.rows.map(row=>row.trailId)).toEqual(['tre-cime','lac-vert','seceda']);
