@@ -149,8 +149,9 @@
     const tr=element('tr');
     const name=element('td','bo-coverage-name');
     name.append(element('strong','',row.title));
-    const where=[row.valley||row.area,row.region==='dolomites'?'Dolomites':''].filter(Boolean).join(' · ');
-    if(where)name.append(element('small','',where));
+    const context=[row.title!==row.trailId?row.trailId:'',row.valley||row.area,
+      row.region==='dolomites'?'Dolomites':''].filter(Boolean).join(' · ');
+    if(context)name.append(element('small','',context));
     tr.append(name);
     tr.append(coverageCell(row.verified==='verified'?'ok':row.verified==='in-progress'?'progress':'todo',
       row.verified==='verified'?'Verified':row.verified==='in-progress'?(row.verificationStage||'In progress'):'Not started'));
