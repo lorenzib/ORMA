@@ -353,8 +353,8 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
   });
 
-  test('leads with one explained recommendation and keeps alternatives compact', async () => {
-    // Five in-scope trails so the first recommendation and compact alternatives
+  test('leads with three explained top picks and keeps alternatives compact', async () => {
+    // Five in-scope trails so the three top picks and compact alternatives
     // both render.
     const dolomitesFive = Array.from({ length: 5 }, (_, i) => ({
       id: `dol${i}`, name: `Dolomite Trail ${i}`, region: 'dolomites', valley: 'Val Gardena',
@@ -373,15 +373,17 @@ describe('returning homepage region + valley filters', () => {
 
     expect(document.getElementById('returningHeading').textContent).toMatch(/^Best walk for Teo in Dolomites /);
     const rows = document.querySelectorAll('#returningTrailList .li-row');
-    expect(rows[0].classList.contains('li-row--answer')).toBe(true);
-    expect(document.querySelectorAll('#returningTrailList .li-row--answer')).toHaveLength(1);
-    expect(document.querySelectorAll('.li-answer-explanation')).toHaveLength(1);
+    // The first three are co-equal, fully explained answer cards.
+    expect([...rows].slice(0, 3).every(row => row.classList.contains('li-row--answer'))).toBe(true);
+    expect(document.querySelectorAll('#returningTrailList .li-row--answer')).toHaveLength(3);
+    expect(document.querySelectorAll('.li-answer-explanation')).toHaveLength(3);
     expect(document.querySelector('.li-answer-explanation').textContent).toContain('Why it fits Teo');
     expect(document.querySelector('.li-answer-explanation').textContent).toContain('What to know today');
     expect(document.querySelector('.li-answer-open').textContent).toBe('View trail details');
     expect(document.querySelector('.li-answer-map').textContent).toBe('Show on map');
+    // The alternatives heading follows the three picks, before the fourth card.
     expect(document.querySelector('.li-alternatives-heading').textContent).toContain('Other options for Teo');
-    expect(rows[1].classList.contains('li-row--answer')).toBe(false);
+    expect(rows[3].classList.contains('li-row--answer')).toBe(false);
     expect([...rows].map(row => row.dataset.rank)).toEqual(['1', '2', '3', '4', '5']);
     expect(document.querySelector('.li-match b').textContent).toBe('Strong option');
     expect(document.querySelector('.li-match-confidence').textContent).toBe('High confidence');
