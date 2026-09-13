@@ -2,19 +2,21 @@ const fs = require('fs');
 const path = require('path');
 
 const authScript = fs.readFileSync(path.join(__dirname, 'auth-ui.js'), 'utf8');
+const siteStyles = fs.readFileSync(path.join(__dirname, 'styles.css'), 'utf8');
 
 function mountAuth(overrides = {}){
+  document.head.innerHTML = `<style>${siteStyles}</style>`;
   document.body.innerHTML = `
     <button id="accountBtn">Log in</button>
-    <div id="authModal" hidden role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div id="authModal" class="auth-modal-redesign" hidden role="dialog" aria-modal="true" aria-labelledby="authTitle">
       <div class="modal">
         <button id="authClose" aria-label="Close">Close</button>
         <h2 id="authTitle">Log in</h2>
         <p id="authHint"></p>
         <div id="authError" role="alert" hidden></div>
         <form id="authForm">
-          <input id="authEmail" type="email">
-          <input id="authPassword" type="password">
+          <label class="field-label"><span>Email</span><input id="authEmail" type="email"></label>
+          <label class="field-label"><span>Password</span><input id="authPassword" type="password"></label>
           <button id="forgotPasswordBtn" type="button">Forgot</button>
           <button id="authSubmit" type="submit">Log in</button>
         </form>
@@ -55,6 +57,20 @@ describe('authentication modal accessibility', () => {
     expect(document.getElementById('authModal').hidden).toBe(true);
     expect(document.activeElement).toBe(opener);
     expect(document.body.classList.contains('auth-modal-open')).toBe(false);
+  });
+
+  test('shows only the email form controls in password-reset mode', () => {
+    mountAuth();
+    document.getElementById('accountBtn').click();
+    document.getElementById('forgotPasswordBtn').click();
+
+    const passwordLabel = document.getElementById('authPassword').closest('label');
+    expect(passwordLabel.hidden).toBe(true);
+    expect(getComputedStyle(passwordLabel).display).toBe('none');
+    expect(document.getElementById('forgotPasswordBtn').hidden).toBe(true);
+    expect(document.getElementById('authPassword').required).toBe(false);
+    expect(document.getElementById('authEmail').closest('label').hidden).toBe(false);
+    expect(document.getElementById('authSubmit').textContent).toBe('auth.sendReset');
   });
 
   test('wraps keyboard focus within the open dialog', async () => {
