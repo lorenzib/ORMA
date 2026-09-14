@@ -1,55 +1,5 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-13T01:35:35.107Z",
-  "hazards": [
-    {
-      "id": "meteoalarm-italy:thunderstorm:veneto",
-      "state": "active",
-      "severity": "moderate",
-      "event": "Yellow Thunderstorm Warning",
-      "area": "Veneto",
-      "title": "thunderstorm warning for Veneto",
-      "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
-      "sourceKey": "meteoalarm-italy",
-      "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/13d26a19-a1da-4293-b3c4-5f16a824678b",
-      "identifier": "2.49.0.0.380.3.IT.260911113715.074",
-      "effectiveAt": "2026-09-11T08:00:00+00:00",
-      "expiresAt": "2026-09-11T23:59:00+00:00",
-      "firstPublishedAt": "2026-09-08T16:25:49.979Z",
-      "lastSeenAt": "2026-09-13T01:35:35.107Z",
-      "removalRequiresHumanReview": true,
-      "trailIds": [
-        "nuvolau",
-        "lago-sorapis",
-        "osm-7388748",
-        "osm-7546708",
-        "osm-7547653",
-        "osm-7547983",
-        "osm-7548201",
-        "osm-7548344",
-        "osm-7548489",
-        "osm-7549783",
-        "osm-11855879",
-        "osm-11891581",
-        "osm-13528390"
-      ],
-      "trailNames": [
-        "Passo Giau to Rifugio Nuvolau",
-        "Lago di Sorapis Trail",
-        "Anello dei Colli",
-        "Anello di Soracrode",
-        "Anello dei Forti",
-        "Anello di Valzalina",
-        "Anello di Ciampeviei",
-        "Anello del Sole",
-        "Anello dei Faggi",
-        "Anello del Troi de le Ciaure",
-        "Roda de Cherz",
-        "Sentiero Alpago Natura",
-        "Sentiero del Sabadalt"
-      ],
-      "sourceStatus": "available"
-    }
-  ]
+  "generatedAt": "2026-09-14T04:28:36.956Z",
+  "hazards": []
 }
