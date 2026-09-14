@@ -257,15 +257,18 @@ function sourcesFor(legacy, origin){
 
   if(legacy.routeSource || legacy.waymarkedtrails){
     const routeSource = legacy.routeSource || {};
+    const officialGpx = routeSource.kind === 'official-gpx';
     push({
       label: String(routeSource.name || 'Waymarked Trails route'),
-      url: typeof legacy.waymarkedtrails === 'string' ? legacy.waymarkedtrails : null,
+      url: officialGpx && typeof routeSource.url === 'string'
+        ? routeSource.url
+        : typeof legacy.waymarkedtrails === 'string' ? legacy.waymarkedtrails : null,
       provider: String(routeSource.provider || 'Waymarked Trails / OpenStreetMap'),
-      kind: 'osm',
+      kind: officialGpx ? 'official' : 'osm',
       retrievedAt: isoDate(routeSource.fetchedAt),
       observedAt: null,
       categories: ['route', 'metrics'],
-      licence: 'ODbL-1.0',
+      licence: officialGpx ? null : 'ODbL-1.0',
     });
   }
 

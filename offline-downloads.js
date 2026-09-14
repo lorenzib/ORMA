@@ -246,11 +246,6 @@
         );
         action.disabled = false;
         if(result.usable){
-          if(window.DoloPawsMetricFunnel){
-            window.DoloPawsMetricFunnel.recordOnce(
-              'airplane-test', trailId, 'offline_package', 'airplane_test_passed', { trailId }
-            );
-          }
           cardStatus(
             card,
             tr('downloads.test.passed', 'Offline self-test passed: {count} required resources were checksum-verified locally.', { count:result.requiredChecked }) + ` ${

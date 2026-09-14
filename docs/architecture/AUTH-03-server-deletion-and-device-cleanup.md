@@ -34,7 +34,7 @@ Both logout and account deletion provide an explicit shared-device choice:
   verified public offline packages and their local lifecycle metadata.
 - **Remove all ORMA local data** removes every `dolopaws-` local and session
   storage entry, all offline package caches and metadata, journals, active and
-  completed hike records, pending outcomes and reports, analytics queues,
+  completed hike records, pending outcomes and reports,
   photos, cached profile data, preferences, and device ownership metadata.
 
 Cleanup never removes unrelated browser-origin keys. The settings-page logout
@@ -54,4 +54,3 @@ incomplete. The receipt parameters are removed from the URL after display.
   ORMA cleanup, and isolation from unrelated browser data.
 - `firestore-security.test.js` verifies that owners can list and delete their
   private outcome records while updates remain forbidden.
-

@@ -34,6 +34,7 @@ describe('SEC-01 Firestore configuration contract', () => {
       'users',
       'outcomes',
       'hikeEvents',
+      'trailWalks',
       'flags',
       'reviews',
       'trailPhotos',
@@ -57,6 +58,22 @@ describe('SEC-01 Firestore configuration contract', () => {
     });
     expect(rules).toContain('match /{document=**}');
     expect(rules).toMatch(/match \/\{document=\*\*\}[\s\S]*allow read, write: if false;/);
+  });
+
+  test('the anonymous trail-walk tally can only be an {at, group} create', () => {
+    const start = rules.indexOf('match /trailWalks/{trailId}/walks/{walkId}');
+    const block = rules.slice(start, rules.indexOf('match ', start + 1));
+    // Anonymous, fixed shape: only server time plus a short group string.
+    expect(block).toContain("request.resource.data.keys().hasOnly(['at', 'group'])");
+    expect(block).toContain('request.resource.data.at == request.time');
+    expect(block).toContain('request.resource.data.group is string');
+    expect(block).toContain('request.resource.data.group.size() <= 12');
+    // Never editable by clients; counts stay honest.
+    expect(block).toContain('allow update: if false;');
+    // The client writes exactly this shape, with no identity fields.
+    expect(client).toContain('collection(db, "trailWalks"');
+    expect(client).toContain('at: serverTimestamp()');
+    expect(client).not.toMatch(/trailWalks[\s\S]{0,200}uid/);
   });
 
   test('agent backoffice is moderator-readable and worker-owned', () => {
@@ -214,26 +231,11 @@ describe('SEC-01 Firestore configuration contract', () => {
     expect(client).not.toContain('DoloPawsModeration');
     expect(client).not.toContain('moderationAudit');
   });
-  test("the product analytics receiver is public-write-only, moderator-readable, and shape-locked", () => {
-    const eventsBlock = rules.slice(rules.indexOf("match /productEvents"));
-    expect(eventsBlock).toContain("allow read: if isModerator();");
-    expect(eventsBlock).toContain("allow delete: if isModerator();");
-    // The document id is the event id, so a retried delivery is idempotent
-    // rather than duplicating, and an event cannot be edited after the fact.
-    expect(eventsBlock).toContain("request.resource.data.id == eventId");
-    expect(eventsBlock).toContain("allow update: if request.resource.data == resource.data;");
-    // Only the eight METRIC-01 families, and no extra keys alongside them.
-    expect(rules).toContain("function isProductEventFamily(value)");
-    expect(eventsBlock).toContain("isProductEventFamily(request.resource.data.family)");
-    expect(eventsBlock).toContain("request.resource.data.schemaVersion == 1");
-    expect(eventsBlock).toContain("request.resource.data.expiresAt is timestamp");
-    expect(eventsBlock).toContain("hasOnly([");
-    // Delivery is registered by the customer client, and consent stays upstream
-    // in metrics.js -- the transport only moves already-accepted events.
-    expect(client).toContain("metrics.setTransport");
-    expect(client).toContain("productEvents");
-    expect(client).toContain("expiresAt = Timestamp.fromMillis");
-    expect(fs.readFileSync(path.join(__dirname,'.github/workflows/prune-product-events.yml'),'utf8'))
-      .toContain('npm run backoffice:prune-product-events');
+  test("the retired product analytics collection has no client access", () => {
+    expect(rules).not.toContain("match /productEvents");
+    expect(rules).not.toContain("function isProductEventFamily(value)");
+    expect(client).not.toContain("productEvents");
+    expect(backofficeClient).not.toContain("productEvents");
+    expect(fs.existsSync(path.join(__dirname,'.github/workflows/prune-product-events.yml'))).toBe(false);
   });
 });

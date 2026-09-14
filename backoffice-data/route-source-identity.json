@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "updatedAt": "2026-09-06T09:28:00.675Z",
+  "updatedAt": "2026-09-10T13:50:22.000Z",
   "checks": {
     "seceda": {
       "pathContainmentPercent": 56,
@@ -159,16 +159,34 @@
       "pathContainmentPercent": 100,
       "externalRelationId": "relation/3982382",
       "checkedAt": "2026-09-06T09:24:40.411Z",
-      "reviewState": "blocked",
-      "blockers": [
-        "disconnected-components"
-      ],
+      "reviewState": "superseded-by-official-gpx",
+      "blockers": [],
       "closedLoop": true,
       "relationName": "Circuit Béatrice de Savoie",
       "componentCount": 3,
       "reconstructedDistanceKm": 4.23,
-      "officialDistanceKm": 4.5,
-      "distanceDeltaPercent": -6
+      "officialDistanceKm": 4.9,
+      "distanceDeltaPercent": -13.7,
+      "supersededAssessment": {
+        "reviewState": "blocked",
+        "blockers": [
+          "disconnected-components"
+        ],
+        "componentCount": 3,
+        "reconstructedDistanceKm": 4.23
+      },
+      "resolution": {
+        "type": "official-gpx-reconciliation",
+        "resolvedAt": "2026-09-10",
+        "sourceExternalId": "apidae/21193031",
+        "sourcePageUrl": "https://www.chartreuse-tourisme.com/offres/sur-les-pas-de-beatrice-de-savoie-les-echelles-fr-2777404/",
+        "sourceGeometryUrl": "https://static.apidae-tourisme.com/filestore/objets-touristiques/plans/71/97/21193031/beatrice-de-savoie-9fev24.gpx",
+        "proposalRef": "backoffice-data/route-proposals/beatrice-de-savoie-official.geojson",
+        "pointCount": 435,
+        "computedDistanceKm": 4.88,
+        "closureDistanceM": 2,
+        "geometryIssues": []
+      }
     },
     "osm-6250300": {
       "pathContainmentPercent": 100,

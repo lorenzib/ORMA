@@ -25,7 +25,7 @@ describe('AUTH-03 account deletion and device cleanup', () => {
     expect(account).toContain('Deleted from the server:');
     expect(account).toContain('May be retained:');
     expect(account).toContain('journal entries');
-    expect(account).toContain('analytics queues');
+    expect(account).not.toContain('analytics queues');
     expect(account).toContain('Keep downloaded public maps');
   });
 

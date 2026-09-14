@@ -211,11 +211,12 @@ OpenAI remains in use for trail verification and for scouting additional trails.
   retain the last known warning. Hazard conditions change slowly, so a three-hour
   cadence keeps the backoffice within the Firestore daily quota. The public
   snapshot the website reads (`data/dynamic-hazards.json`) is refreshed by an
-  automatic pull request whenever the warning set changes: the run dispatches
-  the quality gate onto its branch, merges once it passes, and then dispatches
-  the website deploy itself, because nothing done with the workflow token
-  starts another workflow. The page also hides any warning past its own
-  expiry, so a missed refresh shows nothing rather than a stale warning.
+  automatic pull request whenever the warning set changes: the run approves
+  the pull request's own quality-gate run (the Actions bot never graduates
+  from the first-time-contributor approval policy), merges once it passes,
+  and then dispatches the website deploy itself, because nothing done with the
+  workflow token starts another workflow. The page also hides any warning past
+  its own expiry, so a missed refresh shows nothing rather than a stale warning.
 - Customer hazard vetting: inside every worker pass, at most three reports or
   re-checks per pass, published or rejected by the Hazard Analyst without a
   human gate.
@@ -235,6 +236,15 @@ retired. Their agents, desks, scheduled workflows and npm entry points are
 removed from the repository. Firestore review collections and existing artifacts
 are left untouched, so no decision history is lost, but nothing reads or writes
 them. Reopening any of these lanes is a new, explicit build.
+
+The first-party product analytics lane is also retired. Its customer event
+hooks, local queue, Firestore receiver, funnel desk and retention workflow are
+removed. Existing `productEvents` records are left untouched as historical
+data, but no customer or backoffice client can read or write that collection.
+The identity-free `hikeEvents` counter is not product analytics: it remains
+because it directly powers the public “dogs hiked this week” feature. Adding a
+hosted analytics provider later is a separate, explicit product and privacy
+decision.
 
 Hosted production workers use server-side credentials and must preserve these
 contracts. The duplicate local desk server is retired; the hosted backoffice is
@@ -290,6 +300,34 @@ The record is a lead, never an authority: a claim cites the source it was
 confirmed against, and a source that contradicts the record wins and says so.
 Parking and the route are separate questions, and an unresolved parking picture
 is never a reason to omit the directions.
+
+## Optional evidence is exhausted, not merely absent
+
+An optional detail is non-blocking at the final human gate; it is not optional
+research. Every verification specialist actively scouts every claim it owns,
+including parking operation, public transport, water, shade, surface, livestock,
+temporary access and entity policies. The absence of a detail from the first
+route page is never enough to call it unsubstantiated.
+
+The initial pass and each automated resolution attempt follow the available
+source ladder: reopen ORMA's recorded sources; search the current route operator,
+municipality, park, regulator, transport or facility owner; inspect their linked
+PDFs, GPX files, maps, geoportals and current notices; triangulate mapped
+infrastructure and topographic data; then use credible local or specialist
+secondary sources as leads or corroboration. Searches use the local-language
+route and entity names, known variants and the exact claim being tested.
+
+Only after the materially different resolution strategies are exhausted may a
+claim be reported as source-exhausted. The result then records what was checked,
+when it was checked, the strategies or queries that failed, any conflicting or
+inapplicable evidence, and the exact authority contact, field observation or
+measurement that could settle it. A current operational fact is dated; silence
+is never converted into absence, permission or safety.
+
+This persistence does not lower the evidence threshold. Agents never invent a
+detail to complete a dossier, and the moderator may still accept a genuinely
+unresolved optional claim as non-blocking with a recorded reason. The claim
+remains unresolved and publishes no unsupported fact.
 
 ## Two campaign budgets, and where a stopped trail goes
 

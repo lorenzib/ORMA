@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-09T12:52:59.403Z",
+  "updatedAt": "2026-09-10T13:35:48.322Z",
   "trails": [
     {
       "id": "alpe-siusi",
@@ -1223,6 +1223,23 @@
         "imageLicence": "CC0",
         "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Cairn_de_la_pointe_d%27%C3%89my_02.jpg",
+        "imageSourceType": "licensed-source"
+      }
+    },
+    {
+      "id": "osm-14377007",
+      "approvedReviewId": "mapillary-osm-14377007",
+      "approvedAt": "2026-09-10T13:35:48.322Z",
+      "fields": {
+        "imageIcon": "images/trails/osm-14377007-lac-de-pramol.jpg",
+        "heroImage": "images/trails/osm-14377007-lac-de-pramol.jpg",
+        "imageAlt": "Lac de Pramol in June, its stone-edged shore below a rail fence and a log shelter among larches, with a wooded slope behind",
+        "imageCredit": "Lac de Pramol in June",
+        "imageCreditText": "Lac de Pramol in June by Otto62",
+        "imageCreator": "Otto62",
+        "imageLicence": "CC BY-SA 4.0",
+        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "imageSourcePage": "https://www.mapillary.com/app/?pKey=988255296032596",
         "imageSourceType": "licensed-source"
       }
     },

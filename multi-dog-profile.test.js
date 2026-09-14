@@ -279,7 +279,6 @@ describe('multi-dog account experience', () => {
       updateEmail:jest.fn(),
       resetPassword:jest.fn(),
     };
-    window.DoloPawsMetrics = { consent:() => 'denied', setConsent:jest.fn() };
     window.eval(controller);
     document.dispatchEvent(new Event('DOMContentLoaded'));
     await Promise.resolve();
