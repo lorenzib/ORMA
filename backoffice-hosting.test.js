@@ -37,11 +37,15 @@ describe('separate Firebase backoffice Hosting package',()=>{
     expect(html).toContain('MVP workstreams');
     expect(html).toContain('Trail coverage');
     expect(html).toContain('id="coverageRows"');
-    expect(html).toContain('backoffice-review.css?v=20260909-1');
+    // Half the in-flight trails are sitting at a gate only a human can clear.
+    // A count and a filter are what separate this table from a status list.
+    expect(html).toContain('id="coverageWaiting"');
+    expect(html).toContain('data-coverage-filter="waiting"');
+    expect(html).toContain('backoffice-review.css?v=20260914-1');
     expect(html).toContain('id="workerHealth"');
     expect(html).toContain('id="campaignHealth"');
-    expect(html).toContain('backoffice/dashboard-model.js?v=20260905-2');
-    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260905-2');
+    expect(html).toContain('backoffice/dashboard-model.js?v=20260914-1');
+    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260914-1');
     expect(html).toContain('href="trail-verify-desk.html"');
     expect(html).toContain('href="community-moderation-desk.html"');
     // The retired lanes must be gone from the shell, not merely unlinked. Trail

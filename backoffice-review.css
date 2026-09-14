@@ -152,6 +152,10 @@ body.bo-shell{margin:0;background:var(--bo-bg);color:var(--bo-ink)}
 .bo-coverage-pill.is-todo{background:#f4efe6;border-color:#ddd2bf;color:#6b5d45}
 .bo-coverage-pill.is-progress{background:#eef1f8;border-color:#c8d0e6;color:#374a76}
 .bo-coverage-pill.is-alert{background:#fdecea;border-color:#efc2bb;color:#8a2f24}
+/* A gate that is open on a human reads differently from an agent still working:
+   amber is the only cue in this table that means "nothing moves until you act". */
+.bo-coverage-pill.is-waiting{background:#fbf1de;border-color:#e6cd9b;color:#7a5512}
+.bo-coverage-step{display:block;margin-top:3px;color:var(--bo-muted,#6b625a);font-size:10.5px;line-height:1.35}
 @media (max-width:640px){.bo-coverage-table{font-size:12px}.bo-coverage-table th,.bo-coverage-table td{padding:8px 10px}}
 
 /* ============ VERIFY TRAILS DESK ============

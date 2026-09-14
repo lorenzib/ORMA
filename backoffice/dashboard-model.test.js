@@ -266,3 +266,75 @@ describe('trail coverage grid',()=>{
     expect(buildCoverageGrid({orchestration:{trails:[]}}).summary.trails).toBe(0);
   });
 });
+
+describe('verification progress, in steps a person can act on',()=>{
+  const {describeVerificationStage,buildCoverageGrid,VERIFICATION_STEPS,VERIFICATION_TOTAL_STEPS}=require('./dashboard-model');
+
+  // The whole point of the catalogue: one stage string, two very different
+  // situations, and only the state tells them apart.
+  test('the same stage is an agent running or your gate, depending on state',()=>{
+    const running=describeVerificationStage('route-identity-and-geometry','geometry-audit',[]);
+    const gate=describeVerificationStage('route-identity-and-geometry','geometry-human-gate',[]);
+    expect(running).toEqual(expect.objectContaining({step:1,waitingOnYou:false,by:'cartographer'}));
+    expect(gate).toEqual(expect.objectContaining({step:2,waitingOnYou:true,by:'you'}));
+    expect(running.label).not.toBe(gate.label);
+  });
+
+  test('every stage the orchestration can emit has a plain-English label',()=>{
+    const emitted=['route-identity-and-geometry','parallel-evidence-research','autonomous-claim-resolution',
+      'source-provenance-audit','counter-evidence-review','complete-evidence-dossier','verified-dossier-approved'];
+    for(const stage of emitted){
+      const described=describeVerificationStage(stage,null,[]);
+      expect(described.unmapped).toBeUndefined();
+      // The slug itself must never reach a reader — that was the original bug.
+      expect(described.label).not.toBe(stage);
+      expect(described.label).toMatch(/\s/);
+      expect(described.step).toBeGreaterThan(0);
+      expect(described.step).toBeLessThanOrEqual(VERIFICATION_TOTAL_STEPS);
+    }
+  });
+
+  test('the steps are numbered in pipeline order with no gaps',()=>{
+    expect(VERIFICATION_STEPS.map(item=>item.step)).toEqual([1,2,3,4,5,6,7,8]);
+    expect(VERIFICATION_STEPS.filter(item=>item.by==='you').map(item=>item.step)).toEqual([2,7]);
+  });
+
+  test('revision and retry stages land at the step their agent owns',()=>{
+    expect(describeVerificationStage('cartographer-revision','geometry-audit',[]))
+      .toEqual(expect.objectContaining({step:1,waitingOnYou:false}));
+    expect(describeVerificationStage('redTeam-retry','red-team',[]))
+      .toEqual(expect.objectContaining({step:6,waitingOnYou:false}));
+  });
+
+  test('a failed agent run and an exhausted trail both come back to you',()=>{
+    expect(describeVerificationStage('agent-execution-failure','dossier-human-gate',[]).waitingOnYou).toBe(true);
+    expect(describeVerificationStage('counter-evidence-review','blocked',[]).waitingOnYou).toBe(true);
+  });
+
+  // An open gate you cannot actually approve is worse than no gate at all, so
+  // the blocker count travels with it.
+  test('blockers on an open gate are counted, not hidden',()=>{
+    expect(describeVerificationStage('complete-evidence-dossier','dossier-human-gate',['route-guidance-unverified']))
+      .toEqual(expect.objectContaining({waitingOnYou:true,blockers:1}));
+  });
+
+  test('an unmapped stage never claims to be waiting on a human',()=>{
+    const described=describeVerificationStage('some-future-stage','evidence-research',[]);
+    expect(described.unmapped).toBe(true);
+    expect(described.waitingOnYou).toBe(false);
+  });
+
+  test('the coverage grid carries progress, not just the raw stage',()=>{
+    const orchestration={trails:[
+      {trailId:'gate',trailName:'At your gate',stage:'route-identity-and-geometry',state:'geometry-human-gate',blockers:[]},
+      {trailId:'busy',trailName:'Agents working',stage:'autonomous-claim-resolution',state:'evidence-resolution',blockers:[]},
+    ]};
+    const grid=buildCoverageGrid({hazards:{hazards:[]},verifiedRegistry:{verified:[]},orchestration});
+    const gate=grid.rows.find(row=>row.trailId==='gate');
+    const busy=grid.rows.find(row=>row.trailId==='busy');
+    expect(gate.verificationProgress).toEqual(expect.objectContaining({step:2,waitingOnYou:true}));
+    expect(busy.verificationProgress).toEqual(expect.objectContaining({step:4,waitingOnYou:false}));
+    // The old field stays, so nothing reading it breaks.
+    expect(gate.verificationStage).toBe('route-identity-and-geometry');
+  });
+});

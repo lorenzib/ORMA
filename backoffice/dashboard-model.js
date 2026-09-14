@@ -8,6 +8,59 @@
   const PUBLICATION_OWNED_STATES=new Set(['queued','processed','approved-for-pr-creation','publication-failed','pull-request-opened','published','hold','request-changes']);
   const PAUSED_SAFETY_GUIDES=new Set(['alpine-plants-for-dogs','altitude-with-your-dog','breed-group-caveats','dogs-at-rifugi','dogs-on-cable-cars','heat-overheating','livestock-guard-dogs','paw-protection','water-for-dogs-on-trail']);
 
+  // The verification pipeline, in the order a trail actually travels it.
+  // `stage` alone cannot answer "is this waiting on me?" —
+  // route-identity-and-geometry covers both the cartographer still running and
+  // its finished audit sitting at an open human gate. The state decides, so
+  // both are carried and both are matched on.
+  const VERIFICATION_TOTAL_STEPS=8;
+  const HUMAN_GATE_STATES=new Set(['geometry-human-gate','dossier-human-gate']);
+  const VERIFICATION_STEPS=Object.freeze([
+    {step:1,stage:'route-identity-and-geometry',state:'geometry-audit',label:'Checking route identity and geometry',by:'cartographer'},
+    {step:2,stage:'route-identity-and-geometry',state:'geometry-human-gate',label:'Waiting for your geometry approval',by:'you'},
+    {step:3,stage:'parallel-evidence-research',label:'Researching evidence',by:'logistics, ranger and terrain agents'},
+    {step:4,stage:'autonomous-claim-resolution',label:'Re-researching claims the agents disagreed on',by:'agents'},
+    {step:5,stage:'source-provenance-audit',label:'Auditing where each fact came from',by:'evidence librarian'},
+    {step:6,stage:'counter-evidence-review',label:'Red team challenging the dossier',by:'red team'},
+    {step:7,stage:'complete-evidence-dossier',label:'Waiting for your dossier approval',by:'you'},
+    {step:8,stage:'verified-dossier-approved',label:'Approved, handed to editorial',by:'editorial'},
+  ]);
+  // Revision and retry stages are built as `${agentId}-revision`, so they are
+  // matched by pattern and placed at the step that agent owns.
+  const AGENT_STEP={cartographer:1,logistics:3,regulatoryRanger:3,terrainPoi:3,evidenceLibrarian:5,redTeam:6};
+  const AGENT_NAME={cartographer:'cartographer',logistics:'logistics agent',regulatoryRanger:'regulatory ranger',
+    terrainPoi:'terrain agent',evidenceLibrarian:'evidence librarian',redTeam:'red team'};
+
+  /**
+   * Turn an orchestration stage into something a person can act on: what is
+   * happening, how far along it is, and — the only part that changes anyone's
+   * afternoon — whether it is waiting on a human.
+   */
+  function describeVerificationStage(stage,state,blockers){
+    const key=String(stage||'').trim();
+    const current=String(state||'').trim();
+    const stuck=(blockers||[]).length;
+    const of=VERIFICATION_TOTAL_STEPS;
+    const gate=HUMAN_GATE_STATES.has(current);
+    if(current==='rejected')return {step:null,of,label:'Rejected',by:null,waitingOnYou:false,blockers:stuck};
+    if(current==='blocked')return {step:null,of,label:'Blocked: automated attempts exhausted',by:'you',waitingOnYou:true,blockers:stuck};
+    if(key==='agent-execution-failure')return {step:null,of,label:'Stuck: an agent run failed',by:'you',waitingOnYou:true,blockers:stuck};
+    const revision=/^(.+)-revision$/.exec(key);
+    if(revision)return {step:AGENT_STEP[revision[1]]||null,of,
+      label:`Revising after your note (${AGENT_NAME[revision[1]]||revision[1]})`,by:'agents',waitingOnYou:false,blockers:stuck};
+    const retry=/^(.+)-retry$/.exec(key);
+    if(retry)return {step:AGENT_STEP[retry[1]]||null,of,
+      label:`Retrying the ${AGENT_NAME[retry[1]]||retry[1]} run`,by:'agents',waitingOnYou:false,blockers:stuck};
+    const entry=VERIFICATION_STEPS.find(item=>item.stage===key&&item.state===current)
+      ||VERIFICATION_STEPS.find(item=>item.stage===key&&!item.state)
+      ||VERIFICATION_STEPS.find(item=>item.stage===key);
+    if(entry)return {step:entry.step,of,label:entry.label,by:entry.by,
+      waitingOnYou:entry.by==='you'||gate,blockers:stuck};
+    // An unmapped stage still reads as a stage rather than a raw slug, and is
+    // never claimed to be waiting on a human when nothing says so.
+    return {step:null,of,label:key?key.replace(/-/g,' '):'In verification',by:null,waitingOnYou:gate,blockers:stuck,unmapped:true};
+  }
+
   function isPausedSafetyPacket(packet){return packet?.subject?.type==='page'&&packet.subject.id==='safety-guide'||packet?.subject?.type==='guide'&&PAUSED_SAFETY_GUIDES.has(packet.subject.id);}
 
   function dateMs(value){
@@ -275,7 +328,8 @@
     const inFlight=new Map();
     for(const trail of orchestration?.trails||[]){
       const id=trail.trailId;if(!id)continue;remember(id,trail);
-      if(!verified.has(id))inFlight.set(id,trail.stage||trail.state||'in verification');
+      if(!verified.has(id))inFlight.set(id,{stage:trail.stage||null,state:trail.state||null,
+        blockers:Array.isArray(trail.blockers)?trail.blockers:[]});
     }
     const hazardsByTrail=new Map();
     for(const hazard of hazards?.hazards||[]){
@@ -293,7 +347,11 @@
       return {
         trailId:id,title:info.title,area:info.area,valley:info.valley,region:info.region,
         verified:verified.has(id)?'verified':inFlight.has(id)?'in-progress':'not-started',
-        verificationStage:inFlight.get(id)||null,
+        verificationStage:inFlight.get(id)?(inFlight.get(id).stage||inFlight.get(id).state||'in verification'):null,
+        verificationState:inFlight.get(id)?.state||null,
+        verificationProgress:inFlight.has(id)
+          ?describeVerificationStage(inFlight.get(id).stage,inFlight.get(id).state,inFlight.get(id).blockers)
+          :null,
         hazards:trailHazards,
         hazardState:trailHazards.length
           ?(trailHazards.some(item=>item.verificationState!=='reported-unverified')?'active':'unconfirmed')
@@ -314,5 +372,5 @@
     }};
   }
 
-  return {buildDashboardModel,buildCoverageGrid,dateMs,deriveWorkerHealth,deriveCampaignHealth,latestPublicationState,activityMessage,candidateFromActivity,isPausedSafetyPacket};
+  return {buildDashboardModel,buildCoverageGrid,describeVerificationStage,VERIFICATION_STEPS,VERIFICATION_TOTAL_STEPS,dateMs,deriveWorkerHealth,deriveCampaignHealth,latestPublicationState,activityMessage,candidateFromActivity,isPausedSafetyPacket};
 });
