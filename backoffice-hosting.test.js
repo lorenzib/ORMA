@@ -17,7 +17,7 @@ describe('separate Firebase backoffice Hosting package',()=>{
 
   test.each(['backoffice-login.html','trail-verify-desk.html','community-moderation-desk.html'])('%s uses the backoffice-only Firebase client',page=>{
     const html=fs.readFileSync(path.join(output,page),'utf8');
-    expect(html).toMatch(/src="backoffice-firebase\.js\?v=[0-9-]+"/);
+    expect(html).toMatch(/src="backoffice-firebase\.js\?v=[\w-]+"/);
     expect(html).not.toContain('src="firebase-init.js');
   });
 
@@ -41,11 +41,11 @@ describe('separate Firebase backoffice Hosting package',()=>{
     // A count and a filter are what separate this table from a status list.
     expect(html).toContain('id="coverageWaiting"');
     expect(html).toContain('data-coverage-filter="waiting"');
-    expect(html).toContain('backoffice-review.css?v=20260914-1');
+    expect(html).toMatch(/backoffice-review\.css\?v=[\w-]+/);
     expect(html).toContain('id="workerHealth"');
     expect(html).toContain('id="campaignHealth"');
-    expect(html).toContain('backoffice/dashboard-model.js?v=20260914-1');
-    expect(html).toContain('backoffice-hosted-dashboard.js?v=20260914-1');
+    expect(html).toMatch(/backoffice\/dashboard-model\.js\?v=[\w-]+/);
+    expect(html).toMatch(/backoffice-hosted-dashboard\.js\?v=[\w-]+/);
     expect(html).toContain('href="trail-verify-desk.html"');
     expect(html).toContain('href="community-moderation-desk.html"');
     // The retired lanes must be gone from the shell, not merely unlinked. Trail

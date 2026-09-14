@@ -49,8 +49,12 @@ describe('private ORMA backoffice authentication',()=>{
     const login=fs.readFileSync(path.join(root,'backoffice-hosted-login.html'),'utf8');
     const build=fs.readFileSync(path.join(root,'scripts/build-backoffice-hosting.js'),'utf8');
     const firebase=fs.readFileSync(path.join(root,'backoffice-firebase.js'),'utf8');
-    expect(login).toContain('backoffice-firebase.js?v=20260904-1');
-    expect(build).toContain('backoffice-firebase.js?v=20260904-1');
+    // The key is derived from the file, so a hand-typed date cannot go stale:
+    // the desk once shipped a fix still asking for the previous version and
+    // browsers served the old file for an hour from the same URL.
+    expect(login).toMatch(/backoffice-firebase\.js\?v=[\w-]+/);
+    expect(build).toContain('createHash(\'sha256\')');
+    expect(build).toContain('async function assetVersion(relative)');
     expect(firebase).toContain('authDomain: "dolopaws.firebaseapp.com"');
   });
 });

@@ -3,6 +3,7 @@
 
 const fs=require('fs/promises');
 const path=require('path');
+const {createHash}=require('crypto');
 const root=path.resolve(__dirname,'..');
 const output=path.join(root,'dist','backoffice');
 
@@ -19,10 +20,38 @@ async function copy(relative){
   await fs.copyFile(path.join(root,relative),target);
 }
 
-async function hostedPage(source,target=source){
+// A cache key typed in by hand goes stale the moment someone forgets it. The
+// desk shipped a fix on 2026-09-14 still asking for ?v=20260910-1, so browsers
+// kept serving the previous file for an hour from the same URL, and the fix
+// looked like it had not deployed. Deriving the key from the file means it
+// changes exactly when the file does, and never otherwise.
+async function assetVersion(relative){
+  const contents=await fs.readFile(path.join(root,relative));
+  return createHash('sha256').update(contents).digest('hex').slice(0,10);
+}
+
+async function assetVersions(){
+  const versions=new Map();
+  for(const relative of files){
+    if(!/\.(?:js|css)$/.test(relative))continue;
+    const version=await assetVersion(relative);
+    // Pages reference these both bare and by path, so both resolve.
+    versions.set(relative,version);versions.set(path.basename(relative),version);
+  }
+  return versions;
+}
+
+async function hostedPage(source,target=source,versions){
   let html=await fs.readFile(path.join(root,source),'utf8');
-  html=html.replace(/src="firebase-init\.js(?:\?[^\"]*)?"/g,'src="backoffice-firebase.js?v=20260904-1"');
-  html=html.replace(/src="backoffice-firebase\.js(?:\?[^\"]*)?"/g,'src="backoffice-firebase.js?v=20260904-1"');
+  const stamp=versions||await assetVersions();
+  // The public page loads firebase-init.js; the hosted one loads the backoffice
+  // build of it under a different name.
+  const firebase=stamp.get('backoffice-firebase.js');
+  html=html.replace(/src="firebase-init\.js(?:\?[^\"]*)?"/g,`src="backoffice-firebase.js?v=${firebase}"`);
+  html=html.replace(/(src|href)="([\w./-]+\.(?:js|css))(?:\?[^\"]*)?"/g,(match,attribute,file)=>{
+    const version=stamp.get(file);
+    return version?`${attribute}="${file}?v=${version}"`:match;
+  });
 
   const destination=path.join(output,target);await fs.mkdir(path.dirname(destination),{recursive:true});await fs.writeFile(destination,html,'utf8');
 }
