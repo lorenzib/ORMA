@@ -41,18 +41,22 @@ async function assetVersions(){
   return versions;
 }
 
-async function hostedPage(source,target=source,versions){
-  let html=await fs.readFile(path.join(root,source),'utf8');
-  const stamp=versions||await assetVersions();
+/** Rewrites every asset reference to carry its version. Pure, so it is testable
+ * without building into the shared output directory. */
+function stampAssets(html,versions){
   // The public page loads firebase-init.js; the hosted one loads the backoffice
   // build of it under a different name.
-  const firebase=stamp.get('backoffice-firebase.js');
-  html=html.replace(/src="firebase-init\.js(?:\?[^\"]*)?"/g,`src="backoffice-firebase.js?v=${firebase}"`);
-  html=html.replace(/(src|href)="([\w./-]+\.(?:js|css))(?:\?[^\"]*)?"/g,(match,attribute,file)=>{
-    const version=stamp.get(file);
-    return version?`${attribute}="${file}?v=${version}"`:match;
-  });
+  const firebase=versions.get('backoffice-firebase.js');
+  return html
+    .replace(/src="firebase-init\.js(?:\?[^\"]*)?"/g,`src="backoffice-firebase.js?v=${firebase}"`)
+    .replace(/(src|href)="([\w./-]+\.(?:js|css))(?:\?[^\"]*)?"/g,(match,attribute,file)=>{
+      const version=versions.get(file);
+      return version?`${attribute}="${file}?v=${version}"`:match;
+    });
+}
 
+async function hostedPage(source,target=source,versions){
+  const html=stampAssets(await fs.readFile(path.join(root,source),'utf8'),versions||await assetVersions());
   const destination=path.join(output,target);await fs.mkdir(path.dirname(destination),{recursive:true});await fs.writeFile(destination,html,'utf8');
 }
 
@@ -79,4 +83,4 @@ async function build(){
 }
 
 if(require.main===module)build().catch(error=>{console.error(error.stack||error.message);process.exitCode=1;});
-module.exports={build,output};
+module.exports={build,output,assetVersion,assetVersions,stampAssets};

@@ -1,54 +1,74 @@
 const fs=require('fs/promises');
 const path=require('path');
 const os=require('os');
-
-// The desk shipped a fix on 2026-09-14 while its page still asked for
-// ?v=20260910-1. Same URL, one-hour cache, so browsers kept serving the file
-// from before the fix and it looked like nothing had deployed. A cache key
-// typed by hand goes stale the moment somebody forgets it.
-const builder=require('../scripts/build-backoffice-hosting.js');
+const {assetVersion,stampAssets}=require('../scripts/build-backoffice-hosting.js');
 const source=require('fs').readFileSync('scripts/build-backoffice-hosting.js','utf8');
 
-describe('a cache key that cannot go stale', () => {
-  test('it is derived from the file rather than written down', () => {
-    expect(source).toContain("createHash('sha256')");
-    expect(source).toContain('async function assetVersion(relative)');
-    // No hand-typed date left to forget. Comments may still describe the one
-    // that caused this, so only code counts.
-    const code=source.split('\n').filter(line=>!line.trim().startsWith('//')).join('\n');
-    expect(code).not.toMatch(/\?v=20\d{6}-\d/);
-  });
+// The desk deployed a fix at 16:19 on 2026-09-14 while its page still asked for
+// trail-verify-desk.js?v=20260910-1. Same URL, one-hour cache, so a browser
+// served the file from before the fix and it looked like nothing had shipped.
+// A cache key written by hand goes stale the moment somebody forgets it, and
+// forgetting is invisible: the deploy succeeds and the tester gets old code.
+//
+// These exercise the stamping directly rather than building, because the build
+// writes into a directory another suite reads and jest runs suites in parallel.
 
-  // Build here rather than hoping a dist exists: a check that quietly skips
-  // where it matters is the same as no check.
-  test('every script and stylesheet a hosted page loads is stamped', async () => {
-    await builder.build();
-    const built=builder.output;
-    const pages=(await fs.readdir(built)).filter(name=>name.endsWith('.html'));
-    expect(pages.length).toBeGreaterThan(0);
-    for(const page of pages){
-      const html=await fs.readFile(path.join(built,page),'utf8');
-      const assets=[...html.matchAll(/(?:src|href)="([\w./-]+\.(?:js|css))(\?v=([\w-]+))?"/g)];
-      for(const [,file,,version] of assets){
-        // Only files the build publishes are stamped; anything else is left be.
-        const published=await fs.access(path.join(built,file)).then(()=>true,()=>false);
-        if(published)expect(`${page} ${file} ${version||'UNSTAMPED'}`).toMatch(/[\w-]{6,}$/);
-      }
-    }
+describe('the key is derived from the file', () => {
+  test('no hand-typed version is left in the builder', () => {
+    const code=source.split('\n').filter(line=>!line.trim().startsWith('//')&&!line.trim().startsWith('*')).join('\n');
+    expect(code).not.toMatch(/\?v=20\d{6}-\d/);
+    expect(source).toContain("createHash('sha256')");
   });
 
   test('the same bytes give the same key, different bytes a different one', async () => {
     const directory=await fs.mkdtemp(path.join(os.tmpdir(),'orma-asset-'));
-    const one=path.join(directory,'a.js');const two=path.join(directory,'b.js');
-    await fs.writeFile(one,'console.log(1)');await fs.writeFile(two,'console.log(1)');
-    const hash=async file=>require('crypto').createHash('sha256')
-      .update(await fs.readFile(file)).digest('hex').slice(0,10);
-    expect(await hash(one)).toBe(await hash(two));
-    await fs.writeFile(two,'console.log(2)');
-    expect(await hash(one)).not.toBe(await hash(two));
+    const write=async(name,body)=>{const file=path.join(directory,name);await fs.writeFile(file,body);return file;};
+    await write('a.js','console.log(1)');await write('b.js','console.log(1)');
+    const relative=name=>path.relative(process.cwd(),path.join(directory,name));
+    expect(await assetVersion(relative('a.js'))).toBe(await assetVersion(relative('b.js')));
+    await write('b.js','console.log(2)');
+    expect(await assetVersion(relative('a.js'))).not.toBe(await assetVersion(relative('b.js')));
   });
 
-  test('the builder still exports what the deploy calls', () => {
-    expect(typeof builder.build).toBe('function');
+  test('a key is short enough to read and long enough to differ', async () => {
+    const directory=await fs.mkdtemp(path.join(os.tmpdir(),'orma-asset-'));
+    await fs.writeFile(path.join(directory,'a.js'),'x');
+    const version=await assetVersion(path.relative(process.cwd(),path.join(directory,'a.js')));
+    expect(version).toMatch(/^[0-9a-f]{10}$/);
+  });
+});
+
+describe('every reference on a page is stamped', () => {
+  const versions=new Map([
+    ['backoffice-firebase.js','aaaaaaaaaa'],
+    ['trail-verify-desk.js','bbbbbbbbbb'],
+    ['backoffice-review.css','cccccccccc'],
+    ['backoffice/dashboard-model.js','dddddddddd'],
+  ]);
+
+  test('a script, a stylesheet and a path-qualified file all get one', () => {
+    const html=stampAssets(['<script src="trail-verify-desk.js"></script>',
+      '<link rel="stylesheet" href="backoffice-review.css">',
+      '<script src="backoffice/dashboard-model.js"></script>'].join('\n'),versions);
+    expect(html).toContain('trail-verify-desk.js?v=bbbbbbbbbb');
+    expect(html).toContain('backoffice-review.css?v=cccccccccc');
+    expect(html).toContain('backoffice/dashboard-model.js?v=dddddddddd');
+  });
+
+  test('an existing stale version is replaced, not appended', () => {
+    const html=stampAssets('<script src="trail-verify-desk.js?v=20260910-1"></script>',versions);
+    expect(html).toContain('trail-verify-desk.js?v=bbbbbbbbbb');
+    expect(html).not.toContain('20260910-1');
+  });
+
+  test('the public Firebase module becomes the backoffice one', () => {
+    expect(stampAssets('<script type="module" src="firebase-init.js"></script>',versions))
+      .toContain('src="backoffice-firebase.js?v=aaaaaaaaaa"');
+  });
+
+  test('a file the build does not publish is left alone', () => {
+    const html=stampAssets('<script src="https://cdn.example.org/thing.js"></script>',versions);
+    expect(html).toContain('https://cdn.example.org/thing.js');
+    expect(html).not.toContain('?v=');
   });
 });
