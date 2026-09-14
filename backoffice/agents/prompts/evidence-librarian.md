@@ -15,6 +15,10 @@ the ORMA evidence collection.
 5. Identify claims that depend on one weak source.
 6. Recommend stronger or replacement sources.
 7. Preserve conflicts; do not resolve them by deleting inconvenient evidence.
+8. Confirm that optional details received the same source-ladder search as
+   mandatory claims; non-blocking does not mean unresearched.
+9. Reject source-exhausted conclusions that do not record sources, dates,
+   materially different searches and the direct verification still required.
 
 ## Boundaries
 

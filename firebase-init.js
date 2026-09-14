@@ -4,8 +4,7 @@ const firebaseConfig = {
   projectId: "dolopaws",
   storageBucket: "dolopaws.firebasestorage.app",
   messagingSenderId: "331415525455",
-  appId: "1:331415525455:web:4a714eea0e95dc9a4ff23a",
-  measurementId: "G-LDBKZZDJ2G"
+  appId: "1:331415525455:web:4a714eea0e95dc9a4ff23a"
 };
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
@@ -26,6 +25,15 @@ import {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+// Product analytics were retired in September 2026. Remove the old consented
+// queue and its session guards when a returning browser next opens ORMA.
+try { localStorage.removeItem('dolopaws-metrics-v1'); } catch (error) {}
+try {
+  Object.keys(sessionStorage)
+    .filter(key => key.startsWith('dolopaws-funnel-v1:'))
+    .forEach(key => sessionStorage.removeItem(key));
+} catch (error) {}
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
 // Apple sign-in is wired but stays hidden until the provider is configured
@@ -976,6 +984,23 @@ async function getWeeklyHikeCount(trailId) {
   }
 }
 
+// SOCIAL-01 stage 1, anonymous "which dogs walked this" tally.
+// One event per COMPLETED walk: trail id, server timestamp, and the dog's
+// coarse FCI group ('g1'..'g10' or 'unknown'). No identity, no name, no
+// breed string, no location. A later batch job aggregates these into a
+// published static file; nothing reads this collection per page view.
+async function recordTrailWalk(trailId, group) {
+  try {
+    await addDoc(collection(db, "trailWalks", String(trailId).slice(0, 80), "walks"), {
+      at: serverTimestamp(),
+      group: String(group || "unknown").slice(0, 12),
+    });
+    return true;
+  } catch (e) {
+    return false; // social proof is a nice-to-have, never break a finished hike over it
+  }
+}
+
 // ============================================================
 // COMMUNITY, dog-safety flags, reviews, abuse reports.
 // Security is enforced by Firestore rules; these functions just write
@@ -1383,7 +1408,7 @@ async function reportContent(targetType, targetId, reason) {
 }
 
 window.DoloPawsCommunity = {
-  recordHikeStart, getWeeklyHikeCount,
+  recordHikeStart, getWeeklyHikeCount, recordTrailWalk,
   addFlag, getActiveFlags, respondToHazard, deleteFlag,
   submitPlaceDogFriendliness, getVerifiedPlaceDogFriendliness,
   reportTrailHazard, TRAIL_HAZARD_CATEGORIES,
@@ -1400,36 +1425,3 @@ window.DoloPawsPrivateOutcomes = {
 
 window.DoloPawsAuthReady = true;
 window.dispatchEvent(new CustomEvent('dolopaws-auth-ready'));
-
-// METRIC-01 delivery.
-//
-// metrics.js queues consented events in the browser and holds them until a
-// first-party receiver exists. This registers Firestore as that receiver.
-// Consent, schema validation, retention and the queue all stay in metrics.js:
-// this only moves an already-accepted event, keyed by its own event id, so a
-// delivery retried after a lost acknowledgement rewrites one document rather
-// than duplicating it.
-//
-// Registration is attempted more than once on purpose. metrics.js is a
-// deferred classic script and this file is a module, so on pages that list
-// metrics.js after this one it has not run yet when this module executes.
-let metricsTransportRegistered = false;
-function registerMetricsTransport(){
-  if(metricsTransportRegistered) return;
-  const metrics = window.DoloPawsMetrics;
-  if(!metrics || typeof metrics.setTransport !== 'function') return;
-  metricsTransportRegistered = metrics.setTransport(async (event) => {
-    // The expiry is derived from the already-coarse event hour, so retries
-    // write an identical document and Firestore TTL can enforce the same
-    // 30-day lifetime as the local queue.
-    const occurredAt = new Date(event.occurredHour).getTime();
-    const expiresAt = Timestamp.fromMillis(occurredAt + 30 * 24 * 60 * 60 * 1000);
-    await setDoc(doc(db, 'productEvents', event.id), { ...event, expiresAt });
-    return true;
-  });
-  if(metricsTransportRegistered) Promise.resolve(metrics.flush()).catch(() => {});
-}
-
-registerMetricsTransport();
-window.addEventListener('DOMContentLoaded', registerMetricsTransport);
-window.addEventListener('load', registerMetricsTransport);

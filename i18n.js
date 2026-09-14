@@ -304,7 +304,7 @@
     'account.delete.googleConfirm': 'You’ll be asked to confirm with Google.',
     'account.delete.typeConfirm': 'Type <b>DELETE</b> to confirm',
     'account.delete.deviceData': 'Data on this device',
-    'account.delete.removeLocal': '<b>Remove all ORMA local data</b><br><span class="hint">Recommended on shared devices. Removes downloaded maps, journal entries, unfinished and completed hike records, pending outcomes and reports, analytics queues, photos, and cached profile data.</span>',
+    'account.delete.removeLocal': '<b>Remove all ORMA local data</b><br><span class="hint">Recommended on shared devices. Removes downloaded maps, journal entries, unfinished and completed hike records, pending outcomes and reports, photos, and cached profile data.</span>',
     'account.delete.keepMaps': '<b>Keep downloaded public maps</b><br><span class="hint">Journal entries and every other private local record are removed. Public maps remain usable, but cannot be updated until another account logs in.</span>',
     'account.delete.keepAccount': 'Keep my account',
     'account.profile.backHome': '← Back to Homepage',

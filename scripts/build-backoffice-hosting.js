@@ -9,7 +9,6 @@ const output=path.join(root,'dist','backoffice');
 const files=[
   'backoffice-firebase.js','backoffice-login.js','backoffice-auth-guard.js','backoffice-session.js',
   'backoffice-hosted-dashboard.js','trail-verify-desk.js','backoffice/dashboard-model.js',
-  'backoffice-product-funnel.js','backoffice/product-funnel-model.js',
   'moderation-page.js','moderation.css','community-content-states.js',
   'backoffice-review.css','styles.css','favicon-32.png','logo.svg','backoffice/content-review-decisions.js','backoffice/content-receipt-model.js',
 ];
@@ -41,7 +40,6 @@ async function build(){
   await hostedPage('trail-verify-desk.html');
   await hostedPage('community-moderation-desk.html');
   await hostedPage('backoffice-hosted-review.html','backoffice-review.html');
-  await hostedPage('backoffice-hosted-product-funnel.html','product-funnel.html');
   await fs.writeFile(path.join(output,'robots.txt'),'User-agent: *\nDisallow: /\n','utf8');
   await fs.writeFile(path.join(output,'404.html'),'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>Private backoffice | ORMA</title></head><body><main><h1>Page not found</h1><p><a href="backoffice-login.html">Return to private sign in</a></p></main></body></html>','utf8');
   const built=await walk(output);

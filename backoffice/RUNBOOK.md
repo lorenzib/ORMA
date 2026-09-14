@@ -30,15 +30,9 @@ or append a CEO decision.
 | New Trail scouting | Monday–Saturday at 10:00 Europe/Rome, after the Firestore quota reset window, Dolomites first | Select, park or reject a candidate |
 | Newsletter | Parked until content readiness is explicitly confirmed | Existing drafts are preserved read-only; no generation, revision or handoff runs |
 | Analyst | Parked during the MVP catalogue-and-coverage phase | Existing work is preserved; no new opportunity or mock-up work is generated |
-| Product analytics retention | Daily at 02:43 UTC | No decision gate; deletes only `productEvents` older than 30 days |
 
 GitHub cron is a target rather than proof of execution. Backoffice Home reads
 the saved worker and campaign health receipts and links the exact workflow run.
-
-The **Prune product analytics** workflow is the enforceable retention path on
-the billing-free Firebase project. If a scheduled run fails, re-run it from
-GitHub Actions after restoring the existing Firebase service-account access;
-the query is bounded and safely resumes with the oldest remaining records.
 
 ## What happens after a click
 

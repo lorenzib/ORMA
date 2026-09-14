@@ -5,7 +5,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import {
   addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limit,
-  orderBy, query, serverTimestamp, setDoc, Timestamp, where, writeBatch,
+  orderBy, query, serverTimestamp, Timestamp, where, writeBatch,
 } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -63,36 +63,6 @@ async function getRevisionJobs(){
   }catch(error){console.error('getRevisionJobs failed:',error);return {ok:false,error:'job-read-failed',jobs:[]};}
 }
 
-const PRODUCT_EVENT_LIMIT=2000;
-
-async function getProductEvents(input){
-  if(!await moderatorIdentity())return {ok:false,error:'moderator-required',events:[]};
-  const requestedDays=Number(input&&input.days);
-  const days=requestedDays===30?30:7;
-  const cutoff=new Date(Date.now()-days*864e5);
-  cutoff.setUTCMinutes(0,0,0);
-  const from=cutoff.toISOString();
-  try{
-    const snapshot=await getDocs(query(
-      collection(db,'productEvents'),
-      where('occurredHour','>=',from),
-      orderBy('occurredHour','desc'),
-      limit(PRODUCT_EVENT_LIMIT)
-    ));
-    return {
-      ok:true,
-      days,
-      from,
-      limit:PRODUCT_EVENT_LIMIT,
-      truncated:snapshot.size===PRODUCT_EVENT_LIMIT,
-      events:snapshot.docs.map(item=>({id:item.id,...item.data()})),
-    };
-  }catch(error){
-    console.error('getProductEvents failed:',error);
-    return {ok:false,error:'product-events-read-failed',events:[]};
-  }
-}
-
 async function getPublicationReviews(){
   if(!await moderatorIdentity())return {ok:false,error:'moderator-required',reviews:[]};
   try{
@@ -130,10 +100,22 @@ async function getNewTrailReviews(){
   catch(error){console.error('getNewTrailReviews failed:',error);return {ok:false,error:'new-trail-review-read-failed',reviews:[]};}
 }
 
+// Why a write failed, in the words the desk can show. A moderator pressing a
+// button needs to know whether they are signed out, offline, or refused by the
+// rules -- and so does anyone debugging it later. The name of the call that
+// failed says none of those, and every submit here reported only that.
+function writeFailure(scope,error){
+  // error.code is the informative part -- 'permission-denied', 'unavailable'.
+  // error.name is 'Error' on anything ordinary, which says less than nothing.
+  const code=String(error&&error.code||'').trim();
+  const detail=String(error&&error.message||'').replace(/\s+/g,' ').trim().slice(0,200);
+  return {ok:false,error:code?`${scope}: ${code}`:(detail?`${scope}: ${detail}`:scope),code:code||null,detail:detail||null};
+}
+
 async function submitNewTrailReview(input){
   const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
   try{const review=await addDoc(collection(db,'backofficeNewTrailReviews'),{contractVersion:'1.0.0',type:'new-trail-selection',status:'queued',candidateId:String(input.candidateId||''),action:String(input.action||''),note:String(input.note||'').trim().slice(0,1200),submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false});return {ok:true,reviewId:review.id,status:'queued'};}
-  catch(error){console.error('submitNewTrailReview failed:',error);return {ok:false,error:'new-trail-review-submit-failed'};}
+  catch(error){console.error('submitNewTrailReview failed:',error);return writeFailure('new-trail-review-submit-failed',error);}
 }
 
 async function getHazardReviews(){
@@ -145,7 +127,7 @@ async function getHazardReviews(){
 async function submitHazardReview(input){
   const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
   try{const review=await addDoc(collection(db,'backofficeHazardReviews'),{contractVersion:'1.0.0',type:'hazard-resolution-review',status:'queued',hazardId:String(input.hazardId||''),action:String(input.action||''),note:String(input.note||'').trim().slice(0,1000),submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false});return {ok:true,reviewId:review.id,status:'queued'};}
-  catch(error){console.error('submitHazardReview failed:',error);return {ok:false,error:'hazard-review-submit-failed'};}
+  catch(error){console.error('submitHazardReview failed:',error);return writeFailure('hazard-review-submit-failed',error);}
 }
 
 async function submitTrailReview(payload){
@@ -160,7 +142,7 @@ async function submitTrailReview(payload){
       decisions:payload.decisions,submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false,
     });
     return {ok:true,reviewId:review.id,status:'queued'};
-  }catch(error){console.error('submitTrailReview failed:',error);return {ok:false,error:'review-submit-failed'};}
+  }catch(error){console.error('submitTrailReview failed:',error);return writeFailure('review-submit-failed',error);}
 }
 
 async function getEditorialReviews(){
@@ -172,7 +154,7 @@ async function getEditorialReviews(){
 async function submitEditorialReview(input){
   const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
   try{const review=await addDoc(collection(db,'backofficeEditorialReviews'),{contractVersion:'1.0.0',type:'website-editorial-review',status:'queued',packetGeneratedAt:String(input.packetGeneratedAt||''),sourceRef:String(input.sourceRef||''),action:String(input.action||''),note:String(input.note||'').trim().slice(0,1500),edits:Array.isArray(input.edits)?input.edits.slice(0,20):[],submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false});return {ok:true,reviewId:review.id,status:'queued'};}
-  catch(error){console.error('submitEditorialReview failed:',error);return {ok:false,error:'editorial-review-submit-failed'};}
+  catch(error){console.error('submitEditorialReview failed:',error);return writeFailure('editorial-review-submit-failed',error);}
 }
 
 async function getNewsletterReviews(){
@@ -184,7 +166,7 @@ async function getNewsletterReviews(){
 async function submitNewsletterReview(input){
   const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
   try{const review=await addDoc(collection(db,'backofficeNewsletterReviews'),{contractVersion:'1.0.0',type:'newsletter-issue-review',status:'queued',packetGeneratedAt:String(input.packetGeneratedAt||''),action:String(input.action||''),note:String(input.note||'').trim().slice(0,1500),submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false});return {ok:true,reviewId:review.id,status:'queued'};}
-  catch(error){console.error('submitNewsletterReview failed:',error);return {ok:false,error:'newsletter-review-submit-failed'};}
+  catch(error){console.error('submitNewsletterReview failed:',error);return writeFailure('newsletter-review-submit-failed',error);}
 }
 
 async function getAnalystReviews(){
@@ -196,7 +178,7 @@ async function getAnalystReviews(){
 async function submitAnalystReview(input){
   const moderator=await moderatorIdentity();if(!moderator)return {ok:false,error:'moderator-required'};
   try{const review=await addDoc(collection(db,'backofficeAnalystReviews'),{contractVersion:'1.0.0',type:'analyst-opportunity-review',status:'queued',subjectType:String(input.subjectType||'idea'),ideaId:String(input.ideaId||''),action:String(input.action||''),note:String(input.note||'').trim().slice(0,1500),submittedAt:serverTimestamp(),submittedBy:moderator.uid,publicMutationAllowed:false,implementationAuthorized:false});return {ok:true,reviewId:review.id,status:'queued'};}
-  catch(error){console.error('submitAnalystReview failed:',error);return {ok:false,error:'analyst-review-submit-failed'};}
+  catch(error){console.error('submitAnalystReview failed:',error);return writeFailure('analyst-review-submit-failed',error);}
 }
 
 async function submitPublicationReview(input){
@@ -210,7 +192,7 @@ async function submitPublicationReview(input){
       submittedBy:moderator.uid,publicMutationAllowed:false,
     });
     return {ok:true,reviewId:review.id,status:'queued'};
-  }catch(error){console.error('submitPublicationReview failed:',error);return {ok:false,error:'publication-review-submit-failed'};}
+  }catch(error){console.error('submitPublicationReview failed:',error);return writeFailure('publication-review-submit-failed',error);}
 }
 
 async function submitDossierReview(input){
@@ -233,7 +215,7 @@ async function submitDossierReview(input){
       submittedBy:moderator.uid,publicMutationAllowed:false,
     });
     return {ok:true,reviewId:review.id,status:'queued'};
-  }catch(error){console.error('submitDossierReview failed:',error);return {ok:false,error:'dossier-review-submit-failed'};}
+  }catch(error){console.error('submitDossierReview failed:',error);return writeFailure('dossier-review-submit-failed',error);}
 }
 
 async function getRouteReviews(){
@@ -254,7 +236,7 @@ async function submitRouteReview(input){
       submittedBy:moderator.uid,publicMutationAllowed:false,
     });
     return {ok:true,reviewId:review.id,status:'queued'};
-  }catch(error){console.error('submitRouteReview failed:',error);return {ok:false,error:'route-review-submit-failed'};}
+  }catch(error){console.error('submitRouteReview failed:',error);return writeFailure('route-review-submit-failed',error);}
 }
 
 const MODERATION_COLLECTIONS={flag:'flags',review:'reviews',photo:'trailPhotos',placeDog:'placeDogReports'};
@@ -337,7 +319,7 @@ async function moderateContent(item,toStatus,reason,options={}){
     batch.set(auditRef,audit);
     for(const reportId of item.reportIds||[])batch.update(doc(db,'reports',reportId),{status:toStatus==='visible'?'dismissed':'actioned',resolvedAt:serverTimestamp(),resolvedBy:moderator.uid});
     await batch.commit();return {ok:true,auditId:auditRef.id};
-  }catch(error){console.error('moderateContent failed:',error);return {ok:false,error:'decision-failed'};}
+  }catch(error){console.error('moderateContent failed:',error);return writeFailure('decision-failed',error);}
 }
 
 async function getSiteNotices(){
@@ -351,13 +333,13 @@ async function addSiteNotice(notice){
   try{const ref=await addDoc(collection(db,'siteNotices'),{title:String(notice.title||'').slice(0,80),body:String(notice.body||'').slice(0,280),
     href:notice.href?String(notice.href).slice(0,200):null,type:['news','trail','safety'].includes(notice.type)?notice.type:'news',createdAt:serverTimestamp(),
     expiresAt:Number.isFinite(notice.expiresDays)?Timestamp.fromMillis(Date.now()+notice.expiresDays*864e5):null});return {ok:true,id:ref.id};}
-  catch(error){console.error('addSiteNotice failed:',error);return {ok:false,error:'notice-create-failed'};}
+  catch(error){console.error('addSiteNotice failed:',error);return writeFailure('notice-create-failed',error);}
 }
 
 async function deleteSiteNotice(noticeId){
   if(!await moderatorIdentity())return {ok:false,error:'moderator-required'};
   try{await deleteDoc(doc(db,'siteNotices',String(noticeId)));return {ok:true};}
-  catch(error){console.error('deleteSiteNotice failed:',error);return {ok:false,error:'notice-delete-failed'};}
+  catch(error){console.error('deleteSiteNotice failed:',error);return writeFailure('notice-delete-failed',error);}
 }
 
 window.DoloPawsAuth={
@@ -370,7 +352,7 @@ window.DoloPawsAuth={
   async logOut(){await signOut(auth);currentUser=null;},
 };
 window.DoloPawsModeration={getModeratorStatus:async()=>({ok:!!await moderatorIdentity()}),getQueue:getModerationQueue,decide:moderateContent,getSiteNotices,addSiteNotice,deleteSiteNotice};
-window.ORMABackoffice={getArtifact,getRevisionJobs,getProductEvents,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getNewsletterReviews,getAnalystReviews,getModerationQueue,moderateContent,submitTrailReview,submitPublicationReview,submitDossierReview,getRouteReviews,submitRouteReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitNewsletterReview,submitAnalystReview};
+window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getNewsletterReviews,getAnalystReviews,getModerationQueue,moderateContent,submitTrailReview,submitPublicationReview,submitDossierReview,getRouteReviews,submitRouteReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitNewsletterReview,submitAnalystReview};
 
 onAuthStateChanged(auth,user=>{
   currentUser=user;

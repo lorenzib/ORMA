@@ -26,8 +26,6 @@ const SOURCES = [
   'trail-audits.js',
   'regions-config.js',
   'basemap-poi-click.js',
-  'metrics.js',
-  'metric-funnel.js',
   'hike-gps-policy.js',
   'route-rejoin.js',
   'hike-distance.js',

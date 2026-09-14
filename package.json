@@ -75,7 +75,6 @@
     "app:open": "npx cap open ios",
     "backoffice:valley-research": "node backoffice/cli/valley-research.js",
     "backoffice:retire-blocked-jobs": "node backoffice/cli/retire-blocked-jobs.js",
-    "backoffice:prune-product-events": "node backoffice/cli/prune-product-events.js",
     "backoffice:route-shape": "node backoffice/cli/declare-route-shape.js",
     "backoffice:artifact-sizes": "node backoffice/cli/report-artifact-sizes.js"
   },

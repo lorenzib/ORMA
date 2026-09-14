@@ -8,7 +8,6 @@ on:
       - trail-verify-desk.html
       - trail-verify-desk.js
       - backoffice/dashboard-model.js
-      - backoffice/product-funnel-model.js
       - backoffice/content-receipt-model.js
       - styles.css
       - favicon-32.png
@@ -40,7 +39,6 @@ on:
       - trail-verify-desk.html
       - trail-verify-desk.js
       - backoffice/dashboard-model.js
-      - backoffice/product-funnel-model.js
       - backoffice/content-receipt-model.js
       - styles.css
       - favicon-32.png

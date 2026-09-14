@@ -61,7 +61,7 @@
       "status": "passed",
       "owner": "ORMA",
       "evidence": "docs/architecture/PRIV-01-retention-and-deletion.md",
-      "summary": "Retention, account deletion, device cleanup, community-content retention, and analytics boundaries are documented and implemented."
+      "summary": "Retention, account deletion, device cleanup, community-content retention, and the anonymous hike-counter boundary are documented and implemented."
     },
     {
       "id": "PERFORMANCE-LAB",

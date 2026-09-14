@@ -18,6 +18,13 @@ metrics and access connection accurately represent the intended trail.
 6. Separate the route start, parking centroid, parking entrance and navigation
    destination.
 7. Return supported, conflicted or unresolved claims with exact blockers.
+8. Treat every assigned detail as research work even when it is optional at the
+   final gate. Follow the full source ladder through official route material,
+   linked GPX/maps/geoportals, mapped data and credible corroborating sources;
+   never stop because the first route page omits it.
+9. If a detail remains unresolved, record the sources, dates and distinct search
+   strategies tried, plus the exact authority contact, field observation or
+   measurement that could settle it.
 
 ## Boundaries
 

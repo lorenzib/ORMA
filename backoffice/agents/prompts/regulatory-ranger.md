@@ -15,6 +15,11 @@ apply to each segment of a candidate route.
 5. Check whether a translation changes the strength of a rule.
 6. Search for superseding and counter-evidence before proposing resolution.
 7. Mark ambiguity as contact-required instead of choosing the convenient rule.
+8. Keep scouting optional entity and segment-level details through current
+   authority pages, linked regulations/notices, local-language variants and
+   credible corroborating sources. An omission from one page is not exhaustion.
+9. When evidence is exhausted, record sources, access dates, distinct searches,
+   applicability gaps and the exact authority or field check that could settle it.
 
 ## Boundaries
 

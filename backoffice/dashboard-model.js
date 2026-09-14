@@ -262,8 +262,12 @@
     const meta=new Map();
     const remember=(id,source)=>{
       if(!id)return;const existing=meta.get(id)||{};
+      // Registry and hazard records can legitimately contain only the stable
+      // trail id. Do not let that fallback mask the catalogue name carried by
+      // the richer orchestration record that is read afterwards.
+      const existingTitle=existing.title&&existing.title!==id?existing.title:'';
       meta.set(id,{
-        title:existing.title||source.title||source.trailName||source.name||id,
+        title:existingTitle||source.title||source.trailName||source.name||id,
         area:existing.area||source.area||'',valley:existing.valley||source.valley||'',region:existing.region||source.region||'',
       });
     };

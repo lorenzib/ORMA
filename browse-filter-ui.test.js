@@ -196,6 +196,15 @@ describe('Browse filter UI', () => {
     expect(html).toMatch(/#browseFiltersMenu\{[^}]*position:fixed;[^}]*bottom:max\(8px,env\(safe-area-inset-bottom\)\);[^}]*overflow-y:auto;/);
   });
 
+  test('optically aligns the Water control with Saved', () => {
+    const html = source('browse-trails.html');
+
+    expect(html).toContain("height:40px;min-height:40px;box-sizing:border-box;padding:0 13px");
+    expect(html).toContain('#browseWater .dp-icon-svg{transform:translateY(1px);}');
+    expect(html).toContain('#browseWater>span:last-child,.browse-saved-only>span:nth-child(2){display:inline-flex;align-items:center;min-height:21px;line-height:1;}');
+    expect(html).toContain('data-dp-icon="water" data-dp-icon-size="22"');
+  });
+
   test('uses the same labelled white pill treatment for browse area controls', () => {
     const html = source('browse-trails.html');
     const dropdown = source('area-dropdown.js');
