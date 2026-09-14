@@ -7,7 +7,7 @@
   <title>Backoffice Home | ORMA</title>
   <link rel="icon" href="favicon-32.png" sizes="32x32">
   <link rel="stylesheet" href="styles.css?v=20260821-5">
-  <link rel="stylesheet" href="backoffice-review.css?v=20260909-1">
+  <link rel="stylesheet" href="backoffice-review.css?v=20260914-1">
   <script>document.documentElement.classList.add('bo-auth-pending')</script>
 </head>
 <body class="bo-shell">
@@ -67,6 +67,7 @@
       </div>
       <section class="bo-desk-summary" aria-label="Coverage totals">
         <article><strong id="coverageVerified">—</strong><span>ORMA Verified</span></article>
+        <article><strong id="coverageWaiting">—</strong><span>Waiting on you</span></article>
         <article><strong id="coverageHazards">—</strong><span>With a live hazard</span></article>
       </section>
       <div class="bo-coverage-controls">
@@ -75,6 +76,7 @@
         <div class="bo-coverage-filters" role="group" aria-label="Filter trails">
           <button type="button" data-coverage-filter="all" aria-pressed="true">All</button>
           <button type="button" data-coverage-filter="not-verified" aria-pressed="false">Not verified</button>
+          <button type="button" data-coverage-filter="waiting" aria-pressed="false">Waiting on you</button>
           <button type="button" data-coverage-filter="hazard" aria-pressed="false">Has a hazard</button>
           <button type="button" data-coverage-filter="done" aria-pressed="false">Complete</button>
         </div>
@@ -112,7 +114,7 @@
   <script type="module" src="backoffice-firebase.js"></script>
   <script src="backoffice-auth-guard.js?v=20260819-1"></script>
   <script src="backoffice-session.js?v=20260819-1"></script>
-  <script src="backoffice/dashboard-model.js?v=20260905-2"></script>
-  <script src="backoffice-hosted-dashboard.js?v=20260905-2"></script>
+  <script src="backoffice/dashboard-model.js?v=20260914-1"></script>
+  <script src="backoffice-hosted-dashboard.js?v=20260914-1"></script>
 </body>
 </html>

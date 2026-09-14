@@ -133,16 +133,38 @@
 
   const HAZARD_LABEL={active:'Live',unconfirmed:'Unconfirmed',clear:'Clear'};
 
+  function waitingOnYou(row){return Boolean(row.verificationProgress&&row.verificationProgress.waitingOnYou);}
+
   function coverageMatches(row){
     if(coverageFilter==='not-verified'&&row.verified==='verified')return false;
+    if(coverageFilter==='waiting'&&!waitingOnYou(row))return false;
     if(coverageFilter==='hazard'&&!row.hazards.length)return false;
     if(coverageFilter==='done'&&row.verified!=='verified')return false;
     if(!coverageQuery)return true;
     return `${row.title} ${row.area} ${row.valley} ${row.trailId}`.toLowerCase().includes(coverageQuery);
   }
 
-  function coverageCell(state,label){
-    const cell=element('td');const pill=element('span',`bo-coverage-pill is-${state}`,label);cell.append(pill);return cell;
+  function coverageCell(state,label,detail){
+    const cell=element('td');
+    cell.append(element('span',`bo-coverage-pill is-${state}`,label));
+    if(detail)cell.append(element('small','bo-coverage-step',detail));
+    return cell;
+  }
+
+  /**
+   * How far along, and who is holding it. The step count is the part that
+   * answers "how far are we from verified" without opening anything; the
+   * second half is the part that says whether the answer is up to you.
+   */
+  function progressDetail(progress){
+    if(!progress)return '';
+    const where=progress.step?`Step ${progress.step} of ${progress.of}`:'Off the main path';
+    if(progress.waitingOnYou){
+      return progress.blockers
+        ? `${where} · waiting on you — ${progress.blockers} blocker${progress.blockers===1?'':'s'} to clear first`
+        : `${where} · waiting on you`;
+    }
+    return progress.by?`${where} · ${progress.by} working`:where;
   }
 
   function coverageRow(row){
@@ -153,8 +175,11 @@
       row.region==='dolomites'?'Dolomites':''].filter(Boolean).join(' · ');
     if(context)name.append(element('small','',context));
     tr.append(name);
-    tr.append(coverageCell(row.verified==='verified'?'ok':row.verified==='in-progress'?'progress':'todo',
-      row.verified==='verified'?'Verified':row.verified==='in-progress'?(row.verificationStage||'In progress'):'Not started'));
+    const progress=row.verificationProgress;
+    if(row.verified==='verified')tr.append(coverageCell('ok','Verified','Step 8 of 8 · complete'));
+    else if(row.verified==='in-progress')tr.append(coverageCell(progress&&progress.waitingOnYou?'waiting':'progress',
+      (progress&&progress.label)||row.verificationStage||'In progress',progressDetail(progress)));
+    else tr.append(coverageCell('todo','Not started','Step 0 of 8 · not in the pipeline'));
     const hazard=coverageCell(row.hazardState==='active'?'alert':row.hazardState==='unconfirmed'?'progress':'ok',
       HAZARD_LABEL[row.hazardState]||'Clear');
     if(row.hazards.length)hazard.title=row.hazards.map(item=>item.title).join('\n');
@@ -173,6 +198,7 @@
     if(caption)caption.textContent=`${visible.length} of ${coverage.rows.length} trails`;
     const summary=coverage.summary||{};
     set('coverageVerified',`${summary.verified||0}/${summary.trails||0}`);
+    set('coverageWaiting',String(coverage.rows.filter(waitingOnYou).length));
     set('coverageHazards',String(summary.trailsWithHazards||0));
   }
 
