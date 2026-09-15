@@ -3071,15 +3071,55 @@ function liProvenanceHtml(trail, profile){
   return `<div class="li-row-trust"><strong>${liPersonalisationText(presentation.provenance)}</strong>${detail}</div>`;
 }
 
+/**
+ * Unknowns name their owner in their code: dog.* is a field the reader can
+ * fill in right now, everything else is trail data nobody here can supply.
+ * The wizard leaves weight, health and behaviour optional on purpose -- the
+ * engine says what it does not know rather than guessing a value -- but until
+ * now the homepage only stated the consequence ("Weight is missing, so size
+ * adjustments are not applied") with no way to act on it. The trail page has
+ * had the actionable version all along; this is the same one.
+ */
+function liDogGapFields(recommendation){
+  return (recommendation.unknowns || [])
+    .filter(entry => entry && typeof entry.code === 'string' && entry.code.startsWith('dog.'))
+    .map(entry => entry.code.split('.')[1])
+    .filter(Boolean);
+}
+
+/** Same contract as trail-recommendation.js's tr: translated, else the copy here. */
+function liT(key, fallback, vars){
+  if(typeof window.t === 'function'){
+    const value = window.t(key, vars);
+    if(value && value !== key) return value;
+  }
+  let output = fallback;
+  for(const name of Object.keys(vars || {})) output = output.split(`{${name}}`).join(vars[name]);
+  return output;
+}
+
+function liGapFieldList(fields){
+  const labels = fields.map(field => liT(`recommendation.profileField.${field}`, field));
+  if(labels.length <= 1) return labels.join('');
+  return liT('recommendation.list.and', '{first} and {last}', {
+    first:labels.slice(0, -1).join(', '),
+    last:labels[labels.length - 1],
+  });
+}
+
 function liRecommendationExplanationHtml(trail, profile){
   const recommendation = trail && trail.recommendation;
   if(!recommendation) return '';
   const dogName = profile && profile.name ? profile.name : 'your dog';
   const positives = (recommendation.positiveReasons || []).slice(0, 2);
+  const gapFields = profile && profile.name ? liDogGapFields(recommendation) : [];
+  // A gap that has become a prompt must not also sit in the list above it as a
+  // statement; saying the same thing twice reads as two separate problems.
+  const gapCodes = new Set(gapFields.map(field => `dog.${field}.unknown`));
   const cautions = [
     ...(recommendation.hardStops || []),
     ...(recommendation.cautions || []),
-    ...(recommendation.unknowns || []),
+    ...(recommendation.unknowns || []).filter(entry => !(entry && gapCodes.has(entry.code))),
   ].slice(0, 2);
   const items = entries => entries.map(entry => `<li>${liPersonalisationText(entry.message)}</li>`).join('');
   const fit = positives.length
@@ -3088,8 +3128,16 @@ function liRecommendationExplanationHtml(trail, profile){
   const know = cautions.length
     ? `<div><b>What to know ${liWalkDate === liDateOffsetIso(0) ? 'today' : 'for this day'}</b><ul>${items(cautions)}</ul></div>`
     : '';
+  // Opens the wizard on the dog it is talking about, rather than sending the
+  // reader to the account page to find it themselves.
+  const gap = gapFields.length
+    ? `<p class="li-answer-gap"><button type="button" class="li-answer-gap-btn" data-complete-dog>${
+        liPersonalisationText(liT('recommendation.gap.fields', 'Add {name}\u2019s {fields} to sharpen this score \u2192', {
+          name:dogName, fields:liGapFieldList(gapFields),
+        }))}</button></p>`
+    : '';
   return `<div class="li-answer-explanation">
-    ${fit}${know}
+    ${fit}${know}${gap}
     <div class="li-answer-actions">
       <a class="li-answer-open" href="trail.html?id=${encodeURIComponent(trail.id)}">View trail details</a>
       <button type="button" class="li-answer-map locate-btn" data-id="${liPersonalisationText(trail.id)}">Show on map</button>
@@ -3345,6 +3393,22 @@ async function renderReturningHomepage(profile, options = {}){
   listEl.querySelectorAll('.locate-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       focusMapOnTrail(btn.dataset.id, displayList);
+    });
+  });
+
+  // Opens the wizard on the dog the card is about, at the step holding the
+  // field it named. Sending the reader to the account page to find the dog
+  // themselves is how a one-line fix becomes a task nobody does.
+  listEl.querySelectorAll('[data-complete-dog]').forEach(btn => {
+    btn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const dog = liResolveActiveProfile(currentProfileForAdjust);
+      if(window.DoloPawsWizard && typeof window.DoloPawsWizard.open === 'function'){
+        window.DoloPawsWizard.open(dog || null, { returnToPage:true });
+        return;
+      }
+      // Pages that never load the wizard still get somewhere useful.
+      window.location.href = 'account.html';
     });
   });
 

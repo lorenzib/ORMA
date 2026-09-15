@@ -4190,6 +4190,12 @@ html.early-member .topnav{display:none;}
 .li-answer-explanation b{font:800 11px 'Inter',sans-serif;letter-spacing:.02em;}
 .li-answer-explanation ul{margin:7px 0 0;padding-left:17px;color:var(--ink-soft);font:600 11px/1.45 'Inter',sans-serif;}
 .li-answer-explanation li+li{margin-top:4px;}
+/* The one gap on the card the reader can close themselves. Spans both columns
+   so it reads as an invitation under the findings, not a third finding. */
+.li-answer-gap{grid-column:1/-1;margin:0;}
+.li-answer-gap-btn{padding:0;border:0;background:none;color:var(--accent);font:750 11.5px 'Inter',sans-serif;text-align:left;cursor:pointer;}
+.li-answer-gap-btn:hover{text-decoration:underline;}
+.li-answer-gap-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px;}
 .li-answer-actions{grid-column:1/-1;display:flex;align-items:center;gap:10px;}
 .li-answer-open{display:inline-flex;align-items:center;justify-content:center;min-height:40px;box-sizing:border-box;padding:0 16px;border-radius:10px;background:var(--accent);color:#fff;font:800 12px 'Inter',sans-serif;text-decoration:none;}
 .li-answer-open:hover{background:var(--accent-hover);color:#fff;}
