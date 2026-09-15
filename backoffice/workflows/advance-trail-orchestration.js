@@ -3,7 +3,8 @@
 const {specialistJob}=require('./apply-dossier-review');
 const {fitReviewQueue}=require('./review-queue-compaction');
 const {summarize}=require('./build-live-orchestration');
-const {routeGuidanceBlockingReasons}=require('./compile-verified-dossier');
+const {routeGuidanceBlockingReasons,routeGuidanceContractStale,ROUTE_GUIDANCE_CONTRACT,
+  ROUTE_GUIDANCE_CLAIM_IDS}=require('./compile-verified-dossier');
 const {
   MAX_AUTOMATED_ATTEMPTS,resolutionCandidates,ensureResolutionEntries,pendingAttempt,
   completedAttempts,reconcileCompletedAttempt,addQueuedAttempt,attemptStrategyText,
@@ -238,6 +239,41 @@ async function advanceTrailOrchestration(store,options={}){
         const key=String(trail.trailId||trail.candidateId);
         nextQueue.items=(nextQueue.items||[]).filter(item=>
           !(String(item.trailId||item.candidateId)===key&&item.gateType==='agent-failure'));
+        releasedGates.push(trail.trailId);
+        continue;
+      }
+    }
+
+    // A gate opened before the required claim set was tightened holds a dossier
+    // that can never satisfy it. The claims are absent rather than weak, so no
+    // amount of reviewing clears it, and no branch below re-runs an agent for a
+    // trail already parked: seven trails waited this way, unapprovable, while the
+    // desk reported them as needing a decision.
+    //
+    // The outputs come from the review item the gate already carries, so noticing
+    // costs no Firestore read. The refresh is recorded against the contract it was
+    // made for, so a trail is re-queued once per tightening and never loops — and
+    // if the fresh run still cannot produce the claims it fails loudly through the
+    // agent-failure gate above, which is the outcome worth having.
+    if(trail.state==='dossier-human-gate'&&trail.gate?.id==='dossier-approval'
+      &&trail.claimContractRefresh?.routeGuidance!==ROUTE_GUIDANCE_CONTRACT){
+      const key=String(trail.trailId||trail.candidateId);
+      const gateItem=(nextQueue.items||[]).find(item=>String(item.trailId||item.candidateId)===key
+        &&item.state==='awaiting-human'&&item.gateType==='dossier-approval');
+      if(gateItem&&routeGuidanceContractStale(gateItem.specialistOutputs)){
+        const attempt=(trail.attempts.logistics||0)+1;trail.attempts.logistics=attempt;
+        const job=specialistJob(trail,{agentId:'logistics',action:'refresh-route-guidance-claims',
+          claimIds:[...ROUTE_GUIDANCE_CLAIM_IDS]},attempt,at);
+        job.instruction=`The route guidance this dossier needs was recorded before ${ROUTE_GUIDANCE_CONTRACT} required it. Return every one of ${ROUTE_GUIDANCE_CLAIM_IDS.join(', ')} for this route, each as a supported proposal citing an https source with a named authority, preserving your other claims unchanged.`;
+        queued.push(job);trail.jobIds.push(job.id);
+        // Without this the evidence-research branch would advance again on the
+        // same stale completed job and re-open the same unsatisfiable gate.
+        trail.pendingRevisionJobId=job.id;
+        trail.claimContractRefresh={...(trail.claimContractRefresh||{}),routeGuidance:ROUTE_GUIDANCE_CONTRACT};
+        trail.state='evidence-research';trail.stage='logistics-contract-refresh';
+        trail.gate=null;trail.blockers=[];trail.updatedAt=at;
+        nextQueue.items=(nextQueue.items||[]).filter(item=>
+          !(String(item.trailId||item.candidateId)===key&&item.gateType==='dossier-approval'&&item.state==='awaiting-human'));
         releasedGates.push(trail.trailId);
         continue;
       }
