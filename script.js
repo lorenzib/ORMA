@@ -3004,10 +3004,15 @@ function liRowMeta(t){
   return parts.join(' · ');
 }
 
+// One vocabulary, from match-verdict.js. This used to say "Great match" at 85
+// and "Good" at 65 while the list below it said "Possible with cautions" at 60,
+// so the same trail answered differently in the dropdown and in the results.
 function liMatchTier(score){
-  return score >= 85 ? { color: '#4A7856', label: 'Great match' }
-    : score >= 65 ? { color: '#C98A2E', label: 'Good' }
-    : { color: '#9C3A25', label: 'Check first' };
+  const verdict = window.OrmaMatchVerdict;
+  if(verdict) return verdict.verdictFor(score);
+  return score >= 85 ? { color: '#4A7856', label: 'Strong option' }
+    : score >= 60 ? { color: '#A96F1D', label: 'Possible with cautions' }
+    : { color: '#9C3A25', label: 'Not recommended' };
 }
 function liPersonalisationText(value){
   return String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({
@@ -3019,15 +3024,13 @@ function liRecommendationPresentation(trail, profile){
   const recommendation = trail && trail.recommendation ? trail.recommendation : {};
   const score = Number.isFinite(recommendation.score) ? recommendation.score
     : Number.isFinite(trail && trail.score) ? trail.score : 0;
-  const categories = {
-    'strong-option': { label:'Strong option', color:'#4A7856' },
-    recommended: { label:'Strong option', color:'#4A7856' },
-    'possible-with-cautions': { label:'Possible with cautions', color:'#A96F1D' },
-    'not-recommended': { label:'Not recommended', color:'#9C3A25' },
-  };
-  const category = categories[recommendation.category] || (score >= 85
-    ? categories['strong-option']
-    : score >= 60 ? categories['possible-with-cautions'] : categories['not-recommended']);
+  const verdict = window.OrmaMatchVerdict;
+  // 'recommended' is the engine's older name for the same verdict.
+  const declared = recommendation.category === 'recommended' ? 'strong-option' : recommendation.category;
+  const category = verdict
+    ? verdict.verdictFor({ score, category: declared })
+    : { label: score >= 85 ? 'Strong option' : score >= 60 ? 'Possible with cautions' : 'Not recommended',
+        color: score >= 85 ? '#4A7856' : score >= 60 ? '#A96F1D' : '#9C3A25' };
   const confidence = {
     high:'High confidence',
     medium:'Moderate confidence',
