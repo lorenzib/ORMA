@@ -445,7 +445,10 @@ async function main() {
           sac_scale: t.sac_scale || null,
           loop,
           symbol: t['osmc:symbol'] || null,
-          website: t.website || null,
+          // Checked live against OSM 2026-09-15: four routes publish their page
+          // under `url` or `contact:website` and were being recorded as having
+          // none. Takes effect on the next monthly refresh.
+          website: t.website || t.url || t['contact:website'] || null,
           leash: ov.leash || null,
           dogFriendlyNotes: ov.dogFriendlyNotes || null,
           waymarkedtrails: `https://hiking.waymarkedtrails.org/#route?id=${el.id}`

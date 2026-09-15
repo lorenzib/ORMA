@@ -34,6 +34,38 @@ function normaliseRouteRef(value) {
 // one step before the agent that needs it.
 //
 // Only https, because the gate will not accept a source that is not.
+// A route with neither a number nor a page can still be signed on the ground,
+// and OSM records what the sign looks like. `osmc:symbol` is
+// waycolour:background:foreground:text:textcolour, so
+// "red:red:white_bar:AS:black" is a white bar on red marked AS -- which is
+// exactly how a walker follows it, and what the agent needs in order to say so.
+// Unrecognised shapes keep the raw value rather than being dropped: an
+// undecoded waymark is still evidence the route is signed.
+const WAYMARK_SHAPES = {
+  bar: 'bar', stripe: 'bar', dot: 'dot', circle: 'circle', round: 'circle',
+  cross: 'cross', diamond: 'diamond', triangle: 'triangle', arch: 'arch', frame: 'frame',
+};
+
+function waymarkPart(value) {
+  const parts = String(value || '').trim().toLowerCase().split('_');
+  if (!parts[0]) return null;
+  const colour = parts[0];
+  const shape = parts.slice(1).map(part => WAYMARK_SHAPES[part] || part).join(' ');
+  return shape ? `${colour} ${shape}` : colour;
+}
+
+function waymarkDescription(value) {
+  const raw = String(value == null ? '' : value).trim();
+  if (!raw) return null;
+  const [, background, foreground, text] = raw.split(':');
+  const front = waymarkPart(foreground);
+  const back = waymarkPart(background);
+  const mark = String(text || '').trim();
+  const face = front && back ? `${front} on ${back}` : front || back || null;
+  if (!face) return { osmc: raw, described: raw };
+  return { osmc: raw, described: mark ? `${face}, marked "${mark}"` : face };
+}
+
 function officialRoutePage(value) {
   const url = String(value == null ? '' : value).trim();
   if (!/^https:\/\//.test(url)) return null;
@@ -58,6 +90,7 @@ function mappedRouteEvidence(root) {
         name: properties.name || null,
         url: properties.waymarkedtrails || `https://www.openstreetmap.org/relation/${properties.osm_relation}`,
         website: officialRoutePage(properties.website),
+        waymark: waymarkDescription(properties.symbol),
       });
     });
   });
@@ -87,6 +120,16 @@ function applyRouteNumberEvidence(trails, root, evidence = mappedRouteEvidence(r
       routeNumberStatus: 'official-route-page',
       routeNumberSource: { provider: mapped.website.host, name: mapped.name, url: mapped.website.url },
     };
+    // No number and no page, but a waymark: the route is signed on the ground and
+    // OSM records the sign. That is not a document the agent can read, so it
+    // ranks below an official page -- but it is evidence, so it ranks above
+    // "nobody has looked".
+    if (mapped && mapped.waymark) return {
+      ...trail,
+      routeNumberStatus: 'waymarked-route',
+      routeWaymark: mapped.waymark,
+      routeNumberSource: { provider: 'OpenStreetMap waymark survey', name: mapped.name, url: mapped.url },
+    };
     if (mapped) return {
       ...trail,
       routeNumberStatus: 'not-listed-in-mapped-source',
@@ -96,4 +139,4 @@ function applyRouteNumberEvidence(trails, root, evidence = mappedRouteEvidence(r
   });
 }
 
-module.exports = { ROUTE_SOURCE_FILES, normaliseRouteRef, officialRoutePage, mappedRouteEvidence, applyRouteNumberEvidence };
+module.exports = { ROUTE_SOURCE_FILES, normaliseRouteRef, officialRoutePage, waymarkDescription, mappedRouteEvidence, applyRouteNumberEvidence };

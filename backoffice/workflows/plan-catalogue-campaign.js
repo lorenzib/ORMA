@@ -161,14 +161,20 @@ const GATE_UNKNOWN = new Set(['verification-pending']);
 // either neighbour, and stays a tier: still spaced wider than the rest of the
 // score can reach.
 const GATE_SOURCED = new Set(['official-route-page']);
+// A waymark is physical evidence the route is signed, but it is not a document
+// anyone can read from a desk, so it sits below an official page and above
+// "nobody has looked".
+const GATE_WAYMARKED = new Set(['waymarked-route']);
 const GATE_CLEARABLE_WEIGHT = 500;
 const GATE_SOURCED_WEIGHT = 375;
+const GATE_WAYMARKED_WEIGHT = 310;
 const GATE_UNKNOWN_WEIGHT = 250;
 
 function routeGuidanceOutlook(trail){
   const status = trail && trail.routeNumberStatus;
   if(GATE_CLEARABLE.has(status)) return 'clearable';
   if(GATE_SOURCED.has(status)) return 'sourced';
+  if(GATE_WAYMARKED.has(status)) return 'waymarked';
   if(GATE_UNKNOWN.has(status) || !status) return 'unknown';
   return 'unobtainable';
 }
@@ -177,6 +183,7 @@ function gateWeight(trail){
   const outlook = routeGuidanceOutlook(trail);
   if(outlook === 'clearable') return GATE_CLEARABLE_WEIGHT;
   if(outlook === 'sourced') return GATE_SOURCED_WEIGHT;
+  if(outlook === 'waymarked') return GATE_WAYMARKED_WEIGHT;
   if(outlook === 'unknown') return GATE_UNKNOWN_WEIGHT;
   return 0;
 }
@@ -295,6 +302,6 @@ function planCatalogueCampaign(trails, options = {}){
 module.exports = {
   GRADUATION_CHECKS, hasFullGraduation, relationExternalId,
   baselineBlockers, campaignItem, jobForItem, planCatalogueCampaign,
-  routeGuidanceOutlook, GATE_CLEARABLE, GATE_SOURCED, GATE_CLEARABLE_WEIGHT, GATE_SOURCED_WEIGHT, GATE_UNKNOWN_WEIGHT,
+  routeGuidanceOutlook, GATE_CLEARABLE, GATE_SOURCED, GATE_WAYMARKED, GATE_CLEARABLE_WEIGHT, GATE_SOURCED_WEIGHT, GATE_WAYMARKED_WEIGHT, GATE_UNKNOWN_WEIGHT,
   pathIsClosedLoop, identityContradiction, approvedComposite, ON_ROUTE_PERCENT,
 };

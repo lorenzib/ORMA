@@ -194,6 +194,10 @@ function routeGuidanceLeads(trail){
     recordedDescription:trail.desc||null,
     recordedTips:trail.tips||null,
     recordedRouteNumberStatus:trail.routeNumberStatus||null,
+    // Not a citable source -- nobody publishes it -- but it is how a walker
+    // actually follows an unnumbered route, so the agent should be able to say
+    // "follow the white bar on red marked AS" rather than nothing.
+    recordedWaymark:trail.routeWaymark?.described||null,
     citedSources:[
       ...(trail.routeNumberSource?.url?[{label:trail.routeNumberSource.name||'Route source',
         url:trail.routeNumberSource.url,authority:trail.routeNumberSource.provider||null}]:[]),
