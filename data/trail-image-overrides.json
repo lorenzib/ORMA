@@ -564,23 +564,6 @@
       }
     },
     {
-      "id": "osm-12079333",
-      "approvedReviewId": "commons-osm-12079333",
-      "approvedAt": "2026-09-08T10:52:55.014Z",
-      "fields": {
-        "imageIcon": "images/trails/osm-12079333-lago-di-andalo.jpg",
-        "heroImage": "images/trails/osm-12079333-lago-di-andalo.jpg",
-        "imageAlt": "A paved path curving along the shore of the Lago di Andalo past a bench, mixed woodland on one side and the lake and village on the other.",
-        "imageCredit": "Lago di Andalo",
-        "imageCreditText": "Lago di Andalo by Giorgio Galeotti",
-        "imageCreator": "Giorgio Galeotti",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Lago_di_Andalo_-_Andalo%2C_Trento%2C_Italia_-_30_Giugno_2024_01.jpg",
-        "imageSourceType": "licensed-source"
-      }
-    },
-    {
       "id": "osm-12118490",
       "approvedReviewId": "commons-osm-12118490",
       "approvedAt": "2026-09-07T19:55:05.873Z",
@@ -917,23 +900,6 @@
         "imageLicence": "CC BY-SA 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:The_Salten_plateau_below_Jenesien_(Bozen-Bolzano).jpg",
-        "imageSourceType": "licensed-source"
-      }
-    },
-    {
-      "id": "osm-12211260",
-      "approvedReviewId": "commons-osm-12211260",
-      "approvedAt": "2026-09-07T19:39:19.761Z",
-      "fields": {
-        "imageIcon": "images/trails/osm-12211260-plateau-des-moises.jpg",
-        "heroImage": "images/trails/osm-12211260-plateau-des-moises.jpg",
-        "imageAlt": "The open grass and wildflower plateau of the Moises, spruce woods along its edges, under a flat overcast sky.",
-        "imageCredit": "Le plateau des Moises",
-        "imageCreditText": "Le plateau des Moises by Claude PIARD",
-        "imageCreator": "Claude PIARD",
-        "imageLicence": "CC BY-SA 4.0",
-        "imageLicenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Moises01.JPG",
         "imageSourceType": "licensed-source"
       }
     },
@@ -1359,23 +1325,6 @@
         "imageLicence": "CC BY 4.0",
         "imageLicenceUrl": "https://creativecommons.org/licenses/by/4.0",
         "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Bourg-Saint-Maurice_(Ao%C3%BBt_2025)_-_Vue_depuis_la_descente_du_col_du_Petit-Saint-Bernard.jpg",
-        "imageSourceType": "licensed-source"
-      }
-    },
-    {
-      "id": "osm-15662134",
-      "approvedReviewId": "commons-osm-15662134",
-      "approvedAt": "2026-09-08T09:19:47.259Z",
-      "fields": {
-        "imageIcon": "images/trails/osm-15662134-laurein.jpg",
-        "heroImage": "images/trails/osm-15662134-laurein.jpg",
-        "imageAlt": "Laurein on the Nonsberg in October, mown pasture and fruit trees below the village, turning larch on the ridge behind.",
-        "imageCredit": "Laurein",
-        "imageCreditText": "Laurein by Mai-Sachme",
-        "imageCreator": "Mai-Sachme",
-        "imageLicence": "CC0",
-        "imageLicenceUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-        "imageSourcePage": "https://commons.wikimedia.org/wiki/File:Laurein.JPG",
         "imageSourceType": "licensed-source"
       }
     },
