@@ -1,22 +1,37 @@
 (function(){
   let mode = 'login'; // 'login' | 'signup' | 'reset'
 
-  // Pages used to carry (or skip) their own copy of the login dialog, so
-  // "Log in" bounced everyone to the homepage. The dialog now lives here:
-  // if the page didn't ship one, inject the redesigned modal so login
-  // opens in place everywhere auth-ui.js runs. The hero photo is loaded
-  // lazily on first open (see openModal) to keep page weight unchanged.
+  // The one definition of the login dialog.
+  //
+  // index.html used to ship its own copy and this was the fallback for every
+  // other page, which is exactly how two copies drift: the homepage's hero
+  // grew a responsive <picture> and a cache-busted logo, and the other
+  // fourteen pages kept a single full-size image. The homepage copy is gone
+  // and its markup is here, so there is one dialog to change.
+  //
+  // The guard stays: a page that has somehow provided its own is left alone
+  // rather than given a second one with duplicate ids.
+  //
+  // The hero photo is still deferred to first open (see openModal), so a
+  // dialog most visitors never open costs them nothing.
   if(!document.getElementById('authModal') && document.body){
     const host = document.createElement('div');
     host.innerHTML =
       '<div id="authModal" class="modal-overlay auth-modal-redesign" hidden role="dialog" aria-modal="true" aria-labelledby="authTitle">' +
         '<div class="modal">' +
           '<div class="auth-hero">' +
-            '<img data-authsrc="images/lago-di-braies.webp" alt="" class="auth-hero-img">' +
+            // The responsive sources index.html used to carry, kept deferred:
+            // every page but the homepage was being served one full-size image.
+            '<picture>' +
+              '<source data-authsrcset="images/lago-di-braies-480.webp 480w, images/lago-di-braies.webp 900w"' +
+                ' type="image/webp" sizes="(max-width: 640px) 100vw, 560px">' +
+              '<img data-authsrc="images/lago-di-braies.jpg" alt="" class="auth-hero-img"' +
+                ' loading="lazy" decoding="async" width="900" height="1200">' +
+            '</picture>' +
             '<div class="auth-hero-shade"></div>' +
             '<button id="authClose" class="modal-close" aria-label="Close">&times;</button>' +
             '<div class="auth-hero-copy">' +
-              '<span class="auth-hero-brand"><img src="logo.svg" alt="">ORMA</span>' +
+              '<span class="auth-hero-brand"><img src="logo.svg?v=5" alt="">ORMA</span>' +
               '<h2 id="authTitle" data-i18n="nav.login">Log in</h2>' +
               '<p class="hint" id="authHint" data-i18n="auth.hint">Save trails to your account so they follow you across devices.</p>' +
             '</div>' +
@@ -282,6 +297,11 @@
     // the modal, so pages don't pay for an image they may never show.
     const heroImg = modal.querySelector('.auth-hero-img');
     if(heroImg && !heroImg.getAttribute('src') && heroImg.dataset.authsrc){
+      // Sources first: setting src before srcset makes the browser commit to
+      // the fallback and the responsive variants never get a say.
+      modal.querySelectorAll('.auth-hero source[data-authsrcset]').forEach(source => {
+        source.srcset = source.dataset.authsrcset;
+      });
       heroImg.src = heroImg.dataset.authsrc;
     }
     errorBox.hidden = true;
