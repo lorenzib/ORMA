@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-15T07:27:24.712Z",
+  "generatedAt": "2026-09-15T10:23:51.945Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
@@ -12,12 +12,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-italy",
       "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/1a22b3fb-9217-41ff-94e0-b74761268954",
-      "identifier": "2.49.0.0.380.3.IT.260914110340.018",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/00feb173-f7ab-4722-89b1-bc0b3981da17",
+      "identifier": "2.49.0.0.380.3.IT.260915103832.035",
       "effectiveAt": "2026-09-16T12:00:00+00:00",
-      "expiresAt": "2026-09-16T21:59:00+00:00",
+      "expiresAt": "2026-09-16T23:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-15T07:27:24.712Z",
+      "lastSeenAt": "2026-09-15T10:23:51.945Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -37,12 +37,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-italy",
       "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/e9d3d2ce-d4d5-4773-b274-1964f99ccab5",
-      "identifier": "2.49.0.0.380.3.IT.260914110340.017",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/2e6c4544-1c7a-4aed-8a01-8308fb9bb4ff",
+      "identifier": "2.49.0.0.380.3.IT.260915103832.031",
       "effectiveAt": "2026-09-16T12:00:00+00:00",
-      "expiresAt": "2026-09-16T21:59:00+00:00",
+      "expiresAt": "2026-09-16T23:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-15T07:27:24.712Z",
+      "lastSeenAt": "2026-09-15T10:23:51.945Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -252,12 +252,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-italy",
       "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/5107569f-0ad7-41e5-96f5-5bff8ad01a2e",
-      "identifier": "2.49.0.0.380.3.IT.260914110340.019",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/697f2647-e0e1-49b2-93d8-44cd5c8e49b7",
+      "identifier": "2.49.0.0.380.3.IT.260915103832.033",
       "effectiveAt": "2026-09-16T12:00:00+00:00",
-      "expiresAt": "2026-09-16T21:59:00+00:00",
+      "expiresAt": "2026-09-16T23:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-15T07:27:24.712Z",
+      "lastSeenAt": "2026-09-15T10:23:51.945Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
