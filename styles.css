@@ -2706,6 +2706,18 @@ body.map-fs-open{overflow:hidden;}
 .auth-modal-redesign [hidden]{display:none !important;}
 .auth-modal-redesign .google-btn{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px;border-radius:var(--radius-sm);}
 .auth-modal-redesign .auth-submit{border-radius:var(--radius-sm);padding:13px;background:var(--accent);}
+/* The one question a sign-in can ask: a guest dog whose name an account
+   already uses. Same dog described differently, or a second dog. */
+.auth-dogclash{display:grid;gap:10px;}
+.auth-dogclash-title{margin:0;font:700 17px 'Bricolage Grotesque',sans-serif;color:var(--ink);}
+.auth-dogclash-lede{margin:0;font-size:13.5px;line-height:1.5;color:var(--ink-soft);}
+.auth-dogclash-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:2px 0 4px;}
+.auth-dogclash-compare>div{padding:10px 12px;border:1px solid var(--paper-line);border-radius:10px;background:var(--sage-dim);min-width:0;}
+.auth-dogclash-compare small{display:block;font:800 9.5px 'Inter',sans-serif;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);}
+.auth-dogclash-compare span{display:block;margin-top:3px;font:600 12.5px/1.4 'Inter',sans-serif;color:var(--ink);overflow-wrap:anywhere;}
+.auth-dogclash-secondary{padding:11px;border:1px solid var(--paper-line);border-radius:var(--radius-sm);background:#fff;color:var(--ink);font:700 13px 'Inter',sans-serif;cursor:pointer;}
+.auth-dogclash-secondary:hover{border-color:var(--accent);color:var(--accent);}
+@media (max-width:420px){.auth-dogclash-compare{grid-template-columns:1fr;}}
 .auth-modal-redesign .auth-submit:hover{background:var(--accent-hover);opacity:1;}
 .auth-modal-redesign .field-label input{background:#fff;border-radius:10px;}
 .auth-field-hint{display:block;margin-top:5px;color:var(--ink-soft);font-size:11.5px;font-weight:500;}
