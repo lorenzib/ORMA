@@ -25,6 +25,24 @@ function distanceMeters(a, b){
 // been declared: only a trail whose shape a human has stated is judged by it.
 const ROUTE_SHAPES = Object.freeze(['loop', 'out-and-back', 'point-to-point']);
 
+// `roundtrip` is OSM's own statement about whether a route comes back to where it
+// started, and this catalogue already trusts it elsewhere — see
+// scripts/fetch-dog-friendly-routes.js. The geometry check did not, so every
+// route nobody had declared was assumed to be a loop and faulted for not
+// closing. declare-route-shape exists to work around exactly that, one trail at
+// a time, and in the repo's whole history it has been used once.
+//
+// Precedence is a human declaration, then OSM, then the old assumption: a
+// moderator can still overrule a mis-tagged relation, and nothing changes where
+// neither says anything. Only an explicit tag counts — inferring "not a loop"
+// from a missing tag would fault nothing and exempt everything.
+function isCircularRoute(options = {}){
+  if(ROUTE_SHAPES.includes(options.routeShape)) return options.routeShape === 'loop';
+  if(options.roundtrip === true) return true;
+  if(options.roundtrip === false) return false;
+  return true;
+}
+
 function assessGeometry(coordinates, options = {}){
   const closureThresholdM = options.closureThresholdM || 100;
   const routeShape = ROUTE_SHAPES.includes(options.routeShape) ? options.routeShape : 'loop';
@@ -54,7 +72,8 @@ function assessGeometry(coordinates, options = {}){
   const closureDistanceM = distanceMeters(coordinates[0], coordinates[coordinates.length - 1]);
   const isClosed = closureDistanceM <= closureThresholdM;
   // Only a route that is meant to close is faulted for not closing.
-  if(!isClosed && routeShape === 'loop') issues.push('not-closed-loop');
+  const circular = isCircularRoute(options);
+  if(!isClosed && circular) issues.push('not-closed-loop');
   if(totalM < 250) issues.push('implausibly-short');
   if(maxSegmentM > Math.max(5000, totalM * 0.45)) issues.push('suspicious-coordinate-jump');
 
@@ -62,6 +81,9 @@ function assessGeometry(coordinates, options = {}){
     version: 'geometry-v1',
     status: issues.length ? 'rejected' : 'passed',
     routeShape,
+    // routeShape is the shape a human declared, or the default. `circular` is
+    // whether the closure test actually applied, which OSM can now answer.
+    circular,
     isClosed,
     closureDistanceM: Math.round(closureDistanceM),
     distanceKm: Math.round(totalM / 10) / 100,
@@ -71,4 +93,4 @@ function assessGeometry(coordinates, options = {}){
   };
 }
 
-module.exports = { ROUTE_SHAPES, assessGeometry, distanceMeters };
+module.exports = { isCircularRoute, ROUTE_SHAPES, assessGeometry, distanceMeters };
