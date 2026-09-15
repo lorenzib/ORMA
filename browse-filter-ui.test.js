@@ -234,7 +234,7 @@ describe('Browse filter UI', () => {
     const html = source('browse-trails.html');
 
     expect(html).toContain('@media(min-width:1041px)');
-    expect(html).toMatch(/@media\(min-width:1041px\)[\s\S]*?\.browse-primary-controls \.browse-tools\{[^}]*display:grid;[^}]*grid-template-columns:minmax\(300px,1fr\) auto auto;[^}]*grid-template-rows:auto auto;/);
+    expect(html).toMatch(/@media\(min-width:1041px\)[\s\S]*?\.browse-primary-controls \.browse-tools\{[^}]*display:grid;[^}]*grid-template-columns:minmax\(300px,520px\) auto auto 1fr;[^}]*grid-template-rows:auto auto;/);
     // Dropdowns packed (capped at 205px, not stretched), Filter trails on their row.
     expect(html).toContain('.browse-area-controls{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(3,minmax(0,205px));gap:9px;}');
     expect(html).toContain('#browseFiltersWrap{grid-column:3;grid-row:1;width:max-content;}');
