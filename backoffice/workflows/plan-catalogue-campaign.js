@@ -155,12 +155,20 @@ const GATE_CLEARABLE = new Set([
 // "Not listed in the mapped source" is a finding: nobody can number this route.
 // "Pending" is the absence of one: nobody has looked. They should not rank alike.
 const GATE_UNKNOWN = new Set(['verification-pending']);
+// An official route page is not proof the gate can be cleared -- nobody has read
+// it yet -- but it is a great deal better than nobody having looked, which is
+// what "unknown" means. It gets its own tier rather than being flattened into
+// either neighbour, and stays a tier: still spaced wider than the rest of the
+// score can reach.
+const GATE_SOURCED = new Set(['official-route-page']);
 const GATE_CLEARABLE_WEIGHT = 500;
+const GATE_SOURCED_WEIGHT = 375;
 const GATE_UNKNOWN_WEIGHT = 250;
 
 function routeGuidanceOutlook(trail){
   const status = trail && trail.routeNumberStatus;
   if(GATE_CLEARABLE.has(status)) return 'clearable';
+  if(GATE_SOURCED.has(status)) return 'sourced';
   if(GATE_UNKNOWN.has(status) || !status) return 'unknown';
   return 'unobtainable';
 }
@@ -168,6 +176,7 @@ function routeGuidanceOutlook(trail){
 function gateWeight(trail){
   const outlook = routeGuidanceOutlook(trail);
   if(outlook === 'clearable') return GATE_CLEARABLE_WEIGHT;
+  if(outlook === 'sourced') return GATE_SOURCED_WEIGHT;
   if(outlook === 'unknown') return GATE_UNKNOWN_WEIGHT;
   return 0;
 }
@@ -286,6 +295,6 @@ function planCatalogueCampaign(trails, options = {}){
 module.exports = {
   GRADUATION_CHECKS, hasFullGraduation, relationExternalId,
   baselineBlockers, campaignItem, jobForItem, planCatalogueCampaign,
-  routeGuidanceOutlook, GATE_CLEARABLE, GATE_CLEARABLE_WEIGHT, GATE_UNKNOWN_WEIGHT,
+  routeGuidanceOutlook, GATE_CLEARABLE, GATE_SOURCED, GATE_CLEARABLE_WEIGHT, GATE_SOURCED_WEIGHT, GATE_UNKNOWN_WEIGHT,
   pathIsClosedLoop, identityContradiction, approvedComposite, ON_ROUTE_PERCENT,
 };

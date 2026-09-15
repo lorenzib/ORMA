@@ -47,7 +47,10 @@ describe('the agent is handed what ORMA already recorded', () => {
     const leads=routeGuidanceLeads(trail);
     expect(leads.recordedStart.label).toContain('Saint-Pierre-d');
     expect(leads.recordedDescription).toContain('Mont Benoit');
-    expect(leads.recordedRouteNumberStatus).toBe('not-listed-in-mapped-source');
+    // This route has no number but does have an official page, so the status
+    // now says so and the page travels to the agent as a citable source.
+    expect(leads.recordedRouteNumberStatus).toBe('official-route-page');
+    expect(leads.citedSources.some(source=>source.url==='https://ap-arclusaz.fr/')).toBe(true);
   });
 
   test('the sources it can cite come with it', () => {
