@@ -1,8 +1,14 @@
 'use strict';
 
-const DEFAULT_EXPECTED_INTERVAL_MINUTES = 15;
-const DEFAULT_DELAY_AFTER_MINUTES = 45;
-const DEFAULT_STALE_AFTER_MINUTES = 90;
+// Cadence matches the worker cron: every 3 hours = 180 minutes (see
+// .github/workflows/orma-backoffice-worker.yml, deliberately slowed to stay
+// inside the Firestore free-tier quota). The health thresholds were left at the
+// old 15-minute assumption, so every normal 3-hourly gap tripped "delayed" then
+// "stale". Allow one interval plus GitHub scheduler jitter before "delayed", and
+// a whole extra missed cycle before "stale", so only a genuine outage alarms.
+const DEFAULT_EXPECTED_INTERVAL_MINUTES = 180;
+const DEFAULT_DELAY_AFTER_MINUTES = 210;
+const DEFAULT_STALE_AFTER_MINUTES = 390;
 
 function text(value, maximum = 2000){
   return String(value || '').trim().slice(0, maximum);
