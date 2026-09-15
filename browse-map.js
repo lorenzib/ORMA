@@ -271,6 +271,13 @@
       map.on('load', () => {
         loaded = true;
         if(root.DoloPawsMapRuntime) root.DoloPawsMapRuntime.enhance(map);
+        // The same calmed basemap the homepage map has always used. Browse was
+        // left on full Liberty, so the two maps of the same trails did not look
+        // like the same product, and every cafe and bus stop competed with the
+        // markers that are the point of the screen.
+        if(root.ORMAMapStyle && typeof root.ORMAMapStyle.quietBasemap === 'function'){
+          root.ORMAMapStyle.quietBasemap(map);
+        }
         installLayers();
         applyData(pendingFit);
         pendingFit = false;
