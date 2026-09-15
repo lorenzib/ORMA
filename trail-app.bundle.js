@@ -332,8 +332,13 @@
   // a match tier. A guest on a trail page got one meaning, a signed-in owner
   // another, from the same coloured line.
   const MATCH_COLOURS = Object.freeze({ good: '#4A7856', fair: '#C98A2E', poor: '#9C3A25' });
+  // These are the scoring engine's own boundaries, and they have to stay its
+  // own: a trail scoring 62 was called "Possible with cautions" in words and
+  // coloured red on the map, and colour is what a reader takes in first.
+  // match-verdict.js holds the same two numbers for the wording, and
+  // match-colour-agrees.test.js fails if the three ever drift apart.
   const MATCH_GOOD = 85;
-  const MATCH_FAIR = 65;
+  const MATCH_FAIR = 60;
   // Shown when no score could be produced at all. Deliberately not a tier
   // colour: an unknown fit must not read as a good or bad one.
   const MATCH_UNKNOWN = '#6B7A6E';
