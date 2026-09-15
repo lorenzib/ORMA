@@ -123,15 +123,25 @@ function stitchWays(ways, options = {}){
   return joined;
 }
 
+// OSM's own answer to "does this route return to its start", where the mapper
+// has given one. Anything other than an explicit yes or no is no answer.
+function roundtripFromTags(tags){
+  const value = String((tags && tags.roundtrip) || '').trim().toLowerCase();
+  if(value === 'yes') return true;
+  if(value === 'no') return false;
+  return null;
+}
+
 function reconstructRelation(payload, externalId, options = {}){
   const relationId = Number(String(externalId).replace('relation/', ''));
   const extracted = memberWays(payload, relationId);
   const components = stitchWays(extracted.ways, options);
   const primary = components[0] || { coordinates: [], wayIds: [] };
-  const assessment = assessGeometry(primary.coordinates,
-    { closureThresholdM: options.closureThresholdM || 100, routeShape: options.routeShape });
-  const issues = [...assessment.issues];
   const tags = extracted.relation.tags || {};
+  const assessment = assessGeometry(primary.coordinates,
+    { closureThresholdM: options.closureThresholdM || 100, routeShape: options.routeShape,
+      roundtrip: roundtripFromTags(tags) });
+  const issues = [...assessment.issues];
   if(tags.type !== 'route' || !['hiking', 'foot'].includes(tags.route)) issues.push('relation-not-hiking-route');
   if(extracted.missingWayIds.length) issues.push('missing-member-geometry');
   if(components.length > 1) issues.push('disconnected-components');
@@ -154,4 +164,4 @@ function reconstructRelation(payload, externalId, options = {}){
   };
 }
 
-module.exports = { MERGE_TOLERANCE_M, mergePieces,  samePoint, cleanLine, memberWays, stitchWays, reconstructRelation };
+module.exports = { roundtripFromTags, MERGE_TOLERANCE_M, mergePieces,  samePoint, cleanLine, memberWays, stitchWays, reconstructRelation };
