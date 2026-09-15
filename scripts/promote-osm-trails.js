@@ -423,6 +423,14 @@ async function main() {
     15591346, // Sentier des Buis (Montmélian), verified 2026-07-14
     16365005, // La Galoppaz par la Combe Servenne, enriched import, curated:false, loop rebuilt
     16395059, // REMOVED: Colombier par la Fullie et la Cochette, fiches strongly advise against dogs even leashed (patous, exposed ridge); removed 2026-07-14
+    // UNVERIFIABLE: no route number, no waymark, no official page and no operator
+    // -- nothing names these routes authoritatively, so they can never clear the
+    // route-guidance gate. Retired 2026-09-15 after assessing all 165. Note this
+    // is NOT a safety judgement: dogs are fine on all three, unlike the BANNED
+    // and REMOVED entries above.
+    12079333, // Giro dei Masi (Brenta), retired 2026-09-15
+    15662134, // Sagenweg Laurein (Val di Non), retired 2026-09-15
+    12211260, // Plateau des Moises (Chablais), retired 2026-09-15
   ]);
 
   for (const [n, feature] of routes.features.entries()) {
