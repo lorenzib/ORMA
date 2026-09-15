@@ -1139,12 +1139,12 @@ img,svg{max-width:100%;height:auto;}
 .simple-card__reason{display:inline-flex;align-items:center;gap:6px;background:var(--success-dim);border-radius:var(--radius-pill);padding:5px 10px;max-width:100%;font-size:12px;line-height:1.35;color:var(--success);}
 .simple-card__reason--water{background:#E3EEF3;color:#3E7A91;}
 .simple-card__match{grid-column:3;grid-row:1/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:112px;border-left:1px dashed var(--paper-line);padding-left:14px;}
-.simple-card__score{display:flex;flex-direction:column;align-items:center;gap:3px;}
-.simple-card__match strong{font:800 19px/1 'Inter',sans-serif;color:var(--success);}
-.simple-card__match strong span{font-size:11px;}
-.simple-card__match small{font:700 10px 'Inter',sans-serif;letter-spacing:.08em;color:var(--ink-soft);white-space:nowrap;}
+.simple-card__score{display:flex;flex-direction:column;align-items:center;gap:3px;width:100%;}
+/* The verdict is a phrase now, not two digits: it needs the column's width and
+   a face that fits three words, and it must be free to wrap. */
+.simple-card__match strong{font:800 13px/1.25 'Inter',sans-serif;color:var(--success);text-align:center;text-wrap:balance;}
+.simple-card__match small{font:700 10px 'Inter',sans-serif;letter-spacing:.08em;color:var(--ink-soft);white-space:nowrap;text-align:center;}
 .simple-card__match-actions{display:flex;align-items:center;gap:7px;}
-.simple-card__tier{display:inline-flex;align-items:center;justify-content:center;min-width:76px;min-height:24px;box-sizing:border-box;font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:var(--radius-pill);background:rgba(74,120,86,.12);color:var(--success);}
 .collection-discovery{position:relative;display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:4px 0 16px;}
 .collection-search{display:flex;align-items:center;gap:9px;min-height:46px;box-sizing:border-box;flex:1 1 300px;padding:0 15px;border:1.5px solid var(--paper-line);border-radius:var(--radius-pill);background:var(--card);color:var(--ink-soft);}
 .collection-search input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font:500 13.5px var(--font-sans);}
@@ -1229,7 +1229,6 @@ img,svg{max-width:100%;height:auto;}
 .collection-map-trail-card__copy strong{display:-webkit-box;overflow:hidden;color:var(--ink);font:750 12.5px/1.25 var(--font-sans);-webkit-box-orient:vertical;-webkit-line-clamp:2;}
 .collection-map-trail-card__copy small{display:-webkit-box;overflow:hidden;margin-top:3px;color:var(--ink-soft);font:500 10px/1.3 var(--font-sans);-webkit-box-orient:vertical;-webkit-line-clamp:2;}
 .collection-map-trail-card__arrow{color:var(--accent);font-size:17px;font-weight:850;}
-.collection-trail-card .simple-card__score strong{white-space:nowrap;}
 .collection-trail-card.simple-card{display:block;padding:14px;}
 .collection-trail-card__summary{position:relative;display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:16px;align-items:center;min-height:96px;}
 .collection-trail-card__summary .photo{grid-column:auto;grid-row:auto;width:120px;height:96px;}
@@ -1360,7 +1359,7 @@ img,svg{max-width:100%;height:auto;}
   .simple-card__facts{grid-column:1/-1;grid-row:2;align-items:center;}
   .collection-list-card__summary{grid-column:1/-1;grid-row:2;}
   .simple-card__match{grid-column:1/-1;grid-row:3;width:auto;min-width:0;flex-direction:row;justify-content:space-between;border-left:0;border-top:1px dashed var(--paper-line);padding:10px 0 0;}
-  .simple-card__score{flex-direction:row;align-items:baseline;gap:6px;min-width:0;}
+  .simple-card__score{flex-direction:row;align-items:baseline;gap:6px;min-width:0;flex-wrap:wrap;}
   .simple-card__match-actions{margin-left:auto;flex:none;}
   .collection-list-card__details-head{align-items:flex-start;flex-direction:column;gap:6px;}
   .collection-inline-trails{grid-template-columns:1fr;}
