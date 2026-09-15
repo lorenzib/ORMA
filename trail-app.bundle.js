@@ -1891,19 +1891,139 @@
       && String(left.weightBand || '') === String(right.weightBand || '');
   }
 
+  /**
+   * The name clash, put to the person who can settle it.
+   *
+   * Built into the auth modal that is already open rather than added to its
+   * markup: that markup exists twice, injected here and inline in index.html,
+   * and a panel only this path ever shows does not need to live in both.
+   *
+   * Resolves to 'update', 'add' or 'keep'. Never rejects: a sign-in must not
+   * fail because a dialog could not be drawn, so every unexpected path
+   * resolves to 'add', which is what the code did before it asked.
+   */
+  function askAboutDogNameClash(pending, existing){
+    const body = modal && modal.querySelector('.auth-body');
+    if(!body) return Promise.resolve('add');
+    return new Promise(resolve => {
+      const hidden = [];
+      [...body.children].forEach(child => {
+        if(child.hidden) return;
+        child.hidden = true;
+        hidden.push(child);
+      });
+      // The hero sits outside the body, so leaving it alone left the dialog
+      // headed "Log in" while it asked about a dog. It is already signed in by
+      // this point; the header should say what is being asked.
+      const heroTitle = title && title.textContent;
+      const heroHint = hint && hint.textContent;
+      if(title) title.textContent = window.t ? window.t('auth.dogClash.heroTitle') : 'One last thing';
+      if(hint) hint.textContent = window.t ? window.t('auth.dogClash.heroHint') : 'You are signed in. This is about the dog you just described.';
+      const restore = () => {
+        hidden.forEach(child => { child.hidden = false; });
+        if(title && heroTitle !== null) title.textContent = heroTitle;
+        if(hint && heroHint !== null) hint.textContent = heroHint;
+        panel.remove();
+      };
+      const name = String(pending.name || '').trim();
+      const describe = dog => [dog.breed, dog.ageBand, dog.weightBand]
+        .map(value => String(value || '').trim()).filter(Boolean).join(' · ') || 'no other details';
+
+      const panel = document.createElement('div');
+      panel.className = 'auth-dogclash';
+      panel.setAttribute('role', 'group');
+      panel.innerHTML =
+        '<h3 class="auth-dogclash-title"></h3>' +
+        '<p class="auth-dogclash-lede"></p>' +
+        '<div class="auth-dogclash-compare">' +
+          '<div><small>On your account</small><span class="auth-dogclash-existing"></span></div>' +
+          '<div><small>Just added here</small><span class="auth-dogclash-pending"></span></div>' +
+        '</div>' +
+        '<button type="button" class="auth-submit" data-clash="update"></button>' +
+        '<button type="button" class="auth-dogclash-secondary" data-clash="add"></button>' +
+        '<button type="button" class="auth-dogclash-secondary" data-clash="keep"></button>';
+      panel.querySelector('.auth-dogclash-title').textContent =
+        window.t ? window.t('auth.dogClash.title', { name }) : `You already have a dog called ${name}`;
+      panel.querySelector('.auth-dogclash-lede').textContent = window.t
+        ? window.t('auth.dogClash.lede')
+        : 'Is this the same dog, or another one? Nothing is saved until you choose.';
+      panel.querySelector('.auth-dogclash-existing').textContent = describe(existing);
+      panel.querySelector('.auth-dogclash-pending').textContent = describe(pending);
+      const label = (key, fallback) => (window.t && window.t(key) !== key) ? window.t(key) : fallback;
+      panel.querySelector('[data-clash="update"]').textContent =
+        label('auth.dogClash.update', 'Same dog — update what I have');
+      panel.querySelector('[data-clash="add"]').textContent =
+        label('auth.dogClash.add', 'Another dog — add it as well');
+      panel.querySelector('[data-clash="keep"]').textContent =
+        label('auth.dogClash.keep', 'Discard what I just entered');
+
+      panel.addEventListener('click', event => {
+        const choice = event.target && event.target.getAttribute('data-clash');
+        if(!choice) return;
+        restore();
+        resolve(choice);
+      });
+      body.appendChild(panel);
+      const first = panel.querySelector('[data-clash="update"]');
+      if(first) first.focus();
+    });
+  }
+
+  function sameDogName(left, right){
+    if(!(left && right)) return false;
+    const name = dog => String(dog.name || '').trim().toLowerCase();
+    return !!name(left) && name(left) === name(right);
+  }
+
+  /**
+   * Only the fields the guest actually answered. A blank in the wizard means
+   * "not said", never "clear what the account already knows", so merging must
+   * not let an unanswered step erase an answered one.
+   */
+  function mergeIntoExisting(existing, pending){
+    const merged = { ...existing };
+    Object.keys(pending || {}).forEach(key => {
+      const value = pending[key];
+      if(value === undefined || value === null) return;
+      if(typeof value === 'string' && !value.trim()) return;
+      if(Array.isArray(value) && !value.length) return;
+      if(key === 'behaviour' && value && typeof value === 'object'){
+        merged.behaviour = { ...(existing.behaviour || {}), ...value };
+        return;
+      }
+      merged[key] = value;
+    });
+    merged.id = existing.id;
+    return merged;
+  }
+
   async function persistPendingDog(pending){
     if(!(pending && pending.name && window.DoloPawsAuth)) return true;
     const state = typeof window.DoloPawsAuth.getDogProfiles === 'function'
       ? await window.DoloPawsAuth.getDogProfiles() : null;
     const dogs = state && Array.isArray(state.dogs) ? state.dogs : [];
     // A completed write followed by a retried handoff must not duplicate the
-    // same dog. Existing users, however, should have a genuinely new dog
-    // appended rather than their first dog overwritten.
+    // same dog. Nothing to decide here: it is the same dog, described the same.
     if(dogs.some(dog => samePendingDog(dog, pending))) return true;
-    if(dogs.length && typeof window.DoloPawsAuth.addDogProfile === 'function'){
-      return await window.DoloPawsAuth.addDogProfile(pending);
+    // First dog on the account.
+    if(!dogs.length || typeof window.DoloPawsAuth.addDogProfile !== 'function'){
+      return await window.DoloPawsAuth.setDogProfile(pending);
     }
-    return await window.DoloPawsAuth.setDogProfile(pending);
+    // A dog of the same name already on the account is genuinely ambiguous:
+    // the same dog described differently -- a breed typed one way in the
+    // wizard and another on the account, a weight left blank this time -- or a
+    // second dog that happens to share a name. samePendingDog needs all four
+    // fields to agree, so the near miss used to append silently and leave two
+    // entries for one animal. Only the person knows which it is, so ask.
+    const clash = dogs.find(dog => sameDogName(dog, pending));
+    if(clash){
+      const choice = await askAboutDogNameClash(pending, clash);
+      if(choice === 'keep') return true;
+      if(choice === 'update'){
+        return await window.DoloPawsAuth.setDogProfile(mergeIntoExisting(clash, pending), clash.id);
+      }
+    }
+    return await window.DoloPawsAuth.addDogProfile(pending);
   }
 
   async function finishAuth(){
