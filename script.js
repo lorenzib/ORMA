@@ -3790,6 +3790,28 @@ async function applyHomepageAuthState(e){
 
 window.addEventListener('dolopaws-auth-changed', applyHomepageAuthState);
 
+// The multi-dog summary is cached asynchronously. firebase-init.js starts
+// syncProfileSummary() and then tells its listeners the user changed without
+// waiting for it, deliberately, so a slow network cannot hold up the whole
+// sign-in. The consequence is that the auth-changed handler runs while
+// dolopaws-profile-summary is still the guest's, and renderLiDogLists reads
+// that cache: signing in from the dog wizard showed one dog, or none, on an
+// account that has several, until the page was refreshed by hand.
+//
+// The header already re-renders on this signal. The homepage did not, which is
+// the whole bug. Re-render on the same event rather than blocking sign-in on
+// the read, or duplicating the fetch here.
+window.addEventListener('dolopaws-profile-summary-changed', event => {
+  if(!document.body || document.body.dataset.homepageView !== 'returning') return;
+  const summary = event.detail && event.detail.summary;
+  if(!summary) return;
+  // liResolveActiveProfile re-reads the cache this event just wrote, so a
+  // profile the first render could not name gets named now.
+  const profile = liResolveActiveProfile(currentProfileForAdjust);
+  currentProfileForAdjust = profile;
+  renderReturningHomepage(profile);
+});
+
 // firebase-init.js exposes a replayable auth state, but auth-ui.js translates
 // it into a DOM event. On a fast cached sign-in that event can be dispatched
 // before this deferred homepage script attaches its listener. Re-apply the
