@@ -34,6 +34,38 @@ function assertRouteGuidance(review,trail){
   }
 }
 
+// Tightening the claims a gate requires does not invalidate the dossiers already
+// captured under the looser contract, and nothing surfaced that they were stale.
+// Seven trails sat at the dossier gate holding logistics output from before
+// 2026-09-04 with all four route-guidance claims simply *absent* — not weak,
+// not unsourced — and no orchestration branch re-runs an agent for a trail
+// already parked at a human gate, so they would have waited forever.
+//
+// The version is derived from the required set rather than declared, so it moves
+// exactly when the requirement moves and cannot be forgotten at bump time.
+// Sorted, so reordering the list is not mistaken for changing it.
+const ROUTE_GUIDANCE_CLAIM_IDS=Object.freeze(['recommended-start',...REQUIRED_ROUTE_GUIDANCE_CLAIMS]);
+const ROUTE_GUIDANCE_CONTRACT=`rg-${createHash('sha256')
+  .update([...ROUTE_GUIDANCE_CLAIM_IDS].sort().join(',')).digest('hex').slice(0,8)}`;
+
+function logisticsOutput(outputs){return (outputs||[]).find(output=>output.agentId==='logistics');}
+
+/** The route-guidance contract a stored logistics result was produced under. */
+function routeGuidanceContractOf(outputs){
+  return logisticsOutput(outputs)?.result?.claimContracts?.routeGuidance||null;
+}
+
+/**
+ * Whether a dossier was captured before the current requirement existed. Such a
+ * dossier cannot satisfy the gate however good its evidence is, and re-reviewing
+ * it cannot help — only re-running the agent can. A trail with no logistics
+ * output yet is not stale, it is simply unfinished.
+ */
+function routeGuidanceContractStale(outputs){
+  if(!logisticsOutput(outputs))return false;
+  return routeGuidanceContractOf(outputs)!==ROUTE_GUIDANCE_CONTRACT;
+}
+
 function routeGuidanceBlockingReasons(outputs){
   const review={specialistOutputs:outputs||[]};
   const missing=REQUIRED_ROUTE_GUIDANCE_CLAIMS.filter(id=>!supportedLogisticsClaim(review,id));
@@ -136,4 +168,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={MIN_ACCEPTANCE_REASON,waivableBlocker,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,compileVerifiedDossier,verificationRecord};
+module.exports={MIN_ACCEPTANCE_REASON,waivableBlocker,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};

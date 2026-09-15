@@ -6,6 +6,7 @@ const {candidateFromProductionTrail,referenceFromProductionTrail}=require('./run
 const {mergeClaimResolutionResult}=require('./claim-resolution');
 const {CLAIM_ENTITY_TYPE,POLICY_BY_RULE}=require('./compile-operational-facts');
 const {locateOnRoute}=require('../../hazard-location');
+const {ROUTE_GUIDANCE_CONTRACT}=require('./compile-verified-dossier');
 
 // A claim that names one rifugio, lift or protected area rather than the whole
 // route. These are the only claim ids that compile into operational facts, so
@@ -143,6 +144,18 @@ function validateSpecialistResult(result,agentId){
 // A coordinate that does not sit on this route is not a position on it: the
 // position is dropped and the claim keeps a blocker saying so, rather than
 // planting a hazard on a stretch no source placed it.
+// Which claim contract a result was produced under is a fact about this process,
+// never something an agent may assert, so it is stamped here and placed after the
+// model's own fields so it cannot be overwritten by them. Only logistics carries
+// the route-guidance claims, so only logistics is stamped.
+const CLAIM_CONTRACTS_BY_AGENT={logistics:{routeGuidance:ROUTE_GUIDANCE_CONTRACT}};
+
+function claimContractStamp(agentId){
+  const contracts=CLAIM_CONTRACTS_BY_AGENT[agentId];
+  return contracts?{claimContracts:{...contracts}}:{};
+}
+
+
 function locateClaims(result,trail){
   const path=trail&&trail.path;
   for(const claim of result.claims||[]){
@@ -209,9 +222,10 @@ async function runTrailSpecialist({job,trail,context},options={}){
   const at=options.at||new Date().toISOString();
   const previous=context.slice().reverse().find(item=>item?.agentId===job.agentId&&Array.isArray(item.claims));
   const current={contractVersion:'1.0.0',candidateId:job.candidateId,
-    agentId:job.agentId,action:job.action,generatedAt:at,...response.data,publicMutationAllowed:false};
+    agentId:job.agentId,action:job.action,generatedAt:at,...response.data,
+    ...claimContractStamp(job.agentId),publicMutationAllowed:false};
   const result=mergeClaimResolutionResult(previous,current,job,at);
   return {responseId:response.responseId,model:response.model,result};
 }
 
-module.exports={CATEGORIES,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT,validateVariesClaims,locateClaims,routeGuidanceLeads,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,EVIDENCE_SCOUTING_CONTRACT,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
+module.exports={CATEGORIES,VARIABLE_CLAIM_IDS,MIN_VARIES_RESOLUTION_ATTEMPT,validateVariesClaims,locateClaims,routeGuidanceLeads,claimContractStamp,ENTITY_POLICY_CLAIM_IDS,ENTITY_POLICY_RULES,JUDGMENT_AGENTS,SPECIALIST_SCHEMA,EVIDENCE_SCOUTING_CONTRACT,PROMPTS,modelForAgent,validateSpecialistResult,runTrailSpecialist};
