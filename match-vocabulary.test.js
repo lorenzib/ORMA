@@ -1,5 +1,5 @@
 const fs=require('fs');
-const {verdictFor,VERDICTS,STRONG_AT,POSSIBLE_AT}=require('./match-verdict.js');
+const {verdictFor,evidenceLine,VERDICTS,STRONG_AT,POSSIBLE_AT}=require('./match-verdict.js');
 
 // One trail, three answers. "Great match" on browse at 75, "Good" in the
 // homepage search at 65, "Possible with cautions" in the homepage list at 60 --
@@ -84,5 +84,57 @@ describe('both surfaces ask the same question', () => {
       expect(source).not.toMatch(/'Great match'/);
       expect(source).not.toMatch(/'Check first'/);
     });
+  });
+});
+
+// Six signals on the homepage card and five on browse, for one question. The
+// percentage was the verdict said twice -- and the second time with a precision
+// the evidence does not have -- while "High confidence" beside "ORMA
+// route-audited" was the same statement in two vocabularies.
+describe('how well a verdict is known, in one line', () => {
+  test('an audited route with high confidence says it once', () => {
+    expect(evidenceLine({provenance:'ORMA route-audited',confidence:'High confidence',
+      checkedLabel:'Checked 3 Sep 2026'})).toBe('ORMA route-audited · Checked 3 Sep 2026');
+  });
+
+  test('a caveat earns its place and is kept', () => {
+    expect(evidenceLine({provenance:'Imported map data',confidence:'Limited data'}))
+      .toBe('Imported map data · Limited data');
+    expect(evidenceLine({provenance:'ORMA route-audited',confidence:'Moderate confidence'}))
+      .toBe('ORMA route-audited · Moderate confidence');
+  });
+
+  test('missing parts leave no stray separators', () => {
+    expect(evidenceLine({provenance:'Mapped route'})).toBe('Mapped route');
+    expect(evidenceLine({confidence:'Limited data'})).toBe('Limited data');
+    expect(evidenceLine({})).toBe('');
+    expect(evidenceLine(null)).toBe('');
+  });
+});
+
+describe('the number is gone from browse', () => {
+  const browse=require('fs').readFileSync('browse-trails.html','utf8');
+  const home=require('fs').readFileSync('script.js','utf8');
+
+  test('the card leads with the verdict, not a percentage', () => {
+    expect(browse).toContain('<strong>${tier}</strong>');
+    expect(browse).not.toContain('<strong>${match}<span>%</span></strong>');
+    expect(browse).not.toContain('MATCH FOR YOUR DOG');
+  });
+
+  test('the styling that sized two digits went with it', () => {
+    expect(browse).not.toContain('.simple-card__tier{');
+    expect(browse).not.toContain(".simple-card__match strong span{font-size:11px;}");
+  });
+
+  test('nothing is left computing a score the card no longer shows', () => {
+    expect(browse).not.toContain('const match = matchScore(t);');
+    // matchScore still sorts and filters, so it stays.
+    expect(browse).toContain('function matchScore(trail)');
+  });
+
+  test('confidence left the homepage verdict column for the evidence line', () => {
+    expect(home).not.toContain('li-match-confidence');
+    expect(home).toContain('verdict.evidenceLine({ confidence: presentation.confidence })');
   });
 });
