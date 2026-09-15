@@ -22,6 +22,28 @@ function normaliseRouteRef(value) {
   return /^(?:[A-Z]{1,4}-?)?\d{1,4}[A-Z]?$/.test(ref) ? ref : null;
 }
 
+// A route with no number is not a route with no identity. 100 of 165 trails
+// carry no `ref` and were all filed as "nobody can number this route", which
+// ranked them below everything and left them permanently unverifiable. But the
+// snapshot already collects `website`, and for 21 of them it is an official
+// route page -- a tourism board, a comune, the operator that signs the route.
+//
+// That is precisely what the gate offers unnumbered routes: the logistics agent
+// is told to use the official route description to give an ordered landmark
+// sequence when no number applies. The URL was being collected and thrown away
+// one step before the agent that needs it.
+//
+// Only https, because the gate will not accept a source that is not.
+function officialRoutePage(value) {
+  const url = String(value == null ? '' : value).trim();
+  if (!/^https:\/\//.test(url)) return null;
+  try {
+    return { url, host: new URL(url).hostname.replace(/^www\./, '') };
+  } catch (error) {
+    return null;
+  }
+}
+
 function mappedRouteEvidence(root) {
   const byRelation = new Map();
   ROUTE_SOURCE_FILES.forEach(file => {
@@ -35,6 +57,7 @@ function mappedRouteEvidence(root) {
         ref: normaliseRouteRef(properties.ref),
         name: properties.name || null,
         url: properties.waymarkedtrails || `https://www.openstreetmap.org/relation/${properties.osm_relation}`,
+        website: officialRoutePage(properties.website),
       });
     });
   });
@@ -54,6 +77,16 @@ function applyRouteNumberEvidence(trails, root, evidence = mappedRouteEvidence(r
       routeNumberStatus: 'mapped-relation-ref',
       routeNumberSource: { provider: 'Waymarked Trails / OpenStreetMap', name: mapped.name, url: mapped.url },
     };
+    // No number, but an official page describing the route. The OSM relation is
+    // still passed to the agent separately as `waymarkedtrails`, so pointing the
+    // cited source at the official page adds evidence rather than replacing it.
+    // The host is the publisher, not a formal authority: the agent is told to
+    // confirm against the source and cite what it actually verified.
+    if (mapped && mapped.website) return {
+      ...trail,
+      routeNumberStatus: 'official-route-page',
+      routeNumberSource: { provider: mapped.website.host, name: mapped.name, url: mapped.website.url },
+    };
     if (mapped) return {
       ...trail,
       routeNumberStatus: 'not-listed-in-mapped-source',
@@ -63,4 +96,4 @@ function applyRouteNumberEvidence(trails, root, evidence = mappedRouteEvidence(r
   });
 }
 
-module.exports = { ROUTE_SOURCE_FILES, normaliseRouteRef, mappedRouteEvidence, applyRouteNumberEvidence };
+module.exports = { ROUTE_SOURCE_FILES, normaliseRouteRef, officialRoutePage, mappedRouteEvidence, applyRouteNumberEvidence };
