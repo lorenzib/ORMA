@@ -50,6 +50,53 @@ function attach(component, way, toleranceM){
   return false;
 }
 
+// Member ways are stitched end to end at a tight tolerance, which is right: a
+// loose one lets a way attach to the wrong neighbour. But attachment is greedy
+// and takes the FIRST way within tolerance, so which pieces come out depends on
+// the order the relation happens to list its members — raising the attachment
+// tolerance is not safe, and measurably is not: one relation that stitched whole
+// at 3 m came back in two pieces at 12 m.
+//
+// So attachment is left exactly as it was, and the pieces it produces are merged
+// afterwards at a larger tolerance, closest pair first. Merging can only ever
+// reduce the count, so a relation that stitches whole today cannot be broken by
+// this, while one torn by a survey-grade gap is put back together. Anello dei
+// Colli is two pieces 5 m apart: merged, it measures 5.33 km against an official
+// 5.3, and stops failing closure and distance on a fragment of itself.
+//
+// A wrongly merged line does not pass silently: the distance it produces is
+// compared with the official distance, and that check is what catches it.
+const MERGE_TOLERANCE_M = 12;
+
+function endpointGap(a, b){
+  const ends = piece => [piece.coordinates[0], piece.coordinates[piece.coordinates.length - 1]];
+  let best = Infinity;
+  for(const p of ends(a)) for(const q of ends(b)) best = Math.min(best, distanceMeters(p, q));
+  return best;
+}
+
+function mergePieces(pieces, toleranceM){
+  const merged = pieces.slice();
+  while(merged.length > 1){
+    let closest = null;
+    for(let i = 0; i < merged.length; i += 1){
+      for(let j = i + 1; j < merged.length; j += 1){
+        const gap = endpointGap(merged[i], merged[j]);
+        if(gap > toleranceM) continue;
+        if(!closest || gap < closest.gap) closest = { gap, i, j };
+      }
+    }
+    if(!closest) break;
+    const target = merged[closest.i];
+    const source = merged[closest.j];
+    // Presented as a way so the four join orientations are handled in one place.
+    if(!attach(target, { coordinates: source.coordinates }, toleranceM)) break;
+    target.wayIds.push(...source.wayIds);
+    merged.splice(closest.j, 1);
+  }
+  return merged;
+}
+
 function stitchWays(ways, options = {}){
   const toleranceM = options.toleranceM || 3;
   const unused = ways.map(way => ({ ...way, coordinates: way.coordinates.map(point => point.slice()) }));
@@ -71,8 +118,9 @@ function stitchWays(ways, options = {}){
     }
     components.push(component);
   }
-  components.sort((a, b) => b.coordinates.length - a.coordinates.length);
-  return components;
+  const joined = mergePieces(components, options.mergeToleranceM ?? MERGE_TOLERANCE_M);
+  joined.sort((a, b) => b.coordinates.length - a.coordinates.length);
+  return joined;
 }
 
 function reconstructRelation(payload, externalId, options = {}){
@@ -106,4 +154,4 @@ function reconstructRelation(payload, externalId, options = {}){
   };
 }
 
-module.exports = { samePoint, cleanLine, memberWays, stitchWays, reconstructRelation };
+module.exports = { MERGE_TOLERANCE_M, mergePieces,  samePoint, cleanLine, memberWays, stitchWays, reconstructRelation };
