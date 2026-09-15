@@ -698,6 +698,7 @@
 <script src="comparison-state.js?v=20260815-4" defer></script>
 <script src="area-dropdown.js?v=20260823-2"></script>
 <script src="map-runtime.js?v=20260908-2"></script>
+<script src="match-verdict.js?v=1"></script>
 <script src="map-style.js?v=20260908-2"></script>
 <script src="browse-map.js?v=20260909-1"></script>
 <script>
@@ -988,8 +989,22 @@
     }
 
     function matchScore(trail){
-      try { return scoreTrail(trail, effectiveOverrides(activeDogProfile(), null)); }
-      catch(e){ return 0; }
+      return matchVerdict(trail).score || 0;
+    }
+
+    // The engine's own verdict, not one rebuilt from the score. recommendTrail
+    // downgrades a strong option where a category that matters is unreviewed,
+    // and the score alone does not carry that.
+    function matchVerdict(trail){
+      const verdict=window.OrmaMatchVerdict;
+      try {
+        const recommendation=window.DoloPawsScoring.recommendTrail(
+          trail, effectiveOverrides(activeDogProfile(), null));
+        return verdict ? verdict.verdictFor(recommendation)
+          : { score:recommendation.score, label:'', color:'', tone:'check' };
+      } catch(e){
+        return verdict ? verdict.verdictFor(0) : { score:0, label:'', color:'', tone:'check' };
+      }
     }
 
     function currentFilterState(){
@@ -1292,8 +1307,9 @@
         const meta = [t.distance ? `${t.distance} km` : null, t.elevation != null ? `${t.elevation} m climb` : null, t.hours ? `${t.hours} h` : null, t.area]
           .filter(Boolean).join(' · ');
         const match = matchScore(t);
-        const tier = match >= 75 ? 'Great match' : match >= 55 ? 'Good' : 'Check first';
-        const tierClass = match >= 75 ? 'great' : match >= 55 ? 'good' : 'check';
+        const verdict = matchVerdict(t);
+        const tier = verdict.label;
+        const tierClass = verdict.tone;
         const reasonIsWater = !!(t.waterSources && t.waterSources.length);
         const reason = reasonIsWater
           ? `Water access listed at ${t.waterSources.length === 1 ? 'one point' : t.waterSources.length + ' points'}`
