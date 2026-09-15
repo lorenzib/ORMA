@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-14T22:21:45.463Z",
+  "generatedAt": "2026-09-15T01:34:19.663Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
@@ -17,14 +17,15 @@
       "effectiveAt": "2026-09-16T12:00:00+00:00",
       "expiresAt": "2026-09-16T21:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-14T22:21:45.463Z",
+      "lastSeenAt": "2026-09-15T01:34:19.663Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
       ],
       "trailNames": [
         "Piancavallo Malghe Loop"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:thunderstorm:trentino-alto-adige",
@@ -41,7 +42,7 @@
       "effectiveAt": "2026-09-16T12:00:00+00:00",
       "expiresAt": "2026-09-16T21:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-14T22:21:45.463Z",
+      "lastSeenAt": "2026-09-15T01:34:19.663Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -238,7 +239,8 @@
         "Rundweg Beimsteinkogel",
         "Mittlerer Rundweg am Karer See",
         "Langer Rundweg am Karer See"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:thunderstorm:veneto",
@@ -255,7 +257,7 @@
       "effectiveAt": "2026-09-16T12:00:00+00:00",
       "expiresAt": "2026-09-16T21:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-14T22:21:45.463Z",
+      "lastSeenAt": "2026-09-15T01:34:19.663Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -286,7 +288,8 @@
         "Roda de Cherz",
         "Sentiero Alpago Natura",
         "Sentiero del Sabadalt"
-      ]
+      ],
+      "sourceStatus": "available"
     }
   ]
 }
