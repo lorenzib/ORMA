@@ -105,17 +105,19 @@
   @media(min-width:1041px){
     .browse-primary-controls .browse-tools{
       display:grid;
-      grid-template-columns:minmax(340px,1.15fr) minmax(0,2.85fr);
+      grid-template-columns:minmax(300px,1fr) auto auto;
       grid-template-rows:auto auto;
       gap:10px 12px;
       align-items:center;
     }
     .browse-primary-controls .browse-search-group{grid-column:1;grid-row:1;width:100%;min-width:0;}
     .browse-primary-controls .browse-search-shell{width:100%;max-width:none;min-width:0;}
-    .browse-area-controls{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
-    .browse-geo-group,.browse-geo-group--valley{width:100%;min-width:0;flex:none;}
+    /* Pack the geo dropdowns tight (capped, not stretched across the row) and
+       lift the Filter trails button up onto their row. */
+    .browse-area-controls{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(3,minmax(0,205px));gap:9px;}
+    .browse-area-controls .browse-geo-group{width:100%;min-width:0;flex:none;}
+    #browseFiltersWrap{grid-column:3;grid-row:1;width:max-content;}
     .browse-refinement-controls{grid-column:1/-1;grid-row:2;display:flex;flex-wrap:wrap;justify-content:flex-start;}
-    #browseFiltersWrap{width:max-content;}
     .browse-quick-filters{display:flex;flex-wrap:wrap;min-width:0;}
     .browse-quick-filter{min-width:0;}
     .browse-saved-only{width:max-content;min-width:0;}
@@ -130,8 +132,8 @@
     .browse-primary-controls .browse-search-shell{width:100%;max-width:none;min-width:0;}
     .browse-area-controls{grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));}
     .browse-geo-group,.browse-geo-group--valley{width:100%;min-width:0;flex:none;}
-    .browse-refinement-controls{grid-column:1/-1;grid-row:3;display:flex;flex-wrap:wrap;justify-content:flex-start;}
-    #browseFiltersWrap{width:max-content;}
+    #browseFiltersWrap{grid-column:1/-1;grid-row:3;width:max-content;justify-self:start;}
+    .browse-refinement-controls{grid-column:1/-1;grid-row:4;display:flex;flex-wrap:wrap;justify-content:flex-start;}
     .browse-quick-filters{display:flex;flex-wrap:wrap;min-width:0;}
     .browse-saved-only{width:max-content;}
   }
@@ -161,15 +163,15 @@
     .browse-primary-controls .browse-search-group{grid-column:1/-1;grid-row:1;width:100%;min-width:0;}
     .browse-primary-controls .browse-search-shell{grid-column:1/-1;grid-row:1;width:100%;max-width:none;min-width:0;}
     .browse-area-controls{grid-column:1/-1;grid-row:2;}
-    .browse-refinement-controls{grid-column:1/-1;grid-row:3;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px;padding-top:9px;}
+    #browseFiltersWrap{grid-column:1/-1;grid-row:3;width:100%;order:initial;}
+    #browseFiltersBtn{width:100%;justify-content:center;}
+    .browse-refinement-controls{grid-column:1/-1;grid-row:4;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px;padding-top:9px;}
     .browse-quick-filters{display:contents;}
     .browse-quick-filter{width:100%;min-width:0;}
-    #browseQuickShade{grid-column:1/span 3;grid-row:2;}
-    #browseWater{grid-column:4/span 3;grid-row:2;}
-    #browseMultiDay{grid-column:1/span 3;grid-row:3;}
-    #browseFiltersWrap{grid-column:1/-1;grid-row:1;width:100%;order:initial;}
-    #browseFiltersBtn{width:100%;justify-content:center;}
-    .browse-saved-only{grid-column:4/span 3;grid-row:3;width:100%;min-width:0;order:initial;padding-inline:7px;}
+    #browseQuickShade{grid-column:1/span 3;grid-row:1;}
+    #browseWater{grid-column:4/span 3;grid-row:1;}
+    #browseMultiDay{grid-column:1/span 3;grid-row:2;}
+    .browse-saved-only{grid-column:4/span 3;grid-row:2;width:100%;min-width:0;order:initial;padding-inline:7px;}
     .browse-filter-divider{display:none;}
     .browse-filter-controls{flex:1 1 100%;display:flex;flex-wrap:nowrap;overflow-x:auto;gap:9px;padding-bottom:3px;scrollbar-width:none;}
     .browse-filter-controls::-webkit-scrollbar{display:none;}
@@ -335,8 +337,7 @@
         <span class="area-select-shell"><select id="browseValleySelect" data-compact-label data-kicker-until-selected data-control-kicker="Valley" aria-label="Filter trails by valley"></select></span>
       </label>
     </div>
-    <div class="browse-refinement-controls" aria-label="Refine trail results">
-      <div class="li-menuwrap" id="browseFiltersWrap">
+    <div class="li-menuwrap" id="browseFiltersWrap">
         <button type="button" id="browseFiltersBtn" class="li-filt discovery-filter-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="browseFiltersMenu">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>
           Filter trails<span id="browseFiltersCount"></span> <span class="li-caret">▾</span>
@@ -363,6 +364,7 @@
           <button type="button" class="li-apply" id="browseFiltersApply">Show trails</button>
         </div>
       </div>
+    <div class="browse-refinement-controls" aria-label="Refine trail results">
       <div class="browse-quick-filters" aria-label="Quick dog filters">
         <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26" aria-hidden="true"></span><span>High shade</span></button>
         <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="22" aria-hidden="true"></span><span>Water</span></button>
