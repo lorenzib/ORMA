@@ -3064,13 +3064,20 @@ function liMatchColHtml(t, profile, overrides){
   return `<div class="li-match" aria-label="${liPersonalisationText(`${presentation.label} for ${presentation.dogName}. ${presentation.confidence}.`)}" title="${liPersonalisationText(reason)}">
       <b style="color:${presentation.color};">${presentation.label}</b>
       <span class="li-match-lbl">For ${liPersonalisationText(presentation.dogName)}</span>
-      <span class="li-match-confidence">${presentation.confidence}</span>
     </div>`;
 }
 
+// One line for how well a verdict is known: where the evidence came from, any
+// caveat on it, and when it was checked. "High confidence" beside "ORMA
+// route-audited" was the same statement twice.
 function liProvenanceHtml(trail, profile){
   const presentation = liRecommendationPresentation(trail, profile);
-  const detail = presentation.checkedLabel ? `<span>${liPersonalisationText(presentation.checkedLabel)}</span>` : '';
+  const verdict = window.OrmaMatchVerdict;
+  const qualifier = verdict
+    ? verdict.evidenceLine({ confidence: presentation.confidence }).trim()
+    : (/^high confidence$/i.test(presentation.confidence) ? '' : presentation.confidence);
+  const detail = [qualifier, presentation.checkedLabel].filter(Boolean)
+    .map(text => `<span>${liPersonalisationText(text)}</span>`).join('');
   return `<div class="li-row-trust"><strong>${liPersonalisationText(presentation.provenance)}</strong>${detail}</div>`;
 }
 

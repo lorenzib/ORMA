@@ -386,8 +386,13 @@ describe('returning homepage region + valley filters', () => {
     expect(rows[3].classList.contains('li-row--answer')).toBe(false);
     expect([...rows].map(row => row.dataset.rank)).toEqual(['1', '2', '3', '4', '5']);
     expect(document.querySelector('.li-match b').textContent).toBe('Strong option');
-    expect(document.querySelector('.li-match-confidence').textContent).toBe('High confidence');
-    expect(document.querySelector('.li-row-trust').textContent).toContain('ORMA route-audited');
+    // Confidence left the verdict column for the evidence line, and "High
+    // confidence" is not said beside "ORMA route-audited" because it is the
+    // same statement twice. A caveat still appears; an agreement does not.
+    expect(document.querySelector('.li-match-confidence')).toBeNull();
+    const trust = document.querySelector('.li-row-trust').textContent;
+    expect(trust).toContain('ORMA route-audited');
+    expect(trust).not.toContain('High confidence');
     expect(document.querySelector('.li-row--answer').textContent).not.toContain('86%');
   });
 

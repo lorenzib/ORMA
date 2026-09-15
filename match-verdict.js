@@ -53,5 +53,19 @@
     return {...verdict,score:Number.isFinite(score)?score:null};
   }
 
-  return {VERDICTS,STRONG_AT,POSSIBLE_AT,categoryForScore,verdictFor};
+  // How well a verdict is known, in one line instead of two.
+  //
+  // "High confidence" next to "ORMA route-audited" says the same thing twice:
+  // an audited route is the confident case, so the words only earn their place
+  // when they qualify it. Saying nothing where there is nothing to add is what
+  // leaves room for the caveat to be noticed when there is.
+  function evidenceLine(parts){
+    const provenance=String(parts&&parts.provenance||'').trim();
+    const confidence=String(parts&&parts.confidence||'').trim();
+    const checked=String(parts&&parts.checkedLabel||'').trim();
+    const qualifies=confidence&&!/^high confidence$/i.test(confidence);
+    return [provenance,qualifies?confidence:'',checked].filter(Boolean).join(' · ');
+  }
+
+  return {VERDICTS,STRONG_AT,POSSIBLE_AT,categoryForScore,verdictFor,evidenceLine};
 });

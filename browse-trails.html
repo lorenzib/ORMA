@@ -55,17 +55,13 @@
   .simple-card__facts{grid-column:2;grid-row:2;display:flex;gap:7px;flex-wrap:wrap;align-items:center;align-self:start;}
   .simple-card__reason{display:inline-flex;align-items:center;gap:6px;background:var(--success-dim);border-radius:var(--radius-pill);padding:5px 10px;max-width:100%;font-size:12px;line-height:1.35;color:var(--success);}
   .simple-card__reason--water{background:#E3EEF3;color:#3E7A91;}
-  .simple-card__match{grid-column:3;grid-row:1/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:112px;border-left:1px dashed var(--paper-line);padding-left:14px;}
+  .simple-card__match{grid-column:3;grid-row:1/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:136px;max-width:160px;border-left:1px dashed var(--paper-line);padding-left:14px;}
   .simple-card__score{display:flex;flex-direction:column;align-items:center;gap:3px;}
-  .simple-card__match strong{font:800 19px/1 'Inter',sans-serif;color:var(--success);}
-  .simple-card__match strong span{font-size:11px;}
+  .simple-card__match strong{font:800 14px/1.3 'Inter',sans-serif;color:var(--success);text-align:center;text-wrap:balance;}
   .simple-card__match small{font:700 10px 'Inter',sans-serif;letter-spacing:.08em;color:var(--ink-soft);white-space:nowrap;}
   .simple-card__match-actions{display:flex;align-items:center;gap:7px;}
-  .simple-card__tier{display:inline-flex;align-items:center;justify-content:center;min-width:76px;min-height:24px;box-sizing:border-box;font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:var(--radius-pill);background:rgba(74,120,86,.12);color:var(--success);}
   .simple-card__match--good strong{color:#C98A2E;}
-  .simple-card__match--good .simple-card__tier{background:rgba(201,138,46,.13);color:#9A651B;}
   .simple-card__match--check strong{color:#9C3A25;}
-  .simple-card__match--check .simple-card__tier{background:rgba(156,58,37,.11);color:#9C3A25;}
   .browse-card-actions{display:flex;align-items:center;gap:8px;}
   .browse-card-open{display:none;}
   .browse-card-compare{display:inline-flex;align-items:center;justify-content:center;min-height:28px;border-radius:var(--radius-pill);font:700 10.5px 'Inter',sans-serif;border:1px solid var(--paper-line);background:#fff;color:var(--ink-soft);padding:4px 9px;cursor:pointer;}
@@ -1306,7 +1302,6 @@
           : `<span class="badge-pill badge-${provStyle}">${provenanceLabel}</span>`;
         const meta = [t.distance ? `${t.distance} km` : null, t.elevation != null ? `${t.elevation} m climb` : null, t.hours ? `${t.hours} h` : null, t.area]
           .filter(Boolean).join(' · ');
-        const match = matchScore(t);
         const verdict = matchVerdict(t);
         const tier = verdict.label;
         const tierClass = verdict.tone;
@@ -1333,11 +1328,10 @@
           </div>
           <div class="simple-card__match simple-card__match--${tierClass}">
             <div class="simple-card__score">
-              <strong>${match}<span>%</span></strong>
-              <small>MATCH FOR YOUR DOG</small>
+              <strong>${tier}</strong>
+              <small>FOR YOUR DOG</small>
             </div>
             <div class="simple-card__match-actions">
-              <span class="simple-card__tier">${tier}</span>
               <div class="browse-card-actions">
                 <a class="browse-card-open" href="${openHref}">${window.t('card.details')} →</a>
                 <button type="button" class="browse-card-compare" data-compare-id="${esc(t.id)}"
