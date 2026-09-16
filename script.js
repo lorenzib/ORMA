@@ -177,6 +177,11 @@ let activeValley = 'all';
 // "Search this area": a LngLatBounds captured from the map that further narrows
 // the list to the visible viewport. Null when the map is not driving the filter.
 let liMapBounds = null;
+// The geography the map replaced, so "Clear map area" puts back the area the
+// owner chose rather than dropping them at the location gate to choose again.
+// Held in memory only: a reload returns to the stored typed area anyway, which
+// is the same answer by a different route.
+let liContextBeforeMapArea = null;
 // True while the code is programmatically reframing the map (fitBounds). Map
 // movement during that window is ours, not the user's, so it must not offer
 // "Search this area".
@@ -260,6 +265,17 @@ function liValidLocationContext(value){
   if(value.kind === 'current' && Number.isFinite(value.lat) && Number.isFinite(value.lng)){
     return { kind:'current', lat:value.lat, lng:value.lng, radiusKm:LI_LOCATION_RADIUS_KM };
   }
+  // Framing a viewport is an explicit geographic act -- more explicit than
+  // picking a valley from a list -- so it satisfies the rule above rather than
+  // working around it. Bounds are plain numbers so the shape stays comparable
+  // and serialisable; a LngLatBounds object would not survive storage.
+  if(value.kind === 'map' && value.bounds
+    && ['west','south','east','north'].every(edge => Number.isFinite(value.bounds[edge]))){
+    return { kind:'map', bounds:{
+      west:value.bounds.west, south:value.bounds.south,
+      east:value.bounds.east, north:value.bounds.north,
+    }, label:'Map area' };
+  }
   if(value.kind === 'area' && value.label && (value.country || value.region || value.valley)){
     const region = String(value.region || 'all');
     const inferredCountry = region === 'savoy' ? 'FR' : region === 'dolomites' ? 'IT' : 'all';
@@ -315,6 +331,16 @@ function liClearLocationConditions(){
 function liApplyLocationGeography(){
   if(!liLocationContext) return;
   liMapBounds = null;
+  // The map supersedes any typed area: panning to another valley and pressing
+  // "Search this area" should show what is there, not the intersection with an
+  // area chosen earlier, which is usually empty. Clearing these is what makes
+  // the downstream region and valley filters no-ops.
+  if(liLocationContext.kind === 'map'){
+    activeCountry = 'all';
+    activeRegion = 'all';
+    activeValley = 'all';
+    return;
+  }
   if(liLocationContext.kind === 'area'){
     activeRegion = liLocationContext.region || 'all';
     activeCountry = liLocationContext.country || (activeRegion === 'savoy' ? 'FR' : activeRegion === 'dolomites' ? 'IT' : 'all');
@@ -342,6 +368,14 @@ function filterTrailsForLocationContext(list){
     return list.filter(trail => {
       const point = liTrailLngLat(trail);
       return point && liDistanceKm(liLocationContext.lat, liLocationContext.lng, point[1], point[0]) <= liLocationContext.radiusKm;
+    });
+  }
+  if(liLocationContext.kind === 'map'){
+    const box = liLocationContext.bounds;
+    return list.filter(trail => {
+      const point = liTrailLngLat(trail);
+      return point && point[0] >= box.west && point[0] <= box.east
+        && point[1] >= box.south && point[1] <= box.north;
     });
   }
   if(liLocationContext.kind === 'area'){
@@ -386,12 +420,15 @@ function liEnsureLocationConditions(){
 function liLocationContextLabel(){
   if(!liLocationContext) return '';
   if(liLocationContext.kind === 'current') return `Your location · within ${liLocationContext.radiusKm} km`;
+  if(liLocationContext.kind === 'map') return 'Map area';
   return liDisplayLocationLabel(liLocationContext.label);
 }
 
 function liRecommendationLocationPhrase(){
   if(!liLocationContext) return '';
-  return liLocationContext.kind === 'current' ? 'near you' : `in ${liDisplayLocationLabel(liLocationContext.label)}`;
+  if(liLocationContext.kind === 'current') return 'near you';
+  if(liLocationContext.kind === 'map') return 'in the map area';
+  return `in ${liDisplayLocationLabel(liLocationContext.label)}`;
 }
 
 function liPopulateAreaPicker(){
@@ -616,7 +653,10 @@ function liSetLocationContext(context){
   liPendingLocationCenter = liLocationContext.kind === 'current'
     ? [liLocationContext.lng, liLocationContext.lat]
     : null;
-  liRememberLocationContext(liLocationContext);
+  // A map area is where you are looking, not where you walk: remembering it
+  // would greet you next visit with a viewport instead of your area, and would
+  // erase the stored area it replaced.
+  if(liLocationContext.kind !== 'map') liRememberLocationContext(liLocationContext);
   liApplyLocationGeography();
   liQuery = '';
   const search = document.getElementById('liSearch');
@@ -1254,18 +1294,30 @@ function initTrailMap(){
     trailMapInstance.on('moveend', () => {
       // Our own reframing (fitBounds) ends here too — ignore it.
       if(liMapAutoFraming){ liMapAutoFraming = false; return; }
-      if(liMapBounds) return; // already filtering by area; keep the clear action
+      // Already showing a map area: keep the clear action rather than offering
+      // to search again, otherwise the button flickers between the two.
+      if(liLocationContext && liLocationContext.kind === 'map') return;
       areaButton.hidden = false;
       areaButton.classList.remove('is-clear');
       areaButton.textContent = 'Search this area';
     });
     areaButton.addEventListener('click', () => {
-      if(liMapBounds){
+      if(liLocationContext && liLocationContext.kind === 'map'){
+        const restored = liContextBeforeMapArea;
+        liContextBeforeMapArea = null;
         liClearMapAreaFilter();
-        renderReturningHomepage(currentProfileForAdjust);
+        if(restored) liSetLocationContext(restored);
+        else renderReturningHomepage(currentProfileForAdjust);
         return;
       }
-      liMapBounds = trailMapInstance.getBounds();
+      const view = trailMapInstance.getBounds();
+      liContextBeforeMapArea = liLocationContext;
+      liSetLocationContext({ kind:'map', bounds:{
+        west:view.getWest(), south:view.getSouth(),
+        east:view.getEast(), north:view.getNorth(),
+      }});
+      liMapBounds = view;
+      areaButton.hidden = false;
       areaButton.classList.add('is-clear');
       areaButton.textContent = 'Clear map area';
       renderReturningHomepage(currentProfileForAdjust);
