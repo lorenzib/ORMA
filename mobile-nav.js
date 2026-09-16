@@ -610,6 +610,64 @@
     }
     if(bellMq.addEventListener) bellMq.addEventListener('change', () => placeBell());
 
+    // The phone menu's way into the catalogue for a member, matching the
+    // desktop header's Explore menu: Near me, All trails and the last trails
+    // opened. On the homepage the first two act in place through the hook
+    // script.js exposes; elsewhere they carry the intent to the homepage as
+    // a query the homepage reads once. Saved, Downloaded and the Safety
+    // library already sit in the dog pill and the link row, so they are not
+    // repeated here. Hidden at desktop widths, where the site links row is
+    // the whole header.
+    function recentTrails(){
+      try{
+        const list = JSON.parse(localStorage.getItem('orma-recent-trails-v1') || '[]');
+        return Array.isArray(list) ? list.filter(item => item && item.id && item.name).slice(0, 3) : [];
+      }catch(error){ return []; }
+    }
+    function buildExplore(){
+      const group = document.createElement('div');
+      group.className = 'nav-explore';
+      const kick = document.createElement('span');
+      kick.className = 'nav-explore-kick';
+      kick.textContent = copy('mobile.explore', 'Explore');
+      kick.setAttribute('data-i18n', 'mobile.explore');
+      group.appendChild(kick);
+      const home = () => window.DoloPawsHomepageLocation || null;
+      const action = (label, href, i18nKey, act) => {
+        const a = document.createElement('a');
+        a.className = 'nav-explore-item';
+        a.href = prefix + href;
+        a.textContent = label;
+        a.setAttribute('data-i18n', i18nKey);
+        a.addEventListener('click', event => {
+          const api = home();
+          if(api && typeof api[act] === 'function'){
+            event.preventDefault();
+            api[act]();
+          }
+        });
+        return a;
+      };
+      group.appendChild(action(copy('mobile.nearMe', 'Near me'), '?near=1', 'mobile.nearMe', 'nearMe'));
+      group.appendChild(action(copy('mobile.allTrails', 'All trails'), '?all=1', 'mobile.allTrails', 'showAll'));
+      const recent = recentTrails();
+      if(recent.length){
+        const recentKick = document.createElement('span');
+        recentKick.className = 'nav-explore-kick';
+        recentKick.textContent = copy('mobile.recentlyViewed', 'Recently viewed');
+        recentKick.setAttribute('data-i18n', 'mobile.recentlyViewed');
+        group.appendChild(recentKick);
+        recent.forEach(item => {
+          const a = document.createElement('a');
+          a.className = 'nav-explore-item nav-explore-recent';
+          a.href = prefix + 'trail.html?id=' + encodeURIComponent(item.id);
+          a.textContent = item.name;
+          group.appendChild(a);
+        });
+      }
+      return group;
+    }
+
     function renderHeader(loggedIn, dogName){
       navEl.classList.toggle('nav-authed', !!loggedIn);
       const key = activeKey();
@@ -622,8 +680,9 @@
       // the language toggle on DOMContentLoaded). Rebuilding must not eat
       // them, so anything that isn't ours is kept and re-appended last.
       const extras = Array.from(linksEl.children).filter(el =>
-        el !== loginEl && !el.matches('a, #accountBtn, .nav-bellwrap, .nav-userwrap'));
+        el !== loginEl && !el.matches('a, #accountBtn, .nav-bellwrap, .nav-userwrap, .nav-explore'));
       linksEl.innerHTML = '';
+      if(loggedIn) linksEl.appendChild(buildExplore());
       // Both states share the same link row now; only the right-hand
       // controls change (login pill vs bell + dog pill).
       linksEl.appendChild(navItem('Browse all Trails', 'browse-trails.html', key === 'trails', 'saved.nav.browse'));
@@ -751,7 +810,7 @@
   });
 
   links.addEventListener('click', function(e){
-    if(e.target.closest('a, #accountBtn, .nav-dogmenu-row, .nav-dogmenu-item')) setOpen(false);
+    if(e.target.closest('a, #accountBtn, .nav-dogmenu-row, .nav-dogmenu-item, .nav-explore-item')) setOpen(false);
   });
 
   document.addEventListener('click', function(e){
