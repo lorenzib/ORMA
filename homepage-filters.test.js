@@ -647,6 +647,21 @@ describe('returning homepage region + valley filters', () => {
     expect(getSavedPosition).not.toHaveBeenCalled();
   });
 
+  test('a Near me tap carried over from another page asks for the position once', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    const getCurrentPosition = jest.fn();
+    context.navigator.geolocation = { getCurrentPosition };
+    context.location.href = 'https://app-orma.com/?near=1&view=returning';
+    context.location.search = '?near=1&view=returning';
+    const replaceState = jest.fn();
+    context.window.history = { state:null, replaceState };
+    vm.runInContext('liLocationContext = liLoadLocationContext(); liApplyLocationGeography(); initLoggedInShell();', context);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(getCurrentPosition).toHaveBeenCalledTimes(1);
+    // Read once: the address loses the intent, and keeps everything else.
+    expect(replaceState).toHaveBeenCalledWith(null, '', '/?view=returning');
+  });
+
   test('the Explore menu lists the last trails opened, newest first', () => {
     const context = loadHomepageContext(sampleTrails);
     const recent = JSON.stringify([

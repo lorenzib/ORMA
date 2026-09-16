@@ -141,6 +141,45 @@ describe('shared navigation hardening', () => {
     expect(banner.querySelector('a').getAttribute('href')).toBe('/?wizard=1');
   });
 
+  test('gives a member an Explore group at the top of the phone menu, and a guest none', () => {
+    const frame = document.createElement('iframe');
+    document.body.appendChild(frame);
+    const isolated = frame.contentWindow;
+    isolated.localStorage.clear();
+    isolated.localStorage.setItem('dolopaws-profile-summary', JSON.stringify({
+      uid:'user-1', hasProfile:true, name:'Eddie', dogs:[{ id:'d1', name:'Eddie' }], activeDogId:'d1',
+    }));
+    isolated.localStorage.setItem('orma-recent-trails-v1', JSON.stringify([
+      { id:'vag', name:'Val Gardena Trail', area:'Val Gardena', at:2 },
+      { id:'mau', name:'Maurienne Trail', area:'Maurienne', at:1 },
+    ]));
+    isolated.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a><div class="links"></div></nav>';
+    isolated.eval(mobileNav);
+
+    const links = isolated.document.querySelector('.topnav .links');
+    const explore = links.firstElementChild;
+    expect(explore.classList.contains('nav-explore')).toBe(true);
+    const items = [...explore.querySelectorAll('a')].map(a => `${a.textContent} → ${a.getAttribute('href')}`);
+    expect(items).toEqual([
+      'Near me → ?near=1',
+      'All trails → ?all=1',
+      'Val Gardena Trail → trail.html?id=vag',
+      'Maurienne Trail → trail.html?id=mau',
+    ]);
+    // On the homepage the first two act in place through the hook.
+    const nearMe = jest.fn();
+    isolated.DoloPawsHomepageLocation = { nearMe, showAll: jest.fn() };
+    explore.querySelector('a').click();
+    expect(nearMe).toHaveBeenCalledTimes(1);
+
+    const guest = document.createElement('iframe');
+    document.body.appendChild(guest);
+    guest.contentWindow.localStorage.clear();
+    guest.contentWindow.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a><div class="links"></div></nav>';
+    guest.contentWindow.eval(mobileNav);
+    expect(guest.contentWindow.document.querySelector('.nav-explore')).toBeNull();
+  });
+
   test('shows the banner for a signed-in account without dog details', () => {
     const frame = document.createElement('iframe');
     document.body.appendChild(frame);
@@ -221,7 +260,7 @@ describe('shared navigation hardening', () => {
     expect(pages.length).toBeGreaterThan(150);
     pages.forEach(file => {
       expect(fs.readFileSync(file, 'utf8')).toMatch(
-        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=(?:20260823-[12]|20260831-1|20260901-[245]|20260905-[123]|20260908-1|20260909-1|20260910-[123])"/
+        /src="(?:\.\.\/|\/)?mobile-nav\.js\?v=(?:20260823-[12]|20260831-1|20260901-[245]|20260905-[123]|20260908-1|20260909-1|20260910-[123]|20260916-1)"/
       );
     });
   });

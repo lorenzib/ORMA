@@ -497,6 +497,9 @@ img,svg{max-width:100%;height:auto;}
 /* On inner pages the page name replaces the brand tagline — never both. */
 .topnav:has(.topnav-page) .brand::after{content:none;}
 .mobile-nav-toggle{display:none;}
+/* The phone menu's Explore group: a member's ways into the catalogue. Desktop
+   headers carry the site links only (the homepage has its own Explore). */
+.nav-explore{display:none;}
 /* Tablet: guest labels + language pill outgrow one row well before the
    700px hamburger kicks in — tighten and allow a graceful wrap. */
 @media (max-width:1150px) and (min-width:701px){
@@ -1082,6 +1085,10 @@ img,svg{max-width:100%;height:auto;}
   .topnav .links .account-btn{width:100%;min-height:44px;margin:4px 0 0;text-align:center;justify-content:center;}
   .topnav .links > div{display:block !important;width:100%;}
   .topnav .links > div > button{width:100%;min-height:44px;text-align:center;}
+  .topnav .links .nav-explore{display:block !important;width:100%;margin:0 0 6px;padding:0 0 8px;border-bottom:1px solid rgba(242,238,226,.14);}
+  .nav-explore-kick{display:block;padding:8px 12px 4px;color:#B9C9BD;font:800 10.5px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;}
+  .topnav .links .nav-explore-item{display:flex;align-items:center;}
+  .topnav .links .nav-explore-recent{color:#DCE1D4;font-weight:400;}
   /* Member controls keep their compact shape inside the mobile sheet.
      The sheet itself scrolls — the dog switcher plus its menu items can
      outgrow a phone screen. */

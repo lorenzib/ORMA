@@ -837,7 +837,29 @@ liApplyLocationGeography();
 window.DoloPawsHomepageLocation = {
   hasContext:() => !!liLocationContext,
   filterTrails:filterTrailsForLocationContext,
+  // The phone menu's Explore group acts in place through these.
+  nearMe:() => {
+    try{ sessionStorage.removeItem(LI_LOCATION_NUDGE_DISMISSED_KEY); }catch(error){}
+    liRequestCurrentLocation();
+  },
+  showAll:() => liSetLocationContext(liDefaultLocationContext()),
 };
+
+// Arriving from another page's Explore group: ?near=1 asks for the position
+// (the tap happened there), ?all=1 opens the whole catalogue. Read once and
+// removed from the address, so a reload does not ask again.
+function liConsumeExploreIntent(){
+  const location = window.location || {};
+  const search = String(location.search || '');
+  const has = name => new RegExp('(?:^\\?|&)' + name + '=1(?:&|$)').test(search);
+  const intent = has('near') ? 'near' : has('all') ? 'all' : null;
+  if(!intent) return null;
+  const kept = search.replace(/^\?/, '').split('&')
+    .filter(pair => pair && !/^(?:near|all)=1$/.test(pair));
+  const next = (location.pathname || '/') + (kept.length ? `?${kept.join('&')}` : '') + String(location.hash || '');
+  try{ window.history.replaceState(window.history.state, '', next); }catch(error){}
+  return intent;
+}
 
 // Today, for this area, corrected for each trail's altitude. Undefined until a
 // forecast arrives, which makes the engine report conditions as not included --
@@ -3108,7 +3130,10 @@ function initLoggedInShell(){
     window.location.href = 'account.html?logout=1';
   });
 
-  liProbeLocationPermission();
+  const intent = liConsumeExploreIntent();
+  if(intent === 'near') window.DoloPawsHomepageLocation.nearMe();
+  else if(intent === 'all') window.DoloPawsHomepageLocation.showAll();
+  else liProbeLocationPermission();
 }
 
 function hideLiSearchSuggestions(){
