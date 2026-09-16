@@ -10517,8 +10517,20 @@ function initDetailPois(map, trail){
     return finite.length?finite.reduce((sum,value)=>sum+value,0)/finite.length:Infinity;
   }
 
+  // Trail durations are authored as strings, usually a range ("2–2.5", "3–4")
+  // and sometimes annotated ("2.5–3 (estimated)"). Number() cannot parse those,
+  // so a bare Number() silently collapsed every range to the 1 h fallback and
+  // planned a four-hour hike as if it finished in one. Take the upper bound of
+  // whatever numbers the string carries, so the finish-before-dark maths never
+  // underestimates how long the walk takes.
+  function parseDurationHours(value){
+    if(typeof value==='number')return value;
+    const matches=String(value==null?'':value).match(/\d+(?:\.\d+)?/g);
+    return matches&&matches.length?Math.max(...matches.map(Number)):NaN;
+  }
+
   function recommendation(input){
-    const durationHours=Math.min(12,Math.max(.5,Number(input?.durationHours)||1));
+    const durationHours=Math.min(12,Math.max(.5,parseDurationHours(input?.durationHours)||1));
     const durationMinutes=Math.ceil(durationHours*60);
     const dailyDates=Array.isArray(input?.dailyDates)?input.dailyDates:[];
     const sunrises=Array.isArray(input?.sunrises)?input.sunrises:[];
@@ -10649,7 +10661,7 @@ function initDetailPois(map, trail){
     return isFresh(conditions,now)?conditions:{status:'not-provided'};
   }
 
-  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,WARM_C,HOT_C,CONDITIONS_MAX_AGE_MS,minuteOfDay,formatTime,recommendation,markup,heatOnset,currentConditions,isFresh,scoringConditions};
+  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,WARM_C,HOT_C,CONDITIONS_MAX_AGE_MS,minuteOfDay,formatTime,parseDurationHours,recommendation,markup,heatOnset,currentConditions,isFresh,scoringConditions};
 });
 ;
 
