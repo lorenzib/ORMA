@@ -117,4 +117,30 @@ describe('heat onset and today\'s conditions', () => {
     expect(weatherWindow.WARM_C).toBe(22);
     expect(weatherWindow.HOT_C).toBe(28);
   });
+
+  test('reads a duration authored as a range by its upper bound, not the 1 h fallback', () => {
+    // Trail durations ship as strings, usually a range, sometimes annotated.
+    expect(weatherWindow.parseDurationHours('3–4')).toBe(4);
+    expect(weatherWindow.parseDurationHours('2–2.5')).toBe(2.5);
+    expect(weatherWindow.parseDurationHours('0.5–1')).toBe(1);
+    expect(weatherWindow.parseDurationHours('3-4')).toBe(4);
+    expect(weatherWindow.parseDurationHours('1')).toBe(1);
+    expect(weatherWindow.parseDurationHours('2.5–3 (estimated - not source-verified)')).toBe(3);
+    expect(weatherWindow.parseDurationHours(3.5)).toBe(3.5);
+    expect(Number.isNaN(weatherWindow.parseDurationHours('n/a'))).toBe(true);
+  });
+
+  test('plans a "3–4" hike as a four-hour route, not a one-hour fallback', () => {
+    const result=weatherWindow.recommendation({
+      ...forecast(),
+      currentTime:'2026-08-20T05:00',
+      durationHours:'3–4',
+    });
+
+    // Upper bound 4 h: a morning start finishing four hours later. Before the
+    // fix Number('3–4') was NaN, so it collapsed to 1 h and "finished" at 07:00.
+    expect(result).toMatchObject({dayOffset:0,startMinutes:360,finishMinutes:600,durationHours:4});
+    expect(result.sunsetMinutes-result.finishMinutes).toBeGreaterThanOrEqual(60);
+    expect(weatherWindow.markup(result)).toContain('for this 4 h route, finish by <strong>10:00</strong>');
+  });
 });
