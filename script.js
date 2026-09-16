@@ -622,12 +622,16 @@ const LI_LOCATION_NUDGE_DISMISSED_KEY = 'orma-home-location-nudge-dismissed-v1';
 let liLocationPermission = 'unknown';   // unknown | prompt | granted | denied | error | unavailable
 let liLocationRequestPending = false;
 
+// Dismissing it is an answer, not a mood: someone who closed this does not
+// want to be asked again next time they open ORMA. localStorage rather than
+// sessionStorage, so "no" survives the tab closing. Explore > Near me clears
+// it, which is the way back for anyone who changes their mind.
 function liLocationNudgeDismissed(){
-  try{ return sessionStorage.getItem(LI_LOCATION_NUDGE_DISMISSED_KEY) === '1'; }catch(error){ return false; }
+  try{ return localStorage.getItem(LI_LOCATION_NUDGE_DISMISSED_KEY) === '1'; }catch(error){ return false; }
 }
 
 function liDismissLocationNudge(){
-  try{ sessionStorage.setItem(LI_LOCATION_NUDGE_DISMISSED_KEY, '1'); }catch(error){}
+  try{ localStorage.setItem(LI_LOCATION_NUDGE_DISMISSED_KEY, '1'); }catch(error){}
   liRenderLocationNudge();
 }
 
@@ -2929,7 +2933,9 @@ function initLoggedInShell(){
   const exploreNearMe = document.getElementById('liExploreNearMe');
   if(exploreNearMe) exploreNearMe.addEventListener('click', () => {
     liCloseMenus();
-    try{ sessionStorage.removeItem(LI_LOCATION_NUDGE_DISMISSED_KEY); }catch(error){}
+    // Asking for it on purpose undoes a past dismissal, so the nudge can come
+    // back if the permission is later revoked.
+    try{ localStorage.removeItem(LI_LOCATION_NUDGE_DISMISSED_KEY); }catch(error){}
     liRequestCurrentLocation();
   });
   const exploreAll = document.getElementById('liExploreAll');

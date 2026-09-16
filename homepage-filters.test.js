@@ -571,6 +571,64 @@ describe('returning homepage region + valley filters', () => {
     expect(nudge.hidden).toBe(true);
   });
 
+  test('dismissing the location offer sticks past the tab closing', async () => {
+    // Closing it is an answer, not a mood. A session-scoped dismissal asked
+    // again every time ORMA was opened, which is how an offer becomes nagging.
+    const context = loadHomepageContext(sampleTrails);
+    const store = new Map();
+    context.localStorage = {
+      getItem: key => (store.has(key) ? store.get(key) : null),
+      setItem: (key, value) => { store.set(key, String(value)); },
+      removeItem: key => { store.delete(key); },
+    };
+    const sessionWrites = [];
+    context.sessionStorage = {
+      getItem: () => null,
+      setItem: (key, value) => { sessionWrites.push(key); },
+      removeItem: () => {},
+    };
+    context.navigator.geolocation = { getCurrentPosition: jest.fn() };
+    vm.runInContext('liLocationContext = liLoadLocationContext(); liApplyLocationGeography(); initLoggedInShell();', context);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    await vm.runInContext('renderReturningHomepage(null);', context);
+
+    const nudge = document.getElementById('liLocationNudge');
+    expect(nudge.hidden).toBe(false);
+    document.getElementById('liLocationNudgeDismiss').click();
+    expect(nudge.hidden).toBe(true);
+
+    // Written where it outlives the tab, and nowhere that does not.
+    const key = vm.runInContext('LI_LOCATION_NUDGE_DISMISSED_KEY', context);
+    expect(store.get(key)).toBe('1');
+    expect(sessionWrites).not.toContain(key);
+
+    // A fresh visit with the same durable store leaves it dismissed.
+    expect(vm.runInContext('liLocationNudgeDismissed()', context)).toBe(true);
+  });
+
+  test('asking for Near me on purpose undoes a past dismissal', async () => {
+    // The way back for anyone who changes their mind, and the reason a
+    // permanent dismissal is not a dead end.
+    const context = loadHomepageContext(sampleTrails);
+    const store = new Map();
+    context.localStorage = {
+      getItem: key => (store.has(key) ? store.get(key) : null),
+      setItem: (key, value) => { store.set(key, String(value)); },
+      removeItem: key => { store.delete(key); },
+    };
+    context.navigator.geolocation = { getCurrentPosition: jest.fn() };
+    vm.runInContext('liLocationContext = liLoadLocationContext(); liApplyLocationGeography(); initLoggedInShell();', context);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    await vm.runInContext('renderReturningHomepage(null);', context);
+
+    document.getElementById('liLocationNudgeDismiss').click();
+    const key = vm.runInContext('LI_LOCATION_NUDGE_DISMISSED_KEY', context);
+    expect(store.get(key)).toBe('1');
+
+    document.getElementById('liExploreNearMe').click();
+    expect(store.has(key)).toBe(false);
+  });
+
   test('a permission already granted is used quietly, unless a place was chosen', async () => {
     const context = loadHomepageContext(sampleTrails);
     const getCurrentPosition = jest.fn();
