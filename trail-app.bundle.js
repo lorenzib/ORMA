@@ -4281,7 +4281,7 @@ function breedInsights(name){
 })(typeof window !== 'undefined' ? window : globalThis, function(){
   'use strict';
 
-  const VERSION = '1.5.0';
+  const VERSION = '1.6.0';
   const FITNESS = {
     low: { terrain: 0, distanceKm: 5, ascentM: 250 },
     moderate: { terrain: 1, distanceKm: 10, ascentM: 600 },
@@ -4297,8 +4297,13 @@ function breedInsights(name){
     trafficComfort: ['confident', 'cautious', 'reactive'],
     crowdComfort: ['confident', 'cautious', 'reactive'],
     heatTolerance: ['robust', 'average', 'low'],
+    chairlift: ['never', 'ok'],
   };
   const BEHAVIOUR_KEYS = Object.keys(BEHAVIOUR_SCALES);
+  // An open chairlift is survivable for a dog only when it is held on a lap
+  // for the whole ride, so a declaration counts only for a dog light enough
+  // to be held. Above this, or at unknown weight, the route is a hard stop.
+  const CHAIRLIFT_MAX_KG = 8;
   // Behaviour is a fit signal layered on top of the physical assessment. It
   // is capped so a behavioural mismatch can move a route out of
   // "strong option" without ever outweighing terrain, exposure and access.
@@ -4428,6 +4433,10 @@ function breedInsights(name){
       || conditions.has('cardiac') || conditions.has('overweight')
       || behaviour.heatTolerance === 2;
     const fragile = orthopedic || senior;
+    // Declared and small enough to hold: the only dog an open chairlift is
+    // not a hard stop for. Undeclared, "never", or too heavy all read as unsafe.
+    const chairliftDeclared = !!(dog.behaviour && dog.behaviour.chairlift === 'ok');
+    const chairliftSafe = chairliftDeclared && weight !== null && weight <= CHAIRLIFT_MAX_KG;
 
     let terrain = base.terrain;
     let distanceKm = base.distanceKm;
@@ -4469,6 +4478,8 @@ function breedInsights(name){
       heatSensitive,
       fragile,
       giant,
+      chairliftDeclared,
+      chairliftSafe,
       impairedVision: conditions.has('vision'),
       behaviour,
       // Confidence measures evidence quality, not behavioural detail, so
@@ -4644,6 +4655,44 @@ function breedInsights(name){
     }else if(categories.surfaceHazards === 'verified'){
       positives.push(item('trail.surface-hazards.none-known',
         'No material surface hazard is recorded in the reviewed evidence.'));
+    }
+
+    // ---- Lifts ---------------------------------------------------------------
+    // A closed gondola is a cabin: a note about the operator's rules. An open
+    // chairlift the itinerary depends on is different in kind: a dog that is
+    // not used to one can panic on an open seat metres above the ground, and
+    // that has killed dogs. It is a hard stop for every dog except one the
+    // owner has declared safe and that is light enough to be held throughout,
+    // and even then it stays a strong caution. An unknown lift type on a
+    // lift-dependent route is treated as open until someone verifies it.
+    const lift = suitability.lift || {};
+    const liftName = lift.name || null;
+    let chairliftCaution = false;
+    if(lift.dependency === 'required' && ['chairlift', 'mixed', 'unknown'].includes(lift.type)){
+      if(!dog.chairliftSafe){
+        const stop = item('trail.lift.chairlift', liftName
+          ? `This route depends on the ${liftName}, an open chairlift. A dog that is not used to one can panic and fall, which can be fatal.`
+          : 'This route depends on an open chairlift. A dog that is not used to one can panic and fall, which can be fatal.',
+        { lift: liftName || 'chairlift' }, liftName ? 'trail.lift.chairlift.named' : 'trail.lift.chairlift');
+        stop.impact = Math.min(0, 5 - score);
+        hardStops.push(stop);
+        score = Math.min(score, 5);
+        if(!dog.chairliftDeclared){
+          unknowns.push(item('dog.chairlift.unknown',
+            'Whether this dog rides an open chairlift held on a lap is not recorded, so the lift is treated as unsafe.'));
+        }
+      }else{
+        chairliftCaution = true;
+        penalise(20, item('trail.lift.chairlift.declared', liftName
+          ? `Rides the ${liftName}, an open chairlift: hold this dog on your lap for the whole ride, harnessed and leashed, and check the lift is running.`
+          : 'Rides an open chairlift: hold this dog on your lap for the whole ride, harnessed and leashed, and check the lift is running.',
+        { lift: liftName || 'chairlift' }, liftName ? 'trail.lift.chairlift.declared.named' : 'trail.lift.chairlift.declared'));
+      }
+    }else if(lift.dependency === 'required' && lift.type === 'gondola'){
+      cautions.push(item('trail.lift.gondola', liftName
+        ? `Rides the ${liftName}, a closed cabin: check the operator's dog rules for a muzzle and a ticket.`
+        : 'Rides a closed gondola: check the operator\'s dog rules for a muzzle and a ticket.',
+      { lift: liftName || 'gondola' }, liftName ? 'trail.lift.gondola.named' : 'trail.lift.gondola'));
     }
 
     if(access.status === 'prohibited'){
@@ -4986,6 +5035,9 @@ function breedInsights(name){
       : 'not-recommended';
     if(hardStops.length) category = 'not-recommended';
     if(criticalUnknown && category === 'strong-option') category = 'possible-with-cautions';
+    // A route that rides an open chairlift is never a strong option, however
+    // well the dog is declared to cope: the lift is the thing to think about.
+    if(chairliftCaution && category === 'strong-option') category = 'possible-with-cautions';
 
     return {
       scoringVersion: VERSION,
@@ -5008,6 +5060,7 @@ function breedInsights(name){
         distanceKm: dog.distanceKm,
         ascentM: dog.ascentM,
         heatSensitive: dog.heatSensitive,
+        chairliftSafe: dog.chairliftSafe,
       },
       // Ordered by start distance so navigation can consume them directly
       // without re-deriving where a lead advisory begins.
@@ -5019,6 +5072,7 @@ function breedInsights(name){
   return {
     VERSION,
     FITNESS,
+    CHAIRLIFT_MAX_KG,
     calculateRecommendation,
   };
 });
@@ -5091,7 +5145,34 @@ function breedInsights(name){
     trafficComfort: ['confident', 'cautious', 'reactive'],
     crowdComfort: ['confident', 'cautious', 'reactive'],
     heatTolerance: ['robust', 'average', 'low'],
+    // Open chairlifts: declared safe only when the owner says the dog rides
+    // calmly held on a lap. Undeclared is read as not safe.
+    chairlift: ['never', 'ok'],
   };
+  const LIFT_TYPES = ['none', 'gondola', 'chairlift', 'mixed', 'unknown'];
+  const LIFT_DEPENDENCIES = ['none', 'optional', 'required'];
+  // A dog on an open chairlift has to be held; above this it cannot be.
+  const CHAIRLIFT_MAX_KG = 8;
+
+  function normalizeLift(value){
+    if(!value || typeof value !== 'object') return { type:'none', dependency:'none', name:null, notes:null };
+    const type = LIFT_TYPES.includes(value.type) ? value.type : 'unknown';
+    const dependency = LIFT_DEPENDENCIES.includes(value.dependency) ? value.dependency : 'none';
+    return {
+      type: type === 'none' ? 'none' : type,
+      dependency: type === 'none' ? 'none' : dependency,
+      name: typeof value.name === 'string' && value.name.trim() ? value.name.trim() : null,
+      notes: typeof value.notes === 'string' && value.notes.trim() ? value.notes.trim() : null,
+    };
+  }
+
+  // The one question the chairlift rule asks of a profile, answered the same
+  // way by the engine, the homepage and Browse.
+  function chairliftSafe(profile){
+    const declared = profile && profile.behaviour && profile.behaviour.chairlift === 'ok';
+    const kg = weightKg(profile || {});
+    return !!declared && Number.isFinite(kg) && kg <= CHAIRLIFT_MAX_KG;
+  }
 
   // Only recognised answers are forwarded. An unrecognised or legacy value is
   // dropped rather than coerced, so a stale client cannot silently downgrade a
@@ -5179,6 +5260,7 @@ function breedInsights(name){
       exposure: typeof trail.exposure === 'boolean' ? trail.exposure : null,
       surfaceHazards: Array.isArray(trail.surfaceHazards) ? trail.surfaceHazards : [],
       dogAccess: legacyDogAccess(trail),
+      lift: normalizeLift(trail.liftAccess),
       // Legacy presentation records carry no reviewed behaviour attributes.
       // Declaring them unknown keeps the engine's "say nothing without
       // evidence" branch, rather than reading absence as safety.
@@ -5263,6 +5345,9 @@ function breedInsights(name){
     normalizeTrail,
     effectiveLimits,
     recommendLegacyTrail,
+    chairliftSafe,
+    CHAIRLIFT_MAX_KG,
+    normalizeLift,
   });
 });
 ;
@@ -15178,6 +15263,19 @@ if(document.querySelector('.td2')){
         : esc(riskText);
       riskLine.hidden = false;
     }
+    // A route that rides an open chairlift says so at the top, to everyone.
+    // The recommendation card grades it; this is the plain fact.
+    const lift = t.liftAccess || {};
+    const openChairlift = lift.dependency === 'required' && ['chairlift', 'mixed', 'unknown'].includes(lift.type);
+    const tags = document.querySelector('.td2-hero .td2-tags');
+    if (openChairlift && tags && !tags.querySelector('.td-lift-warning')) {
+      const warning = document.createElement('span');
+      warning.className = 'td-lift-warning';
+      warning.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
+        ? window.DoloPawsIcons.badgeHtml('caution', 'Chairlift-assisted · not for most dogs')
+        : esc('Chairlift-assisted · not for most dogs');
+      tags.appendChild(warning);
+    }
 
     // Elevation figures under the real chart; hide the block honestly
     // when the trail has no profile data.
@@ -15198,7 +15296,9 @@ if(document.querySelector('.td2')){
 
     const easyTerrain = Number(t.terrainRank) === 0;
     const lowRisk = t.safetyLevel === 'low-risk';
-    const verdict = t.curated === false
+    const verdict = openChairlift
+      ? 'This route depends on an open chairlift' + (lift.name ? ' (' + lift.name + ')' : '') + '. Only for a dog of 8 kg or under that rides calmly held on a lap; a hard stop for every other dog.'
+      : t.curated === false
       ? 'Automated estimate from mapped route data. Exposure, shade, livestock and current conditions are not field verified.'
       : lowRisk && easyTerrain
       ? 'A gentle, low-risk choice for most dogs.'
@@ -16375,6 +16475,12 @@ if(document.querySelector('.td2')){
       label:'Hiking safely at altitude',
       summary:'Plan for thinner air, rapid weather changes and lingering snow.',
     }),
+    lifts:Object.freeze({
+      id:'lifts',
+      href:'guides/dogs-on-cable-cars.html#chairlifts',
+      label:'Lifts with your dog: open chairs and closed cabins',
+      summary:'Why an open chairlift is a different risk from a gondola, and who can ride one.',
+    }),
   });
 
   function guideId(code){
@@ -16385,6 +16491,7 @@ if(document.querySelector('.td2')){
     if(/^trail\.exposure\./.test(code)) return 'exposure';
     if(/^trail\.livestock\./.test(code)) return 'livestock';
     if(/^trail\.altitude\./.test(code)) return 'altitude';
+    if(/^trail\.lift\./.test(code)) return 'lifts';
     return null;
   }
 

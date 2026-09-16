@@ -101,7 +101,7 @@ describe('UX-04 canonical recommendation journey', () => {
       score:64,
       category:'possible-with-cautions',
       confidence:'low',
-      scoringVersion:'1.5.0',
+      scoringVersion:'1.6.0',
       evidenceTier:'mapped',
       positiveReasons:[{ message:'Distance is within range.' }],
       cautions:[{ code:'trail.shade.low', message:'Shade is limited.' }],

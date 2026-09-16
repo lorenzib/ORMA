@@ -12,7 +12,7 @@
   const MULTI_DAY_MIN_KM = 25;
   const FILTER_ORDER = [
     'search', 'country', 'region', 'valley', 'risk', 'distance', 'duration', 'difficulty', 'terrain', 'water', 'heat',
-    'exposure', 'access', 'collection', 'minMatch',
+    'exposure', 'access', 'collection', 'minMatch', 'lifts',
   ];
 
   function legacyCategoryState(trail, category){
@@ -23,6 +23,20 @@
     const completed = new Set(Array.isArray(trail && trail.graduation && trail.graduation.completed)
       ? trail.graduation.completed : []);
     return reviewed.has(category) || completed.has(category) ? 'verified' : 'unknown';
+  }
+
+  function liftOf(value){
+    if(!value || typeof value !== 'object') return { type:'none', dependency:'none' };
+    const type = ['none', 'gondola', 'chairlift', 'mixed', 'unknown'].includes(value.type) ? value.type : 'unknown';
+    const dependency = ['none', 'optional', 'required'].includes(value.dependency) ? value.dependency : 'none';
+    return { type, dependency };
+  }
+
+  // A route whose itinerary rides an open chairlift. An unknown lift type on
+  // a lift-dependent route counts as open until someone verifies it.
+  function ridesOpenChairlift(parts){
+    const lift = parts && parts.suitability && parts.suitability.lift;
+    return !!lift && lift.dependency === 'required' && ['chairlift', 'mixed', 'unknown'].includes(lift.type);
   }
 
   function fallbackTrail(trail){
@@ -42,6 +56,7 @@
         heatRisk: trail && ['low', 'moderate', 'high'].includes(trail.heatRisk) ? trail.heatRisk : 'unknown',
         exposure: trail && typeof trail.exposure === 'boolean' ? trail.exposure : null,
         dogAccess: { status: access },
+        lift: liftOf(trail && trail.liftAccess),
       },
       waypoints: (Array.isArray(trail && trail.waterSources) ? trail.waterSources : [])
         .map((point, index) => ({ id: `water-${index}`, type:'water', status: point && point.status || 'mapped' })),
@@ -163,6 +178,11 @@
         && !['allowed', 'leash-required'].includes(status)) return false;
     }
 
+    // Chairlift-assisted routes are hidden unless the visitor asks for them or
+    // the dog they are ranked for is declared safe on one. Hiding is the
+    // default, not a filter the visitor added, so it never shows as a chip.
+    if(state.lifts !== 'include' && !(options && options.chairliftSafe) && ridesOpenChairlift(parts)) return false;
+
     if(state.collection && options && options.collections && options.collections[state.collection]
       && !options.collections[state.collection](trail)) return false;
     if(state.minMatch && options && typeof options.score === 'function'
@@ -201,6 +221,7 @@
       duration: 'Multi-day routes',
       collection: `${state.collection} collection`,
       minMatch: `${state.minMatch}%+ dog match`,
+      lifts: 'Chairlift-assisted routes included',
     };
     return labels[key] || key;
   }
@@ -212,6 +233,7 @@
       // 'day' is the baseline view, not a filter the visitor added, so it never
       // shows up as a removable chip; only the 'multi' opt-in counts.
       if(key === 'duration') return value === 'multi';
+      if(key === 'lifts') return value === 'include';
       return value !== undefined && value !== null && value !== '' && value !== false && value !== 'all';
     }).map(key => ({ key, label: labelFor(key, state) }));
   }
@@ -263,6 +285,6 @@
   }
 
   return Object.freeze({
-    DISTANCES, MULTI_DAY_MIN_KM, normalizedTrail, matches, filter, active, diagnoseZero, safeBroadenings,
+    DISTANCES, MULTI_DAY_MIN_KM, normalizedTrail, matches, filter, active, diagnoseZero, safeBroadenings, ridesOpenChairlift,
   });
 });

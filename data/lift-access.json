@@ -1,0 +1,28 @@
+{
+  "note": "Lift access per trail, curated by hand. type: none | gondola | chairlift | mixed | unknown. dependency: required when the itinerary itself rides the lift, optional when a lift only shortens the walk, none otherwise. An open chairlift a route depends on is a hard stop for every dog except one declared safe on chairlifts and 8 kg or under; see scoring/recommendation-v1.js.",
+  "trails": [
+    {
+      "id": "cinque-torri-assisted",
+      "fields": {
+        "liftAccess": {
+          "type": "chairlift",
+          "dependency": "required",
+          "name": "5 Torri chairlift",
+          "notes": "The itinerary rides the 5 Torri chairlift from Bai de Dones to Rifugio Scoiattoli. Dogs ride free but leashed and muzzled on the operator's rules; the chairs are open."
+        }
+      }
+    },
+    {
+      "id": "alpe-siusi",
+      "fields": {
+        "liftAccess": { "type": "gondola", "dependency": "optional", "name": "Alpe di Siusi cable car", "notes": "A closed cabin from Siusi to Compatsch spares the road; the loop itself needs no lift." }
+      }
+    },
+    {
+      "id": "osm-18055492",
+      "fields": {
+        "liftAccess": { "type": "gondola", "dependency": "optional", "name": "Télécabine du Mont d'Arbois", "notes": "A closed cabin can lift you to the top station in summer; the route also climbs on foot." }
+      }
+    }
+  ]
+}

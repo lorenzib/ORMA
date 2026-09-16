@@ -113,7 +113,7 @@ function loadHomepageContext(testTrails){
     t: tForTests,
     scoreTrail: () => 80,
     recommendTrail: jest.fn(() => ({
-      scoringVersion: '1.5.0',
+      scoringVersion: '1.6.0',
       score: 80,
       category: 'possible-with-cautions',
       confidence: 'low',
@@ -494,7 +494,7 @@ describe('returning homepage region + valley filters', () => {
     }));
     const context = loadHomepageContext(dolomitesFive);
     context.recommendTrail.mockImplementation(() => ({
-      scoringVersion:'1.5.0', score:86, category:'recommended', confidence:'high',
+      scoringVersion:'1.6.0', score:86, category:'recommended', confidence:'high',
       positiveReasons:[{ message:'The distance suits Teo’s normal range.' }],
       cautions:[{ message:'Bring water for the exposed middle section.' }],
       hardStops:[], unknowns:[],

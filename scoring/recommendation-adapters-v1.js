@@ -64,7 +64,34 @@
     trafficComfort: ['confident', 'cautious', 'reactive'],
     crowdComfort: ['confident', 'cautious', 'reactive'],
     heatTolerance: ['robust', 'average', 'low'],
+    // Open chairlifts: declared safe only when the owner says the dog rides
+    // calmly held on a lap. Undeclared is read as not safe.
+    chairlift: ['never', 'ok'],
   };
+  const LIFT_TYPES = ['none', 'gondola', 'chairlift', 'mixed', 'unknown'];
+  const LIFT_DEPENDENCIES = ['none', 'optional', 'required'];
+  // A dog on an open chairlift has to be held; above this it cannot be.
+  const CHAIRLIFT_MAX_KG = 8;
+
+  function normalizeLift(value){
+    if(!value || typeof value !== 'object') return { type:'none', dependency:'none', name:null, notes:null };
+    const type = LIFT_TYPES.includes(value.type) ? value.type : 'unknown';
+    const dependency = LIFT_DEPENDENCIES.includes(value.dependency) ? value.dependency : 'none';
+    return {
+      type: type === 'none' ? 'none' : type,
+      dependency: type === 'none' ? 'none' : dependency,
+      name: typeof value.name === 'string' && value.name.trim() ? value.name.trim() : null,
+      notes: typeof value.notes === 'string' && value.notes.trim() ? value.notes.trim() : null,
+    };
+  }
+
+  // The one question the chairlift rule asks of a profile, answered the same
+  // way by the engine, the homepage and Browse.
+  function chairliftSafe(profile){
+    const declared = profile && profile.behaviour && profile.behaviour.chairlift === 'ok';
+    const kg = weightKg(profile || {});
+    return !!declared && Number.isFinite(kg) && kg <= CHAIRLIFT_MAX_KG;
+  }
 
   // Only recognised answers are forwarded. An unrecognised or legacy value is
   // dropped rather than coerced, so a stale client cannot silently downgrade a
@@ -152,6 +179,7 @@
       exposure: typeof trail.exposure === 'boolean' ? trail.exposure : null,
       surfaceHazards: Array.isArray(trail.surfaceHazards) ? trail.surfaceHazards : [],
       dogAccess: legacyDogAccess(trail),
+      lift: normalizeLift(trail.liftAccess),
       // Legacy presentation records carry no reviewed behaviour attributes.
       // Declaring them unknown keeps the engine's "say nothing without
       // evidence" branch, rather than reading absence as safety.
@@ -236,5 +264,8 @@
     normalizeTrail,
     effectiveLimits,
     recommendLegacyTrail,
+    chairliftSafe,
+    CHAIRLIFT_MAX_KG,
+    normalizeLift,
   });
 });
