@@ -136,6 +136,9 @@ function loadHomepageContext(testTrails){
     window: null,
     globalThis: null,
     addEventListener: () => {},
+    // The browser schedules a focus on the next frame; the sandbox has no
+    // frames, so run it now and keep the behaviour observable.
+    requestAnimationFrame: callback => { callback(); return 0; },
   };
   context.window = context;
   context.globalThis = context;
@@ -391,7 +394,9 @@ describe('returning homepage region + valley filters', () => {
 
   test('searching for a destination sets a complete recommendation scope', async () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('liLocationContext = null; liRenderLocationContext(null); initLoggedInShell();', context);
+    // The destination picker is no longer a wall someone lands on, so it is
+    // reached the way a person reaches it: by asking to change the place.
+    vm.runInContext('liRenderLocationContext(null); initLoggedInShell(); liBeginLocationChange();', context);
     const search = document.getElementById('liAreaSearch');
     search.value = 'Savoy';
     search.dispatchEvent(new Event('input', { bubbles:true }));

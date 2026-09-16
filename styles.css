@@ -3194,6 +3194,38 @@ body.li-location-changing::before{
 .li-search-area:hover{border-color:var(--accent);}
 .li-search-area.is-clear{background:#F1EDE1;border-color:#C9BE9A;color:#6E5D2F;}
 .li-search-area[hidden]{display:none;}
+
+/* The offer to narrow "every area" to "near you". It sits over the map at the
+   bottom, clear of "Search this area" at the top, because the walks behind it
+   are already usable and this only refines them. */
+.li-nearby-ask{
+  position:absolute;left:12px;bottom:14px;z-index:9;width:min(300px,calc(100% - 24px));
+  box-sizing:border-box;padding:13px 15px;border:1px solid var(--paper-line);border-radius:14px;
+  background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  box-shadow:0 10px 26px -10px rgba(23,42,28,.45);
+}
+.li-nearby-ask[hidden]{display:none;}
+.li-nearby-ask-title{margin:0;font:800 13.5px 'Inter',sans-serif;color:var(--ink);}
+.li-nearby-ask-copy{margin:4px 0 0;font:500 12.5px/1.45 'Inter',sans-serif;color:var(--ink-soft);}
+.li-nearby-ask-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px;}
+.li-nearby-ask-yes{
+  flex:1 1 auto;min-height:36px;padding:0 14px;border:0;border-radius:999px;
+  background:var(--accent);color:#fff;font:800 12.5px 'Inter',sans-serif;cursor:pointer;
+}
+.li-nearby-ask-yes:hover{background:var(--accent-hover);}
+.li-nearby-ask-yes:disabled{opacity:.6;cursor:wait;}
+.li-nearby-ask-no{
+  min-height:36px;padding:0 12px;border:1px solid var(--paper-line);border-radius:999px;
+  background:#fff;color:var(--ink-soft);font:750 12.5px 'Inter',sans-serif;cursor:pointer;
+}
+.li-nearby-ask-no:hover{border-color:var(--accent);color:var(--accent);}
+.li-nearby-ask-note{margin:8px 0 0;font:600 11.5px/1.4 'Inter',sans-serif;color:var(--ink-soft);}
+.li-nearby-ask-note:empty{display:none;}
+/* On a phone the results sheet owns the bottom of the map, so this goes to the
+   top -- but below the Layers and Expand controls that already sit there. */
+@media (max-width:700px){
+  body.mhome-active .li-nearby-ask{bottom:auto;top:56px;left:12px;right:12px;width:auto;}
+}
 /* Discovery uses one consolidated filters panel at every viewport size. */
 /* The design's app home has no conditions card on the map (desktop);
    phones keep it as the dog-identity pill. */

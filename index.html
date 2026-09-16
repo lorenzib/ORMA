@@ -25,7 +25,7 @@ if(location.protocol !== 'file:' && location.pathname === '/index.html'){
    Firebase resolves. The homepage controller clears the class once real
    auth answers. */
 try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement.classList.add('early-member');}catch(e){}</script>
-<link rel="stylesheet" href="styles.css?v=20260916-3">
+<link rel="stylesheet" href="styles.css?v=20260917-1">
 <link rel="stylesheet" href="homepage-mobile.css?v=20260909-1">
   <link rel="stylesheet" href="homepage-editorial.css?v=20260908-2">
 <link rel="stylesheet" href="geo-filters.css?v=20260904-1">
@@ -354,6 +354,17 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
       <!-- The map doubles as the geography control: pan/zoom, then refilter the
            list to the visible area. Hidden until the view actually moves. -->
       <button id="liSearchThisArea" type="button" class="li-search-area" hidden>Search this area</button>
+      <!-- Offered over the map rather than in front of it: the walks are
+           already there to be looked at, and this only narrows them. -->
+      <div class="li-nearby-ask" id="liNearbyAsk" role="region" aria-label="Show trails near you" hidden>
+        <p class="li-nearby-ask-title">Show what is near you?</p>
+        <p class="li-nearby-ask-copy">ORMA is showing every area. Turn on location and it ranks the walks around you first.</p>
+        <div class="li-nearby-ask-actions">
+          <button type="button" id="liNearbyAskYes" class="li-nearby-ask-yes">Use my location</button>
+          <button type="button" id="liNearbyAskNo" class="li-nearby-ask-no">Not now</button>
+        </div>
+        <p class="li-nearby-ask-note" id="liNearbyAskNote" role="status" aria-live="polite"></p>
+      </div>
       <button id="homeMapExpandBtn" type="button" class="map-expand-btn li-map-expand" aria-label="Expand map" aria-expanded="false"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg> <span>Expand map</span></button>
       <div class="li-rank-map-key" aria-label="Map key">
         <span><i class="is-ranked">1</i>Matches list</span>
@@ -573,7 +584,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <script src="trail-access-directions.js?v=20260815-4" defer></script>
 <script src="veterinary-care.js?v=20260901-1" defer></script>
 <script src="trail-route-refs.js?v=20260903-1" defer></script>
-<script src="script.js?v=20260916-4" defer></script>
+<script src="script.js?v=20260917-1" defer></script>
 <script src="dog-wizard.js?v=20260901-2" defer></script>
 <script src="collections-data.js?v=20260909-1" defer></script>
 <script src="trail-weather-window.js?v=20260906-1"></script><script src="homepage-conditions.js?v=20260908-2"></script><script src="homepage-search.js?v=20260909-1" defer></script>

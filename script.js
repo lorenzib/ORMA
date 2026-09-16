@@ -215,6 +215,20 @@ const LI_TOWN_RADIUS_KM = 40;
 let liTowns = null;
 const LI_LOCATION_SESSION_KEY = 'orma-home-current-location-v1';
 const LI_AREA_STORAGE_KEY = 'orma-home-selected-area-v1';
+const LI_LOCATION_ASK_KEY = 'orma-home-location-ask-v1';
+
+/**
+ * Where a member starts before they have said anything.
+ *
+ * Asking for a place first made a wall out of a question: the map, the list
+ * and the ranking all existed and were all withheld until someone answered.
+ * Everywhere is a true answer -- both regions, every trail -- and the same
+ * screen then offers to narrow it. Transient on purpose: it is a starting
+ * point, not a preference, so it is never written back as a choice.
+ */
+function liEverywhereContext(){
+  return { kind:'area', country:'all', region:'all', valley:'all', label:'All areas', everywhere:true, transient:true };
+}
 const LI_WALK_DATE_SESSION_KEY = 'orma-home-walk-date-v1';
 const LI_LOCATION_LABEL_ALIASES = Object.freeze({
   'Alta Pusteria – Tre Cime':'Alta Pusteria',
@@ -297,6 +311,9 @@ function liValidLocationContext(value){
       region,
       valley:String(value.valley || 'all'),
       label:liDisplayLocationLabel(value.label),
+      // The starting point, told apart from someone who deliberately chose
+      // both regions. Only the former gets offered the location prompt.
+      ...(value.everywhere ? { everywhere:true } : {}),
     };
   }
   return null;
@@ -316,7 +333,7 @@ function liLoadLocationContext(){
     const area = liValidLocationContext(liStoredJson(localStorage, LI_AREA_STORAGE_KEY));
     if(area) return area;
   }
-  return null;
+  return liEverywhereContext();
 }
 
 function liRememberLocationContext(context){
@@ -439,6 +456,9 @@ function liLocationContextLabel(){
 
 function liRecommendationLocationPhrase(){
   if(!liLocationContext) return '';
+  // "Best walk for Eddie in All areas today" names a place that is not one.
+  // Before anyone has narrowed anything the heading says nothing about where.
+  if(liLocationContext.everywhere) return '';
   if(liLocationContext.kind === 'current') return 'near you';
   if(liLocationContext.kind === 'town') return `near ${liLocationContext.label}`;
   if(liLocationContext.kind === 'map') return 'in the map area';
@@ -735,6 +755,9 @@ function liRenderLocationContext(profile){
   const gateDogName = document.getElementById('liLocationDogName');
   const ready = !!liLocationContext;
   const changing = ready && liLocationChanging;
+  // The gate used to stand in front of the workspace until someone answered
+  // it. It is now only the screen for changing a place you already have.
+  const everywhere = !!(liLocationContext && liLocationContext.everywhere);
   if(gateDogName) gateDogName.textContent = profile && profile.name ? profile.name : 'your dog';
   if(gate) gate.hidden = ready && !changing;
   if(toolbar) toolbar.hidden = !ready;
@@ -755,7 +778,8 @@ function liRenderLocationContext(profile){
     document.body.classList.toggle('li-location-ready', ready);
   }
   liSyncWalkDateInputs();
-  if(!ready) liPopulateAreaPicker();
+  if(changing) liPopulateAreaPicker();
+  liRenderNearbyAsk(everywhere);
   // Only on a first choice: when changing an area you already have, the two
   // regions are a step backwards from the valley you are sitting in.
   const regions = document.getElementById('liLocationRegions');
@@ -763,6 +787,63 @@ function liRenderLocationContext(profile){
     regions.hidden = changing;
     if(!changing && !regions.children.length) liRenderRegionChoices();
   }
+}
+
+/**
+ * The offer to narrow "everywhere" down to "near you".
+ *
+ * Shown over the map, not in front of it, and only while nobody has chosen a
+ * place. Answered once either way: a person who said no should not be asked
+ * again every visit, and a person who said yes has a place already.
+ */
+function liNearbyAskAnswered(){
+  try{ return localStorage.getItem(LI_LOCATION_ASK_KEY) === 'answered'; }
+  catch(error){ return false; }
+}
+
+function liRememberNearbyAsk(){
+  try{ localStorage.setItem(LI_LOCATION_ASK_KEY, 'answered'); }
+  catch(error){ /* a convenience, never a blocker */ }
+}
+
+function liRenderNearbyAsk(everywhere){
+  const ask = document.getElementById('liNearbyAsk');
+  if(!ask) return;
+  // Geolocation needs a secure context; offering it where it cannot work is
+  // just an error message waiting to happen.
+  const possible = typeof navigator !== 'undefined' && !!navigator.geolocation;
+  ask.hidden = !(everywhere && possible && !liNearbyAskAnswered());
+}
+
+function liAskForNearby(){
+  const ask = document.getElementById('liNearbyAsk');
+  const yes = document.getElementById('liNearbyAskYes');
+  const note = document.getElementById('liNearbyAskNote');
+  if(!navigator.geolocation){
+    if(note) note.textContent = 'Location is not available in this browser.';
+    return;
+  }
+  if(yes){ yes.disabled = true; yes.textContent = 'Finding you…'; }
+  if(note) note.textContent = '';
+  navigator.geolocation.getCurrentPosition(position => {
+    liRememberNearbyAsk();
+    if(ask) ask.hidden = true;
+    if(yes){ yes.disabled = false; yes.textContent = 'Use my location'; }
+    liSetLocationContext({
+      kind:'current',
+      lat:Number(position.coords.latitude),
+      lng:Number(position.coords.longitude),
+      radiusKm:LI_LOCATION_RADIUS_KM,
+    });
+  }, error => {
+    if(yes){ yes.disabled = false; yes.textContent = 'Use my location'; }
+    // A refusal is an answer: do not ask again. Every area stays on screen,
+    // which is what they are already looking at, so nothing is lost.
+    liRememberNearbyAsk();
+    if(note) note.textContent = error && error.code === 1
+      ? 'Location is off. Every area stays listed — use Change to pick one.'
+      : 'We could not find you. Every area stays listed — use Change to pick one.';
+  }, { enableHighAccuracy:false, timeout:10000, maximumAge:300000 });
 }
 
 function liSetLocationContext(context){
@@ -799,7 +880,7 @@ function liSetLocationContext(context){
 }
 
 function liResetLocationContext(){
-  liLocationContext = null;
+  liLocationContext = liEverywhereContext();
   liRememberLocationContext(null);
   activeCountry = 'all';
   activeRegion = 'all';
@@ -814,10 +895,10 @@ function liResetLocationContext(){
   if(choose) choose.setAttribute('aria-expanded', 'false');
   renderReturningHomepage(currentProfileForAdjust);
   if(typeof window.CustomEvent === 'function'){
-    window.dispatchEvent(new window.CustomEvent('dolopaws-home-location-context-changed', { detail:{ ready:false } }));
+    window.dispatchEvent(new window.CustomEvent('dolopaws-home-location-context-changed', { detail:{ ready:true } }));
   }
-  const useLocation = document.getElementById('liUseLocationBtn');
-  if(useLocation) useLocation.focus();
+  const change = document.getElementById('liChangeLocationBtn');
+  if(change) change.focus();
 }
 
 liApplyLocationGeography();
@@ -2937,6 +3018,15 @@ function initLoggedInShell(){
     liSetLocationContext(choice);
   });
   if(changeLocation) changeLocation.addEventListener('click', liBeginLocationChange);
+
+  const nearbyYes = document.getElementById('liNearbyAskYes');
+  const nearbyNo = document.getElementById('liNearbyAskNo');
+  if(nearbyYes) nearbyYes.addEventListener('click', liAskForNearby);
+  if(nearbyNo) nearbyNo.addEventListener('click', () => {
+    liRememberNearbyAsk();
+    const ask = document.getElementById('liNearbyAsk');
+    if(ask) ask.hidden = true;
+  });
   const cancelChange = document.getElementById('liLocationCancelBtn');
   if(cancelChange) cancelChange.addEventListener('click', liCancelLocationChange);
   document.addEventListener('keydown', event => {
@@ -3460,9 +3550,9 @@ async function renderReturningHomepage(profile, options = {}){
 
   const dayLabel = liWalkDateLabel();
   const locationPhrase = liRecommendationLocationPhrase();
-  const answerTitle = profile && profile.name
+  const answerTitle = (profile && profile.name
     ? `Best walk for ${profile.name} ${locationPhrase} ${dayLabel}`
-    : `Best walk ${locationPhrase} ${dayLabel}`;
+    : `Best walk ${locationPhrase} ${dayLabel}`).replace(/\s{2,}/g, ' ').trim();
   heading.textContent = answerTitle;
   const toolbarHeading = document.getElementById('liToolbarGreeting');
   if(toolbarHeading) toolbarHeading.textContent = answerTitle;
