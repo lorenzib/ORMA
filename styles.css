@@ -4172,7 +4172,17 @@ html.early-member .topnav{display:none;}
 .li-area-search-row input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font:600 13px 'Inter',sans-serif;}
 .li-area-browse{margin-top:12px;}
 .li-area-browse>summary{width:max-content;color:var(--accent);font:750 11.5px 'Inter',sans-serif;cursor:pointer;}
-.li-area-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px;}
+/* The selects have to be told to fill their columns. A <select> sizes to its
+   widest option, and min-width:0 only permits shrinking rather than causing
+   it: without a width the boxes kept their intrinsic size, overflowed their
+   cells and sat on top of each other.
+   
+   Sized by what fits rather than by viewport width: three fixed columns
+   squeezed "Choose country" down to "Choose cou" in this panel, which is
+   narrower than the window it sits in. */
+.li-area-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:12px;}
+.li-area-fields label{min-width:0;}
+.li-area-fields select{width:100%;box-sizing:border-box;}
 .li-area-fields label,.li-walk-date{margin:0!important;}
 .li-area-fields label>span,.li-walk-date>span{display:block;margin-bottom:6px;color:var(--ink-soft);font:750 10px 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;}
 .li-area-picker input[type="date"]{height:44px;box-sizing:border-box;padding:0 11px;border:1.5px solid var(--paper-line);border-radius:10px;background:#fff;color:var(--ink);font:600 12.5px 'Inter',sans-serif;}
@@ -4226,7 +4236,6 @@ html.early-member .topnav{display:none;}
   .li-location-gate-visual{min-height:230px;}
   .li-location-gate-visual img{object-position:57% 60%;}
   .li-location-visual-label{left:22px;bottom:20px;font-size:16px;}
-  .li-area-fields{grid-template-columns:1fr;}
   .li-answer-explanation{width:100%;box-sizing:border-box;grid-template-columns:1fr;}
   .li-answer-actions{grid-column:1;}
   .li-answer-open{flex:1;}
