@@ -784,6 +784,11 @@ function liSetLocationContext(context){
   // A new area supersedes the old map framing and selection; the filters and
   // the date are about the dog and the day, so they stay.
   liMapBounds = null;
+  // Typing a place, "Show all" and a restored area all arrive here, so the
+  // button and the remembered context are unwound once, here, rather than at
+  // each door out -- missing one is what leaves the button contradicting the
+  // heading.
+  if(next.kind !== 'map') liExitMapArea();
   selectedTrailId = null;
   liPendingLocationCenter = (liLocationContext.kind === 'current' || liLocationContext.kind === 'town')
     ? [liLocationContext.lng, liLocationContext.lat]
@@ -814,7 +819,7 @@ function liResetLocationContext(){
   activeCountry = 'all';
   activeRegion = 'all';
   activeValley = 'all';
-  liMapBounds = null;
+  liExitMapArea();
   selectedTrailId = null;
   liPendingLocationCenter = null;
   liClearLocationConditions();
@@ -1431,11 +1436,9 @@ function initTrailMap(){
     });
     areaButton.addEventListener('click', () => {
       if(liLocationContext && liLocationContext.kind === 'map'){
-        const restored = liContextBeforeMapArea;
-        liContextBeforeMapArea = null;
-        liClearMapAreaFilter();
-        if(restored) liSetLocationContext(restored);
-        else renderReturningHomepage(currentProfileForAdjust);
+        // Nothing to go back to means the map area was the whole location:
+        // clearing it shows the catalogue, not a map area with no map.
+        liSetLocationContext(liExitMapArea() || liDefaultLocationContext());
         return;
       }
       const view = trailMapInstance.getBounds();
@@ -2351,9 +2354,17 @@ function liResetAllFilters(){
   liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false, duration: 'day' };
   showingSavedOnly = false;
   activeValley = 'all';
-  liClearMapAreaFilter();
   const search = document.getElementById('liSearch');
   if(search) search.value = '';
+  // A map area counts as a filter, so resetting clears it -- but it is also
+  // the location, so clearing it has to hand the location back instead of
+  // leaving the heading reading "Map area" over an unframed list, with the
+  // button that offered the way out now hidden.
+  if(liLocationContext && liLocationContext.kind === 'map'){
+    liSetLocationContext(liExitMapArea() || liDefaultLocationContext());
+    return;
+  }
+  liClearMapAreaFilter();
   renderReturningHomepage(currentProfileForAdjust);
 }
 
@@ -2378,6 +2389,20 @@ function liClearMapAreaFilter(){
     button.classList.remove('is-clear');
     button.textContent = 'Search this area';
   }
+}
+
+// Leaving a map area has three things to put back, and only one of them is the
+// filter: the viewport bounds, the button offering to clear them, and the
+// context the map area replaced. Whichever is left behind outlives the map
+// area -- a button still reading "Clear map area" over a valley typed since,
+// where pressing it frames a new area instead of clearing one. Returns the
+// context the map area replaced, for callers that are handing the location
+// back rather than replacing it.
+function liExitMapArea(){
+  const restored = liContextBeforeMapArea;
+  liContextBeforeMapArea = null;
+  liClearMapAreaFilter();
+  return restored;
 }
 
 // Dog photo resolution shared by the account pill and the conditions card:

@@ -80,6 +80,7 @@ function loadHomepageContext(testTrails){
     <span id="companionKicker"></span><div id="companionListTitle"></div>
     <p id="returningSubline"></p>
     <div id="returningTrailList"></div>
+    <button id="liSearchThisArea" type="button" class="li-search-area" hidden>Search this area</button>
     <button id="savedTrailsBtn"></button>
     <button id="adjustToggle"></button>
     <div id="adjustPanel"></div>
@@ -252,6 +253,65 @@ describe('returning homepage region + valley filters', () => {
     vm.runInContext(mapArea(6, 45, 7, 46), context);
     // Still the typed area, untouched, so a reload comes back to it.
     expect(vm.runInContext('localStorage.getItem(LI_AREA_STORAGE_KEY)', context)).toBe(stored);
+  });
+
+  // A map area is applied by a click handler that lives inside the map setup,
+  // so these seed the button exactly as that handler leaves it and then take a
+  // door out. The bug they pin: the doors nulled the bounds but not the button,
+  // so it sat over the new location still offering to clear a map area, and
+  // pressing it framed a new one instead.
+  const pinMapArea = context => {
+    vm.runInContext(`liContextBeforeMapArea = liLocationContext;`, context);
+    vm.runInContext(mapArea(6, 45, 7, 46), context);
+    const button = document.getElementById('liSearchThisArea');
+    button.hidden = false;
+    button.classList.add('is-clear');
+    button.textContent = 'Clear map area';
+  };
+  const areaButtonState = () => {
+    const button = document.getElementById('liSearchThisArea');
+    return button.hidden ? 'hidden' : button.textContent + (button.classList.contains('is-clear') ? ' [clear]' : '');
+  };
+  const inValGardena = `liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
+    valley:"Val Gardena", label:"Val Gardena" });`;
+
+  test('choosing a place after a map area takes the clear button with it', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext(inValGardena, context);
+    pinMapArea(context);
+    expect(areaButtonState()).toBe('Clear map area [clear]');
+    // The door #438 opened: a place typed into the search.
+    vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
+      valley:"Val di Fassa", label:"Val di Fassa" });`, context);
+    expect(vm.runInContext('liLocationContextLabel()', context)).toBe('Val di Fassa');
+    expect(areaButtonState()).toBe('hidden');
+    expect(vm.runInContext('liContextBeforeMapArea', context)).toBeNull();
+  });
+
+  test('"Show all" after a map area takes the clear button with it', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext(inValGardena, context);
+    pinMapArea(context);
+    vm.runInContext('liSetLocationContext(liDefaultLocationContext());', context);
+    expect(areaButtonState()).toBe('hidden');
+    expect(vm.runInContext('liContextBeforeMapArea', context)).toBeNull();
+  });
+
+  // The map area counts as a filter, so "Reset filters" clears it. It is also
+  // the location, so clearing it has to hand the location back -- otherwise the
+  // heading still reads "Map area" with nothing framed, and the button that
+  // offered the way out is gone.
+  test('resetting the filters hands back the area the map area replaced', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext(inValGardena, context);
+    pinMapArea(context);
+    expect(vm.runInContext('liLocationContextLabel()', context)).toBe('Map area');
+    vm.runInContext('liResetAllFilters();', context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    expect(vm.runInContext('liLocationContextLabel()', context)).toBe('Val Gardena');
+    expect(vm.runInContext('liMapBounds', context)).toBeNull();
+    expect(areaButtonState()).toBe('hidden');
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
   });
 
   test('hides multi-day itineraries by default and reveals them with the Duration filter', async () => {
