@@ -88,6 +88,49 @@ function claimsUnderResolution(trails){
   });
 }
 
+/**
+ * Every decision a moderator has submitted, and what became of it.
+ *
+ * A desk approval is not applied where it is made: it writes a queued document
+ * and the worker acts on it later. So "nothing is verified" has two very
+ * different causes -- nobody has approved anything, or approvals are being
+ * submitted and not landing -- and the queue alone cannot tell them apart.
+ * One of those needs a person, the other needs a fix.
+ */
+async function decisionHistory(store){
+  if(typeof store.listDossierReviews!=='function') return null;
+  const lanes=await Promise.all(['queued','processed','blocked'].map(async status=>{
+    try{ return [status,await store.listDossierReviews(status)]; }
+    // A lane that cannot be read is not a lane that is empty.
+    catch(error){ return [status,null]; }
+  }));
+  const byStatus={};const all=[];
+  lanes.forEach(([status,reviews])=>{
+    byStatus[status]=reviews?reviews.length:'unreadable';
+    (reviews||[]).forEach(review=>all.push({...review,status}));
+  });
+  const when=review=>review.processedAt||review.submittedAt;
+  const recent=all
+    .sort((left,right)=>String(when(right)||'').localeCompare(String(when(left)||'')))
+    .slice(0,8)
+    .map(review=>({
+      status:review.status,
+      action:review.action||null,
+      candidateId:review.candidateId||null,
+      submittedAt:jobAge([review.submittedAt]).oldest,
+      // Present only on a blocked one, and the whole reason to look here.
+      error:review.error?String(review.error).slice(0,160):undefined,
+    }));
+  return {
+    total:all.length,
+    byStatus,
+    byAction:tally(all,review=>review.action),
+    // A queued decision older than a worker cycle has not been picked up.
+    stuckQueued:all.filter(review=>review.status==='queued').length,
+    recent,
+  };
+}
+
 async function buildVerificationReport({store}){
   const [orchestration,queue,registry,execution,staging]=await Promise.all([
     store.getArtifact('trail-orchestration'),
@@ -115,8 +158,14 @@ async function buildVerificationReport({store}){
   const blockedJobs=jobs.filter(job=>job.status==='blocked');
   const errorText=job=>String(job.lastError||'(no error recorded)').replace(/\s+/g,' ').trim();
 
+  const decisions=await decisionHistory(store);
+
   return {
     verified:(registry?.verified||[]).length,
+    // Absent entirely until the first approval creates it, so "no registry" and
+    // "nothing approved" are the same sentence rather than a missing artifact.
+    verifiedRegistryExists:!!registry,
+    decisions,
     inPipeline:trails.length,
     byState:tally(trails,trail=>trail.state),
     byStage:tally(trails,trail=>trail.stage),
@@ -182,10 +231,30 @@ async function main(options={}){
     // One error repeated is a bug with an address. Many different ones are not.
     if(worst) console.log(`[verification] Most common: ${worst[1]}x "${worst[0]}"`);
   }
+  // The distinction the queue cannot draw: a decision that was never made
+  // against one that was made and did not land.
+  const decisions=report.decisions;
+  if(decisions){
+    if(!decisions.total){
+      console.log('[verification] No moderator decision has ever been submitted.');
+    }else{
+      const parts=Object.entries(decisions.byStatus).map(([status,count])=>`${count} ${status}`);
+      console.log(`[verification] ${decisions.total} decision(s) submitted: ${parts.join(' · ')}`);
+      if(decisions.stuckQueued){
+        console.log(`[verification] ${decisions.stuckQueued} queued and not yet applied by a worker run.`);
+      }
+      const failed=decisions.recent.filter(entry=>entry.error);
+      failed.slice(0,3).forEach(entry =>
+        console.log(`[verification] Rejected: ${entry.candidateId||'(no candidate)'} - ${entry.error}`));
+    }
+  }
+  if(!report.verifiedRegistryExists){
+    console.log('[verification] No verified registry yet: no approval has completed on this database.');
+  }
   console.log('[verification] Nothing was changed.');
   return report;
 }
 
 if(require.main===module)main().catch(error=>{console.error(`[verification] ${error.stack||error.message}`);process.exitCode=1;});
 
-module.exports={tally,buildVerificationReport,main};
+module.exports={tally,decisionHistory,buildVerificationReport,main};
