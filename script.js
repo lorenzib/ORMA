@@ -541,6 +541,37 @@ function liSetWalkDate(value){
   renderReturningHomepage(currentProfileForAdjust);
 }
 
+// Changing your area is not starting again. The Change button used to call
+// liResetLocationContext, which threw away the area, the country, region and
+// valley, the map's bounds and the selected trail, then hid the workspace --
+// so you could not see what you were moving away from, and picking somewhere
+// new began from nothing. While this is true the gate comes back over the
+// results instead of in place of them, and nothing else is touched.
+let liLocationChanging = false;
+
+function liBeginLocationChange(){
+  if(!liLocationContext) return;
+  liLocationChanging = true;
+  const picker = document.getElementById('liAreaPicker');
+  const choose = document.getElementById('liChooseAreaBtn');
+  if(picker) picker.hidden = false;
+  if(choose) choose.setAttribute('aria-expanded', 'true');
+  liPopulateAreaPicker();
+  liRenderLocationContext(currentProfileForAdjust);
+  const search = document.getElementById('liAreaSearch');
+  if(search) requestAnimationFrame(() => search.focus());
+}
+
+function liCancelLocationChange(){
+  if(!liLocationChanging) return;
+  liLocationChanging = false;
+  const status = document.getElementById('liLocationStatus');
+  if(status) status.textContent = '';
+  liRenderLocationContext(currentProfileForAdjust);
+  const change = document.getElementById('liChangeLocationBtn');
+  if(change) change.focus();
+}
+
 function liRenderLocationContext(profile){
   const gate = document.getElementById('liLocationGate');
   const toolbar = document.getElementById('liToolbar');
@@ -549,10 +580,18 @@ function liRenderLocationContext(profile){
   const summaryLabel = document.getElementById('liLocationSummaryLabel');
   const gateDogName = document.getElementById('liLocationDogName');
   const ready = !!liLocationContext;
+  const changing = ready && liLocationChanging;
   if(gateDogName) gateDogName.textContent = profile && profile.name ? profile.name : 'your dog';
-  if(gate) gate.hidden = ready;
+  if(gate) gate.hidden = ready && !changing;
   if(toolbar) toolbar.hidden = !ready;
   if(workspace) workspace.hidden = !ready;
+  if(document.body) document.body.classList.toggle('li-location-changing', changing);
+  const gateTitle = document.getElementById('liLocationTitle');
+  const changeTitle = document.getElementById('liLocationChangeTitle');
+  const gateCancel = document.getElementById('liLocationCancelBtn');
+  if(gateTitle) gateTitle.hidden = changing;
+  if(changeTitle) changeTitle.hidden = !changing;
+  if(gateCancel) gateCancel.hidden = !changing;
   if(summary){
     summary.hidden = !ready;
     if(summaryLabel) summaryLabel.textContent = liLocationContextLabel();
@@ -566,8 +605,14 @@ function liRenderLocationContext(profile){
 }
 
 function liSetLocationContext(context){
-  liLocationContext = liValidLocationContext(context);
-  if(!liLocationContext) return;
+  const next = liValidLocationContext(context);
+  if(!next) return;
+  liLocationContext = next;
+  // A new area supersedes the old map framing and selection; the filters and
+  // the date are about the dog and the day, so they stay.
+  liLocationChanging = false;
+  liMapBounds = null;
+  selectedTrailId = null;
   liPendingLocationCenter = liLocationContext.kind === 'current'
     ? [liLocationContext.lng, liLocationContext.lat]
     : null;
@@ -2715,7 +2760,12 @@ function initLoggedInShell(){
     }
     liSetLocationContext(choice);
   });
-  if(changeLocation) changeLocation.addEventListener('click', liResetLocationContext);
+  if(changeLocation) changeLocation.addEventListener('click', liBeginLocationChange);
+  const cancelChange = document.getElementById('liLocationCancelBtn');
+  if(cancelChange) cancelChange.addEventListener('click', liCancelLocationChange);
+  document.addEventListener('keydown', event => {
+    if(event.key === 'Escape' && liLocationChanging) liCancelLocationChange();
+  });
 
   const wireMenu = (btn, menu) => {
     btn.addEventListener('click', (e) => {
