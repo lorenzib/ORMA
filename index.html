@@ -35,7 +35,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
 <div class="topnav">
   <a class="brand" href="/" aria-label="ORMA | Dog Trails &amp; Terrain Guide"><img src="logo.svg?v=5" alt="">ORMA</a>
   <div class="links">
-    <a href="browse-trails.html">Browse all Trails</a>
+    <a href="browse-trails.html">Trails</a>
     <a href="collections.html">Collections</a>
     <a href="safety-guide.html">Safety guide</a>
     <a href="journal.html">My walk journal</a>
@@ -139,29 +139,13 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
   <header class="li-top">
     <a class="li-brand" href="/" aria-label="ORMA | Dog Trails &amp; Terrain Guide"><img src="logo.svg?v=5" alt="">ORMA</a>
     <nav class="li-nav" aria-label="Site">
-      <a href="browse-trails.html">Browse all Trails</a>
+      <a href="browse-trails.html">Trails</a>
       <a href="collections.html">Collections</a>
       <a href="safety-guide.html">Safety guide</a>
       <a href="journal.html">My walk journal</a>
     </nav>
     <div class="li-top-spacer"></div>
     <div class="li-top-actions">
-      <!-- Explore: the ways into the catalogue that are not a typed search.
-           Near me asks for location only when tapped; nothing here filters. -->
-      <div class="li-menuwrap" id="liExploreWrap">
-        <button type="button" id="liExploreBtn" class="li-explore" aria-haspopup="true" aria-expanded="false">Explore <span class="li-caret" aria-hidden="true">▾</span></button>
-        <div class="li-menu li-explore-menu" id="liExploreMenu" hidden>
-          <div class="li-menu-kick">Find a walk</div>
-          <button type="button" class="li-menu-item" id="liExploreNearMe">Near me<small>Trails within 25 km of where you are</small></button>
-          <button type="button" class="li-menu-item" id="liExploreAll">All trails<small>The whole catalogue, ranked for your dog</small></button>
-          <div class="li-menu-kick">Recently viewed</div>
-          <div id="liExploreRecent"><span class="li-menu-note">Trails you open will appear here.</span></div>
-          <div class="li-menu-div" role="separator"></div>
-          <a class="li-menu-item" href="saved.html">Saved trails</a>
-          <a class="li-menu-item" href="downloads.html">Downloaded trails</a>
-          <a class="li-menu-item" href="safety-guide.html">Safety library</a>
-        </div>
-      </div>
       <!-- What's-new bell (design TopNav notifications) -->
       <div class="li-menuwrap" id="liBellWrap">
         <button type="button" id="liBellBtn" class="li-bell" aria-haspopup="true" aria-expanded="false" aria-label="What's new">
@@ -187,7 +171,13 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
           <button type="button" class="li-menu-item" id="liAddDogBtn">＋ Add another dog</button>
           <a class="li-menu-item" id="liManageLink" href="account.html?next=%2F">Manage dog profiles →</a>
           <div class="li-menu-div" role="separator"></div>
+          <a class="li-menu-item" href="saved.html">Saved trails</a>
           <a class="li-menu-item" href="downloads.html">Downloaded trails</a>
+          <!-- The last trails opened, where the rest of this dog's things are.
+               Empty until one is, and it says so rather than showing nothing. -->
+          <div class="li-menu-kick">Recently viewed</div>
+          <div id="liRecentList"><span class="li-menu-note">Trails you open will appear here.</span></div>
+          <div class="li-menu-div" role="separator"></div>
           <a class="li-menu-item" href="settings.html">Account settings</a>
           <div class="li-menu-div" role="separator"></div>
           <button type="button" class="li-menu-item li-logout" id="liLogoutBtn">Log out</button>
@@ -249,6 +239,10 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <span class="li-location-summary-pin" aria-hidden="true">⌖</span>
         <span><small id="liLocationSummaryKick">Looking near</small><strong id="liLocationSummaryLabel"></strong></span>
         <button type="button" id="liChangeLocationBtn">Change</button>
+        <!-- Near me sits with the other scope controls now. It used to live in
+             the Explore menu, which was also the only way back after dismissing
+             the location band for the session. -->
+        <button type="button" id="liNearMeBtn">Near me</button>
         <button type="button" id="liShowAllBtn" hidden>Show all</button>
       </span>
       <label class="li-date-summary"><small>Walking</small><input id="liRecommendationDate" type="date" aria-label="Recommendation date"></label>

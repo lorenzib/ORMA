@@ -316,12 +316,17 @@ describe('multi-dog account experience', () => {
     expect(homepage).toContain('const photo = liDogPhoto(profile);');
   });
 
-  test('dog menu omits saved and journal shortcuts', () => {
+  // Saved and Downloaded used to be kept out of the dog menu because the
+  // Explore menu already carried them. Explore is gone, so the dog menu is
+  // where this dog's own trails live -- saved, downloaded and last opened.
+  // The journal is a place for every dog's walks and stays in the nav row.
+  test('dog menu carries this dog\'s trails, and not the journal', () => {
     const nav = source('mobile-nav.js');
     const homepage = source('index.html');
     const accountMenu = homepage.slice(homepage.indexOf('id="liAccountMenu"'), homepage.indexOf('id="liGreetSwitchWrap"'));
-    expect(nav).not.toContain('menu.appendChild(savedItem)');
-    expect(accountMenu).not.toContain('id="savedTrailsBtn"');
+    expect(nav).toContain('menu.appendChild(savedItem)');
+    expect(accountMenu).toContain('href="saved.html"');
+    expect(accountMenu).toContain('href="downloads.html"');
     expect(accountMenu).not.toContain('journal.html');
   });
 

@@ -41,12 +41,7 @@ function tForTests(key, params = {}){
 
 function loadHomepageContext(testTrails){
   document.body.innerHTML = `
-    <div class="li-menuwrap"><button id="liExploreBtn"></button>
-      <div id="liExploreMenu" hidden>
-        <button id="liExploreNearMe"></button><button id="liExploreAll"></button>
-        <div id="liExploreRecent"></div>
-      </div></div>
-    <div id="liToolbar"><span id="liLocationSummary"><small id="liLocationSummaryKick"></small><strong id="liLocationSummaryLabel"></strong><button id="liChangeLocationBtn"></button><button id="liShowAllBtn" hidden></button></span>
+    <div id="liToolbar"><span id="liLocationSummary"><small id="liLocationSummaryKick"></small><strong id="liLocationSummaryLabel"></strong><button id="liChangeLocationBtn"></button><button id="liNearMeBtn"></button><button id="liShowAllBtn" hidden></button></span>
       <div id="liLocationNudge" hidden><strong id="liLocationNudgeTitle"></strong><small id="liLocationNudgeDetail"></small><button id="liLocationNudgeBtn"></button><button id="liLocationNudgeDismiss"></button></div>
       <input id="liRecommendationDate" type="date"><button id="liAdjustRecommendationBtn"></button>
       <strong id="liTodayTitle"></strong><span id="liTodayDetail"></span><div id="liToday" hidden></div>
@@ -60,7 +55,7 @@ function loadHomepageContext(testTrails){
         <a class="li-record" id="liRecordBtn" href="walk.html">Record a walk</a>
       </div></div>
     <button id="liFiltersBtn"></button><div id="liFiltersMenu" hidden></div>
-    <button id="liAccountBtn"></button><div id="liAccountMenu" hidden></div>
+    <button id="liAccountBtn"></button><div id="liAccountMenu" hidden><div id="liRecentList"></div></div>
     <button id="liViewAll" class="active"></button>
     <button id="liViewSaved"><span id="liSavedOnlyCount"></span></button>
     <span id="liDogCtxName"></span>
@@ -688,7 +683,9 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
 
     // A granted position narrows the list and retires the offer.
-    document.getElementById('liExploreNearMe').click();
+    // Near me moved from the Explore menu to the location summary,
+    // beside Change and Show all. The behaviour is unchanged.
+    document.getElementById('liNearMeBtn').click();
     const onSuccess = getCurrentPosition.mock.calls[1][0];
     onSuccess({ coords:{ latitude:46.57, longitude:11.67 } });
     await new Promise(resolve => setTimeout(resolve, 0));
@@ -750,7 +747,9 @@ describe('returning homepage region + valley filters', () => {
     const key = vm.runInContext('LI_LOCATION_NUDGE_DISMISSED_KEY', context);
     expect(store.get(key)).toBe('1');
 
-    document.getElementById('liExploreNearMe').click();
+    // Near me moved from the Explore menu to the location summary,
+    // beside Change and Show all. The behaviour is unchanged.
+    document.getElementById('liNearMeBtn').click();
     expect(store.has(key)).toBe(false);
   });
 
@@ -787,7 +786,7 @@ describe('returning homepage region + valley filters', () => {
     expect(replaceState).toHaveBeenCalledWith(null, '', '/?view=returning');
   });
 
-  test('the Explore menu lists the last trails opened, newest first', () => {
+  test('the dog menu lists the last trails opened, newest first', () => {
     const context = loadHomepageContext(sampleTrails);
     const recent = JSON.stringify([
       { id:'vag', name:'Val Gardena Trail', area:'Val Gardena', at:2 },
@@ -795,7 +794,7 @@ describe('returning homepage region + valley filters', () => {
     ]);
     context.localStorage.getItem = key => (key === 'orma-recent-trails-v1' ? recent : null);
     vm.runInContext('liRenderRecentTrails();', context);
-    const links = Array.from(document.querySelectorAll('#liExploreRecent a'));
+    const links = Array.from(document.querySelectorAll('#liRecentList a'));
     expect(links.map(link => link.textContent)).toEqual(['Val Gardena TrailVal Gardena', 'Maurienne TrailMaurienne']);
     expect(links[0].getAttribute('href')).toBe('trail.html?id=vag');
   });
@@ -894,8 +893,10 @@ describe('map-first returning homepage layout contract', () => {
     // The location pill and the date share a row while both fit and take a
     // line each below that. At 320px they used to fill the row exactly,
     // leaving the area name 58px -- and an area is not guessable from its
-    // first six letters.
-    expect(mobileCss).toContain('body.mhome-active .li-location-summary{flex:1 1 190px;');
+    // first six letters. The basis covers the label plus its scope controls,
+    // so the third one ("Near me", rehoused from the Explore menu) wraps the
+    // date onto its own line rather than being clipped in half.
+    expect(mobileCss).toContain('body.mhome-active .li-location-summary{flex:1 1 250px;');
     expect(mobileCss).toContain('body.mhome-active .li-toolbar-greet{flex-wrap:wrap;');
     // The location offer is a band across the phone toolbar, not a column.
     expect(mobileCss).toContain('body.mhome-active .li-location-nudge{grid-column:1/-1;grid-row:5;');

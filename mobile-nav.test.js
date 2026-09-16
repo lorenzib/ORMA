@@ -141,7 +141,7 @@ describe('shared navigation hardening', () => {
     expect(banner.querySelector('a').getAttribute('href')).toBe('/?wizard=1');
   });
 
-  test('gives a member an Explore group at the top of the phone menu, and a guest none', () => {
+  test('keeps the last trails opened inside the dog menu, with no Explore group', () => {
     const frame = document.createElement('iframe');
     document.body.appendChild(frame);
     const isolated = frame.contentWindow;
@@ -156,28 +156,27 @@ describe('shared navigation hardening', () => {
     isolated.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a><div class="links"></div></nav>';
     isolated.eval(mobileNav);
 
+    // Near me and All trails are scope controls; they live on the homepage
+    // beside the location summary, not in a menu that duplicates them.
     const links = isolated.document.querySelector('.topnav .links');
-    const explore = links.firstElementChild;
-    expect(explore.classList.contains('nav-explore')).toBe(true);
-    const items = [...explore.querySelectorAll('a')].map(a => `${a.textContent} → ${a.getAttribute('href')}`);
-    expect(items).toEqual([
-      'Near me → ?near=1',
-      'All trails → ?all=1',
-      'Val Gardena Trail → trail.html?id=vag',
-      'Maurienne Trail → trail.html?id=mau',
-    ]);
-    // On the homepage the first two act in place through the hook.
-    const nearMe = jest.fn();
-    isolated.DoloPawsHomepageLocation = { nearMe, showAll: jest.fn() };
-    explore.querySelector('a').click();
-    expect(nearMe).toHaveBeenCalledTimes(1);
+    expect(links.querySelector('.nav-explore')).toBeNull();
+    expect([...links.querySelectorAll(':scope > a')].map(a => a.textContent))
+      .toEqual(['Trails','Collections','Safety library','My walk journal']);
 
-    const guest = document.createElement('iframe');
-    document.body.appendChild(guest);
-    guest.contentWindow.localStorage.clear();
-    guest.contentWindow.document.body.innerHTML = '<nav class="topnav"><a class="brand" href="index.html">ORMA</a><div class="links"></div></nav>';
-    guest.contentWindow.eval(mobileNav);
-    expect(guest.contentWindow.document.querySelector('.nav-explore')).toBeNull();
+    // Saved, Downloaded and Recently viewed are this dog's things, under the
+    // dog pill. Saved was built but never appended for a fortnight.
+    const menu = isolated.document.querySelector('.nav-dogmenu');
+    expect([...menu.querySelectorAll('a')].map(a => a.getAttribute('href')))
+      .toEqual(expect.arrayContaining(['saved.html', 'downloads.html']));
+    const kicks = [...menu.querySelectorAll('.nav-dogmenu-kick')].map(kick => kick.textContent);
+    expect(kicks).toContain('Recently viewed');
+    const recent = [...menu.querySelectorAll('a')]
+      .filter(a => (a.getAttribute('href') || '').startsWith('trail.html'))
+      .map(a => `${a.textContent} \u2192 ${a.getAttribute('href')}`);
+    expect(recent).toEqual([
+      'Val Gardena Trail \u2192 trail.html?id=vag',
+      'Maurienne Trail \u2192 trail.html?id=mau',
+    ]);
   });
 
   test('shows the banner for a signed-in account without dog details', () => {

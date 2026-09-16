@@ -25,8 +25,13 @@ describe('logged-in discovery workspace layout', () => {
     expect(html).toContain('Your position stays in this browser session and is not added to your profile.');
     expect(html).toContain('id="liChangeLocationBtn"');
     expect(html).toContain('id="liShowAllBtn"');
-    expect(html.indexOf('id="liExploreBtn"')).toBeLessThan(html.indexOf('id="liBellBtn"'));
-    expect(html).toContain('id="liExploreNearMe"');
+    // Scope lives in one place: the three controls sit together on the location
+    // summary rather than half there and half behind an Explore menu.
+    expect(html).not.toContain('id="liExploreBtn"');
+    expect(html).not.toContain('id="liExploreMenu"');
+    expect(html).toContain('id="liNearMeBtn"');
+    expect(html.indexOf('id="liChangeLocationBtn"')).toBeLessThan(html.indexOf('id="liNearMeBtn"'));
+    expect(html.indexOf('id="liNearMeBtn"')).toBeLessThan(html.indexOf('id="liShowAllBtn"'));
     expect(css).toContain('.li-toolbar[hidden],.li-body[hidden]{display:none!important;}');
     expect(css).not.toContain('.li-location-gate');
   });

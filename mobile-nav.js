@@ -557,7 +557,29 @@
         '<span class="nav-dogmenu-heart" aria-hidden="true">♥</span>' + savedLabel +
         (Number.isFinite(summary.saved) ? '<span class="nav-dogmenu-count">' + summary.saved + '</span>' : ''),
         'saved.html');
+      // Built since 2026-09-01 and never appended: a one-line deletion in an
+      // unrelated commit took Saved trails off the phone menu entirely.
+      menu.appendChild(savedItem);
       menu.appendChild(menuItem(copy('mobile.downloads', 'Downloaded trails'), 'downloads.html', 'mobile.downloads'));
+      // Recently viewed sits with the rest of this dog's things, as on the
+      // desktop header. Shown only when there is something in it.
+      const recent = recentTrails();
+      if(recent.length){
+        const recentKick = document.createElement('span');
+        recentKick.className = 'nav-dogmenu-kick';
+        recentKick.textContent = copy('mobile.recentlyViewed', 'Recently viewed');
+        recentKick.setAttribute('data-i18n', 'mobile.recentlyViewed');
+        menu.appendChild(recentKick);
+        recent.forEach(item => {
+          // menuItem assigns innerHTML; a trail name is data, so it is set as
+          // text, exactly as the group this replaced did.
+          const a = document.createElement('a');
+          a.className = 'nav-dogmenu-item';
+          a.href = prefix + 'trail.html?id=' + encodeURIComponent(item.id);
+          a.textContent = item.name;
+          menu.appendChild(a);
+        });
+      }
       menu.appendChild(menuItem(copy('mobile.settings', 'Account settings'), 'settings.html', 'mobile.settings'));
       menu.appendChild(menuDiv());
       const logout = document.createElement('button');
@@ -624,50 +646,6 @@
         return Array.isArray(list) ? list.filter(item => item && item.id && item.name).slice(0, 3) : [];
       }catch(error){ return []; }
     }
-    function buildExplore(){
-      const group = document.createElement('div');
-      group.className = 'nav-explore';
-      const kick = document.createElement('span');
-      kick.className = 'nav-explore-kick';
-      kick.textContent = copy('mobile.explore', 'Explore');
-      kick.setAttribute('data-i18n', 'mobile.explore');
-      group.appendChild(kick);
-      const home = () => window.DoloPawsHomepageLocation || null;
-      const action = (label, href, i18nKey, act) => {
-        const a = document.createElement('a');
-        a.className = 'nav-explore-item';
-        a.href = prefix + href;
-        a.textContent = label;
-        a.setAttribute('data-i18n', i18nKey);
-        a.addEventListener('click', event => {
-          const api = home();
-          if(api && typeof api[act] === 'function'){
-            event.preventDefault();
-            api[act]();
-          }
-        });
-        return a;
-      };
-      group.appendChild(action(copy('mobile.nearMe', 'Near me'), '?near=1', 'mobile.nearMe', 'nearMe'));
-      group.appendChild(action(copy('mobile.allTrails', 'All trails'), '?all=1', 'mobile.allTrails', 'showAll'));
-      const recent = recentTrails();
-      if(recent.length){
-        const recentKick = document.createElement('span');
-        recentKick.className = 'nav-explore-kick';
-        recentKick.textContent = copy('mobile.recentlyViewed', 'Recently viewed');
-        recentKick.setAttribute('data-i18n', 'mobile.recentlyViewed');
-        group.appendChild(recentKick);
-        recent.forEach(item => {
-          const a = document.createElement('a');
-          a.className = 'nav-explore-item nav-explore-recent';
-          a.href = prefix + 'trail.html?id=' + encodeURIComponent(item.id);
-          a.textContent = item.name;
-          group.appendChild(a);
-        });
-      }
-      return group;
-    }
-
     function renderHeader(loggedIn, dogName){
       navEl.classList.toggle('nav-authed', !!loggedIn);
       const key = activeKey();
@@ -680,12 +658,11 @@
       // the language toggle on DOMContentLoaded). Rebuilding must not eat
       // them, so anything that isn't ours is kept and re-appended last.
       const extras = Array.from(linksEl.children).filter(el =>
-        el !== loginEl && !el.matches('a, #accountBtn, .nav-bellwrap, .nav-userwrap, .nav-explore'));
+        el !== loginEl && !el.matches('a, #accountBtn, .nav-bellwrap, .nav-userwrap'));
       linksEl.innerHTML = '';
-      if(loggedIn) linksEl.appendChild(buildExplore());
       // Both states share the same link row now; only the right-hand
       // controls change (login pill vs bell + dog pill).
-      linksEl.appendChild(navItem('Browse all Trails', 'browse-trails.html', key === 'trails', 'saved.nav.browse'));
+      linksEl.appendChild(navItem('Trails', 'browse-trails.html', key === 'trails', 'saved.nav.browse'));
       linksEl.appendChild(navItem('Collections', 'collections.html', key === 'collections', 'saved.nav.collections'));
       linksEl.appendChild(navItem('Safety library', 'safety-guide.html', key === 'safety', 'saved.nav.safety'));
       linksEl.appendChild(navItem('My walk journal', 'journal.html', key === 'journal', 'saved.nav.journal'));
@@ -810,7 +787,7 @@
   });
 
   links.addEventListener('click', function(e){
-    if(e.target.closest('a, #accountBtn, .nav-dogmenu-row, .nav-dogmenu-item, .nav-explore-item')) setOpen(false);
+    if(e.target.closest('a, #accountBtn, .nav-dogmenu-row, .nav-dogmenu-item')) setOpen(false);
   });
 
   document.addEventListener('click', function(e){
