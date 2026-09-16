@@ -1555,6 +1555,15 @@ function renderTrail(t){
   document.getElementById('pageTitle').textContent = `${t.name} | ORMA`;
   document.getElementById('trailName').textContent = t.name;
   document.getElementById('trailName').removeAttribute('aria-busy');
+  // The homepage's Explore menu lists the last trails opened. Kept in this
+  // browser only, never sent anywhere, and capped so it stays a shortlist.
+  try{
+    const recentKey = 'orma-recent-trails-v1';
+    const recent = JSON.parse(localStorage.getItem(recentKey) || '[]');
+    const kept = (Array.isArray(recent) ? recent : []).filter(item => item && item.id !== t.id);
+    kept.unshift({ id:t.id, name:t.name, area:t.valley || t.area || '', at:Date.now() });
+    localStorage.setItem(recentKey, JSON.stringify(kept.slice(0, 8)));
+  }catch(error){ /* Storage can be unavailable in private browsing. */ }
   // Photo-backed hero (per prototype): trail photo under a dark gradient.
   // Trails without an image keep the flat dark hero.
   if(t.imageIcon){

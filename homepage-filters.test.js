@@ -41,18 +41,13 @@ function tForTests(key, params = {}){
 
 function loadHomepageContext(testTrails){
   document.body.innerHTML = `
-    <section id="liLocationGate"><span id="liLocationDogName"></span><p id="liLocationStatus"></p>
-      <button id="liUseLocationBtn"><span>Use my location</span></button>
-      <button id="liChooseAreaBtn"></button>
-      <form id="liAreaPicker">
-        <input id="liAreaSearch" list="liAreaSuggestions"><datalist id="liAreaSuggestions"></datalist>
-        <select id="liAreaCountry"><option value="">Choose country</option></select>
-        <select id="liAreaRegion"><option value="">Choose region</option></select>
-        <select id="liAreaSelect"><option value="">Choose valley</option></select>
-        <input id="liWalkDate" type="date"><button id="liAreaSubmit" type="submit"></button>
-      </form>
-    </section>
-    <div id="liToolbar"><span id="liLocationSummary"><strong id="liLocationSummaryLabel"></strong><button id="liChangeLocationBtn"></button></span>
+    <div class="li-menuwrap"><button id="liExploreBtn"></button>
+      <div id="liExploreMenu" hidden>
+        <button id="liExploreNearMe"></button><button id="liExploreAll"></button>
+        <div id="liExploreRecent"></div>
+      </div></div>
+    <div id="liToolbar"><span id="liLocationSummary"><small id="liLocationSummaryKick"></small><strong id="liLocationSummaryLabel"></strong><button id="liChangeLocationBtn"></button><button id="liShowAllBtn" hidden></button></span>
+      <div id="liLocationNudge" hidden><strong id="liLocationNudgeTitle"></strong><small id="liLocationNudgeDetail"></small><button id="liLocationNudgeBtn"></button><button id="liLocationNudgeDismiss"></button></div>
       <input id="liRecommendationDate" type="date"><button id="liAdjustRecommendationBtn"></button>
       <strong id="liTodayTitle"></strong><span id="liTodayDetail"></span><div id="liToday" hidden></div>
     </div>
@@ -338,16 +333,42 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
   });
 
-  test('does not score or show global recommendations before geography is explicit', async () => {
+  test('with nothing chosen the whole catalogue is ranked, with no gate in front of it', async () => {
     const context = loadHomepageContext(sampleTrails);
-    context.recommendTrail.mockClear();
-    vm.runInContext('liLocationContext = null;', context);
+    vm.runInContext('liLocationContext = liLoadLocationContext(); liApplyLocationGeography();', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
 
-    expect(document.getElementById('liLocationGate').hidden).toBe(false);
-    expect(document.getElementById('liToolbar').hidden).toBe(true);
-    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(0);
-    expect(context.recommendTrail).not.toHaveBeenCalled();
+    expect(document.getElementById('liToolbar').hidden).toBe(false);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
+    expect(document.getElementById('liLocationSummaryKick').textContent).toBe('Showing');
+    expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('All ORMA trails');
+    expect(document.getElementById('liShowAllBtn').hidden).toBe(true);
+    // The whole catalogue is the absence of a choice, so it is never remembered.
+    expect(context.localStorage.getItem('orma-home-selected-area-v1')).toBeNull();
+  });
+
+  test('a typed place is offered before trails and becomes where the list looks', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext('liLocationContext = liLoadLocationContext(); liApplyLocationGeography(); initLoggedInShell();', context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    const search = document.getElementById('liSearch');
+    search.value = 'Maur';
+    vm.runInContext('liEnsureAreaChoices(); renderLiSearchSuggestions(null);', context);
+    const place = document.querySelector('#liSearchSuggest .li-search-place');
+    expect(place).not.toBeNull();
+    expect(place.textContent).toContain('Maurienne');
+    expect(place.textContent).toContain('Place');
+    place.click();
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('Maurienne');
+    expect(document.getElementById('liLocationSummaryKick').textContent).toBe('Looking in');
+    expect(document.getElementById('liShowAllBtn').hidden).toBe(false);
+    expect(search.value).toBe('');
+
+    // "Change" opens the search, which the editorial toolbar keeps folded away.
+    document.getElementById('liChangeLocationBtn').click();
+    expect(document.getElementById('liToolbar').classList.contains('li-refine-open')).toBe(true);
+    expect(document.getElementById('liAdjustRecommendationBtn').getAttribute('aria-expanded')).toBe('true');
   });
 
   test('current location limits recommendations to trails within 25 km', async () => {
@@ -378,10 +399,10 @@ describe('returning homepage region + valley filters', () => {
       valley:'Alta Pusteria – Tre Cime',
     };
     const context = loadHomepageContext([altaPusteriaTrail]);
-    vm.runInContext('liPopulateAreaPicker(); liLocationContext = { kind:"area", country:"IT", region:"dolomites", valley:"Alta Pusteria – Tre Cime", label:"Alta Pusteria – Tre Cime" }; activeCountry="IT"; activeRegion="dolomites"; activeValley="Alta Pusteria – Tre Cime";', context);
+    vm.runInContext('liEnsureAreaChoices(); liLocationContext = { kind:"area", country:"IT", region:"dolomites", valley:"Alta Pusteria – Tre Cime", label:"Alta Pusteria – Tre Cime" }; activeCountry="IT"; activeRegion="dolomites"; activeValley="Alta Pusteria – Tre Cime";', context);
     await vm.runInContext('renderReturningHomepage({ name:"Teo" });', context);
 
-    const areaLabels = [...document.querySelectorAll('#liAreaSuggestions option')].map(option => option.value);
+    const areaLabels = vm.runInContext('liAreaChoices.map(choice => choice.label)', context);
     expect(areaLabels).toContain('Alta Pusteria');
     expect(areaLabels).not.toContain('Alta Pusteria – Tre Cime');
     expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('Alta Pusteria');
@@ -391,13 +412,13 @@ describe('returning homepage region + valley filters', () => {
 
   test('searching for a destination sets a complete recommendation scope', async () => {
     const context = loadHomepageContext(sampleTrails);
-    vm.runInContext('liLocationContext = null; liRenderLocationContext(null); initLoggedInShell();', context);
-    const search = document.getElementById('liAreaSearch');
+    vm.runInContext('liLocationContext = liLoadLocationContext(); liApplyLocationGeography(); initLoggedInShell();', context);
+    const search = document.getElementById('liSearch');
     search.value = 'Savoy';
-    search.dispatchEvent(new Event('input', { bubbles:true }));
-    expect(document.getElementById('liAreaSubmit').disabled).toBe(false);
-
-    document.getElementById('liAreaPicker').dispatchEvent(new Event('submit', { bubbles:true, cancelable:true }));
+    vm.runInContext('liEnsureAreaChoices(); renderLiSearchSuggestions(null);', context);
+    const place = [...document.querySelectorAll('#liSearchSuggest .li-search-place')].find(option => option.textContent.includes('Savoy'));
+    expect(place).not.toBeUndefined();
+    place.click();
     await Promise.resolve();
     expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('Savoy');
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
@@ -456,21 +477,69 @@ describe('returning homepage region + valley filters', () => {
     expect(document.getElementById('liRecommendationDate').value).toBe(vm.runInContext('liDateOffsetIso(1)', context));
   });
 
-  test('requests browser location only after a click and opens the area fallback when denied', () => {
+  test('offers location in place, asks only on tap, and explains a refusal without blocking the list', async () => {
     const context = loadHomepageContext(sampleTrails);
     const getCurrentPosition = jest.fn();
     context.navigator.geolocation = { getCurrentPosition };
-    vm.runInContext('liLocationContext = null; initLoggedInShell();', context);
+    vm.runInContext('liLocationContext = liLoadLocationContext(); liApplyLocationGeography(); initLoggedInShell();', context);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    await vm.runInContext('renderReturningHomepage(null);', context);
 
+    // No permissions API here (Safari): the offer shows, nothing is requested.
     expect(getCurrentPosition).not.toHaveBeenCalled();
-    document.getElementById('liUseLocationBtn').click();
-    expect(getCurrentPosition).toHaveBeenCalledTimes(1);
+    const nudge = document.getElementById('liLocationNudge');
+    expect(nudge.hidden).toBe(false);
+    expect(document.getElementById('liLocationNudgeTitle').textContent).toBe('See trails near you');
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
 
+    document.getElementById('liLocationNudgeBtn').click();
+    expect(getCurrentPosition).toHaveBeenCalledTimes(1);
     const onError = getCurrentPosition.mock.calls[0][1];
     onError({ code:1 });
-    expect(document.getElementById('liLocationStatus').textContent).toContain('Location access is off');
-    expect(document.getElementById('liAreaPicker').hidden).toBe(false);
-    expect(document.getElementById('liChooseAreaBtn').getAttribute('aria-expanded')).toBe('true');
+    expect(nudge.hidden).toBe(false);
+    expect(document.getElementById('liLocationNudgeTitle').textContent).toContain('Location is off');
+    expect(document.getElementById('liLocationNudgeBtn').hidden).toBe(true);
+    expect(document.getElementById('liToolbar').hidden).toBe(false);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(5);
+
+    // A granted position narrows the list and retires the offer.
+    document.getElementById('liExploreNearMe').click();
+    const onSuccess = getCurrentPosition.mock.calls[1][0];
+    onSuccess({ coords:{ latitude:46.57, longitude:11.67 } });
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(document.getElementById('liLocationSummaryLabel').textContent).toBe('Your location · within 25 km');
+    expect(nudge.hidden).toBe(true);
+  });
+
+  test('a permission already granted is used quietly, unless a place was chosen', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    const getCurrentPosition = jest.fn();
+    context.navigator.geolocation = { getCurrentPosition };
+    context.navigator.permissions = { query: jest.fn(() => Promise.resolve({ state:'granted' })) };
+    vm.runInContext('liLocationContext = liLoadLocationContext(); liApplyLocationGeography(); initLoggedInShell();', context);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(getCurrentPosition).toHaveBeenCalledTimes(1);
+
+    const saved = loadHomepageContext(sampleTrails);
+    const getSavedPosition = jest.fn();
+    saved.navigator.geolocation = { getCurrentPosition:getSavedPosition };
+    saved.navigator.permissions = { query: jest.fn(() => Promise.resolve({ state:'granted' })) };
+    vm.runInContext('liLocationContext = { kind:"area", country:"FR", region:"savoy", valley:"all", label:"Savoy" }; initLoggedInShell();', saved);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(getSavedPosition).not.toHaveBeenCalled();
+  });
+
+  test('the Explore menu lists the last trails opened, newest first', () => {
+    const context = loadHomepageContext(sampleTrails);
+    const recent = JSON.stringify([
+      { id:'vag', name:'Val Gardena Trail', area:'Val Gardena', at:2 },
+      { id:'mau', name:'Maurienne Trail', area:'Maurienne', at:1 },
+    ]);
+    context.localStorage.getItem = key => (key === 'orma-recent-trails-v1' ? recent : null);
+    vm.runInContext('liRenderRecentTrails();', context);
+    const links = Array.from(document.querySelectorAll('#liExploreRecent a'));
+    expect(links.map(link => link.textContent)).toEqual(['Val Gardena TrailVal Gardena', 'Maurienne TrailMaurienne']);
+    expect(links[0].getAttribute('href')).toBe('trail.html?id=vag');
   });
 
 });
@@ -570,6 +639,8 @@ describe('map-first returning homepage layout contract', () => {
     // first six letters.
     expect(mobileCss).toContain('body.mhome-active .li-location-summary{flex:1 1 190px;');
     expect(mobileCss).toContain('body.mhome-active .li-toolbar-greet{flex-wrap:wrap;');
+    // The location offer is a band across the phone toolbar, not a column.
+    expect(mobileCss).toContain('body.mhome-active .li-location-nudge{grid-column:1/-1;grid-row:5;');
     expect(mobileCss).toContain('body.mhome-active .li-today{grid-column:1/-1;grid-row:2;');
     expect(mobileCss).toContain('body.mhome-active .li-search{grid-column:1/5;grid-row:3;');
     expect(mobileCss).toContain('body.mhome-active .li-mobile-actions{display:contents;}');

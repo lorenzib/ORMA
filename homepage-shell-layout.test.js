@@ -12,19 +12,23 @@ describe('logged-in discovery workspace layout', () => {
     expect(css).toMatch(/\.li-toolbar-greet\s*\{[^}]*display:flex;/s);
   });
 
-  test('requires a geographic context before the recommendation workspace', () => {
-    expect(html.indexOf('id="liLocationGate"')).toBeLessThan(html.indexOf('id="liToolbar"'));
-    expect(html).toContain('id="liUseLocationBtn"');
-    expect(html).toContain('id="liChooseAreaBtn"');
+  test('the recommendation workspace is there from the first paint, with location offered in place', () => {
+    // No gate: the toolbar, list and map open on the whole catalogue. Location
+    // is a band above the list that asks only on tap, and the search bar is
+    // where a place is typed.
+    expect(html).not.toContain('id="liLocationGate"');
+    expect(html).not.toContain('id="liUseLocationBtn"');
+    expect(html).not.toContain('id="liAreaPicker"');
+    expect(html.indexOf('id="liLocationNudge"')).toBeGreaterThan(html.indexOf('id="liToolbar"'));
+    expect(html.indexOf('id="liLocationNudge"')).toBeLessThan(html.indexOf('id="liSearch"'));
+    expect(html).toContain('id="liLocationNudgeBtn"');
+    expect(html).toContain('Your position stays in this browser session and is not added to your profile.');
     expect(html).toContain('id="liChangeLocationBtn"');
-    expect(html).toContain('Your precise position stays in this browser session');
-    expect(html).toContain('src="images/orma-location-hero.jpg"');
-    expect(html).toContain('id="liAreaSearch"');
-    expect(html).toContain('id="liAreaCountry"');
-    expect(html).toContain('id="liAreaRegion"');
-    expect(html).toContain('id="liAreaSelect"');
-    expect(html).toContain('id="liWalkDate"');
-    expect(css).toContain('.li-location-gate[hidden],.li-toolbar[hidden],.li-body[hidden]{display:none!important;}');
+    expect(html).toContain('id="liShowAllBtn"');
+    expect(html.indexOf('id="liExploreBtn"')).toBeLessThan(html.indexOf('id="liBellBtn"'));
+    expect(html).toContain('id="liExploreNearMe"');
+    expect(css).toContain('.li-toolbar[hidden],.li-body[hidden]{display:none!important;}');
+    expect(css).not.toContain('.li-location-gate');
   });
 
   test('replaces the geo dropdowns with unified search and moves create behind "+ New"', () => {
@@ -107,7 +111,7 @@ describe('logged-in discovery workspace layout', () => {
     expect(mobileCss).toContain('width:100vw;max-width:none;height:100dvh;min-height:0;overflow:hidden;');
     expect(mobileCss).toContain('grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:36px 36px;');
     expect(mobileCss).toContain('.li-toolbar-greet{display:none;}');
-    expect(html).toContain('homepage-mobile.css?v=20260909-1');
+    expect(html).toContain('homepage-mobile.css?v=20260916-1');
   });
 
   test('uses a dashed divider instead of a match box and keeps route facts legible', () => {
