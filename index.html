@@ -188,6 +188,9 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
     <div class="li-location-gate-copy">
       <span class="li-location-kicker">Find the right walk</span>
       <h1 id="liLocationTitle">Where should <span id="liLocationDogName">your dog</span> walk?</h1>
+      <!-- Shown only while changing an area you already have: the question is
+           "somewhere else?", and leaving must put you back where you were. -->
+      <h1 class="li-location-change-title" id="liLocationChangeTitle" hidden>Walk somewhere else?</h1>
       <p>Tell us where you are—or where you’re going—and ORMA will choose the best-fitting trail for your dog.</p>
       <div class="li-location-actions">
         <button type="button" class="li-location-primary" id="liUseLocationBtn">
@@ -197,6 +200,7 @@ try{if(localStorage.getItem('dolopaws-profile-summary'))document.documentElement
         <button type="button" class="li-location-secondary" id="liChooseAreaBtn" aria-expanded="false" aria-controls="liAreaPicker">Choose a destination</button>
       </div>
       <p class="li-location-privacy"><span aria-hidden="true">⌖</span> Your precise position stays in this browser session and is not added to your profile.</p>
+      <button type="button" class="li-location-cancel" id="liLocationCancelBtn" hidden>Keep where I am</button>
       <p class="li-location-status" id="liLocationStatus" role="status" aria-live="polite"></p>
       <form class="li-area-picker" id="liAreaPicker" hidden>
         <label for="liAreaSearch">Where are you going?</label>
