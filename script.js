@@ -677,6 +677,55 @@ function liCancelLocationChange(){
   if(change) change.focus();
 }
 
+
+// The first visit, in one tap.
+//
+// Choosing a region is not only where you want to walk; it is what decides
+// which catalogue to download. The Dolomites file is 800 KB and Savoy 329 KB,
+// and nothing is in memory before one of them loads, so a homepage that showed
+// trails before you had chosen would fetch both on a mountain connection. The
+// question has to be asked. It did not have to cost four interactions: read the
+// heading, pick between two buttons, wait for a form, type, submit.
+//
+// Two regions, named and counted, are the answer nearly everyone wants. The
+// location button and the search stay for those who want something else.
+const LI_REGION_CHOICES = Object.freeze([
+  { region:'dolomites', label:'The Dolomites', country:'IT', blurb:'Italy · South Tyrol, Belluno, Trentino' },
+  { region:'savoy', label:'Savoy', country:'FR', blurb:'France · Savoie and Haute-Savoie' },
+]);
+
+function liRegionTrailCount(region){
+  const manifest = window.DoloPawsRegionManifest;
+  const entry = manifest && manifest.regions ? manifest.regions[region] : null;
+  return entry && Number.isFinite(entry.trailCount) ? entry.trailCount : null;
+}
+
+function liRenderRegionChoices(){
+  const host = document.getElementById('liLocationRegions');
+  if(!host) return;
+  host.replaceChildren();
+  LI_REGION_CHOICES.forEach(choice => {
+    const count = liRegionTrailCount(choice.region);
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'li-region-card';
+    card.dataset.region = choice.region;
+    const name = document.createElement('strong');
+    name.textContent = choice.label;
+    const meta = document.createElement('span');
+    // A count nobody published is not invented; the card still works without it.
+    meta.textContent = count ? `${count} trails · ${choice.blurb}` : choice.blurb;
+    card.append(name, meta);
+    card.addEventListener('click', () => {
+      liSetLocationContext({
+        kind:'area', region:choice.region, country:choice.country,
+        valley:'all', label:choice.label,
+      });
+    });
+    host.append(card);
+  });
+}
+
 function liRenderLocationContext(profile){
   const gate = document.getElementById('liLocationGate');
   const toolbar = document.getElementById('liToolbar');
@@ -707,6 +756,13 @@ function liRenderLocationContext(profile){
   }
   liSyncWalkDateInputs();
   if(!ready) liPopulateAreaPicker();
+  // Only on a first choice: when changing an area you already have, the two
+  // regions are a step backwards from the valley you are sitting in.
+  const regions = document.getElementById('liLocationRegions');
+  if(regions){
+    regions.hidden = changing;
+    if(!changing && !regions.children.length) liRenderRegionChoices();
+  }
 }
 
 function liSetLocationContext(context){
