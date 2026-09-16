@@ -200,13 +200,63 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
   });
 
-  test('the map viewport ("Search this area") narrows the list to its bounds', async () => {
+  // The map is a geography, not a filter layered on one. Panning to another
+  // valley and pressing "Search this area" shows what is there; it used to show
+  // the intersection with whatever area had been typed, which is usually empty.
+  const mapArea = (west, south, east, north) =>
+    `liSetLocationContext({ kind:"map", bounds:{ west:${west}, south:${south}, east:${east}, north:${north} } });`;
+
+  test('a map area shows what is in view', async () => {
     const context = loadHomepageContext(sampleTrails);
-    // A bounds box around the Dolomites sample only; contains() is the real test.
-    vm.runInContext(`activeCountry = "all"; activeRegion = "all"; activeValley = "all";
-      liMapBounds = { contains: ([lng, lat]) => lat > 46 && lng > 11 };`, context);
+    // A box over the Dolomites samples only.
+    vm.runInContext(mapArea(11, 46, 12, 47), context);
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(2);
+  });
+
+  // The regression this replaces: Val Gardena typed, map panned to Savoy.
+  test('a map area replaces a typed area instead of intersecting it', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
+      valley:"Val Gardena", label:"Val Gardena" });`, context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
+    // Now frame Savoy. Intersecting would give nothing; replacing gives Savoy.
+    vm.runInContext(mapArea(6, 45, 7, 46), context);
+    await vm.runInContext('renderReturningHomepage(null);', context);
+    expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(3);
+    expect(vm.runInContext('activeValley', context)).toBe('all');
+    expect(vm.runInContext('activeRegion', context)).toBe('all');
+  });
+
+  test('it is called a map area, not the area it replaced', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
+      valley:"Val Gardena", label:"Val Gardena" });`, context);
+    vm.runInContext(mapArea(6, 45, 7, 46), context);
+    expect(vm.runInContext('liLocationContextLabel()', context)).toBe('Map area');
+    expect(vm.runInContext('liRecommendationLocationPhrase()', context)).toBe('in the map area');
+  });
+
+  // A map area is where you are looking, not where you walk: remembering it
+  // would greet the owner with a viewport next visit, and erase the stored area.
+  test('a map area is not remembered, and does not erase the area it replaced', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    // The shared harness stubs storage to a no-op, so this test brings a real
+    // one: whether a map area quietly erases the stored area is the whole point.
+    const store = new Map();
+    context.localStorage = {
+      getItem: key => (store.has(key) ? store.get(key) : null),
+      setItem: (key, value) => { store.set(key, String(value)); },
+      removeItem: key => { store.delete(key); },
+    };
+    vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
+      valley:"Val Gardena", label:"Val Gardena" });`, context);
+    const stored = vm.runInContext('localStorage.getItem(LI_AREA_STORAGE_KEY)', context);
+    expect(stored).toContain('Val Gardena');
+    vm.runInContext(mapArea(6, 45, 7, 46), context);
+    // Still the typed area, untouched, so a reload comes back to it.
+    expect(vm.runInContext('localStorage.getItem(LI_AREA_STORAGE_KEY)', context)).toBe(stored);
   });
 
   test('hides multi-day itineraries by default and reveals them with the Duration filter', async () => {
