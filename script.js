@@ -208,6 +208,11 @@ let liPendingLocationCenter = null;
 // sessionStorage only; a manually chosen catalogue valley can be remembered
 // between visits. Neither is written to the user's cloud profile.
 const LI_LOCATION_RADIUS_KM = 25;
+// A town is a place someone is staying, not where they are standing, so it
+// reaches further than "Use my location" does. data/towns.json is built with
+// the same number and only keeps towns that have a walk inside it.
+const LI_TOWN_RADIUS_KM = 40;
+let liTowns = null;
 const LI_LOCATION_SESSION_KEY = 'orma-home-current-location-v1';
 const LI_AREA_STORAGE_KEY = 'orma-home-selected-area-v1';
 const LI_WALK_DATE_SESSION_KEY = 'orma-home-walk-date-v1';
@@ -265,6 +270,13 @@ function liValidLocationContext(value){
   if(value.kind === 'current' && Number.isFinite(value.lat) && Number.isFinite(value.lng)){
     return { kind:'current', lat:value.lat, lng:value.lng, radiusKm:LI_LOCATION_RADIUS_KM };
   }
+  if(value.kind === 'town' && value.label && Number.isFinite(value.lat) && Number.isFinite(value.lng)){
+    return {
+      kind:'town', lat:value.lat, lng:value.lng, label:String(value.label),
+      radiusKm:Number.isFinite(value.radiusKm) ? value.radiusKm : LI_TOWN_RADIUS_KM,
+      country:String(value.country || 'all'), region:String(value.region || 'all'),
+    };
+  }
   // Framing a viewport is an explicit geographic act -- more explicit than
   // picking a valley from a list -- so it satisfies the rule above rather than
   // working around it. Bounds are plain numbers so the shape stays comparable
@@ -313,7 +325,7 @@ function liRememberLocationContext(context){
     if(typeof localStorage !== 'undefined') localStorage.removeItem(LI_AREA_STORAGE_KEY);
     if(context && context.kind === 'current' && typeof sessionStorage !== 'undefined'){
       sessionStorage.setItem(LI_LOCATION_SESSION_KEY, JSON.stringify(context));
-    } else if(context && context.kind === 'area' && !context.transient && typeof localStorage !== 'undefined'){
+    } else if(context && (context.kind === 'area' || context.kind === 'town') && !context.transient && typeof localStorage !== 'undefined'){
       localStorage.setItem(LI_AREA_STORAGE_KEY, JSON.stringify(context));
     }
   }catch(error){ /* Storage can be unavailable in private browsing. */ }
@@ -364,7 +376,7 @@ function liDistanceKm(originLat, originLng, targetLat, targetLng){
 
 function filterTrailsForLocationContext(list){
   if(!liLocationContext) return [];
-  if(liLocationContext.kind === 'current'){
+  if(liLocationContext.kind === 'current' || liLocationContext.kind === 'town'){
     return list.filter(trail => {
       const point = liTrailLngLat(trail);
       return point && liDistanceKm(liLocationContext.lat, liLocationContext.lng, point[1], point[0]) <= liLocationContext.radiusKm;
@@ -420,6 +432,7 @@ function liEnsureLocationConditions(){
 function liLocationContextLabel(){
   if(!liLocationContext) return '';
   if(liLocationContext.kind === 'current') return `Your location · within ${liLocationContext.radiusKm} km`;
+  if(liLocationContext.kind === 'town') return `${liLocationContext.label} · within ${liLocationContext.radiusKm} km`;
   if(liLocationContext.kind === 'map') return 'Map area';
   return liDisplayLocationLabel(liLocationContext.label);
 }
@@ -427,8 +440,62 @@ function liLocationContextLabel(){
 function liRecommendationLocationPhrase(){
   if(!liLocationContext) return '';
   if(liLocationContext.kind === 'current') return 'near you';
+  if(liLocationContext.kind === 'town') return `near ${liLocationContext.label}`;
   if(liLocationContext.kind === 'map') return 'in the map area';
   return `in ${liDisplayLocationLabel(liLocationContext.label)}`;
+}
+
+/**
+ * The town list, fetched once and only when the destination picker is
+ * actually shown. It is 19 KB of data that most visits never need: someone
+ * with a saved area or "Use my location" never opens this.
+ */
+async function liLoadTowns(){
+  if(liTowns) return liTowns;
+  try{
+    const response = await fetch('data/towns.json', { cache:'force-cache' });
+    if(!response.ok) throw new Error(String(response.status));
+    const payload = await response.json();
+    liTowns = Array.isArray(payload && payload.towns) ? payload.towns : [];
+  }catch(error){
+    // Country, region and valley still work. A missing town list narrows the
+    // search, it does not break it.
+    liTowns = [];
+  }
+  return liTowns;
+}
+
+/** Add the towns to the suggestions once they arrive. */
+async function liAddTownChoices(){
+  const towns = await liLoadTowns();
+  if(!towns.length) return;
+  const searchList = document.getElementById('liAreaSuggestions');
+  const seen = new Set(liAreaChoices.map(choice => choice.label.toLowerCase()));
+  const added = [];
+  towns.forEach(town => {
+    // Either half of "Klausen - Chiusa" should find it, and so should the
+    // whole. Each spelling is its own suggestion pointing at one place.
+    (Array.isArray(town.names) && town.names.length ? town.names : [town.name]).forEach(name => {
+      const key = String(name).toLowerCase();
+      if(!name || seen.has(key)) return;
+      seen.add(key);
+      added.push({
+        kind:'town', label:String(name), lat:town.lat, lng:town.lng,
+        radiusKm:LI_TOWN_RADIUS_KM, country:town.country, region:town.region,
+        type:town.place === 'city' ? 'City' : 'Town',
+      });
+    });
+  });
+  if(!added.length) return;
+  liAreaChoices = [...liAreaChoices, ...added].sort((a, b) => a.label.localeCompare(b.label));
+  if(searchList){
+    added.forEach(choice => {
+      const option = document.createElement('option');
+      option.value = choice.label;
+      option.label = `${choice.type} · within ${choice.radiusKm} km`;
+      searchList.appendChild(option);
+    });
+  }
 }
 
 function liPopulateAreaPicker(){
@@ -478,6 +545,7 @@ function liPopulateAreaPicker(){
     });
   }
   select.dataset.ready = 'true';
+  liAddTownChoices();
 }
 
 function liAreaChoiceFromSearch(){
@@ -650,7 +718,7 @@ function liSetLocationContext(context){
   liLocationChanging = false;
   liMapBounds = null;
   selectedTrailId = null;
-  liPendingLocationCenter = liLocationContext.kind === 'current'
+  liPendingLocationCenter = (liLocationContext.kind === 'current' || liLocationContext.kind === 'town')
     ? [liLocationContext.lng, liLocationContext.lat]
     : null;
   // A map area is where you are looking, not where you walk: remembering it
