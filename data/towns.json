@@ -1,0 +1,1497 @@
+{
+ "schemaVersion": 1,
+ "generatedAt": "2026-09-16T16:05:11.957Z",
+ "source": "OpenStreetMap via Overpass, ODbL",
+ "reachKm": 40,
+ "note": "place=city and place=town with at least one ORMA trail within 40 km. Rebuild with npm run fetch:towns.",
+ "towns": [
+  {
+   "id": "osm-node-33622904",
+   "name": "Genève",
+   "names": [
+    "Genève",
+    "Ginevra",
+    "Genf",
+    "Geneva"
+   ],
+   "place": "city",
+   "lat": 46.2018,
+   "lng": 6.1466,
+   "population": 191557,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26686589",
+   "name": "Grenoble",
+   "names": [
+    "Grenoble"
+   ],
+   "place": "city",
+   "lat": 45.1876,
+   "lng": 5.7358,
+   "population": 157477,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26692465",
+   "name": "Annecy",
+   "names": [
+    "Annecy"
+   ],
+   "place": "city",
+   "lat": 45.8992,
+   "lng": 6.1289,
+   "population": 131715,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64776484",
+   "name": "Trento",
+   "names": [
+    "Trento",
+    "Trient",
+    "Trente"
+   ],
+   "place": "city",
+   "lat": 46.0664,
+   "lng": 11.1258,
+   "population": 119359,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64776486",
+   "name": "Bolzano - Bozen",
+   "names": [
+    "Bolzano - Bozen",
+    "Bolzano",
+    "Bozen"
+   ],
+   "place": "city",
+   "lat": 46.4985,
+   "lng": 11.3547,
+   "population": 105713,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-66502659",
+   "name": "Pordenone",
+   "names": [
+    "Pordenone"
+   ],
+   "place": "city",
+   "lat": 45.9563,
+   "lng": 12.6597,
+   "population": 51229,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-1522668290",
+   "name": "Chambéry",
+   "names": [
+    "Chambéry"
+   ],
+   "place": "town",
+   "lat": 45.5663,
+   "lng": 5.9204,
+   "population": 59856,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-270664155",
+   "name": "Rovereto",
+   "names": [
+    "Rovereto"
+   ],
+   "place": "town",
+   "lat": 45.8865,
+   "lng": 11.0452,
+   "population": 39809,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-1704314483",
+   "name": "Saint-Martin-d'Hères",
+   "names": [
+    "Saint-Martin-d'Hères"
+   ],
+   "place": "town",
+   "lat": 45.1837,
+   "lng": 5.7545,
+   "population": 38454,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26691797",
+   "name": "Annemasse",
+   "names": [
+    "Annemasse"
+   ],
+   "place": "town",
+   "lat": 46.1934,
+   "lng": 6.2341,
+   "population": 37918,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26692157",
+   "name": "Thonon-les-Bains",
+   "names": [
+    "Thonon-les-Bains",
+    "Tonone"
+   ],
+   "place": "town",
+   "lat": 46.3731,
+   "lng": 6.4779,
+   "population": 37027,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26691404",
+   "name": "Échirolles",
+   "names": [
+    "Échirolles"
+   ],
+   "place": "town",
+   "lat": 45.1482,
+   "lng": 5.7187,
+   "population": 36849,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64778091",
+   "name": "Belluno",
+   "names": [
+    "Belluno"
+   ],
+   "place": "town",
+   "lat": 46.1375,
+   "lng": 12.2182,
+   "population": 35870,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64778737",
+   "name": "Conegliano",
+   "names": [
+    "Conegliano"
+   ],
+   "place": "town",
+   "lat": 45.8862,
+   "lng": 12.2978,
+   "population": 34891,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-36650976",
+   "name": "Vernier",
+   "names": [
+    "Vernier"
+   ],
+   "place": "town",
+   "lat": 46.2132,
+   "lng": 6.0816,
+   "population": 34477,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64777070",
+   "name": "Merano - Meran",
+   "names": [
+    "Merano - Meran",
+    "Merano",
+    "Meran",
+    "Mérano"
+   ],
+   "place": "town",
+   "lat": 46.6714,
+   "lng": 11.1646,
+   "population": 33656,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-2989358394",
+   "name": "Aix-les-Bains",
+   "names": [
+    "Aix-les-Bains"
+   ],
+   "place": "town",
+   "lat": 45.6886,
+   "lng": 5.9146,
+   "population": 31874,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64778718",
+   "name": "Vittorio Veneto",
+   "names": [
+    "Vittorio Veneto"
+   ],
+   "place": "town",
+   "lat": 45.9898,
+   "lng": 12.2959,
+   "population": 28232,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-197507412",
+   "name": "Montreux",
+   "names": [
+    "Montreux"
+   ],
+   "place": "town",
+   "lat": 46.4311,
+   "lng": 6.913,
+   "population": 26208,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64777005",
+   "name": "Brixen - Bressanone",
+   "names": [
+    "Brixen - Bressanone",
+    "Brixen",
+    "Bressanone"
+   ],
+   "place": "town",
+   "lat": 46.7164,
+   "lng": 11.6578,
+   "population": 23004,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-26691717",
+   "name": "Fontaine",
+   "names": [
+    "Fontaine"
+   ],
+   "place": "town",
+   "lat": 45.195,
+   "lng": 5.687,
+   "population": 22891,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-36650971",
+   "name": "Meyrin",
+   "names": [
+    "Meyrin"
+   ],
+   "place": "town",
+   "lat": 46.2283,
+   "lng": 6.0712,
+   "population": 21866,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-158220182",
+   "name": "Martigny",
+   "names": [
+    "Martigny"
+   ],
+   "place": "town",
+   "lat": 46.1031,
+   "lng": 7.0727,
+   "population": 21759,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64776659",
+   "name": "Pergine Valsugana",
+   "names": [
+    "Pergine Valsugana",
+    "Fersen im Suganertal"
+   ],
+   "place": "town",
+   "lat": 46.0605,
+   "lng": 11.2407,
+   "population": 21280,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-240046137",
+   "name": "Carouge",
+   "names": [
+    "Carouge"
+   ],
+   "place": "town",
+   "lat": 46.1847,
+   "lng": 6.1397,
+   "population": 20910,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26692364",
+   "name": "Voiron",
+   "names": [
+    "Voiron"
+   ],
+   "place": "town",
+   "lat": 45.3631,
+   "lng": 5.5911,
+   "population": 20891,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64778115",
+   "name": "Feltre",
+   "names": [
+    "Feltre"
+   ],
+   "place": "town",
+   "lat": 46.0164,
+   "lng": 11.9063,
+   "population": 20649,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64778699",
+   "name": "Oderzo",
+   "names": [
+    "Oderzo"
+   ],
+   "place": "town",
+   "lat": 45.7834,
+   "lng": 12.4938,
+   "population": 20379,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-66502917",
+   "name": "Sacile",
+   "names": [
+    "Sacile"
+   ],
+   "place": "town",
+   "lat": 45.9548,
+   "lng": 12.5034,
+   "population": 19837,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-26691864",
+   "name": "Albertville",
+   "names": [
+    "Albertville"
+   ],
+   "place": "town",
+   "lat": 45.6755,
+   "lng": 6.3925,
+   "population": 19812,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-240039598",
+   "name": "Nyon",
+   "names": [
+    "Nyon"
+   ],
+   "place": "town",
+   "lat": 46.3821,
+   "lng": 6.2403,
+   "population": 19738,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-285985177",
+   "name": "Meylan",
+   "names": [
+    "Meylan"
+   ],
+   "place": "town",
+   "lat": 45.2097,
+   "lng": 5.7784,
+   "population": 18573,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-66502868",
+   "name": "Cordenons",
+   "names": [
+    "Cordenons"
+   ],
+   "place": "town",
+   "lat": 45.9882,
+   "lng": 12.7068,
+   "population": 18308,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-197504797",
+   "name": "Monthey",
+   "names": [
+    "Monthey"
+   ],
+   "place": "town",
+   "lat": 46.2528,
+   "lng": 6.9478,
+   "population": 18178,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64776755",
+   "name": "Arco",
+   "names": [
+    "Arco"
+   ],
+   "place": "town",
+   "lat": 45.9181,
+   "lng": 10.8861,
+   "population": 17526,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-26691796",
+   "name": "Cluses",
+   "names": [
+    "Cluses"
+   ],
+   "place": "town",
+   "lat": 46.0603,
+   "lng": 6.5804,
+   "population": 17164,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26691763",
+   "name": "Sallanches",
+   "names": [
+    "Sallanches"
+   ],
+   "place": "town",
+   "lat": 45.9361,
+   "lng": 6.6303,
+   "population": 17133,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26691472",
+   "name": "Saint-Égrève",
+   "names": [
+    "Saint-Égrève"
+   ],
+   "place": "town",
+   "lat": 45.2325,
+   "lng": 5.6818,
+   "population": 16995,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64776844",
+   "name": "Riva del Garda",
+   "names": [
+    "Riva del Garda"
+   ],
+   "place": "town",
+   "lat": 45.8848,
+   "lng": 10.8397,
+   "population": 16926,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-36650975",
+   "name": "Thônex",
+   "names": [
+    "Thônex"
+   ],
+   "place": "town",
+   "lat": 46.1884,
+   "lng": 6.1984,
+   "population": 16690,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-10296531759",
+   "name": "Valserhône",
+   "names": [
+    "Valserhône"
+   ],
+   "place": "town",
+   "lat": 46.1098,
+   "lng": 5.8213,
+   "population": 16295,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26691712",
+   "name": "Rumilly",
+   "names": [
+    "Rumilly"
+   ],
+   "place": "town",
+   "lat": 45.8672,
+   "lng": 5.9426,
+   "population": 15998,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26697953",
+   "name": "Saint-Julien-en-Genevois",
+   "names": [
+    "Saint-Julien-en-Genevois",
+    "San Giuliano di Geneva"
+   ],
+   "place": "town",
+   "lat": 46.1445,
+   "lng": 6.0812,
+   "population": 15840,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-66503026",
+   "name": "Porcia / Purcie",
+   "names": [
+    "Porcia / Purcie",
+    "Porcia"
+   ],
+   "place": "town",
+   "lat": 45.9595,
+   "lng": 12.6134,
+   "population": 15325,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-66503015",
+   "name": "San Vito al Tagliamento",
+   "names": [
+    "San Vito al Tagliamento"
+   ],
+   "place": "town",
+   "lat": 45.9145,
+   "lng": 12.8566,
+   "population": 15078,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64777114",
+   "name": "Laives - Leifers",
+   "names": [
+    "Laives - Leifers",
+    "Laives",
+    "Leifers"
+   ],
+   "place": "town",
+   "lat": 46.4228,
+   "lng": 11.3348,
+   "population": 15069,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-26697475",
+   "name": "Saint-Genis-Pouilly",
+   "names": [
+    "Saint-Genis-Pouilly"
+   ],
+   "place": "town",
+   "lat": 46.2432,
+   "lng": 6.0208,
+   "population": 14558,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-33312505",
+   "name": "Versoix",
+   "names": [
+    "Versoix"
+   ],
+   "place": "town",
+   "lat": 46.2773,
+   "lng": 6.169,
+   "population": 13846,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64777001",
+   "name": "Bruneck - Brunico",
+   "names": [
+    "Bruneck - Brunico",
+    "Bruneck",
+    "Brunico"
+   ],
+   "place": "town",
+   "lat": 46.7963,
+   "lng": 11.9355,
+   "population": 13618,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-26694644",
+   "name": "Gex",
+   "names": [
+    "Gex"
+   ],
+   "place": "town",
+   "lat": 46.3338,
+   "lng": 6.0577,
+   "population": 13078,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-240040687",
+   "name": "Bonneville",
+   "names": [
+    "Bonneville"
+   ],
+   "place": "town",
+   "lat": 46.0776,
+   "lng": 6.4086,
+   "population": 12895,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-66502967",
+   "name": "Azzano Decimo",
+   "names": [
+    "Azzano Decimo"
+   ],
+   "place": "town",
+   "lat": 45.8814,
+   "lng": 12.7143,
+   "population": 12880,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-26697440",
+   "name": "La Motte-Servolex",
+   "names": [
+    "La Motte-Servolex"
+   ],
+   "place": "town",
+   "lat": 45.5984,
+   "lng": 5.8768,
+   "population": 12299,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-66502821",
+   "name": "Fontanafredda",
+   "names": [
+    "Fontanafredda"
+   ],
+   "place": "town",
+   "lat": 45.9734,
+   "lng": 12.5691,
+   "population": 12195,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64778627",
+   "name": "Pieve di Soligo",
+   "names": [
+    "Pieve di Soligo"
+   ],
+   "place": "town",
+   "lat": 45.8998,
+   "lng": 12.1731,
+   "population": 12106,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-206378027",
+   "name": "Lienz",
+   "names": [
+    "Lienz"
+   ],
+   "place": "town",
+   "lat": 46.8299,
+   "lng": 12.7681,
+   "population": 12077,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-1932397580",
+   "name": "Gland",
+   "names": [
+    "Gland"
+   ],
+   "place": "town",
+   "lat": 46.4239,
+   "lng": 6.2655,
+   "population": 11947,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-36650978",
+   "name": "Le Grand-Saconnex",
+   "names": [
+    "Le Grand-Saconnex"
+   ],
+   "place": "town",
+   "lat": 46.2363,
+   "lng": 6.1265,
+   "population": 11911,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26691919",
+   "name": "Seyssinet-Pariset",
+   "names": [
+    "Seyssinet-Pariset"
+   ],
+   "place": "town",
+   "lat": 45.1791,
+   "lng": 5.69,
+   "population": 11753,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-66502978",
+   "name": "Maniago",
+   "names": [
+    "Maniago"
+   ],
+   "place": "town",
+   "lat": 46.171,
+   "lng": 12.7074,
+   "population": 11708,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-66502887",
+   "name": "Fiume Veneto",
+   "names": [
+    "Fiume Veneto"
+   ],
+   "place": "town",
+   "lat": 45.9279,
+   "lng": 12.7322,
+   "population": 11677,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-26695485",
+   "name": "Sassenage",
+   "names": [
+    "Sassenage"
+   ],
+   "place": "town",
+   "lat": 45.2067,
+   "lng": 5.663,
+   "population": 11660,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-197506297",
+   "name": "Aigle",
+   "names": [
+    "Aigle"
+   ],
+   "place": "town",
+   "lat": 46.3179,
+   "lng": 6.9689,
+   "population": 11412,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26691944",
+   "name": "Bellegarde-sur-Valserine",
+   "names": [
+    "Bellegarde-sur-Valserine"
+   ],
+   "place": "town",
+   "lat": 46.1076,
+   "lng": 5.8261,
+   "population": 11326,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26697421",
+   "name": "La Roche-sur-Foron",
+   "names": [
+    "La Roche-sur-Foron"
+   ],
+   "place": "town",
+   "lat": 46.0672,
+   "lng": 6.3122,
+   "population": 11263,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-66503059",
+   "name": "Spilimbergo",
+   "names": [
+    "Spilimbergo"
+   ],
+   "place": "town",
+   "lat": 46.1113,
+   "lng": 12.9016,
+   "population": 11087,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-552717524",
+   "name": "Passy",
+   "names": [
+    "Passy"
+   ],
+   "place": "town",
+   "lat": 45.9233,
+   "lng": 6.6845,
+   "population": 11068,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-240094341",
+   "name": "La Tour-de-Peilz",
+   "names": [
+    "La Tour-de-Peilz"
+   ],
+   "place": "town",
+   "lat": 46.4538,
+   "lng": 6.8569,
+   "population": 10974,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26698556",
+   "name": "Ferney-Voltaire",
+   "names": [
+    "Ferney-Voltaire"
+   ],
+   "place": "town",
+   "lat": 46.2567,
+   "lng": 6.1096,
+   "population": 10920,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26692144",
+   "name": "Le Pont-de-Claix",
+   "names": [
+    "Le Pont-de-Claix"
+   ],
+   "place": "town",
+   "lat": 45.1237,
+   "lng": 5.6978,
+   "population": 10805,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64778695",
+   "name": "Motta di Livenza",
+   "names": [
+    "Motta di Livenza"
+   ],
+   "place": "town",
+   "lat": 45.7766,
+   "lng": 12.6105,
+   "population": 10768,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-59955692",
+   "name": "Plan-les-Ouates",
+   "names": [
+    "Plan-les-Ouates"
+   ],
+   "place": "town",
+   "lat": 46.1683,
+   "lng": 6.1179,
+   "population": 10657,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-240120089",
+   "name": "Chêne-Bougeries",
+   "names": [
+    "Chêne-Bougeries"
+   ],
+   "place": "town",
+   "lat": 46.1964,
+   "lng": 6.1854,
+   "population": 10642,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64778659",
+   "name": "Valdobbiadene",
+   "names": [
+    "Valdobbiadene"
+   ],
+   "place": "town",
+   "lat": 45.9014,
+   "lng": 11.9955,
+   "population": 10388,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64776992",
+   "name": "Mori",
+   "names": [
+    "Mori"
+   ],
+   "place": "town",
+   "lat": 45.8534,
+   "lng": 10.9754,
+   "population": 10211,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-26695858",
+   "name": "Gaillard",
+   "names": [
+    "Gaillard"
+   ],
+   "place": "town",
+   "lat": 46.1838,
+   "lng": 6.2112,
+   "population": 10175,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26698127",
+   "name": "Divonne-les-Bains",
+   "names": [
+    "Divonne-les-Bains"
+   ],
+   "place": "town",
+   "lat": 46.357,
+   "lng": 6.143,
+   "population": 10137,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64778231",
+   "name": "Sedico",
+   "names": [
+    "Sedico"
+   ],
+   "place": "town",
+   "lat": 46.111,
+   "lng": 12.0972,
+   "population": 10119,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-26694905",
+   "name": "Eybens",
+   "names": [
+    "Eybens"
+   ],
+   "place": "town",
+   "lat": 45.1524,
+   "lng": 5.7481,
+   "population": 10095,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26694700",
+   "name": "Vétraz-Monthoux",
+   "names": [
+    "Vétraz-Monthoux"
+   ],
+   "place": "town",
+   "lat": 46.1741,
+   "lng": 6.2582,
+   "population": 9874,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-36650979",
+   "name": "Bernex",
+   "names": [
+    "Bernex"
+   ],
+   "place": "town",
+   "lat": 46.1747,
+   "lng": 6.0722,
+   "population": 9866,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26696526",
+   "name": "Belley",
+   "names": [
+    "Belley"
+   ],
+   "place": "town",
+   "lat": 45.7608,
+   "lng": 5.6861,
+   "population": 9239,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26698333",
+   "name": "Évian-les-Bains",
+   "names": [
+    "Évian-les-Bains"
+   ],
+   "place": "town",
+   "lat": 46.401,
+   "lng": 6.5898,
+   "population": 9214,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26695648",
+   "name": "La Ravoire",
+   "names": [
+    "La Ravoire"
+   ],
+   "place": "town",
+   "lat": 45.5586,
+   "lng": 5.9643,
+   "population": 9042,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26696275",
+   "name": "Chamonix-Mont-Blanc",
+   "names": [
+    "Chamonix-Mont-Blanc"
+   ],
+   "place": "town",
+   "lat": 45.9231,
+   "lng": 6.87,
+   "population": 8642,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26697725",
+   "name": "La Tour-du-Pin",
+   "names": [
+    "La Tour-du-Pin"
+   ],
+   "place": "town",
+   "lat": 45.5666,
+   "lng": 5.4424,
+   "population": 8138,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64776939",
+   "name": "Levico Terme",
+   "names": [
+    "Levico Terme",
+    "Löweneck"
+   ],
+   "place": "town",
+   "lat": 46.0091,
+   "lng": 11.3018,
+   "population": 7915,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-26697984",
+   "name": "Saint-Jean-de-Maurienne",
+   "names": [
+    "Saint-Jean-de-Maurienne",
+    "San Giovanni di Moriana"
+   ],
+   "place": "town",
+   "lat": 45.2775,
+   "lng": 6.3452,
+   "population": 7536,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-26695240",
+   "name": "Bourg-Saint-Maurice",
+   "names": [
+    "Bourg-Saint-Maurice"
+   ],
+   "place": "town",
+   "lat": 45.6186,
+   "lng": 6.7695,
+   "population": 7187,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-64776492",
+   "name": "Borgo Valsugana",
+   "names": [
+    "Borgo Valsugana"
+   ],
+   "place": "town",
+   "lat": 46.0533,
+   "lng": 11.4566,
+   "population": 6945,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64778693",
+   "name": "Nervesa della Battaglia",
+   "names": [
+    "Nervesa della Battaglia"
+   ],
+   "place": "town",
+   "lat": 45.8254,
+   "lng": 12.2092,
+   "population": 6653,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64777154",
+   "name": "Schlanders - Silandro",
+   "names": [
+    "Schlanders - Silandro",
+    "Schlanders",
+    "Silandro"
+   ],
+   "place": "town",
+   "lat": 46.6281,
+   "lng": 10.7735,
+   "population": 6371,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64778204",
+   "name": "Cortina d'Ampezzo",
+   "names": [
+    "Cortina d'Ampezzo"
+   ],
+   "place": "town",
+   "lat": 46.5383,
+   "lng": 12.1374,
+   "population": 5907,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64777232",
+   "name": "Sterzing - Vipiteno",
+   "names": [
+    "Sterzing - Vipiteno",
+    "Sterzing",
+    "Vipiteno"
+   ],
+   "place": "town",
+   "lat": 46.8963,
+   "lng": 11.4319,
+   "population": 5785,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64777050",
+   "name": "Klausen - Chiusa",
+   "names": [
+    "Klausen - Chiusa",
+    "Klausen",
+    "Chiusa"
+   ],
+   "place": "town",
+   "lat": 46.6399,
+   "lng": 11.5663,
+   "population": 4613,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-240110573",
+   "name": "Neustift im Stubaital",
+   "names": [
+    "Neustift im Stubaital"
+   ],
+   "place": "town",
+   "lat": 47.1106,
+   "lng": 11.3076,
+   "population": 4600,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64778173",
+   "name": "Agordo",
+   "names": [
+    "Agordo"
+   ],
+   "place": "town",
+   "lat": 46.2821,
+   "lng": 12.035,
+   "population": 4124,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64778237",
+   "name": "Pieve di Cadore",
+   "names": [
+    "Pieve di Cadore"
+   ],
+   "place": "town",
+   "lat": 46.4287,
+   "lng": 12.3753,
+   "population": 3794,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-240077102",
+   "name": "Sölden",
+   "names": [
+    "Sölden"
+   ],
+   "place": "town",
+   "lat": 46.9666,
+   "lng": 11.0073,
+   "population": 3488,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-240042621",
+   "name": "Steinach am Brenner",
+   "names": [
+    "Steinach am Brenner"
+   ],
+   "place": "town",
+   "lat": 47.0907,
+   "lng": 11.4666,
+   "population": 3314,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64777194",
+   "name": "Innichen - San Candido",
+   "names": [
+    "Innichen - San Candido",
+    "Innichen",
+    "San Candido"
+   ],
+   "place": "town",
+   "lat": 46.7328,
+   "lng": 12.282,
+   "population": 3294,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64778104",
+   "name": "Auronzo di Cadore",
+   "names": [
+    "Auronzo di Cadore"
+   ],
+   "place": "town",
+   "lat": 46.5512,
+   "lng": 12.443,
+   "population": 3028,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64778186",
+   "name": "Alano di Piave",
+   "names": [
+    "Alano di Piave"
+   ],
+   "place": "town",
+   "lat": 45.9078,
+   "lng": 11.9081,
+   "population": 2773,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-240118548",
+   "name": "Matrei in Osttirol",
+   "names": [
+    "Matrei in Osttirol"
+   ],
+   "place": "town",
+   "lat": 47.0011,
+   "lng": 12.5387,
+   "population": 2466,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-240042171",
+   "name": "Sillian",
+   "names": [
+    "Sillian"
+   ],
+   "place": "town",
+   "lat": 46.7473,
+   "lng": 12.418,
+   "population": 2086,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64778638",
+   "name": "Segusino",
+   "names": [
+    "Segusino"
+   ],
+   "place": "town",
+   "lat": 45.9167,
+   "lng": 11.9539,
+   "population": 1980,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-4446265118",
+   "name": "Quero",
+   "names": [
+    "Quero"
+   ],
+   "place": "town",
+   "lat": 45.921,
+   "lng": 11.9306,
+   "population": 1807,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-240044982",
+   "name": "Matrei am Brenner",
+   "names": [
+    "Matrei am Brenner"
+   ],
+   "place": "town",
+   "lat": 47.1312,
+   "lng": 11.4537,
+   "population": 902,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-64777105",
+   "name": "Glurns - Glorenza",
+   "names": [
+    "Glurns - Glorenza",
+    "Glurns",
+    "Glorenza"
+   ],
+   "place": "town",
+   "lat": 46.6715,
+   "lng": 10.5539,
+   "population": 896,
+   "region": "dolomites",
+   "country": "IT"
+  },
+  {
+   "id": "osm-node-3738814254",
+   "name": "Vevey",
+   "names": [
+    "Vevey"
+   ],
+   "place": "town",
+   "lat": 46.4603,
+   "lng": 6.8419,
+   "population": 20,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-36650974",
+   "name": "Lancy",
+   "names": [
+    "Lancy"
+   ],
+   "place": "town",
+   "lat": 46.1843,
+   "lng": 6.1201,
+   "population": null,
+   "region": "savoy",
+   "country": "FR"
+  },
+  {
+   "id": "osm-node-36650988",
+   "name": "Onex",
+   "names": [
+    "Onex"
+   ],
+   "place": "town",
+   "lat": 46.1838,
+   "lng": 6.1007,
+   "population": null,
+   "region": "savoy",
+   "country": "FR"
+  }
+ ]
+}
