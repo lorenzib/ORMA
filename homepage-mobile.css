@@ -62,6 +62,13 @@
   body.mhome-active .li-new-wrap{grid-column:5/7;grid-row:3;width:100%;min-width:0;}
   body.mhome-active .li-quick-filters{grid-column:1/5;grid-row:4;display:flex;gap:6px;min-width:0;}
   body.mhome-active #liFiltersWrap{grid-column:5/7;grid-row:4;display:block;width:100%;min-width:0;}
+  /* The location offer takes a full row under the filters; it is a band,
+     not a control, so it never competes with them for a column. */
+  body.mhome-active .li-location-nudge{grid-column:1/-1;grid-row:5;width:100%;margin:0;padding:8px 11px;gap:9px;}
+  body.mhome-active .li-location-nudge[hidden]{display:none;}
+  body.mhome-active .li-location-nudge-copy strong{font-size:12.5px;}
+  body.mhome-active .li-location-nudge-copy small{font-size:11px;}
+  body.mhome-active .li-location-nudge-action{height:30px;padding:0 11px;font-size:11px;margin-left:0;}
   /* Match the compact collection controls: same 42px rhythm and 12.5px label. */
   body.mhome-active .li-new,
   body.mhome-active .li-filt{width:100%;flex:none;height:42px;padding:0 10px;gap:6px;font-size:12.5px;}
@@ -224,6 +231,7 @@
     grid-template-areas:none;gap:6px;padding:6px 10px;
   }
   body[data-homepage-view="returning"] #returningCustomerHomepage .li-toolbar-greet{display:none;}
+  body[data-homepage-view="returning"] #returningCustomerHomepage .li-location-nudge{display:none;}
   body[data-homepage-view="returning"] #returningCustomerHomepage .li-search{grid-area:auto;grid-column:1/9;grid-row:1;width:100%;max-width:none;height:36px;}
   body[data-homepage-view="returning"] #returningCustomerHomepage .li-new-wrap{grid-area:auto;grid-column:9/13;grid-row:1;width:100%;}
   body[data-homepage-view="returning"] #returningCustomerHomepage .li-mobile-actions{display:contents;}
@@ -245,6 +253,9 @@
     gap:6px;padding:6px 8px;
   }
   body.mhome-active .li-toolbar-greet{display:none;}
+  /* Two fixed rows on a short landscape phone: the location offer waits for
+     portrait; Explore › Near me and the search still work. */
+  body.mhome-active .li-location-nudge{display:none;}
   body.mhome-active .li-search{grid-column:1/10;grid-row:1;height:36px;}
   body.mhome-active .li-new-wrap{grid-column:10/13;grid-row:1;width:100%;}
   body.mhome-active .li-mobile-actions{display:contents;}

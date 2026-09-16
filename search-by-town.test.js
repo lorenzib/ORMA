@@ -62,18 +62,20 @@ describe('searching by the town you are staying in', () => {
     expect(script).toContain("(liLocationContext.kind === 'current' || liLocationContext.kind === 'town')");
   });
 
-  test('the list is fetched only when the picker is opened', () => {
-    // 19 KB most visits never need: a saved area or "Use my location" skips it.
+  test('the list is fetched only when the search is first used', () => {
+    // 19 KB most visits never need: a saved area or a located visitor who
+    // never types a place skips it.
     const loader = script.slice(script.indexOf('async function liLoadTowns('), script.indexOf('async function liAddTownChoices('));
     expect(loader).toContain("fetch('data/towns.json'");
-    expect(script).toMatch(/select\.dataset\.ready = 'true';\s*\n\s*liAddTownChoices\(\);/);
+    expect(script).toMatch(/liAreaChoicesReady = true;\s*\n\s*liAddTownChoices\(\);/);
+    expect(script).toMatch(/search\.addEventListener\('focus', \(\) => \{\s*\n\s*liEnsureAreaChoices\(\);/);
   });
 
   test('a missing town list narrows the search rather than breaking it', () => {
     const loader = script.slice(script.indexOf('async function liLoadTowns('), script.indexOf('async function liAddTownChoices('));
     expect(loader).toContain('catch(error)');
     expect(loader).toContain('liTowns = [];');
-    const adder = script.slice(script.indexOf('async function liAddTownChoices('), script.indexOf('function liPopulateAreaPicker('));
+    const adder = script.slice(script.indexOf('async function liAddTownChoices('), script.indexOf('function liEnsureAreaChoices('));
     expect(adder).toContain('if(!towns.length) return;');
   });
 

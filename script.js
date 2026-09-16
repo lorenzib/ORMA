@@ -219,6 +219,16 @@ const LI_WALK_DATE_SESSION_KEY = 'orma-home-walk-date-v1';
 const LI_LOCATION_LABEL_ALIASES = Object.freeze({
   'Alta Pusteria – Tre Cime':'Alta Pusteria',
 });
+// With nothing chosen, the list is the whole catalogue ranked for the dog.
+// This is a real context, not the absence of one: the page never waits for a
+// place before it shows a walk. Choosing "All trails" also forgets any
+// remembered area, which is why it is never written to storage itself.
+const LI_ALL_TRAILS_CONTEXT = Object.freeze({ kind:'area', country:'all', region:'all', valley:'all', label:'All ORMA trails', transient:true });
+function liDefaultLocationContext(){ return { ...LI_ALL_TRAILS_CONTEXT }; }
+function liIsAllTrailsContext(context){
+  return !!context && context.kind === 'area'
+    && (context.country || 'all') === 'all' && (context.region || 'all') === 'all' && (context.valley || 'all') === 'all';
+}
 let liLocationContext = liLoadLocationContext();
 let liAreaChoices = [];
 let liLocationForecastKey = '';
@@ -316,7 +326,7 @@ function liLoadLocationContext(){
     const area = liValidLocationContext(liStoredJson(localStorage, LI_AREA_STORAGE_KEY));
     if(area) return area;
   }
-  return null;
+  return liDefaultLocationContext();
 }
 
 function liRememberLocationContext(context){
@@ -325,7 +335,7 @@ function liRememberLocationContext(context){
     if(typeof localStorage !== 'undefined') localStorage.removeItem(LI_AREA_STORAGE_KEY);
     if(context && context.kind === 'current' && typeof sessionStorage !== 'undefined'){
       sessionStorage.setItem(LI_LOCATION_SESSION_KEY, JSON.stringify(context));
-    } else if(context && (context.kind === 'area' || context.kind === 'town') && !context.transient && typeof localStorage !== 'undefined'){
+    } else if(context && (context.kind === 'area' || context.kind === 'town') && !context.transient && !liIsAllTrailsContext(context) && typeof localStorage !== 'undefined'){
       localStorage.setItem(LI_AREA_STORAGE_KEY, JSON.stringify(context));
     }
   }catch(error){ /* Storage can be unavailable in private browsing. */ }
@@ -438,7 +448,7 @@ function liLocationContextLabel(){
 }
 
 function liRecommendationLocationPhrase(){
-  if(!liLocationContext) return '';
+  if(!liLocationContext || liIsAllTrailsContext(liLocationContext)) return '';
   if(liLocationContext.kind === 'current') return 'near you';
   if(liLocationContext.kind === 'town') return `near ${liLocationContext.label}`;
   if(liLocationContext.kind === 'map') return 'in the map area';
@@ -488,6 +498,13 @@ async function liAddTownChoices(){
   });
   if(!added.length) return;
   liAreaChoices = [...liAreaChoices, ...added].sort((a, b) => a.label.localeCompare(b.label));
+  // The towns usually land after the first keystrokes; a suggestion list
+  // already open is repainted so the town appears without another key.
+  const search = document.getElementById('liSearch');
+  const suggestions = document.getElementById('liSearchSuggest');
+  if(search && suggestions && !suggestions.hidden && search.value.trim()){
+    renderLiSearchSuggestions(typeof currentProfileForAdjust !== 'undefined' ? currentProfileForAdjust : null);
+  }
   if(searchList){
     added.forEach(choice => {
       const option = document.createElement('option');
@@ -498,11 +515,12 @@ async function liAddTownChoices(){
   }
 }
 
-function liPopulateAreaPicker(){
-  const select = document.getElementById('liAreaSelect');
-  const searchList = document.getElementById('liAreaSuggestions');
-  const countrySelect = document.getElementById('liAreaCountry');
-  if(!select || typeof trails === 'undefined' || select.dataset.ready === 'true') return;
+// The places the search bar can take you: every country, region and valley
+// with a walk in it, plus the towns once they arrive. Built on first use of
+// the search, so a visit that never types a place never pays for it.
+let liAreaChoicesReady = false;
+function liEnsureAreaChoices(){
+  if(liAreaChoicesReady || typeof trails === 'undefined') return;
   const configs = liRegionConfigs();
   const valleys = new Map();
   trails.forEach(trail => {
@@ -527,100 +545,28 @@ function liPopulateAreaPicker(){
   }));
   liAreaChoices = [...countries.values(), ...regions, ...valleys.values()]
     .sort((a, b) => a.label.localeCompare(b.label));
-  if(searchList){
-    searchList.innerHTML = '';
-    liAreaChoices.forEach(choice => {
-      const option = document.createElement('option');
-      option.value = choice.label;
-      option.label = `${choice.type} · ${choice.region !== 'all' && configs[choice.region] ? configs[choice.region].label : choice.label}`;
-      searchList.appendChild(option);
-    });
-  }
-  if(countrySelect){
-    Array.from(countries.values()).sort((a,b) => a.label.localeCompare(b.label)).forEach(choice => {
-      const option = document.createElement('option');
-      option.value = choice.country;
-      option.textContent = choice.label;
-      countrySelect.appendChild(option);
-    });
-  }
-  select.dataset.ready = 'true';
+  liAreaChoicesReady = true;
   liAddTownChoices();
 }
 
-function liAreaChoiceFromSearch(){
-  const input = document.getElementById('liAreaSearch');
-  const query = String(input && input.value || '').trim().toLowerCase();
-  return liAreaChoices.find(choice => choice.label.toLowerCase() === query) || null;
-}
-
-function liPopulateAreaRegions(country){
-  const regionSelect = document.getElementById('liAreaRegion');
-  const valleySelect = document.getElementById('liAreaSelect');
-  if(!regionSelect || !valleySelect) return;
+function liPlaceChoiceDetail(choice){
+  if(choice.kind === 'town') return `${choice.type} · within ${choice.radiusKm} km`;
   const configs = liRegionConfigs();
-  regionSelect.innerHTML = '<option value="">All regions</option>';
-  Object.entries(configs).filter(([, config]) => config.countryCode === country).forEach(([region, config]) => {
-    const option = document.createElement('option');
-    option.value = region;
-    option.textContent = config.label;
-    regionSelect.appendChild(option);
-  });
-  regionSelect.disabled = !country;
-  valleySelect.innerHTML = '<option value="">All valleys</option>';
-  valleySelect.disabled = true;
+  const region = choice.region !== 'all' && configs[choice.region] ? configs[choice.region].label : null;
+  return region && choice.type === 'Valley' ? `${choice.type} · ${region}` : choice.type;
 }
 
-function liPopulateAreaValleys(region){
-  const valleySelect = document.getElementById('liAreaSelect');
-  if(!valleySelect) return;
-  valleySelect.innerHTML = '<option value="">All valleys</option>';
-  liAreaChoices.filter(choice => choice.type === 'Valley' && choice.region === region).forEach(choice => {
-    const option = document.createElement('option');
-    option.value = choice.valley;
-    option.textContent = choice.label;
-    valleySelect.appendChild(option);
-  });
-  valleySelect.disabled = !region;
-}
-
-function liAreaChoiceFromBrowse(){
-  const country = document.getElementById('liAreaCountry');
-  const region = document.getElementById('liAreaRegion');
-  const valley = document.getElementById('liAreaSelect');
-  // Keep the small DOM harness used by older clients/tests working while the
-  // product UI moves from one valley dropdown to country → region → valley.
-  if(!country){
-    const legacy = valley && String(valley.value || '').split('::');
-    if(legacy && legacy.length === 2){
-      const [legacyRegion, legacyValley] = legacy;
-      const config = liRegionConfigs()[legacyRegion];
-      return {
-        kind:'area',
-        country:config ? config.countryCode : (legacyRegion === 'savoy' ? 'FR' : 'IT'),
-        region:legacyRegion,
-        valley:legacyValley,
-        label:legacyValley,
-      };
-    }
-    return null;
-  }
-  if(!country.value) return null;
-  const configs = liRegionConfigs();
-  if(valley && valley.value){
-    return liAreaChoices.find(choice => choice.type === 'Valley' && choice.region === region.value && choice.valley === valley.value) || null;
-  }
-  if(region && region.value){
-    const config = configs[region.value];
-    return { kind:'area', country:country.value, region:region.value, valley:'all', label:config ? config.label : region.value };
-  }
-  const countryChoice = liAreaChoices.find(choice => choice.type === 'Country' && choice.country === country.value);
-  return countryChoice || null;
-}
-
-function liUpdateAreaSubmit(){
-  const submit = document.getElementById('liAreaSubmit');
-  if(submit) submit.disabled = !(liAreaChoiceFromSearch() || liAreaChoiceFromBrowse());
+function liPlaceChoicesFor(query){
+  const needle = String(query || '').trim().toLowerCase();
+  if(!needle) return [];
+  return liAreaChoices
+    .filter(choice => choice.label.toLowerCase().includes(needle))
+    .sort((a, b) => {
+      const aStarts = a.label.toLowerCase().startsWith(needle) ? 0 : 1;
+      const bStarts = b.label.toLowerCase().startsWith(needle) ? 0 : 1;
+      return aStarts - bStarts || a.label.localeCompare(b.label);
+    })
+    .slice(0, 4);
 }
 
 function liSyncWalkDateInputs(){
@@ -646,123 +592,189 @@ function liSetWalkDate(value){
   renderReturningHomepage(currentProfileForAdjust);
 }
 
-// Changing your area is not starting again. The Change button used to call
-// liResetLocationContext, which threw away the area, the country, region and
-// valley, the map's bounds and the selected trail, then hid the workspace --
-// so you could not see what you were moving away from, and picking somewhere
-// new began from nothing. While this is true the gate comes back over the
-// results instead of in place of them, and nothing else is touched.
-let liLocationChanging = false;
-
-function liBeginLocationChange(){
-  if(!liLocationContext) return;
-  liLocationChanging = true;
-  const picker = document.getElementById('liAreaPicker');
-  const choose = document.getElementById('liChooseAreaBtn');
-  if(picker) picker.hidden = false;
-  if(choose) choose.setAttribute('aria-expanded', 'true');
-  liPopulateAreaPicker();
-  liRenderLocationContext(currentProfileForAdjust);
-  const search = document.getElementById('liAreaSearch');
-  if(search) requestAnimationFrame(() => search.focus());
+// Changing where you look is the search bar: a town, a valley or a region
+// typed there becomes the context. "Change" just takes you to it.
+function liFocusSearchForPlace(){
+  const search = document.getElementById('liSearch');
+  if(!search) return;
+  liCloseMenus();
+  // The editorial toolbar keeps the search behind "Adjust recommendation";
+  // asking for a place opens it, so the field is there to type into.
+  const toolbar = document.getElementById('liToolbar');
+  const adjust = document.getElementById('liAdjustRecommendationBtn');
+  if(toolbar && !toolbar.classList.contains('li-refine-open')){
+    toolbar.classList.add('li-refine-open');
+    if(adjust){
+      adjust.setAttribute('aria-expanded', 'true');
+      adjust.textContent = 'Hide adjustments';
+    }
+  }
+  search.focus();
+  search.select();
+  if(typeof search.scrollIntoView === 'function') search.scrollIntoView({ block:'nearest' });
 }
 
-function liCancelLocationChange(){
-  if(!liLocationChanging) return;
-  liLocationChanging = false;
-  const status = document.getElementById('liLocationStatus');
-  if(status) status.textContent = '';
-  liRenderLocationContext(currentProfileForAdjust);
-  const change = document.getElementById('liChangeLocationBtn');
-  if(change) change.focus();
+// Location is asked in place, never by a gate and never on page load. A
+// permission already granted is used quietly; one not yet decided is offered
+// with a button that asks only when tapped; one refused gets an explanation
+// and the search bar. The list is always there underneath.
+const LI_LOCATION_NUDGE_DISMISSED_KEY = 'orma-home-location-nudge-dismissed-v1';
+let liLocationPermission = 'unknown';   // unknown | prompt | granted | denied | error | unavailable
+let liLocationRequestPending = false;
+
+function liLocationNudgeDismissed(){
+  try{ return sessionStorage.getItem(LI_LOCATION_NUDGE_DISMISSED_KEY) === '1'; }catch(error){ return false; }
 }
 
-
-// The first visit, in one tap.
-//
-// Choosing a region is not only where you want to walk; it is what decides
-// which catalogue to download. The Dolomites file is 800 KB and Savoy 329 KB,
-// and nothing is in memory before one of them loads, so a homepage that showed
-// trails before you had chosen would fetch both on a mountain connection. The
-// question has to be asked. It did not have to cost four interactions: read the
-// heading, pick between two buttons, wait for a form, type, submit.
-//
-// Two regions, named and counted, are the answer nearly everyone wants. The
-// location button and the search stay for those who want something else.
-const LI_REGION_CHOICES = Object.freeze([
-  { region:'dolomites', label:'The Dolomites', country:'IT', blurb:'Italy · South Tyrol, Belluno, Trentino' },
-  { region:'savoy', label:'Savoy', country:'FR', blurb:'France · Savoie and Haute-Savoie' },
-]);
-
-function liRegionTrailCount(region){
-  const manifest = window.DoloPawsRegionManifest;
-  const entry = manifest && manifest.regions ? manifest.regions[region] : null;
-  return entry && Number.isFinite(entry.trailCount) ? entry.trailCount : null;
+function liDismissLocationNudge(){
+  try{ sessionStorage.setItem(LI_LOCATION_NUDGE_DISMISSED_KEY, '1'); }catch(error){}
+  liRenderLocationNudge();
 }
 
-function liRenderRegionChoices(){
-  const host = document.getElementById('liLocationRegions');
+function liRequestCurrentLocation(){
+  if(typeof navigator === 'undefined' || !navigator.geolocation){
+    liLocationPermission = 'unavailable';
+    liRenderLocationNudge();
+    return;
+  }
+  if(liLocationRequestPending) return;
+  liLocationRequestPending = true;
+  liRenderLocationNudge();
+  navigator.geolocation.getCurrentPosition(position => {
+    liLocationRequestPending = false;
+    liLocationPermission = 'granted';
+    liSetLocationContext({
+      kind:'current',
+      lat:Number(position.coords.latitude),
+      lng:Number(position.coords.longitude),
+      radiusKm:LI_LOCATION_RADIUS_KM,
+    });
+  }, error => {
+    liLocationRequestPending = false;
+    liLocationPermission = error && error.code === 1 ? 'denied' : 'error';
+    liRenderLocationNudge();
+  }, { enableHighAccuracy:false, timeout:10000, maximumAge:300000 });
+}
+
+// Reads the permission state without asking for anything. Only a permission
+// the owner already granted is acted on, and only when nothing else was
+// chosen: a saved town or valley is a decision, and a position is not.
+async function liProbeLocationPermission(){
+  if(typeof navigator === 'undefined' || !navigator.geolocation){
+    liLocationPermission = 'unavailable';
+    liRenderLocationNudge();
+    return;
+  }
+  let state = 'prompt';
+  try{
+    if(navigator.permissions && typeof navigator.permissions.query === 'function'){
+      const result = await navigator.permissions.query({ name:'geolocation' });
+      state = result.state || 'prompt';
+      if(typeof result.addEventListener === 'function'){
+        result.addEventListener('change', () => {
+          liLocationPermission = result.state || 'prompt';
+          liRenderLocationNudge();
+        });
+      }
+    }
+  }catch(error){ state = 'prompt'; }
+  liLocationPermission = state;
+  if(state === 'granted' && liIsAllTrailsContext(liLocationContext)) liRequestCurrentLocation();
+  else liRenderLocationNudge();
+}
+
+function liRenderLocationNudge(){
+  const nudge = document.getElementById('liLocationNudge');
+  if(!nudge) return;
+  const title = document.getElementById('liLocationNudgeTitle');
+  const detail = document.getElementById('liLocationNudgeDetail');
+  const button = document.getElementById('liLocationNudgeBtn');
+  const located = !!liLocationContext && liLocationContext.kind === 'current';
+  const show = !located && !liLocationNudgeDismissed() && liLocationPermission !== 'granted';
+  nudge.hidden = !show;
+  if(!show) return;
+  const copy = liLocationRequestPending
+    ? { title:'Finding you…', detail:'Your position stays in this browser session and is not added to your profile.', button:'Finding you…', disabled:true }
+    : liLocationPermission === 'denied'
+      ? { title:'Location is off for ORMA in this browser', detail:'Turn it on in your browser’s site settings, or pick a town or valley with Change.', button:null }
+      : liLocationPermission === 'unavailable'
+        ? { title:'Location is not available in this browser', detail:'Pick a town or valley with Change to look somewhere specific.', button:null }
+        : liLocationPermission === 'error'
+          ? { title:'We could not find your location', detail:'Try again, or pick a town or valley with Change.', button:'Try again' }
+          : { title:'See trails near you', detail:'Your position stays in this browser session and is not added to your profile.', button:'Turn on location' };
+  if(title) title.textContent = copy.title;
+  if(detail) detail.textContent = copy.detail;
+  if(button){
+    button.hidden = !copy.button;
+    button.disabled = !!copy.disabled;
+    if(copy.button) button.textContent = copy.button;
+  }
+  nudge.dataset.state = liLocationRequestPending ? 'pending' : liLocationPermission;
+}
+
+// The last trails opened, kept by trail.js in this browser only. The Explore
+// menu lists them as a shortlist, never as a history.
+const LI_RECENT_TRAILS_KEY = 'orma-recent-trails-v1';
+function liRecentTrails(){
+  try{
+    const list = JSON.parse(localStorage.getItem(LI_RECENT_TRAILS_KEY) || '[]');
+    return Array.isArray(list) ? list.filter(item => item && item.id && item.name).slice(0, 5) : [];
+  }catch(error){ return []; }
+}
+
+function liRenderRecentTrails(){
+  const host = document.getElementById('liExploreRecent');
   if(!host) return;
   host.replaceChildren();
-  LI_REGION_CHOICES.forEach(choice => {
-    const count = liRegionTrailCount(choice.region);
-    const card = document.createElement('button');
-    card.type = 'button';
-    card.className = 'li-region-card';
-    card.dataset.region = choice.region;
-    const name = document.createElement('strong');
-    name.textContent = choice.label;
-    const meta = document.createElement('span');
-    // A count nobody published is not invented; the card still works without it.
-    meta.textContent = count ? `${count} trails · ${choice.blurb}` : choice.blurb;
-    card.append(name, meta);
-    card.addEventListener('click', () => {
-      liSetLocationContext({
-        kind:'area', region:choice.region, country:choice.country,
-        valley:'all', label:choice.label,
-      });
-    });
-    host.append(card);
+  const recent = liRecentTrails();
+  if(!recent.length){
+    const note = document.createElement('span');
+    note.className = 'li-menu-note';
+    note.textContent = 'Trails you open will appear here.';
+    host.append(note);
+    return;
+  }
+  recent.forEach(item => {
+    const link = document.createElement('a');
+    link.className = 'li-menu-item';
+    link.href = `trail.html?id=${encodeURIComponent(item.id)}`;
+    link.textContent = item.name;
+    if(item.area){
+      const where = document.createElement('small');
+      where.textContent = item.area;
+      link.append(where);
+    }
+    host.append(link);
   });
 }
 
 function liRenderLocationContext(profile){
-  const gate = document.getElementById('liLocationGate');
   const toolbar = document.getElementById('liToolbar');
   const workspace = document.querySelector('#returningCustomerHomepage .li-body');
   const summary = document.getElementById('liLocationSummary');
   const summaryLabel = document.getElementById('liLocationSummaryLabel');
-  const gateDogName = document.getElementById('liLocationDogName');
-  const ready = !!liLocationContext;
-  const changing = ready && liLocationChanging;
-  if(gateDogName) gateDogName.textContent = profile && profile.name ? profile.name : 'your dog';
-  if(gate) gate.hidden = ready && !changing;
-  if(toolbar) toolbar.hidden = !ready;
-  if(workspace) workspace.hidden = !ready;
-  if(document.body) document.body.classList.toggle('li-location-changing', changing);
-  const gateTitle = document.getElementById('liLocationTitle');
-  const changeTitle = document.getElementById('liLocationChangeTitle');
-  const gateCancel = document.getElementById('liLocationCancelBtn');
-  if(gateTitle) gateTitle.hidden = changing;
-  if(changeTitle) changeTitle.hidden = !changing;
-  if(gateCancel) gateCancel.hidden = !changing;
-  if(summary){
-    summary.hidden = !ready;
-    if(summaryLabel) summaryLabel.textContent = liLocationContextLabel();
-  }
+  const summaryKick = document.getElementById('liLocationSummaryKick');
+  const showAll = document.getElementById('liShowAllBtn');
+  // The list and the map are always there: a place narrows them, it does not
+  // unlock them.
+  if(toolbar) toolbar.hidden = false;
+  if(workspace) workspace.hidden = false;
   if(document.body){
-    document.body.classList.toggle('li-location-needed', !ready);
-    document.body.classList.toggle('li-location-ready', ready);
+    document.body.classList.remove('li-location-needed');
+    document.body.classList.add('li-location-ready');
+  }
+  if(summary){
+    summary.hidden = !liLocationContext;
+    if(summaryLabel) summaryLabel.textContent = liLocationContextLabel();
+    if(summaryKick){
+      summaryKick.textContent = !liLocationContext ? '' : liIsAllTrailsContext(liLocationContext)
+        ? 'Showing'
+        : (liLocationContext.kind === 'current' || liLocationContext.kind === 'town') ? 'Looking near' : 'Looking in';
+    }
+    if(showAll) showAll.hidden = !liLocationContext || liIsAllTrailsContext(liLocationContext);
   }
   liSyncWalkDateInputs();
-  if(!ready) liPopulateAreaPicker();
-  // Only on a first choice: when changing an area you already have, the two
-  // regions are a step backwards from the valley you are sitting in.
-  const regions = document.getElementById('liLocationRegions');
-  if(regions){
-    regions.hidden = changing;
-    if(!changing && !regions.children.length) liRenderRegionChoices();
-  }
+  liRenderLocationNudge();
 }
 
 function liSetLocationContext(context){
@@ -771,7 +783,6 @@ function liSetLocationContext(context){
   liLocationContext = next;
   // A new area supersedes the old map framing and selection; the filters and
   // the date are about the dog and the day, so they stay.
-  liLocationChanging = false;
   liMapBounds = null;
   selectedTrailId = null;
   liPendingLocationCenter = (liLocationContext.kind === 'current' || liLocationContext.kind === 'town')
@@ -785,8 +796,6 @@ function liSetLocationContext(context){
   liQuery = '';
   const search = document.getElementById('liSearch');
   if(search) search.value = '';
-  const status = document.getElementById('liLocationStatus');
-  if(status) status.textContent = '';
   liClearLocationConditions();
   renderReturningHomepage(currentProfileForAdjust);
   liEnsureLocationConditions();
@@ -798,8 +807,9 @@ function liSetLocationContext(context){
   if(trailMapInstance) requestAnimationFrame(() => trailMapInstance.resize());
 }
 
+// Back to the whole catalogue, forgetting any remembered area.
 function liResetLocationContext(){
-  liLocationContext = null;
+  liLocationContext = liDefaultLocationContext();
   liRememberLocationContext(null);
   activeCountry = 'all';
   activeRegion = 'all';
@@ -808,16 +818,10 @@ function liResetLocationContext(){
   selectedTrailId = null;
   liPendingLocationCenter = null;
   liClearLocationConditions();
-  const picker = document.getElementById('liAreaPicker');
-  const choose = document.getElementById('liChooseAreaBtn');
-  if(picker) picker.hidden = true;
-  if(choose) choose.setAttribute('aria-expanded', 'false');
   renderReturningHomepage(currentProfileForAdjust);
   if(typeof window.CustomEvent === 'function'){
-    window.dispatchEvent(new window.CustomEvent('dolopaws-home-location-context-changed', { detail:{ ready:false } }));
+    window.dispatchEvent(new window.CustomEvent('dolopaws-home-location-context-changed', { detail:{ ready:true } }));
   }
-  const useLocation = document.getElementById('liUseLocationBtn');
-  if(useLocation) useLocation.focus();
 }
 
 liApplyLocationGeography();
@@ -2354,11 +2358,11 @@ function liResetAllFilters(){
 }
 
 function liCloseMenus(){
-  ['liFiltersMenu', 'liNewMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
+  ['liFiltersMenu', 'liNewMenu', 'liExploreMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
     const menu = document.getElementById(id);
     if(menu) menu.hidden = true;
   });
-  ['liFiltersBtn', 'liNewBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
+  ['liFiltersBtn', 'liNewBtn', 'liExploreBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
     const btn = document.getElementById(id);
     if(btn) btn.setAttribute('aria-expanded', 'false');
   });
@@ -2853,68 +2857,9 @@ function initLoggedInShell(){
   if(!filtersBtn) return;
   liShellWired = true;
 
-  const useLocation = document.getElementById('liUseLocationBtn');
-  const chooseArea = document.getElementById('liChooseAreaBtn');
-  const areaPicker = document.getElementById('liAreaPicker');
-  const areaSelect = document.getElementById('liAreaSelect');
-  const areaSearch = document.getElementById('liAreaSearch');
-  const areaCountry = document.getElementById('liAreaCountry');
-  const areaRegion = document.getElementById('liAreaRegion');
-  const walkDate = document.getElementById('liWalkDate');
   const recommendationDate = document.getElementById('liRecommendationDate');
   const adjustRecommendation = document.getElementById('liAdjustRecommendationBtn');
-  const locationStatus = document.getElementById('liLocationStatus');
-  const changeLocation = document.getElementById('liChangeLocationBtn');
-  if(useLocation) useLocation.addEventListener('click', () => {
-    if(!navigator.geolocation){
-      if(locationStatus) locationStatus.textContent = 'Location is not available in this browser. Choose an area instead.';
-      if(areaPicker) areaPicker.hidden = false;
-      if(chooseArea) chooseArea.setAttribute('aria-expanded', 'true');
-      return;
-    }
-    useLocation.disabled = true;
-    useLocation.querySelector('span').textContent = 'Finding you…';
-    if(locationStatus) locationStatus.textContent = '';
-    navigator.geolocation.getCurrentPosition(position => {
-      useLocation.disabled = false;
-      useLocation.querySelector('span').textContent = 'Use my location';
-      liSetLocationContext({
-        kind:'current',
-        lat:Number(position.coords.latitude),
-        lng:Number(position.coords.longitude),
-        radiusKm:LI_LOCATION_RADIUS_KM,
-      });
-    }, error => {
-      useLocation.disabled = false;
-      useLocation.querySelector('span').textContent = 'Use my location';
-      const denied = error && error.code === 1;
-      if(locationStatus) locationStatus.textContent = denied
-        ? 'Location access is off. Choose an area to keep going.'
-        : 'We could not find your location. Choose an area to keep going.';
-      if(areaPicker) areaPicker.hidden = false;
-      if(chooseArea) chooseArea.setAttribute('aria-expanded', 'true');
-      if(areaSearch) areaSearch.focus();
-    }, { enableHighAccuracy:false, timeout:10000, maximumAge:300000 });
-  });
-  if(chooseArea) chooseArea.addEventListener('click', () => {
-    const open = areaPicker ? areaPicker.hidden : false;
-    if(areaPicker) areaPicker.hidden = !open;
-    chooseArea.setAttribute('aria-expanded', String(open));
-    if(open && areaSearch) areaSearch.focus();
-  });
-  if(areaSearch) areaSearch.addEventListener('input', liUpdateAreaSubmit);
-  if(areaCountry) areaCountry.addEventListener('change', () => {
-    liPopulateAreaRegions(areaCountry.value);
-    liUpdateAreaSubmit();
-  });
-  if(areaRegion) areaRegion.addEventListener('change', () => {
-    liPopulateAreaValleys(areaRegion.value);
-    liUpdateAreaSubmit();
-  });
-  if(areaSelect) areaSelect.addEventListener('change', liUpdateAreaSubmit);
-  [walkDate, recommendationDate].forEach(input => {
-    if(input) input.addEventListener('change', () => liSetWalkDate(input.value));
-  });
+  if(recommendationDate) recommendationDate.addEventListener('change', () => liSetWalkDate(recommendationDate.value));
   if(adjustRecommendation) adjustRecommendation.addEventListener('click', () => {
     const toolbar = document.getElementById('liToolbar');
     const open = toolbar ? !toolbar.classList.contains('li-refine-open') : false;
@@ -2926,21 +2871,24 @@ function initLoggedInShell(){
       if(search) search.focus();
     }
   });
-  if(areaPicker) areaPicker.addEventListener('submit', event => {
-    event.preventDefault();
-    const choice = liAreaChoiceFromSearch() || liAreaChoiceFromBrowse();
-    if(!choice) return;
-    if(walkDate && walkDate.value){
-      liWalkDate = walkDate.value;
-      try{ sessionStorage.setItem(LI_WALK_DATE_SESSION_KEY, liWalkDate); }catch(error){}
-    }
-    liSetLocationContext(choice);
+  const changeLocation = document.getElementById('liChangeLocationBtn');
+  if(changeLocation) changeLocation.addEventListener('click', liFocusSearchForPlace);
+  const showAll = document.getElementById('liShowAllBtn');
+  if(showAll) showAll.addEventListener('click', () => liSetLocationContext(liDefaultLocationContext()));
+  const nudgeButton = document.getElementById('liLocationNudgeBtn');
+  if(nudgeButton) nudgeButton.addEventListener('click', liRequestCurrentLocation);
+  const nudgeDismiss = document.getElementById('liLocationNudgeDismiss');
+  if(nudgeDismiss) nudgeDismiss.addEventListener('click', liDismissLocationNudge);
+  const exploreNearMe = document.getElementById('liExploreNearMe');
+  if(exploreNearMe) exploreNearMe.addEventListener('click', () => {
+    liCloseMenus();
+    try{ sessionStorage.removeItem(LI_LOCATION_NUDGE_DISMISSED_KEY); }catch(error){}
+    liRequestCurrentLocation();
   });
-  if(changeLocation) changeLocation.addEventListener('click', liBeginLocationChange);
-  const cancelChange = document.getElementById('liLocationCancelBtn');
-  if(cancelChange) cancelChange.addEventListener('click', liCancelLocationChange);
-  document.addEventListener('keydown', event => {
-    if(event.key === 'Escape' && liLocationChanging) liCancelLocationChange();
+  const exploreAll = document.getElementById('liExploreAll');
+  if(exploreAll) exploreAll.addEventListener('click', () => {
+    liCloseMenus();
+    liSetLocationContext(liDefaultLocationContext());
   });
 
   const wireMenu = (btn, menu) => {
@@ -2957,6 +2905,12 @@ function initLoggedInShell(){
   const newBtn = document.getElementById('liNewBtn');
   const newMenu = document.getElementById('liNewMenu');
   if(newBtn && newMenu) wireMenu(newBtn, newMenu);
+  const exploreBtn = document.getElementById('liExploreBtn');
+  const exploreMenu = document.getElementById('liExploreMenu');
+  if(exploreBtn && exploreMenu){
+    wireMenu(exploreBtn, exploreMenu);
+    exploreBtn.addEventListener('click', liRenderRecentTrails);
+  }
   wireMenu(document.getElementById('liAccountBtn'), document.getElementById('liAccountMenu'));
 
   // Saved / All are views of the ranked list, wired as tabs beside Sort.
@@ -3066,7 +3020,10 @@ function initLoggedInShell(){
         renderReturningHomepage(currentProfileForAdjust);
       }, 160);
     });
-    search.addEventListener('focus', () => renderLiSearchSuggestions(currentProfileForAdjust));
+    search.addEventListener('focus', () => {
+      liEnsureAreaChoices();
+      renderLiSearchSuggestions(currentProfileForAdjust);
+    });
     search.addEventListener('keydown', (event) => {
       if(event.key === 'Enter'){
         // Enter on an arrowed-into suggestion opens that trail; a plain Enter
@@ -3119,6 +3076,8 @@ function initLoggedInShell(){
     if(liDevView){ window.location.href = '/'; return; }
     window.location.href = 'account.html?logout=1';
   });
+
+  liProbeLocationPermission();
 }
 
 function hideLiSearchSuggestions(){
@@ -3149,8 +3108,27 @@ function renderLiSearchSuggestions(profile){
     .slice(0, 6);
 
   suggestions.innerHTML = '';
+  // A town, valley, region or country typed here is a place to look, not a
+  // trail to open: choosing one becomes the location context and the list
+  // re-ranks around it. Places lead, because that is what the gate used to
+  // ask for and the only thing a trail name cannot express.
+  liEnsureAreaChoices();
+  const places = liPlaceChoicesFor(query);
+  places.forEach(choice => {
+    const option = document.createElement('button');
+    option.type = 'button';
+    option.className = 'li-search-option li-search-place';
+    option.setAttribute('role', 'option');
+    option.setAttribute('aria-selected', 'false');
+    option.innerHTML = `<span class="li-search-option-copy"><strong>${liEscapeHtml(choice.label)}</strong><small>${liEscapeHtml(liPlaceChoiceDetail(choice))}</small></span><span class="li-search-place-tag">Place</span>`;
+    option.addEventListener('click', () => {
+      hideLiSearchSuggestions();
+      liSetLocationContext(choice);
+    });
+    suggestions.appendChild(option);
+  });
   if(!matches.length){
-    suggestions.innerHTML = '<div class="li-search-empty">No routes found in this area.</div>';
+    if(!places.length) suggestions.innerHTML = '<div class="li-search-empty">No trails or places found.</div>';
   } else {
     matches.forEach((trail, index) => {
       const option = document.createElement('button');
@@ -3460,9 +3438,10 @@ async function renderReturningHomepage(profile, options = {}){
 
   const dayLabel = liWalkDateLabel();
   const locationPhrase = liRecommendationLocationPhrase();
-  const answerTitle = profile && profile.name
-    ? `Best walk for ${profile.name} ${locationPhrase} ${dayLabel}`
-    : `Best walk ${locationPhrase} ${dayLabel}`;
+  // The place phrase is empty for the whole catalogue, so the title is
+  // assembled from its parts rather than templated around a blank.
+  const answerTitle = ['Best walk', profile && profile.name ? `for ${profile.name}` : '', locationPhrase, dayLabel]
+    .filter(Boolean).join(' ');
   heading.textContent = answerTitle;
   const toolbarHeading = document.getElementById('liToolbarGreeting');
   if(toolbarHeading) toolbarHeading.textContent = answerTitle;
