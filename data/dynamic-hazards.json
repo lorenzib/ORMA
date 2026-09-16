@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-15T22:21:24.175Z",
+  "generatedAt": "2026-09-16T01:31:55.582Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
@@ -17,14 +17,15 @@
       "effectiveAt": "2026-09-17T00:00:00+00:00",
       "expiresAt": "2026-09-17T21:59:00+00:00",
       "firstPublishedAt": "2026-09-15T22:21:24.175Z",
-      "lastSeenAt": "2026-09-15T22:21:24.175Z",
+      "lastSeenAt": "2026-09-16T01:31:55.582Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
       ],
       "trailNames": [
         "Piancavallo Malghe Loop"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:rain:trentino-alto-adige",
@@ -41,7 +42,7 @@
       "effectiveAt": "2026-09-17T00:00:00+00:00",
       "expiresAt": "2026-09-17T21:59:00+00:00",
       "firstPublishedAt": "2026-09-15T22:21:24.175Z",
-      "lastSeenAt": "2026-09-15T22:21:24.175Z",
+      "lastSeenAt": "2026-09-16T01:31:55.582Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -234,7 +235,8 @@
         "Rundweg Beimsteinkogel",
         "Mittlerer Rundweg am Karer See",
         "Langer Rundweg am Karer See"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:rain:veneto",
@@ -251,7 +253,7 @@
       "effectiveAt": "2026-09-17T00:00:00+00:00",
       "expiresAt": "2026-09-17T21:59:00+00:00",
       "firstPublishedAt": "2026-09-15T22:21:24.175Z",
-      "lastSeenAt": "2026-09-15T22:21:24.175Z",
+      "lastSeenAt": "2026-09-16T01:31:55.582Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -282,7 +284,8 @@
         "Roda de Cherz",
         "Sentiero Alpago Natura",
         "Sentiero del Sabadalt"
-      ]
+      ],
+      "sourceStatus": "available"
     },
     {
       "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
@@ -299,7 +302,7 @@
       "effectiveAt": "2026-09-16T12:00:00+00:00",
       "expiresAt": "2026-09-17T21:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-15T22:21:24.175Z",
+      "lastSeenAt": "2026-09-16T01:31:55.582Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -324,7 +327,7 @@
       "effectiveAt": "2026-09-16T12:00:00+00:00",
       "expiresAt": "2026-09-17T21:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-15T22:21:24.175Z",
+      "lastSeenAt": "2026-09-16T01:31:55.582Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -534,7 +537,7 @@
       "effectiveAt": "2026-09-16T12:00:00+00:00",
       "expiresAt": "2026-09-17T21:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-15T22:21:24.175Z",
+      "lastSeenAt": "2026-09-16T01:31:55.582Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
