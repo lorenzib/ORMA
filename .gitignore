@@ -12,3 +12,10 @@ firebase-adminsdk*.json
 dist/
 backoffice-data/image-library-config.local.json
 _site/
+
+# Dev-server preview configs. Every entry is an absolute path on one machine --
+# a checkout, a Downloads folder, a session scratchpad that is deleted when the
+# session ends -- so the file is meaningless anywhere else, and every agent
+# session that starts a preview server appends to it. Tracking it guaranteed a
+# permanently dirty tree; the tooling recreates it wherever it is needed.
+.claude/launch.json
