@@ -42,7 +42,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
 
   test('the homepage ships the new controller and guest-context versions', () => {
     const html = read('index.html');
-    expect(html).toContain('homepage-search.js?v=20260917-1');
+    expect(html).toContain('homepage-search.js?v=20260917-2');
     expect(html).toContain('guest-context.js?v=20260917-2');
     expect(read('browse-trails.html')).toContain('guest-context.js?v=20260917-2');
   });

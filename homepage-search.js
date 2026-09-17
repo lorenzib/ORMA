@@ -542,6 +542,18 @@
       var isGuest = state.dog === 'medium';
       var featTitle = collection ? collection.title : 'Trails selected for your dog';
       var featSub = collection ? collection.subtitle : 'Published routes ranked for the dog you are browsing with';
+      var featCollectionHref = collection
+        ? 'collections.html?collection=' + encodeURIComponent(collection.id)
+        : 'browse-trails.html';
+      var featCollectionCount = collection && Array.isArray(collection.trailIds)
+        ? collection.trailIds.length
+        : feat.length;
+      var featTitleHtml = collection
+        ? '<a class="hp-featured-title-link" href="' + featCollectionHref + '">' + esc(featTitle) + '</a>'
+        : esc(featTitle);
+      var featCollectionCta = collection
+        ? 'See all ' + featCollectionCount + ' trails in this collection →'
+        : 'Browse more →';
       var featRankLine = isGuest
         ? 'Browsing as a guest, ranked for a medium dog.'
         : (state.dog === 'custom'
@@ -572,13 +584,13 @@
         '<section class="hp-featured" aria-labelledby="hpFeaturedTitle">' +
           '<div class="hp-coll-head"><div>' +
             '<div class="hp-kick hp-kick-left">Featured this week</div>' +
-            '<h2 class="hp-feat-h2" id="hpFeaturedTitle">' + esc(featTitle) + '</h2>' +
+            '<h2 class="hp-feat-h2" id="hpFeaturedTitle">' + featTitleHtml + '</h2>' +
             '<p class="hp-coll-sub">' + esc(featSub) + '</p>' +
             '<p class="hp-coll-rank-row"><strong>' + esc(featRankLine) + '</strong> <button type="button" class="hp-coll-profile-cta hp-dog-profile-cta" data-action="create-dog-profile">' + esc(featProfileCta) + '</button></p></div></div>' +
           '<div class="hp-coll-grid">' + feat.map(function (entry) {
             return ccardHtml(entry, esc(entry.t.distance) + ' km · ' + esc(valleyOf(entry.t)));
           }).join('') + '</div>' +
-          '<a class="hp-how-link" href="browse-trails.html">Browse more →</a>' +
+          '<a class="hp-how-link hp-featured-collection-cta" href="' + featCollectionHref + '">' + esc(featCollectionCta) + '</a>' +
         '</section>';
     }
   }

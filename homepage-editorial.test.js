@@ -84,6 +84,9 @@ describe('guest homepage editorial structure', () => {
     expect(html.indexOf('collections-data.js')).toBeLessThan(html.indexOf('homepage-search.js'));
     expect(controller).toContain('DoloPawsCollections');
     expect(controller).toContain('catalogue.trailsFor(collection, trails)');
+    expect(controller).toContain("'collections.html?collection=' + encodeURIComponent(collection.id)");
+    expect(controller).toContain('class="hp-featured-title-link"');
+    expect(controller).toContain("'See all ' + featCollectionCount + ' trails in this collection →'");
     expect(controller).not.toContain('var THEMES');
   });
 
@@ -136,7 +139,7 @@ describe('guest homepage editorial structure', () => {
   test('uses the shared wider website canvas', () => {
     const css = read('homepage-editorial.css');
     expect(css).toContain('.hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}');
-    expect(read('index.html')).toContain('homepage-editorial.css?v=20260908-2');
-    expect(read('index.html')).toContain('homepage-search.js?v=20260917-1');
+    expect(read('index.html')).toContain('homepage-editorial.css?v=20260917-1');
+    expect(read('index.html')).toContain('homepage-search.js?v=20260917-2');
   });
 });
