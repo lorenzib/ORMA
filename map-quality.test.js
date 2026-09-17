@@ -30,7 +30,7 @@ describe('shared map quality profile', () => {
     pages.forEach(([page, mapScript]) => {
       const html = read(page);
       if(page === 'trail.html'){
-        expect(html).toContain('trail-app.bundle.js?v=20260917-5');
+        expect(html).toContain('trail-app.bundle.js?v=20260917-6');
         expect(html).not.toContain('<script src="map-runtime.js');
         return;
       }
@@ -81,6 +81,27 @@ describe('shared map quality profile', () => {
     // Inserted below the first label layer so place names stay on top.
     expect(style).toContain('function firstLabelLayerId(map)');
     expect(style).toContain('function quietBasemap(map)');
+  });
+
+  test('draws elevation contours from the DEM, lazily and guarded', () => {
+    const style = read('map-style.js');
+    const runtime = read('map-runtime.js');
+    const trail = read('trail.js');
+
+    // Contours are generated client-side by maplibre-contour from the terrarium
+    // DEM -- no contour tile server, no API key. The plugin is loaded lazily
+    // and the styling is a no-op when it is absent, never an error.
+    expect(runtime).toContain('function loadContour()');
+    expect(runtime).toContain('maplibre-contour@');
+    expect(style).toContain('function addContours(map, options)');
+    expect(style).toContain("encoding: 'terrarium'");
+    expect(style).toContain('contourProtocolUrl(');
+    // Labels must use Noto -- openfreemap serves no Open Sans.
+    expect(style).toContain("'text-font': FONT_REGULAR");
+    // The trail detail map wires it in, guarded so a load failure leaves the
+    // base map untouched.
+    expect(trail).toContain('DoloPawsMapRuntime.loadContour()');
+    expect(trail).toContain('ORMAMapStyle.addContours(map)');
   });
 
   test('the selected route highlights the marked path from underneath', () => {

@@ -7,7 +7,13 @@
   const VERSION = '5.24.0';
   const SCRIPT_URL = `https://unpkg.com/maplibre-gl@${VERSION}/dist/maplibre-gl.js`;
   const STYLE_URL = `https://unpkg.com/maplibre-gl@${VERSION}/dist/maplibre-gl.css`;
+  // maplibre-contour turns the terrarium DEM (already fetched for hillshade)
+  // into vector contour lines in a worker -- the elevation detail a general
+  // street basemap lacks, with no contour tile server and no API key.
+  const CONTOUR_VERSION = '0.1.1';
+  const CONTOUR_URL = `https://unpkg.com/maplibre-contour@${CONTOUR_VERSION}/dist/index.min.js`;
   let runtimePromise = null;
+  let contourPromise = null;
 
   function loadStyle(){
     const existing = document.querySelector('link[data-dolopaws-maplibre]');
@@ -49,6 +55,32 @@
       runtimePromise = Promise.all([loadStyle(), loadScript()]).then(([, maplibre]) => maplibre);
     }
     return runtimePromise;
+  }
+
+  // Loaded lazily and only on request, after maplibre-gl itself: a map that
+  // never asks for contours never pays for the plugin. Resolves to the global
+  // `mlcontour` namespace.
+  function loadContour(){
+    if(global.mlcontour) return Promise.resolve(global.mlcontour);
+    if(!contourPromise){
+      contourPromise = load().then(() => new Promise((resolve, reject) => {
+        if(global.mlcontour) return resolve(global.mlcontour);
+        const existing = document.querySelector('script[data-orma-contour]');
+        if(existing){
+          existing.addEventListener('load', () => resolve(global.mlcontour), { once:true });
+          existing.addEventListener('error', () => reject(new Error('Contour plugin could not be loaded.')), { once:true });
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = CONTOUR_URL;
+        script.async = true;
+        script.dataset.ormaContour = CONTOUR_VERSION;
+        script.onload = () => resolve(global.mlcontour);
+        script.onerror = () => reject(new Error('Contour plugin could not be loaded.'));
+        document.head.appendChild(script);
+      }));
+    }
+    return contourPromise;
   }
 
   function whenVisible(target, initialise, options){
@@ -177,7 +209,7 @@
     });
   }
 
-  global.DoloPawsMapRuntime = { load, whenVisible, onIdle, mapOptions, enhance, VERSION };
+  global.DoloPawsMapRuntime = { load, loadContour, whenVisible, onIdle, mapOptions, enhance, VERSION };
 })(window);
 ;
 
@@ -446,6 +478,95 @@
     return { casing: id + '-casing', line: id };
   }
 
+  // ── Contour lines ─────────────────────────────────────────────────────
+  // The elevation detail a general street basemap (openfreemap Liberty) does
+  // not carry and a paid outdoors style (Mapbox/AllTrails) does. Generated
+  // client-side by maplibre-contour from the same AWS Terrarium DEM the
+  // hillshade reads -- free, no contour tile server, no API key. The caller
+  // must have loaded the plugin first (DoloPawsMapRuntime.loadContour); if the
+  // `mlcontour` global is absent this is a no-op, never an error.
+  const CONTOUR_DEM_URL = 'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png';
+  const CONTOUR_SOURCE = 'orma-contours';
+  const CONTOUR_LINE_LAYER = 'contour-lines';
+  const CONTOUR_LABEL_LAYER = 'contour-labels';
+  // One DemSource for every map: setupMaplibre registers a protocol on the
+  // maplibre-gl global once, and each map reuses the same contour tiles.
+  let contourDem = null;
+
+  function addContours(map, options) {
+    const config = options || {};
+    const mlcontour = global.mlcontour;
+    const maplibre = global.maplibregl;
+    if (!map || !mlcontour || !maplibre) return null;
+    if (map.getLayer(CONTOUR_LINE_LAYER)) return CONTOUR_LINE_LAYER;
+    try {
+      if (!contourDem) {
+        contourDem = new mlcontour.DemSource({
+          url: CONTOUR_DEM_URL, encoding: 'terrarium', maxzoom: 15, worker: true,
+        });
+        contourDem.setupMaplibre(maplibre);
+      }
+      if (!map.getSource(CONTOUR_SOURCE)) {
+        map.addSource(CONTOUR_SOURCE, {
+          type: 'vector',
+          maxzoom: 15,
+          attribution: 'Elevation © AWS Terrain Tiles',
+          tiles: [contourDem.contourProtocolUrl({
+            // metres: [minor interval, index interval]. Tighter as you zoom in,
+            // so a regional view is not a scribble and a trailhead view has
+            // real relief.
+            thresholds: { 11: [200, 1000], 12: [100, 500], 13: [100, 500], 14: [50, 200], 15: [20, 100] },
+            elevationKey: 'ele', levelKey: 'level', contourLayer: 'contours', overzoom: 1,
+          })],
+        });
+      }
+      const minzoom = Number.isFinite(config.minzoom) ? config.minzoom : 11;
+      // Lines sit UNDER the marked network. The waymarked raster is mostly
+      // transparent, so contours read everywhere except directly beneath a
+      // trail line -- which is the right order, the path draws over the relief.
+      const belowNetwork = map.getLayer(WAYMARKED_LAYER) ? WAYMARKED_LAYER : firstLabelLayerId(map);
+      map.addLayer({
+        id: CONTOUR_LINE_LAYER, type: 'line', source: CONTOUR_SOURCE, 'source-layer': 'contours',
+        minzoom,
+        layout: { 'line-join': 'round' },
+        paint: {
+          'line-color': 'rgba(122,104,82,0.5)',
+          'line-width': ['match', ['get', 'level'], 1, 1.2, 0.55],
+          'line-opacity': ['interpolate', ['linear'], ['zoom'], 11, 0.35, 13, 0.7, 15, 0.85],
+        },
+      }, belowNetwork && map.getLayer(belowNetwork) ? belowNetwork : undefined);
+      // Index-contour elevation labels, above the raster but below place names.
+      // Noto only -- openfreemap serves no Open Sans (see FONT_REGULAR).
+      const belowLabels = firstLabelLayerId(map);
+      map.addLayer({
+        id: CONTOUR_LABEL_LAYER, type: 'symbol', source: CONTOUR_SOURCE, 'source-layer': 'contours',
+        minzoom: minzoom + 1,
+        filter: ['>', ['get', 'level'], 0],
+        layout: {
+          'symbol-placement': 'line', 'text-size': 10.5, 'text-max-angle': 25,
+          'text-field': ['concat', ['number-format', ['get', 'ele'], {}], ' m'],
+          'text-font': FONT_REGULAR,
+        },
+        paint: {
+          'text-color': 'rgba(92,78,58,0.9)',
+          'text-halo-color': 'rgba(255,253,247,0.85)',
+          'text-halo-width': 1.3,
+        },
+      }, belowLabels && map.getLayer(belowLabels) ? belowLabels : undefined);
+      return CONTOUR_LINE_LAYER;
+    } catch (error) {
+      // Contours are an enhancement; never let them break the base map.
+      if (typeof console !== 'undefined' && console.warn) console.warn('ORMA contours skipped:', error && error.message);
+      return null;
+    }
+  }
+
+  function setContoursVisible(map, visible) {
+    [CONTOUR_LINE_LAYER, CONTOUR_LABEL_LAYER].forEach(id => {
+      if (map && map.getLayer(id)) map.setLayoutProperty(id, 'visibility', visible ? 'visible' : 'none');
+    });
+  }
+
   global.ORMAMapStyle = {
     WAYMARKED_SOURCE,
     WAYMARKED_LAYER,
@@ -464,6 +585,11 @@
     quietBasemap,
     routeLinePaint,
     addRouteLine,
+    addContours,
+    setContoursVisible,
+    CONTOUR_SOURCE,
+    CONTOUR_LINE_LAYER,
+    CONTOUR_LABEL_LAYER,
   };
   // Historic name kept so nothing has to change in one commit.
   global.DoloPawsMapStyle = global.ORMAMapStyle;
@@ -14623,6 +14749,14 @@ function renderTrail(t){
       window.ORMAMapStyle.quietBasemap(map);
       window.ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId });
       if (typeof addBaseHillshade === 'function') addBaseHillshade(map, 'waymarked-hiking-layer');
+      // Elevation contours from the same DEM -- the detail a street basemap
+      // lacks. Lazy-loaded and fully guarded: if the plugin fails, the map is
+      // unchanged.
+      if (window.DoloPawsMapRuntime && window.DoloPawsMapRuntime.loadContour) {
+        window.DoloPawsMapRuntime.loadContour()
+          .then(() => window.ORMAMapStyle.addContours(map))
+          .catch(() => {});
+      }
       const routesToggleBtn = document.getElementById('routesToggle');
       if (routesToggleBtn){
         routesToggleBtn.classList.add('on');
