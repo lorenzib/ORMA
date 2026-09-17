@@ -20,6 +20,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { createHash } = require('crypto');
 const yaml = require('js-yaml');
 
 const ROOT = path.resolve(__dirname, '..');
@@ -97,6 +98,151 @@ function walk(dir, relativeDir, isExcluded, isIncluded, stats) {
   }
 }
 
+
+// ---------------------------------------------------------------------------
+// Cache keys, derived from the file rather than typed.
+//
+// Every asset reference carried a hand-written ?v=20260917-4. Changing a file
+// and not the number beside it leaves browsers on the copy they already have
+// until the ten-minute max-age lapses, and the deploy looks like it did
+// nothing: #460 shipped a scoring fix whose accessor never loaded, because the
+// bundle changed and its number did not. A third of the site's asset
+// references were already behind the file they name.
+//
+// asset-version-from-content.test.js fixed exactly this for the backoffice and
+// says why in its own words: "A cache key written by hand goes stale the moment
+// somebody forgets it, and forgetting is invisible." Same remedy here, at the
+// one point every published page passes through.
+//
+// The keys in the source pages are left alone. They are what a local server
+// hands out, they are what several suites pin, and they are overwritten here
+// on the way to Pages, so nothing has to remember them any more.
+
+const STAMPABLE = /\.(?:js|css)$/;
+// Skip anything already absolute or protocol-relative: not ours to key.
+const EXTERNAL = /^(?:[a-z]+:)?\/\//i;
+
+function contentHash(file) {
+  return createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+}
+
+function contentKey(file) {
+  return contentHash(file).slice(0, 10);
+}
+
+// build-regional-runtime-data.js already keys every trail-details file by the
+// same sha256, sliced to twelve rather than ten. A second stamper rewriting
+// those would shorten a correct key for no reason and leave two systems
+// disagreeing about the same file. An existing key that is a prefix of the
+// file's real hash is already right, whatever length its author chose.
+function alreadyKeyed(existing, file) {
+  if (!existing || !/^[0-9a-f]{8,}$/.test(existing)) return false;
+  return contentHash(file).startsWith(existing);
+}
+
+/**
+ * Rewrite every local .js/.css reference in one page to carry its file's hash.
+ * Paths resolve against the page, so ../styles.css from trails/x.html and
+ * styles.css from index.html reach the same file and get the same key.
+ */
+function stampPage(pageFile, outDir, keys) {
+  const html = fs.readFileSync(pageFile, 'utf8');
+  const pageDir = path.dirname(pageFile);
+  let changed = 0;
+  const stamped = html.replace(
+    /(src|href)="([^"?#]+\.(?:js|css))(\?[^"]*)?"/g,
+    (match, attribute, reference, query) => {
+      if (EXTERNAL.test(reference)) return match;
+      // A leading slash is this site's root, not somebody else's.
+      const target = reference.startsWith('/')
+        ? path.join(outDir, reference.slice(1))
+        : path.resolve(pageDir, reference);
+      // Never key a path that escaped the built site, or one that is not there.
+      if (!target.startsWith(outDir) || !fs.existsSync(target)) return match;
+      const existing = query && /^\?v=([\w.-]+)$/.exec(query);
+      if (existing && alreadyKeyed(existing[1], target)) return match;
+      if (!keys.has(target)) keys.set(target, contentKey(target));
+      changed += 1;
+      return `${attribute}="${reference}?v=${keys.get(target)}"`;
+    },
+  );
+  if (stamped !== html) fs.writeFileSync(pageFile, stamped);
+  return changed;
+}
+
+/**
+ * Keys written into script rather than into an attribute: mobile-nav builds
+ * `new URL('device-handoff.js?v=...')` and a page or two assigns `.src` from a
+ * string. Those go stale the same way and no attribute pass can see them.
+ *
+ * This only ever *replaces* a key that is already there, so it cannot invent a
+ * reference out of a sentence that happens to mention a filename.
+ */
+function stampEmbeddedKeys(file, outDir, keys) {
+  const source = fs.readFileSync(file, 'utf8');
+  let changed = 0;
+  const stamped = source.replace(
+    /([\w./-]+\.(?:js|css))\?v=([\w.-]+)/g,
+    (match, reference, existing) => {
+      if (EXTERNAL.test(reference)) return match;
+      const target = reference.startsWith('/')
+        ? path.join(outDir, reference.slice(1))
+        : path.resolve(path.dirname(file), reference);
+      if (!target.startsWith(outDir) || !fs.existsSync(target)) return match;
+      if (alreadyKeyed(existing, target)) return match;
+      if (!keys.has(target)) keys.set(target, contentKey(target));
+      changed += 1;
+      return `${reference}?v=${keys.get(target)}`;
+    },
+  );
+  if (stamped !== source) fs.writeFileSync(file, stamped);
+  return changed;
+}
+
+function eachFile(dir, matches, visit) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) eachFile(full, matches, visit);
+    else if (entry.isFile() && matches(entry.name)) visit(full);
+  }
+}
+
+// A cycle of scripts quoting each other's keys has no answer: stamping either
+// one changes the hash the other just recorded, for ever. Ten rounds is far
+// past anything real, and stopping loudly beats publishing keys that name
+// nothing.
+const MAX_SETTLING_ROUNDS = 10;
+
+function stampSite(outDir) {
+  // Keys inside scripts first, and repeatedly until nothing moves. Stamping a
+  // file changes that file's own bytes, so any page quoting it has to be keyed
+  // after it has settled -- otherwise the page names a hash the file no longer
+  // has. That is not hypothetical: mobile-nav.js carries device-handoff.js's
+  // key, and 179 pages carry mobile-nav.js's.
+  let rounds = 0;
+  for (;;) {
+    let moved = 0;
+    const round = new Map();
+    eachFile(outDir, name => name.endsWith('.js'), file => {
+      moved += stampEmbeddedKeys(file, outDir, round);
+    });
+    if (!moved) break;
+    if ((rounds += 1) >= MAX_SETTLING_ROUNDS) {
+      throw new Error('Asset cache keys never settled; scripts are quoting each other in a cycle.');
+    }
+  }
+
+  // Now every file's bytes are final, so a hash taken here stays true.
+  const keys = new Map();
+  let pages = 0;
+  let references = 0;
+  eachFile(outDir, name => name.endsWith('.html'), file => {
+    const changed = stampPage(file, outDir, keys);
+    if (changed) { pages += 1; references += changed; }
+  });
+  return { pages, references, assets: keys.size, settlingRounds: rounds };
+}
+
 function build() {
   const { exclude, include } = readConfig();
   const isExcluded = buildMatchers(exclude);
@@ -111,7 +257,9 @@ function build() {
   // Keep Pages serving the artifact verbatim.
   fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
 
-  return { ...stats, exclude };
+  const stamped = stampSite(OUT);
+
+  return { ...stats, exclude, stamped };
 }
 
 const MANIFEST = path.join(ROOT, 'pages-public-manifest.json');
@@ -144,13 +292,15 @@ function writeManifest(site) {
   return listed;
 }
 
-module.exports = { build, readConfig, patternToTest, buildMatchers, topLevelOf, readManifest, OUT, MANIFEST };
+module.exports = { build, readConfig, patternToTest, buildMatchers, topLevelOf, readManifest,
+  contentKey, contentHash, alreadyKeyed, stampPage, stampEmbeddedKeys, stampSite, OUT, MANIFEST };
 
 if (require.main === module) {
   const writeMode = process.argv.includes('--write-manifest');
   const stats = build();
   console.log(`Built ${path.relative(ROOT, OUT) || '_site'}, ${stats.copied} files published.`);
   console.log(`Excluded ${stats.excluded.length} top-level entries via _config.yml.`);
+  console.log(`Stamped ${stats.stamped.references} asset references across ${stats.stamped.pages} pages from ${stats.stamped.assets} files.`);
   if (writeMode) {
     const listed = writeManifest(OUT);
     console.log(`Wrote pages-public-manifest.json, ${listed.directories.length} directories, ${listed.files.length} files.`);
