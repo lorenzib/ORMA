@@ -32,6 +32,14 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     expect(browse).toContain("if(dogValue === 'custom') dogProfile = deviceDogProfile() || dogProfile;");
   });
 
+  test('Compare defaults to the device dog unless the URL names a dog', () => {
+    const compare = read('compare-page.js');
+    expect(compare).toContain("const dogParam = params.get('dog') || (deviceDogProfile() ? 'custom' : 'medium');");
+    expect(compare).toContain("if(dog === 'custom') return deviceDogProfile() || profiles.medium;");
+    expect(compare).toContain('dog:dogParam,');
+    expect(read('compare.html')).toContain('compare-page.js?v=20260917-1');
+  });
+
   test('the homepage ships the new controller and guest-context versions', () => {
     const html = read('index.html');
     expect(html).toContain('homepage-search.js?v=20260917-1');
