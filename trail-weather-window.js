@@ -7,8 +7,12 @@
 
   const DAYLIGHT_BUFFER_MINUTES=60;
   const PLANNING_BUFFER_MINUTES=30;
-  const LONG_ROUTE_HOURS=2.5;
-  const MORNING_START_LIMIT=9*60;
+  const PREFERRED_START_MINUTES=9*60;
+  const SUNSET_NOTE_WINDOW_MINUTES=2*60;
+  // Heat thresholds already shipped on the trail page's conditions card,
+  // reused here so one number does not mean two different things in two places.
+  const WARM_C=22;
+  const HOT_C=28;
 
   function dayKey(value){return String(value||'').slice(0,10);}
 
@@ -70,16 +74,40 @@
       const candidates=hours.filter(hour=>hour.day===date&&hour.minute>=earliestStart&&hour.minute<=latestStart);
       if(!candidates.length)continue;
 
-      const morning=candidates.filter(hour=>hour.minute<=MORNING_START_LIMIT);
-      const pool=durationHours>=LONG_ROUTE_HOURS?morning:(morning.length?morning:candidates);
-      if(!pool.length)continue;
-      const scored=pool.map(candidate=>{
+      const practicalStart=Math.max(earliestStart,PREFERRED_START_MINUTES);
+      const scored=candidates.map(candidate=>{
         const routeTemps=hours
           .filter(hour=>hour.day===date&&hour.minute>=candidate.minute&&hour.minute<candidate.minute+durationMinutes)
-          .map(hour=>hour.temp);
-        return {...candidate,score:average(routeTemps)};
-      }).sort((a,b)=>(a.score-b.score)||(a.minute-b.minute));
-      const chosen=scored[0];
+          .map(hour=>hour.temp)
+          .filter(Number.isFinite);
+        return {
+          ...candidate,
+          averageTemp:average(routeTemps),
+          maxTemp:routeTemps.length?Math.max(...routeTemps):Infinity,
+          hasTemperature:routeTemps.length>0,
+          practicalDistance:Math.abs(candidate.minute-practicalStart),
+        };
+      });
+      const weatherCandidates=scored.filter(candidate=>candidate.hasTemperature);
+      const comfortable=weatherCandidates.filter(candidate=>candidate.maxTemp<WARM_C);
+      let chosen;
+      let reason;
+      if(comfortable.length){
+        // If every viable hour is cool, do not mistake dawn for a useful
+        // recommendation merely because it is one degree colder. Prefer a
+        // practical 09:00 start (or the next viable hour today). A genuinely
+        // warm afternoon still narrows this pool to the cooler earlier hours.
+        chosen=comfortable.sort((a,b)=>(a.practicalDistance-b.practicalDistance)||(a.minute-b.minute))[0];
+        reason=weatherCandidates.some(candidate=>candidate.maxTemp>=WARM_C)?'avoid-heat':'comfortable';
+      }else if(weatherCandidates.length){
+        // No fully cool window exists: minimise the hottest hour across the
+        // walk, then its average temperature, before breaking ties by time.
+        chosen=weatherCandidates.sort((a,b)=>(a.maxTemp-b.maxTemp)||(a.averageTemp-b.averageTemp)||(a.minute-b.minute))[0];
+        reason='least-warm';
+      }else{
+        chosen=scored.sort((a,b)=>(a.practicalDistance-b.practicalDistance)||(a.minute-b.minute))[0];
+        reason='daylight-only';
+      }
       return {
         dayOffset,
         date,
@@ -88,6 +116,8 @@
         sunsetMinutes:sunset,
         daylightBufferMinutes:DAYLIGHT_BUFFER_MINUTES,
         durationHours,
+        maxTemperatureC:Number.isFinite(chosen.maxTemp)?Math.round(chosen.maxTemp):null,
+        reason,
       };
     }
     return null;
@@ -97,18 +127,28 @@
     if(!result)return 'No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.';
     const start=formatTime(result.startMinutes);
     const finish=formatTime(result.finishMinutes);
-    const prefix=result.dayOffset===0
-      ? 'Cooler daylight start:'
+    const when=result.dayOffset===0
+      ? `<strong>${start}</strong>`
       : result.dayOffset===1
-        ? 'Next cooler daylight start: tomorrow at'
-        : `Next cooler daylight start on ${result.date}:`;
-    return `${prefix} <strong>${start}</strong> · for this ${result.durationHours} h route, finish by <strong>${finish}</strong>, at least 1 hour before forecast sunset.`;
+        ? `tomorrow at <strong>${start}</strong>`
+        : `on ${result.date} at <strong>${start}</strong>`;
+    const maximum=Number.isFinite(result.maxTemperatureC)?` (up to ${result.maxTemperatureC}°C)`:'';
+    let lead;
+    let close='';
+    if(result.reason==='comfortable')lead=`The forecast stays cool during the walk${maximum}. Suggested start: ${when}`;
+    else if(result.reason==='avoid-heat'){
+      lead=`Cooler forecast window${maximum}: start ${when}`;
+      close=' before the warmer part of the day';
+    }else if(result.reason==='least-warm'){
+      lead=`Least-warm forecast window${maximum}: start ${when}`;
+      close=' before the hottest available hours';
+    }else lead=`Suggested daylight start: ${when}`;
+    const daylightMargin=result.sunsetMinutes-result.finishMinutes;
+    const daylight=daylightMargin<=SUNSET_NOTE_WINDOW_MINUTES
+      ? ` This leaves ${Math.max(1,Math.floor(daylightMargin/60))} hour${daylightMargin>=120?'s':''} before sunset.`
+      : '';
+    return `${lead} · for this ${result.durationHours} h route, finish around <strong>${finish}</strong>${close}.${daylight}`;
   }
-
-  // Heat thresholds already shipped on the trail page's conditions card, reused
-  // here so one number does not mean two different things in two places.
-  const WARM_C=22;
-  const HOT_C=28;
 
   // The hour heat actually becomes a problem today, read off the forecast
   // rather than asserted. Returns null when the forecast never crosses the
@@ -171,5 +211,5 @@
     return isFresh(conditions,now)?conditions:{status:'not-provided'};
   }
 
-  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,WARM_C,HOT_C,CONDITIONS_MAX_AGE_MS,minuteOfDay,formatTime,parseDurationHours,recommendation,markup,heatOnset,currentConditions,isFresh,scoringConditions};
+  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,PREFERRED_START_MINUTES,WARM_C,HOT_C,CONDITIONS_MAX_AGE_MS,minuteOfDay,formatTime,parseDurationHours,recommendation,markup,heatOnset,currentConditions,isFresh,scoringConditions};
 });

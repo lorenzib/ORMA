@@ -19,29 +19,75 @@ function forecast(days = ['2026-08-20', '2026-08-21']){
 }
 
 describe('route-aware walking window', () => {
-  test('recommends an early morning start for a long alpine route', () => {
+  test('does not recommend dawn merely because a cool day is coldest then', () => {
     const result=weatherWindow.recommendation({
       ...forecast(),
       currentTime:'2026-08-20T05:00',
       durationHours:3.5,
     });
 
-    expect(result).toMatchObject({dayOffset:0,startMinutes:360,finishMinutes:570});
+    expect(result).toMatchObject({dayOffset:0,startMinutes:540,finishMinutes:750,reason:'comfortable'});
     expect(result.sunsetMinutes-result.finishMinutes).toBeGreaterThanOrEqual(60);
-    expect(weatherWindow.markup(result)).toContain('Cooler daylight start: <strong>06:00</strong>');
-    expect(weatherWindow.markup(result)).toContain('finish by <strong>09:30</strong>');
+    expect(weatherWindow.markup(result)).toContain('The forecast stays cool during the walk');
+    expect(weatherWindow.markup(result)).toContain('Suggested start: <strong>09:00</strong>');
+    expect(weatherWindow.markup(result)).toContain('finish around <strong>12:30</strong>');
+    expect(weatherWindow.markup(result)).not.toContain('sunset');
   });
 
-  test('moves a long route to tomorrow morning once today’s morning window has passed', () => {
+  test('uses the next practical hour today when cool weather and daylight allow it', () => {
     const result=weatherWindow.recommendation({
       ...forecast(),
       currentTime:'2026-08-20T12:58',
       durationHours:3.5,
     });
 
-    expect(result).toMatchObject({dayOffset:1,startMinutes:360,finishMinutes:570});
-    expect(weatherWindow.markup(result)).toContain('Next cooler daylight start: tomorrow at <strong>06:00</strong>');
-    expect(weatherWindow.markup(result)).not.toMatch(/18:00|21:00/);
+    expect(result).toMatchObject({dayOffset:0,startMinutes:840,finishMinutes:1050,reason:'comfortable'});
+    expect(weatherWindow.markup(result)).toContain('Suggested start: <strong>14:00</strong>');
+    expect(weatherWindow.markup(result)).toContain('finish around <strong>17:30</strong>');
+  });
+
+  test('moves the recommendation to a practical hour tomorrow after today closes', () => {
+    const result=weatherWindow.recommendation({
+      ...forecast(),
+      currentTime:'2026-08-20T19:30',
+      durationHours:3.5,
+    });
+
+    expect(result).toMatchObject({dayOffset:1,startMinutes:540,finishMinutes:750,reason:'comfortable'});
+    expect(weatherWindow.markup(result)).toContain('Suggested start: tomorrow at <strong>09:00</strong>');
+  });
+
+  test('still recommends an early window when the hourly forecast turns warm', () => {
+    const input=forecast(['2026-07-15']);
+    input.sunrises=['2026-07-15T05:45'];
+    input.sunsets=['2026-07-15T20:45'];
+    input.hourlyTemps=input.hourlyTimes.map(time=>{
+      const hour=Number(time.slice(11,13));
+      return hour<7?16:hour<8?18:hour<10?21:hour<11?23:29;
+    });
+    const result=weatherWindow.recommendation({
+      ...input,
+      currentTime:'2026-07-15T05:00',
+      durationHours:3.5,
+    });
+
+    expect(result).toMatchObject({startMinutes:360,finishMinutes:570,reason:'avoid-heat'});
+    expect(weatherWindow.markup(result)).toContain('Cooler forecast window');
+    expect(weatherWindow.markup(result)).toContain('before the warmer part of the day');
+  });
+
+  test('mentions sunset only when it materially constrains the walk', () => {
+    const input=forecast(['2026-09-17']);
+    input.sunrises=['2026-09-17T06:50'];
+    input.sunsets=['2026-09-17T18:45'];
+    const result=weatherWindow.recommendation({
+      ...input,
+      currentTime:'2026-09-17T13:20',
+      durationHours:3.5,
+    });
+
+    expect(result).toMatchObject({startMinutes:840,finishMinutes:1050});
+    expect(weatherWindow.markup(result)).toContain('This leaves 1 hour before sunset.');
   });
 
   test('never recommends a start that cannot preserve the sunset buffer', () => {
@@ -137,10 +183,10 @@ describe('heat onset and today\'s conditions', () => {
       durationHours:'3–4',
     });
 
-    // Upper bound 4 h: a morning start finishing four hours later. Before the
+    // Upper bound 4 h: a practical cool-day start finishing four hours later. Before the
     // fix Number('3–4') was NaN, so it collapsed to 1 h and "finished" at 07:00.
-    expect(result).toMatchObject({dayOffset:0,startMinutes:360,finishMinutes:600,durationHours:4});
+    expect(result).toMatchObject({dayOffset:0,startMinutes:540,finishMinutes:780,durationHours:4});
     expect(result.sunsetMinutes-result.finishMinutes).toBeGreaterThanOrEqual(60);
-    expect(weatherWindow.markup(result)).toContain('for this 4 h route, finish by <strong>10:00</strong>');
+    expect(weatherWindow.markup(result)).toContain('for this 4 h route, finish around <strong>13:00</strong>');
   });
 });
