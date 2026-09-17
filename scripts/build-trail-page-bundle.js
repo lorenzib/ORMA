@@ -40,6 +40,7 @@ const SOURCES = [
   'detail-pois.js',
   'trail-photo-provenance.js',
   'trail-weather-window.js',
+  'scoring-conditions.js',
   'trail-reports.js',
   'veterinary-care.js',
   'trail-route-refs.js',

@@ -147,6 +147,7 @@
 <script src="scoring/recommendation-v1.js?v=20260917-1" defer></script>
 <script src="scoring/recommendation-adapters-v1.js?v=20260917-1" defer></script>
 <script src="recommendation-decision.js?v=20260815-4" defer></script>
+<script src="scoring-conditions.js?v=1" defer></script>
 <script src="scoring.js?v=20260815-4" defer></script>
 <script src="regions-runtime-manifest.js?v=20260815-4"></script>
 <script src="regional-trails-loader.js?v=20260815-4" data-default-region="all"></script>
@@ -259,7 +260,8 @@ document.addEventListener('DOMContentLoaded', function(){
 
     var saved = trails.filter(function(tr){ return favs[tr.id]; })
       .map(function(tr){
-        var recommendation = recommendTrail(tr, ov);
+        var recommendation = recommendTrail(tr, ov,
+          window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(tr));
         return Object.assign({}, tr, {
           score: recommendation.score,
           recommendation: recommendation,

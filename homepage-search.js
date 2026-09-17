@@ -121,8 +121,8 @@
   // reports conditions as not included -- the same answer the trail page gives,
   // so the two screens cannot disagree about the same trail.
   function conditionsFor(t) {
-    var area = window.DoloPawsHomeConditions;
-    return area && typeof area.forTrail === 'function' ? area.forTrail(t) : undefined;
+    var shared = window.ORMAScoringConditions;
+    return shared ? shared.forTrail(t) : undefined;
   }
 
   function scoreOf(t) {

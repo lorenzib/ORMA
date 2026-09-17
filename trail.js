@@ -1781,7 +1781,8 @@ function renderTrail(t){
       }
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if(!profile){ paintMatchTeaser(); return; }
-        const recommendation = recommendTrail(t, effectiveOverrides(profile, null));
+        const recommendation = recommendTrail(t, effectiveOverrides(profile, null),
+          window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(t));
         const n = recommendation.score;
         applyDetailRouteColor(detailRouteColorForScore(n));
         const actions = document.querySelector('.td-actions');

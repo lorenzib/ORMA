@@ -9314,7 +9314,8 @@ function initHikeMode(map, trail, options){
     const scoring = window.DoloPawsScoring;
     if(!scoring || typeof scoring.recommendTrail !== 'function') return;
     try{
-      const result = scoring.recommendTrail(activeTrail, {});
+      const result = scoring.recommendTrail(activeTrail, {},
+        window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(activeTrail));
       if(result && Array.isArray(result.leashAdvisories)) leashZones = result.leashAdvisories;
     }catch(error){
       // A scorer failure must never stop a walk from being recorded.
@@ -10784,6 +10785,75 @@ function initDetailPois(map, trail){
   }
 
   return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,WARM_C,HOT_C,CONDITIONS_MAX_AGE_MS,minuteOfDay,formatTime,parseDurationHours,recommendation,markup,heatOnset,currentConditions,isFresh,scoringConditions};
+});
+;
+
+// ---- scoring-conditions.js ----
+// One answer to "what is the weather doing for this trail, for scoring".
+//
+// A match percentage is a promise that the same dog on the same trail gets the
+// same number wherever it is read. It did not. Five surfaces passed today's
+// conditions to the engine and eight did not, so the engine reported conditions
+// as not included and returned the ignore-the-day score instead. Across
+// representative dogs, trails and weather the two answers differ in about a
+// third of cases, by a median of 10 points and as much as 25 -- and in some of
+// those the verdict word changes too, so one screen says "Strong option" while
+// another says "Possible with cautions" about the same walk on the same day.
+//
+// Worst of it was on one page: trail.js and trail-blueprint.js ship in the same
+// bundle and paint three personal-match numbers on a trail page, of which only
+// the ring included the day.
+//
+// The two sources were never in conflict about meaning -- both end in
+// weatherWindow.scoringConditions, which applies the shared expiry -- only about
+// which snapshot they hold. So this picks between them rather than replacing
+// them, and every caller asks the same question the same way.
+(function(root, factory){
+  const api = factory(root);
+  if(typeof module === 'object' && module.exports) module.exports = api;
+  if(root) root.ORMAScoringConditions = api;
+})(typeof window !== 'undefined' ? window : globalThis, function(root){
+  'use strict';
+
+  // A page that fetched one forecast knows which trail it was for. Without
+  // that, a trail page would hand its own valley's weather to the nearby picks
+  // beside it, which are different trails at different altitudes -- a wrong
+  // number rather than an absent one.
+  let declaredTrailId = null;
+  let declaredConditions = null;
+
+  function declareForTrail(trailId, conditions){
+    declaredTrailId = trailId == null ? null : String(trailId);
+    declaredConditions = conditions || null;
+  }
+
+  function reset(){
+    declaredTrailId = null;
+    declaredConditions = null;
+  }
+
+  /**
+   * Conditions for scoring `trail`, or undefined when the day is not known for
+   * it. Undefined is a real answer: the engine reports conditions as not
+   * included and says so on the card, which is honest. Handing over another
+   * trail's forecast to avoid an undefined would not be.
+   *
+   * An area forecast wins over a single declared one because it is computed per
+   * trail, altitude included, and answers for any trail rather than one.
+   */
+  function forTrail(trail){
+    const scope = root || {};
+    const area = scope.DoloPawsHomeConditions;
+    if(area && typeof area.forTrail === 'function'){
+      const found = area.forTrail(trail);
+      if(found) return found;
+    }
+    const id = trail && trail.id != null ? String(trail.id) : null;
+    if(declaredConditions && id && id === declaredTrailId) return declaredConditions;
+    return undefined;
+  }
+
+  return { forTrail, declareForTrail, reset };
 });
 ;
 
@@ -14125,7 +14195,8 @@ function renderTrail(t){
       }
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if(!profile){ paintMatchTeaser(); return; }
-        const recommendation = recommendTrail(t, effectiveOverrides(profile, null));
+        const recommendation = recommendTrail(t, effectiveOverrides(profile, null),
+          window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(t));
         const n = recommendation.score;
         applyDetailRouteColor(detailRouteColorForScore(n));
         const actions = document.querySelector('.td-actions');
@@ -15176,7 +15247,8 @@ if(document.querySelector('.td2')){
       if (typeof scoreTrail !== 'function' || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) { guest(); return; }
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if (!profile) { noProfile(); return; }
-        const n = scoreTrail(t, (typeof effectiveOverrides === 'function') ? effectiveOverrides(profile, null) : profile);
+        const n = scoreTrail(t, (typeof effectiveOverrides === 'function') ? effectiveOverrides(profile, null) : profile,
+          conditionsForScoring(t));
         const name = profile.name || tt('trail.yourDog', null, 'your dog');
         const approx = t.curated === false ? '≈' : '';
         title.textContent = tt('qa.dogScored', { n: approx + n, name },
@@ -15249,7 +15321,7 @@ if(document.querySelector('.td2')){
         for (const o of picks) {
           const slot = grid.querySelector(`[data-near-id="${CSS.escape(o.id)}"] .near-pct`);
           if (!slot) continue;
-          slot.textContent = (o.curated === false ? '≈' : '') + scoreTrail(o, ov) + '%';
+          slot.textContent = (o.curated === false ? '≈' : '') + scoreTrail(o, ov, conditionsForScoring(o)) + '%';
           slot.hidden = false;
         }
       }).catch(() => {});
@@ -15496,10 +15568,12 @@ if(document.querySelector('.td2')){
     // score is painted either with today's conditions or explicitly without
     // them -- never with a stale snapshot dressed up as live. scoringConditions
     // applies the shared thirty-minute expiry.
-    function conditionsForScoring() {
-      const weather = window.DoloPawsWeatherWindow;
-      if (!weather || typeof weather.scoringConditions !== 'function') return undefined;
-      return weather.scoringConditions(window.DoloPawsCurrentConditions);
+    // One accessor, so the same dog on the same trail gets the same number
+    // wherever it is read. It answers for the trail asked about, so the nearby
+    // picks are never handed this trail's weather. See scoring-conditions.js.
+    function conditionsForScoring(subject) {
+      const shared = window.ORMAScoringConditions;
+      return shared ? shared.forTrail(subject || t) : undefined;
     }
 
     function paintPersonalMatch() {
@@ -15808,6 +15882,9 @@ if(document.querySelector('.td2')){
               hourlyTemps:d.hourly && d.hourly.temperature_2m,
             });
             window.DoloPawsCurrentConditions = conditions;
+            // Say which trail this forecast was fetched for, so nothing hands
+            // it to a different one.
+            if (window.ORMAScoringConditions) window.ORMAScoringConditions.declareForTrail(t.id, conditions);
             window.dispatchEvent(new CustomEvent('dolopaws-conditions-ready', { detail:conditions }));
           }
 

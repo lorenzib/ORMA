@@ -56,7 +56,8 @@
     const parts = normalizeTrail ? normalizeTrail(trail) : trail;
     const recommendation = options.recommendation || (
       root.DoloPawsScoring && typeof root.DoloPawsScoring.recommendTrail === 'function'
-        ? root.DoloPawsScoring.recommendTrail(trail, options.subject || {})
+        ? root.DoloPawsScoring.recommendTrail(trail, options.subject || {},
+            root.ORMAScoringConditions && root.ORMAScoringConditions.forTrail(trail))
         : null
     );
     const suitability = parts.suitability || {};
