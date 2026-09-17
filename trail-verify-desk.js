@@ -576,7 +576,8 @@
       if(!Number.isNaN(when.valueOf()))coverageNodes.age.textContent=`Counted ${when.toLocaleDateString()}`;
     }
 
-    // The eleven checks, listed so "verified" is not a word of unknown meaning.
+    // The eleven catalogue data checks. Named for what they are: the page copy
+    // above keeps them apart from ORMA Verified, which they are not.
     coverageNodes.checks.replaceChildren();
     GRADUATION_CHECKS.forEach(([, label])=>coverageNodes.checks.append(el('li','',label)));
 

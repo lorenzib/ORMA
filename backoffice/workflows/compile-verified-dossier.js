@@ -19,7 +19,23 @@ function authoritativeRecommendedStart(review){
 
 const {routeConformanceBlockingReasons}=require('../services/route-conformance');
 
-const REQUIRED_ROUTE_GUIDANCE_CLAIMS=['route-number-status','route-number-sequence','route-number-switches'];
+// Two different promises, separated. "ORMA Verified" answers the question a dog
+// owner is actually asking -- is this walk safe for my dog -- from water, heat,
+// exposure, livestock, surface hazards, access, an approved geometry and a
+// sourced trailhead. Whether a comune published a numbered route sheet is a fact
+// about municipal record-keeping, not about the walk, and requiring it meant
+// "Verified" really read "well documented by its local authority".
+//
+// 101 catalogue trails have no such sheet and never will. Six reached the gate
+// and were sent back for these three claims. They are still researched and still
+// recorded -- they earn "official route confirmed" -- but they no longer stand
+// between a safe trail and its badge.
+const OFFICIAL_ROUTE_CLAIMS=['route-number-status','route-number-sequence','route-number-switches'];
+
+// Kept required: a walker cannot start a walk they cannot find the start of, and
+// a park or refuge page naming the trailhead clears this far more often than a
+// numbered route sheet does.
+const VERIFICATION_ROUTE_CLAIMS=Object.freeze(['recommended-start']);
 
 function supportedLogisticsClaim(review,id){
   return (review.specialistOutputs||[]).flatMap(output=>(output.result?.claims||[]).map(claim=>({agentId:output.agentId,claim})))
@@ -54,11 +70,19 @@ function assertRouteConformance(review,trail){
 }
 
 function assertRouteGuidance(review,trail){
-  const missing=REQUIRED_ROUTE_GUIDANCE_CLAIMS.filter(id=>!supportedLogisticsClaim(review,id));
-  if(!authoritativeRecommendedStart(review))missing.unshift('recommended-start');
-  if(missing.length){
-    throw new Error(`${trail?.trailName||trail?.trailId||'Trail'} requires supported route-number guidance before verification: ${missing.join(', ')}`);
+  if(!authoritativeRecommendedStart(review)){
+    throw new Error(`${trail?.trailName||trail?.trailId||'Trail'} requires a sourced recommended start before verification: recommended-start`);
   }
+}
+
+/**
+ * Whether this trail's numbered route is confirmed against an authority, which
+ * is recorded either way. Absent is an honest "nobody published one", not a
+ * failure, so it never blocks and never reads as a caveat on the safety facts.
+ */
+function officialRouteConfirmation(review){
+  const missing=OFFICIAL_ROUTE_CLAIMS.filter(id=>!supportedLogisticsClaim(review,id));
+  return {confirmed:!missing.length,missingClaims:missing};
 }
 
 // Tightening the claims a gate requires does not invalidate the dossiers already
@@ -71,7 +95,11 @@ function assertRouteGuidance(review,trail){
 // The version is derived from the required set rather than declared, so it moves
 // exactly when the requirement moves and cannot be forgotten at bump time.
 // Sorted, so reordering the list is not mistaken for changing it.
-const ROUTE_GUIDANCE_CLAIM_IDS=Object.freeze(['recommended-start',...REQUIRED_ROUTE_GUIDANCE_CLAIMS]);
+// Still all four: logistics is asked for route numbering exactly as before, and
+// the contract hash is derived from this list. Loosening the gate without
+// touching what is researched leaves the hash where it is, so no trail already
+// parked at the gate is pulled back a second time to re-earn what it has.
+const ROUTE_GUIDANCE_CLAIM_IDS=Object.freeze(['recommended-start',...OFFICIAL_ROUTE_CLAIMS]);
 const ROUTE_GUIDANCE_CONTRACT=`rg-${createHash('sha256')
   .update([...ROUTE_GUIDANCE_CLAIM_IDS].sort().join(',')).digest('hex').slice(0,8)}`;
 
@@ -95,9 +123,8 @@ function routeGuidanceContractStale(outputs){
 
 function routeGuidanceBlockingReasons(outputs){
   const review={specialistOutputs:outputs||[]};
-  const missing=REQUIRED_ROUTE_GUIDANCE_CLAIMS.filter(id=>!supportedLogisticsClaim(review,id));
-  if(!authoritativeRecommendedStart(review))missing.unshift('recommended-start');
-  return missing.map(id=>`logistics/${id}: supported authoritative route guidance is required`);
+  const missing=VERIFICATION_ROUTE_CLAIMS.filter(id=>!authoritativeRecommendedStart(review));
+  return missing.map(id=>`logistics/${id}: a sourced recommended start is required`);
 }
 
 
@@ -184,16 +211,20 @@ function compileVerifiedDossier(review,trail,options={}){
       // trail was verified with caveats and what the moderator said about them.
       acceptedBlockers:[...acceptedBlockerMap(options.acceptedBlockers)]
         .map(([blocker,reason])=>({blocker,reason,acceptedBy:options.verifiedBy||'human-moderator',acceptedAt:at})),
-      conditions:['Recheck time-sensitive access, restriction, parking and water claims on their scheduled maintenance cadence.']},
+      conditions:['Recheck time-sensitive access, restriction, parking and water claims on their scheduled maintenance cadence.'],
+      officialRoute:officialRouteConfirmation(review)},
     specialistOutputRefs:(review.specialistOutputs||[]).map(output=>`firestore:trail-specialist-output-${output.jobId}`),
     publicMutationAllowed:false,publicationAuthorized:false};
   const errors=validateDossier(dossier);if(errors.length)throw new Error(errors.join('; '));return dossier;
 }
 
 function verificationRecord(dossier){return {candidateId:dossier.candidateId,trailName:dossier.trailName,
+  // Carried into the registry so the public side can show the extra marker
+  // without reopening the dossier.
+  officialRouteConfirmed:Boolean(dossier.ormaVerification.officialRoute?.confirmed),
   verifiedAt:dossier.ormaVerification.verifiedAt,verifiedBy:dossier.ormaVerification.verifiedBy,
   routeGeometrySha256:createHash('sha256').update(JSON.stringify(dossier.routeGeometry||null)).digest('hex'),
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={MIN_ACCEPTANCE_REASON,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
+module.exports={MIN_ACCEPTANCE_REASON,OFFICIAL_ROUTE_CLAIMS,VERIFICATION_ROUTE_CLAIMS,officialRouteConfirmation,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};

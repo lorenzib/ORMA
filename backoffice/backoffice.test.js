@@ -1359,7 +1359,22 @@ describe('ORMA backoffice MVP', () => {
 
   test('the final gate locks approval when any specialist finding is unresolved', () => {
     expect(dossierBlockingReasons([{agentId:'redTeam',result:{recommendation:'needs-resolution',claims:[{id:'parking',finding:'unresolved',blockers:['No authority source']}]} }]))
-      .toEqual(expect.arrayContaining(['logistics/recommended-start: supported authoritative route guidance is required','logistics/route-number-status: supported authoritative route guidance is required','redTeam: recommendation is needs-resolution','redTeam/parking: unresolved','redTeam/parking: No authority source']));
+      .toEqual(expect.arrayContaining(['logistics/recommended-start: a sourced recommended start is required','redTeam: recommendation is needs-resolution','redTeam/parking: unresolved','redTeam/parking: No authority source']));
+  });
+
+  test('a missing numbered route sheet does not block verification', () => {
+    // "ORMA Verified" answers whether the walk is safe for a dog. Whether a
+    // comune published a route sheet is a fact about municipal record-keeping;
+    // 101 catalogue trails have none and never will. It is still researched and
+    // still recorded -- it earns "official route confirmed" -- but it is not a
+    // wall in front of the safety facts.
+    const withStartOnly=[{agentId:'logistics',result:{claims:[{id:'recommended-start',finding:'supported-proposal',proposedValue:'North car park',
+      sources:[{url:'https://comune.example/parco',authority:'Comune di Example'}]}]}}];
+    expect(dossierBlockingReasons(withStartOnly)).toEqual([]);
+    // The start itself is still required: a walk nobody can find the start of
+    // cannot be walked.
+    expect(dossierBlockingReasons([{agentId:'logistics',result:{claims:[]}}]))
+      .toEqual(['logistics/recommended-start: a sourced recommended start is required']);
   });
 
   test('final human approval compiles a durable ORMA Verified editorial handoff', () => {
