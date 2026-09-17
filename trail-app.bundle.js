@@ -13447,8 +13447,13 @@ function addBaseHillshade(map, beforeId){
     type: 'hillshade',
     source: 'terrain-dem',
     paint: {
-      'hillshade-exaggeration': 0.25,
-      'hillshade-shadow-color': '#5A5548',
+      // Strengthened so the relief actually reads in flat mode: the old 0.25
+      // was so faint the map looked flat beside AllTrails/Strava. A cool
+      // shadow and warm highlight model the ridges like a shaded-relief map
+      // without shouting over the calm base.
+      'hillshade-exaggeration': 0.45,
+      'hillshade-shadow-color': '#4A5347',
+      'hillshade-highlight-color': '#FBF7EC',
       'hillshade-method': 'igor',
     },
   }, beforeId && map.getLayer(beforeId) ? beforeId : undefined);
