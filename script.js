@@ -3394,42 +3394,97 @@ function liGapFieldList(fields){
   });
 }
 
-function liRecommendationExplanationHtml(trail, profile){
+/**
+ * The engine writes one sentence per factor, in its own auditable vocabulary:
+ * "Terrain is within this dog’s effective tolerance." then "The 3.6 km route
+ * is within this dog’s effective range." Read together on a card they are the
+ * same sentence three times with the nouns swapped, which is what makes them
+ * sound machine-written rather than merely precise.
+ *
+ * recommendation-decision.js already solved this for the trail page. It
+ * translates each factor by its code, and folds every positive that cost no
+ * points into a single line -- "Fine for Eddie: the terrain, the 3.6 km
+ * distance and the 462 m climb." The homepage renders that same view instead
+ * of keeping a second, blunter copy of the reasoning.
+ */
+function liRecommendationView(trail, profile){
   const recommendation = trail && trail.recommendation;
-  if(!recommendation) return '';
+  const decision = window.DoloPawsRecommendationDecision;
+  if(!recommendation) return null;
+  if(!decision) return null;
+  return decision.present(recommendation, {
+    translate: typeof window.t === 'function' ? window.t : null,
+    dogName: profile && profile.name ? profile.name : '',
+  });
+}
+
+function liRecommendationExplanationHtml(trail, profile, open){
+  const recommendation = trail && trail.recommendation;
+  const view = liRecommendationView(trail, profile);
+  if(!view) return '';
   const dogName = profile && profile.name ? profile.name : 'your dog';
-  const positives = (recommendation.positiveReasons || []).slice(0, 2);
-  const gapFields = profile && profile.name ? liDogGapFields(recommendation) : [];
-  // A gap that has become a prompt must not also sit in the list above it as a
-  // statement; saying the same thing twice reads as two separate problems.
-  const gapCodes = new Set(gapFields.map(field => `dog.${field}.unknown`));
-  const cautions = [
-    ...(recommendation.hardStops || []),
-    ...(recommendation.cautions || []),
-    ...(recommendation.unknowns || []).filter(entry => !(entry && gapCodes.has(entry.code))),
-  ].slice(0, 2);
-  const items = entries => entries.map(entry => `<li>${liPersonalisationText(entry.message)}</li>`).join('');
-  const fit = positives.length
-    ? `<div><b>Why it fits ${liPersonalisationText(dogName)}</b><ul>${items(positives)}</ul></div>`
+  const items = entries => entries.map(entry => `<li>${liPersonalisationText(entry)}</li>`).join('');
+  // The folded phrases carry the positives that cost nothing; a positive with
+  // no short form of its own keeps a row, so nothing is dropped silently. With
+  // nothing folded the ranked reasons stand on their own and cannot repeat it.
+  const standalone = (view.breakdownRows || [])
+    .filter(row => row && row.kind === 'positive' && row.message)
+    .map(row => row.message);
+  const bullets = (standalone.length ? standalone : view.fine.length ? [] : view.reasons).slice(0, 2);
+  // The adapter's own line is "Fine for Eddie: the terrain and the 39 m
+  // climb." Under a heading that already says "Why it fits Eddie" the name
+  // lands twice in eleven words, so the card keeps the phrases and lets the
+  // heading supply the subject.
+  const fineList = view.fine.length <= 1 ? view.fine.join('') : liT('recommendation.list.and', '{first} and {last}', {
+    first:view.fine.slice(0, -1).join(', '),
+    last:view.fine[view.fine.length - 1],
+  });
+  const fineSentence = fineList ? `${fineList.charAt(0).toUpperCase()}${fineList.slice(1)}.` : '';
+  const fitBody = [
+    fineSentence ? `<p class="li-answer-fine">${liPersonalisationText(fineSentence)}</p>` : '',
+    bullets.length ? `<ul>${items(bullets)}</ul>` : '',
+  ].join('');
+  const fit = fitBody
+    ? `<div><b>Why it fits ${liPersonalisationText(dogName)}</b>${fitBody}</div>`
     : '';
-  const know = cautions.length
-    ? `<div><b>What to know ${liWalkDate === liDateOffsetIso(0) ? 'today' : 'for this day'}</b><ul>${items(cautions)}</ul></div>`
+  // Cautions first (hard stops already lead them), then what is simply not
+  // known, which is a different kind of statement and belongs after. Only
+  // trail unknowns: a missing profile field becomes the prompt below, and
+  // saying the same thing twice on one card reads as two problems.
+  const concerns = view.cautions.slice(0, 3);
+  if(concerns.length < 2) concerns.push(...view.trailUnknowns.slice(0, 2 - concerns.length));
+  const know = concerns.length
+    ? `<div><b>What to know ${liWalkDate === liDateOffsetIso(0) ? 'today' : 'for this day'}</b><ul>${items(concerns)}</ul></div>`
     : '';
   // Opens the wizard on the dog it is talking about, rather than sending the
   // reader to the account page to find it themselves.
+  const gapFields = profile && profile.name ? liDogGapFields(recommendation) : [];
   const gap = gapFields.length
     ? `<p class="li-answer-gap"><button type="button" class="li-answer-gap-btn" data-complete-dog>${
         liPersonalisationText(liT('recommendation.gap.fields', 'Add {name}\u2019s {fields} to sharpen this score \u2192', {
           name:dogName, fields:liGapFieldList(gapFields),
         }))}</button></p>`
     : '';
-  return `<div class="li-answer-explanation">
+  // Every card carries this now, so the panel is addressed by its own id and
+  // the card's toggle controls it. "Show on map" moved to the bar above, which
+  // every card also has: two of the same button on one card is one too many.
+  const panelId = `li-why-${encodeURIComponent(trail.id)}`;
+  return `<div class="li-answer-explanation" id="${panelId}"${open ? '' : ' hidden'}>
     ${fit}${know}${gap}
     <div class="li-answer-actions">
       <a class="li-answer-open" href="trail.html?id=${encodeURIComponent(trail.id)}">View trail details</a>
-      <button type="button" class="li-answer-map locate-btn" data-id="${liPersonalisationText(trail.id)}">Show on map</button>
     </div>
   </div>`;
+}
+
+/** The control that opens the panel above, and the panel's own id. */
+function liWhyPanelId(trailId){ return `li-why-${encodeURIComponent(trailId)}`; }
+
+function liWhyToggleHtml(trail, profile, open){
+  const dogName = profile && profile.name ? profile.name : 'your dog';
+  return `<button type="button" class="li-bar-act li-why-toggle" data-why-toggle aria-expanded="${open}" aria-controls="${liWhyPanelId(trail.id)}">` +
+    `<span class="li-why-label">${open ? 'Hide the reasons' : `Why it fits ${liPersonalisationText(dogName)}`}</span>` +
+    `<span class="li-why-caret" aria-hidden="true">▾</span></button>`;
 }
 
 function liScheduleNewMatchSync(scored, profile){
@@ -3607,8 +3662,11 @@ async function renderReturningHomepage(profile, options = {}){
     const newBadge = isNew ? productBadge('new', window.t('badge.new')) : '';
     const rank = resultRanks.get(t.id) || index + 1;
     const isPrimary = !showingSavedOnly && index < TOP_PICKS;
+    // Every card can explain itself; the top picks simply start open, because
+    // they are the answer the page was asked for.
+    const explanation = liRecommendationExplanationHtml(t, profile, isPrimary);
     return `${isPrimary ? '' : index === TOP_PICKS && !showingSavedOnly ? `<div class="li-alternatives-heading"><span>Other options for ${liPersonalisationText(profile && profile.name ? profile.name : 'your dog')}</span><a href="browse-trails.html">See the full catalogue →</a></div>` : ''}
-    <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}" aria-label="Rank ${rank}: ${liPersonalisationText(t.name)}"${dim ? ' style="opacity:.55;"' : ''}>
+    <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}${explanation && isPrimary ? ' is-why-open' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}" aria-label="Rank ${rank}: ${liPersonalisationText(t.name)}"${dim ? ' style="opacity:.55;"' : ''}>
       <span class="li-result-rank" aria-hidden="true" style="background:${liRecommendationPresentation(t, profile).color};">${rank}</span>
       ${thumb}
       <div class="li-row-body">
@@ -3620,13 +3678,38 @@ async function renderReturningHomepage(profile, options = {}){
       </div>
       ${liMatchColHtml(t, profile, overrides)}
       <button type="button" class="li-heart save-btn" data-id="${t.id}" aria-pressed="${isFav}" aria-label="${isFav ? 'Remove ' + t.name + ' from saved trails' : 'Save ' + t.name}">${isFav ? '♥' : '♡'}</button>
-      ${isPrimary ? '' : `<div class="li-row-bar">
+      <div class="li-row-bar">
+        ${explanation ? liWhyToggleHtml(t, profile, isPrimary) : ''}
         <button type="button" class="li-bar-act locate-btn" data-id="${t.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>See on map</button>
         ${directionsBarHtml(t)}
-      </div>`}
-      ${isPrimary ? liRecommendationExplanationHtml(t, profile) : ''}
+      </div>
+      ${explanation}
     </div>`;
   }).join('');
+
+  // Opening a card's reasons is reading, not navigating: it never leaves the
+  // page and never changes the list, so it only moves its own panel.
+  listEl.querySelectorAll('[data-why-toggle]').forEach(toggle => {
+    toggle.addEventListener('click', event => {
+      event.stopPropagation();
+      const panel = document.getElementById(toggle.getAttribute('aria-controls'));
+      if(!panel) return;
+      const open = panel.hidden;
+      panel.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      const card = toggle.closest('.li-row');
+      if(card) card.classList.toggle('is-why-open', open);
+      const label = toggle.querySelector('.li-why-label');
+      if(label){
+        const row = toggle.closest('.li-row');
+        const trail = trails.find(item => row && item.id === row.dataset.id);
+        const dogName = currentProfileForAdjust && currentProfileForAdjust.name
+          ? currentProfileForAdjust.name : 'your dog';
+        label.textContent = open ? 'Hide the reasons' : `Why it fits ${dogName}`;
+        if(open) warmTrailDetail(trail);
+      }
+    });
+  });
 
   // Whole row opens the trail page, except clicks on the heart, links,
   // or the thumbnail (which locates the trail on the map instead).

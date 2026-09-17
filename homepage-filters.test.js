@@ -140,6 +140,9 @@ function loadHomepageContext(testTrails){
 
   vm.createContext(context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'regions-config.js'), 'utf8'), context);
+  // The card's explanation is rendered from this view, exactly as the page
+  // loads it: without it a card would silently lose its reasoning.
+  vm.runInContext(fs.readFileSync(path.join(__dirname, 'recommendation-decision.js'), 'utf8'), context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8'), context);
   // Existing filter tests exercise catalogue refinements in isolation. The
   // real product never creates this synthetic context; it prevents these
@@ -507,11 +510,32 @@ describe('returning homepage region + valley filters', () => {
     // The first three are co-equal, fully explained answer cards.
     expect([...rows].slice(0, 3).every(row => row.classList.contains('li-row--answer'))).toBe(true);
     expect(document.querySelectorAll('#returningTrailList .li-row--answer')).toHaveLength(3);
-    expect(document.querySelectorAll('.li-answer-explanation')).toHaveLength(3);
-    expect(document.querySelector('.li-answer-explanation').textContent).toContain('Why it fits Teo');
-    expect(document.querySelector('.li-answer-explanation').textContent).toContain('What to know today');
+    // Every card can explain itself; the three picks are the ones that start
+    // open, because they are the answer the page was asked for.
+    const panels = [...document.querySelectorAll('.li-answer-explanation')];
+    expect(panels).toHaveLength(5);
+    expect(panels.map(panel => panel.hidden)).toEqual([false, false, false, true, true]);
+    const toggles = [...document.querySelectorAll('[data-why-toggle]')];
+    expect(toggles).toHaveLength(5);
+    expect(toggles.map(toggle => toggle.getAttribute('aria-expanded')))
+      .toEqual(['true', 'true', 'true', 'false', 'false']);
+    expect(toggles[0].textContent).toContain('Hide the reasons');
+    expect(toggles[3].textContent).toContain('Why it fits Teo');
+    expect(toggles[3].getAttribute('aria-controls')).toBe(panels[3].id);
+    expect(panels[0].textContent).toContain('Why it fits Teo');
+    expect(panels[0].textContent).toContain('What to know today');
     expect(document.querySelector('.li-answer-open').textContent).toBe('View trail details');
-    expect(document.querySelector('.li-answer-map').textContent).toBe('Show on map');
+    // "See on map" is in the bar every card now has, so the panel does not
+    // repeat it.
+    expect(document.querySelector('.li-answer-map')).toBeNull();
+    expect(document.querySelectorAll('#returningTrailList .li-row-bar')).toHaveLength(5);
+
+    // Opening one card's reasons moves that card only.
+    toggles[3].click();
+    expect(panels[3].hidden).toBe(false);
+    expect(toggles[3].getAttribute('aria-expanded')).toBe('true');
+    expect(toggles[3].textContent).toContain('Hide the reasons');
+    expect(panels[4].hidden).toBe(true);
     // The alternatives heading follows the three picks, before the fourth card.
     expect(document.querySelector('.li-alternatives-heading').textContent).toContain('Other options for Teo');
     expect(rows[3].classList.contains('li-row--answer')).toBe(false);
