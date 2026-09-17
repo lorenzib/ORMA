@@ -800,8 +800,8 @@ function liRenderLocationNudge(){
   nudge.dataset.state = liLocationRequestPending ? 'pending' : liLocationPermission;
 }
 
-// The last trails opened, kept by trail.js in this browser only. The Explore
-// menu lists them as a shortlist, never as a history.
+// The last trails opened, kept by trail.js in this browser only. The dog menu
+// lists them as a shortlist, never as a history.
 const LI_RECENT_TRAILS_KEY = 'orma-recent-trails-v1';
 function liRecentTrails(){
   try{
@@ -811,7 +811,7 @@ function liRecentTrails(){
 }
 
 function liRenderRecentTrails(){
-  const host = document.getElementById('liExploreRecent');
+  const host = document.getElementById('liRecentList');
   if(!host) return;
   host.replaceChildren();
   const recent = liRecentTrails();
@@ -945,17 +945,22 @@ liApplyLocationGeography();
 window.DoloPawsHomepageLocation = {
   hasContext:() => !!liLocationContext,
   filterTrails:filterTrailsForLocationContext,
-  // The phone menu's Explore group acts in place through these.
+  // The homepage's own "Near me" and "Show all" act through these, and so
+  // does the ?near=1 / ?all=1 entry below.
   nearMe:() => {
-    try{ sessionStorage.removeItem(LI_LOCATION_NUDGE_DISMISSED_KEY); }catch(error){}
+    // The dismissal is kept in localStorage, so clearing it from sessionStorage
+    // removed nothing and asking for Near me left the band dismissed.
+    try{ localStorage.removeItem(LI_LOCATION_NUDGE_DISMISSED_KEY); }catch(error){}
     liRequestCurrentLocation();
   },
   showAll:() => liSetLocationContext(liDefaultLocationContext()),
 };
 
-// Arriving from another page's Explore group: ?near=1 asks for the position
-// (the tap happened there), ?all=1 opens the whole catalogue. Read once and
-// removed from the address, so a reload does not ask again.
+// ?near=1 asks for the position, ?all=1 opens the whole catalogue. The Explore
+// group that sent people here is gone -- both scope actions now sit on the
+// homepage itself -- so nothing in the site produces these any more; they are
+// kept for links and bookmarks already out there. Read once and removed from
+// the address, so a reload does not ask again.
 function liConsumeExploreIntent(){
   const location = window.location || {};
   const search = String(location.search || '');
@@ -2517,11 +2522,11 @@ function liResetAllFilters(){
 }
 
 function liCloseMenus(){
-  ['liFiltersMenu', 'liNewMenu', 'liExploreMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
+  ['liFiltersMenu', 'liNewMenu', 'liAccountMenu', 'liGreetSwitchMenu', 'liBellMenu'].forEach(id => {
     const menu = document.getElementById(id);
     if(menu) menu.hidden = true;
   });
-  ['liFiltersBtn', 'liNewBtn', 'liExploreBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
+  ['liFiltersBtn', 'liNewBtn', 'liAccountBtn', 'liGreetSwitchBtn', 'liBellBtn'].forEach(id => {
     const btn = document.getElementById(id);
     if(btn) btn.setAttribute('aria-expanded', 'false');
   });
@@ -3051,18 +3056,16 @@ function initLoggedInShell(){
   if(nudgeButton) nudgeButton.addEventListener('click', liRequestCurrentLocation);
   const nudgeDismiss = document.getElementById('liLocationNudgeDismiss');
   if(nudgeDismiss) nudgeDismiss.addEventListener('click', liDismissLocationNudge);
-  const exploreNearMe = document.getElementById('liExploreNearMe');
-  if(exploreNearMe) exploreNearMe.addEventListener('click', () => {
+  // "All trails" needed no new home: "Show all" beside the location summary is
+  // the same act. "Near me" did -- the band that offers it can be dismissed for
+  // the session, and Explore was the only way back. It now sits with the other
+  // scope controls, and asking for it on purpose undoes a past dismissal so the
+  // band can return if the permission is later revoked.
+  const nearMe = document.getElementById('liNearMeBtn');
+  if(nearMe) nearMe.addEventListener('click', () => {
     liCloseMenus();
-    // Asking for it on purpose undoes a past dismissal, so the nudge can come
-    // back if the permission is later revoked.
     try{ localStorage.removeItem(LI_LOCATION_NUDGE_DISMISSED_KEY); }catch(error){}
     liRequestCurrentLocation();
-  });
-  const exploreAll = document.getElementById('liExploreAll');
-  if(exploreAll) exploreAll.addEventListener('click', () => {
-    liCloseMenus();
-    liSetLocationContext(liDefaultLocationContext());
   });
 
   const wireMenu = (btn, menu) => {
@@ -3079,13 +3082,10 @@ function initLoggedInShell(){
   const newBtn = document.getElementById('liNewBtn');
   const newMenu = document.getElementById('liNewMenu');
   if(newBtn && newMenu) wireMenu(newBtn, newMenu);
-  const exploreBtn = document.getElementById('liExploreBtn');
-  const exploreMenu = document.getElementById('liExploreMenu');
-  if(exploreBtn && exploreMenu){
-    wireMenu(exploreBtn, exploreMenu);
-    exploreBtn.addEventListener('click', liRenderRecentTrails);
-  }
-  wireMenu(document.getElementById('liAccountBtn'), document.getElementById('liAccountMenu'));
+  // Recently viewed moved under the dog pill, so it is filled when that opens.
+  const accountBtn = document.getElementById('liAccountBtn');
+  wireMenu(accountBtn, document.getElementById('liAccountMenu'));
+  if(accountBtn) accountBtn.addEventListener('click', liRenderRecentTrails);
 
   // Saved / All are views of the ranked list, wired as tabs beside Sort.
   const setSavedView = (saved) => {
