@@ -96,4 +96,25 @@ describe('UX-05 guest context contract', () => {
     expect(clean.email).toBeUndefined();
     expect(clean.token).toBeUndefined();
   });
+
+  test('the wizard behaviour answers survive the handoff, unknown ones do not', () => {
+    const clean = context.sanitizeProfile({
+      name:'Pip',
+      weightBand:'5-10',
+      behaviour:{
+        chairlift:'ok',
+        livestockComfort:'cautious',
+        recall:'sometimes',           // not on the scale
+        preferredDurationMin:'90',
+        notes:'<script>',             // not a known field
+      },
+    });
+    expect(clean.behaviour).toEqual({
+      chairlift:'ok',
+      livestockComfort:'cautious',
+      preferredDurationMin:90,
+    });
+    expect(context.sanitizeProfile({ name:'Pip', behaviour:{} }).behaviour).toBeUndefined();
+    expect(context.sanitizeProfile({ name:'Pip', behaviour:'ok' }).behaviour).toBeUndefined();
+  });
 });
