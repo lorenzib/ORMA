@@ -17,6 +17,8 @@ function authoritativeRecommendedStart(review){
       &&(claim.sources||[]).some(source=>/^https:\/\//.test(source.url||'')&&String(source.authority||'').trim()));
 }
 
+const {routeConformanceBlockingReasons}=require('../services/route-conformance');
+
 const REQUIRED_ROUTE_GUIDANCE_CLAIMS=['route-number-status','route-number-sequence','route-number-switches'];
 
 function supportedLogisticsClaim(review,id){
@@ -24,6 +26,31 @@ function supportedLogisticsClaim(review,id){
     .find(({agentId,claim})=>agentId==='logistics'&&claim.id===id&&claim.finding==='supported-proposal'
       &&String(claim.proposedValue||'').trim()
       &&(claim.sources||[]).some(source=>/^https:\/\//.test(source.url||'')&&String(source.authority||'').trim()));
+}
+
+/**
+ * The measured comparison between the drawn line and the routes the page tells
+ * a walker to follow, from whichever specialist took it. Absent means nobody
+ * measured, which is not the same as clean: it does not block here, because the
+ * measurement has to reach every lane before it can be required of one.
+ */
+function routeConformanceOf(review){
+  return (review?.specialistOutputs||[]).map(output=>output.result?.routeConformance).find(Boolean)||null;
+}
+
+// A line that leaves the numbers printed beside it is the directions being
+// wrong, not background research a moderator can judge sufficient, so it is
+// asserted with the rest of the route guidance rather than left to the eye.
+// The cartographer's gate has always asked a human to "compare the
+// reconstructed line with the named official route and trail numbers"; nothing
+// ever gave them a number to compare. Tre Cime shipped 2.7 km of its 9.5 off
+// the 101 and 105 it names, by up to 201 m, onto real paths carrying no route
+// at all, having passed every geometry check there was.
+function assertRouteConformance(review,trail){
+  const reasons=routeConformanceBlockingReasons(routeConformanceOf(review));
+  if(reasons.length){
+    throw new Error(`${trail?.trailName||trail?.trailId||'Trail'} cannot be verified: ${reasons.join('; ')}`);
+  }
 }
 
 function assertRouteGuidance(review,trail){
@@ -124,6 +151,7 @@ function compileVerifiedDossier(review,trail,options={}){
     throw new Error(`Numbered route ${routeReference} requires an authoritative recommended-start claim before verification`);
   }
   assertRouteGuidance(review,trail);
+  assertRouteConformance(review,trail);
   const at=options.at||new Date().toISOString();const sourceMap=new Map();
   function addSource(source){const url=source?.url;if(!/^https:\/\//.test(url||''))return null;if(sourceMap.has(url))return sourceMap.get(url).id;
     const id=sourceId(url,sourceMap.size);sourceMap.set(url,{id,url,label:source.label||source.provider||url,authority:source.authority||null,
@@ -168,4 +196,4 @@ function verificationRecord(dossier){return {candidateId:dossier.candidateId,tra
   conditions:dossier.ormaVerification.conditions,nextStage:'editorial-and-publication-review',
   dossierRef:`firestore:verified-dossier-${dossier.candidateId}`};}
 
-module.exports={MIN_ACCEPTANCE_REASON,waivableBlocker,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
+module.exports={MIN_ACCEPTANCE_REASON,waivableBlocker,routeConformanceOf,assertRouteConformance,unacceptedBlockers,acceptedBlockerMap,numberedRouteReference,authoritativeRecommendedStart,supportedLogisticsClaim,assertRouteGuidance,routeGuidanceBlockingReasons,ROUTE_GUIDANCE_CLAIM_IDS,ROUTE_GUIDANCE_CONTRACT,routeGuidanceContractOf,routeGuidanceContractStale,compileVerifiedDossier,verificationRecord};
