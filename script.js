@@ -174,18 +174,18 @@ let activeRegion = (() => {
 })();
 let activeCountry = activeRegion === 'savoy' ? 'FR' : activeRegion === 'dolomites' ? 'IT' : 'all';
 let activeValley = 'all';
-// "Search this area": a LngLatBounds captured from the map that further narrows
-// the list to the visible viewport. Null when the map is not driving the filter.
-let liMapBounds = null;
 // The geography the map replaced, so "Clear map area" puts back the area the
 // owner chose rather than dropping them at the location gate to choose again.
 // Held in memory only: a reload returns to the stored typed area anyway, which
 // is the same answer by a different route.
 let liContextBeforeMapArea = null;
-// True while the code is programmatically reframing the map (fitBounds). Map
-// movement during that window is ours, not the user's, so it must not offer
-// "Search this area".
-let liMapAutoFraming = false;
+// When our own reframing (fitBounds) should be finished by. Movement before
+// then is ours, not the reader's, and must not be read as "look here instead".
+// A deadline rather than a one-shot flag: an eased fitBounds, and the resize
+// that follows a pane switch, can settle in more than one moveend, and the
+// second one used to arrive looking exactly like a pan.
+let liMapAutoFramingUntil = 0;
+const LI_MAP_AUTO_FRAME_MS = 1400;
 let sortKey = 'match';             // 'match' | 'distance' | 'effort', Companion sort control
 let selectedTrailId = null;        // map pin / card selection (Companion layout)
 
@@ -356,7 +356,6 @@ function liClearLocationConditions(){
 
 function liApplyLocationGeography(){
   if(!liLocationContext) return;
-  liMapBounds = null;
   // The map supersedes any typed area: panning to another valley and pressing
   // "Search this area" should show what is there, not the intersection with an
   // area chosen earlier, which is usually empty. Clearing these is what makes
@@ -396,14 +395,7 @@ function filterTrailsForLocationContext(list){
       return point && liDistanceKm(liLocationContext.lat, liLocationContext.lng, point[1], point[0]) <= liLocationContext.radiusKm;
     });
   }
-  if(liLocationContext.kind === 'map'){
-    const box = liLocationContext.bounds;
-    return list.filter(trail => {
-      const point = liTrailLngLat(trail);
-      return point && point[0] >= box.west && point[0] <= box.east
-        && point[1] >= box.south && point[1] <= box.north;
-    });
-  }
+  if(liLocationContext.kind === 'map') return liTrailsInBounds(liLocationContext.bounds, list);
   if(liLocationContext.kind === 'area'){
     return list.filter(trail =>
       (!liLocationContext.country || liLocationContext.country === 'all' || (
@@ -443,11 +435,92 @@ function liEnsureLocationConditions(){
   });
 }
 
+/**
+ * What the map is currently showing, as the catalogue's own areas, the
+ * best-represented first. "Map area" is true but says nothing; the valley
+ * whose trails fill the view is the answer to "where am I looking?", and it
+ * is also the list of places worth offering under "Change". Both read from
+ * here, so the heading and the picker cannot disagree about what is in view.
+ */
+// True while the map view is what the list is filtered to. The view's own box
+// does the filtering, in filterTrailsForLocationContext; this is what stops
+// the map re-framing to the list it just produced, and what makes the view
+// count as one of the active filters.
+/**
+ * Where the map is, as scale and centre. Two moveends with the same signature
+ * are the same view: the box around it changed, the map did not.
+ */
+function liMapViewSignature(map){
+  if(!map || typeof map.getCenter !== 'function') return '';
+  const centre = map.getCenter();
+  return `${map.getZoom().toFixed(3)}|${centre.lng.toFixed(5)},${centre.lat.toFixed(5)}`;
+}
+
+/**
+ * Whether a settled map movement is the reader's, and so means "look here
+ * instead". Two kinds are not, and both used to throw the reader's chosen area
+ * away without being asked:
+ *
+ *  - our own reframing after a render, which is why the deadline exists rather
+ *    than a one-shot flag: an eased fitBounds can settle in more than one
+ *    moveend, and the second arrived looking exactly like a pan;
+ *  - a resize -- switching to the map pane, rotating the phone, expanding the
+ *    map -- which ends in a moveend nobody asked for. It changes the box
+ *    without moving the map, so an unchanged signature is the test for one.
+ *    The gesture's own event is not: the zoom buttons move the map without
+ *    carrying one.
+ */
+function liMapMoveIsReaders(signature, lastSignature, now, framingUntil){
+  const at = Number.isFinite(now) ? now : Date.now();
+  const until = Number.isFinite(framingUntil) ? framingUntil : liMapAutoFramingUntil;
+  if(at < until) return false;
+  return !!signature && signature !== lastSignature;
+}
+
+function liViewIsTheFilter(){
+  return !!(liLocationContext && liLocationContext.kind === 'map');
+}
+
+function liTrailIsInBounds(trail, box){
+  const point = liTrailLngLat(trail);
+  return !!(point && box && point[0] >= box.west && point[0] <= box.east
+    && point[1] >= box.south && point[1] <= box.north);
+}
+
+// The list defaults to the catalogue, but callers pass their own: a scored
+// list holds copies of the trails, so matching them by identity finds nothing.
+function liTrailsInBounds(box, list){
+  if(!box) return [];
+  const source = list || (typeof trails === 'undefined' ? [] : trails);
+  return source.filter(trail => liTrailIsInBounds(trail, box));
+}
+
+function liAreasInView(limit){
+  if(!liLocationContext || liLocationContext.kind !== 'map') return [];
+  const counts = new Map();
+  liTrailsInBounds(liLocationContext.bounds).forEach(trail => {
+    if(!trail.region || !trail.valley) return;
+    const key = `${trail.region}::${trail.valley}`;
+    counts.set(key, (counts.get(key) || 0) + 1);
+  });
+  if(!counts.size) return [];
+  liEnsureAreaChoices();
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .map(([key]) => liAreaChoices.find(choice =>
+      choice.kind === 'area' && `${choice.region}::${choice.valley}` === key))
+    .filter(Boolean)
+    .slice(0, limit || 4);
+}
+
 function liLocationContextLabel(){
   if(!liLocationContext) return '';
   if(liLocationContext.kind === 'current') return `Your location · within ${liLocationContext.radiusKm} km`;
   if(liLocationContext.kind === 'town') return `${liLocationContext.label} · within ${liLocationContext.radiusKm} km`;
-  if(liLocationContext.kind === 'map') return 'Map area';
+  if(liLocationContext.kind === 'map'){
+    const area = liAreasInView(1)[0];
+    return area ? `${area.label} · on the map` : 'The map view';
+  }
   return liDisplayLocationLabel(liLocationContext.label);
 }
 
@@ -455,7 +528,10 @@ function liRecommendationLocationPhrase(){
   if(!liLocationContext || liIsAllTrailsContext(liLocationContext)) return '';
   if(liLocationContext.kind === 'current') return 'near you';
   if(liLocationContext.kind === 'town') return `near ${liLocationContext.label}`;
-  if(liLocationContext.kind === 'map') return 'in the map area';
+  if(liLocationContext.kind === 'map'){
+    const area = liAreasInView(1)[0];
+    return area ? `in ${area.label}` : 'in the map view';
+  }
   return `in ${liDisplayLocationLabel(liLocationContext.label)}`;
 }
 
@@ -615,6 +691,10 @@ function liFocusSearchForPlace(){
   }
   search.focus();
   search.select();
+  // Rendered here rather than left to the focus handler: "Change" must open
+  // with its offer already on screen, and a field that was focused already
+  // fires nothing.
+  renderLiSearchSuggestions(currentProfileForAdjust);
   if(typeof search.scrollIntoView === 'function') search.scrollIntoView({ block:'nearest' });
 }
 
@@ -785,13 +865,37 @@ function liRenderLocationContext(profile){
   liRenderLocationNudge();
 }
 
+/**
+ * Where you are looking, changed by looking. Deliberately does less than
+ * liSetLocationContext: moving the map is not a new search, so the text in
+ * the search box, the selected trail and the remembered area all survive it,
+ * and the area is not written to storage -- a viewport is not somewhere you
+ * walk, and greeting someone next visit with one would erase the area it
+ * stood in front of.
+ */
+function liApplyMapViewport(view){
+  if(!view || typeof view.getWest !== 'function') return;
+  // The first move away from a chosen area is what "Back to Val Gardena"
+  // returns to; the ones after it must not overwrite that with a viewport.
+  if(!liLocationContext || liLocationContext.kind !== 'map') liContextBeforeMapArea = liLocationContext;
+  liLocationContext = { kind:'map', bounds:{
+    west:view.getWest(), south:view.getSouth(),
+    east:view.getEast(), north:view.getNorth(),
+  }};
+  // Clears the region and valley filters, so panning to another valley shows
+  // what is there rather than its empty intersection with the area you left.
+  liApplyLocationGeography();
+  selectedTrailId = null;
+  liEnsureLocationConditions();
+  renderReturningHomepage(currentProfileForAdjust);
+}
+
 function liSetLocationContext(context){
   const next = liValidLocationContext(context);
   if(!next) return;
   liLocationContext = next;
   // A new area supersedes the old map framing and selection; the filters and
   // the date are about the dog and the day, so they stay.
-  liMapBounds = null;
   // Typing a place, "Show all" and a restored area all arrive here, so the
   // button and the remembered context are unwound once, here, rather than at
   // each door out -- missing one is what leaves the button contradicting the
@@ -939,12 +1043,6 @@ function filterTrailsForReturningView(list){
   // read real trail fields; items arrive already scored (t.score).
   const q = liQuery.trim().toLowerCase();
   if(q) displayList = displayList.filter(x => liTrailSearchText(x).includes(q));
-  // "Search this area": keep only trails whose map marker sits in the viewport
-  // the user framed. Geography-by-map, the counterpart to geography-by-typing.
-  if(liMapBounds) displayList = displayList.filter(x => {
-    const point = liTrailLngLat(x);
-    return point && liMapBounds.contains(point);
-  });
   // The decision filters (duration, distance, trail rating, terrain, shade) run
   // through the one shared discovery filter, so "Under 5 km", "Multi-day" or
   // "Water on route" means exactly the same thing here as on Browse and the
@@ -1462,40 +1560,47 @@ function initTrailMap(){
     exit:() => setMapFullscreen(false),
   };
 
-  // "Search this area": the map is a geography control. When the user pans or
-  // zooms, offer to refilter the list to the visible viewport; applying it
-  // pins the filter, and the button flips to a one-tap clear.
+  // The map is the geography control, and it acts as one: the list ranks what
+  // the view is showing, updated when the view settles. It used to ask first
+  // ("Search this area"), which meant zooming somewhere and reading a list of
+  // trails that were not there until you noticed the button. The button stays
+  // as the way back to the area the map replaced, which zooming out cannot do.
   const areaButton = document.getElementById('liSearchThisArea');
+  let mapViewTimer = null;
+  const syncAreaButton = () => {
+    if(!areaButton) return;
+    const showing = !!(liLocationContext && liLocationContext.kind === 'map');
+    areaButton.hidden = !showing;
+    areaButton.classList.toggle('is-clear', showing);
+    if(showing){
+      const back = liContextBeforeMapArea;
+      areaButton.textContent = back && !liIsAllTrailsContext(back)
+        ? `Back to ${liDisplayLocationLabel(back.label)}`
+        : 'Show all trails';
+    }
+  };
   if(areaButton){
+    let lastMapView = '';
     trailMapInstance.on('moveend', () => {
-      // Our own reframing (fitBounds) ends here too — ignore it.
-      if(liMapAutoFraming){ liMapAutoFraming = false; return; }
-      // Already showing a map area: keep the clear action rather than offering
-      // to search again, otherwise the button flickers between the two.
-      if(liLocationContext && liLocationContext.kind === 'map') return;
-      areaButton.hidden = false;
-      areaButton.classList.remove('is-clear');
-      areaButton.textContent = 'Search this area';
+      const signature = liMapViewSignature(trailMapInstance);
+      if(!liMapMoveIsReaders(signature, lastMapView)){ lastMapView = signature; return; }
+      lastMapView = signature;
+      if(mapViewTimer) clearTimeout(mapViewTimer);
+      // A pan is a series of moveends; wait for the hand to stop before
+      // re-ranking, so one gesture costs one render and one forecast.
+      mapViewTimer = setTimeout(() => {
+        liApplyMapViewport(trailMapInstance.getBounds());
+        syncAreaButton();
+      }, 350);
     });
     areaButton.addEventListener('click', () => {
-      if(liLocationContext && liLocationContext.kind === 'map'){
-        // Nothing to go back to means the map area was the whole location:
-        // clearing it shows the catalogue, not a map area with no map.
-        liSetLocationContext(liExitMapArea() || liDefaultLocationContext());
-        return;
-      }
-      const view = trailMapInstance.getBounds();
-      liContextBeforeMapArea = liLocationContext;
-      liSetLocationContext({ kind:'map', bounds:{
-        west:view.getWest(), south:view.getSouth(),
-        east:view.getEast(), north:view.getNorth(),
-      }});
-      liMapBounds = view;
-      areaButton.hidden = false;
-      areaButton.classList.add('is-clear');
-      areaButton.textContent = 'Clear map area';
-      renderReturningHomepage(currentProfileForAdjust);
+      if(mapViewTimer) clearTimeout(mapViewTimer);
+      // Nothing to go back to means the map view was the whole location:
+      // clearing it shows the catalogue, not a map area with no map.
+      liSetLocationContext(liExitMapArea() || liDefaultLocationContext());
+      syncAreaButton();
     });
+    syncAreaButton();
   }
 
   trailMapInstance.on('load', async () => {
@@ -2105,7 +2210,7 @@ function updateMapMarkers(list){
   // Exception: when the map itself is the filter ("Search this area"),
   // reframing would fight the viewport the user just chose, so leave it.
   const validList = list.filter(t => typeof t.lat === 'number' && typeof t.lng === 'number');
-  if(validList.length > 0 && !liMapBounds){
+  if(validList.length > 0 && !liViewIsTheFilter()){
     const bounds = new maplibregl.LngLatBounds();
     validList.forEach(t => {
       if(Array.isArray(t.path) && t.path.length > 1){
@@ -2114,7 +2219,7 @@ function updateMapMarkers(list){
         bounds.extend([t.lng, t.lat]);
       }
     });
-    liMapAutoFraming = true;
+    liMapAutoFramingUntil = Date.now() + LI_MAP_AUTO_FRAME_MS;
     trailMapInstance.fitBounds(bounds, { padding: 40, maxZoom: 12 });
   }
 }
@@ -2388,7 +2493,7 @@ function liActiveFilterCount(){
     liFilters.water,
     liFilters.duration !== 'day',
     showingSavedOnly,
-    !!liMapBounds,
+    liViewIsTheFilter(),
   ].filter(Boolean).length;
 }
 
@@ -2422,10 +2527,9 @@ function liCloseMenus(){
   });
 }
 
-// Clear the "Search this area" viewport filter and reset its button to the
-// idle state, without triggering a re-render (callers decide when to repaint).
+// Put the map-view button back to its idle state, without triggering a
+// re-render (callers decide when to repaint).
 function liClearMapAreaFilter(){
-  liMapBounds = null;
   const button = document.getElementById('liSearchThisArea');
   if(button){
     button.hidden = true;
@@ -3166,12 +3270,52 @@ function liEscapeHtml(value){
   }[character]));
 }
 
+/**
+ * A town, valley, region or country offered here is a place to look, not a
+ * trail to open: choosing one becomes the location context and the list
+ * re-ranks around it. Places lead, because that is what the location gate
+ * used to ask for and the only thing a trail name cannot express.
+ */
+function liRenderPlaceOptions(host, places, kicker){
+  if(kicker && places.length){
+    const head = document.createElement('div');
+    head.className = 'li-search-kick';
+    head.textContent = kicker;
+    host.appendChild(head);
+  }
+  places.forEach(choice => {
+    const option = document.createElement('button');
+    option.type = 'button';
+    option.className = 'li-search-option li-search-place';
+    option.setAttribute('role', 'option');
+    option.setAttribute('aria-selected', 'false');
+    option.innerHTML = `<span class="li-search-option-copy"><strong>${liEscapeHtml(choice.label)}</strong><small>${liEscapeHtml(liPlaceChoiceDetail(choice))}</small></span><span class="li-search-place-tag">Place</span>`;
+    option.addEventListener('click', () => {
+      hideLiSearchSuggestions();
+      liSetLocationContext(choice);
+    });
+    host.appendChild(option);
+  });
+}
+
 function renderLiSearchSuggestions(profile){
   const search = document.getElementById('liSearch');
   const suggestions = document.getElementById('liSearchSuggest');
   if(!search || !suggestions || typeof trails === 'undefined') return;
   const query = search.value.trim().toLowerCase();
-  if(!query){ hideLiSearchSuggestions(); return; }
+  // "Change" opens this box with nothing typed, which used to offer nothing:
+  // a place picker that asks you to already know the name of the place. What
+  // the map is showing is the one list it can offer without being told, and
+  // it is the list someone who just zoomed somewhere actually wants.
+  if(!query){
+    const inView = liAreasInView(4);
+    if(!inView.length){ hideLiSearchSuggestions(); return; }
+    suggestions.innerHTML = '';
+    liRenderPlaceOptions(suggestions, inView, 'On the map right now');
+    suggestions.hidden = false;
+    search.setAttribute('aria-expanded', 'true');
+    return;
+  }
   const overrides = profile ? effectiveOverrides(profile, adjustOverride) : guestOverrides();
   const matches = filterTrailsForLocationContext(trails)
     .filter(trail => liTrailIsInSelectedGeography(trail, true))
@@ -3187,19 +3331,7 @@ function renderLiSearchSuggestions(profile){
   // ask for and the only thing a trail name cannot express.
   liEnsureAreaChoices();
   const places = liPlaceChoicesFor(query);
-  places.forEach(choice => {
-    const option = document.createElement('button');
-    option.type = 'button';
-    option.className = 'li-search-option li-search-place';
-    option.setAttribute('role', 'option');
-    option.setAttribute('aria-selected', 'false');
-    option.innerHTML = `<span class="li-search-option-copy"><strong>${liEscapeHtml(choice.label)}</strong><small>${liEscapeHtml(liPlaceChoiceDetail(choice))}</small></span><span class="li-search-place-tag">Place</span>`;
-    option.addEventListener('click', () => {
-      hideLiSearchSuggestions();
-      liSetLocationContext(choice);
-    });
-    suggestions.appendChild(option);
-  });
+  liRenderPlaceOptions(suggestions, places);
   if(!matches.length){
     if(!places.length) suggestions.innerHTML = '<div class="li-search-empty">No trails or places found.</div>';
   } else {
@@ -3394,42 +3526,97 @@ function liGapFieldList(fields){
   });
 }
 
-function liRecommendationExplanationHtml(trail, profile){
+/**
+ * The engine writes one sentence per factor, in its own auditable vocabulary:
+ * "Terrain is within this dog’s effective tolerance." then "The 3.6 km route
+ * is within this dog’s effective range." Read together on a card they are the
+ * same sentence three times with the nouns swapped, which is what makes them
+ * sound machine-written rather than merely precise.
+ *
+ * recommendation-decision.js already solved this for the trail page. It
+ * translates each factor by its code, and folds every positive that cost no
+ * points into a single line -- "Fine for Eddie: the terrain, the 3.6 km
+ * distance and the 462 m climb." The homepage renders that same view instead
+ * of keeping a second, blunter copy of the reasoning.
+ */
+function liRecommendationView(trail, profile){
   const recommendation = trail && trail.recommendation;
-  if(!recommendation) return '';
+  const decision = window.DoloPawsRecommendationDecision;
+  if(!recommendation) return null;
+  if(!decision) return null;
+  return decision.present(recommendation, {
+    translate: typeof window.t === 'function' ? window.t : null,
+    dogName: profile && profile.name ? profile.name : '',
+  });
+}
+
+function liRecommendationExplanationHtml(trail, profile, open){
+  const recommendation = trail && trail.recommendation;
+  const view = liRecommendationView(trail, profile);
+  if(!view) return '';
   const dogName = profile && profile.name ? profile.name : 'your dog';
-  const positives = (recommendation.positiveReasons || []).slice(0, 2);
-  const gapFields = profile && profile.name ? liDogGapFields(recommendation) : [];
-  // A gap that has become a prompt must not also sit in the list above it as a
-  // statement; saying the same thing twice reads as two separate problems.
-  const gapCodes = new Set(gapFields.map(field => `dog.${field}.unknown`));
-  const cautions = [
-    ...(recommendation.hardStops || []),
-    ...(recommendation.cautions || []),
-    ...(recommendation.unknowns || []).filter(entry => !(entry && gapCodes.has(entry.code))),
-  ].slice(0, 2);
-  const items = entries => entries.map(entry => `<li>${liPersonalisationText(entry.message)}</li>`).join('');
-  const fit = positives.length
-    ? `<div><b>Why it fits ${liPersonalisationText(dogName)}</b><ul>${items(positives)}</ul></div>`
+  const items = entries => entries.map(entry => `<li>${liPersonalisationText(entry)}</li>`).join('');
+  // The folded phrases carry the positives that cost nothing; a positive with
+  // no short form of its own keeps a row, so nothing is dropped silently. With
+  // nothing folded the ranked reasons stand on their own and cannot repeat it.
+  const standalone = (view.breakdownRows || [])
+    .filter(row => row && row.kind === 'positive' && row.message)
+    .map(row => row.message);
+  const bullets = (standalone.length ? standalone : view.fine.length ? [] : view.reasons).slice(0, 2);
+  // The adapter's own line is "Fine for Eddie: the terrain and the 39 m
+  // climb." Under a heading that already says "Why it fits Eddie" the name
+  // lands twice in eleven words, so the card keeps the phrases and lets the
+  // heading supply the subject.
+  const fineList = view.fine.length <= 1 ? view.fine.join('') : liT('recommendation.list.and', '{first} and {last}', {
+    first:view.fine.slice(0, -1).join(', '),
+    last:view.fine[view.fine.length - 1],
+  });
+  const fineSentence = fineList ? `${fineList.charAt(0).toUpperCase()}${fineList.slice(1)}.` : '';
+  const fitBody = [
+    fineSentence ? `<p class="li-answer-fine">${liPersonalisationText(fineSentence)}</p>` : '',
+    bullets.length ? `<ul>${items(bullets)}</ul>` : '',
+  ].join('');
+  const fit = fitBody
+    ? `<div><b>Why it fits ${liPersonalisationText(dogName)}</b>${fitBody}</div>`
     : '';
-  const know = cautions.length
-    ? `<div><b>What to know ${liWalkDate === liDateOffsetIso(0) ? 'today' : 'for this day'}</b><ul>${items(cautions)}</ul></div>`
+  // Cautions first (hard stops already lead them), then what is simply not
+  // known, which is a different kind of statement and belongs after. Only
+  // trail unknowns: a missing profile field becomes the prompt below, and
+  // saying the same thing twice on one card reads as two problems.
+  const concerns = view.cautions.slice(0, 3);
+  if(concerns.length < 2) concerns.push(...view.trailUnknowns.slice(0, 2 - concerns.length));
+  const know = concerns.length
+    ? `<div><b>What to know ${liWalkDate === liDateOffsetIso(0) ? 'today' : 'for this day'}</b><ul>${items(concerns)}</ul></div>`
     : '';
   // Opens the wizard on the dog it is talking about, rather than sending the
   // reader to the account page to find it themselves.
+  const gapFields = profile && profile.name ? liDogGapFields(recommendation) : [];
   const gap = gapFields.length
     ? `<p class="li-answer-gap"><button type="button" class="li-answer-gap-btn" data-complete-dog>${
         liPersonalisationText(liT('recommendation.gap.fields', 'Add {name}\u2019s {fields} to sharpen this score \u2192', {
           name:dogName, fields:liGapFieldList(gapFields),
         }))}</button></p>`
     : '';
-  return `<div class="li-answer-explanation">
+  // Every card carries this now, so the panel is addressed by its own id and
+  // the card's toggle controls it. "Show on map" moved to the bar above, which
+  // every card also has: two of the same button on one card is one too many.
+  const panelId = `li-why-${encodeURIComponent(trail.id)}`;
+  return `<div class="li-answer-explanation" id="${panelId}"${open ? '' : ' hidden'}>
     ${fit}${know}${gap}
     <div class="li-answer-actions">
       <a class="li-answer-open" href="trail.html?id=${encodeURIComponent(trail.id)}">View trail details</a>
-      <button type="button" class="li-answer-map locate-btn" data-id="${liPersonalisationText(trail.id)}">Show on map</button>
     </div>
   </div>`;
+}
+
+/** The control that opens the panel above, and the panel's own id. */
+function liWhyPanelId(trailId){ return `li-why-${encodeURIComponent(trailId)}`; }
+
+function liWhyToggleHtml(trail, profile, open){
+  const dogName = profile && profile.name ? profile.name : 'your dog';
+  return `<button type="button" class="li-bar-act li-why-toggle" data-why-toggle aria-expanded="${open}" aria-controls="${liWhyPanelId(trail.id)}">` +
+    `<span class="li-why-label">${open ? 'Hide the reasons' : `Why it fits ${liPersonalisationText(dogName)}`}</span>` +
+    `<span class="li-why-caret" aria-hidden="true">▾</span></button>`;
 }
 
 function liScheduleNewMatchSync(scored, profile){
@@ -3607,8 +3794,11 @@ async function renderReturningHomepage(profile, options = {}){
     const newBadge = isNew ? productBadge('new', window.t('badge.new')) : '';
     const rank = resultRanks.get(t.id) || index + 1;
     const isPrimary = !showingSavedOnly && index < TOP_PICKS;
+    // Every card can explain itself; the top picks simply start open, because
+    // they are the answer the page was asked for.
+    const explanation = liRecommendationExplanationHtml(t, profile, isPrimary);
     return `${isPrimary ? '' : index === TOP_PICKS && !showingSavedOnly ? `<div class="li-alternatives-heading"><span>Other options for ${liPersonalisationText(profile && profile.name ? profile.name : 'your dog')}</span><a href="browse-trails.html">See the full catalogue →</a></div>` : ''}
-    <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}" aria-label="Rank ${rank}: ${liPersonalisationText(t.name)}"${dim ? ' style="opacity:.55;"' : ''}>
+    <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}${explanation && isPrimary ? ' is-why-open' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}" aria-label="Rank ${rank}: ${liPersonalisationText(t.name)}"${dim ? ' style="opacity:.55;"' : ''}>
       <span class="li-result-rank" aria-hidden="true" style="background:${liRecommendationPresentation(t, profile).color};">${rank}</span>
       ${thumb}
       <div class="li-row-body">
@@ -3620,13 +3810,38 @@ async function renderReturningHomepage(profile, options = {}){
       </div>
       ${liMatchColHtml(t, profile, overrides)}
       <button type="button" class="li-heart save-btn" data-id="${t.id}" aria-pressed="${isFav}" aria-label="${isFav ? 'Remove ' + t.name + ' from saved trails' : 'Save ' + t.name}">${isFav ? '♥' : '♡'}</button>
-      ${isPrimary ? '' : `<div class="li-row-bar">
+      <div class="li-row-bar">
+        ${explanation ? liWhyToggleHtml(t, profile, isPrimary) : ''}
         <button type="button" class="li-bar-act locate-btn" data-id="${t.id}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/></svg>See on map</button>
         ${directionsBarHtml(t)}
-      </div>`}
-      ${isPrimary ? liRecommendationExplanationHtml(t, profile) : ''}
+      </div>
+      ${explanation}
     </div>`;
   }).join('');
+
+  // Opening a card's reasons is reading, not navigating: it never leaves the
+  // page and never changes the list, so it only moves its own panel.
+  listEl.querySelectorAll('[data-why-toggle]').forEach(toggle => {
+    toggle.addEventListener('click', event => {
+      event.stopPropagation();
+      const panel = document.getElementById(toggle.getAttribute('aria-controls'));
+      if(!panel) return;
+      const open = panel.hidden;
+      panel.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      const card = toggle.closest('.li-row');
+      if(card) card.classList.toggle('is-why-open', open);
+      const label = toggle.querySelector('.li-why-label');
+      if(label){
+        const row = toggle.closest('.li-row');
+        const trail = trails.find(item => row && item.id === row.dataset.id);
+        const dogName = currentProfileForAdjust && currentProfileForAdjust.name
+          ? currentProfileForAdjust.name : 'your dog';
+        label.textContent = open ? 'Hide the reasons' : `Why it fits ${dogName}`;
+        if(open) warmTrailDetail(trail);
+      }
+    });
+  });
 
   // Whole row opens the trail page, except clicks on the heart, links,
   // or the thumbnail (which locates the trail on the map instead).

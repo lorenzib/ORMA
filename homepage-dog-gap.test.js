@@ -72,11 +72,26 @@ describe('completing a dog from the homepage', () => {
   });
 
   test('a gap that became a prompt is not also listed as a finding', () => {
-    // Saying the same thing twice on one card reads as two problems.
+    // Saying the same thing twice on one card reads as two problems. The card
+    // lists `trailUnknowns`, which is every unknown the reader cannot fix; the
+    // ones they can become the prompt instead.
+    const decision = require('./recommendation-decision.js');
+    const view = decision.present({
+      category:'possible-with-cautions',
+      unknowns:[
+        { code:'dog.weight.unknown', message:'Weight is missing, so size adjustments are not applied.' },
+        { code:'trail.exposure.unknown', message:'Exposure and drop-offs have not been established.' },
+      ],
+    }, { dogName:'Juno' });
+    expect(view.dogGapFields).toEqual(['weight']);
+    expect(view.trailUnknowns).toEqual(['Exposure and drop-offs have not been established.']);
+    expect(view.unknowns).toHaveLength(2);
+
+    // And the card reads the split one rather than the whole list.
     const block = script.slice(script.indexOf('function liRecommendationExplanationHtml('),
       script.indexOf('function liScheduleNewMatchSync('));
-    expect(block).toContain('const gapCodes = new Set(gapFields.map(field => `dog.${field}.unknown`))');
-    expect(block).toMatch(/unknowns \|\| \[\]\)\.filter\(entry => !\(entry && gapCodes\.has\(entry\.code\)\)\)/);
+    expect(block).toContain('view.trailUnknowns.slice(0, 2 - concerns.length)');
+    expect(block).not.toContain('view.unknowns');
   });
 
   test('a guest is not asked to complete a dog that does not exist', () => {

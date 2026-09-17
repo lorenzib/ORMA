@@ -19,7 +19,9 @@ describe('choosing a new place keeps the dog’s filters', () => {
   test('a new area drops the old framing but keeps the dog’s filters', () => {
     const setter=source.slice(source.indexOf('function liSetLocationContext'),
       source.indexOf('function liResetLocationContext'));
-    expect(setter).toContain('liMapBounds = null;');
+    // The framing used to be a second box kept beside the context; it is the
+    // context's own bounds now, so leaving the map area is what drops it.
+    expect(setter).toContain("if(next.kind !== 'map') liExitMapArea();");
     expect(setter).toContain('selectedTrailId = null;');
     // Filters are only cleared by the explicit reset action.
     expect(setter).not.toContain('liFilters =');

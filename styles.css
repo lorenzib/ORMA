@@ -2870,6 +2870,9 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-explore-menu .li-menu-item small{color:var(--ink-soft);font:600 11px 'Inter',sans-serif;}
 .li-menu-note{display:block;padding:4px 11px 9px;color:var(--ink-soft);font:500 12px/1.4 'Inter',sans-serif;}
 .li-search-place .li-search-place-tag{flex:none;padding:3px 8px;border-radius:999px;background:#EAF2EA;color:#2C5C34;font:800 10px 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;}
+/* Says where an unprompted list of places came from, so "Change" opening on
+   four valley names reads as an offer rather than a guess. */
+.li-search-kick{padding:8px 12px 4px;color:var(--ink-soft);font:800 9.5px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
 
 /* ---------- dark app header (AppShell design) ---------- */
 .li-top{
@@ -3651,7 +3654,7 @@ html.early-member .topnav{display:none;}
   .li-row{
     display:grid;
     grid-template-columns:66px minmax(0,1fr) minmax(144px,168px) 34px;
-    grid-template-rows:auto auto;
+    grid-template-rows:auto auto auto;
     align-items:center;
   }
   .li-thumb{grid-column:1;grid-row:1;}
@@ -3674,6 +3677,11 @@ html.early-member .topnav{display:none;}
     min-width:0;
     margin:0 0 -12px -12px;
   }
+  /* The reasons panel is the card's third row and spans every column: the
+     match panel stops at row 2, so nothing else is competing for it. Without
+     an explicit row, auto-placement lands it on top of the bar. */
+  .li-row .li-answer-explanation{grid-column:1/-1;grid-row:3;margin:0 -12px -12px;}
+  .li-row.is-why-open .li-row-bar{margin-bottom:0;}
 }
 /* Phones. This used to only narrow the match column, which was not enough:
    the row stayed one flex line and the furniture does not shrink. A 66px
@@ -4183,14 +4191,28 @@ html.early-member .topnav{display:none;}
 .li-answer-open:hover{background:var(--accent-hover);color:#fff;}
 .li-answer-map{min-height:40px;padding:0 12px;border:0;background:transparent;color:var(--accent);font:750 11.5px 'Inter',sans-serif;cursor:pointer;}
 .li-answer-map:hover{text-decoration:underline;}
+/* The reasons toggle: a bar action like the two beside it, with a caret that
+   turns when its panel is open. The panel sits below the whole bar. */
+.li-why-toggle{gap:5px;}
+.li-why-caret{font-size:9px;line-height:1;transition:transform .15s ease;}
+.li-why-toggle[aria-expanded="true"] .li-why-caret{transform:rotate(180deg);}
+/* The bar sits flush with the card's bottom edge. With a panel open beneath
+   it, the panel takes that job and the bar closes up against it instead. */
+.li-row .li-answer-explanation{flex-basis:calc(100% + 24px);margin:0 -12px -12px;border-radius:0 0 13px 13px;}
+.li-row.is-why-open .li-row-bar{margin-bottom:0;}
+.li-answer-explanation[hidden]{display:none;}
 .li-alternatives-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 4px 1px;color:var(--ink-soft);font:800 10px 'Inter',sans-serif;letter-spacing:.09em;text-transform:uppercase;}
 .li-alternatives-heading a{color:var(--accent);font-size:9.5px;text-decoration:none;}
 @media (min-width:641px){
-  .li-row--answer{grid-template-columns:104px minmax(0,1fr) minmax(128px,148px) 34px;grid-template-rows:auto auto;padding:14px;}
+  .li-row--answer{grid-template-columns:104px minmax(0,1fr) minmax(128px,148px) 34px;grid-template-rows:auto auto auto;padding:14px;}
   .li-row--answer .li-thumb{width:104px;height:96px;grid-row:1;}
   .li-row--answer .li-match{grid-row:1;}
   .li-row--answer .li-heart{grid-row:1;}
-  .li-row--answer .li-answer-explanation{grid-column:1/-1;grid-row:2;}
+  /* The picks are a grid, so the bar and the panel need rows of their own:
+     auto-placement puts both in row 2 and draws one over the other. */
+  .li-row--answer .li-row-bar{grid-column:1/3;margin:0 0 -14px -14px;}
+  .li-row--answer.is-why-open .li-row-bar{margin-bottom:0;}
+  .li-row--answer .li-answer-explanation{margin:0 -14px -14px;}
 }
 @media (max-width:700px){
   .li-answer-explanation{width:100%;box-sizing:border-box;grid-template-columns:1fr;}

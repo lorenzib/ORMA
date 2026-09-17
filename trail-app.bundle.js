@@ -16378,10 +16378,15 @@ if(document.querySelector('.td2')){
     const unknowns = messages(rawUnknowns, translate, extra);
     // The unknown codes encode their owner: dog.* gaps are fixable by the
     // user right now (profile fields); everything else is trail data.
+    const isDogGap = item => typeof item.code === 'string' && item.code.startsWith('dog.');
     const dogGapFields = rawUnknowns
-      .filter(item => typeof item.code === 'string' && item.code.startsWith('dog.'))
+      .filter(isDogGap)
       .map(item => item.code.split('.')[1])
       .filter(Boolean);
+    // A gap the card turns into "add Eddie's weight" must not also sit above
+    // it as a finding: said twice, one missing field reads as two problems.
+    // Callers that render the prompt list these instead of `unknowns`.
+    const trailUnknowns = messages(rawUnknowns.filter(item => !isDogGap(item)), translate, extra);
 
     return {
       confidenceLabel:recommendation.confidence && CONFIDENCE_LABEL[recommendation.confidence]
@@ -16416,6 +16421,7 @@ if(document.querySelector('.td2')){
       // list as a note instead, explaining why the total stops where it does.
       breakdownNote:floorEntry ? translatedMessage(floorEntry, translate, extra) : null,
       unknowns:unknowns.slice(0, 5),
+      trailUnknowns:trailUnknowns.slice(0, 5),
       additionalUnknowns:Math.max(0, unknowns.length - 5),
       heroSummary:dogName
         ? tr('recommendation.hero.dog', '{conclusion} for {name}.', {

@@ -140,6 +140,9 @@ function loadHomepageContext(testTrails){
 
   vm.createContext(context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'regions-config.js'), 'utf8'), context);
+  // The card's explanation is rendered from this view, exactly as the page
+  // loads it: without it a card would silently lose its reasoning.
+  vm.runInContext(fs.readFileSync(path.join(__dirname, 'recommendation-decision.js'), 'utf8'), context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8'), context);
   // Existing filter tests exercise catalogue refinements in isolation. The
   // real product never creates this synthetic context; it prevents these
@@ -202,6 +205,91 @@ describe('returning homepage region + valley filters', () => {
   const mapArea = (west, south, east, north) =>
     `liSetLocationContext({ kind:"map", bounds:{ west:${west}, south:${south}, east:${east}, north:${north} } });`;
 
+  // A LngLatBounds as maplibre hands one over: liApplyMapViewport reads it
+  // through the same four getters the real map exposes.
+  const viewport = (west, south, east, north) => ({
+    getWest:() => west, getSouth:() => south, getEast:() => east, getNorth:() => north,
+  });
+
+  test('moving the map re-ranks the list without being asked first', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
+      valley:"Val Gardena", label:"Val Gardena" });`, context);
+    // Something typed in the search box: a pan is not a new search, so it
+    // survives -- unlike choosing a place, which replaces what you typed.
+    vm.runInContext('liQuery = "loop";', context);
+    context.__view = viewport(6, 45, 7, 46);
+    await vm.runInContext('liApplyMapViewport(__view);', context);
+
+    expect(vm.runInContext('liLocationContext.kind', context)).toBe('map');
+    expect(vm.runInContext('liQuery', context)).toBe('loop');
+    // The typed area is gone, so panning to Savoy shows Savoy rather than its
+    // empty intersection with the Dolomites.
+    expect(vm.runInContext('activeRegion', context)).toBe('all');
+    expect(vm.runInContext('activeValley', context)).toBe('all');
+    // And the map is left where the reader put it: the framing that follows a
+    // render is suppressed while the view is the filter.
+    expect(vm.runInContext('liViewIsTheFilter()', context)).toBe(true);
+  });
+
+  test('only the reader\'s own map movement counts as looking somewhere else', () => {
+    const context = loadHomepageContext(sampleTrails);
+    const map = { getZoom:() => 9.5, getCenter:() => ({ lng:11.7, lat:46.5 }) };
+    context.__map = map;
+    const signature = vm.runInContext('liMapViewSignature(__map)', context);
+    expect(signature).toBe('9.500|11.70000,46.50000');
+
+    const readers = (now, until, last) =>
+      vm.runInContext(`liMapMoveIsReaders(${JSON.stringify(signature)}, ${JSON.stringify(last)}, ${now}, ${until})`, context);
+    // A pan or a zoom: the map is somewhere new, and our framing is done.
+    expect(readers(5000, 1000, 'other')).toBe(true);
+    // A resize: the box changed, the map did not.
+    expect(readers(5000, 1000, signature)).toBe(false);
+    // Our own reframing, still settling. An eased fitBounds can end in more
+    // than one moveend, and the later ones look exactly like a pan.
+    expect(readers(500, 1000, 'other')).toBe(false);
+  });
+
+  test('the way back is the area the map replaced, not the last viewport', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
+      valley:"Val Gardena", label:"Val Gardena" });`, context);
+    context.__first = viewport(6, 45, 7, 46);
+    context.__second = viewport(6.2, 45.2, 6.8, 45.8);
+    await vm.runInContext('liApplyMapViewport(__first);', context);
+    await vm.runInContext('liApplyMapViewport(__second);', context);
+    // Two moves, one remembered origin: the second must not record the first
+    // viewport as the place to go back to.
+    expect(vm.runInContext('liContextBeforeMapArea.label', context)).toBe('Val Gardena');
+    expect(vm.runInContext('liContextBeforeMapArea.kind', context)).toBe('area');
+  });
+
+  test('"Change" with nothing typed offers the areas the map is showing', async () => {
+    const context = loadHomepageContext(sampleTrails);
+    context.__view = viewport(6, 45, 7, 46);
+    await vm.runInContext('liApplyMapViewport(__view);', context);
+    vm.runInContext('renderLiSearchSuggestions(null);', context);
+
+    const suggest = document.getElementById('liSearchSuggest');
+    expect(suggest.hidden).toBe(false);
+    expect(suggest.querySelector('.li-search-kick').textContent).toBe('On the map right now');
+    expect([...suggest.querySelectorAll('[role="option"] strong')].map(el => el.textContent))
+      .toEqual(['Maurienne', 'Tarentaise – Vanoise', 'Chamonix – Mont Blanc']);
+
+    // Choosing one is choosing a place, exactly as typing its name would be.
+    suggest.querySelector('[role="option"]').click();
+    expect(vm.runInContext('liLocationContext.kind', context)).toBe('area');
+    expect(vm.runInContext('liLocationContext.label', context)).toBe('Maurienne');
+  });
+
+  test('a view with no trails in it offers nothing rather than an empty box', () => {
+    const context = loadHomepageContext(sampleTrails);
+    context.__view = viewport(-40, 30, -35, 35);
+    vm.runInContext('liApplyMapViewport(__view);', context);
+    vm.runInContext('renderLiSearchSuggestions(null);', context);
+    expect(document.getElementById('liSearchSuggest').hidden).toBe(true);
+  });
+
   test('a map area shows what is in view', async () => {
     const context = loadHomepageContext(sampleTrails);
     // A box over the Dolomites samples only.
@@ -225,13 +313,29 @@ describe('returning homepage region + valley filters', () => {
     expect(vm.runInContext('activeRegion', context)).toBe('all');
   });
 
-  test('it is called a map area, not the area it replaced', async () => {
+  test('the map view is named by what it shows, not by the area it replaced', async () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext(`liSetLocationContext({ kind:"area", country:"IT", region:"dolomites",
       valley:"Val Gardena", label:"Val Gardena" });`, context);
     vm.runInContext(mapArea(6, 45, 7, 46), context);
-    expect(vm.runInContext('liLocationContextLabel()', context)).toBe('Map area');
-    expect(vm.runInContext('liRecommendationLocationPhrase()', context)).toBe('in the map area');
+    // Panning to Maurienne must not leave the heading reading "Val Gardena",
+    // and "Map area" is true without saying anything: the valley whose trails
+    // fill the view is the answer to where you are looking.
+    expect(vm.runInContext('liLocationContextLabel()', context)).toBe('Maurienne · on the map');
+    expect(vm.runInContext('liRecommendationLocationPhrase()', context)).toBe('in Maurienne');
+    // Ranked by how many of the view's trails each area holds, so the busiest
+    // is both the name above and the first place offered under "Change".
+    expect(vm.runInContext('liAreasInView(4).map(a => a.label)', context))
+      .toEqual(['Maurienne', 'Tarentaise – Vanoise', 'Chamonix – Mont Blanc']);
+  });
+
+  test('a map view with no catalogue area in it still says it is the map', () => {
+    const context = loadHomepageContext(sampleTrails);
+    // Mid-Atlantic: no trail, so there is no area to name.
+    vm.runInContext(mapArea(-40, 30, -35, 35), context);
+    expect(vm.runInContext('liAreasInView(4)', context)).toEqual([]);
+    expect(vm.runInContext('liLocationContextLabel()', context)).toBe('The map view');
+    expect(vm.runInContext('liRecommendationLocationPhrase()', context)).toBe('in the map view');
   });
 
   // A map area is where you are looking, not where you walk: remembering it
@@ -305,11 +409,11 @@ describe('returning homepage region + valley filters', () => {
     const context = loadHomepageContext(sampleTrails);
     vm.runInContext(inValGardena, context);
     pinMapArea(context);
-    expect(vm.runInContext('liLocationContextLabel()', context)).toBe('Map area');
+    expect(vm.runInContext('liLocationContextLabel()', context)).toBe('Maurienne · on the map');
     vm.runInContext('liResetAllFilters();', context);
     await vm.runInContext('renderReturningHomepage(null);', context);
     expect(vm.runInContext('liLocationContextLabel()', context)).toBe('Val Gardena');
-    expect(vm.runInContext('liMapBounds', context)).toBeNull();
+    expect(vm.runInContext('liViewIsTheFilter()', context)).toBe(false);
     expect(areaButtonState()).toBe('hidden');
     expect(document.querySelectorAll('#returningTrailList .li-row')).toHaveLength(1);
   });
@@ -507,11 +611,32 @@ describe('returning homepage region + valley filters', () => {
     // The first three are co-equal, fully explained answer cards.
     expect([...rows].slice(0, 3).every(row => row.classList.contains('li-row--answer'))).toBe(true);
     expect(document.querySelectorAll('#returningTrailList .li-row--answer')).toHaveLength(3);
-    expect(document.querySelectorAll('.li-answer-explanation')).toHaveLength(3);
-    expect(document.querySelector('.li-answer-explanation').textContent).toContain('Why it fits Teo');
-    expect(document.querySelector('.li-answer-explanation').textContent).toContain('What to know today');
+    // Every card can explain itself; the three picks are the ones that start
+    // open, because they are the answer the page was asked for.
+    const panels = [...document.querySelectorAll('.li-answer-explanation')];
+    expect(panels).toHaveLength(5);
+    expect(panels.map(panel => panel.hidden)).toEqual([false, false, false, true, true]);
+    const toggles = [...document.querySelectorAll('[data-why-toggle]')];
+    expect(toggles).toHaveLength(5);
+    expect(toggles.map(toggle => toggle.getAttribute('aria-expanded')))
+      .toEqual(['true', 'true', 'true', 'false', 'false']);
+    expect(toggles[0].textContent).toContain('Hide the reasons');
+    expect(toggles[3].textContent).toContain('Why it fits Teo');
+    expect(toggles[3].getAttribute('aria-controls')).toBe(panels[3].id);
+    expect(panels[0].textContent).toContain('Why it fits Teo');
+    expect(panels[0].textContent).toContain('What to know today');
     expect(document.querySelector('.li-answer-open').textContent).toBe('View trail details');
-    expect(document.querySelector('.li-answer-map').textContent).toBe('Show on map');
+    // "See on map" is in the bar every card now has, so the panel does not
+    // repeat it.
+    expect(document.querySelector('.li-answer-map')).toBeNull();
+    expect(document.querySelectorAll('#returningTrailList .li-row-bar')).toHaveLength(5);
+
+    // Opening one card's reasons moves that card only.
+    toggles[3].click();
+    expect(panels[3].hidden).toBe(false);
+    expect(toggles[3].getAttribute('aria-expanded')).toBe('true');
+    expect(toggles[3].textContent).toContain('Hide the reasons');
+    expect(panels[4].hidden).toBe(true);
     // The alternatives heading follows the three picks, before the fourth card.
     expect(document.querySelector('.li-alternatives-heading').textContent).toContain('Other options for Teo');
     expect(rows[3].classList.contains('li-row--answer')).toBe(false);
