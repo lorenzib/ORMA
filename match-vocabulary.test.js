@@ -61,6 +61,7 @@ describe('both surfaces ask the same question', () => {
   const browse=fs.readFileSync('browse-trails.html','utf8');
   const home=fs.readFileSync('script.js','utf8');
   const page=fs.readFileSync('index.html','utf8');
+  const guestSearch=fs.readFileSync('homepage-search.js','utf8');
 
   test('browse reads the engine’s recommendation, not just the score', () => {
     expect(browse).toContain('window.DoloPawsScoring.recommendTrail(');
@@ -79,11 +80,66 @@ describe('both surfaces ask the same question', () => {
     expect(browse).toContain('match-verdict.js');
   });
 
+  // The guard that used to run here read browse and the logged-in homepage and
+  // stopped, which is how the guest homepage kept its own table -- with its own
+  // words AND its own cut-offs -- for as long as this file has existed. A trail
+  // scoring 80 was "Great match" on the first screen a visitor sees and
+  // "Possible with cautions" on every screen after it.
   test('no surface keeps a private vocabulary', () => {
-    [browse,home].forEach(source=>{
+    [browse,home,guestSearch].forEach(source=>{
       expect(source).not.toMatch(/'Great match'/);
       expect(source).not.toMatch(/'Check first'/);
     });
+  });
+
+  test('the guest homepage defers to it, cut-offs and all', () => {
+    expect(guestSearch).toContain('window.OrmaMatchVerdict');
+    expect(guestSearch).not.toMatch(/s >= 75/);
+    expect(guestSearch).not.toMatch(/s >= 55/);
+  });
+
+  test('no surface prints the number beside the verdict', () => {
+    // The percentage is the verdict said twice, with a precision the evidence
+    // does not have. It survived in both typeaheads after the cards dropped it.
+    expect(home).not.toContain('${trail.score}%');
+    expect(guestSearch).not.toContain("'<span>%</span>'");
+  });
+});
+
+// A reader with no dog is scored against a default. Saying "your dog" over
+// that score claims a personalisation that did not happen -- on the one line
+// the reader is being asked to trust. recommendation-decision.js has had the
+// honest word since it was written, and trail.html has always used it.
+describe('the score says whose it is', () => {
+  const browse=fs.readFileSync('browse-trails.html','utf8');
+  const home=fs.readFileSync('script.js','utf8');
+  const decision=require('./recommendation-decision.js');
+
+  test('the canonical view names the default rather than the reader', () => {
+    const guest=decision.present({category:'strong-option',score:90},{});
+    expect(guest.breakdownFor).toBe('a medium dog');
+    expect(guest.contextLabel).toBe('Unpersonalized planning view');
+    expect(guest.dogName).toBeNull();
+
+    const named=decision.present({category:'strong-option',score:90},{dogName:'Eddie'});
+    expect(named.breakdownFor).toBe('Eddie');
+    expect(named.contextLabel).toBe('Recommendation for Eddie');
+  });
+
+  test('the homepage list uses one subject everywhere it labels a verdict', () => {
+    expect(home).toContain("function liScoredSubject(profile)");
+    expect(home).toContain("return liT('recommendation.subject.guest', 'a medium dog');");
+    // The card, its reasons, the toggle, the section heading and the
+    // alternatives heading all ask the same function.
+    expect((home.match(/liScoredSubject\(/g)||[]).length).toBeGreaterThanOrEqual(6);
+    expect(home).not.toContain("'Chosen for your dog'");
+  });
+
+  test('browse names the dog it actually scored', () => {
+    expect(browse).toContain('function scoredSubjectLabel()');
+    expect(browse).toContain('${esc(scoredSubjectLabel())}');
+    // The claim that was there before, made of whatever was in the scorer.
+    expect(browse).not.toContain('<small>FOR YOUR DOG</small>');
   });
 });
 

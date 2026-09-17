@@ -2526,8 +2526,8 @@ body.map-fs-open{overflow:hidden;}
 .hp-sug-meta{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-soft);margin-top:2px;}
 .hp-sug-sep{color:#C9C7BB;}
 .hp-sug-match{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
-.hp-sug-match .pct{font-family:'Inter',sans-serif;font-weight:800;font-size:16px;line-height:1;}
-.hp-sug-match .pct span{font-size:10px;}
+.hp-sug-match{max-width:118px;text-align:right;}
+.hp-sug-match .verdict{font:800 11px/1.25 'Inter',sans-serif;}
 .hp-sug-match .lab{font-size:9.5px;font-weight:700;color:#8A9689;}
 .hp-sug-more{display:flex;align-items:center;justify-content:space-between;width:100%;margin-top:6px;border:none;border-top:1px solid #EDE9DD;background:none;padding:12px 10px 6px;font-family:'Inter',sans-serif;font-weight:700;font-size:13px;color:var(--accent);cursor:pointer;}
 .hp-sug-key{font-size:10px;font-weight:700;color:#8A9689;border:1px solid var(--paper-line);border-radius:6px;padding:2px 7px;}
@@ -3193,7 +3193,7 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-search-option-copy{display:flex;flex-direction:column;min-width:0;gap:2px;}
 .li-search-option-copy strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:700 13px 'Bricolage Grotesque',sans-serif;}
 .li-search-option-copy small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 10.5px 'Inter',sans-serif;color:var(--ink-soft);}
-.li-search-option-match{flex:none;font:800 12px 'Inter',sans-serif;}
+.li-search-option-match{flex:none;max-width:104px;text-align:right;font:800 10.5px/1.25 'Inter',sans-serif;}
 .li-search-empty{padding:15px 12px;color:var(--ink-soft);font:600 12px 'Inter',sans-serif;}
 .li-top-spacer{flex:1;}
 .li-top-actions{display:flex;align-items:center;gap:8px;}
