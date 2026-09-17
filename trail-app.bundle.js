@@ -1490,8 +1490,39 @@
     return result;
   }
 
+  // The behaviour answers a guest gave in the wizard (recall, livestock,
+  // open chairlifts, ...). Same allow-list as the Firestore writer in
+  // firebase-init.js, so the draft that reaches the account after sign-up
+  // carries exactly what the account would accept. Dropping the block here
+  // used to lose every answer at sign-up, including the chairlift one that
+  // gates chairlift-assisted routes for a small dog.
+  const BEHAVIOUR_SCALES = {
+    recall:['reliable','variable','unreliable'],
+    reactivity:['none','mild','strong'],
+    preyDrive:['low','moderate','high'],
+    livestockComfort:['confident','cautious','reactive'],
+    trafficComfort:['confident','cautious','reactive'],
+    crowdComfort:['confident','cautious','reactive'],
+    heatTolerance:['robust','average','low'],
+    chairlift:['never','ok'],
+  };
+
+  function sanitizeBehaviour(value){
+    if(!value || typeof value !== 'object') return null;
+    const behaviour = {};
+    Object.entries(BEHAVIOUR_SCALES).forEach(([field, allowed]) => {
+      if(allowed.includes(value[field])) behaviour[field] = value[field];
+    });
+    const minutes = Number(value.preferredDurationMin);
+    if(Number.isFinite(minutes) && minutes > 0 && minutes <= 1440){
+      behaviour.preferredDurationMin = Math.round(minutes);
+    }
+    return Object.keys(behaviour).length ? behaviour : null;
+  }
+
   function sanitizeProfile(value){
     if(!value || typeof value !== 'object') return null;
+    const behaviour = sanitizeBehaviour(value.behaviour);
     const clean = {
       name:String(value.name || '').trim().slice(0, 80),
       breed:String(value.breed || '').trim().slice(0, 100),
@@ -1506,6 +1537,7 @@
       jointIssues:!!value.jointIssues,
       heatIssues:!!value.heatIssues,
     };
+    if(behaviour) clean.behaviour = behaviour;
     return clean.name ? clean : null;
   }
 
