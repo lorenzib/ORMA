@@ -13,6 +13,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { execFileSync } = require('child_process');
+const { createHash } = require('crypto');
 
 const ROOT = __dirname;
 let SITE;
@@ -145,5 +146,58 @@ describe('the published site is still the complete customer site', () => {
       }
     }
     expect(broken).toEqual([]);
+  });
+});
+
+// The deploy workflow runs this between assembling _site/ and uploading it, so
+// an asset reference that does not match the file it names fails the deploy
+// rather than shipping. That is the failure this guards: #460 changed the trail
+// bundle and left the number beside it, the deploy went green, and the fix did
+// not load for anyone holding the previous copy.
+describe('every asset reference names the file it actually points at', () => {
+  const pages = () => {
+    const found = [];
+    const visit = dir => {
+      for(const entry of fs.readdirSync(dir, { withFileTypes:true })){
+        const full = path.join(dir, entry.name);
+        if(entry.isDirectory()) visit(full);
+        else if(entry.name.endsWith('.html')) found.push(full);
+      }
+    };
+    visit(SITE);
+    return found;
+  };
+  const REFERENCE = /(?:src|href)="([^"?#]+\.(?:js|css))\?v=([\w.-]+)"/g;
+  const hash = file => createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+
+  test('the key on every published reference is that file\'s own hash', () => {
+    const wrong = [];
+    for(const page of pages()){
+      const html = fs.readFileSync(page, 'utf8');
+      for(const [, reference, key] of html.matchAll(REFERENCE)){
+        if(/^(?:[a-z]+:)?\/\//i.test(reference)) continue;
+        const target = reference.startsWith('/')
+          ? path.join(SITE, reference.slice(1))
+          : path.resolve(path.dirname(page), reference);
+        if(!target.startsWith(SITE) || !fs.existsSync(target)) continue;
+        if(!hash(target).startsWith(key)){
+          wrong.push(`${path.relative(SITE, page)} -> ${reference}?v=${key}`);
+        }
+      }
+    }
+    expect(wrong).toEqual([]);
+  });
+
+  // The shape of the old failure, kept as its own check so the reason stays
+  // legible: a date somebody typed is not a statement about the file.
+  test('no published script or stylesheet is keyed by a hand-typed date', () => {
+    const typed = [];
+    for(const page of pages()){
+      const html = fs.readFileSync(page, 'utf8');
+      for(const [, reference, key] of html.matchAll(REFERENCE)){
+        if(/^20\d{6}(?:-\d+)?$/.test(key)) typed.push(`${path.relative(SITE, page)} -> ${reference}?v=${key}`);
+      }
+    }
+    expect(typed).toEqual([]);
   });
 });
