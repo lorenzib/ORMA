@@ -1020,8 +1020,12 @@
   waitForAuth(() => {
     window.DoloPawsAuth.onChange(async (user) => {
       if(!user){
-        subline.textContent = tKey('account.signedOut', "You're not logged in.");
+        // The login card below carries the signed-out message; the status
+        // line under the heading would only repeat it.
+        subline.hidden = true;
         subline.removeAttribute('aria-busy');
+        const signedOutCopy = loggedOutState.querySelector('[data-i18n="account.signedOut"]');
+        if(signedOutCopy) signedOutCopy.textContent = tKey('account.signedOut', "You're not logged in.");
         loggedOutState.hidden = false;
         loggedInState.hidden = true;
         document.body.classList.remove('ep-app');
