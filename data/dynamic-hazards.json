@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-17T13:23:02.575Z",
+  "generatedAt": "2026-09-17T16:25:00.494Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-09-17T08:00:00+00:00",
       "expiresAt": "2026-09-17T23:59:00+00:00",
       "firstPublishedAt": "2026-09-15T22:21:24.175Z",
-      "lastSeenAt": "2026-09-17T13:23:02.575Z",
+      "lastSeenAt": "2026-09-17T16:25:00.494Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -42,7 +42,7 @@
       "effectiveAt": "2026-09-17T08:00:00+00:00",
       "expiresAt": "2026-09-17T23:59:00+00:00",
       "firstPublishedAt": "2026-09-15T22:21:24.175Z",
-      "lastSeenAt": "2026-09-17T13:23:02.575Z",
+      "lastSeenAt": "2026-09-17T16:25:00.494Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -91,7 +91,7 @@
       "effectiveAt": "2026-09-17T08:00:00+00:00",
       "expiresAt": "2026-09-17T23:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-17T13:23:02.575Z",
+      "lastSeenAt": "2026-09-17T16:25:00.494Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -116,7 +116,7 @@
       "effectiveAt": "2026-09-17T08:00:00+00:00",
       "expiresAt": "2026-09-17T23:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-17T13:23:02.575Z",
+      "lastSeenAt": "2026-09-17T16:25:00.494Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -165,7 +165,7 @@
       "effectiveAt": "2026-09-18T00:00:00+00:00",
       "expiresAt": "2026-09-18T17:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-17T13:23:02.575Z",
+      "lastSeenAt": "2026-09-17T16:25:00.494Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
