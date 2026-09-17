@@ -2870,6 +2870,9 @@ body[data-homepage-view="returning"] .hp-quote{display:none;}
 .li-explore-menu .li-menu-item small{color:var(--ink-soft);font:600 11px 'Inter',sans-serif;}
 .li-menu-note{display:block;padding:4px 11px 9px;color:var(--ink-soft);font:500 12px/1.4 'Inter',sans-serif;}
 .li-search-place .li-search-place-tag{flex:none;padding:3px 8px;border-radius:999px;background:#EAF2EA;color:#2C5C34;font:800 10px 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;}
+/* Says where an unprompted list of places came from, so "Change" opening on
+   four valley names reads as an offer rather than a guess. */
+.li-search-kick{padding:8px 12px 4px;color:var(--ink-soft);font:800 9.5px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
 
 /* ---------- dark app header (AppShell design) ---------- */
 .li-top{
