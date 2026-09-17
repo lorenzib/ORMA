@@ -70,15 +70,33 @@
 
   // Auth resolves after first paint, so a map drawn with the guest profile has
   // to recolour rather than stay wrong for the rest of the session.
+  function subjectFor(profile){
+    return typeof effectiveOverrides === 'function' ? effectiveOverrides(profile, null) : profile;
+  }
+  // A guest's dog lives on the device (dolopaws-pending-dog-profile) until
+  // they sign up; the homepage, trail pages, Browse and Compare all score for
+  // it, so the map colours here must too, or the banner offers to save Pip
+  // above a map coloured for a medium dog.
+  function deviceDogProfile(){
+    try {
+      const profile = JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile') || 'null');
+      return profile && typeof profile.name === 'string' && profile.name.trim() ? profile : null;
+    } catch(error){ return null; }
+  }
+  function applyMatchSubject(next){
+    matchSubject = next;
+    repaintOnSubjectChange.forEach(repaint => { try{ repaint(); }catch(error){} });
+  }
   function resolveMatchSubject(){
     const auth = window.DoloPawsAuth;
-    if(!auth || !auth.currentUser || typeof auth.getDogProfile !== 'function') return;
+    if(!auth || !auth.currentUser || typeof auth.getDogProfile !== 'function'){
+      const device = deviceDogProfile();
+      if(device) applyMatchSubject(subjectFor(device));
+      return;
+    }
     auth.getDogProfile().then(profile => {
       if(!profile) return;
-      const next = typeof effectiveOverrides === 'function'
-        ? effectiveOverrides(profile, null) : profile;
-      matchSubject = next;
-      repaintOnSubjectChange.forEach(repaint => { try{ repaint(); }catch(error){} });
+      applyMatchSubject(subjectFor(profile));
     }).catch(() => {});
   }
   resolveMatchSubject();
