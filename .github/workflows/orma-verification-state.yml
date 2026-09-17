@@ -1,9 +1,10 @@
 name: ORMA verification state report
 
-# Read-only diagnostic, run by hand. Three of 165 trails are ORMA Verified, and
-# that has two opposite explanations: either the human gates are the constraint,
-# or few trails ever reach one. backoffice/cli/report-verification-state.js
-# measures which, and its own header says to measure before changing anything.
+# Read-only diagnostic, run by hand. No trail is ORMA Verified, and that has two
+# opposite explanations: either the human gates are the constraint, or few trails
+# ever reach one. report-verification-state.js measures the gates and the
+# decisions; report-verification-funnel.js measures where trails stop on the way,
+# and whether anything is still owed to them.
 #
 # The state lives in Firestore, so it cannot be read from a checkout. Running it
 # here keeps the credential in Actions instead of on anyone's machine, and the
@@ -36,3 +37,5 @@ jobs:
       - run: npm ci
       - name: Report verification state
         run: npm run backoffice:verification-state
+      - name: Report the verification funnel
+        run: npm run backoffice:verification-funnel
