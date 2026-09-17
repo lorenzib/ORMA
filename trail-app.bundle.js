@@ -10874,8 +10874,14 @@ function initDetailPois(map, trail){
       temp:Number(hourlyTemps[index]),
     })).filter(hour=>hour.day&&hour.minute!==null);
 
-    for(let dayOffset=0;dayOffset<Math.min(3,dailyDates.length);dayOffset+=1){
+    // A reader who picked a day on the homepage is asking about that day, not
+    // about whichever of the next three happens to be coolest. Without one,
+    // the scan is unchanged: the first day that offers a usable window wins.
+    const preferredDate=/^\d{4}-\d{2}-\d{2}$/.test(input?.preferredDate||'')?input.preferredDate:'';
+    const lastDay=preferredDate?dailyDates.length:Math.min(3,dailyDates.length);
+    for(let dayOffset=0;dayOffset<lastDay;dayOffset+=1){
       const date=dayKey(dailyDates[dayOffset]);
+      if(preferredDate&&date!==preferredDate)continue;
       const sunrise=minuteOfDay(sunrises[dayOffset]);
       const sunset=minuteOfDay(sunsets[dayOffset]);
       if(!date||sunrise===null||sunset===null)continue;
@@ -10936,15 +10942,25 @@ function initDetailPois(map, trail){
     return null;
   }
 
+  function dayLabel(date){
+    const parsed=/^\d{4}-\d{2}-\d{2}$/.test(date||'')?new Date(`${date}T12:00:00`):null;
+    if(!parsed||Number.isNaN(parsed.getTime()))return date;
+    try{
+      return parsed.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'short'});
+    }catch(error){ return date; }
+  }
+
   function markup(result){
     if(!result)return 'No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.';
     const start=formatTime(result.startMinutes);
     const finish=formatTime(result.finishMinutes);
+    // A day a reader picked is now the common case, not the exception, so it
+    // is named the way they picked it rather than printed as an ISO string.
     const when=result.dayOffset===0
       ? `<strong>${start}</strong>`
       : result.dayOffset===1
         ? `tomorrow at <strong>${start}</strong>`
-        : `on ${result.date} at <strong>${start}</strong>`;
+        : `on ${dayLabel(result.date)} at <strong>${start}</strong>`;
     const maximum=Number.isFinite(result.maxTemperatureC)?` (up to ${result.maxTemperatureC}°C)`:'';
     let lead;
     let close='';
@@ -11024,7 +11040,7 @@ function initDetailPois(map, trail){
     return isFresh(conditions,now)?conditions:{status:'not-provided'};
   }
 
-  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,PREFERRED_START_MINUTES,WARM_C,HOT_C,CONDITIONS_MAX_AGE_MS,minuteOfDay,formatTime,parseDurationHours,recommendation,markup,heatOnset,currentConditions,isFresh,scoringConditions};
+  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,PREFERRED_START_MINUTES,WARM_C,HOT_C,CONDITIONS_MAX_AGE_MS,minuteOfDay,formatTime,dayLabel,parseDurationHours,recommendation,markup,heatOnset,currentConditions,isFresh,scoringConditions};
 });
 ;
 
@@ -14098,6 +14114,21 @@ const params = new URLSearchParams(window.location.search);
 const trailId = params.get('id');
 const trailReturnTarget = params.get('from');
 const hikeDeepLinkRequested = params.get('hike') === '1';
+// The day the reader was planning for when they left the list. Without it this
+// page answered for today and quietly changed the question: a Saturday walk
+// read against Thursday's heat. Bounded to the fortnight the homepage offers,
+// so a stale or invented date falls back to today rather than to nothing.
+const plannedWalkDate = (() => {
+  const value = params.get('date') || '';
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(value)) return '';
+  const today = new Date();
+  const iso = offset => {
+    const day = new Date(today.getFullYear(), today.getMonth(), today.getDate() + offset);
+    return `${day.getFullYear()}-${String(day.getMonth() + 1).padStart(2, '0')}-${String(day.getDate()).padStart(2, '0')}`;
+  };
+  return value >= iso(0) && value <= iso(14) ? value : '';
+})();
+window.ORMAPlannedWalkDate = plannedWalkDate;
 let pendingTrailAction = params.get('action');
 let trailActionConsumed = false;
 
@@ -14144,8 +14175,14 @@ window.DoloPawsTrailAction = {
   get pending(){ return pendingTrailAction; },
 };
 
+// Where "back" goes, restricted to this site's own list pages so a crafted
+// address cannot bounce a reader somewhere else. The homepage was not on the
+// list, which is why the main discovery surface -- the one that ranks trails
+// for your dog -- was the one surface you could not get back to.
 function safeTrailReturn(value){
-  if(!value || /^(?:[a-z]+:|\/\/|\/)/i.test(value)) return '';
+  if(!value || /^(?:[a-z]+:|\/\/)/i.test(value)) return '';
+  if(/^\/(?:\?[^#]*)?(?:#.*)?$/.test(value)) return value;
+  if(/^\//.test(value)) return '';
   return /^(?:browse-trails|compare|saved|journal)\.html(?:\?[^#]*)?(?:#.*)?$/i.test(value) ? value : '';
 }
 
@@ -14195,6 +14232,7 @@ function renderTrail(t){
     breadcrumb.textContent = returnTarget.startsWith('saved.html') ? '← Back to saved trails'
       : returnTarget.startsWith('journal.html') ? '← Back to journal'
       : returnTarget.startsWith('compare.html') ? '← Back to comparison'
+      : returnTarget.startsWith('/') ? '← Back to your matches'
       : '← Back to trail results';
   }
   const logWalkBtn = document.getElementById('logWalkBtn');
@@ -16129,6 +16167,10 @@ if(document.querySelector('.td2')){
             : { t: 'Good', bg: '#E4EADF', fg: '#2C5C34' };
           const pawEl = $('tdCondPaw');
           if (pawEl) { pawEl.textContent = paw.t; pawEl.style.background = paw.bg; pawEl.style.color = paw.fg; }
+          // The day the reader chose on the homepage, carried in the address.
+          // Six days of hourly data are already in hand, so answering for
+          // Saturday costs no extra request -- only the decision to use it.
+          const planned = window.ORMAPlannedWalkDate || '';
           const win = window.DoloPawsWeatherWindow
             ? window.DoloPawsWeatherWindow.recommendation({
               currentTime:d.current.time,
@@ -16138,13 +16180,30 @@ if(document.querySelector('.td2')){
               sunsets:d.daily.sunset,
               hourlyTimes:d.hourly && d.hourly.time,
               hourlyTemps:d.hourly && d.hourly.temperature_2m,
+              preferredDate:planned,
             })
             : null;
           // Today's heat, in the vocabulary the recommendation engine reads.
           // Until now nothing supplied currentConditions, so the score never
           // reflected the day it was being read on.
           if (window.DoloPawsWeatherWindow) {
-            const conditions = window.DoloPawsWeatherWindow.currentConditions({
+            // For a future day the reference point is that day's forecast, not
+            // the temperature outside right now -- otherwise the score answers
+            // a different question from the start time beside it.
+            const plannedHours = planned
+              ? (d.hourly && d.hourly.time || []).map((time, index) => ({
+                time, temp:Number(d.hourly.temperature_2m[index]),
+              })).filter(point => String(point.time).startsWith(`${planned}T`) && Number.isFinite(point.temp))
+              : [];
+            const reference = plannedHours.length
+              ? (plannedHours.find(point => String(point.time).slice(11, 16) === '09:00') || plannedHours[0])
+              : null;
+            const conditions = window.DoloPawsWeatherWindow.currentConditions(reference ? {
+              currentTime:reference.time,
+              temperatureC:reference.temp,
+              hourlyTimes:plannedHours.map(point => point.time),
+              hourlyTemps:plannedHours.map(point => point.temp),
+            } : {
               currentTime:d.current.time,
               temperatureC:d.current.temperature_2m,
               hourlyTimes:d.hourly && d.hourly.time,

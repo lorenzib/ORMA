@@ -799,6 +799,12 @@ describe('returning homepage region + valley filters', () => {
     const links = Array.from(document.querySelectorAll('#liRecentList a'));
     expect(links.map(link => link.textContent)).toEqual(['Val Gardena TrailVal Gardena', 'Maurienne TrailMaurienne']);
     expect(links[0].getAttribute('href')).toBe('trail.html?id=vag');
+    // Recently viewed is a shortlist of places, not a plan: a date is carried
+    // only while one is set, and today is not a date worth carrying.
+    vm.runInContext('liWalkDate = liDateOffsetIso(3);', context);
+    vm.runInContext('liRenderRecentTrails();', context);
+    expect(document.querySelector('#liRecentList a').getAttribute('href'))
+      .toBe(`trail.html?id=vag&date=${vm.runInContext('liDateOffsetIso(3)', context)}`);
   });
 
 });
@@ -839,7 +845,11 @@ describe('map-first returning homepage layout contract', () => {
   test('opens returning-home search results through the dynamic trail detail route', () => {
     const script = fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8');
     expect(script).toContain('renderLiSearchSuggestions(currentProfileForAdjust)');
-    expect(script).toContain('window.location.href = `trail.html?id=${encodeURIComponent(trail.id)}&from=${encodeURIComponent(window.location.pathname + window.location.search)}`');
+    // Every door to a trail is built by one function now, so the return target
+    // and the planned day cannot be attached to some of them and not others.
+    expect(script).toContain('window.location.href = liTrailHref(trail.id);');
+    expect((script.match(/liTrailHref\(/g) || []).length).toBeGreaterThanOrEqual(7);
+    expect(script).not.toContain("'trail.html?id=' + ");
     expect(script).not.toContain('focusMapOnTrail(trail.id, matches)');
     expect(script).not.toContain("search.addEventListener('focus', () => {\n      window.location.href = 'search.html");
   });

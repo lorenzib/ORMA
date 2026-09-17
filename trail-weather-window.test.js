@@ -190,3 +190,56 @@ describe('heat onset and today\'s conditions', () => {
     expect(weatherWindow.markup(result)).toContain('for this 4 h route, finish around <strong>13:00</strong>');
   });
 });
+
+// A reader who picked a day on the homepage is asking about that day. Before
+// this, the window scanned the next three and answered for whichever was
+// coolest, so a Saturday walk was planned against Thursday's forecast.
+describe('the day the reader chose', () => {
+  const days = ['2026-08-20', '2026-08-21', '2026-08-22', '2026-08-23'];
+
+  test('answers for that day, not for the pick of the next three', () => {
+    const result = weatherWindow.recommendation({
+      ...forecast(days),
+      currentTime:'2026-08-20T07:00',
+      durationHours:2,
+      preferredDate:'2026-08-22',
+    });
+    expect(result.date).toBe('2026-08-22');
+    expect(result.dayOffset).toBe(2);
+  });
+
+  test('reaches past the three-day scan, because the homepage offers a fortnight', () => {
+    const result = weatherWindow.recommendation({
+      ...forecast(days),
+      currentTime:'2026-08-20T07:00',
+      durationHours:2,
+      preferredDate:'2026-08-23',
+    });
+    expect(result.date).toBe('2026-08-23');
+  });
+
+  test('a day with no forecast answers nothing rather than answering for another', () => {
+    expect(weatherWindow.recommendation({
+      ...forecast(days),
+      currentTime:'2026-08-20T07:00',
+      durationHours:2,
+      preferredDate:'2026-09-30',
+    })).toBeNull();
+  });
+
+  test('without one, the scan is unchanged', () => {
+    const plain = weatherWindow.recommendation({
+      ...forecast(days), currentTime:'2026-08-20T07:00', durationHours:2,
+    });
+    expect(plain.date).toBe('2026-08-20');
+    expect(plain.dayOffset).toBe(0);
+  });
+
+  test('a chosen day is named the way it was chosen, not as an ISO string', () => {
+    const label = weatherWindow.dayLabel('2026-08-22');
+    expect(label).not.toBe('2026-08-22');
+    expect(label).toMatch(/Saturday/);
+    // Anything unparseable is passed through rather than invented.
+    expect(weatherWindow.dayLabel('not-a-date')).toBe('not-a-date');
+  });
+});
