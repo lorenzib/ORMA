@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-17T19:20:13.964Z",
+  "generatedAt": "2026-09-17T22:20:36.498Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-09-17T08:00:00+00:00",
       "expiresAt": "2026-09-17T23:59:00+00:00",
       "firstPublishedAt": "2026-09-15T22:21:24.175Z",
-      "lastSeenAt": "2026-09-17T19:20:13.964Z",
+      "lastSeenAt": "2026-09-17T22:20:36.498Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -42,7 +42,7 @@
       "effectiveAt": "2026-09-17T08:00:00+00:00",
       "expiresAt": "2026-09-17T23:59:00+00:00",
       "firstPublishedAt": "2026-09-15T22:21:24.175Z",
-      "lastSeenAt": "2026-09-17T19:20:13.964Z",
+      "lastSeenAt": "2026-09-17T22:20:36.498Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -89,9 +89,9 @@
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/7a58d046-148b-4266-9b20-0d166cfb959f",
       "identifier": "2.49.0.0.380.3.IT.260917113900.135",
       "effectiveAt": "2026-09-17T08:00:00+00:00",
-      "expiresAt": "2026-09-17T23:59:00+00:00",
+      "expiresAt": "2026-09-19T08:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-17T19:20:13.964Z",
+      "lastSeenAt": "2026-09-17T22:20:36.498Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -114,9 +114,9 @@
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/a591236c-efa4-410b-a603-081b3648f2ae",
       "identifier": "2.49.0.0.380.3.IT.260917113900.133",
       "effectiveAt": "2026-09-17T08:00:00+00:00",
-      "expiresAt": "2026-09-17T23:59:00+00:00",
+      "expiresAt": "2026-09-19T08:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-17T19:20:13.964Z",
+      "lastSeenAt": "2026-09-17T22:20:36.498Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -165,7 +165,7 @@
       "effectiveAt": "2026-09-18T00:00:00+00:00",
       "expiresAt": "2026-09-18T17:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-17T19:20:13.964Z",
+      "lastSeenAt": "2026-09-17T22:20:36.498Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
