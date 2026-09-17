@@ -7,6 +7,7 @@ const {STRONG_AT,POSSIBLE_AT,verdictFor}=require('./match-verdict.js');
 // the two disagreeing is worse than either being wrong alone.
 const mapStyle=fs.readFileSync('map-style.js','utf8');
 const engine=fs.readFileSync('scoring/recommendation-v1.js','utf8');
+const blueprint=fs.readFileSync('trail-blueprint.js','utf8');
 
 const MATCH_GOOD=Number(/const MATCH_GOOD\s*=\s*(\d+)/.exec(mapStyle)[1]);
 const MATCH_FAIR=Number(/const MATCH_FAIR\s*=\s*(\d+)/.exec(mapStyle)[1]);
@@ -15,6 +16,19 @@ describe('the colour and the word agree', () => {
   test('the map uses the same boundaries as the wording', () => {
     expect(MATCH_GOOD).toBe(STRONG_AT);
     expect(MATCH_FAIR).toBe(POSSIBLE_AT);
+  });
+
+  // The same disagreement, one surface further in: the trail page's match ring
+  // drew green from 70 and amber from 50, so a score of 72 was a green ring
+  // beside the words "Possible with cautions".
+  test('the trail page ring takes its colour from the verdict, not its own bands', () => {
+    expect(blueprint).toContain('window.OrmaMatchVerdict.verdictFor(recommendation)');
+    expect(blueprint).not.toMatch(/score >= 70/);
+    expect(blueprint).not.toMatch(/score >= 50/);
+    // And the palette is the module's, not a second set of greens.
+    expect(blueprint).not.toContain('#4a7c59');
+    expect(blueprint).not.toContain('#c98a3e');
+    expect(blueprint).not.toContain('#b2542e');
   });
 
   test('and both are the engine’s own', () => {

@@ -1,3 +1,6 @@
+// compare.html loads the vocabulary before this model, and so does the test:
+// the labels it renders are match-verdict.js's, not a copy of its own.
+require('./match-verdict.js');
 const model = require('./comparison-model');
 
 const baseTrail = {
@@ -39,7 +42,10 @@ describe('comparison presentation model', () => {
       'match','reasons','distance','elevation','duration','terrain','exposure',
       'shade','heat','water','hazards','restrictions','verification',
     ]);
-    expect(result.cells.match.text).toBe('Strong option · 88%');
+    // The verdict, not the verdict and the number. Two trails both called a
+    // strong option are separated by the rows beneath this one, not by a few
+    // points of a score whose evidence does not carry that precision.
+    expect(result.cells.match.text).toBe('Strong option');
     expect(result.cells.water.text).toBe('1 reviewed water point');
     expect(result.cells.restrictions.text).toBe('Dogs allowed on leash');
     expect(result.cells.duration.text).toBe('1.5 h');
