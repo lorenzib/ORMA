@@ -175,6 +175,9 @@ describe('Browse filter UI', () => {
       expect(card.textContent).not.toContain('Trail rating');
       expect(card.querySelector('.simple-card__score')).not.toBeNull();
       expect(card.querySelector('.simple-card__match-actions')).not.toBeNull();
+      expect(card.querySelector('.simple-card__facts .simple-card__match-reason')).toBeNull();
+      expect(card.querySelector('.simple-card__match .simple-card__match-reason')).not.toBeNull();
+      expect(card.querySelector('.simple-card__score').firstElementChild.tagName).toBe('SMALL');
     });
     expect(html).not.toContain('terrainRatingLabel');
   });
