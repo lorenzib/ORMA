@@ -33,6 +33,8 @@ const ENUMS = {
   segmentAdvisory: ['leash-required', 'leash-recommended', 'avoid', 'caution', 'information'],
   segmentStatus: ['reviewed', 'mapped', 'reported', 'unknown'],
   sourceKind: ['official', 'osm', 'field-review', 'computed', 'legacy', 'other'],
+  liftType: ['none', 'gondola', 'chairlift', 'mixed', 'unknown'],
+  liftDependency: ['none', 'optional', 'required'],
 };
 const REVIEW_CATEGORIES = [
   'route', 'water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access',
@@ -193,6 +195,22 @@ function validateTrailRecord(record){
     else{
       checkEnum(errors, '/suitability/dogAccess/status', record.suitability.dogAccess.status, ENUMS.dogAccess);
       if(record.suitability.dogAccess.notes !== null) checkString(errors, '/suitability/dogAccess/notes', record.suitability.dogAccess.notes, false);
+    }
+    // Lift access: whether the itinerary rides a lift, and of which kind. An
+    // open chairlift a route depends on is a safety fact the engine reads as a
+    // hard stop, so its shape is validated wherever it appears; records that
+    // predate the field are read as not depending on any lift.
+    if(record.suitability.lift !== undefined && record.suitability.lift !== null){
+      if(!isObject(record.suitability.lift)) add(errors, '/suitability/lift', 'expected an object');
+      else{
+        checkEnum(errors, '/suitability/lift/type', record.suitability.lift.type, ENUMS.liftType);
+        checkEnum(errors, '/suitability/lift/dependency', record.suitability.lift.dependency, ENUMS.liftDependency);
+        if(record.suitability.lift.dependency === 'required' && record.suitability.lift.type === 'none'){
+          add(errors, '/suitability/lift', 'a route cannot depend on no lift');
+        }
+        if(record.suitability.lift.name !== undefined && record.suitability.lift.name !== null) checkString(errors, '/suitability/lift/name', record.suitability.lift.name, false);
+        if(record.suitability.lift.notes !== undefined && record.suitability.lift.notes !== null) checkString(errors, '/suitability/lift/notes', record.suitability.lift.notes, false);
+      }
     }
   }
 

@@ -1,6 +1,7 @@
 'use strict';
 
 const { validateTrailRecord, REVIEW_CATEGORIES } = require('./trail-schema');
+const { normalizeLiftAccess } = require('./lift-access');
 const evidence = require('../trust/evidence-v1.js');
 
 const ADAPTER_VERSION = '1.1.0';
@@ -387,6 +388,7 @@ function adaptLegacyTrail(legacy, options = {}){
     surfaceHazards: Array.isArray(legacy.surfaceHazards)
       ? legacy.surfaceHazards.map(String).filter(Boolean) : [],
     dogAccess: dogAccessFor(legacy),
+    lift: normalizeLiftAccess(legacy.liftAccess),
     // Behaviour attributes are declared unknown rather than inferred. A
     // description that mentions cattle is evidence of a sentence, not of
     // grazing on the day someone walks it, so these stay unknown until the

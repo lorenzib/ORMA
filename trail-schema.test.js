@@ -79,4 +79,15 @@ describe('canonical trail schema', () => {
       '/verification: verified records require a reviewer, date, and every category verified'
     );
   });
+
+  test('lift access is validated when present and may be absent on older records', () => {
+    const record = fixture('trail.curated.example.json');
+    expect(validateTrailRecord(record)).toEqual([]);
+    record.suitability.lift = { type:'chairlift', dependency:'required', name:'5 Torri chairlift' };
+    expect(validateTrailRecord(record)).toEqual([]);
+    record.suitability.lift = { type:'none', dependency:'required' };
+    expect(validateTrailRecord(record)).toContain('/suitability/lift: a route cannot depend on no lift');
+    record.suitability.lift = { type:'sledge', dependency:'required' };
+    expect(validateTrailRecord(record).some(error => error.startsWith('/suitability/lift/type'))).toBe(true);
+  });
 });

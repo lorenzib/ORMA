@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-15T14:56:33.948Z",
+  "generatedAt": "2026-09-16T21:36:58.315Z",
   "regions": {
     "dolomites": {
       "trailCount": 109,
-      "trails": "data/regions/dolomites-trails.js?v=c1a6fcace588",
+      "trails": "data/regions/dolomites-trails.js?v=cd6c0149c017",
       "details": {
-        "alpe-siusi": "data/trail-details/alpe-siusi.js?v=3416ad1a6164",
+        "alpe-siusi": "data/trail-details/alpe-siusi.js?v=eaf3463ada16",
         "seceda": "data/trail-details/seceda.js?v=b49efb4b66a9",
         "santa-maddalena": "data/trail-details/santa-maddalena.js?v=51be0f8486e5",
         "tre-cime": "data/trail-details/tre-cime.js?v=b0ec8aaaff75",
@@ -114,7 +114,7 @@
         "osm-19703479": "data/trail-details/osm-19703479.js?v=98a736dab256",
         "osm-19974724": "data/trail-details/osm-19974724.js?v=8143947654ba",
         "osm-19974725": "data/trail-details/osm-19974725.js?v=36ecb0ae5099",
-        "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=1a01bc53b663"
+        "cinque-torri-assisted": "data/trail-details/cinque-torri-assisted.js?v=dc8f973fea30"
       },
       "water": "data/regions/dolomites-water.geojson",
       "hutsBars": "data/regions/dolomites-huts-bars.geojson",
@@ -123,7 +123,7 @@
     },
     "savoy": {
       "trailCount": 53,
-      "trails": "data/regions/savoy-trails.js?v=d0c5a3e90a8e",
+      "trails": "data/regions/savoy-trails.js?v=d462bc4b278b",
       "details": {
         "osm-3982382": "data/trail-details/osm-3982382.js?v=eb3735f6498d",
         "osm-6250300": "data/trail-details/osm-6250300.js?v=194b0ba277c2",
@@ -133,7 +133,7 @@
         "osm-20347406": "data/trail-details/osm-20347406.js?v=4e94aa709c7f",
         "osm-11517208": "data/trail-details/osm-11517208.js?v=be0b8d2084a1",
         "osm-14987412": "data/trail-details/osm-14987412.js?v=d5c69f6e5420",
-        "osm-18055492": "data/trail-details/osm-18055492.js?v=c9d52e1702a9",
+        "osm-18055492": "data/trail-details/osm-18055492.js?v=f14618733309",
         "osm-14864704": "data/trail-details/osm-14864704.js?v=698d1172f03f",
         "osm-14095296": "data/trail-details/osm-14095296.js?v=3ca5154fa4e7",
         "osm-16322228": "data/trail-details/osm-16322228.js?v=32e594914a1f",

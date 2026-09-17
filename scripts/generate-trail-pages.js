@@ -330,6 +330,7 @@ function trailPage(t, slug, all) {
       : verified;
   const reviewLabel = fullyReviewed ? 'Verified by ORMA' : 'Imported trail';
   const reviewStyle = fullyReviewed ? 'verified' : 'imported';
+  const openChairlift = !!(t.liftAccess && t.liftAccess.dependency === 'required' && ['chairlift', 'mixed', 'unknown'].includes(t.liftAccess.type));
   const badge = `<span class="dp-badge dp-badge--${reviewStyle}"><span data-dp-icon="${reviewStyle}" data-dp-icon-size="13" aria-hidden="true"></span><span>${reviewLabel}</span></span>`;
 
   const ogImage = t.imageIcon ? publicAssetUrl(t.imageIcon) : `${BASE_URL}/icon-512.png`;
@@ -461,6 +462,7 @@ function trailPage(t, slug, all) {
   .sp-breadcrumb{font-size:.85rem;color:var(--ink-soft,#666);margin-bottom:14px;}
   .sp-breadcrumb a{color:inherit;}
   .sp-badges{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 18px;}
+  .sp-lift-warning{margin:0 0 16px;padding:12px 14px;border:1px solid #E7C2B8;border-left:4px solid #9C3A25;border-radius:10px;background:#FBF1EE;color:#4A2A22;font-size:14px;line-height:1.55;}
   .sp-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:18px 0 26px;}
   .sp-fact{background:rgba(0,0,0,.035);border-radius:10px;padding:10px 14px;}
   .sp-fact-k{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft,#666);}
@@ -521,7 +523,9 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
     <span class="dp-badge dp-badge--${t.safetyLevel}"><span data-dp-icon="${t.safetyLevel === 'low-risk' ? 'verified' : 'warning'}" data-dp-icon-size="13" aria-hidden="true"></span><span>${displaySafetyLabel(t)}</span></span>
     ${badge}
     ${t.paid ? '<span class="dp-badge dp-badge--neutral"><span>Paid access</span></span>' : ''}
+    ${openChairlift ? '<span class="dp-badge dp-badge--caution"><span data-dp-icon="warning" data-dp-icon-size="13" aria-hidden="true"></span><span>Chairlift-assisted · not for most dogs</span></span>' : ''}
   </div>
+  ${openChairlift ? `<p class="sp-lift-warning"><strong>This route depends on an open chairlift${t.liftAccess.name ? ` (${escapeHtml(t.liftAccess.name)})` : ''}.</strong> A dog that is not used to one can panic and fall, which can be fatal. ORMA recommends it only for a dog of 8 kg or under that rides calmly held on a lap, harnessed and leashed; for every other dog it is graded as not recommended.</p>` : ''}
   ${t.imageIcon ? `<figure class="sp-photo">${photoHtml(t)}${photoCreditHtml(t)}</figure>` : routeHtml}
   ${!t.imageIcon && t.imagePlaceholder ? `<p class="sp-src" style="display:flex;align-items:center;gap:8px;margin:-6px 0 14px;"><img src="../logo.svg" alt="" width="22" height="22" style="flex:none;"> We're working on adding photos of this trail.</p>` : ''}
   <p>${escapeHtml(t.desc || '')}</p>
@@ -636,7 +640,7 @@ ${reviewRecord}
 </footer>
 
 <script src="../icon-system.js?v=20260717" defer></script>
-<script src="../mobile-nav.js?v=20260916-1"></script>
+<script src="../mobile-nav.js?v=20260917-1"></script>
 </body>
 </html>
 `;

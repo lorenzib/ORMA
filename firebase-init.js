@@ -199,6 +199,7 @@ function sanitizedDogProfile(dog, index) {
       trafficComfort: ['confident', 'cautious', 'reactive'],
       crowdComfort: ['confident', 'cautious', 'reactive'],
       heatTolerance: ['robust', 'average', 'low'],
+      chairlift: ['never', 'ok'],
     };
     const behaviour = {};
     Object.entries(scales).forEach(([field, allowed]) => {

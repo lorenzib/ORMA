@@ -164,7 +164,7 @@ describe('shared trail-filter experience', () => {
     // The refine bar's duration/distance/rating/terrain/shade now defer to
     // DoloPawsDiscoveryFilters.matches instead of a fourth hand-rolled predicate.
     expect(script).toContain('window.DoloPawsDiscoveryFilters');
-    expect(script).toContain('filters.matches(x, liRefineState())');
+    expect(script).toContain('filters.matches(x, liRefineState(), { chairliftSafe: liChairliftSafe })');
     expect(script).toContain('displayList = displayList.filter(x => liMatchesRefineFilters(x));');
     // Water on route is part of the shared refine state now (a mapped-water
     // presence filter), so it is no longer a separate local post-filter.

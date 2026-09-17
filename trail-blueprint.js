@@ -270,6 +270,19 @@
         : esc(riskText);
       riskLine.hidden = false;
     }
+    // A route that rides an open chairlift says so at the top, to everyone.
+    // The recommendation card grades it; this is the plain fact.
+    const lift = t.liftAccess || {};
+    const openChairlift = lift.dependency === 'required' && ['chairlift', 'mixed', 'unknown'].includes(lift.type);
+    const tags = document.querySelector('.td2-hero .td2-tags');
+    if (openChairlift && tags && !tags.querySelector('.td-lift-warning')) {
+      const warning = document.createElement('span');
+      warning.className = 'td-lift-warning';
+      warning.innerHTML = (window.DoloPawsIcons && window.DoloPawsIcons.badgeHtml)
+        ? window.DoloPawsIcons.badgeHtml('caution', 'Chairlift-assisted · not for most dogs')
+        : esc('Chairlift-assisted · not for most dogs');
+      tags.appendChild(warning);
+    }
 
     // Elevation figures under the real chart; hide the block honestly
     // when the trail has no profile data.
@@ -290,7 +303,9 @@
 
     const easyTerrain = Number(t.terrainRank) === 0;
     const lowRisk = t.safetyLevel === 'low-risk';
-    const verdict = t.curated === false
+    const verdict = openChairlift
+      ? 'This route depends on an open chairlift' + (lift.name ? ' (' + lift.name + ')' : '') + '. Only for a dog of 8 kg or under that rides calmly held on a lap; a hard stop for every other dog.'
+      : t.curated === false
       ? 'Automated estimate from mapped route data. Exposure, shade, livestock and current conditions are not field verified.'
       : lowRisk && easyTerrain
       ? 'A gentle, low-risk choice for most dogs.'

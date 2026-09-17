@@ -128,3 +128,33 @@ describe('dog-specific discovery filters', () => {
     ]));
   });
 });
+
+describe('chairlift-assisted routes', () => {
+  // The helper builds canonical records, so the lift sits in suitability;
+  // a presentation record would carry the same fact as liftAccess.
+  const withLift = (id, lift) => { const t = trail({ id }); t.suitability.lift = lift; return t; };
+  const lifted = withLift('lifted', { type:'chairlift', dependency:'required', name:'5 Torri chairlift' });
+  const gondola = withLift('cabin', { type:'gondola', dependency:'required', name:'Cortina Skyline' });
+  const plain = trail({ id:'plain' });
+
+  test('are hidden by default, shown on request, and shown for a dog declared safe', () => {
+    expect(filters.filter([lifted, gondola, plain], {}).map(t => t.id)).toEqual(['cabin', 'plain']);
+    expect(filters.filter([lifted, gondola, plain], { lifts:'include' }).map(t => t.id)).toEqual(['lifted', 'cabin', 'plain']);
+    expect(filters.filter([lifted, gondola, plain], {}, { chairliftSafe:true }).map(t => t.id)).toEqual(['lifted', 'cabin', 'plain']);
+  });
+
+  test('an unknown lift on a lift-dependent route counts as open', () => {
+    const unknown = withLift('unknown', { type:'unknown', dependency:'required' });
+    expect(filters.matches(unknown, {})).toBe(false);
+    expect(filters.ridesOpenChairlift(filters.normalizedTrail(unknown))).toBe(true);
+    // A presentation record carries the fact as liftAccess and is read the same way.
+    const legacy = { id:'legacy', name:'Legacy', region:'dolomites', distance:4, liftAccess:{ type:'chairlift', dependency:'required' } };
+    expect(filters.matches(legacy, {})).toBe(false);
+    expect(filters.matches(legacy, { lifts:'include' })).toBe(true);
+  });
+
+  test('hiding is the baseline, so only the opt-in shows as a chip', () => {
+    expect(filters.active({ lifts:'' })).toEqual([]);
+    expect(filters.active({ lifts:'include' })).toEqual([{ key:'lifts', label:'Chairlift-assisted routes included' }]);
+  });
+});

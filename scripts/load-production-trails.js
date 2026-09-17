@@ -6,6 +6,7 @@ const vm = require('vm');
 const { applyVerifiedTrailOverrides } = require('./verified-trail-overrides');
 const { applyTrailImageOverrides } = require('./trail-image-overrides');
 const { applyRouteNumberEvidence } = require('./route-number-evidence');
+const { applyLiftAccess } = require('./lift-access');
 
 const DEFAULT_FILES = [
   'trails-data.js',
@@ -42,8 +43,10 @@ function loadProductionTrails(root, files = DEFAULT_FILES){
   // now this status was derived only when the site data was generated, so the
   // campaign could not see it: 3 of 165 trails carried the field, and the queue
   // filled with routes that cannot produce route guidance at all.
+  const liftPath = path.join(root, 'data', 'lift-access.json');
+  const liftAccess = fs.existsSync(liftPath) ? JSON.parse(fs.readFileSync(liftPath, 'utf8')) : { trails:[] };
   return applyRouteNumberEvidence(
-    applyTrailImageOverrides(applyVerifiedTrailOverrides(trails, overrides), imageOverrides),
+    applyLiftAccess(applyTrailImageOverrides(applyVerifiedTrailOverrides(trails, overrides), imageOverrides), liftAccess),
     root,
   );
 }

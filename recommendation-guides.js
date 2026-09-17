@@ -42,6 +42,12 @@
       label:'Hiking safely at altitude',
       summary:'Plan for thinner air, rapid weather changes and lingering snow.',
     }),
+    lifts:Object.freeze({
+      id:'lifts',
+      href:'guides/dogs-on-cable-cars.html#chairlifts',
+      label:'Lifts with your dog: open chairs and closed cabins',
+      summary:'Why an open chairlift is a different risk from a gondola, and who can ride one.',
+    }),
   });
 
   function guideId(code){
@@ -52,6 +58,7 @@
     if(/^trail\.exposure\./.test(code)) return 'exposure';
     if(/^trail\.livestock\./.test(code)) return 'livestock';
     if(/^trail\.altitude\./.test(code)) return 'altitude';
+    if(/^trail\.lift\./.test(code)) return 'lifts';
     return null;
   }
 

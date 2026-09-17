@@ -131,6 +131,13 @@
       ['average', 'Average, slows down when it is hot'],
       ['low', 'Low, struggles in the heat'],
     ]],
+    // Open chairlifts can be fatal for a dog not used to them. Only a "rides
+    // calmly" answer, and only for a dog light enough to be held (8 kg or
+    // under), keeps chairlift-assisted routes in the recommendations.
+    ['chairlift', 'Open chairlifts', [
+      ['never', 'Not for us, or never tried'],
+      ['ok', 'Rides calmly, held on my lap with harness and leash (8 kg or under)'],
+    ]],
   ];
   var DURATION_OPTIONS = [
     ['30', 'About 30 minutes'], ['60', 'About 1 hour'], ['90', 'About 1.5 hours'],

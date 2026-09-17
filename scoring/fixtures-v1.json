@@ -1,5 +1,5 @@
 {
-  "scoringVersion": "1.5.0",
+  "scoringVersion": "1.6.0",
   "trailFixtures": {
     "easy-reviewed": {
       "metrics": {
@@ -15,6 +15,12 @@
         "surfaceHazards": [],
         "dogAccess": {
           "status": "allowed"
+        },
+        "lift": {
+          "type": "none",
+          "dependency": "none",
+          "name": null,
+          "notes": null
         }
       },
       "waypoints": [
@@ -52,6 +58,12 @@
         ],
         "dogAccess": {
           "status": "leash-required"
+        },
+        "lift": {
+          "type": "none",
+          "dependency": "none",
+          "name": null,
+          "notes": null
         }
       },
       "waypoints": [],
@@ -84,6 +96,12 @@
         ],
         "dogAccess": {
           "status": "leash-required"
+        },
+        "lift": {
+          "type": "none",
+          "dependency": "none",
+          "name": null,
+          "notes": null
         }
       },
       "waypoints": [],
@@ -114,6 +132,12 @@
         "surfaceHazards": [],
         "dogAccess": {
           "status": "unknown"
+        },
+        "lift": {
+          "type": "none",
+          "dependency": "none",
+          "name": null,
+          "notes": null
         }
       },
       "waypoints": [],
@@ -144,6 +168,12 @@
         "surfaceHazards": [],
         "dogAccess": {
           "status": "prohibited"
+        },
+        "lift": {
+          "type": "none",
+          "dependency": "none",
+          "name": null,
+          "notes": null
         }
       },
       "waypoints": [],
@@ -180,7 +210,13 @@
         "wildlifePresence": "high",
         "sightlines": "open",
         "roadProximity": "none",
-        "crowding": "quiet"
+        "crowding": "quiet",
+        "lift": {
+          "type": "none",
+          "dependency": "none",
+          "name": null,
+          "notes": null
+        }
       },
       "waypoints": [
         {
@@ -216,6 +252,48 @@
           "access": "verified"
         }
       }
+    },
+    "chairlift-assisted-reviewed": {
+      "metrics": {
+        "distanceKm": 4,
+        "ascentM": 100,
+        "descentM": 100
+      },
+      "suitability": {
+        "terrainRank": 0,
+        "shadePercent": 70,
+        "heatRisk": "low",
+        "exposure": false,
+        "surfaceHazards": [],
+        "dogAccess": {
+          "status": "allowed"
+        },
+        "lift": {
+          "type": "chairlift",
+          "dependency": "required",
+          "name": "5 Torri chairlift",
+          "notes": null
+        }
+      },
+      "waypoints": [
+        {
+          "type": "water",
+          "status": "reviewed"
+        }
+      ],
+      "verification": {
+        "tier": "field-verified",
+        "categories": {
+          "route": "verified",
+          "water": "verified",
+          "heat": "verified",
+          "exposure": "verified",
+          "livestock": "verified",
+          "surfaceHazards": "verified",
+          "access": "verified"
+        }
+      },
+      "id": "chairlift-assisted-reviewed"
     }
   },
   "cases": [
@@ -470,6 +548,54 @@
       "expected": {
         "score": 100,
         "category": "strong-option",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "chairlift-route-unsafe-dog",
+      "decision": "A route that depends on an open chairlift is a hard stop for a dog not declared safe on one, or too heavy to be held, however easy the walk: the score rests at the floor and the route is not recommended.",
+      "dog": {
+        "ageYears": 4,
+        "weightKg": 12,
+        "fitness": "moderate",
+        "conditions": [],
+        "traits": {},
+        "behaviour": {
+          "chairlift": "ok"
+        }
+      },
+      "trail": "chairlift-assisted-reviewed",
+      "currentConditions": {
+        "status": "known",
+        "heatRisk": "low"
+      },
+      "expected": {
+        "score": 5,
+        "category": "not-recommended",
+        "confidence": "high"
+      }
+    },
+    {
+      "id": "chairlift-route-small-declared-dog",
+      "decision": "A dog declared safe on chairlifts and light enough to be held keeps the route, as a strong caution rather than a strong option.",
+      "dog": {
+        "ageYears": 4,
+        "weightKg": 6,
+        "fitness": "moderate",
+        "conditions": [],
+        "traits": {},
+        "behaviour": {
+          "chairlift": "ok"
+        }
+      },
+      "trail": "chairlift-assisted-reviewed",
+      "currentConditions": {
+        "status": "known",
+        "heatRisk": "low"
+      },
+      "expected": {
+        "score": 80,
+        "category": "possible-with-cautions",
         "confidence": "high"
       }
     }

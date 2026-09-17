@@ -195,7 +195,11 @@ let liQuery = '';                  // header search box
 // Filter semantics follow the design's chip options (AppShell FilterBar):
 // dist 'any'|'u5'|'5to10'|'10p' · risk 'any'|'low-risk'|'moderate'|'caution'
 // · terrain 'any'|'soft'|'mixed'|'rocky' · shade 'any'|'40'|'60'.
-let liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false, duration: 'day' };
+let liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false, duration: 'day', lifts: '' };
+// Whether the dog the list is ranked for may ride an open chairlift: declared
+// safe in the profile and light enough to be held. Everything else hides
+// chairlift-assisted routes from the list; the trail page still explains why.
+let liChairliftSafe = false;
 let liShellWired = false;          // header/menus are wired once per page load
 let liDevView = false;             // ?view=returning preview without an account
 let liNewMatchIds = new Set();
@@ -873,6 +877,16 @@ function liConditionsFor(trail){
 // let DoloPawsDiscoveryFilters.matches be the single source of truth for the
 // decision filters. Water stays a separate looser toggle and match% is scored,
 // so both are handled by the caller; geography/search/map are handled there too.
+// The chairlift question, answered the way the engine answers it. The shared
+// adapter knows the weight bands; without it, only an explicit weight counts.
+function liProfileChairliftSafe(profile){
+  if(!profile) return false;
+  const adapters = window.DoloPawsRecommendationAdaptersV1;
+  if(adapters && typeof adapters.chairliftSafe === 'function') return adapters.chairliftSafe(profile);
+  const kg = Number(profile.weightKg);
+  return !!(profile.behaviour && profile.behaviour.chairlift === 'ok') && Number.isFinite(kg) && kg <= 8;
+}
+
 function liRefineState(){
   return {
     duration: liFilters.duration,
@@ -881,12 +895,15 @@ function liRefineState(){
     terrain: liFilters.terrain === 'any' ? '' : liFilters.terrain,
     heat: liFilters.shade === '40' ? 'shade-40' : liFilters.shade === '60' ? 'shade-60' : '',
     water: liFilters.water,
+    lifts: liFilters.lifts,
   };
 }
 
 function liMatchesRefineFilters(x){
   const filters = window.DoloPawsDiscoveryFilters;
-  if(filters) return filters.matches(x, liRefineState());
+  if(filters) return filters.matches(x, liRefineState(), { chairliftSafe: liChairliftSafe });
+  const lift = x && x.liftAccess;
+  if(liFilters.lifts !== 'include' && !liChairliftSafe && lift && lift.dependency === 'required' && lift.type !== 'none' && lift.type !== 'gondola') return false;
   // Fallback if the shared filter has not loaded: the same thresholds inline.
   const multiDay = window.DoloPawsTrailTrust
     ? window.DoloPawsTrailTrust.isMultiDay(x) : Number(x.distance) > 25;
@@ -2377,7 +2394,7 @@ function liActiveFilterCount(){
 
 function liResetAllFilters(){
   liQuery = '';
-  liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false, duration: 'day' };
+  liFilters = { dist: 'any', risk: 'any', terrain: 'any', shade: 'any', minMatch: 0, water: false, duration: 'day', lifts: '' };
   showingSavedOnly = false;
   activeValley = 'all';
   const search = document.getElementById('liSearch');
@@ -3473,6 +3490,7 @@ async function renderReturningHomepage(profile, options = {}){
 
   const name = (profile && profile.name) ? profile.name : 'there';
   const overrides = profile ? effectiveOverrides(profile, adjustOverride) : guestOverrides();
+  liChairliftSafe = liProfileChairliftSafe(profile);
 
   const kicker = document.getElementById('companionKicker');
   if(kicker) kicker.textContent = showingSavedOnly

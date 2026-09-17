@@ -364,6 +364,7 @@
       <div class="browse-quick-filters" aria-label="Quick dog filters">
         <button type="button" class="browse-quick-filter" id="browseQuickShade" aria-pressed="false"><span data-dp-icon="shade" data-dp-icon-size="26" aria-hidden="true"></span><span>High shade</span></button>
         <button type="button" class="browse-quick-filter" id="browseWater" aria-pressed="false" data-audit-label="Water point listed"><span data-dp-icon="water" data-dp-icon-size="22" aria-hidden="true"></span><span>Water</span></button>
+        <button type="button" class="browse-quick-filter" id="browseChairlifts" aria-pressed="false" data-audit-label="Chairlift-assisted routes" title="Routes that ride an open chairlift are hidden by default: they can be fatal for a dog not used to one"><span aria-hidden="true">⚠</span><span>Include chairlift routes</span></button>
         <button type="button" class="browse-quick-filter" id="browseMultiDay" aria-pressed="false" data-audit-label="Multi-day routes" title="Show long multi-day itineraries (over 25 km)"><span aria-hidden="true">🏕️</span><span>Multi-day</span></button>
       </div>
       <button type="button" id="browseSavedOnly" class="browse-saved-only" aria-pressed="false">
@@ -670,14 +671,14 @@
   </div>
 </footer>
 
-<script src="mobile-nav.js?v=20260916-1"></script>
-<script src="i18n.js?v=20260916-1"></script>
+<script src="mobile-nav.js?v=20260917-1"></script>
+<script src="i18n.js?v=20260917-1"></script>
 <script src="trust/evidence-v1.js?v=20260815-4"></script>
 <script src="trail-trust.js?v=20260819-5"></script>
-<script src="scoring/recommendation-v1.js?v=20260815-4"></script>
-<script src="scoring/recommendation-adapters-v1.js?v=20260815-4"></script>
+<script src="scoring/recommendation-v1.js?v=20260917-1"></script>
+<script src="scoring/recommendation-adapters-v1.js?v=20260917-1"></script>
 <script src="scoring.js?v=20260815-4"></script>
-<script type="module" src="firebase-init.js?v=20260910-1"></script>
+<script type="module" src="firebase-init.js?v=20260917-1"></script>
 <script src="icon-system.js?v=20260815-4" defer></script>
 <script src="trail-card-visual.js?v=20260902-1" defer></script>
 <script src="regions-runtime-manifest.js?v=20260815-4"></script>
@@ -687,7 +688,7 @@
 <script src="guest-context.js?v=20260815-4" defer></script>
 <script src="auth-ui.js?v=20260916-2" defer></script>
 <script src="discovery-state.js?v=20260822-1" defer></script>
-<script src="discovery-filters.js?v=20260909-1" defer></script>
+<script src="discovery-filters.js?v=20260917-1" defer></script>
 <script src="comparison-state.js?v=20260815-4" defer></script>
 <script src="area-dropdown.js?v=20260823-2"></script>
 <script src="map-runtime.js?v=20260908-2"></script>
@@ -744,6 +745,7 @@
     const waterBtn = document.getElementById('browseWater');
     const shadeBtn = document.getElementById('browseQuickShade');
     const multiDayBtn = document.getElementById('browseMultiDay');
+    const chairliftsBtn = document.getElementById('browseChairlifts');
     const savedOnlyBtn = document.getElementById('browseSavedOnly');
     const savedCount = document.getElementById('browseSavedCount');
     const filtersBtn = document.getElementById('browseFiltersBtn');
@@ -763,6 +765,7 @@
     let valleyValue = 'all';
     let waterOnly = false;
     let durationValue = 'day';
+    let liftsValue = '';
     let difficultyValue = '';
     let minMatchValue = '';
     let dogValue = 'medium';
@@ -884,6 +887,7 @@
       risk.value = allowedRisks.includes(canonical.risk) ? canonical.risk : 'all';
       distance.value = allowedDistances.includes(canonical.distance) ? canonical.distance : 'all';
       durationValue = canonical.duration === 'multi' ? 'multi' : 'day';
+      liftsValue = canonical.lifts === 'include' ? 'include' : '';
       waterOnly = canonical.water === true;
       collectionKey = COLLECTIONS[canonical.collection] ? canonical.collection : 'all';
       difficultyValue = canonical.difficulty || '';
@@ -906,6 +910,7 @@
         risk: risk.value === 'all' ? '' : risk.value,
         distance: distance.value === 'all' ? '' : distance.value,
         duration: durationValue,
+        lifts: liftsValue,
         water: waterOnly,
         collection: collectionKey === 'all' ? '' : collectionKey,
         difficulty: difficultyValue,
@@ -1009,6 +1014,7 @@
         risk: risk.value === 'all' ? '' : risk.value,
         distance: distance.value === 'all' ? '' : distance.value,
         duration: durationValue,
+        lifts: liftsValue,
         water: waterOnly,
         collection: collectionKey === 'all' ? '' : collectionKey,
         difficulty: difficultyValue,
@@ -1023,11 +1029,16 @@
     }
 
     function filterOptions(){
+      // Chairlift-assisted routes stay hidden unless the dog the list is
+      // ranked for is declared safe on one and light enough to be held, or
+      // the visitor opts in with the chip.
+      const adapters = window.DoloPawsRecommendationAdaptersV1;
       return {
         collections: Object.fromEntries(
           Object.entries(COLLECTIONS).map(([key, collection]) => [key, collection.filter])
         ),
         score: matchScore,
+        chairliftSafe: !!(adapters && typeof adapters.chairliftSafe === 'function' && adapters.chairliftSafe(activeDogProfile())),
       };
     }
 
@@ -1132,6 +1143,7 @@
       if(waterBtn) waterBtn.setAttribute('aria-pressed', String(waterOnly));
       if(shadeBtn) shadeBtn.setAttribute('aria-pressed', String(heat.value === 'shade-60'));
       if(multiDayBtn) multiDayBtn.setAttribute('aria-pressed', String(durationValue === 'multi'));
+      if(chairliftsBtn) chairliftsBtn.setAttribute('aria-pressed', String(liftsValue === 'include'));
       if(savedOnlyBtn){
         savedOnlyBtn.setAttribute('aria-pressed', String(savedOnly));
         savedOnlyBtn.setAttribute('aria-label', savedOnly ? 'Show all trails' : 'Show saved trails only');
@@ -1465,6 +1477,12 @@
       page = 1;
       renderPage('push');
     });
+    if(chairliftsBtn) chairliftsBtn.addEventListener('click', () => {
+      liftsValue = liftsValue === 'include' ? '' : 'include';
+      chairliftsBtn.setAttribute('aria-pressed', String(liftsValue === 'include'));
+      page = 1;
+      renderPage('push');
+    });
     if(savedOnlyBtn) savedOnlyBtn.addEventListener('click', () => {
       if(!window.DoloPawsAuth || !window.DoloPawsAuth.currentUser){
         window.location.href = 'saved.html';
@@ -1484,6 +1502,8 @@
       if(waterBtn) waterBtn.setAttribute('aria-pressed', 'false');
       durationValue = 'day';
       if(multiDayBtn) multiDayBtn.setAttribute('aria-pressed', 'false');
+      liftsValue = '';
+      if(chairliftsBtn) chairliftsBtn.setAttribute('aria-pressed', 'false');
       collectionKey = 'all';
       difficultyValue = '';
       terrain.value = '';

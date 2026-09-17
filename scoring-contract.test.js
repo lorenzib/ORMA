@@ -11,7 +11,7 @@ function run(fixture){
 
 describe('SCORE-01 canonical recommendation contract', () => {
   test('the fixture set and calculator use the same immutable version', () => {
-    expect(scoring.VERSION).toBe('1.5.0');
+    expect(scoring.VERSION).toBe('1.6.0');
     expect(fixtures.scoringVersion).toBe(scoring.VERSION);
   });
 
@@ -502,5 +502,54 @@ describe('SCORE-01 canonical recommendation contract', () => {
       count:2,
       hazards:'Loose rock; Paved road crossing',
     }));
+  });
+});
+
+describe('open chairlifts', () => {
+  const lifted = fixtures.trailFixtures['chairlift-assisted-reviewed'];
+  const gondola = { ...lifted, suitability:{ ...lifted.suitability, lift:{ type:'gondola', dependency:'required', name:'Cortina Skyline', notes:null } } };
+  const optional = { ...lifted, suitability:{ ...lifted.suitability, lift:{ type:'chairlift', dependency:'optional', name:'5 Torri chairlift', notes:null } } };
+  const conditions = { status:'known', heatRisk:'low' };
+  const run = (dog, trail) => scoring.calculateRecommendation({ dog, trail, currentConditions:conditions });
+
+  test('a route that rides an open chairlift is a hard stop for a dog with no chairlift answer', () => {
+    const result = run({ ageYears:4, weightKg:6, fitness:'moderate', conditions:[], traits:{} }, lifted);
+    expect(result.category).toBe('not-recommended');
+    expect(result.score).toBe(5);
+    expect(result.hardStops.map(entry => entry.code)).toEqual(['trail.lift.chairlift']);
+    expect(result.hardStops[0].messageKey).toBe('trail.lift.chairlift.named');
+    expect(result.unknowns.map(entry => entry.code)).toContain('dog.chairlift.unknown');
+    expect(result.effectiveDogLimits.chairliftSafe).toBe(false);
+  });
+
+  test('a declaration counts only for a dog light enough to be held', () => {
+    const heavy = run({ ageYears:4, weightKg:12, fitness:'moderate', conditions:[], traits:{}, behaviour:{ chairlift:'ok' } }, lifted);
+    expect(heavy.category).toBe('not-recommended');
+    expect(heavy.hardStops).toHaveLength(1);
+    // Declared, so the unknown is not repeated: the weight is the reason.
+    expect(heavy.unknowns.map(entry => entry.code)).not.toContain('dog.chairlift.unknown');
+    const unknownWeight = run({ ageYears:4, fitness:'moderate', conditions:[], traits:{}, behaviour:{ chairlift:'ok' } }, lifted);
+    expect(unknownWeight.category).toBe('not-recommended');
+    expect(scoring.CHAIRLIFT_MAX_KG).toBe(8);
+  });
+
+  test('a small declared dog keeps the route as a strong caution, never a strong option', () => {
+    const result = run({ ageYears:4, weightKg:8, fitness:'moderate', conditions:[], traits:{}, behaviour:{ chairlift:'ok' } }, lifted);
+    expect(result.hardStops).toHaveLength(0);
+    expect(result.category).toBe('possible-with-cautions');
+    expect(result.cautions.map(entry => entry.code)).toContain('trail.lift.chairlift.declared');
+    expect(result.effectiveDogLimits.chairliftSafe).toBe(true);
+  });
+
+  test('a closed gondola is a note, and an optional chairlift is nothing', () => {
+    const dog = { ageYears:4, weightKg:30, fitness:'moderate', conditions:[], traits:{} };
+    const cabin = run(dog, gondola);
+    expect(cabin.hardStops).toHaveLength(0);
+    expect(cabin.cautions.map(entry => entry.code)).toContain('trail.lift.gondola');
+    expect(cabin.cautions.find(entry => entry.code === 'trail.lift.gondola').impact).toBe(0);
+    const spare = run(dog, optional);
+    expect(spare.hardStops).toHaveLength(0);
+    expect(spare.cautions.map(entry => entry.code)).not.toContain('trail.lift.chairlift');
+    expect(spare.category).toBe('strong-option');
   });
 });
