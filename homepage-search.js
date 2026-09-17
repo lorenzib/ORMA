@@ -43,7 +43,7 @@
     duration: 'day', dist: 'any', diff: 'any', terrain: 'any', shade: 'any', minMatch: 0, hasWater: false,
     searched: false, focused: false, menu: null, custom: null, activeSuggest: -1,
     wizOpen: false, wizStep: 0,
-    wiz: { name: '', size: 'medium', energy: 'medium', terrainTol: 'gravel', heat: false },
+    wiz: { name: '', size: 'medium', energy: 'medium', terrainTol: 'gravel', heat: false, chairlift: '' },
   };
 
   // Shared discovery vocabulary: these labels and thresholds match Browse All
@@ -295,11 +295,21 @@
     return true;
   }
 
+  // Chairlift-assisted routes stay hidden unless the active dog is declared
+  // safe on an open chair (and light enough), the same rule as Browse and
+  // the logged-in homepage.
+  function chairliftSafe() {
+    var adapters = window.DoloPawsRecommendationAdaptersV1;
+    try { return !!(adapters && typeof adapters.chairliftSafe === 'function' && adapters.chairliftSafe(activeProfile())); }
+    catch (e) { return false; }
+  }
+
   function rankedList() {
     var filters = window.DoloPawsDiscoveryFilters;
     var fstate = discoveryState();
+    var options = { chairliftSafe: chairliftSafe() };
     return trails.filter(function (t) {
-      if (filters ? !filters.matches(t, fstate) : !legacyMatch(t, fstate)) return false;
+      if (filters ? !filters.matches(t, fstate, options) : !legacyMatch(t, fstate)) return false;
       return true;
     }).map(function (t) {
       return { t: t, score: scoreOf(t) };
@@ -627,6 +637,11 @@
   var ENERGY_OPTS = [{ label: 'Low', v: 'low' }, { label: 'Medium', v: 'medium' }, { label: 'High', v: 'high' }];
   var TERRAINTOL_OPTS = [{ label: 'Soft ground only', v: 'soft' }, { label: 'Some gravel is fine', v: 'gravel' }, { label: 'Anything, including rock', v: 'any' }];
   var HEAT_OPTS = [{ label: 'Yes, gets hot easily', v: true }, { label: 'No, handles heat fine', v: false }];
+  // Open chairlifts: asked only for a small dog, because the scorer treats a
+  // dog over 8 kg as unsafe on an open chair whatever the owner says (it has
+  // to be held on a lap). Same values as the full wizard and the account.
+  var CHAIRLIFT_OPTS = [{ label: 'Not for us, or never tried', v: 'never' }, { label: 'Yes, held on my lap with harness and leash', v: 'ok' }];
+  function asksChairlift(w) { return w.size === 'small'; }
   var releaseWizardFocus = null;
 
   function optBtns(opts, cur, field, col) {
@@ -678,12 +693,18 @@
         '<div class="hp-wiz-q">What can their paws handle?</div>' + optBtns(TERRAINTOL_OPTS, w.terrainTol, 'terrainTol', true);
     } else {
       body = '<div class="hp-wiz-q">Do they struggle in the heat?</div>' + optBtns(HEAT_OPTS, w.heat, 'heat', true) +
+        (asksChairlift(w)
+          ? '<div class="hp-wiz-q">Do they ride an open chairlift calmly on your lap?</div>' +
+            '<p class="hp-wiz-device-note">Some routes depend on an open chairlift. Unless you say otherwise, ORMA keeps those routes out of ' + esc((w.name || '').trim() || 'your dog') + '’s matches.</p>' +
+            optBtns(CHAIRLIFT_OPTS, w.chairlift, 'chairlift', true)
+          : '') +
         '<div class="hp-wiz-summary"><div class="hp-wiz-summary-h">Profile summary</div>' +
         summaryRow('Name', (w.name || '').trim() || 'Your dog') +
         summaryRow('Size', cap(w.size)) +
         summaryRow('Energy', cap(w.energy) + ' energy') +
         summaryRow('Terrain', { soft: 'Soft ground only', gravel: 'Some gravel OK', any: 'Any terrain' }[w.terrainTol]) +
         summaryRow('Heat', w.heat ? 'Heat-sensitive' : 'Handles heat fine') +
+        (asksChairlift(w) ? summaryRow('Chairlifts', { ok: 'Rides calmly on a lap', never: 'Not for us' }[w.chairlift] || 'Not answered') : '') +
         '</div>';
     }
     el.wizBody.innerHTML = body;
@@ -722,9 +743,38 @@
   // later login persists it with zero translation.
   var SIZE_WEIGHT = { small: '5-10', medium: '15-20', large: '30-40' };
   var ENERGY_FITNESS = { low: 'low', medium: 'moderate', high: 'high' };
+  var SIZE_FROM_BAND = { u5: 'small', '5-10': 'small', '10-15': 'medium', '15-20': 'medium' };
+  function customMeta(name, size, energy, heat) {
+    return {
+      key: 'custom', name: name, emoji: '⭐',
+      sub: cap(size) + ' · ' + energy + ' energy' + (heat ? ' · heat-sensitive' : ''),
+      badge: name.charAt(0).toUpperCase(), chipBg: 'var(--ink)', chipColor: '#fff',
+    };
+  }
+  // A guest's dog lives on the device (dolopaws-pending-dog-profile) until
+  // they sign up, written by this wizard or the full one. Pick it up on load
+  // so a reload, or coming back from a trail page, keeps scoring for that dog
+  // instead of falling back to the medium-dog guest default.
+  function restoreDeviceDog() {
+    var profile = null;
+    try { profile = JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile') || 'null'); } catch (e) {}
+    if (!profile || typeof profile !== 'object' || typeof profile.name !== 'string' || !profile.name.trim()) return false;
+    var name = profile.name.trim().slice(0, 80);
+    var size = SIZE_FROM_BAND[profile.weightBand] || (profile.weightBand ? 'large' : 'medium');
+    var energy = profile.fitness === 'low' ? 'low' : profile.fitness === 'high' ? 'high' : 'medium';
+    var heat = (Array.isArray(profile.conditions) && profile.conditions.indexOf('heat') !== -1) || !!profile.heatIssues;
+    var chairlift = profile.behaviour && (profile.behaviour.chairlift === 'ok' || profile.behaviour.chairlift === 'never') ? profile.behaviour.chairlift : '';
+    state.wiz = { name: name, size: size, energy: energy, terrainTol: state.wiz.terrainTol, heat: heat, chairlift: chairlift };
+    state.custom = { profile: profile, meta: customMeta(name, size, energy, heat) };
+    state.dog = 'custom';
+    return true;
+  }
+
   function buildCustomProfile() {
     var w = state.wiz;
     var conditions = w.heat ? ['heat'] : [];
+    var behaviour = {};
+    if (asksChairlift(w) && (w.chairlift === 'ok' || w.chairlift === 'never')) behaviour.chairlift = w.chairlift;
     return {
       name: (w.name || '').trim() || 'Your dog',
       breed: '',
@@ -735,6 +785,7 @@
       healthNotes: '',
       jointIssues: false,
       heatIssues: w.heat,
+      behaviour: behaviour,
     };
   }
 
@@ -743,11 +794,7 @@
     try { localStorage.setItem('dolopaws-pending-dog-profile', JSON.stringify(profile)); } catch (e) {}
     state.custom = {
       profile: profile,
-      meta: {
-        key: 'custom', name: profile.name, emoji: '⭐',
-        sub: cap(state.wiz.size) + ' · ' + state.wiz.energy + ' energy' + (state.wiz.heat ? ' · heat-sensitive' : ''),
-        badge: profile.name.charAt(0).toUpperCase(), chipBg: 'var(--ink)', chipColor: '#fff',
-      },
+      meta: customMeta(profile.name, state.wiz.size, state.wiz.energy, state.wiz.heat),
     };
     state.dog = 'custom';
     // Reset the browse view to the personalised collection.
@@ -905,6 +952,7 @@
     if (!ready()) return;
     setupStatic();
     bind();
+    restoreDeviceDog();
     renderAll();
     loadToday();
     // Deep link from the onboarding flow's final CTA: open the dog

@@ -24,7 +24,9 @@ describe('UX-05 guest context integration', () => {
     expect(html.indexOf('guest-context.js')).toBeLessThan(html.indexOf('script.js'));
     const controller = read('guest-context.js');
     expect(controller).toContain("win.addEventListener('dolopaws-auth-changed', authChanged)");
-    expect(controller).toContain('adoptLegacyDogDraft(storage)');
+    expect(controller).toContain('adoptLegacyDogDraft(storage, Date.now(), { signedIn:!!user })');
+    // The device dog is consumed only once signed in; a guest keeps it across reloads.
+    expect(controller).toContain('if(record && signedIn){');
     expect(controller).toContain('storage.removeItem(LEGACY_PROFILE_KEY)');
   });
 

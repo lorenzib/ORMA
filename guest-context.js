@@ -186,19 +186,24 @@
     } catch(error){}
   }
 
-  function adoptLegacyDogDraft(storage, now){
+  // The device dog (dolopaws-pending-dog-profile) is what every guest surface
+  // reads: the header pill, trail scores, compare, Browse and the homepage.
+  // Adopting it into the sign-up context must therefore leave it in place
+  // while the visitor is still a guest, or the dog vanishes on the next page
+  // load. It is consumed only once a user is signed in, at which point this
+  // handoff (registered before script.js) replaces the older automatic one.
+  function adoptLegacyDogDraft(storage, now, options){
     now = now || Date.now();
+    const signedIn = !!(options && options.signedIn);
     const profile = sanitizeProfile(json(storage, LEGACY_PROFILE_KEY));
+    if(!profile) return load(storage, now);
     const draft = json(storage, LEGACY_DRAFT_KEY);
-    const updatedAt = draft && Number(draft.ts);
-    if(!profile || !Number.isFinite(updatedAt) || now - updatedAt > MAX_AGE_MS || updatedAt > now + 60000){
-      try { storage.removeItem(LEGACY_PROFILE_KEY); } catch(error){}
-      return load(storage, now);
-    }
+    const ts = draft && Number(draft.ts);
+    const updatedAt = Number.isFinite(ts) && ts <= now + 60000 ? ts : now;
     const record = capture(storage, {
       dogDraft:{ profile, updatedAt },
     }, now);
-    if(record){
+    if(record && signedIn){
       try { storage.removeItem(LEGACY_PROFILE_KEY); } catch(error){}
     }
     return record;
@@ -334,8 +339,8 @@
     }
 
     function authChanged(event){
-      adoptLegacyDogDraft(storage);
       const user = event && event.detail && event.detail.user;
+      adoptLegacyDogDraft(storage, Date.now(), { signedIn:!!user });
       if(user) showMigration(user);
     }
     win.addEventListener('dolopaws-auth-changed', authChanged);

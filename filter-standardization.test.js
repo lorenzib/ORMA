@@ -121,7 +121,7 @@ describe('shared trail-filter experience', () => {
     // catalogue, instead of a second hand-rolled predicate.
     expect(homepage).toContain('discovery-filters.js');
     expect(search).toContain('window.DoloPawsDiscoveryFilters');
-    expect(search).toContain('filters.matches(t, fstate)');
+    expect(search).toContain('filters.matches(t, fstate, options)');
   });
 
   test('gives the guest homepage the same Duration default as Browse and the map', () => {
