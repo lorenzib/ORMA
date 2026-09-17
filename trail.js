@@ -2209,6 +2209,14 @@ function renderTrail(t){
       window.ORMAMapStyle.quietBasemap(map);
       window.ORMAMapStyle.addWaymarkedHiking(map, { beforeId: firstLabelId });
       if (typeof addBaseHillshade === 'function') addBaseHillshade(map, 'waymarked-hiking-layer');
+      // Elevation contours from the same DEM -- the detail a street basemap
+      // lacks. Lazy-loaded and fully guarded: if the plugin fails, the map is
+      // unchanged.
+      if (window.DoloPawsMapRuntime && window.DoloPawsMapRuntime.loadContour) {
+        window.DoloPawsMapRuntime.loadContour()
+          .then(() => window.ORMAMapStyle.addContours(map))
+          .catch(() => {});
+      }
       const routesToggleBtn = document.getElementById('routesToggle');
       if (routesToggleBtn){
         routesToggleBtn.classList.add('on');

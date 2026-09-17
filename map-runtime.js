@@ -4,7 +4,13 @@
   const VERSION = '5.24.0';
   const SCRIPT_URL = `https://unpkg.com/maplibre-gl@${VERSION}/dist/maplibre-gl.js`;
   const STYLE_URL = `https://unpkg.com/maplibre-gl@${VERSION}/dist/maplibre-gl.css`;
+  // maplibre-contour turns the terrarium DEM (already fetched for hillshade)
+  // into vector contour lines in a worker -- the elevation detail a general
+  // street basemap lacks, with no contour tile server and no API key.
+  const CONTOUR_VERSION = '0.1.1';
+  const CONTOUR_URL = `https://unpkg.com/maplibre-contour@${CONTOUR_VERSION}/dist/index.min.js`;
   let runtimePromise = null;
+  let contourPromise = null;
 
   function loadStyle(){
     const existing = document.querySelector('link[data-dolopaws-maplibre]');
@@ -46,6 +52,32 @@
       runtimePromise = Promise.all([loadStyle(), loadScript()]).then(([, maplibre]) => maplibre);
     }
     return runtimePromise;
+  }
+
+  // Loaded lazily and only on request, after maplibre-gl itself: a map that
+  // never asks for contours never pays for the plugin. Resolves to the global
+  // `mlcontour` namespace.
+  function loadContour(){
+    if(global.mlcontour) return Promise.resolve(global.mlcontour);
+    if(!contourPromise){
+      contourPromise = load().then(() => new Promise((resolve, reject) => {
+        if(global.mlcontour) return resolve(global.mlcontour);
+        const existing = document.querySelector('script[data-orma-contour]');
+        if(existing){
+          existing.addEventListener('load', () => resolve(global.mlcontour), { once:true });
+          existing.addEventListener('error', () => reject(new Error('Contour plugin could not be loaded.')), { once:true });
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = CONTOUR_URL;
+        script.async = true;
+        script.dataset.ormaContour = CONTOUR_VERSION;
+        script.onload = () => resolve(global.mlcontour);
+        script.onerror = () => reject(new Error('Contour plugin could not be loaded.'));
+        document.head.appendChild(script);
+      }));
+    }
+    return contourPromise;
   }
 
   function whenVisible(target, initialise, options){
@@ -174,5 +206,5 @@
     });
   }
 
-  global.DoloPawsMapRuntime = { load, whenVisible, onIdle, mapOptions, enhance, VERSION };
+  global.DoloPawsMapRuntime = { load, loadContour, whenVisible, onIdle, mapOptions, enhance, VERSION };
 })(window);
