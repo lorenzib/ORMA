@@ -3421,12 +3421,14 @@ function liRowMeta(t){
 // One vocabulary, from match-verdict.js. This used to say "Great match" at 85
 // and "Good" at 65 while the list below it said "Possible with cautions" at 60,
 // so the same trail answered differently in the dropdown and in the results.
+//
+// The fallback was a copy of the table, kept for a page that failed to load
+// the module -- a page with bigger problems than a missing label, and a copy
+// free to disagree with the original the moment either changed. Where the
+// words are unavailable the honest output is no words, not a guess at them.
 function liMatchTier(score){
   const verdict = window.OrmaMatchVerdict;
-  if(verdict) return verdict.verdictFor(score);
-  return score >= 85 ? { color: '#4A7856', label: 'Strong option' }
-    : score >= 60 ? { color: '#A96F1D', label: 'Possible with cautions' }
-    : { color: '#9C3A25', label: 'Not recommended' };
+  return verdict ? verdict.verdictFor(score) : { color:'inherit', label:'' };
 }
 function liPersonalisationText(value){
   return String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({
@@ -3443,8 +3445,7 @@ function liRecommendationPresentation(trail, profile){
   const declared = recommendation.category === 'recommended' ? 'strong-option' : recommendation.category;
   const category = verdict
     ? verdict.verdictFor({ score, category: declared })
-    : { label: score >= 85 ? 'Strong option' : score >= 60 ? 'Possible with cautions' : 'Not recommended',
-        color: score >= 85 ? '#4A7856' : score >= 60 ? '#A96F1D' : '#9C3A25' };
+    : { label:'', color:'inherit' };
   const confidence = {
     high:'High confidence',
     medium:'Moderate confidence',

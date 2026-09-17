@@ -136,7 +136,9 @@ function loadHomepageContext(testTrails){
   vm.createContext(context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'regions-config.js'), 'utf8'), context);
   // The card's explanation is rendered from this view, exactly as the page
-  // loads it: without it a card would silently lose its reasoning.
+  // loads it: without it a card would silently lose its reasoning. The same
+  // goes for the verdict's words, which the page loads before script.js.
+  vm.runInContext(fs.readFileSync(path.join(__dirname, 'match-verdict.js'), 'utf8'), context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'recommendation-decision.js'), 'utf8'), context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8'), context);
   // Existing filter tests exercise catalogue refinements in isolation. The

@@ -486,10 +486,17 @@
           conditionsForScoring()
         );
         const score = recommendation.score;
-        // Reference action card: 96px conic ring (#4a7c59 on #e6e0cf track),
-        // "MATCH FOR {NAME}" kicker, breed line underneath.
+        // Reference action card: 96px conic ring on an #e6e0cf track, with
+        // "MATCH FOR {NAME}" as the kicker and the breed line underneath.
         if (personalScore) {
-          const ringColor = score >= 70 ? '#4a7c59' : score >= 50 ? '#c98a3e' : '#b2542e';
+          // The ring is the verdict, read as colour. Its own boundaries were
+          // 70 and 50, so a score of 72 drew a green ring beside the words
+          // "Possible with cautions" -- and colour is what a reader takes in
+          // first. Same source as the words now, cut-offs and palette both.
+          const ringVerdict = window.OrmaMatchVerdict
+            ? window.OrmaMatchVerdict.verdictFor(recommendation)
+            : null;
+          const ringColor = ringVerdict ? ringVerdict.color : '#e6e0cf';
           personalScore.innerHTML =
             `<div class="td-ring" style="background:conic-gradient(${ringColor} ${Math.round((score / 100) * 360)}deg,#e6e0cf 0);">` +
             `<div class="td-ring-in">${t.curated === false ? '≈' : ''}${score}%</div></div>`;
@@ -506,12 +513,21 @@
         }
         if (matchTitle) matchTitle.textContent = `Match for ${name}`;
         if (matchSummary) {
-          const category = {
-            'strong-option': 'Strong option',
-            'possible-with-cautions': 'Possible with cautions',
-            'not-recommended': 'Not recommended',
-          }[recommendation.category] || 'Personal recommendation';
-          matchSummary.textContent = `${category} · ${recommendation.confidence} confidence`;
+          // The verdict's words, and the line about how well it is known, both
+          // come from match-verdict.js. This read from a copy of the table and
+          // appended the confidence unconditionally, so an audited route said
+          // "Strong option · high confidence" -- the confident case announcing
+          // its confidence, which is what evidenceLine exists to stop.
+          const verdict = window.OrmaMatchVerdict
+            ? window.OrmaMatchVerdict.verdictFor(recommendation)
+            : null;
+          const qualifier = window.OrmaMatchVerdict
+            ? window.OrmaMatchVerdict.evidenceLine({
+              confidence: recommendation.confidence ? `${recommendation.confidence} confidence` : '',
+            })
+            : '';
+          matchSummary.textContent = [verdict ? verdict.label : 'Personal recommendation', qualifier]
+            .filter(Boolean).join(' · ');
           matchSummary.dataset.scoringVersion = recommendation.scoringVersion;
         }
         if (avatar && profile.photo) avatar.innerHTML = `<img src="${esc(profile.photo)}" alt="${esc(name)}">`;

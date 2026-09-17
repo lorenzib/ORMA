@@ -92,6 +92,50 @@ describe('both surfaces ask the same question', () => {
     });
   });
 
+  // Naming the files to check is what let this drift twice: the guard listed
+  // the surfaces someone remembered, and a copy of the table in a file nobody
+  // added went unnoticed for months. So the guard stopped keeping a list. It
+  // reads every shipped source and fails on any file that spells out the three
+  // verdicts itself, which is what a private copy of the table looks like.
+  test('and nothing else in the tree spells the verdicts out', () => {
+    const OWNERS = new Set([
+      // The module that owns the words.
+      'match-verdict.js',
+      // The canonical view, which maps the engine's categories to the same
+      // three labels for the trail page and the homepage explanation. It is a
+      // second spelling, and the test below holds the two in agreement.
+      'recommendation-decision.js',
+    ]);
+    // Tests name the vocabulary in order to assert on it, and nothing in a
+    // test ships. Everything else is a surface.
+    const skip = /^(?:node_modules|dist|\.git|coverage|backoffice-data|docs)(?:\/|$)|\.bundle\.js$|\.test\.js$|\.md$|^i18n\.js$/;
+    const offenders = [];
+    const walk = dir => {
+      for(const entry of fs.readdirSync(dir, { withFileTypes:true })){
+        const full = (dir === '.' ? entry.name : `${dir}/${entry.name}`);
+        if(skip.test(full)) continue;
+        if(entry.isDirectory()){ walk(full); continue; }
+        if(!/\.(?:js|html)$/.test(entry.name)) continue;
+        if(OWNERS.has(full)) continue;
+        const source = fs.readFileSync(full, 'utf8');
+        // A private table is the three labels together in one file. One of
+        // them alone is prose, and prose is allowed to quote a verdict.
+        const spelled = ['Strong option','Possible with cautions','Not recommended']
+          .filter(label => source.includes(label));
+        if(spelled.length === 3) offenders.push(full);
+      }
+    };
+    walk('.');
+    expect(offenders).toEqual([]);
+  });
+
+  test('the canonical view and the module agree, label for label', () => {
+    const decision = require('./recommendation-decision.js');
+    Object.keys(VERDICTS).forEach(category => {
+      expect(decision.present({ category }, {}).conclusion).toBe(VERDICTS[category].label);
+    });
+  });
+
   test('the guest homepage defers to it, cut-offs and all', () => {
     expect(guestSearch).toContain('window.OrmaMatchVerdict');
     expect(guestSearch).not.toMatch(/s >= 75/);

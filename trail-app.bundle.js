@@ -5721,6 +5721,80 @@ function effectiveOverrides(profile, adjustOverride){
 }
 ;
 
+// ---- match-verdict.js ----
+// What a match score is called, in one place.
+//
+// The same trail read three ways: "Great match" on browse at 75, "Good" in the
+// homepage search at 65, "Possible with cautions" on the homepage list at 60.
+// Three vocabularies and three sets of cut-offs for one number, so a trail
+// scoring 80 gave a different answer depending on which screen you were on.
+//
+// Worse than the wording: browse derived its verdict from the score alone, and
+// the score alone does not carry what the engine decided. recommendTrail
+// downgrades a strong option to "possible with cautions" when a category ORMA
+// has not reviewed is one that matters, and caps a prohibited route at 5. A
+// verdict rebuilt from the number loses the first of those, so browse could
+// call a trail a great match on evidence the engine had already judged too thin
+// to say so.
+(function(root,factory){
+  const api=factory();
+  if(typeof module==='object'&&module.exports)module.exports=api;
+  if(root)root.OrmaMatchVerdict=api;
+})(typeof globalThis!=='undefined'?globalThis:this,function(){
+  'use strict';
+
+  // The engine's own categories, said the way a walker decides: what to do,
+  // not how well the trail did.
+  const VERDICTS=Object.freeze({
+    'strong-option':{category:'strong-option',label:'Strong option',color:'#4A7856',tone:'great'},
+    'possible-with-cautions':{category:'possible-with-cautions',label:'Possible with cautions',color:'#A96F1D',tone:'good'},
+    'not-recommended':{category:'not-recommended',label:'Not recommended',color:'#9C3A25',tone:'check'},
+  });
+
+  // Matches recommendation-v1.js. Only reached when a caller has a bare score,
+  // which is a caller that cannot see hard stops or unreviewed evidence.
+  const STRONG_AT=85;
+  const POSSIBLE_AT=60;
+
+  function categoryForScore(score){
+    const value=Number(score);
+    if(!Number.isFinite(value))return 'not-recommended';
+    return value>=STRONG_AT?'strong-option':value>=POSSIBLE_AT?'possible-with-cautions':'not-recommended';
+  }
+
+  /**
+   * The verdict for a recommendation, or for a bare score where that is all a
+   * caller has. The engine's category always wins: it already accounts for a
+   * prohibition and for evidence too thin to reassure on.
+   */
+  function verdictFor(input){
+    const recommendation=input&&typeof input==='object'?input:null;
+    const score=recommendation
+      ? (Number.isFinite(recommendation.score)?recommendation.score:null)
+      : (Number.isFinite(Number(input))?Number(input):null);
+    const declared=recommendation&&VERDICTS[recommendation.category]?recommendation.category:null;
+    const verdict=VERDICTS[declared||categoryForScore(score)];
+    return {...verdict,score:Number.isFinite(score)?score:null};
+  }
+
+  // How well a verdict is known, in one line instead of two.
+  //
+  // "High confidence" next to "ORMA route-audited" says the same thing twice:
+  // an audited route is the confident case, so the words only earn their place
+  // when they qualify it. Saying nothing where there is nothing to add is what
+  // leaves room for the caveat to be noticed when there is.
+  function evidenceLine(parts){
+    const provenance=String(parts&&parts.provenance||'').trim();
+    const confidence=String(parts&&parts.confidence||'').trim();
+    const checked=String(parts&&parts.checkedLabel||'').trim();
+    const qualifies=confidence&&!/^high confidence$/i.test(confidence);
+    return [provenance,qualifies?confidence:'',checked].filter(Boolean).join(' · ');
+  }
+
+  return {VERDICTS,STRONG_AT,POSSIBLE_AT,categoryForScore,verdictFor,evidenceLine};
+});
+;
+
 // ---- trail-trust.js ----
 /**
  * Shared trust language for trail facts.
@@ -15766,10 +15840,17 @@ if(document.querySelector('.td2')){
           conditionsForScoring()
         );
         const score = recommendation.score;
-        // Reference action card: 96px conic ring (#4a7c59 on #e6e0cf track),
-        // "MATCH FOR {NAME}" kicker, breed line underneath.
+        // Reference action card: 96px conic ring on an #e6e0cf track, with
+        // "MATCH FOR {NAME}" as the kicker and the breed line underneath.
         if (personalScore) {
-          const ringColor = score >= 70 ? '#4a7c59' : score >= 50 ? '#c98a3e' : '#b2542e';
+          // The ring is the verdict, read as colour. Its own boundaries were
+          // 70 and 50, so a score of 72 drew a green ring beside the words
+          // "Possible with cautions" -- and colour is what a reader takes in
+          // first. Same source as the words now, cut-offs and palette both.
+          const ringVerdict = window.OrmaMatchVerdict
+            ? window.OrmaMatchVerdict.verdictFor(recommendation)
+            : null;
+          const ringColor = ringVerdict ? ringVerdict.color : '#e6e0cf';
           personalScore.innerHTML =
             `<div class="td-ring" style="background:conic-gradient(${ringColor} ${Math.round((score / 100) * 360)}deg,#e6e0cf 0);">` +
             `<div class="td-ring-in">${t.curated === false ? '≈' : ''}${score}%</div></div>`;
@@ -15786,12 +15867,21 @@ if(document.querySelector('.td2')){
         }
         if (matchTitle) matchTitle.textContent = `Match for ${name}`;
         if (matchSummary) {
-          const category = {
-            'strong-option': 'Strong option',
-            'possible-with-cautions': 'Possible with cautions',
-            'not-recommended': 'Not recommended',
-          }[recommendation.category] || 'Personal recommendation';
-          matchSummary.textContent = `${category} · ${recommendation.confidence} confidence`;
+          // The verdict's words, and the line about how well it is known, both
+          // come from match-verdict.js. This read from a copy of the table and
+          // appended the confidence unconditionally, so an audited route said
+          // "Strong option · high confidence" -- the confident case announcing
+          // its confidence, which is what evidenceLine exists to stop.
+          const verdict = window.OrmaMatchVerdict
+            ? window.OrmaMatchVerdict.verdictFor(recommendation)
+            : null;
+          const qualifier = window.OrmaMatchVerdict
+            ? window.OrmaMatchVerdict.evidenceLine({
+              confidence: recommendation.confidence ? `${recommendation.confidence} confidence` : '',
+            })
+            : '';
+          matchSummary.textContent = [verdict ? verdict.label : 'Personal recommendation', qualifier]
+            .filter(Boolean).join(' · ');
           matchSummary.dataset.scoringVersion = recommendation.scoringVersion;
         }
         if (avatar && profile.photo) avatar.innerHTML = `<img src="${esc(profile.photo)}" alt="${esc(name)}">`;

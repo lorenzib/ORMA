@@ -22,6 +22,9 @@ const SOURCES = [
   'scoring/recommendation-v1.js',
   'scoring/recommendation-adapters-v1.js',
   'scoring.js',
+  // What a match is called. trail-blueprint.js reads it, so it has to be in
+  // the bundle before it.
+  'match-verdict.js',
   'trail-trust.js',
   'trail-audits.js',
   'regions-config.js',
