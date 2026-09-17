@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 'use strict';
 
+const fs = require('fs/promises');
+const { randomUUID } = require('crypto');
 const { FirestoreBackofficeStore } = require('../services/firestore-backoffice-store');
 const { runLiveBackofficeWorker } = require('../workflows/run-live-backoffice-worker');
 const { providerOutage } = require('../services/provider-outage');
+const { summariseWorkAttempted, workOutcome, workMessage } = require('../workflows/worker-productivity');
 
 function positiveInteger(value,fallback){
   const parsed=Number.parseInt(value,10);
@@ -21,6 +24,28 @@ function blockedLanes(result = {}){
       .some(item => item.status === 'vetting-failed' && !providerOutage(item.error)) ? ['communityHazards'] : []);
 }
 
+// GitHub step outputs are the only channel back to the workflow that survives
+// the step boundary; the log is for people.
+async function reportWork(work,env=process.env){
+  const outcome=workOutcome(work);
+  console.log(`[orma-live-worker] work ${outcome} · ${workMessage(work)}`);
+  if(!env.GITHUB_OUTPUT) return null;
+  // Random delimiter per GitHub's own guidance: a provider error is arbitrary
+  // text, and a fixed delimiter appearing inside it would let the value break
+  // out of the output file.
+  const delimiter=`ORMA_WORK_${randomUUID().replace(/-/g,'')}`;
+  const lines=[
+    `work_outcome=${outcome}`,
+    `work_attempted=${work.attempted}`,
+    `work_succeeded=${work.succeeded}`,
+    `work_failed=${work.failed}`,
+    `work_provider_parked=${work.providerParked}`,
+    `work_message<<${delimiter}\n${workMessage(work)}\n${delimiter}`,
+  ];
+  await fs.appendFile(env.GITHUB_OUTPUT,`${lines.join('\n')}\n`);
+  return outcome;
+}
+
 async function main(){
   if(!process.env.OPENAI_API_KEY) throw new Error('OPENAI_API_KEY is required');
   const workerId = `github-${process.env.GITHUB_RUN_ID || 'manual'}-${process.env.GITHUB_RUN_ATTEMPT || '1'}`;
@@ -33,10 +58,16 @@ async function main(){
     campaignLimit:positiveInteger(process.env.ORMA_CAMPAIGN_LIMIT,10),campaignCapacity:positiveInteger(process.env.ORMA_CAMPAIGN_CAPACITY,15),
     campaignQueueCapacity:positiveInteger(process.env.ORMA_CAMPAIGN_QUEUE_CAPACITY,40),
     limit:5,specialistLimit,specialistCandidateId });
-  console.log(JSON.stringify(result, null, 2));
+  const work = summariseWorkAttempted(result);
+  console.log(JSON.stringify({ ...result, work: { ...work, outcome:workOutcome(work), message:workMessage(work) } }, null, 2));
+  // Handed to the workflow rather than signalled by the exit code: a run where
+  // every job was refused still completed every step it was asked to run, and
+  // failing it here would hide the publication lanes behind a red X that has
+  // nothing to do with them.
+  await reportWork(work);
   if(blockedLanes(result).length) process.exitCode = 1;
 }
 
 if(require.main === module) main().catch(error => { console.error(`[orma-live-worker] ${error.stack || error.message}`); process.exitCode = 1; });
 
-module.exports = { main,positiveInteger,blockedLanes,REVIEW_LANES };
+module.exports = { main,positiveInteger,blockedLanes,reportWork,REVIEW_LANES };

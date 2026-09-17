@@ -714,6 +714,22 @@
       node.textContent=`The last run stopped before publishing ${when||'recently'}: ${worker.publicationGate?.message||'the website publication gate is closed'}`;
       return;
     }
+    // The case this desk got wrong for five days: every run green, every job
+    // refused. "The last run worked" was true and useless, so say what the runs
+    // actually achieved rather than that they finished.
+    if(worker.status==='degraded'){
+      node.classList.add('is-bad');
+      const idle=worker.lastUnproductive||{};
+      const runs=Number(worker.consecutiveUnproductiveRuns||1);
+      // ago() phrases everything as "5 days ago"; here it is a duration, not a
+      // point in time.
+      const stalled=(ago(idle.since||worker.lastProductiveAt)||'').replace(/ ago$/,'');
+      const cause=idle.providerParked
+        ?'The agents cannot reach the model provider, so this is not something a decision here can fix.'
+        :idle.message||'No reason was recorded.';
+      node.textContent=`The runs are going through, but nothing is getting done: ${runs} run${runs===1?'':'s'} in a row have finished no job${stalled?`, over ${stalled}`:''}. ${cause}`;
+      return;
+    }
     // Healthy but stale is the case that matters: nothing is broken, nothing is
     // running either, and a count of "0 failures" reads as if all were well.
     if(overdue){

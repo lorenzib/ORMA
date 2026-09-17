@@ -30,6 +30,21 @@ async function failureMessage(env){
   catch(error){return summarizeFailureLog(`Could not read worker failure log: ${error.message}`);}
 }
 
+// The worker hands these across the step boundary as GitHub step outputs; the
+// workflow forwards them here. Absent means the queue step never ran, which is
+// different from a run that attempted nothing.
+function workInput(env){
+  if(!env.ORMA_WORKER_WORK_OUTCOME) return null;
+  return {
+    outcome:env.ORMA_WORKER_WORK_OUTCOME,
+    attempted:Number.parseInt(env.ORMA_WORKER_WORK_ATTEMPTED,10) || 0,
+    succeeded:Number.parseInt(env.ORMA_WORKER_WORK_SUCCEEDED,10) || 0,
+    failed:Number.parseInt(env.ORMA_WORKER_WORK_FAILED,10) || 0,
+    providerParked:env.ORMA_WORKER_WORK_PROVIDER_PARKED === 'true',
+    message:env.ORMA_WORKER_WORK_MESSAGE || null,
+  };
+}
+
 async function main(options={}){
   const env=options.env||process.env;
   const store=options.store||new FirestoreBackofficeStore();
@@ -45,6 +60,7 @@ async function main(options={}){
       failureStage:env.ORMA_WORKER_FAILURE_STAGE,
       failureMessage:await failureMessage(env),
       validationRunUrl:env.ORMA_WORKER_VALIDATION_RUN_URL,
+      work:workInput(env),
     },{at});
   await store.setArtifact('worker-health',health,{runId:health.runId,status:health.status});
   console.log(`[orma-worker-health] ${health.status} · run ${health.runId||'manual'} · ${health.workflowRunUrl||'no run URL'}`);
@@ -53,4 +69,4 @@ async function main(options={}){
 
 if(require.main===module)main().catch(error=>{console.error(`[orma-worker-health] ${error.stack||error.message}`);process.exitCode=1;});
 
-module.exports={failureMessage,main,runInput,workflowRunUrl};
+module.exports={failureMessage,main,runInput,workInput,workflowRunUrl};

@@ -113,7 +113,9 @@
     set('newTrailProgress',`${model.newTrailProgress.candidates} candidates · ${model.newTrailProgress.waiting} need you`);
     set('groundskeeperProgress',`${model.groundskeeperProgress.active} warnings · ${model.groundskeeperProgress.waiting} need review`);
     set('communityProgress',community.items.length?`${community.items.length} submissions need you`:'Queue clear');
-    const workerMeta=model.workerHealth.state==='blocked'
+    const workerMeta=model.workerHealth.meta
+      ?model.workerHealth.meta
+      :model.workerHealth.state==='blocked'
       ?'Agent queues remain active · publication waits for green CI'
       :model.workerHealth.state==='failed'&&model.workerHealth.consecutiveFailures>1
       ?`${model.workerHealth.consecutiveFailures} consecutive failures`

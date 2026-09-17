@@ -131,13 +131,29 @@ async function decisionHistory(store){
   };
 }
 
+// A pipeline standing still because nobody decided and a pipeline standing
+// still because no job can run look identical from the queue counts alone. This
+// report is where that question gets asked, so it should carry the answer.
+function workerProductivity(health){
+  if(!health) return null;
+  return {
+    status:health.status||null,
+    lastProductiveAt:health.lastProductiveAt||null,
+    lastSuccessfulAt:health.lastSuccessfulAt||null,
+    consecutiveUnproductiveRuns:Number(health.consecutiveUnproductiveRuns||0),
+    providerParked:Boolean(health.lastUnproductive?.providerParked),
+    reason:health.lastUnproductive?.message||null,
+  };
+}
+
 async function buildVerificationReport({store}){
-  const [orchestration,queue,registry,execution,staging]=await Promise.all([
+  const [orchestration,queue,registry,execution,staging,workerHealth]=await Promise.all([
     store.getArtifact('trail-orchestration'),
     store.getArtifact('dossier-review-queue'),
     store.getArtifact('orma-verified-registry-live'),
     store.getArtifact('verified-trail-editorial-execution'),
     store.getArtifact('publication-staging'),
+    store.getArtifact('worker-health'),
   ]);
   const trails=orchestration?.trails||[];
   const items=(queue?.items||[]).filter(item=>item.state==='awaiting-human');
@@ -214,6 +230,7 @@ async function buildVerificationReport({store}){
     sampleReadyToApprove:clean.slice(0,10).map(item=>({trailId:item.trailId,gate:item.gateType})),
     sampleNeedsJudgement:blocked.slice(0,8).map(item=>({trailId:item.trailId,gate:item.gateType,
       reasons:(item.blockingReasons||[]).slice(0,3)})),
+    worker:workerProductivity(workerHealth),
   };
 }
 
@@ -247,6 +264,14 @@ async function main(options={}){
       failed.slice(0,3).forEach(entry =>
         console.log(`[verification] Rejected: ${entry.candidateId||'(no candidate)'} - ${entry.error}`));
     }
+  }
+  const worker=report.worker;
+  if(worker&&worker.consecutiveUnproductiveRuns){
+    const days=worker.lastProductiveAt
+      ?Math.floor((Date.now()-new Date(worker.lastProductiveAt).getTime())/86400000)
+      :null;
+    console.log(`[verification] The pipeline is not moving: ${worker.consecutiveUnproductiveRuns} worker run(s) in a row finished no job${days===null?'':`, nothing completed for ${days} day(s)`}.`);
+    if(worker.reason) console.log(`[verification] ${worker.reason}`);
   }
   if(!report.verifiedRegistryExists){
     console.log('[verification] No verified registry yet: no approval has completed on this database.');

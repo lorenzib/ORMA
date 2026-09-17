@@ -71,6 +71,13 @@
   }
   function plural(count,singular,pluralForm=`${singular}s`){return `${count} ${count===1?singular:pluralForm}`;}
   function minutesSince(value,nowMs){const at=dateMs(value);return at?Math.max(0,Math.floor((nowMs-at)/60000)):null;}
+  // "122 hours" is a number to decode; "5 days" is a fact you feel.
+  function spanOf(minutes){
+    if(minutes===null||minutes===undefined)return null;
+    if(minutes<90)return plural(Math.max(1,Math.round(minutes)),'minute');
+    if(minutes<2880)return plural(Math.round(minutes/60),'hour');
+    return plural(Math.round(minutes/1440),'day');
+  }
   function deriveWorkerHealth(artifact,options={}){
     const nowMs=options.nowMs??Date.now();
     const expected=Number(artifact?.expectedIntervalMinutes||15);
@@ -90,6 +97,19 @@
     if(artifact.status==='blocked'){
       const gate=artifact.publicationGate||{};const ageMinutes=minutesSince(artifact.completedAt||gate.blockedAt,nowMs);
       return {state:'blocked',label:'Publishing paused',title:'Website validation is blocking publication',message:gate.message||'Validate ORMA must pass before approved website changes can be materialized. Queue and agent work may continue; approvals stay saved.',runUrl:gate.validationRunUrl||runUrl,ageMinutes,expectedIntervalMinutes:expected,consecutiveFailures:Number(artifact.consecutiveFailures||0)};
+    }
+    if(artifact.status==='degraded'){
+      // The run finished cleanly and did nothing. Dated from the first such run
+      // rather than the latest, because the number that matters is how long the
+      // queue has been standing still -- forty green runs hid that once.
+      const idle=artifact.lastUnproductive||{};const ageMinutes=minutesSince(artifact.completedAt,nowMs);
+      const stalledMinutes=minutesSince(idle.since||artifact.lastProductiveAt,nowMs);
+      const runs=Number(artifact.consecutiveUnproductiveRuns||1);
+      return {state:'degraded',label:'Nothing getting done',title:idle.providerParked?'Agents cannot reach the model provider':'The worker is running but completing no work',
+        message:idle.message||'The last run completed every step but finished no agent job.',
+        meta:`${plural(runs,'run')} in a row with nothing completed${stalledMinutes===null?'':`, over the last ${spanOf(stalledMinutes)}`}. Decisions you have already saved are safe and will be applied when work resumes.`,
+        runUrl:idle.workflowRunUrl||runUrl,ageMinutes,expectedIntervalMinutes:expected,
+        consecutiveUnproductiveRuns:runs,lastProductiveAt:artifact.lastProductiveAt||null,providerParked:Boolean(idle.providerParked)};
     }
     const completedAt=artifact.lastSuccessfulAt||artifact.completedAt;const ageMinutes=minutesSince(completedAt,nowMs);
     if(ageMinutes===null)return {state:'unknown',label:'Incomplete heartbeat',title:'Worker completion time is missing',message:'The protected heartbeat exists but has no successful completion time.',runUrl,ageMinutes,expectedIntervalMinutes:expected};

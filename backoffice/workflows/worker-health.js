@@ -25,6 +25,26 @@ function runIdentity(input = {}){
   };
 }
 
+// A run can finish every step it was given and still get nothing done. That is
+// not a failure -- nothing crashed, the publication lanes are fine -- but it is
+// not health either, and for five days in September 2026 it was reported as
+// health. 'degraded' is the state for it.
+const OUTCOMES = Object.freeze(['success', 'degraded', 'blocked', 'failure']);
+const STATUS_BY_OUTCOME = Object.freeze({ success:'healthy', degraded:'degraded', blocked:'blocked', failure:'failed' });
+
+function workReceipt(input = {}){
+  const work=input.work;
+  if(!work || !work.outcome) return null;
+  return {
+    outcome:text(work.outcome, 40),
+    attempted:Number(work.attempted || 0),
+    succeeded:Number(work.succeeded || 0),
+    failed:Number(work.failed || 0),
+    providerParked:Boolean(work.providerParked),
+    message:text(work.message, 1200) || null,
+  };
+}
+
 function beginWorkerRun(previous, input = {}, options = {}){
   const at=options.at || new Date().toISOString();
   const identity=runIdentity(input);
@@ -44,6 +64,9 @@ function beginWorkerRun(previous, input = {}, options = {}){
     lastBlockedAt:previous?.lastBlockedAt || null,
     consecutiveFailures:Number(previous?.consecutiveFailures || 0),
     lastFailure:previous?.lastFailure || null,
+    lastProductiveAt:previous?.lastProductiveAt || null,
+    consecutiveUnproductiveRuns:Number(previous?.consecutiveUnproductiveRuns || 0),
+    lastUnproductive:previous?.lastUnproductive || null,
     publicationGate:previous?.publicationGate || null,
     recentRuns:[...(previous?.recentRuns || [])].slice(-19),
   };
@@ -53,7 +76,8 @@ function finishWorkerRun(current, input = {}, options = {}){
   const at=options.at || new Date().toISOString();
   const startedAt=current?.startedAt || input.startedAt || at;
   const durationMs=Math.max(0,new Date(at).getTime()-new Date(startedAt).getTime());
-  const outcome=['success','blocked'].includes(input.outcome) ? input.outcome : 'failure';
+  const outcome=OUTCOMES.includes(input.outcome) ? input.outcome : 'failure';
+  const work=workReceipt(input);
   const currentIdentity=runIdentity(current || {});const incomingIdentity=runIdentity(input);
   const identity={};
   for(const key of Object.keys(currentIdentity))identity[key]=incomingIdentity[key] == null ? currentIdentity[key] : incomingIdentity[key];
@@ -71,9 +95,24 @@ function finishWorkerRun(current, input = {}, options = {}){
     validationRunUrl:text(input.validationRunUrl,1000) || null,
     commitSha:identity.commitSha,
   } : null;
+  // An idle run is evidence of neither productivity nor its absence, so it
+  // leaves both counters exactly as it found them.
+  const productive=work?.outcome === 'productive';
+  const unproductive=outcome === 'degraded' || work?.outcome === 'unproductive';
+  const lastUnproductive=unproductive ? {
+    stage:text(input.failureStage || 'agent-work', 160),
+    message:work?.message || text(input.failureMessage || 'Every job this run attempted failed.'),
+    since:current?.lastUnproductive?.since || at,
+    observedAt:at,
+    attempted:work?.attempted ?? null,
+    failed:work?.failed ?? null,
+    providerParked:Boolean(work?.providerParked),
+    workflowRunUrl:identity.workflowRunUrl,
+  } : null;
   const receipt={
     ...identity,
     outcome,
+    ...(work ? { work } : {}),
     startedAt,
     completedAt:at,
     durationMs,
@@ -82,7 +121,7 @@ function finishWorkerRun(current, input = {}, options = {}){
   };
   return {
     contractVersion:'1.0.0',
-    status:outcome === 'success' ? 'healthy' : outcome === 'failure' ? 'failed' : 'blocked',
+    status:STATUS_BY_OUTCOME[outcome],
     ...identity,
     startedAt,
     completedAt:at,
@@ -95,12 +134,18 @@ function finishWorkerRun(current, input = {}, options = {}){
     lastBlockedAt:outcome === 'blocked' ? at : (current?.lastBlockedAt || null),
     consecutiveFailures:outcome === 'success' ? 0 : outcome === 'failure' ? Number(current?.consecutiveFailures || 0) + 1 : Number(current?.consecutiveFailures || 0),
     lastFailure:failure || current?.lastFailure || null,
-    publicationGate:publicationGate || (outcome === 'success' ? null : current?.publicationGate || null),
+    // Separate from lastSuccessfulAt on purpose: that one answers "did the
+    // worker run", this one answers "did anything get done", and conflating
+    // them is what made five days of refusals look like five days of health.
+    lastProductiveAt:productive ? at : (current?.lastProductiveAt || null),
+    consecutiveUnproductiveRuns:productive ? 0 : unproductive ? Number(current?.consecutiveUnproductiveRuns || 0) + 1 : Number(current?.consecutiveUnproductiveRuns || 0),
+    lastUnproductive:productive ? null : (lastUnproductive || current?.lastUnproductive || null),
+    publicationGate:publicationGate || (['success','degraded'].includes(outcome) ? null : current?.publicationGate || null),
     recentRuns:[...(current?.recentRuns || []),receipt].slice(-20),
   };
 }
 
 module.exports={
-  DEFAULT_EXPECTED_INTERVAL_MINUTES,DEFAULT_DELAY_AFTER_MINUTES,DEFAULT_STALE_AFTER_MINUTES,
-  beginWorkerRun,finishWorkerRun,runIdentity,
+  DEFAULT_EXPECTED_INTERVAL_MINUTES,DEFAULT_DELAY_AFTER_MINUTES,DEFAULT_STALE_AFTER_MINUTES,OUTCOMES,STATUS_BY_OUTCOME,
+  beginWorkerRun,finishWorkerRun,runIdentity,workReceipt,
 };
