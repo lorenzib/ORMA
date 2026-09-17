@@ -5,11 +5,16 @@
 })(typeof window !== 'undefined' ? window : globalThis, function(root){
   'use strict';
 
-  const CATEGORY_LABELS = {
-    'strong-option':'Strong option',
-    'possible-with-cautions':'Possible with cautions',
-    'not-recommended':'Not recommended',
-  };
+  // The verdict's words come from match-verdict.js, which owns them. This file
+  // kept its own copy, so the wording could be changed in one place and stay
+  // the same here -- which is how a product with one vocabulary ends up with
+  // several. Without the module there is no verdict to name, and the row says
+  // so rather than guessing from a copy that may have drifted.
+  function categoryLabel(category){
+    const shared = root && root.OrmaMatchVerdict;
+    const verdict = shared && shared.VERDICTS[category];
+    return (verdict && verdict.label) || '';
+  }
   const TERRAIN = {
     0:'Gentle or paved',
     1:'Mixed natural terrain',
@@ -84,7 +89,11 @@
       area:trail.area || trail.valley || '',
       cells:{
         match: recommendation
-          ? cell(`${CATEGORY_LABELS[recommendation.category] || recommendation.category} · ${recommendation.score}%`, recommendation.category === 'not-recommended' ? 'caution' : 'known',
+          // The verdict, not the verdict and the number. Two trails both called
+          // a strong option are separated by the rows below this one -- their
+          // distance, climb, terrain, water and shade -- not by three points of
+          // a score whose evidence does not carry that precision.
+          ? cell(categoryLabel(recommendation.category), recommendation.category === 'not-recommended' ? 'caution' : 'known',
             `${recommendation.confidence} confidence · scoring ${recommendation.scoringVersion}`)
           : unknown('dog match'),
         reasons: reasons.length
@@ -132,5 +141,5 @@
     };
   }
 
-  return Object.freeze({ CATEGORY_LABELS, build, cell, unknown });
+  return Object.freeze({ categoryLabel, build, cell, unknown });
 });

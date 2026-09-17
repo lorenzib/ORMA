@@ -181,11 +181,9 @@
   function tier(s) {
     var shared = window.OrmaMatchVerdict;
     var verdict = shared ? shared.verdictFor(s) : null;
-    if (!verdict) {
-      return s >= 85 ? { bg:'#DCEBDD', color:'#4A7856', label:'Strong option', kind:'great' }
-        : s >= 60 ? { bg:'#F5E4C6', color:'#A96F1D', label:'Possible with cautions', kind:'good' }
-        : { bg:'#F3D9D2', color:'#9C3A25', label:'Not recommended', kind:'check' };
-    }
+    // No vocabulary loaded means no verdict to name. Saying nothing beats
+    // saying it from a second copy of the table that may have drifted.
+    if (!verdict) return { bg:'transparent', color:'inherit', label:'', kind:'unknown' };
     return {
       bg: TIER_BG[verdict.category] || '#F5E4C6',
       color: verdict.color,
