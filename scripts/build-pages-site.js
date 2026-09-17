@@ -118,7 +118,20 @@ function walk(dir, relativeDir, isExcluded, isIncluded, stats) {
 // hands out, they are what several suites pin, and they are overwritten here
 // on the way to Pages, so nothing has to remember them any more.
 
-const STAMPABLE = /\.(?:js|css)$/;
+// Scripts and stylesheets get a key whether or not they had one: they are the
+// files that change often and break a page when a stale copy loads.
+const KEYED = 'js|css';
+
+// Pictures are only ever re-keyed, never newly keyed. An image with no key is
+// not broken -- it revalidates on its ETag once the ten-minute max-age lapses,
+// and the bytes only move again when the picture actually changes. A *wrong*
+// key is the defect worth fixing: logo.svg shipped as ?v=5 on 197 pages and
+// ?v=3 on 140, one file split across two cache entries with one group pinned
+// to whichever was staler. Adding query strings to the other 941 image
+// references would change URLs that feeds, caches and analytics have already
+// recorded, and buy nothing.
+const REKEYED = 'png|jpe?g|webp|avif|svg|gif|ico';
+
 // Skip anything already absolute or protocol-relative: not ours to key.
 const EXTERNAL = /^(?:[a-z]+:)?\/\//i;
 
@@ -150,7 +163,7 @@ function stampPage(pageFile, outDir, keys) {
   const pageDir = path.dirname(pageFile);
   let changed = 0;
   const stamped = html.replace(
-    /(src|href)="([^"?#]+\.(?:js|css))(\?[^"]*)?"/g,
+    new RegExp(`(src|href)="([^"?#]+\\.(?:${KEYED}))(\\?[^"]*)?"`, 'g'),
     (match, attribute, reference, query) => {
       if (EXTERNAL.test(reference)) return match;
       // A leading slash is this site's root, not somebody else's.
@@ -171,18 +184,20 @@ function stampPage(pageFile, outDir, keys) {
 }
 
 /**
- * Keys written into script rather than into an attribute: mobile-nav builds
- * `new URL('device-handoff.js?v=...')` and a page or two assigns `.src` from a
- * string. Those go stale the same way and no attribute pass can see them.
+ * Every key that is already written down, wherever it sits: in a srcset entry,
+ * in an og:image, or in script -- mobile-nav builds `new URL('device-handoff.js?v=...')`
+ * and a page assigns `.src` from a string. None of those is an attribute an
+ * attribute pass can see, and all of them go stale the same way.
  *
  * This only ever *replaces* a key that is already there, so it cannot invent a
- * reference out of a sentence that happens to mention a filename.
+ * reference out of a sentence that happens to mention a filename, and it never
+ * gives a picture a key it did not already have.
  */
 function stampEmbeddedKeys(file, outDir, keys) {
   const source = fs.readFileSync(file, 'utf8');
   let changed = 0;
   const stamped = source.replace(
-    /([\w./-]+\.(?:js|css))\?v=([\w.-]+)/g,
+    new RegExp(`([\\w./-]+\\.(?:${KEYED}|${REKEYED}))\\?v=([\\w.-]+)`, 'g'),
     (match, reference, existing) => {
       if (EXTERNAL.test(reference)) return match;
       const target = reference.startsWith('/')
@@ -237,7 +252,9 @@ function stampSite(outDir) {
   let pages = 0;
   let references = 0;
   eachFile(outDir, name => name.endsWith('.html'), file => {
-    const changed = stampPage(file, outDir, keys);
+    // Attributes first, then whatever still carries a key of its own: a
+    // srcset entry, a picture, a URL built in an inline script.
+    const changed = stampPage(file, outDir, keys) + stampEmbeddedKeys(file, outDir, keys);
     if (changed) { pages += 1; references += changed; }
   });
   return { pages, references, assets: keys.size, settlingRounds: rounds };

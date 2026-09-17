@@ -167,7 +167,10 @@ describe('every asset reference names the file it actually points at', () => {
     visit(SITE);
     return found;
   };
-  const REFERENCE = /(?:src|href)="([^"?#]+\.(?:js|css))\?v=([\w.-]+)"/g;
+  // Any keyed reference, wherever it sits. Not just src and href: a picture
+  // inside a srcset carries its own key and its own descriptor, and a key that
+  // lies there is exactly as wrong as one in an attribute.
+  const REFERENCE = /([\w./-]+\.(?:js|css|png|jpe?g|webp|avif|svg|gif|ico))\?v=([\w.-]+)/g;
   const hash = file => createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 
   test('the key on every published reference is that file\'s own hash', () => {
@@ -190,14 +193,39 @@ describe('every asset reference names the file it actually points at', () => {
 
   // The shape of the old failure, kept as its own check so the reason stays
   // legible: a date somebody typed is not a statement about the file.
-  test('no published script or stylesheet is keyed by a hand-typed date', () => {
+  test('nothing published is keyed by a number somebody chose', () => {
     const typed = [];
     for(const page of pages()){
       const html = fs.readFileSync(page, 'utf8');
       for(const [, reference, key] of html.matchAll(REFERENCE)){
-        if(/^20\d{6}(?:-\d+)?$/.test(key)) typed.push(`${path.relative(SITE, page)} -> ${reference}?v=${key}`);
+        // A content key is hex and long. A date or a hand-incremented counter
+        // is neither, and logo.svg shipped as both ?v=5 and ?v=3 at once.
+        if(!/^[0-9a-f]{8,}$/.test(key)) typed.push(`${path.relative(SITE, page)} -> ${reference}?v=${key}`);
       }
     }
     expect(typed).toEqual([]);
+  });
+
+  // One file, one key. logo.svg was ?v=5 on 197 pages and ?v=3 on 140, so the
+  // same 75 KB sat in two cache entries and one set of pages was pinned to
+  // whichever had gone stale.
+  test('one file is never published under two different keys', () => {
+    const keysFor = new Map();
+    for(const page of pages()){
+      const html = fs.readFileSync(page, 'utf8');
+      for(const [, reference, key] of html.matchAll(REFERENCE)){
+        if(/^(?:[a-z]+:)?\/\//i.test(reference)) continue;
+        const target = reference.startsWith('/')
+          ? path.join(SITE, reference.slice(1))
+          : path.resolve(path.dirname(page), reference);
+        if(!target.startsWith(SITE) || !fs.existsSync(target)) continue;
+        if(!keysFor.has(target)) keysFor.set(target, new Set());
+        keysFor.get(target).add(key);
+      }
+    }
+    const split = [...keysFor.entries()]
+      .filter(([, keys]) => keys.size > 1)
+      .map(([file, keys]) => `${path.relative(SITE, file)}: ${[...keys].join(', ')}`);
+    expect(split).toEqual([]);
   });
 });
