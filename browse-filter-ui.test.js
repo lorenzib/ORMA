@@ -194,6 +194,7 @@ describe('Browse filter UI', () => {
     expect(html).toMatch(/#browseQuickShade\{grid-column:1\/span 3;grid-row:1;\}/);
     expect(html).toMatch(/#browseWater\{grid-column:4\/span 3;grid-row:1;\}/);
     expect(html).toMatch(/#browseMultiDay\{grid-column:1\/span 3;grid-row:2;\}/);
+    expect(html).toMatch(/#browseChairlifts\{grid-column:1\/-1;grid-row:3;\}/);
     expect(html).toMatch(/\.browse-saved-only\{grid-column:4\/span 3;grid-row:2;[^}]*width:100%;/);
     expect(html).toMatch(/#browseFiltersMenu\{[^}]*position:fixed;[^}]*bottom:max\(8px,env\(safe-area-inset-bottom\)\);[^}]*overflow-y:auto;/);
   });
