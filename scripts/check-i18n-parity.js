@@ -35,9 +35,19 @@ function placeholders(value){
   return [...new Set([...String(value).matchAll(/\{([A-Za-z0-9_]+)\}/g)].map(match => match[1]))].sort();
 }
 
+// Build output is not source. _site and dist hold generated copies of the very
+// files this walks, so scanning them audits each reference twice and reports
+// findings against an artifact nobody edits. Worse, they are written while this
+// runs: backoffice-hosting.test.js rebuilds dist/backoffice in a parallel jest
+// worker, and the audit would collect a path in one tick and read it in the
+// next, after the rebuild had removed it. That surfaced as an ENOENT on
+// dist/backoffice/404.html in roughly one full run in twelve, blamed on
+// whichever suite happened to report it.
+const GENERATED = ['.git', 'node_modules', 'experiments', 'dist', '_site', '.cache', '.firebase'];
+
 function walk(directory, predicate, output = []){
   for(const entry of fs.readdirSync(directory, { withFileTypes:true })){
-    if(['.git', 'node_modules', 'experiments'].includes(entry.name)) continue;
+    if(GENERATED.includes(entry.name)) continue;
     const absolute = path.join(directory, entry.name);
     if(entry.isDirectory()) walk(absolute, predicate, output);
     else if(predicate(absolute)) output.push(absolute);
