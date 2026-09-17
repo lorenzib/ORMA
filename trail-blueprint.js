@@ -146,7 +146,8 @@
       if (typeof scoreTrail !== 'function' || !window.DoloPawsAuth || !window.DoloPawsAuth.currentUser) { guest(); return; }
       window.DoloPawsAuth.getDogProfile().then(profile => {
         if (!profile) { noProfile(); return; }
-        const n = scoreTrail(t, (typeof effectiveOverrides === 'function') ? effectiveOverrides(profile, null) : profile);
+        const n = scoreTrail(t, (typeof effectiveOverrides === 'function') ? effectiveOverrides(profile, null) : profile,
+          conditionsForScoring(t));
         const name = profile.name || tt('trail.yourDog', null, 'your dog');
         const approx = t.curated === false ? '≈' : '';
         title.textContent = tt('qa.dogScored', { n: approx + n, name },
@@ -219,7 +220,7 @@
         for (const o of picks) {
           const slot = grid.querySelector(`[data-near-id="${CSS.escape(o.id)}"] .near-pct`);
           if (!slot) continue;
-          slot.textContent = (o.curated === false ? '≈' : '') + scoreTrail(o, ov) + '%';
+          slot.textContent = (o.curated === false ? '≈' : '') + scoreTrail(o, ov, conditionsForScoring(o)) + '%';
           slot.hidden = false;
         }
       }).catch(() => {});
@@ -466,10 +467,12 @@
     // score is painted either with today's conditions or explicitly without
     // them -- never with a stale snapshot dressed up as live. scoringConditions
     // applies the shared thirty-minute expiry.
-    function conditionsForScoring() {
-      const weather = window.DoloPawsWeatherWindow;
-      if (!weather || typeof weather.scoringConditions !== 'function') return undefined;
-      return weather.scoringConditions(window.DoloPawsCurrentConditions);
+    // One accessor, so the same dog on the same trail gets the same number
+    // wherever it is read. It answers for the trail asked about, so the nearby
+    // picks are never handed this trail's weather. See scoring-conditions.js.
+    function conditionsForScoring(subject) {
+      const shared = window.ORMAScoringConditions;
+      return shared ? shared.forTrail(subject || t) : undefined;
     }
 
     function paintPersonalMatch() {
@@ -778,6 +781,9 @@
               hourlyTemps:d.hourly && d.hourly.temperature_2m,
             });
             window.DoloPawsCurrentConditions = conditions;
+            // Say which trail this forecast was fetched for, so nothing hands
+            // it to a different one.
+            if (window.ORMAScoringConditions) window.ORMAScoringConditions.declareForTrail(t.id, conditions);
             window.dispatchEvent(new CustomEvent('dolopaws-conditions-ready', { detail:conditions }));
           }
 

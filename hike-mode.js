@@ -405,7 +405,8 @@ function initHikeMode(map, trail, options){
     const scoring = window.DoloPawsScoring;
     if(!scoring || typeof scoring.recommendTrail !== 'function') return;
     try{
-      const result = scoring.recommendTrail(activeTrail, {});
+      const result = scoring.recommendTrail(activeTrail, {},
+        window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(activeTrail));
       if(result && Array.isArray(result.leashAdvisories)) leashZones = result.leashAdvisories;
     }catch(error){
       // A scorer failure must never stop a walk from being recorded.

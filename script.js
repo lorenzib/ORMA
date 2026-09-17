@@ -978,8 +978,8 @@ function liConsumeExploreIntent(){
 // forecast arrives, which makes the engine report conditions as not included --
 // the same answer the trail page gives for the same trail.
 function liConditionsFor(trail){
-  const area = window.DoloPawsHomeConditions;
-  return area && typeof area.forTrail === 'function' ? area.forTrail(trail) : undefined;
+  const shared = window.ORMAScoringConditions;
+  return shared ? shared.forTrail(trail) : undefined;
 }
 
 // Map the refine bar's state onto the shared discovery-filter vocabulary and

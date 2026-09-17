@@ -58,7 +58,8 @@
   function trailMatchScore(trail){
     const scoring = window.DoloPawsScoring;
     if(!scoring || typeof scoring.scoreTrail !== 'function') return null;
-    try{ return scoring.scoreTrail(trail, matchSubject || scoring.GUEST_SUBJECT); }
+    const conditions = window.ORMAScoringConditions && window.ORMAScoringConditions.forTrail(trail);
+    try{ return scoring.scoreTrail(trail, matchSubject || scoring.GUEST_SUBJECT, conditions); }
     catch(error){ return null; }
   }
   function matchColour(trail){
