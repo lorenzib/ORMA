@@ -39,7 +39,7 @@ describe('the two ways into the final gate are not the same thing',()=>{
     const report=build([trail({trailId:'osm-19153189',state:'dossier-human-gate',stage:'agent-execution-failure'})],
       [],{items:[{gateType:'agent-failure',state:'awaiting-human'}]});
     expect(report.dossierGate).toEqual(expect.objectContaining({
-      inState:1,genuine:0,viaAgentFailure:1,approvableItemsInQueue:0,everReachedRedTeam:0,
+      inState:1,genuine:0,viaAgentFailure:1,approvableItemsInQueue:0,inRedTeamNow:0,
     }));
   });
 
@@ -55,6 +55,24 @@ describe('the two ways into the final gate are not the same thing',()=>{
       trail({trailId:'failed',state:'dossier-human-gate',stage:'agent-execution-failure'}),
     ],[],{items:[{gateType:'dossier-approval',state:'awaiting-human'}]});
     expect(report.dossierGate).toEqual(expect.objectContaining({inState:2,genuine:1,viaAgentFailure:1,approvableItemsInQueue:1}));
+  });
+});
+
+describe('what a snapshot can and cannot claim about the past',()=>{
+  test('a trail in logistics-contract-refresh proves it stood at the dossier gate',()=>{
+    // It can only enter that stage from dossier-human-gate, so "nothing ever
+    // reached the gate" would be false even with red-team and the gate empty.
+    const report=build([
+      trail({trailId:'pulled',state:'evidence-research',stage:'logistics-contract-refresh'}),
+      trail({trailId:'fresh',state:'evidence-research',stage:'parallel-evidence-research'}),
+    ]);
+    expect(report.dossierGate).toEqual(expect.objectContaining({inRedTeamNow:0,genuine:0,pulledBackFromGate:1}));
+  });
+
+  test('occupancy is named for the present, never for history',()=>{
+    const report=build([trail({trailId:'now',state:'red-team'})]);
+    expect(report.dossierGate.inRedTeamNow).toBe(1);
+    expect(report.dossierGate).not.toHaveProperty('everReachedRedTeam');
   });
 });
 

@@ -32,9 +32,13 @@ async function main(options={}){
   const gate=report.dossierGate;
   console.log(`\n[funnel] ${gate.inState} trail(s) sit in dossier-human-gate: ${gate.genuine} completed a dossier, ${gate.viaAgentFailure} landed there by agent failure.`);
   console.log(`[funnel] ${gate.approvableItemsInQueue} approvable dossier decision(s) are on the desk right now.`);
-  if(!gate.everReachedRedTeam&&!gate.genuine){
-    // The finish line is not the constraint if nothing has ever approached it.
-    console.log('[funnel] No trail has ever reached red-team, so none has ever produced an approvable dossier.');
+  if(gate.pulledBackFromGate){
+    // These trails did reach the finish line. Saying "none ever got there" from
+    // a snapshot would be false, and would send someone to fix the wrong thing.
+    console.log(`[funnel] ${gate.pulledBackFromGate} trail(s) were withdrawn from the dossier gate when the required route-guidance claims changed, and are re-earning them.`);
+  }
+  if(!gate.inRedTeamNow&&!gate.genuine){
+    console.log('[funnel] Nothing is in red-team right now, so no new approvable dossier is close behind.');
   }
   if(report.stalled.total){
     console.log(`\n[funnel] ${report.stalled.total} trail(s) have no queued or running job and are not at a human gate.`);

@@ -23,6 +23,13 @@ const TERMINAL = Object.freeze(['rejected', 'blocked']);
 const REAL_GATE_STAGE = 'complete-evidence-dossier';
 const FAILURE_STAGE = 'agent-execution-failure';
 
+// A trail in this stage was standing at the dossier gate and was pulled back
+// out of it: when the required route-guidance claim set changes, the gate item
+// is deleted and the trail is returned to evidence-research to re-earn it. So
+// its presence is proof the trail did reach the finish line, which no snapshot
+// of the current states can otherwise show.
+const PULLED_BACK_STAGE = 'logistics-contract-refresh';
+
 function timeValue(value){
   if(!value) return null;
   if(typeof value.toDate === 'function') return value.toDate().getTime();
@@ -116,7 +123,11 @@ function buildFunnel({orchestration, jobs = [], reviewQueue, nowMs = Date.now()}
     // Reached it by an agent job failing. Cannot be approved, only revised or rejected.
     viaAgentFailure: atGate.filter(trail => trail.stage === FAILURE_STAGE).length,
     approvableItemsInQueue: queueItems.filter(item => item.gateType === 'dossier-approval' && item.state === 'awaiting-human').length,
-    everReachedRedTeam: (byState.get('red-team') || []).length,
+    // Current occupancy only. This artifact keeps no history, so it can say
+    // what is in red-team now and must not be read as what ever was.
+    inRedTeamNow: (byState.get('red-team') || []).length,
+    // The one piece of past this snapshot does carry.
+    pulledBackFromGate: described.filter(trail => trail.stage === PULLED_BACK_STAGE).length,
   };
 
   const stalledTrails = described.filter(trail => trail.stalled)
