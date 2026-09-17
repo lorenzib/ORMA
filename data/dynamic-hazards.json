@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-16T19:19:21.097Z",
+  "generatedAt": "2026-09-17T07:27:53.436Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:rain:friuli-venezia-giulia",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-09-17T00:00:00+00:00",
       "expiresAt": "2026-09-17T23:59:00+00:00",
       "firstPublishedAt": "2026-09-15T22:21:24.175Z",
-      "lastSeenAt": "2026-09-16T19:19:21.097Z",
+      "lastSeenAt": "2026-09-17T07:27:53.436Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -42,7 +42,7 @@
       "effectiveAt": "2026-09-17T00:00:00+00:00",
       "expiresAt": "2026-09-17T23:59:00+00:00",
       "firstPublishedAt": "2026-09-15T22:21:24.175Z",
-      "lastSeenAt": "2026-09-16T19:19:21.097Z",
+      "lastSeenAt": "2026-09-17T07:27:53.436Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -253,7 +253,7 @@
       "effectiveAt": "2026-09-17T00:00:00+00:00",
       "expiresAt": "2026-09-17T23:59:00+00:00",
       "firstPublishedAt": "2026-09-15T22:21:24.175Z",
-      "lastSeenAt": "2026-09-16T19:19:21.097Z",
+      "lastSeenAt": "2026-09-17T07:27:53.436Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
@@ -300,9 +300,9 @@
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/7456f52e-22c2-4597-9673-1269f53b6f04",
       "identifier": "2.49.0.0.380.3.IT.260916100547.074",
       "effectiveAt": "2026-09-16T12:00:00+00:00",
-      "expiresAt": "2026-09-17T23:59:00+00:00",
+      "expiresAt": "2026-09-18T21:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-16T19:19:21.097Z",
+      "lastSeenAt": "2026-09-17T07:27:53.436Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -325,9 +325,9 @@
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/9fe0229a-c48a-44c8-9ffb-f9210df9561c",
       "identifier": "2.49.0.0.380.3.IT.260916100547.070",
       "effectiveAt": "2026-09-16T12:00:00+00:00",
-      "expiresAt": "2026-09-17T23:59:00+00:00",
+      "expiresAt": "2026-09-18T21:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-16T19:19:21.097Z",
+      "lastSeenAt": "2026-09-17T07:27:53.436Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -535,9 +535,9 @@
       "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/5c5219a3-5caa-44df-944a-77324b5b566a",
       "identifier": "2.49.0.0.380.3.IT.260916100547.072",
       "effectiveAt": "2026-09-16T12:00:00+00:00",
-      "expiresAt": "2026-09-17T23:59:00+00:00",
+      "expiresAt": "2026-09-18T21:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-16T19:19:21.097Z",
+      "lastSeenAt": "2026-09-17T07:27:53.436Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
