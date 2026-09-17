@@ -8,7 +8,12 @@
   let selectedIds = stateApi.parseIds(params.get('ids'), availableIds);
   if(!selectedIds.length) selectedIds = stateApi.load(localStorage, availableIds);
   selectedIds = stateApi.save(localStorage, selectedIds);
-  let activeProfile = guestProfile(params.get('dog'));
+  // A guest's dog lives on the device. Unless the URL names a dog (the Browse
+  // tray and the preset chips do), compare for that dog, the way Browse and
+  // the trail pages already do; otherwise the banner offers to save Pip while
+  // the columns are compared for a medium dog.
+  const dogParam = params.get('dog') || (deviceDogProfile() ? 'custom' : 'medium');
+  let activeProfile = guestProfile(dogParam);
 
   const ROWS = [
     ['match','Dog match'],
@@ -32,6 +37,13 @@
     })[char]);
   }
 
+  function deviceDogProfile(){
+    try {
+      const profile = JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile') || 'null');
+      return profile && typeof profile.name === 'string' && profile.name.trim() ? profile : null;
+    } catch(e){ return null; }
+  }
+
   function guestProfile(dog){
     const profiles = {
       medium:{ name:'Medium dog', fitness:'moderate', conditions:[], weightBand:'15-20' },
@@ -39,11 +51,7 @@
       bella:{ name:'Bella', fitness:'low', conditions:[], weightBand:'5-10' },
       milo:{ name:'Milo', fitness:'high', conditions:[], weightBand:'15-20' },
     };
-    if(dog === 'custom'){
-      try {
-        return JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile')) || profiles.medium;
-      } catch(e){ return profiles.medium; }
-    }
+    if(dog === 'custom') return deviceDogProfile() || profiles.medium;
     return profiles[dog] || profiles.medium;
   }
 
@@ -54,7 +62,7 @@
 
   function currentHref(){
     return stateApi.compareHref(selectedIds, {
-      dog:params.get('dog') || 'medium',
+      dog:dogParam,
       from:safeReturn(params.get('from')),
     });
   }
