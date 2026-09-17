@@ -1,0 +1,35 @@
+const fs = require('fs');
+const path = require('path');
+
+const read = file => fs.readFileSync(path.join(__dirname, file), 'utf8');
+
+describe('guest dog persistence and the quick wizard chairlift question', () => {
+  const controller = read('homepage-search.js');
+
+  test('the quick wizard picks the device dog back up on load', () => {
+    expect(controller).toContain("localStorage.getItem('dolopaws-pending-dog-profile')");
+    expect(controller).toMatch(/restoreDeviceDog\(\);\s*renderAll\(\);/);
+    expect(controller).toContain("state.dog = 'custom';");
+  });
+
+  test('a small dog is asked about open chairlifts and the answer is stored on the profile', () => {
+    expect(controller).toContain("function asksChairlift(w) { return w.size === 'small'; }");
+    expect(controller).toContain("{ label: 'Not for us, or never tried', v: 'never' }");
+    expect(controller).toContain("{ label: 'Yes, held on my lap with harness and leash', v: 'ok' }");
+    expect(controller).toContain("optBtns(CHAIRLIFT_OPTS, w.chairlift, 'chairlift', true)");
+    expect(controller).toContain("behaviour.chairlift = w.chairlift;");
+    expect(controller).toContain('behaviour: behaviour,');
+  });
+
+  test('a declared small dog sees chairlift-assisted routes on the guest homepage', () => {
+    expect(controller).toContain('adapters.chairliftSafe(activeProfile())');
+    expect(controller).toContain('filters.matches(t, fstate, options)');
+  });
+
+  test('the homepage ships the new controller and guest-context versions', () => {
+    const html = read('index.html');
+    expect(html).toContain('homepage-search.js?v=20260917-1');
+    expect(html).toContain('guest-context.js?v=20260917-2');
+    expect(read('browse-trails.html')).toContain('guest-context.js?v=20260917-2');
+  });
+});

@@ -56,7 +56,7 @@ describe('UX-05 guest context contract', () => {
     expect(context.load(store, NOW)).toBeNull();
   });
 
-  test('legacy dog profile is only adopted with a fresh timestamped draft', () => {
+  test('the device dog is adopted for sign-up but stays on the device for a guest', () => {
     const store = storage();
     store.setItem('dolopaws-pending-dog-profile', JSON.stringify({
       name:'Eddie', breed:'Podenco', fitness:'high',
@@ -68,7 +68,31 @@ describe('UX-05 guest context contract', () => {
 
     const record = context.adoptLegacyDogDraft(store, NOW);
     expect(record.dogDraft.profile.name).toBe('Eddie');
+    expect(record.dogDraft.updatedAt).toBe(NOW - 1000);
+    // Still a guest: the header pill, trail scores and the homepage keep
+    // reading the device dog after a reload.
+    expect(JSON.parse(store.getItem('dolopaws-pending-dog-profile')).name).toBe('Eddie');
+  });
+
+  test('the quick wizard dog, which has no timestamped draft, is adopted too', () => {
+    const store = storage();
+    store.setItem('dolopaws-pending-dog-profile', JSON.stringify({
+      name:'Pip', weightBand:'5-10', behaviour:{ chairlift:'ok' },
+    }));
+    const record = context.adoptLegacyDogDraft(store, NOW);
+    expect(record.dogDraft.profile.name).toBe('Pip');
+    expect(record.dogDraft.profile.behaviour).toEqual({ chairlift:'ok' });
+    expect(record.dogDraft.updatedAt).toBe(NOW);
+    expect(store.getItem('dolopaws-pending-dog-profile')).not.toBeNull();
+  });
+
+  test('once signed in the device dog is consumed so the older automatic handler stays idle', () => {
+    const store = storage();
+    store.setItem('dolopaws-pending-dog-profile', JSON.stringify({ name:'Eddie' }));
+    const record = context.adoptLegacyDogDraft(store, NOW, { signedIn:true });
+    expect(record.dogDraft.profile.name).toBe('Eddie');
     expect(store.getItem('dolopaws-pending-dog-profile')).toBeNull();
+    expect(context.adoptLegacyDogDraft(storage(), NOW)).toBeNull();
   });
 
   test('a newer account profile produces a conflict, never an overwrite decision', () => {
