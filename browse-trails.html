@@ -1003,6 +1003,17 @@
       return dogProfile;
     }
 
+    // Whose verdict this is. The card used to say "FOR YOUR DOG" whatever was
+    // scoring -- including the guest default, which is a claim of
+    // personalisation that did not happen, on the one line the reader is meant
+    // to trust. A real dog keeps its name; the default says what it is, in the
+    // same words recommendation-decision.js and the trail page already use.
+    function scoredSubjectLabel(){
+      const dog = dogValue === 'custom' ? deviceDogProfile() : null;
+      if(dog && dog.name) return `For ${dog.name}`;
+      return `For ${window.t ? window.t('recommendation.subject.guest') : 'a medium dog'}`;
+    }
+
     function matchScore(trail){
       return matchVerdict(trail).score || 0;
     }
@@ -1354,7 +1365,7 @@
           </div>
           <div class="simple-card__match simple-card__match--${tierClass}">
             <div class="simple-card__score">
-              <small>FOR YOUR DOG</small>
+              <small>${esc(scoredSubjectLabel())}</small>
               <strong>${tier}</strong>
               ${reason ? `<p class="simple-card__match-reason">${esc(reason)}</p>` : ''}
             </div>

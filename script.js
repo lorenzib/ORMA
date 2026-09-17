@@ -3347,7 +3347,7 @@ function renderLiSearchSuggestions(profile){
       option.setAttribute('role', 'option');
       option.setAttribute('aria-selected', String(index === 0));
       const tier = liMatchTier(trail.score);
-      option.innerHTML = `<span class="li-search-option-copy"><strong>${liEscapeHtml(trail.name)}</strong><small>${liEscapeHtml([trail.valley, `${trail.distance} km`].filter(Boolean).join(' · '))}</small></span><span class="li-search-option-match" style="color:${tier.color}">${trail.curated === false ? '≈' : ''}${trail.score}%</span>`;
+      option.innerHTML = `<span class="li-search-option-copy"><strong>${liEscapeHtml(trail.name)}</strong><small>${liEscapeHtml([trail.valley, `${trail.distance} km`].filter(Boolean).join(' · '))}</small></span><span class="li-search-option-match" style="color:${tier.color}">${liEscapeHtml(tier.label)}</span>`;
       option.addEventListener('click', () => {
         search.value = trail.name;
         hideLiSearchSuggestions();
@@ -3469,9 +3469,21 @@ function liRecommendationPresentation(trail, profile){
       })}`;
     }
   }
-  const dogName = profile && profile.name ? profile.name : 'your dog';
-  return { ...category, confidence, provenance, checkedLabel, dogName };
+  return { ...category, confidence, provenance, checkedLabel, dogName:liScoredSubject(profile) };
 }
+/**
+ * Whose score this is. A reader with no dog is scored against a default, and
+ * every list surface used to call that default "your dog" -- a claim of
+ * personalisation that did not happen, on the one number the reader is meant
+ * to trust. recommendation-decision.js already had the honest word for it, and
+ * trail.html already used it; this is the same word, in the same places the
+ * verdict appears.
+ */
+function liScoredSubject(profile){
+  if(profile && profile.name) return profile.name;
+  return liT('recommendation.subject.guest', 'a medium dog');
+}
+
 function liMatchColHtml(t, profile, overrides){
   const presentation = liRecommendationPresentation(t, profile);
   const reason = matchReason(t, overrides);
@@ -3559,7 +3571,7 @@ function liRecommendationExplanationHtml(trail, profile, open){
   const recommendation = trail && trail.recommendation;
   const view = liRecommendationView(trail, profile);
   if(!view) return '';
-  const dogName = profile && profile.name ? profile.name : 'your dog';
+  const dogName = liScoredSubject(profile);
   const items = entries => entries.map(entry => `<li>${liPersonalisationText(entry)}</li>`).join('');
   // The folded phrases carry the positives that cost nothing; a positive with
   // no short form of its own keeps a row, so nothing is dropped silently. With
@@ -3618,7 +3630,7 @@ function liRecommendationExplanationHtml(trail, profile, open){
 function liWhyPanelId(trailId){ return `li-why-${encodeURIComponent(trailId)}`; }
 
 function liWhyToggleHtml(trail, profile, open){
-  const dogName = profile && profile.name ? profile.name : 'your dog';
+  const dogName = liScoredSubject(profile);
   return `<button type="button" class="li-bar-act li-why-toggle" data-why-toggle aria-expanded="${open}" aria-controls="${liWhyPanelId(trail.id)}">` +
     `<span class="li-why-label">${open ? 'Hide the reasons' : `Why it fits ${liPersonalisationText(dogName)}`}</span>` +
     `<span class="li-why-caret" aria-hidden="true">▾</span></button>`;
@@ -3687,7 +3699,7 @@ async function renderReturningHomepage(profile, options = {}){
   const kicker = document.getElementById('companionKicker');
   if(kicker) kicker.textContent = showingSavedOnly
     ? 'Saved for later'
-    : (profile && profile.name ? `Chosen for ${profile.name}` : 'Chosen for your dog');
+    : `Chosen for ${liScoredSubject(profile)}`;
 
   const scored = trails.map(t => {
     const recommendation = recommendTrail(t, overrides, liConditionsFor(t));
@@ -3802,7 +3814,7 @@ async function renderReturningHomepage(profile, options = {}){
     // Every card can explain itself; the top picks simply start open, because
     // they are the answer the page was asked for.
     const explanation = liRecommendationExplanationHtml(t, profile, isPrimary);
-    return `${isPrimary ? '' : index === TOP_PICKS && !showingSavedOnly ? `<div class="li-alternatives-heading"><span>Other options for ${liPersonalisationText(profile && profile.name ? profile.name : 'your dog')}</span><a href="browse-trails.html">See the full catalogue →</a></div>` : ''}
+    return `${isPrimary ? '' : index === TOP_PICKS && !showingSavedOnly ? `<div class="li-alternatives-heading"><span>Other options for ${liPersonalisationText(liScoredSubject(profile))}</span><a href="browse-trails.html">See the full catalogue →</a></div>` : ''}
     <div class="li-row${selected ? ' tc-selected' : ''}${isPrimary ? ' li-row--answer' : ''}${explanation && isPrimary ? ' is-why-open' : ''}" id="trail-card-${t.id}" data-id="${t.id}" data-rank="${rank}" aria-label="Rank ${rank}: ${liPersonalisationText(t.name)}"${dim ? ' style="opacity:.55;"' : ''}>
       <span class="li-result-rank" aria-hidden="true" style="background:${liRecommendationPresentation(t, profile).color};">${rank}</span>
       ${thumb}
@@ -3840,8 +3852,7 @@ async function renderReturningHomepage(profile, options = {}){
       if(label){
         const row = toggle.closest('.li-row');
         const trail = trails.find(item => row && item.id === row.dataset.id);
-        const dogName = currentProfileForAdjust && currentProfileForAdjust.name
-          ? currentProfileForAdjust.name : 'your dog';
+        const dogName = liScoredSubject(currentProfileForAdjust);
         label.textContent = open ? 'Hide the reasons' : `Why it fits ${dogName}`;
         if(open) warmTrailDetail(trail);
       }

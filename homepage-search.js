@@ -172,10 +172,26 @@
     });
   }
 
+  // The verdict, from the one module that owns it. This used to be a private
+  // table with its own words AND its own thresholds -- "Great match" from 75,
+  // where every other surface calls 75 "Possible with cautions" and reserves
+  // its top verdict for 85. The same trail was sorted into different tiers
+  // depending on which page the reader happened to be on.
+  var TIER_BG = { 'strong-option':'#DCEBDD', 'possible-with-cautions':'#F5E4C6', 'not-recommended':'#F3D9D2' };
   function tier(s) {
-    if (s >= 75) return { bg: '#DCEBDD', color: '#2C5C34', label: 'Great match', kind: 'great' };
-    if (s >= 55) return { bg: '#F5E4C6', color: '#8A5A16', label: 'Good', kind: 'good' };
-    return { bg: '#F3D9D2', color: '#9C3A25', label: 'Check first', kind: 'check' };
+    var shared = window.OrmaMatchVerdict;
+    var verdict = shared ? shared.verdictFor(s) : null;
+    if (!verdict) {
+      return s >= 85 ? { bg:'#DCEBDD', color:'#4A7856', label:'Strong option', kind:'great' }
+        : s >= 60 ? { bg:'#F5E4C6', color:'#A96F1D', label:'Possible with cautions', kind:'good' }
+        : { bg:'#F3D9D2', color:'#9C3A25', label:'Not recommended', kind:'check' };
+    }
+    return {
+      bg: TIER_BG[verdict.category] || '#F5E4C6',
+      color: verdict.color,
+      label: verdict.label,
+      kind: verdict.tone,
+    };
   }
 
   // The one taxonomy the whole product uses: the trail rating.
@@ -447,7 +463,7 @@
           '<span class="hp-sug-main"><span class="hp-sug-name">' + esc(t.name) + '</span>' +
           '<span class="hp-sug-meta"><span class="hp-badge-dot" style="background:' + df.dot + '"></span>' + df.label +
           '<span class="hp-sug-sep">·</span>' + esc(t.distance) + ' km · ' + esc(valleyOf(t)) + '</span></span>' +
-          '<span class="hp-sug-match"><span class="pct" style="color:' + ti.color + '">' + s + '<span>%</span></span><span class="lab">match</span></span>' +
+          '<span class="hp-sug-match"><span class="verdict" style="color:' + ti.color + '">' + esc(ti.label) + '</span><span class="lab">for ' + esc(m.name.toLowerCase()) + '</span></span>' +
         '</button>';
       }).join('') +
       '<button type="button" class="hp-sug-more" data-action="search">' +
