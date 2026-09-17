@@ -899,7 +899,11 @@
       exposure.value = canonical.exposure || '';
       access.value = canonical.access || '';
       minMatchValue = canonical.minMatch || '';
-      dogValue = canonical.dog || 'medium';
+      // A guest's dog lives on the device. Unless the URL names a dog (the
+      // preset chips and the homepage search do), score for that dog, the way
+      // the homepage and the trail pages already do; otherwise the banner
+      // offers to save Pip while the list is ranked for a medium dog.
+      dogValue = urlParams.has('dog') ? (canonical.dog || 'medium') : (deviceDogProfile() ? 'custom' : 'medium');
       page = canonical.page || 1;
     }
     applyBrowseUrl();
@@ -973,6 +977,13 @@
       });
     }
 
+    function deviceDogProfile(){
+      try {
+        const profile = JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile') || 'null');
+        return profile && typeof profile.name === 'string' && profile.name.trim() ? profile : null;
+      } catch(e){ return null; }
+    }
+
     function activeDogProfile(){
       const profiles = {
         medium: { name:'Medium dog', fitness:'moderate', conditions:[], weightBand:'15-20' },
@@ -981,11 +992,7 @@
         milo: { name:'Milo', fitness:'high', conditions:[], weightBand:'15-20' },
       };
       let dogProfile = profiles[dogValue] || profiles.medium;
-      if(dogValue === 'custom'){
-        try {
-          dogProfile = JSON.parse(localStorage.getItem('dolopaws-pending-dog-profile')) || dogProfile;
-        } catch(e){}
-      }
+      if(dogValue === 'custom') dogProfile = deviceDogProfile() || dogProfile;
       return dogProfile;
     }
 
