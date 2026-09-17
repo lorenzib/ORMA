@@ -215,6 +215,12 @@ jobs:
           ORMA_GATE_ALLOWED: ${{ steps.website_gate.outputs.publication_allowed }}
           ORMA_GATE_MESSAGE: ${{ steps.website_gate.outputs.message }}
           ORMA_GATE_RUN_URL: ${{ steps.website_gate.outputs.validation_run_url }}
+          ORMA_WORKER_WORK_OUTCOME: ${{ steps.process_queues.outputs.work_outcome }}
+          ORMA_WORKER_WORK_ATTEMPTED: ${{ steps.process_queues.outputs.work_attempted }}
+          ORMA_WORKER_WORK_SUCCEEDED: ${{ steps.process_queues.outputs.work_succeeded }}
+          ORMA_WORKER_WORK_FAILED: ${{ steps.process_queues.outputs.work_failed }}
+          ORMA_WORKER_WORK_PROVIDER_PARKED: ${{ steps.process_queues.outputs.work_provider_parked }}
+          ORMA_WORKER_WORK_MESSAGE: ${{ steps.process_queues.outputs.work_message }}
         run: |
           outcome="success"
           stage=""
@@ -270,6 +276,13 @@ jobs:
             stage="website-publication-gate"
             message="$ORMA_GATE_MESSAGE"
             validation_url="$ORMA_GATE_RUN_URL"
+          elif [ "$ORMA_WORKER_WORK_OUTCOME" = "unproductive" ]; then
+            # Every step passed and no job got done. Ranked below a real failure
+            # and below the publication gate, because those name a cause that
+            # this one cannot see.
+            outcome="degraded"
+            stage="agent-work"
+            message="$ORMA_WORKER_WORK_MESSAGE"
           fi
           ORMA_WORKER_HEALTH_PHASE=finish \
           ORMA_WORKER_HEALTH_OUTCOME="$outcome" \

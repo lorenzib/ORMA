@@ -28,6 +28,15 @@ function loadAgentFromBlockers(){
   return new Function(`${source}\nreturn agentFromBlockers;`)();
 }
 
+/** The body of renderMachineState, refusing to hand back an empty slice. */
+function machineStateBodyFrom(script){
+  const start = script.indexOf('function renderMachineState');
+  const end = script.indexOf('function renderMachine(', start + 1);
+  const body = start === -1 || end === -1 ? '' : script.slice(start, end);
+  if(body.length < 200) throw new Error(`renderMachineState body not found (got ${body.length} chars)`);
+  return body;
+}
+
 describe('trail verification desk', () => {
   test('asks a plain question for every gate it can present', () => {
     // Each gate must carry a question and the label on its approve button;
@@ -336,12 +345,30 @@ describe('trail verification desk', () => {
     expect(scripts[command[1]]).toBeTruthy();
   });
 
+  const machineStateBody = () => machineStateBodyFrom(script);
+
   test('says whether the automation is actually running', () => {
     // A stopped pipeline and a healthy idle one look identical in a job count.
     expect(script).toContain("artifact('worker-health'");
-    const state = script.slice(script.indexOf('function renderMachineState'), script.indexOf('function renderMachine('));
+    const state = machineStateBody();
     expect(state).toMatch(/behind or switched off/);
     expect(state).toContain('delayAfterMinutes');
+  });
+
+  test('says when the runs are landing but achieving nothing', () => {
+    // Every run green and every job refused is the shape of the September 2026
+    // credit outage: "The last run worked" stayed true for five days while the
+    // queue stood still, so the desk has to report work done, not runs finished.
+    const state = machineStateBody();
+    expect(state).toContain("worker.status==='degraded'");
+    expect(state).toMatch(/nothing is getting done/i);
+    expect(state).toContain('consecutiveUnproductiveRuns');
+    // It must say the desk cannot fix a provider outage, or the reader will
+    // hunt for a decision to make.
+    expect(state).toMatch(/not something a decision here can fix/);
+    // The degraded branch has to come before the overdue one, which would
+    // otherwise report a run that did land as merely late.
+    expect(state.indexOf("worker.status==='degraded'")).toBeLessThan(state.indexOf('behind or switched off'));
   });
 
   test('the human queue is above the coverage explanation', () => {
