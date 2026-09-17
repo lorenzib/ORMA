@@ -171,4 +171,60 @@ describe('asset cache keys are derived from the file', () => {
       expect(() => stampSite(dir)).toThrow(/never settled/);
     });
   });
+
+  // Pictures are re-keyed, never newly keyed. An image with no key revalidates
+  // on its ETag and is fine; a wrong key is the defect. logo.svg shipped as
+  // ?v=5 on 197 pages and ?v=3 on 140 -- one file, two cache entries, one set
+  // of pages pinned to whichever had gone stale.
+  describe('pictures', () => {
+    test('a hand-numbered key becomes the file\'s hash', () => {
+      const dir = site({ 'index.html':'<img src="logo.svg?v=5">', 'logo.svg':'<svg/>' });
+      stampSite(dir);
+      expect(read(dir,'index.html')).toContain(`logo.svg?v=${sha('<svg/>').slice(0,10)}`);
+    });
+
+    test('the same picture keyed differently on two pages ends up keyed once', () => {
+      const dir = site({
+        'a.html':'<img src="logo.svg?v=5">',
+        'b.html':'<img src="logo.svg?v=3">',
+        'logo.svg':'<svg/>',
+      });
+      stampSite(dir);
+      const key = sha('<svg/>').slice(0,10);
+      expect(read(dir,'a.html')).toContain(`logo.svg?v=${key}`);
+      expect(read(dir,'b.html')).toContain(`logo.svg?v=${key}`);
+    });
+
+    // The deliberate limit. Adding query strings to the 941 unkeyed image
+    // references would change URLs that feeds and caches have already recorded,
+    // and buy nothing an ETag does not already give.
+    test('a picture with no key is left without one', () => {
+      const page = '<img src="photo.jpg">';
+      const dir = site({ 'index.html':page, 'photo.jpg':'binary' });
+      stampSite(dir);
+      expect(read(dir,'index.html')).toBe(page);
+    });
+
+    test('each srcset variant is keyed by its own file', () => {
+      const dir = site({
+        'index.html':'<img srcset="small.jpg?v=1 960w, big.jpg?v=1 2400w">',
+        'small.jpg':'small bytes',
+        'big.jpg':'big bytes',
+      });
+      stampSite(dir);
+      const html = read(dir,'index.html');
+      expect(html).toContain(`small.jpg?v=${sha('small bytes').slice(0,10)} 960w`);
+      expect(html).toContain(`big.jpg?v=${sha('big bytes').slice(0,10)} 2400w`);
+      expect(sha('small bytes').slice(0,10)).not.toBe(sha('big bytes').slice(0,10));
+    });
+
+    // og:image is an absolute URL a feed reader has already stored. Ours to
+    // leave alone, like any other host.
+    test('an absolute image URL is untouched', () => {
+      const meta = '<meta property="og:image" content="https://www.app-orma.com/images/hero.jpg?v=20260820-2">';
+      const dir = site({ 'index.html':meta, 'images/hero.jpg':'x' });
+      stampSite(dir);
+      expect(read(dir,'index.html')).toBe(meta);
+    });
+  });
 });
