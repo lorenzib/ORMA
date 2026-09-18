@@ -61,8 +61,14 @@
       temp:Number(hourlyTemps[index]),
     })).filter(hour=>hour.day&&hour.minute!==null);
 
-    for(let dayOffset=0;dayOffset<Math.min(3,dailyDates.length);dayOffset+=1){
+    // A reader who picked a day on the homepage is asking about that day, not
+    // about whichever of the next three happens to be coolest. Without one,
+    // the scan is unchanged: the first day that offers a usable window wins.
+    const preferredDate=/^\d{4}-\d{2}-\d{2}$/.test(input?.preferredDate||'')?input.preferredDate:'';
+    const lastDay=preferredDate?dailyDates.length:Math.min(3,dailyDates.length);
+    for(let dayOffset=0;dayOffset<lastDay;dayOffset+=1){
       const date=dayKey(dailyDates[dayOffset]);
+      if(preferredDate&&date!==preferredDate)continue;
       const sunrise=minuteOfDay(sunrises[dayOffset]);
       const sunset=minuteOfDay(sunsets[dayOffset]);
       if(!date||sunrise===null||sunset===null)continue;
@@ -123,15 +129,25 @@
     return null;
   }
 
+  function dayLabel(date){
+    const parsed=/^\d{4}-\d{2}-\d{2}$/.test(date||'')?new Date(`${date}T12:00:00`):null;
+    if(!parsed||Number.isNaN(parsed.getTime()))return date;
+    try{
+      return parsed.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'short'});
+    }catch(error){ return date; }
+  }
+
   function markup(result){
     if(!result)return 'No route-length daylight recommendation is available. Check the official forecast and plan to finish well before dusk.';
     const start=formatTime(result.startMinutes);
     const finish=formatTime(result.finishMinutes);
+    // A day a reader picked is now the common case, not the exception, so it
+    // is named the way they picked it rather than printed as an ISO string.
     const when=result.dayOffset===0
       ? `<strong>${start}</strong>`
       : result.dayOffset===1
         ? `tomorrow at <strong>${start}</strong>`
-        : `on ${result.date} at <strong>${start}</strong>`;
+        : `on ${dayLabel(result.date)} at <strong>${start}</strong>`;
     const maximum=Number.isFinite(result.maxTemperatureC)?` (up to ${result.maxTemperatureC}°C)`:'';
     let lead;
     let close='';
@@ -211,5 +227,5 @@
     return isFresh(conditions,now)?conditions:{status:'not-provided'};
   }
 
-  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,PREFERRED_START_MINUTES,WARM_C,HOT_C,CONDITIONS_MAX_AGE_MS,minuteOfDay,formatTime,parseDurationHours,recommendation,markup,heatOnset,currentConditions,isFresh,scoringConditions};
+  return {DAYLIGHT_BUFFER_MINUTES,PLANNING_BUFFER_MINUTES,PREFERRED_START_MINUTES,WARM_C,HOT_C,CONDITIONS_MAX_AGE_MS,minuteOfDay,formatTime,dayLabel,parseDurationHours,recommendation,markup,heatOnset,currentConditions,isFresh,scoringConditions};
 });

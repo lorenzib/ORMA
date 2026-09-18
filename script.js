@@ -825,7 +825,7 @@ function liRenderRecentTrails(){
   recent.forEach(item => {
     const link = document.createElement('a');
     link.className = 'li-menu-item';
-    link.href = `trail.html?id=${encodeURIComponent(item.id)}`;
+    link.href = liTrailHref(item.id);
     link.textContent = item.name;
     if(item.area){
       const where = document.createElement('small');
@@ -3356,7 +3356,7 @@ function renderLiSearchSuggestions(profile){
         // Always use the dynamic detail route so catalogue trails that do not
         // have a generated static HTML page (for example the Rasa/Odle route)
         // open exactly like trails selected from Browse all Trails.
-        window.location.href = `trail.html?id=${encodeURIComponent(trail.id)}&from=${encodeURIComponent(window.location.pathname + window.location.search)}`;
+        window.location.href = liTrailHref(trail.id);
       });
       suggestions.appendChild(option);
     });
@@ -3483,6 +3483,24 @@ function liRecommendationPresentation(trail, profile){
 function liScoredSubject(profile){
   if(profile && profile.name) return profile.name;
   return liT('recommendation.subject.guest', 'a medium dog');
+}
+
+/**
+ * A link to a trail that carries the plan the reader made to get here: the
+ * list they were looking at, and the day they were looking at it for.
+ *
+ * Without `from`, the trail page's breadcrumb reads "All trails" and going
+ * back means finding the ranked list, the map view and the date again. Without
+ * `date` the page answers for today, so a walk planned for Saturday was read
+ * against Thursday's heat and Thursday's daylight -- a different question,
+ * asked silently.
+ */
+function liTrailHref(trailId){
+  const query = [`id=${encodeURIComponent(trailId)}`];
+  if(liWalkDate && liWalkDate !== liDateOffsetIso(0)) query.push(`date=${encodeURIComponent(liWalkDate)}`);
+  const here = `${window.location.pathname || ''}${window.location.search || ''}`;
+  if(here) query.push(`from=${encodeURIComponent(here)}`);
+  return `trail.html?${query.join('&')}`;
 }
 
 function liMatchColHtml(t, profile, overrides){
@@ -3622,7 +3640,7 @@ function liRecommendationExplanationHtml(trail, profile, open){
   return `<div class="li-answer-explanation" id="${panelId}"${open ? '' : ' hidden'}>
     ${fit}${know}${gap}
     <div class="li-answer-actions">
-      <a class="li-answer-open" href="trail.html?id=${encodeURIComponent(trail.id)}">View trail details</a>
+      <a class="li-answer-open" href="${liTrailHref(trail.id)}">View trail details</a>
     </div>
   </div>`;
 }
@@ -3820,7 +3838,7 @@ async function renderReturningHomepage(profile, options = {}){
       <span class="li-result-rank" aria-hidden="true" style="background:${liRecommendationPresentation(t, profile).color};">${rank}</span>
       ${thumb}
       <div class="li-row-body">
-        <a href="trail.html?id=${t.id}" class="li-row-name">${t.name}</a>
+        <a href="${liTrailHref(t.id)}" class="li-row-name">${t.name}</a>
         <div class="li-row-meta" title="${matchReason(t, overrides)}">${liRowMeta(t)}</div>
         ${newBadge ? `<div class="li-row-badges">${newBadge}</div>` : ''}
         ${liProvenanceHtml(t, profile)}
@@ -3867,7 +3885,7 @@ async function renderReturningHomepage(profile, options = {}){
       if(e.target.closest('a, button, .photo')) return;
       const trail = trails.find(item => item.id === row.dataset.id);
       warmTrailDetail(trail);
-      window.location.href = 'trail.html?id=' + row.dataset.id;
+      window.location.href = liTrailHref(row.dataset.id);
     });
     // Hovering a card highlights its pin on the map, and leaving restores the
     // selected trail's pin. Pointer-only, so it never fires on touch.
@@ -4104,7 +4122,7 @@ function showMapCallout(t){
   if(!callout) return;
   placeMapCallout();
   warmTrailDetail(t);
-  const trailUrl = 'trail.html?id=' + encodeURIComponent(t.id);
+  const trailUrl = liTrailHref(t.id);
   const thumb = document.getElementById('mapCalloutThumb');
   if(thumb){
     thumb.innerHTML = trailCardVisual(t, { className:'li-thumb photo' });

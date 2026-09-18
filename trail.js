@@ -1444,6 +1444,21 @@ const params = new URLSearchParams(window.location.search);
 const trailId = params.get('id');
 const trailReturnTarget = params.get('from');
 const hikeDeepLinkRequested = params.get('hike') === '1';
+// The day the reader was planning for when they left the list. Without it this
+// page answered for today and quietly changed the question: a Saturday walk
+// read against Thursday's heat. Bounded to the fortnight the homepage offers,
+// so a stale or invented date falls back to today rather than to nothing.
+const plannedWalkDate = (() => {
+  const value = params.get('date') || '';
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(value)) return '';
+  const today = new Date();
+  const iso = offset => {
+    const day = new Date(today.getFullYear(), today.getMonth(), today.getDate() + offset);
+    return `${day.getFullYear()}-${String(day.getMonth() + 1).padStart(2, '0')}-${String(day.getDate()).padStart(2, '0')}`;
+  };
+  return value >= iso(0) && value <= iso(14) ? value : '';
+})();
+window.ORMAPlannedWalkDate = plannedWalkDate;
 let pendingTrailAction = params.get('action');
 let trailActionConsumed = false;
 
@@ -1490,8 +1505,14 @@ window.DoloPawsTrailAction = {
   get pending(){ return pendingTrailAction; },
 };
 
+// Where "back" goes, restricted to this site's own list pages so a crafted
+// address cannot bounce a reader somewhere else. The homepage was not on the
+// list, which is why the main discovery surface -- the one that ranks trails
+// for your dog -- was the one surface you could not get back to.
 function safeTrailReturn(value){
-  if(!value || /^(?:[a-z]+:|\/\/|\/)/i.test(value)) return '';
+  if(!value || /^(?:[a-z]+:|\/\/)/i.test(value)) return '';
+  if(/^\/(?:\?[^#]*)?(?:#.*)?$/.test(value)) return value;
+  if(/^\//.test(value)) return '';
   return /^(?:browse-trails|compare|saved|journal)\.html(?:\?[^#]*)?(?:#.*)?$/i.test(value) ? value : '';
 }
 
@@ -1541,6 +1562,7 @@ function renderTrail(t){
     breadcrumb.textContent = returnTarget.startsWith('saved.html') ? '← Back to saved trails'
       : returnTarget.startsWith('journal.html') ? '← Back to journal'
       : returnTarget.startsWith('compare.html') ? '← Back to comparison'
+      : returnTarget.startsWith('/') ? '← Back to your matches'
       : '← Back to trail results';
   }
   const logWalkBtn = document.getElementById('logWalkBtn');

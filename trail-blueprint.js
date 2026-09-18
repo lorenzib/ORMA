@@ -775,6 +775,10 @@
             : { t: 'Good', bg: '#E4EADF', fg: '#2C5C34' };
           const pawEl = $('tdCondPaw');
           if (pawEl) { pawEl.textContent = paw.t; pawEl.style.background = paw.bg; pawEl.style.color = paw.fg; }
+          // The day the reader chose on the homepage, carried in the address.
+          // Six days of hourly data are already in hand, so answering for
+          // Saturday costs no extra request -- only the decision to use it.
+          const planned = window.ORMAPlannedWalkDate || '';
           const win = window.DoloPawsWeatherWindow
             ? window.DoloPawsWeatherWindow.recommendation({
               currentTime:d.current.time,
@@ -784,13 +788,30 @@
               sunsets:d.daily.sunset,
               hourlyTimes:d.hourly && d.hourly.time,
               hourlyTemps:d.hourly && d.hourly.temperature_2m,
+              preferredDate:planned,
             })
             : null;
           // Today's heat, in the vocabulary the recommendation engine reads.
           // Until now nothing supplied currentConditions, so the score never
           // reflected the day it was being read on.
           if (window.DoloPawsWeatherWindow) {
-            const conditions = window.DoloPawsWeatherWindow.currentConditions({
+            // For a future day the reference point is that day's forecast, not
+            // the temperature outside right now -- otherwise the score answers
+            // a different question from the start time beside it.
+            const plannedHours = planned
+              ? (d.hourly && d.hourly.time || []).map((time, index) => ({
+                time, temp:Number(d.hourly.temperature_2m[index]),
+              })).filter(point => String(point.time).startsWith(`${planned}T`) && Number.isFinite(point.temp))
+              : [];
+            const reference = plannedHours.length
+              ? (plannedHours.find(point => String(point.time).slice(11, 16) === '09:00') || plannedHours[0])
+              : null;
+            const conditions = window.DoloPawsWeatherWindow.currentConditions(reference ? {
+              currentTime:reference.time,
+              temperatureC:reference.temp,
+              hourlyTimes:plannedHours.map(point => point.time),
+              hourlyTemps:plannedHours.map(point => point.temp),
+            } : {
               currentTime:d.current.time,
               temperatureC:d.current.temperature_2m,
               hourlyTimes:d.hourly && d.hourly.time,
