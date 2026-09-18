@@ -3355,7 +3355,7 @@ function renderLiSearchSuggestions(profile){
         // A search result is a destination, not just a map-focus control.
         // Always use the dynamic detail route so catalogue trails that do not
         // have a generated static HTML page (for example the Rasa/Odle route)
-        // open exactly like trails selected from Browse all Trails.
+        // open exactly like trails selected from the Trails page.
         window.location.href = liTrailHref(trail.id);
       });
       suggestions.appendChild(option);

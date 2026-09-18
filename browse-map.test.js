@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { coordinateFor, withinBounds, trailFeature } = require('./browse-map.js');
 
-describe('Explore trail map', () => {
+describe('Trails page map', () => {
   test('uses a declared trailhead before the legacy coordinate', () => {
     expect(coordinateFor({
       startPoint:{ lat:46.54, lng:11.62 }, lat:40, lng:9,
@@ -39,9 +39,9 @@ describe('Explore trail map', () => {
     expect(source).toContain("matchColourExpression('score')");
   });
 
-  test('the Explore page includes the linked catalogue and map controls', () => {
+  test('the Trails page includes the linked catalogue and map controls', () => {
     const html=fs.readFileSync('browse-trails.html','utf8');
-    expect(html).toContain('<title>Explore trails, ORMA</title>');
+    expect(html).toContain('<title>Trails, ORMA</title>');
     expect(html).toContain('id="browseExplorer"');
     expect(html).toContain('id="browseMap"');
     expect(html).toContain('id="browseSearchBtn"');
