@@ -3,6 +3,14 @@ include:
 exclude:
   - experiments
   - prototypes
+  # Instagram working material, not a public surface. The carousels are drawn
+  # by Python scripts from camera originals and licensed font files, and the
+  # preview pages beside them are for whoever is laying a post out. Publishing
+  # the folder put all of it on www.app-orma.com -- 30 MB, five scripts, two
+  # TTFs and three 4 MB originals -- reachable by anyone who guessed the path,
+  # and nothing on the site ever linked to it. The finished posts live on
+  # Instagram itself.
+  - images/social/instagram
   # Operator surface. These pages and their scripts are built and served from
   # backoffice.app-orma.com by scripts/build-backoffice-hosting.js, which reads
   # them straight from the repo root and is unaffected by this list. Keeping
