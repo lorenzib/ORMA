@@ -50,7 +50,7 @@ describe('footer navigation', () => {
 
   test('every public page uses the same ordered footer navigation', () => {
     const expected = [
-      ['browse-trails.html', 'Browse all Trails'],
+      ['browse-trails.html', 'Browse all trails'],
       ['collections.html', 'Collections'],
       ['compare.html', 'Compare trails'],
       ['how-scoring-works.html', 'How scoring works'],

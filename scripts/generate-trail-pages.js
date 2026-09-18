@@ -510,7 +510,7 @@ ${JSON.stringify(breadcrumbLd, null, 1)}
   <div class="links">
     <a href="../browse-trails.html" class="active">Trails</a>
     <a href="../browse-trails.html#collections">Collections</a>
-    <a href="../safety-guide.html">Safety guide</a>
+    <a href="../safety-guide.html">Safety library</a>
     <a href="../journal.html">My walk journal</a>
     <a class="account-btn" href="/?view=login&amp;next=trails/${slug}.html" data-i18n="nav.login">Log in</a>
   </div>
@@ -592,7 +592,7 @@ ${reviewRecord}
     <div>
       <div class="hp-footer-h">Trails</div>
       <div class="hp-footer-links">
-        <a href="../browse-trails.html">Browse all Trails</a>
+        <a href="../browse-trails.html">Browse all trails</a>
         <a href="../collections.html">Collections</a>
         <a href="../compare.html">Compare trails</a>
         <a href="../how-scoring-works.html">How scoring works</a>
