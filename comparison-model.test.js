@@ -1,6 +1,10 @@
 // compare.html loads the vocabulary before this model, and so does the test:
 // the labels it renders are match-verdict.js's, not a copy of its own.
 require('./match-verdict.js');
+// compare.html loads the evidence vocabulary before this model too. Without it
+// the verification cell renders empty and a test can pass without ever seeing
+// the words it is meant to be checking.
+require('./trust/evidence-v1.js');
 const model = require('./comparison-model');
 
 const baseTrail = {
@@ -46,6 +50,10 @@ describe('comparison presentation model', () => {
     // strong option are separated by the rows beneath this one, not by a few
     // points of a score whose evidence does not carry that precision.
     expect(result.cells.match.text).toBe('Strong option');
+    // A route ORMA audited from sources and one ORMA walked are different
+    // claims. This table used to call both "Verified by ORMA", hiding the
+    // distinction a reader opens a comparison to see.
+    expect(result.cells.verification.text).toBe('ORMA route-audited');
     expect(result.cells.water.text).toBe('1 reviewed water point');
     expect(result.cells.restrictions.text).toBe('Dogs allowed on leash');
     expect(result.cells.duration.text).toBe('1.5 h');
@@ -70,6 +78,7 @@ describe('comparison presentation model', () => {
       expect(result.cells[key].text).toMatch(/^Not listed/);
     });
     expect(result.cells.verification.kind).toBe('mapped');
+    expect(result.cells.verification.text).toBe('Imported map data');
   });
 
   test('cautions and hard stops take priority over positive reasons', () => {

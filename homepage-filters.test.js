@@ -137,7 +137,10 @@ function loadHomepageContext(testTrails){
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'regions-config.js'), 'utf8'), context);
   // The card's explanation is rendered from this view, exactly as the page
   // loads it: without it a card would silently lose its reasoning. The same
-  // goes for the verdict's words, which the page loads before script.js.
+  // goes for the vocabularies -- the verdict's words, and the evidence tier's
+  // -- which the page loads before script.js. Leaving one out here is how a
+  // test ends up asserting on a fallback nobody ships.
+  vm.runInContext(fs.readFileSync(path.join(__dirname, 'trust/evidence-v1.js'), 'utf8'), context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'match-verdict.js'), 'utf8'), context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'recommendation-decision.js'), 'utf8'), context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8'), context);
@@ -645,7 +648,7 @@ describe('returning homepage region + valley filters', () => {
     expect(document.querySelector('.li-match-confidence')).toBeNull();
     const trust = document.querySelector('.li-row-trust').textContent;
     expect(trust).toContain('ORMA route-audited');
-    expect(trust).not.toContain('High confidence');
+    expect(trust).not.toContain('Based on detailed trail data');
     expect(document.querySelector('.li-row--answer').textContent).not.toContain('86%');
   });
 

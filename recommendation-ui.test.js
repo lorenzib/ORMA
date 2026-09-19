@@ -111,6 +111,9 @@ describe('UX-04 canonical recommendation journey', () => {
     window.DoloPawsAuthReady = true;
     window.DoloPawsOffline = null;
     window.eval(source('comparison-state.js'));
+    // The bundle loads the vocabulary before the view that reads it, and so
+    // does this runtime: without it the confidence chip has no words.
+    window.eval(source('match-verdict.js'));
     window.eval(source('recommendation-decision.js'));
     window.eval(source('recommendation-guides.js'));
     window.eval(controller);

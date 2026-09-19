@@ -1,5 +1,5 @@
 const fs=require('fs');
-const {verdictFor,evidenceLine,VERDICTS,STRONG_AT,POSSIBLE_AT}=require('./match-verdict.js');
+const {verdictFor,evidenceLine,confidenceLabel,CONFIDENCE_LABELS,VERDICTS,STRONG_AT,POSSIBLE_AT}=require('./match-verdict.js');
 const { generatedDirectoryPattern } = require('./scripts/generated-directories');
 
 // One trail, three answers. "Great match" on browse at 75, "Good" in the
@@ -198,23 +198,48 @@ describe('the score says whose it is', () => {
 // the evidence does not have -- while "High confidence" beside "ORMA
 // route-audited" was the same statement in two vocabularies.
 describe('how well a verdict is known, in one line', () => {
+  // It takes the level now, not a rendered string. Deciding whether to show
+  // the words used to mean matching the words, so the rule lived in one file
+  // and the wording in another -- and changing the wording would have switched
+  // the rule off without a word of warning.
   test('an audited route with high confidence says it once', () => {
-    expect(evidenceLine({provenance:'ORMA route-audited',confidence:'High confidence',
+    expect(evidenceLine({provenance:'ORMA route-audited',confidence:'high',
       checkedLabel:'Checked 3 Sep 2026'})).toBe('ORMA route-audited · Checked 3 Sep 2026');
   });
 
   test('a caveat earns its place and is kept', () => {
-    expect(evidenceLine({provenance:'Imported map data',confidence:'Limited data'}))
-      .toBe('Imported map data · Limited data');
-    expect(evidenceLine({provenance:'ORMA route-audited',confidence:'Moderate confidence'}))
-      .toBe('ORMA route-audited · Moderate confidence');
+    expect(evidenceLine({provenance:'Imported map data',confidence:'low'}))
+      .toBe('Imported map data · Based on partial data');
+    expect(evidenceLine({provenance:'ORMA route-audited',confidence:'medium'}))
+      .toBe('ORMA route-audited · Based on available trail data');
   });
 
   test('missing parts leave no stray separators', () => {
     expect(evidenceLine({provenance:'Mapped route'})).toBe('Mapped route');
-    expect(evidenceLine({confidence:'Limited data'})).toBe('Limited data');
+    expect(evidenceLine({confidence:'low'})).toBe('Based on partial data');
     expect(evidenceLine({})).toBe('');
     expect(evidenceLine(null)).toBe('');
+  });
+
+  test('a level nobody set is not a caveat', () => {
+    // "Confidence unavailable" used to be rendered as if it were a finding.
+    expect(evidenceLine({provenance:'Mapped route',confidence:'unknown'})).toBe('Mapped route');
+    expect(evidenceLine({provenance:'Mapped route',confidence:''})).toBe('Mapped route');
+    expect(confidenceLabel('unknown')).toBe('');
+    expect(confidenceLabel(null)).toBe('');
+  });
+
+  test('the words are the calm ones, and translatable', () => {
+    expect(confidenceLabel('high')).toBe('Based on detailed trail data');
+    expect(confidenceLabel('medium')).toBe('Based on available trail data');
+    expect(confidenceLabel('low')).toBe('Based on partial data');
+    // Confidence describes the data, not the danger: no level may read as a
+    // verdict on the walk.
+    Object.values(CONFIDENCE_LABELS).forEach(label => {
+      expect(label).toMatch(/^Based on /);
+    });
+    const it = key => ({ 'recommendation.confidence.low':'In base a dati parziali' }[key] || key);
+    expect(confidenceLabel('low', it)).toBe('In base a dati parziali');
   });
 });
 
@@ -241,6 +266,6 @@ describe('the number is gone from browse', () => {
 
   test('confidence left the homepage verdict column for the evidence line', () => {
     expect(home).not.toContain('li-match-confidence');
-    expect(home).toContain('verdict.evidenceLine({ confidence: presentation.confidence })');
+    expect(home).toContain('verdict.evidenceLine({ confidence: presentation.confidence, translate: window.t })');
   });
 });
