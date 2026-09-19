@@ -55,14 +55,27 @@ describe('I18N-01 dictionary and reference boundary', () => {
       expect(referenced(root).has('home.bubble')).toBe(true);
     });
 
-    // The skip list and .gitignore describe the same thing. If one grows a new
-    // build directory the other has to know, or this comes back.
-    test('the skip list covers every generated directory git ignores', () => {
+    // The shared list and .gitignore describe the same thing. If one grows a
+    // new build directory the other has to know, or this comes back.
+    test('the shared list covers every generated directory git ignores', () => {
+      const { GENERATED_DIRECTORIES } = require('./scripts/generated-directories');
       const ignored = fs.readFileSync(path.join(__dirname, '.gitignore'), 'utf8')
         .split('\n').map(line => line.trim().replace(/\/$/, ''))
-        .filter(line => ['node_modules','dist','_site','.cache','.firebase'].includes(line));
-      const source = fs.readFileSync(path.join(__dirname, 'scripts', 'check-i18n-parity.js'), 'utf8');
-      for(const directory of ignored) expect(source).toContain(`'${directory}'`);
+        .filter(line => ['node_modules','dist','_site','.cache','.firebase','coverage'].includes(line));
+      expect(ignored.length).toBeGreaterThan(3);
+      for(const directory of ignored) expect(GENERATED_DIRECTORIES).toContain(directory);
+    });
+
+    // Two walkers kept private copies of this and they disagreed: one was
+    // missing _site, which failed the whole suite locally for anyone who had
+    // built the site. A third copy is how that happens again.
+    test('no walker keeps a private copy of it', () => {
+      for(const file of ['scripts/check-i18n-parity.js', 'match-vocabulary.test.js']){
+        const source = fs.readFileSync(path.join(__dirname, file), 'utf8');
+        expect(source).toContain("require('./generated-directories')".replace('./', file.startsWith('scripts/') ? './' : './scripts/'));
+        // the giveaway of a hand-rolled list: build directories spelled out together
+        expect(source).not.toMatch(/node_modules[^\n]{0,40}(?:_site|dist)[^\n]{0,40}coverage/);
+      }
     });
   });
 });
