@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-19T07:22:18.278Z",
+  "generatedAt": "2026-09-19T10:20:19.155Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:thunderstorm:friuli-venezia-giulia",
@@ -12,12 +12,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-italy",
       "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/e29100e5-1e3e-4a27-a0d8-df574e72b05f",
-      "identifier": "2.49.0.0.380.3.IT.260918111725.141",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/d42e5459-2bb6-4cd7-bafb-1796ef5d6ef5",
+      "identifier": "2.49.0.0.380.3.IT.260918111725.113",
       "effectiveAt": "2026-09-18T18:00:00+00:00",
-      "expiresAt": "2026-09-19T11:59:00+00:00",
+      "expiresAt": "2026-09-18T23:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-19T07:22:18.278Z",
+      "lastSeenAt": "2026-09-19T10:20:19.155Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "piancavallo"
@@ -37,12 +37,12 @@
       "message": "An official moderate thunderstorm warning applies to this area. Check the source and local conditions before setting out. This is not a trail-closure notice.",
       "sourceKey": "meteoalarm-italy",
       "sourceLabel": "MeteoAlarm Italy",
-      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/e33f8a15-b49a-43db-b3e0-e512e072b800",
-      "identifier": "2.49.0.0.380.3.IT.260918111725.143",
+      "sourceUrl": "https://feeds.meteoalarm.org/api/v1/warnings/feeds-italy/613da860-2253-4173-b39f-d6d4a3ac344d",
+      "identifier": "2.49.0.0.380.3.IT.260918111725.115",
       "effectiveAt": "2026-09-18T18:00:00+00:00",
-      "expiresAt": "2026-09-19T11:59:00+00:00",
+      "expiresAt": "2026-09-18T23:59:00+00:00",
       "firstPublishedAt": "2026-09-14T22:21:45.463Z",
-      "lastSeenAt": "2026-09-19T07:22:18.278Z",
+      "lastSeenAt": "2026-09-19T10:20:19.155Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "nuvolau",
