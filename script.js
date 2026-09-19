@@ -3446,20 +3446,18 @@ function liRecommendationPresentation(trail, profile){
   const category = verdict
     ? verdict.verdictFor({ score, category: declared })
     : { label:'', color:'inherit' };
-  const confidence = {
-    high:'High confidence',
-    medium:'Moderate confidence',
-    low:'Limited data',
-  }[recommendation.confidence] || 'Confidence unavailable';
+  // The level, not words for it: match-verdict.js owns both the wording and
+  // the rule about when it is worth saying. This file used to hold a third
+  // vocabulary for the same field -- "High confidence / Moderate confidence /
+  // Limited data" -- with no dictionary keys, so it stayed English whatever
+  // language the reader had chosen.
+  const confidence = recommendation.confidence || '';
   const evidenceTier = recommendation.evidenceTier || (trail && trail.curated === false ? 'imported' : 'route-audited');
+  // And the tier's words come from trust/evidence-v1.js. The fallback here was
+  // a copy of that table, free to drift from it the moment either changed.
   const provenance = window.DoloPawsEvidenceV1 && typeof window.DoloPawsEvidenceV1.tierLabel === 'function'
     ? window.DoloPawsEvidenceV1.tierLabel(evidenceTier)
-    : ({
-      'field-verified':'ORMA field-verified',
-      'route-audited':'ORMA route-audited',
-      mapped:'Mapped route',
-      imported:'Imported map data',
-    }[evidenceTier] || 'Evidence status unavailable');
+    : '';
   const checkedAt = trail && (trail.reviewedAt || (trail.verified && trail.verified.date));
   let checkedLabel = '';
   if(/^\d{4}-\d{2}-\d{2}$/.test(String(checkedAt || ''))){
@@ -3506,21 +3504,31 @@ function liTrailHref(trailId){
 function liMatchColHtml(t, profile, overrides){
   const presentation = liRecommendationPresentation(t, profile);
   const reason = matchReason(t, overrides);
-  return `<div class="li-match" aria-label="${liPersonalisationText(`${presentation.label} for ${presentation.dogName}. ${presentation.confidence}.`)}" title="${liPersonalisationText(reason)}">
+  // Spoken, not shown: the level is a key, so the words come from its owner.
+  // Reading "Strong option for Eddie. high." to a screen reader is what
+  // interpolating the raw field would do.
+  const verdict = window.OrmaMatchVerdict;
+  const spokenConfidence = verdict
+    ? verdict.confidenceLabel(presentation.confidence, window.t)
+    : '';
+  const spoken = [`${presentation.label} for ${presentation.dogName}`, spokenConfidence]
+    .filter(Boolean).join('. ');
+  return `<div class="li-match" aria-label="${liPersonalisationText(`${spoken}.`)}" title="${liPersonalisationText(reason)}">
       <b style="color:${presentation.color};">${presentation.label}</b>
       <span class="li-match-lbl">For ${liPersonalisationText(presentation.dogName)}</span>
     </div>`;
 }
 
 // One line for how well a verdict is known: where the evidence came from, any
-// caveat on it, and when it was checked. "High confidence" beside "ORMA
-// route-audited" was the same statement twice.
+// caveat on it, and when it was checked. Confidence beside "ORMA route-audited"
+// was the same statement twice, so evidenceLine decides when it is worth
+// saying -- and with no vocabulary loaded there is nothing to say.
 function liProvenanceHtml(trail, profile){
   const presentation = liRecommendationPresentation(trail, profile);
   const verdict = window.OrmaMatchVerdict;
   const qualifier = verdict
-    ? verdict.evidenceLine({ confidence: presentation.confidence }).trim()
-    : (/^high confidence$/i.test(presentation.confidence) ? '' : presentation.confidence);
+    ? verdict.evidenceLine({ confidence: presentation.confidence, translate: window.t }).trim()
+    : '';
   const detail = [qualifier, presentation.checkedLabel].filter(Boolean)
     .map(text => `<span>${liPersonalisationText(text)}</span>`).join('');
   return `<div class="li-row-trust"><strong>${liPersonalisationText(presentation.provenance)}</strong>${detail}</div>`;
