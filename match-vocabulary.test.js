@@ -1,5 +1,6 @@
 const fs=require('fs');
 const {verdictFor,evidenceLine,VERDICTS,STRONG_AT,POSSIBLE_AT}=require('./match-verdict.js');
+const { generatedDirectoryPattern } = require('./scripts/generated-directories');
 
 // One trail, three answers. "Great match" on browse at 75, "Good" in the
 // homepage search at 65, "Possible with cautions" in the homepage list at 60 --
@@ -108,7 +109,12 @@ describe('both surfaces ask the same question', () => {
     ]);
     // Tests name the vocabulary in order to assert on it, and nothing in a
     // test ships. Everything else is a surface.
-    const skip = /^(?:node_modules|dist|\.git|coverage|backoffice-data|docs)(?:\/|$)|\.bundle\.js$|\.test\.js$|\.md$|^i18n\.js$/;
+    // The generated directories come from the shared list, so a new build
+    // directory cannot leave this walker reading published copies of the very
+    // files it is auditing. backoffice-data and docs are this test's own.
+    const skip = new RegExp(
+      `^(?:${generatedDirectoryPattern()}|backoffice-data|docs)(?:/|$)`
+      + String.raw`|\.bundle\.js$|\.test\.js$|\.md$|^i18n\.js$`);
     const offenders = [];
     const walk = dir => {
       for(const entry of fs.readdirSync(dir, { withFileTypes:true })){
