@@ -128,6 +128,10 @@
       : activeProfile || {};
     const entries = selected.map(trail => model.build(trail, {
       subject,
+      // The dog the table is comparing for, so a caution can say "more than
+      // Eddie's range" rather than naming a default the heading already
+      // corrected.
+      dogName:activeProfile && activeProfile.name ? activeProfile.name : '',
       recommendation:recommendTrail(trail, subject, conditionsFor(trail)),
       normalizeTrail:window.DoloPawsRecommendationAdaptersV1.normalizeTrail,
     }));
