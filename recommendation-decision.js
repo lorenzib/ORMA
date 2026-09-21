@@ -1,8 +1,8 @@
 (function(root, factory){
-  const api = factory();
+  const api = factory(root);
   if(typeof module === 'object' && module.exports) module.exports = api;
   if(root) root.DoloPawsRecommendationDecision = api;
-})(typeof window !== 'undefined' ? window : globalThis, function(){
+})(typeof window !== 'undefined' ? window : globalThis, function(root){
   'use strict';
 
   const CATEGORY = Object.freeze({
@@ -52,13 +52,15 @@
     'trail.sightlines.open': 'open sightlines',
   });
 
-  // Calm framing: confidence describes data completeness, not danger.
-  // "low" must not read as a warning, missing data never lowers the score.
-  const CONFIDENCE_LABEL = Object.freeze({
-    high: 'Based on detailed trail data',
-    medium: 'Based on available trail data',
-    low: 'Based on partial data',
-  });
+  // Calm framing: confidence describes data completeness, not danger. "low"
+  // must not read as a warning, missing data never lowers the score. The words
+  // live in match-verdict.js, beside the rule about when they are worth saying
+  // -- this file held the only copy that agreed with them, and the homepage
+  // held one that did not.
+  function confidenceWords(level, translate){
+    const shared = root && root.OrmaMatchVerdict;
+    return shared ? shared.confidenceLabel(level, translate) : '';
+  }
 
   function present(recommendation, context){
     recommendation = recommendation || {};
@@ -190,9 +192,7 @@
     const trailUnknowns = messages(rawUnknowns.filter(item => !isDogGap(item)), translate, extra);
 
     return {
-      confidenceLabel:recommendation.confidence && CONFIDENCE_LABEL[recommendation.confidence]
-        ? tr(`recommendation.confidence.${recommendation.confidence}`, CONFIDENCE_LABEL[recommendation.confidence])
-        : null,
+      confidenceLabel:confidenceWords(recommendation.confidence, translate) || null,
       dogGapFields,
       trailUnknownCount:rawUnknowns.length - dogGapFields.length,
       conclusion:tr(`recommendation.category.${recommendation.category || 'unavailable'}`, category.label),

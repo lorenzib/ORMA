@@ -873,9 +873,16 @@ function initHikeMode(map, trail, options){
     const dogName = dog.name || 'Your dog';
     const km = completion.distanceKm;
     const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : ', ';
-    const SAFETY_LABEL = { 'low-risk': 'Low-risk', 'moderate': 'Moderate', 'caution': 'Caution' };
-    const safetyClass = trail.safetyLevel === 'low-risk' ? 'safety-low'
-      : trail.safetyLevel === 'caution' ? 'safety-caution' : 'safety-moderate';
+    // The trail rating, in the words the rest of the product uses. This held
+    // its own English table -- "Low-risk", "Moderate", "Caution" -- so the one
+    // badge a walker sees at the end of a hike stayed English on the Italian
+    // site, and said something shorter than the same badge everywhere else.
+    const ratingLabel = typeof trailSafetyLabel === 'function'
+      ? trailSafetyLabel(trail)
+      : '';
+    const ratingClass = typeof safetyClass === 'function'
+      ? safetyClass(trail.safetyLevel)
+      : 'safety-moderate';
     // The trail page already computed the personal match, reuse its figure.
     const scoreEl = document.querySelector('.personal-score b');
     const matchPct = scoreEl ? parseInt(scoreEl.textContent, 10) : NaN;
@@ -901,7 +908,7 @@ function initHikeMode(map, trail, options){
           <div class="hk-stat"><b>${pace}</b><span>${esc(window.t('hike.statPace'))}</span></div>
         </div>
         <div class="hk-matchline">
-          <span class="safety-badge ${safetyClass}">${esc(SAFETY_LABEL[trail.safetyLevel] || 'Moderate')}</span>
+          ${ratingLabel ? `<span class="safety-badge ${ratingClass}">${esc(ratingLabel)}</span>` : ''}
           ${Number.isFinite(matchPct) ? `<span class="pct">${esc(window.t('hike.matchFor', {pct: matchPct, name: dogName}))}</span>` : ''}
         </div>
         <div class="hk-block hk-outcome-block">

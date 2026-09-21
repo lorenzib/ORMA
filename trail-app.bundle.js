@@ -5777,21 +5777,60 @@ function effectiveOverrides(profile, adjustOverride){
     return {...verdict,score:Number.isFinite(score)?score:null};
   }
 
-  // How well a verdict is known, in one line instead of two.
+  // How completely a trail is known, said calmly. Confidence describes the data
+  // ORMA holds, not how dangerous the walk is, so "low" must not read as a
+  // warning -- missing evidence never lowers a score, it only widens what the
+  // score cannot promise.
   //
-  // "High confidence" next to "ORMA route-audited" says the same thing twice:
-  // an audited route is the confident case, so the words only earn their place
-  // when they qualify it. Saying nothing where there is nothing to add is what
-  // leaves room for the caveat to be noticed when there is.
-  function evidenceLine(parts){
-    const provenance=String(parts&&parts.provenance||'').trim();
-    const confidence=String(parts&&parts.confidence||'').trim();
-    const checked=String(parts&&parts.checkedLabel||'').trim();
-    const qualifies=confidence&&!/^high confidence$/i.test(confidence);
-    return [provenance,qualifies?confidence:'',checked].filter(Boolean).join(' · ');
+  // The homepage said "High confidence / Moderate confidence / Limited data"
+  // from a table of its own, untranslated, while the trail page said "Based on
+  // detailed trail data" from another. Two vocabularies for one field, and one
+  // of them read as a verdict on the trail rather than on the evidence.
+  const CONFIDENCE_LEVELS=Object.freeze(['high','medium','low']);
+  const CONFIDENCE_LABELS=Object.freeze({
+    high:'Based on detailed trail data',
+    medium:'Based on available trail data',
+    low:'Based on partial data',
+  });
+
+  /**
+   * The words for a confidence level, translated where a dictionary is loaded.
+   * An unknown level has no words: a level nobody set is not "low", and saying
+   * so would invent a caveat out of a missing field.
+   */
+  function confidenceLabel(level,translate){
+    const key=String(level==null?'':level).trim().toLowerCase();
+    const fallback=CONFIDENCE_LABELS[key];
+    if(!fallback)return '';
+    if(typeof translate==='function'){
+      const value=translate(`recommendation.confidence.${key}`);
+      if(value&&value!==`recommendation.confidence.${key}`)return value;
+    }
+    return fallback;
   }
 
-  return {VERDICTS,STRONG_AT,POSSIBLE_AT,categoryForScore,verdictFor,evidenceLine};
+  // How well a verdict is known, in one line instead of two.
+  //
+  // Confidence next to "ORMA route-audited" says the same thing twice: an
+  // audited route is the confident case, so the words only earn their place
+  // when they qualify it. Saying nothing where there is nothing to add is what
+  // leaves room for the caveat to be noticed when there is.
+  //
+  // It takes the level, not a rendered string. Deciding whether to show the
+  // words meant matching the words, so the rule lived in one file and the
+  // wording in another, and changing the wording silently switched the rule
+  // off.
+  function evidenceLine(parts){
+    const provenance=String(parts&&parts.provenance||'').trim();
+    const level=String(parts&&parts.confidence||'').trim().toLowerCase();
+    const checked=String(parts&&parts.checkedLabel||'').trim();
+    const qualifies=CONFIDENCE_LEVELS.includes(level)&&level!=='high';
+    const confidence=qualifies?confidenceLabel(level,parts&&parts.translate):'';
+    return [provenance,confidence,checked].filter(Boolean).join(' · ');
+  }
+
+  return {VERDICTS,STRONG_AT,POSSIBLE_AT,CONFIDENCE_LEVELS,CONFIDENCE_LABELS,
+    categoryForScore,verdictFor,confidenceLabel,evidenceLine};
 });
 ;
 
@@ -9982,9 +10021,16 @@ function initHikeMode(map, trail, options){
     const dogName = dog.name || 'Your dog';
     const km = completion.distanceKm;
     const pace = km > 0.1 ? (elapsedMinutes / km).toFixed(1) + ' min/km' : ', ';
-    const SAFETY_LABEL = { 'low-risk': 'Low-risk', 'moderate': 'Moderate', 'caution': 'Caution' };
-    const safetyClass = trail.safetyLevel === 'low-risk' ? 'safety-low'
-      : trail.safetyLevel === 'caution' ? 'safety-caution' : 'safety-moderate';
+    // The trail rating, in the words the rest of the product uses. This held
+    // its own English table -- "Low-risk", "Moderate", "Caution" -- so the one
+    // badge a walker sees at the end of a hike stayed English on the Italian
+    // site, and said something shorter than the same badge everywhere else.
+    const ratingLabel = typeof trailSafetyLabel === 'function'
+      ? trailSafetyLabel(trail)
+      : '';
+    const ratingClass = typeof safetyClass === 'function'
+      ? safetyClass(trail.safetyLevel)
+      : 'safety-moderate';
     // The trail page already computed the personal match, reuse its figure.
     const scoreEl = document.querySelector('.personal-score b');
     const matchPct = scoreEl ? parseInt(scoreEl.textContent, 10) : NaN;
@@ -10010,7 +10056,7 @@ function initHikeMode(map, trail, options){
           <div class="hk-stat"><b>${pace}</b><span>${esc(window.t('hike.statPace'))}</span></div>
         </div>
         <div class="hk-matchline">
-          <span class="safety-badge ${safetyClass}">${esc(SAFETY_LABEL[trail.safetyLevel] || 'Moderate')}</span>
+          ${ratingLabel ? `<span class="safety-badge ${ratingClass}">${esc(ratingLabel)}</span>` : ''}
           ${Number.isFinite(matchPct) ? `<span class="pct">${esc(window.t('hike.matchFor', {pct: matchPct, name: dogName}))}</span>` : ''}
         </div>
         <div class="hk-block hk-outcome-block">
@@ -16608,10 +16654,10 @@ if(document.querySelector('.td2')){
 
 // ---- recommendation-decision.js ----
 (function(root, factory){
-  const api = factory();
+  const api = factory(root);
   if(typeof module === 'object' && module.exports) module.exports = api;
   if(root) root.DoloPawsRecommendationDecision = api;
-})(typeof window !== 'undefined' ? window : globalThis, function(){
+})(typeof window !== 'undefined' ? window : globalThis, function(root){
   'use strict';
 
   const CATEGORY = Object.freeze({
@@ -16661,13 +16707,15 @@ if(document.querySelector('.td2')){
     'trail.sightlines.open': 'open sightlines',
   });
 
-  // Calm framing: confidence describes data completeness, not danger.
-  // "low" must not read as a warning, missing data never lowers the score.
-  const CONFIDENCE_LABEL = Object.freeze({
-    high: 'Based on detailed trail data',
-    medium: 'Based on available trail data',
-    low: 'Based on partial data',
-  });
+  // Calm framing: confidence describes data completeness, not danger. "low"
+  // must not read as a warning, missing data never lowers the score. The words
+  // live in match-verdict.js, beside the rule about when they are worth saying
+  // -- this file held the only copy that agreed with them, and the homepage
+  // held one that did not.
+  function confidenceWords(level, translate){
+    const shared = root && root.OrmaMatchVerdict;
+    return shared ? shared.confidenceLabel(level, translate) : '';
+  }
 
   function present(recommendation, context){
     recommendation = recommendation || {};
@@ -16799,9 +16847,7 @@ if(document.querySelector('.td2')){
     const trailUnknowns = messages(rawUnknowns.filter(item => !isDogGap(item)), translate, extra);
 
     return {
-      confidenceLabel:recommendation.confidence && CONFIDENCE_LABEL[recommendation.confidence]
-        ? tr(`recommendation.confidence.${recommendation.confidence}`, CONFIDENCE_LABEL[recommendation.confidence])
-        : null,
+      confidenceLabel:confidenceWords(recommendation.confidence, translate) || null,
       dogGapFields,
       trailUnknownCount:rawUnknowns.length - dogGapFields.length,
       conclusion:tr(`recommendation.category.${recommendation.category || 'unavailable'}`, category.label),

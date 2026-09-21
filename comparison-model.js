@@ -27,12 +27,21 @@
     'seasonal-restrictions':'Seasonal restrictions',
     prohibited:'Dogs prohibited',
   };
-  const TIERS = {
-    imported:'Imported trail',
-    mapped:'Imported trail',
-    'route-audited':'Verified by ORMA',
-    'field-verified':'Verified by ORMA',
-  };
+  // The evidence tier's words come from trust/evidence-v1.js, which owns them.
+  // This table was a fourth vocabulary for the field, and it disagreed rather
+  // than merely repeating: it collapsed route-audited and field-verified into
+  // one "Verified by ORMA", so a comparison hid the distinction between a
+  // route ORMA audited from sources and one ORMA walked -- the very
+  // distinction a reader opens a comparison to see.
+  function confidenceWords(level){
+    const shared = root && root.OrmaMatchVerdict;
+    return shared && typeof shared.confidenceLabel === 'function' ? shared.confidenceLabel(level) : '';
+  }
+
+  function tierLabel(tier){
+    const shared = root && root.DoloPawsEvidenceV1;
+    return shared && typeof shared.tierLabel === 'function' ? shared.tierLabel(tier) : '';
+  }
 
   function cell(text, kind, detail){
     return { text, kind:kind || 'known', detail:detail || null };
@@ -94,7 +103,10 @@
           // distance, climb, terrain, water and shade -- not by three points of
           // a score whose evidence does not carry that precision.
           ? cell(categoryLabel(recommendation.category), recommendation.category === 'not-recommended' ? 'caution' : 'known',
-            `${recommendation.confidence} confidence · scoring ${recommendation.scoringVersion}`)
+            // "high confidence" was a third phrasing of this one field, on a
+            // page whose whole job is putting two trails in the same words.
+            [confidenceWords(recommendation.confidence), `scoring ${recommendation.scoringVersion}`]
+              .filter(Boolean).join(' · '))
           : unknown('dog match'),
         reasons: reasons.length
           ? cell(reasons.join(' '), (recommendation.hardStops || []).length || (recommendation.cautions || []).length ? 'caution' : 'known',
@@ -136,7 +148,7 @@
         restrictions: categoryVerified(parts, 'access') && ACCESS[access]
           ? cell(ACCESS[access], ['prohibited','seasonal-restrictions'].includes(access) ? 'caution' : 'known')
           : unknown('dog-access rules'),
-        verification: cell(TIERS[tier] || tier, ['imported','mapped'].includes(tier) ? 'mapped' : 'known'),
+        verification: cell(tierLabel(tier), ['imported','mapped'].includes(tier) ? 'mapped' : 'known'),
       },
     };
   }

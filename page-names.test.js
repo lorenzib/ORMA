@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { generatedDirectoryPattern } = require('./scripts/generated-directories');
 
 // One place, one name. The catalogue answered to six — "Trails" in the nav,
 // "Explore trails" in its own title, chip and heading, "Browse all Trails" in
@@ -14,12 +15,18 @@ const NAMES = [
   { file:'safety-guide.html', label:'Safety library' },
 ];
 
+// One shared list of what a build writes, so this walker cannot go stale on
+// its own the way the first one did.
+const SKIP_DIRECTORIES = new RegExp(
+  `^(?:${generatedDirectoryPattern()}|backoffice-data|docs|prototypes)(?:/|$)`
+);
+
 function shippedPages(){
   const pages = [];
   const walk = dir => {
     for(const entry of fs.readdirSync(dir, { withFileTypes:true })){
       const full = dir === '.' ? entry.name : `${dir}/${entry.name}`;
-      if(/^(?:node_modules|dist|\.git|coverage|backoffice-data|docs|prototypes)(?:\/|$)/.test(full)) continue;
+      if(SKIP_DIRECTORIES.test(full)) continue;
       if(entry.isDirectory()){ walk(full); continue; }
       if(entry.name.endsWith('.html')) pages.push(full);
     }
