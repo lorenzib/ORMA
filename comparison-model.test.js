@@ -5,6 +5,10 @@ require('./match-verdict.js');
 // the verification cell renders empty and a test can pass without ever seeing
 // the words it is meant to be checking.
 require('./trust/evidence-v1.js');
+// And the view that turns a scored recommendation into the words a reader
+// sees. compare.html loads it before this model; without it here the reasons
+// row renders "unknown" and a test can pass without seeing a single sentence.
+require('./recommendation-decision.js');
 const model = require('./comparison-model');
 
 const baseTrail = {
@@ -79,6 +83,52 @@ describe('comparison presentation model', () => {
     });
     expect(result.cells.verification.kind).toBe('mapped');
     expect(result.cells.verification.text).toBe('Imported map data');
+  });
+
+  // The row used to print the engine's own sentences, in the engine's order,
+  // untranslated -- and where a trail had nothing to caution about, one
+  // templated sentence per positive: "Terrain is within this dog's effective
+  // tolerance. The 3.6 km route is within this dog's effective range." The
+  // same sentence three times with the nouns swapped.
+  test('a trail with nothing to caution about says what fits, once', () => {
+    const result = model.build(baseTrail, {
+      normalizeTrail:value => value,
+      dogName:'Eddie',
+      recommendation:{
+        ...recommendation,
+        hardStops:[], cautions:[], unknowns:[],
+        factors:[
+          { code:'trail.terrain.within-tolerance', message:'The terrain suits Eddie.', impact:0 },
+          { code:'trail.distance.within-range', message:'7.5 km is within Eddie’s range.', impact:0, vars:{ distance:7.5 } },
+          { code:'trail.ascent.within-range', message:'The 150 m climb is fine.', impact:0, vars:{ ascent:150 } },
+        ],
+        positiveReasons:[
+          { code:'trail.terrain.within-tolerance', message:'The terrain suits Eddie.' },
+          { code:'trail.distance.within-range', message:'7.5 km is within Eddie’s range.', vars:{ distance:7.5 } },
+          { code:'trail.ascent.within-range', message:'The 150 m climb is fine.', vars:{ ascent:150 } },
+        ],
+      },
+    });
+    expect(result.cells.reasons.kind).toBe('known');
+    expect(result.cells.reasons.text)
+      .toBe('The terrain, the 7.5 km distance and the 150 m climb.');
+  });
+
+  test('a missing profile field is not counted against the trail', () => {
+    // Every column would carry the same "add Eddie's weight", which says
+    // nothing about the trails being compared.
+    const result = model.build(baseTrail, {
+      normalizeTrail:value => value,
+      recommendation:{
+        ...recommendation,
+        cautions:[{ code:'trail.heat.high', message:'This route gets hot.' }],
+        unknowns:[
+          { code:'dog.weight.unknown', message:'Weight is missing.' },
+          { code:'trail.exposure.unknown', message:'Exposure is not established.' },
+        ],
+      },
+    });
+    expect(result.cells.reasons.detail).toBe('1 unknown item also affects confidence');
   });
 
   test('cautions and hard stops take priority over positive reasons', () => {

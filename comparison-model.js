@@ -33,6 +33,15 @@
   // one "Verified by ORMA", so a comparison hid the distinction between a
   // route ORMA audited from sources and one ORMA walked -- the very
   // distinction a reader opens a comparison to see.
+  // "the terrain, the 3.6 km distance and the 39 m climb" as a sentence.
+  function sentence(phrases){
+    if(!phrases.length) return '';
+    const joined = phrases.length === 1
+      ? phrases[0]
+      : `${phrases.slice(0, -1).join(', ')} and ${phrases[phrases.length - 1]}`;
+    return `${joined.charAt(0).toUpperCase()}${joined.slice(1)}.`;
+  }
+
   function confidenceWords(level){
     const shared = root && root.OrmaMatchVerdict;
     return shared && typeof shared.confidenceLabel === 'function' ? shared.confidenceLabel(level) : '';
@@ -78,14 +87,28 @@
     const metrics = parts.metrics || {};
     const tier = parts.verification && parts.verification.tier || 'imported';
     const terrainKnown = Number.isFinite(suitability.terrainRank);
-    const reasons = recommendation
-      ? [].concat(recommendation.hardStops || [], recommendation.cautions || [])
-        .concat((recommendation.hardStops || []).length || (recommendation.cautions || []).length
-          ? [] : recommendation.positiveReasons || [])
-        .slice(0, 3).map(item => item.message)
-      : [];
-    const unknownCount = recommendation && Array.isArray(recommendation.unknowns)
-      ? recommendation.unknowns.length : 0;
+    // The reasoning, from the view that owns it. This row used to read the
+    // engine's raw sentences in the order the engine emitted them: untranslated
+    // whatever language the reader had chosen, unranked, and -- where a trail
+    // had nothing to caution about -- one templated sentence per positive,
+    // "Terrain is within this dog's effective tolerance. The 3.6 km route is
+    // within this dog's effective range." The same three sentences with the
+    // nouns swapped, which is what recommendation-decision.js was written to
+    // stop and what #455 stopped on the homepage.
+    const view = recommendation && root && root.DoloPawsRecommendationDecision
+      ? root.DoloPawsRecommendationDecision.present(recommendation, {
+        translate: root.t,
+        dogName: options.dogName || '',
+      })
+      : null;
+    const concerns = view ? view.cautions.slice(0, 3) : [];
+    // Nothing to caution about: say what fits, folded into one line rather
+    // than listed sentence by sentence. The column heading already names the
+    // dog, so the phrases do not repeat it.
+    const fine = view && !concerns.length ? view.fine.slice(0, 4) : [];
+    // A missing profile field is not a property of a trail, and in a table
+    // comparing trails for one dog it would be the same on every column.
+    const unknownCount = view ? view.trailUnknowns.length : 0;
     const reviewedWater = Array.isArray(parts.waypoints)
       ? parts.waypoints.filter(point => point.type === 'water' && point.status === 'reviewed').length
       : 0;
@@ -108,9 +131,12 @@
             [confidenceWords(recommendation.confidence), `scoring ${recommendation.scoringVersion}`]
               .filter(Boolean).join(' · '))
           : unknown('dog match'),
-        reasons: reasons.length
-          ? cell(reasons.join(' '), (recommendation.hardStops || []).length || (recommendation.cautions || []).length ? 'caution' : 'known',
-            unknownCount ? `${unknownCount} unknown item${unknownCount === 1 ? '' : 's'} also affect confidence` : null)
+        reasons: concerns.length || fine.length
+          ? cell(concerns.length ? concerns.join(' ') : sentence(fine),
+            concerns.length ? 'caution' : 'known',
+            unknownCount
+              ? `${unknownCount} unknown item${unknownCount === 1 ? ' also affects' : 's also affect'} confidence`
+              : null)
           : unknown('recommendation reasons'),
         distance: formatNumber(metrics.distanceKm, ' km')
           ? cell(formatNumber(metrics.distanceKm, ' km')) : unknown('distance'),
