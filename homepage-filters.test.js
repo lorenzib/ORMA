@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const { evaluateInto } = require('./test-support/page-runtime');
 
 function tForTests(key, params = {}){
   if(key === 'areas.allValleys') return 'All valleys';
@@ -135,14 +136,13 @@ function loadHomepageContext(testTrails){
 
   vm.createContext(context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'regions-config.js'), 'utf8'), context);
-  // The card's explanation is rendered from this view, exactly as the page
-  // loads it: without it a card would silently lose its reasoning. The same
-  // goes for the vocabularies -- the verdict's words, and the evidence tier's
-  // -- which the page loads before script.js. Leaving one out here is how a
-  // test ends up asserting on a fallback nobody ships.
-  vm.runInContext(fs.readFileSync(path.join(__dirname, 'trust/evidence-v1.js'), 'utf8'), context);
-  vm.runInContext(fs.readFileSync(path.join(__dirname, 'match-verdict.js'), 'utf8'), context);
-  vm.runInContext(fs.readFileSync(path.join(__dirname, 'recommendation-decision.js'), 'utf8'), context);
+  // The vocabularies and the view the homepage loads before script.js, in the
+  // order it runs them. Leaving one out is how a test ends up asserting on a
+  // fallback nobody ships: the card loses its reasoning, or its evidence line
+  // renders empty, and every assertion still passes.
+  evaluateInto(source => vm.runInContext(source, context), 'index.html', [
+    'trust/evidence-v1.js', 'match-verdict.js', 'recommendation-decision.js',
+  ]);
   vm.runInContext(fs.readFileSync(path.join(__dirname, 'script.js'), 'utf8'), context);
   // Existing filter tests exercise catalogue refinements in isolation. The
   // real product never creates this synthetic context; it prevents these
