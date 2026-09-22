@@ -39,22 +39,58 @@ describe('the two ways into the final gate are not the same thing',()=>{
     const report=build([trail({trailId:'osm-19153189',state:'dossier-human-gate',stage:'agent-execution-failure'})],
       [],{items:[{gateType:'agent-failure',state:'awaiting-human'}]});
     expect(report.dossierGate).toEqual(expect.objectContaining({
-      inState:1,genuine:0,viaAgentFailure:1,approvableItemsInQueue:0,inRedTeamNow:0,
+      inState:1,genuine:0,viaAgentFailure:1,itemsOnDesk:0,readyToApprove:0,inRedTeamNow:0,
     }));
   });
 
-  test('a completed dossier is counted separately and is approvable',()=>{
+  test('a completed dossier is counted separately and can be approved',()=>{
     const report=build([trail({trailId:'real',state:'dossier-human-gate',stage:'complete-evidence-dossier'})],
-      [],{items:[{gateType:'dossier-approval',state:'awaiting-human'}]});
-    expect(report.dossierGate).toEqual(expect.objectContaining({inState:1,genuine:1,viaAgentFailure:0,approvableItemsInQueue:1}));
+      [],{items:[{gateType:'dossier-approval',state:'awaiting-human',approvalAllowed:true}]});
+    expect(report.dossierGate).toEqual(expect.objectContaining({
+      inState:1,genuine:1,viaAgentFailure:0,itemsOnDesk:1,readyToApprove:1}));
   });
 
   test('the two are distinguished even when both sit in the state at once',()=>{
     const report=build([
       trail({trailId:'real',state:'dossier-human-gate',stage:'complete-evidence-dossier'}),
       trail({trailId:'failed',state:'dossier-human-gate',stage:'agent-execution-failure'}),
-    ],[],{items:[{gateType:'dossier-approval',state:'awaiting-human'}]});
-    expect(report.dossierGate).toEqual(expect.objectContaining({inState:2,genuine:1,viaAgentFailure:1,approvableItemsInQueue:1}));
+    ],[],{items:[{gateType:'dossier-approval',state:'awaiting-human',approvalAllowed:true}]});
+    expect(report.dossierGate).toEqual(expect.objectContaining({
+      inState:2,genuine:1,viaAgentFailure:1,itemsOnDesk:1,readyToApprove:1}));
+  });
+
+  // The live desk on 2026-09-21, and the reason this split exists: two dossiers
+  // had completed and were waiting, and the funnel called both of them
+  // approvable. Neither was. The state report, which does read approvalAllowed,
+  // said so at the same moment on the same data.
+  test('a dossier on the desk with blockers is not counted as ready',()=>{
+    const report=build([
+      trail({trailId:'a',state:'dossier-human-gate',stage:'complete-evidence-dossier'}),
+      trail({trailId:'b',state:'dossier-human-gate',stage:'complete-evidence-dossier'}),
+    ],[],{items:[
+      {gateType:'dossier-approval',state:'awaiting-human',approvalAllowed:false,blockingReasons:['terrainPoi/livestock']},
+      {gateType:'dossier-approval',state:'awaiting-human',approvalAllowed:false,blockingReasons:['regulatoryRanger/dog-access']},
+    ]});
+    expect(report.dossierGate).toEqual(expect.objectContaining({
+      inState:2,genuine:2,itemsOnDesk:2,readyToApprove:0}));
+  });
+
+  test('a desk mixing ready and blocked reports each',()=>{
+    const report=build([trail({trailId:'a',state:'dossier-human-gate',stage:'complete-evidence-dossier'})],
+      [],{items:[
+        {gateType:'dossier-approval',state:'awaiting-human',approvalAllowed:true},
+        {gateType:'dossier-approval',state:'awaiting-human',approvalAllowed:false},
+        {gateType:'agent-failure',state:'awaiting-human',approvalAllowed:true},
+      ]});
+    expect(report.dossierGate).toEqual(expect.objectContaining({itemsOnDesk:2,readyToApprove:1}));
+  });
+
+  // Absent is not the same as true. An item whose flag was never written has
+  // not been judged clean, and reading it as clean is the error this replaces.
+  test('a missing approvalAllowed is not read as approval',()=>{
+    const report=build([trail({trailId:'a',state:'dossier-human-gate',stage:'complete-evidence-dossier'})],
+      [],{items:[{gateType:'dossier-approval',state:'awaiting-human'}]});
+    expect(report.dossierGate).toEqual(expect.objectContaining({itemsOnDesk:1,readyToApprove:0}));
   });
 });
 

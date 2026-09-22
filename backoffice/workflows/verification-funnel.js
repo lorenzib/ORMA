@@ -116,13 +116,23 @@ function buildFunnel({orchestration, jobs = [], reviewQueue, nowMs = Date.now()}
   // The question the state counts cannot answer on their own.
   const atGate = byState.get('dossier-human-gate') || [];
   const queueItems = reviewQueue?.items || [];
+  const dossierItems = queueItems.filter(item =>
+    item.gateType === 'dossier-approval' && item.state === 'awaiting-human');
   const dossierGate = {
     inState: atGate.length,
     // Reached it by completing a dossier, which is the only route that can be approved.
     genuine: atGate.filter(trail => trail.stage === REAL_GATE_STAGE).length,
     // Reached it by an agent job failing. Cannot be approved, only revised or rejected.
     viaAgentFailure: atGate.filter(trail => trail.stage === FAILURE_STAGE).length,
-    approvableItemsInQueue: queueItems.filter(item => item.gateType === 'dossier-approval' && item.state === 'awaiting-human').length,
+    // Two different numbers, and the difference is the whole point. Being on
+    // the desk means a human has to look; being approvable means the machine
+    // already believes it is clean. This was one field called
+    // approvableItemsInQueue that only ever counted the first, so a desk
+    // holding two dossiers with unresolved blockers read as two decisions
+    // ready to approve -- and the state report, which does check
+    // approvalAllowed, disagreed with it on the same data.
+    itemsOnDesk: dossierItems.length,
+    readyToApprove: dossierItems.filter(item => item.approvalAllowed === true).length,
     // Current occupancy only. This artifact keeps no history, so it can say
     // what is in red-team now and must not be read as what ever was.
     inRedTeamNow: (byState.get('red-team') || []).length,

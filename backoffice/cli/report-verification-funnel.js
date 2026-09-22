@@ -31,7 +31,11 @@ async function main(options={}){
 
   const gate=report.dossierGate;
   console.log(`\n[funnel] ${gate.inState} trail(s) sit in dossier-human-gate: ${gate.genuine} completed a dossier, ${gate.viaAgentFailure} landed there by agent failure.`);
-  console.log(`[funnel] ${gate.approvableItemsInQueue} approvable dossier decision(s) are on the desk right now.`);
+  // On the desk and approvable are not the same claim, and reporting only the
+  // first as though it were the second is how a desk full of blocked dossiers
+  // reads as a trail about to be verified.
+  console.log(`[funnel] ${gate.itemsOnDesk} dossier decision(s) on the desk right now`
+    + `, ${gate.readyToApprove} of them clean by every automated check.`);
   if(gate.pulledBackFromGate){
     // These trails did reach the finish line. Saying "none ever got there" from
     // a snapshot would be false, and would send someone to fix the wrong thing.
