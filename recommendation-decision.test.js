@@ -1,6 +1,8 @@
-// The pages load the vocabulary before this view, and so does the test: the
-// words it renders are match-verdict.js's, not a copy of its own.
-require('./match-verdict.js');
+const { requireAll } = require('./test-support/page-runtime');
+
+// The homepage loads the vocabulary before this view, and so does the test:
+// the words it renders are match-verdict.js's, not a copy of its own.
+requireAll('index.html', ['match-verdict.js']);
 const decision = require('./recommendation-decision');
 
 const recommendation = {

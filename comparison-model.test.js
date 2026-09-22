@@ -1,14 +1,15 @@
 // compare.html loads the vocabulary before this model, and so does the test:
 // the labels it renders are match-verdict.js's, not a copy of its own.
-require('./match-verdict.js');
-// compare.html loads the evidence vocabulary before this model too. Without it
-// the verification cell renders empty and a test can pass without ever seeing
-// the words it is meant to be checking.
-require('./trust/evidence-v1.js');
-// And the view that turns a scored recommendation into the words a reader
-// sees. compare.html loads it before this model; without it here the reasons
-// row renders "unknown" and a test can pass without seeing a single sentence.
-require('./recommendation-decision.js');
+const { requireAll } = require('./test-support/page-runtime');
+
+// The vocabularies and the view compare.html loads before this model, in the
+// order that page runs them. Naming them here and hoping used to be enough to
+// pass while the verification cell rendered empty and the reasons row read
+// "unknown" -- so the page decides what exists and in what order, and a name
+// it no longer loads fails this file rather than hiding inside it.
+requireAll('compare.html', [
+  'trust/evidence-v1.js', 'match-verdict.js', 'recommendation-decision.js',
+]);
 const model = require('./comparison-model');
 
 const baseTrail = {
