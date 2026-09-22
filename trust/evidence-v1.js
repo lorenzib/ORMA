@@ -69,7 +69,12 @@
     if(trail.tier === 'under-review' || trail.curated === false){
       return trail.routeAudit ? 'mapped' : 'imported';
     }
-    return 'route-audited';
+    // A curated listing has been prepared and reviewed by ORMA, but curation
+    // alone is not field verification. It sits at `mapped` (route reviewed) and
+    // only earns `route-audited` once its evidence dossier graduates. Before,
+    // this returned `route-audited`, so every curated trail wore the verified
+    // seal without earning it.
+    return 'mapped';
   }
 
   function tierLabel(tierOrTrail){

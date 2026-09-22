@@ -90,24 +90,17 @@
   (function reviewRecord() {
     const meta = $('trailReviewMeta');
     if (!meta) return;
-    const graduation = trust && trust.graduationProgress ? trust.graduationProgress(t) : null;
-    const progress = trust && trust.reviewProgress ? trust.reviewProgress(t) : null;
-    if (graduation) {
+    // The record follows the same tier as the seal, so the pill and the
+    // sentence can never disagree. Only an earned verification claims the date;
+    // a reviewed-but-unverified listing says exactly that.
+    const tier = trust && trust.tierOf ? trust.tierOf(t) : null;
+    if (tier === 'route-audited' || tier === 'dolopaws-walked') {
       const date = trust.formatReviewDate(t.reviewedAt || (t.verified && t.verified.date));
-      meta.textContent = graduation.verified
-        ? `Verified by ORMA on ${date}. Check current conditions before setting out.`
-        : 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.';
-    } else if (progress) {
-      meta.textContent = progress.checked === progress.total
-        ? 'Trail details have been reviewed by ORMA. Check current conditions before setting out.'
-        : 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.';
-    } else if (t.routeAudit && t.reviewedAt) {
-      const date = trust ? trust.formatReviewDate(t.reviewedAt) : t.reviewedAt;
-      meta.textContent = `Route details reviewed by ORMA on ${date}. Check current conditions before setting out.`;
+      meta.textContent = `Verified by ORMA on ${date}. Check current conditions before setting out.`;
+    } else if (tier === 'route-reviewed') {
+      meta.textContent = 'Trail details prepared and reviewed by ORMA — not yet field-verified. Check local access rules and current conditions before setting out.';
     } else {
-      meta.textContent = t.curated === false
-        ? 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.'
-        : 'Trail information prepared by ORMA. Check current conditions before setting out.';
+      meta.textContent = 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.';
     }
   })();
 
