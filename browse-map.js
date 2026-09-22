@@ -44,7 +44,10 @@
         area:String(trail.area || trail.valley || ''),
         distance:Number(trail.distance) || 0,
         hours:Number(trail.hours) || 0,
-        risk:String(trail.safetyLevel || 'moderate'),
+        // No rating is not a moderate rating. Nothing styles by this today,
+        // which is exactly why the default was easy to miss: the first thing
+        // to colour a pin by it would have called every unrated trail moderate.
+        risk:String(trail.safetyLevel || ''),
         score:Number.isFinite(score) ? score : 0,
         saved:view.saved ? 1 : 0,
       },
