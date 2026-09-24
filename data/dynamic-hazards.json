@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-24T10:23:54.298Z",
+  "generatedAt": "2026-09-24T13:23:46.377Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:wind:trentino-alto-adige",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-09-24T08:00:00+00:00",
       "expiresAt": "2026-09-24T23:59:00+00:00",
       "firstPublishedAt": "2026-09-24T10:23:54.298Z",
-      "lastSeenAt": "2026-09-24T10:23:54.298Z",
+      "lastSeenAt": "2026-09-24T13:23:46.377Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
@@ -210,7 +210,8 @@
         "Rundweg Beimsteinkogel",
         "Mittlerer Rundweg am Karer See",
         "Langer Rundweg am Karer See"
-      ]
+      ],
+      "sourceStatus": "available"
     }
   ]
 }
