@@ -1,6 +1,6 @@
 {
   "contractVersion": "1.0.0",
-  "generatedAt": "2026-09-26T13:19:43.823Z",
+  "generatedAt": "2026-09-26T16:23:52.922Z",
   "hazards": [
     {
       "id": "meteoalarm-italy:wind:trentino-alto-adige",
@@ -17,7 +17,7 @@
       "effectiveAt": "2026-09-24T08:00:00+00:00",
       "expiresAt": "2026-09-24T23:59:00+00:00",
       "firstPublishedAt": "2026-09-24T10:23:54.298Z",
-      "lastSeenAt": "2026-09-26T13:19:43.823Z",
+      "lastSeenAt": "2026-09-26T16:23:52.922Z",
       "removalRequiresHumanReview": true,
       "trailIds": [
         "alpe-siusi",
