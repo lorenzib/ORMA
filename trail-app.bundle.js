@@ -4279,7 +4279,12 @@ function breedInsights(name){
     if(trail.tier === 'under-review' || trail.curated === false){
       return trail.routeAudit ? 'mapped' : 'imported';
     }
-    return 'route-audited';
+    // A curated listing has been prepared and reviewed by ORMA, but curation
+    // alone is not field verification. It sits at `mapped` (route reviewed) and
+    // only earns `route-audited` once its evidence dossier graduates. Before,
+    // this returned `route-audited`, so every curated trail wore the verified
+    // seal without earning it.
+    return 'mapped';
   }
 
   function tierLabel(tierOrTrail){
@@ -5856,7 +5861,7 @@ function effectiveOverrides(profile, adjustOverride){
   // The three public tiers a trail can sit in. See VERIFICATION.md ("Trail
   // tiers"). "under-review" is shown but not yet audited; "route-audited"
   // cleared the desk mechanism; "dolopaws-walked" means a human walked it.
-  const TIERS = Object.freeze(['under-review', 'route-audited', 'dolopaws-walked']);
+  const TIERS = Object.freeze(['under-review', 'route-reviewed', 'route-audited', 'dolopaws-walked']);
 
   // Single source of truth for a trail's tier. An explicit `trail.tier`
   // (or a `walked` flag) wins; otherwise the tier is derived so it can never
@@ -5873,6 +5878,10 @@ function effectiveOverrides(profile, adjustOverride){
       const canonicalTier = root.DoloPawsEvidenceV1.tierOf(trail);
       if (canonicalTier === 'field-verified') return 'dolopaws-walked';
       if (canonicalTier === 'route-audited') return 'route-audited';
+      // `mapped` is a route reviewed by ORMA but not yet field-verified. On a
+      // curated listing that reads "Reviewed by ORMA"; on an imported one it is
+      // still just imported map data.
+      if (canonicalTier === 'mapped') return trail && trail.curated === false ? 'under-review' : 'route-reviewed';
       return 'under-review';
     }
     if (!trail) return 'under-review';
@@ -5881,14 +5890,16 @@ function effectiveOverrides(profile, adjustOverride){
     else if (trail.walked === true) tier = 'dolopaws-walked';
     else {
       const graduation = graduationProgress(trail);
+      // The verified seal is earned by a graduated evidence dossier, never by
+      // curation alone; a curated-but-unverified listing is "route-reviewed".
       if (graduation && graduation.verified) tier = 'route-audited';
-      else tier = trail.curated === false ? 'under-review' : 'route-audited';
+      else tier = trail.curated === false ? 'under-review' : 'route-reviewed';
     }
     // Invariant: the published ORMA tiers claim the *route* was audited or
     // walked, so they require a mapped route. A trail with no `path` (a
     // viewpoint or place listing) has no route to audit, cap it at
     // under-review no matter what its flags say.
-    if ((tier === 'route-audited' || tier === 'dolopaws-walked') && !hasRoute(trail)) {
+    if ((tier === 'route-audited' || tier === 'dolopaws-walked' || tier === 'route-reviewed') && !hasRoute(trail)) {
       return 'under-review';
     }
     return tier;
@@ -5899,13 +5910,19 @@ function effectiveOverrides(profile, adjustOverride){
   function tierLabel(trail) {
     const tier = tierOf(trail);
     if (tier === 'dolopaws-walked' || tier === 'route-audited') return 'Verified by ORMA';
+    if (tier === 'route-reviewed') return 'Reviewed by ORMA';
     return 'Imported trail';
   }
 
-  // Badge visual style per tier, reusing the existing pill styles: under-review
-  // keeps the muted "imported" look, the two ORMA tiers use the "verified" look.
+  // Badge visual style per tier. Only an earned verification gets the green
+  // "verified" pill; a reviewed-but-not-verified listing takes the muted
+  // "neutral" pill so the seal is never mistaken for field verification, and an
+  // imported trail keeps the "imported" look.
   function tierBadgeStyle(trail) {
-    return tierOf(trail) === 'under-review' ? 'imported' : 'verified';
+    const tier = tierOf(trail);
+    if (tier === 'dolopaws-walked' || tier === 'route-audited') return 'verified';
+    if (tier === 'route-reviewed') return 'neutral';
+    return 'imported';
   }
 
   const REVIEW_CATEGORIES = Object.freeze(['water', 'heat', 'exposure', 'livestock', 'surfaceHazards', 'access']);
@@ -15528,24 +15545,17 @@ if(document.querySelector('.td2')){
   (function reviewRecord() {
     const meta = $('trailReviewMeta');
     if (!meta) return;
-    const graduation = trust && trust.graduationProgress ? trust.graduationProgress(t) : null;
-    const progress = trust && trust.reviewProgress ? trust.reviewProgress(t) : null;
-    if (graduation) {
+    // The record follows the same tier as the seal, so the pill and the
+    // sentence can never disagree. Only an earned verification claims the date;
+    // a reviewed-but-unverified listing says exactly that.
+    const tier = trust && trust.tierOf ? trust.tierOf(t) : null;
+    if (tier === 'route-audited' || tier === 'dolopaws-walked') {
       const date = trust.formatReviewDate(t.reviewedAt || (t.verified && t.verified.date));
-      meta.textContent = graduation.verified
-        ? `Verified by ORMA on ${date}. Check current conditions before setting out.`
-        : 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.';
-    } else if (progress) {
-      meta.textContent = progress.checked === progress.total
-        ? 'Trail details have been reviewed by ORMA. Check current conditions before setting out.'
-        : 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.';
-    } else if (t.routeAudit && t.reviewedAt) {
-      const date = trust ? trust.formatReviewDate(t.reviewedAt) : t.reviewedAt;
-      meta.textContent = `Route details reviewed by ORMA on ${date}. Check current conditions before setting out.`;
+      meta.textContent = `Verified by ORMA on ${date}. Check current conditions before setting out.`;
+    } else if (tier === 'route-reviewed') {
+      meta.textContent = 'Trail details prepared and reviewed by ORMA — not yet field-verified. Check local access rules and current conditions before setting out.';
     } else {
-      meta.textContent = t.curated === false
-        ? 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.'
-        : 'Trail information prepared by ORMA. Check current conditions before setting out.';
+      meta.textContent = 'This mapped trail has not yet been field-verified by ORMA. Check local access rules and current conditions before setting out.';
     }
   })();
 
