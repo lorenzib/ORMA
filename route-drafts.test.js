@@ -20,5 +20,20 @@ describe('route draft storage', () => {
 
   test('rejects incomplete route records', () => {
     expect(window.DoloPawsRouteDrafts.save({ id:'bad', points:[], path:[] })).toBeNull();
+    expect(window.DoloPawsRouteDrafts.save({ id:'one', points:[{lat:46,lng:11}], path:[[46,11],[46.01,11.01]] })).toBeNull();
+  });
+
+  test('saves a two-point open route, the minimum the planner lets you finish', () => {
+    // Point-to-point and out-and-back finish at two points; only a loop needs
+    // three, and that is the planner's rule, not the store's.
+    const store = window.DoloPawsRouteDrafts;
+    const record = store.save({
+      id:'point-to-point-1', name:'Draft point to point · 15.7 km', shape:'point-to-point', distanceM:15700,
+      points:[{lat:46.6,lng:11.9},{lat:46.62,lng:12.05}],
+      path:[[46.6,11.9],[46.61,11.97],[46.62,12.05]],
+    });
+    expect(record).not.toBeNull();
+    expect(record.points).toHaveLength(2);
+    expect(store.find('point-to-point-1').distanceM).toBe(15700);
   });
 });
