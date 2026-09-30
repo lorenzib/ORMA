@@ -33,6 +33,19 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
     expect(browse).toContain('<span data-i18n="browse.chairlifts.label">Include chairlift routes</span>');
   });
 
+  test('the whole quick wizard carries Italian copy', () => {
+    const dictionary = read('i18n.js');
+    for(const key of ['hp.wizard.title','hp.wizard.step','hp.wizard.next','hp.wizard.seeTrails','hp.wizard.name','hp.wizard.size','hp.wizard.energy','hp.wizard.terrain','hp.wizard.heat','hp.wizard.summary','hp.wizard.done.title','hp.wizard.done.lead','hp.wizard.done.save','hp.wizard.done.note']){
+      expect((dictionary.match(new RegExp(`'${key.replace(/\./g,'\\.')}':`, 'g')) || []).length).toBe(2);
+    }
+    expect(dictionary).toContain("'hp.wizard.title': 'Parlaci del tuo cane'");
+    expect(dictionary).toContain("'hp.wizard.done.title': 'Il profilo di {name} è pronto'");
+    // No English literal is written straight into the wizard markup any more.
+    expect(controller).not.toMatch(/'<div class="hp-wiz-q">[A-Z]/);
+    expect(controller).toContain("optBtns(sizeOpts(), w.size, 'size', false)");
+    expect(controller).toContain("optBtns(heatOpts(), w.heat, 'heat', true)");
+  });
+
   test('a declared small dog sees chairlift-assisted routes on the guest homepage', () => {
     expect(controller).toContain('adapters.chairliftSafe(activeProfile())');
     expect(controller).toContain('filters.matches(t, fstate, options)');
@@ -61,7 +74,7 @@ describe('guest dog persistence and the quick wizard chairlift question', () => 
 
   test('the homepage ships the new controller and guest-context versions', () => {
     const html = read('index.html');
-    expect(html).toContain('homepage-search.js?v=20260930-1');
+    expect(html).toContain('homepage-search.js?v=20260930-2');
     expect(html).toContain('guest-context.js?v=20260917-2');
     expect(read('browse-trails.html')).toContain('guest-context.js?v=20260917-2');
   });
