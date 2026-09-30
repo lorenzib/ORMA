@@ -48,7 +48,7 @@ describe('guest homepage editorial structure', () => {
   test('shows the value of a dog profile before asking the guest to register', () => {
     const controller = read('homepage-search.js');
 
-    expect(controller).toContain("dogName + '’s profile is ready'");
+    expect(controller).toContain("t('hp.wizard.done.title', '{name}’s profile is ready', { name: dogName })");
     expect(controller).toContain("matches.slice(0, 3)");
     expect(controller).toContain('Save profile and see all matches');
     expect(controller).toContain('See all matches without saving');
@@ -140,6 +140,6 @@ describe('guest homepage editorial structure', () => {
     const css = read('homepage-editorial.css');
     expect(css).toContain('.hp-content{max-width:1440px;padding:50px clamp(28px,4vw,52px) 44px;}');
     expect(read('index.html')).toContain('homepage-editorial.css?v=20260917-1');
-    expect(read('index.html')).toContain('homepage-search.js?v=20260917-2');
+    expect(read('index.html')).toContain('homepage-search.js?v=20260930-2');
   });
 });

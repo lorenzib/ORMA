@@ -36,12 +36,51 @@ function friendlyError(code){
   return messages[code] || 'Sign-in could not be completed. Please try again.';
 }
 
-async function moderatorIdentity(){
-  if(!currentUser)return null;
+// Reading the moderator claim used to mint a brand new token every time, and
+// twenty-seven calls go through here -- nine of them while one desk is still
+// loading. Firebase rate-limits the token endpoint, the limit arrives as a
+// throw, and the throw was caught and returned as null, which every caller
+// reads as "not a moderator". A signed-in moderator was therefore sent back to
+// the login page for asking too quickly, told she lacked access, and sent round
+// again when she signed in.
+//
+// A claim does not change between clicks. Holding the answer for a few minutes
+// is enough to make the storm impossible, and a cached "no" is still refreshed,
+// because a claim granted since the token was minted only shows up on a forced
+// refresh -- which is the thing the old code was trying to do, everywhere, at
+// once.
+const CLAIM_TTL_MS=5*60*1000;
+let claimCache=null;
+
+function cachedClaim(){
+  if(!claimCache||claimCache.uid!==currentUser.uid)return null;
+  return Date.now()-claimCache.at<CLAIM_TTL_MS?claimCache:null;
+}
+
+/**
+ * Whether this user holds the moderator claim, and -- when that cannot be
+ * established -- that it could not be established, which is a different answer
+ * from no. Callers that only read data may treat both as no; the one that
+ * decides whether to send somebody back to the login page may not.
+ */
+async function moderatorCheck(){
+  if(!currentUser)return {ok:false,reason:'signed-out'};
+  const cached=cachedClaim();
+  if(cached&&cached.moderator)return {ok:true,uid:currentUser.uid};
   try{
     const token=await getIdTokenResult(currentUser,true);
-    return token.claims?.moderator===true?{uid:currentUser.uid}:null;
-  }catch(error){return null;}
+    const moderator=token.claims?.moderator===true;
+    claimCache={uid:currentUser.uid,moderator,at:Date.now()};
+    return moderator?{ok:true,uid:currentUser.uid}:{ok:false,reason:'not-moderator'};
+  }catch(error){
+    // Nothing was learned about this account, so nothing is recorded about it.
+    return {ok:false,reason:'check-failed',error:authMessage(error?.code)};
+  }
+}
+
+async function moderatorIdentity(){
+  const result=await moderatorCheck();
+  return result.ok?{uid:result.uid}:null;
 }
 
 async function getArtifact(artifactId){
@@ -351,7 +390,7 @@ window.DoloPawsAuth={
   },
   async logOut(){await signOut(auth);currentUser=null;},
 };
-window.DoloPawsModeration={getModeratorStatus:async()=>({ok:!!await moderatorIdentity()}),getQueue:getModerationQueue,decide:moderateContent,getSiteNotices,addSiteNotice,deleteSiteNotice};
+window.DoloPawsModeration={getModeratorStatus:moderatorCheck,getQueue:getModerationQueue,decide:moderateContent,getSiteNotices,addSiteNotice,deleteSiteNotice};
 window.ORMABackoffice={getArtifact,getRevisionJobs,getPublicationReviews,getContentReviews,getDecisionHistory,getNewTrailReviews,getHazardReviews,getEditorialReviews,getNewsletterReviews,getAnalystReviews,getModerationQueue,moderateContent,submitTrailReview,submitPublicationReview,submitDossierReview,getRouteReviews,submitRouteReview,submitNewTrailReview,submitHazardReview,submitEditorialReview,submitNewsletterReview,submitAnalystReview};
 
 onAuthStateChanged(auth,user=>{
