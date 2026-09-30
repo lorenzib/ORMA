@@ -398,17 +398,19 @@
 
   function renderGuestBar() {
     if (state.dog === 'custom' && state.custom) {
-      el.guestTitle.textContent = 'Scores are personalised for ' + state.custom.meta.name + '.';
-      el.guestSub.textContent = 'Browse all trails to see ' + state.custom.meta.name + '’s complete ranking.';
-      el.guestCtaLabel.textContent = 'Browse ' + state.custom.meta.name + '’s matches';
+      var custom = { name: state.custom.meta.name };
+      el.guestTitle.textContent = t('hp.guest.custom.title', 'Scores are personalised for {name}.', custom);
+      el.guestSub.textContent = t('hp.guest.custom.sub', 'Browse all trails to see {name}’s complete ranking.', custom);
+      el.guestCtaLabel.textContent = t('hp.guest.custom.cta', 'Browse {name}’s matches', custom);
     } else if (state.dog === 'medium') {
-      el.guestTitle.textContent = 'Scores use a medium-dog profile.';
-      el.guestSub.textContent = 'Add your dog for personalised matches. Create a free account only when you choose to save.';
-      el.guestCtaLabel.textContent = 'Add your dog';
+      el.guestTitle.textContent = t('hp.guest.medium.title', 'Scores use a medium-dog profile.');
+      el.guestSub.textContent = t('hp.guest.medium.sub', 'Add your dog for personalised matches. Create a free account only when you choose to save.');
+      el.guestCtaLabel.textContent = t('hp.guest.addDog', 'Add your dog');
     } else {
-      el.guestTitle.textContent = 'Previewing scores for ' + dogMeta().name + '.';
-      el.guestSub.textContent = 'Add your own dog to tune every score to them.';
-      el.guestCtaLabel.textContent = 'Add your dog';
+      var preset = { name: dogMeta().name };
+      el.guestTitle.textContent = t('hp.guest.preview.title', 'Previewing scores for {name}.', preset);
+      el.guestSub.textContent = t('hp.guest.preview.sub', 'Add your own dog to tune every score to them.');
+      el.guestCtaLabel.textContent = t('hp.guest.addDog', 'Add your dog');
     }
   }
 
@@ -583,10 +585,10 @@
       }).join('');
       el.content.innerHTML =
         '<section class="hp-mission" aria-labelledby="hpMissionTitle">' +
-          '<div class="hp-mission-copy"><div class="hp-mission-kick">Our mission</div>' +
-          '<h2 id="hpMissionTitle">The route must adapt to the dog, never the other way around.</h2>' +
-          '<p>Every dog moves differently. ORMA helps you choose trails with their needs, pace and limits in mind.</p></div>' +
-          '<blockquote class="hp-mission-quote"><p>“A walk is never just a walk when shared with a dog. It is an act of partnership, curiosity, and joy.”</p><cite>– ORMA Team</cite></blockquote>' +
+          '<div class="hp-mission-copy"><div class="hp-mission-kick">' + esc(t('hp.mission.kick', 'Our mission')) + '</div>' +
+          '<h2 id="hpMissionTitle">' + esc(t('hp.mission.title', 'The route must adapt to the dog, never the other way around.')) + '</h2>' +
+          '<p>' + esc(t('hp.mission.copy', 'Every dog moves differently. ORMA helps you choose trails with their needs, pace and limits in mind.')) + '</p></div>' +
+          '<blockquote class="hp-mission-quote"><p>' + esc(t('hp.mission.quote', '“A walk is never just a walk when shared with a dog. It is an act of partnership, curiosity, and joy.”')) + '</p><cite>' + esc(t('hp.mission.cite', '– ORMA Team')) + '</cite></blockquote>' +
         '</section>' +
         '<section class="hp-how" aria-labelledby="hpHowTitle">' +
           '<div class="hp-section-head"><div><div class="hp-kick">How ORMA works</div>' +
