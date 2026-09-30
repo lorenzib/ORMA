@@ -5233,6 +5233,51 @@
         "routeShape": "out-and-back",
         "routeShapeNote": "Passo Giau to Rifugio Nuvolau by path 452. The drawn line is open, ending 1,262 m from the start, and the published 5.5 km is 2.08x its 2.65 km length. Route descriptions have path 452 leading back to Passo Giau the way it came. Reviewed as there-and-back."
       }
+    },
+    {
+      "id": "alpe-siusi",
+      "verificationScope": "routeGuidance",
+      "reviewedAt": "2026-09-30",
+      "fields": {
+        "routeNumberStatus": "official-numbered-route",
+        "routeNumberSource": {
+          "provider": "Alpe di Siusi Marketing / Seiser Alm Marketing",
+          "name": "Hans and Paula Steger Trail (path 30)",
+          "url": "https://www.seiser-alm.it/en/leisure-activities/mountains-and-hiking/hans-and-paula-steger-trail/"
+        },
+        "routeNumberGuidance": {
+          "mode": "numbered",
+          "start": "Start at Compatsch, the mountain station of the Alpe di Siusi gondola. The numbered paths leave from the square by the Franziskuskirche (Chiesa San Francesco), which is also where path 30 is signed.",
+          "sequence": "Leave Compatsch southward on path 7, the gravel track signed towards Rifugio Molignon, and follow it down across the open meadow to about 1,800 m, passing below the Alpenhotel Panorama. Keep on 7 as it swings east. At the eastern end of the loop, where path 6 comes in, turn north and join path 30, the Hans und Paula Steger Weg. Follow 30 back west along the forest edge and through the meadows, with the Sassolungo and Sasso Piatto ahead, to the Franziskuskirche and Compatsch.",
+          "switches": "Two changes. At the eastern end of the loop leave path 7 where path 6 joins, and take path 30 north-west: this is the turn that makes the walk a loop rather than an out-and-back. Then stay on 30 all the way back to Compatsch — do not follow it east towards Ritsch-Schwaige and Saltria, which is the continuation of the Steger Weg and a longer, one-way walk needing the bus back.",
+          "sources": [
+            {
+              "label": "Official Hans and Paula Steger Trail (path 30) route description",
+              "url": "https://www.seiser-alm.it/en/leisure-activities/mountains-and-hiking/hans-and-paula-steger-trail/",
+              "authority": "Alpe di Siusi Marketing / Seiser Alm Marketing",
+              "reviewedAt": "2026-09-30"
+            },
+            {
+              "label": "OpenStreetMap hiking relation, path 7 (waymark red/white bar, black 7)",
+              "url": "https://www.openstreetmap.org/relation/6865448",
+              "authority": "OpenStreetMap contributors",
+              "reviewedAt": "2026-09-30"
+            },
+            {
+              "label": "OpenStreetMap hiking relation, path 30 (Hans und Paula Steger Weg)",
+              "url": "https://www.openstreetmap.org/relation/9437572",
+              "authority": "OpenStreetMap contributors",
+              "reviewedAt": "2026-09-30"
+            },
+            {
+              "label": "OpenStreetMap hiking relation, path 6 at the eastern junction",
+              "url": "https://www.openstreetmap.org/relation/9447554",
+              "authority": "OpenStreetMap contributors",
+              "reviewedAt": "2026-09-30"
+            }
+          ]
+        }
+      }
     }
   ],
   "contractVersion": "1.0.0"
