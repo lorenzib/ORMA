@@ -39,3 +39,5 @@ jobs:
         run: npm run backoffice:verification-state
       - name: Report the verification funnel
         run: npm run backoffice:verification-funnel
+      - name: Report what each waiting gate is asking
+        run: npm run backoffice:gate-evidence
