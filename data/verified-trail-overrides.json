@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-08T12:38:47.034Z",
+  "updatedAt": "2026-09-30",
   "trails": [
     {
       "id": "cinque-torri-assisted",
@@ -5205,6 +5205,33 @@
       "fields": {
         "routeShape": "out-and-back",
         "routeShapeNote": "Moderator review: this route is not a circuit and is to be treated as there-and-back."
+      }
+    },
+    {
+      "id": "cadini",
+      "verificationScope": "routeShape",
+      "reviewedAt": "2026-09-30",
+      "fields": {
+        "routeShape": "out-and-back",
+        "routeShapeNote": "Cadini di Misurina viewpoint. The trail’s own description calls it \"a short but steep out-and-back\"; the drawn line is open, ending 1,185 m from the start, and the published 3.4 km is 2.04x its 1.66 km length. Reviewed as there-and-back."
+      }
+    },
+    {
+      "id": "lago-sorapis",
+      "verificationScope": "routeShape",
+      "reviewedAt": "2026-09-30",
+      "fields": {
+        "routeShape": "out-and-back",
+        "routeShapeNote": "Lago di Sorapis by path 215 from Passo Tre Croci. The drawn line is open, ending 4,141 m from the start, and the published 10.8 km is 2.06x its 5.25 km length. Guides for path 215 describe returning to Passo Tre Croci along the same route. Reviewed as there-and-back."
+      }
+    },
+    {
+      "id": "nuvolau",
+      "verificationScope": "routeShape",
+      "reviewedAt": "2026-09-30",
+      "fields": {
+        "routeShape": "out-and-back",
+        "routeShapeNote": "Passo Giau to Rifugio Nuvolau by path 452. The drawn line is open, ending 1,262 m from the start, and the published 5.5 km is 2.08x its 2.65 km length. Route descriptions have path 452 leading back to Passo Giau the way it came. Reviewed as there-and-back."
       }
     }
   ],
