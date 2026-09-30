@@ -2773,8 +2773,9 @@ body.map-fs-open{overflow:hidden;}
 .hp-wiz-match b{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .hp-wiz-match small{color:var(--ink-soft);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .hp-wiz-match strong{flex:0 0 auto;font-family:'Bricolage Grotesque',sans-serif;font-size:18px;}
-.hp-wiz-payoff-actions{display:grid;gap:8px;margin-top:18px;}
-.hp-wiz-payoff-actions .hp-search-btn{width:100%;justify-content:center;}
+.hp-wiz-payoff-actions{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin-top:18px;}
+/* The grid track must not grow to the buttons' unwrapped width: Italian labels are longer than the modal on a phone. */
+.hp-wiz-payoff-actions .hp-search-btn,.hp-wiz-payoff-actions .hp-wiz-secondary{width:100%;min-width:0;justify-content:center;white-space:normal;text-align:center;}
 .hp-wiz-secondary{width:100%;padding:11px 14px;border:1.5px solid var(--paper-line);border-radius:12px;background:transparent;color:var(--ink);font:700 13px 'Inter',sans-serif;cursor:pointer;}
 .hp-wiz-secondary:hover{border-color:var(--success);background:#fff;}
 .hp-wiz-device-note{margin:10px 0 0;text-align:center;color:var(--ink-soft);font-size:11.5px;}
